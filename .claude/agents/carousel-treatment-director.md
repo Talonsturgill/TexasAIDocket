@@ -50,13 +50,17 @@ stock or a print register. Every frame is RENDERED: one HERO OBJECT modelled onc
 material, one rig, a soft shadow on a ground it touches, through `txthree.js`. Pitch the hero
 object first, in metres, then nine cameras and states of it.
 
-**THEN PITCH THE WORLD IT STANDS IN (2026-09-24, owner: "every single slide should literally look
-world reknowned").** Carousel no. 32 rendered all nine frames and still read as an object in a
-void, because nothing stood in a place at an hour. Name ONE world from the table in
-`ILLUSTRATION_SYSTEM.md`, THE WORLD (golden hour, into the sun, blue hour, night under sodium,
-high noon, overcast, a storm front), the declared light it wants, and why THIS story wants that
-light. Look at `examples/world-proof/compare.webp` first: the same model and camera in four
-worlds, which is what the light alone does to a frame. It is the floor, never the subject.
+**THEN PITCH THE WORLD IT STANDS IN, AND START DARK (2026-10-04, owner, on the sibling's art
+beside ours: "It's more like bold. The Texas one ... it's just more like faded colors").** Name ONE world
+from the table in `ILLUSTRATION_SYSTEM.md`, THE WORLD, the declared light it wants, and why THIS
+story wants that light. The default is `lastLight`, a STAGED world: a near black sky, one subject
+filling the frame in a pool of light, the world behind it gone dark. `floodlit` is its night
+twin. Every other world (golden hour, blue hour, night under sodium, high noon, overcast, a storm
+front) is a move you argue for in writing, and it still has to pass `value_register.py`, which
+failed eight of the ten decks before this rule. Read THE STAGE in that file and look at
+`examples/bold-proof/` first: three shipped decks beside the same frames staged, and the
+sibling's deck as the standard. Pitch each frame's subject CLOSE and LARGE, a third to two thirds
+of the frame. Ten small things across a lot is a count, not a subject.
 
 Read `knowledge/carousel/ILLUSTRATION_SYSTEM.md` before anything else, THE RENDER first, and look
 at `examples/figure-bearing/contact_sheet.webp`, the owner's worked example of solid shaded forms
@@ -121,3 +125,13 @@ registers it with `K.define` and every frame calls `K.make`.
 **Read `knowledge/carousel/TECHNIQUE_LIBRARY.md` before pitching.** Name techniques from it, and name them because the claim wants them rather than because they impress. Each entry records how that technique FAILS, and the failure is what your treatment has to have a plan for: that plan becomes an acceptance item in the dossier, which is what the pixel critic grades against.
 
 Two entries are worth reading even when you are not using them. **A bar is never a dial**, because a dial implies a red zone and a red zone is a verdict this project's data cannot carry. **County shapes are never invented**, because the real boundaries are committed in `assets/geo/` and a Texan spots a wrong county instantly.
+
+## The three-frame audition
+
+Pitch the cover, a middle evidence frame and the close as three different compositions. The
+cover earns attention with a large recognizable subject. The evidence frame draws a computed
+quantity or relationship. The close shows the consequence. Physical views can share a hero and
+light while maps, cutaways and measured diagrams explain different parts of the story. Use the
+allowed companion frames for those explanations. Do not turn a whole deck into one distant
+model seen repeatedly. Inspect `examples/art-direction-proof/README.md` and its rendered proof
+at 432px before pitching. Those images demonstrate decisions, not a deck template.

@@ -958,6 +958,39 @@ def g_print_ban(d: Path):
     return probs
 
 
+def g_value_register(d: Path):
+    """A shipped deck is not the faded look the owner rejected on 2026-10-04.
+
+    The owner's words are quoted in full in ILLUSTRATION_SYSTEM.md, THE STAGE: the sibling's art
+    "wows me" and ours is "more like faded colors". `value_register` measures it: the mean share of a deck's
+    frames sitting in the mid tones, L* 30 to 70, which is 0.131 over the sibling's twelve decks and
+    was 0.418 over the ten Texas decks before it. The light deck half of that script is not asked
+    here, because `ledger_check` already counts the cap at ship. Decks on or before VALUE_SINCE were
+    drawn under the doctrine that ordered the look, and are measured and noted, never failed.
+    """
+    import value_register as m
+    paths = []
+    try:
+        import measure_shipped as ms
+        paths = ms.frames(d)
+    except Exception:                                                # noqa: BLE001
+        return None
+    rows = [m.frame_stats(x) for x in paths]
+    probs = [x for x in m.judge(rows, False, d.name) if "mid tones" in x]
+    if probs and d.name <= m.VALUE_SINCE:
+        return (f"drawn before the value register was active (through {m.VALUE_SINCE}). Run into it anyway: "
+                f"{probs[0][:180]}")
+    return probs
+
+
+def g_art_preflight(d: Path):
+    """A current deck includes the accepted three-frame review and its exact images."""
+    import art_preflight
+    if d.name <= art_preflight.SINCE:
+        return f"shipped before three-frame art review was active (through {art_preflight.SINCE})"
+    return art_preflight.check(d, archived=True)
+
+
 FIGURE_SINCE = "2026-09-20"
 
 
@@ -1241,6 +1274,8 @@ GATES = [
     ("deck chassis", g_deck_chassis, CURRENT),
     ("deck coherence", g_deck_coherence, CURRENT),
     ("print ban", g_print_ban, CURRENT),
+    ("value register", g_value_register, CURRENT),
+    ("art preflight", g_art_preflight, CURRENT),
     ("figure bearing", g_figure_bearing, CURRENT),
     ("depth floor", g_depth_floor, CURRENT),
     ("plan vs render", g_plan_render, CURRENT),
@@ -1620,6 +1655,11 @@ def self_test() -> int:
         ok("a claim citing the 2026-09-19 disallowed path is CAUGHT",
            probs and any("c1" in p for p in probs), str(probs))
         ok("...and the permitted claim beside it is not", probs and len(probs) == 1, str(probs))
+
+    ok("the first new daily deck needs a three-frame review",
+       bool(g_art_preflight(Path("2026-10-08"))), str(g_art_preflight(Path("2026-10-08"))))
+    ok("the pre-cutover deck reports its actual historic exemption",
+       isinstance(g_art_preflight(Path("2026-10-07")), str), str(g_art_preflight(Path("2026-10-07"))))
 
     # EVERY GATE MUST BE REACHABLE. The failure this guards against is a registry entry whose
     # loader silently returns None on every run, which reports clean forever. Same shape as

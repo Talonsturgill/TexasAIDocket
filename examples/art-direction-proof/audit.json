@@ -1,0 +1,1677 @@
+{
+  "texas_source": "b93919c2dab48782c0b1120046059453e9fe2299",
+  "grid": [
+    432,
+    540
+  ],
+  "lstar_bands": {
+    "mid": [
+      30,
+      70
+    ],
+    "near_black_under": 15
+  },
+  "texas": {
+    "summary": {
+      "decks": 13,
+      "frames": 117,
+      "mean_mid": 0.4125,
+      "mean_dark": 0.2101,
+      "mean_deck_median_L": 32.68
+    },
+    "runs": [
+      {
+        "date": "2026-09-24",
+        "frames": [
+          {
+            "path": "runs/carousel/2026-09-24/slide-01.webp",
+            "mid": 0.2784,
+            "dark": 0.183,
+            "median_L": 26.24
+          },
+          {
+            "path": "runs/carousel/2026-09-24/slide-02.webp",
+            "mid": 0.6771,
+            "dark": 0.1275,
+            "median_L": 36.82
+          },
+          {
+            "path": "runs/carousel/2026-09-24/slide-03.png",
+            "mid": 0.5608,
+            "dark": 0.0548,
+            "median_L": 32.43
+          },
+          {
+            "path": "runs/carousel/2026-09-24/slide-04.png",
+            "mid": 0.4575,
+            "dark": 0.0811,
+            "median_L": 28.74
+          },
+          {
+            "path": "runs/carousel/2026-09-24/slide-05.webp",
+            "mid": 0.3789,
+            "dark": 0.0401,
+            "median_L": 29.01
+          },
+          {
+            "path": "runs/carousel/2026-09-24/slide-06.png",
+            "mid": 0.7153,
+            "dark": 0.0255,
+            "median_L": 33.51
+          },
+          {
+            "path": "runs/carousel/2026-09-24/slide-07.webp",
+            "mid": 0.4394,
+            "dark": 0.0696,
+            "median_L": 30.31
+          },
+          {
+            "path": "runs/carousel/2026-09-24/slide-08.webp",
+            "mid": 0.4151,
+            "dark": 0.1374,
+            "median_L": 36.17
+          },
+          {
+            "path": "runs/carousel/2026-09-24/slide-09.webp",
+            "mid": 0.3592,
+            "dark": 0.3782,
+            "median_L": 25.9
+          }
+        ]
+      },
+      {
+        "date": "2026-09-26",
+        "frames": [
+          {
+            "path": "runs/carousel/2026-09-26/slide-01.webp",
+            "mid": 0.2758,
+            "dark": 0.2113,
+            "median_L": 22.13
+          },
+          {
+            "path": "runs/carousel/2026-09-26/slide-02.webp",
+            "mid": 0.0395,
+            "dark": 0.5274,
+            "median_L": 12.53
+          },
+          {
+            "path": "runs/carousel/2026-09-26/slide-03.webp",
+            "mid": 0.2363,
+            "dark": 0.5624,
+            "median_L": 13.52
+          },
+          {
+            "path": "runs/carousel/2026-09-26/slide-04.webp",
+            "mid": 0.3634,
+            "dark": 0.0715,
+            "median_L": 28.63
+          },
+          {
+            "path": "runs/carousel/2026-09-26/slide-05.webp",
+            "mid": 0.1035,
+            "dark": 0.3751,
+            "median_L": 17.94
+          },
+          {
+            "path": "runs/carousel/2026-09-26/slide-06.webp",
+            "mid": 0.1771,
+            "dark": 0.5028,
+            "median_L": 14.78
+          },
+          {
+            "path": "runs/carousel/2026-09-26/slide-07.webp",
+            "mid": 0.2804,
+            "dark": 0.2231,
+            "median_L": 25.7
+          },
+          {
+            "path": "runs/carousel/2026-09-26/slide-08.webp",
+            "mid": 0.1735,
+            "dark": 0.4474,
+            "median_L": 16.47
+          },
+          {
+            "path": "runs/carousel/2026-09-26/slide-09.webp",
+            "mid": 0.3338,
+            "dark": 0.3733,
+            "median_L": 20.79
+          }
+        ]
+      },
+      {
+        "date": "2026-09-27",
+        "frames": [
+          {
+            "path": "runs/carousel/2026-09-27/slide-01.webp",
+            "mid": 0.176,
+            "dark": 0.5271,
+            "median_L": 14.16
+          },
+          {
+            "path": "runs/carousel/2026-09-27/slide-02.webp",
+            "mid": 0.0606,
+            "dark": 0.7303,
+            "median_L": 8.23
+          },
+          {
+            "path": "runs/carousel/2026-09-27/slide-03.webp",
+            "mid": 0.2913,
+            "dark": 0.2595,
+            "median_L": 24.17
+          },
+          {
+            "path": "runs/carousel/2026-09-27/slide-04.png",
+            "mid": 0.1717,
+            "dark": 0.4297,
+            "median_L": 17.16
+          },
+          {
+            "path": "runs/carousel/2026-09-27/slide-05.webp",
+            "mid": 0.1189,
+            "dark": 0.7665,
+            "median_L": 4.55
+          },
+          {
+            "path": "runs/carousel/2026-09-27/slide-06.webp",
+            "mid": 0.0728,
+            "dark": 0.812,
+            "median_L": 3.42
+          },
+          {
+            "path": "runs/carousel/2026-09-27/slide-07.webp",
+            "mid": 0.2156,
+            "dark": 0.3337,
+            "median_L": 20.42
+          },
+          {
+            "path": "runs/carousel/2026-09-27/slide-08.webp",
+            "mid": 0.0485,
+            "dark": 0.7127,
+            "median_L": 9.16
+          },
+          {
+            "path": "runs/carousel/2026-09-27/slide-09.webp",
+            "mid": 0.1326,
+            "dark": 0.6783,
+            "median_L": 5.35
+          }
+        ]
+      },
+      {
+        "date": "2026-09-28",
+        "frames": [
+          {
+            "path": "runs/carousel/2026-09-28/slide-01.png",
+            "mid": 0.4839,
+            "dark": 0.0917,
+            "median_L": 31.13
+          },
+          {
+            "path": "runs/carousel/2026-09-28/slide-02.png",
+            "mid": 0.4013,
+            "dark": 0.1293,
+            "median_L": 26.87
+          },
+          {
+            "path": "runs/carousel/2026-09-28/slide-03.webp",
+            "mid": 0.5442,
+            "dark": 0.0404,
+            "median_L": 33.06
+          },
+          {
+            "path": "runs/carousel/2026-09-28/slide-04.webp",
+            "mid": 0.3473,
+            "dark": 0.1457,
+            "median_L": 25.79
+          },
+          {
+            "path": "runs/carousel/2026-09-28/slide-05.webp",
+            "mid": 0.3427,
+            "dark": 0.1443,
+            "median_L": 25.79
+          },
+          {
+            "path": "runs/carousel/2026-09-28/slide-06.png",
+            "mid": 0.4455,
+            "dark": 0.0255,
+            "median_L": 29.34
+          },
+          {
+            "path": "runs/carousel/2026-09-28/slide-07.webp",
+            "mid": 0.4199,
+            "dark": 0.1058,
+            "median_L": 26.53
+          },
+          {
+            "path": "runs/carousel/2026-09-28/slide-08.webp",
+            "mid": 0.1852,
+            "dark": 0.5656,
+            "median_L": 12.76
+          },
+          {
+            "path": "runs/carousel/2026-09-28/slide-09.webp",
+            "mid": 0.4879,
+            "dark": 0.0673,
+            "median_L": 30.9
+          }
+        ]
+      },
+      {
+        "date": "2026-09-29",
+        "frames": [
+          {
+            "path": "runs/carousel/2026-09-29/slide-01.webp",
+            "mid": 0.3151,
+            "dark": 0.053,
+            "median_L": 28.57
+          },
+          {
+            "path": "runs/carousel/2026-09-29/slide-02.webp",
+            "mid": 0.3295,
+            "dark": 0.0954,
+            "median_L": 25.44
+          },
+          {
+            "path": "runs/carousel/2026-09-29/slide-03.webp",
+            "mid": 0.5905,
+            "dark": 0.0339,
+            "median_L": 36.66
+          },
+          {
+            "path": "runs/carousel/2026-09-29/slide-04.webp",
+            "mid": 0.3997,
+            "dark": 0.0986,
+            "median_L": 27.34
+          },
+          {
+            "path": "runs/carousel/2026-09-29/slide-05.webp",
+            "mid": 0.2409,
+            "dark": 0.1973,
+            "median_L": 22.47
+          },
+          {
+            "path": "runs/carousel/2026-09-29/slide-06.webp",
+            "mid": 0.276,
+            "dark": 0.1252,
+            "median_L": 22.41
+          },
+          {
+            "path": "runs/carousel/2026-09-29/slide-07.png",
+            "mid": 0.5133,
+            "dark": 0.0012,
+            "median_L": 37.08
+          },
+          {
+            "path": "runs/carousel/2026-09-29/slide-08.png",
+            "mid": 0.5171,
+            "dark": 0.0013,
+            "median_L": 37.87
+          },
+          {
+            "path": "runs/carousel/2026-09-29/slide-09.webp",
+            "mid": 0.5808,
+            "dark": 0.1145,
+            "median_L": 36.14
+          }
+        ]
+      },
+      {
+        "date": "2026-09-30",
+        "frames": [
+          {
+            "path": "runs/carousel/2026-09-30/slide-01.webp",
+            "mid": 0.472,
+            "dark": 0.033,
+            "median_L": 68.01
+          },
+          {
+            "path": "runs/carousel/2026-09-30/slide-02.png",
+            "mid": 0.3818,
+            "dark": 0.0296,
+            "median_L": 60.29
+          },
+          {
+            "path": "runs/carousel/2026-09-30/slide-03.webp",
+            "mid": 0.4545,
+            "dark": 0.0377,
+            "median_L": 61.25
+          },
+          {
+            "path": "runs/carousel/2026-09-30/slide-04.webp",
+            "mid": 0.4374,
+            "dark": 0.0571,
+            "median_L": 66.04
+          },
+          {
+            "path": "runs/carousel/2026-09-30/slide-05.webp",
+            "mid": 0.8384,
+            "dark": 0.074,
+            "median_L": 63.3
+          },
+          {
+            "path": "runs/carousel/2026-09-30/slide-06.webp",
+            "mid": 0.3909,
+            "dark": 0.0578,
+            "median_L": 60.86
+          },
+          {
+            "path": "runs/carousel/2026-09-30/slide-07.png",
+            "mid": 0.3987,
+            "dark": 0.0548,
+            "median_L": 59.83
+          },
+          {
+            "path": "runs/carousel/2026-09-30/slide-08.webp",
+            "mid": 0.4682,
+            "dark": 0.0585,
+            "median_L": 59.5
+          },
+          {
+            "path": "runs/carousel/2026-09-30/slide-09.webp",
+            "mid": 0.4365,
+            "dark": 0.0547,
+            "median_L": 64.36
+          }
+        ]
+      },
+      {
+        "date": "2026-10-01",
+        "frames": [
+          {
+            "path": "runs/carousel/2026-10-01/slide-01.webp",
+            "mid": 0.438,
+            "dark": 0.1157,
+            "median_L": 29.83
+          },
+          {
+            "path": "runs/carousel/2026-10-01/slide-02.webp",
+            "mid": 0.3333,
+            "dark": 0.0887,
+            "median_L": 27.1
+          },
+          {
+            "path": "runs/carousel/2026-10-01/slide-03.webp",
+            "mid": 0.6235,
+            "dark": 0.063,
+            "median_L": 32.12
+          },
+          {
+            "path": "runs/carousel/2026-10-01/slide-04.webp",
+            "mid": 0.5236,
+            "dark": 0.1907,
+            "median_L": 33.44
+          },
+          {
+            "path": "runs/carousel/2026-10-01/slide-05.webp",
+            "mid": 0.5332,
+            "dark": 0.0355,
+            "median_L": 32.86
+          },
+          {
+            "path": "runs/carousel/2026-10-01/slide-06.webp",
+            "mid": 0.5205,
+            "dark": 0.2299,
+            "median_L": 32.55
+          },
+          {
+            "path": "runs/carousel/2026-10-01/slide-07.webp",
+            "mid": 0.336,
+            "dark": 0.1643,
+            "median_L": 25.96
+          },
+          {
+            "path": "runs/carousel/2026-10-01/slide-08.webp",
+            "mid": 0.6619,
+            "dark": 0.0844,
+            "median_L": 36.2
+          },
+          {
+            "path": "runs/carousel/2026-10-01/slide-09.webp",
+            "mid": 0.1491,
+            "dark": 0.1681,
+            "median_L": 19.15
+          }
+        ]
+      },
+      {
+        "date": "2026-10-02",
+        "frames": [
+          {
+            "path": "runs/carousel/2026-10-02/slide-01.webp",
+            "mid": 0.4486,
+            "dark": 0.0639,
+            "median_L": 36.98
+          },
+          {
+            "path": "runs/carousel/2026-10-02/slide-02.webp",
+            "mid": 0.2143,
+            "dark": 0.2752,
+            "median_L": 20.52
+          },
+          {
+            "path": "runs/carousel/2026-10-02/slide-03.webp",
+            "mid": 0.1554,
+            "dark": 0.2334,
+            "median_L": 19.8
+          },
+          {
+            "path": "runs/carousel/2026-10-02/slide-04.webp",
+            "mid": 0.4331,
+            "dark": 0.0053,
+            "median_L": 29.49
+          },
+          {
+            "path": "runs/carousel/2026-10-02/slide-05.webp",
+            "mid": 0.5025,
+            "dark": 0.0769,
+            "median_L": 33.06
+          },
+          {
+            "path": "runs/carousel/2026-10-02/slide-06.webp",
+            "mid": 0.4869,
+            "dark": 0.2383,
+            "median_L": 31.35
+          },
+          {
+            "path": "runs/carousel/2026-10-02/slide-07.webp",
+            "mid": 0.5728,
+            "dark": 0.1221,
+            "median_L": 36.21
+          },
+          {
+            "path": "runs/carousel/2026-10-02/slide-08.webp",
+            "mid": 0.5098,
+            "dark": 0.1884,
+            "median_L": 34.19
+          },
+          {
+            "path": "runs/carousel/2026-10-02/slide-09.webp",
+            "mid": 0.3571,
+            "dark": 0.0404,
+            "median_L": 26.49
+          }
+        ]
+      },
+      {
+        "date": "2026-10-03",
+        "frames": [
+          {
+            "path": "runs/carousel/2026-10-03/slide-01.webp",
+            "mid": 0.6257,
+            "dark": 0.0667,
+            "median_L": 32.99
+          },
+          {
+            "path": "runs/carousel/2026-10-03/slide-02.png",
+            "mid": 0.3358,
+            "dark": 0.3781,
+            "median_L": 20.14
+          },
+          {
+            "path": "runs/carousel/2026-10-03/slide-03.webp",
+            "mid": 0.2961,
+            "dark": 0.3182,
+            "median_L": 19.86
+          },
+          {
+            "path": "runs/carousel/2026-10-03/slide-04.webp",
+            "mid": 0.438,
+            "dark": 0.2197,
+            "median_L": 27.28
+          },
+          {
+            "path": "runs/carousel/2026-10-03/slide-05.webp",
+            "mid": 0.8032,
+            "dark": 0.0195,
+            "median_L": 35.61
+          },
+          {
+            "path": "runs/carousel/2026-10-03/slide-06.webp",
+            "mid": 0.6115,
+            "dark": 0.0195,
+            "median_L": 34.75
+          },
+          {
+            "path": "runs/carousel/2026-10-03/slide-07.webp",
+            "mid": 0.2221,
+            "dark": 0.4219,
+            "median_L": 20.44
+          },
+          {
+            "path": "runs/carousel/2026-10-03/slide-08.webp",
+            "mid": 0.4619,
+            "dark": 0.1244,
+            "median_L": 30.04
+          },
+          {
+            "path": "runs/carousel/2026-10-03/slide-09.webp",
+            "mid": 0.5456,
+            "dark": 0.0382,
+            "median_L": 31.79
+          }
+        ]
+      },
+      {
+        "date": "2026-10-04",
+        "frames": [
+          {
+            "path": "runs/carousel/2026-10-04/slide-01.webp",
+            "mid": 0.5851,
+            "dark": 0.124,
+            "median_L": 55.11
+          },
+          {
+            "path": "runs/carousel/2026-10-04/slide-02.webp",
+            "mid": 0.7595,
+            "dark": 0.1322,
+            "median_L": 58.47
+          },
+          {
+            "path": "runs/carousel/2026-10-04/slide-03.webp",
+            "mid": 0.7194,
+            "dark": 0.0296,
+            "median_L": 61.64
+          },
+          {
+            "path": "runs/carousel/2026-10-04/slide-04.webp",
+            "mid": 0.7313,
+            "dark": 0.1041,
+            "median_L": 63.37
+          },
+          {
+            "path": "runs/carousel/2026-10-04/slide-05.webp",
+            "mid": 0.5153,
+            "dark": 0.0955,
+            "median_L": 58.41
+          },
+          {
+            "path": "runs/carousel/2026-10-04/slide-06.webp",
+            "mid": 0.8918,
+            "dark": 0.0342,
+            "median_L": 60.38
+          },
+          {
+            "path": "runs/carousel/2026-10-04/slide-07.webp",
+            "mid": 0.5839,
+            "dark": 0.0987,
+            "median_L": 58.55
+          },
+          {
+            "path": "runs/carousel/2026-10-04/slide-08.webp",
+            "mid": 0.868,
+            "dark": 0.0311,
+            "median_L": 58.19
+          },
+          {
+            "path": "runs/carousel/2026-10-04/slide-09.webp",
+            "mid": 0.6146,
+            "dark": 0.1535,
+            "median_L": 57.37
+          }
+        ]
+      },
+      {
+        "date": "2026-10-05",
+        "frames": [
+          {
+            "path": "runs/carousel/2026-10-05/slide-01.webp",
+            "mid": 0.3432,
+            "dark": 0.2549,
+            "median_L": 27.27
+          },
+          {
+            "path": "runs/carousel/2026-10-05/slide-02.webp",
+            "mid": 0.2172,
+            "dark": 0.6043,
+            "median_L": 10.01
+          },
+          {
+            "path": "runs/carousel/2026-10-05/slide-03.webp",
+            "mid": 0.2358,
+            "dark": 0.4588,
+            "median_L": 16.86
+          },
+          {
+            "path": "runs/carousel/2026-10-05/slide-04.webp",
+            "mid": 0.0717,
+            "dark": 0.7648,
+            "median_L": 3.57
+          },
+          {
+            "path": "runs/carousel/2026-10-05/slide-05.webp",
+            "mid": 0.0354,
+            "dark": 0.6446,
+            "median_L": 13.71
+          },
+          {
+            "path": "runs/carousel/2026-10-05/slide-06.webp",
+            "mid": 0.3169,
+            "dark": 0.3401,
+            "median_L": 23.86
+          },
+          {
+            "path": "runs/carousel/2026-10-05/slide-07.webp",
+            "mid": 0.377,
+            "dark": 0.1543,
+            "median_L": 29.46
+          },
+          {
+            "path": "runs/carousel/2026-10-05/slide-08.webp",
+            "mid": 0.346,
+            "dark": 0.3762,
+            "median_L": 19.88
+          },
+          {
+            "path": "runs/carousel/2026-10-05/slide-09.webp",
+            "mid": 0.3772,
+            "dark": 0.2364,
+            "median_L": 28.98
+          }
+        ]
+      },
+      {
+        "date": "2026-10-06",
+        "frames": [
+          {
+            "path": "runs/carousel/2026-10-06/slide-01.webp",
+            "mid": 0.3084,
+            "dark": 0.4643,
+            "median_L": 17.3
+          },
+          {
+            "path": "runs/carousel/2026-10-06/slide-02.webp",
+            "mid": 0.3049,
+            "dark": 0.464,
+            "median_L": 17.07
+          },
+          {
+            "path": "runs/carousel/2026-10-06/slide-03.webp",
+            "mid": 0.2098,
+            "dark": 0.4793,
+            "median_L": 15.75
+          },
+          {
+            "path": "runs/carousel/2026-10-06/slide-04.webp",
+            "mid": 0.3496,
+            "dark": 0.2617,
+            "median_L": 21.77
+          },
+          {
+            "path": "runs/carousel/2026-10-06/slide-05.webp",
+            "mid": 0.3383,
+            "dark": 0.2268,
+            "median_L": 23.51
+          },
+          {
+            "path": "runs/carousel/2026-10-06/slide-06.png",
+            "mid": 0.3924,
+            "dark": 0.3299,
+            "median_L": 23.53
+          },
+          {
+            "path": "runs/carousel/2026-10-06/slide-07.webp",
+            "mid": 0.5503,
+            "dark": 0.2381,
+            "median_L": 37.98
+          },
+          {
+            "path": "runs/carousel/2026-10-06/slide-08.png",
+            "mid": 0.1358,
+            "dark": 0.4587,
+            "median_L": 15.46
+          },
+          {
+            "path": "runs/carousel/2026-10-06/slide-09.png",
+            "mid": 0.3909,
+            "dark": 0.2336,
+            "median_L": 38.06
+          }
+        ]
+      },
+      {
+        "date": "2026-10-07",
+        "frames": [
+          {
+            "path": "runs/carousel/2026-10-07/slide-01.webp",
+            "mid": 0.507,
+            "dark": 0.0241,
+            "median_L": 60.39
+          },
+          {
+            "path": "runs/carousel/2026-10-07/slide-02.webp",
+            "mid": 0.5516,
+            "dark": 0.0786,
+            "median_L": 62.26
+          },
+          {
+            "path": "runs/carousel/2026-10-07/slide-03.webp",
+            "mid": 0.612,
+            "dark": 0.0315,
+            "median_L": 59.11
+          },
+          {
+            "path": "runs/carousel/2026-10-07/slide-04.webp",
+            "mid": 0.5636,
+            "dark": 0.0267,
+            "median_L": 59.58
+          },
+          {
+            "path": "runs/carousel/2026-10-07/slide-05.webp",
+            "mid": 0.7281,
+            "dark": 0.0734,
+            "median_L": 54.64
+          },
+          {
+            "path": "runs/carousel/2026-10-07/slide-06.webp",
+            "mid": 0.5732,
+            "dark": 0.2205,
+            "median_L": 42.71
+          },
+          {
+            "path": "runs/carousel/2026-10-07/slide-07.webp",
+            "mid": 0.4149,
+            "dark": 0.0673,
+            "median_L": 55.43
+          },
+          {
+            "path": "runs/carousel/2026-10-07/slide-08.webp",
+            "mid": 0.6408,
+            "dark": 0.098,
+            "median_L": 57.05
+          },
+          {
+            "path": "runs/carousel/2026-10-07/slide-09.webp",
+            "mid": 0.7087,
+            "dark": 0.0418,
+            "median_L": 56.86
+          }
+        ]
+      }
+    ]
+  },
+  "sibling_source": "f7c144ec7631a00f511ffde0424c0fff2a25f001",
+  "sibling": {
+    "summary": {
+      "decks": 15,
+      "frames": 133,
+      "mean_mid": 0.1272,
+      "mean_dark": 0.6074,
+      "mean_deck_median_L": 12.04
+    },
+    "runs": [
+      {
+        "date": "2026-09-24",
+        "frames": [
+          {
+            "path": "runs/2026-09-24/slide-01.webp",
+            "mid": 0.0513,
+            "dark": 0.7527,
+            "median_L": 9.94
+          },
+          {
+            "path": "runs/2026-09-24/slide-02.webp",
+            "mid": 0.0676,
+            "dark": 0.7957,
+            "median_L": 7.87
+          },
+          {
+            "path": "runs/2026-09-24/slide-03.webp",
+            "mid": 0.1073,
+            "dark": 0.6928,
+            "median_L": 11.11
+          },
+          {
+            "path": "runs/2026-09-24/slide-04.webp",
+            "mid": 0.0875,
+            "dark": 0.7433,
+            "median_L": 9.64
+          },
+          {
+            "path": "runs/2026-09-24/slide-05.webp",
+            "mid": 0.0483,
+            "dark": 0.8619,
+            "median_L": 6.54
+          },
+          {
+            "path": "runs/2026-09-24/slide-06.webp",
+            "mid": 0.0373,
+            "dark": 0.8579,
+            "median_L": 6.65
+          },
+          {
+            "path": "runs/2026-09-24/slide-07.webp",
+            "mid": 0.0561,
+            "dark": 0.8395,
+            "median_L": 5.39
+          },
+          {
+            "path": "runs/2026-09-24/slide-08.webp",
+            "mid": 0.0394,
+            "dark": 0.7969,
+            "median_L": 9.89
+          },
+          {
+            "path": "runs/2026-09-24/slide-09.webp",
+            "mid": 0.0409,
+            "dark": 0.7662,
+            "median_L": 9.97
+          }
+        ]
+      },
+      {
+        "date": "2026-09-25",
+        "frames": [
+          {
+            "path": "runs/2026-09-25/slide-01.webp",
+            "mid": 0.0833,
+            "dark": 0.7655,
+            "median_L": 9.75
+          },
+          {
+            "path": "runs/2026-09-25/slide-02.webp",
+            "mid": 0.0573,
+            "dark": 0.8627,
+            "median_L": 8.33
+          },
+          {
+            "path": "runs/2026-09-25/slide-03.webp",
+            "mid": 0.0935,
+            "dark": 0.8147,
+            "median_L": 8.33
+          },
+          {
+            "path": "runs/2026-09-25/slide-04.webp",
+            "mid": 0.0651,
+            "dark": 0.8157,
+            "median_L": 10.31
+          },
+          {
+            "path": "runs/2026-09-25/slide-05.webp",
+            "mid": 0.0953,
+            "dark": 0.7601,
+            "median_L": 9.75
+          },
+          {
+            "path": "runs/2026-09-25/slide-06.webp",
+            "mid": 0.1667,
+            "dark": 0.6262,
+            "median_L": 11.71
+          },
+          {
+            "path": "runs/2026-09-25/slide-07.webp",
+            "mid": 0.1248,
+            "dark": 0.6546,
+            "median_L": 11.63
+          },
+          {
+            "path": "runs/2026-09-25/slide-08.webp",
+            "mid": 0.0845,
+            "dark": 0.8125,
+            "median_L": 7.82
+          },
+          {
+            "path": "runs/2026-09-25/slide-09.webp",
+            "mid": 0.179,
+            "dark": 0.5663,
+            "median_L": 13.13
+          }
+        ]
+      },
+      {
+        "date": "2026-09-26",
+        "frames": [
+          {
+            "path": "runs/2026-09-26/slide-01.webp",
+            "mid": 0.1048,
+            "dark": 0.6712,
+            "median_L": 2.34
+          },
+          {
+            "path": "runs/2026-09-26/slide-02.webp",
+            "mid": 0.0855,
+            "dark": 0.6286,
+            "median_L": 5.49
+          },
+          {
+            "path": "runs/2026-09-26/slide-03.webp",
+            "mid": 0.0532,
+            "dark": 0.8097,
+            "median_L": 5.1
+          },
+          {
+            "path": "runs/2026-09-26/slide-04.webp",
+            "mid": 0.2447,
+            "dark": 0.6592,
+            "median_L": 5.1
+          },
+          {
+            "path": "runs/2026-09-26/slide-05.webp",
+            "mid": 0.0663,
+            "dark": 0.7352,
+            "median_L": 2.12
+          },
+          {
+            "path": "runs/2026-09-26/slide-06.webp",
+            "mid": 0.0989,
+            "dark": 0.8368,
+            "median_L": 3.1
+          },
+          {
+            "path": "runs/2026-09-26/slide-07.webp",
+            "mid": 0.0936,
+            "dark": 0.6522,
+            "median_L": 5.09
+          },
+          {
+            "path": "runs/2026-09-26/slide-08.webp",
+            "mid": 0.13,
+            "dark": 0.6849,
+            "median_L": 7.06
+          },
+          {
+            "path": "runs/2026-09-26/slide-09.webp",
+            "mid": 0.2235,
+            "dark": 0.6128,
+            "median_L": 7.41
+          }
+        ]
+      },
+      {
+        "date": "2026-09-27",
+        "frames": [
+          {
+            "path": "runs/2026-09-27/slide-01.webp",
+            "mid": 0.1532,
+            "dark": 0.3366,
+            "median_L": 21.73
+          },
+          {
+            "path": "runs/2026-09-27/slide-02.webp",
+            "mid": 0.3096,
+            "dark": 0.4021,
+            "median_L": 27.5
+          },
+          {
+            "path": "runs/2026-09-27/slide-03.webp",
+            "mid": 0.1551,
+            "dark": 0.5889,
+            "median_L": 11.32
+          },
+          {
+            "path": "runs/2026-09-27/slide-04.webp",
+            "mid": 0.1184,
+            "dark": 0.7641,
+            "median_L": 4.21
+          },
+          {
+            "path": "runs/2026-09-27/slide-05.webp",
+            "mid": 0.0596,
+            "dark": 0.8399,
+            "median_L": 4.25
+          },
+          {
+            "path": "runs/2026-09-27/slide-06.webp",
+            "mid": 0.0331,
+            "dark": 0.8837,
+            "median_L": 2.39
+          },
+          {
+            "path": "runs/2026-09-27/slide-07.webp",
+            "mid": 0.0564,
+            "dark": 0.7846,
+            "median_L": 4.53
+          },
+          {
+            "path": "runs/2026-09-27/slide-08.webp",
+            "mid": 0.037,
+            "dark": 0.8905,
+            "median_L": 4.14
+          },
+          {
+            "path": "runs/2026-09-27/slide-09.webp",
+            "mid": 0.1529,
+            "dark": 0.6735,
+            "median_L": 3.25
+          }
+        ]
+      },
+      {
+        "date": "2026-09-28",
+        "frames": [
+          {
+            "path": "runs/2026-09-28/slide-01.webp",
+            "mid": 0.1249,
+            "dark": 0.7471,
+            "median_L": 2.76
+          },
+          {
+            "path": "runs/2026-09-28/slide-02.webp",
+            "mid": 0.1295,
+            "dark": 0.7637,
+            "median_L": 3.24
+          },
+          {
+            "path": "runs/2026-09-28/slide-03.webp",
+            "mid": 0.0389,
+            "dark": 0.8761,
+            "median_L": 2.62
+          },
+          {
+            "path": "runs/2026-09-28/slide-04.webp",
+            "mid": 0.2161,
+            "dark": 0.5897,
+            "median_L": 6.26
+          },
+          {
+            "path": "runs/2026-09-28/slide-05.webp",
+            "mid": 0.2889,
+            "dark": 0.5093,
+            "median_L": 12.97
+          },
+          {
+            "path": "runs/2026-09-28/slide-06.webp",
+            "mid": 0.0526,
+            "dark": 0.8085,
+            "median_L": 2.56
+          },
+          {
+            "path": "runs/2026-09-28/slide-07.webp",
+            "mid": 0.0472,
+            "dark": 0.8661,
+            "median_L": 2.7
+          },
+          {
+            "path": "runs/2026-09-28/slide-08.webp",
+            "mid": 0.0524,
+            "dark": 0.8699,
+            "median_L": 1.55
+          },
+          {
+            "path": "runs/2026-09-28/slide-09.webp",
+            "mid": 0.0999,
+            "dark": 0.6376,
+            "median_L": 3.08
+          }
+        ]
+      },
+      {
+        "date": "2026-09-29",
+        "frames": [
+          {
+            "path": "runs/2026-09-29/slide-01.webp",
+            "mid": 0.112,
+            "dark": 0.1041,
+            "median_L": 82.75
+          },
+          {
+            "path": "runs/2026-09-29/slide-02.webp",
+            "mid": 0.1941,
+            "dark": 0.6666,
+            "median_L": 6.4
+          },
+          {
+            "path": "runs/2026-09-29/slide-03.webp",
+            "mid": 0.0779,
+            "dark": 0.06,
+            "median_L": 82.73
+          },
+          {
+            "path": "runs/2026-09-29/slide-04.webp",
+            "mid": 0.2398,
+            "dark": 0.5194,
+            "median_L": 13.44
+          },
+          {
+            "path": "runs/2026-09-29/slide-05.webp",
+            "mid": 0.1748,
+            "dark": 0.1917,
+            "median_L": 52.69
+          },
+          {
+            "path": "runs/2026-09-29/slide-06.webp",
+            "mid": 0.0851,
+            "dark": 0.0572,
+            "median_L": 83.44
+          },
+          {
+            "path": "runs/2026-09-29/slide-07.webp",
+            "mid": 0.1197,
+            "dark": 0.5334,
+            "median_L": 13.48
+          },
+          {
+            "path": "runs/2026-09-29/slide-08.webp",
+            "mid": 0.1182,
+            "dark": 0.0249,
+            "median_L": 83.37
+          },
+          {
+            "path": "runs/2026-09-29/slide-09.webp",
+            "mid": 0.0715,
+            "dark": 0.6548,
+            "median_L": 6.74
+          }
+        ]
+      },
+      {
+        "date": "2026-09-30",
+        "frames": [
+          {
+            "path": "runs/2026-09-30/slide-01.webp",
+            "mid": 0.1751,
+            "dark": 0.5101,
+            "median_L": 14.91
+          },
+          {
+            "path": "runs/2026-09-30/slide-02.webp",
+            "mid": 0.1949,
+            "dark": 0.5748,
+            "median_L": 13.29
+          },
+          {
+            "path": "runs/2026-09-30/slide-03.webp",
+            "mid": 0.0423,
+            "dark": 0.4148,
+            "median_L": 16.79
+          },
+          {
+            "path": "runs/2026-09-30/slide-04.webp",
+            "mid": 0.0508,
+            "dark": 0.8575,
+            "median_L": 7.17
+          },
+          {
+            "path": "runs/2026-09-30/slide-05.webp",
+            "mid": 0.1279,
+            "dark": 0.145,
+            "median_L": 19.01
+          },
+          {
+            "path": "runs/2026-09-30/slide-06.webp",
+            "mid": 0.1987,
+            "dark": 0.2981,
+            "median_L": 18.61
+          },
+          {
+            "path": "runs/2026-09-30/slide-07.webp",
+            "mid": 0.0308,
+            "dark": 0.2056,
+            "median_L": 19.52
+          },
+          {
+            "path": "runs/2026-09-30/slide-08.webp",
+            "mid": 0.0441,
+            "dark": 0.8642,
+            "median_L": 6.71
+          },
+          {
+            "path": "runs/2026-09-30/slide-09.webp",
+            "mid": 0.1472,
+            "dark": 0.4418,
+            "median_L": 17.02
+          }
+        ]
+      },
+      {
+        "date": "2026-10-01",
+        "frames": [
+          {
+            "path": "runs/2026-10-01/slide-01.webp",
+            "mid": 0.0312,
+            "dark": 0.737,
+            "median_L": 4.37
+          },
+          {
+            "path": "runs/2026-10-01/slide-02.webp",
+            "mid": 0.072,
+            "dark": 0.631,
+            "median_L": 4.28
+          },
+          {
+            "path": "runs/2026-10-01/slide-03.webp",
+            "mid": 0.1042,
+            "dark": 0.6096,
+            "median_L": 2.12
+          },
+          {
+            "path": "runs/2026-10-01/slide-04.webp",
+            "mid": 0.0662,
+            "dark": 0.8232,
+            "median_L": 1.45
+          },
+          {
+            "path": "runs/2026-10-01/slide-05.webp",
+            "mid": 0.0794,
+            "dark": 0.6415,
+            "median_L": 4.48
+          },
+          {
+            "path": "runs/2026-10-01/slide-06.webp",
+            "mid": 0.0995,
+            "dark": 0.7907,
+            "median_L": 1.49
+          },
+          {
+            "path": "runs/2026-10-01/slide-07.webp",
+            "mid": 0.0528,
+            "dark": 0.6804,
+            "median_L": 1.97
+          },
+          {
+            "path": "runs/2026-10-01/slide-08.webp",
+            "mid": 0.0864,
+            "dark": 0.7617,
+            "median_L": 1.49
+          },
+          {
+            "path": "runs/2026-10-01/slide-09.webp",
+            "mid": 0.0488,
+            "dark": 0.8167,
+            "median_L": 1.43
+          }
+        ]
+      },
+      {
+        "date": "2026-10-02",
+        "frames": [
+          {
+            "path": "runs/2026-10-02/slide-01.webp",
+            "mid": 0.1077,
+            "dark": 0.5317,
+            "median_L": 13.51
+          },
+          {
+            "path": "runs/2026-10-02/slide-02.webp",
+            "mid": 0.0508,
+            "dark": 0.618,
+            "median_L": 3.0
+          },
+          {
+            "path": "runs/2026-10-02/slide-03.webp",
+            "mid": 0.1438,
+            "dark": 0.7731,
+            "median_L": 1.67
+          },
+          {
+            "path": "runs/2026-10-02/slide-04.webp",
+            "mid": 0.2463,
+            "dark": 0.6377,
+            "median_L": 3.61
+          },
+          {
+            "path": "runs/2026-10-02/slide-05.webp",
+            "mid": 0.1339,
+            "dark": 0.799,
+            "median_L": 1.78
+          },
+          {
+            "path": "runs/2026-10-02/slide-06.webp",
+            "mid": 0.2225,
+            "dark": 0.6209,
+            "median_L": 8.98
+          },
+          {
+            "path": "runs/2026-10-02/slide-07.webp",
+            "mid": 0.2163,
+            "dark": 0.568,
+            "median_L": 13.61
+          },
+          {
+            "path": "runs/2026-10-02/slide-08.webp",
+            "mid": 0.1015,
+            "dark": 0.6034,
+            "median_L": 1.92
+          },
+          {
+            "path": "runs/2026-10-02/slide-09.webp",
+            "mid": 0.0641,
+            "dark": 0.5671,
+            "median_L": 2.93
+          }
+        ]
+      },
+      {
+        "date": "2026-10-03",
+        "frames": [
+          {
+            "path": "runs/2026-10-03/slide-01.webp",
+            "mid": 0.3897,
+            "dark": 0.2466,
+            "median_L": 39.17
+          },
+          {
+            "path": "runs/2026-10-03/slide-02.webp",
+            "mid": 0.1036,
+            "dark": 0.8168,
+            "median_L": 5.22
+          },
+          {
+            "path": "runs/2026-10-03/slide-03.webp",
+            "mid": 0.5297,
+            "dark": 0.1926,
+            "median_L": 35.93
+          },
+          {
+            "path": "runs/2026-10-03/slide-04.webp",
+            "mid": 0.4505,
+            "dark": 0.1913,
+            "median_L": 29.39
+          },
+          {
+            "path": "runs/2026-10-03/slide-05.webp",
+            "mid": 0.6463,
+            "dark": 0.0476,
+            "median_L": 55.86
+          },
+          {
+            "path": "runs/2026-10-03/slide-06.webp",
+            "mid": 0.324,
+            "dark": 0.5376,
+            "median_L": 8.75
+          },
+          {
+            "path": "runs/2026-10-03/slide-07.webp",
+            "mid": 0.335,
+            "dark": 0.2947,
+            "median_L": 25.49
+          },
+          {
+            "path": "runs/2026-10-03/slide-08.webp",
+            "mid": 0.1093,
+            "dark": 0.5679,
+            "median_L": 13.2
+          },
+          {
+            "path": "runs/2026-10-03/slide-09.webp",
+            "mid": 0.0246,
+            "dark": 0.8619,
+            "median_L": 5.72
+          }
+        ]
+      },
+      {
+        "date": "2026-10-04",
+        "frames": [
+          {
+            "path": "runs/2026-10-04/slide-01.webp",
+            "mid": 0.1951,
+            "dark": 0.5626,
+            "median_L": 11.53
+          },
+          {
+            "path": "runs/2026-10-04/slide-02.webp",
+            "mid": 0.1227,
+            "dark": 0.6542,
+            "median_L": 10.01
+          },
+          {
+            "path": "runs/2026-10-04/slide-03.webp",
+            "mid": 0.0677,
+            "dark": 0.7847,
+            "median_L": 9.11
+          },
+          {
+            "path": "runs/2026-10-04/slide-04.webp",
+            "mid": 0.0394,
+            "dark": 0.7758,
+            "median_L": 8.55
+          },
+          {
+            "path": "runs/2026-10-04/slide-05.webp",
+            "mid": 0.0909,
+            "dark": 0.6587,
+            "median_L": 10.65
+          },
+          {
+            "path": "runs/2026-10-04/slide-06.webp",
+            "mid": 0.3381,
+            "dark": 0.0471,
+            "median_L": 74.15
+          },
+          {
+            "path": "runs/2026-10-04/slide-07.webp",
+            "mid": 0.1513,
+            "dark": 0.3543,
+            "median_L": 20.29
+          },
+          {
+            "path": "runs/2026-10-04/slide-08.webp",
+            "mid": 0.0931,
+            "dark": 0.738,
+            "median_L": 11.71
+          },
+          {
+            "path": "runs/2026-10-04/slide-09.webp",
+            "mid": 0.0588,
+            "dark": 0.7636,
+            "median_L": 5.23
+          }
+        ]
+      },
+      {
+        "date": "2026-10-05",
+        "frames": [
+          {
+            "path": "runs/2026-10-05/slide-01.webp",
+            "mid": 0.1742,
+            "dark": 0.5347,
+            "median_L": 10.88
+          },
+          {
+            "path": "runs/2026-10-05/slide-02.webp",
+            "mid": 0.2005,
+            "dark": 0.0176,
+            "median_L": 83.91
+          },
+          {
+            "path": "runs/2026-10-05/slide-03.webp",
+            "mid": 0.0473,
+            "dark": 0.8749,
+            "median_L": 1.55
+          },
+          {
+            "path": "runs/2026-10-05/slide-04.webp",
+            "mid": 0.164,
+            "dark": 0.5629,
+            "median_L": 11.51
+          },
+          {
+            "path": "runs/2026-10-05/slide-05.webp",
+            "mid": 0.0816,
+            "dark": 0.0146,
+            "median_L": 89.43
+          },
+          {
+            "path": "runs/2026-10-05/slide-06.webp",
+            "mid": 0.2982,
+            "dark": 0.4343,
+            "median_L": 20.17
+          },
+          {
+            "path": "runs/2026-10-05/slide-07.webp",
+            "mid": 0.0365,
+            "dark": 0.8755,
+            "median_L": 1.08
+          },
+          {
+            "path": "runs/2026-10-05/slide-08.webp",
+            "mid": 0.1113,
+            "dark": 0.7544,
+            "median_L": 6.25
+          }
+        ]
+      },
+      {
+        "date": "2026-10-06",
+        "frames": [
+          {
+            "path": "runs/2026-10-06/slide-01.webp",
+            "mid": 0.0499,
+            "dark": 0.5463,
+            "median_L": 13.23
+          },
+          {
+            "path": "runs/2026-10-06/slide-02.webp",
+            "mid": 0.045,
+            "dark": 0.7911,
+            "median_L": 2.85
+          },
+          {
+            "path": "runs/2026-10-06/slide-03.webp",
+            "mid": 0.0593,
+            "dark": 0.634,
+            "median_L": 13.06
+          },
+          {
+            "path": "runs/2026-10-06/slide-04.webp",
+            "mid": 0.0451,
+            "dark": 0.2256,
+            "median_L": 20.37
+          },
+          {
+            "path": "runs/2026-10-06/slide-05.webp",
+            "mid": 0.0308,
+            "dark": 0.9086,
+            "median_L": 1.48
+          },
+          {
+            "path": "runs/2026-10-06/slide-06.webp",
+            "mid": 0.1445,
+            "dark": 0.3861,
+            "median_L": 67.04
+          },
+          {
+            "path": "runs/2026-10-06/slide-07.webp",
+            "mid": 0.3236,
+            "dark": 0.1753,
+            "median_L": 28.9
+          },
+          {
+            "path": "runs/2026-10-06/slide-08.webp",
+            "mid": 0.0436,
+            "dark": 0.5721,
+            "median_L": 8.05
+          }
+        ]
+      },
+      {
+        "date": "2026-10-07",
+        "frames": [
+          {
+            "path": "runs/2026-10-07/slide-01.webp",
+            "mid": 0.3945,
+            "dark": 0.2182,
+            "median_L": 28.73
+          },
+          {
+            "path": "runs/2026-10-07/slide-02.webp",
+            "mid": 0.0479,
+            "dark": 0.765,
+            "median_L": 7.27
+          },
+          {
+            "path": "runs/2026-10-07/slide-03.webp",
+            "mid": 0.0471,
+            "dark": 0.8192,
+            "median_L": 6.81
+          },
+          {
+            "path": "runs/2026-10-07/slide-04.webp",
+            "mid": 0.0553,
+            "dark": 0.7768,
+            "median_L": 7.27
+          },
+          {
+            "path": "runs/2026-10-07/slide-05.webp",
+            "mid": 0.0544,
+            "dark": 0.875,
+            "median_L": 6.81
+          },
+          {
+            "path": "runs/2026-10-07/slide-06.webp",
+            "mid": 0.1313,
+            "dark": 0.0152,
+            "median_L": 90.04
+          },
+          {
+            "path": "runs/2026-10-07/slide-07.webp",
+            "mid": 0.1095,
+            "dark": 0.4424,
+            "median_L": 16.2
+          },
+          {
+            "path": "runs/2026-10-07/slide-08.webp",
+            "mid": 0.0418,
+            "dark": 0.7951,
+            "median_L": 9.9
+          },
+          {
+            "path": "runs/2026-10-07/slide-09.webp",
+            "mid": 0.0471,
+            "dark": 0.8923,
+            "median_L": 4.41
+          }
+        ]
+      },
+      {
+        "date": "2026-10-08",
+        "frames": [
+          {
+            "path": "runs/2026-10-08/slide-01.webp",
+            "mid": 0.1004,
+            "dark": 0.5101,
+            "median_L": 14.71
+          },
+          {
+            "path": "runs/2026-10-08/slide-02.webp",
+            "mid": 0.2124,
+            "dark": 0.48,
+            "median_L": 15.44
+          },
+          {
+            "path": "runs/2026-10-08/slide-03.webp",
+            "mid": 0.0456,
+            "dark": 0.4189,
+            "median_L": 17.62
+          },
+          {
+            "path": "runs/2026-10-08/slide-04.webp",
+            "mid": 0.2577,
+            "dark": 0.5809,
+            "median_L": 6.84
+          },
+          {
+            "path": "runs/2026-10-08/slide-05.webp",
+            "mid": 0.1786,
+            "dark": 0.4286,
+            "median_L": 17.19
+          },
+          {
+            "path": "runs/2026-10-08/slide-06.webp",
+            "mid": 0.0565,
+            "dark": 0.8353,
+            "median_L": 2.95
+          },
+          {
+            "path": "runs/2026-10-08/slide-07.webp",
+            "mid": 0.132,
+            "dark": 0.7569,
+            "median_L": 2.79
+          },
+          {
+            "path": "runs/2026-10-08/slide-08.webp",
+            "mid": 0.0575,
+            "dark": 0.7751,
+            "median_L": 3.18
+          },
+          {
+            "path": "runs/2026-10-08/slide-09.webp",
+            "mid": 0.1825,
+            "dark": 0.7471,
+            "median_L": 4.13
+          }
+        ]
+      }
+    ]
+  }
+}

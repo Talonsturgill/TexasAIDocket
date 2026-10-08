@@ -690,33 +690,38 @@ THE ENGINE, so no run has to remember them.
 ### What a frame stands in now
 
 ```js
-// the chassis, once: TXDECK.declare({ ..., light:{ az:-62, el:8 }, sky:'goldenHour' })
+// the chassis, once: TXDECK.declare({ ..., light:{ az:-62, el:9 }, sky:'lastLight' })
 const W = TXT.deckWorld();                 // the deck's ONE world, resolved from the declaration
 const R = TXT.setup(gl, { w:1080, h:1350, fog:[W.haze, W.fogDensity], exposure:W.exposure, tone:W.tone, fov:36 });
-TXT.frame(R, { from:[x, 1.6, z], look:[0, 2, 0] });
+TXT.frame(R, { from:[x, 1.6, z], look:[0, 2, 0] });   // aimed at the subject
 TXT.sky(R);                                // dome, IBL rendered FROM it, fog in its horizon hue
 TXT.deckRig(R, W.rig, { target:[0,0,0], distance:80 });    // the sun IS the declared light
 TXT.ground(R, { surface:'caliche', size:900 });            // caliche, dirt, asphalt, concrete, grass
-TXT.scatter(R, { kind:'grass', count:6000, area:[...], avoid:[[...the pad...]] });
 TXT.add(R, hero); TXT.contact(R, hero);    // the dark core where it meets the ground
+TXT.stage(R, hero);                        // lit where it stands, the world behind it gone dark
 TXT.weather(R, {});                        // grime at the base, mottle in the paint
 const shot = await TXT.snapshot(R);
 ```
 
-1. **Choose the world for the STORY, in the treatment, before any code.** The storyboard's
-   treatment names the deck's `world:` once and says why this story wants that light. The chassis
-   declares it. A dossier does not restate it, for the same reason SLIDE_DOSSIER_SPEC gives for
-   the light: a second copy is how nine frames end up under two suns.
+1. **Choose the world for the STORY, in the treatment, before any code, and start dark.** The
+   storyboard's treatment names the deck's `world:` once and says why this story wants that light.
+   The chassis declares it. A dossier does not restate it, for the same reason SLIDE_DOSSIER_SPEC
+   gives for the light: a second copy is how nine frames end up under two suns. **The house
+   register is dark** (brand.yaml, `base_register`, Big Bend at dusk), and the two STAGED worlds
+   are its default. The rest are a deliberate move a treatment argues for, and THE STAGE below
+   says what each costs.
 
 | world | what the light does | declared el | a story about | type |
 |---|---|---|---|---|
+| `lastLight`, **the default** | the sun just down: a near black sky, one warm seam on the key's side, the subject raked by a low key and standing in a pool of light, the world behind it gone dark (STAGED) | 3 to 16 | almost anything: a decision, an object, a place a reader is asked to look at | light |
+| `floodlit` | a pad at night under one LED flood: a black sky, a cold key from high on one side, a pool of light on the ground (STAGED) | the FLOOD, 25 to 60 | what runs all night, a site, a machine, what is not seen | light |
+| `nightSodium` | black sky, city glow on one horizon, sodium key | the LAMP, 20 to 60 | the city after dark | light |
+| `blueHour` | an amber seam under deep blue, lamps on | the LAMP, 25 to 45 | the grid after dark, demand that does not sleep | light |
 | `goldenHour` | low warm sun, long shadows, blue sky | 4 to 14 | building, ambition, what is coming | light, on the shadowed ground or sky |
 | `goldenHour`, camera INTO the sun | silhouette, cool rim on steel, a glowing seam | 3 to 8 | scale, weight, consequence | light |
-| `blueHour` | an amber seam under deep blue, lamps on | the LAMP, 25 to 45 | the grid after dark, demand that does not sleep | light |
-| `nightSodium` | black sky, city glow on one horizon, sodium key | the LAMP, 20 to 60 | what runs all night, what is not seen | light |
+| `stormFront` | a bruised sky and one shaft of sun | 6 to 16 | risk, a warning, a deadline | light |
 | `highNoon` | bleached sky, short black shadows | 55 to 78 | heat, water, strain | dark |
 | `overcast` | no disc, everything soft and honest | 35 to 60 | procedure, a filing, a waiting room | dark |
-| `stormFront` | a bruised sky and one shaft of sun | 6 to 16 | risk, a warning, a deadline | light |
 
    The chassis declares the light with an elevation in its world's range, and the world itself
    as `sky` in the same `TXDECK.declare`: a preset name, or `{ preset:'goldenHour', haze:0xd8b48e }`
@@ -740,20 +745,32 @@ const shot = await TXT.snapshot(R);
 7. **The camera is a photographer's.** Eye at 1.5 to 1.7 m for a human frame, 0.4 to 0.9 m for a
    monument, 40 to 150 m up for a site. Field of view 26 to 40, the compressed look of industrial
    photography, and wider than 55 only inside a room. The horizon on a third and never through
-   the middle. The hero owns 30 to 60 percent of the frame, and something in the foreground (a
-   fence post, a stone, a kerb) gives the depth a reader feels before they see it.
-8. **Type sits on the calm value.** The sky above the horizon, or the dark ground under a
-   backlight. Never over scatter and never over the busy middle. `qa.py` measures the contrast.
+   the middle. **The subject fills the frame, a third to two thirds of it**, the way the sibling's
+   rotor, wellhead and spool do, and something in the foreground (a fence post, a stone, a kerb)
+   gives the depth a reader feels before they see it. Ten small things across a lot is a count,
+   not a subject: draw the count as one object close, and let the rest fall into the dark.
+8. **Type sits on the calm value, which is the dark field.** The dark sky above the subject, or the
+   dark ground beside it, and the type is light. Never over scatter and never over the busy
+   middle. `qa.py` measures the contrast. **A wash may only darken.** A pale wash over the art to
+   seat dark type is the fade itself: no. 42 lifted the top of every frame by 0.35 and the bottom
+   by 0.45 and the owner read the result as faded colours.
 
 ### THE SHOWSTOPPER TEST, which every critic and the scorer apply
 
-At 432 px, with the type covered:
+At 432 px, with the type covered (rewritten 2026-10-04, after the owner set no. 42 beside the
+sibling's no. 78: "the Alaska one ... wows me ... It's more like bold. The Texas one ... it's just
+more like faded colors"):
 
-1. Does it read as a PHOTOGRAPH of a PLACE at a TIME OF DAY?
-2. Is there one thing to look at, lit from the side its shadows say?
-3. Is there a sky or a deliberate interior, a horizon on a third, and haze in the distance?
+1. Is there ONE subject, lit from the side its shadows say, filling a third to two thirds of the
+   frame, with everything else falling away?
+2. Is it BOLD in value: a dark field, true blacks, one bright lit edge, and little in the grey
+   middle? `value_register.py` measures it: at most half of one frame in L* 30 to 70, and at most
+   0.35 on a deck's mean. The sibling's twelve decks average 0.131.
+3. Does it stand somewhere: a sky or a deliberate interior, gone dark behind the subject, with the
+   ground lit where the subject stands and nowhere much else?
 4. Does everything standing touch the ground, with a contact and dirt at its base?
-5. Would it hold as the opening spread of a serious magazine's feature on this story?
+5. Would it hold beside the sibling's deck of the same morning, as the opening spread of a serious
+   magazine's feature on this story?
 
 **A deck whose every frame passes all five is the artwork 10 in the rubric.** It was a cap at 6
 for one day, 2026-09-24, and the scale was recalibrated to the sibling product's that evening: a
@@ -774,11 +791,101 @@ and a background colour are exactly the void no. 32 shipped.
 
 ### What this does NOT say
 
-- It does not say every frame is outdoors, and it does not say golden hour. The table exists so
-  decks differ, and the variety ledger still measures the palette each world produces.
+- It does not say every frame is outdoors, and it does not say every deck is `lastLight`. The
+  table exists so decks differ, and the variety ledger still measures the palette each world
+  produces. It does say every deck is bold, and a daylight world has to earn it on the register.
 - It does not replace THE ARTWORK CARRIES THE DATA. Forty sets is still forty rendered units.
 - It does not license a chassis to write its own sky, its own ground texture or its own develop
   that tone maps again. The engine carries those now, and a second copy is how they drift.
+
+## THE STAGE (2026-10-04, owner, and it is what THE WORLD got wrong)
+
+**The owner, verbatim, on carousel no. 42 beside the sibling's no. 78 of the same morning:** *"the
+alaska artwork, i still like it way more than the texas one ... the Alaska one, when I look at it,
+it just kind of like wows me. It amazes me. It's more like bold. The Texas one, it's okay, but it's
+just more like faded colors and stuff. It's a lot less like bold."*
+
+### What was measured
+
+Every shipped frame of the ten Texas decks from September 24th to October 4th against every frame
+of the sibling's twelve from September 24th to October 5th, at 432 by 540 in CIE L*:
+
+| share of the frame | Texas, 10 decks | sibling, 12 decks |
+|---|---|---|
+| mid tones, L* 30 to 70 | 0.418 | 0.131 |
+| near black, L* under 15 | 0.188 | 0.610 |
+| deck median L* | 32.6 | 12.8 |
+| 5th percentile L* | 10.0 | 4.9 |
+| mean chroma | 11.5 | 8.4 |
+
+The colour was never the difference. The value was: a Texas frame lived in the grey middle of the
+scale and a sibling frame lived at its ends, a dark field, one lit thing, one bright edge. The
+sibling's darks are cool (mean b* -5.1) and ours were warm (+2.4), which is the muddy half of
+"faded". Three things put us there, and all three were orders, not accidents:
+
+1. **THE WORLD ordered a place.** "A photograph of a place at a time of day ... haze in the
+   distance", a hero at 30 to 60 percent of a wide frame, and a world table where daylight stood
+   level with dusk. Eight of ten decks chose a world whose frames are 40 percent mid tone or more.
+2. **Every daylight world fogs toward a bright haze.** A sun is a directional light, so it lights
+   the whole ground to the horizon, and the fog then pulls everything past the subject toward a
+   horizon of L* 70 to 90. The sibling's renders fog in the dark sky's own hue from about 9 to
+   30 m, so the subject stands on a dark field.
+3. **Chassis lifted the art to seat dark type.** The routine allowed a wash up to 0.55. No. 42 put
+   0.35 of pale over the top of every frame and 0.45 over the bottom.
+
+It cost time as well as taste. No. 42 measured a median of L* 68.0, the light deck cap was already
+spent on no. 38, and `ledger_check` only found out at ship: nine frames exposed down and judged
+again, 44 minutes.
+
+### What the engine does now
+
+- **Two STAGED worlds, `lastLight` (the default) and `floodlit`.** A near black sky, a low raking
+  key or a high cold flood, low rims that edge a silhouette without lighting the ground.
+- **`TXT.stage(R, subject)`.** A linear fog from just past the subject's far side, whole at about
+  twice its distance, in the sky's own hue, so the world behind the subject goes to the dark. A
+  pool decal on the ground keeps the light where the subject stands. On a desk or a dock the pool
+  is cut to that surface's top face. The pool is flat, so shaped terrain (a kit heightfield) gets
+  none: stand the subject on a pad if the frame wants one there. In a staged world every snapshot stages itself on the largest
+  thing near where the camera is aimed, never on a thing the camera stands in or rides; naming the
+  subject is better. A skyline far off keeps a
+  faint silhouette (`stage.veil`) while the stage is up. `TXT.snapshot(R, { stage: false })` takes
+  an automatic stage off, fog, pool and veil together.
+- **A room in a staged world** turns its studio fill down to 0.2, so it is lit by its window and
+  the key. A chassis that passes its own `light` keeps it, and the register gate still measures.
+
+### The rules
+
+1. **Start dark.** `lastLight` unless the treatment argues for another world in writing, and a
+   daylight world still has to pass the register.
+2. **One subject fills the frame.** A third to two thirds of it, modelled closest and best.
+3. **The type is light, on the dark field.** A wash may only darken.
+4. **A room is dark around one source.** The key enters through the window or a lamp. The back
+   wall is in shadow, never lit face on by a key behind the camera, which is how no. 42's rooms
+   stayed pale in every world.
+5. **The cure for a faded frame is the light, never the grade.** A darker grade over a mid tone
+   frame makes a muddier mid tone frame.
+6. **What the dark takes, named by the blind graders of the proof (2026-10-04).** Glass on a dark
+   field has nothing to show through it: no. 40's vial went murky (6.87 to 6.07), so put the warm
+   seam, a lamp or a lit window BEHIND glass. A count painted on the ground (no. 42's magenta bays)
+   dims outside the pool: stage the whole count as one subject, `TXT.stage(R, [every bus])`. Figures
+   against the seam go to silhouettes and lose their faces: light a person from the camera's side.
+   A frame with no subject (a road to the horizon) is staged where the camera is aimed, and the
+   frame still needs one lit thing near the front.
+
+### The gate
+
+`scripts/carousel/value_register.py` measures the register off the pixels, on the PROBE frame in
+Phase 10.5 (at most 0.50 of the frame in L* 30 to 70, and the light deck cap looked ahead) and on
+all nine before a critic sees them (at most 0.35 on the deck's mean). Calibrated on the decks
+above: 2 of the sibling's 107 frames exceed the probe line and none of its decks the deck line,
+while 30 of our 90 frames and 8 of our 10 decks do. `shipped_check` holds every deck after October
+4th to it in CI.
+
+### The proof
+
+`examples/bold-proof/` renders three shipped decks, nos. 40, 41 and 42, through the staged engine
+beside the frames they shipped, with every number above for each, and the sibling's no. 78 beside
+them as the standard. Look at it before pitching a world.
 
 ## THE FIVE LIBRARIES
 
@@ -1185,3 +1292,55 @@ which is the finding the judges made in words and the number that says the gate 
   When a deck falls into a default this list does not name, the retro adds it here with the
   date and the frame, because the guide's own advice is to work iteratively and extend the list
   from what the first result reached for.
+
+## Three compositions before nine
+
+The October 7th comparison found a deployment failure and a direction failure. The staged-world
+upgrade was still open in PR #403 while the routine checked out main. The latest Texas deck also
+used distant models and repeated wide views. Alaska's October 7th deck moved between an oblique
+landscape, a map, a profile, a measured diagram, a macro view and a record table. The shared
+subject gave that sequence continuity without prescribing the same picture.
+
+Phase 10.5 now auditions the cover, an evidence frame and the close at 432px. The accepted review
+is bound to their image bytes, their source and their shared chassis. The six remaining frames
+follow the selected direction. `art_preflight.py` proves that recorded review still describes
+those inputs; it does not infer quality from a luminance statistic. The reviewer and the final
+panel judge the images. `examples/art-direction-proof/` carries the source and rendered study.
+
+Keep the six rendered views and five exterior views required by the existing engine checks.
+Use the companion frames for maps, cutaways, document analysis and explanatory graphics when
+those forms carry the evidence more clearly. One world does not require one camera distance.
+One visual motif does not require one wide view repeated.
+
+The comparison used GitHub main at
+[`b93919c2`](https://github.com/Talonsturgill/TexasAIDocket/tree/b93919c2dab48782c0b1120046059453e9fe2299)
+and the Alaska carousel repository at
+[`f7c144ec`](https://github.com/Talonsturgill/alaskaaicarousels/tree/f7c144ec7631a00f511ffde0424c0fff2a25f001).
+The Texas trigger reads `prompts/daily_routine.md` from main; the sibling's trigger reads
+`routine_instructions.md` in that repository's prompts directory. These are Claude Cloud Routines entry points, not daily
+GitHub Actions carousel schedules. The external schedule's settings were not inspected in this
+comparison. GitHub contains the production instructions, source and shipped art.
+
+[PR #403](https://github.com/Talonsturgill/TexasAIDocket/pull/403) had passed its exact-head CI
+but remained open, with conflicts against current main. Therefore its engine and value gate
+were absent from the production routine. Clean local checkouts also sat on older commits; an
+uncommitted edit was not needed to explain the shipped result. The repair takes the pending
+upgrade forward from current main, preserves intervening ledger entries and moves the value
+cutover past the last deck that never received it. Its inherited A/B evidence is in
+`examples/bold-proof/`; the earlier blind grades were not rerun for this comparison.
+
+The fresh corpus measurement used every committed frame from September 24th through the
+available main snapshots: 117 Texas frames across 13 decks and 133 sibling frames across 15
+decks. Images were decoded to RGB and resized to 432 by 540 with a box filter, then measured
+with `measure_shipped.lstar`, CIE L* from linear sRGB. The mean is across frames, not scores.
+
+| share of the frame | Texas | sibling |
+|---|---:|---:|
+| mid tones, L* 30 to 70 | 41.25 percent | 12.72 percent |
+| near black, L* under 15 | 21.01 percent | 60.74 percent |
+
+`examples/art-direction-proof/audit.json` holds the source pins and every input path and reading.
+These readings describe the pale register. They do not grade composition. The two repositories'
+rubric weights also sum differently, 1.00 here and 1.10 there, so their published total scores
+were not treated as a shared scale. The study targets recognition, composition and evidence as
+well as tone, and the final production panel continues to judge the complete deck.

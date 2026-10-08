@@ -1,0 +1,104 @@
+{
+  "version": 1,
+  "selected": [
+    1,
+    4,
+    9
+  ],
+  "inputs": {
+    "slides/slide-01.html": "b0e14c4d41dbc66fa412b90a5f868bdc3252db782c6e99d0816a020eead8fef2",
+    "render/slide-01.png": "733a754b9a232ff11fc69ca462c2efe970d977af6e1af7e7653f7332d422fffc",
+    "assets/js/deck/proof-port-art-direction.js": "fb35833fce0fa43edce6f233c02baa367b8b2b408244093e8ccf7cde7d1552a4",
+    "slides/slide-04.html": "124ced289385c03129ac1a0f50b925bb0c682528cba0ad9b40fc98b3609c01ce",
+    "render/slide-04.png": "476e0214d2412cfaafb8a3e49b6ebccf2bd944d25a599e40a4ed89b4783f6120",
+    "slides/slide-09.html": "dae3a0bf5509b1b96ac83417f00742f9b60759a3d3ffc9b80d93025935679da4",
+    "render/slide-09.png": "cbb0b9bbd80af93de97026fac8a57673cee7640afbaf66a17fbfb1f7ad371397"
+  },
+  "value_measurements": [
+    {
+      "frame": "slide-01.png",
+      "median_L": 0.8,
+      "mid": 0.081,
+      "dark": 0.807
+    },
+    {
+      "frame": "slide-04.png",
+      "median_L": 4.3,
+      "mid": 0.024,
+      "dark": 0.829
+    },
+    {
+      "frame": "slide-09.png",
+      "median_L": 13.2,
+      "mid": 0.076,
+      "dark": 0.674
+    }
+  ],
+  "review": {
+    "decision": "accept",
+    "inputs": {
+      "slides/slide-01.html": "b0e14c4d41dbc66fa412b90a5f868bdc3252db782c6e99d0816a020eead8fef2",
+      "render/slide-01.png": "733a754b9a232ff11fc69ca462c2efe970d977af6e1af7e7653f7332d422fffc",
+      "assets/js/deck/proof-port-art-direction.js": "fb35833fce0fa43edce6f233c02baa367b8b2b408244093e8ccf7cde7d1552a4",
+      "slides/slide-04.html": "124ced289385c03129ac1a0f50b925bb0c682528cba0ad9b40fc98b3609c01ce",
+      "render/slide-04.png": "476e0214d2412cfaafb8a3e49b6ebccf2bd944d25a599e40a4ed89b4783f6120",
+      "slides/slide-09.html": "dae3a0bf5509b1b96ac83417f00742f9b60759a3d3ffc9b80d93025935679da4",
+      "render/slide-09.png": "cbb0b9bbd80af93de97026fac8a57673cee7640afbaf66a17fbfb1f7ad371397"
+    },
+    "method": "Maintainer inspection of complete frames and the 432px proof",
+    "frames": [
+      {
+        "slide": 1,
+        "role": "cover",
+        "subject": "Close bow, plated deckhouse and sensor mast of the illustrative vessel",
+        "visual_consequence": "The foreground vessel occupies the lower frame; warm side light separates it from a cool dark field.",
+        "weakness": "The ship remains stylized and its bow is intentionally cropped.",
+        "repair": "Camera framing was moved below the text reserve; the full mast and vessel silhouette are readable. No further repair for this study."
+      },
+      {
+        "slide": 4,
+        "role": "evidence",
+        "subject": "Nested equal-area squares for 835 acres and nearly 4,400 acres",
+        "visual_consequence": "The area ratio is visible in one image, with both quantities labeled and the drawing rule disclosed.",
+        "weakness": "The lower third has less craft density, as machine QA reports; thickness is illustrative.",
+        "repair": "The diagram was fitted wholly inside the frame, decorative subdivisions removed and labels moved below the measured shapes. The quiet bottom reserve is accepted."
+      },
+      {
+        "slide": 9,
+        "role": "close",
+        "subject": "Twenty physical workforce markers, seven gold and thirteen steel",
+        "visual_consequence": "A count graphic shows the original computed local hiring share beside the conditional tax-break headline.",
+        "weakness": "Relief icons are subtle at phone width, so the explicit count line carries their meaning.",
+        "repair": "Markers were enlarged, faceless kit people removed and the body tied to the hiring illustration. The numeric legend reads at 432px."
+      }
+    ]
+  },
+  "shipped_inputs": {
+    "slides/slide-01.html": "b0e14c4d41dbc66fa412b90a5f868bdc3252db782c6e99d0816a020eead8fef2",
+    "slide-01.webp": "2ccb677f7494bc12737da73a693b6da29359a326a94d0000cec634485da6669c",
+    "slides/slide-04.html": "124ced289385c03129ac1a0f50b925bb0c682528cba0ad9b40fc98b3609c01ce",
+    "slide-04.webp": "9ef51358f7e0c1f4bc5d7dd81c8d909a7c247f67080d224733558d9711c72351",
+    "slides/slide-09.html": "dae3a0bf5509b1b96ac83417f00742f9b60759a3d3ffc9b80d93025935679da4",
+    "slide-09.webp": "16b2f8e996034d010997940f84f9d95f37e8bc51db63750ef2f76f57ed90e127"
+  },
+  "encodings": [
+    {
+      "to": "slide-01.webp",
+      "to_sha256": "2ccb677f7494bc12737da73a693b6da29359a326a94d0000cec634485da6669c",
+      "from_sha256": "733a754b9a232ff11fc69ca462c2efe970d977af6e1af7e7653f7332d422fffc",
+      "psnr_db": 42.94
+    },
+    {
+      "to": "slide-04.webp",
+      "to_sha256": "9ef51358f7e0c1f4bc5d7dd81c8d909a7c247f67080d224733558d9711c72351",
+      "from_sha256": "476e0214d2412cfaafb8a3e49b6ebccf2bd944d25a599e40a4ed89b4783f6120",
+      "psnr_db": 42.972
+    },
+    {
+      "to": "slide-09.webp",
+      "to_sha256": "16b2f8e996034d010997940f84f9d95f37e8bc51db63750ef2f76f57ed90e127",
+      "from_sha256": "cbb0b9bbd80af93de97026fac8a57673cee7640afbaf66a17fbfb1f7ad371397",
+      "psnr_db": 999.0
+    }
+  ]
+}

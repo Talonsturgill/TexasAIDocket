@@ -1,0 +1,24 @@
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css"><style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:1080px;height:1350px;overflow:hidden;background:#080e17}body{position:relative;font-family:Manrope,sans-serif}#art{position:absolute;inset:0;width:1080px;height:1350px}.hook{position:absolute;left:80px;top:190px;width:900px;font-family:Fraunces,serif;font-weight:700;line-height:1.02;color:#f5f2eb;font-variation-settings:"opsz" 144;z-index:4}.dek{position:absolute;left:82px;width:880px;font-size:32px;line-height:1.38;font-weight:500;color:#e8e9e5;z-index:4}.kick,.foot,.counter{position:absolute;font-family:"JetBrains Mono",monospace;font-size:24px;line-height:1.5;color:#d1d7dd;z-index:5}.kick{left:80px;top:80px;letter-spacing:.1em}.counter{right:80px;top:80px}.foot{right:80px;top:125px}.source{left:80px;right:auto}.lab{position:absolute;font-family:"JetBrains Mono",monospace;font-size:32px;line-height:1.25;color:#f5f2eb;z-index:5}</style></head><body>
+ <canvas id="art" width="2160" height="2700"></canvas><div class="kick">Port of Brownsville</div><div class="counter">09 / 09</div>
+ <h1 class="hook">The break would shrink if jobs fall short</h1><p class="dek">The Tribune reported the condition, and that opponents told the court the break would take money from public schools. The gold markers illustrate the local hiring requirement.</p><div class="foot">texasaidocket.com</div><div class="foot source">Illustration study</div>
+ <script src="@@ASSETS@@/js/noise.js"></script><script src="@@ASSETS@@/js/txtype.js"></script><script src="@@ASSETS@@/js/txcolor.js"></script><script src="@@ASSETS@@/js/txpost.js"></script><script src="@@ASSETS@@/js/txdeck.js"></script><script src="@@ASSETS@@/js/deck/proof-port-art-direction.js"></script>
+ <script type="module">import * as THREE from '@@ASSETS@@/js/three.module.min.js';import {init} from '@@ASSETS@@/js/txthree.js';import {initKit} from '@@ASSETS@@/js/txkit.js';
+ window.renderReady=(async()=>{const TXT=init(THREE);const {K,F,R,W,gl}=await STUDY.boot(THREE,TXT,initKit);const group=new THREE.Group(),count=F.crew_drawn.value,local=F.crew_local_drawn.value;
+ const silver=new THREE.MeshStandardMaterial({color:0x9eafb9,roughness:.28,metalness:.72});
+ const gold=new THREE.MeshStandardMaterial({color:0xf5b74e,roughness:.27,metalness:.66});
+ for(let i=0;i<count;i++){
+  const marker=new THREE.Group(),mat=i<local?gold:silver;
+  const disc=new THREE.Mesh(new THREE.CylinderGeometry(.47,.47,.12,64),mat);disc.position.y=.08;marker.add(disc);
+  const rim=new THREE.Mesh(new THREE.TorusGeometry(.405,.015,12,64),mat);rim.rotation.x=Math.PI/2;rim.position.y=.15;marker.add(rim);
+  const head=new THREE.Mesh(new THREE.SphereGeometry(.10,24,16),mat);head.scale.y=.35;head.position.set(0,.16,-.14);marker.add(head);
+  const shoulders=new THREE.Mesh(new THREE.CylinderGeometry(.20,.20,.05,32,1,false,0,Math.PI),mat);
+  shoulders.rotation.y=Math.PI/2;shoulders.position.set(0,.16,.04);marker.add(shoulders);
+  marker.position.set((i%5-2)*1.25,0,(Math.floor(i/5)-1.5)*1.2);group.add(marker);
+ }
+ TXT.add(R,group);TXT.interior(R,{w:60,d:60,h:22,floor:'asphalt',wall:0x111b29,window:null,ceiling:false});
+ TXT.frame(R,{from:[8,9,14],look:[0,.5,0],fov:37});R.camera.setViewOffset(1080,1350,0,-380,1080,1350);
+ TXT.deckRig(R,W.rig,{target:[0,.1,0],distance:180,shadowFar:400,normalBias:.008});
+ TXT.stage(R,[group],{pool:false});const shot=await TXT.snapshot(R);const cx=STUDY.develop(shot,gl);TXDECK.finish(cx);
+ const note=document.createElement('div');note.className='lab';note.style.cssText='left:80px;top:740px;color:#ffd28a';
+ note.textContent=local+' of '+count+' figures show the local share';document.body.append(note);
+ return true;})();</script></body></html>

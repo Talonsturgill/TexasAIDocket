@@ -1,0 +1,22 @@
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css"><style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:1080px;height:1350px;overflow:hidden;background:#080e17}body{position:relative;font-family:Manrope,sans-serif}#art{position:absolute;inset:0;width:1080px;height:1350px}.hook{position:absolute;left:80px;top:190px;width:900px;font-family:Fraunces,serif;font-weight:700;line-height:1.02;color:#f5f2eb;font-variation-settings:"opsz" 144;z-index:4}.dek{position:absolute;left:82px;width:880px;font-size:32px;line-height:1.38;font-weight:500;color:#e8e9e5;z-index:4}.kick,.foot,.counter{position:absolute;font-family:"JetBrains Mono",monospace;font-size:24px;line-height:1.5;color:#d1d7dd;z-index:5}.kick{left:80px;top:80px;letter-spacing:.1em}.counter{right:80px;top:80px}.foot{right:80px;top:125px}.source{left:80px;right:auto}.lab{position:absolute;font-family:"JetBrains Mono",monospace;font-size:32px;line-height:1.25;color:#f5f2eb;z-index:5}</style></head><body>
+ <canvas id="art" width="2160" height="2700"></canvas><div class="kick">Port of Brownsville</div><div class="counter">04 / 09</div>
+ <h1 class="hook">835 acres, and an option on more</h1><p class="dek">Port Alpha sits on 835 acres, with an option to expand to nearly 4,400, Saronic says. Each is drawn as a square of that area, not the site's real shape.</p><div class="foot">texasaidocket.com</div><div class="foot source">Illustration study</div>
+ <script src="@@ASSETS@@/js/noise.js"></script><script src="@@ASSETS@@/js/txtype.js"></script><script src="@@ASSETS@@/js/txcolor.js"></script><script src="@@ASSETS@@/js/txpost.js"></script><script src="@@ASSETS@@/js/txdeck.js"></script><script src="@@ASSETS@@/js/deck/proof-port-art-direction.js"></script>
+ <script type="module">import * as THREE from '@@ASSETS@@/js/three.module.min.js';import {init} from '@@ASSETS@@/js/txthree.js';import {initKit} from '@@ASSETS@@/js/txkit.js';
+ window.renderReady=(async()=>{const TXT=init(THREE);const {K,F,R,W,gl}=await STUDY.boot(THREE,TXT,initKit);const cx=document.querySelector('#art').getContext('2d');cx.setTransform(2,0,0,2,0,0);
+ const air=cx.createLinearGradient(0,0,0,1350);air.addColorStop(0,'#07101c');air.addColorStop(1,'#102338');cx.fillStyle=air;cx.fillRect(0,0,1080,1350);
+ const outer=12, inner=outer*F.site_side_m.value/F.option_side_m.value;
+ function iso(x,z,y=0){return [540+(x-z)*34,650+(x+z)*18-y];}
+ function face(points,fill){cx.beginPath();points.forEach((p,i)=>i?cx.lineTo(...p):cx.moveTo(...p));cx.closePath();cx.fillStyle=fill;cx.fill();}
+ function slab(x,z,size,height,color){
+  const a=iso(x,z,height),b=iso(x+size,z,height),c=iso(x+size,z+size,height),d=iso(x,z+size,height);
+  face([b,c,iso(x+size,z+size),iso(x+size,z)],'#172536');face([c,d,iso(x,z+size),iso(x+size,z+size)],'#0e1a29');
+  face([a,b,c,d],color);cx.strokeStyle='#698baa';cx.lineWidth=2.5;cx.beginPath();[a,b,c,d,a].forEach((p,i)=>i?cx.lineTo(...p):cx.moveTo(...p));cx.stroke();
+ }
+ const off=(outer-inner)/2;slab(0,0,outer,28,'#273e55');slab(off,off,inner,54,'#f0b253');
+ TXDECK.finish(cx);
+ const a=document.createElement('div');a.className='lab';a.style.cssText='left:80px;top:1100px;color:#ffd28a';
+ a.textContent=F.acres.value.toLocaleString('en-US')+' acres';document.body.append(a);
+ const b=document.createElement('div');b.className='lab';b.style.cssText='left:80px;top:1150px';
+ b.textContent='Option to nearly '+F.acres_option.value.toLocaleString('en-US')+' acres';document.body.append(b);
+ return true;})();</script></body></html>
