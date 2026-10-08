@@ -61,7 +61,7 @@
    "heading": "What Merlin says it showed",
    "paragraphs": [
     {
-     "text": "[Merlin says the demonstration was narrated by its chief executive and founder, Matt George, and showed how the Merlin Pilot can take on responsibilities traditionally handled by human pilots](c27). [The company presents its autonomy as reducing pilot workload rather than removing the pilot](c28). [Its release labels its expectations about the software's capabilities and performance as forward-looking statements](c31).",
+     "text": "[Merlin says the demonstration, narrated by its chief executive and founder, Matt George, showed how the Merlin Pilot can safely and effectively perform responsibilities traditionally managed by human pilots](c27). [The company presents its autonomy as reducing pilot workload rather than removing the pilot](c28). [Its release labels its expectations about the software's capabilities and performance as forward-looking statements](c31).",
      "claims": [
       "c27",
       "c28",
@@ -80,11 +80,12 @@
    "heading": "What the record does not show",
    "paragraphs": [
     {
-     "text": "TxDOT's release, the FAA's account and Merlin's own release do not say whether a pilot was aboard Merlin's Caravan during the demonstration or how the software performed. Merlin's account is the only one of the three that describes its part in the day.",
+     "text": "TxDOT's release, the FAA's account and Merlin's own release do not say whether a pilot was aboard Merlin's Caravan during the demonstration, and none of them prints a measured result such as a rate or a count of interventions. [Merlin's release describes its demonstration as safe and effective in its own words](c27).",
      "claims": [
       "c1",
       "c2",
-      "c25"
+      "c25",
+      "c27"
      ]
     },
     {
