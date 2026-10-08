@@ -11,7 +11,7 @@ The University of Texas at San Antonio published on September 8th, 2026 that it 
 - Public access: Write to the decider
 - Take part: https://news.utsa.edu/2026/09/ut-san-antonio-researcher-builds-self-powered-smart-warning-system-to-catch-local-floods-before-disaster-strikes/
 
-- Last checked: 2026-10-05
+- Last checked: 2026-10-08
 
 ## Dates
 
@@ -31,6 +31,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-29 · UTSA's solar flood sensor still runs its model on the chip, with no cloud connection needed.
 - 2026-10-02 · UTSA's solar flood sensor still runs its model on the chip with no cloud link.
 - 2026-10-05 · UT San Antonio's solar powered flood sensor still runs its model on the chip, and it is still a prototype.
+- 2026-10-08 · UT San Antonio's flood sensor is still a prototype that runs its model on the chip.
 
 ## Evidence
 

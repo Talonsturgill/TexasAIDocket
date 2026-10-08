@@ -11,7 +11,7 @@ The City of Taylor has a proposed development agreement with Big Watt Digital an
 - Public access: Public meeting
 - Take part: https://www.taylortx.gov/m/newsflash/Home/Detail/2113
 
-- Last checked: 2026-10-07
+- Last checked: 2026-10-08
 
 ## Dates
 
@@ -24,6 +24,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 
 - 2026-10-06 · Admitted on the city's own notice. The council has not voted yet. The agreement's full text was not found posted beside the notice.
 - 2026-10-07 · The council has not voted yet. The city's page still sets out the proposed terms beside what applies without them.
+- 2026-10-08 · Taylor's council has not voted yet. The city's page still lays out the proposed terms beside the rules that apply without them.
 
 ## Evidence
 

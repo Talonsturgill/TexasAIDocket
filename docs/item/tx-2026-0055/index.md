@@ -45,6 +45,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-05 · Conroe's failed vote to put the cameras on the ballot is still unconfirmed. Both published accounts bar automated readers, and the city's agenda page carries no copy of the vote.
 - 2026-10-06 · Conroe's failed vote to send its camera contract to the ballot is still unconfirmed. Both published accounts bar automated readers.
 - 2026-10-07 · Conroe's tabled plate camera question is still unconfirmed. The city's minutes and both published accounts bar automated readers.
+- 2026-10-08 · Conroe's tabled plate camera question remains unconfirmed. The city's minutes and both published accounts still bar automated readers.
 
 ## Evidence
 

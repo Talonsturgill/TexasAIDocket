@@ -43,6 +43,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-05 · Guadalupe County's exit from its Flock contract is still unconfirmed. The county's minutes archive and both published accounts bar automated readers.
 - 2026-10-06 · Guadalupe County's exit from its Flock contract is still unconfirmed. The county's minutes and both published accounts bar automated readers.
 - 2026-10-07 · Guadalupe County's end of its plate reader contract is still unconfirmed. The county's minutes and both published accounts bar automated readers.
+- 2026-10-08 · Guadalupe County's end of its plate reader contract remains unconfirmed. The county's minutes and both published accounts still bar automated readers.
 
 ## Evidence
 

@@ -42,6 +42,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-03 · The city's notice of the amended Compal agreement is still missing from its site, and no outcome has been published. The council's video index sits on a host that bars automated readers.
 - 2026-10-04 · The city's notice of the amended Compal agreement is still gone from its site, and no outcome of the council item has been published.
 - 2026-10-07 · The city's notice of the amended Compal abatement is still off its site, and the meeting video bars automated readers, so where the abatement stands is unconfirmed.
+- 2026-10-08 · Where the amended Compal abatement stands is still unconfirmed. The city's notice is still off its site and the meeting video still bars automated readers.
 
 ## Evidence
 

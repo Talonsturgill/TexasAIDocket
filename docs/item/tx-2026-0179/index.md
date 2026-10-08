@@ -11,7 +11,7 @@ The City of Dallas put AI enabled cameras on its sanitation brush trucks to phot
 - Public access: Public meeting
 - Take part: https://dallascityhall.com/government/citymanager/Documents/Council%20Materials/A.%20Sanitation%20and%20Code.pdf
 
-- Last checked: 2026-10-05
+- Last checked: 2026-10-08
 
 ## Dates
 
@@ -29,6 +29,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-29 · The citations Dallas issued from its brush truck cameras stand as the city reported them.
 - 2026-10-02 · Dallas's citations from the brush truck cameras still stand as the city reported them. One television account bars automated readers.
 - 2026-10-05 · The city's own briefing on the brush truck cameras still reads as presented, and the first citations stand as reported. The fullest account of them sits on a site that bars automated readers.
+- 2026-10-08 · Dallas's own briefing on the brush truck cameras still reads as presented, with a person reviewing before any citation goes out. The fullest published account sits on a site that bars automated readers.
 
 ## Evidence
 

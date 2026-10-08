@@ -11,7 +11,7 @@ Item 61 on the Austin City Council's regular meeting agenda for August 27th, 202
 - Public access: Public meeting
 - Take part: https://www.austintexas.gov/council/2026/20260827-reg
 
-- Last checked: 2026-10-05
+- Last checked: 2026-10-08
 
 ## Dates
 
@@ -38,6 +38,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-29 · Austin has not yet written a definition of a data center into its land development code.
 - 2026-10-02 · Austin's land development code still carries no definition of a data center.
 - 2026-10-05 · Austin's council still has the resolution to write data centers into its land development code before it.
+- 2026-10-08 · Austin's council still has the resolution to bring data centers into its land development code before it.
 
 ## Evidence
 

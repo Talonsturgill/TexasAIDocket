@@ -1964,3 +1964,27 @@ saronic.com**, whose home page carries the Marauder and Corsair figures.
 
 **www.texasattorneygeneral.gov answered 402** to this project's client, so an AG release on
 the data center water survey was not used.
+
+## 2026-10-08
+
+**www.faa.gov answered 403 to `fetch_doc.py` and 200 to a browser user agent under
+`/newsroom/`**, the same split as October 7th's `/uas/`. Both of today's FAA releases, the Fort
+Worth launch and the March selection, were read that way and their claims carry medium
+confidence.
+
+**www.wichitafallstx.gov's AgendaCenter answered 403 to both clients.** tx-2026-0041 now carries
+a legacy `blocks_every_client` boundary on that host and on newschannel6now.
+
+**docs.tacc.utexas.edu returned 404 for its robots file, while tacc.utexas.edu disallows
+ClaudeBot.** Read the parent host's rule as the binding one.
+
+**angelinacounty.net's robots rule no longer refuses the minutes PDF** that an earlier entry
+recorded as refused. The re-verification read it directly.
+
+**Merlin's September 10th release was read on Finviz, which carries GlobeNewswire's syndication
+with a ticker line in its chrome.** A scan for measured results has to strip that line, since its
+day change is a percentage. The panel's integrity judge noted that GlobeNewswire's own copy would
+be the better primary.
+
+**www.texasattorneygeneral.gov answered 402 again**, and **capitol.texas.gov's tlodocs path refused
+this project's client**. Neither was used today.

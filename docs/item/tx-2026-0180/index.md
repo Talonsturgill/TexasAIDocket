@@ -29,6 +29,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-03 · Leander's decision to stop paying for its plate reader contract still stands as the city announced it.
 - 2026-10-06 · Leander's decision to stop paying for its plate reader contract is unconfirmed this time. The city's notice turned away every reader that asked for it.
 - 2026-10-07 · Leander's notice that it stopped paying for plate readers is still unconfirmed. The city's site refuses every reader.
+- 2026-10-08 · Leander's notice that it stopped paying for plate readers remains unconfirmed. The city's site still refuses every reader.
 
 ## Evidence
 

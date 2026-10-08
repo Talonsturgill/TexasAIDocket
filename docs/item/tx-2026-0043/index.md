@@ -43,6 +43,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-05 · Archer County's denial of the Dynamo Ventures abatement is still unconfirmed. The only account of the vote bars automated readers.
 - 2026-10-06 · Archer County's denial of the Dynamo Ventures abatement is still unconfirmed. The only account of the vote bars automated readers.
 - 2026-10-07 · Archer County's denial of the abatement is still unconfirmed. The only published account bars automated readers.
+- 2026-10-08 · Archer County's denial of the abatement remains unconfirmed. The only published account still bars automated readers.
 
 ## Evidence
 
