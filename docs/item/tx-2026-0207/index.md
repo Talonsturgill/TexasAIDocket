@@ -57,3 +57,15 @@ Source (primary_official): https://news.tamus.edu/stories/wt-to-build-beef-cattl
 
 Source (primary_official): https://news.tamus.edu/stories/wt-to-build-beef-cattle-research-facility-with-9-75-million-usda-grant/
 
+### The research feedlot is being built near WT's Nance Ranch.
+
+> The research feedlot and education facility, which are being constructed southwest of the existing WT feedlot near Nance Ranch, further solidifies WT’s classification as a Research University by the Carnegie Foundation.
+
+Source (primary_official): https://news.tamus.edu/stories/wt-to-build-beef-cattle-research-facility-with-9-75-million-usda-grant/
+
+### Nance Ranch lies about seven miles east of Canyon.
+
+> The Nance Ranch , located about seven miles east of Canyon, consists of 2,393 acres including the headquarters.
+
+Source (primary_official): https://news.tamus.edu/stories/wt-to-build-beef-cattle-research-facility-with-9-75-million-usda-grant/
+

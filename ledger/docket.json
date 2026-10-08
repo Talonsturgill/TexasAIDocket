@@ -2343,7 +2343,7 @@
     },
     {
      "id": "tx-2026-0024-c9",
-     "text": "A second comment deadline now stands on the feed, for a project the entry identifies only by number.",
+     "text": "The remaining comment deadline is for a project the entry identifies only by number.",
      "verbatim_quote": "Public Comment Deadline - Thursday, October 15, 2026 Project 59086 NA ( Open To Public )",
      "source_url": "https://puc.texas.gov/agency/calendar/GetCalendarRss.aspx",
      "source_title": "PUCT calendar RSS, entry title and description",
@@ -30700,7 +30700,7 @@
    "public_access": {
     "room": "contact_only",
     "how": "This is a company's own operation and no public body voted on it. Autonomous commercial vehicles in Texas run under an authorization from the Texas Department of Motor Vehicles, whose board meets in public in Austin. A concern about a truck on the road goes to the Department of Public Safety.",
-    "url": "https://www.volvogroup.com/en/news-and-media/news/2026/oct/volvo-and-waabi-kick-off-customer-operations-in-texas--starting-with-warp-tm-.html",
+    "url": "https://www.txdmv.gov/about-us/txdmv-board-meetings",
     "closes": null
    },
    "claims": [
@@ -30818,6 +30818,24 @@
      "source_type": "primary_official",
      "fetched": "2026-10-08",
      "id": "tx-2026-0207-c5"
+    },
+    {
+     "id": "tx-2026-0207-c6",
+     "text": "The research feedlot is being built near WT's Nance Ranch.",
+     "verbatim_quote": "The research feedlot and education facility, which are being constructed southwest of the existing WT feedlot near Nance Ranch, further solidifies WT’s classification as a Research University by the Carnegie Foundation.",
+     "source_url": "https://news.tamus.edu/stories/wt-to-build-beef-cattle-research-facility-with-9-75-million-usda-grant/",
+     "source_title": "Texas A&M University System news release, WT to Build Beef Cattle Research Facility with $9.75 Million USDA Grant",
+     "source_type": "primary_official",
+     "fetched": "2026-10-08"
+    },
+    {
+     "id": "tx-2026-0207-c7",
+     "text": "Nance Ranch lies about seven miles east of Canyon.",
+     "verbatim_quote": "The Nance Ranch , located about seven miles east of Canyon, consists of 2,393 acres including the headquarters.",
+     "source_url": "https://news.tamus.edu/stories/wt-to-build-beef-cattle-research-facility-with-9-75-million-usda-grant/",
+     "source_title": "Texas A&M University System news release, WT to Build Beef Cattle Research Facility with $9.75 Million USDA Grant",
+     "source_type": "primary_official",
+     "fetched": "2026-10-08"
     }
    ],
    "confidence": "high",

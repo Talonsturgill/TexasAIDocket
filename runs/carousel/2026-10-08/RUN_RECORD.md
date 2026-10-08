@@ -111,7 +111,7 @@ a round. The judges scored the frame with the earlier wording.
 
 ## The record, first
 
-- Re-verification: 83 items stamped with reworded notes, every reworded note passing
+- Re-verification: 102 items stamped with a checked note, counted from the final ledger against main, every reworded note passing
   `reverify.py --check-notes`. tx-2026-0024's PUCT calendar was rewritten from the live feed with
   its October 15th hearing and November 16th workshop.
 - Boundaries re-measured on October 8th. tx-2026-0041 now carries a legacy `blocks_every_client`

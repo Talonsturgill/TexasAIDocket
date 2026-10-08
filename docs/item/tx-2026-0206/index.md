@@ -10,7 +10,7 @@ Volvo Autonomous Solutions and Waabi announced on October 5th the start of auton
   - Houston-Pasadena-The Woodlands, TX
 - Status: decided
 - Public access: Write to the decider
-- Take part: https://www.volvogroup.com/en/news-and-media/news/2026/oct/volvo-and-waabi-kick-off-customer-operations-in-texas--starting-with-warp-tm-.html
+- Take part: https://www.txdmv.gov/about-us/txdmv-board-meetings
 
 - Last checked: 2026-10-08
 

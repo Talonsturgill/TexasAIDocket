@@ -113,7 +113,7 @@ Source (primary_official): https://puc.texas.gov/agency/calendar/GetCalendarRss.
 
 Source (primary_official): https://puc.texas.gov/agency/calendar/GetCalendarRss.aspx
 
-### A second comment deadline now stands on the feed, for a project the entry identifies only by number.
+### The remaining comment deadline is for a project the entry identifies only by number.
 
 > Public Comment Deadline - Thursday, October 15, 2026 Project 59086 NA ( Open To Public )
 

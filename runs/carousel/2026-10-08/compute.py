@@ -69,7 +69,8 @@ put("selection_day", num("c5", r"March (\d+), 2026"), ["c5"], "March day the FAA
 import glob as _g
 SNAP = {"TxDOT": "air-taxi-testing-taking-flight-in-texas_*.txt", "FAA": "faa_launch.txt", "Merlin": "merlin-demonstrates-*.txt"}
 def _txt(pat):
-    f = _g.glob(str(HERE / "tmp" / "src" / pat))
+    # the three release snapshots ship beside the run in sources/, so a fresh checkout reproduces the table
+    f = _g.glob(str(HERE / "sources" / pat)) or _g.glob(str(HERE / "tmp" / "src" / pat))
     if not f: raise SystemExit("missing snapshot " + pat)
     return open(f[0], encoding="utf-8").read()
 # a release names Merlin's Caravan when it carries both "Merlin" and "Caravan" anywhere, captions included (integrity judge, round 2)
