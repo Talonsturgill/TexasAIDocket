@@ -118,11 +118,17 @@
     var c = document.createElement("canvas"); c.width = 2048; c.height = 512; var x = c.getContext("2d"), r = lcg(o && o.seed || 11);
     x.fillStyle = "#e9e8e2"; x.fillRect(0, 0, 2048, 512);
     for (var i = 0; i < 900; i++) { x.fillStyle = "rgba(" + (r() < 0.5 ? "60,62,66" : "255,255,255") + "," + (0.015 + r() * 0.03).toFixed(3) + ")"; x.fillRect(r() * 2048, r() * 512, 10 + r() * 90, 4 + r() * 20); }
-    x.strokeStyle = "rgba(70,72,78,0.32)"; x.lineWidth = 1.2;
-    for (var k = 0; k < 2048; k += 2048 / 13) { x.beginPath(); x.moveTo(k + (r() - 0.5) * 3, 0); x.lineTo(k, 512); x.stroke(); }
+    /* skin panels: lap seams every 1/18 of the length and every 128 round, each a dark line with a lit lip,
+     * a rivet row either side, and a faint stain run aft of each seam where wash water dried */
+    for (var k = 0; k < 2048; k += 2048 / 18) {
+      x.strokeStyle = "rgba(46,48,54,0.42)"; x.lineWidth = 1.8; x.beginPath(); x.moveTo(k + (r() - 0.5) * 3, 0); x.lineTo(k, 512); x.stroke();
+      x.strokeStyle = "rgba(255,255,255,0.3)"; x.lineWidth = 1.0; x.beginPath(); x.moveTo(k + 2, 0); x.lineTo(k + 2.4, 512); x.stroke();
+      var st = x.createLinearGradient(k, 0, k - 26, 0); st.addColorStop(0, "rgba(70,66,60,0.16)"); st.addColorStop(1, "rgba(70,66,60,0)"); x.fillStyle = st; x.fillRect(k - 26, 0, 26, 512);
+    }
+    x.strokeStyle = "rgba(46,48,54,0.36)"; x.lineWidth = 1.6;
     for (var j = 64; j < 512; j += 128) { x.beginPath(); x.moveTo(0, j); x.lineTo(2048, j); x.stroke(); }
-    x.fillStyle = "rgba(80,82,86,0.35)";
-    for (var k2 = 0; k2 < 2048; k2 += 2048 / 13) for (var y = 6; y < 512; y += 9) x.fillRect(k2 + 5, y, 1.4, 1.4);
+    x.fillStyle = "rgba(58,60,66,0.6)";
+    for (var k2 = 0; k2 < 2048; k2 += 2048 / 18) for (var y = 4; y < 512; y += 7) { x.fillRect(k2 + 6, y, 2.2, 2.2); x.fillRect(k2 - 7, y + 3, 2.2, 2.2); }
     /* the cheat line: the accent band both sides at belt height, with a thin dark keyline */
     [[8, 16], [238, 16]].forEach(function (b) { x.fillStyle = "#2b3a55"; x.fillRect(300, b[0], 1500, b[1]); x.fillStyle = "#2b2f38"; x.fillRect(300, b[0] + b[1] + 3, 1500, 4); });
     /* belly grime and exhaust soot, aft of the stack on the right (v about 0.75) */
@@ -151,8 +157,14 @@
     var dark = K.mat("nx-dark", { color: 0x23262b, roughness: 0.5, metalness: 0.4 });
     var tyre = K.mat("nx-tyre", { color: 0x141416, roughness: 0.82 });
     var steel = K.mat("nx-steel", { color: 0x8c9096, roughness: 0.35, metalness: 0.85 });
-    var glass = K.mat("nx-glass", { color: 0x0c1118, roughness: 0.05, metalness: 0.5, envMapIntensity: 1.6 });
-    var bladeM = K.mat("nx-blade", { color: 0x1a1b1e, roughness: 0.55, metalness: 0.2 });
+    var glass = K.mat("nx-glass", { color: 0x1c2a3a, roughness: 0.08, metalness: 0.7, envMapIntensity: 2.6 });   /* tinted cabin glass carrying the sky, never a black hole */
+    /* the blade paint: flat black worn to grey metal by grit, scuffed in short strokes and chipped */
+    var bladeM = new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.55, metalness: 0.2, map: (function () {
+      var c = document.createElement("canvas"); c.width = c.height = 256; var x = c.getContext("2d"), r = lcg(41);
+      x.fillStyle = "#1c1d20"; x.fillRect(0, 0, 256, 256);
+      for (var i = 0; i < 2600; i++) { var v = 55 + Math.floor(r() * 80); x.fillStyle = "rgba(" + v + "," + v + "," + (v + 3) + "," + (0.25 + r() * 0.45).toFixed(2) + ")"; x.fillRect(r() * 256, r() * 256, 1 + r() * 2.5, 1 + r() * 2.5); }
+      x.lineWidth = 1.2; for (var k = 0; k < 90; k++) { var v2 = 70 + Math.floor(r() * 70), px = r() * 256, py = r() * 256, a = r() * Math.PI; x.strokeStyle = "rgba(" + v2 + "," + v2 + "," + v2 + ",0.5)"; x.beginPath(); x.moveTo(px, py); x.lineTo(px + Math.cos(a) * (6 + r() * 22), py + Math.sin(a) * (6 + r() * 22)); x.stroke(); }
+      var t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.wrapS = t.wrapT = THREE.RepeatWrapping; t.repeat.set(2, 2); t.anisotropy = 8; return t; })() });
     var tipM = K.mat("nx-tip", { color: 0xd8b24a, roughness: 0.5, metalness: 0.2 });
     var red = K.finish.lamp(0xff2a1e, 6), green = K.finish.lamp(0x2cff6a, 6), strobe = K.finish.lamp(0xfff4e0, 7), land = K.finish.lamp(0xfff0d8, 9);
 
@@ -169,11 +181,11 @@
       { z: 5.0, w: 0.55, top: 2.44, bot: 1.33, n: 2.4 },
       { z: 5.95, w: 0.42, top: 2.31, bot: 1.55, n: 2.2 }
     ];
-    var SPIN = [
-      { z: 5.98, w: 0.27, top: 2.24, bot: 1.70, n: 2 },
-      { z: 6.2, w: 0.22, top: 2.19, bot: 1.75, n: 2 },
-      { z: 6.42, w: 0.02, top: 1.98, bot: 1.96, n: 2 }
-    ];
+    /* THE SPINNER, an ogive in nine stations so its outline is a curve and never a faceted cone */
+    var SPIN = [0, 0.15, 0.3, 0.45, 0.6, 0.72, 0.83, 0.92, 1].map(function (t) {
+      var r = Math.max(0.012, 0.27 * Math.pow(Math.cos(t * Math.PI / 2), 0.7));
+      return { z: 5.98 + 0.46 * t, w: r, top: 1.97 + r, bot: 1.97 - r, n: 2 };
+    });
     var POD = [
       { z: -3.5, w: 0.08, top: 1.2, bot: 1.12, n: 2 },
       { z: -2.6, w: 0.5, top: 1.12, bot: 0.74, n: 3 },
@@ -246,7 +258,7 @@
       make: function (o, r) {
         var root = new THREE.Group(), g = new THREE.Group(); root.add(g);
         var body = new THREE.Mesh(N.loft(THREE, FUS, 36), skin); g.add(body);
-        var sp = new THREE.Mesh(N.loft(THREE, SPIN, 24), white); g.add(sp);
+        var sp = new THREE.Mesh(N.loft(THREE, SPIN, 64), white); g.add(sp);
         /* cowling seam, air inlet under the spinner, exhaust stack on the right */
         var inlet = new THREE.Mesh(new THREE.BoxGeometry(0.5, 0.2, 0.3), dark); inlet.position.set(0, 1.55, 5.7); g.add(inlet);
         var ex = new THREE.Mesh(new THREE.CylinderGeometry(0.09, 0.12, 0.42, 14), dark); ex.rotation.z = Math.PI / 2 - 0.3; ex.position.set(-0.6, 1.95, 5.2); g.add(ex);
@@ -263,14 +275,15 @@
           var st = new THREE.Mesh(stab(sd), white); g.add(st);
           /* wingtip lamps: red on the left (+x when facing +z), green on the right */
           var lamp = new THREE.Mesh(new THREE.SphereGeometry(0.07, 12, 8), o.lights ? (sd > 0 ? red : green) : dark); lamp.position.set(sd * 7.96, 3.18, 2.15); g.add(lamp);
-          if (o.lights) { var ll = new THREE.Mesh(new THREE.SphereGeometry(0.09, 14, 10), land); ll.position.set(sd * 1.9, 3.05, 2.73); g.add(ll); }
+          if (o.lights) { var ll = new THREE.Mesh(new THREE.SphereGeometry(0.09, 14, 10), land); ll.scale.set(1.3, 0.42, 0.35); ll.position.set(sd * 1.9, 3.0, 2.76); g.add(ll); }   /* flush in the leading edge */
         });
         var fm = new THREE.Mesh(fin(), white); g.add(fm);
         var dorsal = new THREE.Mesh(N.foil(THREE, [{ s: 2.9, le: -1.9, chord: 1.9, y: 0, t: 0.06 }, { s: 3.0, le: -3.6, chord: 0.4, y: 0, t: 0.05 }], "y"), white); g.add(dorsal);
         var bc = new THREE.Mesh(new THREE.SphereGeometry(0.08, 12, 8), o.lights ? red : dark); bc.position.set(0, 4.55, -5.65); g.add(bc);
         var tl = new THREE.Mesh(new THREE.SphereGeometry(0.05, 10, 8), o.lights ? strobe : dark); tl.position.set(0, 2.88, -6.64); g.add(tl);
         /* antennas on the spine */
-        K.bar([0, 3.0, 0.4], [0, 3.32, 0.2], 0.012, dark, 4, g); K.bar([0, 3.0, -1.6], [0, 3.28, -1.8], 0.012, dark, 4, g);
+        var blade = new THREE.Mesh(new THREE.BoxGeometry(0.025, 0.34, 0.2), dark); blade.position.set(0, 3.18, 0.28); blade.rotation.x = 0.35; g.add(blade);   /* the VHF comm blade, where the radio thread starts */
+        K.bar([0, 3.0, -1.6], [0, 3.28, -1.8], 0.012, dark, 4, g);
         /* gear: spring steel main legs, a nose leg under the cowl, pants on all three */
         [-1, 1].forEach(function (sd) { K.bar([sd * 0.55, 1.08, 0.35], [sd * 1.78, 0.38, 0.1], 0.06, steel, 10, g); wheel(g, sd * 1.86, 0.38, 0.1, 0.38, 0.2, true); });
         K.bar([0, 1.42, 4.95], [0, 0.34, 5.02], 0.05, steel, 10, g); wheel(g, 0, 0.33, 5.02, 0.33, 0.16, true);
@@ -358,28 +371,40 @@
     a.rotation.x = -Math.PI / 2; a.position.set(0, 0.02, z0 - len / 2); a.receiveShadow = true; a.userData.txWear = false; N.TXT.add(N.R, a);
     var paint = N.paintMat(T), g = new T.Group();
     if (o.edges !== false) [-1, 1].forEach(function (sd) { var e = new T.Mesh(new T.BoxGeometry(0.9, 0.02, len), paint); e.position.set(sd * (w / 2 - 1.2), 0.035, z0 - len / 2); g.add(e); });
-    for (var z = z0 - 20; z > z0 - len; z -= 60) { var d = new T.Mesh(new T.BoxGeometry(0.9, 0.02, 36), paint); d.position.set(0, 0.035, z - 18); g.add(d); }
+    for (var z = z0 - (o.threshold !== false ? 66 : 20); z > z0 - len; z -= 60)   /* the centreline starts past the threshold markings */ { var d = new T.Mesh(new T.BoxGeometry(0.9, 0.02, 36), paint); d.position.set(0, 0.035, z - 18); g.add(d); }
     /* THE THRESHOLD STRIPES, `stripes` of them in two groups either side of the centreline, 1.8 m wide and
      * 30 m long, a stripe numbered `accentStripe` (1 from the west edge) painted in the accent */
     if (o.threshold !== false) { var nS = o.stripes || 8, half = nS / 2, pitch = 3.0;
       for (var k = 0; k < nS; k++) { var sideK = k < half ? -1 : 1, j = k < half ? half - 1 - k : k - half, x = sideK * (2.4 + j * pitch + 0.9);
-        var acc = o.accentStripe === k + 1, t = new T.Mesh(new T.BoxGeometry(1.8, 0.02, 30), acc ? N.accentPaint(T) : paint); t.position.set(x, acc ? 0.037 : 0.035, z0 - 21); g.add(t); } }
+        var acc = o.accentStripe === k + 1, t = new T.Mesh(new T.BoxGeometry(1.8, 0.02, 30), acc ? N.accentPaint(T) : paint); t.position.set(x, acc ? 0.037 : 0.035, z0 - 21); g.add(t); }
+      /* `bar`: the transverse threshold bar a displaced threshold carries, across the runway at the stripes' far end */
+      if (o.bar) { var tb = new T.Mesh(new T.BoxGeometry(w - 2.4, 0.02, 1.8), paint); tb.position.set(0, 0.035, z0 - 37.8); g.add(tb); } }
     g.children.forEach(function (m) { m.receiveShadow = true; m.userData.txWear = false; }); N.TXT.add(N.R, g);
     if (o.lamps !== false) [-1, 1].forEach(function (sd) {
       var row = K.make("airfield_lamp_row", { length: len - 40, step: N.LAMP_STEP, color: 0xffe2a8, intensity: o.lampI || 7, fog: o.lampFog !== false }); row.position.set(sd * N.EDGE, 0, z0 - len + 20); N.TXT.add(N.R, row);
       var amber = K.make("airfield_lamp_row", { length: 600, step: N.LAMP_STEP, color: N.AMBER, intensity: o.lampI || 7 }); amber.position.set(sd * N.EDGE, 0.002, z0 - len + 20); N.TXT.add(N.R, amber);
-      var thr = K.make("airfield_lamp_row", { length: w, step: 3, color: 0x2cff6a, intensity: 6 }); thr.rotation.y = Math.PI / 2; thr.position.set(-w / 2, 0, z0 + 2); N.TXT.add(N.R, thr);
+      var thr = K.make("airfield_lamp_row", { length: w, step: 3, color: 0x2cff6a, intensity: 6, fog: o.lampFog !== false }); thr.rotation.y = Math.PI / 2; thr.position.set(-w / 2, 0, z0 + 2); N.TXT.add(N.R, thr);
     });
     return g;
   };
-  N.accentPaint = function (THREE) { return N._apaint || (N._apaint = new THREE.MeshStandardMaterial({ color: 0x8fe0f0, roughness: 0.8, metalness: 0, emissive: 0x8fe0f0, emissiveIntensity: 0.22, polygonOffset: true, polygonOffsetFactor: -3 })); };
+  /* THE APRON FLOOD, the stage's pool made real: one sodium-warm flood on a mast to the subject's south west,
+   * aimed down at `target` ([x, y, z]), so the concrete under the subject is lit, its shadows fall long to the
+   * north east, and the pool's edge goes to the dark. Its cone, height and power are per frame. */
+  N.flood = function (target, o) {
+    o = o || {}; var T = N.T, s = new T.SpotLight(o.color || 0xffd2a0, o.intensity || 1600, o.range || 0, o.angle || 0.55, o.penumbra == null ? 0.75 : o.penumbra, 2);
+    s.position.set(target[0] + (o.dx == null ? -8 : o.dx), o.h || 24, target[2] + (o.dz == null ? 8 : o.dz));
+    s.target.position.set(target[0], target[1] || 0, target[2]);
+    s.castShadow = true; s.shadow.mapSize.set(2048, 2048); s.shadow.bias = -0.0004; s.shadow.normalBias = 0.02;
+    N.R.scene.add(s); N.R.scene.add(s.target); return s;
+  };
+  N.accentPaint = function (THREE) { return N._apaint || (N._apaint = new THREE.MeshBasicMaterial({ color: 0x8fe0f0, toneMapped: false, polygonOffset: true, polygonOffsetFactor: -3 })); };
   /* THE RADIO PATH, drawn to illustrate: one fine tube in the accent along a shallow arc from `a` to `b`
    * ([x, y, z]), rising `lift` metres at mid span, `r` metres thick. No rings, no glow halo. */
   N.callPath = function (a, b, o) {
     o = o || {}; var T = N.T, pts = [], n = 64, lift = o.lift == null ? 6 : o.lift;
     for (var i = 0; i <= n; i++) { var t = i / n; pts.push(new T.Vector3(a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t + lift * 4 * t * (1 - t), a[2] + (b[2] - a[2]) * t)); }
     var m = new T.Mesh(new T.TubeGeometry(new T.CatmullRomCurve3(pts), 256, o.r || 0.05, 8, false),
-      new T.MeshBasicMaterial({ color: new T.Color(0x8fe0f0).multiplyScalar(o.glow == null ? 0.9 : o.glow), fog: false, toneMapped: false }));
+      new T.MeshBasicMaterial({ color: 0x8fe0f0, fog: false, toneMapped: false }));
     m.userData.txWear = false; m.castShadow = false; N.TXT.add(N.R, m); m.castShadow = false; return m;
   };
   /* A YEAR BAR across the runway at z, inset lamps every `step` m in the accent, unfogged so the stage keeps it */
@@ -393,12 +418,14 @@
    * touchdown zone, sealed cracks. u across, v along. */
   N.asphaltTex = function (THREE, len) {
     var c = document.createElement("canvas"); c.width = 256; c.height = 2048; var x = c.getContext("2d"), r = lcg(77);
-    x.fillStyle = "#3a3b3d"; x.fillRect(0, 0, 256, 2048);
-    for (var i = 0; i < 26000; i++) { var v = 40 + Math.floor(r() * 50); x.fillStyle = "rgba(" + v + "," + v + "," + (v + 2) + "," + (0.25 + r() * 0.4).toFixed(2) + ")"; x.fillRect(r() * 256, r() * 2048, 1 + r() * 2, 1 + r() * 2); }
+    x.fillStyle = "#5c5d60"; x.fillRect(0, 0, 256, 2048);   /* weathered grey, sun bleached, so its tooth still reads at last light */
+    /* patched slabs: rectangles of newer, darker overlay and older, greyer seal */
+    for (var pi = 0; pi < 28; pi++) { var pv = r() < 0.5 ? 38 : 110; x.fillStyle = "rgba(" + pv + "," + pv + "," + (pv + 2) + ",0.55)"; x.fillRect(r() * 220, r() * 2000, 20 + r() * 90, 30 + r() * 160); }
+    for (var i = 0; i < 26000; i++) { var v = 40 + Math.floor(r() * 110); x.fillStyle = "rgba(" + v + "," + v + "," + (v + 2) + "," + (0.25 + r() * 0.4).toFixed(2) + ")"; x.fillRect(r() * 256, r() * 2048, 1 + r() * 2, 1 + r() * 2); }
     var g = x.createLinearGradient(0, 0, 256, 0); g.addColorStop(0, "rgba(10,10,12,0)"); g.addColorStop(0.35, "rgba(10,10,12,0.42)"); g.addColorStop(0.65, "rgba(10,10,12,0.42)"); g.addColorStop(1, "rgba(10,10,12,0)");
     x.fillStyle = g; x.fillRect(0, 1500, 256, 548);
-    x.strokeStyle = "rgba(14,14,16,0.55)"; x.lineWidth = 1.4;
-    for (var k = 0; k < 40; k++) { var px = r() * 256, py = r() * 2048; x.beginPath(); x.moveTo(px, py); for (var s = 0; s < 6; s++) { px += (r() - 0.5) * 30; py += 10 + r() * 30; x.lineTo(px, py); } x.stroke(); }
+    x.strokeStyle = "rgba(10,10,12,0.8)"; x.lineWidth = 2.2;
+    for (var k = 0; k < 110; k++) { var px = r() * 256, py = r() * 2048; x.beginPath(); x.moveTo(px, py); for (var s = 0; s < 6; s++) { px += (r() - 0.5) * 30; py += 10 + r() * 30; x.lineTo(px, py); } x.stroke(); }
     var t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.wrapS = t.wrapT = THREE.RepeatWrapping; t.repeat.set(1, Math.max(1, len / 400)); t.anisotropy = 8; return t;
   };
   /* THE RAMP, a concrete apron centred at [x, z], `w` by `d`, joints in metres */

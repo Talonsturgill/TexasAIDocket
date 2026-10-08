@@ -1,0 +1,106 @@
+{
+ "_spec": {
+  "version": 1,
+  "purpose": "A standalone web edition of the archived visual story.",
+  "law": "Facts resolve to the original verified claim record. A layout rebuild does not reverify reporting.",
+  "written_by": "daily"
+ },
+ "section": "Transportation and autonomy",
+ "dek": {
+  "text": "Merlin says it demonstrated AI-powered air traffic control communications at TxDOT's Project Nexus kickoff. The state's and the FAA's accounts of the day do not name it.",
+  "claims": [
+   "c26",
+   "c1",
+   "c2"
+  ]
+ },
+ "introduction": [
+  {
+   "text": "[TxDOT launched the first phase of Project Nexus, a testing program meant to prepare next-generation aircraft for Texas skies](c1). [Transportation Secretary Sean P. Duffy, Senator Ted Cruz and TxDOT marked the launch at Fort Worth Alliance Airport, where manufacturers and operators gave an aircraft demonstration](c15). [The FAA's account dates the event {{date:c2}}](c2).",
+   "claims": [
+    "c1",
+    "c15",
+    "c2"
+   ]
+  },
+  {
+   "text": "[Merlin says TxDOT invited it as a supporting participant to demonstrate its Merlin Pilot platform, including autonomous takeoff and landing and AI-powered air traffic control communications](c26). [Its release carries a photo of its Cessna Caravan at Alliance Airport](c32). Neither TxDOT's release nor the FAA's account of the day mentions Merlin.",
+   "claims": [
+    "c26",
+    "c32",
+    "c1",
+    "c2"
+   ]
+  }
+ ],
+ "sections": [
+  {
+   "heading": "What the program is",
+   "paragraphs": [
+    {
+     "text": "[The FAA selected TxDOT's proposal for its federal pilot program for electric and advanced aircraft in March 2026](c4). [The FAA's selection names Archer, BETA, Joby and Wisk as the Texas project's partners](c9), and Merlin is not among them. [The FAA called the Fort Worth event the first demonstration in Texas under the program](c21).",
+     "claims": [
+      "c4",
+      "c9",
+      "c21"
+     ]
+    },
+    {
+     "text": "[TxDOT says the pilot will advance in phases over the next three years](c16). [The first phase tests traditional aircraft such as helicopters and fixed-wing planes](c13). [Its first flights carry no passengers and are meant to collect data and validate routes](c14). [Later phases test medical and cargo logistics](c17), [and the final phase carries passengers on air taxi flights across the Texas triangle](c18).",
+     "claims": [
+      "c16",
+      "c13",
+      "c14",
+      "c17",
+      "c18"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "What Merlin says it showed",
+   "paragraphs": [
+    {
+     "text": "[Merlin says the demonstration was narrated by its chief executive and founder, Matt George, and showed how the Merlin Pilot can take on responsibilities traditionally handled by human pilots](c27). [The company presents its autonomy as reducing pilot workload rather than removing the pilot](c28). [Its release labels its expectations about the software's capabilities and performance as forward-looking statements](c31).",
+     "claims": [
+      "c27",
+      "c28",
+      "c31"
+     ]
+    },
+    {
+     "text": "[Joby said a second Caravan, its J208 fitted with Joby's own autonomous flight technology, would stop at Alliance on the day of the kickoff](c36). Each company's release speaks for its own aircraft.",
+     "claims": [
+      "c36"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "What the record does not show",
+   "paragraphs": [
+    {
+     "text": "TxDOT's release, the FAA's account and Merlin's own release do not say whether a pilot was aboard Merlin's Caravan during the demonstration or how the software performed. Merlin's account is the only one of the three that describes its part in the day.",
+     "claims": [
+      "c1",
+      "c2",
+      "c25"
+     ]
+    },
+    {
+     "text": "[The FAA says it will use data from the pilot projects to develop new regulations](c12), [and it said TxDOT and other participants were planning more test flights through the rest of the year](c23). The releases do not say whether the data from those flights will be published.",
+     "claims": [
+      "c12",
+      "c23"
+     ]
+    }
+   ]
+  }
+ ],
+ "related": [
+  {
+   "id": "tx-2026-0205",
+   "label": "The record entry for Project Nexus and the Alliance kickoff"
+  }
+ ]
+}
