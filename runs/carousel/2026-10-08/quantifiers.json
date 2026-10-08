@@ -1,0 +1,21 @@
+{
+  "note": "Every universal this deck prints, and the set it ranges over. A quantifier is a claim about a set, so the set is named the same way a numeral names its computation.",
+  "quantifiers": [
+    {
+      "phrase": "all three",
+      "where": "caption.txt",
+      "figures_key": "releases",
+      "about": "the three releases",
+      "from_items": [],
+      "set": "the three releases the record table reads, TxDOT's (c1), the FAA's launch release (c2) and Merlin's (c25). The caption asks whether their silence on who was aboard and how the demonstration went is the whole public record. It asserts nothing beyond what those three print."
+    },
+    {
+      "phrase": "none of them",
+      "where": "ledger/articles/2026-10-08.json",
+      "figures_key": "releases",
+      "about": "the three releases",
+      "from_items": [],
+      "set": "the same three releases, TxDOT's (c1), the FAA's launch release (c2) and Merlin's (c25), scanned by compute.py for a measured result (a rate, a percentage of something, a count of interventions or completed operations) and finding none in any of the three, the record table's third row."
+    }
+  ]
+}

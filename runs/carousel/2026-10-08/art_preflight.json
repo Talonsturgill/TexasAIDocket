@@ -1,0 +1,103 @@
+{
+  "version": 1,
+  "selected": [
+    1,
+    5,
+    9
+  ],
+  "inputs": {
+    "slides/slide-01.html": "05fa740fd912071c7bfe368d41d6ce88be5d4f2e5bc4f3a144628fd990fc1209",
+    "render/slide-01.png": "3278e3fb0eb33af929f2513c2bb7b415e508f883c1d89a2c394e807d055cd8e4",
+    "assets/js/deck/2026-10-08-nexus.js": "c9a0df022e5287bb498c90a3e521654cdf20234cfaa8c63585d60c69cb75124f",
+    "slides/slide-05.html": "1ca55e82beda4467ae140c6752766f14d5d07eba791727c48fba3eeda4e5a1da",
+    "render/slide-05.png": "8b56f41326bff4957d67c6185c251be2b38ef4c7953ed244c5a1211811e145d5",
+    "slides/slide-09.html": "5ea4c51a636ef8424dfd4ecdea505e7d6b54c520d41bf238a4462a6ddab82681",
+    "render/slide-09.png": "fa2ce5d3d8149430f2ce092ef371e6d70097709de3db1884a630744dc08cab16"
+  },
+  "value_measurements": [
+    {
+      "frame": "slide-01.png",
+      "median_L": 4.5,
+      "mid": 0.145,
+      "dark": 0.588
+    },
+    {
+      "frame": "slide-05.png",
+      "median_L": 13.3,
+      "mid": 0.085,
+      "dark": 0.571
+    },
+    {
+      "frame": "slide-09.png",
+      "median_L": 2.7,
+      "mid": 0.039,
+      "dark": 0.871
+    }
+  ],
+  "review": {
+    "decision": "accept",
+    "inputs": {
+      "slides/slide-01.html": "05fa740fd912071c7bfe368d41d6ce88be5d4f2e5bc4f3a144628fd990fc1209",
+      "render/slide-01.png": "3278e3fb0eb33af929f2513c2bb7b415e508f883c1d89a2c394e807d055cd8e4",
+      "assets/js/deck/2026-10-08-nexus.js": "c9a0df022e5287bb498c90a3e521654cdf20234cfaa8c63585d60c69cb75124f",
+      "slides/slide-05.html": "1ca55e82beda4467ae140c6752766f14d5d07eba791727c48fba3eeda4e5a1da",
+      "render/slide-05.png": "8b56f41326bff4957d67c6185c251be2b38ef4c7953ed244c5a1211811e145d5",
+      "slides/slide-09.html": "5ea4c51a636ef8424dfd4ecdea505e7d6b54c520d41bf238a4462a6ddab82681",
+      "render/slide-09.png": "fa2ce5d3d8149430f2ce092ef371e6d70097709de3db1884a630744dc08cab16"
+    },
+    "frames": [
+      {
+        "slide": 1,
+        "role": "cover",
+        "subject": "The white Caravan close at the left front quarter. It shows the smooth ogive spinner inside a faint propeller disc, the riveted cowling, the navy cheat line, the dark cabin windows, and the nose and main gear in pants standing on jointed apron concrete. One fine cyan thread rises from the spine and leaves by the right edge. The claim strip reads c1 c2 c25 c26. The render hash is unchanged, so the chassis blade change does not show behind the turning disc.",
+        "visual_consequence": "Bold on a near-black sky (median L* 4.5, mid 0.145, dark 0.588). The hero owns the lower half and bleeds the right and bottom edges, and the west key rakes the cowling. The nose wheel has a contact and a cast shadow on the concrete. The thread reads as a fine line and clears the dek. It works as the deck's showstopper.",
+        "weakness": "Little dirt where the gear meets the ground, so the gear pants and concrete read slightly clean.",
+        "repair": "Optional. A light grime pass on the gear pants and the concrete around the nose wheel."
+      },
+      {
+        "slide": 5,
+        "role": "evidence",
+        "subject": "Nine dark airfield lamp units in a three-by-three block on worn jointed apron concrete. One head is lit cyan in the MERLIN column on the near NAMES THE CARAVAN row, throwing a cyan pool and long east shadows. The row labels at the left read PRINTS A RESULT, PILOT ABOARD and NAMES THE CARAVAN, each level with its row's lamp heads. TXDOT, FAA and MERLIN sit under the columns. The render hash is unchanged.",
+        "visual_consequence": "Shows a measured relationship at a glance: one yes out of nine cells, three releases against three questions. It matches the dek: 'none prints a measured result'. The lit head is the only bright thing on the frame and every label clears every lamp. Measured median L* 13.3, mid 0.085, dark 0.571.",
+        "weakness": "The dek still leaves the single word 'result.' on a fifth line, a widow. The band behind the hook and dek, about y 250 to 850, is a warm brown haze with a faint seam near y 490. The lower fifth is bare concrete. The far MERLIN-column lamps stack partly behind the lit head.",
+        "repair": "Optional. Tighten the dek by a word or widen its measure slightly so it sets in four lines. Fog in the chassis navy so the band behind the dek goes dark."
+      },
+      {
+        "slide": 9,
+        "role": "close",
+        "subject": "The camera has dollied up the runway. Dark bluestem straw fills the lower left, and the runway's paint edge runs from the lower right toward the horizon. Twenty-eight cyan day lamps on stems run from the right edge up the runway edge to 28 DAYS. Beyond them a row of dark unlit heads continues into the dark. The Caravan stands lit on the runway just right of where the lit run ends, now about 14 percent of the frame height and about 55 percent of its width across the wings. The hook reads '28 days into the three years'.",
+        "visual_consequence": "The quantity reads at once: a short lit run that climbs to the airplane, against a long dark row, and the dek states it as 28 days in, of 1,096. The larger plane is now the clear subject of the middle band, and the run's perspective leads the eye to it. Bold (median L* 2.7, mid 0.039, dark 0.871).",
+        "weakness": "The nearest lit head is still a large glowing sphere near the bottom-right edge. The tip of the fin comes within about 30 px (display) of the dek's last line. The plane stands slightly right of the last lit lamp rather than directly beside it.",
+        "repair": "Optional. Lower the camera aim a few pixels' worth so the fin clears the dek with more air. Otherwise nothing is needed before the cap."
+      }
+    ]
+  },
+  "shipped_inputs": {
+    "slides/slide-01.html": "05fa740fd912071c7bfe368d41d6ce88be5d4f2e5bc4f3a144628fd990fc1209",
+    "slide-01.webp": "a3a641cafa80411d974a8737fafea30f219a6d25c61c3705cadd10d6707755fb",
+    "slides/slide-05.html": "1ca55e82beda4467ae140c6752766f14d5d07eba791727c48fba3eeda4e5a1da",
+    "slide-05.webp": "18889430d01f9887f255c5ba1b502c2282d3f161b4a183385e12bca4e4e788fe",
+    "slides/slide-09.html": "5ea4c51a636ef8424dfd4ecdea505e7d6b54c520d41bf238a4462a6ddab82681",
+    "slide-09.webp": "22df498cec7fcca9f82665f7724cd4bb97dc657624d8d3c7e6420ac0e24d8a6b"
+  },
+  "encodings": [
+    {
+      "to": "slide-01.webp",
+      "to_sha256": "a3a641cafa80411d974a8737fafea30f219a6d25c61c3705cadd10d6707755fb",
+      "from_sha256": "3278e3fb0eb33af929f2513c2bb7b415e508f883c1d89a2c394e807d055cd8e4",
+      "psnr_db": 41.015
+    },
+    {
+      "to": "slide-05.webp",
+      "to_sha256": "18889430d01f9887f255c5ba1b502c2282d3f161b4a183385e12bca4e4e788fe",
+      "from_sha256": "8b56f41326bff4957d67c6185c251be2b38ef4c7953ed244c5a1211811e145d5",
+      "psnr_db": 41.749
+    },
+    {
+      "to": "slide-09.webp",
+      "to_sha256": "22df498cec7fcca9f82665f7724cd4bb97dc657624d8d3c7e6420ac0e24d8a6b",
+      "from_sha256": "fa2ce5d3d8149430f2ce092ef371e6d70097709de3db1884a630744dc08cab16",
+      "psnr_db": 40.456
+    }
+  ]
+}

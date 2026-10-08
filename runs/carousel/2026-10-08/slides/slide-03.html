@@ -1,0 +1,55 @@
+<!doctype html>
+<!-- 2026-10-08, frame 3 of 9. Archetype OBJECT_AND_CAPTION. RENDERED through txthree.js in the deck's lastLight world. Two identical unmarked Caravans parked side by side on the apron in one pool of light, noses to the west, one model at two seeds, a mono label under each. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+  .dek { width:860px; }
+  .lab.u { transform:translateX(-50%); text-align:center; font-size:24px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">Two Caravans,<br>by two companies' word</h1>
+<p class="dek" data-follow="24">Merlin's release pictures its Caravan at Alliance Airport. Joby said J208, a Caravan with its autonomous flight technology, would stop there on September 10th. Each release speaks for its own aircraft. Both are drawn to illustrate, unmarked.</p>
+<div class="lab u" id="la">MERLIN'S CARAVAN</div>
+<div class="lab u" id="lb">JOBY'S J208</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-08-nexus.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await NX.boot(THREE, TXT, initKit, { kicker: "Two companies' accounts", counter: "03 / 09", src: "c32 c33 c36", fit: { min: 84, max: 116, maxLines: 2 } });
+  const R = NX.stage(TXT, gl, W, { fov: 30 });
+  TXT.ground(R, { surface: 'grass', size: 9000, tile: 7, seed: 31, color: 0x6f6a4c });   /* the infield, dry little bluestem straw */
+  NX.apron(0, -10, 120, 110, { seed: 25 });
+  /* CARAVANS = 2, one each by c32 and c36: the same model at two seeds, wing to wing, noses west */
+  const CARAVANS = 2, planes = [];
+  for (let i = 0; i < CARAVANS; i++) { const p = NX.plane({ prop: 'stopped', lights: false, seed: 3 + i }); p.rotation.y = -Math.PI / 2; p.position.set(-i * 7, 0, -i * 14); TXT.add(R, p); TXT.contact(R, p); planes.push(p); }
+  TXT.frame(R, { from: [-18, 1.15, 20], look: [-5, 2.1, -8] });
+  NX.grass([-160, -120, -64, 120], { count: 6000, seed: 8 });
+  TXT.sky(R);
+  TXT.deckRig(R, NX.rigSpec(W, 60, 4096), NX.rigOpts([0, 0, -9], { distance: 160, shadowFar: 400 }));
+  TXT.stage(R, planes);
+  NX.flood([-3.5, 0, -7], { dx: -14, dz: 14, h: 26, angle: 0.44 });
+  TXT.weather(R, { grime: 0.22, height: 1.1 });
+  [['la', [-5.5, 0, 0]], ['lb', [-12.5, 0, -14]]].forEach(([id, pt]) => { const q = NX.project(THREE, R, pt), el = document.getElementById(id); el.style.left = Math.max(80 + el.offsetWidth / 2, Math.min(1000 - el.offsetWidth / 2, q[0])) + 'px'; el.style.top = (q[1] + 18) + 'px'; });
+  const cx = NX.develop(await TXT.snapshot(R), gl);
+  NX.post(cx, { a: 0.3 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

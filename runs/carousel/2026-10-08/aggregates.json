@@ -1,0 +1,204 @@
+{
+ "date": "2026-10-08",
+ "_note": "Every count the deck states, with the claim it was quoted from, or the code that computed it.",
+ "aggregates": [
+  {
+   "phrase": "two companies",
+   "slide": "slide-03.html",
+   "kind": "count",
+   "value": 2,
+   "from_claims": [
+    "c32",
+    "c36"
+   ],
+   "note": "Merlin (c32) and Joby (c36), one claim each"
+  },
+  {
+   "phrase": "Two companies",
+   "slide": "slide-03.html",
+   "kind": "count",
+   "value": 2,
+   "from_claims": [
+    "c32",
+    "c36"
+   ],
+   "note": "the kicker, the same tally"
+  },
+  {
+   "phrase": "Three things Merlin says",
+   "slide": "slide-04.html",
+   "kind": "count",
+   "value": 3,
+   "from_claims": [
+    "c26"
+   ],
+   "computed_by": "out/2026-10-08/compute.py, capabilities = the items of c26's own serial list split on its commas"
+  },
+  {
+   "phrase": "three releases",
+   "slide": "slide-05.html",
+   "kind": "count",
+   "value": 3,
+   "from_claims": [
+    "c1",
+    "c2",
+    "c25"
+   ],
+   "note": "TxDOT's (c1), the FAA's (c2) and Merlin's (c25)"
+  },
+  {
+   "phrase": "three says",
+   "slide": "slide-05.html",
+   "kind": "count",
+   "value": 3,
+   "from_claims": [
+    "c1",
+    "c2",
+    "c25"
+   ],
+   "note": "the same three releases"
+  },
+  {
+   "phrase": "eight projects across",
+   "slide": "slide-08.html",
+   "kind": "count",
+   "value": 8,
+   "quoted_from": "c5",
+   "quote": "announced eight proposals were selected",
+   "note": "the FAA's own count, quoted"
+  },
+  {
+   "phrase": "30 proposals",
+   "slide": "slide-08.html",
+   "kind": "count",
+   "value": 30,
+   "quoted_from": "c6",
+   "quote": "received more than 30 proposals",
+   "note": "the FAA's own floor, printed with its 'more than'"
+  },
+  {
+   "phrase": "three releases says",
+   "slide": "slide-09.html",
+   "kind": "count",
+   "value": 3,
+   "from_claims": [
+    "c1",
+    "c2",
+    "c25"
+   ],
+   "note": "the same three releases"
+  },
+  {
+   "phrase": "three releases says",
+   "slide": "caption.txt",
+   "kind": "count",
+   "value": 3,
+   "from_claims": [
+    "c1",
+    "c2",
+    "c25"
+   ],
+   "note": "the same three releases"
+  },
+  {
+   "phrase": "three official records",
+   "slide": "first_comment.txt",
+   "kind": "count",
+   "value": 3,
+   "from_claims": [
+    "c1",
+    "c2",
+    "c5"
+   ],
+   "computed_by": "scripts/carousel/sources_block.py, the documents the deck cites grouped by each claim's source_type: TxDOT's release and the FAA's two"
+  },
+  {
+   "phrase": "two first party accounts",
+   "slide": "first_comment.txt",
+   "kind": "count",
+   "value": 2,
+   "from_claims": [
+    "c25",
+    "c36"
+   ],
+   "computed_by": "scripts/carousel/sources_block.py, the documents the deck cites grouped by each claim's source_type: Merlin's release and Joby's"
+  },
+  {
+   "phrase": "Two Caravans",
+   "slide": "slide-03.html",
+   "kind": "count",
+   "value": 2,
+   "from_claims": [
+    "c32",
+    "c36"
+   ],
+   "note": "Merlin's Caravan (c32) and Joby's J208 (c36)"
+  },
+  {
+   "phrase": "One of eight",
+   "slide": "slide-08.html",
+   "kind": "ratio",
+   "value": 1,
+   "of": 8,
+   "from_claims": [
+    "c5"
+   ],
+   "note": "Texas's project (c3) one of the FAA's eight (c5)",
+   "computed_by": "out/2026-10-08/compute.py, projects = the FAA's eight selections (c5), of which the Texas project is one (c3)"
+  },
+  {
+   "phrase": "26 states",
+   "slide": "slide-08.html",
+   "kind": "count",
+   "value": 26,
+   "quoted_from": "c7",
+   "quote": "The eight selected projects span 26 states",
+   "note": "quoted"
+  },
+  {
+   "phrase": "three years",
+   "slide": "slide-09.html",
+   "kind": "duration",
+   "value": 3,
+   "quoted_from": "c16",
+   "quote": "The Texas pilot will advance in phases over the next three years.",
+   "note": "TxDOT's own span, quoted, in the hook and the dek"
+  },
+  {
+   "kind": "duration",
+   "value": 28,
+   "from_date": "2026-09-10",
+   "to_date": "2026-10-08",
+   "from_claims": [
+    "c2"
+   ],
+   "computed_by": "out/2026-10-08/compute.py, elapsed_days = October 8th, 2026 minus the kickoff on September 10th, 2026 (c2)",
+   "phrase": "28 days",
+   "slide": "slide-09.html"
+  },
+  {
+   "kind": "duration",
+   "value": 28,
+   "from_date": "2026-09-10",
+   "to_date": "2026-10-08",
+   "from_claims": [
+    "c2"
+   ],
+   "computed_by": "out/2026-10-08/compute.py, elapsed_days = October 8th, 2026 minus the kickoff on September 10th, 2026 (c2)",
+   "phrase": "28 DAYS",
+   "slide": "slide-09.html"
+  },
+  {
+   "kind": "duration",
+   "value": 28,
+   "from_date": "2026-09-10",
+   "to_date": "2026-10-08",
+   "from_claims": [
+    "c2"
+   ],
+   "computed_by": "out/2026-10-08/compute.py, elapsed_days = October 8th, 2026 minus the kickoff on September 10th, 2026 (c2)",
+   "phrase": "28 days",
+   "slide": "caption.txt"
+  }
+ ]
+}

@@ -1,0 +1,101 @@
+{
+ "lens": "craft",
+ "round": 3,
+ "deck": "carousel no. 46, 2026-10-08, Software on the radio",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.5,
+   "why": "Pixel coordinates are on the 1600x2000 display; multiply by 1.35 for the 2160x2700 render. The register is right now. art_preflight measures slide 1 at median L* 4.5, slide 9 at 2.7 with 0.871 dark and only 0.039 mid, and the frames are staged on near-black skies with light type. The cover (slide 1) is the best frame. The Caravan's nose fills the lower half and bleeds right and bottom, the west key rakes the cowling, and the nose wheel has a real contact and cast shadow on jointed concrete. The cyan thread clears the dek. Slide 9 is also strong, with the lit run of day lamps climbing into the dark, bluestem straw in the foreground and the plane at a readable size. The 7 descriptor allows ONE frame leaning on a primitive model, a dead zone or an artifact, and this deck has several. (1) The hero model is primitive on every frame that shows it. The windows are flat black rectangles with no glass or reflection. The cheat line breaks into stepped, jagged strips on slide 6 (x 1180 to 1540, y 1290 to 1440) and leaves a sliver seam on slide 1 (x 630 to 950, y 1200 to 1240). The wing on slide 4 reads as a short twisted plank sitting on the cabin roof, even after the round 2 eye raise. (2) Slide 2's geometry doesn't read. The fin rises from what looks like the nose, no horizontal stabiliser is visible, and the main wing appears to grow out of the tail cone. The tower is an untextured white cylinder with a brown cab, not the planned amber, and an L-shaped foot block still sits at x 1300 to 1430, y 1540 to 1595, although round 2 says the base block was removed. (3) Slide 3 has a dead zone. About 40 percent of the frame (y 1250 to 2000) is empty mid-grey concrete, the two airframes are squeezed into a strip under the dek, and the labels float 60 to 100 px below the wheels. (4) On slide 8 the top 55 percent is a warm mid-brown haze behind the hook and dek, not the planned dark sky, and machine_qa band_ratio is 1.07, the flattest in the deck. The hero is a small tail-on silhouette, about 4 percent of the frame, and no long shadow visibly crosses two stripes. (5) Slide 5 replaces the hero with nine bollard lamps. The band behind the type is a brown wash, the preflight itself names 'a warm brown haze', and the lit head is a flat cyan egg with no glass. That makes three frames passing the showstopper test (1, 9, and 7 as a map) and the rest falling short in different ways. This is a little under the 7 descriptor, nowhere near 4."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.4,
+   "why": "This reads clearly as one deck: one last-light airfield world, one west key with casts falling east (slides 1, 4, 5 and 6 agree), one cyan accent (#8FE0F0) used only for the machine's trace, and the Caravan on 7 of 9 frames. The edge tease works: slide 1's thread leaves the right edge at about y 670, and slide 2's enters from the left and lands on the tower cab. The camera move from close, to wide, to aerial, to beside the runway is real. Three things pull it down. Slides 5 and 8 carry a warm brown wash band that no other frame has, so they sit outside the navy-black sky. Slide 7's map has no hero and no ground. At distance on slides 2, 8 and 9 the plane reads as a smaller four-window high-wing rather than slide 1's long cargo-pod Caravan. Also, the storyboard's MOTIF_EVOLUTION and CAMERA_MOVE lists still number the frames in the pre-flow-critic order (lamps on 4, propeller on 5, broadside on 6), and the palette row still names 'three year bars on 9', which never shipped. The declared devices are therefore described against a deck that isn't the one that rendered."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.6,
+   "why": "Every slide string traces. Slide 8's 26 and 30 come from c7 and c6, and 'sixth' from c3. Slide 9's 28 and 1,096 are computed (September 10th 2026 to September 10th 2029 is 365+365+366 = 1,096). Slide 7's partner list is c9's verbatim. Merlin's capabilities on slide 4 are c26's wording and are attributed throughout. The FAA claims rest on a local snapshot after a 403, which is disclosed and medium confidence. Two places are looser than the record. Slide 1 says 'Neither TxDOT's release nor the FAA's names Merlin', which is true of the releases, but c33 has a TxDOT-credited photo captioned 'operated by Merlin Labs' in Project Nexus test flights. The cover's reader comes away believing the state never acknowledged Merlin, and the deck never tells them otherwise (c33 is cited only on slide 3, and its dek doesn't use it). Second, Merlin's release (c25 to c32) is read through a Finviz mirror rather than the GlobeNewswire original. No hard fail."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.8,
+   "why": "What happened, where (Fort Worth Alliance Airport) and who decided (TxDOT launched it, the FAA selected it) are named on slides 1, 2 and 7. The stake, software claiming to work an aircraft's radio with no published result and no word on whether a pilot was aboard, is stated as an absence on slides 5 and 9 rather than made concrete for a Texan. No county is named. No meeting, comment window or next step a reader can act on appears anywhere. Slide 9's close is a day count plus 'None of the three releases says whether a pilot was aboard', so the reader ends with nothing to do. The middle of the deck (6, 7, 8) drifts from the Merlin story into program background."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.2,
+   "why": "The cover hook 'Software on the radio' earns the swipe, and slide 2 pays at once with the place. Slides 3 to 5 build properly: two Caravans, what Merlin says, then the record table, which is the turn. After the turn, slides 6, 7 and 8 are three frames of program context, and 7 and 8 could swap or merge without loss. The close lands on a count rather than a consequence."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "The hooks are crisp and plain: 'Two Caravans, by two companies' word', 'What three releases print', 'One of eight'. House rules hold, with no colons, dashes or banned words in copy.json or caption.txt. The deks are flatter. Slide 2 reads like a press release ('as part of a federal pilot program for new aircraft'). The 'drawn to illustrate' disclaimer repeats on slides 1, 2, 3 and 8. Nothing here would make a reader feel a Texan wrote it, and Alliance and the Metroplex get no texture beyond their names."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.3,
+   "why": "The last four decks were a noon bus (no. 42), a blue hour hospital (43), a golden hour clay field (44) and a Gulf noon hull (45). This one diverges in light (night airfield at last light), palette (navy-black with cyan) and subject (aircraft). The familiar move is slide 4, a vehicle broadside on a long lens with three leaders to labels on the sky, which is no. 45's frame 3 almost exactly. The vehicle-hero cover is also the same opening move as nos. 41, 42 and 45."
+  }
+ ],
+ "weighted_score": 7.076,
+ "weighted_score_arithmetic": "0.22*6.5 + 0.12*7.4 + 0.20*7.6 + 0.16*6.8 + 0.10*7.2 + 0.10*7.0 + 0.10*7.3 = 1.430 + 0.888 + 1.520 + 1.088 + 0.720 + 0.700 + 0.730 = 7.076",
+ "hard_fails": [],
+ "hard_fail_search_notes": "out/2026-10-08/render/machine_qa.json has fails 0. Its 13 warns are 8 SKY IN FRAME verdicts and 5 busy-art warnings under slide 7's city labels, which read cleanly in the render. Every numeral on the slides and in the caption traces to a claim or to compute.py (28, 1,096, 26, 30, J208). The caption has no colons, dashes, banned words or year on September 10th. Every slide shows a finished frame. I found no Project Nexus or Merlin entry in ledger/carousel/topics.json from 2026-09-30 to 2026-10-07. I didn't read the window's entries before September 30th; the integrity lens owns that check.",
+ "ship": true,
+ "ship_note": "Round 3 is the round cap and I found no hard fail, so the deck ships at the cap with its score. 7.08 is below the 7.7 rung, and the shortfall should be named in the email.",
+ "one_sentence_fix": "Rebuild the chassis Caravan once at real fidelity, so every frame that carries it inherits the fix: glazed windows with a reflection instead of black cutouts, a lofted high wing whose span and chord read from any eye height, the cheat line as a decal on the skin instead of offset strips, and a full tail with stabilisers. It is on seven of nine frames and its primitiveness is what holds slides 2, 4, 6 and 8 below the cover.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 2,
+   "problem": "The aircraft is unreadable from this camera. The fin rises from what reads as the nose, no horizontal stabiliser shows, and the wing appears to grow out of the tail cone. The tower is a plain white cylinder with a brown cab and an L-shaped foot block (x 1300 to 1430, y 1540 to 1595 display) still standing after round 2's removal note.",
+   "fix": "Put the camera where the storyboard put it, at 1.6 m eye directly behind and left of the tail. Crop so the fin and both stabilisers sit in clean silhouette against the sky at lower left, cut by the left and bottom edges, with the fuselage running away from camera. Delete the tower's foot block and give the cab amber emissive glazing so it reads as a lit cab."
+  },
+  {
+   "slide": 3,
+   "problem": "This is a dead zone. The bottom 40 percent of the frame (y 1250 to 2000 display) is empty mid-grey concrete, both airframes are squeezed into a strip under the dek, and the labels float 60 to 100 px below the wheels.",
+   "fix": "Lower the eye to about 1.2 m and dolly in about 12 m so the near Caravan's nose, propeller and gear fill the lower half and bleed the bottom edge. Let the apron fall to black under the pool, and set each label on the concrete directly under its own nose wheel."
+  },
+  {
+   "slide": 8,
+   "problem": "The top 55 percent is a warm mid-brown haze behind the hook and dek, and machine_qa band_ratio is 1.07, the flattest frame. The hero is a tiny tail-on Caravan, about 4 percent of the frame, with no visible long shadow across the stripes.",
+   "fix": "Fog the far runway into the chassis navy-black instead of brown. Bring the camera down from 30 m to about 12 m and push in so the Caravan spans about 45 percent of the frame width, with its east cast falling across two stripes."
+  },
+  {
+   "slide": 4,
+   "problem": "The wing reads as a short twisted plank lying on the cabin roof, not a high wing with span. The IN-FLIGHT leader drops vertically at x 190 across the fuselage nose and the nose gear.",
+   "fix": "Raise the eye to about 5 m on the same long lens so the near wing's top surface and span read across the fuselage. Route the IN-FLIGHT leader from the wing tip out to the left, clear of the nose and nose gear."
+  },
+  {
+   "slide": 6,
+   "problem": "The cheat line on the cowl breaks into stepped, jagged strips (x 1180 to 1540, y 1290 to 1440 display), a render artifact in the frame's focal area. The wing is a flat slab edge across the top of the image band.",
+   "fix": "Replace the offset cheat-line strips with a decal or texture on the lofted skin so it follows the cowl's curvature without stepping. Give the wing a rounded leading edge, a roundedBox or loft, so the edge catches the west key as a gradient."
+  },
+  {
+   "slide": 5,
+   "problem": "The band behind the hook and dek is a warm brown wash, which the preflight also noted. The one lit head is a flat cyan egg with no glass, no internal emitter and no specular, so the frame's focal reads as a sticker.",
+   "fix": "Fog the background to the chassis navy so the type sits on near-black. Build the lit head as a glass shell over an emitter, with a specular highlight from the west key and a falloff glow on the concrete."
+  }
+ ],
+ "files_read": [
+  "/home/user/TexasAIDocket/config/carousel/scoring_rubric.yaml",
+  "/home/user/TexasAIDocket/out/2026-10-08/render/slide-01.png .. slide-09.png",
+  "/home/user/TexasAIDocket/out/2026-10-08/render/contact_sheet.png",
+  "/home/user/TexasAIDocket/out/2026-10-08/render/machine_qa.json",
+  "/home/user/TexasAIDocket/out/2026-10-08/art_preflight.json",
+  "/home/user/TexasAIDocket/out/2026-10-08/copy.json",
+  "/home/user/TexasAIDocket/out/2026-10-08/caption.txt",
+  "/home/user/TexasAIDocket/out/2026-10-08/storyboard.md",
+  "/home/user/TexasAIDocket/out/2026-10-08/claims.json",
+  "/home/user/TexasAIDocket/ledger/carousel/artwork.json",
+  "/home/user/TexasAIDocket/ledger/carousel/topics.json"
+ ]
+}

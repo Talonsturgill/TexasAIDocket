@@ -1,0 +1,79 @@
+{
+ "lens": "reader",
+ "round": 1,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.4,
+   "why": "The register is right. Every frame is dark-staged with true blacks and light type on a dark field (machine_qa bands show no faded mid-tone frame). Frames 1, 4 and 8 are strong: on 1 the Caravan nose fills the lower half under a side key and bleeds off the right edge, on 4 a broadside elevation carries leaders onto the parts, and on 8 the high threshold view shows eight stripes with one cyan. Several frames fall short of the 7 descriptor ('one frame leans on...'). Slide 6 is a macro of flat low-poly propeller blades with noise texture and boxy yellow tips, and the nacelle floats in a black void with no ground. It fails the zoom test, and the CRAFT PLAN's own acceptance line 'never a flat plank' is not met. On slide 3 roughly the lower 40 percent is empty concrete with two mono labels floating on it, which is a dead zone. Slide 2's tower is a white cylinder on an L-shaped base that reads as a letter, and the tail-first plane geometry is hard to parse. Slide 7 is a flat map slab outside the world. On slide 9 the plane is small and sits apart from the DAY 28 point, and the near day lamps read as cyan balloons rather than runway lights."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.0,
+   "why": "It is clearly one deck: a night airfield, one navy-black sky, a white Caravan with a navy cheat line on 1, 3, 4 and 6, and a cyan accent motif that runs from the radio thread (1, 2) to the leaders (4), the lit lamp (5), the stripe (8) and the day lamps (9). The edge tease works: frame 1's thread leaves by the right edge and frame 2's enters from the left onto the tower. Two things sit outside. Slide 7 is a 2D map slab with no hero and no airfield ground (the storyboard admits the risk). Slide 5's warm brown haze room differs from the navy ramp frames. The plane on 2 and 8 reads as a smaller, shorter high-wing single rather than the cover's Caravan, so the hero is not one model in one material."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.1,
+   "why": "Every slide string traces to cited claims. Figures 8, 26, 30+, 6th, 3 years, 28 and 1,096 are all in figures.json with sources. Merlin's words are consistently attributed ('Merlin says', 'by two companies' word'). Several phrasings are looser than their sources. (1) Slide 9 says 'October 8th is day 28 of 1,096'. Counting September 10th as day 1, as people normally do, October 8th is day 29. 28 is days elapsed. (2) The headline 'Day 28 of the state's three years' makes a counting start the deck chose (September 10th) into the state's own clock. c16 says only 'over the next three years'. (3) The caption's 'Medical supplies or organs between rural facilities and Austin and San Antonio come next' turns c17's 'such as' example into the plan and drops 'urban medical centers in'. c17 is also missing from the first comment's TxDOT line. (4) Slide 3 draws both Caravans together on one apron, but Joby only said J208 'would stop' there. The storyboard's own risk note asked the dek to say no source places them together, and the shipped dek dropped that line. (5) Merlin's release is cited through a Finviz copy rather than GlobeNewswire or Merlin itself. None of these changes what a reader believes enough to be a hard fail."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.0,
+   "why": "A Texan does learn what happened, who and where. TxDOT launched phase one of Project Nexus at Fort Worth Alliance Airport, the FAA picked it as one of eight, and the first flights carry no passengers. Routes run Dallas, Austin and San Antonio, then Houston. A company not on the partner list says it demonstrated AI air traffic control communications. The deck never says why this should matter to someone in North Texas, for example software talking to a tower in their airspace. No frame and no caption line names anything a reader can do or a date ahead: no comment route, no meeting, no next flight. The claims file has c22 (the Joby AFW to DFW flight) and c23 (more test flights through the year), and neither is used. The story also splits between the Merlin thread (1, 3, 4, 5) and the program brochure (2, 6, 7, 8), so the stake never sharpens. The county was honestly refused (rejected list), so the 10's 'county' was never reachable. That is not charged."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "The cover 'Software on the radio' plus a big lit Caravan is enough to stop a scroll, but it is vague. Its dek opens on 'Merlin', a name most Texans don't know, and runs four lines. Frame 2 'Phase one began here' pays the program context, not the hook, so the radio question pauses for a frame. Frame 3 brings in Joby's J208, which never comes back. The real turn is frame 5, the record lamps. Frames 6 ('Phase one flies traditional aircraft') and 8 ('One of eight') could move or merge without loss. The close is a calendar counter that repeats frame 5's pilot-aboard absence for the third time (frames 5, 9 and the caption), so it lands softly."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.2,
+   "why": "Clean and on house rules: no colons, dashes, banned words or year in the caption date. It is carefully attributed. But it reads as a fact-checker's register, not a Texan who knows aviation. 'drawn to illustrate' appears on four frames (1, 2, 3, 8) as boilerplate. Lines like 'A lamp is lit where a release says it' and 'Each release speaks for its own aircraft' sound procedural. Apart from place names there is no regional texture, nothing about Alliance, the Metroplex or the people under these routes. The caption's closing question 'Is silence in all three the whole public record on both?' is awkward and leads the reader."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.0,
+   "why": "There is no topic repeat in the 30-day window (topics.json has no Project Nexus entry), and the night-airfield world with cyan accent is new. But it is the third autonomy-in-a-vehicle deck in six days (no. 41 Kodiak driverless trucks on October 3rd, no. 45 Saronic autonomous ships on October 7th, now an autonomous Caravan). The opening move repeats nos. 41 and 45: a hero vehicle close on the cover, carried through the deck. The spine is again a printed absence ('none of the three says'), which ledger angle_notes on nos. 11, 14, 15, 16, 23 and 28 asked future runs to stop leaning on. no. 33 (September 24th) was also an FAA aviation deck."
+  }
+ ],
+ "weighted_score": 6.5,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Merge frames 6 and 8 into one program frame. Spend the freed frame and the close on what happens next over North Texas from the claims already in hand: the FAA writes rules from this data (c12), more test flights were planned through the year (c23), and Joby's AFW to DFW flight was planned (c22). Say plainly on the cover why AI on a tower frequency matters to someone under those routes, so the deck stops ending on a day counter and a third telling of the same absence.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 6,
+   "problem": "Macro of the propeller with flat low-poly blades, a noise texture and boxy yellow tips. The nacelle floats in a black void with no ground, contact or apron, so it fails the zoom test at full size and breaks its own CRAFT PLAN line 'never a flat plank'.",
+   "fix": "Pull the camera back to a medium low three-quarter of the nose with the nose gear standing on the lit apron and its contact shadow in frame. Rebuild the blades as twisted tapered stations so the leading edge catches the west key."
+  },
+  {
+   "slide": 3,
+   "problem": "The two Caravans sit in a band from about 870 to 1390 px, leaving the lower 40 percent as empty jointed concrete with the two mono labels floating in it. That is a dead zone at feed size.",
+   "fix": "Drop the eye to about 1.0 m and push in so the pair fills the band from about 820 to 1600 px, nose gears on the lower third. Seat each label directly under its own wheels."
+  },
+  {
+   "slide": 2,
+   "problem": "The tower is a plain white cylinder on an L-shaped base that reads as the letter L. The tail-first view of a short high-wing plane, with a strut crossing the cheat line, is hard to parse as one aircraft.",
+   "fix": "Replace the tower with a modelled shaft, a glazed amber cab and a base footprint on the ground plane. Re-angle the camera to a clean rear three-quarter so the fin, stabiliser and wing read as one Caravan."
+  },
+  {
+   "slide": 9,
+   "problem": "The closing image puts the plane small at mid-right, away from where the DAY 28 label marks the end of the lit run. The near day lamps are oversized cyan spheres that read as balloons, so the data idea (plane standing where today falls) doesn't read at feed size.",
+   "fix": "Shrink the lamp heads to runway-edge-light scale and move the camera so the Caravan sits beside the 28th lit lamp, with the DAY 28 label above that pair and the dark lamps running on past it."
+  },
+  {
+   "slide": 7,
+   "problem": "A flat Texas map slab on black with no hero and no airfield ground. It is the one frame outside the world, and machine_qa warns of busy art under all five city labels.",
+   "fix": "Lay the state slab on the night apron under the same west key with a contact shadow, or let the Caravan's wingtip and shadow cross one corner. Clear the county lines from a small field behind each city label."
+  }
+ ]
+}

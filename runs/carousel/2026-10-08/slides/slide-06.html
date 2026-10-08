@@ -1,0 +1,52 @@
+<!doctype html>
+<!-- 2026-10-08, frame 6 of 9. Archetype CLOSE_CROP. RENDERED through txthree.js in the deck's lastLight world. The Caravan's stopped three blade propeller, spinner and cowling inlet close from the nose's left quarter, the wing's leading edge above, the field low under the cowl. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+  .dek { width:860px; }
+
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">Phase one flies traditional aircraft</h1>
+<p class="dek" data-follow="24">TxDOT says the first phase tests helicopters and fixed-wing planes across the state, and that its first flights carry no passengers. The flights collect data and validate routes.</p>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-08-nexus.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await NX.boot(THREE, TXT, initKit, { kicker: "The first phase", counter: "06 / 09", src: "c13 c14", fit: { min: 84, max: 116, maxLines: 2 } });
+  const R = NX.stage(TXT, gl, W, { fov: 32 });
+  TXT.ground(R, { surface: 'grass', size: 9000, tile: 7, seed: 31, color: 0x6f6a4c });   /* the infield, dry little bluestem straw */
+  NX.apron(0, 0, 90, 90, { seed: 27 });
+  /* the hero parked nose west, prop stopped, the camera at the spinner's south west */
+  const p = NX.plane({ prop: 'stopped', lights: false, seed: 5, propAngle: 0.95 }); p.rotation.y = -Math.PI / 2; p.position.set(0, 0, 0); TXT.add(R, p); TXT.contact(R, p);
+  TXT.frame(R, { from: [-12.6, 1.35, 5.4], look: [-5.4, 2.65, -0.2] });   /* back far enough that the nose gear stands on the lit apron */
+  NX.grass([-120, -90, -40, 90], { count: 6000, seed: 9 });
+  TXT.sky(R);
+  TXT.deckRig(R, NX.rigSpec(W, 24, 4096), NX.rigOpts([-5, 0, 0], { distance: 80, shadowFar: 200 }));
+  TXT.stage(R, p);
+  NX.flood([-5, 0, 0], { dx: -10, dz: 8, h: 20, angle: 0.5 });
+  TXT.weather(R, { grime: 0.28, height: 1.2 });
+  const cx = NX.develop(await TXT.snapshot(R), gl);
+  NX.post(cx, { a: 0.3 });
+  TXDECK.finish(cx, { bloom: { threshold: 0.95, strength: 0.03, radius: 8 } });
+  return true;
+})();
+</script>
+</body>
+</html>

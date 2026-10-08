@@ -1,0 +1,79 @@
+{
+ "lens": "integrity",
+ "round": 3,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.5,
+   "why": "The register meets the bold test. Preflight measures median L* 4.5, 13.3 and 2.7 on frames 1, 5 and 9. Frame 5's nine lamps with one lit cyan head, frame 7's map slab and frame 9's lit run of day lamps into dark bluestem are all strong. The weak point is the hero model, which reads as a primitive on several frames. On frame 4 the wing is a thin slab floating above the cabin roof. Its strut runs diagonally through the cabin windows, the spinner has no propeller or disc, and the belly pod hovers. The strut also crosses the windows on frame 1 (about x 1150 to 1600, y 1000 to 1340) and on the left plane of frame 3. On frame 3 the bottom 45 percent is bare concrete (about y 1300 to 1960 of 2000), and both airframes are cut off in the top band. On frame 2 the tower base is a flat L-shaped slab that looks like a placeholder, and the tail-on Caravan reads as a tangle where the strut and propeller cross the fuselage. Several frames lean on a primitive model, so this sits below the 7 descriptor."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.8,
+   "why": "It reads as one deck. There is one Caravan in one white and navy material, one apron at night, one cyan accent and one west key throughout. The thread leaves frame 1 by the right edge and enters frame 2 from the left to land on the tower cab. The storyboard declares MOTIF_EVOLUTION, CAMERA_MOVE and EDGE_TEASE, and they show in the strip. Frame 7, the map, is the one frame outside the hero, and only the city lamp heads tie it back. Frame 5's brown haze band (y 250 to 850) is warmer than the navy-black sky on the other frames."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 6.0,
+   "why": "The slides themselves are clean, and every numeral traces. 28 and 1,096 come from compute.py (Sept 10 2026 to Sept 10 2029 is 1,096 days, which I checked). 8, 26, more than 30 and sixth come from the c3, c5, c6 and c7 quotes, and I checked each against the faa_launch.txt text. 'Neither TxDOT's release nor the FAA's names Merlin' holds: I read both snapshots and neither contains 'Merlin'. 'None of the three says whether a pilot was aboard' also holds for the TxDOT and FAA text. Three things pull the score down. (1) The published web edition (ledger/articles/2026-10-08.json) says '[The company presents its autonomy as reducing pilot workload rather than removing the pilot](c28)'. c28's quote says only 'while reducing pilot workload, improving operational efficiency, and enhancing safety'. The same release (c27) says the Merlin Pilot can 'perform responsibilities traditionally managed by human pilots', so the added clause stretches its source, on the exact question the deck refuses to answer (see hard_fails). (2) No slide or caption sentence uses c33, the Dallas Innovates caption credited to TxDOT: 'A modified Cessna 208B Grand Caravan operated by Merlin Labs participates in the Project Nexus test flights. [Photo: TxDOT]'. The TxDOT release itself links 'View photos and video from the event', and nobody fetched that gallery. So the spine of the caption and the web edition dek, 'TxDOT's and the FAA's releases skip Merlin' and 'The state's and the FAA's accounts of the day do not name it', leaves a reader thinking there is no state trace of Merlin when the run holds one. Frame 3 cites c33 but never says what it shows. (3) Merlin's release is cited through Finviz's syndication rather than GlobeNewswire's original, so a primary copy existed and was not used. A smaller point: the caption's 'Medical and cargo logistics come next' rests on c17, and the first comment's TxDOT line (c1 c4 c13 c14 c15 c16 c18) omits c17."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.8,
+   "why": "A Texan learns what happened (TxDOT's Project Nexus phase one kicked off), where (Fort Worth Alliance Airport), who decided (TxDOT, with the FAA's March selection) and what comes next (medical and cargo phases, then passengers). The stake, whether software worked the radio with or without a pilot aboard, stays abstract. The deck gives no county, no body a reader can reach, no comment window and nothing to do. The close asks a question and offers no action."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "The cover question ('Software on the radio') earns the swipe, and frame 2 pays with place and launch. The turn is frame 5, where the lamp table puts one yes in nine cells. Frames 6 and 8 are program context that could move or merge without loss. Frame 9's closing line repeats frame 5's pilot-aboard absence rather than landing something new."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Clean, carefully attributed ('Merlin says', 'by two companies' word') and honest without doom. The house rules hold: no colons, no em dashes, no banned words, and the year is dropped in the post. The voice is a careful records clerk more than a Texan. Lines like 'The flights collect data and validate routes.' (frame 6) and 'It will use the data to write new rules.' (frame 8) are flat, and nothing local (Alliance, Perot Field, the Metroplex) carries any texture."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "The subject is new (tx-2026-0205, aviation), and the lamp-table device on frame 5 and the day-lamp runway on frame 9 are fresh. Structurally it is the third autonomous-vehicle deck in six days, after Kodiak on October 3rd and Saronic on October 7th. Each carries one illustrative vehicle drawn to illustrate through the deck, and the Kodiak deck's angle_note also turns on who is aboard ('The observer is never placed aboard'). That repeats the opening move and the central absence."
+  }
+ ],
+ "weighted_score": 6.704,
+ "hard_fails": [
+  {
+   "fail": "an unverified fact presented as verified",
+   "evidence": "ledger/articles/2026-10-08.json, section 'What Merlin says it showed', paragraph 1: '[The company presents its autonomy as reducing pilot workload rather than removing the pilot](c28)'. c28's quote in claims.json is 'Merlin is helping demonstrate how autonomy can predictably operate in the United States National Airspace System (NAS), while reducing pilot workload, improving operational efficiency, and enhancing safety.' No fetched source says 'rather than removing the pilot'. The same release says the Merlin Pilot can 'perform responsibilities traditionally managed by human pilots' (c27) and that Merlin builds 'the operating system of record for autonomous flight' (c25). The clause is the fact checker's inference, written into c28's own claim text and published under a claim marker. It tilts the reader on the one question the deck says no source answers: whether a pilot was aboard. Repair: cut 'rather than removing the pilot' from c28's text and from the web edition."
+  }
+ ],
+ "ship": false,
+ "one_sentence_fix": "Cut 'rather than removing the pilot' from c28 and the web edition, because Merlin's quote says only 'reducing pilot workload'. Then add one sentence on frame 3 or 5 that a TxDOT-credited photo (c33, via Dallas Innovates) shows Merlin's Caravan in the test flights, so 'TxDOT's and the FAA's releases skip Merlin' stops implying that the state left no trace of Merlin.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 4,
+   "problem": "This broadside elevation is the deck's diagram frame, and the airframe reads as a primitive. The wing is a flat slab floating above the cabin roof, the strut passes through the cabin windows, the spinner has no blades or disc, and the belly pod hovers under the fuselage.",
+   "fix": "Seat the wing on a modelled roof fairing. End the strut at a lower-fuselage fitting below the window line. Fit frame 6's twisted three-blade propeller to the spinner."
+  },
+  {
+   "slide": 3,
+   "problem": "About 45 percent of the frame below the airframes is bare concrete (y 1300 to 1960 of 2000). Both Caravans are cut off in the top band, Joby's nose off the left and Merlin's showing only its nose. The left plane's strut crosses its windows again.",
+   "fix": "Lower the camera aim about 12 degrees so both airframes sit whole in the middle band. Crop the empty apron away and re-route the strut to its fuselage fitting."
+  },
+  {
+   "slide": 2,
+   "problem": "The tower base is a flat L-shaped slab that reads as a placeholder primitive. The tail-on Caravan reads as a tangle: a strut runs across the fuselage and the propeller pokes out beside it.",
+   "fix": "Model the tower base as a lit two-storey block standing on the ground with a contact shadow. Yaw the Caravan about 30 degrees so the fin and stabiliser silhouette reads clear of the struts."
+  },
+  {
+   "slide": 1,
+   "problem": "On the cover showstopper, the wing strut runs straight through the cabin windows (x 1150 to 1600, y 1000 to 1340), and the gear and concrete read clean.",
+   "fix": "End the strut at a lower-fuselage fitting below the windows, and add grime and oil to the gear pants and the concrete around the nose wheel."
+  }
+ ]
+}

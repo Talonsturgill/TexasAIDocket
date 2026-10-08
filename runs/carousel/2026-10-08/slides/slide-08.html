@@ -1,0 +1,54 @@
+<!doctype html>
+<!-- 2026-10-08, frame 8 of 9. Archetype FIGURE_SCALE. RENDERED through txthree.js in the deck's lastLight world. From 30 m up south of the threshold, the eight painted threshold stripes, one in the accent, the Caravan lined up on the centreline beyond them with its long shadow running east. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+  .dek { width:860px; }
+
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">One of eight</h1>
+<p class="dek" data-follow="24">The FAA picked eight projects across 26 states from more than 30 proposals, and says the Texas kickoff made Texas the sixth place to launch. It will use the data to write new rules. Each stripe is one project, drawn to illustrate.</p>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-08-nexus.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await NX.boot(THREE, TXT, initKit, { kicker: "The federal program", counter: "08 / 09", src: "c3 c5 c6 c7 c12", fit: { min: 84, max: 116, maxLines: 2 } });
+  const R = NX.stage(TXT, gl, W, { fov: 34 });
+  TXT.ground(R, { surface: 'grass', size: 9000, tile: 7, seed: 31, color: 0x6f6a4c });   /* the infield, dry little bluestem straw */
+  /* PROJECTS = 8 threshold stripes, one painted in the accent for Texas */
+  const PROJECTS = 8;
+  NX.runway({ length: 3000, z0: 0, stripes: PROJECTS, accentStripe: 6, bar: true, lampFog: false });
+  const p = NX.plane({ prop: 'disc', lights: true, seed: 3 }); p.rotation.y = Math.PI; p.position.set(0, 0, -30); TXT.add(R, p); TXT.contact(R, p);
+  TXT.frame(R, { from: [4, 17, 30], look: [0, 3, -40] });
+  NX.grass([-120, -160, -17, 80], { count: 9000, seed: 10 });
+  NX.grass([17, -160, 120, 80], { count: 9000, seed: 11 });
+  TXT.sky(R);
+  TXT.deckRig(R, NX.rigSpec(W, 70, 4096), NX.rigOpts([0, 0, -30], { distance: 160, shadowFar: 400 }));
+  TXT.stage(R, p, { poolInner: 2.4, poolOuter: 5 });
+  NX.flood([0, 0, -24], { dx: -16, dz: 20, h: 30, angle: 0.6 });   /* the pool wide enough to hold the threshold the plane stands on */
+  TXT.weather(R, { grime: 0.2, height: 1.0 });
+  const cx = NX.develop(await TXT.snapshot(R), gl);
+  NX.post(cx, { a: 0.3 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>
