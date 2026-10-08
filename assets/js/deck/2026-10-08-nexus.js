@@ -59,8 +59,8 @@
   N.ACCENT = 0x8fe0f0;       /* comal_lit: the taxiway and the machine's path, the one accent */
   N.AMBER = 0xe8a33a;        /* the caution lamps, a light and never the accent */
   N.INK = "#F2EEE6";
-  N.RWY_W = 45;              /* the runway's paved width, illustrative */
-  N.EDGE = 23.5;             /* the edge lamps' offset from the centreline */
+  N.RWY_W = 30;              /* the runway's paved width, illustrative, which is the width that takes eight threshold stripes */
+  N.EDGE = 15.6;             /* the edge lamps' offset from the centreline */
   N.LAMP_STEP = 60;          /* the edge lamps' spacing */
 
   function lcg(seed) { var s = seed >>> 0 || 1; return function () { s = (s * 1664525 + 1013904223) >>> 0; return s / 4294967296; }; }
@@ -207,19 +207,32 @@
         { z: z + rad * 0.5, w: wd * 0.85, top: y + rad * 0.95, bot: y - rad * 0.2, n: 2.4 }, { z: z + rad * 1.4, w: 0.05, top: y + 0.3, bot: y + 0.18, n: 2 }], 22), white);
         p.position.x = x; parent.add(p); }
     }
-    function propeller(parent, state, r) {
+    function propeller(parent, state, r, o) {
       var g = new THREE.Group(); g.position.set(HUB[0], HUB[1], HUB[2]);
       if (state === "disc") {
-        var dm = new THREE.MeshStandardMaterial({ color: 0x1a1b1e, transparent: true, opacity: 0.1, roughness: 0.4, depthWrite: false, side: THREE.DoubleSide });
-        var disc = new THREE.Mesh(new THREE.RingGeometry(0.2, 1.33, 64), dm); g.add(disc);
-        var tm = new THREE.MeshStandardMaterial({ color: 0xd8b24a, transparent: true, opacity: 0.16, roughness: 0.5, depthWrite: false, side: THREE.DoubleSide });
-        var ring = new THREE.Mesh(new THREE.RingGeometry(1.2, 1.33, 64), tm); ring.position.z = 0.01; g.add(ring);
+        /* A TURNING DISC reads as a blur, never as a hoop: a radial gradient in the blade colour, densest
+         * at mid blade and faint at the root and the tips, with a barely visible arc where the tips run */
+        if (!N._discTex) { var dc = document.createElement("canvas"); dc.width = dc.height = 256; var dx = dc.getContext("2d"), gr = dx.createRadialGradient(128, 128, 18, 128, 128, 128);
+          gr.addColorStop(0, "rgba(20,21,24,0)"); gr.addColorStop(0.25, "rgba(20,21,24,0.22)"); gr.addColorStop(0.7, "rgba(20,21,24,0.16)"); gr.addColorStop(0.9, "rgba(216,178,74,0.08)"); gr.addColorStop(0.97, "rgba(20,21,24,0.04)"); gr.addColorStop(1, "rgba(20,21,24,0)");
+          dx.fillStyle = gr; dx.fillRect(0, 0, 256, 256); N._discTex = new THREE.CanvasTexture(dc); N._discTex.colorSpace = THREE.SRGBColorSpace; }
+        var dm = new THREE.MeshBasicMaterial({ map: N._discTex, transparent: true, depthWrite: false, side: THREE.DoubleSide });
+        var disc = new THREE.Mesh(new THREE.CircleGeometry(1.36, 64), dm); g.add(disc);
       } else {
-        var a0 = r() * 1.2;
+        var a0 = o.propAngle != null ? o.propAngle : r() * 1.2;
         for (var b = 0; b < 3; b++) {
           var bl = new THREE.Group(); bl.rotation.z = a0 + b * Math.PI * 2 / 3;
-          var blade = new THREE.Mesh(new THREE.BoxGeometry(0.2, 1.2, 0.04), bladeM); blade.position.y = 0.72; blade.rotation.y = 0.35; bl.add(blade);
-          var tip = new THREE.Mesh(new THREE.BoxGeometry(0.19, 0.12, 0.045), tipM); tip.position.y = 1.27; tip.rotation.y = 0.35; bl.add(tip);
+          /* a twisted, tapered blade as one mesh: a thin section along its length, the chord narrowing and the
+           * pitch flattening outboard, the tip rounded, and the last tenth in the yellow tip paint */
+          var bg = new THREE.BoxGeometry(0.24, 1.2, 0.045, 1, 16, 1), bp = bg.attributes.position;
+          for (var vi = 0; vi < bp.count; vi++) { var vy = bp.getY(vi), t = (vy + 0.6) / 1.2, vx = bp.getX(vi), vz = bp.getZ(vi);
+            var w = (0.62 + 0.38 * Math.sin(Math.min(1, t * 1.6) * Math.PI / 2)) * (t > 0.85 ? Math.sqrt(Math.max(0.05, 1 - (t - 0.85) / 0.15)) : 1);
+            var ang = 0.85 - 0.6 * t, x2 = vx * w, z2 = vz * (1 - 0.4 * t);
+            bp.setXYZ(vi, x2 * Math.cos(ang) - z2 * Math.sin(ang), vy + 0.76, x2 * Math.sin(ang) + z2 * Math.cos(ang)); }
+          bg.computeVertexNormals();
+          bl.add(new THREE.Mesh(bg, bladeM));
+          var tg = new THREE.BoxGeometry(0.2, 0.12, 0.05, 1, 2, 1), tp = tg.attributes.position;
+          for (var ti = 0; ti < tp.count; ti++) { var ty = tp.getY(ti), tx = tp.getX(ti) * 0.55, tz = tp.getZ(ti) * 0.6, ta = 0.85 - 0.6 * 0.95; tp.setXYZ(ti, tx * Math.cos(ta) - tz * Math.sin(ta), ty + 1.28, tx * Math.sin(ta) + tz * Math.cos(ta)); }
+          tg.computeVertexNormals(); bl.add(new THREE.Mesh(tg, tipM));
           g.add(bl);
         }
       }
@@ -229,7 +242,7 @@
     K.define("turboprop_caravan", {
       size: [15.9, 4.6, 13.1],
       options: { state: "parked", prop: "stopped", lights: false, pod: true, pitch: 0 },
-      note: "A single engine high wing utility turboprop to a 208B's proportions (about 12.7 m long, 15.9 m span, 4.5 m tall), unmarked, white with an amber cheat line: lofted fuselage, cowling and spinner, braced high wing with struts, strut braced stabiliser, swept fin with a dorsal, fixed tricycle gear with spring main legs and pants, a belly cargo pod, cabin windows, nav lights red left and green right, a red beacon on the fin and landing lights in the wing. prop stopped | disc (turning). lights true lights the nav lights, beacon, strobes and landing lights. pod false drops the cargo pod. pitch tilts the airframe nose up in degrees about the main wheels (for a rotation or a climb). Front is +z, origin on the ground between the main wheels.",
+      note: "A single engine high wing utility turboprop to a 208B's proportions (about 12.7 m long, 15.9 m span, 4.5 m tall), unmarked, white with a navy cheat line: lofted fuselage, cowling and spinner, braced high wing with struts, strut braced stabiliser, swept fin with a dorsal, fixed tricycle gear with spring main legs and pants, a belly cargo pod, cabin windows, nav lights red left and green right, a red beacon on the fin and landing lights in the wing. prop stopped | disc (turning). lights true lights the nav lights, beacon, strobes and landing lights. pod false drops the cargo pod. pitch tilts the airframe nose up in degrees about the main wheels (for a rotation or a climb). Front is +z, origin on the ground between the main wheels.",
       make: function (o, r) {
         var root = new THREE.Group(), g = new THREE.Group(); root.add(g);
         var body = new THREE.Mesh(N.loft(THREE, FUS, 36), skin); g.add(body);
@@ -250,7 +263,7 @@
           var st = new THREE.Mesh(stab(sd), white); g.add(st);
           /* wingtip lamps: red on the left (+x when facing +z), green on the right */
           var lamp = new THREE.Mesh(new THREE.SphereGeometry(0.07, 12, 8), o.lights ? (sd > 0 ? red : green) : dark); lamp.position.set(sd * 7.96, 3.18, 2.15); g.add(lamp);
-          if (o.lights) { var ll = new THREE.Mesh(new THREE.CircleGeometry(0.11, 16), land); ll.position.set(sd * 1.9, 3.06, 2.74); g.add(ll); }
+          if (o.lights) { var ll = new THREE.Mesh(new THREE.SphereGeometry(0.09, 14, 10), land); ll.position.set(sd * 1.9, 3.05, 2.73); g.add(ll); }
         });
         var fm = new THREE.Mesh(fin(), white); g.add(fm);
         var dorsal = new THREE.Mesh(N.foil(THREE, [{ s: 2.9, le: -1.9, chord: 1.9, y: 0, t: 0.06 }, { s: 3.0, le: -3.6, chord: 0.4, y: 0, t: 0.05 }], "y"), white); g.add(dorsal);
@@ -261,7 +274,7 @@
         /* gear: spring steel main legs, a nose leg under the cowl, pants on all three */
         [-1, 1].forEach(function (sd) { K.bar([sd * 0.55, 1.08, 0.35], [sd * 1.78, 0.38, 0.1], 0.06, steel, 10, g); wheel(g, sd * 1.86, 0.38, 0.1, 0.38, 0.2, true); });
         K.bar([0, 1.42, 4.95], [0, 0.34, 5.02], 0.05, steel, 10, g); wheel(g, 0, 0.33, 5.02, 0.33, 0.16, true);
-        propeller(g, o.prop, r);
+        propeller(g, o.prop, r, o);
         g.traverse(function (m) { if (m.isMesh) { m.castShadow = true; m.receiveShadow = true; } });
         if (o.pitch) { var pv = new THREE.Group(); root.remove(g); pv.add(g); pv.rotation.x = -o.pitch * Math.PI / 180; root.add(pv); }
         root.userData.hub = HUB.slice(); root.userData.keepOrigin = true;
@@ -274,13 +287,14 @@
     K.define("airfield_lamp_row", {
       size: [0.4, 0.45, 600],
       anchor: "base",
-      options: { length: 600, step: 60, color: 0xffe2a8, intensity: 7 },
+      options: { length: 600, step: 60, color: 0xffe2a8, intensity: 7, fog: true },
       note: "A row of elevated airfield edge lamps along +z from the origin: a dark frangible stem and a lit glass head, `step` m apart over `length` m. color 0xffe2a8 for runway edge white, 0xe8a33a for caution amber, 0x4f8cff for taxiway blue, 0x2cff6a threshold green, 0xff2a1e end red.",
       make: function (o, r) {
         var g = new THREE.Group(), n = Math.floor(o.length / o.step) + 1, stems = [], heads = [];
         for (var i = 0; i < n; i++) { stems.push([0, 0, i * o.step, 0, 1]); heads.push([0, 0.36, i * o.step, 0, 1]); }
         g.add(K.instances(new THREE.CylinderGeometry(0.035, 0.05, 0.34, 8).translate(0, 0.17, 0), dark, stems));
-        g.add(K.instances(new THREE.SphereGeometry(0.075, 12, 8), K.finish.lamp(o.color, o.intensity), heads));
+        var hm = K.finish.lamp(o.color, o.intensity); if (o.fog === false) { hm = hm.clone(); hm.fog = false; }
+        g.add(K.instances(new THREE.SphereGeometry(0.075, 12, 8), hm, heads));
         return g;
       }
     });
@@ -343,16 +357,37 @@
     var a = new T.Mesh(new T.PlaneGeometry(w, len), new T.MeshStandardMaterial({ color: 0xffffff, map: N.asphaltTex(T, len), roughness: 0.88, metalness: 0 }));
     a.rotation.x = -Math.PI / 2; a.position.set(0, 0.02, z0 - len / 2); a.receiveShadow = true; a.userData.txWear = false; N.TXT.add(N.R, a);
     var paint = N.paintMat(T), g = new T.Group();
-    [-1, 1].forEach(function (sd) { var e = new T.Mesh(new T.BoxGeometry(0.9, 0.02, len), paint); e.position.set(sd * (w / 2 - 1.2), 0.035, z0 - len / 2); g.add(e); });
+    if (o.edges !== false) [-1, 1].forEach(function (sd) { var e = new T.Mesh(new T.BoxGeometry(0.9, 0.02, len), paint); e.position.set(sd * (w / 2 - 1.2), 0.035, z0 - len / 2); g.add(e); });
     for (var z = z0 - 20; z > z0 - len; z -= 60) { var d = new T.Mesh(new T.BoxGeometry(0.9, 0.02, 36), paint); d.position.set(0, 0.035, z - 18); g.add(d); }
-    if (o.threshold !== false) for (var k = 0; k < 16; k++) { var x = -w / 2 + 3 + k * ((w - 6) / 15); if (Math.abs(x) < 3) continue; var t = new T.Mesh(new T.BoxGeometry(1.8, 0.02, 30), paint); t.position.set(x, 0.035, z0 - 21); g.add(t); }
+    /* THE THRESHOLD STRIPES, `stripes` of them in two groups either side of the centreline, 1.8 m wide and
+     * 30 m long, a stripe numbered `accentStripe` (1 from the west edge) painted in the accent */
+    if (o.threshold !== false) { var nS = o.stripes || 8, half = nS / 2, pitch = 3.0;
+      for (var k = 0; k < nS; k++) { var sideK = k < half ? -1 : 1, j = k < half ? half - 1 - k : k - half, x = sideK * (2.4 + j * pitch + 0.9);
+        var acc = o.accentStripe === k + 1, t = new T.Mesh(new T.BoxGeometry(1.8, 0.02, 30), acc ? N.accentPaint(T) : paint); t.position.set(x, acc ? 0.037 : 0.035, z0 - 21); g.add(t); } }
     g.children.forEach(function (m) { m.receiveShadow = true; m.userData.txWear = false; }); N.TXT.add(N.R, g);
     if (o.lamps !== false) [-1, 1].forEach(function (sd) {
-      var row = K.make("airfield_lamp_row", { length: len - 40, step: N.LAMP_STEP, color: 0xffe2a8, intensity: o.lampI || 7 }); row.position.set(sd * N.EDGE, 0, z0 - len + 20); N.TXT.add(N.R, row);
+      var row = K.make("airfield_lamp_row", { length: len - 40, step: N.LAMP_STEP, color: 0xffe2a8, intensity: o.lampI || 7, fog: o.lampFog !== false }); row.position.set(sd * N.EDGE, 0, z0 - len + 20); N.TXT.add(N.R, row);
       var amber = K.make("airfield_lamp_row", { length: 600, step: N.LAMP_STEP, color: N.AMBER, intensity: o.lampI || 7 }); amber.position.set(sd * N.EDGE, 0.002, z0 - len + 20); N.TXT.add(N.R, amber);
       var thr = K.make("airfield_lamp_row", { length: w, step: 3, color: 0x2cff6a, intensity: 6 }); thr.rotation.y = Math.PI / 2; thr.position.set(-w / 2, 0, z0 + 2); N.TXT.add(N.R, thr);
     });
     return g;
+  };
+  N.accentPaint = function (THREE) { return N._apaint || (N._apaint = new THREE.MeshStandardMaterial({ color: 0x8fe0f0, roughness: 0.8, metalness: 0, emissive: 0x8fe0f0, emissiveIntensity: 0.22, polygonOffset: true, polygonOffsetFactor: -3 })); };
+  /* THE RADIO PATH, drawn to illustrate: one fine tube in the accent along a shallow arc from `a` to `b`
+   * ([x, y, z]), rising `lift` metres at mid span, `r` metres thick. No rings, no glow halo. */
+  N.callPath = function (a, b, o) {
+    o = o || {}; var T = N.T, pts = [], n = 64, lift = o.lift == null ? 6 : o.lift;
+    for (var i = 0; i <= n; i++) { var t = i / n; pts.push(new T.Vector3(a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t + lift * 4 * t * (1 - t), a[2] + (b[2] - a[2]) * t)); }
+    var m = new T.Mesh(new T.TubeGeometry(new T.CatmullRomCurve3(pts), 256, o.r || 0.05, 8, false),
+      new T.MeshBasicMaterial({ color: new T.Color(0x8fe0f0).multiplyScalar(o.glow == null ? 0.9 : o.glow), fog: false, toneMapped: false }));
+    m.userData.txWear = false; m.castShadow = false; N.TXT.add(N.R, m); m.castShadow = false; return m;
+  };
+  /* A YEAR BAR across the runway at z, inset lamps every `step` m in the accent, unfogged so the stage keeps it */
+  N.yearBar = function (z, o) {
+    o = o || {}; var T = N.T, list = [], w = N.RWY_W - 2, step = o.step || 1.5, h = o.h || 0.9;
+    for (var x = -w / 2; x <= w / 2 + 0.01; x += step) list.push([x, h / 2, z, 0, 1]);
+    var mat = new T.MeshBasicMaterial({ color: new T.Color(0x8fe0f0).multiplyScalar(o.glow || 1.6), fog: false, toneMapped: false });
+    var im = N.K.instances(new T.CylinderGeometry(0.22, 0.22, h, 10), mat, list); im.userData.txWear = false; N.TXT.add(N.R, im); im.castShadow = false; im.receiveShadow = false; return im;
   };
   /* ASPHALT, a long strip texture: aggregate tooth, darker rubber down the centre third at the
    * touchdown zone, sealed cracks. u across, v along. */
