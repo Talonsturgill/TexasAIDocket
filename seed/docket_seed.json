@@ -14085,5 +14085,293 @@
     "note": "Admitted to the record on Saronic's own release of the groundbreaking. The abatement Cameron County approved in June rests on the Tribune's account, because the county's agenda is a scanned file."
    }
   ]
+ },
+ {
+  "title": "TxDOT starts Project Nexus, a three year state test of next generation aircraft whose first flights carry no passengers",
+  "summary": "The Texas Department of Transportation launched the first phase of Project Nexus on September 10th at Fort Worth Alliance Airport. It is the state's part of a federal pilot program for electric vertical takeoff and landing aircraft. The first phase tests across the state with helicopters and fixed wing planes, and those flights carry no passengers. They collect data and validate routes. Later phases move medical supplies and organs between rural facilities and medical centers in Austin and San Antonio, and the last phase carries passengers across the Texas triangle. At the kickoff an invited company, Merlin, flew a Cessna Caravan to show software it says handles takeoff, landing and radio calls to air traffic control. That account of the demonstration is the company's own.",
+  "topic": "state-policy",
+  "decider": {
+   "name": "Texas Department of Transportation",
+   "type": "state-agency"
+  },
+  "geography": {
+   "statewide": true,
+   "counties": [],
+   "on_ercot": null
+  },
+  "status": "decided",
+  "key_dates": [
+   {
+    "date": "2026-09-10",
+    "kind": "effective",
+    "note": "First phase launched at Fort Worth Alliance Airport, the date of TxDOT's release"
+   }
+  ],
+  "public_access": {
+   "room": "contact_only",
+   "how": "The program is already under way and no vote or comment window is open. The Texas Transportation Commission meets in public in Austin and takes public comment at its monthly meetings. TxDOT's newsroom carries the release and links photos and video from the kickoff.",
+   "url": "https://www.txdot.gov/about/newsroom/statewide/air-taxi-testing-taking-flight-in-texas.html",
+   "closes": null
+  },
+  "claims": [
+   {
+    "text": "TxDOT says it is launching the first phase of Project Nexus.",
+    "verbatim_quote": "TxDOT is launching the first phase of Project Nexus.",
+    "source_url": "https://www.txdot.gov/about/newsroom/statewide/air-taxi-testing-taking-flight-in-texas.html",
+    "source_title": "TxDOT news release, Air-taxi testing taking flight in Texas",
+    "source_type": "primary_official",
+    "fetched": "2026-10-08",
+    "id": "tx-2026-0205-c1"
+   },
+   {
+    "text": "The federal government picked the state's proposal for the electric aircraft pilot program in March.",
+    "verbatim_quote": "U.S. Transportation Secretary Sean P. Duffy and the Federal Aviation Administration selected TxDOT’s proposal to be part of the new Electric Vertical Takeoff and Landing Integration Pilot Program back in March 2026.",
+    "source_url": "https://www.txdot.gov/about/newsroom/statewide/air-taxi-testing-taking-flight-in-texas.html",
+    "source_title": "TxDOT news release, Air-taxi testing taking flight in Texas",
+    "source_type": "primary_official",
+    "fetched": "2026-10-08",
+    "id": "tx-2026-0205-c2"
+   },
+   {
+    "text": "The first phase flies conventional aircraft around the state.",
+    "verbatim_quote": "This first phase will test across the state using traditional aircraft such as helicopters and fixed-wing planes.",
+    "source_url": "https://www.txdot.gov/about/newsroom/statewide/air-taxi-testing-taking-flight-in-texas.html",
+    "source_title": "TxDOT news release, Air-taxi testing taking flight in Texas",
+    "source_type": "primary_official",
+    "fetched": "2026-10-08",
+    "id": "tx-2026-0205-c3"
+   },
+   {
+    "text": "The first flights carry no passengers.",
+    "verbatim_quote": "These initial flights will not carry passengers and are designed to collect data, validate routes and support the safe development of future advanced air mobility operations.",
+    "source_url": "https://www.txdot.gov/about/newsroom/statewide/air-taxi-testing-taking-flight-in-texas.html",
+    "source_title": "TxDOT news release, Air-taxi testing taking flight in Texas",
+    "source_type": "primary_official",
+    "fetched": "2026-10-08",
+    "id": "tx-2026-0205-c4"
+   },
+   {
+    "text": "The pilot runs in phases over three years, with medical and cargo flights next.",
+    "verbatim_quote": "The Texas pilot will advance in phases over the next three years. The next phases involve testing for medical and cargo logistics, such as transporting critical medical supplies or organs between rural facilities and urban medical centers in Austin and San Antonio.",
+    "source_url": "https://www.txdot.gov/about/newsroom/statewide/air-taxi-testing-taking-flight-in-texas.html",
+    "source_title": "TxDOT news release, Air-taxi testing taking flight in Texas",
+    "source_type": "primary_official",
+    "fetched": "2026-10-08",
+    "id": "tx-2026-0205-c5"
+   },
+   {
+    "text": "Passenger flights come last.",
+    "verbatim_quote": "The final phase involves passengers in “air taxi” flights across the Texas triangle.",
+    "source_url": "https://www.txdot.gov/about/newsroom/statewide/air-taxi-testing-taking-flight-in-texas.html",
+    "source_title": "TxDOT news release, Air-taxi testing taking flight in Texas",
+    "source_type": "primary_official",
+    "fetched": "2026-10-08",
+    "id": "tx-2026-0205-c6"
+   },
+   {
+    "text": "The launch took place at Fort Worth Alliance Airport, with an aircraft demonstration.",
+    "verbatim_quote": "Duffy, Cruz, and TxDOT helped launch this first phase at Fort Worth Alliance Airport. Manufacturers and operators were also there to provide an aircraft demonstration.",
+    "source_url": "https://www.txdot.gov/about/newsroom/statewide/air-taxi-testing-taking-flight-in-texas.html",
+    "source_title": "TxDOT news release, Air-taxi testing taking flight in Texas",
+    "source_type": "primary_official",
+    "fetched": "2026-10-08",
+    "id": "tx-2026-0205-c7"
+   },
+   {
+    "text": "Merlin says it demonstrated autonomous takeoff and landing and AI radio calls to air traffic control at the kickoff.",
+    "verbatim_quote": "TxDOT invited Merlin to the event as a supporting participant, enabling Merlin to demonstrate core capabilities of its AI-powered autonomy platform, the Merlin Pilot™, including autonomous takeoff and landing, AI-powered Air Traffic Control communications, and dynamic autonomous in-flight re-planning and threat avoidance.",
+    "source_url": "https://finviz.com/news/390988/merlin-demonstrates-autonomous-flight-capabilities-at-texas-department-of-transportation-project-nexus-eipp-kickoff-event",
+    "source_title": "Merlin news release via GlobeNewswire, Merlin Demonstrates Autonomous Flight Capabilities at Texas Department of Transportation Project NEXUS eIPP Kickoff Event",
+    "source_type": "primary_corporate",
+    "fetched": "2026-10-08",
+    "id": "tx-2026-0205-c8"
+   },
+   {
+    "text": "The aircraft at the demonstration was a Cessna Caravan.",
+    "verbatim_quote": "Merlin Cessna Caravan at Alliance Airport",
+    "source_url": "https://finviz.com/news/390988/merlin-demonstrates-autonomous-flight-capabilities-at-texas-department-of-transportation-project-nexus-eipp-kickoff-event",
+    "source_title": "Merlin news release via GlobeNewswire, Merlin Demonstrates Autonomous Flight Capabilities at Texas Department of Transportation Project NEXUS eIPP Kickoff Event",
+    "source_type": "primary_corporate",
+    "fetched": "2026-10-08",
+    "id": "tx-2026-0205-c9"
+   },
+   {
+    "text": "The company's chief executive narrated the demonstration.",
+    "verbatim_quote": "The demonstration, narrated by CEO and founder, Matt George, showcased how the Merlin Pilot can safely and effectively perform responsibilities traditionally managed by human pilots",
+    "source_url": "https://finviz.com/news/390988/merlin-demonstrates-autonomous-flight-capabilities-at-texas-department-of-transportation-project-nexus-eipp-kickoff-event",
+    "source_title": "Merlin news release via GlobeNewswire, Merlin Demonstrates Autonomous Flight Capabilities at Texas Department of Transportation Project NEXUS eIPP Kickoff Event",
+    "source_type": "primary_corporate",
+    "fetched": "2026-10-08",
+    "id": "tx-2026-0205-c10"
+   }
+  ],
+  "confidence": "high",
+  "notes_for_editor": "Admitted on TxDOT's own release. The release says the first phase tests across the state, so the item is statewide and names no county, and the kickoff is placed at Fort Worth Alliance Airport in the text. The autonomy demonstration rests on Merlin's own release, read on finviz as GlobeNewswire syndicated it. The release does not say whether a pilot was aboard, and no TxDOT or FAA statement describes how the demonstration performed. TxDOT's release lists autonomous flight technologies only among the concepts in the nationwide program.",
+  "last_verified": "2026-10-08",
+  "history": [
+   {
+    "date": "2026-10-08",
+    "note": "Admitted to the record on TxDOT's own release of the first phase. The account of the autonomous flight shown at the kickoff is Merlin's own."
+   }
+  ],
+  "id": "tx-2026-0205"
+ },
+ {
+  "title": "Volvo and Waabi start hauling a customer's freight between Dallas and Houston on autonomous trucks, with an observer in the driver's seat",
+  "summary": "Volvo Autonomous Solutions and Waabi announced on October 5th the start of autonomous operations for Warp, a freight network, in Texas. Volvo trucks running Waabi's driving system now carry freight to third party facilities along the Dallas to Houston corridor. It is the first customer operation of the two companies' partnership. The release says the hauls run with an observer in the driver's seat. It reports no truck count or mileage.",
+  "topic": "state-policy",
+  "decider": {
+   "name": "Volvo Autonomous Solutions and Waabi",
+   "type": "company"
+  },
+  "geography": {
+   "statewide": false,
+   "counties": [
+    "Dallas",
+    "Harris"
+   ],
+   "on_ercot": true
+  },
+  "status": "decided",
+  "key_dates": [
+   {
+    "date": "2026-10-05",
+    "kind": "effective",
+    "note": "Customer operations announced, the date of the release"
+   }
+  ],
+  "public_access": {
+   "room": "contact_only",
+   "how": "This is a company's own operation and no public body voted on it. Autonomous commercial vehicles in Texas run under an authorization from the Texas Department of Motor Vehicles, whose board meets in public in Austin. A concern about a truck on the road goes to the Department of Public Safety.",
+   "url": "https://www.volvogroup.com/en/news-and-media/news/2026/oct/volvo-and-waabi-kick-off-customer-operations-in-texas--starting-with-warp-tm-.html",
+   "closes": null
+  },
+  "claims": [
+   {
+    "text": "The two companies announced autonomous operation for Warp in Texas, their partnership's first customer.",
+    "verbatim_quote": "Volvo Autonomous Solutions (V.A.S.) and Waabi today announced the start of autonomous operation for Warp in Texas, the first customer operation in the Volvo-Waabi partnership.",
+    "source_url": "https://www.volvogroup.com/en/news-and-media/news/2026/oct/volvo-and-waabi-kick-off-customer-operations-in-texas--starting-with-warp-tm-.html",
+    "source_title": "Volvo Group press release, Volvo and Waabi kick off customer operations in Texas, starting with Warp",
+    "source_type": "primary_corporate",
+    "fetched": "2026-10-08",
+    "id": "tx-2026-0206-c1"
+   },
+   {
+    "text": "The trucks carry freight to third party facilities along the Dallas to Houston corridor.",
+    "verbatim_quote": "The Volvo VNL Autonomous powered by the Waabi Driver is now transporting freight directly to third-party facilities along the Dallas–Houston corridor.",
+    "source_url": "https://www.volvogroup.com/en/news-and-media/news/2026/oct/volvo-and-waabi-kick-off-customer-operations-in-texas--starting-with-warp-tm-.html",
+    "source_title": "Volvo Group press release, Volvo and Waabi kick off customer operations in Texas, starting with Warp",
+    "source_type": "primary_corporate",
+    "fetched": "2026-10-08",
+    "id": "tx-2026-0206-c2"
+   },
+   {
+    "text": "The release says the hauls run with an observer in the driver's seat.",
+    "verbatim_quote": "Currently autonomous hauls are run with an observer in the driver’s seat.",
+    "source_url": "https://www.volvogroup.com/en/news-and-media/news/2026/oct/volvo-and-waabi-kick-off-customer-operations-in-texas--starting-with-warp-tm-.html",
+    "source_title": "Volvo Group press release, Volvo and Waabi kick off customer operations in Texas, starting with Warp",
+    "source_type": "primary_corporate",
+    "fetched": "2026-10-08",
+    "id": "tx-2026-0206-c3"
+   }
+  ],
+  "confidence": "high",
+  "notes_for_editor": "Admitted on Volvo Group's own release, dated October 5th. The counties are Dallas and Harris, the two ends of the corridor the release names, as the record placed the same corridor for Kodiak's lane.",
+  "last_verified": "2026-10-08",
+  "history": [
+   {
+    "date": "2026-10-08",
+    "note": "Admitted to the record on Volvo Group's own release of the first customer operation."
+   }
+  ],
+  "id": "tx-2026-0206"
+ },
+ {
+  "title": "West Texas A&M wins a USDA grant to build a research feedlot near Canyon that will test feeding, health and handling with AI powered methods",
+  "summary": "The U.S. Department of Agriculture's National Institute of Food and Agriculture awarded West Texas A&M University a grant to build a beef cattle research facility. The university calls it the largest federal award in its history. A dollar for dollar match from the A&M System and other sources completes the project. The plans call for a precision cattle handling facility, a veterinary hospital, a feed and production center and a metabolism center. The release says feeding, health and handling techniques there can be evaluated with traditional and AI powered approaches. It names no AI tool and reports no result yet.",
+  "topic": "research-and-science",
+  "decider": {
+   "name": "U.S. Department of Agriculture, National Institute of Food and Agriculture",
+   "type": "federal"
+  },
+  "geography": {
+   "statewide": false,
+   "counties": [
+    "Randall"
+   ],
+   "on_ercot": null,
+   "metro": "Amarillo, TX"
+  },
+  "status": "decided",
+  "key_dates": [
+   {
+    "date": "2026-10-07",
+    "kind": "effective",
+    "note": "Grant announced, the date of the release"
+   }
+  ],
+  "public_access": {
+   "room": "contact_only",
+   "how": "The grant is awarded and no vote is open. The Board of Regents of the Texas A&M University System meets in public and posts its agendas. The university's research office is the contact for the feedlot's research program.",
+   "url": "https://news.tamus.edu/stories/wt-to-build-beef-cattle-research-facility-with-9-75-million-usda-grant/",
+   "closes": null
+  },
+  "claims": [
+   {
+    "text": "The university received a grant from the Department of Agriculture, the largest federal award in its history.",
+    "verbatim_quote": "West Texas A&M University has received a $9.75 million grant from the U.S. Department of Agriculture—the largest federal award in University history—to fund what promises to be the most advanced cattle feedlot research facility in the world.",
+    "source_url": "https://news.tamus.edu/stories/wt-to-build-beef-cattle-research-facility-with-9-75-million-usda-grant/",
+    "source_title": "Texas A&M University System news release, WT to Build Beef Cattle Research Facility with $9.75 Million USDA Grant",
+    "source_type": "primary_official",
+    "fetched": "2026-10-08",
+    "id": "tx-2026-0207-c1"
+   },
+   {
+    "text": "The USDA's food and agriculture institute made the award under its Research Facilities Act Program.",
+    "verbatim_quote": "The USDA’s National Institute for Food and Agriculture awarded the grant for a center for beef cattle research and innovation through its Research Facilities Act Program.",
+    "source_url": "https://news.tamus.edu/stories/wt-to-build-beef-cattle-research-facility-with-9-75-million-usda-grant/",
+    "source_title": "Texas A&M University System news release, WT to Build Beef Cattle Research Facility with $9.75 Million USDA Grant",
+    "source_type": "primary_official",
+    "fetched": "2026-10-08",
+    "id": "tx-2026-0207-c2"
+   },
+   {
+    "text": "A required match brings the project total higher.",
+    "verbatim_quote": "A required dollar-for-dollar match—with $4.875 million from The Texas A&M University System and another $4.875 million from other sources—brings the project total to $19.5 million.",
+    "source_url": "https://news.tamus.edu/stories/wt-to-build-beef-cattle-research-facility-with-9-75-million-usda-grant/",
+    "source_title": "Texas A&M University System news release, WT to Build Beef Cattle Research Facility with $9.75 Million USDA Grant",
+    "source_type": "primary_official",
+    "fetched": "2026-10-08",
+    "id": "tx-2026-0207-c3"
+   },
+   {
+    "text": "The facility will test feeding, health and handling with traditional and AI powered approaches.",
+    "verbatim_quote": "New feeding, health and handling techniques can be evaluated with traditional and artificial intelligence-powered approaches that are designed to increase beef production efficiency and advance feedlot management practices.",
+    "source_url": "https://news.tamus.edu/stories/wt-to-build-beef-cattle-research-facility-with-9-75-million-usda-grant/",
+    "source_title": "Texas A&M University System news release, WT to Build Beef Cattle Research Facility with $9.75 Million USDA Grant",
+    "source_type": "primary_official",
+    "fetched": "2026-10-08",
+    "id": "tx-2026-0207-c4"
+   },
+   {
+    "text": "The plans name four parts of the research feedlot.",
+    "verbatim_quote": "Plans call for the research feedlot to include a precision beef cattle handling facility, a veterinary care and research hospital, an advanced technology feed and production center, and a metabolism and physiology center.",
+    "source_url": "https://news.tamus.edu/stories/wt-to-build-beef-cattle-research-facility-with-9-75-million-usda-grant/",
+    "source_title": "Texas A&M University System news release, WT to Build Beef Cattle Research Facility with $9.75 Million USDA Grant",
+    "source_type": "primary_official",
+    "fetched": "2026-10-08",
+    "id": "tx-2026-0207-c5"
+   }
+  ],
+  "confidence": "high",
+  "notes_for_editor": "Admitted on the A&M System's own release, datelined Canyon. The feedlot is built beside WT's Nance Ranch about seven miles east of Canyon, which is the seat of Randall County, so the county is Randall. The release names no AI tool, vendor or result, so the item records a funded plan to test AI powered methods and nothing more.",
+  "last_verified": "2026-10-08",
+  "history": [
+   {
+    "date": "2026-10-08",
+    "note": "Admitted to the record on the A&M System's own release of the grant. The AI powered methods are a stated plan, and no result is reported."
+   }
+  ],
+  "id": "tx-2026-0207"
  }
 ]
