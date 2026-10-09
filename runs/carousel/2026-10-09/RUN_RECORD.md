@@ -93,9 +93,13 @@ down at the cap. The judges named frames 7, 4, 5, 6, 3 and 1 for the art.
   sits behind the boundary. `reverify.py --check-notes` passes on every note.
 - **Rotten.** tx-2026-0062 was confirmed on Community Impact and stamped. tx-2026-0027 was first left
   rotten, and CI's staleness gate refused the pull request on it. Re-measured at 11:50 UTC, Taylor's
-  notice address still redirects to the city's not-found page and the council video still loads,
-  with no written outcome beside it. That is what the item says, so it was stamped. The morning's
-  note that the video bars automated readers was wrong: the host's robots.txt disallows nothing.
+  notice address still redirected to the city's not-found page and the council video loaded, with no
+  written outcome on the city's own site, so this run stamped it on that reading. The morning's note
+  that the video bars automated readers was wrong, since the host's robots.txt disallows nothing.
+  **PR 415 then landed on `main` with the better answer.** The CivicClerk minutes for August 13th
+  record unanimous approval of the amended Compal agreement, and the item now says so on the packet
+  and minutes. When `main` was merged in, its version of tx-2026-0027 and its October 9th line for
+  tx-2026-0062 were taken whole, and this run's interim stamp gave way.
 - **Boundaries measured today.** www.wilcotx.gov (tx-2026-0029) and www.brownsvilletx.gov
   (tx-2026-0128) answered 403 to the project's agent and to a browser agent, page and robots.txt
   alike. Both items now carry a `blocks_every_client` block dated October 9th.

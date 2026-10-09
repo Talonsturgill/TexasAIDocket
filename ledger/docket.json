@@ -2850,8 +2850,8 @@
    ]
   },
   {
-   "title": "City of Taylor's notice of an amended Compal tax abatement is no longer posted, and no outcome is published",
-   "summary": "The City of Taylor published a public notice for its City Council. The council would consider an Amended and Restated Tax Abatement Agreement with Compal Technology, Inc. and PDC TP 01 LOT A LLC. The notice set that consideration for the regularly scheduled meeting on August 13th, 2026 at 6:00 p.m. The property sits in Reinvestment Zone No. 11, which the city calls the Taylor Port Zone. The notice describes the improvements as the renovation of the Taylor Port Building. It covers the design and manufacture of electronics and related items at an estimated cost of approximately $ 200 Million. Compal already holds a separate Chapter 312 abatement from Williamson County for a server service center in Georgetown. The same contract manufacturer is now the subject of incentive agreements at two levels of Central Texas government. The August 13th vote has not been confirmed against a published minute.",
+   "title": "Taylor City Council unanimously approved the amended Compal tax abatement agreement",
+   "summary": "Taylor City Council approved the Amended and Restated Tax Abatement Agreement with PDC TP 01 LOT A LLC and Compal Technology, Inc. at its August 13th, 2026 meeting. The minutes record a unanimous vote after the item was pulled from the consent agenda for separate consideration. The staff packet says the amendment preserves the original incentives and performance obligations and authorizes no additional incentives. The attached agreement places the property in Tax Abatement Reinvestment Zone No. 11. Approval is recorded, while execution by the parties is not established by the minutes.",
    "topic": "data-centers",
    "decider": {
     "name": "Taylor City Council",
@@ -2865,65 +2865,88 @@
     "metro": "Austin-Round Rock-San Marcos, TX",
     "on_ercot": true
    },
-   "status": "unknown",
+   "status": "decided",
    "key_dates": [
     {
      "date": "2026-08-13",
      "kind": "hearing",
      "note": "Regularly scheduled Taylor City Council meeting at 6:00 p.m. at which the amended abatement was noticed for consideration"
+    },
+    {
+     "date": "2026-08-13",
+     "kind": "ordered",
+     "note": "The council approved the amended Compal abatement agreement unanimously"
     }
    ],
    "public_access": {
     "room": "open_meeting",
-    "how": "The city's notice is no longer posted at the address it was published to. The council meeting it named has passed and the city has published no record of what was decided that a reader can read. The minutes posted for that meeting are a scanned image with no text in them. A reader who wants the outcome has to ask the city secretary.",
-    "url": "https://www.taylortx.gov/m/newsflash/Home/Detail/2066",
+    "how": "The council's August 13th meeting archive carries the agenda packet and scanned minutes. The minutes record approval of the Compal agreement after separate consideration.",
+    "url": "https://taylortx.portal.civicclerk.com/event/2010/files/agenda/5956",
     "closes": "2026-08-13"
    },
    "claims": [
     {
-     "text": "Taylor noticed the amended abatement with Compal and the property owner for the August 13th, 2026 council meeting.",
-     "verbatim_quote": "The City Council of the City of Taylor will consider the approval of an Amended and Restated Tax Abatement agreement with Compal Teechnology, Inc, and PDC TP 01 LOT A LLC at its regularly scheduled City Council meeting on August 13, 2026 at 6:00 p.m.",
-     "source_url": "https://www.taylortx.gov/m/newsflash/Home/Detail/2066",
-     "source_title": "Notice of Consideration of Approval of Amended and Restated Tax Abatement Agreement, Taylor, TX",
-     "source_type": "primary_official",
-     "fetched": "2026-08-14",
-     "id": "tx-2026-0027-c1"
-    },
-    {
-     "text": "The notice describes the improvements as renovation of the Taylor Port Building for electronics design and manufacture.",
-     "verbatim_quote": "A general description of the nature of the improvements included in the tax abatement agreement is the renovation of the Taylor Port Building and other improvements for the design and manufacture of electronics and related items",
-     "source_url": "https://www.taylortx.gov/m/newsflash/Home/Detail/2066",
-     "source_title": "Notice of Consideration of Approval of Amended and Restated Tax Abatement Agreement, Taylor, TX",
-     "source_type": "primary_official",
-     "fetched": "2026-08-14",
-     "id": "tx-2026-0027-c2"
-    },
-    {
-     "text": "The notice states the estimated cost of the renovation and other improvements.",
-     "verbatim_quote": "Estimated cost of the renovation of Taylor Port Building and other improvements is approximately $ 200 Million.",
-     "source_url": "https://www.taylortx.gov/m/newsflash/Home/Detail/2066",
-     "source_title": "Notice of Consideration of Approval of Amended and Restated Tax Abatement Agreement, Taylor, TX",
-     "source_type": "primary_official",
-     "fetched": "2026-08-14",
-     "id": "tx-2026-0027-c3"
-    },
-    {
-     "text": "The property lies in Reinvestment Zone No. 11, the Taylor Port Zone.",
-     "verbatim_quote": "The name of the Reinvestment Zone in which the property subject to the agreement is located is \"Reinvestment Zone No. 11\" or \"Taylor Port Zone\".",
-     "source_url": "https://www.taylortx.gov/m/newsflash/Home/Detail/2066",
-     "source_title": "Notice of Consideration of Approval of Amended and Restated Tax Abatement Agreement, Taylor, TX",
-     "source_type": "primary_official",
-     "fetched": "2026-08-14",
-     "id": "tx-2026-0027-c4"
-    },
-    {
-     "text": "The council's agenda for August 13th carries the amended agreement as an item.",
+     "id": "tx-2026-0027-c6",
+     "text": "The August 13th council agenda names the amended Compal agreement.",
      "verbatim_quote": "Consider approval of Amended and Restated Tax Abatement Agreement by and among the City of Taylor, PDC TP 01 LOT A LLC, and Compal Technology, Inc., a Texas corporation.",
-     "source_url": "https://taylortx.new.swagit.com/videos/396213",
-     "source_title": "City of Taylor, City Council meeting of August 13th 2026, agenda index",
+     "source_url": "https://taylortx.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=5915,plainText=false)",
+     "source_title": "Taylor City Council agenda packet, August 13th, 2026, page 1",
      "source_type": "primary_official",
-     "id": "tx-2026-0027-c5",
-     "fetched": "2026-09-02"
+     "fetched": "2026-10-09"
+    },
+    {
+     "id": "tx-2026-0027-c7",
+     "text": "The council approved the amended agreement unanimously after separate consideration.",
+     "verbatim_quote": "Motion was made by Mayor Pro Tem Cmerk to approve the Amended and Restated Tax Abatement Agreement as presented. Motion was seconded by Councilman Redden. Motion carried unanimously.",
+     "source_url": "https://taylortx.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=5956,plainText=false)",
+     "source_title": "Taylor City Council meeting minutes, August 13th, 2026, page 2",
+     "source_type": "primary_official",
+     "fetched": "2026-10-09"
+    },
+    {
+     "id": "tx-2026-0027-c8",
+     "text": "Staff said the amendment preserves the existing incentives and performance obligations.",
+     "verbatim_quote": "The amended and restated agreement supersedes the previously approved agreement while preserving the original economic incentives, performance obligations, and material business terms.",
+     "source_url": "https://taylortx.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=5915,plainText=false)",
+     "source_title": "Taylor City Council agenda packet, August 13th, 2026, page 91",
+     "source_type": "primary_official",
+     "fetched": "2026-10-09"
+    },
+    {
+     "id": "tx-2026-0027-c9",
+     "text": "Staff said the amendment authorizes no additional incentives.",
+     "verbatim_quote": "No additional tax abatements or incentives are authorized beyond those previously approved by the City Council.",
+     "source_url": "https://taylortx.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=5915,plainText=false)",
+     "source_title": "Taylor City Council agenda packet, August 13th, 2026, page 92",
+     "source_type": "primary_official",
+     "fetched": "2026-10-09"
+    },
+    {
+     "id": "tx-2026-0027-c10",
+     "text": "The attached agreement identifies Tax Abatement Reinvestment Zone No. 11.",
+     "verbatim_quote": "WHEREAS, the City Council of the City of Taylor, Texas (the “City Council”), passed an Ordinance (the “Ordinance”) establishing Tax Abatement Reinvestment Zone No. 11 (the “Zone”),",
+     "source_url": "https://taylortx.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=5915,plainText=false)",
+     "source_title": "Taylor City Council agenda packet, August 13th, 2026, page 93",
+     "source_type": "primary_official",
+     "fetched": "2026-10-09"
+    },
+    {
+     "id": "tx-2026-0027-c11",
+     "text": "The staff packet conditions effectiveness on approval and execution.",
+     "verbatim_quote": "Effective upon approval and execution by the parties.",
+     "source_url": "https://taylortx.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=5915,plainText=false)",
+     "source_title": "Taylor City Council agenda packet, August 13th, 2026, page 92",
+     "source_type": "primary_official",
+     "fetched": "2026-10-09"
+    },
+    {
+     "id": "tx-2026-0027-c12",
+     "text": "The Compal item was pulled from consent for separate consideration.",
+     "verbatim_quote": "Consent Agenda Items #6 and #7 were pulled for separate consideration.",
+     "source_url": "https://taylortx.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=5956,plainText=false)",
+     "source_title": "Taylor City Council meeting minutes, August 13th, 2026, page 1",
+     "source_type": "primary_official",
+     "fetched": "2026-10-09"
     }
    ],
    "id": "tx-2026-0027",
@@ -3026,8 +3049,7 @@
     },
     {
      "date": "2026-10-09",
-     "note": "Taylor's notice address still sends readers to the city's not-found page. The council video still loads, and the city has published no written outcome beside it.",
-     "checked": true
+     "note": "The published council minutes record unanimous approval of the amended Compal agreement at the August 13th meeting. The packet preserves the original incentives and performance obligations without adding incentives. The earlier notice quotations remain in the source history."
     }
    ]
   },
@@ -9142,7 +9164,7 @@
     },
     {
      "date": "2026-10-09",
-     "note": "Community Impact's account of Fort Worth's first steps toward a pause still reads as cited. KERA's account refused the request today.",
+     "note": "Community Impact's account confirms the first steps toward Fort Worth's pause and the proposed adoption timeline after hearings and readings. The pause is not yet in force under that timeline. KERA's account remains unavailable, so its exact wording is unconfirmed.",
      "checked": true
     }
    ]
