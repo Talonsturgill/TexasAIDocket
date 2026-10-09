@@ -1,0 +1,201 @@
+{
+ "_note": "Every value is extracted from a claim quote by compute.py, or computed here from values that were.",
+ "campuses": {
+  "value": 4,
+  "from": [
+   "c11"
+  ],
+  "basis": "campuses UTMB has hospitals on"
+ },
+ "clinics": {
+  "value": 100,
+  "from": [
+   "c12"
+  ],
+  "basis": "clinics across Southeast Texas, more than",
+  "floor": true
+ },
+ "share_using": {
+  "value": 0.5,
+  "from": [
+   "c9"
+  ],
+  "basis": "share of UTMB clinicians actively using OpenEvidence, more than, with no denominator printed",
+  "floor": true
+ },
+ "announced": {
+  "value": "2026-09-22",
+  "from": [
+   "c3"
+  ],
+  "basis": "date of UTMB's release"
+ },
+ "live_month": {
+  "value": "March",
+  "from": [
+   "c4"
+  ],
+  "basis": "month the integration went live, no year printed"
+ },
+ "months_live": {
+  "value": 6,
+  "from": [
+   "c4",
+   "c3"
+  ],
+  "basis": "calendar months from the go-live month to the release month, March to September"
+ },
+ "conditions": {
+  "value": 3,
+  "from": [
+   "c20",
+   "c21",
+   "c22"
+  ],
+  "basis": "numbered conditions in Sec. 183.005(a)"
+ },
+ "statute_effective": {
+  "value": "2025-09-01",
+  "from": [
+   "c25"
+  ],
+  "basis": "date Sec. 183.005 took effect"
+ },
+ "days_effective_to_release": {
+  "value": 386,
+  "from": [
+   "c25",
+   "c3"
+  ],
+  "basis": "days from the statute taking effect to UTMB's release"
+ },
+ "bill": {
+  "value": 1188,
+  "from": [
+   "c24"
+  ],
+  "basis": "the Senate bill that added the section"
+ },
+ "contract_initial": {
+  "value": 825000,
+  "from": [
+   "c29"
+  ],
+  "basis": "dollars, the December 2024 agreement"
+ },
+ "contract_first": {
+  "value": 4250000,
+  "from": [
+   "c30"
+  ],
+  "basis": "dollars, after the October 2025 first amendment"
+ },
+ "contract_added": {
+  "value": 5600000,
+  "from": [
+   "c34"
+  ],
+  "basis": "dollars the third amendment adds"
+ },
+ "contract_total": {
+  "value": 9850000,
+  "from": [
+   "c35"
+  ],
+  "basis": "dollars, the agreement's total value"
+ },
+ "contract_multiple": {
+  "value": 11.9,
+  "from": [
+   "c29",
+   "c35"
+  ],
+  "basis": "total over initial, rounded to one decimal"
+ },
+ "institutions": {
+  "value": 7,
+  "from": [
+   "c31"
+  ],
+  "basis": "UT System health-related institutions the third amendment extends to"
+ },
+ "regents_meeting": {
+  "value": "2026-11-18",
+  "from": [
+   "c42"
+  ],
+  "basis": "first day of the Regents' next regular meeting"
+ },
+ "regents_meeting_days": {
+  "value": 2,
+  "from": [
+   "c42"
+  ],
+  "basis": "days the meeting runs"
+ },
+ "days_to_meeting": {
+  "value": 40,
+  "from": [
+   "c42"
+  ],
+  "basis": "days from October 9th, 2026, the run date, to the meeting's first day"
+ },
+ "hours_notice": {
+  "value": 24,
+  "from": [
+   "c44"
+  ],
+  "basis": "hours ahead a person gives a name and topic"
+ },
+ "vendor_consultations_m": {
+  "value": 200,
+  "from": [
+   "c39"
+  ],
+  "basis": "millions of consultations OpenEvidence says it has supported, more than",
+  "floor": true,
+  "attributed": "OpenEvidence"
+ },
+ "cindex_train": {
+  "value": 0.615,
+  "from": [
+   "c40"
+  ],
+  "basis": "C-index on the training cohort"
+ },
+ "cindex_external": {
+  "value": 0.574,
+  "from": [
+   "c40"
+  ],
+  "basis": "C-index in external validation"
+ },
+ "release_percent_figures": {
+  "value": 0,
+  "from": [
+   "c1"
+  ],
+  "basis": "percent figures in the body of UTMB's release of September 22nd, scanned from the saved copy"
+ },
+ "release_accuracy_mentions": {
+  "value": 0,
+  "from": [
+   "c1"
+  ],
+  "basis": "mentions of accuracy, an error rate or an outcome in the body of the release"
+ },
+ "release_diagnostic_mentions": {
+  "value": 0,
+  "from": [
+   "c1"
+  ],
+  "basis": "uses of any form of diagnose, diagnosis or diagnostic in the body of the release, the statute's term"
+ },
+ "release_patient_mentions": {
+  "value": 0,
+  "from": [
+   "c1"
+  ],
+  "basis": "mentions of patients in the body of the release"
+ }
+}

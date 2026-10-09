@@ -9,7 +9,7 @@ ERCOT published the user guide for the Verification RFI on September 11th, 2026,
 - Public access: Write to the decider
 - Take part: https://www.ercot.com/files/docs/2026/09/11/Verification-RFI-User-Guide-v1.1.pdf
 
-- Last checked: 2026-10-06
+- Last checked: 2026-10-09
 
 ## Dates
 
@@ -28,6 +28,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-30 · The grid operator's questionnaire to every conditionally classified large load still reads as issued.
 - 2026-10-03 · The questionnaire the grid operator sent every conditionally classified large load still reads as issued, notarized attestation included.
 - 2026-10-06 · The user guide for the grid operator's verification questionnaire still reads as issued, the notarized attestation still required.
+- 2026-10-09 · The grid operator's questionnaire guide for conditionally classified large loads still reads as issued, the notarized attestation still in it.
 
 ## Evidence
 

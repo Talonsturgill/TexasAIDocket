@@ -1,0 +1,59 @@
+<!doctype html>
+<!-- 2026-10-09, frame 1 of 9. Archetype FULL_BLEED. RENDERED through txthree.js in the deck's floodlit world. The workstation cart close and low on a clinic's concrete apron under one cold flood, the back of its monitor to the reader with the screen's light leaking round it, and a horizon of amber lights across the flat coast, one per clinic up to the release's floor. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+  .dek { width:900px; }
+  #lights { left:80px; top:640px; font-size:24px; line-height:1.35; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">The question is asked inside the chart</h1>
+<p class="dek" data-follow="26">UTMB says the AI platform OpenEvidence puts cited medical evidence inside the UTMB electronic health record. It announced the collaboration on September&nbsp;22nd. The cart and the lights are drawn to illustrate.</p>
+<div class="lab acc" id="lights">100 LIGHTS<br>MORE THAN 100 CLINICS</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-09-chart.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "UTMB and OpenEvidence", counter: "01 / 09", src: "c1 c2 c3 c5 c12", fit: { min: 80, max: 100, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 37 });
+  TXT.ground(R, { surface: 'grass', size: 12000, tile: 6, seed: 23, color: 0x22251a });   /* the flat coast, gone dark past the pool */
+  CH.apron(1.1, 1.6, 36, 28, { seed: 19 });
+  /* the hero: its screen faces north (-z), away from the reader, who stands where a patient would, south of it on the lit side */
+  const cart = CH.cart({ yaw: 0, trayOut: 0.08 }); cart.rotation.y = Math.PI + 0.35; TXT.add(R, cart); TXT.contact(R, cart);
+  const FROM = [1.55, 1.13, 4.64], LOOK = [-0.46, 1.31, -0.1];   /* in close, the cart over a third of the frame's height */
+  TXT.frame(R, { from: FROM, look: LOOK });
+  /* the region: one light per clinic, up to the release's floor of more than 100 (figures.json clinics, c12) */
+  const CLINICS = 100;
+  const lights = CH.clinicLights(FROM, [LOOK[0] + (LOOK[0] - FROM[0]) * 2, 1, LOOK[2] + (LOOK[2] - FROM[2]) * 2], CLINICS, { near: 700, far: 9000, spread: 12, seed: 31, y: 3.2, glow: 1.1, size: 0.0016 });
+  CH.grass([-60, -90, 60, -14], { count: 9000, seed: 6, avoid: [[-18, -14, 18, 14]] });
+  TXT.sky(R);
+  TXT.deckRig(R, CH.rigSpec(W, 5, 4096), CH.rigOpts([0, 0.7, 0], { distance: 30, shadowFar: 80 }));
+  TXT.stage(R, cart, { poolInner: 1.0, poolOuter: 2.3 });
+  CH.screenLight(cart, { i: 2.4, range: 4 });   /* the answer's light, spilling past the monitor onto the tray and the apron beyond */
+  TXT.weather(R, { grime: 0.2, height: 0.25 });
+  /* the label says 100: count the lights that land inside the frame and refuse to render a frame that shows another number */
+  { const inside = lights.points.filter((p) => { const q = CH.project(THREE, R, [p[0], p[1], p[2]]); return q[0] >= 0 && q[0] <= 1080 && q[1] >= 0 && q[1] <= 1350; }).length;
+    if (inside !== CLINICS) throw new Error('clinic lights inside the frame: ' + inside + ', label says ' + CLINICS); }
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0.34, veil: 0.5, veilH: 320 });
+  TXDECK.finish(cx, { bloom: { threshold: 0.9, strength: 0.12, radius: 10 } });
+  return true;
+})();
+</script>
+</body>
+</html>

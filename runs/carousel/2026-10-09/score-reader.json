@@ -1,0 +1,74 @@
+{
+ "lens": "reader",
+ "round": 3,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.0,
+   "why": "Every frame is dark with one subject in a pool and the register is right. The hero fails the zoom test: 1's flat monitor back, plain battery box and tube mast, no visible leak, the lights a dotted line with no land. 4 and 5's barrier reads as stacked slabs; 6 is three untextured tubes with a few-pixel cart; 7 a flat page on a mat over streaky wood in the grey middle with the mat edge cutting the dek. 3 and 8 are the strongest."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "One cart, one cold flood, the black field held, amber kept for the record; the swivel bookend and the held camera work. 7 sits outside."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.5,
+   "why": "Every numeral traces and the column heights measure true; every source primary; the rejected list honoured. Looser: 6's 'would take it' for an August consent item whose minutes were not fetched; a bare 'in March' reads as 2026 in a 2026 post though it is the source's wording; 5's unrelated C-index on the same bench."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.0,
+   "why": "What happened, the law and two actions. No slide says Galveston or spells out UTMB, no person named (c13 unused), and slide 9 drops c45 and gives no route to the General Counsel."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "An abstract cover, 2 pays, the turn at 7 and the close land. 5 and 6 are cuttable detours."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "Clean under every house rule. Talks about its own drawing too much; the neutral line is bureaucratic; the caption opener is flat."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 5.0,
+   "why": "No. 27's instrument and angle, no. 43's UT System health AI, no. 23's study on frame 5, the house move of one object in a staged dark world, and an apron under lights after no. 46's. The accent, flood and clinical object are fresh."
+  }
+ ],
+ "weighted_score": 6.64,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Cut frame 5's borrowed radiomics bars for who at UTMB made the call (c13) and where Galveston patients sit in it, and make frame 9 say the Regents hear only agenda-listed topics (c45) and how to reach the General Counsel.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 7,
+   "problem": "A flat page on a mat over streaky wood in the grey middle, the mat edge through the dek, no cart or source.",
+   "fix": "Pull back and up so the cart's lit monitor base enters top left as the only light, the desk near black outside its pool, the page below the dek with a contact shadow and curl."
+  },
+  {
+   "slide": 1,
+   "problem": "A primitive hero at full size, no leak, the lights a dotted line in the sky.",
+   "fix": "A bevelled housing with an emissive rim, seams and scuffing on the battery and surface, the lights on a faintly lit ground to a horizon."
+  },
+  {
+   "slide": 6,
+   "problem": "Untextured tubes in a void, the scale cart a few pixels.",
+   "fix": "Camera at cart height at the short column so the cart reads 120 px at 432 and the tall column towers out of the top, galvanized faces at a grazing angle."
+  },
+  {
+   "slide": 4,
+   "problem": "Stacked grey shelving slabs, no arrises or cast channel (5 shares it).",
+   "fix": "One jersey-profile precast unit with chamfered arrises, form-tie holes and base grime, the fill in a cast recess, lit low from the flood side."
+  }
+ ]
+}

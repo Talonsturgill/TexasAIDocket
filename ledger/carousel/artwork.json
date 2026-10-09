@@ -2920,6 +2920,60 @@
     "hex": "#1E2536",
     "note": "The deck's declared haze behind the render."
    }
+  },
+  {
+   "date": "2026-10-09",
+   "carousel_no": 47,
+   "written_from": "deck_coherence's median L* per frame at 432 px off the final renders, layout_check's accent share, by out/2026-10-09/update_ledgers.py.",
+   "register": "RENDERED, NOT PRINTED. A staged floodlit deck on a clinic's apron at night (key az -50 el 40, haze #0E1220) declared once in assets/js/deck/2026-10-09-chart.js. One hero, a rolling clinical workstation cart built in the chassis, carried through all nine frames, its monitor's swivel the motif. Chassis kit models for the cart, a galvanized column and a precast channel barrier, with a channel fill that takes a computed length.",
+   "structural_laws": [
+    "K.MAKE RECENTRES A MODEL'S CHILDREN ON ITS BOUNDING BOX. A model whose own geometry is not centred moves under any child added after make(), so build a measured exhibit on its own centre or a fill lands off its tick.",
+    "A GRID COUNT AND A LIT APRON PULL AGAINST EACH OTHER. Four carts on one lit ground join into one silhouette at thumb scale, so a count frame keeps the ground dark between its units and seats each on its own pad.",
+    "A LIT MATERIAL IN THE ACCENT IS BLEACHED BY A COLD KEY. Print the accent as an unlit material when it carries the record's mark.",
+    "A FRAME SHOT DOWN ONTO A CART'S WORK SURFACE PUTS THE MAST THROUGH THE TYPE. Lay a document on a desk beside the cart and light it from the screen out of frame."
+   ],
+   "techniques": [
+    "the cart from behind on the apron under the flood, monitor back to the reader, a hundred amber points on the horizon",
+    "the clinician's standing eye over the push bar, the lit answer with citation chips, keys and badge reader, a dark room",
+    "four carts through a long lens, each on its own amber pad, the ground dark between them",
+    "a precast channel barrier on the apron, the top channel cast amber to its half tick and fading open past it, the cart side on with its monitor edge on",
+    "the same barrier and camera, two brushed aluminium bars at one scale and an empty third channel",
+    "three galvanized columns at one metre per million dollars, seven clamp sleeves above a weld, the cart dark at their foot",
+    "the statute page on a black blotter on an exam room desk, its disclosure block printed in amber, lit from the screen out of frame",
+    "an exam room from beside the empty patient chair, the cart's screen turned to it",
+    "frame 1's camera returned, the cart turned to face the reader with its answer lit"
+   ],
+   "value": {
+    "per_frame_median_L": [
+     3.7,
+     2.7,
+     1.0,
+     3.6,
+     3.6,
+     1.0,
+     22.0,
+     8.7,
+     3.7
+    ],
+    "deck_median_L": 3.6,
+    "max_adjacent_delta": 21.0,
+    "mean_adjacent_delta": 5.9,
+    "note": "Measured by deck_coherence's median_lstar at 432 px off the final renders. A near black staged deck, lifting in the exam room on 7 and 8."
+   },
+   "accent": {
+    "hex": "#E3A83B",
+    "name": "badge amber",
+    "frames_above_floor": [
+     3,
+     4,
+     7
+    ],
+    "note": "The clinic lights, the campus pads, the half fill and the statute's disclosure block."
+   },
+   "ground": {
+    "hex": "#0E1220",
+    "note": "The deck's declared haze behind the render."
+   }
   }
  ]
 }

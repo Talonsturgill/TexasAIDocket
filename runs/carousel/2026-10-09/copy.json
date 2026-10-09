@@ -1,0 +1,258 @@
+{
+ "date": "2026-10-09",
+ "carousel_no": 47,
+ "document_title": "Asked inside the chart. UTMB's OpenEvidence account beside Texas law",
+ "_note": "Slide strings read off the render report's text nodes and each frame's own source line by build_copy.py.",
+ "caption": "A Texas statute and a UTMB release both describe AI in the health record.\n\nUTMB in Galveston put OpenEvidence inside its health record in March. Clinicians get answers with citations. More than half of them use it for \"clinical decision support,\" UTMB said on September 22nd.\n\nSince September 1st, 2025, Sec. 183.005 of the Health and Safety Code has said a practitioner who uses AI for \"diagnostic purposes\" must disclose that use to patients. The record here can't say whether the section reaches this use.\n\nA patient can ask in the exam room. The UT System Regents meet November 18th to 19th in Austin. The public may testify on a topic the agenda lists. A speaker sends the board's General Counsel a name and topic at least 24 hours ahead.\n\nWill the November agenda list AI in the health record?\n\n#UTMB #Galveston #UTSystem",
+ "slides": {
+  "S1": {
+   "n": 1,
+   "file": "slide-01.html",
+   "kicker": "UTMB and OpenEvidence",
+   "headline": "The question is asked inside the chart",
+   "claims": [
+    "c1",
+    "c2",
+    "c3",
+    "c5",
+    "c12"
+   ],
+   "cite": "c1 c2 c3 c5 c12",
+   "body": "UTMB says the AI platform OpenEvidence puts cited medical evidence inside the UTMB electronic health record. It announced the collaboration on September 22nd. The cart and the lights are drawn to illustrate.",
+   "labels": [
+    "100 LIGHTS MORE THAN 100 CLINICS"
+   ],
+   "strings": [
+    "texasaidocket.com",
+    "The question is asked inside the chart",
+    "UTMB says the AI platform OpenEvidence puts cited medical evidence inside the UTMB electronic health record. It announced the collaboration on September 22nd. The cart and the lights are drawn to illustrate.",
+    "100 LIGHTS MORE THAN 100 CLINICS",
+    "UTMB and OpenEvidence",
+    "01 / 09",
+    "c1 c2 c3 c5 c12"
+   ]
+  },
+  "S2": {
+   "n": 2,
+   "file": "slide-02.html",
+   "kicker": "UTMB's account",
+   "headline": "An answer with its sources",
+   "claims": [
+    "c4",
+    "c6",
+    "c7"
+   ],
+   "cite": "c4 c6 c7",
+   "body": "Clinicians sign in with their UTMB credentials and ask in plain language. Answers cite medical literature and guidelines, UTMB says. The tool went live in March.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "An answer with its sources",
+    "Clinicians sign in with their UTMB credentials and ask in plain language. Answers cite medical literature and guidelines, UTMB says. The tool went live in March.",
+    "UTMB's account",
+    "02 / 09",
+    "c4 c6 c7"
+   ]
+  },
+  "S3": {
+   "n": 3,
+   "file": "slide-03.html",
+   "kicker": "UTMB, Southeast Texas",
+   "headline": "Four hospital campuses",
+   "claims": [
+    "c11",
+    "c12"
+   ],
+   "cite": "c11 c12",
+   "body": "UTMB has hospitals on four campuses and more than 100 clinics across Southeast Texas. One cart is drawn for each campus, to illustrate.",
+   "labels": [
+    "ONE CART PER CAMPUS"
+   ],
+   "strings": [
+    "texasaidocket.com",
+    "Four hospital campuses",
+    "UTMB has hospitals on four campuses and more than 100 clinics across Southeast Texas. One cart is drawn for each campus, to illustrate.",
+    "ONE CART PER CAMPUS",
+    "UTMB, Southeast Texas",
+    "03 / 09",
+    "c11 c12"
+   ]
+  },
+  "S4": {
+   "n": 4,
+   "file": "slide-04.html",
+   "kicker": "UTMB's release, September 22nd",
+   "headline": "More than half of its clinicians use it",
+   "claims": [
+    "c3",
+    "c9"
+   ],
+   "cite": "c3 c9",
+   "body": "That is UTMB's own figure. The release prints no count of clinicians and no total. The fill stops at half and is left open past it.",
+   "labels": [
+    "HALF",
+    "MORE THAN HALF",
+    "NO TOTAL"
+   ],
+   "strings": [
+    "texasaidocket.com",
+    "More than half of its clinicians use it",
+    "That is UTMB's own figure. The release prints no count of clinicians and no total. The fill stops at half and is left open past it.",
+    "HALF",
+    "MORE THAN HALF",
+    "NO TOTAL",
+    "UTMB's release, September 22nd",
+    "04 / 09",
+    "c3 c9"
+   ]
+  },
+  "S5": {
+   "n": 5,
+   "file": "slide-05.html",
+   "kicker": "Radiology, UTMB co-authors",
+   "headline": "Use is reported. No test is printed.",
+   "claims": [
+    "c1",
+    "c17",
+    "c40",
+    "c41"
+   ],
+   "cite": "c1 c17 c40 c41",
+   "body": "UTMB's release prints no accuracy, error or outcome figure. UTMB says it will keep evaluating use. The bars are a different tool, an MRI model of survival in brain metastases with UTMB radiology authors, scored by C-index.",
+   "labels": [
+    "TRAINING, 0.615",
+    "EXTERNAL, 0.574",
+    "OPENEVIDENCE AT UTMB, NONE PRINTED"
+   ],
+   "strings": [
+    "texasaidocket.com",
+    "Use is reported. No test is printed.",
+    "UTMB's release prints no accuracy, error or outcome figure. UTMB says it will keep evaluating use. The bars are a different tool, an MRI model of survival in brain metastases with UTMB radiology authors, scored by C-index.",
+    "TRAINING, 0.615",
+    "EXTERNAL, 0.574",
+    "OPENEVIDENCE AT UTMB, NONE PRINTED",
+    "Radiology, UTMB co-authors",
+    "05 / 09",
+    "c1 c17 c40 c41"
+   ]
+  },
+  "S6": {
+   "n": 6,
+   "file": "slide-06.html",
+   "kicker": "UT System Regents, item 65",
+   "headline": "UTMB's other AI platform",
+   "claims": [
+    "c26",
+    "c27",
+    "c28",
+    "c29",
+    "c30",
+    "c31",
+    "c34",
+    "c35"
+   ],
+   "cite": "c26 c27 c28 c29 c30 c31 c34 c35",
+   "body": "UTMB's Qualified Health agreement began at $825,000. Item 65 on the Regents' August consent agenda would take it to $9,850,000 across all seven UT health institutions. It never names OpenEvidence, so the cart's screen is dark.",
+   "labels": [
+    "$825,000",
+    "$4,250,000 OCTOBER 2025",
+    "$9,850,000",
+    "ADDS $5,600,000",
+    "7 INSTITUTIONS"
+   ],
+   "strings": [
+    "texasaidocket.com",
+    "UTMB's other AI platform",
+    "UTMB's Qualified Health agreement began at $825,000. Item 65 on the Regents' August consent agenda would take it to $9,850,000 across all seven UT health institutions. It never names OpenEvidence, so the cart's screen is dark.",
+    "$825,000",
+    "$4,250,000 OCTOBER 2025",
+    "$9,850,000",
+    "ADDS $5,600,000",
+    "7 INSTITUTIONS",
+    "UT System Regents, item 65",
+    "06 / 09",
+    "c26 c27 c28 c29 c30 c31 c34 c35"
+   ]
+  },
+  "S7": {
+   "n": 7,
+   "file": "slide-07.html",
+   "kicker": "Texas Health and Safety Code",
+   "headline": "The law has a disclosure line",
+   "claims": [
+    "c9",
+    "c18",
+    "c19",
+    "c20",
+    "c21",
+    "c22",
+    "c23",
+    "c25"
+   ],
+   "cite": "c9 c18 c19 c20 c21 c22 c23 c25",
+   "body": "Since September 1st, 2025, Sec. 183.005 says a practitioner who uses AI for \"diagnostic purposes\" must disclose it to patients. UTMB calls its use \"clinical decision support.\" The record here can't say whether the section reaches this use.",
+   "labels": [
+    "(1) WITHIN THE LICENSE",
+    "(2) NOT BARRED BY LAW",
+    "(3) REVIEWS AI RECORDS",
+    "(B) DISCLOSE TO PATIENTS"
+   ],
+   "strings": [
+    "texasaidocket.com",
+    "The law has a disclosure line",
+    "Since September 1st, 2025, Sec. 183.005 says a practitioner who uses AI for \"diagnostic purposes\" must disclose it to patients. UTMB calls its use \"clinical decision support.\" The record here can't say whether the section reaches this use.",
+    "(1) WITHIN THE LICENSE",
+    "(2) NOT BARRED BY LAW",
+    "(3) REVIEWS AI RECORDS",
+    "(B) DISCLOSE TO PATIENTS",
+    "Texas Health and Safety Code",
+    "07 / 09",
+    "c9 c18 c19 c20 c21 c22 c23 c25"
+   ]
+  },
+  "S8": {
+   "n": 8,
+   "file": "slide-08.html",
+   "kicker": "An exam room, drawn to illustrate",
+   "headline": "A patient can ask",
+   "claims": [
+    "c1",
+    "c23"
+   ],
+   "cite": "c1 c23",
+   "body": "Which tool was used? Did it shape the plan? Texas law has practitioners disclose AI used for diagnostic purposes.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "A patient can ask",
+    "Which tool was used? Did it shape the plan? Texas law has practitioners disclose AI used for diagnostic purposes.",
+    "An exam room, drawn to illustrate",
+    "08 / 09",
+    "c1 c23"
+   ]
+  },
+  "S9": {
+   "n": 9,
+   "file": "slide-09.html",
+   "kicker": "UT System Board of Regents, Austin",
+   "headline": "Or ask the Regents",
+   "claims": [
+    "c12",
+    "c42",
+    "c43",
+    "c44"
+   ],
+   "cite": "c12 c42 c43 c44",
+   "body": "The Regents meet November 18th to 19th. The public may testify on any topic the agenda lists. Send the board's General Counsel a name and topic at least 24 hours ahead.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "Or ask the Regents",
+    "The Regents meet November 18th to 19th. The public may testify on any topic the agenda lists. Send the board's General Counsel a name and topic at least 24 hours ahead.",
+    "UT System Board of Regents, Austin",
+    "09 / 09",
+    "c12 c42 c43 c44"
+   ]
+  }
+ }
+}

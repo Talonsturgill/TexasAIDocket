@@ -1,0 +1,50 @@
+<!doctype html>
+<!-- 2026-10-09, frame 2 of 9. Archetype CLOSE_CROP. RENDERED through txthree.js in a TXT.interior room, dark around one source. The deck's one cart from where the clinician stands, behind the push bar, looking at the lit answer with its citation chips and down to the keyboard and the badge reader, its LED green for a signed in session. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+  .dek { width:860px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">An answer with its sources</h1>
+<p class="dek" data-follow="26">Clinicians sign in with their UTMB credentials and ask in plain language. Answers cite medical literature and guidelines, UTMB says. The tool went live in March.</p>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-09-chart.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "UTMB's account", counter: "02 / 09", src: "c4 c6 c7", fit: { min: 80, max: 110, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 50 });
+  /* a corridor alcove, dark around the screen: one cold window far to the left, the back wall in shadow */
+  TXT.interior(R, { w: 3.6, d: 2.6, h: 2.7, floor: 'concrete', wall: 0x1a1c20, window: null, ceiling: true, light: 0.025 });
+  /* the hero, its screen toward the clinician at the push bar, the session signed in */
+  const cart = CH.cart({ yaw: 0, trayOut: 0.3, badge: 'ok', glow: 1.05 });   /* the keyboard pulled out, a session in progress */ cart.position.set(0, 0, -0.4); TXT.add(R, cart); TXT.contact(R, cart);
+  /* the clinician's standing eye behind the push bar, looking at the answer and down to the keys */
+  TXT.frame(R, { from: [0.3, 2.02, 1.62], look: [0.02, 1.47, -0.42] });
+  const spec = CH.rigSpec(W, 3, 4096); spec.key = Object.assign({}, spec.key, { i: spec.key.i * 0.12 });
+  TXT.deckRig(R, spec, CH.rigOpts([0, 1, -0.4], { distance: 10, shadowFar: 24 }));
+  CH.screenLight(cart, { i: 0.35, range: 2.2 });   /* the answer's light falls on the keys, the tray and the badge reader */
+  TXT.stage(R, cart, { poolInner: 0.9, poolOuter: 2.2 });
+  TXT.weather(R, { grime: 0.14, height: 0.2 });
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0.34, veil: 0.5, veilH: 300 });
+  TXDECK.finish(cx, { bloom: { threshold: 0.86, strength: 0.12, radius: 12 } });
+  return true;
+})();
+</script>
+</body>
+</html>

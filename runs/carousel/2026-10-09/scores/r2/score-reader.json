@@ -1,0 +1,74 @@
+{
+ "lens": "reader",
+ "round": 2,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.3,
+   "why": "Bold register on a near-black field with one cold flood; 2 and 8 pass the stage test. Primitive modelling on too many frames: 1's monitor back a flat rectangle with a stamped grille and amber dots across the mast; 6's $825,000 block a cube wider than tall, the cart a tenth of the frame, untextured columns; 7's page flat on a flat blotter quad with smeared wood, the planned screen light absent; 3's carts each about 15 percent of the frame height in a flat side-on row; 4 and 5's barrier stacked grey slabs. Short of the 7 descriptor."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "One cart, one cold flood, one near-black world, amber kept for what the record prints; the monitor swivel and the held camera on 4 and 5 both work. Slide 7 leaves the apron world, and 6 scales the cart nearly out of the spine."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.0,
+   "why": "Every numeral traces; rejected findings honoured (7 and the caption never link the statute to UTMB, 4 draws the fill to half with NO TOTAL, 6 says 'would' and names no vote). Column heights proportional. One looseness: 6 never says item 65 sat on the August 12th to 13th consent agenda (c27), so 'would bring' reads as pending."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.2,
+   "why": "What happened, where and the law, with two next steps. The Regents route is conditional and nothing says when the agenda posts; c45 unused on the frame. The cover's 'chart' needs a clinician to decode."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 6.8,
+   "why": "1 to 4 build and 7 to 9 turn and close well. 5 and 6 are detours that could be cut."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.8,
+   "why": "Clean under the house rules and regionally grounded. Too many lines narrate the drawing, the caption's opener is a flat summary, and 'The deck sets UTMB's account beside the statute's text' is a machine describing itself."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 5.5,
+   "why": "Fresh world and hero; the spine repeats no. 27, slide 5 re-ships no. 23's radiomics study, no. 43 four days ago was UT System health AI with UTMB, the third clinical AI deck in ten days, and the close repeats the public meeting move. Not a hard fail."
+  }
+ ],
+ "weighted_score": 6.95,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Cut slide 5's borrowed radiomics bars and fold the no-accuracy line into slide 4, then use the frame to make the Regents close a real step with c45 and the date the November agenda posts.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 7,
+   "problem": "Flat page on a flat quad, smeared wood, no cart or screen light, a dead bottom third.",
+   "fix": "Bring the cart's lit monitor edge in at frame left so its falloff rakes across a curled page with a contact shadow, and drop the camera so the tray and push bar fill the bottom third."
+  },
+  {
+   "slide": 6,
+   "problem": "The $825,000 element a cube, the cart a tenth of the frame with its screen unseen, untextured columns, a hard grey ground band.",
+   "fix": "Make the shortest a square tube 0.825 m tall at the same section, move the camera closer and lower so the cart is a fifth of the frame, and give the columns spangle, weld and base plates under a raking flood."
+  },
+  {
+   "slide": 3,
+   "problem": "Four carts at about 15 percent of the frame in a flat row, no single subject, a dead upper band.",
+   "fix": "Lower and swing the camera onto a diagonal so the nearest cart fills about a third of the frame and the others step back."
+  },
+  {
+   "slide": 1,
+   "problem": "A flat monitor back with a stamped grille; the lights cross in front of the mast.",
+   "fix": "A bevelled housing with VESA mount, vents and cable run, its rim leaking light, and the light row further back with slight defocus."
+  }
+ ]
+}

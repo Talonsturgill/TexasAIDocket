@@ -32,6 +32,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-02 · Brownsville's commission has posted no final action on the temporary moratorium.
 - 2026-10-05 · Brownsville still has the temporary data center moratorium before its commission, with no final vote posted.
 - 2026-10-08 · Whether Brownsville's commission has voted on the temporary moratorium is unconfirmed, because the city's records refused the request.
+- 2026-10-09 · Whether Brownsville's commission has voted on the temporary moratorium is unconfirmed, because the city's site refused the request.
 
 ## Evidence
 

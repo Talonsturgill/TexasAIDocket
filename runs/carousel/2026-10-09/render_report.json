@@ -1,0 +1,2162 @@
+{
+  "canvas": {
+    "width": 1080,
+    "height": 1350,
+    "scale": 2.0,
+    "px": [
+      2160,
+      2700
+    ]
+  },
+  "text_window": 320,
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "png": "slide-01.png",
+      "console_errors": [
+        "TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(238, 241, 242)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The question is asked inside the chart",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 187,
+          "font_px": 95.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(238, 241, 242)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              138,
+              857,
+              117
+            ],
+            [
+              80,
+              232,
+              614,
+              117
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "UTMB says the AI platform OpenEvidence puts cited medical evidence inside the UTMB electronic health record. It announced the collaboration on September 22nd. The cart and the lights are drawn to illustrate.",
+          "x": 82,
+          "y": 363,
+          "w": 900,
+          "h": 171,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(221, 226, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              363,
+              881,
+              42
+            ],
+            [
+              82,
+              406,
+              778,
+              42
+            ],
+            [
+              82,
+              449,
+              858,
+              42
+            ],
+            [
+              82,
+              491,
+              539,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "100 LIGHTS MORE THAN 100 CLINICS",
+          "x": 80,
+          "y": 640,
+          "w": 333,
+          "h": 65,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(227, 168, 59)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              640,
+              158,
+              31
+            ],
+            [
+              80,
+              672,
+              333,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "UTMB and OpenEvidence",
+          "x": 80,
+          "y": 80,
+          "w": 348,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(221, 226, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              348,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "01 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(221, 226, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c1 c2 c3 c5 c12",
+          "x": 80,
+          "y": 1234,
+          "w": 241,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(221, 226, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              241,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 20177,
+      "ok": true,
+      "load_ms": 179,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 22.6,
+          "variance": 1152.8
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-02.html",
+      "png": "slide-02.png",
+      "console_errors": [
+        "TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot shows its room"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(238, 241, 242)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "An answer with its sources",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 215,
+          "font_px": 109.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(238, 241, 242)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              136,
+              842,
+              135
+            ],
+            [
+              80,
+              243,
+              351,
+              135
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Clinicians sign in with their UTMB credentials and ask in plain language. Answers cite medical literature and guidelines, UTMB says. The tool went live in March.",
+          "x": 82,
+          "y": 391,
+          "w": 860,
+          "h": 128,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(221, 226, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              391,
+              814,
+              42
+            ],
+            [
+              82,
+              433,
+              747,
+              42
+            ],
+            [
+              82,
+              476,
+              743,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "UTMB's account",
+          "x": 80,
+          "y": 80,
+          "w": 232,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(221, 226, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              232,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "02 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(221, 226, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c4 c6 c7",
+          "x": 80,
+          "y": 1234,
+          "w": 129,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(221, 226, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              129,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 16751,
+      "ok": true,
+      "load_ms": 181,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 33,
+          "variance": 3570.9
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-03.html",
+      "png": "slide-03.png",
+      "console_errors": [
+        "TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(238, 241, 242)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Four hospital campuses",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 215,
+          "font_px": 109.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(238, 241, 242)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              136,
+              611,
+              135
+            ],
+            [
+              80,
+              243,
+              450,
+              135
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "UTMB has hospitals on four campuses and more than 100 clinics across Southeast Texas. One cart is drawn for each campus, to illustrate.",
+          "x": 82,
+          "y": 391,
+          "w": 840,
+          "h": 128,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(221, 226, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              391,
+              837,
+              42
+            ],
+            [
+              82,
+              433,
+              771,
+              42
+            ],
+            [
+              82,
+              476,
+              390,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "ONE CART PER CAMPUS",
+          "x": 600,
+          "y": 559,
+          "w": 301,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(227, 168, 59)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              600,
+              559,
+              301,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "UTMB, Southeast Texas",
+          "x": 80,
+          "y": 80,
+          "w": 348,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(221, 226, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              348,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "03 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(221, 226, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c11 c12",
+          "x": 80,
+          "y": 1234,
+          "w": 113,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(221, 226, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              113,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 20447,
+      "ok": true,
+      "load_ms": 204,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 49.4,
+          "variance": 4140.4
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-04.html",
+      "png": "slide-04.png",
+      "console_errors": [
+        "TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(238, 241, 242)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "More than half of its clinicians use it",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 195,
+          "font_px": 99.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(238, 241, 242)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              137,
+              834,
+              122
+            ],
+            [
+              80,
+              235,
+              631,
+              122
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "That is UTMB's own figure. The release prints no count of clinicians and no total. The fill stops at half and is left open past it.",
+          "x": 82,
+          "y": 371,
+          "w": 820,
+          "h": 128,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(221, 226, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              371,
+              795,
+              42
+            ],
+            [
+              82,
+              414,
+              811,
+              42
+            ],
+            [
+              82,
+              457,
+              184,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "HALF",
+          "x": 567,
+          "y": 697,
+          "w": 63,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(238, 241, 242)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              567,
+              697,
+              63,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "MORE THAN HALF",
+          "x": 268,
+          "y": 696,
+          "w": 222,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(227, 168, 59)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              268,
+              696,
+              222,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "NO TOTAL",
+          "x": 842,
+          "y": 698,
+          "w": 127,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(238, 241, 242)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              842,
+              698,
+              127,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "UTMB's release, September 22nd",
+          "x": 80,
+          "y": 80,
+          "w": 497,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(221, 226, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              497,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "04 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(221, 226, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c3 c9",
+          "x": 80,
+          "y": 1234,
+          "w": 80,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(221, 226, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              80,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 21675,
+      "ok": true,
+      "load_ms": 183,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 25,
+          "variance": 1716.4
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-05.html",
+      "png": "slide-05.png",
+      "console_errors": [
+        "TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [
+        {
+          "kind": "tiny-text",
+          "text": "TRAINING, 0.615",
+          "detail": "font-size 22px < 24px mobile floor (mark data-decorative if intentional)"
+        },
+        {
+          "kind": "tiny-text",
+          "text": "EXTERNAL, 0.574",
+          "detail": "font-size 22px < 24px mobile floor (mark data-decorative if intentional)"
+        },
+        {
+          "kind": "tiny-text",
+          "text": "OPENEVIDENCE AT UTMB, NONE PRINTED",
+          "detail": "font-size 22px < 24px mobile floor (mark data-decorative if intentional)"
+        }
+      ],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(238, 241, 242)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Use is reported. No test is printed.",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 195,
+          "font_px": 99.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(238, 241, 242)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              137,
+              790,
+              122
+            ],
+            [
+              80,
+              235,
+              589,
+              122
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "UTMB's release prints no accuracy, error or outcome figure. UTMB says it will keep evaluating use. The bars are a different tool, an MRI model of survival in brain metastases with UTMB radiology authors, scored by C-index.",
+          "x": 82,
+          "y": 371,
+          "w": 840,
+          "h": 160,
+          "font_px": 29,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(221, 226, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              371,
+              811,
+              40
+            ],
+            [
+              82,
+              411,
+              838,
+              40
+            ],
+            [
+              82,
+              451,
+              829,
+              40
+            ],
+            [
+              82,
+              491,
+              514,
+              40
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "TRAINING, 0.615",
+          "x": 689,
+          "y": 777,
+          "w": 201,
+          "h": 29,
+          "font_px": 22,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(238, 241, 242)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              689,
+              777,
+              201,
+              29
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "EXTERNAL, 0.574",
+          "x": 660,
+          "y": 849,
+          "w": 201,
+          "h": 29,
+          "font_px": 22,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(238, 241, 242)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              660,
+              849,
+              201,
+              29
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "OPENEVIDENCE AT UTMB, NONE PRINTED",
+          "x": 289,
+          "y": 908,
+          "w": 456,
+          "h": 29,
+          "font_px": 22,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(238, 241, 242)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              289,
+              908,
+              456,
+              29
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Radiology, UTMB co-authors",
+          "x": 80,
+          "y": 80,
+          "w": 431,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(221, 226, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              431,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "05 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(221, 226, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c1 c17 c40 c41",
+          "x": 80,
+          "y": 1234,
+          "w": 225,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(221, 226, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              225,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 22011,
+      "ok": true,
+      "load_ms": 177,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 26.5,
+          "variance": 1889.5
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-06.html",
+      "png": "slide-06.png",
+      "console_errors": [
+        "TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(238, 241, 242)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "UTMB's other AI platform",
+          "x": 80,
+          "y": 150,
+          "w": 560,
+          "h": 179,
+          "font_px": 91.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(238, 241, 242)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              138,
+              538,
+              112
+            ],
+            [
+              80,
+              228,
+              450,
+              112
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "UTMB's Qualified Health agreement began at $825,000. Item 65 on the Regents' August consent agenda would take it to $9,850,000 across all seven UT health institutions. It never names OpenEvidence, so the cart's screen is dark.",
+          "x": 82,
+          "y": 372,
+          "w": 510,
+          "h": 270,
+          "font_px": 28,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(221, 226, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              372,
+              471,
+              38
+            ],
+            [
+              82,
+              411,
+              456,
+              38
+            ],
+            [
+              82,
+              449,
+              442,
+              38
+            ],
+            [
+              82,
+              488,
+              496,
+              38
+            ],
+            [
+              82,
+              527,
+              488,
+              38
+            ],
+            [
+              82,
+              565,
+              464,
+              38
+            ],
+            [
+              82,
+              604,
+              192,
+              38
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "$825,000",
+          "x": 80,
+          "y": 948,
+          "w": 127,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(238, 241, 242)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              948,
+              127,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "$4,250,000 OCTOBER 2025",
+          "x": 393,
+          "y": 630,
+          "w": 190,
+          "h": 62,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(238, 241, 242)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              393,
+              630,
+              158,
+              31
+            ],
+            [
+              393,
+              661,
+              190,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "$9,850,000",
+          "x": 761,
+          "y": 132,
+          "w": 158,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(238, 241, 242)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              761,
+              132,
+              158,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "ADDS $5,600,000",
+          "x": 763,
+          "y": 628,
+          "w": 238,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(238, 241, 242)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              763,
+              628,
+              238,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "7 INSTITUTIONS",
+          "x": 762,
+          "y": 341,
+          "w": 222,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(238, 241, 242)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              762,
+              341,
+              222,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "UT System Regents, item 65",
+          "x": 80,
+          "y": 80,
+          "w": 431,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(221, 226, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              431,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "06 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(221, 226, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c26 c27 c28 c29 c30 c31 c34 c35",
+          "x": 80,
+          "y": 1234,
+          "w": 498,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(221, 226, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              498,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 19830,
+      "ok": true,
+      "load_ms": 195,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 18.6,
+          "variance": 1425.1
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-07.html",
+      "png": "slide-07.png",
+      "console_errors": [
+        "TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot shows its room"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [
+        {
+          "kind": "tiny-text",
+          "text": "(1) WITHIN THE LICENSE",
+          "detail": "font-size 23px < 24px mobile floor (mark data-decorative if intentional)"
+        },
+        {
+          "kind": "tiny-text",
+          "text": "(2) NOT BARRED BY LAW",
+          "detail": "font-size 23px < 24px mobile floor (mark data-decorative if intentional)"
+        },
+        {
+          "kind": "tiny-text",
+          "text": "(3) REVIEWS AI RECORDS",
+          "detail": "font-size 23px < 24px mobile floor (mark data-decorative if intentional)"
+        },
+        {
+          "kind": "tiny-text",
+          "text": "(B) DISCLOSE TO PATIENTS",
+          "detail": "font-size 23px < 24px mobile floor (mark data-decorative if intentional)"
+        }
+      ],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(238, 241, 242)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The law has a disclosure line",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 195,
+          "font_px": 99.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(238, 241, 242)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              137,
+              562,
+              122
+            ],
+            [
+              80,
+              235,
+              598,
+              122
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Since September 1st, 2025, Sec. 183.005 says a practitioner who uses AI for \"diagnostic purposes\" must disclose it to patients. UTMB calls its use \"clinical decision support.\" The record here can't say whether the section reaches this use.",
+          "x": 82,
+          "y": 369,
+          "w": 880,
+          "h": 171,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(221, 226, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              369,
+              873,
+              42
+            ],
+            [
+              82,
+              412,
+              832,
+              42
+            ],
+            [
+              82,
+              455,
+              868,
+              42
+            ],
+            [
+              82,
+              497,
+              871,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "(1) WITHIN THE LICENSE",
+          "x": 665,
+          "y": 651,
+          "w": 334,
+          "h": 30,
+          "font_px": 23,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(238, 241, 242)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              665,
+              651,
+              334,
+              30
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "(2) NOT BARRED BY LAW",
+          "x": 657,
+          "y": 735,
+          "w": 319,
+          "h": 30,
+          "font_px": 23,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(238, 241, 242)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              657,
+              735,
+              319,
+              30
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "(3) REVIEWS AI RECORDS",
+          "x": 648,
+          "y": 827,
+          "w": 334,
+          "h": 30,
+          "font_px": 23,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(238, 241, 242)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              648,
+              827,
+              334,
+              30
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "(B) DISCLOSE TO PATIENTS",
+          "x": 635,
+          "y": 928,
+          "w": 364,
+          "h": 30,
+          "font_px": 23,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(227, 168, 59)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              635,
+              928,
+              364,
+              30
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Texas Health and Safety Code",
+          "x": 80,
+          "y": 80,
+          "w": 464,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(221, 226, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              464,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "07 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(221, 226, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c9 c18 c19 c20 c21 c22 c23 c25",
+          "x": 80,
+          "y": 1234,
+          "w": 482,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(221, 226, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              482,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 20019,
+      "ok": true,
+      "load_ms": 151,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 70,
+          "variance": 4049.9
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-08.html",
+      "png": "slide-08.png",
+      "console_errors": [
+        "TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot shows its room"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(238, 241, 242)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "A patient can ask",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 116,
+          "font_px": 118.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(238, 241, 242)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              135,
+              844,
+              146
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Which tool was used? Did it shape the plan? Texas law has practitioners disclose AI used for diagnostic purposes.",
+          "x": 82,
+          "y": 292,
+          "w": 860,
+          "h": 86,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(221, 226, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              292,
+              847,
+              42
+            ],
+            [
+              82,
+              335,
+              800,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "An exam room, drawn to illustrate",
+          "x": 80,
+          "y": 80,
+          "w": 546,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(221, 226, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              546,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "08 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(221, 226, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c1 c23",
+          "x": 80,
+          "y": 1234,
+          "w": 96,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(221, 226, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              96,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 16667,
+      "ok": true,
+      "load_ms": 182,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 40.7,
+          "variance": 2280.8
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-09.html",
+      "png": "slide-09.png",
+      "console_errors": [
+        "TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(238, 241, 242)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Or ask the Regents",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 105,
+          "font_px": 107.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(238, 241, 242)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              136,
+              858,
+              132
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The Regents meet November 18th to 19th. The public may testify on any topic the agenda lists. Send the board's General Counsel a name and topic at least 24 hours ahead.",
+          "x": 82,
+          "y": 281,
+          "w": 910,
+          "h": 128,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(221, 226, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              281,
+              841,
+              42
+            ],
+            [
+              82,
+              324,
+              908,
+              42
+            ],
+            [
+              82,
+              367,
+              736,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "UT System Board of Regents, Austin",
+          "x": 80,
+          "y": 80,
+          "w": 563,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(221, 226, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              563,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "09 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(221, 226, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c12 c42 c43 c44",
+          "x": 80,
+          "y": 1234,
+          "w": 241,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(221, 226, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              241,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 19948,
+      "ok": true,
+      "load_ms": 161,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 26.4,
+          "variance": 2320.2
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    }
+  ]
+}

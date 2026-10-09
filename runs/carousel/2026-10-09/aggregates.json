@@ -1,0 +1,127 @@
+{
+ "date": "2026-10-09",
+ "_note": "Every count the deck states, with the claim it was quoted from, or the code that computed it.",
+ "aggregates": [
+  {
+   "phrase": "100 LIGHTS",
+   "slide": "slide-01.html",
+   "kind": "count",
+   "value": 100,
+   "quoted_from": "c12",
+   "quote": "more than 100 clinics",
+   "note": "one light per clinic up to the claim's own floor, figures.json clinics"
+  },
+  {
+   "phrase": "Four hospital campuses",
+   "slide": "slide-03.html",
+   "kind": "count",
+   "value": 4,
+   "quoted_from": "c11",
+   "quote": "With hospitals located on four campuses",
+   "note": "UTMB's own count, quoted"
+  },
+  {
+   "phrase": "four campuses",
+   "slide": "slide-03.html",
+   "kind": "count",
+   "value": 4,
+   "quoted_from": "c11",
+   "quote": "With hospitals located on four campuses",
+   "note": "the same count in the dek"
+  },
+  {
+   "phrase": "100 clinics across Southeast Texas",
+   "slide": "slide-03.html",
+   "kind": "count",
+   "value": 100,
+   "quoted_from": "c12",
+   "quote": "more than 100 clinics across Southeast Texas",
+   "note": "UTMB's own floor, quoted"
+  },
+  {
+   "phrase": "183.005 says",
+   "slide": "slide-07.html",
+   "kind": "count",
+   "value": 183.005,
+   "quoted_from": "c18",
+   "quote": "Sec. 183.005",
+   "note": "a section number quoted from the statute, not a count"
+  },
+  {
+   "phrase": "7 INSTITUTIONS",
+   "slide": "slide-06.html",
+   "kind": "count",
+   "value": 7,
+   "quoted_from": "c31",
+   "quote": "all seven U.T. System",
+   "note": "the item's own count, quoted, figures.json institutions"
+  },
+  {
+   "phrase": "November 18th to 19th",
+   "slide": "slide-09.html",
+   "kind": "span",
+   "value": 19,
+   "quoted_from": "c42",
+   "quote": "November 18-19, 2026",
+   "note": "the meeting's last day as the Regents' page prints it, November 18-19, 2026; the first day is 18 in the same string"
+  },
+  {
+   "phrase": "24 hours",
+   "slide": "slide-09.html",
+   "kind": "duration",
+   "value": 24,
+   "quoted_from": "c44",
+   "quote": "at least 24 hours",
+   "note": "quoted from Regents' Rule 10403"
+  },
+  {
+   "phrase": "November 18th to 19th",
+   "slide": "caption.txt",
+   "kind": "span",
+   "value": 19,
+   "quoted_from": "c42",
+   "quote": "November 18-19, 2026",
+   "note": "the meeting's last day as the Regents' page prints it, November 18-19, 2026; the first day is 18 in the same string"
+  },
+  {
+   "phrase": "24 hours",
+   "slide": "caption.txt",
+   "kind": "duration",
+   "value": 24,
+   "quoted_from": "c44",
+   "quote": "at least 24 hours",
+   "note": "the same notice"
+  },
+  {
+   "phrase": "four official records",
+   "slide": "first_comment.txt",
+   "kind": "count",
+   "value": 4,
+   "from_claims": [
+    "c18",
+    "c26",
+    "c42",
+    "c43"
+   ],
+   "note": "the statute (c18), the Regents' agenda book (c26), the Regents' meetings page (c42) and Regents' Rule 10403 (c43), one source document each, counted from the source block's own lines"
+  },
+  {
+   "phrase": "100 CLINICS",
+   "slide": "slide-01.html",
+   "kind": "count",
+   "value": 100,
+   "quoted_from": "c12",
+   "quote": "more than 100 clinics",
+   "note": "the label's second line, UTMB's own floor, quoted"
+  },
+  {
+   "phrase": "9,850,000 across",
+   "slide": "slide-06.html",
+   "kind": "count",
+   "value": 9850000,
+   "quoted_from": "c35",
+   "quote": "Qualified Health to $9,850,000",
+   "note": "the agreement's total as item 65 states it, checked in compute.py as 4,250,000 plus 5,600,000"
+  }
+ ]
+}

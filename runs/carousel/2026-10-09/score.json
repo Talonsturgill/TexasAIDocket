@@ -1,0 +1,202 @@
+{
+ "weighted_score": 6.84,
+ "judges": [
+  7.03,
+  6.78,
+  6.64
+ ],
+ "spread": 0.39,
+ "criteria": {
+  "artwork_craft": {
+   "score": 6.0,
+   "weight": 0.22,
+   "judges": [
+    6.5,
+    6.0,
+    6.0
+   ]
+  },
+  "deck_coherence": {
+   "score": 7.5,
+   "weight": 0.12,
+   "judges": [
+    7.5,
+    7.0,
+    7.5
+   ]
+  },
+  "claim_integrity": {
+   "score": 8.0,
+   "weight": 0.2,
+   "judges": [
+    8.0,
+    8.0,
+    7.5
+   ]
+  },
+  "story_and_stakes": {
+   "score": 7.0,
+   "weight": 0.16,
+   "judges": [
+    7.5,
+    7.0,
+    7.0
+   ]
+  },
+  "sequence_and_momentum": {
+   "score": 6.5,
+   "weight": 0.1,
+   "judges": [
+    6.5,
+    6.5,
+    6.5
+   ]
+  },
+  "voice": {
+   "score": 7.0,
+   "weight": 0.1,
+   "judges": [
+    7.0,
+    7.0,
+    6.5
+   ]
+  },
+  "variety": {
+   "score": 5.5,
+   "weight": 0.1,
+   "judges": [
+    5.5,
+    5.5,
+    5.0
+   ]
+  }
+ },
+ "hard_fails": [],
+ "hard_fails_by_judge": [],
+ "ship": true,
+ "threshold": 8.0,
+ "over_threshold": false,
+ "method": "per-criterion median across three judges, then weighted by the rubric",
+ "artwork_weakest_frames": [
+  {
+   "slide": 7,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Streaked veneer in the mid tones, the plate edge behind the dek, no cart or practical.",
+     "fix": "A near-black matte desk, the blotter below the dek's last line, the cart's lit screen at the frame edge as the practical."
+    },
+    {
+     "judge": 2,
+     "problem": "Mid-tone wood behind the type, a slate blotter edge cutting the dek, a flat page with no source, no room, no cart.",
+     "fix": "A near-black TXT.interior room, a black blotter, the cart's monitor base at the top edge with CH.screenLight as the only key, the blotter clear of the dek by 40 px."
+    },
+    {
+     "judge": 3,
+     "problem": "A flat page on a mat over streaky wood in the grey middle, the mat edge through the dek, no cart or source.",
+     "fix": "Pull back and up so the cart's lit monitor base enters top left as the only light, the desk near black outside its pool, the page below the dek with a contact shadow and curl."
+    }
+   ]
+  },
+  {
+   "slide": 1,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The lights a dotted line at mid frame across the mast, beaded at the left (9 repeats it).",
+     "fix": "Lights on a visible land band below the work surface, spread in depth so the left end opens."
+    },
+    {
+     "judge": 2,
+     "problem": "The lights a beaded row into the mast; a flat monitor back with no rim.",
+     "fix": "Lights spread in depth below the work surface so they never touch the mast; vents, bevel and a cool rim backlight on the housing."
+    },
+    {
+     "judge": 3,
+     "problem": "A primitive hero at full size, no leak, the lights a dotted line in the sky.",
+     "fix": "A bevelled housing with an emissive rim, seams and scuffing on the battery and surface, the lights on a faintly lit ground to a horizon."
+    }
+   ]
+  },
+  {
+   "slide": 6,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Sleeves as thick as the column's sections read as crates.",
+     "fix": "Thin clamp bands flush to the tube above a visible weld bead, long column shadows across the lower band."
+    },
+    {
+     "judge": 2,
+     "problem": "Crate-like columns, a toy cart, the tallest stops short of the top, a dead bottom band.",
+     "fix": "Spangled galvanized material with weld and plates, the target raised so the tallest bleeds off the top, long shadows across the lower band."
+    },
+    {
+     "judge": 3,
+     "problem": "Untextured tubes in a void, the scale cart a few pixels.",
+     "fix": "Camera at cart height at the short column so the cart reads 120 px at 432 and the tall column towers out of the top, galvanized faces at a grazing angle."
+    }
+   ]
+  },
+  {
+   "slide": 4,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "A rack of untextured slabs, the cart a sixth of the width, an empty lower band.",
+     "fix": "Camera at 0.7 m, 4 m off, the barrier angled 20 degrees off the right edge, modelled arrises and grime, the cart a third of the frame, crop the lower band."
+    },
+    {
+     "judge": 3,
+     "problem": "Stacked grey shelving slabs, no arrises or cast channel (5 shares it).",
+     "fix": "One jersey-profile precast unit with chamfered arrises, form-tie holes and base grime, the fill in a cast recess, lit low from the flood side."
+    }
+   ]
+  },
+  {
+   "slide": 5,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The barrier flat and square as a bar chart, a small cart, a dead lower band (4 shares it).",
+     "fix": "Camera at 0.6 m on a three-quarter angle so the barrier recedes, the cart a third of the frame, the pool widened into the lower third."
+    },
+    {
+     "judge": 2,
+     "problem": "The same camera and slabs as 4, flat bar extrusions.",
+     "fix": "A tight three-quarter close on the two bars and the empty channel, low and raking so the metal catches a specular edge."
+    }
+   ]
+  },
+  {
+   "slide": 3,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "A grey tiled floor in the mid tones, product shots.",
+     "fix": "A pool around the four carts, black between and in front, only the amber strips lit."
+    },
+    {
+     "judge": 2,
+     "problem": "A lit mid-grey floor takes the bottom 40 percent, flat decal mats.",
+     "fix": "Four pools, one per cart, black between, matte rubber mats with edge shading and contacts."
+    }
+   ]
+  }
+ ],
+ "rounds_derived": 3,
+ "rounds": 3,
+ "rounds_source": "this module's own log of cards it has scored",
+ "rounds_declared": 3,
+ "at_cap": true,
+ "rung": null,
+ "shortfall": "at the round cap the finished deck ships at 6.84, 1.16 under the 8.0 top rung. Name that in the email and the run record",
+ "craft_floor": "capped",
+ "craft_note": "at the round cap the craft floor stands down. The art median 6.0 is under 8.5 and the deck ships as it is. Name it in the run record"
+}

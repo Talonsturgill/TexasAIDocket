@@ -1,0 +1,65 @@
+<!doctype html>
+<!-- 2026-10-09, frame 4 of 9. Archetype DIAGRAM. RENDERED through txthree.js in the deck's floodlit world. UTMB's one usage figure as a length: a precast barrier on the apron whose top channel is cast full in amber to its half tick and left open past it, because the release prints more than half and no total. The cart stands behind it at the left, side on. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+  .dek { width:820px; }
+  .lab { font-size:24px; }
+  .lab.r { transform:translateX(-100%); }
+  .lab.c { transform:translateX(-50%); }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">More than half of its clinicians use it</h1>
+<p class="dek" data-follow="26">That is UTMB's own figure. The release prints no count of clinicians and no total. The fill stops at half and is left open past it.</p>
+<div class="lab c" id="l1">HALF</div>
+<div class="lab acc" id="l2">MORE THAN HALF</div>
+<div class="lab r" id="l3">NO TOTAL</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-09-chart.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "UTMB's release, September 22nd", counter: "04 / 09", src: "c3 c9", fit: { min: 76, max: 100, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 54 });
+  TXT.ground(R, { surface: 'grass', size: 12000, tile: 6, seed: 47, color: 0x22251a });
+  CH.apron(0.2, -2, 30, 26, { seed: 45 });
+  /* the share, from figures.json (c9): more than half, a floor with no denominator printed, so the fill
+   * is cast solid to exactly half the channel and fades open past it with no end cap */
+  const SHARE = 0.5, LEN = 3;
+  const bar = K.make('precast_barrier', { length: LEN, tick: SHARE, height: 1.0, channel: 0.2 }); bar.position.set(0.45, 0, 0); TXT.add(R, bar); TXT.contact(R, bar);
+  CH.channelFill(bar, 0, 0, SHARE * LEN, { kind: 'amber', fade: 0.55 });
+  /* the hero behind it at the left, side on, its monitor turned to the camera's side and lit */
+  const cart = CH.cart({ yaw: 0, badge: 'ok' });   /* the monitor edge on to the reader: its glow spills sideways */ cart.position.set(-1.62, 0, 0.2); cart.rotation.y = -Math.PI / 2 + 0.12; TXT.add(R, cart); TXT.contact(R, cart);
+  TXT.frame(R, { from: [1.25, 1.08, 5.8], look: [0.02, 1.3, 0] });   /* yawed down the barrier's length so it recedes, the cart nearer at the left */
+  CH.grass([-60, -90, 60, -14], { count: 6000, seed: 9 });
+  TXT.sky(R);
+  TXT.deckRig(R, CH.rigSpec(W, 8, 4096), CH.rigOpts([0, 0.6, 0], { distance: 30, shadowFar: 80 }));
+  CH.screenLight(cart, { i: 1.2, range: 2.4 });
+  TXT.stage(R, [bar, cart], { poolInner: 1.2, poolOuter: 3.0 });
+  TXT.weather(R, { grime: 0.22, height: 0.3 });
+  const c = bar.userData.channel(0);
+  CH.labelAt('l1', [0.45 + c.x0 + SHARE * LEN, 1.0, 0.25], 0, -46);
+  CH.labelAt('l2', [0.45 + c.x0, 1.0, 0.25], 0, -46);
+  CH.labelAt('l3', [0.45 + c.x0 + LEN, 1.0, 0.25], 0, -46);   /* over the open channel, right aligned to its end */
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0.3 });
+  TXDECK.finish(cx, { bloom: { threshold: 0.9, strength: 0.08, radius: 10 } });
+  return true;
+})();
+</script>
+</body>
+</html>

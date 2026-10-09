@@ -1,0 +1,79 @@
+{
+ "lens": "integrity",
+ "round": 3,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.5,
+   "why": "The value register is met (preflight medians 3.1, 1.0, 3.1, 0.80 to 0.86 near black) and 8 is the strongest frame. Short of the 10: 7's streaked veneer lifts it into the mid tones with the plate edge behind the dek; 4 and 5's slab laid flat as a bar chart with a small cart and a dead lower band; 1 and 9's lights a dotted line across the mast, beaded at the left; 3's grey floor in the mid tones; 6's sleeves read as crates."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "One cart on 8 of 9 frames, one cold flood, amber held to what the record prints; the swivel and the 1 and 9 bookend work; 4 and 5 hold one camera. 7 sits outside."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.0,
+   "why": "No numeral failed refutation; slide 1 throws unless 100 lights land in frame; every rejected finding honoured; all sources primary. Deductions: 5's empty OpenEvidence channel on a C-index axis suggests a missing score and 'No test is printed' is broader than the dek; 7's '(B)' is a different level in Texas statute numbering and '(2) NOT BARRED BY LAW' drops 'restricted'; 6's '$9,850,000 across all seven' is looser than c31 and c35."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.5,
+   "why": "What, who, where and the law beside it, honestly unjoined, with concrete next steps. The Regents route is weak: c45 appears only in the web edition and no frame shows the Regents have a role over OpenEvidence."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "The cover earns the swipe, 2 pays, 8 to 9 land. The middle sags: 3 cuttable, 5 through another tool's study, 6 a branch, the statute only at 7."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Clean, restrained, attributive; the neutral line is the house voice at its best; every house rule passes. Some lines narrate the drawing; 'Four hospital campuses' is flat."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 5.5,
+   "why": "Fresh visuals; the editorial move neighbours no. 27 (22 days), no. 43 (4 days, the same UT REAL Health AI funding) and no. 23's exhibit on frame 5. Not a topic repeat."
+  }
+ ],
+ "weighted_score": 7.03,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Replace frame 5's borrowed C-index bars with something from this story, UTMB's own evaluation commitments (c16, c17) or Rule 10403's agenda-only limit (c45) beside the November meeting.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 7,
+   "problem": "Streaked veneer in the mid tones, the plate edge behind the dek, no cart or practical.",
+   "fix": "A near-black matte desk, the blotter below the dek's last line, the cart's lit screen at the frame edge as the practical."
+  },
+  {
+   "slide": 5,
+   "problem": "The barrier flat and square as a bar chart, a small cart, a dead lower band (4 shares it).",
+   "fix": "Camera at 0.6 m on a three-quarter angle so the barrier recedes, the cart a third of the frame, the pool widened into the lower third."
+  },
+  {
+   "slide": 1,
+   "problem": "The lights a dotted line at mid frame across the mast, beaded at the left (9 repeats it).",
+   "fix": "Lights on a visible land band below the work surface, spread in depth so the left end opens."
+  },
+  {
+   "slide": 3,
+   "problem": "A grey tiled floor in the mid tones, product shots.",
+   "fix": "A pool around the four carts, black between and in front, only the amber strips lit."
+  },
+  {
+   "slide": 6,
+   "problem": "Sleeves as thick as the column's sections read as crates.",
+   "fix": "Thin clamp bands flush to the tube above a visible weld bead, long column shadows across the lower band."
+  }
+ ]
+}

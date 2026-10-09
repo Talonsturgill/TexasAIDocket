@@ -38,6 +38,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-06 · Local reporting still carries the court's September 15th vote moving the Axon money to corrections officers. The sheriff's posted commitment is unconfirmed, because the agenda portal bars automated readers and the county's minutes did not answer.
 - 2026-10-07 · Community Impact's account of the reallocation away from the AI report writing tool still reads as cited. The county's own agenda and the sheriff's posted promise could not be read, so that part is unconfirmed.
 - 2026-10-08 · The sheriff's posted promise and the county's own agenda remain unconfirmed, because both still bar automated readers. The published account of the reallocation away from the AI report writing tool is the part the record can still read.
+- 2026-10-09 · The sheriff's posted promise remains unconfirmed on the county's agenda, which bars automated readers. The published account of the reallocation still reads as cited.
 
 ## Evidence
 

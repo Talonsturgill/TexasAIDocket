@@ -1,0 +1,60 @@
+<!doctype html>
+<!-- 2026-10-09, frame 3 of 9. Archetype OBJECT_AND_CAPTION. RENDERED through txthree.js in the deck's floodlit world. UTMB's four hospital campuses as four of the deck's one cart, through a long lens down a diagonal row on the apron, each on its own amber bay strip, monitors turned away and lit, staged as one subject. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+  .dek { width:840px; }
+  .lab { font-size:24px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">Four hospital campuses</h1>
+<p class="dek" data-follow="26">UTMB has hospitals on four campuses and more than 100 clinics across Southeast Texas. One cart is drawn for each campus, to illustrate.</p>
+<div class="lab acc" id="l1">ONE CART PER CAMPUS</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-09-chart.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "UTMB, Southeast Texas", counter: "03 / 09", src: "c11 c12", fit: { min: 80, max: 110, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 40 });
+  TXT.ground(R, { surface: 'grass', size: 12000, tile: 6, seed: 53, color: 0x22251a });
+  CH.apron(0, -2, 34, 30, { seed: 51 });
+  /* the campuses, from figures.json (c11): one cart each, in a diagonal row, each on its own amber bay strip */
+  const CAMPUSES = 4, carts = [];
+  const strip = new THREE.MeshBasicMaterial({ color: 0xE3A83B, toneMapped: false });   /* the record's accent, unlit so the flood can't bleach it */
+  for (let i = 0; i < CAMPUSES; i++) {
+    const t = i - (CAMPUSES - 1) / 2, x = t * 1.45, z = -t * 1.3;
+    const c = CH.cart({ yaw: 180, seed: 5 + i }); c.position.set(x, 0.04, z); c.rotation.y = 0.08 * t; TXT.add(R, c); TXT.contact(R, c);
+    const s = K.box(1.0, 0.04, 1.0, strip, x, 0, z, 0.004); s.receiveShadow = true; s.rotation.y = 0.08 * t; TXT.add(R, s);   /* a low amber bay pad the cart is parked on */
+    CH.screenLight(c, { i: 1.4, range: 2.2 });
+    carts.push(c);
+  }
+  TXT.frame(R, { from: [-3.9, 0.85, 6.4], look: [0.6, 1.55, -0.8] });   /* low, off the nearest cart's shoulder, the row receding to the right */   
+  /* no grass scatter here: the far field stays black so the four carts stand apart */
+  TXT.sky(R);
+  TXT.deckRig(R, CH.rigSpec(W, 9, 4096), CH.rigOpts([0, 0.8, 0], { distance: 40, shadowFar: 100 }));
+  TXT.stage(R, carts, { poolInner: 2.4, poolOuter: 4.6 });   /* one lit apron under the row, falling to black past it */   /* the apron between the carts goes dark, so each cart stands alone on its pad, a count */
+  TXT.weather(R, { grime: 0.22, height: 0.3 });
+  { const d = document.querySelector('.dek').getBoundingClientRect(); const el = document.getElementById('l1'); el.style.left = '600px'; el.style.top = Math.round(d.bottom + 40) + 'px'; }   /* under the dek, over the receding row */
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0.3 });
+  TXDECK.finish(cx, { bloom: { threshold: 0.9, strength: 0.08, radius: 10 } });
+  return true;
+})();
+</script>
+</body>
+</html>

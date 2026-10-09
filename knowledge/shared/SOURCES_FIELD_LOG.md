@@ -1989,6 +1989,27 @@ be the better primary.
 **www.texasattorneygeneral.gov answered 402 again**, and **capitol.texas.gov's tlodocs path refused
 this project's client**. Neither was used today.
 
+## 2026-10-09
+
+**news.rice.edu answers 406 to a request with no Accept header and 200 with one.** `reverify.py`
+reported Rice unreachable for that reason alone. The page itself is readable.
+
+**ERCOT's board PDF answered 403 to a request with no Accept header** and served the file once one
+was sent, the same shape as Rice.
+
+**www.wilcotx.gov and www.brownsvilletx.gov refused this project's agent and a browser agent alike,
+page and robots.txt both 403.** tx-2026-0029 and tx-2026-0128 carry a `blocks_every_client` block
+dated October 9th.
+
+**Taylor's newsflash notice for the amended Compal abatement is gone (404, now a redirect)**, and the
+meeting video stays disallowed by robots.txt. tx-2026-0027 stays rotten for want of a reachable
+record.
+
+**Correction to the Taylor entry above, same day.** Re-measured at 11:50 UTC, the council video on
+`taylortx.new.swagit.com` answers 200 and that host's robots.txt disallows nothing, so it does not
+bar automated readers. The notice is still a 302 to the city's 404 page, and the city publishes no
+written outcome beside the video.
+
 
 ## October 9th, 2026 - Dispatch publication record repair
 
@@ -2058,3 +2079,11 @@ The exact earlier title, summary and five notice-era claims follow as historical
   "previous_summary": "The City of Taylor published a public notice for its City Council. The council would consider an Amended and Restated Tax Abatement Agreement with Compal Technology, Inc. and PDC TP 01 LOT A LLC. The notice set that consideration for the regularly scheduled meeting on August 13th, 2026 at 6:00 p.m. The property sits in Reinvestment Zone No. 11, which the city calls the Taylor Port Zone. The notice describes the improvements as the renovation of the Taylor Port Building. It covers the design and manufacture of electronics and related items at an estimated cost of approximately $ 200 Million. Compal already holds a separate Chapter 312 abatement from Williamson County for a server service center in Georgetown. The same contract manufacturer is now the subject of incentive agreements at two levels of Central Texas government. The August 13th vote has not been confirmed against a published minute."
 }
 ```
+
+
+**Same day, after PR 415 landed on `main`.** The dispatch repair above found the written outcome in
+the CivicClerk minutes, which record unanimous approval of the amended Compal agreement, and
+tx-2026-0027 cites those now. This run's interim stamp on that item gave way to the repair at the
+merge. The city's own site still carries no written outcome. This run's 11:50 UTC measurement of
+`taylortx.new.swagit.com` found its robots.txt disallowing nothing, which differs from the repair's
+account of that video, and no outcome was drawn from the video either way.

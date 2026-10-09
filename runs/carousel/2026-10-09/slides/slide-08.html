@@ -1,0 +1,50 @@
+<!doctype html>
+<!-- 2026-10-09, frame 8 of 9. Archetype OBJECT_AND_CAPTION. RENDERED through txthree.js in a TXT.interior exam room in the deck's floodlit world. The cart three quarters on, its monitor turned toward an empty patient chair, the screen the brightest thing in a dark room, the flood behind the window glass. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+  .dek { width:860px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">A patient can ask</h1>
+<p class="dek" data-follow="26">Which tool was used? Did it shape the plan? Texas law has practitioners disclose AI used for diagnostic purposes.</p>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-09-chart.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "An exam room, drawn to illustrate", counter: "08 / 09", src: "c1 c23", fit: { min: 96, max: 124, maxLines: 1 } });
+  const R = CH.stage(TXT, gl, W, { fov: 46 });
+  /* the room, dark around one source: the lot's flood is a cold window on the right wall behind the cart, and the walls stay in shadow */
+  TXT.interior(R, { w: 4.2, d: 3.8, h: 2.75, floor: 'concrete', wall: 0x1f2226, window: null, ceiling: true, light: 0.035 });
+  /* the empty patient chair at the near left, facing the cart */
+  const chair = K.make('office_chair', { style: 'task', color: 0x1f2328, arms: true, seed: 4 }); chair.position.set(-1.05, 0, 1.15); chair.rotation.y = Math.PI * 0.78; TXT.add(R, chair); TXT.contact(R, chair);
+  /* the hero: its push handle toward the clinician's side, its monitor swivelled round to face the chair */
+  const cart = CH.cart({ yaw: 150, trayOut: 0.06 }); cart.position.set(0.55, 0, -0.55); cart.rotation.y = -Math.PI * 0.82; TXT.add(R, cart); TXT.contact(R, cart);
+  TXT.frame(R, { from: [-1.7, 1.42, 2.8], look: [0.3, 1.0, -0.9] });
+  TXT.deckRig(R, CH.rigSpec(W, 6, 4096), CH.rigOpts([0.2, 0.6, -0.4], { distance: 12, shadowFar: 30 }));
+  CH.screenLight(cart, { i: 1.8, range: 2.4 });   /* the answer's light falls toward the chair */
+  TXT.stage(R, cart, { poolInner: 1.2, poolOuter: 3.0 });
+  TXT.weather(R, { grime: 0.16, height: 0.2 });
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0.3, veil: 0.5, veilH: 300 });
+  TXDECK.finish(cx, { bloom: { threshold: 0.92, strength: 0.07, radius: 10 } });
+  return true;
+})();
+</script>
+</body>
+</html>

@@ -14373,5 +14373,280 @@
    }
   ],
   "id": "tx-2026-0207"
+ },
+ {
+  "title": "UTMB puts OpenEvidence's AI answers inside its health record and says more than half of its clinicians use it",
+  "summary": "The University of Texas Medical Branch announced on September 22nd that OpenEvidence, an AI platform that answers clinical questions with citations to medical literature, sits inside its electronic health record. UTMB says the integration went live in March and that clinicians sign in with their usual UTMB credentials. It says more than half of its clinicians now actively use the tool for clinical decision support. UTMB has hospitals on four campuses and more than 100 clinics across Southeast Texas. The release reports use and query growth but publishes no measure of whether the answers are accurate or whether patient care changed. UTMB says it will keep evaluating use and clinician experience.",
+  "topic": "health-and-education",
+  "decider": {
+   "name": "University of Texas Medical Branch",
+   "type": "state-agency"
+  },
+  "geography": {
+   "statewide": false,
+   "counties": [
+    "Galveston"
+   ],
+   "on_ercot": true,
+   "metro": "Houston-Pasadena-The Woodlands, TX"
+  },
+  "status": "decided",
+  "key_dates": [
+   {
+    "date": "2026-09-22",
+    "kind": "filed",
+    "note": "UTMB and OpenEvidence announce the collaboration, the date of the release"
+   }
+  ],
+  "public_access": {
+   "room": "contact_only",
+   "how": "UTMB is a component of the University of Texas System. Its Board of Regents meets in public in Austin, posts its agendas and takes testimony on the topics an agenda lists.",
+   "url": "https://www.utsystem.edu/board-of-regents/meetings",
+   "closes": null
+  },
+  "claims": [
+   {
+    "text": "UTMB and OpenEvidence announced a collaboration bringing evidence based AI into clinicians' workflows inside the electronic health record.",
+    "verbatim_quote": "The University of Texas Medical Branch (UTMB) and OpenEvidence today announced a collaboration that brings evidence-based artificial intelligence directly into clinicians’ everyday workflows, giving UTMB physicians and other clinical users secure access to cited medical evidence from within the electronic health record.",
+    "source_url": "https://www.utmb.edu/utmb/news-article/utmb-news/2026/09/22/utmb-collaborates-with-openevidence-to-integrate-ai-platform-directly-into-clinical-workflows",
+    "source_title": "UTMB news release, UTMB collaborates with OpenEvidence to integrate AI platform directly into clinical workflows",
+    "source_type": "primary_official",
+    "fetched": "2026-10-09",
+    "id": "tx-2026-0208-c1"
+   },
+   {
+    "text": "The integration went live at UTMB in March.",
+    "verbatim_quote": "The integration, which went live at UTMB in March, was developed to give clinicians access to AI-enabled information resources within existing clinical workflows.",
+    "source_url": "https://www.utmb.edu/utmb/news-article/utmb-news/2026/09/22/utmb-collaborates-with-openevidence-to-integrate-ai-platform-directly-into-clinical-workflows",
+    "source_title": "UTMB news release, UTMB collaborates with OpenEvidence to integrate AI platform directly into clinical workflows",
+    "source_type": "primary_official",
+    "fetched": "2026-10-09",
+    "id": "tx-2026-0208-c2"
+   },
+   {
+    "text": "Clinicians sign in with their standard UTMB credentials.",
+    "verbatim_quote": "Clinicians access the platform using their standard UTMB enterprise credentials.",
+    "source_url": "https://www.utmb.edu/utmb/news-article/utmb-news/2026/09/22/utmb-collaborates-with-openevidence-to-integrate-ai-platform-directly-into-clinical-workflows",
+    "source_title": "UTMB news release, UTMB collaborates with OpenEvidence to integrate AI platform directly into clinical workflows",
+    "source_type": "primary_official",
+    "fetched": "2026-10-09",
+    "id": "tx-2026-0208-c3"
+   },
+   {
+    "text": "Clinicians ask questions in natural language and get answers with citations.",
+    "verbatim_quote": "Once authenticated, clinicians can ask clinical questions in natural language and receive responses that include citations to medical literature, clinical guidelines, and other  authoritative  sources.",
+    "source_url": "https://www.utmb.edu/utmb/news-article/utmb-news/2026/09/22/utmb-collaborates-with-openevidence-to-integrate-ai-platform-directly-into-clinical-workflows",
+    "source_title": "UTMB news release, UTMB collaborates with OpenEvidence to integrate AI platform directly into clinical workflows",
+    "source_type": "primary_official",
+    "fetched": "2026-10-09",
+    "id": "tx-2026-0208-c4"
+   },
+   {
+    "text": "UTMB says more than half of its clinicians actively use OpenEvidence.",
+    "verbatim_quote": "Today, more than half of UTMB clinicians actively use OpenEvidence for clinical decision support.",
+    "source_url": "https://www.utmb.edu/utmb/news-article/utmb-news/2026/09/22/utmb-collaborates-with-openevidence-to-integrate-ai-platform-directly-into-clinical-workflows",
+    "source_title": "UTMB news release, UTMB collaborates with OpenEvidence to integrate AI platform directly into clinical workflows",
+    "source_type": "primary_official",
+    "fetched": "2026-10-09",
+    "id": "tx-2026-0208-c5"
+   },
+   {
+    "text": "UTMB has hospitals on four campuses and more than 100 clinics across Southeast Texas.",
+    "verbatim_quote": "With hospitals located on four campuses in addition to more than 100 clinics across Southeast Texas, the geographic reach of UTMB makes rapid access to current medical knowledge particularly valuable.",
+    "source_url": "https://www.utmb.edu/utmb/news-article/utmb-news/2026/09/22/utmb-collaborates-with-openevidence-to-integrate-ai-platform-directly-into-clinical-workflows",
+    "source_title": "UTMB news release, UTMB collaborates with OpenEvidence to integrate AI platform directly into clinical workflows",
+    "source_type": "primary_official",
+    "fetched": "2026-10-09",
+    "id": "tx-2026-0208-c6"
+   },
+   {
+    "text": "UTMB says it will keep evaluating use, clinician experience and how evidence is delivered.",
+    "verbatim_quote": "As adoption grows, UTMB will continue evaluating utilization, clinician experience, and opportunities to improve how evidence and clinical intelligence are delivered at the point of care.",
+    "source_url": "https://www.utmb.edu/utmb/news-article/utmb-news/2026/09/22/utmb-collaborates-with-openevidence-to-integrate-ai-platform-directly-into-clinical-workflows",
+    "source_title": "UTMB news release, UTMB collaborates with OpenEvidence to integrate AI platform directly into clinical workflows",
+    "source_type": "primary_official",
+    "fetched": "2026-10-09",
+    "id": "tx-2026-0208-c7"
+   },
+   {
+    "text": "UTMB reports growth in clinicians using the tool and in queries since March.",
+    "verbatim_quote": "Since the March launch, UTMB has seen strong growth in both the number of clinicians using OpenEvidence and the volume of clinical queries submitted through the platform.",
+    "source_url": "https://www.utmb.edu/utmb/news-article/utmb-news/2026/09/22/utmb-collaborates-with-openevidence-to-integrate-ai-platform-directly-into-clinical-workflows",
+    "source_title": "UTMB news release, UTMB collaborates with OpenEvidence to integrate AI platform directly into clinical workflows",
+    "source_type": "primary_official",
+    "fetched": "2026-10-09",
+    "id": "tx-2026-0208-c8"
+   }
+  ],
+  "confidence": "high",
+  "notes_for_editor": "Admitted on UTMB's own release of September 22nd, read in full on October 9th. Galveston is the county of UTMB's main campus. The release names four hospital campuses without placing them, so only Galveston is named here.",
+  "history": [
+   {
+    "date": "2026-10-09",
+    "note": "Admitted to the record on UTMB's own release announcing the OpenEvidence integration."
+   }
+  ],
+  "last_verified": "2026-10-09",
+  "id": "tx-2026-0208"
+ },
+ {
+  "title": "Kodiak and Charger USA start hauling freight between Dallas and Laredo on autonomous trucks with a safety driver behind the wheel",
+  "summary": "Kodiak AI and Charger USA announced on October 8th that trucks running the Kodiak Driver are hauling refrigerated and dry freight. The lane runs between Charger's terminals in Dallas and Laredo. The companies say their first delivery was on September 8th. A safety driver sits behind the wheel today, and the companies say they intend to go driverless once Kodiak completes its safety case. It is Kodiak's first route serving Laredo. No public body voted on it.",
+  "topic": "state-policy",
+  "decider": {
+   "name": "Kodiak AI and Charger USA",
+   "type": "company"
+  },
+  "geography": {
+   "statewide": false,
+   "counties": [
+    "Dallas",
+    "Webb"
+   ],
+   "on_ercot": true
+  },
+  "status": "decided",
+  "key_dates": [
+   {
+    "date": "2026-09-08",
+    "kind": "effective",
+    "note": "First delivery on the lane, as the release states"
+   },
+   {
+    "date": "2026-10-08",
+    "kind": "filed",
+    "note": "The companies announce the lane, the date of the release"
+   }
+  ],
+  "public_access": {
+   "room": "contact_only",
+   "how": "This is a company's own operation and no public body voted on it. Autonomous commercial vehicles in Texas run under an authorization from the Texas Department of Motor Vehicles, whose board meets in public in Austin. A concern about a truck on the road goes to the Department of Public Safety.",
+   "url": "https://www.txdmv.gov/about-us/txdmv-board-meetings",
+   "closes": null
+  },
+  "claims": [
+   {
+    "text": "Kodiak Driver trucks haul freight on the lane between Charger's terminals in Dallas and Laredo.",
+    "verbatim_quote": "Through this collaboration, trucks equipped with the Kodiak Driver, Kodiak's autonomous driving system, are hauling refrigerated and dry freight for consumer packaged goods and food and beverage customers on the 435-mile lane between Charger’s terminals in Dallas and Laredo, Texas.",
+    "source_url": "https://www.globenewswire.com/news-release/2026/10/08/3377348/0/en/kodiak-ai-and-charger-usa-launch-autonomous-trucking-between-dallas-and-laredo.html",
+    "source_title": "Kodiak AI press release, Kodiak AI and Charger USA Launch Autonomous Trucking Between Dallas and Laredo",
+    "source_type": "primary_corporate",
+    "fetched": "2026-10-09",
+    "id": "tx-2026-0209-c1"
+   },
+   {
+    "text": "The companies say their first delivery was on September 8th.",
+    "verbatim_quote": "Kodiak and Charger completed their first delivery on September 8, 2026.",
+    "source_url": "https://www.globenewswire.com/news-release/2026/10/08/3377348/0/en/kodiak-ai-and-charger-usa-launch-autonomous-trucking-between-dallas-and-laredo.html",
+    "source_title": "Kodiak AI press release, Kodiak AI and Charger USA Launch Autonomous Trucking Between Dallas and Laredo",
+    "source_type": "primary_corporate",
+    "fetched": "2026-10-09",
+    "id": "tx-2026-0209-c2"
+   },
+   {
+    "text": "A safety driver is behind the wheel today.",
+    "verbatim_quote": "Today, the companies are operating with a safety driver behind the wheel.",
+    "source_url": "https://www.globenewswire.com/news-release/2026/10/08/3377348/0/en/kodiak-ai-and-charger-usa-launch-autonomous-trucking-between-dallas-and-laredo.html",
+    "source_title": "Kodiak AI press release, Kodiak AI and Charger USA Launch Autonomous Trucking Between Dallas and Laredo",
+    "source_type": "primary_corporate",
+    "fetched": "2026-10-09",
+    "id": "tx-2026-0209-c3"
+   },
+   {
+    "text": "The companies intend to go driverless once Kodiak completes its safety case.",
+    "verbatim_quote": "The companies intend to transition the lane to driverless operations once Kodiak completes its safety case.",
+    "source_url": "https://www.globenewswire.com/news-release/2026/10/08/3377348/0/en/kodiak-ai-and-charger-usa-launch-autonomous-trucking-between-dallas-and-laredo.html",
+    "source_title": "Kodiak AI press release, Kodiak AI and Charger USA Launch Autonomous Trucking Between Dallas and Laredo",
+    "source_type": "primary_corporate",
+    "fetched": "2026-10-09",
+    "id": "tx-2026-0209-c4"
+   }
+  ],
+  "confidence": "high",
+  "notes_for_editor": "Admitted on Kodiak's own release as carried by GlobeNewswire, dated October 8th. The counties are Dallas and Webb, the two terminal cities the release names.",
+  "history": [
+   {
+    "date": "2026-10-09",
+    "note": "Admitted to the record on Kodiak's own release announcing the Dallas to Laredo lane."
+   }
+  ],
+  "last_verified": "2026-10-09",
+  "id": "tx-2026-0209"
+ },
+ {
+  "title": "UT REAL Health AI signs a systemwide agreement letting UT health institutions use Abridge's ambient note taking",
+  "summary": "Abridge announced on October 8th an enterprise agreement with UT REAL Health AI, the University of Texas System's health AI initiative. The agreement gives UT health institutions a systemwide framework to use Abridge's clinician platform, which listens to visits and drafts notes, while each institution keeps its own decisions. Abridge says its pilot with UT's health systems has included clinicians at five locations. The adoption figures in the release are the vendor's own. It reports no measure of note accuracy or time saved, and states no price.",
+  "topic": "health-and-education",
+  "decider": {
+   "name": "The University of Texas System",
+   "type": "state-agency"
+  },
+  "geography": {
+   "statewide": true,
+   "counties": [],
+   "on_ercot": true
+  },
+  "status": "decided",
+  "key_dates": [
+   {
+    "date": "2026-10-08",
+    "kind": "effective",
+    "note": "Agreement announced, the date of the release"
+   }
+  ],
+  "public_access": {
+   "room": "contact_only",
+   "how": "UT REAL Health AI is a University of Texas System initiative. The System's Board of Regents meets in public in Austin and posts its agendas and contracts for approval.",
+   "url": "https://www.utsystem.edu/board-of-regents/meetings",
+   "closes": null
+  },
+  "claims": [
+   {
+    "text": "Abridge announced an enterprise agreement with UT REAL Health AI across the UT System.",
+    "verbatim_quote": "Abridge today announced an enterprise-wide agreement with University of Texas REAL Health AI to expand access to Abridge’s clinician intelligence platform across the UT System.",
+    "source_url": "https://www.abridge.com/press-release/ut-health-enterprise-wide",
+    "source_title": "Abridge press release, Abridge Announces Enterprise-Wide Agreement to Expand AI-Enabled Care Across The University of Texas System",
+    "source_type": "primary_corporate",
+    "fetched": "2026-10-09",
+    "id": "tx-2026-0210-c1"
+   },
+   {
+    "text": "The framework lets institutions use Abridge while keeping their own decisions.",
+    "verbatim_quote": "The agreement establishes a systemwide framework through which UT health institutions can access Abridge, while enabling local decision-making, innovation, real-world testing, and continued development of new clinical and operational use cases.",
+    "source_url": "https://www.abridge.com/press-release/ut-health-enterprise-wide",
+    "source_title": "Abridge press release, Abridge Announces Enterprise-Wide Agreement to Expand AI-Enabled Care Across The University of Texas System",
+    "source_type": "primary_corporate",
+    "fetched": "2026-10-09",
+    "id": "tx-2026-0210-c2"
+   },
+   {
+    "text": "The pilot with UT's health systems has included clinicians at five locations.",
+    "verbatim_quote": "That same year, Abridge launched a pilot with UT’s Health Systems which has included clinicians at five geographic locations across outpatient, inpatient, and emergency department settings and more than 50 specialties.",
+    "source_url": "https://www.abridge.com/press-release/ut-health-enterprise-wide",
+    "source_title": "Abridge press release, Abridge Announces Enterprise-Wide Agreement to Expand AI-Enabled Care Across The University of Texas System",
+    "source_type": "primary_corporate",
+    "fetched": "2026-10-09",
+    "id": "tx-2026-0210-c3"
+   },
+   {
+    "text": "Abridge reports its own pilot growth figures.",
+    "verbatim_quote": "Adoption has increased significantly, with the pilot growing 73% in recording clinicians and 80% in monthly notes over the last 12 months, contributing to the expansion of Abridge availability enterprise-wide.",
+    "source_url": "https://www.abridge.com/press-release/ut-health-enterprise-wide",
+    "source_title": "Abridge press release, Abridge Announces Enterprise-Wide Agreement to Expand AI-Enabled Care Across The University of Texas System",
+    "source_type": "primary_corporate",
+    "fetched": "2026-10-09",
+    "id": "tx-2026-0210-c4"
+   }
+  ],
+  "confidence": "high",
+  "notes_for_editor": "Admitted on Abridge's own release of October 8th. The vendor's adoption figures are reported as the vendor's. Statewide because the framework covers the UT System's health institutions, which the release does not place.",
+  "history": [
+   {
+    "date": "2026-10-09",
+    "note": "Admitted to the record on Abridge's own release of the systemwide agreement."
+   }
+  ],
+  "last_verified": "2026-10-09",
+  "id": "tx-2026-0210"
  }
 ]
