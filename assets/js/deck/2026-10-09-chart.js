@@ -286,7 +286,7 @@
     var THREE = N.T, K = N.K, c = kerb.userData.channel(i), g = new THREE.Group(), alu = o.kind === "alu";
     var mk = function (op) {
       return alu ? K.mat("ch-bar", { color: 0xe6e9ec, roughness: 0.3, metalness: 0.55 })
-                 : new THREE.MeshStandardMaterial({ color: 0xE3A83B, emissive: 0xE3A83B, emissiveIntensity: 0.35, roughness: 0.42, transparent: op < 1, opacity: op, depthWrite: op >= 1 });
+                 : new THREE.MeshBasicMaterial({ color: 0xE3A83B, toneMapped: false, transparent: op < 1, opacity: op, depthWrite: op >= 1 });   /* the record's accent as printed: unlit, so the flood can't bleach it */
     };
     var h = alu ? c.h - 0.03 : c.h - 0.008, d = alu ? c.d + 0.03 : c.d - 0.006, y = c.y + (c.h - h) / 2, z = c.z + (alu ? 0.015 : -0.002);
     K.box(to - from, h, d, mk(1), c.x0 + (from + to) / 2, y, z, alu ? 0.008 : 0.002, g);
