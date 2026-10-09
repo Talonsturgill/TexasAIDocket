@@ -1,0 +1,84 @@
+{
+ "lens": "craft",
+ "round": 3,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.0,
+   "why": "8 is the best frame, 2 holds, 1 and 9 stage the cart in a lit pool with contacts. The 100 lights read as a beaded row into the mast at 432 px and 1's monitor back is a flat plate. 4 and 5 are the same rack of untextured slabs with a small cart and an empty lower band. 6's columns are drawn to scale (125, 655, 1513 px) but read as crates, the cart a toy, the bottom 18 percent dead. 3's lit mid-grey floor takes the bottom 40 percent with flat decal mats. 7 fails the stage: streaky mid-tone wood, a slate blotter whose edge cuts the dek, no source, no cart. Four frames lean on primitives or mid tones."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.0,
+   "why": "One hero on 8 of 9 frames under one cold flood; the monitor swivel and the 1 and 9 bookend work. 7 sits well outside; 3's bright floor breaks the value track; 4 and 5 read as one frame twice."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.0,
+   "why": "Every numeral traces, every source primary, the rejected list honoured. The one stretch is slide 5's different tool's C-index beside OpenEvidence, labelled but inviting a comparison."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.0,
+   "why": "What happened, who, where, the statute and a dated way in. The route depends on the agenda, and 5 and 6 are detours."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "2 pays at once and the close lands. The cover pun is ambiguous, 5 can be cut, 3 could move, and the turn arrives late after two detours."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Clean and restrained; 'Use is reported. No test is printed.' and 'A patient can ask' are good. Regional texture thin; 6's dek reads like a contract summary."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 5.5,
+   "why": "A fresh world; the instrument repeats no. 27, slide 5 reuses no. 23's figures, and it is the third UT health AI deck in the window. No dedupe repeat."
+  }
+ ],
+ "weighted_score": 6.78,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Give the evidence middle the stage the bookends have: rebuild 4 to 6 with the camera close so the cart stands a third of the frame in front of a modelled exhibit, crop the empty lower band, and re-light 7 as a dark exam room lit by the screen.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 7,
+   "problem": "Mid-tone wood behind the type, a slate blotter edge cutting the dek, a flat page with no source, no room, no cart.",
+   "fix": "A near-black TXT.interior room, a black blotter, the cart's monitor base at the top edge with CH.screenLight as the only key, the blotter clear of the dek by 40 px."
+  },
+  {
+   "slide": 4,
+   "problem": "A rack of untextured slabs, the cart a sixth of the width, an empty lower band.",
+   "fix": "Camera at 0.7 m, 4 m off, the barrier angled 20 degrees off the right edge, modelled arrises and grime, the cart a third of the frame, crop the lower band."
+  },
+  {
+   "slide": 5,
+   "problem": "The same camera and slabs as 4, flat bar extrusions.",
+   "fix": "A tight three-quarter close on the two bars and the empty channel, low and raking so the metal catches a specular edge."
+  },
+  {
+   "slide": 6,
+   "problem": "Crate-like columns, a toy cart, the tallest stops short of the top, a dead bottom band.",
+   "fix": "Spangled galvanized material with weld and plates, the target raised so the tallest bleeds off the top, long shadows across the lower band."
+  },
+  {
+   "slide": 3,
+   "problem": "A lit mid-grey floor takes the bottom 40 percent, flat decal mats.",
+   "fix": "Four pools, one per cart, black between, matte rubber mats with edge shading and contacts."
+  },
+  {
+   "slide": 1,
+   "problem": "The lights a beaded row into the mast; a flat monitor back with no rim.",
+   "fix": "Lights spread in depth below the work surface so they never touch the mast; vents, bevel and a cool rim backlight on the housing."
+  }
+ ]
+}

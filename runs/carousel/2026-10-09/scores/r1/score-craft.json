@@ -1,0 +1,79 @@
+{
+ "lens": "craft",
+ "round": 1,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.0,
+   "why": "The value register is right (preflight medians L* 3.0, 1.0, 3.1, near black 0.80 to 0.88, one cold flood, light type on dark). Frame 8 is strongest, then 2; 9 is a clean bookend whose screen lights nothing. Below that: 1's monitor back is a flat plate with no leak and the light row reads as a dotted rule; 3's carts float with sticker strips, a light streak and a dead lower quarter; 4 and 5's barrier reads as grey shelving; 6's columns are plain prisms, sleeves read as crates, the scale cart is about 15 px at 432; 7 is a flat page on a slab with streaky wood behind the type. The cart is toy-grade throughout. It meets the 7 descriptor on 2, 8 and 9 only."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 8.0,
+   "why": "A filmstrip: one cold flood, one cart on 8 of 9 frames, the monitor swivel a working motif, frame 1's camera returned on 9, 4 and 5 one camera, value dark with no strobe. Frame 7 sits outside the deck's material world."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.0,
+   "why": "Every string and caption numeral traces to a claim or figures.json; the absences are computed; the rejected list is honoured (item 65 'would', never approved, UTMB never said to be bound). Frame 6's heights and frame 5's bars measure true. Two unproven leads: the 100-light row appears to count about 50 points at feed size, and frame 6's side-on monitor reads light grey at full size."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.0,
+   "why": "What happened, the share, the statute beside UTMB's term, and a dated route at the Regents, conditional on the agenda and admitted in the caption. Frames 5 and 6 are honest detours with no stake for the patient question."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "The cover earns a swipe, 2 pays at once, the turn at 7, the patient's question on 8 and the bookend on 9. Frame 6 could be cut and 5 nearly so, offset by a strong close."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Clean, no house-rule breaks. Careful rather than local: the deck explains its own drawings, and Galveston appears only in the caption."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 5.0,
+   "why": "Close to no. 46's opening (a hero close and low under an apron flood at night); no. 43 was UT System health AI four days ago; no. 27 read a hospital release against a Texas disclosure statute 22 days ago; frame 5 reuses the C-index study no. 23 shipped 26 days ago. Not a hard fail; familiar in three ways."
+  }
+ ],
+ "weighted_score": 6.9,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Remodel the chassis cart once: a moulded bevelled monitor back with a cable run, CH.screenLight spilling past the housing onto the surface and pool, and scuffed powder coat with grime at the casters.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 3,
+   "problem": "Four carts float in a void with sticker strips, a stray light streak and a dead bottom quarter.",
+   "fix": "One long TXT.stage pool on shell concrete, camera down to about 0.8 m on a diagonal, contacts under every caster, delete the streak."
+  },
+  {
+   "slide": 7,
+   "problem": "A flat page on a slab, streaky wood in the mid tones behind the type, no room, no cart, no source the page answers to.",
+   "fix": "Lay the page on the cart's work surface shot over the push bar, lit only by CH.screenLight, with a cast shadow and a curl, the room black behind."
+  },
+  {
+   "slide": 6,
+   "problem": "Plain extruded prisms, crate-like sleeves, a 15 px scale cart, a grass fringe, a dead bottom band.",
+   "fix": "Lower and close the camera on the shortest column so the cart reads at 60 px or more, rake the key so the columns throw long shadows toward the camera, spangle the sleeves, delete the grass."
+  },
+  {
+   "slide": 4,
+   "problem": "The barrier reads as grey shelving, flat lit, with a dead lower quarter; 5 shares it.",
+   "fix": "Rake the flood low across the face from camera left and move the barrier forward so its shadow and lit apron fill the bottom band."
+  },
+  {
+   "slide": 1,
+   "problem": "Flat monitor back with no leak, and the light row reads as a dotted rule counting about half its label.",
+   "fix": "Rim the housing with CH.screenLight, vary the lights' size and brightness with depth, and assert the rendered light count in code against the label."
+  }
+ ]
+}

@@ -1,0 +1,76 @@
+{
+ "lens": "integrity",
+ "round": 1,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.5,
+   "why": "The register is right and one modelled cart is carried through with contacts in a cold pool. Several frames lean on a default or a dead zone: 3 is four carts on amber plates in a void with a dead bottom third; 7 is a flat page with vector rules on a blotter; 6 has an eventless black bottom band, plain extrusions and a grass fringe; 1's monitor back is a flat plate and the light row reads as a dotted rule. 2, 4, 5, 8 and 9 hold up. None passes the showstopper test."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 8.0,
+   "why": "One cart, one material, one cold flood, one accent spent only on what the record prints, a working monitor swivel, frame 9 a true bookend of 1, value never strobes. Frame 7 sits slightly outside with warm veneer and no cart."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 5.5,
+   "why": "Mechanically clean: every numeral traces and the absences are computed from the saved release. Four stretches: slide 6's 'UTMB's other AI contract' presupposes an OpenEvidence contract no source establishes (hard fail); the 7 to 8 arrangement leans on the rejected link after the neutral line was dropped; slide 5 puts C-index values for survival discrimination under 'Accuracy isn't printed' in the same channels as OpenEvidence; the 100 lights show about half at full size, and seven equal sleeves imply an even split of $5,600,000 no source gives."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.0,
+   "why": "UTMB embedded OpenEvidence, went live in March, more than half use it; the body, the law and the stake are named; the close is a dated door, conditional on an agenda no fetched source shows. The exam room ask is the concrete action. S5 and S6 spend attention on things the deck says are not this story."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "Good cover, S2 pays at once, the turn at S7, a bookend close. S3, S5 and S6 are cuttable or explain themselves away."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "House rules hold everywhere. Plain and unalarmed. The flat spots are the deck explaining its drawing ('drawn to illustrate', 'the fill stops at half', 'so the cart's screen is dark', 'The deck sets UTMB's account beside the statute's text')."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 5.5,
+   "why": "The hero and night apron are new; underneath, no. 27's instrument (22 days ago), no. 23's radiomics study (26 days), no. 43's UT System health AI (4 days), no. 42's money columns, and an absence spine again. Not a 30 day repeat."
+  }
+ ],
+ "weighted_score": 6.51,
+ "hard_fails": [
+  "An unverified fact presented as verified, on slide 6: the headline 'UTMB's other AI contract' asserts that UTMB's OpenEvidence arrangement is itself an AI contract. Every fetched source calls it a collaboration (c1), and no claim establishes a contract, payment or agreement with OpenEvidence. Fix: retitle to name only what item 65 supports, for example 'UTMB's other AI platform'."
+ ],
+ "ship": false,
+ "one_sentence_fix": "Retitle slide 6 'UTMB's other AI platform' so no OpenEvidence contract is implied, and put the web edition's line that the record can't say whether Sec. 183.005 reaches this use on slide 7.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 3,
+   "problem": "Carts on amber plates in a black void, the lower 40 percent dead.",
+   "fix": "Run the flood pool along the row on lit concrete to the bottom edge with shadows toward camera, camera at 0.9 m."
+  },
+  {
+   "slide": 7,
+   "problem": "A flat untextured page with vector rules on a blotter, no material, no thickness, no source in frame.",
+   "fix": "A raking camera, paper thickness, a slight curl and a soft shadow, the cart's keyboard edge and monitor base in the top left as the visible source."
+  },
+  {
+   "slide": 6,
+   "problem": "An eventless bottom band, flat extrusions, a grass fringe.",
+   "fix": "Lower the flood on the same azimuth so the columns throw long shadows toward camera, add spangle and weld detail, remove the grass."
+  },
+  {
+   "slide": 1,
+   "problem": "A flat monitor back with no leak; the light row a dotted rule showing fewer than 100.",
+   "fix": "A bevelled back cover rimmed by the screen's leak, and all 100 lights in perspective inside the frame, shrinking and dimming with distance."
+  }
+ ]
+}

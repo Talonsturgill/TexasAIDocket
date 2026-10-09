@@ -44,6 +44,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-02 · Compal's Georgetown abatement stands as the commissioners court granted it, with no amendment posted.
 - 2026-10-05 · Williamson County's abatement for Compal USA Technology's Georgetown plant still stands as the court granted it.
 - 2026-10-08 · Williamson County's abatement for Compal's Georgetown plant is unconfirmed today, because the county's site refused the request.
+- 2026-10-09 · Williamson County's abatement for Compal's Georgetown center is unconfirmed today, because the county's site refused the request.
 
 ## Evidence
 

@@ -1,0 +1,66 @@
+<!doctype html>
+<!-- 2026-10-09, frame 5 of 9. Archetype DIAGRAM. RENDERED through txthree.js in the deck's floodlit world. Frame 4's barrier from frame 4's camera, held: two brushed aluminium bars at one scale in its upper channels, a different tool's published test (a radiomics model with UTMB radiologists among its authors, C-index 0.615 where it was built and 0.574 on new patients), and the third channel empty, because UTMB's release prints no accuracy figure for OpenEvidence. The cart has turned past side on. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+  .dek { width:840px; font-size:29px; }
+  .lab { font-size:22px; letter-spacing:0.01em; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">Use is reported. No test is printed.</h1>
+<p class="dek" data-follow="26">UTMB's release prints no accuracy, error or outcome figure. UTMB says it will keep evaluating use. The bars are a different tool, an MRI model of survival in brain metastases with UTMB radiology authors, scored by C-index.</p>
+<div class="lab" id="l1">TRAINING, 0.615</div>
+<div class="lab" id="l2">EXTERNAL, 0.574</div>
+<div class="lab" id="l3">OPENEVIDENCE AT UTMB, NONE PRINTED</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-09-chart.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Radiology, UTMB co-authors", counter: "05 / 09", src: "c1 c17 c40 c41", fit: { min: 76, max: 100, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 54 });
+  TXT.ground(R, { surface: 'grass', size: 12000, tile: 6, seed: 47, color: 0x22251a });
+  CH.apron(0.2, -2, 30, 26, { seed: 45 });
+  /* the C-index, from figures.json (c40), on the training cohort and in external validation, each a bar
+   * that many lengths of the channel. The third channel stays empty: the release prints no figure
+   * (figures.json release_accuracy_mentions 0, release_percent_figures 0) */
+  const TRAIN = 0.615, EXTERNAL = 0.574, LEN = 3;
+  const bar = K.make('precast_barrier', { length: LEN, tick: 0.5, height: 1.0, channel: 0.2 }); bar.position.set(0.45, 0, 0); TXT.add(R, bar); TXT.contact(R, bar);
+  CH.channelFill(bar, 0, 0, TRAIN * LEN, { kind: 'alu' });
+  CH.channelFill(bar, 1, 0, EXTERNAL * LEN, { kind: 'alu' });
+  /* the hero beside it, turned past side on, its monitor further away from the reader */
+  const cart = CH.cart({ yaw: -45, badge: 'ok' });   /* turned three quarters away, its back plate to the flood */ cart.position.set(-1.5, 0, 0.25); cart.rotation.y = -Math.PI / 2 + 0.12; TXT.add(R, cart); TXT.contact(R, cart);
+  TXT.frame(R, { from: [1.25, 1.08, 5.8], look: [0.02, 1.3, 0] });   /* yawed down the barrier's length so it recedes, the cart nearer at the left */
+  CH.grass([-60, -90, 60, -14], { count: 6000, seed: 9 });
+  TXT.sky(R);
+  TXT.deckRig(R, CH.rigSpec(W, 8, 4096), CH.rigOpts([0, 0.6, 0], { distance: 30, shadowFar: 80 }));
+  CH.screenLight(cart, { i: 0.8, range: 2.0 });
+  TXT.stage(R, [bar, cart], { poolInner: 1.2, poolOuter: 3.0 });
+  TXT.weather(R, { grime: 0.22, height: 0.3 });
+  /* each label in the dark of its own channel, just past its bar's end */
+  const at = (i, x) => { const c = bar.userData.channel(i); return [0.45 + c.x0 + x, c.y + c.h / 2, 0.25]; };
+  CH.labelAt('l1', at(0, TRAIN * LEN), 8, -14);
+  CH.labelAt('l2', at(1, EXTERNAL * LEN), 8, -14);
+  CH.labelAt('l3', at(2, 0), 22, -14);
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0.3 });
+  TXDECK.finish(cx, { bloom: { threshold: 0.92, strength: 0.06, radius: 10 } });
+  return true;
+})();
+</script>
+</body>
+</html>

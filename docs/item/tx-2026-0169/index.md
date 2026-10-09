@@ -36,6 +36,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-06 · Whether the clerk's request for AI written minutes is still before the court is unconfirmed. The posted agenda bars automated readers and the county's minutes did not answer.
 - 2026-10-07 · Whether the clerk's request for AI written minutes is still before the court is unconfirmed. The posted agenda bars automated readers and the county's own site refused the request.
 - 2026-10-08 · Whether the clerk's request for AI written minutes is still before the court remains unconfirmed. The posted agenda still bars automated readers.
+- 2026-10-09 · Whether the clerk's request for AI written minutes is still before the court remains unconfirmed. The agenda still bars automated readers.
 
 ## Evidence
 

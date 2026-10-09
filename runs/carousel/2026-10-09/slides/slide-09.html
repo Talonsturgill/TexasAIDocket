@@ -1,0 +1,57 @@
+<!doctype html>
+<!-- 2026-10-09, frame 9 of 9. Archetype FULL_BLEED. RENDERED through txthree.js in the deck's floodlit world. Frame 1's apron and camera returned, the cart turned so its lit screen faces the reader square on, its light spilling onto the tray and the concrete, the same hundred amber lights across the coast behind. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+  .dek { width:910px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">Or ask the Regents</h1>
+<p class="dek" data-follow="26">The Regents meet November 18th to 19th. The public may testify on any topic the agenda lists. Send the board's General Counsel a name and topic at least 24 hours ahead.</p>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-09-chart.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "UT System Board of Regents, Austin", counter: "09 / 09", src: "c12 c42 c43 c44", fit: { min: 96, max: 124, maxLines: 1 } });
+  const R = CH.stage(TXT, gl, W, { fov: 37 });
+  TXT.ground(R, { surface: 'grass', size: 12000, tile: 6, seed: 23, color: 0x22251a });   /* frame 1's coast */
+  CH.apron(1.1, 1.6, 36, 28, { seed: 19 });
+  /* the bookend: frame 1's cart turned to face the reader, its screen lit and its tray out toward them */
+  const cart = CH.cart({ yaw: 0, trayOut: 0.14, badge: 'ok', glow: 1.15 }); cart.rotation.y = 0.35 + Math.PI * 0.06; TXT.add(R, cart); TXT.contact(R, cart);
+  const FROM = [1.55, 1.13, 4.64], LOOK = [-0.46, 1.31, -0.1];   /* in close, the cart over a third of the frame's height */
+  TXT.frame(R, { from: FROM, look: LOOK });
+  /* the same region: one light per clinic, the release's floor of more than 100 (figures.json clinics, c12) */
+  const CLINICS = 100;
+  const lights = CH.clinicLights(FROM, [LOOK[0] + (LOOK[0] - FROM[0]) * 2, 1, LOOK[2] + (LOOK[2] - FROM[2]) * 2], CLINICS, { near: 700, far: 9000, spread: 12, seed: 31, y: 3.2, glow: 1.1, size: 0.0016 });
+  CH.grass([-60, -90, 60, -14], { count: 9000, seed: 6, avoid: [[-18, -14, 18, 14]] });
+  TXT.sky(R);
+  TXT.deckRig(R, CH.rigSpec(W, 5, 4096), CH.rigOpts([0, 0.7, 0], { distance: 30, shadowFar: 80 }));
+  TXT.stage(R, cart, { poolInner: 0.85, poolOuter: 1.9 });
+  CH.screenLight(cart, { i: 3.2, range: 5 });   /* the answer's light, now toward the reader, on the tray, the push bar and the apron in front */
+  TXT.weather(R, { grime: 0.2, height: 0.25 });
+  /* the label says 100: count the lights that land inside the frame and refuse to render a frame that shows another number */
+  { const inside = lights.points.filter((p) => { const q = CH.project(THREE, R, [p[0], p[1], p[2]]); return q[0] >= 0 && q[0] <= 1080 && q[1] >= 0 && q[1] <= 1350; }).length;
+    if (inside !== CLINICS) throw new Error('clinic lights inside the frame: ' + inside + ', label says ' + CLINICS); }
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0.36, veil: 0.5, veilH: 380 });
+  TXDECK.finish(cx, { bloom: { threshold: 0.92, strength: 0.08, radius: 10 } });
+  return true;
+})();
+</script>
+</body>
+</html>

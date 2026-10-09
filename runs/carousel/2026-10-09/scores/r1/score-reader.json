@@ -1,0 +1,79 @@
+{
+ "lens": "reader",
+ "round": 1,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.5,
+   "why": "The register is right: true blacks, one cold flood, a lit pool, light type on dark. The hero is primitive: the monitor back on 1 is a flat plate with a box, the battery a plain block. Slide 3 is four small carts on flat amber plates in a void with a dead lower band and a stray light streak. Slides 4 and 5 read as an extruded bar chart with the cart small at the far left. On 6 the cart is tiny between the first two columns. Slide 7 drops the hero. Slides 2 and 8 are the strongest. More than one frame leans on a primitive or a dead zone."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 8.0,
+   "why": "One filmstrip: one cart, one material, one cold flood, one dark ground, one amber accent. The monitor swivel works from back on 1 to face on 9, and 4 and 5 hold one camera. Slide 7 sits outside the deck with no cart and a warm desk, and 3's tiny carts read off scale."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.5,
+   "why": "Every numeral traces (c12, c11, c29, c30, c34, c35, c31, c40, c44) and the absences are computed. Looseness: slide 7 ends on 'never uses the word diagnostic' and 8 follows with the statute, an arrangement that leans toward the rejected link; slide 5's different-tool C-index labels are what a thumb sees first; slide 6 never says item 65 sat on the August consent agenda; the 100 lights bleed off both edges and can't be counted on the frame."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.0,
+   "why": "A Texan learns the tool, the share and the statute, and gets two moves, ask in the exam room or testify to the Regents on November 18th to 19th with 24 hours' notice. No slide expands UTMB or names Galveston, the decision-maker is unnamed, and the Regents ask depends on the agenda (c45), left to the caption."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "The cover's 'chart' is opaque to a feed reader. Frame 2 pays at once, the turn lands on 7, and 8 and 9 close on actions. Frame 3 restates a count the deck never uses, and 5 and 6 are two detours in a row before the turn."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "Clean and on register, every house rule holds. The flat move is the deck narrating its own drawings ('drawn to illustrate', 'the fill stops at half', 'so the cart's screen is dark'). Regional specificity is thin on the frames."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 5.0,
+   "why": "Inside 30 days: no. 27 (September 17th) read a Texas health system's clinical AI against a disclosure statute whose reach the record can't settle; slide 5 reprints the 0.615 and 0.574 C-index that no. 23 built its deck on September 13th; UT System health AI four days after no. 43; the spine is absences again. The cart and the clinic apron are fresh. No topic repeat under the hard fail."
+  }
+ ],
+ "weighted_score": 6.81,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Cut frame 5's borrowed radiology C-index and frame 3's cart count, spell out the University of Texas Medical Branch in Galveston on frame 1, and put back on frame 7 that no source read says whether this use counts as diagnostic.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 3,
+   "problem": "Four small carts on flat amber plates in a void, a stray light streak between carts 2 and 3, the bottom 40 percent dead black.",
+   "fix": "Drop the camera to 1.0 m and swing it 30 degrees off the row so the nearest cart fills a third of the frame and the others recede across a lit apron, with bay lines and contacts, and delete the streak."
+  },
+  {
+   "slide": 7,
+   "problem": "The hero is absent, a flat page on a blotter, warm wood under the hook, labels off the page edge, the brightest flat surface in the deck.",
+   "fix": "Bring the cart's monitor base and tray into the top left so the screen visibly lights the page with a falloff, kill the wood in the top band with a dark back wall, and seat each label beside its block."
+  },
+  {
+   "slide": 5,
+   "problem": "The barrier reads as an extruded bar chart square on, 22 px labels, the cart small at the far left. Slide 4 shares it.",
+   "fix": "Turn the held camera 20 degrees so the barrier recedes with its arrises catching the flood, model the bars' specular falloff, bring the cart forward and raise the labels to 24 px or more."
+  },
+  {
+   "slide": 6,
+   "problem": "The cart, the scale reference, is tiny and stands between the first two columns; the columns are flat-lit boxes with no spangle at feed size.",
+   "fix": "Move the cart to the $825,000 column's foot, push the lens in so it stands 120 px or more at 432 px, and graze the tallest column from camera left."
+  },
+  {
+   "slide": 1,
+   "problem": "The cover's cart is low-poly, the monitor back a flat plate, the battery a block.",
+   "fix": "Push in until the cart fills 45 percent of the frame height, round the monitor back with vents and the VESA mount, rim it with the flood and let the screen's glow spill round the housing."
+  }
+ ]
+}

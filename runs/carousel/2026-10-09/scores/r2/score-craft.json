@@ -1,0 +1,84 @@
+{
+ "lens": "craft",
+ "round": 2,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.5,
+   "why": "8 is the best frame (dark room, chair silhouette, shadow on the wall, the screen brightest); 2 is a strong close crop; 1 and 9 put the cart in a clean cold pool. The middle falls back on primitives: 7's zero-thickness page on an untextured polygon over stretched wood with a dead lower zone; 3's small carts in a flat row on a mid-grey floor band with sticker pads; 4 and 5 the same extruded slab twice; 6's smooth boxes, crate sleeves and a few-dozen-pixel cart; 1 and 9's lights a dotted band in mid-air crossing the mast; 1's flat monitor back."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "One hero on 8 of 9 frames, one cold flood, one accent, one dark ground; the swivel motif and the 1 and 9 bookend both work. 7 sits outside in a warm wood world; 4 and 5 cost a frame."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.5,
+   "why": "Every numeral traces, bar geometry measures true (0.617 against 0.615, column ratio about 2.3 against 2.32), the rejected list is honoured, all sources primary. Slide 5 sets a different tool's C-index in the same barrier as 4's fill, labelled in the dek but loose at feed size."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.5,
+   "why": "What happened and the law beside it, with two actions, concrete for a patient. 6 is a detour and the Regents route depends on the agenda."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "2 pays at once, the turn on 5 and 7, 8 to 9 close on actions. The cover is oblique and 5 and 6 could each be cut."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Clean and honest; 'Which tool was used? Did it shape the plan?' is good. Several deks narrate the drawing."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.0,
+   "why": "The cover repeats no. 46's opening move (hero close and low in an apron pool with lights beyond); no. 43's ruled blocks on a desk and chair back at near left are close to 7 and 8; UT System clinical AI again in four days; the amber is near no. 43's dusk gold."
+  }
+ ],
+ "weighted_score": 7.23,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Rebuild the middle evidence objects as modelled hardware and pull the cart forward to a third of the frame on each, from the statute page on 7 to four separate pools on 3.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 7,
+   "problem": "A zero-thickness page on an untextured polygon over stretched wood, no cart, no source light, a dead lower zone.",
+   "fix": "Page thickness, curl and contact shadow on a bevelled blotter, veneer at true grain scale, the cart's lit screen in the top left as the room's one source, the tray and push bar off the bottom edge."
+  },
+  {
+   "slide": 3,
+   "problem": "Four small carts in a flat frontal row on a mid-grey floor band with sticker pads.",
+   "fix": "Eye at about 0.6 m, the row on a 30 degree diagonal with the nearest at 40 percent of the frame, each cart in its own pool with black between, raised floor tape with contacts."
+  },
+  {
+   "slide": 5,
+   "problem": "Frame 4's camera and slab again, flat light bars, the cart a small accessory.",
+   "fix": "A low three-quarter camera down the barrier's length so the bars recede and catch a brushed specular streak, chipped arrises and grime, the cart in the near third."
+  },
+  {
+   "slide": 6,
+   "problem": "Smooth boxes, crate sleeves, a tiny dark-screened cart, an empty bottom band.",
+   "fix": "Bevelled galvanized tube with spangle, weld bead and bolted plates, a lower key for long shadows toward the camera, the cart forward at true scale."
+  },
+  {
+   "slide": 4,
+   "problem": "An extruded slab with flat inset panels, the cart small, a flat grey floor band.",
+   "fix": "Precast concrete with chamfered arrises, a cast channel and a wet contact line, the floor dark outside the barrier's pool."
+  },
+  {
+   "slide": 1,
+   "problem": "The lights a band in mid-air crossing the mast; a flat monitor back.",
+   "fix": "Lights on a ground plane beyond the pool with depth spread so the mast occludes them, and a cool rim on the housing's top and left edges."
+  }
+ ]
+}

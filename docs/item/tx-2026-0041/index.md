@@ -11,7 +11,7 @@ The City of Wichita Falls Planning and Zoning Commission approved a conditional 
 - Public access: Public meeting
 - Take part: https://www.wichitafallstx.gov/AgendaCenter
 
-- Last checked: 2026-09-29
+- Last checked: 2026-10-09
 
 ## Dates
 
@@ -43,6 +43,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-06 · The Wichita Falls permit is still unconfirmed. The only published account of the vote bars automated readers.
 - 2026-10-07 · The Wichita Falls permit is still unconfirmed. The only published account of the vote bars automated readers.
 - 2026-10-08 · The Wichita Falls permit remains unconfirmed. The only published account of the vote still bars automated readers.
+- 2026-10-09 · The Wichita Falls permit for the Airport Drive data center reads as approved on the records that answered today.
 
 ## Evidence
 

@@ -1,0 +1,155 @@
+{
+ "_spec": {
+  "version": 1,
+  "purpose": "A standalone web edition of the archived visual story.",
+  "law": "Facts resolve to the original verified claim record. A layout rebuild does not reverify reporting.",
+  "written_by": "daily"
+ },
+ "section": "Health care",
+ "dek": {
+  "text": "UTMB says more than half of its clinicians use OpenEvidence inside its health record. A Texas statute sets a disclosure rule for AI used to diagnose. UTMB's release never uses that word.",
+  "claims": [
+   "c9",
+   "c5",
+   "c23"
+  ]
+ },
+ "introduction": [
+  {
+   "text": "[UTMB and OpenEvidence announced a collaboration that brings evidence-based AI into clinicians' everyday workflows](c1). [UTMB published the announcement {{date:c3}}](c3). [It says OpenEvidence is embedded within its electronic health record environment](c5), [and that the integration went live at UTMB in March](c4).",
+   "claims": [
+    "c1",
+    "c3",
+    "c5",
+    "c4"
+   ]
+  },
+  {
+   "text": "[UTMB says more than half of its clinicians actively use OpenEvidence for clinical decision support](c9). Its release gives no count of clinicians, no count of queries and no accuracy figure. [Texas law already says that a practitioner who uses AI for diagnostic purposes must disclose that use to patients](c23). UTMB's release never uses the word diagnostic, and says nothing about telling patients.",
+   "claims": [
+    "c9",
+    "c23"
+   ]
+  }
+ ],
+ "sections": [
+  {
+   "heading": "What UTMB says the tool does",
+   "paragraphs": [
+    {
+     "text": "[Clinicians reach OpenEvidence with their standard UTMB enterprise credentials](c6). [They can ask clinical questions in natural language and get answers that cite medical literature and clinical guidelines](c7). [UTMB says the collaboration gives its physicians and other clinical users access to cited medical evidence from within the electronic health record](c2).",
+     "claims": [
+      "c6",
+      "c7",
+      "c2"
+     ]
+    },
+    {
+     "text": "[UTMB has hospitals on four campuses](c11) [and runs more than 100 clinics across Southeast Texas](c12). [It reports strong growth since March in the number of clinicians using the tool and in the volume of queries](c8). [It says many clinicians have made it part of their daily work](c10). The release puts no number on that growth.",
+     "claims": [
+      "c11",
+      "c12",
+      "c8",
+      "c10"
+     ]
+    },
+    {
+     "text": "[OpenEvidence describes its product as an AI copilot for doctors that helps them make high-stakes decisions at the point of care](c37). [It says it has supported over 200 million AI-powered clinical consultations](c39). Those figures are the company's own.",
+     "claims": [
+      "c37",
+      "c39"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "What the release does not measure",
+   "paragraphs": [
+    {
+     "text": "[UTMB says it will keep evaluating utilization and clinician experience](c17). [It says it wants validated AI tools governed and evaluated on their real-world use and impact](c16). The release reports no evaluation result and no error rate.",
+     "claims": [
+      "c17",
+      "c16",
+      "c1"
+     ]
+    },
+    {
+     "text": "A published test of a different tool shows what such a figure looks like. [An MRI survival model with authors in UTMB's Department of Radiology](c41) [scored a C-index of {{number:c40}} in its training cohort and {{number:c40:2}} in external validation](c40). That model is not OpenEvidence, and its numbers say nothing about it.",
+     "claims": [
+      "c41",
+      "c40"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "What Texas law says",
+   "paragraphs": [
+    {
+     "text": "[Section 183.005 of the Health and Safety Code is headed Artificial Intelligence in Electronic Health Record](c18). [It lets a health care practitioner use AI for diagnostic purposes if listed conditions are met](c19). [The practitioner must act within the scope of the practitioner's license](c20). [The use must not be otherwise restricted by state or federal law](c21). [The practitioner must review all records created with AI under Texas Medical Board standards](c22).",
+     "claims": [
+      "c18",
+      "c19",
+      "c20",
+      "c21",
+      "c22"
+     ]
+    },
+    {
+     "text": "[A practitioner who uses AI for diagnostic purposes as the section describes must disclose that use to patients](c23). [The section took effect {{date:c25}}](c25). The duty falls on a practitioner and turns on diagnostic use. UTMB describes its use as clinical decision support. Its release never uses the word diagnostic, so the record here can't say whether the section reaches this use.",
+     "claims": [
+      "c23",
+      "c25",
+      "c9"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "UTMB's other AI platform",
+   "paragraphs": [
+    {
+     "text": "[UTMB also holds an agreement with Qualified Health for an AI platform](c26). [UTMB entered it in December 2024](c28). [It began at {{money:c29}}, within UTMB's own authority](c29). [A first amendment in October 2025 raised it to {{money:c30}}](c30). [A third amendment on the Regents' August consent agenda](c27) [adds {{money:c34}}](c34), [for a total of {{money:c35}}](c35). [It extends the platform to all seven UT System health-related institutions](c31). Item 65 does not name OpenEvidence, and no vote record was read.",
+     "claims": [
+      "c26",
+      "c28",
+      "c29",
+      "c30",
+      "c34",
+      "c35",
+      "c31",
+      "c27"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "Where a reader can ask",
+   "paragraphs": [
+    {
+     "text": "A patient can ask in the exam room which tool was used and whether it shaped the plan. [The UT System Board of Regents lists its next regular meeting for November 18th to 19th in Austin](c42). [Members of the public may testify on any topic a committee or board agenda lists](c43). [A speaker gives the board's General Counsel a name and agenda topic at least 24 hours before the meeting](c44). [Topics not listed on the agenda can't be raised](c45).",
+     "claims": [
+      "c42",
+      "c43",
+      "c44",
+      "c45"
+     ]
+    }
+   ]
+  }
+ ],
+ "related": [
+  {
+   "id": "tx-2026-0208",
+   "label": "The record entry for UTMB and OpenEvidence"
+  },
+  {
+   "id": "tx-2026-0094",
+   "label": "UTMB's Qualified Health agreement before the Regents"
+  },
+  {
+   "id": "tx-2026-0151",
+   "label": "The MRI model that scored lower on new patients"
+  }
+ ]
+}

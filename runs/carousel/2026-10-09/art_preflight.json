@@ -1,0 +1,103 @@
+{
+  "version": 1,
+  "selected": [
+    1,
+    6,
+    9
+  ],
+  "inputs": {
+    "slides/slide-01.html": "e32952ab50a28d0fae49f20345400718519946b0794ce15d2419ddc8d04c3540",
+    "render/slide-01.png": "8dba51123bb3ad9f86158523095f73fd03066d79d9a1627c9880761906d349f7",
+    "assets/js/deck/2026-10-09-chart.js": "52ed3878e3ae8adcd3776e04100e23a7be7838041dcc7e96f0c771cd6d937b9d",
+    "slides/slide-06.html": "169c3ba83a2a7cf9b5a790cfcea515502ab9c61a4e643edcf827359d832fb5ce",
+    "render/slide-06.png": "ad013e2d377dcc0a631a6b6e22c3ca94c613d8bbb0deb438d61530c27f1682d5",
+    "slides/slide-09.html": "17171a17f3f0898bec9ad8a906b80950cb0352ce94d3cde3d2fa1db320098f18",
+    "render/slide-09.png": "ee46ddf9133b4a891c89f0a285dcbdea516ba5ebc39292c31946b54d7eb61788"
+  },
+  "value_measurements": [
+    {
+      "frame": "slide-01.png",
+      "median_L": 3.1,
+      "mid": 0.12,
+      "dark": 0.795
+    },
+    {
+      "frame": "slide-06.png",
+      "median_L": 1.0,
+      "mid": 0.095,
+      "dark": 0.856
+    },
+    {
+      "frame": "slide-09.png",
+      "median_L": 3.1,
+      "mid": 0.074,
+      "dark": 0.824
+    }
+  ],
+  "review": {
+    "decision": "accept",
+    "inputs": {
+      "slides/slide-01.html": "e32952ab50a28d0fae49f20345400718519946b0794ce15d2419ddc8d04c3540",
+      "render/slide-01.png": "8dba51123bb3ad9f86158523095f73fd03066d79d9a1627c9880761906d349f7",
+      "assets/js/deck/2026-10-09-chart.js": "52ed3878e3ae8adcd3776e04100e23a7be7838041dcc7e96f0c771cd6d937b9d",
+      "slides/slide-06.html": "169c3ba83a2a7cf9b5a790cfcea515502ab9c61a4e643edcf827359d832fb5ce",
+      "render/slide-06.png": "ad013e2d377dcc0a631a6b6e22c3ca94c613d8bbb0deb438d61530c27f1682d5",
+      "slides/slide-09.html": "17171a17f3f0898bec9ad8a906b80950cb0352ce94d3cde3d2fa1db320098f18",
+      "render/slide-09.png": "ee46ddf9133b4a891c89f0a285dcbdea516ba5ebc39292c31946b54d7eb61788"
+    },
+    "frames": [
+      {
+        "slide": 1,
+        "role": "cover",
+        "subject": "The workstation cart, whole, seen low from its back left quarter in a cold floodlit pool on concrete, its monitor's back to the reader, a dark cable dropping from the mount down beside the arm into the post, the band of small amber clinic lights behind at mid height with the mast hiding those behind it.",
+        "visual_consequence": "The reader meets the tool from the patient's side with its screen turned away, set in a lit region. The cable breaks the flat plate and makes the back read as equipment. The cart holds about half the frame height with every caster in the pool.",
+        "weakness": "The row's left end is dense enough that points touch, so the 100 can't be counted at 432 px. The monitor back is still the least modelled thing at the top, and no backlight leak shows at its edges.",
+        "repair": "Thin the left end by pushing its points deeper along the camera axis, and widen the backlight until a cool rim shows round the housing's top and left edges."
+      },
+      {
+        "slide": 6,
+        "role": "evidence",
+        "subject": "Three galvanized square columns at 1 m per $1,000,000 under 'UTMB's other AI platform', the $825,000 block whole with the cart beside it, screen dark, the $4,250,000 column labelled right of its top, the $9,850,000 column with its weld and seven sleeves. Heights about 0.083, 0.434 and 1.0 against 0.084, 0.431 and 1.0. The dek places item 65 on the Regents' August consent agenda.",
+        "visual_consequence": "It explains a measured relationship cleanly. All three bars read whole, each label sits against its own bar's top, and the cart stands beside the smallest as a known 1.6 m object. 'Would take it' and the August consent agenda keep the vote unclaimed.",
+        "weakness": "The dek's last line ends close to the middle column's top. The $825,000 label sits about 50 px above its block. The bottom 15 percent is black and the sleeves read as stacked crates.",
+        "repair": "Cut the dek back a line so it clears the middle column's top by 60 px, seat the $825,000 label within 24 px of its block, and rake long column shadows across the lower band."
+      },
+      {
+        "slide": 9,
+        "role": "close",
+        "subject": "Frame 1's camera and apron returned, the cart turned so its lit screen with a thin cool halo faces the reader square on, the new cable a thin dark line beside the white arm, the same band of 100 lights behind.",
+        "visual_consequence": "The bookend holds: the cover saw the back of the screen and the close sees its face under 'Or ask the Regents', with only the cart's turn changed. The boldest exterior in the deck, the cart about half the frame height.",
+        "weakness": "The light row's left end is still beaded. The screen throws no light onto the work surface or tray. The site line sits on the pool's right flank.",
+        "repair": "The same depth spread on the lights as frame 1, and CH.screenLight downward onto the work surface and tray."
+      }
+    ]
+  },
+  "shipped_inputs": {
+    "slides/slide-01.html": "e32952ab50a28d0fae49f20345400718519946b0794ce15d2419ddc8d04c3540",
+    "slide-01.webp": "44881d7b1886e88df4e6b12ca39fa3f58b85605f15d2438c1e16505f96fe9097",
+    "slides/slide-06.html": "169c3ba83a2a7cf9b5a790cfcea515502ab9c61a4e643edcf827359d832fb5ce",
+    "slide-06.webp": "1bdc6c17cc1050cc24f824fd99d0e73d5be1cc0eca16c0c7b8090f2c8d54bb8a",
+    "slides/slide-09.html": "17171a17f3f0898bec9ad8a906b80950cb0352ce94d3cde3d2fa1db320098f18",
+    "slide-09.webp": "f076c37da2903c1ace9520b4100af34fc3dac6cd48f9f4f9069480f00aa8a372"
+  },
+  "encodings": [
+    {
+      "to": "slide-01.webp",
+      "to_sha256": "44881d7b1886e88df4e6b12ca39fa3f58b85605f15d2438c1e16505f96fe9097",
+      "from_sha256": "8dba51123bb3ad9f86158523095f73fd03066d79d9a1627c9880761906d349f7",
+      "psnr_db": 41.539
+    },
+    {
+      "to": "slide-06.webp",
+      "to_sha256": "1bdc6c17cc1050cc24f824fd99d0e73d5be1cc0eca16c0c7b8090f2c8d54bb8a",
+      "from_sha256": "ad013e2d377dcc0a631a6b6e22c3ca94c613d8bbb0deb438d61530c27f1682d5",
+      "psnr_db": 42.499
+    },
+    {
+      "to": "slide-09.webp",
+      "to_sha256": "f076c37da2903c1ace9520b4100af34fc3dac6cd48f9f4f9069480f00aa8a372",
+      "from_sha256": "ee46ddf9133b4a891c89f0a285dcbdea516ba5ebc39292c31946b54d7eb61788",
+      "psnr_db": 42.122
+    }
+  ]
+}

@@ -11,7 +11,7 @@ The National Science Foundation obligated an award to the Texas A&M Engineering 
 - Public access: Write to the decider
 - Take part: https://api.nsf.gov/services/v1/awards.json?id=2640086&printFields=id,title,abstractText,awardeeName,awardeeCity,date,startDate,expDate,fundsObligatedAmt,piFirstName,piLastName,perfCity,perfStateCode
 
-- Last checked: 2026-10-06
+- Last checked: 2026-10-09
 
 ## Dates
 
@@ -31,6 +31,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-09-30 · The foundation's award to the engineering station for digital twins of small water systems still stands as made.
 - 2026-10-03 · The foundation's grant to the engineering station for digital twins of small water systems still stands as awarded.
 - 2026-10-06 · The foundation's award to the Texas A&M engineering station still stands as announced.
+- 2026-10-09 · Checked and unchanged. The decision still stands as decided.
 
 ## Evidence
 

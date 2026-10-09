@@ -1,0 +1,79 @@
+{
+ "lens": "integrity",
+ "round": 2,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.5,
+   "why": "Clears the bold register (preflight medians 3.1, 1.0, 3.1, 0.79 to 0.86 near black). Primitive models and small subjects: 1's vented-box monitor back and lights floating above the horizon; 3's carts a tenth of the width each; 4 and 5's barrier an extruded bar chart; 6's smooth extrusions, crate sleeves and dead lower band; 7's flat bars on streaky veneer. 8 and 9 strongest."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 8.0,
+   "why": "One cart, one powder coat, one cold flood, one dark apron; the swivel and the held camera work; value stays dark. 7 sits outside and the interiors change the ground."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.5,
+   "why": "Every numeral traces and the drawn geometry measures true; every source primary; the rejected list honoured. Looser places: slide 5 plots a different model's C-index from zero against slide 4's half tick with no chance line; slide 6 omits that item 65 sat on the August 12th to 13th consent agenda (c27); the 100 lights understate by design, labelled."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.0,
+   "why": "What, who and where are clear and the law's duty is exact. The Regents action depends on an agenda nothing in the record shows; 'A patient can ask' is the real action, stated generally."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 6.8,
+   "why": "2 pays at once, the turn on 5 is declared, the bookend lands. The cover hook is cryptic; 3 and 6 could go without loss."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "Clean and on register, no house-rule breaks. Several deks narrate the drawing; Texas specificity is thin."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 5.5,
+   "why": "No. 27's instrument and angle, no. 43's UT System health AI four days ago, no. 23's radiomics finding on slide 5, and the house technique of nos. 40 to 46."
+  }
+ ],
+ "weighted_score": 6.89,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Replace slide 5's recycled radiomics comparator with the deck's own counted absences in figures.json, and cut or fold frame 3 to give the turn room.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 3,
+   "problem": "Four carts a tenth of the width each in one thin band, a void above, an empty apron below.",
+   "fix": "Camera at 0.6 m, 3 m off the nearest cart, the row receding on a diagonal from a near cart at 45 percent of the frame height."
+  },
+  {
+   "slide": 6,
+   "problem": "Smooth extrusions, crate sleeves, a dead bottom 15 percent.",
+   "fix": "Spangled galvanized maps, bolted plates and contact grime, a low raking key for long shadows across the lower band, crop the dead bottom."
+  },
+  {
+   "slide": 4,
+   "problem": "A square-on box that reads as an extruded bar chart, the cart a small prop (5 shares it).",
+   "fix": "Camera at 0.5 m yawed 20 degrees so the barrier recedes with chipped arrises, the cart a third of the frame tall."
+  },
+  {
+   "slide": 1,
+   "problem": "A primitive vented monitor back; the lights float above the horizon.",
+   "fix": "A VESA arm, cable runs and a moulded rear with a cool rim; the lights on the ground at the horizon, spread in depth."
+  },
+  {
+   "slide": 7,
+   "problem": "Flat grey bars on streaky veneer, no curl, shadow or screen light.",
+   "fix": "A curl and contact shadow, lit from frame left by the screen's cool spill so it is the brightest surface."
+  }
+ ]
+}
