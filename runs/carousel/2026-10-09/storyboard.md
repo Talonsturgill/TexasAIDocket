@@ -69,6 +69,7 @@ scale: a share column, the statute as steps, the contract as three columns).
 | `accent` | `#E3A83B` | badge amber, what the record prints and a reader can point to: the 100 clinic lights on 1 and 9, the strip under each campus cart on 3, the half fill on 4, the (b) line on the statute page on 6. Absent on 2, 5, 7 and 8 |
 | `hook` | `#EEF1F2` | light type on the dark sky |
 | `dek` | `#DDE2E4` | the dek |
+| `screen` | `#DFEAF2` | the cool clinical white of the cart's lit screen, the deck's one practical |
 
 The world's materials: the cart's off white powder coat over aluminium, grey ABS, black housing, rubber
 casters; shell aggregate concrete going to black at the pool's edge; galvanized steel; a cool clinical white
@@ -473,7 +474,6 @@ acceptance:
   - "the tallest carries a weld ring and seven clamp sleeves above it, and six or eight fail this item"
   - "the cart stands at the shortest column's foot with its screen dark"
   - "each amount label sits beside its column's top, within 24px"
-
   - "the three galvanized columns are modelled with a weld bead and base plates, and missing or flat columns fail this item"
   - "the tallest column runs at least two thirds of the frame height"
 

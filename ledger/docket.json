@@ -2927,7 +2927,7 @@
     }
    ],
    "id": "tx-2026-0027",
-   "last_verified": "2026-10-04",
+   "last_verified": "2026-10-09",
    "history": [
     {
      "date": "2026-08-18",
@@ -3026,7 +3026,8 @@
     },
     {
      "date": "2026-10-09",
-     "note": "Where Taylor's amended Compal abatement stands is still unconfirmed. The city's notice is gone from its site and the meeting video bars automated readers."
+     "note": "Taylor's notice address still sends readers to the city's not-found page. The council video still loads, and the city has published no written outcome beside it.",
+     "checked": true
     }
    ]
   },

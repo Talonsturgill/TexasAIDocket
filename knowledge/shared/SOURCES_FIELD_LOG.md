@@ -2004,3 +2004,8 @@ dated October 9th.
 **Taylor's newsflash notice for the amended Compal abatement is gone (404, now a redirect)**, and the
 meeting video stays disallowed by robots.txt. tx-2026-0027 stays rotten for want of a reachable
 record.
+
+**Correction to the Taylor entry above, same day.** Re-measured at 11:50 UTC, the council video on
+`taylortx.new.swagit.com` answers 200 and that host's robots.txt disallows nothing, so it does not
+bar automated readers. The notice is still a 302 to the city's 404 page, and the city publishes no
+written outcome beside the video.

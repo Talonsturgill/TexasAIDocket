@@ -91,10 +91,11 @@ down at the cap. The judges named frames 7, 4, 5, 6, 3 and 1 for the art.
   30 items were confirmed on their own sources and stamped with a re-worded checked note. 20 got a
   dated line naming what is unconfirmed and no stamp, because every source they rest on refused or
   sits behind the boundary. `reverify.py --check-notes` passes on every note.
-- **Rotten.** tx-2026-0062 was confirmed on Community Impact and stamped. tx-2026-0027 stays rotten:
-  Taylor's newsflash notice for the amended Compal abatement is gone (404, now a redirect), the meeting
-  video is disallowed by robots.txt, and a search found only the August 13th agenda listing. The item
-  already says no outcome is published, and nothing published says otherwise today.
+- **Rotten.** tx-2026-0062 was confirmed on Community Impact and stamped. tx-2026-0027 was first left
+  rotten, and CI's staleness gate refused the pull request on it. Re-measured at 11:50 UTC, Taylor's
+  notice address still redirects to the city's not-found page and the council video still loads,
+  with no written outcome beside it. That is what the item says, so it was stamped. The morning's
+  note that the video bars automated readers was wrong: the host's robots.txt disallows nothing.
 - **Boundaries measured today.** www.wilcotx.gov (tx-2026-0029) and www.brownsvilletx.gov
   (tx-2026-0128) answered 403 to the project's agent and to a browser agent, page and robots.txt
   alike. Both items now carry a `blocks_every_client` block dated October 9th.
