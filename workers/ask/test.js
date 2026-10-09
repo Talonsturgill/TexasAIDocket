@@ -285,6 +285,8 @@ ok("the answerer defaults to Haiku 5.5", mp.model === "claude-haiku-5-5", mp.mod
 ok("the deployment pins the same model as the answerer",
   readFileSync(new URL("./wrangler.toml", import.meta.url), "utf8")
     .includes(`ASK_MODEL = "${mp.model}"`));
+ok("deploying preserves dashboard variables outside the committed pins",
+  readFileSync(new URL("./wrangler.toml", import.meta.url), "utf8").includes("keep_vars = true"));
 ok("adaptive reasoning has room to finish before the answer",
   mp.thinking?.type === "adaptive" && mp.max_tokens === 4096, JSON.stringify(mp));
 ok("effort is sent inside output_config, where the API reads it",
@@ -544,6 +546,27 @@ ok("...and its tokens are readable, not stranded under another key",
 ok("...and no key anywhere is built on an undefined",
   ![...liveStore.keys()].some((k) => k.includes("undefin")),
   [...liveStore.keys()].join(", "));
+
+head("R2a. health probes stay valid at every supported answer effort");
+{
+  const { probe } = await import("./answer.js");
+  const savedFetch = globalThis.fetch;
+  for (const effort of ["low", "medium", "high", "xhigh", "max"]) {
+    let sent;
+    globalThis.fetch = async (url, init) => {
+      sent = JSON.parse(init.body);
+      return { ok: true, status: 200, json: async () => ({
+        model: "claude-haiku-5-5", content: [{ type: "text", text: "Hello." }],
+      }) };
+    };
+    const result = await probe({ ANTHROPIC_API_KEY: "test", ASK_EFFORT: effort });
+    ok(`the ${effort} probe disables thinking only with a supported effort`,
+      sent.thinking.type === "disabled" && ["low", "medium", "high"].includes(sent.output_config.effort));
+    ok(`the ${effort} probe reports the provider model and returned text`,
+      result.ok && result.response_model === "claude-haiku-5-5" && result.text_returned);
+  }
+  globalThis.fetch = savedFetch;
+}
 
 head("R2b. provider refusals discard partial text and never enter the cache");
 for (const partial of ["", "The record holds 12 decisions. "]) {

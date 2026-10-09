@@ -9,6 +9,9 @@ revision. Upgrading the model retires old answers while preserving spending
 counters. Retrieval, sentence verification, Turnstile and the existing caps
 continue to govern each answer.
 
+Deployment preserves dashboard variables outside the committed pins. The small
+health probe caps its own effort at high when answers use xhigh or max.
+
 Checked sentences wait for the provider's terminal classification. A declined
 turn returns a clear notice and discards partial text without caching it.
 

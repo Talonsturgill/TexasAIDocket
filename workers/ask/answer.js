@@ -431,6 +431,10 @@ export async function probe(env) {
       headers: HEADERS(env),
       body: JSON.stringify({
         ...modelParams(env), max_tokens: 32, thinking: { type: "disabled" },
+        // Disabled thinking is valid through high effort. Keep the small health
+        // check valid when answer requests use xhigh or max adaptive reasoning.
+        output_config: { effort: ["xhigh", "max"].includes(effectiveEffort(env))
+          ? "high" : effectiveEffort(env) },
         messages: [{ role: "user", content: "hi" }],
       }),
     });
