@@ -59,7 +59,8 @@
         "2026-09-04",
         "2026-09-13",
         "2026-09-27",
-        "2026-09-28"
+        "2026-09-28",
+        "2026-10-09"
       ],
       "contradicted": []
     },
@@ -613,7 +614,8 @@
         "2026-10-03",
         "2026-10-04",
         "2026-10-05",
-        "2026-10-07"
+        "2026-10-07",
+        "2026-10-09"
       ],
       "contradicted": []
     },
@@ -704,7 +706,8 @@
         "2026-09-18",
         "2026-09-19",
         "2026-09-20",
-        "2026-10-05"
+        "2026-10-05",
+        "2026-10-09"
       ],
       "contradicted": []
     },
@@ -1343,6 +1346,14 @@
       "learned": "2026-10-08",
       "instinct": "Place the camera so a lit share of a long row reads near its true share on screen.",
       "evidence": "No. 46 frame 9 drew 28 of 1,096 day lamps lit from beside the threshold; the round 1 pixel critic measured the lit run filling the foreground and reading as most of the schedule, and the repair moved the camera so the lit run reads short against a long dark row.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "assert-a-drawn-count-in-the-frame",
+      "learned": "2026-10-09",
+      "instinct": "When a label states how many things a frame draws, count the drawn things inside the frame in the frame's own code and refuse to render on any other number.",
+      "evidence": "Carousel no. 47, frames 1 and 9. The label said 100 lights and two judges counted about half; an in-frame projection check found 74 of 100 inside the frame and the row was re-aimed until it found 100.",
       "confirmed": [],
       "contradicted": []
     }

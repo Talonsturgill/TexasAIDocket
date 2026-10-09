@@ -1988,3 +1988,19 @@ be the better primary.
 
 **www.texasattorneygeneral.gov answered 402 again**, and **capitol.texas.gov's tlodocs path refused
 this project's client**. Neither was used today.
+
+## 2026-10-09
+
+**news.rice.edu answers 406 to a request with no Accept header and 200 with one.** `reverify.py`
+reported Rice unreachable for that reason alone. The page itself is readable.
+
+**ERCOT's board PDF answered 403 to a request with no Accept header** and served the file once one
+was sent, the same shape as Rice.
+
+**www.wilcotx.gov and www.brownsvilletx.gov refused this project's agent and a browser agent alike,
+page and robots.txt both 403.** tx-2026-0029 and tx-2026-0128 carry a `blocks_every_client` block
+dated October 9th.
+
+**Taylor's newsflash notice for the amended Compal abatement is gone (404, now a redirect)**, and the
+meeting video stays disallowed by robots.txt. tx-2026-0027 stays rotten for want of a reachable
+record.
