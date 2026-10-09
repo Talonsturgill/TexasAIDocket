@@ -121,7 +121,7 @@
     var coat = K.mat("ch-coat", { color: 0xffffff, map: N.coatTex(THREE), roughness: 0.46, metalness: 0.12 });
     var abs = K.mat("ch-abs", { color: 0x7c8084, roughness: 0.6, metalness: 0.02 });
     var absDark = K.mat("ch-absd", { color: 0x2a2c2f, roughness: 0.55, metalness: 0.02 });
-    var housing = K.mat("ch-hous", { color: 0x2c2f34, roughness: 0.34, metalness: 0.1 });
+    var housing = K.mat("ch-hous", { color: 0xc4c8cc, roughness: 0.38, metalness: 0.06 });   /* a medical grade monitor in a light grey housing, so its back reads against the night */
     var alu = K.mat("ch-alu", { color: 0xb9bdc1, roughness: 0.32, metalness: 0.85 });
     var castAlu = K.mat("ch-cast", { color: 0x9a9ea2, roughness: 0.5, metalness: 0.7 });
     var rubber = K.finish.rubber(), chrome = K.finish.chrome();
@@ -231,12 +231,84 @@
         [[-1, -1], [-1, 1], [1, -1], [1, 1]].forEach(function (p) { K.cyl(0.022, 0.022, 0.05, bead, p[0] * 0.36, 0.025, p[1] * 0.36, 12, g); });
         K.box(w, h - 0.025, w, zinc, 0, 0.025, 0, 0.012, g);
         K.box(w + 0.01, 0.012, w + 0.01, plateM, 0, h - 0.006, 0, 0.004, g);           /* the cap plate */
-        (o.welds || []).forEach(function (y) { K.box(w + 0.018, 0.02, w + 0.018, bead, 0, y - 0.01, 0, 0.006, g); });
+        (o.welds || []).forEach(function (y) { K.box(w + 0.03, 0.05, w + 0.03, bead, 0, y - 0.025, 0, 0.012, g); });
         var n = o.bands || 0;
-        for (var i = 1; i <= n; i++) { var y = o.bandFrom + (h - o.bandFrom) * i / (n + 1); K.box(w + 0.024, 0.05, w + 0.024, bandM, 0, y - 0.025, 0, 0.008, g); }
+        /* `bands` sleeves, each a clamp 0.3 m tall, centred in n equal spans from `bandFrom` to the cap, so a reader counts n objects */
+        for (var i = 0; i < n; i++) { var y = o.bandFrom + (h - o.bandFrom) * (i + 0.5) / n; K.box(w + 0.05, 0.3, w + 0.05, bandM, 0, y - 0.15, 0, 0.012, g); for (var bb = 0; bb < 2; bb++) K.cyl(0.018, 0.018, 0.06, bead, (w / 2 + 0.03) * (bb ? 1 : -1), y - 0.03, 0, 10, g).rotation.set(0, 0, Math.PI / 2); }
         return g;
       }
     });
+  };
+  /* `precast_barrier`, the bench frames 4 and 5 set their figures on: a precast concrete parking barrier
+   * lying along x on the apron, its front face (+z) cut by three cast channels running its length, each
+   * exactly `length` m from x = -length/2, index 0 the top one. A cast tick on the face's lips at the
+   * channels' start and at `tick` of their length (0.5 by default). Chipped arrises, the aggregate in the
+   * face. A frame fills a channel with N.channelFill, which takes a length the frame computed. */
+  N.installKerb = function (K, THREE, TXT) {
+    if (K.registry.precast_barrier) return;
+    var conc = K.mat("ch-conc", { color: 0xffffff, map: N.concTex(THREE), roughness: 0.86, metalness: 0.0 });
+    var chan = K.mat("ch-chan", { color: 0x2c2d2b, roughness: 0.94, metalness: 0.0 });
+    var tickM = K.mat("ch-tick", { color: 0x141514, roughness: 0.9, metalness: 0.0 });
+    K.define("precast_barrier", {
+      size: [4.4, 0.8, 0.5],
+      options: { length: 4, height: 0.8, depth: 0.5, tick: 0.5, seed: 3 },
+      note: "A precast concrete barrier lying along x, three cast channels along its front face (+z, index 0 the top one), each `length` m long from x = -length/2, a cast tick on the face at the start and at `tick` of the length. userData.channel(i) gives the channel's local start, bottom, depth centre and size.",
+      make: function (o) {
+        var g = new THREE.Group(), L = o.length || 4, Hk = o.height || 0.8, D = o.depth || 0.5;
+        var Lt = L + 0.36, gh = 0.16, gd = 0.06, n = 3, lip = (Hk - n * gh) / (n + 1), x0 = -L / 2, xc = x0 - 0.06 + Lt / 2;
+        var zf = D / 2 - gd / 2;                                           /* the depth centre of the face layer */
+        K.box(Lt, Hk, D - gd, conc, xc, 0, -gd / 2, 0.02, g);                /* the body behind the channels */
+        var ys = [];
+        for (var k = 0; k <= n; k++) {
+          var yb = k * (lip + gh);                                          /* the lips, from the foot up */
+          K.box(Lt, lip, gd, conc, xc, yb, zf, 0.01, g);
+          if (k < n) ys.unshift(yb + lip);                                  /* channel bottoms, top one first */
+        }
+        ys.forEach(function (y) {
+          K.box(0.06, gh, gd, conc, x0 - 0.03, y, zf, 0.004, g);            /* the channel's closed start */
+          var tail = Lt - L - 0.06; K.box(tail, gh, gd, conc, x0 + L + tail / 2, y, zf, 0.004, g);
+          K.box(L, gh, 0.004, chan, x0 + L / 2, y, D / 2 - gd + 0.002, 0, g);   /* the channel's dark back */
+        });
+        [0, o.tick == null ? 0.5 : o.tick].forEach(function (t) {
+          for (var k2 = 0; k2 <= n; k2++) K.box(0.016, lip - 0.02, 0.004, tickM, x0 + L * t, k2 * (lip + gh) + 0.01, D / 2 + 0.002, 0, g);
+        });
+        g.userData.channel = function (i) { return { x0: x0, y: ys[i], z: zf, h: gh, d: gd, length: L }; };
+        g.traverse(function (m) { if (m.isMesh) { m.castShadow = true; m.receiveShadow = true; } });
+        return g;
+      }
+    });
+  };
+  /* FILL A CHANNEL from `from` to `to` m along it, `kind` amber (the record's accent, a cast resin) or
+   * alu (a brushed aluminium bar standing proud of the face). `fade` m past `to` as one block whose alpha falls to nothing, open,
+   * with no end cap, for a figure whose end is not published. */
+  N.channelFill = function (kerb, i, from, to, o) {
+    o = o || {};
+    var THREE = N.T, K = N.K, c = kerb.userData.channel(i), g = new THREE.Group(), alu = o.kind === "alu";
+    var mk = function (op) {
+      return alu ? K.mat("ch-bar", { color: 0xe6e9ec, roughness: 0.3, metalness: 0.55 })
+                 : new THREE.MeshStandardMaterial({ color: 0xE3A83B, emissive: 0xE3A83B, emissiveIntensity: 0.35, roughness: 0.42, transparent: op < 1, opacity: op, depthWrite: op >= 1 });
+    };
+    var h = alu ? c.h - 0.03 : c.h - 0.008, d = alu ? c.d + 0.03 : c.d - 0.006, y = c.y + (c.h - h) / 2, z = c.z + (alu ? 0.015 : -0.002);
+    K.box(to - from, h, d, mk(1), c.x0 + (from + to) / 2, y, z, alu ? 0.008 : 0.002, g);
+    var f = o.fade || 0;
+    if (f > 0) {
+      /* the open end: one block whose alpha runs from the fill's own to nothing, smooth, no end cap */
+      var fc = document.createElement("canvas"); fc.width = 256; fc.height = 4; var fx = fc.getContext("2d"), fg = fx.createLinearGradient(0, 0, 256, 0);
+      for (var q = 0; q <= 10; q++) { var e = 1 - q / 10; fg.addColorStop(q / 10, "rgb(" + Math.round(255 * e * e) + "," + Math.round(255 * e * e) + "," + Math.round(255 * e * e) + ")"); }
+      fx.fillStyle = fg; fx.fillRect(0, 0, 256, 4);
+      var fm = mk(0.99); fm.alphaMap = new THREE.CanvasTexture(fc); fm.transparent = true; fm.depthWrite = false;
+      K.box(f, h, d, fm, c.x0 + to + f / 2, y, z, 0, g);
+    }
+    kerb.add(g); return g;
+  };
+  N.concTex = function (THREE) {
+    if (N._conc) return N._conc;
+    var c = document.createElement("canvas"); c.width = c.height = 512; var x = c.getContext("2d"), r = lcg(41);
+    x.fillStyle = "#9a9b97"; x.fillRect(0, 0, 512, 512);
+    for (var i = 0; i < 2600; i++) { var v = 110 + Math.floor(r() * 90); x.fillStyle = "rgba(" + v + "," + v + "," + (v - 4) + "," + (0.25 + r() * 0.35).toFixed(2) + ")"; x.beginPath(); x.arc(r() * 512, r() * 512, 0.6 + r() * 2.2, 0, 7); x.fill(); }
+    for (var j = 0; j < 40; j++) { x.fillStyle = "rgba(40,40,38," + (0.06 + r() * 0.1).toFixed(2) + ")"; x.beginPath(); x.arc(r() * 512, r() * 512, 2 + r() * 6, 0, 7); x.fill(); }
+    var t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.wrapS = t.wrapT = THREE.RepeatWrapping; t.repeat.set(3, 1); t.anisotropy = 8;
+    N._conc = t; return t;
   };
   N.zincTex = function (THREE) {
     if (N._zinc) return N._zinc;
@@ -262,7 +334,7 @@
    * on a surface puts a soft, cool rect light at the screen, aimed the way the screen faces. */
   N.screenLight = function (cart, o) {
     o = o || {}; var T = N.T, mon = cart.userData.monitor; if (!mon) return null;
-    var L = new T.PointLight(N.SCREEN, o.i || 1.2, o.range || 3.2, 2);
+    var L = new T.PointLight(N.SCREEN, (o.i || 1.2) * 10, o.range || 3.2, 2);
     cart.updateMatrixWorld(true); var p = new T.Vector3(0, 0, 0.25).applyMatrix4(mon.matrixWorld);
     L.position.copy(p); L.castShadow = false; N.R.scene.add(L); return L;
   };
@@ -285,15 +357,28 @@
    * metres. Each is sized to hold about the same few pixels whatever its distance, unfogged, so the
    * row reads as many places rather than one glow. Deterministic by seed. */
   N.clinicLights = function (from, look, n, o) {
-    o = o || {}; var T = N.T, r = lcg(o.seed || 31), list = [], half = (o.spread || 13) * Math.PI / 180;
+    o = o || {}; var T = N.T, r = lcg(o.seed || 31), lists = [[], [], []], half = (o.spread || 16) * Math.PI / 180;
     var bearing = Math.atan2(look[0] - from[0], look[2] - from[2]), near = o.near || 900, far = o.far || 7000;
     for (var i = 0; i < n; i++) {
-      var b = bearing + (i / (n - 1) - 0.5) * 2 * half + (r() - 0.5) * (2 * half / n), d = near + Math.pow(r(), 0.8) * (far - near);
-      list.push([from[0] + Math.sin(b) * d, (o.y || 3) + r() * 2, from[2] + Math.cos(b) * d, 0, d * (o.size || 0.0016)]);
+      /* evenly across the frame's width with a little jitter, so the row reads as many places and never as a dashed rule */
+      var b = bearing + ((i + 0.5) / n - 0.5) * 2 * half + (r() - 0.5) * (1.6 * half / n), d = near + Math.pow(r(), 0.7) * (far - near);
+      var k = r() < 0.25 ? 0 : (r() < 0.6 ? 1 : 2);
+      lists[k].push([from[0] + Math.sin(b) * d, (o.y || 2) + r() * d * 0.0022, from[2] + Math.cos(b) * d, 0, d * (o.size || 0.0014) * (0.8 + r() * 0.5)]);
     }
-    var mat = new T.MeshBasicMaterial({ color: new T.Color(N.ACCENT).multiplyScalar(o.glow || 2.2), fog: false, toneMapped: false });
-    var im = N.K.instances(new T.SphereGeometry(1, 10, 8), mat, list); im.castShadow = false; im.receiveShadow = false; im.userData.txWear = false;
-    N.R.scene.add(im); return im;
+    var glows = [1.5, 1.0, 0.62], out = [];
+    lists.forEach(function (list, k) {
+      if (!list.length) return;
+      var mat = new T.MeshBasicMaterial({ color: new T.Color(N.ACCENT).multiplyScalar((o.glow || 1.1) * glows[k]), fog: false, toneMapped: false });
+      var im = N.K.instances(new T.SphereGeometry(1, 10, 8), mat, list); im.castShadow = false; im.receiveShadow = false; im.userData.txWear = false;
+      N.R.scene.add(im); out.push(im);
+    });
+    /* THE LAND LINE under them: a faint band of the coast's own dark, lit just enough to read as ground at the horizon */
+    if (o.land !== false) {
+      var lm = new T.Mesh(new T.PlaneGeometry(2 * far * Math.tan(half * 1.6), 1), new T.MeshBasicMaterial({ color: 0x1a1d24, fog: false, toneMapped: true }));
+      lm.position.set(from[0] + Math.sin(bearing) * far * 0.98, 0.5, from[2] + Math.cos(bearing) * far * 0.98); lm.rotation.y = bearing + Math.PI; lm.scale.y = far * 0.004;
+      N.R.scene.add(lm); out.push(lm);
+    }
+    return out;
   };
   N.accentMat = function (THREE, glow) { return new THREE.MeshStandardMaterial({ color: N.ACCENT, emissive: N.ACCENT, emissiveIntensity: glow == null ? 0.25 : glow, roughness: 0.5, metalness: 0.05 }); };
   N.installAll = function () { N.installKit(N.K, N.T, N.TXT); };
@@ -367,7 +452,7 @@
     await document.fonts.ready;
     N.start(o);
     var TXT = typeof bench === "function" ? bench(THREE) : bench, K = initKit(THREE, TXT);
-    N.K = K; N.TXT = TXT; N.installKit(K, THREE, TXT); N.installColumn(K, THREE, TXT);
+    N.K = K; N.TXT = TXT; N.installKit(K, THREE, TXT); N.installColumn(K, THREE, TXT); N.installKerb(K, THREE, TXT);
     return { TXT: TXT, K: K, gl: N.glCanvas(), W: TXT.deckWorld() };
   };
   N.EXPOSURE = 1.0;
