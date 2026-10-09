@@ -241,7 +241,7 @@
   };
   /* `precast_barrier`, the bench frames 4 and 5 set their figures on: a precast concrete parking barrier
    * lying along x on the apron, its front face (+z) cut by three cast channels running its length, each
-   * exactly `length` m from x = -length/2, index 0 the top one. A cast tick on the face's lips at the
+   * exactly `length` m from userData.channel(i).x0, index 0 the top one. A cast tick on the face's lips at the
    * channels' start and at `tick` of their length (0.5 by default). Chipped arrises, the aggregate in the
    * face. A frame fills a channel with N.channelFill, which takes a length the frame computed. */
   N.installKerb = function (K, THREE, TXT) {
@@ -255,7 +255,11 @@
       note: "A precast concrete barrier lying along x, three cast channels along its front face (+z, index 0 the top one), each `length` m long from x = -length/2, a cast tick on the face at the start and at `tick` of the length. userData.channel(i) gives the channel's local start, bottom, depth centre and size.",
       make: function (o) {
         var g = new THREE.Group(), L = o.length || 4, Hk = o.height || 0.8, D = o.depth || 0.5;
-        var Lt = L + 0.36, gh = o.channel || 0.16, gd = 0.06, n = 3, lip = (Hk - n * gh) / (n + 1), x0 = -L / 2, xc = x0 - 0.06 + Lt / 2;
+        var Lt = L + 0.36, gh = o.channel || 0.16, gd = 0.06, n = 3, lip = (Hk - n * gh) / (n + 1);
+        /* built centred on its own bounds, because K.make recentres a model's children on its bounding box and
+         * a fill added afterwards would land off the cast tick by the offset (no. 47's first build drew the
+         * solid 0.12 m past the half tick that way) */
+        var x0 = -Lt / 2 + 0.06, xc = 0;
         var zf = D / 2 - gd / 2;                                           /* the depth centre of the face layer */
         K.box(Lt, Hk, D - gd, conc, xc, 0, -gd / 2, 0.02, g);                /* the body behind the channels */
         var ys = [];
