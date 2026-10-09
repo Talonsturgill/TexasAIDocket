@@ -147,7 +147,7 @@
             w.position.set(ex + Math.cos(a + Math.PI / 2) * sd * 0.024, 0.048, ez + Math.sin(a + Math.PI / 2) * sd * 0.024); g.add(w);
             var hub = new THREE.Mesh(new THREE.CylinderGeometry(0.02, 0.02, 0.022, 16), castAlu); hub.rotation.copy(w.rotation); hub.position.copy(w.position); g.add(hub);
           });
-          if (i % 2 === 0) K.box(0.03, 0.008, 0.035, K.mat("ch-lock", { color: 0x8a2a24, roughness: 0.5 }), ex, 0.094, ez, 0.003, g);   /* a lock pedal */
+          if (i % 2 === 0) K.box(0.03, 0.008, 0.035, K.mat("ch-lock", { color: 0x3a3c3e, roughness: 0.5 }), ex, 0.094, ez, 0.003, g);   /* a lock pedal */
         }
         /* the mast: a lower gas spring sleeve and the oval column */
         var sleeve = K.cyl(0.055, 0.058, 0.44, coat, 0, 0.1, 0, 32, g); sleeve.scale.z = 0.72;
@@ -251,11 +251,11 @@
     var tickM = K.mat("ch-tick", { color: 0x141514, roughness: 0.9, metalness: 0.0 });
     K.define("precast_barrier", {
       size: [4.4, 0.8, 0.5],
-      options: { length: 4, height: 0.8, depth: 0.5, tick: 0.5, seed: 3 },
+      options: { length: 4, height: 0.8, depth: 0.5, channel: 0.16, tick: 0.5, seed: 3 },
       note: "A precast concrete barrier lying along x, three cast channels along its front face (+z, index 0 the top one), each `length` m long from x = -length/2, a cast tick on the face at the start and at `tick` of the length. userData.channel(i) gives the channel's local start, bottom, depth centre and size.",
       make: function (o) {
         var g = new THREE.Group(), L = o.length || 4, Hk = o.height || 0.8, D = o.depth || 0.5;
-        var Lt = L + 0.36, gh = 0.16, gd = 0.06, n = 3, lip = (Hk - n * gh) / (n + 1), x0 = -L / 2, xc = x0 - 0.06 + Lt / 2;
+        var Lt = L + 0.36, gh = o.channel || 0.16, gd = 0.06, n = 3, lip = (Hk - n * gh) / (n + 1), x0 = -L / 2, xc = x0 - 0.06 + Lt / 2;
         var zf = D / 2 - gd / 2;                                           /* the depth centre of the face layer */
         K.box(Lt, Hk, D - gd, conc, xc, 0, -gd / 2, 0.02, g);                /* the body behind the channels */
         var ys = [];
@@ -294,7 +294,7 @@
     if (f > 0) {
       /* the open end: one block whose alpha runs from the fill's own to nothing, smooth, no end cap */
       var fc = document.createElement("canvas"); fc.width = 256; fc.height = 4; var fx = fc.getContext("2d"), fg = fx.createLinearGradient(0, 0, 256, 0);
-      for (var q = 0; q <= 10; q++) { var e = 1 - q / 10; fg.addColorStop(q / 10, "rgb(" + Math.round(255 * e * e) + "," + Math.round(255 * e * e) + "," + Math.round(255 * e * e) + ")"); }
+      for (var q = 0; q <= 10; q++) { var e = 0.72 * (1 - q / 10);   /* the fade starts a visible step below the solid, so the solid end reads exactly at `to` */ fg.addColorStop(q / 10, "rgb(" + Math.round(255 * e * e) + "," + Math.round(255 * e * e) + "," + Math.round(255 * e * e) + ")"); }
       fx.fillStyle = fg; fx.fillRect(0, 0, 256, 4);
       var fm = mk(0.99); fm.alphaMap = new THREE.CanvasTexture(fc); fm.transparent = true; fm.depthWrite = false;
       K.box(f, h, d, fm, c.x0 + to + f / 2, y, z, 0, g);
@@ -304,10 +304,10 @@
   N.concTex = function (THREE) {
     if (N._conc) return N._conc;
     var c = document.createElement("canvas"); c.width = c.height = 512; var x = c.getContext("2d"), r = lcg(41);
-    x.fillStyle = "#9a9b97"; x.fillRect(0, 0, 512, 512);
-    for (var i = 0; i < 2600; i++) { var v = 110 + Math.floor(r() * 90); x.fillStyle = "rgba(" + v + "," + v + "," + (v - 4) + "," + (0.25 + r() * 0.35).toFixed(2) + ")"; x.beginPath(); x.arc(r() * 512, r() * 512, 0.6 + r() * 2.2, 0, 7); x.fill(); }
+    x.fillStyle = "#8f908c"; x.fillRect(0, 0, 512, 512);
+    for (var i = 0; i < 4200; i++) { var v = 110 + Math.floor(r() * 90); x.fillStyle = "rgba(" + v + "," + v + "," + (v - 4) + "," + (0.25 + r() * 0.35).toFixed(2) + ")"; x.beginPath(); x.arc(r() * 512, r() * 512, 0.6 + r() * 2.2, 0, 7); x.fill(); }
     for (var j = 0; j < 40; j++) { x.fillStyle = "rgba(40,40,38," + (0.06 + r() * 0.1).toFixed(2) + ")"; x.beginPath(); x.arc(r() * 512, r() * 512, 2 + r() * 6, 0, 7); x.fill(); }
-    var t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.wrapS = t.wrapT = THREE.RepeatWrapping; t.repeat.set(3, 1); t.anisotropy = 8;
+    var t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.wrapS = t.wrapT = THREE.RepeatWrapping; t.repeat.set(9, 2); t.anisotropy = 8;
     N._conc = t; return t;
   };
   N.zincTex = function (THREE) {
@@ -432,7 +432,7 @@
       "html, body { width:1080px; height:1350px; overflow:hidden; background:#0C0D11; }",
       'body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }',
       "canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }",
-      '.hook { position:absolute; left:80px; top:150px; width:900px; font-family:"Fraunces", serif; font-weight:700; line-height:0.98; letter-spacing:0.004em; color:' + ink + '; font-variation-settings:"opsz" 144; z-index:10; }',
+      '.hook { position:absolute; left:80px; top:150px; width:900px; font-family:"Fraunces", serif; font-weight:700; line-height:0.98; letter-spacing:0.004em; color:' + ink + '; font-variation-settings:"opsz" 144; word-spacing:0.05em; z-index:10; }',
       ".dek { position:absolute; left:82px; width:820px; font-size:31px; font-weight:600; line-height:1.38; color:" + dek + "; z-index:10; }",
       '.tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace; font-size:24px; letter-spacing:0.07em; line-height:1.5; color:' + ink + '; white-space:nowrap; z-index:20; }',
       '.lab { position:absolute; font-family:"JetBrains Mono", monospace; font-size:26px; font-weight:500; letter-spacing:0.06em; color:' + ink + '; white-space:nowrap; z-index:12; }',
