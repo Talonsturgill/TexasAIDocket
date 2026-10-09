@@ -202,6 +202,12 @@
           scrM.color.setScalar(o.lit === false ? 0.04 : (o.glow || 1.0));
           var scr = new THREE.Mesh(new THREE.PlaneGeometry(sw, sh), scrM); scr.position.set(0, 0.006, 0.0118); scr.castShadow = false; mon.add(scr);
           scr.userData.txWear = false; scr.userData.screen = true;
+          /* THE LEAK: a thin cool backlight just larger than the housing, set inside it, so a lit screen shows a rim of
+           * light round the housing's edges from behind as well as a halo round the bezel from the front */
+          if (o.lit !== false) {
+            var lk = new THREE.Mesh(new THREE.PlaneGeometry(sw + 0.036, sh + 0.052), new THREE.MeshBasicMaterial({ color: new THREE.Color(0xdfeaf2).multiplyScalar(0.55 * (o.glow || 1.0)), side: THREE.DoubleSide, fog: false }));
+            lk.position.set(0, 0.004, -0.004); lk.castShadow = false; lk.userData.txWear = false; mon.add(lk);
+          }
         }
         var led = new THREE.Mesh(new THREE.CircleGeometry(0.0018, 12), K.finish.lamp(0xffffff, 1.4)); led.position.set(sw / 2 - 0.02, -sh / 2 - 0.008, 0.0118); mon.add(led);
         g.userData.screenAt = function () { var p = new THREE.Vector3(); mon.getWorldPosition(p); return [p.x, p.y, p.z]; };
@@ -382,6 +388,7 @@
       lm.position.set(from[0] + Math.sin(bearing) * far * 0.98, 0.5, from[2] + Math.cos(bearing) * far * 0.98); lm.rotation.y = bearing + Math.PI; lm.scale.y = far * 0.004;
       N.R.scene.add(lm); out.push(lm);
     }
+    out.points = lists[0].concat(lists[1], lists[2]);   /* every light's world position, so a frame can count the ones it shows */
     return out;
   };
   N.accentMat = function (THREE, glow) { return new THREE.MeshStandardMaterial({ color: N.ACCENT, emissive: N.ACCENT, emissiveIntensity: glow == null ? 0.25 : glow, roughness: 0.5, metalness: 0.05 }); };
