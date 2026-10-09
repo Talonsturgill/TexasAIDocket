@@ -1988,3 +1988,14 @@ be the better primary.
 
 **www.texasattorneygeneral.gov answered 402 again**, and **capitol.texas.gov's tlodocs path refused
 this project's client**. Neither was used today.
+
+
+## October 9th, 2026 - Dispatch publication record repair
+
+The official Taylor August council calendar links to CivicClerk event 2010. The portal robots file permits project readers. The API robots file returns 404, with no published disallow. The linked agenda packet and minutes both answer HTTP 200. The packet has a text layer except for scanned agreement pages. The minutes are scanned and were rendered and read directly. Minutes page 2 records unanimous approval of the Compal item after separate consideration, correcting the earlier no-outcome account. No request was made to the disallowed Swagit video.
+
+- https://taylortx.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=5915,plainText=false) - exact response SHA256 f7171f88a1802e43530f2c9228b79a897abec93819357f0acf813d0105f524fa.
+- https://taylortx.api.civicclerk.com/v1/Meetings/GetMeetingFileStream(fileId=5956,plainText=false) - exact response SHA256 bd4f106c6b8fe2c787fe8d76dcb2b6faba3015212f0ab16a1fd3683990abbe61.
+- https://communityimpact.com/keller-roanoke-northeast-fort-worth/government/fort-worth-city-council-approves-steps-to-start-moratorium-process-on-data-centers/ - exact response SHA256 1bf92cc88c979d59fac6b78c61f2fd7f476dc6f4de4b3a7113ba06495db018ee.
+
+Community Impact's full Fort Worth account retains the quoted first steps and proposed February adoption after hearings and readings. KERA returns 403. The full outcomes were checked against the reachable account without claiming KERA's wording was fetched.
