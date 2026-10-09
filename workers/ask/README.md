@@ -14,6 +14,8 @@ health probe caps its own effort at high when answers use xhigh or max.
 
 Checked sentences wait for the provider's terminal classification. A declined
 turn returns a clear notice and discards partial text without caching it.
+Empty replies, interrupted streams and provider stream errors remain retryable.
+Only completed, accepted answers enter the cache.
 
 Run the Worker checks and regenerate the dashboard bundle before release.
 

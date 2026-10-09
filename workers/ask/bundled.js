@@ -1243,6 +1243,7 @@ const DEFAULT_READER_DAILY_CAP = 50;
 // reasoning and the short answer so thinking alone does not consume the whole response.
 const MAX_TOKENS = 4096;
 const REFUSAL_MESSAGE = "The model declined that question. Start over or ask a different question.";
+const RETRY_MESSAGE = "The model returned no complete answer. Try again or ask a narrower question.";
 const ANSWER_TTL = 60 * 60 * 24 * 7;
 
 // EVERY KV KEY THIS WORKER WRITES CARRIES THIS.
@@ -1831,8 +1832,11 @@ export async function answer(turns, env, now, reader) {
     return { status: 200, body: { text: "", withheld: false, refused: true, error: REFUSAL_MESSAGE } };
   }
   const raw = (body.content || []).filter((c) => c.type === "text").map((c) => c.text).join("");
+  if (!raw.trim() || ["max_tokens", "model_context_window_exceeded"].includes(body.stop_reason)) {
+    return { status: 502, body: { error: RETRY_MESSAGE, retryable: true } };
+  }
   const out = verify(raw, ctx);
-  if (env.ASK_KV && key) {
+  if (env.ASK_KV && key && out.text && !out.withheld) {
     await env.ASK_KV.put(key, JSON.stringify(out), { expirationTtl: ANSWER_TTL });
   }
   return { status: 200, body: out };
@@ -1919,6 +1923,7 @@ export async function answerStream(turns, env, now, requester) {
         const reader = r.body.getReader();
         const dec = new TextDecoder();
         let sse = "", prose = "", kept = [], stopped = null, ranLong = false, refused = false;
+        let stopReason = null, messageStopped = false, providerError = false;
         // USAGE ARRIVES IN TWO PLACES ON A STREAM. `message_start` carries the input side,
         // including the two cache counters, and `message_delta` carries the output count as it
         // finishes. Neither is in the text events, so both are collected as they pass rather
@@ -1938,7 +1943,10 @@ export async function answerStream(turns, env, now, requester) {
             // The model says why it stopped, and it is the only thing that can. A trailing
             // fragment looks identical whether the model simply did not end on a full stop or
             // whether it was cut off in the middle of a word.
-            if (ev?.delta?.stop_reason === "max_tokens") ranLong = true;
+            if (ev?.type === "error") providerError = true;
+            if (ev?.type === "message_stop") messageStopped = true;
+            if (ev?.type === "message_delta" && ev.delta?.stop_reason) stopReason = ev.delta.stop_reason;
+            if (["max_tokens", "model_context_window_exceeded"].includes(stopReason)) ranLong = true;
             if (ev?.type === "message_delta" && ev.delta?.stop_reason === "refusal") refused = true;
             if (ev?.type === "message_start" && ev.message?.usage) usage = { ...ev.message.usage };
             if (ev?.type === "message_delta" && ev.usage) usage = { ...(usage || {}), ...ev.usage };
@@ -1956,6 +1964,12 @@ export async function answerStream(turns, env, now, requester) {
           }
         }
 
+        if (providerError || !messageStopped || !stopReason) {
+          await recordUsage(env, usage, NaN, now);
+          send({ error: RETRY_MESSAGE, retryable: true });
+          controller.close();
+          return;
+        }
         // Haiku 5.5 can refuse after text deltas. Checked sentences wait for the
         // terminal classification; no refused prefix reaches a page or its cache.
         if (refused) {
@@ -1974,13 +1988,19 @@ export async function answerStream(turns, env, now, requester) {
           else stopped = v;
         }
 
+        if (!kept.length && !stopped && !ranLong) {
+          await recordUsage(env, usage, NaN, now);
+          send({ error: RETRY_MESSAGE, retryable: true });
+          controller.close();
+          return;
+        }
         if (kept.length) firstMs = Date.now() - startedAt;
         for (const sentence of kept) send({ sentence });
         if (stopped) send({ withheld: stopped.reason });
         else if (ranLong) send({ long: true });
         else send({ done: true });
 
-        if (env.ASK_KV && key) {
+        if (env.ASK_KV && key && kept.length && !stopped && !ranLong) {
           await env.ASK_KV.put(key, JSON.stringify({
             text: kept.join(" "),
             withheld: !!stopped,

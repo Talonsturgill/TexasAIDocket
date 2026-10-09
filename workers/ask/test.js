@@ -587,6 +587,7 @@ for (const partial of ["", "The record holds 12 decisions. "]) {
       { type: "content_block_delta", delta: { type: "text_delta", text: partial } },
       { type: "message_delta", delta: { stop_reason: "refusal" },
         stop_details: { category: null }, usage: { output_tokens: 10 } },
+      { type: "message_stop" },
     ].map((ev) => `data: ${JSON.stringify(ev)}\n\n`).join("");
     return new Response(frames);
   };
@@ -601,6 +602,57 @@ for (const partial of ["", "The record holds 12 decisions. "]) {
       !events.some((ev) => ev.sentence) && events.some((ev) => ev.refused && /declined/.test(ev.error)));
     ok("refused calls count against the cap without caching their prefixes",
       values.get(monthKey("2026-08-29")) === "2" && ![...values.keys()].some((key) => key.startsWith("a:")));
+  } finally { globalThis.fetch = savedFetch; }
+}
+
+head("R2c. empty and incomplete responses remain retryable");
+for (const scenario of ["empty", "missing delta", "missing stop", "early EOF", "provider error"]) {
+  const values = new Map();
+  const e = { ...ENV, ASK_EFFORT: "xhigh", ASK_KV: {
+    get: async (key) => values.get(key) ?? null,
+    put: async (key, value) => values.set(key, value),
+  } };
+  const savedFetch = globalThis.fetch;
+  globalThis.fetch = async (url, init) => {
+    if (String(url).endsWith("/pack.json")) return { ok: true, json: async () => FAKE };
+    if (String(url).endsWith("/corpus.json")) return { ok: true, json: async () => FAKE_CORPUS };
+    const events = scenario === "empty" ? [] : [
+      { type: "content_block_delta", delta: { type: "text_delta", text: "The record holds 12 decisions. " } },
+    ];
+    if (scenario === "provider error") events.push({ type: "error", error: { type: "overloaded_error" } });
+    if (!["missing delta", "early EOF"].includes(scenario)) events.push({ type: "message_delta", delta: { stop_reason: "end_turn" } });
+    if (!["missing stop", "early EOF"].includes(scenario)) events.push({ type: "message_stop" });
+    return new Response(events.map(ev => `data: ${JSON.stringify(ev)}\n\n`).join(""));
+  };
+  try {
+    const turns = [{ role: "user", content: "evaporative cooling" },
+      { role: "assistant", content: "The record holds 12 decisions." },
+      { role: "user", content: "and the dates" }];
+    const events = (await new Response(await answerStreaming(turns, e,
+      "2026-08-29T12:00:00Z")).text()).trim().split("\n").map(JSON.parse);
+    ok(`${scenario} returns a retryable error without releasing a prefix`,
+      events.some(ev => ev.error && ev.retryable) && !events.some(ev => ev.sentence));
+    ok(`${scenario} consumes a call without caching an unfinished answer`,
+      values.get(monthKey("2026-08-29")) === "1" && ![...values.keys()].some(key => key.startsWith("a:")));
+  } finally { globalThis.fetch = savedFetch; }
+}
+{
+  const values = new Map();
+  const savedFetch = globalThis.fetch;
+  globalThis.fetch = async (url) => {
+    if (String(url).endsWith("/pack.json")) return { ok: true, json: async () => FAKE };
+    if (String(url).endsWith("/corpus.json")) return { ok: true, json: async () => FAKE_CORPUS };
+    return { ok: true, json: async () => ({ stop_reason: "end_turn",
+      content: [{ type: "thinking", thinking: "private reasoning" }], usage: {} }) };
+  };
+  try {
+    const result = await answerWhole([{ role: "user", content: "evaporative cooling" }],
+      { ...ENV, ASK_EFFORT: "xhigh", ASK_KV: { get: async key => values.get(key) ?? null,
+        put: async (key,value) => values.set(key,value) } }, "2026-08-29T12:00:00Z");
+    ok("a thinking-only plain response is retryable without exposing reasoning",
+      result.status === 502 && result.body.retryable && !JSON.stringify(result.body).includes("private reasoning"));
+    ok("a thinking-only plain response is counted but never cached",
+      values.get(monthKey("2026-08-29")) === "1" && ![...values.keys()].some(key => key.startsWith("a:")));
   } finally { globalThis.fetch = savedFetch; }
 }
 
@@ -862,7 +914,11 @@ head("R5. an open case never reopens its comment window");
       slugs: Object.keys(accessPack.public_access) }) };
     providerCalls++;
     if (JSON.parse(options.body).stream) {
-      return new Response("data: " + JSON.stringify({ delta: { text: bad + " " } }) + "\n\n");
+      return new Response([
+        { type: "content_block_delta", delta: { type: "text_delta", text: bad + " " } },
+        { type: "message_delta", delta: { stop_reason: "end_turn" } },
+        { type: "message_stop" },
+      ].map(ev => "data: " + JSON.stringify(ev) + "\n\n").join(""));
     }
     return { ok: true, json: async () => ({ content: [{ type: "text", text: bad }] }) };
   };
