@@ -5,7 +5,7 @@ line. Nothing is typed twice."""
 import json, re
 from pathlib import Path
 HERE = Path(__file__).resolve().parent
-rep = json.load(open(HERE / "render" / "render_report.json"))
+rep = json.load(open(HERE / "render_report.json" if (HERE / "render_report.json").exists() else HERE / "render" / "render_report.json"))   # the archive keeps it beside this file
 cap = (HERE / "caption.txt").read_text().strip()
 title = json.load(open(HERE / "tmp" / "doc_title.json"))["title"] if (HERE / "tmp" / "doc_title.json").exists() else "Asked inside the chart"
 slides = {}

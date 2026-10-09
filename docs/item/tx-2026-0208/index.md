@@ -15,7 +15,7 @@ The University of Texas Medical Branch announced on September 22nd that OpenEvid
 
 ## Dates
 
-- 2026-09-22 · effective: UTMB and OpenEvidence announce the collaboration, the date of the release
+- 2026-09-22 · filed: UTMB and OpenEvidence announce the collaboration, the date of the release
 
 ## How this decision moved
 

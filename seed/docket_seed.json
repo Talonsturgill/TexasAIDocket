@@ -14394,13 +14394,13 @@
   "key_dates": [
    {
     "date": "2026-09-22",
-    "kind": "effective",
+    "kind": "filed",
     "note": "UTMB and OpenEvidence announce the collaboration, the date of the release"
    }
   ],
   "public_access": {
    "room": "contact_only",
-   "how": "UTMB is a component of the University of Texas System, whose Board of Regents meets in public in Austin and posts its agendas. A question about a clinical AI tool at UTMB goes to the medical branch itself.",
+   "how": "UTMB is a component of the University of Texas System. Its Board of Regents meets in public in Austin, posts its agendas and takes testimony on the topics an agenda lists.",
    "url": "https://www.utsystem.edu/board-of-regents/meetings",
    "closes": null
   },
@@ -14575,7 +14575,7 @@
  },
  {
   "title": "UT REAL Health AI signs a systemwide agreement letting UT health institutions use Abridge's ambient note taking",
-  "summary": "Abridge announced on October 8th an enterprise agreement with UT REAL Health AI, the University of Texas System's health AI initiative. The agreement gives UT health institutions a systemwide framework to use Abridge's clinician platform, which listens to visits and drafts notes, while each institution keeps its own decisions. Abridge says its pilot with UT's health systems began in 2025 and reached clinicians at five locations. The adoption figures in the release are the vendor's own. It reports no measure of note accuracy or time saved, and states no price.",
+  "summary": "Abridge announced on October 8th an enterprise agreement with UT REAL Health AI, the University of Texas System's health AI initiative. The agreement gives UT health institutions a systemwide framework to use Abridge's clinician platform, which listens to visits and drafts notes, while each institution keeps its own decisions. Abridge says its pilot with UT's health systems has included clinicians at five locations. The adoption figures in the release are the vendor's own. It reports no measure of note accuracy or time saved, and states no price.",
   "topic": "health-and-education",
   "decider": {
    "name": "The University of Texas System",
@@ -14620,7 +14620,7 @@
     "id": "tx-2026-0210-c2"
    },
    {
-    "text": "The pilot began in 2025 with clinicians at five locations.",
+    "text": "The pilot with UT's health systems has included clinicians at five locations.",
     "verbatim_quote": "That same year, Abridge launched a pilot with UT’s Health Systems which has included clinicians at five geographic locations across outpatient, inpatient, and emergency department settings and more than 50 specialties.",
     "source_url": "https://www.abridge.com/press-release/ut-health-enterprise-wide",
     "source_title": "Abridge press release, Abridge Announces Enterprise-Wide Agreement to Expand AI-Enabled Care Across The University of Texas System",
@@ -14648,138 +14648,5 @@
   ],
   "last_verified": "2026-10-09",
   "id": "tx-2026-0210"
- },
- {
-  "title": "A UT San Antonio lab builds a solar flood sensor that runs its own AI at the street, tested so far on validation data rather than a flood",
-  "summary": "UT San Antonio researchers led by Chen Pan built a prototype street level flood warning station. It combines solar power, weather sensing, four optical water level sensors mounted at different heights and a machine learning model that runs on the device itself. When it sees rising water it sends long range radio signals to a local hub, where a second model maps where flooding could spread. The university reports a validation accuracy from initial assessments after training and a parts cost for one station. It names no field deployment and reports no result from a real flood. The work was funded in part by a Texas Coastal Management Program grant through NOAA. The team aims to turn it into a weatherized product for small coastal towns, homeowners' associations, farms and industrial sites.",
-  "topic": "research-and-science",
-  "decider": {
-   "name": "University of Texas at San Antonio",
-   "type": "state-agency"
-  },
-  "geography": {
-   "statewide": false,
-   "counties": [
-    "Bexar"
-   ],
-   "on_ercot": true,
-   "metro": "San Antonio-New Braunfels, TX"
-  },
-  "status": "decided",
-  "key_dates": [
-   {
-    "date": "2026-09-28",
-    "kind": "effective",
-    "note": "UT San Antonio publishes the prototype, the date the university's news site carries"
-   }
-  ],
-  "public_access": {
-   "room": "contact_only",
-   "how": "This is a university prototype and no public body voted on it. Its funding came through the Texas Coastal Management Program, which the General Land Office runs and which takes grant applications from coastal communities in yearly cycles.",
-   "url": "https://glo.texas.gov/coastal/protecting-coast/funding-opportunities",
-   "closes": null
-  },
-  "claims": [
-   {
-    "text": "UT San Antonio researchers developed a self sustaining AI flood warning system meant to spot water at street level.",
-    "verbatim_quote": "Researchers at The University of Texas at San Antonio have developed a self-sustaining, artificial intelligence-powered flood warning system designed to spot dangerous water accumulation at the street level.",
-    "source_url": "https://news.utsa.edu/2026/09/ut-san-antonio-researcher-builds-self-powered-smart-warning-system-to-catch-local-floods/",
-    "source_title": "UT San Antonio Today, UT San Antonio researcher builds self-powered, smart warning system to catch local floods",
-    "source_type": "primary_official",
-    "fetched": "2026-10-09",
-    "id": "tx-2026-0211-c1"
-   },
-   {
-    "text": "The prototype combines solar power, several sensors, long range radios and machine learning on the device.",
-    "verbatim_quote": "the team engineered a field-ready prototype that combines solar energy harvesting, multi-sensor environmental tracking, long-range wireless radios and on-device machine learning.",
-    "source_url": "https://news.utsa.edu/2026/09/ut-san-antonio-researcher-builds-self-powered-smart-warning-system-to-catch-local-floods/",
-    "source_title": "UT San Antonio Today, UT San Antonio researcher builds self-powered, smart warning system to catch local floods",
-    "source_type": "primary_official",
-    "fetched": "2026-10-09",
-    "id": "tx-2026-0211-c2"
-   },
-   {
-    "text": "It carries four optical water level sensors at different heights.",
-    "verbatim_quote": "The resulting prototype combines temperature, humidity, light and precipitation sensing, as well as four optical water-level sensors mounted at varying heights.",
-    "source_url": "https://news.utsa.edu/2026/09/ut-san-antonio-researcher-builds-self-powered-smart-warning-system-to-catch-local-floods/",
-    "source_title": "UT San Antonio Today, UT San Antonio researcher builds self-powered, smart warning system to catch local floods",
-    "source_type": "primary_official",
-    "fetched": "2026-10-09",
-    "id": "tx-2026-0211-c3"
-   },
-   {
-    "text": "The model runs on the device and predicts local flood risk without a central server.",
-    "verbatim_quote": "This on-device AI evaluates current and recent sensor data to predict localized, imminent flood risk without relying on a central server.",
-    "source_url": "https://news.utsa.edu/2026/09/ut-san-antonio-researcher-builds-self-powered-smart-warning-system-to-catch-local-floods/",
-    "source_title": "UT San Antonio Today, UT San Antonio researcher builds self-powered, smart warning system to catch local floods",
-    "source_type": "primary_official",
-    "fetched": "2026-10-09",
-    "id": "tx-2026-0211-c4"
-   },
-   {
-    "text": "The university reports a validation accuracy from initial assessments after training.",
-    "verbatim_quote": "So far, the AI has performed well, achieving 98.82% validation accuracy in initial assessments post-training.",
-    "source_url": "https://news.utsa.edu/2026/09/ut-san-antonio-researcher-builds-self-powered-smart-warning-system-to-catch-local-floods/",
-    "source_title": "UT San Antonio Today, UT San Antonio researcher builds self-powered, smart warning system to catch local floods",
-    "source_type": "primary_official",
-    "fetched": "2026-10-09",
-    "id": "tx-2026-0211-c5"
-   },
-   {
-    "text": "Its radio signals reach more than a half mile through city streets and up to five miles in open areas.",
-    "verbatim_quote": "These low-power signals can travel more than a half-mile through city streets and up to five miles in open areas without needing cell towers or power lines.",
-    "source_url": "https://news.utsa.edu/2026/09/ut-san-antonio-researcher-builds-self-powered-smart-warning-system-to-catch-local-floods/",
-    "source_title": "UT San Antonio Today, UT San Antonio researcher builds self-powered, smart warning system to catch local floods",
-    "source_type": "primary_official",
-    "fetched": "2026-10-09",
-    "id": "tx-2026-0211-c6"
-   },
-   {
-    "text": "Parts for one prototype station cost roughly $150 to $220.",
-    "verbatim_quote": "The total cost of parts for one prototype sensing station ranges from roughly $150 to $220.",
-    "source_url": "https://news.utsa.edu/2026/09/ut-san-antonio-researcher-builds-self-powered-smart-warning-system-to-catch-local-floods/",
-    "source_title": "UT San Antonio Today, UT San Antonio researcher builds self-powered, smart warning system to catch local floods",
-    "source_type": "primary_official",
-    "fetched": "2026-10-09",
-    "id": "tx-2026-0211-c7"
-   },
-   {
-    "text": "The team aims for a weatherized commercial product for small coastal towns, homeowners' associations, farms and industrial sites.",
-    "verbatim_quote": "The team aims to refine the design into a sleeker, weatherized commercial product suitable for deployment by small coastal municipalities, homeowners’ associations, agricultural operations and industrial sites.",
-    "source_url": "https://news.utsa.edu/2026/09/ut-san-antonio-researcher-builds-self-powered-smart-warning-system-to-catch-local-floods/",
-    "source_title": "UT San Antonio Today, UT San Antonio researcher builds self-powered, smart warning system to catch local floods",
-    "source_type": "primary_official",
-    "fetched": "2026-10-09",
-    "id": "tx-2026-0211-c8"
-   },
-   {
-    "text": "The work was funded in part by a Texas Coastal Management Program grant from NOAA.",
-    "verbatim_quote": "This project was funded in part by a Texas Coastal Management Program grant awarded by the National Oceanic and Atmospheric Administration (NOAA).",
-    "source_url": "https://news.utsa.edu/2026/09/ut-san-antonio-researcher-builds-self-powered-smart-warning-system-to-catch-local-floods/",
-    "source_title": "UT San Antonio Today, UT San Antonio researcher builds self-powered, smart warning system to catch local floods",
-    "source_type": "primary_official",
-    "fetched": "2026-10-09",
-    "id": "tx-2026-0211-c9"
-   },
-   {
-    "text": "The station runs on solar power charging a built in battery.",
-    "verbatim_quote": "An onboard power chip collects ambient light to charge a built-in battery and backup energy storage units, allowing the device to run indefinitely on a fraction of the energy used by a smartphone.",
-    "source_url": "https://news.utsa.edu/2026/09/ut-san-antonio-researcher-builds-self-powered-smart-warning-system-to-catch-local-floods/",
-    "source_title": "UT San Antonio Today, UT San Antonio researcher builds self-powered, smart warning system to catch local floods",
-    "source_type": "primary_official",
-    "fetched": "2026-10-09",
-    "id": "tx-2026-0211-c10"
-   }
-  ],
-  "confidence": "high",
-  "notes_for_editor": "Admitted on UT San Antonio's own release, read in full on October 9th. Bexar is the county of the lab. The release names no deployment site, so no other county is named. The date is the one the release's address carries.",
-  "history": [
-   {
-    "date": "2026-10-09",
-    "note": "Admitted to the record on UT San Antonio's own release describing the prototype."
-   }
-  ],
-  "last_verified": "2026-10-09",
-  "id": "tx-2026-0211"
  }
 ]

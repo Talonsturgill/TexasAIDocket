@@ -32,6 +32,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-02 · UTSA's solar flood sensor still runs its model on the chip with no cloud link.
 - 2026-10-05 · UT San Antonio's solar powered flood sensor still runs its model on the chip, and it is still a prototype.
 - 2026-10-08 · UT San Antonio's flood sensor is still a prototype that runs its model on the chip.
+- 2026-10-09 · UT San Antonio's news site now carries the same prototype account under a September 28th date, with the same sensors, model, validation and funding.
 
 ## Evidence
 

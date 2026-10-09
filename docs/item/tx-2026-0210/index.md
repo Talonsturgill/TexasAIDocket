@@ -1,6 +1,6 @@
 # UT REAL Health AI signs a systemwide agreement letting UT health institutions use Abridge's ambient note taking
 
-Abridge announced on October 8th an enterprise agreement with UT REAL Health AI, the University of Texas System's health AI initiative. The agreement gives UT health institutions a systemwide framework to use Abridge's clinician platform, which listens to visits and drafts notes, while each institution keeps its own decisions. Abridge says its pilot with UT's health systems began in 2025 and reached clinicians at five locations. The adoption figures in the release are the vendor's own. It reports no measure of note accuracy or time saved, and states no price.
+Abridge announced on October 8th an enterprise agreement with UT REAL Health AI, the University of Texas System's health AI initiative. The agreement gives UT health institutions a systemwide framework to use Abridge's clinician platform, which listens to visits and drafts notes, while each institution keeps its own decisions. Abridge says its pilot with UT's health systems has included clinicians at five locations. The adoption figures in the release are the vendor's own. It reports no measure of note accuracy or time saved, and states no price.
 
 - Topic: health-and-education
 - Decided by: The University of Texas System (state-agency)
@@ -37,7 +37,7 @@ Source (primary_corporate): https://www.abridge.com/press-release/ut-health-ente
 
 Source (primary_corporate): https://www.abridge.com/press-release/ut-health-enterprise-wide
 
-### The pilot began in 2025 with clinicians at five locations.
+### The pilot with UT's health systems has included clinicians at five locations.
 
 > That same year, Abridge launched a pilot with UT’s Health Systems which has included clinicians at five geographic locations across outpatient, inpatient, and emergency department settings and more than 50 specialties.
 

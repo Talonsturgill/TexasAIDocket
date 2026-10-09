@@ -98,11 +98,23 @@ down at the cap. The judges named frames 7, 4, 5, 6, 3 and 1 for the art.
 - **Boundaries measured today.** www.wilcotx.gov (tx-2026-0029) and www.brownsvilletx.gov
   (tx-2026-0128) answered 403 to the project's agent and to a browser agent, page and robots.txt
   alike. Both items now carry a `blocks_every_client` block dated October 9th.
-- **Admitted, four, each on a primary source read in full today.** tx-2026-0208, UTMB puts
+- **Admitted, three, each on a primary source read in full today.** tx-2026-0208, UTMB puts
   OpenEvidence inside its health record and says more than half its clinicians use it (Galveston).
   tx-2026-0209, Kodiak and Charger USA haul freight Dallas to Laredo with a safety driver (Dallas,
   Webb). tx-2026-0210, UT REAL Health AI's systemwide agreement with Abridge (statewide).
-  tx-2026-0211, UT San Antonio's solar flood sensor prototype (Bexar).
+- **A fourth admission was withdrawn after Codex reviewed the pull request.** tx-2026-0211, UT San
+  Antonio's solar flood sensor, was the same prototype the record already carries as tx-2026-0141,
+  five of its quotes byte for byte. It was removed and a dated line was added to tx-2026-0141's
+  history. tx-2026-0167 on `main` records the same prototype again and is a duplicate older than
+  this run, left for a maintainer because folding it rewrites a published entry.
+- **Codex's other findings, all fixed before the merge.** tx-2026-0208's September 22nd date was
+  marked `effective` and is now `filed`, because the integration went live in March. Its
+  participation text now describes the Regents' route its link opens. tx-2026-0210's claim that
+  the pilot began in 2025 rested on a quote opening "That same year" and was narrowed to what the
+  quote proves. The web edition's `{{number:c40:2}}` printed 0.543, a confidence bound, where 0.574
+  was meant, and now reads index 4. The archived `build_copy.py` reads `render_report.json` beside
+  itself first. CI's `gates` job also failed `deciders.py` on tx-2026-0210's decider, which now
+  names the University of Texas System.
 - `docket_build.py --validate` is clean apart from the staleness warnings on the boundary-blocked
   items, each with a measured boundary.
 
@@ -152,8 +164,7 @@ frames after every round) and `a-count-must-name-the-set-it-counted`. Added
 
 ## Discoverability signoff
 
-- Card, opened as an image: `og/tx-2026-0211.png`, the run's newest item. It wraps on word breaks
-  and ends on the whole word "the" with an ellipsis.
+- Card, opened as an image: `og/tx-2026-0210.png`, the run's newest item after the duplicate was withdrawn. It wraps on word breaks and ends on the whole word "institutions" with an ellipsis.
 - `/questions/`: 184 answered for what each decision is, 184 for who decides and 179 for how the
   public can take part, one per record entry. Nothing new in shape today.
 - `llms.txt`, Open right now: Zipline (closes October 11th), the CFTC window, the energy
