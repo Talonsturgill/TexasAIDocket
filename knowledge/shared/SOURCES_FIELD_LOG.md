@@ -1999,3 +1999,62 @@ The official Taylor August council calendar links to CivicClerk event 2010. The 
 - https://communityimpact.com/keller-roanoke-northeast-fort-worth/government/fort-worth-city-council-approves-steps-to-start-moratorium-process-on-data-centers/ - exact response SHA256 1bf92cc88c979d59fac6b78c61f2fd7f476dc6f4de4b3a7113ba06495db018ee.
 
 Community Impact's full Fort Worth account retains the quoted first steps and proposed February adoption after hearings and readings. KERA returns 403. The full outcomes were checked against the reachable account without claiming KERA's wording was fetched.
+
+
+### Superseded tx-2026-0027 notice account retained on October 9th, 2026
+
+The exact earlier title, summary and five notice-era claims follow as historical source evidence. The current record cites the reachable official packet and minutes. Page references sit in existing source-title fields; the record schema is unchanged.
+
+```json
+{
+  "superseded_claims": [
+    {
+      "text": "Taylor noticed the amended abatement with Compal and the property owner for the August 13th, 2026 council meeting.",
+      "verbatim_quote": "The City Council of the City of Taylor will consider the approval of an Amended and Restated Tax Abatement agreement with Compal Teechnology, Inc, and PDC TP 01 LOT A LLC at its regularly scheduled City Council meeting on August 13, 2026 at 6:00 p.m.",
+      "source_url": "https://www.taylortx.gov/m/newsflash/Home/Detail/2066",
+      "source_title": "Notice of Consideration of Approval of Amended and Restated Tax Abatement Agreement, Taylor, TX",
+      "source_type": "primary_official",
+      "fetched": "2026-08-14",
+      "id": "tx-2026-0027-c1"
+    },
+    {
+      "text": "The notice describes the improvements as renovation of the Taylor Port Building for electronics design and manufacture.",
+      "verbatim_quote": "A general description of the nature of the improvements included in the tax abatement agreement is the renovation of the Taylor Port Building and other improvements for the design and manufacture of electronics and related items",
+      "source_url": "https://www.taylortx.gov/m/newsflash/Home/Detail/2066",
+      "source_title": "Notice of Consideration of Approval of Amended and Restated Tax Abatement Agreement, Taylor, TX",
+      "source_type": "primary_official",
+      "fetched": "2026-08-14",
+      "id": "tx-2026-0027-c2"
+    },
+    {
+      "text": "The notice states the estimated cost of the renovation and other improvements.",
+      "verbatim_quote": "Estimated cost of the renovation of Taylor Port Building and other improvements is approximately $ 200 Million.",
+      "source_url": "https://www.taylortx.gov/m/newsflash/Home/Detail/2066",
+      "source_title": "Notice of Consideration of Approval of Amended and Restated Tax Abatement Agreement, Taylor, TX",
+      "source_type": "primary_official",
+      "fetched": "2026-08-14",
+      "id": "tx-2026-0027-c3"
+    },
+    {
+      "text": "The property lies in Reinvestment Zone No. 11, the Taylor Port Zone.",
+      "verbatim_quote": "The name of the Reinvestment Zone in which the property subject to the agreement is located is \"Reinvestment Zone No. 11\" or \"Taylor Port Zone\".",
+      "source_url": "https://www.taylortx.gov/m/newsflash/Home/Detail/2066",
+      "source_title": "Notice of Consideration of Approval of Amended and Restated Tax Abatement Agreement, Taylor, TX",
+      "source_type": "primary_official",
+      "fetched": "2026-08-14",
+      "id": "tx-2026-0027-c4"
+    },
+    {
+      "text": "The council's agenda for August 13th carries the amended agreement as an item.",
+      "verbatim_quote": "Consider approval of Amended and Restated Tax Abatement Agreement by and among the City of Taylor, PDC TP 01 LOT A LLC, and Compal Technology, Inc., a Texas corporation.",
+      "source_url": "https://taylortx.new.swagit.com/videos/396213",
+      "source_title": "City of Taylor, City Council meeting of August 13th 2026, agenda index",
+      "source_type": "primary_official",
+      "id": "tx-2026-0027-c5",
+      "fetched": "2026-09-02"
+    }
+  ],
+  "previous_title": "City of Taylor's notice of an amended Compal tax abatement is no longer posted, and no outcome is published",
+  "previous_summary": "The City of Taylor published a public notice for its City Council. The council would consider an Amended and Restated Tax Abatement Agreement with Compal Technology, Inc. and PDC TP 01 LOT A LLC. The notice set that consideration for the regularly scheduled meeting on August 13th, 2026 at 6:00 p.m. The property sits in Reinvestment Zone No. 11, which the city calls the Taylor Port Zone. The notice describes the improvements as the renovation of the Taylor Port Building. It covers the design and manufacture of electronics and related items at an estimated cost of approximately $ 200 Million. Compal already holds a separate Chapter 312 abatement from Williamson County for a server service center in Georgetown. The same contract manufacturer is now the subject of incentive agreements at two levels of Central Texas government. The August 13th vote has not been confirmed against a published minute."
+}
+```
