@@ -1,8 +1,8 @@
 {
   "_spec": 2,
-  "checked_at": "2026-10-08T23:50:47Z",
+  "checked_at": "2026-10-09T07:34:34Z",
   "provider": "Publisher RSS and Atom",
-  "response_sha256": "2965936b479e7972ae3f0dfab6e7cd6b099fff3d610374e6a8437c85fb5346b2",
+  "response_sha256": "090dc4788fe9a83e13e566085c75cc772f795121962f0fcec580d6196d8d1913",
   "articles": [
     {
       "title": "Dallas Market Center Launches AI Training Program for Independent Retailers",
@@ -62,228 +62,20 @@
     }
   ],
   "selected": {
-    "title": "Dallas’ Southwest Airlines Launches ChatGPT Plugin to Help Customers Find Flights",
-    "url": "https://dallasinnovates.com/dallas-southwest-airlines-launches-chatgpt-plugin-to-help-customers-find-flights/",
-    "first_seen_at": "2026-10-08T16:26:14Z",
-    "summary": "Dallas-based Southwest Airlines said it just became the first U.S. airline to incorporate flight-shopping capabilities directly into ChatGPT, one of the world’s most popular AI tools. Southwest’s ChatGPT plugin, which went live Tuesday, lets users search destinations and compare dates, times and fares in a ChatGPT conversation.…",
+    "title": "Dallas Startup UpSmith Raises $10M Series A to Put AI to Work for Home-Services Providers",
+    "url": "https://dallasinnovates.com/dallas-startup-upsmith-raises-10m-series-a-to-put-ai-to-work-for-home-services-providers/",
+    "first_seen_at": "2026-10-06T21:02:55Z",
+    "summary": "Dallas-based UpSmith raised a $10 million Series A round to expand its engineering and sales teams and ramp up partnerships. The startup’s AI platform helps home-services contractors find and act on otherwise missed revenue opportunities. SemperVirens led the round. Other investors include Hannah Grey Ventures, Asymmetric Capital Partners, CIV, Synetro Group, the Tim Tebow-affiliated WaterStone Impact Fund, former OpenAI executive Colin Evans of Sandwith Ventures, Deason Capital Services and OpenGov co-founder Zachary Bookman. …",
     "feed": "https://dallasinnovates.com/feed/",
     "publisher": "Dallas Innovates",
     "coverage": 1,
-    "score": 0.80736,
+    "score": 0.184457,
     "priority": 0
   },
-  "expires_at": "2026-10-15T16:26:14Z",
+  "expires_at": "2026-10-13T21:02:55Z",
   "rotation_version": 1,
   "carousel_version": 1,
   "editions": [
-    {
-      "starts_at": "2026-10-08T19:23:00Z",
-      "selected": {
-        "title": "Dallas’ Southwest Airlines Launches ChatGPT Plugin to Help Customers Find Flights",
-        "url": "https://dallasinnovates.com/dallas-southwest-airlines-launches-chatgpt-plugin-to-help-customers-find-flights/",
-        "first_seen_at": "2026-10-08T16:26:14Z",
-        "summary": "Dallas-based Southwest Airlines said it just became the first U.S. airline to incorporate flight-shopping capabilities directly into ChatGPT, one of the world’s most popular AI tools. Southwest’s ChatGPT plugin, which went live Tuesday, lets users search destinations and compare dates, times and fares in a ChatGPT conversation.…",
-        "feed": "https://dallasinnovates.com/feed/",
-        "publisher": "Dallas Innovates",
-        "coverage": 1,
-        "score": 0.80736,
-        "priority": 0
-      },
-      "stories": [
-        {
-          "title": "Dallas’ Southwest Airlines Launches ChatGPT Plugin to Help Customers Find Flights",
-          "url": "https://dallasinnovates.com/dallas-southwest-airlines-launches-chatgpt-plugin-to-help-customers-find-flights/",
-          "first_seen_at": "2026-10-08T16:26:14Z",
-          "summary": "Dallas-based Southwest Airlines said it just became the first U.S. airline to incorporate flight-shopping capabilities directly into ChatGPT, one of the world’s most popular AI tools. Southwest’s ChatGPT plugin, which went live Tuesday, lets users search destinations and compare dates, times and fares in a ChatGPT conversation.…",
-          "feed": "https://dallasinnovates.com/feed/",
-          "publisher": "Dallas Innovates",
-          "coverage": 1,
-          "score": 0.80736,
-          "priority": 0
-        },
-        {
-          "title": "Patented: Lennox’s Machine-Learning Thermostat Scheduling and 105 More Inventions Across North Texas",
-          "url": "https://dallasinnovates.com/patented-lennoxs-machine-learning-thermostat-scheduling-and-105-more-inventions-across-north-texas/",
-          "first_seen_at": "2026-10-07T22:50:00Z",
-          "summary": "Richardson-based Lennox Industries, a subsidiary of Lennox International (NYSE: LII), has patented a heating, ventilation and air conditioning control device. The patent application describes a device that uses machine learning to predict when a building is occupied and adjust its schedule based on how aggressively the user wants to save energy.…",
-          "feed": "https://dallasinnovates.com/feed/",
-          "publisher": "Dallas Innovates",
-          "coverage": 1,
-          "score": 0.485583,
-          "priority": 0
-        },
-        {
-          "title": "Cisco broadens agentic features in Webex collaboration platform",
-          "url": "https://siliconangle.com/2026/10/07/cisco-broadens-agentic-features-in-webex-collaboration-platform/",
-          "first_seen_at": "2026-10-07T20:34:28Z",
-          "summary": "Cisco Systems Inc. today detailed a broad expansion of its Webex collaboration portfolio that brings artificial intelligence agents into team conversations, connects office technology with workplace management and enables customer-service agents to continue working after an interaction ends. Introduced at WebexOne in Austin, Texas, the updates extend Cisco’s strategy of integrating people, AI agents and […]",
-          "feed": "https://siliconangle.com/feed/",
-          "publisher": "SiliconANGLE",
-          "coverage": 1,
-          "score": 0.454915,
-          "priority": 0
-        },
-        {
-          "title": "Dallas Market Center Launches AI Training Program for Independent Retailers",
-          "url": "https://dallasinnovates.com/dallas-market-center-launches-ai-training-program-for-independent-retailers/",
-          "first_seen_at": "2026-10-07T20:14:38Z",
-          "summary": "Dallas Market Center, the 5 million-square-foot B2B trading hub and wholesale marketplace northwest of downtown Dallas, just introduced an AI training program for a sizable chunk of its customer base: independent retailers. The market center said its Retail Ready program is the first B2B marketplace to create an AI education program for independent retailers. …",
-          "feed": "https://dallasinnovates.com/feed/",
-          "publisher": "Dallas Innovates",
-          "coverage": 1,
-          "score": 0.450593,
-          "priority": 0
-        },
-        {
-          "title": "Dallas Startup UpSmith Raises $10M Series A to Put AI to Work for Home-Services Providers",
-          "url": "https://dallasinnovates.com/dallas-startup-upsmith-raises-10m-series-a-to-put-ai-to-work-for-home-services-providers/",
-          "first_seen_at": "2026-10-06T21:02:55Z",
-          "summary": "Dallas-based UpSmith raised a $10 million Series A round to expand its engineering and sales teams and ramp up partnerships. The startup’s AI platform helps home-services contractors find and act on otherwise missed revenue opportunities. SemperVirens led the round. Other investors include Hannah Grey Ventures, Asymmetric Capital Partners, CIV, Synetro Group, the Tim Tebow-affiliated WaterStone Impact Fund, former OpenAI executive Colin Evans of Sandwith Ventures, Deason Capital Services and OpenGov co-founder Zachary Bookman. …",
-          "feed": "https://dallasinnovates.com/feed/",
-          "publisher": "Dallas Innovates",
-          "coverage": 1,
-          "score": 0.230594,
-          "priority": 0
-        },
-        {
-          "title": "Texas agency sues to stop release of data center records that it says could aid terrorists",
-          "url": "https://feeds.texastribune.org/link/16799/17490894/texas-data-center-lawsuit-paxton-water",
-          "first_seen_at": "2026-10-06T22:34:14Z",
-          "summary": "A lawsuit will test whether Texas officials can withhold data center location details under the state Homeland Security Act.",
-          "feed": "https://feeds.texastribune.org/feeds/main/",
-          "publisher": "The Texas Tribune",
-          "coverage": 1,
-          "score": 0.240956,
-          "priority": 1
-        },
-        {
-          "title": "Skybox & Prologis file for fourth data center in Hutto, Texas",
-          "url": "https://www.datacenterdynamics.com/en/news/skybox-prologis-file-for-fourth-data-center-in-hutto-texas/",
-          "first_seen_at": "2026-10-02T12:08:57Z",
-          "summary": "Set to be largest facility yet at the campus",
-          "feed": "https://www.datacenterdynamics.com/en/rss/",
-          "publisher": "Data Center Dynamics",
-          "coverage": 1,
-          "score": 0.011146,
-          "priority": 4
-        },
-        {
-          "title": "Crusoe files for $4.8bn data center campus in Jayton, Texas",
-          "url": "https://www.datacenterdynamics.com/en/news/crusoe-files-for-48bn-data-center-campus-in-jayton-texas/",
-          "first_seen_at": "2026-10-02T10:09:00Z",
-          "summary": "Will feature two data centers, likely connected to project in Childress",
-          "feed": "https://www.datacenterdynamics.com/en/rss/",
-          "publisher": "Data Center Dynamics",
-          "coverage": 1,
-          "score": 0.01052,
-          "priority": 4
-        }
-      ]
-    },
-    {
-      "starts_at": "2026-10-09T01:23:00Z",
-      "selected": {
-        "title": "Patented: Lennox’s Machine-Learning Thermostat Scheduling and 105 More Inventions Across North Texas",
-        "url": "https://dallasinnovates.com/patented-lennoxs-machine-learning-thermostat-scheduling-and-105-more-inventions-across-north-texas/",
-        "first_seen_at": "2026-10-07T22:50:00Z",
-        "summary": "Richardson-based Lennox Industries, a subsidiary of Lennox International (NYSE: LII), has patented a heating, ventilation and air conditioning control device. The patent application describes a device that uses machine learning to predict when a building is occupied and adjust its schedule based on how aggressively the user wants to save energy.…",
-        "feed": "https://dallasinnovates.com/feed/",
-        "publisher": "Dallas Innovates",
-        "coverage": 1,
-        "score": 0.4645,
-        "priority": 0
-      },
-      "stories": [
-        {
-          "title": "Patented: Lennox’s Machine-Learning Thermostat Scheduling and 105 More Inventions Across North Texas",
-          "url": "https://dallasinnovates.com/patented-lennoxs-machine-learning-thermostat-scheduling-and-105-more-inventions-across-north-texas/",
-          "first_seen_at": "2026-10-07T22:50:00Z",
-          "summary": "Richardson-based Lennox Industries, a subsidiary of Lennox International (NYSE: LII), has patented a heating, ventilation and air conditioning control device. The patent application describes a device that uses machine learning to predict when a building is occupied and adjust its schedule based on how aggressively the user wants to save energy.…",
-          "feed": "https://dallasinnovates.com/feed/",
-          "publisher": "Dallas Innovates",
-          "coverage": 1,
-          "score": 0.4645,
-          "priority": 0
-        },
-        {
-          "title": "Dallas’ Southwest Airlines Launches ChatGPT Plugin to Help Customers Find Flights",
-          "url": "https://dallasinnovates.com/dallas-southwest-airlines-launches-chatgpt-plugin-to-help-customers-find-flights/",
-          "first_seen_at": "2026-10-08T16:26:14Z",
-          "summary": "Dallas-based Southwest Airlines said it just became the first U.S. airline to incorporate flight-shopping capabilities directly into ChatGPT, one of the world’s most popular AI tools. Southwest’s ChatGPT plugin, which went live Tuesday, lets users search destinations and compare dates, times and fares in a ChatGPT conversation.…",
-          "feed": "https://dallasinnovates.com/feed/",
-          "publisher": "Dallas Innovates",
-          "coverage": 1,
-          "score": 0.772306,
-          "priority": 0
-        },
-        {
-          "title": "Cisco broadens agentic features in Webex collaboration platform",
-          "url": "https://siliconangle.com/2026/10/07/cisco-broadens-agentic-features-in-webex-collaboration-platform/",
-          "first_seen_at": "2026-10-07T20:34:28Z",
-          "summary": "Cisco Systems Inc. today detailed a broad expansion of its Webex collaboration portfolio that brings artificial intelligence agents into team conversations, connects office technology with workplace management and enables customer-service agents to continue working after an interaction ends. Introduced at WebexOne in Austin, Texas, the updates extend Cisco’s strategy of integrating people, AI agents and […]",
-          "feed": "https://siliconangle.com/feed/",
-          "publisher": "SiliconANGLE",
-          "coverage": 1,
-          "score": 0.435164,
-          "priority": 0
-        },
-        {
-          "title": "Dallas Market Center Launches AI Training Program for Independent Retailers",
-          "url": "https://dallasinnovates.com/dallas-market-center-launches-ai-training-program-for-independent-retailers/",
-          "first_seen_at": "2026-10-07T20:14:38Z",
-          "summary": "Dallas Market Center, the 5 million-square-foot B2B trading hub and wholesale marketplace northwest of downtown Dallas, just introduced an AI training program for a sizable chunk of its customer base: independent retailers. The market center said its Retail Ready program is the first B2B marketplace to create an AI education program for independent retailers. …",
-          "feed": "https://dallasinnovates.com/feed/",
-          "publisher": "Dallas Innovates",
-          "coverage": 1,
-          "score": 0.431029,
-          "priority": 0
-        },
-        {
-          "title": "Dallas Startup UpSmith Raises $10M Series A to Put AI to Work for Home-Services Providers",
-          "url": "https://dallasinnovates.com/dallas-startup-upsmith-raises-10m-series-a-to-put-ai-to-work-for-home-services-providers/",
-          "first_seen_at": "2026-10-06T21:02:55Z",
-          "summary": "Dallas-based UpSmith raised a $10 million Series A round to expand its engineering and sales teams and ramp up partnerships. The startup’s AI platform helps home-services contractors find and act on otherwise missed revenue opportunities. SemperVirens led the round. Other investors include Hannah Grey Ventures, Asymmetric Capital Partners, CIV, Synetro Group, the Tim Tebow-affiliated WaterStone Impact Fund, former OpenAI executive Colin Evans of Sandwith Ventures, Deason Capital Services and OpenGov co-founder Zachary Bookman. …",
-          "feed": "https://dallasinnovates.com/feed/",
-          "publisher": "Dallas Innovates",
-          "coverage": 1,
-          "score": 0.220582,
-          "priority": 0
-        },
-        {
-          "title": "Texas agency sues to stop release of data center records that it says could aid terrorists",
-          "url": "https://feeds.texastribune.org/link/16799/17490894/texas-data-center-lawsuit-paxton-water",
-          "first_seen_at": "2026-10-06T22:34:14Z",
-          "summary": "A lawsuit will test whether Texas officials can withhold data center location details under the state Homeland Security Act.",
-          "feed": "https://feeds.texastribune.org/feeds/main/",
-          "publisher": "The Texas Tribune",
-          "coverage": 1,
-          "score": 0.230494,
-          "priority": 1
-        },
-        {
-          "title": "Skybox & Prologis file for fourth data center in Hutto, Texas",
-          "url": "https://www.datacenterdynamics.com/en/news/skybox-prologis-file-for-fourth-data-center-in-hutto-texas/",
-          "first_seen_at": "2026-10-02T12:08:57Z",
-          "summary": "Set to be largest facility yet at the campus",
-          "feed": "https://www.datacenterdynamics.com/en/rss/",
-          "publisher": "Data Center Dynamics",
-          "coverage": 1,
-          "score": 0.010662,
-          "priority": 4
-        },
-        {
-          "title": "Crusoe files for $4.8bn data center campus in Jayton, Texas",
-          "url": "https://www.datacenterdynamics.com/en/news/crusoe-files-for-48bn-data-center-campus-in-jayton-texas/",
-          "first_seen_at": "2026-10-02T10:09:00Z",
-          "summary": "Will feature two data centers, likely connected to project in Childress",
-          "feed": "https://www.datacenterdynamics.com/en/rss/",
-          "publisher": "Data Center Dynamics",
-          "coverage": 1,
-          "score": 0.010064,
-          "priority": 4
-        }
-      ]
-    },
     {
       "starts_at": "2026-10-09T07:23:00Z",
       "selected": {
@@ -294,7 +86,7 @@
         "feed": "https://dallasinnovates.com/feed/",
         "publisher": "Dallas Innovates",
         "coverage": 1,
-        "score": 0.185487,
+        "score": 0.184457,
         "priority": 0
       },
       "stories": [
@@ -306,7 +98,7 @@
           "feed": "https://dallasinnovates.com/feed/",
           "publisher": "Dallas Innovates",
           "coverage": 1,
-          "score": 0.185487,
+          "score": 0.184457,
           "priority": 0
         },
         {
@@ -317,7 +109,7 @@
           "feed": "https://dallasinnovates.com/feed/",
           "publisher": "Dallas Innovates",
           "coverage": 1,
-          "score": 0.64943,
+          "score": 0.645824,
           "priority": 0
         },
         {
@@ -328,7 +120,7 @@
           "feed": "https://dallasinnovates.com/feed/",
           "publisher": "Dallas Innovates",
           "coverage": 1,
-          "score": 0.390596,
+          "score": 0.388428,
           "priority": 0
         },
         {
@@ -339,7 +131,7 @@
           "feed": "https://siliconangle.com/feed/",
           "publisher": "SiliconANGLE",
           "coverage": 1,
-          "score": 0.365927,
+          "score": 0.363896,
           "priority": 0
         },
         {
@@ -350,7 +142,7 @@
           "feed": "https://dallasinnovates.com/feed/",
           "publisher": "Dallas Innovates",
           "coverage": 1,
-          "score": 0.362451,
+          "score": 0.360438,
           "priority": 0
         },
         {
@@ -361,7 +153,7 @@
           "feed": "https://feeds.texastribune.org/feeds/main/",
           "publisher": "The Texas Tribune",
           "coverage": 1,
-          "score": 0.193822,
+          "score": 0.192745,
           "priority": 1
         },
         {
@@ -372,7 +164,7 @@
           "feed": "https://www.datacenterdynamics.com/en/rss/",
           "publisher": "Data Center Dynamics",
           "coverage": 1,
-          "score": 0.008965,
+          "score": 0.008916,
           "priority": 4
         },
         {
@@ -383,7 +175,7 @@
           "feed": "https://www.datacenterdynamics.com/en/rss/",
           "publisher": "Data Center Dynamics",
           "coverage": 1,
-          "score": 0.008462,
+          "score": 0.008415,
           "priority": 4
         }
       ]
@@ -469,19 +261,173 @@
           "priority": 0
         }
       ]
+    },
+    {
+      "starts_at": "2026-10-09T19:23:00Z",
+      "selected": {
+        "title": "Cisco broadens agentic features in Webex collaboration platform",
+        "url": "https://siliconangle.com/2026/10/07/cisco-broadens-agentic-features-in-webex-collaboration-platform/",
+        "first_seen_at": "2026-10-07T20:34:28Z",
+        "summary": "Cisco Systems Inc. today detailed a broad expansion of its Webex collaboration portfolio that brings artificial intelligence agents into team conversations, connects office technology with workplace management and enables customer-service agents to continue working after an interaction ends. Introduced at WebexOne in Austin, Texas, the updates extend Cisco’s strategy of integrating people, AI agents and […]",
+        "feed": "https://siliconangle.com/feed/",
+        "publisher": "SiliconANGLE",
+        "coverage": 1,
+        "score": 0.25875,
+        "priority": 0
+      },
+      "stories": [
+        {
+          "title": "Cisco broadens agentic features in Webex collaboration platform",
+          "url": "https://siliconangle.com/2026/10/07/cisco-broadens-agentic-features-in-webex-collaboration-platform/",
+          "first_seen_at": "2026-10-07T20:34:28Z",
+          "summary": "Cisco Systems Inc. today detailed a broad expansion of its Webex collaboration portfolio that brings artificial intelligence agents into team conversations, connects office technology with workplace management and enables customer-service agents to continue working after an interaction ends. Introduced at WebexOne in Austin, Texas, the updates extend Cisco’s strategy of integrating people, AI agents and […]",
+          "feed": "https://siliconangle.com/feed/",
+          "publisher": "SiliconANGLE",
+          "coverage": 1,
+          "score": 0.25875,
+          "priority": 0
+        },
+        {
+          "title": "Dallas’ Southwest Airlines Launches ChatGPT Plugin to Help Customers Find Flights",
+          "url": "https://dallasinnovates.com/dallas-southwest-airlines-launches-chatgpt-plugin-to-help-customers-find-flights/",
+          "first_seen_at": "2026-10-08T16:26:14Z",
+          "summary": "Dallas-based Southwest Airlines said it just became the first U.S. airline to incorporate flight-shopping capabilities directly into ChatGPT, one of the world’s most popular AI tools. Southwest’s ChatGPT plugin, which went live Tuesday, lets users search destinations and compare dates, times and fares in a ChatGPT conversation.…",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.459216,
+          "priority": 0
+        },
+        {
+          "title": "Patented: Lennox’s Machine-Learning Thermostat Scheduling and 105 More Inventions Across North Texas",
+          "url": "https://dallasinnovates.com/patented-lennoxs-machine-learning-thermostat-scheduling-and-105-more-inventions-across-north-texas/",
+          "first_seen_at": "2026-10-07T22:50:00Z",
+          "summary": "Richardson-based Lennox Industries, a subsidiary of Lennox International (NYSE: LII), has patented a heating, ventilation and air conditioning control device. The patent application describes a device that uses machine learning to predict when a building is occupied and adjust its schedule based on how aggressively the user wants to save energy.…",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.276193,
+          "priority": 0
+        },
+        {
+          "title": "Dallas Market Center Launches AI Training Program for Independent Retailers",
+          "url": "https://dallasinnovates.com/dallas-market-center-launches-ai-training-program-for-independent-retailers/",
+          "first_seen_at": "2026-10-07T20:14:38Z",
+          "summary": "Dallas Market Center, the 5 million-square-foot B2B trading hub and wholesale marketplace northwest of downtown Dallas, just introduced an AI training program for a sizable chunk of its customer base: independent retailers. The market center said its Retail Ready program is the first B2B marketplace to create an AI education program for independent retailers. …",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.256291,
+          "priority": 0
+        },
+        {
+          "title": "Dallas Startup UpSmith Raises $10M Series A to Put AI to Work for Home-Services Providers",
+          "url": "https://dallasinnovates.com/dallas-startup-upsmith-raises-10m-series-a-to-put-ai-to-work-for-home-services-providers/",
+          "first_seen_at": "2026-10-06T21:02:55Z",
+          "summary": "Dallas-based UpSmith raised a $10 million Series A round to expand its engineering and sales teams and ramp up partnerships. The startup’s AI platform helps home-services contractors find and act on otherwise missed revenue opportunities. SemperVirens led the round. Other investors include Hannah Grey Ventures, Asymmetric Capital Partners, CIV, Synetro Group, the Tim Tebow-affiliated WaterStone Impact Fund, former OpenAI executive Colin Evans of Sandwith Ventures, Deason Capital Services and OpenGov co-founder Zachary Bookman. …",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.131159,
+          "priority": 0
+        },
+        {
+          "title": "Texas agency sues to stop release of data center records that it says could aid terrorists",
+          "url": "https://feeds.texastribune.org/link/16799/17490894/texas-data-center-lawsuit-paxton-water",
+          "first_seen_at": "2026-10-06T22:34:14Z",
+          "summary": "A lawsuit will test whether Texas officials can withhold data center location details under the state Homeland Security Act.",
+          "feed": "https://feeds.texastribune.org/feeds/main/",
+          "publisher": "The Texas Tribune",
+          "coverage": 1,
+          "score": 0.137053,
+          "priority": 1
+        }
+      ]
+    },
+    {
+      "starts_at": "2026-10-10T01:23:00Z",
+      "selected": {
+        "title": "Dallas Market Center Launches AI Training Program for Independent Retailers",
+        "url": "https://dallasinnovates.com/dallas-market-center-launches-ai-training-program-for-independent-retailers/",
+        "first_seen_at": "2026-10-07T20:14:38Z",
+        "summary": "Dallas Market Center, the 5 million-square-foot B2B trading hub and wholesale marketplace northwest of downtown Dallas, just introduced an AI training program for a sizable chunk of its customer base: independent retailers. The market center said its Retail Ready program is the first B2B marketplace to create an AI education program for independent retailers. …",
+        "feed": "https://dallasinnovates.com/feed/",
+        "publisher": "Dallas Innovates",
+        "coverage": 1,
+        "score": 0.215514,
+        "priority": 0
+      },
+      "stories": [
+        {
+          "title": "Dallas Market Center Launches AI Training Program for Independent Retailers",
+          "url": "https://dallasinnovates.com/dallas-market-center-launches-ai-training-program-for-independent-retailers/",
+          "first_seen_at": "2026-10-07T20:14:38Z",
+          "summary": "Dallas Market Center, the 5 million-square-foot B2B trading hub and wholesale marketplace northwest of downtown Dallas, just introduced an AI training program for a sizable chunk of its customer base: independent retailers. The market center said its Retail Ready program is the first B2B marketplace to create an AI education program for independent retailers. …",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.215514,
+          "priority": 0
+        },
+        {
+          "title": "Dallas’ Southwest Airlines Launches ChatGPT Plugin to Help Customers Find Flights",
+          "url": "https://dallasinnovates.com/dallas-southwest-airlines-launches-chatgpt-plugin-to-help-customers-find-flights/",
+          "first_seen_at": "2026-10-08T16:26:14Z",
+          "summary": "Dallas-based Southwest Airlines said it just became the first U.S. airline to incorporate flight-shopping capabilities directly into ChatGPT, one of the world’s most popular AI tools. Southwest’s ChatGPT plugin, which went live Tuesday, lets users search destinations and compare dates, times and fares in a ChatGPT conversation.…",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.386153,
+          "priority": 0
+        },
+        {
+          "title": "Patented: Lennox’s Machine-Learning Thermostat Scheduling and 105 More Inventions Across North Texas",
+          "url": "https://dallasinnovates.com/patented-lennoxs-machine-learning-thermostat-scheduling-and-105-more-inventions-across-north-texas/",
+          "first_seen_at": "2026-10-07T22:50:00Z",
+          "summary": "Richardson-based Lennox Industries, a subsidiary of Lennox International (NYSE: LII), has patented a heating, ventilation and air conditioning control device. The patent application describes a device that uses machine learning to predict when a building is occupied and adjust its schedule based on how aggressively the user wants to save energy.…",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.23225,
+          "priority": 0
+        },
+        {
+          "title": "Cisco broadens agentic features in Webex collaboration platform",
+          "url": "https://siliconangle.com/2026/10/07/cisco-broadens-agentic-features-in-webex-collaboration-platform/",
+          "first_seen_at": "2026-10-07T20:34:28Z",
+          "summary": "Cisco Systems Inc. today detailed a broad expansion of its Webex collaboration portfolio that brings artificial intelligence agents into team conversations, connects office technology with workplace management and enables customer-service agents to continue working after an interaction ends. Introduced at WebexOne in Austin, Texas, the updates extend Cisco’s strategy of integrating people, AI agents and […]",
+          "feed": "https://siliconangle.com/feed/",
+          "publisher": "SiliconANGLE",
+          "coverage": 1,
+          "score": 0.217582,
+          "priority": 0
+        },
+        {
+          "title": "Dallas Startup UpSmith Raises $10M Series A to Put AI to Work for Home-Services Providers",
+          "url": "https://dallasinnovates.com/dallas-startup-upsmith-raises-10m-series-a-to-put-ai-to-work-for-home-services-providers/",
+          "first_seen_at": "2026-10-06T21:02:55Z",
+          "summary": "Dallas-based UpSmith raised a $10 million Series A round to expand its engineering and sales teams and ramp up partnerships. The startup’s AI platform helps home-services contractors find and act on otherwise missed revenue opportunities. SemperVirens led the round. Other investors include Hannah Grey Ventures, Asymmetric Capital Partners, CIV, Synetro Group, the Tim Tebow-affiliated WaterStone Impact Fund, former OpenAI executive Colin Evans of Sandwith Ventures, Deason Capital Services and OpenGov co-founder Zachary Bookman. …",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.110291,
+          "priority": 3
+        },
+        {
+          "title": "Texas agency sues to stop release of data center records that it says could aid terrorists",
+          "url": "https://feeds.texastribune.org/link/16799/17490894/texas-data-center-lawsuit-paxton-water",
+          "first_seen_at": "2026-10-06T22:34:14Z",
+          "summary": "A lawsuit will test whether Texas officials can withhold data center location details under the state Homeland Security Act.",
+          "feed": "https://feeds.texastribune.org/feeds/main/",
+          "publisher": "The Texas Tribune",
+          "coverage": 1,
+          "score": 0.115247,
+          "priority": 4
+        }
+      ]
     }
   ],
   "history": [
-    {
-      "url": "https://dallasinnovates.com/texas-college-students-shy-away-from-ai-exposed-majors-dallas-fed-study-finds/",
-      "title": "Texas College Students Shy Away From AI-Exposed Majors, Dallas Fed Study Finds",
-      "shown_at": "2026-10-02T01:23:00Z"
-    },
-    {
-      "url": "https://dallasinnovates.com/dallas-care-com-hires-former-amazon-and-grubhub-exec-as-chief-product-and-technology-officer/",
-      "title": "Dallas’ Care.com Hires Former Amazon and Grubhub Exec as Chief Product and Technology Officer",
-      "shown_at": "2026-10-02T07:23:00Z"
-    },
     {
       "url": "https://www.datacenterdynamics.com/en/news/google-named-as-customer-for-crusoes-data-center-campus-in-amarillo-texas/",
       "title": "Google named as customer for Crusoe's data center campus in Amarillo, Texas",
@@ -616,24 +562,34 @@
       "url": "https://dallasinnovates.com/dallas-southwest-airlines-launches-chatgpt-plugin-to-help-customers-find-flights/",
       "title": "Dallas’ Southwest Airlines Launches ChatGPT Plugin to Help Customers Find Flights",
       "shown_at": "2026-10-08T19:23:00Z"
+    },
+    {
+      "url": "https://dallasinnovates.com/patented-lennoxs-machine-learning-thermostat-scheduling-and-105-more-inventions-across-north-texas/",
+      "title": "Patented: Lennox’s Machine-Learning Thermostat Scheduling and 105 More Inventions Across North Texas",
+      "shown_at": "2026-10-09T01:23:00Z"
+    },
+    {
+      "url": "https://dallasinnovates.com/dallas-startup-upsmith-raises-10m-series-a-to-put-ai-to-work-for-home-services-providers/",
+      "title": "Dallas Startup UpSmith Raises $10M Series A to Put AI to Work for Home-Services Providers",
+      "shown_at": "2026-10-09T07:23:00Z"
     }
   ],
   "feeds": [
     {
       "url": "https://dallasinnovates.com/feed/",
-      "status": "ok",
-      "items": 20,
-      "sha256": "a9692d35da7874aead1060301fa0cc3ff03295942e6acd75dff7529231146500"
+      "status": "not_modified"
     },
     {
       "url": "https://feeds.texastribune.org/feeds/main/",
       "status": "ok",
       "items": 20,
-      "sha256": "a61c19e2335814393c3105539cabf274591cb816d1a0e68b891c8413592604e4"
+      "sha256": "b4700f996b7a548700b7b1e38b7d5dbad17a2168c15a653da9291c8f08f1023d"
     },
     {
       "url": "https://www.datacenterdynamics.com/en/rss/",
-      "status": "not_modified"
+      "status": "ok",
+      "items": 20,
+      "sha256": "0accff3ef3cbbdc57ef69146620b643e8e07c62a28a2d365fc2c2f4b405b4164"
     },
     {
       "url": "https://news.mit.edu/rss/topic/artificial-intelligence2",
@@ -645,13 +601,11 @@
       "url": "https://openai.com/news/rss.xml",
       "status": "ok",
       "items": 1258,
-      "sha256": "5c10ea47dd05ddb97bca3b69068c486e406cb59a8b2fce86871af2111a9d7766"
+      "sha256": "748bc80d0c8a72570a8b74e56f5cb4aa8194b2009832c789944517ee782150c1"
     },
     {
       "url": "https://blogs.nvidia.com/feed/",
-      "status": "ok",
-      "items": 18,
-      "sha256": "35cd644b4554d4c17ab63d7451c9e3d83cc5b3d5c8dac51f1a26ac73bb769d8b"
+      "status": "not_modified"
     },
     {
       "url": "https://blog.google/technology/ai/rss/",
@@ -663,7 +617,7 @@
       "url": "https://siliconangle.com/feed/",
       "status": "ok",
       "items": 30,
-      "sha256": "8c334c4369a45381897e6dc42354d88278e584ce2fc639b84b66450c771a1a8e"
+      "sha256": "96a1e79357bdb3d2b222e8c1ab86375bd7e70684afd5e66d2c2b6e72a9f580d8"
     },
     {
       "url": "https://www.artificialintelligence-news.com/feed/",
@@ -672,15 +626,11 @@
     },
     {
       "url": "https://www.geekwire.com/tag/artificial-intelligence/feed/",
-      "status": "ok",
-      "items": 35,
-      "sha256": "0d89d3680449d6059c7de715484d5c607f2c8d3b579e9424b4217964f081f1fd"
+      "status": "not_modified"
     },
     {
       "url": "https://www.techspot.com/backend.xml",
-      "status": "ok",
-      "items": 30,
-      "sha256": "06b55b355f64455d7eda48d697a8248a99e2a8d733738e70ec09e3a2704c21c5"
+      "status": "not_modified"
     },
     {
       "url": "https://www.sciencedaily.com/rss/computers_math/artificial_intelligence.xml",
@@ -690,7 +640,7 @@
       "url": "https://www.tpr.org/index.rss",
       "status": "ok",
       "items": 5,
-      "sha256": "41e48da4fc1056e591c5218f2342f6a4193220e4cb5894e3737c6a93d8bfafba"
+      "sha256": "b03989288c1a285093ba71b3dce879e0af5376b26b16e5a2bebdd319f13a643f"
     },
     {
       "url": "https://www.texasobserver.org/feed/",
@@ -699,63 +649,63 @@
   ],
   "feed_state": {
     "https://dallasinnovates.com/feed/": {
-      "ok_at": "2026-10-08T23:50:45Z",
-      "failures": 0,
-      "parser_version": 2,
-      "sha256": "a9692d35da7874aead1060301fa0cc3ff03295942e6acd75dff7529231146500",
       "etag": "\"2dcbcc77b3400efcc5533ff31cca95e0\"",
-      "last_modified": "Thu, 08 Oct 2026 20:05:25 GMT"
-    },
-    "https://feeds.texastribune.org/feeds/main/": {
-      "ok_at": "2026-10-08T23:50:45Z",
+      "last_modified": "Thu, 08 Oct 2026 20:05:25 GMT",
       "failures": 0,
-      "parser_version": 2,
-      "sha256": "a61c19e2335814393c3105539cabf274591cb816d1a0e68b891c8413592604e4",
-      "etag": "\"6ac8216e-a31b\"",
-      "last_modified": "Thu, 08 Oct 2026 23:04:14 GMT"
-    },
-    "https://www.datacenterdynamics.com/en/rss/": {
-      "last_modified": "Thu, 08 Oct 2026 17:24:45 GMT",
-      "failures": 0,
-      "ok_at": "2026-10-08T23:50:45Z",
-      "sha256": "937820154568a690420eee290156915680c17531853188c8fb9902cae79586cf",
+      "ok_at": "2026-10-09T07:34:32Z",
+      "sha256": "a9692d35da7874aead1060301fa0cc3ff03295942e6acd75dff7529231146500",
       "parser_version": 2
     },
+    "https://feeds.texastribune.org/feeds/main/": {
+      "ok_at": "2026-10-09T07:34:32Z",
+      "failures": 0,
+      "parser_version": 2,
+      "sha256": "b4700f996b7a548700b7b1e38b7d5dbad17a2168c15a653da9291c8f08f1023d",
+      "etag": "\"6ac886cc-a3de\"",
+      "last_modified": "Fri, 09 Oct 2026 06:16:44 GMT"
+    },
+    "https://www.datacenterdynamics.com/en/rss/": {
+      "ok_at": "2026-10-09T07:34:32Z",
+      "failures": 0,
+      "parser_version": 2,
+      "sha256": "0accff3ef3cbbdc57ef69146620b643e8e07c62a28a2d365fc2c2f4b405b4164",
+      "last_modified": "Fri, 09 Oct 2026 07:32:51 GMT"
+    },
     "https://news.mit.edu/rss/topic/artificial-intelligence2": {
-      "ok_at": "2026-10-08T23:50:45Z",
+      "ok_at": "2026-10-09T07:34:32Z",
       "failures": 0,
       "parser_version": 2,
       "sha256": "d06eb883fc7b97fb8dd0e7e5e0024477f6c13bbd09cb8f55379ddd2aa2bc4024",
-      "etag": "\"1791502639\"",
-      "last_modified": "Thu, 08 Oct 2026 23:37:19 GMT"
+      "etag": "\"1791530579\"",
+      "last_modified": "Fri, 09 Oct 2026 07:22:59 GMT"
     },
     "https://openai.com/news/rss.xml": {
-      "ok_at": "2026-10-08T23:50:45Z",
+      "ok_at": "2026-10-09T07:34:32Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "5c10ea47dd05ddb97bca3b69068c486e406cb59a8b2fce86871af2111a9d7766"
+      "sha256": "748bc80d0c8a72570a8b74e56f5cb4aa8194b2009832c789944517ee782150c1"
     },
     "https://blogs.nvidia.com/feed/": {
-      "ok_at": "2026-10-08T23:50:45Z",
-      "failures": 0,
-      "parser_version": 2,
-      "sha256": "35cd644b4554d4c17ab63d7451c9e3d83cc5b3d5c8dac51f1a26ac73bb769d8b",
       "etag": "\"164a6d18b55bb2370f43ce628fd72ae4-gzip\"",
-      "last_modified": "Thu, 08 Oct 2026 21:07:24 GMT"
+      "last_modified": "Thu, 08 Oct 2026 21:07:24 GMT",
+      "failures": 0,
+      "ok_at": "2026-10-09T07:34:32Z",
+      "sha256": "35cd644b4554d4c17ab63d7451c9e3d83cc5b3d5c8dac51f1a26ac73bb769d8b",
+      "parser_version": 2
     },
     "https://blog.google/technology/ai/rss/": {
-      "ok_at": "2026-10-08T23:50:45Z",
+      "ok_at": "2026-10-09T07:34:32Z",
       "failures": 0,
       "parser_version": 2,
       "sha256": "1244ba8efc82377d897cca9d3781de3db7926b7fcb42cd2bf944f24e7ec9db8c"
     },
     "https://siliconangle.com/feed/": {
-      "ok_at": "2026-10-08T23:50:45Z",
+      "ok_at": "2026-10-09T07:34:32Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "8c334c4369a45381897e6dc42354d88278e584ce2fc639b84b66450c771a1a8e",
-      "etag": "\"2d210d3ce8bd5fa76485433c0a75d89a\"",
-      "last_modified": "Thu, 08 Oct 2026 23:20:50 GMT"
+      "sha256": "96a1e79357bdb3d2b222e8c1ab86375bd7e70684afd5e66d2c2b6e72a9f580d8",
+      "etag": "\"10f8040d8f391bdd86036f67197f1087\"",
+      "last_modified": "Fri, 09 Oct 2026 06:17:43 GMT"
     },
     "https://www.artificialintelligence-news.com/feed/": {
       "etag": "\"cd8cbe1fef0e10c2eef0af3ac2847598\"",
@@ -767,38 +717,38 @@
       "parser_version": 2
     },
     "https://www.geekwire.com/tag/artificial-intelligence/feed/": {
-      "ok_at": "2026-10-08T23:50:45Z",
-      "failures": 0,
-      "parser_version": 2,
-      "sha256": "0d89d3680449d6059c7de715484d5c607f2c8d3b579e9424b4217964f081f1fd",
       "etag": "W/\"7ce1938d25841866adbc3f8a0d6474b6\"",
-      "last_modified": "Thu, 08 Oct 2026 22:58:50 GMT"
+      "last_modified": "Thu, 08 Oct 2026 22:58:50 GMT",
+      "failures": 0,
+      "ok_at": "2026-10-09T07:34:32Z",
+      "sha256": "0d89d3680449d6059c7de715484d5c607f2c8d3b579e9424b4217964f081f1fd",
+      "parser_version": 2
     },
     "https://www.techspot.com/backend.xml": {
-      "ok_at": "2026-10-08T23:50:45Z",
+      "etag": "W/\"f1fa034f5eba462bda916526b623419f\"",
       "failures": 0,
-      "parser_version": 2,
+      "ok_at": "2026-10-09T07:34:32Z",
       "sha256": "06b55b355f64455d7eda48d697a8248a99e2a8d733738e70ec09e3a2704c21c5",
-      "etag": "W/\"f1fa034f5eba462bda916526b623419f\""
+      "parser_version": 2
     },
     "https://www.sciencedaily.com/rss/computers_math/artificial_intelligence.xml": {
       "last_modified": "Thu, 08 Oct 2026 14:28:52 GMT",
       "failures": 0,
-      "ok_at": "2026-10-08T23:50:45Z",
+      "ok_at": "2026-10-09T07:34:32Z",
       "sha256": "db407e797408c68bb919a261e64d10ecfc68d228f80960be67da00eb81151fde",
       "parser_version": 2
     },
     "https://www.tpr.org/index.rss": {
-      "ok_at": "2026-10-08T23:50:45Z",
+      "ok_at": "2026-10-09T07:34:32Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "41e48da4fc1056e591c5218f2342f6a4193220e4cb5894e3737c6a93d8bfafba"
+      "sha256": "b03989288c1a285093ba71b3dce879e0af5376b26b16e5a2bebdd319f13a643f"
     },
     "https://www.texasobserver.org/feed/": {
       "etag": "\"b8d4b14aade2207b4c6ba3780d0845f7\"",
       "last_modified": "Thu, 08 Oct 2026 15:29:59 GMT",
       "failures": 0,
-      "ok_at": "2026-10-08T23:50:45Z",
+      "ok_at": "2026-10-09T07:34:32Z",
       "sha256": "d8af3d346e994eb9d0cf9b1cb296d83f996ca21571445a21d1b842da9b4ad314",
       "parser_version": 2
     }
