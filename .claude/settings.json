@@ -94,9 +94,16 @@
     "connector's form. It never approves anything, so it is not a grant, and a cloned repository",
     "may ship it. In a person's session it prints nothing. The one dialog it can't answer is a",
     "sandboxed command's network request, which Claude Code runs no hook for, and it logs that one.",
-    "Its self-test fails CI if a registration below goes missing. CLAUDE.md has the account."
+    "Its self-test fails CI if a registration below goes missing. CLAUDE.md has the account.",
+    "",
+    "ATTRIBUTION OFF, owner, 2026-10-09. No Claude trailer, session link or 'Generated with' line on",
+    "any commit or pull request. `attribution` below tells Claude Code to add none, in a cloud session",
+    "or routine on this repository alone. A session with several repositories ignores it, so the",
+    "authorship rule in CLAUDE.md and .githooks/commit-msg still stand. The object form is on purpose.",
+    "`attribution: false` needs v2.1.281, and an older CLI skips this whole file over it, hooks and all."
   ],
   "effortLevel": "high",
+  "attribution": {"commit": "", "pr": "", "sessionUrl": false},
   "permissions": {
     "defaultMode": "bypassPermissions",
     "additionalDirectories": ["/tmp/claude-0"],
