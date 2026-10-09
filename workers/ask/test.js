@@ -12,6 +12,7 @@ import {
   normalise, numerals, plainly, splitSentences,
 } from "./checks.js";
 import { rerank } from "./retrieve.js";
+import { readFileSync } from "node:fs";
 
 let fail = 0, pass = 0;
 const ok = (label, cond, detail = "") => {
@@ -207,6 +208,12 @@ const vB = await cacheKey([{ role: "user", content: "what is open now" }], "ffff
 ok("the same question against a different pack version is a different key", vA !== vB);
 ok("and the same question on a different day is a different key",
   k !== await cacheKey([{ role: "user", content: "what is open now" }], "2026-08-16"));
+ok("a model upgrade retires the previous model's cached answer",
+  k !== await cacheKey([{ role: "user", content: "what is open now" }], "2026-08-15",
+    { ASK_MODEL: "claude-sonnet-5" }));
+ok("an effort change retires answers written with the previous setting",
+  k !== await cacheKey([{ role: "user", content: "what is open now" }], "2026-08-15",
+    { ASK_EFFORT: "high" }));
 ok("spendOf still reports a bare month, not the prefixed key",
   (await (await import("./answer.js")).spendOf(
     { ASK_MONTHLY_CAP: "200", ASK_KV: { get: async () => "7" } },
@@ -274,6 +281,12 @@ ok("...and a missing env object does not throw", effectiveEffort(undefined) === 
 // refused, on every question, with the box looking broken rather than misconfigured.
 const { modelParams } = await import("./answer.js");
 const mp = modelParams({});
+ok("the answerer defaults to Haiku 5.5", mp.model === "claude-haiku-5-5", mp.model);
+ok("the deployment pins the same model as the answerer",
+  readFileSync(new URL("./wrangler.toml", import.meta.url), "utf8")
+    .includes(`ASK_MODEL = "${mp.model}"`));
+ok("adaptive reasoning has room to finish before the answer",
+  mp.thinking?.type === "adaptive" && mp.max_tokens === 4096, JSON.stringify(mp));
 ok("effort is sent inside output_config, where the API reads it",
   mp.output_config?.effort === "medium", JSON.stringify(mp));
 ok("...and not at the top level, where it would be ignored or refused",
@@ -475,6 +488,11 @@ globalThis.fetch = realFetch;
 
 ok("the request carries three system blocks", sentBody?.system?.length === 3,
   JSON.stringify(sentBody?.system?.length));
+ok("the Haiku 5.5 request settings reach the answer call",
+  sentBody.model === "claude-haiku-5-5" && sentBody.thinking?.type === "adaptive"
+  && sentBody.output_config?.effort === "medium" && sentBody.max_tokens === 4096
+  && !["temperature", "top_p", "top_k"].some((name) => name in sentBody),
+  JSON.stringify(Object.keys(sentBody)));
 ok("...with exactly one cache breakpoint, on the block that repeats",
   sentBody.system.filter((b) => b.cache_control).length === 1 && !!sentBody.system[1].cache_control);
 ok("...and it is not the whole record under another name",
@@ -526,6 +544,42 @@ ok("...and its tokens are readable, not stranded under another key",
 ok("...and no key anywhere is built on an undefined",
   ![...liveStore.keys()].some((k) => k.includes("undefin")),
   [...liveStore.keys()].join(", "));
+
+head("R2b. provider refusals discard partial text and never enter the cache");
+for (const partial of ["", "The record holds 12 decisions. "]) {
+  const values = new Map();
+  const refusalEnv = { ...ENV, ASK_KV: {
+    get: async (key) => values.get(key) ?? null,
+    put: async (key, value) => values.set(key, value),
+  } };
+  const savedFetch = globalThis.fetch;
+  globalThis.fetch = async (url, init) => {
+    if (String(url).endsWith("/pack.json")) return { ok: true, json: async () => FAKE };
+    if (String(url).endsWith("/corpus.json")) return { ok: true, json: async () => FAKE_CORPUS };
+    if (!JSON.parse(init.body).stream) return { ok: true, json: async () => ({
+      stop_reason: "refusal", stop_details: { category: null },
+      content: [{ type: "text", text: partial }], usage: { output_tokens: 10 },
+    }) };
+    const frames = [
+      { type: "content_block_delta", delta: { type: "text_delta", text: partial } },
+      { type: "message_delta", delta: { stop_reason: "refusal" },
+        stop_details: { category: null }, usage: { output_tokens: 10 } },
+    ].map((ev) => `data: ${JSON.stringify(ev)}\n\n`).join("");
+    return new Response(frames);
+  };
+  try {
+    const turns = [{ role: "user", content: "evaporative cooling" }];
+    const plain = await answerWhole(turns, refusalEnv, "2026-08-29T12:00:00Z");
+    ok("a plain refusal is explicit and discards any generated prefix",
+      plain.body.refused === true && plain.body.text === "" && /declined/.test(plain.body.error));
+    const events = (await new Response(await answerStreaming(turns, refusalEnv,
+      "2026-08-29T12:00:00Z")).text()).trim().split("\n").map(JSON.parse);
+    ok("a streaming refusal releases no text, even with a null category",
+      !events.some((ev) => ev.sentence) && events.some((ev) => ev.refused && /declined/.test(ev.error)));
+    ok("refused calls count against the cap without caching their prefixes",
+      values.get(monthKey("2026-08-29")) === "2" && ![...values.keys()].some((key) => key.startsWith("a:")));
+  } finally { globalThis.fetch = savedFetch; }
+}
 
 head("R3. daily limits stop spending and never hide a paid answer");
 {

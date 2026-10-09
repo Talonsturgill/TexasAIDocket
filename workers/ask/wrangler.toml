@@ -1,0 +1,19 @@
+name = "texas-ask"
+main = "worker.js"
+compatibility_date = "2026-08-15"
+workers_dev = true
+
+# Keep the existing production cache, counters and optional reranker bindings.
+[[kv_namespaces]]
+binding = "ASK_KV"
+id = "1cb8187d37574ee8923efa6f02f935f8"
+
+[ai]
+binding = "AI"
+
+[vars]
+ASK_MODEL = "claude-haiku-5-5"
+ASK_MONTHLY_CAP = "200"
+ASK_ORIGIN = "https://texasaidocket.com"
+
+# ANTHROPIC_API_KEY and TURNSTILE_SECRET remain existing Worker secrets.
