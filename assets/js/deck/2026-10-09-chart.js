@@ -210,6 +210,10 @@
           }
         }
         var led = new THREE.Mesh(new THREE.CircleGeometry(0.0018, 12), K.finish.lamp(0xffffff, 1.4)); led.position.set(sw / 2 - 0.02, -sh / 2 - 0.008, 0.0118); mon.add(led);
+        /* the monitor's cable run: from the back of the housing down the arm and the post, the detail the back view needs */
+        var cableM = K.mat("ch-cable", { color: 0x141516, roughness: 0.55, metalness: 0.0 });
+        K.bar([0.02, 0.12, 0.075], [0.035, 0.0, 0.02], 0.0055, cableM, 8, head);
+        K.bar([0.035, H + 0.26, -0.14], [0.03, H + 0.02, -0.132], 0.0055, cableM, 8, g);
         g.userData.screenAt = function () { var p = new THREE.Vector3(); mon.getWorldPosition(p); return [p.x, p.y, p.z]; };
         g.userData.monitor = mon;
         return g;
