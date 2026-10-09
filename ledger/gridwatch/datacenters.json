@@ -1,8 +1,8 @@
 {
  "_spec": 1,
- "read": "2026-10-08",
+ "read": "2026-10-09",
  "source": "https://comptroller.texas.gov/taxes/data-centers/data-center-lists.php",
- "digest": "22c179906ded0f77",
+ "digest": "0ffa2eba345e9c80",
  "facilities": [
   {
    "name": "NADC",
@@ -2294,6 +2294,19 @@
    ],
    "operators": [
     "Terisys LLC"
+   ]
+  },
+  {
+   "name": "ROMAN",
+   "effective": "2026-09-29",
+   "owners": [
+    "Google LLC"
+   ],
+   "occupants": [
+    "Design, LLC"
+   ],
+   "operators": [
+    "Google LLC"
    ]
   },
   {
