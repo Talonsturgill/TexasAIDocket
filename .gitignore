@@ -25,3 +25,4 @@ Thumbs.db
 # Local-only settings. .claude/settings.json IS committed (the routines need it);
 # settings.local.json is per-machine and is not.
 .claude/settings.local.json
+/.wrangler/

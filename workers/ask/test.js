@@ -12,6 +12,7 @@ import {
   normalise, numerals, plainly, splitSentences,
 } from "./checks.js";
 import { rerank } from "./retrieve.js";
+import { readFileSync } from "node:fs";
 
 let fail = 0, pass = 0;
 const ok = (label, cond, detail = "") => {
@@ -207,6 +208,12 @@ const vB = await cacheKey([{ role: "user", content: "what is open now" }], "ffff
 ok("the same question against a different pack version is a different key", vA !== vB);
 ok("and the same question on a different day is a different key",
   k !== await cacheKey([{ role: "user", content: "what is open now" }], "2026-08-16"));
+ok("a model upgrade retires the previous model's cached answer",
+  k !== await cacheKey([{ role: "user", content: "what is open now" }], "2026-08-15",
+    { ASK_MODEL: "claude-sonnet-5" }));
+ok("an effort change retires answers written with the previous setting",
+  k !== await cacheKey([{ role: "user", content: "what is open now" }], "2026-08-15",
+    { ASK_EFFORT: "high" }));
 ok("spendOf still reports a bare month, not the prefixed key",
   (await (await import("./answer.js")).spendOf(
     { ASK_MONTHLY_CAP: "200", ASK_KV: { get: async () => "7" } },
@@ -274,6 +281,14 @@ ok("...and a missing env object does not throw", effectiveEffort(undefined) === 
 // refused, on every question, with the box looking broken rather than misconfigured.
 const { modelParams } = await import("./answer.js");
 const mp = modelParams({});
+ok("the answerer defaults to Haiku 5.5", mp.model === "claude-haiku-5-5", mp.model);
+ok("the deployment pins the same model as the answerer",
+  readFileSync(new URL("./wrangler.toml", import.meta.url), "utf8")
+    .includes(`ASK_MODEL = "${mp.model}"`));
+ok("deploying preserves dashboard variables outside the committed pins",
+  readFileSync(new URL("./wrangler.toml", import.meta.url), "utf8").includes("keep_vars = true"));
+ok("adaptive reasoning has room to finish before the answer",
+  mp.thinking?.type === "adaptive" && mp.max_tokens === 4096, JSON.stringify(mp));
 ok("effort is sent inside output_config, where the API reads it",
   mp.output_config?.effort === "medium", JSON.stringify(mp));
 ok("...and not at the top level, where it would be ignored or refused",
@@ -475,6 +490,11 @@ globalThis.fetch = realFetch;
 
 ok("the request carries three system blocks", sentBody?.system?.length === 3,
   JSON.stringify(sentBody?.system?.length));
+ok("the Haiku 5.5 request settings reach the answer call",
+  sentBody.model === "claude-haiku-5-5" && sentBody.thinking?.type === "adaptive"
+  && sentBody.output_config?.effort === "medium" && sentBody.max_tokens === 4096
+  && !["temperature", "top_p", "top_k"].some((name) => name in sentBody),
+  JSON.stringify(Object.keys(sentBody)));
 ok("...with exactly one cache breakpoint, on the block that repeats",
   sentBody.system.filter((b) => b.cache_control).length === 1 && !!sentBody.system[1].cache_control);
 ok("...and it is not the whole record under another name",
@@ -526,6 +546,182 @@ ok("...and its tokens are readable, not stranded under another key",
 ok("...and no key anywhere is built on an undefined",
   ![...liveStore.keys()].some((k) => k.includes("undefin")),
   [...liveStore.keys()].join(", "));
+
+head("R2a. health probes stay valid at every supported answer effort");
+{
+  const { probe } = await import("./answer.js");
+  const savedFetch = globalThis.fetch;
+  for (const effort of ["low", "medium", "high", "xhigh", "max"]) {
+    let sent;
+    globalThis.fetch = async (url, init) => {
+      sent = JSON.parse(init.body);
+      return { ok: true, status: 200, json: async () => ({
+        model: "claude-haiku-5-5", content: [{ type: "text", text: "Hello." }],
+      }) };
+    };
+    const result = await probe({ ANTHROPIC_API_KEY: "test", ASK_EFFORT: effort });
+    ok(`the ${effort} probe disables thinking only with a supported effort`,
+      sent.thinking.type === "disabled" && ["low", "medium", "high"].includes(sent.output_config.effort));
+    ok(`the ${effort} probe reports the provider model and returned text`,
+      result.ok && result.response_model === "claude-haiku-5-5" && result.text_returned);
+  }
+  globalThis.fetch = savedFetch;
+}
+
+head("R2b. provider refusals discard partial text and never enter the cache");
+for (const partial of ["", "The record holds 12 decisions. "]) {
+  const values = new Map();
+  const refusalEnv = { ...ENV, ASK_KV: {
+    get: async (key) => values.get(key) ?? null,
+    put: async (key, value) => values.set(key, value),
+  } };
+  const savedFetch = globalThis.fetch;
+  globalThis.fetch = async (url, init) => {
+    if (String(url).endsWith("/pack.json")) return { ok: true, json: async () => FAKE };
+    if (String(url).endsWith("/corpus.json")) return { ok: true, json: async () => FAKE_CORPUS };
+    if (!JSON.parse(init.body).stream) return { ok: true, json: async () => ({
+      stop_reason: "refusal", stop_details: { category: null },
+      content: [{ type: "text", text: partial }], usage: { output_tokens: 10 },
+    }) };
+    const frames = [
+      { type: "content_block_delta", delta: { type: "text_delta", text: partial } },
+      { type: "message_delta", delta: { stop_reason: "refusal" },
+        stop_details: { category: null }, usage: { output_tokens: 10 } },
+      { type: "message_stop" },
+    ].map((ev) => `data: ${JSON.stringify(ev)}\n\n`).join("");
+    return new Response(frames);
+  };
+  try {
+    const turns = [{ role: "user", content: "evaporative cooling" }];
+    const plain = await answerWhole(turns, refusalEnv, "2026-08-29T12:00:00Z");
+    ok("a plain refusal is explicit and discards any generated prefix",
+      plain.body.refused === true && plain.body.text === "" && /declined/.test(plain.body.error));
+    const events = (await new Response(await answerStreaming(turns, refusalEnv,
+      "2026-08-29T12:00:00Z")).text()).trim().split("\n").map(JSON.parse);
+    ok("a streaming refusal releases no text, even with a null category",
+      !events.some((ev) => ev.sentence) && events.some((ev) => ev.refused && /declined/.test(ev.error)));
+    ok("refused calls count against the cap without caching their prefixes",
+      values.get(monthKey("2026-08-29")) === "2" && ![...values.keys()].some((key) => key.startsWith("a:")));
+  } finally { globalThis.fetch = savedFetch; }
+}
+
+head("R2c. empty and incomplete responses remain retryable");
+for (const scenario of ["empty", "missing delta", "missing stop", "early EOF", "provider error"]) {
+  const values = new Map();
+  const e = { ...ENV, ASK_EFFORT: "xhigh", ASK_KV: {
+    get: async (key) => values.get(key) ?? null,
+    put: async (key, value) => values.set(key, value),
+  } };
+  const savedFetch = globalThis.fetch;
+  globalThis.fetch = async (url, init) => {
+    if (String(url).endsWith("/pack.json")) return { ok: true, json: async () => FAKE };
+    if (String(url).endsWith("/corpus.json")) return { ok: true, json: async () => FAKE_CORPUS };
+    const events = scenario === "empty" ? [] : [
+      { type: "content_block_delta", delta: { type: "text_delta", text: "The record holds 12 decisions. " } },
+    ];
+    if (scenario === "provider error") events.push({ type: "error", error: { type: "overloaded_error" } });
+    if (!["missing delta", "early EOF"].includes(scenario)) events.push({ type: "message_delta", delta: { stop_reason: "end_turn" } });
+    if (!["missing stop", "early EOF"].includes(scenario)) events.push({ type: "message_stop" });
+    return new Response(events.map(ev => `data: ${JSON.stringify(ev)}\n\n`).join(""));
+  };
+  try {
+    const turns = [{ role: "user", content: "evaporative cooling" },
+      { role: "assistant", content: "The record holds 12 decisions." },
+      { role: "user", content: "and the dates" }];
+    const events = (await new Response(await answerStreaming(turns, e,
+      "2026-08-29T12:00:00Z")).text()).trim().split("\n").map(JSON.parse);
+    ok(`${scenario} returns a retryable error without releasing a prefix`,
+      events.some(ev => ev.error && ev.retryable) && !events.some(ev => ev.sentence));
+    ok(`${scenario} consumes a call without caching an unfinished answer`,
+      values.get(monthKey("2026-08-29")) === "1" && ![...values.keys()].some(key => key.startsWith("a:")));
+  } finally { globalThis.fetch = savedFetch; }
+}
+{
+  const values = new Map();
+  const savedFetch = globalThis.fetch;
+  globalThis.fetch = async (url) => {
+    if (String(url).endsWith("/pack.json")) return { ok: true, json: async () => FAKE };
+    if (String(url).endsWith("/corpus.json")) return { ok: true, json: async () => FAKE_CORPUS };
+    return { ok: true, json: async () => ({ stop_reason: "end_turn",
+      content: [{ type: "thinking", thinking: "private reasoning" }], usage: {} }) };
+  };
+  try {
+    const result = await answerWhole([{ role: "user", content: "evaporative cooling" }],
+      { ...ENV, ASK_EFFORT: "xhigh", ASK_KV: { get: async key => values.get(key) ?? null,
+        put: async (key,value) => values.set(key,value) } }, "2026-08-29T12:00:00Z");
+    ok("a thinking-only plain response is retryable without exposing reasoning",
+      result.status === 502 && result.body.retryable && !JSON.stringify(result.body).includes("private reasoning"));
+    ok("a thinking-only plain response is counted but never cached",
+      values.get(monthKey("2026-08-29")) === "1" && ![...values.keys()].some(key => key.startsWith("a:")));
+  } finally { globalThis.fetch = savedFetch; }
+}
+
+head("R2d. buffered model progress stays private and differs from a stalled connection");
+for (const thinking of [true, false]) {
+  const savedFetch = globalThis.fetch;
+  globalThis.fetch = async url => {
+    if (String(url).endsWith("/pack.json")) return { ok: true, json: async () => FAKE };
+    if (String(url).endsWith("/corpus.json")) return { ok: true, json: async () => FAKE_CORPUS };
+    const frames = thinking ? [
+      { type: "content_block_delta", delta: { type: "thinking_delta", thinking: "private reasoning" } },
+      { type: "content_block_delta", delta: { type: "text_delta", text: "The record holds 12 decisions." } },
+      { type: "message_delta", delta: { stop_reason: "end_turn" } },
+      { type: "message_stop" },
+    ] : [
+      { type: "ping" },
+      { type: "message_delta", delta: { stop_reason: "end_turn" } },
+      { type: "message_stop" },
+    ];
+    return new Response(frames.map(ev => `data: ${JSON.stringify(ev)}\n\n`).join(""));
+  };
+  try {
+    const body = await new Response(await answerStreaming(
+      [{ role: "user", content: "evaporative cooling" }], { ...ENV, ASK_EFFORT: "xhigh" },
+      "2026-08-29T12:00:00Z")).text();
+    const events = body.trim().split("\n").map(JSON.parse);
+    if (thinking) {
+      ok("reasoning reports throttled progress before the checked answer",
+        events.filter(ev => ev.activity).length === 1
+        && events.findIndex(ev => ev.activity) < events.findIndex(ev => ev.sentence));
+      ok("progress reveals no reasoning or draft text", !body.includes("private reasoning")
+        && events.filter(ev => ev.activity).every(ev => Object.keys(ev).length === 1));
+    } else {
+      ok("connection pings cannot extend the browser's idle deadline", !events.some(ev => ev.activity));
+    }
+  } finally { globalThis.fetch = savedFetch; }
+}
+
+head("R2e. the previous cache schema cannot replay incomplete output");
+for (const streamed of [false, true]) {
+  // Frozen key from the previous schema, using FAKE and the default Haiku settings.
+  const values = new Map([["a:tx:2026-08-21:b5cbb9c1955092747129da2e3fd2e552",
+    JSON.stringify({ text: "Old incomplete output", withheld: false })]]);
+  const savedFetch = globalThis.fetch;
+  let apiCalls = 0;
+  globalThis.fetch = async (url) => {
+    if (String(url).endsWith("/pack.json")) return { ok: true, json: async () => FAKE };
+    if (String(url).endsWith("/corpus.json")) return { ok: true, json: async () => FAKE_CORPUS };
+    apiCalls++;
+    if (!streamed) return { ok: true, json: async () => ({ stop_reason: "end_turn",
+      content: [{ type: "text", text: "The record holds 12 decisions." }], usage: {} }) };
+    return new Response([
+      { type: "content_block_delta", delta: { type: "text_delta", text: "The record holds 12 decisions." } },
+      { type: "message_delta", delta: { stop_reason: "end_turn" } },
+      { type: "message_stop" },
+    ].map(ev => `data: ${JSON.stringify(ev)}\n\n`).join(""));
+  };
+  try {
+    const turns = [{ role: "user", content: "evaporative cooling" }];
+    const e = { ...ENV, ASK_KV: { get: async key => values.get(key) ?? null,
+      put: async (key, value) => values.set(key, value) } };
+    const text = streamed
+      ? (await new Response(await answerStreaming(turns, e, "2026-08-29T12:00:00Z")).text())
+          .trim().split("\n").map(JSON.parse).filter(ev => ev.sentence).map(ev => ev.sentence).join(" ")
+      : (await answerWhole(turns, e, "2026-08-29T12:00:00Z")).body.text;
+    ok(`${streamed ? "streamed" : "plain"} answers skip the previous cache schema`,
+      apiCalls === 1 && text === "The record holds 12 decisions.");
+  } finally { globalThis.fetch = savedFetch; }
+}
 
 head("R3. daily limits stop spending and never hide a paid answer");
 {
@@ -785,7 +981,11 @@ head("R5. an open case never reopens its comment window");
       slugs: Object.keys(accessPack.public_access) }) };
     providerCalls++;
     if (JSON.parse(options.body).stream) {
-      return new Response("data: " + JSON.stringify({ delta: { text: bad + " " } }) + "\n\n");
+      return new Response([
+        { type: "content_block_delta", delta: { type: "text_delta", text: bad + " " } },
+        { type: "message_delta", delta: { stop_reason: "end_turn" } },
+        { type: "message_stop" },
+      ].map(ev => "data: " + JSON.stringify(ev) + "\n\n").join(""));
     }
     return { ok: true, json: async () => ({ content: [{ type: "text", text: bad }] }) };
   };

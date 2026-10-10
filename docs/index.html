@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en-US">
 <head>
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self' 'sha256-76Na2SjiPUrigqQ4VGtW9uFN+WeolXO5HNLbnrlPd0U=' 'sha256-ETGJ+E1Gu7IKjDNhb2b1l83O2Dh6AEvBvuy+78fAFck=' 'sha256-2S4lTNKlOjyqEi8iF3D8Ot26zxoDI2H9l8Q2M4fJt5w=' 'sha256-YVdX+zDnr/xI66Ld1G8OaxbOKUHSXG84s8HKJDXLMvQ=' 'sha256-woaQUGMZemAKKQA5utVh4g3xpNbDGxVomr+2XTgGjoc=' 'sha256-GS/I7+b+K9HAu3ORVkTBeKYZK7RGqK9/z5ubefAr+Z4=' 'sha256-F9TOw90k0mV6PXqA00p8PBXMbwkBuJOI0e5xmIraedM=' https://challenges.cloudflare.com; style-src 'self'; style-src-attr 'unsafe-inline'; img-src 'self' data: https://raw.githubusercontent.com; media-src 'self' https://raw.githubusercontent.com; font-src 'self'; connect-src 'self' https://formsubmit.co https://challenges.cloudflare.com https://texas-ask.talon-sturgill.workers.dev https://texas-scan.talon-sturgill.workers.dev https://raw.githubusercontent.com/Talonsturgill/TexasAIDocket/news-data/ledger/news/latest.json; frame-src https://challenges.cloudflare.com; form-action 'self' https://formsubmit.co">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self' 'sha256-76Na2SjiPUrigqQ4VGtW9uFN+WeolXO5HNLbnrlPd0U=' 'sha256-ETGJ+E1Gu7IKjDNhb2b1l83O2Dh6AEvBvuy+78fAFck=' 'sha256-2S4lTNKlOjyqEi8iF3D8Ot26zxoDI2H9l8Q2M4fJt5w=' 'sha256-YVdX+zDnr/xI66Ld1G8OaxbOKUHSXG84s8HKJDXLMvQ=' 'sha256-OZCR/AbGwBh/1qgg3fVD5zTu1CydzaZJ7NxGifA9/Uc=' 'sha256-GS/I7+b+K9HAu3ORVkTBeKYZK7RGqK9/z5ubefAr+Z4=' 'sha256-F9TOw90k0mV6PXqA00p8PBXMbwkBuJOI0e5xmIraedM=' https://challenges.cloudflare.com; style-src 'self'; style-src-attr 'unsafe-inline'; img-src 'self' data: https://raw.githubusercontent.com; media-src 'self' https://raw.githubusercontent.com; font-src 'self'; connect-src 'self' https://formsubmit.co https://challenges.cloudflare.com https://texas-ask.talon-sturgill.workers.dev https://texas-scan.talon-sturgill.workers.dev https://raw.githubusercontent.com/Talonsturgill/TexasAIDocket/news-data/ledger/news/latest.json; frame-src https://challenges.cloudflare.com; form-action 'self' https://formsubmit.co">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Texas AI Docket · Every AI decision in Texas and the source behind it</title>
@@ -1676,10 +1676,9 @@ function askFuse(lists) {
     // that shit on screen. If it takes a couple seconds longer to get the right answer it is
     // what it is."
     //
-    // Forty five seconds is past anything the answerer does when it is working, including the
-    // first question of a session, which pays for a Turnstile solve, a rerank and a model call
-    // in series. What is left for this to catch is a request that is never coming back, which
-    // is what a ceiling is actually for.
+    // Forty five seconds without activity catches a stalled request. Active reasoning can
+    // take longer while checked sentences wait for the provider's terminal classification.
+    // The worker reports progress without releasing reasoning or draft text.
     // OVERRIDABLE FOR THE SUITE, and only there. A ceiling that is forty five seconds takes
     // forty six seconds to test, three times over, and a suite nobody will sit through is a
     // suite that gets skipped. Nothing on the published page sets this, so every reader gets
@@ -1913,6 +1912,9 @@ function askFuse(lists) {
     }
 
     function handle(ev) {
+      if (overran || ended) return;
+      if (ev.activity || ev.stage || ev.sentence) startClock();
+      if (ev.activity) return;
       if (ev.stage) { stage(ev.stage); return; }
       if (ev.sentence) { sentence(ev.sentence); return; }
       if (ev.withheld) {

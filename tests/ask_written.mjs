@@ -796,6 +796,58 @@ ok("...and never tells them to ask a narrower question",
    !/narrower/i.test(cutText), cutText.slice(-90));
 ok("the box is usable again", !(await page.getAttribute("#askq", "disabled")));
 
+head("J0. model activity keeps a buffered answer open beyond the idle deadline");
+{
+  const active = await b.newPage();
+  await active.route("**://challenges.cloudflare.com/**", route => route.abort());
+  await active.addInitScript(() => {
+    window.__ASK_CEILING_MS__ = 2000;
+    let cb;
+    window.turnstile = {
+      render: (el, opts) => { cb = opts.callback; setTimeout(() => cb("test-token"), 5); return 1; },
+      reset: () => { if (cb) setTimeout(() => cb("test-token"), 5); },
+    };
+    setTimeout(function ready() {
+      if (window.askTurnstileReady) window.askTurnstileReady(); else setTimeout(ready, 10);
+    }, 10);
+    const realFetch = window.fetch;
+    window.fetch = function (url, init) {
+      if (!String(url).includes("/answer")) return realFetch(url, init);
+      const enc = new TextEncoder();
+      return Promise.resolve(new Response(new ReadableStream({
+        start(c) {
+          const send = ev => c.enqueue(enc.encode(JSON.stringify(ev) + "\n"));
+          send({ stage: "Reading the record" });
+          const timer = setInterval(() => send({ activity: true }), 1000);
+          setTimeout(() => {
+            clearInterval(timer);
+            send({ sentence: "The completed answer arrived." });
+            send({ done: true });
+            c.close();
+          }, 5500);
+        },
+      }), { headers: { "content-type": "application/x-ndjson" } }));
+    };
+  });
+  await active.goto(URL_);
+  await active.fill("#askq", "who decides the ERCOT transmission rule");
+  const began = Date.now();
+  await active.press("#askq", "Enter");
+  await active.waitForTimeout(2600);
+  ok("active reasoning stays open after the original deadline",
+    await active.locator('#ask button[type="submit"]').isDisabled());
+  ok("activity does not reveal buffered answer text", !/The completed answer arrived|activity/.test(
+    (await active.textContent(".askreply")) || ""));
+  await active.waitForSelector(".askfrom", { timeout: 10000 });
+  const text = (await active.textContent(".askreply")) || "";
+  ok("the completed answer survives a response longer than the idle budget",
+    Date.now() - began > 5000 && /The completed answer arrived\./.test(text), text);
+  ok("the active answer closes normally and leaves the field usable",
+    !/ran long|did not come back/i.test(text) && await active.locator("#askq").isEnabled()
+    && await active.locator('#ask button[type="submit"]').isEnabled(), text);
+  await active.close();
+}
+
 head("J1. a slow first solve is rescued by the retry, not met with a dead end");
 /* THE COLD START, WHERE THE SOLVE OUTLASTS THE FIRST WAIT. Focus arms the check, so from the
    second question on a token is earned while the reader reads. On the first it starts at a
@@ -953,6 +1005,73 @@ head("J2. a token that lands after the ceiling may not blank the page");
      !/^Reading the record$|^Passing the human check$/i.test(text), JSON.stringify(text));
   ok("the box is usable again", !(await slow.getAttribute("#askq", "disabled")));
   await slow.close();
+}
+
+head("L. an empty provider reply gives usable retry guidance");
+{
+  const { answerStream } = await import("../workers/ask/answer.js");
+  const failurePage = await b.newPage();
+  await pinCeiling(failurePage);
+  await failurePage.route("**://challenges.cloudflare.com/**", route => route.abort());
+  await failurePage.addInitScript(() => {
+    let cb;
+    window.turnstile = {
+      render: (el, opts) => { cb = opts.callback; setTimeout(() => cb("test-token"), 5); return 1; },
+      reset: () => { if (cb) setTimeout(() => cb("test-token"), 5); },
+    };
+    setTimeout(function ready() {
+      if (window.askTurnstileReady) window.askTurnstileReady(); else setTimeout(ready, 10);
+    }, 10);
+  });
+  let modelCalls = 0;
+  const submittedTurns = [];
+  await failurePage.route("**/answer", async route => {
+    const turns = JSON.parse(route.request().postData()).messages;
+    submittedTurns.push(turns);
+    const savedFetch = globalThis.fetch;
+    globalThis.fetch = async url => {
+      if (String(url).endsWith("/pack.json")) return { ok: true, json: async () => ({
+        generated: "2026-10-09", system: "Use the record.",
+        pack: "THE COUNTS. The record holds 0 decisions.", authorised_numerals: ["0"], slugs: [],
+      }) };
+      if (String(url).endsWith("/corpus.json")) return { ok: true, json: async () => ({
+        generated: "2026-10-09", authorised_numerals: ["0"], slugs: [],
+      }) };
+      modelCalls++;
+      const text = modelCalls > 1
+        ? 'data: {"type":"content_block_delta","delta":{"type":"text_delta","text":"The record is published."}}\n\n'
+        : "";
+      return new Response(text + 'data: {"type":"message_delta","delta":{"stop_reason":"end_turn"}}\n\n'
+        + 'data: {"type":"message_stop"}\n\n');
+    };
+    let body;
+    try {
+      body = await new Response(await answerStream(turns, {
+        ANTHROPIC_API_KEY: "test", ASK_PACK_URL: "https://fixture/pack.json",
+        ASK_CORPUS_URL: "https://fixture/corpus.json",
+      }, "2026-10-09T12:00:00Z")).text();
+    } finally { globalThis.fetch = savedFetch; }
+    await route.fulfill({ status: 200, contentType: "application/x-ndjson", body });
+  });
+  await failurePage.goto(URL_);
+  await failurePage.fill("#askq", "who decides the ERCOT transmission rule");
+  await failurePage.press("#askq", "Enter");
+  await failurePage.waitForSelector(".askfrom", { timeout: 15000 });
+  const text = (await failurePage.textContent(".askreply")) || "";
+  ok("the browser shows the Worker's completed error path",
+    modelCalls === 1 && /The answer did not finish\. Please try again\./.test(text), text);
+  ok("the retry guidance never asks for a narrower question", !/narrower/i.test(text), text);
+  ok("the question field is usable after that failure", !(await failurePage.getAttribute("#askq", "disabled")));
+  await failurePage.fill("#askq", "who decides the ERCOT transmission rule");
+  await failurePage.press("#askq", "Enter");
+  await failurePage.waitForFunction(() => {
+    const reply = Array.from(document.querySelectorAll(".askreply")).at(-1);
+    return !document.querySelector("#askq").disabled && /The record is published\./.test(reply?.textContent || "");
+  }, null, { timeout: 15000 });
+  ok("retrying reaches the provider and renders a checked answer", modelCalls === 2);
+  ok("an empty reply never creates a broken conversation turn",
+    submittedTurns[1]?.length === 1 && submittedTurns[1][0].role === "user");
+  await failurePage.close();
 }
 
 if (fail) {

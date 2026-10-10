@@ -28,7 +28,7 @@ const CORPUS_URL = `${SITE}/ask-corpus.json`;
 
 // Pinned rather than left to a variable, so a deploy cannot silently change what answers.
 // ASK_MODEL overrides it when a model is being trialled, and /_config reports which won.
-const DEFAULT_MODEL = "claude-sonnet-5";
+const DEFAULT_MODEL = "claude-haiku-5-5";
 const DEFAULT_CAP = 200;
 // A BUSY DEMO DAY STILL FITS. The daily ceiling is half the monthly one and one reader may use
 // half of the day. That is deliberately generous: fifty uncached questions is a real working
@@ -41,10 +41,13 @@ const DEFAULT_READER_DAILY_CAP = 50;
 // worth asking, three open comment windows and a survey of data center projects, because an
 // answer that has to name several decisions is exactly the answer that runs long.
 //
-// Output is the cheap half. At Sonnet 5 rates 1,400 tokens is about 1.4 cents against roughly
-// 10 cents of input on every question, so the ceiling was buying almost nothing and costing
-// the answers a reader most needs.
-const MAX_TOKENS = 1400;
+// Haiku 5.5 counts adaptive thinking against this same ceiling. Leave room for both
+// reasoning and the short answer so thinking alone does not consume the whole response.
+const MAX_TOKENS = 4096;
+const REFUSAL_MESSAGE = "The model declined that question. Start over or ask a different question.";
+const RETRY_MESSAGE = "The answer did not finish. Please try again.";
+// Retire older entries that could contain incomplete provider output.
+const ANSWER_CACHE_SCHEMA = "complete-v1";
 const ANSWER_TTL = 60 * 60 * 24 * 7;
 
 // EVERY KV KEY THIS WORKER WRITES CARRIES THIS.
@@ -126,7 +129,7 @@ export function normaliseQuestion(q) {
  * means something different after every first question, so keying on the last message alone
  * would serve one thread's answer into another's. Follow-ups mostly miss, and that is correct.
  */
-export async function cacheKey(turns, packDate) {
+export async function cacheKey(turns, packDate, env = {}) {
   // WHAT MAKES A CACHED ANSWER EXPIRE, and a date was not enough.
   //
   // This keyed on the pack's `generated` date, so an answer written this morning was served
@@ -141,7 +144,7 @@ export async function cacheKey(turns, packDate) {
   const day = packDate || new Date().toISOString().slice(0, 10);
   const thread = turns.map((m) => m.role + ":" + normaliseQuestion(m.content)).join("\n");
   const digest = await crypto.subtle.digest("SHA-256",
-    new TextEncoder().encode(`participation-v1\n${day}\n${thread}`));
+    new TextEncoder().encode(`${ANSWER_CACHE_SCHEMA}\nparticipation-v1\n${day}\n${JSON.stringify(modelParams(env))}\n${thread}`));
   const hex = [...new Uint8Array(digest)].map((b) => b.toString(16).padStart(2, "0")).join("");
   return `a:${KV_PREFIX}:${day}:${hex.slice(0, 32)}`;
 }
@@ -290,10 +293,11 @@ export function effectiveEffort(env) {
 }
 
 export function modelParams(env) {
-  // No temperature, top_p or top_k. Sonnet 5 returns 400 on all three.
+  // Haiku 5.5 rejects non-default sampling parameters. Use adaptive thinking and effort.
   return {
     model: effectiveModel(env),
     max_tokens: MAX_TOKENS,
+    thinking: { type: "adaptive" },
     output_config: { effort: effectiveEffort(env) },
   };
 }
@@ -429,7 +433,11 @@ export async function probe(env) {
       method: "POST",
       headers: HEADERS(env),
       body: JSON.stringify({
-        ...modelParams(env), max_tokens: 4,
+        ...modelParams(env), max_tokens: 32, thinking: { type: "disabled" },
+        // Disabled thinking is valid through high effort. Keep the small health
+        // check valid when answer requests use xhigh or max adaptive reasoning.
+        output_config: { effort: ["xhigh", "max"].includes(effectiveEffort(env))
+          ? "high" : effectiveEffort(env) },
         messages: [{ role: "user", content: "hi" }],
       }),
     });
@@ -438,6 +446,8 @@ export async function probe(env) {
       ok: r.ok,
       status: r.status,
       model: effectiveModel(env),
+      response_model: body?.model ?? null,
+      text_returned: (body?.content || []).some((block) => block.type === "text" && !!block.text),
       error_type: body?.error?.type ?? null,
       error_message: body?.error?.message ?? null,
     };
@@ -526,7 +536,7 @@ async function preflight(turns, env, now, reader) {
   const access = participationContext(pack, turns, now);
   const direct = participationAnswer(pack, turns, now);
   if (direct) return { cached: direct };
-  const key = env.ASK_KV ? await cacheKey(turns, pack.version || pack.generated) : null;
+  const key = env.ASK_KV ? await cacheKey(turns, pack.version || pack.generated, env) : null;
 
   if (key) {
     const hit = await env.ASK_KV.get(key);
@@ -622,9 +632,15 @@ export async function answer(turns, env, now, reader) {
   // wait a reader feels IS the whole call and there is no earlier moment to record.
   await recordUsage(env, body.usage, NaN, now);
 
+  if (body.stop_reason === "refusal") {
+    return { status: 200, body: { text: "", withheld: false, refused: true, error: REFUSAL_MESSAGE } };
+  }
   const raw = (body.content || []).filter((c) => c.type === "text").map((c) => c.text).join("");
+  if (!raw.trim() || ["max_tokens", "model_context_window_exceeded"].includes(body.stop_reason)) {
+    return { status: 502, body: { error: RETRY_MESSAGE, retryable: true } };
+  }
   const out = verify(raw, ctx);
-  if (env.ASK_KV && key) {
+  if (env.ASK_KV && key && out.text && !out.withheld) {
     await env.ASK_KV.put(key, JSON.stringify(out), { expirationTtl: ANSWER_TTL });
   }
   return { status: 200, body: out };
@@ -652,10 +668,9 @@ export function verify(text, context) {
 /**
  * The streaming path, which is the default.
  *
- * The guard checks a sentence at a time anyway, so a verified sentence can be shown the moment
- * it is complete rather than after the whole reply lands, and that is most of why the wait
- * feels long. Nothing is shown first and checked later: a sentence reaching the page has
- * already passed.
+ * The guard checks a sentence as it completes. Haiku 5.5 can subsequently refuse the turn,
+ * so verified sentences wait for the terminal classification before reaching the page.
+ * Progress events still describe the work while the model runs.
  *
  * ndjson, one event per line: {stage} | {sentence} | {withheld} | {capped} | {limited} |
  * {error} | {done}
@@ -711,14 +726,14 @@ export async function answerStream(turns, env, now, requester) {
 
         const reader = r.body.getReader();
         const dec = new TextDecoder();
-        let sse = "", prose = "", kept = [], stopped = null, ranLong = false;
+        let sse = "", prose = "", kept = [], stopped = null, ranLong = false, refused = false;
+        let stopReason = null, messageStopped = false, providerError = false;
         // USAGE ARRIVES IN TWO PLACES ON A STREAM. `message_start` carries the input side,
         // including the two cache counters, and `message_delta` carries the output count as it
         // finishes. Neither is in the text events, so both are collected as they pass rather
         // than asked for at the end.
-        let usage = null, firstMs = NaN;
+        let usage = null, firstMs = NaN, lastActivity = null;
 
-        outer:
         while (true) {
           const { done, value } = await reader.read();
           if (done) break;
@@ -729,12 +744,27 @@ export async function answerStream(turns, env, now, requester) {
             if (!l.startsWith("data:")) continue;
             let ev;
             try { ev = JSON.parse(l.slice(5).trim()); } catch { continue; }
+            // Report actual model progress while checked text waits for completion.
+            // Reasoning and draft text stay private; provider pings do not extend a stall.
+            if (ev?.type === "message_start" || (ev?.type === "content_block_delta"
+                && ["text_delta", "thinking_delta"].includes(ev.delta?.type))) {
+              const tick = Date.now();
+              if (lastActivity === null || tick - lastActivity >= 5000) {
+                send({ activity: true });
+                lastActivity = tick;
+              }
+            }
             // The model says why it stopped, and it is the only thing that can. A trailing
             // fragment looks identical whether the model simply did not end on a full stop or
             // whether it was cut off in the middle of a word.
-            if (ev?.delta?.stop_reason === "max_tokens") ranLong = true;
+            if (ev?.type === "error") providerError = true;
+            if (ev?.type === "message_stop") messageStopped = true;
+            if (ev?.type === "message_delta" && ev.delta?.stop_reason) stopReason = ev.delta.stop_reason;
+            if (["max_tokens", "model_context_window_exceeded"].includes(stopReason)) ranLong = true;
+            if (ev?.type === "message_delta" && ev.delta?.stop_reason === "refusal") refused = true;
             if (ev?.type === "message_start" && ev.message?.usage) usage = { ...ev.message.usage };
             if (ev?.type === "message_delta" && ev.usage) usage = { ...(usage || {}), ...ev.usage };
+            if (stopped || refused) continue;
             const piece = ev?.delta?.text;
             if (typeof piece !== "string") continue;
             prose += piece;
@@ -742,30 +772,49 @@ export async function answerStream(turns, env, now, requester) {
             prose = remainder;
             for (const s of sentences) {
               const v = checkSentence(s, ctx);
-              if (!v.ok) { stopped = v; break outer; }
-              // The moment the reader stops waiting, which is what latency means here.
-              if (!Number.isFinite(firstMs)) firstMs = Date.now() - startedAt;
+              if (!v.ok) { stopped = v; break; }
               kept.push(s.trim());
-              send({ sentence: s.trim() });
             }
           }
         }
 
+        if (providerError || !messageStopped || !stopReason) {
+          await recordUsage(env, usage, NaN, now);
+          send({ error: RETRY_MESSAGE, retryable: true });
+          controller.close();
+          return;
+        }
+        // Haiku 5.5 can refuse after text deltas. Checked sentences wait for the
+        // terminal classification; no refused prefix reaches a page or its cache.
+        if (refused) {
+          await recordUsage(env, usage, NaN, now);
+          send({ error: REFUSAL_MESSAGE, refused: true });
+          controller.close();
+          return;
+        }
         // Whatever is left in the buffer is a final sentence with no trailing space, UNLESS
         // the model ran out of room, in which case it is half a sentence and possibly half a
         // word. Publishing that is worse than saying the answer was too long for the space,
         // because a reader cannot tell a truncation from the record simply stopping there.
         if (!stopped && prose.trim() && !ranLong) {
           const v = checkSentence(prose.trim(), ctx);
-          if (v.ok) { kept.push(prose.trim()); send({ sentence: prose.trim() }); }
+          if (v.ok) kept.push(prose.trim());
           else stopped = v;
         }
 
+        if (!kept.length && !stopped && !ranLong) {
+          await recordUsage(env, usage, NaN, now);
+          send({ error: RETRY_MESSAGE, retryable: true });
+          controller.close();
+          return;
+        }
+        if (kept.length) firstMs = Date.now() - startedAt;
+        for (const sentence of kept) send({ sentence });
         if (stopped) send({ withheld: stopped.reason });
         else if (ranLong) send({ long: true });
         else send({ done: true });
 
-        if (env.ASK_KV && key) {
+        if (env.ASK_KV && key && kept.length && !stopped && !ranLong) {
           await env.ASK_KV.put(key, JSON.stringify({
             text: kept.join(" "),
             withheld: !!stopped,
