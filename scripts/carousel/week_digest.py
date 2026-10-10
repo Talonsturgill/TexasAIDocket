@@ -135,18 +135,42 @@ def cards(run: Path) -> list[dict]:
     return sorted(found, key=lambda c: (c["round"], c["lens"]))
 
 
+# THE RANKED LIST HAS HAD SIX NAMES (weekly pass 2026-10-10). `.claude/agents/carousel-scorer.md`
+# asks for `artwork_weakest_frames`, every judge card has carried it since 2026-10-03, and the
+# digest's evidence section read only `artwork_defects`, which one card in the corpus ever carried.
+# So from the first weekly pass to the fifth, "The judges' ranked artwork defects" printed a heading
+# and nothing under it, and the brief's FIRST JOB, the judges' top ranked artwork defect, was fed an
+# empty section that looked like a quiet week. The current key is read first and the five older
+# names the corpus actually carries after it, and a run whose craft cards carry none of them is
+# SAID, so an empty section can never again read as the judges having nothing to rank.
+RANKED_KEYS = ("artwork_weakest_frames", "artwork_defects", "ranked_artwork_defects",
+               "named_defects_ranked", "defects_ranked", "ranked_defects", "named_defects")
+
+
+def ranked_defects(card: dict) -> list[str]:
+    """The card's ranked artwork defects, most named first, as one line each."""
+    for k in RANKED_KEYS:
+        v = card.get(k)
+        if not isinstance(v, list) or not v:
+            continue
+        out = []
+        for x in v:
+            if isinstance(x, dict) and ("problem" in x or "fix" in x or "slide" in x):
+                out.append(f"slide {x.get('slide', '?')}: {x.get('problem', '')}"
+                           + (f" FIX: {x['fix']}" if x.get("fix") else ""))
+            else:
+                out.append(str(x))
+        return out
+    return []
+
+
 def art_text(card: dict) -> str:
-    """The words a card spends on the art: its art criteria, its defects, its weakest frames, its fix."""
+    """The words a card spends on the art: its art criteria, its ranked defects and its fix."""
     parts = []
     for c in card.get("criteria") or []:
         if isinstance(c, dict) and c.get("name") in ("artwork_craft", "deck_coherence"):
             parts.append(str(c.get("why") or c.get("notes") or ""))
-    for k in ("artwork_defects",):
-        v = card.get(k)
-        parts.extend(str(x) for x in v) if isinstance(v, list) else None
-    for w in card.get("artwork_weakest_frames") or []:
-        if isinstance(w, dict):
-            parts.append(f"{w.get('problem', '')} {w.get('fix', '')}")
+    parts.extend(ranked_defects(card))
     parts.append(str(card.get("one_sentence_fix") or ""))
     return " ".join(p for p in parts if p)
 
@@ -154,7 +178,7 @@ def art_text(card: dict) -> str:
 def digest(root: Path, date: str, days: int, queue_text: str) -> tuple[str, dict]:
     runs = run_dirs(root, date, days)
     rows, crit_vals, lowest, theme_hits = [], {}, {}, {t[0]: {} for t in THEMES}
-    hard, fixes, defects = [], [], []
+    hard, fixes, defects, unranked = [], [], [], []
     for run in runs:
         try:
             s = json.loads((run / "score.json").read_text(encoding="utf-8"))
@@ -183,10 +207,14 @@ def digest(root: Path, date: str, days: int, queue_text: str) -> tuple[str, dict
             for c in cs:
                 if c["round"] == last and c["card"].get("one_sentence_fix"):
                     fixes.append(f"{run.name} r{last} {c['lens']}: {str(c['card']['one_sentence_fix'])[:400]}")
-            craft = [c for c in cs if c["lens"] == "craft" and c["card"].get("artwork_defects")]
+            all_craft = [c for c in cs if c["lens"] == "craft"]
+            craft = [c for c in all_craft if ranked_defects(c["card"])]
             if craft:
                 for c in (craft[0], craft[-1]) if len(craft) > 1 else (craft[0],):
-                    defects.append((run.name, c["round"], [str(x)[:300] for x in c["card"]["artwork_defects"]]))
+                    defects.append((run.name, c["round"], [d[:400] for d in ranked_defects(c["card"])]))
+            elif all_craft:
+                unranked.append(f"{run.name}: {len(all_craft)} craft card(s) and none carries a ranked "
+                                f"list under any of {', '.join(RANKED_KEYS)}")
 
     n = len(runs)
     L = [f"# The week's machine digest, {n} shipped run(s) to {date}", ""]
@@ -216,6 +244,12 @@ def digest(root: Path, date: str, days: int, queue_text: str) -> tuple[str, dict
         L.append(f"**{name}, round {rnd}**")
         L += [f"- {d}" for d in ds]
         L.append("")
+    if unranked:
+        L += ["**UNRANKED.** These runs scored craft and no card ranked its defects, so the "
+              "evidence for them is the themes above and nothing more:", ""]
+        L += [f"- {u}" for u in unranked] + [""]
+    if not defects and not unranked:
+        L += ["- no craft card in the window", ""]
     L += ["## Hard fails, every round", ""] + ([f"- {h}" for h in hard] or ["- none"])
     L += ["", "## Each judge's last one sentence fix", ""] + ([f"- {f}" for f in fixes] or ["- none"])
     open_q = [ln for ln in queue_text.splitlines() if ln.startswith("- [ ] ")]
@@ -223,7 +257,8 @@ def digest(root: Path, date: str, days: int, queue_text: str) -> tuple[str, dict
     L.append("")
     data = {"runs": n, "themes": [{"theme": t, "runs": len(h), "rounds": sum(len(r) for r in h.values())}
                                   for t, h in ranked],
-            "criteria_mean": {k: round(statistics.mean(v), 2) for k, v in crit_vals.items()}}
+            "criteria_mean": {k: round(statistics.mean(v), 2) for k, v in crit_vals.items()},
+            "ranked_runs": len({d[0] for d in defects}), "unranked": unranked}
     return "\n".join(L), data
 
 
@@ -304,10 +339,37 @@ def self_test() -> int:
         ok("a strip on the horizon line is a horizon band",
            theme_named("horizon band or seam", dict(THEME_RX)["horizon band or seam"],
                        "A dark floating gradient strip still sits on the horizon line."))
+        # THE KEY THE SCORER WRITES (2026-10-10). Every card since 2026-10-03 carries its ranked
+        # list as `artwork_weakest_frames`, and the section read only `artwork_defects`.
+        wk = root / "weekly-key"
+        for name, card_d in (("2026-10-08", {"artwork_weakest_frames": [
+                {"slide": 3, "problem": "a lit grey floor takes the bottom band",
+                 "fix": "four pools, black between"}]}),
+                             ("2026-10-09", {})):
+            (wk / name / "scores" / "r1").mkdir(parents=True)
+            (wk / name / "score.json").write_text(json.dumps({"weighted_score": 7, "rounds": 1}))
+            c = card("craft", 1, "the cart is a toy")
+            c.pop("artwork_defects")
+            c.update(card_d)
+            (wk / name / "scores" / "r1" / "score-craft.json").write_text(json.dumps(c))
+        wt, wd = digest(wk, "2026-10-09", 7, "")
+        ok("a card carrying only artwork_weakest_frames reaches the ranked defects, slide and fix",
+           "slide 3: a lit grey floor takes the bottom band FIX: four pools" in wt
+           and wd["ranked_runs"] == 1, wt.split("## The judges' ranked")[1][:400])
+        ok("a run whose craft cards rank nothing is SAID rather than left as an empty heading",
+           "UNRANKED" in wt and any(u.startswith("2026-10-09: 1 craft card") for u in wd["unranked"]),
+           wd["unranked"])
+        ok("a legacy key the corpus carries is still read",
+           ranked_defects({"named_defects_ranked": ["1. the hull is a slab"]}) == ["1. the hull is a slab"])
         e, _ = digest(root, "2026-08-01", 7, "")
         ok("an empty week says so rather than failing", "0 shipped run(s)" in e and "none matched" in e)
     live, _ = digest(RUNS, "2026-10-02", 7, "")
     ok("the live corpus digests", "## The recurring themes" in live)
+    # REPLAY of the week that found it: seven shipped runs, October 3rd to 9th, every judge card
+    # ranked under artwork_weakest_frames, and the section the fifth weekly pass read was empty.
+    _, lw = digest(RUNS, "2026-10-09", 7, "")
+    ok("the week of October 9th has a ranked list from every run it scored", lw["ranked_runs"] == lw["runs"]
+       and not lw["unranked"], f"{lw['ranked_runs']} of {lw['runs']}, unranked {lw['unranked']}")
     print("\nweek_digest self-test: " + ("all passed" if not bad else f"{bad} FAILED"))
     return 1 if bad else 0
 
