@@ -3137,4 +3137,52 @@
   "lane": "human maintainer. The sibling repository was read only. No historical run or public ledger record was rewritten.",
   "review_budget": "Existing edit budget and scoring panel limits. The new preflight is a rendered direction check, not another scoring round."
 }
+,"2026-10-10 weekly": {
+  "date": "2026-10-10",
+  "kind": "weekly machine pass, the fifth (prompts/machine_weekly.md)",
+  "read": "out/2026-10-10/week_digest.md (seven runs, 2026-10-04 to 2026-10-10, the 10th mid-panel and unscored; artwork_craft lowest on five of six scored decks, week mean 6.18), knowledge/carousel/MACHINE_QUEUE.md (due early, grid-piece-count-reads-lit-ground-as-subject at repeat 2), the 2026-10-07 backlog and ledger entries, every judge card of no. 47 (runs/carousel/2026-10-09/scores/r1 to r3), no. 47's chassis, and layout_check's silhouette measure replayed on nos. 43, 46, 47 and 48",
+  "upgrades": [
+    {
+      "what": "week_digest.py reads the judges' ranked artwork defects under artwork_weakest_frames, the key the scorer writes, then the five older names the corpus carries, prints each as 'slide N: problem FIX: fix', and names a run whose craft cards rank nothing",
+      "theme": "the digest itself: its evidence section, the input to the brief's first job, was empty for every weekly pass since 2026-10-03",
+      "why": "The section read only artwork_defects, which one judge card in the corpus ever carried. Every card since 2026-10-03 ranks under artwork_weakest_frames (15, 12, 9, 9, 9, 10 and 9 cards on October 3rd to 9th), so the digest printed the heading 'The judges' ranked artwork defects' with nothing under it, which reads the same as a week where nothing was ranked",
+      "files": [
+        "scripts/carousel/week_digest.py"
+      ],
+      "verification": "python3 scripts/carousel/week_digest.py --self-test exits 0 with four new cases: a card with only artwork_weakest_frames reaches the section with slide and fix, an unranked run is said, a legacy key is read, and the live week of October 9th has a ranked list from 7 of 7 runs. The same self-test with RANKED_KEYS cut back to ('artwork_defects',) exits 1 on three cases, the live replay at 0 of 7. The digest regenerated for 2026-10-10 has an identical theme table and a populated evidence section",
+      "revert": "fc126381",
+      "how_i_would_know_this_was_wrong": "A theme count moving because ranked lines now carry the word FIX or a slide number; a scorer renaming the key again and the UNRANKED line not appearing; the section growing so long that the pass stops reading it, in which case it should print the top three per card"
+    },
+    {
+      "what": "workstation_cart lifted from no. 47's chassis into assets/js/kit/interior.js at the judges' named fix: a moulded rear cover tapering from the shell to a raised electronics bay, a parting line, recessed louvre vents with angled blades, a VESA plate on four screws on a tilt bracket and riser, a cable run from a strain relief down the arm and clipped down the post, a soft cool leak round the housing when lit, a battery with a parting line, grip recess, latch and blank label, scuffs on coat, surface and housing",
+      "theme": "largest object unmodelled, 6 runs and 18 rounds, and primitive or low-poly model where a kit model belongs, 6 runs and 18 rounds. No. 47: the monitor back named by every judge in every round on frame 1 ('a flat monitor back with no leak', 'a primitive vented monitor back', 'a flat monitor back with a stamped grille', 'the battery a block'); named fixes 'a bevelled housing with VESA mount, vents and cable run, its rim leaking light' (reader r2), 'a moulded rear with a cool rim' (integrity r2), 'vents, bevel and a cool rim backlight on the housing' (craft r3), 'seams and scuffing on the battery and surface' (reader r3)",
+      "why": "The cart carried all nine of no. 47's frames and the kit had no clinical cart, so the next deck with one would have built the flat plate again",
+      "files": [
+        "assets/js/kit/interior.js",
+        "knowledge/carousel/ARSENAL.md"
+      ],
+      "verification": "Proof through the carousel engine: examples/kit/build.py --family interior --names workstation_cart,monitor, errors 0, read at full size; the first proof showed the rear cover's front bevel through the screen as a blank panel, the cover was moved 8 mm inside the shell and re-proven with the answer page showing. REPLAY: no. 47's slides 1, 3 and 4 copied from runs/carousel/2026-10-09/slides/ and rendered before and after into scratch, errors 0, frame 1's flat plate with stamped grilles now a moulded rear with a rim of light (out/2026-10-10/tmp/machine/n47/compare-01.png). examples/kit/sizes.py 116 of 116. arsenal.py --check exits 0. print_ban --assets clean",
+      "revert": "8505058d",
+      "how_i_would_know_this_was_wrong": "A judge naming the kit cart's monitor back flat, a plate, a block or a grille sticker again, or the leak read as a neon outline or a white box; the screen covered by the rear cover at any yaw; a deck written against no. 47's chassis options finding the screen, the screenAt() point or the monitor group moved; sizes.py going red at a seed outside its sixteen"
+    }
+  ],
+  "proposals_out_of_lane": [
+    {
+      "what": "Count a GRID's units from the scene: TXT or render.py reports, for each mesh a frame tags userData.gridUnit, its projected screen box and its visible share into render_report.json, and layout_check counts units whose thumb scale boxes are visible and do not overlap; an untagged GRID falls back to today's pixel count. Self-test: four separated boxes pass, four overlapping fail, one fails",
+      "owner": "human",
+      "why": "Queue grid-piece-count-reads-lit-ground-as-subject at repeat 2 and its twin, nos. 43, 46, 47, 48. Three pixel readings of the rect's own ground were built and measured this pass and each failed a fixture: a local median and a robust floor fit read no. 46 frame 5's nine lamps as 5 to 7 pieces (2 today) and both split one lump into 3 to 8 pieces, a top hat read the nine as 1 to 3. layout_check.py was reverted unchanged. assets/js/txthree.js and .claude/skills/carousel-engine/render.py are a maintainer's (UPGRADE_BACKLOG 2026-10-10 item 3)"
+    },
+    {
+      "what": "tests/article_edition.mjs takes the newest edition date, or the run date from an argument, for the edition it loads and the folder it writes its screenshots to",
+      "owner": "human",
+      "why": "Queue article-test-screenshots-fixed-path at repeat 2, nos. 44, 46 and 47: the screenshots went to out/2026-09-18/tmp/article-review/ and each run's own edition went unseen by eye (UPGRADE_BACKLOG 2026-10-10 item 4)"
+    },
+    {
+      "what": "Engine themes carried with this week's counts: no contact or grime (6 runs, 14 rounds), object in a void (5 runs, 13 rounds), render artifact (5 runs, 13 rounds), horizon band or seam (3 runs, 5 rounds)",
+      "owner": "human",
+      "why": "assets/js/txthree.js (UPGRADE_BACKLOG 2026-10-10, carried)"
+    }
+  ],
+  "not_done": "precast_barrier and galv_column stay in no. 47's chassis, one lift per pass. turboprop_caravan and the aviation set (no. 46's round 3 craft fix) and dry_van with its siblings deferred, not refused (UPGRADE_BACKLOG 2026-10-10 item 5). Today's deck's own queue items (campus models, the kit person's head, the lit accent drifting in Lab, the art preflight middle) are one run each and wait for a second. No frontier scan beyond the figure and ground literature the GRID item needed (local background estimation, the rolling ball top hat)"
+}
 }
