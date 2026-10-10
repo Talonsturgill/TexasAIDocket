@@ -656,6 +656,38 @@ for (const scenario of ["empty", "missing delta", "missing stop", "early EOF", "
   } finally { globalThis.fetch = savedFetch; }
 }
 
+head("R2d. the previous cache schema cannot replay incomplete output");
+for (const streamed of [false, true]) {
+  // Frozen key from the previous schema, using FAKE and the default Haiku settings.
+  const values = new Map([["a:tx:2026-08-21:b5cbb9c1955092747129da2e3fd2e552",
+    JSON.stringify({ text: "Old incomplete output", withheld: false })]]);
+  const savedFetch = globalThis.fetch;
+  let apiCalls = 0;
+  globalThis.fetch = async (url) => {
+    if (String(url).endsWith("/pack.json")) return { ok: true, json: async () => FAKE };
+    if (String(url).endsWith("/corpus.json")) return { ok: true, json: async () => FAKE_CORPUS };
+    apiCalls++;
+    if (!streamed) return { ok: true, json: async () => ({ stop_reason: "end_turn",
+      content: [{ type: "text", text: "The record holds 12 decisions." }], usage: {} }) };
+    return new Response([
+      { type: "content_block_delta", delta: { type: "text_delta", text: "The record holds 12 decisions." } },
+      { type: "message_delta", delta: { stop_reason: "end_turn" } },
+      { type: "message_stop" },
+    ].map(ev => `data: ${JSON.stringify(ev)}\n\n`).join(""));
+  };
+  try {
+    const turns = [{ role: "user", content: "evaporative cooling" }];
+    const e = { ...ENV, ASK_KV: { get: async key => values.get(key) ?? null,
+      put: async (key, value) => values.set(key, value) } };
+    const text = streamed
+      ? (await new Response(await answerStreaming(turns, e, "2026-08-29T12:00:00Z")).text())
+          .trim().split("\n").map(JSON.parse).filter(ev => ev.sentence).map(ev => ev.sentence).join(" ")
+      : (await answerWhole(turns, e, "2026-08-29T12:00:00Z")).body.text;
+    ok(`${streamed ? "streamed" : "plain"} answers skip the previous cache schema`,
+      apiCalls === 1 && text === "The record holds 12 decisions.");
+  } finally { globalThis.fetch = savedFetch; }
+}
+
 head("R3. daily limits stop spending and never hide a paid answer");
 {
   const when = "2026-08-27T12:00:00Z";

@@ -955,6 +955,73 @@ head("J2. a token that lands after the ceiling may not blank the page");
   await slow.close();
 }
 
+head("L. an empty provider reply gives usable retry guidance");
+{
+  const { answerStream } = await import("../workers/ask/answer.js");
+  const failurePage = await b.newPage();
+  await pinCeiling(failurePage);
+  await failurePage.route("**://challenges.cloudflare.com/**", route => route.abort());
+  await failurePage.addInitScript(() => {
+    let cb;
+    window.turnstile = {
+      render: (el, opts) => { cb = opts.callback; setTimeout(() => cb("test-token"), 5); return 1; },
+      reset: () => { if (cb) setTimeout(() => cb("test-token"), 5); },
+    };
+    setTimeout(function ready() {
+      if (window.askTurnstileReady) window.askTurnstileReady(); else setTimeout(ready, 10);
+    }, 10);
+  });
+  let modelCalls = 0;
+  const submittedTurns = [];
+  await failurePage.route("**/answer", async route => {
+    const turns = JSON.parse(route.request().postData()).messages;
+    submittedTurns.push(turns);
+    const savedFetch = globalThis.fetch;
+    globalThis.fetch = async url => {
+      if (String(url).endsWith("/pack.json")) return { ok: true, json: async () => ({
+        generated: "2026-10-09", system: "Use the record.",
+        pack: "THE COUNTS. The record holds 0 decisions.", authorised_numerals: ["0"], slugs: [],
+      }) };
+      if (String(url).endsWith("/corpus.json")) return { ok: true, json: async () => ({
+        generated: "2026-10-09", authorised_numerals: ["0"], slugs: [],
+      }) };
+      modelCalls++;
+      const text = modelCalls > 1
+        ? 'data: {"type":"content_block_delta","delta":{"type":"text_delta","text":"The record is published."}}\n\n'
+        : "";
+      return new Response(text + 'data: {"type":"message_delta","delta":{"stop_reason":"end_turn"}}\n\n'
+        + 'data: {"type":"message_stop"}\n\n');
+    };
+    let body;
+    try {
+      body = await new Response(await answerStream(turns, {
+        ANTHROPIC_API_KEY: "test", ASK_PACK_URL: "https://fixture/pack.json",
+        ASK_CORPUS_URL: "https://fixture/corpus.json",
+      }, "2026-10-09T12:00:00Z")).text();
+    } finally { globalThis.fetch = savedFetch; }
+    await route.fulfill({ status: 200, contentType: "application/x-ndjson", body });
+  });
+  await failurePage.goto(URL_);
+  await failurePage.fill("#askq", "who decides the ERCOT transmission rule");
+  await failurePage.press("#askq", "Enter");
+  await failurePage.waitForSelector(".askfrom", { timeout: 15000 });
+  const text = (await failurePage.textContent(".askreply")) || "";
+  ok("the browser shows the Worker's completed error path",
+    modelCalls === 1 && /The answer did not finish\. Please try again\./.test(text), text);
+  ok("the retry guidance never asks for a narrower question", !/narrower/i.test(text), text);
+  ok("the question field is usable after that failure", !(await failurePage.getAttribute("#askq", "disabled")));
+  await failurePage.fill("#askq", "who decides the ERCOT transmission rule");
+  await failurePage.press("#askq", "Enter");
+  await failurePage.waitForFunction(() => {
+    const reply = Array.from(document.querySelectorAll(".askreply")).at(-1);
+    return !document.querySelector("#askq").disabled && /The record is published\./.test(reply?.textContent || "");
+  }, null, { timeout: 15000 });
+  ok("retrying reaches the provider and renders a checked answer", modelCalls === 2);
+  ok("an empty reply never creates a broken conversation turn",
+    submittedTurns[1]?.length === 1 && submittedTurns[1][0].role === "user");
+  await failurePage.close();
+}
+
 if (fail) {
   /* guards_local prints only a failed step's tail. Repeat the exact assertions here so a
      failure near the beginning cannot be hidden by the later section headings. */

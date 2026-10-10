@@ -1243,7 +1243,9 @@ const DEFAULT_READER_DAILY_CAP = 50;
 // reasoning and the short answer so thinking alone does not consume the whole response.
 const MAX_TOKENS = 4096;
 const REFUSAL_MESSAGE = "The model declined that question. Start over or ask a different question.";
-const RETRY_MESSAGE = "The model returned no complete answer. Try again or ask a narrower question.";
+const RETRY_MESSAGE = "The answer did not finish. Please try again.";
+// Retire older entries that could contain incomplete provider output.
+const ANSWER_CACHE_SCHEMA = "complete-v1";
 const ANSWER_TTL = 60 * 60 * 24 * 7;
 
 // EVERY KV KEY THIS WORKER WRITES CARRIES THIS.
@@ -1340,7 +1342,7 @@ export async function cacheKey(turns, packDate, env = {}) {
   const day = packDate || new Date().toISOString().slice(0, 10);
   const thread = turns.map((m) => m.role + ":" + normaliseQuestion(m.content)).join("\n");
   const digest = await crypto.subtle.digest("SHA-256",
-    new TextEncoder().encode(`participation-v1\n${day}\n${JSON.stringify(modelParams(env))}\n${thread}`));
+    new TextEncoder().encode(`${ANSWER_CACHE_SCHEMA}\nparticipation-v1\n${day}\n${JSON.stringify(modelParams(env))}\n${thread}`));
   const hex = [...new Uint8Array(digest)].map((b) => b.toString(16).padStart(2, "0")).join("");
   return `a:${KV_PREFIX}:${day}:${hex.slice(0, 32)}`;
 }

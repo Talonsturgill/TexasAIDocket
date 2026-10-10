@@ -16,6 +16,7 @@ Checked sentences wait for the provider's terminal classification. A declined
 turn returns a clear notice and discards partial text without caching it.
 Empty replies, interrupted streams and provider stream errors remain retryable.
 Only completed, accepted answers enter the cache.
+The cache schema retires entries written before these completion checks.
 
 Run the Worker checks and regenerate the dashboard bundle before release.
 
