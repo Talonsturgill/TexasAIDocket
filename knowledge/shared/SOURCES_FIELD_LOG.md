@@ -2087,3 +2087,25 @@ tx-2026-0027 cites those now. This run's interim stamp on that item gave way to 
 merge. The city's own site still carries no written outcome. This run's 11:50 UTC measurement of
 `taylortx.new.swagit.com` found its robots.txt disallowing nothing, which differs from the repair's
 account of that video, and no outcome was drawn from the video either way.
+
+## 2026-10-10
+
+**www.faa.gov answered 403 to this project's agent on all sixteen pages `reverify.py` asked for and
+200 to a browser agent.** tx-2026-0186's FAA pages were read through the browser agent's answer
+only as a check of what the agent's 403 hides. Its October 11th comment window is in the record.
+
+**www.dhs.gov answered 403 on eleven pages** and wilcotx.gov, brownsvilletx.gov, leandertx.gov and
+brazoscountytx.gov kept refusing, as the October 9th entry records for the first two.
+
+**The PUCT calendar RSS answers on the www host and the bare host redirects to it.** Point a poll at
+`www.puc.texas.gov`.
+
+**tech.utexas.edu answered 403** to this project's agent on the page a scout cited. Nothing from it
+reached the claims file.
+
+**sites.austincc.edu, infohub.austincc.edu and www.austincc.edu all answered 200** and the crawl
+boundary, which reads their robots.txt files, allowed every page the run asked for. The AI Resource Hub marks its use policy PDF
+"(PDF – ACC Faculty and Staff only)", so the PDF itself was not requested.
+
+**Spectrum News (spectrumlocalnews.com) disallows this project's fetcher in robots.txt.** A claim
+from its ACC report was dropped rather than routed around.

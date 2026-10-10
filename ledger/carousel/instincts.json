@@ -208,7 +208,8 @@
       "evidence": "2026-09-09, carousel 18. c13's text read 'Three named clinicians wrote the study' where its quote is a byline reading MD, BS, MD. A BS is not a clinician credential, so the caption said CLINICIANS on the widest-reach surface. Three judges found it. No gate compares a claim's text to its own quote.",
       "confirmed": [
         "2026-09-13",
-        "2026-10-08"
+        "2026-10-08",
+        "2026-10-10"
       ],
       "contradicted": []
     },
@@ -311,7 +312,8 @@
         "2026-10-05",
         "2026-10-06",
         "2026-10-07",
-        "2026-10-08"
+        "2026-10-08",
+        "2026-10-10"
       ],
       "contradicted": []
     },
@@ -615,7 +617,8 @@
         "2026-10-04",
         "2026-10-05",
         "2026-10-07",
-        "2026-10-09"
+        "2026-10-09",
+        "2026-10-10"
       ],
       "contradicted": []
     },
@@ -822,7 +825,8 @@
         "2026-09-18",
         "2026-09-20",
         "2026-09-26",
-        "2026-09-29"
+        "2026-09-29",
+        "2026-10-10"
       ],
       "contradicted": []
     },
@@ -1354,6 +1358,14 @@
       "learned": "2026-10-09",
       "instinct": "When a label states how many things a frame draws, count the drawn things inside the frame in the frame's own code and refuse to render on any other number.",
       "evidence": "Carousel no. 47, frames 1 and 9. The label said 100 lights and two judges counted about half; an in-frame projection check found 74 of 100 inside the frame and the row was re-aimed until it found 100.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "check-the-hero-against-the-artwork-ledger",
+      "learned": "2026-10-10",
+      "instinct": "Before the storyboard locks, check the hero and the opening move against the last fourteen artwork.json entries, because three directors reaching for the same kit model on their own is a default, not a fit.",
+      "evidence": "No. 48's three directors all chose the kit student_desk with its laptop. No. 38 on September 30th had built its whole deck on it, desk alone on a field and then a field of desks, and two judges scored variety 4.5 and 5.5 for it at round 1 and round 3.",
       "confirmed": [],
       "contradicted": []
     }
