@@ -1,0 +1,84 @@
+{
+ "lens": "reader",
+ "round": 1,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.5,
+   "why": "Slides 1, 2 and 7 work. Slide 5's kit head crosses the kicker, hands read as mittens, brown mid tone field. Slide 8 white collar tabs and a window that reads as a blank board. Slide 4 pale desktop floods the lower third, sheet a white bar, no contact shadow. Slide 3 far lids alias, hero small. Lawn tufts stamped. Slide 9 walker's hair a white column."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "One hero desk on all nine, the walk a spine across 1, 6, 7 and 9, west light throughout, motif evolution and camera move visible. Slide 5's warm brown sky and slide 4's pale desktop are value jumps."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.5,
+   "why": "Every numeral traces. Loose spots: slide 9 art shows the walker toward the town hall paver under 'Community members are invited too' though that event is the Faculty and Student town hall; slide 4 hook 'a use policy' on a medium confidence claim; 'two committees' reads c4's plural."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.5,
+   "why": "What happened, how many, the tension and a dated way in are all there; no county on a frame, the public seminar's time never on a slide, no URL for the form."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Turn at 4 is the best beat; 5 repeats 2; 6 and 8 both carry October 12th; the cover hook is a topic statement."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Clean and on register; slide 6 and 7 headlines talk about the drawing; cover hook generic."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "Fresh subject; the last light world repeats no. 46, one per day along a walk echoes no. 46's lamp per day, the walker close repeats no. 43, the multiplied hero repeats nos. 43 and 47."
+  }
+ ],
+ "weighted_score": 7.28,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Take slides 6, 7 and 9 off the paver conceit and onto what a reader can act on: slide 7 says outright that no vote, date or body decides, and slide 9 closes on the public October 22nd seminar at Highland, 6 to 9 p.m., with the form's page named.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 8,
+   "problem": "White collar tab on every seated figure; the window reads as a blank brown board, so the room's light has no source.",
+   "fix": "Remove the collar tab; model the back wall rectangle as a real window with mullions and a warm exterior whose light rakes the lectern and floor."
+  },
+  {
+   "slide": 5,
+   "problem": "Low poly head crosses the kicker, mitten hands, brown mid tone field.",
+   "fix": "Over the shoulder crop with the head out of frame left and above the type band; sky to near black."
+  },
+  {
+   "slide": 4,
+   "problem": "Pale desktop floods the lower third, sheet a white bar, laptop hovers.",
+   "fix": "Narrow the key to a pool under the laptop, contact shadows under its feet, sheet turned off axis."
+  },
+  {
+   "slide": 3,
+   "problem": "Far lids alias into moire; hero small.",
+   "fix": "Plain low emissive on the instanced far lids; hero forward and larger, at least 400 px tall."
+  },
+  {
+   "slide": 9,
+   "problem": "Mannequin walker with a white column of hair; walker and desk under a third of the frame.",
+   "fix": "Dark hair or a hood; camera in so walker and desk fill a third of the frame; vary the tufts."
+  },
+  {
+   "slide": 6,
+   "problem": "Desk small at lower left, right half empty lawn with floating labels.",
+   "fix": "Lower and push the camera along the walk; labels against their inlays."
+  }
+ ]
+}

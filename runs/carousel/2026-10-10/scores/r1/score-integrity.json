@@ -1,0 +1,79 @@
+{
+ "lens": "integrity",
+ "round": 1,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.0,
+   "why": "Frame 3 closest to the showstopper. Frame 5 camouflage scalp behind the kicker and hook, pink sausage hand, brown mid tone field. Frame 8 blank brown rectangle, no window, mannequins. Frame 4 blown white bottom third, laptop floats, sheet unreadable. Pavers read as floating planks, inlays flat red, sprite tufts. Desk under a third on 6 and 9."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "One hero, the walk as a spine, one computed west key, both declared devices work. Frame 5's brown field and frame 8's interior sit outside the lawn world."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.5,
+   "why": "Every numeral traces and was recomputed. Looseness: frame 4 and caption 'faculty and staff document' go past c19's bare title quote at medium confidence, and the web edition goes further; 'two committees' reads a plural; c18's absence at medium; frame 9's invitation over the town hall paver; first comment omits c16."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.5,
+   "why": "What happened, the institution and the campuses are clear; the missing adopting body is stated; frame 9 gives no seminar time and no form address."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Real turn at 4 and 7; modest cover; 5 re-covers 2; 8 doubles back after 7."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Clean and on register; four mechanical 'drawn to illustrate' disclaimers; procedural deks."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.0,
+   "why": "New hero and topic; third dark staged night deck in a row; lastLight at el 6.4 repeats no. 46; one paver per day repeats no. 46's lamp per day; lit screen repeats no. 47; block count echoes nos. 44 and 47; room from the back echoes nos. 43 and 45."
+  }
+ ],
+ "weighted_score": 6.92,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Rebuild frames 5, 8 and 9 without the kit mannequins: crop 5 to lit forearms and hands at the keys below the type, light 8 from a modelled window where the brown rectangle hangs, and close 9 low and near so the desk fills a third of the frame.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 5,
+   "problem": "Camouflage scalp behind the kicker and hook, sausage hand, brown mid tone field.",
+   "fix": "Camera to desk height, crop to forearm and hands at the keys, no head in the top half, lid the one source, near black field."
+  },
+  {
+   "slide": 8,
+   "problem": "Flat brown rectangle reads as a placeholder; no window; mannequins; near chair a black slab.",
+   "fix": "A modelled window with mullions, sill and the warm seam beyond, the room's one source, the lectern in its pool."
+  },
+  {
+   "slide": 4,
+   "problem": "Blown white bottom third, floating laptop, unreadable sheet.",
+   "fix": "Key off the desk top, contact shadow under the laptop, the lid's shadow across the sheet's edge."
+  },
+  {
+   "slide": 9,
+   "problem": "Desk under a fifth of the frame; mannequin walker with white hair beside the desk.",
+   "fix": "Camera low and close behind the walker, desk a third of the frame, walker cropped to legs and shoes."
+  },
+  {
+   "slide": 6,
+   "problem": "Pavers as floating plywood, inlays flat red, desk small.",
+   "fix": "Sink pavers flush with dark soil joints, low roughness inlays with one specular streak, desk a third of the frame tall."
+  }
+ ]
+}

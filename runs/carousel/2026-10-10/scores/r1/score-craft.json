@@ -1,0 +1,79 @@
+{
+ "lens": "craft",
+ "round": 1,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.0,
+   "why": "1 and 7 strong, 6's idea strong. 5 a mannequin head under the kicker, a detached pink hand, a warm brown field with no ground (canvas mean 56.3). 4 a mid grey desk top filling the bottom 40 percent and a bright strip past the desk's edge, a product shot. 8 collar clips and a blank brown rectangle, no window. 3 far lids alias and are uniformly bright. Lawn reads as rippled water; pavers as plywood; oak foliage under 9's hook."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 6.5,
+   "why": "One hero and the inlay motif through the deck, both devices work. 4 and 5 leave the world; value track 39, 19, 27, 76, 56, 27, 29, 33, 22 strobes from 3 to 6; room 8 has no window tying it to the west key."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.5,
+   "why": "Every numeral traces and the count was checked. First comment omits c16; 'two committees' leans on the claim text's reading."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.5,
+   "why": "What, where, when and what a reader can do are all there; who decides is honestly unnamed; the stake for 79,000 students stays general."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Real turns at 4 and 7; flat cover; 5 could move; 8 restates 6's date."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Clean and local; procedural disclosure lines; generic cover headline."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 4.5,
+   "why": "The hero and opening move repeat no. 38 (2026-09-30): the student_desk with its laptop alone on a field, then counted as instanced desks, leader labels on the desk, a person at the close. Also no. 46's lastLight world and one unit per day, and no. 37's granite hex."
+  }
+ ],
+ "weighted_score": 6.85,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Check every pitched hero and opening move against the last 14 artwork.json entries before the storyboard locks; this deck's hero and cover are no. 38's.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 5,
+   "problem": "Mannequin head under the kicker and hook, a detached pink hand, a flat warm brown field, a mid tone frame.",
+   "fix": "Over the right shoulder with the head out of frame, both hands in the lid's light, the lawn and near black sky behind the lid."
+  },
+  {
+   "slide": 4,
+   "problem": "Mid grey desk top fills the bottom 40 percent, a bright strip past the desk's edge, a plum gradient behind the lid, a product shot.",
+   "fix": "Drop the camera and tilt up so the lawn and seam show over the lid, crop the desk top into shadow, the sheet ends on the desk, the page toward L* 70."
+  },
+  {
+   "slide": 8,
+   "problem": "Collar clips on the figures, a blank brown rectangle as the biggest lit area, no window.",
+   "fix": "A sill height window of last light on the left as the one source; remove the collar mesh or recrop to shoulders in shadow."
+  },
+  {
+   "slide": 3,
+   "problem": "Far lids alias, uniformly bright, the block a busy grey grid.",
+   "fix": "Cut the instanced lids to the planned low level and mip the far rows so only the hero lid reads bright."
+  },
+  {
+   "slide": 9,
+   "problem": "Walker's hair a pale block, oak foliage under the hook.",
+   "fix": "Push the oak into a silhouette, a dark hair or cap material on the walker."
+  }
+ ]
+}

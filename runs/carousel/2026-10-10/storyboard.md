@@ -313,7 +313,7 @@ risks:
 slide: 4
 layout: DOCUMENT
 primary_image:
-  subject: "the hero desk's laptop square to the camera, its lit page carrying the title of the document the college's AI site already links, the blank sheet on the desk top in front of it"
+  subject: "the hero desk's laptop square to the camera, its lit page carrying the title of the document the college's AI site already links"
   rect: [140, 560, 760, 620]
   bleeds: []
 accent: none
@@ -326,7 +326,7 @@ numerals: []
 
 data_in_art:
   figure: existing_documents
-  drives: the count of titled documents drawn on the page, 1, beside the blank sheet
+  drives: the count of titled documents drawn on the page, 1
 
 depth:
   eye: 1.0
@@ -337,18 +337,18 @@ depth:
 composition:
   structure: >
     The camera stands square to the lid at seated height so the page is axis aligned and its title sits on it
-    as DOM type. The blank sheet lies in front, its edge running off the bottom. The dark lawn and the seam
+    as DOM type. The blank sheet is off this frame, so the titled page is the one document in it. The dark lawn and the seam
     show over the lid's top.
   bands: >
     Top third, the sky and seam with the hook and dek. Middle third, the lit page with the document title.
-    Bottom third, the keyboard lit by the page, the sheet's paper texture and the putty top's
+    Bottom third, the keyboard lit by the page and the putty top's
     grain running off the edge with the lid's shadow across it.
   focal: "the lit page with the title, the lightest area"
 
 art:
   technique: "physically based render with a drawn page on the lid and DOM type registered to the lid's rect"
-  why_this_technique: "the existing document is a title on a page, and showing it on the same desk beside the blank sheet sets the two side by side without a word of argument"
-  palette: "the lid's cool page, aluminium, putty, a limestone white sheet, the black field"
+  why_this_technique: "the existing document is a title on a page, and showing it on the same desk that carries the blank sheet on every other frame sets the two side by side without a word of argument"
+  palette: "the lid's cool page, aluminium, putty, the black field"
   value_structure: >
     Lightest is the page, darkest the sky. Frame median L* planned at 20.
 
@@ -363,7 +363,7 @@ verbatim:
 
 acceptance:
   - "the document's title sits on the lit page, inside the lid's rect, and a title set off the page fails this item"
-  - "the blank sheet lies in front of the laptop with nothing printed on it"
+  - "no second document and no sheet sits beside the titled page"
   - "the lid is square to the camera and no type is rotated"
   - "the dark lawn and the seam show above the lid"
   - "the page is the lightest area and no part of the frame is a grey wash"
