@@ -314,7 +314,7 @@ slide: 4
 layout: DOCUMENT
 primary_image:
   subject: "the hero desk's laptop square to the camera, its lit page carrying the title of the document the college's AI site already links, the blank sheet on the desk top in front of it"
-  rect: [140, 560, 820, 720]
+  rect: [140, 560, 760, 620]
   bleeds: []
 accent: none
 job: >
@@ -437,7 +437,7 @@ slide: 6
 layout: FULL_BLEED
 primary_image:
   subject: "a walk of fourteen limestone pavers across the dark lawn, one per day from the post to the seminar, three inlaid with granite, the desk standing on the October 12th paver"
-  rect: [0, 600, 1080, 750]
+  rect: [0, 650, 1080, 700]
   bleeds: [left, right, bottom]
 accent: "#9A3B2A"
 job: >
@@ -477,7 +477,7 @@ art:
     planned at 13.
 
 type:
-  hook: "Three dates in fourteen days"
+  hook: "Three dates on fourteen pavers"
   dek: "One paver for each day from the October 9th post to the October 22nd seminar at Highland, both ends counted. The town hall is October 12th at Rio Grande. A faculty convocation titled The Two AIs is October 16th at Eastview."
   labels: ["OCTOBER 12TH TOWN HALL", "OCTOBER 16TH CONVOCATION", "OCTOBER 22ND SEMINAR"]
 
@@ -570,7 +570,7 @@ accent: none
 job: >
   Show the room the college has asked people into, at the hour it starts, and who it invited.
 
-claims: [c10, c11, c16]
+claims: [c10, c11]
 numerals: []
 
 data_in_art:
@@ -635,7 +635,7 @@ job: >
   Close on the next step a reader can take, the seat open at the town hall on October 12th and the seminar
   open to community members on October 22nd.
 
-claims: [c10, c13, c14, c15, c17]
+claims: [c16, c17]
 numerals: []
 
 data_in_art:
@@ -666,8 +666,8 @@ art:
     Lightest is the lid and the paver in the pool, darkest the sky. Frame median L* planned at 13.
 
 type:
-  hook: "Three events and a feedback form"
-  dek: "The town hall is October 12th at 6:30 p.m. at Rio Grande. A faculty convocation is October 16th at Eastview. The seminar on October 22nd at Highland is open to community members. Feedback goes through a form online."
+  hook: "Community members are invited too"
+  dek: "The college invites faculty, staff, students and community members to take part in one or more of the events. Feedback and questions go through a form on its page about getting involved with generative AI."
   labels: []
 
 verbatim: []
@@ -677,7 +677,7 @@ acceptance:
   - "a walking person at true scale is turned three quarters away and lit from the camera's side"
   - "the walk runs from the camera to the desk with contacts under the walker's feet and the desk's glides"
   - "the horizon and the seam are in frame and the sky is near black"
-  - "the dek names the date, the time, the campus and the form"
+  - "the dek names who is invited and where feedback goes"
   - "the desk stands at least 220 px tall and the walker at least 300 px"
 
 risks:
