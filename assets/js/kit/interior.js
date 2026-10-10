@@ -2,8 +2,8 @@
  *
  * The rooms decisions are made in: a commissioners court dais, the lectern the public speaks
  * from, the rows it sits in, the office the paperwork lives in, and the server row the paperwork
- * is about, and the laboratory bench (fly_vial, vial_tray). Interior frames stand in a room built
- * by TXT.interior; these models furnish it.
+ * is about, the laboratory bench (fly_vial, vial_tray) and the clinical cart (workstation_cart).
+ * Interior frames stand in a room built by TXT.interior; these models furnish it.
  * Every model: metres, y up, base on y = 0, FRONT faces +z (a dais faces its audience, a chair
  * faces the way its sitter looks, a rack shows its server fronts).
  */
@@ -864,6 +864,234 @@ export function install(K, THREE, TXT) {
       base.position.set(0, 0.006, -0.04); g.add(base);
       rbox(0.07, 0.03, 0.05, 0.008, body, 0, 0.006, nz, g);
       return centre(g);
+    },
+  });
+
+  /* ======================================================================= CLINICAL CART */
+  /* `workstation_cart`, LIFTED 2026-10-10 by the weekly machine pass from carousel no. 47's chassis
+   * (assets/js/deck/2026-10-09-chart.js), where it carried all nine frames, AT THE JUDGES' NAMED FIX.
+   * Every judge named the monitor back in every round: "a flat monitor back with no leak", "a
+   * primitive vented monitor back", "a flat monitor back with a stamped grille", "the monitor back a
+   * flat plate, the battery a block". Their fix, in their words: "a bevelled housing with VESA mount,
+   * vents and cable run, its rim leaking light", "a moulded rear with a cool rim", "seams and scuffing
+   * on the battery and surface". So the rear is now a moulded cover, a pillow that tapers from the
+   * front shell to a raised electronics bay, with a parting line round the shell, recessed louvre
+   * vents either side of the bay, a VESA plate on four screws carried by a tilt bracket and riser, a
+   * cable from a strain relief down the arm and clipped down the post, and, when the screen is lit, a
+   * soft cool leak round the housing's edge that falls off over a few centimetres. The battery has a
+   * parting line, a grip recess, a latch and a blank label, and coat and surface carry scuffs.
+   * The options are the chassis's own, so a deck written against it builds unchanged. */
+  function paintCoat(x, W, H, r, o) {
+    // powder coat or moulded ABS in `base`, with the scuffs a cart picks up against door frames:
+    // lighter rubbing, short dark scratches, a few nicks
+    x.fillStyle = o.base || '#dcded9'; x.fillRect(0, 0, W, H);
+    for (let i = 0; i < 700; i++) {
+      const v = r() < 0.5 ? '120,122,118' : '255,255,255';
+      x.fillStyle = 'rgba(' + v + ',' + (0.015 + r() * 0.025).toFixed(3) + ')'; x.fillRect(r() * W, r() * H, 4 + r() * 40, 2 + r() * 8);
+    }
+    x.lineWidth = 1.2;
+    for (let k = 0; k < 70; k++) {
+      const px = r() * W, py = r() * H, a = (r() - 0.5) * 0.6, l = 8 + r() * 40;
+      x.strokeStyle = 'rgba(90,92,88,' + ((0.12 + r() * 0.2) * (o.soft || 1)).toFixed(3) + ')';
+      x.beginPath(); x.moveTo(px, py); x.lineTo(px + Math.cos(a) * l, py + Math.sin(a) * l); x.stroke();
+    }
+    for (let n = 0; n < 12; n++) { x.fillStyle = 'rgba(60,60,58,' + (0.12 + r() * 0.18).toFixed(2) + ')'; x.beginPath(); x.arc(r() * W, r() * H, 0.6 + r() * 1.2, 0, TAU); x.fill(); }
+  }
+  function rrPath(x, X, Y, w, h, rad) {
+    x.beginPath(); x.moveTo(X + rad, Y); x.arcTo(X + w, Y, X + w, Y + h, rad); x.arcTo(X + w, Y + h, X, Y + h, rad);
+    x.arcTo(X, Y + h, X, Y, rad); x.arcTo(X, Y, X + w, Y, rad); x.closePath();
+  }
+  function paintAnswer(x, W, H, r, o) {
+    // a question in a bubble, an answer of grey bars with citation chips, a sources list. No word,
+    // letter or numeral is legible, because a deck never shows a real product's UI
+    x.fillStyle = '#f2f5f7'; x.fillRect(0, 0, W, H);
+    x.fillStyle = '#e3e8ec'; x.fillRect(0, 0, W, 54); x.fillStyle = '#c9d1d8'; x.fillRect(0, 54, W, 3);
+    x.fillStyle = '#e9edf0'; x.fillRect(0, 57, 210, H - 57); x.fillStyle = '#d4dbe0'; x.fillRect(210, 57, 3, H - 57);
+    for (let s = 0; s < 9; s++) { x.fillStyle = s === 2 ? '#b9c4cc' : '#d0d7dc'; x.fillRect(22, 92 + s * 58, 160 - (s * 17 % 60), 16); }
+    if (!o.blank) {
+      x.fillStyle = '#d9e2e8'; rrPath(x, 640, 86, 580, 70, 18); x.fill();
+      x.fillStyle = '#8a96a0'; x.fillRect(668, 108, 470, 11); x.fillRect(668, 128, 300, 11);
+      let y = 192;
+      [5, 4, 5, 3].forEach((n, pi) => {
+        for (let l = 0; l < n; l++) {
+          const w = l === n - 1 ? 380 + r() * 300 : 860 + r() * 120;
+          x.fillStyle = '#5b6670'; x.fillRect(250, y, w, 12);
+          if (l === n - 1) { x.fillStyle = '#3d6f9e'; rrPath(x, 262 + w, y - 4, 30, 20, 6); x.fill(); if (pi % 2 === 0) { rrPath(x, 298 + w, y - 4, 30, 20, 6); x.fill(); } }
+          y += 26;
+        }
+        y += 22;
+      });
+      x.fillStyle = '#c9d1d8'; x.fillRect(250, y, 980, 2); y += 22;
+      for (let k = 0; k < 4; k++) {
+        x.fillStyle = '#3d6f9e'; rrPath(x, 250, y - 3, 30, 20, 6); x.fill();
+        x.fillStyle = '#6b7680'; x.fillRect(296, y, 520 + r() * 300, 11); x.fillStyle = '#a3adb5'; x.fillRect(296, y + 18, 360 + r() * 200, 9); y += 44;
+      }
+    }
+    const gr = x.createRadialGradient(W / 2, H / 2, 200, W / 2, H / 2, 820); gr.addColorStop(0, 'rgba(0,0,0,0)'); gr.addColorStop(1, 'rgba(20,30,40,0.18)');
+    x.fillStyle = gr; x.fillRect(0, 0, W, H);
+  }
+  function paintLeak(x, W, H, r, o) {
+    // THE LEAK: white where the housing's edge is, falling to nothing `o.spread` of the card out.
+    // The middle is hidden by the housing, so only the falloff round its edge is ever seen.
+    x.clearRect(0, 0, W, H);
+    const px = o.spread * W, rad = o.rad * W;
+    x.filter = 'blur(' + Math.round(px * 0.42) + 'px)';
+    x.fillStyle = '#ffffff'; rrPath(x, px, px, W - 2 * px, H - 2 * px, rad); x.fill();
+    x.filter = 'none';
+  }
+  // A rounded rect extruded with a deep bevel: a moulded pillow, its outline `bs` wider at mid depth
+  // than at its back face, centred on z = 0. UVs in metres over `tile`, so a scuff is a scuff's size.
+  function pillow(w, h, rad, depth, bt, bs, tile) {
+    const s = new THREE.Shape(), X = -w / 2, Y = -h / 2;
+    s.moveTo(X + rad, Y); s.lineTo(X + w - rad, Y); s.quadraticCurveTo(X + w, Y, X + w, Y + rad);
+    s.lineTo(X + w, Y + h - rad); s.quadraticCurveTo(X + w, Y + h, X + w - rad, Y + h);
+    s.lineTo(X + rad, Y + h); s.quadraticCurveTo(X, Y + h, X, Y + h - rad); s.lineTo(X, Y + rad); s.quadraticCurveTo(X, Y, X + rad, Y);
+    const geo = new THREE.ExtrudeGeometry(s, { depth, bevelEnabled: true, bevelThickness: bt, bevelSize: bs, bevelSegments: 10, curveSegments: 10 });
+    geo.translate(0, 0, -depth / 2);
+    smoothNormals(geo);      // a moulding is smooth: per face normals printed the bevel as stepped bands
+    const uv = geo.attributes.uv; for (let i = 0; i < uv.count; i++) uv.setXY(i, uv.getX(i) / tile, uv.getY(i) / tile);
+    return geo;
+  }
+  K.define('workstation_cart', {
+    size: [0.66, 1.6, 0.7],
+    options: { yaw: 0, height: 1.0, lit: true, screen: 'answer', trayOut: 0.1, badge: 'idle', glow: 1, seed: 1 },
+    note: 'Rolling clinical workstation, illustrative and unmarked: a five caster cast aluminium star base, an oval mast with a battery pack (parting line, grip, latch, blank label, level strip), a grey work surface (height m, default 1.0) with a front push bar, a keyboard tray (trayOut m), a badge reader (badge idle | ok), a holstered scanner and a wipes canister, and a 24 in monitor on a swivel arm with a moulded rear: tapered cover, raised bay, louvre vents, VESA plate on a tilt bracket, a cable run down the arm and post, and a cool leak round the housing when lit. yaw is the monitor swivel in degrees, 0 with the screen facing the push handle on +z, 180 facing -z. screen answer | blank | off, glow scales the screen and leak; no legible text. userData.monitor is the monitor group, userData.screenAt() its world centre.',
+    make(o) {
+      const g = new THREE.Group(), H = +o.height || 1.0, glow = o.glow == null ? 1 : +o.glow;
+      const coat = uvm(mat('cart-coat', { color: 0xffffff, map: ltex('cart-coat', paintCoat, { base: '#dcded9' }), roughness: 0.46, metalness: 0.12 }), 0.5);
+      const abs = uvm(mat('cart-abs', { color: 0xffffff, map: ltex('cart-abs', paintCoat, { base: '#7c8084' }), roughness: 0.6, metalness: 0.02 }), 0.5);
+      const housingMap = ltex('cart-hous', paintCoat, { base: '#c4c8cc', soft: 0.45 });
+      const housing = uvm(mat('cart-hous', { color: 0xffffff, map: housingMap, roughness: 0.4, metalness: 0.04 }), 0.5);
+      const absDark = mat('cart-absd', { color: 0x2a2c2f, roughness: 0.55, metalness: 0.02 });
+      const seam = mat('cart-seam', { color: 0x15171a, roughness: 0.75 });
+      const alu = M.alu(0xb9bdc1), castAlu = mat('cart-cast', { color: 0x9a9ea2, roughness: 0.5, metalness: 0.7 });
+      const rubber = M.rubber(), chrome = M.chrome();
+      const keyM = mat('cart-key', { color: 0x2e3033, roughness: 0.62, metalness: 0.02 });
+      const bezel = mat('cart-bez', { color: 0x0b0c0d, roughness: 0.18, metalness: 0.1 });
+      const cableM = mat('cart-cable', { color: 0x141516, roughness: 0.55 });
+      const lamp = (c, i) => mat('cart-lamp' + c + i, { color: 0x111111, emissive: c, emissiveIntensity: i });
+
+      /* the base: a five spoke star on twin wheel casters */
+      K.cyl(0.07, 0.08, 0.06, castAlu, 0, 0.075, 0, 28, g);
+      for (let i = 0; i < 5; i++) {
+        const a = i / 5 * TAU + 0.31, ex = Math.cos(a) * 0.29, ez = Math.sin(a) * 0.29;
+        K.bar([0, 0.1, 0], [ex, 0.085, ez], 0.022, castAlu, 10, g).scale.set(1.3, 1, 0.75);
+        K.cyl(0.018, 0.018, 0.022, castAlu, ex, 0.07, ez, 16, g);
+        const fork = K.box(0.034, 0.05, 0.06, absDark, ex, 0.035, ez, 0.006, g); fork.rotation.y = -a;
+        for (const sd of [-1, 1]) {
+          const w = new THREE.Mesh(new THREE.CylinderGeometry(0.048, 0.048, 0.02, 24), rubber);
+          w.rotation.z = Math.PI / 2; w.rotation.y = -a + Math.PI / 2;
+          w.position.set(ex + Math.cos(a + Math.PI / 2) * sd * 0.024, 0.048, ez + Math.sin(a + Math.PI / 2) * sd * 0.024); g.add(w);
+          const hub = new THREE.Mesh(new THREE.CylinderGeometry(0.02, 0.02, 0.022, 16), castAlu); hub.rotation.copy(w.rotation); hub.position.copy(w.position); g.add(hub);
+        }
+        if (i % 2 === 0) K.box(0.03, 0.008, 0.035, mat('cart-lock', { color: 0x3a3c3e, roughness: 0.5 }), ex, 0.094, ez, 0.003, g);
+      }
+      /* the mast: the gas spring sleeve and the oval column */
+      K.cyl(0.055, 0.058, 0.44, coat, 0, 0.1, 0, 32, g).scale.z = 0.72;
+      K.cyl(0.044, 0.044, H - 0.56, alu, 0, 0.52, 0, 32, g).scale.z = 0.7;
+      /* the battery pack on the back of the mast: a parting line between pack and lid, a grip recess
+       * on its top, a release latch, a blank rating label and the five segment level strip */
+      rbox(0.26, 0.32, 0.11, 0.014, coat, 0, 0.18, -0.105, g);
+      rbox(0.263, 0.003, 0.113, 0.002, seam, 0, 0.33, -0.105, g);
+      rbox(0.12, 0.012, 0.03, 0.005, seam, 0, 0.494, -0.105, g);
+      rbox(0.05, 0.02, 0.008, 0.003, absDark, 0, 0.26, -0.163, g);
+      box(0.11, 0.06, 0.001, mat('cart-label', { color: 0xbfc3c4, roughness: 0.7 }), 0.0, 0.355, -0.1606, g);
+      box(0.2, 0.012, 0.004, mat('cart-strip', { color: 0x111111, roughness: 0.4 }), 0, 0.44, -0.162, g);
+      for (let b = 0; b < 5; b++) box(0.032, 0.008, 0.003, lamp(b < 4 ? 0x7dff9a : 0x222222, b < 4 ? 1.6 : 0.1), -0.075 + b * 0.0375, 0.442, -0.1635, g);
+      /* the power cord wound on two hooks behind the mast */
+      K.box(0.02, 0.05, 0.03, absDark, -0.06, 0.62, -0.05, 0.004, g); K.box(0.02, 0.05, 0.03, absDark, 0.06, 0.62, -0.05, 0.004, g);
+      for (let cw = 0; cw < 4; cw++) K.cable([-0.07, 0.66 - cw * 0.006, -0.065], [0.07, 0.66 - cw * 0.006, -0.065], 0.07 + cw * 0.012, 0.0045, absDark, g);
+      /* the head: a drawer and keyboard tray under the work surface */
+      rbox(0.44, 0.07, 0.36, 0.01, coat, 0, H - 0.1, 0.02, g);
+      box(0.4, 0.008, 0.004, absDark, 0, H - 0.07, 0.202, g);
+      const trayZ = 0.05 + (+o.trayOut || 0);
+      rbox(0.56, 0.016, 0.3, 0.006, abs, 0, H - 0.145, trayZ, g);
+      K.box(0.44, 0.018, 0.14, absDark, 0, H - 0.129, trayZ + 0.02, 0.006, g);
+      const list = [];
+      for (let row = 0; row < 5; row++) for (let c2 = 0; c2 < 15; c2++) list.push([-0.2 + c2 * 0.0285 + (row % 2) * 0.006, H - 0.107, trayZ + 0.07 - row * 0.024, 0, 1]);
+      K.instances(new THREE.BoxGeometry(0.0155, 0.007, 0.0155), keyM, list, g).castShadow = true;
+      const mouse = new THREE.Mesh(new THREE.SphereGeometry(0.03, 20, 12), absDark); mouse.scale.set(0.95, 0.42, 1.6); mouse.position.set(0.245, H - 0.122, trayZ + 0.02); g.add(mouse);
+      /* the work surface, a grey tray with a lip and a parting line, and the push bar along its front */
+      rbox(0.6, 0.032, 0.46, 0.012, abs, 0, H - 0.032, 0, g);
+      rbox(0.602, 0.002, 0.462, 0.001, seam, 0, H - 0.02, 0, g);
+      rbox(0.6, 0.014, 0.012, 0.005, abs, 0, H, -0.224, g); rbox(0.012, 0.014, 0.44, 0.005, abs, -0.294, H, 0, g); rbox(0.012, 0.014, 0.44, 0.005, abs, 0.294, H, 0, g);
+      K.bar([-0.27, H - 0.012, 0.29], [0.27, H - 0.012, 0.29], 0.0125, chrome, 18, g);
+      K.bar([-0.25, H - 0.012, 0.29], [-0.25, H - 0.012, 0.225], 0.009, chrome, 12, g); K.bar([0.25, H - 0.012, 0.29], [0.25, H - 0.012, 0.225], 0.009, chrome, 12, g);
+      /* the badge reader, its LED, the holstered scanner and the wipes */
+      K.box(0.07, 0.024, 0.11, absDark, 0.22, H, 0.15, 0.008, g);
+      box(0.008, 0.003, 0.008, lamp(o.badge === 'ok' ? 0x4dff7a : 0xffa63d, 2.2), 0.24, H + 0.024, 0.19, g);
+      const scanM = mat('cart-scan', { color: 0x3a3d40, roughness: 0.5 });
+      K.box(0.05, 0.12, 0.08, absDark, 0.33, H - 0.17, 0.02, 0.006, g);
+      K.box(0.034, 0.14, 0.04, scanM, 0.335, H - 0.1, 0.02, 0.008, g);
+      K.box(0.05, 0.05, 0.1, scanM, 0.335, H + 0.03, 0.04, 0.01, g);
+      K.cyl(0.04, 0.04, 0.17, mat('cart-wipe', { color: 0xe8ebec, roughness: 0.4 }), -0.335, H - 0.2, 0.0, 24, g);
+      K.cyl(0.042, 0.042, 0.025, mat('cart-lid', { color: 0x7a8a9a, roughness: 0.4 }), -0.335, H - 0.03, 0.0, 24, g);
+      rbox(0.03, 0.17, 0.09, 0.004, coat, -0.31, H - 0.2, 0, g);
+
+      /* THE MONITOR. The post, a knuckle that swivels (yaw), a short arm, a riser to the tilt hinge */
+      K.cyl(0.022, 0.022, 0.26, alu, 0, H, -0.16, 20, g);
+      const head = new THREE.Group(); head.position.set(0, H + 0.26, -0.16); head.rotation.y = (+o.yaw || 0) * Math.PI / 180; g.add(head);
+      head.add(new THREE.Mesh(new THREE.CylinderGeometry(0.03, 0.03, 0.05, 20), alu));
+      rbox(0.04, 0.03, 0.07, 0.008, alu, 0, -0.015, 0.035, head);
+      rbox(0.045, 0.165, 0.026, 0.01, alu, 0, -0.015, 0.06, head);
+      const hinge = new THREE.Mesh(new THREE.CylinderGeometry(0.014, 0.014, 0.07, 18), alu); hinge.rotation.z = Math.PI / 2; hinge.position.set(0, 0.15, 0.064); head.add(hinge);
+      const sw = 0.531, sh = 0.299, hw = sw + 0.024, hh = sh + 0.04;
+      const mon = new THREE.Group(); mon.position.set(0, 0.17, 0.13); mon.rotation.x = -0.07; head.add(mon);
+      /* the front shell, with a parting line round its edge where the rear cover meets it */
+      const shell = TXT.roundedBox(hw, hh, 0.022, 0.006, housing); K.uvBox(shell.geometry, 0.5); mon.add(shell);
+      const part = TXT.roundedBox(hw + 0.0012, hh + 0.0012, 0.0016, 0.006, seam); part.position.z = -0.004; mon.add(part);
+      /* the moulded rear: a cover tapering from the shell to a raised electronics bay */
+      // its widest outline, at mid depth, is the shell's own and sits on the shell's back face, so no
+      // flat ring of shell shows round it: the back reads as one moulding from the edge to the bay
+      const cbs = 0.045, cover = new THREE.Mesh(pillow(hw - 2 * cbs - 0.003, hh - 2 * cbs - 0.003, 0.03, 0.002, 0.024, cbs, 0.5), housing);
+      cover.position.z = -0.017; mon.add(cover);      // its front cap 8 mm inside the shell, never through the screen
+      const bay = new THREE.Mesh(pillow(0.2, 0.15, 0.025, 0.004, 0.012, 0.014, 0.5), housing); bay.position.z = -0.041; mon.add(bay);
+      /* recessed louvre vents either side of the bay, each blade angled to catch the light */
+      for (const sx of [-1, 1]) {
+        const rec = TXT.roundedBox(0.07, 0.13, 0.002, 0.008, seam); rec.position.set(sx * 0.165, 0.0, -0.0428); mon.add(rec);
+        for (let v = 0; v < 11; v++) {
+          const blade = TXT.roundedBox(0.062, 0.0045, 0.003, 0.0012, housing); K.uvBox(blade.geometry, 0.5); blade.rotation.x = 0.5;
+          blade.position.set(sx * 0.165, -0.055 + v * 0.011, -0.0442); mon.add(blade);
+        }
+      }
+      /* the VESA plate on four screws, and the tilt bracket back to the riser */
+      const vesa = TXT.roundedBox(0.1, 0.1, 0.008, 0.006, alu); vesa.position.z = -0.058; mon.add(vesa);
+      for (const p of [[-1, -1], [-1, 1], [1, -1], [1, 1]]) {
+        const sc = new THREE.Mesh(new THREE.CylinderGeometry(0.0045, 0.0045, 0.004, 12), chrome); sc.rotation.x = Math.PI / 2; sc.position.set(p[0] * 0.04, p[1] * 0.04, -0.0625); mon.add(sc);
+      }
+      const brk = TXT.roundedBox(0.05, 0.07, 0.012, 0.004, alu); brk.position.set(0, -0.01, -0.065); mon.add(brk);
+      /* the bezel and the screen, which lights only itself and takes no light: an unlit material, so a
+       * lamp in front of it can never print a specular hotspot on the page (no. 47's probe did) */
+      const bz = new THREE.Mesh(new THREE.PlaneGeometry(sw + 0.006, sh + 0.006), bezel); bz.position.set(0, 0.004, 0.0115); mon.add(bz);
+      const lit = o.lit !== false && o.screen !== 'off';
+      if (o.screen !== 'off') {
+        const scrM = new THREE.MeshBasicMaterial({ map: ltex('cart-answer', paintAnswer, { blank: o.screen === 'blank', seed: o.seed || 5 }, [1280, 768]), toneMapped: true, fog: false });
+        scrM.color.setScalar(o.lit === false ? 0.04 : glow);
+        const scr = new THREE.Mesh(new THREE.PlaneGeometry(sw, sh), scrM); scr.position.set(0, 0.006, 0.0118); scr.castShadow = false;
+        scr.userData.txWear = false; scr.userData.screen = true; mon.add(scr);
+      }
+      /* THE LEAK: the screen's cool light round the housing's edge, a card behind the shell whose
+       * middle the housing hides and whose edge falls off over `spread`. Seen from behind, it rims
+       * the moulded back; from the front, a halo round the bezel. */
+      if (lit) {
+        const spread = 0.045, cw = hw + 2 * spread, ch = hh + 2 * spread, tw = 512, th = Math.round(512 * ch / cw);
+        const leakT = ltex('cart-leak', paintLeak, { spread: spread / cw, rad: 0.008 / cw }, [tw, th], false);
+        leakT.wrapS = leakT.wrapT = THREE.ClampToEdgeWrapping;
+        const lm = new THREE.MeshBasicMaterial({ map: leakT, color: new THREE.Color(0xdfeaf2).multiplyScalar(0.85 * glow), transparent: true,
+          blending: THREE.AdditiveBlending, depthWrite: false, side: THREE.DoubleSide, fog: false });
+        const leak = new THREE.Mesh(new THREE.PlaneGeometry(cw, ch), lm); leak.position.set(0, 0, -0.006);
+        leak.castShadow = false; leak.receiveShadow = false; leak.userData.txWear = false; leak.renderOrder = 2; mon.add(leak);
+      }
+      const led = new THREE.Mesh(new THREE.CircleGeometry(0.0018, 12), lamp(0xffffff, 1.4)); led.position.set(sw / 2 - 0.02, -sh / 2 - 0.008, 0.0118); mon.add(led);
+      /* the cable run: a strain relief at the bay's foot, down behind the arm into the knuckle, then
+       * down the post in two clips to the surface */
+      const relief = new THREE.Mesh(new THREE.CylinderGeometry(0.006, 0.008, 0.022, 12), absDark); relief.position.set(0.03, -0.072, -0.046); mon.add(relief);
+      tube([[0.03, 0.095, 0.083], [0.034, 0.05, 0.09], [0.032, 0.0, 0.083], [0.026, -0.022, 0.045], [0.026, -0.024, 0.0]], 0.0055, cableM, 40, 8, head);
+      tube([[0.026, H + 0.236, -0.16], [0.03, H + 0.16, -0.158], [0.03, H + 0.08, -0.158], [0.032, H + 0.02, -0.15]], 0.0055, cableM, 32, 8, g);
+      for (const cy of [H + 0.08, H + 0.18]) rbox(0.016, 0.014, 0.05, 0.004, absDark, 0.024, cy, -0.16, g);
+      g.userData.screenAt = () => { const p = new THREE.Vector3(); mon.getWorldPosition(p); return [p.x, p.y, p.z]; };
+      g.userData.monitor = mon;
+      return g;
     },
   });
 
