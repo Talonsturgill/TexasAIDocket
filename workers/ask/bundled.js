@@ -1239,9 +1239,10 @@ const DEFAULT_READER_DAILY_CAP = 50;
 // worth asking, three open comment windows and a survey of data center projects, because an
 // answer that has to name several decisions is exactly the answer that runs long.
 //
-// Haiku 5.5 counts adaptive thinking against this same ceiling. Leave room for both
-// reasoning and the short answer so thinking alone does not consume the whole response.
-const MAX_TOKENS = 4096;
+// Haiku 5.5 counts adaptive thinking against this same ceiling. Live comparisons
+// exhausted 4,096 tokens after one introductory sentence. Reserve room for reasoning
+// and the cited answer while keeping the medium effort used for record analysis.
+const MAX_TOKENS = 8192;
 const REFUSAL_MESSAGE = "The model declined that question. Start over or ask a different question.";
 const RETRY_MESSAGE = "The answer did not finish. Please try again.";
 // Retire older entries that could contain incomplete provider output.
