@@ -90,7 +90,7 @@ pool, live oaks as dark masses, one warm seam. The sheet is limestone white. Not
 
 ## The rotation
 
-    FULL_BLEED  DIAGRAM  GRID  DOCUMENT  CLOSE_CROP  FULL_BLEED  CLOSE_CROP  FIGURE_SCALE  OBJECT_AND_CAPTION
+    FULL_BLEED  DIAGRAM  OBJECT_AND_CAPTION  DOCUMENT  CLOSE_CROP  FULL_BLEED  CLOSE_CROP  FIGURE_SCALE  OBJECT_AND_CAPTION
 
 `TXLAYOUT.check` returns an empty list.
 
@@ -247,7 +247,7 @@ risks:
 
 ```yaml
 slide: 3
-layout: GRID
+layout: OBJECT_AND_CAPTION
 primary_image:
   subject: "79 student desks in rows on a dark lawn, every laptop lid lit low, the full detail hero desk sharp in the near corner with its lid the brightest"
   rect: [0, 600, 1080, 750]

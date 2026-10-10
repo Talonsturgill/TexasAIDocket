@@ -73,6 +73,12 @@ for the art.
    closing question as presupposing that the unread PDF is a separate adopted policy. Past the cap
    only a hard fail may be repaired, so it stands and is named here.
 
+9. **After the cap, at Phase 16.** `shipped_check` measured frame 3 on the shipped WebP and found 3
+   pieces against the GRID floor of 4, where the lossless render had measured 4 or 5. The frame is
+   unchanged. Its dossier now declares OBJECT_AND_CAPTION, which is what the weekly pass's
+   escalation of the GRID count prescribes until the count is read from the scene. The topic ledger
+   entry dropped count words the run never computed.
+
 ## The record, first
 
 - **Worklist.** `docket_staleness.py` named 33 items due of 183. `reverify.py` asked 65 urls behind
@@ -180,7 +186,7 @@ Added `check-the-hero-against-the-artwork-ledger`.
 | labels         | PASS   | 52 claim id(s) checked, every label beside one traces to the shape its claim proves |
 | quantifiers    | PASS   | 84 published string(s) read from one list, every universal names its set |
 | verbatim       | PASS   | 12 declared fragment(s) over 9 of 9 dossier(s), every one a literal substring of its own claim's quote |
-| dossiers       | PASS   | 35,139 chars planned |
+| dossiers       | PASS   | 35,167 chars planned |
 | caption        | PASS   | 140 words |
 | craft floor    | PASS   | 9 frame(s), median 1250, floor 225 |
 | plan vs render | WARN   | 0 of 53 acceptance item(s) checkable |
