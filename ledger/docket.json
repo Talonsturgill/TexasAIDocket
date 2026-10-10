@@ -1,7 +1,7 @@
 {
  "_spec": {
   "version": 2,
-  "generated": "2026-10-09",
+  "generated": "2026-10-10",
   "gates": [
    "banned words",
    "claims",
@@ -31624,6 +31624,185 @@
    ],
    "last_verified": "2026-10-09",
    "id": "tx-2026-0210"
+  },
+  {
+   "title": "Austin Community College drafts its first AI policy under a five rule framework and opens it to a town hall on October 12th",
+   "summary": "Austin Community College says it is developing its first artificial intelligence policy. The policy is to follow a framework the college calls TRUST, which two collegewide steering committees developed. Its five rules ask people to say where AI was used and to check what it produces. They also ask people to keep their own judgment, to use AI for honest work and to respect copyright. The college has set three October events for faculty, staff, students and community members. A town hall at the Rio Grande Campus on October 12th will explore the policies in progress. A faculty convocation on academic integrity follows on October 16th at Eastview. A community seminar meets on October 22nd at Highland. The college also takes feedback through a form on its generative AI page. The announcement names no date for adopting the policy and does not say who will vote on it.",
+   "topic": "health-and-education",
+   "decider": {
+    "name": "Austin Community College District",
+    "type": "special-district"
+   },
+   "geography": {
+    "statewide": false,
+    "counties": [
+     "Travis"
+    ],
+    "on_ercot": true,
+    "metro": "Austin-Round Rock-San Marcos, TX"
+   },
+   "status": "pending",
+   "key_dates": [
+    {
+     "date": "2026-10-09",
+     "kind": "filed",
+     "note": "College announces it is developing an AI policy under the TRUST framework"
+    },
+    {
+     "date": "2026-10-12",
+     "kind": "hearing",
+     "note": "Faculty and Student AI Town Hall, 6:30 to 9 p.m., Rio Grande Campus"
+    },
+    {
+     "date": "2026-10-22",
+     "kind": "hearing",
+     "note": "Community seminar on intelligence and humanity, 6 to 9 p.m., Highland Campus"
+    }
+   ],
+   "public_access": {
+    "room": "open_meeting",
+    "how": "The college invites faculty, staff, students and community members to its October town hall and community seminar. Registration links are on the announcement page. Feedback can also be sent through the form on the college's page about getting involved with generative AI.",
+    "url": "https://infohub.austincc.edu/blog/2026/10/09/help-shape-accs-ai-policy-development/",
+    "closes": null
+   },
+   "confidence": "high",
+   "claims": [
+    {
+     "text": "The college says it is developing an AI policy under a framework it calls TRUST, and will hold events in October to gather community feedback.",
+     "verbatim_quote": "Austin Community College (ACC) is developing an artificial intelligence (AI) policy in alignment with the newly launched TRUST framework and will host a series of conversations and events in October to gather community feedback and build collective capacity to discuss AI and its impact on the College.",
+     "source_url": "https://infohub.austincc.edu/blog/2026/10/09/help-shape-accs-ai-policy-development/",
+     "source_title": "Austin Community College Faculty and Staff Infohub, Help Shape ACC's AI Policy Development, October 9, 2026",
+     "source_type": "primary_official",
+     "fetched": "2026-10-10",
+     "id": "tx-2026-0212-c1"
+    },
+    {
+     "text": "The college describes the coming policy as its first.",
+     "verbatim_quote": "exploring how the framework can help shape the College’s first-ever AI policy",
+     "source_url": "https://infohub.austincc.edu/blog/2026/10/09/help-shape-accs-ai-policy-development/",
+     "source_title": "Austin Community College Faculty and Staff Infohub, Help Shape ACC's AI Policy Development, October 9, 2026",
+     "source_type": "primary_official",
+     "fetched": "2026-10-10",
+     "id": "tx-2026-0212-c2"
+    },
+    {
+     "text": "Two collegewide steering committees developed the framework.",
+     "verbatim_quote": "The Collegewide AI Strategic Planning and Implementation Steering Committees developed the TRUST framework",
+     "source_url": "https://infohub.austincc.edu/blog/2026/10/09/help-shape-accs-ai-policy-development/",
+     "source_title": "Austin Community College Faculty and Staff Infohub, Help Shape ACC's AI Policy Development, October 9, 2026",
+     "source_type": "primary_official",
+     "fetched": "2026-10-10",
+     "id": "tx-2026-0212-c3"
+    },
+    {
+     "text": "The first of the framework's five rules asks people to say where AI was used.",
+     "verbatim_quote": "Tell Where AI Was Used: Be transparent when AI plays a meaningful role in your work.",
+     "source_url": "https://infohub.austincc.edu/blog/2026/10/09/help-shape-accs-ai-policy-development/",
+     "source_title": "Austin Community College Faculty and Staff Infohub, Help Shape ACC's AI Policy Development, October 9, 2026",
+     "source_type": "primary_official",
+     "fetched": "2026-10-10",
+     "id": "tx-2026-0212-c4"
+    },
+    {
+     "text": "The second asks people to check what AI produces before using it.",
+     "verbatim_quote": "Review Outputs: Check AI-generated content carefully before using or sharing it.",
+     "source_url": "https://infohub.austincc.edu/blog/2026/10/09/help-shape-accs-ai-policy-development/",
+     "source_title": "Austin Community College Faculty and Staff Infohub, Help Shape ACC's AI Policy Development, October 9, 2026",
+     "source_type": "primary_official",
+     "fetched": "2026-10-10",
+     "id": "tx-2026-0212-c5"
+    },
+    {
+     "text": "The third says AI should never replace a person's own expertise or responsibility.",
+     "verbatim_quote": "AI can support your work, but it should never replace your expertise, decision-making, or responsibility.",
+     "source_url": "https://infohub.austincc.edu/blog/2026/10/09/help-shape-accs-ai-policy-development/",
+     "source_title": "Austin Community College Faculty and Staff Infohub, Help Shape ACC's AI Policy Development, October 9, 2026",
+     "source_type": "primary_official",
+     "fetched": "2026-10-10",
+     "id": "tx-2026-0212-c6"
+    },
+    {
+     "text": "The fourth ties AI use to honest work and real learning.",
+     "verbatim_quote": "Safeguard Integrity: Use AI in ways that support honest work, ethical practice, and real learning.",
+     "source_url": "https://infohub.austincc.edu/blog/2026/10/09/help-shape-accs-ai-policy-development/",
+     "source_title": "Austin Community College Faculty and Staff Infohub, Help Shape ACC's AI Policy Development, October 9, 2026",
+     "source_type": "primary_official",
+     "fetched": "2026-10-10",
+     "id": "tx-2026-0212-c7"
+    },
+    {
+     "text": "The fifth asks people to respect copyright, attribution and ownership.",
+     "verbatim_quote": "Treat IP with Respect: Respect copyright, attribution, ownership, and the creative work of others.",
+     "source_url": "https://infohub.austincc.edu/blog/2026/10/09/help-shape-accs-ai-policy-development/",
+     "source_title": "Austin Community College Faculty and Staff Infohub, Help Shape ACC's AI Policy Development, October 9, 2026",
+     "source_type": "primary_official",
+     "fetched": "2026-10-10",
+     "id": "tx-2026-0212-c8"
+    },
+    {
+     "text": "A faculty and student AI town hall is set for the evening of Monday, October 12th at the Rio Grande Campus.",
+     "verbatim_quote": "Monday, October 12 | 6:30-9 p.m. | Rio Grande Campus",
+     "source_url": "https://infohub.austincc.edu/blog/2026/10/09/help-shape-accs-ai-policy-development/",
+     "source_title": "Austin Community College Faculty and Staff Infohub, Help Shape ACC's AI Policy Development, October 9, 2026",
+     "source_type": "primary_official",
+     "fetched": "2026-10-10",
+     "id": "tx-2026-0212-c9"
+    },
+    {
+     "text": "The town hall is billed as a conversation that will explore the policies in progress.",
+     "verbatim_quote": "The discussion will explore in-progress AI policies and how the College can move forward together.",
+     "source_url": "https://infohub.austincc.edu/blog/2026/10/09/help-shape-accs-ai-policy-development/",
+     "source_title": "Austin Community College Faculty and Staff Infohub, Help Shape ACC's AI Policy Development, October 9, 2026",
+     "source_type": "primary_official",
+     "fetched": "2026-10-10",
+     "id": "tx-2026-0212-c10"
+    },
+    {
+     "text": "A faculty convocation on AI and academic integrity is set for Friday, October 16th at the Eastview Campus.",
+     "verbatim_quote": "Friday, October 16 | 10 a.m.-2 p.m. | Eastview Campus",
+     "source_url": "https://infohub.austincc.edu/blog/2026/10/09/help-shape-accs-ai-policy-development/",
+     "source_title": "Austin Community College Faculty and Staff Infohub, Help Shape ACC's AI Policy Development, October 9, 2026",
+     "source_type": "primary_official",
+     "fetched": "2026-10-10",
+     "id": "tx-2026-0212-c11"
+    },
+    {
+     "text": "A community seminar on intelligence and humanity is set for Thursday, October 22nd at the Highland Campus.",
+     "verbatim_quote": "Thursday, October 22 | 6-9 p.m. | Highland Campus",
+     "source_url": "https://infohub.austincc.edu/blog/2026/10/09/help-shape-accs-ai-policy-development/",
+     "source_title": "Austin Community College Faculty and Staff Infohub, Help Shape ACC's AI Policy Development, October 9, 2026",
+     "source_type": "primary_official",
+     "fetched": "2026-10-10",
+     "id": "tx-2026-0212-c12"
+    },
+    {
+     "text": "Faculty, staff, students and community members are all invited to take part.",
+     "verbatim_quote": "Faculty, staff, students, and community members are invited to participate in one or more of these opportunities to share perspectives, ask questions, and help shape the conversation about AI at ACC.",
+     "source_url": "https://infohub.austincc.edu/blog/2026/10/09/help-shape-accs-ai-policy-development/",
+     "source_title": "Austin Community College Faculty and Staff Infohub, Help Shape ACC's AI Policy Development, October 9, 2026",
+     "source_type": "primary_official",
+     "fetched": "2026-10-10",
+     "id": "tx-2026-0212-c13"
+    },
+    {
+     "text": "Feedback can also be sent through a form on the college's generative AI page.",
+     "verbatim_quote": "To provide feedback, ask questions, and more, visit the Ways to Get Involved with Generative AI at ACC webpage and submit the form.",
+     "source_url": "https://infohub.austincc.edu/blog/2026/10/09/help-shape-accs-ai-policy-development/",
+     "source_title": "Austin Community College Faculty and Staff Infohub, Help Shape ACC's AI Policy Development, October 9, 2026",
+     "source_type": "primary_official",
+     "fetched": "2026-10-10",
+     "id": "tx-2026-0212-c14"
+    }
+   ],
+   "id": "tx-2026-0212",
+   "last_verified": "2026-10-10",
+   "history": [
+    {
+     "date": "2026-10-10",
+     "note": "Admitted to the record. The college's own announcement carries the five rules of its framework and the dates of its three October events. It names no date for adopting the policy.",
+     "checked": true
+    }
+   ]
   }
  ]
 }
