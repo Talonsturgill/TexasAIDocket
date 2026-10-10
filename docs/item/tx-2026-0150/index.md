@@ -32,6 +32,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-03 · The panel's finding is still unconfirmed. The abstract service bars automated readers and the article page shows no text without a script.
 - 2026-10-04 · The panel's recommendations still read as published in the abstract, including its call for an implementation framework and for reimbursement that allows the work to continue.
 - 2026-10-07 · The radiologists' published review and its Texas affiliations read as indexed, with nothing changed.
+- 2026-10-10 · The radiologists' published review is unconfirmed today, because the index that carries its abstract bars automated readers.
 
 ## Evidence
 

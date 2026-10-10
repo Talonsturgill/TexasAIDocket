@@ -1,0 +1,62 @@
+<!doctype html>
+<!-- 2026-10-10, frame 4 of 9. Archetype DOCUMENT. RENDERED through txthree.js in the deck's lastLight world. The hero desk's laptop square to the camera on the lawn, its lit page carrying the title of the document the college's AI site already links, the blank sheet on the desk top in front of it. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+  .dek { width:880px; }
+  #ptitle { position:absolute; z-index:12; font-family:"Fraunces", serif; font-weight:700; color:#2a2f36; line-height:1.08; text-align:left; text-shadow:none; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">Its AI hub already links a use policy</h1>
+<p class="dek" data-follow="28">The college's AI Resource Hub links a PDF titled Acceptable Use of Artificial Intelligence Policy, marked for ACC faculty and staff only. The post calls the coming policy the college's <span style="white-space:nowrap">"first-ever."</span> The page is drawn to illustrate.</p>
+<div id="ptitle">ACCEPTABLE USE OF ARTIFICIAL INTELLIGENCE POLICY</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-10-lastlawn.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Austin Community College", counter: "04 / 09", src: "c19 c3", fit: { min: 80, max: 96, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 40 });
+  TXT.ground(R, { surface: 'lawn', size: 3000, tile: 5, seed: 31 });   /* the campus lawn */
+  const desk = CH.desk({ seed: 2, open: 90, top: 0x4a443b }); TXT.add(R, desk); TXT.contact(R, desk);
+  /* one titled document on the page (figures.json existing_documents), beside the blank sheet */
+  const DOCUMENTS = 1;
+  const scr = CH.page(desk, { titleBlank: true, bright: 0.66, seed: 9 });
+  desk.userData.sheet.visible = false;
+  desk.updateMatrixWorld(true);
+  const c = new THREE.Vector3(); scr.getWorldPosition(c);
+  TXT.frame(R, { from: [c.x + 0.02, c.y + 0.24, c.z + 1.55], look: [c.x + 0.02, c.y - 0.02, c.z - 1.0] });
+  CH.grass([-30, -50, 30, 3], { count: 8000, seed: 13, avoid: [[-1, -1, 1, 1]] });
+  TXT.sky(R);
+  TXT.deckRig(R, CH.rigSpec(W, 3, 4096), CH.rigOpts([c.x, 0.7, c.z], { distance: 30, shadowFar: 80 }));
+  TXT.stage(R, desk, { poolInner: 0.35, poolOuter: 1.1 });
+  CH.lidLight(desk, { i: 0.22, range: 0.55 });   /* the page's spill on the keys and the putty top */
+  TXT.weather(R, { grime: 0.16, height: 0.22 });
+  const rc = CH.rectOf(scr), t = document.getElementById('ptitle');
+  if (DOCUMENTS !== 1) throw new Error('documents');
+  const pw = rc[2] - rc[0], ph = rc[3] - rc[1];
+  t.style.left = Math.round(rc[0] + pw * 0.12) + 'px'; t.style.top = Math.round(rc[1] + ph * 0.17) + 'px';
+  t.style.width = Math.round(pw * 0.76) + 'px'; t.style.fontSize = Math.max(24, Math.round(ph * 0.072)) + 'px';
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0.32, veil: 0.45, veilH: 260 });
+  CH.knock(cx, 560, 1170, 640, 170, 0.55); CH.knock(cx, 600, 1190, 560, 130, 0.55); CH.knock(cx, -120, 1170, 560, 170, 0.55); CH.knock(cx, -80, 1190, 480, 130, 0.55);   /* the site line sits on the sheet's edge */
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

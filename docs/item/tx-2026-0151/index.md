@@ -31,6 +31,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-03 · The study's result is still unconfirmed. The abstract service bars automated readers and the article page shows no text without a script.
 - 2026-10-04 · The study's result still reads as published. The abstract still reports limited standalone discrimination for survival and still advises cautious use of the score as an exploratory marker.
 - 2026-10-07 · The MRI study's published abstract and its author affiliations read as they did, with nothing changed.
+- 2026-10-10 · The MRI study's abstract and its author affiliations are unconfirmed today, because the index that carries them bars automated readers.
 
 ## Evidence
 

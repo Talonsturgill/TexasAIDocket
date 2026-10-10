@@ -1,0 +1,67 @@
+<!doctype html>
+<!-- 2026-10-10, frame 9 of 9. Archetype OBJECT_AND_CAPTION. RENDERED through txthree.js in the deck's lastLight world. The desk on the town hall's granite paver with its lid lit and its seat empty, the walk leading to it from the camera. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+  .dek { width:880px; }
+
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">Community members are invited too</h1>
+<p class="dek" data-follow="28">The college invites faculty, staff, students and community members to take part in one or more of the events. Feedback and questions go through a form on its page about getting involved with generative AI.</p>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-10-lastlawn.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Austin Community College", counter: "09 / 09", src: "c16 c17", fit: { min: 80, max: 96, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 27 });
+  TXT.ground(R, { surface: 'lawn', size: 3000, tile: 5, seed: 12 });   /* the campus lawn */
+  /* the walk, one paver per day from the post (figures.json walk_pavers 14); the event days carry the granite (paver_town_hall 3, paver_convocation 7, paver_seminar 13) */
+  const TOWN_HALL = 3, CONVOCATION = 7, SEMINAR = 13;
+  const walk = CH.walk({ n: 14, inlays: [TOWN_HALL, CONVOCATION, SEMINAR], seed: 5 });
+  const pt = walk.userData.paver(TOWN_HALL);
+  const desk = CH.desk({ seed: 2, open: 110 });
+  desk.position.set(pt[0] + 0.04, pt[1], pt[2] - 0.06); desk.rotation.y = 1.25; TXT.add(R, desk); TXT.contact(R, desk);
+  /* the walker, on the walk two pavers short of the desk, stepping toward it */
+  const p1 = walk.userData.paver(TOWN_HALL - 2);
+  const who = K.make('person', { role: 'resident', pose: 'walk', seed: 5, shirt: 0x4d5560, trousers: 0x25272b, skin: 0x4a3428, hat: 'cap' });
+  ((o) => o.traverse((m) => { if (m.isMesh && m.material && m.material.sheen >= 0.5 && m.material.map) { m.material = m.material.clone(); m.material.color.setHex(0x1c1713); m.material.sheen = 0.1; } }))(who);   /* dark, matte hair under the cap */
+  who.visible = false;   /* recomposed after two panel rounds named the walker: the empty seat is the invitation */
+  who.position.set(p1[0] + 0.42, p1[1], p1[2] - 0.2); who.rotation.y = Math.PI - 0.6; TXT.add(R, who); TXT.contact(R, who);
+  /* the walker's head clears the dek: the camera rises and pitches down until it does */
+  let k = 0;
+  let hy = 0;
+  for (; k < 40; k++) { TXT.frame(R, { from: [pt[0] - 0.7, 1.35, pt[2] + 3.6], look: [pt[0], 0.5 + k * 0.03, pt[2] - 0.4] }); hy = CH.rectOf(CH.display(desk))[1]; if (hy >= 620) break; }
+  if (k === 40) throw new Error('the lid still meets the dek ' + Math.round(hy));
+  CH.oak(-16, -34, { seed: 4 });
+  CH.grass([-30, -50, 30, 10], { count: 14000, seed: 7, avoid: [[-0.75, -16, 0.75, 0.8]] });
+  TXT.sky(R);
+  TXT.deckRig(R, CH.rigSpec(W, 8, 4096), CH.rigOpts([0, 0.6, -2], { distance: 30, shadowFar: 80 }));
+  TXT.stage(R, desk, { poolInner: 1.4, poolOuter: 4.0 });
+  CH.lidLight(desk, { i: 0.5, range: 1.2 });
+  TXT.weather(R, { grime: 0.18, height: 0.22 });
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0.3, veil: 0.45, veilH: 300 });
+  CH.knock(cx, 560, 1170, 640, 170, 0.55); CH.knock(cx, 600, 1190, 560, 130, 0.55); CH.knock(cx, -120, 1170, 560, 170, 0.55); CH.knock(cx, -80, 1190, 480, 130, 0.55);   /* the footer sits on the granite and the chair's lit runner */
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

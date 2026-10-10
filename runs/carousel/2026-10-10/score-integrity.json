@@ -1,0 +1,79 @@
+{
+ "lens": "integrity",
+ "round": 3,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.5,
+   "why": "Staging register right with one lit subject per frame and the computed key. 8 low poly figures, clock moire, cite line over the near laptop; 5 a mitten hand on a slab torso; 4 a dark chair back mass; curled seat lips on 2, 7 and 9; 9 stacked floating slabs; 3 far lids alias."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 8.0,
+   "why": "One filmstrip, one desk, one world, the walk changing state, both devices working; 4 and 5 drop into a void and 8 cuts to a declared interior."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.0,
+   "why": "Every numeral traces and the weekdays check. Loosenings: 'two committees' put in the college's mouth from a plural; the caption's question presupposes the unread PDF is a separate adopted policy; slide 6 shows 13 pavers in frame against 'fourteen'; c18 medium."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.5,
+   "why": "What, who, where and when to act; the deciding body honestly absent; the close carries no when or where."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Cover and 2 pay, the turn lands on 4; 5 repeats rule 3; the timeline runs backwards from 7 to 8."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "Clean and compliant; reads as a fact checker's file; four disclaimer sentences; a generic cover hook."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Diverges from the last four decks; repeats no. 38's desk alone, field of desks and desk in a room beat for beat."
+  }
+ ],
+ "weighted_score": 7.04,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Take the kit humans out of the light on 5 and 8, and on the slide 4 turn say only what the link title supports, dropping the caption's presupposition about the unread PDF.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 8,
+   "problem": "Low poly figures lit frontally, clock moire, the near screen under the cite line.",
+   "fix": "Rim light only from the window; raise the near desk's screen clear of the source band."
+  },
+  {
+   "slide": 5,
+   "problem": "A three-finger mitten and a slab torso as the subject.",
+   "fix": "Backlight the hand against the lit page and crop the torso to the cuff."
+  },
+  {
+   "slide": 4,
+   "problem": "A dark chair back as a dead bottom third.",
+   "fix": "Remove the chair from this camera or let the lid and page fill the lower two thirds."
+  },
+  {
+   "slide": 9,
+   "problem": "Stacked floating slabs behind the desk; a curled seat lip.",
+   "fix": "Camera to about 1.2 m so the walk lies flat with contact at every joint; repair the seat shell lip."
+  },
+  {
+   "slide": 6,
+   "problem": "Thirteen pavers in frame against 'fourteen'.",
+   "fix": "Pull back so paver 0 sits whole above the source band."
+  }
+ ]
+}

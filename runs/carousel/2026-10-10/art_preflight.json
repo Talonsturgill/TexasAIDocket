@@ -1,0 +1,103 @@
+{
+  "version": 1,
+  "selected": [
+    1,
+    3,
+    9
+  ],
+  "inputs": {
+    "slides/slide-01.html": "1781f3bde2a4bf05d28c088aa97214139c800405d752d949a67ae31e8fd59456",
+    "render/slide-01.png": "dbe0cc576eb175b7960b2afc2b68062bba5defcce4aa1627bf77406cac54d09a",
+    "assets/js/deck/2026-10-10-lastlawn.js": "3252be29c03ded6453ac35f146744775adb14d34086c9ed2373a7410299872b0",
+    "slides/slide-03.html": "733910c277df2d0471da2bcf2bf5fc0d5496d81a1ac2f1eeeb5fa18603aa2be5",
+    "render/slide-03.png": "3d1397000d1524ff694d9706da64457da0ca3c7c436b361b3fa3139f0b7ebaa6",
+    "slides/slide-09.html": "e3ba60f7b0e423a347cff59b2b87a556ea54504bd010a16c160de113b2a62ea2",
+    "render/slide-09.png": "e1a4c4349df92c5c8e6d8ff693607beb7009480378b44664e21c983697aecf48"
+  },
+  "value_measurements": [
+    {
+      "frame": "slide-01.png",
+      "median_L": 11.0,
+      "mid": 0.17,
+      "dark": 0.615
+    },
+    {
+      "frame": "slide-03.png",
+      "median_L": 6.6,
+      "mid": 0.056,
+      "dark": 0.822
+    },
+    {
+      "frame": "slide-09.png",
+      "median_L": 4.6,
+      "mid": 0.057,
+      "dark": 0.797
+    }
+  ],
+  "review": {
+    "decision": "accept",
+    "inputs": {
+      "slides/slide-01.html": "1781f3bde2a4bf05d28c088aa97214139c800405d752d949a67ae31e8fd59456",
+      "render/slide-01.png": "dbe0cc576eb175b7960b2afc2b68062bba5defcce4aa1627bf77406cac54d09a",
+      "assets/js/deck/2026-10-10-lastlawn.js": "3252be29c03ded6453ac35f146744775adb14d34086c9ed2373a7410299872b0",
+      "slides/slide-03.html": "733910c277df2d0471da2bcf2bf5fc0d5496d81a1ac2f1eeeb5fa18603aa2be5",
+      "render/slide-03.png": "3d1397000d1524ff694d9706da64457da0ca3c7c436b361b3fa3139f0b7ebaa6",
+      "slides/slide-09.html": "e3ba60f7b0e423a347cff59b2b87a556ea54504bd010a16c160de113b2a62ea2",
+      "render/slide-09.png": "e1a4c4349df92c5c8e6d8ff693607beb7009480378b44664e21c983697aecf48"
+    },
+    "frames": [
+      {
+        "slide": 1,
+        "role": "cover",
+        "subject": "One student desk with an open lit laptop and a black stacking chair on the first slab of a stone walk across a dark lawn, a red paver partway up the walk.",
+        "visual_consequence": "A policy still being drafted outdoors before anyone has arrived, the red paver marking a place further along.",
+        "weakness": "The pavers are flat extruded slabs with no chipped edges or soil; the chair back carries no edge light.",
+        "repair": "Real stone on the walk and a thin rim along the chair back."
+      },
+      {
+        "slide": 3,
+        "role": "evidence",
+        "subject": "A field of desks with lit laptops in six aisles receding to the horizon, the hero desk alone in its pool in the lower left, labelled ONE DESK = 1,000 STUDENTS A YEAR.",
+        "visual_consequence": "79,000 students a year divided by 1,000 gives 79 desks, a headcount seen as a field.",
+        "weakness": "Far screens shimmer with moire; instanced desks read as flat planes; a hard horizon line; flat turf right of the label.",
+        "repair": "A plain emissive or mip-mapped far LOD for the screens, and the stage fog softening the horizon."
+      },
+      {
+        "slide": 9,
+        "role": "close",
+        "subject": "The hero desk side-on from a low camera, lid lit, seat empty and lit, standing on the October 12th granite paver, no figure drawn.",
+        "visual_consequence": "The chair the cover showed waiting is now turned toward the reader on the dated paver, the deck resolving where the cover pointed.",
+        "weakness": "The red paver is cropped to a sliver at the bottom under the footer; an unlit stepped slab behind is a dead block.",
+        "repair": "Pull back about 10 percent so the paver and the feet sit above the footer band; push the slab into the fog."
+      }
+    ]
+  },
+  "shipped_inputs": {
+    "slides/slide-01.html": "1781f3bde2a4bf05d28c088aa97214139c800405d752d949a67ae31e8fd59456",
+    "slide-01.webp": "6b3b185c710d4ffead7b21bbb84de1bab2e3f005a11d40454c98d50a2875bd8e",
+    "slides/slide-03.html": "733910c277df2d0471da2bcf2bf5fc0d5496d81a1ac2f1eeeb5fa18603aa2be5",
+    "slide-03.webp": "f6ea7b4df0c2c57a3c16ec51fd941e6a2357ae71aaea3a57fba10bc2119184a3",
+    "slides/slide-09.html": "e3ba60f7b0e423a347cff59b2b87a556ea54504bd010a16c160de113b2a62ea2",
+    "slide-09.webp": "261175d7101bf0382cb8abb1c9dfd516f4834409cc6fe475047afb2b56d5d23a"
+  },
+  "encodings": [
+    {
+      "to": "slide-01.webp",
+      "to_sha256": "6b3b185c710d4ffead7b21bbb84de1bab2e3f005a11d40454c98d50a2875bd8e",
+      "from_sha256": "dbe0cc576eb175b7960b2afc2b68062bba5defcce4aa1627bf77406cac54d09a",
+      "psnr_db": 40.384
+    },
+    {
+      "to": "slide-03.webp",
+      "to_sha256": "f6ea7b4df0c2c57a3c16ec51fd941e6a2357ae71aaea3a57fba10bc2119184a3",
+      "from_sha256": "3d1397000d1524ff694d9706da64457da0ca3c7c436b361b3fa3139f0b7ebaa6",
+      "psnr_db": 41.662
+    },
+    {
+      "to": "slide-09.webp",
+      "to_sha256": "261175d7101bf0382cb8abb1c9dfd516f4834409cc6fe475047afb2b56d5d23a",
+      "from_sha256": "e1a4c4349df92c5c8e6d8ff693607beb7009480378b44664e21c983697aecf48",
+      "psnr_db": 41.233
+    }
+  ]
+}

@@ -1,0 +1,84 @@
+{
+ "lens": "craft",
+ "round": 3,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.5,
+   "why": "Bold register right and the hero modelled properly. Several frames lean: 5 mitten hand, shapeless sleeve, rigid sheet; 3 far lid moire, flat lid cards, blown hero top, rippled lawn, no seam; 8 clone mannequins, grey floor, cite line over the laptop; 9 a translucent dark rectangle at left and a jagged seat lip; 1, 6 and 7 hovering pavers and flat inlays; 7 a smear behind the kicker; 4 no lawn above the lid."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 8.0,
+   "why": "A filmstrip: one desk, one key, one world and grade, no strobe, two devices visible; 8 outside the world and 4 drops the lawn."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.5,
+   "why": "Every numeral traces; labels and the quote match verbatim; first-ever stays the college's word. c18 a fair reading at medium confidence; slide 9's invitation leans on c16 broadly."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.5,
+   "why": "What, who, where and what to do; slide 7 names what is missing; no frame says what the policy would change for students."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "2 pays, 4 turns, 7 a second beat, the close lands; plain cover; 5 and 8 restate."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Clean, attributed, on register; boilerplate attribution and disclaimers; little Texas placing beyond campus names."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 5.5,
+   "why": "The kit student desk and instanced desk rows were no. 38's spine ten days ago; lastLight and one unit per day repeat no. 46; the interior from behind repeats nos. 45 and 47."
+  }
+ ],
+ "weighted_score": 7.24,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Rebuild the walk the deck is built on, sunk pavers with soil joints and polished granite on turf, then recut 5 and 8 so no kit person is a frame's subject.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 5,
+   "problem": "A two-finger mitten hand, a shapeless sleeve, a rigid sheet in the air.",
+   "fix": "Drop the person; a low raking close on the desk top with the sheet flat on the laminate."
+  },
+  {
+   "slide": 3,
+   "problem": "Moire on far lids, flat lid cards, a blown hero top, rippled lawn, no seam.",
+   "fix": "Longer lens toward a visible seam, mip-mapped dim lids, the hero top exposed down."
+  },
+  {
+   "slide": 8,
+   "problem": "Clone mannequins, a mid tone floor, the cite line over the laptop.",
+   "fix": "Empty the room to seats, the lectern alone in the window's pool, the floor darkened."
+  },
+  {
+   "slide": 9,
+   "problem": "A translucent dark rectangle at left; a jagged seat lip.",
+   "fix": "Remove or fog the occluder; fix the seat shell's front edge."
+  },
+  {
+   "slide": 6,
+   "problem": "Hovering pavers on a water-like lawn, flat red inlays, a small desk.",
+   "fix": "Sunk pavers with soil joints, polished inlays, camera two pavers closer."
+  },
+  {
+   "slide": 7,
+   "problem": "A smear behind the kicker; a floating paver over a blank slab; the book tiny.",
+   "fix": "Push in to the close on the shut lid and the paperback; fog the oak behind the type."
+  }
+ ]
+}

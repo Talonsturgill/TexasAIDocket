@@ -39,6 +39,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-03 · Fermi America's own filing still describes the phased abatement agreement with Carson County as it did.
 - 2026-10-06 · Carson County's phased abatement with Fermi America is unconfirmed this time. The published account behind it bars automated readers.
 - 2026-10-07 · The abatement Carson County approved still stands, and the developer's own quarterly filing still describes the project as it did.
+- 2026-10-10 · Carson County's abatement for the Fermi America project is unconfirmed today, because the published account bars automated readers.
 
 ## Evidence
 

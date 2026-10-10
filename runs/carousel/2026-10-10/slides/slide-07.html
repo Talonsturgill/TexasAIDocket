@@ -1,0 +1,63 @@
+<!doctype html>
+<!-- 2026-10-10, frame 7 of 9. Archetype CLOSE_CROP. RENDERED through txthree.js in the deck's lastLight world. The desk on the walk's last paver, the laptop lid shut with a paperback on it, the granite inlay at the bottom edge, the walk stopping and the lawn falling to the dark past it. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+  .dek { width:880px; }
+
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">The walk ends where the post does</h1>
+<p class="dek" data-follow="28">The post names no adoption date, no vote and no adopting body. Its last date is the October&nbsp;22nd seminar. It is a guided discussion of E.&nbsp;M. Forster's story The Machine Stops.</p>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-10-lastlawn.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Austin Community College", counter: "07 / 09", src: "c14 c15 c18", fit: { min: 80, max: 96, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 38 });
+  TXT.ground(R, { surface: 'lawn', size: 3000, tile: 5, seed: 61 });   /* the campus lawn */
+  /* the last paver of the walk (figures.json paver_seminar 13): nothing is laid past it */
+  const PAVERS = 14, SEMINAR = 13;
+  const walk = CH.walk({ n: PAVERS, inlays: [3, 7, SEMINAR], seed: 5 });
+  const pt = walk.userData.paver(SEMINAR);
+  const desk = CH.desk({ seed: 2, open: 0, laptop: 'off', screen: 1 }); desk.position.set(pt[0], pt[1], pt[2] + 0.22); desk.rotation.y = 1.45; TXT.add(R, desk); TXT.contact(R, desk);
+  const lp = desk.userData.laptop; desk.updateMatrixWorld(true);
+  const lb = new THREE.Box3().setFromObject(lp);
+  const book = K.make('paperback', { seed: 2 }); book.position.set((lb.min.x + lb.max.x) / 2 - 0.02, lb.max.y + 0.0005, (lb.min.z + lb.max.z) / 2 + 0.01); book.rotation.y = 0.35; book.scale.setScalar(1.35); TXT.add(R, book);
+  /* close on the desk side-on from down the walk; the camera pitches up until the shut lid clears the dek */
+  let k7 = 0, top7 = 0;
+  for (; k7 < 40; k7++) { TXT.frame(R, { from: [pt[0] + 0.45, 1.05, pt[2] + 3.3 + k7 * 0.03], look: [pt[0] - 0.05, 0.5 + k7 * 0.02, pt[2]] }); top7 = CH.project(THREE, R, [book.position.x, book.position.y + 0.05, book.position.z])[1]; if (top7 >= 640) break; }
+  if (k7 === 40) throw new Error('the book still meets the dek ' + Math.round(top7));
+  CH.oak(-14, pt[2] - 30, { seed: 4 });
+  CH.grass([-14, pt[2] - 12, 14, 8], { count: 26000, seed: 19, avoid: [[-0.75, pt[2] - 0.6, 0.75, 2]] });
+  TXT.sky(R);
+  TXT.deckRig(R, CH.rigSpec(W, 3, 4096), CH.rigOpts([pt[0], 0.6, pt[2]], { distance: 30, shadowFar: 80 }));
+  TXT.stage(R, [desk, book], { poolInner: 1.4, poolOuter: 3.4 });
+  /* the one practical on the shut lid: a low warm lamp from the west, the key's own side, so the book and the top read */
+  { const L = new THREE.SpotLight(0xffd9b0, 30, 6, 0.6, 0.7, 2); L.position.set(pt[0] - 1.6, 1.4, pt[2] + 0.6); L.target.position.set(pt[0], 0.78, pt[2] + 0.2); R.scene.add(L); R.scene.add(L.target); }
+  TXT.weather(R, { grime: 0.32, height: 0.26 });
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0.32, veil: 0.45, veilH: 260 });
+  CH.knock(cx, 560, 1170, 640, 170, 0.55); CH.knock(cx, 600, 1190, 560, 130, 0.55); CH.knock(cx, -120, 1170, 560, 170, 0.55); CH.knock(cx, -80, 1190, 480, 130, 0.55);   /* the site line sits on the granite's edge */
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

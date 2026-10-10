@@ -1,0 +1,74 @@
+<!doctype html>
+<!-- 2026-10-10, frame 3 of 9. Archetype GRID. RENDERED through txthree.js in the deck's lastLight world. Seventy nine student desks on the dark lawn in a closed block of rows of ten, one for every thousand of the students the college says rely on it each year, every lid lit, the full detail hero desk first in the front row. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+  .dek { width:880px; }
+  #unit { font-size:24px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">79 desks, one for every thousand students</h1>
+<p class="dek" data-follow="28">The college says more than 79,000 students rely on it for their education each year. Each desk here stands for a thousand of them.</p>
+<div class="lab" id="unit">ONE DESK = 1,000 STUDENTS A YEAR</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-10-lastlawn.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Austin Community College", counter: "03 / 09", src: "c20", fit: { min: 80, max: 96, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 40 });
+  TXT.ground(R, { surface: 'lawn', size: 3000, tile: 5, seed: 8 });   /* the campus lawn */
+  /* the count: more than 79,000 students a year (c20), one desk per 1,000, floored in compute.py (figures.json desks_drawn 79).
+   * A closed block of rows of ten: the front row is the hero and nine desks, then six full rows, then a last row of nine. */
+  const DESKS = 79, COLS = 6, PX = 0.95, PZ = 1.15;
+  const BLOCK = DESKS - 1;
+  const rows = K.make('student_desk_rows', { count: BLOCK, cols: COLS, pitch: [PX, PZ], detail: 'low', lids: 'lit', footprint: true, seed: 4, top: 0x6f665a });
+  /* the block's lids glow low, so the count separates at feed size without the far screens shimmering */
+  rows.traverse((m) => { if (m.isMesh) [].concat(m.material).forEach((mt) => { if (mt && mt.emissiveIntensity > 0.5) mt.emissiveIntensity = 0.18; }); });
+  TXT.add(R, rows);
+  const units = rows.userData.units || [];
+  const ux = units.map((u) => u[0]), uz = units.map((u) => u[1]);
+  const x0 = Math.min(...ux), x1 = Math.max(...ux), zf = Math.max(...uz), zb = Math.min(...uz);
+  const cxb = (x0 + x1) / 2, zmid = (zf + zb) / 2;
+  /* the hero, the 79th, stands out in front of the block where the reader is */
+  const hero = CH.desk({ seed: 2, open: 110 }); hero.position.set(cxb - 1.0, 0, zf + 2.4); hero.rotation.y = 0.18; TXT.add(R, hero); TXT.contact(R, hero);
+  const drawn = units.length + 1;
+  if (drawn !== DESKS) throw new Error('desks drawn: ' + drawn + ', label says ' + DESKS);
+  const pts = units.map((u) => [u[0], 0.76, u[1]]).concat([[hero.position.x, 0.76, hero.position.z]]);
+  let inside = 0, k = 0;
+  for (; k < 140 && inside !== DESKS; k++) {
+    TXT.frame(R, { from: [cxb + 0.2, 1.7 + k * 0.05, zf + 5.0 + k * 0.16], look: [cxb - 0.3, 0.3, zmid - 3.5] });
+    inside = pts.filter((q) => { const v = CH.project(THREE, R, q); return v[0] >= 70 && v[0] <= 1010 && v[1] >= 470 && v[1] <= 1310; }).length;
+  }
+  if (inside !== DESKS) { const bad = pts.map((q) => CH.project(THREE, R, q).map(Math.round)).filter((v) => !(v[0] >= 70 && v[0] <= 1010 && v[1] >= 470 && v[1] <= 1310)); throw new Error('desks inside the frame: ' + inside + ', label says ' + DESKS + ' ' + JSON.stringify(bad.slice(0, 4))); }
+  CH.oak(-22, zb - 34, { seed: 4 });
+  CH.grass([-40, -70, 40, 14], { count: 9000, seed: 6, avoid: [[x0 - 0.8, zb - 0.8, x1 + 0.8, zf + 0.8], [hero.position.x - 0.8, hero.position.z - 0.8, hero.position.x + 0.8, hero.position.z + 0.8]] });
+  TXT.sky(R);
+  TXT.deckRig(R, CH.rigSpec(W, 16, 4096), CH.rigOpts([cxb, 0.4, zmid], { distance: 40, shadowFar: 110 }));
+  TXT.stage(R, [rows, hero], { poolInner: 4, poolOuter: 11 });
+  CH.lidLight(hero, { i: 0.6, range: 1.3 });
+  TXT.weather(R, { grime: 0.18, height: 0.22 });
+  /* the label sits under the block's near edge */
+  const lq = CH.project(THREE, R, [x0, 0, zf + 0.6]); const lab = document.getElementById('unit'); const hq = CH.project(THREE, R, [hero.position.x + 0.4, 0.4, hero.position.z]); lab.style.left = Math.min(1000 - lab.getBoundingClientRect().width, Math.round(hq[0] + 40)) + 'px'; lab.style.top = Math.min(1180, Math.round(hq[1])) + 'px';
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0.3, veil: 0.45, veilH: 260 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>
