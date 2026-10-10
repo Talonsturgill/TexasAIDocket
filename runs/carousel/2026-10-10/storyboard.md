@@ -100,7 +100,7 @@ pool, live oaks as dark masses, one warm seam. The sheet is limestone white. Not
 |---|---|---|
 | 01 | MEDIUM, eye 0.8 m, 2.3 m off the desk's front left quarter, horizon on the upper third | the student desk, putty laminate with a dark T-mould edge and pencil groove, a charcoal moulded seat, one near black bent tube per side raked from the west, rubber glides with contacts on the first limestone paver, the lit lid and a blank limestone white sheet on the top |
 | 02 | MEDIUM, eye 0.75 m, pure side profile, long lens | the desk in elevation, lit along its top by the raking west key, the bent tube's whole run from back post to floor runner catching the west key along its top, the seat shell's raked back, the wire book rack under the seat, contact shadows under its runners, five leaders to its parts |
-| 03 | WIDE, eye 2.4 m, long lens fov 26 behind 79 desks | the hero desk at full detail in the near left corner, its tube and laminate lit, then 78 instanced desks in rows with their lids lit receding into the dark lawn, staged as one subject |
+| 03 | WIDE, eye 2.4 m, long lens fov 26 behind 79 desks | the hero desk at full detail in the near left corner, its tube and laminate lit, then 78 instanced desks in rows with their lids lit low receding into the dark lawn, staged as one subject |
 | 04 | CLOSE, eye 1.0 m, square to the lid at 0.6 m | the laptop lid and its lit page, aluminium with a thin bezel, the drawn page of the existing document's title, the blank sheet's edge and the putty top in the foreground, the dark lawn and the seam beyond the lid |
 | 05 | CLOSE, eye 1.2 m over the right shoulder | a seated person cropped at the shoulder, cotton sleeve and hands on the keyboard lit from the camera's side and by the lid, the blank sheet under the left hand, the desk's T-mould edge running off the bottom |
 | 06 | WIDE, eye 0.5 m, low along the walk | fourteen limestone pavers, lit in the pool and weathered dark at the joints, sawn faces with chamfered arrises and joints of dark soil, three inlaid with polished granite, the desk large on the October 12th paver at the right third, lawn either side going to black |
@@ -108,7 +108,7 @@ pool, live oaks as dark masses, one warm seam. The sheet is limestone white. Not
 | 08 | WIDE, eye 1.15 m, behind the desk at the back of a room | the hero desk in the near corner, its putty top lit by its lid and its tube in shadow with a contact on the floor, then the room, concrete floor with tooth, the back wall in shadow, one window of last light on the left, rows of public seating with figures turned away, a lectern in the window's pool, a wall clock at the start time |
 | 09 | MEDIUM, eye 1.6 m, behind and left of a walker | the desk on the October 12th paver with the lid lit and the seat empty, a person walking up the walk toward it lit from the camera's side, the oak trunk dark behind |
 
-Showstopper frame: 03, seventy nine desks in rows on a black lawn with every lid lit, the near desk sharp and raked by the west light with its contact and cast shadow, the rows receding through the haze into the dark under one warm seam on the horizon
+Showstopper frame: 03, seventy nine desks in rows on a black lawn with every lid lit low, the near desk sharp and raked by the west light with its contact and cast shadow, the rows receding through the haze into the dark under one warm seam on the horizon
 Tonal arc: near black on the lawn through 1 to 3, lifting on 4 where the lit page is the frame's largest light, darker again on 5 to 7 where the lid shuts, held in the dark room on 8 with one window, closing on 9 with the lit lid and the granite on the dark walk
 
 ---
@@ -222,7 +222,7 @@ art:
     Lightest is the lid and the sheet, darkest the sky. Frame median L* planned at 11.
 
 type:
-  hook: "Five rules, one for each letter"
+  hook: "Five rules, one for each letter of TRUST"
   dek: "The college says two collegewide AI committees developed the framework. Each rule is one sentence in its post. Matching each rule to a part of the desk is an illustration."
   labels: ["TELL WHERE AI WAS USED", "REVIEW OUTPUTS", "USE YOUR OWN JUDGMENT", "SAFEGUARD INTEGRITY", "TREAT IP WITH RESPECT"]
 
@@ -249,7 +249,7 @@ risks:
 slide: 3
 layout: GRID
 primary_image:
-  subject: "79 student desks in rows on a dark lawn with every laptop lid lit, the full detail hero desk sharp in the near left corner"
+  subject: "79 student desks in rows on a dark lawn, every laptop lid lit low, the full detail hero desk sharp in the near corner with its lid the brightest"
   rect: [0, 600, 1080, 750]
   bleeds: [left, right, bottom]
 accent: none
@@ -275,19 +275,19 @@ depth:
 composition:
   structure: >
     A raised long lens from behind the rows so every lid faces the camera, the rows running away into the
-    dark under the seam. The hero desk sits in the near left grid position at full detail, the rest instanced,
-    the whole count staged as one subject.
+    dark under the seam. The hero desk stands in front of the block at full detail with the brightest lid, the
+    rest instanced with their lids lit low, the whole count staged as one subject.
   bands: >
-    Top third, the sky and the seam with the hook and dek. Middle third, the far rows as points of cool light
-    going to dark. Bottom third, the near rows and the hero desk, lit and modelled.
-  focal: "the near rows of lit lids with the hero desk sharp at the left, the lightest area"
+    Top third, the sky and the seam with the hook and dek. Middle third, the far rows as low lit lids and putty
+    tops going to dark. Bottom third, the near rows and the hero desk, lit and modelled.
+  focal: "the hero desk sharp in front of the block with its lid lit, the lightest area"
 
 art:
   technique: "physically based render of an isotype count, instanced kit desks staged as one subject"
   why_this_technique: "a count a reader can believe is a count of real things at one scale, and desks are the thing the students sit at"
-  palette: "lit lids, putty tops, black lawn, one warm seam"
+  palette: "low lit lids, putty tops, black lawn, one warm seam"
   value_structure: >
-    Lightest is the near lids, darkest the sky and the lawn between rows. Frame median L* planned at 14.
+    Lightest is the hero's lid, darkest the sky and the lawn between rows. Frame median L* planned at 14.
 
 type:
   hook: "79 desks, one for every thousand students"
@@ -299,14 +299,14 @@ verbatim: []
 acceptance:
   - "exactly 79 desks are rendered and the frame's code refuses to render another number"
   - "the near hero desk is modelled at full detail and the rows read as separate desks at 432px"
-  - "the lids are lit and the far rows fall into the dark without a grey wash"
+  - "the lids are lit low, the hero lid brightest, and the far rows fall into the dark without a grey wash"
   - "the horizon and the seam are in frame and the sky above is near black"
   - "the label names the set it counts, students a year"
   - "the near hero desk stands at least 300 px tall in the full frame"
 
 risks:
-  - "78 lit lids can bloom into a grey wash, so the lids are dim and the bloom threshold high"
-  - "rows of lit lids can read as a vigil, so the hook names the count of students first"
+  - "78 lit lids alias into a striped field at feed size, so the block lids glow low and only the hero lid is bright"
+  - "rows of desks can read as an empty exam hall, so the hook names the count of students first"
 ```
 
 ```yaml
@@ -379,7 +379,7 @@ slide: 5
 layout: CLOSE_CROP
 primary_image:
   subject: "the hero desk seen from the side with its lid lit and the blank sheet on its top, and the hands of a person seated at it, cropped by the right edge"
-  rect: [40, 600, 1040, 560]
+  rect: [40, 640, 1040, 520]
   bleeds: [right]
 accent: none
 job: >
@@ -478,7 +478,7 @@ art:
 
 type:
   hook: "Three dates in fourteen days"
-  dek: "One paver for each day from the post to the seminar, both ends counted. The town hall is October 12th at Rio Grande. A faculty convocation titled The Two AIs is October 16th at Eastview. The seminar is October 22nd at Highland."
+  dek: "One paver for each day from the October 9th post to the October 22nd seminar at Highland, both ends counted. The town hall is October 12th at Rio Grande. A faculty convocation titled The Two AIs is October 16th at Eastview."
   labels: ["OCTOBER 12TH TOWN HALL", "OCTOBER 16TH CONVOCATION", "OCTOBER 22ND SEMINAR"]
 
 verbatim:
@@ -501,7 +501,7 @@ slide: 7
 layout: CLOSE_CROP
 primary_image:
   subject: "the desk on the walk's last paver, the laptop lid shut with a paperback on it, the granite inlay at the bottom edge, the walk stopping and the lawn falling to the dark past it"
-  rect: [0, 660, 1080, 690]
+  rect: [0, 700, 1080, 650]
   bleeds: [left, right, bottom]
 accent: "#9A3B2A"
 job: >
@@ -635,7 +635,7 @@ job: >
   Close on the next step a reader can take, the seat open at the town hall on October 12th and the seminar
   open to community members on October 22nd.
 
-claims: [c10, c14, c16, c17]
+claims: [c10, c13, c14, c15, c17]
 numerals: []
 
 data_in_art:
@@ -667,7 +667,7 @@ art:
 
 type:
   hook: "Three events and a feedback form"
-  dek: "The Faculty and Student AI Town Hall is October 12th at 6:30 p.m. at Rio Grande. The October 22nd seminar at Highland is open to community members. Feedback goes through a form on the college's generative AI page."
+  dek: "The town hall is October 12th at 6:30 p.m. at Rio Grande. A faculty convocation is October 16th at Eastview. The seminar on October 22nd at Highland is open to community members. Feedback goes through a form online."
   labels: []
 
 verbatim: []

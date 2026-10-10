@@ -287,6 +287,14 @@
     cx.fillStyle = v; cx.fillRect(0, y0, N.W, N.H - y0);
     N.dither(cx);
   };
+  /* A SOFT DARK BEHIND ONE LINE OF FURNITURE, for a frame whose art runs an edge through it. It only
+   * darkens, it is an ellipse with no edge of its own, and it never sits under a headline or a dek. */
+  N.knock = function (cx, x, y, w, h, a) {
+    var g = cx.createRadialGradient(x + w / 2, y + h / 2, 0, x + w / 2, y + h / 2, w / 2);
+    g.addColorStop(0, "rgba(6,5,9," + Math.min(0.55, a || 0.5) + ")"); g.addColorStop(1, "rgba(6,5,9,0)");
+    cx.save(); cx.translate(x + w / 2, y + h / 2); cx.scale(1, h / w); cx.translate(-(x + w / 2), -(y + h / 2));
+    cx.fillStyle = g; cx.fillRect(x, y + h / 2 - w / 2, w, w); cx.restore();
+  };
   N.dither = function (cx) {
     var c = cx.canvas, id = cx.getImageData(0, 0, c.width, c.height), d = id.data, s = 1234567;
     function rnd() { s = (s * 1103515245 + 12345) & 0x7fffffff; return s / 0x7fffffff; }
