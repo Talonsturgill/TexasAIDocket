@@ -90,7 +90,7 @@ pool, live oaks as dark masses, one warm seam. The sheet is limestone white. Not
 
 ## The rotation
 
-    FULL_BLEED  DIAGRAM  GRID  DOCUMENT  CLOSE_CROP  FULL_BLEED  CLOSE_CROP  FIGURE_SCALE  FIGURE_SCALE
+    FULL_BLEED  DIAGRAM  GRID  DOCUMENT  CLOSE_CROP  FULL_BLEED  CLOSE_CROP  FIGURE_SCALE  OBJECT_AND_CAPTION
 
 `TXLAYOUT.check` returns an empty list.
 
@@ -354,7 +354,7 @@ art:
 
 type:
   hook: "Its AI hub already links a use policy"
-  dek: "The college's AI Resource Hub links a faculty and staff document titled Acceptable Use of Artificial Intelligence Policy. The post calls the coming policy the college's \"first-ever.\" The page is drawn to illustrate."
+  dek: "The college's AI Resource Hub links a PDF titled Acceptable Use of Artificial Intelligence Policy, marked for ACC faculty and staff only. The post calls the coming policy the college's \"first-ever.\" The page is drawn to illustrate."
   labels: ["ACCEPTABLE USE OF ARTIFICIAL INTELLIGENCE POLICY"]
 
 verbatim:
@@ -625,9 +625,9 @@ risks:
 
 ```yaml
 slide: 9
-layout: FIGURE_SCALE
+layout: OBJECT_AND_CAPTION
 primary_image:
-  subject: "the desk on the October 12th granite paver with its lid lit and its seat empty, a person walking up the walk toward it"
+  subject: "the desk on the October 12th granite paver with its lid lit and its seat empty, the walk leading to it from the camera"
   rect: [320, 560, 700, 790]
   bleeds: [bottom]
 accent: "#9A3B2A"
@@ -650,17 +650,17 @@ depth:
 
 composition:
   structure: >
-    A standing camera behind and left of a walker on the walk, the desk ahead on the granite paver at the
-    right third, the walker at true scale beside it giving the desk its size. The oak trunk is dark behind.
+    A standing camera on the walk two pavers back, the desk ahead on the granite paver with its seat empty
+    and turned to the reader, the pavers leading to it. Recomposed after two panel rounds named the walker
+    figure, so the empty seat is the invitation.
   bands: >
-    Top third, the sky and the seam with the hook and dek. Middle third, the walker's shoulders and the lit
-    lid. Bottom third, the walk lit in the pool with its stone texture, the granite inlay, the walker's and
-    the desk's contact shadows.
+    Top third, the sky and the seam with the hook and dek. Middle third, the desk and the lit lid. Bottom third, the walk lit in the pool with its stone texture, the granite inlay and the desk's contact
+    shadows.
   focal: "the lit lid over the granite inlay, the lightest area"
 
 art:
-  technique: "physically based render at figure scale, the kit person walking, lit from the camera's side"
-  why_this_technique: "the next step is a person going to the seat, and a walker beside the desk makes the invitation a picture"
+  technique: "physically based render of the hero on its paver, the walk leading in"
+  why_this_technique: "the next step is a reader taking the seat, and an empty seat at the end of a walk is the invitation as a picture"
   palette: "limestone and granite, putty and charcoal, a lit lid, the black lawn"
   value_structure: >
     Lightest is the lid and the paver in the pool, darkest the sky. Frame median L* planned at 13.
@@ -674,12 +674,12 @@ verbatim: []
 
 acceptance:
   - "the desk stands on a granite inlaid paver with its lid lit and its seat empty"
-  - "a walking person at true scale is turned three quarters away and lit from the camera's side"
-  - "the walk runs from the camera to the desk with contacts under the walker's feet and the desk's glides"
+  - "no person is drawn and the seat is empty"
+  - "the walk runs from the camera to the desk with contacts under the desk's glides"
   - "the horizon and the seam are in frame and the sky is near black"
   - "the dek names who is invited and where feedback goes"
-  - "the desk stands at least 220 px tall and the walker at least 300 px"
+  - "the desk stands at least 280 px tall"
 
 risks:
-  - "the kit person reads as a mannequin, so the figure is turned away and under a fifth of the frame"
+  - "an empty desk can read as abandoned, so the lid is lit and the hook names who is invited"
 ```

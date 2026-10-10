@@ -1,0 +1,212 @@
+{
+ "weighted_score": 7.242,
+ "judges": [
+  7.13,
+  7.34,
+  7.23
+ ],
+ "spread": 0.21,
+ "criteria": {
+  "artwork_craft": {
+   "score": 6.6,
+   "weight": 0.22,
+   "judges": [
+    6.5,
+    6.6,
+    7.1
+   ]
+  },
+  "deck_coherence": {
+   "score": 8.0,
+   "weight": 0.12,
+   "judges": [
+    7.5,
+    8.0,
+    8.0
+   ]
+  },
+  "claim_integrity": {
+   "score": 8.0,
+   "weight": 0.2,
+   "judges": [
+    7.5,
+    8.5,
+    8.0
+   ]
+  },
+  "story_and_stakes": {
+   "score": 7.5,
+   "weight": 0.16,
+   "judges": [
+    7.5,
+    7.5,
+    7.0
+   ]
+  },
+  "sequence_and_momentum": {
+   "score": 7.0,
+   "weight": 0.1,
+   "judges": [
+    7.0,
+    7.0,
+    6.8
+   ]
+  },
+  "voice": {
+   "score": 6.8,
+   "weight": 0.1,
+   "judges": [
+    7.0,
+    6.8,
+    6.8
+   ]
+  },
+  "variety": {
+   "score": 6.5,
+   "weight": 0.1,
+   "judges": [
+    7.0,
+    6.5,
+    6.3
+   ]
+  }
+ },
+ "hard_fails": [],
+ "hard_fails_by_judge": [],
+ "ship": false,
+ "threshold": 8.0,
+ "over_threshold": false,
+ "method": "per-criterion median across three judges, then weighted by the rubric",
+ "threshold_dissents": [
+  "judge 1 refused on the threshold, not on a fault, and scored 7.13 against a 8.0 bar. That dissent is carried in the median",
+  "judge 2 refused on the threshold, not on a fault, and scored 7.34 against a 8.0 bar. That dissent is carried in the median",
+  "judge 3 refused on the threshold, not on a fault, and scored 7.23 against a 8.0 bar. That dissent is carried in the median"
+ ],
+ "threshold_dissents_by_judge": [
+  {
+   "judge": 1,
+   "score": 7.13,
+   "reason": "judge 1 refused on the threshold, not on a fault, and scored 7.13 against a 8.0 bar. That dissent is carried in the median"
+  },
+  {
+   "judge": 2,
+   "score": 7.34,
+   "reason": "judge 2 refused on the threshold, not on a fault, and scored 7.34 against a 8.0 bar. That dissent is carried in the median"
+  },
+  {
+   "judge": 3,
+   "score": 7.23,
+   "reason": "judge 3 refused on the threshold, not on a fault, and scored 7.23 against a 8.0 bar. That dissent is carried in the median"
+  }
+ ],
+ "artwork_weakest_frames": [
+  {
+   "slide": 5,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Mannequin sleeve with a doll hand pointing; the sheet overhangs the edge into the void.",
+     "fix": "Tight crop of two hands on the keyboard, sleeves cut at the wrist, the sheet flat on the desk with a contact shadow."
+    },
+    {
+     "judge": 2,
+     "problem": "Peg-fingered hand, a zero thickness sheet floating over the edge, a mid grey sleeve filling the right third.",
+     "fix": "Both hands on the keys cropped at the wrist, a dark sleeve, the sheet flat on the desk with a contact shadow."
+    },
+    {
+     "judge": 3,
+     "problem": "Pale tube sleeve, mitten hand, sheet floating at an angle.",
+     "fix": "Sheet flat on the desk with a contact shadow, the sleeve darkened, the hand at the keys the one lit thing."
+    }
+   ]
+  },
+  {
+   "slide": 8,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Low poly faceless figures read as game NPCs; the hero desk cropped and flat lit.",
+     "fix": "Remove the figures; empty chairs raked by the window's last light toward the lectern; the hero's lid the only practical."
+    },
+    {
+     "judge": 2,
+     "problem": "Game character figures, cropped right-hand figures, a black chair-back block in the lower left.",
+     "fix": "Camera up and right of the hero desk so its lit top replaces the block; rows rim lit from the window as silhouettes."
+    },
+    {
+     "judge": 3,
+     "problem": "Kit mannequins with a white clip on every collar, a black chair slab in the lower left, the room in a grey mid dark.",
+     "fix": "Figures as silhouettes against the window's light, camera low behind the hero desk, the near chair out of frame."
+    }
+   ]
+  },
+  {
+   "slide": 9,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Mannequin walker with a smeared head, feet straddling the paver edge.",
+     "fix": "Drop the figure; a single long cast shadow of an off-frame person across the pavers toward the desk."
+    },
+    {
+     "judge": 2,
+     "problem": "The low detail walker is the biggest light mass; the lawn evenly lit.",
+     "fix": "The desk and its paver the only pool; the walker in near silhouette with a west rim and a long shadow."
+    },
+    {
+     "judge": 3,
+     "problem": "A stiff mannequin walker on the grass beside the walk, the desk small behind her.",
+     "fix": "Crop the walker to a back lit shoulder from the left with feet on the near paver, the desk a third of the frame height."
+    }
+   ]
+  },
+  {
+   "slide": 4,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Laptop on a blown white top against a navy void; a 21 px title.",
+     "fix": "Camera back to eye 1.0 m with the lawn and seam beyond the lid; desk top exposure down; title at 24 px or larger."
+    },
+    {
+     "judge": 2,
+     "problem": "A square-on product shot; the desk top brighter than the page; a stray arc in the bottom band.",
+     "fix": "Rake the key so the top falls off; crop upward so the bottom band leaves the frame."
+    }
+   ]
+  },
+  {
+   "slide": 3,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "Middle screens alias; right columns off the frame.",
+     "fix": "Far screens toward black with distance; pull back so all rows sit inside with a dark margin."
+    }
+   ]
+  },
+  {
+   "slide": 6,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "Desk small at the left; flat lawn of repeated tufts; labels unanchored.",
+     "fix": "Camera along the walk so the desk stands at the right third; leader ticks to the inlays."
+    }
+   ]
+  }
+ ],
+ "rounds_derived": 2,
+ "rounds": 2,
+ "rounds_source": "this module's own log of cards it has scored",
+ "rounds_declared": 2,
+ "rung": 7.7,
+ "work_order": "no judge found a hard fail, and the median 7.242 is under this round's rung of 7.7. KEEP EDITING: fix the judges' named defects, re-render and re-score. At the round cap the finished deck ships whatever it scored. Start with the frames the judges charge the art for, in this order, slides 5, 8, 9, 4, 3, 6 (`artwork_weakest_frames`), one concrete change each",
+ "craft_floor": "pending, because a deck under its rung is sent back by the work order first"
+}

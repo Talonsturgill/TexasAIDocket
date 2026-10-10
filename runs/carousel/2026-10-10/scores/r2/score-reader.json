@@ -1,0 +1,69 @@
+{
+ "lens": "reader",
+ "round": 2,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 7.1,
+   "why": "Every frame dark and staged; 1, 3, 4, 6 and 7 pass most of the showstopper test. Frame 8 mannequins with a white collar artifact and a black chair slab; frame 9 walker a mannequin beside the walk; frame 5 rubbery sleeve, mitten hand, floating sheet."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 8.0,
+   "why": "Clearly one deck, one hero, the walk a real spine, both devices visible; 4 a void with a pale table, 8 a cooler interior."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.0,
+   "why": "Every fact traces to a primary page; numerals computed or quoted; c18 honestly scoped. Slide 4's 'faculty and staff document' is looser than the source's access marking, and the drawn body lines nudge a reader to believe a policy exists."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.0,
+   "why": "What, who drafted, where and when are clear; slide 7 honest; the stake general, no county, and no URL for the form."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 6.8,
+   "why": "Cover is a topic; turns at 4 and 7 real; 5 goes back to the rules; 8 jumps back from October 22nd to 12th."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.8,
+   "why": "Clean and restrained; two headlines describe the illustration; four deks end on a disclaimer."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.3,
+   "why": "New accent and hero; lastLight and one unit per day repeat no. 46; leaders to parts and a count of heroes repeat nos. 46 and 47."
+  }
+ ],
+ "weighted_score": 7.23,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Put the tension on the cover and the action at the close, with the Ways to Get Involved form's URL in the first comment.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 8,
+   "problem": "Kit mannequins with a white clip on every collar, a black chair slab in the lower left, the room in a grey mid dark.",
+   "fix": "Figures as silhouettes against the window's light, camera low behind the hero desk, the near chair out of frame."
+  },
+  {
+   "slide": 9,
+   "problem": "A stiff mannequin walker on the grass beside the walk, the desk small behind her.",
+   "fix": "Crop the walker to a back lit shoulder from the left with feet on the near paver, the desk a third of the frame height."
+  },
+  {
+   "slide": 5,
+   "problem": "Pale tube sleeve, mitten hand, sheet floating at an angle.",
+   "fix": "Sheet flat on the desk with a contact shadow, the sleeve darkened, the hand at the keys the one lit thing."
+  }
+ ]
+}
