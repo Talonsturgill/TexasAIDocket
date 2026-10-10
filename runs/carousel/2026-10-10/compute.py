@@ -56,7 +56,8 @@ RULES = ["c5", "c6", "c7", "c8", "c9"]
 names = [grab(c, r"^([^:]+):").group(1) for c in RULES]
 put("rules", len(names), RULES, "rules in the TRUST framework, one quoted line each")
 put("rule_names", names, RULES, "the rules' own names, in the post's order")
-put("framework_letters", len("TRUST"), ["c1"], "letters in the framework's name, one per rule")
+framework = grab("c1", r"newly launched (\w+) framework").group(1)
+put("framework_letters", len(framework), ["c1"], "letters in the framework's name, read from c1, one per rule")
 assert F["rules"]["value"] == F["framework_letters"]["value"], "a rule per letter"
 
 # the three October events

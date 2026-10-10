@@ -40,7 +40,7 @@
   "from": [
    "c1"
   ],
-  "basis": "letters in the framework's name, one per rule"
+  "basis": "letters in the framework's name, read from c1, one per rule"
  },
  "town_hall": {
   "value": "2026-10-12",

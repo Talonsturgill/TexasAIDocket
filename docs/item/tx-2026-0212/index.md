@@ -113,9 +113,9 @@ Source (primary_official): https://infohub.austincc.edu/blog/2026/10/09/help-sha
 
 Source (primary_official): https://infohub.austincc.edu/blog/2026/10/09/help-shape-accs-ai-policy-development/
 
-### The college's AI resource site already links a faculty and staff document titled Acceptable Use of Artificial Intelligence Policy.
+### The college's AI resource site already links a PDF titled Acceptable Use of Artificial Intelligence Policy, marked for faculty and staff only.
 
-> Acceptable Use of Artificial Intelligence Policy
+> Acceptable Use of Artificial Intelligence Policy (PDF – ACC Faculty and Staff only)
 
 Source (primary_official): https://sites.austincc.edu/ai-resource-hub/responsible-use-guidance/
 
