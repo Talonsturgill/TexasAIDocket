@@ -14,6 +14,8 @@ health probe caps its own effort at high when answers use xhigh or max.
 
 Checked sentences wait for the provider's terminal classification. A declined
 turn returns a clear notice and discards partial text without caching it.
+Model progress resets the browser's idle timeout without exposing draft text
+or reasoning. A stalled stream still closes after 45 seconds of inactivity.
 Empty replies, interrupted streams and provider stream errors remain retryable.
 Only completed, accepted answers enter the cache.
 The cache schema retires entries written before these completion checks.

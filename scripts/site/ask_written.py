@@ -763,10 +763,9 @@ _CLIENT = r"""
     // that shit on screen. If it takes a couple seconds longer to get the right answer it is
     // what it is."
     //
-    // Forty five seconds is past anything the answerer does when it is working, including the
-    // first question of a session, which pays for a Turnstile solve, a rerank and a model call
-    // in series. What is left for this to catch is a request that is never coming back, which
-    // is what a ceiling is actually for.
+    // Forty five seconds without activity catches a stalled request. Active reasoning can
+    // take longer while checked sentences wait for the provider's terminal classification.
+    // The worker reports progress without releasing reasoning or draft text.
     // OVERRIDABLE FOR THE SUITE, and only there. A ceiling that is forty five seconds takes
     // forty six seconds to test, three times over, and a suite nobody will sit through is a
     // suite that gets skipped. Nothing on the published page sets this, so every reader gets
@@ -1000,6 +999,9 @@ _CLIENT = r"""
     }
 
     function handle(ev) {
+      if (overran || ended) return;
+      if (ev.activity || ev.stage || ev.sentence) startClock();
+      if (ev.activity) return;
       if (ev.stage) { stage(ev.stage); return; }
       if (ev.sentence) { sentence(ev.sentence); return; }
       if (ev.withheld) {

@@ -656,7 +656,42 @@ for (const scenario of ["empty", "missing delta", "missing stop", "early EOF", "
   } finally { globalThis.fetch = savedFetch; }
 }
 
-head("R2d. the previous cache schema cannot replay incomplete output");
+head("R2d. buffered model progress stays private and differs from a stalled connection");
+for (const thinking of [true, false]) {
+  const savedFetch = globalThis.fetch;
+  globalThis.fetch = async url => {
+    if (String(url).endsWith("/pack.json")) return { ok: true, json: async () => FAKE };
+    if (String(url).endsWith("/corpus.json")) return { ok: true, json: async () => FAKE_CORPUS };
+    const frames = thinking ? [
+      { type: "content_block_delta", delta: { type: "thinking_delta", thinking: "private reasoning" } },
+      { type: "content_block_delta", delta: { type: "text_delta", text: "The record holds 12 decisions." } },
+      { type: "message_delta", delta: { stop_reason: "end_turn" } },
+      { type: "message_stop" },
+    ] : [
+      { type: "ping" },
+      { type: "message_delta", delta: { stop_reason: "end_turn" } },
+      { type: "message_stop" },
+    ];
+    return new Response(frames.map(ev => `data: ${JSON.stringify(ev)}\n\n`).join(""));
+  };
+  try {
+    const body = await new Response(await answerStreaming(
+      [{ role: "user", content: "evaporative cooling" }], { ...ENV, ASK_EFFORT: "xhigh" },
+      "2026-08-29T12:00:00Z")).text();
+    const events = body.trim().split("\n").map(JSON.parse);
+    if (thinking) {
+      ok("reasoning reports throttled progress before the checked answer",
+        events.filter(ev => ev.activity).length === 1
+        && events.findIndex(ev => ev.activity) < events.findIndex(ev => ev.sentence));
+      ok("progress reveals no reasoning or draft text", !body.includes("private reasoning")
+        && events.filter(ev => ev.activity).every(ev => Object.keys(ev).length === 1));
+    } else {
+      ok("connection pings cannot extend the browser's idle deadline", !events.some(ev => ev.activity));
+    }
+  } finally { globalThis.fetch = savedFetch; }
+}
+
+head("R2e. the previous cache schema cannot replay incomplete output");
 for (const streamed of [false, true]) {
   // Frozen key from the previous schema, using FAKE and the default Haiku settings.
   const values = new Map([["a:tx:2026-08-21:b5cbb9c1955092747129da2e3fd2e552",

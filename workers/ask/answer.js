@@ -732,7 +732,7 @@ export async function answerStream(turns, env, now, requester) {
         // including the two cache counters, and `message_delta` carries the output count as it
         // finishes. Neither is in the text events, so both are collected as they pass rather
         // than asked for at the end.
-        let usage = null, firstMs = NaN;
+        let usage = null, firstMs = NaN, lastActivity = null;
 
         while (true) {
           const { done, value } = await reader.read();
@@ -744,6 +744,16 @@ export async function answerStream(turns, env, now, requester) {
             if (!l.startsWith("data:")) continue;
             let ev;
             try { ev = JSON.parse(l.slice(5).trim()); } catch { continue; }
+            // Report actual model progress while checked text waits for completion.
+            // Reasoning and draft text stay private; provider pings do not extend a stall.
+            if (ev?.type === "message_start" || (ev?.type === "content_block_delta"
+                && ["text_delta", "thinking_delta"].includes(ev.delta?.type))) {
+              const tick = Date.now();
+              if (lastActivity === null || tick - lastActivity >= 5000) {
+                send({ activity: true });
+                lastActivity = tick;
+              }
+            }
             // The model says why it stopped, and it is the only thing that can. A trailing
             // fragment looks identical whether the model simply did not end on a full stop or
             // whether it was cut off in the middle of a word.

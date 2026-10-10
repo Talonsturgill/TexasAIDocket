@@ -796,6 +796,58 @@ ok("...and never tells them to ask a narrower question",
    !/narrower/i.test(cutText), cutText.slice(-90));
 ok("the box is usable again", !(await page.getAttribute("#askq", "disabled")));
 
+head("J0. model activity keeps a buffered answer open beyond the idle deadline");
+{
+  const active = await b.newPage();
+  await active.route("**://challenges.cloudflare.com/**", route => route.abort());
+  await active.addInitScript(() => {
+    window.__ASK_CEILING_MS__ = 2000;
+    let cb;
+    window.turnstile = {
+      render: (el, opts) => { cb = opts.callback; setTimeout(() => cb("test-token"), 5); return 1; },
+      reset: () => { if (cb) setTimeout(() => cb("test-token"), 5); },
+    };
+    setTimeout(function ready() {
+      if (window.askTurnstileReady) window.askTurnstileReady(); else setTimeout(ready, 10);
+    }, 10);
+    const realFetch = window.fetch;
+    window.fetch = function (url, init) {
+      if (!String(url).includes("/answer")) return realFetch(url, init);
+      const enc = new TextEncoder();
+      return Promise.resolve(new Response(new ReadableStream({
+        start(c) {
+          const send = ev => c.enqueue(enc.encode(JSON.stringify(ev) + "\n"));
+          send({ stage: "Reading the record" });
+          const timer = setInterval(() => send({ activity: true }), 1000);
+          setTimeout(() => {
+            clearInterval(timer);
+            send({ sentence: "The completed answer arrived." });
+            send({ done: true });
+            c.close();
+          }, 5500);
+        },
+      }), { headers: { "content-type": "application/x-ndjson" } }));
+    };
+  });
+  await active.goto(URL_);
+  await active.fill("#askq", "who decides the ERCOT transmission rule");
+  const began = Date.now();
+  await active.press("#askq", "Enter");
+  await active.waitForTimeout(2600);
+  ok("active reasoning stays open after the original deadline",
+    await active.locator('#ask button[type="submit"]').isDisabled());
+  ok("activity does not reveal buffered answer text", !/The completed answer arrived|activity/.test(
+    (await active.textContent(".askreply")) || ""));
+  await active.waitForSelector(".askfrom", { timeout: 10000 });
+  const text = (await active.textContent(".askreply")) || "";
+  ok("the completed answer survives a response longer than the idle budget",
+    Date.now() - began > 5000 && /The completed answer arrived\./.test(text), text);
+  ok("the active answer closes normally and leaves the field usable",
+    !/ran long|did not come back/i.test(text) && await active.locator("#askq").isEnabled()
+    && await active.locator('#ask button[type="submit"]').isEnabled(), text);
+  await active.close();
+}
+
 head("J1. a slow first solve is rescued by the retry, not met with a dead end");
 /* THE COLD START, WHERE THE SOLVE OUTLASTS THE FIRST WAIT. Focus arms the check, so from the
    second question on a token is earned while the reader reads. On the first it starts at a
