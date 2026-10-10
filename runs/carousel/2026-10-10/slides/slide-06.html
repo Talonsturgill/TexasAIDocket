@@ -1,0 +1,59 @@
+<!doctype html>
+<!-- 2026-10-10, frame 6 of 9. Archetype FULL_BLEED. RENDERED through txthree.js in the deck's lastLight world. A walk of fourteen limestone pavers across the dark lawn, one per day from the post to the seminar, three inlaid with granite on the event days, the desk standing on the town hall's paver. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+  .dek { width:880px; }
+  .lab { font-size:28px; text-shadow:0 0 8px #0B0A10, 0 0 3px #0B0A10; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">Three dates on fourteen pavers</h1>
+<p class="dek" data-follow="28">One paver for each day from the October&nbsp;9th post to the October&nbsp;22nd seminar at Highland, both ends counted. The town hall is October&nbsp;12th at Rio Grande. A faculty convocation titled The Two AIs is October&nbsp;16th at Eastview.</p>
+<div class="lab" id="d12">OCTOBER 12TH<br>TOWN HALL</div>
+<div class="lab" id="d16">OCTOBER 16TH<br>CONVOCATION</div>
+<div class="lab" id="d22">OCTOBER 22ND<br>SEMINAR</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-10-lastlawn.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Austin Community College", counter: "06 / 09", src: "c10 c12 c13 c14 c31", fit: { min: 80, max: 96, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 34 });
+  TXT.ground(R, { surface: 'lawn', size: 3000, tile: 5, seed: 51 });   /* the campus lawn */
+  /* one paver per day from the post to the seminar, both ends counted (figures.json walk_pavers 14); granite on 3, 7 and 13 */
+  const PAVERS = 14, TOWN_HALL = 3, CONVOCATION = 7, SEMINAR = 13;
+  const walk = CH.walk({ n: PAVERS, inlays: [TOWN_HALL, CONVOCATION, SEMINAR], seed: 5 });
+  if (walk.userData.n !== PAVERS || walk.children.filter((m) => m.userData.paver).length !== PAVERS) throw new Error('pavers laid is not ' + PAVERS);
+  const pt = walk.userData.paver(TOWN_HALL);
+  const desk = CH.desk({ seed: 2, open: 110 }); desk.position.set(pt[0], pt[1], pt[2]); desk.rotation.y = 0.1; TXT.add(R, desk); TXT.contact(R, desk);
+  TXT.frame(R, { from: [2.6, 2.6, 5.4], look: [0.5, 1.25, -8.0] });
+  CH.grass([-30, -60, 30, 8], { count: 12000, seed: 17, avoid: [[-0.75, -16, 0.75, 1.2]] });
+  TXT.sky(R);
+  TXT.deckRig(R, CH.rigSpec(W, 10, 4096), CH.rigOpts([0, 0.5, -6], { distance: 40, shadowFar: 100 }));
+  TXT.stage(R, [walk, desk], { poolInner: 6, poolOuter: 13 });
+  CH.lidLight(desk, { i: 0.5, range: 1.2 });
+  TXT.weather(R, { grime: 0.3, height: 0.26 });
+  [[TOWN_HALL, 'd12', 1], [CONVOCATION, 'd16', 1], [SEMINAR, 'd22', 1]].forEach(([i, id, side]) => { const p = walk.userData.paver(i); const q = CH.project(THREE, R, [p[0] + 0.62, p[1], p[2]]); const el = document.getElementById(id); const w = el.getBoundingClientRect().width; const ql = CH.project(THREE, R, [p[0] - 0.62, p[1], p[2]]); el.style.textAlign = 'right'; el.style.left = Math.round(1000 - w) + 'px'; if (q[0] + 24 > 1000 - w) throw new Error('label ' + id + ' would sit on its paver'); el.style.top = Math.round(q[1] - el.getBoundingClientRect().height / 2) + 'px'; });
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0.3, veil: 0.45, veilH: 300 });
+  CH.knock(cx, 40, 1215, 400, 90, 0.55);   /* the claim ids sit on the near paver's edge */
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

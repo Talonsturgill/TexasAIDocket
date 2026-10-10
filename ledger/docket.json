@@ -1,7 +1,7 @@
 {
  "_spec": {
   "version": 2,
-  "generated": "2026-10-09",
+  "generated": "2026-10-10",
   "gates": [
    "banned words",
    "claims",
@@ -2366,7 +2366,7 @@
      "fetched": "2026-10-08"
     }
    ],
-   "last_verified": "2026-10-09",
+   "last_verified": "2026-10-10",
    "confidence": "high",
    "notes_for_editor": "This is an infrastructure item rather than a decision, and the docket may prefer to use the feed as a collector and not publish it as an item. Keeping it has one strong argument: it tells a reader where the calendar actually lives, which is the single most useful thing this docket can hand someone who wants to participate. Its dates are the spine of the recurring collector.",
    "history": [
@@ -2524,6 +2524,11 @@
     {
      "date": "2026-10-09",
      "note": "Checked and unchanged. Still open, with no dated movement.",
+     "checked": true
+    },
+    {
+     "date": "2026-10-10",
+     "note": "The commission's open meeting calendar still publishes as a live feed, with meetings listed well into next year.",
      "checked": true
     }
    ]
@@ -3412,6 +3417,10 @@
     {
      "date": "2026-10-09",
      "note": "Williamson County's abatement for Compal's Georgetown center is unconfirmed today, because the county's site refused the request."
+    },
+    {
+     "date": "2026-10-10",
+     "note": "Williamson County's abatement for Compal's Georgetown plant stays unconfirmed today, because the county's site refused the request again."
     }
    ],
    "unreachable": {
@@ -4623,6 +4632,10 @@
     {
      "date": "2026-10-09",
      "note": "Guadalupe County's end of its plate reader contract remains unconfirmed. Its minutes and both published accounts still bar automated readers."
+    },
+    {
+     "date": "2026-10-10",
+     "note": "Guadalupe County's end of its plate reader contract stays unconfirmed. Its minutes and both published accounts bar automated readers."
     }
    ],
    "unreachable": {
@@ -5902,6 +5915,10 @@
     {
      "date": "2026-10-09",
      "note": "Archer County's denial of the data center abatement remains unconfirmed. The one published account still bars automated readers."
+    },
+    {
+     "date": "2026-10-10",
+     "note": "Archer County's denial of the data center abatement stays unconfirmed, since the one published account bars automated readers."
     }
    ],
    "unreachable": {
@@ -6095,6 +6112,10 @@
      "date": "2026-10-07",
      "note": "The county's own minutes still record the resolution asking the state for authority over data centers.",
      "checked": true
+    },
+    {
+     "date": "2026-10-10",
+     "note": "Angelina County's resolution asking the state for authority over data centers is unconfirmed today. Both published accounts bar automated readers."
     }
    ],
    "unreachable": {
@@ -6295,6 +6316,10 @@
     {
      "date": "2026-10-09",
      "note": "Lubbock County's disclosure resolution remains unconfirmed. The one published account still bars automated readers."
+    },
+    {
+     "date": "2026-10-10",
+     "note": "Lubbock County's disclosure resolution stays unconfirmed, since the one published account bars automated readers."
     }
    ],
    "unreachable": {
@@ -6492,6 +6517,10 @@
      "date": "2026-10-07",
      "note": "The abatement Carson County approved still stands, and the developer's own quarterly filing still describes the project as it did.",
      "checked": true
+    },
+    {
+     "date": "2026-10-10",
+     "note": "Carson County's abatement for the Fermi America project is unconfirmed today, because the published account bars automated readers."
     }
    ],
    "unreachable": {
@@ -8042,6 +8071,10 @@
     {
      "date": "2026-10-09",
      "note": "Conroe's plate camera ballot question remains unconfirmed. The city's minutes and both accounts still bar automated readers."
+    },
+    {
+     "date": "2026-10-10",
+     "note": "Conroe's plate camera ballot question stays unconfirmed. The city's minutes and both accounts bar automated readers."
     }
    ],
    "unreachable": {
@@ -11445,6 +11478,10 @@
     {
      "date": "2026-10-09",
      "note": "The two House committee hearings remain unconfirmed on the Legislature's own pages, which still bar automated readers."
+    },
+    {
+     "date": "2026-10-10",
+     "note": "The two House committee hearings stay unconfirmed on the Legislature's own pages, which bar automated readers."
     }
    ],
    "unreachable": {
@@ -14382,6 +14419,10 @@
     {
      "date": "2026-10-09",
      "note": "The AI training requirement for state and local employees remains unconfirmed on the bill page, which still bars automated readers."
+    },
+    {
+     "date": "2026-10-10",
+     "note": "The AI training requirement for state and local employees stays unconfirmed on the bill page, which bars automated readers."
     }
    ],
    "unreachable": {
@@ -15952,6 +15993,10 @@
     {
      "date": "2026-10-09",
      "note": "The RELLIS abatement assignment is still unconfirmed. The county's notice refused the request again today."
+    },
+    {
+     "date": "2026-10-10",
+     "note": "The RELLIS abatement assignment stays unconfirmed. The county's notice refused the request again."
     }
    ],
    "unreachable": {
@@ -18149,6 +18194,10 @@
     {
      "date": "2026-10-09",
      "note": "The state technology agency's page on carrying out the AI laws remains unconfirmed. Its site still bars automated readers."
+    },
+    {
+     "date": "2026-10-10",
+     "note": "The state technology agency's page on carrying out the AI laws stays unconfirmed, since its site bars automated readers."
     }
    ],
    "unreachable": {
@@ -19319,6 +19368,10 @@
     {
      "date": "2026-10-09",
      "note": "The pedestrian face capture trial at the Progreso bridge remains unconfirmed. The department's feature still refuses every reader."
+    },
+    {
+     "date": "2026-10-10",
+     "note": "The pedestrian face capture trial at the Progreso bridge stays unconfirmed, because the department's feature refuses every reader."
     }
    ],
    "unreachable": {
@@ -20295,6 +20348,10 @@
     {
      "date": "2026-10-09",
      "note": "Whether Frontera's queues closed for good as scheduled remains unconfirmed. The center's pages still bar automated readers."
+    },
+    {
+     "date": "2026-10-10",
+     "note": "Whether Frontera's queues closed for good on schedule stays unconfirmed. The center's pages bar automated readers."
     }
    ],
    "unreachable": {
@@ -20432,6 +20489,10 @@
     {
      "date": "2026-10-09",
      "note": "Whether Brownsville's commission has voted on the temporary moratorium is unconfirmed, because the city's site refused the request."
+    },
+    {
+     "date": "2026-10-10",
+     "note": "Whether Brownsville's commission has voted on the temporary moratorium stays unconfirmed, because the city's site refused the request."
     }
    ],
    "unreachable": {
@@ -23450,6 +23511,10 @@
      "date": "2026-10-07",
      "note": "The radiologists' published review and its Texas affiliations read as indexed, with nothing changed.",
      "checked": true
+    },
+    {
+     "date": "2026-10-10",
+     "note": "The radiologists' published review is unconfirmed today, because the index that carries its abstract bars automated readers."
     }
    ]
   },
@@ -23598,6 +23663,10 @@
      "date": "2026-10-07",
      "note": "The MRI study's published abstract and its author affiliations read as they did, with nothing changed.",
      "checked": true
+    },
+    {
+     "date": "2026-10-10",
+     "note": "The MRI study's abstract and its author affiliations are unconfirmed today, because the index that carries them bars automated readers."
     }
    ]
   },
@@ -25095,6 +25164,10 @@
     {
      "date": "2026-10-09",
      "note": "The fetal movement trial's registry record remains unconfirmed. The registry still bars automated readers."
+    },
+    {
+     "date": "2026-10-10",
+     "note": "The fetal movement trial's registry record stays unconfirmed, since the registry bars automated readers."
     }
    ],
    "unreachable": {
@@ -25294,6 +25367,10 @@
     {
      "date": "2026-10-09",
      "note": "The sheriff's posted promise remains unconfirmed on the county's agenda, which bars automated readers. The published account of the reallocation still reads as cited."
+    },
+    {
+     "date": "2026-10-10",
+     "note": "The sheriff's posted promise stays unconfirmed on the county's agenda, which bars automated readers, and the county's archive refused the request."
     }
    ],
    "last_verified": "2026-09-26",
@@ -25459,6 +25536,10 @@
     {
      "date": "2026-10-09",
      "note": "Whether the clerk's request for AI written minutes is still before the court remains unconfirmed. The agenda still bars automated readers."
+    },
+    {
+     "date": "2026-10-10",
+     "note": "Whether the clerk's request for AI written minutes is still before the court stays unconfirmed. The agenda bars automated readers."
     }
    ],
    "last_verified": "2026-09-26",
@@ -25615,6 +25696,10 @@
     {
      "date": "2026-10-09",
      "note": "Whether Hays County has adopted a policy on AI in surveillance remains unconfirmed. The posted agenda still bars automated readers."
+    },
+    {
+     "date": "2026-10-10",
+     "note": "Whether Hays County has adopted a policy on AI in surveillance stays unconfirmed, since the posted agenda bars automated readers."
     }
    ],
    "last_verified": "2026-09-26",
@@ -25781,6 +25866,10 @@
     {
      "date": "2026-10-09",
      "note": "The directive to the water board is still unconfirmed on its own page, which bars automated readers. The board's report back is due next week."
+    },
+    {
+     "date": "2026-10-10",
+     "note": "The directive to the water board stays unconfirmed on its own page, which bars automated readers. The board's report back is due within the week."
     }
    ],
    "unreachable": {
@@ -26024,7 +26113,7 @@
     }
    ],
    "id": "tx-2026-0172",
-   "last_verified": "2026-10-09",
+   "last_verified": "2026-10-10",
    "history": [
     {
      "date": "2026-09-19",
@@ -26074,6 +26163,11 @@
     {
      "date": "2026-10-09",
      "note": "Checked and unchanged. Still open, with no dated movement.",
+     "checked": true
+    },
+    {
+     "date": "2026-10-10",
+     "note": "ERCOT's request for data center answers to the water board's questions still stands as posted, with its deadline unchanged.",
      "checked": true
     }
    ]
@@ -26243,7 +26337,7 @@
     }
    ],
    "id": "tx-2026-0174",
-   "last_verified": "2026-10-07",
+   "last_verified": "2026-10-10",
    "history": [
     {
      "date": "2026-09-20",
@@ -26278,6 +26372,11 @@
     {
      "date": "2026-10-07",
      "note": "Both of El Paso's plate reader items stand as the council passed them in revised form.",
+     "checked": true
+    },
+    {
+     "date": "2026-10-10",
+     "note": "El Paso's two plate reader items still stand in the revised form the council passed.",
      "checked": true
     }
    ]
@@ -26348,7 +26447,7 @@
     }
    ],
    "id": "tx-2026-0177",
-   "last_verified": "2026-10-09",
+   "last_verified": "2026-10-10",
    "history": [
     {
      "date": "2026-09-20",
@@ -26388,6 +26487,11 @@
     {
      "date": "2026-10-09",
      "note": "Checked and unchanged. Still pending, with no dated movement.",
+     "checked": true
+    },
+    {
+     "date": "2026-10-10",
+     "note": "Richardson ISD's draft legislative ask still puts classroom AI guidance first, and nothing on the district's page shows it adopted yet.",
      "checked": true
     }
    ]
@@ -26463,7 +26567,7 @@
     }
    ],
    "id": "tx-2026-0175",
-   "last_verified": "2026-10-07",
+   "last_verified": "2026-10-10",
    "history": [
     {
      "date": "2026-09-20",
@@ -26518,6 +26622,11 @@
     {
      "date": "2026-10-07",
      "note": "The foundation's award page still names Texas Southern University as the lead of its regional node.",
+     "checked": true
+    },
+    {
+     "date": "2026-10-10",
+     "note": "The foundation's award still names Texas Southern University as lead of its regional node.",
      "checked": true
     }
    ]
@@ -26936,6 +27045,10 @@
     {
      "date": "2026-10-09",
      "note": "Leander's notice that it stopped paying for plate readers remains unconfirmed. The city's site still refuses every reader."
+    },
+    {
+     "date": "2026-10-10",
+     "note": "Leander's notice that it stopped paying for plate readers stays unconfirmed, because the city's site refuses every reader."
     }
    ],
    "unreachable": {
@@ -27407,7 +27520,7 @@
    ],
    "notes_for_editor": "Admitted on the FAA's own draft and its own review page. The environmental assessment is a draft prepared by the applicant under the agency's supervision, and the final decision on the operating approvals has not been made. The county list is the Section 106 letter's own list with two of its spellings, Atacosta and Roberston, read as Atascosa and Robertson. The letter's stated total and its list disagree, so no county count is published. The five metros straddle the ERCOT line, so on_ercot is null rather than either value. The letter states a county total its own list does not match, and that discrepancy is reported here rather than repaired.",
    "id": "tx-2026-0186",
-   "last_verified": "2026-10-07",
+   "last_verified": "2026-10-10",
    "history": [
     {
      "date": "2026-09-24",
@@ -27453,6 +27566,11 @@
     {
      "date": "2026-10-09",
      "note": "Comment on Zipline's Texas metros assessment is set to close October 11th. The agency's pages refused the request again, so nothing since is confirmed."
+    },
+    {
+     "date": "2026-10-10",
+     "note": "The agency's review page and the draft assessment both still read as published, and comment on Zipline's Texas metros assessment closes tomorrow, October 11th.",
+     "checked": true
     }
    ]
   },
@@ -28196,6 +28314,11 @@
      "date": "2026-10-07",
      "note": "The commission's wildfire plan blueprint still lists cameras as a suggestion and not a requirement.",
      "checked": true
+    },
+    {
+     "date": "2026-10-10",
+     "note": "The commission's wildfire plan blueprint still lists cameras as a suggestion rather than a requirement.",
+     "checked": true
     }
    ],
    "claims": [
@@ -28354,7 +28477,7 @@
     }
    ],
    "id": "tx-2026-0191",
-   "last_verified": "2026-10-07"
+   "last_verified": "2026-10-10"
   },
   {
    "title": "Asked for AI camera fire detections, Xcel counted cameras",
@@ -28412,6 +28535,11 @@
     {
      "date": "2026-10-07",
      "note": "The approved resiliency plan still stands, and Xcel's filing still counts cameras where the commission asked for detections.",
+     "checked": true
+    },
+    {
+     "date": "2026-10-10",
+     "note": "Xcel's approved resiliency plan stands, and its filing still counts cameras where detections were asked for.",
      "checked": true
     }
    ],
@@ -28508,7 +28636,7 @@
     }
    ],
    "id": "tx-2026-0192",
-   "last_verified": "2026-10-07"
+   "last_verified": "2026-10-10"
   },
   {
    "title": "Judges back El Paso Electric's gas plant for Meta only if other customers don't pay",
@@ -29020,7 +29148,7 @@
    "confidence": "high",
    "notes_for_editor": "Amazon's copy of the release carries no date. Wiwynn's copy of the same release, read 2026-10-01, says Updated on September 10, 2026, so the key date rests on that page rather than on wire coverage. El Paso County is from the Texas Municipal League directory entry for Socorro. The release says nothing about whether the line itself uses AI or robotics.",
    "id": "tx-2026-0146",
-   "last_verified": "2026-10-07",
+   "last_verified": "2026-10-10",
    "history": [
     {
      "date": "2026-09-11",
@@ -29038,6 +29166,11 @@
     {
      "date": "2026-10-07",
      "note": "Amazon and Wiwynn's announced expansion of the El Paso County rack plant still reads as first published.",
+     "checked": true
+    },
+    {
+     "date": "2026-10-10",
+     "note": "The announced expansion of the El Paso County rack plant reads as Amazon and Wiwynn first published it.",
      "checked": true
     }
    ]
@@ -30196,7 +30329,7 @@
     }
    ],
    "id": "tx-2026-0200",
-   "last_verified": "2026-10-07",
+   "last_verified": "2026-10-10",
    "history": [
     {
      "date": "2026-10-04",
@@ -30205,6 +30338,11 @@
     {
      "date": "2026-10-07",
      "note": "The Tribune's account and the state board's own minutes still read as cited, and the board's vote against the charter stands.",
+     "checked": true
+    },
+    {
+     "date": "2026-10-10",
+     "note": "The board's vote against the Alpha charter stands, and its minutes and the Tribune's account read as cited.",
      "checked": true
     }
    ]
@@ -30893,11 +31031,16 @@
    ],
    "confidence": "high",
    "notes_for_editor": "The release is Saronic's own, read on PR Newswire. The Governor's copy of the announcement sits on gov.texas.gov, which refuses this project in robots.txt, so it was not fetched. The Port of Brownsville's site answered 403. Cameron County's June 2nd and June 16th agendas are scanned PDFs with no text layer, so the abatement's rate, term and conditions rest on the Tribune's June 18th account. The county is Cameron, where the Port of Brownsville sits. on_ercot is true because Cameron County is served by ERCOT; nothing in the release turns on it.",
-   "last_verified": "2026-10-07",
+   "last_verified": "2026-10-10",
    "history": [
     {
      "date": "2026-10-07",
      "note": "Admitted to the record on Saronic's own release of the groundbreaking. The abatement Cameron County approved in June rests on the Tribune's account, because the county's agenda is a scanned file."
+    },
+    {
+     "date": "2026-10-10",
+     "note": "Saronic's account of breaking ground on Port Alpha in Brownsville reads as published.",
+     "checked": true
     }
    ]
   },
@@ -31481,6 +31624,203 @@
    ],
    "last_verified": "2026-10-09",
    "id": "tx-2026-0210"
+  },
+  {
+   "title": "Austin Community College drafts what it calls its first AI policy under a five rule framework and opens it to a town hall on October 12th",
+   "summary": "Austin Community College says it is developing what it calls its first-ever artificial intelligence policy. The policy is to follow a framework the college calls TRUST, which two collegewide AI committees developed. Its five rules ask people to say where AI was used and to check what it produces. They also ask people to keep their own judgment, to use AI for honest work and to respect copyright. The college's AI resource site already links a PDF titled Acceptable Use of Artificial Intelligence Policy, marked for faculty and staff only. The new policy is not the college's first written word on the subject. The college has set three October events for faculty, staff, students and community members. A town hall at the Rio Grande Campus on October 12th will explore the policies in progress. A faculty convocation on academic integrity follows on October 16th at Eastview. A community seminar meets on October 22nd at Highland. The college says more than 79,000 students rely on it each year. The announcement names no date for adopting the policy and does not say who will vote on it.",
+   "topic": "health-and-education",
+   "decider": {
+    "name": "Austin Community College District",
+    "type": "special-district"
+   },
+   "geography": {
+    "statewide": false,
+    "counties": [
+     "Travis"
+    ],
+    "on_ercot": true,
+    "metro": "Austin-Round Rock-San Marcos, TX"
+   },
+   "status": "pending",
+   "key_dates": [
+    {
+     "date": "2026-10-09",
+     "kind": "filed",
+     "note": "College announces it is developing an AI policy under the TRUST framework"
+    },
+    {
+     "date": "2026-10-12",
+     "kind": "hearing",
+     "note": "Faculty and Student AI Town Hall, 6:30 to 9 p.m., Rio Grande Campus"
+    },
+    {
+     "date": "2026-10-22",
+     "kind": "hearing",
+     "note": "Community seminar on intelligence and humanity, 6 to 9 p.m., Highland Campus"
+    }
+   ],
+   "public_access": {
+    "room": "open_meeting",
+    "how": "The college invites faculty, staff, students and community members to its October town hall and community seminar. Registration links are on the announcement page. Feedback can also be sent through the form on the college's page about getting involved with generative AI.",
+    "url": "https://infohub.austincc.edu/blog/2026/10/09/help-shape-accs-ai-policy-development/",
+    "closes": null
+   },
+   "confidence": "high",
+   "claims": [
+    {
+     "text": "The college says it is developing an AI policy under a framework it calls TRUST, and will hold events in October to gather community feedback.",
+     "verbatim_quote": "Austin Community College (ACC) is developing an artificial intelligence (AI) policy in alignment with the newly launched TRUST framework and will host a series of conversations and events in October to gather community feedback and build collective capacity to discuss AI and its impact on the College.",
+     "source_url": "https://infohub.austincc.edu/blog/2026/10/09/help-shape-accs-ai-policy-development/",
+     "source_title": "Austin Community College Faculty and Staff Infohub, Help Shape ACC's AI Policy Development, October 9, 2026",
+     "source_type": "primary_official",
+     "fetched": "2026-10-10",
+     "id": "tx-2026-0212-c1"
+    },
+    {
+     "text": "The college describes the coming policy as its first-ever AI policy.",
+     "verbatim_quote": "exploring how the framework can help shape the College’s first-ever AI policy",
+     "source_url": "https://infohub.austincc.edu/blog/2026/10/09/help-shape-accs-ai-policy-development/",
+     "source_title": "Austin Community College Faculty and Staff Infohub, Help Shape ACC's AI Policy Development, October 9, 2026",
+     "source_type": "primary_official",
+     "fetched": "2026-10-10",
+     "id": "tx-2026-0212-c2"
+    },
+    {
+     "text": "Two collegewide steering committees developed the framework.",
+     "verbatim_quote": "The Collegewide AI Strategic Planning and Implementation Steering Committees developed the TRUST framework",
+     "source_url": "https://infohub.austincc.edu/blog/2026/10/09/help-shape-accs-ai-policy-development/",
+     "source_title": "Austin Community College Faculty and Staff Infohub, Help Shape ACC's AI Policy Development, October 9, 2026",
+     "source_type": "primary_official",
+     "fetched": "2026-10-10",
+     "id": "tx-2026-0212-c3"
+    },
+    {
+     "text": "The first of the framework's five rules asks people to say where AI was used.",
+     "verbatim_quote": "Tell Where AI Was Used: Be transparent when AI plays a meaningful role in your work.",
+     "source_url": "https://infohub.austincc.edu/blog/2026/10/09/help-shape-accs-ai-policy-development/",
+     "source_title": "Austin Community College Faculty and Staff Infohub, Help Shape ACC's AI Policy Development, October 9, 2026",
+     "source_type": "primary_official",
+     "fetched": "2026-10-10",
+     "id": "tx-2026-0212-c4"
+    },
+    {
+     "text": "The second asks people to check what AI produces before using it.",
+     "verbatim_quote": "Review Outputs: Check AI-generated content carefully before using or sharing it.",
+     "source_url": "https://infohub.austincc.edu/blog/2026/10/09/help-shape-accs-ai-policy-development/",
+     "source_title": "Austin Community College Faculty and Staff Infohub, Help Shape ACC's AI Policy Development, October 9, 2026",
+     "source_type": "primary_official",
+     "fetched": "2026-10-10",
+     "id": "tx-2026-0212-c5"
+    },
+    {
+     "text": "The third says AI should never replace a person's own expertise or responsibility.",
+     "verbatim_quote": "AI can support your work, but it should never replace your expertise, decision-making, or responsibility.",
+     "source_url": "https://infohub.austincc.edu/blog/2026/10/09/help-shape-accs-ai-policy-development/",
+     "source_title": "Austin Community College Faculty and Staff Infohub, Help Shape ACC's AI Policy Development, October 9, 2026",
+     "source_type": "primary_official",
+     "fetched": "2026-10-10",
+     "id": "tx-2026-0212-c6"
+    },
+    {
+     "text": "The fourth ties AI use to honest work and real learning.",
+     "verbatim_quote": "Safeguard Integrity: Use AI in ways that support honest work, ethical practice, and real learning.",
+     "source_url": "https://infohub.austincc.edu/blog/2026/10/09/help-shape-accs-ai-policy-development/",
+     "source_title": "Austin Community College Faculty and Staff Infohub, Help Shape ACC's AI Policy Development, October 9, 2026",
+     "source_type": "primary_official",
+     "fetched": "2026-10-10",
+     "id": "tx-2026-0212-c7"
+    },
+    {
+     "text": "The fifth asks people to respect copyright, attribution and ownership.",
+     "verbatim_quote": "Treat IP with Respect: Respect copyright, attribution, ownership, and the creative work of others.",
+     "source_url": "https://infohub.austincc.edu/blog/2026/10/09/help-shape-accs-ai-policy-development/",
+     "source_title": "Austin Community College Faculty and Staff Infohub, Help Shape ACC's AI Policy Development, October 9, 2026",
+     "source_type": "primary_official",
+     "fetched": "2026-10-10",
+     "id": "tx-2026-0212-c8"
+    },
+    {
+     "text": "A faculty and student AI town hall is set for the evening of Monday, October 12th at the Rio Grande Campus.",
+     "verbatim_quote": "Monday, October 12 | 6:30-9 p.m. | Rio Grande Campus",
+     "source_url": "https://infohub.austincc.edu/blog/2026/10/09/help-shape-accs-ai-policy-development/",
+     "source_title": "Austin Community College Faculty and Staff Infohub, Help Shape ACC's AI Policy Development, October 9, 2026",
+     "source_type": "primary_official",
+     "fetched": "2026-10-10",
+     "id": "tx-2026-0212-c9"
+    },
+    {
+     "text": "The town hall is billed as a conversation that will explore the policies in progress.",
+     "verbatim_quote": "The discussion will explore in-progress AI policies and how the College can move forward together.",
+     "source_url": "https://infohub.austincc.edu/blog/2026/10/09/help-shape-accs-ai-policy-development/",
+     "source_title": "Austin Community College Faculty and Staff Infohub, Help Shape ACC's AI Policy Development, October 9, 2026",
+     "source_type": "primary_official",
+     "fetched": "2026-10-10",
+     "id": "tx-2026-0212-c10"
+    },
+    {
+     "text": "A faculty convocation on AI and academic integrity is set for Friday, October 16th at the Eastview Campus.",
+     "verbatim_quote": "Friday, October 16 | 10 a.m.-2 p.m. | Eastview Campus",
+     "source_url": "https://infohub.austincc.edu/blog/2026/10/09/help-shape-accs-ai-policy-development/",
+     "source_title": "Austin Community College Faculty and Staff Infohub, Help Shape ACC's AI Policy Development, October 9, 2026",
+     "source_type": "primary_official",
+     "fetched": "2026-10-10",
+     "id": "tx-2026-0212-c11"
+    },
+    {
+     "text": "A community seminar on intelligence and humanity is set for Thursday, October 22nd at the Highland Campus.",
+     "verbatim_quote": "Thursday, October 22 | 6-9 p.m. | Highland Campus",
+     "source_url": "https://infohub.austincc.edu/blog/2026/10/09/help-shape-accs-ai-policy-development/",
+     "source_title": "Austin Community College Faculty and Staff Infohub, Help Shape ACC's AI Policy Development, October 9, 2026",
+     "source_type": "primary_official",
+     "fetched": "2026-10-10",
+     "id": "tx-2026-0212-c12"
+    },
+    {
+     "text": "Faculty, staff, students and community members are all invited to take part.",
+     "verbatim_quote": "Faculty, staff, students, and community members are invited to participate in one or more of these opportunities to share perspectives, ask questions, and help shape the conversation about AI at ACC.",
+     "source_url": "https://infohub.austincc.edu/blog/2026/10/09/help-shape-accs-ai-policy-development/",
+     "source_title": "Austin Community College Faculty and Staff Infohub, Help Shape ACC's AI Policy Development, October 9, 2026",
+     "source_type": "primary_official",
+     "fetched": "2026-10-10",
+     "id": "tx-2026-0212-c13"
+    },
+    {
+     "text": "Feedback can also be sent through a form on the college's generative AI page.",
+     "verbatim_quote": "To provide feedback, ask questions, and more, visit the Ways to Get Involved with Generative AI at ACC webpage and submit the form.",
+     "source_url": "https://infohub.austincc.edu/blog/2026/10/09/help-shape-accs-ai-policy-development/",
+     "source_title": "Austin Community College Faculty and Staff Infohub, Help Shape ACC's AI Policy Development, October 9, 2026",
+     "source_type": "primary_official",
+     "fetched": "2026-10-10",
+     "id": "tx-2026-0212-c14"
+    },
+    {
+     "text": "The college's AI resource site already links a PDF titled Acceptable Use of Artificial Intelligence Policy, marked for faculty and staff only.",
+     "verbatim_quote": "Acceptable Use of Artificial Intelligence Policy (PDF – ACC Faculty and Staff only)",
+     "source_url": "https://sites.austincc.edu/ai-resource-hub/responsible-use-guidance/",
+     "source_title": "Austin Community College AI Resource Hub, Responsible Use Guidance",
+     "source_type": "primary_official",
+     "fetched": "2026-10-10",
+     "id": "tx-2026-0212-c15"
+    },
+    {
+     "text": "The college says more than 79,000 students rely on it each year.",
+     "verbatim_quote": "More than 79,000 students rely on ACC for their education every year.",
+     "source_url": "https://www.austincc.edu/about-acc",
+     "source_title": "Austin Community College, About ACC",
+     "source_type": "primary_official",
+     "fetched": "2026-10-10",
+     "id": "tx-2026-0212-c16"
+    }
+   ],
+   "id": "tx-2026-0212",
+   "last_verified": "2026-10-10",
+   "history": [
+    {
+     "date": "2026-10-10",
+     "note": "Admitted to the record. The college's own announcement carries the five rules of its framework and the dates of its three October events. It names no date for adopting the policy.",
+     "checked": true
+    }
+   ]
   }
  ]
 }

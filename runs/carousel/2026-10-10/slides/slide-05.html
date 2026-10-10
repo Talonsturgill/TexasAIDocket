@@ -1,0 +1,60 @@
+<!doctype html>
+<!-- 2026-10-10, frame 5 of 9. Archetype CLOSE_CROP. RENDERED through txthree.js in the deck's lastLight world. A person seated at the hero desk cropped at the shoulder, hands on the laptop keys in the lid's light, the blank sheet under the left hand. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+  .dek { width:880px; }
+
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">The judgment stays with the person</h1>
+<p class="dek" data-follow="28">"AI can support your work, but it should never replace your expertise, decision-making, or responsibility," the third rule reads. The first asks people to say when AI plays a meaningful role.</p>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-10-lastlawn.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Austin Community College", counter: "05 / 09", src: "c7 c5", fit: { min: 80, max: 96, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 50 });
+  TXT.ground(R, { surface: 'lawn', size: 3000, tile: 5, seed: 41 });   /* the campus lawn */
+  const desk = CH.desk({ seed: 2, open: 108 }); TXT.add(R, desk); TXT.contact(R, desk);
+  const seat = CH.seat(desk);
+  const who = K.make('person', { role: 'resident', pose: 'sit_read', seed: 3, shirt: 0x31404e, trousers: 0x23252a, skin: 0x7a5641, hat: 'none' });
+  who.position.set(seat.x, 0.15, seat.z - 0.16); who.rotation.y = Math.PI; TXT.add(R, who);
+  /* cropped at the shoulder: the head, hair and neck sit above the frame's top and are not drawn */
+  who.updateMatrixWorld(true); who.traverse((m) => { if (m.isMesh && new THREE.Box3().setFromObject(m).min.y > 1.12) m.visible = false; });
+  ((o, hex) => o.traverse((m) => { if (m.isMesh && m.material && !(m.material.sheenColor && m.material.sheenColor.getHex() === 0xff9f86)) { m.material = m.material.clone(); m.material.color.setHex(hex); if ('sheen' in m.material) m.material.sheen = 0; } }))(who, 0x1b1d22);   /* dark cotton in shadow, so the hand at the keys is the lit thing */
+  /* over the right shoulder onto the keys; the camera pitches up until the lid clears the dek */
+  let k5 = 0, top5 = 0;
+  for (; k5 < 40; k5++) { TXT.frame(R, { from: [seat.x - 0.75, 1.32 + k5 * 0.01, seat.z + 0.2 + k5 * 0.02], look: [seat.x - 0.08, 0.74 + k5 * 0.03, seat.z - 0.5] }); top5 = CH.rectOf(CH.display(desk))[1]; if (top5 >= 620) break; }
+  if (k5 === 40) throw new Error('the lid still meets the dek ' + Math.round(top5));
+  CH.grass([-30, -50, 30, 8], { count: 9000, seed: 15, avoid: [[-1, -1, 1, 1.5]] });
+  TXT.sky(R);
+  TXT.deckRig(R, CH.rigSpec(W, 3, 4096), CH.rigOpts([0, 0.7, 0], { distance: 30, shadowFar: 80 }));
+  TXT.stage(R, [desk, who], { poolInner: 1.0, poolOuter: 3.0 });
+  CH.lidLight(desk, { i: 0.18, range: 0.8 });
+  TXT.weather(R, { grime: 0.16, height: 0.22 });
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0.32, veil: 0.45, veilH: 260 });
+  CH.knock(cx, 560, 1170, 640, 170, 0.55); CH.knock(cx, 600, 1190, 560, 130, 0.55);   /* the site line sits on the seat's lit edge */
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

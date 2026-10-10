@@ -1,0 +1,267 @@
+{
+ "_note": "Every value is extracted from a claim quote by compute.py, or computed here from values that were.",
+ "posted": {
+  "value": "2026-10-09",
+  "from": [
+   "c31"
+  ],
+  "basis": "date the college posted the announcement"
+ },
+ "rules": {
+  "value": 5,
+  "from": [
+   "c5",
+   "c6",
+   "c7",
+   "c8",
+   "c9"
+  ],
+  "basis": "rules in the TRUST framework, one quoted line each"
+ },
+ "rule_names": {
+  "value": [
+   "Tell Where AI Was Used",
+   "Review Outputs",
+   "Use your Own Judgment",
+   "Safeguard Integrity",
+   "Treat IP with Respect"
+  ],
+  "from": [
+   "c5",
+   "c6",
+   "c7",
+   "c8",
+   "c9"
+  ],
+  "basis": "the rules' own names, in the post's order"
+ },
+ "framework_letters": {
+  "value": 5,
+  "from": [
+   "c1"
+  ],
+  "basis": "letters in the framework's name, read from c1, one per rule"
+ },
+ "town_hall": {
+  "value": "2026-10-12",
+  "from": [
+   "c10",
+   "c31"
+  ],
+  "basis": "date of the town hall, the year from the post"
+ },
+ "town_hall_hours": {
+  "value": 2.5,
+  "from": [
+   "c10"
+  ],
+  "basis": "length of the town hall on the clock"
+ },
+ "town_hall_campus": {
+  "value": "Rio Grande",
+  "from": [
+   "c10"
+  ],
+  "basis": "campus of the town hall"
+ },
+ "days_post_to_town_hall": {
+  "value": 3,
+  "from": [
+   "c10",
+   "c31"
+  ],
+  "basis": "days from the post to the town hall"
+ },
+ "convocation": {
+  "value": "2026-10-16",
+  "from": [
+   "c13",
+   "c31"
+  ],
+  "basis": "date of the convocation, the year from the post"
+ },
+ "convocation_hours": {
+  "value": 4.0,
+  "from": [
+   "c13"
+  ],
+  "basis": "length of the convocation on the clock"
+ },
+ "convocation_campus": {
+  "value": "Eastview",
+  "from": [
+   "c13"
+  ],
+  "basis": "campus of the convocation"
+ },
+ "days_post_to_convocation": {
+  "value": 7,
+  "from": [
+   "c13",
+   "c31"
+  ],
+  "basis": "days from the post to the convocation"
+ },
+ "seminar": {
+  "value": "2026-10-22",
+  "from": [
+   "c14",
+   "c31"
+  ],
+  "basis": "date of the seminar, the year from the post"
+ },
+ "seminar_hours": {
+  "value": 3.0,
+  "from": [
+   "c14"
+  ],
+  "basis": "length of the seminar on the clock"
+ },
+ "seminar_campus": {
+  "value": "Highland",
+  "from": [
+   "c14"
+  ],
+  "basis": "campus of the seminar"
+ },
+ "days_post_to_seminar": {
+  "value": 13,
+  "from": [
+   "c14",
+   "c31"
+  ],
+  "basis": "days from the post to the seminar"
+ },
+ "events": {
+  "value": 3,
+  "from": [
+   "c10",
+   "c13",
+   "c14"
+  ],
+  "basis": "October events the post lists"
+ },
+ "public_hours": {
+  "value": 9.5,
+  "from": [
+   "c10",
+   "c13",
+   "c14"
+  ],
+  "basis": "hours across the three events, on the clock"
+ },
+ "students": {
+  "value": 79000,
+  "from": [
+   "c20"
+  ],
+  "basis": "students the college says rely on it each year, more than",
+  "floor": true
+ },
+ "existing_documents": {
+  "value": 1,
+  "from": [
+   "c19"
+  ],
+  "basis": "documents titled as an acceptable use policy that the AI hub already links"
+ },
+ "el_paso_grade": {
+  "value": 8,
+  "from": [
+   "c27"
+  ],
+  "basis": "grade through which the El Paso ISD draft bars AI for schoolwork"
+ },
+ "richardson_vote": {
+  "value": "2026-10-15",
+  "from": [
+   "c30",
+   "c31"
+  ],
+  "basis": "date the Richardson board is expected to vote, the year from this run's post"
+ },
+ "sun_elevation": {
+  "value": 6.4,
+  "from": [
+   "c10",
+   "c31"
+  ],
+  "basis": "solar elevation in degrees over Travis County at the town hall's start, NOAA equations, one decimal"
+ },
+ "sun_azimuth_compass": {
+  "value": 257.7,
+  "from": [
+   "c10",
+   "c31"
+  ],
+  "basis": "solar azimuth in degrees clockwise from north at the same moment, one decimal"
+ },
+ "desks_drawn": {
+  "value": 79,
+  "from": [
+   "c20"
+  ],
+  "basis": "desks drawn on the count frame, one per 1,000 of the students the college says rely on it each year, floored"
+ },
+ "desk_scale": {
+  "value": 1000,
+  "from": [
+   "c20"
+  ],
+  "basis": "students each drawn desk stands for, the drawing's own rule"
+ },
+ "walk_pavers": {
+  "value": 14,
+  "from": [
+   "c31",
+   "c14"
+  ],
+  "basis": "pavers in the walk, one per calendar day from the post to the seminar, both ends counted"
+ },
+ "paver_town_hall": {
+  "value": 3,
+  "from": [
+   "c10",
+   "c31"
+  ],
+  "basis": "index of the town hall's paver, the post's day being 0"
+ },
+ "paver_convocation": {
+  "value": 7,
+  "from": [
+   "c13",
+   "c31"
+  ],
+  "basis": "index of the convocation's paver, the post's day being 0"
+ },
+ "paver_seminar": {
+  "value": 13,
+  "from": [
+   "c14",
+   "c31"
+  ],
+  "basis": "index of the seminar's paver, the post's day being 0"
+ },
+ "clock_minute_deg": {
+  "value": 180,
+  "from": [
+   "c10"
+  ],
+  "basis": "minute hand angle clockwise from twelve at the town hall's start"
+ },
+ "clock_hour_deg": {
+  "value": 195.0,
+  "from": [
+   "c10"
+  ],
+  "basis": "hour hand angle clockwise from twelve at the town hall's start"
+ },
+ "key_az_engine": {
+  "value": -77.7,
+  "from": [
+   "c10",
+   "c31"
+  ],
+  "basis": "the sun's bearing in the engine's frame, 180 minus the compass bearing"
+ }
+}

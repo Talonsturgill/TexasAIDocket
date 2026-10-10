@@ -31,6 +31,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-07 · Leander's notice that it stopped paying for plate readers is still unconfirmed. The city's site refuses every reader.
 - 2026-10-08 · Leander's notice that it stopped paying for plate readers remains unconfirmed. The city's site still refuses every reader.
 - 2026-10-09 · Leander's notice that it stopped paying for plate readers remains unconfirmed. The city's site still refuses every reader.
+- 2026-10-10 · Leander's notice that it stopped paying for plate readers stays unconfirmed, because the city's site refuses every reader.
 
 ## Evidence
 

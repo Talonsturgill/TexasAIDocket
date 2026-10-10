@@ -1,0 +1,84 @@
+{
+ "lens": "craft",
+ "round": 2,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.6,
+   "why": "Every frame rendered with light type on a dark sky; 2, 4 and 7 near the 10. Slide 5 a peg-fingered hand holding a zero thickness sheet, a mid grey sleeve; slide 8 game character figures and a black chair block; slide 9 walker the largest light mass; slide 3 middle screens alias; slide 6 desk small; slide 4 the desk top brighter than the page; slide 7 a mottled mass behind the kicker. The outdoor pool and seam barely read."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 8.0,
+   "why": "A filmstrip; one desk in one material on 8 of 9; the walk a spine and the inlay changes state; the camera move works; value holds dark with no strobe."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.5,
+   "why": "Every numeral traces; the clock reads 6:30; 'first-ever' always attributed; illustrations labelled. c18 is a medium confidence absence; slide 3's right columns run off the frame so 79 can't be checked by eye."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.5,
+   "why": "The body, framework, scale, existing document and dated events are there; who decides honestly unnamed; what changes for a student stays general; no form URL."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Cover earns a swipe, 2 pays, 4 a real turn; 5 re-reads rules; 8 restates 6's date; the close lands on an invitation rather than the turn."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.8,
+   "why": "Clean and on register; flat and institutional; the illustration disclaimer recurs on four frames."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "Fresh topic; a third last-light staged world in four days; one paver per day repeats no. 46; screen-bearing furniture echoes no. 47."
+  }
+ ],
+ "weighted_score": 7.34,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Rebuild 5, 8 and 9 so no figure is read up close, and light the outdoor frames with a real raking pool so the lawn falls to black.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 5,
+   "problem": "Peg-fingered hand, a zero thickness sheet floating over the edge, a mid grey sleeve filling the right third.",
+   "fix": "Both hands on the keys cropped at the wrist, a dark sleeve, the sheet flat on the desk with a contact shadow."
+  },
+  {
+   "slide": 8,
+   "problem": "Game character figures, cropped right-hand figures, a black chair-back block in the lower left.",
+   "fix": "Camera up and right of the hero desk so its lit top replaces the block; rows rim lit from the window as silhouettes."
+  },
+  {
+   "slide": 9,
+   "problem": "The low detail walker is the biggest light mass; the lawn evenly lit.",
+   "fix": "The desk and its paver the only pool; the walker in near silhouette with a west rim and a long shadow."
+  },
+  {
+   "slide": 3,
+   "problem": "Middle screens alias; right columns off the frame.",
+   "fix": "Far screens toward black with distance; pull back so all rows sit inside with a dark margin."
+  },
+  {
+   "slide": 6,
+   "problem": "Desk small at the left; flat lawn of repeated tufts; labels unanchored.",
+   "fix": "Camera along the walk so the desk stands at the right third; leader ticks to the inlays."
+  },
+  {
+   "slide": 4,
+   "problem": "A square-on product shot; the desk top brighter than the page; a stray arc in the bottom band.",
+   "fix": "Rake the key so the top falls off; crop upward so the bottom band leaves the frame."
+  }
+ ]
+}

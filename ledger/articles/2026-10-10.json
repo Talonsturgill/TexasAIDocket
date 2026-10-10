@@ -1,0 +1,123 @@
+{
+ "_spec": {
+  "version": 1,
+  "purpose": "A standalone web edition of the archived visual story.",
+  "law": "Facts resolve to the original verified claim record. A layout rebuild does not reverify reporting.",
+  "written_by": "daily"
+ },
+ "section": "Education",
+ "dek": {
+  "text": "Austin Community College says it is writing what it calls its first-ever AI policy. Its AI site already links a use policy PDF marked for faculty and staff. The post names no vote.",
+  "claims": [
+   "c3",
+   "c19",
+   "c18"
+  ]
+ },
+ "introduction": [
+  {
+   "text": "[Austin Community College says it is developing an AI policy in alignment with its newly launched TRUST framework](c1). [Its post says the framework is meant to help shape what it calls its first-ever AI policy](c3). [The college posted the announcement on its faculty and staff news site {{date:c31}}](c31).",
+   "claims": [
+    "c1",
+    "c3",
+    "c31"
+   ]
+  },
+  {
+   "text": "[The college's AI Resource Hub already links a PDF titled Acceptable Use of Artificial Intelligence Policy, marked for faculty and staff only](c19). The post does not say whether the new policy replaces that document or sits beside it. [It describes the policy as in development and names no adoption date, no vote and no adopting body](c18).",
+   "claims": [
+    "c19",
+    "c18"
+   ]
+  }
+ ],
+ "sections": [
+  {
+   "heading": "The rules in the framework",
+   "paragraphs": [
+    {
+     "text": "[Two collegewide AI committees developed the framework, one for strategic planning and one for implementation](c4). Each of its rules is one sentence in the post.",
+     "claims": [
+      "c4"
+     ]
+    },
+    {
+     "text": "[The first rule asks people to say so when AI plays a meaningful role in their work](c5). [Another asks them to check AI generated content carefully before they use or share it](c6). [The third says AI may support a person's work and should never replace their expertise, decision making or responsibility](c7). [One asks for honest work and real learning](c8). [The last asks for respect for copyright and for other people's creative work](c9).",
+     "claims": [
+      "c5",
+      "c6",
+      "c7",
+      "c8",
+      "c9"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "Who the college is asking",
+   "paragraphs": [
+    {
+     "text": "[The college says more than {{number:c20}} students rely on it for their education each year](c20). [It says the October events are meant to gather community feedback and build capacity to discuss AI](c2). [It invites faculty, staff, students and community members to take part in one or more of them](c16).",
+     "claims": [
+      "c20",
+      "c2",
+      "c16"
+     ]
+    },
+    {
+     "text": "[A Faculty and Student AI Town Hall is set for Monday, October 12th at the Rio Grande Campus](c10). [The college says it will cover in-progress AI policies](c11). [A faculty convocation titled The Two AIs](c12) [meets Friday, October 16th at the Eastview Campus](c13). [A community seminar on Thursday, October 22nd at the Highland Campus is a guided discussion of E. M. Forster's story The Machine Stops](c14). [The seminar is open to community members](c15). [Feedback and questions go through a form on the college's page about getting involved with generative AI](c17).",
+     "claims": [
+      "c10",
+      "c11",
+      "c12",
+      "c13",
+      "c14",
+      "c15",
+      "c17"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "What the post leaves open",
+   "paragraphs": [
+    {
+     "text": "[The post names no adoption date, no vote and no adopting body](c18). [The college's AI site already links a use policy PDF marked for faculty and staff only](c19). A reader of the post can't tell who decides between the two documents or when.",
+     "claims": [
+      "c18",
+      "c19"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "Other Texas schools this fall",
+   "paragraphs": [
+    {
+     "text": "[In a September 9th post UT Austin said new partnerships with Anthropic and OpenAI make Claude EDU and ChatGPT EDU available](c21). [It says it provides both to its entire community at no cost](c22). [Richardson ISD's draft legislative priorities list the responsible use of technology and AI first](c29). [Its board is expected to vote on them on October 15th](c30). [KFOX14 reported that an El Paso ISD draft framework would bar students through eighth grade from using AI to complete schoolwork](c27).",
+     "claims": [
+      "c21",
+      "c22",
+      "c29",
+      "c30",
+      "c27"
+     ]
+    }
+   ]
+  }
+ ],
+ "related": [
+  {
+   "id": "tx-2026-0212",
+   "label": "The record entry for Austin Community College's AI policy"
+  },
+  {
+   "id": "tx-2026-0117",
+   "label": "UT Austin's rule that every syllabus state its AI policy"
+  },
+  {
+   "id": "tx-2026-0177",
+   "label": "Richardson ISD's legislative ask on classroom AI"
+  }
+ ]
+}

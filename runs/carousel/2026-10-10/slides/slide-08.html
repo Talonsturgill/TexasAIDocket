@@ -1,0 +1,64 @@
+<!doctype html>
+<!-- 2026-10-10, frame 8 of 9. Archetype FIGURE_SCALE. RENDERED through txthree.js in the deck's lastLight light through a TXT.interior room. A town hall room seen from behind the hero desk, rows of desks with seated people turned away toward a lectern in the window's pool, a wall clock at the start time. The room is drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+  .dek { width:880px; }
+  .hook { font-variant-numeric: lining-nums; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">October&nbsp;12th, 6:30&nbsp;p.m., the town hall</h1>
+<p class="dek" data-follow="28">The college says its Faculty and Student AI Town Hall will explore in-progress AI policies. It runs until 9&nbsp;p.m. at the Rio Grande Campus. The room is drawn to illustrate.</p>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-10-lastlawn.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Austin Community College", counter: "08 / 09", src: "c10 c11", fit: { min: 80, max: 96, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 44 });
+  const RW = 13, RD = 12;
+  TXT.interior(R, { w: RW, d: RD, h: 4.0, floor: 'concrete', wall: 0x2b2824, window: 'back', windowW: 2.0, windowH: 1.2, windowI: 1.0, windowColor: 0x7a5030, ceiling: true, light: 0.12 });
+  { const pane = R.room.children.find((m) => m.isMesh && m.geometry && m.geometry.type === 'PlaneGeometry');
+    if (pane) { const cv = document.createElement('canvas'); cv.width = 512; cv.height = 320; const g = cv.getContext('2d');
+      const gr = g.createLinearGradient(0, 0, 0, 320); gr.addColorStop(0, '#0d0b14'); gr.addColorStop(0.62, '#2a1c1a'); gr.addColorStop(0.8, '#a8603a'); gr.addColorStop(0.86, '#5a3424'); gr.addColorStop(1, '#120e10'); g.fillStyle = gr; g.fillRect(0, 0, 512, 320);
+      g.fillStyle = '#16120f'; [0, 168, 336, 500].forEach((x) => g.fillRect(x, 0, 12, 320)); g.fillRect(0, 0, 512, 12); g.fillRect(0, 150, 512, 10); g.fillRect(0, 308, 512, 12);
+      const tx = new THREE.CanvasTexture(cv); tx.colorSpace = THREE.SRGBColorSpace; pane.material = new THREE.MeshBasicMaterial({ map: tx, toneMapped: false }); } }
+  const pod = K.make('podium', { mic: true, seal: false, seed: 3 }); pod.position.set(-2.6, 0, -RD / 2 + 1.6); pod.rotation.y = 0.15; TXT.add(R, pod); TXT.contact(R, pod);
+  /* the clock at the town hall's start: minute 180, hour 195 (figures.json clock_minute_deg, clock_hour_deg) */
+  const clock = K.make('wall_clock', { minute: 180, hour: 195, d: 0.75 }); clock.position.set(-0.4, 2.05, -RD / 2 + 0.1); TXT.add(R, clock);
+  const rows = K.make('student_desk_rows', { count: 18, cols: 6, pitch: [1.25, 1.35], detail: 'low', lids: 'off', footprint: true, seed: 6, top: 0x8c7c64 });
+  rows.position.set(0.3, 0, -0.6); TXT.add(R, rows);
+  const units = rows.userData.units || [];
+  let seated = 0;
+  units.forEach((u, i) => { if (i % 3 === 1) return; const p = K.make('person', { role: 'resident', pose: 'sit_read', hat: 'none', seed: 30 + i, shirt: [0x3d4752, 0x5b4a3e, 0x2f3a33, 0x6a5f55][i % 4] }); p.position.set(u[0] + rows.position.x, 0, u[1] + rows.position.z + 0.26); p.rotation.y = Math.PI; ((o, hex) => o.traverse((m) => { if (m.isMesh && m.material && !(m.material.sheenColor && m.material.sheenColor.getHex() === 0xff9f86)) { m.material = m.material.clone(); m.material.color.setHex(hex); if ('sheen' in m.material) m.material.sheen = 0; } }))(p, 0x15161a); TXT.add(R, p); seated++; });
+  if (seated < 6) throw new Error('seated ' + seated);
+  const desk = CH.desk({ seed: 2, open: 110 }); desk.position.set(-2.05, 0, 3.75); desk.rotation.y = 0.3; TXT.add(R, desk); TXT.contact(R, desk);
+  TXT.frame(R, { from: [-1.35, 1.62, 5.6], look: [-3.0, 1.2, -RD / 2] });
+  { const L = new THREE.SpotLight(0xffc890, 60, 14, 0.45, 0.6, 2); L.position.set(-2.6, 2.4, -RD / 2 + 0.4); L.target.position.set(-2.6, 0.9, -RD / 2 + 1.7); R.scene.add(L); R.scene.add(L.target); }
+  TXT.deckRig(R, CH.rigSpec(W, 14, 4096), CH.rigOpts([0, 1, -1], { distance: 30, shadowFar: 80 }));
+  CH.lidLight(desk, { i: 0.6, range: 1.4 });
+  TXT.weather(R, { grime: 0.12, height: 0.2 });
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0.32, veil: 0.45, veilH: 260 });
+  CH.knock(cx, -120, 1170, 560, 170, 0.55); CH.knock(cx, -80, 1190, 480, 130, 0.55);   /* the claim ids sit on the hero desk's lit edge */
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

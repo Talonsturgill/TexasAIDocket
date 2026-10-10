@@ -1,0 +1,77 @@
+<!doctype html>
+<!-- 2026-10-10, frame 2 of 9. Archetype DIAGRAM. RENDERED through txthree.js in the deck's lastLight world. The student desk in pure side profile on the lawn, five DOM leaders to five of its parts, each labelled with one TRUST rule's own name. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+  .dek { width:880px; }
+  .lab { font-size:26px; letter-spacing:0.04em; line-height:1.2; }
+  svg#lead { position:absolute; left:0; top:0; width:1080px; height:1350px; z-index:11; pointer-events:none; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">Five rules, one for each letter of TRUST</h1>
+<p class="dek" data-follow="28">The college says two collegewide AI committees developed the framework. Each rule is one sentence in its post. Matching each rule to a part of the desk is an illustration.</p>
+<svg id="lead" width="1080" height="1350" viewBox="0 0 1080 1350"></svg>
+<div class="lab" id="r1">TELL WHERE<br>AI WAS USED</div>
+<div class="lab" id="r2">REVIEW OUTPUTS</div>
+<div class="lab" id="r3">USE YOUR<br>OWN JUDGMENT</div>
+<div class="lab" id="r4">SAFEGUARD<br>INTEGRITY</div>
+<div class="lab" id="r5">TREAT IP<br>WITH RESPECT</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-10-lastlawn.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Austin Community College", counter: "02 / 09", src: "c4 c5 c6 c7 c8 c9", fit: { min: 80, max: 96, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 22 });
+  TXT.ground(R, { surface: 'lawn', size: 3000, tile: 5, seed: 21 });   /* the campus lawn */
+  /* the desk on the walk's first paver, the post's day */
+  const walk = CH.walk({ n: 1, inlays: [], seed: 5 });
+  const p0 = walk.userData.paver(0);
+  const desk = CH.desk({ seed: 2, open: 112 }); desk.position.set(p0[0], p0[1], p0[2]); TXT.add(R, desk); TXT.contact(R, desk);
+  TXT.frame(R, { from: [-6.0, 1.05, 2.6], look: [0, 0.78, 0.0] });
+  CH.oak(14, -30, { seed: 4 });
+  CH.grass([-30, -40, 30, 40], { count: 9000, seed: 11, avoid: [[-6, -1.2, 1.2, 1.2]] });
+  TXT.sky(R);
+  TXT.deckRig(R, CH.rigSpec(W, 4, 4096), CH.rigOpts([0, 0.5, 0], { distance: 30, shadowFar: 80 }));
+  TXT.stage(R, desk, { poolInner: 1.6, poolOuter: 4.0 });
+  CH.lidLight(desk, { i: 0.5, range: 1.2 });
+  TXT.weather(R, { grime: 0.18, height: 0.22 });
+  /* five rules, five leaders (figures.json rules): each label to the part it points at */
+  const RULES = 5;
+  const lp = desk.userData.laptop, sh = desk.userData.sheet, seat = CH.seat(desk);
+  desk.updateMatrixWorld(true);
+  const wp = (o, d) => { const v = new THREE.Vector3(d[0], d[1], d[2]).applyMatrix4(o.matrixWorld); return [v.x, v.y, v.z]; };
+  const scr = CH.display(desk);
+  const targets = [wp(scr, [0, 0, 0]), wp(sh, [0, 0.002, 0]), [seat.x, seat.y + 0.03, seat.z], wp(lp, [0.0, 0.006, 0.1]), wp(desk, [0, 0.12, 0.15])];
+  const spots = [[80, 520, 'r'], [80, 990, 'r'], [790, 870, 'l'], [770, 640, 'l'], [770, 1110, 'l']];
+  const svg = document.getElementById('lead');
+  if (targets.length !== RULES) throw new Error('rules ' + targets.length);
+  targets.forEach((t, i) => {
+    const el = document.getElementById('r' + (i + 1)), sp = spots[i];
+    el.style.top = sp[1] + 'px'; el.style.left = (sp[2] === 'l' ? Math.min(sp[0], 1000 - el.getBoundingClientRect().width) : sp[0]) + 'px';
+    const q = CH.project(THREE, R, t), b = el.getBoundingClientRect();
+    const fx = sp[2] === 'r' ? b.right + 12 : b.left - 12, fy = b.top + b.height / 2;
+    CH.leader(svg, [fx, fy], [q[0], q[1]]);
+  });
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0.3, veil: 0.45, veilH: 300 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

@@ -42,6 +42,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-03 · The county's July 14th minutes record approval of Resolution 010-26 on limited county authority over emerging technologies. It includes data centers and battery storage facilities. Four voted for and none against. The minutes do not carry the cited judge quotations or detailed resolution requests. Those KLTV and Lufkin Daily News claims remain unconfirmed because live robots rules exclude project readers. No claim-verification date was advanced.
 - 2026-10-04 · The court's own minutes of its July 14th session now carry the vote. They record the motion to approve Resolution 010-26 and no member voting against it.
 - 2026-10-07 · The county's own minutes still record the resolution asking the state for authority over data centers.
+- 2026-10-10 · Angelina County's resolution asking the state for authority over data centers is unconfirmed today. Both published accounts bar automated readers.
 
 ## Evidence
 

@@ -1,0 +1,230 @@
+{
+ "weighted_score": 7.12,
+ "judges": [
+  6.92,
+  6.85,
+  7.28
+ ],
+ "spread": 0.43,
+ "criteria": {
+  "artwork_craft": {
+   "score": 6.0,
+   "weight": 0.22,
+   "judges": [
+    6.0,
+    6.0,
+    6.5
+   ]
+  },
+  "deck_coherence": {
+   "score": 7.5,
+   "weight": 0.12,
+   "judges": [
+    7.5,
+    6.5,
+    7.5
+   ]
+  },
+  "claim_integrity": {
+   "score": 8.5,
+   "weight": 0.2,
+   "judges": [
+    7.5,
+    8.5,
+    8.5
+   ]
+  },
+  "story_and_stakes": {
+   "score": 7.5,
+   "weight": 0.16,
+   "judges": [
+    7.5,
+    7.5,
+    7.5
+   ]
+  },
+  "sequence_and_momentum": {
+   "score": 7.0,
+   "weight": 0.1,
+   "judges": [
+    7.0,
+    7.0,
+    7.0
+   ]
+  },
+  "voice": {
+   "score": 7.0,
+   "weight": 0.1,
+   "judges": [
+    7.0,
+    7.0,
+    7.0
+   ]
+  },
+  "variety": {
+   "score": 6.0,
+   "weight": 0.1,
+   "judges": [
+    6.0,
+    4.5,
+    6.5
+   ]
+  }
+ },
+ "hard_fails": [],
+ "hard_fails_by_judge": [],
+ "ship": false,
+ "threshold": 8.0,
+ "over_threshold": false,
+ "method": "per-criterion median across three judges, then weighted by the rubric",
+ "threshold_dissents": [
+  "judge 1 refused on the threshold, not on a fault, and scored 6.92 against a 8.0 bar. That dissent is carried in the median",
+  "judge 2 refused on the threshold, not on a fault, and scored 6.85 against a 8.0 bar. That dissent is carried in the median",
+  "judge 3 refused on the threshold, not on a fault, and scored 7.28 against a 8.0 bar. That dissent is carried in the median"
+ ],
+ "threshold_dissents_by_judge": [
+  {
+   "judge": 1,
+   "score": 6.92,
+   "reason": "judge 1 refused on the threshold, not on a fault, and scored 6.92 against a 8.0 bar. That dissent is carried in the median"
+  },
+  {
+   "judge": 2,
+   "score": 6.85,
+   "reason": "judge 2 refused on the threshold, not on a fault, and scored 6.85 against a 8.0 bar. That dissent is carried in the median"
+  },
+  {
+   "judge": 3,
+   "score": 7.28,
+   "reason": "judge 3 refused on the threshold, not on a fault, and scored 7.28 against a 8.0 bar. That dissent is carried in the median"
+  }
+ ],
+ "contested": [
+  "variety"
+ ],
+ "artwork_weakest_frames": [
+  {
+   "slide": 5,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Camouflage scalp behind the kicker and hook, sausage hand, brown mid tone field.",
+     "fix": "Camera to desk height, crop to forearm and hands at the keys, no head in the top half, lid the one source, near black field."
+    },
+    {
+     "judge": 2,
+     "problem": "Mannequin head under the kicker and hook, a detached pink hand, a flat warm brown field, a mid tone frame.",
+     "fix": "Over the right shoulder with the head out of frame, both hands in the lid's light, the lawn and near black sky behind the lid."
+    },
+    {
+     "judge": 3,
+     "problem": "Low poly head crosses the kicker, mitten hands, brown mid tone field.",
+     "fix": "Over the shoulder crop with the head out of frame left and above the type band; sky to near black."
+    }
+   ]
+  },
+  {
+   "slide": 8,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Flat brown rectangle reads as a placeholder; no window; mannequins; near chair a black slab.",
+     "fix": "A modelled window with mullions, sill and the warm seam beyond, the room's one source, the lectern in its pool."
+    },
+    {
+     "judge": 2,
+     "problem": "Collar clips on the figures, a blank brown rectangle as the biggest lit area, no window.",
+     "fix": "A sill height window of last light on the left as the one source; remove the collar mesh or recrop to shoulders in shadow."
+    },
+    {
+     "judge": 3,
+     "problem": "White collar tab on every seated figure; the window reads as a blank brown board, so the room's light has no source.",
+     "fix": "Remove the collar tab; model the back wall rectangle as a real window with mullions and a warm exterior whose light rakes the lectern and floor."
+    }
+   ]
+  },
+  {
+   "slide": 4,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Blown white bottom third, floating laptop, unreadable sheet.",
+     "fix": "Key off the desk top, contact shadow under the laptop, the lid's shadow across the sheet's edge."
+    },
+    {
+     "judge": 2,
+     "problem": "Mid grey desk top fills the bottom 40 percent, a bright strip past the desk's edge, a plum gradient behind the lid, a product shot.",
+     "fix": "Drop the camera and tilt up so the lawn and seam show over the lid, crop the desk top into shadow, the sheet ends on the desk, the page toward L* 70."
+    },
+    {
+     "judge": 3,
+     "problem": "Pale desktop floods the lower third, sheet a white bar, laptop hovers.",
+     "fix": "Narrow the key to a pool under the laptop, contact shadows under its feet, sheet turned off axis."
+    }
+   ]
+  },
+  {
+   "slide": 9,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Desk under a fifth of the frame; mannequin walker with white hair beside the desk.",
+     "fix": "Camera low and close behind the walker, desk a third of the frame, walker cropped to legs and shoes."
+    },
+    {
+     "judge": 2,
+     "problem": "Walker's hair a pale block, oak foliage under the hook.",
+     "fix": "Push the oak into a silhouette, a dark hair or cap material on the walker."
+    },
+    {
+     "judge": 3,
+     "problem": "Mannequin walker with a white column of hair; walker and desk under a third of the frame.",
+     "fix": "Dark hair or a hood; camera in so walker and desk fill a third of the frame; vary the tufts."
+    }
+   ]
+  },
+  {
+   "slide": 3,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "Far lids alias, uniformly bright, the block a busy grey grid.",
+     "fix": "Cut the instanced lids to the planned low level and mip the far rows so only the hero lid reads bright."
+    },
+    {
+     "judge": 3,
+     "problem": "Far lids alias into moire; hero small.",
+     "fix": "Plain low emissive on the instanced far lids; hero forward and larger, at least 400 px tall."
+    }
+   ]
+  },
+  {
+   "slide": 6,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Pavers as floating plywood, inlays flat red, desk small.",
+     "fix": "Sink pavers flush with dark soil joints, low roughness inlays with one specular streak, desk a third of the frame tall."
+    },
+    {
+     "judge": 3,
+     "problem": "Desk small at lower left, right half empty lawn with floating labels.",
+     "fix": "Lower and push the camera along the walk; labels against their inlays."
+    }
+   ]
+  }
+ ],
+ "rounds_derived": 1,
+ "rounds": 1,
+ "rounds_source": "this module's own log of cards it has scored",
+ "rounds_declared": 1,
+ "rung": 8.0,
+ "work_order": "no judge found a hard fail, and the median 7.12 is under this round's rung of 8.0. KEEP EDITING: fix the judges' named defects, re-render and re-score. At the round cap the finished deck ships whatever it scored. Start with the frames the judges charge the art for, in this order, slides 5, 8, 4, 9, 3, 6 (`artwork_weakest_frames`), one concrete change each",
+ "craft_floor": "pending, because a deck under its rung is sent back by the work order first"
+}

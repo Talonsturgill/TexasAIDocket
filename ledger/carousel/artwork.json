@@ -2974,6 +2974,60 @@
     "hex": "#0E1220",
     "note": "The deck's declared haze behind the render."
    }
+  },
+  {
+   "date": "2026-10-10",
+   "carousel_no": 48,
+   "written_from": "deck_coherence's median L* per frame at 432 px off the final renders, layout_check's accent share, by out/2026-10-10/update_ledgers.py.",
+   "register": "RENDERED, NOT PRINTED. A staged lastLight deck on a campus lawn (key az -77.7 el 6.4 from the computed sun, ground #0B0A10) declared once in assets/js/deck/2026-10-10-lastlawn.js. One hero, the kit student_desk with its laptop lit and a blank sheet, on all nine frames. Chassis models for a paver walk with granite inlays (one paver per day), a policy sheet, a paperback and a wall clock.",
+   "structural_laws": [
+    "A GRID COUNT NEEDS ITS UNITS LIT. With the block's lids dark the piece count read the lawn and the desks as one or two pieces, so the lids stay lit low and the far screens alias. The machine queue carries it at repeat 2.",
+    "A LIT MATERIAL IN THE ACCENT DRIFTS UNDER A LOW KEY. The granite printed as an unlit material at its hex, which reads as flat paint.",
+    "A KIT FIGURE READ UP CLOSE IS A MANNEQUIN. Two panel rounds named the figures on 5, 8 and 9, and the cure was the crop and the silhouette, never the material.",
+    "A CAMERA THAT PITCHES DOWN ONTO A DESK PUTS THE LID THROUGH THE DEK. A loop that pitches up until the lid's projected top clears the dek band ends the fight."
+   ],
+   "techniques": [
+    "the desk three quarter on the first paver of a walk across a dark lawn, the granite inlay three pavers ahead",
+    "the desk in profile on one paver with five rule labels on DOM leaders to its parts",
+    "79 desks with low lit lids in six columns, the hero apart in its own pool, the count asserted in the frame",
+    "the laptop square to the camera from above, its lit page carrying the title of the existing PDF",
+    "over the shoulder of a seated person cropped at the shoulder, a hand at the trackpad, the blank sheet on the desk",
+    "the walk of fourteen pavers from a raised camera, three granite inlays with their dates on the open lawn",
+    "the desk side-on on the last paver, the laptop shut with a paperback on it",
+    "a dark town hall room from behind the hero desk, the audience in silhouette, a clock at 6:30 beside the window",
+    "the desk side-on on the town hall paver with its seat empty and turned to the reader"
+   ],
+   "value": {
+    "per_frame_median_L": [
+     11.9,
+     3.2,
+     7.0,
+     5.0,
+     3.6,
+     9.5,
+     8.6,
+     6.1,
+     4.8
+    ],
+    "deck_median_L": 6.1,
+    "max_adjacent_delta": 8.7,
+    "mean_adjacent_delta": 3.31,
+    "note": "Measured by deck_coherence's median_lstar at 432 px off the final renders. A near black staged deck."
+   },
+   "accent": {
+    "hex": "#9A3B2A",
+    "name": "sunset granite",
+    "frames_above_floor": [
+     1,
+     6,
+     7
+    ],
+    "note": "The granite inlays on the event days of the walk."
+   },
+   "ground": {
+    "hex": "#0B0A10",
+    "note": "The deck's declared ground behind the render."
+   }
   }
  ]
 }

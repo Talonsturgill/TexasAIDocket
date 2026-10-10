@@ -1,0 +1,79 @@
+{
+ "lens": "reader",
+ "round": 3,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 7.0,
+   "why": "Dark register throughout; a carefully modelled hero owning 1, 2, 7 and 9; 4 clean and bold. Short of the 10 on 8 (mannequins, the cite line on the near laptop), 3 (far lid moire, flat lawn), 9 (grey slabs behind the desk), 5 (mitten hand, flat sleeve) and 6 (desk small, grey-green lawn)."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 8.0,
+   "why": "One deck on the contact sheet; one hero, one key, the inlay changes state, the walk a spine; 8 declared; 5's sky slightly cooler."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.5,
+   "why": "Every fact traces to a primary ACC page; 79 and fourteen computed; 'first-ever' held as the college's word. 'Two committees' a reading; slide 6 shows 13 pavers in frame."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.0,
+   "why": "What, who, where, when and the tension; what the policy governs stays general; slide 9 names no event, time or place and the form has no URL."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "2 pays, 4 a real turn, 7 lands; the cover a label; 5 goes back after the turn; 6 and 8 overlap."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "Clean and local; the caption's closing question good; the disclaimers read as compliance notes; one designer's headline."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "First community college deck and a new instrument; familiar moves from nos. 46, 47 and 43."
+  }
+ ],
+ "weighted_score": 7.32,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Make slide 9 the reader's actual next step, naming the October 22nd seminar's time and place, and put the form's URL in the first comment.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 8,
+   "problem": "Low poly mannequins lit enough to read as dolls; the cite line on the near laptop.",
+   "fix": "Backlight the room so the figures are pure silhouettes; crop the hero laptop off the corner."
+  },
+  {
+   "slide": 3,
+   "problem": "Moire on the middle and far lids; a flat lawn under stamped tufts.",
+   "fix": "Plain dim far lids; fog past the sixth row."
+  },
+  {
+   "slide": 9,
+   "problem": "Grey slabs behind the desk read as a broken staircase.",
+   "fix": "Camera on the walk's axis or the out-of-pool pavers dropped below the light."
+  },
+  {
+   "slide": 5,
+   "problem": "A mitten hand and a flat black sleeve.",
+   "fix": "Tighter crop to lit knuckles and a cuff; a rim from the lid along the sleeve."
+  },
+  {
+   "slide": 6,
+   "problem": "Desk small; grey-green lawn; 13 pavers in frame.",
+   "fix": "Pull back so all fourteen are in frame; the lawn outside the pool to near black."
+  }
+ ]
+}

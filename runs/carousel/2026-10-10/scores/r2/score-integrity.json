@@ -1,0 +1,74 @@
+{
+ "lens": "integrity",
+ "round": 2,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.5,
+   "why": "1, 3, 6 and 7 strong. 5 a mannequin sleeve with a doll hand, sheet overhanging the edge; 8 low poly faceless figures; 9 a mannequin walker; 4 a laptop on a blown white top against a navy void, off its CRAFT PLAN, 21 px title."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "One hero on every frame, one night lawn and west key, the inlay changes state; 4 a void and 8's figures match nothing else."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.5,
+   "why": "Every numeral traces and the pavers were counted. c19's label is most naturally an access label on a gated PDF nobody opened; frame 4 renders it as 'a faculty and staff document' and the web edition as 'written for faculty and staff', set beside 'first-ever'. Minor: copy.json S4 body lacks a sentence; an aggregates note says '1,000 desks per student'."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.5,
+   "why": "What, who built it, where, the missing adopting body and dated next steps; 79,000 is scale without consequence."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Plain cover; 2 pays; turn at 4; 5 re-quotes rule three; 8 returns after 7 ends the walk; the close lands on an action."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Restrained and specific; house rules clean; disclaimers read like a machine talking to itself."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Fresh subject and instrument; one object per day repeats nos. 46 and 41; the isotype field repeats no. 43; follows no. 47's beat."
+  }
+ ],
+ "weighted_score": 7.13,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Rebuild 5, 8 and 9 without mannequins, put 4 back on the lawn, and rewrite frame 4's dek to 'a staff-only PDF titled ...'.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 5,
+   "problem": "Mannequin sleeve with a doll hand pointing; the sheet overhangs the edge into the void.",
+   "fix": "Tight crop of two hands on the keyboard, sleeves cut at the wrist, the sheet flat on the desk with a contact shadow."
+  },
+  {
+   "slide": 8,
+   "problem": "Low poly faceless figures read as game NPCs; the hero desk cropped and flat lit.",
+   "fix": "Remove the figures; empty chairs raked by the window's last light toward the lectern; the hero's lid the only practical."
+  },
+  {
+   "slide": 9,
+   "problem": "Mannequin walker with a smeared head, feet straddling the paver edge.",
+   "fix": "Drop the figure; a single long cast shadow of an off-frame person across the pavers toward the desk."
+  },
+  {
+   "slide": 4,
+   "problem": "Laptop on a blown white top against a navy void; a 21 px title.",
+   "fix": "Camera back to eye 1.0 m with the lawn and seam beyond the lid; desk top exposure down; title at 24 px or larger."
+  }
+ ]
+}

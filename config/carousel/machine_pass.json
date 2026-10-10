@@ -1,41 +1,48 @@
 {
- "last_pass": "2026-10-07",
+ "last_pass": "2026-10-10",
  "themes": [
   {
    "theme": "largest object unmodelled (slab, bare wall, clean clay)",
-   "runs": 7,
-   "rounds": 25,
+   "runs": 6,
+   "rounds": 18,
    "action": "fixed in part",
-   "what": "No. 45's hull, the top ranked artwork defect in all three panel rounds ('a flat slab hull with a stepped deckhouse', 'reads as a lighthouse on 2'), is lifted into assets/js/kit/vehicles.js as autonomous_vessel at the judges' named fix: sheer, bow flare, bulwark, stanchions, a chamfered deckhouse, a lattice mast with sensor arms and radomes, one matte plate. keel_block_line moved with it and riprap_bank went into landscape.js as quarried stone. Replayed through no. 45's own slides 2, 3 and 5, sizes.py 115 of 115. The objects differ per deck, so the theme stays open."
+   "what": "No. 47's workstation_cart, whose monitor back every judge named in every round ('a flat monitor back with no leak', 'a primitive vented monitor back'), is lifted into assets/js/kit/interior.js at the judges' named fix: a moulded rear tapering to a raised bay, louvre vents, a VESA plate on a tilt bracket, a cable run and a cool leak round the housing, the battery with seams, grip, latch and label. Replayed through no. 47's own slides 1, 3 and 4, sizes.py 116 of 116. The objects differ per deck, so the theme stays open."
   },
   {
    "theme": "primitive or low-poly model where a kit model belongs",
-   "runs": 7,
-   "rounds": 24,
+   "runs": 6,
+   "rounds": 18,
    "action": "fixed in part",
-   "what": "The same lift: three models no. 45 built in its chassis are now the kit's. dry_van, delineator and raised_pavement_marker deferred a fourth time, UPGRADE_BACKLOG 2026-10-07 item 4."
+   "what": "The same lift. precast_barrier and galv_column stay in no. 47's chassis; turboprop_caravan and the aviation set (no. 46's round 3 craft fix) and dry_van deferred, not refused, UPGRADE_BACKLOG 2026-10-10 item 5."
   },
   {
-   "theme": "qa reads a glyph run or halo as a rule (queue qa-glyph-run-as-rule)",
+   "theme": "the digest's ranked artwork defects were empty (found by this pass, not a judge theme)",
+   "runs": 7,
+   "rounds": null,
+   "action": "fixed",
+   "what": "week_digest.py read only artwork_defects and every judge card since 2026-10-03 ranks under artwork_weakest_frames, so the brief's first input was an empty heading for five passes. It now reads the current key and the older names, and says when a run ranked nothing. Live replay: 7 of 7 runs ranked for the week of October 9th, 0 of 7 under the old key."
+  },
+  {
+   "theme": "GRID piece count reads a lit floor as the subject (queue grid-piece-count-reads-lit-ground-as-subject and grid-ground-from-whole-outside)",
+   "runs": 4,
+   "rounds": null,
+   "action": "escalated",
+   "what": "Queue repeat 2, which made this pass due (nos. 43, 46, 47, 48). Three readings of the rect's own ground were built and measured; each failed a fixture (two split one lump into several pieces, which loosens the gate, the third merged dense units), so layout_check.py was reverted unchanged. The robust count is the scene's, a proposal for the engine and render.py, UPGRADE_BACKLOG 2026-10-10 item 3. The digest's word themes do not count this one, so its rounds are not counted."
+  },
+  {
+   "theme": "article test screenshots a fixed date (queue article-test-screenshots-fixed-path)",
    "runs": 3,
    "rounds": null,
    "action": "escalated",
-   "what": "Queue repeat 2 (nos. 40, 41, 45), which made this pass due. .claude/skills/carousel-engine/qa.py is a maintainer's edit. Mechanism read in canvas_rules and a proposal with its self-test cases written, UPGRADE_BACKLOG 2026-10-07 item 2. The digest's word themes do not count this one, so its rounds are not counted."
+   "what": "Queue repeat 2 (nos. 44, 46, 47). tests/article_edition.mjs is human lane, UPGRADE_BACKLOG 2026-10-10 item 4."
   },
   {
-   "theme": "render artifact (banding, aliasing, facets, stripes)",
-   "runs": 7,
-   "rounds": 21,
+   "theme": "no contact, dirt or grime where things meet the ground; object in a void; render artifact",
+   "runs": 6,
+   "rounds": 14,
    "action": "escalated",
-   "what": "Engine (human), the 2026-10-06 grade-in-float proposal carried, UPGRADE_BACKLOG 2026-10-07 item 3."
-  },
-  {
-   "theme": "no contact, dirt or grime where things meet the ground",
-   "runs": 7,
-   "rounds": 20,
-   "action": "escalated",
-   "what": "Engine (human), UPGRADE_BACKLOG 2026-10-07 item 3."
+   "what": "Engine (human), carried with this week's counts (contact 6 runs and 14 rounds, void 5 and 13, render artifact 5 and 13)."
   }
  ],
- "note": "Written by the weekly machine pass (prompts/daily_routine.md Phase 17) when it ships. Read by scripts/carousel/machine_due.py. Run and round counts are from scripts/carousel/week_digest.py --date 2026-10-07."
+ "note": "Written by the weekly machine pass (prompts/daily_routine.md Phase 17) when it ships. Read by scripts/carousel/machine_due.py. Run and round counts are from scripts/carousel/week_digest.py --date 2026-10-10, except where rounds is null."
 }

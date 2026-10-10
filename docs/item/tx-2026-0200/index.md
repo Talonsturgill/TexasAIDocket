@@ -11,7 +11,7 @@ Emails obtained by The Texas Tribune and ProPublica show Texas Education Agency 
 - Public access: Public meeting
 - Take part: https://fdisd.com/page/board-meetings
 
-- Last checked: 2026-10-07
+- Last checked: 2026-10-10
 
 ## Dates
 
@@ -24,6 +24,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 
 - 2026-10-04 · Admitted on The Texas Tribune and ProPublica's account of the agency emails and the district pilots. The State Board of Education's own minutes of its June 2025 charter vetoes are cited beside it.
 - 2026-10-07 · The Tribune's account and the state board's own minutes still read as cited, and the board's vote against the charter stands.
+- 2026-10-10 · The board's vote against the Alpha charter stands, and its minutes and the Tribune's account read as cited.
 
 ## Evidence
 

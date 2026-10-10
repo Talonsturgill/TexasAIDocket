@@ -46,6 +46,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-07 · The two House committees' interim hearings are still unconfirmed on the Legislature's own pages, which bar automated readers.
 - 2026-10-08 · The two House committees' interim hearings remain unconfirmed on the Legislature's own pages, which still bar automated readers.
 - 2026-10-09 · The two House committee hearings remain unconfirmed on the Legislature's own pages, which still bar automated readers.
+- 2026-10-10 · The two House committee hearings stay unconfirmed on the Legislature's own pages, which bar automated readers.
 
 ## Evidence
 

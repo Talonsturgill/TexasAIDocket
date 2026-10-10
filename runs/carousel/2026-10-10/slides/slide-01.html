@@ -1,0 +1,55 @@
+<!doctype html>
+<!-- 2026-10-10, frame 1 of 9. Archetype FULL_BLEED. RENDERED through txthree.js in the deck's lastLight world. The kit student desk whole on the first limestone paver of a walk across a dark campus lawn, its lid lit and a blank sheet beside the laptop, the granite inlaid paver of the town hall's day three pavers ahead. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+  .dek { width:880px; }
+
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">An Austin college is writing AI policy</h1>
+<p class="dek" data-follow="28">Austin Community College says it is developing what it calls its "first-ever" AI policy. A framework called TRUST is meant to help shape it. The post is dated October&nbsp;9th. The desk and the walk are drawn to illustrate.</p>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-10-lastlawn.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Austin Community College", counter: "01 / 09", src: "c1 c3 c31", fit: { min: 80, max: 96, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 36 });
+  TXT.ground(R, { surface: 'lawn', size: 3000, tile: 5, seed: 3 });   /* the campus lawn, gone black past the pool */
+  /* the walk, one paver per day from the post; the town hall's day carries the granite (figures.json paver_town_hall) */
+  const TOWN_HALL = 3;
+  const walk = CH.walk({ n: 8, inlays: [TOWN_HALL], seed: 5 });
+  const desk = CH.desk({ seed: 2, open: 112 });
+  const p0 = walk.userData.paver(0); desk.position.set(p0[0], p0[1], p0[2]); desk.rotation.y = 1.05; TXT.add(R, desk); TXT.contact(R, desk);
+  TXT.frame(R, { from: [1.25, 1.42, 2.95], look: [-0.45, 0.55, -2.1] });
+  CH.oak(16, -38, { seed: 7 });
+  CH.grass([-30, -60, 30, 6], { count: 16000, seed: 6, avoid: [[-0.75, -9.5, 0.75, 0.6]] });
+  TXT.sky(R);
+  TXT.deckRig(R, CH.rigSpec(W, 6, 4096), CH.rigOpts([0, 0.5, -1.5], { distance: 30, shadowFar: 80 }));
+  TXT.stage(R, [desk, walk], { poolInner: 2.6, poolOuter: 6.0 });
+  CH.lidLight(desk, { i: 0.3, range: 1.0 });
+  TXT.weather(R, { grime: 0.18, height: 0.22 });
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0.3, veil: 0.45, veilH: 300 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>
