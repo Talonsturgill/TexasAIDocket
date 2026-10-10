@@ -2366,7 +2366,7 @@
      "fetched": "2026-10-08"
     }
    ],
-   "last_verified": "2026-10-09",
+   "last_verified": "2026-10-10",
    "confidence": "high",
    "notes_for_editor": "This is an infrastructure item rather than a decision, and the docket may prefer to use the feed as a collector and not publish it as an item. Keeping it has one strong argument: it tells a reader where the calendar actually lives, which is the single most useful thing this docket can hand someone who wants to participate. Its dates are the spine of the recurring collector.",
    "history": [
@@ -2524,6 +2524,11 @@
     {
      "date": "2026-10-09",
      "note": "Checked and unchanged. Still open, with no dated movement.",
+     "checked": true
+    },
+    {
+     "date": "2026-10-10",
+     "note": "The commission's open meeting calendar still publishes as a live feed, with meetings listed well into next year.",
      "checked": true
     }
    ]
@@ -3412,6 +3417,10 @@
     {
      "date": "2026-10-09",
      "note": "Williamson County's abatement for Compal's Georgetown center is unconfirmed today, because the county's site refused the request."
+    },
+    {
+     "date": "2026-10-10",
+     "note": "Williamson County's abatement for Compal's Georgetown plant stays unconfirmed today, because the county's site refused the request again."
     }
    ],
    "unreachable": {
@@ -4623,6 +4632,10 @@
     {
      "date": "2026-10-09",
      "note": "Guadalupe County's end of its plate reader contract remains unconfirmed. Its minutes and both published accounts still bar automated readers."
+    },
+    {
+     "date": "2026-10-10",
+     "note": "Guadalupe County's end of its plate reader contract stays unconfirmed. Its minutes and both published accounts bar automated readers."
     }
    ],
    "unreachable": {
@@ -5902,6 +5915,10 @@
     {
      "date": "2026-10-09",
      "note": "Archer County's denial of the data center abatement remains unconfirmed. The one published account still bars automated readers."
+    },
+    {
+     "date": "2026-10-10",
+     "note": "Archer County's denial of the data center abatement stays unconfirmed, since the one published account bars automated readers."
     }
    ],
    "unreachable": {
@@ -6095,6 +6112,10 @@
      "date": "2026-10-07",
      "note": "The county's own minutes still record the resolution asking the state for authority over data centers.",
      "checked": true
+    },
+    {
+     "date": "2026-10-10",
+     "note": "Angelina County's resolution asking the state for authority over data centers is unconfirmed today. Both published accounts bar automated readers."
     }
    ],
    "unreachable": {
@@ -6295,6 +6316,10 @@
     {
      "date": "2026-10-09",
      "note": "Lubbock County's disclosure resolution remains unconfirmed. The one published account still bars automated readers."
+    },
+    {
+     "date": "2026-10-10",
+     "note": "Lubbock County's disclosure resolution stays unconfirmed, since the one published account bars automated readers."
     }
    ],
    "unreachable": {
@@ -6492,6 +6517,10 @@
      "date": "2026-10-07",
      "note": "The abatement Carson County approved still stands, and the developer's own quarterly filing still describes the project as it did.",
      "checked": true
+    },
+    {
+     "date": "2026-10-10",
+     "note": "Carson County's abatement for the Fermi America project is unconfirmed today, because the published account bars automated readers."
     }
    ],
    "unreachable": {
@@ -8042,6 +8071,10 @@
     {
      "date": "2026-10-09",
      "note": "Conroe's plate camera ballot question remains unconfirmed. The city's minutes and both accounts still bar automated readers."
+    },
+    {
+     "date": "2026-10-10",
+     "note": "Conroe's plate camera ballot question stays unconfirmed. The city's minutes and both accounts bar automated readers."
     }
    ],
    "unreachable": {
@@ -11445,6 +11478,10 @@
     {
      "date": "2026-10-09",
      "note": "The two House committee hearings remain unconfirmed on the Legislature's own pages, which still bar automated readers."
+    },
+    {
+     "date": "2026-10-10",
+     "note": "The two House committee hearings stay unconfirmed on the Legislature's own pages, which bar automated readers."
     }
    ],
    "unreachable": {
@@ -14382,6 +14419,10 @@
     {
      "date": "2026-10-09",
      "note": "The AI training requirement for state and local employees remains unconfirmed on the bill page, which still bars automated readers."
+    },
+    {
+     "date": "2026-10-10",
+     "note": "The AI training requirement for state and local employees stays unconfirmed on the bill page, which bars automated readers."
     }
    ],
    "unreachable": {
@@ -15952,6 +15993,10 @@
     {
      "date": "2026-10-09",
      "note": "The RELLIS abatement assignment is still unconfirmed. The county's notice refused the request again today."
+    },
+    {
+     "date": "2026-10-10",
+     "note": "The RELLIS abatement assignment stays unconfirmed. The county's notice refused the request again."
     }
    ],
    "unreachable": {
@@ -18149,6 +18194,10 @@
     {
      "date": "2026-10-09",
      "note": "The state technology agency's page on carrying out the AI laws remains unconfirmed. Its site still bars automated readers."
+    },
+    {
+     "date": "2026-10-10",
+     "note": "The state technology agency's page on carrying out the AI laws stays unconfirmed, since its site bars automated readers."
     }
    ],
    "unreachable": {
@@ -19319,6 +19368,10 @@
     {
      "date": "2026-10-09",
      "note": "The pedestrian face capture trial at the Progreso bridge remains unconfirmed. The department's feature still refuses every reader."
+    },
+    {
+     "date": "2026-10-10",
+     "note": "The pedestrian face capture trial at the Progreso bridge stays unconfirmed, because the department's feature refuses every reader."
     }
    ],
    "unreachable": {
@@ -20295,6 +20348,10 @@
     {
      "date": "2026-10-09",
      "note": "Whether Frontera's queues closed for good as scheduled remains unconfirmed. The center's pages still bar automated readers."
+    },
+    {
+     "date": "2026-10-10",
+     "note": "Whether Frontera's queues closed for good on schedule stays unconfirmed. The center's pages bar automated readers."
     }
    ],
    "unreachable": {
@@ -20432,6 +20489,10 @@
     {
      "date": "2026-10-09",
      "note": "Whether Brownsville's commission has voted on the temporary moratorium is unconfirmed, because the city's site refused the request."
+    },
+    {
+     "date": "2026-10-10",
+     "note": "Whether Brownsville's commission has voted on the temporary moratorium stays unconfirmed, because the city's site refused the request."
     }
    ],
    "unreachable": {
@@ -23450,6 +23511,10 @@
      "date": "2026-10-07",
      "note": "The radiologists' published review and its Texas affiliations read as indexed, with nothing changed.",
      "checked": true
+    },
+    {
+     "date": "2026-10-10",
+     "note": "The radiologists' published review is unconfirmed today, because the index that carries its abstract bars automated readers."
     }
    ]
   },
@@ -23598,6 +23663,10 @@
      "date": "2026-10-07",
      "note": "The MRI study's published abstract and its author affiliations read as they did, with nothing changed.",
      "checked": true
+    },
+    {
+     "date": "2026-10-10",
+     "note": "The MRI study's abstract and its author affiliations are unconfirmed today, because the index that carries them bars automated readers."
     }
    ]
   },
@@ -25095,6 +25164,10 @@
     {
      "date": "2026-10-09",
      "note": "The fetal movement trial's registry record remains unconfirmed. The registry still bars automated readers."
+    },
+    {
+     "date": "2026-10-10",
+     "note": "The fetal movement trial's registry record stays unconfirmed, since the registry bars automated readers."
     }
    ],
    "unreachable": {
@@ -25294,6 +25367,10 @@
     {
      "date": "2026-10-09",
      "note": "The sheriff's posted promise remains unconfirmed on the county's agenda, which bars automated readers. The published account of the reallocation still reads as cited."
+    },
+    {
+     "date": "2026-10-10",
+     "note": "The sheriff's posted promise stays unconfirmed on the county's agenda, which bars automated readers, and the county's archive refused the request."
     }
    ],
    "last_verified": "2026-09-26",
@@ -25459,6 +25536,10 @@
     {
      "date": "2026-10-09",
      "note": "Whether the clerk's request for AI written minutes is still before the court remains unconfirmed. The agenda still bars automated readers."
+    },
+    {
+     "date": "2026-10-10",
+     "note": "Whether the clerk's request for AI written minutes is still before the court stays unconfirmed. The agenda bars automated readers."
     }
    ],
    "last_verified": "2026-09-26",
@@ -25615,6 +25696,10 @@
     {
      "date": "2026-10-09",
      "note": "Whether Hays County has adopted a policy on AI in surveillance remains unconfirmed. The posted agenda still bars automated readers."
+    },
+    {
+     "date": "2026-10-10",
+     "note": "Whether Hays County has adopted a policy on AI in surveillance stays unconfirmed, since the posted agenda bars automated readers."
     }
    ],
    "last_verified": "2026-09-26",
@@ -25781,6 +25866,10 @@
     {
      "date": "2026-10-09",
      "note": "The directive to the water board is still unconfirmed on its own page, which bars automated readers. The board's report back is due next week."
+    },
+    {
+     "date": "2026-10-10",
+     "note": "The directive to the water board stays unconfirmed on its own page, which bars automated readers. The board's report back is due within the week."
     }
    ],
    "unreachable": {
@@ -26024,7 +26113,7 @@
     }
    ],
    "id": "tx-2026-0172",
-   "last_verified": "2026-10-09",
+   "last_verified": "2026-10-10",
    "history": [
     {
      "date": "2026-09-19",
@@ -26074,6 +26163,11 @@
     {
      "date": "2026-10-09",
      "note": "Checked and unchanged. Still open, with no dated movement.",
+     "checked": true
+    },
+    {
+     "date": "2026-10-10",
+     "note": "ERCOT's request for data center answers to the water board's questions still stands as posted, with its deadline unchanged.",
      "checked": true
     }
    ]
@@ -26243,7 +26337,7 @@
     }
    ],
    "id": "tx-2026-0174",
-   "last_verified": "2026-10-07",
+   "last_verified": "2026-10-10",
    "history": [
     {
      "date": "2026-09-20",
@@ -26278,6 +26372,11 @@
     {
      "date": "2026-10-07",
      "note": "Both of El Paso's plate reader items stand as the council passed them in revised form.",
+     "checked": true
+    },
+    {
+     "date": "2026-10-10",
+     "note": "El Paso's two plate reader items still stand in the revised form the council passed.",
      "checked": true
     }
    ]
@@ -26348,7 +26447,7 @@
     }
    ],
    "id": "tx-2026-0177",
-   "last_verified": "2026-10-09",
+   "last_verified": "2026-10-10",
    "history": [
     {
      "date": "2026-09-20",
@@ -26388,6 +26487,11 @@
     {
      "date": "2026-10-09",
      "note": "Checked and unchanged. Still pending, with no dated movement.",
+     "checked": true
+    },
+    {
+     "date": "2026-10-10",
+     "note": "Richardson ISD's draft legislative ask still puts classroom AI guidance first, and nothing on the district's page shows it adopted yet.",
      "checked": true
     }
    ]
@@ -26463,7 +26567,7 @@
     }
    ],
    "id": "tx-2026-0175",
-   "last_verified": "2026-10-07",
+   "last_verified": "2026-10-10",
    "history": [
     {
      "date": "2026-09-20",
@@ -26518,6 +26622,11 @@
     {
      "date": "2026-10-07",
      "note": "The foundation's award page still names Texas Southern University as the lead of its regional node.",
+     "checked": true
+    },
+    {
+     "date": "2026-10-10",
+     "note": "The foundation's award still names Texas Southern University as lead of its regional node.",
      "checked": true
     }
    ]
@@ -26936,6 +27045,10 @@
     {
      "date": "2026-10-09",
      "note": "Leander's notice that it stopped paying for plate readers remains unconfirmed. The city's site still refuses every reader."
+    },
+    {
+     "date": "2026-10-10",
+     "note": "Leander's notice that it stopped paying for plate readers stays unconfirmed, because the city's site refuses every reader."
     }
    ],
    "unreachable": {
@@ -27407,7 +27520,7 @@
    ],
    "notes_for_editor": "Admitted on the FAA's own draft and its own review page. The environmental assessment is a draft prepared by the applicant under the agency's supervision, and the final decision on the operating approvals has not been made. The county list is the Section 106 letter's own list with two of its spellings, Atacosta and Roberston, read as Atascosa and Robertson. The letter's stated total and its list disagree, so no county count is published. The five metros straddle the ERCOT line, so on_ercot is null rather than either value. The letter states a county total its own list does not match, and that discrepancy is reported here rather than repaired.",
    "id": "tx-2026-0186",
-   "last_verified": "2026-10-07",
+   "last_verified": "2026-10-10",
    "history": [
     {
      "date": "2026-09-24",
@@ -27453,6 +27566,11 @@
     {
      "date": "2026-10-09",
      "note": "Comment on Zipline's Texas metros assessment is set to close October 11th. The agency's pages refused the request again, so nothing since is confirmed."
+    },
+    {
+     "date": "2026-10-10",
+     "note": "The agency's review page and the draft assessment both still read as published, and comment on Zipline's Texas metros assessment closes tomorrow, October 11th.",
+     "checked": true
     }
    ]
   },
@@ -28196,6 +28314,11 @@
      "date": "2026-10-07",
      "note": "The commission's wildfire plan blueprint still lists cameras as a suggestion and not a requirement.",
      "checked": true
+    },
+    {
+     "date": "2026-10-10",
+     "note": "The commission's wildfire plan blueprint still lists cameras as a suggestion rather than a requirement.",
+     "checked": true
     }
    ],
    "claims": [
@@ -28354,7 +28477,7 @@
     }
    ],
    "id": "tx-2026-0191",
-   "last_verified": "2026-10-07"
+   "last_verified": "2026-10-10"
   },
   {
    "title": "Asked for AI camera fire detections, Xcel counted cameras",
@@ -28412,6 +28535,11 @@
     {
      "date": "2026-10-07",
      "note": "The approved resiliency plan still stands, and Xcel's filing still counts cameras where the commission asked for detections.",
+     "checked": true
+    },
+    {
+     "date": "2026-10-10",
+     "note": "Xcel's approved resiliency plan stands, and its filing still counts cameras where detections were asked for.",
      "checked": true
     }
    ],
@@ -28508,7 +28636,7 @@
     }
    ],
    "id": "tx-2026-0192",
-   "last_verified": "2026-10-07"
+   "last_verified": "2026-10-10"
   },
   {
    "title": "Judges back El Paso Electric's gas plant for Meta only if other customers don't pay",
@@ -29020,7 +29148,7 @@
    "confidence": "high",
    "notes_for_editor": "Amazon's copy of the release carries no date. Wiwynn's copy of the same release, read 2026-10-01, says Updated on September 10, 2026, so the key date rests on that page rather than on wire coverage. El Paso County is from the Texas Municipal League directory entry for Socorro. The release says nothing about whether the line itself uses AI or robotics.",
    "id": "tx-2026-0146",
-   "last_verified": "2026-10-07",
+   "last_verified": "2026-10-10",
    "history": [
     {
      "date": "2026-09-11",
@@ -29038,6 +29166,11 @@
     {
      "date": "2026-10-07",
      "note": "Amazon and Wiwynn's announced expansion of the El Paso County rack plant still reads as first published.",
+     "checked": true
+    },
+    {
+     "date": "2026-10-10",
+     "note": "The announced expansion of the El Paso County rack plant reads as Amazon and Wiwynn first published it.",
      "checked": true
     }
    ]
@@ -30196,7 +30329,7 @@
     }
    ],
    "id": "tx-2026-0200",
-   "last_verified": "2026-10-07",
+   "last_verified": "2026-10-10",
    "history": [
     {
      "date": "2026-10-04",
@@ -30205,6 +30338,11 @@
     {
      "date": "2026-10-07",
      "note": "The Tribune's account and the state board's own minutes still read as cited, and the board's vote against the charter stands.",
+     "checked": true
+    },
+    {
+     "date": "2026-10-10",
+     "note": "The board's vote against the Alpha charter stands, and its minutes and the Tribune's account read as cited.",
      "checked": true
     }
    ]
@@ -30893,11 +31031,16 @@
    ],
    "confidence": "high",
    "notes_for_editor": "The release is Saronic's own, read on PR Newswire. The Governor's copy of the announcement sits on gov.texas.gov, which refuses this project in robots.txt, so it was not fetched. The Port of Brownsville's site answered 403. Cameron County's June 2nd and June 16th agendas are scanned PDFs with no text layer, so the abatement's rate, term and conditions rest on the Tribune's June 18th account. The county is Cameron, where the Port of Brownsville sits. on_ercot is true because Cameron County is served by ERCOT; nothing in the release turns on it.",
-   "last_verified": "2026-10-07",
+   "last_verified": "2026-10-10",
    "history": [
     {
      "date": "2026-10-07",
      "note": "Admitted to the record on Saronic's own release of the groundbreaking. The abatement Cameron County approved in June rests on the Tribune's account, because the county's agenda is a scanned file."
+    },
+    {
+     "date": "2026-10-10",
+     "note": "Saronic's account of breaking ground on Port Alpha in Brownsville reads as published.",
+     "checked": true
     }
    ]
   },
