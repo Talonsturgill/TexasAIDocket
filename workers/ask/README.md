@@ -2,7 +2,9 @@
 
 The production Worker uses Claude Haiku 5.5. The default in `answer.js` and
 `ASK_MODEL` in `wrangler.toml` agree. Adaptive thinking uses medium effort with
-room for reasoning and the short answer. Requests omit sampling parameters.
+an 8,192 token ceiling for reasoning and the cited answer. Live comparison tests
+exhausted the former 4,096 token ceiling after one introductory sentence.
+Requests omit sampling parameters.
 
 Answer cache keys include the model request settings and the published pack
 revision. Upgrading the model retires old answers while preserving spending

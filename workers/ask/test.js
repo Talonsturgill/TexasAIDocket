@@ -288,7 +288,7 @@ ok("the deployment pins the same model as the answerer",
 ok("deploying preserves dashboard variables outside the committed pins",
   readFileSync(new URL("./wrangler.toml", import.meta.url), "utf8").includes("keep_vars = true"));
 ok("adaptive reasoning has room to finish before the answer",
-  mp.thinking?.type === "adaptive" && mp.max_tokens === 4096, JSON.stringify(mp));
+  mp.thinking?.type === "adaptive" && mp.max_tokens === 8192, JSON.stringify(mp));
 ok("effort is sent inside output_config, where the API reads it",
   mp.output_config?.effort === "medium", JSON.stringify(mp));
 ok("...and not at the top level, where it would be ignored or refused",
@@ -492,7 +492,7 @@ ok("the request carries three system blocks", sentBody?.system?.length === 3,
   JSON.stringify(sentBody?.system?.length));
 ok("the Haiku 5.5 request settings reach the answer call",
   sentBody.model === "claude-haiku-5-5" && sentBody.thinking?.type === "adaptive"
-  && sentBody.output_config?.effort === "medium" && sentBody.max_tokens === 4096
+  && sentBody.output_config?.effort === "medium" && sentBody.max_tokens === 8192
   && !["temperature", "top_p", "top_k"].some((name) => name in sentBody),
   JSON.stringify(Object.keys(sentBody)));
 ok("...with exactly one cache breakpoint, on the block that repeats",
