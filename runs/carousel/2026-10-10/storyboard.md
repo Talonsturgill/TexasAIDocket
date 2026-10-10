@@ -1,5 +1,5 @@
 # Storyboard, 2026-10-10
-# "Austin Community College is writing its AI rules"
+# "An Austin college is writing AI policy"
 
 ## The story, and what the fact check did to it
 
@@ -118,8 +118,8 @@ slide: 1
 layout: FULL_BLEED
 primary_image:
   subject: "the student desk whole on the first limestone paver of a walk across a dark campus lawn, its laptop lid lit and a blank sheet beside it, the October 12th granite inlay three pavers ahead"
-  rect: [300, 560, 700, 790]
-  bleeds: [right, bottom]
+  rect: [40, 590, 1000, 760]
+  bleeds: [bottom]
 accent: "#9A3B2A"
 job: >
   Put the one desk the rules are written for in front of the reader, and say whose plan this is and that
@@ -158,8 +158,8 @@ art:
     Lightest is the lit lid and the sheet. Darkest is the sky and the near lawn. Frame median L* planned at 13.
 
 type:
-  hook: "Austin Community College is writing its AI rules"
-  dek: "The college says it is developing what it calls its first-ever AI policy, under a framework it calls TRUST. It posted the plan on October 9th. The desk and the walk are drawn to illustrate."
+  hook: "An Austin college is writing AI policy"
+  dek: "Austin Community College says it is developing what it calls its \"first-ever\" AI policy. A framework called TRUST is meant to help shape it. The post is dated October 9th. The desk and the walk are drawn to illustrate."
   labels: []
 
 verbatim:
@@ -184,7 +184,7 @@ layout: DIAGRAM
 primary_image:
   subject: "the student desk in pure side profile on the lawn, five leaders to five of its parts, each labelled with one TRUST rule's own name"
   rect: [140, 520, 800, 760]
-  bleeds: [bottom]
+  bleeds: []
 accent: none
 job: >
   Name the five rules in the college's own words and tie each to the place on the desk where a student's
@@ -223,7 +223,7 @@ art:
 
 type:
   hook: "Five rules, one for each letter"
-  dek: "Two collegewide AI committees developed the framework, the college says. Each rule is one sentence in its post. The parts each rule points at are drawn to illustrate."
+  dek: "The college says two collegewide AI committees developed the framework. Each rule is one sentence in its post. Matching each rule to a part of the desk is an illustration."
   labels: ["TELL WHERE AI WAS USED", "REVIEW OUTPUTS", "USE YOUR OWN JUDGMENT", "SAFEGUARD INTEGRITY", "TREAT IP WITH RESPECT"]
 
 verbatim:
@@ -250,7 +250,7 @@ slide: 3
 layout: GRID
 primary_image:
   subject: "79 student desks in rows on a dark lawn with every laptop lid lit, the full detail hero desk sharp in the near left corner"
-  rect: [0, 560, 1080, 790]
+  rect: [0, 600, 1080, 750]
   bleeds: [left, right, bottom]
 accent: none
 job: >
@@ -291,7 +291,7 @@ art:
 
 type:
   hook: "79 desks, one for every thousand students"
-  dek: "More than 79,000 students rely on the college for their education each year, it says. Each desk here stands for a thousand of them."
+  dek: "The college says more than 79,000 students rely on it for their education each year. Each desk here stands for a thousand of them."
   labels: ["ONE DESK = 1,000 STUDENTS A YEAR"]
 
 verbatim: []
@@ -314,8 +314,8 @@ slide: 4
 layout: DOCUMENT
 primary_image:
   subject: "the hero desk's laptop square to the camera, its lit page carrying the title of the document the college's AI site already links, the blank sheet on the desk top in front of it"
-  rect: [120, 560, 840, 700]
-  bleeds: [bottom]
+  rect: [140, 560, 820, 720]
+  bleeds: []
 accent: none
 job: >
   Turn the deck: the college calls the coming policy its first-ever, and its own AI site already links a
@@ -353,8 +353,8 @@ art:
     Lightest is the page, darkest the sky. Frame median L* planned at 20.
 
 type:
-  hook: "Its AI site already links a use policy"
-  dek: "A faculty and staff document titled Acceptable Use of Artificial Intelligence Policy sits on the college's AI resource site. The post calls the coming one the college's first-ever. The page is drawn to illustrate."
+  hook: "Its AI hub already links a use policy"
+  dek: "The college's AI Resource Hub links a faculty and staff document titled Acceptable Use of Artificial Intelligence Policy. The post calls the coming policy the college's \"first-ever.\" The page is drawn to illustrate."
   labels: ["ACCEPTABLE USE OF ARTIFICIAL INTELLIGENCE POLICY"]
 
 verbatim:
@@ -378,9 +378,9 @@ risks:
 slide: 5
 layout: CLOSE_CROP
 primary_image:
-  subject: "a person seated at the hero desk cropped at the shoulder, hands on the laptop keys, the blank sheet under the left hand"
-  rect: [380, 520, 700, 830]
-  bleeds: [right, bottom]
+  subject: "the hero desk seen from the side with its lid lit and the blank sheet on its top, and the hands of a person seated at it, cropped by the right edge"
+  rect: [40, 600, 1040, 560]
+  bleeds: [right]
 accent: none
 job: >
   Put the person the rules are written for at the desk, under the rule that says AI should never replace
@@ -413,16 +413,16 @@ art:
     Lightest is the hands and the lid, darkest the sky. Frame median L* planned at 12.
 
 type:
-  hook: "The judgment stays with the person at the desk"
-  dek: "\"AI can support your work, but it should never replace your expertise, decision-making, or responsibility,\" the third rule reads. The first asks people to say when AI played a meaningful role."
+  hook: "The judgment stays with the person"
+  dek: "\"AI can support your work, but it should never replace your expertise, decision-making, or responsibility,\" the third rule reads. The first asks people to say when AI plays a meaningful role."
   labels: []
 
 verbatim:
   - c7: "AI can support your work, but it should never replace your expertise, decision-making, or responsibility"
 
 acceptance:
-  - "a person's hands rest on the laptop's keys, and a frame with no hands fails this item"
-  - "no face is in frame and the figure is cropped at the shoulder by the frame edge"
+  - "a seated person's hands are in the lid's light at the desk, and a frame with no hands fails this item"
+  - "no face is in frame and the figure is cropped by the right frame edge"
   - "the hands are lit from the camera's side and read as hands at 432px"
   - "the horizon and the seam are visible behind the lid"
   - "the quote in the dek matches the post word for word"
@@ -478,8 +478,8 @@ art:
 
 type:
   hook: "Three dates in fourteen days"
-  dek: "One paver for each day from the post to the seminar. The town hall is October 12th at Rio Grande, a faculty convocation titled The Two AIs October 16th at Eastview, the seminar October 22nd at Highland."
-  labels: ["OCT 12 TOWN HALL", "OCT 16 CONVOCATION", "OCT 22 SEMINAR"]
+  dek: "One paver for each day from the post to the seminar, both ends counted. The town hall is October 12th at Rio Grande. A faculty convocation titled The Two AIs is October 16th at Eastview. The seminar is October 22nd at Highland."
+  labels: ["OCTOBER 12TH TOWN HALL", "OCTOBER 16TH CONVOCATION", "OCTOBER 22ND SEMINAR"]
 
 verbatim:
   - c12: "The Two AIs"
@@ -501,8 +501,8 @@ slide: 7
 layout: CLOSE_CROP
 primary_image:
   subject: "the desk on the walk's last paver, the laptop lid shut with a paperback on it, the granite inlay at the bottom edge, the walk stopping and the lawn falling to the dark past it"
-  rect: [260, 560, 820, 790]
-  bleeds: [right, bottom]
+  rect: [0, 660, 1080, 690]
+  bleeds: [left, right, bottom]
 accent: "#9A3B2A"
 job: >
   Show where the post's dates end and what it does not name, at the seminar on The Machine Stops.
@@ -541,7 +541,7 @@ art:
 
 type:
   hook: "The walk ends where the post does"
-  dek: "The post names no date to adopt the policy, no vote and no body that adopts it. Its last date is the October 22nd seminar, a guided discussion of E. M. Forster's The Machine Stops."
+  dek: "The post names no adoption date, no vote and no adopting body. Its last date is the October 22nd seminar. It is a guided discussion of E. M. Forster's story The Machine Stops."
   labels: []
 
 verbatim:
@@ -604,7 +604,7 @@ art:
 
 type:
   hook: "October 12th, 6:30 p.m., the town hall"
-  dek: "Faculty, staff, students and community members are invited, the college says, and the discussion will explore in-progress AI policies. Rio Grande Campus, 6:30 to 9 p.m. The room is drawn to illustrate."
+  dek: "The college says its Faculty and Student AI Town Hall will explore in-progress AI policies. It runs until 9 p.m. at the Rio Grande Campus. The room is drawn to illustrate."
   labels: []
 
 verbatim:
@@ -629,7 +629,7 @@ layout: FIGURE_SCALE
 primary_image:
   subject: "the desk on the October 12th granite paver with its lid lit and its seat empty, a person walking up the walk toward it"
   rect: [320, 560, 700, 790]
-  bleeds: [right, bottom]
+  bleeds: [bottom]
 accent: "#9A3B2A"
 job: >
   Close on the next step a reader can take, the seat open at the town hall on October 12th and the seminar
@@ -666,8 +666,8 @@ art:
     Lightest is the lid and the paver in the pool, darkest the sky. Frame median L* planned at 13.
 
 type:
-  hook: "A seat at the town hall on October 12th"
-  dek: "The town hall runs 6:30 to 9 p.m. at the Rio Grande Campus. The October 22nd seminar at Highland is open to community members. Feedback goes through the form on the college's generative AI page."
+  hook: "Three events and a feedback form"
+  dek: "The Faculty and Student AI Town Hall is October 12th at 6:30 p.m. at Rio Grande. The October 22nd seminar at Highland is open to community members. Feedback goes through a form on the college's generative AI page."
   labels: []
 
 verbatim: []
