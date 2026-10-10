@@ -1,0 +1,90 @@
+{
+ "date": "2026-10-10",
+ "_note": "Every count the deck states, with the claim it was quoted from, or the code that computed it.",
+ "aggregates": [
+  {
+   "phrase": "Five rules",
+   "slide": "slide-02.html",
+   "kind": "count",
+   "value": 5,
+   "from_claims": [
+    "c5",
+    "c6",
+    "c7",
+    "c8",
+    "c9"
+   ],
+   "note": "one claim per TRUST rule, each quoted from the post's own list, figures.json rules"
+  },
+  {
+   "phrase": "79 desks",
+   "slide": "slide-03.html",
+   "kind": "count",
+   "value": 79,
+   "note": "79,000 divided by 1,000 desks per student, floored in compute.py, figures.json desks_drawn",
+   "computed_by": "compute.py floors figures.json students (79,000, c20) divided by desk_scale (1,000) into desks_drawn",
+   "from_claims_context": [
+    "c20"
+   ]
+  },
+  {
+   "phrase": "79,000 students",
+   "slide": "slide-03.html",
+   "kind": "count",
+   "value": 79000,
+   "quoted_from": "c20",
+   "quote": "More than 79,000 students rely on ACC",
+   "note": "the college's own floor, quoted, figures.json students"
+  },
+  {
+   "phrase": "1,000 STUDENTS",
+   "slide": "slide-03.html",
+   "kind": "ratio",
+   "value": 1000,
+   "note": "the isotype's scale, one desk per thousand, figures.json desk_scale",
+   "of": 79000,
+   "computed_by": "compute.py desk_scale, the students one desk stands for, out of figures.json students (79,000, c20)"
+  },
+  {
+   "phrase": "fourteen pavers",
+   "slide": "slide-06.html",
+   "kind": "count",
+   "value": 14,
+   "note": "October 9th (post, c31) to October 22nd (seminar, c14), both ends counted, computed in compute.py, figures.json walk_pavers",
+   "computed_by": "compute.py walk_pavers, one paver per calendar day from the post date (c31, 2026-10-09) to the seminar (c14, 2026-10-22), both ends counted"
+  },
+  {
+   "phrase": "Three dates",
+   "slide": "slide-06.html",
+   "kind": "count",
+   "value": 3,
+   "from_claims": [
+    "c10",
+    "c13",
+    "c14"
+   ],
+   "note": "the town hall, the convocation and the seminar, one claim each, figures.json events"
+  },
+  {
+   "phrase": "79,000 students",
+   "slide": "caption.txt",
+   "kind": "count",
+   "value": 79000,
+   "quoted_from": "c20",
+   "quote": "More than 79,000 students rely on ACC",
+   "note": "the college's own floor, quoted"
+  },
+  {
+   "phrase": "three official pages",
+   "slide": "first_comment.txt",
+   "kind": "count",
+   "value": 3,
+   "from_claims": [
+    "c1",
+    "c19",
+    "c20"
+   ],
+   "note": "the InfoHub post (c1), the AI Resource Hub page (c19) and About ACC (c20), counted from the source block's own lines"
+  }
+ ]
+}
