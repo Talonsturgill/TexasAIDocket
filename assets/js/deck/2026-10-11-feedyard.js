@@ -139,7 +139,10 @@
         var bunk = new THREE.Mesh(geo, conc); g.add(bunk);
         /* the joints between precast sections, every 3.05 m, a dark hairline down each face */
         var jm = K.mat("fy-joint", { color: 0x2a2724, roughness: 1 });
-        for (var jx = -L / 2 + 3.05; jx < L / 2 - 0.1; jx += 3.05) K.box(0.012, 0.77, 0.94, jm, jx, -0.005, -0.455, 0, g);
+        for (var jx = -L / 2 + 3.05; jx < L / 2 - 0.1; jx += 3.05) {
+          K.box(0.012, 0.77, 0.012, jm, jx, -0.005, -0.927, 0, g);   /* the joint down the back wall's alley face */
+          K.box(0.012, 0.47, 0.012, jm, jx, -0.005, 0.006, 0, g);    /* and down the lip's pen face */
+        }
         if (o.apron !== false) {
           var ap = new THREE.BoxGeometry(L, 0.15, 3.66); ap.translate(0, -0.075, 1.83); K.uvBox(ap, 3.0);
           g.add(new THREE.Mesh(ap, conc));
@@ -160,7 +163,7 @@
               pos.push(X, h, u * w); uv.push(X / 0.6, (u * w) / 0.6);
             }
           }
-          for (var a = 0; a < nx; a++) for (var c2 = 0; c2 < nu; c2++) { var i0 = a * (nu + 1) + c2, i1 = i0 + nu + 1; idx.push(i0, i1, i0 + 1, i1, i1 + 1, i0 + 1); }
+          for (var a = 0; a < nx; a++) for (var c2 = 0; c2 < nu; c2++) { var i0 = a * (nu + 1) + c2, i1 = i0 + nu + 1; idx.push(i0, i0 + 1, i1, i1, i0 + 1, i1 + 1); }
           var rg = new THREE.BufferGeometry();
           rg.setAttribute("position", new THREE.Float32BufferAttribute(pos, 3)); rg.setAttribute("uv", new THREE.Float32BufferAttribute(uv, 2));
           rg.setIndex(idx); rg.computeVertexNormals();
@@ -234,10 +237,63 @@
       }
     });
 
+    /* A SURVEY STAKE, the pine lath a crew drives to mark a building's corner: 38 x 9 mm, 1.22 m long with a
+     * cut point, driven about 0.25 m, a tail of pale flagging tied near the top. Origin at its foot on the
+     * ground. */
+    var lath = K.mat("fy-lath", { color: 0xeee2cc, roughness: 0.85, map: K.tex("wood") });
+    var flag = K.mat("fy-flag", { color: 0xe8e4d8, roughness: 0.7, side: THREE.DoubleSide });
+    K.define("survey_stake", {
+      size: [0.04, 0.98, 0.04],
+      anchor: "base",
+      options: { lean: 0.03, seed: 1 },
+      note: "A pine survey lath, 38 x 9 mm, standing 0.97 m out of the ground with a lean, and a 0.4 m tail of pale flagging tied 8 cm from its top. Origin at its foot.",
+      make: function (o, r) {
+        var g = new THREE.Group(), h = 0.97;
+        var stick = K.box(0.038, h, 0.009, lath, 0, 0, 0, 0.001, g);
+        var knot = new THREE.Mesh(new THREE.BoxGeometry(0.046, 0.025, 0.017), flag); knot.position.set(0, h - 0.08, 0); g.add(knot);
+        for (var k = 0; k < 2; k++) {
+          var tail = new THREE.Mesh(new THREE.PlaneGeometry(0.03, 0.4, 1, 6), flag);
+          var pp = tail.geometry.attributes.position; for (var i = 0; i < pp.count; i++) { var y = pp.getY(i); pp.setZ(i, Math.pow((0.2 - y) / 0.4, 2) * (0.05 + 0.04 * k)); }
+          tail.geometry.computeVertexNormals();
+          tail.position.set(0.02 + k * 0.012, h - 0.29, 0.006); tail.rotation.set(0, 0.5 + k * 0.6 + (r() - 0.5) * 0.4, 0.06 - k * 0.1); g.add(tail);
+        }
+        g.rotation.z = o.lean;
+        g.traverse(function (m) { if (m.isMesh) { m.castShadow = true; m.receiveShadow = true; } });
+        return g;
+      }
+    });
+
+    /* A LETTER PAGE CLIPPED TO A RAIL, US letter (0.216 x 0.279 m) hung from a 32 mm binder clip whose jaw
+     * bites the rail at the origin. The sheet hangs on -y, faces +z, curls its lower edge toward +z by
+     * `curl` metres. Blank: anything legible on it is DOM type set on its projected rect, never pixels.
+     * userData.page is the sheet mesh. */
+    var paper = K.mat("fy-paper", { color: 0xf1ede3, roughness: 0.92, side: THREE.DoubleSide });
+    var clipM = K.mat("fy-clip", { color: 0x1a1a1c, roughness: 0.35, metalness: 0.6 });
+    var wire = K.mat("fy-wire", { color: 0xc7c9cb, roughness: 0.2, metalness: 1 });
+    K.define("clipped_page", {
+      size: [0.216, 0.32, 0.05],
+      anchor: "base",
+      options: { curl: 0.015, seed: 1 },
+      note: "A blank US letter sheet hung from a 32 mm black binder clip with two wire handles, the clip's bite at the origin, the sheet on -y facing +z, its lower edge curled toward +z. userData.page is the sheet.",
+      make: function (o) {
+        var g = new THREE.Group(), W = 0.216, H = 0.279;
+        var geo = new THREE.PlaneGeometry(W, H, 6, 14); geo.translate(0, -H / 2 - 0.012, 0);
+        var pos = geo.attributes.position;
+        for (var i = 0; i < pos.count; i++) { var y = pos.getY(i), t = Math.max(0, (-y - H * 0.7) / (H * 0.3)); pos.setZ(i, 0.004 + o.curl * t * t); }
+        geo.computeVertexNormals();
+        var page = new THREE.Mesh(geo, paper); g.add(page);
+        var jaw = new THREE.Mesh(new THREE.BoxGeometry(0.032, 0.022, 0.012), clipM); jaw.position.set(0, -0.008, 0.008); g.add(jaw);
+        [-1, 1].forEach(function (q) { K.bar([q * 0.012, 0.003, 0.012], [q * 0.009, 0.03, 0.022], 0.0012, wire, 6, g); K.bar([q * 0.009, 0.03, 0.022], [0, 0.034, 0.024], 0.0012, wire, 6, g); });
+        g.userData.page = page;
+        g.traverse(function (m) { if (m.isMesh) { m.castShadow = true; m.receiveShadow = true; } });
+        return g;
+      }
+    });
+
     /* A BLANK PANEL EAR TAG, the large visual tag a feedyard reads across a pen: a rounded yellow
      * panel on a neck, with its stud. Nothing printed on it. Faces +z, hangs from its stud at the
      * origin. */
-    var tagM = K.mat("fy-tag", { color: N.ACCENT, roughness: 0.45, metalness: 0, emissive: N.ACCENT, emissiveIntensity: 0.12 });
+    var tagM = K.mat("fy-tag", { color: N.ACCENT, roughness: 0.5, metalness: 0, emissive: N.ACCENT, emissiveIntensity: 0.3 });
     K.define("ear_tag", {
       size: [0.075, 0.1, 0.006],
       anchor: "base",
@@ -262,9 +318,21 @@
   /* ---------------------------------------------------------------- the place, as calls */
   /* A HEREFORD STEER. The kit animal faces +z, so ry is atan2(dx, dz) of the way it faces: Math.PI faces
    * -z, into a bunk on the alley side, and 0 faces +z, away from it. */
+  /* THE HEREFORD WHITE TAKES THE YARD'S WARMTH, not the sky's blue: the kit's white hide and legs are
+   * tinted toward a warm neutral in their own material, so the cool fill can't turn them lilac. The
+   * light is untouched. */
+  N.warmWhites = function (obj) {
+    var T = N.T, warm = new T.Color(1.0, 0.92, 0.80);
+    obj.traverse(function (m) {
+      if (!m.isMesh || !m.material || !m.material.color) return;
+      var c = m.material.color, lum = 0.2126 * c.r + 0.7152 * c.g + 0.0722 * c.b;
+      if (lum > 0.55) { m.material = m.material.clone(); m.material.color.multiply(warm); }
+    });
+    return obj;
+  };
   N.steer = function (x, z, o) {
     o = o || {};
-    var c = N.K.make("cattle", { breed: "hereford", sex: "steer", seed: o.seed || 3 });
+    var c = N.warmWhites(N.K.make("cattle", { breed: "hereford", sex: "steer", seed: o.seed || 3 }));
     c.position.set(x, o.y || 0, z); c.rotation.y = o.ry || 0; N.TXT.add(N.R, c); N.TXT.contact(N.R, c);
     return c;
   };
@@ -272,7 +340,7 @@
    * [x, z, ry] in `list`, so a plan of pens can hold hundreds of animals in a handful of draws. */
   N.herd = function (list, o) {
     o = o || {};
-    var T = N.T, proto = N.K.make("cattle", { breed: "hereford", sex: "steer", seed: o.seed || 3 }), g = new T.Group();
+    var T = N.T, proto = N.warmWhites(N.K.make("cattle", { breed: "hereford", sex: "steer", seed: o.seed || 3 })), g = new T.Group();
     proto.updateMatrixWorld(true);
     var M = new T.Matrix4(), Q = new T.Quaternion(), S = new T.Vector3(1, 1, 1), P = new T.Vector3(), E = new T.Euler();
     proto.traverse(function (m) {
@@ -286,6 +354,25 @@
     });
     N.TXT.add(N.R, g);
     return g;
+  };
+  /* A BLANK TAG IN A STEER'S EAR. The kit ear is the mesh drawn back faced (its outer hide), so the ear
+   * nearest a world point is found among those, and the tag hangs from the ear's lower edge, turned to
+   * face along the ear. `toward` is the world point the tag should be on the side of (the camera). */
+  N.tagEar = function (steer, toward, o) {
+    o = o || {};
+    var T = N.T; steer.updateMatrixWorld(true);
+    var ears = [];
+    steer.traverse(function (m) { if (m.isMesh && m.material && m.material.side === T.BackSide) ears.push(m); });
+    if (!ears.length) throw new Error("no ear found on the steer");
+    var tp = new T.Vector3(toward[0], toward[1], toward[2]), best = null, bd = 1e9;
+    ears.forEach(function (e) { var b = new T.Box3().setFromObject(e), c = b.getCenter(new T.Vector3()), d = c.distanceTo(tp); if (d < bd) { bd = d; best = { b: b, c: c }; } });
+    var tag = N.K.make("ear_tag", { scale: o.scale || 1 });
+    /* hung on the ear's camera face, a hand's width below its centre, so a camera above the head still sees it */
+    var dir = tp.clone().sub(best.c), hl = Math.max(1e-6, Math.hypot(dir.x, dir.z));
+    tag.position.set(best.c.x + dir.x / hl * 0.05, Math.max(best.b.min.y + 0.01, best.c.y + (o.lift == null ? -0.05 : o.lift)), best.c.z + dir.z / hl * 0.05);
+    tag.rotation.y = Math.atan2(dir.x, dir.z);
+    N.TXT.add(N.R, tag);
+    return tag;
   };
   N.bunk = function (o) {
     o = o || {};
@@ -302,6 +389,33 @@
   };
 
   /* ---------------------------------------------------------------- the frame, as primitives */
+  /* A FEEDYARD YARD LAMP, the one practical the deck allows: a high pressure sodium head on a pole
+   * over the feed alley, as feedyards run them for the evening feeding. It is a lamp in the world,
+   * never a second sun: it lights a pool on the bunk throat and the near pen, and the deck's one
+   * key still sets every long cast. x, z the pole's foot; o.at the point the head aims at. */
+  N.yardLight = function (x, z, o) {
+    o = o || {};
+    var T = N.T, K = N.K, h = o.h || 9, at = o.at || [x, 0, z], g = new T.Group();
+    var steel = K.mat("fy-pole", { color: 0x8c8a86, metalness: 0.6, roughness: 0.5 });
+    var pg = new T.CylinderGeometry(0.07, 0.11, h, 10); pg.translate(0, h / 2, 0);
+    var pole = new T.Mesh(pg, steel); pole.position.set(x, 0, z); g.add(pole);
+    var dx = at[0] - x, dz = at[2] - z, d = Math.max(0.01, Math.hypot(dx, dz)), arm = Math.min(1.6, d);
+    var hx = x + dx / d * arm, hz = z + dz / d * arm;
+    var ag = new T.CylinderGeometry(0.04, 0.04, arm, 8); ag.rotateZ(Math.PI / 2);
+    var am = new T.Mesh(ag, steel); am.position.set((x + hx) / 2, h - 0.15, (z + hz) / 2); am.rotation.y = -Math.atan2(dz, dx); g.add(am);
+    var head = new T.Mesh(new T.BoxGeometry(0.55, 0.16, 0.34), steel); head.position.set(hx, h - 0.2, hz); head.rotation.y = -Math.atan2(dz, dx); g.add(head);
+    var lens = new T.Mesh(new T.PlaneGeometry(0.46, 0.26), new T.MeshBasicMaterial({ color: 0xffd9a0 }));
+    lens.rotation.x = Math.PI / 2; lens.rotation.z = Math.atan2(dz, dx); lens.position.set(hx, h - 0.29, hz); g.add(lens);
+    g.traverse(function (m) { if (m.isMesh && m !== lens) { m.castShadow = true; m.receiveShadow = true; } });
+    N.TXT.add(N.R, g);
+    var sp = new T.SpotLight(o.color || 0xffbe78, o.i == null ? 900 : o.i, 0, o.angle || 0.62, o.penumbra == null ? 0.75 : o.penumbra, 2);
+    sp.position.set(hx, h - 0.32, hz); sp.target.position.set(at[0], at[1], at[2]);
+    sp.castShadow = o.shadow !== false;
+    sp.shadow.mapSize.set(2048, 2048); sp.shadow.camera.near = 0.5; sp.shadow.camera.far = h * 4;
+    sp.shadow.bias = -0.00002; sp.shadow.normalBias = 0.02;
+    N.R.scene.add(sp); N.R.scene.add(sp.target);
+    return sp;
+  };
   N.put = function (obj, contact) { N.TXT.add(N.R, obj); if (contact) N.TXT.contact(N.R, obj, contact === true ? undefined : contact); return obj; };
   N.project = function (THREE, R, p) {
     R.camera.updateMatrixWorld(true);

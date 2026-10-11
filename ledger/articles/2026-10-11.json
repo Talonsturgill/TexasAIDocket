@@ -1,0 +1,104 @@
+{
+ "_spec": {
+  "version": 1,
+  "purpose": "A standalone web edition of the archived visual story.",
+  "law": "Facts resolve to the original verified claim record. A layout rebuild does not reverify reporting.",
+  "written_by": "daily"
+ },
+ "section": "Agriculture",
+ "dek": {
+  "text": "West Texas A&M won a USDA grant for a research feedlot near Canyon. The release says new methods can be tested with AI and names no tool, vendor or result.",
+  "claims": [
+   "c1",
+   "c6",
+   "c7"
+  ]
+ },
+ "introduction": [
+  {
+   "text": "[West Texas A&M University has received a {{money:c1}} grant from the U.S. Department of Agriculture, which the A&M System's release calls the largest federal award in the university's history](c1). [The grant comes through USDA's Research Facilities Act Program for a center for beef cattle research and innovation](c2).",
+   "claims": [
+    "c1",
+    "c2"
+   ]
+  },
+  {
+   "text": "[The release says new feeding, health and handling techniques can be evaluated with traditional and artificial intelligence-powered approaches](c6). That sentence is the release's only mention of AI. [It names no AI tool, vendor, camera, model or result](c7).",
+   "claims": [
+    "c6",
+    "c7"
+   ]
+  }
+ ],
+ "sections": [
+  {
+   "heading": "What the money builds",
+   "paragraphs": [
+    {
+     "text": "[A required dollar for dollar match, ${{number:c3}} million from the A&M System and another ${{number:c3:1}} million from other sources, brings the project total to ${{number:c3:2}} million](c3). [The release says the Texas Cattle Feeders Association, its members, university donors and other sources will match the System's share](c13).",
+     "claims": [
+      "c3",
+      "c13"
+     ]
+    },
+    {
+     "text": "[The research feedlot pairs {{number:c4}} small research pens for scientific studies with {{number:c4:1}} commercial-scale pens](c4). [Plans call for a precision beef cattle handling facility, a veterinary care and research hospital, an advanced technology feed and production center and a metabolism and physiology center](c5). The release describes these as planned components. None is described as built.",
+     "claims": [
+      "c4",
+      "c5"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "Where it goes",
+   "paragraphs": [
+    {
+     "text": "[Ground was broken in November {{number:c8}} next to WT's Nance Ranch](c8). [The ranch lies about seven miles east of Canyon, covers {{number:c9}} acres including its headquarters and was given to WT in {{number:c9:1}}](c9). [Brothers and Canyon ranchers Mike and Gary Kuhlman gave {{number:c10:1}} acres beside the ranch in {{number:c10}}](c10).",
+     "claims": [
+      "c8",
+      "c9",
+      "c10"
+     ]
+    },
+    {
+     "text": "[The release ties the work to WT's Center for Advancing Food Animal Production in the Panhandle and its Feedlot Research Group](c16).",
+     "claims": [
+      "c16"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "Why the Panhandle",
+   "paragraphs": [
+    {
+     "text": "[USDA's Cattle on Feed report estimated {{number:c17:2}} thousand head on feed in Texas's large feedlots on September 1st](c17). [Nebraska had {{number:c19:2}} thousand](c19) [and Kansas {{number:c18:2}} thousand](c18). [The national total was {{number:c20:2}} thousand](c20).",
+     "claims": [
+      "c17",
+      "c19",
+      "c18",
+      "c20"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "What the release leaves open",
+   "paragraphs": [
+    {
+     "text": "[The release says AI-powered approaches are designed to increase beef production efficiency and advance feedlot management practices](c7). It does not say which tools the feedlot will test, who will supply them, what they will measure or when any result will be published. A reader can't tell from the release whether AI work has begun or remains a plan for the finished pens.",
+     "claims": [
+      "c7"
+     ]
+    }
+   ]
+  }
+ ],
+ "related": [
+  {
+   "id": "tx-2026-0207",
+   "label": "The record entry for West Texas A&M's research feedlot grant"
+  }
+ ]
+}

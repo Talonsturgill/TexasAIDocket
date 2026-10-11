@@ -1,0 +1,360 @@
+{
+ "_note": "Every value is extracted from a claim quote by compute.py, or computed here from values that were.",
+ "grant_musd": {
+  "value": 9.75,
+  "from": [
+   "c1"
+  ],
+  "basis": "the USDA grant, $ million"
+ },
+ "match_system_musd": {
+  "value": 4.875,
+  "from": [
+   "c3"
+  ],
+  "basis": "the A&M System's share of the match, $ million"
+ },
+ "match_other_musd": {
+  "value": 4.875,
+  "from": [
+   "c3"
+  ],
+  "basis": "other sources' share of the match, $ million"
+ },
+ "project_total_musd": {
+  "value": 19.5,
+  "from": [
+   "c3"
+  ],
+  "basis": "the project total the release states, $ million"
+ },
+ "total_check_musd": {
+  "value": 19.5,
+  "from": [
+   "c1",
+   "c3"
+  ],
+  "basis": "grant plus both halves of the match, which equals the stated total"
+ },
+ "grant_share_of_total_pct": {
+  "value": 50,
+  "from": [
+   "c1",
+   "c3"
+  ],
+  "basis": "the federal grant as a percent of the project total, rounded to a whole percent"
+ },
+ "small_pens": {
+  "value": 90,
+  "from": [
+   "c4"
+  ],
+  "basis": "small research pens"
+ },
+ "commercial_pens": {
+  "value": 45,
+  "from": [
+   "c4"
+  ],
+  "basis": "commercial-scale pens"
+ },
+ "total_pens": {
+  "value": 135,
+  "from": [
+   "c4"
+  ],
+  "basis": "pens in all, small plus commercial-scale"
+ },
+ "small_per_commercial": {
+  "value": 2,
+  "from": [
+   "c4"
+  ],
+  "basis": "small pens per commercial-scale pen, a whole number ratio"
+ },
+ "components": {
+  "value": 4,
+  "from": [
+   "c5"
+  ],
+  "basis": "planned components the release lists"
+ },
+ "component_names": {
+  "value": [
+   "precision beef cattle handling facility",
+   "veterinary care and research hospital",
+   "advanced technology feed and production center",
+   "metabolism and physiology center"
+  ],
+  "from": [
+   "c5"
+  ],
+  "basis": "the planned components, in the release's order"
+ },
+ "ground_broken": {
+  "value": "2025-11",
+  "from": [
+   "c8"
+  ],
+  "basis": "month ground was broken"
+ },
+ "ranch_miles_east_word": {
+  "value": "seven",
+  "from": [
+   "c9"
+  ],
+  "basis": "miles east of Canyon, as the release spells it"
+ },
+ "ranch_acres": {
+  "value": 2393,
+  "from": [
+   "c9"
+  ],
+  "basis": "acres of Nance Ranch"
+ },
+ "ranch_given": {
+  "value": 1971,
+  "from": [
+   "c9"
+  ],
+  "basis": "year the ranch was given to WT"
+ },
+ "gift_acres": {
+  "value": 42.84,
+  "from": [
+   "c10"
+  ],
+  "basis": "acres of the 2024 land gift"
+ },
+ "gift_year": {
+  "value": 2024,
+  "from": [
+   "c10"
+  ],
+  "basis": "year of the land gift"
+ },
+ "education_fy24_musd": {
+  "value": 2.1,
+  "from": [
+   "c12"
+  ],
+  "basis": "community project funding for the education facility, fiscal 2024"
+ },
+ "education_fy26_musd": {
+  "value": 1.0,
+  "from": [
+   "c12"
+  ],
+  "basis": "community project funding for the education facility, fiscal 2026"
+ },
+ "tx_on_feed_k": {
+  "value": 2500,
+  "from": [
+   "c17"
+  ],
+  "basis": "cattle on feed September 1st, 2026, 1,000+ capacity feedlots, thousand head"
+ },
+ "ks_on_feed_k": {
+  "value": 2320,
+  "from": [
+   "c18"
+  ],
+  "basis": "cattle on feed September 1st, 2026, 1,000+ capacity feedlots, thousand head"
+ },
+ "ne_on_feed_k": {
+  "value": 2470,
+  "from": [
+   "c19"
+  ],
+  "basis": "cattle on feed September 1st, 2026, 1,000+ capacity feedlots, thousand head"
+ },
+ "us_on_feed_k": {
+  "value": 11163,
+  "from": [
+   "c20"
+  ],
+  "basis": "cattle on feed September 1st, 2026, 1,000+ capacity feedlots, thousand head"
+ },
+ "tx_share_us_pct": {
+  "value": 22,
+  "from": [
+   "c17",
+   "c20"
+  ],
+  "basis": "Texas as a percent of the United States total on September 1st, 2026, rounded to a whole percent"
+ },
+ "tx_share_us_exact": {
+  "value": 0.224,
+  "from": [
+   "c17",
+   "c20"
+  ],
+  "basis": "the same share as a fraction, four places"
+ },
+ "tx_head": {
+  "value": 2500000,
+  "from": [
+   "c17"
+  ],
+  "basis": "Texas cattle on feed in head"
+ },
+ "tx_minus_ne_k": {
+  "value": 30,
+  "from": [
+   "c17",
+   "c19"
+  ],
+  "basis": "Texas less Nebraska, thousand head"
+ },
+ "tx_minus_ks_k": {
+  "value": 180,
+  "from": [
+   "c17",
+   "c18"
+  ],
+  "basis": "Texas less Kansas, thousand head"
+ },
+ "ne_on_feed_m": {
+  "value": 2.47,
+  "from": [
+   "c19"
+  ],
+  "basis": "Nebraska, million head, two places"
+ },
+ "ks_on_feed_m": {
+  "value": 2.32,
+  "from": [
+   "c18"
+  ],
+  "basis": "Kansas, million head, two places"
+ },
+ "tx_on_feed_m": {
+  "value": 2.5,
+  "from": [
+   "c17"
+  ],
+  "basis": "Texas, million head, two places"
+ },
+ "us_on_feed_m": {
+  "value": 11.2,
+  "from": [
+   "c20"
+  ],
+  "basis": "United States, million head, one place"
+ },
+ "agrilife_report": {
+  "value": "2019-02-27",
+  "from": [
+   "c23"
+  ],
+  "basis": "date of the AgriLife Today report"
+ },
+ "release_date": {
+  "value": "2026-10-07",
+  "from": [
+   "c1"
+  ],
+  "basis": "date of the A&M System release"
+ },
+ "years_report_to_release": {
+  "value": 7,
+  "from": [
+   "c23",
+   "c1"
+  ],
+  "basis": "whole years from the 2019 report to the release"
+ },
+ "tcfa_share_pct": {
+  "value": 25,
+  "from": [
+   "c22"
+  ],
+  "basis": "the association's own share of US fed cattle"
+ },
+ "sun_elevation": {
+  "value": 6.1,
+  "from": [
+   "c1"
+  ],
+  "basis": "solar elevation over Randall County at 6:50 p.m. CDT on the release date, one decimal"
+ },
+ "sun_azimuth_compass": {
+  "value": 259.1,
+  "from": [
+   "c1"
+  ],
+  "basis": "solar bearing clockwise from north at the same moment, one decimal"
+ },
+ "sun_engine_az": {
+  "value": -79.1,
+  "from": [
+   "c1"
+  ],
+  "basis": "the same bearing in the engine's frame, az = 180 - bearing"
+ },
+ "section_musd": {
+  "value": 4.875,
+  "from": [
+   "c3"
+  ],
+  "basis": "one precast bunk section stands for one $4.875 million share, the match's own unit"
+ },
+ "grant_sections": {
+  "value": 2,
+  "from": [
+   "c1",
+   "c3"
+  ],
+  "basis": "bunk sections the grant spans, grant over one share"
+ },
+ "total_sections": {
+  "value": 4,
+  "from": [
+   "c3"
+  ],
+  "basis": "bunk sections in the whole project, total over one share"
+ },
+ "ranch_square_side_m": {
+  "value": 3112,
+  "from": [
+   "c9"
+  ],
+  "basis": "side in metres of a square of the ranch's area, one acre = 4046.8564224 square metres, rounded to a metre"
+ },
+ "gift_square_side_m": {
+  "value": 416,
+  "from": [
+   "c10"
+  ],
+  "basis": "side in metres of a square of the gift's area, rounded to a metre"
+ },
+ "ranch_offset_m": {
+  "value": 11265,
+  "from": [
+   "c9"
+  ],
+  "basis": "about seven miles east, in metres, one mile = 1609.344 m, rounded to a metre"
+ },
+ "steer_unit_k": {
+  "value": 500,
+  "from": [
+   "c17",
+   "c20"
+  ],
+  "basis": "a drawing rule, one steer drawn for every 500 thousand head on feed"
+ },
+ "tx_steers": {
+  "value": 5,
+  "from": [
+   "c17"
+  ],
+  "basis": "steers drawn for Texas, 2,500 thousand over 500, exact"
+ },
+ "us_steers": {
+  "value": 22,
+  "from": [
+   "c20"
+  ],
+  "basis": "steers drawn for the United States, 11,163 thousand over 500, rounded half up"
+ }
+}
