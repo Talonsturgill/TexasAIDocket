@@ -1,22 +1,23 @@
-# Taylor City Council votes October 8th on annexing a 664 acre data center campus under written water, setback and noise terms
+# Taylor City Council approves an agreement to annex a 664 acre data center campus under written water, setback and noise terms
 
-The City of Taylor has a proposed development agreement with Big Watt Digital and PowerHouse Data Centers for Taylor Technology Campus. The 664 acre site was known as Project Mustang and includes data centers and on site power generation. The City Council is set to vote on the agreement at its meeting on October 8th, 2026. The developers had withdrawn their annexation and zoning application with the city. The city's notice says the land would otherwise stay in unincorporated Williamson County, which has no zoning authority. Under the agreement the site is annexed and held to written terms. Cooling is a closed loop filled with reclaimed water, and potable water is barred from cooling except in circumstances the agreement names. Buildings sit at least 300 feet from the north, east and west lines. Data centers, generation and batteries sit at least 700 feet from the south line. Noise may not exceed the greater of 65 dBA or the level measured before construction. The developers commit $28.2 million for community investments and nonprofit support and ask for no tax abatement. Air quality stays with TCEQ.
+The City of Taylor has a proposed development agreement with Big Watt Digital and PowerHouse Data Centers for Taylor Technology Campus. The 664 acre site was known as Project Mustang and includes data centers and on site power generation. The City Council approved the agreement 5 to 0 at its meeting on October 8th, 2026. The developers had withdrawn their annexation and zoning application with the city. The city's notice says the land would otherwise stay in unincorporated Williamson County, which has no zoning authority. Under the agreement the site is annexed and held to written terms. Cooling is a closed loop filled with reclaimed water, and potable water is barred from cooling except in circumstances the agreement names. Buildings sit at least 300 feet from the north, east and west lines. Data centers, generation and batteries sit at least 700 feet from the south line. Noise may not exceed the greater of 65 dBA or the level measured before construction. The developers commit $28.2 million for community investments and nonprofit support and ask for no tax abatement. Air quality stays with TCEQ.
 
 - Topic: data-centers
 - Decided by: Taylor City Council (city)
 - Where: Williamson
 - Statistical areas:
   - Austin-Round Rock-San Marcos, TX
-- Status: pending
-- Public access: Public meeting
-- Take part: https://www.taylortx.gov/m/newsflash/Home/Detail/2113
+- Status: decided
+- Public access: Closed
+- Take part: https://www.taylortx.gov/1416/Taylor-Technology-Campus
 
-- Last checked: 2026-10-08
+- Last checked: 2026-10-11
 
 ## Dates
 
 - 2026-10-02 · filed: The city posts its notice of the proposed development agreement
 - 2026-10-08 · hearing: City Council meeting, vote on the development agreement
+- 2026-10-08 · decided: The City Council approves the development agreement 5 to 0
 
 ## How this decision moved
 
@@ -25,6 +26,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-06 · Admitted on the city's own notice. The council has not voted yet. The agreement's full text was not found posted beside the notice.
 - 2026-10-07 · The council has not voted yet. The city's page still sets out the proposed terms beside what applies without them.
 - 2026-10-08 · Taylor's council has not voted yet. The city's page still lays out the proposed terms beside the rules that apply without them.
+- 2026-10-11 · The council approved the agreement to annex the campus 5 to 0 on October 8th, under the written terms. The city's own campus page had not yet posted the result.
 
 ## Evidence
 
@@ -137,4 +139,10 @@ Source (primary_official): https://www.taylortx.gov/m/newsflash/Home/Detail/2113
 > The developers are not asking for any tax abatements with this request for development agreement approval.
 
 Source (primary_official): https://www.taylortx.gov/m/newsflash/Home/Detail/2113
+
+### The Taylor City Council approved the agreement to annex the data center campus by a vote of 5 to 0.
+
+> A major new data center project east of Taylor is moving forward after the City Council unanimously approved an agreement to annex the 664-acre development following months of heated debate and negotiations. The proposed agreement passed 5-0.
+
+Source (journalism): https://cbsaustin.com/news/local/taylor-city-council-greenlights-data-center-after-months-of-debate
 

@@ -1,0 +1,103 @@
+{
+  "version": 1,
+  "selected": [
+    1,
+    4,
+    9
+  ],
+  "inputs": {
+    "slides/slide-01.html": "90e2f49bef68e2d371a4e514330cec80b50ab9afb7cc043cdae8a2ff08341a23",
+    "render/slide-01.png": "d751ffdc44e61fc67ec813b4e04be2393436a185d69f6a8023e24f1485ca07ce",
+    "assets/js/deck/2026-10-11-feedyard.js": "422b8c331f8c0810d47325ef282577926e98ab703d431d5eb61236707d9836c2",
+    "slides/slide-04.html": "498047e700a51b0dc56a039fd89ead1834b7dea20441e2b68c24611e7a8f7593",
+    "render/slide-04.png": "14761bf9fb53294f13416758644f536055ce9e3c7c17234a7c5c12b9418a31e0",
+    "slides/slide-09.html": "7e2e7b401b2a1d27a839044e6e9ce172baeeaf4d35f7c950af4adc5f5de8f95f",
+    "render/slide-09.png": "5d09b0e7b041223dd38e9ad8fc21ed81464ce67066e8676ee929dbc5f898f2ef"
+  },
+  "value_measurements": [
+    {
+      "frame": "slide-01.png",
+      "median_L": 5.3,
+      "mid": 0.188,
+      "dark": 0.617
+    },
+    {
+      "frame": "slide-04.png",
+      "median_L": 2.9,
+      "mid": 0.033,
+      "dark": 0.864
+    },
+    {
+      "frame": "slide-09.png",
+      "median_L": 5.6,
+      "mid": 0.126,
+      "dark": 0.738
+    }
+  ],
+  "review": {
+    "decision": "accept",
+    "inputs": {
+      "slides/slide-01.html": "90e2f49bef68e2d371a4e514330cec80b50ab9afb7cc043cdae8a2ff08341a23",
+      "render/slide-01.png": "d751ffdc44e61fc67ec813b4e04be2393436a185d69f6a8023e24f1485ca07ce",
+      "assets/js/deck/2026-10-11-feedyard.js": "422b8c331f8c0810d47325ef282577926e98ab703d431d5eb61236707d9836c2",
+      "slides/slide-04.html": "498047e700a51b0dc56a039fd89ead1834b7dea20441e2b68c24611e7a8f7593",
+      "render/slide-04.png": "14761bf9fb53294f13416758644f536055ce9e3c7c17234a7c5c12b9418a31e0",
+      "slides/slide-09.html": "7e2e7b401b2a1d27a839044e6e9ce172baeeaf4d35f7c950af4adc5f5de8f95f",
+      "render/slide-09.png": "5d09b0e7b041223dd38e9ad8fc21ed81464ce67066e8676ee929dbc5f898f2ef"
+    },
+    "frames": [
+      {
+        "slide": 1,
+        "role": "cover",
+        "subject": "This frame is unchanged; its digests match the last accept. Nine Hereford steers with red hides and white faces put their heads through a galvanized neck rail and fill the left half of the frame from y 820 to y 1680 at 1600 px display. A precast bunk with a gold windrow of flaked corn in its throat runs from the bottom left toward the upper right. The nearest steer carries a tag on its camera-side ear. The pen dirt on the right is near black, and so is the sky behind the hook and the four-line dek.",
+        "visual_consequence": "At 432px it reads as a feedyard at feeding time, with cattle at the rail and ration in the bunk. That gives 'the pens are counted' a literal subject. The dek ends at about y 785, clear of the herd and of the far rail post at x 1270.",
+        "weakness": "(1) The outer wall runs from y 900 to the bottom edge as a clean, pale, uniform slab with four hairline joints. The heavier grime setting does not show at full size or at 432px, so the frame's largest object is still its least modelled one (cause b). This is the likeliest single drag on the deck's artwork score. (2) The legs below the hide line, around x 100 to 300 and y 1400 to 1650, still read cool lilac. (3) There is only about 35 px between the dek and the top edge of the herd.",
+        "repair": "Make the grime visible on the wall's camera-facing side: a dark splash band about a third of the wall's height up from its base, and wear on the lip. Judge it at 432px."
+      },
+      {
+        "slide": 4,
+        "role": "evidence",
+        "subject": "The render matches the previous accept. Only the kicker changed, and it now reads 'THE RELEASE'S PEN COUNT'. An aerial view runs down two bunk lines. On the left, one deep commercial-scale pen has six steers at its rail. Across from it, two shallow small pens hold six more. Three sodium lamps pool warm light on those pen floors and on the next commercial pen. Fence rows recede into the dark under feathered labels reading '45 COMMERCIAL-SCALE PENS' and '90 SMALL RESEARCH PENS'.",
+        "visual_consequence": "The 1 to 2 pairing reads as a lit unit. One commercial bay floor, from y 1500 to y 1760, faces two small bays split by a fence at about y 1530. The receding rows carry the 45 to 90 split. The new kicker attributes only the count to the release, and the dek already says the layout and pen sizes are drawn to illustrate, so the frame no longer implies a layout the release does not give. The kicker fits on one line ending at about x 680 and collides with nothing.",
+        "weakness": "(1) The upper-left pool, around y 1210 to 1300, is still a soft floating oval that stops short of its own fences, so it reads as a light smudge rather than a lit pen. (2) The right-hand pole at x 1210 still passes in front of the small-pen steers, and its foot lands at y 1760 on bare ground below the pens. (3) The frame is still the darkest of the three (median L 2.9), though now with intent.",
+        "repair": "Move the right-hand pole to the alley edge so it clears the steers. Optionally, widen the upper-left pool so it reaches its bay's fences or cut it. Keep everything else."
+      },
+      {
+        "slide": 9,
+        "role": "close",
+        "subject": "From inside the long pen, a person in a white cap, light shirt and khaki trousers stands seen from behind on the left third, at about x 240 to x 470 and y 870 to y 1650. The head is turned down toward the bunk and the near hand comes down by the bunk's lip. The precast bunk runs away on the left with clumps of gold ration along its lip under a neck rail. A white pipe divider gate runs from the lip at x 640 to the right edge, with more posts beyond. Hoof-pocked brown pen dirt and long rail shadows fill the lower half.",
+        "visual_consequence": "It reads as a fed, empty pen with one person at the bunk looking in. That is the close's consequence: the grant is awarded, the AI is a plan, and the question stays open. The figure now sits on the left third with clear air to the frame edge, and the centre opens onto the empty pen and the divider. The composition is clearly different from the cover. The dek ends at about y 740 and the first post top is at about y 840, so nothing collides.",
+        "weakness": "(1) The figure still stands about half a step back from the wall rather than resting on it. The hand at about x 250, y 1270 hovers near the lip without contact, and the arms are stiff, so the lean reads as posed. (2) The windrow is still sparse lumps rather than a continuous lit band. (3) The rhythm the dossier asks for, one long pen then two short pens of half its frontage, is still not countable.",
+        "repair": "If one more pass is affordable, put the near hand flat on the top of the bunk lip or the neck rail so the lean has contact. Otherwise ship as is."
+      }
+    ]
+  },
+  "shipped_inputs": {
+    "slides/slide-01.html": "90e2f49bef68e2d371a4e514330cec80b50ab9afb7cc043cdae8a2ff08341a23",
+    "slide-01.webp": "353d5b2542c80b5becf10ac6745380a9d024590e65476b8250db81e56006f2a0",
+    "slides/slide-04.html": "498047e700a51b0dc56a039fd89ead1834b7dea20441e2b68c24611e7a8f7593",
+    "slide-04.webp": "b4dcc08b55d75735ad828213345d8817736aaa2e5e93b59bc6c5803b244f32e8",
+    "slides/slide-09.html": "7e2e7b401b2a1d27a839044e6e9ce172baeeaf4d35f7c950af4adc5f5de8f95f",
+    "slide-09.webp": "73c3ef568223b75131d7b45dd82b78454711a235508c062f25af83e6063bec97"
+  },
+  "encodings": [
+    {
+      "to": "slide-01.webp",
+      "to_sha256": "353d5b2542c80b5becf10ac6745380a9d024590e65476b8250db81e56006f2a0",
+      "from_sha256": "d751ffdc44e61fc67ec813b4e04be2393436a185d69f6a8023e24f1485ca07ce",
+      "psnr_db": 40.447
+    },
+    {
+      "to": "slide-04.webp",
+      "to_sha256": "b4dcc08b55d75735ad828213345d8817736aaa2e5e93b59bc6c5803b244f32e8",
+      "from_sha256": "14761bf9fb53294f13416758644f536055ce9e3c7c17234a7c5c12b9418a31e0",
+      "psnr_db": 41.016
+    },
+    {
+      "to": "slide-09.webp",
+      "to_sha256": "73c3ef568223b75131d7b45dd82b78454711a235508c062f25af83e6063bec97",
+      "from_sha256": "5d09b0e7b041223dd38e9ad8fc21ed81464ce67066e8676ee929dbc5f898f2ef",
+      "psnr_db": 40.419
+    }
+  ]
+}

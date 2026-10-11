@@ -1,0 +1,78 @@
+{
+ "lens": "reader",
+ "round": 2,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.3,
+   "why": "Rendered, dark and staged throughout; slide 1 is the best frame and slide 6 has a strong side lit line. Too many frames miss the bold test: slide 2's bunk is a thin band, slide 3 is a flat 2D grid, slide 4's cattle are tiny and its labels sit on dark plates, slide 5's U block reads as a plinth, slide 8's steer is a plasticky kit model, slide 9's figure is low fidelity and cropped at the left edge."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.3,
+   "why": "One last light Panhandle world, one west key, the same concrete and pipe, and the bunk changes state across the deck. Slide 3's flat grid sits outside the film and slide 7's lit paper strobes in the filmstrip."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.0,
+   "why": "Every numeral traces and the map measures true. Two looser points: slide 4's facing layout is disclosed but reads as a design fact, and slide 6's UNITED STATES labels only the far end of the line. The NASS rows are medium confidence."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.3,
+   "why": "A Texan learns what happened, who funds it and where it goes, and nothing they can do. The close is a question with no contact, meeting, report date or record, and the AI stake stays abstract."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 6.8,
+   "why": "The cover earns the swipe, slide 2 pays at once, the turn on 7 and 8 is clear. Slides 3 to 5 are three frames of site logistics in a row, slide 6 could move, and the close is a question rather than a landing."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.8,
+   "why": "Plain and specific. The repeated disclaimer reads machine made, the slide 6 headline is clunky and slide 9's two short sentences are staccato."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "Livestock and feedyards are new, and so is the palette. A university release read for what it leaves out repeats earlier instruments, the Panhandle was no. 36's setting, and the staged lastLight world with one hero object is now every deck's default."
+  }
+ ],
+ "weighted_score": 6.88,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Fetch one page that gives a Texan somewhere to take the question, such as the WT Feedlot Research Group's own page with a contact, and rebuild slide 9 and the caption's last line around that route.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 8,
+   "change": "Drop the camera to eye 0.9 m and crop tighter so the head and dewlap fill the lower two thirds, rake the face harder from the west, and give the tag thickness and a contact shadow."
+  },
+  {
+   "slide": 2,
+   "change": "Lower the camera to about 0.5 m and narrow the fov so the four sections span the full width and fill the lower half, brackets under the sections."
+  },
+  {
+   "slide": 5,
+   "change": "Rotate the section 30 degrees so the J profile and a run of the throat read, put residue and grime in the throat, and bring the nearest stake into the pool."
+  },
+  {
+   "slide": 9,
+   "change": "Move the person to the left third fully in frame at about 40 percent of frame height, darker shirt so the key doesn't clip, the fed bunk running from their hand into the seam."
+  },
+  {
+   "slide": 4,
+   "change": "Drop to 12 m up and stage the one commercial pen and its two research partners large in the lower half, plates removed."
+  },
+  {
+   "slide": 3,
+   "change": "Build the map as caliche ground from about 800 m in the lastLight world with the section lines as fence lines."
+  }
+ ]
+}

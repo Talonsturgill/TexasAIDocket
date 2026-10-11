@@ -1,0 +1,62 @@
+<!doctype html>
+<!-- 2026-10-11, frame 9 of 9. Archetype FIGURE_SCALE. RENDERED through txthree.js in the deck's lastLight world. Standing in a new pen looking north east along a fresh, fed bunk with no animals at it: a person in work clothes at the rail lit on the camera's side, pipe dividers cutting the bunk into one long pen and two short ones of half its frontage. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+  .dek { width:860px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">Which tool, and what result?</h1>
+<p class="dek" data-follow="28">The release ties the work to WT's Feedlot Research Group. The grant is awarded. The AI approaches are a plan. The person and the pens are drawn to illustrate.</p>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-11-feedyard.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "WT Feedlot Research Group", counter: "09 / 09", src: "c1 c6 c7 c16", fit: { min: 80, max: 104, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 34 });
+  TXT.ground(R, { surface: 'dirt', size: 4000, tile: 6, seed: 9 });
+  /* the pen's packed dirt runs right to the bunk, and the alley beyond it is the same near black */
+  CH.penFloor(-40, 0.02, 60, 40);
+  CH.penFloor(-40, -60, 60, -0.95);
+  /* a fresh bunk, fed and empty, its pen side south (+z), running east to west along the low sun */
+  const bunk = CH.bunk({ length: 36.6, fill: 1, bites: 0, apron: false, seed: 7 });
+  bunk.position.set(8, 0, 0);
+  /* THE PAIRING, from figures.json small_per_commercial 2: one commercial-scale pen of frontage W, then
+   * two small pens of half its frontage each, the dividers running south from the bunk's lip */
+  const PER = 2, WC = 12, WS = WC / PER;
+  const xs = [0, WC, WC + WS, WC + PER * WS];
+  xs.forEach((x) => { const f = K.make('pipe_rail_fence', { length: 22, rails: [0.75, 1.4], spacing: 3 }); f.rotation.y = Math.PI / 2; f.position.set(x - 6, 0, 0.25 + 11); CH.put(f, true); });
+  /* the person at the rail at the long pen's east end, three quarters away, looking down the bunk */
+  const who = K.make('person', { role: 'worker', pose: 'read', hat: 'cap', vest: false, seed: 5 });
+  who.position.set(4.25, 0, 0.5); who.rotation.y = Math.PI - 0.35; TXT.add(R, who); TXT.contact(R, who);
+  /* the yard lamp over the alley, its pool on the throat beside the person */
+  CH.yardLight(1, -7, { h: 9, at: [4.5, 0.3, -0.2], i: 700, angle: 0.45 });
+  TXT.frame(R, { from: [-1.6, 1.8, 4.6], look: [12.0, 0.9, -2.4] });
+  TXT.sky(R);
+  /* the pen dirt, pocked and scattered where the camera stands */
+  TXT.deckRig(R, CH.rigSpec(W, 24, 4096), CH.rigOpts([4, 0.5, 1], { distance: 50, shadowFar: 120 }));
+  TXT.stage(R, [who, bunk], { poolInner: 6, poolOuter: 16 });
+  TXT.weather(R, { grime: 0.18, height: 0.4 });
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0.3, veil: 0.4, veilH: 260 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

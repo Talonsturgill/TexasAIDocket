@@ -9,7 +9,7 @@ The Blanco-Pedernales Groundwater Conservation District board met on April 16th,
 - Public access: Public meeting
 - Take part: https://www.blancogroundwatertx.gov/2026-04-16-district-meeting
 
-- Last checked: 2026-10-08
+- Last checked: 2026-10-11
 
 ## Dates
 
@@ -38,6 +38,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-02 · The Blanco-Pedernales district's resolution still stands, asking lawmakers to spell out what a groundwater district may require of a data center.
 - 2026-10-05 · The Blanco-Pedernales district's resolution asking the Legislature for clarity still stands as signed.
 - 2026-10-08 · The Blanco-Pedernales district's resolution asking lawmakers for clarity is unchanged.
+- 2026-10-11 · The Blanco-Pedernales district's resolution asking lawmakers to clarify its authority stands unchanged.
 
 ## Evidence
 

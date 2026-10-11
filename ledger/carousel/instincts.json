@@ -325,7 +325,8 @@
       "confirmed": [
         "2026-08-21",
         "2026-09-29",
-        "2026-10-01"
+        "2026-10-01",
+        "2026-10-11"
       ],
       "contradicted": []
     },
@@ -883,7 +884,8 @@
       "evidence": "Frame 6 was planned at 14 and measured 3.8. Its art band was lifted from 4.4 to 10.7, the strongest of any scene frame in the deck, by rebuilding the caliche pad. The frame median moved from 3.8 to 3.8. That frame reserves 680 px of 1,350 for type and its sky is another 406, so 80 per cent of it is page ground by construction.",
       "confirmed": [
         "2026-09-15",
-        "2026-09-16"
+        "2026-09-16",
+        "2026-10-11"
       ],
       "contradicted": []
     },
@@ -1366,6 +1368,22 @@
       "learned": "2026-10-10",
       "instinct": "Before the storyboard locks, check the hero and the opening move against the last fourteen artwork.json entries, because three directors reaching for the same kit model on their own is a default, not a fit.",
       "evidence": "No. 48's three directors all chose the kit student_desk with its laptop. No. 38 on September 30th had built its whole deck on it, desk alone on a field and then a field of desks, and two judges scored variety 4.5 and 5.5 for it at round 1 and round 3.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "turn-a-row-across-a-low-key",
+      "learned": "2026-10-11",
+      "instinct": "Run a row of animals or figures across a low key, never along it, because along it each one stands in the next one's shadow.",
+      "evidence": "No. 49's cover: a 6.1 degree west sun along a row of steers at an east to west bunk put every face but the first in shadow; turning the bunk north to south lit all nine.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "keep-a-kit-animal-under-the-type-band",
+      "learned": "2026-10-11",
+      "instinct": "Frame a kit animal whole and below the type band, because a crop close enough to fill the frame lifts its back through the dek.",
+      "evidence": "No. 49 frame 8: three cameras close on the Hereford's head put its back behind the hook or the rail through the dek; stepping back to the whole steer cleared the type.",
       "confirmed": [],
       "contradicted": []
     }

@@ -1,0 +1,64 @@
+<!doctype html>
+<!-- 2026-10-11, frame 1 of 9. Archetype FULL_BLEED. RENDERED through txthree.js in the deck's lastLight world. Standing in the feed alley north west of a full fence line bunk that runs north to south, looking south south east along it with the low west sun on the camera's right: Hereford steers with their heads at the neck rail on the pen side to the right, the gold windrow running to the horizon, a grain elevator on the seam. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+  .dek { width:860px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">The pens are counted. The AI isn't.</h1>
+<p class="dek" data-follow="28">West Texas A&amp;M received $9.75 million from USDA for a research feedlot near Canyon. The A&amp;M System calls it the largest federal award in WT's history. The yard and the cattle are drawn to illustrate.</p>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-11-feedyard.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "West Texas A&M University", counter: "01 / 09", src: "c1 c4 c7", fit: { min: 84, max: 104, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 34 });
+  TXT.ground(R, { surface: 'dirt', size: 6000, tile: 6, seed: 3 });                 /* the feed alley and the yard beyond */
+  CH.penFloor(3.66, -40, 30, 3);
+  /* the feed alley's packed dirt west of the bunk, the same near black as the pens, so the lit ground stays a seam */
+  CH.penFloor(-60, -60, -0.95, 40);                                                      /* the pen floor east of the apron */
+  /* THE BUNK runs north to south with its pen side east, so the low west sun lights every face at the rail
+   * and no steer shades the next: 24.4 m, eight precast sections */
+  const bunk = CH.bunk({ length: 24.4, fill: 0.9, bites: 2, seed: 3 });
+  bunk.rotation.y = Math.PI / 2; bunk.position.set(0, 0, -10);
+  /* the steers on the apron, facing west into the bunk (ry -PI/2), heads over the throat */
+  const zs = [-0.9, -1.9, -2.85, -3.9, -4.85, -5.9, -6.95, -7.9, -8.9];
+  const steers = zs.map((z, i) => CH.steer(1.55 + (i % 2) * 0.12, z, { ry: -Math.PI / 2 + [0.0, 0.24, -0.12, 0.3, -0.2, 0.06, -0.28, 0.16, 0.0][i], seed: 3 + i }));
+  /* the elevator on the seam, a kilometre down the line of the bunk */
+  const elev = K.make('grain_elevator', { seed: 2 }); elev.position.set(-60, 0, 950); elev.rotation.y = Math.PI / 2; TXT.add(R, elev);
+  /* the yard lamp over the pens behind the cattle, its sodium pool on the windrow and the faces at the rail */
+  CH.yardLight(7.5, -12.5, { h: 9, at: [-0.45, 0.35, -5.0], i: 900, angle: 0.45 });
+  TXT.frame(R, { from: [-2.0, 2.35, -15.5], look: [0.7, 1.05, -5.0] });
+  TXT.sky(R);
+  TXT.deckRig(R, CH.rigSpec(W, 30, 4096), CH.rigOpts([0, 0.5, -6], { distance: 60, shadowFar: 140 }));
+  /* THE SUN'S ELEVATION, from figures.json sun_elevation 6.1: every rail post (1.29 m) casts down the apron
+   * 1.29 / tan(6.1 deg) metres to the east, which is why the camera stands at the bunk's east end. */
+  const castLen = 1.29 / Math.tan(6.1 * Math.PI / 180);
+  CH.tagEar(steers[8], [-2.0, 2.35, -15.5], { scale: 1.9, lift: 0.07 });
+  TXT.stage(R, [steers[5], steers[6], steers[7], steers[8]], { poolInner: 4.5, poolOuter: 10, behind: castLen > 0 ? undefined : 0 });
+  TXT.weather(R, { grime: 0.42, height: 0.7 });
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0.3, veil: 0.4, veilH: 280 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

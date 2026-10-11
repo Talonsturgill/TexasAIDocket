@@ -2109,3 +2109,22 @@ boundary, which reads their robots.txt files, allowed every page the run asked f
 
 **Spectrum News (spectrumlocalnews.com) disallows this project's fetcher in robots.txt.** A claim
 from its ACC report was dropped rather than routed around.
+
+## 2026-10-11
+
+**www2.census.gov disallows this project's fetcher on the Gazetteer files path** in robots.txt, and
+`fetch_doc.py` refused the 2023 Texas places file before requesting it. **tigerweb.geo.census.gov
+answered "Request Rejected"** to a query for Canyon's internal point. Neither was routed around.
+Canyon is not in the committed gazetteer either, so the run's map drew a plan at one scale measured
+from Canyon and named no county.
+
+**NIFA's own award pages answered 503** to the fact checker, and the grant rests on the A&M System's
+release of October 7th. **esmis.nal.usda.gov's Cattle on Feed text answered 503 to the fact
+checker's live fetch** and was checked against the run's own boundary checked retrieval of the same
+URL. Its robots.txt read failed once with a URLError and answered on the retry.
+
+**taylortx.gov answered a URLError** on the run's first fetch of the annexation page. The Taylor
+vote was taken from CBS Austin's report, which answered 200.
+
+**www.oncor.com's robots.txt timed out and www.leaguecitytx.gov's answered a URLError** during
+`reverify.py`, so the crawl boundary read both as refusing and requested nothing behind them.

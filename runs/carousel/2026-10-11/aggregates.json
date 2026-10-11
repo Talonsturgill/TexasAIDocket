@@ -1,0 +1,132 @@
+{
+ "date": "2026-10-11",
+ "_note": "Every count the deck states, with the claim it was quoted from, or the code that computed it.",
+ "aggregates": [
+  {
+   "phrase": "seven miles",
+   "slide": "slide-03.html",
+   "kind": "count",
+   "value": 7,
+   "quoted_from": "c9",
+   "quote": "located about seven miles east of Canyon",
+   "note": "the release's own distance, figures.json ranch_miles_east_word"
+  },
+  {
+   "phrase": "SEVEN MILES",
+   "slide": "slide-03.html",
+   "kind": "count",
+   "value": 7,
+   "quoted_from": "c9",
+   "quote": "located about seven miles east of Canyon",
+   "note": "the leader label, the same quoted distance"
+  },
+  {
+   "phrase": "42.84 acres",
+   "slide": "slide-03.html",
+   "kind": "count",
+   "value": 42.84,
+   "quoted_from": "c10",
+   "quote": "a 2024 land legacy gift of 42.84 acres",
+   "note": "figures.json gift_acres"
+  },
+  {
+   "phrase": "90 research pens",
+   "slide": "slide-04.html",
+   "kind": "count",
+   "value": 90,
+   "quoted_from": "c4",
+   "quote": "by pairing 90 small research pens",
+   "note": "figures.json small_pens"
+  },
+  {
+   "phrase": "45 commercial ones",
+   "slide": "slide-04.html",
+   "kind": "count",
+   "value": 45,
+   "quoted_from": "c4",
+   "quote": "with 45 commercial-scale pens",
+   "note": "figures.json commercial_pens"
+  },
+  {
+   "phrase": "45 COMMERCIAL-SCALE PENS",
+   "slide": "slide-04.html",
+   "kind": "count",
+   "value": 45,
+   "quoted_from": "c4",
+   "quote": "with 45 commercial-scale pens",
+   "note": "figures.json commercial_pens"
+  },
+  {
+   "phrase": "90 SMALL RESEARCH PENS",
+   "slide": "slide-04.html",
+   "kind": "count",
+   "value": 90,
+   "quoted_from": "c4",
+   "quote": "by pairing 90 small research pens",
+   "note": "figures.json small_pens"
+  },
+  {
+   "phrase": "90 small research pens",
+   "slide": "caption.txt",
+   "kind": "count",
+   "value": 90,
+   "quoted_from": "c4",
+   "quote": "by pairing 90 small research pens",
+   "note": "figures.json small_pens"
+  },
+  {
+   "phrase": "45 commercial-scale pens",
+   "slide": "caption.txt",
+   "kind": "count",
+   "value": 45,
+   "quoted_from": "c4",
+   "quote": "with 45 commercial-scale pens",
+   "note": "figures.json commercial_pens"
+  },
+  {
+   "phrase": "135 pens",
+   "slide": "slide-04.html",
+   "kind": "count",
+   "value": 135,
+   "computed_by": "compute.py adds figures.json small_pens (90, c4) and commercial_pens (45, c4) into total_pens",
+   "from_claims_context": [
+    "c4"
+   ],
+   "note": "figures.json total_pens"
+  },
+  {
+   "phrase": "two small research pens across",
+   "slide": "slide-04.html",
+   "kind": "ratio",
+   "value": 2,
+   "computed_by": "compute.py divides figures.json small_pens (90, c4) by commercial_pens (45, c4) into small_per_commercial",
+   "from_claims_context": [
+    "c4"
+   ],
+   "note": "figures.json small_per_commercial; the release pairs the two kinds, the layout is drawn to illustrate",
+   "of": 90
+  },
+  {
+   "phrase": "Four facilities",
+   "slide": "slide-05.html",
+   "kind": "count",
+   "value": 4,
+   "from_claims": [
+    "c5"
+   ],
+   "computed_by": "compute.py counts the four planned components the c5 quote lists into figures.json components",
+   "note": "one per component c5 names: handling facility, veterinary care and research hospital, feed and production center, metabolism and physiology center"
+  },
+  {
+   "phrase": "two official records",
+   "slide": "first_comment.txt",
+   "kind": "count",
+   "value": 2,
+   "from_claims": [
+    "c1",
+    "c17"
+   ],
+   "note": "one claim per document the sources block lists: the A&M System release (c1) and USDA NASS Cattle on Feed (c17)"
+  }
+ ]
+}

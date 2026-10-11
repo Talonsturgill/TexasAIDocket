@@ -1,0 +1,74 @@
+{
+ "lens": "integrity",
+ "round": 2,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.5,
+   "why": "Frames 1, 6, 8 and 9 pass most of the stage test. Three frames fail it: 2's bunk is a thin band with dead dark below the brackets, 3 is a flat schematic grid with no world, and 7's lower zone is dead with the page curling into the footer band. The kit models read as toys at full size on 1, 8 and 9."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "One feedyard world at last light with a computed key and one bunk-and-rail hero through 1, 2, 4 to 9; both declared continuity devices work. Frame 3 sits outside the stock and 7 is the one value jump."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.5,
+   "why": "Every numeral traces and the plan on 3 measures honest. Three loose spots: the legend on 3 could be read as the ranch's size, the drawing rule on 6 can't be counted in the frame and its headline compares states the art doesn't show, and slide 4's kicker 'as planned' sits over a layout the release never describes."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.5,
+   "why": "What happened, who paid and where are clear. No deadline or next step, and the AI stake stays general."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "The cover earns the swipe and 2 pays at once; the turn lands at 7. Frame 8 restates the cover and 7, and 6 could move. The close is a question."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.8,
+   "why": "Clean and on register, house rules hold. The 'drawn to illustrate' line repeats and the slide 6 headline is stiff."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "The product's first feedyard deck with a new palette note, but last light, a release read for what it doesn't name and a lone person at the close all repeat recent decks."
+  }
+ ],
+ "weighted_score": 6.9,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Re-stage frames 2 and 3 so a lit rendered subject fills each frame, reword 3's legend to 'EACH GRID SQUARE IS ONE MILE ON A SIDE', and re-frame 6 so all 22 steers and the 5 Texas ones can be counted.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 3,
+   "change": "Render the plan as a low oblique aerial over dark caliche with the mile grid as survey lines, the ranch as a raised lit plat, and reword the legend to 'EACH GRID SQUARE IS ONE MILE ON A SIDE'."
+  },
+  {
+   "slide": 2,
+   "change": "Move the camera in and down so the four sections fill about 45 percent of frame height and run off both edges, brackets tight under them."
+  },
+  {
+   "slide": 7,
+   "change": "Lower the camera so the bunk throat and windrow fill the bottom third under the page, and raise the page so its curl clears the footer."
+  },
+  {
+   "slide": 6,
+   "change": "Pull back and swing toward square-on so all 22 heads separate, the divider after the fifth steer and TEXAS over those five."
+  },
+  {
+   "slide": 9,
+   "change": "Turn the figure toward profile with one hand on the rail, shirt material on both arms, and rake the key across the face."
+  }
+ ]
+}

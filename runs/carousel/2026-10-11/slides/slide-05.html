@@ -1,0 +1,76 @@
+<!doctype html>
+<!-- 2026-10-11, frame 5 of 9. Archetype OBJECT_AND_CAPTION. RENDERED through txthree.js in the deck's lastLight world. Low on a graded caliche pad, one unset precast bunk section rests on two timber dunnage blocks with its J end to the west key, and four survey stakes with pale flagging recede on a string line behind it, one per planned building. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+  .dek { width:880px; }
+  #ldr { position:absolute; left:0; top:0; width:1080px; height:1350px; z-index:11; pointer-events:none; }
+  .lab { font-size:26px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">Ground is broken. Four facilities are planned.</h1>
+<p class="dek" data-follow="28">Ground was broken in November 2025. Plans call for a precision beef cattle handling facility, a veterinary care and research hospital, an advanced technology feed and production center and a metabolism and physiology center. The section and stakes are drawn to illustrate.</p>
+<svg id="ldr" viewBox="0 0 1080 1350"></svg>
+<div class="lab" id="s0">CATTLE HANDLING FACILITY</div>
+<div class="lab" id="s1">VETERINARY HOSPITAL</div>
+<div class="lab" id="s2">FEED AND PRODUCTION CENTER</div>
+<div class="lab" id="s3">METABOLISM AND PHYSIOLOGY CENTER</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-11-feedyard.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "The site east of Canyon", counter: "05 / 09", src: "c5 c8", fit: { min: 72, max: 96, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 34, far: 6000 });
+  TXT.ground(R, { surface: 'caliche', size: 4000, tile: 6, seed: 12 });
+  /* one precast section, rail and apron off, empty, on two timber dunnage blocks, its J end turned to the west key */
+  const sec = K.make('feed_bunk', { length: 3.05, fill: 0, rail: false, apron: false, seed: 13 });
+  sec.position.set(1.15, 0.15, 1.4); sec.rotation.y = 0.62; TXT.add(R, sec); TXT.contact(R, sec);
+  const pine = K.mat('fy-dunnage', { color: 0x7a5d40, roughness: 0.9 });
+  const th = 0.62, rot = (x, z) => [x * Math.cos(th) + z * Math.sin(th), -x * Math.sin(th) + z * Math.cos(th)];
+  [-0.95, 0.95].forEach((t) => { const b = new THREE.Mesh(new THREE.BoxGeometry(0.15, 0.15, 1.2), pine); const o = rot(t, -0.46); b.position.set(1.15 + o[0], 0.075, 1.4 + o[1]); b.rotation.y = th; b.castShadow = b.receiveShadow = true; TXT.add(R, b); TXT.contact(R, b); });
+  /* THE PLAN, from figures.json components 4: four survey stakes on a string line, one per planned building, in the release's order */
+  const COMPONENTS = 4, DIST = [6, 8.5, 12, 17], YAW = [-2.5, 0.2, 2.8, 5.2];
+  const stakes = []; for (let i = 0; i < COMPONENTS; i++) { const s = K.make('survey_stake', { lean: (i % 2 ? -1 : 1) * 0.03, seed: 20 + i }); s.position.set(-1.2 + Math.tan(YAW[i] * Math.PI / 180) * DIST[i], 0, 6.2 - DIST[i]); TXT.add(R, s); TXT.contact(R, s); stakes.push(s); }
+  /* the site's light plant west of the pad, its pool on the section's J end and the stakes behind it */
+  CH.yardLight(-7.5, 1.5, { h: 8, at: [0.6, 0.4, 0.0], i: 650, angle: 0.42, penumbra: 0.8 });
+  /* and a second head on the same plant aimed down the string line, so every stake and its flagging reads */
+  CH.yardLight(-7.5, -1.0, { h: 8, at: [-2.0, 0.6, -3.6], i: 1100, angle: 0.36, penumbra: 0.7, shadow: false });
+  TXT.frame(R, { from: [-1.2, 0.75, 6.2], look: [0.6, 1.45, -4] });
+  TXT.sky(R);
+  /* scrub past the graded pad, and gravel on it, spent where the camera is */
+  TXT.scatter(R, { kind: 'scrub', area: [-60, -140, 60, -30], count: 1400, seed: 51 });
+  TXT.scatter(R, { kind: 'stones', area: [-6, -10, 8, 3.2], count: 4000, seed: 52, scale: [0.008, 0.03], avoid: [[-0.4, 0.2, 2.8, 2.6]] });
+  TXT.deckRig(R, CH.rigSpec(W, 60, 4096), CH.rigOpts([0.5, 0.3, -8], { distance: 80, shadowFar: 200 }));
+  TXT.stage(R, sec, { poolInner: 6, poolOuter: 18 });
+  TXT.weather(R, { grime: 0.26, height: 0.45 });
+  /* each stake's label stacked in the dark above the line, a hairline leader down to its flagging */
+  const svg = document.getElementById('ldr'), NS = 'http://www.w3.org/2000/svg';
+  for (let i = 0; i < COMPONENTS; i++) {
+    const top = CH.project(THREE, R, [stakes[i].position.x, 1.0, stakes[i].position.z]);
+    const el = document.getElementById('s' + i), y = Math.round(document.querySelector('.dek').getBoundingClientRect().bottom) + 46 + i * 40;
+    el.style.left = Math.round(Math.max(80, Math.min(1000 - el.getBoundingClientRect().width, top[0] + 14))) + 'px'; el.style.top = Math.round(y - 30 + (3 - i) * 0) + 'px';
+    const l = document.createElementNS(NS, 'line'); l.setAttribute('x1', top[0]); l.setAttribute('y1', y - 4); l.setAttribute('x2', top[0]); l.setAttribute('y2', top[1] - 6);
+    l.setAttribute('stroke', '#DCD6C8'); l.setAttribute('stroke-width', '2.5'); l.setAttribute('stroke-opacity', '0.75'); svg.appendChild(l);
+  }  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0.3, veil: 0.5, veilH: 330 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

@@ -12,7 +12,7 @@ Volvo Autonomous Solutions and Waabi announced on October 5th the start of auton
 - Public access: Write to the decider
 - Take part: https://www.txdmv.gov/about-us/txdmv-board-meetings
 
-- Last checked: 2026-10-08
+- Last checked: 2026-10-11
 
 ## Dates
 
@@ -23,6 +23,7 @@ Volvo Autonomous Solutions and Waabi announced on October 5th the start of auton
 One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
 
 - 2026-10-08 · Admitted to the record on Volvo Group's own release of the first customer operation.
+- 2026-10-11 · Volvo's release on the first customer hauls still reads as published, with an observer in the driver's seat.
 
 ## Evidence
 

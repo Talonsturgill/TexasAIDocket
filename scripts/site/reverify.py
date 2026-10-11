@@ -188,13 +188,15 @@ def flatten(raw: bytes) -> str:
         t = _TAG.sub(" ", t)
         t = _ANY.sub(" ", t)
         t = html.unescape(t)
-    # A non-breaking space is a space to a reader and a different codepoint to `in`.
-    t = t.replace(" ", " ").replace("’", "'").replace("“", '"').replace("”", '"')
+    # A non-breaking space is a space to a reader and a different codepoint to `in`, and a
+    # non-breaking hyphen is a hyphen. The record stores the plain one because the mono face
+    # carries no U+2011 (tests/glyphs.mjs, tx-2026-0213-c3).
+    t = t.replace(" ", " ").replace("‑", "-").replace("’", "'").replace("“", '"').replace("”", '"')
     return _WS.sub(" ", t).strip()
 
 
 def norm_quote(q: str) -> str:
-    q = q.replace(" ", " ").replace("’", "'").replace("“", '"').replace("”", '"')
+    q = q.replace(" ", " ").replace("‑", "-").replace("’", "'").replace("“", '"').replace("”", '"')
     return _WS.sub(" ", q).strip()
 
 

@@ -1,0 +1,78 @@
+<!doctype html>
+<!-- 2026-10-11, frame 2 of 9. Archetype DIAGRAM. RENDERED through txthree.js in the deck's lastLight world. A long lens from the pen side, square to one 12.2 m bunk of four precast sections running east to west, the low west sun raking its windrow along the throat: DOM brackets under the sections give the grant two and each half of the match one. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+  .dek { width:880px; }
+  #brk { position:absolute; left:0; top:0; width:1080px; height:1350px; z-index:11; pointer-events:none; }
+  .lab { text-align:center; font-size:24px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">USDA pays half.<br>The match pays the rest.</h1>
+<p class="dek" data-follow="28">A required dollar for dollar match brings the project to $19.5&nbsp;million. The A&amp;M System puts in $4.875&nbsp;million. The Texas Cattle Feeders Association, donors and other sources match it. Each section is drawn to stand for one $4.875&nbsp;million share.</p>
+<svg id="brk" viewBox="0 0 1080 1350"></svg>
+<div class="lab" id="labG">USDA<br>GRANT<br>$9.75<br>MILLION</div>
+<div class="lab" id="labA">A&amp;M<br>SYSTEM<br>$4.875<br>MILLION</div>
+<div class="lab" id="labO">OTHER<br>SOURCES<br>$4.875<br>MILLION</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-11-feedyard.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "West Texas A&M feedlot funding", counter: "02 / 09", src: "c1 c3 c13", fit: { min: 72, max: 96, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 40, far: 6000 });
+  TXT.ground(R, { surface: 'caliche', size: 4000, tile: 8, seed: 6 });
+  CH.penFloor(-40, 3.66, 40, 60);
+  /* the alley's packed dirt north of the bunk, near black, so the far ground falls away above the pool */
+  CH.penFloor(-80, -200, 80, -0.95);
+  /* THE MONEY IN THE BUNK'S OWN UNITS, from figures.json: total_sections 4 precast sections of 3.05 m, the
+   * grant spanning grant_sections 2 and each half of the match one, one section per section_musd 4.875 */
+  const SECTIONS = 4, GRANT = 2, SEC = 3.05, L = SECTIONS * SEC;
+  const bunk = CH.bunk({ length: L, fill: 1, bites: 0, seed: 11 });
+  bunk.position.set(0, 0, 0);
+  /* square on from the pen side and centred, pitched down onto the bunk and its apron: the bunk runs parallel to the image plane, so its four equal sections print equal at any pitch */
+  const CAM = [0.4, 8.2, 25.5];
+  /* the yard lamp off the frame's west edge, its sodium light running down the throat along the windrow */
+  CH.yardLight(-15, -2.5, { h: 10, at: [-0.5, 0.3, -0.45], i: 1600, angle: 0.4, penumbra: 0.7 });
+  TXT.frame(R, { from: CAM, look: [0, 1.9, -1.0] });
+  TXT.sky(R);
+  TXT.deckRig(R, CH.rigSpec(W, 30, 4096), CH.rigOpts([0, 0.4, 0], { distance: 60, shadowFar: 140 }));
+  TXT.stage(R, bunk, { poolInner: 1.4, poolOuter: 3.4 });
+  TXT.weather(R, { grime: 0.24, height: 0.45 });
+  /* the brackets, projected from the section joints on the apron's front edge */
+  const xs = []; for (let i = 0; i <= SECTIONS; i++) xs.push(-L / 2 + i * SEC);
+  const at = (x) => CH.project(THREE, R, [x, 0.46, 0]);
+  const y0 = Math.max(CH.project(THREE, R, [xs[0], 0, 3.66])[1], CH.project(THREE, R, [xs[SECTIONS], 0, 3.66])[1]) + 40;
+  const svg = document.getElementById('brk'), NS = 'http://www.w3.org/2000/svg';
+  const line = (x1, y1, x2, y2) => { const l = document.createElementNS(NS, 'line'); l.setAttribute('x1', x1); l.setAttribute('y1', y1); l.setAttribute('x2', x2); l.setAttribute('y2', y2); l.setAttribute('stroke', '#DCD6C8'); l.setAttribute('stroke-width', '2.5'); svg.appendChild(l); };
+  const bracket = (a, b, id) => {
+    const p = at(a)[0] + 6, q = at(b)[0] - 6;
+    line(p, y0 - 18, p, y0); line(p, y0, q, y0); line(q, y0 - 18, q, y0);
+    const el = document.getElementById(id), w = el.getBoundingClientRect().width;
+    el.style.left = Math.round((p + q) / 2 - w / 2) + 'px'; el.style.top = Math.round(y0 + 22) + 'px';
+  };
+  bracket(xs[0], xs[GRANT], 'labG');
+  bracket(xs[GRANT], xs[GRANT + 1], 'labA');
+  bracket(xs[GRANT + 1], xs[SECTIONS], 'labO');
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0.3, veil: 0.45, veilH: 300 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

@@ -11,7 +11,7 @@ The University of North Texas is offering a Bachelor of Science in Artificial In
 - Public access: Write to the decider
 - Take part: https://engineering.unt.edu/cse/undergraduate/bsai.html
 
-- Last checked: 2026-10-08
+- Last checked: 2026-10-11
 
 ## Dates
 
@@ -32,6 +32,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-02 · UNT still offers its undergraduate degree in artificial intelligence.
 - 2026-10-05 · The University of North Texas still offers its undergraduate degree in artificial intelligence.
 - 2026-10-08 · The University of North Texas still offers its undergraduate degree in artificial intelligence.
+- 2026-10-11 · The University of North Texas still offers its undergraduate AI degree.
 
 ## Evidence
 
