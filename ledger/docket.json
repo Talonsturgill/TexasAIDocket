@@ -1,7 +1,7 @@
 {
  "_spec": {
   "version": 2,
-  "generated": "2026-10-10",
+  "generated": "2026-10-11",
   "gates": [
    "banned words",
    "claims",
@@ -25726,6 +25726,15 @@
      "source_type": "journalism",
      "fetched": "2026-09-24",
      "id": "tx-2026-0168-c9"
+    },
+    {
+     "text": "On September 15th the commissioners court voted 3 to 2 to move the money set aside for a possible Axon contract to two more corrections officers.",
+     "verbatim_quote": "In a 3-2 vote on Sept. 15, the court approved a motion to reallocate the determined funding for a future Axon contract, requesting the funds be used to pay for two additional corrections officers in the Hays County Sheriff's Office.",
+     "source_url": "https://communityimpact.com/san-marcos-buda-kyle/government/hays-county-commissioners-reallocate-funds-away-from-potential-axon-ai-contract/",
+     "source_title": "Community Impact, Hays County commissioners reallocate funds away from potential Axon AI contract, September 16th, 2026",
+     "source_type": "journalism",
+     "fetched": "2026-10-11",
+     "id": "tx-2026-0168-c10"
     }
    ],
    "history": [
@@ -25801,6 +25810,10 @@
     {
      "date": "2026-10-10",
      "note": "The sheriff's posted promise stays unconfirmed on the county's agenda, which bars automated readers, and the county's archive refused the request."
+    },
+    {
+     "date": "2026-10-11",
+     "note": "On September 15th the court voted 3 to 2 to move the money set aside for a possible Axon contract to two more corrections officers, by the published account."
     }
    ],
    "last_verified": "2026-09-26",
@@ -32359,6 +32372,103 @@
      "checked": true
     }
    ]
+  },
+  {
+   "title": "UT San Antonio builds a free training platform where students learn to find the security flaws in code an AI wrote",
+   "summary": "The National Science Foundation funds a UT San Antonio project led by Nishant Vishwamitra of the College of AI, Cyber and Computing. Its platform, OpenSecCoder, will teach students to work with code an AI tool generated and to find and fix its security problems in a sandbox. Each lab gives a student a coding agent, a terminal and a debugger. The release says most of the labs need no programming background. It projects how many students a year the project will reach, together with the University at Buffalo. The platform and labs are still being built and no result is reported.",
+   "topic": "research-and-science",
+   "decider": {
+    "name": "National Science Foundation",
+    "type": "federal"
+   },
+   "geography": {
+    "statewide": false,
+    "counties": [
+     "Bexar"
+    ],
+    "on_ercot": null,
+    "metro": "San Antonio-New Braunfels, TX"
+   },
+   "status": "decided",
+   "key_dates": [
+    {
+     "date": "2026-09-23",
+     "kind": "effective",
+     "note": "UT San Antonio announces the funded project, the date of the release"
+    }
+   ],
+   "public_access": {
+    "room": "contact_only",
+    "how": "The grant is awarded and no vote is open. The platform is described as free and online once it is built. The College of AI, Cyber and Computing at UT San Antonio is the contact for the project.",
+    "url": "https://news.utsa.edu/2026/09/keeping-the-code-safe-how-ut-san-antonio-students-are-learning-to-build-a-safer-ai/",
+    "closes": null
+   },
+   "confidence": "high",
+   "notes_for_editor": "Admitted on UT San Antonio's own release of September 23rd, 2026. The reach figure is the university's projection rather than a count. The release names the coding tools only as examples of agentic coding and does not say the platform uses any of them.",
+   "history": [
+    {
+     "date": "2026-10-11",
+     "note": "Admitted to the record on UT San Antonio's own release. The platform is still being built and the student reach is a projection."
+    }
+   ],
+   "claims": [
+    {
+     "text": "An NSF funded project at UT San Antonio trains students to spot security risks in code that AI generated.",
+     "verbatim_quote": "Vishwamitra is leading the $500,000 National Science Foundation–funded project to train students, before they enter the workforce, to spot security risks in AI-generated code.",
+     "source_url": "https://news.utsa.edu/2026/09/keeping-the-code-safe-how-ut-san-antonio-students-are-learning-to-build-a-safer-ai/",
+     "source_title": "UT San Antonio, Keeping the code safe, September 23rd, 2026",
+     "source_type": "primary_official",
+     "fetched": "2026-10-11",
+     "id": "tx-2026-0213-c1"
+    },
+    {
+     "text": "OpenSecCoder is a free online platform where students practise finding and fixing security problems in AI generated code in a safe environment.",
+     "verbatim_quote": "OpenSecCoder, a free online learning platform developed through the project, will teach students to work with AI-generated software code and practice finding and fixing security problems in a safe environment.",
+     "source_url": "https://news.utsa.edu/2026/09/keeping-the-code-safe-how-ut-san-antonio-students-are-learning-to-build-a-safer-ai/",
+     "source_title": "UT San Antonio, Keeping the code safe, September 23rd, 2026",
+     "source_type": "primary_official",
+     "fetched": "2026-10-11",
+     "id": "tx-2026-0213-c2"
+    },
+    {
+     "text": "Each lab opens with instructions, a coding agent standing in as the AI tool, a terminal and a debugger.",
+     "verbatim_quote": "This opens an interface that includes step‑by‑step instructions; a coding agent, which serves as the AI tool; a terminal for executing commands; and a debugger for identifying vulnerabilities.",
+     "source_url": "https://news.utsa.edu/2026/09/keeping-the-code-safe-how-ut-san-antonio-students-are-learning-to-build-a-safer-ai/",
+     "source_title": "UT San Antonio, Keeping the code safe, September 23rd, 2026",
+     "source_type": "primary_official",
+     "fetched": "2026-10-11",
+     "id": "tx-2026-0213-c3"
+    },
+    {
+     "text": "The project expects to reach undergraduate and graduate students each year with the University at Buffalo.",
+     "verbatim_quote": "The project is expected to reach about 600 undergraduate and 400 graduate students each year in collaboration with the University at Buffalo.",
+     "source_url": "https://news.utsa.edu/2026/09/keeping-the-code-safe-how-ut-san-antonio-students-are-learning-to-build-a-safer-ai/",
+     "source_title": "UT San Antonio, Keeping the code safe, September 23rd, 2026",
+     "source_type": "primary_official",
+     "fetched": "2026-10-11",
+     "id": "tx-2026-0213-c4"
+    },
+    {
+     "text": "Most of the labs require no programming background.",
+     "verbatim_quote": "Five of the eight labs will require no programming background, opening the training to students outside traditional computing fields.",
+     "source_url": "https://news.utsa.edu/2026/09/keeping-the-code-safe-how-ut-san-antonio-students-are-learning-to-build-a-safer-ai/",
+     "source_title": "UT San Antonio, Keeping the code safe, September 23rd, 2026",
+     "source_type": "primary_official",
+     "fetched": "2026-10-11",
+     "id": "tx-2026-0213-c5"
+    },
+    {
+     "text": "The project lead says agents are built to finish the task and security is what usually gets sacrificed.",
+     "verbatim_quote": "\"Agents are built to finish the task and security is usually what gets sacrificed,\" Vishwamitra said, adding that the code could end up in health care, finance, critical infrastructure, and defense systems.",
+     "source_url": "https://news.utsa.edu/2026/09/keeping-the-code-safe-how-ut-san-antonio-students-are-learning-to-build-a-safer-ai/",
+     "source_title": "UT San Antonio, Keeping the code safe, September 23rd, 2026",
+     "source_type": "primary_official",
+     "fetched": "2026-10-11",
+     "id": "tx-2026-0213-c6"
+    }
+   ],
+   "id": "tx-2026-0213",
+   "last_verified": "2026-10-11"
   }
  ]
 }
