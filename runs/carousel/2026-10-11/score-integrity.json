@@ -1,0 +1,78 @@
+{
+ "lens": "integrity",
+ "round": 3,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.0,
+   "why": "Dark and bold in value structure; 1, 6 and 9 hold a real west key. More than one frame falls short: the kit Hereford reads as a plastic toy on 1, 6 and 8; frame 5's section faces render flat navy and the dunnage reads as one slab; frame 4 has steers in a file along the alley, two pools and labels on plates; frame 6's near throat shows a dark curled flap; frame 2's bunk is a thin strip; 7 and 8 sit on a muddy purple-grey field."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.0,
+   "why": "One world: the bunk and rail through 1, 2, 4 to 9 under one west key, and both devices work. Frame 3 is a flat grid and 7 and 8 shift to a purple-grey field."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.5,
+   "why": "Every numeral traces and frame 3 measures true. Four phrasings run looser: frame 4's kicker says feed alleys are planned, frame 6's headline drops 'estimated' on a 30 thousand head margin, frame 6's isotype can't be checked at feed size, and frame 9's 'a plan' firms up 'can be evaluated'. c17 to c20 are medium confidence."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.5,
+   "why": "What, who and where are clear and frame 6 gives the Panhandle stake. No county, no deciding body beyond USDA, and the close gives nothing to do; the record's public_access reaches no frame."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "The cover earns the swipe, 2 pays, 7 turns. Frame 8 restates and frame 6 could move."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Clean and regionally specific with no rule breaks. 'Drawn to illustrate' recurs on nine of nine, and frame 9's two short sentences read as a disclaimer."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 5.5,
+   "why": "The first feedlot deck in the window, but lastLight again, a kit person at the close again, a precast object again, an absence spine again and a university release instrument again."
+  }
+ ],
+ "weighted_score": 6.65,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Rebuild frames 8, 4 and 5 in-camera: a haired steer close-up on near black over the lit windrow, cattle out of the feed alley, and the section's long face in its concrete material under the key.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 8,
+   "change": "A haired hide material, a tight key pool on the face so the field drops to near black, and the bunk lip and windrow across the bottom third."
+  },
+  {
+   "slide": 4,
+   "change": "Seat the steers inside the lit pens, collapse to one pool on one commercial pen and its two partners, and drop the label plates."
+  },
+  {
+   "slide": 5,
+   "change": "Give the section's long and inner faces the concrete material under the key, and make the dunnage two separate timbers with their own contact shadows."
+  },
+  {
+   "slide": 2,
+   "change": "Move the long lens closer so the sections fill the middle third and bleed both edges."
+  },
+  {
+   "slide": 7,
+   "change": "Drop the field to near black, bring the bunk lip and throat into the lower third, and set the quote at 24 px or more."
+  },
+  {
+   "slide": 6,
+   "change": "Light the windrow along the near throat in place of the dark flap, and make the 5-of-22 divider read in the pool."
+  }
+ ]
+}

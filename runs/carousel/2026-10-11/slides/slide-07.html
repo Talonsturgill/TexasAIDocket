@@ -1,0 +1,67 @@
+<!doctype html>
+<!-- 2026-10-11, frame 7 of 9. Archetype DOCUMENT. RENDERED through txthree.js in the deck's lastLight world. Close at a neck rail post on the alley side, looking south: a letter page hangs from the galvanized rail on a binder clip, lit by the low west key against the near black sky, the release's one AI sentence set on it in DOM type with a dusk gold rule in its margin. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+  .dek { width:880px; }
+  #pg { position:absolute; z-index:12; color:#1d1a16; font-family:"Manrope", sans-serif; font-weight:500; line-height:1.38; text-shadow:none; }
+  #pg .rule { position:absolute; left:0; top:0; width:12px; height:100%; background:#E0956A; }
+  #pg .t { padding-left:30px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">The release mentions AI once</h1>
+<p class="dek" data-follow="28">The mention is a planned way of evaluating techniques. The page is drawn to illustrate. The words are the release's own.</p>
+<div id="pg"><div class="rule"></div><div class="t">New feeding, health and handling techniques can be evaluated with traditional and artificial intelligence-powered approaches that are designed to increase beef production efficiency and advance feedlot management practices.</div></div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-11-feedyard.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "The A&M System release, October 7th", counter: "07 / 09", src: "c6 c7", fit: { min: 72, max: 96, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 34, far: 6000 });
+  TXT.ground(R, { surface: 'dirt', size: 4000, tile: 6, seed: 16 });
+  CH.penFloor(-30, 3.66, 30, 40);
+  /* the yard's packed dirt all round, near black, so the field behind the page is the dark */
+  CH.penFloor(-200, -200, 200, 200, 0.003);
+  /* the bunk along x, its pen side south (+z), the camera on the alley side close to a rail post */
+  const bunk = CH.bunk({ length: 12.2, fill: 0, bites: 0, seed: 17 });
+  bunk.position.set(0, 0, 0);
+  /* the page on the rail, turned to face the alley (-z) and a little toward the west key */
+  const pgm = K.make('clipped_page', { curl: 0.02, seed: 3 });
+  pgm.position.set(0.32, 1.23 + 0.017, -0.085); pgm.rotation.y = -2.36; TXT.add(R, pgm);
+  /* the yard lamp over the alley, west of the camera, its warm light on the page's face */
+  CH.yardLight(-3.2, -4.5, { h: 7, at: [0.3, 0.9, 0.0], i: 300, angle: 0.3, penumbra: 0.8 });
+  TXT.frame(R, { from: [0.16, 1.40, -1.22], look: [0.3, 1.21, 0.0] });
+  TXT.sky(R);
+  TXT.deckRig(R, CH.rigSpec(W, 6, 4096), CH.rigOpts([0.3, 1.0, 0], { distance: 30, shadowFar: 80 }));
+  TXT.stage(R, pgm, { poolInner: 1.6, poolOuter: 4 });
+  TXT.weather(R, { grime: 0.24, height: 0.45 });
+  /* the sentence set on the page's projected rect, inset by its margins */
+  const sheet = pgm.userData.page; sheet.updateMatrixWorld(true);
+  const bb = new THREE.Box3().setFromObject(sheet), cs = [];
+  [[bb.min.x, bb.max.y], [bb.max.x, bb.max.y], [bb.min.x, bb.min.y], [bb.max.x, bb.min.y]].forEach(([x, y]) => { [bb.min.z, bb.max.z].forEach((z) => cs.push(CH.project(THREE, R, [x, y, z]))); });
+  const x0 = Math.min(...cs.map(c => c[0])), x1 = Math.max(...cs.map(c => c[0])), y0 = Math.min(...cs.map(c => c[1])), y1 = Math.max(...cs.map(c => c[1]));
+  const pg = document.getElementById('pg'), mx = (x1 - x0) * 0.13, my = (y1 - y0) * 0.24;
+  pg.style.left = Math.round(x0 + mx) + 'px'; pg.style.top = Math.round(y0 + my) + 'px'; pg.style.width = Math.round(x1 - x0 - 2 * mx) + 'px';
+  pg.style.fontSize = Math.round((x1 - x0) * 0.058) + 'px';  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0.3, veil: 0.4, veilH: 260 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

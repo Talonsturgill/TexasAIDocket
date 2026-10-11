@@ -116,6 +116,17 @@
    ],
    "computed_by": "compute.py counts the four planned components the c5 quote lists into figures.json components",
    "note": "one per component c5 names: handling facility, veterinary care and research hospital, feed and production center, metabolism and physiology center"
+  },
+  {
+   "phrase": "two official records",
+   "slide": "first_comment.txt",
+   "kind": "count",
+   "value": 2,
+   "from_claims": [
+    "c1",
+    "c17"
+   ],
+   "note": "one claim per document the sources block lists: the A&M System release (c1) and USDA NASS Cattle on Feed (c17)"
   }
  ]
 }

@@ -1,0 +1,76 @@
+<!doctype html>
+<!-- 2026-10-11, frame 4 of 9. Archetype GRID. RENDERED through txthree.js in the deck's lastLight world. From 30 m over the near end of a feed alley, looking east along it: 45 commercial-scale pens on its north side and 90 small research pens on its south side, the near commercial pen and its two small partners lit in the pool, the rest of the 135 running into the dark. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+  .dek { width:860px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">90 research pens paired with 45 commercial ones</h1>
+<p class="dek" data-follow="28">That is 135 pens in all. Each commercial-scale pen here faces two small research pens across a feed alley. The layout and pen sizes are drawn to illustrate the count.</p>
+<div class="lab" id="labC">45 COMMERCIAL-SCALE PENS</div>
+<div class="lab" id="labS">90 SMALL RESEARCH PENS</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-11-feedyard.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "The release's pen count", counter: "04 / 09", src: "c4", fit: { min: 72, max: 96, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 50, far: 9000 });
+  TXT.ground(R, { surface: 'dirt', size: 4000, tile: 8, seed: 5 });
+  /* THE COUNT, from figures.json: 45 commercial-scale pens 12 m wide north of the alley and 90 small
+   * research pens 6 m wide south of it, so each commercial pen faces two small ones across the alley.
+   * Pen sizes are drawn to illustrate; the release gives the counts and no sizes. */
+  const COMMERCIAL = 45, SMALL = 90;
+  const P = K.make('feedlot_pens', { rows: [{ n: COMMERCIAL, w: 12, d: 48 }, { n: SMALL, w: 6, d: 24 }], alley: 9, gapRow: 6 });
+  TXT.add(R, P);
+  /* the yard's packed dirt between and around the pens, the same near black as a pen floor */
+  CH.penFloor(-420, -120, 320, 260, 0.003);
+  if (P.userData.pens.length !== COMMERCIAL + SMALL) throw new Error('the plan does not hold 135 pens');
+  /* the near triplet the pool lights: commercial pen 0 and small pens 0 and 1 across the alley */
+  const tri = new THREE.Mesh(new THREE.BoxGeometry(14, 2, 70), new THREE.MeshBasicMaterial()); tri.visible = false; tri.position.set(-264, 1, 40); R.scene.add(tri);
+  /* the near triplet holds cattle at its bunks, drawn to illustrate the scale of a pen: six at the
+   * commercial pen's bunk and three at each small pen's, every head to the alley */
+  const herd = [];
+  for (let i = 0; i < 6; i++) herd.push([-269 + i * 1.9 + (i % 2) * 0.3, 45.6 - (i % 3) * 0.5, (i % 3 - 1) * 0.1]);
+  for (let j = 0; j < 6; j++) herd.push([-269.2 + j * 1.95 + (j > 2 ? 0.4 : 0), 59.5 + (j % 2) * 0.5, Math.PI + (j % 3 - 1) * 0.1]);
+  CH.herd(herd, { seed: 4 });
+  /* two yard lamps at the alley's near end, one aimed into the commercial pen and one into the two small pens facing it */
+  CH.yardLight(-273, 47.2, { h: 10, at: [-264, 0, 36], i: 2400, angle: 0.5, penumbra: 0.6 });
+  CH.yardLight(-273, 57.8, { h: 10, at: [-264, 0, 66], i: 2400, angle: 0.42, penumbra: 0.6 });
+  /* and the next commercial pen down the alley, its own pool, so the pens read one by one */
+  CH.yardLight(-246, 47.2, { h: 10, at: [-240, 0, 38], i: 2100, angle: 0.4, penumbra: 0.6 });
+  TXT.frame(R, { from: [-321, 40, 42], look: [-208, 0, 53] });
+  TXT.sky(R);
+  TXT.deckRig(R, CH.rigSpec(W, 160, 4096), CH.rigOpts([-220, 0, 50], { distance: 300, shadowFar: 700 }));
+  TXT.stage(R, tri, { poolInner: 26, poolOuter: 80 });
+  TXT.weather(R, { grime: 0.2, height: 0.4 });
+  /* the two labels, each on its own row's pens and kept inside the frame's 80 px margins */
+  const place = (id, p, dy) => { const q = CH.project(THREE, R, p), el = document.getElementById(id), w = el.getBoundingClientRect().width;
+    el.style.left = Math.round(Math.max(80, Math.min(1000 - w, q[0] - w / 2))) + 'px'; el.style.top = Math.round(q[1] + dy) + 'px'; };
+  place('labC', [-232, 1.5, 22], -70);
+  place('labS', [-232, 1.5, 69], 30);
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0.32, veil: 0.5, veilH: 340 });
+  /* the labels sit in a reserve knocked out of the rails, feathered, never on a plate */
+  TXDECK.punch(cx, TXDECK.lineBoxes('.lab', 10), { feather: 28 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

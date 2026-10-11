@@ -3028,6 +3028,60 @@
     "hex": "#0B0A10",
     "note": "The deck's declared ground behind the render."
    }
+  },
+  {
+   "date": "2026-10-11",
+   "carousel_no": 49,
+   "written_from": "deck_coherence's median L* per frame at 432 px off the final renders, layout_check's accent share, by out/2026-10-11/update_ledgers.py.",
+   "register": "RENDERED, NOT PRINTED. A staged lastLight Panhandle feedyard (key az -79.1 el 6.1 from the computed sun, ground #0A0909) declared once in assets/js/deck/2026-10-11-feedyard.js, with sodium yard lamps as the one practical. One hero, the chassis's precast J section feed_bunk, on eight of nine frames. Chassis models for the bunk, a plan of pens on alleys, a survey stake, a clipped page, a blank panel ear tag and a yard lamp.",
+   "structural_laws": [
+    "A LOW SUN ALONG A ROW OF CATTLE SHADES EACH STEER WITH THE NEXT. Run the bunk across the sun, north to south, so every face takes the key.",
+    "A BACK WALL SHADES THE THROAT UNDER A LOW SUN. The windrow reads only when the light runs along the bunk or a lamp stands on the pen side.",
+    "A KIT STEER BEHIND A NECK RAIL PUTS ITS BACK THROUGH THE DEK. Step the camera back until the body sits under the type band.",
+    "A GRID COUNT NEEDS ITS UNITS LIT SEPARATELY. Lamp pools on single pens over near black yard dirt made the pens countable."
+   ],
+   "techniques": [
+    "a full bunk running north to south from a raised alley camera, nine Herefords at the rail, the windrow lit, a blank tag in the nearest ear",
+    "four precast sections square on from the pen side, DOM brackets from the projected joints for the grant and each half of the match",
+    "a canvas plan at one scale on one mile survey sections, the ranch and the gift as squares of their areas, a leader from Canyon",
+    "135 pens on one alley from 40 m up, three sodium pools on the near pens, feathered knock-outs for the labels",
+    "an unset section on dunnage on a lit caliche pad, four survey stakes receding with stacked labels",
+    "22 steers along a bunk from the alley, the near five in their own pen, the far seventeen instanced",
+    "a letter page clipped to the neck rail, the release's one AI sentence set on it with a dusk gold rule",
+    "a Hereford's head through the neck rail with a blank dusk gold tag, the bunk lip below",
+    "a person three quarters at the rail inside the long pen, dividers cutting the bunk into one long pen and two short ones"
+   ],
+   "value": {
+    "per_frame_median_L": [
+     6.1,
+     4.7,
+     2.3,
+     3.1,
+     4.8,
+     2.9,
+     10.7,
+     7.5,
+     6.4
+    ],
+    "deck_median_L": 4.8,
+    "max_adjacent_delta": 7.8,
+    "mean_adjacent_delta": 2.54,
+    "note": "Measured by deck_coherence's median_lstar at 432 px off the final renders. A near black staged deck."
+   },
+   "accent": {
+    "hex": "#E0956A",
+    "name": "dusk gold",
+    "frames_above_floor": [
+     1,
+     7,
+     8
+    ],
+    "note": "The blank ear tag on 1 and 8 and the rule beside the AI sentence on 7."
+   },
+   "ground": {
+    "hex": "#0A0909",
+    "note": "The deck's declared ground behind the render."
+   }
   }
  ]
 }

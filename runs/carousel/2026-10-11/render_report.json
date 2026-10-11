@@ -1,0 +1,2412 @@
+{
+  "canvas": {
+    "width": 1080,
+    "height": 1350,
+    "scale": 2.0,
+    "px": [
+      2160,
+      2700
+    ]
+  },
+  "text_window": 320,
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "png": "slide-01.png",
+      "console_errors": [
+        "TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(238, 234, 224)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The pens are counted. The AI isn't.",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 187,
+          "font_px": 95.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(238, 234, 224)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              138,
+              878,
+              117
+            ],
+            [
+              80,
+              232,
+              482,
+              117
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "West Texas A&M received $9.75 million from USDA for a research feedlot near Canyon. The A&M System calls it the largest federal award in WT's history. The yard and the cattle are drawn to illustrate.",
+          "x": 82,
+          "y": 365,
+          "w": 860,
+          "h": 171,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(220, 214, 200)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              365,
+              802,
+              42
+            ],
+            [
+              82,
+              408,
+              857,
+              42
+            ],
+            [
+              82,
+              451,
+              788,
+              42
+            ],
+            [
+              82,
+              493,
+              423,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "West Texas A&M University",
+          "x": 80,
+          "y": 80,
+          "w": 414,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 214, 200)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              414,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "01 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 214, 200)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c1 c4 c7",
+          "x": 80,
+          "y": 1234,
+          "w": 129,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 214, 200)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              129,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 29371,
+      "ok": true,
+      "load_ms": 144,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 45.9,
+          "variance": 3315.4
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-02.html",
+      "png": "slide-02.png",
+      "console_errors": [
+        "TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(238, 234, 224)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "USDA pays half. The match pays the rest.",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 164,
+          "font_px": 83.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(238, 234, 224)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              139,
+              567,
+              103
+            ],
+            [
+              80,
+              221,
+              850,
+              103
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "A required dollar for dollar match brings the project to $19.5 million. The A&M System puts in $4.875 million. The Texas Cattle Feeders Association, donors and other sources match it. Each section is drawn to stand for one $4.875 million share.",
+          "x": 82,
+          "y": 342,
+          "w": 880,
+          "h": 214,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(220, 214, 200)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              342,
+              787,
+              42
+            ],
+            [
+              82,
+              384,
+              832,
+              42
+            ],
+            [
+              82,
+              427,
+              880,
+              42
+            ],
+            [
+              82,
+              470,
+              694,
+              42
+            ],
+            [
+              82,
+              513,
+              301,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "USDA GRANT $9.75 MILLION",
+          "x": 271,
+          "y": 974,
+          "w": 111,
+          "h": 125,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(238, 234, 224)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              295,
+              974,
+              63,
+              31
+            ],
+            [
+              287,
+              1005,
+              79,
+              31
+            ],
+            [
+              287,
+              1036,
+              79,
+              31
+            ],
+            [
+              271,
+              1068,
+              111,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "A&M SYSTEM $4.875 MILLION",
+          "x": 590,
+          "y": 974,
+          "w": 111,
+          "h": 125,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(238, 234, 224)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              622,
+              974,
+              48,
+              31
+            ],
+            [
+              598,
+              1005,
+              95,
+              31
+            ],
+            [
+              598,
+              1036,
+              95,
+              31
+            ],
+            [
+              590,
+              1068,
+              111,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "OTHER SOURCES $4.875 MILLION",
+          "x": 803,
+          "y": 974,
+          "w": 111,
+          "h": 125,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(238, 234, 224)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              819,
+              974,
+              79,
+              31
+            ],
+            [
+              803,
+              1005,
+              111,
+              31
+            ],
+            [
+              811,
+              1036,
+              95,
+              31
+            ],
+            [
+              803,
+              1068,
+              111,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "West Texas A&M feedlot funding",
+          "x": 80,
+          "y": 80,
+          "w": 497,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 214, 200)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              497,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "02 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 214, 200)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c1 c3 c13",
+          "x": 80,
+          "y": 1234,
+          "w": 145,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 214, 200)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              145,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [
+        {
+          "kind": "svg",
+          "x": 121.2,
+          "y": 934.1,
+          "w": 2.5,
+          "h": 18,
+          "by": "line",
+          "color": "rgb(220, 214, 200)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 121.2,
+          "y": 952.1,
+          "w": 411.8,
+          "h": 2.5,
+          "by": "line",
+          "color": "rgb(220, 214, 200)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 532.9,
+          "y": 934.1,
+          "w": 2.5,
+          "h": 18,
+          "by": "line",
+          "color": "rgb(220, 214, 200)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 544.9,
+          "y": 934.1,
+          "w": 2.5,
+          "h": 18,
+          "by": "line",
+          "color": "rgb(220, 214, 200)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 544.9,
+          "y": 952.1,
+          "w": 201,
+          "h": 2.5,
+          "by": "line",
+          "color": "rgb(220, 214, 200)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 745.9,
+          "y": 934.1,
+          "w": 2.5,
+          "h": 18,
+          "by": "line",
+          "color": "rgb(220, 214, 200)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 757.9,
+          "y": 934.1,
+          "w": 2.5,
+          "h": 18,
+          "by": "line",
+          "color": "rgb(220, 214, 200)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 757.9,
+          "y": 952.1,
+          "w": 201.7,
+          "h": 2.5,
+          "by": "line",
+          "color": "rgb(220, 214, 200)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 959.6,
+          "y": 934.1,
+          "w": 2.5,
+          "h": 18,
+          "by": "line",
+          "color": "rgb(220, 214, 200)",
+          "decorative": false,
+          "skip": []
+        }
+      ],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 18161,
+      "ok": true,
+      "load_ms": 171,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 21.5,
+          "variance": 346.5
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-03.html",
+      "png": "slide-03.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(238, 234, 224)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The feedlot goes up beside WT's 2,393-acre ranch",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 153,
+          "font_px": 78,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(238, 234, 224)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              140,
+              859,
+              96
+            ],
+            [
+              80,
+              216,
+              750,
+              96
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The ranch lies about seven miles east of Canyon and was given to WT in 1971. Canyon ranchers Mike and Gary Kuhlman gave 42.84 acres beside it in 2024. Each is drawn as a square of its own area, not its real shape or exact place.",
+          "x": 82,
+          "y": 331,
+          "w": 880,
+          "h": 171,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(220, 214, 200)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              331,
+              831,
+              42
+            ],
+            [
+              82,
+              374,
+              748,
+              42
+            ],
+            [
+              82,
+              416,
+              845,
+              42
+            ],
+            [
+              82,
+              459,
+              876,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "CANYON",
+          "x": 99,
+          "y": 870,
+          "w": 103,
+          "h": 34,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(238, 234, 224)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              99,
+              869,
+              103,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "NANCE RANCH",
+          "x": 777,
+          "y": 692,
+          "w": 189,
+          "h": 34,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(238, 234, 224)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              777,
+              691,
+              189,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "KUHLMAN GIFT",
+          "x": 787,
+          "y": 980,
+          "w": 206,
+          "h": 34,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(238, 234, 224)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              787,
+              979,
+              206,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "ABOUT SEVEN MILES EAST",
+          "x": 272,
+          "y": 790,
+          "w": 378,
+          "h": 34,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(238, 234, 224)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              272,
+              789,
+              378,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "EACH GRID SQUARE IS ONE MILE ON A SIDE",
+          "x": 80,
+          "y": 1150,
+          "w": 652,
+          "h": 34,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(238, 234, 224)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1149,
+              652,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Nance Ranch, east of Canyon",
+          "x": 80,
+          "y": 80,
+          "w": 447,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 214, 200)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              447,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "03 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 214, 200)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c8 c9 c10",
+          "x": 80,
+          "y": 1234,
+          "w": 145,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 214, 200)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              145,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 5240,
+      "ok": true,
+      "load_ms": 104,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 14.5,
+          "variance": 891.1
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-04.html",
+      "png": "slide-04.png",
+      "console_errors": [
+        "TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(238, 234, 224)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "90 research pens paired with 45 commercial ones",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 164,
+          "font_px": 83.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(238, 234, 224)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              139,
+              849,
+              103
+            ],
+            [
+              80,
+              221,
+              877,
+              103
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "That is 135 pens in all. Each commercial-scale pen here faces two small research pens across a feed alley. The layout and pen sizes are drawn to illustrate the count.",
+          "x": 82,
+          "y": 342,
+          "w": 860,
+          "h": 128,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(220, 214, 200)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              342,
+              800,
+              42
+            ],
+            [
+              82,
+              384,
+              789,
+              42
+            ],
+            [
+              82,
+              427,
+              785,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "45 COMMERCIAL-SCALE PENS",
+          "x": 80,
+          "y": 720,
+          "w": 412,
+          "h": 34,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(238, 234, 224)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              719,
+              412,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "90 SMALL RESEARCH PENS",
+          "x": 618,
+          "y": 793,
+          "w": 378,
+          "h": 34,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(238, 234, 224)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              618,
+              792,
+              378,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The release's pen count",
+          "x": 80,
+          "y": 80,
+          "w": 381,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 214, 200)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              381,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "04 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 214, 200)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c4",
+          "x": 80,
+          "y": 1234,
+          "w": 32,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 214, 200)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              32,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 29785,
+      "ok": true,
+      "load_ms": 150,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 15.5,
+          "variance": 313.7
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-05.html",
+      "png": "slide-05.png",
+      "console_errors": [
+        "TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(238, 234, 224)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Ground is broken. Four facilities are planned.",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 169,
+          "font_px": 86,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(238, 234, 224)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              139,
+              845,
+              106
+            ],
+            [
+              80,
+              223,
+              762,
+              106
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Ground was broken in November 2025. Plans call for a precision beef cattle handling facility, a veterinary care and research hospital, an advanced technology feed and production center and a metabolism and physiology center. The section and stakes are drawn to illustrate.",
+          "x": 82,
+          "y": 347,
+          "w": 880,
+          "h": 214,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(220, 214, 200)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              347,
+              779,
+              42
+            ],
+            [
+              82,
+              389,
+              865,
+              42
+            ],
+            [
+              82,
+              432,
+              768,
+              42
+            ],
+            [
+              82,
+              475,
+              873,
+              42
+            ],
+            [
+              82,
+              518,
+              677,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "CATTLE HANDLING FACILITY",
+          "x": 80,
+          "y": 576,
+          "w": 412,
+          "h": 34,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(238, 234, 224)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              575,
+              412,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "VETERINARY HOSPITAL",
+          "x": 172,
+          "y": 616,
+          "w": 326,
+          "h": 34,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(238, 234, 224)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              172,
+              615,
+              326,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "FEED AND PRODUCTION CENTER",
+          "x": 275,
+          "y": 656,
+          "w": 446,
+          "h": 34,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(238, 234, 224)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              275,
+              655,
+              446,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "METABOLISM AND PHYSIOLOGY CENTER",
+          "x": 368,
+          "y": 696,
+          "w": 549,
+          "h": 34,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(238, 234, 224)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              368,
+              695,
+              549,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The site east of Canyon",
+          "x": 80,
+          "y": 80,
+          "w": 381,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 214, 200)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              381,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "05 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 214, 200)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c5 c8",
+          "x": 80,
+          "y": 1234,
+          "w": 80,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 214, 200)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              80,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [
+        {
+          "kind": "svg",
+          "x": 50.5,
+          "y": 602,
+          "w": 2.5,
+          "h": 121.9,
+          "by": "line",
+          "color": "rgb(220, 214, 200)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 158.2,
+          "y": 642,
+          "w": 2.5,
+          "h": 110.1,
+          "by": "line",
+          "color": "rgb(220, 214, 200)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 260.5,
+          "y": 682,
+          "w": 2.5,
+          "h": 89.8,
+          "by": "line",
+          "color": "rgb(220, 214, 200)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 354.1,
+          "y": 722,
+          "w": 2.5,
+          "h": 63.6,
+          "by": "line",
+          "color": "rgb(220, 214, 200)",
+          "decorative": false,
+          "skip": []
+        }
+      ],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 17736,
+      "ok": true,
+      "load_ms": 151,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 35.4,
+          "variance": 2853.5
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-06.html",
+      "png": "slide-06.png",
+      "console_errors": [
+        "TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(238, 234, 224)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Texas's large feedlots held more cattle than Nebraska's or Kansas's",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 212,
+          "font_px": 72,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(238, 234, 224)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              141,
+              782,
+              88
+            ],
+            [
+              80,
+              212,
+              839,
+              88
+            ],
+            [
+              80,
+              282,
+              345,
+              88
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "On September 1st USDA estimated 2.5 million cattle on feed in Texas's large feedlots, 2.47 million in Nebraska and 2.32 million in Kansas. Texas held 22 percent of the 11.16 million nationwide. Each steer is drawn to stand for 500 thousand head.",
+          "x": 82,
+          "y": 390,
+          "w": 880,
+          "h": 214,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(220, 214, 200)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              390,
+              872,
+              42
+            ],
+            [
+              82,
+              432,
+              841,
+              42
+            ],
+            [
+              82,
+              475,
+              847,
+              42
+            ],
+            [
+              82,
+              518,
+              642,
+              42
+            ],
+            [
+              82,
+              561,
+              295,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "TEXAS",
+          "x": 914,
+          "y": 629,
+          "w": 86,
+          "h": 34,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(238, 234, 224)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              914,
+              628,
+              86,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "UNITED STATES",
+          "x": 80,
+          "y": 629,
+          "w": 223,
+          "h": 34,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(238, 234, 224)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              628,
+              223,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "USDA cattle on feed, September 1st",
+          "x": 80,
+          "y": 80,
+          "w": 563,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 214, 200)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              563,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "06 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 214, 200)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c17 c18 c19 c20",
+          "x": 80,
+          "y": 1234,
+          "w": 241,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 214, 200)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              241,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 29198,
+      "ok": true,
+      "load_ms": 151,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 32.7,
+          "variance": 2800.7
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-07.html",
+      "png": "slide-07.png",
+      "console_errors": [
+        "TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [
+        {
+          "kind": "tiny-text",
+          "text": "New feeding, health and handling techniques can be evaluated with traditional and artificial intelligence-powered approaches that are designed to increase beef production efficiency and advance feedlot management practices.",
+          "detail": "font-size 22px < 24px mobile floor (mark data-decorative if intentional)"
+        }
+      ],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(238, 234, 224)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The release mentions AI once",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 187,
+          "font_px": 95.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(238, 234, 224)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              138,
+              853,
+              117
+            ],
+            [
+              80,
+              232,
+              305,
+              117
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The mention is a planned way of evaluating techniques. The page is drawn to illustrate. The words are the release's own.",
+          "x": 82,
+          "y": 365,
+          "w": 880,
+          "h": 86,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(220, 214, 200)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              365,
+              874,
+              42
+            ],
+            [
+              82,
+              408,
+              872,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "New feeding, health and handling techniques can be evaluated with traditional and artificial intelligence-powered approaches that are designed to increase beef production efficiency and advance feedlot management practices.",
+          "x": 353,
+          "y": 777,
+          "w": 276,
+          "h": 364,
+          "font_px": 22,
+          "weight": "500",
+          "family": "Manrope",
+          "color": "rgb(29, 26, 22)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              383,
+              777,
+              205,
+              30
+            ],
+            [
+              383,
+              807,
+              133,
+              30
+            ],
+            [
+              383,
+              838,
+              190,
+              30
+            ],
+            [
+              383,
+              868,
+              151,
+              30
+            ],
+            [
+              383,
+              898,
+              239,
+              30
+            ],
+            [
+              383,
+              929,
+              220,
+              30
+            ],
+            [
+              383,
+              959,
+              209,
+              30
+            ],
+            [
+              383,
+              990,
+              215,
+              30
+            ],
+            [
+              383,
+              1020,
+              166,
+              30
+            ],
+            [
+              383,
+              1050,
+              235,
+              30
+            ],
+            [
+              383,
+              1081,
+              216,
+              30
+            ],
+            [
+              383,
+              1111,
+              103,
+              30
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The A&M System release, October 7th",
+          "x": 80,
+          "y": 80,
+          "w": 580,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 214, 200)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              580,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "07 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 214, 200)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c6 c7",
+          "x": 80,
+          "y": 1234,
+          "w": 80,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 214, 200)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              80,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [
+        {
+          "kind": "fill",
+          "x": 353,
+          "y": 777,
+          "w": 12,
+          "h": 364.3,
+          "by": "rule",
+          "color": "rgb(224, 149, 106)",
+          "decorative": false,
+          "skip": []
+        }
+      ],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 20930,
+      "ok": true,
+      "load_ms": 17687,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 57.2,
+          "variance": 4542.2
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-08.html",
+      "png": "slide-08.png",
+      "console_errors": [
+        "TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(238, 234, 224)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "No AI tool, vendor or result is named",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 187,
+          "font_px": 95.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(238, 234, 224)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              138,
+              837,
+              117
+            ],
+            [
+              80,
+              232,
+              608,
+              117
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The release names no camera or model either. The blank tag is drawn to illustrate.",
+          "x": 82,
+          "y": 365,
+          "w": 820,
+          "h": 86,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(220, 214, 200)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              365,
+              736,
+              42
+            ],
+            [
+              82,
+              408,
+              449,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "What the release leaves out",
+          "x": 80,
+          "y": 80,
+          "w": 447,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 214, 200)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              447,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "08 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 214, 200)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c7",
+          "x": 80,
+          "y": 1234,
+          "w": 32,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 214, 200)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              32,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 22503,
+      "ok": true,
+      "load_ms": 161,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 38,
+          "variance": 2085
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-09.html",
+      "png": "slide-09.png",
+      "console_errors": [
+        "TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(238, 234, 224)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Which tool, and what result?",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 203,
+          "font_px": 103.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(238, 234, 224)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              137,
+              680,
+              127
+            ],
+            [
+              80,
+              238,
+              544,
+              127
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The release ties the work to WT's Feedlot Research Group. The grant is awarded. The AI approaches are a plan. The person and the pens are drawn to illustrate.",
+          "x": 82,
+          "y": 381,
+          "w": 860,
+          "h": 128,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(220, 214, 200)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              381,
+              852,
+              42
+            ],
+            [
+              82,
+              424,
+              813,
+              42
+            ],
+            [
+              82,
+              466,
+              637,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "WT Feedlot Research Group",
+          "x": 80,
+          "y": 80,
+          "w": 414,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 214, 200)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              414,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "09 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 214, 200)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c1 c6 c7 c16",
+          "x": 80,
+          "y": 1234,
+          "w": 193,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(220, 214, 200)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              193,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 25186,
+      "ok": true,
+      "load_ms": 186,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 28.9,
+          "variance": 1356.1
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    }
+  ]
+}

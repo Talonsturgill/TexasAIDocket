@@ -1,0 +1,67 @@
+<!doctype html>
+<!-- 2026-10-11, frame 6 of 9. Archetype SPLIT_HORIZON. RENDERED through txthree.js in the deck's lastLight world. Standing in the feed alley at the south end of a north to south bunk, looking north along it: twenty two Hereford steers at the rail facing the low west sun, the near five full detail in their own pen behind a pipe divider, the far seventeen stepping off into the dark. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+  .dek { width:880px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">Texas&#39;s large feedlots held more cattle than Nebraska&#39;s or Kansas&#39;s</h1>
+<p class="dek" data-follow="28">On September 1st USDA estimated 2.5 million cattle on feed in Texas's large feedlots, 2.47 million in Nebraska and 2.32 million in Kansas. Texas held 22 percent of the 11.16 million nationwide. Each steer is drawn to stand for 500&nbsp;thousand&nbsp;head.</p>
+<div class="lab" id="lTX">TEXAS</div>
+<div class="lab" id="lUS">UNITED STATES</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-11-feedyard.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "USDA cattle on feed, September 1st", counter: "06 / 09", src: "c17 c18 c19 c20", fit: { min: 72, max: 96, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 34, far: 6000 });
+  TXT.ground(R, { surface: 'dirt', size: 4000, tile: 6, seed: 14 });
+  CH.penFloor(3.66, -30, 30, 14);
+  /* THE COUNT, from figures.json: us_steers 22 at the rail, one per steer_unit_k 500 thousand head, tx_steers 5 of them in the near pen */
+  const US = 22, TX = 5, GAP = 0.86;
+  const bunk = CH.bunk({ length: 22.0, fill: 0.9, bites: 3, seed: 15 });
+  bunk.rotation.y = Math.PI / 2; bunk.position.set(0, 0, -9.6);
+  const zAt = (i) => 1.0 - i * GAP - (i >= TX ? 0.5 : 0);
+  const near = []; for (let i = 0; i < TX; i++) near.push(CH.steer(1.55 + (i % 2) * 0.1, zAt(i), { ry: -Math.PI / 2 + [0.1, -0.2, 0.25, -0.08, 0.18][i], seed: 30 + i }));
+  const far = []; for (let i = TX; i < US; i++) far.push([1.55 + (i % 2) * 0.1, zAt(i), -Math.PI / 2 + ((i * 37) % 7 - 3) * 0.07]);
+  CH.herd(far, { seed: 31 });
+  /* the divider closing the near pen, running east from the bunk's lip */
+  const div = K.make('pipe_rail_fence', { length: 22, rails: [0.75, 1.4], spacing: 3 }); div.position.set(11.2, 0, zAt(TX - 1) - 0.62); CH.put(div, true);
+  if (near.length + far.length !== US) throw new Error('the line does not hold 22 steers');
+  TXT.frame(R, { from: [-3.4, 1.8, 7.8], look: [0.9, 1.4, -6.0] });
+  TXT.sky(R);
+  TXT.deckRig(R, CH.rigSpec(W, 30, 4096), CH.rigOpts([0, 0.5, -6], { distance: 60, shadowFar: 140 }));
+  TXT.stage(R, near, { poolInner: 10, poolOuter: 40 });
+  TXT.weather(R, { grime: 0.22, height: 0.45 });
+  const put = (id, p, dx, dy) => { const q = CH.project(THREE, R, p), el = document.getElementById(id); el.style.left = Math.round(Math.max(80, Math.min(1000 - el.getBoundingClientRect().width, q[0] + dx))) + 'px'; el.style.top = Math.round(q[1] + dy) + 'px'; };
+  /* the two labels sit in the sky between the dek and the heads, each over its own stretch of the line */
+  const dk = document.querySelector('.dek').getBoundingClientRect(), ly = Math.round(dk.bottom + 26);
+  const cxOf = (z) => CH.project(THREE, R, [1.6, 1.6, z])[0];
+  const lab = (id, x) => { const el = document.getElementById(id), w = el.getBoundingClientRect().width; el.style.left = Math.round(Math.max(80, Math.min(1000 - w, x - w / 2))) + 'px'; el.style.top = ly + 'px'; };
+  /* TEXAS over the near five at the right edge, UNITED STATES over the line's far end at the left */
+  { const el = document.getElementById('lTX'); el.style.left = Math.round(1000 - el.getBoundingClientRect().width) + 'px'; el.style.top = ly + 'px'; }
+  { const el = document.getElementById('lUS'); el.style.left = '80px'; el.style.top = ly + 'px'; }  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0.3, veil: 0.5, veilH: 360 });
+  /* the site line sits in a reserve knocked out of the bunk wall's edge */
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

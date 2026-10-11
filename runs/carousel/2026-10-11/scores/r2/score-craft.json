@@ -1,0 +1,78 @@
+{
+ "lens": "craft",
+ "round": 2,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.0,
+   "why": "Frames 1, 5 and 6 pass most of the showstopper test. The other frames each have a separate 4-descriptor defect: frame 7 is a flat mid purple-grey wall with no sky and no yard and the planned bunk lip and throat are missing; on frame 8 the kit steer reads as a toy at full size; frame 2's bunk is a thin band about 6 percent of the height; on frame 4 the labels sit on visible dark plates, the lamp pools are dim smudges and the right pole crosses the steers; on frame 9 the figure is a mannequin cropped at the left edge with hands off the rail. Frame 1's outer wall is still a clean, uniform pale slab."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "It reads as one lastLight feedyard with one precast bunk in one buff material, one dark register, and motif evolution and the camera move both real. Frame 7's flat lit wall is the only frame with no sky or ground."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.0,
+   "why": "Every slide numeral traces to the claims or to arithmetic on them. All sources are primary. The NASS lines rest on the run's own retrieved copy after a live 503, at medium confidence. The isotype on 6 can't be checked against the render, because the far steers fog out."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.0,
+   "why": "The deck says who, where and what, and shows the one AI sentence verbatim on 7 and the absence on 8. The stake is general and the close gives no date, venue or action for a reader."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "The cover hook earns the swipe and frame 2 pays it. The turn arrives at 7 and 8, and 9 closes on the question. Frame 6's state cattle comparison is a detour."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Restrained and specific, and the house rules hold. Every dek ends on a 'drawn to illustrate' sentence, which reads as machine boilerplate across the swipe."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "The topic and palette are fresh. This is the third staged lastLight deck in four, the document-on-an-object frame and the lone person at the close repeat recent decks, and #E0956A was last used on no. 43."
+  }
+ ],
+ "weighted_score": 6.99,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Put the world back into the turn: shoot frames 7 and 8 down onto the bunk's lit lip, dark throat and gold windrow against the near-black lastLight sky, and pull frame 2's long lens in until the four sections fill a third of the frame height.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 7,
+   "change": "Lower the camera to about 1.2 m and pitch down about 12 degrees, so the bunk's raked lip and dark throat with the lit windrow fill the bottom third under the page, with the near-black sky above the rail and the rail sharp."
+  },
+  {
+   "slide": 8,
+   "change": "Crop to the head, ear and blank tag under the neck rail, body out of frame, the face raked from camera left, and the grimed bunk lip and lit windrow across the lower third."
+  },
+  {
+   "slide": 2,
+   "change": "Move the long-lens camera closer and drop the eye to about 0.8 m so the four sections span about y 850 to 1450, brackets under their feet."
+  },
+  {
+   "slide": 4,
+   "change": "Raise the three lamps so each pool fills its bay, move the right pole to the alley edge, and delete the label plates."
+  },
+  {
+   "slide": 9,
+   "change": "Move the person about 1 m east onto the left third, hands on the top neck rail, and fill the windrow into a continuous lit band."
+  },
+  {
+   "slide": 6,
+   "change": "Start the stage fog past the line's far end so the far 17 hold as dark silhouettes, and widen the near divider so exactly five lit faces sit clear of it."
+  }
+ ]
+}

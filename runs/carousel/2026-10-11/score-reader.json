@@ -1,0 +1,74 @@
+{
+ "lens": "reader",
+ "round": 3,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.0,
+   "why": "The dark staged register holds and slides 1 and 6 are strong. Four frames fall to the 4 descriptor: slide 8's smooth kit steer on empty ground, slide 2's thin sliver of bunk in a dead band, slide 4's faint wireframe with a label on a plate, slide 5's section read as a bench with a flat navy face. Slide 3 is a flat 2D map."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "Plainly one deck on the contact sheet: one near-black feedyard, one bunk, one key, the same Hereford material, both continuity devices doing real work. Slides 3 and 4 sit outside the rendered world."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 6.5,
+   "why": "Every numeral traces and the map measures true. Slide 4's kicker 'PENS ON THE PLANNED FEED ALLEYS' and its dek's facing layout assert a feature no claim carries, though 'here' and 'drawn to illustrate' hedge the dek. 'On September 1st USDA estimated' describes an inventory NASS published on September 18th."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.5,
+   "why": "What, where and what is planned are clear, and the AI is shown as one conditional sentence. Nothing to do, no address for the closing question, and WT's existing feedlot (c11) is never mentioned."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "The cover earns the swipe, 2 pays, 7 turns. Slide 8 restates 7 and slide 6's art shows Texas against the US while its headline compares states."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.8,
+   "why": "Clean and regionally specific. The disclaimer formula closes all nine deks, and slide 9's two short sentences are flat."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.0,
+   "why": "The subject and palette are new, but the area-square map repeats no. 45, lastLight repeats nos. 46 and 48, a lone person closes again, and the absence spine repeats nos. 46 to 48."
+  }
+ ],
+ "weighted_score": 6.54,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Give the close something a Texan can act on, fold slide 8 into 7 to free the frame, and strike the unsourced 'planned feed alleys' kicker and the pen-facing layout from slide 4.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 8,
+   "change": "Lower the camera to the bunk lip and crop to head and dewlap only, the grimed lip and lit windrow across the lower third, the key raking the face from camera left."
+  },
+  {
+   "slide": 2,
+   "change": "Move the camera closer and lower with a lens long enough to keep the sections equal, so the bunk fills about y 1000 to 1700 and runs off both edges, brackets under the lip."
+  },
+  {
+   "slide": 4,
+   "change": "Drop the camera to about 12 m so the lit near triplet with steers at the rails fills the bottom half, labels on the dark field with no plate."
+  },
+  {
+   "slide": 5,
+   "change": "Turn the section about 30 degrees so the lit J profile and a grimed long face both show, and stand a kit person or pickup at true scale beside it."
+  },
+  {
+   "slide": 3,
+   "change": "Render the survey sections as dark ground under the west key with the ranch as a raised slab, and attach the legend directly to the key square."
+  }
+ ]
+}

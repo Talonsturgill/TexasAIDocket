@@ -1,0 +1,241 @@
+{
+ "date": "2026-10-11",
+ "carousel_no": 49,
+ "document_title": "West Texas A&M's research feedlot and its one AI sentence",
+ "_note": "Slide strings read off the render report's text nodes and each frame's own source line by build_copy.py.",
+ "caption": "USDA is paying for half of a research feedlot near Canyon.\n\nThe A&M System calls the $9.75 million grant to West Texas A&M the largest federal award in WT's history. A dollar-for-dollar match from the System, the Texas Cattle Feeders Association, donors and other sources brings the project to $19.5 million.\n\nThe feedlot will pair 90 small research pens with 45 commercial-scale pens. Ground was broken in November 2025 next to WT's Nance Ranch.\n\nOn September 1st USDA estimated 2.5 million cattle on feed in Texas's large feedlots. Nebraska and Kansas each had fewer.\n\nThe release mentions AI once. New techniques \"can be evaluated\" with traditional and AI-powered approaches. It names no AI tool, vendor, camera, model or result.\n\nIf AI is tested in these pens, will WT's Feedlot Research Group name the tool and report the result?\n\n#WestTexasAM #CanyonTX #TexasPanhandle",
+ "slides": {
+  "S1": {
+   "n": 1,
+   "file": "slide-01.html",
+   "kicker": "West Texas A&M University",
+   "headline": "The pens are counted. The AI isn't.",
+   "claims": [
+    "c1",
+    "c4",
+    "c7"
+   ],
+   "cite": "c1 c4 c7",
+   "body": "West Texas A&M received $9.75 million from USDA for a research feedlot near Canyon. The A&M System calls it the largest federal award in WT's history. The yard and the cattle are drawn to illustrate.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "The pens are counted. The AI isn't.",
+    "West Texas A&M received $9.75 million from USDA for a research feedlot near Canyon. The A&M System calls it the largest federal award in WT's history. The yard and the cattle are drawn to illustrate.",
+    "West Texas A&M University",
+    "01 / 09",
+    "c1 c4 c7"
+   ]
+  },
+  "S2": {
+   "n": 2,
+   "file": "slide-02.html",
+   "kicker": "West Texas A&M feedlot funding",
+   "headline": "USDA pays half. The match pays the rest.",
+   "claims": [
+    "c1",
+    "c3",
+    "c13"
+   ],
+   "cite": "c1 c3 c13",
+   "body": "A required dollar for dollar match brings the project to $19.5 million. The A&M System puts in $4.875 million. The Texas Cattle Feeders Association, donors and other sources match it. Each section is drawn to stand for one $4.875 million share.",
+   "labels": [
+    "USDA GRANT $9.75 MILLION",
+    "A&M SYSTEM $4.875 MILLION",
+    "OTHER SOURCES $4.875 MILLION"
+   ],
+   "strings": [
+    "texasaidocket.com",
+    "USDA pays half. The match pays the rest.",
+    "A required dollar for dollar match brings the project to $19.5 million. The A&M System puts in $4.875 million. The Texas Cattle Feeders Association, donors and other sources match it. Each section is drawn to stand for one $4.875 million share.",
+    "USDA GRANT $9.75 MILLION",
+    "A&M SYSTEM $4.875 MILLION",
+    "OTHER SOURCES $4.875 MILLION",
+    "West Texas A&M feedlot funding",
+    "02 / 09",
+    "c1 c3 c13"
+   ]
+  },
+  "S3": {
+   "n": 3,
+   "file": "slide-03.html",
+   "kicker": "Nance Ranch, east of Canyon",
+   "headline": "The feedlot goes up beside WT's 2,393-acre ranch",
+   "claims": [
+    "c8",
+    "c9",
+    "c10"
+   ],
+   "cite": "c8 c9 c10",
+   "body": "The ranch lies about seven miles east of Canyon and was given to WT in 1971. Canyon ranchers Mike and Gary Kuhlman gave 42.84 acres beside it in 2024. Each is drawn as a square of its own area, not its real shape or exact place.",
+   "labels": [
+    "CANYON",
+    "NANCE RANCH",
+    "KUHLMAN GIFT",
+    "ABOUT SEVEN MILES EAST",
+    "EACH GRID SQUARE IS ONE MILE ON A SIDE"
+   ],
+   "strings": [
+    "texasaidocket.com",
+    "The feedlot goes up beside WT's 2,393-acre ranch",
+    "The ranch lies about seven miles east of Canyon and was given to WT in 1971. Canyon ranchers Mike and Gary Kuhlman gave 42.84 acres beside it in 2024. Each is drawn as a square of its own area, not its real shape or exact place.",
+    "CANYON",
+    "NANCE RANCH",
+    "KUHLMAN GIFT",
+    "ABOUT SEVEN MILES EAST",
+    "EACH GRID SQUARE IS ONE MILE ON A SIDE",
+    "Nance Ranch, east of Canyon",
+    "03 / 09",
+    "c8 c9 c10"
+   ]
+  },
+  "S4": {
+   "n": 4,
+   "file": "slide-04.html",
+   "kicker": "The release's pen count",
+   "headline": "90 research pens paired with 45 commercial ones",
+   "claims": [
+    "c4"
+   ],
+   "cite": "c4",
+   "body": "That is 135 pens in all. Each commercial-scale pen here faces two small research pens across a feed alley. The layout and pen sizes are drawn to illustrate the count.",
+   "labels": [
+    "45 COMMERCIAL-SCALE PENS",
+    "90 SMALL RESEARCH PENS"
+   ],
+   "strings": [
+    "texasaidocket.com",
+    "90 research pens paired with 45 commercial ones",
+    "That is 135 pens in all. Each commercial-scale pen here faces two small research pens across a feed alley. The layout and pen sizes are drawn to illustrate the count.",
+    "45 COMMERCIAL-SCALE PENS",
+    "90 SMALL RESEARCH PENS",
+    "The release's pen count",
+    "04 / 09",
+    "c4"
+   ]
+  },
+  "S5": {
+   "n": 5,
+   "file": "slide-05.html",
+   "kicker": "The site east of Canyon",
+   "headline": "Ground is broken. Four facilities are planned.",
+   "claims": [
+    "c5",
+    "c8"
+   ],
+   "cite": "c5 c8",
+   "body": "Ground was broken in November 2025. Plans call for a precision beef cattle handling facility, a veterinary care and research hospital, an advanced technology feed and production center and a metabolism and physiology center. The section and stakes are drawn to illustrate.",
+   "labels": [
+    "CATTLE HANDLING FACILITY",
+    "VETERINARY HOSPITAL",
+    "FEED AND PRODUCTION CENTER",
+    "METABOLISM AND PHYSIOLOGY CENTER"
+   ],
+   "strings": [
+    "texasaidocket.com",
+    "Ground is broken. Four facilities are planned.",
+    "Ground was broken in November 2025. Plans call for a precision beef cattle handling facility, a veterinary care and research hospital, an advanced technology feed and production center and a metabolism and physiology center. The section and stakes are drawn to illustrate.",
+    "CATTLE HANDLING FACILITY",
+    "VETERINARY HOSPITAL",
+    "FEED AND PRODUCTION CENTER",
+    "METABOLISM AND PHYSIOLOGY CENTER",
+    "The site east of Canyon",
+    "05 / 09",
+    "c5 c8"
+   ]
+  },
+  "S6": {
+   "n": 6,
+   "file": "slide-06.html",
+   "kicker": "USDA cattle on feed, September 1st",
+   "headline": "Texas's large feedlots held more cattle than Nebraska's or Kansas's",
+   "claims": [
+    "c17",
+    "c18",
+    "c19",
+    "c20"
+   ],
+   "cite": "c17 c18 c19 c20",
+   "body": "On September 1st USDA estimated 2.5 million cattle on feed in Texas's large feedlots, 2.47 million in Nebraska and 2.32 million in Kansas. Texas held 22 percent of the 11.16 million nationwide. Each steer is drawn to stand for 500 thousand head.",
+   "labels": [
+    "TEXAS",
+    "UNITED STATES"
+   ],
+   "strings": [
+    "texasaidocket.com",
+    "Texas's large feedlots held more cattle than Nebraska's or Kansas's",
+    "On September 1st USDA estimated 2.5 million cattle on feed in Texas's large feedlots, 2.47 million in Nebraska and 2.32 million in Kansas. Texas held 22 percent of the 11.16 million nationwide. Each steer is drawn to stand for 500 thousand head.",
+    "TEXAS",
+    "UNITED STATES",
+    "USDA cattle on feed, September 1st",
+    "06 / 09",
+    "c17 c18 c19 c20"
+   ]
+  },
+  "S7": {
+   "n": 7,
+   "file": "slide-07.html",
+   "kicker": "The A&M System release, October 7th",
+   "headline": "The release mentions AI once",
+   "claims": [
+    "c6",
+    "c7"
+   ],
+   "cite": "c6 c7",
+   "body": "The mention is a planned way of evaluating techniques. The page is drawn to illustrate. The words are the release's own.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "The release mentions AI once",
+    "The mention is a planned way of evaluating techniques. The page is drawn to illustrate. The words are the release's own.",
+    "New feeding, health and handling techniques can be evaluated with traditional and artificial intelligence-powered approaches that are designed to increase beef production efficiency and advance feedlot management practices.",
+    "The A&M System release, October 7th",
+    "07 / 09",
+    "c6 c7"
+   ]
+  },
+  "S8": {
+   "n": 8,
+   "file": "slide-08.html",
+   "kicker": "What the release leaves out",
+   "headline": "No AI tool, vendor or result is named",
+   "claims": [
+    "c7"
+   ],
+   "cite": "c7",
+   "body": "The release names no camera or model either. The blank tag is drawn to illustrate.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "No AI tool, vendor or result is named",
+    "The release names no camera or model either. The blank tag is drawn to illustrate.",
+    "What the release leaves out",
+    "08 / 09",
+    "c7"
+   ]
+  },
+  "S9": {
+   "n": 9,
+   "file": "slide-09.html",
+   "kicker": "WT Feedlot Research Group",
+   "headline": "Which tool, and what result?",
+   "claims": [
+    "c1",
+    "c6",
+    "c7",
+    "c16"
+   ],
+   "cite": "c1 c6 c7 c16",
+   "body": "The release ties the work to WT's Feedlot Research Group. The grant is awarded. The AI approaches are a plan. The person and the pens are drawn to illustrate.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "Which tool, and what result?",
+    "The release ties the work to WT's Feedlot Research Group. The grant is awarded. The AI approaches are a plan. The person and the pens are drawn to illustrate.",
+    "WT Feedlot Research Group",
+    "09 / 09",
+    "c1 c6 c7 c16"
+   ]
+  }
+ }
+}

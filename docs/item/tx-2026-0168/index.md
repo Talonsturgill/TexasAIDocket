@@ -40,6 +40,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-08 · The sheriff's posted promise and the county's own agenda remain unconfirmed, because both still bar automated readers. The published account of the reallocation away from the AI report writing tool is the part the record can still read.
 - 2026-10-09 · The sheriff's posted promise remains unconfirmed on the county's agenda, which bars automated readers. The published account of the reallocation still reads as cited.
 - 2026-10-10 · The sheriff's posted promise stays unconfirmed on the county's agenda, which bars automated readers, and the county's archive refused the request.
+- 2026-10-11 · On September 15th the court voted 3 to 2 to move the money set aside for a possible Axon contract to two more corrections officers, by the published account.
 
 ## Evidence
 
@@ -96,6 +97,12 @@ Source (journalism): https://communityimpact.com/san-marcos-buda-kyle/government
 ### Local reporting says the court will no longer consider the contract.
 
 > The court will no longer consider a future 10-year, $4.5 million contract with the company.
+
+Source (journalism): https://communityimpact.com/san-marcos-buda-kyle/government/hays-county-commissioners-reallocate-funds-away-from-potential-axon-ai-contract/
+
+### On September 15th the commissioners court voted 3 to 2 to move the money set aside for a possible Axon contract to two more corrections officers.
+
+> In a 3-2 vote on Sept. 15, the court approved a motion to reallocate the determined funding for a future Axon contract, requesting the funds be used to pay for two additional corrections officers in the Hays County Sheriff's Office.
 
 Source (journalism): https://communityimpact.com/san-marcos-buda-kyle/government/hays-county-commissioners-reallocate-funds-away-from-potential-axon-ai-contract/
 

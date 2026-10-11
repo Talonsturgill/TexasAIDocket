@@ -9,7 +9,7 @@ Governor Greg Abbott announced on August 6th, 2026 that SpaceX will construct a 
 - Public access: Write to the decider
 - Take part: https://gov.texas.gov/news/post/governor-abbott-announces-spacex-expansion-in-grimes-county
 
-- Last checked: 2026-10-08
+- Last checked: 2026-10-11
 
 ## Dates
 
@@ -38,6 +38,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-02 · The comptroller's JETI listing still carries TeraFab AI's application with Iola ISD, its agreement posted. The Governor's announcement sits on a site that bars automated readers and was not re-read.
 - 2026-10-05 · The comptroller still lists TeraFab AI's JETI applications in Grimes County. The Governor's announcement of the plant sits on a site that bars automated readers and was not re-read.
 - 2026-10-08 · The comptroller's JETI program still lists the TeraFab AI application with Iola ISD. The Governor's announcement and the other published accounts sit on sites that bar automated readers and were not re-read.
+- 2026-10-11 · The comptroller's JETI pages still carry the TeraFab AI application with Iola ISD. The Governor's own announcement of the plant is unconfirmed today.
 
 ## Evidence
 

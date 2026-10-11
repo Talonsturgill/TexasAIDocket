@@ -11,7 +11,7 @@ The Dallas City Council Public Safety Committee has put an update on the Dallas 
 - Public access: Public meeting
 - Take part: https://webapi.legistar.com/v1/cityofdallas/matters/25839
 
-- Last checked: 2026-10-08
+- Last checked: 2026-10-11
 
 ## Dates
 
@@ -37,6 +37,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-02 · No record of the Public Safety Committee's Flock briefing has been posted.
 - 2026-10-05 · The Dallas Public Safety Committee briefing on the police Flock program still stands as set.
 - 2026-10-08 · The Dallas Public Safety Committee briefing on the police Flock program is still on the calendar as set.
+- 2026-10-11 · The Dallas Public Safety Committee briefing on the Flock program stands as set.
 
 ## Evidence
 

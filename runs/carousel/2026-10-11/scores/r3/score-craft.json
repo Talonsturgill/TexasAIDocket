@@ -1,0 +1,74 @@
+{
+ "lens": "craft",
+ "round": 3,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.4,
+   "why": "Frames 1 and 6 pass most of THE SHOWSTOPPER TEST. The rest fall short: frame 2's bunk is a thin strip in a dead band on a lit slab, frame 4 has no single subject and labels on dark plates, frame 7 hangs a page against a flat purple wall with the DOM sentence upright on a skewed sheet, frame 8's kit Hereford is smeared at full size, and frame 3 is a clean but flat canvas map."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "One dark world, one grade and one precast bunk carried through 1, 2, 5, 6 and 9, with the rail on 7 and 8. Frame 7's lit purple wall sits outside the yard and frame 3 is a flat chart, as declared."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.0,
+   "why": "Every slide numeral traces. Two leaks: frame 6's far steers can't be counted at 432 px and its labels split the line as if the US excluded Texas, and frame 4's pens look the same size under their labels."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.0,
+   "why": "Who, what, where and the AI absence are clear. The reader gets only a rhetorical question on frame 9 with nothing to act on."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "The cover earns the swipe and frame 2 pays at once. The turn lands on 7 and 8. Frames 3 and 5 could trade places or merge."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "Panhandle-specific nouns and no boosterism. The repeated 'drawn to illustrate' sentence flattens the voice."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "Cattle and a feedyard are new, but this is the third lastLight world in four decks, the precast hero echoes no. 47 and the absence angle repeats nos. 46 to 48."
+  }
+ ],
+ "weighted_score": 7.18,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Rebuild frames 2, 4 and 7 under THE STAGE the way frames 1 and 6 already are: one subject a third to two thirds of the frame, standing in the yard.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 2,
+   "change": "Move the long-lens camera in until the four sections span the full width and fill y 900 to 1500, and extend the ground into the dark so the slab edge disappears."
+  },
+  {
+   "slide": 7,
+   "change": "Replace the flat wall behind the page with the yard and the lit bunk lip below, and register the sentence to the sheet's skew."
+  },
+  {
+   "slide": 4,
+   "change": "Drop to about 12 m and crop to the lit commercial pen and its two half-width research pens, remove the label plates, widen the pools to their fences."
+  },
+  {
+   "slide": 8,
+   "change": "Swap the smeared kit head for a higher-detail head or pull back to where the mesh holds, seat the tag with a stem and shadow, and carry the bunk lip across the bottom."
+  },
+  {
+   "slide": 5,
+   "change": "Light the section's top and inner faces with a falloff, and replace the uniform pebble scatter with sparse, size-varied stones."
+  }
+ ]
+}
