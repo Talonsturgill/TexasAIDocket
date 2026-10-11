@@ -41,7 +41,7 @@ Source (primary_official): https://news.utsa.edu/2026/09/keeping-the-code-safe-h
 
 ### Each lab opens with instructions, a coding agent standing in as the AI tool, a terminal and a debugger.
 
-> This opens an interface that includes step‑by‑step instructions; a coding agent, which serves as the AI tool; a terminal for executing commands; and a debugger for identifying vulnerabilities.
+> This opens an interface that includes step-by-step instructions; a coding agent, which serves as the AI tool; a terminal for executing commands; and a debugger for identifying vulnerabilities.
 
 Source (primary_official): https://news.utsa.edu/2026/09/keeping-the-code-safe-how-ut-san-antonio-students-are-learning-to-build-a-safer-ai/
 
