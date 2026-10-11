@@ -80,8 +80,8 @@ carries, so the frame prints 11.16 million, whose digits are in c20's quote.
   where it needed the run's whole set, so the capitol.texas.gov pages it fetched were measured as
   refused. Those results were discarded and nothing was stamped on them.
 - **Moved.** tx-2026-0203, Taylor's data center annexation, is decided: the city council approved
-  annexing the 664 acre campus under written water, setback and noise terms on October 8th (CBS
-  Austin). tx-2026-0168, Hays County, records the court's September 15th 3 to 2 vote in a new claim
+  an agreement to annex the 664 acre campus under written water, setback and noise terms on October
+  8th (CBS Austin). tx-2026-0168, Hays County, records the court's September 15th 3 to 2 vote in a new claim
   and history note.
 - **Admitted.** tx-2026-0213, UT San Antonio's OpenSecCoder, a free training platform where students
   learn to find the security flaws in AI-written code (commit e7fb615b).
@@ -125,6 +125,17 @@ All ten exit 0 in Phase 7. No instrument stopped.
   the kit's forward lean and moved; queued as a repeat of `kit-person-head-reads-as-mannequin`.
 - **The bunk's outer wall as a clean slab** (frame 1; every audition recheck). Weathering at 0.42
   did not show on the face the camera sees.
+
+## Codex review on PR 420, answered before the merge
+
+- The duplicate Hays County claim (tx-2026-0168-c10 repeated c8's quote) was removed. The history
+  note stays.
+- tx-2026-0203's title and October 11th note now say the council approved an agreement to annex,
+  which is what CBS Austin reports, rather than that the campus is annexed.
+- The archived `compute.py` found the gazetteer from `out/` only. It now finds the repository root
+  from either place and reproduces `figures.json` byte for byte.
+- The gate block was re-synced after the label and quantifier reports were written.
+- The missing `gmail_payload.json`, which turned CI's `email_check --all` red, is committed.
 
 ## Phase 16 notes
 
@@ -171,8 +182,8 @@ as a bench) and `a-frame-median-is-the-reserve-and-the-sky` (planned medians of 
 | aggregates     | PASS   | 10 declaration(s), 13 numeric phrase(s) in the render, all re-derived |
 | assembly       | PASS   | 9 slide(s), 14.21 MB, vector |
 | score          | STALE  | score.json predates the newest render, so it describes a deck that no longer exists. Re-run it |
-| labels         | ABSENT | label_report.json not written yet. Run scripts/carousel/label_guard.py <run-dir> |
-| quantifiers    | ABSENT | quantifier_report.json not written yet. Run scripts/carousel/quantifier_check.py <run-dir> |
+| labels         | PASS   | 46 claim id(s) checked, every label beside one traces to the shape its claim proves |
+| quantifiers    | PASS   | 88 published string(s) read from one list, every universal names its set |
 | verbatim       | PASS   | 1 declared fragment(s) over 9 of 9 dossier(s), every one a literal substring of its own claim's quote, 2 slot note(s) |
 | dossiers       | PASS   | 35,312 chars planned |
 | caption        | PASS   | 146 words |

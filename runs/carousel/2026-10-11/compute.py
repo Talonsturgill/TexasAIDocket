@@ -101,7 +101,8 @@ put("tcfa_share_pct", int(grab("c22", r"approximately (\d+) percent").group(1)),
 
 # THE DECK'S LIGHT: the sun over Randall County's centroid in the committed gazetteer at 6:50 p.m. CDT on
 # the release date, NOAA's general solar position equations.
-_places = json.load(open(HERE.parents[1] / "assets" / "geo" / "tx-places.json"))["places"]
+_ROOT = next(d for d in HERE.parents if (d / "assets" / "geo" / "tx-places.json").exists())   # the repo root, from out/<date>/ or runs/carousel/<date>/
+_places = json.load(open(_ROOT / "assets" / "geo" / "tx-places.json"))["places"]
 _r = next(p for p in _places if p.get("full_name") == "Randall County")
 _utc = dt.datetime(rel.year, rel.month, rel.day, 18, 50) + dt.timedelta(hours=5)
 

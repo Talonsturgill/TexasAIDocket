@@ -100,9 +100,3 @@ Source (journalism): https://communityimpact.com/san-marcos-buda-kyle/government
 
 Source (journalism): https://communityimpact.com/san-marcos-buda-kyle/government/hays-county-commissioners-reallocate-funds-away-from-potential-axon-ai-contract/
 
-### On September 15th the commissioners court voted 3 to 2 to move the money set aside for a possible Axon contract to two more corrections officers.
-
-> In a 3-2 vote on Sept. 15, the court approved a motion to reallocate the determined funding for a future Axon contract, requesting the funds be used to pay for two additional corrections officers in the Hays County Sheriff's Office.
-
-Source (journalism): https://communityimpact.com/san-marcos-buda-kyle/government/hays-county-commissioners-reallocate-funds-away-from-potential-axon-ai-contract/
-
