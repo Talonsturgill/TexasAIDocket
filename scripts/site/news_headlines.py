@@ -400,7 +400,7 @@ def markup(today: str, data: dict | None = None) -> str:
     url = selected['url'] if selected else '/articles/'
     first_seen = selected['first_seen_at'] if selected else ''
     description = ('Texas AI headlines rotate every five seconds and refresh every six hours. '
-                   'The date is the publisher feed date or first observation. Opens the source in a new tab.')
+                   'Open a headline for its summary. The date is the publisher feed date or first observation.')
     relevance = {name: pattern.pattern for name, pattern in
                  [('texas', TEXAS), ('austin', AUSTIN), ('local', DALLAS_INSTITUTIONS),
                   ('tech', TECH), ('ai', AI), ('junk', JUNK)]}
@@ -427,8 +427,22 @@ def markup(today: str, data: dict | None = None) -> str:
             f'<cite class="news-source">{e(publisher)}</cite>'
             f'<time class="news-date" datetime="{e(first_seen)}">{date}</time></span>'
             '<svg class="news-arrow" aria-hidden="true" viewBox="0 0 24 24" width="18" height="18" '
-            'fill="none" stroke="currentColor" stroke-width="1.6"><path d="M7 17 17 7M7 7h10v10"/></svg>'
-            '</a></div></div></div><script>' + (ROOT / 'scripts/site/news_runtime.js').read_text() + '</script>')
+            'fill="none" stroke="currentColor" stroke-width="1.6">'
+            '<rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h4"/></svg>'
+            '</a></div></div></div>'
+            '<dialog class="news-story" id="news-story" aria-labelledby="news-story-title" '
+            'aria-describedby="news-story-summary">'
+            '<div class="news-story-head"><div class="news-story-meta">'
+            '<cite class="news-story-publisher"></cite><time class="news-story-date"></time></div>'
+            '<button class="news-story-close" type="button" aria-label="Close summary" title="Close summary">'
+            '<svg aria-hidden="true" viewBox="0 0 24 24" width="18" height="18" '
+            'fill="none" stroke="currentColor" stroke-width="1.5"><path d="m6 6 12 12M18 6 6 18"/></svg>'
+            '</button></div><h2 class="news-story-title" id="news-story-title" tabindex="-1"></h2>'
+            '<blockquote class="news-story-summary" id="news-story-summary"></blockquote>'
+            '<a class="news-story-source" target="_blank" rel="noopener noreferrer">'
+            'Read full article <svg aria-hidden="true" viewBox="0 0 24 24" width="14" height="14" '
+            'fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 17 17 7M7 7h10v10"/></svg>'
+            '</a></dialog><script>' + (ROOT / 'scripts/site/news_runtime.js').read_text() + '</script>')
 
 
 def rss_articles(body: bytes) -> list[dict]:
