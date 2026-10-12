@@ -119,6 +119,11 @@ All exit 0 in Phase 7. No instrument stopped.
 - `tests/article_edition.mjs` needed `npm install` in this container; it then passed 825 reader
   checks. Its screenshots still write to `out/2026-09-18/` (queued `article-test-screenshots-fixed-path`).
 
+- Codex on PR 422 found the web edition printing '20%%' and '98.82%%': `{{number:...}}` keeps the
+  quote's own percent sign, so an authored '%' after it doubles. The suffixes were removed and the
+  site rebuilt. The shipped 2026-09-27 edition carries the same doubled sign and was left as
+  published; a builder-side normalisation is the fix for both, and is a maintainer's call.
+
 ## Did this run stop and wait for a human
 
 Not on the interim reading: 1,477 calls measured, none waited on a human, and the hook refused
