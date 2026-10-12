@@ -1,0 +1,96 @@
+<!doctype html>
+<!-- 2026-10-12, frame 3 of 9. Archetype DIAGRAM. RENDERED through txthree.js in the deck's floodlit world. The whole flood node through a long lens from the west south west, nearly in elevation, standing in the floodwater with two of its four sensor rings lit amber, each part named in mono by a leader that ends on it. Drawn to illustrate; the release gives no mounting or housing. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+  .dek { width:600px; }
+  .lab { font-size:24px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">Four water sensors stacked on one node</h1>
+<p class="dek" data-follow="26">Four optical water-level sensors at varying heights, plus temperature, humidity, light and precipitation. Drawn to illustrate.</p>
+<svg id="lead" width="1080" height="1350" style="position:absolute;left:0;top:0;z-index:11;pointer-events:none"></svg>
+<div class="lab" id="lSens">FOUR OPTICAL<br>WATER-LEVEL SENSORS</div>
+<div class="lab" id="lEnc">MICROCONTROLLER<br>AND BATTERY</div>
+<div class="lab" id="lShield">TEMPERATURE<br>AND HUMIDITY</div>
+<div class="lab" id="lRain">PRECIPITATION</div>
+<div class="lab" id="lPanel">SOLAR PANEL</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-12-crossing.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "What the node carries", counter: "03 / 09", src: "c1 c2 c4 c8", fit: { min: 72, max: 96, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 22, far: 3000 });
+  const X = CH.crossing({ span: 12, slab: 0.32, bank: 2.2, ramp: 16 });
+  const gnd = TXT.ground(R, { surface: 'dirt', size: 260, tile: 6, seed: 12, y: -6 });
+  /* THE COUNT, from figures.json: sensor_count 4 on the rail, the water at the second (wet 2) */
+  const SENSORS = 4, WET = 2, LEVEL = CH.levelFor(WET);   /* the count drawn is the node's own four sensors */
+  CH.place(THREE, TXT, R, X, gnd, { level: LEVEL });
+  const NX = 5.0, NZ = 3.0;
+  const S = CH.seat(WET, LEVEL), node = K.make('flood_node', { wet: S.wet, seed: 5 });
+  node.position.set(NX, S.y, NZ); node.rotation.y = -1.178; TXT.add(R, node); TXT.contact(R, node, { y: 0.005 });
+  CH.wake(THREE, R, NX, NZ, LEVEL, { size: 1.0 });
+  CH.glitter(THREE, R, NX - 3, NZ + 2.5, LEVEL, { w: 9, d: 6, opacity: 0.3, seed: 52 });
+  /* the crossing's lamp behind the node's left shoulder, so the post stands in its pool and its image lies on the water */
+  const lamp = CH.lamp(THREE, 9.5, -4.5, { ry: -0.9, reach: 2.6, i: 220, dist: 40 });
+  TXT.frame(R, { fov: 22, from: [-6.09, 1.5, 7.59], look: [4.62, 1.98, 2.08] });
+  CH.rain(THREE, R, { base: 0.2 });   /* the wet night, caught by the floodlight where no lamp stands near */
+  CH.mirror(node, LEVEL); CH.mirror(lamp, LEVEL);
+  CH.streak(THREE, R, lamp.userData.head, LEVEL, { len: 12, w: 2.0, start: 0.5, opacity: 0.45 });
+  TXT.sky(R);
+  TXT.deckRig(R, CH.rigSpec(W, 8, 4096), CH.rigOpts([NX, 1.2, NZ], { distance: 30, shadowFar: 80 }));
+  TXT.stage(R, node, { poolInner: 2, poolOuter: 7 });
+  TXT.weather(R, { grime: 0.22, height: 0.8 });
+  /* THE LEADERS: every label sits in the left column below the dek, at its part's own height, and each
+   * leader ends on the part's projected point. Label positions are spaced so no two touch. */
+  const svg = document.getElementById('lead');
+  /* the radio's leader lands high on the whip, clear of the shield's arm */
+  const P = (name) => { const w = CH.part(THREE, node, name); if (name === 'antenna') w[1] += 0.24; return CH.project(THREE, R, w); };
+  const parts = [
+    ['lPanel', ['panel']], ['lRain', ['rain']], ['lShield', ['shield']],
+    ['lEnc', ['enclosure']], ['lSens', ['sensor0', 'sensor1', 'sensor2', 'sensor3']]
+  ];
+  const dk = document.querySelector('.dek').getBoundingClientRect();
+  let floor = dk.bottom + 40, X0 = 82;
+  const placed = parts.map(([id, pts]) => [id, pts.map(P)]).sort((a, b) => Math.min(...a[1].map(q => q[1])) - Math.min(...b[1].map(q => q[1])));
+  for (const [id, qs] of placed) {
+    const el = document.getElementById(id), h = el.getBoundingClientRect().height, w = el.getBoundingClientRect().width;
+    const yMid = qs.reduce((s, q) => s + q[1], 0) / qs.length;
+    const top = Math.max(floor, Math.round(yMid - h / 2));
+    el.style.left = X0 + 'px'; el.style.top = top + 'px'; floor = top + h + 22;
+    window.__txLeaders = window.__txLeaders || [];
+    for (const q of qs) {
+      const from = [X0 + w + 14, top + h / 2];
+      /* a part above its label is reached by an elbow: level out to the art first, then rise, so no leader crosses the dek */
+      if (q[1] < dk.bottom + 140) { const ex = Math.round(dk.right + 8 + 14 * (window.__txBus = (window.__txBus == null ? 0 : window.__txBus + 1))), seg = (a, b) => { const l = document.createElementNS('http://www.w3.org/2000/svg', 'line'); l.setAttribute('x1', a[0]); l.setAttribute('y1', a[1]); l.setAttribute('x2', b[0]); l.setAttribute('y2', b[1]); l.setAttribute('stroke', CH.INK); l.setAttribute('stroke-width', '2'); l.setAttribute('stroke-opacity', '0.85'); svg.appendChild(l); };
+        /* a part above the dek's foot: out along the label's line, up beside the dek, then level across to the part.
+         * Each label takes its own riser, the higher label the inner one, so no two leaders cross or share a line */
+        seg(from, [ex, from[1]]); seg([ex, from[1]], [ex, q[1]]); CH.leader(svg, [ex, q[1]], [q[0] - 10, q[1]]); }
+      else CH.leader(svg, from, [q[0] - (id === 'lSens' ? 26 : 10), q[1]]);   /* sensor leaders stop at the housing's edge, so the lit rings stay clear */
+      window.__txLeaders.push({ target: id, at: [q[0] - 10, q[1]], to: [q[0] - 10, q[1]] });
+    }
+  }
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0.3, veil: 0.45 });
+  CH.knock(cx, ['#site'], 0.9);
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

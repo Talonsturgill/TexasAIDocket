@@ -1,0 +1,69 @@
+<!doctype html>
+<!-- 2026-10-12, frame 1 of 9. Archetype FULL_BLEED. RENDERED through txthree.js in the deck's floodlit world. A driver's eye on the south approach of a Hill Country low water crossing at night, looking north down the grade: the chalk edge lines run under a sheet of brown floodwater, and on the east shoulder the flood node stands in the water with its first sensor ring lit amber at the waterline and its image on the water. Drawn to illustrate; the release names no site. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+  .dek { width:600px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">It judges flood risk on the device</h1>
+<p class="dek" data-follow="26">UT San Antonio's prototype runs its AI on the device, with no server. Its release says risk at San Antonio's low-water crossings often climbs before regional alerts sound. Drawn to illustrate.</p>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-12-crossing.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "UT San Antonio, September 28th", counter: "01 / 09", src: "c3 c5 c16 c19", fit: { min: 76, max: 100, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 38, far: 3000 });
+  const X = CH.crossing({ span: 12, slab: 0.32, bank: 2.2, ramp: 16 });
+  const gnd = TXT.ground(R, { surface: 'dirt', size: 260, tile: 6, seed: 12, y: -6 });
+  /* THE WATER, from figures.json: wet_cover 1 of sensor_count 4. The level sits between the first
+   * sensor (0.20 m) and the second (0.48 m) on the node's rail, 8 cm over the slab. */
+  const WET = 1, LEVEL = CH.levelFor(WET, null, 0.06);   /* sensor_count 4 on the rail */
+  CH.place(THREE, TXT, R, X, gnd, { level: LEVEL });
+  CH.foam(THREE, R, 4.5, -6, 6, LEVEL, { w: 1.4, opacity: 0.7 });
+    CH.glitter(THREE, R, 3.4, 7.2, LEVEL, { w: 9, d: 7, opacity: 0.5 });
+  const NX = 5.0, NZ = 9.5;
+  const S = CH.seat(WET, LEVEL), node = K.make('flood_node', { wet: S.wet, seed: 5 }); node.position.set(NX, S.y, NZ); node.rotation.y = 0.35; TXT.add(R, node);
+  CH.wetGlow(THREE, R, NX, NZ, LEVEL, { r: 1.4 });
+  CH.wake(THREE, R, NX, NZ, LEVEL, { size: 1.1 });
+  const lamp = CH.lamp(THREE, -1.2, 2.6, { ry: 2.3, reach: 2.6, i: 260, dist: 40 });   /* the crossing's cobra head across the water, its streak on the flood */
+  /* the near bank's lamp behind the camera, its head over the shoulder, so the node stands in its pool
+   * with its panel, enclosure and shield lit on the faces a reader sees, and a cold rim from behind */
+  CH.lamp(THREE, 4.2, 15.6, { ry: Math.PI, reach: 2.6, height: 6.5, i: 120, dist: 18 });
+  { const rim = new THREE.PointLight(0xdfe8ff, 10, 5, 2); rim.position.set(5.8, 2.6, 8.2); R.scene.add(rim); }
+  /* the far bank, juniper and live oak going to black */
+  [[-16, -24, 'ashe_juniper', 5]].forEach(([x, z, m, sd]) => {
+    const t = K.make(m, { seed: sd }); t.position.set(x, CH.heightAt(x, z), z); TXT.add(R, t); TXT.contact(R, t);
+  });
+  TXT.frame(R, { fov: 41, from: [3.3, 2.5, 14.4], look: [4.6, 1.25, 5.0] });   /* close enough that the node holds the right half at thumb size */
+  CH.rain(THREE, R, { lights: [lamp.userData.head] });   /* the wet night, caught by the far lamp; the near one stands behind the lens */
+  CH.mirror(node, LEVEL); CH.mirror(lamp, LEVEL); CH.mirror(CH.gaugeMesh, LEVEL);
+  CH.streak(THREE, R, lamp.userData.head, LEVEL, { len: 9, w: 2.2, start: 0.5, opacity: 0.55 });
+  TXT.sky(R);
+  TXT.deckRig(R, CH.rigSpec(W, 18, 4096), CH.rigOpts([NX, 0.8, NZ], { distance: 40, shadowFar: 120 }));
+  TXT.stage(R, node, { poolInner: 3, poolOuter: 12 });
+  TXT.weather(R, { grime: 0.22, height: 0.7 });
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0.3, veil: 0.42 });
+  CH.knock(cx, ['#site'], 0.9);   /* the site line clear of the post's reflection */
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

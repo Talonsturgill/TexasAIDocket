@@ -1,0 +1,104 @@
+{
+  "version": 1,
+  "selected": [
+    1,
+    7,
+    9
+  ],
+  "inputs": {
+    "slides/slide-01.html": "1f9b338450e10ecd74d68284a9425607cebd4b580cd3216b1c3dd3eac8e31b0d",
+    "render/slide-01.png": "bd2303443d6ba9ec36426fe16448f94400235394dee743788132f722a4ac7669",
+    "assets/js/deck/2026-10-12-crossing.js": "a3dda68bb5edd361ce9bf78b0ce2dea18b8884402a7a3974ccbdd92e48bd9dd9",
+    "slides/slide-07.html": "8a1da50e5ad6ecd39fa35382457eb89a2a6e9329be4435a8e13e65ef4007d045",
+    "render/slide-07.png": "427bd6ff44e89b5fe317f776f83e9560e5a5b7429fc753ba49985d36364a15a7",
+    "slides/slide-09.html": "faaf760f1c4611b103500c2e23d3a34d0fc3ce579c92d9153bdc81a7635f1286",
+    "render/slide-09.png": "ea8126f0ece8b9faa0e86b89d96f350a8c8a642a367b51a0196da138ca4ded10"
+  },
+  "value_measurements": [
+    {
+      "frame": "slide-01.png",
+      "median_L": 6.0,
+      "mid": 0.058,
+      "dark": 0.842
+    },
+    {
+      "frame": "slide-07.png",
+      "median_L": 0.9,
+      "mid": 0.128,
+      "dark": 0.736
+    },
+    {
+      "frame": "slide-09.png",
+      "median_L": 0.8,
+      "mid": 0.072,
+      "dark": 0.838
+    }
+  ],
+  "review": {
+    "decision": "accept",
+    "inputs": {
+      "slides/slide-01.html": "1f9b338450e10ecd74d68284a9425607cebd4b580cd3216b1c3dd3eac8e31b0d",
+      "render/slide-01.png": "bd2303443d6ba9ec36426fe16448f94400235394dee743788132f722a4ac7669",
+      "assets/js/deck/2026-10-12-crossing.js": "a3dda68bb5edd361ce9bf78b0ce2dea18b8884402a7a3974ccbdd92e48bd9dd9",
+      "slides/slide-07.html": "8a1da50e5ad6ecd39fa35382457eb89a2a6e9329be4435a8e13e65ef4007d045",
+      "render/slide-07.png": "427bd6ff44e89b5fe317f776f83e9560e5a5b7429fc753ba49985d36364a15a7",
+      "slides/slide-09.html": "faaf760f1c4611b103500c2e23d3a34d0fc3ce579c92d9153bdc81a7635f1286",
+      "render/slide-09.png": "ea8126f0ece8b9faa0e86b89d96f350a8c8a642a367b51a0196da138ca4ded10"
+    },
+    "frames": [
+      {
+        "slide": 1,
+        "role": "cover",
+        "subject": "The full flood node standing in floodwater on the right: solar panel, rain gauge, temperature shield, grey enclosure and the aluminium rail with its lensed sensors. The near approach's edge line runs into dark rippled water at lower left. The hook reads 'It judges flood risk on the device'.",
+        "visual_consequence": "At 432 px it reads as one instrument standing alone in a flooded road at night, one amber glow at the waterline marking where the water has reached it. A reader sees a device out at the crossing before reading a word, which is the cover's claim.",
+        "weakness": "The edge line is one hard bright stripe with no wear, the asphalt ends in a square polygon corner, and the amber is a large ground glow rather than a lit ring on the sensor.",
+        "repair": "A dimmer, broken painted stripe fading into the water, and the amber tightened to a small halo at the first sensor."
+      },
+      {
+        "slide": 7,
+        "role": "evidence",
+        "subject": "One tall clear measuring column on the dry slab, its water glowing cold to 98.82 of full scale, leaders to FULL SCALE at the rim and 98.82% at the water's top, the node faint in the dark beyond.",
+        "visual_consequence": "The measured relationship at one scale: a fill against a whole, nearly full with a hairline under the rim. With the hook and the column on a dry slab rather than in water, the number reads as a bench result, the deck's turn.",
+        "weakness": "A bright floor patch spreads across the left-centre of the lower third, vertical streaks inside the glass read as scratches, and the node behind is too faint at 432 px.",
+        "repair": "Centre the floor light on the column's base and remove the streak layer inside the glass."
+      },
+      {
+        "slide": 9,
+        "role": "close",
+        "subject": "A dark pickup on the approach above the water, tail toward the camera, heading up the grade; the node in the floodwater on the right with an amber glow at its waterline; the lamp's streak across the water. The dek ends 'Whatever a sensor reports, the turn is the driver's. Drawn to illustrate.'",
+        "visual_consequence": "Road, water, vehicle and sensor share one place, the truck on the dry side and leaving the water, so the hook can be seen: the step at the water is the driver's.",
+        "weakness": "The six-line dek's last lines sit 20 to 30 px above the pickup's cab; the pickup is a near-black silhouette whose front wheel sits over unlit black; its tail lamps read as a second warm accent; the brown low-poly bank wedges read as unfinished.",
+        "repair": "Lower the pickup and post group about 60 px so the cab clears the dek, light the lane under the front wheel, and dull the tail lamps."
+      }
+    ],
+    "_note": "Accepted by the flow critic's brief recheck before panel round 3, bound to these exact source and render hashes."
+  },
+  "shipped_inputs": {
+    "slides/slide-01.html": "1f9b338450e10ecd74d68284a9425607cebd4b580cd3216b1c3dd3eac8e31b0d",
+    "slide-01.webp": "ed2aca5d69f2ac8618d880f32bab4e67ea541062b8e00808aadb1bc38f181299",
+    "slides/slide-07.html": "8a1da50e5ad6ecd39fa35382457eb89a2a6e9329be4435a8e13e65ef4007d045",
+    "slide-07.webp": "dce2be75d82d2854d15ff26c710885ae0db823165689566e0a44cdd39e9eeea4",
+    "slides/slide-09.html": "faaf760f1c4611b103500c2e23d3a34d0fc3ce579c92d9153bdc81a7635f1286",
+    "slide-09.webp": "39ef4c6cfd9080f0656a3e41d9a1ed759781da3990b30b1072c8926cf2968a06"
+  },
+  "encodings": [
+    {
+      "to": "slide-01.webp",
+      "to_sha256": "ed2aca5d69f2ac8618d880f32bab4e67ea541062b8e00808aadb1bc38f181299",
+      "from_sha256": "bd2303443d6ba9ec36426fe16448f94400235394dee743788132f722a4ac7669",
+      "psnr_db": 41.331
+    },
+    {
+      "to": "slide-07.webp",
+      "to_sha256": "dce2be75d82d2854d15ff26c710885ae0db823165689566e0a44cdd39e9eeea4",
+      "from_sha256": "427bd6ff44e89b5fe317f776f83e9560e5a5b7429fc753ba49985d36364a15a7",
+      "psnr_db": 42.115
+    },
+    {
+      "to": "slide-09.webp",
+      "to_sha256": "39ef4c6cfd9080f0656a3e41d9a1ed759781da3990b30b1072c8926cf2968a06",
+      "from_sha256": "ea8126f0ece8b9faa0e86b89d96f350a8c8a642a367b51a0196da138ca4ded10",
+      "psnr_db": 41.664
+    }
+  ]
+}

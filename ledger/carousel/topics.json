@@ -1661,6 +1661,46 @@
     "AI in agriculture",
     "precision livestock"
    ]
+  },
+  {
+   "date": "2026-10-12",
+   "carousel_no": 50,
+   "docket_item": "tx-2026-0141",
+   "related_items": [
+    "tx-2026-0167"
+   ],
+   "instrument": "UT San Antonio's September 28th, 2026 release on Chen Pan's solar flood warning node, UT Arlington's September 28th, 2026 release on its statewide flood warning project, and the National Weather Service's Turn Around Don't Drown page, all read on October 12th, 2026.",
+   "topic": "UT San Antonio's prototype flood warning node carries optical water-level sensors at varying heights on a solar powered post and runs a TinyML model on its own microcontroller to judge imminent flood risk with no central server. The release reports 98.82% validation accuracy in initial assessments after training and parts of roughly $150 to $220 per station, and names no site, no operator, no field test against a real flood and no false alarm figure.",
+   "angle": "A San Antonio low water crossing on a wet night under a cold lamp. The flood node is the hero: in the water to its first sensor on the cover, beyond rain columns for the radar finding, stacked and labelled, its box at detail scale, its reach on a stone model of Bexar County, a built station beside its own parts and a cost bar, a glass column filled to the validation score, its rail at the waterline for what the release leaves out, and a pickup turning back up the grade at the close",
+   "angle_note": "The node, the crossing, the columns, the parts and the pickup are drawn to illustrate. No installation site is in the record, so no crossing is named and the reach circles show scale only.",
+   "entities": [
+    "UT San Antonio",
+    "Chen Pan",
+    "Klesse College of Engineering and Integrated Design",
+    "UT Arlington",
+    "Water Engineering Research Center",
+    "National Weather Service",
+    "Texas A&M University-Corpus Christi",
+    "NOAA Texas Coastal Management Program"
+   ],
+   "places": [
+    "San Antonio",
+    "Bexar County",
+    "Hill Country"
+   ],
+   "what_was_refused": "Any named crossing or installation site, which the release never gives. A field accuracy figure, which the release does not report. The full Federal Register text for the day's admitted trucking item through unblock.federalregister.gov, which robots.txt disallows; the GovInfo PDF was read instead.",
+   "keywords": [
+    "UTSA",
+    "flood warning",
+    "low water crossing",
+    "TinyML",
+    "edge AI",
+    "LoRa",
+    "San Antonio",
+    "flash flood",
+    "Turn Around Don't Drown",
+    "flood sensor"
+   ]
   }
  ]
 }

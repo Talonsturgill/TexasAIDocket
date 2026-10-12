@@ -1,0 +1,185 @@
+{
+ "_note": "Every value is extracted from a claim quote by compute.py, or computed here from values that were.",
+ "sensor_count": {
+  "value": 4,
+  "from": [
+   "c1"
+  ],
+  "basis": "optical water level sensors on one node"
+ },
+ "other_sensing": {
+  "value": 4,
+  "from": [
+   "c2"
+  ],
+  "basis": "other quantities the prototype senses, counted in the release's own list"
+ },
+ "validation_pct": {
+  "value": 98.82,
+  "from": [
+   "c7"
+  ],
+  "basis": "validation accuracy in initial assessments post-training, percent"
+ },
+ "validation_rest_pct": {
+  "value": 1.18,
+  "from": [
+   "c7"
+  ],
+  "basis": "the part of a 100 percent bar the validation figure leaves, percent, two places"
+ },
+ "validation_frac": {
+  "value": 0.9882,
+  "from": [
+   "c7"
+  ],
+  "basis": "the validation figure as a fraction of one bar, four places"
+ },
+ "lora_street_mi": {
+  "value": 0.5,
+  "from": [
+   "c9"
+  ],
+  "basis": "miles through city streets, the release's 'more than a half-mile'"
+ },
+ "lora_open_mi": {
+  "value": 5,
+  "from": [
+   "c9"
+  ],
+  "basis": "miles in open areas, the release's 'up to five miles'"
+ },
+ "lora_ratio": {
+  "value": 10,
+  "from": [
+   "c9"
+  ],
+  "basis": "open reach over street reach"
+ },
+ "lora_street_m": {
+  "value": 805,
+  "from": [
+   "c9"
+  ],
+  "basis": "the street reach in metres, one mile = 1609.344 m, rounded to a metre"
+ },
+ "lora_open_m": {
+  "value": 8047,
+  "from": [
+   "c9"
+  ],
+  "basis": "the open reach in metres, rounded to a metre"
+ },
+ "cost_low": {
+  "value": 150,
+  "from": [
+   "c11"
+  ],
+  "basis": "low end of the parts cost for one prototype, dollars"
+ },
+ "cost_high": {
+  "value": 220,
+  "from": [
+   "c11"
+  ],
+  "basis": "high end of the parts cost for one prototype, dollars"
+ },
+ "cost_spread": {
+  "value": 70,
+  "from": [
+   "c11"
+  ],
+  "basis": "high less low, dollars"
+ },
+ "cost_low_frac": {
+  "value": 0.6818,
+  "from": [
+   "c11"
+  ],
+  "basis": "the low end as a fraction of the high end, four places"
+ },
+ "rain_gauges": {
+  "value": 300,
+  "from": [
+   "c20"
+  ],
+  "basis": "rain gauges UT Arlington cross-referenced, 'more than'"
+ },
+ "radar_short_pct": {
+  "value": 20,
+  "from": [
+   "c20"
+  ],
+  "basis": "how far standard radar can underestimate storm totals, 'roughly', percent"
+ },
+ "radar_fill_frac": {
+  "value": 0.8,
+  "from": [
+   "c20"
+  ],
+  "basis": "the radar column's fill as a fraction of the gauge column's, a drawing rule from the percent"
+ },
+ "vehicle_share_word": {
+  "value": "over half",
+  "from": [
+   "c22"
+  ],
+  "basis": "the NWS relay of CDC's share of flood drownings in vehicles, as words, never a numeral"
+ },
+ "release_date": {
+  "value": "2026-09-28",
+  "from": [
+   "c1"
+  ],
+  "basis": "the publication date the fact check read off the UTSA page and recorded on c1 as published"
+ },
+ "noaa_award": {
+  "value": "NA23NOS4190249",
+  "from": [
+   "c15"
+  ],
+  "basis": "the NOAA award number"
+ },
+ "wet_cover": {
+  "value": 1,
+  "from": [
+   "c1"
+  ],
+  "basis": "a drawing rule: the cover's water reaches the first of the four sensors, drawn to illustrate"
+ },
+ "wet_close": {
+  "value": 3,
+  "from": [
+   "c1"
+  ],
+  "basis": "a drawing rule: the close's water reaches three of the four, drawn to illustrate, the fourth never"
+ },
+ "cost_bar_m": {
+  "value": 2.2,
+  "from": [
+   "c11"
+  ],
+  "basis": "a drawing rule: one centimetre of the cost bar per dollar, so $220 is 2.2 m"
+ },
+ "cost_low_m": {
+  "value": 1.5,
+  "from": [
+   "c11"
+  ],
+  "basis": "the low end on the same bar, metres"
+ },
+ "validation_bar_m": {
+  "value": 10.0,
+  "from": [
+   "c7"
+  ],
+  "basis": "a drawing rule: the validation bar is 10 m long for 100 percent"
+ },
+ "validation_lit_m": {
+  "value": 9.882,
+  "from": [
+   "c7"
+  ],
+  "basis": "the lit length of that bar, metres, three places"
+ }
+}

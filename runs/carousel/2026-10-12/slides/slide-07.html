@@ -1,0 +1,89 @@
+<!doctype html>
+<!-- 2026-10-12, frame 7 of 9. Archetype OBJECT_AND_CAPTION. RENDERED through txthree.js in the deck's floodlit world. One tall clear measuring column standing on the dry slab of the crossing at night, its water filled to 98.82 of its 100 units and glowing cold, the last sliver of glass under the rim empty, the creek and the node dark behind. A score measured in a column, not in a flood. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+  .dek { width:600px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:620px">98.82%, scored on data</h1>
+<p class="dek" data-follow="26">The release reports 98.82% validation accuracy in initial assessments after training.</p>
+<div class="lab" id="l100">FULL<br>SCALE</div>
+<div class="lab" id="l98">98.82%</div>
+<svg id="lead" width="1080" height="1350" style="position:absolute;left:0;top:0;z-index:11;pointer-events:none"></svg>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-12-crossing.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "UT San Antonio, the one score", counter: "07 / 09", src: "c7 c19", fit: { min: 76, max: 100, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 30, far: 3000 });
+  const X = CH.crossing({ span: 12, slab: 0.32, bank: 2.2, ramp: 16 });
+  const gnd = TXT.ground(R, { surface: 'dirt', size: 260, tile: 6, seed: 12, y: -6 });
+  const LEVEL = 0.16;
+  CH.place(THREE, TXT, R, X, gnd, { level: LEVEL, wave: 0.14 });
+  /* THE COLUMN, from figures.json: validation_lit_m 9.882 of validation_bar_m 10, the release's 98.82 of
+   * 100, set as the column's fill over its full height */
+  const validation_lit_m = 9.882, validation_bar_m = 10.0, H = 1.45, FRAC = validation_lit_m / validation_bar_m;
+  const D = 0.32, RB = D / 2 + 0.003;   /* a wide tube, so the remainder has room to read */
+  const col = K.make('rain_column', { height: H, d: D, fill: FRAC * H });
+  col.position.set(3.6, 0.32, 0.0); col.rotation.y = Math.atan2(-1.5 - 3.6, 1.0 - 0.0) + 0.35;   /* the graduated face turned to the camera, just off square */ TXT.add(R, col); TXT.contact(R, col, { y: 0.325 });
+  if (Math.abs(col.userData.waterTop - 0.03 - FRAC * H) > 1e-6) throw new Error('the fill is not the validation share');
+  /* the node, dark and far behind on the far bank's edge, the thing the score belongs to */
+  CH.glitter(THREE, R, 9.5, -3.5, LEVEL, { w: 8, d: 7, opacity: 0.35, seed: 41 });
+  /* the node, small and soft behind the column in its own lamp's pool, the thing the score belongs to */
+  const node = K.make('flood_node', { wet: LEVEL, seed: 5 }); node.position.set(10.8, 0, -4.3); node.rotation.y = -1.9; TXT.add(R, node);
+  { const fill = new THREE.PointLight(0xe8eeff, 30, 9, 2); fill.position.set(9.6, 2.6, -2.6); R.scene.add(fill); }   /* its own lamp's pool, so the node reads in the dark beside the score */
+  const lamp = CH.lamp(THREE, 9.0, -9.5, { ry: 0.9, reach: 2.6, i: 160, dist: 40 });
+  /* RAIN BEADED ON THE GLASS, the column standing out in the same weather as the node: seeded drops on the
+   * half of the tube that faces the camera, each a tiny clear lens catching the floodlight */
+  { const rb = TX.rng(606), n = 60, M = new THREE.Matrix4(), q = new THREE.Quaternion(), S = new THREE.Vector3(), P = new THREE.Vector3();
+    const drop = new THREE.InstancedMesh(new THREE.SphereGeometry(1, 12, 8), new THREE.MeshPhysicalMaterial({ color: 0xa9bfd2, roughness: 0.02, metalness: 0, clearcoat: 1, clearcoatRoughness: 0, transparent: true, opacity: 0.55 }), n);
+    const spec = new THREE.InstancedMesh(new THREE.SphereGeometry(1, 8, 6), new THREE.MeshBasicMaterial({ color: 0xf4f8ff }), n);
+    const face = Math.atan2(-1.5 - 3.6, 1.0 - 0.0);
+    for (let i = 0; i < n; i++) { const a = face + (rb() - 0.5) * 2.4, y = 0.36 + rb() * (H - 0.06), r = 0.004 + Math.pow(rb(), 3) * 0.006, ca = Math.sin(a), sa = Math.cos(a);
+      P.set(3.6 + ca * RB, y, sa * RB); S.set(r, r * (1.2 + rb() * 0.6), r * 0.55); M.compose(P, q.setFromAxisAngle(new THREE.Vector3(0, 1, 0), a), S); drop.setMatrixAt(i, M);
+      /* the highlight sits on the drop's upper face toward the key, a third of its size */
+      P.set(3.6 + ca * (RB + r * 0.5), y + r * 0.5, sa * (RB + r * 0.5)); S.setScalar(r * 0.55); M.compose(P, q, S); spec.setMatrixAt(i, M); }
+    drop.userData.txWear = false; spec.userData.txWear = false; R.scene.add(drop); R.scene.add(spec);
+    /* rain running down the glass in thin films, each catching the light along its length */
+    const film = new THREE.MeshBasicMaterial({ color: 0xdfe8f4, transparent: true, opacity: 0.32, depthWrite: false }); film.userData.additive = true; CH.keepAlpha(film);
+    for (let i = 0; i < 70; i++) { const a = face + (rb() - 0.5) * 2.2, len = 0.08 + rb() * 0.5, y = 0.36 + len / 2 + rb() * (H - len - 0.06);
+      const m = new THREE.Mesh(new THREE.PlaneGeometry(0.0035 + rb() * 0.003, len), film); m.position.set(3.6 + Math.sin(a) * (RB + 0.001), y, Math.cos(a) * (RB + 0.001)); m.rotation.y = a; m.userData.txWear = false; R.scene.add(m); }
+    /* one hard rim down the tube's right edge, a cold light behind it */
+    const rim = new THREE.PointLight(0xdfe8ff, 1.6, 1.2, 2); rim.position.set(3.95, 1.0, -0.4); R.scene.add(rim); }
+  /* close on the column, under four metres off, its centre landing right of the dek */
+  CH.aim(THREE, R, TXT, [-0.12, 1.05, 0.72], [3.6, 0.32 + H / 2, 0.0], 800, 800, 40);
+  CH.rain(THREE, R, { base: 0.32, exclude: [[3.6, 0.0, RB + 0.05]] });   /* the wet night, caught by the floodlight where no lamp stands near */
+  CH.mirror(lamp, LEVEL);
+  TXT.sky(R);
+  TXT.deckRig(R, CH.rigSpec(W, 8, 4096), CH.rigOpts([3.6, 0.6, 0.0], { distance: 30, shadowFar: 80 }));
+  TXT.stage(R, col, { poolInner: 0.8, poolOuter: 2.2 });
+  TXT.weather(R, { grime: 0.2, height: 0.5 });
+    /* the two labels sit to the column's right, inside the margin, each on a short leader to its line:
+   * FULL SCALE to the rim, 98.82 to the meniscus */
+  const svg = document.getElementById('lead');
+  const tip = (id, y, dy) => { const p = CH.project(THREE, R, [3.6, 0.32 + y, 0.0]), e = CH.project(THREE, R, [3.6 + RB + 0.03, 0.32 + y, 0.0]); const el = document.getElementById(id); const x = Math.round(Math.min(1000 - el.getBoundingClientRect().width, e[0] + 46)); el.style.left = x + 'px'; el.style.top = Math.round(p[1] - el.getBoundingClientRect().height / 2 + dy) + 'px'; CH.leader(svg, [x - 8, p[1] + dy], [e[0] + 4, p[1]]); };
+  tip('l100', col.userData.top, -64); tip('l98', col.userData.waterTop, 70);
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0.3, veil: 0.35 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

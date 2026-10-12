@@ -1,0 +1,76 @@
+{
+ "lens": "reader",
+ "round": 2,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 7.0,
+   "why": "The register is bold and the cover passes the showstopper test at 432 px. 05 and 07 are finished and graded. Several frames lean on primitive models: 06 parts on featureless black with '$220' outside the safe zone, 04 a plain grey box, 09's pickup reads as parked, 02's far node floats over a mid-grey bank (bottom band 0.90). More than one default, offset by a real showstopper cover."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "One node, one lamp key, rain on every frame, amber only where water reached a ring. The camera move works; the ring count is hard to read. 05 and 06 sit outside the crossing world; 02's bank lifts the value track."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.5,
+   "why": "Every numeral traces; context attributed by name; absences scoped to the release; 'small coastal towns' faithful to c19; every scene says drawn to illustrate. Small looseness: 'scored on data' is the run's gloss; 09 cites c19 on a frame whose text uses only c22."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.0,
+   "why": "A Texan learns what was built, who built it and the honest limit, and leaves with one action. Missing a decision and a body: the Texas Coastal Management Program grant (c15) is the one Texas public actor in the file and is never used."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "The cover earns the swipe, 02 pays fast, the turn at 07 to 08, and the close lands. 04 largely repeats the cover dek and 03."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "Plain-spoken and Texas-specific, sceptical without doom; the caption's closer is a person talking. 04's glossary sentence and 07's 'scored on data' are flat. No house-rule breaks in caption or slides."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "A driver's-seat opening and a distinct amber; a mixed structure. The staged dark night world is the house default."
+  }
+ ],
+ "weighted_score": 7.51,
+ "hard_fails": [
+  "Published post copy breaks the house rule that a date in the post's own year carries no year: first_comment.txt lines 2 and 4 read 'September 28th, 2026'. The year rides in the claims' document field, bypassing sources_block's ordinal_date. Repair: cut the date from each document string, add published 2026-09-28, rebuild."
+ ],
+ "ship": false,
+ "one_sentence_fix": "Put c15 on a frame: a Texas Coastal Management Program grant approved by the Texas Land Commissioner helped pay for it.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 6,
+   "problem": "Primitive parts on featureless black, no water or pool, '$220' outside the safe zone.",
+   "fix": "Lay the parts on wet asphalt in the lamp's pool with the water's edge at the top, the rail and enclosure as foreground heroes, the bar 80 px inside the margin."
+  },
+  {
+   "slide": 9,
+   "problem": "A near-black pickup reads as parked, not turning; the lamp streak is the brightest thing.",
+   "fix": "Rotate the pickup nose up the grade, light its headlamp beams, rim its cab."
+  },
+  {
+   "slide": 4,
+   "problem": "A plain grey box with no seam, glands or grime at feed size.",
+   "fix": "Graze the lid edge and seam with the lamp, add glands and grime, an amber ring soft at the frame foot."
+  },
+  {
+   "slide": 2,
+   "problem": "The far node floats over the bank; the bank is a mid-grey band.",
+   "fix": "Ground the node with contact and a wake; drop the bank to near black outside the pool."
+  }
+ ]
+}

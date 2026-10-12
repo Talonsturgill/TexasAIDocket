@@ -1,0 +1,77 @@
+<!doctype html>
+<!-- 2026-10-12, frame 9 of 9. Archetype FULL_BLEED. RENDERED through txthree.js in the deck's floodlit world. From the east bank at the waterline looking south west up the flooded crossing's south approach: the flood node stands in water to its third sensor on the right with three amber rings, and up the grade a work pickup has turned back, its tail lamps lit, the edge lines entering the water between it and the node. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+  .dek { width:600px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:560px">Turn around at the water</h1>
+<p class="dek" data-follow="26">The National Weather Service cites the CDC. Over half of flood drownings happen when a vehicle is driven into flood water. Whatever a sensor reports, the turn is the driver&#39;s. Drawn to illustrate.</p>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-12-crossing.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "National Weather Service", counter: "09 / 09", src: "c22", fit: { min: 76, max: 100, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 44, far: 3000 });
+  const X = CH.crossing({ span: 12, slab: 0.32, bank: 2.2, ramp: 16 });
+  const gnd = TXT.ground(R, { surface: 'dirt', size: 260, tile: 6, seed: 12, y: -6 });
+  /* THE WATER, from figures.json: wet_close 3 of sensor_count 4. The level sits between the third
+   * sensor (0.80 m) and the fourth (1.16 m) on the node's rail, the same water as frame 8. */
+  const WET = 3, LEVEL = CH.levelFor(WET);   /* wet_close 3, the same water as frame 8 */
+  CH.place(THREE, TXT, R, X, gnd, { level: LEVEL });
+  const NX = 6.4, NZ = 6.6;
+  const S = CH.seat(WET, LEVEL), node = K.make('flood_node', { wet: S.wet, seed: 5 }); node.position.set(NX, S.y, NZ); node.rotation.y = 2.4; TXT.add(R, node);
+  CH.wetGlow(THREE, R, NX, NZ, LEVEL, { r: 1.5 });
+  CH.wake(THREE, R, NX, NZ, LEVEL, { size: 1.2 });
+  const zEdge = CH.lap(THREE, R, X.userData.roadY, LEVEL, 3.65, { side: 1 });
+  CH.glitter(THREE, R, 4.0, 8.5, LEVEL, { w: 12, d: 9, opacity: 0.28, seed: 23 });
+  /* THE PICKUP, turned back up the grade, heading south away from the water, tail lamps lit */
+  const PZ = 18.0, py = X.userData.roadY(PZ), slope = (X.userData.roadY(PZ + 1) - X.userData.roadY(PZ - 1)) / 2;
+  const truck = K.make('pickup', { color: 0x2b2f33, trim: 'work', seed: 3 });
+  truck.position.set(1.4, py, PZ); truck.rotation.order = 'YXZ'; truck.rotation.y = 0.55; truck.rotation.x = -Math.atan(slope);
+  TXT.add(R, truck); TXT.contact(R, truck);
+  const bb = new THREE.Box3().setFromObject(truck);
+  const tail = new THREE.MeshBasicMaterial({ color: 0x4a1410 });   /* tail lamps dim, never a second warm mark */
+  [-0.82, 0.82].forEach(dx => { const m = new THREE.Mesh(new THREE.BoxGeometry(0.1, 0.32, 0.04), tail); m.position.set(dx, 0.95, -2.93); truck.add(m); });
+  /* no road glow: the tail lamps stand alone, never a second warm mark on the water */
+  /* the headlamps, lit and sweeping across the lane as it turns: two lens faces and one beam light */
+  const head = new THREE.MeshBasicMaterial({ color: 0xf6f4ea });
+  [-0.72, 0.72].forEach(dx => { const m = new THREE.Mesh(new THREE.BoxGeometry(0.34, 0.16, 0.04), head); m.position.set(dx, 1.02, 2.97); truck.add(m); });
+  const beam = new THREE.SpotLight(0xfff4e0, 60, 30, 0.42, 0.6, 2); beam.position.set(0, 1.0, 3.2); beam.target.position.set(0, 0.2, 14); truck.add(beam); truck.add(beam.target);
+  [[-16, 24, 'ashe_juniper', 5], [-22, 18, 'ashe_juniper', 7], [14, 26, 'ashe_juniper', 8]].forEach(([x, z, m, sd]) => {
+    const t = K.make(m, { seed: sd }); t.position.set(x, CH.heightAt(x, z), z); TXT.add(R, t); TXT.contact(R, t);
+  });
+  /* a cold rim along the truck's roof and tailgate from the far bank, so its shape reads on the dark */
+  { const rim = new THREE.PointLight(0xc8d8ff, 45, 9, 2); rim.position.set(1.4, py + 3.4, PZ + 2.6); R.scene.add(rim); }
+  TXT.frame(R, { fov: 44, from: [9.0, 1.9, 3.0], look: [2.93, 2.9, 16.5] });
+  CH.rain(THREE, R);   /* the wet night, lit where a lamp stands */
+  CH.mirror(node, LEVEL); CH.mirror(CH.gaugeMesh, LEVEL);
+  TXT.sky(R);
+  TXT.deckRig(R, CH.rigSpec(W, 30, 4096), CH.rigOpts([4, 0.8, 12], { distance: 50, shadowFar: 140 }));
+  TXT.stage(R, [node, truck], { poolInner: 3, poolOuter: 14 });
+  TXT.weather(R, { grime: 0.22, height: 0.9 });
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0.3, veil: 0.45, veilH: 220 });
+  CH.knock(cx, ['#site'], 0.96);   /* a dark reserve under the line the art crossed */
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!doctype html>
+<!-- 2026-10-12, frame 8 of 9. Archetype CLOSE_CROP. RENDERED through txthree.js in the deck's floodlit world. The node's sensor rail at the waterline, cropped by the top and bottom edges: the water has reached the third of its four sensors, three rings lit amber at and under the murky surface, the fourth lens dry and holding the lamp, the wake around the post and the rail's image in the water. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+  .dek { width:520px; }
+  .hook { width:540px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">No flood test is named</h1>
+<p class="dek" data-follow="26">The release names no installation site, no city or county running it and no field test against a real flood. It gives no false alarm or missed event figure. It describes a prototype the team aims at small coastal towns. Drawn to illustrate.</p>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-12-crossing.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "What the release leaves out", counter: "08 / 09", src: "c1 c19", fit: { min: 72, max: 96, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 32, far: 3000 });
+  const X = CH.crossing({ span: 12, slab: 0.32, bank: 2.2, ramp: 16 });
+  const gnd = TXT.ground(R, { surface: 'dirt', size: 260, tile: 6, seed: 12, y: -6 });
+  /* THE WATER, from figures.json: wet_close 3 of sensor_count 4, between the third sensor and the fourth */
+  const WET = 3, LEVEL = CH.levelFor(WET, null, 0.06);   /* wet_close 3 of the node's four */
+  CH.place(THREE, TXT, R, X, gnd, { level: LEVEL, opacity: 0.45 });   /* murky, but the lit rings glow through it */
+  const S = CH.seat(WET, LEVEL), node = K.make('flood_node', { wet: S.wet, seed: 5 }); node.position.set(5.0, S.y, 3.0); node.rotation.y = -0.85; TXT.add(R, node); TXT.contact(R, node, { y: 0.005 });
+  CH.wake(THREE, R, 5.0, 3.0, LEVEL, { size: 0.9 });
+  const lamp = CH.lamp(THREE, 0.5, -1.5, { ry: 0.8, reach: 2.6, i: 220, dist: 40 });
+  const S3 = CH.part(THREE, node, 'sensor2'), S4 = CH.part(THREE, node, 'sensor3'), ry = -0.85, f = [Math.sin(ry), 0, Math.cos(ry)], rt = [Math.cos(ry), 0, -Math.sin(ry)];
+  const from = [S3[0] + f[0] * 1.15 - rt[0] * 0.3, LEVEL + 0.04, S3[2] + f[2] * 1.15 - rt[2] * 0.3];
+  /* the rail's third sensor lands right of the type, at the waterline in the frame's lower middle */
+  CH.aim(THREE, R, TXT, from, S3, 840, 1000, 32);
+  CH.rain(THREE, R);   /* the wet night, lit where a lamp stands */
+  TXT.sky(R);
+  TXT.deckRig(R, CH.rigSpec(W, 3, 4096), CH.rigOpts(S3, { distance: 12, shadowFar: 40 }));
+  TXT.stage(R, node, { poolInner: 1, poolOuter: 4 });
+  TXT.weather(R, { grime: 0.35, height: LEVEL + 0.1 });
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0.3, veil: 0.42 });
+  CH.knock(cx, ['#site'], 0.96);   /* a dark reserve under the line the art crossed */
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

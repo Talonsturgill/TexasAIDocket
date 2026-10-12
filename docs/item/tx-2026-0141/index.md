@@ -1,6 +1,6 @@
 # UT San Antonio builds a solar powered flood sensor that runs its model on the chip rather than in the cloud
 
-The University of Texas at San Antonio published on September 8th, 2026 that it has a field ready prototype flood warning node. The node is for street level water and the team is led by Chen Pan. It harvests its own solar power and carries temperature, humidity, light and precipitation sensing plus four optical water level sensors at different heights. It runs a compressed machine learning model on the microcontroller itself rather than sending readings to a server. It reports over long range radio instead of a cell tower, so it keeps warning when the grid and the network are down, which is when the water rises. The work was funded in part by a Texas Coastal Management Program grant from the National Oceanic and Atmospheric Administration. It is a prototype and the announcement names no place that has installed one.
+The University of Texas at San Antonio published on September 28th, 2026 that it has a field ready prototype flood warning node. The node is for street level water and the team is led by Chen Pan. It harvests its own solar power and carries temperature, humidity, light and precipitation sensing plus four optical water level sensors at different heights. It runs a compressed machine learning model on the microcontroller itself rather than sending readings to a server. It reports over long range radio instead of a cell tower, so it keeps warning when the grid and the network are down, which is when the water rises. The work was funded in part by a Texas Coastal Management Program grant from the National Oceanic and Atmospheric Administration. It is a prototype and the announcement names no place that has installed one.
 
 - Topic: research-and-science
 - Decided by: The University of Texas at San Antonio (state-agency)
@@ -15,7 +15,7 @@ The University of Texas at San Antonio published on September 8th, 2026 that it 
 
 ## Dates
 
-- 2026-09-08 · filed: The university published the prototype and its funding source
+- 2026-09-28 · filed: The university published the prototype and its funding source
 
 ## How this decision moved
 
@@ -34,6 +34,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-08 · UT San Antonio's flood sensor is still a prototype that runs its model on the chip.
 - 2026-10-09 · UT San Antonio's news site now carries the same prototype account under a September 28th date, with the same sensors, model, validation and funding.
 - 2026-10-11 · UT San Antonio's account of its solar flood sensor running the model on the chip is unchanged.
+- 2026-10-12 · The university's account is dated September 28th, 2026 on its own page, so the record's publication date now reads September 28th rather than September 8th.
 
 ## Evidence
 

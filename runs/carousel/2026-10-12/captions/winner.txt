@@ -1,0 +1,11 @@
+A low-water crossing in San Antonio.
+
+UT San Antonio's September 28th release says flood risk there often climbs block by block before regional alerts sound.
+
+Chen Pan's team built a prototype that judges that risk on the device itself. Four optical water-level sensors at varying heights sit on one solar powered node. TinyML on its microcontroller judges imminent flood risk with no central server. Parts for one prototype run roughly $150 to $220.
+
+That makes a real flood the test. The release reports 98.82% validation accuracy in initial assessments after training. It names no site, no city or county running it and no false alarm or missed event figure.
+
+The release holds a validation score and a parts cost. Which real flood has the node seen?
+
+#SanAntonio #UTSA #TinyML

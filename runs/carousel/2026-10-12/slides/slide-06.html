@@ -1,0 +1,72 @@
+<!doctype html>
+<!-- 2026-10-12, frame 6 of 9. Archetype GRID. RENDERED through txthree.js in the deck's floodlit world. The node taken apart and laid out in rows on the wet asphalt of the dry south approach in the cobra head's pool, every part with its contact shadow, the four optical sensors in a row as the repeated unit, and a cold white cost bar on the asphalt at one centimetre per dollar, solid to $150 and open on to $220. The flood is a black band at the top. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+  .dek { width:600px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">$150 to $220 in parts</h1>
+<p class="dek" data-follow="26">Parts for one prototype station cost roughly $150 to $220, the release says. A Texas Coastal Management Program grant approved by the Texas Land Commissioner helped fund the work. The parts are drawn to illustrate.</p>
+<div class="lab" id="l150">$150</div>
+<div class="lab" id="l220">$220</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-12-crossing.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "UT San Antonio, the kit", counter: "06 / 09", src: "c11 c15", fit: { min: 72, max: 96, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 38, far: 3000 });
+  const X = CH.crossing({ span: 12, slab: 0.32, bank: 2.2, ramp: 16 });
+  const gnd = TXT.ground(R, { surface: 'dirt', size: 260, tile: 6, seed: 12, y: -6 });
+  const LEVEL = 0.4;
+  CH.place(THREE, TXT, R, X, gnd, { level: LEVEL });
+  /* the parts, flood_node's own explode option, on the asphalt at z 15, tilted to the approach's grade */
+  const Z = 15.0, ry0 = X.userData.roadY, gy = ry0(Z), slope = (ry0(Z + 0.5) - ry0(Z - 0.5));
+  const kit = K.make('flood_node', { explode: true, seed: 5 }); kit.position.set(0.1, gy + 0.025, Z); kit.scale.setScalar(0.7);
+  /* one built station standing at the right of its own parts, the rail and its sensors at the reader's eye */
+  const built = K.make('flood_node', { wet: 0, seed: 5 }); built.position.set(1.2, ry0(Z - 0.3), Z - 0.3); built.rotation.y = -0.5; TXT.add(R, built); TXT.contact(R, built, { y: ry0(Z - 0.3) + 0.005 }); kit.rotation.x = -Math.atan(slope); TXT.add(R, kit); TXT.contact(R, kit, { y: gy + 0.02 });
+  /* THE COST BAR, from figures.json: cost_bar_m 2.2 for $220 at one centimetre per dollar, cost_low_m 1.5 solid for $150 */
+  const cost_bar_m = 2.2, cost_low_m = 1.5, BS = 0.55, X0 = -0.3 / BS, ZB = Z + 0.8, yb = ry0(ZB) + 0.03;   /* the bar drawn at 0.55 of a centimetre per dollar so its zero stands in frame */
+  if (Math.abs(cost_low_m / cost_bar_m - 150 / 220) > 1e-9) throw new Error('the bar is not at one scale');
+  const bar = new THREE.Group(); bar.position.set(0, yb, ZB); bar.rotation.x = -Math.atan(slope); bar.scale.set(BS, 1, 1);
+  /* the zero stop, a short post at the bar's origin */
+  { const z0 = new THREE.Mesh(new THREE.BoxGeometry(0.008, 0.05, 0.09), new THREE.MeshBasicMaterial({ color: 0xe8eefb })); z0.position.set(X0, 0.01, 0); bar.add(z0); }
+  const solid = new THREE.Mesh(new THREE.BoxGeometry(cost_low_m, 0.025, 0.06), new THREE.MeshBasicMaterial({ color: 0xe8eefb })); solid.position.set(X0 + cost_low_m / 2, 0, 0); bar.add(solid);
+  const rail = new THREE.MeshBasicMaterial({ color: 0xb9c3d6 });
+  [-0.03, 0.03].forEach(dz => { const m = new THREE.Mesh(new THREE.BoxGeometry(cost_bar_m - cost_low_m, 0.02, 0.008), rail); m.position.set(X0 + cost_low_m + (cost_bar_m - cost_low_m) / 2, 0, dz); bar.add(m); });
+  const cap = new THREE.Mesh(new THREE.BoxGeometry(0.008, 0.02, 0.068), rail); cap.position.set(X0 + cost_bar_m, 0, 0); bar.add(cap);
+  TXT.add(R, bar);
+  /* the near bank's lamp stands out of shot; its head over the kit is the light that lays the pool */
+  { const pl = new THREE.PointLight(0xe8eeff, 40, 16, 2); pl.position.set(-0.4, gy + 4.6, Z - 0.34); R.scene.add(pl); }
+  TXT.frame(R, { fov: 44, from: [0.3, gy + 1.25, Z + 2.8], look: [0.3, gy + 0.3, Z - 0.1] });   /* low enough that the night sky closes the top of the frame over the kit */
+  CH.rain(THREE, R, { lights: [], base: 0.14 });   /* the wet night, lit where a lamp stands */
+  TXT.sky(R);
+  TXT.deckRig(R, CH.rigSpec(W, 6, 4096), CH.rigOpts([0, gy, Z], { distance: 20, shadowFar: 60 }));
+  TXT.stage(R, [kit, built], { poolInner: 1.6, poolOuter: 4.5 });
+  TXT.weather(R, { grime: 0.2, height: 0.3 });
+  const qs = [cost_low_m, cost_bar_m].map(x => CH.project(THREE, R, [(X0 + x) * BS, yb, ZB + 0.05])), base = Math.round(Math.max(qs[0][1], qs[1][1]) + 18);   /* both labels on one baseline */
+  const at = (id, q) => { const el = document.getElementById(id), w = el.getBoundingClientRect().width; el.style.left = Math.round(Math.min(1000 - w, q[0] - w / 2)) + 'px'; el.style.top = base + 'px'; };   /* inside the 80 px margin */
+  at('l150', qs[0]); at('l220', qs[1]);
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0.3, veil: 0.42 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

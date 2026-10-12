@@ -11,7 +11,7 @@ The Hays County Commissioners Court agenda for September 15th, 2026 carried an i
 - Public access: Write to the decider
 - Take part: https://public.destinyhosted.com/agenda_publish.cfm?id=42972&mt=ALL&get_month=9&get_year=2026&dsp=ag&seq=136
 
-- Last checked: 2026-09-26
+- Last checked: 2026-10-12
 
 ## Dates
 
@@ -38,6 +38,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-08 · Whether the clerk's request for AI written minutes is still before the court remains unconfirmed. The posted agenda still bars automated readers.
 - 2026-10-09 · Whether the clerk's request for AI written minutes is still before the court remains unconfirmed. The agenda still bars automated readers.
 - 2026-10-10 · Whether the clerk's request for AI written minutes is still before the court stays unconfirmed. The agenda bars automated readers.
+- 2026-10-12 · The clerk's request for AI written minutes is still on the record the county posts. No purchase approval has followed it.
 
 ## Evidence
 

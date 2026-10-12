@@ -11,7 +11,7 @@ The University of Texas Medical Branch announced on September 22nd that OpenEvid
 - Public access: Write to the decider
 - Take part: https://www.utsystem.edu/board-of-regents/meetings
 
-- Last checked: 2026-10-09
+- Last checked: 2026-10-12
 
 ## Dates
 
@@ -22,6 +22,7 @@ The University of Texas Medical Branch announced on September 22nd that OpenEvid
 One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
 
 - 2026-10-09 · Admitted to the record on UTMB's own release announcing the OpenEvidence integration.
+- 2026-10-12 · UTMB still describes OpenEvidence running inside its health record for its clinicians.
 
 ## Evidence
 

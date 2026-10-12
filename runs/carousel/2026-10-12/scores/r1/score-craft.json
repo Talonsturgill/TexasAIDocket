@@ -1,0 +1,89 @@
+{
+ "lens": "craft",
+ "round": 1,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.0,
+   "why": "The cover (1), the diagram (3) and the glowing column (7) come close to the stage. Six frames fall short: 4 a smooth grey box reading as clay with an overhanging seam slab and no ground (band_ratio 1.03); 6 primitive knolling on a hard black ledge band with a cropped node, a faint arc behind the headline and '$220' outside the safe zone; 2 dark plates behind 'c20' and the site line over a lit mid-grey floor and a node with no contact; 8 the amber ring cut flat by the water plane, the rail a smooth gradient; 9 a black-on-black pickup with red tail lamps and flat low-poly banks; 5 a noise rock texture and blurred label plates. The cover's amber is a ground-pool decal. Nearer the 7 descriptor than the 4, but more than one frame leans."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.0,
+   "why": "One crossing chassis, one cold lamp, one amber accent, the node on 1, 2, 3, 4, 7, 8 and 9. The camera move does real work. The ring count does not read. 5 and 6 sit outside the world, and the lit floors on 2 and 7 lift those frames out of the dark run."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.0,
+   "why": "Every slide numeral traces (300 and 20% to c20, $150 to $220 to c11, 98.82% to c7, half-mile and five miles to c9). c19's absences checked on the full text. Context claims attributed by name. The device's figures rest on the university's own release with no paper behind 98.82%."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.0,
+   "why": "Clear what happened and who did it. Slide 8 states the missing field test and 9 gives a real action. No body, decision or deadline, and the reader's action is general flood safety."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "The cover earns the swipe, 2 makes the case for a local sensor, 3 to 6 unbroken, the turn at 7 into 8. Slide 5 is the most cuttable frame."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "'Radar can read the storm low', 'Turn around at the water' and 'the turn is the driver's' sound Texan. Some hooks are serviceable labels; slide 4's dek reads like a definition."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "The fifth near-black staged night deck in a row. The amber sits near no. 47's. The county slab repeats no. 46's stone slab, measuring columns repeat nos. 42 and 47, the leader diagram repeats nos. 46 and 48. The crossing world and the rain are fresh."
+  }
+ ],
+ "weighted_score": 7.03,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Rebuild slides 4 and 6 as real model work inside the crossing world, and delete the knock-out plates under the footers on 2 and 8 and the label plates on 5.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 4,
+   "problem": "A smooth mid-grey rounded box that reads as clay, its seam a separate slab overhanging both sides, in a blue-grey void with no ground.",
+   "fix": "Seat the gasket flush as a lip on the lid, add ribs, two glands and a label plate with grime, and key it from the upper left so the lid edge is the one bright edge and the face falls to black."
+  },
+  {
+   "slide": 6,
+   "problem": "Primitive parts on a hard black ledge band, a node cropped into the top right, a faint arc behind the hook and a dead zone under the dek.",
+   "fix": "Raise the camera to about 45 degrees and lay the node's real parts in one tight lamp pool across the lower two thirds; remove the ledge band and the standing node."
+  },
+  {
+   "slide": 2,
+   "problem": "Dark plates behind 'c20' and the site line, a lit mid-grey floor and hill wall in the lower half, a node with no contact.",
+   "fix": "Delete the knock-out, pull the stage pool to the columns' bases so the floor falls to black, and stand the node in water with contact."
+  },
+  {
+   "slide": 8,
+   "problem": "The amber ring cut flat by the water plane into an orange cog, a smooth gradient rail, empty black water left, a plate under the site line.",
+   "fix": "Set the waterline just under the ring's centre, give the rail brushed aluminium with grime below the line, remove the footer knock."
+  },
+  {
+   "slide": 9,
+   "problem": "A black-on-black pickup with red tail lamps, the gauge arm overlapping the truck, flat brown low-poly banks, one amber glow for three rings.",
+   "fix": "Light the lane under the pickup, take the tail lamps dark, move the node right so the gauge clears the truck, drop the banks into black."
+  },
+  {
+   "slide": 7,
+   "problem": "A bright grey floor hotspot lifts the lower third and rain draws through the glass.",
+   "fix": "Pull the floor pool in to the column's base and exclude the column's volume from the rain."
+  },
+  {
+   "slide": 1,
+   "problem": "The amber is a ground-pool decal, the water a tiled ellipse texture, the road edge one hard stripe ending in a square corner.",
+   "fix": "Shrink the amber to a tight halo, break and fade the edge line under the water, replace the tiled ripple with mirror and streak."
+  }
+ ]
+}

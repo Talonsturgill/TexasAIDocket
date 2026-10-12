@@ -1,0 +1,84 @@
+{
+ "lens": "craft",
+ "round": 3,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.3,
+   "why": "Frames 4 and 8 come close to the stage and frame 1 is a good cover. More than one frame leans on a default: 2 stands two cylinders on a grey cyc with the lower half in mid grey (bands 0.49, 0.68, 0.82) and a plate under the cite; 6 lays primitives in a flat row with a hard shelf edge, an empty top 45% and a ghost arc behind '$220'; 7 has a flat grey floor with the pool left of the column and streaks in the glass; 9 keeps the brown bank wedge, red tail lamps and the gauge arm crossing the cab; 3's node is small and its lower rail dissolves; 1's asphalt ends in a square corner, an unworn stripe and a ground glow."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.3,
+   "why": "One night crossing in rain under one lamp with one amber accent; the node on 1, 3, 4, 6, 7, 8 and 9; both named devices work. Slide 2's grey cyc strobes between two near-black frames; the ring count does not read at feed size."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.3,
+   "why": "Every numeral traces to a verbatim quote; the NWS line attributed as a relay; slide 8 matches c19; the grant line matches c15; 'Drawn to illustrate' on every staged frame. 'Stacked' is a little firmer than 'mounted at varying heights', and every device claim rests on a university release."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.5,
+   "why": "What was built, who built it and the honest limit, with an action at the close. The stake stays general because no crossing, deployment or date is named, which the deck states."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.3,
+   "why": "The cover earns the swipe, 2 pays at once, the turn at 7 to 8, an action at the close. The middle reads like a spec sheet."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.2,
+   "why": "Texan lines and honest limits without doom. 'No server in the loop' is generic, and 'Drawn to illustrate.' repeated as a last sentence reads like a stamp."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "A fresh world; the near-black staged register, the measuring columns, the leader diagram and the stone slab map repeat recent decks."
+  }
+ ],
+ "weighted_score": 7.222,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Restage slides 2 and 7 inside the crossing's dark world: columns on the wet black slab in a pool centred on their bases, no grey cyc or floor band, no plate behind the cite.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 2,
+   "problem": "Two cylinders on a grey studio cyc with the lower half in mid grey; the cite on a plate.",
+   "fix": "Wet black asphalt bank under the lamp, backlit columns, ground near black outside the pool, no plate."
+  },
+  {
+   "slide": 6,
+   "problem": "Primitives in a flat row unidentifiable at 432 px, a hard shelf edge, an empty top 45%, a ghost arc, the built node cropped into the counter.",
+   "fix": "A true knolling view with identifiable chassis parts in the pool with contact shadows; remove the shelf edge and arc; move the built node clear."
+  },
+  {
+   "slide": 7,
+   "problem": "A flat mid-grey floor with a straight horizon, the pool left of the column, streaks in the glass.",
+   "fix": "Aim the pool at the column base, darken the slab outside it, delete the in-glass streaks."
+  },
+  {
+   "slide": 9,
+   "problem": "A brown low-poly bank wedge, red tail lamps, the gauge arm crossing the cab, a near-black pickup.",
+   "fix": "Slide the pickup left, rim-light it, dull the tail lamps, replace the wedge with a dark scattered bank."
+  },
+  {
+   "slide": 3,
+   "problem": "The node about 190 px wide, its lower rail dissolving into haze, a fragment under the footer.",
+   "fix": "Move the camera in about 30%, light the lower rail and its wake, remove the fragment."
+  },
+  {
+   "slide": 1,
+   "problem": "A square asphalt corner, an unworn stripe, a ground glow for the planned ring.",
+   "fix": "Break and dim the edge line into the water, feather the asphalt under a foam line, a small halo on the first ring."
+  }
+ ]
+}
