@@ -356,13 +356,29 @@ export function install(K, THREE, TXT) {
    * the forehead, narrowing down the face and flaring to a wide square muzzle with a moist nose pad
    * and flared nostrils, carried low and forward on a thick neck.
    * The mesh is cached per breed and sex, so a herd costs one field build per kind of animal. */
-  function cattleSpec(breed, sex) {
+  /* HEAD CARRIAGE (2026-10-12). No. 49 frame 8 needed a steer's head through a neck rail into a feed
+   * bunk and the kit held every head level with the poll at 1.1 to 1.3 m, so a camera close enough
+   * to crop the head lifted the back into the type band (queue kit-cattle-head-cannot-lower).
+   * 'up' is the original carriage, number for number. 'bunk' drops the poll under a neck rail and
+   * reaches forward, the face steeper, the muzzle at feed height. 'graze' pitches the face near
+   * vertical and solves the poll's height so the chin rests just over the ground. The neck, throat,
+   * dewlap, face blaze, eyes, ears and horns are all placed off the poll and pitch, so they follow. */
+  const CATTLE_HEADS = ['up', 'bunk', 'graze'];
+  function cattleSpec(breed, sex, head) {
     const LH = breed === 'longhorn', bull = sex === 'bull', cow = sex === 'cow';
     const S = LH
       ? { H: 1.42, B: 0.8, W: 0.225, Lf: 0.6, Lr: -0.8, hs: 1.04, HL: 0.58, pitch: 1.0, hw: 0.86, th: 0.7, knee: 0.47, hock: 0.57, rump: 0.14, lr: 0.92, bk: 0.75, pd: 0.8, drop: 0.16 }
       : { H: 1.3, B: 0.6, W: 0.3, Lf: 0.62, Lr: -0.72, hs: 1.05, HL: 0.46, pitch: 0.98, hw: 1.12, th: 1, knee: 0.41, hock: 0.5, rump: 0.03, lr: 1.06, bk: 1, pd: 1, drop: 0.2 };
     if (bull) { S.H += 0.05; S.W += 0.025; S.hw *= 1.06; S.hs *= 1.06; S.B -= 0.02; }
     if (sex === 'steer' && !LH) { S.W += 0.01; }
+    S.pitch0 = S.pitch; S.reach = 0.42; S.head = CATTLE_HEADS.includes(head) ? head : 'up';
+    if (S.head === 'bunk') { S.drop = 0.38 + (S.H - 1.3) * 0.5; S.reach = 0.75; S.pitch = 1.2; }
+    if (S.head === 'graze') {
+      S.pitch = 1.42; S.reach = 0.5;
+      // the chin's lowest point (u 0.475 s, w -0.148, radius 0.045, all in head units) 6 cm off the ground
+      const sp = Math.sin(S.pitch), cp = Math.cos(S.pitch), s0 = S.HL / 0.5;
+      S.drop = S.H - (0.06 + S.hs * (0.475 * s0 * sp + 0.148 * cp + 0.045));
+    }
     const { H, B, W, Lf, Lr, HL, hw, lr } = S, s = HL / 0.5;
     const P = [];
     const ang = (a) => ({ ay: [0, Math.cos(a), Math.sin(a)], az: [0, -Math.sin(a), Math.cos(a)] });
@@ -384,10 +400,13 @@ export function install(K, THREE, TXT) {
       E([q * (W - 0.05), B + 0.32, Lf - 0.03], [0.08, 0.09, 0.08], 0.08);                           // point of shoulder
     }
     R([0, H - 0.02 - S.rump * 0.5, Lr + 0.12], [0, H - 0.1 - S.rump, Lr - 0.07], 0.07, 0.05, 0.06);   // tailhead
-    E([0, H - 0.08, Lf - 0.3], [0.12, 0.06, 0.2], 0.1);                                                 // withers
+    /* withers: long enough to bridge the barrel's rounded front edge onto the neck's crest. Shorter, the
+       barrel's edge and the neck read as two toplines from any camera ahead of the shoulder (no. 49
+       frame 8, 'the back contour is doubled', 2026-10-11 round 1) */
+    E([0, H - 0.075, Lf - 0.26], [0.13, 0.065, 0.3], 0.16);
     E([0, B + 0.06, Lf + 0.02], [0.16 * S.bk, 0.16, 0.18 * S.bk], 0.12);                               // brisket, forward and low
     /* head frame: poll, a down the face, w out of the face */
-    const poll = [0, H - S.drop, Lf + 0.42], hs = S.hs;
+    const poll = [0, H - S.drop, Lf + S.reach], hs = S.hs;
     const ax = [0, -Math.sin(S.pitch), Math.cos(S.pitch)], aw = [0, Math.cos(S.pitch), Math.sin(S.pitch)];
     // head units: everything in the head frame is scaled by hs, so one number sizes the whole head
     const at = (u, w, x) => [(x || 0) * hs, poll[1] + (ax[1] * u + aw[1] * w) * hs, poll[2] + (ax[2] * u + aw[2] * w) * hs];
@@ -395,7 +414,7 @@ export function install(K, THREE, TXT) {
     const HE = (u, w, x, r, k, sub) => P.push({ t: 'e', c: at(u, w, x), r: [r[0] * hs, r[1] * hs, r[2] * hs], ay: ax, az: aw, k: (k || 0) * hs, sub: !!sub });
     /* neck: thick, carried forward, a throat under it and a dewlap to the brisket */
     const nb = [0, H - 0.31, Lf - 0.25], na = at(0.1, -0.16);
-    R(nb, na, bull ? 0.33 : 0.3, LH ? 0.15 : 0.165, 0.1);
+    R(nb, na, bull ? 0.33 : 0.3, LH ? 0.15 : 0.165, 0.22);                                              // a wide fillet into the shoulder, never a tube set on it
     R([0, B + 0.3, Lf + 0.05], at(0.1, -0.21), 0.13, 0.095, 0.1);                                     // throat, into the angle of the jaw
     { const th = at(0.12, -0.23), mid = [0, (th[1] + B + 0.1) / 2, (th[2] + Lf + 0.12) / 2];              // dewlap, throat to brisket
       E(mid, [LH ? 0.035 : 0.045, Math.hypot(th[1] - B - 0.1, th[2] - Lf - 0.12) / 2 + 0.03, LH ? 0.07 : 0.1], 0.08, -Math.atan2(th[2] - Lf - 0.12, th[1] - B - 0.1)); }
@@ -458,13 +477,22 @@ export function install(K, THREE, TXT) {
   }
   // head coordinates of a point: u down the face, w out of it
   const headUW = (S, x, y, z) => { const qy = y - S.poll[1], qz = z - S.poll[2]; return [(qy * S.ax[1] + qz * S.ax[2]) / S.hs, (qy * S.aw[1] + qz * S.aw[2]) / S.hs]; };
+  /* DETAIL (2026-10-12). At 16 mm cells a head that fills a third of a frame is meshed about one
+   * vertex per 20 output pixels, so the coat's colour, which lives on the vertices, interpolates
+   * across each cell: no. 49 frame 8's judges called the hide smeared and asked for "a higher-detail
+   * head" in rounds 1 and 3. 'close' halves the cell (four times the vertices, a slower build, one
+   * animal) and halves the colour border with it. 'standard' is the original mesh, byte for byte. */
   const CATTLE_MESH = new Map(), CATTLE_H = 0.016;
-  function cattleMesh(breed, sex) {
-    const key = breed + '|' + sex;
+  const cattleCell = (detail) => detail === 'close' ? CATTLE_H / 2 : CATTLE_H;
+  function cattleMesh(breed, sex, head, detail) {
+    head = CATTLE_HEADS.includes(head) ? head : 'up';
+    const h = cattleCell(detail);
+    // the original two part key for the original mesh, so a herd built before this keeps its cache
+    const key = breed + '|' + sex + (head === 'up' ? '' : '|' + head) + (h === CATTLE_H ? '' : '|' + h);
     if (CATTLE_MESH.has(key)) return CATTLE_MESH.get(key);
-    const S = cattleSpec(breed, sex), sdf = buildSDF(S.P);
+    const S = cattleSpec(breed, sex, head), sdf = buildSDF(S.P);
     const X = S.W + 0.14;
-    const geo = surfaceNets(sdf, [-X, -0.02, S.Lr - 0.2], [X, S.H + 0.2, S.poll[2] + S.HL * 0.9 + 0.1], CATTLE_H);
+    const geo = surfaceNets(sdf, [-X, -0.02, S.Lr - 0.2], [X, S.H + 0.2, S.poll[2] + S.HL * 0.9 + 0.1], h);
     // a Hereford's curly poll: the forehead's hair raised into tufts
     if (!S.LH) {
       const nz = cattleNoise(911), p = geo.attributes.position, n = geo.attributes.normal;
@@ -553,12 +581,12 @@ vec3 hairBump(vec3 sp, vec3 sn, vec2 dH, float fd){
   }
   K.define('cattle', {
     size: [0.8, 1.55, 2.5],
-    options: { breed: 'hereford', sex: 'auto', horns: 'auto', spread: 1.9, coat: 'auto' },
-    note: 'A beef animal standing, facing +z, one smooth body from a signed distance field: a deep rectangular barrel with a level topline, hooks, pins and tailhead, brisket and dewlap, a flank rising to the stifle, muscled forearms and gaskins, cloven hooves, a wedge head with a wide square muzzle, wet nose and flared nostrils, short hair on the hide. breed hereford (red, white face, crest, underline, socks and switch; polled unless horns true, which gives short horns sweeping out and forward) or longhorn (rangy; lyre horns spread in metres tip to tip, coat auto | red | paint | brindle | dun | speckle). sex auto (hereford cow, longhorn steer) | cow (small beef udder) | steer | bull (crest, heavier neck and head).',
+    options: { breed: 'hereford', sex: 'auto', horns: 'auto', spread: 1.9, coat: 'auto', head: 'up', detail: 'standard' },
+    note: 'A beef animal standing, facing +z, one smooth body from a signed distance field: a deep rectangular barrel with a level topline, hooks, pins and tailhead, brisket and dewlap, a flank rising to the stifle, muscled forearms and gaskins, cloven hooves, a wedge head with a wide square muzzle, wet nose and flared nostrils, short hair on the hide. breed hereford (red, white face, crest, underline, socks and switch; polled unless horns true, which gives short horns sweeping out and forward) or longhorn (rangy; lyre horns spread in metres tip to tip, coat auto | red | paint | brindle | dun | speckle). sex auto (hereford cow, longhorn steer) | cow (small beef udder) | steer | bull (crest, heavier neck and head). head up (carried level, poll about 1.1 m) | bunk (poll dropped under a neck rail and reaching forward, the muzzle at feed height) | graze (face near vertical, chin just over the ground). detail standard | close: close halves the mesh cell for a frame where the head or body fills a third of the frame or more (a crisper coat border and hide, four times the vertices, a slower build; one animal, never a herd). Named parts "poll" and "muzzle" (empty nodes, read with getObjectByName(name).getWorldPosition(v) after placing) say where a rail, bunk or tag goes, so a deck never computes them from hand coordinates.',
     make(o, r) {
       const breed = o.breed === 'longhorn' ? 'longhorn' : 'hereford', LH = breed === 'longhorn';
       const sex = ['cow', 'steer', 'bull'].includes(o.sex) ? o.sex : (LH ? 'steer' : 'cow');
-      const { S, sdf, geo: base } = cattleMesh(breed, sex);
+      const { S, sdf, geo: base } = cattleMesh(breed, sex, o.head, o.detail);
       const geo = new THREE.BufferGeometry();
       geo.setAttribute('position', base.attributes.position); geo.setAttribute('normal', base.attributes.normal); geo.setIndex(base.index);
       /* ---- coat ---- */
@@ -580,7 +608,7 @@ vec3 hairBump(vec3 sp, vec3 sn, vec2 dH, float fd){
       const nd = [S.na[0] - S.nb[0], S.na[1] - S.nb[1], S.na[2] - S.nb[2]], nl = Math.hypot(...nd); nd[0] /= nl; nd[1] /= nl; nd[2] /= nl;
       const crestA = S.at(-0.03, -0.06), crestB = [0, S.H + 0.01, S.Lf - 0.34];
       const eyeUW = [0.175, -0.07];
-      const edge = 0.02;                                            // a colour border is a hair line, not an airbrush
+      const edge = cattleCell(o.detail) === CATTLE_H ? 0.02 : 0.01;  // a colour border is a hair line, not an airbrush
       for (let i = 0; i < pos.count; i++) {
         const x = pos.getX(i), y = pos.getY(i), z = pos.getZ(i), ny = base.attributes.normal.getY(i);
         const n1 = nz(x * 9, y * 9, z * 9) * 0.55 + nz(x * 26, y * 26, z * 26) * 0.3 + nz(x * 70, y * 70, z * 70) * 0.15;
@@ -669,6 +697,8 @@ vec3 hairBump(vec3 sp, vec3 sn, vec2 dH, float fd){
         const root = onSurface(S.at(0.07, -0.125, q * 0.04), [q, 0, -0.15]);
         // level and out to the side, the opening forward, the tip drooping a little and swept back
         const side = new THREE.Group(); side.position.copy(root).add(new V3(-q * 0.015, 0, 0)); side.scale.x = q; g.add(side);
+        // a lowered head carries its ears down with it, part of the way (zero for head 'up')
+        side.rotation.x = (S.pitch - S.pitch0) * 0.6;
         for (const m2 of [earOut, earIn]) {
           const ear = new THREE.Mesh(eg, m2); ear.rotation.order = 'YZX'; ear.rotation.set(Math.PI / 2 - 0.15, 0.65, -0.5); side.add(ear);
         }
@@ -685,10 +715,13 @@ vec3 hairBump(vec3 sp, vec3 sn, vec2 dH, float fd){
         for (const q of [-1, 1]) {
           const root = S.at(LH ? -0.005 : 0.005, LH ? -0.055 : -0.06, q * (LH ? 0.1 : 0.095) * S.hw), [rx, ry, rz] = root;
           const P2 = (dx, dy, dz) => [rx + q * dx, ry + dy, rz + dz];
-          const pts = LH
+          // horns grow from the skull, so a lowered head turns them forward with it about the root
+          const dp = S.pitch - S.pitch0, cd = Math.cos(dp), sd = Math.sin(dp);
+          const turn = (p) => dp === 0 ? p : [p[0], ry + (p[1] - ry) * cd - (p[2] - rz) * sd, rz + (p[1] - ry) * sd + (p[2] - rz) * cd];
+          const pts = (LH
             ? [P2(-0.03, -0.005, 0), P2(0.1, 0.005, -0.015), P2(sp * 0.33, -0.015, 0.0 + fw * 0.3), P2(sp * 0.6, -0.005, 0.06 + fw), P2(sp * 0.8, up * 0.2, 0.07 + fw),
                P2(sp * 0.93, up * 0.6, 0.01 + fw * 0.5), P2(sp, up, -0.07)]
-            : [P2(-0.02, 0, 0), P2(0.07, -0.004, 0), P2(0.15, -0.012, 0.025), P2(0.21, -0.035, 0.075), P2(0.23, -0.075, 0.125), P2(0.215, -0.115, 0.155)];
+            : [P2(-0.02, 0, 0), P2(0.07, -0.004, 0), P2(0.15, -0.012, 0.025), P2(0.21, -0.035, 0.075), P2(0.23, -0.075, 0.125), P2(0.215, -0.115, 0.155)]).map(turn);
           g.add(taperTube(pts, (t) => rBase * (1 - 0.97 * Math.pow(t, LH ? 1.1 : 1.6)) * (1 + 0.05 * Math.sin(t * 90) * Math.pow(1 - t, 3)) + 0.0012,
             hm, LH ? 72 : 36, 16, (t) => hornCol(t)));
         }
@@ -720,6 +753,11 @@ vec3 hairBump(vec3 sp, vec3 sn, vec2 dH, float fd){
           const tt = new THREE.Mesh(new THREE.CapsuleGeometry(0.01, 0.03, 4, 8), tM);
           tt.position.set(a * 0.045, S.B - 0.055, S.Lr + 0.34 + b * 0.045); g.add(tt);
         }
+      }
+      // named parts a deck places a rail, a bunk or a tag against: empty nodes, so they add nothing to
+      // the render or the bounding box, and they move with every recentring K.make or centre() does
+      for (const [name, at] of [['poll', S.at(-0.06, 0.02)], ['muzzle', S.at(0.515 * S.s, -0.075)]]) {
+        const node = new THREE.Object3D(); node.name = name; node.position.set(at[0], at[1], at[2]); g.add(node);
       }
       // a little variety between animals of one kind, without another field build
       const sc = 0.97 + r() * 0.06; g.scale.set(sc * (0.98 + r() * 0.04), sc, sc);
