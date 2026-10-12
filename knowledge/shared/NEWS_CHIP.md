@@ -81,6 +81,22 @@ The feed preserves the original single-story fields for older pages during rollo
 collector and the browser validate every member of every new story pool. Quiet periods use fewer
 stories or reuse qualified reporting rather than pad the carousel with unrelated or stale links.
 
+## Story summaries
+
+The entire headline box opens a compact native dialog with the selected headline, publisher,
+original date and the publisher's bounded feed excerpt. Rotation pauses while the dialog is open.
+A small Read full article link is the only outbound action in the reading view. Escape, the close
+button or a backdrop click dismisses it. Keyboard focus returns to the headline after keyboard
+use. Pointer dismissal resumes rotation once the pointer leaves the strip.
+
+Excerpts are retained source metadata rendered as plain text. No article body is fetched and no
+model writes a replacement summary. A missing excerpt is identified explicitly. Unsupported
+native dialogs and disabled JavaScript keep the validated source link as a compatibility fallback.
+
+An incoming refresh or individual expiry does not rewrite the open reading view. Closing applies
+the newest eligible story pool. Corrected excerpts also replace an earlier excerpt within the
+same six-hour edition on the next opening.
+
 ## Publication and verification
 
 `.github/workflows/news.yml` collects every six hours. It restores the published observation,
@@ -94,7 +110,7 @@ are checked before display. The homepage CSP permits only the exact public data 
 
 Each production run checks the public snapshot and opens the actual homepage at desktop and
 phone widths. It observes a full five-second rotation through the current story pool, including attribution and
-stable height, then advances that browser's clock with feed
+stable height, opens each summary without navigating away, then advances that browser's clock with feed
 requests blocked to prove the next edition changes the headline. Local tests also cover
 restarts, unchanged feeds, duplicate stories, exhausted queues, 304, 429 and malicious reserves.
 

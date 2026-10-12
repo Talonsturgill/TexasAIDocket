@@ -1574,6 +1574,9 @@ jobs:
       - name: News headline refreshes and survives feed failures
         run: SITE=docs node tests/news_headline.mjs
 
+      - name: News summaries keep reading on the page
+        run: SITE=docs node tests/news_popup.mjs
+
       - name: The site fits the screen it is on
         run: |
           # THIS SUITE EXISTED AND DID NOT RUN HERE, which is its own lesson: it caught a real

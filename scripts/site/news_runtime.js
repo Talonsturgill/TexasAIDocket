@@ -15,6 +15,12 @@
   var motion = matchMedia('(prefers-reduced-motion: reduce)');
   var paused = motion.matches, held = false, hovering = false, inView = true;
   var pool = [], index = 0, editionKey = '', shownAt = 0, cycleTimer, swapTimer, animation, revision = 0;
+  var storyDialog = document.getElementById('news-story');
+  // The reading dialog belongs outside the page heading and hero animation hierarchy.
+  document.body.appendChild(storyDialog);
+  var canPreview = typeof storyDialog.showModal === 'function';
+  var dialogURL = '', restoreFocus = false, backdropPressed = false;
+  if (!canPreview) chip.title = 'Read the publisher report.';
   chip.dataset.newsCadence = String(cadence);
   function relevant(title, group, summary) {
     var text = title + ' ' + summary;
@@ -87,7 +93,7 @@
     slides.style.opacity = '1';
   }
   function playing() {
-    return !paused && !hovering && inView && !document.hidden && pool.length > 1;
+    return !paused && !hovering && !storyDialog.open && inView && !document.hidden && pool.length > 1;
   }
   function updateControls() {
     controls.hidden = pool.length < 2;
@@ -147,11 +153,21 @@
     chip.dataset.editionAt = edition.starts_at || '';
     var fragment = document.createDocumentFragment();
     pool.forEach(function (story, i) {
-      var slide = template.cloneNode(true), link = slide.querySelector('.news-link');
+      var slide = template.cloneNode(true), original = slide.querySelector('.news-link');
+      var link = original;
+      if (canPreview) {
+        link = document.createElement('button');
+        link.className = 'news-link';
+        link.type = 'button';
+        link.setAttribute('aria-haspopup', 'dialog');
+        link.setAttribute('aria-controls', 'news-story');
+        while (original.firstChild) link.appendChild(original.firstChild);
+        original.replaceWith(link);
+      } else link.href = story.url;
+      link.dataset.newsUrl = story.url;
       slide.setAttribute('aria-label', (i + 1) + ' of ' + pool.length);
       slide.setAttribute('aria-hidden', String(i !== 0));
       slide.inert = i !== 0;
-      link.href = story.url;
       slide.querySelector('.news-title').textContent = story.title;
       slide.querySelector('.news-source').textContent = story.publisher;
       var date = slide.querySelector('.news-date');
@@ -176,10 +192,10 @@
     active = data;
     chip.dataset.checkedAt = data.checked_at;
     var nextKey = JSON.stringify([edition.starts_at, (edition.stories || [edition.selected]).map(function (s) {
-      return [s.url, s.title, s.publisher, s.first_seen_at];
+      return [s.url, s.title, s.publisher, s.first_seen_at, s.summary || ''];
     })]);
     var expired = pool.some(function (story) { return Date.now() - Date.parse(story.first_seen_at) >= 168 * hour; });
-    if (editionKey !== nextKey && (!pool.length || expired || (!held && !hovering))) {
+    if (editionKey !== nextKey && !storyDialog.open && (!pool.length || expired || (!held && !hovering))) {
       editionKey = nextKey;
       install(edition);
     } else if (editionKey === nextKey && pool.length) {
@@ -197,6 +213,9 @@
     return true;
   }
   function fallback() {
+    // An open reading view keeps its selected text and opener steady through refresh/expiry.
+    // Closing applies the newest eligible pool before restoring focus or rotation.
+    if (storyDialog.open) { if (active) render(active); return; }
     if (active && render(active)) return;
     stop();
     pool = [];
@@ -205,6 +224,8 @@
     slide.setAttribute('aria-hidden', 'false');
     slide.inert = false;
     slide.querySelector('.news-link').href = '/articles/';
+    slide.querySelector('.news-link').dataset.newsUrl = '/articles/';
+    slide.querySelector('.news-link').removeAttribute('target');
     slide.querySelector('.news-title').textContent = 'Explore the latest AI reporting';
     slide.querySelector('.news-source').textContent = '';
     slide.querySelector('.news-date').textContent = '';
@@ -220,7 +241,7 @@
     updateControls();
   }
   function resume() {
-    if (hovering || chip.contains(document.activeElement)) return;
+    if (storyDialog.open || hovering || chip.contains(document.activeElement)) return;
     paused = motion.matches;
     held = false;
     fallback();
@@ -239,6 +260,86 @@
     held = true;
     if (pool.length && before === editionKey) select((index + direction + pool.length) % pool.length);
   }
+  function openStory(story, keyboard) {
+    if (!canPreview || storyDialog.open || !story || !validStory(story, Date.parse(active.checked_at), Date.now())) return;
+    pause();
+    dialogURL = story.url;
+    restoreFocus = keyboard;
+    storyDialog.querySelector('.news-story-title').textContent = story.title;
+    storyDialog.querySelector('.news-story-publisher').textContent = story.publisher;
+    var date = storyDialog.querySelector('.news-story-date');
+    date.dateTime = story.first_seen_at;
+    date.textContent = dateText(story.first_seen_at);
+    storyDialog.querySelector('.news-story-summary').textContent = story.summary ||
+      'A short summary is not available for this report. Read the source for the full story.';
+    var sourceLink = storyDialog.querySelector('.news-story-source');
+    sourceLink.href = story.url;
+    sourceLink.setAttribute('aria-label', 'Read full article from ' + story.publisher + ', opens in a new tab');
+    storyDialog.showModal();
+    document.documentElement.classList.add('news-story-open');
+    storyDialog.querySelector('.news-story-title').focus({preventScroll:true});
+    updateControls();
+  }
+  chip.addEventListener('click', function (event) {
+    if (!canPreview || event.target.closest('.news-controls') || !pool[index]) return;
+    var control = event.target.closest('.news-link');
+    if (control && (control.tagName !== 'BUTTON' || control.dataset.newsUrl !== pool[index].url)) return;
+    event.preventDefault();
+    openStory(pool[index], event.detail === 0);
+  });
+  storyDialog.querySelector('.news-story-close').addEventListener('click', function (event) {
+    restoreFocus = event.detail === 0;
+    storyDialog.close();
+  });
+  storyDialog.addEventListener('cancel', function () { restoreFocus = true; });
+  storyDialog.addEventListener('keydown', function (event) {
+    if (event.key !== 'Tab') return;
+    var first = storyDialog.querySelector('.news-story-close');
+    var last = storyDialog.querySelector('.news-story-source');
+    var focus = document.activeElement;
+    if (event.shiftKey && focus === storyDialog.querySelector('.news-story-title')) {
+      event.preventDefault();
+      first.focus();
+    } else if (event.shiftKey && focus === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && focus === last) {
+      event.preventDefault();
+      first.focus();
+    }
+  });
+  function outsideDialog(event) {
+    var rect = storyDialog.getBoundingClientRect();
+    return event.clientX < rect.left || event.clientX > rect.right ||
+      event.clientY < rect.top || event.clientY > rect.bottom;
+  }
+  storyDialog.addEventListener('pointerdown', function (event) {
+    backdropPressed = event.target === storyDialog && outsideDialog(event);
+  });
+  storyDialog.addEventListener('click', function (event) {
+    if (backdropPressed && event.target === storyDialog && outsideDialog(event)) {
+      restoreFocus = false;
+      storyDialog.close();
+    }
+    backdropPressed = false;
+  });
+  storyDialog.addEventListener('close', function () {
+    document.documentElement.classList.remove('news-story-open');
+    hovering = false;
+    held = false;
+    paused = motion.matches;
+    if (chip.contains(document.activeElement)) document.activeElement.blur();
+    fallback();
+    var retained = pool.findIndex(function (story) { return story.url === dialogURL; });
+    if (retained >= 0) select(retained);
+    var control = slides.querySelector('.news-slide[aria-hidden="false"] .news-link');
+    if (restoreFocus && control) control.focus({preventScroll:true});
+    else {
+      hovering = chip.matches(':hover');
+      shownAt = performance.now();
+      schedule();
+    }
+  });
   chip.querySelector('.news-prev').addEventListener('click', function () { step(-1); });
   chip.querySelector('.news-next').addEventListener('click', function () { step(1); });
   chip.addEventListener('pointerenter', function (event) {
@@ -257,9 +358,14 @@
   chip.addEventListener('focusout', function (event) {
     if (!chip.contains(event.relatedTarget)) setTimeout(resume, 0);
   });
-  slides.addEventListener('pointerdown', pause);
-  slides.addEventListener('pointerup', function () { setTimeout(resume, 0); });
-  slides.addEventListener('pointercancel', function () { setTimeout(resume, 0); });
+  chip.addEventListener('pointerdown', function (event) {
+    if (!event.target.closest('.news-controls')) pause();
+  });
+  function releaseStory(event) {
+    if (!event.target.closest('.news-controls')) setTimeout(resume, 0);
+  }
+  chip.addEventListener('pointerup', releaseStory);
+  chip.addEventListener('pointercancel', releaseStory);
   motion.addEventListener('change', function () {
     if (motion.matches) {
       paused = true;
