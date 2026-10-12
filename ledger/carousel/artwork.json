@@ -3082,6 +3082,60 @@
     "hex": "#0A0909",
     "note": "The deck's declared ground behind the render."
    }
+  },
+  {
+   "date": "2026-10-12",
+   "carousel_no": 50,
+   "written_from": "deck_coherence's median L* per frame at 432 px off the final renders, layout_check's accent share, by out/2026-10-12/update_ledgers.py.",
+   "register": "RENDERED, NOT PRINTED. A staged floodlit low water crossing at night (key az -135 el 48, ground #0C0D10) declared once in assets/js/deck/2026-10-12-crossing.js, with cold cobra head lamps as the practicals and 3D rain lit where a lamp stands. One hero, the chassis's flood_node, on eight of nine frames. Chassis models for the node, its exploded parts, a rain column, a depth gauge and the crossing itself.",
+   "structural_laws": [
+    "RAIN IS THE WORLD'S TEXTURE ONLY WHERE A LAMP CATCHES IT. Uniform rain over the frame read as a screen; lit only near a lamp, thinned in the type band and faded above the lamp heads, it read as weather.",
+    "A LIT PUDDLE AT THE POST CARRIES THE ACCENT WHERE A RING CAN'T. At cover distance a 4 cm ring is under a pixel, so the amber reads from the water around the post.",
+    "A CANVAS MAP NEEDS ITS OWN MATERIAL. A flat slab under the detail line read as a void; a lit stone relief clipped to the county, rougher to the north west, read as the model's surface.",
+    "A LEADER FOR A PART ABOVE THE DEK RISES BESIDE THE DEK. Each label takes its own riser, the higher label the inner one, so no two leaders cross."
+   ],
+   "techniques": [
+    "the node in the water to its first sensor from the driver's eye, a near lamp behind the lens lighting its face and a far lamp's streak on the flood",
+    "two rain columns square to the lens, the gauge column full and the radar column at four fifths, the node lit beyond them",
+    "the node in near elevation through a long lens, leaders routed beside the dek to each part",
+    "the enclosure at detail scale from below, silt runs under its lid seam",
+    "Bexar County as a raised stone slab among the metro's other counties, the reach circles at the map's own scale in a legend off the county",
+    "a built station standing beside its own parts on the asphalt, a cost bar with its zero stop at 0.55 of a centimetre per dollar",
+    "a wide glass column filled to the validation share, rain films and drops on the glass, leaders to the rim and the meniscus",
+    "the rail at the waterline in macro, the third ring amber where the water reaches it",
+    "a pickup turned up the grade away from the water, the node at the waterline in its amber pool"
+   ],
+   "value": {
+    "per_frame_median_L": [
+     6.3,
+     18.7,
+     1.1,
+     8.3,
+     3.1,
+     5.6,
+     0.9,
+     0.9,
+     0.8
+    ],
+    "deck_median_L": 3.1,
+    "max_adjacent_delta": 17.6,
+    "mean_adjacent_delta": 6.21,
+    "note": "Measured by deck_coherence's median_lstar at 432 px off the final renders. A near black staged deck."
+   },
+   "accent": {
+    "hex": "#FFA21F",
+    "name": "beacon amber",
+    "frames_above_floor": [
+     1,
+     8,
+     9
+    ],
+    "note": "A sensor ring the water has reached and the lit water at the post. Above the presence floor on 1, 8 and 9; drawn on 3's two lit rings below it."
+   },
+   "ground": {
+    "hex": "#0C0D10",
+    "note": "The deck's declared ground behind the render."
+   }
   }
  ]
 }

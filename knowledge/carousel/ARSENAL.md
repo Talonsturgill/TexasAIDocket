@@ -16,7 +16,7 @@
 |---|---|
 | engine calls (`TXT.*`) | 30 |
 | world presets | 8 |
-| kit models | 116 in 10 families |
+| kit models | 117 in 10 families |
 | asset libraries | 21 |
 | carousel and shared tools | 71 |
 | record and site tools the routine names | 20 |
@@ -320,16 +320,17 @@ THE KIT: the things Texas is made of, modelled once in 3D at TRUE SCALE.
 | `vial_tray` | 0.312 x 0.012 x 0.042 | cols, rows, pitch | A shallow cardboard vial flat, cols x rows wells at pitch metres, 12 mm deep. userData.well(i, j) gives a well centre at the flat's mid height. |
 | `workstation_cart` | 0.66 x 1.6 x 0.7 | yaw, height, lit, screen, trayOut, badge, glow | Rolling clinical workstation, illustrative and unmarked: a five caster cast aluminium star base, an oval mast with a battery pack (parting line, grip, latch, blank label, level strip), a grey work surface (height m, default 1.0) with a front push bar, a ... |
 
-### rural (10)
+### rural (11)
 
 `assets/js/kit/rural.js`, The working country: cattle (a Texas longhorn or a Hereford, modelled as one smooth body from a signed distance field so it has real anatomy and no seams), the Aermotor windmill that waters them, the ...
 
 | model | size w x h x d (m) | options | note |
 |---|---|---|---|
 | `barn` | 16.9 x 6.7 x 18.8 | style, material, color, roof, trim, w, l, open, leanTo | A Texas barn, gable end forward (+z): style gable \| gambrel, material metal (R panel steel with a wainscot, trim, standing ridge cap, an open side shed on steel posts) or wood (red board and batten, white trim, X braced doors, hayloft door with a hay hood, a ... |
-| `cattle` | 0.8 x 1.55 x 2.5 | breed, sex, horns, spread, coat | A beef animal standing, facing +z, one smooth body from a signed distance field: a deep rectangular barrel with a level topline, hooks, pins and tailhead, brisket and dewlap, a flank rising to the stifle, muscled forearms and gaskins, cloven hooves, a wedge ... |
+| `cattle` | 0.8 x 1.55 x 2.5 | breed, sex, horns, spread, coat, head, detail | A beef animal standing, facing +z, one smooth body from a signed distance field: a deep rectangular barrel with a level topline, hooks, pins and tailhead, brisket and dewlap, a flank rising to the stifle, muscled forearms and gaskins, cloven hooves, a wedge ... |
 | `cattle_guard` | 7.9 x 1.4 x 5.5 | w, l, finish, color, wings | A ranch road cattle guard, road running along z: steel pipe rails across the road on I beam stringers over a dark pit, concrete grade beams at both approaches with caliche ramps, and pipe wings flaring up at each end to the fence line. finish pipe (bare ... |
 | `cotton_module` | 2.5 x 2.3 x 2.3 | shape, count, wrap | Harvested cotton. shape round: the plastic wrapped round module a picker drops (2.29 m across, 2.44 m wide) in yellow film with its loose tail, white lint and trash specks showing on the spiral faces; count lays them in a row. shape rect: a 32 ft rectangular ... |
+| `feed_bunk` | 12.2 x 1.35 x 4.6 | length, fill, bites, apron, rail, railH, post, wear | A precast concrete fence line feed bunk along x, as a Texas yard builds one: a J section with its low lip (0.46 m) on the pen side (+z), a 0.61 m throat and a 0.76 m back wall to the feed alley (-z), precast sections jointed every 3.05 m, a 3.66 m concrete ... |
 | `grain_bin` | 8.1 x 9.2 x 8.8 | d, rings, fan, ladder | Corrugated steel grain bin (24 ft default, rings of 32 in): horizontal corrugation in the silhouette, sheet laps and bolt rows, a 30 degree roof with standing ribs, a peak collar and cap, roof vents, an eave lip, a caged side ladder with a roof ladder to the ... |
 | `hay_bale` | 3.1 x 3.1 x 7.1 | count, layout, age, wrap, d, w | Round hay bales (5 x 5 ft default), instanced: lumpy rolled sides with net wrap or twine, spiral faces, a flattened contact patch where each sits. layout row \| pyramid \| scatter (auto: pyramid at 5 and more); age fresh \| weathered (grey outer, gold faces). |
 | `pipe_rail_fence` | 20 x 1.7 x 0.2 | length, spacing, rails, post, color, flags, flag, flagAt | Oilfield pipe fence: 4.5 in pipe posts with domed caps, 2 7/8 in rails welded to the post faces. |
@@ -393,7 +394,7 @@ Classic scripts expose a global. The engine and the kit are ES modules and are a
 
 **The 2.5D object catalogue** (`TXOBJ.sprite(name)` on the `TXSCENE` bench, canvas only, for the rare frame that is not rendered; a rendered frame takes the kit): `ambulance` 6.7 x 2.7, `battery_container` 12.2 x 2.9, `billboard` 14.6 x 12.0, `camera_pole` 1.2 x 4.5, `capitol` 100.0 x 95.0, `cattle` 2.5 x 1.5, `civic_facade` 30.0 x 20.0, `cooling_tower` 90.0 x 130.0, `dais` 9.0 x 1.3, `data_center` 130.0 x 16.0, `desk` 1.6 x 1.2, `drone` 1.0 x 0.3, `fence_post` 0.2 x 1.4, `filing_box` 0.4 x 0.28, `helicopter` 13.0 x 3.8, `hospital` 60.0 x 30.0, `hospital_bed` 2.2 x 1.3, `house` 16.0 x 6.0, `live_oak` 16.0 x 11.0, `mesquite` 8.0 x 6.0, `office_chair` 0.7 x 1.2, `pallet_boxes` 1.2 x 1.7, `pickup` 5.9 x 1.95, `pine` 7.0 x 26.0, `podium` 0.7 x 1.25, `power_plant` 70.0 x 62.0, `pump_jack` 7.5 x 5.2, `road_sign` 2.0 x 3.0, `school` 60.0 x 8.0, `school_bus` 12.0 x 3.1, `sedan` 4.7 x 1.45, `server_rack` 0.6 x 2.1, `solar_panel` 4.2 x 2.6, `stock_tank` 8.0 x 1.0, `streetlight` 3.0 x 10.0, `strip_mall` 40.0 x 6.0, `student_desk` 0.9 x 0.85, `substation` 22.0 x 12.0, `traffic_signal` 8.0 x 6.5, `transmission_tower` 12.0 x 42.0, `truck_semi` 17.0 x 4.1, `utility_pole` 2.4 x 12.0, `voting_booth` 0.9 x 1.6, `warehouse` 90.0 x 12.0, `water_tower` 12.0 x 38.0, `wind_turbine` 8.0 x 150.0, `windmill` 3.0 x 11.0.
 
-**Earlier deck chassis** (`assets/js/deck/`, read how a `TXDECK.declare` is written, never copy a world): `2026-09-16-lamp.js`, `2026-09-17-nightdraft.js`, `2026-09-18-minutebook.js`, `2026-09-19-firstlight.js`, `2026-09-20-waterworks.js`, `2026-09-21-oakcliff.js`, `2026-09-23-gensetyard.js`, `2026-09-24-droneline.js`, `2026-09-26-fortyfive.js`, `2026-09-27-nightrent.js`, `2026-09-28-watchtower.js`, `2026-09-29-mccloud.js`, `2026-09-30-firstreader.js`, `2026-10-01-plates.js`, `2026-10-02-vials.js`, `2026-10-03-norther.js`, `2026-10-04-noonbell.js`, `2026-10-05-wards.js`, `2026-10-06-prairie.js`, `2026-10-07-portalpha.js`, `2026-10-08-nexus.js`, `2026-10-09-chart.js`, `2026-10-10-lastlawn.js`, `2026-10-11-feedyard.js`, `proof-port-art-direction.js`.
+**Earlier deck chassis** (`assets/js/deck/`, read how a `TXDECK.declare` is written, never copy a world): `2026-09-16-lamp.js`, `2026-09-17-nightdraft.js`, `2026-09-18-minutebook.js`, `2026-09-19-firstlight.js`, `2026-09-20-waterworks.js`, `2026-09-21-oakcliff.js`, `2026-09-23-gensetyard.js`, `2026-09-24-droneline.js`, `2026-09-26-fortyfive.js`, `2026-09-27-nightrent.js`, `2026-09-28-watchtower.js`, `2026-09-29-mccloud.js`, `2026-09-30-firstreader.js`, `2026-10-01-plates.js`, `2026-10-02-vials.js`, `2026-10-03-norther.js`, `2026-10-04-noonbell.js`, `2026-10-05-wards.js`, `2026-10-06-prairie.js`, `2026-10-07-portalpha.js`, `2026-10-08-nexus.js`, `2026-10-09-chart.js`, `2026-10-10-lastlawn.js`, `2026-10-11-feedyard.js`, `2026-10-12-crossing.js`, `proof-port-art-direction.js`.
 
 **Geodata** (`assets/geo/`):
 

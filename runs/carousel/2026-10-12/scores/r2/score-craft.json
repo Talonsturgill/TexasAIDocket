@@ -1,0 +1,84 @@
+{
+ "lens": "craft",
+ "round": 2,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.2,
+   "why": "Strongest are 4, 8 and 9. Four frames fall well short: 2's pale grey bank and hillside (bottom band 0.90), a floating background node and a plate under 'c18 c20'; 6 has no single subject, primitives under a white cost slab, a dead band and '$220' outside the safe zone; 7's floor hotspot sits left of the column and streaks run inside the glass; 5's noise relief reads as crumpled foil without a real lit rim. 3's SOLAR PANEL elbow crosses the PRECIPITATION leader. 1's amber is a ground glow, the edge line one clean stripe, the mount cap pokes through the panel. Between the 7 and the 4 descriptors."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.3,
+   "why": "Clearly one deck: one night crossing, rain, one amber accent at the waterline, the node on 1, 2, 3, 4, 6, 7, 8 and 9, and a working camera move. 5 and 2 sit outside the dark run; the ring count is not legible at feed size."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.0,
+   "why": "Every numeral traces; the absences are scoped to the release; NWS and UT Arlington attributed by name. One soft spot: the UTSA node drawn beside the RADAR column visually ties a UT Arlington finding to this device."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.5,
+   "why": "Who, what, cost, reach and the one score are named; slide 8 states the absences and 9 hands the reader the one action theirs. No deadline or body, and the deck says so."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "The hook earns a look, 2 pays the stake, the turn at 7 to 8 is where understanding changes, and the close lands. 3 and 4 overlap; 5 could move."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.3,
+   "why": "Clean and on register with no house-rule breaks. A good closing line; slide 3's dek is a flat parts list."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "A fresh concept and accent; the staged-night register is shared by every deck since the stage rule."
+  }
+ ],
+ "weighted_score": 7.22,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Re-light frames 2, 7 and 6 so each pool sits at the subject's base and everything beyond falls to black, and rebuild 6 around the rail with its four sensors.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 2,
+   "problem": "A pale mid-grey bank and hillside in the lower 45%, a floating background node, 'c18 c20' on a plate.",
+   "fix": "Drop the bank to black, backlight the columns from a tight pool behind their bases, seat the node in water, remove the cite plate."
+  },
+  {
+   "slide": 6,
+   "problem": "No single subject; primitives under a bright cost slab, a dead band, '$220' outside the safe zone.",
+   "fix": "Make the rail with its four lensed sensors the hero, large and diagonal off the right edge in the pool; dim the other parts; a thin lit cost line; '$220' inside the margin."
+  },
+  {
+   "slide": 7,
+   "problem": "The floor light pools left of the column, a mid-grey slab across the bottom fifth, streaks inside the glass.",
+   "fix": "Move the pool under the column base and remove the in-glass streaks."
+  },
+  {
+   "slide": 5,
+   "problem": "The noise relief reads as crumpled foil; the north west rim is a thin outline; no rain and no node.",
+   "fix": "A smooth slab with a real lamp rim and a south east cast, and a tiny lit node in plan as the legend glyph."
+  },
+  {
+   "slide": 3,
+   "problem": "The SOLAR PANEL leader crosses the PRECIPITATION leader; the pole runs into the footer; a lit wedge lower left.",
+   "fix": "Reroute the panel leader above the gauge, end the pole at a lit waterline above the footer, remove the wedge."
+  },
+  {
+   "slide": 1,
+   "problem": "A 500 px amber ground glow, a clean unworn edge stripe, the mount cap through the panel.",
+   "fix": "A small halo at the first ring, a broken dull edge line into the water, seat the cap under the panel."
+  }
+ ]
+}

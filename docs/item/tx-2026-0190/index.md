@@ -11,7 +11,7 @@ The College Station City Council voted 4 to 2 on September 24th, 2026 to approve
 - Public access: Write to the decider
 - Take part: https://blog.cstx.gov/2026/09/24/live-from-city-hall-thursdays-city-council-meeting-sept-24/
 
-- Last checked: 2026-10-09
+- Last checked: 2026-10-12
 
 ## Dates
 
@@ -26,6 +26,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-03 · College Station's vote to keep its plate reader cameras still stands as the council took it.
 - 2026-10-06 · College Station's vote to keep its Flock plate reader contract still stands in the council's record.
 - 2026-10-09 · Checked and unchanged. The decision still stands as decided.
+- 2026-10-12 · College Station's vote to keep its Flock cameras stands. No later council action has undone it.
 
 ## Evidence
 

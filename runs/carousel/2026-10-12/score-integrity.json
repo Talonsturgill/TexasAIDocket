@@ -1,0 +1,74 @@
+{
+ "lens": "integrity",
+ "round": 3,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 7.0,
+   "why": "01, 04, 08 and 09 pass most of the showstopper test. 06 is a knoll of primitives with an empty top half and the cost bar the brightest object; 02 sits on a lit mid-grey floor (bands 0.49/0.68/0.82) with the cite on a plate; 03's node is a hairline pole; 07's bottom third is a grey slab."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "One night crossing, one lamp, one hero node; the amber motif changes state on 1, 3, 8 and 9 and the camera moves as declared. 05 is the companion map and 02's grey floor strobes."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 6.5,
+   "why": "Every numeral traces; the date is read from c1.published; sources primary; absences checked; c22 scoped. The charge: the cover dek's 'with no server' and frame 4's 'No server in the loop' while the verified c10 (on no surface) describes central server software and a second, larger model; frame 4's dek scopes it, so a stretch, not a fabrication. Lesser: the amber indicator rings are not described by the release, on a labelled diagram."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.5,
+   "why": "Clear what happened; the where is the release's framing plus small coastal towns; no public body decided anything beyond the grant on 06; the action on 09 is generic advice."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "The hook carries and the turn at 07 into 08 is real; 09 lands on a human decision; 04 repeats the cover; 02 is context used as the stake frame."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "Regional and concrete; clean on house rules; flat lines '98.82%, scored on data' and the caption's template close."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "No topic repeat; a fresh night-crossing world; the structure repeats recent institution-release decks with a 'names no' turn."
+  }
+ ],
+ "weighted_score": 6.88,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Put c10 on the deck: scope frame 4's hook to the flood call made on the post, add that readings also go to a central site where a larger model draws maps, and change the cover's 'with no server' to 'without waiting on a server'.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 6,
+   "problem": "A knoll of primitives with an empty dark top half; the cost bar is the brightest object.",
+   "fix": "Drop to 0.6 m and push in so the enclosure, the lensed rail and the panel fill the lower two thirds at true size; sink the bar as a thin lit inlay."
+  },
+  {
+   "slide": 2,
+   "problem": "A lit mid-grey floor in the bottom half; the cite on a plate.",
+   "fix": "Kill the floor fill, pool the lamp under the column bases, remove the plate."
+  },
+  {
+   "slide": 3,
+   "problem": "A hairline pole; the SOLAR PANEL and TEMPERATURE leaders' horizontals nearly share a line.",
+   "fix": "Bring the camera in to a third of the width; route the temperature leader at least 40 px below the solar leader."
+  },
+  {
+   "slide": 7,
+   "problem": "A flat grey lit slab in the bottom third.",
+   "fix": "Tighten the pool to the column's base so the slab falls to black within half a metre."
+  }
+ ]
+}

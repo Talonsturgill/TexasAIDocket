@@ -1,0 +1,217 @@
+{
+ "weighted_score": 6.854,
+ "judges": [
+  6.88,
+  7.222,
+  6.8
+ ],
+ "spread": 0.422,
+ "criteria": {
+  "artwork_craft": {
+   "score": 6.6,
+   "weight": 0.22,
+   "judges": [
+    7.0,
+    6.3,
+    6.6
+   ]
+  },
+  "deck_coherence": {
+   "score": 7.5,
+   "weight": 0.12,
+   "judges": [
+    7.5,
+    7.3,
+    7.5
+   ]
+  },
+  "claim_integrity": {
+   "score": 6.8,
+   "weight": 0.2,
+   "judges": [
+    6.5,
+    8.3,
+    6.8
+   ]
+  },
+  "story_and_stakes": {
+   "score": 6.7,
+   "weight": 0.16,
+   "judges": [
+    6.5,
+    7.5,
+    6.7
+   ]
+  },
+  "sequence_and_momentum": {
+   "score": 7.0,
+   "weight": 0.1,
+   "judges": [
+    7.0,
+    7.3,
+    7.0
+   ]
+  },
+  "voice": {
+   "score": 7.2,
+   "weight": 0.1,
+   "judges": [
+    7.5,
+    7.2,
+    7.0
+   ]
+  },
+  "variety": {
+   "score": 6.5,
+   "weight": 0.1,
+   "judges": [
+    6.5,
+    6.5,
+    6.2
+   ]
+  }
+ },
+ "hard_fails": [],
+ "hard_fails_by_judge": [],
+ "ship": true,
+ "threshold": 8.0,
+ "over_threshold": false,
+ "method": "per-criterion median across three judges, then weighted by the rubric",
+ "contested": [
+  "claim_integrity"
+ ],
+ "artwork_weakest_frames": [
+  {
+   "slide": 2,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "A lit mid-grey floor in the bottom half; the cite on a plate.",
+     "fix": "Kill the floor fill, pool the lamp under the column bases, remove the plate."
+    },
+    {
+     "judge": 2,
+     "problem": "Two cylinders on a grey studio cyc with the lower half in mid grey; the cite on a plate.",
+     "fix": "Wet black asphalt bank under the lamp, backlit columns, ground near black outside the pool, no plate."
+    },
+    {
+     "judge": 3,
+     "problem": "A lit mid-grey floor under two primitive cylinders.",
+     "fix": "Kill the floor fill, a tight pool under the bases, backlight the water."
+    }
+   ]
+  },
+  {
+   "slide": 6,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "A knoll of primitives with an empty dark top half; the cost bar is the brightest object.",
+     "fix": "Drop to 0.6 m and push in so the enclosure, the lensed rail and the panel fill the lower two thirds at true size; sink the bar as a thin lit inlay."
+    },
+    {
+     "judge": 2,
+     "problem": "Primitives in a flat row unidentifiable at 432 px, a hard shelf edge, an empty top 45%, a ghost arc, the built node cropped into the counter.",
+     "fix": "A true knolling view with identifiable chassis parts in the pool with contact shadows; remove the shelf edge and arc; move the built node clear."
+    },
+    {
+     "judge": 3,
+     "problem": "An empty band between dek and parts; abstract discs, slabs and a bar; the rail cut off at the right.",
+     "fix": "Drop the eye and push in so the sensors, enclosure and panel fill the lower half; cut the shield discs; lay the bar in the pool."
+    }
+   ]
+  },
+  {
+   "slide": 9,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "A brown low-poly bank wedge, red tail lamps, the gauge arm crossing the cab, a near-black pickup.",
+     "fix": "Slide the pickup left, rim-light it, dull the tail lamps, replace the wedge with a dark scattered bank."
+    },
+    {
+     "judge": 3,
+     "problem": "A black pickup on black, the gauge over its cab, reading as parked.",
+     "fix": "Rim the pickup from the lamp, slide the node right, yaw the truck so its headlights sweep up the grade."
+    }
+   ]
+  },
+  {
+   "slide": 3,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "A hairline pole; the SOLAR PANEL and TEMPERATURE leaders' horizontals nearly share a line.",
+     "fix": "Bring the camera in to a third of the width; route the temperature leader at least 40 px below the solar leader."
+    },
+    {
+     "judge": 2,
+     "problem": "The node about 190 px wide, its lower rail dissolving into haze, a fragment under the footer.",
+     "fix": "Move the camera in about 30%, light the lower rail and its wake, remove the fragment."
+    }
+   ]
+  },
+  {
+   "slide": 7,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "A flat grey lit slab in the bottom third.",
+     "fix": "Tighten the pool to the column's base so the slab falls to black within half a metre."
+    },
+    {
+     "judge": 2,
+     "problem": "A flat mid-grey floor with a straight horizon, the pool left of the column, streaks in the glass.",
+     "fix": "Aim the pool at the column base, darken the slab outside it, delete the in-glass streaks."
+    }
+   ]
+  },
+  {
+   "slide": 8,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 3,
+     "problem": "A grey bar with one orange donut at feed size, no waterline context.",
+     "fix": "Pull back to the waterline so three sensors, the water surface and the reflection show."
+    }
+   ]
+  },
+  {
+   "slide": 4,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 3,
+     "problem": "A near-plain grey box reading as clay.",
+     "fix": "Model glands, a gasket lip and a label plate, rake the lamp low across the lid, add grime streaks."
+    }
+   ]
+  },
+  {
+   "slide": 1,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "A square asphalt corner, an unworn stripe, a ground glow for the planned ring.",
+     "fix": "Break and dim the edge line into the water, feather the asphalt under a foam line, a small halo on the first ring."
+    }
+   ]
+  }
+ ],
+ "rounds_derived": 3,
+ "rounds": 3,
+ "rounds_source": "this module's own log of cards it has scored",
+ "rounds_declared": 3,
+ "at_cap": true,
+ "rung": null,
+ "shortfall": "at the round cap the finished deck ships at 6.854, 1.146 under the 8.0 top rung. Name that in the email and the run record",
+ "craft_floor": "capped",
+ "craft_note": "at the round cap the craft floor stands down. The art median 6.6 is under 8.5 and the deck ships as it is. Name it in the run record"
+}

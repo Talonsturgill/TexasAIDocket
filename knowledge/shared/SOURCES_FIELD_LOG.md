@@ -2128,3 +2128,13 @@ vote was taken from CBS Austin's report, which answered 200.
 
 **www.oncor.com's robots.txt timed out and www.leaguecitytx.gov's answered a URLError** during
 `reverify.py`, so the crawl boundary read both as refusing and requested nothing behind them.
+
+## 2026-10-12
+
+**www.federalregister.gov's full text link for the FMCSA cab beacon exemption redirected to
+unblock.federalregister.gov**, whose robots.txt disallows this project's fetcher, so `fetch_doc.py`
+refused it before requesting it. It was not routed around. The same notice was read from the GovInfo
+PDF of that day's Federal Register, which the boundary allowed.
+
+**news.utsa.edu, www.uta.edu and www.weather.gov all answered 200** and the boundary allowed every
+page the deck's claims rest on.

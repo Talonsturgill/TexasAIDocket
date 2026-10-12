@@ -1,0 +1,62 @@
+<!doctype html>
+<!-- 2026-10-12, frame 2 of 9. Archetype SPLIT_HORIZON. RENDERED through txthree.js in the deck's floodlit world. Two clear measuring columns on the crossing's wet slab with the floodwater behind, lit from behind by the cobra head so their water glows: the left filled to a storm total, the right filled a fifth lower, the share UT Arlington found standard radar can come in under the rain gauges. The node stands small in the water beyond. Drawn to illustrate; this is UT Arlington's finding, not the node's. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+  .dek { width:720px; text-wrap:balance; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">Radar can read the storm low</h1>
+<p class="dek" data-follow="26">UT San Antonio's release says regional models can miss very local flash floods. UT Arlington checked radar against more than 300 rain gauges and found it can read storm totals roughly 20% low under some conditions.</p>
+<div class="lab" id="lG">RAIN GAUGES</div>
+<div class="lab" id="lR">RADAR</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-12-crossing.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "UT San Antonio and UT Arlington", counter: "02 / 09", src: "c18 c20", fit: { min: 72, max: 96, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 26, far: 3000 });
+  const X = CH.crossing({ span: 12, slab: 0.32, bank: 2.2, ramp: 16 });
+  const gnd = TXT.ground(R, { surface: 'dirt', size: 260, tile: 6, seed: 12, y: -6 });
+  const LEVEL = 0.16;
+  CH.place(THREE, TXT, R, X, gnd, { level: LEVEL, wave: 0.14 });
+  /* THE TWO TOTALS, from figures.json: radar_fill_frac 0.8, one minus the radar's roughly 20 percent,
+   * of the gauge column's fill. Both columns at one height and one scale. */
+  const radar_fill_frac = 0.8, H = 0.9, GAUGE = H - 0.03, RADAR = GAUGE * radar_fill_frac;   /* the gauge column filled to its rim, so full reads as full */
+  const A = K.make('rain_column', { height: H, d: 0.11, fill: GAUGE }); A.position.set(-1.243, 0.32, -1.423);   /* both columns square to the lens, at one depth */ TXT.add(R, A); TXT.contact(R, A, { y: 0.325 });
+  const B = K.make('rain_column', { height: H, d: 0.11, fill: RADAR }); B.position.set(-0.757, 0.32, -1.777); TXT.add(R, B); TXT.contact(R, B, { y: 0.325 });
+  if (Math.abs((B.userData.waterTop - 0.03) / (A.userData.waterTop - 0.03) - 0.8) > 1e-6) throw new Error('the radar column is not four fifths of the gauge column');
+  /* no node here: nothing in the claims links the node to the radar finding, so it is not drawn beside the columns */
+  { const back = new THREE.PointLight(0xe8eeff, 18, 3, 2); back.position.set(-1.25, 1.5, -2.6); R.scene.add(back); }   /* a light just behind the two columns, so the glass is backlit */
+  TXT.frame(R, { fov: 26, from: [2.3, 0.98, 2.9], look: [-1.0, 1.38, -1.6] });
+  CH.rain(THREE, R, { base: 0.1, lights: [] });   /* the wet night, lit where a lamp stands and faintly by the floodlight */
+  TXT.sky(R);
+  TXT.deckRig(R, CH.rigSpec(W, 4, 4096), CH.rigOpts([-1.0, 0.6, -1.6], { distance: 20, shadowFar: 60 }));
+  TXT.stage(R, [A, B], { poolInner: 0.6, poolOuter: 2.2 });
+  TXT.weather(R, { grime: 0.25, height: 0.5 });
+  const lab = (id, obj, side) => { const q = CH.project(THREE, R, [obj.position.x, 0.32 + obj.userData.top + 0.06, obj.position.z]); const el = document.getElementById(id), w = el.getBoundingClientRect().width; el.style.left = Math.round(q[0] - w / 2) + 'px'; el.style.top = Math.round(q[1] - 52) + 'px'; };
+  lab('lG', A, -1); lab('lR', B, 1);
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0.3, veil: 0.5, veilH: 380 });   /* a deeper foot so the source line holds on the lit floor */
+  CH.knock(cx, ['.src'], 0.8);   /* the source line holds its contrast on the lit slab */
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

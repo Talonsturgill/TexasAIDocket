@@ -5648,3 +5648,104 @@ band or seam, 3 runs and 5 rounds. Unchanged in substance from 2026-10-07 item 3
 Also carried and re-escalated so the due check stays parked: `qa-glyph-run-as-rule` (repeat 2,
 nos. 40, 41 and 45, no run since October 7th), `.claude/skills/carousel-engine/qa.py`, with the art
 layer proposal and its self-test cases at 2026-10-07 item 2.
+
+## 2026-10-12, the sixth weekly machine pass. Three changes, one escalation, three proposals, one deferral
+
+Read from `out/2026-10-12/week_digest.md` (six shipped runs, October 6th to 11th) and the queue,
+due early because `grid-piece-count-reads-lit-ground-as-subject` reached repeat 3 (nos. 46, 47, 48
+and 49). `artwork_craft` was the lowest criterion on five of six decks, week mean 6.18, and
+`variety` on four (mean 6.42). "Largest object unmodelled" was named on six decks in 17 rounds and
+"primitive or low-poly model where a kit model belongs" on six in 16. All three changes answer
+those two themes on the newest scored deck, no. 49, whose round 1 craft card ranked its kit steer
+first and its bunk wall sixth. The account is in `ledger/carousel/upgrades.json` under
+`2026-10-12 weekly` and the pass is recorded in `config/carousel/machine_pass.json`. Proofs and the
+three verify scripts are in `out/machine-2026-10-12/tmp/` and die with the container.
+
+### 1. KIT CATTLE: HEAD CARRIAGE, CLOSE DETAIL, ONE TOPLINE (done, `assets/js/kit/rural.js`, d92fd2d8)
+
+No. 49 frame 8: "Close crop on the primitive kit steer. The hide texture is smeared, the back
+contour is doubled ... The model is biggest exactly where it is weakest" (craft r1, ranked first),
+and the round 3 fix "swap the smeared kit head for a higher-detail head". Queue
+`kit-cattle-head-cannot-lower`: a head through a neck rail into a bunk could not be posed.
+
+- `head: up | bunk | graze`. Bunk drops the poll under a rail (0.98 m on a Hereford) and reaches
+  the muzzle forward to feed height (0.43 m). Graze pitches the face near vertical and solves the
+  poll's height so the chin sits 6 cm off the ground. The neck, throat, dewlap, face blaze, eyes,
+  ears and horns all follow, the ears and horns turned with the skull.
+- `detail: close` halves the mesh cell (four times the vertices, under a second to build) and
+  halves the colour border with it. The smear was the coat's colour living on 16 mm cells.
+- The doubled topline was the barrel's rounded front edge with a round neck emerging under it. The
+  withers now bridge onto the neck's crest and the neck blends with a wide fillet.
+- Named parts `poll` and `muzzle` (empty nodes) say where a rail, bunk or tag goes, so a deck stops
+  computing them from hand coordinates (the `kmake-recentres-after-make` shape, met again by no. 50).
+
+`head: up` with `detail: standard` keeps the original mesh cache key and colour border, so a herd
+changes only by the fillet. Residual: a few dark specks at the silhouette rim at close detail,
+visible at 2x zoom, not at full size.
+
+### 2. KIT PERSON: A NAMED SHIRT WINS ON EVERY SEED (done, `assets/js/kit/people.js`, 3ac366c2)
+
+The verified bug inside queue `kit-person-head-reads-as-mannequin` (repeat 1): a plaid roll ignored
+`shirt`. 15 of 120 seeds before, 0 after; the plaid is still drawn so no other draw moves.
+
+### 3. KIT LIFT: `feed_bunk` WEATHERED AS A WORKING BUNK (done, `assets/js/kit/rural.js`, 073890f4)
+
+No. 49's chassis bunk carried eight of nine frames. Craft r1 on frame 1: "the largest object and
+the least modelled, a clean pale slab with hairline joints ... Run a grime and splash gradient up
+the outer wall from its base with wear on the lip". Reader r1 and r2 on frame 5: "a cream U slab
+with a navy interior", "grime on the lip", "residue and grime in the throat". The kit model keeps
+the chassis's options, origin and `userData.throat`, and draws the weather per fragment from the
+section's own coordinates: splash up every face (higher on the pen side), a fouled apron, wet throat
+residue, joint stains, drips, a worn lip and a weathered grey. `wear: 0` is fresh precast for an
+unset section. The first two tunings were measurable and invisible (a 0.12 m band on a near white
+albedo), which is why the verify script measures the wall's foot against its own middle and holds
+it to a computed floor rather than to "darker than before". `feedlot_pens` and `ear_tag` stay in the
+chassis. As with no. 47 after the cart lift, no. 49's `installKit` now returns early, so a re-render
+of that shipped deck needs the replay wrapper in the scratch pages.
+
+### 4. ESCALATED: THE SCENE SHOULD SAY WHICH PIXELS ARE THE ACCENT AND WHICH ARE THE GRID UNITS (`human`)
+
+Two `layout_check` pixel measures pushed the art into defects the judges then charged, on four
+runs this week. GRID pieces: queue repeat 3 (nos. 46 to 49), item 3 of 2026-10-10 explains why
+three pixel readings failed. ACCENT presence: queue `lit-accent-drifts-in-lab` (repeat 1) and
+`accent-presence-forces-a-pool`: no. 48 rendered its granite unlit to be counted and every critic
+called it flat paint; no. 49 grew its ear tag 1.9x and lit it; no. 50 laid an amber pool on the
+water that all three judges charged as a decal in every round. A lit accent object drifts more than
+12 Lab units off its hex under a low key, and widening that tolerance would be loosening the gate.
+
+Proposal for a maintainer: `render.py` (or `TXT.snapshot`) renders an object id pass for meshes a
+frame tags `userData.measure` (`accent`, `gridUnit`), the standard GPU picking technique of flat id
+colours into a render target read back once, and writes per tag pixel counts at thumb scale and
+screen boxes into `render_report.json`. `layout_check` then measures accent presence on the accent
+object's own pixels and counts GRID units as tagged boxes that are visible and apart, falling back
+to today's measures on an untagged frame. Self-test cases: an accent object at 0.2 percent of the
+thumb under a low key passes where the Lab match fails; a tagged object off screen fails; four
+separated units pass; four overlapping fail. Owner: human (`assets/js/txthree.js`,
+`.claude/skills/carousel-engine/render.py`). Not checked against a source this pass, because the
+turn's shared search budget was spent.
+
+### 5. DEFERRED, NOT REFUSED: THE KIT PERSON'S MANNEQUIN LOOK (in lane)
+
+Replayed no. 49 frame 9 and no. 48 frames 5 and 8. What a lift has to fix, seen at full size: the
+long hair curtain passes through the back of the shirt at seed 5, the strands map reads as wood
+grain, the hair is pale and smooth enough to read as a block under a warm lamp, the arms hang in an
+A-pose and the hands are mittens. Each is geometry, and together they are a person lift of their
+own rather than a tweak. No. 48's round 3 craft fix was to take kit people out of the frame's
+subject, which is the run's answer until then.
+
+### 6. PROPOSALS (`human`)
+
+- `scorer-thumb-path`, repeat 1 (nos. 46 and 50): name `render/thumbs/slide-0N-thumb.png` and
+  `final/thumbs/slide-0N-thumb.webp` in `.claude/agents/carousel-scorer.md` and the scorer brief.
+- `article-token-drops-unit`, repeat 1 (nos. 45 and 49): `scripts/site/article_check.py` fails a
+  rendered dollar figure whose quote carries a magnitude word the page dropped, and a doubled percent.
+- `caption-ledger-opening-moves-stale` with `captions-derived-lists-lag-a-run` (nos. 44, 45, 47):
+  Phase 16 names `ledger_check.py --derive` after the ledger update. The gate already catches it.
+
+### Carried, with this week's counts
+
+Engine (`assets/js/txthree.js`): no contact or grime, 5 runs and 12 rounds; object in a void, 5
+and 11; render artifact, 4 and 11; sky colour, 3 and 5; horizon band, 1 and 3. Type on plates:
+`TXDECK.punch` and soften patches read as dark plates behind labels and furniture on nos. 44 and 49
+(`assets/js/txdeck.js` is `human`); the run's answer is to seat type on the dark field. Deferred
+again, not refused: `turboprop_caravan` and the aviation set, `dry_van` and its siblings.

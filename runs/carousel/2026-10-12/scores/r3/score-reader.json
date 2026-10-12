@@ -1,0 +1,79 @@
+{
+ "lens": "reader",
+ "round": 3,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.6,
+   "why": "One dark staged night world; 7, 1 and 3 are strong. Several frames fall back on primitives or empty space: 6's empty band and abstract parts with the rail cut off; 2's lit grey ground under two primitive cylinders; 8 reads at feed size as a grey bar with one orange donut; 9's black pickup with the gauge over its cab; 4's near-plain box."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "One world, one hero node, one amber accent; the value track holds dark; two devices work. 5 sits outside the world and 2's grey floor is the one value jump."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 6.8,
+   "why": "Every numeral traces; absences scoped and checked; context attributed by name; the grant wording matches c15. Looser than its source: the cover's 'with no server' and slide 4's 'No server in the loop' while c10 (verified, on no surface) says custom server software at a central site aggregates the nodes and a larger model builds maps; c5 scopes the on-device claim to the imminent-risk judgment. Not a hard fail."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.7,
+   "why": "A Texan learns what was built, what it costs, what it scored and what is not named. 'Who decided' is thin; no county, adopting body or deadline; the one action is generic flood safety."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "The hook is accurate but technical; 2 pays the stake; 3 to 6 are four spec frames; the turn at 7 into 8 lands; the close hands the reader a step."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Plain and on register with Texas vernacular and a strong closing line; some flat kickers; the caption's closing question leans toward a gotcha. No house-rule breaks."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.2,
+   "why": "A fresh subject and palette; the fourth straight institution-release deck with a hero carried through and a 'names no result' turn; the night world close to no. 47's."
+  }
+ ],
+ "weighted_score": 6.8,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Say the flood-risk call is made on the post without a central server, and add c10's central site with its larger model, so the system is not described as having no server.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 6,
+   "problem": "An empty band between dek and parts; abstract discs, slabs and a bar; the rail cut off at the right.",
+   "fix": "Drop the eye and push in so the sensors, enclosure and panel fill the lower half; cut the shield discs; lay the bar in the pool."
+  },
+  {
+   "slide": 9,
+   "problem": "A black pickup on black, the gauge over its cab, reading as parked.",
+   "fix": "Rim the pickup from the lamp, slide the node right, yaw the truck so its headlights sweep up the grade."
+  },
+  {
+   "slide": 8,
+   "problem": "A grey bar with one orange donut at feed size, no waterline context.",
+   "fix": "Pull back to the waterline so three sensors, the water surface and the reflection show."
+  },
+  {
+   "slide": 2,
+   "problem": "A lit mid-grey floor under two primitive cylinders.",
+   "fix": "Kill the floor fill, a tight pool under the bases, backlight the water."
+  },
+  {
+   "slide": 4,
+   "problem": "A near-plain grey box reading as clay.",
+   "fix": "Model glands, a gasket lip and a label plate, rake the lamp low across the lid, add grime streaks."
+  }
+ ]
+}

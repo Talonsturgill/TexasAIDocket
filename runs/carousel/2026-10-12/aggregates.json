@@ -1,0 +1,71 @@
+{
+ "date": "2026-10-12",
+ "_note": "Every count the deck states, with the claim it was quoted from, or the code that computed it.",
+ "aggregates": [
+  {
+   "phrase": "300 rain gauges",
+   "slide": "slide-02.html",
+   "kind": "count",
+   "value": 300,
+   "quoted_from": "c20",
+   "quote": "a network of more than 300 rain gauges",
+   "note": "the study's own count, quoted; figures.json rain_gauges"
+  },
+  {
+   "phrase": "Four water sensors",
+   "slide": "slide-03.html",
+   "kind": "count",
+   "value": 4,
+   "quoted_from": "c1",
+   "quote": "four optical water-level sensors mounted at varying heights",
+   "note": "the release's own count, quoted; figures.json sensor_count"
+  },
+  {
+   "phrase": "Four optical water-level sensors",
+   "slide": "slide-03.html",
+   "kind": "count",
+   "value": 4,
+   "quoted_from": "c1",
+   "quote": "four optical water-level sensors mounted at varying heights",
+   "note": "the dek, the same quoted count"
+  },
+  {
+   "phrase": "FOUR OPTICAL WATER-LEVEL SENSORS",
+   "slide": "slide-03.html",
+   "kind": "count",
+   "value": 4,
+   "quoted_from": "c1",
+   "quote": "four optical water-level sensors mounted at varying heights",
+   "note": "the leader label, the same quoted count"
+  },
+  {
+   "phrase": "five miles",
+   "slide": "slide-05.html",
+   "kind": "count",
+   "value": 5,
+   "quoted_from": "c9",
+   "quote": "up to five miles in open areas",
+   "note": "the release's own reach, quoted in the hook and the dek; figures.json lora_open_m is its conversion"
+  },
+  {
+   "phrase": "Four optical water-level sensors",
+   "slide": "caption.txt",
+   "kind": "count",
+   "value": 4,
+   "quoted_from": "c1",
+   "quote": "four optical water-level sensors mounted at varying heights",
+   "note": "the caption, the same quoted count"
+  },
+  {
+   "phrase": "two first party accounts",
+   "slide": "first_comment.txt",
+   "kind": "count",
+   "value": 2,
+   "from_claims": [
+    "c1",
+    "c20"
+   ],
+   "computed_by": "scripts/carousel/sources_block.py, the documents the deck cites grouped by each claim's source_type: UT San Antonio's release and UT Arlington's release"
+  }
+ ]
+}

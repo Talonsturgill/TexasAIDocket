@@ -1,0 +1,114 @@
+{
+ "_spec": {
+  "version": 1,
+  "purpose": "A standalone web edition of the archived visual story.",
+  "law": "Facts resolve to the original verified claim record. A layout rebuild does not reverify reporting.",
+  "written_by": "daily"
+ },
+ "section": "Flood warning",
+ "dek": {
+  "text": "UT San Antonio built a solar flood sensor that judges flood risk on the device itself. The release reports a validation score and a parts cost, and names no site and no real flood.",
+  "claims": [
+   "c5",
+   "c7",
+   "c11",
+   "c19"
+  ]
+ },
+ "introduction": [
+  {
+   "text": "[UT San Antonio's release describes a field-ready prototype that pairs solar power with several sensors, long-range radios and machine learning on the device](c3). [The model on the node judges imminent local flood risk from current and recent readings with no central server involved](c5). [Chen Pan, an assistant professor of electrical engineering, leads the work](c13).",
+   "claims": [
+    "c3",
+    "c5",
+    "c13"
+   ]
+  },
+  {
+   "text": "[The release frames the problem as timing. It says flood risk often climbs block by block, from coastal bends to low-water crossings in San Antonio, before regional alerts sound](c16). [It says some people could already have ankle-deep water in their yard when a flash flood warning reaches their phone](c17).",
+   "claims": [
+    "c16",
+    "c17"
+   ]
+  }
+ ],
+ "sections": [
+  {
+   "heading": "What the node carries",
+   "paragraphs": [
+    {
+     "text": "[The prototype carries four optical water-level sensors set at different heights](c1). [It also senses temperature, humidity, light and precipitation](c2). [A solar power system charges a built-in battery and backup energy storage](c8).",
+     "claims": [
+      "c1",
+      "c2",
+      "c8"
+     ]
+    },
+    {
+     "text": "[The model runs as TinyML, which the release defines as machine learning shrunk to run on small low-power microcontrollers](c4). [Chen Pan calls the system off-grid, a design that makes its own power and judges flood risk on the device](c6).",
+     "claims": [
+      "c4",
+      "c6"
+     ]
+    },
+    {
+     "text": "[The node's LoRa radio reaches more than a half-mile through city streets and up to five miles in open areas, the release says](c9). [Data from many nodes is meant to reach a central site, where a second and larger model builds a dashboard with predictive maps](c10).",
+     "claims": [
+      "c9",
+      "c10"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "Why a reading at the crossing",
+   "paragraphs": [
+    {
+     "text": "[The release says regional weather models and satellite imaging can miss very local flash floods](c18). A separate study points the same way. [UT Arlington researchers compared radar with more than {{number:c20}} rain gauges and found standard radar can underestimate storm totals by roughly {{number:c20:1}} under some conditions](c20). [UT Arlington's Water Engineering Research Center is building a rainfall monitoring and flood modeling system for Hill Country early warning](c21).",
+     "claims": [
+      "c18",
+      "c20",
+      "c21"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "The score and the cost",
+   "paragraphs": [
+    {
+     "text": "[The release reports {{number:c7}} validation accuracy in initial assessments after training](c7). That is a score measured on data. It is not a count of floods the node caught. [Parts for one prototype station cost roughly ${{number:c11}} to ${{number:c11:1}}](c11). [Chen Pan is seeking a patent on the hardware, and the team aims to turn the prototype into a weatherized commercial product](c12). [The release says the design is meant for small coastal towns](c19).",
+     "claims": [
+      "c7",
+      "c11",
+      "c12",
+      "c19"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "What the release leaves open",
+   "paragraphs": [
+    {
+     "text": "[The release names no installation site, no city or county operating the system, no field test against a real flood and no false alarm or missed event figure](c19). A reader can't tell from it how the node behaves when water actually rises at a crossing, or how often it would warn when no flood comes.",
+     "claims": [
+      "c19"
+     ]
+    },
+    {
+     "text": "The stakes at the water are already measured elsewhere. [The National Weather Service cites the CDC as reporting that more than half of flood-related drownings happen when a vehicle is driven into flood water](c22). Whatever a sensor on the post reports, the decision at the edge of the water stays with the driver.",
+     "claims": [
+      "c22"
+     ]
+    }
+   ]
+  }
+ ],
+ "related": [
+  {
+   "id": "tx-2026-0141",
+   "label": "The record entry for UT San Antonio's on-device flood sensor"
+  }
+ ]
+}

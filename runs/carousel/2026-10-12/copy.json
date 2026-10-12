@@ -1,0 +1,237 @@
+{
+ "date": "2026-10-12",
+ "carousel_no": 50,
+ "document_title": "UT San Antonio's flood sensor runs its AI on the device",
+ "_note": "Slide strings read off the render report's text nodes and each frame's own source line by build_copy.py.",
+ "caption": "A low-water crossing in San Antonio.\n\nUT San Antonio's September 28th release says flood risk there often climbs block by block before regional alerts sound.\n\nChen Pan's team built a prototype that judges that risk on the device itself. Four optical water-level sensors at varying heights sit on one solar powered node. TinyML on its microcontroller judges imminent flood risk with no central server. Parts for one prototype run roughly $150 to $220.\n\nA real flood would be the test. The release reports 98.82% validation accuracy in initial assessments after training. It names no site, no city or county running it and no false alarm or missed event figure. The team aims the design at small coastal towns.\n\nThe release holds a validation score and a parts cost. Where is the record of the node in a real flood?\n\n#SanAntonio #UTSA #TinyML",
+ "slides": {
+  "S1": {
+   "n": 1,
+   "file": "slide-01.html",
+   "kicker": "UT San Antonio, September 28th",
+   "headline": "It judges flood risk on the device",
+   "claims": [
+    "c3",
+    "c5",
+    "c16",
+    "c19"
+   ],
+   "cite": "c3 c5 c16 c19",
+   "body": "UT San Antonio's prototype runs its AI on the device, with no server. Its release says risk at San Antonio's low-water crossings often climbs before regional alerts sound. Drawn to illustrate.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "It judges flood risk on the device",
+    "UT San Antonio's prototype runs its AI on the device, with no server. Its release says risk at San Antonio's low-water crossings often climbs before regional alerts sound. Drawn to illustrate.",
+    "UT San Antonio, September 28th",
+    "01 / 09",
+    "c3 c5 c16 c19"
+   ]
+  },
+  "S2": {
+   "n": 2,
+   "file": "slide-02.html",
+   "kicker": "UT San Antonio and UT Arlington",
+   "headline": "Radar can read the storm low",
+   "claims": [
+    "c18",
+    "c20"
+   ],
+   "cite": "c18 c20",
+   "body": "UT San Antonio's release says regional models can miss very local flash floods. UT Arlington checked radar against more than 300 rain gauges and found it can read storm totals roughly 20% low under some conditions.",
+   "labels": [
+    "RAIN GAUGES",
+    "RADAR"
+   ],
+   "strings": [
+    "texasaidocket.com",
+    "Radar can read the storm low",
+    "UT San Antonio's release says regional models can miss very local flash floods. UT Arlington checked radar against more than 300 rain gauges and found it can read storm totals roughly 20% low under some conditions.",
+    "RAIN GAUGES",
+    "RADAR",
+    "UT San Antonio and UT Arlington",
+    "02 / 09",
+    "c18 c20"
+   ]
+  },
+  "S3": {
+   "n": 3,
+   "file": "slide-03.html",
+   "kicker": "What the node carries",
+   "headline": "Four water sensors stacked on one node",
+   "claims": [
+    "c1",
+    "c2",
+    "c4",
+    "c8"
+   ],
+   "cite": "c1 c2 c4 c8",
+   "body": "Four optical water-level sensors at varying heights, plus temperature, humidity, light and precipitation. Drawn to illustrate.",
+   "labels": [
+    "FOUR OPTICAL WATER-LEVEL SENSORS",
+    "MICROCONTROLLER AND BATTERY",
+    "TEMPERATURE AND HUMIDITY",
+    "PRECIPITATION",
+    "SOLAR PANEL"
+   ],
+   "strings": [
+    "texasaidocket.com",
+    "Four water sensors stacked on one node",
+    "Four optical water-level sensors at varying heights, plus temperature, humidity, light and precipitation. Drawn to illustrate.",
+    "FOUR OPTICAL WATER-LEVEL SENSORS",
+    "MICROCONTROLLER AND BATTERY",
+    "TEMPERATURE AND HUMIDITY",
+    "PRECIPITATION",
+    "SOLAR PANEL",
+    "What the node carries",
+    "03 / 09",
+    "c1 c2 c4 c8"
+   ]
+  },
+  "S4": {
+   "n": 4,
+   "file": "slide-04.html",
+   "kicker": "Where the AI runs",
+   "headline": "No server in the loop",
+   "claims": [
+    "c4",
+    "c5",
+    "c6"
+   ],
+   "cite": "c4 c5 c6",
+   "body": "TinyML shrinks a machine learning model to run on a small, low-power microcontroller. The model on the node judges imminent flood risk from current and recent readings without a central server.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "No server in the loop",
+    "TinyML shrinks a machine learning model to run on a small, low-power microcontroller. The model on the node judges imminent flood risk from current and recent readings without a central server.",
+    "Where the AI runs",
+    "04 / 09",
+    "c4 c5 c6"
+   ]
+  },
+  "S5": {
+   "n": 5,
+   "file": "slide-05.html",
+   "kicker": "How far it talks",
+   "headline": "Over a half-mile in town, up to five miles open",
+   "claims": [
+    "c9",
+    "c19"
+   ],
+   "cite": "c9 c19",
+   "body": "The node's LoRa radio reaches more than a half-mile through city streets and up to five miles in open areas, the release says. No site is named, so the circles show scale only.",
+   "labels": [
+    "SAN ANTONIO",
+    "BEXAR COUNTY",
+    "OPEN AREAS",
+    "CITY STREETS"
+   ],
+   "strings": [
+    "texasaidocket.com",
+    "Over a half-mile in town, up to five miles open",
+    "The node's LoRa radio reaches more than a half-mile through city streets and up to five miles in open areas, the release says. No site is named, so the circles show scale only.",
+    "SAN ANTONIO",
+    "BEXAR COUNTY",
+    "OPEN AREAS",
+    "CITY STREETS",
+    "How far it talks",
+    "05 / 09",
+    "c9 c19"
+   ]
+  },
+  "S6": {
+   "n": 6,
+   "file": "slide-06.html",
+   "kicker": "UT San Antonio, the kit",
+   "headline": "$150 to $220 in parts",
+   "claims": [
+    "c11",
+    "c15"
+   ],
+   "cite": "c11 c15",
+   "body": "Parts for one prototype station cost roughly $150 to $220, the release says. A Texas Coastal Management Program grant approved by the Texas Land Commissioner helped fund the work. The parts are drawn to illustrate.",
+   "labels": [
+    "$150",
+    "$220"
+   ],
+   "strings": [
+    "texasaidocket.com",
+    "$150 to $220 in parts",
+    "Parts for one prototype station cost roughly $150 to $220, the release says. A Texas Coastal Management Program grant approved by the Texas Land Commissioner helped fund the work. The parts are drawn to illustrate.",
+    "$150",
+    "$220",
+    "UT San Antonio, the kit",
+    "06 / 09",
+    "c11 c15"
+   ]
+  },
+  "S7": {
+   "n": 7,
+   "file": "slide-07.html",
+   "kicker": "UT San Antonio, the one score",
+   "headline": "98.82%, scored on data",
+   "claims": [
+    "c7",
+    "c19"
+   ],
+   "cite": "c7 c19",
+   "body": "The release reports 98.82% validation accuracy in initial assessments after training.",
+   "labels": [
+    "FULL SCALE",
+    "98.82%"
+   ],
+   "strings": [
+    "texasaidocket.com",
+    "98.82%, scored on data",
+    "The release reports 98.82% validation accuracy in initial assessments after training.",
+    "FULL SCALE",
+    "98.82%",
+    "UT San Antonio, the one score",
+    "07 / 09",
+    "c7 c19"
+   ]
+  },
+  "S8": {
+   "n": 8,
+   "file": "slide-08.html",
+   "kicker": "What the release leaves out",
+   "headline": "No flood test is named",
+   "claims": [
+    "c1",
+    "c19"
+   ],
+   "cite": "c1 c19",
+   "body": "The release names no installation site, no city or county running it and no field test against a real flood. It gives no false alarm or missed event figure. It describes a prototype the team aims at small coastal towns. Drawn to illustrate.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "No flood test is named",
+    "The release names no installation site, no city or county running it and no field test against a real flood. It gives no false alarm or missed event figure. It describes a prototype the team aims at small coastal towns. Drawn to illustrate.",
+    "What the release leaves out",
+    "08 / 09",
+    "c1 c19"
+   ]
+  },
+  "S9": {
+   "n": 9,
+   "file": "slide-09.html",
+   "kicker": "National Weather Service",
+   "headline": "Turn around at the water",
+   "claims": [
+    "c22"
+   ],
+   "cite": "c22",
+   "body": "The National Weather Service cites the CDC. Over half of flood drownings happen when a vehicle is driven into flood water. Whatever a sensor reports, the turn is the driver's. Drawn to illustrate.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "Turn around at the water",
+    "The National Weather Service cites the CDC. Over half of flood drownings happen when a vehicle is driven into flood water. Whatever a sensor reports, the turn is the driver's. Drawn to illustrate.",
+    "National Weather Service",
+    "09 / 09",
+    "c22"
+   ]
+  }
+ }
+}

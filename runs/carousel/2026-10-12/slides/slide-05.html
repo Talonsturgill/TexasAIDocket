@@ -1,0 +1,126 @@
+<!doctype html>
+<!-- 2026-10-12, frame 5 of 9. Archetype MAP. CANVAS, the deck's one companion frame: Bexar County's real boundary from the committed geodata in TXGeo's Albers projection as a dark slab, its north west rim lit cold from the deck's declared key and its cast falling south east, the neighbouring county lines dim, San Antonio a lamp point. In a legend tray beside the county, two circles at the map's own scale around a plan glyph of the node: the radio's reach through city streets and in open areas. No circle sits on the county, because the release names no site. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+  .dek { width:620px; }
+  .lab.sm { font-size:24px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">Over a half-mile in town, up to five miles open</h1>
+<p class="dek" data-follow="26">The node's LoRa radio reaches more than a half-mile through city streets and up to five miles in open areas, the release says. No site is named, so the circles show scale only.</p>
+<div class="lab sm" id="lSA">SAN ANTONIO</div>
+<div class="lab sm" id="lBX">BEXAR COUNTY</div>
+<div class="lab sm" id="lOpen">OPEN AREAS</div>
+<div class="lab sm" id="lStreet">CITY STREETS</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-12-crossing.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script src="@@ASSETS@@/js/d3.v7.min.js"></script>
+<script src="@@ASSETS@@/js/topojson-client.min.js"></script>
+<script src="@@ASSETS@@/js/txgeo.js"></script>
+<script>
+window.renderReady = (async () => {
+  await document.fonts.ready;
+  CH.start({ kicker: "How far it talks", counter: "05 / 09", src: "c9 c19", fit: { min: 72, max: 96, maxLines: 2 } });
+  const topo = await new Promise((ok, bad) => { const x = new XMLHttpRequest(); x.open("GET", "@@ASSETS@@/geo/tx-counties.topo.json"); x.onload = () => ok(JSON.parse(x.responseText)); x.onerror = bad; x.send(); });
+  const state = TXGeo.outline(topo), all = TXGeo.counties(topo);
+  const bexar = all.features.find(f => f.properties && f.properties.name === "Bexar");
+  if (!bexar) throw new Error("no Bexar County in the committed geodata");
+  /* the state fit, then zoomed so Bexar's centroid lands left of centre at a scale that spans the county about 560 px */
+  const proj = TXGeo.texasProjection(state, [[0, 0], [1080, 1350]]);
+  const c0 = d3.geoCentroid(bexar);
+  TXGeo.zoomTo(proj, state, c0, [400, 900], 1);
+  const b0 = d3.geoPath(proj).bounds(bexar), w0 = b0[1][0] - b0[0][0];
+  TXGeo.zoomTo(proj, state, c0, [400, 900], 600 / w0);
+  const path = d3.geoPath(proj);
+  const cv = document.getElementById("art"), cx = cv.getContext("2d"); cx.scale(2, 2);
+  cx.fillStyle = "#06080b"; cx.fillRect(0, 0, 1080, 1350);
+  /* THE METRO AROUND IT, from the committed places file: the other counties OMB puts in Bexar's own
+   * metro, each a low dark slab with a faint lit north west edge, so Bexar sits in its region */
+  const places = await new Promise((ok, bad) => { const x = new XMLHttpRequest(); x.open("GET", "@@ASSETS@@/geo/tx-places.json"); x.onload = () => ok(JSON.parse(x.responseText)); x.onerror = bad; x.send(); });
+  const metroOf = (nm) => { const p = places.places.find(q => q.kind === "county" && q.name === nm); return p && p.metro ? p.metro.cbsa : null; };
+  const cbsa = metroOf("Bexar"), metro = all.features.filter(f => f.properties && f.properties.name !== "Bexar" && metroOf(f.properties.name) === cbsa);
+  if (!metro.length) throw new Error("no metro counties around Bexar in the committed places file");
+  /* the county lines of the state, dim */
+  cx.lineWidth = 1.2; cx.strokeStyle = "rgba(150,160,175,0.22)"; cx.stroke(new Path2D(path(TXGeo.borders(topo))));
+  const L = TXDECK.castDir ? TXDECK.castDir() : [0.7, 0.7];
+  for (const f of metro) {
+    const pm = new Path2D(path(f));
+    cx.save(); cx.translate(5, 6); cx.fillStyle = "#050608"; cx.fill(pm); cx.restore();
+    const b = path.bounds(f), gm = cx.createLinearGradient(b[0][0], b[0][1], b[1][0], b[1][1]); gm.addColorStop(0, "#1d2026"); gm.addColorStop(1, "#111317");
+    cx.fillStyle = gm; cx.fill(pm);
+    cx.lineWidth = 1.3; cx.strokeStyle = "rgba(170,182,200,0.42)"; cx.stroke(pm);
+  }
+  const p2 = new Path2D(path(bexar)), bb = path.bounds(bexar);
+  /* Bexar, the raised slab: its cast to the south east, its side face, then its top lit across from the north west */
+  cx.save(); cx.filter = "blur(16px)"; cx.translate(22, 24); cx.fillStyle = "rgba(0,0,0,0.9)"; cx.fill(p2); cx.restore();
+  for (let k = 28; k > 0; k -= 2) { cx.save(); cx.translate(k * 0.35, k); cx.fillStyle = k > 9 ? "#121418" : "#1a1c21"; cx.fill(p2); cx.restore(); }
+  const sl = cx.createLinearGradient(bb[0][0], bb[0][1], bb[1][0], bb[1][1]); sl.addColorStop(0, "#5a5e67"); sl.addColorStop(0.4, "#2c2f35"); sl.addColorStop(1, "#16181c");
+  cx.fillStyle = sl; cx.fill(p2);
+  /* THE SLAB'S STONE: the model is cut from dark limestone, so its top carries the stone's own relief,
+   * a heightfield of seeded noise at three scales lit from the deck's north west key, clipped to the
+   * county, rougher toward the north west hills. Material on one object, never a texture over the frame. */
+  { const x0 = Math.floor(bb[0][0]), y0 = Math.floor(bb[0][1]), w = Math.ceil(bb[1][0] - x0), h = Math.ceil(bb[1][1] - y0), S2 = 2;
+    const oc = document.createElement("canvas"); oc.width = w * S2; oc.height = h * S2; const ox = oc.getContext("2d"), img = ox.createImageData(oc.width, oc.height), d = img.data;
+    TX.reseed(20261012);
+    const H = (x, y) => 0.62 * TX.fbm2(x / 120, y / 120, { octaves: 3 }) + 0.3 * TX.fbm2(x / 30, y / 30, { octaves: 3 }) + 0.08 * TX.fbm2(x / 8, y / 8, { octaves: 2 });
+    const lx = -0.62, ly = -0.62, lz = 0.48;
+    for (let j = 0; j < oc.height; j++) for (let i = 0; i < oc.width; i++) {
+      const x = x0 + i / S2, y = y0 + j / S2, e = 0.5, g = 0.35 + 0.95 * (1 - (i / oc.width + j / oc.height) / 2), hx = (H(x + e, y) - H(x - e, y)) * 28 * g, hy = (H(x, y + e) - H(x, y - e)) * 28 * g;   /* rougher in the hill country to the north west, smoother toward the coastal plain */
+      const nz = 1 / Math.sqrt(hx * hx + hy * hy + 1), s = (-hx * lx - hy * ly + lz) * nz - lz, k = (j * oc.width + i) * 4;
+      if (s > 0) { d[k] = 236; d[k + 1] = 240; d[k + 2] = 248; d[k + 3] = Math.min(70, s * 110); } else { d[k + 3] = Math.min(90, -s * 140); }
+    }
+    ox.putImageData(img, 0, 0);
+    cx.save(); cx.clip(p2); cx.drawImage(oc, x0, y0, w, h); cx.restore(); }
+  /* the lit north west rim, the lamp's cold white, falling to near black round the south east */
+  const rim = cx.createLinearGradient(bb[0][0], bb[0][1], bb[1][0], bb[1][1]); rim.addColorStop(0, "rgba(232,238,250,0.95)"); rim.addColorStop(0.42, "rgba(200,210,230,0.12)"); rim.addColorStop(1, "rgba(160,170,190,0)");
+  cx.lineWidth = 2.6; cx.strokeStyle = rim; cx.stroke(p2);
+  /* San Antonio, a small lamp point */
+  const sa = proj(TXGeo.place("San Antonio"));
+  const lg = cx.createRadialGradient(sa[0], sa[1], 0, sa[0], sa[1], 26); lg.addColorStop(0, "rgba(236,240,250,0.55)"); lg.addColorStop(1, "rgba(236,240,250,0)");
+  cx.fillStyle = lg; cx.beginPath(); cx.arc(sa[0], sa[1], 26, 0, 7); cx.fill();
+  cx.fillStyle = "#eef2fa"; cx.beginPath(); cx.arc(sa[0], sa[1], 5, 0, 7); cx.fill();
+  { const el = document.getElementById("lSA"); el.style.left = Math.round(sa[0] + 14) + "px"; el.style.top = Math.round(sa[1] - 34) + "px"; }
+  { const el = document.getElementById("lBX"); el.style.left = Math.round(bb[0][0] + 28) + "px"; el.style.top = Math.round(bb[0][1] + 60) + "px"; }
+  /* THE REACH, from figures.json: lora_open_m 8047 and lora_street_m 805, at the map's own scale.
+   * One metre north of the centroid in degrees of latitude, projected, gives pixels per metre here. */
+  const lora_open_m = 8047, lora_street_m = 805, M_PER_DEG = 111320;
+  const n = proj([c0[0], c0[1] + 1000 / M_PER_DEG]), c = proj(c0), pxPerM = Math.hypot(n[0] - c[0], n[1] - c[1]) / 1000;
+  const rOpen = lora_open_m * pxPerM, rStreet = lora_street_m * pxPerM;
+  /* the legend tray, beside the county and never on it */
+  const LX = 885, LY = 880;
+  if (d3.geoContains(bexar, proj.invert([LX, LY]))) throw new Error("the legend sits on the county");
+  const tray = cx.createRadialGradient(LX, LY, rOpen * 0.6, LX, LY, rOpen + 18); tray.addColorStop(0, "rgba(255,255,255,0)"); tray.addColorStop(1, "rgba(255,255,255,0)");
+  /* the county lines fade out under the legend, which belongs to no place */
+  { const m = cx.createRadialGradient(LX, LY, rOpen * 0.9, LX, LY, rOpen + 60); m.addColorStop(0, "rgba(6,8,11,1)"); m.addColorStop(1, "rgba(6,8,11,0)"); cx.fillStyle = m; cx.beginPath(); cx.arc(LX, LY, rOpen + 60, 0, 7); cx.fill(); }
+  cx.lineWidth = 2.2; cx.strokeStyle = "rgba(232,238,250,0.9)"; cx.setLineDash([]);
+  cx.beginPath(); cx.arc(LX, LY, rOpen, 0, 7); cx.stroke();
+  cx.fillStyle = "rgba(232,238,250,0.07)"; cx.fill();
+  cx.fillStyle = "rgba(232,238,250,0.22)"; cx.beginPath(); cx.arc(LX, LY, rStreet, 0, 7); cx.fill();
+  cx.lineWidth = 2.0; cx.strokeStyle = "rgba(232,238,250,0.75)"; cx.beginPath(); cx.arc(LX, LY, rStreet, 0, 7); cx.stroke();
+  /* the node in plan, a dot with its four sensor ticks */
+  cx.fillStyle = "#eef2fa"; cx.beginPath(); cx.arc(LX, LY, 2, 0, 7); cx.fill();
+  { const el = document.getElementById("lOpen"); el.style.left = Math.round(LX - el.getBoundingClientRect().width / 2) + "px"; el.style.top = Math.round(LY - rOpen - 44) + "px"; }
+  { const el = document.getElementById("lStreet"); el.style.left = Math.round(LX - el.getBoundingClientRect().width / 2) + "px"; el.style.top = Math.round(LY + rOpen + 40) + "px";
+    /* a leader from the label to the small circle's rim */
+    cx.lineWidth = 1.6; cx.strokeStyle = "rgba(232,238,250,0.8)"; cx.beginPath(); cx.moveTo(LX, LY + rOpen + 34); cx.lineTo(LX, LY + rStreet + 3); cx.stroke();
+    window.__txLeaders = [{ target: "the city streets circle", at: [LX, LY + rStreet], to: [LX, LY + rStreet + 3] }]; }
+  window.__txMap = { rOpen: rOpen, rStreet: rStreet, ratio: rOpen / rStreet };
+  CH.post(cx, { a: 0.28 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

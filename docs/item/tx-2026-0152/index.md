@@ -9,7 +9,7 @@ ERCOT issued a market notice telling each Interconnecting Distribution Service P
 - Public access: Write to the decider
 - Take part: https://www.ercot.com/services/comm/mkt_notices/M-A080326-04
 
-- Last checked: 2026-10-09
+- Last checked: 2026-10-12
 
 ## Dates
 
@@ -28,6 +28,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-03 · The grid operator's notice on which large loads sit provisionally in Batch Zero still reads as issued.
 - 2026-10-06 · The grid operator's notice on which large loads sit provisionally in Batch Zero still reads as issued.
 - 2026-10-09 · The grid operator's notice placing large loads provisionally in Batch Zero still reads as issued, each placement still conditional.
+- 2026-10-12 · The notice still says every Batch Zero placement is conditional, and that missing a condition may disqualify the load from Batch Zero. The record now quotes that sentence whole.
 
 ## Evidence
 
@@ -41,7 +42,7 @@ Source (primary_official): https://www.ercot.com/services/comm/mkt_notices/M-A08
 
 ### A load that does not satisfy a condition can be taken off the list.
 
-> Failure to satisfy any applicable condition may disqualify the Large Load.
+> Failure to satisfy any applicable condition may disqualify the Large Load from Batch Zero.
 
 Source (primary_official): https://www.ercot.com/services/comm/mkt_notices/M-A080326-04
 

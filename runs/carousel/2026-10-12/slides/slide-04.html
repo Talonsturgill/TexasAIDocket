@@ -1,0 +1,61 @@
+<!doctype html>
+<!-- 2026-10-12, frame 4 of 9. Archetype CLOSE_CROP. RENDERED through txthree.js in the deck's floodlit world. The node's grey enclosure at detail scale from below and to the side, its lid seam, two cable glands and the cable from the sensor rail, the antenna and the panel's underside above against the black sky, the cobra head catching the lid's edge from the upper left. The model that judges the flood lives in this box. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+  .dek { width:440px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">No server in the loop</h1>
+<p class="dek" data-follow="26">TinyML shrinks a machine learning model to run on a small, low-power microcontroller. The model on the node judges imminent flood risk from current and recent readings without a central server.</p>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-12-crossing.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Where the AI runs", counter: "04 / 09", src: "c4 c5 c6", fit: { min: 72, max: 86, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 44, far: 3000 });
+  const X = CH.crossing({ span: 12, slab: 0.32, bank: 2.2, ramp: 16 });
+  const gnd = TXT.ground(R, { surface: 'dirt', size: 260, tile: 6, seed: 12, y: -6 });
+  const LEVEL = 0.64;
+  CH.place(THREE, TXT, R, X, gnd, { level: LEVEL });
+  const node = K.make('flood_node', { wet: LEVEL, seed: 5 }); node.position.set(5.0, 0, 3.0); node.rotation.y = -0.8; TXT.add(R, node); TXT.contact(R, node, { y: 0.005 });
+  const lamp = CH.lamp(THREE, 1.8, 6.1, { ry: 2.34, reach: 2.6, height: 4.6, i: 42, dist: 25 });   /* a low lamp on the bank in front of the box, its head over the water, raking the box's face */
+  /* the camera stands close below the box, off its front and to its right, looking up past it */
+  const E = CH.part(THREE, node, 'enclosure'), ry = -0.8, f = [Math.sin(ry), 0, Math.cos(ry)], rt = [Math.cos(ry), 0, -Math.sin(ry)];
+  const A = Math.PI / 4, D = 1.0, cA = Math.cos(A) * D, sA = Math.sin(A) * D;
+  const from = [E[0] + f[0] * cA + rt[0] * sA, E[1], E[2] + f[2] * cA + rt[2] * sA];
+  const lo = -0.15, look = [E[0] - f[0] * lo * Math.sin(A) + rt[0] * lo * Math.cos(A), E[1] - 0.04, E[2] - f[2] * lo * Math.sin(A) + rt[2] * lo * Math.cos(A)];
+  TXT.frame(R, { fov: 46, from: from, look: look });
+  CH.rain(THREE, R, { base: 0.2 });   /* the wet night, caught by the floodlight where no lamp stands near */
+  TXT.sky(R);
+  TXT.deckRig(R, CH.rigSpec(W, 3, 4096), CH.rigOpts(E, { distance: 12, shadowFar: 40 }));
+  CH.wake(THREE, R, 5.0, 3.0, LEVEL, { size: 1.0 });
+  CH.glitter(THREE, R, 4.3, 3.8, LEVEL, { w: 4, d: 4, opacity: 0.4, seed: 33 });
+  CH.mirror(node, LEVEL);
+  TXT.stage(R, node, { poolInner: 1, poolOuter: 4 });
+  TXT.weather(R, { grime: 0.5, height: 1.8, mottle: 0.9 });
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0.3, veil: 0.42 });
+  CH.knock(cx, ['.count', '#site'], 0.92);   /* the counter and the site line clear of the post */
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

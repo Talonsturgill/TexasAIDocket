@@ -1,0 +1,81 @@
+{
+ "lens": "reader",
+ "round": 1,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.0,
+   "why": "The bold register is met on a near-black field with light type. Several frames use primitives or look unfinished at full size: 8's ring a flat orange octagon with no waterline, 6 primitives in a thin band with '$220' near the edge, 2 a light grey foreground slab needing plates under the type, 9 an unlit low-poly pickup beside a brown wedge, 4 a clay box."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.0,
+   "why": "One wet night crossing, one cold lamp, rain on every frame, the node on 1, 2, 3, 4, 7, 8 and 9 with amber the only accent. The camera move works; the ring-count motif does not read. 5 and 6 sit outside the world; 2 and 7 put grey floors into the dark track."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.0,
+   "why": "Every numeral traces. Two places read looser than the source: the deck places the device in San Antonio while the release's quotes pair the crossings with coastal bends and name small coastal municipalities as the target, with a coastal funder and a Corpus Christi partner no surface names; and slide 2 sets UT Arlington's radar finding beside the cover's alert line, a join neither release makes."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.0,
+   "why": "A Texan learns what happened. No body decided anything; no site, adopter, deadline or route into the work. The one action is general safety advice. Chen Pan appears with no role; the small coastal towns the release says it is for are never named."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "7 and 8 earn the turn and the close pays off. The cover never names 'It' and 'the post' first reads as the LinkedIn post. 2 is a detour with no stated reason; 3 to 6 run as a spec sheet and 5 could be cut."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "Real Texas specificity and one strong line. Much of the copy leans on 'the release says'. The caption's 'That makes a real flood the test.' has no clear antecedent. No house-rule breaks in slides or caption."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.0,
+   "why": "A fresh palette. The fourth consecutive deck on a university release read for what it leaves out; one hero carried from the cover is the house default."
+  }
+ ],
+ "weighted_score": 6.42,
+ "hard_fails": [
+  "House rule broken in published post copy: first_comment.txt lines 2 and 4 print 'September 28, 2026', a date without the ordinal, twice. The strings come from the claims' document field. Fix: 'September 28th, 2026'."
+ ],
+ "ship": false,
+ "one_sentence_fix": "Put the stake where the release puts it: the node is built for small coastal towns, funded by the Texas Coastal Management Program with Texas A&M-Corpus Christi on the team.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 8,
+   "problem": "The lit ring is a flat unshaded orange octagon and the water a single glint line, so no waterline reads.",
+   "fix": "Model the ring as an emissive torus in each bezel, raise the water with a mirror of the rail so the waterline crosses between sensors 3 and 4."
+  },
+  {
+   "slide": 6,
+   "problem": "Bare primitives in a thin band with an empty middle third, '$220' 40 px from the edge.",
+   "fix": "Drop the camera and dolly in so the sensors, enclosure and panel fill the lower 60 percent; shorten the bar inside the margin."
+  },
+  {
+   "slide": 2,
+   "problem": "A light grey foreground slab lifts the lower third and forces plates behind 'c20' and the site line.",
+   "fix": "Tighten the lamp pool to the column bases so the slab falls to black, then remove the plates."
+  },
+  {
+   "slide": 9,
+   "problem": "An unlit low-poly pickup reads as perched; a brown faceted bank wedge; the rain gauge overlaps the cab.",
+   "fix": "Light the lane under the pickup, swing the camera to separate node and truck, crop the bank wedge."
+  },
+  {
+   "slide": 4,
+   "problem": "A plain rounded grey box with almost no surface detail, clay at feed size.",
+   "fix": "Rake the lamp low across the lid so the seam, latches and a label plate throw shadows; raise the grime."
+  }
+ ]
+}

@@ -1,0 +1,2365 @@
+{
+  "canvas": {
+    "width": 1080,
+    "height": 1350,
+    "scale": 2.0,
+    "px": [
+      2160,
+      2700
+    ]
+  },
+  "text_window": 320,
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "png": "slide-01.png",
+      "console_errors": [
+        "TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 234, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "It judges flood risk on the device",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 195,
+          "font_px": 99.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(236, 234, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              137,
+              778,
+              122
+            ],
+            [
+              80,
+              235,
+              540,
+              122
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "UT San Antonio's prototype runs its AI on the device, with no server. Its release says risk at San Antonio's low-water crossings often climbs before regional alerts sound. Drawn to illustrate.",
+          "x": 82,
+          "y": 371,
+          "w": 600,
+          "h": 214,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(217, 214, 206)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              371,
+              597,
+              42
+            ],
+            [
+              82,
+              414,
+              543,
+              42
+            ],
+            [
+              82,
+              457,
+              525,
+              42
+            ],
+            [
+              82,
+              499,
+              563,
+              42
+            ],
+            [
+              82,
+              542,
+              478,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "UT San Antonio, September 28th",
+          "x": 80,
+          "y": 80,
+          "w": 497,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 214, 206)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              497,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "01 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 214, 206)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c3 c5 c16 c19",
+          "x": 80,
+          "y": 1234,
+          "w": 209,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 214, 206)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              209,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 21530,
+      "ok": true,
+      "load_ms": 137,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 24.3,
+          "variance": 775.3
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-02.html",
+      "png": "slide-02.png",
+      "console_errors": [
+        "TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 234, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Radar can read the storm low",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 187,
+          "font_px": 95.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(236, 234, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              138,
+              758,
+              117
+            ],
+            [
+              80,
+              232,
+              399,
+              117
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "UT San Antonio's release says regional models can miss very local flash floods. UT Arlington checked radar against more than 300 rain gauges and found it can read storm totals roughly 20% low under some conditions.",
+          "x": 82,
+          "y": 363,
+          "w": 720,
+          "h": 214,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(217, 214, 206)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              363,
+              678,
+              42
+            ],
+            [
+              82,
+              406,
+              654,
+              42
+            ],
+            [
+              82,
+              449,
+              611,
+              42
+            ],
+            [
+              82,
+              491,
+              611,
+              42
+            ],
+            [
+              82,
+              534,
+              596,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "RAIN GAUGES",
+          "x": 288,
+          "y": 652,
+          "w": 189,
+          "h": 34,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 234, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              288,
+              651,
+              189,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "RADAR",
+          "x": 654,
+          "y": 652,
+          "w": 86,
+          "h": 34,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 234, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              654,
+              651,
+              86,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "UT San Antonio and UT Arlington",
+          "x": 80,
+          "y": 80,
+          "w": 513,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 214, 206)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              513,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "02 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 214, 206)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c18 c20",
+          "x": 80,
+          "y": 1234,
+          "w": 113,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 214, 206)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              113,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 17395,
+      "ok": true,
+      "load_ms": 156,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 43.9,
+          "variance": 1372
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-03.html",
+      "png": "slide-03.png",
+      "console_errors": [
+        "TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 234, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Four water sensors stacked on one node",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 187,
+          "font_px": 95.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(236, 234, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              138,
+              763,
+              117
+            ],
+            [
+              80,
+              232,
+              807,
+              117
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Four optical water-level sensors at varying heights, plus temperature, humidity, light and precipitation. Drawn to illustrate.",
+          "x": 82,
+          "y": 363,
+          "w": 600,
+          "h": 171,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(217, 214, 206)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              363,
+              506,
+              42
+            ],
+            [
+              82,
+              406,
+              507,
+              42
+            ],
+            [
+              82,
+              449,
+              578,
+              42
+            ],
+            [
+              82,
+              491,
+              179,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "FOUR OPTICAL WATER-LEVEL SENSORS",
+          "x": 82,
+          "y": 984,
+          "w": 301,
+          "h": 62,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 234, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              984,
+              190,
+              31
+            ],
+            [
+              82,
+              1015,
+              301,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "MICROCONTROLLER AND BATTERY",
+          "x": 82,
+          "y": 765,
+          "w": 238,
+          "h": 62,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 234, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              765,
+              238,
+              31
+            ],
+            [
+              82,
+              796,
+              174,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "TEMPERATURE AND HUMIDITY",
+          "x": 82,
+          "y": 681,
+          "w": 190,
+          "h": 62,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 234, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              681,
+              174,
+              31
+            ],
+            [
+              82,
+              712,
+              190,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "PRECIPITATION",
+          "x": 82,
+          "y": 627,
+          "w": 206,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 234, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              627,
+              206,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "SOLAR PANEL",
+          "x": 82,
+          "y": 574,
+          "w": 174,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 234, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              574,
+              174,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "What the node carries",
+          "x": 80,
+          "y": 80,
+          "w": 348,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 214, 206)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              348,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "03 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 214, 206)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c1 c2 c4 c8",
+          "x": 80,
+          "y": 1234,
+          "w": 177,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 214, 206)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              177,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [
+        {
+          "kind": "svg",
+          "x": 270.8,
+          "y": 589.8,
+          "w": 419.2,
+          "h": 2,
+          "by": "line",
+          "color": "rgb(236, 234, 228)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 690,
+          "y": 428,
+          "w": 2,
+          "h": 161.8,
+          "by": "line",
+          "color": "rgb(236, 234, 228)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 690,
+          "y": 428,
+          "w": 126.9,
+          "h": 2,
+          "by": "line",
+          "color": "rgb(236, 234, 228)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 302.6,
+          "y": 643,
+          "w": 401.4,
+          "h": 2,
+          "by": "line",
+          "color": "rgb(236, 234, 228)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 704,
+          "y": 554.2,
+          "w": 2,
+          "h": 88.8,
+          "by": "line",
+          "color": "rgb(236, 234, 228)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 704,
+          "y": 554.2,
+          "w": 14.7,
+          "h": 2,
+          "by": "line",
+          "color": "rgb(236, 234, 228)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 286.7,
+          "y": 711.8,
+          "w": 431.3,
+          "h": 2,
+          "by": "line",
+          "color": "rgb(236, 234, 228)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 718,
+          "y": 592.1,
+          "w": 2,
+          "h": 119.7,
+          "by": "line",
+          "color": "rgb(236, 234, 228)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 718,
+          "y": 592.1,
+          "w": 204.4,
+          "h": 2,
+          "by": "line",
+          "color": "rgb(236, 234, 228)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 334.3,
+          "y": 764.7,
+          "w": 483.7,
+          "h": 31.4,
+          "by": "line",
+          "color": "rgb(236, 234, 228)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 397.9,
+          "y": 1015.2,
+          "w": 405.4,
+          "h": 136.3,
+          "by": "line",
+          "color": "rgb(236, 234, 228)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 397.9,
+          "y": 1015.2,
+          "w": 405.2,
+          "h": 53.3,
+          "by": "line",
+          "color": "rgb(236, 234, 228)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 397.9,
+          "y": 973.8,
+          "w": 404.8,
+          "h": 41.3,
+          "by": "line",
+          "color": "rgb(236, 234, 228)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 397.9,
+          "y": 867.6,
+          "w": 404.5,
+          "h": 147.6,
+          "by": "line",
+          "color": "rgb(236, 234, 228)",
+          "decorative": false,
+          "skip": []
+        }
+      ],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 16710,
+      "ok": true,
+      "load_ms": 122,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 9.2,
+          "variance": 397
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-04.html",
+      "png": "slide-04.png",
+      "console_errors": [
+        "TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 234, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "No server in the loop",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 84,
+          "font_px": 85.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(236, 234, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              138,
+              737,
+              106
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "TinyML shrinks a machine learning model to run on a small, low-power microcontroller. The model on the node judges imminent flood risk from current and recent readings without a central server.",
+          "x": 82,
+          "y": 260,
+          "w": 440,
+          "h": 342,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(217, 214, 206)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              260,
+              374,
+              42
+            ],
+            [
+              82,
+              303,
+              381,
+              42
+            ],
+            [
+              82,
+              345,
+              249,
+              42
+            ],
+            [
+              82,
+              388,
+              396,
+              42
+            ],
+            [
+              82,
+              431,
+              429,
+              42
+            ],
+            [
+              82,
+              474,
+              391,
+              42
+            ],
+            [
+              82,
+              516,
+              379,
+              42
+            ],
+            [
+              82,
+              559,
+              211,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Where the AI runs",
+          "x": 80,
+          "y": 80,
+          "w": 282,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 214, 206)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              282,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "04 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 214, 206)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c4 c5 c6",
+          "x": 80,
+          "y": 1234,
+          "w": 129,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 214, 206)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              129,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 19643,
+      "ok": true,
+      "load_ms": 143,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 34.6,
+          "variance": 1731.1
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-05.html",
+      "png": "slide-05.png",
+      "console_errors": [],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 234, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Over a half-mile in town, up to five miles open",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 161,
+          "font_px": 82,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(236, 234, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              139,
+              834,
+              101
+            ],
+            [
+              80,
+              219,
+              697,
+              101
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The node's LoRa radio reaches more than a half-mile through city streets and up to five miles in open areas, the release says. No site is named, so the circles show scale only.",
+          "x": 82,
+          "y": 337,
+          "w": 620,
+          "h": 214,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(217, 214, 206)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              337,
+              603,
+              42
+            ],
+            [
+              82,
+              379,
+              600,
+              42
+            ],
+            [
+              82,
+              422,
+              606,
+              42
+            ],
+            [
+              82,
+              465,
+              537,
+              42
+            ],
+            [
+              82,
+              508,
+              154,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "SAN ANTONIO",
+          "x": 437,
+          "y": 891,
+          "w": 174,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 234, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              437,
+              891,
+              174,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "BEXAR COUNTY",
+          "x": 174,
+          "y": 656,
+          "w": 190,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 234, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              174,
+              656,
+              190,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "OPEN AREAS",
+          "x": 806,
+          "y": 763,
+          "w": 158,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 234, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              806,
+              763,
+              158,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "CITY STREETS",
+          "x": 790,
+          "y": 993,
+          "w": 190,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 234, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              790,
+              993,
+              190,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "How far it talks",
+          "x": 80,
+          "y": 80,
+          "w": 265,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 214, 206)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              265,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "05 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 214, 206)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c9 c19",
+          "x": 80,
+          "y": 1234,
+          "w": 96,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 214, 206)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              96,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 7202,
+      "ok": true,
+      "load_ms": 84,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 15.3,
+          "variance": 366
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-06.html",
+      "png": "slide-06.png",
+      "console_errors": [
+        "TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 234, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "$150 to $220 in parts",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 94,
+          "font_px": 95.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(236, 234, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              138,
+              875,
+              117
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Parts for one prototype station cost roughly $150 to $220, the release says. A Texas Coastal Management Program grant approved by the Texas Land Commissioner helped fund the work. The parts are drawn to illustrate.",
+          "x": 82,
+          "y": 270,
+          "w": 600,
+          "h": 257,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(217, 214, 206)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              270,
+              527,
+              42
+            ],
+            [
+              82,
+              312,
+              598,
+              42
+            ],
+            [
+              82,
+              355,
+              538,
+              42
+            ],
+            [
+              82,
+              398,
+              492,
+              42
+            ],
+            [
+              82,
+              441,
+              540,
+              42
+            ],
+            [
+              82,
+              483,
+              477,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "$150",
+          "x": 677,
+          "y": 1015,
+          "w": 69,
+          "h": 34,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 234, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              677,
+              1014,
+              69,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "$220",
+          "x": 931,
+          "y": 1015,
+          "w": 69,
+          "h": 34,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 234, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              931,
+              1014,
+              69,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "UT San Antonio, the kit",
+          "x": 80,
+          "y": 80,
+          "w": 381,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 214, 206)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              381,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "06 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 214, 206)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c11 c15",
+          "x": 80,
+          "y": 1234,
+          "w": 113,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 214, 206)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              113,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 22423,
+      "ok": true,
+      "load_ms": 142,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 25.8,
+          "variance": 1281.8
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-07.html",
+      "png": "slide-07.png",
+      "console_errors": [
+        "TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 234, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "98.82%, scored on data",
+          "x": 80,
+          "y": 150,
+          "w": 620,
+          "h": 190,
+          "font_px": 97,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(236, 234, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              137,
+              331,
+              120
+            ],
+            [
+              80,
+              232,
+              590,
+              120
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The release reports 98.82% validation accuracy in initial assessments after training.",
+          "x": 82,
+          "y": 366,
+          "w": 600,
+          "h": 128,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(217, 214, 206)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              366,
+              557,
+              42
+            ],
+            [
+              82,
+              409,
+              538,
+              42
+            ],
+            [
+              82,
+              452,
+              125,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "FULL SCALE",
+          "x": 860,
+          "y": 326,
+          "w": 86,
+          "h": 68,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 234, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              860,
+              325,
+              69,
+              35
+            ],
+            [
+              860,
+              359,
+              86,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "98.82%",
+          "x": 860,
+          "y": 491,
+          "w": 103,
+          "h": 34,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 234, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              860,
+              490,
+              103,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "UT San Antonio, the one score",
+          "x": 80,
+          "y": 80,
+          "w": 480,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 214, 206)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              480,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "07 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 214, 206)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c7 c19",
+          "x": 80,
+          "y": 1234,
+          "w": 96,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 214, 206)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              96,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [
+        {
+          "kind": "svg",
+          "x": 818,
+          "y": 359.3,
+          "w": 34,
+          "h": 64,
+          "by": "line",
+          "color": "rgb(236, 234, 228)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 818.1,
+          "y": 438.4,
+          "w": 33.9,
+          "h": 70,
+          "by": "line",
+          "color": "rgb(236, 234, 228)",
+          "decorative": false,
+          "skip": []
+        }
+      ],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 18014,
+      "ok": true,
+      "load_ms": 142,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 29.3,
+          "variance": 2643.2
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-08.html",
+      "png": "slide-08.png",
+      "console_errors": [
+        "TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 234, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "No flood test is named",
+          "x": 80,
+          "y": 150,
+          "w": 540,
+          "h": 187,
+          "font_px": 95.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(236, 234, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              138,
+              502,
+              117
+            ],
+            [
+              80,
+              232,
+              356,
+              117
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The release names no installation site, no city or county running it and no field test against a real flood. It gives no false alarm or missed event figure. It describes a prototype the team aims at small coastal towns. Drawn to illustrate.",
+          "x": 82,
+          "y": 363,
+          "w": 520,
+          "h": 299,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(217, 214, 206)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              363,
+              495,
+              42
+            ],
+            [
+              82,
+              406,
+              465,
+              42
+            ],
+            [
+              82,
+              449,
+              441,
+              42
+            ],
+            [
+              82,
+              491,
+              446,
+              42
+            ],
+            [
+              82,
+              534,
+              502,
+              42
+            ],
+            [
+              82,
+              577,
+              483,
+              42
+            ],
+            [
+              82,
+              620,
+              500,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "What the release leaves out",
+          "x": 80,
+          "y": 80,
+          "w": 447,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 214, 206)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              447,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "08 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 214, 206)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c1 c19",
+          "x": 80,
+          "y": 1234,
+          "w": 96,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 214, 206)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              96,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 15531,
+      "ok": true,
+      "load_ms": 136,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 14.1,
+          "variance": 1002.5
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    },
+    {
+      "file": "slide-09.html",
+      "png": "slide-09.png",
+      "console_errors": [
+        "TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 234, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Turn around at the water",
+          "x": 80,
+          "y": 150,
+          "w": 560,
+          "h": 195,
+          "font_px": 99.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(236, 234, 228)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              137,
+              534,
+              122
+            ],
+            [
+              80,
+              235,
+              491,
+              122
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The National Weather Service cites the CDC. Over half of flood drownings happen when a vehicle is driven into flood water. Whatever a sensor reports, the turn is the driver's. Drawn to illustrate.",
+          "x": 82,
+          "y": 371,
+          "w": 600,
+          "h": 257,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(217, 214, 206)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              371,
+              573,
+              42
+            ],
+            [
+              82,
+              414,
+              494,
+              42
+            ],
+            [
+              82,
+              457,
+              528,
+              42
+            ],
+            [
+              82,
+              499,
+              579,
+              42
+            ],
+            [
+              82,
+              542,
+              467,
+              42
+            ],
+            [
+              82,
+              585,
+              142,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "National Weather Service",
+          "x": 80,
+          "y": 80,
+          "w": 397,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 214, 206)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              397,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "09 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 214, 206)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c22",
+          "x": 80,
+          "y": 1234,
+          "w": 48,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(217, 214, 206)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              48,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 19221,
+      "ok": true,
+      "load_ms": 145,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 19.4,
+          "variance": 1767.4
+        }
+      ],
+      "breather": false,
+      "leaders": []
+    }
+  ]
+}

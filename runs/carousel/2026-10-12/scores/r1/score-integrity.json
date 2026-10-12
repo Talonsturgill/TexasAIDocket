@@ -1,0 +1,84 @@
+{
+ "lens": "integrity",
+ "round": 1,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.5,
+   "why": "Bold dark register achieved throughout. Held down by primitives and floating objects on several frames: 2 the node hovers above a brown hill with no contact, a light leak lower left, plates behind 'c20' and the site line; 4 a clay box with a protruding gasket band and no antenna; 6 primitives in a thin band; 9 a black pickup with no contact and low-poly banks; 1 and 9 the amber a pool rather than a ring. The preflight's named weaknesses on 1, 7 and 9 were not repaired. 3, 5 and 8 are good."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.8,
+   "why": "Clearly one deck: one night crossing, one lamp, one node carried through 1, 2, 3, 4, 6, 7, 8 and 9, one amber accent on wetted rings only. Both named continuity devices visible. Value holds dark; slide 2's grey ground the lightest step; slide 5 the declared companion frame."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 6.3,
+   "why": "Every numeral traces through compute.py. Losses: 'post' is asserted as fact on several surfaces while the storyboard admits the mounting is not in the release, slide 3's labelled diagram carries no 'drawn to illustrate', 'RAIN GAUGE' is a noun the source does not use (c2 says precipitation sensing), 'the box' names a housing the release does not describe; the place is borrowed from one scene-setting sentence while the release's target is small coastal municipalities under a coastal NOAA grant; slide 2 uses UT Arlington's radar finding as the stake for a UTSA node while the release's own stake (c18) went unused. None is a false sentence."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.0,
+   "why": "What, who and how are clear. No body decided anything and no deadline. The where is the deck's choice of San Antonio. The reader's action is generic safety advice. The patent and commercialisation line gets half a sentence."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "The cover earns the swipe; the turn at 7 to 8 lands where the reorder put it. Slide 2 does not pay the cover at once; slide 4 restates the cover. The close moves from the device to the driver."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Clean and on register; no house-rule breaks. Flat lines: '98.82%, scored on data', the slide 5 fragment, the caption's template close."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.0,
+   "why": "Fresh subject and accent. The structure repeats: the third university release read for what it leaves out in four days, another staged night world with a hero carried through."
+  }
+ ],
+ "weighted_score": 6.59,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Replace slide 2's UT Arlington radar detour with the UTSA release's own stake (c18), and put the small coastal municipalities target and the coastal NOAA grant on the reach frame and in the caption's opening.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 2,
+   "problem": "The node hovers above a featureless brown hill with no contact, a light leak lower left, plates under the cite and site lines.",
+   "fix": "Plant the node with contact and pool the light only under the columns' bases, removing the leak and the plates."
+  },
+  {
+   "slide": 6,
+   "problem": "Primitive parts in a thin band, an empty top half and bare asphalt below.",
+   "fix": "Drop the camera to 0.6 m at 3 m back so the sensors and enclosure fill the middle third at modelled detail."
+  },
+  {
+   "slide": 4,
+   "problem": "A clay grey box, its gasket band protruding, no antenna or grime.",
+   "fix": "Inset the gasket into a modelled lid seam, add grime and the antenna, rake the lamp along the lid edge."
+  },
+  {
+   "slide": 9,
+   "problem": "A near-black pickup with no tyre contact, low-poly banks, the amber a pool.",
+   "fix": "Light the lane under the pickup, dress the bank, shrink the amber to halos on the wetted rings."
+  },
+  {
+   "slide": 1,
+   "problem": "The amber a ground pool, the edge line a hard stripe ending in a square corner.",
+   "fix": "A tight halo at the first ring; a dimmer painted line fading under the water."
+  },
+  {
+   "slide": 7,
+   "problem": "Rain inside the glass and a floor pool lifting the lower third.",
+   "fix": "Exclude rain from the column and pull the pool to its base."
+  }
+ ]
+}

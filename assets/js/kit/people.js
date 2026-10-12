@@ -911,7 +911,10 @@ export function install(K, THREE, TXT) {
       if (role === 'worker') shirtKind = sroll < 0.5 ? 'tee' : 'work';
       else shirtKind = sroll < 0.35 ? 'tee' : sroll < 0.6 ? 'plaid' : sroll < 0.8 ? 'button' : 'polo';
       sleeves = shirtKind === 'tee' || shirtKind === 'polo' ? 'short' : r() < 0.35 ? 'rolled' : 'long';
-      if (shirtKind === 'plaid') { const pl = pick(r, PLAIDS); shirtM = cloth('plaid', pl[0], { b: pl[1], c: pl[2] }); }
+      // A SHIRT COLOUR THE CALLER NAMED WINS ON EVERY SEED (2026-10-12). A plaid roll used to ignore
+      // `shirt`, so no. 48 asked for a dark shirt at seed 8 and got a plaid one. The plaid is still
+      // picked, so the seed's later draws are unchanged, and the cut (placket, flap pockets) stays.
+      if (shirtKind === 'plaid') { const pl = pick(r, PLAIDS); shirtM = o.shirt != null ? cloth('cloth', o.shirt) : cloth('plaid', pl[0], { b: pl[1], c: pl[2] }); }
       else shirtM = cloth('cloth', o.shirt != null ? o.shirt : shirtKind === 'work' ? pick(r, [0x6d7f8f, 0x8a7a5c, 0x3f4f5f, 0xb0a58a]) : pick(r, SHIRTS));
       jeans = role === 'worker' ? r() < 0.7 : r() < 0.65;
       if (o.trousers != null) jeans = false;

@@ -1,0 +1,74 @@
+{
+ "lens": "integrity",
+ "round": 2,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.5,
+   "why": "Bold dark register on every frame; the cover, 7's column and 9's streak work. Four frames fall short: 4 a featureless rounded grey box; 6 a row of primitive discs and cylinders with six unexplained white discs, a dominant pale cost bar, the pole cropped and '$220' outside the safe zone; 2 the node hangs over the hill line with no contact and 'c18 c20' on a plate; 8's left half is empty black. On 3 the SOLAR PANEL leader crosses the PRECIPITATION leader."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "One night world with rain, one hero node in one material, one amber accent at the waterline; the camera move climbs the node. Slide 5 sits outside the world."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 6.8,
+   "why": "Every numeral traces to a quote via compute.py. Defects: compute.py types release_date as a literal attributed to c1, whose quote carries no date; the first comment printed the year in a 2026 post; slides 8 and 9 show the node in a flood with no 'Drawn to illustrate' while 8's dek says no field test against a real flood exists; on 2 the kicker and the node drawn by the radar column invite a link no claim makes."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.0,
+   "why": "What happened, what it does and what is missing are clear, and the close gives a real action. The where is loose: the release's coastal target arrives only on 8 and in the caption's fourth paragraph. No body decides and no next date exists."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "The cover is clear but mild, 2 pays at once, 3 to 6 run the device, the turn at 7 into 8, and 9 closes. 3 and 4 overlap; 5 could move."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "Clean and Texan; house rules clean on slides and caption. Flat lines: '98.82%, scored on data' and the slide 5 hook."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "No topic repeat in 30 days. The ninth consecutive one-hero deck, the second night world in four days, and the second release-absence spine in two days."
+  }
+ ],
+ "weighted_score": 6.91,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Print 'Drawn to illustrate' on 8 and 9, take the release date from a published field on the fetched page rather than a typed literal, and rebuild the first comment so the date prints 'September 28th'.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 4,
+   "problem": "A featureless rounded grey box fills half the frame.",
+   "fix": "Model the enclosure as hardware (latches, a dark gasket line, a gland with a drip loop, mud on the lower third) in a three-quarter view with the lamp raking the lid edge."
+  },
+  {
+   "slide": 6,
+   "problem": "Untextured discs and cylinders, six unexplained white discs, a dominant pale cost bar, the pole cropped, '$220' outside the safe zone.",
+   "fix": "Lay out only the parts the release names as modelled heroes, drop the bar to mid grey, pull '$220' inside the margin."
+  },
+  {
+   "slide": 2,
+   "problem": "The node hangs over the hill line with no contact; the footer id sits on a plate.",
+   "fix": "Put the node's footing on the far bank with contact and a reflection; darken the ground under the id instead of a plate."
+  },
+  {
+   "slide": 8,
+   "problem": "The left half is empty black with no ground, water or horizon.",
+   "fix": "Lower the camera so the water plane runs the full width at the lower third with the rail mirrored and the lamp streak across it."
+  }
+ ]
+}
