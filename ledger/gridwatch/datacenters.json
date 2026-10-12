@@ -1,8 +1,8 @@
 {
  "_spec": 1,
- "read": "2026-10-11",
+ "read": "2026-10-12",
  "source": "https://comptroller.texas.gov/taxes/data-centers/data-center-lists.php",
- "digest": "0ffa2eba345e9c80",
+ "digest": "45a8d0b8a620c9b0",
  "facilities": [
   {
    "name": "NADC",
@@ -2320,6 +2320,19 @@
    ],
    "operators": [
     "Decennial TX, LLC"
+   ]
+  },
+  {
+   "name": "South Monahans Datacenter",
+   "effective": "2026-10-08",
+   "owners": [
+    "Circe Monahans, LLC"
+   ],
+   "occupants": [
+    "Circe Monahans, LLC"
+   ],
+   "operators": [
+    "Circe Monahans, LLC"
    ]
   }
  ]
