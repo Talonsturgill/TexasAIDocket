@@ -1,8 +1,8 @@
 {
   "_spec": 2,
-  "checked_at": "2026-10-12T03:09:31Z",
+  "checked_at": "2026-10-12T07:34:19Z",
   "provider": "Publisher RSS and Atom",
-  "response_sha256": "bc11419f8bf3ecfba7f1b0878287b0152492dd490ce0eb6cfe2a7982ba407ed0",
+  "response_sha256": "5c58965a490e8dbca59da971b469aac80b987f554381f0f34aad1b7236750e3e",
   "articles": [
     {
       "title": "Dallas Market Center Launches AI Training Program for Independent Retailers",
@@ -69,135 +69,20 @@
     }
   ],
   "selected": {
-    "title": "Anthropic-linked $366m data center project filed for in Cedar Creek, Texas",
-    "url": "https://www.datacenterdynamics.com/en/news/anthropic-linked-366m-data-center-project-filed-for-in-cedar-creek-texas/",
-    "first_seen_at": "2026-10-09T14:27:53Z",
-    "summary": "First building will be located on Earl Callahan Road",
+    "title": "ThisWay Global plans 73MW AI and HPC data center in Bryan, Texas",
+    "url": "https://www.datacenterdynamics.com/en/news/thisway-global-plans-73mw-ai-and-hpc-data-center-in-bryan-texas/",
+    "first_seen_at": "2026-10-09T11:14:37Z",
+    "summary": "Will offer compute to researchers, public sector, and industry users",
     "feed": "https://www.datacenterdynamics.com/en/rss/",
     "publisher": "Data Center Dynamics",
     "coverage": 1,
-    "score": 0.173269,
+    "score": 0.138984,
     "priority": 0
   },
-  "expires_at": "2026-10-16T14:27:53Z",
+  "expires_at": "2026-10-16T11:14:37Z",
   "rotation_version": 1,
   "carousel_version": 1,
   "editions": [
-    {
-      "starts_at": "2026-10-12T01:23:00Z",
-      "selected": {
-        "title": "Anthropic-linked $366m data center project filed for in Cedar Creek, Texas",
-        "url": "https://www.datacenterdynamics.com/en/news/anthropic-linked-366m-data-center-project-filed-for-in-cedar-creek-texas/",
-        "first_seen_at": "2026-10-09T14:27:53Z",
-        "summary": "First building will be located on Earl Callahan Road",
-        "feed": "https://www.datacenterdynamics.com/en/rss/",
-        "publisher": "Data Center Dynamics",
-        "coverage": 1,
-        "score": 0.173269,
-        "priority": 0
-      },
-      "stories": [
-        {
-          "title": "Anthropic-linked $366m data center project filed for in Cedar Creek, Texas",
-          "url": "https://www.datacenterdynamics.com/en/news/anthropic-linked-366m-data-center-project-filed-for-in-cedar-creek-texas/",
-          "first_seen_at": "2026-10-09T14:27:53Z",
-          "summary": "First building will be located on Earl Callahan Road",
-          "feed": "https://www.datacenterdynamics.com/en/rss/",
-          "publisher": "Data Center Dynamics",
-          "coverage": 1,
-          "score": 0.173269,
-          "priority": 0
-        },
-        {
-          "title": "ThisWay Global plans 73MW AI and HPC data center in Bryan, Texas",
-          "url": "https://www.datacenterdynamics.com/en/news/thisway-global-plans-73mw-ai-and-hpc-data-center-in-bryan-texas/",
-          "first_seen_at": "2026-10-09T11:14:37Z",
-          "summary": "Will offer compute to researchers, public sector, and industry users",
-          "feed": "https://www.datacenterdynamics.com/en/rss/",
-          "publisher": "Data Center Dynamics",
-          "coverage": 1,
-          "score": 0.157877,
-          "priority": 0
-        },
-        {
-          "title": "'A long game': When is the best time to initiate a data center moratorium in Texas?",
-          "url": "https://www.tpr.org/science-technology/2026-10-09/a-long-game-when-is-the-best-time-to-initiate-a-data-center-moratorium-in-texas",
-          "first_seen_at": "2026-10-09T14:53:54Z",
-          "summary": "Last month, Lubbock City Council began the procedure to adopt a pause on large-scale data center development. If the moratorium passes, it will be two years until another one can be put in place. With more information and potential changes likely to come out of the state's legislative session, one councilman has argued that the city should hold off on playing its moratorium card. All the while, the clock may be ticking on the statewide pause on data centers.",
-          "feed": "https://www.tpr.org/index.rss",
-          "publisher": "Texas Public Radio",
-          "coverage": 1,
-          "score": 0.175453,
-          "priority": 1
-        },
-        {
-          "title": "Dallas’ Southwest Airlines Launches ChatGPT Plugin to Help Customers Find Flights",
-          "url": "https://dallasinnovates.com/dallas-southwest-airlines-launches-chatgpt-plugin-to-help-customers-find-flights/",
-          "first_seen_at": "2026-10-08T16:26:14Z",
-          "summary": "Dallas-based Southwest Airlines said it just became the first U.S. airline to incorporate flight-shopping capabilities directly into ChatGPT, one of the world’s most popular AI tools. Southwest’s ChatGPT plugin, which went live Tuesday, lets users search destinations and compare dates, times and fares in a ChatGPT conversation.…",
-          "feed": "https://dallasinnovates.com/feed/",
-          "publisher": "Dallas Innovates",
-          "coverage": 1,
-          "score": 0.091713,
-          "priority": 3
-        },
-        {
-          "title": "Patented: Lennox’s Machine-Learning Thermostat Scheduling and 105 More Inventions Across North Texas",
-          "url": "https://dallasinnovates.com/patented-lennoxs-machine-learning-thermostat-scheduling-and-105-more-inventions-across-north-texas/",
-          "first_seen_at": "2026-10-07T22:50:00Z",
-          "summary": "Richardson-based Lennox Industries, a subsidiary of Lennox International (NYSE: LII), has patented a heating, ventilation and air conditioning control device. The patent application describes a device that uses machine learning to predict when a building is occupied and adjust its schedule based on how aggressively the user wants to save energy.…",
-          "feed": "https://dallasinnovates.com/feed/",
-          "publisher": "Dallas Innovates",
-          "coverage": 1,
-          "score": 0.055161,
-          "priority": 3
-        },
-        {
-          "title": "Cisco broadens agentic features in Webex collaboration platform",
-          "url": "https://siliconangle.com/2026/10/07/cisco-broadens-agentic-features-in-webex-collaboration-platform/",
-          "first_seen_at": "2026-10-07T20:34:28Z",
-          "summary": "Cisco Systems Inc. today detailed a broad expansion of its Webex collaboration portfolio that brings artificial intelligence agents into team conversations, connects office technology with workplace management and enables customer-service agents to continue working after an interaction ends. Introduced at WebexOne in Austin, Texas, the updates extend Cisco’s strategy of integrating people, AI agents and […]",
-          "feed": "https://siliconangle.com/feed/",
-          "publisher": "SiliconANGLE",
-          "coverage": 1,
-          "score": 0.051677,
-          "priority": 3
-        },
-        {
-          "title": "Dallas Market Center Launches AI Training Program for Independent Retailers",
-          "url": "https://dallasinnovates.com/dallas-market-center-launches-ai-training-program-for-independent-retailers/",
-          "first_seen_at": "2026-10-07T20:14:38Z",
-          "summary": "Dallas Market Center, the 5 million-square-foot B2B trading hub and wholesale marketplace northwest of downtown Dallas, just introduced an AI training program for a sizable chunk of its customer base: independent retailers. The market center said its Retail Ready program is the first B2B marketplace to create an AI education program for independent retailers. …",
-          "feed": "https://dallasinnovates.com/feed/",
-          "publisher": "Dallas Innovates",
-          "coverage": 1,
-          "score": 0.051186,
-          "priority": 3
-        },
-        {
-          "title": "Dallas Startup UpSmith Raises $10M Series A to Put AI to Work for Home-Services Providers",
-          "url": "https://dallasinnovates.com/dallas-startup-upsmith-raises-10m-series-a-to-put-ai-to-work-for-home-services-providers/",
-          "first_seen_at": "2026-10-06T21:02:55Z",
-          "summary": "Dallas-based UpSmith raised a $10 million Series A round to expand its engineering and sales teams and ramp up partnerships. The startup’s AI platform helps home-services contractors find and act on otherwise missed revenue opportunities. SemperVirens led the round. Other investors include Hannah Grey Ventures, Asymmetric Capital Partners, CIV, Synetro Group, the Tim Tebow-affiliated WaterStone Impact Fund, former OpenAI executive Colin Evans of Sandwith Ventures, Deason Capital Services and OpenGov co-founder Zachary Bookman. …",
-          "feed": "https://dallasinnovates.com/feed/",
-          "publisher": "Dallas Innovates",
-          "coverage": 1,
-          "score": 0.026195,
-          "priority": 3
-        },
-        {
-          "title": "Texas agency sues to stop release of data center records that it says could aid terrorists",
-          "url": "https://feeds.texastribune.org/link/16799/17490894/texas-data-center-lawsuit-paxton-water",
-          "first_seen_at": "2026-10-06T22:34:14Z",
-          "summary": "A lawsuit will test whether Texas officials can withhold data center location details under the state Homeland Security Act.",
-          "feed": "https://feeds.texastribune.org/feeds/main/",
-          "publisher": "The Texas Tribune",
-          "coverage": 1,
-          "score": 0.027372,
-          "priority": 4
-        }
-      ]
-    },
     {
       "starts_at": "2026-10-12T07:23:00Z",
       "selected": {
@@ -208,7 +93,7 @@
         "feed": "https://www.datacenterdynamics.com/en/rss/",
         "publisher": "Data Center Dynamics",
         "coverage": 1,
-        "score": 0.139743,
+        "score": 0.138984,
         "priority": 0
       },
       "stories": [
@@ -220,7 +105,7 @@
           "feed": "https://www.datacenterdynamics.com/en/rss/",
           "publisher": "Data Center Dynamics",
           "coverage": 1,
-          "score": 0.139743,
+          "score": 0.138984,
           "priority": 0
         },
         {
@@ -231,7 +116,7 @@
           "feed": "https://www.datacenterdynamics.com/en/rss/",
           "publisher": "Data Center Dynamics",
           "coverage": 1,
-          "score": 0.153367,
+          "score": 0.152534,
           "priority": 0
         },
         {
@@ -242,7 +127,7 @@
           "feed": "https://www.tpr.org/index.rss",
           "publisher": "Texas Public Radio",
           "coverage": 1,
-          "score": 0.155299,
+          "score": 0.154456,
           "priority": 1
         },
         {
@@ -253,7 +138,7 @@
           "feed": "https://dallasinnovates.com/feed/",
           "publisher": "Dallas Innovates",
           "coverage": 1,
-          "score": 0.081179,
+          "score": 0.080738,
           "priority": 3
         },
         {
@@ -264,7 +149,7 @@
           "feed": "https://dallasinnovates.com/feed/",
           "publisher": "Dallas Innovates",
           "coverage": 1,
-          "score": 0.048825,
+          "score": 0.048559,
           "priority": 3
         },
         {
@@ -275,7 +160,7 @@
           "feed": "https://siliconangle.com/feed/",
           "publisher": "SiliconANGLE",
           "coverage": 1,
-          "score": 0.045741,
+          "score": 0.045492,
           "priority": 3
         },
         {
@@ -286,7 +171,7 @@
           "feed": "https://dallasinnovates.com/feed/",
           "publisher": "Dallas Innovates",
           "coverage": 1,
-          "score": 0.045306,
+          "score": 0.04506,
           "priority": 3
         },
         {
@@ -297,7 +182,7 @@
           "feed": "https://dallasinnovates.com/feed/",
           "publisher": "Dallas Innovates",
           "coverage": 1,
-          "score": 0.023186,
+          "score": 0.02306,
           "priority": 3
         },
         {
@@ -308,7 +193,7 @@
           "feed": "https://feeds.texastribune.org/feeds/main/",
           "publisher": "The Texas Tribune",
           "coverage": 1,
-          "score": 0.024228,
+          "score": 0.024096,
           "priority": 4
         }
       ]
@@ -542,14 +427,124 @@
           "priority": 4
         }
       ]
+    },
+    {
+      "starts_at": "2026-10-13T01:23:00Z",
+      "selected": {
+        "title": "Dallas Market Center Launches AI Training Program for Independent Retailers",
+        "url": "https://dallasinnovates.com/dallas-market-center-launches-ai-training-program-for-independent-retailers/",
+        "first_seen_at": "2026-10-07T20:14:38Z",
+        "summary": "Dallas Market Center, the 5 million-square-foot B2B trading hub and wholesale marketplace northwest of downtown Dallas, just introduced an AI training program for a sizable chunk of its customer base: independent retailers. The market center said its Retail Ready program is the first B2B marketplace to create an AI education program for independent retailers. …",
+        "feed": "https://dallasinnovates.com/feed/",
+        "publisher": "Dallas Innovates",
+        "coverage": 1,
+        "score": 0.026939,
+        "priority": 3
+      },
+      "stories": [
+        {
+          "title": "Dallas Market Center Launches AI Training Program for Independent Retailers",
+          "url": "https://dallasinnovates.com/dallas-market-center-launches-ai-training-program-for-independent-retailers/",
+          "first_seen_at": "2026-10-07T20:14:38Z",
+          "summary": "Dallas Market Center, the 5 million-square-foot B2B trading hub and wholesale marketplace northwest of downtown Dallas, just introduced an AI training program for a sizable chunk of its customer base: independent retailers. The market center said its Retail Ready program is the first B2B marketplace to create an AI education program for independent retailers. …",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.026939,
+          "priority": 3
+        },
+        {
+          "title": "Anthropic-linked $366m data center project filed for in Cedar Creek, Texas",
+          "url": "https://www.datacenterdynamics.com/en/news/anthropic-linked-366m-data-center-project-filed-for-in-cedar-creek-texas/",
+          "first_seen_at": "2026-10-09T14:27:53Z",
+          "summary": "First building will be located on Earl Callahan Road",
+          "feed": "https://www.datacenterdynamics.com/en/rss/",
+          "publisher": "Data Center Dynamics",
+          "coverage": 1,
+          "score": 0.091192,
+          "priority": 3
+        },
+        {
+          "title": "ThisWay Global plans 73MW AI and HPC data center in Bryan, Texas",
+          "url": "https://www.datacenterdynamics.com/en/news/thisway-global-plans-73mw-ai-and-hpc-data-center-in-bryan-texas/",
+          "first_seen_at": "2026-10-09T11:14:37Z",
+          "summary": "Will offer compute to researchers, public sector, and industry users",
+          "feed": "https://www.datacenterdynamics.com/en/rss/",
+          "publisher": "Data Center Dynamics",
+          "coverage": 1,
+          "score": 0.083092,
+          "priority": 3
+        },
+        {
+          "title": "Dallas’ Southwest Airlines Launches ChatGPT Plugin to Help Customers Find Flights",
+          "url": "https://dallasinnovates.com/dallas-southwest-airlines-launches-chatgpt-plugin-to-help-customers-find-flights/",
+          "first_seen_at": "2026-10-08T16:26:14Z",
+          "summary": "Dallas-based Southwest Airlines said it just became the first U.S. airline to incorporate flight-shopping capabilities directly into ChatGPT, one of the world’s most popular AI tools. Southwest’s ChatGPT plugin, which went live Tuesday, lets users search destinations and compare dates, times and fares in a ChatGPT conversation.…",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.048269,
+          "priority": 3
+        },
+        {
+          "title": "Patented: Lennox’s Machine-Learning Thermostat Scheduling and 105 More Inventions Across North Texas",
+          "url": "https://dallasinnovates.com/patented-lennoxs-machine-learning-thermostat-scheduling-and-105-more-inventions-across-north-texas/",
+          "first_seen_at": "2026-10-07T22:50:00Z",
+          "summary": "Richardson-based Lennox Industries, a subsidiary of Lennox International (NYSE: LII), has patented a heating, ventilation and air conditioning control device. The patent application describes a device that uses machine learning to predict when a building is occupied and adjust its schedule based on how aggressively the user wants to save energy.…",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.029031,
+          "priority": 3
+        },
+        {
+          "title": "Cisco broadens agentic features in Webex collaboration platform",
+          "url": "https://siliconangle.com/2026/10/07/cisco-broadens-agentic-features-in-webex-collaboration-platform/",
+          "first_seen_at": "2026-10-07T20:34:28Z",
+          "summary": "Cisco Systems Inc. today detailed a broad expansion of its Webex collaboration portfolio that brings artificial intelligence agents into team conversations, connects office technology with workplace management and enables customer-service agents to continue working after an interaction ends. Introduced at WebexOne in Austin, Texas, the updates extend Cisco’s strategy of integrating people, AI agents and […]",
+          "feed": "https://siliconangle.com/feed/",
+          "publisher": "SiliconANGLE",
+          "coverage": 1,
+          "score": 0.027198,
+          "priority": 3
+        },
+        {
+          "title": "Dallas Startup UpSmith Raises $10M Series A to Put AI to Work for Home-Services Providers",
+          "url": "https://dallasinnovates.com/dallas-startup-upsmith-raises-10m-series-a-to-put-ai-to-work-for-home-services-providers/",
+          "first_seen_at": "2026-10-06T21:02:55Z",
+          "summary": "Dallas-based UpSmith raised a $10 million Series A round to expand its engineering and sales teams and ramp up partnerships. The startup’s AI platform helps home-services contractors find and act on otherwise missed revenue opportunities. SemperVirens led the round. Other investors include Hannah Grey Ventures, Asymmetric Capital Partners, CIV, Synetro Group, the Tim Tebow-affiliated WaterStone Impact Fund, former OpenAI executive Colin Evans of Sandwith Ventures, Deason Capital Services and OpenGov co-founder Zachary Bookman. …",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.013786,
+          "priority": 3
+        },
+        {
+          "title": "'A long game': When is the best time to initiate a data center moratorium in Texas?",
+          "url": "https://www.tpr.org/science-technology/2026-10-09/a-long-game-when-is-the-best-time-to-initiate-a-data-center-moratorium-in-texas",
+          "first_seen_at": "2026-10-09T14:53:54Z",
+          "summary": "Last month, Lubbock City Council began the procedure to adopt a pause on large-scale data center development. If the moratorium passes, it will be two years until another one can be put in place. With more information and potential changes likely to come out of the state's legislative session, one councilman has argued that the city should hold off on playing its moratorium card. All the while, the clock may be ticking on the statewide pause on data centers.",
+          "feed": "https://www.tpr.org/index.rss",
+          "publisher": "Texas Public Radio",
+          "coverage": 1,
+          "score": 0.092342,
+          "priority": 4
+        },
+        {
+          "title": "Texas agency sues to stop release of data center records that it says could aid terrorists",
+          "url": "https://feeds.texastribune.org/link/16799/17490894/texas-data-center-lawsuit-paxton-water",
+          "first_seen_at": "2026-10-06T22:34:14Z",
+          "summary": "A lawsuit will test whether Texas officials can withhold data center location details under the state Homeland Security Act.",
+          "feed": "https://feeds.texastribune.org/feeds/main/",
+          "publisher": "The Texas Tribune",
+          "coverage": 1,
+          "score": 0.014406,
+          "priority": 4
+        }
+      ]
     }
   ],
   "history": [
-    {
-      "url": "https://dallasinnovates.com/dallas-care-com-hires-former-amazon-and-grubhub-exec-as-chief-product-and-technology-officer/",
-      "title": "Dallas’ Care.com Hires Former Amazon and Grubhub Exec as Chief Product and Technology Officer",
-      "shown_at": "2026-10-05T07:23:00Z"
-    },
     {
       "url": "https://www.datacenterdynamics.com/en/news/skybox-prologis-file-for-fourth-data-center-in-hutto-texas/",
       "title": "Skybox & Prologis file for fourth data center in Hutto, Texas",
@@ -684,6 +679,11 @@
       "url": "https://www.datacenterdynamics.com/en/news/anthropic-linked-366m-data-center-project-filed-for-in-cedar-creek-texas/",
       "title": "Anthropic-linked $366m data center project filed for in Cedar Creek, Texas",
       "shown_at": "2026-10-12T01:23:00Z"
+    },
+    {
+      "url": "https://www.datacenterdynamics.com/en/news/thisway-global-plans-73mw-ai-and-hpc-data-center-in-bryan-texas/",
+      "title": "ThisWay Global plans 73MW AI and HPC data center in Bryan, Texas",
+      "shown_at": "2026-10-12T07:23:00Z"
     }
   ],
   "feeds": [
@@ -699,7 +699,9 @@
     },
     {
       "url": "https://www.datacenterdynamics.com/en/rss/",
-      "status": "not_modified"
+      "status": "ok",
+      "items": 20,
+      "sha256": "8c991d40ac6f313d51755fa21a879bd3002d46581559d8a91bcf6413fa6135fc"
     },
     {
       "url": "https://news.mit.edu/rss/topic/artificial-intelligence2",
@@ -711,7 +713,7 @@
       "url": "https://openai.com/news/rss.xml",
       "status": "ok",
       "items": 1287,
-      "sha256": "34c9e1053d8d3b70e2ff545f923f16558b22b3c088478c1dc27b4c19129ed99d"
+      "sha256": "f3a6adb51a668a8a65527064db803ead038e425eb9688ceb03b3f3cfabd6958d"
     },
     {
       "url": "https://blogs.nvidia.com/feed/",
@@ -731,12 +733,15 @@
     },
     {
       "url": "https://www.artificialintelligence-news.com/feed/",
-      "status": "backoff",
-      "retry_at": "2026-10-12T07:25:55Z"
+      "status": "unavailable",
+      "retry_at": "2026-10-13T07:34:16Z",
+      "reason": "syntax error: line 1, column 0"
     },
     {
       "url": "https://www.geekwire.com/tag/artificial-intelligence/feed/",
-      "status": "not_modified"
+      "status": "ok",
+      "items": 35,
+      "sha256": "6f71bc1a9f2d72be8e0377b78151f07709c7ec690649a23ddd0d24c68e002769"
     },
     {
       "url": "https://www.techspot.com/backend.xml",
@@ -750,7 +755,7 @@
       "url": "https://www.tpr.org/index.rss",
       "status": "ok",
       "items": 5,
-      "sha256": "a4906ee321bc08c902d0055fb1d6141531f1955e5803eaa066b14d1776dd09c6"
+      "sha256": "4799d246e8662dc855c2bb2445023dc88a2f12aace673249219119d2cd4b12d1"
     },
     {
       "url": "https://www.texasobserver.org/feed/",
@@ -762,103 +767,103 @@
       "etag": "\"e994adea11ec5480523e9a0cd07bab21\"",
       "last_modified": "Fri, 09 Oct 2026 11:21:52 GMT",
       "failures": 0,
-      "ok_at": "2026-10-12T03:09:29Z",
+      "ok_at": "2026-10-12T07:34:16Z",
       "sha256": "f33bc92663b96ee34cb77adacc9545a9d82d9e8e066fe3c598d425fd067ad516",
       "parser_version": 2
     },
     "https://feeds.texastribune.org/feeds/main/": {
-      "ok_at": "2026-10-12T03:09:29Z",
+      "ok_at": "2026-10-12T07:34:16Z",
       "failures": 0,
       "parser_version": 2,
       "sha256": "f8f13a67603fe740074f72438c9cd0e619e2e7b2e5aaffe10709759ae6d67f47",
-      "etag": "\"6acc4ac8-a4a4\"",
-      "last_modified": "Mon, 12 Oct 2026 02:49:44 GMT"
+      "etag": "\"6acc7781-a4a4\"",
+      "last_modified": "Mon, 12 Oct 2026 06:00:33 GMT"
     },
     "https://www.datacenterdynamics.com/en/rss/": {
-      "last_modified": "Sun, 11 Oct 2026 15:00:42 GMT",
+      "ok_at": "2026-10-12T07:34:16Z",
       "failures": 0,
-      "ok_at": "2026-10-12T03:09:29Z",
-      "sha256": "94958fce76c916980b1487175fb8378f1da1ff9b38d78730b956e23dddaa463c",
-      "parser_version": 2
+      "parser_version": 2,
+      "sha256": "8c991d40ac6f313d51755fa21a879bd3002d46581559d8a91bcf6413fa6135fc",
+      "last_modified": "Mon, 12 Oct 2026 07:00:52 GMT"
     },
     "https://news.mit.edu/rss/topic/artificial-intelligence2": {
-      "ok_at": "2026-10-12T03:09:29Z",
+      "ok_at": "2026-10-12T07:34:16Z",
       "failures": 0,
       "parser_version": 2,
       "sha256": "48343411031b4a4052fa2ff6f25db3f25dd0ee429f039b6a6a0230425cb90d23",
-      "etag": "\"1791774541\"",
-      "last_modified": "Mon, 12 Oct 2026 03:09:01 GMT"
+      "etag": "\"1791788979\"",
+      "last_modified": "Mon, 12 Oct 2026 07:09:39 GMT"
     },
     "https://openai.com/news/rss.xml": {
-      "ok_at": "2026-10-12T03:09:29Z",
+      "ok_at": "2026-10-12T07:34:16Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "34c9e1053d8d3b70e2ff545f923f16558b22b3c088478c1dc27b4c19129ed99d"
+      "sha256": "f3a6adb51a668a8a65527064db803ead038e425eb9688ceb03b3f3cfabd6958d"
     },
     "https://blogs.nvidia.com/feed/": {
       "etag": "\"164a6d18b55bb2370f43ce628fd72ae4-gzip\"",
       "last_modified": "Thu, 08 Oct 2026 21:07:24 GMT",
       "failures": 0,
-      "ok_at": "2026-10-12T03:09:29Z",
+      "ok_at": "2026-10-12T07:34:16Z",
       "sha256": "35cd644b4554d4c17ab63d7451c9e3d83cc5b3d5c8dac51f1a26ac73bb769d8b",
       "parser_version": 2
     },
     "https://blog.google/technology/ai/rss/": {
-      "ok_at": "2026-10-12T03:09:29Z",
+      "ok_at": "2026-10-12T07:34:16Z",
       "failures": 0,
       "parser_version": 2,
       "sha256": "1244ba8efc82377d897cca9d3781de3db7926b7fcb42cd2bf944f24e7ec9db8c"
     },
     "https://siliconangle.com/feed/": {
-      "ok_at": "2026-10-12T03:09:29Z",
+      "ok_at": "2026-10-12T07:34:16Z",
       "failures": 0,
       "parser_version": 2,
       "sha256": "c86d42a4df9c25cc03beb5241215b82816d95235be1d8ca2b351853a99b8b2ec",
-      "etag": "\"67c9cffa128ad3461d45ea43f3b36c51\"",
-      "last_modified": "Mon, 12 Oct 2026 01:46:26 GMT"
+      "etag": "\"64b171081547457ed7520e854118bbbf\"",
+      "last_modified": "Mon, 12 Oct 2026 05:03:59 GMT"
     },
     "https://www.artificialintelligence-news.com/feed/": {
       "etag": "\"cd8cbe1fef0e10c2eef0af3ac2847598\"",
       "last_modified": "Thu, 24 Sep 2026 16:09:03 GMT",
-      "retry_at": "2026-10-12T07:25:55Z",
+      "retry_at": "2026-10-13T07:34:16Z",
       "failures": 8,
       "ok_at": "2026-09-25T06:15:30Z",
       "sha256": "5bc540c61a29cba5c140f729db0c656d52d41094c41b3832c30ed97cb3880e10",
       "parser_version": 2
     },
     "https://www.geekwire.com/tag/artificial-intelligence/feed/": {
-      "etag": "W/\"29de74ecb0120cc93af20bcb8c9438dc\"",
-      "last_modified": "Sun, 11 Oct 2026 17:49:25 GMT",
+      "ok_at": "2026-10-12T07:34:16Z",
       "failures": 0,
-      "ok_at": "2026-10-12T03:09:29Z",
-      "sha256": "ee3cdceb2d11a3a2064fcb44ae7c9a45b80dc774c746f9724a39554363418243",
-      "parser_version": 2
+      "parser_version": 2,
+      "sha256": "6f71bc1a9f2d72be8e0377b78151f07709c7ec690649a23ddd0d24c68e002769",
+      "etag": "W/\"9b7dba84329395e8a2e45fdb3af21eca\"",
+      "last_modified": "Mon, 12 Oct 2026 05:04:31 GMT"
     },
     "https://www.techspot.com/backend.xml": {
       "etag": "W/\"3ad4e528b9dab95aff2de8004ea48f18\"",
       "failures": 0,
-      "ok_at": "2026-10-12T03:09:29Z",
+      "ok_at": "2026-10-12T07:34:16Z",
       "sha256": "73a0f4dbd67954929bd1c8a8128fb129212af004ce6188c1b37609b95ec44d06",
       "parser_version": 2
     },
     "https://www.sciencedaily.com/rss/computers_math/artificial_intelligence.xml": {
       "last_modified": "Sun, 11 Oct 2026 06:21:14 GMT",
       "failures": 0,
-      "ok_at": "2026-10-12T03:09:29Z",
+      "ok_at": "2026-10-12T07:34:16Z",
       "sha256": "270b47fec2bf7972d0f472ad72b0ddc8f98aa839b164496207801190d926e1df",
       "parser_version": 2
     },
     "https://www.tpr.org/index.rss": {
-      "ok_at": "2026-10-12T03:09:29Z",
+      "ok_at": "2026-10-12T07:34:16Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "a4906ee321bc08c902d0055fb1d6141531f1955e5803eaa066b14d1776dd09c6"
+      "sha256": "4799d246e8662dc855c2bb2445023dc88a2f12aace673249219119d2cd4b12d1"
     },
     "https://www.texasobserver.org/feed/": {
       "etag": "W/\"67e8ae05e64ebe26054e0f00c9f8db78\"",
       "last_modified": "Fri, 09 Oct 2026 21:32:30 GMT",
       "failures": 0,
-      "ok_at": "2026-10-12T03:09:29Z",
+      "ok_at": "2026-10-12T07:34:16Z",
       "sha256": "bbf60a694aebd39692e8fb9d80dc51cddb55d21da1a36d757296b9aa16c66599",
       "parser_version": 2
     }
