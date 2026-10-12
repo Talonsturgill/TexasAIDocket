@@ -14924,5 +14924,110 @@
   ],
   "id": "tx-2026-0213",
   "last_verified": "2026-10-11"
+ },
+ {
+  "title": "Federal trucking regulators let driverless trucks warn traffic with a cab beacon instead of triangles",
+  "summary": "The Federal Motor Carrier Safety Administration granted Aurora and other carriers running Level 4 automated trucks a limited five year exemption from the rules on placing warning triangles and flares around a stopped truck. A carrier that notifies the agency first may instead use warning beacons mounted on the cab. The agency found the beacons likely as safe as the triangles a driver would set out. The exemption runs from October 7th, 2026 to October 7th, 2031. The Texas Trucking Association is listed among supporters, and the Owner-Operator Independent Drivers Association among opponents. It applies on every Texas road a driverless truck uses.",
+  "topic": "state-policy",
+  "decider": {
+   "name": "Federal Motor Carrier Safety Administration",
+   "type": "federal"
+  },
+  "geography": {
+   "statewide": true,
+   "counties": [],
+   "metro": null,
+   "on_ercot": null
+  },
+  "status": "decided",
+  "key_dates": [
+   {
+    "date": "2026-10-07",
+    "kind": "effective",
+    "note": "The exemption takes effect"
+   },
+   {
+    "date": "2026-10-09",
+    "kind": "decided",
+    "note": "Published in the Federal Register"
+   },
+   {
+    "date": "2031-10-07",
+    "kind": "expires",
+    "note": "The exemption expires"
+   }
+  ],
+  "public_access": {
+   "room": "contact_only",
+   "how": "The decision is final and carries no comment window. The docket, FMCSA-2026-0958, holds Aurora's application and the public comments, and questions go to the agency's Vehicle and Roadside Operations Division.",
+   "url": "https://www.regulations.gov/docket/FMCSA-2026-0958",
+   "closes": null
+  },
+  "confidence": "high",
+  "notes_for_editor": "A federal decision with national reach. The Texas tie is that driverless trucks run on Texas interstates and the Texas Trucking Association supported it. The notice names no Texas route.",
+  "claims": [
+   {
+    "text": "The agency granted Aurora and other carriers running Level 4 automated trucks a limited five year exemption from the warning device rules.",
+    "verbatim_quote": "FMCSA announces its decision to grant a limited five-year exemption to Aurora Operations, Inc. (Aurora) and other motor carriers operating Level 4 automated driving system (ADS)-equipped commercial motor vehicles (CMVs), with prior notice to FMCSA, from compliance with the warning device placement requirements, the steady-burning lamp requirements, and the requirements for the types and number of warning devices.",
+    "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-10-09/pdf/2026-20734.pdf",
+    "source_title": "Federal Register, Parts and Accessories Necessary for Safe Operation; Application for Exemption From Aurora Operations, Inc",
+    "source_type": "primary_official",
+    "fetched": "2026-10-12",
+    "id": "tx-2026-0214-c1"
+   },
+   {
+    "text": "A carrier may use warning beacons mounted on the cab in place of traditional warning devices.",
+    "verbatim_quote": "This exemption permits motor carriers to use cab-mounted warning beacons in lieu of traditional warning devices on Level 4 ADS-equipped CMVs.",
+    "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-10-09/pdf/2026-20734.pdf",
+    "source_title": "Federal Register, Parts and Accessories Necessary for Safe Operation; Application for Exemption From Aurora Operations, Inc",
+    "source_type": "primary_official",
+    "fetched": "2026-10-12",
+    "id": "tx-2026-0214-c2"
+   },
+   {
+    "text": "The agency found the exemption likely as safe as the rule it replaces.",
+    "verbatim_quote": "The Agency has determined that granting the exemption would likely achieve a level of safety equivalent to or greater than the level of safety provided by the regulation.",
+    "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-10-09/pdf/2026-20734.pdf",
+    "source_title": "Federal Register, Parts and Accessories Necessary for Safe Operation; Application for Exemption From Aurora Operations, Inc",
+    "source_type": "primary_official",
+    "fetched": "2026-10-12",
+    "id": "tx-2026-0214-c3"
+   },
+   {
+    "text": "The exemption runs five years.",
+    "verbatim_quote": "The exemption is effective October 7, 2026 and expires October 7, 2031.",
+    "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-10-09/pdf/2026-20734.pdf",
+    "source_title": "Federal Register, Parts and Accessories Necessary for Safe Operation; Application for Exemption From Aurora Operations, Inc",
+    "source_type": "primary_official",
+    "fetched": "2026-10-12",
+    "id": "tx-2026-0214-c4"
+   },
+   {
+    "text": "The agency received 402 comments, and the Texas Trucking Association is listed among supporters.",
+    "verbatim_quote": "FMCSA received a total of 402 comments in response to Aurora’s application. Commenters who support the exemption include the Montana Trucking Association; the Nevada Trucking Association; the Texas Trucking Association;",
+    "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-10-09/pdf/2026-20734.pdf",
+    "source_title": "Federal Register, Parts and Accessories Necessary for Safe Operation; Application for Exemption From Aurora Operations, Inc",
+    "source_type": "primary_official",
+    "fetched": "2026-10-12",
+    "id": "tx-2026-0214-c5"
+   },
+   {
+    "text": "The owner operators' association said Aurora's studies do not account for the range of weather, road, lighting and traffic conditions trucks meet.",
+    "verbatim_quote": "OOIDA expresses concern that the two studies submitted with Aurora’s application do not account for the varying weather, road, lighting, and traffic conditions that CMVs encounter.",
+    "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-10-09/pdf/2026-20734.pdf",
+    "source_title": "Federal Register, Parts and Accessories Necessary for Safe Operation; Application for Exemption From Aurora Operations, Inc",
+    "source_type": "primary_official",
+    "fetched": "2026-10-12",
+    "id": "tx-2026-0214-c6"
+   }
+  ],
+  "id": "tx-2026-0214",
+  "last_verified": "2026-10-12",
+  "history": [
+   {
+    "date": "2026-10-12",
+    "note": "Admitted on the Federal Register notice granting the exemption. It took effect October 7th and runs to October 7th, 2031."
+   }
+  ]
  }
 ]
