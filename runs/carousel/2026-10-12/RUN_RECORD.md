@@ -126,8 +126,15 @@ nothing.
 
 ## The weekly machine pass
 
-**Due**, on one repeat offender. Run in this run, before the merge; its changes are the upgrade
-commits on this branch and the email's machine lines.
+**Due**, on one repeat offender, and run in this run before the merge (the sixth weekly pass,
+`config/carousel/machine_pass.json`). Three kit changes, each with a verify script that exits 0 on
+the change and 1 on its parent: the kit cattle at no. 49's named fix (d92fd2d8), the kit person's
+named shirt honoured on every seed (3ac366c2), and no. 49's feed bunk lifted into the kit and
+weathered (073890f4). Escalated to `UPGRADE_BACKLOG.md` for a maintainer: an id pass so the GRID
+piece count and the accent presence gate measure tagged objects' own pixels, the engine's contact,
+void and artifact themes, and three out-of-lane items. The type-on-art theme was deferred because
+its plates come from `txdeck.js`, which is human lane. The pass had no web budget left, so its id
+pass proposal is from knowledge and says so.
 
 ## Queued for the next pass
 
