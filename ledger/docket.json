@@ -22691,7 +22691,7 @@
   },
   {
    "title": "UT San Antonio builds a solar powered flood sensor that runs its model on the chip rather than in the cloud",
-   "summary": "The University of Texas at San Antonio published on September 8th, 2026 that it has a field ready prototype flood warning node. The node is for street level water and the team is led by Chen Pan. It harvests its own solar power and carries temperature, humidity, light and precipitation sensing plus four optical water level sensors at different heights. It runs a compressed machine learning model on the microcontroller itself rather than sending readings to a server. It reports over long range radio instead of a cell tower, so it keeps warning when the grid and the network are down, which is when the water rises. The work was funded in part by a Texas Coastal Management Program grant from the National Oceanic and Atmospheric Administration. It is a prototype and the announcement names no place that has installed one.",
+   "summary": "The University of Texas at San Antonio published on September 28th, 2026 that it has a field ready prototype flood warning node. The node is for street level water and the team is led by Chen Pan. It harvests its own solar power and carries temperature, humidity, light and precipitation sensing plus four optical water level sensors at different heights. It runs a compressed machine learning model on the microcontroller itself rather than sending readings to a server. It reports over long range radio instead of a cell tower, so it keeps warning when the grid and the network are down, which is when the water rises. The work was funded in part by a Texas Coastal Management Program grant from the National Oceanic and Atmospheric Administration. It is a prototype and the announcement names no place that has installed one.",
    "topic": "research-and-science",
    "decider": {
     "name": "The University of Texas at San Antonio",
@@ -22708,7 +22708,7 @@
    "confidence": "high",
    "key_dates": [
     {
-     "date": "2026-09-08",
+     "date": "2026-09-28",
      "kind": "filed",
      "note": "The university published the prototype and its funding source"
     }
@@ -22875,6 +22875,10 @@
      "date": "2026-10-11",
      "note": "UT San Antonio's account of its solar flood sensor running the model on the chip is unchanged.",
      "checked": true
+    },
+    {
+     "date": "2026-10-12",
+     "note": "The university's account is dated September 28th, 2026 on its own page, so the record's publication date now reads September 28th rather than September 8th."
     }
    ]
   },
@@ -26802,7 +26806,7 @@
   },
   {
    "title": "UT San Antonio builds a solar powered flood sensor that runs its model on the device instead of a server",
-   "summary": "The University of Texas at San Antonio published an account on September 8th, 2026 of a field ready prototype flood warning node. A team led by an assistant professor of electrical engineering combined four things. Solar energy harvesting, environmental sensing, long range radio and a machine learning model compressed to run on the microcontroller itself. The design point is that the node evaluates flood risk where it stands rather than sending readings to a server. It keeps working when power and network fail in a storm. The university reports a validation accuracy figure from assessment after training rather than a measurement against a real flood. Funding is named as a Texas Coastal Management Program grant awarded by the National Oceanic and Atmospheric Administration. The account names no installation site and no agency operating it, so what exists is a prototype.",
+   "summary": "The University of Texas at San Antonio published an account on September 28th, 2026 of a field ready prototype flood warning node. A team led by an assistant professor of electrical engineering combined four things. Solar energy harvesting, environmental sensing, long range radio and a machine learning model compressed to run on the microcontroller itself. The design point is that the node evaluates flood risk where it stands rather than sending readings to a server. It keeps working when power and network fail in a storm. The university reports a validation accuracy figure from assessment after training rather than a measurement against a real flood. Funding is named as a Texas Coastal Management Program grant awarded by the National Oceanic and Atmospheric Administration. The account names no installation site and no agency operating it, so what exists is a prototype.",
    "topic": "research-and-science",
    "decider": {
     "name": "The University of Texas at San Antonio",
@@ -26819,7 +26823,7 @@
    "status": "decided",
    "key_dates": [
     {
-     "date": "2026-09-08",
+     "date": "2026-09-28",
      "kind": "filed",
      "note": "Date the university published the account"
     }
@@ -26915,6 +26919,10 @@
      "date": "2026-10-12",
      "note": "The UT San Antonio flood sensor is still described as a prototype. The account names no city or county installing one.",
      "checked": true
+    },
+    {
+     "date": "2026-10-12",
+     "note": "The university's account is dated September 28th, 2026 on its own page, so the record's publication date now reads September 28th rather than September 8th."
     }
    ]
   },
