@@ -3185,4 +3185,67 @@
   ],
   "not_done": "precast_barrier and galv_column stay in no. 47's chassis, one lift per pass. turboprop_caravan and the aviation set (no. 46's round 3 craft fix) and dry_van with its siblings deferred, not refused (UPGRADE_BACKLOG 2026-10-10 item 5). Today's deck's own queue items (campus models, the kit person's head, the lit accent drifting in Lab, the art preflight middle) are one run each and wait for a second. No frontier scan beyond the figure and ground literature the GRID item needed (local background estimation, the rolling ball top hat)"
 }
+,"2026-10-12 weekly": {
+  "date": "2026-10-12",
+  "kind": "weekly machine pass, the sixth (prompts/machine_weekly.md)",
+  "read": "out/2026-10-12/week_digest.md (six shipped runs, 2026-10-06 to 2026-10-11; artwork_craft lowest on five, week mean 6.18; 'largest object unmodelled' 6 runs and 17 rounds, 'primitive or low-poly model where a kit model belongs' 6 runs and 16 rounds), knowledge/carousel/MACHINE_QUEUE.md (due early on grid-piece-count-reads-lit-ground-as-subject at repeat 3; this run's five 2026-10-12 items and two raised repeats already queued), the 2026-10-10 backlog and ledger entries, every judge card of no. 49 (runs/carousel/2026-10-11/score-*.json and scores/r1 to r2), no. 49's chassis, and no. 48's and 49's person frames replayed",
+  "upgrades": [
+    {
+      "what": "kit cattle: head up | bunk | graze carriage, detail standard | close (half the mesh cell), named parts poll and muzzle, and the neck and withers filleted into the barrel so the forequarter has one topline",
+      "theme": "largest object unmodelled (6 runs, 17 rounds) and primitive model where a kit model belongs (6 runs, 16 rounds), on the newest scored deck's hero frame: no. 49 frame 8, round 1's top ranked defect ('primitive kit steer. The hide texture is smeared, the back contour is doubled'), round 3 craft's named fix ('swap the smeared kit head for a higher-detail head'), integrity r3 ('a haired hide'); queue kit-cattle-head-cannot-lower",
+      "why": "The kit held every head level with the poll at 1.1 to 1.3 m, so no. 49 could not put a head through a neck rail into a bunk and a camera close enough to crop the head lifted the back into the type band. At 16 mm cells a head filling a third of a frame interpolates its coat colour across about 20 output pixels per cell, which is the smear. The barrel's rounded front edge and a round neck under it read as two toplines from any camera ahead of the shoulder",
+      "files": [
+        "assets/js/kit/rural.js"
+      ],
+      "verification": "python3 out/machine-2026-10-12/tmp/verify_cattle.py exits 0 (14 builds: poll heights up > bunk > graze for both breeds, the bunk muzzle forward of up, the graze muzzle near the ground, an unknown head falls back to up, every build on the ground, close more than three times the vertices, poll and muzzle present). Against the parent of d92fd2d8 it exits 1 ('named parts poll and muzzle missing'). Proof through the engine: examples/kit/build.py --family rural --names cattle and a pose lineup read at full size; no. 49 frame 8 replayed before and after (out/machine-2026-10-12/tmp/n49/crop-pair.png: one topline, a crisper ragged coat border). examples/kit/sizes.py 117 of 117",
+      "revert": "d92fd2d8",
+      "how_i_would_know_this_was_wrong": "A judge naming the steer's back doubled or the hide smeared on a frame built with detail close; a deck's herd of up cattle changing look beyond the fillet (head up with detail standard keeps the original cache key and colour border, so only the neck blend moved); a bunk or graze head clipping its own forelegs or the chin under the ground at a seed; dark specks at the silhouette rim at close detail (seen at 2x zoom on the bunk proof's shoulder) growing into something a pixel critic names"
+    },
+    {
+      "what": "kit person honours a named shirt colour on a plaid seed",
+      "theme": "queue kit-person-head-reads-as-mannequin (repeat 1, nos. 48 and 49), the one part of it that is a verified bug",
+      "why": "no. 48 asked for a dark shirt at seed 8 and got a plaid, because a plaid roll ignored the shirt option. Measured over seeds 1 to 60 for resident and worker: 15 of 120 ignored the named colour. The plaid is still picked so a seed's later draws and its cut are unchanged",
+      "files": [
+        "assets/js/kit/people.js"
+      ],
+      "verification": "python3 out/machine-2026-10-12/tmp/verify_shirt.py exits 0 (120 people, none ignoring the named shirt, 15 unasked plaids as before). Against the parent of 3ac366c2 it exits 1 with the 15 seeds listed, resident 8 among them. Proof: seed 8 with and without the option through build.py's page, read at full size",
+      "revert": "3ac366c2",
+      "how_i_would_know_this_was_wrong": "A deck that relied on a named shirt being overridden by plaid (none is known); a seed's hair, skin or trousers changing for a caller that names a shirt, which would mean a draw moved"
+    },
+    {
+      "what": "feed_bunk lifted from no. 49's chassis into assets/js/kit/rural.js, weathered as a working bunk at the judges' named fix: manure splash up every face from its base (higher on the pen side), a fouled apron along the lip, wet residue in the throat, stains bleeding down the precast joints, drip streaks, a worn darker lip, a weathered grey, all per fragment from the section's own coordinates; wear 0 is fresh precast",
+      "theme": "largest object unmodelled (6 runs, 17 rounds) on the newest scored deck: no. 49 round 1 craft ranked frame 1's outer wall 'the largest object and the least modelled, a clean pale slab with hairline joints' and asked for 'a grime and splash gradient up the outer wall from its base with wear on the lip'; reader r1 called the section 'a cream U slab with a navy interior' and asked for 'grime on the lip'; reader r2 'residue and grime in the throat'; queue feedyard-models-built-in-chassis",
+      "why": "The bunk carried eight of nine frames and the kit had none, so the next feedyard deck would build the clean slab again. An extruded face has four vertices along its length, so the grime cannot live on vertices",
+      "files": [
+        "assets/js/kit/rural.js"
+      ],
+      "verification": "python3 out/machine-2026-10-12/tmp/verify_bunk.py exits 0: no. 49 frame 1 replayed with the chassis bunk, the kit bunk at wear 0 and the kit bunk by default; the wall's foot over its middle reads 0.742, 0.734 and 0.495, weathering 0.239 against a computed floor of 0.008 (the two unweathered bunks). With the default set to wear 0 it exits 1 (weathering 0.000). Proof: examples/kit/build.py --family rural --names feed_bunk in lastLight on dirt and a wear 0 against wear 1 page, read at full size; frames 1, 2, 5 and 7 of no. 49 replayed with errors 0. examples/kit/sizes.py 117 of 117. print_ban --assets exits 0",
+      "revert": "073890f4",
+      "how_i_would_know_this_was_wrong": "A judge still calling a kit bunk a clean pale slab, or calling the splash a painted band or a decal; a frame of an unset section showing manure (it should pass wear 0); no. 49's shipped chassis re-rendered and finding feedlot_pens or its other models missing (its installKit returns early once the kit defines feed_bunk, the same as no. 47's after the cart lift, so a re-render needs the wrapper in the replay pages)"
+    }
+  ],
+  "proposals_out_of_lane": [
+    {
+      "what": "The scene reports which pixels belong to a tagged object. render.py (or TXT.snapshot) renders an object id pass for meshes a frame tags userData.measure ('accent', 'gridUnit') into render_report.json as per tag pixel counts at thumb scale and screen boxes, and layout_check measures ACCENT presence on the accent object's own pixels and GRID pieces as tagged units that are visible and apart; an untagged frame falls back to today's pixel measures. Self-test: an accent object at 0.2 percent of the thumb under a low key passes where the Lab match fails, a tagged object off screen fails, four separated grid units pass, four overlapping fail",
+      "owner": "human",
+      "why": "Two pixel measures in layout_check have pushed the art into defects the judges then charged, on four runs this week: GRID piece count (queue repeat 3, nos. 46, 47, 48, 49; escalated 2026-10-10 after three pixel readings each failed a fixture) and accent presence (queue lit-accent-drifts-in-lab repeat 1 and accent-presence-forces-a-pool: no. 48's granite unlit to pass and called flat paint, no. 49's ear tag grown 1.9x with an emissive, no. 50's amber pool on the water charged as a decal by all three judges in every round). A lit accent object drifts more than 12 Lab units off its hex under a low key, which no threshold change can fix without loosening the gate. The robust measure is the scene's. assets/js/txthree.js and .claude/skills/carousel-engine/render.py are a maintainer's (UPGRADE_BACKLOG 2026-10-12 item 4). The id pass is the standard GPU picking technique (flat id colours into a render target, read back); it was not re-checked against a source this pass because the turn's search budget was spent"
+    },
+    {
+      "what": "Name the thumb path pattern (render/thumbs/slide-0N-thumb.png and final/thumbs/slide-0N-thumb.webp) in the carousel-scorer definition and the routine's scorer brief",
+      "owner": "human",
+      "why": "Queue scorer-thumb-path at repeat 1 (no. 46 two of three scorers, no. 50 the reader judge) judged feed size off the contact sheet. .claude/agents/carousel-scorer.md is a protected path and prompts/daily_routine.md is human"
+    },
+    {
+      "what": "article_check fails a rendered dollar figure whose quote carries a magnitude word the page dropped, and a doubled percent sign",
+      "owner": "human",
+      "why": "Queue article-token-drops-unit at repeat 1 (no. 45 '$211 tax break' and '95%%', no. 49 '$9.75 grant'). scripts/site/article_check.py is not the upgrade lane"
+    },
+    {
+      "what": "Phase 16 names ledger_check.py --derive after the variety ledgers are updated, or the routine's ledger writer calls it",
+      "owner": "human",
+      "why": "Queue caption-ledger-opening-moves-stale (repeat 1) and captions-derived-lists-lag-a-run, nos. 44, 45 and 47. ledger_check already fails a stale list at ship and --derive repairs it, so the defect is detected; the cost is a repair step each time. prompts/daily_routine.md is human"
+    }
+  ],
+  "not_done": "The kit person's mannequin look beyond the shirt (the long hair curtain passes through the shirt's back at seed 5, the strands map reads as wood grain, the A-pose and mitten hands) is a person lift of its own, deferred with what was seen (UPGRADE_BACKLOG 2026-10-12 item 5). feedlot_pens and ear_tag stay in no. 49's chassis. turboprop_caravan with the aviation set and dry_van with its siblings deferred again, not refused. No change to any gate this pass, so GATE_LESSONS is unchanged. No frontier scan: the turn's shared search budget was spent before this pass reached it. ARSENAL.md is not regenerated here; the run regenerates it after this pass and must, because the cattle note and the new feed_bunk change its rows"
+}
 }

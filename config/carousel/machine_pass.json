@@ -1,48 +1,41 @@
 {
- "last_pass": "2026-10-10",
+ "last_pass": "2026-10-12",
  "themes": [
   {
    "theme": "largest object unmodelled (slab, bare wall, clean clay)",
    "runs": 6,
-   "rounds": 18,
+   "rounds": 17,
    "action": "fixed in part",
-   "what": "No. 47's workstation_cart, whose monitor back every judge named in every round ('a flat monitor back with no leak', 'a primitive vented monitor back'), is lifted into assets/js/kit/interior.js at the judges' named fix: a moulded rear tapering to a raised bay, louvre vents, a VESA plate on a tilt bracket, a cable run and a cool leak round the housing, the battery with seams, grip, latch and label. Replayed through no. 47's own slides 1, 3 and 4, sizes.py 116 of 116. The objects differ per deck, so the theme stays open."
+   "what": "No. 49's feed bunk, the hero on eight of nine frames and round 1's 'clean pale slab with hairline joints', lifted into assets/js/kit/rural.js as a working bunk weathered per fragment (splash, fouled apron, throat residue, joint stains, drips, worn lip), 073890f4. The kit cattle's doubled topline filleted, d92fd2d8. The objects differ per deck, so the theme stays open."
   },
   {
    "theme": "primitive or low-poly model where a kit model belongs",
    "runs": 6,
-   "rounds": 18,
+   "rounds": 16,
    "action": "fixed in part",
-   "what": "The same lift. precast_barrier and galv_column stay in no. 47's chassis; turboprop_caravan and the aviation set (no. 46's round 3 craft fix) and dry_van deferred, not refused, UPGRADE_BACKLOG 2026-10-10 item 5."
+   "what": "Kit cattle at no. 49 frame 8's named fix: head up | bunk | graze, detail close at half the mesh cell, named parts poll and muzzle, d92fd2d8. Kit person: a named shirt honoured on every seed (15 of 120 ignored it), 3ac366c2; the mannequin look (hair through the shirt, A-pose, mittens) deferred as its own lift."
   },
   {
-   "theme": "the digest's ranked artwork defects were empty (found by this pass, not a judge theme)",
-   "runs": 7,
-   "rounds": null,
-   "action": "fixed",
-   "what": "week_digest.py read only artwork_defects and every judge card since 2026-10-03 ranks under artwork_weakest_frames, so the brief's first input was an empty heading for five passes. It now reads the current key and the older names, and says when a run ranked nothing. Live replay: 7 of 7 runs ranked for the week of October 9th, 0 of 7 under the old key."
-  },
-  {
-   "theme": "GRID piece count reads a lit floor as the subject (queue grid-piece-count-reads-lit-ground-as-subject and grid-ground-from-whole-outside)",
+   "theme": "GRID piece count and accent presence push the art into charged defects (queue grid-piece-count-reads-lit-ground-as-subject at repeat 3, lit-accent-drifts-in-lab, accent-presence-forces-a-pool)",
    "runs": 4,
    "rounds": null,
    "action": "escalated",
-   "what": "Queue repeat 2, which made this pass due (nos. 43, 46, 47, 48). Three readings of the rect's own ground were built and measured; each failed a fixture (two split one lump into several pieces, which loosens the gate, the third merged dense units), so layout_check.py was reverted unchanged. The robust count is the scene's, a proposal for the engine and render.py, UPGRADE_BACKLOG 2026-10-10 item 3. The digest's word themes do not count this one, so its rounds are not counted."
+   "what": "One proposal for both: the scene reports tagged objects' pixels through an id pass, and layout_check measures on them. Engine and render.py are a maintainer's, UPGRADE_BACKLOG 2026-10-12 item 4. The digest's word themes do not count this one, so its rounds are not counted."
   },
   {
-   "theme": "article test screenshots a fixed date (queue article-test-screenshots-fixed-path)",
-   "runs": 3,
-   "rounds": null,
-   "action": "escalated",
-   "what": "Queue repeat 2 (nos. 44, 46, 47). tests/article_edition.mjs is human lane, UPGRADE_BACKLOG 2026-10-10 item 4."
-  },
-  {
-   "theme": "no contact, dirt or grime where things meet the ground; object in a void; render artifact",
+   "theme": "type sitting on or fighting the art",
    "runs": 6,
-   "rounds": 14,
+   "rounds": 10,
+   "action": "deferred",
+   "what": "Read the evidence: the plates judges named on nos. 44 and 49 are TXDECK.punch and soften patches (assets/js/txdeck.js, human), carried in the backlog; the rest are per frame compositions."
+  },
+  {
+   "theme": "no contact or grime; object in a void; render artifact",
+   "runs": 5,
+   "rounds": 12,
    "action": "escalated",
-   "what": "Engine (human), carried with this week's counts (contact 6 runs and 14 rounds, void 5 and 13, render artifact 5 and 13)."
+   "what": "Engine (human), carried with this week's counts (contact 5 runs and 12 rounds, void 5 and 11, render artifact 4 and 11)."
   }
  ],
- "note": "Written by the weekly machine pass (prompts/daily_routine.md Phase 17) when it ships. Read by scripts/carousel/machine_due.py. Run and round counts are from scripts/carousel/week_digest.py --date 2026-10-10, except where rounds is null."
+ "note": "Written by the weekly machine pass (prompts/daily_routine.md Phase 17) when it ships. Read by scripts/carousel/machine_due.py. Run and round counts are from scripts/carousel/week_digest.py --date 2026-10-12, except where rounds is null."
 }
