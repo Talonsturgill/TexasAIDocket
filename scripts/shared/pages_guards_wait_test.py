@@ -72,7 +72,8 @@ class Harness:
 
     def install(self, responses, head=SHA):
         """responses is a list of gh behaviours consumed in order, the last one repeating:
-        a (status, conclusion) pair, None for a missing check, or "error" for a failing call."""
+        a (status, conclusion) pair, None for a missing check, ("error", stderr_text) for a failing call,
+        or ("raw", text) for a successful call that prints something else."""
         self.queue.write_text(json.dumps(responses))
         gh = self.bin / "gh"
         gh.write_text(f"""#!/usr/bin/env python3
@@ -82,9 +83,13 @@ queue = json.load(open({str(self.queue)!r}))
 index = len(open({str(self.calls)!r}).read().splitlines()) - 1
 item = queue[min(index, len(queue) - 1)]
 if item == "error":
-    sys.exit(1)
+    item = ["error", "gh: HTTP 502 Bad Gateway"]
 if item is None:
     print("\\t")
+elif item[0] == "error":
+    sys.stderr.write(item[1] + "\\n"); sys.exit(1)
+elif item[0] == "raw":
+    print(item[1])
 else:
     print(item[0] + "\\t" + item[1])
 """)
@@ -151,13 +156,59 @@ class WaitStep(unittest.TestCase):
         self.assertEqual(done.returncode, 1)
         self.assertIn("last status none", done.stdout)
 
-    def test_a_transient_api_error_is_not_success(self):
-        h = self.harness(); h.install(["error", "error", ("completed", "success")])
-        done, calls = h.run()
-        self.assertEqual((done.returncode, calls), (0, 3))
-        h = self.harness(); h.install(["error"])
-        done, _ = h.run(wait="1", poll="0.2")
+    def test_a_server_error_or_lost_connection_is_retried_then_proceeds(self):
+        for label, failure in (("502", ["error", "gh: HTTP 502 Bad Gateway"]),
+                               ("503", ["error", "gh: HTTP 503 Service Unavailable"]),
+                               ("504", ["error", "gh: HTTP 504 Gateway Timeout"]),
+                               ("500", ["error", "gh: HTTP 500 Internal Server Error"]),
+                               ("connection reset", ["error", "Get https://api.github.com/x: read tcp: connection reset by peer"]),
+                               ("no such host", ["error", "dial tcp: lookup api.github.com: no such host"])):
+            h = self.harness(); h.install([failure, failure, ("completed", "success")])
+            done, calls = h.run()
+            self.assertEqual((done.returncode, calls), (0, 3), (label, done.stdout, done.stderr))
+            self.assertIn("transient GitHub API error", done.stdout)
+
+    def test_a_client_error_is_never_read_as_pending_and_refuses_at_once(self):
+        for code, text in (("403", "gh: Resource not accessible by integration (HTTP 403)"),
+                           ("401", "gh: Bad credentials (HTTP 401)"),
+                           ("404", "gh: Not Found (HTTP 404)"),
+                           ("422", "gh: Validation Failed (HTTP 422)"),
+                           ("429", "gh: HTTP 429 rate limit exceeded")):
+            h = self.harness(); h.install([["error", text], ("completed", "success")])
+            done, calls = h.run(wait="60", poll="30")      # waiting here would blow the 60 second test timeout
+            self.assertEqual(done.returncode, 1, code)
+            self.assertEqual(calls, 1, code)
+            self.assertIn("could not read the guards result", done.stdout)
+            self.assertIn(code, done.stdout)
+            self.assertIn("refusing to deploy", done.stdout)
+
+    def test_an_unrecognized_error_refuses_at_once(self):
+        for text in ("gh: something nobody planned for", "jq: error: syntax error", "failed to parse response"):
+            h = self.harness(); h.install([["error", text], ("completed", "success")])
+            done, calls = h.run(wait="60", poll="30")
+            self.assertEqual((done.returncode, calls), (1, 1), text)
+            self.assertIn("could not read the guards result", done.stdout)
+
+    def test_a_server_error_that_never_clears_refuses_after_a_few_tries(self):
+        h = self.harness(); h.install([["error", "gh: HTTP 503 Service Unavailable"]])
+        done, calls = h.run(wait="60", poll="0.1", GUARDS_API_RETRIES="4")
         self.assertEqual(done.returncode, 1)
+        self.assertEqual(calls, 4)                           # bounded by the retry count, not by the wait
+        self.assertIn("could not read the guards result after 4 consecutive transient API errors", done.stdout)
+
+    def test_transient_errors_only_count_in_a_row(self):
+        # Alternating errors and pending reads never reach the cap, and the guard still has to finish.
+        err = ["error", "gh: HTTP 502 Bad Gateway"]
+        h = self.harness(); h.install([err, ("in_progress", ""), err, ("in_progress", ""), err, ("completed", "success")])
+        done, calls = h.run(wait="30", poll="0.05", GUARDS_API_RETRIES="2")
+        self.assertEqual((done.returncode, calls), (0, 6), done.stdout)
+
+    def test_an_invalid_response_is_not_pending(self):
+        for raw in ("garbage", "mystery\tnone", "completed_maybe\t", "\u0000"):
+            h = self.harness(); h.install([("raw", raw), ("completed", "success")])
+            done, calls = h.run(wait="60", poll="30")
+            self.assertEqual((done.returncode, calls), (1, 1), repr(raw))
+            self.assertIn("could not read the guards result", done.stdout)
 
     def test_the_query_names_the_exact_checked_commit(self):
         h = self.harness(); h.install([("completed", "success")], head="f" * 40)
@@ -172,6 +223,7 @@ class WaitStep(unittest.TestCase):
         env = step(pages_doc(), WAIT_STEP)["env"]
         self.assertTrue(0 < int(env["GUARDS_WAIT_SECONDS"]) <= 7200)
         self.assertGreaterEqual(float(env["GUARDS_POLL_SECONDS"]), 1)
+        self.assertTrue(1 <= int(env["GUARDS_API_RETRIES"]) <= 10)
         timeout = pages_doc()["jobs"]["verify"].get("timeout-minutes")
         self.assertIsNotNone(timeout)
         self.assertGreater(timeout * 60, int(env["GUARDS_WAIT_SECONDS"]))
@@ -187,6 +239,22 @@ class WaitStep(unittest.TestCase):
         self.assertEqual(h.run()[0].returncode, 1)           # the real step passes this same scenario
         h = self.harness(); h.install([("in_progress", ""), ("completed", "success")])
         self.assertEqual(h.run()[0].returncode, 0)
+        # 1b The first cut collapsed every API error into pending. A 403 would then wait out the whole bound.
+        collapsed = real.replace('exit 1\n              fi\n            fi\n            status=', 'exit 1\n              fi\n            fi\n            status=')
+        old_read = ('SHA=$(git rev-parse HEAD)\nstarted=$SECONDS\nwhile true; do\n'
+                    '  row=$(gh api "repos/${GITHUB_REPOSITORY}/commits/${SHA}/check-runs?check_name=guards&filter=latest&per_page=1" '
+                    "--jq '[(.check_runs[0].status // \"\"), (.check_runs[0].conclusion // \"\")] | @tsv' 2>/dev/null) || row=\"\"\n"
+                    '  status=$(printf \'%s\' "$row" | cut -f1); conclusion=$(printf \'%s\' "$row" | cut -f2)\n'
+                    '  if [ -n "$conclusion" ] && [ "$conclusion" != "success" ]; then echo "::error::guards finished ${conclusion}; refusing to deploy"; exit 1; fi\n'
+                    '  [ "$conclusion" = "success" ] && break\n'
+                    '  if [ $((SECONDS - started)) -ge "${GUARDS_WAIT_SECONDS}" ]; then echo "did not finish; refusing to deploy"; exit 1; fi\n'
+                    '  sleep "${GUARDS_POLL_SECONDS}"\ndone\n')
+        h = self.harness(old_read); h.install([["error", "gh: HTTP 403 forbidden"]])
+        done, calls = h.run(wait="1", poll="0.2")
+        self.assertGreater(calls, 1)                          # the collapsed loop kept polling a 403
+        h = self.harness(); h.install([["error", "gh: HTTP 403 forbidden"]])
+        done, calls = h.run(wait="1", poll="0.2")
+        self.assertEqual((done.returncode, calls), (1, 1))     # the real step refuses on the first read
         # 2 An unbounded loop would hang on a guard that never finishes.
         unbounded = re.sub(r'if \[ \$\(\(SECONDS - started\)\) -ge "\$\{GUARDS_WAIT_SECONDS\}" \]; then.*?\n\s*fi\n', '', real, flags=re.S)
         self.assertNotEqual(unbounded, real)

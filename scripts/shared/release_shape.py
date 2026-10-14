@@ -99,6 +99,8 @@ def pages_problems(doc: dict) -> list[str]:
         ("GUARDS_WAIT_SECONDS", "pages can wait on a pending guard result without a bound"),
         ("GUARDS_POLL_SECONDS", "pages polls a pending guard result without a stated interval"),
         ("did not finish within", "pages does not refuse a guard result that never arrives"),
+        ("could not read the guards result", "pages does not fail closed on a GitHub API error or invalid response"),
+        ("GUARDS_API_RETRIES", "pages retries a GitHub API error without a stated limit"),
     ):
         if required not in shell:
             out.append(problem)
@@ -234,7 +236,8 @@ def self_test() -> int:
     GOOD_WAIT = ("SHA=$(git rev-parse HEAD)\n"
                  "gh api repos/x/commits/${SHA}/check-runs?check_name=guards\n"
                  'if [ -n "$conclusion" ] && [ "$conclusion" != "success" ]; then exit 1; fi\n'
-                 'echo "did not finish within ${GUARDS_WAIT_SECONDS}"; sleep "${GUARDS_POLL_SECONDS}"')
+                 'echo "did not finish within ${GUARDS_WAIT_SECONDS}"; sleep "${GUARDS_POLL_SECONDS}"\n'
+                 'echo "could not read the guards result ${GUARDS_API_RETRIES}"')
     good_pages = {
         "on": {"workflow_dispatch": {"inputs": {"guarded_sha": {"required": False}}},
                "schedule": [{"cron": "0 */2 * * *"}]},
@@ -252,7 +255,7 @@ def self_test() -> int:
                             "  echo deploy=false\n"
                             "fi\n"
                             "echo deploy=true"},
-                    {"env": {"GUARDS_WAIT_SECONDS": "4500", "GUARDS_POLL_SECONDS": "60"},
+                    {"env": {"GUARDS_WAIT_SECONDS": "4500", "GUARDS_POLL_SECONDS": "60", "GUARDS_API_RETRIES": "4"},
                      "run": GOOD_WAIT}]},
             "deploy": {"needs": "verify",
                        "if": "needs.verify.outputs.deploy == 'true'",
@@ -317,10 +320,16 @@ def self_test() -> int:
               with_wait_step(run=GOOD_WAIT.replace("did not finish within", "x")))))
     check("an enormous guard wait is caught",
           any("bounded number" in p for p in pages_problems(
-              with_wait_step(step={"env": {"GUARDS_WAIT_SECONDS": "99999", "GUARDS_POLL_SECONDS": "60"}}))))
+              with_wait_step(step={"env": {"GUARDS_WAIT_SECONDS": "99999", "GUARDS_POLL_SECONDS": "60", "GUARDS_API_RETRIES": "4"}}))))
+    check("an API error that is not failed closed is caught",
+          any("fail closed on a GitHub API error" in p for p in pages_problems(
+              with_wait_step(run=GOOD_WAIT.replace("could not read the guards result", "x")))))
+    check("an unbounded API retry is caught",
+          any("without a stated limit" in p for p in pages_problems(
+              with_wait_step(run=GOOD_WAIT.replace("GUARDS_API_RETRIES", "OTHER")))))
     check("a busy poll is caught",
           any("more than once a second" in p for p in pages_problems(
-              with_wait_step(step={"env": {"GUARDS_WAIT_SECONDS": "4500", "GUARDS_POLL_SECONDS": "0.1"}}))))
+              with_wait_step(step={"env": {"GUARDS_WAIT_SECONDS": "4500", "GUARDS_POLL_SECONDS": "0.1", "GUARDS_API_RETRIES": "4"}}))))
     check("a verify job that can be cut off before the wait ends is caught",
           any("cut off" in p for p in pages_problems(with_wait_step(verify={"timeout-minutes": 10}))))
     check("a missing verify timeout is caught",
