@@ -1,8 +1,8 @@
 {
   "_spec": 2,
-  "checked_at": "2026-10-14T12:58:13Z",
+  "checked_at": "2026-10-14T18:05:41Z",
   "provider": "Publisher RSS and Atom",
-  "response_sha256": "d36ab8fe9d3bc9fc17096730260ab548c9456f99ef24efd9c593ce31ba258ada",
+  "response_sha256": "36248f12b136acf5dbe1702725c1eb6ac504b06073c6ece14910538727591cab",
   "articles": [
     {
       "title": "Dallas Market Center Launches AI Training Program for Independent Retailers",
@@ -54,6 +54,13 @@
       "feed": "https://www.datacenterdynamics.com/en/rss/"
     },
     {
+      "title": "Soluna files to build 112MW data center building in Willacy, Texas",
+      "url": "https://www.datacenterdynamics.com/en/news/soluna-files-to-build-112mw-data-center-building-in-willacy-texas/",
+      "first_seen_at": "2026-10-14T13:10:40Z",
+      "summary": "Will span a single building totaling 471,884 sq ft",
+      "feed": "https://www.datacenterdynamics.com/en/rss/"
+    },
+    {
       "title": "ThisWay Global plans 73MW AI and HPC data center in Bryan, Texas",
       "url": "https://www.datacenterdynamics.com/en/news/thisway-global-plans-73mw-ai-and-hpc-data-center-in-bryan-texas/",
       "first_seen_at": "2026-10-09T11:14:37Z",
@@ -69,135 +76,20 @@
     }
   ],
   "selected": {
-    "title": "ThisWay Global plans 73MW AI and HPC data center in Bryan, Texas",
-    "url": "https://www.datacenterdynamics.com/en/news/thisway-global-plans-73mw-ai-and-hpc-data-center-in-bryan-texas/",
-    "first_seen_at": "2026-10-09T11:14:37Z",
-    "summary": "Will offer compute to researchers, public sector, and industry users",
-    "feed": "https://www.datacenterdynamics.com/en/rss/",
-    "publisher": "Data Center Dynamics",
+    "title": "Despite tough talk from Abbott and Paxton, Texas penalties for data center violations are light",
+    "url": "https://feeds.texastribune.org/link/16799/17497094/texas-data-centers-water-use-penalties-enforcement",
+    "first_seen_at": "2026-10-14T10:00:00Z",
+    "summary": "Texas officials are promising tougher enforcement on data centers, but the existing law may offer limited leverage over the industry that has largely failed to report its water use.",
+    "feed": "https://feeds.texastribune.org/feeds/main/",
+    "publisher": "The Texas Tribune",
     "coverage": 1,
-    "score": 0.02973,
-    "priority": 3
+    "score": 0.791532,
+    "priority": 1
   },
-  "expires_at": "2026-10-16T11:14:37Z",
+  "expires_at": "2026-10-21T10:00:00Z",
   "rotation_version": 1,
   "carousel_version": 1,
   "editions": [
-    {
-      "starts_at": "2026-10-14T07:23:00Z",
-      "selected": {
-        "title": "ThisWay Global plans 73MW AI and HPC data center in Bryan, Texas",
-        "url": "https://www.datacenterdynamics.com/en/news/thisway-global-plans-73mw-ai-and-hpc-data-center-in-bryan-texas/",
-        "first_seen_at": "2026-10-09T11:14:37Z",
-        "summary": "Will offer compute to researchers, public sector, and industry users",
-        "feed": "https://www.datacenterdynamics.com/en/rss/",
-        "publisher": "Data Center Dynamics",
-        "coverage": 1,
-        "score": 0.02973,
-        "priority": 3
-      },
-      "stories": [
-        {
-          "title": "ThisWay Global plans 73MW AI and HPC data center in Bryan, Texas",
-          "url": "https://www.datacenterdynamics.com/en/news/thisway-global-plans-73mw-ai-and-hpc-data-center-in-bryan-texas/",
-          "first_seen_at": "2026-10-09T11:14:37Z",
-          "summary": "Will offer compute to researchers, public sector, and industry users",
-          "feed": "https://www.datacenterdynamics.com/en/rss/",
-          "publisher": "Data Center Dynamics",
-          "coverage": 1,
-          "score": 0.02973,
-          "priority": 3
-        },
-        {
-          "title": "Despite tough talk from Abbott and Paxton, Texas penalties for data center violations are light",
-          "url": "https://feeds.texastribune.org/link/16799/17497094/texas-data-centers-water-use-penalties-enforcement",
-          "first_seen_at": "2026-10-14T10:00:00Z",
-          "summary": "Texas officials are promising tougher enforcement on data centers, but the existing law may offer limited leverage over the industry that has largely failed to report its water use.",
-          "feed": "https://feeds.texastribune.org/feeds/main/",
-          "publisher": "The Texas Tribune",
-          "coverage": 1,
-          "score": 0.917792,
-          "priority": 1
-        },
-        {
-          "title": "El Paso and New Mexico spent millions on climate plans. Three new data centers could undo them.",
-          "url": "https://feeds.texastribune.org/link/16799/17497095/data-centers-texas-new-mexico-greenhouse-gas-emissions",
-          "first_seen_at": "2026-10-14T10:00:00Z",
-          "summary": "El Paso and New Mexico planned to cut greenhouse gas emissions. Neither plan considered how three new data centers could upend their climate goals.",
-          "feed": "https://feeds.texastribune.org/feeds/main/",
-          "publisher": "The Texas Tribune",
-          "coverage": 1,
-          "score": 0.917792,
-          "priority": 1
-        },
-        {
-          "title": "Anthropic-linked $366m data center project filed for in Cedar Creek, Texas",
-          "url": "https://www.datacenterdynamics.com/en/news/anthropic-linked-366m-data-center-project-filed-for-in-cedar-creek-texas/",
-          "first_seen_at": "2026-10-09T14:27:53Z",
-          "summary": "First building will be located on Earl Callahan Road",
-          "feed": "https://www.datacenterdynamics.com/en/rss/",
-          "publisher": "Data Center Dynamics",
-          "coverage": 1,
-          "score": 0.032628,
-          "priority": 3
-        },
-        {
-          "title": "Dallas’ Southwest Airlines Launches ChatGPT Plugin to Help Customers Find Flights",
-          "url": "https://dallasinnovates.com/dallas-southwest-airlines-launches-chatgpt-plugin-to-help-customers-find-flights/",
-          "first_seen_at": "2026-10-08T16:26:14Z",
-          "summary": "Dallas-based Southwest Airlines said it just became the first U.S. airline to incorporate flight-shopping capabilities directly into ChatGPT, one of the world’s most popular AI tools. Southwest’s ChatGPT plugin, which went live Tuesday, lets users search destinations and compare dates, times and fares in a ChatGPT conversation.…",
-          "feed": "https://dallasinnovates.com/feed/",
-          "publisher": "Dallas Innovates",
-          "coverage": 1,
-          "score": 0.017271,
-          "priority": 3
-        },
-        {
-          "title": "Patented: Lennox’s Machine-Learning Thermostat Scheduling and 105 More Inventions Across North Texas",
-          "url": "https://dallasinnovates.com/patented-lennoxs-machine-learning-thermostat-scheduling-and-105-more-inventions-across-north-texas/",
-          "first_seen_at": "2026-10-07T22:50:00Z",
-          "summary": "Richardson-based Lennox Industries, a subsidiary of Lennox International (NYSE: LII), has patented a heating, ventilation and air conditioning control device. The patent application describes a device that uses machine learning to predict when a building is occupied and adjust its schedule based on how aggressively the user wants to save energy.…",
-          "feed": "https://dallasinnovates.com/feed/",
-          "publisher": "Dallas Innovates",
-          "coverage": 1,
-          "score": 0.010387,
-          "priority": 3
-        },
-        {
-          "title": "Cisco broadens agentic features in Webex collaboration platform",
-          "url": "https://siliconangle.com/2026/10/07/cisco-broadens-agentic-features-in-webex-collaboration-platform/",
-          "first_seen_at": "2026-10-07T20:34:28Z",
-          "summary": "Cisco Systems Inc. today detailed a broad expansion of its Webex collaboration portfolio that brings artificial intelligence agents into team conversations, connects office technology with workplace management and enables customer-service agents to continue working after an interaction ends. Introduced at WebexOne in Austin, Texas, the updates extend Cisco’s strategy of integrating people, AI agents and […]",
-          "feed": "https://siliconangle.com/feed/",
-          "publisher": "SiliconANGLE",
-          "coverage": 1,
-          "score": 0.009731,
-          "priority": 3
-        },
-        {
-          "title": "Dallas Market Center Launches AI Training Program for Independent Retailers",
-          "url": "https://dallasinnovates.com/dallas-market-center-launches-ai-training-program-for-independent-retailers/",
-          "first_seen_at": "2026-10-07T20:14:38Z",
-          "summary": "Dallas Market Center, the 5 million-square-foot B2B trading hub and wholesale marketplace northwest of downtown Dallas, just introduced an AI training program for a sizable chunk of its customer base: independent retailers. The market center said its Retail Ready program is the first B2B marketplace to create an AI education program for independent retailers. …",
-          "feed": "https://dallasinnovates.com/feed/",
-          "publisher": "Dallas Innovates",
-          "coverage": 1,
-          "score": 0.009639,
-          "priority": 3
-        },
-        {
-          "title": "'A long game': When is the best time to initiate a data center moratorium in Texas?",
-          "url": "https://www.tpr.org/science-technology/2026-10-09/a-long-game-when-is-the-best-time-to-initiate-a-data-center-moratorium-in-texas",
-          "first_seen_at": "2026-10-09T14:53:54Z",
-          "summary": "Last month, Lubbock City Council began the procedure to adopt a pause on large-scale data center development. If the moratorium passes, it will be two years until another one can be put in place. With more information and potential changes likely to come out of the state's legislative session, one councilman has argued that the city should hold off on playing its moratorium card. All the while, the clock may be ticking on the statewide pause on data centers.",
-          "feed": "https://www.tpr.org/index.rss",
-          "publisher": "Texas Public Radio",
-          "coverage": 1,
-          "score": 0.033039,
-          "priority": 4
-        }
-      ]
-    },
     {
       "starts_at": "2026-10-14T13:23:00Z",
       "selected": {
@@ -208,7 +100,7 @@
         "feed": "https://feeds.texastribune.org/feeds/main/",
         "publisher": "The Texas Tribune",
         "coverage": 1,
-        "score": 0.906908,
+        "score": 0.791532,
         "priority": 1
       },
       "stories": [
@@ -220,7 +112,18 @@
           "feed": "https://feeds.texastribune.org/feeds/main/",
           "publisher": "The Texas Tribune",
           "coverage": 1,
-          "score": 0.906908,
+          "score": 0.791532,
+          "priority": 1
+        },
+        {
+          "title": "Soluna files to build 112MW data center building in Willacy, Texas",
+          "url": "https://www.datacenterdynamics.com/en/news/soluna-files-to-build-112mw-data-center-building-in-willacy-texas/",
+          "first_seen_at": "2026-10-14T13:10:40Z",
+          "summary": "Will span a single building totaling 471,884 sq ft",
+          "feed": "https://www.datacenterdynamics.com/en/rss/",
+          "publisher": "Data Center Dynamics",
+          "coverage": 1,
+          "score": 0.867615,
           "priority": 1
         },
         {
@@ -231,7 +134,7 @@
           "feed": "https://feeds.texastribune.org/feeds/main/",
           "publisher": "The Texas Tribune",
           "coverage": 1,
-          "score": 0.906908,
+          "score": 0.791532,
           "priority": 1
         },
         {
@@ -242,7 +145,7 @@
           "feed": "https://www.datacenterdynamics.com/en/rss/",
           "publisher": "Data Center Dynamics",
           "coverage": 1,
-          "score": 0.032241,
+          "score": 0.02814,
           "priority": 3
         },
         {
@@ -253,7 +156,7 @@
           "feed": "https://www.datacenterdynamics.com/en/rss/",
           "publisher": "Data Center Dynamics",
           "coverage": 1,
-          "score": 0.029377,
+          "score": 0.02564,
           "priority": 3
         },
         {
@@ -264,7 +167,7 @@
           "feed": "https://dallasinnovates.com/feed/",
           "publisher": "Dallas Innovates",
           "coverage": 1,
-          "score": 0.017066,
+          "score": 0.014895,
           "priority": 3
         },
         {
@@ -275,7 +178,7 @@
           "feed": "https://dallasinnovates.com/feed/",
           "publisher": "Dallas Innovates",
           "coverage": 1,
-          "score": 0.010264,
+          "score": 0.008958,
           "priority": 3
         },
         {
@@ -286,7 +189,7 @@
           "feed": "https://siliconangle.com/feed/",
           "publisher": "SiliconANGLE",
           "coverage": 1,
-          "score": 0.009616,
+          "score": 0.008393,
           "priority": 3
         },
         {
@@ -297,7 +200,7 @@
           "feed": "https://dallasinnovates.com/feed/",
           "publisher": "Dallas Innovates",
           "coverage": 1,
-          "score": 0.009524,
+          "score": 0.008313,
           "priority": 3
         },
         {
@@ -308,7 +211,7 @@
           "feed": "https://www.tpr.org/index.rss",
           "publisher": "Texas Public Radio",
           "coverage": 1,
-          "score": 0.032648,
+          "score": 0.028494,
           "priority": 4
         }
       ]
@@ -316,26 +219,26 @@
     {
       "starts_at": "2026-10-14T19:23:00Z",
       "selected": {
-        "title": "El Paso and New Mexico spent millions on climate plans. Three new data centers could undo them.",
-        "url": "https://feeds.texastribune.org/link/16799/17497095/data-centers-texas-new-mexico-greenhouse-gas-emissions",
-        "first_seen_at": "2026-10-14T10:00:00Z",
-        "summary": "El Paso and New Mexico planned to cut greenhouse gas emissions. Neither plan considered how three new data centers could upend their climate goals.",
-        "feed": "https://feeds.texastribune.org/feeds/main/",
-        "publisher": "The Texas Tribune",
+        "title": "Soluna files to build 112MW data center building in Willacy, Texas",
+        "url": "https://www.datacenterdynamics.com/en/news/soluna-files-to-build-112mw-data-center-building-in-willacy-texas/",
+        "first_seen_at": "2026-10-14T13:10:40Z",
+        "summary": "Will span a single building totaling 471,884 sq ft",
+        "feed": "https://www.datacenterdynamics.com/en/rss/",
+        "publisher": "Data Center Dynamics",
         "coverage": 1,
-        "score": 0.762616,
+        "score": 0.835919,
         "priority": 1
       },
       "stories": [
         {
-          "title": "El Paso and New Mexico spent millions on climate plans. Three new data centers could undo them.",
-          "url": "https://feeds.texastribune.org/link/16799/17497095/data-centers-texas-new-mexico-greenhouse-gas-emissions",
-          "first_seen_at": "2026-10-14T10:00:00Z",
-          "summary": "El Paso and New Mexico planned to cut greenhouse gas emissions. Neither plan considered how three new data centers could upend their climate goals.",
-          "feed": "https://feeds.texastribune.org/feeds/main/",
-          "publisher": "The Texas Tribune",
+          "title": "Soluna files to build 112MW data center building in Willacy, Texas",
+          "url": "https://www.datacenterdynamics.com/en/news/soluna-files-to-build-112mw-data-center-building-in-willacy-texas/",
+          "first_seen_at": "2026-10-14T13:10:40Z",
+          "summary": "Will span a single building totaling 471,884 sq ft",
+          "feed": "https://www.datacenterdynamics.com/en/rss/",
+          "publisher": "Data Center Dynamics",
           "coverage": 1,
-          "score": 0.762616,
+          "score": 0.835919,
           "priority": 1
         },
         {
@@ -343,6 +246,17 @@
           "url": "https://feeds.texastribune.org/link/16799/17497094/texas-data-centers-water-use-penalties-enforcement",
           "first_seen_at": "2026-10-14T10:00:00Z",
           "summary": "Texas officials are promising tougher enforcement on data centers, but the existing law may offer limited leverage over the industry that has largely failed to report its water use.",
+          "feed": "https://feeds.texastribune.org/feeds/main/",
+          "publisher": "The Texas Tribune",
+          "coverage": 1,
+          "score": 0.762616,
+          "priority": 1
+        },
+        {
+          "title": "El Paso and New Mexico spent millions on climate plans. Three new data centers could undo them.",
+          "url": "https://feeds.texastribune.org/link/16799/17497095/data-centers-texas-new-mexico-greenhouse-gas-emissions",
+          "first_seen_at": "2026-10-14T10:00:00Z",
+          "summary": "El Paso and New Mexico planned to cut greenhouse gas emissions. Neither plan considered how three new data centers could upend their climate goals.",
           "feed": "https://feeds.texastribune.org/feeds/main/",
           "publisher": "The Texas Tribune",
           "coverage": 1,
@@ -431,33 +345,22 @@
     {
       "starts_at": "2026-10-15T01:23:00Z",
       "selected": {
-        "title": "'A long game': When is the best time to initiate a data center moratorium in Texas?",
-        "url": "https://www.tpr.org/science-technology/2026-10-09/a-long-game-when-is-the-best-time-to-initiate-a-data-center-moratorium-in-texas",
-        "first_seen_at": "2026-10-09T14:53:54Z",
-        "summary": "Last month, Lubbock City Council began the procedure to adopt a pause on large-scale data center development. If the moratorium passes, it will be two years until another one can be put in place. With more information and potential changes likely to come out of the state's legislative session, one councilman has argued that the city should hold off on playing its moratorium card. All the while, the clock may be ticking on the statewide pause on data centers.",
-        "feed": "https://www.tpr.org/index.rss",
-        "publisher": "Texas Public Radio",
+        "title": "El Paso and New Mexico spent millions on climate plans. Three new data centers could undo them.",
+        "url": "https://feeds.texastribune.org/link/16799/17497095/data-centers-texas-new-mexico-greenhouse-gas-emissions",
+        "first_seen_at": "2026-10-14T10:00:00Z",
+        "summary": "El Paso and New Mexico planned to cut greenhouse gas emissions. Neither plan considered how three new data centers could upend their climate goals.",
+        "feed": "https://feeds.texastribune.org/feeds/main/",
+        "publisher": "The Texas Tribune",
         "coverage": 1,
-        "score": 0.023085,
-        "priority": 4
+        "score": 0.641281,
+        "priority": 1
       },
       "stories": [
         {
-          "title": "'A long game': When is the best time to initiate a data center moratorium in Texas?",
-          "url": "https://www.tpr.org/science-technology/2026-10-09/a-long-game-when-is-the-best-time-to-initiate-a-data-center-moratorium-in-texas",
-          "first_seen_at": "2026-10-09T14:53:54Z",
-          "summary": "Last month, Lubbock City Council began the procedure to adopt a pause on large-scale data center development. If the moratorium passes, it will be two years until another one can be put in place. With more information and potential changes likely to come out of the state's legislative session, one councilman has argued that the city should hold off on playing its moratorium card. All the while, the clock may be ticking on the statewide pause on data centers.",
-          "feed": "https://www.tpr.org/index.rss",
-          "publisher": "Texas Public Radio",
-          "coverage": 1,
-          "score": 0.023085,
-          "priority": 4
-        },
-        {
-          "title": "Despite tough talk from Abbott and Paxton, Texas penalties for data center violations are light",
-          "url": "https://feeds.texastribune.org/link/16799/17497094/texas-data-centers-water-use-penalties-enforcement",
+          "title": "El Paso and New Mexico spent millions on climate plans. Three new data centers could undo them.",
+          "url": "https://feeds.texastribune.org/link/16799/17497095/data-centers-texas-new-mexico-greenhouse-gas-emissions",
           "first_seen_at": "2026-10-14T10:00:00Z",
-          "summary": "Texas officials are promising tougher enforcement on data centers, but the existing law may offer limited leverage over the industry that has largely failed to report its water use.",
+          "summary": "El Paso and New Mexico planned to cut greenhouse gas emissions. Neither plan considered how three new data centers could upend their climate goals.",
           "feed": "https://feeds.texastribune.org/feeds/main/",
           "publisher": "The Texas Tribune",
           "coverage": 1,
@@ -465,10 +368,21 @@
           "priority": 1
         },
         {
-          "title": "El Paso and New Mexico spent millions on climate plans. Three new data centers could undo them.",
-          "url": "https://feeds.texastribune.org/link/16799/17497095/data-centers-texas-new-mexico-greenhouse-gas-emissions",
+          "title": "Soluna files to build 112MW data center building in Willacy, Texas",
+          "url": "https://www.datacenterdynamics.com/en/news/soluna-files-to-build-112mw-data-center-building-in-willacy-texas/",
+          "first_seen_at": "2026-10-14T13:10:40Z",
+          "summary": "Will span a single building totaling 471,884 sq ft",
+          "feed": "https://www.datacenterdynamics.com/en/rss/",
+          "publisher": "Data Center Dynamics",
+          "coverage": 1,
+          "score": 0.702921,
+          "priority": 1
+        },
+        {
+          "title": "Despite tough talk from Abbott and Paxton, Texas penalties for data center violations are light",
+          "url": "https://feeds.texastribune.org/link/16799/17497094/texas-data-centers-water-use-penalties-enforcement",
           "first_seen_at": "2026-10-14T10:00:00Z",
-          "summary": "El Paso and New Mexico planned to cut greenhouse gas emissions. Neither plan considered how three new data centers could upend their climate goals.",
+          "summary": "Texas officials are promising tougher enforcement on data centers, but the existing law may offer limited leverage over the industry that has largely failed to report its water use.",
           "feed": "https://feeds.texastribune.org/feeds/main/",
           "publisher": "The Texas Tribune",
           "coverage": 1,
@@ -507,16 +421,115 @@
           "coverage": 1,
           "score": 0.012067,
           "priority": 3
+        },
+        {
+          "title": "'A long game': When is the best time to initiate a data center moratorium in Texas?",
+          "url": "https://www.tpr.org/science-technology/2026-10-09/a-long-game-when-is-the-best-time-to-initiate-a-data-center-moratorium-in-texas",
+          "first_seen_at": "2026-10-09T14:53:54Z",
+          "summary": "Last month, Lubbock City Council began the procedure to adopt a pause on large-scale data center development. If the moratorium passes, it will be two years until another one can be put in place. With more information and potential changes likely to come out of the state's legislative session, one councilman has argued that the city should hold off on playing its moratorium card. All the while, the clock may be ticking on the statewide pause on data centers.",
+          "feed": "https://www.tpr.org/index.rss",
+          "publisher": "Texas Public Radio",
+          "coverage": 1,
+          "score": 0.023085,
+          "priority": 4
+        }
+      ]
+    },
+    {
+      "starts_at": "2026-10-15T07:23:00Z",
+      "selected": {
+        "title": "'A long game': When is the best time to initiate a data center moratorium in Texas?",
+        "url": "https://www.tpr.org/science-technology/2026-10-09/a-long-game-when-is-the-best-time-to-initiate-a-data-center-moratorium-in-texas",
+        "first_seen_at": "2026-10-09T14:53:54Z",
+        "summary": "Last month, Lubbock City Council began the procedure to adopt a pause on large-scale data center development. If the moratorium passes, it will be two years until another one can be put in place. With more information and potential changes likely to come out of the state's legislative session, one councilman has argued that the city should hold off on playing its moratorium card. All the while, the clock may be ticking on the statewide pause on data centers.",
+        "feed": "https://www.tpr.org/index.rss",
+        "publisher": "Texas Public Radio",
+        "coverage": 1,
+        "score": 0.019412,
+        "priority": 4
+      },
+      "stories": [
+        {
+          "title": "'A long game': When is the best time to initiate a data center moratorium in Texas?",
+          "url": "https://www.tpr.org/science-technology/2026-10-09/a-long-game-when-is-the-best-time-to-initiate-a-data-center-moratorium-in-texas",
+          "first_seen_at": "2026-10-09T14:53:54Z",
+          "summary": "Last month, Lubbock City Council began the procedure to adopt a pause on large-scale data center development. If the moratorium passes, it will be two years until another one can be put in place. With more information and potential changes likely to come out of the state's legislative session, one councilman has argued that the city should hold off on playing its moratorium card. All the while, the clock may be ticking on the statewide pause on data centers.",
+          "feed": "https://www.tpr.org/index.rss",
+          "publisher": "Texas Public Radio",
+          "coverage": 1,
+          "score": 0.019412,
+          "priority": 4
+        },
+        {
+          "title": "Soluna files to build 112MW data center building in Willacy, Texas",
+          "url": "https://www.datacenterdynamics.com/en/news/soluna-files-to-build-112mw-data-center-building-in-willacy-texas/",
+          "first_seen_at": "2026-10-14T13:10:40Z",
+          "summary": "Will span a single building totaling 471,884 sq ft",
+          "feed": "https://www.datacenterdynamics.com/en/rss/",
+          "publisher": "Data Center Dynamics",
+          "coverage": 1,
+          "score": 0.591084,
+          "priority": 1
+        },
+        {
+          "title": "Despite tough talk from Abbott and Paxton, Texas penalties for data center violations are light",
+          "url": "https://feeds.texastribune.org/link/16799/17497094/texas-data-centers-water-use-penalties-enforcement",
+          "first_seen_at": "2026-10-14T10:00:00Z",
+          "summary": "Texas officials are promising tougher enforcement on data centers, but the existing law may offer limited leverage over the industry that has largely failed to report its water use.",
+          "feed": "https://feeds.texastribune.org/feeds/main/",
+          "publisher": "The Texas Tribune",
+          "coverage": 1,
+          "score": 0.539251,
+          "priority": 1
+        },
+        {
+          "title": "El Paso and New Mexico spent millions on climate plans. Three new data centers could undo them.",
+          "url": "https://feeds.texastribune.org/link/16799/17497095/data-centers-texas-new-mexico-greenhouse-gas-emissions",
+          "first_seen_at": "2026-10-14T10:00:00Z",
+          "summary": "El Paso and New Mexico planned to cut greenhouse gas emissions. Neither plan considered how three new data centers could upend their climate goals.",
+          "feed": "https://feeds.texastribune.org/feeds/main/",
+          "publisher": "The Texas Tribune",
+          "coverage": 1,
+          "score": 0.539251,
+          "priority": 1
+        },
+        {
+          "title": "Anthropic-linked $366m data center project filed for in Cedar Creek, Texas",
+          "url": "https://www.datacenterdynamics.com/en/news/anthropic-linked-366m-data-center-project-filed-for-in-cedar-creek-texas/",
+          "first_seen_at": "2026-10-09T14:27:53Z",
+          "summary": "First building will be located on Earl Callahan Road",
+          "feed": "https://www.datacenterdynamics.com/en/rss/",
+          "publisher": "Data Center Dynamics",
+          "coverage": 1,
+          "score": 0.019171,
+          "priority": 3
+        },
+        {
+          "title": "ThisWay Global plans 73MW AI and HPC data center in Bryan, Texas",
+          "url": "https://www.datacenterdynamics.com/en/news/thisway-global-plans-73mw-ai-and-hpc-data-center-in-bryan-texas/",
+          "first_seen_at": "2026-10-09T11:14:37Z",
+          "summary": "Will offer compute to researchers, public sector, and industry users",
+          "feed": "https://www.datacenterdynamics.com/en/rss/",
+          "publisher": "Data Center Dynamics",
+          "coverage": 1,
+          "score": 0.017468,
+          "priority": 3
+        },
+        {
+          "title": "Dallas’ Southwest Airlines Launches ChatGPT Plugin to Help Customers Find Flights",
+          "url": "https://dallasinnovates.com/dallas-southwest-airlines-launches-chatgpt-plugin-to-help-customers-find-flights/",
+          "first_seen_at": "2026-10-08T16:26:14Z",
+          "summary": "Dallas-based Southwest Airlines said it just became the first U.S. airline to incorporate flight-shopping capabilities directly into ChatGPT, one of the world’s most popular AI tools. Southwest’s ChatGPT plugin, which went live Tuesday, lets users search destinations and compare dates, times and fares in a ChatGPT conversation.…",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.010147,
+          "priority": 3
         }
       ]
     }
   ],
   "history": [
-    {
-      "url": "https://feeds.texastribune.org/link/16799/17490894/texas-data-center-lawsuit-paxton-water",
-      "title": "Texas agency sues to stop release of data center records that it says could aid terrorists",
-      "shown_at": "2026-10-07T13:23:00Z"
-    },
     {
       "url": "https://www.datacenterdynamics.com/en/news/crusoe-files-for-48bn-data-center-campus-in-jayton-texas/",
       "title": "Crusoe files for $4.8bn data center campus in Jayton, Texas",
@@ -651,6 +664,11 @@
       "url": "https://www.datacenterdynamics.com/en/news/thisway-global-plans-73mw-ai-and-hpc-data-center-in-bryan-texas/",
       "title": "ThisWay Global plans 73MW AI and HPC data center in Bryan, Texas",
       "shown_at": "2026-10-14T07:23:00Z"
+    },
+    {
+      "url": "https://feeds.texastribune.org/link/16799/17497094/texas-data-centers-water-use-penalties-enforcement",
+      "title": "Despite tough talk from Abbott and Paxton, Texas penalties for data center violations are light",
+      "shown_at": "2026-10-14T13:23:00Z"
     }
   ],
   "feeds": [
@@ -662,31 +680,31 @@
       "url": "https://feeds.texastribune.org/feeds/main/",
       "status": "ok",
       "items": 20,
-      "sha256": "4923d8202c833851e0b0074cec3623d93a2d8f453f7ac4d9bba9b9be4b8b0056"
+      "sha256": "1204e298941068aafb868ddbdcc76fec3ee00fd9fddb7c84da81a85fe5c3b6d9"
     },
     {
       "url": "https://www.datacenterdynamics.com/en/rss/",
       "status": "ok",
       "items": 20,
-      "sha256": "be1ac1351b3b98b5dea232ad9301a4bcd7e9feb162852603531a3b6af1aa9eb5"
+      "sha256": "b3f52059c21d92550ad321ed0e596dc51c612c8a862929028cd4bda98a9ea7ed"
     },
     {
       "url": "https://news.mit.edu/rss/topic/artificial-intelligence2",
       "status": "ok",
       "items": 50,
-      "sha256": "fb1cec709ec3d8b132f67b8c70a26009ed47e49a9c9b623eca76e4088a867352"
+      "sha256": "7ac074af8eca6c70547e37c60320095540e55d417db92ac62c913e6d11623732"
     },
     {
       "url": "https://openai.com/news/rss.xml",
       "status": "ok",
-      "items": 1289,
-      "sha256": "9b9a3241c188b2eba2e716d3e0b4d0899f4141e9606b4a498abcce5cf2f2203e"
+      "items": 1291,
+      "sha256": "fa34fc4f83f21dfe5e39f98d0980800c03b965e896bca2ad08f0677b5b7ef75c"
     },
     {
       "url": "https://blogs.nvidia.com/feed/",
       "status": "ok",
       "items": 18,
-      "sha256": "e5d256fc3f4090258901ecb5c64664408d13d4688f93e71d5cb5f30741303d58"
+      "sha256": "99b0d006640fe415ee90f1d3844dfc4002c9e6a963e1d980152d482fde2e638c"
     },
     {
       "url": "https://blog.google/technology/ai/rss/",
@@ -698,41 +716,40 @@
       "url": "https://siliconangle.com/feed/",
       "status": "ok",
       "items": 30,
-      "sha256": "7a3b625710d5fb0df06da78b43f8652edec73b90fef3aace85eb833cc867fe4d"
+      "sha256": "41225fa038d42d731f65da73c7f54f1563fd3c34616a08c05c52a2a9dd3497e2"
     },
     {
       "url": "https://www.artificialintelligence-news.com/feed/",
-      "status": "unavailable",
-      "retry_at": "2026-10-15T12:58:11Z",
-      "reason": "not well-formed (invalid token): line 1, column 119"
+      "status": "backoff",
+      "retry_at": "2026-10-15T12:58:11Z"
     },
     {
       "url": "https://www.geekwire.com/tag/artificial-intelligence/feed/",
       "status": "ok",
       "items": 35,
-      "sha256": "f3ad7b8f0556ff6f0cc016ab9917330e45cc2027d1b8febd41a512d723aee529"
+      "sha256": "7b4c48b705a3b3b2f63596934c5d5d802be6652dd83dca90d26598c680c78ecd"
     },
     {
       "url": "https://www.techspot.com/backend.xml",
       "status": "ok",
       "items": 30,
-      "sha256": "bcf22873d0f59c194fbea37ccd87c009da469790af95986a4b4ca8c3420cac88"
+      "sha256": "26adcb76f134bc55dcbe26a9560c35803cc41522dd3d015285950a70dbdd3de6"
     },
     {
       "url": "https://www.sciencedaily.com/rss/computers_math/artificial_intelligence.xml",
-      "status": "ok",
-      "items": 60,
-      "sha256": "33f0573cc1c5b4adb98e7b3869a320b26cdc2289a6e5eb7665e86273fc7dc25a"
+      "status": "not_modified"
     },
     {
       "url": "https://www.tpr.org/index.rss",
       "status": "ok",
       "items": 5,
-      "sha256": "e20e5c686ff1d7f2dd54abd07763d6116b1a0389c3cb91fe27779c4f3886d0b3"
+      "sha256": "784a1281308b5c0c070bc8ddf04a5c1d120f1d24067b0b25f915d8b84b2897ef"
     },
     {
       "url": "https://www.texasobserver.org/feed/",
-      "status": "not_modified"
+      "status": "ok",
+      "items": 10,
+      "sha256": "a690d339c5a18fdd0d17813480423b42123481ebba1a55cb80ab57fbe1fc9a40"
     }
   ],
   "feed_state": {
@@ -740,60 +757,60 @@
       "etag": "\"6d3b9d60e97fdfbc154a2fe67e1e2f2a\"",
       "last_modified": "Tue, 13 Oct 2026 20:46:38 GMT",
       "failures": 0,
-      "ok_at": "2026-10-14T12:58:11Z",
+      "ok_at": "2026-10-14T18:05:39Z",
       "sha256": "0af0a7de897b3119d0686e1f64da5527ee303e884b5222b766076de5ea8c36ef",
       "parser_version": 2
     },
     "https://feeds.texastribune.org/feeds/main/": {
-      "ok_at": "2026-10-14T12:58:11Z",
+      "ok_at": "2026-10-14T18:05:39Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "4923d8202c833851e0b0074cec3623d93a2d8f453f7ac4d9bba9b9be4b8b0056",
-      "etag": "\"6acf76b4-9e17\"",
-      "last_modified": "Wed, 14 Oct 2026 12:33:56 GMT"
+      "sha256": "1204e298941068aafb868ddbdcc76fec3ee00fd9fddb7c84da81a85fe5c3b6d9",
+      "etag": "\"6acfa0b7-a098\"",
+      "last_modified": "Wed, 14 Oct 2026 15:33:11 GMT"
     },
     "https://www.datacenterdynamics.com/en/rss/": {
-      "ok_at": "2026-10-14T12:58:11Z",
+      "ok_at": "2026-10-14T18:05:39Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "be1ac1351b3b98b5dea232ad9301a4bcd7e9feb162852603531a3b6af1aa9eb5",
-      "last_modified": "Wed, 14 Oct 2026 12:42:18 GMT"
+      "sha256": "b3f52059c21d92550ad321ed0e596dc51c612c8a862929028cd4bda98a9ea7ed",
+      "last_modified": "Wed, 14 Oct 2026 17:13:26 GMT"
     },
     "https://news.mit.edu/rss/topic/artificial-intelligence2": {
-      "ok_at": "2026-10-14T12:58:11Z",
+      "ok_at": "2026-10-14T18:05:39Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "fb1cec709ec3d8b132f67b8c70a26009ed47e49a9c9b623eca76e4088a867352",
-      "etag": "\"1791981543\"",
-      "last_modified": "Wed, 14 Oct 2026 12:39:03 GMT"
+      "sha256": "7ac074af8eca6c70547e37c60320095540e55d417db92ac62c913e6d11623732",
+      "etag": "\"1792000199\"",
+      "last_modified": "Wed, 14 Oct 2026 17:49:59 GMT"
     },
     "https://openai.com/news/rss.xml": {
-      "ok_at": "2026-10-14T12:58:11Z",
+      "ok_at": "2026-10-14T18:05:39Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "9b9a3241c188b2eba2e716d3e0b4d0899f4141e9606b4a498abcce5cf2f2203e"
+      "sha256": "fa34fc4f83f21dfe5e39f98d0980800c03b965e896bca2ad08f0677b5b7ef75c"
     },
     "https://blogs.nvidia.com/feed/": {
-      "ok_at": "2026-10-14T12:58:11Z",
+      "ok_at": "2026-10-14T18:05:39Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "e5d256fc3f4090258901ecb5c64664408d13d4688f93e71d5cb5f30741303d58",
-      "etag": "\"f449637fa1ef2d1d0de0d6fa2ac418a2-gzip\"",
-      "last_modified": "Wed, 14 Oct 2026 12:21:55 GMT"
+      "sha256": "99b0d006640fe415ee90f1d3844dfc4002c9e6a963e1d980152d482fde2e638c",
+      "etag": "\"1a85fc9100d411cefb251620767a6110-gzip\"",
+      "last_modified": "Wed, 14 Oct 2026 17:48:01 GMT"
     },
     "https://blog.google/technology/ai/rss/": {
-      "ok_at": "2026-10-14T12:58:11Z",
+      "ok_at": "2026-10-14T18:05:39Z",
       "failures": 0,
       "parser_version": 2,
       "sha256": "4ca4a11170d948e92b9abb8d8afd729bd9e46b89fbf611064691ecdddc4543c1"
     },
     "https://siliconangle.com/feed/": {
-      "ok_at": "2026-10-14T12:58:11Z",
+      "ok_at": "2026-10-14T18:05:39Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "7a3b625710d5fb0df06da78b43f8652edec73b90fef3aace85eb833cc867fe4d",
-      "etag": "\"caad28a232caecbf72ef3ca34da99b39\"",
-      "last_modified": "Wed, 14 Oct 2026 12:00:52 GMT"
+      "sha256": "41225fa038d42d731f65da73c7f54f1563fd3c34616a08c05c52a2a9dd3497e2",
+      "etag": "\"39e9cc357847972847c5dcff20a805f1\"",
+      "last_modified": "Wed, 14 Oct 2026 15:51:10 GMT"
     },
     "https://www.artificialintelligence-news.com/feed/": {
       "etag": "\"cd8cbe1fef0e10c2eef0af3ac2847598\"",
@@ -805,40 +822,40 @@
       "parser_version": 2
     },
     "https://www.geekwire.com/tag/artificial-intelligence/feed/": {
-      "ok_at": "2026-10-14T12:58:11Z",
+      "ok_at": "2026-10-14T18:05:39Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "f3ad7b8f0556ff6f0cc016ab9917330e45cc2027d1b8febd41a512d723aee529",
-      "etag": "W/\"24de76fb18c9c48a2ea573a536b02a43\"",
-      "last_modified": "Wed, 14 Oct 2026 12:00:00 GMT"
+      "sha256": "7b4c48b705a3b3b2f63596934c5d5d802be6652dd83dca90d26598c680c78ecd",
+      "etag": "W/\"fbae80fc53d8137cfd1faa1c58afa6d3\"",
+      "last_modified": "Wed, 14 Oct 2026 17:23:33 GMT"
     },
     "https://www.techspot.com/backend.xml": {
-      "ok_at": "2026-10-14T12:58:11Z",
+      "ok_at": "2026-10-14T18:05:39Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "bcf22873d0f59c194fbea37ccd87c009da469790af95986a4b4ca8c3420cac88",
-      "etag": "W/\"89f8fab57d40c570941229ea90548678\""
+      "sha256": "26adcb76f134bc55dcbe26a9560c35803cc41522dd3d015285950a70dbdd3de6",
+      "etag": "W/\"006791d412edb7367421352bf5fb3a37\""
     },
     "https://www.sciencedaily.com/rss/computers_math/artificial_intelligence.xml": {
-      "ok_at": "2026-10-14T12:58:11Z",
+      "last_modified": "Wed, 14 Oct 2026 12:27:47 GMT",
       "failures": 0,
-      "parser_version": 2,
+      "ok_at": "2026-10-14T18:05:39Z",
       "sha256": "33f0573cc1c5b4adb98e7b3869a320b26cdc2289a6e5eb7665e86273fc7dc25a",
-      "last_modified": "Wed, 14 Oct 2026 12:27:47 GMT"
+      "parser_version": 2
     },
     "https://www.tpr.org/index.rss": {
-      "ok_at": "2026-10-14T12:58:11Z",
+      "ok_at": "2026-10-14T18:05:39Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "e20e5c686ff1d7f2dd54abd07763d6116b1a0389c3cb91fe27779c4f3886d0b3"
+      "sha256": "784a1281308b5c0c070bc8ddf04a5c1d120f1d24067b0b25f915d8b84b2897ef"
     },
     "https://www.texasobserver.org/feed/": {
-      "etag": "W/\"185beb80b8cee3bf55a2fc4d5a722722\"",
-      "last_modified": "Tue, 13 Oct 2026 14:35:46 GMT",
+      "ok_at": "2026-10-14T18:05:39Z",
       "failures": 0,
-      "ok_at": "2026-10-14T12:58:11Z",
-      "sha256": "a09258295433d4d80204e959b8d7b4f8c8ca2d53886033ebfb06c033f8c118e8",
-      "parser_version": 2
+      "parser_version": 2,
+      "sha256": "a690d339c5a18fdd0d17813480423b42123481ebba1a55cb80ab57fbe1fc9a40",
+      "etag": "W/\"3c9b21d436f34fc06679a246b1596a8e\"",
+      "last_modified": "Wed, 14 Oct 2026 17:25:39 GMT"
     }
   }
 }
