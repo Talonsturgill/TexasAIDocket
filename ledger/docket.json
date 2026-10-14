@@ -12629,7 +12629,7 @@
     },
     {
      "date": "2026-10-14",
-     "note": "The committee's own archive still lists the August 19th sitting and the two September sittings after it, and no report from the hearing has been published. The charge wording on the Legislative Reference Library page wasn't re-read, since that host is off limits to this project.",
+     "note": "The committee's own meeting archive still lists the August 19th sitting, now followed by two September sittings, with its minutes and witness list linked. The charge wording on the Legislative Reference Library page and any report index weren't re-read, since that host is off limits to this project.",
      "checked": true
     }
    ]
@@ -12785,7 +12785,7 @@
     },
     {
      "date": "2026-10-14",
-     "note": "The committee's own page still lists the August 20th sitting at the top of its meeting list, and no report from the hearing has been published. The charge wording on the Legislative Reference Library page wasn't re-read, since that host is off limits to this project.",
+     "note": "The committee's own meeting archive still lists the August 20th sitting first in its list, under the same clerk and room. The charge wording on the Legislative Reference Library page and any report index weren't re-read, since that host is off limits to this project.",
      "checked": true
     }
    ]
@@ -22378,7 +22378,7 @@
     },
     {
      "date": "2026-10-14",
-     "note": "The Senate committee's meetings page still lists the September 1st sitting and a second sitting the next day, with the notice, minutes and witness list for the first, and no report from it has been published. The notice itself sits on a path this project does not read.",
+     "note": "The Senate committee's meetings page still lists the September 1st sitting with its notice, minutes and witness list linked, and a second sitting the next day. The notice text sits on a path this project does not read, and no report index was checked.",
      "checked": true
     }
    ]
@@ -24094,8 +24094,21 @@
     {
      "date": "2026-10-10",
      "note": "The radiologists' published review is unconfirmed today, because the index that carries its abstract bars automated readers."
+    },
+    {
+     "date": "2026-10-14",
+     "note": "The radiologists' published review stays unconfirmed, since the index that carries its abstract still bars automated readers."
     }
-   ]
+   ],
+   "unreachable": {
+    "hosts": [
+     "pubmed.ncbi.nlm.nih.gov",
+     "eutils.ncbi.nlm.nih.gov"
+    ],
+    "boundary": "blocks_every_client",
+    "checked": "2026-10-14",
+    "note": "pubmed.ncbi.nlm.nih.gov served a cookie notice with no abstract text to the project's own agent and to a browser agent on 2026-10-14, and eutils.ncbi.nlm.nih.gov serves User-agent * Disallow / in robots.txt, so the cited abstract can't be read. Not routed around."
+   }
   },
   {
    "title": "An MD Anderson and UT Medical Branch MRI model scored lower on patients it was not built on",
@@ -24246,8 +24259,21 @@
     {
      "date": "2026-10-10",
      "note": "The MRI study's abstract and its author affiliations are unconfirmed today, because the index that carries them bars automated readers."
+    },
+    {
+     "date": "2026-10-14",
+     "note": "The MRI study's abstract and its author affiliations stay unconfirmed, since the index that carries them still bars automated readers."
     }
-   ]
+   ],
+   "unreachable": {
+    "hosts": [
+     "pubmed.ncbi.nlm.nih.gov",
+     "eutils.ncbi.nlm.nih.gov"
+    ],
+    "boundary": "blocks_every_client",
+    "checked": "2026-10-14",
+    "note": "pubmed.ncbi.nlm.nih.gov served a cookie notice with no abstract text to the project's own agent and to a browser agent on 2026-10-14, and eutils.ncbi.nlm.nih.gov serves User-agent * Disallow / in robots.txt, so the cited abstract can't be read. Not routed around."
+   }
   },
   {
    "title": "The grid operator tells providers which large loads it has provisionally placed in Batch Zero, and every placement carries a condition",

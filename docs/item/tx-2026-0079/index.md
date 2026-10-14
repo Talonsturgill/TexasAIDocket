@@ -37,7 +37,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-02 · The House Public Health hearing on artificial intelligence stands as the committee's own pages list it, with no recommendation published.
 - 2026-10-05 · House Public Health still lists its hearing on artificial intelligence in health care, with no report from it published.
 - 2026-10-08 · The Legislature's committee page still lists the hearing on AI in health care, and no report from it has been published.
-- 2026-10-14 · The committee's own page still lists the August 20th sitting at the top of its meeting list, and no report from the hearing has been published. The charge wording on the Legislative Reference Library page wasn't re-read, since that host is off limits to this project.
+- 2026-10-14 · The committee's own meeting archive still lists the August 20th sitting first in its list, under the same clerk and room. The charge wording on the Legislative Reference Library page and any report index weren't re-read, since that host is off limits to this project.
 
 ## Evidence
 
