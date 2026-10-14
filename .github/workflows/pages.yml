@@ -65,6 +65,8 @@ concurrency:
 jobs:
   verify:
     runs-on: ubuntu-latest
+    # The guards wait below is bounded at 75 minutes, and the rebuild checks after it take minutes.
+    timeout-minutes: 100
     outputs:
       deploy: ${{ steps.target.outputs.deploy }}
       sha: ${{ steps.target.outputs.sha }}
@@ -97,19 +99,45 @@ jobs:
 
       # THE EXACT SHA, NOT A GREEN RUN SOMEWHERE NEAR IT. Scheduled recovery has no input SHA,
       # so it selects current main here and still must prove that commit's aggregate guard result.
+      #
+      # A GUARD THAT IS STILL RUNNING IS NOT A GUARD THAT FAILED. The scheduled backstop fires every
+      # two hours and full guards take most of an hour, so it regularly meets the current main commit
+      # mid run. This step used to refuse at once, which left a red `verify` check on a healthy commit
+      # and nothing that clears it without a rerun. So it now waits, and only for a result that has not
+      # arrived yet: queued, in progress, or no `guards` check registered for the commit. The wait is
+      # bounded and its timeout refuses. A finished guard that did not succeed (failure, cancelled,
+      # timed out, skipped or any other conclusion) refuses on the first read, with no waiting. The
+      # deploy job still packages this exact SHA, and the checks after this step are untouched.
       - name: Full guards passed for this exact main commit
         if: steps.target.outputs.deploy == 'true'
         env:
           GH_TOKEN: ${{ github.token }}
+          GUARDS_WAIT_SECONDS: "4500"
+          GUARDS_POLL_SECONDS: "60"
         run: |
           SHA=$(git rev-parse HEAD)
-          conclusion=$(gh api \
-            "repos/${GITHUB_REPOSITORY}/commits/${SHA}/check-runs?check_name=guards&filter=latest&per_page=1" \
-            --jq '.check_runs[0].conclusion // ""')
-          if [ "$conclusion" != "success" ]; then
-            echo "::error::main ${SHA} has no successful full guards result; refusing to deploy"
-            exit 1
-          fi
+          started=$SECONDS
+          while true; do
+            # A transient API error reads as "not yet", never as success.
+            row=$(gh api \
+              "repos/${GITHUB_REPOSITORY}/commits/${SHA}/check-runs?check_name=guards&filter=latest&per_page=1" \
+              --jq '[(.check_runs[0].status // ""), (.check_runs[0].conclusion // "")] | @tsv' 2>/dev/null) || row=""
+            status=$(printf '%s' "$row" | cut -f1)
+            conclusion=$(printf '%s' "$row" | cut -f2)
+            if [ -n "$conclusion" ] && [ "$conclusion" != "success" ]; then
+              echo "::error::main ${SHA} guards finished ${conclusion}; refusing to deploy"
+              exit 1
+            fi
+            if [ "$conclusion" = "success" ]; then
+              break
+            fi
+            if [ $((SECONDS - started)) -ge "${GUARDS_WAIT_SECONDS}" ]; then
+              echo "::error::main ${SHA} guards did not finish within ${GUARDS_WAIT_SECONDS} seconds (last status ${status:-none}); refusing to deploy"
+              exit 1
+            fi
+            echo "::notice::guards for ${SHA} is ${status:-not yet registered}; waiting"
+            sleep "${GUARDS_POLL_SECONDS}"
+          done
 
       - uses: actions/setup-python@v5
         if: steps.target.outputs.deploy == 'true'

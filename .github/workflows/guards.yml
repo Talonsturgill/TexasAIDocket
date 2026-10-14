@@ -196,6 +196,9 @@ jobs:
       - name: Every main writer reaches Pages through full guards
         run: python3 scripts/shared/release_shape.py
 
+      - name: Pages waits for a pending guard result and refuses a failed one
+        run: python3 scripts/shared/pages_guards_wait_test.py
+
       # THE CITATIONS INTO GATE_LESSONS. Scripts and prompts cite that file by entry number to
       # reach the story behind a rule, and the numbering had drifted until one citation resolved
       # to a different lesson entirely. A citation that resolves to the wrong thing reads exactly
