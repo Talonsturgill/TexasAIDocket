@@ -96,9 +96,33 @@ def pages_problems(doc: dict) -> list[str]:
         ("commits/${SHA}/check-runs", "pages does not query checks for that exact commit"),
         ("check_name=guards", "pages does not require the aggregate guard check by name"),
         ('[ "$conclusion" != "success" ]', "pages does not reject a non-success guard result"),
+        ("GUARDS_WAIT_SECONDS", "pages can wait on a pending guard result without a bound"),
+        ("GUARDS_POLL_SECONDS", "pages polls a pending guard result without a stated interval"),
+        ("did not finish within", "pages does not refuse a guard result that never arrives"),
+        ("could not read the guards result", "pages does not fail closed on a GitHub API error or invalid response"),
+        ("GUARDS_API_RETRIES", "pages retries a GitHub API error without a stated limit"),
     ):
         if required not in shell:
             out.append(problem)
+
+    # The wait must be a stated, bounded number, and the job must outlast it.
+    wait_steps = [step for step in (verify.get("steps") or [])
+                  if "check_name=guards" in str(step.get("run") or "")]
+    for step in wait_steps:
+        env = step.get("env") or {}
+        try:
+            bound = int(str(env.get("GUARDS_WAIT_SECONDS")))
+            poll = float(str(env.get("GUARDS_POLL_SECONDS")))
+        except ValueError:
+            out.append("pages does not state its guard wait and poll interval as numbers")
+            continue
+        if not 0 < bound <= 7200:
+            out.append("pages guard wait is not a bounded number of seconds up to two hours")
+        if poll < 1:
+            out.append("pages polls the guard result more than once a second")
+        limit = verify.get("timeout-minutes")
+        if not isinstance(limit, int) or limit * 60 <= bound:
+            out.append("the pages verify job can be cut off before its guard wait ends")
 
     deploy = jobs.get("deploy") or {}
     needs = deploy.get("needs") or []
@@ -209,12 +233,18 @@ def self_test() -> int:
               f"{'' if condition else '  ' + extra}")
         failures += int(not condition)
 
+    GOOD_WAIT = ("SHA=$(git rev-parse HEAD)\n"
+                 "gh api repos/x/commits/${SHA}/check-runs?check_name=guards\n"
+                 'if [ -n "$conclusion" ] && [ "$conclusion" != "success" ]; then exit 1; fi\n'
+                 'echo "did not finish within ${GUARDS_WAIT_SECONDS}"; sleep "${GUARDS_POLL_SECONDS}"\n'
+                 'echo "could not read the guards result ${GUARDS_API_RETRIES}"')
     good_pages = {
         "on": {"workflow_dispatch": {"inputs": {"guarded_sha": {"required": False}}},
                "schedule": [{"cron": "0 */2 * * *"}]},
         "permissions": {"checks": "read"},
         "jobs": {
             "verify": {
+                "timeout-minutes": 100,
                 "outputs": {"deploy": "${{ steps.target.outputs.deploy }}",
                             "sha": "${{ steps.target.outputs.sha }}"},
                 "steps": [
@@ -225,9 +255,8 @@ def self_test() -> int:
                             "  echo deploy=false\n"
                             "fi\n"
                             "echo deploy=true"},
-                    {"run": "SHA=$(git rev-parse HEAD)\n"
-                            "gh api repos/x/commits/${SHA}/check-runs?check_name=guards\n"
-                            'if [ "$conclusion" != "success" ]; then exit 1; fi'}]},
+                    {"env": {"GUARDS_WAIT_SECONDS": "4500", "GUARDS_POLL_SECONDS": "60", "GUARDS_API_RETRIES": "4"},
+                     "run": GOOD_WAIT}]},
             "deploy": {"needs": "verify",
                        "if": "needs.verify.outputs.deploy == 'true'",
                        "steps": [{"uses": "actions/checkout@v4",
@@ -271,6 +300,40 @@ def self_test() -> int:
     check("a deployment with no exact-SHA guard query is caught",
           any("exact commit" in p or "aggregate guard" in p for p in
               pages_problems(wrong_check)), str(pages_problems(wrong_check)))
+
+    def with_wait_step(**changes):
+        verify = dict(good_pages["jobs"]["verify"])
+        steps = [dict(s) for s in verify["steps"]]
+        steps[2] = {**steps[2], **changes.get("step", {})}
+        if "run" in changes:
+            steps[2]["run"] = changes["run"]
+        verify["steps"] = steps
+        verify.update(changes.get("verify", {}))
+        return {**good_pages, "jobs": {**good_pages["jobs"], "verify": verify}}
+
+    check("a guard wait with no bound is caught",
+          any("without a bound" in p for p in pages_problems(
+              with_wait_step(run=GOOD_WAIT.replace("GUARDS_WAIT_SECONDS", "OTHER")))),
+          str(pages_problems(with_wait_step(run=GOOD_WAIT.replace("GUARDS_WAIT_SECONDS", "OTHER")))))
+    check("a guard wait with no timeout refusal is caught",
+          any("never arrives" in p for p in pages_problems(
+              with_wait_step(run=GOOD_WAIT.replace("did not finish within", "x")))))
+    check("an enormous guard wait is caught",
+          any("bounded number" in p for p in pages_problems(
+              with_wait_step(step={"env": {"GUARDS_WAIT_SECONDS": "99999", "GUARDS_POLL_SECONDS": "60", "GUARDS_API_RETRIES": "4"}}))))
+    check("an API error that is not failed closed is caught",
+          any("fail closed on a GitHub API error" in p for p in pages_problems(
+              with_wait_step(run=GOOD_WAIT.replace("could not read the guards result", "x")))))
+    check("an unbounded API retry is caught",
+          any("without a stated limit" in p for p in pages_problems(
+              with_wait_step(run=GOOD_WAIT.replace("GUARDS_API_RETRIES", "OTHER")))))
+    check("a busy poll is caught",
+          any("more than once a second" in p for p in pages_problems(
+              with_wait_step(step={"env": {"GUARDS_WAIT_SECONDS": "4500", "GUARDS_POLL_SECONDS": "0.1", "GUARDS_API_RETRIES": "4"}}))))
+    check("a verify job that can be cut off before the wait ends is caught",
+          any("cut off" in p for p in pages_problems(with_wait_step(verify={"timeout-minutes": 10}))))
+    check("a missing verify timeout is caught",
+          any("cut off" in p for p in pages_problems(with_wait_step(verify={"timeout-minutes": None}))))
 
     no_stale_skip = {**good_pages, "jobs": {**good_pages["jobs"], "verify": {
         **good_pages["jobs"]["verify"],

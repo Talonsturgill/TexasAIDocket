@@ -65,6 +65,8 @@ concurrency:
 jobs:
   verify:
     runs-on: ubuntu-latest
+    # The guards wait below is bounded at 75 minutes, and the rebuild checks after it take minutes.
+    timeout-minutes: 100
     outputs:
       deploy: ${{ steps.target.outputs.deploy }}
       sha: ${{ steps.target.outputs.sha }}
@@ -97,19 +99,82 @@ jobs:
 
       # THE EXACT SHA, NOT A GREEN RUN SOMEWHERE NEAR IT. Scheduled recovery has no input SHA,
       # so it selects current main here and still must prove that commit's aggregate guard result.
+      #
+      # A GUARD THAT IS STILL RUNNING IS NOT A GUARD THAT FAILED. The scheduled backstop fires every
+      # two hours and full guards take most of an hour, so it regularly meets the current main commit
+      # mid run. This step used to refuse at once, which left a red `verify` check on a healthy commit
+      # and nothing that clears it without a rerun. So it now waits, and only for a result that has not
+      # arrived yet: queued, in progress, or no `guards` check registered for the commit. The wait is
+      # bounded and its timeout refuses. A finished guard that did not succeed (failure, cancelled,
+      # timed out, skipped or any other conclusion) refuses on the first read, with no waiting. A GitHub
+      # API error is a separate case and is never read as pending. A server error or a lost connection is
+      # retried a few times in a row, and a 4xx (a 403, a rate limit, a 401, a 404, a 422), an unrecognized
+      # error or a response that is not a known status all refuse at once. The deploy job still packages
+      # this exact SHA, and the checks after this step are untouched.
       - name: Full guards passed for this exact main commit
         if: steps.target.outputs.deploy == 'true'
         env:
           GH_TOKEN: ${{ github.token }}
+          GUARDS_WAIT_SECONDS: "4500"
+          GUARDS_POLL_SECONDS: "60"
+          GUARDS_API_RETRIES: "4"
         run: |
           SHA=$(git rev-parse HEAD)
-          conclusion=$(gh api \
-            "repos/${GITHUB_REPOSITORY}/commits/${SHA}/check-runs?check_name=guards&filter=latest&per_page=1" \
-            --jq '.check_runs[0].conclusion // ""')
-          if [ "$conclusion" != "success" ]; then
-            echo "::error::main ${SHA} has no successful full guards result; refusing to deploy"
-            exit 1
-          fi
+          started=$SECONDS
+          transient=0
+          err=$(mktemp)
+          while true; do
+            if row=$(gh api \
+                "repos/${GITHUB_REPOSITORY}/commits/${SHA}/check-runs?check_name=guards&filter=latest&per_page=1" \
+                --jq '[(.check_runs[0].status // ""), (.check_runs[0].conclusion // "")] | @tsv' 2>"$err"); then
+              transient=0
+            else
+              # AN API ERROR IS NOT A PENDING GUARD. Only a server error or a lost connection is retried,
+              # and only a few times in a row. A 4xx (a 403 from a missing permission or a rate limit, a
+              # 401, a 404, a 422) and any error this step does not recognize refuse at once, so a broken
+              # read can never be mistaken for a guard that has not finished.
+              code=$(grep -o 'HTTP [0-9][0-9][0-9]' "$err" | head -1 | cut -d' ' -f2)
+              if { [ -n "$code" ] && [ "$code" -ge 500 ] && [ "$code" -le 504 ]; } \
+                 || { [ -z "$code" ] && grep -qiE 'connection (reset|refused)|timed? ?out|EOF|temporary failure|no such host|TLS' "$err"; }; then
+                transient=$((transient + 1))
+                if [ "$transient" -ge "${GUARDS_API_RETRIES}" ]; then
+                  echo "::error::main ${SHA} could not read the guards result after ${transient} consecutive transient API errors (last: ${code:-connection}); refusing to deploy"
+                  exit 1
+                fi
+                echo "::notice::transient GitHub API error (${code:-connection}) reading guards for ${SHA}; retrying"
+                sleep "${GUARDS_POLL_SECONDS}"
+                continue
+              fi
+              echo "::error::main ${SHA} could not read the guards result: GitHub API error ${code:-unrecognized}: $(head -c 200 "$err" | tr '\n' ' '); refusing to deploy"
+              exit 1
+            fi
+            # The query always prints a status, a tab and a conclusion, even for no check run at all. A read
+            # without that tab is an invalid response, and an empty read is never pending.
+            case "$row" in
+              *"$(printf '\t')"*) ;;
+              *) echo "::error::main ${SHA} could not read the guards result: the response was not a status and conclusion; refusing to deploy"; exit 1 ;;
+            esac
+            status=$(printf '%s' "$row" | cut -f1)
+            conclusion=$(printf '%s' "$row" | cut -f2)
+            # A read that is not a known status and conclusion is an invalid response, never pending.
+            case "$status" in
+              ""|queued|in_progress|waiting|pending|requested|completed) ;;
+              *) echo "::error::main ${SHA} could not read the guards result: unexpected status '${status}'; refusing to deploy"; exit 1 ;;
+            esac
+            if [ -n "$conclusion" ] && [ "$conclusion" != "success" ]; then
+              echo "::error::main ${SHA} guards finished ${conclusion}; refusing to deploy"
+              exit 1
+            fi
+            if [ "$conclusion" = "success" ]; then
+              break
+            fi
+            if [ $((SECONDS - started)) -ge "${GUARDS_WAIT_SECONDS}" ]; then
+              echo "::error::main ${SHA} guards did not finish within ${GUARDS_WAIT_SECONDS} seconds (last status ${status:-none}); refusing to deploy"
+              exit 1
+            fi
+            echo "::notice::guards for ${SHA} is ${status:-not yet registered}; waiting"
+            sleep "${GUARDS_POLL_SECONDS}"
+          done
 
       - uses: actions/setup-python@v5
         if: steps.target.outputs.deploy == 'true'
