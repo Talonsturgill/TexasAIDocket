@@ -11,7 +11,7 @@ The Lubbock City Council held a public hearing on September 8th, 2026 on a citiz
 - Public access: Public meeting
 - Take part: https://www.mylubbock.us/AgendaCenter
 
-- Last checked: 2026-10-09
+- Last checked: 2026-10-14
 
 ## Dates
 
@@ -34,6 +34,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-05 · Lubbock's September 8th agenda record still carries the failed petition and the council's resolution. The 90 day moratorium still needs its public hearings before it takes effect.
 - 2026-10-08 · The public radio account of Lubbock's first step toward a pause still reads as cited. The city's own agenda record is unconfirmed, because the city's site refused the request.
 - 2026-10-09 · The published accounts of Lubbock's first step toward a pause still read as cited. The city's own agenda refused the request, so its record is unconfirmed.
+- 2026-10-14 · The public radio account still reads as cited, with the pause started and not yet declared. The city's own agenda record and the television station's report are unconfirmed, since the city's site refused the request and the station's site bars automated readers.
 
 ## Evidence
 
