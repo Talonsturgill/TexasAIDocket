@@ -9,7 +9,7 @@ The Senate Committee on Water, Agriculture and Rural Affairs posted notice that 
 - Public access: Public meeting
 - Take part: https://capitol.texas.gov/tlodocs/89R/schedules/html/C7002026090109001.htm
 
-- Last checked: 2026-10-08
+- Last checked: 2026-10-14
 
 ## Dates
 
@@ -31,6 +31,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-02 · The committee's meetings page lists the September 1st sitting the notice set, followed by a second on September 2nd. The notice itself sits on a path this project does not read.
 - 2026-10-05 · The Senate water committee's notice of its hearing on data center cooling water still reads as posted, with no report from it published.
 - 2026-10-08 · The Senate committee's meetings page still lists the September 1st sitting on data center cooling water, and no report from it has been published.
+- 2026-10-14 · The Senate committee's meetings page still lists the September 1st sitting and a second sitting the next day, with the notice, minutes and witness list for the first, and no report from it has been published. The notice itself sits on a path this project does not read.
 
 ## Evidence
 
