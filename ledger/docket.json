@@ -12539,7 +12539,7 @@
     }
    ],
    "id": "tx-2026-0078",
-   "last_verified": "2026-10-08",
+   "last_verified": "2026-10-14",
    "history": [
     {
      "date": "2026-08-21",
@@ -12626,6 +12626,11 @@
      "date": "2026-10-08",
      "note": "The committee's own archive still lists the August 19th sitting and the two September sittings after it, and no report from the hearing has been published.",
      "checked": true
+    },
+    {
+     "date": "2026-10-14",
+     "note": "The committee's own meeting archive still lists the August 19th sitting, now followed by two September sittings, with its minutes and witness list linked. The charge wording on the Legislative Reference Library page and any report index weren't re-read, since that host is off limits to this project.",
+     "checked": true
     }
    ]
   },
@@ -12688,7 +12693,7 @@
     }
    ],
    "id": "tx-2026-0079",
-   "last_verified": "2026-10-08",
+   "last_verified": "2026-10-14",
    "history": [
     {
      "date": "2026-08-21",
@@ -12776,6 +12781,11 @@
     {
      "date": "2026-10-08",
      "note": "The Legislature's committee page still lists the hearing on AI in health care, and no report from it has been published.",
+     "checked": true
+    },
+    {
+     "date": "2026-10-14",
+     "note": "The committee's own meeting archive still lists the August 20th sitting first in its list, under the same clerk and room. The charge wording on the Legislative Reference Library page and any report index weren't re-read, since that host is off limits to this project.",
      "checked": true
     }
    ]
@@ -22224,7 +22234,7 @@
   },
   {
    "title": "A Texas Senate committee set a hearing on how much water data center cooling uses and whether local water providers are told",
-   "summary": "The Senate Committee on Water, Agriculture and Rural Affairs posted notice that it would meet at 9:00 AM on Tuesday, September 1st, 2026 in hearing room E1.012. Senator Charles Perry chairs it. The notice sets one interim charge and says the committee will hear invited and public testimony on it. The charge is to examine current water consumption rates for high consumption cooling technologies including data centers. It directs the committee to make recommendations improving transparency for local water providers. It also tells the committee to weigh industrial growth against water affordability for households and for agricultural producers. The notice limits public testimony to two minutes and routes written testimony to the committee clerk. A notice sets a hearing rather than reporting one. It says nothing about what the committee heard or what it will recommend.",
+   "summary": "The Senate Committee on Water, Agriculture and Rural Affairs posted notice that it would meet at 9:00 AM on Tuesday, September 1st, 2026 in hearing room E1.012. Senator Charles Perry chairs it. The notice sets one interim charge and says the committee will hear invited and public testimony on it. The charge is to examine current water consumption rates for high consumption cooling technologies including data centers. It directs the committee to make recommendations improving transparency for local water providers. It also tells the committee to weigh industrial growth against water affordability for households and for agricultural producers. The notice limits public testimony to two minutes and routes written testimony to the committee clerk. The sitting the notice set has passed. The committee's meetings page now lists that sitting and a second one the next day, under columns for the hearing notice, minutes and witness list. Neither the notice nor that page says what the committee heard or what it will recommend.",
    "topic": "land-water-and-permitting",
    "decider": {
     "name": "Texas Senate Committee on Water, Agriculture and Rural Affairs",
@@ -22245,9 +22255,10 @@
     }
    ],
    "public_access": {
-    "room": "open_meeting",
-    "how": "The committee posts its notice with the room, the hour and the charge before it meets. The notice says the committee will hear invited and public testimony and it limits each speaker to two minutes. It also told anyone submitting written testimony to give 15 copies to the committee clerk and email a digital copy to the address the notice prints. That route was open for the hearing the notice set and nothing fetched here describes a window after it.",
-    "url": "https://capitol.texas.gov/tlodocs/89R/schedules/html/C7002026090109001.htm"
+    "room": "contact_only",
+    "how": "The sitting the notice set has passed. The committee clerk is named on the Legislature's committee meetings page with a phone number and a room. That page is where the hearing notice, the minutes and the witness list are posted as they are filed.",
+    "url": "https://capitol.texas.gov/Committees/MeetingsByCmte.aspx?Leg=89&Chamber=S&CmteCode=C700",
+    "closes": null
    },
    "claims": [
     {
@@ -22303,10 +22314,28 @@
      "source_title": "Senate Committee Meetings, Water, Agriculture and Rural Affairs",
      "source_type": "primary_official",
      "fetched": "2026-10-02"
+    },
+    {
+     "id": "tx-2026-0126-c7",
+     "text": "The committee's meetings page now lists a second sitting beside the September 1st one, under columns for the hearing notice, minutes and witness list.",
+     "verbatim_quote": "Date and Time Hearing Notice Minutes Witness List Handouts Comments September 2, 2026 9:00 AM September 1, 2026 9:00 AM",
+     "source_url": "https://capitol.texas.gov/Committees/MeetingsByCmte.aspx?Leg=89&Chamber=S&CmteCode=C700",
+     "source_title": "Senate Committee Meetings, Water, Agriculture and Rural Affairs",
+     "source_type": "primary_official",
+     "fetched": "2026-10-14"
+    },
+    {
+     "id": "tx-2026-0126-c8",
+     "text": "The meetings page names the committee clerk with a phone number and a room.",
+     "verbatim_quote": "Senate Committee on Water, Agriculture and Rural Affairs (C700) Clerk: Macie Goodson Phone: (512) 463-0340 Room: SHB 335",
+     "source_url": "https://capitol.texas.gov/Committees/MeetingsByCmte.aspx?Leg=89&Chamber=S&CmteCode=C700",
+     "source_title": "Senate Committee Meetings, Water, Agriculture and Rural Affairs",
+     "source_type": "primary_official",
+     "fetched": "2026-10-14"
     }
    ],
    "id": "tx-2026-0126",
-   "last_verified": "2026-10-08",
+   "last_verified": "2026-10-14",
    "history": [
     {
      "date": "2026-09-07",
@@ -22364,6 +22393,11 @@
     {
      "date": "2026-10-08",
      "note": "The Senate committee's meetings page still lists the September 1st sitting on data center cooling water, and no report from it has been published.",
+     "checked": true
+    },
+    {
+     "date": "2026-10-14",
+     "note": "The Senate committee's meetings page still lists the September 1st sitting with its notice, minutes and witness list linked, and a second sitting the next day. The notice text sits on a path this project does not read, and no report index was checked.",
      "checked": true
     }
    ]
@@ -24079,8 +24113,21 @@
     {
      "date": "2026-10-10",
      "note": "The radiologists' published review is unconfirmed today, because the index that carries its abstract bars automated readers."
+    },
+    {
+     "date": "2026-10-14",
+     "note": "The radiologists' published review stays unconfirmed, since the index that carries its abstract still bars automated readers."
     }
-   ]
+   ],
+   "unreachable": {
+    "hosts": [
+     "pubmed.ncbi.nlm.nih.gov",
+     "eutils.ncbi.nlm.nih.gov"
+    ],
+    "boundary": "blocks_every_client",
+    "checked": "2026-10-14",
+    "note": "pubmed.ncbi.nlm.nih.gov served a cookie notice with no abstract text to the project's own agent and to a browser agent on 2026-10-14, and eutils.ncbi.nlm.nih.gov serves User-agent * Disallow / in robots.txt, so the cited abstract can't be read. Not routed around."
+   }
   },
   {
    "title": "An MD Anderson and UT Medical Branch MRI model scored lower on patients it was not built on",
@@ -24231,8 +24278,21 @@
     {
      "date": "2026-10-10",
      "note": "The MRI study's abstract and its author affiliations are unconfirmed today, because the index that carries them bars automated readers."
+    },
+    {
+     "date": "2026-10-14",
+     "note": "The MRI study's abstract and its author affiliations stay unconfirmed, since the index that carries them still bars automated readers."
     }
-   ]
+   ],
+   "unreachable": {
+    "hosts": [
+     "pubmed.ncbi.nlm.nih.gov",
+     "eutils.ncbi.nlm.nih.gov"
+    ],
+    "boundary": "blocks_every_client",
+    "checked": "2026-10-14",
+    "note": "pubmed.ncbi.nlm.nih.gov served a cookie notice with no abstract text to the project's own agent and to a browser agent on 2026-10-14, and eutils.ncbi.nlm.nih.gov serves User-agent * Disallow / in robots.txt, so the cited abstract can't be read. Not routed around."
+   }
   },
   {
    "title": "The grid operator tells providers which large loads it has provisionally placed in Batch Zero, and every placement carries a condition",
