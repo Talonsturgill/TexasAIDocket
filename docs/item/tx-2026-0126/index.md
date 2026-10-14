@@ -1,13 +1,13 @@
 # A Texas Senate committee set a hearing on how much water data center cooling uses and whether local water providers are told
 
-The Senate Committee on Water, Agriculture and Rural Affairs posted notice that it would meet at 9:00 AM on Tuesday, September 1st, 2026 in hearing room E1.012. Senator Charles Perry chairs it. The notice sets one interim charge and says the committee will hear invited and public testimony on it. The charge is to examine current water consumption rates for high consumption cooling technologies including data centers. It directs the committee to make recommendations improving transparency for local water providers. It also tells the committee to weigh industrial growth against water affordability for households and for agricultural producers. The notice limits public testimony to two minutes and routes written testimony to the committee clerk. A notice sets a hearing rather than reporting one. It says nothing about what the committee heard or what it will recommend.
+The Senate Committee on Water, Agriculture and Rural Affairs posted notice that it would meet at 9:00 AM on Tuesday, September 1st, 2026 in hearing room E1.012. Senator Charles Perry chairs it. The notice sets one interim charge and says the committee will hear invited and public testimony on it. The charge is to examine current water consumption rates for high consumption cooling technologies including data centers. It directs the committee to make recommendations improving transparency for local water providers. It also tells the committee to weigh industrial growth against water affordability for households and for agricultural producers. The notice limits public testimony to two minutes and routes written testimony to the committee clerk. The sitting the notice set has passed. The committee's meetings page now lists that sitting and a second one the next day, under columns for the hearing notice, minutes and witness list. Neither the notice nor that page says what the committee heard or what it will recommend.
 
 - Topic: land-water-and-permitting
 - Decided by: Texas Senate Committee on Water, Agriculture and Rural Affairs (state-agency)
 - Where: Statewide
 - Status: pending
-- Public access: Public meeting
-- Take part: https://capitol.texas.gov/tlodocs/89R/schedules/html/C7002026090109001.htm
+- Public access: Write to the decider
+- Take part: https://capitol.texas.gov/Committees/MeetingsByCmte.aspx?Leg=89&Chamber=S&CmteCode=C700
 
 - Last checked: 2026-10-14
 
@@ -70,6 +70,18 @@ Source (primary_official): https://capitol.texas.gov/tlodocs/89R/schedules/html/
 ### The committee's meetings page lists the September 1st sitting the notice set.
 
 > September 1, 2026 9:00 AM
+
+Source (primary_official): https://capitol.texas.gov/Committees/MeetingsByCmte.aspx?Leg=89&Chamber=S&CmteCode=C700
+
+### The committee's meetings page now lists a second sitting beside the September 1st one, under columns for the hearing notice, minutes and witness list.
+
+> Date and Time Hearing Notice Minutes Witness List Handouts Comments September 2, 2026 9:00 AM September 1, 2026 9:00 AM
+
+Source (primary_official): https://capitol.texas.gov/Committees/MeetingsByCmte.aspx?Leg=89&Chamber=S&CmteCode=C700
+
+### The meetings page names the committee clerk with a phone number and a room.
+
+> Senate Committee on Water, Agriculture and Rural Affairs (C700) Clerk: Macie Goodson Phone: (512) 463-0340 Room: SHB 335
 
 Source (primary_official): https://capitol.texas.gov/Committees/MeetingsByCmte.aspx?Leg=89&Chamber=S&CmteCode=C700
 
