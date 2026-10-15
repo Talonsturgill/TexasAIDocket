@@ -77,7 +77,7 @@ down in the west south west, one warm seam low on the key's side, a near black s
 | token | hex | where |
 |---|---|---|
 | `ground` | `#08060F` | the DOM body behind the render, the brand's night |
-| `accent` | `#4E5FA8` | bluebonnet, certification: the clause on 6, five rail segments and the signature rule on 8, the rule on 9 |
+| `accent` | `#4E5FA8` | bluebonnet, certification: the camera's lit flip screen on 3 (the video record its lawyer calls certified), the index tab at the certified reporter clause on 6, five rail segments and the certificate's seal box and signature rule on 8 |
 | `hook` | `#ECE6DA` | light type on the dark |
 | `dek` | `#D8D0C2` | the dek |
 | `material` | `#C9BBA0` | Cordova limestone and the transcript's leaves |
@@ -119,6 +119,7 @@ under a clear cover with a black back and chrome posts, a black camcorder on an 
 
 Showstopper frame: 01, a granite stair climbing out of the dark in eighteen bright treads to a pair of lit bronze doors, a bound transcript lying close on the bottom step
 Tonal arc: black around the lit treads on 1, the warm glass in the black pines on 2, the table's pool on 3, the darkest on the ledge at 4, the stair as a rim lit line on 5, the brightest page on 6, the bench's pool on 7, the closest page on 8, settling on 9 with the treads falling into the dark
+VALUE CUT: frame 7. The deck turns from the rule book under its lamp to the bench in its dark room, and the drop in value is that turn.
 
 ---
 
@@ -127,8 +128,8 @@ slide: 1
 layout: FULL_BLEED
 primary_image:
   subject: "a granite stair of eighteen treads climbing to a limestone building's lit bronze doors, the bound transcript lying on the bottom tread close to the lens"
-  rect: [0, 560, 1080, 790]
-  bleeds: [left, right, bottom]
+  rect: [0, 660, 1020, 540]
+  bleeds: [left]
 accent: none
 job: >
   Put the case in front of the reader, the transcript an AI made and the court it reached, and set up the stair as the count of months.
@@ -224,7 +225,7 @@ art:
 
 type:
   hook: "It began with a deposition in Montgomery County"
-  dek: "A wrongful termination suit. The deposition was recorded on video and its transcript made by an AI platform. Courthouse News reports the company did not object at the deposition. Drawn to illustrate."
+  dek: "A wrongful termination suit. The deposition was recorded on video and its transcript made with an AI platform. Courthouse News reports the company did not object to the software at the deposition. Drawn to illustrate."
   labels: []
 
 verbatim: []
@@ -246,13 +247,13 @@ slide: 3
 layout: DIAGRAM
 primary_image:
   subject: "the video camera on its tripod and the bound transcript side by side on the walnut deposition table at one scale, two leaders naming them"
-  rect: [80, 420, 920, 820]
-  bleeds: [bottom]
-accent: none
+  rect: [0, 540, 900, 660]
+  bleeds: [left]
+accent: "#4E5FA8"
 job: >
   Name the two records the deposition left and what each side argued about them, the certified video and the transcript no certified reporter prepared.
 
-claims: [c13, c8, c16, c14]
+claims: [c13, c16, c6]
 numerals: []
 
 data_in_art:
@@ -288,8 +289,7 @@ type:
   dek: "The employee's lawyer argued the video recording is certified, so the transcript does not have to be. The employer's lawyer said a third party AI platform raises security and confidentiality questions."
   labels: ["video recording", "transcript made with AI"]
 
-verbatim:
-  - c14: "under the current rules, you are allowed to do this"
+verbatim: []
 
 acceptance:
   - "the camera on its tripod and the transcript both stand in frame, and a frame without either fails this item"
@@ -306,9 +306,9 @@ risks:
 slide: 4
 layout: OBJECT_AND_CAPTION
 primary_image:
-  subject: "the transcript lying face down on the granite base ledge of a classical county courthouse at last light, the facade and tower rising into the dark"
-  rect: [380, 600, 700, 750]
-  bleeds: [right, bottom]
+  subject: "a classical county courthouse washed from its foot by floodlights at last light, its lit windows and columns rising into the dark, the transcript lying face down on a granite ledge before it"
+  rect: [660, 0, 420, 1140]
+  bleeds: [top, right]
 accent: none
 job: >
   Say what the trial court did and why, struck in April 2025 because no certified shorthand reporter prepared it, and that the appeals court left it struck.
@@ -351,7 +351,7 @@ verbatim: []
 acceptance:
   - "the transcript lies face down on the ledge with its black back cover up, and a frame without it fails this item"
   - "the courthouse ledge spans at least 700 px wide at full size and the transcript at least 300 px"
-  - "the courthouse facade with its tower shows in the upper left"
+  - "the courthouse facade with its tower shows in the upper right"
   - "the ledge's top face is lit where the transcript lies and the facade above it is dark"
   - "the frame's median L* at 432px is 20 or lower"
 
@@ -363,12 +363,12 @@ risks:
 slide: 5
 layout: DIAGRAM
 primary_image:
-  subject: "the same granite stair seen side on through a long lens, eighteen bronze nosings rimmed by the seam, three leaders to the strike, the filing and the argument, the transcript small on the filing's riser"
-  rect: [0, 520, 1080, 560]
-  bleeds: [left, right]
+  subject: "the same granite stair through a long lens a quarter turn off its open end, eighteen lit treads over dark risers, three leaders to the strike, the filing and the argument, the transcript standing against the riser above the filing's tread"
+  rect: [60, 660, 1020, 480]
+  bleeds: [right]
 accent: none
 job: >
-  Measure the road up, the strike in April 2025, the mandamus filed May 29th, 2025 and the argument on October 6th, 2026, one riser a month.
+  Measure the road up, the strike in April 2025, the mandamus filed May 29th, 2025 and the argument on October 6th, one riser a month.
 
 claims: [c8, c2, c23, c1]
 numerals:
@@ -388,8 +388,8 @@ depth:
 
 composition:
   structure: >
-    A long lens from the side flattens the stair into a profile, a sawtooth climbing from left to right across
-    the frame against the dark sky, each nosing a bright tick. Three leaders rise from the strike's riser, the
+    A long lens a quarter turn off the stair's open end keeps its stepped profile climbing from left to right
+    across the frame against the dark sky, each tread a lit band over a dark riser. Three leaders rise from the strike's riser, the
     filing's riser and the top to mono labels.
   bands: >
     Top third, the hook and dek in the dark sky. Middle third, the labels and the upper stair. Bottom third, the lower risers rim lit along their nosings, the transcript on the filing's riser and the
@@ -397,7 +397,7 @@ composition:
   focal: "the sawtooth of bright nosings climbing to the right, the transcript on the second riser"
 
 art:
-  technique: "long lens near parallel elevation of the chassis stair, one scale of months, leaders that end short of the glyphs"
+  technique: "long lens three quarter view of the chassis stair, one scale of months, leaders that end short of the glyphs"
   why_this_technique: "a date line drawn on the deck's own stair keeps the measurement inside the world the cover built"
   palette: "flamed granite rimmed by the seam, bronze nosings, the dark sky"
   value_structure: >
@@ -405,16 +405,16 @@ art:
 
 type:
   hook: "18 months, one step each"
-  dek: "Struck in April 2025. The petition was filed May 29th, 2025, and the court heard it 495 days later, on October 6th, 2026."
-  labels: ["April 2025, struck", "May 29th, 2025, filed", "October 6th, 2026, argued"]
+  dek: "Courthouse News reports it was struck in April 2025. The petition was filed May 29th, 2025, and the court heard it 495 days later, on October 6th."
+  labels: ["April 2025, struck", "May 29th, 2025, filed", "October 6th, argued"]
 
 verbatim: []
 
 acceptance:
   - "the stair's profile shows exactly 18 risers climbing left to right, and a frame without the stair fails this item"
   - "the stair spans at least 900 px wide at full size"
-  - "the transcript rests on the second riser from the bottom"
-  - "the three labels read exactly \"April 2025, struck\", \"May 29th, 2025, filed\" and \"October 6th, 2026, argued\""
+  - "the transcript stands on the second tread from the bottom, against the riser above it"
+  - "the three labels read exactly \"April 2025, struck\", \"May 29th, 2025, filed\" and \"October 6th, argued\""
   - "every leader ends within 24 px of its riser"
   - "the frame's median L* at 432px is 18 or lower"
 
@@ -427,8 +427,8 @@ slide: 6
 layout: DOCUMENT
 primary_image:
   subject: "a page of the Texas Rules of Civil Procedure lying on a walnut desk under a lamp, Rule 203.6(a)'s words on it, the bound transcript closed beside it"
-  rect: [120, 400, 860, 900]
-  bleeds: [bottom]
+  rect: [300, 560, 780, 790]
+  bleeds: [right, bottom]
 accent: "#4E5FA8"
 job: >
   Show what the court's own rules already say, that a written transcription of a recording may be used to the same extent as a stenographic deposition, and that a judge may require a certified reporter's transcript for good cause.
@@ -459,7 +459,7 @@ art:
     Lightest is the page under the lamp. Darkest is the room. Frame median L* planned at 22.
 
 type:
-  hook: "The rules already allow it, with a check"
+  hook: "The rule already has a check"
   dek: "Rule 203.6(a) lets a written transcription of a recording be used like a stenographic deposition. A court may still require a certified reporter's transcript first, for good cause shown."
   labels: ["Rule 203.6(a)"]
 
@@ -483,8 +483,8 @@ slide: 7
 layout: FULL_BLEED
 primary_image:
   subject: "a curved walnut bench of nine seats with eight justices seated and the ninth chair empty, seen from the lectern, the transcript on the lectern's slope in the near corner"
-  rect: [0, 420, 1080, 930]
-  bleeds: [left, right, bottom]
+  rect: [60, 420, 960, 540]
+  bleeds: []
 accent: none
 job: >
   Put the reader at the lectern before the bench that heard it, eight of nine sitting, and give the Chief Justice's question.
@@ -522,7 +522,7 @@ art:
 
 type:
   hook: "\"Why are we here?\""
-  dek: "Eight of the nine justices heard it on October 6th. Courthouse News reports the Chief Justice noted a certified reporter, or simply letting the deposition stand, would have been cheaper. Drawn to illustrate."
+  dek: "Eight of the nine justices heard the argument on October 6th. Courthouse News reports the Chief Justice observed that paying a certified reporter or letting the depositions go ahead this way would have been cheaper. Then he asked it. Drawn to illustrate."
   labels: []
 
 verbatim:
@@ -544,13 +544,13 @@ slide: 8
 layout: CLOSE_CROP
 primary_image:
   subject: "the transcript open at its last leaf on the lectern's slope, the certificate page with its signature rule in bluebonnet, the lectern's rail of twenty brass segments with the last five in bluebonnet"
-  rect: [0, 500, 1080, 850]
-  bleeds: [left, right, bottom]
+  rect: [120, 660, 780, 600]
+  bleeds: []
 accent: "#4E5FA8"
 job: >
   Ask Justice Bland's question on the page it is about, where a human stands behind the transcript, and show the reporters' five minutes in the twenty.
 
-claims: [c12, c25, c24, c3]
+claims: [c12, c25, c24, c15]
 numerals:
   - value_from: c25
 
@@ -584,11 +584,10 @@ art:
 
 type:
   hook: "Who stands behind the page?"
-  dek: "Justice Bland asked where the court would get the peace of a human being standing behind the transcribed product. Five of the real party's twenty minutes went to the Texas Deposition Reporters Association. Drawn to illustrate."
+  dek: "Justice Bland asked where the court would find the assurance of a human being standing behind the transcribed product. Five of the employer's twenty minutes went to the Texas Deposition Reporters Association. Drawn to illustrate."
   labels: []
 
-verbatim:
-  - c12: "Where are we going to get that peace, of a human being standing behind the transcribed product?"
+verbatim: []
 
 acceptance:
   - "the transcript lies open with its certificate page facing the camera, and a frame without the open page fails this item"
@@ -606,10 +605,10 @@ risks:
 slide: 9
 layout: FULL_BLEED
 primary_image:
-  subject: "from the stair's top landing looking back down the eighteen treads and out over a dark land of lit windows, the transcript open at its certificate on the top tread in the near foreground"
-  rect: [0, 620, 1080, 730]
-  bleeds: [left, right, bottom]
-accent: "#4E5FA8"
+  subject: "from the top step looking down the flight as its treads fall into the dark, a thin line of far lit windows at the top of the frame, the transcript open at its certificate on a tread near the top in the near foreground"
+  rect: [360, 540, 660, 720]
+  bleeds: []
+accent: none
 job: >
   Close on what the court heard and has not decided, the escape hatches a justice named and the outlet's reading, with the transcript at the top of the road.
 
@@ -635,7 +634,7 @@ composition:
     Top third, the near black sky with the hook and dek over a faint horizon of lit windows. Middle third, the
     stair falling away. Bottom third, the top tread of flamed granite with its bronze nosing, and the transcript lying open on
     it at its certificate page, its cream leaves lit by the doors behind the lens.
-  focal: "the open transcript on the top tread, its bluebonnet signature rule"
+  focal: "the open transcript on the top tread, its certificate page lit by the doors"
 
 art:
   technique: "physically based render of the chassis stair from above in the lastLight world, aerial perspective on far lit windows"
@@ -653,10 +652,9 @@ verbatim:
   - c20: "We have all of these escape hatches"
 
 acceptance:
-  - "the open transcript lies on the top tread with its certificate page up, and a frame without it fails this item"
-  - "the stair fills at least 40 percent of the frame height and the transcript spans at least 420 px wide at full size"
+  - "the open transcript lies on a tread near the top of the flight with its certificate page up, and a frame without it fails this item"
+  - "the stair fills at least 40 percent of the frame height and the transcript spans at least 240 px wide at full size"
   - "the treads below fall away as bright nosing lines, at least ten of them visible"
-  - "the certificate's signature rule is in #4E5FA8"
   - "the frame's median L* at 432px is 22 or lower"
 
 risks:
