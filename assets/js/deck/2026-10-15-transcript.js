@@ -189,8 +189,8 @@
         K.box(W, half, D, paperEdge, 0, 0.0012, 0, 0, rp);
         var pr = new THREE.Mesh(new THREE.PlaneGeometry(W - 0.004, D - 0.004), K.mat("tr-cert", { color: 0xffffff, roughness: 0.9, map: N.certTex(THREE) }));
         pr.rotation.x = -Math.PI / 2; pr.position.y = 0.0012 + half + 0.0004; rp.add(pr);
-        /* the signature rule and the seal box, in the accent, unlit */
-        var acc = N.accentMat(THREE), yTop = 0.0012 + half + 0.0008;
+        /* the signature rule and the seal box in plain grey ink: this transcript was struck because no certified reporter made it, so it never carries the certifying blue */
+        var acc = K.mat("tr-ink", { color: 0x3a3836, roughness: 0.9 }), yTop = 0.0012 + half + 0.0008;
         var rule = new THREE.Mesh(new THREE.PlaneGeometry(0.12, 0.006), acc); rule.rotation.x = -Math.PI / 2; rule.position.set(0.03, yTop, 0.072); rp.add(rule);
         var lbl = new THREE.Mesh(new THREE.PlaneGeometry(0.05, 0.0035), K.mat("tr-gray", { color: 0x5a554e, roughness: 0.9 })); lbl.rotation.x = -Math.PI / 2; lbl.position.set(0.005, yTop, 0.08); rp.add(lbl);
         var seal = new THREE.Group();

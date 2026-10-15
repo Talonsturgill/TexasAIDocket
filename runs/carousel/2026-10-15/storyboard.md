@@ -134,7 +134,7 @@ accent: none
 job: >
   Put the case in front of the reader, the transcript an AI made and the court it reached, and set up the stair as the count of months.
 
-claims: [c6, c8, c23]
+claims: [c6, c8, c23, c30]
 numerals: []
 
 data_in_art:
@@ -168,7 +168,7 @@ art:
 
 type:
   hook: "An AI made the transcript. Now the Supreme Court of Texas weighs it"
-  dek: "A Montgomery County suit turned on a deposition transcript no certified reporter prepared. The court heard it on October 6th and has not ruled. Drawn to illustrate."
+  dek: "A Montgomery County suit turned on a deposition transcript no certified reporter prepared. The court heard it on October 6th. Its orders through October 9th carry no ruling. Drawn to illustrate."
   labels: []
 
 verbatim: []
@@ -224,7 +224,7 @@ art:
     Lightest is the lit room. Darkest are the pines and the lot. Frame median L* planned at 14.
 
 type:
-  hook: "It began with a deposition in Montgomery County"
+  hook: "It began as a suit in Montgomery County"
   dek: "A wrongful termination suit. The deposition was recorded on video and its transcript made with an AI platform. Courthouse News reports the company did not object to the software at the deposition. Drawn to illustrate."
   labels: []
 
@@ -343,7 +343,7 @@ art:
 
 type:
   hook: "The trial court struck the transcript"
-  dek: "Courthouse News reports the Montgomery County trial court struck it in April 2025 because no certified shorthand reporter prepared it. The company had asked weeks after the deposition. The Ninth District denied relief. Drawn to illustrate."
+  dek: "Courthouse News reports the Montgomery County trial court struck it in April 2025 because no certified shorthand reporter prepared it. The company had moved to strike it weeks after the deposition. The Ninth District denied relief. Drawn to illustrate."
   labels: []
 
 verbatim: []
@@ -593,7 +593,7 @@ acceptance:
   - "the transcript lies open with its certificate page facing the camera, and a frame without the open page fails this item"
   - "the open transcript spans at least 600 px wide at full size"
   - "the rail shows exactly 20 segments with the last 5 in #4E5FA8"
-  - "the certificate page's signature rule is in #4E5FA8"
+  - "the certificate page's seal box and signature rule are in grey ink, so nothing on the AI transcript is drawn in the certifying blue"
   - "the frame's median L* at 432px is 28 or lower"
 
 risks:
@@ -612,7 +612,7 @@ accent: none
 job: >
   Close on what the court heard and has not decided, the escape hatches a justice named and the outlet's reading, with the transcript at the top of the road.
 
-claims: [c20, c18, c21, c6]
+claims: [c20, c18, c21, c30, c31]
 numerals: []
 
 data_in_art:
@@ -645,7 +645,7 @@ art:
 
 type:
   hook: "Argued. Not decided"
-  dek: "Justice Young named escape hatches, the recording itself and a judge's power to order a certified reporter. Courthouse News read the bench as inclined to allow it. The court has not ruled on whether a party may submit a transcript made with AI as evidence. Drawn to illustrate."
+  dek: "Justice Young named escape hatches, the recording itself and a judge's power to order a certified reporter. Courthouse News read the bench as inclined to allow it. The court's orders through October 9th carry no ruling in the case. Drawn to illustrate."
   labels: []
 
 verbatim:
