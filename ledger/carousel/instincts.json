@@ -210,7 +210,8 @@
         "2026-09-13",
         "2026-10-08",
         "2026-10-10",
-        "2026-10-12"
+        "2026-10-12",
+        "2026-10-15"
       ],
       "contradicted": []
     },
@@ -315,7 +316,8 @@
         "2026-10-07",
         "2026-10-08",
         "2026-10-10",
-        "2026-10-12"
+        "2026-10-12",
+        "2026-10-15"
       ],
       "contradicted": []
     },
@@ -830,7 +832,8 @@
         "2026-09-20",
         "2026-09-26",
         "2026-09-29",
-        "2026-10-10"
+        "2026-10-10",
+        "2026-10-15"
       ],
       "contradicted": []
     },
@@ -1403,6 +1406,22 @@
       "learned": "2026-10-12",
       "instinct": "Check every everyday noun on the cover and in the title against the release before the panel, because a noun the source never uses asserts a fact the deck can't trace.",
       "evidence": "no. 50: 'on the post' asserted a mounting the release never describes; the integrity judge charged it on the cover, title, slide 3 and slide 9, and the storyboard had admitted it",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "date-every-status-to-a-document-read-today",
+      "learned": "2026-10-15",
+      "instinct": "Date every has not ruled or still pending to a document fetched in this run, and name that document on the surface.",
+      "evidence": "No. 51 round 1, two of three judges filed a hard fail on 'The court has not ruled', which rested on Courthouse News's October 6th report; the court's own October 9th orders list, fetched on the 15th, carried the repair.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "snapshot-a-room-unstaged",
+      "learned": "2026-10-15",
+      "instinct": "Snapshot a TXT.interior room with stage false, because the stage fog paints its walls the sky's hue.",
+      "evidence": "No. 51 frames 3 and 8, pixel critics named a navy void behind the deposition camera and the lectern in rounds 1 to 3 until the snapshot was unstaged and the room's environment light cut to 0.03.",
       "confirmed": [],
       "contradicted": []
     }
