@@ -1,0 +1,72 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.7,
+   "why": "Dark and staged with two strong frames: 06's rule page in a lamp pool and 05's countable 18-riser stair. 03's camcorder is a primitive dominating a brown mid-tone room without the planned window rake; 07's justices are tiny on a thin band over an empty floor; 09's top 40 percent is void with a strip at the top edge and the book reads sunk between treads; 04's counter sits on a plate and its transcript glows; 01's doors are flat lit boxes and 02's pines are sticks."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 8.0,
+   "why": "One warm world, one field, light type throughout; the stair is a spine from foot, side and top; the transcript changes state; bluebonnet means certification only. 06 is the one lighter frame and 03's wall sits slightly outside."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.5,
+   "why": "Everything traces; 495 checked independently; the absence is scoped to c30 and c31. The strike and Ninth District rest on Courthouse News and c1 and c2 were carried from September 7th; 01's 'The court heard it' grammatically points at the trial court; 09's 'inclined to allow it' drops c21's condition; some source lines carry claims the slide never uses."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.0,
+   "why": "What, where, who and status are clear and the justices make it concrete. No frame says what a ruling would change for a Texas litigant or what to watch, and the Ninth District is never explained."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "The cover earns the swipe and 06 into 07 is a real turn. 03 gives argument positions before 04 returns to the strike, the April 2025 date repeats, and the close gives the reader nothing to carry out."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Clean with good headlines, but careful wire copy: 'Courthouse News reports' in six deks and 'Drawn to illustrate.' in seven; no regional texture beyond the county."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "The first state supreme court argument deck in the window with a new instrument, on the house formula and a recent accent."
+  }
+ ],
+ "weighted_score": 7.2,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Make the cover's 'the court' unmistakably the Supreme Court of Texas, and make the close say what a ruling decides for every Texas lawsuit and where it will appear.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 9,
+   "problem": "Top 40 percent void with a strip at the top edge; book reads sunk between treads; far windows missing.",
+   "fix": "Pitch up so door spill and a line of lit windows fill the top third, and seat the book on the nearest tread at twice its width."
+  },
+  {
+   "slide": 3,
+   "problem": "Primitive camcorder dominating; brown mid-tone wall; no one scale comparison.",
+   "fix": "Build the camcorder with a hood and grip, move it beside the transcript at matched scale, and drop the wall fill behind one window rake."
+  },
+  {
+   "slide": 7,
+   "problem": "Thin bench band with tiny figures over an empty floor.",
+   "fix": "Move about 4 m in on a longer lens so the bench fills the middle third and rim-light the empty chair."
+  },
+  {
+   "slide": 4,
+   "problem": "Counter on a plate; emissive-looking transcript; tiling facade.",
+   "fix": "Shift the courthouse so the counter falls on sky and light the transcript from the key with a contact shadow."
+  }
+ ]
+}

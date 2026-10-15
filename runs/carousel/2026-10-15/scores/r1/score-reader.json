@@ -1,0 +1,84 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.6,
+   "why": "Every frame is rendered and staged on a dark field; 2, 6 and 7 are strong. The cover's lower 60 percent is an even mid-brown field and the transcript a small slab, frame 3's camcorder is a rounded box in a mid-brown room with a leg across a label, frame 5's stair side is a featureless slab, frame 4's counter sits on a plate and its transcript reads as a box, frame 9 has a noisy window strip at the top edge, and frame 7's source line sits on a plate."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "One warm low key and grade; the transcript is on every frame and changes state; the stair bookends the deck from foot, side and top; the value cut at 7 is real. Two worlds, and the stair frames sit lighter than the interiors."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 6.0,
+   "why": "Most strings trace and the arithmetic checks. 'The court has not ruled' is stated in the present tense on 1, 9 and the caption with no source read after October 6th. The case's turning facts rest on Courthouse News. Bland's 'that peace' is paraphrased as 'the assurance'."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.0,
+   "why": "What, where, when and the legal hinge are clear. The stake is general, and there is no next step: the case name and number appear only in the first comment."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "The hook earns the swipe and 6 is a real turn into 7. Slide 5 is the cuttable frame and the close lands on an absence."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.8,
+   "why": "Clean and on register. 'Courthouse News reports' in six of nine deks reads as wire copy, 'Drawn to illustrate' closes eight of nine, and slide 4's 'The company had asked' never says what was asked."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "The first judiciary deck in the window with a new instrument, but lastLight, one hero through nine frames and bluebonnet all recur."
+  }
+ ],
+ "weighted_score": 6.792,
+ "hard_fails": [
+  "Unverified fact presented as verified: 'has not ruled' is stated on slide 1, slide 9 and the caption, citing c6 and c21, whose quotes are from October 6th and say nothing about a ruling. No source fetched after October 6th establishes the case's status on October 15th."
+ ],
+ "ship": false,
+ "one_sentence_fix": "Fetch a current status page for case 25-0463 on www.txcourts.gov, cite it for 'has not ruled', and print the case number and where the opinion will post on frame 9.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 1,
+   "problem": "Lower 60 percent an even mid-brown field of flat treads, transcript a small slab, doors read as lit boxes.",
+   "fix": "Drop the camera onto the bottom tread so the transcript fills a third of the width in a tight key pool and the treads outside it fall to black."
+  },
+  {
+   "slide": 3,
+   "problem": "Primitive camcorder, flat mid-brown wall, a tripod leg across a label.",
+   "fix": "Model a lens barrel and hood, light only the table from the window, move the label clear of the tripod."
+  },
+  {
+   "slide": 5,
+   "problem": "The stair is an extruded block with a featureless right half.",
+   "fix": "Turn the lens further off the open end so 18 nosings span the width, shadow and joint the cheek, crop the blank slab."
+  },
+  {
+   "slide": 4,
+   "problem": "Counter on a plate, face-down transcript reads as a box, a flat sea-like horizon.",
+   "fix": "Light the tower so its corner is dark behind the counter, turn the binder so its back and posts read, replace the flat plane."
+  },
+  {
+   "slide": 9,
+   "problem": "A noisy strip of far windows at the top edge, a broad mid-brown field of treads.",
+   "fix": "Lower the horizon or crop the lights out, and narrow the door light to the top tread and the transcript."
+  },
+  {
+   "slide": 7,
+   "problem": "Source line on a plate over the lectern; justices read as mannequins.",
+   "fix": "Shift the lectern so the bottom left corner is dark floor for the source line."
+  }
+ ]
+}

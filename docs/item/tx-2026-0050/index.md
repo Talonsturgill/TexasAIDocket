@@ -11,7 +11,7 @@ The Corpus Christi City Council passed a motion on July 21st, 2026 as agenda ite
 - Public access: Public meeting
 - Take part: https://www.corpuschristitx.gov/our-government/agendas-and-minutes/
 
-- Last checked: 2026-10-11
+- Last checked: 2026-10-15
 
 ## Dates
 
@@ -41,6 +41,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-05 · Corpus Christi's legislative record still carries the council's direction to write a zoning amendment that keeps data centers out of every district.
 - 2026-10-08 · Corpus Christi's record of the July 21st meeting still carries the data center briefing, and the council's direction on zoning stands.
 - 2026-10-11 · Corpus Christi's record still shows the council directing staff to bar data centers in every zoning district.
+- 2026-10-15 · Corpus Christi's legislative record still shows the council directing staff to bar data centers in every zoning district.
 
 ## Evidence
 

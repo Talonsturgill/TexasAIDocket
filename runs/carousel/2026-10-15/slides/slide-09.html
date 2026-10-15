@@ -1,0 +1,71 @@
+<!doctype html>
+<!-- 2026-10-15, frame 9 of 9. Archetype FULL_BLEED. RENDERED through txthree.js in the deck's lastLight world. From the stair's top landing, the lit doors behind the lens, looking back down the eighteen risers and out over a dark low land of lit windows; the transcript lies open at its certificate page on the landing's edge, its signature rule in bluebonnet. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+  .dek { width:900px; }
+  .hook { top:268px !important; }   /* under the horizon line and the far windows, over the dark land */
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">Argued.<br>Not decided</h1>
+<p class="dek" data-follow="26">Justice Young named escape hatches, the recording itself and a judge's power to order a certified reporter. Courthouse News read the bench as inclined to allow it. The court's orders through October 9th carry no ruling in the case. Drawn to illustrate.</p>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-15-transcript.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "In re Patrick Hughey, No. 25-0463", counter: "09 / 09", src: "c20 c18 c21 c23 c30 c31", fit: { min: 84, max: 110, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 70, far: 9000, fog: 0.0012 });
+  /* figures.json: months_struck_to_argued 18, the same stair read from its top */
+  const MONTHS = 18;
+  const G = new THREE.Group(); G.rotation.y = 2.129 + Math.PI;   /* looking down the flight points away from the seam's side */
+  const stair = K.make('granite_stair', { steps: MONTHS, width: 9, landing: 6, cheeks: 'right' });
+  G.add(stair);
+  const top = stair.userData.top, depth = stair.userData.depth;
+  const tr = K.make('deposition_transcript', { open: 1, seed: 3 });
+  const t1 = stair.userData.tread(MONTHS - 3); tr.position.set(2.6, t1[1], t1[2] - 0.06); tr.rotation.y = 0.08;   /* fully on its tread, behind the nosing */ G.add(tr);
+  G.updateMatrixWorld(true);
+  TXT.add(R, G);
+  CH.matte(TXT.ground(R, { surface: 'asphalt', size: 1200, seed: 31 }));
+  { const c = CH.world(THREE, G, [0, 0, 20]); CH.pad(THREE, R, 1600, 1600, c[0], c[2]); }
+  [stair, tr].forEach(o => TXT.contact(R, o));
+  CH.matte(stair, 0.22);
+  /* a crouch on the landing near the stair's open end: the flight drops away below the page and its
+   * stepped end shows against the plaza, so it reads as a stair seen from its top */
+  const from = CH.world(THREE, G, [2.85, top + 0.95, -6.46]);
+  const look = CH.aim(THREE, R, TXT, from, CH.world(THREE, G, [2.6, t1[1], t1[2] + 0.04]), 560, 1040, 70);
+  TXT.frame(R, { fov: 70, from, look });
+  /* THE DOORS' SPILL behind the lens: it lights the open page and catches every nosing down the flight */
+  { const sp = new THREE.SpotLight(0xffd2a0, 110, 13.5, 0.5, 0.7, 2.0); sp.position.copy(new THREE.Vector3(...CH.world(THREE, G, [1.8, top + 3.0, -depth - 4.5]))); sp.target.position.copy(new THREE.Vector3(...CH.world(THREE, G, [2.4, 1.6, -3.4]))); sp.castShadow = true; sp.shadow.mapSize.set(2048, 2048); sp.shadow.bias = -0.0004; R.scene.add(sp); R.scene.add(sp.target); }
+  /* THE PAGE'S OWN LIGHT: a narrow spill from the lit doors high behind the lens, so the open certificate is the one bright thing */
+  { const pk = new THREE.SpotLight(0xffe2b8, 300, 16, 0.16, 0.45, 1.6); pk.position.copy(new THREE.Vector3(...CH.world(THREE, G, [2.3, top + 5.2, -10.5]))); pk.target.position.copy(new THREE.Vector3(...CH.world(THREE, G, [2.6, t1[1], t1[2] + 0.04]))); pk.castShadow = true; pk.shadow.mapSize.set(2048, 2048); pk.shadow.bias = -0.0004; R.scene.add(pk); R.scene.add(pk.target); }
+  /* a plaza lamp at the foot of the flight, so the stair falls to a lit place and not into nothing */
+  { const k = new THREE.SpotLight(0xffd6a8, 70, 26, 0.5, 0.8, 1.6); k.position.copy(new THREE.Vector3(...CH.world(THREE, G, [9, 7, 9]))); k.target.position.copy(new THREE.Vector3(...CH.world(THREE, G, [2, 0, 3]))); k.castShadow = true; k.shadow.mapSize.set(2048, 2048); R.scene.add(k); R.scene.add(k.target); }
+  /* no far windows: at this pitch they sat as a strip clipped at the top edge */
+  TXT.sky(R);
+  TXT.deckRig(R, CH.rigSpec(W, 24, 4096), CH.rigOpts(CH.world(THREE, G, [0, 1.5, -3]), { distance: 60, shadowFar: 160 }));
+  TXT.weather(R, { grime: 0.25, height: 0.6 });
+  const cx = CH.develop(await TXT.snapshot(R, { stage: false }), gl);
+  CH.post(cx, { a: 0.5, veil: 0.5, veilH: 400, fade: 260 });   /* the treads fall to dark under the footer */
+  /* and further: the flight falls into the dark at the frame's foot, under the footer line. It only darkens */
+  { const v = cx.createLinearGradient(0, 1060, 0, 1350); v.addColorStop(0, 'rgba(5,6,9,0)'); v.addColorStop(0.55, 'rgba(5,6,9,0.5)'); v.addColorStop(1, 'rgba(5,6,9,0.7)'); cx.fillStyle = v; cx.fillRect(0, 1060, 1080, 290); }
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

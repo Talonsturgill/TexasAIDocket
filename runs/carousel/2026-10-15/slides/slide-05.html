@@ -1,0 +1,89 @@
+<!doctype html>
+<!-- 2026-10-15, frame 5 of 9. Archetype DIAGRAM. RENDERED through txthree.js in the deck's lastLight world. The deck's granite stair seen side on through a long lens, its eighteen risers a sawtooth rimmed by the seam against the dark sky, one riser per calendar month from the strike to the argument; three leaders name the strike, the filing and the argument, and the transcript rests on the filing's riser. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+  .dek { width:900px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">18 months,<br>one step each</h1>
+<p class="dek" data-follow="26">Courthouse News reports it was struck in April 2025. The petition was filed May 29th, 2025, and the court heard it 495 days later, on October 6th.</p>
+<div class="lab" id="lab-a">April 2025, struck</div>
+<div class="lab" id="lab-b">May 29th, 2025, filed</div>
+<div class="lab" id="lab-c">October 6th, argued</div>
+<svg id="leaders" width="1080" height="1350" style="position:absolute;left:0;top:0;z-index:11;pointer-events:none"></svg>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-15-transcript.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "The road up, one riser a month", counter: "05 / 09", src: "c8 c2 c23 c1", fit: { min: 76, max: 100, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 23, far: 4000, fog: 0.0035 });
+  /* figures.json: months_struck_to_argued 18 risers, the transcript on filed_step 1.903, so it rests on
+   * the riser the filing reached (the second whole month past the strike's). */
+  const MONTHS = 18, FILED = 1.903;
+  const G = new THREE.Group(); G.rotation.y = 0.559;   /* the stair's -x end points into the seam */
+  const stair = K.make('granite_stair', { steps: MONTHS, width: 7, landing: 4, cheeks: 'none' });
+  G.add(stair);
+  const tr = K.make('deposition_transcript', { seed: 3 });
+  const tf = stair.userData.tread(Math.ceil(FILED));
+  /* leaning against the next riser with its cover to the lens, so the cream page stands on a dark face rather than a lit tread */
+  tr.rotation.order = 'YXZ'; tr.rotation.set(1.2, 0.55, 0); tr.position.set(2.2, tf[1] + 0.135, tf[2] - 0.09); G.add(tr);
+  G.updateMatrixWorld(true);
+  TXT.add(R, G);
+  CH.matte(TXT.ground(R, { surface: 'asphalt', size: 900, seed: 21 }));
+  { const c = CH.world(THREE, G, [0, 0, -6]); CH.pad(THREE, R, 1600, 1600, c[0], c[2]); }   /* far enough that its edge is never against the seam */
+  [stair, tr].forEach(o => TXT.contact(R, o));
+  /* a long lens from the stair's open side, low, so the profile climbs across the frame against the sky */
+  const from = CH.world(THREE, G, [28.5, 2.4, 8.0]);   /* a quarter turn toward the risers and a little above the treads, so each month is a lit tread and a dark riser */
+  const look = CH.aim(THREE, R, TXT, from, CH.world(THREE, G, [3.5, 1.4, -3.6]), 600, 930, 23);
+  TXT.frame(R, { fov: 23, from, look });
+  /* a low lamp on the plaza before the stair, so the pad's worn joints read in the lower frame */
+  { const pl = new THREE.PointLight(0xffc89a, 60, 34, 1.6); pl.position.copy(new THREE.Vector3(...CH.world(THREE, G, [14, 1.1, -3.6]))); R.scene.add(pl); }
+  /* the rim: low behind the stair's far side, so the bronze nosings tick against the dark */
+  { const k = new THREE.SpotLight(0xffd2a0, 260, 60, 0.35, 0.5, 1.2); k.position.copy(new THREE.Vector3(...CH.world(THREE, G, [-18, 5.5, -3.6]))); k.target.position.copy(new THREE.Vector3(...CH.world(THREE, G, [4, 1.5, -3.6]))); R.scene.add(k); R.scene.add(k.target); }
+  { const k = new THREE.PointLight(0xffe0c0, 6, 3, 1.5); const p2 = stair.userData.tread(Math.ceil(FILED)); k.position.copy(new THREE.Vector3(...CH.world(THREE, G, [4.2, p2[1] + 0.8, p2[2] + 0.4]))); R.scene.add(k); }
+  /* a lamp on the plaza on the camera's side, low and soft, so the riser faces carry the granite's grain */
+  { const sp = new THREE.SpotLight(0xffd6a8, 220, 40, 0.5, 0.6, 1.4); sp.position.copy(new THREE.Vector3(...CH.world(THREE, G, [12, 5.5, 9]))); sp.target.position.copy(new THREE.Vector3(...CH.world(THREE, G, [3.5, 2.2, -3.6]))); R.scene.add(sp); R.scene.add(sp.target); }
+  TXT.sky(R);
+  TXT.deckRig(R, CH.rigSpec(W, 20, 4096), CH.rigOpts(CH.world(THREE, G, [0, 1.5, -3.5]), { distance: 60, shadowFar: 160 }));
+  TXT.weather(R, { grime: 0.25, height: 0.6 });
+  const cx = CH.develop(await TXT.snapshot(R, { stage: false }), gl);
+  /* the leaders land on the strike's first riser, the filing's riser and the landing's front edge */
+  const svg = document.getElementById('leaders');
+  const pts = { a: stair.userData.tread(1), b: stair.userData.tread(Math.ceil(FILED)), c: stair.userData.tread(MONTHS) };
+  /* each label sits up and to the LEFT of its own leader, so no leader runs through another label */
+  const land = {}, rise = { a: 120, b: 360, c: 150 };
+  Object.keys(pts).forEach(k => {
+    const p = pts[k], world = CH.world(THREE, G, [3.5, p[1], k === 'c' ? -stair.userData.depth : p[2]]);
+    const s = CH.project(THREE, R, world); land[k] = s;
+    const el = document.getElementById('lab-' + k), w = el.getBoundingClientRect().width;
+    /* b to the right of its leader in the sky, c to the left of its leader, a BELOW the base on the dark plaza */
+    const below = k === 'a', side = k === 'b' ? 1 : -1;
+    const left = below ? Math.max(84, s[0] - 24) : side > 0 ? s[0] + 14 : s[0] - w - 14, top = below ? s[1] + 60 : s[1] - rise[k];
+    el.style.left = Math.round(left) + 'px'; el.style.top = Math.round(top) + 'px';
+    const b = el.getBoundingClientRect();
+    CH.leader(svg, below ? [s[0], b.top - 10] : [s[0], b.top + b.height / 2], s);
+  });
+  window.__txLeaders = Object.keys(land).map(k => ({ target: 'the riser for ' + k, at: land[k], to: land[k] }));
+  CH.post(cx, { a: 0.3, veil: 0.2 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

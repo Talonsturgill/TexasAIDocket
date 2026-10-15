@@ -1,0 +1,90 @@
+{
+ "date": "2026-10-15",
+ "_note": "Every count, span and duration the deck states, with the claim it was quoted from or the code that computed it.",
+ "aggregates": [
+  {
+   "phrase": "Two records",
+   "slide": "slide-03.html",
+   "kind": "count",
+   "value": 2,
+   "from_claims": [
+    "c13",
+    "c6"
+   ],
+   "computed_by": "out/2026-10-15/compute.py records_count, len() of the deposition's records the claims name, its video recording in c13 and its transcript in c6"
+  },
+  {
+   "phrase": "18 months",
+   "slide": "slide-05.html",
+   "kind": "span",
+   "value": 18,
+   "from_claims": [
+    "c8",
+    "c23"
+   ],
+   "from_date": "2025-04-01",
+   "to_date": "2026-10-06",
+   "computed_by": "out/2026-10-15/compute.py months_struck_to_argued, calendar months from the strike's month in c8 (April 2025, no day given) to the argument's month in c23"
+  },
+  {
+   "phrase": "495 days",
+   "slide": "slide-05.html",
+   "kind": "duration",
+   "value": 495,
+   "from_claims": [
+    "c2",
+    "c23"
+   ],
+   "from_date": "2025-05-29",
+   "to_date": "2026-10-06",
+   "computed_by": "out/2026-10-15/compute.py days_filed_to_argued, date subtraction from the filing date in c2 to the argument date in c23"
+  },
+  {
+   "phrase": "Eight of the nine",
+   "slide": "slide-07.html",
+   "kind": "ratio",
+   "value": 8,
+   "of": 9,
+   "quoted_from": "c22",
+   "quote": "Eight of the nine justices heard the arguments Tuesday",
+   "note": "Courthouse News's own count, quoted; figures.json justices_heard and justices_seats"
+  },
+  {
+   "phrase": "twenty minutes",
+   "slide": "slide-08.html",
+   "kind": "count",
+   "value": 20,
+   "from_claims": [
+    "c25"
+   ],
+   "computed_by": "out/2026-10-15/compute.py minutes_per_side, the 20 parsed from the submission schedule's 'Time for Argument' line in c25's source, and asserted equal to the 15 plus 5 the schedule splits it into"
+  },
+  {
+   "phrase": "18 months",
+   "slide": "caption.txt",
+   "kind": "span",
+   "value": 18,
+   "from_claims": [
+    "c8",
+    "c23"
+   ],
+   "from_date": "2025-04-01",
+   "to_date": "2026-10-06",
+   "computed_by": "out/2026-10-15/compute.py months_struck_to_argued, the same span the stair counts, April 2025 in c8 to October 2026 in c23"
+  },
+  {
+   "phrase": "five official records",
+   "slide": "first_comment.txt",
+   "kind": "count",
+   "value": 5,
+   "from_claims": [
+    "c1",
+    "c23",
+    "c26",
+    "c30",
+    "c31"
+   ],
+   "computed_by": "scripts/carousel/sources_block.py, the documents the deck cites grouped by each claim's source_type: the court's case information page, its submission schedule, the Texas Rules of Civil Procedure, its October 9th orders and its 2026 orders and opinions page"
+  }
+ ]
+}

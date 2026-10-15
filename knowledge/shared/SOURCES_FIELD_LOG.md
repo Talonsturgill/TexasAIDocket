@@ -2138,3 +2138,26 @@ PDF of that day's Federal Register, which the boundary allowed.
 
 **news.utsa.edu, www.uta.edu and www.weather.gov all answered 200** and the boundary allowed every
 page the deck's claims rest on.
+
+## 2026-10-15
+
+**www.txcourts.gov answered 200 and the boundary allowed every page this run used**: the submission
+schedule PDF for October 6th, the Texas Rules of Civil Procedure PDF, the Supreme Court's 2026
+orders and opinions index and the orders PDF pronounced October 9th. `/supreme/orders-opinions/` is
+not disallowed in its robots.txt. search.txcourts.gov stays disallowed and was not fetched, so the
+case page behind 25-0463 was carried from its September 7th reading and the first comment says so.
+
+**A scout read a notice on docs.tacc.utexas.edu**, a host the registry excludes, saying the TACC
+Frontera queues close permanently on October 15th. The record's tx-2026-0125 says October 1st. The
+notice was not used and the entry was not changed. It is named here for a maintainer to read from a
+source the boundary allows.
+
+**www.courthousenews.com answered 200** to the fact checker and to the run's own fetch of the
+October 6th argument report.
+
+**www.faa.gov still answers 403 to the project's own agent and 200 to a browser agent**, on the
+NEPA and drones page and on robots.txt alike, measured October 15th. Its robots.txt disallows only
+`/fast-41-cpp-tasks/` to every agent and permits `/uas/`, so tx-2026-0186 was read with a browser
+agent as the September 30th entry and the registry's PUCT and Tribune rows describe. The page now
+says the comment period on Zipline's Texas metros draft closed on October 11th. The same page lists
+a final assessment for Amazon Prime Air's Texas operations, a different proposal.

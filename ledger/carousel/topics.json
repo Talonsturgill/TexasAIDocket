@@ -1701,6 +1701,50 @@
     "Turn Around Don't Drown",
     "flood sensor"
    ]
+  },
+  {
+   "date": "2026-10-15",
+   "carousel_no": 51,
+   "docket_item": "tx-2026-0127",
+   "related_items": [],
+   "instrument": "Courthouse News's October 6th, 2026 report on the Supreme Court of Texas argument in In re Patrick Hughey, the court's submission schedule for October 6th, 2026, its case information for 25-0463 (read September 7th, 2026) and Texas Rules of Civil Procedure 199.1(c) and 203.6(a), read on October 15th, 2026.",
+   "topic": "A Montgomery County trial court struck a deposition transcript made with an AI platform in April 2025 because no certified shorthand reporter prepared it. The Ninth District denied relief, the employee petitioned for mandamus on May 29th, 2025, and the Supreme Court of Texas heard argument on October 6th, 2026. Its orders through October 9th, 2026 carry no ruling. The rules already let a written transcription of a recording be used like a stenographic deposition, and let a court require a certified reporter's transcript for good cause.",
+   "angle": "A granite courthouse stair with a riser for every month from the strike to the argument, with the bound transcript carried through the deck: on the bottom tread under lit doors on the cover, in the deposition room beside the camera that made the other record, face down on the ledge below the trial court, standing on the filing's tread in the stair's measured elevation, beside the rule under a lamp, on the lectern before a bench with an empty chair, open at its certificate with the argument's minute rail, and open near the top of the flight at the close.",
+   "angle_note": "The stair, the courthouse, the office, the room, the bench and every person are drawn to illustrate. No real building is depicted, and the justices are kit figures with no likeness.",
+   "entities": [
+    "Supreme Court of Texas",
+    "Montgomery County",
+    "Ninth District Court of Appeals",
+    "Courthouse News",
+    "Jimmy Blacklock",
+    "Jane Bland",
+    "Kyle Hawkins",
+    "Evan Young",
+    "J. Brett Busby",
+    "John Devine",
+    "Bradley Snead",
+    "Stephanie L. Bryant",
+    "Texas Deposition Reporters Association",
+    "Texas Court Reporters Association"
+   ],
+   "places": [
+    "Montgomery County",
+    "Austin",
+    "Conroe"
+   ],
+   "what_was_refused": "The court's own case page was not fetched again, because search.txcourts.gov is outside the crawl boundary; the September 7th reading stands and the email says so. The amicus and merits briefs behind the case page were not read for the same reason. The Texas Legislature Online statute pages under capitol.texas.gov/tlodocs were not fetched.",
+   "keywords": [
+    "AI transcript",
+    "deposition",
+    "court reporter",
+    "Supreme Court of Texas",
+    "mandamus",
+    "Montgomery County",
+    "Rule 203.6",
+    "certified shorthand reporter",
+    "In re Hughey",
+    "Texas courts"
+   ]
   }
  ]
 }

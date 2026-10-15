@@ -1,0 +1,77 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.8,
+   "why": "Slides 1, 5 and 6 pass most of the showstopper test. Slide 3's camera is a box and cylinder in a grey-middle room; slide 9's open transcript reads as clipping into the nosing; slide 2's pines are bare poles and its left wall a flat slab; slide 7's justices are small over dead floor; slide 4 has a plate behind its counter; slide 1's transcript is a plain block and its doors read as lit boxes."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.8,
+   "why": "One hero on all nine frames carrying the case's state, a stair bookend, one world and palette, bluebonnet for certification only, and a declared value cut at 7. Frame 6 sits brightest and frame 4's facade a little outside."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 6.5,
+   "why": "Every numeral traces and the October 9th orders were read in full. Framing is looser than the sources: Rule 203.6(a) is presented as the governing frame while the employer's c16 position that the rules would not allow it is cut; 'orders through October 9th' is wider than c30's single document; the case history and bench quotes rest on one article; slide 8 makes the schedule's 'will present' a completed fact; c1 and c2 were not re-fetched."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.3,
+   "why": "The deciders and the case are named in order and the status is honest. The stake for a Texan stays general and nothing says who a ruling would reach."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "The hook earns the swipe, the turn at 6 to 7 is real and the close lands. Frame 5 mostly restates dates and 2 and 3 both spend themselves on the deposition room."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Clean and plain within the house rules, but wire copy, with 'Courthouse News reports' and 'Drawn to illustrate.' repeated and little regional texture."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "The first court deck in the window with a new instrument and hero, on the house formula."
+  }
+ ],
+ "weighted_score": 7.1,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Print the employer's c16 position beside Rule 203.6(a) on slide 6 so the frame shows what the court is weighing, and narrow 'orders through October 9th' to 'the court's October 9th orders list'.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 3,
+   "problem": "Box-and-cylinder camera in a grey-middle room with a lit band behind the dek; the transcript small and far back.",
+   "fix": "Model the camcorder, drop the back wall to black under one window rake, and pull the transcript into that pool at one scale."
+  },
+  {
+   "slide": 9,
+   "problem": "The open transcript reads as clipping into the nosing; a lighter band along the top edge.",
+   "fix": "Seat it on the tread face in front of the nosing with a contact shadow, move closer, and let the band fall into black."
+  },
+  {
+   "slide": 2,
+   "problem": "Bare pole pines and a flat pale left wall; a dead left third.",
+   "fix": "Model pine crowns against the seam and darken the room's left wall."
+  },
+  {
+   "slide": 7,
+   "problem": "Tiny justices on a thin strip over 40 percent dead floor.",
+   "fix": "Move forward and lower so the bench fills a third of the frame height."
+  },
+  {
+   "slide": 4,
+   "problem": "A plate behind the counter and a mid-tone facade.",
+   "fix": "Reframe so the tower clears the counter zone or let that corner fall into shadow."
+  }
+ ]
+}

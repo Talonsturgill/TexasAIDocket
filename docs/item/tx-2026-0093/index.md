@@ -11,7 +11,7 @@ The National Science Foundation made a standard grant to William Marsh Rice Univ
 - Public access: Closed
 - Take part: https://api.nsf.gov/services/v1/awards/2616828.json
 
-- Last checked: 2026-10-12
+- Last checked: 2026-10-15
 
 ## Dates
 
@@ -45,6 +45,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-06 · The foundation's award to Rice for AI that proposes numerical algorithms still stands as announced.
 - 2026-10-09 · Checked and unchanged. The decision still stands as decided.
 - 2026-10-12 · The foundation's award to Rice for AI that proposes algorithms only a proof checker can certify still stands.
+- 2026-10-15 · Rice's award for AI that proposes algorithms only a proof checker certifies still reads as active.
 
 ## Evidence
 

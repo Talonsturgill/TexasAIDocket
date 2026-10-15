@@ -11,7 +11,7 @@ The City of Taylor has a proposed development agreement with Big Watt Digital an
 - Public access: Closed
 - Take part: https://www.taylortx.gov/1416/Taylor-Technology-Campus
 
-- Last checked: 2026-10-11
+- Last checked: 2026-10-15
 
 ## Dates
 
@@ -27,6 +27,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-07 · The council has not voted yet. The city's page still sets out the proposed terms beside what applies without them.
 - 2026-10-08 · Taylor's council has not voted yet. The city's page still lays out the proposed terms beside the rules that apply without them.
 - 2026-10-11 · The council approved the agreement to annex the campus 5 to 0 on October 8th, under the written terms. The city's own campus page had not yet posted the result.
+- 2026-10-15 · CBS Austin's account of the council's vote still reads as cited. The city's own news post no longer answers at its address, so its wording is unconfirmed.
 
 ## Evidence
 

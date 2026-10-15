@@ -11,7 +11,7 @@ The Hays County Commissioners Court agenda for September 1st, 2026 carried an it
 - Public access: Write to the decider
 - Take part: https://public.destinyhosted.com/agenda_publish.cfm?id=42972&mt=ALL&get_month=9&get_year=2026&dsp=ag&seq=135
 
-- Last checked: 2026-09-26
+- Last checked: 2026-10-15
 
 ## Dates
 
@@ -41,6 +41,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-09 · The sheriff's posted promise remains unconfirmed on the county's agenda, which bars automated readers. The published account of the reallocation still reads as cited.
 - 2026-10-10 · The sheriff's posted promise stays unconfirmed on the county's agenda, which bars automated readers, and the county's archive refused the request.
 - 2026-10-11 · On September 15th the court voted 3 to 2 to move the money set aside for a possible Axon contract to two more corrections officers, by the published account.
+- 2026-10-15 · The sheriff's promise to return to the court before switching on report writing stands in the records that answered. The county's archive and the agenda host are unconfirmed.
 
 ## Evidence
 

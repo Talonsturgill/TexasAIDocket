@@ -9,7 +9,7 @@ The Texas Department of Transportation launched the first phase of Project Nexus
 - Public access: Write to the decider
 - Take part: https://www.txdot.gov/about/newsroom/statewide/air-taxi-testing-taking-flight-in-texas.html
 
-- Last checked: 2026-10-11
+- Last checked: 2026-10-15
 
 ## Dates
 
@@ -21,6 +21,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 
 - 2026-10-08 · Admitted to the record on TxDOT's own release of the first phase. The account of the autonomous flight shown at the kickoff is Merlin's own.
 - 2026-10-11 · TxDOT's release on the first phase of Project Nexus still reads as published.
+- 2026-10-15 · TxDOT's release on the first phase of Project Nexus reads as published.
 
 ## Evidence
 

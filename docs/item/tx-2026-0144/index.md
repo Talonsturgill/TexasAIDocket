@@ -1,16 +1,16 @@
 # Federal energy department opens comment on securing the grid and names AI as why demand grew, closing October 9th
 
-The Department of Energy published a request for information on September 9th, 2026. It implements an August 26th executive order on securing the United States bulk power system. The notice asks about covered equipment and transactions and about foreign produced bulk power system electric equipment. It also asks about remote access practices and federal procurement. The notice names advanced manufacturing and data centers and artificial intelligence and defense production as what increased the nation's dependence on reliable electricity. Written responses are accepted through October 9th, 2026 and a public webinar is set for September 16th.
+The Department of Energy published a request for information on September 9th, 2026. It implements an August 26th executive order on securing the United States bulk power system. The notice asks about covered equipment and transactions and about foreign produced bulk power system electric equipment. It also asks about remote access practices and federal procurement. The notice names advanced manufacturing and data centers and artificial intelligence and defense production as what increased the nation's dependence on reliable electricity. Written responses were accepted through October 9th, 2026 and a public webinar is set for September 16th.
 
 - Topic: defense-and-federal
 - Decided by: United States Department of Energy (federal)
 - Where: Statewide
-- Status: open
+- Status: pending
 - Public access: Comment window open
 - Comment closes: 2026-10-09
 - Take part: https://www.federalregister.gov/documents/2026/09/09/2026-18370/securing-the-united-states-bulk-power-system
 
-- Last checked: 2026-10-12
+- Last checked: 2026-10-15
 
 ## Dates
 
@@ -42,6 +42,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-08 · The energy department is still taking comment on securing the grid, through October 9th.
 - 2026-10-09 · The comment window is still open, closing October 9th.
 - 2026-10-12 · The comment window closed on October 9th. The proposal still reads as published.
+- 2026-10-15 · The proposal on securing the grid reads as published. Its comment window has closed.
 
 ## Evidence
 

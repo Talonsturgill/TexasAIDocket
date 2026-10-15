@@ -1277,6 +1277,24 @@ which is the finding the judges made in words and the number that says the gate 
   a different scene, and a deck that copies a frame and swaps the object will not.
 - **A site line a script wrote.** `coherence_check` reads `class="tx-site"` from the HTML
   file. The line is static in every slide, never mounted.
+- **A dark patch behind the footer, and a veil that peaks under it** (2026-10-15, the weekly pass,
+  queue `footer-veil-peaks-below-the-line` at repeat 2, nos. 42, 45 and 51, and the digest's "type
+  sitting on or fighting the art", four runs this week). Every chassis since no. 42 copies one bottom
+  veil, a smoothstep from 240 px above the foot to the foot itself. Computed on no. 51's chassis it
+  is 0.20 at the top of the footer row, 0.24 at its centre and 0.28 at its foot, and it spends its
+  peak, 0.38, on the 80 px of margin below the type, where nothing needs it. So a lit nosing, a
+  horizon or a shade edge under the footer still runs through the site line and the source line,
+  `qa` reads it as a rule and the contrast floor fails. The repair three chassis reached for,
+  `N.knock`, a blurred patch at 0.82 behind one element (nos. 48, 50 and 51), is a plate by the
+  routine's own 0.55 line, and the judges charged it as one: "dark plates behind 'c20' and the site
+  line" (no. 50 r1), "dark plate behind the cite line" and "plate behind the counter" (no. 51 r1),
+  "punched plate behind the counter" (no. 51 r3). No. 51 then wrote a third answer into a frame by
+  hand, a darken gradient from y 1060 to the foot. **The default answer is the footer row wash in
+  `TECHNIQUE_LIBRARY.md` (TYPE AND CAROUSEL MECHANICS)**: one full width band, darken only,
+  centred on `.tx-site`'s own box and feathered past it, so its peak lands on the row the type
+  sits in. Never a patch the shape of a word. When the wash at a held alpha still can't seat the
+  footer, the cure is the art under it (the pool, the camera, where the ground falls to black),
+  never a heavier patch. (2026-10-15)
 - **The model's own defaults, which it reaches for when design direction runs out** (2026-09-23).
   Anthropic's prompting guide for the model the routine now runs on lists five: a cream or
   off-white ground, italic accent words in headlines, numbered "01, 02, 03" section labels,

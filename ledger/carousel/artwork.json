@@ -3136,6 +3136,60 @@
     "hex": "#0C0D10",
     "note": "The deck's declared ground behind the render."
    }
+  },
+  {
+   "date": "2026-10-15",
+   "carousel_no": 51,
+   "written_from": "deck_coherence's median L* per frame at 432 px off the final renders, layout_check's accent share, by out/2026-10-15/update_ledgers.py.",
+   "register": "RENDERED, NOT PRINTED. A staged lastLight world declared once in assets/js/deck/2026-10-15-transcript.js (key az -58 el 7, ground #08060F), two outdoor sets at night and three rooms. One hero, the chassis's deposition_transcript, on every frame. Chassis models for the transcript, a flamed granite stair with bronze nosings, a court front with lit glass doors, a brick office, a video camera on a tripod, a rule page and a lectern rail.",
+   "structural_laws": [
+    "A WRAPPED TEXTURE OR NONE. Large blotches drawn without wrapping were cut at every tile seam and read as camouflage blocks at a distance. Every mark is drawn at its neighbours' offsets now, and joints sit on the tile edge.",
+    "AN ELEVATION THAT HIDES THE TREADS HIDES THE COUNT. The stair seen square from the side was a flat sawtooth. A quarter turn off its open end gives every month a lit tread over a dark riser.",
+    "THE SNAPSHOT STAGES BY DEFAULT. An interior that wants its own room has to say stage false, or the room fogs to the sky's hue and the walnut wall reads navy.",
+    "A BENCH OF NINE IS SEEN FROM ITS CENTRE OF CURVATURE. From there every seat stands at one distance and all nine fit one lens."
+   ],
+   "techniques": [
+    "a low wide lens up the whole flight to a dark court front whose glass doors are the only light up there, the transcript in a lamp pool on the bottom tread",
+    "a brick office at night among loblolly pines, one glazed room lit with the deposition inside",
+    "the deposition room with the camera on its tripod and the transcript on the table, leaders to the camera's lit flip screen and the transcript's cover",
+    "a floodlit classical courthouse beyond a granite ledge, the transcript face down on the ledge",
+    "the stair a quarter turn off its open end through a long lens, three dated leaders and the transcript standing on the filing's tread",
+    "the rule page under a desk lamp with the rule's own words set on its projected corners and a bluebonnet tab at the certified reporter clause",
+    "the bench of nine from its centre of curvature, eight seated and one empty, the lectern with the transcript in the near corner",
+    "the transcript open at its certificate on the lectern with a twenty segment rail, the last five in bluebonnet",
+    "the flight from its top step through a wide lens, the open certificate the one bright thing and the treads falling into the dark"
+   ],
+   "value": {
+    "per_frame_median_L": [
+     7.5,
+     1.6,
+     6.9,
+     9.8,
+     9.2,
+     14.3,
+     1.1,
+     4.4,
+     6.6
+    ],
+    "deck_median_L": 6.9,
+    "max_adjacent_delta": 13.2,
+    "mean_adjacent_delta": 4.81,
+    "note": "Measured by deck_coherence's median_lstar at 432 px off the final renders. A dark staged deck with one declared value cut into frame 7."
+   },
+   "accent": {
+    "hex": "#4E5FA8",
+    "name": "bluebonnet",
+    "frames_above_floor": [
+     3,
+     6,
+     8
+    ],
+    "note": "Certification only: the camera's lit flip screen, the tab and underline at the certified reporter clause, and the rail's five amicus minutes. The AI transcript's own certificate is grey ink, because the struck transcript is never drawn certified."
+   },
+   "ground": {
+    "hex": "#08060F",
+    "note": "The deck's declared ground behind the render."
+   }
   }
  ]
 }

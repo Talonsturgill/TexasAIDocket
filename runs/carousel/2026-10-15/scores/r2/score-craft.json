@@ -1,0 +1,82 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.0,
+   "why": "Every frame is rendered on a dark field and the register measures well; 6, 2 and 5 come close to the 10. Slide 3's camcorder has no lens and a stray bar, its transcript is small with a leader across it and the frame's mass is mid-brown wall. Slide 4's counter sits on a plate, the courthouse is a sliver lit at the cornice, its window a flat fill, the horizon a sea-like plane. The cover's lower half is flat mid-brown treads and its doors read as window bays. Slide 7's justices are mannequins in a thin band over an empty floor. Slide 8's leaves are flat cards with placeholder bars on a box lectern. Slide 9's top 40 percent is dead black."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "One hero on all nine frames changing state, one warm grade, a value track with no strobe, and both declared devices working. Slide 4 sits outside the deck and slide 3's room is a step lighter."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.5,
+   "why": "Every numeral re-derived; the rule text matches verbatim; absences scoped to c30 and c31; the deck refuses 'appeal' and the platform name. The core facts rest on Courthouse News, and slide 4's Ninth District sentence and the cover's flat 'no certified reporter prepared' carry no attribution of their own."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.0,
+   "why": "What, who, where and status are clear. The stake stays general, the parties are never named, and there is no next step."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "The cover earns the swipe, 6 turns, 7 drops the value with it, and the close is clean. 2 and 3 both establish the deposition and 5 restates dates."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Clean and on register with good headlines; 'Courthouse News reports' and 'Drawn to illustrate.' repeat; regional texture stops at Montgomery County."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "A fresh beat, opening and instrument, but lastLight again and the one unit per time step spine again."
+  }
+ ],
+ "weighted_score": 6.94,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Remodel the bound transcript with a clear cover, posts, fanned leaves and typed lines, and give the camcorder a real lens barrel with the flip screen on its side.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 3,
+   "problem": "Camcorder with no lens and a stray bar; small transcript with its leader across it; mid-brown wall.",
+   "fix": "Model a lens barrel with glass, move the screen to the side, dolly closer so the transcript is 400 px or more, and end its leader at the cover's edge."
+  },
+  {
+   "slide": 4,
+   "problem": "Counter on a plate; courthouse a sliver lit at the cornice; flat window; sea-like horizon; primitive slab transcript.",
+   "fix": "Rotate the camera so the facade fills the right 40 percent with the tower under the counter, key from the base, and replace the plane with a dark lot and pines."
+  },
+  {
+   "slide": 1,
+   "problem": "Flat mid-brown treads with no grime; doors read as window bays; plain transcript.",
+   "fix": "Lower and close the eye so the treads compress into bright nosing bands over black risers, model the doors as two bronze leaves, add grime and a contact shadow."
+  },
+  {
+   "slide": 9,
+   "problem": "Dead black top 40 percent, the cover's camera again, the book bridging a nosing.",
+   "fix": "Pitch up so the seam and far lights sit in the upper third and seat the book on one tread."
+  },
+  {
+   "slide": 7,
+   "problem": "Mannequin justices in a thin band over an empty floor; the transcript centre-bottom.",
+   "fix": "Move the camera forward and lower so the bench fills the middle third and cut the lectern into the lower-left corner."
+  },
+  {
+   "slide": 8,
+   "problem": "Flat leaves with placeholder bars on a box lectern with wavy grain.",
+   "fix": "Curl and fan the leaves, set typed numbered lines on the left leaf, and run the grain straight along the slope."
+  }
+ ]
+}

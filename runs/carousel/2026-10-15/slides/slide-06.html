@@ -1,0 +1,67 @@
+<!doctype html>
+<!-- 2026-10-15, frame 6 of 9. Archetype DOCUMENT. RENDERED through txthree.js in a TXT.interior room. A page of the Texas Rules of Civil Procedure lying on a walnut desk under a brass lamp, Rule 203.6(a)'s words set in DOM on the page's projected corners, the clause naming a certified court reporter underlined in bluebonnet, the bound transcript closed beside it. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+  .dek { width:900px; }
+  #rule { z-index:9; padding:118px 36px 0 36px; box-sizing:border-box; font-family:"Fraunces", serif; color:#1d1a16; text-shadow:none !important; }
+  #rule .rn { font-family:"JetBrains Mono", monospace; font-size:17px; font-weight:700; letter-spacing:0.04em; margin-bottom:8px; }
+  #rule .rt { font-size:19.5px; line-height:1.36; }
+  #rule u { color:#4E5FA8; font-weight:700; text-decoration-color:#4E5FA8; text-decoration-thickness:5px; text-underline-offset:5px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">The rule already has a check</h1>
+<p class="dek" data-follow="26">Rule 203.6(a) lets a written transcription of a recording be used like a stenographic deposition. A court may still require a certified reporter's transcript first, for good cause shown.</p>
+<div id="rule" data-overlap-ok><div class="rn">203.6 Use. (a) Non-stenographic recording; transcription.</div><div class="rt">A non-stenographic recording of an oral deposition, or a written transcription of all or part of such a recording, may be used to the same extent as a deposition taken by stenographic means.</div><div class="rt">However, the court, for good cause shown, may require that the party seeking to use a non-stenographic recording or written transcription first obtain a complete transcript of the deposition recording from a <u>certified court reporter.</u></div></div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-15-transcript.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Texas Rules of Civil Procedure", counter: "06 / 09", src: "c28 c29 c26 c27", fit: { min: 76, max: 100, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 38, far: 200 });
+  const room = TXT.interior(R, { w: 6, d: 5, h: 2.9, floor: 'concrete', wall: 0x2a231e, window: 'left', ceiling: true, light: 0.12 });
+  const desk = K.make('desk', { wood: 0x3e2716, pedestal: 'right' }); desk.position.set(0, 0, -0.8); TXT.add(R, desk); TXT.contact(R, desk);
+  const dt = (desk.userData.size || [1.52, 0.76, 0.76])[1];
+  const page = K.make('rule_page'); page.position.set(-0.08, dt + 0.002, -0.78); page.rotation.y = 0.04; TXT.add(R, page);
+  const tr = K.make('deposition_transcript', { seed: 3 }); tr.position.set(0.16, dt, -1.0); tr.rotation.y = -0.12;   /* closed beside the page's far corner, whole in frame */ TXT.add(R, tr);
+  /* a bluebonnet index tab on the page's right edge, level with the clause naming a certified court reporter */
+  { const tab = new THREE.Mesh(new THREE.BoxGeometry(0.05, 0.0025, 0.032), CH.accentMat(THREE)); tab.position.set(0.108 + 0.014, 0.0012, 0.058); tab.castShadow = true; page.add(tab); }   /* a thin card tab, half of it over the edge */
+  /* a brass desk lamp, the only source on the desk */
+  const brass = new THREE.MeshStandardMaterial({ color: 0x8a6a3a, metalness: 0.9, roughness: 0.35 });
+  const lb = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.09, 0.03, 24), brass); lb.position.set(-0.55, dt + 0.015, -1.0); R.scene.add(lb);
+  const arm = new THREE.Mesh(new THREE.CylinderGeometry(0.01, 0.01, 0.42, 8), brass); arm.position.set(-0.55, dt + 0.24, -1.0); R.scene.add(arm);
+  const shade = new THREE.Mesh(new THREE.ConeGeometry(0.11, 0.16, 24, 1, true), new THREE.MeshStandardMaterial({ color: 0x1d3a2a, metalness: 0.3, roughness: 0.5, side: THREE.DoubleSide })); shade.position.set(-0.47, dt + 0.46, -0.95); shade.rotation.z = 0.6; R.scene.add(shade);
+  { const s = new THREE.SpotLight(0xffd9a6, 7, 2.6, 0.32, 0.75, 1.6); s.position.set(-0.3, dt + 0.9, -0.92); s.shadow.radius = 6; s.target.position.set(-0.05, dt, -0.78); s.castShadow = true; s.shadow.mapSize.set(1024, 1024); R.scene.add(s); R.scene.add(s.target); }
+  const from = [0.05, dt + 0.72, -0.05];
+  const look = CH.aim(THREE, R, TXT, from, [-0.08, dt, -0.78], 520, 900, 38);
+  TXT.frame(R, { fov: 38, from, look });
+  TXT.deckRig(R, CH.rigSpec(W, 8, 2048), CH.rigOpts([0, 0.8, -0.8], { distance: 16, shadowFar: 40 }));
+  TXT.stage(R, [desk, page, tr], { poolInner: 0.8, poolOuter: 2.4 });
+  TXT.weather(R, { grime: 0.1, height: 0.3 });
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  /* the rule's own words, set as vector type on the page's projected corners */
+  page.updateMatrixWorld(true);
+  const C = page.userData.corners.map(p => CH.project(THREE, R, CH.world(THREE, page, p)));
+  CH.quad(document.getElementById('rule'), 432, 558, [C[0], C[1], C[2], C[3]]);
+  CH.post(cx, { a: 0.3, veil: 0.25 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

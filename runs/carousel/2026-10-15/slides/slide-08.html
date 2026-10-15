@@ -1,0 +1,80 @@
+<!doctype html>
+<!-- 2026-10-15, frame 8 of 9. Archetype CLOSE_CROP. RENDERED through txthree.js in the windowless courtroom TXT.interior builds. Close over the lectern's slope: the transcript open at its last leaf, a certificate page whose signature rule and seal box are bluebonnet, and the lectern rail of minutes_per_side segments with the last amicus_minutes in bluebonnet; the bench dim beyond. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+  .dek { width:820px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">Who stands behind the page?</h1>
+<p class="dek" data-follow="26">Justice Bland asked where the court would find the assurance of a human being standing behind the transcribed product. Five of the employer's twenty minutes went to the Texas Deposition Reporters Association. Drawn to illustrate.</p>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-15-transcript.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "At the lectern", counter: "08 / 09", src: "c12 c25 c24 c15", fit: { min: 80, max: 104, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 50, far: 400 });
+  const SEATS = 9, HEARD = 8, EMPTY = 5;
+  /* figures.json: minutes_per_side 20 segments on the rail, the last amicus_minutes 5 in the accent */
+  const MINUTES = 20, AMICUS = 5;
+  /* THE COURTROOM, windowless, walnut, drawn to illustrate: the argument was at 9:00 a.m. (c1), so no window sets it at evening */
+  const room = TXT.interior(R, { w: 24, d: 24, h: 7, floor: 'concrete', wall: 0x2a1d14, window: null, ceiling: true, light: 0.12 });
+  CH.carpet(THREE, R, 22, 22, 0, 0);
+  CH.paneling(THREE, K, R, 23.5, 6.2, 0, 0, -11.9, 0, { rows: 3, panel: 1.5 });   /* the walnut paneling behind the bench */
+  const dais = K.make('hearing_dais', { seats: SEATS, curve: 11, wood: 0x4a2c18, carpet: 0x2b2a30, mics: true, plates: true, chairs: true });
+  dais.position.set(0, 0, -4.2); TXT.add(R, dais); TXT.contact(R, dais);
+  /* the justices: one seated figure in every chair but one, from figures.json justices_heard 8 of justices_seats 9 */
+  const chairs = (dais.children.length === 1 ? dais.children[0] : dais).children.filter(c => c.isGroup && Math.abs(c.position.y - 0.3) < 0.002);
+  const justices = [];
+  chairs.forEach((c, i) => {
+    if (i === EMPTY) return;
+    const p = K.make('person', { role: 'official', pose: 'sit_read', hat: 'none', shirt: 0x141416, trousers: 0x141416, seed: 40 + i });
+    const w = new THREE.Vector3(); c.getWorldPosition(w); dais.updateMatrixWorld(true); c.getWorldPosition(w);
+    p.position.set(w.x, w.y, w.z + 0.02); p.rotation.y = c.rotation.y; TXT.add(R, p); justices.push(p);
+  });
+  const seal = K.make('seal_plaque', { finish: 'bronze' }); seal.position.set(0, 3.6, -11.9); TXT.add(R, seal);
+  const flags = K.make('flags_pair'); flags.position.set(-7.6, 0, -7.4); TXT.add(R, flags); TXT.contact(R, flags);
+  /* the bench lights: three downlights over the bench, the room dark around them */
+  /* wall washers on the walnut paneling, the room's own light, so the bench stands before carved wood rather than a void */
+  [-8, -3, 3, 8].forEach(x => { const w = new THREE.SpotLight(0xffd2a0, 160, 12, 0.6, 0.7, 1.4); w.position.set(x, 6.6, -9.5); w.target.position.set(x, 2.5, -11.9); R.scene.add(w); R.scene.add(w.target); });
+  [-4.5, 0, 4.5].forEach(x => { const s = new THREE.SpotLight(0xffe0bc, 110, 16, 0.55, 0.7, 1.4); s.position.set(x, 6.6, -1.0); s.target.position.set(x * 0.9, 0.6, -3.8); s.castShadow = true; s.shadow.mapSize.set(1024, 1024); R.scene.add(s); R.scene.add(s.target); });
+  const pod = K.make('podium', { wood: 0x4a2c18, seal: false, mic: false }); pod.position.set(0, 0, 5.2); pod.rotation.y = Math.PI; TXT.add(R, pod); TXT.contact(R, pod);
+  const ang = Math.atan2(0.12, 0.5);
+  const tr = K.make('deposition_transcript', { open: 1, seed: 3 });
+  pod.add(tr); tr.position.set(0.0, 1.15, -0.02); tr.rotation.x = -ang; tr.rotation.y = Math.PI; tr.scale.setScalar(1);
+  const rail = K.make('lectern_rail', { segments: MINUTES, lit: AMICUS, length: 0.6 });
+  pod.add(rail); rail.position.set(0, 1.09, -0.262); rail.rotation.y = Math.PI;
+  pod.updateMatrixWorld(true);
+  const pW = new THREE.Vector3(); tr.getWorldPosition(pW);
+  const from = [pW.x + 0.06, pW.y + 0.9, pW.z + 0.95];
+  const look = CH.aim(THREE, R, TXT, from, [pW.x, pW.y, pW.z], 540, 905, 50);
+  TXT.frame(R, { fov: 50, from, look });
+  /* a low raking key from the bench side, so it skims the paper and the lectern's lip */
+  { const l = new THREE.SpotLight(0xffe2c4, 34, 4, 0.45, 0.5, 1.6); l.position.set(pW.x - 1.5, pW.y + 0.45, pW.z - 0.3); l.castShadow = true; l.shadow.mapSize.set(2048, 2048); l.shadow.bias = -0.0004; l.target.position.copy(pW); R.scene.add(l); R.scene.add(l.target); }
+  TXT.deckRig(R, CH.rigSpec(W, 16, 2048), CH.rigOpts([0, 1, -4], { distance: 30, shadowFar: 80 }));
+  TXT.weather(R, { grime: 0.12, height: 0.4 });
+  /* the room beyond takes no sky: its walls, floor and bench keep the warm black of frame 7 instead of mirroring navy */
+  { const own = new Set(); pod.traverse(o => own.add(o)); R.scene.traverse(m => { if (m.isMesh && !own.has(m) && m.material && !Array.isArray(m.material) && m.material.envMapIntensity != null && !m.userData.txGround) { m.material.envMapIntensity = 0.03; } }); }
+  const cx = CH.develop(await TXT.snapshot(R, { stage: false }), gl);   /* the room beyond, not the stage fog's navy */
+  CH.post(cx, { a: 0.3, veil: 0.3 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>
