@@ -1,0 +1,407 @@
+{
+ "claims": [
+  {
+   "id": "c1",
+   "item": "tx-2026-0127",
+   "text": "The court's own case record sets the argument date and hour.",
+   "quote": "This case has been set for oral argument at 9:00 a.m., October 6, 2026.",
+   "url": "https://search.txcourts.gov/Case.aspx?cn=25-0463&coa=cossup",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-07",
+   "confidence": "medium",
+   "document": "Supreme Court of Texas, Case 25-0463 case information",
+   "record_id": "tx-2026-0127-c1",
+   "note": "Carried from the record. Not re-fetched, because robots.txt disallows search.txcourts.gov. The October 6, 2026 schedule (c23) agrees."
+  },
+  {
+   "id": "c2",
+   "item": "tx-2026-0127",
+   "text": "The case record gives the docket number, the filing date, the case type and the style.",
+   "quote": "Case: 25-0463 Date Filed: 05/29/2025 Case Type: Mandamus/Cause Style: IN RE PATRICK HUGHEY",
+   "url": "https://search.txcourts.gov/Case.aspx?cn=25-0463&coa=cossup",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-07",
+   "confidence": "medium",
+   "document": "Supreme Court of Texas, Case 25-0463 case information",
+   "record_id": "tx-2026-0127-c2"
+  },
+  {
+   "id": "c3",
+   "item": "tx-2026-0127",
+   "text": "The court reporters' trade association filed an amicus brief.",
+   "quote": "Amicus Curiae Brief received on behalf of Texas Court Reporters Association, Inc., submitted by Jason Ray of Riggs & Ray P.C. of Austin, Texas.",
+   "url": "https://search.txcourts.gov/Case.aspx?cn=25-0463&coa=cossup",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-07",
+   "confidence": "medium",
+   "document": "Supreme Court of Texas, Case 25-0463 case information",
+   "record_id": "tx-2026-0127-c3"
+  },
+  {
+   "id": "c4",
+   "item": "tx-2026-0127",
+   "text": "The opposing party in the underlying suit filed its own brief on the merits.",
+   "quote": "Real Party in Interest's Brief on the Merits filed on behalf of Reddico Construction Co., Inc.",
+   "url": "https://search.txcourts.gov/Case.aspx?cn=25-0463&coa=cossup",
+   "source_type": "primary_official",
+   "retrieved": "2026-09-07",
+   "confidence": "medium",
+   "document": "Supreme Court of Texas, Case 25-0463 case information",
+   "record_id": "tx-2026-0127-c4"
+  },
+  {
+   "id": "c5",
+   "item": "tx-2026-0127",
+   "text": "The court's submission schedule for its October 6th sitting names the relator's counsel.",
+   "quote": "Relator will be represented by Bradley W. Snead (Wright Close",
+   "url": "https://www.txcourts.gov/media/1463419/10-06-submission-schedule.pdf",
+   "source_type": "primary_official",
+   "retrieved": "2026-10-15",
+   "confidence": "high",
+   "document": "Submission Schedule, In the Supreme Court of Texas, Tuesday, October 6, 2026",
+   "record_id": "tx-2026-0127-c5",
+   "supporting_quotes": [
+    "Barger & Guzman), from Houston."
+   ]
+  },
+  {
+   "id": "c6",
+   "item": "tx-2026-0127",
+   "text": "Courthouse News reports the Supreme Court of Texas heard argument over whether a party should be allowed to submit a deposition transcript generated with AI as evidence.",
+   "quote": "The Texas Supreme Court heard arguments Tuesday over whether an individual should be allowed to submit an AI-generated transcript of a deposition as evidence.",
+   "url": "https://www.courthousenews.com/texas-high-court-toys-with-ai-transcripts-for-witness-depositions/",
+   "source_type": "secondary_reported",
+   "retrieved": "2026-10-15",
+   "confidence": "high",
+   "document": "Texas high court toys with AI transcripts for witness depositions",
+   "published": "2026-10-06"
+  },
+  {
+   "id": "c7",
+   "item": "tx-2026-0127",
+   "text": "Courthouse News reports the case began as a Montgomery County man's wrongful termination claim against his former employer.",
+   "quote": "The case concerns a Montgomery County man’s wrongful termination claim against his former employer.",
+   "url": "https://www.courthousenews.com/texas-high-court-toys-with-ai-transcripts-for-witness-depositions/",
+   "source_type": "secondary_reported",
+   "retrieved": "2026-10-15",
+   "confidence": "high",
+   "document": "Texas high court toys with AI transcripts for witness depositions",
+   "published": "2026-10-06"
+  },
+  {
+   "id": "c8",
+   "item": "tx-2026-0127",
+   "text": "Courthouse News reports the trial court in Montgomery County struck the transcript from the record in April 2025 because no certified shorthand reporter prepared it.",
+   "quote": "The trial court in Montgomery County struck the AI-generated transcript the employee submitted from the record back in April 2025 because the transcript was not prepared by a certified shorthand reporter.",
+   "url": "https://www.courthousenews.com/texas-high-court-toys-with-ai-transcripts-for-witness-depositions/",
+   "source_type": "secondary_reported",
+   "retrieved": "2026-10-15",
+   "confidence": "high",
+   "document": "Texas high court toys with AI transcripts for witness depositions",
+   "published": "2026-10-06"
+  },
+  {
+   "id": "c9",
+   "item": "tx-2026-0127",
+   "text": "Courthouse News reports the Texas Court of Appeals for the Ninth District denied the employee in an unsigned ruling. It says that court found the issue was the uncertified written transcript generated with AI, not the content of the deposition or its use as evidence.",
+   "quote": "In their unsigned denial of his appeal, the Texas Court of Appeals for the Ninth District reaffirmed that the issue was not with the content of the deposition or the use of the deposition as evidence, but merely with the use of an uncertified, AI-generated written transcript.",
+   "url": "https://www.courthousenews.com/texas-high-court-toys-with-ai-transcripts-for-witness-depositions/",
+   "source_type": "secondary_reported",
+   "retrieved": "2026-10-15",
+   "confidence": "medium",
+   "document": "Texas high court toys with AI transcripts for witness depositions",
+   "published": "2026-10-06",
+   "note": "Appeal is Courthouse News's word. The schedule lists a petition for writ of mandamus (c23)."
+  },
+  {
+   "id": "c10",
+   "item": "tx-2026-0127",
+   "text": "Courthouse News reports the company did not object to the transcription software at the deposition and asked the trial court to strike the transcript several weeks later.",
+   "quote": "However, the company did not object to the use of the transcription software at the time of the deposition, only asking the trial court to strike it several weeks later.",
+   "url": "https://www.courthousenews.com/texas-high-court-toys-with-ai-transcripts-for-witness-depositions/",
+   "source_type": "secondary_reported",
+   "retrieved": "2026-10-15",
+   "confidence": "high",
+   "document": "Texas high court toys with AI transcripts for witness depositions",
+   "published": "2026-10-06"
+  },
+  {
+   "id": "c11",
+   "item": "tx-2026-0127",
+   "text": "Courthouse News reports Chief Justice Jimmy Blacklock observed at argument that paying a certified reporter, or letting the depositions go ahead this way, would have been cheaper. He then asked \"Why are we here?\"",
+   "quote": "Chief Justice Jimmy Blacklock noted it would have just been cheaper for the employee’s counsel to pay for the certified reporter, or it would have been cheaper for the company’s counsel to just let the depositions happen this way. “Why are we here?” he asked.",
+   "url": "https://www.courthousenews.com/texas-high-court-toys-with-ai-transcripts-for-witness-depositions/",
+   "source_type": "secondary_reported",
+   "retrieved": "2026-10-15",
+   "confidence": "high",
+   "document": "Texas high court toys with AI transcripts for witness depositions",
+   "published": "2026-10-06"
+  },
+  {
+   "id": "c12",
+   "item": "tx-2026-0127",
+   "text": "Justice Jane Bland asked at argument where the court would find the assurance of a human being standing behind the transcribed product, Courthouse News reports.",
+   "quote": "Where are we going to get that peace, of a human being standing behind the transcribed product?",
+   "url": "https://www.courthousenews.com/texas-high-court-toys-with-ai-transcripts-for-witness-depositions/",
+   "source_type": "secondary_reported",
+   "retrieved": "2026-10-15",
+   "confidence": "high",
+   "document": "Texas high court toys with AI transcripts for witness depositions",
+   "published": "2026-10-06"
+  },
+  {
+   "id": "c13",
+   "item": "tx-2026-0127",
+   "text": "Bradley Snead argued for the employee that the deposition's video recording is certified and so the transcript does not have to be, Courthouse News reports.",
+   "quote": "Snead argued that because the deposition’s video recording is certified, the transcript does not have to be.",
+   "url": "https://www.courthousenews.com/texas-high-court-toys-with-ai-transcripts-for-witness-depositions/",
+   "source_type": "secondary_reported",
+   "retrieved": "2026-10-15",
+   "confidence": "high",
+   "document": "Texas high court toys with AI transcripts for witness depositions",
+   "published": "2026-10-06",
+   "supporting_quotes": [
+    "Justice Jane Bland pressed Bradley Snead, an attorney for the employee’s side from Houston-based Wright Close, on whether the AI-generated transcript was true and correct."
+   ]
+  },
+  {
+   "id": "c14",
+   "item": "tx-2026-0127",
+   "text": "Snead told the court it can create more rules if it wants. He said that under the current rules a party is allowed to do this, Courthouse News reports.",
+   "quote": "“If the court wants to create more rules, they can. But under the current rules, you are allowed to do this.”",
+   "url": "https://www.courthousenews.com/texas-high-court-toys-with-ai-transcripts-for-witness-depositions/",
+   "source_type": "secondary_reported",
+   "retrieved": "2026-10-15",
+   "confidence": "high",
+   "document": "Texas high court toys with AI transcripts for witness depositions",
+   "published": "2026-10-06"
+  },
+  {
+   "id": "c15",
+   "item": "tx-2026-0127",
+   "text": "The employer's lawyer Stephanie L. Bryant argued that using AI programs to produce written transcripts and take depositions this cheaply would exponentially increase discovery costs, Courthouse News reports.",
+   "quote": "the use of these AI programs to generate written transcripts and do these depositions this cheaply is going to affect litigation. It’s going to exponentially increase discovery costs.",
+   "url": "https://www.courthousenews.com/texas-high-court-toys-with-ai-transcripts-for-witness-depositions/",
+   "source_type": "secondary_reported",
+   "retrieved": "2026-10-15",
+   "confidence": "high",
+   "document": "Texas high court toys with AI transcripts for witness depositions",
+   "published": "2026-10-06"
+  },
+  {
+   "id": "c16",
+   "item": "tx-2026-0127",
+   "text": "Bryant said she had no issue with lawyers using their own in-house AI software. She argued that a third-party AI transcription platform like the one the employee used raises substantial security and confidentiality questions and would not be allowed under current Texas rules, Courthouse News reports.",
+   "quote": "Bryant insisted she had no issue with litigants or attorneys using their own in-house AI software, but that using a third-party AI transcription platform like the employee did in this case raises substantial security and confidentiality questions, and that as such, it would not be allowed under current Texas rules of procedure.",
+   "url": "https://www.courthousenews.com/texas-high-court-toys-with-ai-transcripts-for-witness-depositions/",
+   "source_type": "secondary_reported",
+   "retrieved": "2026-10-15",
+   "confidence": "high",
+   "document": "Texas high court toys with AI transcripts for witness depositions",
+   "published": "2026-10-06"
+  },
+  {
+   "id": "c17",
+   "item": "tx-2026-0127",
+   "text": "Justice J. Brett Busby asked Bryant at argument whether the court's proportionality rules would take care of her concern about costs, Courthouse News reports.",
+   "quote": "Justice J. Brett Busby pressed Bryant on her assertion of increased costs for defendants and reduced costs for plaintiffs. “Wouldn’t our proportionality rules take care of that?”",
+   "url": "https://www.courthousenews.com/texas-high-court-toys-with-ai-transcripts-for-witness-depositions/",
+   "source_type": "secondary_reported",
+   "retrieved": "2026-10-15",
+   "confidence": "high",
+   "document": "Texas high court toys with AI transcripts for witness depositions",
+   "published": "2026-10-06"
+  },
+  {
+   "id": "c18",
+   "item": "tx-2026-0127",
+   "text": "Justice Kyle Hawkins said at argument that the other side can point out an error and watch the video, and that he didn't see what the issue is, Courthouse News reports.",
+   "quote": "If they submit the AI transcript, you have the chance to say, ‘That’s wrong, there’s an error in the transcript, and we’ve got the video and we can just watch that.’ I don’t see what the issue is.",
+   "url": "https://www.courthousenews.com/texas-high-court-toys-with-ai-transcripts-for-witness-depositions/",
+   "source_type": "secondary_reported",
+   "retrieved": "2026-10-15",
+   "confidence": "high",
+   "document": "Texas high court toys with AI transcripts for witness depositions",
+   "published": "2026-10-06"
+  },
+  {
+   "id": "c19",
+   "item": "tx-2026-0127",
+   "text": "Hawkins asked at argument why the court should set aside what he called an efficient, cost-effective tool, Courthouse News reports.",
+   "quote": "He also questioned why they should set aside the use of “this efficient, cost-effective tool,” as he described the AI transcription platform.",
+   "url": "https://www.courthousenews.com/texas-high-court-toys-with-ai-transcripts-for-witness-depositions/",
+   "source_type": "secondary_reported",
+   "retrieved": "2026-10-15",
+   "confidence": "high",
+   "document": "Texas high court toys with AI transcripts for witness depositions",
+   "published": "2026-10-06"
+  },
+  {
+   "id": "c20",
+   "item": "tx-2026-0127",
+   "text": "Justice Evan Young said at argument that the court has escape hatches. He named the actual recording and a judge's power to order a certified shorthand reporter, Courthouse News reports.",
+   "quote": "“We have all of these escape hatches,” Young continued. “We have the actual recording. We have the ability of the judge to say ‘Okay, there’s just too much about this. I want a certified shorthand reporter to do this.’",
+   "url": "https://www.courthousenews.com/texas-high-court-toys-with-ai-transcripts-for-witness-depositions/",
+   "source_type": "secondary_reported",
+   "retrieved": "2026-10-15",
+   "confidence": "high",
+   "document": "Texas high court toys with AI transcripts for witness depositions",
+   "published": "2026-10-06"
+  },
+  {
+   "id": "c21",
+   "item": "tx-2026-0127",
+   "text": "Courthouse News read the argument as showing the justices seemed inclined to allow AI transcripts where verified video recordings act as escape hatches. That is the outlet's reading. The court has not ruled.",
+   "quote": "Texas Supreme Court justices seemed inclined to allow AI-generated transcripts for witness depositions where verified video recordings can act as \"escape hatches\" to ensure accuracy.",
+   "url": "https://www.courthousenews.com/texas-high-court-toys-with-ai-transcripts-for-witness-depositions/",
+   "source_type": "secondary_reported",
+   "retrieved": "2026-10-15",
+   "confidence": "high",
+   "document": "Texas high court toys with AI transcripts for witness depositions",
+   "published": "2026-10-06",
+   "note": "The outlet's characterisation, never a ruling."
+  },
+  {
+   "id": "c22",
+   "item": "tx-2026-0127",
+   "text": "Eight of the nine justices heard the argument and Justice John Devine was absent, Courthouse News reports.",
+   "quote": "Eight of the nine justices heard the arguments Tuesday, with Justice John Devine absent.",
+   "url": "https://www.courthousenews.com/texas-high-court-toys-with-ai-transcripts-for-witness-depositions/",
+   "source_type": "secondary_reported",
+   "retrieved": "2026-10-15",
+   "confidence": "high",
+   "document": "Texas high court toys with AI transcripts for witness depositions",
+   "published": "2026-10-06"
+  },
+  {
+   "id": "c23",
+   "item": "tx-2026-0127",
+   "text": "The Supreme Court of Texas listed case 25-0463, In re Patrick Hughey, on its submission schedule for Tuesday, October 6th, 2026, as a petition for writ of mandamus from Montgomery County and the Ninth District.",
+   "quote": "Tuesday, October 6, 2026",
+   "url": "https://www.txcourts.gov/media/1463419/10-06-submission-schedule.pdf",
+   "source_type": "primary_official",
+   "retrieved": "2026-10-15",
+   "confidence": "high",
+   "document": "Submission Schedule, In the Supreme Court of Texas, Tuesday, October 6, 2026",
+   "supporting_quotes": [
+    "IN THE SUPREME COURT OF TEXAS",
+    "25-0463",
+    "IN RE PATRICK HUGHEY §",
+    "PETITION FOR WRIT OF",
+    "MANDAMUS",
+    "FROM MONTGOMERY COUNTY,",
+    "NINTH DISTRICT."
+   ]
+  },
+  {
+   "id": "c24",
+   "item": "tx-2026-0127",
+   "text": "The schedule names Stephanie L. Bryant of The Bays Firm, from Conroe, to argue for the real party in interest.",
+   "quote": "Real Party in Interest will be represented by Stephanie L. Bryant",
+   "url": "https://www.txcourts.gov/media/1463419/10-06-submission-schedule.pdf",
+   "source_type": "primary_official",
+   "retrieved": "2026-10-15",
+   "confidence": "high",
+   "document": "Submission Schedule, In the Supreme Court of Texas, Tuesday, October 6, 2026",
+   "supporting_quotes": [
+    "(The Bays Firm), from Conroe."
+   ]
+  },
+  {
+   "id": "c25",
+   "item": "tx-2026-0127",
+   "text": "The schedule gives each side 20 minutes. On the real party's side Bryant presents the first 15 minutes and Shelby O'Brien of Butler Snow LLP presents the remaining 5 minutes for the Texas Deposition Reporters Association as amicus curiae.",
+   "quote": "Curiae, Tex. Dep. Reporters Ass’n, Shelby O’Brien will present the remaining 5 minutes.",
+   "url": "https://www.txcourts.gov/media/1463419/10-06-submission-schedule.pdf",
+   "source_type": "primary_official",
+   "retrieved": "2026-10-15",
+   "confidence": "high",
+   "document": "Submission Schedule, In the Supreme Court of Texas, Tuesday, October 6, 2026",
+   "supporting_quotes": [
+    "Time for Argument: 20 minutes for each side",
+    "For Real Party in Interest, Stephanie L. Bryant will present the first 15 minutes; for Amicus",
+    "Amicus Curiae, Texas Deposition Reporters Association, will be",
+    "represented by Shelby O’Brien (Butler Snow LLP), from Austin."
+   ]
+  },
+  {
+   "id": "c26",
+   "item": "tx-2026-0127",
+   "text": "Rule 199.1(c) of the Texas Rules of Civil Procedure lets any party have an oral deposition recorded by other than stenographic means, including videotape recording.",
+   "quote": "to be recorded by other than stenographic means, including videotape recording.",
+   "url": "https://www.txcourts.gov/media/1462349/texas-rules-of-civil-procedure.pdf",
+   "source_type": "primary_official",
+   "retrieved": "2026-10-15",
+   "confidence": "high",
+   "document": "Texas Rules of Civil Procedure",
+   "supporting_quotes": [
+    "(c) Non-stenographic recording.  Any party may cause a deposition upon oral examination"
+   ]
+  },
+  {
+   "id": "c27",
+   "item": "tx-2026-0127",
+   "text": "Under Rule 199.1(c) the party requesting a non-stenographic recording must obtain a person authorized by law to administer the oath and assure that the recording will be intelligible, accurate and trustworthy.",
+   "quote": "requesting the non -stenographic recording will be responsible for obtaining a person",
+   "url": "https://www.txcourts.gov/media/1462349/texas-rules-of-civil-procedure.pdf",
+   "source_type": "primary_official",
+   "retrieved": "2026-10-15",
+   "confidence": "high",
+   "document": "Texas Rules of Civil Procedure",
+   "supporting_quotes": [
+    "authorized by law to adm inister the oath and for assuring that the recording will be",
+    "intelligible, accurate, and trustworthy."
+   ]
+  },
+  {
+   "id": "c28",
+   "item": "tx-2026-0127",
+   "text": "Rule 203.6(a) lets a non-stenographic recording of an oral deposition, or a written transcription of it, be used to the same extent as a deposition taken by stenographic means.",
+   "quote": "deposition, or a written transcription of all or part of such a recording, may be used to the",
+   "url": "https://www.txcourts.gov/media/1462349/texas-rules-of-civil-procedure.pdf",
+   "source_type": "primary_official",
+   "retrieved": "2026-10-15",
+   "confidence": "high",
+   "document": "Texas Rules of Civil Procedure",
+   "supporting_quotes": [
+    "A non- stenographic recording of an oral",
+    "same extent as a deposition taken by stenographic means."
+   ]
+  },
+  {
+   "id": "c29",
+   "item": "tx-2026-0127",
+   "text": "Rule 203.6(a) also lets a court require a complete transcript from a certified court reporter before a non-stenographic recording or written transcription is used, on good cause shown.",
+   "quote": "may require that the party seeking to use a non- stenographic recording or",
+   "url": "https://www.txcourts.gov/media/1462349/texas-rules-of-civil-procedure.pdf",
+   "source_type": "primary_official",
+   "retrieved": "2026-10-15",
+   "confidence": "high",
+   "document": "Texas Rules of Civil Procedure",
+   "supporting_quotes": [
+    "However, the court, for good",
+    "cause shown,",
+    "written transcription first obtain a complete transcript of the deposition recording from a",
+    "certified court reporter."
+   ]
+  }
+ ],
+ "rejected": [
+  {
+   "finding": "Stephanie L. Bryant of Houston-based The Bays Firm (Courthouse News)",
+   "reason": "The court's October 6 submission schedule says Bryant (The Bays Firm) is from Conroe, not Houston. The schedule (c24) is carried and Courthouse News's location is dropped."
+  },
+  {
+   "finding": "Bradley Snead from Houston-based Wright Close (Courthouse News)",
+   "reason": "The schedule gives the firm as Wright Close Barger & Guzman from Houston (c5). The shortened firm name isn't carried."
+  },
+  {
+   "finding": "The AI platform's name",
+   "reason": "No fetched source names the platform. A search snippet named one and the page behind it was not read, so no surface names it."
+  },
+  {
+   "finding": "Search.txcourts.gov's current docket entries",
+   "reason": "robots.txt disallows that host, so nothing on it was fetched this run. c1 to c4 are carried as the record holds them."
+  }
+ ]
+}

@@ -1,0 +1,112 @@
+{
+ "_note": "Every value is extracted from a claim quote by compute.py, or computed here from values that were.",
+ "struck_year": {
+  "value": 2025,
+  "from": [
+   "c8"
+  ],
+  "basis": "the year the trial court struck the transcript"
+ },
+ "filed_day": {
+  "value": 29,
+  "from": [
+   "c2"
+  ],
+  "basis": "day of the month the mandamus was filed"
+ },
+ "argued_day": {
+  "value": 6,
+  "from": [
+   "c23"
+  ],
+  "basis": "day of the month of the argument"
+ },
+ "argued_year": {
+  "value": 2026,
+  "from": [
+   "c23"
+  ],
+  "basis": "year of the argument"
+ },
+ "months_struck_to_argued": {
+  "value": 18,
+  "from": [
+   "c8",
+   "c23"
+  ],
+  "basis": "calendar months from the strike's month to the argument's month, month granularity because c8 gives no day"
+ },
+ "filed_step": {
+  "value": 1.903,
+  "from": [
+   "c8",
+   "c2"
+  ],
+  "basis": "the filing's position on the month stair, in risers from the strike month"
+ },
+ "days_filed_to_argued": {
+  "value": 495,
+  "from": [
+   "c2",
+   "c23"
+  ],
+  "basis": "days from the mandamus filing to the argument"
+ },
+ "justices_heard": {
+  "value": 8,
+  "from": [
+   "c22"
+  ],
+  "basis": "justices who heard the argument"
+ },
+ "justices_seats": {
+  "value": 9,
+  "from": [
+   "c22"
+  ],
+  "basis": "seats on the court"
+ },
+ "justices_absent": {
+  "value": 1,
+  "from": [
+   "c22"
+  ],
+  "basis": "seats empty at argument"
+ },
+ "minutes_per_side": {
+  "value": 20,
+  "from": [
+   "c25"
+  ],
+  "basis": "minutes of argument for each side"
+ },
+ "real_party_first": {
+  "value": 15,
+  "from": [
+   "c25"
+  ],
+  "basis": "the real party's counsel's minutes"
+ },
+ "amicus_minutes": {
+  "value": 5,
+  "from": [
+   "c25"
+  ],
+  "basis": "the deposition reporters' association's minutes as amicus"
+ },
+ "argument_minutes_total": {
+  "value": 40,
+  "from": [
+   "c25"
+  ],
+  "basis": "both sides together"
+ },
+ "records_count": {
+  "value": 2,
+  "from": [
+   "c13",
+   "c6"
+  ],
+  "basis": "the deposition's two records named in the claims, its video recording and its written transcript"
+ }
+}
