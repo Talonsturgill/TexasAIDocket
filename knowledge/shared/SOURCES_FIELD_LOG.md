@@ -2154,3 +2154,10 @@ source the boundary allows.
 
 **www.courthousenews.com answered 200** to the fact checker and to the run's own fetch of the
 October 6th argument report.
+
+**www.faa.gov still answers 403 to the project's own agent and 200 to a browser agent**, on the
+NEPA and drones page and on robots.txt alike, measured October 15th. Its robots.txt disallows only
+`/fast-41-cpp-tasks/` to every agent and permits `/uas/`, so tx-2026-0186 was read with a browser
+agent as the September 30th entry and the registry's PUCT and Tribune rows describe. The page now
+says the comment period on Zipline's Texas metros draft closed on October 11th. The same page lists
+a final assessment for Amazon Prime Air's Texas operations, a different proposal.

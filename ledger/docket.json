@@ -28971,7 +28971,7 @@
    ],
    "notes_for_editor": "Admitted on the FAA's own draft and its own review page. The environmental assessment is a draft prepared by the applicant under the agency's supervision, and the final decision on the operating approvals has not been made. The county list is the Section 106 letter's own list with two of its spellings, Atacosta and Roberston, read as Atascosa and Robertson. The letter's stated total and its list disagree, so no county count is published. The five metros straddle the ERCOT line, so on_ercot is null rather than either value. The letter states a county total its own list does not match, and that discrepancy is reported here rather than repaired.",
    "id": "tx-2026-0186",
-   "last_verified": "2026-10-10",
+   "last_verified": "2026-10-15",
    "history": [
     {
      "date": "2026-09-24",
@@ -29025,7 +29025,8 @@
     },
     {
      "date": "2026-10-15",
-     "note": "The comment window on Zipline's Texas metros assessment closed on October 11th. The agency's pages refused the request, so whether a final assessment has appeared is unconfirmed."
+     "note": "The comment window on Zipline's Texas metros assessment closed on October 11th, as the agency's review page now says. The draft assessment is still posted there, and no final assessment or decision for it appears on the page.",
+     "checked": true
     }
    ]
   },
