@@ -2274,8 +2274,13 @@ export function install(K, THREE, TXT) {
       });
       K.box(0.012, 0.004, D + 0.004, strip, 0, 0, 0, 0.001, g);
       posts(g, 0, half + 0.006, half + 0.01);
+      // seat the open book on its lowest point, as the closed branch does: the tilted halves dip below
+      // y = 0 at the spine, so lift every part by that much and carry the lift into the page centre
+      g.updateMatrixWorld(true);
+      const lift = Math.max(0, -new THREE.Box3().setFromObject(g).min.y);
+      g.children.forEach((ch) => { ch.position.y += lift; });
       g.userData.keepOrigin = true;
-      g.userData.page = [W / 2 + 0.004, 0.0016 + half + 0.0004 + (W / 2) * Math.sin(tilt), 0];
+      g.userData.page = [W / 2 + 0.004, 0.0016 + half + 0.0004 + (W / 2) * Math.sin(tilt) + lift, 0];
       return g;
     },
   });
