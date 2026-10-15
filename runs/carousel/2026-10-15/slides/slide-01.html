@@ -1,0 +1,75 @@
+<!doctype html>
+<!-- 2026-10-15, frame 1 of 9. Archetype FULL_BLEED. RENDERED through txthree.js in the deck's lastLight world. A monument eye at the foot of a flamed granite stair of one riser per month from the strike to the argument, climbing into the seam to a limestone front with lit bronze doors; the bound transcript lies on the bottom tread. Drawn to illustrate; no real building is claimed. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+  .dek { width:900px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">An AI made the transcript. Now the Supreme Court of Texas weighs it</h1>
+<p class="dek" data-follow="26">A Montgomery County trial court struck a deposition transcript no certified reporter prepared. The court heard it on October&nbsp;6th. Its orders through October&nbsp;9th carry no ruling. Drawn to illustrate.</p>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-15-transcript.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Supreme Court of Texas, October 6th", counter: "01 / 09", src: "c6 c8 c23 c30", fit: { min: 70, max: 84, maxLines: 3 } });
+  const R = CH.stage(TXT, gl, W, { fov: 70, far: 3000 });
+  /* THE STAIR, from figures.json: months_struck_to_argued 18, one riser per calendar month from the
+   * strike in April 2025 (c8) to the argument on October 6th, 2026 (c23). */
+  const MONTHS = 18;
+  const G = new THREE.Group(); G.rotation.y = 2.129 - 0.22;   /* the climb points into the seam, the doors a little right of it */
+  const stair = K.make('granite_stair', { steps: MONTHS, width: 9, landing: 2.4, cheeks: 'none' });
+  G.add(stair);
+  const top = stair.userData.top, depth = stair.userData.depth;
+  /* THE COURT at the head of the flight, its limestone kept dark so the doors are the one light up there */
+  const court = K.make('court_front', { w: 10, h: 8.5, seed: 6 });   /* no wider than the flight, so nothing stands grey beside the doors */
+  { const dk = new Map(); court.traverse(m => { if (m.isMesh && m.material && m.material.color && m.material.color.getHex() === 0xa89c84) { if (!dk.has(m.material)) { const c = m.material.clone(); c.color.setHex(0x4e463a); dk.set(m.material, c); } m.material = dk.get(m.material); } }); }
+  court.position.set(0, top, -depth - 2.4); G.add(court);
+  const plinth = K.box(10, top, 1.2, K.mat('cv-plinth', { color: 0x2c2724, roughness: 0.9 }), 0, 0, -depth - 2.4 - 0.6, 0, G);
+  const tr = K.make('deposition_transcript', { seed: 3 });
+  const t1 = stair.userData.tread(1); tr.position.set(0.3, t1[1], t1[2] + 0.04); tr.rotation.y = 0.26; G.add(tr);
+  G.updateMatrixWorld(true);
+  TXT.add(R, G);
+  CH.matte(TXT.ground(R, { surface: 'concrete', size: 700, seed: 15 }));
+  { const c = CH.world(THREE, G, [0, 0, -4]); CH.pad(THREE, R, 80, 80, c[0], c[2]); }
+  [stair, tr, court].forEach(o => TXT.contact(R, o));
+  /* the camera lies low on the plaza a metre and a bit before the first riser and looks up the whole flight */
+  const from = CH.world(THREE, G, [0.45, 0.31, 0.98]);
+  const look = CH.aim(THREE, R, TXT, from, CH.world(THREE, G, [0.3, t1[1], t1[2] + 0.04]), 600, 1185, 70);
+  TXT.frame(R, { fov: 70, from, look });
+  CH.matte(stair, 0.22);
+  /* the entry's own light on its jambs and the head of the flight */
+  { const pl = new THREE.PointLight(0xffc080, 22, 7, 1.6); pl.position.copy(new THREE.Vector3(...CH.world(THREE, G, [0, top + 1.6, -depth - 1.4]))); R.scene.add(pl); }
+  { const q = CH.project(THREE, R, CH.world(THREE, G, [0, top + 3.5, -depth - 2.4])), q2 = CH.project(THREE, R, CH.world(THREE, G, [0, top, -depth - 2.4])); console.warn('DBG doors top ' + q.map(Math.round) + ' foot ' + q2.map(Math.round)); }
+  /* THE DOORS' SPILL, from inside the entry down the flight toward the lens: it catches the top of
+   * every bronze nosing, so the eighteen read from below as eighteen bright lines */
+  { const sp = new THREE.SpotLight(0xffc888, 300, 9, 0.6, 0.5, 1.4);   /* reaches the top treads only, so the middle of the flight falls dark */ sp.position.copy(new THREE.Vector3(...CH.world(THREE, G, [0, top + 2.4, -depth - 0.9]))); sp.target.position.copy(new THREE.Vector3(...CH.world(THREE, G, [0, 0, 1.5]))); sp.castShadow = true; sp.shadow.mapSize.set(2048, 2048); sp.shadow.bias = -0.0004; R.scene.add(sp); R.scene.add(sp.target); }
+  /* a plaza lamp behind the lens, low, the light the risers face, falling off up the flight */
+  { const k = new THREE.SpotLight(0xffd6a8, 150, 14, 0.28, 0.7, 1.6); k.position.copy(new THREE.Vector3(...CH.world(THREE, G, [2.0, 3.6, 5.0]))); k.target.position.copy(new THREE.Vector3(...CH.world(THREE, G, [0.3, 0.3, -0.9])));   /* the pool: on the transcript and the bottom treads */ k.castShadow = true; k.shadow.mapSize.set(2048, 2048); k.shadow.bias = -0.0005; R.scene.add(k); R.scene.add(k.target); }
+  TXT.sky(R);
+  TXT.deckRig(R, CH.rigSpec(W, 24, 4096), CH.rigOpts(CH.world(THREE, G, [0, 1.5, -3]), { distance: 60, shadowFar: 160 }));
+  TXT.stage(R, [stair, tr, court], { poolInner: 4, poolOuter: 18 });
+  TXT.weather(R, { grime: 0.25, height: 0.6 });
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0.28, veil: 0.3 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

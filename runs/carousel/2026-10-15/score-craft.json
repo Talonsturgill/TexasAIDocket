@@ -1,0 +1,82 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.5,
+   "why": "The register is bold and measured (mid share 0.083 to 0.211, deck mean 0.121). Slide 6 is the showstopper, and 2 and 8 hold up. Slide 3's camcorder is a primitive with a leg through a label; slide 4 has a punched plate behind the counter, a cool rim and a hazy horizon band; slide 7's bench is a thin band of mannequins over an empty floor with the lectern under the footer; slide 5's transcript is about 40 px. The hero is a plain block on 1, 3 and 4. The preflight's named repairs on 1, 5 and 9 are still visible, and the walnut on 6 to 8 ripples like water."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.7,
+   "why": "One world, one grade, one accent meaning; both declared devices work and the value track has no strobe. Slide 4 sits outside; the motif is hard to read on 2 and 5; 9 nearly repeats the cover at thumb size."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.4,
+   "why": "Every numeral traces and 495 was checked by hand; primary sources carry the schedule, rule text and orders absence. The argument and the strike date rest on Courthouse News, and the cover sets a night exterior under 'Supreme Court of Texas, October 6th' for a 9:00 a.m. argument, softened by 'Drawn to illustrate'."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.4,
+   "why": "County, bodies, case number and status are all named and slide 6's turn is real. The stake for a Texan stays implied and the close is a question rather than a door."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.6,
+   "why": "The cover earns the swipe, 6 turns, 7 lands, the close is clean. 3 restates 2 and 5 re-dates 4."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.9,
+   "why": "Plain good headlines; wire-service body copy with 'Courthouse News reports' and 'Drawn to illustrate.' repeated; little Texas texture."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.6,
+   "why": "A fresh topic, but the unit-per-time spine, the lastLight register, kit people in a dark hearing room, the bluebonnet hex and the cover's opening move all recur."
+  }
+ ],
+ "weighted_score": 7.13,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Model the transcript as a real bound deposition transcript and stage it at a third of the frame in its own pool on 1, 4, 5 and 9.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 7,
+   "problem": "Thin bench band of mannequins, empty floor, lectern under the footer.",
+   "fix": "Lower to 1.2 m and push in on a longer lens so the bench fills the middle third; seat the lectern in the lower left above the footer band."
+  },
+  {
+   "slide": 3,
+   "problem": "Primitive camcorder, a leg through a label, a ceiling seam behind the hook, a mid-brown wall.",
+   "fix": "Model a pro camcorder turned three-quarters, move the label clear, and drop the ceiling and wall into the dark."
+  },
+  {
+   "slide": 4,
+   "problem": "Punched plate behind the counter, a cool rim, an orange speckle ground under a hazy band, a featureless transcript.",
+   "fix": "Re-aim so the facade top sits below the furniture row, kill the cool fill, and build the pale granite ledge in the pool with the horizon falling to black."
+  },
+  {
+   "slide": 5,
+   "problem": "Transcript about 40 px; flat side face; dead lower fifth.",
+   "fix": "Crop so the base sits at the bottom edge, scale the transcript up about 4x in its own pool, and joint the side face."
+  },
+  {
+   "slide": 1,
+   "problem": "Pale slab left of the doors; doors read as toy boxes; plain transcript.",
+   "fix": "Darken the slab, model bronze mullions and a lit vestibule, and give the transcript its cover and posts."
+  },
+  {
+   "slide": 9,
+   "problem": "Transcript reads sunk behind a nosing; top band and a left glass slab remain; repeats the cover at thumb.",
+   "fix": "Seat the transcript in front of the nosing, move 30 percent closer, darken the top band and remove the slab."
+  }
+ ]
+}

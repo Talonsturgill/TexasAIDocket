@@ -1,0 +1,79 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.8,
+   "why": "Most frames meet the staged dark-field brief; 1, 6 and 2 come close to the 10. Primitives on 3 and 8, the transcript a plain block on 1 and 4, plates behind the counter on 4 and the source line on 7, a clipped window strip on 9, mannequin-scale justices on 7, and pole pines on 2."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 8.0,
+   "why": "One warm world and one grade; the transcript changes state frame to frame; the stair is a declared camera move; bluebonnet keeps one meaning. Slide 3's mid-tone room and slide 4's half-frame facade weaken the strip."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 5.5,
+   "why": "Every numeral traces and the arithmetic checks. 'The court has not ruled' is unsupported after October 6th. Slide 2's headline places the deposition in Montgomery County with no claim saying where it was taken. The caption drops 'assurance' from Bland's line. The bluebonnet seal on the AI transcript's certificate draws it as certified by the deck's own legend. Slide 5 types MONTHS and FILED under a figures.json comment."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.5,
+   "why": "What, where, who and when are clear and the stake is concrete on 6 and 9. The case name and number appear only in the first comment and there is no next step."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.8,
+   "why": "The cover earns the swipe, 6 and 7 turn the deck, 9 closes on the stair's top. 2 and 3 partly repeat and 5 could merge into 4."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Clean and on register, but wire-service flat: 'Courthouse News reports' repeats and 'Drawn to illustrate' ends seven of nine deks; little regional texture."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.2,
+   "why": "The first judiciary deck in the window, but lastLight, one hero through nine frames and a warm amber palette are the house formula."
+  }
+ ],
+ "weighted_score": 6.956,
+ "hard_fails": [
+  "Unverified fact presented as verified: 'has not ruled' on slide 1, slide 9 and the caption rests on c21, an October 6th report that says nothing about a ruling. No source fetched after October 6th establishes the case's state on October 15th."
+ ],
+ "ship": false,
+ "one_sentence_fix": "Back 'has not ruled' with a claim fetched today from the court's orders and opinions page on www.txcourts.gov or date it to the October 6th report, and take the bluebonnet seal off the AI transcript's last leaf on 8 and 9.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 3,
+   "problem": "Primitive camcorder; flat brown mid-tone room fails the bold test.",
+   "fix": "Model a real camcorder turned three-quarters to the lens and kill the room fill so only the window rake lights the table and transcript."
+  },
+  {
+   "slide": 8,
+   "problem": "Two flat evenly lit planes with tan bars and a filled blue square that reads as a certification seal.",
+   "fix": "Rake the bench light low from the left, curl the leaves, and replace the filled square with a bare signature rule."
+  },
+  {
+   "slide": 7,
+   "problem": "Bench a thin band with mannequin-scale justices; source line on a plate.",
+   "fix": "Move the camera forward and lower and slide the lectern so the source line sits on dark carpet."
+  },
+  {
+   "slide": 9,
+   "problem": "A speckled window strip clipped at the top edge.",
+   "fix": "Pitch the camera down so the strip leaves the frame and seat the book on one tread."
+  },
+  {
+   "slide": 4,
+   "problem": "Counter on a plate, transcript a plain block, empty left half.",
+   "fix": "Crop right so the counter sits on open sky and give the transcript its cover, posts and black back."
+  }
+ ]
+}

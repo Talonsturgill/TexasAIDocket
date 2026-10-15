@@ -648,8 +648,7 @@ type:
   dek: "Justice Young named escape hatches, the recording itself and a judge's power to order a certified reporter. Courthouse News read the bench as inclined to allow it. The court's orders through October 9th carry no ruling in the case. Drawn to illustrate."
   labels: []
 
-verbatim:
-  - c20: "We have all of these escape hatches"
+verbatim: []
 
 acceptance:
   - "the open transcript lies on a tread near the top of the flight with its certificate page up, and a frame without it fails this item"

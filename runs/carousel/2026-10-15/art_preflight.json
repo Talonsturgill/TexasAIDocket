@@ -1,0 +1,103 @@
+{
+  "version": 1,
+  "selected": [
+    1,
+    5,
+    9
+  ],
+  "inputs": {
+    "slides/slide-01.html": "1fab10ae6ce1d10c9e6bdde469667f5cf00d46c1fc0d846018bbe399532e9a0c",
+    "render/slide-01.png": "80f323895f270fb1beb31f3d48f9889dc5fc0cbf2895e11fa420e24a823c9cee",
+    "assets/js/deck/2026-10-15-transcript.js": "4515c7572c493ce36a3fb68f5261b3650a3fdb11f4bd79561fa0b2f25d5f2794",
+    "slides/slide-05.html": "e549142a9a877fcf31a507413c23bb6aa63db7abfd3f137b6fe504ef4de4065e",
+    "render/slide-05.png": "481ddffac02e8cd7987b337f2025e0451b441b3dfb0988ce4f86e51a80db64af",
+    "slides/slide-09.html": "ba8ce45edf7f42804f5706221ab20dbdfe0a6cfd9f84b9dd8bf03927bbba232d",
+    "render/slide-09.png": "c215d4a897983af8b7c8ecc018fa485b8dec20d8d88a1a7bf9dd238577874a90"
+  },
+  "value_measurements": [
+    {
+      "frame": "slide-01.png",
+      "median_L": 6.4,
+      "mid": 0.096,
+      "dark": 0.692
+    },
+    {
+      "frame": "slide-05.png",
+      "median_L": 8.8,
+      "mid": 0.084,
+      "dark": 0.695
+    },
+    {
+      "frame": "slide-09.png",
+      "median_L": 5.5,
+      "mid": 0.098,
+      "dark": 0.683
+    }
+  ],
+  "review": {
+    "decision": "accept",
+    "inputs": {
+      "slides/slide-01.html": "1fab10ae6ce1d10c9e6bdde469667f5cf00d46c1fc0d846018bbe399532e9a0c",
+      "render/slide-01.png": "80f323895f270fb1beb31f3d48f9889dc5fc0cbf2895e11fa420e24a823c9cee",
+      "assets/js/deck/2026-10-15-transcript.js": "4515c7572c493ce36a3fb68f5261b3650a3fdb11f4bd79561fa0b2f25d5f2794",
+      "slides/slide-05.html": "e549142a9a877fcf31a507413c23bb6aa63db7abfd3f137b6fe504ef4de4065e",
+      "render/slide-05.png": "481ddffac02e8cd7987b337f2025e0451b441b3dfb0988ce4f86e51a80db64af",
+      "slides/slide-09.html": "ba8ce45edf7f42804f5706221ab20dbdfe0a6cfd9f84b9dd8bf03927bbba232d",
+      "render/slide-09.png": "c215d4a897983af8b7c8ecc018fa485b8dec20d8d88a1a7bf9dd238577874a90"
+    },
+    "frames": [
+      {
+        "slide": 1,
+        "role": "cover",
+        "subject": "A low view up a flamed granite stair, its bronze nosings catching the key, climbing out of black to a pair of lit doors, with the bound transcript closed on the bottom tread in the near foreground.",
+        "visual_consequence": "Each tread reads as its own lit band over a near-black riser, climbing to the lit doors. The frame is bold and sets up the stair as the count of months. The sourced first sentence tells a reader at once that a trial court struck the transcript.",
+        "weakness": "The dek's last line runs close to the left doors' lit header. The transcript is still a plain white block whose cover and posts don't read. A faint pale slab face is visible left of the doors.",
+        "repair": "Narrow the dek's measure or ease the hook so the dek ends one line higher, then darken the slab face left of the doors."
+      },
+      {
+        "slide": 5,
+        "role": "evidence",
+        "subject": "The same stair in elevation through a long lens, 18 lit treads climbing left to right, with leaders at the April 2025 strike, the May 29th, 2025 filing and the October 6th argument.",
+        "visual_consequence": "It explains a measured quantity. One riser per calendar month turns the 18 months between strike and argument into a count a reader can see, and the filing sits on its riser.",
+        "weakness": "The transcript on the filing's riser is about 45 px wide at full size and lost at feed size. The stair's side is a broad flat slab and the lower fifth is dead black.",
+        "repair": "Enlarge and light the transcript on its riser and bring the stair's base and plaza contact into frame."
+      },
+      {
+        "slide": 9,
+        "role": "close",
+        "subject": "Looking down the flight from the top landing: granite treads with lit nosings falling into the dark, and the transcript open at its certificate page in grey ink, seated on one tread, under the case kicker In re Patrick Hughey, No. 25-0463.",
+        "visual_consequence": "The record lies open and unresolved at the top of the climb, seated physically on its tread. The grey certificate agrees with the legend that blue means certified, and naming the case gives the close a specific anchor.",
+        "weakness": "Seated behind the nosing the transcript is smaller in frame. A flat lighter band runs along the top edge, and at thumb size the camera reads like the cover's.",
+        "repair": "Darken the top-edge band into the sky, and move the camera a little closer so the open pages fill more of the lower third."
+      }
+    ]
+  },
+  "shipped_inputs": {
+    "slides/slide-01.html": "1fab10ae6ce1d10c9e6bdde469667f5cf00d46c1fc0d846018bbe399532e9a0c",
+    "slide-01.webp": "f20c946d6b07805c94c18df721601cc859d59b77cb62b6c56e69d048add677f8",
+    "slides/slide-05.html": "e549142a9a877fcf31a507413c23bb6aa63db7abfd3f137b6fe504ef4de4065e",
+    "slide-05.webp": "8927371a7568ed6ef3d8d19b01ecac4b70de4b04b3c0e99cab22c91824705ff7",
+    "slides/slide-09.html": "ba8ce45edf7f42804f5706221ab20dbdfe0a6cfd9f84b9dd8bf03927bbba232d",
+    "slide-09.webp": "574b9280db57378c87fa63d80ae47b15d359d434482446c415c289076be78240"
+  },
+  "encodings": [
+    {
+      "to": "slide-01.webp",
+      "to_sha256": "f20c946d6b07805c94c18df721601cc859d59b77cb62b6c56e69d048add677f8",
+      "from_sha256": "80f323895f270fb1beb31f3d48f9889dc5fc0cbf2895e11fa420e24a823c9cee",
+      "psnr_db": 40.676
+    },
+    {
+      "to": "slide-05.webp",
+      "to_sha256": "8927371a7568ed6ef3d8d19b01ecac4b70de4b04b3c0e99cab22c91824705ff7",
+      "from_sha256": "481ddffac02e8cd7987b337f2025e0451b441b3dfb0988ce4f86e51a80db64af",
+      "psnr_db": 40.082
+    },
+    {
+      "to": "slide-09.webp",
+      "to_sha256": "574b9280db57378c87fa63d80ae47b15d359d434482446c415c289076be78240",
+      "from_sha256": "c215d4a897983af8b7c8ecc018fa485b8dec20d8d88a1a7bf9dd238577874a90",
+      "psnr_db": 41.007
+    }
+  ]
+}

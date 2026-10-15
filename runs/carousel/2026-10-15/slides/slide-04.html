@@ -1,0 +1,69 @@
+<!doctype html>
+<!-- 2026-10-15, frame 4 of 9. Archetype OBJECT_AND_CAPTION. RENDERED through txthree.js in the deck's lastLight world. The bound transcript lying face down on the granite base course in front of a classical county courthouse at last light, the facade and tower rising into the dark. Drawn to illustrate; no real Montgomery County building is claimed. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+  .dek { width:510px; }
+  .hook { width:560px !important; }   /* the type holds the dark sky at left, the floodlit facade the right */
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">The trial court struck the transcript</h1>
+<p class="dek" data-follow="26">Courthouse News reports the Montgomery County trial court struck it in April 2025 because no certified shorthand reporter prepared it. The company had moved to strike it weeks after the deposition. The Ninth District denied relief. Drawn to illustrate.</p>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-15-transcript.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Montgomery County, April 2025", counter: "04 / 09", src: "c8 c9 c10", fit: { min: 76, max: 100, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 44, far: 3000 });
+  const G = new THREE.Group(); G.rotation.y = 2.129 + 0.25;
+  const court = K.make('county_courthouse', { style: 'classical', storeys: 3, square: false, seed: 4 }); court.position.set(5, 0, -40); G.add(court);
+  const cbox = new THREE.Box3().setFromObject(court);   /* the facade's own front, so the floods stand before it and not inside */
+  /* the granite base course of a retaining wall at the walk, its top a ledge */
+  const gt = CH.graniteTex(THREE).clone(); gt.repeat.set(14 / 0.7, 1); gt.needsUpdate = true;   /* tiled at the block's own 0.7 m, never stretched along 14 m */
+  const gran = new THREE.MeshLambertMaterial({ color: 0xc4b8a6, map: gt });   /* pale base course granite, matte so it holds its own value, jointed by the chassis texture */
+  const ledge = new THREE.Mesh(new THREE.BoxGeometry(14, 0.9, 0.7), gran); ledge.position.set(2, 0.45, 0); ledge.castShadow = ledge.receiveShadow = true; G.add(ledge);
+  const cap = new THREE.Mesh(new THREE.BoxGeometry(14.1, 0.08, 0.78), gran); cap.position.set(2, 0.94, 0); cap.castShadow = cap.receiveShadow = true; G.add(cap);
+  const tr = K.make('deposition_transcript', { face: 'down', seed: 3 }); tr.position.set(1.0, 0.98, 0.05); tr.rotation.y = 0.35; G.add(tr);
+  [[14, -28, 24, 5]].forEach(([x, z, h, sd]) => { const t = K.make('loblolly_pine', { height: h, seed: sd }); t.position.set(x, 0, z); G.add(t); });
+  G.updateMatrixWorld(true); TXT.add(R, G);
+  CH.matte(TXT.ground(R, { surface: 'grass', size: 900, seed: 44 }));
+  { const c = CH.world(THREE, G, [2, 0, 3]); CH.pad(THREE, R, 30, 5, c[0], c[2], -G.rotation.y); }
+  [ledge, tr, court].forEach(o => TXT.contact(R, o));
+  const from = CH.world(THREE, G, [1.55, 1.1, 1.05]);
+  const look = CH.aim(THREE, R, TXT, from, CH.world(THREE, G, [1.0, 0.98, 0.05]), 600, 1110, 44);
+  TXT.frame(R, { fov: 44, from, look });
+  /* the courthouse's own floodlights at its foot, washing the facade up into the dark */
+  [-5, 5, 15].forEach(x => { const s = new THREE.SpotLight(0xffd6a6, 900, 30, 0.6, 0.92, 1.3); s.position.copy(new THREE.Vector3(...CH.world(THREE, G, [x, 0.4, -12]))); s.target.position.copy(new THREE.Vector3(...CH.world(THREE, G, [x, 9, -20]))); R.scene.add(s); R.scene.add(s.target); });
+  /* a streetlamp on the walk, so the ledge's pale granite top is the second lit thing and the binder's black back takes a warm rim */
+  { const lp = new THREE.SpotLight(0xffd6a6, 120, 7, 0.42, 0.75, 1.5); lp.position.copy(new THREE.Vector3(...CH.world(THREE, G, [3.2, 3.4, 2.4]))); lp.target.position.copy(new THREE.Vector3(...CH.world(THREE, G, [1.0, 0.98, 0.05]))); lp.castShadow = true; lp.shadow.mapSize.set(2048, 2048); lp.shadow.bias = -0.0004; R.scene.add(lp); R.scene.add(lp.target); }
+  CH.matte(tr, 0.15);   /* the black back cover keeps its own colour rather than mirroring the blue sky */
+  TXT.sky(R);
+  TXT.deckRig(R, CH.rigSpec(W, 20, 4096), CH.rigOpts(CH.world(THREE, G, [1, 1, 0]), { distance: 60, shadowFar: 160 }));
+  TXT.stage(R, [cap, tr, court], { poolInner: 1.5, poolOuter: 6 });
+  TXT.weather(R, { grime: 0.25, height: 0.6 });
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0.3, veil: 0.25 });
+  CH.knock(cx, ['.count'], 0.6);   /* the counter sits over the lit tower and needs a reserve to hold 4.5 to 1 */
+  /* the ledge falls to dark under the footer. It only darkens */
+  { const v = cx.createLinearGradient(0, 1120, 0, 1350); v.addColorStop(0, 'rgba(5,6,9,0)'); v.addColorStop(0.5, 'rgba(5,6,9,0.55)'); v.addColorStop(1, 'rgba(5,6,9,0.75)'); cx.fillStyle = v; cx.fillRect(0, 1120, 1080, 230); }   /* the counter sits over the lit tower */
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

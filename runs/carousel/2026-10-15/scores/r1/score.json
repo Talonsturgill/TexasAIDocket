@@ -1,0 +1,244 @@
+{
+ "weighted_score": 6.902,
+ "judges": [
+  6.956,
+  7.02,
+  6.792
+ ],
+ "spread": 0.228,
+ "criteria": {
+  "artwork_craft": {
+   "score": 6.6,
+   "weight": 0.22,
+   "judges": [
+    6.8,
+    6.0,
+    6.6
+   ]
+  },
+  "deck_coherence": {
+   "score": 7.5,
+   "weight": 0.12,
+   "judges": [
+    8.0,
+    7.5,
+    7.5
+   ]
+  },
+  "claim_integrity": {
+   "score": 6.0,
+   "weight": 0.2,
+   "judges": [
+    5.5,
+    7.5,
+    6.0
+   ]
+  },
+  "story_and_stakes": {
+   "score": 7.5,
+   "weight": 0.16,
+   "judges": [
+    7.5,
+    7.5,
+    7.0
+   ]
+  },
+  "sequence_and_momentum": {
+   "score": 7.5,
+   "weight": 0.1,
+   "judges": [
+    7.8,
+    7.5,
+    7.5
+   ]
+  },
+  "voice": {
+   "score": 7.0,
+   "weight": 0.1,
+   "judges": [
+    7.0,
+    7.0,
+    6.8
+   ]
+  },
+  "variety": {
+   "score": 7.0,
+   "weight": 0.1,
+   "judges": [
+    7.2,
+    6.5,
+    7.0
+   ]
+  }
+ },
+ "hard_fails": [
+  "Unverified fact presented as verified: 'has not ruled' on slide 1, slide 9 and the caption rests on c21, an October 6th report that says nothing about a ruling. No source fetched after October 6th establishes the case's state on October 15th.",
+  "Unverified fact presented as verified: 'has not ruled' is stated on slide 1, slide 9 and the caption, citing c6 and c21, whose quotes are from October 6th and say nothing about a ruling. No source fetched after October 6th establishes the case's status on October 15th."
+ ],
+ "hard_fails_by_judge": [
+  {
+   "judge": 1,
+   "fail": "Unverified fact presented as verified: 'has not ruled' on slide 1, slide 9 and the caption rests on c21, an October 6th report that says nothing about a ruling. No source fetched after October 6th establishes the case's state on October 15th."
+  },
+  {
+   "judge": 3,
+   "fail": "Unverified fact presented as verified: 'has not ruled' is stated on slide 1, slide 9 and the caption, citing c6 and c21, whose quotes are from October 6th and say nothing about a ruling. No source fetched after October 6th establishes the case's status on October 15th."
+  }
+ ],
+ "ship": false,
+ "threshold": 8.0,
+ "over_threshold": false,
+ "method": "per-criterion median across three judges, then weighted by the rubric",
+ "threshold_dissents": [
+  "judge 2 refused on the threshold, not on a fault, and scored 7.02 against a 8.0 bar. That dissent is carried in the median"
+ ],
+ "threshold_dissents_by_judge": [
+  {
+   "judge": 2,
+   "score": 7.02,
+   "reason": "judge 2 refused on the threshold, not on a fault, and scored 7.02 against a 8.0 bar. That dissent is carried in the median"
+  }
+ ],
+ "contested": [
+  "claim_integrity"
+ ],
+ "artwork_weakest_frames": [
+  {
+   "slide": 3,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Primitive camcorder; flat brown mid-tone room fails the bold test.",
+     "fix": "Model a real camcorder turned three-quarters to the lens and kill the room fill so only the window rake lights the table and transcript."
+    },
+    {
+     "judge": 2,
+     "problem": "Primitive camcorder dominates; transcript small with its leader across its cover; brown mid tone wall.",
+     "fix": "Turn the camera so a lens faces the reader, bring the transcript forward into the window rake at 600 px or more, and drop the room fill."
+    },
+    {
+     "judge": 3,
+     "problem": "Primitive camcorder, flat mid-brown wall, a tripod leg across a label.",
+     "fix": "Model a lens barrel and hood, light only the table from the window, move the label clear of the tripod."
+    }
+   ]
+  },
+  {
+   "slide": 7,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Bench a thin band with mannequin-scale justices; source line on a plate.",
+     "fix": "Move the camera forward and lower and slide the lectern so the source line sits on dark carpet."
+    },
+    {
+     "judge": 2,
+     "problem": "Dark plate behind the cite line over the transcript; tiny justices; empty floor.",
+     "fix": "Delete the cite wash, shift the lectern so the transcript clears the footer, lower the camera so the bench fills the middle third."
+    },
+    {
+     "judge": 3,
+     "problem": "Source line on a plate over the lectern; justices read as mannequins.",
+     "fix": "Shift the lectern so the bottom left corner is dark floor for the source line."
+    }
+   ]
+  },
+  {
+   "slide": 4,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Counter on a plate, transcript a plain block, empty left half.",
+     "fix": "Crop right so the counter sits on open sky and give the transcript its cover, posts and black back."
+    },
+    {
+     "judge": 2,
+     "problem": "Plate behind the counter; transcript a plain box; flat lit window.",
+     "fix": "Remove the plate, cap the floodlight so the tower's corner falls dark behind the counter, give the window a mullioned glow."
+    },
+    {
+     "judge": 3,
+     "problem": "Counter on a plate, face-down transcript reads as a box, a flat sea-like horizon.",
+     "fix": "Light the tower so its corner is dark behind the counter, turn the binder so its back and posts read, replace the flat plane."
+    }
+   ]
+  },
+  {
+   "slide": 9,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "A speckled window strip clipped at the top edge.",
+     "fix": "Pitch the camera down so the strip leaves the frame and seat the book on one tread."
+    },
+    {
+     "judge": 2,
+     "problem": "Clipped window strip at the top edge; book bridges a nosing.",
+     "fix": "Pitch the camera down so the strip leaves the frame and seat the book on one tread."
+    },
+    {
+     "judge": 3,
+     "problem": "A noisy strip of far windows at the top edge, a broad mid-brown field of treads.",
+     "fix": "Lower the horizon or crop the lights out, and narrow the door light to the top tread and the transcript."
+    }
+   ]
+  },
+  {
+   "slide": 1,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "Risers not dark, nosings flat stripes, transcript a white box, doors read as display cases.",
+     "fix": "Lower the key so risers fall into shadow, bevel the nosings, give the transcript its cover and posts."
+    },
+    {
+     "judge": 3,
+     "problem": "Lower 60 percent an even mid-brown field of flat treads, transcript a small slab, doors read as lit boxes.",
+     "fix": "Drop the camera onto the bottom tread so the transcript fills a third of the width in a tight key pool and the treads outside it fall to black."
+    }
+   ]
+  },
+  {
+   "slide": 8,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Two flat evenly lit planes with tan bars and a filled blue square that reads as a certification seal.",
+     "fix": "Rake the bench light low from the left, curl the leaves, and replace the filled square with a bare signature rule."
+    },
+    {
+     "judge": 2,
+     "problem": "Evenly lit greeked bars on a box lectern, flat blue seal, flat rail tiles, no rake.",
+     "fix": "Rake a low bench light from the left so the far leaf falls into shadow; emboss the seal; bevel the rail in brushed brass."
+    }
+   ]
+  },
+  {
+   "slide": 5,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "Transcript about 45 px, flat stair side, dead bottom fifth.",
+     "fix": "Bring the stair's near end into the left third with a lower eye so the transcript reaches 120 px; cut joints into the side; tilt down to fill the bottom band."
+    },
+    {
+     "judge": 3,
+     "problem": "The stair is an extruded block with a featureless right half.",
+     "fix": "Turn the lens further off the open end so 18 nosings span the width, shadow and joint the cheek, crop the blank slab."
+    }
+   ]
+  }
+ ],
+ "rounds_derived": 1,
+ "rounds": 1,
+ "rounds_source": "this module's own log of cards it has scored",
+ "rung": 8.0,
+ "craft_floor": "waiting, because a hard fail is repaired first"
+}

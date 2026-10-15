@@ -1,0 +1,78 @@
+<!doctype html>
+<!-- 2026-10-15, frame 3 of 9. Archetype DIAGRAM. RENDERED through txthree.js in a TXT.interior room, the deposition room drawn to illustrate. The deposition's two records at one scale on the walnut table, the video camera on its tripod and the bound transcript (figures.json records_count), with a leader to each. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+  .dek { width:900px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">Two records of one deposition</h1>
+<p class="dek" data-follow="26">Courthouse News reports the employee's lawyer argued the video recording is certified, so the transcript does not have to be. The employer's lawyer said a third party AI platform raises security and confidentiality questions.</p>
+<div class="lab" id="lab-a">video recording</div>
+<div class="lab" id="lab-b">transcript made with AI</div>
+<svg id="leaders" width="1080" height="1350" style="position:absolute;left:0;top:0;z-index:11;pointer-events:none"></svg>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-15-transcript.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "The deposition room, drawn to illustrate", counter: "03 / 09", src: "c13 c16 c6", fit: { min: 80, max: 104, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 46, far: 200 });
+  /* figures.json records_count 2: the deposition's two records, drawn as the two objects on the table */
+  const RECORDS = 2;
+  const room = TXT.interior(R, { w: 7, d: 6, h: 2.9, floor: 'asphalt', wall: 0x2e2824, window: 'left', ceiling: true, light: 0.05 });   /* a dark sealed floor with no saw-cut joints to run through the footer */
+  const table = K.make('conference_table', { seats: 6, shape: 'rect', wood: 0x4a2f1c, chairs: false }); table.position.set(0, 0, -0.3); TXT.add(R, table); TXT.contact(R, table);
+  const top = (table.userData.size || [0, 0.75, 0])[1];
+  const cam = K.make('video_camera_tripod', { height: 1.22, screen: 'accent' }); cam.position.set(0.44, 0, 1.62); cam.rotation.y = 0.62;   /* three-quarter to the reader, the lens barrel and hood toward the room's far end */   /* the lens toward the witness's end, the lit flip screen toward the reader */ TXT.add(R, cam); TXT.contact(R, cam);
+  const tr = K.make('deposition_transcript', { seed: 3 }); tr.position.set(-0.12, top, 0.68); tr.rotation.y = 0.28;   /* at the table's near edge, the one scale of the two records */ TXT.add(R, tr);
+  CH.paneling(THREE, K, R, 6.9, 2.2, 0, 0, -2.97, 0, { rows: 2, panel: 1.15, color: 0x4a3020 });   /* a law office's paneled back wall */
+  /* a credenza against the back wall with the case's binders and paper on it, so the room is a law office */
+  const cred = K.make('desk', { wood: 0x3a2516, pedestal: 'both', w: 2.4 }); cred.position.set(0.3, 0, -2.6); TXT.add(R, cred); TXT.contact(R, cred);
+  const ct = (cred.userData.size || [2.4, 0.76, 0.76])[1];
+  [[-0.5, 3, 4], [0.5, 2, 6], [1.2, 4, 8]].forEach(([x, c, sd]) => { const d = K.make('document_stack', { count: c, seed: sd }); d.position.set(0.3 + x, ct, -2.6); TXT.add(R, d); });
+  const fc = K.make('filing_cabinet', { drawers: 4, color: 0x3b3e42 }); fc.position.set(-2.2, 0, -2.6); TXT.add(R, fc); TXT.contact(R, fc);
+  { const w = new THREE.SpotLight(0xffd6a6, 14, 8, 0.5, 0.8, 1.6); w.position.set(-1.5, 2.2, 0.5); w.target.position.set(0.9, 0.9, -2.95); R.scene.add(w); R.scene.add(w.target); }   /* the window's last light across the paneling */
+  { const k = new THREE.SpotLight(0xffd9ad, 40, 6, 0.55, 0.6, 1.4); k.position.set(-2.4, 2.4, 0.2); k.target.position.set(0.3, 0.75, 0.2); k.castShadow = true; k.shadow.mapSize.set(1024, 1024); R.scene.add(k); R.scene.add(k.target); }   /* the window's last light raking the walnut */
+  /* a warm key on the camera from the reader's right, so its body and hood take an edge rather than sitting as a silhouette */
+  { const kc = new THREE.SpotLight(0xffd8b0, 55, 5, 0.45, 0.6, 1.5); kc.position.set(1.4, 2.1, 2.7); kc.target.position.set(0.44, 1.2, 1.62); R.scene.add(kc); R.scene.add(kc.target); }
+  /* a cool rim from behind the tripod, the window side */
+  { const rc = new THREE.SpotLight(0xa8b8d0, 30, 5, 0.5, 0.7, 1.5); rc.position.set(-1.6, 1.9, -0.2); rc.target.position.set(0.44, 1.2, 1.62); R.scene.add(rc); R.scene.add(rc.target); }
+  const records = [cam, tr].slice(0, RECORDS);
+  const from = [0.35, 1.15, 2.9];
+  const look = CH.aim(THREE, R, TXT, from, [0.1, 1.0, 0.9], 560, 940, 46);
+  TXT.frame(R, { fov: 46, from, look });
+  TXT.deckRig(R, CH.rigSpec(W, 10, 2048), CH.rigOpts([0, 0.8, 0], { distance: 20, shadowFar: 60 }));
+  /* no stage fog here: a room is dark around its sources, and the fog turned the walnut wall navy */
+  TXT.weather(R, { grime: 0.12, height: 0.4 });
+  const cx = CH.develop(await TXT.snapshot(R, { stage: false }), gl);
+  /* the two leaders land on the camera's lens and the transcript's cover */
+  const svg = document.getElementById('leaders');
+  const lens = CH.world(THREE, cam, [-0.085, 1.24, 0.1]), cover = [tr.position.x, top + 0.03, tr.position.z];
+  const a = CH.project(THREE, R, lens), b = CH.project(THREE, R, cover);
+  const la = document.getElementById('lab-a'), lb = document.getElementById('lab-b');
+  la.style.left = '360px'; la.style.top = '600px';   /* on the dark wall left of the camera, the band qa's edge scan found clean */
+  lb.style.left = Math.round(Math.min(1000 - lb.getBoundingClientRect().width, b[0] + 20)) + 'px'; lb.style.top = Math.round(b[1] + 40) + 'px';   /* below the transcript on the table's front, clear of the tripod and the credenza */
+  const ra = la.getBoundingClientRect(), rb = lb.getBoundingClientRect();
+  CH.leader(svg, [ra.right + 10, ra.top + ra.height / 2], a); CH.leader(svg, [rb.left + 30, rb.top - 8], b);
+  window.__txLeaders = [{ target: "the camera's lit flip screen", at: a, to: a }, { target: "the transcript's cover", at: b, to: b }];
+  CH.post(cx, { a: 0.3, veil: 0.5, veilH: 420 });   /* a taller floor veil: the site line needs the floor under it nearer black */
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

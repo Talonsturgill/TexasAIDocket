@@ -1,0 +1,72 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.8,
+   "why": "Slide 6 is the best frame and 1 and 5 pass the showstopper test. Slide 3's camera is a primitive box with a pan rod and a mid-brown wall behind the dek; slide 7's bench is a thin strip with a dead lower floor; slide 4's counter sits on a plate over the evenly lit courthouse; slide 2's pines are bare poles and its left wall a flat plane; slide 9's open transcript lies across a nosing under a large black void."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 8.0,
+   "why": "One lastLight world, one warm palette, one type colour; the transcript changes state on every frame; the stair bookends the deck at 1, 5 and 9. Slide 2 and slide 6 sit slightly outside without breaking the strip."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.5,
+   "why": "Every numeral traces and the absences are scoped to c30 and c31. The strike and the Ninth District denial rest on journalism; c1 to c4 are carried from September 7th and disclosed; slide 1's 'turned on' is looser than its source; slide 7's count is unattributed on its own sentence."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.5,
+   "why": "What, where, who and status are clear and slide 6 teaches the most. The case is never named on a slide and nothing says what changes for a Texan or where the ruling will post."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "The hook earns the swipe, 6 turns, 7 and 8 carry both sides. Frame 5 restates frame 4's date and 2 and 3 overlap; the close lands quietly."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Clean, restrained and Texas-specific, but wire-service: 'Courthouse News reports' in five deks and 'Drawn to illustrate.' bolted onto seven."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "A new topic and instrument on the house formula of the last four decks, with a palette close to no. 49."
+  }
+ ],
+ "weighted_score": 7.256,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Make frame 9 a next step: name the case on the slide, say the ruling will post on the court's orders and opinions page, and state what either ruling changes for a Texas litigant.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 3,
+   "problem": "Primitive camcorder with a rod that reads as a barrel, mid-brown wall in the grey middle, transcript small at the bottom left.",
+   "fix": "Model a camcorder turned three-quarter, drop the pan rod, let the room fall to black beyond the table's pool, and pull the transcript into the pool at one scale."
+  },
+  {
+   "slide": 7,
+   "problem": "Bench a thin strip with 50 px justices and a dead lower floor; the empty chair barely legible.",
+   "fix": "Move the camera to about 4 m with a longer lens at lectern height so the bench fills the middle third, and crop the floor to the lectern edge."
+  },
+  {
+   "slide": 4,
+   "problem": "Evenly lit facade forces the counter onto a plate.",
+   "fix": "Light the facade only from the base so its upper storeys fall to black, or pan so the tower clears the counter."
+  },
+  {
+   "slide": 2,
+   "problem": "Pines are bare poles and the room's left wall a flat white plane.",
+   "fix": "Model needle crowns against the seam or crop them out, and give the wall a falloff away from the pendant."
+  }
+ ]
+}

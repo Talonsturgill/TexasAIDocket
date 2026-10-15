@@ -251,7 +251,7 @@
   {
    "id": "c21",
    "item": "tx-2026-0127",
-   "text": "Courthouse News read the argument as showing the justices seemed inclined to allow AI transcripts where verified video recordings act as escape hatches. That is the outlet's reading. The court has not ruled.",
+   "text": "Courthouse News read the argument as showing the justices seemed inclined to allow AI transcripts where verified video recordings act as escape hatches. That is the outlet's reading, not a ruling.",
    "quote": "Texas Supreme Court justices seemed inclined to allow AI-generated transcripts for witness depositions where verified video recordings can act as \"escape hatches\" to ensure accuracy.",
    "url": "https://www.courthousenews.com/texas-high-court-toys-with-ai-transcripts-for-witness-depositions/",
    "source_type": "secondary_reported",
@@ -357,7 +357,7 @@
    "id": "c28",
    "item": "tx-2026-0127",
    "text": "Rule 203.6(a) lets a non-stenographic recording of an oral deposition, or a written transcription of it, be used to the same extent as a deposition taken by stenographic means.",
-   "quote": "deposition, or a written transcription of all or part of such a recording, may be used to the",
+   "quote": "A non- stenographic recording of an oral deposition, or a written transcription of all or part of such a recording, may be used to the same extent as a deposition taken by stenographic means.",
    "url": "https://www.txcourts.gov/media/1462349/texas-rules-of-civil-procedure.pdf",
    "source_type": "primary_official",
    "retrieved": "2026-10-15",
@@ -372,7 +372,7 @@
    "id": "c29",
    "item": "tx-2026-0127",
    "text": "Rule 203.6(a) also lets a court require a complete transcript from a certified court reporter before a non-stenographic recording or written transcription is used, on good cause shown.",
-   "quote": "may require that the party seeking to use a non- stenographic recording or",
+   "quote": "However, the court, for good cause shown, may require that the party seeking to use a non- stenographic recording or written transcription first obtain a complete transcript of the deposition recording from a certified court reporter.",
    "url": "https://www.txcourts.gov/media/1462349/texas-rules-of-civil-procedure.pdf",
    "source_type": "primary_official",
    "retrieved": "2026-10-15",
@@ -384,6 +384,30 @@
     "written transcription first obtain a complete transcript of the deposition recording from a",
     "certified court reporter."
    ]
+  },
+  {
+   "id": "c30",
+   "item": "tx-2026-0127",
+   "text": "The orders the Supreme Court of Texas pronounced on October 9th, 2026 list no order in case 25-0463, In re Patrick Hughey.",
+   "quote": "Orders Pronounced October 9, 2026",
+   "url": "https://www.txcourts.gov/media/1463460/supreme-court-of-texas-orders-10-09-2026.pdf",
+   "source_type": "primary_official",
+   "retrieved": "2026-10-15",
+   "confidence": "high",
+   "document": "The Supreme Court of Texas, Orders Pronounced October 9, 2026",
+   "note": "An absence scoped to one named document. The four page orders list was read in full on October 15th and 25-0463 does not appear in it."
+  },
+  {
+   "id": "c31",
+   "item": "tx-2026-0127",
+   "text": "The Supreme Court of Texas's orders and opinions page for 2026 lists October 9th as its latest orders date when read on October 15th, 2026.",
+   "quote": "September 28, 2026 October October 2, 2026 October 9, 2026",
+   "url": "https://www.txcourts.gov/supreme/orders-opinions/2026/",
+   "source_type": "primary_official",
+   "retrieved": "2026-10-15",
+   "confidence": "high",
+   "document": "Supreme Court of Texas, Orders and Opinions, 2026",
+   "note": "The newest of the dated order lists the page links, as of the fetch. The quote is the page's own last run of links as its text reads with markup removed."
   }
  ],
  "rejected": [

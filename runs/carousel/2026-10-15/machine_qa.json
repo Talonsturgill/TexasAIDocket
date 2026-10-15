@@ -1,0 +1,133 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "bands": [
+        0.3487,
+        0.5798,
+        0.8676
+      ],
+      "band_ratio": 1.4201
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "bands": [
+        0.2899,
+        0.3067,
+        0.2812
+      ],
+      "band_ratio": 0.9628
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot shows its room"
+      ],
+      "bands": [
+        0.355,
+        0.2353,
+        0.625
+      ],
+      "band_ratio": 1.5056
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "bands": [
+        0.3992,
+        0.3382,
+        0.6691
+      ],
+      "band_ratio": 1.4
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "bands": [
+        0.2542,
+        0.2143,
+        0.5974
+      ],
+      "band_ratio": 1.6309
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot stands inside something built",
+        "tiny-text: '203.6 Use. (a) Non-stenographic recording; transcr' (font-size 17px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'A non-stenographic recording of an oral deposition' (font-size 19.5px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'However, the court, for good cause shown, may requ' (font-size 19.5px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'certified court reporter.' (font-size 19.5px < 24px mobile floor (mark data-decorative if intentional))",
+        "text collision (42% overprint): '203.6 Use. (a) Non-stenographic reco' x 'A non-stenographic recording of an o' near 372,813 [marked data-overlap-ok]",
+        "text collision (44% overprint): 'A non-stenographic recording of an o' x 'However, the court, for good cause s' near 341,915 [marked data-overlap-ok]",
+        "art touching glyphs (2% of the ring around 'A non-stenographic recording of an oral ', spanning 76%) -- pixel critic verify the label is not crossed",
+        "busy art under text (bg edge density 0.04) beneath 'However, the court, for good cause shown' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.05) beneath 'certified court reporter.' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
+      ],
+      "bands": [
+        0.3298,
+        0.6155,
+        0.6691
+      ],
+      "band_ratio": 1.2297
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot shows its room"
+      ],
+      "bands": [
+        0.3025,
+        0.458,
+        0.6305
+      ],
+      "band_ratio": 1.3379
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot shows its room"
+      ],
+      "bands": [
+        0.5,
+        0.4706,
+        0.4761
+      ],
+      "band_ratio": 0.9879
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "bands": [
+        0.1282,
+        0.6113,
+        0.8217
+      ],
+      "band_ratio": 1.5385
+    }
+  ],
+  "fails": 0,
+  "warns": 18,
+  "verdict": "WARN"
+}

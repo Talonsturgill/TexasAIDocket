@@ -1,0 +1,75 @@
+<!doctype html>
+<!-- 2026-10-15, frame 7 of 9. Archetype FULL_BLEED. RENDERED through txthree.js in a TXT.interior room, windowless, walnut, drawn to illustrate. From the lectern: a curved bench of nine seats with eight justices seated and the ninth chair empty (figures.json justices_heard of justices_seats), the transcript lying on the lectern's slope in the near corner. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+  .dek { width:820px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">"Why are we here?"</h1>
+<p class="dek" data-follow="26">Eight of the nine justices heard the argument on October 6th, Courthouse News reports. The Chief Justice observed that paying a certified reporter or letting the depositions go ahead this way would have been cheaper. Then he asked it. Drawn to illustrate.</p>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-15-transcript.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "The bench, October 6th", counter: "07 / 09", src: "c22 c11 c23", fit: { min: 84, max: 110, maxLines: 1 } });
+  const R = CH.stage(TXT, gl, W, { fov: 86, far: 400 });
+  const SEATS = 9, HEARD = 8, EMPTY = 5;   /* figures.json justices_seats 9, justices_heard 8: the one empty chair is the fourth from the right */
+  /* THE COURTROOM, windowless, walnut, drawn to illustrate: the argument was at 9:00 a.m. (c1), so no window sets it at evening */
+  const room = TXT.interior(R, { w: 24, d: 24, h: 7, floor: 'concrete', wall: 0x2a1d14, window: null, ceiling: true, light: 0.12 });
+  CH.carpet(THREE, R, 22, 22, 0, 0);
+  CH.paneling(THREE, K, R, 23.5, 6.2, 0, 0, -11.9, 0, { rows: 3, panel: 1.5 });   /* the walnut paneling behind the bench */
+  const dais = K.make('hearing_dais', { seats: SEATS, curve: 11, wood: 0x4a2c18, carpet: 0x2b2a30, mics: true, plates: true, chairs: true });
+  dais.position.set(0, 0, -4.2); TXT.add(R, dais); TXT.contact(R, dais);
+  /* the justices: one seated figure in every chair but one, from figures.json justices_heard 8 of justices_seats 9 */
+  const chairs = (dais.children.length === 1 ? dais.children[0] : dais).children.filter(c => c.isGroup && Math.abs(c.position.y - 0.3) < 0.002);
+  const justices = [];
+  chairs.forEach((c, i) => {
+    if (i === EMPTY) return;
+    const p = K.make('person', { role: 'official', pose: 'sit_read', hat: 'none', shirt: 0x141416, trousers: 0x141416, seed: 40 + i });
+    const w = new THREE.Vector3(); c.getWorldPosition(w); dais.updateMatrixWorld(true); c.getWorldPosition(w);
+    p.position.set(w.x, w.y, w.z + 0.02); p.rotation.y = c.rotation.y; TXT.add(R, p); justices.push(p);
+  });
+  const seal = K.make('seal_plaque', { finish: 'bronze' }); seal.position.set(0, 3.6, -11.9); TXT.add(R, seal);
+  const flags = K.make('flags_pair'); flags.position.set(-7.6, 0, -7.4); TXT.add(R, flags); TXT.contact(R, flags);
+  /* the bench lights: three downlights over the bench, the room dark around them */
+  /* wall washers on the walnut paneling, the room's own light, so the bench stands before carved wood rather than a void */
+  [-8, -3, 3, 8].forEach(x => { const w = new THREE.SpotLight(0xffd2a0, 160, 12, 0.6, 0.7, 1.4); w.position.set(x, 6.6, -9.5); w.target.position.set(x, 2.5, -11.9); R.scene.add(w); R.scene.add(w.target); });
+  [-4.5, 0, 4.5].forEach(x => { const s = new THREE.SpotLight(0xffe0bc, 110, 16, 0.55, 0.7, 1.4); s.position.set(x, 6.6, -1.0); s.target.position.set(x * 0.9, 0.6, -3.8); s.castShadow = true; s.shadow.mapSize.set(1024, 1024); R.scene.add(s); R.scene.add(s.target); });
+  const pod = K.make('podium', { wood: 0x4a2c18, seal: false, mic: true }); pod.position.set(0.05, 0, 5.1); pod.rotation.y = Math.PI; TXT.add(R, pod); TXT.contact(R, pod);
+  const tr = K.make('deposition_transcript', { seed: 3 });
+  pod.add(tr); tr.position.set(0.02, 1.15, -0.03); tr.rotation.x = -Math.atan2(0.12, 0.5); tr.rotation.y = 0.05;
+  /* from just behind the lectern, close enough that nine seats span the frame and each justice stands a hand tall at feed size */
+  const from = [0.3, 2.3, 6.6];   /* at the bench's centre of curvature, so all nine seats stand at one distance */
+  const look = CH.aim(THREE, R, TXT, from, [0, 1.25, -4.2], 540, 810, 86);
+  TXT.frame(R, { fov: 86, from, look });
+  /* THE KEY from the lectern's side, high and warm, so every face and shoulder and nameplate takes an edge */
+  { const k = new THREE.SpotLight(0xffd8b0, 340, 18, 0.42, 0.6, 1.4); k.position.set(2.2, 4.6, 3.2); k.target.position.set(0, 1.3, -4.2); k.castShadow = true; k.shadow.mapSize.set(2048, 2048); k.shadow.bias = -0.0004; R.scene.add(k); R.scene.add(k.target); }
+  /* the lectern's own small lamp on the closed transcript */
+  { const l = new THREE.SpotLight(0xffe4c0, 40, 3, 0.5, 0.7, 1.5); l.position.set(0.5, 2.5, 5.65); l.target.position.set(0.05, 1.15, 5.1); R.scene.add(l); R.scene.add(l.target); }
+  TXT.deckRig(R, CH.rigSpec(W, 16, 2048), CH.rigOpts([0, 1, -4], { distance: 30, shadowFar: 80 }));
+  TXT.stage(R, [dais, pod].concat(justices), { poolInner: 6, poolOuter: 13 });
+  TXT.weather(R, { grime: 0.3, height: 0.5 });
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0.3, veil: 0.3 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

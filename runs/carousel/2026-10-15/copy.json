@@ -1,0 +1,231 @@
+{
+ "date": "2026-10-15",
+ "carousel_no": 51,
+ "document_title": "A trial court struck an AI transcript. Texas's top court weighs it",
+ "_note": "Slide strings read off the render report's text nodes and each frame's own source line by build_copy.py.",
+ "caption": "A Montgomery County court struck a transcript made with AI. 18 months later the Supreme Court of Texas heard argument over it.\n\nThe case began as a wrongful termination suit, Courthouse News reports. The employer did not object to the software at the deposition. Weeks later it moved to strike. In April 2025 the trial court struck it because no certified shorthand reporter prepared it.\n\nJustice Kyle Hawkins asked why the court should set aside \"this efficient, cost-effective tool,\" Courthouse News reports. Justice Jane Bland asked where the court would find the assurance of a human being standing behind the transcribed product.\n\nThe court's orders through October 9th carry no ruling. A judge can already order a certified reporter's transcript for good cause. If the deposition's video is the check, what will count as good cause?\n\n#MontgomeryCounty #TexasSupremeCourt #CourtReporters",
+ "slides": {
+  "S1": {
+   "n": 1,
+   "file": "slide-01.html",
+   "kicker": "Supreme Court of Texas, October 6th",
+   "headline": "An AI made the transcript. Now the Supreme Court of Texas weighs it",
+   "claims": [
+    "c6",
+    "c8",
+    "c23",
+    "c30"
+   ],
+   "cite": "c6 c8 c23 c30",
+   "body": "A Montgomery County trial court struck a deposition transcript no certified reporter prepared. The court heard it on October 6th. Its orders through October 9th carry no ruling. Drawn to illustrate.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "An AI made the transcript. Now the Supreme Court of Texas weighs it",
+    "A Montgomery County trial court struck a deposition transcript no certified reporter prepared. The court heard it on October 6th. Its orders through October 9th carry no ruling. Drawn to illustrate.",
+    "Supreme Court of Texas, October 6th",
+    "01 / 09",
+    "c6 c8 c23 c30"
+   ]
+  },
+  "S2": {
+   "n": 2,
+   "file": "slide-02.html",
+   "kicker": "Montgomery County",
+   "headline": "It began as a suit in Montgomery County",
+   "claims": [
+    "c7",
+    "c10",
+    "c13",
+    "c16"
+   ],
+   "cite": "c7 c10 c13 c16",
+   "body": "A wrongful termination suit. The deposition was recorded on video and its transcript made with an AI platform. Courthouse News reports the company did not object to the software at the deposition. Drawn to illustrate.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "It began as a suit in Montgomery County",
+    "A wrongful termination suit. The deposition was recorded on video and its transcript made with an AI platform. Courthouse News reports the company did not object to the software at the deposition. Drawn to illustrate.",
+    "Montgomery County",
+    "02 / 09",
+    "c7 c10 c13 c16"
+   ]
+  },
+  "S3": {
+   "n": 3,
+   "file": "slide-03.html",
+   "kicker": "The deposition room, drawn to illustrate",
+   "headline": "Two records of one deposition",
+   "claims": [
+    "c13",
+    "c16",
+    "c6"
+   ],
+   "cite": "c13 c16 c6",
+   "body": "Courthouse News reports the employee's lawyer argued the video recording is certified, so the transcript does not have to be. The employer's lawyer said a third party AI platform raises security and confidentiality questions.",
+   "labels": [
+    "video recording",
+    "transcript made with AI"
+   ],
+   "strings": [
+    "texasaidocket.com",
+    "Two records of one deposition",
+    "Courthouse News reports the employee's lawyer argued the video recording is certified, so the transcript does not have to be. The employer's lawyer said a third party AI platform raises security and confidentiality questions.",
+    "video recording",
+    "transcript made with AI",
+    "The deposition room, drawn to illustrate",
+    "03 / 09",
+    "c13 c16 c6"
+   ]
+  },
+  "S4": {
+   "n": 4,
+   "file": "slide-04.html",
+   "kicker": "Montgomery County, April 2025",
+   "headline": "The trial court struck the transcript",
+   "claims": [
+    "c8",
+    "c9",
+    "c10"
+   ],
+   "cite": "c8 c9 c10",
+   "body": "Courthouse News reports the Montgomery County trial court struck it in April 2025 because no certified shorthand reporter prepared it. The company had moved to strike it weeks after the deposition. The Ninth District denied relief. Drawn to illustrate.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "The trial court struck the transcript",
+    "Courthouse News reports the Montgomery County trial court struck it in April 2025 because no certified shorthand reporter prepared it. The company had moved to strike it weeks after the deposition. The Ninth District denied relief. Drawn to illustrate.",
+    "Montgomery County, April 2025",
+    "04 / 09",
+    "c8 c9 c10"
+   ]
+  },
+  "S5": {
+   "n": 5,
+   "file": "slide-05.html",
+   "kicker": "The road up, one riser a month",
+   "headline": "18 months, one step each",
+   "claims": [
+    "c8",
+    "c2",
+    "c23",
+    "c1"
+   ],
+   "cite": "c8 c2 c23 c1",
+   "body": "Courthouse News reports it was struck in April 2025. The petition was filed May 29th, 2025, and the court heard it 495 days later, on October 6th.",
+   "labels": [
+    "April 2025, struck",
+    "May 29th, 2025, filed",
+    "October 6th, argued"
+   ],
+   "strings": [
+    "texasaidocket.com",
+    "18 months, one step each",
+    "Courthouse News reports it was struck in April 2025. The petition was filed May 29th, 2025, and the court heard it 495 days later, on October 6th.",
+    "April 2025, struck",
+    "May 29th, 2025, filed",
+    "October 6th, argued",
+    "The road up, one riser a month",
+    "05 / 09",
+    "c8 c2 c23 c1"
+   ]
+  },
+  "S6": {
+   "n": 6,
+   "file": "slide-06.html",
+   "kicker": "Texas Rules of Civil Procedure",
+   "headline": "The rule already has a check",
+   "claims": [
+    "c28",
+    "c29",
+    "c26",
+    "c27"
+   ],
+   "cite": "c28 c29 c26 c27",
+   "body": "Rule 203.6(a) lets a written transcription of a recording be used like a stenographic deposition. A court may still require a certified reporter's transcript first, for good cause shown.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "The rule already has a check",
+    "Rule 203.6(a) lets a written transcription of a recording be used like a stenographic deposition. A court may still require a certified reporter's transcript first, for good cause shown.",
+    "203.6 Use. (a) Non-stenographic recording; transcription.",
+    "A non-stenographic recording of an oral deposition, or a written transcription of all or part of such a recording, may be used to the same extent as a deposition taken by stenographic means.",
+    "However, the court, for good cause shown, may require that the party seeking to use a non-stenographic recording or written transcription first obtain a complete transcript of the deposition recording from a certified court reporter.",
+    "certified court reporter.",
+    "Texas Rules of Civil Procedure",
+    "06 / 09",
+    "c28 c29 c26 c27"
+   ]
+  },
+  "S7": {
+   "n": 7,
+   "file": "slide-07.html",
+   "kicker": "The bench, October 6th",
+   "headline": "\"Why are we here?\"",
+   "claims": [
+    "c22",
+    "c11",
+    "c23"
+   ],
+   "cite": "c22 c11 c23",
+   "body": "Eight of the nine justices heard the argument on October 6th, Courthouse News reports. The Chief Justice observed that paying a certified reporter or letting the depositions go ahead this way would have been cheaper. Then he asked it. Drawn to illustrate.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "\"Why are we here?\"",
+    "Eight of the nine justices heard the argument on October 6th, Courthouse News reports. The Chief Justice observed that paying a certified reporter or letting the depositions go ahead this way would have been cheaper. Then he asked it. Drawn to illustrate.",
+    "The bench, October 6th",
+    "07 / 09",
+    "c22 c11 c23"
+   ]
+  },
+  "S8": {
+   "n": 8,
+   "file": "slide-08.html",
+   "kicker": "At the lectern",
+   "headline": "Who stands behind the page?",
+   "claims": [
+    "c12",
+    "c25",
+    "c24",
+    "c15"
+   ],
+   "cite": "c12 c25 c24 c15",
+   "body": "Justice Bland asked where the court would find the assurance of a human being standing behind the transcribed product. Five of the employer's twenty minutes went to the Texas Deposition Reporters Association. Drawn to illustrate.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "Who stands behind the page?",
+    "Justice Bland asked where the court would find the assurance of a human being standing behind the transcribed product. Five of the employer's twenty minutes went to the Texas Deposition Reporters Association. Drawn to illustrate.",
+    "At the lectern",
+    "08 / 09",
+    "c12 c25 c24 c15"
+   ]
+  },
+  "S9": {
+   "n": 9,
+   "file": "slide-09.html",
+   "kicker": "In re Patrick Hughey, No. 25-0463",
+   "headline": "Argued. Not decided",
+   "claims": [
+    "c20",
+    "c18",
+    "c21",
+    "c23",
+    "c30",
+    "c31"
+   ],
+   "cite": "c20 c18 c21 c23 c30 c31",
+   "body": "Justice Young named escape hatches, the recording itself and a judge's power to order a certified reporter. Courthouse News read the bench as inclined to allow it. The court's orders through October 9th carry no ruling in the case. Drawn to illustrate.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "Argued. Not decided",
+    "Justice Young named escape hatches, the recording itself and a judge's power to order a certified reporter. Courthouse News read the bench as inclined to allow it. The court's orders through October 9th carry no ruling in the case. Drawn to illustrate.",
+    "In re Patrick Hughey, No. 25-0463",
+    "09 / 09",
+    "c20 c18 c21 c23 c30 c31"
+   ]
+  }
+ }
+}

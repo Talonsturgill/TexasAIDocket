@@ -1,0 +1,77 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 7.0,
+   "why": "All nine frames are rendered and dark staged with zero QA fails; 5 and 6 are the strongest. Frame 3's camcorder is a primitive box larger than the transcript in a muddy mid-tone room, frame 7's bench is a thin band over empty carpet, and frame 4's counter sits on a plate with the transcript a flat slab. The cover transcript is a plain block, frame 2's pines are bare poles, and the open pages on 8 and 9 are placeholder strokes."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 8.0,
+   "why": "One transcript on every frame changing state, one stair bookending the deck, one register, bluebonnet meaning only certification. Frame 3's interior sits outside, and 9 and 1 read alike at thumb size."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.0,
+   "why": "Every numeral traces and 495 was checked by hand; the October 9th orders were read in full and 25-0463 is absent; Rule 203.6(a) is verbatim; 'denied relief' corrects c9's 'appeal'. Looser than its sources: frame 1's 'suit turned on a deposition transcript', frame 7's unattributed count, a case history resting on one news report, c2 carried from September 7th, and c19 absent from the first comment though the caption quotes it."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.0,
+   "why": "What, who and where are clear, but the case name and number are on no slide and frame 9's 'What comes next' says nothing about what comes next. Rule 203.6(a) on frame 6 is the most useful thing in the deck."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "The cover earns the swipe, 5 makes the time countable, 6 turns on the rule, 7 is a strong beat, 9 closes cleanly. Frames 2 and 3 cover the same deposition."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.3,
+   "why": "Clean, honest on both sides' costs and on register. 'Drawn to illustrate.' closes seven deks as a stamp, and Texas specificity stops at Montgomery County."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.8,
+   "why": "The first appellate-court deck in the window with a new stair device and document frame; the dark staged palette is mandated and familiar."
+  }
+ ],
+ "weighted_score": 7.28,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Make frame 9 say what comes next by printing In re Patrick Hughey, No. 25-0463 and where a decision will appear, and replace frame 1's 'suit turned on a deposition transcript' with the sourced 'the trial court struck a deposition transcript no certified reporter prepared'.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 3,
+   "problem": "Primitive camcorder larger than the transcript in a muddy mid-tone room.",
+   "fix": "Scale the camera to true size behind the transcript so the page is the near focal object, and kill the paneling wash."
+  },
+  {
+   "slide": 7,
+   "problem": "Thin bench band with tiny justices over 40 percent empty carpet.",
+   "fix": "Move to about 5 m with a tighter lens so the bench and the empty chair fill the middle third."
+  },
+  {
+   "slide": 4,
+   "problem": "Counter on a plate over the lit tower; transcript a flat slab on an empty ledge.",
+   "fix": "Rotate the facade so the tower clears the counter, and bring the camera low and close so the transcript fills a quarter of the width."
+  },
+  {
+   "slide": 1,
+   "problem": "The hero transcript is a plain white block with two rings.",
+   "fix": "Model the clear cover with a specular edge and leaf thickness and enlarge it to 300 px or more."
+  },
+  {
+   "slide": 2,
+   "problem": "Pines read as utility poles.",
+   "fix": "Use full loblolly crowns silhouetted against the seam."
+  }
+ ]
+}

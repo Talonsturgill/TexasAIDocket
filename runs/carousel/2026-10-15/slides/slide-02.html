@@ -1,0 +1,73 @@
+<!doctype html>
+<!-- 2026-10-15, frame 2 of 9. Archetype SPLIT_HORIZON. RENDERED through txthree.js in the deck's lastLight world. A one storey buff brick office among loblolly pines at last light, its corner room glazed and lit, a deposition inside: the witness, two lawyers and a video camera on its tripod. The type stands on the dark lot below the building. Drawn to illustrate; no real office is claimed. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+  .dek { width:820px; }
+  .hook { top:800px !important; }   /* SPLIT_HORIZON: the type stands on the dark lot below the building */
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">It began as a suit in Montgomery County</h1>
+<p class="dek" data-follow="26">A wrongful termination suit. The deposition was recorded on video and its transcript made with an AI platform. Courthouse News reports the company did not object to the software at the deposition. Drawn to illustrate.</p>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-15-transcript.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Montgomery County", counter: "02 / 09", src: "c7 c10 c13 c16", fit: { min: 66, max: 84, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 40, far: 3000 });
+  const G = new THREE.Group(); G.rotation.y = 2.129 - 0.35;   /* the camera looks toward the seam, so the pines stand black against it */
+  const office = K.make('brick_office', { w: 18, d: 10, room: 6.5 }); G.add(office);
+  const P = new THREE.Group(); const rc = office.userData.room; P.position.set(rc[0], 0.04, rc[2]); G.add(P);
+  /* the deposition, drawn to illustrate: the witness across the table facing the glass, two lawyers, the camera on its tripod on the witness */
+  const sit = (x, z, ry, seed, role) => {
+    const ch = K.make('office_chair', { style: 'task', color: 0x262b33, seed }); ch.position.set(x, 0, z); ch.rotation.y = ry; P.add(ch);
+    const p = K.make('person', { role: role || 'resident', pose: 'sit_read', hat: 'none', seed }); p.position.set(x + Math.sin(ry) * 0.12, 0, z + Math.cos(ry) * 0.12); p.rotation.y = ry; P.add(p); return p;
+  };
+  const table = K.make('conference_table', { seats: 6, shape: 'rect', wood: 0x4a2f1c, chairs: false }); P.add(table);
+  const ts = table.userData.size || [3.6, 0.75, 1.2];
+  const witness = sit(0.2, -ts[2] / 2 - 0.45, 0, 11, 'resident');
+  sit(-0.9, ts[2] / 2 + 0.45, Math.PI, 12, 'official');
+  sit(0.75, ts[2] / 2 + 0.45, Math.PI, 13, 'official');
+  /* the transcript the deck follows, on the table in front of the witness, its cover to the pendant */
+  { const tr = K.make('deposition_transcript', { open: 1, seed: 3 }); tr.position.set(0.15, ts[1] + 0.002, 0.05); tr.rotation.y = 0.2; tr.scale.setScalar(1.6); P.add(tr); }
+  const cam = K.make('video_camera_tripod', { height: 1.25 }); cam.position.set(1.6, 0, 1.6); cam.rotation.y = Math.PI + 0.75; P.add(cam);
+  [[-6, -9, 22, 1], [-1, -13, 25, 2], [4.5, -10, 21, 3], [9, -14, 24, 4], [13, -7, 23, 5], [-10, -4, 20, 6], [16, 2, 22, 7], [-14, 4, 24, 8], [1.5, -22, 26, 9]].forEach(([x, z, h, sd]) => { const t = K.make('loblolly_pine', { height: h, seed: sd }); t.position.set(x, 0, z); G.add(t); });
+  const car = K.make('sedan', { color: 0x1d2024, seed: 3 }); car.position.set(13.2, 0, 9.5); car.rotation.y = 0.2; G.add(car);
+  G.updateMatrixWorld(true); TXT.add(R, G);
+  CH.matte(TXT.ground(R, { surface: 'dirt', size: 900, seed: 41 }));
+  { const c = CH.world(THREE, G, [6, 0, 8]); CH.pad(THREE, R, 26, 14, c[0], c[2]); }
+  [office, table, cam, car].forEach(o => TXT.contact(R, o));
+  const from = CH.world(THREE, G, [11.5, 1.5, 20.5]);
+  const look = CH.aim(THREE, R, TXT, from, CH.world(THREE, G, [rc[0] - 1.5, 2.6, rc[2]]), 560, 500, 40);
+  TXT.frame(R, { fov: 40, from, look });
+  /* the room's light spilling out through the glass onto the lot, so the building stands on ground */
+  { const sp = new THREE.SpotLight(0xffd6a6, 260, 16, 0.75, 0.8, 1.4); sp.position.copy(new THREE.Vector3(...CH.world(THREE, G, [rc[0], 2.6, rc[2]]))); sp.target.position.copy(new THREE.Vector3(...CH.world(THREE, G, [rc[0] + 1.5, 0, rc[2] + 7]))); R.scene.add(sp); R.scene.add(sp.target); }
+  /* a lamp on the lot grazing the dark brick wall, so it reads as wall and not as a slab */
+  { const wl = new THREE.SpotLight(0xffc896, 220, 22, 0.5, 0.8, 1.4); wl.position.copy(new THREE.Vector3(...CH.world(THREE, G, [-6, 0.6, 9]))); wl.target.position.copy(new THREE.Vector3(...CH.world(THREE, G, [-5, 3, 4.5]))); R.scene.add(wl); R.scene.add(wl.target); }
+  TXT.sky(R);
+  TXT.deckRig(R, CH.rigSpec(W, 30, 4096), CH.rigOpts(CH.world(THREE, G, [rc[0], 1, rc[2]]), { distance: 60, shadowFar: 160 }));
+  TXT.stage(R, [office], { poolInner: 8, poolOuter: 22 });
+  TXT.weather(R, { grime: 0.2, height: 0.5 });
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0.2, veil: 0.25 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,227 @@
+{
+ "weighted_score": 7.176,
+ "judges": [
+  7.28,
+  6.94,
+  7.256
+ ],
+ "spread": 0.34,
+ "criteria": {
+  "artwork_craft": {
+   "score": 6.8,
+   "weight": 0.22,
+   "judges": [
+    7.0,
+    6.0,
+    6.8
+   ]
+  },
+  "deck_coherence": {
+   "score": 8.0,
+   "weight": 0.12,
+   "judges": [
+    8.0,
+    7.5,
+    8.0
+   ]
+  },
+  "claim_integrity": {
+   "score": 7.5,
+   "weight": 0.2,
+   "judges": [
+    7.0,
+    7.5,
+    7.5
+   ]
+  },
+  "story_and_stakes": {
+   "score": 7.0,
+   "weight": 0.16,
+   "judges": [
+    7.0,
+    7.0,
+    7.5
+   ]
+  },
+  "sequence_and_momentum": {
+   "score": 7.5,
+   "weight": 0.1,
+   "judges": [
+    7.5,
+    7.5,
+    7.5
+   ]
+  },
+  "voice": {
+   "score": 7.0,
+   "weight": 0.1,
+   "judges": [
+    7.3,
+    7.0,
+    7.0
+   ]
+  },
+  "variety": {
+   "score": 6.5,
+   "weight": 0.1,
+   "judges": [
+    7.8,
+    6.5,
+    6.5
+   ]
+  }
+ },
+ "hard_fails": [],
+ "hard_fails_by_judge": [],
+ "ship": false,
+ "threshold": 8.0,
+ "over_threshold": false,
+ "method": "per-criterion median across three judges, then weighted by the rubric",
+ "threshold_dissents": [
+  "judge 1 refused on the threshold, not on a fault, and scored 7.28 against a 8.0 bar. That dissent is carried in the median",
+  "judge 2 refused on the threshold, not on a fault, and scored 6.94 against a 8.0 bar. That dissent is carried in the median",
+  "judge 3 refused on the threshold, not on a fault, and scored 7.256 against a 8.0 bar. That dissent is carried in the median"
+ ],
+ "threshold_dissents_by_judge": [
+  {
+   "judge": 1,
+   "score": 7.28,
+   "reason": "judge 1 refused on the threshold, not on a fault, and scored 7.28 against a 8.0 bar. That dissent is carried in the median"
+  },
+  {
+   "judge": 2,
+   "score": 6.94,
+   "reason": "judge 2 refused on the threshold, not on a fault, and scored 6.94 against a 8.0 bar. That dissent is carried in the median"
+  },
+  {
+   "judge": 3,
+   "score": 7.256,
+   "reason": "judge 3 refused on the threshold, not on a fault, and scored 7.256 against a 8.0 bar. That dissent is carried in the median"
+  }
+ ],
+ "artwork_weakest_frames": [
+  {
+   "slide": 3,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Primitive camcorder larger than the transcript in a muddy mid-tone room.",
+     "fix": "Scale the camera to true size behind the transcript so the page is the near focal object, and kill the paneling wash."
+    },
+    {
+     "judge": 2,
+     "problem": "Camcorder with no lens and a stray bar; small transcript with its leader across it; mid-brown wall.",
+     "fix": "Model a lens barrel with glass, move the screen to the side, dolly closer so the transcript is 400 px or more, and end its leader at the cover's edge."
+    },
+    {
+     "judge": 3,
+     "problem": "Primitive camcorder with a rod that reads as a barrel, mid-brown wall in the grey middle, transcript small at the bottom left.",
+     "fix": "Model a camcorder turned three-quarter, drop the pan rod, let the room fall to black beyond the table's pool, and pull the transcript into the pool at one scale."
+    }
+   ]
+  },
+  {
+   "slide": 4,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Counter on a plate over the lit tower; transcript a flat slab on an empty ledge.",
+     "fix": "Rotate the facade so the tower clears the counter, and bring the camera low and close so the transcript fills a quarter of the width."
+    },
+    {
+     "judge": 2,
+     "problem": "Counter on a plate; courthouse a sliver lit at the cornice; flat window; sea-like horizon; primitive slab transcript.",
+     "fix": "Rotate the camera so the facade fills the right 40 percent with the tower under the counter, key from the base, and replace the plane with a dark lot and pines."
+    },
+    {
+     "judge": 3,
+     "problem": "Evenly lit facade forces the counter onto a plate.",
+     "fix": "Light the facade only from the base so its upper storeys fall to black, or pan so the tower clears the counter."
+    }
+   ]
+  },
+  {
+   "slide": 7,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Thin bench band with tiny justices over 40 percent empty carpet.",
+     "fix": "Move to about 5 m with a tighter lens so the bench and the empty chair fill the middle third."
+    },
+    {
+     "judge": 2,
+     "problem": "Mannequin justices in a thin band over an empty floor; the transcript centre-bottom.",
+     "fix": "Move the camera forward and lower so the bench fills the middle third and cut the lectern into the lower-left corner."
+    },
+    {
+     "judge": 3,
+     "problem": "Bench a thin strip with 50 px justices and a dead lower floor; the empty chair barely legible.",
+     "fix": "Move the camera to about 4 m with a longer lens at lectern height so the bench fills the middle third, and crop the floor to the lectern edge."
+    }
+   ]
+  },
+  {
+   "slide": 1,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The hero transcript is a plain white block with two rings.",
+     "fix": "Model the clear cover with a specular edge and leaf thickness and enlarge it to 300 px or more."
+    },
+    {
+     "judge": 2,
+     "problem": "Flat mid-brown treads with no grime; doors read as window bays; plain transcript.",
+     "fix": "Lower and close the eye so the treads compress into bright nosing bands over black risers, model the doors as two bronze leaves, add grime and a contact shadow."
+    }
+   ]
+  },
+  {
+   "slide": 2,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Pines read as utility poles.",
+     "fix": "Use full loblolly crowns silhouetted against the seam."
+    },
+    {
+     "judge": 3,
+     "problem": "Pines are bare poles and the room's left wall a flat white plane.",
+     "fix": "Model needle crowns against the seam or crop them out, and give the wall a falloff away from the pendant."
+    }
+   ]
+  },
+  {
+   "slide": 9,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "Dead black top 40 percent, the cover's camera again, the book bridging a nosing.",
+     "fix": "Pitch up so the seam and far lights sit in the upper third and seat the book on one tread."
+    }
+   ]
+  },
+  {
+   "slide": 8,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "Flat leaves with placeholder bars on a box lectern with wavy grain.",
+     "fix": "Curl and fan the leaves, set typed numbered lines on the left leaf, and run the grain straight along the slope."
+    }
+   ]
+  }
+ ],
+ "rounds_derived": 2,
+ "rounds": 2,
+ "rounds_source": "this module's own log of cards it has scored",
+ "rung": 7.7,
+ "work_order": "no judge found a hard fail, and the median 7.176 is under this round's rung of 7.7. KEEP EDITING: fix the judges' named defects, re-render and re-score. At the round cap the finished deck ships whatever it scored. Start with the frames the judges charge the art for, in this order, slides 3, 4, 7, 1, 2, 9, 8 (`artwork_weakest_frames`), one concrete change each",
+ "craft_floor": "pending, because a deck under its rung is sent back by the work order first"
+}
