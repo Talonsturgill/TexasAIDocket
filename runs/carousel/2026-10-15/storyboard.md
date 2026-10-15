@@ -168,7 +168,7 @@ art:
 
 type:
   hook: "An AI made the transcript. Now the Supreme Court of Texas weighs it"
-  dek: "A Montgomery County suit turned on a deposition transcript no certified reporter prepared. The court heard it on October 6th. Its orders through October 9th carry no ruling. Drawn to illustrate."
+  dek: "A Montgomery County trial court struck a deposition transcript no certified reporter prepared. The court heard it on October 6th. Its orders through October 9th carry no ruling. Drawn to illustrate."
   labels: []
 
 verbatim: []
@@ -522,7 +522,7 @@ art:
 
 type:
   hook: "\"Why are we here?\""
-  dek: "Eight of the nine justices heard the argument on October 6th. Courthouse News reports the Chief Justice observed that paying a certified reporter or letting the depositions go ahead this way would have been cheaper. Then he asked it. Drawn to illustrate."
+  dek: "Eight of the nine justices heard the argument on October 6th, Courthouse News reports. The Chief Justice observed that paying a certified reporter or letting the depositions go ahead this way would have been cheaper. Then he asked it. Drawn to illustrate."
   labels: []
 
 verbatim:
@@ -612,7 +612,7 @@ accent: none
 job: >
   Close on what the court heard and has not decided, the escape hatches a justice named and the outlet's reading, with the transcript at the top of the road.
 
-claims: [c20, c18, c21, c30, c31]
+claims: [c20, c18, c21, c23, c30, c31]
 numerals: []
 
 data_in_art:
