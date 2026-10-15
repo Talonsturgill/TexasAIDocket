@@ -483,8 +483,8 @@ slide: 7
 layout: FULL_BLEED
 primary_image:
   subject: "a curved walnut bench of nine seats with eight justices seated and the ninth chair empty, seen from the lectern, the transcript on the lectern's slope in the near corner"
-  rect: [60, 420, 960, 540]
-  bleeds: []
+  rect: [0, 660, 1080, 420]
+  bleeds: [left, right]
 accent: none
 job: >
   Put the reader at the lectern before the bench that heard it, eight of nine sitting, and give the Chief Justice's question.
@@ -645,7 +645,7 @@ art:
 
 type:
   hook: "Argued. Not decided"
-  dek: "Justice Young named escape hatches, the recording itself and a judge's power to order a certified reporter. Courthouse News read the bench as inclined to allow it. The court has not ruled. Drawn to illustrate."
+  dek: "Justice Young named escape hatches, the recording itself and a judge's power to order a certified reporter. Courthouse News read the bench as inclined to allow it. The court has not ruled on whether a party may submit a transcript made with AI as evidence. Drawn to illustrate."
   labels: []
 
 verbatim:

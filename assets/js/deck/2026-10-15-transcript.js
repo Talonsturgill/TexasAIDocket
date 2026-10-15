@@ -213,14 +213,15 @@
       options: { height: 1.2, spread: 0.45, screen: true, seed: 2 },
       note: "A camcorder on a fluid head tripod, drawn to illustrate: body 0.32 x 0.14 x 0.15 m with lens hood, flip screen and top handle, lens height `height` m facing +z, three aluminium legs spread `spread` m.",
       make: function (o, r) {
+        var legs = K.mat("cam-legs", { color: 0x232427, metalness: 0.55, roughness: 0.42 });   /* black anodised legs, as a field tripod has, so they never strike type in cream */
         var g = new THREE.Group(), H = o.height || 1.2, S = o.spread || 0.45;
         var head = [0, H - 0.12, 0];
         for (var k = 0; k < 3; k++) {
           var a = k * 2.094 + 0.5, foot = [Math.sin(a) * S, 0.02, Math.cos(a) * S];
-          K.bar(head, [foot[0] * 0.5, H * 0.5, foot[2] * 0.5], 0.012, alu, 8, g);
-          K.bar([foot[0] * 0.5, H * 0.5, foot[2] * 0.5], foot, 0.009, alu, 8, g);
+          K.bar(head, [foot[0] * 0.5, H * 0.5, foot[2] * 0.5], 0.012, legs, 8, g);
+          K.bar([foot[0] * 0.5, H * 0.5, foot[2] * 0.5], foot, 0.009, legs, 8, g);
           K.cyl(0.016, 0.016, 0.03, rubber, foot[0], 0, foot[2], 10, g);
-          K.bar([foot[0] * 0.25, H * 0.42, foot[2] * 0.25], [0, H * 0.4, 0], 0.005, alu, 6, g);
+          K.bar([foot[0] * 0.25, H * 0.42, foot[2] * 0.25], [0, H * 0.4, 0], 0.005, legs, 6, g);
         }
         K.cyl(0.04, 0.045, 0.08, black, 0, H - 0.16, 0, 20, g);
         K.box(0.09, 0.03, 0.12, black, 0, H - 0.085, 0, 0.006, g);
