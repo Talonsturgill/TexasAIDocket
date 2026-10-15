@@ -16,7 +16,7 @@
 |---|---|
 | engine calls (`TXT.*`) | 30 |
 | world presets | 8 |
-| kit models | 117 in 10 families |
+| kit models | 119 in 10 families |
 | asset libraries | 21 |
 | carousel and shared tools | 72 |
 | record and site tools the routine names | 20 |
@@ -294,12 +294,13 @@ THE KIT: the things Texas is made of, modelled once in 3D at TRUE SCALE.
 | `strip_mall` | 66 x 10.9 x 34.4 | units, parking | A Texas strip centre: stucco and stone, a stepped parapet with hipped tower ends, an arcade canopy, aluminium storefronts, blank sign panels, a striped parking row |
 | `traffic_signal` | 12.7 x 10.4 x 1.2 | arm, heads, finish, luminaire, lit | Mast arm signal: the pole stands at the origin (its footprint), arm over +x, heads facing +z; street blade and a ped head on the pole |
 
-### interior (19)
+### interior (21)
 
 `assets/js/kit/interior.js`, The rooms decisions are made in: a commissioners court dais, the lectern the public speaks from, the rows it sits in, the office the paperwork lives in, and the server row the paperwork is about, the ...
 
 | model | size w x h x d (m) | options | note |
 |---|---|---|---|
+| `bound_transcript` | 0.24 x 0.035 x 0.29 | leaves, open, face, curl, tabs, tabColor, back | A bound deposition transcript, drawn to illustrate: letter leaves 0.216 x 0.279 m in a `leaves` m block with ruled leaf edges, a dark back cover (`back` hex), a clear front cover proud of the leaves, a black binding strip and two chrome screw posts on the ... |
 | `classroom_window` | 6.72 x 2.65 x 0.43 | w, h, sill, blinds, outside, sky, unitVent | A classroom ribbon window for a solid wall, with an exterior behind the glass (an overcast campus, sky: clear for a blue day, outside the brightness under white): aluminium frame, mullions about every 1.6 m, an awning row, glass that reflects the room, mini ... |
 | `conference_table` | 4.8 x 1.0 x 2.8 | seats, shape, wood, chairs, chairStyle, chairColor | Boardroom table (shape boat \| rect) with a bevelled veneer top, two panel bases on plinths, a flush power and data box, and office chairs pulled up around it (seats 4 to 14, ends seated at 8 and up), each a little askew. |
 | `desk` | 1.52 x 0.76 x 0.76 | w, d, h, pedestal, wood, pulls | Office desk (60 x 30 in): bevelled veneer top, drawer pedestal (left \| right \| both \| none) with a pencil drawer and a file drawer, bar pulls, recessed toe kick, a panel leg and a modesty panel, and a cable grommet. |
@@ -312,6 +313,7 @@ THE KIT: the things Texas is made of, modelled once in 3D at TRUE SCALE.
 | `monitor` | 0.62 x 0.52 x 0.2 | inches, screen, dark, finish | Desktop monitor (27 in default) on a stand: thin bezel front with a lit display (screen chart \| dash \| doc \| sheet \| off; no legible text), a bulged rear housing with vents, a slim neck and a flat base. |
 | `office_chair` | 0.66 x 1.0 x 0.66 | style, color, arms | Swivel office chair facing +z: five star base on twin wheel casters, telescoping gas lift, tilt mechanism with knob and lever, waterfall seat, curved backrest with lumbar, T arms. style task (fabric) \| mesh \| exec (high back leather on polished aluminium). |
 | `podium` | 0.66 x 1.52 x 0.56 | wood, seal, mic | Speaker lectern: a raked veneer body wider at the top, sloped reading desk with a book stop, raised front panel with an optional blank round seal, plinth, and a gooseneck microphone. |
+| `pro_camcorder` | 0.95 x 1.38 x 1.06 | tripod, height, spread, screenAngle, screenGlow, tally, mic | A professional camcorder, drawn to illustrate: a bevelled body 0.13 m wide and 0.36 m long, a barrel with knurled focus and zoom rings, a square petal hood and coated front glass facing +z, a top handle with XLR block and shotgun mic (mic), a viewfinder, a ... |
 | `public_seating` | 5.6 x 0.95 x 2.9 | rows, perRow, aisle, type, color, frame, wood | Rows of public seating facing +z (toward the dais): padded stacking chairs on chrome or black tube frames, or wooden pews (type: pews). |
 | `seal_plaque` | 0.9 x 0.9 x 0.04 | d, finish, stars, backer | A round seal plaque for a wall: rope moulded rim, raised rings, a ring of small stars in the legend band and a BLANK centre field. finish bronze \| gold \| wood. |
 | `server_row` | 4.2 x 2.5 x 2.4 | racks, doors, containment, tray, floor | A data hall row: 42U racks (0.6 x 2.0 x 1.2 m) with servers, storage shelves, GPU nodes and top of rack switches painted per rack (status LEDs glow), mounting rails, blanking panels and patch cords; overhead ladder tray with a yellow fibre raceway; hot aisle ... |
@@ -394,7 +396,7 @@ Classic scripts expose a global. The engine and the kit are ES modules and are a
 
 **The 2.5D object catalogue** (`TXOBJ.sprite(name)` on the `TXSCENE` bench, canvas only, for the rare frame that is not rendered; a rendered frame takes the kit): `ambulance` 6.7 x 2.7, `battery_container` 12.2 x 2.9, `billboard` 14.6 x 12.0, `camera_pole` 1.2 x 4.5, `capitol` 100.0 x 95.0, `cattle` 2.5 x 1.5, `civic_facade` 30.0 x 20.0, `cooling_tower` 90.0 x 130.0, `dais` 9.0 x 1.3, `data_center` 130.0 x 16.0, `desk` 1.6 x 1.2, `drone` 1.0 x 0.3, `fence_post` 0.2 x 1.4, `filing_box` 0.4 x 0.28, `helicopter` 13.0 x 3.8, `hospital` 60.0 x 30.0, `hospital_bed` 2.2 x 1.3, `house` 16.0 x 6.0, `live_oak` 16.0 x 11.0, `mesquite` 8.0 x 6.0, `office_chair` 0.7 x 1.2, `pallet_boxes` 1.2 x 1.7, `pickup` 5.9 x 1.95, `pine` 7.0 x 26.0, `podium` 0.7 x 1.25, `power_plant` 70.0 x 62.0, `pump_jack` 7.5 x 5.2, `road_sign` 2.0 x 3.0, `school` 60.0 x 8.0, `school_bus` 12.0 x 3.1, `sedan` 4.7 x 1.45, `server_rack` 0.6 x 2.1, `solar_panel` 4.2 x 2.6, `stock_tank` 8.0 x 1.0, `streetlight` 3.0 x 10.0, `strip_mall` 40.0 x 6.0, `student_desk` 0.9 x 0.85, `substation` 22.0 x 12.0, `traffic_signal` 8.0 x 6.5, `transmission_tower` 12.0 x 42.0, `truck_semi` 17.0 x 4.1, `utility_pole` 2.4 x 12.0, `voting_booth` 0.9 x 1.6, `warehouse` 90.0 x 12.0, `water_tower` 12.0 x 38.0, `wind_turbine` 8.0 x 150.0, `windmill` 3.0 x 11.0.
 
-**Earlier deck chassis** (`assets/js/deck/`, read how a `TXDECK.declare` is written, never copy a world): `2026-09-16-lamp.js`, `2026-09-17-nightdraft.js`, `2026-09-18-minutebook.js`, `2026-09-19-firstlight.js`, `2026-09-20-waterworks.js`, `2026-09-21-oakcliff.js`, `2026-09-23-gensetyard.js`, `2026-09-24-droneline.js`, `2026-09-26-fortyfive.js`, `2026-09-27-nightrent.js`, `2026-09-28-watchtower.js`, `2026-09-29-mccloud.js`, `2026-09-30-firstreader.js`, `2026-10-01-plates.js`, `2026-10-02-vials.js`, `2026-10-03-norther.js`, `2026-10-04-noonbell.js`, `2026-10-05-wards.js`, `2026-10-06-prairie.js`, `2026-10-07-portalpha.js`, `2026-10-08-nexus.js`, `2026-10-09-chart.js`, `2026-10-10-lastlawn.js`, `2026-10-11-feedyard.js`, `2026-10-12-crossing.js`, `proof-port-art-direction.js`.
+**Earlier deck chassis** (`assets/js/deck/`, read how a `TXDECK.declare` is written, never copy a world): `2026-09-16-lamp.js`, `2026-09-17-nightdraft.js`, `2026-09-18-minutebook.js`, `2026-09-19-firstlight.js`, `2026-09-20-waterworks.js`, `2026-09-21-oakcliff.js`, `2026-09-23-gensetyard.js`, `2026-09-24-droneline.js`, `2026-09-26-fortyfive.js`, `2026-09-27-nightrent.js`, `2026-09-28-watchtower.js`, `2026-09-29-mccloud.js`, `2026-09-30-firstreader.js`, `2026-10-01-plates.js`, `2026-10-02-vials.js`, `2026-10-03-norther.js`, `2026-10-04-noonbell.js`, `2026-10-05-wards.js`, `2026-10-06-prairie.js`, `2026-10-07-portalpha.js`, `2026-10-08-nexus.js`, `2026-10-09-chart.js`, `2026-10-10-lastlawn.js`, `2026-10-11-feedyard.js`, `2026-10-12-crossing.js`, `2026-10-15-transcript.js`, `proof-port-art-direction.js`.
 
 **Geodata** (`assets/geo/`):
 

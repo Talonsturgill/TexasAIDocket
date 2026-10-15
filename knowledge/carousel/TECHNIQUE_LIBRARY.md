@@ -287,6 +287,35 @@ the headline runs long.
 *Fails when:* the plate is opaque enough to become a box, which is furniture. Aim for the least
 plate that keeps the type legible.
 
+**The footer row wash** (2026-10-15), the default way to seat the footer row, the source line and
+the site line, over a dark ground that has edges in it. A chassis's `post` step carries it in place
+of the copied bottom veil that peaks in the margin under the type (`ILLUSTRATION_SYSTEM.md`, "What
+still fails", has the computed figures):
+
+```js
+/* the footer row wash: full width, darken only, at full strength from the top of the footer row to
+ * the foot, feathered above it over the same depth as the margin below it. Every length is read off
+ * the laid-out furniture; the frame passes the alpha, and the chassis holds it under the 0.55 line
+ * deck_chassis.py draws between a wash and a plate. */
+var f = document.querySelector(".tx-site");
+if (f && o.footWash) {
+  var r = f.getBoundingClientRect(), feather = N.H - r.bottom, a = Math.min(o.footWash, 0.55 - 0.01);
+  var w = cx.createLinearGradient(0, r.top - feather, 0, N.H);
+  w.addColorStop(0, "rgba(5,6,9,0)");
+  w.addColorStop(feather / (N.H - r.top + feather), "rgba(5,6,9," + a + ")");
+  w.addColorStop(1, "rgba(5,6,9," + a + ")");
+  cx.fillStyle = w; cx.fillRect(0, r.top - feather, N.W, N.H - r.top + feather);
+}
+```
+
+It reads the footer's position off the DOM, so a chassis that moves the furniture moves the wash.
+It holds its strength across the row the type sits in rather than spending it below the type. Use
+the deck's own ground colour for `rgba(5,6,9,...)`, and the alpha the frame's contrast needs, which
+`panel_ready` measures.
+*Fails when:* it is answered with a patch behind one element (`N.knock`, a blurred rect at 0.82),
+which the judges read as a plate on nos. 48, 50 and 51; or when the alpha it needs is at the cap,
+because then the ground under the footer is too bright for any wash and the fix is the art under it.
+
 **Safe margins.** Nothing important inside the outer band. LinkedIn crops, and the crop is not
 announced.
 

@@ -1,41 +1,41 @@
 {
- "last_pass": "2026-10-12",
+ "last_pass": "2026-10-15",
  "themes": [
   {
    "theme": "largest object unmodelled (slab, bare wall, clean clay)",
-   "runs": 6,
-   "rounds": 17,
+   "runs": 5,
+   "rounds": 15,
    "action": "fixed in part",
-   "what": "No. 49's feed bunk, the hero on eight of nine frames and round 1's 'clean pale slab with hairline joints', lifted into assets/js/kit/rural.js as a working bunk weathered per fragment (splash, fouled apron, throat residue, joint stains, drips, worn lip), 073890f4. The kit cattle's doubled topline filleted, d92fd2d8. The objects differ per deck, so the theme stays open."
+   "what": "No. 51's camcorder (ranked first on frame 3 by every judge in every round) and its transcript (a white box on frames 1, 4, 5 and 9) lifted into assets/js/kit/interior.js as pro_camcorder and bound_transcript at the judges' named fixes. The objects differ per deck, so the theme stays open."
   },
   {
    "theme": "primitive or low-poly model where a kit model belongs",
-   "runs": 6,
-   "rounds": 16,
-   "action": "fixed in part",
-   "what": "Kit cattle at no. 49 frame 8's named fix: head up | bunk | graze, detail close at half the mesh cell, named parts poll and muzzle, d92fd2d8. Kit person: a named shirt honoured on every seed (15 of 120 ignored it), 3ac366c2; the mannequin look (hair through the shirt, A-pose, mittens) deferred as its own lift."
-  },
-  {
-   "theme": "GRID piece count and accent presence push the art into charged defects (queue grid-piece-count-reads-lit-ground-as-subject at repeat 3, lit-accent-drifts-in-lab, accent-presence-forces-a-pool)",
-   "runs": 4,
-   "rounds": null,
-   "action": "escalated",
-   "what": "One proposal for both: the scene reports tagged objects' pixels through an id pass, and layout_check measures on them. Engine and render.py are a maintainer's, UPGRADE_BACKLOG 2026-10-12 item 4. The digest's word themes do not count this one, so its rounds are not counted."
-  },
-  {
-   "theme": "type sitting on or fighting the art",
-   "runs": 6,
-   "rounds": 10,
-   "action": "deferred",
-   "what": "Read the evidence: the plates judges named on nos. 44 and 49 are TXDECK.punch and soften patches (assets/js/txdeck.js, human), carried in the backlog; the rest are per frame compositions."
-  },
-  {
-   "theme": "no contact or grime; object in a void; render artifact",
    "runs": 5,
-   "rounds": 12,
+   "rounds": 14,
+   "action": "fixed in part",
+   "what": "The same lift. The kit person's mannequin look (queue repeat 2) deferred with a measured A/B: the hair material is not the cause, the shell geometry and the pose are."
+  },
+  {
+   "theme": "type sitting on or fighting the art (queue footer-veil-peaks-below-the-line at repeat 2)",
+   "runs": 4,
+   "rounds": 4,
+   "action": "fixed in part",
+   "what": "The footer row wash in TECHNIQUE_LIBRARY.md with its code and a dated ILLUSTRATION_SYSTEM.md entry naming the copied veil's computed shortfall across the footer row and N.knock as a plate. Doctrine, because no chassis template exists in the upgrade lane; a deck_chassis measure of a fill over one element's box is the next step if a chassis keeps the knock."
+  },
+  {
+   "theme": "object in a void, no sky, camera at the ground",
+   "runs": 5,
+   "rounds": 10,
    "action": "escalated",
-   "what": "Engine (human), carried with this week's counts (contact 5 runs and 12 rounds, void 5 and 11, render artifact 4 and 11)."
+   "what": "Engine (human): TXT.snapshot fogs a TXT.interior room to the sky hue (queue snapshot-stages-interiors-to-sky-hue), and the lastLight horizon band behind type (repeat 1). UPGRADE_BACKLOG 2026-10-15 item 4."
+  },
+  {
+   "theme": "no contact, dirt or grime where things meet the ground; dead or empty region",
+   "runs": 4,
+   "rounds": 8,
+   "action": "deferred",
+   "what": "Read the evidence: per frame compositions (empty floors, a dead bottom band) the judges fixed with the camera; carried with this week's counts."
   }
  ],
- "note": "Written by the weekly machine pass (prompts/daily_routine.md Phase 17) when it ships. Read by scripts/carousel/machine_due.py. Run and round counts are from scripts/carousel/week_digest.py --date 2026-10-12, except where rounds is null."
+ "note": "Written by the weekly machine pass (prompts/daily_routine.md Phase 17) when it ships. Read by scripts/carousel/machine_due.py. Run and round counts are from scripts/carousel/week_digest.py --date 2026-10-15."
 }

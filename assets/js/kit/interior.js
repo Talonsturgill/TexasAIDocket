@@ -2,7 +2,8 @@
  *
  * The rooms decisions are made in: a commissioners court dais, the lectern the public speaks
  * from, the rows it sits in, the office the paperwork lives in, and the server row the paperwork
- * is about, the laboratory bench (fly_vial, vial_tray) and the clinical cart (workstation_cart).
+ * is about, the laboratory bench (fly_vial, vial_tray), the clinical cart (workstation_cart), and
+ * the deposition room (pro_camcorder, bound_transcript).
  * Interior frames stand in a room built by TXT.interior; these models furnish it.
  * Every model: metres, y up, base on y = 0, FRONT faces +z (a dais faces its audience, a chair
  * faces the way its sitter looks, a rack shows its server fronts).
@@ -2109,6 +2110,290 @@ export function install(K, THREE, TXT) {
         w.position.set(-(c - 1) * p / 2 + i * p, 0.0122, -(r - 1) * p / 2 + j * p); g.add(w);
       }
       g.userData.well = (i, j) => [-(c - 1) * p / 2 + i * p, 0.006, -(r - 1) * p / 2 + j * p];
+      return g;
+    },
+  });
+
+  /* ==== THE DEPOSITION SET, lifted 2026-10-15 from no. 51 at the judges' named fixes ============
+   * No. 51 built a camcorder and a bound transcript in its chassis (assets/js/deck/2026-10-15-
+   * transcript.js) because the kit had neither. Every judge in every panel round ranked the
+   * camcorder first on frame 3, "a rounded box with a flat screen", and asked for "a pro camcorder
+   * turned three-quarters" with "a lens barrel, hood, glass and a hinged screen". The transcript read
+   * as "a plain white block" on frames 1, 4, 5 and 9 in rounds 1 to 3, and the round 3 craft fix was
+   * "model the transcript as a real bound deposition transcript". These are new NAMES on purpose:
+   * no. 51's installKit returns early once the kit defines `deposition_transcript`, so a lift under
+   * that name would take every chassis model out from under the shipped deck. */
+
+  // knurl stripes for a rubber lens ring: dark ribs around U
+  function paintKnurl(x, W, H, r) {
+    x.fillStyle = '#18191b'; x.fillRect(0, 0, W, H);
+    const n = 96, w = W / n;
+    for (let i = 0; i < n; i++) { x.fillStyle = 'rgba(255,255,255,' + (0.05 + r() * 0.03) + ')'; x.fillRect(i * w, 0, w * 0.45, H); }
+  }
+  // the edge of a block of leaves: many fine leaf lines along U, the odd darker one, ragged by a pixel
+  function paintLeafEdge(x, W, H, r, o) {
+    x.fillStyle = o.color || '#ece5d4'; x.fillRect(0, 0, W, H);
+    const n = o.lines || 90, h = H / n;
+    for (let j = 0; j < n; j++) {
+      x.fillStyle = 'rgba(70,60,45,' + (0.10 + r() * 0.16) + ')';
+      x.fillRect(0, j * h + (r() - 0.5), W, Math.max(1, h * (0.18 + r() * 0.22)));
+    }
+    for (let k = 0; k < 6; k++) { x.fillStyle = 'rgba(60,50,40,0.18)'; x.fillRect(0, r() * H, W, 1.5); }
+  }
+  // a transcript's cover page under a clear cover: a ruled border, a case caption block, a centred
+  // title block and a reporter's block, all greeked so nothing is legible or claimed
+  function paintCoverPage(x, W, H, r, o) {
+    x.fillStyle = '#f1ece0'; x.fillRect(0, 0, W, H);
+    const ink = (a) => 'rgba(38,36,34,' + a + ')';
+    x.strokeStyle = ink(0.55); x.lineWidth = 3; x.strokeRect(W * 0.1, H * 0.06, W * 0.82, H * 0.88);
+    x.lineWidth = 1.5; x.beginPath(); x.moveTo(W * 0.13, H * 0.06); x.lineTo(W * 0.13, H * 0.94); x.stroke();
+    const bar = (cx, y, w, a, h) => { x.fillStyle = ink(a); x.fillRect(cx - w / 2, y, w, h || H * 0.007); };
+    for (let k = 0; k < 4; k++) bar(W * 0.32, H * (0.12 + k * 0.02), W * (0.16 + r() * 0.14), 0.45);
+    x.fillStyle = ink(0.5); for (let k = 0; k < 5; k++) x.fillRect(W * 0.5, H * (0.115 + k * 0.02), W * 0.008, H * 0.01);
+    for (let k = 0; k < 4; k++) bar(W * 0.72, H * (0.12 + k * 0.02), W * (0.14 + r() * 0.1), 0.45);
+    bar(W * 0.52, H * 0.27, W * 0.5, 0.7, H * 0.012); bar(W * 0.52, H * 0.3, W * 0.4, 0.7, H * 0.012);
+    bar(W * 0.52, H * 0.36, W * 0.32, 0.6, H * 0.01);
+    for (let k = 0; k < 7; k++) bar(W * 0.52, H * (0.48 + k * 0.022), W * (0.5 + r() * 0.2), 0.32);
+    for (let k = 0; k < 5; k++) bar(W * 0.52, H * (0.72 + k * 0.022), W * (0.36 + r() * 0.2), 0.32);
+    x.strokeStyle = ink(0.4); x.lineWidth = 2; x.beginPath(); x.moveTo(W * 0.3, H * 0.88); x.lineTo(W * 0.74, H * 0.88); x.stroke();
+  }
+  // a page of testimony: line numbers in a ruled margin, Q and A lines of uneven length
+  function paintTestimony(x, W, H, r) {
+    x.fillStyle = '#f1ece0'; x.fillRect(0, 0, W, H);
+    const ink = (a) => 'rgba(38,36,34,' + a + ')';
+    x.strokeStyle = ink(0.45); x.lineWidth = 1.5;
+    x.beginPath(); x.moveTo(W * 0.15, H * 0.05); x.lineTo(W * 0.15, H * 0.95); x.moveTo(W * 0.9, H * 0.05); x.lineTo(W * 0.9, H * 0.95); x.stroke();
+    for (let k = 0; k < 25; k++) {
+      const y = H * (0.08 + k * 0.034);
+      x.fillStyle = ink(0.4); x.fillRect(W * 0.07, y, W * 0.035, H * 0.008);
+      x.fillStyle = ink(0.32); x.fillRect(W * (k % 3 === 0 ? 0.19 : 0.25), y, W * (0.25 + r() * 0.6) * (k % 3 === 0 ? 1 : 0.95), H * 0.008);
+    }
+  }
+
+  /* A BOUND DEPOSITION TRANSCRIPT as a court reporter delivers one, lying flat, its foot toward +z
+   * and its binding on the left (-x). Letter leaves 0.216 x 0.279 m in a block `leaves` m thick whose
+   * edges show the leaf lines; a dark back cover and a CLEAR front cover a few millimetres proud of
+   * the leaves, so the block reads framed rather than as a white slab; a black binding strip across
+   * the head of the left edge with two chrome screw posts through it; a cover page with a caption and
+   * title block greeked under the clear cover; the top few leaves fanned at the fore edge, the cover
+   * corner lifted by `curl`. `open` 1 lays it open at a page of testimony, both halves cupped toward
+   * the posts. `face` 'down' shows the back. `tabs` adds exhibit tabs in `tabColor` out of the fore
+   * edge. userData.page is the top page's centre (the right page when open) in the model frame. */
+  K.define('bound_transcript', {
+    size: [0.24, 0.035, 0.29],
+    options: { leaves: 0.026, open: 0, face: 'up', curl: 0.35, tabs: 0, tabColor: 0xd9c27a, back: 0x1a1f27 },
+    note: 'A bound deposition transcript, drawn to illustrate: letter leaves 0.216 x 0.279 m in a `leaves` m block with ruled leaf edges, a dark back cover (`back` hex), a clear front cover proud of the leaves, a black binding strip and two chrome screw posts on the left, a greeked caption page, fanned top leaves and a lifted corner (`curl` 0 to 1). open 1 lays it open at a page of testimony; face up | down; tabs n exhibit tabs in tabColor. userData.page is the top (right) page centre. Foot toward +z.',
+    make(o, r) {
+      const g = new THREE.Group(), W = 0.216, D = 0.279, T = Math.max(0.004, +o.leaves || 0.026);
+      const edgeTex = ltex('bt-edge', paintLeafEdge, { lines: Math.round(T / 0.00028) }, [256, 256]);
+      const edge = mat('bt-edge', { color: 0xffffff, roughness: 0.93, map: edgeTex });
+      const paperTop = mat('bt-paper', { color: 0xefe8d8, roughness: 0.9 });
+      const coverTex = ltex('bt-cover', paintCoverPage, { seed: o.seed }, [512, 660]);
+      const testTex = ltex('bt-test', paintTestimony, { seed: o.seed }, [512, 660]);
+      const back = mat('bt-back', { color: o.back != null ? o.back : 0x1a1f27, roughness: 0.62, metalness: 0.02 });
+      const clear = mat('bt-clear', { color: 0xf2f6f8, roughness: 0.06, metalness: 0, transparent: true, opacity: 0.22,
+        clearcoat: 1, clearcoatRoughness: 0.03, envMapIntensity: 2.2, depthWrite: false }, true);
+      const clearEdge = mat('bt-clearedge', { color: 0xbcd0d4, roughness: 0.1, transparent: true, opacity: 0.55, envMapIntensity: 1.6 }, true);
+      const strip = mat('bt-strip', { color: 0x121315, roughness: 0.48, metalness: 0.05 });
+      const chrome = K.finish.chrome();
+      const tabM = mat('bt-tab', { color: o.tabColor != null ? o.tabColor : 0xd9c27a, roughness: 0.7 });
+      // a leaf block with the leaf-edge map on its four sides and paper on top and bottom
+      function block(w, h, d) {
+        const m = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), [edge, edge, paperTop, paperTop, edge, edge]);
+        return m;
+      }
+      // a sheet curled up at its fore-edge foot corner (+x, +z) by k, a plane with real bend
+      function sheet(w, d, map, k, cornerX, cornerZ) {
+        const geo = new THREE.PlaneGeometry(w, d, 16, 20); geo.rotateX(-Math.PI / 2);
+        const pos = geo.attributes.position;
+        for (let i = 0; i < pos.count; i++) {
+          const u = (pos.getX(i) / w + 0.5), v = (pos.getZ(i) / d + 0.5);
+          const cu = cornerX > 0 ? u : 1 - u, cv = cornerZ > 0 ? v : 1 - v;
+          const t = Math.max(0, (cu + cv - 1.35) / 0.65);
+          pos.setY(i, k * 0.022 * t * t);
+        }
+        geo.computeVertexNormals();
+        return new THREE.Mesh(geo, mat('bt-sheet', { color: 0xffffff, roughness: 0.88, map, side: THREE.DoubleSide }));
+      }
+      function posts(parent, x0, yTop, h) {
+        [-1, 1].forEach((s) => {
+          K.cyl(0.0042, 0.0042, h, chrome, x0, yTop - h, s * 0.08, 18, parent);
+          const cap = K.cyl(0.0068, 0.0068, 0.0016, chrome, x0, yTop, s * 0.08, 24, parent);
+          const slot = K.box(0.0095, 0.0006, 0.0011, strip, x0, yTop + 0.0013, s * 0.08, 0, parent);
+          slot.rotation.y = r() * Math.PI; cap.rotation.y = slot.rotation.y;
+        });
+      }
+      function tabs(parent, n, x, y0, h) {
+        for (let k = 0; k < n; k++) {
+          const t = K.box(0.016, 0.0005, 0.03, tabM, x + 0.006, y0 + h * (0.25 + 0.5 * (k + 0.5) / n), -D / 2 + 0.05 + k * 0.045, 0.0003, parent);
+          t.rotation.z = (r() - 0.5) * 0.04;
+        }
+      }
+      if (!o.open) {
+        const body = new THREE.Group();
+        K.box(W + 0.008, 0.0016, D + 0.006, back, 0.001, 0, 0, 0.0012, body);
+        // the block in three lifts, each a hair off square, so the fore edge reads as leaves
+        const lifts = 3; let y = 0.0016;
+        for (let k = 0; k < lifts; k++) {
+          const h = T / lifts, b = block(W - 0.002 - k * 0.0006, h, D - 0.002);
+          b.position.set((r() - 0.5) * 0.0016, y + h / 2, (r() - 0.5) * 0.0016); body.add(b); y += h;
+        }
+        if (o.tabs) tabs(body, Math.min(6, o.tabs | 0), W / 2 - 0.002, 0.0016, T);
+        // two fanned top leaves and the cover page, each lifted a little more at the corner
+        const c = Math.max(0, Math.min(1, o.curl != null ? +o.curl : 0.35));
+        for (let k = 0; k < 2; k++) {
+          const s = sheet(W - 0.003, D - 0.003, testTex, c * (0.35 + k * 0.3), 1, 1);
+          s.position.set(0.0008 * (k + 1), y + 0.0003 * (k + 1), 0.0006 * k); body.add(s);
+        }
+        const top = sheet(W - 0.002, D - 0.002, coverTex, c, 1, 1); top.position.set(0.0004, y + 0.0011, 0); body.add(top);
+        // the clear cover, proud of the leaves on three sides, its cut edge a faint green line
+        const cv = sheet(W + 0.006, D + 0.006, null, c * 1.25, 1, 1); cv.material = clear; cv.position.set(0.002, y + 0.0022, 0); body.add(cv);
+        const ce = K.box(W + 0.006, 0.0007, 0.0012, clearEdge, 0.002, y + 0.0018, -(D + 0.006) / 2, 0, body);
+        ce.renderOrder = 2;
+        // the binding strip across the head of the left edge, top and bottom, and the posts
+        const sx = -W / 2 + 0.013;
+        K.box(0.026, 0.0024, D + 0.004, strip, sx, y + 0.0026, 0, 0.001, body);
+        K.box(0.026, 0.0016, D + 0.004, strip, sx, -0.0016, 0, 0.0008, body);
+        posts(body, sx, y + 0.005, T + 0.008);
+        if (o.face === 'down') body.rotation.z = Math.PI;
+        // stand it on its lowest point, whichever face is up: the strip under the back cover is the foot
+        body.updateMatrixWorld(true); const lift = -new THREE.Box3().setFromObject(body).min.y; body.position.y += lift;
+        g.add(body);
+        g.userData.page = [0, o.face === 'down' ? lift - 0.0016 : y + 0.0012 + lift, 0];
+        return g;
+      }
+      // OPEN: two halves cupped toward the posts at x = 0, a page of testimony each side
+      const half = T / 2, tilt = 0.05;
+      [-1, 1].forEach((side) => {
+        const h = new THREE.Group();
+        K.box(W + 0.006, 0.0016, D + 0.006, side < 0 ? clear : back, 0, 0, 0, 0.001, h);
+        const b = block(W - 0.002, half, D - 0.002); b.position.set(0, 0.0016 + half / 2, 0); h.add(b);
+        const s = sheet(W - 0.003, D - 0.003, testTex, 0.12, -side, 1); s.position.y = 0.0016 + half + 0.0004; h.add(s);
+        if (side > 0 && o.tabs) tabs(h, Math.min(6, o.tabs | 0), W / 2 - 0.002, 0.0016, half);
+        h.position.x = side * (W / 2 + 0.004); h.rotation.z = side * tilt; g.add(h);
+      });
+      K.box(0.012, 0.004, D + 0.004, strip, 0, 0, 0, 0.001, g);
+      posts(g, 0, half + 0.006, half + 0.01);
+      g.userData.keepOrigin = true;
+      g.userData.page = [W / 2 + 0.004, 0.0016 + half + 0.0004 + (W / 2) * Math.sin(tilt), 0];
+      return g;
+    },
+  });
+
+  /* A PROFESSIONAL CAMCORDER, lens toward +z, on a video tripod when `tripod` is true. The body is a
+   * bevelled side profile, not a box: a chamfered nose, a sloped belly into a ribbed rear battery,
+   * a hand grip strap on the right. A barrel of three rings (knurled focus and zoom, a smooth iris)
+   * ends in a square petal hood with front glass carrying a coating sheen. A top handle carries an
+   * XLR block and a shotgun microphone in its clip; a viewfinder and eyecup at the rear left; a flip
+   * screen hinged on the left at `screenAngle` radians open (0 shut, PI/2 facing the operator) and
+   * lit at `screenGlow`; a tally lamp lit by `tally` 0 to 1. On the tripod: a fluid head with a pan
+   * bar, twin tube upper legs, clamps, a mid spreader and rubber feet. `height` is the lens axis
+   * height. userData.lens and userData.screen are in the model frame. */
+  K.define('pro_camcorder', {
+    size: [0.95, 1.38, 1.06],
+    anchor: 'base',
+    options: { tripod: true, height: 1.2, spread: 0.46, screenAngle: 1.75, screenGlow: 0.45, tally: 0, mic: true },
+    note: 'A professional camcorder, drawn to illustrate: a bevelled body 0.13 m wide and 0.36 m long, a barrel with knurled focus and zoom rings, a square petal hood and coated front glass facing +z, a top handle with XLR block and shotgun mic (mic), a viewfinder, a flip screen hinged on the left open screenAngle radians and lit screenGlow, a tally lamp (tally 0 to 1). tripod true stands it on a fluid head and twin tube legs with its lens axis at height m, legs spread spread m; tripod false sets it on the ground. userData.lens, userData.screen.',
+    make(o, r) {
+      const g = new THREE.Group();
+      const onTri = o.tripod !== false && o.tripod !== 0;
+      const H = onTri ? Math.max(0.5, +o.height || 1.2) : 0.087;   // off the tripod the base plate sits on the ground
+      const bodyM = mat('pc-body', { color: 0x1c1d20, roughness: 0.46, metalness: 0.08, clearcoat: 0.25, clearcoatRoughness: 0.5 }, true);
+      const darkM = mat('pc-dark', { color: 0x101113, roughness: 0.6, metalness: 0.05 });
+      const greyM = mat('pc-grey', { color: 0x3b3e43, roughness: 0.38, metalness: 0.55 });
+      const rubber = K.finish.rubber();
+      const knurl = mat('pc-knurl', { color: 0xffffff, roughness: 0.82, map: ltex('pc-knurl', paintKnurl, {}, [512, 32]) });
+      const cam = new THREE.Group(); cam.position.y = H; g.add(cam);
+      // body: a side profile in (z, y) about the lens axis, extruded 0.13 m across x and bevelled
+      const bw = 0.13, sh = new THREE.Shape();
+      const P = [[-0.2, -0.06], [-0.2, 0.035], [-0.17, 0.065], [0.07, 0.065], [0.13, 0.04], [0.15, 0.0], [0.15, -0.055], [0.11, -0.075], [-0.12, -0.075]];
+      sh.moveTo(P[0][0], P[0][1]); P.slice(1).forEach((p) => sh.lineTo(p[0], p[1])); sh.closePath();
+      const bg = new THREE.ExtrudeGeometry(sh, { depth: bw - 0.016, bevelEnabled: true, bevelThickness: 0.008, bevelSize: 0.007, bevelSegments: 4, curveSegments: 6 });
+      bg.translate(0, 0, -(bw - 0.016) / 2); bg.rotateY(-Math.PI / 2);   // shape x runs along +z
+      const body = new THREE.Mesh(bg, bodyM); cam.add(body);
+      // a parting line and side panel recess on the operator's left, buttons on it
+      K.box(0.002, 0.07, 0.2, darkM, -bw / 2 - 0.0005, -0.035, -0.03, 0, cam);
+      for (let k = 0; k < 6; k++) {
+        const b = K.cyl(0.0045, 0.0045, 0.004, greyM, 0, 0, 0, 14, null); b.rotation.z = Math.PI / 2;
+        b.position.set(-bw / 2 - 0.003, -0.05 + (k % 2) * 0.016, -0.11 + Math.floor(k / 2) * 0.022); cam.add(b);
+      }
+      // the rear battery, ribbed, and the base plate
+      const bat = K.box(0.11, 0.09, 0.07, darkM, 0, -0.07, -0.235, 0.008, cam);
+      for (let k = 0; k < 4; k++) K.box(0.112, 0.003, 0.072, greyM, 0, -0.06 + k * 0.02, -0.235, 0, cam);
+      K.box(0.1, 0.012, 0.2, greyM, 0, -0.087, -0.02, 0.003, cam);
+      // the grip strap on the right
+      K.box(0.022, 0.07, 0.17, mat('pc-strap', { color: 0x15161a, roughness: 0.9 }), bw / 2 + 0.012, -0.045, 0.02, 0.009, cam);
+      // the barrel: mount, zoom (knurled), focus (knurled), iris (smooth), then the square hood
+      const ring = (r0, len, z0, m, seg) => { const c = new THREE.Mesh(new THREE.CylinderGeometry(r0, r0, len, seg || 48), m);
+        c.rotation.x = Math.PI / 2; c.position.set(0, -0.004, z0 + len / 2); cam.add(c); return c; };
+      ring(0.047, 0.02, 0.145, greyM); ring(0.05, 0.05, 0.165, knurl); ring(0.046, 0.006, 0.215, greyM);
+      ring(0.052, 0.045, 0.221, knurl); ring(0.049, 0.03, 0.266, bodyM);
+      // zoom rocker on the barrel's right side
+      K.box(0.012, 0.022, 0.05, darkM, 0.055, -0.03, 0.19, 0.004, cam);
+      const hoodG = new THREE.CylinderGeometry(0.083, 0.06, 0.08, 4, 1, true); hoodG.rotateY(Math.PI / 4); hoodG.rotateX(Math.PI / 2);
+      const hood = new THREE.Mesh(hoodG, mat('pc-hood', { color: 0x141517, roughness: 0.55, side: THREE.DoubleSide }));
+      hood.scale.set(1.15, 0.82, 1); hood.position.set(0, -0.004, 0.336); cam.add(hood);
+      // the front glass: a shallow cap with a coating sheen, a black retaining ring behind it
+      ring(0.05, 0.004, 0.294, darkM);
+      const glassG = new THREE.SphereGeometry(0.06, 40, 12, 0, Math.PI * 2, 0, 0.62); glassG.rotateX(Math.PI / 2);
+      const glass = new THREE.Mesh(glassG, mat('pc-glass', { color: 0x0c1220, metalness: 0.1, roughness: 0.03, clearcoat: 1,
+        clearcoatRoughness: 0.02, iridescence: 0.8, iridescenceIOR: 1.35, envMapIntensity: 2.0 }, true));
+      glass.position.set(0, -0.004, 0.246); cam.add(glass);
+      // top handle on two uprights, the XLR block at its front, the shotgun mic in a clip
+      const hz0 = -0.12, hz1 = 0.08;
+      K.box(0.03, 0.05, 0.03, bodyM, 0, 0.065, hz0, 0.006, cam); K.box(0.03, 0.05, 0.03, bodyM, 0, 0.065, hz1, 0.006, cam);
+      K.box(0.034, 0.024, 0.26, bodyM, 0, 0.112, (hz0 + hz1) / 2 + 0.02, 0.009, cam);
+      const xlr = K.box(0.05, 0.034, 0.04, darkM, 0, 0.104, 0.15, 0.004, cam);
+      for (const s of [-1, 1]) { const j = K.cyl(0.008, 0.008, 0.005, greyM, 0, 0, 0, 16, null); j.rotation.x = Math.PI / 2; j.position.set(s * 0.013, 0.121, 0.172); cam.add(j); }
+      if (o.mic !== false) {
+        const mic = K.cyl(0.0105, 0.0105, 0.2, mat('pc-mic', { color: 0x2a2b2e, roughness: 0.35, metalness: 0.6 }), 0, 0, 0, 20, null);
+        mic.rotation.x = Math.PI / 2; mic.position.set(-0.035, 0.15, 0.09); cam.add(mic);
+        const grille = K.cyl(0.0108, 0.0108, 0.08, mat('pc-grille', { color: 0x3d3f43, roughness: 0.75, metalness: 0.3 }), 0, 0, 0, 20, null);
+        grille.rotation.x = Math.PI / 2; grille.position.set(-0.035, 0.15, 0.2); cam.add(grille);
+        [0.03, 0.12].forEach((z) => { const t = new THREE.Mesh(new THREE.TorusGeometry(0.015, 0.003, 8, 20), rubber); t.position.set(-0.035, 0.15, z); cam.add(t); });
+        K.box(0.008, 0.02, 0.01, darkM, -0.026, 0.12, 0.075, 0, cam);
+      }
+      // viewfinder: a tube at the rear left, a soft rubber eyecup
+      const vf = K.cyl(0.02, 0.022, 0.09, darkM, 0, 0, 0, 24, null); vf.rotation.x = Math.PI / 2; vf.position.set(-0.035, 0.085, -0.19); cam.add(vf);
+      const cup = K.cyl(0.026, 0.021, 0.03, rubber, 0, 0, 0, 24, null); cup.rotation.x = Math.PI / 2; cup.position.set(-0.035, 0.085, -0.25); cam.add(cup);
+      // the tally lamp, front top
+      const tally = new THREE.Mesh(new THREE.SphereGeometry(0.0055, 14, 10), mat('pc-tally' + (o.tally ? 'on' : ''),
+        { color: 0x2a0606, emissive: 0xff2a1a, emissiveIntensity: Math.max(0, Math.min(1, +o.tally || 0)) * 3, roughness: 0.3 }));
+      tally.position.set(0.035, 0.066, 0.115); cam.add(tally);
+      // the flip screen: hinge barrel at the front of the left side, a panel swung out about it
+      const hx = -bw / 2 - 0.01, hzF = 0.115;
+      K.cyl(0.006, 0.006, 0.06, greyM, hx, 0.0, hzF, 16, cam);
+      const scr = new THREE.Group(); scr.position.set(hx, 0.03, hzF); cam.add(scr);
+      scr.rotation.y = +o.screenAngle || 0;   // positive swings the panel out to the left, its LCD toward the operator
+      const panel = TXT.roundedBox(0.012, 0.068, 0.105, 0.004, darkM); panel.position.set(-0.002, 0, -0.058); scr.add(panel);
+      const lcd = new THREE.Mesh(new THREE.PlaneGeometry(0.094, 0.058), mat('pc-lcd' + o.screenGlow, { color: 0x0b0d10, emissive: 0x6f8399,
+        emissiveIntensity: Math.max(0, +o.screenGlow || 0), roughness: 0.15 }));
+      lcd.rotation.y = Math.PI / 2; lcd.position.set(0.0045, 0, -0.058); scr.add(lcd);   // the LCD faces the body when shut
+      if (onTri) {
+        const legM = mat('pc-legs', { color: 0x232427, metalness: 0.55, roughness: 0.4 }), clampM = mat('pc-clamp', { color: 0x8c9096, metalness: 0.8, roughness: 0.35 });
+        // fluid head: a bowl, the head block, a pan bar back and to the right with its grip
+        K.cyl(0.055, 0.045, 0.06, legM, 0, H - 0.2, 0, 28, g);
+        K.cyl(0.04, 0.05, 0.04, darkM, 0, H - 0.14, 0, 28, g);
+        K.box(0.09, 0.03, 0.13, darkM, 0, H - 0.115, -0.01, 0.008, g);
+        const pb0 = [0.03, H - 0.11, -0.06], pb1 = [0.22, H - 0.17, -0.42];
+        K.bar(pb0, pb1, 0.009, greyM, 12, g);
+        K.bar([pb1[0] - (pb1[0] - pb0[0]) * 0.28, pb1[1] - (pb1[1] - pb0[1]) * 0.28, pb1[2] - (pb1[2] - pb0[2]) * 0.28], pb1, 0.013, rubber, 12, g);
+        const S = Math.max(0.25, +o.spread || 0.46), top = H - 0.2, kneeH = H * 0.47;
+        for (let k = 0; k < 3; k++) {
+          const a = k * TAU / 3 + 0.5 + (r() - 0.5) * 0.06, ca = Math.cos(a), sa = Math.sin(a);
+          const foot = [sa * S, 0.02, ca * S], knee = [sa * S * 0.55, kneeH, ca * S * 0.55], hip = [sa * 0.05, top, ca * 0.05];
+          const px = ca * 0.014, pz = -sa * 0.014;   // the twin tubes sit side by side across the leg
+          for (const s of [-1, 1]) K.bar([hip[0] + s * px, hip[1], hip[2] + s * pz], [knee[0] + s * px, knee[1], knee[2] + s * pz], 0.0075, legM, 10, g);
+          K.bar(knee, foot, 0.0085, legM, 10, g);
+          const cl = K.box(0.04, 0.03, 0.03, clampM, knee[0], knee[1] - 0.015, knee[2], 0.004, g); cl.rotation.y = a;
+          K.cyl(0.018, 0.022, 0.03, rubber, foot[0], 0, foot[2], 14, g);
+          K.bar([sa * S * 0.3, H * 0.3, ca * S * 0.3], [0, H * 0.33, 0], 0.005, legM, 8, g);
+        }
+        K.cyl(0.02, 0.02, 0.03, clampM, 0, H * 0.33 - 0.015, 0, 16, g);
+      }
+      const hp = scr.position.clone(); const off = new THREE.Vector3(0.0045, 0, -0.058).applyEuler(scr.rotation);
+      g.userData.lens = [0, H - 0.004, 0.296];
+      g.userData.screen = [hp.x + off.x, H + hp.y, hp.z + off.z];
       return g;
     },
   });

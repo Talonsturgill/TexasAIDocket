@@ -5749,3 +5749,81 @@ and 11; render artifact, 4 and 11; sky colour, 3 and 5; horizon band, 1 and 3. T
 `TXDECK.punch` and soften patches read as dark plates behind labels and furniture on nos. 44 and 49
 (`assets/js/txdeck.js` is `human`); the run's answer is to seat type on the dark field. Deferred
 again, not refused: `turboprop_caravan` and the aviation set, `dry_van` and its siblings.
+
+## 2026-10-15, the seventh weekly machine pass. Two changes, one deferral, two engine proposals
+
+Read from `out/2026-10-15/week_digest.md` (five shipped runs, October 9th to 15th) and the queue,
+due early because `kit-person-head-reads-as-mannequin` and `footer-veil-peaks-below-the-line` each
+reached repeat 2 with no. 51. `artwork_craft` was the lowest criterion on three decks (week mean
+6.36) and `variety` on four (mean 6.4). "Largest object unmodelled" was named on five decks in 15
+rounds, "primitive or low-poly model where a kit model belongs" on five in 14, "object in a void"
+on five in 10 and "type sitting on or fighting the art" on four in 4. The account is in
+`ledger/carousel/upgrades.json` under `2026-10-15 weekly` and the pass is recorded in
+`config/carousel/machine_pass.json`. Proofs and the two verify scripts are in
+`out/2026-10-15/tmp/machine/` and die with the container.
+
+### 1. KIT LIFT: `pro_camcorder` AND `bound_transcript` AT THE JUDGES' NAMED FIX (done, `assets/js/kit/interior.js`)
+
+No. 51's craft card ranked the camcorder first on frame 3 in every round ("Primitive camcorder
+dominates", r1; "Model a pro camcorder turned three-quarters", r3) and the transcript a white box on
+frames 1, 4, 5 and 9 in rounds 1 to 3; the round 3 craft fix was "Model the transcript as a real
+bound deposition transcript". Both are lifted under NEW names, because no. 51's `installKit` returns
+early once the kit defines `deposition_transcript`, which would take all eight of its chassis models
+out from under the shipped deck. The camcorder has a bevelled profile body, knurled zoom and focus
+rings, a square petal hood, coated glass, a top handle with XLR block and mic, a viewfinder, a
+hinged flip screen (`screenAngle`, `screenGlow`), a tally lamp (`tally`) and a fluid head tripod
+with a pan bar and twin tube legs (`tripod`, `height`, `spread`). The transcript has a back cover
+and a clear cover proud of a leaf block in three lifts, a binding strip with two slotted screw
+posts, a greeked caption page, a lifted corner (`curl`), `open`, `face` and exhibit `tabs`.
+`granite_stair`, `court_front`, `brick_office`, `lectern_rail`, `rule_page` and `loblolly_pine`
+stay in no. 51's chassis.
+
+### 2. THE FOOTER ROW WASH (done, `TECHNIQUE_LIBRARY.md` and `ILLUSTRATION_SYSTEM.md`)
+
+The copied bottom veil spends its peak in the margin under the footer: on no. 51's chassis it is
+0.20 at the top of the footer row, 0.24 at its centre and 0.28 at its foot against a 0.38 peak at
+the canvas foot. Nos. 48, 50 and 51 answered with `N.knock`, a 0.82 blurred patch behind one line,
+and the judges charged it as a plate on 50 and 51. The library now carries a full width, darken
+only band at full strength across `.tx-site`'s own row, every length read off the DOM and the alpha
+held under the 0.55 line `deck_chassis.py` already draws. Doctrine, because there is no chassis
+template in this lane: each run writes its own chassis (`daily`). **If a chassis keeps the knock
+after this, the next step is a measure in `deck_chassis.py`**: a darkening fill at or over 0.55
+drawn over one element's own `getBoundingClientRect`, with a dated cutoff so shipped decks stay
+green, its self-test replaying no. 51's `N.knock` red.
+
+### 3. DEFERRED A SECOND TIME, NOT REFUSED: THE KIT PERSON (in lane, queue repeat 2)
+
+Measured this pass rather than guessed. An A/B of the hair material on official seeds through the
+engine, the 1.12 brightening and the pale 0.55 sheen removed and roughness raised, changed nothing
+visible at full size (`out/2026-10-15/tmp/machine/hab/ab.png`). So the helmet read is the hair
+SHELL's geometry, a smooth cap with one parting groove, and the mannequin read is the stiff A-pose
+and the mitten hands, which is the 2026-10-12 diagnosis confirmed. It is one person lift: a hair
+shell broken into locks at the hairline and crown, relaxed arms with a bend at the elbow, four
+fingers and a thumb at `detail: close`. Add `attire: 'robe'` for `role: 'official'` with it, a
+black judicial robe with a yoke and full sleeves, because no. 51's eight seated justices were drawn
+in business suits and read as mannequins at 3 percent of the frame height, where a robe is what
+says "court". A change to the default person re-renders every shipped deck's kit people, today's
+frame 7 among them, so it wants its own pass and its own before and after on nos. 48, 49 and 51.
+
+### 4. ESCALATED: TWO ENGINE CHANGES (`assets/js/txthree.js` is `human`)
+
+- `snapshot-stages-interiors-to-sky-hue` (no. 51 frames 3 and 8, pixel rounds 1 to 3): `TXT.snapshot`
+  stages by default and fogs a `TXT.interior` room toward the world's sky hue, so a walnut room read
+  as an object in a navy void until the frame passed `stage: false` and set an environment
+  intensity of 0.03 on every room mesh. Proposal: skip the stage fog and the sky's environment for
+  a scene that holds an interior room. Theme count: object in a void, 5 runs and 10 rounds.
+- `lastlight-horizon-warm-band-behind-type`, repeat 1 (nos. 46 and 51): a per-frame horizon veil in
+  `TXT.stage`. Theme count: horizon band or seam, 2 runs and 3 rounds.
+
+### 5. DEFERRED, NOT REFUSED (in lane)
+
+`hearing-bench-too-wide-for-portrait` (no. 51 frame 7, every judge in rounds 1 to 3): a
+`hearing_dais` option for a raised, tighter horseshoe or a second tier so a court of nine fills a
+4:5 frame's middle third. Carried with the person lift above, since both are the bench frame. The
+aviation set and `dry_van` with its siblings are deferred again behind newer decks.
+
+### Carried, with this week's counts
+
+No contact or grime, 4 runs and 8 rounds; dead or empty region, 4 and 8; value strobe, 4 and 5;
+flat 2D overlay, 2 and 6; render artifact, 2 and 4. No gate changed this pass, so GATE_LESSONS is
+unchanged. No frontier scan this pass: the time went to the two proofs.
