@@ -18,7 +18,7 @@
 | world presets | 8 |
 | kit models | 117 in 10 families |
 | asset libraries | 21 |
-| carousel and shared tools | 71 |
+| carousel and shared tools | 72 |
 | record and site tools the routine names | 20 |
 | agents | 10 |
 | knowledge files | 42 |
@@ -472,6 +472,7 @@ Run every gate by EXIT CODE, never by reading the last line. **Wired** says what
 | `scripts/shared/livecheck.py` | the published site answers, checked against the published site. | --url --self-test | CI self-test |  |
 | `scripts/shared/merge_ready.py` | can this branch still be merged, asked as an exit code. | --base --branch --fetch --self-test | CI self-test | 16, 18 |
 | `scripts/shared/ownership_check.py` | refuse a write that crosses an automation's lane. | --actor --print-actor --gitdir --diff --diff-per-commit --staged --files --branch --map --self-test | CI | 0, 16 |
+| `scripts/shared/pages_guards_wait_test.py` | the Pages guard proof waits for a pending result and never for a failed one. |  | CI |  |
 | `scripts/shared/places.py` | the canonical Texas place record, and the resolver that reads it. | --from --out <text> --self-test | CI | 3 |
 | `scripts/shared/port_audit.py` | is the port actually done, and is what we moved actually wired up? | --root --only --summary --reconcile --self-test | CI | 16 |
 | `scripts/shared/prompt_audit.py` | did this run stop and wait for a human, and on exactly which call. | --json --self-test | CI self-test | 0, 17, 19 |
