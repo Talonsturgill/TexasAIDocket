@@ -9,7 +9,7 @@ The Texas Department of Motor Vehicles now requires any company running automate
 - Public access: Write to the decider
 - Take part: https://txmccs.txdmv.gov/truckstop
 
-- Last checked: 2026-10-11
+- Last checked: 2026-10-15
 
 ## Dates
 
@@ -26,6 +26,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-05 · Texas still requires a state authorization to run driverless vehicles commercially.
 - 2026-10-08 · A state authorization is still required to run driverless vehicles commercially in Texas.
 - 2026-10-11 · Commercial driverless operation in Texas still requires the state authorization.
+- 2026-10-15 · A company still needs the state authorization to run driverless vehicles commercially in Texas.
 
 ## Evidence
 

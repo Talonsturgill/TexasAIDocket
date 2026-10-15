@@ -9,7 +9,7 @@ On September 21st, 2026 the Governor directed the Texas Commission on Environmen
 - Public access: Write to the decider
 - Take part: https://www.texastribune.org/2026/09/21/texas-data-center-moratorium-water-energy/
 
-- Last checked: 2026-10-12
+- Last checked: 2026-10-15
 
 ## Dates
 
@@ -29,6 +29,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-08 · The Governor's directive holding TCEQ data center permits until the grid audit is finished is still in force.
 - 2026-10-11 · The Governor's hold on TCEQ data center permits until the grid audit is done remains in force.
 - 2026-10-12 · The Governor's hold on data center permits at the environmental agency stays in force until the grid audit is done.
+- 2026-10-15 · The Governor's hold on data center permits at the environmental agency stays in force.
 
 ## Evidence
 

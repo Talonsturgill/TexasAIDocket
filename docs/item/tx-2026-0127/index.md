@@ -1,6 +1,6 @@
-# The Supreme Court of Texas set argument for October 6th in a mandamus proceeding the court reporters' association has entered
+# The Supreme Court of Texas heard argument on whether a deposition transcript made with AI can stand without a certified court reporter
 
-In re Patrick Hughey is a mandamus proceeding filed May 29th, 2025. The court's own case record sets oral argument for 9:00 a.m. on October 6th, 2026. The docket shows briefs on the merits from the relator and from Reddico Construction. It also shows amicus filings from the Texas Court Reporters Association and the Texas Trial Lawyers Association and a group of Texas court reporting firms and certified shorthand reporters. The last docket entry is the court reporters association's amicus brief of June 4th, 2026. What the court decides reaches every county court in the state.
+In re Patrick Hughey is a mandamus proceeding filed May 29th, 2025. It began in a Montgomery County wrongful termination suit, where Courthouse News reports the trial court struck a deposition transcript generated with AI because no certified shorthand reporter prepared it. The Supreme Court of Texas heard argument on October 6th, 2026, with the Texas Deposition Reporters Association given time as amicus. The court's rules already let a written transcription of a non-stenographic recording be used to the same extent as a stenographic deposition. They also let a court require a certified reporter's transcript for good cause. The docket also shows amicus filings from the Texas Court Reporters Association and the Texas Trial Lawyers Association. The court's orders pronounced through October 9th, 2026 carry no ruling in the case. What it decides reaches every trial court in the state.
 
 - Topic: state-policy
 - Decided by: Supreme Court of Texas (state-agency)
@@ -11,7 +11,7 @@ In re Patrick Hughey is a mandamus proceeding filed May 29th, 2025. The court's 
 - Public access: Write to the decider
 - Take part: https://search.txcourts.gov/Case.aspx?cn=25-0463&coa=cossup
 
-- Last checked: 2026-10-11
+- Last checked: 2026-10-15
 
 ## Dates
 
@@ -40,6 +40,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-07 · The court's own submission schedule for October 6th lists In re Patrick Hughey for argument that morning, with a deposition reporters' association heard as amicus. The court's ruling is what comes next.
 - 2026-10-08 · The court's own submission schedule still lists the case for argument on October 6th. Whether it was argued as set is unconfirmed, because the case page bars automated readers, and the ruling is still to come.
 - 2026-10-11 · The court's own submission schedule still lists the case for October 6th. A ruling is the next step.
+- 2026-10-15 · Courthouse News reports the court heard argument on October 6th, and the case awaits an opinion. The court's own case page bars automated readers, so its docket entries are unconfirmed.
 
 ## Evidence
 
@@ -74,4 +75,34 @@ Source (primary_official): https://search.txcourts.gov/Case.aspx?cn=25-0463&coa=
 > Relator will be represented by Bradley W. Snead (Wright Close Barger & Guzman), from Houston.
 
 Source (primary_official): https://www.txcourts.gov/media/1463419/10-06-submission-schedule.pdf
+
+### Courthouse News reports the court heard the argument over an AI generated deposition transcript.
+
+> AUSTIN, Texas (CN) — The Texas Supreme Court heard arguments Tuesday over whether an individual should be allowed to submit an AI-generated transcript of a deposition as evidence.
+
+Source (journalism): https://www.courthousenews.com/texas-high-court-toys-with-ai-transcripts-for-witness-depositions/
+
+### The trial court struck the transcript because no certified shorthand reporter prepared it.
+
+> The trial court in Montgomery County struck the AI-generated transcript the employee submitted from the record back in April 2025 because the transcript was not prepared by a certified shorthand reporter.
+
+Source (journalism): https://www.courthousenews.com/texas-high-court-toys-with-ai-transcripts-for-witness-depositions/
+
+### The rules let a transcription of a non-stenographic recording be used like a stenographic deposition, and let a court require a certified reporter's transcript for good cause.
+
+> A non- stenographic recording of an oral deposition, or a written transcription of all or part of such a recording, may be used to the same extent as a deposition taken by stenographic means. However, the court, for good cause shown, may require that the party seeking to use a non- stenographic recording or written transcription first obtain a complete transcript of the deposition recording from a certified court reporter.
+
+Source (primary_official): https://www.txcourts.gov/media/1462349/texas-rules-of-civil-procedure.pdf
+
+### The court's submission schedule gave the deposition reporters' association time at argument as amicus.
+
+> Amicus Curiae, Texas Deposition Reporters Association, will be represented by Shelby O’Brien (Butler Snow LLP), from Austin.
+
+Source (primary_official): https://www.txcourts.gov/media/1463419/10-06-submission-schedule.pdf
+
+### The orders the Supreme Court of Texas pronounced on October 9th, 2026 list no order in case 25-0463.
+
+> Orders Pronounced October 9, 2026
+
+Source (primary_official): https://www.txcourts.gov/media/1463460/supreme-court-of-texas-orders-10-09-2026.pdf
 

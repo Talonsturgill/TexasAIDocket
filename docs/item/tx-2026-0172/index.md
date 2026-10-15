@@ -5,11 +5,11 @@ ERCOT issued Market Notice M-B091426-01 on September 14th, 2026, opening a Reque
 - Topic: land-water-and-permitting
 - Decided by: Electric Reliability Council of Texas (state-agency)
 - Where: Statewide
-- Status: open
+- Status: pending
 - Public access: Write to the decider
 - Take part: https://www.ercot.com/services/comm/mkt_notices/M-B091426-01
 
-- Last checked: 2026-10-12
+- Last checked: 2026-10-15
 
 ## Dates
 
@@ -34,6 +34,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-10 · ERCOT's request for data center answers to the water board's questions still stands as posted, with its deadline unchanged.
 - 2026-10-11 · ERCOT's request for data center answers still stands. Responses are due October 12th.
 - 2026-10-12 · The grid operator's request for data center answers to the water board's questions still stands, with responses due today.
+- 2026-10-15 · ERCOT's request reads as posted. The deadline it set for data centers has passed and no report has been published.
 
 ## Evidence
 

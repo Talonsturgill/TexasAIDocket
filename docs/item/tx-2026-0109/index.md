@@ -9,7 +9,7 @@ The Senate Committee on Economic Development carries an interim charge on prepar
 - Public access: Public meeting
 - Take part: https://capitol.texas.gov/Committees/MeetingsUpcoming.aspx?Chamber=S
 
-- Last checked: 2026-10-12
+- Last checked: 2026-10-15
 
 ## Dates
 
@@ -43,6 +43,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-06 · Senate Economic Development's hearing on AI still stands on the committee's record, with no report out of it yet.
 - 2026-10-09 · The reset hearing on AI and the workforce has dropped off the committee's upcoming list, as a held hearing does. No report from it has been posted.
 - 2026-10-12 · The workforce hearing date on AI has passed. The committee has posted no report from it.
+- 2026-10-15 · The committee has posted no report from its workforce hearing on AI.
 
 ## Evidence
 
