@@ -101,7 +101,14 @@ reading that counts.
 
 Due today: two queue items reached repeat 2 with this run's evidence
 (`kit-person-head-reads-as-mannequin`, `footer-veil-peaks-below-the-line`). The pass ran in this run
-before the merge; its changes are listed below.
+before the merge (the seventh weekly pass, `config/carousel/machine_pass.json`, commit 3266633).
+Two changes, each with a verify script that exits 0 on the change and was rerun by the run: the kit
+gains `pro_camcorder` and `bound_transcript` at the judges' named fixes for this deck's top ranked
+artwork defect, under new names so the shipped chassis is untouched, and the footer row wash is now
+documented in `TECHNIQUE_LIBRARY.md` with a check that goes red on the copied bottom veil. The kit
+person's mannequin look was deferred a second time with a measured A/B. Two engine changes are
+written up for a maintainer in `UPGRADE_BACKLOG.md` 2026-10-15 item 4: `TXT.snapshot` fogging an
+interior room to the sky's hue, and a horizon veil behind type.
 
 ## Queued for the next pass
 
