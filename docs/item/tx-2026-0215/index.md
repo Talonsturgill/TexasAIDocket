@@ -1,6 +1,6 @@
 # Rice University sets out to hire 75 faculty working on AI and plans a research building for it in Houston's Ion District
 
-Rice University has launched a universitywide AI initiative. It says 35 of the 75 faculty members it means to recruit to work on AI are already hired and 40 more will follow, organized in four hiring clusters. It plans to be a lead tenant of The Arc, a research and innovation hub in Houston's Ion District that is scheduled to begin construction this fall. It plans to house a planned AI Foundry there. It will launch a Master of Artificial Intelligence program in fall 2027. The release states no dollar amount for any part of it and reports no result, because most of the plan is still ahead.
+Rice University has launched a universitywide AI initiative. It says 35 of the 75 faculty members it means to recruit to work on AI are already hired and 40 more will follow. It plans to be a lead tenant of The Arc, a research and innovation hub in Houston's Ion District that is scheduled to begin construction this fall. It plans to house a planned AI Foundry there. It will launch a Master of Artificial Intelligence program in fall 2027. The release states no dollar amount for any part of it and reports no result, because most of the plan is still ahead.
 
 - Topic: research-and-science
 - Decided by: Rice University (company)
