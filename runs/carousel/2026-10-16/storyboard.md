@@ -269,7 +269,7 @@ depth:
 composition:
   structure: >
     The camera sits just above the water. The car fills the lower two thirds, turned across the current, cropped by the
-    left and bottom edges. Water stands to its beltline and a thin comal line runs along the doors at the surface. The
+    left and right edges. Water stands to its beltline and a thin comal line runs along the doors at the surface. The
     far bank's limestone ledges and a streetlight on the road above it give the only light. Live oak and pecan crowns
     fall to black above.
   bands: >
@@ -657,8 +657,8 @@ art:
     Lightest are the car, the island under the downlights and the terminal glass. Darkest are the sky and the drive lane. Frame median L* planned at 16.
 
 type:
-  hook: "Open to anyone. The fix is still listed in development"
-  dek: "The airport called the rides a new option to get there. The recall's remedy field is public, and anyone can read it on NHTSA's recall lookup under Waymo LLC. Drawn to illustrate."
+  hook: "Anyone can ride. Anyone can read the remedy field"
+  dek: "The airport called the rides a new option to get there. NHTSA's recall record for Waymo LLC is public, and its remedy field still reads under development. Drawn to illustrate."
   labels: []
 
 verbatim: []

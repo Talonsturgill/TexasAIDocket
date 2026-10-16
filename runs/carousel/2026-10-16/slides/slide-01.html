@@ -37,6 +37,8 @@ window.renderReady = (async () => {
   /* the lobby kept below the car's paint, and the canopy columns taken down to near black, so nothing lit climbs into the type */
   curb.traverse(m => { if (!m.isMesh || !m.material) return; if (m.material.isMeshBasicMaterial && m.material.map) { m.material = m.material.clone(); m.material.color.setHex(0x9a9a9a); } else if (m.material.metalness === 0.7 && m.geometry.type === 'CylinderGeometry' && m.geometry.parameters.height > 5) { m.material = m.material.clone(); m.material.color.setHex(0x23252a); m.material.envMapIntensity = 0.15; } });
   const car = K.make('robotaxi', { seed: 4 }); car.rotation.y = -Math.PI / 2; car.position.set(0, 0, -1.25); TXT.add(R, car);
+  /* the canopy's fascia and the terminal head band to near black, so no lit edge runs through the dek */
+  curb.traverse(m => { if (m.isMesh && m.material && m.material.color) { const h = m.material.color.getHex(); if (h === 0x2c2824 || h === 0x9a9890) { m.material = m.material.clone(); m.material.color.setHex(0x08090b); m.material.metalness = 0; m.material.roughness = 1; m.material.envMapIntensity = 0; } } });
   CH.bollards(THREE, R, K, DAYS, [2.4, 0.15, -3.55], [-1, 0, 0], PITCH, () => 'white');
   CH.matte(TXT.ground(R, { surface: 'asphalt', size: 900, seed: 16 }), 0.35);
   /* the lane's skip line and the curb's painted edge, flat on the asphalt */

@@ -46,7 +46,7 @@
       lift: [0.002, 0.003, 0.006],
       gain: [1.0, 1.0, 1.0],
       vignette: 0.24,
-      bloom: { threshold: 0.9, strength: 0.14, radius: 10 },
+      bloom: { threshold: 0.97, strength: 0.04, radius: 8 },
       grain: { amount: 0.02, size: 2, seed: 20261016 },
       aberration: 0,
       dither: true,
@@ -124,6 +124,11 @@
         var g = new THREE.Group();
         var body = K.make("suv", { rack: false, color: 0xeceef0, metallic: false, seed: o.seed });
         var s = 0.88, sy = 0.84; body.scale.set(s, sy, s); g.add(body);
+        /* COATED GLASS. The kit SUV's dark glass prints as a black card at night, so the screen and side
+         * panes take a coated glass that carries the world's lights, the treatment the kit's semi got on
+         * 2026-10-05 (metalness stands in for the coating, kept under a mirror). */
+        var coat = K.mat("rt-glass", { color: 0x5f6c75, metalness: 0.55, roughness: 0.05, clearcoat: 1, clearcoatRoughness: 0.03, envMapIntensity: 2.4 }, true);
+        body.traverse(function (m) { if (m.isMesh && m.material && m.material.color && m.material.color.getHex() === 0x1a232a) m.material = coat; });
         var roofY = 1.9 * sy, L = 5.35 * s, W = 2.06 * s;
         var stack = new THREE.Group();
         var base = TXT.roundedBox(1.0, 0.1, 0.78, 0.04, white); base.position.set(0, 0.05, 0); stack.add(base);
@@ -420,7 +425,7 @@
    * clearcoat reads white with a warm lit face; the cool rim from the world's rig is raised so a car's
    * shadow side separates from the night */
   N.rigSpec = function (W, size, map) {
-    var rim = Object.assign({}, W.rig.rim, { i: (W.rig.rim.i || 0.8) * 2.2 });
+    var rim = Object.assign({}, W.rig.rim, { i: (W.rig.rim.i || 0.8) * 1.4 });
     return Object.assign({}, W.rig, { rim: rim, key: Object.assign({}, W.rig.key, { color: 0xffd6aa, shadowSize: size || 12, mapSize: map || 2048, radius: 5 }) });
   };
   N.rigOpts = function (target, o) {

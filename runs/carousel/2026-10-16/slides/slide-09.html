@@ -12,8 +12,8 @@
 <body>
 <canvas id="art" width="2160" height="2700"></canvas>
 <div class="tx-site" id="site">texasaidocket.com</div>
-<h1 class="hook" id="hook">Open to anyone. The fix is still listed in development</h1>
-<p class="dek" data-follow="26">The airport called the rides a new option to get there. The recall's remedy field is public, and anyone can read it on NHTSA's recall lookup under Waymo LLC. Drawn to illustrate.</p>
+<h1 class="hook" id="hook">Anyone can ride.<br>Anyone can read<br>the remedy field</h1>
+<p class="dek" data-follow="26">The airport called the rides a new option to get there. NHTSA's recall record for Waymo LLC is public, and its remedy field still reads under development. Drawn&nbsp;to&nbsp;illustrate.</p>
 <script src="@@ASSETS@@/js/noise.js"></script>
 <script src="@@ASSETS@@/js/txtype.js"></script>
 <script src="@@ASSETS@@/js/txcolor.js"></script>
@@ -37,18 +37,18 @@ window.renderReady = (async () => {
   /* the terminal's lobby lit through the glass, past the stage's dark, a second warm value behind the island */
   curb.traverse(m => { if (!m.isMesh || !m.material) return; if (m.material.isMeshBasicMaterial && m.material.map) { m.material = m.material.clone(); m.material.fog = false; m.material.color.setHex(0x8c8c8c); } else if (m.material.metalness === 0.7 && m.geometry.type === 'CylinderGeometry' && m.geometry.parameters.height > 5) { m.material = m.material.clone(); m.material.color.setHex(0x1c1e22); m.material.envMapIntensity = 0.1; m.material.metalness = 0.3; } });
   CH.bollards(THREE, R, K, DAYS, [X0, 0.15, -3.55], [1, 0, 0], PITCH, () => 'white');
-  const car = K.make('robotaxi', { seed: 4 }); car.rotation.y = Math.PI / 2; car.position.set(8, 0, -1.25); TXT.add(R, car);
-  const who = K.make('person', { role: 'resident', pose: 'walk', seed: 5, hat: 'none' }); who.position.set(5.4, 0.15, -3.0); who.rotation.y = 0.5; TXT.add(R, who);
+  const car = K.make('robotaxi', { seed: 4 }); car.rotation.y = Math.PI / 2; car.position.set(11, 0, -1.25); TXT.add(R, car);
+  const who = K.make('person', { role: 'resident', pose: 'walk', seed: 5, hat: 'none' }); who.position.set(8.4, 0.15, -3.0); who.rotation.y = 0.5; TXT.add(R, who);
   CH.matte(TXT.ground(R, { surface: 'asphalt', size: 1600, seed: 17 }), 0.35);
   { const m = new THREE.MeshLambertMaterial({ color: 0xcfcac0 }); for (let x = -20; x < 380; x += 9) { const l = new THREE.Mesh(new THREE.PlaneGeometry(3, 0.12), m); l.rotation.x = -Math.PI / 2; l.position.set(x, 0.006, 2.4); l.receiveShadow = true; R.scene.add(l); } }
   [car, who].forEach(o => TXT.contact(R, o));
-  const from = [-0.7, 2.6, 2.4];
-  const look = CH.aim(THREE, R, TXT, from, [7.0, 0.9, -1.8], 600, 960, 40);
+  const from = [-0.4, 4.0, 3.2];
+  const look = CH.aim(THREE, R, TXT, from, [9.6, 0.9, -1.8], 600, 980, 40);
   TXT.frame(R, { fov: 40, from, look });
-  { const sp = new THREE.SpotLight(0xffd9a6, 320, 18, 0.8, 0.6, 1.5); sp.position.set(7.5, 7.2, -1.8); sp.target.position.set(7, 0, -1.6); sp.castShadow = true; sp.shadow.mapSize.set(4096, 4096); sp.shadow.normalBias = 0.03; sp.shadow.bias = -0.001; R.scene.add(sp); R.scene.add(sp.target); }
+  { const sp = new THREE.SpotLight(0xffd9a6, 320, 18, 0.8, 0.6, 1.5); sp.position.set(10.5, 7.2, -1.8); sp.target.position.set(10, 0, -1.6); sp.castShadow = true; sp.shadow.mapSize.set(4096, 4096); sp.shadow.normalBias = 0.03; sp.shadow.bias = -0.001; R.scene.add(sp); R.scene.add(sp.target); }
   TXT.sky(R);
   { const spec = CH.rigSpec(W, 40, 4096); spec.rim = Object.assign({}, spec.rim, { pos: [8, 6, -8] }); var RIG9 = spec; }
-  TXT.deckRig(R, RIG9, CH.rigOpts([6, 1, -2], { distance: 60, shadowFar: 160 }));
+  TXT.deckRig(R, RIG9, CH.rigOpts([9, 1, -2], { distance: 60, shadowFar: 160 }));
   TXT.stage(R, [car, who], { poolInner: 7, poolOuter: 24, behind: 0.8, depth: 3 });
   TXT.weather(R, { grime: 0.2, height: 0.5 });
   const cx = CH.develop(await TXT.snapshot(R), gl);

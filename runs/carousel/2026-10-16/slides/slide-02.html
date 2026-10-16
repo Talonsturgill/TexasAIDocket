@@ -34,7 +34,7 @@ window.renderReady = (async () => {
   const car = K.make('robotaxi', { seed: 4 }); car.rotation.y = -Math.PI / 2; car.position.set(0.4, 0, -2.45); TXT.add(R, car);
   /* THE RIDER, at true scale, walking from the sidewalk toward the rear door, turned three quarters to the lens */
   const who = K.make('person', { role: 'resident', pose: 'walk', seed: 7, build: 'female' }); who.position.set(3.75, 0, -3.25); who.rotation.y = -0.85; TXT.add(R, who);
-  const lamp = K.make('streetlight', { height: 5.8, reach: 1.6 }); lamp.position.set(4.75, 0.15, -4.8); lamp.rotation.y = -1.2; TXT.add(R, lamp);
+  const lamp = K.make('streetlight', { height: 5.8, reach: 1.6 }); lamp.position.set(4.75, 0.15, -4.8); lamp.rotation.y = -1.2; TXT.add(R, lamp); lamp.traverse(m => { if (m.isMesh) m.castShadow = false; });
   const oak = K.make('live_oak', { height: 7, spread: 13 }); oak.position.set(-8.5, 0.15, -8.5); TXT.add(R, oak);
   CH.matte(oak, 0.04);
   CH.matte(TXT.ground(R, { surface: 'asphalt', size: 900, seed: 22 }), 0.35);

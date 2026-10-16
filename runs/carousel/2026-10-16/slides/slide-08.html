@@ -7,13 +7,12 @@
 <style>
   .tx-site { font-size:24px; }
   .dek { width:880px; }
-  #rec { font-family:"JetBrains Mono", monospace; color:#cfd6dc; background:transparent; padding:34px 40px; box-sizing:border-box; z-index:6; }
-  #rec .k { font-size:30px; color:#7f8a94; letter-spacing:0.02em; line-height:1.15; }
-  #rec .v { font-size:36px; color:#e3e7ea; line-height:1.2; margin-bottom:14px; }
-  #rec .rem { font-size:46px; color:#f2f4f5; line-height:1.15; font-weight:700; margin-top:6px; }
+  #rec { font-family:"JetBrains Mono", monospace; color:#cfd6dc; background:transparent; padding:14px 40px 0; box-sizing:border-box; z-index:6; }
+  #rec .k { font-size:24px; color:#7f8a94; letter-spacing:0.02em; line-height:1.15; }
+  #rec .v { font-size:30px; color:#e3e7ea; line-height:1.2; margin-bottom:10px; }
+  #rec .rem { font-size:38px; color:#f2f4f5; line-height:1.15; font-weight:700; margin-top:6px; padding-bottom:8px; border-bottom:10px solid #2A7A9E; }
   #rec .remw { border-left:18px solid #2A7A9E; padding-left:22px; }
   #rec .remw .k { color:#2A7A9E; }
-  #rec .v { margin-bottom:22px; }
 </style>
 </head>
 <body>
@@ -40,7 +39,7 @@ import { init } from '@@ASSETS@@/js/txthree.js';
 import { initKit } from '@@ASSETS@@/js/txkit.js';
 window.renderReady = (async () => {
   const TXT = init(THREE);
-  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "The recall record, read October 16th", counter: "08 / 09", src: "c10 c11 c12 c13", fit: { min: 66, max: 84, maxLines: 3 } });
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "The recall record, read October 16th", counter: "08 / 09", src: "c10 c11 c12 c13", fit: { min: 66, max: 84, maxLines: 2 } });
   /* THE RECORD'S FIELDS, from figures.json and the claims: units_affected 3791 (c13). The two Model
    * rows are the record's own Model values, one per result it returns for 26E026 (c12). */
   const UNITS = 3791;
@@ -60,22 +59,21 @@ window.renderReady = (async () => {
   const chair = K.make('office_chair', { style: 'task' }); chair.position.set(0.6, 0, -0.75); chair.rotation.y = Math.PI; S.add(chair);
   const docs = K.make('document_stack', { count: 2 }); docs.position.set(-0.45, 0.76, -1.75); S.add(docs);
   /* outside the window: the street, a streetlight and the robotaxi under it */
-  const car = K.make('robotaxi', { seed: 4 }); car.position.set(-8.6, 0, -RD / 2 - 7.5); car.rotation.y = Math.PI / 2 + 0.3; S.add(car);
+  const car = K.make('robotaxi', { seed: 4 }); car.position.set(-8.6, 0, -RD / 2 - 7.5); car.rotation.y = Math.PI / 2 + 0.3; S.add(car); car.traverse(o => { if (o.isMesh && o.material) { o.material = o.material.clone(); o.material.envMapIntensity = 0.1; } });
   const lamp = K.make('streetlight', { height: 8.5 }); lamp.position.set(-12.5, 0, -RD / 2 - 5.5); lamp.rotation.y = Math.PI; S.add(lamp);
   S.updateMatrixWorld(true);
   [desk, chair, car].forEach(o => TXT.contact(R, o));
   /* the monitor's screen: a dark glass plane on its face, whose corners carry the record as DOM type */
   const sw = 32 * 0.0254 * 16 / Math.hypot(16, 9), sh = 32 * 0.0254 * 9 / Math.hypot(16, 9);
   const mb = new THREE.Box3().setFromObject(mon), ml = mon.worldToLocal(mb.max.clone());
-  const scr = new THREE.Mesh(new THREE.PlaneGeometry(sw, sh), new THREE.MeshStandardMaterial({ color: 0x06090c, emissive: 0x0b1620, emissiveIntensity: 1.0, roughness: 0.55 }));
+  const scr = new THREE.Mesh(new THREE.PlaneGeometry(sw, sh), new THREE.MeshStandardMaterial({ color: 0x020304, emissive: 0x0b1620, emissiveIntensity: 1.0, roughness: 0.9 }));
   scr.position.set(0, 0.126 + sh / 2, 0.012); scr.rotation.x = 0; mon.add(scr);
   const from = CH.world(THREE, S, [0.78, 1.22, -0.2]);
   const tgt = CH.world(THREE, S, [0.15, 0.76 + 0.126 + sh / 2, -1.83]);
   const look = CH.aim(THREE, R, TXT, from, tgt, 640, 880, 44);
   TXT.frame(R, { fov: 44, from, look });
-  /* the screen's own cool glow on the desk and the papers, and the streetlight's warm pool on the car outside */
-  { const g = new THREE.PointLight(0x9fb8cc, 1.2, 2.0, 1.6); g.position.copy(new THREE.Vector3(...CH.world(THREE, S, [0.15, 0.84, -1.5]))); R.scene.add(g); }
-  { const sp = new THREE.SpotLight(0xffc98e, 260, 16, 0.6, 0.6, 1.5); sp.position.copy(new THREE.Vector3(...CH.world(THREE, S, [-11.5, 8.2, -RD / 2 - 6.5]))); sp.target.position.copy(new THREE.Vector3(...CH.world(THREE, S, [-8.6, 0, -RD / 2 - 7.5]))); R.scene.add(sp); R.scene.add(sp.target); }
+  /* the streetlight's warm pool on the car outside */
+  { const sp = new THREE.SpotLight(0xffc98e, 800, 16, 0.6, 0.6, 1.5); sp.position.copy(new THREE.Vector3(...CH.world(THREE, S, [-11.5, 8.2, -RD / 2 - 6.5]))); sp.target.position.copy(new THREE.Vector3(...CH.world(THREE, S, [-8.6, 0, -RD / 2 - 7.5]))); R.scene.add(sp); R.scene.add(sp.target); }
   TXT.deckRig(R, CH.rigSpec(W, 14, 4096), CH.rigOpts(CH.world(THREE, S, [0, 0.8, -1.8]), { distance: 30, shadowFar: 70 }));
   TXT.weather(R, { grime: 0.15, height: 0.4 });
   const cx = CH.develop(await TXT.snapshot(R, { stage: false }), gl);

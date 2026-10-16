@@ -7,13 +7,14 @@
 <style>
   .tx-site { font-size:24px; }
   .dek { width:900px; }
+  #lWater { font-size:30px; font-weight:600; }
 </style>
 </head>
 <body>
 <canvas id="art" width="2160" height="2700"></canvas>
 <div class="tx-site" id="site">texasaidocket.com</div>
 <h1 class="hook" id="hook">It slowed. Then it drove in</h1>
-<p class="dek" data-follow="26">The recall record says the software may let the vehicle slow and then drive into standing water on higher speed roadways. Texas Public Radio reports the notice said it detected the flooded road and kept going. The report reached regulators 11 days after the creek. Drawn to illustrate.</p>
+<p class="dek" data-follow="26">The recall record says the software may let the vehicle slow and then drive into standing water on higher speed roadways. Texas Public Radio reports the notice said it detected the flooded road and kept going. The report reached regulators 11 days after the creek. Drawn&nbsp;to&nbsp;illustrate.</p>
 <svg id="ld" width="1080" height="1350" style="position:absolute;left:0;top:0;z-index:11;pointer-events:none"></svg>
 <div class="lab" id="lDome">detected the flooded road</div>
 <div class="lab" id="lWheel">proceeded at a reduced speed</div>
@@ -36,11 +37,11 @@ window.renderReady = (async () => {
   /* the right carriageway of a divided highway: lane 1 centre x 3.48, lane 2 centre x 7.14, their line x 5.31 */
   const hw = K.make('highway', { lanes: 2, length: 320, gantry: false, embank: 0, seed: 3 }); TXT.add(R, hw);
   /* the shoulder's rumble grooves off, so the only marks on the edge line are the eleven studs, and the median barrier taken down to a dark grey so the car's roofline stands clear of it */
-  hw.traverse(m => { if (!m.isMesh) return; const gp = m.geometry && m.geometry.parameters; if (m.isInstancedMesh && gp && gp.width === 0.4 && gp.depth === 0.18) m.visible = false; if (!m.isInstancedMesh && m.geometry.type === 'ExtrudeGeometry' && m.material.map) { m.material = m.material.clone(); m.material.color.setScalar(0.3); } });
+  hw.traverse(m => { if (!m.isMesh) return; const gp = m.geometry && m.geometry.parameters; if (m.isInstancedMesh && gp && gp.width === 0.4 && gp.depth === 0.18) m.visible = false; if (!m.isInstancedMesh && m.geometry.type === 'ExtrudeGeometry' && m.material.map) { m.material = m.material.clone(); m.material.color.setScalar(0.1); m.material.roughness = 1; m.material.envMapIntensity = 0; } });
   const LINE = 5.31, LANE2 = 7.14, EDGE = -0.3;
   /* THE WATER: a sheet across both lanes from just ahead of the car's rear axle on up the road */
   const rip = CH.rippleTex(THREE); rip.repeat.set(3, 14);
-  const water = new THREE.Mesh(new THREE.PlaneGeometry(7.4, 46), new THREE.MeshPhysicalMaterial({ color: 0x1c2a36, roughness: 0.1, metalness: 0.2, clearcoat: 1, clearcoatRoughness: 0.03, bumpMap: rip, bumpScale: 0.35, envMapIntensity: 1.6 }));
+  const water = new THREE.Mesh(new THREE.PlaneGeometry(7.4, 46), new THREE.MeshPhysicalMaterial({ color: 0x1c2a36, roughness: 0.1, metalness: 0.2, clearcoat: 1, clearcoatRoughness: 0.03, bumpMap: rip, bumpScale: 0.35, envMapIntensity: 2.4 }));
   water.rotation.x = -Math.PI / 2; water.position.set(5.31, 0.035, EDGE - 23); water.receiveShadow = true; water.userData.txWear = false; R.scene.add(water);
   { const e = new THREE.Mesh(new THREE.PlaneGeometry(7.4, 1.3), new THREE.MeshBasicMaterial({ color: CH.ACCENT, toneMapped: false })); e.rotation.x = -Math.PI / 2; e.position.set(5.31, 0.04, EDGE - 0.65); R.scene.add(e); }
   /* THE CAR heading up the road, front axle in the sheet, rear axle on dry lane */
@@ -52,12 +53,12 @@ window.renderReady = (async () => {
   for (let i = 0; i < DAYS; i++) { const s = K.make('road_stud', { seed: i + 1 }); s.scale.setScalar(3); s.position.set(EDGELINE, 0.005, EDGE + 3.8 + i * 0.45); R.scene.add(s); }
   /* the lamps along the outside shoulder, the light the sheet carries */
   const LAMPZ = []; for (let z = -14; z > -150; z -= 30) { LAMPZ.push(z); const l = K.make('streetlight', { height: 11 }); l.position.set(11.6, 0, z); l.rotation.y = -Math.PI / 2; TXT.add(R, l); }
-  /* each lamp mirrored in the sheet as a long warm streak running toward the eye */
-  LAMPZ.filter(z => z > EDGE - 46).forEach(z => [z - 0.6, z + 0.5].forEach((zz, j) => { const st = new THREE.Mesh(new THREE.PlaneGeometry(6.5, j ? 0.08 : 0.14), new THREE.MeshBasicMaterial({ color: 0xffc68a, transparent: true, opacity: 0.5, toneMapped: false, depthWrite: false })); st.rotation.x = -Math.PI / 2; st.position.set(5.6, 0.045, zz); R.scene.add(st); }));
+  /* the lamps' light laid in the sheet as warm streaks running toward the eye */
+  [-2.4, -3.6, -4.8, -6.0, -7.4].forEach((zz, j) => [0].forEach(() => { const st = new THREE.Mesh(new THREE.PlaneGeometry(5.0, j % 2 ? 0.04 : 0.07), new THREE.MeshBasicMaterial({ color: 0xffc68a, transparent: true, opacity: 0.28, toneMapped: false, depthWrite: false })); st.rotation.x = -Math.PI / 2; st.position.set(7.6, 0.045, zz); R.scene.add(st); }));
   CH.matte(TXT.ground(R, { surface: 'grass', size: 900, seed: 24 }), 0.2);
   TXT.contact(R, car);
   const from = [40, 5.2, 1];
-  const look = CH.aim(THREE, R, TXT, from, [LANE2, 0.8, EDGE + 1.8], 680, 960, 24);
+  const look = CH.aim(THREE, R, TXT, from, [LANE2, 0.8, EDGE + 1.8], 420, 960, 24);
   TXT.frame(R, { fov: 24, from, look });
   { const sp = new THREE.SpotLight(0xffd6aa, 600, 30, 0.6, 0.6, 1.4); sp.position.set(10.4, 10.8, EDGE + 2); sp.target.position.set(LANE2, 0, EDGE); sp.castShadow = true; sp.shadow.mapSize.set(2048, 2048); R.scene.add(sp); R.scene.add(sp.target); }
   { const pl = new THREE.PointLight(0xffc890, 1100, 70, 1.6); pl.position.set(9, 3, EDGE - 30); R.scene.add(pl); }
@@ -69,12 +70,12 @@ window.renderReady = (async () => {
   TXT.weather(R, { grime: 0.25, height: 0.5 });
   const cx = CH.develop(await TXT.snapshot(R), gl);
   /* THE LEADERS, each ending on its target's own coordinates */
-  const domeW = CH.world(THREE, car, car.userData.dome), wheelW = CH.world(THREE, car, [-0.95, 0.35, 1.5]), waterW = [LANE2 + 0.8, 0.04, EDGE - 3.2];
+  const domeW = CH.world(THREE, car, car.userData.dome), wheelW = CH.world(THREE, car, [-0.95, 0.35, 1.5]), waterW = [LANE2 + 0.4, 0.04, EDGE - 2.6];
   const tg = [domeW, wheelW, waterW].map(p => CH.project(THREE, R, p).map(Math.round));
-  const ids = ['lDome', 'lWheel', 'lWater'], spots = [[570, 650], [80, 720], [690, 1100]];
+  const ids = ['lDome', 'lWheel', 'lWater'], spots = [[300, 650], [560, 1160], [700, 820]];
   const svg = document.getElementById('ld'), names = ["the sensor dome", "the front wheel", "the standing water"];
   window.__txLeaders = [];
-  ids.forEach((id, k) => { const el = document.getElementById(id); el.style.left = spots[k][0] + 'px'; el.style.top = spots[k][1] + 'px'; const r = el.getBoundingClientRect(); const from = k === 2 ? [Math.round(r.right + 8), Math.round(r.top + r.height / 2)] : [Math.round(r.left + r.width / 2), Math.round(r.bottom + 6)]; CH.leader(svg, from, tg[k]); window.__txLeaders.push({ target: names[k], at: tg[k], to: tg[k] }); });
+  ids.forEach((id, k) => { const el = document.getElementById(id); el.style.left = spots[k][0] + 'px'; el.style.top = spots[k][1] + 'px'; const r = el.getBoundingClientRect(); const from = k === 1 ? [Math.round(r.left + 40), Math.round(r.top - 6)] : k === 2 ? [Math.round(r.left + r.width / 2), Math.round(r.bottom + 6)] : [Math.round(r.left + r.width / 2), Math.round(r.bottom + 6)]; CH.leader(svg, from, tg[k]); window.__txLeaders.push({ target: names[k], at: tg[k], to: tg[k] }); });
   CH.post(cx, { a: 0.42, veil: 0.4, footWash: 0.54 });
   TXDECK.finish(cx);
   return true;
