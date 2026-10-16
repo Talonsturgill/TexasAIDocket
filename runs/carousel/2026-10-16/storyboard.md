@@ -132,7 +132,7 @@ layout: FULL_BLEED
 primary_image:
   subject: "the white robotaxi waiting at an airport departures curb at night, seen low from its rear quarter, a line of steel bollards running back along the island into the dark"
   rect: [0, 600, 1080, 600]
-  bleeds: [left, right, bottom]
+  bleeds: [left, right]
 accent: none
 job: >
   Put the news in front of the reader, the robotaxi open to anyone in San Antonio with the airport included, and plant the recall record whose remedy is still listed as under development.

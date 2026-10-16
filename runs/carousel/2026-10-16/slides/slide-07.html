@@ -55,8 +55,10 @@ window.renderReady = (async () => {
   if (litCount !== 177) throw new Error('lit posts ' + litCount + ' disagree with days_creek_to_open');
   const car = K.make('robotaxi', { seed: 4 }); car.rotation.y = Math.PI / 2; car.position.set(at.oct[0] + 3.0, 0, at.oct[2] + 0.2); TXT.add(R, car);
   /* a comal ring on the apron at the April 20th post, the water line's day */
-  { const ring = new THREE.Mesh(new THREE.RingGeometry(0.42, 0.62, 40), new THREE.MeshBasicMaterial({ color: CH.ACCENT, toneMapped: false })); ring.rotation.x = -Math.PI / 2; ring.position.set(at.apr[0], 0.01, at.apr[2]); R.scene.add(ring); }
+  { const ring = new THREE.Mesh(new THREE.RingGeometry(0.4, 2.1, 56), new THREE.MeshBasicMaterial({ color: CH.ACCENT, toneMapped: false })); ring.rotation.x = -Math.PI / 2; ring.position.set(at.apr[0], 0.01, at.apr[2]); R.scene.add(ring); }
   CH.matte(TXT.ground(R, { surface: 'asphalt', size: 900, seed: 18 }), 0.3);
+  /* the apron, a sealed near black pad laid over the ground, so each month's row stands apart at feed width */
+  { const pad = new THREE.Mesh(new THREE.PlaneGeometry(420, 420), new THREE.MeshBasicMaterial({ color: 0x060607 })); pad.rotation.x = -Math.PI / 2; pad.position.set(12, 0.003, -9); pad.receiveShadow = true; pad.userData.txWear = false; R.scene.add(pad); }
   /* the lit span: a lamp over the field from the April 20th post forward, so the dark days and the lit days split at the comal post */
   { const L = new THREE.SpotLight(0xffd6aa, 2600, 60, 0.42, 0.35, 1.4); L.position.set(12, 26, at.may[2] + 9); L.target.position.set(12, 0, at.may[2] + 6.4); L.castShadow = true; L.shadow.mapSize.set(2048, 2048); R.scene.add(L); R.scene.add(L.target); }
   TXT.contact(R, car);
@@ -65,7 +67,7 @@ window.renderReady = (async () => {
   TXT.frame(R, { fov: 50, from, look });
   TXT.sky(R);
   TXT.deckRig(R, CH.rigSpec(W, 40, 4096), CH.rigOpts([15.5, 0, -10], { distance: 60, shadowFar: 160 }));
-  TXT.stage(R, [lit, car], { poolInner: 10, poolOuter: 30 });
+  TXT.stage(R, [lit, car], { pool: false });
   TXT.weather(R, { grime: 0.2, height: 0.5 });
   const cx = CH.develop(await TXT.snapshot(R), gl);
   CH.labelAt('lFeb', [at.feb[0] + 4 * P, at.feb[1], at.feb[2]], 26, -40); const sA = CH.labelAt('lApr', at.apr, -150, -150); CH.labelAt('lMay', at.may, 10, -46); CH.labelAt('lOct', at.oct, -150, 84);

@@ -1,0 +1,81 @@
+{
+ "date": "2026-10-16",
+ "_note": "Every count, span and duration the deck states, with the claim it was quoted from or the code that computed it.",
+ "aggregates": [
+  {
+   "phrase": "four cities",
+   "slide": "slide-02.html",
+   "kind": "count",
+   "value": 4,
+   "quoted_from": "c5",
+   "quote": "in four new cities: Dallas, Houston, San Antonio, and Orlando",
+   "note": "Waymo's own count, quoted, and compute.py cities_feb parses the same four from c5"
+  },
+  {
+   "phrase": "60 square miles",
+   "slide": "slide-02.html",
+   "kind": "count",
+   "value": 60,
+   "quoted_from": "c21",
+   "quote": "a limited service area covering 60 square miles of the city",
+   "note": "Texas Public Radio's figure, quoted; figures.json service_sq_mi_feb"
+  },
+  {
+   "phrase": "11 days",
+   "slide": "slide-04.html",
+   "kind": "duration",
+   "value": 11,
+   "from_claims": [
+    "c15",
+    "c14"
+   ],
+   "from_date": "2026-04-20",
+   "to_date": "2026-05-01",
+   "computed_by": "out/2026-10-16/compute.py days_creek_to_recall, date subtraction from the creek date in c15 to the ReportReceivedDate in c14"
+  },
+  {
+   "phrase": "3,791 potentially affected units",
+   "slide": "slide-05.html",
+   "kind": "count",
+   "value": 3791,
+   "quoted_from": "c13",
+   "quote": "\"PotentialNumberofUnitsAffected\":3791",
+   "note": "the recall record's own field, quoted; figures.json units_affected"
+  },
+  {
+   "phrase": "177 days",
+   "slide": "slide-07.html",
+   "kind": "duration",
+   "value": 177,
+   "from_claims": [
+    "c15",
+    "c1"
+   ],
+   "from_date": "2026-04-20",
+   "to_date": "2026-10-14",
+   "computed_by": "out/2026-10-16/compute.py days_creek_to_open, date subtraction from the creek date in c15 to the opening date in c1"
+  },
+  {
+   "phrase": "February 24th to October 14th",
+   "slide": "slide-07.html",
+   "kind": "span",
+   "value": 232,
+   "from_claims": [
+    "c5",
+    "c1"
+   ],
+   "from_date": "2026-02-24",
+   "to_date": "2026-10-14",
+   "computed_by": "out/2026-10-16/compute.py days_first_riders_to_open, the publication dates of the posts in c5 and c1; the frame draws one post per day inclusive, posts_total 233"
+  },
+  {
+   "phrase": "3,791 potentially affected units",
+   "slide": "caption.txt",
+   "kind": "count",
+   "value": 3791,
+   "quoted_from": "c13",
+   "quote": "\"PotentialNumberofUnitsAffected\":3791",
+   "note": "the recall record's own field, quoted"
+  }
+ ]
+}
