@@ -54,6 +54,19 @@ put("days_creek_to_open", (opened - creek).days, ["c15", "c1"], "days from the c
 put("days_creek_to_recall", (recall_filed - creek).days, ["c15", "c14"], "days from the car in Salado Creek to the recall report")
 put("days_first_riders_to_open", (opened - first_riders).days, ["c5", "c1"], "days from the first invited riders to the service opening to anyone")
 put("days_recall_to_open", (opened - recall_filed).days, ["c14", "c1"], "days from the recall report to the service opening to anyone")
+put("days_first_riders_to_creek", (creek - first_riders).days, ["c5", "c15"], "days from the first invited riders to the car in Salado Creek")
+import calendar
+rows = []
+d = first_riders
+while d <= opened:
+    last = dt.date(d.year, d.month, calendar.monthrange(d.year, d.month)[1])
+    end = min(last, opened)
+    rows.append((end - d).days + 1)
+    d = end + dt.timedelta(days=1)
+put("month_rows", rows, ["c5", "c1"], "posts per month row, February 24th to October 14th inclusive, one post per day")
+put("posts_total", sum(rows), ["c5", "c1"], "posts in the calendar field, both end days included")
+put("creek_post_index", (creek - first_riders).days, ["c5", "c15"], "zero based index of the April 20th post in the field")
+put("recall_post_index", (recall_filed - first_riders).days, ["c5", "c14"], "zero based index of the May 1st post in the field")
 put("creek_same_day_as_interim", creek == interim_by, ["c15", "c11"], "the interim update deadline and the creek are the same date")
 
 # THE COUNTS

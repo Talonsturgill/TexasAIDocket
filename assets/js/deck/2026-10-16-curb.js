@@ -21,8 +21,8 @@
  * scale, 4.71 m long, white, under a roof housing that carries a cylindrical spinning sensor dome and
  * four perimeter sensor pods. It carries no logo and is drawn to no maker's design.
  *
- * THE KIT MODELS THIS DECK BUILDS, the kit having none of them: `robotaxi`, `terminal_curb` and
- * `standing_water`. Each is built in the kit's conventions so Phase 17 can queue the lift.
+ * THE KIT MODELS THIS DECK BUILDS, the kit having none of them: `robotaxi`, `terminal_curb`,
+ * `standing_water`, `curb_bollard` (the deck's unit of one day) and `road_stud`. Each is built in the kit's conventions so Phase 17 can queue the lift.
  *
  * THE FIGURES A FRAME DRAWS are the claims' own, written in the frame's code where figure_bearing.py
  * checks them against figures.json. The chassis types no figure of the story.
@@ -34,10 +34,10 @@
   TXDECK.declare({
     world: "curb",
     light: { az: 40, el: 34 },
-    sky: { preset: "nightSodium", haze: 0x141a26, horizonGlow: 0.55, glow: 0.3, stars: 0.5, fogDensity: 0.0025 },
+    sky: { preset: "nightSodium", haze: 0x0c1018, horizon: 0x111725, sun: 0x8a6440, horizonGlow: 0.12, glow: 0.12, stars: 0.5, fogDensity: 0.0025 },
     ground: "#07080C",
     material: "#E9ECEF",
-    accent: "#46C2B0",
+    accent: "#2A7A9E",
     grade: {
       exposure: 0,
       saturation: 1.04,
@@ -58,7 +58,9 @@
   N.W = 1080;
   N.H = 1350;
   N.SEED = 20261016;
-  N.ACCENT = 0x46c2b0;   /* provisional, set at synthesis */
+  N.ACCENT = 0x2a7a9e;   /* comal, brand.yaml's "the water itself", the blue green of the Edwards Aquifer water San
+                              * Antonio stands on. It means ONE thing in this deck: the line where water meets the car or
+                              * the record. Lit with a small emissive so it holds against the sodium key. */
   N.INK = "#ECE9E2";
 
   function lcg(seed) { var s = seed >>> 0 || 1; return function () { s = (s * 1664525 + 1013904223) >>> 0; return s / 4294967296; }; }
@@ -155,15 +157,15 @@
      * illustrate. userData.curbZ is the island's front edge, userData.islandY its top. */
     K.define("terminal_curb", {
       size: [60, 9, 16],
-      options: { length: 60, seed: 2 },
+      options: { length: 60, canopy: null, canopyX: 0, bollards: true, downlights: true, seed: 2 },
       note: "An illustrative airport departures curb: raised concrete island, steel canopy on round columns with a lit soffit, a glazed terminal wall lit from inside, steel bollards. Road runs along x in front (+z).",
       make: function (o, r) {
-        var g = new THREE.Group(), Lc = o.length || 60;
+        var g = new THREE.Group(), Lc = o.length || 60, Ca = o.canopy || Lc, Cx = o.canopyX || 0;
         var conc = K.mat("tc-conc", { color: 0xffffff, map: K.tex("concrete"), roughness: 0.9 });
         var steel = K.mat("tc-steel", { color: 0x6c7076, metalness: 0.7, roughness: 0.4 });
         var dark = K.mat("tc-dark", { color: 0x1a1c20, metalness: 0.5, roughness: 0.5 });
-        var soffit = K.mat("tc-soffit", { color: 0x3a3c40, roughness: 0.7, metalness: 0.2 });
-        var down = new THREE.MeshBasicMaterial({ color: 0xfff1d6, toneMapped: true });
+        var soffit = K.mat("tc-soffit", { color: 0x17181b, roughness: 0.85, metalness: 0.1 });
+        var down = new THREE.MeshBasicMaterial({ color: 0xb8a586, toneMapped: true });
         var glassM = K.mat("tc-glass", { color: 0x0e1418, roughness: 0.05, metalness: 0.4, transparent: true, opacity: 0.55 }, true);
         var lobby = new THREE.MeshBasicMaterial({ color: 0xffffff, map: N.lobbyTex(THREE), toneMapped: true });
         /* island: front edge at z = 0 */
@@ -172,19 +174,19 @@
         /* walk between the island and the wall */
         var walk = new THREE.Mesh(new THREE.BoxGeometry(Lc, 0.15, 6), conc); walk.geometry = K.uvBox(walk.geometry, 2); walk.position.set(0, 0.075, -7); walk.receiveShadow = true; g.add(walk);
         /* columns and canopy */
-        for (var x = -Lc / 2 + 4.5; x <= Lc / 2 - 4; x += 9) { K.cyl(0.22, 0.22, 7.2, steel, x, 0.15, -1.2, 24, g); K.cyl(0.3, 0.3, 0.12, dark, x, 0.15, -1.2, 24, g); }
-        var deck = new THREE.Mesh(new THREE.BoxGeometry(Lc, 0.5, 11), soffit); deck.position.set(0, 7.6, -4.5); deck.castShadow = true; g.add(deck);
-        var fascia = TXT.roundedBox(Lc, 0.9, 0.3, 0.05, K.mat("tc-fascia", { color: 0xcfd2d4, metalness: 0.6, roughness: 0.35 })); fascia.position.set(0, 7.75, 1.0); g.add(fascia);
-        for (var dx = -Lc / 2 + 2; dx < Lc / 2; dx += 3) for (var dz = 0; dz < 3; dz++) { var dl = new THREE.Mesh(new THREE.CircleGeometry(0.18, 16), down); dl.rotation.x = Math.PI / 2; dl.position.set(dx, 7.34, -0.5 - dz * 3.2); g.add(dl); }
+        for (var x = Cx - Ca / 2 + 4.5; x <= Cx + Ca / 2 - 4; x += 9) { K.cyl(0.22, 0.22, 7.2, steel, x, 0.15, -1.2, 24, g); K.cyl(0.3, 0.3, 0.12, dark, x, 0.15, -1.2, 24, g); }
+        var deck = new THREE.Mesh(new THREE.BoxGeometry(Ca, 0.5, 11), soffit); deck.position.set(Cx, 7.6, -4.5); deck.castShadow = true; g.add(deck);
+        var fascia = TXT.roundedBox(Ca, 0.9, 0.3, 0.05, K.mat("tc-fascia", { color: 0x2c2824, metalness: 0.5, roughness: 0.55 })); fascia.position.set(Cx, 7.75, 1.0); g.add(fascia);
+        if (o.downlights !== false) for (var dx = Cx - Ca / 2 + 2; dx < Cx + Ca / 2; dx += 3) for (var dz = 0; dz < 3; dz++) { var dl = new THREE.Mesh(new THREE.CircleGeometry(0.11, 16), down); dl.rotation.x = Math.PI / 2; dl.position.set(dx, 7.34, -0.5 - dz * 3.2); g.add(dl); }
         /* the terminal wall: mullions, glass, the lit lobby behind */
         var wallZ = -10.2;
-        var lob = new THREE.Mesh(new THREE.PlaneGeometry(Lc, 6.2), lobby); lob.position.set(0, 3.3, wallZ - 1.4); g.add(lob);
-        var gl = new THREE.Mesh(new THREE.PlaneGeometry(Lc, 6.6), glassM); gl.position.set(0, 3.45, wallZ); g.add(gl);
-        for (var mx = -Lc / 2; mx <= Lc / 2; mx += 1.5) K.box(0.06, 6.6, 0.16, dark, mx, 0.15, wallZ, 0.01, g);
-        [0.15, 3.4, 6.75].forEach(function (y) { K.box(Lc, 0.12, 0.18, dark, 0, y, wallZ, 0.01, g); });
-        var head = new THREE.Mesh(new THREE.BoxGeometry(Lc, 1.4, 0.4), K.mat("tc-head", { color: 0x9a9890, roughness: 0.8 })); head.position.set(0, 7.5, wallZ); g.add(head);
+        var lob = new THREE.Mesh(new THREE.PlaneGeometry(Ca, 6.2), lobby); lob.position.set(Cx, 3.3, wallZ - 1.4); g.add(lob);
+        var gl = new THREE.Mesh(new THREE.PlaneGeometry(Ca, 6.6), glassM); gl.position.set(Cx, 3.45, wallZ); g.add(gl);
+        for (var mx = Cx - Ca / 2; mx <= Cx + Ca / 2; mx += 1.5) K.box(0.06, 6.6, 0.16, dark, mx, 0.15, wallZ, 0.01, g);
+        [0.15, 3.4, 6.75].forEach(function (y) { K.box(Ca, 0.12, 0.18, dark, Cx, y, wallZ, 0.01, g); });
+        var head = new THREE.Mesh(new THREE.BoxGeometry(Ca, 1.4, 0.4), K.mat("tc-head", { color: 0x9a9890, roughness: 0.8 })); head.position.set(Cx, 7.5, wallZ); g.add(head);
         /* bollards on the island's front edge, every 1.5 m */
-        for (var bx = -Lc / 2 + 1; bx < Lc / 2; bx += 1.5) { K.cyl(0.11, 0.11, 0.95, steel, bx, 0.15, -0.35, 18, g); K.cyl(0.115, 0.115, 0.06, dark, bx, 0.92, -0.35, 18, g); }
+        if (o.bollards !== false) for (var bx = -Lc / 2 + 1; bx < Lc / 2; bx += 1.5) { K.cyl(0.11, 0.11, 0.95, steel, bx, 0.15, -0.35, 18, g); K.cyl(0.115, 0.115, 0.06, dark, bx, 0.92, -0.35, 18, g); }
         g.traverse(function (m) { if (m.isMesh && m.material !== down && m.material !== lobby) { m.castShadow = true; m.receiveShadow = true; } });
         g.userData.keepOrigin = true;
         g.userData.curbZ = 0.1; g.userData.islandY = 0.15; g.userData.wallZ = wallZ;
@@ -206,6 +208,101 @@
         g.userData.txWear = false;
         return g;
       }
+    });
+
+    /* A CURB BOLLARD, the deck's unit of one day: a 0.219 m steel pipe standing 1.0 m on a cast base,
+     * painted dark bronze, a domed cap, and a 0.06 m retroreflective band at 0.82 m. `band` 'white',
+     * 'accent' (comal, lit) or 'dark' (an unlit day). */
+    K.define("curb_bollard", {
+      size: [0.3, 1.06, 0.3],
+      options: { band: "white", seed: 1 },
+      note: "A steel pipe curb bollard 0.219 m across and 1.0 m tall, dark bronze, domed cap, a reflective band at 0.82 m in white, comal accent or dark.",
+      make: function (o, r) {
+        var g = new THREE.Group();
+        K.cyl(0.11, 0.11, 1.0, N.bollardMat(THREE, K, "pipe"), 0, 0, 0, 20, g);
+        K.cyl(0.14, 0.15, 0.04, N.bollardMat(THREE, K, "base"), 0, 0, 0, 20, g);
+        var cap = new THREE.Mesh(new THREE.SphereGeometry(0.11, 20, 10, 0, Math.PI * 2, 0, Math.PI / 2), N.bollardMat(THREE, K, "pipe")); cap.position.y = 1.0; g.add(cap);
+        K.cyl(0.113, 0.113, 0.06, N.bollardMat(THREE, K, o.band), 0, 0.79, 0, 20, g);
+        g.traverse(function (m) { if (m.isMesh) { m.castShadow = true; m.receiveShadow = true; } });
+        return g;
+      }
+    });
+
+    /* A RAISED ROAD STUD, a domed reflector 0.1 x 0.02 x 0.1 m on the lane line, its two faces lit */
+    K.define("road_stud", {
+      size: [0.1, 0.022, 0.1],
+      options: { seed: 1 },
+      note: "A raised pavement marker 0.10 x 0.02 x 0.10 m, white body with a lit prismatic face each way.",
+      make: function (o, r) {
+        var g = new THREE.Group();
+        var b = TXT.roundedBox(0.1, 0.02, 0.1, 0.008, K.mat("rs-body", { color: 0xd8d6d0, roughness: 0.6 })); b.position.y = 0.01; g.add(b);
+        [-1, 1].forEach(function (sz) { var f = new THREE.Mesh(new THREE.PlaneGeometry(0.07, 0.012), new THREE.MeshBasicMaterial({ color: 0xfff2d8, toneMapped: true })); f.position.set(0, 0.011, sz * 0.051); if (sz < 0) f.rotation.y = Math.PI; g.add(f); });
+        return g;
+      }
+    });
+  };
+
+  /* the bollard's materials, shared so a row of hundreds costs one material each */
+  N.bollardMat = function (THREE, K, which) {
+    N._bm = N._bm || {};
+    if (N._bm[which]) return N._bm[which];
+    var m;
+    if (which === "pipe") m = K.mat("bl-pipe", { color: 0x3a3028, metalness: 0.55, roughness: 0.45 });
+    else if (which === "base") m = K.mat("bl-base", { color: 0x26221e, metalness: 0.5, roughness: 0.6 });
+    else if (which === "white") m = K.mat("bl-white", { color: 0xf2f0ea, roughness: 0.25, emissive: 0xfff4e0, emissiveIntensity: 0.55 });
+    else if (which === "accent") m = K.mat("bl-acc", { color: N.ACCENT, roughness: 0.25, emissive: N.ACCENT, emissiveIntensity: 1.4 });
+    else m = K.mat("bl-dark", { color: 0x141210, roughness: 0.7 });
+    N._bm[which] = m; return m;
+  };
+
+  /* A ROW OF BOLLARDS AS INSTANCES: n posts from `start` along `dir` at `pitch` m, each band chosen by
+   * `bandOf(i)` ('white', 'accent' or 'dark'). One InstancedMesh per part and band, so 233 posts are a
+   * handful of draw calls. Returns the posts' positions. */
+  N.bollards = function (THREE, R, K, n, start, dir, pitch, bandOf, parent) {
+    var pos = [], groups = {}, geo = {
+      pipe: new THREE.CylinderGeometry(0.11, 0.11, 1.0, 16), base: new THREE.CylinderGeometry(0.14, 0.15, 0.04, 16),
+      cap: new THREE.SphereGeometry(0.11, 16, 8, 0, Math.PI * 2, 0, Math.PI / 2), band: new THREE.CylinderGeometry(0.113, 0.113, 0.06, 16)
+    };
+    for (var i = 0; i < n; i++) pos.push([start[0] + dir[0] * pitch * i, start[1] || 0, start[2] + dir[2] * pitch * i]);
+    function inst(g, mat, list, y) {
+      var im = new THREE.InstancedMesh(g, mat, list.length), M = new THREE.Matrix4();
+      list.forEach(function (p, k) { M.makeTranslation(p[0], p[1] + y, p[2]); im.setMatrixAt(k, M); });
+      im.castShadow = true; im.receiveShadow = true; im.instanceMatrix.needsUpdate = true;
+      (parent || R.scene).add(im); return im;
+    }
+    inst(geo.pipe, N.bollardMat(THREE, K, "pipe"), pos, 0.5);
+    inst(geo.base, N.bollardMat(THREE, K, "base"), pos, 0.02);
+    inst(geo.cap, N.bollardMat(THREE, K, "pipe"), pos, 1.0);
+    pos.forEach(function (p, i) { var b = bandOf ? bandOf(i) : "white"; (groups[b] = groups[b] || []).push(p); });
+    Object.keys(groups).forEach(function (b) { inst(geo.band, N.bollardMat(THREE, K, b), groups[b], 0.82); });
+    return pos;
+  };
+
+  /* THE ROBOTAXI AT A LOW LEVEL OF DETAIL, for a field of thousands: a white body block with a dark
+   * glass band, a dark dome, four dark wheels, at the hero's own proportions. Places one per entry of
+   * `spots` ([x, z, yaw]) as InstancedMeshes. */
+  N.carField = function (THREE, R, K, spots, parent) {
+    var M4 = new THREE.Matrix4(), Q = new THREE.Quaternion(), S = new THREE.Vector3(1, 1, 1), up = new THREE.Vector3(0, 1, 0);
+    var white = K.mat("cf-white", { color: 0xeceef0, roughness: 0.32, metalness: 0.0 });
+    var glass = K.mat("cf-glass", { color: 0x0b0d10, roughness: 0.1, metalness: 0.3 });
+    var dark = K.mat("cf-dark", { color: 0x0e1012, roughness: 0.5 });
+    var parts = [
+      [new THREE.BoxGeometry(1.86, 0.62, 4.6), white, [0, 0.52, 0]],
+      [new THREE.BoxGeometry(1.66, 0.42, 2.7), glass, [0, 1.04, -0.2]],
+      [new THREE.BoxGeometry(1.6, 0.06, 2.5), white, [0, 1.27, -0.25]],
+      [new THREE.CylinderGeometry(0.17, 0.17, 0.32, 12), dark, [0, 1.46, -0.22]],
+      [new THREE.CylinderGeometry(0.33, 0.33, 1.9, 12).rotateZ(Math.PI / 2), dark, [0, 0.33, 1.45]],
+      [new THREE.CylinderGeometry(0.33, 0.33, 1.9, 12).rotateZ(Math.PI / 2), dark, [0, 0.33, -1.45]]
+    ];
+    parts.forEach(function (pt) {
+      var im = new THREE.InstancedMesh(pt[0], pt[1], spots.length);
+      spots.forEach(function (sp, k) {
+        Q.setFromAxisAngle(up, sp[2] || 0);
+        var off = new THREE.Vector3(pt[2][0], pt[2][1], pt[2][2]).applyQuaternion(Q);
+        M4.compose(new THREE.Vector3(sp[0] + off.x, off.y, sp[1] + off.z), Q, S); im.setMatrixAt(k, M4);
+      });
+      im.castShadow = true; im.receiveShadow = true; im.instanceMatrix.needsUpdate = true;
+      (parent || R.scene).add(im);
     });
   };
 
@@ -258,6 +355,27 @@
     }
     R.scene.add(g); return g;
   };
+
+  /* A WINDOW CUT INTO A TXT.interior BACK WALL. The engine's room carries a lit pane, not an opening, so
+   * a frame that must see the street through its window removes the back wall (the room's first child)
+   * and builds it again around an opening x0..x1, y0..y1, with a sill, a frame, faint glass and a set of
+   * blinds whose slats let the deck's key through in stripes. Room local coordinates, back wall at z = -d/2. */
+  N.cutWindow = function (THREE, K, room, o) {
+    var w = o.w, d = o.d, h = o.h, t = 0.2, z = -d / 2;
+    var wallMat = room.children[0].material;
+    room.remove(room.children[0]);
+    function piece(x0, x1, y0, y1) { var m = TXT_box(THREE, x1 - x0, y1 - y0, t, wallMat); m.position.set((x0 + x1) / 2, (y0 + y1) / 2, z); room.add(m); }
+    piece(-w / 2 - t / 2, o.x0, 0, h); piece(o.x1, w / 2 + t / 2, 0, h); piece(o.x0, o.x1, 0, o.y0); piece(o.x0, o.x1, o.y1, h);
+    var frame = K.mat("cw-frame", { color: 0x2a2826, roughness: 0.6, metalness: 0.3 });
+    [[o.x0, o.x1, o.y0 - 0.04, o.y0], [o.x0, o.x1, o.y1, o.y1 + 0.04]].forEach(function (b) { var m = TXT_box(THREE, b[1] - b[0], b[3] - b[2], t + 0.04, frame); m.position.set((b[0] + b[1]) / 2, (b[2] + b[3]) / 2, z); room.add(m); });
+    [o.x0, o.x1, (o.x0 + o.x1) / 2].forEach(function (x) { var m = TXT_box(THREE, 0.05, o.y1 - o.y0, t + 0.04, frame); m.position.set(x, (o.y0 + o.y1) / 2, z); room.add(m); });
+    var sill = TXT_box(THREE, o.x1 - o.x0 + 0.1, 0.03, 0.26, K.mat("cw-sill", { color: 0x8a8278, roughness: 0.7 })); sill.position.set((o.x0 + o.x1) / 2, o.y0 - 0.015, z + 0.1); room.add(sill);
+    var slat = K.mat("cw-slat", { color: o.slat || 0xcfc8bc, roughness: 0.55, metalness: 0.1 });
+    for (var y = o.y0 + 0.06; y < o.y1 - 0.02; y += o.pitch || 0.1) { var sl = TXT_box(THREE, o.x1 - o.x0 - 0.04, 0.004, 0.05, slat); sl.position.set((o.x0 + o.x1) / 2, y, z + 0.16); sl.rotation.x = o.tilt == null ? 0.9 : o.tilt; room.add(sl); }
+    room.traverse(function (m) { if (m.isMesh) { m.receiveShadow = true; m.castShadow = m.material === slat || m.material === frame || m.material === wallMat; } });
+    return room;
+  };
+  function TXT_box(THREE, w, h, d, mat) { return new THREE.Mesh(new THREE.BoxGeometry(w, h, d), mat); }
   N.put = function (obj, contact) { N.TXT.add(N.R, obj); if (contact) N.TXT.contact(N.R, obj, contact === true ? undefined : contact); return obj; };
   N.project = function (THREE, R, p) {
     R.camera.updateMatrixWorld(true);
@@ -295,8 +413,12 @@
     }
     return look;
   };
+  /* THE KEY is the curb's lamps, a sodium and LED mix rather than pure low pressure sodium, so the white
+   * clearcoat reads white with a warm lit face; the cool rim from the world's rig is raised so a car's
+   * shadow side separates from the night */
   N.rigSpec = function (W, size, map) {
-    return Object.assign({}, W.rig, { key: Object.assign({}, W.rig.key, { shadowSize: size || 12, mapSize: map || 2048, radius: 5 }) });
+    var rim = Object.assign({}, W.rig.rim, { i: (W.rig.rim.i || 0.8) * 2.2 });
+    return Object.assign({}, W.rig, { rim: rim, key: Object.assign({}, W.rig.key, { color: 0xffd6aa, shadowSize: size || 12, mapSize: map || 2048, radius: 5 }) });
   };
   N.rigOpts = function (target, o) {
     o = o || {};
@@ -323,6 +445,17 @@
     var y0 = N.H - (o.veilH || 240), v = cx.createLinearGradient(0, y0, 0, N.H);
     for (var k = 0; k <= 8; k++) { var t = k / 8, e = t * t * (3 - 2 * t); v.addColorStop(t, "rgba(5,6,9," + (Math.min(0.5, o.veil == null ? 0.38 : o.veil) * e).toFixed(4) + ")"); }
     cx.fillStyle = v; cx.fillRect(0, y0, N.W, N.H - y0);
+    /* the footer row wash (TECHNIQUE_LIBRARY, 2026-10-15): full width, darken only, at full strength from
+     * the top of the footer row to the foot, feathered above it over the depth of the margin below it */
+    var f = document.querySelector(".tx-site");
+    if (f && o.footWash) {
+      var r = f.getBoundingClientRect(), feather = N.H - r.bottom, fa = Math.min(o.footWash, 0.55 - 0.01);
+      var fw = cx.createLinearGradient(0, r.top - feather, 0, N.H);
+      fw.addColorStop(0, "rgba(5,6,9,0)");
+      fw.addColorStop(feather / (N.H - r.top + feather), "rgba(5,6,9," + fa + ")");
+      fw.addColorStop(1, "rgba(5,6,9," + fa + ")");
+      cx.fillStyle = fw; cx.fillRect(0, r.top - feather, N.W, N.H - r.top + feather);
+    }
     N.dither(cx);
   };
   /* A RESERVE under one line of type: a feathered dark patch behind the element, so a horizon, a

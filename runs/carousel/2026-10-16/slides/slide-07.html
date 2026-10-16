@@ -1,0 +1,79 @@
+<!doctype html>
+<!-- 2026-10-16, frame 7 of 9. Archetype GRID. RENDERED through txthree.js in the deck's nightSodium world. A calendar field of curb bollards, one per day from February 24th to October 14th in month rows aligned by date; the April 20th post carries the comal band, the posts after it are lit, the posts before it dark, and the illustrative robotaxi stands at the end of the October row. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+  .dek { width:880px; }
+  .lab { font-size:24px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">177 days from the creek to the curb</h1>
+<p class="dek" data-follow="26">One post for each day from February&nbsp;24th to October&nbsp;14th, a row for each month. The blue band is April&nbsp;20th. The posts lit after it count the days until anyone could ride.</p>
+<svg id="ld" width="1080" height="1350" style="position:absolute;left:0;top:0;z-index:11;pointer-events:none"></svg>
+<div class="lab" id="lFeb">February</div>
+<div class="lab acc" id="lApr">April 20th</div>
+<div class="lab" id="lMay">May 1st</div>
+<div class="lab" id="lOct">October 14th</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-16-curb.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "One post a day, February 24th to October 14th", counter: "07 / 09", src: "c5 c15 c14 c1", fit: { min: 76, max: 96, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 50, far: 3000 });
+  /* THE FIELD, from figures.json: month_rows [5, 31, 30, 31, 30, 31, 31, 30, 14], posts_total 233, one
+   * post per day from February 24th (c5) to October 14th (c1) inclusive. creek_post_index 55 is April
+   * 20th (c15), the comal band; recall_post_index 66 is May 1st (c14). The posts after the creek post
+   * are lit: days_creek_to_open 177, which this code counts back as a check. */
+  const ROWS = [5, 31, 30, 31, 30, 31, 31, 30, 14], FIRST_DAY = 24, CREEK = 55, RECALL = 66, P = 0.78, GAPZ = 2.3;
+  const lit = new THREE.Group(), dark = new THREE.Group(); R.scene.add(lit); R.scene.add(dark);
+  let idx = 0, litCount = 0; const at = {};
+  ROWS.forEach((n, r) => {
+    const z = -(ROWS.length - 1 - r) * GAPZ, d0 = r === 0 ? FIRST_DAY : 1;
+    for (let k = 0; k < n; k++, idx++) {
+      const x = (d0 - 1 + k) * P, band = idx === CREEK ? 'accent' : idx > CREEK ? 'white' : 'dark';
+      if (idx > CREEK) litCount++;
+      CH.bollards(THREE, R, K, 1, [x, 0, z], [1, 0, 0], P, () => band, idx >= CREEK ? lit : dark);
+      if (idx === CREEK) at.apr = [x, 1.1, z]; if (idx === RECALL) at.may = [x, 1.1, z];
+      if (idx === 0) at.feb = [x, 1.1, z]; if (idx === 232) at.oct = [x, 1.1, z];
+    }
+  });
+  if (litCount !== 177) throw new Error('lit posts ' + litCount + ' disagree with days_creek_to_open');
+  const car = K.make('robotaxi', { seed: 4 }); car.rotation.y = Math.PI / 2; car.position.set(at.oct[0] + 3.0, 0, at.oct[2] + 0.2); TXT.add(R, car);
+  /* a comal ring on the apron at the April 20th post, the water line's day */
+  { const ring = new THREE.Mesh(new THREE.RingGeometry(0.42, 0.62, 40), new THREE.MeshBasicMaterial({ color: CH.ACCENT, toneMapped: false })); ring.rotation.x = -Math.PI / 2; ring.position.set(at.apr[0], 0.01, at.apr[2]); R.scene.add(ring); }
+  CH.matte(TXT.ground(R, { surface: 'asphalt', size: 900, seed: 18 }), 0.3);
+  /* the lit span: a lamp over the field from the April 20th post forward, so the dark days and the lit days split at the comal post */
+  { const L = new THREE.SpotLight(0xffd6aa, 2600, 60, 0.42, 0.35, 1.4); L.position.set(12, 26, at.may[2] + 9); L.target.position.set(12, 0, at.may[2] + 6.4); L.castShadow = true; L.shadow.mapSize.set(2048, 2048); R.scene.add(L); R.scene.add(L.target); }
+  TXT.contact(R, car);
+  const from = [11.6, 13, 19];
+  const look = CH.aim(THREE, R, TXT, from, [11.6, 0.5, -9], 540, 860, 50);
+  TXT.frame(R, { fov: 50, from, look });
+  TXT.sky(R);
+  TXT.deckRig(R, CH.rigSpec(W, 40, 4096), CH.rigOpts([15.5, 0, -10], { distance: 60, shadowFar: 160 }));
+  TXT.stage(R, [lit, car], { poolInner: 10, poolOuter: 30 });
+  TXT.weather(R, { grime: 0.2, height: 0.5 });
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.labelAt('lFeb', [at.feb[0] + 4 * P, at.feb[1], at.feb[2]], 26, -40); const sA = CH.labelAt('lApr', at.apr, -150, -150); CH.labelAt('lMay', at.may, 10, -46); CH.labelAt('lOct', at.oct, -150, 84);
+  { const el = document.getElementById('lApr').getBoundingClientRect(), tip = [Math.round(sA[0]), Math.round(sA[1] - 18)]; CH.leader(document.getElementById('ld'), [Math.round(el.left + el.width / 2), Math.round(el.bottom + 6)], tip); window.__txLeaders = [{ target: "the April 20th post's band", at: tip, to: tip }]; }
+  CH.post(cx, { a: 0.4, veil: 0.4, footWash: 0.54 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

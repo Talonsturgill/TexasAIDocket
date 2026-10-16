@@ -74,6 +74,56 @@
   ],
   "basis": "days from the recall report to the service opening to anyone"
  },
+ "days_first_riders_to_creek": {
+  "value": 55,
+  "from": [
+   "c5",
+   "c15"
+  ],
+  "basis": "days from the first invited riders to the car in Salado Creek"
+ },
+ "month_rows": {
+  "value": [
+   5,
+   31,
+   30,
+   31,
+   30,
+   31,
+   31,
+   30,
+   14
+  ],
+  "from": [
+   "c5",
+   "c1"
+  ],
+  "basis": "posts per month row, February 24th to October 14th inclusive, one post per day"
+ },
+ "posts_total": {
+  "value": 233,
+  "from": [
+   "c5",
+   "c1"
+  ],
+  "basis": "posts in the calendar field, both end days included"
+ },
+ "creek_post_index": {
+  "value": 55,
+  "from": [
+   "c5",
+   "c15"
+  ],
+  "basis": "zero based index of the April 20th post in the field"
+ },
+ "recall_post_index": {
+  "value": 66,
+  "from": [
+   "c5",
+   "c14"
+  ],
+  "basis": "zero based index of the May 1st post in the field"
+ },
  "creek_same_day_as_interim": {
   "value": true,
   "from": [

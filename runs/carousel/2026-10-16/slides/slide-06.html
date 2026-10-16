@@ -1,0 +1,62 @@
+<!doctype html>
+<!-- 2026-10-16, frame 6 of 9. Archetype SPLIT_HORIZON. RENDERED through txthree.js in the deck's nightSodium world. The illustrative robotaxi stopped nose on at the far edge of a sheet of still standing water on a road at night, its whole reflection meeting it at a straight water line traced by one comal hairline, one streetlight beside it. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+  .dek { width:880px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">The cars ran without riders</h1>
+<p class="dek" data-follow="26">Texas Public Radio called the flood pause the longest of Waymo's San Antonio service. In May its cars ran in the city without serving riders while it reviewed its flood procedures. Drawn to illustrate.</p>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-16-curb.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "San Antonio, the pause", counter: "06 / 09", src: "c22 c23 c20", fit: { min: 76, max: 96, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 30, far: 3000 });
+  /* THE WATER: a still sheet across the road, its far edge the frame's cut. The car stands on dry
+   * asphalt just past it, and a mirrored twin under the sheet is its reflection. */
+  const WD = 0.05, EDGE = -12, H = 3;
+  /* the set stands on a raised road slab, so the mirrored twin hangs in open dark below the sheet */
+  { const slab = new THREE.Mesh(new THREE.BoxGeometry(80, 0.06, 400), new THREE.MeshStandardMaterial({ color: 0xffffff, map: (() => { const t = K.tex('concrete'); return t; })(), roughness: 0.85 })); slab.material.color.setHex(0x3a3836); slab.position.set(0, H - 0.03, EDGE - 200); slab.receiveShadow = true; R.scene.add(slab); }
+  /* the sheet itself: a dark translucent skin at the water line, so the twin below reads as the reflection */
+  const water = new THREE.Mesh(new THREE.PlaneGeometry(40, 18), new THREE.MeshBasicMaterial({ color: 0x05070a, transparent: true, opacity: 0.45, depthWrite: false }));
+  water.rotation.x = -Math.PI / 2; water.position.set(0, H + WD, EDGE + 9); water.userData.txWear = false; R.scene.add(water);
+  const car = K.make('robotaxi', { seed: 4 }); car.position.set(0.2, H, EDGE - 3.0); TXT.add(R, car);
+  const lamp = K.make('streetlight', { height: 9 }); lamp.position.set(4.6, H, EDGE - 5.5); lamp.rotation.y = -Math.PI / 2; TXT.add(R, lamp);
+  [car, lamp].forEach(o => { const t = o.clone(true); t.scale.y = -1; t.position.y = 2 * (H + WD) - o.position.y; t.traverse(m => { if (m.isMesh) { m.castShadow = false; m.receiveShadow = false; } }); R.scene.add(t); });
+  /* the water line: one comal hairline along the sheet's far edge */
+  { const line = new THREE.Mesh(new THREE.PlaneGeometry(40, 0.14), new THREE.MeshBasicMaterial({ color: CH.ACCENT, toneMapped: false })); line.rotation.x = -Math.PI / 2; line.position.set(0, H + WD + 0.006, EDGE + 0.07); R.scene.add(line); }
+  CH.matte(TXT.ground(R, { surface: 'asphalt', size: 900, seed: 19 }), 0.3);
+  TXT.contact(R, car); TXT.contact(R, lamp);
+  const from = [0.6, H + 0.25, -1.5];
+  const look = CH.aim(THREE, R, TXT, from, [0.2, H + 0.9, EDGE - 3.0], 540, 860, 30);
+  TXT.frame(R, { fov: 30, from, look });
+  { const sp = new THREE.SpotLight(0xffd6aa, 420, 20, 0.7, 0.6, 1.4); sp.position.set(3.4, H + 8.8, EDGE - 5.2); sp.target.position.set(0.5, H, EDGE - 2.6); sp.castShadow = true; sp.shadow.mapSize.set(2048, 2048); R.scene.add(sp); R.scene.add(sp.target); }
+  TXT.sky(R);
+  TXT.deckRig(R, CH.rigSpec(W, 24, 4096), CH.rigOpts([0, H + 0.8, EDGE - 3], { distance: 40, shadowFar: 120 }));
+  TXT.stage(R, [car], { poolInner: 4, poolOuter: 12 });
+  TXT.weather(R, { grime: 0.2, height: 0.5 });
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0.4, veil: 0.3, footWash: 0.54 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

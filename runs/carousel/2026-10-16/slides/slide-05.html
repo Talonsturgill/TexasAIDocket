@@ -1,0 +1,59 @@
+<!doctype html>
+<!-- 2026-10-16, frame 5 of 9. Archetype GRID. RENDERED through txthree.js in the deck's nightSodium world. A field of illustrative robotaxis on a dark pad seen high through a long lens, one drawn for each potentially affected unit the federal recall record counts, the short last row nearest the lens and the hero at its end. Drawn to illustrate; not a real lot. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+  .dek { width:880px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">3,791 of them</h1>
+<p class="dek" data-follow="26">The recall covers 5th and 6th generation automated driving systems, 3,791 potentially affected units by the federal record's count. One is drawn here for each. Drawn to illustrate.</p>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-16-curb.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "The recall, by its own count", counter: "05 / 09", src: "c13 c12", fit: { min: 90, max: 120, maxLines: 1 } });
+  const R = CH.stage(TXT, gl, W, { fov: 30, far: 4000 });
+  /* THE FIELD, from figures.json: units_affected 3791, one car per unit. COLS a row, the full rows and
+   * the short last row computed here, the short row nearest the lens so the block reads as an exact count. */
+  const UNITS = 3791, COLS = 62, PX = 2.7, PZ = 6.2;
+  const FULL = Math.floor(UNITS / COLS), REM = UNITS - FULL * COLS;
+  const spots = [];
+  for (let r = 0; r < FULL; r++) for (let c = 0; c < COLS; c++) spots.push([(c - (COLS - 1) / 2) * PX, -(r + 1) * PZ, 0]);
+  for (let c = 0; c < REM - 1; c++) spots.push([(c - (REM - 1) / 2) * PX, 0, 0]);
+  const hero = K.make('robotaxi', { seed: 4 }); hero.position.set(((REM - 1) - (REM - 1) / 2) * PX, 0, 0); TXT.add(R, hero);
+  if (spots.length + 1 !== UNITS) throw new Error('field holds ' + (spots.length + 1) + ', not units_affected');
+  CH.carField(THREE, R, K, spots);
+  CH.matte(TXT.ground(R, { surface: 'asphalt', size: 1600, seed: 22 }), 0.3);
+  TXT.contact(R, hero);
+  const from = [4, 26, 34];
+  const look = CH.aim(THREE, R, TXT, from, [hero.position.x - 4, 0.6, -4], 560, 1080, 30);
+  TXT.frame(R, { fov: 30, from, look });
+  { const L = new THREE.SpotLight(0xffd6aa, 5200, 140, 0.5, 0.6, 1.3); L.position.set(0, 60, 18); L.target.position.set(0, 0, -30); L.castShadow = true; L.shadow.mapSize.set(2048, 2048); R.scene.add(L); R.scene.add(L.target); }
+  TXT.sky(R);
+  TXT.deckRig(R, CH.rigSpec(W, 80, 4096), CH.rigOpts([0, 0, -20], { distance: 120, shadowFar: 300 }));
+  TXT.stage(R, [hero], { poolInner: 8, poolOuter: 30, behind: 1.5, depth: 10 });
+  TXT.weather(R, { grime: 0.15, height: 0.4 });
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0.42, veil: 0.4, footWash: 0.54 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>
