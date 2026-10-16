@@ -1,0 +1,125 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "bands": [
+        0.3004,
+        0.395,
+        0.6434
+      ],
+      "band_ratio": 1.4134
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky",
+        "a drawn rule crosses the glyph band of 'Waymo took its first public riders in Sa' (canvas edge .pixels at 82,479.5 846x1.5) and COULD NOT BE MEASURED: too little of the strip is clear of type to read its colour against the paper. Judge it by eye rather than reading this as a pass"
+      ],
+      "bands": [
+        0.2731,
+        0.1849,
+        0.4026
+      ],
+      "band_ratio": 1.3781
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "bands": [
+        0.2962,
+        0.2689,
+        0.3585
+      ],
+      "band_ratio": 1.1557
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "bands": [
+        0.2689,
+        0.1702,
+        0.7316
+      ],
+      "band_ratio": 1.8031
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "bands": [
+        0.2794,
+        0.4076,
+        0.3143
+      ],
+      "band_ratio": 0.9443
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "bands": [
+        0.2458,
+        0.3992,
+        0.5202
+      ],
+      "band_ratio": 1.3191
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "bands": [
+        0.3214,
+        0.2353,
+        0.2849
+      ],
+      "band_ratio": 1.0149
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot stands inside something built"
+      ],
+      "bands": [
+        0.3487,
+        0.105,
+        0.4026
+      ],
+      "band_ratio": 1.3845
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "bands": [
+        0.3845,
+        0.4328,
+        0.5478
+      ],
+      "band_ratio": 1.1929
+    }
+  ],
+  "fails": 0,
+  "warns": 10,
+  "verdict": "WARN"
+}

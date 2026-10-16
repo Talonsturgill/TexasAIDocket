@@ -1,0 +1,77 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.3,
+   "why": "Dark register; 1, 2 and 9 pass most of the stage test, 9 the best. Frame 3 does not read as a car in the creek at 432 px: a cropped slab on a black plane, no brown water or ledge, a brown block at right. Frame 5's instances read as tiles. Frame 6's car floats on dark struts. Frame 8's window car reads as a toy on a shelf. Frame 4's water is a flat dark rectangle above a green strip. Frame 7's lit posts don't separate visibly."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 8.0,
+   "why": "Clearly one deck: one world, one car, comal reserved for the water line, one chassis, a dark track; two devices work. Frame 8 and the aerials on 5 and 7 sit slightly outside."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.8,
+   "why": "Every numeral traces; 177 re-derived; the day-first May 1st reading supported. Frame 4's mechanics lean on TPR quoting the notice; frame 8's Model field is not quoted by a claim."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.4,
+   "why": "What and where land; the action thin with 26E026 only in the first comment; no Texas body; the April 20th coincidence unaddressed; c23 unused."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.3,
+   "why": "Cover earns the swipe; frame 2 steps back; 3 a real turn; 6 and 7 cover ground already given; the close lands."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "Texas specific and honest; 'Drawn to illustrate.' boilerplate; frame 5's dek explains the drawing."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.0,
+   "why": "Fresh world; same city, hazard and night look as no. 50 four days ago; one post per day repeats recent decks."
+  }
+ ],
+ "weighted_score": 7.186,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Rebuild frame 3 so a reader sees the car to its beltline in brown rippled floodwater against lit limestone banks.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 3,
+   "problem": "Does not read as a flood; cropped slab on a black plane; a brown block reads as furniture.",
+   "fix": "A lit rippled brown surface at the beltline with broken highlights, delete the block, light a limestone bank behind."
+  },
+  {
+   "slide": 8,
+   "problem": "The window car reads as a toy on a shelf.",
+   "fix": "A visible window frame with the car small and distant under its own lamp, or drop it and crop tighter."
+  },
+  {
+   "slide": 6,
+   "problem": "The car hovers on dark struts.",
+   "fix": "Seat the body on lit tyres with contact at the water's edge."
+  },
+  {
+   "slide": 5,
+   "problem": "Glassless loaf instances read as tiles.",
+   "fix": "A silhouette with a dark glass band and arches; a lower camera."
+  },
+  {
+   "slide": 7,
+   "problem": "Lit and unlit posts look the same.",
+   "fix": "Pool the key only over the 177 posts from the ring to the car."
+  }
+ ]
+}

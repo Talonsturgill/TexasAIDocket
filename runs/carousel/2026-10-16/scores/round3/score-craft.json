@@ -1,0 +1,82 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.2,
+   "why": "Bold register on all nine; 9 the best, 6 close. The hero is a rounded-box kit SUV on every frame. Frame 3, the declared showstopper, fails: an opaque matte black plane slicing the car, a brown slab where the ledges were asked, lamp hotspots on the cabin glass, lit foliage through dek lines 3 to 5. Frame 4's water mirrors no lamp, an olive grass band, a dead band, the car under half the width. Frame 5's instances read as loaves in tiles. Frame 8's window reads as shelving. Frame 2's figure stands like a mannequin and the pole rises through the dek's right edge."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.6,
+   "why": "Plainly one deck: one world, one hero, one grade, comal meaning one thing; dark track with no strobe; both devices work. Frame 8 slightly outside; frame 2's pool lights from the right."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.3,
+   "why": "Every numeral traces, 177 checked by hand; recall facts on the primary record; slide 5's count asserted in code; the April 20th juxtaposition kept in its own sentence. Slide 4's labels are TPR's paraphrase set unquoted."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.6,
+   "why": "What, who, where and the open fact land; the action real but thin; May 1st unexplained on frame 7."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "Cover earns the swipe, 3 a real turn, 4, 5 and 8 build, 9 returns. Frame 2 could go; 7 partly restates."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "Plain, specific, unsensational; a few procedural lines."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 5.5,
+   "why": "New palette; the sixth staged near-black one-hero deck; one post per day, leaders on a profile, count field and document on a desk repeat recent decks; no. 50's night low water crossing echoed on 3, 4 and 6."
+  }
+ ],
+ "weighted_score": 7.202,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Rebuild frame 3 with the chassis standing-water sheet wrapping the doors, a mud film to the comal line, lit limestone ledges on the far bank and the crowns masked out of the dek.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 3,
+   "problem": "Opaque matte black plane; brown slab floating at hood height; cabin hotspots; foliage through the dek.",
+   "fix": "Standing-water sheet with ripple and slight transmission, a grime gradient, ledges on the far bank, no cabin speculars, the crown punched out of the dek."
+  },
+  {
+   "slide": 4,
+   "problem": "Flat dark-blue water mirroring no lamp; olive grass band; dead band; car under half the width.",
+   "fix": "A mirror material streaking the lamps, near black shoulder, a longer lens so the car spans about 60 percent."
+  },
+  {
+   "slide": 8,
+   "problem": "Window reads as shelving; the car cropped and illegible; book stack clutter.",
+   "fix": "One square window with blinds throwing sodium stripes; the car whole and small under one lamp; cut the books."
+  },
+  {
+   "slide": 5,
+   "problem": "Loaf instances in tiles.",
+   "fix": "Silhouette cues on the LOD mesh; narrower aisles; the hero at the near row."
+  },
+  {
+   "slide": 2,
+   "problem": "Mannequin figure behind the tailgate; the pole through the dek's right edge.",
+   "fix": "The rider mid-stride beside the rear door; the pole moved right of the dek box."
+  },
+  {
+   "slide": 7,
+   "problem": "Lit and unlit posts barely distinguishable; the car closer than the October row.",
+   "fix": "Pre-April posts near black, a stronger pool on the lit span, the car parked at the October row's depth."
+  }
+ ]
+}
