@@ -2161,3 +2161,23 @@ NEPA and drones page and on robots.txt alike, measured October 15th. Its robots.
 agent as the September 30th entry and the registry's PUCT and Tribune rows describe. The page now
 says the comment period on Zipline's Texas metros draft closed on October 11th. The same page lists
 a final assessment for Amazon Prime Air's Texas operations, a different proposal.
+
+## October 16th, 2026
+
+**www.globenewswire.com answered 403 to every client the run tried**, the project's agent and a
+browser agent alike, on the Kodiak and Charger USA release that tx-2026-0209 cited. Kodiak publishes
+the same release on kodiak.ai, which answered 200, so tx-2026-0209's claims were repointed there.
+tx-2026-0181 has no other copy and now carries an `unreachable` block against the measured refusal.
+
+**www.tpr.org answered 200** to the run's own fetch and to `scripts/shared/fetch_doc.py`, on its May
+10th and May 13th Waymo reports.
+
+**api.nhtsa.gov's `recalls/campaignNumber` endpoint answered 200 with JSON** for 26E026 and 26E035.
+Its `ReportReceivedDate` field is day first: 26E035 reads 13/06/2026, which can only be June 13th.
+The human recall lookup pages on nhtsa.gov were not fetched; the API is the surface the claims cite.
+
+**infohub.austincc.edu timed out** on every claim of tx-2026-0212 during re-verify. The item's key
+date is in six days, so the next run's re-verify is the one to watch.
+
+**www.ksat.com and www.expressnews.com are refused by their robots.txt** and were not read. The
+Salado Creek account rests on Texas Public Radio for that reason.
