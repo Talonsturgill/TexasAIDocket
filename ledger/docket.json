@@ -19583,7 +19583,7 @@
    "confidence": "high",
    "notes_for_editor": "Published as statewide on the same reading as the other federal comment windows in this record, which apply in Texas without naming a county. federalregister.gov HTML redirected this client to an unblock page, and govinfo served the identical document cleanly.",
    "id": "tx-2026-0118",
-   "last_verified": "2026-10-15",
+   "last_verified": "2026-10-16",
    "history": [
     {
      "date": "2026-09-03",
@@ -19656,6 +19656,11 @@
     {
      "date": "2026-10-15",
      "note": "The commodities regulator is still taking comment on compute derivatives, with the closing date unchanged.",
+     "checked": true
+    },
+    {
+     "date": "2026-10-16",
+     "note": "The federal notice on derivatives whose underlying commodity is compute still takes comment until October 20th.",
      "checked": true
     }
    ]
@@ -28601,8 +28606,20 @@
      "date": "2026-10-09",
      "note": "Checked and unchanged. The decision still stands as decided.",
      "checked": true
+    },
+    {
+     "date": "2026-10-16",
+     "note": "Battalion's stake in Collide and its plan to put Riggs before its Ward County engineers stay unconfirmed, because the release's only publisher refuses every reader."
     }
-   ]
+   ],
+   "unreachable": {
+    "hosts": [
+     "www.globenewswire.com"
+    ],
+    "boundary": "blocks_every_client",
+    "checked": "2026-10-16",
+    "note": "www.globenewswire.com answered 403 on 2026-10-16 to the project's own agent and to a browser agent, on the release page and on robots.txt alike. Battalion's own news page and SEC full-text search carry no copy of the release. Nothing was routed around."
+   }
   },
   {
    "title": "Governor directs the environmental agency to issue no data center permits until the grid audit is done",
@@ -28687,7 +28704,7 @@
     }
    ],
    "id": "tx-2026-0182",
-   "last_verified": "2026-10-15",
+   "last_verified": "2026-10-16",
    "history": [
     {
      "date": "2026-09-23",
@@ -28736,6 +28753,11 @@
     {
      "date": "2026-10-15",
      "note": "The Governor's hold on data center permits at the environmental agency stays in force.",
+     "checked": true
+    },
+    {
+     "date": "2026-10-16",
+     "note": "The three published accounts of the September 21st directive still read as they did. Each says the environmental agency is to issue no permits sought by data center projects.",
      "checked": true
     }
    ]
@@ -33178,37 +33200,37 @@
     {
      "text": "Kodiak Driver trucks haul freight on the lane between Charger's terminals in Dallas and Laredo.",
      "verbatim_quote": "Through this collaboration, trucks equipped with the Kodiak Driver, Kodiak's autonomous driving system, are hauling refrigerated and dry freight for consumer packaged goods and food and beverage customers on the 435-mile lane between Charger’s terminals in Dallas and Laredo, Texas.",
-     "source_url": "https://www.globenewswire.com/news-release/2026/10/08/3377348/0/en/kodiak-ai-and-charger-usa-launch-autonomous-trucking-between-dallas-and-laredo.html",
-     "source_title": "Kodiak AI press release, Kodiak AI and Charger USA Launch Autonomous Trucking Between Dallas and Laredo",
+     "source_url": "https://kodiak.ai/news/kodiak-charger-usa-autonomous-trucking-dallas-laredo",
+     "source_title": "Kodiak AI news, Kodiak AI and Charger USA Launch Autonomous Trucking Between Dallas and Laredo",
      "source_type": "primary_corporate",
-     "fetched": "2026-10-09",
+     "fetched": "2026-10-16",
      "id": "tx-2026-0209-c1"
     },
     {
      "text": "The companies say their first delivery was on September 8th.",
      "verbatim_quote": "Kodiak and Charger completed their first delivery on September 8, 2026.",
-     "source_url": "https://www.globenewswire.com/news-release/2026/10/08/3377348/0/en/kodiak-ai-and-charger-usa-launch-autonomous-trucking-between-dallas-and-laredo.html",
-     "source_title": "Kodiak AI press release, Kodiak AI and Charger USA Launch Autonomous Trucking Between Dallas and Laredo",
+     "source_url": "https://kodiak.ai/news/kodiak-charger-usa-autonomous-trucking-dallas-laredo",
+     "source_title": "Kodiak AI news, Kodiak AI and Charger USA Launch Autonomous Trucking Between Dallas and Laredo",
      "source_type": "primary_corporate",
-     "fetched": "2026-10-09",
+     "fetched": "2026-10-16",
      "id": "tx-2026-0209-c2"
     },
     {
      "text": "A safety driver is behind the wheel today.",
      "verbatim_quote": "Today, the companies are operating with a safety driver behind the wheel.",
-     "source_url": "https://www.globenewswire.com/news-release/2026/10/08/3377348/0/en/kodiak-ai-and-charger-usa-launch-autonomous-trucking-between-dallas-and-laredo.html",
-     "source_title": "Kodiak AI press release, Kodiak AI and Charger USA Launch Autonomous Trucking Between Dallas and Laredo",
+     "source_url": "https://kodiak.ai/news/kodiak-charger-usa-autonomous-trucking-dallas-laredo",
+     "source_title": "Kodiak AI news, Kodiak AI and Charger USA Launch Autonomous Trucking Between Dallas and Laredo",
      "source_type": "primary_corporate",
-     "fetched": "2026-10-09",
+     "fetched": "2026-10-16",
      "id": "tx-2026-0209-c3"
     },
     {
      "text": "The companies intend to go driverless once Kodiak completes its safety case.",
      "verbatim_quote": "The companies intend to transition the lane to driverless operations once Kodiak completes its safety case.",
-     "source_url": "https://www.globenewswire.com/news-release/2026/10/08/3377348/0/en/kodiak-ai-and-charger-usa-launch-autonomous-trucking-between-dallas-and-laredo.html",
-     "source_title": "Kodiak AI press release, Kodiak AI and Charger USA Launch Autonomous Trucking Between Dallas and Laredo",
+     "source_url": "https://kodiak.ai/news/kodiak-charger-usa-autonomous-trucking-dallas-laredo",
+     "source_title": "Kodiak AI news, Kodiak AI and Charger USA Launch Autonomous Trucking Between Dallas and Laredo",
      "source_type": "primary_corporate",
-     "fetched": "2026-10-09",
+     "fetched": "2026-10-16",
      "id": "tx-2026-0209-c4"
     }
    ],
@@ -33218,9 +33240,13 @@
     {
      "date": "2026-10-09",
      "note": "Admitted to the record on Kodiak's own release announcing the Dallas to Laredo lane."
+    },
+    {
+     "date": "2026-10-16",
+     "note": "Kodiak's own copy of its October 8th release still says the Dallas to Laredo trucks run with a safety driver behind the wheel. The driverless switch still waits on Kodiak finishing its safety case."
     }
    ],
-   "last_verified": "2026-10-09",
+   "last_verified": "2026-10-16",
    "id": "tx-2026-0209"
   },
   {

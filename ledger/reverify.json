@@ -1,7 +1,7 @@
 {
   "_spec": {
     "version": 1,
-    "generated": "2026-10-15",
+    "generated": "2026-10-16",
     "note": "One row per source url. ETag and Last-Modified drive the next conditional request, hash short circuits the text comparison, and proven records which claim quotes have been located here, which is what tells a real change apart from a page this check cannot read."
   },
   "sources": {
@@ -1512,7 +1512,7 @@
     },
     "https://sites.austincc.edu/ai-resource-hub/responsible-use-guidance/": {
       "etag": null,
-      "last_modified": "Thu, 15 Oct 2026 05:14:30 GMT",
+      "last_modified": "Fri, 16 Oct 2026 05:25:09 GMT",
       "hash": "933412bb4c839048c62711629d41dff1d5dcc163946a8c9ddcbd7c622a090726",
       "proven": [
         "tx-2026-0212-c15"
@@ -1970,8 +1970,8 @@
     },
     "https://www.austincc.edu/about-acc": {
       "etag": null,
-      "last_modified": "Thu, 15 Oct 2026 05:15:07 GMT",
-      "hash": "d67da8dba62be4cc34fa4e6c6243af09d9d945b7ac09cde3f6aca75ae9f567a5",
+      "last_modified": "Fri, 16 Oct 2026 05:25:10 GMT",
+      "hash": "38334eebbbf8bf8cf6bc126aa1087b35a9897b55ddb5ca01a0e6fd13c6f59611",
       "proven": [
         "tx-2026-0212-c16"
       ]
@@ -2052,8 +2052,8 @@
     },
     "https://www.cbsnews.com/texas/news/texas-gov-greg-abbott-pause-new-data-center-permits-sept-21-2026/": {
       "etag": null,
-      "last_modified": "Thu, 15 Oct 2026 05:15:17 GMT",
-      "hash": "3488fc9800b119f51bdff0e930d880d7ef8f1bd40cfa83c12dbb5708def136c1",
+      "last_modified": "Fri, 16 Oct 2026 05:25:12 GMT",
+      "hash": "a58bb23fd13243f1dfc42814137e369cbdd6090321a9e4f76e308c0716b217f3",
       "proven": [
         "tx-2026-0182-c3"
       ]
@@ -2230,9 +2230,9 @@
       "proven": []
     },
     "https://www.fox4news.com/news/ai-powered-cameras-dallas-trash-trucks-hand-out-almost-4000-notices-57-citations": {
-      "etag": "\"28bd2-d7fVIxIX8kBPgFNCvTIkNemH55g\"",
+      "etag": "\"28be8-HpxaighAGeWsBTRIUiSFHeJMAe0\"",
       "last_modified": null,
-      "hash": "f5216afd562a28e9f1897c3cf6d21d7d649ee74963d3ba50ede95907f685b9a6",
+      "hash": "1f986cf61634e3f120c577d2cbd2c3e183682d8d47046bf91954aad75f1bcc5a",
       "proven": [
         "tx-2026-0179-c10",
         "tx-2026-0179-c11",
@@ -2834,8 +2834,8 @@
     },
     "https://www.texastribune.org/2026/09/21/texas-data-center-moratorium-water-energy/": {
       "etag": null,
-      "last_modified": "Wed, 14 Oct 2026 02:18:45 GMT",
-      "hash": "9420c3c55df9a02fe50b92bf88d1315d36c6e786c6a5f59e33b9b389ad466b7d",
+      "last_modified": "Thu, 15 Oct 2026 03:13:47 GMT",
+      "hash": "60197d7cadc6add58bb2ebc53912ad4736257fe3784de477dc82591344607ccb",
       "proven": [
         "tx-2026-0182-c2"
       ]
