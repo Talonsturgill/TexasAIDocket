@@ -76,6 +76,28 @@
    "quoted_from": "c13",
    "quote": "\"PotentialNumberofUnitsAffected\":3791",
    "note": "the recall record's own field, quoted"
+  },
+  {
+   "phrase": "two first party accounts",
+   "slide": "first_comment.txt",
+   "kind": "count",
+   "value": 2,
+   "from_claims": [
+    "c1",
+    "c5"
+   ],
+   "computed_by": "scripts/carousel/sources_block.py, the documents of source_type primary_corporate in claims.json, Waymo's October 14th post (c1) and its February 24th post (c5)"
+  },
+  {
+   "phrase": "two news reports",
+   "slide": "first_comment.txt",
+   "kind": "count",
+   "value": 2,
+   "from_claims": [
+    "c15",
+    "c22"
+   ],
+   "computed_by": "scripts/carousel/sources_block.py, the documents of source_type secondary_reported in claims.json, Texas Public Radio's May 13th report (c15) and its May 10th report (c22)"
   }
  ]
 }

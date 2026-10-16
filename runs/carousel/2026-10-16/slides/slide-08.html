@@ -61,8 +61,8 @@ window.renderReady = (async () => {
   /* the stack's covers in oxblood and buff, so the only blue in the room is the record's comal rule */
   docs.traverse(m => { if (m.isMesh && m.material && m.material.color) { const c = m.material.color; if (c.b > c.r + 0.06) { m.material = m.material.clone(); m.material.color.setHex(0x5a2420); } } });
   /* outside the window: the street, a streetlight and the robotaxi under it */
-  const car = K.make('robotaxi', { seed: 4 }); car.position.set(-8.6, 0, -RD / 2 - 7.5); car.rotation.y = Math.PI / 2 + 0.3; S.add(car); car.traverse(o => { if (o.isMesh && o.material) { o.material = o.material.clone(); o.material.envMapIntensity = 0.1; if (o.material.color) { const c = o.material.color; if (c.r > 0.8 && c.g > 0.8 && c.b > 0.8) c.multiply(new THREE.Color(1.0, 0.9, 0.74)); } } });
-  const lamp = K.make('streetlight', { height: 8.5 }); lamp.position.set(-12.5, 0, -RD / 2 - 5.5); lamp.rotation.y = Math.PI; S.add(lamp);
+  const car = K.make('robotaxi', { seed: 4 }); car.position.set(-15, 0, -RD / 2 - 15); car.rotation.y = Math.PI / 2 + 0.3; S.add(car); car.traverse(o => { if (o.isMesh && o.material) { o.material = o.material.clone(); o.material.envMapIntensity = 0.1; if (o.material.color) { const c = o.material.color; if (c.r > 0.8 && c.g > 0.8 && c.b > 0.8) c.multiply(new THREE.Color(1.0, 0.9, 0.74)); } } });
+  const lamp = K.make('streetlight', { height: 8.5 }); lamp.position.set(-18.5, 0, -RD / 2 - 13); lamp.rotation.y = Math.PI; S.add(lamp);
   S.updateMatrixWorld(true);
   [desk, chair, car].forEach(o => TXT.contact(R, o));
   /* the monitor's screen: a dark glass plane on its face, whose corners carry the record as DOM type */
@@ -75,7 +75,7 @@ window.renderReady = (async () => {
   const look = CH.aim(THREE, R, TXT, from, tgt, 640, 880, 44);
   TXT.frame(R, { fov: 44, from, look });
   /* the streetlight's warm pool on the car outside */
-  { const sp = new THREE.SpotLight(0xffc98e, 2400, 16, 0.6, 0.6, 1.5); sp.position.copy(new THREE.Vector3(...CH.world(THREE, S, [-11.5, 8.2, -RD / 2 - 6.5]))); sp.target.position.copy(new THREE.Vector3(...CH.world(THREE, S, [-8.6, 0, -RD / 2 - 7.5]))); R.scene.add(sp); R.scene.add(sp.target); }
+  { const sp = new THREE.SpotLight(0xffc98e, 2400, 16, 0.6, 0.6, 1.5); sp.position.copy(new THREE.Vector3(...CH.world(THREE, S, [-17.5, 8.2, -RD / 2 - 14]))); sp.target.position.copy(new THREE.Vector3(...CH.world(THREE, S, [-15, 0, -RD / 2 - 15]))); R.scene.add(sp); R.scene.add(sp.target); }
   { const spec = CH.rigSpec(W, 14, 4096); spec.rim = Object.assign({}, spec.rim, { i: spec.rim.i * 0.4 }); var RIG8 = spec; }
   TXT.deckRig(R, RIG8, CH.rigOpts(CH.world(THREE, S, [0, 0.8, -1.8]), { distance: 30, shadowFar: 70 }));
   TXT.weather(R, { grime: 0.15, height: 0.4 });

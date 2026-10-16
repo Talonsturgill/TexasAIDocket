@@ -1,11 +1,12 @@
-Sources, one per claim
-c1 Waymo, announcement of October 14th https://waymo.com/blog/shorts/sat-sd-tpa/
-c2 Waymo, statement by Jesus Saenz, Director of Airports, October 14th https://waymo.com/blog/shorts/sat-sd-tpa/
-c3 Waymo, statement by Jesus Saenz, October 14th https://waymo.com/blog/shorts/sat-sd-tpa/
-c8 NHTSA recall record, read October 16th https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=26E026
-c10 NHTSA recall record, remedy field, read October 16th https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=26E026
-c13 NHTSA recall record, units affected, read October 16th https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=26E026
-c14 NHTSA recall record, manufacturer and campaign, read October 16th https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=26E026
-c15 Texas Public Radio, May 13th https://www.tpr.org/news/2026-05-13/waymo-recalls-almost-3-800-robotaxis-after-flooding-incident-in-san-antonio
-c16 Texas Public Radio, May 13th https://www.tpr.org/news/2026-05-13/waymo-recalls-almost-3-800-robotaxis-after-flooding-incident-in-san-antonio
-c22 Texas Public Radio, May 10th https://www.tpr.org/economy-and-labor/2026-05-10/waymo-set-to-return-to-san-antonio-after-flood-incidents-paused-service
+Sources, two first party accounts, two news reports and one official record, all fetched October 16th.
+Waymo, rides open to anyone in San Antonio, San Diego and Tampa, October 14th. c1 c3
+https://waymo.com/blog/shorts/sat-sd-tpa/
+Waymo, first public riders in Dallas, Houston, San Antonio and Orlando, February 24th. c5 c6
+https://waymo.com/blog/2026/02/dallas-houston-san-antonio-orlando/
+NHTSA recall record, campaign 26E026000, Waymo LLC. c8 c10 c11 c12 c13 c14
+https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=26E026
+Texas Public Radio, Waymo recalls almost 3,800 robotaxis after flooding incident in San Antonio, May 13th. c15 c16 c17 c18 c20
+https://www.tpr.org/news/2026-05-13/waymo-recalls-almost-3-800-robotaxis-after-flooding-incident-in-san-antonio
+Texas Public Radio, Waymo set to return to San Antonio after flood incidents paused service, May 10th. c21 c22 c23
+https://www.tpr.org/economy-and-labor/2026-05-10/waymo-set-to-return-to-san-antonio-after-flood-incidents-paused-service
+Day counts computed in compute.py from dates inside the quoted sources.

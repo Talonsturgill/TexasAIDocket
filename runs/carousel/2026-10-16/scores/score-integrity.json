@@ -1,0 +1,72 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.0,
+   "why": "Dark register and one hero throughout; 1, 2, 6, 7, 9 have real pools. Frame 3 shows no water, hood a wedge, waterline broken, no ledges or bank lamp. Frame 4's water an opaque rectangle with a solid comal trapezoid and a yellow-green grass band. Frame 8's car oversized, blue tinted, at desk height. Frame 5's field cars are boxes."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "One world, key, hero, material and grade; no strobe; both devices work. Frames 8 and 7 sit slightly outside the street world."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 6.5,
+   "why": "Every numeral traces and the record quotes match. Faults, none a hard fail: frame 5's 'One is drawn here for each' is not visible; frame 4's kicker says the record while two labels are TPR's paraphrase; the mechanism rests on journalism where the Part 573 filing was not read; frames 6 then 7 invite a 177-day shutdown reading; first_comment lists 10 of about 19 cited claims and omits the February post; c25 is context_only yet published in the web edition."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.0,
+   "why": "What, who, where and the stake are named. Bexar County only in a hashtag. The next step gives no human-readable place to read."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Cover earns the swipe, turn on 3, close returns to the curb. Frame 2 steps back; 6 and 7 overlap."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Clean and specific. One machine-flat caption line; the close's hook sounds administrative; 'Drawn to illustrate.' closes seven deks."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 5.5,
+   "why": "No. 50 four days ago was a San Antonio night flood. One object per day repeats recent decks; a driverless vehicle led no. 41."
+  }
+ ],
+ "weighted_score": 6.59,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Rebuild frame 3 so the car stands to its beltline in rippled creek water between limestone ledges with the bank lamp in frame, and make slide 5's dek true.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 3,
+   "problem": "No water reads; hood wedge; broken waterline; no ledges or lamp.",
+   "fix": "standing_water sheet with ripple and opacity near 0.8 at the beltline, ledges and a lamp behind, one continuous comal line."
+  },
+  {
+   "slide": 4,
+   "problem": "Opaque water with a solid comal trapezoid; yellow-green grass band.",
+   "fix": "Low roughness clearcoat mirroring streetlights, thin comal edge, dark wet shoulder for the grass."
+  },
+  {
+   "slide": 8,
+   "problem": "Car at desk height, oversized, blue tinted.",
+   "fix": "Move the car 15 to 20 m back across a drawn street below the sill line."
+  },
+  {
+   "slide": 5,
+   "problem": "Box primitive cars; only about 250 of 3791 framed, making the dek false.",
+   "fix": "Frame the whole block or change the dek; bevel the LOD windshield and add wheel arches."
+  }
+ ]
+}

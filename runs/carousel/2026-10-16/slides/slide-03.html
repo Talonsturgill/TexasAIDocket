@@ -33,33 +33,31 @@ window.renderReady = (async () => {
   const hAt = creek.userData.heightAt;
   /* THE CAR across the current, nose a little down, standing on the bed; the flood stands 0.85 m over it */
   const cz = -4, bedY = hAt(0, cz), WL = bedY + 0.85;
-  const car = K.make('robotaxi', { seed: 4 }); car.rotation.set(0.06, 0.55, 0); car.position.set(1.2, bedY - 0.05, cz); TXT.add(R, car);
+  const car = K.make('robotaxi', { seed: 4 }); car.rotation.set(0, Math.PI / 2 - 0.22, 0.03); car.position.set(1.2, bedY - 0.05, cz); TXT.add(R, car);
   /* THE FLOOD: an opaque brown sheet with a rippled clearcoat, so the lamp smears on it and the body under it is gone */
   const rip = CH.rippleTex(THREE); rip.repeat.set(16, 34);
-  const water = new THREE.Mesh(new THREE.PlaneGeometry(26, 70), new THREE.MeshPhysicalMaterial({ color: 0x2e2518, roughness: 0.22, clearcoat: 1, clearcoatRoughness: 0.35, bumpMap: rip, bumpScale: 1.8, envMapIntensity: 1.2 }));
+  const water = new THREE.Mesh(new THREE.PlaneGeometry(26, 70), new THREE.MeshPhysicalMaterial({ color: 0x2e2518, roughness: 0.2, clearcoat: 0.5, clearcoatRoughness: 0.25, bumpMap: rip, bumpScale: 1.0, envMapIntensity: 1.2 }));
   water.rotation.x = -Math.PI / 2; water.position.set(0, WL, 0); water.receiveShadow = true; water.userData.txWear = false; R.scene.add(water);
   /* THE WATERLINE: a comal line where the water meets the paint, round the body at the water's height */
-  { const g = new THREE.Group(), m = new THREE.MeshBasicMaterial({ color: CH.ACCENT, toneMapped: false }), w = 1.80, l = 4.5, t = 0.014;
-    [[w, t, 0, l / 2], [w, t, 0, -l / 2], [t, l, w / 2, 0], [t, l, -w / 2, 0]].forEach(b => { const s = new THREE.Mesh(new THREE.BoxGeometry(b[0], 0.014, b[1]), m); s.position.set(b[2], 0, b[3]); g.add(s); });
-    g.rotation.y = 0.55; g.position.set(1.2, WL + 0.012, cz); R.scene.add(g); }
+  { const g = new THREE.Group(), m = new THREE.MeshBasicMaterial({ color: CH.ACCENT, toneMapped: false }), w = 1.80, l = 4.5, t = 0.03;
+    [[w, t, 0, l / 2], [w, t, 0, -l / 2], [t, l, w / 2, 0], [t, l, -w / 2, 0]].forEach(b => { const s = new THREE.Mesh(new THREE.BoxGeometry(b[0], 0.03, b[1]), m); s.position.set(b[2], 0, b[3]); g.add(s); });
+    g.rotation.y = Math.PI / 2 - 0.22; g.position.set(1.2, WL + 0.012, cz); R.scene.add(g); }
   /* the banks: pecans and live oaks gone to black, a streetlight on the far bank's road */
-  [['pecan', -12, -22, 3], ['live_oak', 10, -18, 5], ['pecan', 14, -30, 6], ['live_oak', -15, -9, 2]].forEach(t => { const tr = K.make(t[0], { seed: t[3] }); tr.position.set(t[1], hAt(t[1], t[2]), t[2]); TXT.add(R, tr); CH.matte(tr, 0.01); });
+  [['pecan', -12, -22, 3], ['live_oak', 10, -18, 5], ['pecan', 14, -30, 6], ['live_oak', -15, -9, 2]].forEach(t => { const tr = K.make(t[0], { seed: t[3] }); tr.position.set(t[1], hAt(t[1], t[2]), t[2]); TXT.add(R, tr); CH.matte(tr, 0.01); tr.traverse(m => { if (m.isMesh && m.material && m.material.color) { m.material = m.material.clone(); m.material.color.multiplyScalar(0.05); } }); });
   /* a warm bounce off the bank onto the shadowed flank, so the paint stays white in shadow */
   { const f = new THREE.PointLight(0xffc890, 40, 8, 1.6); f.position.set(-3.5, WL + 1.2, cz + 3); R.scene.add(f); }
   const lamp = K.make('streetlight', { height: 5.5, reach: 1.6 }); lamp.position.set(5, hAt(5, -22), -22); lamp.rotation.y = -Math.PI / 2 - 0.4; TXT.add(R, lamp);
   CH.matte(TXT.ground(R, { surface: 'grass', size: 600, seed: 23 }), 0.2);
-  const from = [0.2, WL + 1.0, 4.0];
-  const look = CH.aim(THREE, R, TXT, from, [1.6, WL + 0.4, cz], 560, 1000, 40);
+  const from = [0.4, WL + 0.35, 3.8];
+  const look = CH.aim(THREE, R, TXT, from, [1.2, WL + 0.45, cz], 540, 970, 40);
   TXT.frame(R, { fov: 40, from, look });
   /* the streetlight's own cone, the one light on the water */
   { const sp = new THREE.SpotLight(0xffd6aa, 320, 26, 0.55, 0.6, 1.4); sp.position.set(4.6, lamp.position.y + 5.4, -20.6); sp.target.position.set(0, WL, cz); sp.castShadow = true; sp.shadow.mapSize.set(2048, 2048); R.scene.add(sp); R.scene.add(sp.target); }
-  /* a low warm lamp up the channel, behind the car, so the rippled flood breaks its light into a smear toward the lens */
-  { const pl = new THREE.PointLight(0xffc890, 300, 40, 1.6); pl.position.set(6, WL + 2.2, cz - 22); R.scene.add(pl); }
   /* the far bank's ledges and crowns, caught by the streetlight past the car */
-  { const b = new THREE.SpotLight(0xffd6aa, 520, 40, 0.6, 0.7, 1.5); b.position.set(4, WL + 10, cz - 2); b.target.position.set(-4, WL + 1.5, cz - 14); R.scene.add(b); R.scene.add(b.target); }
+  { const b = new THREE.SpotLight(0xffd6aa, 700, 40, 0.5, 0.7, 1.5); b.position.set(4, WL + 10, cz - 2); b.target.position.set(-2, WL + 0.2, cz - 10); R.scene.add(b); R.scene.add(b.target); }
   TXT.sky(R);
   TXT.deckRig(R, CH.rigSpec(W, 30, 4096), CH.rigOpts([0, WL, cz], { distance: 45, shadowFar: 120 }));
-  TXT.stage(R, [car], { poolInner: 4, poolOuter: 14, pool: false });
+  TXT.stage(R, [car], { poolInner: 4, poolOuter: 14, pool: false, behind: 1.0, depth: 1.5 });
   TXT.weather(R, { grime: 0.68, height: WL - bedY + 0.35 });
   const cx = CH.develop(await TXT.snapshot(R), gl);
   CH.post(cx, { a: 0.42, veil: 0.4, footWash: 0.54 });

@@ -1,0 +1,77 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 5.8,
+   "why": "Nine rendered dark staged frames, 9 the best. Frame 3, the declared showstopper, reads as a toy car sunk in a dark floor: hood as a flat tray, warm under-glow from the point light behind the car, no ledges or bank lamp, the comal waterline two broken dashes, camera at WL+1.0 against a planned 0.35 m. Frame 4's water is a flat dark rectangle with a flat comal parallelogram, no lamp mirrored, a lime verge and lit grey road in the lower third. Frame 8's car through the window is huge and daylight beige. Frame 2's lower third is a tan lit road. The hero is a boxy kit SUV, and on 6 its lower front is an unlit black slab."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "One world, one hero, one grade, one comal accent on 3, 4, 6, 7, 8. Both devices work. Frame 4's mid-tone lower third and frame 8's beige window view sit outside."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.0,
+   "why": "Every numeral traces. Frame 5's 'One is drawn here for each' is true of the scene and not visible in the frame. Frame 4's labels lean on TPR's paraphrase (c18) under a past-tense hook while the record says 'may'."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.5,
+   "why": "What, who, where and the open fact are named. The reader's action is concrete but small. No deadline exists and none is printed."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "The cover earns the swipe, 3 turns, 4 to 8 build, 9 lands. Frame 2 rewinds."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "Specific and on register. 'Drawn to illustrate.' closes seven deks and TPR attributions open four sentences."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.0,
+   "why": "No. 50 four days ago was a San Antonio night flood deck. The one post per day field repeats recent per-unit fields; the count field and document frame repeat recent decks."
+  }
+ ],
+ "weighted_score": 7.08,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Rebuild frame 3 to its own plan and give frame 4's sheet frame 6's rippled mirror water.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 3,
+   "problem": "Toy car sunk in a dark floor, hood a flat tray, under-glow, no ledges, broken waterline, camera high.",
+   "fix": "Camera about 0.35 m over the water with the car near side on, a continuous hull waterline, delete pl, light the far ledges."
+  },
+  {
+   "slide": 4,
+   "problem": "Water a flat dark plane with a flat comal parallelogram, lime verge and lit grey road.",
+   "fix": "Frame 6's rippled clearcoat water mirroring streetlights, comal a thin leading edge, verge near black, road pool narrowed."
+  },
+  {
+   "slide": 8,
+   "problem": "Car through the window huge and lit beige like daylight; book stack primitives; remedy line skews.",
+   "fix": "Car across the street at true scale under one sodium pool; one homography for the screen type; drop the books into shadow."
+  },
+  {
+   "slide": 2,
+   "problem": "Bottom third a tan evenly lit roadway; kit SUV at its most primitive; rider reads as a mannequin.",
+   "fix": "Wet clearcoat road reflecting the car; cut street exposure so the only pool is on the sidewalk and rear door."
+  },
+  {
+   "slide": 6,
+   "problem": "Lower front an unlit black slab.",
+   "fix": "Low warm bounce from the water line toward the fascia, or a lower key."
+  }
+ ]
+}

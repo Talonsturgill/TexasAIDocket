@@ -41,7 +41,7 @@ window.renderReady = (async () => {
   CH.matte(oak, 0.04);
   CH.matte(TXT.ground(R, { surface: 'asphalt', size: 900, seed: 22 }), 0.35);
   [car, who, lamp, oak].forEach(o => TXT.contact(R, o));
-  const from = [1.0, 1.5, 7.2];
+  const from = [1.0, 1.5, 6.2];
   const look = CH.aim(THREE, R, TXT, from, [1.2, 0.9, -2.45], 560, 890, 46);
   TXT.frame(R, { fov: 46, from, look });
   /* the cobra head's pool on the car's roof, the rider and the sidewalk */

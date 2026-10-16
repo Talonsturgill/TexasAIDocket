@@ -413,7 +413,7 @@ art:
 
 type:
   hook: "3,791 of them"
-  dek: "The recall covers 5th and 6th generation automated driving systems, 3,791 potentially affected units by the federal record's count. One is drawn here for each. Drawn to illustrate."
+  dek: "The recall covers 5th and 6th generation automated driving systems, 3,791 potentially affected units by the federal record's count. The lot drawn here holds one for each, most of them out of frame. Drawn to illustrate."
   labels: []
 
 verbatim: []
@@ -532,7 +532,7 @@ art:
 
 type:
   hook: "177 days from the creek to the curb"
-  dek: "One post for each day from February 24th to October 14th, a row for each month. The blue band is April 20th. The posts lit after it count the days until anyone could ride."
+  dek: "One post for each day from February 24th to October 14th, a row for each month. The blue band is April 20th. The posts lit after it count the days until the service opened to everyone with the app."
   labels: ["February", "April 20th", "May 1st", "October 14th"]
 
 verbatim: []

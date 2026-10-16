@@ -32,18 +32,18 @@ import { init } from '@@ASSETS@@/js/txthree.js';
 import { initKit } from '@@ASSETS@@/js/txkit.js';
 window.renderReady = (async () => {
   const TXT = init(THREE);
-  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "What the recall record says", counter: "04 / 09", src: "c8 c18 c14", fit: { min: 76, max: 96, maxLines: 2 } });
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "The recall record and the reporting", counter: "04 / 09", src: "c8 c18 c14", fit: { min: 76, max: 96, maxLines: 2 } });
   const R = CH.stage(TXT, gl, W, { fov: 24, far: 3000 });
   /* the right carriageway of a divided highway: lane 1 centre x 3.48, lane 2 centre x 7.14, their line x 5.31 */
   const hw = K.make('highway', { lanes: 2, length: 320, gantry: false, embank: 0, seed: 3 }); TXT.add(R, hw);
   /* the shoulder's rumble grooves off, so the only marks on the edge line are the eleven studs, and the median barrier taken down to a dark grey so the car's roofline stands clear of it */
-  hw.traverse(m => { if (!m.isMesh) return; const gp = m.geometry && m.geometry.parameters; if (m.isInstancedMesh && gp && gp.width === 0.4 && gp.depth === 0.18) m.visible = false; if (!m.isInstancedMesh && m.geometry.type === 'ExtrudeGeometry' && m.material.map) { m.material = m.material.clone(); m.material.color.setScalar(0.04); m.material.roughness = 1; m.material.envMapIntensity = 0; } });
+  hw.traverse(m => { if (!m.isMesh) return; const gp = m.geometry && m.geometry.parameters; if (m.isInstancedMesh && gp && gp.width === 0.4 && gp.depth === 0.18) m.visible = false; if (!m.isInstancedMesh && m.geometry.type === 'ExtrudeGeometry' && m.material.map) { m.material = m.material.clone(); m.material.color.setScalar(0.04); m.material.roughness = 1; m.material.envMapIntensity = 0; } if (!m.isInstancedMesh && m.material && m.material.vertexColors && m.material.map && m.userData.txGround) { m.material = m.material.clone(); m.material.color.setScalar(0.2); } });
   const LINE = 5.31, LANE2 = 7.14, EDGE = -0.3;
   /* THE WATER: a sheet across both lanes from just ahead of the car's rear axle on up the road */
   const rip = CH.rippleTex(THREE); rip.repeat.set(3, 14);
   const water = new THREE.Mesh(new THREE.PlaneGeometry(7.4, 46), new THREE.MeshPhysicalMaterial({ color: 0x22323f, roughness: 0.06, metalness: 0.2, clearcoat: 1, clearcoatRoughness: 0.03, bumpMap: rip, bumpScale: 0.15, envMapIntensity: 3.5 }));
   water.rotation.x = -Math.PI / 2; water.position.set(5.31, 0.035, EDGE - 23); water.receiveShadow = true; water.userData.txWear = false; R.scene.add(water);
-  { const e = new THREE.Mesh(new THREE.PlaneGeometry(7.4, 1.1), new THREE.MeshBasicMaterial({ color: CH.ACCENT, toneMapped: false })); e.rotation.x = -Math.PI / 2; e.position.set(5.31, 0.04, EDGE - 0.55); R.scene.add(e); }
+  { const e = new THREE.Mesh(new THREE.PlaneGeometry(7.4, 0.14), new THREE.MeshBasicMaterial({ color: CH.ACCENT, toneMapped: false })); e.rotation.x = -Math.PI / 2; e.position.set(5.31, 0.04, EDGE - 0.07); R.scene.add(e); }
   /* THE CAR heading up the road, front axle in the sheet, rear axle on dry lane */
   const car = K.make('robotaxi', { seed: 4 }); car.rotation.y = Math.PI; car.position.set(LANE2, 0, EDGE + 1.0); TXT.add(R, car);
   /* THE STUDS, from figures.json: days_creek_to_recall 11, one road stud a day on the lane line behind the car, drawn one per day and not to the road's spacing */
@@ -53,14 +53,14 @@ window.renderReady = (async () => {
   for (let i = 0; i < DAYS; i++) { const s = K.make('road_stud', { seed: i + 1 }); s.scale.setScalar(2.4); s.position.set(EDGELINE, 0.005, EDGE + 3.4 + i * 0.32); R.scene.add(s); }
   /* the lamps along the outside shoulder, the light the sheet carries */
   const LAMPZ = []; for (let z = -14; z > -150; z -= 30) { LAMPZ.push(z); const l = K.make('streetlight', { height: 11 }); l.position.set(11.6, 0, z); l.rotation.y = -Math.PI / 2; TXT.add(R, l); }
-  /* one lamp over the far carriageway, placed so its glint breaks on the sheet's ripples */
-  { const gl2 = new THREE.PointLight(0xffc68a, 120, 18, 1.6); gl2.position.set(1.0, 5.5, EDGE - 9); R.scene.add(gl2); }
+  /* the far carriageway's lamps mirrored in the sheet, each a broken warm streak running toward the eye where its reflection falls */
+  [-3.2, -7.6, -13.0].forEach((zz, j) => { for (let k = 0; k < 4; k++) { const st = new THREE.Mesh(new THREE.PlaneGeometry(0.7 - k * 0.12, 0.16 - k * 0.025), new THREE.MeshBasicMaterial({ color: 0xffc68a, transparent: true, opacity: 0.55 - k * 0.1, toneMapped: false, depthWrite: false })); st.rotation.x = -Math.PI / 2; st.position.set(7.9 - k * 0.85, 0.046, zz + (k % 2) * 0.05); R.scene.add(st); } });
   CH.matte(TXT.ground(R, { surface: 'grass', size: 900, seed: 24 }), 0.2);
   TXT.contact(R, car);
   const from = [40, 5.2, 1];
   const look = CH.aim(THREE, R, TXT, from, [LANE2, 0.8, EDGE + 2.8], 420, 960, 24);
   TXT.frame(R, { fov: 24, from, look });
-  { const sp = new THREE.SpotLight(0xffd6aa, 600, 30, 0.6, 0.6, 1.4); sp.position.set(10.4, 10.8, EDGE + 2); sp.target.position.set(LANE2, 0, EDGE); sp.castShadow = true; sp.shadow.mapSize.set(2048, 2048); R.scene.add(sp); R.scene.add(sp.target); }
+  { const sp = new THREE.SpotLight(0xffd6aa, 600, 30, 0.36, 0.7, 1.4); sp.position.set(10.4, 10.8, EDGE + 2); sp.target.position.set(LANE2, 0, EDGE); sp.castShadow = true; sp.shadow.mapSize.set(2048, 2048); R.scene.add(sp); R.scene.add(sp.target); }
   { const pl = new THREE.PointLight(0xffc890, 1100, 70, 1.6); pl.position.set(9, 3, EDGE - 30); R.scene.add(pl); }
   /* lamps across the far carriageway, each placed on the mirror line from the eye so its highlight lands on the sheet and breaks on the ripples */
   [[-2.4, 4.2, -5.8], [-2.6, 4.4, -12], [-2.2, 4.0, -1.6]].forEach(p => { const l = new THREE.PointLight(0xffc68a, 60, 14, 1.8); l.position.set(...p); R.scene.add(l); });

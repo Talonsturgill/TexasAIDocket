@@ -55,6 +55,8 @@ window.renderReady = (async () => {
     const glow = new THREE.Mesh(new THREE.PlaneGeometry(40, 0.1), new THREE.MeshBasicMaterial({ color: CH.ACCENT, transparent: true, opacity: 0.25, toneMapped: false, depthWrite: false })); glow.position.set(0, H + WD + 0.03, EDGE + 0.069); R.scene.add(glow); }
   CH.matte(TXT.ground(R, { surface: 'asphalt', size: 900, seed: 19 }), 0.3);
   TXT.contact(R, car); TXT.contact(R, lamp);
+  /* a low warm bounce off the water toward the fascia, so the bumper and lamps take light and the black stays in the grille */
+  { const bo = new THREE.PointLight(0xffc890, 8, 5, 1.6); bo.position.set(0.2, H + 0.35, EDGE - 1.3); R.scene.add(bo); }
   const from = [0.6, H + 0.25, -1.5];
   const look = CH.aim(THREE, R, TXT, from, [0.2, H + 0.9, EDGE - 3.0], 540, 860, 30);
   TXT.frame(R, { fov: 30, from, look });
