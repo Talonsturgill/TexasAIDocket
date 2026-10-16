@@ -3221,13 +3221,13 @@
      2.1,
      0.9,
      1.0,
-     1.1,
+     0.9,
      0.9,
      4.9
     ],
     "deck_median_L": 1.1,
     "max_adjacent_delta": 4.0,
-    "mean_adjacent_delta": 0.96,
+    "mean_adjacent_delta": 0.94,
     "note": "Read from runs/carousel/2026-10-16/measurements.json, measure_shipped.py's median L* at 432 px off the shipped frames. A dark staged night deck."
    },
    "accent": {

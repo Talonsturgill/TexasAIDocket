@@ -76,7 +76,7 @@
     "slides/slide-01.html": "e31e4e14a62feec04c6fcb1cdd2a62abbdf14b4eda2872902a362321229b08c0",
     "slide-01.webp": "b1eeb3a3b7ee1eb74c02a0d6c0906b0a25456b7ed5b00cbe42ac5c8b8f78daab",
     "slides/slide-07.html": "56160ce822dfe127e98a208081510047222562e8448f904c97510a4a7c91ede9",
-    "slide-07.webp": "5627eb9c4ed571a47f3d856c61de47a4399f5cc88af4275134575d40cb96aecb",
+    "slide-07.webp": "cdf6da24125d8b1c915868435787da3794bac357a033e1545e5e237267e9eb3a",
     "slides/slide-09.html": "96be1b4f1d9fb7654f6f14a7f8b6df1ca1ada2ee6af3df07efef8571186a6ed3",
     "slide-09.webp": "26eafb5a56008156e914d58f2c4015b1f842b9eff628ddb93e1579b879d06dda"
   },
@@ -89,9 +89,9 @@
     },
     {
       "to": "slide-07.webp",
-      "to_sha256": "5627eb9c4ed571a47f3d856c61de47a4399f5cc88af4275134575d40cb96aecb",
+      "to_sha256": "cdf6da24125d8b1c915868435787da3794bac357a033e1545e5e237267e9eb3a",
       "from_sha256": "8bef6094978437034a24578334b992eb36bc7e5951d0acfafad7b5c51f1c505f",
-      "psnr_db": 40.678
+      "psnr_db": 999.0
     },
     {
       "to": "slide-09.webp",
