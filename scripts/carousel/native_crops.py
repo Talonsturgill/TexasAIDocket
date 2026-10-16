@@ -1,5 +1,7 @@
-"""Native-size review tiles, adapted from alaskaaicarousels render.py at
-03da46445a18974351cc6e74835679b3de2c89c8. The full-frame pixels are never changed.
+"""Cut and verify native-size review tiles without changing the full-frame pixels.
+
+Adapted from alaskaaicarousels render.py at
+03da46445a18974351cc6e74835679b3de2c89c8.
 """
 from __future__ import annotations
 
