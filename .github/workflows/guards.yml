@@ -645,6 +645,8 @@ jobs:
         run: |
           python3 scripts/carousel/art_preflight.py --self-test
           python3 scripts/carousel/art_preflight.py --run examples/art-direction-proof
+          python3 tests/carousel_studio.py
+          node tests/txbench.mjs
 
       - name: The figure bearing reference plans its cameras
         run: |

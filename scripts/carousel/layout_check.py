@@ -666,7 +666,7 @@ def plan_of(n: int, d: dict) -> tuple[dict | None, list[str]]:
             "declared": set(bleeds), "touched": touched, "accent": accent}, []
 
 
-def check(run_dir: Path, require: bool = False):
+def check(run_dir: Path, require: bool = False, image_overrides: dict[int, Path] | None = None):
     """(code, problems, rows). Rows are per-frame dicts of the measured numbers, plus dicts
     carrying only a `note` for anything said about the deck as a whole."""
     run_dir = Path(run_dir)
@@ -768,6 +768,8 @@ def check(run_dir: Path, require: bool = False):
         return 2, [f"{rep} could not be read: {exc}"] + problems, []
 
     frames = {_slide_no(p.name) or i: p for i, p in enumerate(pngs, start=1)}
+    if image_overrides:
+        frames.update(image_overrides)
     for n in sorted(set(plans) - set(frames)):
         problems.append(f"slide {n} declares a layout and no frame slide-{n:02d} was rendered")
     for n in sorted(set(frames) - set(declared)):

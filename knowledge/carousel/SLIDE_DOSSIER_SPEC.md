@@ -43,6 +43,8 @@ data_in_art:
 # Then DRAW it. The gate looks for the value in the frame's code with the text nodes stripped
 # out, so a figure that reaches the headline and not the canvas does not satisfy this.
 
+# A txbench relief uses `projection: orthographic_relief` and the cues FORM_SHADING,
+# CAST_SHADOW and OCCLUSION. Its fixed plan view needs no invented eye or horizon.
 # REQUIRED on at least five of nine frames. THE FRAME STANDS IN A PLACE, in
 # knowledge/carousel/ILLUSTRATION_SYSTEM.md, is the law and depth_floor.py is the gate.
 # Name the camera this frame stands in and the cues it builds. A frame drawn in screen pixels

@@ -1,5 +1,18 @@
 # The illustration system — how a frame gets an IMAGE
 
+
+## Physical render routes, effective October 17th, 2026
+
+Read `prompts/carousel_studio.md`. It replaces the single hero object and GPU-only quotas in
+older instructions. A coherent deck can carry a measured scale or a changing motif through
+bespoke material reliefs (`txbench.js`), spatial scenes (`txthree.js`) or a deliberate mix.
+Judge what the image explains at feed size. A physical relief needs measured height, distinct
+materials and cast shadows; a flat drawing or a fallback never qualifies. Retain the existing
+fact, numeral, source, layout, contrast and final-panel gates. The hardest planned frame is in
+the audition, and a changed frame receives a new visual review. Unchanged reviews retain their
+exact source, image and shared-asset hashes.
+
+
 Written 2026-09-11, the upgrade session after carousel no. 21, on the owner's instruction that
 the artwork was "very mediocre" and had to be a different order of thing by the next run. This
 file is the whole of that answer in one place: the diagnosis, the law, the ten layouts, THE
@@ -632,34 +645,31 @@ compression erases the frequencies a screen lives in. **The look is chosen in th
 
 ### What a frame is now
 
-The sister corpus's own doctrine is THE RENDERED LADDER: *"hero slides should reach for the
-highest rung the story supports. GPU PBR, real materials, soft shadow maps, IBL reflections, ACES.
-The default for object heroes."* Its decks render solid objects and carry ONE hero object through
-all nine frames, a tide staff on one deck and a sea ice model on another. No screen anywhere.
+Choose the physical representation the claim supports. A spatial scene uses `txthree.js`.
+A material evidence field uses `txbench.js`, adapted from Alaska's multi-material relief bench.
+Both have real height, material response, one declared key and cast shadows. A flat fill, a
+screen texture and a fallback do not qualify.
 
-1. **ONE HERO OBJECT, modelled once and carried through the deck.** Built as `three.js` geometry
-   in the deck's chassis (`TXT.extrude`, `TXT.lathe`, `TXT.tube`, boxes with bevels), so every
-   frame renders the SAME object from a new camera or in a new state. That is the continuity
-   device, and it is stronger than any screen, because a reader recognises a thing before they
-   recognise a texture.
-2. **A real material and one rig.** `TXT.mat.steel`, `clay`, `plastic`, `emissive`, lit by one of
-   `TXT.rigs` chosen in the chassis for the deck. Soft shadow onto a ground the object touches,
-   and a contact where it touches.
-3. **At least six of nine frames render through `txthree.js` and call `snapshot()`.** Counted by
-   `print_ban.py`. The others may be solid shaded forms on the canvas bench (`S.box`, `S.slab`,
-   the way `examples/figure-bearing/` does it). None is printed.
-4. **The figure is geometry.** Forty engines are forty rendered units, a ratio is two rendered
-   lengths at ONE scale, and any quantity uses parallel projection. Perspective is for scenes.
-5. **The finish is a GRADE, never a screen.** `txpost.js` for tone, a vignette and fine grain over
-   a render. Grain on a solid render reads as film. A screen over it reads as the faded look.
-6. **Text stays DOM**, seated in quiet the render leaves for it, because the PDF must keep vector
-   type and because 3D type is how a render starts looking like a template.
+1. **One visual argument.** Carry a measured scale, a changing motif or a recurring object
+   through the sequence. Each frame chooses the subject and technique that explain its claim.
+2. **A coherent material vocabulary and one light.** Spatial scenes use the deck's world,
+   ground and sky or interior. Reliefs use their height field as the material carrier and read
+   the chassis's light. The runtime report verifies nonzero height, multiple materials,
+   actual cast shadows and a carrier covering at least 30 percent of the frame.
+3. **At least six of nine frames use a physical bench.** `print_ban.py` counts snapshots through
+   `txthree.js` or renders through `txbench.js`; neither importing a module nor drawing a flat
+   rectangle suffices. Every counted frame needs its affirmative render measurement.
+4. **The figure drives geometry.** A count drives marks and a ratio drives lengths at one scale.
+   Use parallel projection for measurements and perspective only for spatial scenes.
+5. **One finish.** `txpost.js` grades the render. It never substitutes texture for the subject.
+6. **Text stays DOM.** Leave quiet space for vector text and check it at feed size.
 
 ### What a director is told
 
-Pitch the HERO OBJECT first, in metres, as geometry: what it is, what it is made of, and the one
-thing about its shape the story turns on. Then nine cameras and states of that object. A pitch that
-names a screen, a paper, a stock or a print register is pitching the deleted look.
+Pitch the visual argument first. Name the evidence it makes visible, then the physical subjects,
+projection, materials and implementation. Render the hardest subject in the three-frame audition
+before building its dependants. A kit model is useful only if its shape explains the claim.
+`prompts/carousel_studio.md` gives the plan and review contract.
 
 ## THE WORLD (2026-09-24, owner, and it is what THE RENDER was missing)
 

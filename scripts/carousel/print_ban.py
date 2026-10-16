@@ -102,6 +102,7 @@ RENDERED_FLOOR = 6
 # THE WORLD. Decks on or before WORLD_SINCE were built before TXT.sky existed, so they are not
 # judged on it. From the day after, five of nine frames stand in a world.
 WORLD_SINCE = "2026-09-23"
+STUDIO_SINCE = "2026-10-16"
 # The verdicts txthree.js prints on every snapshot of a frame that stands in the world or in a room.
 # Each must equal its TXT constant there, and the self-test reads the engine to hold them in step.
 NO_SKY = "TXT: NO SKY IN FRAME"          # calls TXT.sky, and the camera shows none of it
@@ -132,6 +133,19 @@ def place_verdict(console_errors):
     """
     verdict = None
     for e in console_errors or []:
+        if str(e).startswith("TXBENCH: RELIEF "):
+            import json
+            import math
+            try:
+                proof = json.loads(str(e).split("TXBENCH: RELIEF ", 1)[1])
+                fields = ("height_range", "materials", "cast_fraction", "area")
+                valid = all(type(proof[k]) in (int, float) and math.isfinite(proof[k]) for k in fields)
+                valid = valid and proof["height_range"] >= 1 and proof["materials"] >= 2
+                valid = valid and proof["cast_fraction"] >= 0.001 and proof["area"] >= 0.30
+                verdict = "shown" if valid else "no render"
+            except (ValueError, KeyError, TypeError):
+                verdict = "no render"
+            continue
         m = SKY_MARK.search(str(e))
         if m:
             g = m.group(1)
@@ -198,7 +212,14 @@ def scan_source(name: str, src: str) -> list[str]:
 
 def is_rendered(src: str) -> bool:
     body = strip_comments(src)
-    return all(rx.search(body) for rx in RENDERED)
+    return all(rx.search(body) for rx in RENDERED) or is_relief(src)
+
+
+def is_relief(src: str) -> bool:
+    """An authored height-field render, with its measured verdict checked after rendering."""
+    body = strip_comments(src)
+    return bool(re.search(r"@@ASSETS@@/js/txbench\.js", body)
+                and re.search(r"\bTXBENCH\.relief\s*\(", body))
 
 
 def bench_names(body: str) -> set[str]:
@@ -245,7 +266,7 @@ def in_world(src: str) -> bool:
 
 def in_room(src: str) -> bool:
     """Rendered AND standing in a room the bench built: TXT.interior, before the kept render."""
-    return _placed(src, "interior")
+    return _placed(src, "interior") or is_relief(src)
 
 
 def check_assets(assets: Path = ASSETS) -> list[str]:
@@ -328,6 +349,7 @@ def check_run(run_dir: Path, floor: int = RENDERED_FLOOR, chassis_root: Path = A
         return [f"{slides_dir} holds no slide-*.html, so there is nothing to check. A gate that "
                 f"cannot find its subject does not report clean"]
     out, rendered, worlds, chassis, voids, world_names, room_names = [], 0, 0, set(), [], [], []
+    studio = bool(DATED.match(run_dir.name) and run_dir.name > STUDIO_SINCE)
     for f in files:
         src = f.read_text(encoding="utf-8", errors="replace")
         out += scan_source(f.name, src)
@@ -335,7 +357,7 @@ def check_run(run_dir: Path, floor: int = RENDERED_FLOOR, chassis_root: Path = A
             rendered += 1
             if not (in_world(src) or in_room(src)):
                 voids.append(f.name)
-        if in_world(src):
+        if in_world(src) or is_relief(src) or (studio and in_room(src)):
             worlds += 1
             world_names.append(f.name)
         elif in_room(src):
@@ -347,8 +369,8 @@ def check_run(run_dir: Path, floor: int = RENDERED_FLOOR, chassis_root: Path = A
             out += scan_source(rel, p.read_text(encoding="utf-8", errors="replace"))
     need = min(floor, len(files))
     if rendered < need:
-        out.append(f"{rendered} of {len(files)} frames render their subject through the GPU bench "
-                   f"(txthree.js, snapshotted), and the floor is {need}. A frame that avoids the "
+        out.append(f"{rendered} of {len(files)} frames render their subject through a physical bench "
+                   f"(txthree.js or txbench.js), and the floor is {need}. A frame that avoids the "
                    f"print by drawing flat 2D shapes has not met the standard either: the owner "
                    f"asked for artwork each run actually creates, and the sister corpus renders "
                    f"solid objects with a material, a soft shadow and a contact")
@@ -357,7 +379,7 @@ def check_run(run_dir: Path, floor: int = RENDERED_FLOOR, chassis_root: Path = A
     wneed = min(world_floor, len(files))
     if not (dated and run_dir.name <= WORLD_SINCE) and worlds < wneed:
         out.append(f"{worlds} of {len(files)} frames stand in a world (a rendered frame that calls "
-                   f"TXT.sky), and the floor is {wneed}. A render in a flat background colour is an "
+                   f"TXT.sky, a built interior or a measured material relief), and the floor is {wneed}. A render in a flat background colour is an "
                    f"object in a void, the finding under thirty two decks. Five calls build the "
                    f"world: TXT.sky, TXT.deckRig, TXT.ground with a surface, TXT.contact, "
                    f"TXT.weather. See examples/world-proof/")

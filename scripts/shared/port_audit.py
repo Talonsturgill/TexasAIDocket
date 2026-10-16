@@ -121,6 +121,13 @@ RESIDUE_ALLOW = {
     # Listed by exact path, same as the instrument design records above, so the exemption cannot
     # spread to the ledgers, which is what the residue rule actually protects.
     "config/carousel/deck_coherence.json",
+    # The October 16th studio port retains exact upstream attribution and a measured
+    # two-product audit. These paths contain provenance, never Texas editorial inputs.
+    "assets/js/txbench.js",
+    "scripts/carousel/native_crops.py",
+    "scripts/carousel/critic_brief.py",
+    "knowledge/carousel/audits/2026-10-16-parity.md",
+    "knowledge/carousel/audits/2026-10-16-parity.json",
 }
 
 # Scripts that are legitimately entry points nobody imports: run by hand, or by a human

@@ -1,0 +1,335 @@
+{
+  "as_of": "2026-10-16",
+  "methodology": {
+    "scores": "Latest eight archived deck score reports on each inspected main SHA. Alaska totals are divided by the actual sum of weights. Artwork scores are reported independently. These are existing internal reviews, not a blinded comparison by a common new judge.",
+    "timing": "GitHub first PR commit to merge, and PR creation to merge. These exclude work before the first commit and delivery after merge; they are not complete scheduled-session runtimes."
+  },
+  "repositories": {
+    "texas": {
+      "main_sha": "b92d10d4cee8830cf3d0d20315fe44fdaa18bea3",
+      "scores": [
+        {
+          "date": "2026-10-07",
+          "path": "runs/carousel/2026-10-07/score.json",
+          "total": 6.726,
+          "weight_sum": 1.0,
+          "normalized_total": 6.726,
+          "artwork": 5.8,
+          "rounds": 3
+        },
+        {
+          "date": "2026-10-08",
+          "path": "runs/carousel/2026-10-08/score.json",
+          "total": 6.988,
+          "weight_sum": 1.0,
+          "normalized_total": 6.988,
+          "artwork": 6.5,
+          "rounds": 3
+        },
+        {
+          "date": "2026-10-09",
+          "path": "runs/carousel/2026-10-09/score.json",
+          "total": 6.84,
+          "weight_sum": 1.0,
+          "normalized_total": 6.84,
+          "artwork": 6.0,
+          "rounds": 3
+        },
+        {
+          "date": "2026-10-10",
+          "path": "runs/carousel/2026-10-10/score.json",
+          "total": 7.29,
+          "weight_sum": 1.0,
+          "normalized_total": 7.29,
+          "artwork": 6.5,
+          "rounds": 3
+        },
+        {
+          "date": "2026-10-11",
+          "path": "runs/carousel/2026-10-11/score.json",
+          "total": 6.76,
+          "weight_sum": 1.0,
+          "normalized_total": 6.76,
+          "artwork": 6.0,
+          "rounds": 3
+        },
+        {
+          "date": "2026-10-12",
+          "path": "runs/carousel/2026-10-12/score.json",
+          "total": 6.854,
+          "weight_sum": 1.0,
+          "normalized_total": 6.854,
+          "artwork": 6.6,
+          "rounds": 3
+        },
+        {
+          "date": "2026-10-15",
+          "path": "runs/carousel/2026-10-15/score.json",
+          "total": 7.258,
+          "weight_sum": 1.0,
+          "normalized_total": 7.258,
+          "artwork": 6.7,
+          "rounds": 3
+        },
+        {
+          "date": "2026-10-16",
+          "path": "runs/carousel/2026-10-16/score.json",
+          "total": 7.184,
+          "weight_sum": 1.0,
+          "normalized_total": 7.184,
+          "artwork": 6.2,
+          "rounds": 3
+        }
+      ],
+      "mean_artwork": 6.2875,
+      "mean_normalized_total": 6.9875,
+      "pull_requests": [
+        {
+          "number": 410,
+          "title": "Stage daily carousel artwork and review three rendered compositions",
+          "url": "https://github.com/Talonsturgill/TexasAIDocket/pull/410",
+          "first_commit": "2026-10-08T00:03:15Z",
+          "created": "2026-10-08T00:39:41Z",
+          "merged": "2026-10-08T01:22:15Z",
+          "first_commit_to_merge_minutes": 79.0,
+          "pr_to_merge_minutes": 42.57
+        },
+        {
+          "number": 411,
+          "title": "Daily run, October 8th: carousel no. 46, Software on the radio",
+          "url": "https://github.com/Talonsturgill/TexasAIDocket/pull/411",
+          "first_commit": "2026-10-08T06:44:21Z",
+          "created": "2026-10-08T11:45:01Z",
+          "merged": "2026-10-08T12:43:04Z",
+          "first_commit_to_merge_minutes": 358.72,
+          "pr_to_merge_minutes": 58.05
+        },
+        {
+          "number": 413,
+          "title": "Carousel no. 47: Asked inside the chart. UTMB's OpenEvidence account beside Texas law",
+          "url": "https://github.com/Talonsturgill/TexasAIDocket/pull/413",
+          "first_commit": "2026-10-09T06:41:29Z",
+          "created": "2026-10-09T11:19:16Z",
+          "merged": "2026-10-09T14:34:27Z",
+          "first_commit_to_merge_minutes": 472.97,
+          "pr_to_merge_minutes": 195.18
+        },
+        {
+          "number": 417,
+          "title": "Carousel 48: Austin Community College is writing its AI policy",
+          "url": "https://github.com/Talonsturgill/TexasAIDocket/pull/417",
+          "first_commit": "2026-10-10T06:21:56Z",
+          "created": "2026-10-10T10:23:29Z",
+          "merged": "2026-10-10T11:27:38Z",
+          "first_commit_to_merge_minutes": 305.7,
+          "pr_to_merge_minutes": 64.15
+        },
+        {
+          "number": 420,
+          "title": "Daily run, October 11th: the record re-verified and carousel no. 49 on West Texas A&M's research feedlot",
+          "url": "https://github.com/Talonsturgill/TexasAIDocket/pull/420",
+          "first_commit": "2026-10-11T06:39:47Z",
+          "created": "2026-10-11T10:29:40Z",
+          "merged": "2026-10-11T11:37:17Z",
+          "first_commit_to_merge_minutes": 297.5,
+          "pr_to_merge_minutes": 67.62
+        },
+        {
+          "number": 422,
+          "title": "Daily run, October 12th: carousel no. 50 and the record",
+          "url": "https://github.com/Talonsturgill/TexasAIDocket/pull/422",
+          "first_commit": "2026-10-12T05:16:42Z",
+          "created": "2026-10-12T09:59:32Z",
+          "merged": "2026-10-12T10:52:19Z",
+          "first_commit_to_merge_minutes": 335.62,
+          "pr_to_merge_minutes": 52.78
+        },
+        {
+          "number": 427,
+          "title": "Daily run for October 15th: carousel no. 51, the AI deposition transcript before the Supreme Court of Texas",
+          "url": "https://github.com/Talonsturgill/TexasAIDocket/pull/427",
+          "first_commit": "2026-10-15T05:26:34Z",
+          "created": "2026-10-15T12:05:03Z",
+          "merged": "2026-10-15T13:01:58Z",
+          "first_commit_to_merge_minutes": 455.4,
+          "pr_to_merge_minutes": 56.92
+        },
+        {
+          "number": 428,
+          "title": "Daily run 2026-10-16: carousel no. 52, Waymo San Antonio opens to anyone while its flood recall remedy is under development",
+          "url": "https://github.com/Talonsturgill/TexasAIDocket/pull/428",
+          "first_commit": "2026-10-16T05:43:16Z",
+          "created": "2026-10-16T10:04:22Z",
+          "merged": "2026-10-16T11:49:30Z",
+          "first_commit_to_merge_minutes": 366.23,
+          "pr_to_merge_minutes": 105.13
+        }
+      ],
+      "median_first_commit_to_merge_minutes": 347.17,
+      "median_pr_to_merge_minutes": 61.1
+    },
+    "alaska": {
+      "main_sha": "03da46445a18974351cc6e74835679b3de2c89c8",
+      "scores": [
+        {
+          "date": "2026-10-07",
+          "path": "runs/2026-10-07/score_report.json",
+          "total": 8.745,
+          "weight_sum": 1.1,
+          "normalized_total": 7.95,
+          "artwork": 7.5,
+          "rounds": null
+        },
+        {
+          "date": "2026-10-08",
+          "path": "runs/2026-10-08/score_report.json",
+          "total": 8.41,
+          "weight_sum": 1.1,
+          "normalized_total": 7.645455,
+          "artwork": 6.8,
+          "rounds": 5
+        },
+        {
+          "date": "2026-10-09",
+          "path": "runs/2026-10-09/score_report.json",
+          "total": 8.2,
+          "weight_sum": 1.1,
+          "normalized_total": 7.454545,
+          "artwork": 6.5,
+          "rounds": 5
+        },
+        {
+          "date": "2026-10-10",
+          "path": "runs/2026-10-10/score_report.json",
+          "total": 8.6,
+          "weight_sum": 1.1,
+          "normalized_total": 7.818182,
+          "artwork": 7.0,
+          "rounds": 5
+        },
+        {
+          "date": "2026-10-11",
+          "path": "runs/2026-10-11/score_report.json",
+          "total": 8.26,
+          "weight_sum": 1.1,
+          "normalized_total": 7.509091,
+          "artwork": 6.5,
+          "rounds": 5
+        },
+        {
+          "date": "2026-10-12",
+          "path": "runs/2026-10-12/score_report.json",
+          "total": 8.62,
+          "weight_sum": 1.1,
+          "normalized_total": 7.836364,
+          "artwork": 7,
+          "rounds": 5
+        },
+        {
+          "date": "2026-10-14",
+          "path": "runs/2026-10-14/score_report.json",
+          "total": 8.51,
+          "weight_sum": 1.1,
+          "normalized_total": 7.736364,
+          "artwork": 6.5,
+          "rounds": 4
+        },
+        {
+          "date": "2026-10-15",
+          "path": "runs/2026-10-15/score_report.json",
+          "total": 8.665,
+          "weight_sum": 1.1,
+          "normalized_total": 7.877273,
+          "artwork": 7.5,
+          "rounds": 5
+        }
+      ],
+      "mean_artwork": 6.9125,
+      "mean_normalized_total": 7.7284,
+      "pull_requests": [
+        {
+          "number": 420,
+          "title": "run(2026-10-07): No.80, Alaska's second wire has a passenger list",
+          "url": "https://github.com/Talonsturgill/alaskaaicarousels/pull/420",
+          "first_commit": "2026-10-06T06:26:03Z",
+          "created": "2026-10-06T22:06:42Z",
+          "merged": "2026-10-06T22:59:23Z",
+          "first_commit_to_merge_minutes": 993.33,
+          "pr_to_merge_minutes": 52.68
+        },
+        {
+          "number": 421,
+          "title": "run(2026-10-08): No.81, 829 Acres, 20 Years, and a Notice That Named No Tenant",
+          "url": "https://github.com/Talonsturgill/alaskaaicarousels/pull/421",
+          "first_commit": "2026-10-07T06:25:00Z",
+          "created": "2026-10-07T09:51:25Z",
+          "merged": "2026-10-07T10:36:32Z",
+          "first_commit_to_merge_minutes": 251.53,
+          "pr_to_merge_minutes": 45.12
+        },
+        {
+          "number": 422,
+          "title": "Carousel No.82 (2026-10-09): Alaska's newest rare-earth AI won't hunt for ore",
+          "url": "https://github.com/Talonsturgill/alaskaaicarousels/pull/422",
+          "first_commit": "2026-10-08T06:23:56Z",
+          "created": "2026-10-08T08:41:03Z",
+          "merged": "2026-10-08T10:35:55Z",
+          "first_commit_to_merge_minutes": 251.98,
+          "pr_to_merge_minutes": 114.87
+        },
+        {
+          "number": 425,
+          "title": "run(2026-10-10): No.83 Fairbanks So Far, a 123-vote lead with 1,235 ballots out",
+          "url": "https://github.com/Talonsturgill/alaskaaicarousels/pull/425",
+          "first_commit": "2026-10-09T06:28:00Z",
+          "created": "2026-10-09T09:02:15Z",
+          "merged": "2026-10-09T12:26:48Z",
+          "first_commit_to_merge_minutes": 358.8,
+          "pr_to_merge_minutes": 204.55
+        },
+        {
+          "number": 428,
+          "title": "run(2026-10-11): No.84, who sets the clock on a plate read",
+          "url": "https://github.com/Talonsturgill/alaskaaicarousels/pull/428",
+          "first_commit": "2026-10-10T06:21:09Z",
+          "created": "2026-10-10T09:10:43Z",
+          "merged": "2026-10-10T09:30:46Z",
+          "first_commit_to_merge_minutes": 189.62,
+          "pr_to_merge_minutes": 20.05
+        },
+        {
+          "number": 431,
+          "title": "run(2026-10-12): No.85, 112 answers in Palmer and where they go",
+          "url": "https://github.com/Talonsturgill/alaskaaicarousels/pull/431",
+          "first_commit": "2026-10-11T06:25:44Z",
+          "created": "2026-10-11T09:02:30Z",
+          "merged": "2026-10-11T10:09:04Z",
+          "first_commit_to_merge_minutes": 223.33,
+          "pr_to_merge_minutes": 66.57
+        },
+        {
+          "number": 434,
+          "title": "run(2026-10-14): No.86, Software Can Read the Tape. The Camera Is the Cost.",
+          "url": "https://github.com/Talonsturgill/alaskaaicarousels/pull/434",
+          "first_commit": "2026-10-15T06:20:23Z",
+          "created": "2026-10-15T08:51:13Z",
+          "merged": "2026-10-15T09:02:41Z",
+          "first_commit_to_merge_minutes": 162.3,
+          "pr_to_merge_minutes": 11.47
+        },
+        {
+          "number": 436,
+          "title": "run(2026-10-15): No.87 One Gigawatt, to Scale",
+          "url": "https://github.com/Talonsturgill/alaskaaicarousels/pull/436",
+          "first_commit": "2026-10-16T06:22:19Z",
+          "created": "2026-10-16T09:38:59Z",
+          "merged": "2026-10-16T10:24:30Z",
+          "first_commit_to_merge_minutes": 242.18,
+          "pr_to_merge_minutes": 45.52
+        }
+      ],
+      "median_first_commit_to_merge_minutes": 246.86,
+      "median_pr_to_merge_minutes": 49.1
+    }
+  }
+}

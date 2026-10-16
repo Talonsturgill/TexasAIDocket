@@ -1,5 +1,18 @@
 # Texas AI Docket
 
+
+## Physical render routes, effective October 17th, 2026
+
+Read `prompts/carousel_studio.md`. It replaces the single hero object and GPU-only quotas in
+older instructions. A coherent deck can carry a measured scale or a changing motif through
+bespoke material reliefs (`txbench.js`), spatial scenes (`txthree.js`) or a deliberate mix.
+Judge what the image explains at feed size. A physical relief needs measured height, distinct
+materials and cast shadows; a flat drawing or a fallback never qualifies. Retain the existing
+fact, numeral, source, layout, contrast and final-panel gates. The hardest planned frame is in
+the audition, and a changed frame receives a new visual review. Unchanged reviews retain their
+exact source, image and shared-asset hashes.
+
+
 Source repo for the Texas AI Docket: a public, fact-checked record of AI decisions in Texas,
 the website that publishes it, the daily routine that maintains both, the Texas Grid Watch, and
 the in-browser ask engine.
@@ -333,9 +346,9 @@ September 20th fixes added two correct gates and neither asked whether a frame w
   defining it, or its vocabulary returns to `assets/js/`, and fails a run whose slides or chassis
   print, or whose frames are not rendered. It is registered in `shipped_check`, run on the probe
   frame by the routine, and wired into `guards.yml`.
-- **Every frame is RENDERED**, the way the Alaska corpus renders: one HERO OBJECT modelled once as
-  geometry and carried through the deck, a real PBR material, one rig, a soft shadow onto a ground
-  it touches, through `assets/js/txthree.js`. **At least six of nine frames render through it.**
+- **Every frame is rendered.** Choose spatial scenes through `assets/js/txthree.js` or material
+  reliefs through `assets/js/txbench.js`, with one visual argument, material vocabulary and light.
+  **At least six of nine frames use a physical bench.**
   Finish with the `txpost.js` grade, never a screen. Text stays DOM.
 - The routine, `ILLUSTRATION_SYSTEM.md`, `TECHNIQUE_LIBRARY.md`, `SLIDE_DOSSIER_SPEC.md`, the
   scoring rubric and all three art agents say this, and none of them says print any more.
@@ -349,8 +362,8 @@ world: `TXT.sky` (a real sky, IBL rendered from it, haze in its horizon hue), `T
 `TXT.scatter`, `TXT.contact`, `TXT.weather`, `TXT.roundedBox`, contact-hardening sun shadows (PCSS, which
 replaced VSM on 2026-10-03 because VSM bled light), a worn ground and one tone curve.
 `examples/world-proof/compare.webp` is no. 32's own model and camera before and after.
-`print_ban.py` counts frames that call `TXT.sky`, five of nine, and fails any rendered frame that
-stands in neither that world nor a room built by `TXT.interior`. THE SHOWSTOPPER TEST in
+`print_ban.py` counts frames with `TXT.sky`, a built interior or a measured material relief, five of nine. A spatial
+render must stand in its world or a room built by `TXT.interior`. THE SHOWSTOPPER TEST in
 `ILLUSTRATION_SYSTEM.md` is the artwork 10. It is a target the critics hold every frame to, not a
 cap. The upgrade prepared on 2026-10-04 asks for a BOLD frame rather than a photograph of a place.
 

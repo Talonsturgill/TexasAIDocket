@@ -17,12 +17,12 @@
 | engine calls (`TXT.*`) | 30 |
 | world presets | 8 |
 | kit models | 120 in 10 families |
-| asset libraries | 21 |
-| carousel and shared tools | 72 |
+| asset libraries | 22 |
+| carousel and shared tools | 75 |
 | record and site tools the routine names | 20 |
-| agents | 10 |
+| agents | 11 |
 | knowledge files | 42 |
-| examples | 9 |
+| examples | 10 |
 
 ## BY PHASE, the tools the routine names in each section
 
@@ -32,26 +32,26 @@
 | nonnegotiables | `bespoke_check.py`, `caption_check.py`, `docket_build.py`, `gridwatch_page.py`, `house_style_check.py`, `shipped_check.py`, `waterwatch_page.py`, `word_ban.py` |
 | context | `arsenal.py`, `crawl_boundary.py`, `dossier_check.py`, `fetch_doc.py` |
 | state | `deck_chassis.py`, `depth_floor.py`, `figure_bearing.py`, `panel_ready.py`, `print_ban.py`, `value_register.py` |
-| 0 | `bootstrap.sh`, `docket_build.py`, `guards_local.py`, `ownership_check.py`, `prompt_audit.py` |
+| 0 | `bootstrap.sh`, `docket_build.py`, `guards_local.py`, `ownership_check.py`, `prompt_audit.py`, `studio_clock.py` |
 | 1 | `instincts.py` |
 | 2 | `docket_build.py`, `docket_staleness.py` |
 | 3 | `places.py`, `reverify.py`, `site_build.py` |
 | 5 | `docket_build.py`, `docket_ingest.py`, `site_build.py` |
 | 6 | `claims_check.py` |
 | 7 | `favicon.py`, `gridwatch_page.py`, `gridwatch_pagecheck.py`, `indexnow.py`, `media_check.py`, `og.py`, `routine_claims.py`, `schema_check.py`, `seo_check.py`, `site_build.py`, `site_fresh_check.py`, `truetype.py`, `waterwatch_page.py`, `waterwatch_pagecheck.py` |
-| 8 | `dedupe_check.py`, `panel_ready.py` |
-| 9 | `instincts.py`, `layout_check.py` |
+| 8 | `dedupe_check.py`, `panel_ready.py`, `studio_clock.py` |
+| 9 | `instincts.py`, `layout_check.py`, `studio_clock.py` |
 | artwork | `depth_floor.py`, `dossier_check.py`, `figure_bearing.py`, `layout_check.py`, `print_ban.py`, `value_register.py` |
 | 10 | `caption_check.py` |
-| 10.5 | `art_preflight.py`, `deck_chassis.py`, `depth_floor.py`, `figure_bearing.py`, `print_ban.py`, `qa.py`, `render.py`, `value_register.py` |
-| 11 | `bespoke_check.py`, `deck_chassis.py`, `deck_coherence.py`, `layout_check.py`, `print_ban.py`, `qa.py`, `render.py`, `value_register.py` |
-| 12 | `aggregate_check.py`, `claims_check.py`, `copy_sync_check.py`, `layout_check.py`, `qa.py`, `render.py`, `value_register.py` |
+| 10.5 | `art_preflight.py`, `critic_brief.py`, `deck_chassis.py`, `depth_floor.py`, `figure_bearing.py`, `print_ban.py`, `qa.py`, `render.py`, `value_register.py` |
+| 11 | `bespoke_check.py`, `deck_chassis.py`, `deck_coherence.py`, `layout_check.py`, `print_ban.py`, `qa.py`, `render.py`, `studio_clock.py`, `value_register.py` |
+| 12 | `aggregate_check.py`, `claims_check.py`, `copy_sync_check.py`, `critic_brief.py`, `layout_check.py`, `qa.py`, `render.py`, `studio_clock.py`, `value_register.py` |
 | 12b | `absence_check.py`, `coherence_check.py`, `copy_sync_check.py`, `craft_floor.py`, `dossier_check.py`, `gate_status.py`, `layout_check.py`, `noun_trace.py`, `panel_ready.py`, `plan_render_check.py`, `print_ban.py`, `qa.py`, `texan_check.py` |
 | 13 | `aggregate_check.py`, `claims_check.py` |
 | 14 | `assemble.py` |
 | 14b | `panel_ready.py`, `print_ban.py`, `qa.py`, `render.py`, `value_register.py` |
-| 15 | `gate_status.py`, `panel.py`, `panel_ready.py`, `print_ban.py`, `qa.py`, `render.py`, `run_complete.py`, `value_register.py` |
-| 16 | `art_preflight.py`, `article_check.py`, `docket_build.py`, `house_style_check.py`, `measure_shipped.py`, `media_check.py`, `merge_ready.py`, `ownership_check.py`, `port_audit.py`, `push.sh`, `schema_check.py`, `schema_contract.py`, `seo_check.py`, `ship_images.py`, `site_build.py`, `site_fresh_check.py` |
+| 15 | `gate_status.py`, `panel.py`, `panel_ready.py`, `print_ban.py`, `qa.py`, `render.py`, `run_complete.py`, `studio_clock.py`, `value_register.py` |
+| 16 | `art_preflight.py`, `article_check.py`, `docket_build.py`, `house_style_check.py`, `measure_shipped.py`, `media_check.py`, `merge_ready.py`, `ownership_check.py`, `port_audit.py`, `push.sh`, `schema_check.py`, `schema_contract.py`, `seo_check.py`, `ship_images.py`, `site_build.py`, `site_fresh_check.py`, `studio_clock.py` |
 | 17 | `arsenal.py`, `instincts.py`, `machine_due.py`, `prompt_audit.py`, `push.sh`, `week_digest.py` |
 | 18 | `guards_local.py`, `merge_ready.py`, `push.sh` |
 | 19 | `email_check.py`, `gate_status.py`, `gmail_draft.py`, `prompt_audit.py` |
@@ -372,6 +372,7 @@ Classic scripts expose a global. The engine and the kit are ES modules and are a
 | `three.module.min.js` | vendored | Copyright 2010-2024 Three.js Authors SPDX-License-Identifier: MIT |  |
 | `topojson-client.min.js` | vendored | https://github.com/topojson/topojson-client v3.1.0 Copyright 2019 Mike Bostock |  |
 | `tx3d.js` | `TX3D` | tiny software 3D renderer for Canvas 2D. | box, camera, heightfield, hex2rgb, line3d, mix, points3d, project, render, rgb2css |
+| `txbench.js` | `TXBENCH` | multi-material digital bas-relief, lit by one raking key. | relief |
 | `txcarve.js` | `TXCARVE` | wind-worked surfaces and two-part contact shadows. | contactShadow, surface |
 | `txcolor.js` | `TXC` | OKLCH color engine for slide palettes (no deps). | applyGradientMap, gradientMapLUT, hexToOklch, mixOklab, oklchToHex, ramp |
 | `txdeck.js` | `TXDECK` | the deck chassis base. | castDir, castLen, contact, deck, declare, DUSK_GRADE, finish, lightVec, lineBoxes, offscreen, pick, punch, ramp, reserveMask, stamp |
@@ -397,7 +398,7 @@ Classic scripts expose a global. The engine and the kit are ES modules and are a
 
 **The 2.5D object catalogue** (`TXOBJ.sprite(name)` on the `TXSCENE` bench, canvas only, for the rare frame that is not rendered; a rendered frame takes the kit): `ambulance` 6.7 x 2.7, `battery_container` 12.2 x 2.9, `billboard` 14.6 x 12.0, `camera_pole` 1.2 x 4.5, `capitol` 100.0 x 95.0, `cattle` 2.5 x 1.5, `civic_facade` 30.0 x 20.0, `cooling_tower` 90.0 x 130.0, `dais` 9.0 x 1.3, `data_center` 130.0 x 16.0, `desk` 1.6 x 1.2, `drone` 1.0 x 0.3, `fence_post` 0.2 x 1.4, `filing_box` 0.4 x 0.28, `helicopter` 13.0 x 3.8, `hospital` 60.0 x 30.0, `hospital_bed` 2.2 x 1.3, `house` 16.0 x 6.0, `live_oak` 16.0 x 11.0, `mesquite` 8.0 x 6.0, `office_chair` 0.7 x 1.2, `pallet_boxes` 1.2 x 1.7, `pickup` 5.9 x 1.95, `pine` 7.0 x 26.0, `podium` 0.7 x 1.25, `power_plant` 70.0 x 62.0, `pump_jack` 7.5 x 5.2, `road_sign` 2.0 x 3.0, `school` 60.0 x 8.0, `school_bus` 12.0 x 3.1, `sedan` 4.7 x 1.45, `server_rack` 0.6 x 2.1, `solar_panel` 4.2 x 2.6, `stock_tank` 8.0 x 1.0, `streetlight` 3.0 x 10.0, `strip_mall` 40.0 x 6.0, `student_desk` 0.9 x 0.85, `substation` 22.0 x 12.0, `traffic_signal` 8.0 x 6.5, `transmission_tower` 12.0 x 42.0, `truck_semi` 17.0 x 4.1, `utility_pole` 2.4 x 12.0, `voting_booth` 0.9 x 1.6, `warehouse` 90.0 x 12.0, `water_tower` 12.0 x 38.0, `wind_turbine` 8.0 x 150.0, `windmill` 3.0 x 11.0.
 
-**Earlier deck chassis** (`assets/js/deck/`, read how a `TXDECK.declare` is written, never copy a world): `2026-09-16-lamp.js`, `2026-09-17-nightdraft.js`, `2026-09-18-minutebook.js`, `2026-09-19-firstlight.js`, `2026-09-20-waterworks.js`, `2026-09-21-oakcliff.js`, `2026-09-23-gensetyard.js`, `2026-09-24-droneline.js`, `2026-09-26-fortyfive.js`, `2026-09-27-nightrent.js`, `2026-09-28-watchtower.js`, `2026-09-29-mccloud.js`, `2026-09-30-firstreader.js`, `2026-10-01-plates.js`, `2026-10-02-vials.js`, `2026-10-03-norther.js`, `2026-10-04-noonbell.js`, `2026-10-05-wards.js`, `2026-10-06-prairie.js`, `2026-10-07-portalpha.js`, `2026-10-08-nexus.js`, `2026-10-09-chart.js`, `2026-10-10-lastlawn.js`, `2026-10-11-feedyard.js`, `2026-10-12-crossing.js`, `2026-10-15-transcript.js`, `2026-10-16-curb.js`, `proof-port-art-direction.js`.
+**Earlier deck chassis** (`assets/js/deck/`, read how a `TXDECK.declare` is written, never copy a world): `2026-09-16-lamp.js`, `2026-09-17-nightdraft.js`, `2026-09-18-minutebook.js`, `2026-09-19-firstlight.js`, `2026-09-20-waterworks.js`, `2026-09-21-oakcliff.js`, `2026-09-23-gensetyard.js`, `2026-09-24-droneline.js`, `2026-09-26-fortyfive.js`, `2026-09-27-nightrent.js`, `2026-09-28-watchtower.js`, `2026-09-29-mccloud.js`, `2026-09-30-firstreader.js`, `2026-10-01-plates.js`, `2026-10-02-vials.js`, `2026-10-03-norther.js`, `2026-10-04-noonbell.js`, `2026-10-05-wards.js`, `2026-10-06-prairie.js`, `2026-10-07-portalpha.js`, `2026-10-08-nexus.js`, `2026-10-09-chart.js`, `2026-10-10-lastlawn.js`, `2026-10-11-feedyard.js`, `2026-10-12-crossing.js`, `2026-10-15-transcript.js`, `2026-10-16-curb.js`, `2026-10-16-studio-proof.js`, `proof-port-art-direction.js`.
 
 **Geodata** (`assets/geo/`):
 
@@ -429,6 +430,7 @@ Run every gate by EXIT CODE, never by reading the last line. **Wired** says what
 | `scripts/carousel/contact_trace.py` | an address a reader could write to, that no source in the run carries. | --date --run --all --self-test | shipped |  |
 | `scripts/carousel/copy_sync_check.py` | does the record still say what the deck says? | --date --out --self-test | CI self-test, shipped | 12, 12b |
 | `scripts/carousel/craft_floor.py` | no frame ships that nobody drew. | --date --render-dir --self-test | CI self-test, gate table, shipped | 12b |
+| `scripts/carousel/critic_brief.py` | Give visual reviewers the craft row, lower-third plan and current native crops. | --run-dir --render-dir --slide --json |  | 10.5, 12 |
 | `scripts/carousel/deck_chassis.py` | prove the deck's nine frames were cut from ONE piece of stock. | --slides-dir --date --self-test --json | CI, shipped | state, 10.5, 11 |
 | `scripts/carousel/deck_coherence.py` | measure whether the nine RENDERED frames read as one deck. | --render-dir --date --storyboard --self-test --json | CI self-test, shipped | 11 |
 | `scripts/carousel/dedupe_check.py` | does this story repeat one the record already told? | --entities --keywords --desc --date --item --beat --places --self-test | CI self-test | 8 |
@@ -446,6 +448,7 @@ Run every gate by EXIT CODE, never by reading the last line. **Wired** says what
 | `scripts/carousel/locator_trace.py` | where in a document a frame says something is, is itself a claim. | --date --run --all --self-test | shipped |  |
 | `scripts/carousel/machine_due.py` | is the weekly machine pass due today? | --date --self-test | CI self-test | 17 |
 | `scripts/carousel/measure_shipped.py` | write a run's measurements.json from the frames it SHIPPED. | --run --check --self-test | CI, shipped | 16 |
+| `scripts/carousel/native_crops.py` | Cut and verify native-size review tiles without changing the full-frame pixels. |  |  |  |
 | `scripts/carousel/noun_trace.py` | a named thing on a slide has to come from a source. | --date --run --all --self-test | CI self-test, shipped | 12b |
 | `scripts/carousel/numeral_trace.py` | a numeral a frame prints has to be reachable from a claim that frame cites. | --self-test | gate table, shipped |  |
 | `scripts/carousel/panel.py` | three judges, a median, and any one hard fail stops the deck. | --date --judges --out --self-test | CI self-test, gate table | 15 |
@@ -458,6 +461,7 @@ Run every gate by EXIT CODE, never by reading the last line. **Wired** says what
 | `scripts/carousel/ship_images.py` | make the shipped deck weigh what a phone can afford. | --run --all --dry-run --force --keep --self-test | CI self-test | 16 |
 | `scripts/carousel/shipped_check.py` | run the gates against what was actually published. | --run --self-test | CI | nonnegotiables |
 | `scripts/carousel/sources_block.py` | build the deck's published sources block, and prove it resolves. | --date --run-dir --build --check --self-test | shipped |  |
+| `scripts/carousel/studio_clock.py` | Record real studio checkpoints without resetting the clock across compaction. | --date --checkpoint --report |  | 0, 8, 9, 11, 12, 15, 16 |
 | `scripts/carousel/texan_check.py` | can a Texan tell where this happened and what to do next. | --date --text --self-test | CI self-test, gate table | 12b |
 | `scripts/carousel/value_register.py` | the faded look, measured off the frames, before a critic sees them. | --render-dir --run --probe --date --json --self-test | CI self-test, shipped | state, artwork, 10.5, 11, 12, 14b, 15 |
 | `scripts/carousel/verbatim_check.py` | a fragment set in a verbatim slot is the source's own words. | --date --run --self-test | gate table, shipped |  |
@@ -518,6 +522,7 @@ Run every gate by EXIT CODE, never by reading the last line. **Wired** says what
 
 | agent | tools | what it does |
 |---|---|---|
+| `carousel-art-director` | Read | Reviews the three rendered audition frames before the remaining art is built. |
 | `carousel-caption-critic` | Read | Judges the caption room's candidates against the variety ledger, the anti-template law, the banned-furniture list and every house rule. |
 | `carousel-caption-director` | Read | One voice in the caption room. |
 | `carousel-copywriter` | Read | Carries the caption room's winning post copy verbatim, writes the first-comment source block, the document title, and polishes the slide strings from the storyboard. |
@@ -554,7 +559,7 @@ Run every gate by EXIT CODE, never by reading the last line. **Wired** says what
 | `knowledge/carousel/CAROUSEL_CRAFT.md` | Carousel craft, the platform science | What is measurable about how a LinkedIn carousel is actually consumed, separated from what is merely believed about it. |
 | `knowledge/carousel/DESIGN_DOCTRINE.md` | Design doctrine, the visual standard | The rules that decide whether a frame is finished. |
 | `knowledge/carousel/FIELD_NOTES.md` | Field notes, lessons that cost something to learn | The living record of what has actually gone wrong here, and what the fix turned out to be. |
-| `knowledge/carousel/ILLUSTRATION_SYSTEM.md` | The illustration system, how a frame gets an IMAGE | Written 2026-09-11, the upgrade session after carousel no. 21, on the owner's instruction that the artwork was "very mediocre" and had to be a different order of thing by the next run. |
+| `knowledge/carousel/ILLUSTRATION_SYSTEM.md` | The illustration system, how a frame gets an IMAGE | Read `prompts/carousel_studio.md`. It replaces the single hero object and GPU-only quotas in older instructions. |
 | `knowledge/carousel/MACHINE_QUEUE.md` | Machine queue: what the weekly machine pass works on | Since 2026-10-03 a run fixes only what broke in its own run and queues every other machine change here, in Phase 17, under the `upgrade` stamp. |
 | `knowledge/carousel/SLIDE_DOSSIER_SPEC.md` | Slide dossier spec, the planning format | A dossier is written for every slide BEFORE any code is written for it. |
 | `knowledge/carousel/TECHNIQUE_LIBRARY.md` | Technique library, the variety engine's palette | Named techniques the deck engine can actually execute, each with what it is for, what it costs, and how it fails. |
@@ -607,4 +612,5 @@ Measurements and plumbing, never a subject or a palette to copy.
 | `examples/kit/` | Proof pages for THE KIT (assets/js/txkit.js): every model rendered in the engine's world. | cab-proof.webp, proof.webp, build.py |
 | `examples/lamp-deck/` | Emit the nine frames of carousel No. 26R. | contact_sheet.webp, slide-01.webp, slide-05.webp, slide-09.webp, build.py, slides, storyboard.md |
 | `examples/objects/` |  | catalogue-1.jpg, catalogue-2.jpg, figures.jpg, screens.jpg |
+| `examples/studio-proof/` | Material relief renderer study. Three native HTML studies use the frozen figures from Texas no. 52 to exercise `TXBENCH.relief`. | contact_sheet.webp, build.py, slides |
 | `examples/world-proof/` | world-proof, the engine's world measured on carousel no. 32's own model. This is a measurement of the ENGINE, never a subject or a palette to copy. | compare.webp, horizon.webp, into-the-sun.webp, build.py, slides |

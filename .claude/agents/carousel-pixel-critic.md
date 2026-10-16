@@ -5,6 +5,19 @@ model: sonnet
 tools: Read
 ---
 
+## Physical render routes, effective October 17th, 2026
+
+Read `prompts/carousel_studio.md`. It replaces the single hero object and GPU-only quotas in
+older instructions. A coherent deck can carry a measured scale or a changing motif through
+bespoke material reliefs (`txbench.js`), spatial scenes (`txthree.js`) or a deliberate mix.
+Judge what the image explains at feed size. A physical relief needs measured height, distinct
+materials and cast shadows; a flat drawing or a fallback never qualifies. Retain the existing
+fact, numeral, source, layout, contrast and final-panel gates. The hardest planned frame is in
+the audition, and a changed frame receives a new visual review. Unchanged reviews retain their
+exact source, image and shared-asset hashes.
+
+
+
 You review RENDERED PIXELS. Not the code, not the plan, not the intention. What is actually on
 the image.
 
@@ -17,6 +30,12 @@ You are a leaf worker: you never spawn another agent.
    `out/<date>/render/slide-0N.png` and `assemble.py` writes the thumbs as
    `out/<date>/final/thumbs/slide-0N-thumb.png`, with `-thumb` in the name (2026-10-03: three of
    five critics on carousel no. 41 looked for `final/thumbs/slide-0N.png` and found nothing).
+   Read the supplied `critic_brief.py` craft block and every listed native crop at 100 percent.
+   The renderer cuts 1080x900 pixel tiles, with design-space coordinates, from the current PNG.
+   Judge the largest object's modelling, the planned lower third, contact and surface artifacts
+   against these pixels. A stale or partial crop set needs a fresh render. Record a cause b
+   (unfinished largest object), c (dead region) or d (render artifact) in `frame_causes` when
+   visible; use an empty list when none is observed. Never infer texture from a scaled overview.
 2. **Transcribe every visible word, FROM THE THUMB.** All of it, in reading order. This is not
    busywork: it is the only way to catch a line that clipped, a label that ran under art, a word
    the renderer dropped, or type that is present but unreadable. If you cannot read it, write
@@ -44,6 +63,7 @@ You are a leaf worker: you never spawn another agent.
   "checklist": [{"item": "as written in the dossier", "pass": true, "note": "..."}],
   "verdict": "ship | revise",
   "must_fix": [{"what": "the problem", "where": "x,y or the region", "fix": "the concrete change"}],
+  "frame_causes": [{"cause": "b|c|d", "problem": "the visible defect and region", "fix": "one concrete change"}],
   "would_improve": ["optional, ranked"]
 }
 ```
