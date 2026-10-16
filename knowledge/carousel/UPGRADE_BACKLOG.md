@@ -5827,3 +5827,80 @@ aviation set and `dry_van` with its siblings are deferred again behind newer dec
 No contact or grime, 4 runs and 8 rounds; dead or empty region, 4 and 8; value strobe, 4 and 5;
 flat 2D overlay, 2 and 6; render artifact, 2 and 4. No gate changed this pass, so GATE_LESSONS is
 unchanged. No frontier scan this pass: the time went to the two proofs.
+
+## 2026-10-16, the eighth weekly machine pass. Two kit lifts, two engine proposals, three carried
+
+Read from `out/2026-10-16/week_digest.md` (five shipped runs, October 10th to 16th) and the queue,
+due early because four items stood at repeat 3 or more after no. 52. `variety` was the lowest
+criterion on four decks (week mean 6.5) and `artwork_craft` on three (mean 6.4). "Largest object
+unmodelled" was named on five decks in 15 rounds, "primitive or low-poly model where a kit model
+belongs" on five in 14, "object in a void" on five in 8, "no contact or grime" on four in 8, "dead
+or empty region" on four in 6, "type sitting on the art" on four in 5. The account is in
+`ledger/carousel/upgrades.json` under `2026-10-16 weekly`, and the pass is recorded in
+`config/carousel/machine_pass.json`. Proofs are in `out/2026-10-16/tmp/machine/` and die with the
+container.
+
+### 1. KIT PERSON: RELAXED ARMS, HAIR IN LOCKS, A BEARD BELOW THE CHEEK (done, `assets/js/kit/people.js`, a16dc485)
+
+The queue's `kit-person-head-reads-as-mannequin`, deferred on October 12th and 15th, was named on
+nos. 48, 49, 51 and 52, four of the week's five decks. Rendered at full size before touching it
+(seeds 1 to 5 and 8, standing, seated officials, walking, a head close-up and a hand close-up), the
+mannequin read had four causes, all geometry: arms hanging straight and splayed alike; a hair shell
+of even thickness with one clean hairline; a strand albedo of full-height streaks that read as wood
+grain; and a full beard whose cheek line climbed to the cheekbone, so seed 8 without a hat wore a
+mask. Each is fixed without a new random draw, so every seed keeps its shirt, hair, hat and build,
+which the before and after lineup shows. Carried: a judicial robe for `role: 'official'` (no. 51's
+bench), the long curtain's front edge beside the neck, a face of one value under a warm key.
+
+### 2. KIT LIFT: `crossover`, A LOFTED BODY, WITH `sensors: true` (done, `assets/js/kit/vehicles.js`, fa47390f)
+
+No. 52's robotaxi was the kit `suv` scaled, and every judge in rounds 2 and 3 named it a boxy toy on
+frames 1, 2, 4 and 6. The cause is the kit's construction rather than the SUV's proportions: every
+kit car is a side profile extruded across its width, so the sides are the extrusion's flat caps,
+which no deform can curve. `crossover` is lofted section by section. Lifted under a new name,
+because no. 52's `installKit` returns early once the kit defines `robotaxi`. `terminal_curb`,
+`curb_bollard`, `road_stud`, `standing_water` and the low detail car field stay in no. 52's chassis.
+
+### 3. ESCALATED: TWO ENGINE CHANGES (`assets/js/txthree.js` is `human`)
+
+- `standing-water-no-reflection` (no. 52 frames 3 and 4, every judge in all three rounds read the
+  flood as an opaque dark plane that mirrors nothing; frame 6 needed a mirrored twin on a raised set
+  and frame 4 hand laid lamp streaks). Proposal: `TXT.water(R, { ripple, tint, depth })`, a
+  translucent rippled water material over a planar reflection (a `Reflector`-style mirror render of
+  the scene clipped at the water plane, its normal perturbed by the ripple map), so a lamp and a car
+  body mirror and break up. Theme counts: object in a void, 5 runs and 8 rounds; flat 2D overlay, 1
+  and 3. Verification for the maintainer: no. 52's frame 3 re-rendered, a lamp's reflection present
+  in the water band and absent with the option off.
+- `stage-fog-takes-the-far-bank` (no. 52 frame 3: `TXT.stage` fogs from just behind the subject, so
+  the creek's far bank and ledges vanished, and opening `behind` lit the tree crowns behind the dek
+  instead, which qa then failed). Proposal: a `keep` option naming a background group that the stage
+  fog spares, fogging only the sky band behind the type. Theme count: dead or empty region, 4 runs
+  and 6 rounds.
+
+### 4. CARRIED, ESCALATED AGAIN (`human` and `.claude`)
+
+- `qa-glyph-run-as-rule`, now with no. 52 frame 3 (a dek over lit oak foliage read as a 770 px rule;
+  the crowns were darkened to 5 percent albedo to pass). Still `.claude/skills/carousel-engine/qa.py`,
+  a maintainer's edit, with the proposal and its self-test cases in 2026-10-07 item 2.
+- `grid-piece-count-reads-lit-ground-as-subject`, now with no. 52 frames 5 and 7 (floors laid as
+  unlit pads to pass, and a lit apron the round 1 judges asked for put frame 7 back to one piece).
+  The id pass proposal stands (engine and `render.py`, 2026-10-12 item 4). This is five decks now
+  where the gate decided the lighting of a frame against what the judges asked for.
+- `article-test-screenshots-fixed-path`, now with no. 52. `tests/article_edition.mjs` is `human`
+  (2026-10-10 item 4).
+
+### 5. DEFERRED, NOT REFUSED
+
+`sources-block-needs-document-titles` (no. 52 only): the clean fix is two halves, a `document`
+field in the fact checker's schema (`.claude/agents/carousel-fact-checker.md`, a maintainer's) and
+`claims_check.py` holding a dated run to it at Phase 6, and `claims_check --self-test` requires the
+agent's example to carry every required field, so the in-lane half alone would put the two copies of
+the schema out of step. Proposal for a maintainer: add `"document": "the source's own title"` to
+the agent's JSON example and `document` to `claims_check.REQUIRED` for runs after the edit, in one
+commit. `sky-banding-needs-deband-in-engine`, the aviation set and `dry_van` stay deferred.
+
+### Carried, with this week's counts
+
+Value strobe or undeclared tonal cut, 4 runs and 5 rounds; grass or scatter, 2 and 5; render
+artifact, 2 and 4; horizon band, 2 and 3. No gate changed this pass, so GATE_LESSONS is unchanged.
+No frontier scan: the pass spent its time on the two proofs, read at full size.

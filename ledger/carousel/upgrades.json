@@ -3292,4 +3292,50 @@
  ],
  "not_done": "The kit person's mannequin look (queue kit-person-head-reads-as-mannequin, repeat 2) is deferred again, not refused, with a measurement: an A/B of the hair material on official seeds (the 1.12 brightening and the pale 0.55 sheen removed, roughness 0.78) through the engine changed nothing visible, out/2026-10-15/tmp/machine/hab/ab.png. The helmet read is the hair SHELL's geometry and the stiff pose, a person lift of its own, and a change to the default person also re-renders the eight kit justices on today's shipped frame 7. The A-pose, mitten hands, helmet shell and a judicial robe for a bench are carried as one lift (UPGRADE_BACKLOG 2026-10-15 item 3). No gate changed this pass, so GATE_LESSONS is unchanged. No frontier scan: the pass spent its time on the two proofs. The hearing_dais tighter-horseshoe option and the camcorder's three other courtroom siblings (granite_stair, court_front, lectern_rail) stay in the chassis, one lift per pass"
 }
+,"2026-10-16 weekly": {
+ "date": "2026-10-16",
+ "run": "weekly machine pass, read with carousel no. 52",
+ "actor": "upgrade",
+ "upgrades": [
+  {
+   "what": "Kit person: arms at rest fall nearly plumb with an uneven elbow bend, a resting hand curls, the hair shell carries twelve locks and a scalloped hairline, the long curtain is creased into clumps, the strand albedo is drawn as locks of short strands, and a full beard's cheek line runs from the sideburn to the mouth corner",
+   "why": "Queue kit-person-head-reads-as-mannequin at repeat 3, named on nos. 48, 49, 51 and 52 (four of the week's five decks); digest theme 'primitive or low-poly model where a kit model belongs', 5 runs and 14 rounds. Deferred on October 12th and 15th; the 2026-10-15 A/B showed the hair material was not the cause. Rendered before touching: a splayed straight-armed A-pose, an even helmet shell, full height streaks reading as wood grain, and seed 8's beard covering half the face",
+   "files": [
+    "assets/js/kit/people.js"
+   ],
+   "verification": "Before and after renders through the carousel engine (out/2026-10-16/tmp/machine/person_pages.py, before/ and after/ render dirs): six standing seeds, a seed 5 head, a seed 8 head without a hat, four seated officials, four walkers, a hand close-up, read at full size. The lineup keeps every seed's shirt, trousers, hair colour and hat, because no random draw was added. python3 examples/kit/build.py --family people then render.py renders clean, and python3 examples/kit/sizes.py exits 0 (120 of 120 models declare the size they build, centred)",
+   "revert": "git revert a16dc485",
+   "how_i_would_know_this_was_wrong": "A judge or pixel critic still naming a kit person a mannequin, helmet haired or wooden haired at the size the frame shows it; hands meeting the thigh or the trousers at a heavy build (the arms now hang closer); a seed whose shirt, hat or hair colour changed from the deck that planned it, which would mean a random draw moved"
+  },
+  {
+   "what": "Kit `crossover`: a compact electric crossover whose body is lofted section by section (tucked at the rocker, full at the waist, rolled and creased at the shoulder, flared over each wheel, closed in plan at nose and tail), with dark arch liners and underbody, coated glass, a fastback, door cuts and flush handles on the curved side, lamp lines laid on the nose and tail, and `sensors: true` for the robotaxi kit lifted from no. 52's chassis",
+   "why": "No. 52 built its robotaxi on the kit SUV and every judge in panel rounds 2 and 3 named it a boxy toy on frames 1, 2, 4 and 6 (queue robotaxi-curb-models-built-in-chassis); digest theme 'largest object unmodelled', 5 runs and 15 rounds. Every kit car is a side profile extruded across its width, so its sides are flat caps no deform can bend",
+   "files": [
+    "assets/js/kit/vehicles.js",
+    "knowledge/carousel/ARSENAL.md"
+   ],
+   "verification": "Proof renders through the carousel engine (out/2026-10-16/tmp/machine/car_pages.py: white three quarter front, white with sensors in profile, a seeded colour from the rear, white with sensors at night under lastLight) and examples/kit/build.py --family vehicles --names crossover,suv beside the SUV, read at full size; two defects found in the proofs and fixed before commit (a D pillar standing above the fastback as a fin, a B pillar leaning out of the glass). python3 examples/kit/sizes.py exits 0 with the new model; python3 scripts/carousel/arsenal.py --check exits 0",
+   "revert": "git revert fa47390f",
+   "how_i_would_know_this_was_wrong": "A deck using `crossover` named a boxy toy, a jelly bean or a sports car where it meant a crossover; the arch liners or underbody reading as black holes in a lit frame; a chassis defining its own `crossover` and colliding with the kit (K.define throws on a second definition); sizes.py failing on a seed the sample did not cover"
+  }
+ ],
+ "proposals_out_of_lane": [
+  {
+   "what": "TXT.water: a translucent rippled water material over a planar reflection of the scene clipped at the water plane",
+   "owner": "human",
+   "why": "Queue standing-water-no-reflection, no. 52 frames 3 and 4, every judge in all three panel rounds read the flood as an opaque plane that mirrors nothing; frame 6 needed a mirrored twin and frame 4 hand laid streaks. assets/js/txthree.js is human (UPGRADE_BACKLOG 2026-10-16 item 3)"
+  },
+  {
+   "what": "A TXT.stage `keep` option naming a background group the stage fog spares",
+   "owner": "human",
+   "why": "Queue stage-fog-takes-the-far-bank, no. 52 frame 3, the creek's far bank vanished in the stage fog; digest 'dead or empty region' 4 runs and 6 rounds (UPGRADE_BACKLOG 2026-10-16 item 3)"
+  },
+  {
+   "what": "A `document` field in the fact checker's JSON example and in claims_check.REQUIRED, one commit",
+   "owner": "human",
+   "why": "Queue sources-block-needs-document-titles, no. 52's sources_block refused until titles were hand added after round 1. The agent spec is under .claude and claims_check's self-test holds that example to REQUIRED, so the in-lane half alone splits the schema (UPGRADE_BACKLOG 2026-10-16 item 5)"
+  }
+ ],
+ "not_done": "qa-glyph-run-as-rule (.claude/skills qa.py), grid-piece-count-reads-lit-ground-as-subject (engine and render.py id pass) and article-test-screenshots-fixed-path (tests/, human) carried with no. 52's evidence. The judicial robe and the hearing_dais horseshoe stay deferred; no. 52's other chassis models stay in the chassis, one lift per pass. No gate changed this pass, so GATE_LESSONS is unchanged. No frontier scan: the time went to the two proofs"
+}
 }

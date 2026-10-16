@@ -1162,6 +1162,24 @@ which is the finding the judges made in words and the number that says the gate 
   in all four rounds, frames 4 and 9. Short hair still reads as a helmet and a row of walkers
   shares one gait. The weekly pass of 2026-10-05 could not touch `people.js`, because the deck
   in its panel that morning used the person on three frames. It is the next pass's first model.
+  **Worked again, weekly pass 2026-10-16,** after the judges named it on nos. 48, 49, 51 and 52,
+  four of the week's five decks. The standing arms hung splayed and straight in an A-pose and now
+  fall nearly plumb with a soft elbow bend that differs by side, and a resting hand curls. The short
+  hair shell, a smooth cap of even thickness, now carries twelve locks fanned from the crown and a
+  scalloped hairline, and the long curtain is creased into clumps. The hair's albedo was full height
+  streaks and read as wood grain, and is now drawn as locks of short strands. A full beard's cheek
+  line had climbed to the cheekbone and covered half the face like a mask, and now runs from the
+  sideburn to the mouth corner. **Still the kit's, and open:** a judicial robe (`attire`), the
+  long curtain's front edge beside the neck, and a face that is one value under a warm key. If a
+  judge still names a kit person a mannequin or helmet haired at the size a frame shows it, this
+  fix did not hold, and the rule above about crop and scale still stands. (2026-10-16)
+- **A robotaxi on a box.** No. 52 built its robotaxi on the kit `suv`, whose sides are an
+  extrusion's flat caps, and every judge in rounds 2 and 3 named it a boxy toy on four frames.
+  **The kit has `crossover` (weekly pass 2026-10-16):** a lofted body whose panels curve at the
+  rocker, waist and shoulder, flares over each wheel, coated glass and a fastback, and
+  `sensors: true` for the robotaxi kit. Every other kit car is still extruded, so a sedan, pickup
+  or SUV at full bleed will still show flat sides, and that is the next car a judge will reach.
+  (2026-10-16)
 - **A tractor built for a medium shot, cropped to a close one.** No. 41's frame 3 put the kit
   `semi_truck` full bleed and all three judges named it in all five rounds: "a rounded-box hood",
   "a flat grille plate", "half-disc emissive headlamps", "a flat unlit black windscreen with no

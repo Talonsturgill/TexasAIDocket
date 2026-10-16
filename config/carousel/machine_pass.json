@@ -1,41 +1,41 @@
 {
- "last_pass": "2026-10-15",
+ "last_pass": "2026-10-16",
  "themes": [
-  {
-   "theme": "largest object unmodelled (slab, bare wall, clean clay)",
-   "runs": 5,
-   "rounds": 15,
-   "action": "fixed in part",
-   "what": "No. 51's camcorder (ranked first on frame 3 by every judge in every round) and its transcript (a white box on frames 1, 4, 5 and 9) lifted into assets/js/kit/interior.js as pro_camcorder and bound_transcript at the judges' named fixes. The objects differ per deck, so the theme stays open."
-  },
   {
    "theme": "primitive or low-poly model where a kit model belongs",
    "runs": 5,
    "rounds": 14,
    "action": "fixed in part",
-   "what": "The same lift. The kit person's mannequin look (queue repeat 2) deferred with a measured A/B: the hair material is not the cause, the shell geometry and the pose are."
+   "what": "The kit person, named a mannequin on nos. 48, 49, 51 and 52 (queue repeat 3), lifted in assets/js/kit/people.js: arms at rest, hair in locks, strand albedo as locks, a beard below the cheek (a16dc485). The robe and the face's single value are carried."
   },
   {
-   "theme": "type sitting on or fighting the art (queue footer-veil-peaks-below-the-line at repeat 2)",
-   "runs": 4,
-   "rounds": 4,
-   "action": "fixed in part",
-   "what": "The footer row wash in TECHNIQUE_LIBRARY.md with its code and a dated ILLUSTRATION_SYSTEM.md entry naming the copied veil's computed shortfall across the footer row and N.knock as a plate. Doctrine, because no chassis template exists in the upgrade lane; a deck_chassis measure of a fill over one element's box is the next step if a chassis keeps the knock."
-  },
-  {
-   "theme": "object in a void, no sky, camera at the ground",
+   "theme": "largest object unmodelled (slab, bare wall, clean clay)",
    "runs": 5,
-   "rounds": 10,
-   "action": "escalated",
-   "what": "Engine (human): TXT.snapshot fogs a TXT.interior room to the sky hue (queue snapshot-stages-interiors-to-sky-hue), and the lastLight horizon band behind type (repeat 1). UPGRADE_BACKLOG 2026-10-15 item 4."
+   "rounds": 15,
+   "action": "fixed in part",
+   "what": "No. 52's robotaxi, a boxy toy on four frames to every judge in rounds 2 and 3, lifted as the kit's lofted `crossover` with `sensors: true` (fa47390f). The objects differ per deck, so the theme stays open; every other kit car is still an extrusion with flat sides."
   },
   {
-   "theme": "no contact, dirt or grime where things meet the ground; dead or empty region",
-   "runs": 4,
+   "theme": "object in a void, no sky, camera at the ground (with standing water that mirrors nothing)",
+   "runs": 5,
    "rounds": 8,
-   "action": "deferred",
-   "what": "Read the evidence: per frame compositions (empty floors, a dead bottom band) the judges fixed with the camera; carried with this week's counts."
+   "action": "escalated",
+   "what": "Engine (human): a TXT.water material over a planar reflection, queue standing-water-no-reflection. UPGRADE_BACKLOG 2026-10-16 item 3."
+  },
+  {
+   "theme": "dead or empty region (stage fog takes the far bank)",
+   "runs": 4,
+   "rounds": 6,
+   "action": "escalated",
+   "what": "Engine (human): a TXT.stage `keep` group the fog spares, queue stage-fog-takes-the-far-bank. UPGRADE_BACKLOG 2026-10-16 item 3."
+  },
+  {
+   "theme": "queue repeat offenders qa-glyph-run-as-rule, grid-piece-count-reads-lit-ground-as-subject, article-test-screenshots-fixed-path",
+   "runs": 0,
+   "rounds": 0,
+   "action": "escalated",
+   "what": "Each needs a maintainer's file (.claude/skills qa.py; the engine and render.py id pass; tests/article_edition.mjs). Carried with no. 52's evidence, UPGRADE_BACKLOG 2026-10-16 item 4. Queue item, not a digest theme, so no run or round count."
   }
  ],
- "note": "Written by the weekly machine pass (prompts/daily_routine.md Phase 17) when it ships. Read by scripts/carousel/machine_due.py. Run and round counts are from scripts/carousel/week_digest.py --date 2026-10-15."
+ "note": "Written by the weekly machine pass (prompts/daily_routine.md Phase 17) when it ships. Read by scripts/carousel/machine_due.py. Run and round counts are from scripts/carousel/week_digest.py --date 2026-10-16."
 }
