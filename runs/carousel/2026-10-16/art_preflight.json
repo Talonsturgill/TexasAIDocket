@@ -9,8 +9,8 @@
   "slides/slide-01.html": "e31e4e14a62feec04c6fcb1cdd2a62abbdf14b4eda2872902a362321229b08c0",
   "render/slide-01.png": "355f9bd803221d4aaacf32032e9d43f290f4389c7224216e25ff0668e6ff7dd0",
   "assets/js/deck/2026-10-16-curb.js": "8c9e6cf2c7486a53a2e82aa11d2abc5e8fcd2648286a51cf18fa2e8eecb77904",
-  "slides/slide-07.html": "b2754059aeef28486bf9b1f2a9c36a21ef65a8856fb2191f08d0097904109edd",
-  "render/slide-07.png": "26b3dc19b5d8271558983c7431890982a58b5441fa9e390c1da11c92d0932eb4",
+  "slides/slide-07.html": "57f4222fb9707a1ebc9f8d403faa5ca70030e69b187c795b64acdcb768f8dba8",
+  "render/slide-07.png": "92dc381fe7c161a4904a9419bdfce153700af1c13b0aa61c603c416cc6fe2adb",
   "slides/slide-09.html": "ed915d25573663dda104e49e730050a52bbd5201b6d07152e8e68411bfb07086",
   "render/slide-09.png": "a60c9094a8a718dcd1a457ab8f72edb34863d1a752e93e0f83c23790fb9938b4"
  },
@@ -24,8 +24,8 @@
   {
    "frame": "slide-07.png",
    "median_L": 0.9,
-   "mid": 0.04,
-   "dark": 0.894
+   "mid": 0.041,
+   "dark": 0.892
   },
   {
    "frame": "slide-09.png",
@@ -40,8 +40,8 @@
    "slides/slide-01.html": "e31e4e14a62feec04c6fcb1cdd2a62abbdf14b4eda2872902a362321229b08c0",
    "render/slide-01.png": "355f9bd803221d4aaacf32032e9d43f290f4389c7224216e25ff0668e6ff7dd0",
    "assets/js/deck/2026-10-16-curb.js": "8c9e6cf2c7486a53a2e82aa11d2abc5e8fcd2648286a51cf18fa2e8eecb77904",
-   "slides/slide-07.html": "b2754059aeef28486bf9b1f2a9c36a21ef65a8856fb2191f08d0097904109edd",
-   "render/slide-07.png": "26b3dc19b5d8271558983c7431890982a58b5441fa9e390c1da11c92d0932eb4",
+   "slides/slide-07.html": "57f4222fb9707a1ebc9f8d403faa5ca70030e69b187c795b64acdcb768f8dba8",
+   "render/slide-07.png": "92dc381fe7c161a4904a9419bdfce153700af1c13b0aa61c603c416cc6fe2adb",
    "slides/slide-09.html": "ed915d25573663dda104e49e730050a52bbd5201b6d07152e8e68411bfb07086",
    "render/slide-09.png": "a60c9094a8a718dcd1a457ab8f72edb34863d1a752e93e0f83c23790fb9938b4"
   },
@@ -57,16 +57,16 @@
    {
     "slide": 7,
     "role": "evidence",
-    "subject": "A field of 233 banded steel bollards in nine month rows on a near-black apron, seen from high and back. One post carries a comal ring at April 20th, the posts after it are banded and lit in a pool, and the white robotaxi is parked at the end of the October row. Mono labels name February, April 20th, May 1st and October 14th.",
-    "visual_consequence": "It shows a measured span, 177 days from the creek to the opening, as a countable lit field, with the dark unbanded back rows before April 20th against the lit rows after it. The car gives the posts their scale and ties the count to the deck's hero.",
+    "subject": "A field of 233 banded steel bollards in nine month rows on a near-black apron, seen from high and back. One post carries a comal ring at April 20th, the posts after it are banded and lit in a warm pool, and the white robotaxi is parked broadside at the end of the October row. Mono labels name February, April 20th, May 1st and October 14th. Above it, a four-line dek says the lit posts count the days until the service opened to everyone with the app.",
+    "visual_consequence": "It shows a measured span, 177 days from the creek to the opening, as a countable lit field, with the dark unbanded back rows before April 20th against the lit rows after it. The car gives the posts their scale and ties the count to the deck's hero. The longer dek closes most of the dead band above the field and clears the April 20th label by about 90 px at full size.",
     "weakness": "The posts read as simple capsules. 'February' floats out at the right, loosely tied to the short back row. The comal mark is a dashed ground ellipse, which reads as graphic overlay more than a band on the post itself.",
     "repair": "Put the comal on the April 20th post's own reflective band (an emissive band ring on the post) and drop the dashed ground ellipse."
    },
    {
     "slide": 9,
     "role": "close",
-    "subject": "The departures island seen from high at the canopy edge. A long diagonal of banded bollards runs from the lower left away along the island, the white robotaxi waits at the curb from its rear three-quarter, and a traveller steps off the curb toward it under a downlight pool. The terminal's dark glass is on the left and a canopy column is behind the car. The canopy fascia and terminal head band are now near black.",
-    "visual_consequence": "The strongest image in the deck: one lit subject group in a pool, true blacks in the soffit and lane, crisp cast shadows of bollards and traveller, and the bollard line as a leading diagonal. With the lit diagonal gone, the three-line hook and the dek sit on an unbroken dark field. It returns to the cover's curb from a new camera, so the deck closes where it opened.",
+    "subject": "The departures island seen from high at the canopy edge. A long diagonal of banded bollards runs from the lower left away along the island, the white robotaxi waits at the curb from its rear three-quarter, and a traveller steps off the curb toward it under a downlight pool. The terminal's dark glass is on the left and a canopy column is behind the car. The canopy fascia and terminal head band are near black.",
+    "visual_consequence": "The strongest image in the deck: one lit subject group in a pool, true blacks in the soffit and lane, crisp cast shadows of bollards and traveller, and the bollard line as a leading diagonal. The three-line hook and the dek sit on an unbroken dark field. It returns to the cover's curb from a new camera, so the deck closes where it opened.",
     "weakness": "The canopy column stands directly behind the car's dome and merges with it. The shadowed island floor to the left of the traveller carries a navy cast that edges toward a second blue beside the comal accent.",
     "repair": "Slide the camera about a metre along the island so the column clears the dome and the dome reads against the lit island floor."
    }
