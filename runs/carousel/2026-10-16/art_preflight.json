@@ -1,0 +1,103 @@
+{
+  "version": 1,
+  "selected": [
+    1,
+    7,
+    9
+  ],
+  "inputs": {
+    "slides/slide-01.html": "e31e4e14a62feec04c6fcb1cdd2a62abbdf14b4eda2872902a362321229b08c0",
+    "render/slide-01.png": "355f9bd803221d4aaacf32032e9d43f290f4389c7224216e25ff0668e6ff7dd0",
+    "assets/js/deck/2026-10-16-curb.js": "8c9e6cf2c7486a53a2e82aa11d2abc5e8fcd2648286a51cf18fa2e8eecb77904",
+    "slides/slide-07.html": "56160ce822dfe127e98a208081510047222562e8448f904c97510a4a7c91ede9",
+    "render/slide-07.png": "8bef6094978437034a24578334b992eb36bc7e5951d0acfafad7b5c51f1c505f",
+    "slides/slide-09.html": "96be1b4f1d9fb7654f6f14a7f8b6df1ca1ada2ee6af3df07efef8571186a6ed3",
+    "render/slide-09.png": "f89823d5c472b155acc9ca33dad8026969bac7fd2a4e503f6f34a43736455eda"
+  },
+  "value_measurements": [
+    {
+      "frame": "slide-01.png",
+      "median_L": 2.1,
+      "mid": 0.136,
+      "dark": 0.735
+    },
+    {
+      "frame": "slide-07.png",
+      "median_L": 0.9,
+      "mid": 0.04,
+      "dark": 0.892
+    },
+    {
+      "frame": "slide-09.png",
+      "median_L": 4.9,
+      "mid": 0.153,
+      "dark": 0.639
+    }
+  ],
+  "review": {
+    "decision": "accept",
+    "inputs": {
+      "slides/slide-01.html": "e31e4e14a62feec04c6fcb1cdd2a62abbdf14b4eda2872902a362321229b08c0",
+      "render/slide-01.png": "355f9bd803221d4aaacf32032e9d43f290f4389c7224216e25ff0668e6ff7dd0",
+      "assets/js/deck/2026-10-16-curb.js": "8c9e6cf2c7486a53a2e82aa11d2abc5e8fcd2648286a51cf18fa2e8eecb77904",
+      "slides/slide-07.html": "56160ce822dfe127e98a208081510047222562e8448f904c97510a4a7c91ede9",
+      "render/slide-07.png": "8bef6094978437034a24578334b992eb36bc7e5951d0acfafad7b5c51f1c505f",
+      "slides/slide-09.html": "96be1b4f1d9fb7654f6f14a7f8b6df1ca1ada2ee6af3df07efef8571186a6ed3",
+      "render/slide-09.png": "f89823d5c472b155acc9ca33dad8026969bac7fd2a4e503f6f34a43736455eda"
+    },
+    "frames": [
+      {
+        "slide": 1,
+        "role": "cover",
+        "subject": "The white robotaxi seen low from its rear quarter at a night departures curb. The roof dome stands against the terminal's dim, mullioned glass wall. Seven banded steel bollards run back along the island to the left, and the car is cropped by the right edge.",
+        "visual_consequence": "The car fills the lower right, about 1100 of 1600 px wide at display, with a red tail lamp as its brightest saturated point and a soft contact shadow on the drive lane. The darkened canopy and terminal give the type a true-black field, and the bollard line pulls the eye back into the dark. It reads as a bold single subject at 432 px.",
+        "weakness": "The car's body is boxy with drawn panel seams and little surface modelling on the flank. The lower-left quadrant of drive lane (display x0 to 500, y1500 to 2000) is eventless asphalt.",
+        "repair": "Lay the canopy downlight's pool and a faint reflection of the bollard bands onto the wet lane in the lower left, so the foreground carries an event."
+      },
+      {
+        "slide": 7,
+        "role": "evidence",
+        "subject": "A field of 233 banded steel bollards in nine month rows on a near-black apron, seen from high and back. A comal ring on the ground circles the April 20th post, the posts after it are banded and lit in a warm pool, and the white robotaxi is parked broadside at the end of the October row. Mono labels name February, April 20th, May 1st and October 14th. The four-line dek names the blue ring as April 20th and says the lit posts count the days until the service opened to everyone with the app.",
+        "visual_consequence": "It shows a measured span, 177 days from the creek to the opening, as a countable lit field, with the dark unbanded back rows before April 20th against the lit rows after it. The dek now names the mark the reader actually sees, a ring, so copy and image agree. The car gives the posts their scale and ties the count to the deck's hero.",
+        "weakness": "The posts read as simple capsules. 'February' floats out at the right, loosely tied to the short back row. The comal ring is drawn as a broken dashed ellipse, which reads as overlay graphics more than a lit ring on the apron.",
+        "repair": "Render the ring as one continuous thin emissive comal circle lying on the apron around the April 20th post, with a faint spill onto the post's base, in place of the dashed segments."
+      },
+      {
+        "slide": 9,
+        "role": "close",
+        "subject": "The departures island seen from high at the canopy edge. A long diagonal of banded bollards runs from the lower left away along the island, the white robotaxi waits at the curb from its rear three-quarter, and a traveller steps off the curb toward it under a downlight pool. The terminal's dark glass is on the left and a canopy column is behind the car. The canopy fascia and terminal head band are near black, and the four-line dek opens with the city's airports director.",
+        "visual_consequence": "The strongest image in the deck: one lit subject group in a pool, true blacks in the soffit and lane, crisp cast shadows of bollards and traveller, and the bollard line as a leading diagonal. The three-line hook and the reflowed dek sit on an unbroken dark field over the terminal glass, clear of the lit island. It returns to the cover's curb from a new camera, so the deck closes where it opened.",
+        "weakness": "The canopy column stands directly behind the car's dome and merges with it. The shadowed island floor to the left of the traveller carries a navy cast that edges toward a second blue beside the comal accent.",
+        "repair": "Slide the camera about a metre along the island so the column clears the dome and the dome reads against the lit island floor."
+      }
+    ]
+  },
+  "shipped_inputs": {
+    "slides/slide-01.html": "e31e4e14a62feec04c6fcb1cdd2a62abbdf14b4eda2872902a362321229b08c0",
+    "slide-01.webp": "b1eeb3a3b7ee1eb74c02a0d6c0906b0a25456b7ed5b00cbe42ac5c8b8f78daab",
+    "slides/slide-07.html": "56160ce822dfe127e98a208081510047222562e8448f904c97510a4a7c91ede9",
+    "slide-07.webp": "cdf6da24125d8b1c915868435787da3794bac357a033e1545e5e237267e9eb3a",
+    "slides/slide-09.html": "96be1b4f1d9fb7654f6f14a7f8b6df1ca1ada2ee6af3df07efef8571186a6ed3",
+    "slide-09.webp": "26eafb5a56008156e914d58f2c4015b1f842b9eff628ddb93e1579b879d06dda"
+  },
+  "encodings": [
+    {
+      "to": "slide-01.webp",
+      "to_sha256": "b1eeb3a3b7ee1eb74c02a0d6c0906b0a25456b7ed5b00cbe42ac5c8b8f78daab",
+      "from_sha256": "355f9bd803221d4aaacf32032e9d43f290f4389c7224216e25ff0668e6ff7dd0",
+      "psnr_db": 40.928
+    },
+    {
+      "to": "slide-07.webp",
+      "to_sha256": "cdf6da24125d8b1c915868435787da3794bac357a033e1545e5e237267e9eb3a",
+      "from_sha256": "8bef6094978437034a24578334b992eb36bc7e5951d0acfafad7b5c51f1c505f",
+      "psnr_db": 999.0
+    },
+    {
+      "to": "slide-09.webp",
+      "to_sha256": "26eafb5a56008156e914d58f2c4015b1f842b9eff628ddb93e1579b879d06dda",
+      "from_sha256": "f89823d5c472b155acc9ca33dad8026969bac7fd2a4e503f6f34a43736455eda",
+      "psnr_db": 40.333
+    }
+  ]
+}

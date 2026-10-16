@@ -1,0 +1,72 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.5,
+   "why": "Dark field and light type on every frame; 9 the best, 1 and 5 hold. The hero is primitive on every frame. Frame 3 shows no readable floodwater, the comal stripe reads as door trim, no ledges. Frame 4's water reads as a shadow. Frame 6 nose on exposes the slab bumper and disc wheels. Frame 8's top 45 percent is dead black and the window car reads as a toy on a shelf."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 8.0,
+   "why": "One robotaxi, one world, comal only for the water line, the curb opening and closing, a dark value with no strobe, both devices working. Frames 5, 7 and 8 sit slightly outside the street frames."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.5,
+   "why": "Every numeral traces. No false statement, but frame 6 to 7 implies 177 days dark while TPR's May 10th piece reported a return; frame 4's hook states as an event what the record frames as may; frame 9's airport quote is a statement inside Waymo's post."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.0,
+   "why": "The main points land with streets named. The action is thin: campaign 26E026 only in the first comment; no Texas body named; the rider stake implicit; the May to October service unclear."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "Cover tension, frame 2 steps back, turn at 3, 4 to 8 build, 9 lands. Frame 7 retells a timeline and 8 repeats 5's count."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "Clean and specific and fair. Misses local flash flood knowledge; the close's line is more clever than actionable."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.0,
+   "why": "No topic repeat. One object per day in 5 of the last 8 decks, a count as a field, and a San Antonio flood at night four days after no. 50."
+  }
+ ],
+ "weighted_score": 7.11,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Rebuild frame 3 so the car is visibly in Salado Creek with brown rippled water and a lit limestone ledge, and add one line on frame 6 from TPR's May 10th piece that the service was set to return in May.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 3,
+   "problem": "No floodwater; comal line reads as trim; black with blobs below; no bank.",
+   "fix": "Brown tinted rippled sheet at the beltline streaking the bank lamp; a lit limestone ledge behind."
+  },
+  {
+   "slide": 4,
+   "problem": "Flat untextured dark quad reads as a cast shadow; ambiguous comal wedge.",
+   "fix": "A mirror with a light ripple normal reflecting lamps and the wheel; comal a thin leading edge."
+  },
+  {
+   "slide": 6,
+   "problem": "Nose on exposes the slab bumper and disc wheels under a floating body; no headlamps.",
+   "fix": "Swing about 30 degrees to the front quarter; seat the body with contact; low emissive headlamps."
+  },
+  {
+   "slide": 8,
+   "problem": "Top 45 percent dead black; the window car reads as a toy on a shelf; generic books.",
+   "fix": "Push in so the monitor fills about half the frame height; stripe sodium light on the wall; drop the window car."
+  }
+ ]
+}

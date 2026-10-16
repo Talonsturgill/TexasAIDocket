@@ -1,0 +1,77 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.9,
+   "why": "Frames 1, 2 and 9 pass the showstopper test at 432 px, 9 the best; 5 reads at once. Frame 3's floodwater is a flat brown floor with no ledges or lamp and a broken waterline. Frame 4's water is an unlit rectangle with a flat blue trapezoid. Frame 6's lower half is a black box. Frame 8's car is blue tinted. Frame 2 has a grey strip at the bottom edge."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 8.0,
+   "why": "One world, one hero, one accent, a dark register with no strobing; two devices work. Frame 8 sits outside; the hero's geometry appears to drift on 3 and 6."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 6.8,
+   "why": "Every numeral traces. Frame 7 with the caption leads a reader toward a 177-day shutdown; frame 4's mechanism rests on TPR's paraphrase of a notice not read; frame 5's 'One is drawn here for each' is mostly off frame."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.4,
+   "why": "What, who, where named; next step thin; c9's rider stake appears on no surface; Bexar County only as a hashtag."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.3,
+   "why": "Cover earns the swipe; frame 2 steps back; turn on 3; 7 could be cut; the close restates the cover."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "Specific and unhyped. Five TPR attributions in a row; 'Drawn to illustrate.' reads machine made."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 5.5,
+   "why": "San Antonio night flood four days after no. 50; third autonomous vehicle deck in three weeks; one object per unit of time a house habit."
+  }
+ ],
+ "weighted_score": 7.07,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Rebuild frame 7 so it can't read as a 177-day shutdown, and put c9's loss-of-control sentence and campaign 26E026 on the close.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 3,
+   "problem": "Floodwater a flat brown floor; no ledge, bank or lamp; broken waterline; slab hood.",
+   "fix": "Chassis standing water sheet with ripples and a lamp streak; lit ledge and bank lamp; one continuous waterline."
+  },
+  {
+   "slide": 4,
+   "problem": "Unlit dark rectangle with a flat blue trapezoid; reflects nothing.",
+   "fix": "Low roughness reflective sheet mirroring the lamps and flank; comal a thin edge; camera lower."
+  },
+  {
+   "slide": 6,
+   "problem": "Lower body a solid black block; grille a slab.",
+   "fix": "Yaw 20 to 25 degrees off nose-on; low rim on the bumper."
+  },
+  {
+   "slide": 8,
+   "problem": "Car through the window lit blue; crude boxes.",
+   "fix": "Light the street in sodium and drop its exposure; bevel the books."
+  },
+  {
+   "slide": 2,
+   "problem": "Grey strip across the bottom edge.",
+   "fix": "Extend the ground so asphalt and foot wash reach the bottom row."
+  }
+ ]
+}

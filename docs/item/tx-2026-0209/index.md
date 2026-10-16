@@ -12,7 +12,7 @@ Kodiak AI and Charger USA announced on October 8th that trucks running the Kodia
 - Public access: Write to the decider
 - Take part: https://www.txdmv.gov/about-us/txdmv-board-meetings
 
-- Last checked: 2026-10-09
+- Last checked: 2026-10-16
 
 ## Dates
 
@@ -24,6 +24,7 @@ Kodiak AI and Charger USA announced on October 8th that trucks running the Kodia
 One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
 
 - 2026-10-09 · Admitted to the record on Kodiak's own release announcing the Dallas to Laredo lane.
+- 2026-10-16 · Kodiak's own copy of its October 8th release still says the Dallas to Laredo trucks run with a safety driver behind the wheel. The driverless switch still waits on Kodiak finishing its safety case.
 
 ## Evidence
 
@@ -33,23 +34,23 @@ Every fact above rests on one of these. The words are the source's own.
 
 > Through this collaboration, trucks equipped with the Kodiak Driver, Kodiak's autonomous driving system, are hauling refrigerated and dry freight for consumer packaged goods and food and beverage customers on the 435-mile lane between Charger’s terminals in Dallas and Laredo, Texas.
 
-Source (primary_corporate): https://www.globenewswire.com/news-release/2026/10/08/3377348/0/en/kodiak-ai-and-charger-usa-launch-autonomous-trucking-between-dallas-and-laredo.html
+Source (primary_corporate): https://kodiak.ai/news/kodiak-charger-usa-autonomous-trucking-dallas-laredo
 
 ### The companies say their first delivery was on September 8th.
 
 > Kodiak and Charger completed their first delivery on September 8, 2026.
 
-Source (primary_corporate): https://www.globenewswire.com/news-release/2026/10/08/3377348/0/en/kodiak-ai-and-charger-usa-launch-autonomous-trucking-between-dallas-and-laredo.html
+Source (primary_corporate): https://kodiak.ai/news/kodiak-charger-usa-autonomous-trucking-dallas-laredo
 
 ### A safety driver is behind the wheel today.
 
 > Today, the companies are operating with a safety driver behind the wheel.
 
-Source (primary_corporate): https://www.globenewswire.com/news-release/2026/10/08/3377348/0/en/kodiak-ai-and-charger-usa-launch-autonomous-trucking-between-dallas-and-laredo.html
+Source (primary_corporate): https://kodiak.ai/news/kodiak-charger-usa-autonomous-trucking-dallas-laredo
 
 ### The companies intend to go driverless once Kodiak completes its safety case.
 
 > The companies intend to transition the lane to driverless operations once Kodiak completes its safety case.
 
-Source (primary_corporate): https://www.globenewswire.com/news-release/2026/10/08/3377348/0/en/kodiak-ai-and-charger-usa-launch-autonomous-trucking-between-dallas-and-laredo.html
+Source (primary_corporate): https://kodiak.ai/news/kodiak-charger-usa-autonomous-trucking-dallas-laredo
 

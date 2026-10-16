@@ -1,0 +1,66 @@
+<!doctype html>
+<!-- 2026-10-16, frame 5 of 9. Archetype GRID. RENDERED through txthree.js in the deck's nightSodium world. A field of illustrative robotaxis on a dark pad seen high through a long lens, one drawn for each potentially affected unit the federal recall record counts, the short last row nearest the lens and the hero at its end. Drawn to illustrate; not a real lot. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+  .dek { width:920px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">3,791 of them</h1>
+<p class="dek" data-follow="26">The recall covers 5th and 6th generation automated driving systems, 3,791 potentially affected units by the federal record's count. The lot drawn here holds one for each, most of them out of frame. Drawn to illustrate.</p>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-16-curb.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "The recall, by its own count", counter: "05 / 09", src: "c13 c12", fit: { min: 90, max: 120, maxLines: 1 } });
+  const R = CH.stage(TXT, gl, W, { fov: 24, far: 4000 });
+  /* THE FIELD, from figures.json: units_affected 3791, one car per unit. COLS a row, the full rows and
+   * the short last row computed here, the short row nearest the lens so the block reads as an exact count. */
+  const UNITS = 3791, COLS = 62, PX = 2.7, PZ = 6.2;
+  const FULL = Math.floor(UNITS / COLS), REM = UNITS - FULL * COLS;
+  const spots = [];
+  /* the lot is parked in blocks of BLOCK columns and RBLOCK rows with drive aisles between, so the blocks read apart at feed width; the count is unchanged */
+  const BLOCK = 8, AISLE = 9, NB = Math.ceil(COLS / BLOCK), colX = c => (c - (COLS - 1) / 2) * PX + (Math.floor(c / BLOCK) - (NB - 1) / 2) * AISLE;
+  const RBLOCK = 5, RAISLE = 16, rowZ = r => -(r + 1) * PZ - Math.floor(r / RBLOCK) * RAISLE;
+  for (let r = 0; r < FULL; r++) for (let c = 0; c < COLS; c++) spots.push([colX(c), rowZ(r), 0]);
+  for (let c = 0; c < REM - 1; c++) spots.push([(c - (REM - 1) / 2) * PX, 0, 0]);
+  const hero = K.make('robotaxi', { seed: 4 }); hero.position.set(((REM - 1) - (REM - 1) / 2) * PX, 0, 0); TXT.add(R, hero);
+  if (spots.length + 1 !== UNITS) throw new Error('field holds ' + (spots.length + 1) + ', not units_affected');
+  CH.carField(THREE, R, K, spots);
+  /* the field's paint a step under the hero's and matte, so the one full car is the brightest thing and no block blows white */
+  R.scene.traverse(m => { if (m.isInstancedMesh && m.material && m.material.color && m.material.color.getHex() === 0xeceef0) { m.material = m.material.clone(); m.material.color.multiplyScalar(0.45); m.material.roughness = 0.6; } if (m.isInstancedMesh && m.material && !m.material.isMeshBasicMaterial) { m.material = m.material.clone(); m.material.envMapIntensity = 0.25; if ('specularIntensity' in m.material) m.material.specularIntensity = 0.2; } });
+  CH.matte(TXT.ground(R, { surface: 'asphalt', size: 1600, seed: 22 }), 0.3);
+  /* the pad, a sealed near black pad laid over the ground, so each car stands apart at feed width */
+  { const pad = new THREE.Mesh(new THREE.PlaneGeometry(420, 420), new THREE.MeshPhysicalMaterial({ color: 0x0c0d10, roughness: 1, specularIntensity: 0, envMapIntensity: 0 })); pad.rotation.x = -Math.PI / 2; pad.position.set(0, 0.003, -160); pad.receiveShadow = true; R.scene.add(pad); }
+  TXT.contact(R, hero);
+  const from = [16, 19, 62];
+  const look = CH.aim(THREE, R, TXT, from, [hero.position.x - 3, 0.6, -2], 640, 1090, 24);
+  TXT.frame(R, { fov: 24, from, look });
+  { const L = new THREE.SpotLight(0xffd6aa, 1100, 90, 0.16, 0.85, 1.4); L.position.set(hero.position.x + 6, 26, 24); L.target.position.set(hero.position.x, 0, -2); L.castShadow = true; L.shadow.mapSize.set(2048, 2048); R.scene.add(L); R.scene.add(L.target); }
+  TXT.sky(R);
+  TXT.deckRig(R, CH.rigSpec(W, 80, 4096), CH.rigOpts([0, 0, -20], { distance: 120, shadowFar: 300 }));
+  TXT.stage(R, [hero], { pool: true, poolInner: 5, poolOuter: 24, behind: 0.6, depth: 1.6 });
+  TXT.weather(R, { grime: 0.15, height: 0.4 });
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0.42, veil: 0.4, footWash: 0.54 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

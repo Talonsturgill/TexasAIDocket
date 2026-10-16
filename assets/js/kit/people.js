@@ -336,12 +336,29 @@ export function install(K, THREE, TXT) {
     } else if (kind === 'weave') {
       x.fillStyle = hex(a); x.fillRect(0, 0, N, N);
       for (let i = 0; i < N; i += 2) { x.fillStyle = 'rgba(0,0,0,' + (0.02 + r() * 0.04) + ')'; x.fillRect(0, i, N, 1); x.fillRect(i, 0, 1, N); }
-    } else if (kind === 'strands') {        // hair albedo: fine streaks along v
+    } else if (kind === 'strands') {
+      /* HAIR ALBEDO IN LOCKS, NOT GRAIN (weekly pass 2026-10-16). It was 260 streaks each the full
+       * height of the tile, which is how wood grain is drawn, and at full size the judges and the
+       * 2026-10-12 pass read it as wood grain on a pale cap. Hair clumps: each lock is a band with
+       * a shaded parting at both edges and a sheen down its middle, the widths uneven and scaled to
+       * close the tile exactly so no seam shows, and the fine strands inside are short and of
+       * uneven length so no single streak runs the height of the head. */
       x.fillStyle = '#ffffff'; x.fillRect(0, 0, N, N);
-      for (let i = 0; i < 260; i++) {
-        const px = r() * N, w = 1 + r() * 3, v = r();
-        x.fillStyle = v < 0.7 ? 'rgba(0,0,0,' + (0.03 + r() * 0.08) + ')' : 'rgba(255,255,255,' + (0.02 + r() * 0.05) + ')';
-        x.fillRect(px, 0, w, N); x.fillRect(px - N, 0, w, N);
+      const ws = []; let tot = 0;
+      while (tot < N) { const w = 6 + r() * 12; ws.push(w); tot += w; }
+      let px = 0;
+      for (const w0 of ws) {
+        const w = w0 * N / tot, dk = 0.16 + r() * 0.12;
+        const gr = x.createLinearGradient(px, 0, px + w, 0);
+        gr.addColorStop(0, 'rgba(0,0,0,' + dk + ')'); gr.addColorStop(0.3, 'rgba(0,0,0,0.02)');
+        gr.addColorStop(0.55, 'rgba(255,255,255,' + (0.04 + r() * 0.05) + ')'); gr.addColorStop(1, 'rgba(0,0,0,' + (dk * 0.8) + ')');
+        x.fillStyle = gr; x.fillRect(px, 0, w, N);
+        px += w;
+      }
+      for (let i = 0; i < 520; i++) {
+        const sx = r() * N, sy = r() * N, len = 20 + r() * 90;
+        x.fillStyle = r() < 0.75 ? 'rgba(0,0,0,' + (0.04 + r() * 0.07) + ')' : 'rgba(255,255,255,' + (0.03 + r() * 0.05) + ')';
+        x.fillRect(sx, sy, 1, len); if (sy + len > N) x.fillRect(sx, sy - N, 1, len);
       }
     }
     const t = new THREE.CanvasTexture(cv);
@@ -539,9 +556,23 @@ export function install(K, THREE, TXT) {
   };
   function hairThickness(style, k, ph) {
     const tab = style === 'long' || style === 'bob' || style === 'curlyLong' ? LINES.long : style === 'recede' ? LINES.recede : LINES.short;
+    /* LOCKS AND A BROKEN HAIRLINE (weekly pass 2026-10-16). The shell was a smooth cap of even
+     * thickness with one parting groove, and its hairline was one clean curve, so at full size it
+     * read as a helmet or a pale block on nos. 48, 49 and 52, and the 2026-10-15 pass measured that
+     * the hair MATERIAL was not the cause. Hair lies in locks that fan out from the crown whorl, and
+     * a hairline is a scallop of lock ends rather than a line. So the thickness carries ridges
+     * around the crown axis (12 locks, creased between, faded to nothing at the whorl so they
+     * meet without a pinch) and the hairline is pushed in and out by two lock-scale waves. A
+     * buzz, a tight crop and a bun are slicked or clipped and take a little of each. */
+    const relief = { buzz: 0.08, tight: 0.12, bun: 0.15, recede: 0.25, curly: 0, curlyLong: 0 }[style];
+    const lockAmp = relief == null ? 0.32 : relief;
+    const lineAmp = style === 'buzz' || style === 'tight' ? 0.012 : 0.028;
     return (ux, uy, uz) => {
       const az = Math.abs(Math.atan2(ux, uz));
-      const m = uy - lineAt(tab, az);                 // > 0 inside the hair
+      const m = uy - lineAt(tab, az) + lineAmp * (0.6 * Math.sin(az * 19 + ph) + 0.4 * Math.sin(az * 41 + 2 * ph));   // > 0 inside the hair
+      const cd = Math.acos(Math.max(-1, Math.min(1, 0.82 * uy - 0.57 * uz)));              // angle from the crown whorl
+      const lk = 1 - 2 * Math.pow(1 - Math.abs(Math.sin(6 * Math.atan2(-0.57 * uy - 0.82 * uz, ux) + 1.4 * Math.sin(cd * 5 + ph) + ph)), 2);
+      const lockK = 1 + lockAmp * lk * smooth(cd / 0.35);
       const top = smooth((uy - 0.35) / 0.55) * (1 - 0.35 * smooth((Math.abs(ux) - 0.5) / 0.4)), front = smooth(uz / 0.6) * smooth((uy - 0.35) / 0.35), crown = smooth((uy + 0.2) / 0.7);
       let T;
       switch (style) {
@@ -555,7 +586,7 @@ export function install(K, THREE, TXT) {
         case 'curlyLong': T = 0.012 + 0.016 * top + 0.004 * (Math.sin(ux * 27 + ph) * Math.sin(uy * 25 + ph * 2) + Math.sin(uz * 23 + ph * 3)); break;
         default: T = 0.004 + 0.004 * crown + 0.014 * top + 0.008 * front;      // crop
       }
-      T *= k;
+      T *= k * lockK;
       // a continuous taper through the hairline, so the edge is cut by interpolation, not by the grid
       if (m < -0.06) return -0.002;
       return lerp(-0.002, T + 0.0006 * Math.sin(ux * 90 + uy * 40 + ph), smooth((m + 0.02) / (uz > 0.3 ? 0.22 : 0.12)));
@@ -577,7 +608,10 @@ export function install(K, THREE, TXT) {
     const a0 = 1.4, a1 = Math.PI * 2 - 1.4;                      // around the back
     const R = (a, y, s) => {                                      // outer radius factor
       const fl = smooth((-y) / (Hh * 1.2));
-      return 1.05 + 0.1 * fl + (curly ? 0.1 : 0) * fl + s * 0.012 * Math.sin(a * 23 + ph) + (curly ? 0.04 * Math.sin(a * 11 + y * 60 + ph) : 0);
+      // straight hair hangs in locks too (2026-10-16): a smooth curtain read as a rigid plate behind
+      // the neck, so the outer face is creased into clumps that open toward the ends
+      const lock = curly ? 0 : 0.05 * (0.4 + 0.6 * fl) * (1 - 2 * Math.pow(1 - Math.abs(Math.sin(a * 7 + 0.8 * Math.sin(y * 18 + ph) + ph)), 2));
+      return 1.05 + 0.1 * fl + (curly ? 0.1 : 0) * fl + lock + s * 0.012 * Math.sin(a * 23 + ph) + (curly ? 0.04 * Math.sin(a * 11 + y * 60 + ph) : 0);
     };
     const bot = (a) => -len * Hh + 0.035 * k * Math.sin(a * 5 + ph) + 0.02 * k * Math.sin(a * 13 + ph * 2) - 0.04 * k * Math.cos(a - Math.PI) * (len > 1.3 ? 1 : 0);
     const put = (a, y, inner, v) => {
@@ -639,7 +673,8 @@ export function install(K, THREE, TXT) {
       const zz = (0.029 - f * 0.0195) * k * (B / (0.084 * k));
       const len = fl[f] * k;
       // at rest the fingers curl more toward the little finger: a relaxed hand, not a paddle
-      const curl = pose === 'point' ? (f === 0 ? 0.05 : 1.45) : pose === 'fist' ? 1.4 : 0.62 + f * 0.13;
+      // a hand at rest curls more than a paddle does, most at the little finger (2026-10-16)
+      const curl = pose === 'point' ? (f === 0 ? 0.05 : 1.45) : pose === 'fist' ? 1.4 : 0.8 + f * 0.16;
       const ctrl = [];
       let px = -s * 0.006 * k, py = -L + 0.004 * k, a = 0.08;
       const rad = (0.0104 - f * 0.0006) * k;
@@ -936,8 +971,15 @@ export function install(K, THREE, TXT) {
     const n3 = (x, y, z) => V3(x, y, z).normalize();
     const arm = {}, leg = {};
     let headPitch = 0, headYaw = 0, torsoLean = 0;
+    // THE ARMS AT REST (weekly pass 2026-10-16). They hung straight and splayed, both alike, which
+    // is a shop mannequin's A-pose, and the judges named it on nos. 48, 49, 51 and 52 ("a stiff
+    // A-pose", "a mannequin"). A standing adult's upper arm falls nearly plumb and a little back,
+    // the elbow carries a soft bend that brings the hand forward to the side of the thigh, and the
+    // two arms never match. The bend varies by side off a fold phase already drawn, so no seed's
+    // later draws (shirt, hair, hat) move.
     for (const s of [1, -1]) {
-      arm[s] = { u: n3(s * 0.13, -1, 0.02), f: n3(s * 0.06, -1, 0.2), hand: 'relax' };
+      const bend = 0.26 + 0.08 * Math.sin(ph[2] + (s > 0 ? 0 : 2.1));
+      arm[s] = { u: n3(s * 0.11, -1, -0.05), f: n3(s * 0.05, -1, bend), hand: 'relax' };
       leg[s] = { t: n3(s * 0.025, -1, 0.0), c: n3(s * 0.01, -1, -0.01) };
     }
     const tw = o.toward === -1 ? -1 : 1;
@@ -1526,11 +1568,18 @@ export function install(K, THREE, TXT) {
         if (uz < -0.35) return -0.002;
         const ax = Math.abs(ux);
         const lipGap = g2(ux, uy + 0.52, 0.2, 0.06);
-        if (full) {
-          const m = Math.min(-0.08 - uy - 0.18 * (1 - ax), uz + 0.3);
-          return m < 0 ? -0.002 : 0.0055 * k * smooth(m / 0.15) * (1 - 0.9 * lipGap) - (lipGap > 0.5 ? 0.004 : 0);
-        }
         const mo = 1 - Math.max(Math.abs(uy + 0.415) / 0.045, ax / 0.24);
+        if (full) {
+          /* THE CHEEK LINE (weekly pass 2026-10-16). It sat at -0.08 - 0.18 * (1 - ax), which climbs
+           * to the cheekbone at the side and to the nose at the middle, so a full beard covered half
+           * the face and met the sideburn as one shell: at full size a mask. A beard's cheek line
+           * runs from the foot of the sideburn down to the corner of the mouth, and the moustache
+           * is its own patch over the lip, so the two are drawn apart and the larger wins. */
+          const line = lerp(-0.47, -0.12, clamp01((ax - 0.24) / 0.64));
+          const m = Math.min(line - uy, uz + 0.3);
+          const jaw = m < 0 ? -0.002 : 0.0055 * k * smooth(m / 0.15) * (1 - 0.9 * lipGap) - (lipGap > 0.5 ? 0.004 : 0);
+          return Math.max(jaw, mo < 0 ? -0.002 : 0.0045 * k * smooth(mo / 0.3));
+        }
         return mo < 0 ? -0.002 : 0.0035 * k * smooth(mo / 0.3);
       };
       head.add(new THREE.Mesh(shellGeo(hg, beard), hairM));

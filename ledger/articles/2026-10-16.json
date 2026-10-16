@@ -1,0 +1,126 @@
+{
+ "_spec": {
+  "version": 1,
+  "purpose": "A standalone web edition of the archived visual story.",
+  "law": "Facts resolve to the original verified claim record. A layout rebuild does not reverify reporting.",
+  "written_by": "daily"
+ },
+ "section": "Transportation",
+ "dek": {
+  "text": "Waymo opened its San Antonio robotaxis to anyone with its app, the airport included. Its federal flood recall still lists the remedy as under development.",
+  "claims": [
+   "c1",
+   "c10"
+  ]
+ },
+ "introduction": [
+  {
+   "text": "[Waymo said that from {{date:c1}} anyone with its app in San Antonio, San Diego and Tampa can hail a fully autonomous ride. San Antonio International Airport is included](c1). [The city's Director of Airports called the airport service a significant milestone in a statement Waymo published](c2). [The director said locals catching an early flight now have a new way to get to and from the airport](c3).",
+   "claims": [
+    "c1",
+    "c2",
+    "c3"
+   ]
+  },
+  {
+   "text": "[The same week, the remedy field on the federal recall record for Waymo's flood defect still said the remedy is under development](c10). The service opened to everyone while the permanent fix for driving into standing water was still listed as unfinished.",
+   "claims": [
+    "c10"
+   ]
+  }
+ ],
+ "sections": [
+  {
+   "heading": "From invitation to anyone",
+   "paragraphs": [
+    {
+     "text": "[On {{date:c5}} Waymo said it was taking its first public riders in Dallas, Houston, San Antonio and Orlando](c5). [It invited them from the tens of thousands of people across those four cities who had downloaded its app](c6). [It said it would open the service to everyone later in the year](c7).",
+     "claims": [
+      "c5",
+      "c6",
+      "c7"
+     ]
+    },
+    {
+     "text": "[Texas Public Radio reported that the San Antonio service began in a limited area of {{number:c21}} square miles](c21).",
+     "claims": [
+      "c21"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "The creek and the recall",
+   "paragraphs": [
+    {
+     "text": "[Texas Public Radio reported that a Waymo vehicle was swept into Salado Creek by floodwater during heavy rain on {{date:c15}}](c15). [The car had no one inside and nobody was hurt](c16). [Earlier that April another Waymo vehicle was stranded in floodwaters near McCullough Avenue and Contour Drive, the station reported](c17).",
+     "claims": [
+      "c15",
+      "c16",
+      "c17"
+     ]
+    },
+    {
+     "text": "[NHTSA's recall record says the software may let a vehicle slow down and then drive into standing water on higher speed roads](c8). [It says entering a flooded road can cause a loss of vehicle control and raises the risk of a crash or injury](c9). [Texas Public Radio reported that the recall notice said the vehicle detected the flooded road and kept going at a reduced speed](c18).",
+     "claims": [
+      "c8",
+      "c9",
+      "c18"
+     ]
+    },
+    {
+     "text": "[The recall covers certain 5th and 6th generation Waymo automated driving systems](c12), [and the record lists {{number:c13}} potentially affected units](c13). [Waymo LLC is the manufacturer on the campaign](c14).",
+     "claims": [
+      "c12",
+      "c13",
+      "c14"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "The pause, and what changed in the meantime",
+   "paragraphs": [
+    {
+     "text": "[Texas Public Radio reported in May that Waymo had been operating in San Antonio that week without serving riders](c20). [The station called the flood pause the company's longest in the city to date, a period in which it reviewed its flood monitoring procedures and safety protocols](c22). [Waymo had said it would reexamine how its vehicles respond to flood prone areas and severe weather alerts before restarting service](c23). [On May 10th the station reported that Waymo was expected to resume service in San Antonio that week](c26).",
+     "claims": [
+      "c20",
+      "c22",
+      "c23",
+      "c26"
+     ]
+    },
+    {
+     "text": "[As an interim step Waymo narrowed its operations with tighter weather limits and updated its vehicle maps](c10). [It told NHTSA that every affected vehicle had received that interim update by {{date:c11}}](c11).",
+     "claims": [
+      "c10",
+      "c11"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "What the record doesn't say yet",
+   "paragraphs": [
+    {
+     "text": "[The record's remedy field, read on the reporting date, still describes the remedy as under development](c10). It does not say when a permanent fix will arrive or what it will change about how the car behaves at the edge of standing water.",
+     "claims": [
+      "c10"
+     ]
+    },
+    {
+     "text": "[Texas Public Radio wrote that the rollout has raised broader questions about how self driving vehicles deal with emergency responders in severe weather](c24).",
+     "claims": [
+      "c24"
+     ]
+    }
+   ]
+  }
+ ],
+ "related": [
+  {
+   "id": "tx-2026-0216",
+   "label": "The record entry for Waymo's San Antonio opening and its flood recall"
+  }
+ ]
+}

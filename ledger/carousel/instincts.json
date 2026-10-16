@@ -317,7 +317,8 @@
         "2026-10-08",
         "2026-10-10",
         "2026-10-12",
-        "2026-10-15"
+        "2026-10-15",
+        "2026-10-16"
       ],
       "contradicted": []
     },
@@ -624,7 +625,8 @@
         "2026-10-07",
         "2026-10-09",
         "2026-10-10",
-        "2026-10-12"
+        "2026-10-12",
+        "2026-10-16"
       ],
       "contradicted": []
     },
@@ -809,7 +811,8 @@
         "2026-10-03",
         "2026-10-04",
         "2026-10-06",
-        "2026-10-07"
+        "2026-10-07",
+        "2026-10-16"
       ],
       "contradicted": []
     },
@@ -891,7 +894,8 @@
       "confirmed": [
         "2026-09-15",
         "2026-09-16",
-        "2026-10-11"
+        "2026-10-11",
+        "2026-10-16"
       ],
       "contradicted": []
     },
@@ -1422,6 +1426,22 @@
       "learned": "2026-10-15",
       "instinct": "Snapshot a TXT.interior room with stage false, because the stage fog paints its walls the sky's hue.",
       "evidence": "No. 51 frames 3 and 8, pixel critics named a navy void behind the deposition camera and the lectern in rounds 1 to 3 until the snapshot was unstaged and the room's environment light cut to 0.03.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "grid-frames-need-dark-gaps",
+      "learned": "2026-10-16",
+      "instinct": "Plan every GRID frame with dark gaps between its units on an unlit floor, because a lit floor joins the units into one piece at feed width and the count stops reading as a count.",
+      "evidence": "2026-10-16: frames 5 and 7 each came apart into one piece under layout_check until the 3791 car field was parked in blocks with aisles and the calendar apron was made unlit; a pool decal and a specular floor both relit the gaps",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "a-flat-line-at-eye-height-vanishes",
+      "learned": "2026-10-16",
+      "instinct": "Stand a water line upright facing the lens whenever the camera sits within a metre of the surface, because a flat strip foreshortens to under a pixel there.",
+      "evidence": "2026-10-16: frame 6's comal water line laid flat at 0.25 m eye height read 0.0000 accent until it was stood upright as a 4.5 cm ribbon, then 0.0074",
       "confirmed": [],
       "contradicted": []
     }

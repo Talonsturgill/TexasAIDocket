@@ -1,0 +1,61 @@
+<!doctype html>
+<!-- 2026-10-16, frame 9 of 9. Archetype FULL_BLEED. RENDERED through txthree.js in the deck's nightSodium world. The cover's departures curb seen from the canopy's edge looking along the island: one curb bollard per day from the first invited riders to the opening runs away toward the city glow, the illustrative robotaxi at the curb with a traveller walking to it. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+  .dek { width:880px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">Anyone can ride.<br>Anyone can read<br>the remedy field</h1>
+<p class="dek" data-follow="26">The city's airports director called the rides a new option to get there. NHTSA's recall record for Waymo LLC is public, and its remedy field still reads under development. Drawn&nbsp;to&nbsp;illustrate.</p>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-16-curb.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "San Antonio International, the curb", counter: "09 / 09", src: "c3 c1 c10", fit: { min: 70, max: 88, maxLines: 3 } });
+  const R = CH.stage(TXT, gl, W, { fov: 40, far: 4000 });
+  /* THE POSTS, from figures.json: days_first_riders_to_open 232, one curb bollard per day from the first
+   * invited riders on February 24th to the opening on October 14th, running away along the island. */
+  const DAYS = 232, PITCH = 0.8, X0 = -2.0;
+  const curb = K.make('terminal_curb', { length: 400, canopy: 84, canopyX: -150 + 8, bollards: false, downlights: false, seed: 3 });
+  curb.position.set(150, 0, -3.2); TXT.add(R, curb);
+  /* the terminal's lobby lit through the glass, past the stage's dark, a second warm value behind the island */
+  curb.traverse(m => { if (!m.isMesh || !m.material) return; if (m.material.isMeshBasicMaterial && m.material.map) { m.material = m.material.clone(); m.material.fog = false; m.material.color.setHex(0x8c8c8c); } else if (m.material.metalness === 0.7 && m.geometry.type === 'CylinderGeometry' && m.geometry.parameters.height > 5) { m.material = m.material.clone(); m.material.color.setHex(0x1c1e22); m.material.envMapIntensity = 0.1; m.material.metalness = 0.3; } else if (m.material.color && (m.material.color.getHex() === 0x2c2824 || m.material.color.getHex() === 0x9a9890)) { m.material = m.material.clone(); m.material.color.setHex(0x08090b); m.material.metalness = 0; m.material.roughness = 1; m.material.envMapIntensity = 0; } });
+  CH.bollards(THREE, R, K, DAYS, [X0, 0.15, -3.55], [1, 0, 0], PITCH, () => 'white');
+  const car = K.make('robotaxi', { seed: 4 }); car.rotation.y = Math.PI / 2; car.position.set(11, 0, -1.25); TXT.add(R, car);
+  const who = K.make('person', { role: 'resident', pose: 'walk', seed: 5, hat: 'none' }); who.position.set(8.4, 0.15, -3.0); who.rotation.y = 0.5; TXT.add(R, who);
+  CH.matte(TXT.ground(R, { surface: 'asphalt', size: 1600, seed: 17 }), 0.35);
+  { const m = new THREE.MeshLambertMaterial({ color: 0xcfcac0 }); for (let x = -20; x < 380; x += 9) { const l = new THREE.Mesh(new THREE.PlaneGeometry(3, 0.12), m); l.rotation.x = -Math.PI / 2; l.position.set(x, 0.006, 2.4); l.receiveShadow = true; R.scene.add(l); } }
+  [car, who].forEach(o => TXT.contact(R, o));
+  const from = [-0.4, 4.0, 3.2];
+  const look = CH.aim(THREE, R, TXT, from, [9.6, 0.9, -1.8], 600, 980, 40);
+  TXT.frame(R, { fov: 40, from, look });
+  { const sp = new THREE.SpotLight(0xffd9a6, 320, 18, 0.8, 0.6, 1.5); sp.position.set(10.5, 7.2, -1.8); sp.target.position.set(10, 0, -1.6); sp.castShadow = true; sp.shadow.mapSize.set(4096, 4096); sp.shadow.normalBias = 0.03; sp.shadow.bias = -0.001; R.scene.add(sp); R.scene.add(sp.target); }
+  TXT.sky(R);
+  { const spec = CH.rigSpec(W, 40, 4096); spec.rim = Object.assign({}, spec.rim, { pos: [8, 6, -8] }); var RIG9 = spec; }
+  TXT.deckRig(R, RIG9, CH.rigOpts([9, 1, -2], { distance: 60, shadowFar: 160 }));
+  TXT.stage(R, [car, who], { poolInner: 7, poolOuter: 24, behind: 0.8, depth: 3 });
+  TXT.weather(R, { grime: 0.2, height: 0.5 });
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0.4, veil: 0.4, footWash: 0.54 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

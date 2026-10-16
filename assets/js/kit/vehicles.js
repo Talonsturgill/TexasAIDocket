@@ -1819,6 +1819,189 @@ export function install(K, THREE, TXT) {
     },
   });
 
+
+  /* =========================================================================================
+   * CROSSOVER: a compact electric crossover with a fastback, the body a robotaxi fleet runs on.
+   * 4.68 x 1.90 x 1.56 m, wheelbase 2.99 m, 22 inch wheels. Drawn to no maker's design.
+   *
+   * WHY IT IS BUILT DIFFERENTLY (weekly pass 2026-10-16). Every other car here is a side profile
+   * extruded across the width, so its sides are the extrusion's flat caps: whatever deform is
+   * applied moves only the outline, and the side stays one flat sheet. Carousel no. 52 built its
+   * robotaxi on the kit SUV for that reason, and every judge in panel rounds 2 and 3 named it "a
+   * boxy toy" on frames 1, 2, 4 and 6; the queue item robotaxi-curb-models-built-in-chassis asked
+   * for "real panel curvature, arch flares, a modelled glasshouse with coated glass". So this body
+   * is LOFTED: a cross section at every station along the length, its side tucked under at the
+   * rocker, full at the waist, rolled in at the shoulder, flared over each wheel, with a shoulder
+   * crease, and the nose and tail closed in plan by a squared ellipse, so the light rolls across
+   * the panels instead of sitting on them as one value. The underbody and the arch liners are
+   * dark, so an arch reads as an opening. The glass is coated and carries the world's lights.
+   *
+   * `sensors: true` adds the autonomous kit lifted from no. 52's chassis at the judges' fix: a
+   * low roof housing with a cylindrical spinning dome under a cap and two forward cameras, four
+   * perimeter pods on the fenders and quarters, a sensor bar in the lower nose. userData.roofY is
+   * the roof line and userData.dome the dome's centre, both in the model frame.
+   * ========================================================================================= */
+  K.define('crossover', {
+    size: [2.21, 1.56, 4.68],
+    options: { seed: 1, color: null, metallic: null, sensors: false, roof: 'body' },
+    note: 'Compact electric crossover, 4.68 m, fastback, lofted body with curved panels, wheel arch flares, flush handles and coated glass. Seeded paint. sensors true adds a robotaxi kit (roof dome on a low housing, four perimeter pods, a nose sensor bar; userData.dome, userData.roofY). roof body|black. Drawn to no maker\'s design.',
+    make(o, r) {
+      const G = new THREE.Group(), P = seededPaint(r, o);
+      const L = 4.68, W = 1.9, hw = W / 2, zf = L / 2, zr = -L / 2, R = 0.36, fz = zf - 0.86, rz = fz - 2.99;
+      const Ra = R + 0.06, rn = 0.32, rt = 0.22;
+      // the side profile, sampled: bottom line (rocker, raised over each arch) and the shoulder top
+      const yb = (z) => {
+        let y = 0.3;
+        for (const cz of [fz, rz]) { const d = z - cz; if (Math.abs(d) < Ra) y = Math.max(y, R + Math.sqrt(Ra * Ra - d * d)); }
+        return y;
+      };
+      const zWs = 0.92;                                   // the base of the windscreen
+      const yt = (z) => z > zWs ? 0.99 - 0.27 * Math.pow((z - zWs) / (zf - zWs), 1.7)
+        : z > -1.9 ? 0.99 + 0.05 * (zWs - z) / (zWs + 1.9) : 1.04 - 0.1 * Math.pow((-1.9 - z) / (-1.9 - zr), 2);
+      // plan closure at the nose and tail, a squared ellipse, and a vertical round at both ends
+      const endK = (z) => {
+        if (z > zf - rn) { const s = clamp01((z - (zf - rn)) / rn); return [Math.pow(1 - Math.pow(s, 3.2), 1 / 3.2), s]; }
+        if (z < zr + rt) { const s = clamp01(((zr + rt) - z) / rt); return [Math.pow(1 - Math.pow(s, 3), 1 / 3), s]; }
+        return [1, 0];
+      };
+      const flareAt = (z) => Math.max(Math.exp(-Math.pow((z - fz) / 0.55, 2)), Math.exp(-Math.pow((z - rz) / 0.55, 2)));
+      // the side's cross section, u from the rocker (0) to the shoulder (1): tucked under, full at
+      // the waist, rolled in at the shoulder, a crease at 0.72
+      const prof = (u) => 1 - 0.1 * Math.pow(1 - smooth(u / 0.45), 2) - 0.09 * Math.pow(smooth((u - 0.6) / 0.4), 2)
+        + 0.006 * Math.exp(-Math.pow((u - 0.72) / 0.05, 2));
+      const smooth = (t) => { t = clamp01(t); return t * t * (3 - 2 * t); };
+      const section = (z) => {
+        const [wk, s] = endK(z), y0 = yb(z) + 0.05 * s * s, y1 = yt(z) - 0.06 * s * s, fl = flareAt(z);
+        const xAt = (u) => (hw * prof(u) + 0.028 * fl * smooth((0.75 - u) / 0.35) * (y0 > 0.31 ? 1 : 0.6)) * wk;
+        return { y0, y1, xAt, wk };
+      };
+      const NZ = 110, NU = 30, NT = 16, NB = 10, pos = [], idxSkin = [], idxUnder = [];
+      const ring = 2 * (NU + 1) + (NT - 1) + (NB - 1);
+      for (let i = 0; i <= NZ; i++) {
+        const z = zr + (zf - zr) * (0.5 - 0.5 * Math.cos(Math.PI * i / NZ));
+        const S = section(z), xt = S.xAt(1), xb = S.xAt(0);
+        for (let j = 0; j <= NU; j++) { const u = j / NU; pos.push(S.xAt(u), lerpN(S.y0, S.y1, u), z); }
+        for (let j = 1; j < NT; j++) { const x = xt * (1 - 2 * j / NT); pos.push(x, S.y1 + 0.025 * S.wk * (1 - Math.pow(x / (xt || 1), 2)), z); }
+        for (let j = NU; j >= 0; j--) { const u = j / NU; pos.push(-S.xAt(u), lerpN(S.y0, S.y1, u), z); }
+        for (let j = 1; j < NB; j++) { const x = -xb * (1 - 2 * j / NB); pos.push(x, S.y0, z); }
+      }
+      const under0 = 2 * (NU + 1) + (NT - 1);               // the bottom across starts here in a ring
+      for (let i = 0; i < NZ; i++) for (let j = 0; j < ring; j++) {
+        const a = i * ring + j, b = i * ring + (j + 1) % ring, c = a + ring, d = b + ring;
+        const list = j >= under0 - 1 && j < ring - 1 ? idxUnder : (j === ring - 1 ? idxUnder : idxSkin);
+        list.push(a, c, b, b, c, d);
+      }
+      // one winding for both, chosen so a vertex on the right waist faces +x
+      const geo = (idx) => { const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3)); g.setIndex(idx); g.computeVertexNormals(); return g; };
+      let skinG = geo(idxSkin);
+      if (skinG.attributes.normal.getX(Math.floor(NZ / 2) * ring + Math.floor(NU / 2)) < 0) {
+        for (const ix of [idxSkin, idxUnder]) for (let q = 0; q < ix.length; q += 3) { const t = ix[q]; ix[q] = ix[q + 1]; ix[q + 1] = t; }
+        skinG = geo(idxSkin);
+      }
+      const underG = geo(idxUnder);
+      G.add(new THREE.Mesh(skinG, P));
+      G.add(new THREE.Mesh(underG, M.well()));
+      const body = G.children[0];
+      const nose = snapper([body], 1, zf), tail = snapper([body], -1, zr);
+      const sideX = (y, z) => { const S = section(z); return S.xAt(clamp01((y - S.y0) / ((S.y1 - S.y0) || 1))); };
+
+      // GLASSHOUSE: windscreen, side glass and a fastback, coated so it carries the world's lights
+      const coat = K.mat('v-coat', { color: 0x5f6c75, metalness: 0.55, roughness: 0.05, clearcoat: 1, clearcoatRoughness: 0.03, envMapIntensity: 2.4 }, true);
+      const roof = 1.56, belt = 1.0, gw = sideX(0.99, -0.4) - 0.045;
+      const gh = greenhouse([['m', zWs + 0.02, yt(zWs) - 0.03], ['q', 0.45, 1.36, -0.05, roof - 0.035], ['q', -0.7, roof + 0.005, -1.15, roof - 0.04],
+        ['q', -1.75, 1.42, zr + 0.22, yt(zr + 0.22) - 0.03]], gw, belt, roof, 0.17, coat, 0.04);
+      G.add(gh.mesh);
+      // the fastback's top line, read off the same curve the glass was cut from, so a pillar can
+      // follow it rather than stand above it as a fin
+      const FB = [[-1.15, roof - 0.04], [-1.75, 1.42], [zr + 0.22, yt(zr + 0.22) - 0.03]];
+      const fastY = (z) => { let lo = 0, hi = 1; for (let k = 0; k < 30; k++) { const t = (lo + hi) / 2, zz = (1 - t) * (1 - t) * FB[0][0] + 2 * t * (1 - t) * FB[1][0] + t * t * FB[2][0]; if (zz > z) lo = t; else hi = t; }
+        const t = (lo + hi) / 2; return (1 - t) * (1 - t) * FB[0][1] + 2 * t * (1 - t) * FB[1][1] + t * t * FB[2][1]; };
+      const roofM = o.roof === 'black' ? K.mat('v-roofblk', { color: 0x0e0f11, roughness: 0.3, clearcoat: 1, clearcoatRoughness: 0.05 }, true) : P;
+      G.add(sideExtrude([['m', -0.02, roof - 0.07], ['q', -0.7, roof + 0.02, -1.18, roof - 0.045], ['l', -1.24, roof - 0.1]], (gh.hw(roof) + 0.012) * 2, 0.035, roofM));
+      for (const s of [1, -1]) {
+        const x = (y) => s * (gh.hw(y) + 0.008);
+        TXT_tube(G, [[x(belt), yt(zWs + 0.02) - 0.02, zWs + 0.02], [x(1.3), 1.3, 0.46], [x(roof - 0.05), roof - 0.05, -0.04]], 0.032, o.roof === 'black' ? roofM : P);   // A
+        const pillarM = K.mat('v-pillar', { color: 0x0c0d0f, roughness: 0.18, clearcoat: 1, clearcoatRoughness: 0.08 }, true);
+        const bp = RB(0.012, roof - belt - 0.05, 0.09, 0.004, pillarM);
+        // leaning in with the glass: the top of a pillar on the right (+x) moves toward -x
+        bp.position.set(s * (gh.hw(1.27) + 0.006), 1.27, -0.36); bp.rotation.z = s * Math.atan(0.17 * gw / (roof - belt)); G.add(bp);
+        // a black C pillar behind the rear door, a quarter window, then a body colour D pillar swept
+        // with the fastback. One white board over the whole rear quarter read as the largest flat
+        // panel on the car, which is the defect this model exists to answer
+        const cp = RB(0.012, roof - belt - 0.09, 0.08, 0.004, pillarM);
+        cp.position.set(s * (gh.hw(1.24) + 0.006), 1.24, -1.18); cp.rotation.z = s * Math.atan(0.17 * gw / (roof - belt)); G.add(cp);
+        G.add(sidePane([[-1.64, belt]].concat(Array.from({ length: 9 }, (_, k) => { const z = lerpN(-1.62, -2.06, k / 8); return [z, Math.max(belt + 0.02, fastY(z) - 0.025)]; })), 0, 0.02, P, 0.006, (y) => s * (gh.hw(y) + 0.006)));
+        // a black waist trim under the glass
+        box(0.012, 0.022, 2.95, M.satin(), s * (gh.hw(belt) + 0.012), belt - 0.03, -0.55, 0.006, G);
+      }
+      // door cuts and flush handles, ON the curved side
+      const cut = (pts) => { for (const s of [1, -1]) TXT_tube(G, pts.map(([z, y]) => [s * (sideX(y, z) + 0.0012), y, z]), 0.0022, M.well()); };
+      const vline = (z0, z1) => { const p = []; for (let k = 0; k <= 8; k++) { const t = k / 8, y = lerpN(0.4, 0.97, t); p.push([lerpN(z0, z1, t), y]); } return p; };
+      cut(vline(0.98, 0.9)); cut(vline(-0.3, -0.34)); cut(vline(-1.18, -1.12));
+      cut(Array.from({ length: 13 }, (_, k) => [lerpN(0.98, -1.18, k / 12), 0.4]));   // the door bottoms
+      for (const z of [0.18, -0.85]) for (const s of [1, -1]) {
+        const h = RB(0.012, 0.03, 0.17, 0.008, M.satin()); h.position.set(s * (sideX(0.84, z) + 0.004), 0.84, z); G.add(h);
+      }
+      mirror(G, gh.hw(belt) + 0.01, belt + 0.02, zWs - 0.12, P, false);
+      // nose: a slim lamp line, a dark lower intake; tail: a light bar between two lamps
+      // lamps that lie ON the curved nose and tail: a dark lens line with a lit strip in it, sampled
+      // across the surface, because a flat lamp box stood off a round nose like a handle
+      const strip = (ys, x0, x1, at, dir, lensM, litM) => {
+        for (const s of [1, -1]) {
+          const pts = (dy, off) => Array.from({ length: 9 }, (_, k) => { const x = s * lerpN(x0, x1, k / 8), y = ys + dy; return [x, y, at(x, y) + dir * off]; });
+          TXT_tube(G, pts(0, 0.004), 0.024, lensM);
+          if (litM) TXT_tube(G, pts(-0.008, 0.02), 0.007, litM);
+        }
+      };
+      strip(0.8, hw - 0.52, hw - 0.12, nose, 1, M.glass(), M.drl());
+      const intake = RB(0.78, 0.13, 0.05, 0.04, M.satin()); intake.position.set(0, 0.46, nose(0, 0.46) - 0.022); G.add(intake);
+      strip(0.93, 0.02, hw - 0.1, tail, -1, M.tail(), null);
+      plate(G, 0.62, tail(0, 0.62) - 0.008, -1); plate(G, 0.36, nose(0, 0.36) + 0.006, 1);
+      // a dark liner in each arch, so an arch reads as an opening and never as body colour
+      for (const cz of [fz, rz]) {
+        const lin = new THREE.Mesh(new THREE.CylinderGeometry(Ra - 0.008, Ra - 0.008, W - 0.5, 32), M.well());
+        lin.rotation.z = Math.PI / 2; lin.position.set(0, R, cz); G.add(lin);
+      }
+      axle(G, fz, R, 0.25, W - 0.24, 'five', M.alloy(), { rimR: 0.24, well: false });
+      axle(G, rz, R, 0.25, W - 0.24, 'five', M.alloy(), { rimR: 0.24, well: false });
+
+      let dome = null;
+      if (o.sensors) {
+        // the autonomous kit, lifted from carousel no. 52's chassis at the judges' fix
+        const white = K.mat('v-rt-white', { color: 0xeceef0, roughness: 0.32, clearcoat: 0.8, clearcoatRoughness: 0.12 }, true);
+        const gloss = K.mat('v-rt-gloss', { color: 0x0d0f12, roughness: 0.18, metalness: 0.2 });
+        const domeM = K.mat('v-rt-dome', { color: 0x0a0c10, roughness: 0.06, metalness: 0.1, clearcoat: 1, clearcoatRoughness: 0.03, envMapIntensity: 1.6 }, true);
+        const band = K.mat('v-rt-band', { color: 0x1c2026, roughness: 0.35, metalness: 0.6 });
+        const lens = K.mat('v-rt-lens', { color: 0x050608, roughness: 0.04, metalness: 0.3 });
+        const st = new THREE.Group();
+        const base = TXT.roundedBox(0.96, 0.09, 0.74, 0.04, white); base.position.set(0, 0.045, 0); st.add(base);
+        K.cyl(0.12, 0.15, 0.08, gloss, 0, 0.09, 0, 28, st);
+        K.cyl(0.17, 0.17, 0.24, domeM, 0, 0.17, 0, 40, st);
+        K.cyl(0.175, 0.175, 0.03, band, 0, 0.26, 0, 40, st);
+        K.cyl(0.19, 0.18, 0.06, white, 0, 0.41, 0, 40, st);
+        for (const sx of [-1, 1]) {
+          const cam = TXT.roundedBox(0.1, 0.07, 0.12, 0.02, gloss); cam.position.set(sx * 0.4, 0.12, 0.27); st.add(cam);
+          const cl = new THREE.Mesh(new THREE.CircleGeometry(0.025, 20), lens); cl.position.set(sx * 0.4, 0.125, 0.331); st.add(cl);
+        }
+        st.position.set(0, roof - 0.01, -0.55); G.add(st);
+        dome = [0, roof - 0.01 + 0.29, -0.55];
+        for (const [sx, sz] of [[1, 1], [-1, 1], [1, -1], [-1, -1]]) {
+          const pz = sz > 0 ? fz + 0.12 : rz - 0.1, py = yt(pz) - 0.02, px = sx * (sideX(py, pz) - 0.03);
+          const pod = new THREE.Group();
+          const sh = TXT.roundedBox(0.15, 0.2, 0.19, 0.05, white); sh.position.set(0, 0.1, 0); pod.add(sh);
+          const face = TXT.roundedBox(0.02, 0.14, 0.13, 0.01, gloss); face.position.set(sx * 0.08, 0.11, 0); pod.add(face);
+          pod.position.set(px, py, pz); G.add(pod);
+        }
+        const sb = RB(0.7, 0.06, 0.05, 0.02, gloss); sb.position.set(0, 0.56, nose(0, 0.56) + 0.01); G.add(sb);
+      }
+      const out = mergeByMaterial(G);
+      out.userData.roofY = roof;
+      if (dome) out.userData.dome = dome;
+      return out;
+    },
+  });
+  const lerpN = (a, b, t) => a + (b - a) * t;
+
   for (const n of ['pickup', 'sedan', 'suv', 'delivery_van', 'school_bus', 'semi_truck', 'utility_bucket_truck']) {
     const spec = K.registry[n], mk = spec.make;
     spec.make = (o, r) => mergeByMaterial(mk(o, r));

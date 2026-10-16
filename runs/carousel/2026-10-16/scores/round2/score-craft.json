@@ -1,0 +1,77 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.5,
+   "why": "Register right on every frame; 9 the best, 1 bold. Slide 3, the declared showstopper, shows no floodwater surface below the comal line, three bokeh blobs, no ledges, two specular hot spots on the cabin glass, lit foliage behind dek lines 2 to 5. The robotaxi kit model is primitive on every frame. Slide 4's water is a flat dark rectangle with a small blue parallelogram and an olive verge. Slide 8's window reads as a toy car on a bookshelf with a dead band under the dek. Slide 7's pool is weak and its band is a ring on the ground. Per frame 7.5, 7, 5, 6, 7, 7, 6.5, 6.5, 8."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 8.0,
+   "why": "A filmstrip: one world, one hero, one comal accent, a dark track with no strobe, two working devices. Slide 8 sits slightly outside."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.0,
+   "why": "Every numeral traces; slide 5's count is enforced in code; the remedy wording is verbatim. Soft spots: the creek rests on TPR, and slide 4's labels are TPR's words without quotation marks."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.5,
+   "why": "What, who, where and an action named; the rider stake stated generally; no deadline; Bexar County only as a hashtag."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "Cover earns the swipe, clean turn at 3, the close lands. Frame 2 delays; 5 and 7 share a pace."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "Specific and on register; 'Drawn to illustrate.' closes seven deks; slide 6's dek is attribution heavy."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Fresh concept and world; the chassis composition is the same on all nine frames."
+  }
+ ],
+ "weighted_score": 7.39,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Rebuild the robotaxi model with real panel curvature, arch flares, a glasshouse and seated tyres, then rebuild slide 3 so the floodwater is a lit rippled brown surface with the limestone far bank in the lamp's cone.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 3,
+   "problem": "No water reads below the comal line; bokeh blobs; no ledges or far bank; cabin glass hot spots; foliage behind the dek.",
+   "fix": "Ripple normal and muddy brown albedo with the bank lamp's streak across the door line; ledges in the cone; lower glass envMap; move the tree right."
+  },
+  {
+   "slide": 4,
+   "problem": "Flat dark rectangle with a small blue parallelogram; mirrors nothing; olive verge.",
+   "fix": "Low roughness reflective water mirroring the lamps and the flank; comal a thin full-width edge; verge to near black."
+  },
+  {
+   "slide": 8,
+   "problem": "Toy car on a bookshelf; blinds as shelves; car lit blue; dead band under the dek.",
+   "fix": "A visible window frame; the car at street distance under sodium; screen top about 80 px under the dek."
+  },
+  {
+   "slide": 7,
+   "problem": "Weak pool; the band is a ring on the ground; posts identical; February without a leader.",
+   "fix": "Tighter spot so lit posts read at L* 60 or more; comal on the post's band; a leader for February."
+  },
+  {
+   "slide": 6,
+   "problem": "Wheels read as dark stilts; the comal line reads as an overlay.",
+   "fix": "Seat the tyres with contact and a lit sidewall edge; break the comal line at the tyres."
+  }
+ ]
+}

@@ -1,0 +1,212 @@
+{
+ "weighted_score": 7.184,
+ "judges": [
+  7.08,
+  7.202,
+  7.186
+ ],
+ "spread": 0.122,
+ "criteria": {
+  "artwork_craft": {
+   "score": 6.2,
+   "weight": 0.22,
+   "judges": [
+    6.0,
+    6.2,
+    6.3
+   ]
+  },
+  "deck_coherence": {
+   "score": 8.0,
+   "weight": 0.12,
+   "judges": [
+    8.0,
+    7.6,
+    8.0
+   ]
+  },
+  "claim_integrity": {
+   "score": 7.8,
+   "weight": 0.2,
+   "judges": [
+    7.5,
+    8.3,
+    7.8
+   ]
+  },
+  "story_and_stakes": {
+   "score": 7.5,
+   "weight": 0.16,
+   "judges": [
+    7.5,
+    7.6,
+    7.4
+   ]
+  },
+  "sequence_and_momentum": {
+   "score": 7.5,
+   "weight": 0.1,
+   "judges": [
+    7.5,
+    7.5,
+    7.3
+   ]
+  },
+  "voice": {
+   "score": 7.5,
+   "weight": 0.1,
+   "judges": [
+    7.5,
+    7.5,
+    7.5
+   ]
+  },
+  "variety": {
+   "score": 6.0,
+   "weight": 0.1,
+   "judges": [
+    6.0,
+    5.5,
+    6.0
+   ]
+  }
+ },
+ "hard_fails": [],
+ "hard_fails_by_judge": [],
+ "ship": true,
+ "threshold": 8.0,
+ "over_threshold": false,
+ "method": "per-criterion median across three judges, then weighted by the rubric",
+ "artwork_weakest_frames": [
+  {
+   "slide": 3,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "No creek; an opaque black plane; a brown slab floating at roof height.",
+     "fix": "Delete the slab; limestone ledges on both banks with the far bank lamp; the standing_water sheet at mid-door."
+    },
+    {
+     "judge": 2,
+     "problem": "Opaque matte black plane; brown slab floating at hood height; cabin hotspots; foliage through the dek.",
+     "fix": "Standing-water sheet with ripple and slight transmission, a grime gradient, ledges on the far bank, no cabin speculars, the crown punched out of the dek."
+    },
+    {
+     "judge": 3,
+     "problem": "Does not read as a flood; cropped slab on a black plane; a brown block reads as furniture.",
+     "fix": "A lit rippled brown surface at the beltline with broken highlights, delete the block, light a limestone bank behind."
+    }
+   ]
+  },
+  {
+   "slide": 8,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The window doesn't read as a window; toy car on a bookshelf.",
+     "fix": "A large window with blinds behind the monitor; the car 10 m outside under its own lamp; crop the books."
+    },
+    {
+     "judge": 2,
+     "problem": "Window reads as shelving; the car cropped and illegible; book stack clutter.",
+     "fix": "One square window with blinds throwing sodium stripes; the car whole and small under one lamp; cut the books."
+    },
+    {
+     "judge": 3,
+     "problem": "The window car reads as a toy on a shelf.",
+     "fix": "A visible window frame with the car small and distant under its own lamp, or drop it and crop tighter."
+    }
+   ]
+  },
+  {
+   "slide": 5,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Flat slab LOD cars.",
+     "fix": "A raked windscreen and arch cutouts in CH.carField; the camera at about 12 m."
+    },
+    {
+     "judge": 2,
+     "problem": "Loaf instances in tiles.",
+     "fix": "Silhouette cues on the LOD mesh; narrower aisles; the hero at the near row."
+    },
+    {
+     "judge": 3,
+     "problem": "Glassless loaf instances read as tiles.",
+     "fix": "A silhouette with a dark glass band and arches; a lower camera."
+    }
+   ]
+  },
+  {
+   "slide": 6,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Flat box nose-on; wheels cut by the comal line so the car hovers.",
+     "fix": "Swing 15 to 20 degrees off axis; the water edge about 1 m in front of the tyres with contact on dry asphalt."
+    },
+    {
+     "judge": 3,
+     "problem": "The car hovers on dark struts.",
+     "fix": "Seat the body on lit tyres with contact at the water's edge."
+    }
+   ]
+  },
+  {
+   "slide": 2,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The pole crosses the dek; the rider pressed into the bumper.",
+     "fix": "Move the lamp about 3 m east; the rider 1.2 m off the car toward the camera."
+    },
+    {
+     "judge": 2,
+     "problem": "Mannequin figure behind the tailgate; the pole through the dek's right edge.",
+     "fix": "The rider mid-stride beside the rear door; the pole moved right of the dek box."
+    }
+   ]
+  },
+  {
+   "slide": 7,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "Lit and unlit posts barely distinguishable; the car closer than the October row.",
+     "fix": "Pre-April posts near black, a stronger pool on the lit span, the car parked at the October row's depth."
+    },
+    {
+     "judge": 3,
+     "problem": "Lit and unlit posts look the same.",
+     "fix": "Pool the key only over the 177 posts from the ring to the car."
+    }
+   ]
+  },
+  {
+   "slide": 4,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "Flat dark-blue water mirroring no lamp; olive grass band; dead band; car under half the width.",
+     "fix": "A mirror material streaking the lamps, near black shoulder, a longer lens so the car spans about 60 percent."
+    }
+   ]
+  }
+ ],
+ "rounds_derived": 3,
+ "rounds": 3,
+ "rounds_source": "this module's own log of cards it has scored",
+ "at_cap": true,
+ "rung": null,
+ "shortfall": "at the round cap the finished deck ships at 7.184, 0.816 under the 8.0 top rung. Name that in the email and the run record",
+ "craft_floor": "capped",
+ "craft_note": "at the round cap the craft floor stands down. The art median 6.2 is under 8.5 and the deck ships as it is. Name it in the run record"
+}

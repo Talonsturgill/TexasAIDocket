@@ -1,0 +1,77 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.0,
+   "why": "Bold value register on all nine. The hero is the kit SUV with box pods and reads as a CAD block on 1, 2, 4, 6 and 7. Slide 3 is no showstopper: an opaque black plane, no ledges or bank, a brown slab floating at roof height. Slide 6's car hovers with its wheels cut at the comal line. Slide 8's window car reads as a toy on a bookshelf. Slide 2's pole runs behind the dek and the rider presses into the bumper. Slide 9 the strongest; slide 7 a clean data frame."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 8.0,
+   "why": "One world, one key, one unchanged hero, one grade; comal for the water line only; dark values with no strobe; two devices work. Slide 8 slightly outside."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.5,
+   "why": "Every numeral traces and re-derives; slide 7 lights 177 and slide 5 draws 3791 in code; slide 8's fields match the record byte for byte; c26 verbatim. Held at 7.5: slide 4's labels are TPR's paraphrase where the Part 573 filing was not fetched; slide 4's hook states the modal as an event; the day-first May 1st reading rests on 26E035 (c25, context only) missing from the first comment; 'recall lookup' names a surface not fetched; slide 8's interim sentence drops 'Waymo told NHTSA'."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.5,
+   "why": "What, where and the stake land; the action general with 26E026 unprinted for a feed reader; no public decider beyond Waymo and NHTSA."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "Cover tension, frame 2 steps back, turn at 3, 4 to 6 build, 7 restates and leaves May 1st unexplained, the close lands."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "Restrained and specific; flat lines on 2 and 8; no house rule breaks."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.0,
+   "why": "New palette; no. 50's San Antonio night flood four days earlier; one object per day, instanced count and person-beside-hero close repeat recent decks."
+  }
+ ],
+ "weighted_score": 7.08,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Replace the boxy kit SUV robotaxi with a properly modelled body and build slide 3's actual creek with ledges, a far bank, a streetlight and ripple-broken water at mid-door.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 3,
+   "problem": "No creek; an opaque black plane; a brown slab floating at roof height.",
+   "fix": "Delete the slab; limestone ledges on both banks with the far bank lamp; the standing_water sheet at mid-door."
+  },
+  {
+   "slide": 6,
+   "problem": "Flat box nose-on; wheels cut by the comal line so the car hovers.",
+   "fix": "Swing 15 to 20 degrees off axis; the water edge about 1 m in front of the tyres with contact on dry asphalt."
+  },
+  {
+   "slide": 8,
+   "problem": "The window doesn't read as a window; toy car on a bookshelf.",
+   "fix": "A large window with blinds behind the monitor; the car 10 m outside under its own lamp; crop the books."
+  },
+  {
+   "slide": 2,
+   "problem": "The pole crosses the dek; the rider pressed into the bumper.",
+   "fix": "Move the lamp about 3 m east; the rider 1.2 m off the car toward the camera."
+  },
+  {
+   "slide": 5,
+   "problem": "Flat slab LOD cars.",
+   "fix": "A raked windscreen and arch cutouts in CH.carField; the camera at about 12 m."
+  }
+ ]
+}

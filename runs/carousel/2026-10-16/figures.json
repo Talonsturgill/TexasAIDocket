@@ -1,0 +1,178 @@
+{
+ "_note": "Every value is extracted from a claim quote by compute.py, or computed here from values that were.",
+ "opened_day": {
+  "value": 14,
+  "from": [
+   "c1"
+  ],
+  "basis": "day of October the service opened to anyone"
+ },
+ "opened_year": {
+  "value": 2026,
+  "from": [
+   "c1"
+  ],
+  "basis": "year the service opened to anyone"
+ },
+ "first_riders_day": {
+  "value": 24,
+  "from": [
+   "c5"
+  ],
+  "basis": "day of February the first public riders were taken"
+ },
+ "creek_day": {
+  "value": 20,
+  "from": [
+   "c15"
+  ],
+  "basis": "day of April the car washed into Salado Creek"
+ },
+ "recall_filed_day": {
+  "value": 1,
+  "from": [
+   "c14"
+  ],
+  "basis": "day of May the recall report was received"
+ },
+ "interim_by_day": {
+  "value": 20,
+  "from": [
+   "c11"
+  ],
+  "basis": "day of April by which every affected vehicle had the interim update"
+ },
+ "days_creek_to_open": {
+  "value": 177,
+  "from": [
+   "c15",
+   "c1"
+  ],
+  "basis": "days from the car in Salado Creek to the service opening to anyone"
+ },
+ "days_creek_to_recall": {
+  "value": 11,
+  "from": [
+   "c15",
+   "c14"
+  ],
+  "basis": "days from the car in Salado Creek to the recall report"
+ },
+ "days_first_riders_to_open": {
+  "value": 232,
+  "from": [
+   "c5",
+   "c1"
+  ],
+  "basis": "days from the first invited riders to the service opening to anyone"
+ },
+ "days_recall_to_open": {
+  "value": 166,
+  "from": [
+   "c14",
+   "c1"
+  ],
+  "basis": "days from the recall report to the service opening to anyone"
+ },
+ "days_first_riders_to_creek": {
+  "value": 55,
+  "from": [
+   "c5",
+   "c15"
+  ],
+  "basis": "days from the first invited riders to the car in Salado Creek"
+ },
+ "month_rows": {
+  "value": [
+   5,
+   31,
+   30,
+   31,
+   30,
+   31,
+   31,
+   30,
+   14
+  ],
+  "from": [
+   "c5",
+   "c1"
+  ],
+  "basis": "posts per month row, February 24th to October 14th inclusive, one post per day"
+ },
+ "posts_total": {
+  "value": 233,
+  "from": [
+   "c5",
+   "c1"
+  ],
+  "basis": "posts in the calendar field, both end days included"
+ },
+ "creek_post_index": {
+  "value": 55,
+  "from": [
+   "c5",
+   "c15"
+  ],
+  "basis": "zero based index of the April 20th post in the field"
+ },
+ "recall_post_index": {
+  "value": 66,
+  "from": [
+   "c5",
+   "c14"
+  ],
+  "basis": "zero based index of the May 1st post in the field"
+ },
+ "creek_same_day_as_interim": {
+  "value": true,
+  "from": [
+   "c15",
+   "c11"
+  ],
+  "basis": "the interim update deadline and the creek are the same date"
+ },
+ "units_affected": {
+  "value": 3791,
+  "from": [
+   "c13"
+  ],
+  "basis": "potentially affected units in the recall, the federal record's own figure"
+ },
+ "service_sq_mi_feb": {
+  "value": 60,
+  "from": [
+   "c21"
+  ],
+  "basis": "square miles of the San Antonio service area in February"
+ },
+ "cities_feb": {
+  "value": 4,
+  "from": [
+   "c5"
+  ],
+  "basis": "cities that took first public riders on February 24th"
+ },
+ "cities_open_oct": {
+  "value": 3,
+  "from": [
+   "c1"
+  ],
+  "basis": "cities opened to anyone on October 14th: San Antonio, San Diego, Tampa"
+ },
+ "generations_recalled": {
+  "value": 2,
+  "from": [
+   "c12"
+  ],
+  "basis": "generations named in the recall: 5th and 6th"
+ },
+ "incidents_april": {
+  "value": 2,
+  "from": [
+   "c15",
+   "c17"
+  ],
+  "basis": "flood incidents in April that Texas Public Radio reports, one per claim"
+ }
+}
