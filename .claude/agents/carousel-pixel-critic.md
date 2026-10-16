@@ -5,6 +5,19 @@ model: sonnet
 tools: Read
 ---
 
+## Physical render routes, effective October 17th, 2026
+
+Read `prompts/carousel_studio.md`. It replaces the single hero object and GPU-only quotas in
+older instructions. A coherent deck can carry a measured scale or a changing motif through
+bespoke material reliefs (`txbench.js`), spatial scenes (`txthree.js`) or a deliberate mix.
+Judge what the image explains at feed size. A physical relief needs measured height, distinct
+materials and cast shadows; a flat drawing or a fallback never qualifies. Retain the existing
+fact, numeral, source, layout, contrast and final-panel gates. The hardest planned frame is in
+the audition, and a changed frame receives a new visual review. Unchanged reviews retain their
+exact source, image and shared-asset hashes.
+
+
+
 You review RENDERED PIXELS. Not the code, not the plan, not the intention. What is actually on
 the image.
 

@@ -19,6 +19,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 SINCE = "2026-10-07"  # first new run is October 8th; shipped history is preserved
 ROLES = ("cover", "evidence", "close")
+STUDIO_SINCE = "2026-10-16"
 
 
 def sha(path: Path) -> str:
@@ -32,8 +33,8 @@ def inputs(base: Path, selected: list[int], assets: Path) -> dict:
         png = base / "render" / f"slide-{n:02}.png"
         for path in (html, png):
             files[str(path.relative_to(base))] = sha(path)
-        # The shared chassis can restyle all three without changing their HTML.
-        for rel in re.findall(r"@@ASSETS@@/(js/deck/[A-Za-z0-9_.-]+\.js)", html.read_text()):
+        # Shared renderers and the chassis can change pixels without changing the HTML.
+        for rel in re.findall(r"@@ASSETS@@/(js/(?:[A-Za-z0-9_-]+/)*[A-Za-z0-9_.-]+\.js)", html.read_text()):
             files["assets/" + rel] = sha(assets / rel)
     return files
 
@@ -59,6 +60,30 @@ def review_problems(review: dict, selected: list[int]) -> list[str]:
     return out
 
 
+def frame_inputs(digests: dict, n: int) -> dict:
+    return {k: v for k, v in digests.items()
+            if k.startswith("assets/") or k in (f"slides/slide-{n:02}.html", f"render/slide-{n:02}.png")}
+
+
+def studio_problems(record: dict) -> list[str]:
+    """The rehearsal includes the hardest frame and reviews its finished image at feed size."""
+    plan = record.get("plan", {})
+    if plan.get("hardest_frame") != record["selected"][1]:
+        return ["the art audition must include the plan's hardest frame"]
+    out = []
+    for key in ("visual_argument", "build_risk", "distinct_from_recent"):
+        if not isinstance(plan.get(key), str) or not plan[key].strip():
+            out.append(f"art_plan.json needs {key}")
+    for frame in record.get("review", {}).get("frames", []):
+        n = frame.get("slide")
+        if frame.get("inputs") != frame_inputs(record["inputs"], n):
+            out.append(f"frame {n}: its review is not bound to its source, image and shared assets")
+        for key in ("encoding_reads", "dominant_subject_finished", "feed_legible"):
+            if frame.get(key) is not True:
+                out.append(f"frame {n}: {key} needs a positive visual judgement")
+    return out
+
+
 def check(base: Path, assets: Path = ROOT / "assets", archived: bool = False) -> list[str]:
     path = base / "art_preflight.json"
     try:
@@ -74,7 +99,7 @@ def check(base: Path, assets: Path = ROOT / "assets", archived: bool = False) ->
                     for folder, extension in (("slides", "html"), ("render", "png"))}
         if not required.issubset(record["inputs"]):
             return ["art preflight input list omits a selected source or image"]
-        if any(name not in required and not re.fullmatch(r"assets/js/deck/[A-Za-z0-9_.-]+\.js", name)
+        if any(name not in required and not re.fullmatch(r"assets/js/(?:[A-Za-z0-9_-]+/)*[A-Za-z0-9_.-]+\.js", name)
                for name in record["inputs"]):
             return ["art preflight input list contains a path outside its three-frame proof"]
         if archived and "shipped_inputs" in record:
@@ -109,18 +134,33 @@ def check(base: Path, assets: Path = ROOT / "assets", archived: bool = False) ->
         if record.get("review", {}).get("inputs") != record["inputs"]:
             out.append("the visual review is not bound to these images and this chassis")
         out.extend(review_problems(record.get("review", {}), selected))
+        if record.get("version", 1) >= 2:
+            out.extend(studio_problems(record))
+            if not archived and json.loads((base / "art_plan.json").read_text()) != record.get("plan"):
+                out.append("the art plan changed after the audition; rebuild and review the proof")
+        elif re.fullmatch(r"\d{4}-\d{2}-\d{2}", base.name) and base.name > STUDIO_SINCE:
+            out.append("this run needs the studio audition with art_plan.json; rebuild the proof")
         return out
     except (OSError, ValueError, KeyError, TypeError, AttributeError) as e:
         return [f"art preflight evidence is missing or unreadable: {e}"]
 
 
-def build(base: Path, middle: int, assets: Path) -> None:
+def build(base: Path, middle: int | None, assets: Path) -> None:
     from PIL import Image, ImageDraw
     import panel_ready
     import value_register
 
+    plan_path = base / "art_plan.json"
+    plan = json.loads(plan_path.read_text()) if plan_path.exists() else None
+    if plan is not None:
+        if middle is not None and middle != plan.get("hardest_frame"):
+            raise ValueError("--middle differs from art_plan.json's hardest_frame")
+        middle = plan.get("hardest_frame")
+    elif re.fullmatch(r"\d{4}-\d{2}-\d{2}", base.name) and base.name > STUDIO_SINCE:
+        raise ValueError("write art_plan.json and name the hardest frame before the audition")
+    middle = 4 if middle is None else middle
     numbers = sorted(int(p.stem.split("-")[1]) for p in (base / "slides").glob("slide-*.html"))
-    if not numbers or not 1 < middle < numbers[-1]:
+    if not numbers or type(middle) is not int or not 1 < middle < numbers[-1]:
         raise ValueError("render frame 1, an evidence frame and the final frame first")
     selected = [1, middle, numbers[-1]]
     stale = panel_ready.check_renders_current(base, assets)
@@ -136,6 +176,19 @@ def build(base: Path, middle: int, assets: Path) -> None:
         raise ValueError(problems[0])
     record = {"version": 1, "selected": selected, "inputs": inputs(base, selected, assets),
               "value_measurements": rows, "review": {"decision": "revise", "frames": []}}
+    if plan is not None:
+        old_path = base / "art_preflight.json"
+        old = json.loads(old_path.read_text()) if old_path.exists() else {}
+        old_frames = {f.get("slide"): f for f in old.get("review", {}).get("frames", [])}
+        kept = [old_frames[n] for n in selected if n in old_frames
+                and old_frames[n].get("inputs") == frame_inputs(record["inputs"], n)
+                and old.get("plan") == plan]
+        record.update(version=2, plan=plan, needs_review=[n for n in selected if n not in {f["slide"] for f in kept}])
+        record["review"] = {"decision": "revise", "inputs": record["inputs"], "frames": kept}
+        if (len(kept) == 3 and old.get("review", {}).get("decision") == "accept"
+                and not studio_problems(record)
+                and not review_problems(record["review"] | {"decision": "accept"}, selected)):
+            record["review"]["decision"] = "accept"
     (base / "art_preflight.json").write_text(json.dumps(record, indent=2) + "\n")
     sheet = Image.new("RGB", (3 * 452, 590), "#0c1118")
     draw = ImageDraw.Draw(sheet)
@@ -262,7 +315,7 @@ def main() -> int:
     parser.add_argument("--run", type=Path)
     parser.add_argument("--write", action="store_true")
     parser.add_argument("--archive", type=Path)
-    parser.add_argument("--middle", type=int, default=4)
+    parser.add_argument("--middle", type=int, help="legacy selection; new runs read art_plan.json")
     parser.add_argument("--self-test", action="store_true")
     args = parser.parse_args()
     if args.self_test:

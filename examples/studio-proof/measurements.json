@@ -1,0 +1,41 @@
+{
+  "purpose": "Renderer proof, not a daily release or an artwork score",
+  "render_errors": 0,
+  "frames": [
+    {
+      "file": "slide-01.html",
+      "load_ms": 388,
+      "relief": {
+        "height_range": 6,
+        "materials": 2,
+        "cast_fraction": 0.20363734567901234,
+        "area": 1,
+        "render_ms": 1400.2999999523163
+      }
+    },
+    {
+      "file": "slide-03.html",
+      "load_ms": 208,
+      "relief": {
+        "height_range": 23.65,
+        "materials": 3,
+        "cast_fraction": 0.034507201646090536,
+        "area": 1,
+        "render_ms": 1897.6000001430511
+      }
+    },
+    {
+      "file": "slide-09.html",
+      "load_ms": 45,
+      "relief": {
+        "height_range": 26,
+        "materials": 5,
+        "cast_fraction": 0.04359739368998628,
+        "area": 1,
+        "render_ms": 2407
+      }
+    }
+  ],
+  "qa_verdict": "WARN",
+  "qa_note": "The only warnings are the renderer measurement messages captured on the console."
+}

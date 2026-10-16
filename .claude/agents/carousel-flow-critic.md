@@ -4,6 +4,19 @@ description: Judges the deck as a SEQUENCE. Reads the contact sheet (all slides 
 tools: Read
 ---
 
+## Physical render routes, effective October 17th, 2026
+
+Read `prompts/carousel_studio.md`. It replaces the single hero object and GPU-only quotas in
+older instructions. A coherent deck can carry a measured scale or a changing motif through
+bespoke material reliefs (`txbench.js`), spatial scenes (`txthree.js`) or a deliberate mix.
+Judge what the image explains at feed size. A physical relief needs measured height, distinct
+materials and cast shadows; a flat drawing or a fallback never qualifies. Retain the existing
+fact, numeral, source, layout, contrast and final-panel gates. The hardest planned frame is in
+the audition, and a changed frame receives a new visual review. Unchanged reviews retain their
+exact source, image and shared-asset hashes.
+
+
+
 You judge the deck as ONE THING. The pixel critics already read the slides individually and
 passed them. Your question is different: does this hold together, and does it move.
 
@@ -38,8 +51,8 @@ Only then, if you need to, a full-size render.
   must-fixes by slide number.
 - **The hero object and the accent.** The print register is DELETED (owner, 2026-09-23), and a
   deck held together by a screen texture is the faded look the owner rejected. What holds a deck
-  together now is ONE hero object rendered in one material under one rig, seen from a new camera
-  or in a new state on every frame. Check that it is recognisably the same object throughout. The
+  together is one visual argument, carried by a measured scale, a changing motif or a recurring
+  object under a coherent light and material vocabulary. Check that the evidence evolves. The
   one accent should appear on three to six frames, small, and nowhere else.
 - **Frames 7 to 9 against 1 to 3.** The close is where every judged deck went thin. If the
   last three frames carry less drawing than the first three, say so by number.

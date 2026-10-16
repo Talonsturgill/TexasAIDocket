@@ -1,0 +1,30 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>*{box-sizing:border-box}html,body{margin:0;width:1080px;height:1350px;overflow:hidden;background:#050A0F;color:#F4F0E7}
+canvas{position:absolute;inset:0;width:1080px;height:1350px}.copy{position:absolute;left:82px;right:82px;top:90px}
+.kicker{font:24px 'JetBrains Mono';letter-spacing:3px;color:#87B1BE;margin-bottom:40px}
+h1{font:700 82px/1.02 'Space Grotesk';letter-spacing:-3px;margin:0 0 36px}p{font:32px/1.42 Manrope;margin:0;max-width:900px}
+.label{position:absolute;left:82px;right:82px;top:1188px;font:24px/1.35 Manrope;color:#B6BFC6}
+.footer{position:absolute;left:82px;bottom:46px;font:20px 'JetBrains Mono';color:#91A2AD}</style>
+<script src="@@ASSETS@@/js/noise.js"></script><script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script><script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/txbench.js"></script><script src="@@ASSETS@@/js/deck/2026-10-16-studio-proof.js"></script>
+</head><body><canvas id="art"></canvas><div class="copy"><div class="kicker">THE REMEDY FIELD</div><h1>"The remedy is currently<br>under development."</h1><p>The federal record's remedy field as read in the archived October 16th run. The service opening and the recall remedy describe separate events.</p></div>
+<div class="label">A physical field with an unfinished inset. The shape illustrates the recorded status and makes no safety claim.</div><div class="footer" data-decorative>RENDERER STUDY / texasaidocket.com</div>
+<script>window.renderReady=(async()=>{await document.fonts.ready;
+const c=document.getElementById('art');c.width=2160;c.height=2700;const cx=c.getContext('2d');cx.scale(2,2);
+function object(X,Y) {
+  const x=X-540,y=Y-905;
+  if (Math.abs(x)>450 || Math.abs(y)>245) return [0,0];
+  const edge=Math.min(450-Math.abs(x),245-Math.abs(y));
+  let h=Math.min(20,edge*1.6),m=4;
+  if (Math.abs(y)<62 && x>-365 && x<365) {h=8;m=3;}
+  if (Math.abs(y)<47 && x>-350 && x<220) {h=17;m=1;}
+  if (x>260 && x<320 && Math.abs(y)<100) {h=26;m=2;}
+  return [h,m];
+}
+const height=(X,Y)=>object(X,Y)[0], material=(X,Y)=>object(X,Y)[1];
+TXBENCH.relief(cx,{x:0,y:0,w:1080,h:1350,scale:2,height,material,albedo:STUDIO.albedo,spec:STUDIO.spec,
+  ambient:0.20,diffuse:0.98,softness:4,castLength:80,dither:true});
+TXDECK.finish(cx);
+})();</script></body></html>

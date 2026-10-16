@@ -339,6 +339,40 @@ def ship(run_dir: Path, dry: bool, keep_png: bool = False,
     return _ship(run_dir, dry, keep_png)
 
 
+def preserve_layout(run_dir: Path, pngs: list[Path], results: list[dict]) -> list[str]:
+    """Measure the delivered encodes before deleting originals or opening the PR.
+
+    October 16th's frame 7 cleared PSNR but lost the fourth GRID piece at feed size.
+    A lossless encode preserves the already reviewed pixels when lossy encoding changes a layout.
+    """
+    import re
+    import layout_check
+    if not (run_dir / "storyboard.md").is_file() or layout_check.find_report(run_dir) is None:
+        return []
+    originals = {int(p.stem.split("-")[1]): p for p in pngs if re.fullmatch(r"slide-\d+", p.stem)}
+    encodes = {n: p.with_suffix(".webp") for n, p in originals.items() if p.with_suffix(".webp").exists()}
+    code, problems, _ = layout_check.check(run_dir, image_overrides=encodes)
+    if code == 0:
+        return []
+    original_code, original_problems, _ = layout_check.check(run_dir, image_overrides=originals)
+    if original_code:
+        return ["the reviewed originals fail layout_check: " + p for p in original_problems]
+    charged = {int(n) for p in problems for n in re.findall(r"(?:slide|frame) (\d+)", p)}
+    repair = set(encodes) & charged if charged else set(encodes)
+    if not repair:
+        repair = set(encodes)
+    for n in sorted(repair):
+        with Image.open(originals[n]) as im:
+            im.save(encodes[n], "WEBP", lossless=True, method=6)
+        for row in results:
+            if row["name"] == originals[n].name:
+                row.update(dst=encodes[n].stat().st_size, psnr=float("inf"), quality="lossless",
+                           layout_preserved=True)
+        print(f"  slide-{n:02}: lossless WebP preserves the reviewed layout")
+    code, problems, _ = layout_check.check(run_dir, image_overrides=encodes)
+    return problems if code else []
+
+
 def _ship(run_dir: Path, dry: bool, keep_png: bool = False) -> tuple[list[dict], list[str]]:
     pngs = sorted(run_dir.rglob("slide-*.png"))
     if not pngs:
@@ -359,6 +393,9 @@ def _ship(run_dir: Path, dry: bool, keep_png: bool = False) -> tuple[list[dict],
             results.append(convert_one(png, dry))
         except (OSError, ValueError) as exc:
             problems.append(f"{png.name}: {exc}")
+
+    if not dry and not problems:
+        problems.extend(preserve_layout(run_dir, pngs, results))
 
     # THE UNFURL IS SLIDE 1 BY NAME (weekly machine pass, 2026-10-05). It used to be `pngs[0]`,
     # the first PNG in sort order, which is slide 1 only on the first pass. On no. 41 (2026-10-03)

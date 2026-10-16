@@ -1,0 +1,27 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>*{box-sizing:border-box}html,body{margin:0;width:1080px;height:1350px;overflow:hidden;background:#050A0F;color:#F4F0E7}
+canvas{position:absolute;inset:0;width:1080px;height:1350px}.copy{position:absolute;left:82px;right:82px;top:90px}
+.kicker{font:24px 'JetBrains Mono';letter-spacing:3px;color:#87B1BE;margin-bottom:40px}
+h1{font:700 82px/1.02 'Space Grotesk';letter-spacing:-3px;margin:0 0 36px}p{font:32px/1.42 Manrope;margin:0;max-width:900px}
+.label{position:absolute;left:82px;right:82px;top:1188px;font:24px/1.35 Manrope;color:#B6BFC6}
+.footer{position:absolute;left:82px;bottom:46px;font:20px 'JetBrains Mono';color:#91A2AD}</style>
+<script src="@@ASSETS@@/js/noise.js"></script><script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script><script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/txbench.js"></script><script src="@@ASSETS@@/js/deck/2026-10-16-studio-proof.js"></script>
+</head><body><canvas id="art"></canvas><div class="copy"><div class="kicker">THE NATIONAL RECALL</div><h1>Anyone can ride.<br>Read the recall too.</h1><p>The federal recall covers 3,791 potentially affected systems. That is a national count, separate from San Antonio's service opening.</p></div>
+<div class="label">Every ceramic mark is one potentially affected system. Drawn from the archived federal count.</div><div class="footer" data-decorative>RENDERER STUDY / texasaidocket.com</div>
+<script>window.renderReady=(async()=>{await document.fonts.ready;
+const c=document.getElementById('art');c.width=2160;c.height=2700;const cx=c.getContext('2d');cx.scale(2,2);
+const count = 3791, columns = 72, rows = 53;
+function object(X,Y) {
+  const x=(X-36)/14, y=(Y-615)/10, col=Math.floor(x), row=Math.floor(y);
+  if (col<0 || col>=columns || row<0 || row>=rows || row*columns+col>=count) return [0,0];
+  const edge=Math.min(x-col,1-(x-col),y-row,1-(y-row));
+  return edge<0.10 ? [0,0] : [Math.min(6,(edge-0.1)*65),1];
+}
+const height=(X,Y)=>object(X,Y)[0], material=(X,Y)=>object(X,Y)[1];
+TXBENCH.relief(cx,{x:0,y:0,w:1080,h:1350,scale:2,height,material,albedo:STUDIO.albedo,spec:STUDIO.spec,
+  ambient:0.20,diffuse:0.98,softness:4,castLength:80,dither:true});
+TXDECK.finish(cx);
+})();</script></body></html>

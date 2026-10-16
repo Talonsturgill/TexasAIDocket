@@ -118,6 +118,7 @@ GROUND_METHODS = ("ground", "gridZ", "gridX", "strip")
 CREATE = re.compile(r"TXSCENE\.create\s*\(")
 # The cues a deck's distinct total is counted against.
 CUE_NAMES = frozenset(CUE_METHODS) - frozenset(NOT_A_CUE)
+RELIEF_CUES = {"FORM_SHADING", "CAST_SHADOW", "OCCLUSION"}
 
 
 def bench_aliases(src: str) -> set[str]:
@@ -269,6 +270,11 @@ def gpu_report(src: str) -> dict | None:
 
 
 def frame_report(name: str, src: str) -> dict:
+    from print_ban import is_relief
+    if is_relief(src):
+        return {"name": name, "cues": set(RELIEF_CUES),
+                "bench": True, "placed": True, "shadow": True, "ground": True,
+                "staged": True, "light": "deck", "projection": "orthographic_relief"}
     g = gpu_report(src)
     if g is not None:
         g["name"] = name
@@ -298,6 +304,10 @@ def check(frames: list[dict], cfg: dict, deck_light=None) -> list[str]:
     want_cues = min(int(cfg["min_distinct_cues"]), n)
 
     staged = [f for f in frames if f["staged"]]
+    if staged and all(f.get("projection") == "orthographic_relief" for f in staged):
+        # A plan-view height field has form, cast and cavity depth; perspective is absent.
+        # print_ban checks the renderer's measured height, material, shadow and area evidence.
+        want_cues = min(want_cues, len(RELIEF_CUES))
     if len(staged) < floor:
         near = [f for f in frames if f["bench"] and not f["staged"]]
         extra = ""
@@ -407,6 +417,13 @@ def plan_problems(dossiers: dict[int, dict], cfg: dict) -> list[str]:
             probs.append(f"frame {k}: depth names {len(good)} cue(s) and a staged frame builds "
                          f"at least two. Depth is several weak cues agreeing")
             continue
+        if d.get("projection") == "orthographic_relief":
+            if not RELIEF_CUES.issubset(good):
+                probs.append(f"frame {k}: a relief plans form shading, cast shadow and cavity occlusion")
+                continue
+            declared += 1
+            all_cues |= set(good)
+            continue
         if not isinstance(d.get("eye"), (int, float)) or not isinstance(d.get("horizon"), (int, float)):
             probs.append(f"frame {k}: depth needs a numeric `eye` and `horizon`. An object "
                          f"taller than the eye projects ABOVE the horizon, where the type is, "
@@ -418,6 +435,9 @@ def plan_problems(dossiers: dict[int, dict], cfg: dict) -> list[str]:
         probs.insert(0, f"THE STORYBOARD PLANS {declared} STAGED FRAME(S) AND NEEDS {floor}. Add "
                         f"a `depth:` block naming eye, horizon and at least two cues to enough "
                         f"frames, before any of them is drawn")
+    planned = [d.get("depth", {}) for d in dossiers.values() if isinstance(d.get("depth"), dict)]
+    if planned and all(d.get("projection") == "orthographic_relief" for d in planned):
+        want = min(want, len(RELIEF_CUES))
     if declared >= floor and len(all_cues) < want:
         probs.append(f"the plan reaches for {len(all_cues)} distinct cue(s) and needs {want}. "
                      f"It has {sorted(all_cues) or '(none)'}")

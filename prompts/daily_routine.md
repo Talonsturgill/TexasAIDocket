@@ -156,7 +156,7 @@ and ERCOT keeps no archive. A day not collected is gone.** You may fix presentat
 
 **11. BOUNDED FAN-OUT, showrunner only.** Only you spawn agents, and only the fixed set each
 phase names: up to 6 scouts, 1 fact-checker, 3 treatment-directors, 2 caption-directors, 1
-caption-critic, 1 copywriter, pixel-critics one per one or two slides, 1 flow-critic, 3 scorers a
+caption-critic, 1 copywriter, pixel-critics one per one or two slides, 1 art-director for the audition, 1 flow-critic, 3 scorers a
 scoring round, 1 upgrade-engineer on a weekly pass day (Phase 17). The scouts and the pixel critics run on the smaller model tier
 (owner, 2026-10-02), and every other agent on the session's model. CLAUDE.md, "Which model a
 subagent runs", has the measurement and the owner's decision. **A subagent is a leaf worker and never spawns its own.** This is a hard cap
@@ -277,6 +277,11 @@ top of the run record.
 ---
 
 ## PHASE 0 — WAKE
+
+Stamp the run's first real checkpoint before setup, then record `record_done`, `audition_done`,
+`art_done`, `review_done`, `panel_done`, `package_done` and `delivered` when each finishes:
+`python3 scripts/carousel/studio_clock.py --date <date> --checkpoint wake`.
+The clock never edits a shipped run or enforces a time cutoff. Archive its JSON with the deck.
 
 1. Point git at the hooks, which a fresh clone does not do for you and without which nothing
    below enforces anything: `git config core.hooksPath .githooks`. Confirm with
@@ -868,6 +873,9 @@ its own instructions as current is only as good as the day somebody last correct
 
 ## PHASE 8 — SELECTION + DEDUPE GATE
 
+At this phase entry, stamp `python3 scripts/carousel/studio_clock.py --date <date> --checkpoint record_done`.
+
+
 Pick the story. **It must be a decision the record now holds**, which after Phase 5 is a question
 you can answer rather than assume. A deck about something the docket does not carry is a deck
 undermining the site it links to.
@@ -907,6 +915,13 @@ frames 8 and 9 came to retell no. 34's close, and the repair is to replace that 
 Say in writing why this story and not the others.
 
 ## PHASE 9 — DIRECTORS ROOM (the planning phase that earns the deck)
+
+**From October 17th onward, read `prompts/carousel_studio.md` before assigning the directors.**
+It defines the two physical render routes, the hardest-frame audition and reuse of unchanged
+visual reviews. Its route rules replace the GPU and single-object quotas below. Every factual,
+source, numeral, layout, value, bespoke-art and final-panel gate still runs. The studio plan is
+written before the copy room or the remaining slides. Record actual phase times with
+`scripts/carousel/studio_clock.py`; a target is a scheduling signal and never a reason to skip a gate.
 
 **BEFORE ANY DIRECTOR IS SPAWNED, hand each one the current rotation rule.** Their own definition
 carried the superseded numbers until a maintainer session replaced them with a pointer to
@@ -951,11 +966,11 @@ materials, soft shadow maps, IBL reflections, ACES. The default for object heroe
 `assets/js/txthree.js` on `three.module.min.js`, proven in this container on 2026-09-23 at about
 six seconds a frame. Concretely:
 
-- **One HERO OBJECT, built once as geometry and carried through the deck**, the way the sister
+- **One visual argument carried through the deck**, with subjects or measured marks chosen per frame. For an object-led treatment the sister
   corpus carries a tide staff or a sea ice model through nine frames. Solid, with a real material
   (`TXT.mat.steel`, `clay`, `plastic`, `emissive`), lit by one rig, casting a soft shadow onto a
   ground it touches.
-- **At least six of nine frames render through `txthree.js` and call `snapshot()`.**
+- **At least six of nine frames use a physical renderer, `txthree.js` or `txbench.js`.**
   `print_ban.py` counts them. A frame that avoids the word print by drawing flat 2D shapes has not
   met this either.
 - **The figure is built out of geometry**, per THE ARTWORK CARRIES THE DATA: forty engines are
@@ -973,7 +988,8 @@ six seconds a frame. Concretely:
   `surface`, `TXT.scatter`, `TXT.contact`, `TXT.weather` and `TXT.roundedBox`. **Look at
   `examples/world-proof/compare.webp` before anything else in this phase**: the same model and
   camera as no. 32 frame 6, before and after, differing in the engine alone. `print_ban.py` counts
-  frames that call `TXT.sky`, at least five of nine and the probe one of one.
+  frames placed by `TXT.sky`, `TXT.interior` or `TXBENCH.relief`, at least five of nine
+  and the probe one of one. A built interior does not need a sky.
   `ILLUSTRATION_SYSTEM.md`, THE WORLD, has the five calls, the table of worlds and THE
   SHOWSTOPPER TEST every critic applies.
 - **And every deck is BOLD, which is THE STAGE (owner, 2026-10-04).** *"the Alaska one, when I look
@@ -1086,6 +1102,8 @@ Fix the plan here, where it costs a paragraph.
 
 ## PHASE 10 — COPY CHAMBER (the caption room)
 
+
+
 Read `knowledge/carousel/CAPTION_CRAFT.md`. It holds the menus, the banned furniture and the
 anti-template law, which is the one rule no linter can check: **if yesterday's nouns can be
 swapped into today's caption and it still reads correctly, it was a template.**
@@ -1161,13 +1179,15 @@ python3 scripts/carousel/value_register.py --render-dir out/<date>/render --prob
 **Then audition THREE finished compositions before building the remaining six.** Keep the cover,
 one evidence frame from the middle and frame 9. The evidence frame must draw a computed quantity
 or relationship. Another distant view of the same model is insufficient. The close must show the
-consequence of the story, with a different composition from the cover. Read the three-frame study
+consequence of the story, with a different composition from the cover. The selected interior
+frame is `art_plan.json`'s hardest frame, and `carousel-art-director` reviews the three rendered
+frames on the session model before the other six are built. Read the three-frame study
 in `examples/art-direction-proof/README.md` and inspect its images at 432px first.
 
 Render those three and run `qa.py`. Then make the proof:
 
 ```bash
-python3 scripts/carousel/art_preflight.py --date <date> --write --middle <evidence-frame>
+python3 scripts/carousel/art_preflight.py --date <date> --write
 ```
 
 Give `art_preflight.webp`, the three full images and `art_preflight.json` to one
@@ -1216,6 +1236,8 @@ not edit the workshop.
 
 ## PHASE 11 — ART BUILD
 
+At this phase entry, stamp `python3 scripts/carousel/studio_clock.py --date <date> --checkpoint audition_done`.
+
 Write the slides. `out/<date>/slides/slide-01.html` and so on, 1080x1350, bespoke per the
 dossiers, every one of them loading the chassis Phase 10.5 wrote. **Every engine call, kit model
 and library a frame uses is looked up in `knowledge/carousel/ARSENAL.md` first**, with its
@@ -1228,9 +1250,9 @@ here:**
 2. **Image before type, on every frame.** Draw the image, render it, and read it at 432 px with
    NO type on it. If it is not an image yet, no headline will make it one. Then fit the type,
    measure the line boxes, and hand the reserve to the art.
-3. **The deck's hero object, the deck's material, the deck's light, the deck's grade.** Not
-   one per frame. What varies between frames is the CAMERA and the object's STATE. What does not
-   vary is the object, its material, the rig and the grade. There is no screen at all, since
+3. **One visual argument, material vocabulary, light and grade.** The subject and its rendering
+   technique follow each claim. Continuity can be a measured scale, a changing motif or one object.
+   Use `TXBENCH.relief` for a material evidence field or `TXT` for a spatial scene. There is no screen at all, since
    2026-09-23: the print register is deleted and `print_ban` refuses it.
 4. **`TXDECK.finish(cx)` is the last line that touches the art canvas, on every frame.** One
    line, the deck's own grade. It was missing from 204 of 205 shipped slides and that is the
@@ -1255,13 +1277,13 @@ here:**
    where its dossier argues for it. If the deck reaches for a default that list does not name,
    Phase 17 adds it there.
 8. **Every rendered frame stands in a place, and passes THE SHOWSTOPPER TEST before type.**
-   An EXTERIOR frame, at least five of nine, stands in the deck's world: `TXT.sky` before the
+   An EXTERIOR frame stands in the deck's world: `TXT.sky` before the
    snapshot, a `TXT.ground` surface, scatter kept off the type with `avoid`. An INTERIOR frame, a
    hearing room, an office or a document on a desk, has no sky and never fakes one. It stands in a
    room `TXT.interior` builds (a floor with tooth, walls that take the shadows, a lit window, the
    studio environment), lit by the deck's rig, and never a flat background colour. `print_ban.py`
-   fails a rendered frame that calls neither `TXT.sky` nor `TXT.interior` before its kept
-   snapshot. Both get `TXT.contact` under every standing thing, `TXT.stage(R, subject)`,
+   requires a spatial frame to call `TXT.sky` or `TXT.interior` before its kept snapshot.
+   A material relief instead uses `TXBENCH.relief` with its measured height, materials and casts. Both get `TXT.contact` under every standing thing, `TXT.stage(R, subject)`,
    `TXT.weather` before the snapshot and a manufactured edge through `TXT.roundedBox`. A room in a
    staged deck is dark around one source, its key through the window and its back wall in shadow.
    Then cover the type and read the frame at 432 px: one subject filling the frame on a dark field,
@@ -1294,6 +1316,9 @@ without error.
 
 ## PHASE 12 — PIXEL REVIEW (the taste gate)
 
+At this phase entry, stamp `python3 scripts/carousel/studio_clock.py --date <date> --checkpoint art_done`.
+
+
 Spawn `carousel-pixel-critic` agents in parallel, one per one or two slides. They transcribe every
 visible word and grade against the dossier's own checklist, **and against the primary image law:
 is the subject the dossier named actually there, at the size it declared, readable as one thing
@@ -1304,7 +1329,7 @@ weathering where things meet the ground.** Fix what they
 find, re-render ONLY the frames you changed (`render.py --only`), run `qa.py` and
 `value_register.py --render-dir out/<date>/render --date <date>`, and re-review ONLY those frames.
 A repair that changes an exposure, a wash or a camera can move a deck back into the mid tones, and
-the register measures the frames as they are now, not as they were before the round. **At most three pixel rounds.** After the third, keep the best version of any
+the register measures the frames as they are now, not as they were before the round. **At most two pixel rounds.** After the second, keep the best version of any
 holdout and name it in the run record for the panel. Then 1 `carousel-flow-critic` on the contact
 sheet AND the full renders, which judges the deck as a sequence rather than as nine slides.
 
@@ -1321,9 +1346,10 @@ the deck against `artwork_craft` the way the judges will, finds the weakest fram
 five causes by slide number: one shot on more than three frames, a largest object left least
 modelled, a dead region or a hero too small to own its frame, a render artifact, and no tonal arc.
 **Repair `craft.weakest_frames` before the panel, one concrete change each**, then re-render those
-frames, re-run `qa.py` and re-review them. At most TWO flow rounds. Tell the flow critic which
-round it is in, and on the second say it is the last before the panel, so an art shortfall alone
-no longer earns a `revise`. Its `craft` block goes into the run record either way, because the
+frames, re-run `qa.py` and re-review them. Use one whole-deck flow pass. Apply its concrete
+art repairs and have the pixel critics recheck changed frames. The final panel reads the whole
+sequence independently. A failed factual, render or legibility gate still requires a repair and
+fresh verification; these polish limits never permit a hard failure. Its `craft` block goes into the run record either way, because the
 panel will charge the same frames if they are not fixed.
 
 **TELL THE FLOW CRITIC THE CURRENT ROTATION RULE, IN THE SPAWN PROMPT, EVERY ROUND.** Its own
@@ -1338,7 +1364,7 @@ deck:
 > The rotation rule changed on 2026-09-16. Read `knowledge/carousel/ILLUSTRATION_SYSTEM.md`,
 > "THE DECK IS THE UNIT", and judge against that. If anything in your own definition disagrees
 > with it, this paragraph wins. At most TWO of the same archetype in a row and at least THREE distinct,
-> not five. ONE hero object, ONE light, ONE grade for the whole deck, and no screen at all,
+> not five. ONE visual argument, ONE light, ONE grade for the whole deck, and no screen at all,
 > because the print register is deleted. Judge
 > whether the nine frames read as one deck and whether at least two continuity devices are
 > doing real work, and treat a deck that turns the page nine different ways as a FAULT.
@@ -1531,6 +1557,9 @@ stranger would. The gate is a floor under that pass, not a substitute for it.
 
 ## PHASE 15 — SCORING, BY A PANEL OF THREE
 
+At this phase entry, stamp `python3 scripts/carousel/studio_clock.py --date <date> --checkpoint review_done`.
+
+
 **`panel_ready.py` must exit 0 before you spawn anything here.** See Phase 14b. A panel is a
 check on a deck the run already believes is finished.
 
@@ -1716,6 +1745,9 @@ creates and nothing else in the run would notice.
 
 ## PHASE 16 — ASSEMBLE AND OPEN THE PULL REQUEST (no merge yet)
 
+At this phase entry, stamp `python3 scripts/carousel/studio_clock.py --date <date> --checkpoint panel_done`.
+
+
 Authoritative policy is in `CLAUDE.md` and it wins over any instruction to keep work on a branch
 or open a draft.
 
@@ -1854,7 +1886,11 @@ standalone article is incomplete, even when the visual release gate passes.
    the story readable as text with the images off. `media_check` is the machine half of this and
    it was written after a run shipped a page with two broken images past a fully green suite. A
    gate that reads the builder's intent cannot see what the product actually says.
-7. Commit, push with `scripts/shared/push.sh claude/daily-<date>`, and open a **ready (not
+7. Stamp `studio_clock.py --date <date> --checkpoint package_done`, then archive
+   `studio_clock.json` and `art_plan.json` beside the deck. Run `studio_clock.py --date <date>
+   --report` for the measured timing block in the run record. New runs retain these inputs.
+
+7a. Commit, push with `scripts/shared/push.sh claude/daily-<date>`, and open a **ready (not
    draft)** pull request. **Do not merge here.**
 
    **EVERY PUSH IN THIS RUN GOES THROUGH `push.sh`, never a bare `git push`.** A push that lands
