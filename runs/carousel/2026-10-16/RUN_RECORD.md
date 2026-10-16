@@ -98,7 +98,34 @@ start with the host's CLAUDE_CODE_SESSION_ATTENDED at 0, and refused nothing.
 
 ## The weekly machine pass
 
-Not due: `machine_due.py` says the last pass was October 15th, one day ago, due at seven.
+Due, and run. `machine_due.py` first read not due, with the last pass October 15th. Once this run's
+queue commit (eb346d61) raised four repeat offenders, it read `DUE: 4 repeat offender(s) queued`.
+The eighth weekly pass ran inside this run, before the merge:
+
+- **a16dc485, the kit person** (`assets/js/kit/people.js`), called a mannequin on nos. 48, 49, 51
+  and 52. Arms at rest with an uneven elbow, curled hands, hair in locks with a broken hairline,
+  and a beard that stops below the cheek. Every seed keeps its draws.
+- **fa47390f, kit `crossover`** (`assets/js/kit/vehicles.js`), a lofted body with curved panels,
+  flared arches, coated glass and an optional robotaxi sensor kit, answering no. 52's boxy toy.
+  It also regenerated `ARSENAL.md`, whose check was failing on today's chassis.
+- **b5848e5f, the pass record.** UPGRADE_BACKLOG, MACHINE_QUEUE, ILLUSTRATION_SYSTEM,
+  `ledger/carousel/upgrades.json` and `config/carousel/machine_pass.json`.
+- **Escalated to a maintainer.** A water material that reflects and a stage fog that spares a
+  named background (both `assets/js/txthree.js`), qa.py's glyph run read as a rule, the GRID piece
+  count deciding frame lighting, the article test's fixed screenshot path, and a `document` field
+  for the fact checker's schema.
+
+Every verify command the pass returned was re-run by the run and exits 0.
+
+## Frame 7 shipped lossless (after CI)
+
+CI's `shipped_check` read frame 7's quality 82 webp and found its calendar in 3 pieces of 2% or
+more at thumb scale, under the GRID floor of 4. The reviewed PNG's fourth piece holds 3.1% of the
+subject, and every lossy rung from 82 to 96 eroded it to 1.9 to 2.1%. Frame 7 now ships lossless,
+3.9 MB, the reviewed pixels exactly. The art review was rebound with `art_preflight.py --archive`,
+`measurements.json` was re-measured (frame 7 median L* 1.1 to 0.9), and the artwork ledger follows.
+The local gates read the PNGs and passed; only the shipped file failed. This is GATE_LESSONS' own
+shape, and it is queued below.
 
 ## Queued for the next pass
 
