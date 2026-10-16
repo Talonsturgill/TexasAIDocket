@@ -116,7 +116,7 @@ Instincts confirmed and added through `scripts/carousel/instincts.py`, listed in
 <!-- gate-status:begin -->
 | gate | status | detail |
 |---|---|---|
-| claims         | PASS   | 26 verified claim(s) |
+| claims         | PASS   | 27 verified claim(s) |
 | render         | PASS   | 9 slide(s) |
 | qa             | WARN   | 0 fail(s), 1 warn(s) |
 | aggregates     | PASS   | 8 declaration(s), 10 numeric phrase(s) in the render, all re-derived |
@@ -124,8 +124,8 @@ Instincts confirmed and added through `scripts/carousel/instincts.py`, listed in
 | score          | WARN   | 7.184 at the round cap after 3 round(s), the finished deck ships; 8.0 top rung, shortfall named |
 | labels         | PASS   | 54 claim id(s) checked, every label beside one traces to the shape its claim proves |
 | quantifiers    | PASS   | 89 published string(s) read from one list, every universal names its set |
-| verbatim       | WARN   | no dossier declares a `verbatim:` block, so no on-frame string was held to a quote |
-| dossiers       | PASS   | 38,668 chars planned |
+| verbatim       | PASS   | 1 declared fragment(s) over 9 of 9 dossier(s), every one a literal substring of its own claim's quote |
+| dossiers       | PASS   | 38,652 chars planned |
 | caption        | PASS   | 149 words |
 | craft floor    | PASS   | 9 frame(s), median 1883, floor 339 |
 | plan vs render | PASS   | 10 of 53 acceptance item(s) checkable |

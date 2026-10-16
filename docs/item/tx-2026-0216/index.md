@@ -9,7 +9,7 @@ Waymo opened its San Antonio robotaxi service to anyone with the app on October 
   - San Antonio-New Braunfels, TX
 - Status: decided
 - Public access: Write to the decider
-- Take part: https://waymo.com/blog/shorts/sat-sd-tpa/
+- Take part: https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=26E026
 
 - Last checked: 2026-10-16
 

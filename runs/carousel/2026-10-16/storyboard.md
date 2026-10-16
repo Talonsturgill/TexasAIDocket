@@ -600,8 +600,7 @@ type:
   labels: []
 
 verbatim:
-  - claim: c10
-    text: "The remedy is currently under development."
+  - c10: "The remedy is currently under development."
 
 acceptance:
   - "the monitor shows the words The remedy is currently under development legibly at full size, and a frame without the screen fails this item"

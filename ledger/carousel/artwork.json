@@ -3194,7 +3194,7 @@
   {
    "date": "2026-10-16",
    "carousel_no": 52,
-   "written_from": "deck_coherence's median L* per frame at 432 px off the final renders, layout_check's accent share, by out/2026-10-16/update_ledgers.py.",
+   "written_from": "measure_shipped.py's median L* per frame at 432 px off the shipped frames (runs/carousel/2026-10-16/measurements.json), layout_check's accent share off the final renders, by out/2026-10-16/update_ledgers.py and a correction after review.",
    "register": "RENDERED, NOT PRINTED. A staged nightSodium world declared once in assets/js/deck/2026-10-16-curb.js (key az 40 el 34, ground #07080C), seven exterior sets at night and one room. One hero, the chassis's robotaxi on the kit SUV body, on every frame. Chassis models for the robotaxi, an airport departures curb, standing water, a curb bollard and a road stud, with an instanced low detail car field and a window cut for the room.",
    "structural_laws": [
     "A FLAT LINE AT EYE HEIGHT IS NO LINE. A comal hairline laid on the water foreshortened to under a pixel from 25 cm up. Stood upright facing the lens it reads full width.",
@@ -3215,20 +3215,20 @@
    ],
    "value": {
     "per_frame_median_L": [
-     3.8,
-     1.7,
+     2.2,
+     1.2,
      1.1,
-     2.3,
+     2.1,
      0.9,
+     1.0,
+     1.1,
      0.9,
-     0.9,
-     0.8,
-     6.4
+     4.9
     ],
     "deck_median_L": 1.1,
-    "max_adjacent_delta": 5.6,
-    "mean_adjacent_delta": 1.38,
-    "note": "Measured by deck_coherence's median_lstar at 432 px off the final renders. A dark staged night deck."
+    "max_adjacent_delta": 4.0,
+    "mean_adjacent_delta": 0.96,
+    "note": "Read from runs/carousel/2026-10-16/measurements.json, measure_shipped.py's median L* at 432 px off the shipped frames. A dark staged night deck."
    },
    "accent": {
     "hex": "#2A7A9E",

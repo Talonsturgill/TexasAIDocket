@@ -167,7 +167,7 @@
    "source_type": "primary_official",
    "retrieved": "2026-10-16",
    "confidence": "high",
-   "note": "Day first, shown by the same API's 26E035 record dated 13/06/2026.",
+   "note": "Day first, shown by the same API's 26E035 record dated 13/06/2026 (c27).",
    "document": "NHTSA recall record, campaign 26E026000, Waymo LLC"
   },
   {
@@ -320,6 +320,20 @@
    "published": "2026-05-10",
    "confidence": "high",
    "document": "Texas Public Radio, Waymo set to return to San Antonio after flood incidents paused service"
+  },
+  {
+   "id": "c27",
+   "item": "tx-2026-0216",
+   "record_id": "tx-2026-0216-c27",
+   "text": "NHTSA's record for a second Waymo recall, campaign 26E035000, gives its report received date as 13/06/2026, which can only be read day first. It is the evidence for reading c14's 01/05/2026 as May 1st.",
+   "quote": "\"NHTSACampaignNumber\":\"26E035000\",\"ReportReceivedDate\":\"13/06/2026\"",
+   "url": "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=26E035",
+   "source_type": "primary_official",
+   "retrieved": "2026-10-16",
+   "published": "2026-06-13",
+   "confidence": "high",
+   "context_only": true,
+   "document": "NHTSA recall record, campaign 26E035000, Waymo LLC"
   }
  ],
  "rejected": [
