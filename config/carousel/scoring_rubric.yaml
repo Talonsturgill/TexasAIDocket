@@ -175,8 +175,10 @@ criteria:
       answers one here and calls it both is the defect that made this split necessary.
       Is there an IMAGE on every frame, a drawn subject that owns the frame, reads as one
       silhouette at feed size and runs off an edge on most frames, or is there a headline with
-      a small drawing under it? Is the subject a thing at true scale, with a size a reader can
-      check against a person, or a slab in a void? Is the frame FINISHED, meaning graded rather
+      a small drawing under it? For a spatial scene, can a reader check the subject's size
+      against a person? For a measured relief, do the drawn counts and lengths follow the
+      declared scale and make the claim visible? A slab in a void answers neither question.
+      Is the frame FINISHED, meaning graded rather
       than left as flat fills, with a real light and a real dark rather than one mid band? Does
       the type sit in quiet the picture actually has, or on a plate that was put there because
       the art was drawn without knowing where the type goes? Is the detail budgeted where the
@@ -194,7 +196,7 @@ criteria:
       how far it falls on the descriptors, and is not capped. ILLUSTRATION_SYSTEM.md, THE STAGE
       and THE WORLD.
     scoring:
-      10: "Every frame is BOLD: one subject at true scale fills it, lit from the side its shadows say in a pool of light on a dark field, true blacks and one bright edge and little in the grey middle, standing in a sky, a deliberate interior or a physically lit material carrier, with contact and dirt where it meets the ground. Type sits light on the dark field the composition made for it, and every frame survives the zoom test at full size. It would hold beside the sibling's deck of the same morning, as the opening spread of a serious magazine's feature."
+      10: "Every frame is BOLD: one dominant image fills it, with counts or lengths at their declared scale or a spatial subject at true scale, lit from the side its shadows say in a pool of light on a dark field, true blacks and one bright edge and little in the grey middle, standing in a sky, a deliberate interior or a physically lit material carrier, with contact and dirt where it meets the ground. Type sits light on the dark field the composition made for it, and every frame survives the zoom test at full size. It would hold beside the sibling's deck of the same morning, as the opening spread of a serious magazine's feature."
       7: "Strong overall. One frame leans on a default, a primitive model, a dead zone or a render artifact."
       4: "Decorated templates, objects floating in a flat gradient, a faded frame living in the grey middle, ungraded banding, or type on plates."
 
