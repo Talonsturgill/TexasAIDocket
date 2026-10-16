@@ -229,7 +229,7 @@ art:
 
 type:
   hook: "In February, it came by invitation"
-  dek: "Waymo took its first public riders in San Antonio on February 24th, inviting them from the tens of thousands across four cities who had the app. Texas Public Radio put the first service area at 60 square miles of the city. Drawn to illustrate."
+  dek: "Waymo took its first public riders in San Antonio on February 24th, inviting them from the tens of thousands across four cities who had the app. Texas Public Radio put that first service area at 60 square miles. Drawn to illustrate."
   labels: []
 
 verbatim: []
@@ -287,7 +287,7 @@ art:
 
 type:
   hook: "April 20th, Salado Creek"
-  dek: "Texas Public Radio reported an empty Waymo was swept up in flood waters and washed into the creek during heavy rain. No one was hurt. Earlier that April another was stranded in floodwater near McCullough Avenue and Contour Drive. Drawn to illustrate."
+  dek: "Texas Public Radio reported an empty Waymo was swept up in flood waters and washed into the creek during heavy rain, and that no one was hurt. Earlier that April another was stranded in floodwater near McCullough Avenue and Contour Drive. Drawn to illustrate."
   labels: []
 
 verbatim: []
@@ -350,7 +350,7 @@ art:
 
 type:
   hook: "It slowed. Then it drove in"
-  dek: "The federal recall record says the software may let the vehicle slow and then drive into standing water on higher speed roadways. Texas Public Radio reports the notice said it detected the flooded road and kept going. The report reached regulators 11 days after the creek."
+  dek: "The recall record says the software may let the vehicle slow and then drive into standing water on higher speed roadways. Texas Public Radio reports the notice said it detected the flooded road and kept going. The report reached regulators 11 days after the creek. Drawn to illustrate."
   labels: ["detected the flooded road", "proceeded at a reduced speed", "standing water"]
 
 verbatim: []
@@ -468,7 +468,7 @@ art:
 
 type:
   hook: "The cars ran without riders"
-  dek: "Texas Public Radio called the flood pause the longest of Waymo's San Antonio service. In May its cars ran in the city without serving riders while it reviewed its flood procedures. Drawn to illustrate."
+  dek: "Texas Public Radio called the flood pause Waymo's longest in San Antonio to date. In May its cars ran in the city without serving riders while it reviewed its flood procedures. Drawn to illustrate."
   labels: []
 
 verbatim: []
