@@ -1,8 +1,8 @@
 {
   "_spec": 2,
-  "checked_at": "2026-10-16T06:00:29Z",
+  "checked_at": "2026-10-16T12:36:27Z",
   "provider": "Publisher RSS and Atom",
-  "response_sha256": "ed48623ac9b6c4313dab300bab5d1ab7b1984d86c03a08e86ec6999be685dd8b",
+  "response_sha256": "c73e7c79c1eb3d1d0905a4e5b23c1c64c51c69fc3675e33257abe1e7e2f04ce9",
   "articles": [
     {
       "title": "Dallas’ Colossal Biosciences Unveils AI Platform to Help Revive the Dodo Bird",
@@ -82,13 +82,6 @@
       "feed": "https://www.datacenterdynamics.com/en/rss/"
     },
     {
-      "title": "ThisWay Global plans 73MW AI and HPC data center in Bryan, Texas",
-      "url": "https://www.datacenterdynamics.com/en/news/thisway-global-plans-73mw-ai-and-hpc-data-center-in-bryan-texas/",
-      "first_seen_at": "2026-10-09T11:14:37Z",
-      "summary": "Will offer compute to researchers, public sector, and industry users",
-      "feed": "https://www.datacenterdynamics.com/en/rss/"
-    },
-    {
       "title": "'A long game': When is the best time to initiate a data center moratorium in Texas?",
       "url": "https://www.tpr.org/science-technology/2026-10-09/a-long-game-when-is-the-best-time-to-initiate-a-data-center-moratorium-in-texas",
       "first_seen_at": "2026-10-09T14:53:54Z",
@@ -97,146 +90,20 @@
     }
   ],
   "selected": {
-    "title": "No Wheel, No Pedals, No Mirrors: Tesla’s Autonomous Cybercab Revs Up for Dallas Debut",
-    "url": "https://dallasinnovates.com/no-wheel-no-pedals-no-mirrors-teslas-autonomous-cybercab-revs-up-for-dallas-debut/",
-    "first_seen_at": "2026-10-15T17:48:51Z",
-    "summary": "Tesla’s autonomous ride-hailing Cybercabs — which aren’t equipped with a steering wheel, accelerator pedal, brake pedal or rearview mirrors — will soon hit the streets of Dallas. In an Oct. 10 post on the X social media platform, Tesla’s vice president of AI software, Ashok Elluswamy, said Cybercabs are coming soon to Dallas. …",
+    "title": "Dallas’ Colossal Biosciences Unveils AI Platform to Help Revive the Dodo Bird",
+    "url": "https://dallasinnovates.com/dallas-colossal-biosciences-unveils-ai-platform-to-help-revive-the-dodo-bird/",
+    "first_seen_at": "2026-10-14T23:14:19Z",
+    "summary": "Dallas-based de-extinction company Colossal Biosciences unveiled a new AI platform, GenoMorph, on Wednesday to identify gene-editing targets for reviving the extinct dodo bird. Despite limited dodo genomic data, GenoMorph has identified an estimated 2,300 candidate genetic elements that may determine beak size and shape, the company said.…",
     "feed": "https://dallasinnovates.com/feed/",
     "publisher": "Dallas Innovates",
     "coverage": 1,
-    "score": 0.703158,
+    "score": 0.339848,
     "priority": 0
   },
-  "expires_at": "2026-10-22T17:48:51Z",
+  "expires_at": "2026-10-21T23:14:19Z",
   "rotation_version": 1,
   "carousel_version": 1,
   "editions": [
-    {
-      "starts_at": "2026-10-16T01:23:00Z",
-      "selected": {
-        "title": "No Wheel, No Pedals, No Mirrors: Tesla’s Autonomous Cybercab Revs Up for Dallas Debut",
-        "url": "https://dallasinnovates.com/no-wheel-no-pedals-no-mirrors-teslas-autonomous-cybercab-revs-up-for-dallas-debut/",
-        "first_seen_at": "2026-10-15T17:48:51Z",
-        "summary": "Tesla’s autonomous ride-hailing Cybercabs — which aren’t equipped with a steering wheel, accelerator pedal, brake pedal or rearview mirrors — will soon hit the streets of Dallas. In an Oct. 10 post on the X social media platform, Tesla’s vice president of AI software, Ashok Elluswamy, said Cybercabs are coming soon to Dallas. …",
-        "feed": "https://dallasinnovates.com/feed/",
-        "publisher": "Dallas Innovates",
-        "coverage": 1,
-        "score": 0.703158,
-        "priority": 0
-      },
-      "stories": [
-        {
-          "title": "No Wheel, No Pedals, No Mirrors: Tesla’s Autonomous Cybercab Revs Up for Dallas Debut",
-          "url": "https://dallasinnovates.com/no-wheel-no-pedals-no-mirrors-teslas-autonomous-cybercab-revs-up-for-dallas-debut/",
-          "first_seen_at": "2026-10-15T17:48:51Z",
-          "summary": "Tesla’s autonomous ride-hailing Cybercabs — which aren’t equipped with a steering wheel, accelerator pedal, brake pedal or rearview mirrors — will soon hit the streets of Dallas. In an Oct. 10 post on the X social media platform, Tesla’s vice president of AI software, Ashok Elluswamy, said Cybercabs are coming soon to Dallas. …",
-          "feed": "https://dallasinnovates.com/feed/",
-          "publisher": "Dallas Innovates",
-          "coverage": 1,
-          "score": 0.703158,
-          "priority": 0
-        },
-        {
-          "title": "Dallas’ Colossal Biosciences Unveils AI Platform to Help Revive the Dodo Bird",
-          "url": "https://dallasinnovates.com/dallas-colossal-biosciences-unveils-ai-platform-to-help-revive-the-dodo-bird/",
-          "first_seen_at": "2026-10-14T23:14:19Z",
-          "summary": "Dallas-based de-extinction company Colossal Biosciences unveiled a new AI platform, GenoMorph, on Wednesday to identify gene-editing targets for reviving the extinct dodo bird. Despite limited dodo genomic data, GenoMorph has identified an estimated 2,300 candidate genetic elements that may determine beak size and shape, the company said.…",
-          "feed": "https://dallasinnovates.com/feed/",
-          "publisher": "Dallas Innovates",
-          "coverage": 1,
-          "score": 0.411208,
-          "priority": 0
-        },
-        {
-          "title": "Dallas Cybersecurity Company Elisity Agrees to $1.3B Acquisition by Quantum Computing Company IonQ",
-          "url": "https://dallasinnovates.com/dallas-cybersecurity-company-elisity-agrees-to-1-3b-acquisition-by-quantum-computing-company-ionq/",
-          "first_seen_at": "2026-10-14T21:31:19Z",
-          "summary": "College Park, Maryland-based quantum computing company IonQ agreed to buy Dallas-based cybersecurity company Elisity in an all-stock deal valued at up to $1.3 billion. Publicly traded IonQ said the acquisition of privately held Elisity would create a broader cybersecurity platform for detecting and combating AI and quantum threats. …",
-          "feed": "https://dallasinnovates.com/feed/",
-          "publisher": "Dallas Innovates",
-          "coverage": 1,
-          "score": 0.391318,
-          "priority": 0
-        },
-        {
-          "title": "Patented: Citi’s AI-Generated Suspicious Activity Reports and 105 More Inventions Across North Texas",
-          "url": "https://dallasinnovates.com/patented-citis-ai-generated-suspicious-activity-reports-and-105-more-inventions-across-north-texas/",
-          "first_seen_at": "2026-10-14T20:16:41Z",
-          "summary": "A largely Irving-based team has patented a system that uses AI to help New York-based banking giant Citibank fight financial crime. The company, which has a large corporate office in Las Colinas, received a utility patent for systems and methods to draft suspicious activity reports using large language models.…",
-          "feed": "https://dallasinnovates.com/feed/",
-          "publisher": "Dallas Innovates",
-          "coverage": 1,
-          "score": 0.377509,
-          "priority": 0
-        },
-        {
-          "title": "DFW Airport Creates New Role to Lead AI Push",
-          "url": "https://dallasinnovates.com/dfw-airport-creates-new-role-to-lead-ai-push/",
-          "first_seen_at": "2026-10-13T20:46:38Z",
-          "summary": "Dallas Fort Worth International Airport is looking for a tech wizard to pilot its AI program — a significant hire in the airport’s quest to further embrace AI. A job posting on DFW Airport’s website said the full-time principal AI lead, a newly created job, will be the airport-wide “strategic and technical authority” on this quickly evolving technology. …",
-          "feed": "https://dallasinnovates.com/feed/",
-          "publisher": "Dallas Innovates",
-          "coverage": 1,
-          "score": 0.191495,
-          "priority": 0
-        },
-        {
-          "title": "In race to lead Texas agriculture department, Sheets and Tucker clash on data centers, credentials",
-          "url": "https://feeds.texastribune.org/link/16799/17498329/texas-election-2026-agriculture-commissioner-nate-sheets-clayton-tucker",
-          "first_seen_at": "2026-10-15T16:54:09Z",
-          "summary": "The race to be the state’s first new agriculture commissioner in more than a decade has turned personal as both men have challenged each other’s ties to farm land.",
-          "feed": "https://feeds.texastribune.org/feeds/main/",
-          "publisher": "The Texas Tribune",
-          "coverage": 1,
-          "score": 0.684886,
-          "priority": 1
-        },
-        {
-          "title": "LightEdge/Lumen-occupied data center in Austin, Texas, up for sale",
-          "url": "https://www.datacenterdynamics.com/en/news/lightedgelumen-occupied-data-center-in-austin-texas-up-for-sale/",
-          "first_seen_at": "2026-10-15T08:18:22Z",
-          "summary": "Fully-leased facility seeks new landlord",
-          "feed": "https://www.datacenterdynamics.com/en/rss/",
-          "publisher": "Data Center Dynamics",
-          "coverage": 1,
-          "score": 0.534311,
-          "priority": 1
-        },
-        {
-          "title": "Soluna files to build 112MW data center building in Willacy, Texas",
-          "url": "https://www.datacenterdynamics.com/en/news/soluna-files-to-build-112mw-data-center-building-in-willacy-texas/",
-          "first_seen_at": "2026-10-14T13:10:40Z",
-          "summary": "Will span a single building totaling 471,884 sq ft",
-          "feed": "https://www.datacenterdynamics.com/en/rss/",
-          "publisher": "Data Center Dynamics",
-          "coverage": 1,
-          "score": 0.307517,
-          "priority": 1
-        },
-        {
-          "title": "Despite tough talk from Abbott and Paxton, Texas penalties for data center violations are light",
-          "url": "https://feeds.texastribune.org/link/16799/17497094/texas-data-centers-water-use-penalties-enforcement",
-          "first_seen_at": "2026-10-14T10:00:00Z",
-          "summary": "Texas officials are promising tougher enforcement on data centers, but the existing law may offer limited leverage over the industry that has largely failed to report its water use.",
-          "feed": "https://feeds.texastribune.org/feeds/main/",
-          "publisher": "The Texas Tribune",
-          "coverage": 1,
-          "score": 0.28055,
-          "priority": 1
-        },
-        {
-          "title": "El Paso and New Mexico spent millions on climate plans. Three new data centers could undo them.",
-          "url": "https://feeds.texastribune.org/link/16799/17497095/data-centers-texas-new-mexico-greenhouse-gas-emissions",
-          "first_seen_at": "2026-10-14T10:00:00Z",
-          "summary": "El Paso and New Mexico planned to cut greenhouse gas emissions. Neither plan considered how three new data centers could upend their climate goals.",
-          "feed": "https://feeds.texastribune.org/feeds/main/",
-          "publisher": "The Texas Tribune",
-          "coverage": 1,
-          "score": 0.28055,
-          "priority": 1
-        }
-      ]
-    },
     {
       "starts_at": "2026-10-16T07:23:00Z",
       "selected": {
@@ -247,7 +114,7 @@
         "feed": "https://dallasinnovates.com/feed/",
         "publisher": "Dallas Innovates",
         "coverage": 1,
-        "score": 0.395195,
+        "score": 0.339848,
         "priority": 0
       },
       "stories": [
@@ -259,7 +126,7 @@
           "feed": "https://dallasinnovates.com/feed/",
           "publisher": "Dallas Innovates",
           "coverage": 1,
-          "score": 0.395195,
+          "score": 0.339848,
           "priority": 0
         },
         {
@@ -270,7 +137,7 @@
           "feed": "https://dallasinnovates.com/feed/",
           "publisher": "Dallas Innovates",
           "coverage": 1,
-          "score": 0.675776,
+          "score": 0.581135,
           "priority": 0
         },
         {
@@ -281,7 +148,7 @@
           "feed": "https://dallasinnovates.com/feed/",
           "publisher": "Dallas Innovates",
           "coverage": 1,
-          "score": 0.376079,
+          "score": 0.32341,
           "priority": 0
         },
         {
@@ -292,7 +159,7 @@
           "feed": "https://dallasinnovates.com/feed/",
           "publisher": "Dallas Innovates",
           "coverage": 1,
-          "score": 0.362808,
+          "score": 0.311998,
           "priority": 0
         },
         {
@@ -303,7 +170,7 @@
           "feed": "https://dallasinnovates.com/feed/",
           "publisher": "Dallas Innovates",
           "coverage": 1,
-          "score": 0.184038,
+          "score": 0.158264,
           "priority": 0
         },
         {
@@ -314,7 +181,7 @@
           "feed": "https://feeds.texastribune.org/feeds/main/",
           "publisher": "The Texas Tribune",
           "coverage": 1,
-          "score": 0.658216,
+          "score": 0.566033,
           "priority": 1
         },
         {
@@ -325,7 +192,7 @@
           "feed": "https://www.datacenterdynamics.com/en/rss/",
           "publisher": "Data Center Dynamics",
           "coverage": 1,
-          "score": 0.513505,
+          "score": 0.441589,
           "priority": 1
         },
         {
@@ -336,7 +203,7 @@
           "feed": "https://www.datacenterdynamics.com/en/rss/",
           "publisher": "Data Center Dynamics",
           "coverage": 1,
-          "score": 0.295542,
+          "score": 0.254152,
           "priority": 1
         },
         {
@@ -347,7 +214,7 @@
           "feed": "https://feeds.texastribune.org/feeds/main/",
           "publisher": "The Texas Tribune",
           "coverage": 1,
-          "score": 0.269625,
+          "score": 0.231865,
           "priority": 1
         },
         {
@@ -358,7 +225,7 @@
           "feed": "https://feeds.texastribune.org/feeds/main/",
           "publisher": "The Texas Tribune",
           "coverage": 1,
-          "score": 0.269625,
+          "score": 0.231865,
           "priority": 1
         }
       ]
@@ -614,14 +481,135 @@
           "priority": 1
         }
       ]
+    },
+    {
+      "starts_at": "2026-10-17T01:23:00Z",
+      "selected": {
+        "title": "Despite tough talk from Abbott and Paxton, Texas penalties for data center violations are light",
+        "url": "https://feeds.texastribune.org/link/16799/17497094/texas-data-centers-water-use-penalties-enforcement",
+        "first_seen_at": "2026-10-14T10:00:00Z",
+        "summary": "Texas officials are promising tougher enforcement on data centers, but the existing law may offer limited leverage over the industry that has largely failed to report its water use.",
+        "feed": "https://feeds.texastribune.org/feeds/main/",
+        "publisher": "The Texas Tribune",
+        "coverage": 1,
+        "score": 0.16032,
+        "priority": 1
+      },
+      "stories": [
+        {
+          "title": "Despite tough talk from Abbott and Paxton, Texas penalties for data center violations are light",
+          "url": "https://feeds.texastribune.org/link/16799/17497094/texas-data-centers-water-use-penalties-enforcement",
+          "first_seen_at": "2026-10-14T10:00:00Z",
+          "summary": "Texas officials are promising tougher enforcement on data centers, but the existing law may offer limited leverage over the industry that has largely failed to report its water use.",
+          "feed": "https://feeds.texastribune.org/feeds/main/",
+          "publisher": "The Texas Tribune",
+          "coverage": 1,
+          "score": 0.16032,
+          "priority": 1
+        },
+        {
+          "title": "No Wheel, No Pedals, No Mirrors: Tesla’s Autonomous Cybercab Revs Up for Dallas Debut",
+          "url": "https://dallasinnovates.com/no-wheel-no-pedals-no-mirrors-teslas-autonomous-cybercab-revs-up-for-dallas-debut/",
+          "first_seen_at": "2026-10-15T17:48:51Z",
+          "summary": "Tesla’s autonomous ride-hailing Cybercabs — which aren’t equipped with a steering wheel, accelerator pedal, brake pedal or rearview mirrors — will soon hit the streets of Dallas. In an Oct. 10 post on the X social media platform, Tesla’s vice president of AI software, Ashok Elluswamy, said Cybercabs are coming soon to Dallas. …",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.401819,
+          "priority": 0
+        },
+        {
+          "title": "Dallas’ Colossal Biosciences Unveils AI Platform to Help Revive the Dodo Bird",
+          "url": "https://dallasinnovates.com/dallas-colossal-biosciences-unveils-ai-platform-to-help-revive-the-dodo-bird/",
+          "first_seen_at": "2026-10-14T23:14:19Z",
+          "summary": "Dallas-based de-extinction company Colossal Biosciences unveiled a new AI platform, GenoMorph, on Wednesday to identify gene-editing targets for reviving the extinct dodo bird. Despite limited dodo genomic data, GenoMorph has identified an estimated 2,300 candidate genetic elements that may determine beak size and shape, the company said.…",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.234984,
+          "priority": 0
+        },
+        {
+          "title": "Dallas Cybersecurity Company Elisity Agrees to $1.3B Acquisition by Quantum Computing Company IonQ",
+          "url": "https://dallasinnovates.com/dallas-cybersecurity-company-elisity-agrees-to-1-3b-acquisition-by-quantum-computing-company-ionq/",
+          "first_seen_at": "2026-10-14T21:31:19Z",
+          "summary": "College Park, Maryland-based quantum computing company IonQ agreed to buy Dallas-based cybersecurity company Elisity in an all-stock deal valued at up to $1.3 billion. Publicly traded IonQ said the acquisition of privately held Elisity would create a broader cybersecurity platform for detecting and combating AI and quantum threats. …",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.223618,
+          "priority": 0
+        },
+        {
+          "title": "Patented: Citi’s AI-Generated Suspicious Activity Reports and 105 More Inventions Across North Texas",
+          "url": "https://dallasinnovates.com/patented-citis-ai-generated-suspicious-activity-reports-and-105-more-inventions-across-north-texas/",
+          "first_seen_at": "2026-10-14T20:16:41Z",
+          "summary": "A largely Irving-based team has patented a system that uses AI to help New York-based banking giant Citibank fight financial crime. The company, which has a large corporate office in Las Colinas, received a utility patent for systems and methods to draft suspicious activity reports using large language models.…",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.215727,
+          "priority": 0
+        },
+        {
+          "title": "In race to lead Texas agriculture department, Sheets and Tucker clash on data centers, credentials",
+          "url": "https://feeds.texastribune.org/link/16799/17498329/texas-election-2026-agriculture-commissioner-nate-sheets-clayton-tucker",
+          "first_seen_at": "2026-10-15T16:54:09Z",
+          "summary": "The race to be the state’s first new agriculture commissioner in more than a decade has turned personal as both men have challenged each other’s ties to farm land.",
+          "feed": "https://feeds.texastribune.org/feeds/main/",
+          "publisher": "The Texas Tribune",
+          "coverage": 1,
+          "score": 0.391377,
+          "priority": 1
+        },
+        {
+          "title": "LightEdge/Lumen-occupied data center in Austin, Texas, up for sale",
+          "url": "https://www.datacenterdynamics.com/en/news/lightedgelumen-occupied-data-center-in-austin-texas-up-for-sale/",
+          "first_seen_at": "2026-10-15T08:18:22Z",
+          "summary": "Fully-leased facility seeks new landlord",
+          "feed": "https://www.datacenterdynamics.com/en/rss/",
+          "publisher": "Data Center Dynamics",
+          "coverage": 1,
+          "score": 0.305332,
+          "priority": 1
+        },
+        {
+          "title": "Soluna files to build 112MW data center building in Willacy, Texas",
+          "url": "https://www.datacenterdynamics.com/en/news/soluna-files-to-build-112mw-data-center-building-in-willacy-texas/",
+          "first_seen_at": "2026-10-14T13:10:40Z",
+          "summary": "Will span a single building totaling 471,884 sq ft",
+          "feed": "https://www.datacenterdynamics.com/en/rss/",
+          "publisher": "Data Center Dynamics",
+          "coverage": 1,
+          "score": 0.17573,
+          "priority": 1
+        },
+        {
+          "title": "El Paso and New Mexico spent millions on climate plans. Three new data centers could undo them.",
+          "url": "https://feeds.texastribune.org/link/16799/17497095/data-centers-texas-new-mexico-greenhouse-gas-emissions",
+          "first_seen_at": "2026-10-14T10:00:00Z",
+          "summary": "El Paso and New Mexico planned to cut greenhouse gas emissions. Neither plan considered how three new data centers could upend their climate goals.",
+          "feed": "https://feeds.texastribune.org/feeds/main/",
+          "publisher": "The Texas Tribune",
+          "coverage": 1,
+          "score": 0.16032,
+          "priority": 1
+        },
+        {
+          "title": "DFW Airport Creates New Role to Lead AI Push",
+          "url": "https://dallasinnovates.com/dfw-airport-creates-new-role-to-lead-ai-push/",
+          "first_seen_at": "2026-10-13T20:46:38Z",
+          "summary": "Dallas Fort Worth International Airport is looking for a tech wizard to pilot its AI program — a significant hire in the airport’s quest to further embrace AI. A job posting on DFW Airport’s website said the full-time principal AI lead, a newly created job, will be the airport-wide “strategic and technical authority” on this quickly evolving technology. …",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.10943,
+          "priority": 3
+        }
+      ]
     }
   ],
   "history": [
-    {
-      "url": "https://dallasinnovates.com/dallas-startup-upsmith-raises-10m-series-a-to-put-ai-to-work-for-home-services-providers/",
-      "title": "Dallas Startup UpSmith Raises $10M Series A to Put AI to Work for Home-Services Providers",
-      "shown_at": "2026-10-09T07:23:00Z"
-    },
     {
       "url": "https://feeds.texastribune.org/link/16799/17490894/texas-data-center-lawsuit-paxton-water",
       "title": "Texas agency sues to stop release of data center records that it says could aid terrorists",
@@ -756,6 +744,11 @@
       "url": "https://dallasinnovates.com/no-wheel-no-pedals-no-mirrors-teslas-autonomous-cybercab-revs-up-for-dallas-debut/",
       "title": "No Wheel, No Pedals, No Mirrors: Tesla’s Autonomous Cybercab Revs Up for Dallas Debut",
       "shown_at": "2026-10-16T01:23:00Z"
+    },
+    {
+      "url": "https://dallasinnovates.com/dallas-colossal-biosciences-unveils-ai-platform-to-help-revive-the-dodo-bird/",
+      "title": "Dallas’ Colossal Biosciences Unveils AI Platform to Help Revive the Dodo Bird",
+      "shown_at": "2026-10-16T07:23:00Z"
     }
   ],
   "feeds": [
@@ -767,11 +760,13 @@
       "url": "https://feeds.texastribune.org/feeds/main/",
       "status": "ok",
       "items": 20,
-      "sha256": "afa30e039b2a91bb99bba09e08680d18e25d41ec9cbeb3cc1b890df1fc589ce0"
+      "sha256": "b09b4ed0eba4952489341c2b8cc025f139760249f6eda843b8843353aff9a110"
     },
     {
       "url": "https://www.datacenterdynamics.com/en/rss/",
-      "status": "not_modified"
+      "status": "ok",
+      "items": 20,
+      "sha256": "8766806179c189f397440c8f9d3def80168cf549eb5c7ce9917e47e01ac7c8c2"
     },
     {
       "url": "https://news.mit.edu/rss/topic/artificial-intelligence2",
@@ -783,13 +778,11 @@
       "url": "https://openai.com/news/rss.xml",
       "status": "ok",
       "items": 1296,
-      "sha256": "245e58bdf72fc1139b74bf409b77bc0988611af0170c3def69ceb1e0926bed71"
+      "sha256": "9a1540903f5a34769cb4ed6699f95d66c3a0c93c23900f136ae68475af33c77b"
     },
     {
       "url": "https://blogs.nvidia.com/feed/",
-      "status": "ok",
-      "items": 18,
-      "sha256": "2587544b7039e3f00243d781965ea51fea9dcfd513825cd626d066bdf88d9b1e"
+      "status": "not_modified"
     },
     {
       "url": "https://blog.google/technology/ai/rss/",
@@ -799,9 +792,7 @@
     },
     {
       "url": "https://siliconangle.com/feed/",
-      "status": "ok",
-      "items": 30,
-      "sha256": "c04831efbbdf8732cd55a14e0de8308ca9cd35937c0713bbfb68ff192495d60a"
+      "status": "not_modified"
     },
     {
       "url": "https://www.artificialintelligence-news.com/feed/",
@@ -812,13 +803,13 @@
       "url": "https://www.geekwire.com/tag/artificial-intelligence/feed/",
       "status": "ok",
       "items": 35,
-      "sha256": "0058997a997ddfd331435e21cba9d634ea86be6a9f003e33de0290eadee36a47"
+      "sha256": "8c3a8ec3507a8faf011e2db3c38c78ecbfd78312143fcb0154b359bfb312691b"
     },
     {
       "url": "https://www.techspot.com/backend.xml",
       "status": "ok",
       "items": 30,
-      "sha256": "6a019a61c319fefa0577432a3f008658762d781c17348510d0bcfd502f453b6a"
+      "sha256": "c80731813c6d7ab527e1a08edcbcdf0861043290f795984108c8fd484c581fa9"
     },
     {
       "url": "https://www.sciencedaily.com/rss/computers_math/artificial_intelligence.xml",
@@ -840,60 +831,60 @@
       "etag": "\"c6ed5f917c9bfbcae7c627abf7abb990\"",
       "last_modified": "Thu, 15 Oct 2026 22:20:40 GMT",
       "failures": 0,
-      "ok_at": "2026-10-16T06:00:27Z",
+      "ok_at": "2026-10-16T12:36:25Z",
       "sha256": "47db07bfffb23960793b9d2085954ff892d3b9b6c5f3db30066ca1cd10716cf0",
       "parser_version": 2
     },
     "https://feeds.texastribune.org/feeds/main/": {
-      "ok_at": "2026-10-16T06:00:27Z",
+      "ok_at": "2026-10-16T12:36:25Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "afa30e039b2a91bb99bba09e08680d18e25d41ec9cbeb3cc1b890df1fc589ce0",
-      "etag": "\"6ad1afa8-a2c5\"",
-      "last_modified": "Fri, 16 Oct 2026 05:01:28 GMT"
+      "sha256": "b09b4ed0eba4952489341c2b8cc025f139760249f6eda843b8843353aff9a110",
+      "etag": "\"6ad219d4-a1b4\"",
+      "last_modified": "Fri, 16 Oct 2026 12:34:28 GMT"
     },
     "https://www.datacenterdynamics.com/en/rss/": {
-      "last_modified": "Thu, 15 Oct 2026 20:34:58 GMT",
+      "ok_at": "2026-10-16T12:36:25Z",
       "failures": 0,
-      "ok_at": "2026-10-16T06:00:27Z",
-      "sha256": "cdd3cf961e7ea7ce8789088d0c7287ff25342b49fab798528ab161e52aa3d84d",
-      "parser_version": 2
+      "parser_version": 2,
+      "sha256": "8766806179c189f397440c8f9d3def80168cf549eb5c7ce9917e47e01ac7c8c2",
+      "last_modified": "Fri, 16 Oct 2026 12:00:22 GMT"
     },
     "https://news.mit.edu/rss/topic/artificial-intelligence2": {
-      "ok_at": "2026-10-16T06:00:27Z",
+      "ok_at": "2026-10-16T12:36:25Z",
       "failures": 0,
       "parser_version": 2,
       "sha256": "79a00cb8ca5244d06eae448bd3775369e36db320dcb210abdcbe0e13cf4ffabc",
-      "etag": "\"1792130021\"",
-      "last_modified": "Fri, 16 Oct 2026 05:53:41 GMT"
+      "etag": "\"1792152553\"",
+      "last_modified": "Fri, 16 Oct 2026 12:09:13 GMT"
     },
     "https://openai.com/news/rss.xml": {
-      "ok_at": "2026-10-16T06:00:27Z",
+      "ok_at": "2026-10-16T12:36:25Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "245e58bdf72fc1139b74bf409b77bc0988611af0170c3def69ceb1e0926bed71"
+      "sha256": "9a1540903f5a34769cb4ed6699f95d66c3a0c93c23900f136ae68475af33c77b"
     },
     "https://blogs.nvidia.com/feed/": {
-      "ok_at": "2026-10-16T06:00:27Z",
-      "failures": 0,
-      "parser_version": 2,
-      "sha256": "2587544b7039e3f00243d781965ea51fea9dcfd513825cd626d066bdf88d9b1e",
       "etag": "\"f536d375d907f280b716e1ed91a12219-gzip\"",
-      "last_modified": "Fri, 16 Oct 2026 00:13:05 GMT"
+      "last_modified": "Fri, 16 Oct 2026 00:13:05 GMT",
+      "failures": 0,
+      "ok_at": "2026-10-16T12:36:25Z",
+      "sha256": "2587544b7039e3f00243d781965ea51fea9dcfd513825cd626d066bdf88d9b1e",
+      "parser_version": 2
     },
     "https://blog.google/technology/ai/rss/": {
-      "ok_at": "2026-10-16T06:00:27Z",
+      "ok_at": "2026-10-16T12:36:25Z",
       "failures": 0,
       "parser_version": 2,
       "sha256": "4ca4a11170d948e92b9abb8d8afd729bd9e46b89fbf611064691ecdddc4543c1"
     },
     "https://siliconangle.com/feed/": {
-      "ok_at": "2026-10-16T06:00:27Z",
-      "failures": 0,
-      "parser_version": 2,
-      "sha256": "c04831efbbdf8732cd55a14e0de8308ca9cd35937c0713bbfb68ff192495d60a",
       "etag": "\"c28f8bc8182052c2f61169d0c8af3373\"",
-      "last_modified": "Fri, 16 Oct 2026 04:40:40 GMT"
+      "last_modified": "Fri, 16 Oct 2026 04:40:40 GMT",
+      "failures": 0,
+      "ok_at": "2026-10-16T12:36:25Z",
+      "sha256": "c04831efbbdf8732cd55a14e0de8308ca9cd35937c0713bbfb68ff192495d60a",
+      "parser_version": 2
     },
     "https://www.artificialintelligence-news.com/feed/": {
       "etag": "\"cd8cbe1fef0e10c2eef0af3ac2847598\"",
@@ -905,29 +896,29 @@
       "parser_version": 2
     },
     "https://www.geekwire.com/tag/artificial-intelligence/feed/": {
-      "ok_at": "2026-10-16T06:00:27Z",
+      "ok_at": "2026-10-16T12:36:25Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "0058997a997ddfd331435e21cba9d634ea86be6a9f003e33de0290eadee36a47",
-      "etag": "W/\"0924425d91526107319bfbb2ea1b38fb\"",
-      "last_modified": "Fri, 16 Oct 2026 01:42:28 GMT"
+      "sha256": "8c3a8ec3507a8faf011e2db3c38c78ecbfd78312143fcb0154b359bfb312691b",
+      "etag": "W/\"35864843975d27bee19024183fa87845\"",
+      "last_modified": "Fri, 16 Oct 2026 07:01:15 GMT"
     },
     "https://www.techspot.com/backend.xml": {
-      "ok_at": "2026-10-16T06:00:27Z",
+      "ok_at": "2026-10-16T12:36:25Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "6a019a61c319fefa0577432a3f008658762d781c17348510d0bcfd502f453b6a",
-      "etag": "W/\"1a9b4af1165acf5b294308a4322c9a31\""
+      "sha256": "c80731813c6d7ab527e1a08edcbcdf0861043290f795984108c8fd484c581fa9",
+      "etag": "W/\"a5cc89288ee581ce2a9af758b4518c1f\""
     },
     "https://www.sciencedaily.com/rss/computers_math/artificial_intelligence.xml": {
       "last_modified": "Thu, 15 Oct 2026 13:11:20 GMT",
       "failures": 0,
-      "ok_at": "2026-10-16T06:00:27Z",
+      "ok_at": "2026-10-16T12:36:25Z",
       "sha256": "f4ee5826ee0ee5e63ca5a319c66df3b65533f19065a2f6d23a9a6a01fe30f1ec",
       "parser_version": 2
     },
     "https://www.tpr.org/index.rss": {
-      "ok_at": "2026-10-16T06:00:27Z",
+      "ok_at": "2026-10-16T12:36:25Z",
       "failures": 0,
       "parser_version": 2,
       "sha256": "6faabfbfde5a6d65ff56583c65d0f41f82a68c5f81332638e6a784a0d052c7ec"
@@ -936,7 +927,7 @@
       "etag": "W/\"2f3c0e121236e7902d39057ecaf3f83f\"",
       "last_modified": "Thu, 15 Oct 2026 14:47:10 GMT",
       "failures": 0,
-      "ok_at": "2026-10-16T06:00:27Z",
+      "ok_at": "2026-10-16T12:36:25Z",
       "sha256": "799e0593dce134bd392b7dddf4fa9e7dd6e1c39abcb35e4ccda700a71e81a8d0",
       "parser_version": 2
     }
