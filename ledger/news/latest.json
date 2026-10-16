@@ -1,8 +1,8 @@
 {
   "_spec": 2,
-  "checked_at": "2026-10-16T12:36:27Z",
+  "checked_at": "2026-10-16T17:34:41Z",
   "provider": "Publisher RSS and Atom",
-  "response_sha256": "c73e7c79c1eb3d1d0905a4e5b23c1c64c51c69fc3675e33257abe1e7e2f04ce9",
+  "response_sha256": "ed4f186ce596a233e0d4ca967f91bff5804fcba3af0a7efc8bdb385a99fb0d53",
   "articles": [
     {
       "title": "Dallas’ Colossal Biosciences Unveils AI Platform to Help Revive the Dodo Bird",
@@ -61,13 +61,6 @@
       "feed": "https://feeds.texastribune.org/feeds/main/"
     },
     {
-      "title": "Anthropic-linked $366m data center project filed for in Cedar Creek, Texas",
-      "url": "https://www.datacenterdynamics.com/en/news/anthropic-linked-366m-data-center-project-filed-for-in-cedar-creek-texas/",
-      "first_seen_at": "2026-10-09T14:27:53Z",
-      "summary": "First building will be located on Earl Callahan Road",
-      "feed": "https://www.datacenterdynamics.com/en/rss/"
-    },
-    {
       "title": "LightEdge/Lumen-occupied data center in Austin, Texas, up for sale",
       "url": "https://www.datacenterdynamics.com/en/news/lightedgelumen-occupied-data-center-in-austin-texas-up-for-sale/",
       "first_seen_at": "2026-10-15T08:18:22Z",
@@ -82,177 +75,51 @@
       "feed": "https://www.datacenterdynamics.com/en/rss/"
     },
     {
-      "title": "'A long game': When is the best time to initiate a data center moratorium in Texas?",
-      "url": "https://www.tpr.org/science-technology/2026-10-09/a-long-game-when-is-the-best-time-to-initiate-a-data-center-moratorium-in-texas",
-      "first_seen_at": "2026-10-09T14:53:54Z",
-      "summary": "Last month, Lubbock City Council began the procedure to adopt a pause on large-scale data center development. If the moratorium passes, it will be two years until another one can be put in place. With more information and potential changes likely to come out of the state's legislative session, one councilman has argued that the city should hold off on playing its moratorium card. All the while, the clock may be ticking on the statewide pause on data centers.",
-      "feed": "https://www.tpr.org/index.rss"
+      "title": "Stranded natural gas could power offshore data centers",
+      "url": "https://www.datacenterdynamics.com/en/news/stranded-natural-gas-could-power-offshore-data-centers/",
+      "first_seen_at": "2026-10-16T15:10:28Z",
+      "summary": "Houston, Texas, firms form new partnership to put compute at sea",
+      "feed": "https://www.datacenterdynamics.com/en/rss/"
     }
   ],
   "selected": {
-    "title": "Dallas’ Colossal Biosciences Unveils AI Platform to Help Revive the Dodo Bird",
-    "url": "https://dallasinnovates.com/dallas-colossal-biosciences-unveils-ai-platform-to-help-revive-the-dodo-bird/",
-    "first_seen_at": "2026-10-14T23:14:19Z",
-    "summary": "Dallas-based de-extinction company Colossal Biosciences unveiled a new AI platform, GenoMorph, on Wednesday to identify gene-editing targets for reviving the extinct dodo bird. Despite limited dodo genomic data, GenoMorph has identified an estimated 2,300 candidate genetic elements that may determine beak size and shape, the company said.…",
-    "feed": "https://dallasinnovates.com/feed/",
-    "publisher": "Dallas Innovates",
+    "title": "Stranded natural gas could power offshore data centers",
+    "url": "https://www.datacenterdynamics.com/en/news/stranded-natural-gas-could-power-offshore-data-centers/",
+    "first_seen_at": "2026-10-16T15:10:28Z",
+    "summary": "Houston, Texas, firms form new partnership to put compute at sea",
+    "feed": "https://www.datacenterdynamics.com/en/rss/",
+    "publisher": "Data Center Dynamics",
     "coverage": 1,
-    "score": 0.339848,
-    "priority": 0
+    "score": 0.932936,
+    "priority": 1
   },
-  "expires_at": "2026-10-21T23:14:19Z",
+  "expires_at": "2026-10-23T15:10:28Z",
   "rotation_version": 1,
   "carousel_version": 1,
   "editions": [
     {
-      "starts_at": "2026-10-16T07:23:00Z",
-      "selected": {
-        "title": "Dallas’ Colossal Biosciences Unveils AI Platform to Help Revive the Dodo Bird",
-        "url": "https://dallasinnovates.com/dallas-colossal-biosciences-unveils-ai-platform-to-help-revive-the-dodo-bird/",
-        "first_seen_at": "2026-10-14T23:14:19Z",
-        "summary": "Dallas-based de-extinction company Colossal Biosciences unveiled a new AI platform, GenoMorph, on Wednesday to identify gene-editing targets for reviving the extinct dodo bird. Despite limited dodo genomic data, GenoMorph has identified an estimated 2,300 candidate genetic elements that may determine beak size and shape, the company said.…",
-        "feed": "https://dallasinnovates.com/feed/",
-        "publisher": "Dallas Innovates",
-        "coverage": 1,
-        "score": 0.339848,
-        "priority": 0
-      },
-      "stories": [
-        {
-          "title": "Dallas’ Colossal Biosciences Unveils AI Platform to Help Revive the Dodo Bird",
-          "url": "https://dallasinnovates.com/dallas-colossal-biosciences-unveils-ai-platform-to-help-revive-the-dodo-bird/",
-          "first_seen_at": "2026-10-14T23:14:19Z",
-          "summary": "Dallas-based de-extinction company Colossal Biosciences unveiled a new AI platform, GenoMorph, on Wednesday to identify gene-editing targets for reviving the extinct dodo bird. Despite limited dodo genomic data, GenoMorph has identified an estimated 2,300 candidate genetic elements that may determine beak size and shape, the company said.…",
-          "feed": "https://dallasinnovates.com/feed/",
-          "publisher": "Dallas Innovates",
-          "coverage": 1,
-          "score": 0.339848,
-          "priority": 0
-        },
-        {
-          "title": "No Wheel, No Pedals, No Mirrors: Tesla’s Autonomous Cybercab Revs Up for Dallas Debut",
-          "url": "https://dallasinnovates.com/no-wheel-no-pedals-no-mirrors-teslas-autonomous-cybercab-revs-up-for-dallas-debut/",
-          "first_seen_at": "2026-10-15T17:48:51Z",
-          "summary": "Tesla’s autonomous ride-hailing Cybercabs — which aren’t equipped with a steering wheel, accelerator pedal, brake pedal or rearview mirrors — will soon hit the streets of Dallas. In an Oct. 10 post on the X social media platform, Tesla’s vice president of AI software, Ashok Elluswamy, said Cybercabs are coming soon to Dallas. …",
-          "feed": "https://dallasinnovates.com/feed/",
-          "publisher": "Dallas Innovates",
-          "coverage": 1,
-          "score": 0.581135,
-          "priority": 0
-        },
-        {
-          "title": "Dallas Cybersecurity Company Elisity Agrees to $1.3B Acquisition by Quantum Computing Company IonQ",
-          "url": "https://dallasinnovates.com/dallas-cybersecurity-company-elisity-agrees-to-1-3b-acquisition-by-quantum-computing-company-ionq/",
-          "first_seen_at": "2026-10-14T21:31:19Z",
-          "summary": "College Park, Maryland-based quantum computing company IonQ agreed to buy Dallas-based cybersecurity company Elisity in an all-stock deal valued at up to $1.3 billion. Publicly traded IonQ said the acquisition of privately held Elisity would create a broader cybersecurity platform for detecting and combating AI and quantum threats. …",
-          "feed": "https://dallasinnovates.com/feed/",
-          "publisher": "Dallas Innovates",
-          "coverage": 1,
-          "score": 0.32341,
-          "priority": 0
-        },
-        {
-          "title": "Patented: Citi’s AI-Generated Suspicious Activity Reports and 105 More Inventions Across North Texas",
-          "url": "https://dallasinnovates.com/patented-citis-ai-generated-suspicious-activity-reports-and-105-more-inventions-across-north-texas/",
-          "first_seen_at": "2026-10-14T20:16:41Z",
-          "summary": "A largely Irving-based team has patented a system that uses AI to help New York-based banking giant Citibank fight financial crime. The company, which has a large corporate office in Las Colinas, received a utility patent for systems and methods to draft suspicious activity reports using large language models.…",
-          "feed": "https://dallasinnovates.com/feed/",
-          "publisher": "Dallas Innovates",
-          "coverage": 1,
-          "score": 0.311998,
-          "priority": 0
-        },
-        {
-          "title": "DFW Airport Creates New Role to Lead AI Push",
-          "url": "https://dallasinnovates.com/dfw-airport-creates-new-role-to-lead-ai-push/",
-          "first_seen_at": "2026-10-13T20:46:38Z",
-          "summary": "Dallas Fort Worth International Airport is looking for a tech wizard to pilot its AI program — a significant hire in the airport’s quest to further embrace AI. A job posting on DFW Airport’s website said the full-time principal AI lead, a newly created job, will be the airport-wide “strategic and technical authority” on this quickly evolving technology. …",
-          "feed": "https://dallasinnovates.com/feed/",
-          "publisher": "Dallas Innovates",
-          "coverage": 1,
-          "score": 0.158264,
-          "priority": 0
-        },
-        {
-          "title": "In race to lead Texas agriculture department, Sheets and Tucker clash on data centers, credentials",
-          "url": "https://feeds.texastribune.org/link/16799/17498329/texas-election-2026-agriculture-commissioner-nate-sheets-clayton-tucker",
-          "first_seen_at": "2026-10-15T16:54:09Z",
-          "summary": "The race to be the state’s first new agriculture commissioner in more than a decade has turned personal as both men have challenged each other’s ties to farm land.",
-          "feed": "https://feeds.texastribune.org/feeds/main/",
-          "publisher": "The Texas Tribune",
-          "coverage": 1,
-          "score": 0.566033,
-          "priority": 1
-        },
-        {
-          "title": "LightEdge/Lumen-occupied data center in Austin, Texas, up for sale",
-          "url": "https://www.datacenterdynamics.com/en/news/lightedgelumen-occupied-data-center-in-austin-texas-up-for-sale/",
-          "first_seen_at": "2026-10-15T08:18:22Z",
-          "summary": "Fully-leased facility seeks new landlord",
-          "feed": "https://www.datacenterdynamics.com/en/rss/",
-          "publisher": "Data Center Dynamics",
-          "coverage": 1,
-          "score": 0.441589,
-          "priority": 1
-        },
-        {
-          "title": "Soluna files to build 112MW data center building in Willacy, Texas",
-          "url": "https://www.datacenterdynamics.com/en/news/soluna-files-to-build-112mw-data-center-building-in-willacy-texas/",
-          "first_seen_at": "2026-10-14T13:10:40Z",
-          "summary": "Will span a single building totaling 471,884 sq ft",
-          "feed": "https://www.datacenterdynamics.com/en/rss/",
-          "publisher": "Data Center Dynamics",
-          "coverage": 1,
-          "score": 0.254152,
-          "priority": 1
-        },
-        {
-          "title": "Despite tough talk from Abbott and Paxton, Texas penalties for data center violations are light",
-          "url": "https://feeds.texastribune.org/link/16799/17497094/texas-data-centers-water-use-penalties-enforcement",
-          "first_seen_at": "2026-10-14T10:00:00Z",
-          "summary": "Texas officials are promising tougher enforcement on data centers, but the existing law may offer limited leverage over the industry that has largely failed to report its water use.",
-          "feed": "https://feeds.texastribune.org/feeds/main/",
-          "publisher": "The Texas Tribune",
-          "coverage": 1,
-          "score": 0.231865,
-          "priority": 1
-        },
-        {
-          "title": "El Paso and New Mexico spent millions on climate plans. Three new data centers could undo them.",
-          "url": "https://feeds.texastribune.org/link/16799/17497095/data-centers-texas-new-mexico-greenhouse-gas-emissions",
-          "first_seen_at": "2026-10-14T10:00:00Z",
-          "summary": "El Paso and New Mexico planned to cut greenhouse gas emissions. Neither plan considered how three new data centers could upend their climate goals.",
-          "feed": "https://feeds.texastribune.org/feeds/main/",
-          "publisher": "The Texas Tribune",
-          "coverage": 1,
-          "score": 0.231865,
-          "priority": 1
-        }
-      ]
-    },
-    {
       "starts_at": "2026-10-16T13:23:00Z",
       "selected": {
-        "title": "El Paso and New Mexico spent millions on climate plans. Three new data centers could undo them.",
-        "url": "https://feeds.texastribune.org/link/16799/17497095/data-centers-texas-new-mexico-greenhouse-gas-emissions",
-        "first_seen_at": "2026-10-14T10:00:00Z",
-        "summary": "El Paso and New Mexico planned to cut greenhouse gas emissions. Neither plan considered how three new data centers could upend their climate goals.",
-        "feed": "https://feeds.texastribune.org/feeds/main/",
-        "publisher": "The Texas Tribune",
+        "title": "Stranded natural gas could power offshore data centers",
+        "url": "https://www.datacenterdynamics.com/en/news/stranded-natural-gas-could-power-offshore-data-centers/",
+        "first_seen_at": "2026-10-16T15:10:28Z",
+        "summary": "Houston, Texas, firms form new partnership to put compute at sea",
+        "feed": "https://www.datacenterdynamics.com/en/rss/",
+        "publisher": "Data Center Dynamics",
         "coverage": 1,
-        "score": 0.226727,
+        "score": 0.932936,
         "priority": 1
       },
       "stories": [
         {
-          "title": "El Paso and New Mexico spent millions on climate plans. Three new data centers could undo them.",
-          "url": "https://feeds.texastribune.org/link/16799/17497095/data-centers-texas-new-mexico-greenhouse-gas-emissions",
-          "first_seen_at": "2026-10-14T10:00:00Z",
-          "summary": "El Paso and New Mexico planned to cut greenhouse gas emissions. Neither plan considered how three new data centers could upend their climate goals.",
-          "feed": "https://feeds.texastribune.org/feeds/main/",
-          "publisher": "The Texas Tribune",
+          "title": "Stranded natural gas could power offshore data centers",
+          "url": "https://www.datacenterdynamics.com/en/news/stranded-natural-gas-could-power-offshore-data-centers/",
+          "first_seen_at": "2026-10-16T15:10:28Z",
+          "summary": "Houston, Texas, firms form new partnership to put compute at sea",
+          "feed": "https://www.datacenterdynamics.com/en/rss/",
+          "publisher": "Data Center Dynamics",
           "coverage": 1,
-          "score": 0.226727,
+          "score": 0.932936,
           "priority": 1
         },
         {
@@ -263,7 +130,7 @@
           "feed": "https://dallasinnovates.com/feed/",
           "publisher": "Dallas Innovates",
           "coverage": 1,
-          "score": 0.568258,
+          "score": 0.503421,
           "priority": 0
         },
         {
@@ -274,7 +141,7 @@
           "feed": "https://dallasinnovates.com/feed/",
           "publisher": "Dallas Innovates",
           "coverage": 1,
-          "score": 0.332318,
+          "score": 0.294401,
           "priority": 0
         },
         {
@@ -285,7 +152,7 @@
           "feed": "https://dallasinnovates.com/feed/",
           "publisher": "Dallas Innovates",
           "coverage": 1,
-          "score": 0.316244,
+          "score": 0.280161,
           "priority": 0
         },
         {
@@ -296,7 +163,7 @@
           "feed": "https://dallasinnovates.com/feed/",
           "publisher": "Dallas Innovates",
           "coverage": 1,
-          "score": 0.305084,
+          "score": 0.270275,
           "priority": 0
         },
         {
@@ -307,7 +174,7 @@
           "feed": "https://dallasinnovates.com/feed/",
           "publisher": "Dallas Innovates",
           "coverage": 1,
-          "score": 0.154757,
+          "score": 0.1371,
           "priority": 0
         },
         {
@@ -318,7 +185,7 @@
           "feed": "https://feeds.texastribune.org/feeds/main/",
           "publisher": "The Texas Tribune",
           "coverage": 1,
-          "score": 0.553491,
+          "score": 0.490339,
           "priority": 1
         },
         {
@@ -329,7 +196,7 @@
           "feed": "https://www.datacenterdynamics.com/en/rss/",
           "publisher": "Data Center Dynamics",
           "coverage": 1,
-          "score": 0.431804,
+          "score": 0.382536,
           "priority": 1
         },
         {
@@ -340,7 +207,7 @@
           "feed": "https://www.datacenterdynamics.com/en/rss/",
           "publisher": "Data Center Dynamics",
           "coverage": 1,
-          "score": 0.24852,
+          "score": 0.220165,
           "priority": 1
         },
         {
@@ -351,7 +218,7 @@
           "feed": "https://feeds.texastribune.org/feeds/main/",
           "publisher": "The Texas Tribune",
           "coverage": 1,
-          "score": 0.226727,
+          "score": 0.200858,
           "priority": 1
         }
       ]
@@ -426,6 +293,17 @@
           "priority": 0
         },
         {
+          "title": "Stranded natural gas could power offshore data centers",
+          "url": "https://www.datacenterdynamics.com/en/news/stranded-natural-gas-could-power-offshore-data-centers/",
+          "first_seen_at": "2026-10-16T15:10:28Z",
+          "summary": "Houston, Texas, firms form new partnership to put compute at sea",
+          "feed": "https://www.datacenterdynamics.com/en/rss/",
+          "publisher": "Data Center Dynamics",
+          "coverage": 1,
+          "score": 0.88554,
+          "priority": 1
+        },
+        {
           "title": "In race to lead Texas agriculture department, Sheets and Tucker clash on data centers, credentials",
           "url": "https://feeds.texastribune.org/link/16799/17498329/texas-election-2026-agriculture-commissioner-nate-sheets-clayton-tucker",
           "first_seen_at": "2026-10-15T16:54:09Z",
@@ -463,17 +341,6 @@
           "url": "https://feeds.texastribune.org/link/16799/17497094/texas-data-centers-water-use-penalties-enforcement",
           "first_seen_at": "2026-10-14T10:00:00Z",
           "summary": "Texas officials are promising tougher enforcement on data centers, but the existing law may offer limited leverage over the industry that has largely failed to report its water use.",
-          "feed": "https://feeds.texastribune.org/feeds/main/",
-          "publisher": "The Texas Tribune",
-          "coverage": 1,
-          "score": 0.190654,
-          "priority": 1
-        },
-        {
-          "title": "El Paso and New Mexico spent millions on climate plans. Three new data centers could undo them.",
-          "url": "https://feeds.texastribune.org/link/16799/17497095/data-centers-texas-new-mexico-greenhouse-gas-emissions",
-          "first_seen_at": "2026-10-14T10:00:00Z",
-          "summary": "El Paso and New Mexico planned to cut greenhouse gas emissions. Neither plan considered how three new data centers could upend their climate goals.",
           "feed": "https://feeds.texastribune.org/feeds/main/",
           "publisher": "The Texas Tribune",
           "coverage": 1,
@@ -552,6 +419,17 @@
           "priority": 0
         },
         {
+          "title": "Stranded natural gas could power offshore data centers",
+          "url": "https://www.datacenterdynamics.com/en/news/stranded-natural-gas-could-power-offshore-data-centers/",
+          "first_seen_at": "2026-10-16T15:10:28Z",
+          "summary": "Houston, Texas, firms form new partnership to put compute at sea",
+          "feed": "https://www.datacenterdynamics.com/en/rss/",
+          "publisher": "Data Center Dynamics",
+          "coverage": 1,
+          "score": 0.744648,
+          "priority": 1
+        },
+        {
           "title": "In race to lead Texas agriculture department, Sheets and Tucker clash on data centers, credentials",
           "url": "https://feeds.texastribune.org/link/16799/17498329/texas-election-2026-agriculture-commissioner-nate-sheets-clayton-tucker",
           "first_seen_at": "2026-10-15T16:54:09Z",
@@ -594,27 +472,137 @@
           "coverage": 1,
           "score": 0.16032,
           "priority": 1
+        }
+      ]
+    },
+    {
+      "starts_at": "2026-10-17T07:23:00Z",
+      "selected": {
+        "title": "Soluna files to build 112MW data center building in Willacy, Texas",
+        "url": "https://www.datacenterdynamics.com/en/news/soluna-files-to-build-112mw-data-center-building-in-willacy-texas/",
+        "first_seen_at": "2026-10-14T13:10:40Z",
+        "summary": "Will span a single building totaling 471,884 sq ft",
+        "feed": "https://www.datacenterdynamics.com/en/rss/",
+        "publisher": "Data Center Dynamics",
+        "coverage": 1,
+        "score": 0.147771,
+        "priority": 1
+      },
+      "stories": [
+        {
+          "title": "Soluna files to build 112MW data center building in Willacy, Texas",
+          "url": "https://www.datacenterdynamics.com/en/news/soluna-files-to-build-112mw-data-center-building-in-willacy-texas/",
+          "first_seen_at": "2026-10-14T13:10:40Z",
+          "summary": "Will span a single building totaling 471,884 sq ft",
+          "feed": "https://www.datacenterdynamics.com/en/rss/",
+          "publisher": "Data Center Dynamics",
+          "coverage": 1,
+          "score": 0.147771,
+          "priority": 1
         },
         {
-          "title": "DFW Airport Creates New Role to Lead AI Push",
-          "url": "https://dallasinnovates.com/dfw-airport-creates-new-role-to-lead-ai-push/",
-          "first_seen_at": "2026-10-13T20:46:38Z",
-          "summary": "Dallas Fort Worth International Airport is looking for a tech wizard to pilot its AI program — a significant hire in the airport’s quest to further embrace AI. A job posting on DFW Airport’s website said the full-time principal AI lead, a newly created job, will be the airport-wide “strategic and technical authority” on this quickly evolving technology. …",
+          "title": "No Wheel, No Pedals, No Mirrors: Tesla’s Autonomous Cybercab Revs Up for Dallas Debut",
+          "url": "https://dallasinnovates.com/no-wheel-no-pedals-no-mirrors-teslas-autonomous-cybercab-revs-up-for-dallas-debut/",
+          "first_seen_at": "2026-10-15T17:48:51Z",
+          "summary": "Tesla’s autonomous ride-hailing Cybercabs — which aren’t equipped with a steering wheel, accelerator pedal, brake pedal or rearview mirrors — will soon hit the streets of Dallas. In an Oct. 10 post on the X social media platform, Tesla’s vice president of AI software, Ashok Elluswamy, said Cybercabs are coming soon to Dallas. …",
           "feed": "https://dallasinnovates.com/feed/",
           "publisher": "Dallas Innovates",
           "coverage": 1,
-          "score": 0.10943,
-          "priority": 3
+          "score": 0.337888,
+          "priority": 0
+        },
+        {
+          "title": "Dallas’ Colossal Biosciences Unveils AI Platform to Help Revive the Dodo Bird",
+          "url": "https://dallasinnovates.com/dallas-colossal-biosciences-unveils-ai-platform-to-help-revive-the-dodo-bird/",
+          "first_seen_at": "2026-10-14T23:14:19Z",
+          "summary": "Dallas-based de-extinction company Colossal Biosciences unveiled a new AI platform, GenoMorph, on Wednesday to identify gene-editing targets for reviving the extinct dodo bird. Despite limited dodo genomic data, GenoMorph has identified an estimated 2,300 candidate genetic elements that may determine beak size and shape, the company said.…",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.197597,
+          "priority": 0
+        },
+        {
+          "title": "Dallas Cybersecurity Company Elisity Agrees to $1.3B Acquisition by Quantum Computing Company IonQ",
+          "url": "https://dallasinnovates.com/dallas-cybersecurity-company-elisity-agrees-to-1-3b-acquisition-by-quantum-computing-company-ionq/",
+          "first_seen_at": "2026-10-14T21:31:19Z",
+          "summary": "College Park, Maryland-based quantum computing company IonQ agreed to buy Dallas-based cybersecurity company Elisity in an all-stock deal valued at up to $1.3 billion. Publicly traded IonQ said the acquisition of privately held Elisity would create a broader cybersecurity platform for detecting and combating AI and quantum threats. …",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.18804,
+          "priority": 0
+        },
+        {
+          "title": "Patented: Citi’s AI-Generated Suspicious Activity Reports and 105 More Inventions Across North Texas",
+          "url": "https://dallasinnovates.com/patented-citis-ai-generated-suspicious-activity-reports-and-105-more-inventions-across-north-texas/",
+          "first_seen_at": "2026-10-14T20:16:41Z",
+          "summary": "A largely Irving-based team has patented a system that uses AI to help New York-based banking giant Citibank fight financial crime. The company, which has a large corporate office in Las Colinas, received a utility patent for systems and methods to draft suspicious activity reports using large language models.…",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.181404,
+          "priority": 0
+        },
+        {
+          "title": "Stranded natural gas could power offshore data centers",
+          "url": "https://www.datacenterdynamics.com/en/news/stranded-natural-gas-could-power-offshore-data-centers/",
+          "first_seen_at": "2026-10-16T15:10:28Z",
+          "summary": "Houston, Texas, firms form new partnership to put compute at sea",
+          "feed": "https://www.datacenterdynamics.com/en/rss/",
+          "publisher": "Data Center Dynamics",
+          "coverage": 1,
+          "score": 0.626171,
+          "priority": 1
+        },
+        {
+          "title": "In race to lead Texas agriculture department, Sheets and Tucker clash on data centers, credentials",
+          "url": "https://feeds.texastribune.org/link/16799/17498329/texas-election-2026-agriculture-commissioner-nate-sheets-clayton-tucker",
+          "first_seen_at": "2026-10-15T16:54:09Z",
+          "summary": "The race to be the state’s first new agriculture commissioner in more than a decade has turned personal as both men have challenged each other’s ties to farm land.",
+          "feed": "https://feeds.texastribune.org/feeds/main/",
+          "publisher": "The Texas Tribune",
+          "coverage": 1,
+          "score": 0.329108,
+          "priority": 1
+        },
+        {
+          "title": "LightEdge/Lumen-occupied data center in Austin, Texas, up for sale",
+          "url": "https://www.datacenterdynamics.com/en/news/lightedgelumen-occupied-data-center-in-austin-texas-up-for-sale/",
+          "first_seen_at": "2026-10-15T08:18:22Z",
+          "summary": "Fully-leased facility seeks new landlord",
+          "feed": "https://www.datacenterdynamics.com/en/rss/",
+          "publisher": "Data Center Dynamics",
+          "coverage": 1,
+          "score": 0.256752,
+          "priority": 1
+        },
+        {
+          "title": "Despite tough talk from Abbott and Paxton, Texas penalties for data center violations are light",
+          "url": "https://feeds.texastribune.org/link/16799/17497094/texas-data-centers-water-use-penalties-enforcement",
+          "first_seen_at": "2026-10-14T10:00:00Z",
+          "summary": "Texas officials are promising tougher enforcement on data centers, but the existing law may offer limited leverage over the industry that has largely failed to report its water use.",
+          "feed": "https://feeds.texastribune.org/feeds/main/",
+          "publisher": "The Texas Tribune",
+          "coverage": 1,
+          "score": 0.134813,
+          "priority": 1
+        },
+        {
+          "title": "El Paso and New Mexico spent millions on climate plans. Three new data centers could undo them.",
+          "url": "https://feeds.texastribune.org/link/16799/17497095/data-centers-texas-new-mexico-greenhouse-gas-emissions",
+          "first_seen_at": "2026-10-14T10:00:00Z",
+          "summary": "El Paso and New Mexico planned to cut greenhouse gas emissions. Neither plan considered how three new data centers could upend their climate goals.",
+          "feed": "https://feeds.texastribune.org/feeds/main/",
+          "publisher": "The Texas Tribune",
+          "coverage": 1,
+          "score": 0.134813,
+          "priority": 1
         }
       ]
     }
   ],
   "history": [
-    {
-      "url": "https://feeds.texastribune.org/link/16799/17490894/texas-data-center-lawsuit-paxton-water",
-      "title": "Texas agency sues to stop release of data center records that it says could aid terrorists",
-      "shown_at": "2026-10-09T13:23:00Z"
-    },
     {
       "url": "https://www.datacenterdynamics.com/en/news/anthropic-linked-366m-data-center-project-filed-for-in-cedar-creek-texas/",
       "title": "Anthropic-linked $366m data center project filed for in Cedar Creek, Texas",
@@ -749,6 +737,11 @@
       "url": "https://dallasinnovates.com/dallas-colossal-biosciences-unveils-ai-platform-to-help-revive-the-dodo-bird/",
       "title": "Dallas’ Colossal Biosciences Unveils AI Platform to Help Revive the Dodo Bird",
       "shown_at": "2026-10-16T07:23:00Z"
+    },
+    {
+      "url": "https://feeds.texastribune.org/link/16799/17497095/data-centers-texas-new-mexico-greenhouse-gas-emissions",
+      "title": "El Paso and New Mexico spent millions on climate plans. Three new data centers could undo them.",
+      "shown_at": "2026-10-16T13:23:00Z"
     }
   ],
   "feeds": [
@@ -760,29 +753,31 @@
       "url": "https://feeds.texastribune.org/feeds/main/",
       "status": "ok",
       "items": 20,
-      "sha256": "b09b4ed0eba4952489341c2b8cc025f139760249f6eda843b8843353aff9a110"
+      "sha256": "30531ba326721f59418d39fd74a3b1b6746318848a67ecdb082a83646dc77087"
     },
     {
       "url": "https://www.datacenterdynamics.com/en/rss/",
       "status": "ok",
       "items": 20,
-      "sha256": "8766806179c189f397440c8f9d3def80168cf549eb5c7ce9917e47e01ac7c8c2"
+      "sha256": "4e69635890937cb099483ba4a6af958d352284c94e44907e7e983a9df622474f"
     },
     {
       "url": "https://news.mit.edu/rss/topic/artificial-intelligence2",
       "status": "ok",
       "items": 50,
-      "sha256": "79a00cb8ca5244d06eae448bd3775369e36db320dcb210abdcbe0e13cf4ffabc"
+      "sha256": "7c3eb22587774268b83962fdeb091c597d067cd948a182150d8b5d1a8331d55e"
     },
     {
       "url": "https://openai.com/news/rss.xml",
       "status": "ok",
       "items": 1296,
-      "sha256": "9a1540903f5a34769cb4ed6699f95d66c3a0c93c23900f136ae68475af33c77b"
+      "sha256": "326c8de24a7a6f0cb771874ef8e73b46f63748359cd18c7a953e6e4f12526629"
     },
     {
       "url": "https://blogs.nvidia.com/feed/",
-      "status": "not_modified"
+      "status": "ok",
+      "items": 18,
+      "sha256": "edaf3e12d6acafec72eaa860816255162a27894c17581125215335cf5a5a6bb2"
     },
     {
       "url": "https://blog.google/technology/ai/rss/",
@@ -792,7 +787,9 @@
     },
     {
       "url": "https://siliconangle.com/feed/",
-      "status": "not_modified"
+      "status": "ok",
+      "items": 30,
+      "sha256": "e735d6d7ea4de88a3a9cc22549e5ae22c06ada36c008b9716fb08cbbdc5f8a16"
     },
     {
       "url": "https://www.artificialintelligence-news.com/feed/",
@@ -803,27 +800,31 @@
       "url": "https://www.geekwire.com/tag/artificial-intelligence/feed/",
       "status": "ok",
       "items": 35,
-      "sha256": "8c3a8ec3507a8faf011e2db3c38c78ecbfd78312143fcb0154b359bfb312691b"
+      "sha256": "1a695130522617884aedb245daae522275c905a3621a4ea58f5002516a3f9ee2"
     },
     {
       "url": "https://www.techspot.com/backend.xml",
       "status": "ok",
       "items": 30,
-      "sha256": "c80731813c6d7ab527e1a08edcbcdf0861043290f795984108c8fd484c581fa9"
+      "sha256": "323db8a5b0aea76b35a99a65dfd7160c5728fcd922cf0475b37652e04d400e2f"
     },
     {
       "url": "https://www.sciencedaily.com/rss/computers_math/artificial_intelligence.xml",
-      "status": "not_modified"
+      "status": "ok",
+      "items": 60,
+      "sha256": "bdf27e3aadaa685ac065e1d04ac6b9338e2a80774f6acad178c881e424a5167b"
     },
     {
       "url": "https://www.tpr.org/index.rss",
       "status": "ok",
       "items": 5,
-      "sha256": "6faabfbfde5a6d65ff56583c65d0f41f82a68c5f81332638e6a784a0d052c7ec"
+      "sha256": "be9feb3c220f9bb5fc6d5b1857cf3a5253d10fa4d9d63f2b6163748278b8d623"
     },
     {
       "url": "https://www.texasobserver.org/feed/",
-      "status": "not_modified"
+      "status": "ok",
+      "items": 10,
+      "sha256": "5259322b2da127e6ae3ead5ff868e08257e1b12a4b8accf179afdc9f64330ad9"
     }
   ],
   "feed_state": {
@@ -831,60 +832,60 @@
       "etag": "\"c6ed5f917c9bfbcae7c627abf7abb990\"",
       "last_modified": "Thu, 15 Oct 2026 22:20:40 GMT",
       "failures": 0,
-      "ok_at": "2026-10-16T12:36:25Z",
+      "ok_at": "2026-10-16T17:34:39Z",
       "sha256": "47db07bfffb23960793b9d2085954ff892d3b9b6c5f3db30066ca1cd10716cf0",
       "parser_version": 2
     },
     "https://feeds.texastribune.org/feeds/main/": {
-      "ok_at": "2026-10-16T12:36:25Z",
+      "ok_at": "2026-10-16T17:34:39Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "b09b4ed0eba4952489341c2b8cc025f139760249f6eda843b8843353aff9a110",
-      "etag": "\"6ad219d4-a1b4\"",
-      "last_modified": "Fri, 16 Oct 2026 12:34:28 GMT"
+      "sha256": "30531ba326721f59418d39fd74a3b1b6746318848a67ecdb082a83646dc77087",
+      "etag": "\"6ad23f4d-a1ba\"",
+      "last_modified": "Fri, 16 Oct 2026 15:14:21 GMT"
     },
     "https://www.datacenterdynamics.com/en/rss/": {
-      "ok_at": "2026-10-16T12:36:25Z",
+      "ok_at": "2026-10-16T17:34:39Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "8766806179c189f397440c8f9d3def80168cf549eb5c7ce9917e47e01ac7c8c2",
-      "last_modified": "Fri, 16 Oct 2026 12:00:22 GMT"
+      "sha256": "4e69635890937cb099483ba4a6af958d352284c94e44907e7e983a9df622474f",
+      "last_modified": "Fri, 16 Oct 2026 16:19:59 GMT"
     },
     "https://news.mit.edu/rss/topic/artificial-intelligence2": {
-      "ok_at": "2026-10-16T12:36:25Z",
+      "ok_at": "2026-10-16T17:34:39Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "79a00cb8ca5244d06eae448bd3775369e36db320dcb210abdcbe0e13cf4ffabc",
-      "etag": "\"1792152553\"",
-      "last_modified": "Fri, 16 Oct 2026 12:09:13 GMT"
+      "sha256": "7c3eb22587774268b83962fdeb091c597d067cd948a182150d8b5d1a8331d55e",
+      "etag": "\"1792170601\"",
+      "last_modified": "Fri, 16 Oct 2026 17:10:01 GMT"
     },
     "https://openai.com/news/rss.xml": {
-      "ok_at": "2026-10-16T12:36:25Z",
+      "ok_at": "2026-10-16T17:34:39Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "9a1540903f5a34769cb4ed6699f95d66c3a0c93c23900f136ae68475af33c77b"
+      "sha256": "326c8de24a7a6f0cb771874ef8e73b46f63748359cd18c7a953e6e4f12526629"
     },
     "https://blogs.nvidia.com/feed/": {
-      "etag": "\"f536d375d907f280b716e1ed91a12219-gzip\"",
-      "last_modified": "Fri, 16 Oct 2026 00:13:05 GMT",
+      "ok_at": "2026-10-16T17:34:39Z",
       "failures": 0,
-      "ok_at": "2026-10-16T12:36:25Z",
-      "sha256": "2587544b7039e3f00243d781965ea51fea9dcfd513825cd626d066bdf88d9b1e",
-      "parser_version": 2
+      "parser_version": 2,
+      "sha256": "edaf3e12d6acafec72eaa860816255162a27894c17581125215335cf5a5a6bb2",
+      "etag": "\"6118bd4b6a0f838af0c55240127af448-gzip\"",
+      "last_modified": "Fri, 16 Oct 2026 14:56:19 GMT"
     },
     "https://blog.google/technology/ai/rss/": {
-      "ok_at": "2026-10-16T12:36:25Z",
+      "ok_at": "2026-10-16T17:34:39Z",
       "failures": 0,
       "parser_version": 2,
       "sha256": "4ca4a11170d948e92b9abb8d8afd729bd9e46b89fbf611064691ecdddc4543c1"
     },
     "https://siliconangle.com/feed/": {
-      "etag": "\"c28f8bc8182052c2f61169d0c8af3373\"",
-      "last_modified": "Fri, 16 Oct 2026 04:40:40 GMT",
+      "ok_at": "2026-10-16T17:34:39Z",
       "failures": 0,
-      "ok_at": "2026-10-16T12:36:25Z",
-      "sha256": "c04831efbbdf8732cd55a14e0de8308ca9cd35937c0713bbfb68ff192495d60a",
-      "parser_version": 2
+      "parser_version": 2,
+      "sha256": "e735d6d7ea4de88a3a9cc22549e5ae22c06ada36c008b9716fb08cbbdc5f8a16",
+      "etag": "\"c4da5086fd2847249bef61470fe8a553\"",
+      "last_modified": "Fri, 16 Oct 2026 16:42:53 GMT"
     },
     "https://www.artificialintelligence-news.com/feed/": {
       "etag": "\"cd8cbe1fef0e10c2eef0af3ac2847598\"",
@@ -896,40 +897,40 @@
       "parser_version": 2
     },
     "https://www.geekwire.com/tag/artificial-intelligence/feed/": {
-      "ok_at": "2026-10-16T12:36:25Z",
+      "ok_at": "2026-10-16T17:34:39Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "8c3a8ec3507a8faf011e2db3c38c78ecbfd78312143fcb0154b359bfb312691b",
-      "etag": "W/\"35864843975d27bee19024183fa87845\"",
-      "last_modified": "Fri, 16 Oct 2026 07:01:15 GMT"
+      "sha256": "1a695130522617884aedb245daae522275c905a3621a4ea58f5002516a3f9ee2",
+      "etag": "W/\"5810497f0fd6fca0280810000f8bbda2\"",
+      "last_modified": "Fri, 16 Oct 2026 17:23:06 GMT"
     },
     "https://www.techspot.com/backend.xml": {
-      "ok_at": "2026-10-16T12:36:25Z",
+      "ok_at": "2026-10-16T17:34:39Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "c80731813c6d7ab527e1a08edcbcdf0861043290f795984108c8fd484c581fa9",
-      "etag": "W/\"a5cc89288ee581ce2a9af758b4518c1f\""
+      "sha256": "323db8a5b0aea76b35a99a65dfd7160c5728fcd922cf0475b37652e04d400e2f",
+      "etag": "W/\"d8b2595c0d3bb2f64a62e3890f573b8a\""
     },
     "https://www.sciencedaily.com/rss/computers_math/artificial_intelligence.xml": {
-      "last_modified": "Thu, 15 Oct 2026 13:11:20 GMT",
-      "failures": 0,
-      "ok_at": "2026-10-16T12:36:25Z",
-      "sha256": "f4ee5826ee0ee5e63ca5a319c66df3b65533f19065a2f6d23a9a6a01fe30f1ec",
-      "parser_version": 2
-    },
-    "https://www.tpr.org/index.rss": {
-      "ok_at": "2026-10-16T12:36:25Z",
+      "ok_at": "2026-10-16T17:34:39Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "6faabfbfde5a6d65ff56583c65d0f41f82a68c5f81332638e6a784a0d052c7ec"
+      "sha256": "bdf27e3aadaa685ac065e1d04ac6b9338e2a80774f6acad178c881e424a5167b",
+      "last_modified": "Fri, 16 Oct 2026 13:05:58 GMT"
+    },
+    "https://www.tpr.org/index.rss": {
+      "ok_at": "2026-10-16T17:34:39Z",
+      "failures": 0,
+      "parser_version": 2,
+      "sha256": "be9feb3c220f9bb5fc6d5b1857cf3a5253d10fa4d9d63f2b6163748278b8d623"
     },
     "https://www.texasobserver.org/feed/": {
-      "etag": "W/\"2f3c0e121236e7902d39057ecaf3f83f\"",
-      "last_modified": "Thu, 15 Oct 2026 14:47:10 GMT",
+      "ok_at": "2026-10-16T17:34:39Z",
       "failures": 0,
-      "ok_at": "2026-10-16T12:36:25Z",
-      "sha256": "799e0593dce134bd392b7dddf4fa9e7dd6e1c39abcb35e4ccda700a71e81a8d0",
-      "parser_version": 2
+      "parser_version": 2,
+      "sha256": "5259322b2da127e6ae3ead5ff868e08257e1b12a4b8accf179afdc9f64330ad9",
+      "etag": "W/\"c4714b229d784f4dc8bf2848e9e32da4\"",
+      "last_modified": "Fri, 16 Oct 2026 15:11:06 GMT"
     }
   }
 }
