@@ -10,7 +10,10 @@
   #rec { font-family:"JetBrains Mono", monospace; color:#cfd6dc; background:transparent; padding:34px 40px; box-sizing:border-box; z-index:6; }
   #rec .k { font-size:30px; color:#7f8a94; letter-spacing:0.02em; line-height:1.15; }
   #rec .v { font-size:36px; color:#e3e7ea; line-height:1.2; margin-bottom:14px; }
-  #rec .rem { font-size:46px; color:#f2f4f5; line-height:1.15; font-weight:700; border-left:10px solid #2A7A9E; padding-left:20px; margin-top:6px; }
+  #rec .rem { font-size:46px; color:#f2f4f5; line-height:1.15; font-weight:700; margin-top:6px; }
+  #rec .remw { border-left:18px solid #2A7A9E; padding-left:22px; }
+  #rec .remw .k { color:#2A7A9E; }
+  #rec .v { margin-bottom:22px; }
 </style>
 </head>
 <body>
@@ -21,8 +24,8 @@
 <div id="rec" data-overlap-ok>
   <div class="k">Manufacturer</div><div class="v">Waymo LLC</div>
   <div class="k">PotentialNumberofUnitsAffected</div><div class="v" id="units"></div>
-  <div class="k">Model</div><div class="v" id="gens"></div>
-  <div class="k">Remedy</div><div class="rem">The remedy is currently under development.</div>
+  <div class="k">Model</div><div class="v">5TH GENERATION ADS<br>6TH GENERATION ADS</div>
+  <div class="remw"><div class="k">Remedy</div><div class="rem">The remedy is currently under development.</div></div>
 </div>
 <script src="@@ASSETS@@/js/noise.js"></script>
 <script src="@@ASSETS@@/js/txtype.js"></script>
@@ -38,17 +41,16 @@ import { initKit } from '@@ASSETS@@/js/txkit.js';
 window.renderReady = (async () => {
   const TXT = init(THREE);
   const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "The recall record, read October 16th", counter: "08 / 09", src: "c10 c11 c12 c13", fit: { min: 66, max: 84, maxLines: 3 } });
-  /* THE RECORD'S FIELDS, from figures.json and the claims: units_affected 3791 (c13), and
-   * generations_recalled 2, one model row per generation the record names (c12). */
-  const UNITS = 3791, GENS = [5, 6];
+  /* THE RECORD'S FIELDS, from figures.json and the claims: units_affected 3791 (c13). The two Model
+   * rows are the record's own Model values, one per result it returns for 26E026 (c12). */
+  const UNITS = 3791;
   document.getElementById('units').textContent = String(UNITS);
-  document.getElementById('gens').innerHTML = GENS.map(n => n + 'TH GENERATION ADS').join('<br>');
   const R = CH.stage(TXT, gl, W, { fov: 44, far: 400 });
   /* THE ROOM turns its window wall to the deck's key (az 40), so the lamp comes in through the blinds
    * and the camera looks out past the monitor to the street */
   const YAW = Math.PI + 40 * Math.PI / 180, RW = 6, RD = 5, RH = 3;
   const room = TXT.interior(R, { w: RW, d: RD, h: RH, floor: 'concrete', wall: 0x3c3934, window: null, ceiling: true, light: 0.12 });
-  CH.cutWindow(THREE, K, room, { w: RW, d: RD, h: RH, x0: -2.6, x1: -0.3, y0: 0.9, y1: 1.85, pitch: 0.1, tilt: 0.3, slat: 0x8a8378 });
+  CH.cutWindow(THREE, K, room, { w: RW, d: RD, h: RH, x0: -2.6, x1: -0.3, y0: 0.8, y1: 1.36, pitch: 0.1, tilt: 0.3, slat: 0x8a8378 });
   room.rotation.y = YAW;
   R.scene.background = new THREE.Color(0x04060a);
   CH.matte(TXT.ground(R, { surface: 'asphalt', size: 120, seed: 21 }), 0.2);
@@ -65,12 +67,15 @@ window.renderReady = (async () => {
   /* the monitor's screen: a dark glass plane on its face, whose corners carry the record as DOM type */
   const sw = 32 * 0.0254 * 16 / Math.hypot(16, 9), sh = 32 * 0.0254 * 9 / Math.hypot(16, 9);
   const mb = new THREE.Box3().setFromObject(mon), ml = mon.worldToLocal(mb.max.clone());
-  const scr = new THREE.Mesh(new THREE.PlaneGeometry(sw, sh), new THREE.MeshStandardMaterial({ color: 0x06090c, emissive: 0x0b1620, emissiveIntensity: 1.0, roughness: 0.12 }));
-  scr.position.set(0, 0.126 + sh / 2, 0.012); scr.rotation.x = -0.06; mon.add(scr);
-  const from = CH.world(THREE, S, [0.95, 1.3, 0.1]);
+  const scr = new THREE.Mesh(new THREE.PlaneGeometry(sw, sh), new THREE.MeshStandardMaterial({ color: 0x06090c, emissive: 0x0b1620, emissiveIntensity: 1.0, roughness: 0.55 }));
+  scr.position.set(0, 0.126 + sh / 2, 0.012); scr.rotation.x = 0; mon.add(scr);
+  const from = CH.world(THREE, S, [0.78, 1.22, -0.2]);
   const tgt = CH.world(THREE, S, [0.15, 0.76 + 0.126 + sh / 2, -1.83]);
-  const look = CH.aim(THREE, R, TXT, from, tgt, 640, 985, 44);
+  const look = CH.aim(THREE, R, TXT, from, tgt, 640, 880, 44);
   TXT.frame(R, { fov: 44, from, look });
+  /* the screen's own cool glow on the desk and the papers, and the streetlight's warm pool on the car outside */
+  { const g = new THREE.PointLight(0x9fb8cc, 1.2, 2.0, 1.6); g.position.copy(new THREE.Vector3(...CH.world(THREE, S, [0.15, 0.84, -1.5]))); R.scene.add(g); }
+  { const sp = new THREE.SpotLight(0xffc98e, 260, 16, 0.6, 0.6, 1.5); sp.position.copy(new THREE.Vector3(...CH.world(THREE, S, [-11.5, 8.2, -RD / 2 - 6.5]))); sp.target.position.copy(new THREE.Vector3(...CH.world(THREE, S, [-8.6, 0, -RD / 2 - 7.5]))); R.scene.add(sp); R.scene.add(sp.target); }
   TXT.deckRig(R, CH.rigSpec(W, 14, 4096), CH.rigOpts(CH.world(THREE, S, [0, 0.8, -1.8]), { distance: 30, shadowFar: 70 }));
   TXT.weather(R, { grime: 0.15, height: 0.4 });
   const cx = CH.develop(await TXT.snapshot(R, { stage: false }), gl);

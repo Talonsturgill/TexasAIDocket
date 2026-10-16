@@ -199,7 +199,7 @@ accent: none
 job: >
   Show how the service began in February, invited riders only, from the tens of thousands across four cities who had the app, in a 60 square mile area.
 
-claims: [c5, c6, c7, c21]
+claims: [c5, c6, c21]
 numerals:
   - value_from: c21
 
@@ -316,7 +316,7 @@ accent: "#2A7A9E"
 job: >
   Draw what the federal recall record says the software may do, slow and then drive into standing water on a higher speed roadway, and that the report reached regulators eleven days after the creek.
 
-claims: [c8, c9, c18, c14]
+claims: [c8, c18, c14]
 numerals:
   - computed_by: "out/2026-10-16/compute.py, days_creek_to_recall"
 

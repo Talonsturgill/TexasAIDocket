@@ -34,6 +34,8 @@ window.renderReady = (async () => {
   const DAYS = 177, PITCH = 1.5;
   const curb = K.make('terminal_curb', { length: DAYS * PITCH + 40, bollards: false, downlights: false, seed: 3 });
   curb.position.set(-DAYS * PITCH / 2 + 10, 0, -3.2); TXT.add(R, curb);
+  /* the lobby kept below the car's paint, and the canopy columns taken down to near black, so nothing lit climbs into the type */
+  curb.traverse(m => { if (!m.isMesh || !m.material) return; if (m.material.isMeshBasicMaterial && m.material.map) { m.material = m.material.clone(); m.material.color.setHex(0x9a9a9a); } else if (m.material.metalness === 0.7 && m.geometry.type === 'CylinderGeometry' && m.geometry.parameters.height > 5) { m.material = m.material.clone(); m.material.color.setHex(0x23252a); m.material.envMapIntensity = 0.15; } });
   const car = K.make('robotaxi', { seed: 4 }); car.rotation.y = -Math.PI / 2; car.position.set(0, 0, -1.25); TXT.add(R, car);
   CH.bollards(THREE, R, K, DAYS, [2.4, 0.15, -3.55], [-1, 0, 0], PITCH, () => 'white');
   CH.matte(TXT.ground(R, { surface: 'asphalt', size: 900, seed: 16 }), 0.35);
@@ -52,7 +54,7 @@ window.renderReady = (async () => {
   TXT.stage(R, [car], { poolInner: 5, poolOuter: 16, behind: 0.5, depth: 7 });
   TXT.weather(R, { grime: 0.2, height: 0.5 });
   const cx = CH.develop(await TXT.snapshot(R), gl);
-  CH.post(cx, { a: 0.42, veil: 0.4, footWash: 0.54 });
+  CH.post(cx, { a: 0.5, pad: 110, veil: 0.4, footWash: 0.54 });
   TXDECK.finish(cx);
   return true;
 })();

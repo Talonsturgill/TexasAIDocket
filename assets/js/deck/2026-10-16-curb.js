@@ -46,7 +46,7 @@
       lift: [0.002, 0.003, 0.006],
       gain: [1.0, 1.0, 1.0],
       vignette: 0.24,
-      bloom: { threshold: 0.78, strength: 0.24, radius: 12 },
+      bloom: { threshold: 0.9, strength: 0.14, radius: 10 },
       grain: { amount: 0.02, size: 2, seed: 20261016 },
       aberration: 0,
       dither: true,
@@ -287,10 +287,13 @@
     var glass = K.mat("cf-glass", { color: 0x0b0d10, roughness: 0.1, metalness: 0.3 });
     var dark = K.mat("cf-dark", { color: 0x0e1012, roughness: 0.5 });
     var parts = [
-      [new THREE.BoxGeometry(1.86, 0.62, 4.6), white, [0, 0.52, 0]],
-      [new THREE.BoxGeometry(1.66, 0.42, 2.7), glass, [0, 1.04, -0.2]],
-      [new THREE.BoxGeometry(1.6, 0.06, 2.5), white, [0, 1.27, -0.25]],
-      [new THREE.CylinderGeometry(0.17, 0.17, 0.32, 12), dark, [0, 1.46, -0.22]],
+      [new THREE.BoxGeometry(1.86, 0.55, 4.6), white, [0, 0.48, 0]],
+      [new THREE.BoxGeometry(1.66, 0.42, 2.2), glass, [0, 1.0, -0.45]],
+      [new THREE.BoxGeometry(1.6, 0.5, 0.06).rotateX(-0.5), glass, [0, 0.98, 0.78]],
+      [new THREE.BoxGeometry(1.6, 0.06, 2.1), white, [0, 1.23, -0.45]],
+      [new THREE.BoxGeometry(1.7, 0.28, 0.06), dark, [0, 0.55, 2.31]],
+      [new THREE.CylinderGeometry(0.17, 0.17, 0.32, 12), dark, [0, 1.42, -0.45]],
+      [new THREE.SphereGeometry(0.09, 10, 8), new THREE.MeshBasicMaterial({ color: 0xfff2d8, toneMapped: false }), [0, 1.62, -0.45]],
       [new THREE.CylinderGeometry(0.33, 0.33, 1.9, 12).rotateZ(Math.PI / 2), dark, [0, 0.33, 1.45]],
       [new THREE.CylinderGeometry(0.33, 0.33, 1.9, 12).rotateZ(Math.PI / 2), dark, [0, 0.33, -1.45]]
     ];
@@ -477,6 +480,10 @@
   };
   /* a DOM leader from a label's edge to a projected point, ending short of the glyphs */
   N.leader = function (svg, from, to) {
+    /* a dark under-stroke first, so the line holds where it crosses the white paint */
+    var u = document.createElementNS("http://www.w3.org/2000/svg", "line");
+    u.setAttribute("x1", from[0]); u.setAttribute("y1", from[1]); u.setAttribute("x2", to[0]); u.setAttribute("y2", to[1]);
+    u.setAttribute("stroke", "#07080C"); u.setAttribute("stroke-width", "5"); u.setAttribute("stroke-opacity", "0.6"); svg.appendChild(u);
     var l = document.createElementNS("http://www.w3.org/2000/svg", "line");
     l.setAttribute("x1", from[0]); l.setAttribute("y1", from[1]); l.setAttribute("x2", to[0]); l.setAttribute("y2", to[1]);
     l.setAttribute("stroke", N.INK); l.setAttribute("stroke-width", "2"); l.setAttribute("stroke-opacity", "0.85"); svg.appendChild(l);

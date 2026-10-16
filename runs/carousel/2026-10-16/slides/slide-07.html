@@ -39,7 +39,7 @@ window.renderReady = (async () => {
    * post per day from February 24th (c5) to October 14th (c1) inclusive. creek_post_index 55 is April
    * 20th (c15), the comal band; recall_post_index 66 is May 1st (c14). The posts after the creek post
    * are lit: days_creek_to_open 177, which this code counts back as a check. */
-  const ROWS = [5, 31, 30, 31, 30, 31, 31, 30, 14], FIRST_DAY = 24, CREEK = 55, RECALL = 66, P = 0.78, GAPZ = 2.3;
+  const ROWS = [5, 31, 30, 31, 30, 31, 31, 30, 14], FIRST_DAY = 24, CREEK = 55, RECALL = 66, P = 0.5, GAPZ = 3.0;
   const lit = new THREE.Group(), dark = new THREE.Group(); R.scene.add(lit); R.scene.add(dark);
   let idx = 0, litCount = 0; const at = {};
   ROWS.forEach((n, r) => {
@@ -53,24 +53,24 @@ window.renderReady = (async () => {
     }
   });
   if (litCount !== 177) throw new Error('lit posts ' + litCount + ' disagree with days_creek_to_open');
-  const car = K.make('robotaxi', { seed: 4 }); car.rotation.y = Math.PI / 2; car.position.set(at.oct[0] + 3.0, 0, at.oct[2] + 0.2); TXT.add(R, car);
+  const car = K.make('robotaxi', { seed: 4 }); car.rotation.y = Math.PI / 2; car.position.set(at.oct[0] + 2.4, 0, at.oct[2] + 0.2); TXT.add(R, car);
   /* a comal ring on the apron at the April 20th post, the water line's day */
-  { const ring = new THREE.Mesh(new THREE.RingGeometry(0.4, 2.1, 56), new THREE.MeshBasicMaterial({ color: CH.ACCENT, toneMapped: false })); ring.rotation.x = -Math.PI / 2; ring.position.set(at.apr[0], 0.01, at.apr[2]); R.scene.add(ring); }
+  { const ring = new THREE.Mesh(new THREE.RingGeometry(0.9, 2.4, 64), new THREE.MeshBasicMaterial({ color: CH.ACCENT, toneMapped: false })); ring.rotation.x = -Math.PI / 2; ring.position.set(at.apr[0], 0.01, at.apr[2]); R.scene.add(ring); }
   CH.matte(TXT.ground(R, { surface: 'asphalt', size: 900, seed: 18 }), 0.3);
   /* the apron, a sealed near black pad laid over the ground, so each month's row stands apart at feed width */
   { const pad = new THREE.Mesh(new THREE.PlaneGeometry(420, 420), new THREE.MeshBasicMaterial({ color: 0x060607 })); pad.rotation.x = -Math.PI / 2; pad.position.set(12, 0.003, -9); pad.receiveShadow = true; pad.userData.txWear = false; R.scene.add(pad); }
   /* the lit span: a lamp over the field from the April 20th post forward, so the dark days and the lit days split at the comal post */
-  { const L = new THREE.SpotLight(0xffd6aa, 2600, 60, 0.42, 0.35, 1.4); L.position.set(12, 26, at.may[2] + 9); L.target.position.set(12, 0, at.may[2] + 6.4); L.castShadow = true; L.shadow.mapSize.set(2048, 2048); R.scene.add(L); R.scene.add(L.target); }
+  { const L = new THREE.SpotLight(0xffd6aa, 2600, 60, 0.42, 0.35, 1.4); L.position.set(7.5, 26, at.may[2] + 9); L.target.position.set(7.5, 0, at.may[2] + 6.4); L.castShadow = true; L.shadow.mapSize.set(2048, 2048); R.scene.add(L); R.scene.add(L.target); }
   TXT.contact(R, car);
-  const from = [11.6, 13, 19];
-  const look = CH.aim(THREE, R, TXT, from, [11.6, 0.5, -9], 540, 860, 50);
+  const from = [7.5, 13, 19];
+  const look = CH.aim(THREE, R, TXT, from, [7.5, 0.5, -9], 540, 860, 50);
   TXT.frame(R, { fov: 50, from, look });
   TXT.sky(R);
-  TXT.deckRig(R, CH.rigSpec(W, 40, 4096), CH.rigOpts([15.5, 0, -10], { distance: 60, shadowFar: 160 }));
+  TXT.deckRig(R, CH.rigSpec(W, 40, 4096), CH.rigOpts([10, 0, -10], { distance: 60, shadowFar: 160 }));
   TXT.stage(R, [lit, car], { pool: false });
   TXT.weather(R, { grime: 0.2, height: 0.5 });
   const cx = CH.develop(await TXT.snapshot(R), gl);
-  CH.labelAt('lFeb', [at.feb[0] + 4 * P, at.feb[1], at.feb[2]], 26, -40); const sA = CH.labelAt('lApr', at.apr, -150, -150); CH.labelAt('lMay', at.may, 10, -46); CH.labelAt('lOct', at.oct, -150, 84);
+  CH.labelAt('lFeb', [at.feb[0] + 4 * P, at.feb[1], at.feb[2]], 26, -40); const sA = CH.labelAt('lApr', at.apr, -150, -150); CH.labelAt('lMay', at.may, 10, -46); CH.labelAt('lOct', at.oct, -230, 84);
   { const el = document.getElementById('lApr').getBoundingClientRect(), tip = [Math.round(sA[0]), Math.round(sA[1] - 18)]; CH.leader(document.getElementById('ld'), [Math.round(el.left + el.width / 2), Math.round(el.bottom + 6)], tip); window.__txLeaders = [{ target: "the April 20th post's band", at: tip, to: tip }]; }
   CH.post(cx, { a: 0.4, veil: 0.4, footWash: 0.54 });
   TXDECK.finish(cx);
