@@ -1,0 +1,72 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.5,
+   "why": "Rendered, dark, single accent; 9 the best. Frame 3 has a flat black plane cutting the car with no brown water, ledge or bank. Frame 5's instances are box slabs between black aisles. Frame 4's water reads as a hole. Frame 2 is flat side-on with a pale orange wash. The hero is a boxy kit SUV."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "One car, one world, one accent, one dark register; two devices work; frames 7 and 8 sit slightly outside the street world."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.0,
+   "why": "Every numeral traces. Slide 4's hook turns the record's may into an event resting on TPR's paraphrase; the deck never says service came back before October 14th; slide 9 gives Saenz's statement to the airport; #BexarCounty names a county no claim carries; the blue band is a ground ring."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.3,
+   "why": "What, who, where and the stake named; the next step general; 26E026 only in the first comment; May 1st unexplained; no resumption."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.3,
+   "why": "Cover earns the swipe, turn at 3 lands, 4 to 8 build, the close soft."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.3,
+   "why": "Clean, specific, attributed; several flat lines; little Texas texture beyond place names."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.3,
+   "why": "No. 50's San Antonio night flood world four days earlier; one object per day and one per unit fields repeat recent decks."
+  }
+ ],
+ "weighted_score": 6.988,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Put TPR's May 10th report that Waymo was set to return on frame 6 and in the caption so 177 days can't read as a shutdown.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 3,
+   "problem": "Car sunk in a flat black void; no ledges, brown water or bank; dead zone below the waterline.",
+   "fix": "Pale limestone ledges 6 to 10 m behind lit by the bank lamp; water brown at about 0.7 opacity with the ripple catching the lamp across the doors."
+  },
+  {
+   "slide": 5,
+   "problem": "Box slabs with a dome dot; wide black aisles.",
+   "fix": "Lower the camera to about 9 m with a longer lens; bevel the low detail bodies and rake the windshield."
+  },
+  {
+   "slide": 4,
+   "problem": "Opaque black rectangle reads as a hole; green verge band.",
+   "fix": "Two streetlights behind the median mirrored as streaks; the sheet across both lanes with a comal edge."
+  },
+  {
+   "slide": 2,
+   "problem": "Flat side-on car on a pale orange wash; mid tone near half.",
+   "fix": "Camera at 1.0 m swung 20 degrees to a front three-quarter; a tight pool on the car, rider and curb."
+  }
+ ]
+}

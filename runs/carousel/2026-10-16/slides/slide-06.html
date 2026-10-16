@@ -13,7 +13,7 @@
 <canvas id="art" width="2160" height="2700"></canvas>
 <div class="tx-site" id="site">texasaidocket.com</div>
 <h1 class="hook" id="hook">The cars ran<br>without riders</h1>
-<p class="dek" data-follow="26">Texas Public Radio called the flood pause Waymo's longest in San Antonio to date. In May its cars ran in the city without serving riders while it reviewed its flood procedures. Drawn&nbsp;to&nbsp;illustrate.</p>
+<p class="dek" data-follow="26">Texas Public Radio called the flood pause Waymo's longest in San Antonio to date. On May&nbsp;10th it reported service was expected to resume that week. On May&nbsp;13th it reported the cars were running without riders. Drawn&nbsp;to&nbsp;illustrate.</p>
 <script src="@@ASSETS@@/js/noise.js"></script>
 <script src="@@ASSETS@@/js/txtype.js"></script>
 <script src="@@ASSETS@@/js/txcolor.js"></script>
@@ -27,7 +27,7 @@ import { init } from '@@ASSETS@@/js/txthree.js';
 import { initKit } from '@@ASSETS@@/js/txkit.js';
 window.renderReady = (async () => {
   const TXT = init(THREE);
-  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "San Antonio, the pause", counter: "06 / 09", src: "c22 c23 c20", fit: { min: 76, max: 96, maxLines: 2 } });
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "San Antonio, the pause", counter: "06 / 09", src: "c22 c26 c20", fit: { min: 76, max: 96, maxLines: 2 } });
   const R = CH.stage(TXT, gl, W, { fov: 30, far: 3000 });
   /* THE WATER: a still sheet across the road, its far edge the frame's cut. The car stands on dry
    * asphalt just past it, and a mirrored twin under the sheet is its reflection. */
@@ -62,7 +62,8 @@ window.renderReady = (async () => {
   TXT.frame(R, { fov: 30, from, look });
   { const sp = new THREE.SpotLight(0xffd6aa, 420, 20, 0.7, 0.6, 1.4); sp.position.set(3.4, H + 8.8, EDGE - 5.2); sp.target.position.set(0.5, H, EDGE - 2.6); sp.castShadow = true; sp.shadow.mapSize.set(2048, 2048); R.scene.add(sp); R.scene.add(sp.target); }
   TXT.sky(R);
-  TXT.deckRig(R, CH.rigSpec(W, 24, 4096), CH.rigOpts([0, H + 0.8, EDGE - 3], { distance: 40, shadowFar: 120 }));
+  { const spec = CH.rigSpec(W, 24, 4096); spec.rim = Object.assign({}, spec.rim, { i: spec.rim.i * 0.35 }); var RIG6 = spec; }
+  TXT.deckRig(R, RIG6, CH.rigOpts([0, H + 0.8, EDGE - 3], { distance: 40, shadowFar: 120 }));
   TXT.stage(R, [car], { poolInner: 4, poolOuter: 12, behind: 1.2, depth: 6 });
   TXT.weather(R, { grime: 0.2, height: 0.5 });
   const cx = CH.develop(await TXT.snapshot(R), gl);

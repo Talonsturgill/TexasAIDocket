@@ -440,7 +440,7 @@ accent: "#2A7A9E"
 job: >
   Hold the pause, the longest in San Antonio, while Waymo reviewed its flood procedures and the cars ran without riders.
 
-claims: [c22, c23, c20]
+claims: [c22, c26, c20]
 numerals: []
 
 depth:
@@ -468,7 +468,7 @@ art:
 
 type:
   hook: "The cars ran without riders"
-  dek: "Texas Public Radio called the flood pause Waymo's longest in San Antonio to date. In May its cars ran in the city without serving riders while it reviewed its flood procedures. Drawn to illustrate."
+  dek: "Texas Public Radio called the flood pause Waymo's longest in San Antonio to date. On May 10th it reported service was expected to resume that week. On May 13th it reported the cars were running without riders. Drawn to illustrate."
   labels: []
 
 verbatim: []
@@ -532,7 +532,7 @@ art:
 
 type:
   hook: "177 days from the creek to the curb"
-  dek: "One post for each day from February 24th to October 14th, a row for each month. The blue band is April 20th. The posts lit after it count the days until the service opened to everyone with the app."
+  dek: "One post for each day from February 24th to October 14th, a row for each month. The blue ring is April 20th. The posts lit after it count the days until the service opened to everyone with the app."
   labels: ["February", "April 20th", "May 1st", "October 14th"]
 
 verbatim: []
@@ -658,7 +658,7 @@ art:
 
 type:
   hook: "Anyone can ride. Anyone can read the remedy field"
-  dek: "The airport called the rides a new option to get there. NHTSA's recall record for Waymo LLC is public, and its remedy field still reads under development. Drawn to illustrate."
+  dek: "The city's airports director called the rides a new option to get there. NHTSA's recall record for Waymo LLC is public, and its remedy field still reads under development. Drawn to illustrate."
   labels: []
 
 verbatim: []

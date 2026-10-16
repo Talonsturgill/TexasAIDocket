@@ -3,7 +3,7 @@
  "carousel_no": 52,
  "document_title": "Anyone can ride Waymo to the San Antonio airport now. The flood fix is still listed in development",
  "_note": "Slide strings read off the render report's text nodes and each frame's own source line by build_copy.py.",
- "caption": "A car with no driver now goes to San Antonio International.\n\nFrom October 14th anyone with the Waymo app can hail one in San Antonio, the airport included. Airports director Jesus Saenz said travelers now have \"a new option to get there.\"\n\nIt is the same service that paused after the April flooding. Texas Public Radio reported an empty Waymo washed into Salado Creek in heavy rain on April 20th. Nobody was hurt.\n\nThe federal recall record says the software \"may allow the vehicle to slow and then drive into standing water on higher speed roadways.\" It lists 3,791 potentially affected units.\n\nRead on October 16th, the record still lists the remedy as under development. Waymo's interim step was tighter weather limits and updated maps. NHTSA's recall lookup carries the remedy field under Waymo LLC. What will the finished remedy change at the water's edge?\n\n#BexarCounty #Waymo #NHTSA",
+ "caption": "A car with no driver now goes to San Antonio International.\n\nFrom October 14th anyone with the Waymo app can hail one in San Antonio, the airport included. Airports director Jesus Saenz said travelers now have \"a new option to get there.\"\n\nIt is the same service that paused after the April flooding. Texas Public Radio reported an empty Waymo washed into Salado Creek in heavy rain on April 20th. Nobody was hurt.\n\nThe federal recall record says the software \"may allow the vehicle to slow and then drive into standing water on higher speed roadways.\" It lists 3,791 potentially affected units.\n\nRead on October 16th, the record still lists the remedy as under development. Waymo's interim step was tighter weather limits and updated maps. NHTSA's recall lookup carries the remedy field under Waymo LLC. What will the finished remedy change at the water's edge?\n\n#SanAntonio #Waymo #NHTSA",
  "slides": {
   "S1": {
    "n": 1,
@@ -127,19 +127,19 @@
    "headline": "The cars ran without riders",
    "claims": [
     "c22",
-    "c23",
+    "c26",
     "c20"
    ],
-   "cite": "c22 c23 c20",
-   "body": "Texas Public Radio called the flood pause Waymo's longest in San Antonio to date. In May its cars ran in the city without serving riders while it reviewed its flood procedures. Drawn to illustrate.",
+   "cite": "c22 c26 c20",
+   "body": "Texas Public Radio called the flood pause Waymo's longest in San Antonio to date. On May 10th it reported service was expected to resume that week. On May 13th it reported the cars were running without riders. Drawn to illustrate.",
    "labels": [],
    "strings": [
     "texasaidocket.com",
     "The cars ran without riders",
-    "Texas Public Radio called the flood pause Waymo's longest in San Antonio to date. In May its cars ran in the city without serving riders while it reviewed its flood procedures. Drawn to illustrate.",
+    "Texas Public Radio called the flood pause Waymo's longest in San Antonio to date. On May 10th it reported service was expected to resume that week. On May 13th it reported the cars were running without riders. Drawn to illustrate.",
     "San Antonio, the pause",
     "06 / 09",
-    "c22 c23 c20"
+    "c22 c26 c20"
    ]
   },
   "S7": {
@@ -154,7 +154,7 @@
     "c1"
    ],
    "cite": "c5 c15 c14 c1",
-   "body": "One post for each day from February 24th to October 14th, a row for each month. The blue band is April 20th. The posts lit after it count the days until the service opened to everyone with the app.",
+   "body": "One post for each day from February 24th to October 14th, a row for each month. The blue ring is April 20th. The posts lit after it count the days until the service opened to everyone with the app.",
    "labels": [
     "February",
     "April 20th",
@@ -164,7 +164,7 @@
    "strings": [
     "texasaidocket.com",
     "177 days from the creek to the curb",
-    "One post for each day from February 24th to October 14th, a row for each month. The blue band is April 20th. The posts lit after it count the days until the service opened to everyone with the app.",
+    "One post for each day from February 24th to October 14th, a row for each month. The blue ring is April 20th. The posts lit after it count the days until the service opened to everyone with the app.",
     "February",
     "April 20th",
     "May 1st",
@@ -216,12 +216,12 @@
     "c10"
    ],
    "cite": "c3 c1 c10",
-   "body": "The airport called the rides a new option to get there. NHTSA's recall record for Waymo LLC is public, and its remedy field still reads under development. Drawn to illustrate.",
+   "body": "The city's airports director called the rides a new option to get there. NHTSA's recall record for Waymo LLC is public, and its remedy field still reads under development. Drawn to illustrate.",
    "labels": [],
    "strings": [
     "texasaidocket.com",
     "Anyone can ride. Anyone can read the remedy field",
-    "The airport called the rides a new option to get there. NHTSA's recall record for Waymo LLC is public, and its remedy field still reads under development. Drawn to illustrate.",
+    "The city's airports director called the rides a new option to get there. NHTSA's recall record for Waymo LLC is public, and its remedy field still reads under development. Drawn to illustrate.",
     "San Antonio International, the curb",
     "09 / 09",
     "c3 c1 c10"

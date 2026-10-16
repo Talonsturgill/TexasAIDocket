@@ -70,9 +70,9 @@ window.renderReady = (async () => {
   const mb = new THREE.Box3().setFromObject(mon), ml = mon.worldToLocal(mb.max.clone());
   const scr = new THREE.Mesh(new THREE.PlaneGeometry(sw, sh), new THREE.MeshStandardMaterial({ color: 0x020304, emissive: 0x0b1620, emissiveIntensity: 1.0, roughness: 0.9 }));
   scr.position.set(0, 0.126 + sh / 2, 0.012); scr.rotation.x = 0; mon.add(scr);
-  const from = CH.world(THREE, S, [0.78, 1.22, -0.2]);
+  const from = CH.world(THREE, S, [0.7, 1.18, -0.42]);
   const tgt = CH.world(THREE, S, [0.15, 0.76 + 0.126 + sh / 2, -1.83]);
-  const look = CH.aim(THREE, R, TXT, from, tgt, 640, 880, 44);
+  const look = CH.aim(THREE, R, TXT, from, tgt, 620, 840, 44);
   TXT.frame(R, { fov: 44, from, look });
   /* the streetlight's warm pool on the car outside */
   { const sp = new THREE.SpotLight(0xffc98e, 2400, 16, 0.6, 0.6, 1.5); sp.position.copy(new THREE.Vector3(...CH.world(THREE, S, [-17.5, 8.2, -RD / 2 - 14]))); sp.target.position.copy(new THREE.Vector3(...CH.world(THREE, S, [-15, 0, -RD / 2 - 15]))); R.scene.add(sp); R.scene.add(sp.target); }

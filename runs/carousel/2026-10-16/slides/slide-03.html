@@ -34,9 +34,10 @@ window.renderReady = (async () => {
   /* THE CAR across the current, nose a little down, standing on the bed; the flood stands 0.85 m over it */
   const cz = -4, bedY = hAt(0, cz), WL = bedY + 0.85;
   const car = K.make('robotaxi', { seed: 4 }); car.rotation.set(0, Math.PI / 2 - 0.22, 0.03); car.position.set(1.2, bedY - 0.05, cz); TXT.add(R, car);
+  car.traverse(m => { if (m.isMesh && m.material && m.material.metalness === 0.55) { m.material = m.material.clone(); m.material.envMapIntensity = 0.6; } });
   /* THE FLOOD: an opaque brown sheet with a rippled clearcoat, so the lamp smears on it and the body under it is gone */
   const rip = CH.rippleTex(THREE); rip.repeat.set(16, 34);
-  const water = new THREE.Mesh(new THREE.PlaneGeometry(26, 70), new THREE.MeshPhysicalMaterial({ color: 0x2e2518, roughness: 0.2, clearcoat: 0.5, clearcoatRoughness: 0.25, bumpMap: rip, bumpScale: 1.0, envMapIntensity: 1.2 }));
+  const water = new THREE.Mesh(new THREE.PlaneGeometry(26, 70), new THREE.MeshPhysicalMaterial({ color: 0x5b4a33, roughness: 0.16, clearcoat: 0.6, clearcoatRoughness: 0.2, bumpMap: rip, bumpScale: 1.2, envMapIntensity: 1.2 }));
   water.rotation.x = -Math.PI / 2; water.position.set(0, WL, 0); water.receiveShadow = true; water.userData.txWear = false; R.scene.add(water);
   /* THE WATERLINE: a comal line where the water meets the paint, round the body at the water's height */
   { const g = new THREE.Group(), m = new THREE.MeshBasicMaterial({ color: CH.ACCENT, toneMapped: false }), w = 1.80, l = 4.5, t = 0.03;
@@ -46,6 +47,8 @@ window.renderReady = (async () => {
   [['pecan', -12, -22, 3], ['live_oak', 10, -18, 5], ['pecan', 14, -30, 6], ['live_oak', -15, -9, 2]].forEach(t => { const tr = K.make(t[0], { seed: t[3] }); tr.position.set(t[1], hAt(t[1], t[2]), t[2]); TXT.add(R, tr); CH.matte(tr, 0.01); tr.traverse(m => { if (m.isMesh && m.material && m.material.color) { m.material = m.material.clone(); m.material.color.multiplyScalar(0.05); } }); });
   /* a warm bounce off the bank onto the shadowed flank, so the paint stays white in shadow */
   { const f = new THREE.PointLight(0xffc890, 40, 8, 1.6); f.position.set(-3.5, WL + 1.2, cz + 3); R.scene.add(f); }
+  /* the far bank's pale limestone ledges, stepped slabs in the bank lamp's cone behind the car */
+  { const lm = new THREE.MeshStandardMaterial({ color: 0xffffff, map: K.tex('limestone'), roughness: 0.92 }); [[-6, 0.0, 3.2], [-2.2, 0.35, 2.6], [1.8, 0.1, 3.6], [5.6, 0.45, 2.8]].forEach(([x, dy, w], i) => { const sl = TXT.roundedBox(w, 0.55, 1.4, 0.08, lm); sl.position.set(x, WL + 0.15 + dy, cz - 8.5 - (i % 2) * 0.8); sl.rotation.y = (i - 1.5) * 0.08; R.scene.add(sl); }); }
   const lamp = K.make('streetlight', { height: 5.5, reach: 1.6 }); lamp.position.set(5, hAt(5, -22), -22); lamp.rotation.y = -Math.PI / 2 - 0.4; TXT.add(R, lamp);
   CH.matte(TXT.ground(R, { surface: 'grass', size: 600, seed: 23 }), 0.2);
   const from = [0.4, WL + 0.35, 3.8];
