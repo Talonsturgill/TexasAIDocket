@@ -26,3 +26,6 @@ inputs before the encoder writes or removes an image. The replay uses ordinary f
 The native crop regression reconstructs a complete 2160x2700 image exactly from its six tiles,
 then rejects changed frames, changed tiles and incomplete coverage. The reviewer brief reads
 the real Texas YAML dossiers and sends their craft and lower-third plans with the crops.
+The receipt refresh preserves cover and evidence reviews when only the close's helper changes,
+and refreshes all three when their shared chassis changes. Timing reports reject missing phase
+stamps, and the renderer rejects buffers extending outside the visible canvas.

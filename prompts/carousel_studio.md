@@ -64,8 +64,10 @@ visual consequence, weakness and repair, plus these fields on each frame.
 }
 ```
 
-The initial manifest lists the digests. `frame_inputs()` in art_preflight.py selects each
-frame's map. Accept only after viewing the rendered evidence. A boxy dominant model, an
+The initial manifest lists the digests and a `frame_inputs` map keyed by slide number. Copy
+that frame's map into its review; it includes only assets its HTML actually references. A
+chassis used by all three still binds all three; a helper used only by the close binds the
+close. Accept only after viewing the rendered evidence. A boxy dominant model, an
 unreadable water effect or an image whose data encoding needs the caption is a failed audition.
 After one unsuccessful repair, choose a more feasible treatment or change the representation
 before building six more dependent frames. Do not spend late panel rounds on an engine effect

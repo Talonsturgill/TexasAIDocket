@@ -18,6 +18,7 @@
  *   specular, ambColor: [r, g, b] tints the ambient. All three default to the old behaviour (1, white, white).
  *   dither: true adds half an 8-bit step of per-pixel offset before quantising (off by default).
  *
+ * The relief buffer must stay inside the canvas; crop a subject through the height function at that edge.
  * Height is evaluated once per device pixel into a buffer. Normals are a Sobel of that buffer. Cavity occlusion
  * compares each height with a box-blurred copy. The cast is a march from each pixel toward the key across the
  * buffer, with a penumbra from the closest miss. Everything is deterministic. Text never goes here.
@@ -47,7 +48,11 @@
       o = Object.assign({}, o, {light});
     }
     const started = global.performance ? performance.now() : 0;
-    const sc = o.scale || 2, X0 = Math.round(o.x * sc), Y0 = Math.round(o.y * sc), W = Math.round(o.w * sc), H = Math.round(o.h * sc);
+    const sc = o.scale == null ? 2 : o.scale;
+    if (!Number.isFinite(sc) || sc <= 0) throw new Error("TXBENCH needs a positive finite scale");
+    const X0 = Math.round(o.x * sc), Y0 = Math.round(o.y * sc), W = Math.round(o.w * sc), H = Math.round(o.h * sc);
+    if (![X0, Y0, W, H].every(Number.isFinite) || W < 1 || H < 1 || X0 < 0 || Y0 < 0 ||
+        X0 + W > cx.canvas.width || Y0 + H > cx.canvas.height) throw new Error("TXBENCH bounds must fit the visible canvas");
     const hb = new Float32Array(W * H), mb = new Uint8Array(W * H);
     const materials = new Set(); let hMin = Infinity, casts = 0;
     for (let j = 0; j < H; j++) for (let i = 0; i < W; i++) {

@@ -2,6 +2,8 @@
 from __future__ import annotations
 
 import datetime as dt
+import contextlib
+import io
 import json
 from pathlib import Path
 import re
@@ -9,6 +11,7 @@ import shutil
 import sys
 import tempfile
 import unittest
+from unittest import mock
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts/carousel"))
@@ -32,6 +35,8 @@ class Studio(unittest.TestCase):
             self.assertIn(field, audition)
         wake = prompt.split("Stamp the run's first real checkpoint", 1)[1].split("1. Point git", 1)[0]
         self.assertTrue(set(re.findall(r"`([a-z_]+)`", wake)).issubset(studio_clock.CHECKPOINTS))
+        self.assertNotIn("Both critics run on every round", prompt)
+        self.assertIn("Never start a second whole-deck flow pass", prompt)
 
     def test_clock_resumes_without_restarting(self):
         with tempfile.TemporaryDirectory(dir=ROOT / "out") as tmp:
@@ -43,6 +48,27 @@ class Studio(unittest.TestCase):
             studio_clock.stamp(path, "wake", start + dt.timedelta(hours=1))
             doc = studio_clock.stamp(path, "art_done", start + dt.timedelta(minutes=70))
             self.assertEqual(studio_clock.elapsed(doc)["art_done"], 70)
+
+    def test_clock_report_refuses_missing_checkpoints(self):
+        with tempfile.TemporaryDirectory(dir=ROOT / "out") as tmp:
+            path = Path(tmp) / "out/2026-10-17/studio_clock.json"
+            start = dt.datetime(2026, 10, 17, 6, tzinfo=dt.timezone.utc)
+            studio_clock.stamp(path, "wake", start)
+            with mock.patch.object(studio_clock, "ROOT", Path(tmp)), mock.patch.object(
+                    sys, "argv", ["studio_clock.py", "--date", "2026-10-17", "--report"]):
+                error = io.StringIO()
+                with contextlib.redirect_stderr(error), self.assertRaises(SystemExit) as exit_code:
+                    studio_clock.main()
+                self.assertEqual(exit_code.exception.code, 1)
+                for name in studio_clock.CHECKPOINTS[1:]:
+                    self.assertIn(name, error.getvalue())
+                for minute, name in enumerate(studio_clock.CHECKPOINTS[1:], 1):
+                    studio_clock.stamp(path, name, start + dt.timedelta(minutes=minute))
+                output = io.StringIO()
+                with contextlib.redirect_stdout(output):
+                    self.assertEqual(studio_clock.main(), 0)
+                self.assertEqual(set(json.loads(output.getvalue())["elapsed_minutes_from_wake"]),
+                                 set(studio_clock.CHECKPOINTS))
 
     def test_relief_cannot_pass_on_an_import_or_flat_pixels(self):
         source = '<script src="@@ASSETS@@/js/txbench.js"></script> TXBENCH.relief(cx, opts);'
@@ -130,7 +156,7 @@ class Studio(unittest.TestCase):
                     "build_risk": "The bank must remain visible", "distinct_from_recent": "Measured relief"}
             review = {"decision": "accept", "inputs": digests, "frames": [
                 {"slide": n, "role": role, "subject": "the actual subject", "visual_consequence": "the distinction reads",
-                 "weakness": "none observed", "repair": "none required", "inputs": art.frame_inputs(digests, n),
+                 "weakness": "none observed", "repair": "none required", "inputs": art.frame_inputs(digests, n, base),
                  "encoding_reads": True, "dominant_subject_finished": True, "feed_legible": True}
                 for n, role in zip(selected, art.ROLES)]}
             record = {"version": 2, "selected": selected, "inputs": digests, "plan": plan, "review": review}
@@ -151,10 +177,59 @@ class Studio(unittest.TestCase):
             self.assertIn("frame 9", problems)
             self.assertNotIn("frame 1:", problems)
             self.assertNotIn("frame 3:", problems)
-            review["frames"][-1]["inputs"] = art.frame_inputs(record["inputs"], 9)
+            review["frames"][-1]["inputs"] = art.frame_inputs(record["inputs"], 9, base)
             review["frames"][-1]["dominant_subject_finished"] = False
             save()
             self.assertIn("dominant_subject_finished", " ".join(art.check(base)))
+
+    def test_asset_change_rechecks_only_frames_that_use_it(self):
+        from PIL import Image
+        with tempfile.TemporaryDirectory(dir=ROOT / "out") as tmp:
+            base = Path(tmp) / "2026-10-17"
+            assets = base / "assets"
+            for folder in (base / "slides", base / "render", assets / "js"):
+                folder.mkdir(parents=True)
+            shared = assets / "js/shared.js"
+            private = assets / "js/close.js"
+            shared.write_text("shared chassis")
+            private.write_text("close helper")
+            for n in (1, 3, 9):
+                html = '<script src="@@ASSETS@@/js/shared.js"></script>'
+                if n == 9:
+                    html += '<script src="@@ASSETS@@/js/close.js"></script>'
+                (base / "slides" / f"slide-{n:02}.html").write_text(html)
+                Image.new("RGB", (64, 80), "navy").save(base / "render" / f"slide-{n:02}.png")
+            (base / "render/render_report.json").write_text('{"slides": []}')
+            (base / "art_plan.json").write_text(json.dumps({"hardest_frame": 3,
+                "visual_argument": "A measured distinction", "build_risk": "Light and texture",
+                "distinct_from_recent": "A new physical scale"}))
+            record_path = base / "art_preflight.json"
+            def accept():
+                record = json.loads(record_path.read_text())
+                record["review"] = {"decision": "accept", "inputs": record["inputs"], "frames": [
+                    {"slide": n, "role": role, "subject": "finished subject", "visual_consequence": "the distinction reads",
+                     "weakness": "none observed", "repair": "none required", "inputs": record["frame_inputs"][str(n)],
+                     "encoding_reads": True, "dominant_subject_finished": True, "feed_legible": True}
+                    for n, role in zip((1, 3, 9), art.ROLES)]}
+                record_path.write_text(json.dumps(record))
+                return record
+            # Isolate the receipt refresh from the independently exercised render/value gates.
+            with mock.patch("panel_ready.check_renders_current", return_value=[]), mock.patch(
+                    "panel_ready.load_machine_qa", return_value=({"verdict": "PASS"}, [])), mock.patch(
+                    "value_register.frame_stats", return_value={}), mock.patch("value_register.judge", return_value=[]):
+                art.build(base, None, assets)
+                old = accept()
+                self.assertNotIn("assets/js/close.js", old["frame_inputs"]["1"])
+                self.assertIn("assets/js/close.js", old["frame_inputs"]["9"])
+                private.write_text("changed close helper")
+                art.build(base, None, assets)
+                refreshed = json.loads(record_path.read_text())
+                self.assertEqual(refreshed["needs_review"], [9])
+                self.assertEqual(refreshed["review"]["frames"], old["review"]["frames"][:2])
+                accept()
+                shared.write_text("changed shared chassis")
+                art.build(base, None, assets)
+                self.assertEqual(json.loads(record_path.read_text())["needs_review"], [1, 3, 9])
 
     def test_a_built_interior_does_not_need_an_artificial_sky(self):
         with tempfile.TemporaryDirectory(dir=ROOT / "out") as tmp:

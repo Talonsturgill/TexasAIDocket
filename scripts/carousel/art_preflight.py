@@ -26,6 +26,11 @@ def sha(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+def asset_paths(html: Path) -> set[str]:
+    return {"assets/" + rel for rel in re.findall(
+        r"@@ASSETS@@/(js/(?:[A-Za-z0-9_-]+/)*[A-Za-z0-9_.-]+\.js)", html.read_text())}
+
+
 def inputs(base: Path, selected: list[int], assets: Path) -> dict:
     files = {}
     for n in selected:
@@ -34,8 +39,8 @@ def inputs(base: Path, selected: list[int], assets: Path) -> dict:
         for path in (html, png):
             files[str(path.relative_to(base))] = sha(path)
         # Shared renderers and the chassis can change pixels without changing the HTML.
-        for rel in re.findall(r"@@ASSETS@@/(js/(?:[A-Za-z0-9_-]+/)*[A-Za-z0-9_.-]+\.js)", html.read_text()):
-            files["assets/" + rel] = sha(assets / rel)
+        for name in sorted(asset_paths(html)):
+            files[name] = sha(assets / name.removeprefix("assets/"))
     return files
 
 
@@ -60,12 +65,13 @@ def review_problems(review: dict, selected: list[int]) -> list[str]:
     return out
 
 
-def frame_inputs(digests: dict, n: int) -> dict:
-    return {k: v for k, v in digests.items()
-            if k.startswith("assets/") or k in (f"slides/slide-{n:02}.html", f"render/slide-{n:02}.png")}
+def frame_inputs(digests: dict, n: int, base: Path) -> dict:
+    own = {f"slides/slide-{n:02}.html", f"render/slide-{n:02}.png"}
+    own.update(asset_paths(base / "slides" / f"slide-{n:02}.html"))
+    return {k: v for k, v in digests.items() if k in own}
 
 
-def studio_problems(record: dict) -> list[str]:
+def studio_problems(record: dict, base: Path) -> list[str]:
     """The rehearsal includes the hardest frame and reviews its finished image at feed size."""
     plan = record.get("plan", {})
     if plan.get("hardest_frame") != record["selected"][1]:
@@ -76,7 +82,7 @@ def studio_problems(record: dict) -> list[str]:
             out.append(f"art_plan.json needs {key}")
     for frame in record.get("review", {}).get("frames", []):
         n = frame.get("slide")
-        if frame.get("inputs") != frame_inputs(record["inputs"], n):
+        if frame.get("inputs") != frame_inputs(record["inputs"], n, base):
             out.append(f"frame {n}: its review is not bound to its source, image and shared assets")
         for key in ("encoding_reads", "dominant_subject_finished", "feed_legible"):
             if frame.get(key) is not True:
@@ -135,7 +141,7 @@ def check(base: Path, assets: Path = ROOT / "assets", archived: bool = False) ->
             out.append("the visual review is not bound to these images and this chassis")
         out.extend(review_problems(record.get("review", {}), selected))
         if record.get("version", 1) >= 2:
-            out.extend(studio_problems(record))
+            out.extend(studio_problems(record, base))
             if not archived and json.loads((base / "art_plan.json").read_text()) != record.get("plan"):
                 out.append("the art plan changed after the audition; rebuild and review the proof")
         elif re.fullmatch(r"\d{4}-\d{2}-\d{2}", base.name) and base.name > STUDIO_SINCE:
@@ -180,13 +186,15 @@ def build(base: Path, middle: int | None, assets: Path) -> None:
         old_path = base / "art_preflight.json"
         old = json.loads(old_path.read_text()) if old_path.exists() else {}
         old_frames = {f.get("slide"): f for f in old.get("review", {}).get("frames", [])}
+        per_frame = {str(n): frame_inputs(record["inputs"], n, base) for n in selected}
         kept = [old_frames[n] for n in selected if n in old_frames
-                and old_frames[n].get("inputs") == frame_inputs(record["inputs"], n)
+                and old_frames[n].get("inputs") == per_frame[str(n)]
                 and old.get("plan") == plan]
-        record.update(version=2, plan=plan, needs_review=[n for n in selected if n not in {f["slide"] for f in kept}])
+        record.update(version=2, plan=plan, frame_inputs=per_frame,
+                      needs_review=[n for n in selected if n not in {f["slide"] for f in kept}])
         record["review"] = {"decision": "revise", "inputs": record["inputs"], "frames": kept}
         if (len(kept) == 3 and old.get("review", {}).get("decision") == "accept"
-                and not studio_problems(record)
+                and not studio_problems(record, base)
                 and not review_problems(record["review"] | {"decision": "accept"}, selected)):
             record["review"]["decision"] = "accept"
     (base / "art_preflight.json").write_text(json.dumps(record, indent=2) + "\n")

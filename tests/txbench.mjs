@@ -32,6 +32,12 @@ assert.throws(() => render({light: {azDeg: 120, elDeg: 25}}), /differs from the 
 assert.throws(() => render({height: () => NaN}), /invalid height/);
 assert.throws(() => render({material: () => 256}), /invalid height or material/);
 assert.throws(() => render({w: 0}), /positive bounds/);
+for (const bounds of [{x: 1000}, {y: 1000}, {x: -1}, {y: -1}, {w: 65}, {h: 65}, {x: NaN}]) {
+  assert.throws(() => render(bounds), /visible canvas/, 'invisible or clipped buffers cannot claim coverage');
+}
+for (const scale of [0, -1, Infinity, NaN]) {
+  assert.throws(() => render({scale}), /finite scale/);
+}
 assert.equal(render({height: () => 0}).proof.height_range, 0,
   'flat art reports zero depth instead of claiming a physical render');
 assert.equal(render({height: () => 0}).proof.cast_fraction, 0,

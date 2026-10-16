@@ -29,8 +29,12 @@ def stamp(path: Path, checkpoint: str, now: dt.datetime | None = None) -> dict:
     return doc
 
 
-def elapsed(doc: dict) -> dict:
+def elapsed(doc: dict, require_complete: bool = False) -> dict:
     points = doc["checkpoints"]
+    if require_complete:
+        missing = [name for name in CHECKPOINTS if name not in points]
+        if missing:
+            raise ValueError("timing report missing checkpoints: " + ", ".join(missing))
     wake = dt.datetime.fromisoformat(points["wake"])
     return {name: round((dt.datetime.fromisoformat(value) - wake).total_seconds() / 60, 2)
             for name, value in points.items()}
@@ -47,7 +51,7 @@ def main() -> int:
     try:
         doc = stamp(path, args.checkpoint) if args.checkpoint else json.loads(path.read_text())
         if args.report:
-            print(json.dumps({"elapsed_minutes_from_wake": elapsed(doc)}, indent=2))
+            print(json.dumps({"elapsed_minutes_from_wake": elapsed(doc, require_complete=True)}, indent=2))
         else:
             print(f"studio_clock: {args.checkpoint} recorded")
     except (OSError, ValueError, KeyError, TypeError) as error:

@@ -4,35 +4,35 @@
   "frames": [
     {
       "file": "slide-01.html",
-      "load_ms": 406,
+      "load_ms": 389,
       "relief": {
         "height_range": 6,
         "materials": 2,
         "cast_fraction": 0.13362517146776406,
         "area": 1,
-        "render_ms": 1651.2999999523163
+        "render_ms": 1750.7000000476837
       }
     },
     {
       "file": "slide-03.html",
-      "load_ms": 102,
+      "load_ms": 101,
       "relief": {
         "height_range": 23.65,
         "materials": 3,
         "cast_fraction": 0.018138717421124828,
         "area": 1,
-        "render_ms": 2139.2000000476837
+        "render_ms": 2357.2000000476837
       }
     },
     {
       "file": "slide-09.html",
-      "load_ms": 70,
+      "load_ms": 83,
       "relief": {
         "height_range": 26,
         "materials": 5,
         "cast_fraction": 0.028468106995884774,
         "area": 1,
-        "render_ms": 2675
+        "render_ms": 3258.7000000476837
       }
     }
   ],

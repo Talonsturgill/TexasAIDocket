@@ -1387,8 +1387,9 @@ above with its pitch brief.
 
 `scripts/carousel/layout_check.py --prose` reports any surface still carrying the old wording,
 the agent definitions included, and a finding there is fixed on the surface, never on the list.
-**Both critics run on every round, never only the first**, the pixel critics on the frames that
-round changed, because a repair pass is where a frame quietly becomes the skeleton again.
+**Pixel critics recheck only the frames changed by a repair.** After the single whole-deck
+flow pass, apply its repairs and have the pixel critics recheck those changed frames. The final
+panel reads the complete result. Never start a second whole-deck flow pass for a polish recheck.
 
 When the last round settles, before anything is assembled:
 
