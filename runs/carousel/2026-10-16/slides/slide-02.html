@@ -31,16 +31,18 @@ window.renderReady = (async () => {
   const R = CH.stage(TXT, gl, W, { fov: 46, far: 3000 });
   /* THE STREET runs along x, its far curb at z -3.6 and the far sidewalk behind it */
   const road = K.make('road', { length: 120, lanes: 2, sidewalk: true, parkway: 1.2 }); TXT.add(R, road);
+  /* the pavement without the kit's tar snakes, which read as scribbles at feed width: worn pavement with aggregate and no seal lines */
+  road.traverse(m => { if (!m.isMesh || !m.material || !m.material.map) return; const b = new THREE.Box3().setFromObject(m), sz = b.getSize(new THREE.Vector3()); if (sz.y < 0.25 && sz.x > 20 && sz.z > 5) { m.material = m.material.clone(); m.material.map = K.tex('concrete'); m.material.color.setHex(0x55555a); m.material.roughness = 0.88; m.material.needsUpdate = true; } });
   const car = K.make('robotaxi', { seed: 4 }); car.rotation.y = -Math.PI / 2; car.position.set(0.4, 0, -2.45); TXT.add(R, car);
   /* THE RIDER, at true scale, walking from the sidewalk toward the rear door, turned three quarters to the lens */
   const who = K.make('person', { role: 'resident', pose: 'walk', seed: 7, build: 'female' }); who.position.set(3.75, 0, -3.25); who.rotation.y = -0.85; TXT.add(R, who);
-  const lamp = K.make('streetlight', { height: 5.8, reach: 1.6 }); lamp.position.set(4.75, 0.15, -4.8); lamp.rotation.y = -1.2; TXT.add(R, lamp); lamp.traverse(m => { if (m.isMesh) m.castShadow = false; });
+  const lamp = K.make('streetlight', { height: 5.8, reach: 1.6 }); lamp.position.set(4.75, 0.15, -4.8); lamp.rotation.y = -0.35; TXT.add(R, lamp); lamp.traverse(m => { if (m.isMesh) m.castShadow = false; });
   const oak = K.make('live_oak', { height: 7, spread: 13 }); oak.position.set(-8.5, 0.15, -8.5); TXT.add(R, oak);
   CH.matte(oak, 0.04);
   CH.matte(TXT.ground(R, { surface: 'asphalt', size: 900, seed: 22 }), 0.35);
   [car, who, lamp, oak].forEach(o => TXT.contact(R, o));
   const from = [1.0, 1.5, 7.2];
-  const look = CH.aim(THREE, R, TXT, from, [1.2, 0.9, -2.45], 560, 960, 46);
+  const look = CH.aim(THREE, R, TXT, from, [1.2, 0.9, -2.45], 560, 890, 46);
   TXT.frame(R, { fov: 46, from, look });
   /* the cobra head's pool on the car's roof, the rider and the sidewalk */
   { const sp = new THREE.SpotLight(0xffc98e, 520, 16, 0.75, 0.6, 1.5); sp.position.set(4.2, 5.7, -3.4); sp.target.position.set(2.0, 0, -3.0); sp.castShadow = true; sp.shadow.mapSize.set(2048, 2048); sp.shadow.bias = -0.0004; R.scene.add(sp); R.scene.add(sp.target); }

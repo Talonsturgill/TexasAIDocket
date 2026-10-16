@@ -43,7 +43,7 @@ window.renderReady = (async () => {
   if (spots.length + 1 !== UNITS) throw new Error('field holds ' + (spots.length + 1) + ', not units_affected');
   CH.carField(THREE, R, K, spots);
   /* the field's paint a step under the hero's and matte, so the one full car is the brightest thing and no block blows white */
-  R.scene.traverse(m => { if (m.isInstancedMesh && m.material && m.material.color && m.material.color.getHex() === 0xeceef0) { m.material = m.material.clone(); m.material.color.multiplyScalar(0.6); m.material.roughness = 0.6; } });
+  R.scene.traverse(m => { if (m.isInstancedMesh && m.material && m.material.color && m.material.color.getHex() === 0xeceef0) { m.material = m.material.clone(); m.material.color.multiplyScalar(0.45); m.material.roughness = 0.6; } if (m.isInstancedMesh && m.material && !m.material.isMeshBasicMaterial) { m.material = m.material.clone(); m.material.envMapIntensity = 0.25; if ('specularIntensity' in m.material) m.material.specularIntensity = 0.2; } });
   CH.matte(TXT.ground(R, { surface: 'asphalt', size: 1600, seed: 22 }), 0.3);
   /* the pad, a sealed near black pad laid over the ground, so each car stands apart at feed width */
   { const pad = new THREE.Mesh(new THREE.PlaneGeometry(420, 420), new THREE.MeshPhysicalMaterial({ color: 0x0c0d10, roughness: 1, specularIntensity: 0, envMapIntensity: 0 })); pad.rotation.x = -Math.PI / 2; pad.position.set(0, 0.003, -160); pad.receiveShadow = true; R.scene.add(pad); }
@@ -51,7 +51,7 @@ window.renderReady = (async () => {
   const from = [16, 19, 62];
   const look = CH.aim(THREE, R, TXT, from, [hero.position.x - 3, 0.6, -2], 640, 1090, 24);
   TXT.frame(R, { fov: 24, from, look });
-  { const L = new THREE.SpotLight(0xffd6aa, 1100, 90, 0.22, 0.85, 1.4); L.position.set(hero.position.x + 6, 26, 24); L.target.position.set(hero.position.x - 2, 0, -6); L.castShadow = true; L.shadow.mapSize.set(2048, 2048); R.scene.add(L); R.scene.add(L.target); }
+  { const L = new THREE.SpotLight(0xffd6aa, 1100, 90, 0.16, 0.85, 1.4); L.position.set(hero.position.x + 6, 26, 24); L.target.position.set(hero.position.x, 0, -2); L.castShadow = true; L.shadow.mapSize.set(2048, 2048); R.scene.add(L); R.scene.add(L.target); }
   TXT.sky(R);
   TXT.deckRig(R, CH.rigSpec(W, 80, 4096), CH.rigOpts([0, 0, -20], { distance: 120, shadowFar: 300 }));
   TXT.stage(R, [hero], { pool: true, poolInner: 5, poolOuter: 24, behind: 0.6, depth: 1.6 });

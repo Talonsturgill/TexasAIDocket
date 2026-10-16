@@ -167,7 +167,7 @@ art:
   why_this_technique: "the curb is where a reader would actually stand to hail one, and only a modelled car under real lamps reads as a car rather than an icon"
   palette: "white clearcoat warmed by sodium, wet asphalt, airport concrete, steel bollards with white bands, the terminal's warm glass"
   value_structure: >
-    Lightest are the car's lit flank and the terminal's glass. Darkest are the sky, the soffit and the lane. Frame median L* planned at 14.
+    Lightest are the car's lit flank and the terminal's glass. Darkest are the sky, the soffit and the lane. Frame median L* planned at 4.
 
 type:
   hook: "Anyone can ride one to the airport now"
@@ -225,7 +225,7 @@ art:
   why_this_technique: "a person beside the car at true scale is the only way the frame says a service for riders rather than a machine"
   palette: "white clearcoat, wet asphalt, live oak black green, sodium pool on concrete sidewalk"
   value_structure: >
-    Lightest are the car's flank and the sidewalk pool. Darkest are the oak's crown and the sky. Frame median L* planned at 14.
+    Lightest are the car's flank and the sidewalk pool. Darkest are the oak's crown and the sky. Frame median L* planned at 4.
 
 type:
   hook: "In February, it came by invitation"
@@ -283,7 +283,7 @@ art:
   why_this_technique: "the counter image has to be the car itself in the water, rendered as a real thing, because a symbol of a flood is a verdict and a car in water is a fact"
   palette: "white clearcoat, brown floodwater, pale limestone ledges, pecan and live oak black, one comal line"
   value_structure: >
-    Lightest are the car's roof and dome in the lamp and the far ledges. Darkest are the water and the crowns. Frame median L* planned at 9.
+    Lightest are the car's roof and dome in the lamp and the far ledges. Darkest are the water and the crowns. Frame median L* planned at 1.
 
 type:
   hook: "April 20th, Salado Creek"
@@ -346,7 +346,7 @@ art:
   why_this_technique: "the record's sentence describes a geometry, a car and a water surface, and drawing it side on is the only honest picture of it"
   palette: "wet asphalt, the concrete median, white clearcoat, near black water carrying lamp streaks, one comal edge"
   value_structure: >
-    Lightest are the car's flank and the lamp streaks. Darkest are the sky and the water. Frame median L* planned at 12.
+    Lightest are the car's flank and the lamp streaks. Darkest are the sky and the water. Frame median L* planned at 2.
 
 type:
   hook: "It slowed. Then it drove in"
@@ -409,7 +409,7 @@ art:
   why_this_technique: "a count a reader can feel has to be the thing itself repeated at one scale, and 3791 cars is a car park the size of a neighbourhood"
   palette: "white roofs and dark domes on a near black pad, sodium glints"
   value_structure: >
-    Lightest are the near roofs. Darkest are the pad between rows and the sky. Frame median L* planned at 12.
+    Lightest are the near roofs. Darkest are the pad between rows and the sky. Frame median L* planned at 1.
 
 type:
   hook: "3,791 of them"
@@ -464,7 +464,7 @@ art:
   why_this_technique: "a car stopped at a water's edge is the pause drawn without a clock, the moment the machine does not go in"
   palette: "white clearcoat, wet asphalt, black water, one sodium lamp, one comal line"
   value_structure: >
-    Lightest are the car's front and the lamp. Darkest are the sky and the water's mirror of it. Frame median L* planned at 8.
+    Lightest are the car's front and the lamp. Darkest are the sky and the water's mirror of it. Frame median L* planned at 1.
 
 type:
   hook: "The cars ran without riders"
@@ -528,7 +528,7 @@ art:
   why_this_technique: "a span of days is hard to feel as a number, and a field of posts at one scale lets a reader count it"
   palette: "steel posts with white reflective bands, one comal band, a dark asphalt apron, the white car"
   value_structure: >
-    Lightest are the lit bands and the car. Darkest are the unlit posts and the apron. Frame median L* planned at 12.
+    Lightest are the lit bands and the car. Darkest are the unlit posts and the apron. Frame median L* planned at 1.
 
 type:
   hook: "177 days from the creek to the curb"
@@ -592,7 +592,7 @@ art:
   why_this_technique: "the strongest frame in a record deck is the document itself read closely, and its words stay vector type"
   palette: "dark office walls, the monitor's cool glow, sodium stripes through the blinds, one comal rule"
   value_structure: >
-    Lightest are the remedy lines on the screen and the window's lamp. Darkest are the walls and desk. Frame median L* planned at 10.
+    Lightest are the remedy lines on the screen and the window's lamp. Darkest are the walls and desk. Frame median L* planned at 1.
 
 type:
   hook: "\"The remedy is currently under development\""
@@ -654,7 +654,7 @@ art:
   why_this_technique: "the close returns to the cover's curb from a second camera, so the deck ends where a reader would stand, with the open question still in the copy"
   palette: "airport concrete, steel bollards with white bands, the white car, the terminal's warm glass, the city glow"
   value_structure: >
-    Lightest are the car, the island under the downlights and the terminal glass. Darkest are the sky and the drive lane. Frame median L* planned at 16.
+    Lightest are the car, the island under the downlights and the terminal glass. Darkest are the sky and the drive lane. Frame median L* planned at 6.
 
 type:
   hook: "Anyone can ride. Anyone can read the remedy field"
