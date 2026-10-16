@@ -92,10 +92,12 @@
       let nx = -gx, ny = -gy, nz = 1; const nl = Math.hypot(nx, ny, nz); nx /= nl; ny /= nl; nz /= nl;
       const lam = Math.max(0, nx * L[0] + ny * L[1] + nz * L[2]);
       const vis = visBuf && !(o.visSharp && o.visSharp.indexOf(mb[k]) >= 0) ? visBuf[k] : march(i, j, h0);   // visSharp: materials whose own cast stays crisp (a measured scale's grooves)
-      if (vis < 0.9 && shK > 0.2 && dif > 0.2) casts++;
       const cav = Math.max(0, blur[k] - h0) / sc, ao = Math.max(0, 1 - aoK * Math.min(1, cav / 6));
       const m = mb[k], X = (X0 + i + 0.5) / sc, Y = (Y0 + j + 0.5) / sc, a = o.albedo(X, Y, m);
       const sh = 1 - shK * (1 - vis), km = keyMask ? keyMask(X, Y) : 1;
+      // Count lost key light on the actual material, not geometric occlusion in an unlit region.
+      const keyEffect = km * dif * lam * Math.max(a[0] * kC[0], a[1] * kC[1], a[2] * kC[2]);
+      if (vis < 0.9 && (1 - sh) * keyEffect >= 0.003) casts++;
       const sp = spec[m] ? km * spec[m][0] * Math.pow(Math.max(0, nx * Hv[0] + ny * Hv[1] + nz * Hv[2]), spec[m][1]) * sh : 0;
       const ka = amb * ao, kd = dif * lam * sh * km;
       const dz = dith ? (((Math.imul(k, 2654435761) >>> 0) % 997) / 997 - 0.5) : 0;   // half an 8-bit step of per-pixel offset, so a slow gradient can't quantise into contour rings

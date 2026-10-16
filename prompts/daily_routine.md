@@ -279,7 +279,7 @@ top of the run record.
 ## PHASE 0 — WAKE
 
 Stamp the run's first real checkpoint before setup, then record `record_done`, `audition_done`,
-`art_done`, `review_done`, `panel_done`, `package_done` and `delivered` when each finishes:
+`art_done`, `review_done`, `panel_done` and `package_done` when each finishes:
 `python3 scripts/carousel/studio_clock.py --date <date> --checkpoint wake`.
 The clock never edits a shipped run or enforces a time cutoff. Archive its JSON with the deck.
 
@@ -1188,16 +1188,22 @@ Render those three and run `qa.py`. Then make the proof:
 
 ```bash
 python3 scripts/carousel/art_preflight.py --date <date> --write
+python3 scripts/carousel/critic_brief.py --run-dir out/<date> --slide 1 --slide <hardest> --slide 9
 ```
 
-Give `art_preflight.webp`, the three full images and `art_preflight.json` to one
-`carousel-flow-critic` on the session's model. This is an early art review, within the existing
-editing budget. The reviewer inspects all three at 432px and full size and returns a `review`
+Give `art_preflight.webp`, the three full images, `art_preflight.json` and the selected
+`critic_brief.py` craft lines and native crop paths to one
+`carousel-art-director` on the session's model. The reviewer inspects all three at 432px
+and full size, reads every native tile, and returns the review schema in
+`prompts/carousel_studio.md` and its agent brief.
+It returns a `review`
 object with `decision: accept|revise`, an exact copy of the manifest's `inputs` map and three
 ordered `frames`. Each frame records `slide`, `role` (cover, evidence, close), `subject`,
-`visual_consequence`, `weakness` and `repair`. A review of the headline alone is incomplete.
+`visual_consequence`, `weakness`, `repair`, `encoding_reads`, `dominant_subject_finished`,
+`feed_legible` and its own `inputs` digest map. A review of the headline alone is incomplete.
 The reviewer names actual visible features rather than giving an aspirational score. Repairs here
-consume the same five-editing-round budget used later for the complete deck.
+precede the remaining art. After one unsuccessful repair, change the representation before
+building six dependent frames. The later pixel, flow and panel limits remain in their own phases.
 
 Store that object in `art_preflight.json.review`. If it says revise, rebuild the named composition
 before building six more. Re-lighting an unrecognizable subject is insufficient. A kit model is
@@ -1319,6 +1325,10 @@ without error.
 At this phase entry, stamp `python3 scripts/carousel/studio_clock.py --date <date> --checkpoint art_done`.
 
 
+Run `python3 scripts/carousel/critic_brief.py --run-dir out/<date>` and give each assigned
+slide's craft block and native crop paths to its critic. The helper rejects changed source
+images, changed tiles and incomplete coverage; re-render those frames before review. Critics
+read every tile at 100 percent for texture and light, plus the full composition and feed thumb.
 Spawn `carousel-pixel-critic` agents in parallel, one per one or two slides. They transcribe every
 visible word and grade against the dossier's own checklist, **and against the primary image law:
 is the subject the dossier named actually there, at the size it declared, readable as one thing
@@ -1331,7 +1341,8 @@ find, re-render ONLY the frames you changed (`render.py --only`), run `qa.py` an
 A repair that changes an exposure, a wash or a camera can move a deck back into the mid tones, and
 the register measures the frames as they are now, not as they were before the round. **At most two pixel rounds.** After the second, keep the best version of any
 holdout and name it in the run record for the panel. Then 1 `carousel-flow-critic` on the contact
-sheet AND the full renders, which judges the deck as a sequence rather than as nine slides.
+sheet AND the full renders, with the craft blocks and native crops for its weakest subjects.
+It judges the deck as a sequence rather than as nine slides.
 
 **THE PIXEL CRITICS RUN ON THE SMALLER MODEL TIER, AND THE FLOW CRITIC CARRIES THE ART (owner,
 2026-10-02).** This is the sibling product's arrangement since September 25th. On September 27th
@@ -1756,6 +1767,8 @@ The site is never built from a record that is half a run old. A carousel without
 standalone article is incomplete, even when the visual release gate passes.
 
 1. Copy artifacts to `runs/carousel/<date>/`, archiving `prompts/NEXT_RUN.md` if it existed.
+   Include the final `storyboard.md` and `render_report.json` before encoding. New runs are
+   refused before any image write when either layout-verification input is absent.
 2. Shrink the shipped images. The review loop needed lossless 2x PNGs, and a reader on a phone off
    a county road needs the page to arrive:
 

@@ -30,6 +30,12 @@ You are a leaf worker: you never spawn another agent.
    `out/<date>/render/slide-0N.png` and `assemble.py` writes the thumbs as
    `out/<date>/final/thumbs/slide-0N-thumb.png`, with `-thumb` in the name (2026-10-03: three of
    five critics on carousel no. 41 looked for `final/thumbs/slide-0N.png` and found nothing).
+   Read the supplied `critic_brief.py` craft block and every listed native crop at 100 percent.
+   The renderer cuts 1080x900 pixel tiles, with design-space coordinates, from the current PNG.
+   Judge the largest object's modelling, the planned lower third, contact and surface artifacts
+   against these pixels. A stale or partial crop set needs a fresh render. Record a cause b
+   (unfinished largest object), c (dead region) or d (render artifact) in `frame_causes` when
+   visible; use an empty list when none is observed. Never infer texture from a scaled overview.
 2. **Transcribe every visible word, FROM THE THUMB.** All of it, in reading order. This is not
    busywork: it is the only way to catch a line that clipped, a label that ran under art, a word
    the renderer dropped, or type that is present but unreadable. If you cannot read it, write
@@ -57,6 +63,7 @@ You are a leaf worker: you never spawn another agent.
   "checklist": [{"item": "as written in the dossier", "pass": true, "note": "..."}],
   "verdict": "ship | revise",
   "must_fix": [{"what": "the problem", "where": "x,y or the region", "fix": "the concrete change"}],
+  "frame_causes": [{"cause": "b|c|d", "problem": "the visible defect and region", "fix": "one concrete change"}],
   "would_improve": ["optional, ranked"]
 }
 ```

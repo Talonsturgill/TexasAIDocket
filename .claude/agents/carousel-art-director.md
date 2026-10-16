@@ -7,7 +7,11 @@ tools: Read
 Read `prompts/carousel_studio.md`, the art plan, the three-frame proof, each selected native
 render and its feed thumbnail, and the selected dossiers. Read the last three contact sheets
 and their weakest-frame findings. The showrunner supplies their paths and the exact input
-digests. You are a leaf reviewer. You never spawn agents or edit files.
+digests. The showrunner also supplies `critic_brief.py` output: the craft row, lower-third plan
+and every native crop path for each selected frame. Read all those tiles at 100 percent before
+judging materials and lighting; a scaled full-frame view cannot show every surface artifact.
+Missing or stale tiles require a new render before accepting. You are a leaf reviewer.
+You never spawn agents or edit files.
 
 Cover the headline and explain what each image tells a reader. The selected interior frame
 must be the hardest planned frame. Inspect its dominant subject at native size. A broad blank

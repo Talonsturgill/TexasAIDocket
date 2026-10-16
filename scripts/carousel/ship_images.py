@@ -40,6 +40,7 @@ import contextlib
 import json
 import math
 import os
+import re
 import sys
 import threading
 import time
@@ -87,6 +88,23 @@ OG_QUALITY_LADDER = (90, 94, 96, 97)
 # from our own corpus is a ratchet, and a threshold derived from an encode we already accepted
 # would pass anything we happened to ship first.
 QUALITY_FLOOR_DB = 40.0
+LAYOUT_VERIFY_FROM = "2026-10-17"
+
+
+def requires_layout(run_dir: Path) -> bool:
+    return not re.fullmatch(r"\d{4}-\d{2}-\d{2}", run_dir.name) or run_dir.name >= LAYOUT_VERIFY_FROM
+
+
+def layout_inputs(run_dir: Path) -> list[str]:
+    import layout_check
+    missing = []
+    if not (run_dir / "storyboard.md").is_file():
+        missing.append("storyboard.md")
+    if layout_check.find_report(run_dir) is None:
+        missing.append("render_report.json")
+    if missing and requires_layout(run_dir):
+        return [f"{run_dir.name}: compressed-layout verification needs {', '.join(missing)}; keep the originals"]
+    return []
 
 
 def psnr(a: Image.Image, b: Image.Image) -> float:
@@ -345,16 +363,22 @@ def preserve_layout(run_dir: Path, pngs: list[Path], results: list[dict]) -> lis
     October 16th's frame 7 cleared PSNR but lost the fourth GRID piece at feed size.
     A lossless encode preserves the already reviewed pixels when lossy encoding changes a layout.
     """
-    import re
     import layout_check
+    missing = layout_inputs(run_dir)
+    if missing:
+        return missing
     if not (run_dir / "storyboard.md").is_file() or layout_check.find_report(run_dir) is None:
+        # Historical archives were shipped before this check; their tooling stays reproducible.
         return []
     originals = {int(p.stem.split("-")[1]): p for p in pngs if re.fullmatch(r"slide-\d+", p.stem)}
     encodes = {n: p.with_suffix(".webp") for n, p in originals.items() if p.with_suffix(".webp").exists()}
-    code, problems, _ = layout_check.check(run_dir, image_overrides=encodes)
+    required = requires_layout(run_dir)
+    code, problems, _ = layout_check.check(run_dir, require=required, image_overrides=encodes)
     if code == 0:
         return []
-    original_code, original_problems, _ = layout_check.check(run_dir, image_overrides=originals)
+    if not originals:
+        return ["the delivered layout fails and no source PNG remains: " + p for p in problems]
+    original_code, original_problems, _ = layout_check.check(run_dir, require=required, image_overrides=originals)
     if original_code:
         return ["the reviewed originals fail layout_check: " + p for p in original_problems]
     charged = {int(n) for p in problems for n in re.findall(r"(?:slide|frame) (\d+)", p)}
@@ -369,13 +393,19 @@ def preserve_layout(run_dir: Path, pngs: list[Path], results: list[dict]) -> lis
                 row.update(dst=encodes[n].stat().st_size, psnr=float("inf"), quality="lossless",
                            layout_preserved=True)
         print(f"  slide-{n:02}: lossless WebP preserves the reviewed layout")
-    code, problems, _ = layout_check.check(run_dir, image_overrides=encodes)
+    code, problems, _ = layout_check.check(run_dir, require=required, image_overrides=encodes)
     return problems if code else []
 
 
 def _ship(run_dir: Path, dry: bool, keep_png: bool = False) -> tuple[list[dict], list[str]]:
+    missing = layout_inputs(run_dir)
+    if missing:
+        return [], missing
     pngs = sorted(run_dir.rglob("slide-*.png"))
     if not pngs:
+        problems = preserve_layout(run_dir, [], [])
+        if problems:
+            return [], problems
         # A FINISHED RUN HAS NO PNGs LEFT, and a rerun is exactly how a missing or stale og.jpg
         # gets repaired, so the unfurl is still rebuilt from slide 1's WebP (Codex, PR 404).
         first = og_source(run_dir, [])

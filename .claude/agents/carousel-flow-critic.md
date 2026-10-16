@@ -25,7 +25,9 @@ You are a leaf worker: you never spawn another agent.
 ## Method
 
 Read the contact sheet first, all slides in order, the way a reader swipes. Then the thumbs.
-Only then, if you need to, a full-size render.
+Then read the full renders for the craft judgement. The showrunner supplies `critic_brief.py`
+craft blocks and native crop paths. Read every tile for each weakest subject at 100 percent
+before naming a texture or lighting defect. Missing or stale crops require a fresh render.
 
 ## What you are looking for
 
@@ -72,8 +74,8 @@ Only then, if you need to, a full-size render.
   `knowledge/carousel/ILLUSTRATION_SYSTEM.md` "What still fails", each by slide number:
   a. the same SHOT on more than three frames: the same camera, set and composition with only
      the type changed (the judges' "1/8 and 2/9 repeat compositions", and five frames on one
-     parapet). One hero and one world is the law, so what has to vary is the camera and the
-     hero's state, and the storyboard's CRAFT PLAN holds each shot to three frames;
+     parapet). Vary the evidence, scale, framing and the subject's state while retaining one
+     visual argument. The storyboard's CRAFT PLAN holds each shot to three frames;
   b. a frame whose largest object is its least modelled one: a featureless slab, a bare wall,
      a skyline of extruded boxes, a primitive standing in for a kit model, clean clay with no
      dirt where it meets the ground;

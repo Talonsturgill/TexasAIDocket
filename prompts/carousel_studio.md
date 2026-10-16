@@ -1,7 +1,7 @@
 # Texas carousel studio
 
 Effective for runs dated October 17th, 2026 onward. This is part of the daily master routine.
-Keep Texas research, sources, history, voice and factual gates. Alaska supplies the renderer
+Keep Texas research, sources, history, voice and factual gates. The sibling supplies the renderer
 and workflow reference; its stories and variety ledgers are never inputs to Texas selection.
 
 ## Choose the image before building the scene
@@ -46,7 +46,12 @@ Render the cover, that hardest interior frame and the close at final size. Use
 `art_preflight.py --date <date> --write`; it reads the selection from the plan. The default
 evidence frame number from old runs is no longer a selection method. Review all three at feed
 size and the hardest subject at native size. Use one `carousel-art-director` on the inherited
-session model for this review. Supply the actual images, dossiers and input digests. The
+session model for this review. Supply the actual images, dossiers and input digests. Run
+`python3 scripts/carousel/critic_brief.py --run-dir out/<date> --slide 1 --slide <hardest> --slide 9`
+and supply its craft lines and complete native crop paths. Every successful render now cuts
+1080x900 pixel tiles in `render/crops/`; the helper refuses stale or incomplete sets. Read
+every selected tile at 100 percent to judge material and lighting, then the feed view to judge
+the argument. Re-render a selected frame when its crops are missing or stale. The
 mechanical pixel critic does not substitute for this visual judgement. The review records the existing subject,
 visual consequence, weakness and repair, plus these fields on each frame.
 

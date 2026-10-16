@@ -20,7 +20,7 @@ bash .claude/skills/carousel-engine/bootstrap.sh          # once per session; in
 
 # 1. write slides to      out/<run>/slides/slide-01.html ... slide-NN.html
 python3 .claude/skills/carousel-engine/render.py \
-    --slides-dir out/<run>/slides --out-dir out/<run>/render       # PNGs + render_report.json
+    --slides-dir out/<run>/slides --out-dir out/<run>/render       # PNGs + report + native crops
 python3 .claude/skills/carousel-engine/qa.py --render-dir out/<run>/render  # machine_qa.json, exit!=0 on FAIL
 python3 .claude/skills/carousel-engine/assemble.py \
     --slides-dir out/<run>/slides --render-dir out/<run>/render \
@@ -29,6 +29,14 @@ python3 .claude/skills/carousel-engine/assemble.py \
 
 Re-render only fixed slides with `--only 3,7`. Read every report. **Never ship a FAIL.** A
 `qa.py` warning is an advisory for the pixel critics, not a free pass.
+
+Every successful frame also produces 1080x900 native pixel tiles in `render/crops/`. Run
+`python3 scripts/carousel/critic_brief.py --run-dir out/<run>` and give the selected blocks to
+the art director and pixel critics; give the weakest subjects' blocks to the flow critic.
+The helper binds every tile to the current frame and rejects changed or incomplete evidence.
+Read all listed tiles at 100 percent for texture, then the feed view for composition. Re-render
+to refresh missing crops. Keep these review tiles in scratch; archive only the final root
+slide images, never recurse into `crops/` when copying delivered slides.
 
 `examples/demo-deck/` is four slides exercising SVG filter atmospheres, d3 cartography through
 TXGeo, a seeded flow field, and software 3D. It is a PLUMBING reference, not a style template.

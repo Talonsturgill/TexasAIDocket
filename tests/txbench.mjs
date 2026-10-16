@@ -36,4 +36,10 @@ assert.equal(render({height: () => 0}).proof.height_range, 0,
   'flat art reports zero depth instead of claiming a physical render');
 assert.equal(render({height: () => 0}).proof.cast_fraction, 0,
   'a flat carrier never counts its own pixels as cast shadows');
+assert.equal(render({keyMask: () => 0}).proof.cast_fraction, 0,
+  'window-masked ambient light has no visible key cast');
+assert.equal(render({keyColor: [0, 0, 0]}).proof.cast_fraction, 0,
+  'a black key has no visible cast');
+assert.equal(render({shadow: 0}).proof.cast_fraction, 0,
+  'a disabled shadow contributes no visible cast');
 console.log('txbench: deterministic pixels, actual cast shadows, light inheritance and invalid geometry checks passed');

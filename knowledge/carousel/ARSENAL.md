@@ -18,7 +18,7 @@
 | world presets | 8 |
 | kit models | 120 in 10 families |
 | asset libraries | 22 |
-| carousel and shared tools | 73 |
+| carousel and shared tools | 75 |
 | record and site tools the routine names | 20 |
 | agents | 11 |
 | knowledge files | 42 |
@@ -43,9 +43,9 @@
 | 9 | `instincts.py`, `layout_check.py`, `studio_clock.py` |
 | artwork | `depth_floor.py`, `dossier_check.py`, `figure_bearing.py`, `layout_check.py`, `print_ban.py`, `value_register.py` |
 | 10 | `caption_check.py` |
-| 10.5 | `art_preflight.py`, `deck_chassis.py`, `depth_floor.py`, `figure_bearing.py`, `print_ban.py`, `qa.py`, `render.py`, `value_register.py` |
+| 10.5 | `art_preflight.py`, `critic_brief.py`, `deck_chassis.py`, `depth_floor.py`, `figure_bearing.py`, `print_ban.py`, `qa.py`, `render.py`, `value_register.py` |
 | 11 | `bespoke_check.py`, `deck_chassis.py`, `deck_coherence.py`, `layout_check.py`, `print_ban.py`, `qa.py`, `render.py`, `studio_clock.py`, `value_register.py` |
-| 12 | `aggregate_check.py`, `claims_check.py`, `copy_sync_check.py`, `layout_check.py`, `qa.py`, `render.py`, `studio_clock.py`, `value_register.py` |
+| 12 | `aggregate_check.py`, `claims_check.py`, `copy_sync_check.py`, `critic_brief.py`, `layout_check.py`, `qa.py`, `render.py`, `studio_clock.py`, `value_register.py` |
 | 12b | `absence_check.py`, `coherence_check.py`, `copy_sync_check.py`, `craft_floor.py`, `dossier_check.py`, `gate_status.py`, `layout_check.py`, `noun_trace.py`, `panel_ready.py`, `plan_render_check.py`, `print_ban.py`, `qa.py`, `texan_check.py` |
 | 13 | `aggregate_check.py`, `claims_check.py` |
 | 14 | `assemble.py` |
@@ -430,6 +430,7 @@ Run every gate by EXIT CODE, never by reading the last line. **Wired** says what
 | `scripts/carousel/contact_trace.py` | an address a reader could write to, that no source in the run carries. | --date --run --all --self-test | shipped |  |
 | `scripts/carousel/copy_sync_check.py` | does the record still say what the deck says? | --date --out --self-test | CI self-test, shipped | 12, 12b |
 | `scripts/carousel/craft_floor.py` | no frame ships that nobody drew. | --date --render-dir --self-test | CI self-test, gate table, shipped | 12b |
+| `scripts/carousel/critic_brief.py` | Give visual reviewers the craft row, lower-third plan and current native crops. | --run-dir --render-dir --slide --json |  | 10.5, 12 |
 | `scripts/carousel/deck_chassis.py` | prove the deck's nine frames were cut from ONE piece of stock. | --slides-dir --date --self-test --json | CI, shipped | state, 10.5, 11 |
 | `scripts/carousel/deck_coherence.py` | measure whether the nine RENDERED frames read as one deck. | --render-dir --date --storyboard --self-test --json | CI self-test, shipped | 11 |
 | `scripts/carousel/dedupe_check.py` | does this story repeat one the record already told? | --entities --keywords --desc --date --item --beat --places --self-test | CI self-test | 8 |
@@ -447,6 +448,7 @@ Run every gate by EXIT CODE, never by reading the last line. **Wired** says what
 | `scripts/carousel/locator_trace.py` | where in a document a frame says something is, is itself a claim. | --date --run --all --self-test | shipped |  |
 | `scripts/carousel/machine_due.py` | is the weekly machine pass due today? | --date --self-test | CI self-test | 17 |
 | `scripts/carousel/measure_shipped.py` | write a run's measurements.json from the frames it SHIPPED. | --run --check --self-test | CI, shipped | 16 |
+| `scripts/carousel/native_crops.py` | Native-size review tiles, adapted from alaskaaicarousels render.py at 03da46445a18974351cc6e74835679b3de2c89c8. |  |  |  |
 | `scripts/carousel/noun_trace.py` | a named thing on a slide has to come from a source. | --date --run --all --self-test | CI self-test, shipped | 12b |
 | `scripts/carousel/numeral_trace.py` | a numeral a frame prints has to be reachable from a claim that frame cites. | --self-test | gate table, shipped |  |
 | `scripts/carousel/panel.py` | three judges, a median, and any one hard fail stops the deck. | --date --judges --out --self-test | CI self-test, gate table | 15 |

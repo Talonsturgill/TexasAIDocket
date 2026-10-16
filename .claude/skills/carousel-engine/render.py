@@ -25,7 +25,7 @@ Usage:
 
 Exit codes: 0 = all slides rendered (warnings possible; read the report),
             1 = at least one slide hard-failed (JS error, timeout, missing PNG).
-Writes: <out-dir>/slide-XX.png + <out-dir>/render_report.json
+Writes: <out-dir>/slide-XX.png + <out-dir>/render_report.json + native tiles in crops/
 """
 
 import argparse
@@ -47,6 +47,8 @@ TEXT_WINDOW = 320
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 ASSETS_DIR = REPO_ROOT / "assets"
+sys.path.insert(0, str(REPO_ROOT / "scripts/carousel"))
+import native_crops
 
 CHROMIUM_ARGS = [
     "--allow-file-access-from-files",   # lets slides fetch() committed geodata
@@ -1166,6 +1168,8 @@ def main():
             rec = render_slide(browser, resolved, png, args.width, args.height,
                                args.scale, args.timeout)
             rec["nondeterminism"] = scan_nondeterminism(s.read_text(), s.name)
+            if rec["ok"] and not rec["page_errors"]:
+                rec["native_crops"] = native_crops.write(png, args.scale)
             status = "OK " if rec["ok"] and not rec["page_errors"] else "FAIL"
             warn = len(rec["overflow_warnings"])
             print(f"[{status}] {s.name} -> {png.name}  {rec['render_ms']}ms"
