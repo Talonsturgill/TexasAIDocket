@@ -21,6 +21,10 @@ import theme
 
 W, H = 1200, 630
 SS = 2
+# A conservative profile-card crop, narrower than the supplied LinkedIn
+# screenshot. The publication name and sculpture must survive both this and
+# the full-width post preview.
+FEATURED_ASPECT = 8 / 5
 
 
 def colours() -> dict:
@@ -97,7 +101,7 @@ def geometry():
 
 def project(point, height=0):
     x, y = point
-    return 632 + x + y * 0.075, 159 + y * 0.83 - x * 0.075 - height
+    return 588 + x + y * 0.075, 159 + y * 0.83 - x * 0.075 - height
 
 
 def pixels() -> bytes:
@@ -109,7 +113,7 @@ def pixels() -> bytes:
     # polygons interpolate two existing grounds, rather than adding a new hue.
     for radius in range(350, 70, -4):
         amount = (350 - radius) / 280 * 0.46
-        ellipse = [(905 + math.cos(t * math.tau / 80) * radius,
+        ellipse = [(861 + math.cos(t * math.tau / 80) * radius,
                     340 + math.sin(t * math.tau / 80) * radius * 0.66)
                    for t in range(80)]
         canvas.polygon(ellipse, mix(c["night"], c["panel"], amount))
@@ -170,10 +174,10 @@ def pixels() -> bytes:
         canvas.line([project(p, 56) for p in arc], mix(c["dust"], c["limestone"], 0.4), 0.6)
 
     # Quiet publication rules sit well inside common preview crops.
-    canvas.line([(64, 548), (1136, 548)], mix(c["line"], c["dust"], 0.24), 0.8)
-    canvas.line([(64, 548), (105, 548)], c["dusk_gold"], 2)
-    canvas.polygon([(64, 58), (112, 58), (112, 106), (64, 106)], c["flag_blue"])
-    canvas.polygon(mark.star_points(88, 82, 16), c["flag_white"])
+    canvas.line([(104, 548), (1096, 548)], mix(c["line"], c["dust"], 0.24), 0.8)
+    canvas.line([(104, 548), (145, 548)], c["dusk_gold"], 2)
+    canvas.polygon([(104, 58), (152, 58), (152, 106), (104, 106)], c["flag_blue"])
+    canvas.polygon(mark.star_points(128, 82, 16), c["flag_white"])
     return canvas.pixels()
 
 

@@ -240,21 +240,24 @@ def _encode(rgb: bytes) -> bytes:
 
 
 COVER_TEXT = (
-    ("JetBrainsMono-Medium.ttf", "THE PUBLIC RECORD", 19, 132, 91, "dust"),
-    ("Fraunces-Var.ttf", "Texas", 108, 64, 236, "limestone"),
-    ("Fraunces-Var.ttf", "AI Docket", 92, 64, 332, "limestone"),
-    ("Manrope-Var.ttf", "AI decisions in Texas.", 28, 67, 400, "caliche"),
-    ("Manrope-Var.ttf", "The sources behind them.", 28, 67, 440, "caliche"),
+    ("JetBrainsMono-Medium.ttf", "THE PUBLIC RECORD", 19, 172, 91, "dust"),
+    ("Fraunces-Var.ttf", "Texas", 108, 104, 236, "limestone"),
+    ("Fraunces-Var.ttf", "AI Docket", 92, 104, 332, "limestone"),
+    ("Manrope-Var.ttf", "AI decisions in Texas.", 28, 107, 400, "caliche"),
+    ("Manrope-Var.ttf", "The sources behind them.", 28, 107, 440, "caliche"),
     ("JetBrainsMono-Medium.ttf", "POLICY / POWER / WATER", 17, 827, 591, "dust"),
 )
+
+
+def cover_lines() -> tuple:
+    site = theme.tokens()["constellation"]["site"]
+    return COVER_TEXT + (("JetBrainsMono-Medium.ttf", site, 22, 104, 592, "caliche"),)
 
 
 @lru_cache(maxsize=1)
 def cover_pixels() -> bytes:
     """The complete cover, cached because every index page declares it."""
-    site = theme.tokens()["constellation"]["site"]
-    lines = COVER_TEXT + (("JetBrainsMono-Medium.ttf", site, 22, 64, 592, "caliche"),)
-    return og_cover.lettering(og_cover.pixels(), lines)
+    return og_cover.lettering(og_cover.pixels(), cover_lines())
 
 
 @lru_cache(maxsize=1)
@@ -415,12 +418,18 @@ def self_test() -> int:
     # Measure the complete glyph outlines, rather than trusting the pen's
     # advance. This catches a crop of a serif or descender at the card edge.
     bounds = []
-    for filename, text, size, left, baseline, colour in COVER_TEXT:
+    crop = (W - H * og_cover.FEATURED_ASPECT) / 2
+    for filename, text, size, left, baseline, colour in cover_lines():
         x0, y0, x1, y1 = og_cover.font(filename, size).getbbox(text, anchor="ls")
-        bounds.append(48 <= left + x0 / og_cover.SS <= left + x1 / og_cover.SS <= W - 48
+        bounds.append(crop + 8 <= left + x0 / og_cover.SS
+                      <= left + x1 / og_cover.SS <= W - crop - 8
                       and 48 <= baseline + y0 / og_cover.SS
                       <= baseline + y1 / og_cover.SS <= H - 30)
-    ok("every cover line stays inside the preview-safe area", all(bounds))
+    ok("every cover line survives the narrower Featured crop", all(bounds))
+    counties, _ = og_cover.geometry()
+    projected = [og_cover.project(p, 57) for _, rings in counties for ring in rings for p in ring]
+    ok("the complete Texas sculpture survives the narrower Featured crop",
+       all(crop + 8 <= x <= W - crop - 8 for x, _ in projected))
     colours = og_cover.colours()
     # Sampling the real cover proves text was painted in each main title line.
     def lit_in_box(x0, y0, x1, y1):
