@@ -100,3 +100,30 @@ The art director reviewed the cover, frame 7 (the wall, the hardest) and the clo
 
 The relief engine has no transparency, no second specular lobe and no emissive term, and the
 close's light from below is a screened stroke laid over the render after `TXBENCH.relief`. Queued.
+
+## Pixel review and the flow pass
+
+- **Pixel round 1, revise on all nine.** Five critics named the same deck fault in different
+  words: murky rather than bold, no lit edges or pools, the mucin a matte grey, a hard seam under
+  the type, letters colliding in two hooks, labels in the wrong place. The repairs went into the
+  chassis (a key pool through `keyMask`, a glossier coat, darker steel, balanced hooks) and into
+  every frame. Frame 9 was rebuilt round a bored aperture, frame 8's cores were made one size with
+  the rim inside the edge, frame 6's kerb went from steel to the nest's own oxblood.
+- **Pixel round 2, ship on seven.** Frame 1 still carried a hard step under the dek, which was the
+  seam helper itself starting at half opacity, and frame 8's two higher mucin halos merged into one
+  beaded figure eight. Both were fixed after the round (the seam now feathers both ways, the halos
+  shrank and leave bare glass between the rows). Frame 8 then failed `layout_check`'s silhouette,
+  so its four cores now sit on one bevelled array slide.
+- **The flow pass, revise, predicted artwork 6.5.** Its craft block, by slide: 4 (5.5, the plate
+  read as a chart on graph paper), 5 (6.0, the same), 9 (6.0, a thin close with the motif gone and a
+  sticker outline on the section), 2 and 3 (6.5, grey label ends as the brightest mass). Cross frame,
+  the palette strobed between warm tissue and cold grey hardware, and all nine frames share one
+  skeleton, type on top and art in a band below. One change each went in: an anodised brushed
+  plate on 4 and 5, the cover's nest held under the lens on 9 with a cool darkfield glow, darker
+  label ends and warm specular bevels on 2 and 3, a lit pool where the count ends on 3, a plum black
+  stage across the hardware, and the coat's own low glaze on 8's rims. Frame 7's dek lost its
+  dictionary sentence, so c25 left the deck. **Not done, and the panel may charge it:** merging 4
+  and 5 into one benchmark frame and re-seating three frames off the shared skeleton. Each is a new
+  composition, past what one repair cycle buys.
+- Frame 5's dek lost "It is no measure of any treatment" because `absence_check` found an absence
+  that named no document.
