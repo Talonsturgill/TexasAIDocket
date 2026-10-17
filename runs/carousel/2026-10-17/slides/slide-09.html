@@ -1,0 +1,138 @@
+<!doctype html>
+<!-- 2026-10-17, frame 9 of 9. Archetype OBJECT_AND_CAPTION. A material relief through txbench.js: the whole glass slide pushed in across the frame on a black microscope stage, held by two spring clips, its section over the stage's dark aperture where light from below shows only as darkfield edges, five engraved lines on its frosted label end, the stage's machined front edge and its cast on the bench below. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">New ideas to test in the lab</h1>
+<p class="dek" data-follow="26">The researchers believe SPACER could potentially become a diagnostic tool for cancer therapies. The release reports no such use. The Cancer Prevention and Research Institute of Texas is one of five funders the release names. Drawn to illustrate.</p>
+<div class="lab" id="fund">Cancer Prevention and Research Institute of Texas</div>
+<svg id="lead" width="1080" height="1350" style="position:absolute;left:0;top:0;z-index:11;pointer-events:none"></svg>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/txbench.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-17-section.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = (async () => {
+  const cx = await SEC.start({ kicker: "Linghua Wang says", counter: "09 / 09", src: "c7 c9 c10 c12" });
+  const FUNDERS = 5, TEXAS_FUND = 1;              // figures.json funders; the release lists the Texas fund second
+  const top = SEC.typeBottom(30);
+  /* THE SLIDE at 75 by 25 mm, pushed in to 14 px per mm so it spans the frame and bleeds both sides */
+  const MM = 14.0, SW = 75 * MM, SH = 25 * MM, SX = 74, SY = top + 130;
+  const LABEL = 20 * MM;
+  const AX = SX + LABEL + 300, AY = SY + SH / 2, AR = 228;
+  /* THE STAGE: black anodised, from under the type to its machined front edge, then the bench */
+  const FRONT = Math.min(1212, SY + SH / 2 + AR + 40);   // the front edge ends well above the source line
+  const cell = SEC.cells(15, 21);
+  const secR = a => (1 + 0.1 * TX.fbm2(Math.cos(a) * 1.4 + 2, Math.sin(a) * 1.4 + 5, 3)) / Math.hypot(Math.cos(a) / 196, Math.sin(a) / 130);   // about 400 px across
+  const GT = 10;                                   // the glass's top, in px above the stage
+  function clip(X, Y, cx0) {                       // spring steel strip from a knurled knob, its tip resting on the glass
+    const x = X - cx0, y = Y - (SY - 120);
+    const k = Math.hypot(x, y - 28);
+    if (k < 32) return 20 + 6 * Math.sqrt(1 - (k / 32) * (k / 32)) + (k > 24 ? 1.6 * Math.sin(Math.atan2(y - 28, x) * 30) : 0);
+    const w = 24 - 7 * Math.min(1, Math.max(0, (y - 44) / 190));
+    if (y < 44 || y > 240 || Math.abs(x) > w) return -1;
+    const tip = GT + 3 + (18 - GT - 3) * Math.max(0, 1 - (y - 44) / 190);   // falls from the knob to rest on the glass
+    return tip + 4 * Math.sqrt(1 - (x / w) * (x / w));
+  }
+  const tcs = [], Rq = TX.rng(2026101709);
+  for (let n = 0; n < 4000 && tcs.length < 46; n++) {
+    const a = Rq() * Math.PI * 2, q = 0.80 + Rq() * 0.15, r = 6 + Rq() * 2.5;
+    const x = AX + Math.cos(a) * secR(a) * q, y = AY + Math.sin(a) * secR(a) * q;
+    if (!tcs.some(t => Math.hypot(t[0] - x, t[1] - y) < t[2] + r + 2)) tcs.push([x, y, r]);
+  }
+  const bead = SEC.beads(tcs, 24);
+  let stripY = 0;
+  const fld = SEC.field((X, Y) => {
+    if (Y < top - 6) return [0, SEC.GLASS];
+    if (Y > FRONT + 8) return [0, SEC.GLASS];                                   // the bench below the stage
+    if (Y > FRONT - 10) { const u = (Y - (FRONT - 10)) / 18; return [6 * Math.cos(Math.PI * 0.5 * u) + 0.2, SEC.STEEL]; }   // the machined front edge
+    let h = 6 + 0.25 * TX.simplex2(X * 0.05, Y * 2.2) + 0.15 * TX.simplex2(X * 0.5, Y * 0.5), m = SEC.STAGE;
+    if (Y < top + 26) h *= Math.max(0, (Y - top + 6) / 32);
+    const ad = Math.hypot(X - AX, Y - AY);
+    if (ad < AR + 10 && ad >= AR) h = 6 - 4 * (1 - (ad - AR) / 10);              // the aperture's chamfer
+    if (ad < AR && ad >= AR - 16) { h = 2 - 26 * (1 - (ad - AR + 16) / 16); m = SEC.STAGE; }   // the bored wall, lit on its upper left
+    if (ad < AR - 16) { h = -24; m = SEC.GLASS; }                               // the bore, black
+    for (const c0 of [SX + LABEL + 60, SX + SW - 120]) { const ch = clip(X, Y, c0); if (ch > 0) return [ch + 6, SEC.STEEL]; }
+    const onSlide = X > SX && X < SX + SW && Y > SY && Y < SY + SH;
+    if (onSlide) {
+      const ed = Math.min(X - SX, SX + SW - X, Y - SY, SY + SH - Y);
+      const bev = Math.min(1, ed / 11);
+      const gh = 6 + GT * (bev * (2 - bev));                                     // a ground bevel round the glass
+      if (ed < 11) return [gh, SEC.BEVEL];   // the ground edge, lit on the faces turned to the key
+      if (X < SX + LABEL) {                                                     // the frosted end, one engraved line per funder
+        const pitch = (SH - 70) / FUNDERS, k = Math.floor((Y - SY - 35) / pitch), f = ((Y - SY - 35) / pitch) % 1;
+        const grain = 0.35 * TX.simplex2(X * 0.9, Y * 0.9) + 0.2 * TX.simplex2(X * 2.3, Y * 2.3);
+        if (k >= 0 && k < FUNDERS && f > 0.36 && f < 0.64 && X > SX + 40 && X < SX + LABEL - 48) {
+          if (k === TEXAS_FUND && !stripY) stripY = SY + 35 + pitch * (k + 0.5);
+          return [gh - 3.2 + grain * 0.3, SEC.LABEL];   // an engraved line, its walls shaded by the key
+        }
+        return [gh + 0.5 + grain, SEC.LABEL];
+      }
+      const ang = Math.atan2(Y - AY, X - AX), q = Math.hypot(X - AX, Y - AY) / secR(ang);
+      if (q < 1) {
+        /* the cover's nest held under the lens: a tumor nest, its coat, and T cells halted outside it */
+        const bb = bead(X, Y);
+        if (bb > 0) return [gh + 3 + bb, SEC.TCELL];
+        if (q < 0.58) { const v = cell(X, Y), e2 = v[1] - v[0]; return [gh + 2.4 + Math.min(1.8, e2 * 0.35), SEC.TUMOR]; }
+        if (q < 0.74) return [gh + SEC.dome((q - 0.58) / 0.16, 2.4, 1.6, 9, 0.4), SEC.MUCIN];
+        return [gh + 1.2 + 0.4 * TX.simplex2(X * 0.3, Y * 0.3), SEC.STROMA];
+      }
+      return [gh, SEC.SLIDE];
+    }
+    return [h, m];
+  });
+  const stageOpts = SEC.opts(fld, { castLength: 130, visBlur: 1 }), stageAlb = stageOpts.albedo;
+  stageOpts.albedo = (X, Y, m) => m === SEC.LABEL ? stageAlb(X, Y, m).map(v => Math.min(0.9, v * 1.6)) : stageAlb(X, Y, m);   // the frosted end, the lightest surface after the aperture's light
+  TXBENCH.relief(cx, stageOpts);
+  /* DARKFIELD: the light from below comes up only at edges, a thin ring where the aperture's rim breaks it and a
+   * lit rim along the section's outline, while the tissue itself stays dark */
+  cx.save(); cx.globalCompositeOperation = "screen";
+  cx.save(); cx.beginPath(); cx.rect(SX + 11, SY + 11, SW - 22, SH - 22); cx.clip();   // the light from below shows only through the glass
+  cx.strokeStyle = "rgba(214,232,255,0.45)"; cx.lineWidth = 2.4; cx.filter = "blur(1px)";
+  cx.beginPath(); cx.arc(AX, AY, AR - 18, 0, Math.PI * 2); cx.stroke();
+  cx.strokeStyle = "rgba(226,240,255,0.95)"; cx.lineWidth = 3; cx.filter = "blur(0.8px)";
+  cx.beginPath(); cx.arc(AX, AY, AR - 18, 0.15 * Math.PI, 0.85 * Math.PI); cx.stroke();   // brightest on the lower side
+  cx.strokeStyle = "rgba(190,214,255,0.40)"; cx.lineWidth = 12; cx.filter = "blur(7px)";
+  cx.beginPath(); cx.arc(AX, AY, AR - 20, 0.1 * Math.PI, 0.9 * Math.PI); cx.stroke();
+  cx.restore();
+  const outline = () => { cx.beginPath(); for (let i = 0; i <= 360; i++) { const a = i * Math.PI / 180, r = secR(a); i ? cx.lineTo(AX + r * Math.cos(a), AY + r * Math.sin(a)) : cx.moveTo(AX + r * Math.cos(a), AY + r * Math.sin(a)); } cx.closePath(); };
+  cx.strokeStyle = "rgba(200,222,255,0.22)"; cx.lineWidth = 10; cx.filter = "blur(8px)"; outline(); cx.stroke();   // light from below, soft at the section's thin edge
+  cx.restore();
+  SEC.post(cx, { footWash: 0.42 });
+  /* the leader to the Texas fund's strip */
+  /* the slide glass catches one soft diagonal sheen from the upper left key, right of the aperture */
+  cx.save(); cx.beginPath(); cx.rect(SX + 11, SY + 11, SW - 22, SH - 22); cx.clip();
+  cx.globalCompositeOperation = "screen";
+  const band = (x0, w, a, blur) => {                                        // a sheen leaning down to the right, along the key
+    cx.filter = "blur(" + blur + "px)"; cx.fillStyle = "rgba(214,206,220," + a + ")";
+    cx.beginPath(); cx.moveTo(x0, SY); cx.lineTo(x0 + w, SY); cx.lineTo(x0 + w + 300, SY + SH); cx.lineTo(x0 + 300, SY + SH); cx.closePath(); cx.fill();
+  };
+  band(AX + AR - 150, 64, 0.15, 10); band(AX + AR - 60, 18, 0.12, 5);
+  cx.restore();
+  /* the front chamfer catches a thin line of the key */
+  cx.save(); cx.globalCompositeOperation = "screen"; cx.strokeStyle = "rgba(236,226,214,0.35)"; cx.lineWidth = 2; cx.filter = "blur(0.6px)";
+  cx.beginPath(); cx.moveTo(0, FRONT - 9); cx.lineTo(1080, FRONT - 9); cx.stroke(); cx.restore();
+  const lab = document.getElementById("fund");
+  lab.style.whiteSpace = "normal"; lab.style.width = "290px"; lab.style.fontSize = "24px";
+  lab.style.left = (SX + 6) + "px"; lab.style.top = Math.round(SY - 22 - lab.offsetHeight) + "px";   // above the frosted end it names, clear of the clip
+  const lb = lab.getBoundingClientRect(), lineEnd = SX + LABEL - 48, at = [lineEnd, stripY];
+  SEC.leader(document.getElementById("lead"), [SX + LABEL - 26, lb.bottom + 8], at);   // down the clear lane right of the engraved lines
+  window.__txLeaders = [{ target: "the Texas fund's strip on the label", at: at, to: at }];
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

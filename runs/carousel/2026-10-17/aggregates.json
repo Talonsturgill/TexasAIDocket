@@ -1,0 +1,56 @@
+{
+ "date": "2026-10-17",
+ "_note": "Every count, span and multiple the deck states, with the claim it was quoted from or the code that computed it.",
+ "aggregates": [
+  {
+   "phrase": "37 datasets",
+   "slide": "slide-03.html",
+   "kind": "count",
+   "value": 37,
+   "quoted_from": "c4",
+   "quote": "across 37 datasets",
+   "note": "the release's count, quoted; figures.json datasets, and the abstract says the same (c20)"
+  },
+  {
+   "phrase": "Four times",
+   "slide": "slide-04.html",
+   "kind": "ratio",
+   "value": 4,
+   "quoted_from": "c4",
+   "quote": "four- to 21-times",
+   "note": "the low end of the quoted range"
+  },
+  {
+   "phrase": "21 times",
+   "slide": "slide-05.html",
+   "kind": "ratio",
+   "value": 21,
+   "quoted_from": "c4",
+   "quote": "to 21-times more effective",
+   "note": "the high end of the quoted range"
+  },
+  {
+   "phrase": "one of five",
+   "slide": "slide-09.html",
+   "kind": "count",
+   "value": 5,
+   "from_claims": [
+    "c12"
+   ],
+   "computed_by": "out/2026-10-17/compute.py funders, the funders c12 lists split on its commas and its and: the National Institutes of Health, the Cancer Prevention and Research Institute of Texas, the U.S. Department of Defense, the Adrienne Helis Malvin Medical Research Foundation, a Baylor College of Medicine Department of Surgery Seed Grant"
+  },
+  {
+   "phrase": "four official records",
+   "slide": "first_comment.txt",
+   "kind": "count",
+   "value": 4,
+   "from_claims": [
+    "c1",
+    "c17",
+    "c23",
+    "c24"
+   ],
+   "computed_by": "scripts/carousel/sources_block.py --build, the distinct documents the deck's printed claim ids resolve to (MD Anderson release, the journal article page, the NCI dictionary entries for immune checkpoint inhibitor and T cell)"
+  }
+ ]
+}

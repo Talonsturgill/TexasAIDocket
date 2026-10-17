@@ -2181,3 +2181,22 @@ date is in six days, so the next run's re-verify is the one to watch.
 
 **www.ksat.com and www.expressnews.com are refused by their robots.txt** and were not read. The
 Salado Creek account rests on Texas Public Radio for that reason.
+
+## October 17th, 2026
+
+**keranews.org, mylubbock.us and hayscountytx.gov answered 403** during re-verify, beside the hosts
+already logged as refusing every client (wilcotx.gov, brazoscountytx.gov, dhs.gov, brownsvilletx.gov,
+leandertx.gov, globenewswire.com). The items behind them kept their last verified dates.
+
+**www.mdanderson.org answered 200** on its October 13th SPACER release, which tx-2026-0217 cites for
+all eleven of its claims.
+
+**www.nature.com served the journal's abstract page to the scout's fetch** and handed
+`scripts/shared/fetch_doc.py` a client challenge instead of the article. The deck's six journal
+claims rest on the abstract page as the scout and the fact checker read it.
+
+**www.cprit.texas.gov answered 403** to the run's fetch. The Cancer Prevention and Research Institute
+of Texas is named in the deck as one of five funders on MD Anderson's own release, not on a CPRIT page.
+
+**www.cancer.gov answered 200** on its dictionary entries for immune checkpoint inhibitors, which back
+the deck's plain definitions.

@@ -1,0 +1,68 @@
+<!doctype html>
+<!-- 2026-10-17, frame 3 of 9. Archetype GRID. A material relief through txbench.js: the right half of a panorama of 37 glass slides on a black bench, one slide for each dataset, two rows, each with a frosted label end and its own seeded section. The slide on the seam is cut by this frame's left edge, completing the one frame 2 cut. Drawn to illustrate; no dataset's tissue is depicted. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">37 datasets, human tumors and mouse heart</h1>
+<p class="dek" data-follow="26">The team ran SPACER across 37 datasets. The release says they represent several cancer types. The journal abstract adds mouse heart. Drawn to illustrate.</p>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/txbench.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-17-section.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = (async () => {
+  const cx = await SEC.start({ kicker: "The datasets", counter: "03 / 09", src: "c4 c20" });
+  const DATASETS = 37;                                   // figures.json datasets: one slide each
+  const upper = Math.ceil(DATASETS / 2), lower = DATASETS - upper;
+  const OFFSET = 1080;                                   // the panorama's right half, continuing frame 2
+  const top = SEC.typeBottom(40);
+  const W = 92, H = 276, FROST = 74, STEP = 2160 / upper;
+  const rowY = [600, 600 + H + 44];              // the same rows as frame 2
+  /* slides 10 to 19 of the upper row and 10 to 18 of the lower, so the lower row stops short on bare bench */
+  const placed = [];
+  [[upper, 0], [lower, 1]].forEach(([count, row]) => {
+    for (let i = 0; i < count; i++) {
+      const x = (i + 0.5) * STEP - W / 2 - OFFSET + 5 * TX.simplex2(i, row ? 7.5 : 0.5);
+      if (x + W > 0 && x < 1080) placed.push({ x, y: rowY[row] + 6 * TX.simplex2(i, row ? 9.5 : 3.5), seed: row * upper + i });
+    }
+  });
+  function section(X, Y, p) {
+    const mx = p.x + W / 2, my = p.y + FROST + (H - FROST) / 2, ang = Math.atan2(Y - my, X - mx);
+    const rim = 30 + 9 * TX.fbm2(Math.cos(ang) + p.seed * 3.1, Math.sin(ang) + p.seed * 1.7, 3) + 6 * Math.sin(2 * ang + p.seed);
+    return Math.hypot(X - mx, (Y - my) * 0.62) - rim;
+  }
+  const endX = Math.max(...placed.filter(q => q.y > rowY[0] + H).map(q => q.x + W));   // where the count stops
+  const fld = SEC.field((X, Y) => {
+    if (Y < top) return [0, SEC.GLASS];
+    const p = placed.find(q => X >= q.x && X <= q.x + W && Y >= q.y && Y <= q.y + H);
+    if (!p) return [0.28 * TX.simplex2(X * 0.35 + 40, Y * 0.35) + 0.2 * TX.simplex2(X * 1.3 + 40, Y * 1.3), SEC.STAGE];   // the bench's speckled resin
+    const edge = Math.min(X - p.x, p.x + W - X, Y - p.y, p.y + H - Y), bv = Math.min(1, edge / 7);
+    const glass = 9 * bv * (2 - bv);   // a ground bevel tall enough to catch the key
+    if (Y < p.y + FROST) return [glass + 0.6 + 0.35 * TX.simplex2(X * 1.1 + p.seed, Y * 1.1), SEC.LABEL];
+    { const sd = section(X, Y, p); if (sd < 0) { const lift = Math.min(1, -sd / 5); return [glass + 5.5 * lift * (2 - lift) + 0.8 * TX.simplex2(X * 0.4, Y * 0.4), TX.fbm2(X * 0.05 + p.seed, Y * 0.05, 2) > 0.1 ? SEC.TUMOR : SEC.STROMA]; } }   // a section with height, so its edge casts
+    return [glass, SEC.SLIDE];
+  });
+  const frostOpts = SEC.opts(fld, { castLength: 90, pool: { x: endX + 120, y: rowY[1] + H / 2, rx: 760, ry: 620, floor: 0.34 } });
+  const baseAlb = frostOpts.albedo;
+  frostOpts.albedo = (X, Y, m) => m === SEC.LABEL ? baseAlb(X, Y, m).map(v => v * 0.42) : baseAlb(X, Y, m);   // a darker frost face, so the bevels and sections carry the light
+  TXBENCH.relief(cx, frostOpts);
+  SEC.seam(cx, top);
+  SEC.post(cx, { footWash: 0.42 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

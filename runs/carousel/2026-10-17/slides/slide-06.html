@@ -1,0 +1,94 @@
+<!doctype html>
+<!-- 2026-10-17, frame 6 of 9. Archetype DIAGRAM. A material relief through txbench.js at the cover's scale and light: a tumor nest with no coat, its outer row of cells carrying raised studs for antigen presentation, ember T cells pressed into its margin and a few threaded between its cells, a low kerb ringing one group of neighboring cells. Drawn to illustrate; no patient's tissue is depicted. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">Immune cells seem to answer signals close by</h1>
+<p class="dek" data-follow="26">SPACER reads groups of neighboring cells. Tumors expressing antigen presentation genes were more likely to attract T cells. Those genes help cells show protein fragments to immune cells. Drawn to illustrate.</p>
+<div class="lab" id="hood">a group of neighboring cells</div>
+<svg id="lead" width="1080" height="1350" style="position:absolute;left:0;top:0;z-index:11;pointer-events:none"></svg>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/txbench.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-17-section.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = (async () => {
+  const cx = await SEC.start({ kicker: "What draws T cells in", counter: "06 / 09", src: "c3 c5 c6" });
+  const R = TX.rng(2026101706);
+  const top = SEC.typeBottom(24);
+  /* THE COVER'S CAMERA: the same scale of cell (28 px) and the same key, on a nest with no coat. */
+  const NX = 610, NY = 1080;
+  const nestR = a => 340 + 54 * TX.fbm2(Math.cos(a) * 1.2 + 13, Math.sin(a) * 1.2 + 4, 3) + 20 * Math.sin(2 * a + 0.4);
+  const edgeTop = X => top + 22 + 26 * TX.fbm2(X * 0.006, 8.7, 3) + 9 * TX.fbm2(X * 0.03, 2.2, 2);
+  const cell = SEC.cells(28, 3);
+  const nd = (X, Y) => Math.hypot(X - NX, Y - NY) - nestR(Math.atan2(Y - NY, X - NX));
+  /* THE NEIGHBORHOOD SPACER READS: a group of cells at the nest's upper left margin, ringed by a low kerb */
+  const HX = NX + Math.cos(-2.35) * (nestR(-2.35) - 70), HY = NY + Math.sin(-2.35) * (nestR(-2.35) - 70), HR = 112;
+  /* THE T CELLS: pressed against the margin all round the lit side, and a few threaded between outer cells */
+  const tc = [];
+  for (let n = 0; n < 5000 && tc.length < 170; n++) {
+    const ang = Math.PI * (0.55 + 1.1 * R()), inside = R() < 0.12;
+    const rr = nestR(ang) + (inside ? -30 - R() * 70 : 8 + Math.pow(R(), 2.2) * 200), r = 8 + R() * 3.5;
+    const x = NX + Math.cos(ang) * rr, y = NY + Math.sin(ang) * rr;
+    if (y < edgeTop(x) + r + 8 || y > 1340 || x < 10 || x > 1070) continue;
+    if ((x < 600 && y > HY + HR + 96 && y < HY + HR + 170) || (x < 260 && y > 1190)) continue;   // lanes for the label and the source line
+    if (Math.abs(Math.hypot(x - HX, y - HY) - HR) < r + 10) continue;                             // nothing banked on the kerb
+    { const da = Math.abs(Math.atan2(Math.sin(ang + 2.35), Math.cos(ang + 2.35)));                 // thinning away from the ringed group
+      if (!inside && R() < Math.min(0.8, da / 1.8)) continue; }
+    if (!tc.some(t => Math.hypot(t[0] - x, t[1] - y) < t[2] + r + 1.5)) tc.push([x, y, r]);
+  }
+  tc.push([HX + 18, HY + 10, 10]);            // the T cell inside the ringed group
+  const bead = SEC.beads(tc);
+  const fld = SEC.field((X, Y) => {
+    const e = edgeTop(X);
+    if (Y < e) return [0, SEC.GLASS];
+    const lip = Math.min(1, (Y - e) / 10);
+    const b = bead(X, Y);
+    if (b > 0) return [7 + b + 0.9 * TX.simplex2(X * 0.9, Y * 0.9), SEC.TCELL];
+    const hd = Math.hypot(X - HX, Y - HY) - HR;
+    if (Math.abs(hd) < 8) return [24 + 9 * Math.cos(Math.PI * hd / 16), SEC.TUMOR];   // a raised kerb in the nest's own oxblood, tall enough to catch the key and cast
+    const d = nd(X, Y);
+    if (d < 0) {
+      const v = cell(X, Y), ed = v[1] - v[0];
+      let h = 12 + Math.min(7, ed * 0.8);
+      const nu = Math.hypot(X - v[2], Y - v[3]);
+      if (nu < 7) h -= 3.4 * (1 - nu / 7);
+      /* the outer row displays protein fragments: fine raised studs on the cell tops within 90 px of the margin */
+      /* the outermost row displays protein fragments: one raised glossy stud on each cell's top, outer row only */
+      if (d > -40) {
+        const st = Math.hypot(X - v[2] + 2, Y - v[3] + 2);
+        if (st < 6.5) return [h + 4.5 * Math.sqrt(1 - (st / 6.5) * (st / 6.5)), SEC.STEEL];
+      }
+      return [h, SEC.TUMOR];
+    }
+    const s = SEC.stroma(X, Y);
+    return [s[0] * lip, s[1]];
+  });
+  TXBENCH.relief(cx, SEC.opts(fld, { castLength: 140, pool: { x: 420, y: 860, rx: 760, ry: 620, floor: 0.25 } }));
+  SEC.seam(cx, top);
+  SEC.post(cx, { footWash: 0.42 });
+  SEC.knock(cx, ".tx-site", 0.5);
+  /* the label for the ringed group, and a leader that lands on the kerb */
+  const lab = document.getElementById("hood"); lab.style.left = "80px"; lab.style.top = Math.round(HY + HR + 120) + "px";
+  SEC.knock(cx, "#hood", 0.5);
+  const lb = lab.getBoundingClientRect(), at = [HX - HR * 0.42, HY + HR * 0.91];
+  SEC.leader(document.getElementById("lead"), [lb.left + 40, lb.top - 8], at);
+  window.__txLeaders = [{ target: "the kerb ringing the group of neighboring cells", at: at, to: at }];
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

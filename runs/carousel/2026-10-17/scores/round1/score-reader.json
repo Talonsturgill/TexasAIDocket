@@ -1,0 +1,34 @@
+{
+  "lens": "reader",
+  "round": 1,
+  "criteria": [
+    {"name": "artwork_craft", "weight": 0.22, "score": 6.3, "why": "Frames 1 and 7 pass at 432 px. Frame 1's nest under its coat with T cells crowded to its left reads as one subject, and frame 7's white glazed wall crosses on a diagonal with T cells banked against it, lit upper left with a real crest. Frame 8's 2 by 2 cores read at a glance. Four of nine frames lean on defaults, though. Frames 4 and 5 are mid grey bars on a graph-paper grid, a chart in all but name, and the 4-unit and 21-unit bars carry no SPACER label. Frames 2 and 3 are near-identical trays of black slides whose oxblood sections barely come off the black glass at thumb size. On frame 6 the ringed group is invisible at feed size and the leader lands in clutter. On frame 9 the funders are engraved lines on a slide label, on grey hardware. Every frame puts type on top and art in the lower roughly 45 percent, under a four-line dek."},
+    {"name": "deck_coherence", "weight": 0.12, "score": 7.0, "why": "One plan-view camera, one low key from the upper left, one black bench and the ember accent kept to T cells throughout. Two continuity devices visibly work: the slide tray runs off frame 2's right edge and finishes on 3, and frame 4's bar runs off the right edge and resolves at 21 on 5. A motif changes state too. On the contact sheet the palette strobes from warm tissue (1, 6 to 9) to cold grey hardware (2 to 5), so frames 4 and 5 sit outside the deck."},
+    {"name": "claim_integrity", "weight": 0.20, "score": 8.5, "why": "Every slide numeral traces to a claim. All sources are primary. Hedges are kept. Three phrasings sit looser than their source: frame 9's headline is Linghua Wang's quoted words (c10) with no attribution on the slide, frame 8's art shows which cores T cells get into while the headline is about response to checkpoint drugs, and frame 8 cites c21, a medium-confidence quote spliced from two fragments."},
+    {"name": "story_and_stakes", "weight": 0.16, "score": 6.0, "why": "A reader learns what happened. There is no decision, no public body, no deadline and no next step, which the run's own texan gate flags. Houston is named nowhere on the slides or in the caption. CPRIT appears only as one of five funders. 'T cell' is never defined, even though c24 exists."},
+    {"name": "sequence_and_momentum", "weight": 0.10, "score": 6.0, "why": "The cover question earns the swipe. Frames 2 to 5 are method and benchmark before the answer arrives on frame 7. Frame 3 is the same picture as frame 2, and the benchmark gets two frames. The turn on frame 7 is real and frame 8 lands. Frame 9 closes softly."},
+    {"name": "voice", "weight": 0.10, "score": 6.5, "why": "Clean, accurate and on register. It reads like a careful science explainer rather than a Texan who knows the subject. 'Drawn to illustrate.' repeats on seven of nine deks. The caption line 'The frames build that wall in relief, T cells banked on its outer slope.' describes the artwork. The closing question is good."},
+    {"name": "variety", "weight": 0.10, "score": 8.0, "why": "Against nos. 49 to 52, all staged night spatial scenes with a hero object, this is the first all-material-relief deck, plan view at microscope scale, biology rather than infrastructure. Familiar moves remain: ember #B4664F was no. 41's accent, the near-black register and the type-top skeleton carry on."}
+  ],
+  "weighted_score": 6.94,
+  "hard_fails": [],
+  "ship": false,
+  "one_sentence_fix": "Merge frames 2 and 3 and frames 4 and 5 so the mucin wall arrives by frame 4, then spend the freed frames on a Texan's stake built from fetched claims.",
+  "artwork_weakest_frames": [
+    {"slide": 4, "problem": "Mid grey bars on a graph-paper grid read as a spreadsheet chart. The 4-unit bar is unlabelled, and the stub running off the right edge is unexplained at feed size.", "fix": "Delete the graph grid under the bars, name the long bar SPACER in DOM, and let the key catch only the 4-unit bar's top bevel so it is the one bright edge on a near-black plate."},
+    {"slide": 5, "problem": "The same grey chart at a farther scale, no SPACER label, in the cold grey that breaks the warm tissue palette.", "fix": "Remove the grid texture and label the 21 bar SPACER. Give the SPACER bars the mucin glaze with a crest highlight and keep the 1-unit bar in cold steel."},
+    {"slide": 3, "problem": "Near-duplicate of frame 2, the sections barely separate from the black glass at 432 px, and the empty bench reads as nothing.", "fix": "Rim-light each section with the darkfield edge used on frame 9 so every slide reads as a separate lit object."},
+    {"slide": 6, "problem": "The ringed group of neighboring cells is invisible at feed size and the label leader ends in clutter.", "fix": "Raise the kerb around the one group into a lit ridge with a dark moat outside it, and clear the T cells from everywhere except that group and the nest margin."},
+    {"slide": 9, "problem": "The funders as engraved lines can't be decoded, and the stage hardware occupies most of the art band with the section small in the centre.", "fix": "Crop in on the section over the lit aperture until it fills a third to half of the frame."}
+  ],
+  "defects_ranked": [
+    "Frames 2 to 5 spend four of nine frames on method and a benchmark before the answer on frame 7.",
+    "No Texan stake or next step: no Houston, CPRIT reduced to one of five funders.",
+    "Frames 4 and 5 read as grey charts on graph paper with no SPACER label.",
+    "Frame 3 repeats frame 2's picture.",
+    "'T cell' is never defined, though c24 is in the claims file.",
+    "Frame 9's headline is an unattributed paraphrase of Linghua Wang's quote (c10).",
+    "'Drawn to illustrate.' on seven deks, and a caption line that describes the art.",
+    "Label, quantifier and verbatim reports were absent at scoring time."
+  ]
+}

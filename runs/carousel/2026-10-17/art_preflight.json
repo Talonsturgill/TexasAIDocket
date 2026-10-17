@@ -1,0 +1,209 @@
+{
+  "version": 2,
+  "selected": [
+    1,
+    7,
+    9
+  ],
+  "inputs": {
+    "slides/slide-01.html": "bcf5576156f568cc7df949ac0d639c0df8cf1450d4744bf417c710ab2ca63975",
+    "render/slide-01.png": "7c728826b190233d172a63a69863980eb716acbbd1a98e874c9f9e1404b253f9",
+    "assets/js/deck/2026-10-17-section.js": "012a1156b3736e37adf8461e7850a9f7ef3f6d4bb35ebb42374a744831903f68",
+    "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+    "assets/js/txbench.js": "6aee9f0f657aa8723a635683cb6482a2a0ad31aabcd5a633e3cb3a4d34f1f638",
+    "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+    "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+    "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+    "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+    "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+    "slides/slide-07.html": "78b3c76e48d4caf264efc1c29d5a056e41a2bbb15b928b17a6402ed29b2b3136",
+    "render/slide-07.png": "6c8d0e4f137b495fcb56add59a5b93aad618b831ee56df0ca9232d5abb2d05e8",
+    "slides/slide-09.html": "ba9258593bab127a376c8afb271bd2f430b82a24e2ef352ab9389ea1e9a13d42",
+    "render/slide-09.png": "44d60dbe3974cd92ecde3ec60570316fda9363a3d83bfe17d5caf3760440ec59"
+  },
+  "value_measurements": [
+    {
+      "frame": "slide-01.png",
+      "median_L": 4.7,
+      "mid": 0.066,
+      "dark": 0.769
+    },
+    {
+      "frame": "slide-07.png",
+      "median_L": 5.7,
+      "mid": 0.115,
+      "dark": 0.704
+    },
+    {
+      "frame": "slide-09.png",
+      "median_L": 3.9,
+      "mid": 0.11,
+      "dark": 0.78
+    }
+  ],
+  "review": {
+    "decision": "accept",
+    "inputs": {
+      "slides/slide-01.html": "bcf5576156f568cc7df949ac0d639c0df8cf1450d4744bf417c710ab2ca63975",
+      "render/slide-01.png": "7c728826b190233d172a63a69863980eb716acbbd1a98e874c9f9e1404b253f9",
+      "assets/js/deck/2026-10-17-section.js": "012a1156b3736e37adf8461e7850a9f7ef3f6d4bb35ebb42374a744831903f68",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/txbench.js": "6aee9f0f657aa8723a635683cb6482a2a0ad31aabcd5a633e3cb3a4d34f1f638",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+      "slides/slide-07.html": "78b3c76e48d4caf264efc1c29d5a056e41a2bbb15b928b17a6402ed29b2b3136",
+      "render/slide-07.png": "6c8d0e4f137b495fcb56add59a5b93aad618b831ee56df0ca9232d5abb2d05e8",
+      "slides/slide-09.html": "ba9258593bab127a376c8afb271bd2f430b82a24e2ef352ab9389ea1e9a13d42",
+      "render/slide-09.png": "44d60dbe3974cd92ecde3ec60570316fda9363a3d83bfe17d5caf3760440ec59"
+    },
+    "frames": [
+      {
+        "slide": 1,
+        "role": "cover",
+        "subject": "A tumor nest of domed oxblood cells, each with a nucleus dimple, ringed by a pale cool mucin coat that is now a wet pebbled glaze of small glossy globules catching the key on the upper-left shoulder. A dense field of ember T cells sits on the ridged plum stroma to the left and stops at the coat's outer foot.",
+        "visual_consequence": "Without the headline the frame reads as a crowd of ember cells stopped at a glossy pale ring with nothing ember inside it. The coat reads as a wet coat with relief and point highlights, and it leaves a cavity shadow on the first row of cells inside its upper-left arc.",
+        "weakness": "The new c24 moved the source line onto the coat's lower-left arc, where cream mono type over the glaze has less contrast than the rest of the row, still readable. The black voids in the right-hand stroma have hard ragged edges at native size.",
+        "repair": "Deepen the footer wash under the left footer group until the coat under 'c24' falls to the stroma's value, and confirm the row's contrast.",
+        "encoding_reads": true,
+        "dominant_subject_finished": true,
+        "feed_legible": true,
+        "inputs": {
+          "slides/slide-01.html": "bcf5576156f568cc7df949ac0d639c0df8cf1450d4744bf417c710ab2ca63975",
+          "render/slide-01.png": "7c728826b190233d172a63a69863980eb716acbbd1a98e874c9f9e1404b253f9",
+          "assets/js/deck/2026-10-17-section.js": "012a1156b3736e37adf8461e7850a9f7ef3f6d4bb35ebb42374a744831903f68",
+          "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+          "assets/js/txbench.js": "6aee9f0f657aa8723a635683cb6482a2a0ad31aabcd5a633e3cb3a4d34f1f638",
+          "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+          "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+          "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+          "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+          "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de"
+        }
+      },
+      {
+        "slide": 7,
+        "role": "evidence",
+        "subject": "The mucin wall crosses the frame on a rising diagonal as a band of pale glazed globules with point speculars, about 150 ember T cells banked above it casting scalloped shadows onto its upper slope, the cobbled oxblood tumor cells below.",
+        "visual_consequence": "A raised pale barrier with every ember cell on one side and the tumor on the other. The wall clearly has height, and at 432 px the ember-against-pale split is immediate.",
+        "weakness": "The source line 'c7' sits on the wall's shaded lower band. The wall has a smooth unpebbled apron along its lower edge, and its cast over the tumor reads as a general darkening rather than a shadow edge.",
+        "repair": "The same footer wash deepening as frame 1 under the left footer group.",
+        "encoding_reads": true,
+        "dominant_subject_finished": true,
+        "feed_legible": true,
+        "inputs": {
+          "assets/js/deck/2026-10-17-section.js": "012a1156b3736e37adf8461e7850a9f7ef3f6d4bb35ebb42374a744831903f68",
+          "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+          "assets/js/txbench.js": "6aee9f0f657aa8723a635683cb6482a2a0ad31aabcd5a633e3cb3a4d34f1f638",
+          "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+          "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+          "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+          "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+          "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+          "slides/slide-07.html": "78b3c76e48d4caf264efc1c29d5a056e41a2bbb15b928b17a6402ed29b2b3136",
+          "render/slide-07.png": "6c8d0e4f137b495fcb56add59a5b93aad618b831ee56df0ca9232d5abb2d05e8"
+        }
+      },
+      {
+        "slide": 9,
+        "role": "close",
+        "subject": "A whole glass slide held by two knurled spring clips on a dark anodised stage plate, seen from above. Its frosted label end carries five engraved slots with a leader from the Texas fund's name to the second. The deck's section sits over the round aperture: an oxblood nest inside a glossy pale mucin ring with ember T cells outside it. The black bore shows above and below the slide and the plate's machined front edge is at the bottom.",
+        "visual_consequence": "The specimen from the earlier frames is back under a microscope on a lab stage. The five slots are a count readable at 432 px and the leader picks out one. The slots have lit lips and shadowed walls, the label a fine frosted grain and a pale bevel, the clips cast down and right, and the label is the brightest large surface in the artwork.",
+        "weakness": "The label sits near L* 60 by eye rather than 70 to 80, still reading as frosted glass and the lightest broad surface after the aperture rim. The clip arms are flat tapered bars with no contact shading at their tips. The dossier lists accent none while the section carries ember T cells.",
+        "repair": "Optional: raise the frosted label one more step and add a small contact shadow under each clip tip.",
+        "encoding_reads": true,
+        "dominant_subject_finished": true,
+        "feed_legible": true,
+        "inputs": {
+          "assets/js/deck/2026-10-17-section.js": "012a1156b3736e37adf8461e7850a9f7ef3f6d4bb35ebb42374a744831903f68",
+          "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+          "assets/js/txbench.js": "6aee9f0f657aa8723a635683cb6482a2a0ad31aabcd5a633e3cb3a4d34f1f638",
+          "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+          "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+          "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+          "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+          "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+          "slides/slide-09.html": "ba9258593bab127a376c8afb271bd2f430b82a24e2ef352ab9389ea1e9a13d42",
+          "render/slide-09.png": "44d60dbe3974cd92ecde3ec60570316fda9363a3d83bfe17d5caf3760440ec59"
+        }
+      }
+    ]
+  },
+  "plan": {
+    "hardest_frame": 7,
+    "visual_argument": "The tissue's own materials show what SPACER found: ember T cells gather against cells next door and stop at the foot of a glossy mucin coat, and every figure the release gives is a count or a length on the same dark bench.",
+    "build_risk": "The mucin wall at macro has to read as a soft wet barrier and not as icing, a bone ring or a crater, with T cells banked on its outer slope and its cast falling over the tumor cells; txbench has no transparency, so the coat reads only by its specular crest, its height and its cast.",
+    "distinct_from_recent": "No. 52 was a staged nightSodium world around a kit robotaxi at an airport curb; no. 51 a lastLight courthouse and deposition room around a kit transcript; no. 50 a floodlit low water crossing around a sensor node. All three were txthree spatial scenes with one kit hero. This deck has no camera position, no sky, no room and no kit model: nine orthographic material reliefs of a tissue section and its slide under one darkfield key."
+  },
+  "frame_inputs": {
+    "1": {
+      "slides/slide-01.html": "bcf5576156f568cc7df949ac0d639c0df8cf1450d4744bf417c710ab2ca63975",
+      "render/slide-01.png": "7c728826b190233d172a63a69863980eb716acbbd1a98e874c9f9e1404b253f9",
+      "assets/js/deck/2026-10-17-section.js": "012a1156b3736e37adf8461e7850a9f7ef3f6d4bb35ebb42374a744831903f68",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/txbench.js": "6aee9f0f657aa8723a635683cb6482a2a0ad31aabcd5a633e3cb3a4d34f1f638",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de"
+    },
+    "7": {
+      "assets/js/deck/2026-10-17-section.js": "012a1156b3736e37adf8461e7850a9f7ef3f6d4bb35ebb42374a744831903f68",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/txbench.js": "6aee9f0f657aa8723a635683cb6482a2a0ad31aabcd5a633e3cb3a4d34f1f638",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+      "slides/slide-07.html": "78b3c76e48d4caf264efc1c29d5a056e41a2bbb15b928b17a6402ed29b2b3136",
+      "render/slide-07.png": "6c8d0e4f137b495fcb56add59a5b93aad618b831ee56df0ca9232d5abb2d05e8"
+    },
+    "9": {
+      "assets/js/deck/2026-10-17-section.js": "012a1156b3736e37adf8461e7850a9f7ef3f6d4bb35ebb42374a744831903f68",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/txbench.js": "6aee9f0f657aa8723a635683cb6482a2a0ad31aabcd5a633e3cb3a4d34f1f638",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+      "slides/slide-09.html": "ba9258593bab127a376c8afb271bd2f430b82a24e2ef352ab9389ea1e9a13d42",
+      "render/slide-09.png": "44d60dbe3974cd92ecde3ec60570316fda9363a3d83bfe17d5caf3760440ec59"
+    }
+  },
+  "needs_review": [
+    9
+  ],
+  "shipped_inputs": {
+    "slides/slide-01.html": "bcf5576156f568cc7df949ac0d639c0df8cf1450d4744bf417c710ab2ca63975",
+    "slide-01.webp": "0517d68955fc133658d2c9945b1db424b6d65f387b33c3510698f49b12310764",
+    "slides/slide-07.html": "78b3c76e48d4caf264efc1c29d5a056e41a2bbb15b928b17a6402ed29b2b3136",
+    "slide-07.webp": "62a629042016e95dccbee9ca8137cdc7cb633a212378a2d2a4f847f38ba386c5",
+    "slides/slide-09.html": "ba9258593bab127a376c8afb271bd2f430b82a24e2ef352ab9389ea1e9a13d42",
+    "slide-09.webp": "536f34383efabe3f220130a8cc4b50c923d4bf595f7a2364c34063601f1fbaaf"
+  },
+  "encodings": [
+    {
+      "to": "slide-01.webp",
+      "to_sha256": "0517d68955fc133658d2c9945b1db424b6d65f387b33c3510698f49b12310764",
+      "from_sha256": "7c728826b190233d172a63a69863980eb716acbbd1a98e874c9f9e1404b253f9",
+      "psnr_db": 41.321
+    },
+    {
+      "to": "slide-07.webp",
+      "to_sha256": "62a629042016e95dccbee9ca8137cdc7cb633a212378a2d2a4f847f38ba386c5",
+      "from_sha256": "6c8d0e4f137b495fcb56add59a5b93aad618b831ee56df0ca9232d5abb2d05e8",
+      "psnr_db": 41.296
+    },
+    {
+      "to": "slide-09.webp",
+      "to_sha256": "536f34383efabe3f220130a8cc4b50c923d4bf595f7a2364c34063601f1fbaaf",
+      "from_sha256": "44d60dbe3974cd92ecde3ec60570316fda9363a3d83bfe17d5caf3760440ec59",
+      "psnr_db": 40.989
+    }
+  ]
+}

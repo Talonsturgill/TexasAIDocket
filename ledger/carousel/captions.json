@@ -19,12 +19,12 @@
   "recent_lists_note": "These three lists are the exclusions handed to the caption room and they were hand-kept. On 2026-08-20 the fourth panel found structures_recent reading [\"ledger\", \"pivot\", \"question and answer\"] when the last three shipped structures were [\"ledger\", \"two columns\", \"question and answer\"], so it dropped a structure that IS off the table and held one that is not. Wrong in both directions from one hand edit. They are now recomputed from entries and are ordered OLDEST FIRST, matching the entries list, and scripts/carousel/caption_check.py should derive them rather than read them. That is an upgrade-lane change and it is written into this run's proposals."
  },
  "opening_moves_recent": [
-  "the plain question",
   "the two things",
   "the correction",
   "the who",
   "the place",
-  "the before and after"
+  "the before and after",
+  "the object"
  ],
  "entries": [
   {
@@ -940,15 +940,34 @@
    ],
    "critic_note": "The critic chose candidate A, the object on a ladder. The shipped caption is that candidate after one edit, carried verbatim by the copywriter.",
    "move_note": "Opens on the driverless car at the airport, climbs from the opening through the creek and the recall's own words to the remedy field, and closes on what the finished remedy will change."
+  },
+  {
+   "date": "2026-10-17",
+   "carousel_no": 53,
+   "opening_move": "the plain question",
+   "structure": "Question and answer",
+   "closing_move": "ask the one question the decision leaves open",
+   "first_line": "Why do some tumors keep T cells out?",
+   "words": 136,
+   "commas": 1,
+   "commas_per_100w": 0.74,
+   "chars": 871,
+   "hashtags": [
+    "#MDAnderson",
+    "#CPRIT",
+    "#SpatialTranscriptomics"
+   ],
+   "critic_note": "The critic refused both candidates as written and demanded one rewrite of A: no Houston (no claim carries it), the benchmark scoped in c4's own terms, and traced hashtags. The shipped caption is that rewrite, with the panel's later repairs: the release's stated purpose in place of a narrowed one, absences that name the release, and the line about the frames removed.",
+   "move_note": "Opens on the question a reader who has watched a checkpoint drug fail already asks, answers it with the mucin finding and its limits, and closes on whether a mucin reading could ever guide a checkpoint drug."
   }
  ],
  "structures_recent": [
-  "Ledger",
   "Zoom out",
-  "Clock"
+  "Clock",
+  "Ladder"
  ],
  "closing_moves_recent": [
-  "ask the one question the decision leaves open"
+  "point at the record, plainly, without a call to action"
  ],
  "_derived_note": "opening_moves_recent, structures_recent and closing_moves_recent are DERIVED by out/<date>/update_ledgers.py every run, by ledger_check.windows() and ledger_check's own slice of the entries before the newest date. They were hand-maintained until 2026-09-10 and had drifted, which mis-briefed the caption room on that run: the list said Ledger was excluded when it was not, and never mentioned Two columns or the close no. 19 actually shipped."
 }

@@ -1,0 +1,114 @@
+{
+  "document_title": "SPACER, an AI model from MD Anderson, on what may keep T cells out of tumors",
+  "slides": {
+    "1": {
+      "kicker": "Published October 13th",
+      "hook": "What keeps T cells out of a tumor",
+      "dek": "An AI model from MD Anderson and Texas collaborators helps explain where immune cells go. One finding is about mucins, sugar coated proteins many cancers make. They may help keep away T cells, white blood cells of the immune system. Drawn to illustrate.",
+      "labels": [],
+      "claims": [
+        "c1",
+        "c7",
+        "c17",
+        "c24"
+      ]
+    },
+    "2": {
+      "kicker": "The method",
+      "hook": "It reads gene activity where it happens",
+      "dek": "SPACER uses spatial transcriptomics, which measures gene activity inside intact tissue and shows which genes are active and where. Each glass slide drawn here stands for one dataset. Drawn to illustrate.",
+      "labels": [],
+      "claims": [
+        "c2",
+        "c4"
+      ]
+    },
+    "3": {
+      "kicker": "The datasets",
+      "hook": "37 datasets, human tumors and mouse heart",
+      "dek": "The team ran SPACER across 37 datasets. The release says they represent several cancer types. The journal abstract adds mouse heart. Drawn to illustrate.",
+      "labels": [],
+      "claims": [
+        "c4",
+        "c20"
+      ]
+    },
+    "4": {
+      "kicker": "The benchmark",
+      "hook": "Four times, the low end",
+      "dek": "In benchmarking tasks the team reports SPACER was four to 21 times more effective than existing approaches at finding signals linked to cell recruitment. One unit here stands for existing approaches.",
+      "labels": [
+        "existing approaches",
+        "SPACER",
+        "4"
+      ],
+      "claims": [
+        "c4"
+      ]
+    },
+    "5": {
+      "kicker": "One scale",
+      "hook": "21 times, the high end",
+      "dek": "Set at one scale, the range runs four to 21. It is the researchers' own benchmark against existing approaches.",
+      "labels": [
+        "existing approaches",
+        "SPACER",
+        "4",
+        "21"
+      ],
+      "claims": [
+        "c4"
+      ]
+    },
+    "6": {
+      "kicker": "What draws T cells in",
+      "hook": "Immune cells seem to answer signals close by",
+      "dek": "SPACER reads groups of neighboring cells. Tumors expressing antigen presentation genes were more likely to attract T cells. Those genes help cells show protein fragments to immune cells. Drawn to illustrate.",
+      "labels": [
+        "a group of neighboring cells"
+      ],
+      "claims": [
+        "c3",
+        "c5",
+        "c6"
+      ]
+    },
+    "7": {
+      "kicker": "What may keep them out",
+      "hook": "A sugar coat that may be a wall",
+      "dek": "Mucins are large sugar coated proteins many cancers make. The researchers found evidence mucins may help form physical barriers that keep T cells away from tumors. Drawn to illustrate.",
+      "labels": [],
+      "claims": [
+        "c7"
+      ]
+    },
+    "8": {
+      "kicker": "Melanoma and gastric",
+      "hook": "More mucin went with poorer response",
+      "dek": "In several melanoma and gastric cancer datasets, more mucin went with poorer responses to checkpoint inhibitors, drugs that help T cells kill cancer cells better. An association in existing data. Drawn to illustrate.",
+      "labels": [
+        "melanoma",
+        "gastric",
+        "lower mucin",
+        "higher mucin"
+      ],
+      "claims": [
+        "c8",
+        "c21",
+        "c23"
+      ]
+    },
+    "9": {
+      "kicker": "Linghua Wang says",
+      "hook": "New ideas to test in the lab",
+      "dek": "The researchers believe SPACER could potentially become a diagnostic tool for cancer therapies. The release reports no such use. The Cancer Prevention and Research Institute of Texas is one of five funders the release names. Drawn to illustrate.",
+      "labels": [],
+      "claims": [
+        "c7",
+        "c9",
+        "c10",
+        "c12"
+      ]
+    }
+  }
+}

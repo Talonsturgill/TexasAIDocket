@@ -1,7 +1,7 @@
 {
   "_spec": {
     "version": 1,
-    "generated": "2026-10-16",
+    "generated": "2026-10-17",
     "note": "One row per source url. ETag and Last-Modified drive the next conditional request, hash short circuits the text comparison, and proven records which claim quotes have been located here, which is what tells a real change apart from a page this check cannot read."
   },
   "sources": {
@@ -322,7 +322,9 @@
         "tx-2026-0096-c4",
         "tx-2026-0096-c6",
         "tx-2026-0096-c7",
-        "tx-2026-0126-c6"
+        "tx-2026-0126-c6",
+        "tx-2026-0126-c7",
+        "tx-2026-0126-c8"
       ]
     },
     "https://capitol.texas.gov/Committees/MeetingsUpcoming.aspx?Chamber=S": {
@@ -440,8 +442,8 @@
     },
     "https://communityimpact.com/keller-roanoke-northeast-fort-worth/government/fort-worth-city-council-approves-steps-to-start-moratorium-process-on-data-centers/": {
       "etag": null,
-      "last_modified": "Mon, 12 Oct 2026 05:10:08 GMT",
-      "hash": "de6e8bfa69119301ed6f8a1edff333f2fafcfce8c7181904a8c85705540cc1a6",
+      "last_modified": "Sat, 17 Oct 2026 05:23:19 GMT",
+      "hash": "87e1730b5c7db511192a41285b24bae8118e126d615c3a3a07126b410d485212",
       "proven": [
         "tx-2026-0062-c1"
       ]
@@ -739,8 +741,8 @@
     },
     "https://infohub.austincc.edu/blog/2026/10/09/help-shape-accs-ai-policy-development/": {
       "etag": null,
-      "last_modified": "Thu, 15 Oct 2026 05:13:42 GMT",
-      "hash": "23d0f3fd148c1d2e0b16bdcacdb392ee731ed78e68f11be929bb1c599fe3276d",
+      "last_modified": "Sat, 17 Oct 2026 05:23:21 GMT",
+      "hash": "f54ef7510f5cd9d2839cdb4f9807c284785d2aa61feefe9973266295b13ce796",
       "proven": [
         "tx-2026-0212-c1",
         "tx-2026-0212-c10",
@@ -1512,8 +1514,8 @@
     },
     "https://sites.austincc.edu/ai-resource-hub/responsible-use-guidance/": {
       "etag": null,
-      "last_modified": "Fri, 16 Oct 2026 05:25:09 GMT",
-      "hash": "933412bb4c839048c62711629d41dff1d5dcc163946a8c9ddcbd7c622a090726",
+      "last_modified": "Sat, 17 Oct 2026 05:23:22 GMT",
+      "hash": "2ed632a17b7a3af96aaafd47540bcedc9133ed977695c74f831983c1727d05a9",
       "proven": [
         "tx-2026-0212-c15"
       ]
@@ -1970,8 +1972,8 @@
     },
     "https://www.austincc.edu/about-acc": {
       "etag": null,
-      "last_modified": "Fri, 16 Oct 2026 05:25:10 GMT",
-      "hash": "38334eebbbf8bf8cf6bc126aa1087b35a9897b55ddb5ca01a0e6fd13c6f59611",
+      "last_modified": "Sat, 17 Oct 2026 05:19:57 GMT",
+      "hash": "5924fcc0c187cc5c61a2f38041ac8d734f27bfb6709816721c09cac50c065046",
       "proven": [
         "tx-2026-0212-c16"
       ]
@@ -2052,8 +2054,8 @@
     },
     "https://www.cbsnews.com/texas/news/texas-gov-greg-abbott-pause-new-data-center-permits-sept-21-2026/": {
       "etag": null,
-      "last_modified": "Fri, 16 Oct 2026 05:25:12 GMT",
-      "hash": "a58bb23fd13243f1dfc42814137e369cbdd6090321a9e4f76e308c0716b217f3",
+      "last_modified": "Sat, 17 Oct 2026 05:23:25 GMT",
+      "hash": "8364c9b4aff17b397d0c94bee57bdea8be93c9e9e9f496955a91a4f0d7cae093",
       "proven": [
         "tx-2026-0182-c3"
       ]
@@ -2230,9 +2232,9 @@
       "proven": []
     },
     "https://www.fox4news.com/news/ai-powered-cameras-dallas-trash-trucks-hand-out-almost-4000-notices-57-citations": {
-      "etag": "\"28be8-HpxaighAGeWsBTRIUiSFHeJMAe0\"",
+      "etag": "\"28925-+2yMRq26wydAOlODgeTq2mg0Tbk\"",
       "last_modified": null,
-      "hash": "1f986cf61634e3f120c577d2cbd2c3e183682d8d47046bf91954aad75f1bcc5a",
+      "hash": "14aa96e40dfbc3e111c67d7bc60c9bcab980a0d969d2eabb285fa4c038f7ca3f",
       "proven": [
         "tx-2026-0179-c10",
         "tx-2026-0179-c11",
@@ -2834,8 +2836,8 @@
     },
     "https://www.texastribune.org/2026/09/21/texas-data-center-moratorium-water-energy/": {
       "etag": null,
-      "last_modified": "Thu, 15 Oct 2026 03:13:47 GMT",
-      "hash": "60197d7cadc6add58bb2ebc53912ad4736257fe3784de477dc82591344607ccb",
+      "last_modified": "Fri, 16 Oct 2026 04:03:56 GMT",
+      "hash": "c0e31f42a749c1d5ab9d66a83324be89e0e8433f5f763d92f9f7900edfdc0522",
       "proven": [
         "tx-2026-0182-c2"
       ]
@@ -2901,7 +2903,7 @@
     "https://www.tpr.org/news/2026-09-23/lubbock-takes-first-step-toward-data-center-moratorium-questions-remain-with-approaching-legislative-session": {
       "etag": null,
       "last_modified": null,
-      "hash": "504f1811ec216379c7e1c631dc5f41da81c0f8ad4151b741047ce77d2022664c",
+      "hash": "f3ddad8e299b92d1fc12985a3b8823bbb836825bed0cfa3f00ffd7d1537fbd87",
       "proven": [
         "tx-2026-0138-c4",
         "tx-2026-0138-c5",

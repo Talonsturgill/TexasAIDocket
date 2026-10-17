@@ -15286,5 +15286,147 @@
     "note": "Admitted to the record on Waymo's own post and the federal recall record. The recall's lasting remedy is still listed as under development."
    }
   ]
+ },
+ {
+  "title": "An MD Anderson AI model reads where T cells gather in tumor tissue, and points at mucin as a wall that may keep them out",
+  "summary": "Researchers at the University of Texas MD Anderson Cancer Center and collaborating Texas institutions published an AI model called SPACER in Nature Biomedical Engineering. It reads spatial maps of gene activity in intact tissue and looks at groups of neighboring cells to infer why immune cells gather in some regions and avoid others. The team ran it on 37 datasets and reports it was four to 21 times more effective than existing approaches on its benchmark tasks. Its leading finding is that mucins, sugar coated proteins many cancers overproduce, may form a physical barrier that keeps T cells away from tumors. In melanoma and gastric cancer datasets, tumors with more mucin went with poorer response to checkpoint drugs. The finding is an association in existing data. The researchers describe it as an idea to test in the lab, and the release reports no use of the tool in patient care.",
+  "topic": "research-and-science",
+  "decider": {
+   "name": "The University of Texas MD Anderson Cancer Center",
+   "type": "state-agency"
+  },
+  "geography": {
+   "statewide": false,
+   "counties": [
+    "Harris"
+   ],
+   "on_ercot": true,
+   "metro": "Houston-Pasadena-The Woodlands, TX"
+  },
+  "status": "decided",
+  "key_dates": [
+   {
+    "date": "2026-10-13",
+    "kind": "filed",
+    "note": "Date of MD Anderson's research news release announcing the published study"
+   }
+  ],
+  "public_access": {
+   "room": "contact_only",
+   "how": "The study is published in Nature Biomedical Engineering and MD Anderson's release names a media contact. No vote or comment window is open on a research result.",
+   "url": "https://www.mdanderson.org/newsroom/research-newsroom/ai-tool-reveals-what-attracts-immune-cells-to-tumors-and-what-keeps-them-away.h00-159859290.html",
+   "closes": null
+  },
+  "confidence": "high",
+  "notes_for_editor": "Admitted on MD Anderson's own October 13th release. The journal page was not read, so no figure beyond the release is carried. Harris County is MD Anderson's home rather than a place the release names. The release carries no dateline and names Houston only in its site navigation, so the county rests on the institution, as tx-2026-0151 does, and no published copy names a city.",
+  "claims": [
+   {
+    "text": "MD Anderson and collaborating Texas institutions built an AI model meant to explain why immune cells gather in some places in the body and avoid others.",
+    "verbatim_quote": "Researchers at The University of Texas MD Anderson Cancer Center and collaborating institutions in Texas developed an artificial intelligence (AI) model that helps explain how immune cells find their way to specific locations in the body and why they avoid others.",
+    "source_url": "https://www.mdanderson.org/newsroom/research-newsroom/ai-tool-reveals-what-attracts-immune-cells-to-tumors-and-what-keeps-them-away.h00-159859290.html",
+    "source_title": "UT MD Anderson Cancer Center, Research News, AI tool reveals what attracts immune cells to tumors and what keeps them away, October 13th, 2026",
+    "source_type": "primary_official",
+    "fetched": "2026-10-17",
+    "id": "tx-2026-0217-c1"
+   },
+   {
+    "text": "The model, called SPACER, reads spatial transcriptomics, which measures gene activity in intact tissue and records where each gene is active.",
+    "verbatim_quote": "The tool, known as Spatial Analysis of Cellular Engagement and Recruitment (SPACER), makes use of spatial transcriptomics, a molecular technique that measures gene activity within intact tissue to highlight which genes are expressed and where.",
+    "source_url": "https://www.mdanderson.org/newsroom/research-newsroom/ai-tool-reveals-what-attracts-immune-cells-to-tumors-and-what-keeps-them-away.h00-159859290.html",
+    "source_title": "UT MD Anderson Cancer Center, Research News, AI tool reveals what attracts immune cells to tumors and what keeps them away, October 13th, 2026",
+    "source_type": "primary_official",
+    "fetched": "2026-10-17",
+    "id": "tx-2026-0217-c2"
+   },
+   {
+    "text": "It examines groups of neighboring cells rather than treating each cell alone.",
+    "verbatim_quote": "Instead of treating cells as isolated units, the tool examines groups of neighboring cells and how they work together.",
+    "source_url": "https://www.mdanderson.org/newsroom/research-newsroom/ai-tool-reveals-what-attracts-immune-cells-to-tumors-and-what-keeps-them-away.h00-159859290.html",
+    "source_title": "UT MD Anderson Cancer Center, Research News, AI tool reveals what attracts immune cells to tumors and what keeps them away, October 13th, 2026",
+    "source_type": "primary_official",
+    "fetched": "2026-10-17",
+    "id": "tx-2026-0217-c3"
+   },
+   {
+    "text": "The team ran it on 37 datasets and reports it beat existing approaches by four to 21 times on its benchmark tasks.",
+    "verbatim_quote": "The team applied SPACER across 37 datasets representing several cancer types. In benchmarking tasks, the model was four- to 21-times more effective than existing approaches at identifying biologically meaningful signals linked to cell recruitment.",
+    "source_url": "https://www.mdanderson.org/newsroom/research-newsroom/ai-tool-reveals-what-attracts-immune-cells-to-tumors-and-what-keeps-them-away.h00-159859290.html",
+    "source_title": "UT MD Anderson Cancer Center, Research News, AI tool reveals what attracts immune cells to tumors and what keeps them away, October 13th, 2026",
+    "source_type": "primary_official",
+    "fetched": "2026-10-17",
+    "id": "tx-2026-0217-c4"
+   },
+   {
+    "text": "Immune cells appear to answer signals close by rather than signals circulating elsewhere in the body.",
+    "verbatim_quote": "One of the most meaningful findings was that immune cells appear to respond primarily to signals in their immediate surroundings rather than signals circulating elsewhere in the body.",
+    "source_url": "https://www.mdanderson.org/newsroom/research-newsroom/ai-tool-reveals-what-attracts-immune-cells-to-tumors-and-what-keeps-them-away.h00-159859290.html",
+    "source_title": "UT MD Anderson Cancer Center, Research News, AI tool reveals what attracts immune cells to tumors and what keeps them away, October 13th, 2026",
+    "source_type": "primary_official",
+    "fetched": "2026-10-17",
+    "id": "tx-2026-0217-c5"
+   },
+   {
+    "text": "Tumors expressing antigen presentation genes were more likely to draw T cells in.",
+    "verbatim_quote": "SPACER revealed that tumors expressing genes involved in antigen presentation, the process by which cells display protein fragments for immune cells to inspect, were more likely to attract T cells.",
+    "source_url": "https://www.mdanderson.org/newsroom/research-newsroom/ai-tool-reveals-what-attracts-immune-cells-to-tumors-and-what-keeps-them-away.h00-159859290.html",
+    "source_title": "UT MD Anderson Cancer Center, Research News, AI tool reveals what attracts immune cells to tumors and what keeps them away, October 13th, 2026",
+    "source_type": "primary_official",
+    "fetched": "2026-10-17",
+    "id": "tx-2026-0217-c6"
+   },
+   {
+    "text": "Mucins, sugar coated proteins many cancers overproduce, may form a physical barrier keeping T cells away from tumors.",
+    "verbatim_quote": "Additionally, the researchers uncovered evidence that mucins, a family of large, sugar-coated proteins produced by many cancers, may help create physical barriers that keep T cells away from tumors.",
+    "source_url": "https://www.mdanderson.org/newsroom/research-newsroom/ai-tool-reveals-what-attracts-immune-cells-to-tumors-and-what-keeps-them-away.h00-159859290.html",
+    "source_title": "UT MD Anderson Cancer Center, Research News, AI tool reveals what attracts immune cells to tumors and what keeps them away, October 13th, 2026",
+    "source_type": "primary_official",
+    "fetched": "2026-10-17",
+    "id": "tx-2026-0217-c7"
+   },
+   {
+    "text": "In melanoma and gastric cancer datasets, tumors with more mucin went with poorer response to checkpoint drugs and poorer outcomes.",
+    "verbatim_quote": "Across several melanoma and gastric cancer datasets, tumors with higher levels of mucins were associated with poorer responses to immune checkpoint inhibitors and poorer patient outcomes.",
+    "source_url": "https://www.mdanderson.org/newsroom/research-newsroom/ai-tool-reveals-what-attracts-immune-cells-to-tumors-and-what-keeps-them-away.h00-159859290.html",
+    "source_title": "UT MD Anderson Cancer Center, Research News, AI tool reveals what attracts immune cells to tumors and what keeps them away, October 13th, 2026",
+    "source_type": "primary_official",
+    "fetched": "2026-10-17",
+    "id": "tx-2026-0217-c8"
+   },
+   {
+    "text": "The researchers say the tool could potentially be used as a diagnostic tool, which the release does not show it doing yet.",
+    "verbatim_quote": "The researchers believe SPACER could potentially be used as a diagnostic tool for cancer therapies and to improve understanding of diseases and scenarios in which cell movement and positioning are important, including autoimmune disorders, tissue repair and wound healing.",
+    "source_url": "https://www.mdanderson.org/newsroom/research-newsroom/ai-tool-reveals-what-attracts-immune-cells-to-tumors-and-what-keeps-them-away.h00-159859290.html",
+    "source_title": "UT MD Anderson Cancer Center, Research News, AI tool reveals what attracts immune cells to tumors and what keeps them away, October 13th, 2026",
+    "source_type": "primary_official",
+    "fetched": "2026-10-17",
+    "id": "tx-2026-0217-c9"
+   },
+   {
+    "text": "The co-lead describes the findings as ideas to be tested in the lab.",
+    "verbatim_quote": "This helps us turn these insights into new ideas we can test in the lab.",
+    "source_url": "https://www.mdanderson.org/newsroom/research-newsroom/ai-tool-reveals-what-attracts-immune-cells-to-tumors-and-what-keeps-them-away.h00-159859290.html",
+    "source_title": "UT MD Anderson Cancer Center, Research News, AI tool reveals what attracts immune cells to tumors and what keeps them away, October 13th, 2026",
+    "source_type": "primary_official",
+    "fetched": "2026-10-17",
+    "id": "tx-2026-0217-c10"
+   },
+   {
+    "text": "The study is published in Nature Biomedical Engineering.",
+    "verbatim_quote": "The study, published in Nature Biomedical Engineering , was co-led by Tao Wang, Ph.D. , associate professor of Bioinformatics and Computational Biology ; and Linghua Wang, M.D., Ph.D. , professor of Genomic Medicine",
+    "source_url": "https://www.mdanderson.org/newsroom/research-newsroom/ai-tool-reveals-what-attracts-immune-cells-to-tumors-and-what-keeps-them-away.h00-159859290.html",
+    "source_title": "UT MD Anderson Cancer Center, Research News, AI tool reveals what attracts immune cells to tumors and what keeps them away, October 13th, 2026",
+    "source_type": "primary_official",
+    "fetched": "2026-10-17",
+    "id": "tx-2026-0217-c11"
+   }
+  ],
+  "id": "tx-2026-0217",
+  "last_verified": "2026-10-17",
+  "history": [
+   {
+    "date": "2026-10-17",
+    "note": "MD Anderson's release of October 13th describes the published model and its mucin finding as an idea to test in the lab, with no use in patient care reported."
+   }
+  ]
  }
 ]

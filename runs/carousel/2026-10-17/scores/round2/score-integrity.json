@@ -1,0 +1,87 @@
+{
+ "lens": "integrity",
+ "round": 2,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.8,
+   "why": "Frames 1, 6, 7 and 8 are real material reliefs; frame 7 is close to the showstopper. Frames 2 and 3 are rows of identical slides whose brightest mass is the mid grey label ends, each section with a glowing sticker outline. Frames 4 and 5 read as a bar chart on black, and frame 5's engraved scale stops at 18 units under a 21-segment bar. Frame 9's label end is flat grey."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.0,
+   "why": "One key, one layout, two continuity devices that work, the edge tease from 2 to 3 and 4 to 5 and the T cell motif. Frames 2 to 5 leave the warm tissue world for four frames of cold grey hardware."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.0,
+   "why": "Every numeral traces and the drawn counts match. Points off for loose wording: absences on frame 9 and in the caption that don't name the release, 'helped fund it' where c12 funds the study, a stale c11 on frame 2, a stale caption in copy.json, and 'four official records' for a release and a journal page."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.0,
+   "why": "What happened and who did it are clear. No place, body, deadline or next step. The only Texas stake is CPRIT as one of five funders, and frame 9 never says who Linghua Wang is."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "The cover earns the swipe; frame 2 is method and the finding waits until frame 7. Frames 4 and 5 could merge. The turn at 7 is real, 8 lands, the close is quiet."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.8,
+   "why": "Clean against house rules, hedges follow the source. Nothing Texan in the register, 'slide' ambiguous on frames 2 and 3, the 4 and 21 hooks are labels rather than lines."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 8.0,
+   "why": "Technique, palette and structure diverge sharply from nos. 49 to 52. The beat is the third health AI deck in thirteen days and the instrument is familiar."
+  }
+ ],
+ "weighted_score": 7.026,
+ "hard_fails": [],
+ "ship": false,
+ "defects_ranked": [
+  "copy.json carried the round 1 caption (rebuilt).",
+  "Frame 5's engraved scale stops at 18 units.",
+  "Absences on frame 9 and in the caption don't name the release.",
+  "'Helped fund it' where c12 funds the study.",
+  "Stale c11 on frame 2.",
+  "'Four official records' for a release and a journal page."
+ ],
+ "artwork_weakest_frames": [
+  {
+   "slide": 5,
+   "problem": "Grey segmented bars read as a bar chart, the engraved scale stops at 18 units under the 21 bar, SPACER labels sit ambiguously.",
+   "fix": "Extend the scale to 21 units, give each bar a hard specular on its upper-left edge, set each SPACER label flush left on its own bar's track."
+  },
+  {
+   "slide": 4,
+   "problem": "The tick field reads as graph paper, the steel bar has no bright edge, SPACER sits under the existing approaches block.",
+   "fix": "Keep one engraved row under the SPACER bar, relight the bars to one bright bevel, move SPACER onto the long bar's track."
+  },
+  {
+   "slide": 2,
+   "problem": "Identical slides, mid grey label ends the brightest mass, sections with a sticker outline.",
+   "fix": "Darken the frosted ends with a lit bevel edge and replace the outline glow with relief height and a thin cast."
+  },
+  {
+   "slide": 3,
+   "problem": "The same grid as frame 2 and the count's end not lit enough.",
+   "fix": "Put the key's pool on the bare bench right of the 37th slide and drop the rest a stop."
+  },
+  {
+   "slide": 9,
+   "problem": "The frosted label end near L* 50 and the close's subject small.",
+   "fix": "Raise the label to L* 70 to 80, shade the grooves as lit-edged cavities, crop tighter on the aperture."
+  }
+ ],
+ "one_sentence_fix": "Merge frames 4 and 5 inside the tissue world and spend the freed frame on a fetched Texas stake."
+}

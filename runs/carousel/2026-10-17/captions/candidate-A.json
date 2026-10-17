@@ -1,0 +1,15 @@
+{
+ "opening_move": "the plain question",
+ "structure": "Question and answer",
+ "caption": "Why do some tumors keep T cells out?\n\nMD Anderson researchers in Houston built an AI model called SPACER to find out. It reads gene activity across neighboring cells in intact tissue.\n\nOne answer may be mucins, sugar coated proteins many cancers make. They may help wall T cells off. In several melanoma and gastric cancer datasets more mucin was associated with poorer responses to checkpoint inhibitors.\n\nSPACER ran on 37 datasets. In benchmarking tasks the team reports it was four to 21 times more effective than existing approaches. The Cancer Prevention and Research Institute of Texas helped fund it.\n\nThe mucin link is an association in existing data. The researchers see a possible diagnostic tool. No such use is reported.\n\nThe slides follow a T cell to the barrier that may stop it.\n\nCould a mucin reading tell a doctor whether a checkpoint drug will work?\n\n#MDAnderson #Houston #CPRIT",
+ "claim_ids_used": [
+  "c1",
+  "c2",
+  "c3",
+  "c4",
+  "c7",
+  "c8",
+  "c9",
+  "c12"
+ ]
+}

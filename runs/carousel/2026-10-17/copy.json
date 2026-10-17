@@ -1,0 +1,234 @@
+{
+ "date": "2026-10-17",
+ "carousel_no": 53,
+ "document_title": "SPACER, an AI model from MD Anderson, on what may keep T cells out of tumors",
+ "_note": "Slide strings read off the render report's text nodes and each frame's own source line by build_copy.py.",
+ "caption": "Why do some tumors keep T cells out?\n\nMD Anderson and other Texas institutions built an AI model called SPACER that helps explain where immune cells go and why they avoid some places. It reads gene activity across neighboring cells in intact tissue.\n\nOne answer may be mucins, sugar coated proteins many cancers make. They may help wall T cells off. In several melanoma and gastric cancer datasets more mucin was associated with poorer responses to checkpoint inhibitors. The release reports no diagnostic use.\n\nSPACER ran on 37 datasets. In the team's benchmarking it was four to 21 times more effective than existing approaches at finding signals linked to cell recruitment. The Cancer Prevention and Research Institute of Texas helped fund the study.\n\nCould a mucin reading tell a doctor whether a checkpoint drug will work?\n\n#MDAnderson #CPRIT #SpatialTranscriptomics",
+ "slides": {
+  "S1": {
+   "n": 1,
+   "file": "slide-01.html",
+   "kicker": "Published October 13th",
+   "headline": "What keeps T cells out of a tumor",
+   "claims": [
+    "c1",
+    "c7",
+    "c17",
+    "c24"
+   ],
+   "cite": "c1 c7 c17 c24",
+   "body": "An AI model from MD Anderson and Texas collaborators helps explain where immune cells go. One finding is about mucins, sugar coated proteins many cancers make. They may help keep away T cells, white blood cells of the immune system. Drawn to illustrate.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "What keeps T cells out of a tumor",
+    "An AI model from MD Anderson and Texas collaborators helps explain where immune cells go. One finding is about mucins, sugar coated proteins many cancers make. They may help keep away T cells, white blood cells of the immune system. Drawn to illustrate.",
+    "Published October 13th",
+    "01 / 09",
+    "c1 c7 c17 c24"
+   ]
+  },
+  "S2": {
+   "n": 2,
+   "file": "slide-02.html",
+   "kicker": "The method",
+   "headline": "It reads gene activity where it happens",
+   "claims": [
+    "c2",
+    "c4"
+   ],
+   "cite": "c2 c4",
+   "body": "SPACER uses spatial transcriptomics, which measures gene activity inside intact tissue and shows which genes are active and where. Each glass slide drawn here stands for one dataset. Drawn to illustrate.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "It reads gene activity where it happens",
+    "SPACER uses spatial transcriptomics, which measures gene activity inside intact tissue and shows which genes are active and where. Each glass slide drawn here stands for one dataset. Drawn to illustrate.",
+    "The method",
+    "02 / 09",
+    "c2 c4"
+   ]
+  },
+  "S3": {
+   "n": 3,
+   "file": "slide-03.html",
+   "kicker": "The datasets",
+   "headline": "37 datasets, human tumors and mouse heart",
+   "claims": [
+    "c4",
+    "c20"
+   ],
+   "cite": "c4 c20",
+   "body": "The team ran SPACER across 37 datasets. The release says they represent several cancer types. The journal abstract adds mouse heart. Drawn to illustrate.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "37 datasets, human tumors and mouse heart",
+    "The team ran SPACER across 37 datasets. The release says they represent several cancer types. The journal abstract adds mouse heart. Drawn to illustrate.",
+    "The datasets",
+    "03 / 09",
+    "c4 c20"
+   ]
+  },
+  "S4": {
+   "n": 4,
+   "file": "slide-04.html",
+   "kicker": "The benchmark",
+   "headline": "Four times, the low end",
+   "claims": [
+    "c4"
+   ],
+   "cite": "c4",
+   "body": "In benchmarking tasks the team reports SPACER was four to 21 times more effective than existing approaches at finding signals linked to cell recruitment. One unit here stands for existing approaches.",
+   "labels": [
+    "existing approaches",
+    "4",
+    "SPACER"
+   ],
+   "strings": [
+    "texasaidocket.com",
+    "Four times, the low end",
+    "In benchmarking tasks the team reports SPACER was four to 21 times more effective than existing approaches at finding signals linked to cell recruitment. One unit here stands for existing approaches.",
+    "existing approaches",
+    "4",
+    "SPACER",
+    "The benchmark",
+    "04 / 09",
+    "c4"
+   ]
+  },
+  "S5": {
+   "n": 5,
+   "file": "slide-05.html",
+   "kicker": "One scale",
+   "headline": "21 times, the high end",
+   "claims": [
+    "c4"
+   ],
+   "cite": "c4",
+   "body": "Set at one scale, the range runs four to 21. It is the researchers' own benchmark against existing approaches.",
+   "labels": [
+    "existing approaches",
+    "4",
+    "21",
+    "SPACER",
+    "SPACER"
+   ],
+   "strings": [
+    "texasaidocket.com",
+    "21 times, the high end",
+    "Set at one scale, the range runs four to 21. It is the researchers' own benchmark against existing approaches.",
+    "existing approaches",
+    "4",
+    "21",
+    "SPACER",
+    "SPACER",
+    "One scale",
+    "05 / 09",
+    "c4"
+   ]
+  },
+  "S6": {
+   "n": 6,
+   "file": "slide-06.html",
+   "kicker": "What draws T cells in",
+   "headline": "Immune cells seem to answer signals close by",
+   "claims": [
+    "c3",
+    "c5",
+    "c6"
+   ],
+   "cite": "c3 c5 c6",
+   "body": "SPACER reads groups of neighboring cells. Tumors expressing antigen presentation genes were more likely to attract T cells. Those genes help cells show protein fragments to immune cells. Drawn to illustrate.",
+   "labels": [
+    "a group of neighboring cells"
+   ],
+   "strings": [
+    "texasaidocket.com",
+    "Immune cells seem to answer signals close by",
+    "SPACER reads groups of neighboring cells. Tumors expressing antigen presentation genes were more likely to attract T cells. Those genes help cells show protein fragments to immune cells. Drawn to illustrate.",
+    "a group of neighboring cells",
+    "What draws T cells in",
+    "06 / 09",
+    "c3 c5 c6"
+   ]
+  },
+  "S7": {
+   "n": 7,
+   "file": "slide-07.html",
+   "kicker": "What may keep them out",
+   "headline": "A sugar coat that may be a wall",
+   "claims": [
+    "c7"
+   ],
+   "cite": "c7",
+   "body": "Mucins are large sugar coated proteins many cancers make. The researchers found evidence mucins may help form physical barriers that keep T cells away from tumors. Drawn to illustrate.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "A sugar coat that may be a wall",
+    "Mucins are large sugar coated proteins many cancers make. The researchers found evidence mucins may help form physical barriers that keep T cells away from tumors. Drawn to illustrate.",
+    "What may keep them out",
+    "07 / 09",
+    "c7"
+   ]
+  },
+  "S8": {
+   "n": 8,
+   "file": "slide-08.html",
+   "kicker": "Melanoma and gastric",
+   "headline": "More mucin went with poorer response",
+   "claims": [
+    "c8",
+    "c21",
+    "c23"
+   ],
+   "cite": "c8 c21 c23",
+   "body": "In several melanoma and gastric cancer datasets, more mucin went with poorer responses to checkpoint inhibitors, drugs that help T cells kill cancer cells better. An association in existing data. Drawn to illustrate.",
+   "labels": [
+    "lower mucin",
+    "higher mucin",
+    "melanoma",
+    "gastric"
+   ],
+   "strings": [
+    "texasaidocket.com",
+    "More mucin went with poorer response",
+    "In several melanoma and gastric cancer datasets, more mucin went with poorer responses to checkpoint inhibitors, drugs that help T cells kill cancer cells better. An association in existing data. Drawn to illustrate.",
+    "lower mucin",
+    "higher mucin",
+    "melanoma",
+    "gastric",
+    "Melanoma and gastric",
+    "08 / 09",
+    "c8 c21 c23"
+   ]
+  },
+  "S9": {
+   "n": 9,
+   "file": "slide-09.html",
+   "kicker": "Linghua Wang says",
+   "headline": "New ideas to test in the lab",
+   "claims": [
+    "c7",
+    "c9",
+    "c10",
+    "c12"
+   ],
+   "cite": "c7 c9 c10 c12",
+   "body": "The researchers believe SPACER could potentially become a diagnostic tool for cancer therapies. The release reports no such use. The Cancer Prevention and Research Institute of Texas is one of five funders the release names. Drawn to illustrate.",
+   "labels": [
+    "Cancer Prevention and Research Institute of Texas"
+   ],
+   "strings": [
+    "texasaidocket.com",
+    "New ideas to test in the lab",
+    "The researchers believe SPACER could potentially become a diagnostic tool for cancer therapies. The release reports no such use. The Cancer Prevention and Research Institute of Texas is one of five funders the release names. Drawn to illustrate.",
+    "Cancer Prevention and Research Institute of Texas",
+    "Linghua Wang says",
+    "09 / 09",
+    "c7 c9 c10 c12"
+   ]
+  }
+ }
+}

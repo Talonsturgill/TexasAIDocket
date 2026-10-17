@@ -1,0 +1,82 @@
+<!doctype html>
+<!-- 2026-10-17, frame 4 of 9. Archetype CLOSE_CROP. A material relief through txbench.js: a machined rule on a black anodised plate seen close, engraved unit grooves, a frosted bar one unit long for existing approaches and a polished steel bar four units long whose cut end casts, a lower terrace running on past it off the right edge toward 21. Lengths at one scale. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">Four times, the low end</h1>
+<p class="dek" data-follow="26">In benchmarking tasks the team reports SPACER was four to 21 times more effective than existing approaches at finding signals linked to cell recruitment. One unit here stands for existing approaches.</p>
+<div class="lab" id="la">existing approaches</div>
+<div class="lab big" id="l4">4</div>
+<div class="lab" id="ls">SPACER</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/txbench.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-17-section.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = (async () => {
+  const cx = await SEC.start({ kicker: "The benchmark", counter: "04 / 09", src: "c4" });
+  const LOW = 4, HIGH = 21;                      // figures.json benchmark_low and benchmark_high
+  const top = SEC.typeBottom(40);
+  const PY = top + 40;                           // the plate's top edge
+  const X0 = 80, U = 200;                        // one unit, existing approaches, is 200 px here
+  const BH = 150, T1 = PY + 110, T2 = T1 + BH + 100;   // the two tracks, far enough apart that each label sits on its own
+  const fld = SEC.field((X, Y) => {
+    if (Y < PY) return [0, SEC.GLASS];
+    const pe = Math.min(1, (Y - PY) / 10);
+    let h = 8 * pe * (2 - pe) + 0.18 * TX.simplex2(X * 0.04, Y * 1.8);
+    const fu = (X - X0) / U, f = fu - Math.floor(fu);
+    /* engraved grooves at each unit, tenths between, across the plate's top margin */
+    if (Y > PY + 24 && Y < PY + 104 && fu > 0) {
+      if (f < 0.012 || f > 0.988) h -= 4;
+      else if (Math.abs(f * 10 - Math.round(f * 10)) < 0.06 && Y < PY + 58) h -= 2.5;
+    }
+    if (Y > T1 && Y < T1 + BH && X > X0 && X < X0 + U) {               // the frosted bar, one unit
+      const e = Math.min(X - X0, X0 + U - X, Y - T1, T1 + BH - Y), b = Math.min(1, e / 8);
+      return [8 + 26 * b * (2 - b) + 1.0 * TX.simplex2(X * 0.9, Y * 0.9) + 0.5 * TX.simplex2(X * 2.1, Y * 2.1), SEC.LABEL];   // frosted, a fine tooth
+    }
+    if (Y > T2 && Y < T2 + BH && X > X0) {
+      const end = X0 + LOW * U;
+      const g = (X - X0) / U, gf = g - Math.round(g);
+      if (X < end) {                                                    // the steel bar, four units, each unit engraved on its top
+        const e = Math.min(X - X0, end - X, Y - T2, T2 + BH - Y), b = Math.min(1, e / 8);
+        let hh = 8 + 40 * b * (2 - b) + 0.5 * Math.sin(Y * 1.9 + 0.6 * TX.simplex2(X * 0.004, Y * 0.2));   // straight brushing along the bar
+        if (Math.abs(gf) * U < 2 && g > 0.5 && e > 10) hh -= 5;
+        return [hh, SEC.STEEL];
+      }
+      if (X < X0 + HIGH * U && Y > T2 + 30 && Y < T2 + BH - 30) {       // the terrace on toward 21, a lower narrower tier leaving the frame
+        const e = Math.min(X - end, Y - T2 - 30, T2 + BH - 30 - Y), b = Math.min(1, e / 6);
+        let hh = 8 + 12 * b * (2 - b) + 0.18 * Math.sin(Y * 1.9);
+        if (Math.abs(gf) * U < 2 && e > 8) hh -= 4;
+        return [hh, SEC.STEEL];
+      }
+    }
+    /* a plain anodised plate, worn and brushed; the only engraving is the unit scale along its top margin */
+    h += 0.6 * TX.simplex2(X * 0.004, Y * 1.3);
+    return [h, SEC.STAGE];
+  });
+  TXBENCH.relief(cx, SEC.opts(fld, { castLength: 200, visSharp: [9], pool: { x: 420, y: T2, rx: 900, ry: 760, floor: 0.22 } }));
+  SEC.seam(cx, PY);
+  SEC.post(cx, { footWash: 0.42 });
+  const la = document.getElementById("la"); la.style.left = (X0 + U + 24) + "px"; la.style.top = Math.round(T1 + BH / 2 - la.offsetHeight / 2) + "px";
+  const ls = document.getElementById("ls"); ls.style.left = (X0 + 4) + "px"; ls.style.top = (T2 - ls.offsetHeight - 12) + "px";   // on its own bar's track
+  const l4 = document.getElementById("l4"); l4.style.left = Math.round(X0 + LOW * U - l4.offsetWidth / 2) + "px"; l4.style.top = (T2 - l4.offsetHeight - 22) + "px";
+  cx.save(); cx.strokeStyle = "rgba(236,232,224,0.85)"; cx.lineWidth = 3; cx.beginPath();
+  cx.moveTo(X0 + LOW * U, T2 - 18); cx.lineTo(X0 + LOW * U, T2 - 4); cx.stroke(); cx.restore();   // the tick over the bar's end
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

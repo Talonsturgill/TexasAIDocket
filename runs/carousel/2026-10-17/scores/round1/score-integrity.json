@@ -1,0 +1,89 @@
+{
+ "lens": "integrity",
+ "round": 1,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.3,
+   "why": "Every frame is a txbench relief. Frame 7 is close to the showstopper, frames 6 and 8 are solid. Frames 4 and 5 are grey bars on a graph-paper lattice, frames 2 and 3 have no subject at feed size, frame 1's coat is matte slate, a different surface from frame 7's glaze. One skeleton on all nine."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "One key, one bench, one ember accent. Three continuity devices work, the panorama counts 37 across 2 and 3, the terrace leaves frame 4 and ends at 21 on 5, the T cell motif changes state. The palette strobes between warm tissue and cold grey hardware on 2 to 5."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.0,
+   "why": "Every numeral is computed from a claim quote and the hedges survive. Four looser points: frame 1's kicker dates MD Anderson via c17 whose text claims more than its quote; frame 8's art joins c8 and c21; frame 2's journal kicker over release copy; the caption narrows the release's stated purpose."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 5.8,
+   "why": "No place, body or next step, Houston never named, CPRIT unexplained. The only stake is general."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "The cover earns a swipe and frame 7 is a declared turn. Frames 2 to 5 spend four frames on two method figures. Frame 4 or 5 is cuttable."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "Clean and free of house-rule breaks. It doesn't read Texan, 'Drawn to illustrate.' closes seven deks, and the caption describes the deck to the reader."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 8.0,
+   "why": "The first all-relief deck under the studio route, a new palette, a question opening, a research beat rare in the window. The familiar move is the skeleton."
+  }
+ ],
+ "weighted_score": 6.914,
+ "hard_fails": [],
+ "ship": false,
+ "defects_ranked": [
+  "Frames 4 and 5 grey bar charts on a graph-paper lattice.",
+  "No place, body or next step, Houston never named, CPRIT unexplained.",
+  "Frames 2 and 3 have no subject at feed size.",
+  "Frame 1's coat matte slate, a different material from frame 7's.",
+  "Frame 1 kicker dates MD Anderson via c17's text past its quote.",
+  "Frame 8 draws exclusion in melanoma and gastric cores, joining c8 and c21.",
+  "Frame 2 kicker names the journal over release-sourced copy.",
+  "'Drawn to illustrate.' on seven deks and a meta caption line."
+ ],
+ "artwork_weakest_frames": [
+  {
+   "slide": 4,
+   "problem": "Grey extruded bars on a graph-paper lattice, no pool, no tissue-world material.",
+   "fix": "Remove the lattice and build the one and four unit lengths as glass slides laid end to end on the bench, with a raking pool on the fourth slide's cut end."
+  },
+  {
+   "slide": 5,
+   "problem": "The same grey chart smaller, a flat mid grey strip across a ruled grid.",
+   "fix": "Make the 21 a row of the same glass slides and light only the 21st slide's end."
+  },
+  {
+   "slide": 2,
+   "problem": "Slides sink into the bench, grey label ends the brightest mass.",
+   "fix": "Drop the label ends two stops and raise the key's graze on the bevels so each slide gets one bright edge."
+  },
+  {
+   "slide": 3,
+   "problem": "Same as 2, the count's end reads as more dark.",
+   "fix": "A lit pool where the 37th slide ends."
+  },
+  {
+   "slide": 1,
+   "problem": "The coat is a matte slate band, a different surface from frame 7's globule wall.",
+   "fix": "Re-surface the coat with 4 to 10 px glossy globules, keeping its profile and crop."
+  }
+ ],
+ "one_sentence_fix": "Collapse frames 2 to 5 into two built from the deck's tissue materials under a lit pool, and spend the freed frames on a verified Texas stake."
+}
