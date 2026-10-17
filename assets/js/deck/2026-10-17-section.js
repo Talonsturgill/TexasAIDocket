@@ -52,21 +52,21 @@
     0: [0.004, 0.0035, 0.008],
     1: [0.085, 0.022, 0.050],
     2: [0.150, 0.028, 0.045],
-    3: [0.40, 0.45, 0.56],
-    4: [0.86, 0.36, 0.20],
+    3: [0.42, 0.50, 0.62],
+    4: [0.74, 0.20, 0.11],
     5: [0.050, 0.048, 0.055],
-    6: [0.36, 0.35, 0.33],
-    7: [0.16, 0.156, 0.146],
+    6: [0.20, 0.20, 0.21],
+    7: [0.34, 0.335, 0.32],
     8: [0.016, 0.028, 0.024],
     9: [0.020, 0.020, 0.024],
-    10: [0.10, 0.20, 0.15]
+    10: [0.12, 0.26, 0.19]
   };
   N.albedo = function (X, Y, m) {
     var b = BASE[m] || BASE[0];
     var tooth = 0.93 + 0.07 * TX.simplex2(X * 0.21, Y * 0.21);
     return [b[0] * tooth, b[1] * tooth, b[2] * tooth];
   };
-  N.spec = { 1: [0.06, 20], 2: [0.14, 34], 3: [0.85, 46], 4: [0.55, 60], 5: [0.08, 25], 6: [0.65, 70], 7: [0.04, 12], 8: [1.0, 160], 9: [0.45, 40], 10: [0.5, 30] };
+  N.spec = { 1: [0.06, 20], 2: [0.14, 34], 3: [1.6, 70], 4: [0.55, 60], 5: [0.08, 25], 6: [1.1, 60], 7: [0.04, 12], 8: [1.0, 160], 9: [0.45, 40], 10: [0.9, 40] };
 
   /* A FIELD: evaluate fn(X, Y) -> [height, material] once per device pixel into two buffers, then
    * hand txbench a lookup. Evaluating twice (once for height, once for material) doubles the cost
@@ -91,7 +91,7 @@
     function hash(i, j, k) { var h = Math.sin(i * 127.1 + j * 311.7 + k * 74.7 + s0 * 19.19) * 43758.5453; return h - Math.floor(h); }
     function at(i, j) {
       var key = i * 65536 + j, s = cache.get(key);
-      if (!s) { s = [(i + 0.12 + 0.76 * hash(i, j, 1)) * size, (j + 0.12 + 0.76 * hash(i, j, 2)) * size, hash(i, j, 3)]; cache.set(key, s); }
+      if (!s) { s = [(i + 0.02 + 0.96 * hash(i, j, 1)) * size, (j + 0.02 + 0.96 * hash(i, j, 2)) * size, hash(i, j, 3)]; cache.set(key, s); }
       return s;
     }
     return function (X, Y) {
@@ -160,12 +160,31 @@
     return {
       x: 0, y: 0, w: N.W, h: N.H, scale: N.SC,
       height: fld.height, material: fld.material, albedo: N.albedo, spec: N.spec,
-      ambient: o.ambient == null ? 0.14 : o.ambient, diffuse: o.diffuse == null ? 1.0 : o.diffuse,
+      ambient: o.ambient == null ? 0.12 : o.ambient, diffuse: o.diffuse == null ? 1.65 : o.diffuse,
+      keyMask: o.pool ? N.pool(o.pool) : undefined,
       ao: 0.9, shadow: 0.9, softness: o.softness || 5, castLength: o.castLength || 90,
       visBlur: o.visBlur || 0, visSharp: o.visSharp, dither: true
     };
   };
 
+  /* A POOL OF KEY LIGHT: the key gated by a soft ellipse, full inside and falling to a floor outside, so a
+   * frame is lit where its subject is and the rest of the bench goes dark. o = {x, y, r, floor}. */
+  N.pool = function (o) {
+    var fl = o.floor == null ? 0.25 : o.floor;
+    return function (X, Y) {
+      var d = Math.hypot((X - o.x) / (o.rx || o.r), (Y - o.y) / (o.ry || o.r));
+      var t = Math.max(0, Math.min(1, (d - 0.55) / 0.6)), sm = t * t * (3 - 2 * t);
+      return 1 - (1 - fl) * sm;
+    };
+  };
+  /* THE SEAM where the art begins under the type: a darken-only fade over its top so the bench never stops
+   * at a ruled line. */
+  N.seam = function (cx, y, h) {
+    h = h || 90;
+    var g = cx.createLinearGradient(0, y - 10, 0, y + h);
+    g.addColorStop(0, "rgba(4,3,8,0.5)"); g.addColorStop(1, "rgba(4,3,8,0)");
+    cx.fillStyle = g; cx.fillRect(0, y - 10, N.W, h + 10);
+  };
   /* A RESERVE under one line of type: a feathered dark patch behind the element, so a wall's edge or a
    * row of cells never runs through its glyphs. It only darkens, and only there. */
   N.knock = function (cx, sel, a) {
@@ -185,11 +204,12 @@
       "html, body { width:1080px; height:1350px; overflow:hidden; background:#05040A; }",
       'body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }',
       "canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }",
-      '.hook { position:absolute; left:80px; top:150px; width:900px; font-family:"Fraunces", serif; font-weight:700; line-height:0.98; letter-spacing:0.004em; color:' + ink + '; font-variation-settings:"opsz" 144; word-spacing:0.05em; z-index:10; }',
-      ".dek { position:absolute; left:82px; width:840px; font-size:31px; font-weight:600; line-height:1.38; color:" + dek + "; z-index:10; }",
+      '.hook { position:absolute; left:80px; top:150px; width:900px; font-family:"Fraunces", serif; font-weight:700; line-height:1.06; letter-spacing:0.004em; text-wrap:balance; color:' + ink + '; font-variation-settings:"opsz" 144; word-spacing:0.05em; z-index:10; }',
+      ".dek { position:absolute; left:82px; width:840px; font-size:31px; font-weight:600; line-height:1.38; text-wrap:pretty; color:" + dek + "; z-index:10; }",
       '.tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace; font-size:24px; letter-spacing:0.07em; line-height:1.5; color:' + ink + '; white-space:nowrap; z-index:20; }',
       '.lab { position:absolute; font-family:"JetBrains Mono", monospace; font-size:26px; font-weight:500; letter-spacing:0.05em; line-height:1.3; color:' + ink + '; white-space:nowrap; z-index:12; }',
       '.lab.acc { color:#E0A08A; }',
+      '.lab.big { font-size:56px; font-weight:700; letter-spacing:0; }',
       ".hook, .dek, .tx-site, .kick, .src, .lab, .count { text-shadow:0 0 2px " + halo + ", 0 1px 14px " + halo2 + "; }"
     ].join("\n");
   };
