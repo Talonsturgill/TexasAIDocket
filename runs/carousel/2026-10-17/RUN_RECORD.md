@@ -69,3 +69,34 @@ requests are no. 38's subject.
 `texan_check` at selection read places Houston, no public body, no deadline and no next step. A
 research result has no comment window, so the deck carries its score on the art and on a close that
 says plainly what the finding is not yet.
+
+## The directors room
+
+Three treatment directors pitched THE MEASURED EVIDENCE FIELD (one slide world under a darkfield key
+at seven scales), ADDRESSES AND A WALL (the release's own postal comparison, a copper route stopping
+at a mucin rampart) and WHAT A TEXAN HOLDS (a glass slide the size of a finger, down to the wall and
+back up to the bench). The synthesis kept the first's spine and world, the second's wall and funders
+and the third's 2 by 2 and its honest close, and refused the postal route (SPACER infers signals and
+tracks no cell's route, so a drawn route overclaims), every txthree frame and every new kit model (a
+microscope, a quarter, a gloved hand). `storyboard.md` carries the reasons. The deck is all nine
+frames as material reliefs through `txbench.js`, the first under the studio route.
+
+## The audition, and what it cost
+
+The art director reviewed the cover, frame 7 (the wall, the hardest) and the close three times.
+
+- **First reading, revise.** The coat and the wall split into two flat tones with a ragged
+  boundary and speckled highlights, the wall cast nothing on the tumor, and the close was flat
+  rectangles: a matte card for glass, a grey slab of stage, a beige disc for the light.
+- **Second reading, revise.** The cover passed. Frame 7 carried screen aligned stripes and no
+  crest highlight, and frame 9's light still read as a ceramic plate. The one repair rule applied,
+  so the representation changed. Test renders with the cast off and then the specular off proved
+  the stripes were geometry: the wall's centre line and the nest's outline wobbled on a three octave
+  noise whose upper octaves changed their slope every 60 to 120 px. Both now follow smooth sums of
+  sines. The close became darkfield: the aperture stays black, and light shows only as a thin ring
+  at its rim and a lit rim on the section's outline.
+- **Third reading, accept**, with polish items for the pixel pass: vary the coat's width, put a
+  tighter highlight on the wall's crest, shade the engraved funder lines as cavities.
+
+The relief engine has no transparency, no second specular lobe and no emissive term, and the
+close's light from below is a screened stroke laid over the render after `TXBENCH.relief`. Queued.

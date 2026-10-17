@@ -1,0 +1,125 @@
+{
+ "_spec": {
+  "version": 1,
+  "purpose": "A standalone web edition of the archived visual story.",
+  "law": "Facts resolve to the original verified claim record. A layout rebuild does not reverify reporting.",
+  "written_by": "daily"
+ },
+ "section": "Research",
+ "dek": {
+  "text": "An MD Anderson AI model reads gene activity across intact tumor tissue. It points at mucin, a sugar coat many cancers make, as a barrier that may keep T cells out.",
+  "claims": [
+   "c1",
+   "c2",
+   "c7"
+  ]
+ },
+ "introduction": [
+  {
+   "text": "[Researchers at MD Anderson and collaborating Texas institutions built an AI model that helps explain how immune cells find their way to some places in the body and why they avoid others](c1). [The study was published in Nature Biomedical Engineering on {{date:c17}}](c17).",
+   "claims": [
+    "c1",
+    "c17"
+   ]
+  },
+  {
+   "text": "[Its leading physical finding is that mucins, large sugar coated proteins made by many cancers, may help form barriers that keep T cells away from tumors](c7). The finding is an association in existing data rather than a test of any treatment.",
+   "claims": [
+    "c7"
+   ]
+  }
+ ],
+ "sections": [
+  {
+   "heading": "What the model reads",
+   "paragraphs": [
+    {
+     "text": "[The model is called SPACER, and it reads spatial transcriptomics, a technique that measures gene activity inside intact tissue and records which genes are active and where](c2). [Instead of treating each cell alone, it examines groups of neighboring cells and how they work together](c3).",
+     "claims": [
+      "c2",
+      "c3"
+     ]
+    },
+    {
+     "text": "[The journal abstract says existing tools for this kind of data describe where cells sit and can't explain why](c19). [It describes SPACER as an interpretable framework that decodes gene level recruitment rules](c18).",
+     "claims": [
+      "c18",
+      "c19"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "How far it was tested",
+   "paragraphs": [
+    {
+     "text": "[The team applied SPACER across {{number:c4}} datasets, which the release describes as several cancer types](c4). [The abstract says those datasets span multiple human tumor types and mouse heart](c20).",
+     "claims": [
+      "c4",
+      "c20"
+     ]
+    },
+    {
+     "text": "[In benchmarking tasks the team reports the model was four to {{number:c4:1}} times more effective than existing approaches at finding signals linked to cell recruitment](c4). That range is the researchers' own measure of their method against others, not a measure of any treatment.",
+     "claims": [
+      "c4"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "What draws T cells in, and what may keep them out",
+   "paragraphs": [
+    {
+     "text": "[Immune cells appear to respond mainly to signals in their immediate surroundings rather than to signals circulating elsewhere in the body](c5). [Tumors expressing genes for antigen presentation, the way cells display protein fragments for immune cells to inspect, were more likely to attract T cells](c6).",
+     "claims": [
+      "c5",
+      "c6"
+     ]
+    },
+    {
+     "text": "[The researchers found evidence that mucins may help create physical barriers that keep T cells away from tumors](c7). [The National Cancer Institute's dictionary describes mucin as the main compound in mucus](c25).",
+     "claims": [
+      "c7",
+      "c25"
+     ]
+    },
+    {
+     "text": "[In several melanoma and gastric cancer datasets, tumors with more mucin were associated with poorer responses to immune checkpoint inhibitors and poorer patient outcomes](c8). [The National Cancer Institute says that when these checkpoints are blocked, T cells can kill cancer cells better](c23).",
+     "claims": [
+      "c8",
+      "c23"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "What the record doesn't say yet",
+   "paragraphs": [
+    {
+     "text": "[The researchers believe SPACER could potentially be used as a diagnostic tool for cancer therapies](c9), and the release reports no such use. [Linghua Wang described the findings as new ideas the team can test in the lab](c10). The mucin finding is an association in data the team analysed, and whether a lower mucin tumor would respond better to a checkpoint drug is a question the published work does not answer.",
+     "claims": [
+      "c9",
+      "c10"
+     ]
+    },
+    {
+     "text": "[MD Anderson says the study was funded in part by the National Institutes of Health, the Cancer Prevention and Research Institute of Texas and the U.S. Department of Defense, along with a foundation and a Baylor College of Medicine seed grant](c12).",
+     "claims": [
+      "c12"
+     ]
+    }
+   ]
+  }
+ ],
+ "related": [
+  {
+   "id": "tx-2026-0217",
+   "label": "The record entry for MD Anderson's SPACER model and its mucin finding"
+  },
+  {
+   "id": "tx-2026-0151",
+   "label": "An earlier MD Anderson imaging model that scored lower on patients it was not built on"
+  }
+ ]
+}
