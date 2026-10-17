@@ -190,3 +190,20 @@ close's light from below is a screened stroke laid over the render after `TXBENC
   names Houston only in its site navigation, so no claim supports a place. The merge of 4 into 5
   and a frame spent on a Texas stake were not made: each needs a new composition, and the second
   needs a fetched source the run doesn't have.
+- **Round 2, median 6.96 against the 7.7 rung, no hard fail, keep editing.** Integrity 7.026,
+  craft 6.81, reader 6.96, spread 0.216. The same block was charged again (4 and 5 as charts, 2 and
+  3 as identical slides with outline halos and grey label ends), so round 3 recomposed rather than
+  re-rendered, as the rule for a defect named twice says. Integrity caught a stale `copy.json`
+  still carrying the round 1 caption, because `build_copy.py` reads the render report and had run
+  before the caption edit. It was rebuilt and is rebuilt after every render now.
+- **The repairs for round 3.** Frame 4 dropped the tick field, kept only the engraved scale along
+  its top margin, and moved SPACER and the 4 onto the long bar's own track with room between the
+  tracks. Frame 5 rose into the empty band, set each SPACER label on its own track and the 21 over
+  its bar's end, and its engraved scale now runs all 21 units (it had stopped at 18 where a label
+  lane cut it). Frames 2 and 3 lost the outline halos: each section now has height and casts, and
+  the frost face is darker so the bevels and sections carry the light. Frame 3's pool sits on the
+  bench where the count stops. Frame 9's frost end is lifted to the lightest surface after the
+  aperture, its kicker reads "Linghua Wang says" (c10), and its absence names the release.
+  "One slide here stands for each dataset" left frame 3 and became "Each glass slide drawn here
+  stands for one dataset" on 2. The caption's absence names the release and CPRIT now helped fund
+  "the study", as c12 says.
