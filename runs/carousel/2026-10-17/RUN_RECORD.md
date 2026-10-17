@@ -233,3 +233,23 @@ close's light from below is a screened stroke laid over the render after `TXBENC
   review done 183.74, panel done 188.3, package done 254.83. The panel_done stamp is early: it was
   written as round 1 ended instead of at this phase's entry, so the three rounds and their repairs
   sit inside the last span.
+
+## Retro
+
+- **Prompt audit.** 1,914 tool calls measured, none waited on a human. 409 waited on the auto mode
+  classifier, the longest 9.9 seconds. The no-stall hook was armed at 05:08:23 UTC, judged the
+  session unattended at start with the host's `CLAUDE_CODE_SESSION_ATTENDED` at 0, and refused
+  nothing. This reading is interim, and the one taken just before the email is the one that counts.
+- **The field log** carries this run's 403s (keranews.org, mylubbock.us, hayscountytx.gov,
+  cprit.texas.gov) and nature.com's client challenge to `fetch_doc.py`.
+- **Machine queue, four items, nothing in the machine changed this run.** The chassis never passed
+  the declared light to `TXBENCH.relief`, so every relief rendered under txbench's default key. The
+  layout detail floor fails a dark machined plate until a grid is filled into it, and the panel then
+  charges the grid as graph paper. Light from below is a canvas stroke because the relief engine has
+  no transmission term, and the judges called it a sticker outline. A benchmark drawn as hardware
+  leaves a material deck. `machine_due.py` says the weekly pass is not due, last run October 16th.
+- **Instincts.** Three added: outlines on smooth sines, a glaze built from globules, darkening bands
+  feathered from zero. Two confirmed: read every repair at 432 px, and rebuild every derived
+  artifact with the thing it derives from, which this run broke once when `copy.json` was rebuilt
+  before the caption edit and a judge found the stale caption.
+- **Arsenal** rebuilt and current.
