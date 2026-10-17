@@ -8,7 +8,7 @@
  * Nothing here is a real patient's tissue. Every section, nest, wall and cell is drawn to
  * illustrate, at a scale the frame states.
  *
- * THE LIGHT is azimuth 300, elevation 22: the key comes low from the upper left, so every lit face
+ * THE LIGHT is azimuth 300, elevation 16: the key comes low from the upper left, so every lit face
  * is an upper left face and every cast runs down and to the right. A low key is what makes a
  * section a few cells thick read as a landscape with walls and beads in it.
  *
@@ -21,6 +21,9 @@
  *   5 SPOT    a measured spot of the gene map, a shallow well in graphite
  *   6 STEEL   a scale bar or a measured ruler, worn steel
  *   7 LABEL   the slide's frosted label end, a matte pale glass
+ *   8 SLIDE   the slide's own glass, near black with a green cast and a hard specular on its bevel
+ *   9 STAGE   a microscope stage, black anodised metal with a brushed sheen
+ *  10 BEVEL   a slide's ground glass edge, a pale green that catches the key on the faces turned to it
  *
  * WHAT THIS FILE IS NOT. There is no drawFrame here. It hands a frame fields, cells, beads and the
  * one relief call with the deck's light and materials. Every frame builds its own geometry, and the
@@ -32,7 +35,7 @@
 
   TXDECK.declare({
     world: "section",
-    light: { az: 300, el: 22 },
+    light: { az: 300, el: 16 },
     ground: "#05040A",
     material: "#3A1424",
     accent: "#B4664F",
@@ -42,7 +45,7 @@
 
   var N = {};
   N.W = 1080; N.H = 1350; N.SC = 2;
-  N.GLASS = 0; N.STROMA = 1; N.TUMOR = 2; N.MUCIN = 3; N.TCELL = 4; N.SPOT = 5; N.STEEL = 6; N.LABEL = 7;
+  N.GLASS = 0; N.STROMA = 1; N.TUMOR = 2; N.MUCIN = 3; N.TCELL = 4; N.SPOT = 5; N.STEEL = 6; N.LABEL = 7; N.SLIDE = 8; N.STAGE = 9; N.BEVEL = 10;
 
   /* linear albedo per material, with a little tooth so no surface is a flat fill */
   var BASE = {
@@ -53,14 +56,17 @@
     4: [0.86, 0.36, 0.20],
     5: [0.050, 0.048, 0.055],
     6: [0.36, 0.35, 0.33],
-    7: [0.30, 0.29, 0.27]
+    7: [0.16, 0.156, 0.146],
+    8: [0.016, 0.028, 0.024],
+    9: [0.020, 0.020, 0.024],
+    10: [0.10, 0.20, 0.15]
   };
   N.albedo = function (X, Y, m) {
     var b = BASE[m] || BASE[0];
     var tooth = 0.93 + 0.07 * TX.simplex2(X * 0.21, Y * 0.21);
     return [b[0] * tooth, b[1] * tooth, b[2] * tooth];
   };
-  N.spec = { 1: [0.06, 20], 2: [0.14, 34], 3: [0.95, 95], 4: [0.55, 60], 5: [0.08, 25], 6: [0.65, 70], 7: [0.04, 12] };
+  N.spec = { 1: [0.06, 20], 2: [0.14, 34], 3: [0.85, 46], 4: [0.55, 60], 5: [0.08, 25], 6: [0.65, 70], 7: [0.04, 12], 8: [1.0, 160], 9: [0.45, 40], 10: [0.5, 30] };
 
   /* A FIELD: evaluate fn(X, Y) -> [height, material] once per device pixel into two buffers, then
    * hand txbench a lookup. Evaluating twice (once for height, once for material) doubles the cost
@@ -129,21 +135,45 @@
     var w = TX.fbm2(X * 0.006 * k, Y * 0.006 * k, 3);
     var f = Math.sin((X * 0.55 + Y * 0.83) * 0.30 * k + 5.0 * w);
     var gap = TX.fbm2(X * 0.018 * k + 11, Y * 0.018 * k + 3, 3);
-    if (gap < -0.30) return [0, 0];
-    return [2.4 + 1.1 * f + 1.6 * Math.max(0, gap), 1];
+    /* the lacunae: the fibre falls away into each open space over a few px, so a hole has a wall to it */
+    var t = Math.max(0, Math.min(1, (gap + 0.36) / 0.12)), sm = t * t * (3 - 2 * t);
+    if (sm <= 0) return [0, 0];
+    return [(2.4 + 1.1 * f + 1.6 * Math.max(0, gap)) * sm, sm < 0.5 ? 0 : 1];
   };
 
-  /* THE ONE RELIEF CALL, with the deck's light (txbench reads it from the declaration), materials
-   * and finish. A frame passes only its field and, where a frame needs it, a softer or longer cast. */
-  N.relief = function (cx, fld, o) {
+  /* THE COAT'S CROSS-SECTION: a smooth dome that rises from the ground it meets on each side, peaks a
+   * little toward the side facing the key, and carries only long, low ripples along its length. u runs
+   * 0 at the outer foot to 1 at the inner foot; lo and hi are the heights of the ground at each foot. */
+  N.dome = function (u, lo, hi, peak, lean) {
+    lean = lean == null ? 0.42 : lean;
+    var v = u < lean ? 0.5 * u / lean : 0.5 + 0.5 * (u - lean) / (1 - lean);   // the crest sits at u = lean
+    var b = Math.sin(Math.PI * Math.max(0, Math.min(1, v)));
+    var base = lo + (hi - lo) * (u * u * (3 - 2 * u));
+    return base + (peak - Math.max(lo, hi)) * Math.pow(b, 1.4);
+  };
+
+  /* THE RELIEF OPTIONS, with the deck's light (txbench reads it from the declaration), materials and
+   * finish. Every frame makes the TXBENCH.relief call itself, passing its field through this, so the gates
+   * that read a frame's own code see the relief it renders. */
+  N.opts = function (fld, o) {
     o = o || {};
-    return TXBENCH.relief(cx, {
+    return {
       x: 0, y: 0, w: N.W, h: N.H, scale: N.SC,
       height: fld.height, material: fld.material, albedo: N.albedo, spec: N.spec,
       ambient: o.ambient == null ? 0.14 : o.ambient, diffuse: o.diffuse == null ? 1.0 : o.diffuse,
       ao: 0.9, shadow: 0.9, softness: o.softness || 5, castLength: o.castLength || 90,
-      visBlur: o.visBlur || 0, dither: true
-    });
+      visBlur: o.visBlur || 0, visSharp: o.visSharp, dither: true
+    };
+  };
+
+  /* A RESERVE under one line of type: a feathered dark patch behind the element, so a wall's edge or a
+   * row of cells never runs through its glyphs. It only darkens, and only there. */
+  N.knock = function (cx, sel, a) {
+    var el = document.querySelector(sel);
+    if (!el) return;
+    var r = el.getBoundingClientRect();
+    cx.save(); cx.filter = "blur(14px)"; cx.fillStyle = "rgba(4,3,8," + Math.min(0.5, a == null ? 0.5 : a) + ")";
+    cx.fillRect(r.left - 22, r.top - 12, r.width + 44, r.height + 24); cx.restore();
   };
 
   /* -------------------------------------------------------------- type seating */
@@ -207,6 +237,20 @@
       fw.addColorStop(1, "rgba(4,3,8," + fa + ")");
       cx.fillStyle = fw; cx.fillRect(0, r.top - feather, N.W, N.H - r.top + feather);
     }
+  };
+  /* LIGHT FROM BELOW, for a frame where a lamp shines up through glass: a warm transmitted glow laid over
+   * the rendered relief inside a circle, screened so dark tissue there reads backlit rather than painted. */
+  N.transmit = function (cx, x, y, r, o) {
+    o = o || {};
+    cx.save();
+    cx.beginPath(); cx.arc(x, y, r, 0, Math.PI * 2); cx.clip();
+    cx.globalCompositeOperation = "screen";
+    var g = cx.createRadialGradient(x - r * 0.12, y - r * 0.1, r * 0.05, x, y, r);
+    g.addColorStop(0, "rgba(255,236,214," + (o.peak == null ? 0.78 : o.peak) + ")");
+    g.addColorStop(0.7, "rgba(214,176,150," + (o.mid == null ? 0.42 : o.mid) + ")");
+    g.addColorStop(1, "rgba(120,80,70,0.10)");
+    cx.fillStyle = g; cx.fillRect(x - r, y - r, r * 2, r * 2);
+    cx.restore();
   };
   /* a DOM leader from a label to the point it names, ending short of the glyphs */
   N.leader = function (svg, from, to) {
