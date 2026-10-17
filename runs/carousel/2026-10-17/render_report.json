@@ -1,0 +1,2180 @@
+{
+  "canvas": {
+    "width": 1080,
+    "height": 1350,
+    "scale": 2.0,
+    "px": [
+      2160,
+      2700
+    ]
+  },
+  "text_window": 320,
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "png": "slide-01.png",
+      "console_errors": [
+        "TXBENCH: RELIEF {\"height_range\":62.9537239074707,\"materials\":5,\"cast_fraction\":0.2128391632373114,\"area\":1,\"render_ms\":16222.89999999851}"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 230, 220)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "What keeps T cells out of a tumor",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 211,
+          "font_px": 99.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(236, 230, 220)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              141,
+              782,
+              122
+            ],
+            [
+              80,
+              246,
+              592,
+              122
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "An AI model from MD Anderson and Texas collaborators helps explain where immune cells go. One finding is about mucins, sugar coated proteins many cancers make. They may help keep away T cells, white blood cells of the immune system. Drawn to illustrate.",
+          "x": 82,
+          "y": 387,
+          "w": 840,
+          "h": 214,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(214, 206, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              387,
+              805,
+              42
+            ],
+            [
+              82,
+              430,
+              753,
+              42
+            ],
+            [
+              82,
+              472,
+              751,
+              42
+            ],
+            [
+              82,
+              515,
+              824,
+              42
+            ],
+            [
+              82,
+              558,
+              620,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Published October 13th",
+          "x": 80,
+          "y": 80,
+          "w": 364,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 206, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              364,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "01 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 206, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c1 c7 c17 c24",
+          "x": 80,
+          "y": 1234,
+          "w": 209,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 206, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              209,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 26327,
+      "ok": true,
+      "load_ms": 106,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 25,
+          "variance": 766.6
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-02.html",
+      "png": "slide-02.png",
+      "console_errors": [
+        "TXBENCH: RELIEF {\"height_range\":15.757141768932343,\"materials\":6,\"cast_fraction\":0.26004783950617283,\"area\":1,\"render_ms\":10797.699999999255}"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 230, 220)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "It reads gene activity where it happens",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 209,
+          "font_px": 98.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(236, 230, 220)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              141,
+              853,
+              121
+            ],
+            [
+              80,
+              245,
+              702,
+              121
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "SPACER uses spatial transcriptomics, which measures gene activity inside intact tissue and shows which genes are active and where. Each glass slide drawn here stands for one dataset. Drawn to illustrate.",
+          "x": 82,
+          "y": 385,
+          "w": 840,
+          "h": 171,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(214, 206, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              385,
+              799,
+              42
+            ],
+            [
+              82,
+              428,
+              834,
+              42
+            ],
+            [
+              82,
+              470,
+              832,
+              42
+            ],
+            [
+              82,
+              513,
+              520,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The method",
+          "x": 80,
+          "y": 80,
+          "w": 166,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 206, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              166,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "02 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 206, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c2 c4",
+          "x": 80,
+          "y": 1234,
+          "w": 80,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 206, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              80,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 17063,
+      "ok": true,
+      "load_ms": 105,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 21.5,
+          "variance": 283.9
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-03.html",
+      "png": "slide-03.png",
+      "console_errors": [
+        "TXBENCH: RELIEF {\"height_range\":15.763388574123383,\"materials\":6,\"cast_fraction\":0.2582681755829904,\"area\":1,\"render_ms\":10894.300000000745}"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 230, 220)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "37 datasets, human tumors and mouse heart",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 178,
+          "font_px": 84,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(236, 230, 220)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              143,
+              678,
+              103
+            ],
+            [
+              80,
+              232,
+              859,
+              103
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The team ran SPACER across 37 datasets. The release says they represent several cancer types. The journal abstract adds mouse heart. Drawn to illustrate.",
+          "x": 82,
+          "y": 354,
+          "w": 840,
+          "h": 128,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(214, 206, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              354,
+              787,
+              42
+            ],
+            [
+              82,
+              397,
+              783,
+              42
+            ],
+            [
+              82,
+              440,
+              690,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The datasets",
+          "x": 80,
+          "y": 80,
+          "w": 199,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 206, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              199,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "03 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 206, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c4 c20",
+          "x": 80,
+          "y": 1234,
+          "w": 96,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 206, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              96,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 16459,
+      "ok": true,
+      "load_ms": 84,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 20.4,
+          "variance": 313
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-04.html",
+      "png": "slide-04.png",
+      "console_errors": [
+        "TXBENCH: RELIEF {\"height_range\":48.74008075892925,\"materials\":4,\"cast_fraction\":0.28474382716049385,\"area\":1,\"render_ms\":15457.400000000373}"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 230, 220)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Four times, the low end",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 211,
+          "font_px": 99.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(236, 230, 220)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              141,
+              473,
+              122
+            ],
+            [
+              80,
+              246,
+              474,
+              122
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "In benchmarking tasks the team reports SPACER was four to 21 times more effective than existing approaches at finding signals linked to cell recruitment. One unit here stands for existing approaches.",
+          "x": 82,
+          "y": 387,
+          "w": 840,
+          "h": 171,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(214, 206, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              387,
+              774,
+              42
+            ],
+            [
+              82,
+              430,
+              827,
+              42
+            ],
+            [
+              82,
+              472,
+              768,
+              42
+            ],
+            [
+              82,
+              515,
+              539,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "existing approaches",
+          "x": 304,
+          "y": 806,
+          "w": 321,
+          "h": 34,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 230, 220)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              304,
+              805,
+              321,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "4",
+          "x": 863,
+          "y": 903,
+          "w": 34,
+          "h": 73,
+          "font_px": 56,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 230, 220)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              863,
+              902,
+              34,
+              74
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "SPACER",
+          "x": 84,
+          "y": 952,
+          "w": 101,
+          "h": 34,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 230, 220)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              84,
+              951,
+              101,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The benchmark",
+          "x": 80,
+          "y": 80,
+          "w": 215,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 206, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              215,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "04 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 206, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c4",
+          "x": 80,
+          "y": 1234,
+          "w": 32,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 206, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              32,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 20400,
+      "ok": true,
+      "load_ms": 112,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 20.2,
+          "variance": 441.7
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-05.html",
+      "png": "slide-05.png",
+      "console_errors": [
+        "TXBENCH: RELIEF {\"height_range\":47.40255296230316,\"materials\":4,\"cast_fraction\":0.23481738683127573,\"area\":1,\"render_ms\":15701.89999999851}"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 230, 220)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "21 times, the high end",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 211,
+          "font_px": 99.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(236, 230, 220)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              141,
+              369,
+              122
+            ],
+            [
+              80,
+              246,
+              512,
+              122
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Set at one scale, the range runs four to 21. It is the researchers' own benchmark against existing approaches.",
+          "x": 82,
+          "y": 387,
+          "w": 840,
+          "h": 128,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(214, 206, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              387,
+              643,
+              42
+            ],
+            [
+              82,
+              430,
+              630,
+              42
+            ],
+            [
+              82,
+              472,
+              309,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "existing approaches",
+          "x": 148,
+          "y": 684,
+          "w": 321,
+          "h": 34,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 230, 220)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              148,
+              683,
+              321,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "4",
+          "x": 279,
+          "y": 863,
+          "w": 34,
+          "h": 73,
+          "font_px": 56,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 230, 220)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              279,
+              862,
+              34,
+              74
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "21",
+          "x": 933,
+          "y": 965,
+          "w": 67,
+          "h": 73,
+          "font_px": 56,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 230, 220)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              933,
+              964,
+              67,
+              74
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "SPACER",
+          "x": 84,
+          "y": 804,
+          "w": 101,
+          "h": 34,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 230, 220)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              84,
+              803,
+              101,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "SPACER",
+          "x": 84,
+          "y": 1002,
+          "w": 101,
+          "h": 34,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 230, 220)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              84,
+              1001,
+              101,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "One scale",
+          "x": 80,
+          "y": 80,
+          "w": 149,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 206, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              149,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "05 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 206, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c4",
+          "x": 80,
+          "y": 1234,
+          "w": 32,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 206, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              32,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 20739,
+      "ok": true,
+      "load_ms": 139,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 18.5,
+          "variance": 292.9
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-06.html",
+      "png": "slide-06.png",
+      "console_errors": [
+        "TXBENCH: RELIEF {\"height_range\":33,\"materials\":5,\"cast_fraction\":0.2171889574759945,\"area\":1,\"render_ms\":13928.300000000745}"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 230, 220)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Immune cells seem to answer signals close by",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 190,
+          "font_px": 89.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(236, 230, 220)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              141,
+              810,
+              111
+            ],
+            [
+              80,
+              236,
+              862,
+              111
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "SPACER reads groups of neighboring cells. Tumors expressing antigen presentation genes were more likely to attract T cells. Those genes help cells show protein fragments to immune cells. Drawn to illustrate.",
+          "x": 82,
+          "y": 366,
+          "w": 840,
+          "h": 171,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(214, 206, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              366,
+              740,
+              42
+            ],
+            [
+              82,
+              408,
+              823,
+              42
+            ],
+            [
+              82,
+              451,
+              786,
+              42
+            ],
+            [
+              82,
+              494,
+              685,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "a group of neighboring cells",
+          "x": 80,
+          "y": 1115,
+          "w": 473,
+          "h": 34,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 230, 220)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1114,
+              473,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "What draws T cells in",
+          "x": 80,
+          "y": 80,
+          "w": 348,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 206, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              348,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "06 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 206, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c3 c5 c6",
+          "x": 80,
+          "y": 1234,
+          "w": 129,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 206, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              129,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [
+        {
+          "kind": "svg",
+          "x": 120,
+          "y": 985,
+          "w": 248.4,
+          "h": 122,
+          "by": "line",
+          "color": "rgb(5, 4, 10)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 120,
+          "y": 985,
+          "w": 248.4,
+          "h": 122,
+          "by": "line",
+          "color": "rgb(236, 230, 220)",
+          "decorative": false,
+          "skip": []
+        }
+      ],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 24142,
+      "ok": true,
+      "load_ms": 95,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 23.4,
+          "variance": 475.4
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-07.html",
+      "png": "slide-07.png",
+      "console_errors": [
+        "TXBENCH: RELIEF {\"height_range\":94.35028076171875,\"materials\":5,\"cast_fraction\":0.2659259259259259,\"area\":1,\"render_ms\":17902.5}"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 230, 220)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "A sugar coat that may be a wall",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 211,
+          "font_px": 99.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(236, 230, 220)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              141,
+              706,
+              122
+            ],
+            [
+              80,
+              246,
+              557,
+              122
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Mucins are large sugar coated proteins many cancers make. The researchers found evidence mucins may help form physical barriers that keep T cells away from tumors. Drawn to illustrate.",
+          "x": 82,
+          "y": 387,
+          "w": 840,
+          "h": 171,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(214, 206, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              387,
+              782,
+              42
+            ],
+            [
+              82,
+              430,
+              819,
+              42
+            ],
+            [
+              82,
+              472,
+              721,
+              42
+            ],
+            [
+              82,
+              515,
+              400,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "What may keep them out",
+          "x": 80,
+          "y": 80,
+          "w": 364,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 206, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              364,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "07 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 206, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c7",
+          "x": 80,
+          "y": 1234,
+          "w": 32,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 206, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              32,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 29055,
+      "ok": true,
+      "load_ms": 91,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 33,
+          "variance": 1545
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-08.html",
+      "png": "slide-08.png",
+      "console_errors": [
+        "TXBENCH: RELIEF {\"height_range\":23.457878708839417,\"materials\":8,\"cast_fraction\":0.15696004801097393,\"area\":1,\"render_ms\":12267.900000000373}"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 230, 220)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "More mucin went with poorer response",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 209,
+          "font_px": 98.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(236, 230, 220)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              141,
+              719,
+              121
+            ],
+            [
+              80,
+              245,
+              877,
+              121
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "In several melanoma and gastric cancer datasets, more mucin went with poorer responses to checkpoint inhibitors, drugs that help T cells kill cancer cells better. An association in existing data. Drawn to illustrate.",
+          "x": 82,
+          "y": 385,
+          "w": 840,
+          "h": 171,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(214, 206, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              385,
+              810,
+              42
+            ],
+            [
+              82,
+              428,
+              719,
+              42
+            ],
+            [
+              82,
+              470,
+              815,
+              42
+            ],
+            [
+              82,
+              513,
+              744,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "lower mucin",
+          "x": 318,
+          "y": 597,
+          "w": 186,
+          "h": 34,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 230, 220)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              318,
+              596,
+              186,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "higher mucin",
+          "x": 730,
+          "y": 597,
+          "w": 203,
+          "h": 34,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 230, 220)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              730,
+              596,
+              203,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "melanoma",
+          "x": 125,
+          "y": 760,
+          "w": 135,
+          "h": 34,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 230, 220)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              125,
+              759,
+              135,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "gastric",
+          "x": 142,
+          "y": 1042,
+          "w": 118,
+          "h": 34,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 230, 220)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              142,
+              1041,
+              118,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Melanoma and gastric",
+          "x": 80,
+          "y": 80,
+          "w": 331,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 206, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              331,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "08 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 206, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c8 c21 c23",
+          "x": 80,
+          "y": 1234,
+          "w": 161,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 206, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              161,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 18062,
+      "ok": true,
+      "load_ms": 93,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 25.5,
+          "variance": 601.6
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-09.html",
+      "png": "slide-09.png",
+      "console_errors": [
+        "TXBENCH: RELIEF {\"height_range\":55.99981689453125,\"materials\":10,\"cast_fraction\":0.24246862139917696,\"area\":1,\"render_ms\":13944.900000000373}"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 230, 220)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "New ideas to test in the lab",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 211,
+          "font_px": 99.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(236, 230, 220)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              141,
+              523,
+              122
+            ],
+            [
+              80,
+              246,
+              553,
+              122
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The researchers believe SPACER could potentially become a diagnostic tool for cancer therapies. The release reports no such use. The Cancer Prevention and Research Institute of Texas is one of five funders the release names. Drawn to illustrate.",
+          "x": 82,
+          "y": 387,
+          "w": 840,
+          "h": 214,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(214, 206, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              387,
+              731,
+              42
+            ],
+            [
+              82,
+              430,
+              745,
+              42
+            ],
+            [
+              82,
+              472,
+              820,
+              42
+            ],
+            [
+              82,
+              515,
+              770,
+              42
+            ],
+            [
+              82,
+              558,
+              508,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Cancer Prevention and Research Institute of Texas",
+          "x": 80,
+          "y": 645,
+          "w": 290,
+          "h": 94,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 230, 220)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              645,
+              265,
+              31
+            ],
+            [
+              80,
+              676,
+              187,
+              31
+            ],
+            [
+              80,
+              707,
+              281,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Linghua Wang says",
+          "x": 80,
+          "y": 80,
+          "w": 282,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 206, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              282,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "09 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 206, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c7 c9 c10 c12",
+          "x": 80,
+          "y": 1234,
+          "w": 209,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 206, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              209,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [
+        {
+          "kind": "svg",
+          "x": 306,
+          "y": 746.6,
+          "w": 22,
+          "h": 133.2,
+          "by": "line",
+          "color": "rgb(5, 4, 10)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 306,
+          "y": 746.6,
+          "w": 22,
+          "h": 133.2,
+          "by": "line",
+          "color": "rgb(236, 230, 220)",
+          "decorative": false,
+          "skip": []
+        }
+      ],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 20224,
+      "ok": true,
+      "load_ms": 97,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 29,
+          "variance": 945.7
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    }
+  ]
+}

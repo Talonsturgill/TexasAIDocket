@@ -1,0 +1,88 @@
+{
+ "lens": "craft",
+ "round": 1,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.5,
+   "why": "Two decks in one. Frame 7's glazed globule wall, frame 1's ringed nest and frame 8's 2 by 2 cores read at 432 px. Frames 2 to 5 are grey hardware with no bright edge and no pool. On 2 and 3 the label ends render mid grey, the bevels show no lit edge and the relief barely registers. On 4 and 5 the frosted and steel bars are one grey on a plate ruled like graph paper, a bar chart in clay. Frame 6's kerb ring nearly vanishes at feed size. Frame 1's coat is still the matte band the audition called a rubber hose. All nine frames share one skeleton. Per frame 8, 6, 6, 5.5, 5.5, 7, 8.5, 7.5, 7."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.0,
+   "why": "One key, one chassis, one type system. Three continuity devices work: the panorama completes from 2 to 3, the frame 4 terrace leaves the edge before 5 rescales it, and the ember motif changes state across 1, 6, 7, 8 and 9. The material register strobes warm to cold grey on 2 to 5 and back, a four-frame block outside the vocabulary."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.5,
+   "why": "Every numeral traces, the panorama draws 37 and frame 9 engraves five lines. The hedges hold and sources are primary. Frame 2's journal kicker sits over a dek sourced to the release, and frame 9's headline is Linghua Wang's sentence (c10) without attribution on the slide."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.5,
+   "why": "What happened and who did it are clear. Houston and Harris County appear nowhere, the texan gate reads places NONE, body NO, next step NO, and the Texas stake is one funder clause."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "The cover earns the swipe and frame 2 pays with the method. The turn lands on 7. Two facts each take two frames, 37 over 2 and 3 and the benchmark over 4 and 5, and 4 could be cut."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Clean, precise and honest about limits. 'Drawn to illustrate' repeats on seven frames, the 4 and 5 hooks are mechanical, and nothing reads regionally Texan."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 8.0,
+   "why": "Nine orthographic darkfield reliefs in plum and ember after three txthree staged scenes. The one familiar move is the type-over-art skeleton."
+  }
+ ],
+ "weighted_score": 7.21,
+ "hard_fails": [],
+ "ship": false,
+ "defects_ranked": [
+  "Frames 2 to 5 form a four-frame block of grey hardware with no bright edge, no distinct materials and no ember.",
+  "Frames 4 and 5 read as a bar chart on graph paper.",
+  "Frames 2 and 3 label ends mid grey and the relief about 7.6 high.",
+  "Frame 6's kerb ring invisible at 432 px, no focal.",
+  "Frame 1's coat is a matte band, a different material from frame 7's.",
+  "Frame 4 is cuttable.",
+  "No Texas place is named."
+ ],
+ "artwork_weakest_frames": [
+  {
+   "slide": 4,
+   "problem": "A bar chart in clay, frosted and steel bars one flat mid grey on a plate ruled like graph paper, nothing near white.",
+   "fix": "Delete the grid ruling, model the unit bar as pale frosted glass and the four-unit bar as polished steel with one hard specular line, and lengthen the cut end's cast."
+  },
+  {
+   "slide": 5,
+   "problem": "The same grey chart at a farther scale, three bars one material, no bright edge.",
+   "fix": "Plain black anodised plate, a pale frosted unit bar, polished steel 4 and 21 bars each with one raking specular and a long cast, one engraved scale under the 21 bar."
+  },
+  {
+   "slide": 2,
+   "problem": "Charcoal matte tiles, label ends about L* 30, no lit bevel, sections flat speckle.",
+   "fix": "Raise each label end to a pale frosted value, run a lit rim along every slide's upper-left bevel, rim light each section."
+  },
+  {
+   "slide": 3,
+   "problem": "Same material fault as 2, no light where the count stops.",
+   "fix": "Same label and bevel change, a lit pool after the 37th slide and one ember accent on that last section."
+  },
+  {
+   "slide": 6,
+   "problem": "The kerb sits at the nest's own value and disappears at 432 px, T cells spread evenly.",
+   "fix": "Raise the kerb into a lit ring with a crisp cast, thin the far right T cells and concentrate them at the ringed group."
+  }
+ ],
+ "one_sentence_fix": "Rebuild frames 2 to 5 in the tissue frames' darkfield register, merge 4 and 5, and spend the freed slot on a frame that names Houston."
+}

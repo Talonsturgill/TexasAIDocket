@@ -1,0 +1,59 @@
+{
+ "_note": "Every value is extracted from a claim quote by compute.py, or computed here from values that were.",
+ "datasets": {
+  "value": 37,
+  "from": [
+   "c4"
+  ],
+  "basis": "datasets SPACER was applied across, the release's count, the abstract's too (c20)"
+ },
+ "benchmark_low": {
+  "value": 4,
+  "from": [
+   "c4"
+  ],
+  "basis": "the low end of the benchmark range, four times more effective, the release's word parsed to a number"
+ },
+ "benchmark_high": {
+  "value": 21,
+  "from": [
+   "c4"
+  ],
+  "basis": "the high end of the benchmark range, 21 times more effective"
+ },
+ "published_day": {
+  "value": 13,
+  "from": [
+   "c17"
+  ],
+  "basis": "day of October the journal published the article"
+ },
+ "published_year": {
+  "value": 2026,
+  "from": [
+   "c17"
+  ],
+  "basis": "year the journal published the article"
+ },
+ "cancer_types_mucin": {
+  "value": 2,
+  "from": [
+   "c8"
+  ],
+  "basis": "cancer types the mucin association names: melanoma, gastric"
+ },
+ "named_uses": {
+  "value": 3,
+  "from": [
+   "c9"
+  ],
+  "basis": "settings beyond cancer the release names as possible uses: autoimmune disorders, tissue repair, wound healing"
+ },
+ "funders": {
+  "value": 5,
+  "from": [
+   "c12"
+  ],
+  "basis": "funders the release names: the National Institutes of Health; the Cancer Prevention and Research Institute of Texas; the U.S. Department of Defense; the Adrienne Helis Malvin Medical Research Foundation; a Baylor College of Medicine Department of Surgery Seed Grant"
+ }
+}

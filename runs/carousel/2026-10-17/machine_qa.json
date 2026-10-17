@@ -1,0 +1,124 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [
+        "console error: TXBENCH: RELIEF {\"height_range\":62.9537239074707,\"materials\":5,\"cast_fraction\":0.2128391632373114,\"area\":1,\"render_ms\":16222.89999999851}"
+      ],
+      "bands": [
+        0.2542,
+        0.5924,
+        0.9688
+      ],
+      "band_ratio": 1.5583
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [
+        "console error: TXBENCH: RELIEF {\"height_range\":15.757141768932343,\"materials\":6,\"cast_fraction\":0.26004783950617283,\"area\":1,\"render_ms\":10797.699999999255}"
+      ],
+      "bands": [
+        0.2647,
+        0.5336,
+        0.7188
+      ],
+      "band_ratio": 1.3946
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [
+        "console error: TXBENCH: RELIEF {\"height_range\":15.763388574123383,\"materials\":6,\"cast_fraction\":0.2582681755829904,\"area\":1,\"render_ms\":10894.300000000745}"
+      ],
+      "bands": [
+        0.2143,
+        0.7038,
+        0.7371
+      ],
+      "band_ratio": 1.3159
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [
+        "console error: TXBENCH: RELIEF {\"height_range\":48.74008075892925,\"materials\":4,\"cast_fraction\":0.28474382716049385,\"area\":1,\"render_ms\":15457.400000000373}"
+      ],
+      "bands": [
+        0.2017,
+        0.5819,
+        0.6949
+      ],
+      "band_ratio": 1.3842
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [
+        "console error: TXBENCH: RELIEF {\"height_range\":47.40255296230316,\"materials\":4,\"cast_fraction\":0.23481738683127573,\"area\":1,\"render_ms\":15701.89999999851}"
+      ],
+      "bands": [
+        0.187,
+        0.6282,
+        0.7298
+      ],
+      "band_ratio": 1.3908
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [
+        "console error: TXBENCH: RELIEF {\"height_range\":33,\"materials\":5,\"cast_fraction\":0.2171889574759945,\"area\":1,\"render_ms\":13928.300000000745}"
+      ],
+      "bands": [
+        0.229,
+        0.7773,
+        0.9393
+      ],
+      "band_ratio": 1.4194
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [
+        "console error: TXBENCH: RELIEF {\"height_range\":94.35028076171875,\"materials\":5,\"cast_fraction\":0.2659259259259259,\"area\":1,\"render_ms\":17902.5}"
+      ],
+      "bands": [
+        0.2563,
+        0.6282,
+        0.9191
+      ],
+      "band_ratio": 1.4929
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [
+        "console error: TXBENCH: RELIEF {\"height_range\":23.457878708839417,\"materials\":8,\"cast_fraction\":0.15696004801097393,\"area\":1,\"render_ms\":12267.900000000373}"
+      ],
+      "bands": [
+        0.2773,
+        0.3782,
+        0.5184
+      ],
+      "band_ratio": 1.3056
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [
+        "console error: TXBENCH: RELIEF {\"height_range\":55.99981689453125,\"materials\":10,\"cast_fraction\":0.24246862139917696,\"area\":1,\"render_ms\":13944.900000000373}"
+      ],
+      "bands": [
+        0.2248,
+        0.5546,
+        0.7537
+      ],
+      "band_ratio": 1.4437
+    }
+  ],
+  "fails": 0,
+  "warns": 9,
+  "verdict": "WARN"
+}

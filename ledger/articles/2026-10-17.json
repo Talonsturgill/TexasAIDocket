@@ -16,7 +16,7 @@
  },
  "introduction": [
   {
-   "text": "[Researchers at MD Anderson and collaborating Texas institutions built an AI model that helps explain how immune cells find their way to some places in the body and why they avoid others](c1). [The study was published in Nature Biomedical Engineering on {{date:c17}}](c17).",
+   "text": "[Researchers at MD Anderson and collaborating Texas institutions built an AI model that helps explain how immune cells find their way through the body](c1). [It also helps explain why they avoid some places](c1). [The study was published in Nature Biomedical Engineering on {{date:c17}}](c17).",
    "claims": [
     "c1",
     "c17"
@@ -97,7 +97,7 @@
    "heading": "What the record doesn't say yet",
    "paragraphs": [
     {
-     "text": "[The researchers believe SPACER could potentially be used as a diagnostic tool for cancer therapies](c9), and the release reports no such use. [Linghua Wang described the findings as new ideas the team can test in the lab](c10). The mucin finding is an association in data the team analysed, and whether a lower mucin tumor would respond better to a checkpoint drug is a question the published work does not answer.",
+     "text": "[The researchers believe SPACER could potentially be used as a diagnostic tool for cancer therapies](c9), and the release reports no such use. [Linghua Wang described the findings as new ideas the team can test in the lab](c10). The mucin finding is an association in data the team analyzed. Whether a lower mucin tumor would respond better to a checkpoint drug is a question the published work does not answer.",
      "claims": [
       "c9",
       "c10"

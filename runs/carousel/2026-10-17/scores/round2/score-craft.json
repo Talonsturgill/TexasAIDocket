@@ -1,0 +1,88 @@
+{
+ "lens": "craft",
+ "round": 2,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.4,
+   "why": "Frames 7, 1, 6 and 8 are strong reliefs; 7 meets the showstopper test, 1 nearly. Frames 4 and 5 are bar charts on a brushed plate with a dead band on 5 and an unexplained terrace stub on 4. Frames 2 and 3 are a grid of identical rectangles whose sections sit in a sticker-like halo stroke, with mid grey label ends as the brightest mass. Frame 9's label end reads as a grey card with five grooves, its aperture light is faint."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 6.8,
+   "why": "One key, one grade, one dark register, ember reserved for T cells. Three continuity devices work. Frames 2 to 5 are four consecutive frames of cold grey hardware, and all nine share one skeleton, so the declared rotation is not visible on the sheet."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.5,
+   "why": "Every numeral traces and the drawn counts match. Hedges are kept. Frame 9's kicker 'Co-lead Linghua Wang' states the release's description as fact, traceable to c11 and looser than its source."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.0,
+   "why": "What happened and who did it are clear. No place, no public body, no next step; the Texas stake is a funder name."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "The cover earns the swipe. Frame 2 pays the method, 4 and 5 spend two frames on one range, the turn at 7 lands and 8 pays it off. The close lands softly."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.8,
+   "why": "Good plain headlines. 'Drawn to illustrate.' reads as a stamp, nothing sounds like Texas, frame 5's dek is flat."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 8.0,
+   "why": "A real departure from nos. 50 to 52: orthographic material relief, plum, oxblood and ember, a macro tissue opening. The skeleton is familiar."
+  }
+ ],
+ "weighted_score": 6.81,
+ "hard_fails": [],
+ "ship": false,
+ "defects_ranked": [
+  "Frames 2 to 5 sit outside the tissue world.",
+  "Frames 4 and 5 are charts; either could be cut.",
+  "Frames 2 and 3 sections have sticker outlines and mid grey label ends.",
+  "Frame 9's close is thin.",
+  "Frame 9's kicker states the release's description as fact.",
+  "No Texas place, body or next step.",
+  "copy.json carried a stale caption (rebuilt)."
+ ],
+ "artwork_weakest_frames": [
+  {
+   "slide": 5,
+   "problem": "A bevelled grey bar chart on a brushed plate with a dead band.",
+   "fix": "Draw the three tracks as rows of ember T cell beads in carved plum stroma channels at one pitch (1, 4 and 21), raise the relief's top edge to the dek's foot."
+  },
+  {
+   "slide": 4,
+   "problem": "The same chart on tick rows, the grey unit block the brightest mass, an unexplained terrace stub.",
+   "fix": "Merge into frame 5, or rebuild as the same bead-channel relief, and delete the terrace stub."
+  },
+  {
+   "slide": 2,
+   "problem": "Identical rectangles, sections as speckle inside a halo stroke, label ends the brightest mass.",
+   "fix": "Model each section with the cover's Voronoi nest relief at slide scale, delete the halo, and make the label ends frosted glass near L* 75."
+  },
+  {
+   "slide": 3,
+   "problem": "Same as 2, and the pool where the count ends doesn't register at feed size.",
+   "fix": "Same repair as 2, an ember accent on the 37th section and a visible pool on the bare bench after it."
+  },
+  {
+   "slide": 9,
+   "problem": "The label end reads as an icon, the aperture light is faint, the section has a halo glow.",
+   "fix": "Lift the label to frosted L* 70 to 80, give the aperture a bright upper-left crescent rim, remove the section's halo glow."
+  }
+ ],
+ "one_sentence_fix": "Rebuild frames 2 to 5 in the tissue's own materials instead of grey hardware and merge the benchmark into one frame."
+}

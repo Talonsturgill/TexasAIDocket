@@ -1,0 +1,191 @@
+{
+ "weighted_score": 7.124,
+ "judges": [
+  7.242,
+  6.942,
+  7.014
+ ],
+ "spread": 0.3,
+ "criteria": {
+  "artwork_craft": {
+   "score": 6.8,
+   "weight": 0.22,
+   "judges": [
+    6.8,
+    6.3,
+    6.8
+   ]
+  },
+  "deck_coherence": {
+   "score": 7.0,
+   "weight": 0.12,
+   "judges": [
+    7.3,
+    6.8,
+    7.0
+   ]
+  },
+  "claim_integrity": {
+   "score": 8.0,
+   "weight": 0.2,
+   "judges": [
+    8.0,
+    8.0,
+    8.0
+   ]
+  },
+  "story_and_stakes": {
+   "score": 6.3,
+   "weight": 0.16,
+   "judges": [
+    6.5,
+    6.0,
+    6.3
+   ]
+  },
+  "sequence_and_momentum": {
+   "score": 6.8,
+   "weight": 0.1,
+   "judges": [
+    6.8,
+    6.8,
+    6.3
+   ]
+  },
+  "voice": {
+   "score": 7.0,
+   "weight": 0.1,
+   "judges": [
+    7.0,
+    7.0,
+    6.9
+   ]
+  },
+  "variety": {
+   "score": 8.0,
+   "weight": 0.1,
+   "judges": [
+    8.5,
+    8.0,
+    7.5
+   ]
+  }
+ },
+ "hard_fails": [],
+ "hard_fails_by_judge": [],
+ "ship": true,
+ "threshold": 8.0,
+ "over_threshold": false,
+ "method": "per-criterion median across three judges, then weighted by the rubric",
+ "artwork_weakest_frames": [
+  {
+   "slide": 4,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Repeats frame 5's bar chart closer.",
+     "fix": "Cut it and mark the 4 on frame 5's scale, or give the slot a tissue-world subject."
+    },
+    {
+     "judge": 2,
+     "problem": "A mid grey relief bar chart with no bright edge, an unreadable stepped terrace, an empty lower third.",
+     "fix": "Delete the terrace, move the bars down to fill the frame, give each bar's upper-left bevel a hard specular."
+    },
+    {
+     "judge": 3,
+     "problem": "A mid grey square and a four-segment bar in a void, the terrace stub reads as a fifth segment.",
+     "fix": "Build the 1 to 4 ratio from tissue sections on the bench and delete the terrace stub."
+    }
+   ]
+  },
+  {
+   "slide": 5,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "A 21-segment steel bar, a 4-unit bar and a 1-unit frosted block, a bar chart on a dark field.",
+     "fix": "Rebuild the range as glass slides in a staining rack beside one slide, on the same bench under the key."
+    },
+    {
+     "judge": 2,
+     "problem": "A bar chart on a brushed plate with a dead zone right of the 4 bar.",
+     "fix": "Stack the three tracks flush as one dense machined object with a hard bevel specular on the 21 bar."
+    },
+    {
+     "judge": 3,
+     "problem": "The same grey rule from farther off with no strong lit edge.",
+     "fix": "Lay 21 section cores in a row against a single core under the same key pool."
+    }
+   ]
+  },
+  {
+   "slide": 3,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Nearly frame 2 again, the count-end pool barely visible.",
+     "fix": "Move the camera in on the last slide and the bare bench with a real key pool."
+    },
+    {
+     "judge": 2,
+     "problem": "The same read as 2, a hard seam under the type, the pool not visible.",
+     "fix": "Feather the bench into the type field, apply 2's bevel specular, raise the pool."
+    },
+    {
+     "judge": 3,
+     "problem": "A near-duplicate of frame 2 at 432 px, the count-end pool too dim.",
+     "fix": "A low raking view down the row's end with the 37th slide's bevel the one bright edge."
+    }
+   ]
+  },
+  {
+   "slide": 9,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Flat clips without contact shadow, label near L* 60, the section reads composited.",
+     "fix": "Bent spring steel clips with a contact shadow, and the slide's shadow cast into the bore."
+    },
+    {
+     "judge": 2,
+     "problem": "Flat clip arms, an overlay stroke for the aperture light, the specimen reads as a sticker.",
+     "fix": "Model the clips with a rounded cross section and contact shadow, and replace the overlay ring with a raised bevelled aperture lip."
+    },
+    {
+     "judge": 3,
+     "problem": "Flat dark rectangles and a grey label panel, the lit section under a quarter of the frame.",
+     "fix": "Crop in until the aperture and section fill a third to half of the frame."
+    }
+   ]
+  },
+  {
+   "slide": 2,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "A flat grid of dark slides with weak bevel light.",
+     "fix": "Rake the bevels with a lower key and raise the frost ends to about L* 75."
+    },
+    {
+     "judge": 2,
+     "problem": "Mid grey frost the brightest mass, no lit edge, muddy sections.",
+     "fix": "Drop the frost to about L* 20 and put a hard specular on each slide's upper-left bevel."
+    }
+   ]
+  }
+ ],
+ "rounds_derived": 3,
+ "rounds": 3,
+ "rounds_source": "this module's own log of cards it has scored",
+ "rounds_declared": 3,
+ "at_cap": true,
+ "rung": null,
+ "shortfall": "at the round cap the finished deck ships at 7.124, 0.876 under the 8.0 top rung. Name that in the email and the run record",
+ "craft_floor": "capped",
+ "craft_note": "at the round cap the craft floor stands down. The art median 6.8 is under 8.5 and the deck ships as it is. Name it in the run record"
+}

@@ -1,0 +1,81 @@
+{
+ "lens": "reader",
+ "round": 3,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.8,
+   "why": "Frames 7, 1, 6 and 8 are strong material reliefs; 7 is near the showstopper. Frames 4 and 5 drop into mid grey bar charts on a brushed plate, and frame 4's terrace stub reads as a fifth segment. Frames 2 and 3 are nearly the same picture. Frame 9's lit section is under a quarter of the frame."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.0,
+   "why": "One key, one dark register, the T cell motif works across 1, 6, 7 and 8. Frames 2 to 5 are four cold grey frames outside the tissue world, and the shared skeleton holds the deck together too uniformly."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.0,
+   "why": "Every slide string traces to a primary claim, the mucin finding is hedged everywhere, frame 3 keeps release and abstract apart, 'five funders' is computed, the bars are 1 to 4 to 21 at one scale. Looser: frame 9's kicker sits over a paraphrase and never says who Linghua Wang is, frame 8's art draws the mechanism over an association."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.3,
+   "why": "A Texan learns what happened but not where, no public body beyond CPRIT as one of five funders, no deadline, nothing to act on. The caption's closing question is the most concrete stake and appears on no slide."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 6.3,
+   "why": "The cover earns a swipe though its dek gives the answer away. Frames 2 to 5 are four frames of method and benchmark in two near-duplicate pairs. The turn at 7 is real. The close on 9 stacks three unrelated sentences and ends on a funding footnote."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.9,
+   "why": "Clean, careful, honest about limits. Good lines on 7 and the paired 4 and 21 hooks. No Texas texture, 'Drawn to illustrate.' on seven deks, frame 9's headline flat."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "The first all-relief deck, a rare beat, a new palette, a fresh darkfield bench. The skeleton is familiar."
+  }
+ ],
+ "weighted_score": 7.014,
+ "hard_fails": [],
+ "ship": true,
+ "defects_ranked": [
+  "Frames 2 to 5 are setup in two near-duplicate pairs.",
+  "No place, no public body, no next step.",
+  "The close on 9 is soft and ends on a funder count.",
+  "'Drawn to illustrate.' on seven deks.",
+  "Frame 4's stub makes the bar read longer than four."
+ ],
+ "artwork_weakest_frames": [
+  {
+   "slide": 4,
+   "problem": "A mid grey square and a four-segment bar in a void, the terrace stub reads as a fifth segment.",
+   "fix": "Build the 1 to 4 ratio from tissue sections on the bench and delete the terrace stub."
+  },
+  {
+   "slide": 5,
+   "problem": "The same grey rule from farther off with no strong lit edge.",
+   "fix": "Lay 21 section cores in a row against a single core under the same key pool."
+  },
+  {
+   "slide": 3,
+   "problem": "A near-duplicate of frame 2 at 432 px, the count-end pool too dim.",
+   "fix": "A low raking view down the row's end with the 37th slide's bevel the one bright edge."
+  },
+  {
+   "slide": 9,
+   "problem": "Flat dark rectangles and a grey label panel, the lit section under a quarter of the frame.",
+   "fix": "Crop in until the aperture and section fill a third to half of the frame."
+  }
+ ],
+ "one_sentence_fix": "Merge 2 with 3 and 4 with 5, move the wall up to frame 2, and spend the freed frame on a sourced Texas stake."
+}

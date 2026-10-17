@@ -1,0 +1,87 @@
+<!doctype html>
+<!-- 2026-10-17, frame 7 of 9. Archetype FULL_BLEED. A material relief through txbench.js: the mucin wall at macro crossing the frame on a diagonal, ember T cells banked on its outer slope, its cast over the tumor cells below. Drawn to illustrate; no patient's tissue is depicted. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">A sugar coat that may be a wall</h1>
+<p class="dek" data-follow="26">Mucins are large sugar coated proteins many cancers make. The researchers found evidence mucins may help form physical barriers that keep T cells away from tumors. Drawn to illustrate.</p>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/txbench.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-17-section.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = (async () => {
+  const cx = await SEC.start({ kicker: "What may keep them out", counter: "07 / 09", src: "c7" });
+  const R = TX.rng(2026101707);
+  const top = SEC.typeBottom(20);
+  /* THE WALL. Its centre line climbs from the lower left to the right, and it is the tallest thing in the
+   * deck: 64 px of glaze against tumor cells of 30 and T cells of 26. Its outer slope faces the key. */
+  const wallY = X => 1060 - 0.32 * (X - 540) + 22 * Math.sin(X * 0.0047 + 0.8) + 9 * Math.sin(X * 0.0011 + 2.1);   // smooth, so its slope never stripes the wall
+  const WTat = X => 150 + 34 * Math.sin(X * 0.0055 + 1.1) + 14 * Math.sin(X * 0.013 + 0.3);   // secreted, so it swells and thins along its run
+  const WT = 150;
+  const edgeTop = X => top + 16 + 22 * TX.fbm2(X * 0.007, 5.1, 3);
+  const cell = SEC.cells(62, 9);
+  /* THE T CELLS, banked on the outer side: dense at the wall's foot, thinning away from it. */
+  const tc = [];
+  for (let n = 0; n < 12000 && tc.length < 130; n++) {
+    const x = 10 + R() * 1060, r = 16 + R() * 6, gap = Math.pow(R(), 5.5) * 360;   // banked thickest at the wall's foot
+    const y = wallY(x) - WTat(x) / 2 - r - 2 - gap;
+    if (y < edgeTop(x) + r + 6) continue;
+    if (!tc.some(t => Math.hypot(t[0] - x, t[1] - y) < t[2] + r + 2)) tc.push([x, y, r]);
+  }
+  const bead = SEC.beads(tc, 64);
+  /* THE WALL IS A HEAP, not an extrusion: overlapping glossy mucin globules, largest along its centre line,
+   * each catching the key as its own point, over a low gel underlay. */
+  const RG = TX.rng(2026101771), glob = [];
+  for (let n = 0; n < 1400; n++) {
+    const x = -40 + RG() * 1160, w = WTat(x) / 2;
+    const t = (RG() + RG() + RG() - 1.5) / 1.5;                     // across the wall, heaped toward the middle
+    const r = 12 + 28 * (1 - Math.abs(t)) * (0.55 + 0.45 * RG());
+    glob.push([x, wallY(x) + t * (w - r * 0.6), r]);
+  }
+  const globH = SEC.beads(glob, 48);
+  const fld = SEC.field((X, Y) => {
+    const e = edgeTop(X);
+    if (Y < e) return [0, SEC.GLASS];
+    const lip = Math.min(1, (Y - e) / 12);
+    const d = Y - wallY(X);
+    const b = bead(X, Y);
+    if (b > 0) return [8 + b + 0.3 * TX.simplex2(X * 0.3, Y * 0.3), SEC.TCELL];
+    const wt = WTat(X);
+    if (Math.abs(d) < wt / 2) {
+      /* the wall: a smooth dome from the stroma's height at its outer foot to the tumor's at its inner foot,
+       * crest toward the key, no ripple term */
+      const u = (d + wt / 2) / wt;
+      const g = globH(X, Y), under = SEC.dome(u, 5, 24, 54 + 10 * Math.sin(X * 0.004 + 0.4), 0.4);
+      return [under + Math.max(0, g) * 1.15, SEC.MUCIN];
+    }
+    if (d >= wt / 2) {
+      const v = cell(X, Y), ed = v[1] - v[0];
+      let h = 18 + Math.min(12, ed * 0.6);
+      const nu = Math.hypot(X - v[2], Y - v[3]);
+      if (nu < 14) h -= 6 * (1 - nu / 14);
+      return [h + 0.7 * TX.simplex2(X * 0.22, Y * 0.22), SEC.TUMOR];
+    }
+    const s = SEC.stroma(X, Y, 0.45);
+    return [s[0] * 2.0 * lip, s[1]];
+  });
+  TXBENCH.relief(cx, SEC.opts(fld, { castLength: 420, softness: 6, visBlur: 2, pool: { x: 600, y: 1080, rx: 900, ry: 700, floor: 0.3 } }));
+  SEC.post(cx, { footWash: 0.42 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

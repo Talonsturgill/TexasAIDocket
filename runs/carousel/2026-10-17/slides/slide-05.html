@@ -1,0 +1,82 @@
+<!doctype html>
+<!-- 2026-10-17, frame 5 of 9. Archetype FIGURE_SCALE. A material relief through txbench.js: the same machined rule seen whole at one scale, 21 engraved unit grooves, the one unit frosted bar, the four unit steel bar now short, and the terrace ending in a cut at 21 units. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">21 times, the high end</h1>
+<p class="dek" data-follow="26">Set at one scale, the range runs four to 21. It is the researchers' own benchmark against existing approaches.</p>
+<div class="lab" id="la">existing approaches</div>
+<div class="lab big" id="l4">4</div>
+<div class="lab big" id="l21">21</div>
+<div class="lab" id="ls1">SPACER</div>
+<div class="lab" id="ls2">SPACER</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/txbench.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-17-section.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = (async () => {
+  const cx = await SEC.start({ kicker: "One scale", counter: "05 / 09", src: "c4" });
+  const LOW = 4, HIGH = 21;                      // figures.json benchmark_low and benchmark_high
+  const top = SEC.typeBottom(40);
+  const left = 80, span = 1080 - 2 * left, unit = span / HIGH;   // one scale for all three tracks
+  const plateTop = top + 24, depth = 104, pitch = depth + Math.min(96, (1150 - plateTop - 70 - 3 * depth) / 2);
+  const rows = [plateTop + 70, plateTop + 70 + pitch, plateTop + 70 + 2 * pitch];   // each track with room above it for its own label
+  const plateBottom = Math.min(1222, rows[2] + depth + 52);
+  const lengths = [1, LOW, HIGH], kinds = [SEC.LABEL, SEC.STEEL, SEC.STEEL], rise = [26, 40, 40], kindName = ['frost', 'steel', 'steel'];
+  function track(X, Y) {
+    for (let t = 0; t < 3; t++) {
+      const y0 = rows[t], x1 = left + lengths[t] * unit;
+      if (Y <= y0 || Y >= y0 + depth || X <= left || X >= x1) continue;
+      const edge = Math.min(X - left, x1 - X, Y - y0, y0 + depth - Y), k = Math.min(1, edge / 7);
+      let h = 6 + rise[t] * k * (2 - k);
+      if (t === 0) h += 1.0 * TX.simplex2(X * 0.9, Y * 0.9) + 0.5 * TX.simplex2(X * 2.1, Y * 2.1);                       // frosted, a matte tooth
+      else h += 0.5 * Math.sin(Y * 1.9);                                            // steel, straight brushing
+      const g = (X - left) / unit, gf = g - Math.round(g);
+      if (t > 0 && edge > 10 && g > 0.5 && Math.abs(gf) * unit < 2.2) h -= 6;    // a groove at every unit, four on the one bar and 21 on the other
+      return [h, kinds[t]];
+    }
+    return null;
+  }
+  const fld = SEC.field((X, Y) => {
+    if (Y < plateTop || Y > plateBottom) return [0, SEC.GLASS];
+    const inset = Math.min(Y - plateTop, plateBottom - Y), k = Math.min(1, inset / 8);
+    const hit = track(X, Y);
+    if (hit) return hit;
+    let h = 6 * k * (2 - k) + 0.18 * TX.simplex2(X * 0.05, Y * 1.6);
+    const g = (X - left) / unit, gf = g - Math.round(g);
+        h += 0.6 * TX.simplex2(X * 0.012, Y * 0.5) + 0.5 * TX.simplex2(X * 0.006, Y * 1.7);   // the anodised plate's brushing
+    const g1 = (X - left) / unit, f1 = g1 - Math.round(g1);
+    const hf = (((X - left) / (unit / 2)) % 1 + 1) % 1;
+    if (Y > plateTop + 14 && Y < plateTop + (Math.abs(f1) * unit < 1.8 ? 44 : 30) && g1 > -0.1 && g1 < HIGH + 0.1 && (hf < 0.07 || hf > 0.93)) return [h - 3, SEC.LABEL];   // the rule's own scale along its top margin, half units
+    if (Y > rows[2] + depth + 8 && Y < rows[2] + depth + 32 && g1 > -0.1 && g1 < HIGH + 0.1 && Math.abs(f1) * unit < 1.8) return [h - 3, SEC.LABEL];   // one engraved scale under the 21 bar, all 21 units
+    return [h, SEC.STAGE];
+  });
+  TXBENCH.relief(cx, SEC.opts(fld, { castLength: 200, pool: { x: 500, y: rows[1] + 60, rx: 980, ry: 760, floor: 0.22 } }));
+  SEC.seam(cx, plateTop);
+  SEC.post(cx, { footWash: 0.42 });
+  const put = (id, x, y) => { const e = document.getElementById(id); e.style.left = Math.round(x) + "px"; e.style.top = Math.round(y) + "px"; };
+  const mid = id => document.getElementById(id).offsetHeight / 2;
+  put("la", left + unit + 24, rows[0] + depth / 2 - mid("la"));
+  put("l4", left + LOW * unit + 24, rows[1] + depth / 2 - mid("l4"));
+  put("ls1", left + 4, rows[1] - document.getElementById("ls1").offsetHeight - 10);   // each SPACER label sits on its own track
+  put("ls2", left + 4, rows[2] - document.getElementById("ls2").offsetHeight - 10);
+  put("l21", left + HIGH * unit - document.getElementById("l21").offsetWidth, rows[2] - document.getElementById("l21").offsetHeight - 8);
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

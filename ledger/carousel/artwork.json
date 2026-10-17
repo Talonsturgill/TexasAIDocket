@@ -3255,6 +3255,73 @@
     "hex": "#07080C",
     "note": "The deck's declared ground behind the render."
    }
+  },
+  {
+   "date": "2026-10-17",
+   "carousel_no": 53,
+   "written_from": "deck_coherence's median L* per frame at 432 px off the final renders, layout_check's accent share, by out/2026-10-17/update_ledgers.py.",
+   "register": "RELIEF, NOT A SCENE. Nine material reliefs through txbench.js declared once in assets/js/deck/2026-10-17-section.js (key az 300 el 16, ground #05040A), a darkfield bench. No camera, no sky, no room and no kit model. Materials: black glass, plum stroma, oxblood tumor cells, a pale mucin glaze, ember T cells, steel, frosted label, slide glass, a plum black anodised stage and a warm ground bevel.",
+   "structural_laws": [
+    "A WOBBLED OUTLINE STRIPES THE FORM THAT FOLLOWS IT. A three octave noise on the wall's centre line changed its slope every 60 to 120 px and printed vertical bands across the dome with the cast and the specular both off. Smooth sums of sines fixed it.",
+    "A LOW KEY NEEDS A LOW SHININESS. At elevation 16 the half vector tilts about 37 degrees, so a dome whose flank never reaches that slope returns no highlight at shininess 150.",
+    "LIGHT FROM BELOW IS AN EDGE, NOT A DISC. A screened disc over the aperture read as a plate; darkfield, a ring and a lit section outline, read as transmitted light.",
+    "A SMOOTH GLAZE READS AS A CURB. The wall failed two audition readings as a flat extrusion and passed once it became a heap of about 1,400 overlapping glossy globules, each catching the key as its own point.",
+    "A GRID ON A PLATE READS AS GRAPH PAPER. The panel charged a filled micrometer grid as a chart twice, and the frames passed the detail floor instead on engraved scales along the rule's own edges and a tooth on the bars."
+   ],
+   "techniques": [
+    "a tumor nest in a pebbled glossy mucin coat at macro, ember T cells halted on the stroma outside it",
+    "the left half of a panorama of 37 glass slides on a black bench, the seam slide cut",
+    "the panorama's right half, the lower row ending short on bare bench",
+    "a machined rule close, a frosted one unit bar and a steel four unit bar named SPACER casting long, a terrace running off toward 21",
+    "the whole rule at one scale, one, four and 21 units, each track labelled on its own baseline over an engraved 21 unit scale",
+    "the cover's camera on an uncoated nest, studded outer cells with T cells pressed in and a kerb round one neighborhood",
+    "the mucin wall at macro as a heap of glossy globules on a long S, T cells banked on its outer foot and its cast over the tumor",
+    "four cores by melanoma and gastric and by lower and higher mucin, T cells inside the low cores and outside the glazed rims",
+    "the whole slide on a black microscope stage under knurled clips, the cover's nest under the lens in darkfield, five engraved funder lines and a leader to the Texas fund"
+   ],
+   "value": {
+    "per_frame_median_L": [
+     5.7,
+     4.3,
+     4.1,
+     3.6,
+     3.8,
+     5.8,
+     6.2,
+     6.2,
+     4.7
+    ],
+    "deck_median_L": 4.7,
+    "max_adjacent_delta": 2.0,
+    "mean_adjacent_delta": 0.78,
+    "note": "Measured by deck_coherence's median_lstar at 432 px off the final renders. A darkfield relief deck."
+   },
+   "accent": {
+    "hex": "#B4664F",
+    "name": "dusk ember",
+    "frames_above_floor": [
+     1,
+     6,
+     7,
+     8
+    ],
+    "share": [
+     0.0086,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0063,
+     0.0271,
+     0.005,
+     0.0015
+    ],
+    "note": "The T cells and nothing else, the brown a pathologist sees when T cells are stained."
+   },
+   "ground": {
+    "hex": "#05040A",
+    "note": "The deck's declared ground behind the render."
+   }
   }
  ]
 }

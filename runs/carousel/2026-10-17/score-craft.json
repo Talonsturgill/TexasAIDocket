@@ -1,0 +1,88 @@
+{
+ "lens": "craft",
+ "round": 3,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.3,
+   "why": "Frames 7, 1 and 6 are strong. Four consecutive frames fail THE STAGE test as grey primitives on black: 2 and 3 a tray of dominoes with mid grey label ends and a hard seam on 3, 4 a relief bar chart with an unreadable stepped terrace and an empty lower third, 5 a bar chart with a dead zone. Frame 9's clips have no contact shading and its aperture light is an overlay stroke. Frame 8 is a clear 2 by 2 with small cores. The scale lengths are honest."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 6.8,
+   "why": "One key, one dark register, one grade. The 2 to 3 edge tease counts 37 and the ember motif changes state. The 4 to 5 tease does not resolve, frames 2 to 5 are a cold grey block between warm tissue frames, and all nine share one skeleton."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.0,
+   "why": "Every numeral traces, every source is primary, hedges hold. Looser: frame 9's kicker over an unquoted paraphrase of c10, the cover's date resting on the journal's, frames 2 and 3 drawing only tumor-like sections under a headline naming mouse heart."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.0,
+   "why": "What happened and who are clear. No place, no public body beyond CPRIT, no deadline or next step. The stake is posed only as the caption's closing question."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 6.8,
+   "why": "The cover earns a swipe and the turn at 7 lands. Frame 2 explains method, 4 and 5 spend two slides on one range, the close is quiet."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Clean, hedged and specific with a good headline on 7. Some lines flat and procedural. Texas presence institutional."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 8.0,
+   "why": "Nine orthographic darkfield reliefs after three txthree scenes, a new palette, no kit model. The skeleton is familiar."
+  }
+ ],
+ "weighted_score": 6.942,
+ "hard_fails": [],
+ "ship": true,
+ "defects_ranked": [
+  "Frames 2 to 5 a contiguous grey hardware block with no bright edge.",
+  "Frames 4 and 5 one range in two frames, the 4 to 5 tease unresolved.",
+  "Frame 3 hard seam under the type.",
+  "Frame 7's cast reads as general darkening; c7 and c24 source lines on the glaze at low contrast.",
+  "Frame 9 flat clips and an overlay stroke for its light.",
+  "No Texas place, body or next step.",
+  "Frame 9's kicker over an unquoted paraphrase."
+ ],
+ "artwork_weakest_frames": [
+  {
+   "slide": 4,
+   "problem": "A mid grey relief bar chart with no bright edge, an unreadable stepped terrace, an empty lower third.",
+   "fix": "Delete the terrace, move the bars down to fill the frame, give each bar's upper-left bevel a hard specular."
+  },
+  {
+   "slide": 5,
+   "problem": "A bar chart on a brushed plate with a dead zone right of the 4 bar.",
+   "fix": "Stack the three tracks flush as one dense machined object with a hard bevel specular on the 21 bar."
+  },
+  {
+   "slide": 2,
+   "problem": "Mid grey frost the brightest mass, no lit edge, muddy sections.",
+   "fix": "Drop the frost to about L* 20 and put a hard specular on each slide's upper-left bevel."
+  },
+  {
+   "slide": 3,
+   "problem": "The same read as 2, a hard seam under the type, the pool not visible.",
+   "fix": "Feather the bench into the type field, apply 2's bevel specular, raise the pool."
+  },
+  {
+   "slide": 9,
+   "problem": "Flat clip arms, an overlay stroke for the aperture light, the specimen reads as a sticker.",
+   "fix": "Model the clips with a rounded cross section and contact shadow, and replace the overlay ring with a raised bevelled aperture lip."
+  }
+ ],
+ "one_sentence_fix": "Merge 4 and 5 into one benchmark frame in the deck's tissue materials and re-seat the 37 count at a larger slide scale with a hard specular on every bevel."
+}

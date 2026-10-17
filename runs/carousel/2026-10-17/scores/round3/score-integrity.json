@@ -1,0 +1,87 @@
+{
+ "lens": "integrity",
+ "round": 3,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.8,
+   "why": "Frames 1 and 7 meet the bold standard, 6 and 8 are good. Frames 4 and 5 are honest bar charts in brushed steel with no tissue or world. Frames 2 and 3 are the same grid of dim slides with mid grey label ends. Frame 9's clips are flat bars with no contact shadow and the section reads as pasted on. One skeleton on all nine."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.3,
+   "why": "One darkfield key, casts down and right, the value dark throughout with no strobe. The edge tease and the ember motif work. The cold grey steel of 4 and 5 sits outside the warm tissue vocabulary."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.0,
+   "why": "Every numeral traces and the drawn data matches its scale, measured on the renders. Looser: frame 8 draws T cell exclusion as the content of c8's association, frame 9's kicker heads an unquoted paraphrase of c10, and 'could potentially become' loosens the release's 'could potentially be used as'."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.5,
+   "why": "What happened and who are clear. No place, body, deadline or next step. The stake is raised only as the caption's closing question."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 6.8,
+   "why": "The cover earns the swipe, 2 and 3 pay with method and count, the turn at 7 is real. 4 and 5 spend two slots on one range. The close is soft."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Clean and careful with good lines. Clinical register with Texas only as 'Texas collaborators' and CPRIT. 'Drawn to illustrate.' reads as boilerplate."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 8.5,
+   "why": "The first all-relief deck after three staged txthree scenes, a tissue palette, small multiples, a funder count engraved on a label. The skeleton is familiar."
+  }
+ ],
+ "weighted_score": 7.242,
+ "hard_fails": [],
+ "ship": true,
+ "defects_ranked": [
+  "Frames 4 and 5 steel bar charts outside the tissue world, one cuttable.",
+  "No Texas place, body, deadline or next step.",
+  "Frame 8 links c7/c21's mechanism to c8 more tightly than either source.",
+  "Frame 9's kicker heads a paraphrase, 'could potentially become' loosens the release.",
+  "Frames 2 and 3 near duplicates.",
+  "'Drawn to illustrate.' on seven deks; frame 1's c24 on the coat at reduced contrast."
+ ],
+ "artwork_weakest_frames": [
+  {
+   "slide": 5,
+   "problem": "A 21-segment steel bar, a 4-unit bar and a 1-unit frosted block, a bar chart on a dark field.",
+   "fix": "Rebuild the range as glass slides in a staining rack beside one slide, on the same bench under the key."
+  },
+  {
+   "slide": 4,
+   "problem": "Repeats frame 5's bar chart closer.",
+   "fix": "Cut it and mark the 4 on frame 5's scale, or give the slot a tissue-world subject."
+  },
+  {
+   "slide": 3,
+   "problem": "Nearly frame 2 again, the count-end pool barely visible.",
+   "fix": "Move the camera in on the last slide and the bare bench with a real key pool."
+  },
+  {
+   "slide": 2,
+   "problem": "A flat grid of dark slides with weak bevel light.",
+   "fix": "Rake the bevels with a lower key and raise the frost ends to about L* 75."
+  },
+  {
+   "slide": 9,
+   "problem": "Flat clips without contact shadow, label near L* 60, the section reads composited.",
+   "fix": "Bent spring steel clips with a contact shadow, and the slide's shadow cast into the bore."
+  }
+ ],
+ "one_sentence_fix": "Merge 4 and 5 into one benchmark frame in the tissue world and spend the freed frame on a fetched Texas stake."
+}

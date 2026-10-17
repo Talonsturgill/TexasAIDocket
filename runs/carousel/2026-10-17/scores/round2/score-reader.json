@@ -1,0 +1,85 @@
+{
+ "lens": "reader",
+ "round": 2,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.5,
+   "why": "Every frame a physical relief on a dark bench under one key. Frames 1 and 7 are strong, 8 reads at once. Frames 4 and 5 are grey bar charts on brushed metal, 5 with an empty band, 4 with a stub that reads as a render fault. On 2 and 3 the brightest mass is the row of mid grey label ends. On 9 the brightest thing is a flat label pad and the nest is small. One skeleton on all nine."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.0,
+   "why": "One bench, one key, one dark register. The panorama counts 37 across 2 and 3, frame 4's bar completes on 5, the T cell motif changes position across 1, 6, 7, 8 and 9. Frames 2 to 5 are four consecutive cold grey frames between the warm tissue frames."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.0,
+   "why": "Every numeral traces, sources are primary, hedges match, the frame 5 bars are to scale. Looser spots: the caption's 'No diagnostic use is reported.' names no document, frame 8 compresses c23's conditional, frame 2's 'one slide for each dataset' can't be checked on frame 2 alone."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.0,
+   "why": "What happened and who did it are clear. Where is never stated, there is no deciding body and no next step, and the only Texas stake is CPRIT as one of five funders."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 6.3,
+   "why": "The cover earns a stop, but its dek gives the answer away so frame 7 confirms rather than reveals. Frames 2 to 5 are four frames of method and benchmark, 4 and 5 say one fact twice, the close is soft."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "Clean and careful, a good cover hook and 'A sugar coat that may be a wall'. 'Drawn to illustrate.' closes seven deks, 'One slide here stands for each dataset.' repeats and collides with the carousel's own slides, frame 5's dek is flat."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 8.5,
+   "why": "The first all-relief macro tissue deck, a new palette, a microscope-turret camera, a rare beat. The shared skeleton is familiar."
+  }
+ ],
+ "weighted_score": 6.96,
+ "hard_fails": [],
+ "ship": false,
+ "defects_ranked": [
+  "The cover dek gives away the answer and frames 2 to 5 delay the biology.",
+  "Frames 4 and 5 carry one fact across two chart frames.",
+  "No Texas place, body or next step.",
+  "'One slide here stands for each dataset' repeated and collides with the carousel's slides.",
+  "Frames 2 to 5 a four-frame cold grey block.",
+  "'Drawn to illustrate.' on seven deks.",
+  "Frame 5's SPACER label reads as labelling the wrong bar.",
+  "The caption's 'No diagnostic use is reported.' names no document.",
+  "copy.json held the pre-round-2 caption (rebuilt)."
+ ],
+ "artwork_weakest_frames": [
+  {
+   "slide": 4,
+   "problem": "A grey bar chart on an engraved tick plate, and the stepped stub past the 4 reads as a render fault.",
+   "fix": "Fold into frame 5, or stand the units as tall machined blocks with real casts and let the edge tease be the bar's own shadow, not a stepped stub."
+  },
+  {
+   "slide": 5,
+   "problem": "An empty band between the dek and the bars, flat bars, and the SPACER label sits under the existing approaches bar.",
+   "fix": "Raise the plate into the dead band, give each bar a lit upper left bevel and cast, set each label on its own bar's baseline."
+  },
+  {
+   "slide": 9,
+   "problem": "The brightest mass is the flat label pad and the nest under the lens is small.",
+   "fix": "Crop in until the lens and nest fill about two thirds of the art band and drop the label pad to a dark frost so only its grooves catch the key."
+  },
+  {
+   "slide": 2,
+   "problem": "Mid grey label ends are the brightest thing and the sections sit at one value.",
+   "fix": "Darken the label ends so the darkfield rims become the one bright edge, and light one section near the left third in a key pool."
+  }
+ ],
+ "one_sentence_fix": "Merge frames 4 and 5 and move the mucin wall to frame 2 so the cover's question is paid at once."
+}

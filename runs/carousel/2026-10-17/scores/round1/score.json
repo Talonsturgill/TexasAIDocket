@@ -1,0 +1,228 @@
+{
+ "weighted_score": 6.986,
+ "judges": [
+  6.914,
+  7.21,
+  6.94
+ ],
+ "spread": 0.296,
+ "criteria": {
+  "artwork_craft": {
+   "score": 6.3,
+   "weight": 0.22,
+   "judges": [
+    6.3,
+    6.5,
+    6.3
+   ]
+  },
+  "deck_coherence": {
+   "score": 7.0,
+   "weight": 0.12,
+   "judges": [
+    7.5,
+    7.0,
+    7.0
+   ]
+  },
+  "claim_integrity": {
+   "score": 8.5,
+   "weight": 0.2,
+   "judges": [
+    8.0,
+    8.5,
+    8.5
+   ]
+  },
+  "story_and_stakes": {
+   "score": 6.0,
+   "weight": 0.16,
+   "judges": [
+    5.8,
+    6.5,
+    6.0
+   ]
+  },
+  "sequence_and_momentum": {
+   "score": 6.5,
+   "weight": 0.1,
+   "judges": [
+    6.5,
+    7.0,
+    6.0
+   ]
+  },
+  "voice": {
+   "score": 6.5,
+   "weight": 0.1,
+   "judges": [
+    6.5,
+    7.0,
+    6.5
+   ]
+  },
+  "variety": {
+   "score": 8.0,
+   "weight": 0.1,
+   "judges": [
+    8.0,
+    8.0,
+    8.0
+   ]
+  }
+ },
+ "hard_fails": [],
+ "hard_fails_by_judge": [],
+ "ship": false,
+ "threshold": 8.0,
+ "over_threshold": false,
+ "method": "per-criterion median across three judges, then weighted by the rubric",
+ "threshold_dissents": [
+  "judge 1 refused on the threshold, not on a fault, and scored 6.914 against a 8.0 bar. That dissent is carried in the median",
+  "judge 2 refused on the threshold, not on a fault, and scored 7.21 against a 8.0 bar. That dissent is carried in the median",
+  "judge 3 refused on the threshold, not on a fault, and scored 6.94 against a 8.0 bar. That dissent is carried in the median"
+ ],
+ "threshold_dissents_by_judge": [
+  {
+   "judge": 1,
+   "score": 6.914,
+   "reason": "judge 1 refused on the threshold, not on a fault, and scored 6.914 against a 8.0 bar. That dissent is carried in the median"
+  },
+  {
+   "judge": 2,
+   "score": 7.21,
+   "reason": "judge 2 refused on the threshold, not on a fault, and scored 7.21 against a 8.0 bar. That dissent is carried in the median"
+  },
+  {
+   "judge": 3,
+   "score": 6.94,
+   "reason": "judge 3 refused on the threshold, not on a fault, and scored 6.94 against a 8.0 bar. That dissent is carried in the median"
+  }
+ ],
+ "artwork_weakest_frames": [
+  {
+   "slide": 4,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Grey extruded bars on a graph-paper lattice, no pool, no tissue-world material.",
+     "fix": "Remove the lattice and build the one and four unit lengths as glass slides laid end to end on the bench, with a raking pool on the fourth slide's cut end."
+    },
+    {
+     "judge": 2,
+     "problem": "A bar chart in clay, frosted and steel bars one flat mid grey on a plate ruled like graph paper, nothing near white.",
+     "fix": "Delete the grid ruling, model the unit bar as pale frosted glass and the four-unit bar as polished steel with one hard specular line, and lengthen the cut end's cast."
+    },
+    {
+     "judge": 3,
+     "problem": "Mid grey bars on a graph-paper grid read as a spreadsheet chart. The 4-unit bar is unlabelled, and the stub running off the right edge is unexplained at feed size.",
+     "fix": "Delete the graph grid under the bars, name the long bar SPACER in DOM, and let the key catch only the 4-unit bar's top bevel so it is the one bright edge on a near-black plate."
+    }
+   ]
+  },
+  {
+   "slide": 5,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The same grey chart smaller, a flat mid grey strip across a ruled grid.",
+     "fix": "Make the 21 a row of the same glass slides and light only the 21st slide's end."
+    },
+    {
+     "judge": 2,
+     "problem": "The same grey chart at a farther scale, three bars one material, no bright edge.",
+     "fix": "Plain black anodised plate, a pale frosted unit bar, polished steel 4 and 21 bars each with one raking specular and a long cast, one engraved scale under the 21 bar."
+    },
+    {
+     "judge": 3,
+     "problem": "The same grey chart at a farther scale, no SPACER label, in the cold grey that breaks the warm tissue palette.",
+     "fix": "Remove the grid texture and label the 21 bar SPACER. Give the SPACER bars the mucin glaze with a crest highlight and keep the 1-unit bar in cold steel."
+    }
+   ]
+  },
+  {
+   "slide": 3,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Same as 2, the count's end reads as more dark.",
+     "fix": "A lit pool where the 37th slide ends."
+    },
+    {
+     "judge": 2,
+     "problem": "Same material fault as 2, no light where the count stops.",
+     "fix": "Same label and bevel change, a lit pool after the 37th slide and one ember accent on that last section."
+    },
+    {
+     "judge": 3,
+     "problem": "Near-duplicate of frame 2, the sections barely separate from the black glass at 432 px, and the empty bench reads as nothing.",
+     "fix": "Rim-light each section with the darkfield edge used on frame 9 so every slide reads as a separate lit object."
+    }
+   ]
+  },
+  {
+   "slide": 2,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Slides sink into the bench, grey label ends the brightest mass.",
+     "fix": "Drop the label ends two stops and raise the key's graze on the bevels so each slide gets one bright edge."
+    },
+    {
+     "judge": 2,
+     "problem": "Charcoal matte tiles, label ends about L* 30, no lit bevel, sections flat speckle.",
+     "fix": "Raise each label end to a pale frosted value, run a lit rim along every slide's upper-left bevel, rim light each section."
+    }
+   ]
+  },
+  {
+   "slide": 6,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "The kerb sits at the nest's own value and disappears at 432 px, T cells spread evenly.",
+     "fix": "Raise the kerb into a lit ring with a crisp cast, thin the far right T cells and concentrate them at the ringed group."
+    },
+    {
+     "judge": 3,
+     "problem": "The ringed group of neighboring cells is invisible at feed size and the label leader ends in clutter.",
+     "fix": "Raise the kerb around the one group into a lit ridge with a dark moat outside it, and clear the T cells from everywhere except that group and the nest margin."
+    }
+   ]
+  },
+  {
+   "slide": 1,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The coat is a matte slate band, a different surface from frame 7's globule wall.",
+     "fix": "Re-surface the coat with 4 to 10 px glossy globules, keeping its profile and crop."
+    }
+   ]
+  },
+  {
+   "slide": 9,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 3,
+     "problem": "The funders as engraved lines can't be decoded, and the stage hardware occupies most of the art band with the section small in the centre.",
+     "fix": "Crop in on the section over the lit aperture until it fills a third to half of the frame."
+    }
+   ]
+  }
+ ],
+ "rounds_derived": 1,
+ "rounds": 1,
+ "rounds_source": "this module's own log of cards it has scored",
+ "rounds_declared": 1,
+ "rung": 8.0,
+ "work_order": "no judge found a hard fail, and the median 6.986 is under this round's rung of 8.0. KEEP EDITING: fix the judges' named defects, re-render and re-score. At the round cap the finished deck ships whatever it scored. Start with the frames the judges charge the art for, in this order, slides 4, 5, 3, 2, 6, 1, 9 (`artwork_weakest_frames`), one concrete change each",
+ "craft_floor": "pending, because a deck under its rung is sent back by the work order first"
+}
