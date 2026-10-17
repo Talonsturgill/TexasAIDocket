@@ -127,3 +127,16 @@ close's light from below is a screened stroke laid over the render after `TXBENC
   composition, past what one repair cycle buys.
 - Frame 5's dek lost "It is no measure of any treatment" because `absence_check` found an absence
   that named no document.
+- **Rechecks after the flow pass.** Pixel critics passed frames 1 to 4 at once. Frames 8 and 9
+  came back revise: halo cells touching the array slide's bevel and a rim with scalloped seams on
+  8, and on 9 the coat under the lens uncited (c7 added to its source line) and the stage's lit
+  front edge running through the footer (raised clear, the faint vernier removed). Frame 5's
+  plate lost a stitched band of tall cells. All four then shipped.
+- **The audition was read three more times after the chassis changed.** The second reading
+  failed frame 7 as a flat curb with no crest and no cast, frame 1 for a pale sawtooth where its
+  coat met the torn edge, and frame 9 for the footer on the stage edge. The coat material went
+  darker and wetter with a tight crest, frame 1's nest moved down, and the wall became a rounded
+  ridge of varying width. The third reading passed 1 and 9 and failed 7 a second time, so the
+  representation changed: the wall is now a heap of about 1,400 overlapping glossy globules over a
+  low gel underlay, each one catching the key, with the T cells banked twice as densely at its
+  foot.
