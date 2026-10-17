@@ -151,7 +151,7 @@ close's light from below is a screened stroke laid over the render after `TXBENC
 | qa             | WARN   | 0 fail(s), 9 warn(s) |
 | aggregates     | PASS   | 5 declaration(s), 9 numeric phrase(s) in the render, all re-derived |
 | assembly       | PASS   | 9 slide(s), 8.53 MB, vector |
-| score          | STALE  | score.json predates the newest render, so it describes a deck that no longer exists. Re-run it |
+| score          | WARN   | 7.124 at the round cap after 3 round(s), the finished deck ships; 8.0 top rung, shortfall named |
 | labels         | PASS   | 44 claim id(s) checked, every label beside one traces to the shape its claim proves |
 | quantifiers    | PASS   | 89 published string(s) read from one list, every universal names its set |
 | verbatim       | WARN   | no dossier declares a `verbatim:` block, so no on-frame string was held to a quote |
@@ -162,7 +162,7 @@ close's light from below is a screened stroke laid over the render after `TXBENC
 | texan          | WARN   | places NONE / body NO / deadline yes / next step NO |
 | absences       | PASS   | 2 of 2 scoped to a named document |
 | numerals       | PASS   | 8 numeral(s) over 9 frame(s), every one reachable |
-| completion     | FAIL   | THE DECK DID NOT SHIP, so this run is not done |
+| completion     | PASS   | the deck shipped |
 <!-- gate-status:end -->
 
 ## The panel
@@ -207,3 +207,29 @@ close's light from below is a screened stroke laid over the render after `TXBENC
   "One slide here stands for each dataset" left frame 3 and became "Each glass slide drawn here
   stands for one dataset" on 2. The caption's absence names the release and CPRIT now helped fund
   "the study", as c12 says.
+- **Round 3, the cap, median 7.124. The deck ships under the bar.** Integrity 7.242, craft 6.942,
+  reader 7.014, spread 0.3, no hard fail in any of the nine judge reports. The bar at round 1 was
+  8.0, so the shortfall against it is 0.876. The panel's artwork median is 6.8, under the 8.5 craft
+  floor, which stands down at the cap. Every judge in every round charged the same three things:
+  frames 2 to 5 as cold grey hardware outside the tissue world, 4 and 5 telling one range across two
+  frames, and no Texas place, body or next step. The recompositions in round 3 moved the craft
+  scores very little, which is the evidence that the defect sits in the treatment the directors
+  room chose, the benchmark drawn as a machined rule, rather than in any one frame's build.
+  Integrity also found c17's text reaching past its quote ("the same day as the MD Anderson
+  release"). It now reads only the journal's date, which also gave the web edition's date token a
+  year to read.
+
+## Ship
+
+- 9 frames, WebP at 40.4 to 42.6 dB against a 40.0 floor, 61.15 MB to 4.91 MB with the thumbs and
+  `og.jpg`. The accepted three-frame review is bound to the delivered images
+  (`art_preflight.py --archive`), and `measurements.json` matches them.
+- The web edition at `ledger/articles/2026-10-17.json` passes `article_check` after two sentences
+  over the 30 word backstop were split and one British spelling fixed, and the browser test passes
+  870 reader checks. The page was opened at desktop and phone widths and read.
+- `main` was merged before the rebuild. `house_style_check` caught a 31 word sentence in this run's
+  own re-verify note on tx-2026-0179, which was split in the ledger and rebuilt.
+- **Studio clock**, minutes from wake: record done 40.29, audition done 80.02, art done 85.46,
+  review done 183.74, panel done 188.3, package done 254.83. The panel_done stamp is early: it was
+  written as round 1 ended instead of at this phase's entry, so the three rounds and their repairs
+  sit inside the last span.
