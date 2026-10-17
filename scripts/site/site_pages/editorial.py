@@ -1257,6 +1257,7 @@ def home(items: list, today: str, runs: list | None = None) -> str:
     # that opens on another is the mismatch a reader bounces off.
     return page(title=f"{SITE_NAME} · Every AI decision in Texas and the source behind it",
                 depth=0, active="", home_page=True,
+                og_image=og.cover_path(), og_alt=og.COVER_ALT,
                 desc=("A fact-checked record of AI decisions in Texas. Who decided, by when, "
                       "and whether you can still comment."),
                 body=body, today=today, canonical="",
