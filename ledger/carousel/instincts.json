@@ -626,7 +626,8 @@
         "2026-10-09",
         "2026-10-10",
         "2026-10-12",
-        "2026-10-16"
+        "2026-10-16",
+        "2026-10-17"
       ],
       "contradicted": []
     },
@@ -718,7 +719,8 @@
         "2026-09-19",
         "2026-09-20",
         "2026-10-05",
-        "2026-10-09"
+        "2026-10-09",
+        "2026-10-17"
       ],
       "contradicted": []
     },
@@ -1442,6 +1444,30 @@
       "learned": "2026-10-16",
       "instinct": "Stand a water line upright facing the lens whenever the camera sits within a metre of the surface, because a flat strip foreshortens to under a pixel there.",
       "evidence": "2026-10-16: frame 6's comal water line laid flat at 0.25 m eye height read 0.0000 accent until it was stood upright as a 4.5 cm ribbon, then 0.0074",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "relief-outlines-on-smooth-sines",
+      "learned": "2026-10-17",
+      "instinct": "Drive every long relief outline on a smooth sum of sines, never on multi-octave noise, because the noise's upper octaves change the slope every hundred pixels and print bands across the form that follows it.",
+      "evidence": "No. 53 frames 1 and 7: the coat and the wall carried screen aligned stripes that survived with the cast and the specular both switched off; smooth sines cleared them.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "build-a-glaze-from-globules",
+      "learned": "2026-10-17",
+      "instinct": "Build a glossy material as a heap of small overlapping globules, never as one smooth extrusion, because a low key resolves on a smooth band as one soft gradient and the band reads as a curb.",
+      "evidence": "No. 53 frame 7: the wall failed two audition readings as a flat slab and passed the third once it became about 1,400 glossy globules, each catching the key; frame 1's coat passed the same way.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "feather-a-dark-band-from-zero",
+      "learned": "2026-10-17",
+      "instinct": "Start every darkening band at zero opacity on both sides, because a band that opens at partial opacity prints a hard step under the type that every critic names.",
+      "evidence": "No. 53 frame 1: the seam helper opened at half opacity and pixel round 2 failed the cover for the step; feathering both ways cleared it.",
       "confirmed": [],
       "contradicted": []
     }
