@@ -181,9 +181,9 @@
    * at a ruled line. */
   N.seam = function (cx, y, h) {
     h = h || 90;
-    var g = cx.createLinearGradient(0, y - 10, 0, y + h);
-    g.addColorStop(0, "rgba(4,3,8,0.5)"); g.addColorStop(1, "rgba(4,3,8,0)");
-    cx.fillStyle = g; cx.fillRect(0, y - 10, N.W, h + 10);
+    var g = cx.createLinearGradient(0, y - 60, 0, y + h);   // feathered both ways, so it never ends in a step
+    g.addColorStop(0, "rgba(4,3,8,0)"); g.addColorStop(60 / (h + 60), "rgba(4,3,8,0.32)"); g.addColorStop(1, "rgba(4,3,8,0)");
+    cx.fillStyle = g; cx.fillRect(0, y - 60, N.W, h + 60);
   };
   /* A RESERVE under one line of type: a feathered dark patch behind the element, so a wall's edge or a
    * row of cells never runs through its glyphs. It only darkens, and only there. */
