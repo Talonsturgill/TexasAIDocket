@@ -164,3 +164,29 @@ close's light from below is a screened stroke laid over the render after `TXBENC
 | numerals       | PASS   | 8 numeral(s) over 9 frame(s), every one reachable |
 | completion     | ABSENT | not scored yet |
 <!-- gate-status:end -->
+
+## The panel
+
+- **Round 1, median 6.986 against the 8.0 rung, no hard fail, keep editing.** Integrity 6.914,
+  craft 7.21, reader 6.94, spread 0.296. All three charged the same block: frames 2 to 5 as grey
+  hardware outside the tissue world, 4 and 5 as bar charts on graph paper with no SPACER on the
+  bars, 2 and 3 with mid grey label ends and no lit edge. Craft and integrity charged frame 1's
+  matte coat against frame 7's glossy wall, craft and reader frame 6's invisible ring. All three
+  named the missing Texas stake: no place, no body, no next step, the texan gate's own WARN.
+  Integrity found three looser attributions, none a hard fail: the cover's MD Anderson date rested
+  on the journal's date (c17), frame 2's journal kicker sat over release copy, frame 9's headline
+  was Linghua Wang's sentence unattributed.
+- **The repairs for round 2.** Frosted ends went pale and steel went dark with a hard specular
+  across the chassis. Frames 2 and 3 got taller ground bevels and a cool darkfield rim on every
+  section, and 3 a lit pool where the count stops. Frames 4 and 5 lost the graph grid. 4 now
+  carries rows of engraved quarter-unit ticks with no ruled lines between them, because a bare
+  plate fell under `layout_check`'s detail floor. 5 carries one engraved scale under the 21 bar,
+  and both name SPACER on the bars. Frame 6's kerb rose into a lit ring and the T cells thin away
+  from it. Frame 1's coat took the audition's own repair, about 2,600 small glossy globules. The
+  cover's kicker now reads "Published October 13th", frame 2's "The method", frame 9's "Co-lead
+  Linghua Wang" with c11, and the cover defines a T cell from c24. The caption lost its line
+  about the frames and its narrowed statement of purpose.
+- **Houston could not be named.** Fetched again this round, the release carries no dateline and
+  names Houston only in its site navigation, so no claim supports a place. The merge of 4 into 5
+  and a frame spent on a Texas stake were not made: each needs a new composition, and the second
+  needs a fetched source the run doesn't have.
