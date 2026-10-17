@@ -140,3 +140,27 @@ close's light from below is a screened stroke laid over the render after `TXBENC
   representation changed: the wall is now a heap of about 1,400 overlapping glossy globules over a
   low gel underlay, each one catching the key, with the T cells banked twice as densely at its
   foot.
+
+## Gate status
+
+<!-- gate-status:begin -->
+| gate | status | detail |
+|---|---|---|
+| claims         | PASS   | 25 verified claim(s) |
+| render         | PASS   | 9 slide(s) |
+| qa             | WARN   | 0 fail(s), 9 warn(s) |
+| aggregates     | PASS   | 5 declaration(s), 9 numeric phrase(s) in the render, all re-derived |
+| assembly       | PASS   | 9 slide(s), 8.56 MB, vector |
+| score          | ABSENT | score.json not written yet |
+| labels         | ABSENT | label_report.json not written yet. Run scripts/carousel/label_guard.py <run-dir> |
+| quantifiers    | ABSENT | quantifier_report.json not written yet. Run scripts/carousel/quantifier_check.py <run-dir> |
+| verbatim       | ABSENT | verbatim_report.json not written yet. Run scripts/carousel/verbatim_check.py --date <date> |
+| dossiers       | PASS   | 32,925 chars planned |
+| caption        | PASS   | 141 words |
+| craft floor    | PASS   | 9 frame(s), median 455, floor 82 |
+| plan vs render | PASS   | 9 of 37 acceptance item(s) checkable |
+| texan          | WARN   | places NONE / body NO / deadline yes / next step NO |
+| absences       | PASS   | 2 of 2 scoped to a named document |
+| numerals       | PASS   | 8 numeral(s) over 9 frame(s), every one reachable |
+| completion     | ABSENT | not scored yet |
+<!-- gate-status:end -->
