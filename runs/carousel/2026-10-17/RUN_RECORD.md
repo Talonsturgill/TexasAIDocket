@@ -253,3 +253,12 @@ close's light from below is a screened stroke laid over the render after `TXBENC
   artifact with the thing it derives from, which this run broke once when `copy.json` was rebuilt
   before the caption edit and a judge found the stale caption.
 - **Arsenal** rebuilt and current.
+- **Review on PR 431.** Codex reviewed an earlier head and found five things. The missing email
+  payload and the spelled counts in the topic ledger were already fixed on the branch. The record's
+  summary called all 37 datasets cancer datasets while c20 includes mouse heart, now fixed in the
+  ledger and the seed. tx-2026-0217's Harris County rests on MD Anderson's home, which the routine
+  forbids ("never guess a county from a decider's address"). Holding the item would unbind the
+  deck's record claims, so the county stays as tx-2026-0151 carries it, the item's note now says
+  what it rests on, and the email puts the call to the owner. Codex also questioned
+  tx-2026-0062's stamp with KERA unconfirmed; Phase 3 allows a hand check on one primary source to
+  set `last_verified` with the unconfirmed source named in the note, which is what it does.

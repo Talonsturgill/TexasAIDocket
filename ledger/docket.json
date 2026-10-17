@@ -34063,7 +34063,7 @@
   },
   {
    "title": "An MD Anderson AI model reads where T cells gather in tumor tissue, and points at mucin as a wall that may keep them out",
-   "summary": "Researchers at the University of Texas MD Anderson Cancer Center and collaborating Texas institutions published an AI model called SPACER in Nature Biomedical Engineering. It reads spatial maps of gene activity in intact tissue and looks at groups of neighboring cells to infer why immune cells gather in some regions and avoid others. The team ran it on 37 cancer datasets and reports it was four to 21 times more effective than existing approaches on its benchmark tasks. Its leading finding is that mucins, sugar coated proteins many cancers overproduce, may form a physical barrier that keeps T cells away from tumors. In melanoma and gastric cancer datasets, tumors with more mucin went with poorer response to checkpoint drugs. The finding is an association in existing data. The researchers describe it as an idea to test in the lab, and the release reports no use of the tool in patient care.",
+   "summary": "Researchers at the University of Texas MD Anderson Cancer Center and collaborating Texas institutions published an AI model called SPACER in Nature Biomedical Engineering. It reads spatial maps of gene activity in intact tissue and looks at groups of neighboring cells to infer why immune cells gather in some regions and avoid others. The team ran it on 37 datasets and reports it was four to 21 times more effective than existing approaches on its benchmark tasks. Its leading finding is that mucins, sugar coated proteins many cancers overproduce, may form a physical barrier that keeps T cells away from tumors. In melanoma and gastric cancer datasets, tumors with more mucin went with poorer response to checkpoint drugs. The finding is an association in existing data. The researchers describe it as an idea to test in the lab, and the release reports no use of the tool in patient care.",
    "topic": "research-and-science",
    "decider": {
     "name": "The University of Texas MD Anderson Cancer Center",
@@ -34092,7 +34092,7 @@
     "closes": null
    },
    "confidence": "high",
-   "notes_for_editor": "Admitted on MD Anderson's own October 13th release. The journal page was not read, so no figure beyond the release is carried.",
+   "notes_for_editor": "Admitted on MD Anderson's own October 13th release. The journal page was not read, so no figure beyond the release is carried. Harris County is MD Anderson's home rather than a place the release names. The release carries no dateline and names Houston only in its site navigation, so the county rests on the institution, as tx-2026-0151 does, and no published copy names a city.",
    "claims": [
     {
      "text": "MD Anderson and collaborating Texas institutions built an AI model meant to explain why immune cells gather in some places in the body and avoid others.",
