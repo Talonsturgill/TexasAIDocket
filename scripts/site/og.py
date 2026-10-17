@@ -20,8 +20,12 @@ dependency `grain.py` had already refused. `truetype.py` is that rasteriser: the
 committed, they are OFL licensed, and a glyph is quadratic contours the scanline filler here
 already knew how to fill.
 
-So every decision gets its own card carrying its own headline, and the site card is the same
-drawing with the site's name on it.
+Every decision and article keeps its own headline card. The publication itself has
+a separately composed cover: a sculpted Texas county map on stacked record sheets,
+with a masthead large enough to read on a phone. `og_cover.py` renders the real
+county geometry without a browser, network access or a new imaging dependency.
+The cover uses the site's pinned Pillow for true variable-font weights; the
+existing story-card rasteriser remains dependency-free.
 
 THE BACKGROUND IS COMPUTED ONCE. A card is 756,000 pixels and 58 of them in a Python loop would
 add minutes to a build that already takes forty seconds, twice over because `site_fresh_check`
@@ -33,11 +37,13 @@ THE SIZE IS THE SPEC. 1200 by 630 is what every consumer crops to, and declaring
 box while it loads.
 
     og.py --self-test
-    og.py --write /tmp/og.png
+    og.py --write out/<date>/tmp/og.png
 """
 from __future__ import annotations
 
 import argparse
+from functools import lru_cache
+import hashlib
 import sys
 import zlib
 from pathlib import Path
@@ -47,6 +53,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import favicon                                                         # noqa: E402
 import grain                                                           # noqa: E402
 import mark                                                            # noqa: E402
+import og_cover                                                        # noqa: E402
+import theme                                                           # noqa: E402
 import truetype                                                        # noqa: E402
 
 W, H = 1200, 630
@@ -231,9 +239,40 @@ def _encode(rgb: bytes) -> bytes:
             + favicon._chunk(b"IEND", b""))
 
 
+COVER_TEXT = (
+    ("JetBrainsMono-Medium.ttf", "THE PUBLIC RECORD", 19, 172, 91, "dust"),
+    ("Fraunces-Var.ttf", "Texas", 108, 104, 236, "limestone"),
+    ("Fraunces-Var.ttf", "AI Docket", 92, 104, 332, "limestone"),
+    ("Manrope-Var.ttf", "AI decisions in Texas.", 28, 107, 400, "caliche"),
+    ("Manrope-Var.ttf", "The sources behind them.", 28, 107, 440, "caliche"),
+    ("JetBrainsMono-Medium.ttf", "POLICY / POWER / WATER", 17, 827, 591, "dust"),
+)
+
+
+def cover_lines() -> tuple:
+    site = theme.tokens()["constellation"]["site"]
+    return COVER_TEXT + (("JetBrainsMono-Medium.ttf", site, 22, 104, 592, "caliche"),)
+
+
+@lru_cache(maxsize=1)
+def cover_pixels() -> bytes:
+    """The complete cover, cached because every index page declares it."""
+    return og_cover.lettering(og_cover.pixels(), cover_lines())
+
+
+@lru_cache(maxsize=1)
 def png() -> bytes:
-    """The site card: the same drawing with the record's own name on it."""
-    return card("The Texas AI Docket")
+    """The publication cover; story cards keep their existing composition."""
+    return _encode(cover_pixels())
+
+
+def cover_path() -> str:
+    """A content-addressed URL makes a new cover a new image to preview caches.
+
+    Keep og.png as the legacy card for other pages and links already shared.
+    Existing LinkedIn Featured entries can still need to be re-added by the owner.
+    """
+    return f"og/site-{hashlib.sha256(png()).hexdigest()[:16]}.png"
 
 
 def files(items: list | None = None, runs: list | None = None) -> dict:
@@ -244,7 +283,7 @@ def files(items: list | None = None, runs: list | None = None) -> dict:
     posted anywhere looked like a link to the front page. Same drawing, same rasteriser, the
     article's own headline on it.
     """
-    out = {"og.png": png()}
+    out = {"og.png": card("The Texas AI Docket"), cover_path(): png()}
     for it in items or []:
         out[f"og/{it['id']}.png"] = card(it["title"])
     for r in runs or []:
@@ -254,6 +293,8 @@ def files(items: list | None = None, runs: list | None = None) -> dict:
 
 ALT = ("The Texas AI Docket. The Lone Star on the flag's blue hoist, beside the record's own "
        "dusk ground.")
+COVER_ALT = ("Texas AI Docket. AI decisions in Texas and the sources behind them. "
+             "A sculpted Texas county map rises from stacked record sheets on a dark ground.")
 
 
 def head_html(prefix: str, site_url: str, site_name: str, title: str, desc: str,
@@ -357,6 +398,53 @@ def self_test() -> int:
     ok("two builds agree byte for byte", png() == png())
     ok("...and so does a decision's card", card("A title") == card("A title"))
     ok("a different headline makes a different card", card("A") != card("B"))
+
+    cover = cover_pixels()
+    ok("the publication has its own composition", png() != card("The Texas AI Docket"))
+    ok("the cover's image address follows its actual bytes",
+       cover_path() == f"og/site-{hashlib.sha256(png()).hexdigest()[:16]}.png")
+    exported = files()
+    ok("the homepage's content-addressed image is exported",
+       exported[cover_path()] == png())
+    ok("existing generic links retain their publication card",
+       exported["og.png"] == card("The Texas AI Docket"))
+    home_head = head_html("", "https://example.com", "A", "T", "D",
+                          image=cover_path(), alt=COVER_ALT)
+    ok("the new cover has an absolute image URL and a matching alternative",
+       f'content="https://example.com/{cover_path()}"' in home_head and COVER_ALT in home_head)
+    ok("story cards retain their own image addresses",
+       'content="https://example.com/og/story.png"' in
+       head_html("", "https://example.com", "A", "T", "D", image="og/story.png"))
+    # Measure the complete glyph outlines, rather than trusting the pen's
+    # advance. This catches a crop of a serif or descender at the card edge.
+    bounds = []
+    crop = (W - H * og_cover.FEATURED_ASPECT) / 2
+    for filename, text, size, left, baseline, colour in cover_lines():
+        x0, y0, x1, y1 = og_cover.font(filename, size).getbbox(text, anchor="ls")
+        bounds.append(crop + 8 <= left + x0 / og_cover.SS
+                      <= left + x1 / og_cover.SS <= W - crop - 8
+                      and 48 <= baseline + y0 / og_cover.SS
+                      <= baseline + y1 / og_cover.SS <= H - 30)
+    ok("every cover line survives the narrower Featured crop", all(bounds))
+    counties, _ = og_cover.geometry()
+    projected = [og_cover.project(p, 57) for _, rings in counties for ring in rings for p in ring]
+    ok("the complete Texas sculpture survives the narrower Featured crop",
+       all(crop + 8 <= x <= W - crop - 8 for x, _ in projected))
+    colours = og_cover.colours()
+    # Sampling the real cover proves text was painted in each main title line.
+    def lit_in_box(x0, y0, x1, y1):
+        return sum(cover[(y * W + x) * 3] > 180
+                   for y in range(y0, y1) for x in range(x0, x1))
+    ok("the name is painted large in both title lines",
+       lit_in_box(64, 140, 580, 250) > 2500 and lit_in_box(64, 250, 580, 345) > 2500)
+    ok("the sculpture has a visible light surface",
+       lit_in_box(620, 80, 1145, 510) > 20000)
+    ok("all cover type clears normal-text contrast on its actual ground",
+       all(theme.contrast(theme._hex(colours[row[-1]]), theme._hex(colours["night"])) >= 4.5
+           for row in COVER_TEXT))
+    cover_pixels.cache_clear()
+    png.cache_clear()
+    ok("a fresh cover render is byte identical", p == png())
 
     print("\nog self-test: " + ("all passed" if not failures else f"{failures} FAILED"))
     return 0 if not failures else 1
