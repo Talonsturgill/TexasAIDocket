@@ -150,14 +150,14 @@ close's light from below is a screened stroke laid over the render after `TXBENC
 | render         | PASS   | 9 slide(s) |
 | qa             | WARN   | 0 fail(s), 9 warn(s) |
 | aggregates     | PASS   | 5 declaration(s), 9 numeric phrase(s) in the render, all re-derived |
-| assembly       | PASS   | 9 slide(s), 8.51 MB, vector |
+| assembly       | PASS   | 9 slide(s), 8.53 MB, vector |
 | score          | STALE  | score.json predates the newest render, so it describes a deck that no longer exists. Re-run it |
-| labels         | PASS   | 46 claim id(s) checked, every label beside one traces to the shape its claim proves |
+| labels         | PASS   | 44 claim id(s) checked, every label beside one traces to the shape its claim proves |
 | quantifiers    | PASS   | 89 published string(s) read from one list, every universal names its set |
 | verbatim       | WARN   | no dossier declares a `verbatim:` block, so no on-frame string was held to a quote |
-| dossiers       | PASS   | 32,975 chars planned |
-| caption        | PASS   | 137 words |
-| craft floor    | PASS   | 9 frame(s), median 620, floor 112 |
+| dossiers       | PASS   | 32,945 chars planned |
+| caption        | PASS   | 139 words |
+| craft floor    | PASS   | 9 frame(s), median 475, floor 86 |
 | plan vs render | PASS   | 9 of 37 acceptance item(s) checkable |
 | texan          | WARN   | places NONE / body NO / deadline yes / next step NO |
 | absences       | PASS   | 2 of 2 scoped to a named document |
