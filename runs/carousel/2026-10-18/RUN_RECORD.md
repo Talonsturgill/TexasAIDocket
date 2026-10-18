@@ -35,7 +35,7 @@ Effort at wake: `high`, as the repo's settings carry it.
   than fractions (a lit band behind every headline), slot paint rotated by -yaw (outline corners that
   never closed), and a tank whose water can't be seen from a low eye (the rim now hides it).
 - **Pixel review** (sonnet, round 1, all nine revise) and **one flow pass** (predicted art 6.7,
-  weakest 6, 7, 8, 4). Summaries in `out/2026-10-18/reviews/pixel_round1.md`, kept with the run.
+  weakest 6, 7, 8, 4). Summaries in `runs/carousel/2026-10-18/reviews/pixel_round1.md`.
 
 ## The panel
 
@@ -128,3 +128,20 @@ Read on the temp-dir build of the record as it stood after re-verification and b
   repair) and two repeats raised (sky banding, water with no reflection). `machine_due.py`: the
   weekly pass is not due, last run October 16th.
 - **Arsenal** rebuilt and current.
+
+## Review on the pull request
+
+Codex reviewed the run commit and raised seven findings. All seven were taken.
+
+- tx-2026-0221 now names Google.org as the decider, type company. UT Austin is the recipient.
+- tx-2026-0218 lists Zavala County, so the county page for the first detection carries the item.
+- tx-2026-0218 c3 was carrying two assertions on one quote. It is split into c3, models already
+  used to choose surveillance, trapping and release areas, and c16, models can't predict every
+  scenario, each with its own verbatim passage. The deck's claims file maps c5 to c16.
+- tx-2026-0220 pointed its meeting route at a news release with no way to act on it. It now points
+  at the city's Development Services public input page, which says how to comment by email, mail,
+  hand delivery or voicemail and by when.
+- The caption ledger row now uses `caption_check.comma_rate`, so it records the same count as the
+  rest of the corpus.
+- The round one pixel summaries are archived at `reviews/pixel_round1.md` beside this record.
+- The Gmail payload finding was already fixed in the commit after the one reviewed.

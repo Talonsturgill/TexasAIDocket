@@ -42,7 +42,13 @@ Source (primary_official): https://www.ars.usda.gov/news-events/news/research-ne
 
 Source (primary_official): https://www.ars.usda.gov/news-events/news/research-news/2026/tracking-the-path-of-new-world-screwworm
 
-### The director of the Kerrville laboratory says the models are already used to select areas for surveillance, fly trapping and sterile fly releases, and can't predict every scenario.
+### The director of the Kerrville laboratory says the models are already used to select areas for surveillance, fly trapping and sterile fly releases.
+
+> are already being utilized to select areas for increased livestock and wildlife surveillance, adult fly trapping, and for implementing SIT
+
+Source (primary_official): https://www.ars.usda.gov/news-events/news/research-news/2026/tracking-the-path-of-new-world-screwworm
+
+### The same director says the models can't predict every scenario, especially ones driven by people transporting infested animals.
 
 > However, these models cannot predict every scenario, especially those impacted by unpredictable variables like people transporting infested animals.
 

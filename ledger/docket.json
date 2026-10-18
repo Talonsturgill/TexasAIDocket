@@ -35011,7 +35011,8 @@
      "Sutton",
      "Terrell",
      "Val Verde",
-     "Zapata"
+     "Zapata",
+     "Zavala"
     ],
     "on_ercot": null,
     "metro": null
@@ -35052,13 +35053,22 @@
      "id": "tx-2026-0218-c2"
     },
     {
-     "text": "The director of the Kerrville laboratory says the models are already used to select areas for surveillance, fly trapping and sterile fly releases, and can't predict every scenario.",
-     "verbatim_quote": "However, these models cannot predict every scenario, especially those impacted by unpredictable variables like people transporting infested animals.",
+     "text": "The director of the Kerrville laboratory says the models are already used to select areas for surveillance, fly trapping and sterile fly releases.",
+     "verbatim_quote": "are already being utilized to select areas for increased livestock and wildlife surveillance, adult fly trapping, and for implementing SIT",
      "source_url": "https://www.ars.usda.gov/news-events/news/research-news/2026/tracking-the-path-of-new-world-screwworm",
      "source_title": "USDA Agricultural Research Service, Tracking the Path of New World Screwworm",
      "source_type": "primary_official",
      "fetched": "2026-10-18",
      "id": "tx-2026-0218-c3"
+    },
+    {
+     "text": "The same director says the models can't predict every scenario, especially ones driven by people transporting infested animals.",
+     "verbatim_quote": "However, these models cannot predict every scenario, especially those impacted by unpredictable variables like people transporting infested animals.",
+     "source_url": "https://www.ars.usda.gov/news-events/news/research-news/2026/tracking-the-path-of-new-world-screwworm",
+     "source_title": "USDA Agricultural Research Service, Tracking the Path of New World Screwworm",
+     "source_type": "primary_official",
+     "fetched": "2026-10-18",
+     "id": "tx-2026-0218-c16"
     },
     {
      "text": "The laboratory leading the work is the Knipling-Bushland Livestock Insects Research Laboratory in Kerrville.",
@@ -35299,8 +35309,8 @@
    ],
    "public_access": {
     "room": "open_meeting",
-    "how": "The city says community members can sign up to give public comment at the Zoning Commission hearing on October 20th, 2026. They can also comment at the City Council meeting on October 29th, 2026.",
-    "url": "https://www.sa.gov/Directory/News-Releases/D6-Councilmember-Calls-for-Stronger-Regulations-on-Data-Centers",
+    "how": "The city's Development Services page takes written comments on a Zoning Commission case by email, mail or hand delivery until the afternoon before the hearing on October 20th, 2026. It also takes a voicemail for playback until the morning of the hearing, and the page lists the number. The city says community members can also comment at the City Council meeting on October 29th, 2026.",
+    "url": "https://www.sa.gov/Directory/Departments/DSD/Boards-Commissions/Public-Input",
     "closes": null
    },
    "confidence": "high",
@@ -35358,8 +35368,8 @@
    "summary": "The University of Texas at Austin says a team led by assistant professor of physics Joshua Burby was selected for the Google.org Impact Challenge on AI for Science. The team will receive funding and support over three years to use artificial intelligence in fusion energy research. The team will build surrogate models that make the repeated calculations used to test stellarator designs faster and cheaper. The university says the team is among 17 organizations sharing a combined $36 million. The award funds a plan, and no result has been reported.",
    "topic": "research-and-science",
    "decider": {
-    "name": "The University of Texas at Austin",
-    "type": "state-agency"
+    "name": "Google.org",
+    "type": "company"
    },
    "geography": {
     "statewide": false,

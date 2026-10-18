@@ -52,12 +52,11 @@ add("artwork", {"date": D, "carousel_no": N,
  "accent": {"hex": "#4E5FA8", "name": "bluebonnet", "frames_above_floor": [i + 1 for i, a in enumerate(acc) if a >= LC.ACCENT_PRESENT], "share": acc, "note": "What the response sends: the pins, the trap lid, the tape on the release boxes, the drone's lamp."},
  "ground": {"hex": "#07070C", "note": "The lastLight world's dark sky behind the stage."}})
 cap = (OUT / "caption.txt").read_text().strip()
-body = "\n".join(l for l in cap.splitlines() if not l.startswith("#"))
-words = len(re.findall(r"[A-Za-z0-9'][A-Za-z0-9',.%-]*", body))
-commas = body.count(",") - len(re.findall(r"\d,\d", body))
+import caption_check as CC
+rate, commas, words = CC.comma_rate(cap)
 add("captions", {"date": D, "carousel_no": N, "opening_move": "the two things", "structure": "Pivot",
  "closing_move": "name what happens next and when",
- "first_line": cap.splitlines()[0], "words": words, "commas": commas, "commas_per_100w": round(100 * commas / words, 2),
+ "first_line": cap.splitlines()[0], "words": words, "commas": commas, "commas_per_100w": rate,
  "chars": len(cap), "hashtags": re.findall(r"#\w+", cap),
  "critic_note": (OUT / "captions" / "critic_note.txt").read_text().strip()[:900],
  "move_note": "Opens on the two facts that pull against each other, drones finding no case and the commission counting 43 premises, pivots to what the models do and what they can't see, and closes on the reader's next step and the number to call."})

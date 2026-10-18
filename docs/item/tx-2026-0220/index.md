@@ -9,7 +9,7 @@ The City of San Antonio's Department of Development Services presented two propo
   - San Antonio-New Braunfels, TX
 - Status: pending
 - Public access: Public meeting
-- Take part: https://www.sa.gov/Directory/News-Releases/D6-Councilmember-Calls-for-Stronger-Regulations-on-Data-Centers
+- Take part: https://www.sa.gov/Directory/Departments/DSD/Boards-Commissions/Public-Input
 
 - Last checked: 2026-10-18
 

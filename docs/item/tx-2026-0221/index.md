@@ -3,7 +3,7 @@
 The University of Texas at Austin says a team led by assistant professor of physics Joshua Burby was selected for the Google.org Impact Challenge on AI for Science. The team will receive funding and support over three years to use artificial intelligence in fusion energy research. The team will build surrogate models that make the repeated calculations used to test stellarator designs faster and cheaper. The university says the team is among 17 organizations sharing a combined $36 million. The award funds a plan, and no result has been reported.
 
 - Topic: research-and-science
-- Decided by: The University of Texas at Austin (state-agency)
+- Decided by: Google.org (company)
 - Where: Travis
 - Statistical areas:
   - Austin-Round Rock-San Marcos, TX
