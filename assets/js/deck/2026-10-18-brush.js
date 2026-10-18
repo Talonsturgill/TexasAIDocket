@@ -91,11 +91,13 @@
   /* THE KIT WINDMILL'S TAIL VANE is painted a saturated blue, which in this deck would read as the
    * accent. Any blue paint on a model passed here becomes weathered galvanized. */
   N.degalv = function (THREE, obj) {
-    var galv = new THREE.MeshStandardMaterial({ color: 0x9aa0a3, metalness: 0.8, roughness: 0.5 });
+    /* half metal and rough, so a blade facing the navy sky does not mirror it back as the accent */
+    var galv = new THREE.MeshStandardMaterial({ color: 0x8f9396, metalness: 0.45, roughness: 0.62 });
     obj.traverse(function (m) {
       if (!m.isMesh || !m.material || !m.material.color) return;
       var c = m.material.color, hsl = {}; c.getHSL(hsl);
-      if (hsl.h > 0.52 && hsl.h < 0.75 && hsl.s > 0.25) m.material = galv;
+      if (hsl.h > 0.5 && hsl.h < 0.78 && hsl.s > 0.08) m.material = galv;
+      else if (m.material.metalness > 0.6) m.material = galv;
     });
     return obj;
   };
@@ -252,16 +254,22 @@
      * 0.60 x 0.45 x 0.45 m with a taped seam and one band in the accent. The size is a unit of the
      * drawing, not any program's packaging. */
     K.define("release_box", {
-      size: [0.6, 0.45, 0.45],
+      size: [0.6, 0.47, 0.45],
       options: { seed: 1 },
-      note: "An illustrative waxed corrugated carton, 0.60 x 0.45 x 0.45 m, taped seam and a bluebonnet band.",
+      note: "An illustrative waxed corrugated carton, 0.60 x 0.45 x 0.45 m: bevelled corrugated edges, a centre flap seam taped across, a wax sheen and a bluebonnet band.",
       make: function (o, r) {
         var g = new THREE.Group();
-        var board = K.mat("box-board", { color: 0xd8c4a4, map: N.boardTex(THREE), roughness: 0.62, clearcoat: 0.3, clearcoatRoughness: 0.5 }, true);
-        var tape = K.mat("box-tape", { color: 0xcbbf9e, roughness: 0.35 });
-        K.box(0.6, 0.45, 0.45, board, 0, 0, 0, 0.012, g);
-        K.box(0.605, 0.004, 0.06, tape, 0, 0.449, 0, 0, g);
-        var band = K.box(0.012, 0.455, 0.455, N.accentMat(THREE, 0.3), 0.16, 0, 0, 0, g);
+        var tint = 0.92 + r() * 0.12;
+        var board = K.mat("box-board" + Math.round(tint * 20), { color: new THREE.Color(0.6 * tint, 0.45 * tint, 0.28 * tint), roughness: 0.72, clearcoat: 0.22, clearcoatRoughness: 0.5 }, true);
+        var edge = K.mat("box-edge", { color: 0x6e5636, roughness: 0.8 });
+        var tape = K.mat("box-tape", { color: 0xd9cba6, roughness: 0.3, clearcoat: 0.6 }, true);
+        K.box(0.6, 0.45, 0.45, board, 0, 0, 0, 0.03, g);
+        /* the top flaps meet on a seam across the box, a dark corrugated line under the tape */
+        K.box(0.6, 0.006, 0.012, edge, 0, 0.447, 0, 0, g);
+        K.box(0.62, 0.008, 0.07, tape, 0, 0.449, 0, 0.002, g);
+        /* the corrugated edges show on the bevel as a darker lip */
+        [-1, 1].forEach(function (sx) { K.box(0.006, 0.43, 0.43, edge, sx * 0.299, 0.01, 0, 0, g); });
+        K.box(0.045, 0.46, 0.46, N.accentMat(THREE, 0.45), 0.17, -0.003, 0, 0.004, g);
         g.traverse(function (m) { if (m.isMesh) { m.castShadow = true; m.receiveShadow = true; } });
         return g;
       }
@@ -372,7 +380,10 @@
   /* THE KEY is the last light, low and warm, and the world's cool rim is raised a little so a
    * silhouette's shadow side separates from the dark */
   N.rigSpec = function (W, size, map) {
-    var rim = Object.assign({}, W.rig.rim, { i: (W.rig.rim.i || 0.8) * 1.25 });
+    /* the world's cool rim is held low: at full strength it turned every shadow side of galvanized
+     * steel and kit hide bluebonnet blue, the deck's accent, on frames that must carry none (audition
+     * review, 2026-10-18) */
+    var rim = Object.assign({}, W.rig.rim, { i: (W.rig.rim.i || 0.8) * 0.3, color: 0xb9a48c });
     return Object.assign({}, W.rig, { rim: rim, key: Object.assign({}, W.rig.key, { shadowSize: size || 12, mapSize: map || 2048 }) });
   };
   N.rigOpts = function (target, o) {
@@ -402,6 +413,10 @@
     g.addColorStop(0, "rgba(6,5,10,0)"); g.addColorStop(fade / (N.H - top + fade), "rgba(6,5,10," + a + ")"); g.addColorStop(1, "rgba(6,5,10," + a + ")");
     cx.fillStyle = g; cx.fillRect(0, top - fade, N.W, N.H - top + fade);
   };
+  /* THE SKY'S OWN LIGHT, held down: the navy dome lights every shadow face blue through the image
+   * based light, so a frame calls this after TXT.sky to keep shadows warm dark rather than accent blue */
+  N.unacne = function (R, nb) { R.scene.traverse(function (l) { if (l.isDirectionalLight && l.castShadow) { l.shadow.normalBias = nb == null ? 0.04 : nb; l.shadow.bias = -0.0004; } }); return R; };
+  N.warm = function (R, k) { R.scene.environmentIntensity = k == null ? 0.3 : k; if (R.scene.environment && R.scene.environmentRotation) {} return R; };
   N.post = function (cx, o) {
     o = o || {};
     if (o.a !== 0 && !o.low) N.shade(cx, { a: o.a, to: o.to, fade: o.fade, pad: o.pad });
