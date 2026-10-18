@@ -34990,7 +34990,7 @@
   },
   {
    "title": "USDA's Kerrville laboratory builds AI models that pick where, when and how many sterile flies to release against New World screwworm",
-   "summary": "The USDA Agricultural Research Service says it is managing New World screwworm with predictive models. It says the models use advanced analytic tools and artificial intelligence to read ecological, environmental and historical information. USDA uses what the models show to choose the locations, timing and number of sterile flies to release. The models also guide where aircraft, fly traps and surveillance go. Kim Lohmeyer directs the agency's Knipling-Bushland Livestock Insects Research Laboratory in Kerrville and says the models already select areas for surveillance, trapping and sterile fly releases. Lohmeyer also says the models can't predict every scenario, especially people moving infested animals. KRGV reports USDA saying its drones have flown across Texas more than 2,000 times since June. The flights observed more than 36,000 animals and found no screwworm cases. USDA officials told the station the drones are not foolproof and use artificial intelligence to inspect animal wounds. Neither source gives an accuracy figure for the models or the drones. The Texas Animal Health Commission counts 43 premises in 17 Texas counties with a confirmed detection, the first in a Zavala County calf on June 3rd. The drones' count of no cases covers only what the flights observed. An agency page last modified July 31st says USDA's dispersal facility in Edinburg deploys more than 80 million sterile flies a week over Texas and Mexico.",
+   "summary": "The USDA Agricultural Research Service says it is managing New World screwworm with predictive models. It says the models use advanced analytic tools and artificial intelligence to read ecological, environmental and historical information. USDA uses what the models show to choose the locations, timing and number of sterile flies to release. The models also guide where aircraft, fly traps and surveillance go. Kim Lohmeyer directs the agency's Knipling-Bushland Livestock Insects Research Laboratory in Kerrville and says the models already select areas for surveillance, trapping and sterile fly releases. Lohmeyer also says the models can't predict every scenario, especially people moving infested animals. KRGV reports USDA saying its drones have flown across Texas more than 2,000 times since June. The flights observed more than 36,000 animals and found no screwworm cases. USDA officials told the station the drones are not foolproof and use artificial intelligence to inspect animal wounds. Neither source gives an accuracy figure for the models or the drones. The Texas Animal Health Commission counts 43 premises in 17 Texas counties with a confirmed detection, the first in a Zavala County calf on June 3rd. The drones' count of no cases covers only what the flights observed. An agency page last modified July 31st says USDA's dispersal facility in Edinburg deploys more than 80 million sterile flies a week over Texas and Mexico. The commission keeps movement restrictions in place across an established infested zone.",
    "topic": "research-and-science",
    "decider": {
     "name": "U.S. Department of Agriculture, Agricultural Research Service",
@@ -34999,10 +34999,22 @@
    "geography": {
     "statewide": true,
     "counties": [
-     "Kerr"
+     "Kerr",
+     "Brewster",
+     "Crockett",
+     "Edwards",
+     "Jeff Davis",
+     "Pecos",
+     "Presidio",
+     "Schleicher",
+     "Starr",
+     "Sutton",
+     "Terrell",
+     "Val Verde",
+     "Zapata"
     ],
     "on_ercot": null,
-    "metro": "Kerrville, TX"
+    "metro": null
    },
    "status": "decided",
    "key_dates": [
@@ -35014,7 +35026,7 @@
    ],
    "public_access": {
     "room": "contact_only",
-    "how": "USDA asks anyone who spots signs of New World screwworm infestation in an animal to report it to the responding official through its New World screwworm reporting page, and keeps current information at screwworm.gov. Livestock owners are told to work with their state animal health officials before moving livestock or wildlife in or out of infested areas.",
+    "how": "The Texas Animal Health Commission says screwworm is reportable and should be reported within 24 hours of suspicion. Suspected cases in livestock and pets go to a commission region office or its veterinarian on call at 1-800-550-8242. USDA also asks anyone who spots signs of infestation to report it through its New World screwworm reporting page. Livestock owners are told never to move an animal that shows signs of infestation.",
     "url": "https://www.ars.usda.gov/news-events/news/research-news/2026/tracking-the-path-of-new-world-screwworm",
     "closes": null
    },
@@ -35128,6 +35140,33 @@
      "source_type": "primary_official",
      "fetched": "2026-10-18",
      "id": "tx-2026-0218-c12"
+    },
+    {
+     "text": "The commission says movement restrictions are in place in an established infested zone in parts of Brewster, Crockett, Edwards, Jeff Davis, Pecos, Presidio, Schleicher, Starr, Sutton, Terrell, Val Verde and Zapata counties.",
+     "verbatim_quote": "There are currently movement restrictions in place due to an established New World Screwworm Infested Zone in parts of the following Texas counties: Brewster, Crockett, Edwards, Jeff Davis, Pecos, Presidio, Schleicher, Starr, Sutton, Terrell, Val Verde, Zapata.",
+     "source_url": "https://www.tahc.texas.gov/emergency/nws.html",
+     "source_title": "Texas Animal Health Commission, New World Screwworm",
+     "source_type": "primary_official",
+     "fetched": "2026-10-18",
+     "id": "tx-2026-0218-c13"
+    },
+    {
+     "text": "The commission says screwworm is reportable to it and should be reported within 24 hours of suspicion.",
+     "verbatim_quote": "NWS is reportable to the TAHC and should be reported within 24 hours of suspicion.",
+     "source_url": "https://www.tahc.texas.gov/emergency/nws.html",
+     "source_title": "Texas Animal Health Commission, New World Screwworm",
+     "source_type": "primary_official",
+     "fetched": "2026-10-18",
+     "id": "tx-2026-0218-c14"
+    },
+    {
+     "text": "The commission says suspected cases in livestock and pets go to a regional office or its veterinarian on call at 1-800-550-8242.",
+     "verbatim_quote": "Report suspected cases in livestock and companion animals: TAHC — Region Office or the Veterinarian on Call 1-800-550-8242.",
+     "source_url": "https://www.tahc.texas.gov/emergency/nws.html",
+     "source_title": "Texas Animal Health Commission, New World Screwworm",
+     "source_type": "primary_official",
+     "fetched": "2026-10-18",
+     "id": "tx-2026-0218-c15"
     }
    ],
    "id": "tx-2026-0218",
