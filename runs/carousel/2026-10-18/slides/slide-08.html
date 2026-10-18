@@ -1,0 +1,81 @@
+<!doctype html>
+<!-- 2026-10-18, frame 8 of 9. Archetype OBJECT_AND_CAPTION. RENDERED through txthree.js in the deck's lastLight world. A white work pickup towing a gooseneck aluminium stock trailer down a caliche road into the seam at last light, seen low from the verge at the rear quarter, the barbed wire fence along the verge. Nothing marks it. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">The trailer the models can&#39;t predict</h1>
+<p class="dek" data-follow="26">The models can&#39;t predict every scenario, Kim Lohmeyer says. Lohmeyer names one especially, people moving infested animals. Drawn&nbsp;to&nbsp;illustrate.</p>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-18-brush.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "The models' limit", counter: "08 / 09", src: "c5", fit: { min: 80, max: 108, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 34, far: 3000 });
+  /* the road runs straight into the seam, so the trailer leaves the pool toward the light with its slats backlit */
+  const D2R = Math.PI / 180, kaz = -58 * D2R, F = [Math.sin(kaz), 0, Math.cos(kaz)], Rt = [-F[2], 0, F[0]];
+  const at = (d, s) => [F[0] * d + Rt[0] * s, 0, F[2] * d + Rt[2] * s];
+  const along = Math.atan2(F[0], F[2]);
+  const put = (obj, d, s, rot) => { const p = at(d, s); obj.position.set(p[0], p[1], p[2]); obj.rotation.y = rot; TXT.add(R, obj); return obj; };
+  /* the caliche road, painted with two soft tyre ruts */
+  { let sd = 3; const rnd = () => (sd = (sd * 16807) % 2147483647) / 2147483647;
+    const tex = CH.canvasTex(THREE, 'caliche8', 512, 4096, function (x, w, h) {
+      x.fillStyle = '#cdbfa3'; x.fillRect(0, 0, w, h);
+      for (let i = 0; i < 60000; i++) { const v = rnd(); x.fillStyle = v < 0.5 ? 'rgba(70,58,44,0.16)' : 'rgba(225,212,190,0.12)'; x.fillRect(rnd() * w, rnd() * h, 1 + rnd() * 3, 1 + rnd() * 3); }
+      [0.3, 0.7].forEach(function (c) { const g = x.createLinearGradient((c - 0.08) * w, 0, (c + 0.08) * w, 0);
+        g.addColorStop(0, 'rgba(60,50,38,0)'); g.addColorStop(0.5, 'rgba(60,50,38,0.5)'); g.addColorStop(1, 'rgba(60,50,38,0)'); x.fillStyle = g; x.fillRect((c - 0.08) * w, 0, 0.16 * w, h); });
+    });
+    tex.wrapT = THREE.RepeatWrapping; tex.repeat.set(1, 6);
+    const road = new THREE.Mesh(new THREE.PlaneGeometry(5.2, 320), new THREE.MeshStandardMaterial({ map: tex, roughness: 0.96 }));
+    road.rotation.x = -Math.PI / 2; road.receiveShadow = true; road.userData.txPool = true;
+    const g = new THREE.Group(); g.add(road); const p = at(150, 0); g.position.set(p[0], 0.012, p[2]); g.rotation.y = along; R.scene.add(g); }
+  /* the rig: a gooseneck stock trailer behind a white work pickup, heading into the seam */
+  const trailer = put(CH.degalv(THREE, K.make('stock_trailer', { seed: 4 })), 14, 0.4, along);
+  /* mill aluminium warmed a little, so the shadow side under the night sky reads as metal and not as navy paint */
+  { const mill = new THREE.MeshStandardMaterial({ color: 0xc9bfb0, metalness: 0.35, roughness: 0.42 });
+    const amber = new THREE.MeshBasicMaterial({ color: 0xe8a33d, toneMapped: false });
+    trailer.traverse(m => { if (!m.isMesh || !m.material) return;
+      if (m.material.emissive && m.material.emissive.getHex() !== 0 && m.material.emissiveIntensity > 0.2) { m.material = amber; m.scale.multiplyScalar(0.55); }
+      else if (m.material.metalness >= 0.3) m.material = mill; }); }
+  const truck = put(K.make('pickup', { color: 0xe6e3dc, trim: 'work', seed: 6 }), 14 + 4.8 + 2.95 - 1.9, 0.4, along);
+  /* the fence along the verge on the left */
+  put(K.make('barbed_wire_fence', { length: 160, strands: 4, spacing: 3.6, seed: 8 }), 60, -5.5, along + Math.PI / 2);
+  [[70, -16, 6], [110, 14, 5.5], [160, -30, 6.5]].forEach(([d, s, h], i) => put(K.make('mesquite', { height: h, seed: 61 + i }), d, s, i));
+  TXT.ground(R, { surface: 'dirt', size: 900, seed: 62 });
+  const from = [...at(1.5, -3.2)]; from[1] = 0.9;
+  const target = [...at(14, 0.4)]; target[1] = 1.4;
+  const look = CH.aim(THREE, R, TXT, from, target, 760, 960, 34);
+  TXT.frame(R, { fov: 34, from, look });
+  TXT.scatter(R, { kind: 'grass', count: 1400, area: [-60, -60, 60, 60], avoid: [[from[0] - 6, from[2] - 6, from[0] + 6, from[2] + 6]], seed: 63 });
+  TXT.sky(R);
+  CH.warm(R, 0.7);
+  { const spec = CH.rigSpec(W, 22, 4096); TXT.deckRig(R, spec, CH.rigOpts(target, { distance: 60, shadowFar: 160 })); }
+  CH.unacne(R, 0.03);
+  [trailer, truck].forEach(o => TXT.contact(R, o));
+  TXT.stage(R, [trailer, truck], { behind: 0.3, depth: 1.6 });
+  TXT.weather(R, { grime: 0.3, height: 0.7 });
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0.34, veil: 0.2, footWash: 0.3 });
+  CH.knock(cx, [".tx-site", ".src"], 0.5);
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

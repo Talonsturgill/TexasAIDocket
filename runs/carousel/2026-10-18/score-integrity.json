@@ -1,0 +1,82 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.5,
+   "why": "Nine rendered dark-field frames with real counted units: 36 Herefords, 80 boxes in a 10 by 10 grid, about 43 windmills. Frame 7 is the strongest. Slide 9's mannequin and toy Hereford on flat loam, slide 8's flat navy slats and pickup under a mid-tone sky, slide 4's oversized cylinder trap beside a centred mannequin, slide 7's flat lamp and rotor ellipses, slide 6's grey stone with bedding lines through the numerals, slide 1's sky banding and slide 3's tangle still stand."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "One chassis, one lastLight key, one accent with a stated meaning, a scale ladder and the returning fence. The relief frames 2 and 6 make the value track strobe at 6."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 6.5,
+   "why": "Every numeral traces and both earlier hard fails are repaired. The cover and slide 4 make the AI the decider where c2 says USDA uses insights from the models. Slide 2's 'THE FIRST CASE' rests on c26's claim text, not its quote. Slide 5's 'being built' rests on c21's 'partnering to build'. Slide 8 compresses c5. None is false on the record."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 8.0,
+   "why": "What, who, where and what to do, with the 43 premises set against the drones' no case and scoped in the caption. The models' output is unpublished, so no single decision is shown."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "Slide 2 pays at once, 3 to 5 build scale, 8 turns, 9 closes. Slide 6 could move; slide 7 never ties back to the AI thread."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "Ranch-country lines; slide 2's zone sentence and slide 8's 'names one especially' are flat, and 'Drawn to illustrate.' on all nine reads mechanical."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "New topic, but it repeats no. 51's lastLight world and is close to no. 49's Herefords at last light with a person at the close; counted units recur."
+  }
+ ],
+ "weighted_score": 7.11,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Hold every slide's paraphrase to the span its claim quotes: 'USDA's AI models help pick' on the cover, 'June 3rd' as slide 2's kicker, 'planned' rather than 'being built' on slide 5.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 9,
+   "problem": "A full-length kit rancher and toy Hereford on flat mid-brown loam; the hand on the chain is not lit.",
+   "fix": "Reframe over the rancher's shoulder at the latch with the hand and chain lit in a tight pool."
+  },
+  {
+   "slide": 8,
+   "problem": "Flat navy slats and pickup under a wide mid-tone sky.",
+   "fix": "Brushed aluminium slats with a warm rim, a white pickup in shadow, the seam pulled down."
+  },
+  {
+   "slide": 4,
+   "problem": "An oversized cylinder trap beside a centred mannequin.",
+   "fix": "A true-size modelled trap in the near foreground as the lit focal, the worker a backlit silhouette."
+  },
+  {
+   "slide": 7,
+   "problem": "A flat unlit lamp disc and flat rotor ellipses.",
+   "fix": "An emissive lens in a housing with bloom and a cool cone, blurred blades."
+  },
+  {
+   "slide": 6,
+   "problem": "Grey stone, bedding lines across the cuts, terraced walls, dead lower third.",
+   "fix": "Mask the bedding in the cuts and narrow the band so the stone outside goes near black."
+  },
+  {
+   "slide": 1,
+   "problem": "Sky banding and a thin windmill.",
+   "fix": "Blue-noise dither before the grade and a closer camera."
+  }
+ ]
+}

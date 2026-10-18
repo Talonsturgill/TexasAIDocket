@@ -1,0 +1,235 @@
+{
+ "weighted_score": 7.27,
+ "judges": [
+  6.81,
+  7.56,
+  7.37
+ ],
+ "spread": 0.75,
+ "criteria": {
+  "artwork_craft": {
+   "score": 7.0,
+   "weight": 0.22,
+   "judges": [
+    6.5,
+    7.0,
+    7.0
+   ]
+  },
+  "deck_coherence": {
+   "score": 7.5,
+   "weight": 0.12,
+   "judges": [
+    7.5,
+    8.0,
+    7.5
+   ]
+  },
+  "claim_integrity": {
+   "score": 6.5,
+   "weight": 0.2,
+   "judges": [
+    5.0,
+    6.5,
+    7.0
+   ]
+  },
+  "story_and_stakes": {
+   "score": 8.0,
+   "weight": 0.16,
+   "judges": [
+    8.0,
+    8.5,
+    8.0
+   ]
+  },
+  "sequence_and_momentum": {
+   "score": 7.5,
+   "weight": 0.1,
+   "judges": [
+    7.5,
+    8.0,
+    7.5
+   ]
+  },
+  "voice": {
+   "score": 7.5,
+   "weight": 0.1,
+   "judges": [
+    7.0,
+    8.0,
+    7.5
+   ]
+  },
+  "variety": {
+   "score": 7.5,
+   "weight": 0.1,
+   "judges": [
+    7.5,
+    8.0,
+    7.5
+   ]
+  }
+ },
+ "hard_fails": [
+  "Slide 7 headline 'Over 36,000 seen. None had it.' presents an unverified fact as verified. c11 supports only that the drone survey found no screwworm cases, and c12 says the drones are not foolproof. Repair: 'Over 36,000 seen. No case found.'",
+  "Slide 7 hook 'Over 36,000 seen. None had it.' presents an unverified fact as verified. c11 supports only that USDA observed more than 36,000 animals and found no screwworm cases, and c12 says the drones are not foolproof. Repair: 'Over 36,000 seen. No case found.'"
+ ],
+ "hard_fails_by_judge": [
+  {
+   "judge": 1,
+   "fail": "Slide 7 headline 'Over 36,000 seen. None had it.' presents an unverified fact as verified. c11 supports only that the drone survey found no screwworm cases, and c12 says the drones are not foolproof. Repair: 'Over 36,000 seen. No case found.'"
+  },
+  {
+   "judge": 2,
+   "fail": "Slide 7 hook 'Over 36,000 seen. None had it.' presents an unverified fact as verified. c11 supports only that USDA observed more than 36,000 animals and found no screwworm cases, and c12 says the drones are not foolproof. Repair: 'Over 36,000 seen. No case found.'"
+  }
+ ],
+ "ship": false,
+ "threshold": 8.0,
+ "over_threshold": false,
+ "method": "per-criterion median across three judges, then weighted by the rubric",
+ "threshold_dissents": [
+  "judge 3 refused on the threshold, not on a fault, and scored 7.37 against a 8.0 bar. That dissent is carried in the median"
+ ],
+ "threshold_dissents_by_judge": [
+  {
+   "judge": 3,
+   "score": 7.37,
+   "reason": "judge 3 refused on the threshold, not on a fault, and scored 7.37 against a 8.0 bar. That dissent is carried in the median"
+  }
+ ],
+ "contested": [
+  "claim_integrity"
+ ],
+ "artwork_weakest_frames": [
+  {
+   "slide": 4,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The aircraft sits directly over the trap's hanger so the trap looks like it hangs from the plane.",
+     "fix": "Move the aircraft up and left onto the seam clear of the trap by at least 200 px."
+    },
+    {
+     "judge": 2,
+     "problem": "The aircraft sits directly above the trap's hanger and reads as a toy plane on a mobile; the worker is a centred mannequin; a purple-grey fog band behind the fence.",
+     "fix": "Move the aircraft to the upper right at about a third of its size as a silhouette on the seam, with open sky between it and the trap."
+    },
+    {
+     "judge": 3,
+     "problem": "The release aircraft sits directly on the trap's post and reads as a weathervane; the kit worker reads as a mannequin.",
+     "fix": "Move the aircraft up and left so it crosses the seam clear of the trap."
+    }
+   ]
+  },
+  {
+   "slide": 9,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The rancher is a mannequin with a pale jacket seam, the Hereford is toy-like, the tracks are flat stripes.",
+     "fix": "Cut the tracks as shallow ruts and push the Hereford back to silhouette distance."
+    },
+    {
+     "judge": 2,
+     "problem": "Mid-tone loam across the middle third; the rancher's hands never reach the chain.",
+     "fix": "Tighten the pool to the gate and chain and let the pasture fall to black within about 8 m of the rails."
+    },
+    {
+     "judge": 3,
+     "problem": "The kit rancher is a mannequin and the cow floats on a flat mid-brown ground that fills the lower half.",
+     "fix": "Darken the ground outside a tight pool on the latch and chain."
+    }
+   ]
+  },
+  {
+   "slide": 8,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The trailer and pickup are flat-shaded slabs with no aluminium sheen, rim or dust.",
+     "fix": "Brushed mill aluminium with a cool rim from the seam along the top rail and road dust on the lower panels."
+    },
+    {
+     "judge": 2,
+     "problem": "The trailer renders as a flat dark slab with no aluminium response, under a wide mid-grey sky.",
+     "fix": "Aluminium slats that catch a spec from the seam, and the seam pulled down to a thin band above the horizon."
+    }
+   ]
+  },
+  {
+   "slide": 3,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "Front-row towers cover back-row wheels so the 43 can't be checked.",
+     "fix": "Stack the five rows as separate bands of wheels with no wheel overlapping a tower, and vary yaw per windmill."
+    },
+    {
+     "judge": 3,
+     "problem": "The overlapping lattice towers merge into a moire tangle at feed size and the sky shows banding.",
+     "fix": "Widen the row spacing so every wheel separates and cut the back rows' towers down to silhouettes."
+    }
+   ]
+  },
+  {
+   "slide": 7,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "The lamp is an unlit flat blue disc; the drone body is cut awkwardly by the left edge.",
+     "fix": "An emissive lens in a housing with a small bloom, and the drone reframed with one prop cut rather than the body."
+    },
+    {
+     "judge": 3,
+     "problem": "The drone's lamp is a flat blue disc and its rotors are flat discs.",
+     "fix": "Model the lamp as a small emissive housing under the belly and give the rotors blurred blade geometry."
+    }
+   ]
+  },
+  {
+   "slide": 6,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 3,
+     "problem": "A grey limestone slab fills the frame in the mid tones with a dead lower zone, strobing against the dark herd frames on either side.",
+     "fix": "Cut the stone's albedo to near black outside a narrow raking band and deepen the V-cuts so the lit walls of 1966 are the only bright edge."
+    }
+   ]
+  },
+  {
+   "slide": 1,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The cover sky shows concentric banding rings around the seam.",
+     "fix": "Dither the sky gradient."
+    }
+   ]
+  },
+  {
+   "slide": 5,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Reads as a chart painted on concrete; the plant outline touches the back row of boxes.",
+     "fix": "Push the three plant rectangles back two slot pitches onto bare apron and bring the worker forward."
+    }
+   ]
+  }
+ ],
+ "rounds_derived": 1,
+ "rounds": 1,
+ "rounds_source": "this module's own log of cards it has scored",
+ "rung": 8.0,
+ "craft_floor": "waiting, because a hard fail is repaired first"
+}

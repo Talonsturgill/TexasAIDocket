@@ -1,0 +1,22 @@
+{
+ "criteria": [
+  {"name": "artwork_craft", "weight": 0.22, "score": 7.0, "why": "Frame 7 has 36 Herefords in one pool with long casts, true blacks and the brush falling to black. Frame 2 is a txbench relief with grooved joints and glossy pins throwing shadows. Frame 6 cuts 1966 into stone under one raking band. Frame 5 shows 80 kraft boxes in a 10x10 slot grid with 20 empty slots and a worker for scale, so the encoding reads without the dek. Frame 1 is a strong cover. Frame 4 is the worst: the aircraft sits directly above the trap's hanger and reads as a toy on a mobile, the worker is a centred mannequin in a purple fog band. In frame 3 front-row towers cover back-row wheels so the 43 can't be checked. Frame 8's trailer is a flat navy slab under a wide mid-grey sky. Frame 9 fills its middle third with mid-tone loam and the rancher's hands never reach the chain. Frame 7's lamp is a flat blue disc."},
+  {"name": "deck_coherence", "weight": 0.12, "score": 8.0, "why": "One world on the contact sheet: last light over the brush, every cast running the same way, red loam, galvanized steel. Bluebonnet means one thing, pins on 2, trap lid on 4, box tape on 5, drone lamp on 7, absent on 8 and 9. Barbed wire returns on 1, 4, 8 and 9. Skies on 5 and 7 go cold navy while 1, 3 and 8 are warm grey, and frame 6's stone sits outside the spatial world."},
+  {"name": "claim_integrity", "weight": 0.2, "score": 6.5, "why": "Most figures trace cleanly to c19 to c31. Frame 7's hook 'None had it.' goes past c11 ('found no screwworm cases') and c12 ('not foolproof'). Frame 5's '80 million a week' drops c19's 'over Texas and Mexico'."},
+  {"name": "story_and_stakes", "weight": 0.16, "score": 8.5, "why": "What happened, who decides and where are all named, and frame 9 gives an action with a deadline and a number. The AI decision itself stays abstract because no output is published."},
+  {"name": "sequence_and_momentum", "weight": 0.1, "score": 8.0, "why": "The cover hook earns the swipe, frame 2 pays at once, frame 8 is a declared turn and 9 lands on an action. Frame 6 slightly stalls between supply and drones."},
+  {"name": "voice", "weight": 0.1, "score": 8.0, "why": "Reads like ranch-country Texas. 'One windmill is one premises.' is flat and the caption's line about the deck is filler."},
+  {"name": "variety", "weight": 0.1, "score": 8.0, "why": "Diverges from the last four decks. No. 49 was a feedyard at last light with Herefords and a person at the close."}
+ ],
+ "weighted_score": 7.56,
+ "hard_fails": ["Slide 7 hook 'Over 36,000 seen. None had it.' presents an unverified fact as verified. c11 supports only that USDA observed more than 36,000 animals and found no screwworm cases, and c12 says the drones are not foolproof. Repair: 'Over 36,000 seen. No case found.'"],
+ "ship": false,
+ "one_sentence_fix": "Scope frame 7's hook to its source, then rebuild frame 4 so the aircraft crosses the seam high on the right, clear of the trap.",
+ "artwork_weakest_frames": [
+  {"slide": 4, "problem": "The aircraft sits directly above the trap's hanger and reads as a toy plane on a mobile; the worker is a centred mannequin; a purple-grey fog band behind the fence.", "fix": "Move the aircraft to the upper right at about a third of its size as a silhouette on the seam, with open sky between it and the trap."},
+  {"slide": 3, "problem": "Front-row towers cover back-row wheels so the 43 can't be checked.", "fix": "Stack the five rows as separate bands of wheels with no wheel overlapping a tower, and vary yaw per windmill."},
+  {"slide": 8, "problem": "The trailer renders as a flat dark slab with no aluminium response, under a wide mid-grey sky.", "fix": "Aluminium slats that catch a spec from the seam, and the seam pulled down to a thin band above the horizon."},
+  {"slide": 9, "problem": "Mid-tone loam across the middle third; the rancher's hands never reach the chain.", "fix": "Tighten the pool to the gate and chain and let the pasture fall to black within about 8 m of the rails."},
+  {"slide": 7, "problem": "The lamp is an unlit flat blue disc; the drone body is cut awkwardly by the left edge.", "fix": "An emissive lens in a housing with a small bloom, and the drone reframed with one prop cut rather than the body."}
+ ]
+}

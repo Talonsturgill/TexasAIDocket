@@ -1,0 +1,180 @@
+{
+ "_note": "Every value is extracted from a claim quote by compute.py, or computed here from values that were.",
+ "drone_flights": {
+  "value": 2000,
+  "from": [
+   "c10"
+  ],
+  "basis": "drone flights over Texas since June, more than, as KRGV reports USDA"
+ },
+ "animals_seen": {
+  "value": 36000,
+  "from": [
+   "c11"
+  ],
+  "basis": "animals the drone flights observed, more than"
+ },
+ "drone_cases": {
+  "value": 0,
+  "from": [
+   "c11"
+  ],
+  "basis": "screwworm cases the drone flights found, the quote's 'no screwworm cases'"
+ },
+ "flights_july": {
+  "value": 1000,
+  "from": [
+   "c17"
+  ],
+  "basis": "drone flights by the APHIS page last modified July 31st, over"
+ },
+ "animals_july": {
+  "value": 20000,
+  "from": [
+   "c17"
+  ],
+  "basis": "animals observed by the same page, over"
+ },
+ "flies_weekly_m": {
+  "value": 80,
+  "from": [
+   "c19"
+  ],
+  "basis": "millions of sterile flies the Edinburg facility deploys a week, more than"
+ },
+ "dispersal_capacity_m": {
+  "value": 100,
+  "from": [
+   "c20"
+  ],
+  "basis": "millions of sterile flies a week the Edinburg facility can disperse, up to"
+ },
+ "production_projected_m": {
+  "value": 300,
+  "from": [
+   "c21"
+  ],
+  "basis": "millions of sterile flies a week the South Texas production plant is projected to make"
+ },
+ "facility_cost_m": {
+  "value": 8.5,
+  "from": [
+   "c19"
+  ],
+  "basis": "cost in millions of dollars of the Edinburg dispersal facility"
+ },
+ "counties_confirmed": {
+  "value": 17,
+  "from": [
+   "c27"
+  ],
+  "basis": "Texas counties with a confirmed detection, read October 18th"
+ },
+ "premises_confirmed": {
+  "value": 43,
+  "from": [
+   "c28"
+  ],
+  "basis": "Texas premises with at least one confirmed detection, read October 18th"
+ },
+ "first_case_day": {
+  "value": 3,
+  "from": [
+   "c26"
+  ],
+  "basis": "day of June of the first Texas confirmation"
+ },
+ "eradicated_year": {
+  "value": 1966,
+  "from": [
+   "c25"
+  ],
+  "basis": "year the sterile insect technique helped eradicate screwworm from the United States"
+ },
+ "keys_year": {
+  "value": 2017,
+  "from": [
+   "c25"
+  ],
+  "basis": "year of the Florida Keys outbreak the technique eliminated"
+ },
+ "wild_animals": {
+  "value": 6600,
+  "from": [
+   "c22"
+  ],
+  "basis": "wild animals APHIS examined, more than"
+ },
+ "wild_species": {
+  "value": 28,
+  "from": [
+   "c22"
+  ],
+  "basis": "species among them"
+ },
+ "zone_counties": {
+  "value": 12,
+  "from": [
+   "c29"
+  ],
+  "basis": "counties with part of the infested zone: Brewster, Crockett, Edwards, Jeff Davis, Pecos, Presidio, Schleicher, Starr, Sutton, Terrell, Val Verde, Zapata"
+ },
+ "report_hours": {
+  "value": 24,
+  "from": [
+   "c30"
+  ],
+  "basis": "hours from suspicion within which a case should be reported"
+ },
+ "chiapas_year": {
+  "value": 2024,
+  "from": [
+   "c32"
+  ],
+  "basis": "year screwworm was detected at the Chiapas checkpoint"
+ },
+ "model_uses": {
+  "value": 3,
+  "from": [
+   "c4"
+  ],
+  "basis": "uses the Kerrville director names for the models: livestock and wildlife surveillance; adult fly trapping; for implementing SIT"
+ },
+ "herd_drawn": {
+  "value": 36,
+  "from": [
+   "c11"
+  ],
+  "basis": "animals drawn on frame 7, one per thousand the drones observed, 36,000 divided by 1,000"
+ },
+ "days_since_first": {
+  "value": 137,
+  "from": [
+   "c26"
+  ],
+  "basis": "days from the first Texas confirmation, June 3rd, to October 18th, 2026, the reading date"
+ },
+ "years_since_eradication": {
+  "value": 60,
+  "from": [
+   "c25"
+  ],
+  "basis": "years from the 1966 eradication to 2026"
+ },
+ "capacity_share_pct": {
+  "value": 80,
+  "from": [
+   "c19",
+   "c20"
+  ],
+  "basis": "the July 31st deployment as a share of the stated capacity, rounded to a whole percent; two different pages, so drawn only as two lengths, never printed as a percent"
+ },
+ "production_over_capacity": {
+  "value": 3.0,
+  "from": [
+   "c20",
+   "c21"
+  ],
+  "basis": "projected production over dispersal capacity, a ratio of two quoted figures"
+ }
+}

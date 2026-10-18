@@ -1,0 +1,220 @@
+{
+ "weighted_score": 7.36,
+ "judges": [
+  7.11,
+  7.51,
+  7.39
+ ],
+ "spread": 0.4,
+ "criteria": {
+  "artwork_craft": {
+   "score": 6.5,
+   "weight": 0.22,
+   "judges": [
+    6.5,
+    6.5,
+    6.5
+   ]
+  },
+  "deck_coherence": {
+   "score": 7.5,
+   "weight": 0.12,
+   "judges": [
+    7.5,
+    7.5,
+    7.5
+   ]
+  },
+  "claim_integrity": {
+   "score": 7.5,
+   "weight": 0.2,
+   "judges": [
+    6.5,
+    8.0,
+    7.5
+   ]
+  },
+  "story_and_stakes": {
+   "score": 8.0,
+   "weight": 0.16,
+   "judges": [
+    8.0,
+    8.0,
+    8.0
+   ]
+  },
+  "sequence_and_momentum": {
+   "score": 7.5,
+   "weight": 0.1,
+   "judges": [
+    7.5,
+    7.5,
+    7.5
+   ]
+  },
+  "voice": {
+   "score": 7.5,
+   "weight": 0.1,
+   "judges": [
+    7.5,
+    7.5,
+    7.8
+   ]
+  },
+  "variety": {
+   "score": 7.5,
+   "weight": 0.1,
+   "judges": [
+    7.0,
+    8.0,
+    7.5
+   ]
+  }
+ },
+ "hard_fails": [],
+ "hard_fails_by_judge": [],
+ "ship": true,
+ "threshold": 8.0,
+ "over_threshold": false,
+ "method": "per-criterion median across three judges, then weighted by the rubric",
+ "contested": [
+  "claim_integrity"
+ ],
+ "artwork_weakest_frames": [
+  {
+   "slide": 7,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "A flat unlit lamp disc and flat rotor ellipses.",
+     "fix": "An emissive lens in a housing with bloom and a cool cone, blurred blades."
+    },
+    {
+     "judge": 2,
+     "problem": "The showstopper's accent is a flat unshaded disc pasted over the drone; flat rotor ellipses.",
+     "fix": "A recessed emissive lens in a dark housing with bloom and spill, motion-blurred blades or a tighter crop."
+    },
+    {
+     "judge": 3,
+     "problem": "Flat unlit lamp disc and flat rotor ellipses, named by all three judges in round 2.",
+     "fix": "An emissive lens in a housing with bloom and a cool cone on the nearest cattle, motion-blurred blades."
+    }
+   ]
+  },
+  {
+   "slide": 4,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "An oversized cylinder trap beside a centred mannequin.",
+     "fix": "A true-size modelled trap in the near foreground as the lit focal, the worker a backlit silhouette."
+    },
+    {
+     "judge": 2,
+     "problem": "A flat-lit mannequin from behind and a bare cylinder trap.",
+     "fix": "Turn the worker toward the key, cut at the knees, and model a ribbed bucket trap with a rim light."
+    },
+    {
+     "judge": 3,
+     "problem": "A centred kit mannequin beside an oversized trap.",
+     "fix": "The trap at true size in the near foreground as the lit focal, the worker a backlit silhouette."
+    }
+   ]
+  },
+  {
+   "slide": 6,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Grey stone, bedding lines across the cuts, terraced walls, dead lower third.",
+     "fix": "Mask the bedding in the cuts and narrow the band so the stone outside goes near black."
+    },
+    {
+     "judge": 2,
+     "problem": "Smeared cut walls, uniform noise stone, bedding lines through the numerals, dead lower third.",
+     "fix": "Regenerate the wall texture, lower the noise outside the band, mask the bedding from the cuts, extend the dressed lower edge."
+    },
+    {
+     "judge": 3,
+     "problem": "Grey-middle stone with bedding lines across the cut floors.",
+     "fix": "Darken the stone outside a narrow band and mask the bedding inside the cuts."
+    }
+   ]
+  },
+  {
+   "slide": 9,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "A full-length kit rancher and toy Hereford on flat mid-brown loam; the hand on the chain is not lit.",
+     "fix": "Reframe over the rancher's shoulder at the latch with the hand and chain lit in a tight pool."
+    },
+    {
+     "judge": 3,
+     "problem": "A full-length kit rancher and a toy Hereford on flat mid-brown loam.",
+     "fix": "Reframe over the rancher's shoulder at the latch and let the loam beyond fall to black."
+    }
+   ]
+  },
+  {
+   "slide": 8,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Flat navy slats and pickup under a wide mid-tone sky.",
+     "fix": "Brushed aluminium slats with a warm rim, a white pickup in shadow, the seam pulled down."
+    },
+    {
+     "judge": 2,
+     "problem": "Flat navy slats with no metal response and a mid-tone caliche plain.",
+     "fix": "Brushed aluminium with a seam streak and lower-panel dust; let the left road fall to near black."
+    }
+   ]
+  },
+  {
+   "slide": 1,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Sky banding and a thin windmill.",
+     "fix": "Blue-noise dither before the grade and a closer camera."
+    },
+    {
+     "judge": 3,
+     "problem": "Sky banding and a grey-brown middle band with a thin windmill.",
+     "fix": "Dither the sky and move the camera closer so the wheel and tank own the right half."
+    }
+   ]
+  },
+  {
+   "slide": 3,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "Overlapping lattices into a moire thicket, footings outside any pool, a hard ground-plane edge.",
+     "fix": "Raise the camera, widen the rows, thin the rear lattice, pool the front footings and fog the plane edge."
+    },
+    {
+     "judge": 3,
+     "problem": "Front towers tangle through the back-row wheels.",
+     "fix": "Raise the eye, double the row spacing and reduce back rows to wheel silhouettes."
+    }
+   ]
+  }
+ ],
+ "rounds_derived": 3,
+ "rounds": 3,
+ "rounds_source": "this module's own log of cards it has scored",
+ "at_cap": true,
+ "rung": null,
+ "shortfall": "at the round cap the finished deck ships at 7.36, 0.64 under the 8.0 top rung. Name that in the email and the run record",
+ "craft_floor": "capped",
+ "craft_note": "at the round cap the craft floor stands down. The art median 6.5 is under 8.5 and the deck ships as it is. Name it in the run record"
+}

@@ -1,0 +1,241 @@
+{
+ "weighted_score": 7.07,
+ "judges": [
+  6.97,
+  6.86,
+  7.78
+ ],
+ "spread": 0.92,
+ "criteria": {
+  "artwork_craft": {
+   "score": 7.0,
+   "weight": 0.22,
+   "judges": [
+    7.0,
+    6.5,
+    7.2
+   ]
+  },
+  "deck_coherence": {
+   "score": 7.5,
+   "weight": 0.12,
+   "judges": [
+    7.5,
+    7.5,
+    7.8
+   ]
+  },
+  "claim_integrity": {
+   "score": 5.5,
+   "weight": 0.2,
+   "judges": [
+    5.0,
+    5.5,
+    8.0
+   ]
+  },
+  "story_and_stakes": {
+   "score": 8.0,
+   "weight": 0.16,
+   "judges": [
+    8.0,
+    8.0,
+    8.5
+   ]
+  },
+  "sequence_and_momentum": {
+   "score": 7.5,
+   "weight": 0.1,
+   "judges": [
+    7.5,
+    7.5,
+    7.5
+   ]
+  },
+  "voice": {
+   "score": 7.5,
+   "weight": 0.1,
+   "judges": [
+    7.5,
+    7.5,
+    8.0
+   ]
+  },
+  "variety": {
+   "score": 7.5,
+   "weight": 0.1,
+   "judges": [
+    7.5,
+    6.5,
+    7.5
+   ]
+  }
+ },
+ "hard_fails": [
+  "Slide 5 dek 'A plant planned elsewhere in South Texas is projected at 300 million.' presents an unverified location as verified. c21's quote says only 'in Southern Texas'. Repair: delete 'elsewhere'.",
+  "Slide 5 dek 'A plant planned elsewhere in South Texas is projected at 300 million.' presents an unverified location as fact. c21 says only 'in Southern Texas'. Repair: 'A production plant being built in South Texas is projected at 300 million.'"
+ ],
+ "hard_fails_by_judge": [
+  {
+   "judge": 1,
+   "fail": "Slide 5 dek 'A plant planned elsewhere in South Texas is projected at 300 million.' presents an unverified location as verified. c21's quote says only 'in Southern Texas'. Repair: delete 'elsewhere'."
+  },
+  {
+   "judge": 2,
+   "fail": "Slide 5 dek 'A plant planned elsewhere in South Texas is projected at 300 million.' presents an unverified location as fact. c21 says only 'in Southern Texas'. Repair: 'A production plant being built in South Texas is projected at 300 million.'"
+  }
+ ],
+ "ship": false,
+ "threshold": 8.0,
+ "over_threshold": false,
+ "method": "per-criterion median across three judges, then weighted by the rubric",
+ "note": "the judges disagree by 0.92, which is wider than 0.75. The deck is not understood yet and the disagreement is worth more than the median. Read the outlier's reasoning before acting on the number",
+ "contested": [
+  "claim_integrity"
+ ],
+ "artwork_weakest_frames": [
+  {
+   "slide": 9,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Kit mannequin on flat mid-brown loam filling the lower half.",
+     "fix": "Tighten the pool to the latch and near posts and let the loam fall to black."
+    },
+    {
+     "judge": 2,
+     "problem": "A kit mannequin with string hair whose hands stop short of the chain, and a toy cow on flat loam.",
+     "fix": "Backlight the rancher to a silhouette with only the hands and chain lit, the Hereford pushed back to a seam silhouette."
+    },
+    {
+     "judge": 3,
+     "problem": "The kit rancher and Hereford read as a mannequin and a toy shown full length.",
+     "fix": "Reframe over the rancher's shoulder at the latch so the chained latch and hand are the lit foreground."
+    }
+   ]
+  },
+  {
+   "slide": 7,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Flat unlit lamp disc and flat rotor discs.",
+     "fix": "An emissive lens in a housing with bloom and motion-blurred blades."
+    },
+    {
+     "judge": 2,
+     "problem": "The lamp is a flat disc and the rotors flat ellipses.",
+     "fix": "An emissive lens in a housing with a little bloom and blurred blade discs."
+    },
+    {
+     "judge": 3,
+     "problem": "The drone's lamp is a flat unlit blue disc.",
+     "fix": "An emissive lens with a small bloom and a faint cool cone on the nearest cattle."
+    }
+   ]
+  },
+  {
+   "slide": 1,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "A thin windmill owns little mass and the middle third is a grey-brown sky.",
+     "fix": "Move the camera closer so the wheel and tank own the right half."
+    },
+    {
+     "judge": 3,
+     "problem": "Visible concentric banding in the sky between the dek and the seam and a wide empty grey middle band.",
+     "fix": "Dither the sky gradient and move the camera closer so the windmill climbs into the empty sky."
+    }
+   ]
+  },
+  {
+   "slide": 4,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "A centred kit mannequin beside an oversized trap that reads as a lantern.",
+     "fix": "Scale the trap to true size on the post as the lit focal and make the worker a seam-backlit silhouette behind it."
+    },
+    {
+     "judge": 3,
+     "problem": "The full-length worker reads as a mannequin and the trap is a plain cylinder.",
+     "fix": "Bring the trap into the near foreground at chest height with its mesh, lid and bait cup."
+    }
+   ]
+  },
+  {
+   "slide": 8,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Flat-shaded navy slabs under a wide mid-tone sky.",
+     "fix": "Brushed aluminium slats taking a rim from the seam, the seam pulled down so the sky above goes near black."
+    },
+    {
+     "judge": 2,
+     "problem": "Flat navy slats with no aluminium response and a grey-brown upper gradient.",
+     "fix": "Brushed metal slats taking a warm rim off a seam pulled down to the horizon."
+    }
+   ]
+  },
+  {
+   "slide": 6,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Grey-middle stone, streaked carved walls, dead lower third.",
+     "fix": "Stone near black outside a narrow band across the numerals, clean V-cut wall normals."
+    },
+    {
+     "judge": 2,
+     "problem": "Bedding lines run across the cut floors and the walls carry terraced streaks.",
+     "fix": "Mask the bedding lines inside the cut and raise the height field's resolution under the glyphs."
+    }
+   ]
+  },
+  {
+   "slide": 3,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Front towers cross back-row wheels into a tangle.",
+     "fix": "Spread the rows and cut the back rows' towers to silhouettes."
+    },
+    {
+     "judge": 2,
+     "problem": "Front towers cover second-row wheels and the 43 are clones at one yaw.",
+     "fix": "Raise the eye, double the row spacing and jitter yaw."
+    }
+   ]
+  },
+  {
+   "slide": 5,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The worker is cut by the right edge.",
+     "fix": "Move the worker inward to the block's near right corner."
+    },
+    {
+     "judge": 3,
+     "problem": "Reads as a chart on a floor and the worker is cut by the right edge.",
+     "fix": "Move the worker fully inside the frame and add small leader labels for capacity and the planned plant."
+    }
+   ]
+  }
+ ],
+ "rounds_derived": 2,
+ "rounds": 2,
+ "rounds_source": "this module's own log of cards it has scored",
+ "rung": 7.7,
+ "craft_floor": "waiting, because a hard fail is repaired first"
+}

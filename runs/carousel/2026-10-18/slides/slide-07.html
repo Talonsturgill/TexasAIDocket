@@ -1,0 +1,87 @@
+<!doctype html>
+<!-- 2026-10-18, frame 7 of 9. Archetype FULL_BLEED. RENDERED through txthree.js in the deck's lastLight world. From over a survey drone's shoulder, 36 Herefords, one for each thousand animals the drones observed, around a galvanized stock tank in one pool of light on red loam. No animal is marked. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">Over 36,000 seen. No case found.</h1>
+<p class="dek" data-follow="26">USDA's drones flew over Texas more than 2,000 times since June, KRGV reported. They found no case among the more than 36,000 animals observed. Officials called the drones not foolproof. Each animal drawn stands for a thousand seen. Drawn&nbsp;to&nbsp;illustrate.</p>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-18-brush.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "The drone survey", counter: "07 / 09", src: "c10 c11 c12", fit: { min: 80, max: 108, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 34, far: 3000 });
+  /* the camera hangs behind the drone and looks across the key, so every animal's cast runs sideways across the loam and none hides the next */
+  const D2R = Math.PI / 180, kaz = -58 * D2R, fa = kaz + 115 * D2R, F = [Math.sin(fa), 0, Math.cos(fa)], Rt = [-F[2], 0, F[0]];
+  const at = (d, s) => [F[0] * d + Rt[0] * s, 0, F[2] * d + Rt[2] * s];
+  /* THE FIGURE, from figures.json: herd_drawn 36, one animal per thousand the drones observed */
+  const HERD = 36, RINGS = [[6.8, 14], [11.2, 22]];
+  if (RINGS.reduce((a, r) => a + r[1], 0) !== HERD) throw new Error("rings and figure disagree");
+  const TANK_D = 60;
+  const tankP = at(TANK_D, 0);
+  const tank = CH.degalv(THREE, K.make('stock_tank', { water: 0.8, inlet: true }));
+  tank.position.set(tankP[0], 0, tankP[2]); TXT.add(R, tank);
+  { const wtr = new THREE.Mesh(new THREE.CircleGeometry(1.7, 48), new THREE.MeshPhysicalMaterial({ color: 0x020203, roughness: 0.03, clearcoat: 1, clearcoatRoughness: 0.02 }));
+    wtr.rotation.x = -Math.PI / 2; wtr.position.set(tankP[0], 0.6, tankP[2]); wtr.userData.txWear = false; R.scene.add(wtr); }
+  const herd = [];
+  let sd = 7; const rnd = () => (sd = (sd * 16807) % 2147483647) / 2147483647;
+  RINGS.forEach(([rad, n], ri) => {
+    for (let i = 0; i < n; i++) {
+      const a = (i + (ri ? 0.5 : 0)) / n * Math.PI * 2 + (rnd() - 0.5) * 0.12, rr = rad + (rnd() - 0.5) * 1.1;
+      const x = tankP[0] + Math.cos(a) * rr, z = tankP[2] + Math.sin(a) * rr;
+      const c = K.make('cattle', { breed: 'hereford', seed: 200 + ri * 40 + i });
+      c.position.set(x, 0, z);
+      /* heads toward the water, turned a little each */
+      c.rotation.y = Math.atan2(tankP[0] - x, tankP[2] - z) + (rnd() - 0.5) * 0.9;
+      TXT.add(R, c); herd.push(c);
+    }
+  });
+  TXT.ground(R, { surface: 'dirt', size: 900, seed: 52 });
+  const from = [...at(TANK_D - 54, 2)]; from[1] = 22;
+  const target = [...tankP]; target[1] = 0.6;
+  const look = CH.aim(THREE, R, TXT, from, target, 560, 1000, 34);
+  TXT.frame(R, { fov: 34, from, look });
+  /* the drone at the camera's shoulder, upper left under the type, its lamp the frame's one accent */
+  { const v = new THREE.Vector3(150 / 540 - 1, 1 - 860 / 675, 0.5).unproject(R.camera).sub(R.camera.position).normalize();
+    const dr = K.make('survey_drone', {}); dr.position.copy(R.camera.position).addScaledVector(v, 6.0);
+    dr.rotation.y = Math.atan2(F[0], F[2]) + 0.35; R.scene.add(dr);
+    /* the survey lamp on the drone's back, bluebonnet, lit by itself and never by the scene */
+    const lit = new THREE.MeshBasicMaterial({ color: 0x5d70c4, toneMapped: false, fog: false });   /* the deck's grade takes about a third off, so it lands on the accent */
+    dr.userData.lamp.material = lit; dr.userData.lamp.scale.setScalar(4.4);
+    const glow = new THREE.PointLight(0x748dec, 0.6, 1.2, 2); glow.position.copy(dr.userData.lamp.position); dr.add(glow);
+    /* the seam rims the drone's arms so its silhouette separates from the dark sky */
+    dr.traverse(m => { if (m.isMesh && m.material && m !== dr.userData.lamp) { m.material = m.material.clone(); m.material.fog = false; if (m.material.emissive) { m.material.emissive.setHex(0x3a2418); m.material.emissiveIntensity = 0.5; } } }); }
+  TXT.scatter(R, { kind: 'grass', count: 2200, area: [-120, -120, 120, 120], seed: 53 });
+  TXT.sky(R);
+  CH.warm(R, 0.2);
+  { const spec = CH.rigSpec(W, 34, 4096); TXT.deckRig(R, spec, CH.rigOpts(target, { distance: 80, shadowFar: 200 })); }
+  CH.unacne(R, 0.03);
+  [tank, ...herd].forEach(o => TXT.contact(R, o));
+  TXT.stage(R, [tank, ...herd], { behind: 0.1, depth: 1.0, poolInner: 1.15, poolOuter: 2.2 });
+  TXT.weather(R, { grime: 0.2, height: 0.5 });
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0.34, veil: 0.2, footWash: 0.3 });
+  CH.knock(cx, [".tx-site", ".src"], 0.5);
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

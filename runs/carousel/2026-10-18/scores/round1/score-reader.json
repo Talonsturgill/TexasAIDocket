@@ -1,0 +1,22 @@
+{
+ "criteria": [
+  {"name": "artwork_craft", "weight": 0.22, "score": 7.0, "why": "Every frame is rendered and most are bold and dark. Frame 1 has a backlit windmill, herd and fence in true black against the warm seam. Frame 5 shows exactly 80 boxes in a 10 by 10 slot block with a worker beside it for scale. Frame 8's slatted trailer is a strong silhouette with the seam showing through the slats. Frame 6 is a grey mid-tone slab across most of the frame with a dead lower zone. Frame 3's overlapping lattice towers read as moire at feed size. On frame 4 the aircraft sits on top of the trap's post and reads as a weathervane. Frame 7's drone lamp is a flat blue disc and its rotors are flat discs. Frame 9's rancher is a mannequin on a flat mid-brown ground. Banding steps through the sky gradient on frames 1 and 3."},
+  {"name": "deck_coherence", "weight": 0.12, "score": 7.5, "why": "Clearly one deck. One lastLight world with the warm seam low on the horizon and casts the same way on 1, 3, 4, 7 and 8. The barbed-wire fence recurs on 1, 4, 8 and 9. The bluebonnet accent means what the response sends (pins on 2, trap lid on 4, box tape on 5, drone lamp on 7) and is absent on 8 and 9. Frame 6's grey limestone slab sits outside the deck's dark-field register and strobes between 5 and 7."},
+  {"name": "claim_integrity", "weight": 0.20, "score": 7.0, "why": "Every numeral traces to a claim. The drone frame and the caption both fence 'none had it' to the animals observed. Two places are looser than their sources. Frame 5 says the Edinburg facility deploys more than 80 million sterile flies a week in the present tense from a page last modified July 31st, and drops c19's 'over Texas and Mexico'. Frame 2 is headed 'The infested zone' and its only highlighted county is Zavala, which is not among c29's 12 restricted counties, while the 12 rims carry no label. No hard fail."},
+  {"name": "story_and_stakes", "weight": 0.16, "score": 8.0, "why": "A Texan learns what is happening, who decides by name, and what to do. Frame 9 gives the 24-hour window and 1-800-550-8242, and the caption ends 'Who on the place has that number?'. The 12 restricted counties are never named on a slide, and 'shows signs' never says what the signs look like."},
+  {"name": "sequence_and_momentum", "weight": 0.10, "score": 7.5, "why": "Frame 2 pays at once, 3 gives the size, 4, 5 and 7 show the response, 8 is a real turn and 9 lands with an action. Frame 6 interrupts the run from supply to surveillance. The cover is softer than the caption's own hook."},
+  {"name": "voice", "weight": 0.10, "score": 7.5, "why": "On register and Texan in places. The caption line 'The deck runs from a water point at last light to a shut gate.' describes the art to the reader. 'Drawn to illustrate.' closes all nine deks."},
+  {"name": "variety", "weight": 0.10, "score": 7.5, "why": "Subject and palette diverge clearly from nos. 51 to 53. The counting-units device and the headline-top chassis recur."}
+ ],
+ "weighted_score": 7.37,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "On frame 2, light and name the 12 restricted counties as the infested zone, so that Zavala is not the only marked county under that heading.",
+ "artwork_weakest_frames": [
+  {"slide": 6, "problem": "A grey limestone slab fills the frame in the mid tones with a dead lower zone, strobing against the dark herd frames on either side.", "fix": "Cut the stone's albedo to near black outside a narrow raking band and deepen the V-cuts so the lit walls of 1966 are the only bright edge."},
+  {"slide": 4, "problem": "The release aircraft sits directly on the trap's post and reads as a weathervane; the kit worker reads as a mannequin.", "fix": "Move the aircraft up and left so it crosses the seam clear of the trap."},
+  {"slide": 3, "problem": "The overlapping lattice towers merge into a moire tangle at feed size and the sky shows banding.", "fix": "Widen the row spacing so every wheel separates and cut the back rows' towers down to silhouettes."},
+  {"slide": 9, "problem": "The kit rancher is a mannequin and the cow floats on a flat mid-brown ground that fills the lower half.", "fix": "Darken the ground outside a tight pool on the latch and chain."},
+  {"slide": 7, "problem": "The drone's lamp is a flat blue disc and its rotors are flat discs.", "fix": "Model the lamp as a small emissive housing under the belly and give the rotors blurred blade geometry."}
+ ]
+}

@@ -19,12 +19,12 @@
   "recent_lists_note": "These three lists are the exclusions handed to the caption room and they were hand-kept. On 2026-08-20 the fourth panel found structures_recent reading [\"ledger\", \"pivot\", \"question and answer\"] when the last three shipped structures were [\"ledger\", \"two columns\", \"question and answer\"], so it dropped a structure that IS off the table and held one that is not. Wrong in both directions from one hand edit. They are now recomputed from entries and are ordered OLDEST FIRST, matching the entries list, and scripts/carousel/caption_check.py should derive them rather than read them. That is an upgrade-lane change and it is written into this run's proposals."
  },
  "opening_moves_recent": [
-  "the two things",
   "the correction",
   "the who",
   "the place",
   "the before and after",
-  "the object"
+  "the object",
+  "the plain question"
  ],
  "entries": [
   {
@@ -959,15 +959,34 @@
    ],
    "critic_note": "The critic refused both candidates as written and demanded one rewrite of A: no Houston (no claim carries it), the benchmark scoped in c4's own terms, and traced hashtags. The shipped caption is that rewrite, with the panel's later repairs: the release's stated purpose in place of a narrowed one, absences that name the release, and the line about the frames removed.",
    "move_note": "Opens on the question a reader who has watched a checkpoint drug fail already asks, answers it with the mucin finding and its limits, and closes on whether a mucin reading could ever guide a checkpoint drug."
+  },
+  {
+   "date": "2026-10-18",
+   "carousel_no": 54,
+   "opening_move": "the two things",
+   "structure": "Pivot",
+   "closing_move": "name what happens next and when",
+   "first_line": "Drones found no screwworm. 43 Texas premises had it.",
+   "words": 120,
+   "commas": 3,
+   "commas_per_100w": 2.5,
+   "chars": 805,
+   "hashtags": [
+    "#NewWorldScrewworm",
+    "#TAHC",
+    "#Kerrville"
+   ],
+   "critic_note": "Two candidates, one rewrite spent on A. B was refused because its first line put \"no case\" alone above the fold, the reading the claims file rejects, and it used c12's drone limit as evidence about the models' aim. A was rewritten: its unclaimed absence and its open question close (the last run's close) were cut, the 43 was named as confirmed detections, the Lohmeyer sentence was split, and the close became the reader's next step with B's \"Who on the place has that number?\". The showrunner changed the deck line after the cover was recomposed from a fly on a wire to a water point.",
+   "move_note": "Opens on the two facts that pull against each other, drones finding no case and the commission counting 43 premises, pivots to what the models do and what they can't see, and closes on the reader's next step and the number to call."
   }
  ],
  "structures_recent": [
-  "Zoom out",
   "Clock",
-  "Ladder"
+  "Ladder",
+  "Question and answer"
  ],
  "closing_moves_recent": [
-  "point at the record, plainly, without a call to action"
+  "ask the one question the decision leaves open"
  ],
  "_derived_note": "opening_moves_recent, structures_recent and closing_moves_recent are DERIVED by out/<date>/update_ledgers.py every run, by ledger_check.windows() and ledger_check's own slice of the entries before the newest date. They were hand-maintained until 2026-09-10 and had drifted, which mis-briefed the caption room on that run: the list said Ledger was excluded when it was not, and never mentioned Two columns or the close no. 19 actually shipped."
 }

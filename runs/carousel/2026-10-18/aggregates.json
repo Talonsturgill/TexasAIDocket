@@ -1,0 +1,149 @@
+{
+ "date": "2026-10-18",
+ "_note": "Every count, span and multiple the deck states, with the claim it was quoted from or the code that computed it.",
+ "aggregates": [
+  {
+   "phrase": "43 Texas premises",
+   "slide": "slide-03.html",
+   "kind": "count",
+   "value": 43,
+   "quoted_from": "c28",
+   "quote": "Total Texas premises confirmed with at least one NWS detection: 43",
+   "note": "the commission's own count, quoted; figures.json premises_confirmed"
+  },
+  {
+   "phrase": "43 Texas premises",
+   "slide": "caption.txt",
+   "kind": "count",
+   "value": 43,
+   "quoted_from": "c28",
+   "quote": "Total Texas premises confirmed with at least one NWS detection: 43",
+   "note": "the commission's own count, quoted; figures.json premises_confirmed"
+  },
+  {
+   "phrase": "2,000 times",
+   "slide": "slide-07.html",
+   "kind": "count",
+   "value": 2000,
+   "quoted_from": "c10",
+   "quote": "more than 2,000 times since June",
+   "note": "quoted; figures.json drone_flights"
+  },
+  {
+   "phrase": "36,000 animals",
+   "slide": "slide-07.html",
+   "kind": "count",
+   "value": 36000,
+   "quoted_from": "c11",
+   "quote": "observed more than 36,000 animals",
+   "note": "quoted; figures.json animals_seen"
+  },
+  {
+   "phrase": "2,000 times",
+   "slide": "caption.txt",
+   "kind": "count",
+   "value": 2000,
+   "quoted_from": "c10",
+   "quote": "more than 2,000 times since June",
+   "note": "quoted; figures.json drone_flights"
+  },
+  {
+   "phrase": "36,000 animals",
+   "slide": "caption.txt",
+   "kind": "count",
+   "value": 36000,
+   "quoted_from": "c11",
+   "quote": "observed more than 36,000 animals",
+   "note": "quoted; figures.json animals_seen"
+  },
+  {
+   "phrase": "24 hours",
+   "slide": "slide-09.html",
+   "kind": "duration",
+   "value": 24,
+   "quoted_from": "c30",
+   "quote": "should be reported within 24 hours of suspicion",
+   "note": "quoted; figures.json report_hours"
+  },
+  {
+   "phrase": "24 hours",
+   "slide": "caption.txt",
+   "kind": "duration",
+   "value": 24,
+   "quoted_from": "c30",
+   "quote": "should be reported within 24 hours of suspicion",
+   "note": "quoted; figures.json report_hours"
+  },
+  {
+   "phrase": "80 million sterile flies",
+   "slide": "slide-05.html",
+   "kind": "count",
+   "value": 80,
+   "quoted_from": "c19",
+   "quote": "more than 80 million sterile flies per week",
+   "note": "quoted; figures.json flies_weekly_m"
+  },
+  {
+   "phrase": "43 premises",
+   "slide": "slide-03.html",
+   "kind": "count",
+   "value": 43,
+   "quoted_from": "c28",
+   "quote": "Total Texas premises confirmed with at least one NWS detection: 43",
+   "note": "quoted; figures.json premises_confirmed"
+  },
+  {
+   "phrase": "17 counties",
+   "slide": "slide-03.html",
+   "kind": "count",
+   "value": 17,
+   "quoted_from": "c27",
+   "quote": "Total Texas counties with a confirmed NWS detection: 17",
+   "note": "quoted; figures.json counties_confirmed"
+  },
+  {
+   "phrase": "43 premises",
+   "slide": "caption.txt",
+   "kind": "count",
+   "value": 43,
+   "quoted_from": "c28",
+   "quote": "Total Texas premises confirmed with at least one NWS detection: 43",
+   "note": "quoted; figures.json premises_confirmed"
+  },
+  {
+   "phrase": "17 counties",
+   "slide": "caption.txt",
+   "kind": "count",
+   "value": 17,
+   "quoted_from": "c27",
+   "quote": "Total Texas counties with a confirmed NWS detection: 17",
+   "note": "quoted; figures.json counties_confirmed"
+  },
+  {
+   "phrase": "12 counties",
+   "slide": "slide-02.html",
+   "kind": "count",
+   "value": 12,
+   "from_claims": [
+    "c29"
+   ],
+   "computed_by": "out/2026-10-18/compute.py zone_counties, the county names c29 lists split on its commas"
+  },
+  {
+   "phrase": "seven pages",
+   "slide": "first_comment.txt",
+   "kind": "count",
+   "value": 7,
+   "from_claims": [
+    "c1",
+    "c10",
+    "c18",
+    "c20",
+    "c23",
+    "c25",
+    "c26"
+   ],
+   "computed_by": "the distinct source URLs first_comment.txt cites, one line each, counted from the claims it groups"
+  }
+ ]
+}

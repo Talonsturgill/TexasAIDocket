@@ -1,0 +1,68 @@
+<!doctype html>
+<!-- 2026-10-18, frame 6 of 9. Archetype TYPE_AS_OBJECT. A MATERIAL RELIEF through txbench.js under the deck's one key, with a keyMask band. The year the sterile insect technique helped eradicate screwworm from the United States, V-carved deep into a block face of Hill Country limestone, its cut walls lit by one raking band of light. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+  .dek { top:1000px !important; width:860px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">It worked before</h1>
+<p class="dek">USDA says sterile flies helped eradicate screwworm from the United States in 1966 and helped wipe out a small Florida Keys outbreak in 2017. USDA now uses AI models to choose where those flies go. Drawn&nbsp;to&nbsp;illustrate.</p>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/txbench.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-18-brush.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = (async () => {
+  await CH.bootFlat({ kicker: "The sterile insect technique", counter: "06 / 09", src: "c25 c2", fit: { min: 72, max: 96, maxLines: 1 } });
+  /* THE FIGURE, from figures.json: eradicated_year, the year c25 gives. Its digits are cut into the stone. */
+  const ERADICATED_YEAR = 1966;
+  const W = 1080, H = 1350, S = 2, w = W * S, h = H * S;
+  /* the glyph mask, drawn once at device scale off screen */
+  const m = document.createElement("canvas"); m.width = w; m.height = h; const g = m.getContext("2d");
+  g.fillStyle = "#000"; g.fillRect(0, 0, w, h);
+  g.fillStyle = "#fff"; g.textAlign = "center"; g.textBaseline = "alphabetic";
+  g.font = "700 " + (430 * S) + "px Fraunces"; g.fillText(String(ERADICATED_YEAR), w / 2, 840 * S);
+  const md = g.getImageData(0, 0, w, h).data;
+  /* chamfer distance inside the glyphs, in device px, so the cut is a true V */
+  const dist = new Float32Array(w * h), BIG = 1e6;
+  for (let i = 0; i < w * h; i++) dist[i] = md[i * 4] > 127 ? BIG : 0;
+  const a = 1, b = 1.414;
+  for (let y = 1; y < h - 1; y++) for (let x = 1; x < w - 1; x++) { const i = y * w + x; if (!dist[i]) continue; dist[i] = Math.min(dist[i], dist[i - 1] + a, dist[i - w] + a, dist[i - w - 1] + b, dist[i - w + 1] + b); }
+  for (let y = h - 2; y > 0; y--) for (let x = w - 2; x > 0; x--) { const i = y * w + x; if (!dist[i]) continue; dist[i] = Math.min(dist[i], dist[i + 1] + a, dist[i + w] + a, dist[i + w + 1] + b, dist[i + w - 1] + b); }
+  const at = (X, Y) => dist[Math.min(h - 1, Math.max(0, Math.round(Y * S))) * w + Math.min(w - 1, Math.max(0, Math.round(X * S)))] / S;
+  /* the carved year is bare limestone, its lit walls and shadowed floors carrying the read */
+  /* the stone: a dressed face with tooth, fossil pitting and a few long bedding lines */
+  const fbm = (X, Y) => TX.simplex2(X * 0.012, Y * 0.012) * 0.6 + TX.simplex2(X * 0.05, Y * 0.05) * 0.3 + TX.simplex2(X * 0.19, Y * 0.19) * 0.15;
+  const pit = (X, Y) => { const n = TX.simplex2(X * 0.09 + 31, Y * 0.09 - 7); return n > 0.62 ? (n - 0.62) * 16 : 0; };
+  const bed = (Y, X) => { const v = Math.abs(((Y + TX.simplex2(X * 0.004, 3) * 22) % 190) - 95); return v < 1.6 ? (1.6 - v) * 1.4 : 0; };
+  const FACE = 40, CUT = 34;
+  const cx = document.getElementById("art").getContext("2d");
+  /* one raking band of light across the numerals, feathered, the rest of the face in ambient only */
+  const band = (X, Y) => { const c = 640 + (X - 540) * -0.12, d = Math.abs(Y - c); return d < 190 ? 1 : d < 330 ? 1 - (d - 190) / 140 : 0; };
+  const rep = TXBENCH.relief(cx, { x: 0, y: 0, w: W, h: H, scale: 2,
+    height: (X, Y) => { const d = at(X, Y); const surf = FACE + fbm(X, Y) * 2.2 - pit(X, Y) - bed(Y, X); return d > 0 ? Math.max(FACE - CUT, FACE + fbm(X, Y) * 0.6 - d * 0.95) : surf; },
+    material: (X, Y) => at(X, Y) > 0 ? CH.M.CUT : CH.M.STONE,
+    albedo: (X, Y, mm) => { const k = 1 + fbm(X * 1.7, Y * 1.7) * 0.18; return mm === CH.M.CUT ? [0.26 * k, 0.23 * k, 0.19 * k] : [0.36 * k, 0.32 * k, 0.26 * k]; },
+    spec: { 6: [0.1, 8], 7: [0.06, 6] }, keyMask: band, keyColor: [1.0, 0.86, 0.68], ambColor: [0.55, 0.6, 0.75],
+    ambient: 0.035, diffuse: 2.3, ao: 1.0, shadow: 0.92, softness: 5, castLength: 160 });
+  window.__relief = rep;
+  cx.setTransform(2, 0, 0, 2, 0, 0);
+  CH.post(cx, { a: 0.18, veil: 0.32, footWash: 0.5 });
+  CH.knock(cx, [".tx-site", ".src", ".dek"], 0.45);
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.5,
+   "why": "The dark field holds on all nine frames, and slides 6, 7 and 3 are strong. Slide 1's sky shows concentric banding rings around the seam. Slide 8's trailer and pickup are flat-shaded slabs. On slide 4 the aircraft sits right on top of the trap's hanger and the worker reads as a kit mannequin. Slide 5 reads as a chart painted on a floor with a large dark shadow mass at left. On slide 9 the rancher is a mannequin and the cow is toy-like. Slide 2's rims are too low-contrast to read as the zone at 432 px."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "One lastLight world, a red loam and caliche palette, bluebonnet only on the pins, trap lid, box tape and drone lamp. Barbed wire through 1, 4, 8 and 9, Herefords on 1, 7 and 9. Slide 5's apron sits slightly outside the deck."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 5.0,
+   "why": "Every numeral traces. Slide 7's headline 'None had it.' turns c11's 'found no screwworm cases' into a statement that none of the animals were infested (hard fail). Slide 2's kicker 'The infested zone' sits over a map whose only highlighted county, Zavala, is not among c29's 12. Slide 2's 'first case' names no set. Slide 5 draws the South Texas plant as slot rectangles touching the Edinburg block under the kicker EDINBURG, and prints the July 31st 80 million figure in the present tense without 'over Texas and Mexico'. Slide 8's 'names one above all' overstates c5's 'especially ... like'."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 8.0,
+   "why": "What is happening, who runs it, where and how big, and a concrete next step with a deadline and a number. The 12 zone counties are named only as a count."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "The cover earns the swipe, frame 2 pays at once, the turn at 8 is real and the close lands. Frame 6 could move or go."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Mostly on register and Texan. The caption line 'The deck runs from a water point at last light to a shut gate.' is production notes. The scale sentences read as legend text."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "Clearly differs from nos. 51 to 53. lastLight was no. 51's world, the unit scale is no. 52's device, and no. 49 was a Herefords-at-last-light ranch deck."
+  }
+ ],
+ "weighted_score": 6.81,
+ "hard_fails": [
+  "Slide 7 headline 'Over 36,000 seen. None had it.' presents an unverified fact as verified. c11 supports only that the drone survey found no screwworm cases, and c12 says the drones are not foolproof. Repair: 'Over 36,000 seen. No case found.'"
+ ],
+ "ship": false,
+ "one_sentence_fix": "Make every frame say only what its source's instrument measured: slide 7's headline, slide 2's kicker and rims, and slide 5's plant outline moved off the Edinburg block.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 8,
+   "problem": "The trailer and pickup are flat-shaded slabs with no aluminium sheen, rim or dust.",
+   "fix": "Brushed mill aluminium with a cool rim from the seam along the top rail and road dust on the lower panels."
+  },
+  {
+   "slide": 4,
+   "problem": "The aircraft sits directly over the trap's hanger so the trap looks like it hangs from the plane.",
+   "fix": "Move the aircraft up and left onto the seam clear of the trap by at least 200 px."
+  },
+  {
+   "slide": 1,
+   "problem": "The cover sky shows concentric banding rings around the seam.",
+   "fix": "Dither the sky gradient."
+  },
+  {
+   "slide": 5,
+   "problem": "Reads as a chart painted on concrete; the plant outline touches the back row of boxes.",
+   "fix": "Push the three plant rectangles back two slot pitches onto bare apron and bring the worker forward."
+  },
+  {
+   "slide": 9,
+   "problem": "The rancher is a mannequin with a pale jacket seam, the Hereford is toy-like, the tracks are flat stripes.",
+   "fix": "Cut the tracks as shallow ruts and push the Hereford back to silhouette distance."
+  }
+ ]
+}

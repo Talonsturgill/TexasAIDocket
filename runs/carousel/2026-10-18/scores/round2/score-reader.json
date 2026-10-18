@@ -1,0 +1,77 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 7.2,
+   "why": "Strong frames on 3, 8, 6 and 2. The cover shows concentric banding in the sky and a wide empty grey middle band. Kit figures on 4 and 9 read as mannequins, the trap is a plain cylinder, the drone's lamp is a flat blue disc, slide 5 reads as a chart on a floor with the worker cut by the right edge, slide 6 is top-loaded, and slide 3 reads as a forest at feed size."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.8,
+   "why": "One last-light brush world, one bluebonnet accent meaning what the response sends, barbed wire from 1 to 4 to 8 to 9, a working scale-ladder camera. The map and stone frames lift the filmstrip's value at 2 and 6."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.0,
+   "why": "Every numeral traces. Slide 7 scopes no case to the animals observed and the caption adds that the finding covers only those animals. Slides 1 and 6 say AI models choose where flies go where c2 says USDA uses insights from the models. The drone figures rest on KRGV alone."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 8.5,
+   "why": "What happened, who acts and what the AI does, and an unusually actionable close with a number. Slide 2 never names the 12 zone counties or what movement restrictions require."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "Reads well in order with a declared turn at 8. Slide 6 is an aside; slide 7's no case sits four frames from slide 3's 43 premises without saying the counts measure different things."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 8.0,
+   "why": "On register and regional, honest about the limit. Slide 8's 'names one especially' is flat."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "Fresh topic, world and palette; the type-top chassis and the unit-count device recur."
+  }
+ ],
+ "weighted_score": 7.78,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "On slide 2, name the 12 zone counties c29 lists and say what the movement restriction means for moving cattle there.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 1,
+   "problem": "Visible concentric banding in the sky between the dek and the seam and a wide empty grey middle band.",
+   "fix": "Dither the sky gradient and move the camera closer so the windmill climbs into the empty sky."
+  },
+  {
+   "slide": 9,
+   "problem": "The kit rancher and Hereford read as a mannequin and a toy shown full length.",
+   "fix": "Reframe over the rancher's shoulder at the latch so the chained latch and hand are the lit foreground."
+  },
+  {
+   "slide": 4,
+   "problem": "The full-length worker reads as a mannequin and the trap is a plain cylinder.",
+   "fix": "Bring the trap into the near foreground at chest height with its mesh, lid and bait cup."
+  },
+  {
+   "slide": 7,
+   "problem": "The drone's lamp is a flat unlit blue disc.",
+   "fix": "An emissive lens with a small bloom and a faint cool cone on the nearest cattle."
+  },
+  {
+   "slide": 5,
+   "problem": "Reads as a chart on a floor and the worker is cut by the right edge.",
+   "fix": "Move the worker fully inside the frame and add small leader labels for capacity and the planned plant."
+  }
+ ]
+}

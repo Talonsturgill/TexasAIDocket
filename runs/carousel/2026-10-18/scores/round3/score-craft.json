@@ -1,0 +1,77 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.5,
+   "why": "Every frame sits on a dark field with light type and a disciplined accent; 1, 3 and 7 pass the silhouette read. Several focal props are primitives: slide 7's flat lamp disc and rotor ellipses, slide 4's flat-lit mannequin and bare cylinder trap, slide 8's flat navy slats and mid-tone caliche plain, slide 6's smeared V-walls and bedding lines across the numerals, slide 3's moire thicket and hard ground-plane edge, slide 9's low-poly rancher and toy Hereford. Slide 2 is a real relief with default glossy pins; slide 5 reads partly as a diagram."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "One lastLight world, one grade, one accent meaning one thing, a legible scale ladder and the barbed wire returning on 1, 4, 8 and 9. Slides 2, 5 and 6 sit outside the world; cast direction drifts between frames."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.0,
+   "why": "Every numeral traces and the drawn counts follow their declared scales. The drone 'no case' is scoped to the animals observed. The cover has Texas choosing where c2 has USDA, slide 5's present tense rests on a July 31st page, and the drone figures rest on KRGV."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 8.0,
+   "why": "What happened, who and where, with the 24-hour rule and the number at the close and a personal stake on slide 8. The AI decision has no dated moment."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "The cover earns the swipe, slide 2 pays, the turn at 8 lands. Slide 6 could move or go; 3 and 7 blunt each other."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "Several lines read as written by a Texan. Some deks are attribution-stacked."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 8.0,
+   "why": "Diverges from the last three; lastLight's palette is shared with no. 51 and the chassis repeats."
+  }
+ ],
+ "weighted_score": 7.51,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Give the focal props a real material and modelling pass: the drone lamp, the trailer slats, the trap, and the mannequin figures on 4 and 9.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 7,
+   "problem": "The showstopper's accent is a flat unshaded disc pasted over the drone; flat rotor ellipses.",
+   "fix": "A recessed emissive lens in a dark housing with bloom and spill, motion-blurred blades or a tighter crop."
+  },
+  {
+   "slide": 4,
+   "problem": "A flat-lit mannequin from behind and a bare cylinder trap.",
+   "fix": "Turn the worker toward the key, cut at the knees, and model a ribbed bucket trap with a rim light."
+  },
+  {
+   "slide": 8,
+   "problem": "Flat navy slats with no metal response and a mid-tone caliche plain.",
+   "fix": "Brushed aluminium with a seam streak and lower-panel dust; let the left road fall to near black."
+  },
+  {
+   "slide": 6,
+   "problem": "Smeared cut walls, uniform noise stone, bedding lines through the numerals, dead lower third.",
+   "fix": "Regenerate the wall texture, lower the noise outside the band, mask the bedding from the cuts, extend the dressed lower edge."
+  },
+  {
+   "slide": 3,
+   "problem": "Overlapping lattices into a moire thicket, footings outside any pool, a hard ground-plane edge.",
+   "fix": "Raise the camera, widen the rows, thin the rear lattice, pool the front footings and fog the plane edge."
+  }
+ ]
+}
