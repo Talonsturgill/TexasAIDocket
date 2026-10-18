@@ -1,0 +1,130 @@
+{
+ "_spec": {
+  "version": 1,
+  "purpose": "A standalone web edition of the archived visual story.",
+  "law": "Facts resolve to the original verified claim record. A layout rebuild does not reverify reporting.",
+  "written_by": "daily"
+ },
+ "section": "Agriculture",
+ "dek": {
+  "text": "USDA uses AI models to pick where Texas surveils, traps and releases sterile flies against New World screwworm. Its own scientists say the models miss one thing.",
+  "claims": [
+   "c2",
+   "c4",
+   "c5"
+  ]
+ },
+ "introduction": [
+  {
+   "text": "[The U.S. Department of Agriculture uses predictive models built with artificial intelligence to choose where, when and how many sterile flies to release against New World screwworm](c2). [The fly lays its eggs in open wounds and body openings](c23). [Those eggs hatch into maggots that feed on living tissue](c24).",
+   "claims": [
+    "c2",
+    "c23",
+    "c24"
+   ]
+  },
+  {
+   "text": "[Kim Lohmeyer directs the research service's livestock insects laboratory in Kerrville](c6). [Lohmeyer says the models already pick areas for surveillance, adult fly trapping and sterile fly releases](c4). [Lohmeyer also says they can't predict every scenario, especially people transporting infested animals](c5).",
+   "claims": [
+    "c6",
+    "c4",
+    "c5"
+   ]
+  }
+ ],
+ "sections": [
+  {
+   "heading": "Where the outbreak stands",
+   "paragraphs": [
+    {
+     "text": "[The Texas Animal Health Commission says the fly was first confirmed in Texas on {{date:c26}} in a calf in Zavala County](c26). [That calf has recovered and its case is considered inactive](c34).",
+     "claims": [
+      "c26",
+      "c34"
+     ]
+    },
+    {
+     "text": "[The commission now counts {{number:c28}} Texas premises with at least one confirmed detection](c28). [Those premises sit in {{number:c27}} counties](c27). [Movement restrictions cover parts of {{number:c29}} counties in an established infested zone](c29).",
+     "claims": [
+      "c28",
+      "c27",
+      "c29"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "What the models steer",
+   "paragraphs": [
+    {
+     "text": "[The research service says its models read ecological and environmental records to predict where the pest is likely to become established and how it may spread](c1). [The system is meant to send aircraft, personnel, fly traps and sterile insects where they protect the most](c3).",
+     "claims": [
+      "c1",
+      "c3"
+     ]
+    },
+    {
+     "text": "[USDA says its Edinburg facility deploys more than {{number:c19:1}} million sterile flies a week](c19). [An agency page says the facility can disperse up to {{number:c20}} million a week](c20). [A production plant planned for South Texas is projected at {{number:c21}} million a week](c21).",
+     "claims": [
+      "c19",
+      "c20",
+      "c21"
+     ]
+    },
+    {
+     "text": "[The sterile insect technique helped eradicate the fly from the United States in {{number:c25}}](c25). [It also ended a small Florida Keys outbreak in {{number:c25:1}}](c25).",
+     "claims": [
+      "c25"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "What the drones found",
+   "paragraphs": [
+    {
+     "text": "[KRGV reported that USDA has flown drones across Texas more than {{number:c10}} times since June](c10). [The agency said it observed more than {{number:c11}} animals and found no screwworm case among them](c11). That result covers the animals the drones saw and says nothing about the premises the commission has confirmed.",
+     "claims": [
+      "c10",
+      "c11"
+     ]
+    },
+    {
+     "text": "[USDA officials also told KRGV the drones are not foolproof for detecting screwworm](c12).",
+     "claims": [
+      "c12"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "What the models can't see",
+   "paragraphs": [
+    {
+     "text": "[Lohmeyer names one blind spot above the rest, people moving infested animals](c5). [The research service tells livestock owners never to move an animal that shows signs of infestation or is suspected of it](c9).",
+     "claims": [
+      "c5",
+      "c9"
+     ]
+    },
+    {
+     "text": "[The commission says a suspected case should be reported within {{number:c30}} hours of suspicion](c30). [Reports go to a regional office or to its veterinarian on call](c31). Whether the models will ever account for animals moved by hand is a question the published material does not answer.",
+     "claims": [
+      "c30",
+      "c31"
+     ]
+    }
+   ]
+  }
+ ],
+ "related": [
+  {
+   "id": "tx-2026-0218",
+   "label": "The record entry for USDA's Kerrville screwworm models"
+  },
+  {
+   "id": "tx-2026-0207",
+   "label": "A USDA research feedlot grant to West Texas A&M near Canyon"
+  }
+ ]
+}
