@@ -2,6 +2,18 @@
   "media_base": "https://raw.githubusercontent.com/Talonsturgill/TexasAIDispatch/main",
   "videos": [
     {
+      "id": "2026-10-15-the-station-that-counts-the-water",
+      "date": "2026-10-15",
+      "title": "The station that counts the water",
+      "caption": "UT San Antonio researchers built a solar powered flood station that judges flood risk on its own chip, so it needs no cell tower and no central server. Four optical sensors at different heights watch the water, and a radio carries warnings up to five miles in open country to a hub that maps flood paths for responders. The 98.82 percent accuracy is early validation only. The announcement reports no field result and names no town with an installed station.",
+      "video": "/runs/2026-10-15/dispatch.mp4",
+      "poster": "/runs/2026-10-15/poster.png",
+      "video_mobile": "/runs/2026-10-15/dispatch-720.mp4",
+      "poster_thumb": "/runs/2026-10-15/poster-540.jpg",
+      "county": "Bexar",
+      "beat": "weather-and-emergency"
+    },
+    {
       "id": "2026-10-11-the-message-goes-to-the-utility",
       "date": "2026-10-11",
       "title": "The message goes to the utility",
