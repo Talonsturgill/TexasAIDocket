@@ -109,3 +109,22 @@ Read on the temp-dir build of the record as it stood after re-verification and b
 ## Gate status
 
 
+
+## Retro
+
+- **Did this run wait on a human? Interim reading, Phase 17.** `prompt_audit.py` exited 1: 1,703
+  tool calls measured and 25 whose permission decision took longer than an auto-approval, the
+  longest 21.4 s, almost all of them subagent spawns, each released without a refusal. The no-stall
+  hook was armed at 05:03:34 UTC, judged the session unattended from session start
+  (`CLAUDE_CODE_SESSION_ATTENDED=0`, and the host's value was 0), and refused nothing. Phase 19
+  takes the reading that counts.
+- **Sources.** Five findings appended to `knowledge/shared/SOURCES_FIELD_LOG.md`: ars.usda.gov,
+  aphis.usda.gov, krgv.com and tahc.texas.gov answered 200, and federalregister.gov and faa.gov
+  answered 403.
+- **Instincts added**: `stage-takes-fractions-not-metres`, `stand-back-from-a-kit-figure`.
+- **Machine queue**: eight new items (kit metal mirroring the sky as the accent, TXT.stage's units,
+  the painted plane rotation sign, the survey drone and stock trailer to lift into the kit, the full
+  length kit person, long sentences passing admission, and the audition re-binding after each copy
+  repair) and two repeats raised (sky banding, water with no reflection). `machine_due.py`: the
+  weekly pass is not due, last run October 16th.
+- **Arsenal** rebuilt and current.

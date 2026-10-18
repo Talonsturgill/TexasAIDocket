@@ -2200,3 +2200,21 @@ of Texas is named in the deck as one of five funders on MD Anderson's own releas
 
 **www.cancer.gov answered 200** on its dictionary entries for immune checkpoint inhibitors, which back
 the deck's plain definitions.
+
+## October 18th, 2026
+
+**www.ars.usda.gov answered 200** on its Tracking the Path of New World Screwworm page, which
+tx-2026-0218 and the deck cite for the models, Kim Lohmeyer's title and the reporting advice.
+
+**www.aphis.usda.gov answered 200** on its screwworm response, sterile fly production and dispersal,
+and sterile insect technique pages. None of the eight APHIS pages read carries the drone flight or
+animal counts, so those rest on KRGV.
+
+**www.krgv.com answered 200** on its October 12th drone report, the only source found for the 2,000
+flights and the 36,000 animals.
+
+**www.tahc.texas.gov answered 200** on its screwworm page, the source of the 43 premises, the 17
+counties, the infested zone's county list, the 24 hour rule and the veterinarian on call line.
+
+**www.federalregister.gov and www.faa.gov answered 403** to the run's fetch, so no rule text from
+either is carried.
