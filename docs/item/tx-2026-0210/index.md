@@ -9,7 +9,7 @@ Abridge announced on October 8th an enterprise agreement with UT REAL Health AI,
 - Public access: Write to the decider
 - Take part: https://www.utsystem.edu/board-of-regents/meetings
 
-- Last checked: 2026-10-15
+- Last checked: 2026-10-18
 
 ## Dates
 
@@ -22,6 +22,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-09 · Admitted to the record on Abridge's own release of the systemwide agreement.
 - 2026-10-12 · The systemwide Abridge agreement for UT health institutions still stands as announced.
 - 2026-10-15 · The systemwide Abridge agreement for UT health institutions stands as announced.
+- 2026-10-18 · The systemwide agreement for Abridge's ambient note taking at UT health institutions stands as announced.
 
 ## Evidence
 

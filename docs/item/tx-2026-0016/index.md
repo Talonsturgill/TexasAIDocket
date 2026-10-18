@@ -10,7 +10,7 @@ The Bureau of Labor Statistics proposed adding questions about artificial intell
 - Comment closes: 2026-09-08
 - Take part: https://www.federalregister.gov/documents/2026/07/10/2026-13928/proposed-information-collection-atus-artificial-intelligence-ai-questions
 
-- Last checked: 2026-10-15
+- Last checked: 2026-10-18
 
 ## Dates
 
@@ -43,6 +43,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-09 · The proposal to add AI questions to the time use survey still reads as published, with comment closed and no final version issued.
 - 2026-10-12 · The plan to add AI questions to the time use survey still reads as proposed. Comment is closed and no final version has been issued.
 - 2026-10-15 · The time use survey proposal remains closed to comment. The register's page refused the request, so its wording is unconfirmed.
+- 2026-10-18 · The Federal Register's own record of the time use survey proposal still shows its comment window closed. The abstract page is unconfirmed, since that site now turns automated readers away.
 
 ## Evidence
 

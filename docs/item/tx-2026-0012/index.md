@@ -8,7 +8,7 @@ Chapter 552 of the Business and Commerce Code supersedes and preempts any local 
 - Status: decided
 - Public access: Closed
 
-- Last checked: 2026-10-15
+- Last checked: 2026-10-18
 
 ## Dates
 
@@ -39,6 +39,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-08 · The state law that keeps cities and counties from writing their own AI rules is unchanged.
 - 2026-10-11 · Cities and counties are still barred from writing their own AI rules under the state law.
 - 2026-10-15 · The state law still keeps cities and counties from writing AI rules of their own.
+- 2026-10-18 · The preemption language is unchanged. Cities and counties still can't write AI rules of their own.
 
 ## Evidence
 

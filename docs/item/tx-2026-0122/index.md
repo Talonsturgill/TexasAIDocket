@@ -11,7 +11,7 @@ Texas A&M's College of Engineering published on September 4th, 2026 that the Nat
 - Public access: Write to the decider
 - Take part: https://news.engineering.tamu.edu/news/2026/09/04/nsf-backs-texas-am-tool-that-speeds-materials-discovery/
 
-- Last checked: 2026-10-15
+- Last checked: 2026-10-18
 
 ## Dates
 
@@ -37,6 +37,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-08 · The NSF award behind Texas A&M's tool for screening whether an alloy can exist is still active.
 - 2026-10-11 · Texas A&M's NSF award for screening whether an alloy can exist remains active.
 - 2026-10-15 · Texas A&M's award for screening whether an alloy can exist is still active.
+- 2026-10-18 · The Texas A&M award for screening whether an alloy can exist is still listed as active.
 
 ## Evidence
 

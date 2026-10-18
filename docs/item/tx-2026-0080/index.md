@@ -11,7 +11,7 @@ The National Science Foundation made an award to Prairie View A and M University
 - Public access: Write to the decider
 - Take part: https://api.nsf.gov/services/v1/awards/2602962.json?printFields=abstractText
 
-- Last checked: 2026-10-15
+- Last checked: 2026-10-18
 
 ## Dates
 
@@ -41,6 +41,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-08 · Prairie View A and M's NSF award for AI that divides up grid optimization is still active.
 - 2026-10-11 · Prairie View A and M's NSF award for splitting grid optimization across processor cores is still active.
 - 2026-10-15 · Prairie View A and M's grid optimization award still reads as active on the foundation's page.
+- 2026-10-18 · The foundation still lists Prairie View A and M's award for splitting grid optimization across cores as active.
 
 ## Evidence
 
