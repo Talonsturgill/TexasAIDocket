@@ -11,7 +11,7 @@ The National Science Foundation obligated a cooperative agreement to the Texas A
 - Public access: Write to the decider
 - Take part: https://www.nsf.gov/awardsearch/showAward?AWD_ID=2534344
 
-- Last checked: 2026-10-15
+- Last checked: 2026-10-18
 
 ## Dates
 
@@ -44,6 +44,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-08 · The NSF user facility at Texas A&M where robots and AI run the experiments is still funded as awarded.
 - 2026-10-11 · The NSF user facility at Texas A&M where robots and AI run experiments remains funded.
 - 2026-10-15 · The user facility at Texas A&M where robots and AI design experiments remains funded.
+- 2026-10-18 · The user facility at Texas A&M where robots and AI design alloy experiments is still funded.
 
 ## Evidence
 

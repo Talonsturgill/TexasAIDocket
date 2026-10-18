@@ -1,0 +1,72 @@
+<!doctype html>
+<!-- 2026-10-18, frame 3 of 9. Archetype FULL_BLEED. RENDERED through txthree.js in the deck's lastLight world. 43 kit windmills in five staggered rows on red loam, one for each Texas premises with a confirmed detection, their wheels against the warm seam through a long lens, the front row in the pool. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">43 premises.<br>17&nbsp;counties.</h1>
+<p class="dek" data-follow="28">The Texas Animal Health Commission counts 43 Texas premises with at least one confirmed detection, across 17 counties. One windmill is one premises. Drawn&nbsp;to&nbsp;illustrate.</p>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-18-brush.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "The commission's count", counter: "03 / 09", src: "c27 c28", fit: { min: 84, max: 116, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 34, far: 4000 });
+  /* THE FIGURE, from figures.json: premises_confirmed 43 windmills standing, one per premises, in five staggered rows */
+  const PREMISES = 43, ROWS = [[40, 5, 0.0], [60, 7, 0.5], [90, 9, 0.0], [135, 11, 0.5], [200, 11, 0.0]];
+  if (ROWS.reduce((a, r) => a + r[1], 0) !== PREMISES) throw new Error("rows and figure disagree");
+  const D2R = Math.PI / 180, kaz = -58 * D2R, key = [Math.sin(kaz), 0, Math.cos(kaz)], side = [-key[2], 0, key[0]];
+  const at = (d, s) => [key[0] * d + side[0] * s, 0, key[2] * d + side[2] * s];
+  const face = (o) => Math.atan2(key[0], key[2]) + (o || 0);
+  const put = (obj, d, s, rot) => { const p = at(d, s); obj.position.set(p[0], p[1], p[2]); obj.rotation.y = face(rot); TXT.add(R, obj); return obj; };
+  /* from a low eye every wheel stands above the horizon, nearer rows higher, so the five rows stack against the seam and the stagger keeps each disc clear */
+  /* every blade and vane one weathered steel, whatever the kit painted it */
+  const steelM = new THREE.MeshStandardMaterial({ color: 0x8a8d8f, metalness: 0.45, roughness: 0.62, side: THREE.DoubleSide });
+  const steel = (wm) => { wm.traverse(m => { if (m.isMesh && m.material && m.material.color) { const c = m.material.color; if (c.b > c.r * 1.02 || m.material.map || m.material.metalness > 0.3) m.material = steelM; } }); return wm; };
+  const mills = [], front = [];
+  ROWS.forEach(([d, n, off], ri) => {
+    const span = d * 0.44, step = span / n;
+    for (let i = 0; i < n; i++) {
+      const s = -span / 2 + step * (i + 0.5 + off * 0.5) - step * 0.25;
+      const m = put(steel(CH.degalv(THREE, K.make('windmill', { seed: 100 + ri * 20 + i, yaw: Math.PI + (i % 3 - 1) * 0.12 }))), d, s, 0);
+      mills.push(m); if (ri === 0) front.push(m);
+    }
+  });
+  [[320, -90, 6], [380, 80, 5.5]].forEach(([d, s, h], i) => put(K.make('mesquite', { height: h, seed: 21 + i }), d, s, i));
+  TXT.ground(R, { surface: 'dirt', size: 1400, seed: 23, tile: 3 });
+  const from = [0, 2, 0];
+  const horizon = [...at(3000, 0)]; horizon[1] = 2;
+  const look = CH.aim(THREE, R, TXT, from, horizon, 540, 1150, 34);
+  TXT.frame(R, { fov: 34, from, look });
+  TXT.scatter(R, { kind: 'grass', count: 900, area: [-90, -90, 90, 90], avoid: [[-6, -6, 6, 6]], seed: 24 });
+  TXT.sky(R);
+  CH.warm(R, 0.1);
+  { const spec = CH.rigSpec(W, 70, 4096); TXT.deckRig(R, spec, CH.rigOpts([...at(90, 0)], { distance: 120, shadowFar: 300 })); }
+  front.forEach(o => TXT.contact(R, o));
+  TXT.stage(R, mills, { behind: 0.15, depth: 1.0, poolInner: 1.05, poolOuter: 1.6 });
+  TXT.weather(R, { grime: 0.2, height: 0.5 });
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0.3, veil: 0.25, footWash: 0.5 });
+  CH.knock(cx, [".tx-site", ".src"], 0.54);
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

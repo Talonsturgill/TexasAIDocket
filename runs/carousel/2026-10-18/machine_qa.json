@@ -1,0 +1,129 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky",
+        "busy art under text (bg edge density 0.05) beneath 'c23 c2 c33' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
+      ],
+      "bands": [
+        0.3193,
+        0.1765,
+        0.5588
+      ],
+      "band_ratio": 1.5481
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [
+        "console error: TXBENCH: RELIEF {\"height_range\":60.60139193337554,\"materials\":5,\"cast_fraction\":0.5256093964334705,\"area\":1,\"render_ms\":11914.699999999255}",
+        "a drawn rule crosses the glyph band of 'EDINBURG' (canvas edge .pixels at 875,846 137x0.5) and COULD NOT BE MEASURED: too little of the strip is clear of type to read its colour against the paper. Judge it by eye rather than reading this as a pass",
+        "outside safe zone: 'EDINBURG' at 875,829 137x34 (margin 80px)"
+      ],
+      "bands": [
+        0.9118,
+        0.8088,
+        0.6562
+      ],
+      "band_ratio": 0.8348
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "bands": [
+        0.1702,
+        0.4979,
+        0.9118
+      ],
+      "band_ratio": 1.6757
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "bands": [
+        0.3067,
+        0.1912,
+        0.704
+      ],
+      "band_ratio": 1.6988
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "bands": [
+        0.271,
+        0.2479,
+        0.5423
+      ],
+      "band_ratio": 1.4968
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [
+        "top-loaded composition: the bottom third carries 79% of this slide's own average craft density (top 76% / mid 90% / bottom 58% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone",
+        "console error: TXBENCH: RELIEF {\"height_range\":33.891825599727675,\"materials\":2,\"cast_fraction\":0.26281772976680384,\"area\":1,\"render_ms\":6092}"
+      ],
+      "bands": [
+        0.7563,
+        0.8971,
+        0.5846
+      ],
+      "band_ratio": 0.7914
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "bands": [
+        0.3908,
+        0.2962,
+        0.7665
+      ],
+      "band_ratio": 1.5413
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky",
+        "busy art under text (bg edge density 0.10) beneath 'c5' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
+      ],
+      "bands": [
+        0.2878,
+        0.1639,
+        0.4706
+      ],
+      "band_ratio": 1.4947
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "bands": [
+        0.3088,
+        0.3845,
+        0.9173
+      ],
+      "band_ratio": 1.6553
+    }
+  ],
+  "fails": 0,
+  "warns": 14,
+  "verdict": "WARN"
+}

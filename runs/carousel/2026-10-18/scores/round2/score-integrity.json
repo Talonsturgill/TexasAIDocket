@@ -1,0 +1,84 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 7.0,
+   "why": "Slide 2 is a real measured relief, slide 7 has 36 Herefords with casts, slide 5 has 80 boxes and 20 empty slots, and the slide 4 aircraft is fixed. Slide 8's trailer is flat navy under a mid-tone sky, slide 6's stone sits in the grey middle with streaks in the carved walls, slide 9's rancher is a mannequin on flat loam, slide 7's lamp is a flat disc, slide 3 tangles at feed size, and slide 1 still shows stepped bands in the sky."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "One world, one accent as declared, barbed wire on 1, 4, 8 and 9, a working scale ladder. Slide 6 strobes between 5 and 7 and slide 2's relief is a declared different register."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 5.0,
+   "why": "Every numeral traces and the round 1 slide 7 hard fail is repaired. Slide 5's 'elsewhere in South Texas' places the plant where no claim does (hard fail). Slide 2's 'The rimmed counties are the infested zone' is looser than c29's 'parts of' those counties. The cover gives agency to the AI where c2 says USDA uses insights from the models. Slide 6's dek drops 'helped' from the Keys clause. Slide 5 prints a July 31st figure in the present tense."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 8.0,
+   "why": "What the fly does, where it landed, how big it is, who aims the response, where the flies come from and what to do. No dated decision or deciding body for the AI use."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "The cover earns the swipe, slide 2 pays at once and the turn at 8 lands. Slide 6 could move or go; slide 7 belongs beside slide 4."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "Real Texan lines and house rules hold. Slide 6's hook and slide 4's dek are flat."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "Distinct from the last four decks; lastLight again three decks after no. 51 and Herefords at last light echo no. 49."
+  }
+ ],
+ "weighted_score": 6.97,
+ "hard_fails": [
+  "Slide 5 dek 'A plant planned elsewhere in South Texas is projected at 300 million.' presents an unverified location as verified. c21's quote says only 'in Southern Texas'. Repair: delete 'elsewhere'."
+ ],
+ "ship": false,
+ "one_sentence_fix": "Make every location word trace to a claim: cut 'elsewhere' from slide 5 and say on slide 2 that the zone lies in parts of the rimmed counties.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 8,
+   "problem": "Flat-shaded navy slabs under a wide mid-tone sky.",
+   "fix": "Brushed aluminium slats taking a rim from the seam, the seam pulled down so the sky above goes near black."
+  },
+  {
+   "slide": 6,
+   "problem": "Grey-middle stone, streaked carved walls, dead lower third.",
+   "fix": "Stone near black outside a narrow band across the numerals, clean V-cut wall normals."
+  },
+  {
+   "slide": 9,
+   "problem": "Kit mannequin on flat mid-brown loam filling the lower half.",
+   "fix": "Tighten the pool to the latch and near posts and let the loam fall to black."
+  },
+  {
+   "slide": 7,
+   "problem": "Flat unlit lamp disc and flat rotor discs.",
+   "fix": "An emissive lens in a housing with bloom and motion-blurred blades."
+  },
+  {
+   "slide": 3,
+   "problem": "Front towers cross back-row wheels into a tangle.",
+   "fix": "Spread the rows and cut the back rows' towers to silhouettes."
+  },
+  {
+   "slide": 5,
+   "problem": "The worker is cut by the right edge.",
+   "fix": "Move the worker inward to the block's near right corner."
+  }
+ ]
+}

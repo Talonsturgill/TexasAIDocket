@@ -10,7 +10,7 @@ The National Telecommunications and Information Administration submitted its Int
 - Comment closes: 2026-11-09
 - Take part: https://www.federalregister.gov/documents/2026/09/09/2026-18303/agency-information-collection-activities-submission-to-the-office-of-management-and-budget-omb-for
 
-- Last checked: 2026-10-15
+- Last checked: 2026-10-18
 
 ## Dates
 
@@ -33,6 +33,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-08 · The federal survey office is still taking comment on how to measure household AI use, through November 9th.
 - 2026-10-11 · The survey office is still taking comment on measuring household AI use. The window closes November 9th.
 - 2026-10-15 · The survey office is still taking comment on measuring household AI use.
+- 2026-10-18 · The survey office is still taking comment on whether to measure household AI use.
 
 ## Evidence
 

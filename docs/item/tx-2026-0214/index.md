@@ -9,7 +9,7 @@ The Federal Motor Carrier Safety Administration granted Aurora and other carrier
 - Public access: Write to the decider
 - Take part: https://www.regulations.gov/docket/FMCSA-2026-0958
 
-- Last checked: 2026-10-15
+- Last checked: 2026-10-18
 
 ## Dates
 
@@ -23,6 +23,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 
 - 2026-10-12 · Admitted on the Federal Register notice granting the exemption. It took effect October 7th and runs to October 7th, 2031.
 - 2026-10-15 · The federal notice letting automated trucks use a cab beacon instead of warning triangles still reads as published.
+- 2026-10-18 · The federal notice letting driverless trucks use a cab beacon instead of warning triangles reads as published.
 
 ## Evidence
 

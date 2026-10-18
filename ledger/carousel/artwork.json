@@ -3322,6 +3322,72 @@
     "hex": "#05040A",
     "note": "The deck's declared ground behind the render."
    }
+  },
+  {
+   "date": "2026-10-18",
+   "carousel_no": 54,
+   "written_from": "deck_coherence's median L* per frame at 432 px off the final renders, layout_check's accent share, by out/2026-10-18/update_ledgers.py.",
+   "register": "SPATIAL SCENES in TXT's lastLight world with two material reliefs. Chassis assets/js/deck/2026-10-18-brush.js: key az -58 el 8, a warm rim, a capped sky image light, six chassis models (screwworm fly, fly trap, release aircraft, release box, survey drone, stock trailer), a galvanized override for kit metal that mirrored the navy sky.",
+   "structural_laws": [
+    "KIT METAL MIRRORS THE NIGHT SKY AS THE ACCENT. A high metalness blade or tank under a navy sky reads bluebonnet; every kit metal in a lastLight frame is overridden to a rough half metal.",
+    "A TXT.stage BEHIND OR DEPTH GIVEN IN METRES PUTS THE FOG A KILOMETRE AWAY. Both are fractions of the subject's distance; passing 10 and 30 left a lit mid tone band behind the type.",
+    "A PAINTED PLANE ROTATED BY -yaw AFTER ITS -90 DEGREE TILT IS MIRRORED. Slot paint must take rotation.z = +yaw to align with boxes turned by rotation.y = yaw, or the outline corners open.",
+    "A TANK SEEN FROM A LOW EYE HAS NO WATER. Two attempts at a water surface failed review; the rim hiding the water and a drinking cow carried the water point.",
+    "A CLOSE-UP ON A KIT PERSON READS AS A MANNEQUIN. The close passed only when the camera stood back and the whole gate, both posts and the rancher read as one unit."
+   ],
+   "techniques": [
+    "a windmill water point backlit on the seam from behind barbed wire, Herefords along the fence, a release aircraft low on the left",
+    "a cast caliche relief of southwest Texas with the zone counties as galvanized rims, Zavala raised in red loam and enamel pins at Kerrville and Edinburg",
+    "43 windmills in five staggered rows from a low eye, every wheel against the seam",
+    "a worker beside a T-post with a bluebonnet lidded trap, a release aircraft overhead",
+    "80 kraft boxes in a 100 slot painted block with three more blocks receding for the 300 plant, a worker for size",
+    "1966 V-cut in Hill Country limestone under one raking band",
+    "36 Herefords round a stock tank from over a survey drone's shoulder, its lamp the accent",
+    "a pickup towing a slatted stock trailer down a caliche road into the seam",
+    "a shut galvanized gate with a rancher at the latch post and a Hereford beyond the rails"
+   ],
+   "value": {
+    "per_frame_median_L": [
+     17.5,
+     9.6,
+     10.3,
+     4.7,
+     4.0,
+     7.8,
+     4.0,
+     11.9,
+     5.9
+    ],
+    "deck_median_L": 7.8,
+    "max_adjacent_delta": 7.9,
+    "mean_adjacent_delta": 4.55,
+    "note": "Measured by deck_coherence's median_lstar at 432 px off the final renders. A staged last light deck."
+   },
+   "accent": {
+    "hex": "#4E5FA8",
+    "name": "bluebonnet",
+    "frames_above_floor": [
+     2,
+     4,
+     7
+    ],
+    "share": [
+     0.0,
+     0.0021,
+     0.0,
+     0.0022,
+     0.0003,
+     0.0,
+     0.0028,
+     0.0,
+     0.0
+    ],
+    "note": "What the response sends: the pins, the trap lid, the tape on the release boxes, the drone's lamp."
+   },
+   "ground": {
+    "hex": "#07070C",
+    "note": "The lastLight world's dark sky behind the stage."
+   }
   }
  ]
 }

@@ -1,0 +1,82 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.5,
+   "why": "Every frame is a real render in one staged last-light world. Strong on 5, 8 and 2. On 7 the lamp is still a flat disc with flat rotors. On 9 and 4 kit mannequins stand full length beside an oversized trap and on flat loam. On 1 there is banding and a grey-brown middle band. Frame 3's towers tangle through the back rows. Frame 6 sits in the grey middle."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "One last-light seam keyed from the same side, barbed wire 1, 4, 8, 9, a disciplined bluebonnet accent, a legible scale ladder. Frame 6 breaks the value arc between 5 and 7."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.5,
+   "why": "Every numeral traces and the round 2 hard fail is gone. Slide 5's 'being built' carries a tense c21's 'partnering to build' does not, and the drone figures rest on KRGV alone. Slide 7 and the caption scope no case to the animals observed."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 8.0,
+   "why": "What happened, who decides and what to do, with the number. The 12 restricted counties are unlabelled rims and 'shows signs' is never described."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "The cover earns the swipe, 2 pays at once, 8 turns and 9 lands. Frame 6 is the movable frame."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.8,
+   "why": "On register and specific, honest about limits. Slide 2's zone sentence reads like a legend key."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "Fresh against the last three; the counted-units device and the chassis structure recur."
+  }
+ ],
+ "weighted_score": 7.39,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Label the 12 movement-restriction counties by name on slide 2's rims so a Texan can see whether their county is under restriction.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 7,
+   "problem": "Flat unlit lamp disc and flat rotor ellipses, named by all three judges in round 2.",
+   "fix": "An emissive lens in a housing with bloom and a cool cone on the nearest cattle, motion-blurred blades."
+  },
+  {
+   "slide": 9,
+   "problem": "A full-length kit rancher and a toy Hereford on flat mid-brown loam.",
+   "fix": "Reframe over the rancher's shoulder at the latch and let the loam beyond fall to black."
+  },
+  {
+   "slide": 4,
+   "problem": "A centred kit mannequin beside an oversized trap.",
+   "fix": "The trap at true size in the near foreground as the lit focal, the worker a backlit silhouette."
+  },
+  {
+   "slide": 1,
+   "problem": "Sky banding and a grey-brown middle band with a thin windmill.",
+   "fix": "Dither the sky and move the camera closer so the wheel and tank own the right half."
+  },
+  {
+   "slide": 3,
+   "problem": "Front towers tangle through the back-row wheels.",
+   "fix": "Raise the eye, double the row spacing and reduce back rows to wheel silhouettes."
+  },
+  {
+   "slide": 6,
+   "problem": "Grey-middle stone with bedding lines across the cut floors.",
+   "fix": "Darken the stone outside a narrow band and mask the bedding inside the cuts."
+  }
+ ]
+}

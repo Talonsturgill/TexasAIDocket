@@ -1,0 +1,85 @@
+<!doctype html>
+<!-- 2026-10-18, frame 9 of 9. Archetype FIGURE_SCALE. RENDERED through txthree.js in the deck's lastLight world. A shut galvanized ranch gate across the end of a caliche road with a chain latch, a rancher at the latch post three quarters away, a Hereford beyond the rails, lit from the camera's side. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">Keep it home.<br>Call it in.</h1>
+<p class="dek" data-follow="26">Never move an animal that shows signs, USDA says. The Texas Animal Health Commission asks for a report within 24 hours of suspicion, to a region office or its veterinarian on call at 1-800-550-8242. Drawn&nbsp;to&nbsp;illustrate.</p>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-18-brush.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "If you see signs", counter: "09 / 09", src: "c9 c30 c31", fit: { min: 84, max: 110, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 34, far: 3000 });
+  /* the camera stands on the road with the key behind it and to the left, so the rancher and the gate are lit from the camera's side and the rails rake */
+  const D2R = Math.PI / 180, kaz = -58 * D2R, fa = kaz + Math.PI - 55 * D2R, F = [Math.sin(fa), 0, Math.cos(fa)], Rt = [-F[2], 0, F[0]];
+  const at = (d, s) => [F[0] * d + Rt[0] * s, 0, F[2] * d + Rt[2] * s];
+  const across = Math.atan2(-Rt[2], Rt[0]), along = Math.atan2(F[0], F[2]);
+  const put = (obj, d, s, rot) => { const p = at(d, s); obj.position.set(p[0], p[1], p[2]); obj.rotation.y = rot; TXT.add(R, obj); return obj; };
+  const GATE_D = 6.2;
+  const gate = put(K.make('ranch_gate', { w: 3.66, rails: 5, finish: 'galvanized', open: 0, fence: true, seed: 3 }), GATE_D, 0.6, across);
+  /* the road runs up to the gate and stops there */
+  { const tex = CH.canvasTex(THREE, 'caliche12', 512, 2048, function (x, w, h) {
+      let sd = 9; const rnd = () => (sd = (sd * 16807) % 2147483647) / 2147483647;
+      x.fillStyle = '#c9b99a'; x.fillRect(0, 0, w, h);
+      for (let i = 0; i < 26000; i++) { const v = rnd(); x.fillStyle = v < 0.5 ? 'rgba(70,58,44,0.18)' : 'rgba(220,208,186,0.14)'; x.fillRect(rnd() * w, rnd() * h, 1 + rnd() * 3, 1 + rnd() * 3); }
+      [0.27, 0.73].forEach(function (c) { x.fillStyle = 'rgba(240,230,210,0.35)'; x.fillRect((c - 0.13) * w, 0, 0.03 * w, h); x.fillRect((c + 0.1) * w, 0, 0.03 * w, h); const g = x.createLinearGradient((c - 0.09) * w, 0, (c + 0.09) * w, 0);
+        g.addColorStop(0, 'rgba(60,50,38,0)'); g.addColorStop(0.5, 'rgba(60,50,38,0.55)'); g.addColorStop(1, 'rgba(60,50,38,0)'); x.fillStyle = g; x.fillRect((c - 0.09) * w, 0, 0.18 * w, h);
+      });
+    });
+    const road = new THREE.Mesh(new THREE.PlaneGeometry(5.4, 25.6), new THREE.MeshStandardMaterial({ map: tex, alphaMap: CH.canvasTex(THREE, 'roadEdge9', 256, 256, function (x, w, h) { const g = x.createLinearGradient(0, 0, w, 0); g.addColorStop(0, '#000'); g.addColorStop(0.16, '#fff'); g.addColorStop(0.84, '#fff'); g.addColorStop(1, '#000'); x.fillStyle = g; x.fillRect(0, 0, w, h); const v = x.createLinearGradient(0, 0, 0, h); v.addColorStop(0, 'rgba(0,0,0,1)'); v.addColorStop(0.05, 'rgba(0,0,0,0)'); x.fillStyle = v; x.fillRect(0, 0, w, h); }), transparent: true, depthWrite: false, roughness: 0.96, metalness: 0 }));
+    road.rotation.x = -Math.PI / 2; road.receiveShadow = true; road.userData.txPool = true;
+    const g = new THREE.Group(); g.add(road); const p = at(GATE_D - 11.6, 0.6); g.position.set(p[0], 0.012, p[2]); g.rotation.y = along; R.scene.add(g); }
+  /* the rancher at the latch post, three quarters away, a hand toward the top rail */
+  const rancher = put(K.make('person', { role: 'resident', pose: 'read', hat: 'cowboy', build: 'female', trousers: 0x34332d, shirt: 0x8a6a48, seed: 11 }), GATE_D - 0.43, 2.22, along - 0.61);
+  /* the chain, modelled at hand scale: a loop round the latch post and the gate's end, the tail drawn back to her right hand, bright steel lit by one warm point so it is the frame's brightest highlight */
+  { const chainM = new THREE.MeshStandardMaterial({ color: 0x9fa2a2, metalness: 0.6, roughness: 0.34 }), cg = new THREE.Group(), cxp = 3.66 / 2 + 0.1, H = 0.87, pts = [];
+    for (let k = 0; k < 18; k++) { const ph = k / 18 * Math.PI * 2; pts.push([cxp - 0.07 + 0.12 * Math.cos(ph), H + 0.015 * Math.sin(ph * 2), 0.075 * Math.sin(ph)]); }
+    for (let k = 1; k <= 5; k++) { const t = k / 5; pts.push([cxp - 0.19 - 0.02 * t, H - 0.16 * t, 0.06 + 0.05 * t]); }
+    pts.forEach((q, k) => { const L = new THREE.Mesh(new THREE.TorusGeometry(0.05, 0.013, 10, 18), chainM); L.scale.set(1, 1.5, 1); L.position.set(q[0], q[1], q[2]); L.rotation.set(k % 2 ? Math.PI / 2 : 0, k * 0.35, 1.1); L.castShadow = true; cg.add(L); });
+    gate.add(cg);
+    /* one small warm lamp on the chain so the latch is the brightest steel in the pool */
+  }
+  /* beyond the rails: one Hereford at fifteen metres past the gate, the herd far off, mesquite */
+  const cow = put(K.make('cattle', { breed: 'hereford', seed: 41 }), GATE_D + 17, -0.6, along + 1.9);
+  [[GATE_D + 46, -14, 0.4], [GATE_D + 54, -24, 2.0]].forEach(([d, s, r], i) => put(K.make('cattle', { breed: 'hereford', seed: 50 + i }), d, s, r));
+  [[GATE_D + 34, 15, 5], [GATE_D + 64, -26, 5.5]].forEach(([d, s, h], i) => put(K.make('mesquite', { height: h, seed: 7 + i }), d, s, i));
+  TXT.ground(R, { surface: 'dirt', size: 900, seed: 31 });
+  const from = [...at(-5.5, -0.3)]; from[1] = 2.4;
+  const target = [...at(GATE_D, 1.1)]; target[1] = 0.85;
+  const look = CH.aim(THREE, R, TXT, from, target, 560, 900, 34);
+  TXT.frame(R, { fov: 34, from, look });
+  TXT.scatter(R, { kind: 'grass', count: 1800, area: [-60, -60, 60, 60], avoid: [[-6, -6, 6, 6]], seed: 12 });
+  TXT.sky(R);
+  CH.warm(R, 0.25);
+  { const spec = CH.rigSpec(W, 20, 4096); TXT.deckRig(R, spec, CH.rigOpts(target, { distance: 50, shadowFar: 140 })); }
+  rancher.traverse(m => { if (m.isMesh) m.castShadow = false; });
+  [gate, rancher, cow].forEach(o => TXT.contact(R, o));
+  TXT.stage(R, [gate, rancher], { behind: 0.2, depth: 1.5, poolInner: 7.5, poolOuter: 13 });
+  TXT.weather(R, { grime: 0.2, height: 0.5 });
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0.34, veil: 0.1, footWash: 0.22 });
+  CH.knock(cx, [".tx-site", ".src"], 0.5);
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

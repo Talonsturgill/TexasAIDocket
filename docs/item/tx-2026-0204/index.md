@@ -11,7 +11,7 @@ Saronic Technologies broke ground on September 30th on Port Alpha. It is a shipy
 - Public access: Write to the decider
 - Take part: https://www.cameroncountytx.gov/commissioners-court-agendas/
 
-- Last checked: 2026-10-15
+- Last checked: 2026-10-18
 
 ## Dates
 
@@ -24,6 +24,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-07 · Admitted to the record on Saronic's own release of the groundbreaking. The abatement Cameron County approved in June rests on the Tribune's account, because the county's agenda is a scanned file.
 - 2026-10-10 · Saronic's account of breaking ground on Port Alpha in Brownsville reads as published.
 - 2026-10-15 · Saronic's account of breaking ground on Port Alpha in Brownsville reads as published.
+- 2026-10-18 · Saronic's account of breaking ground on Port Alpha at the Port of Brownsville reads as published.
 
 ## Evidence
 

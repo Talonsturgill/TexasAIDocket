@@ -1,0 +1,89 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.5,
+   "why": "Every frame is rendered and dark. Frames 2, 5, 6 and 7 meet the stage. Slide 4's focal is a centred kit mannequin beside an oversized translucent trap that reads as a lantern. Slide 8's slats are flat navy slabs under a grey-brown upper gradient. Slide 9's rancher is a kit mannequin with string hair and a toy cow. Slide 7's lamp is still a flat disc and the rotors flat ellipses. Slide 3's front towers cover second-row wheels and all 43 are clones at one yaw. The aircraft on 4 moved and the stone on 6 darkened since round 1."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "One warm seam low in a near-black sky, red loam and galvanized steel, bluebonnet only for what the response sends, the fence motif across 1, 4, 8 and 9, a working scale ladder and no strobe. Slide 5's navy sky and slide 6's stone face sit slightly outside."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 5.5,
+   "why": "Most figures trace, slide 7's repaired hook matches c11, and the 12 rims on slide 2 match c29 with Zavala outside them. Slide 5's 'A plant planned elsewhere in South Texas' asserts a location no claim supports: c21 says only Southern Texas."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 8.0,
+   "why": "What happened, who decides, where, and what to do with a deadline and a number. How the model's choice reaches a specific ranch is stated, not shown."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "The cover earns the swipe, slide 2 pays at once, the turn on 8 lands. Slide 6 could move; 2 and 3 are back-to-back scale frames."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "Ranch-country lines and named places, honest register. Some institutional lines are flat."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "Fresh topic and opening, but no. 49 was also last light on Texas ranch ground with kit Herefords and a person at a ranch structure, and lastLight carried nos. 46, 48 and 51."
+  }
+ ],
+ "weighted_score": 6.86,
+ "hard_fails": [
+  "Slide 5 dek 'A plant planned elsewhere in South Texas is projected at 300 million.' presents an unverified location as fact. c21 says only 'in Southern Texas'. Repair: 'A production plant being built in South Texas is projected at 300 million.'"
+ ],
+ "ship": false,
+ "one_sentence_fix": "Cut 'elsewhere' from slide 5, then rebuild frames 4, 8 and 9 so no kit mannequin or flat-shaded slab carries the focal.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 4,
+   "problem": "A centred kit mannequin beside an oversized trap that reads as a lantern.",
+   "fix": "Scale the trap to true size on the post as the lit focal and make the worker a seam-backlit silhouette behind it."
+  },
+  {
+   "slide": 8,
+   "problem": "Flat navy slats with no aluminium response and a grey-brown upper gradient.",
+   "fix": "Brushed metal slats taking a warm rim off a seam pulled down to the horizon."
+  },
+  {
+   "slide": 9,
+   "problem": "A kit mannequin with string hair whose hands stop short of the chain, and a toy cow on flat loam.",
+   "fix": "Backlight the rancher to a silhouette with only the hands and chain lit, the Hereford pushed back to a seam silhouette."
+  },
+  {
+   "slide": 3,
+   "problem": "Front towers cover second-row wheels and the 43 are clones at one yaw.",
+   "fix": "Raise the eye, double the row spacing and jitter yaw."
+  },
+  {
+   "slide": 7,
+   "problem": "The lamp is a flat disc and the rotors flat ellipses.",
+   "fix": "An emissive lens in a housing with a little bloom and blurred blade discs."
+  },
+  {
+   "slide": 6,
+   "problem": "Bedding lines run across the cut floors and the walls carry terraced streaks.",
+   "fix": "Mask the bedding lines inside the cut and raise the height field's resolution under the glyphs."
+  },
+  {
+   "slide": 1,
+   "problem": "A thin windmill owns little mass and the middle third is a grey-brown sky.",
+   "fix": "Move the camera closer so the wheel and tank own the right half."
+  }
+ ]
+}

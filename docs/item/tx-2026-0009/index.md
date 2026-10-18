@@ -8,7 +8,7 @@ The Department of Information Resources is required to establish a program letti
 - Status: pending
 - Public access: Write to the decider
 
-- Last checked: 2026-10-15
+- Last checked: 2026-10-18
 
 ## Dates
 
@@ -40,6 +40,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-08 · The Department of Information Resources is still under the statute's instruction to run a regulatory sandbox for state agencies.
 - 2026-10-11 · The law still tells the Department of Information Resources to run an AI sandbox for state agencies.
 - 2026-10-15 · The statute still assigns the AI sandbox for state agencies to the Department of Information Resources.
+- 2026-10-18 · The sandbox duty still sits with the Department of Information Resources in the statute's text.
 
 ## Evidence
 

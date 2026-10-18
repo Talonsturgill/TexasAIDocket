@@ -1,0 +1,78 @@
+<!doctype html>
+<!-- 2026-10-18, frame 1 of 9. Archetype FULL_BLEED. RENDERED through txthree.js in the deck's lastLight world. A South Texas water point at last light seen low from behind a barbed wire fence, the kit windmill and stock tank with Herefords along the fence, backlit on the warm seam, a release aircraft crossing the sky. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">AI picks where Texas fights this fly</h1>
+<p class="dek" data-follow="28">New World screwworm lays its eggs in open wounds. USDA uses AI models to choose where, when and how many sterile flies to release against it. Drawn&nbsp;to&nbsp;illustrate.</p>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-18-brush.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "New World screwworm", counter: "01 / 09", src: "c23 c2 c33", fit: { min: 84, max: 108, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 30, near: 0.002, far: 3000 });
+  /* THE WIRE runs across the view, perpendicular to the line toward the seam, two twisted strands of
+   * galvanized wire at true gauge with a four point barb every 12.7 cm. The fly stands on it at 1.2 m. */
+  const D2R = Math.PI / 180, kaz = -58 * D2R, key = [Math.sin(kaz), 0, Math.cos(kaz)], side = [-key[2], 0, key[0]];
+  /* the world is laid out along the line toward the seam: d metres toward the key, s metres across it */
+  const at = (d, s) => [key[0] * d + side[0] * s, 0, key[2] * d + side[2] * s];
+  const face = (o) => Math.atan2(key[0], key[2]) + (o || 0);
+  const put = (obj, d, s, rot) => { const p = at(d, s); obj.position.set(p[0], p[1], p[2]); obj.rotation.y = face(rot); TXT.add(R, obj); return obj; };
+  /* the fence two metres in front of the camera, running across the view */
+  const fence = put(K.make('barbed_wire_fence', { length: 80, strands: 4, spacing: 3.6, seed: 2 }), 7.5, 5.3, 0);
+  /* the water point: the windmill on the left third, its tank at the foot, the herd along the fence beyond */
+  const wm = put(CH.degalv(THREE, K.make('windmill', { seed: 4 })), 40, 6.2, 1.9);
+  /* every blade the same weathered steel, whatever the kit painted it */
+  { const steel = new THREE.MeshStandardMaterial({ color: 0x8a8d8f, metalness: 0.45, roughness: 0.62, side: THREE.DoubleSide }); wm.traverse(m => { if (m.isMesh && m.material && m.material.color) { const c = m.material.color; if (c.b > c.r * 1.02 || (m.material.map && m.material.metalness > 0.3)) m.material = steel; } }); }
+  const tank = put(CH.degalv(THREE, K.make('stock_tank', { water: 0.8, inlet: true })), 19, 2.6, 0);
+  /* the water in the tank holds the seam: a still disc just under the rim, lit by nothing but the sky it faces */
+  /* the water stays under the tank's rim from this low eye; the windmill and the drinking cow carry the water point */
+  const herd = [];
+  [[27, -7.2, 1.2], [30, -3.0, -0.4], [26, 4.8, 2.0], [34, 1.2, 0.3], [29, 8.6, -1.1], [38, -0.8, 1.6]].forEach(([d, s, r], i) => herd.push(put(K.make('cattle', { breed: 'hereford', seed: 30 + i }), d, s, r)));
+  [[44, -22, 5.5], [70, -2, 5]].forEach(([d, s, h], i) => put(K.make('mesquite', { height: h, seed: 4 + i }), d, s, i));
+  /* the release aircraft crossing the seam, high and far, drawn to no maker's design */
+  { const ac = K.make('release_aircraft', {}); const p = at(170, -34); ac.position.set(p[0], 19, p[2]); ac.rotation.y = face(-Math.PI / 2 + 0.25); ac.rotation.z = 0.05; R.scene.add(ac);
+    /* a silhouette against the seam, so the stage fog never lightens it */
+    ac.traverse(m => { if (m.isMesh && m.material) { m.material = m.material.clone(); m.material.fog = false; } }); }
+  TXT.ground(R, { surface: 'dirt', size: 900, seed: 18, tile: 3 });
+  /* the camera: low behind the fence, looking into the seam */
+  const from = [0, 1.1, 0];
+  const look = CH.aim(THREE, R, TXT, from, [...at(30, 0)], 540, 1150, 34);
+  TXT.frame(R, { fov: 34, from, look });
+  TXT.scatter(R, { kind: 'grass', count: 1400, area: [-40, -40, 40, 40], avoid: [[-12, -12, 12, 12]], seed: 9 });
+  TXT.sky(R);
+  CH.warm(R, 0.15);
+  { const spec = CH.rigSpec(W, 60, 4096); TXT.deckRig(R, spec, CH.rigOpts([...at(22, 2)], { distance: 80, shadowFar: 200 })); }
+  [wm, tank, ...herd].forEach(o => TXT.contact(R, o));
+  TXT.stage(R, [tank, wm, ...herd], { behind: 0.35, depth: 1.6, poolInner: 6, poolOuter: 16 });
+  TXT.weather(R, { grime: 0.2, height: 0.5 });
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  /* the sky ramp is dithered by one level before the grade, so the seam falls off with no visible steps */
+  { const id = cx.getImageData(0, 0, cx.canvas.width, Math.round(cx.canvas.height * 0.8)), a = id.data; let sd = 17;
+    for (let i = 0; i < a.length; i += 4) { sd = (sd * 16807) % 2147483647; const n = (sd / 2147483647 - 0.5) * 3; a[i] += n; a[i + 1] += n; a[i + 2] += n; }
+    cx.putImageData(id, 0, 0); }
+  CH.post(cx, { a: 0.3, veil: 0.25, footWash: 0.5 });
+  CH.knock(cx, [".tx-site", ".src"], 0.54);
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

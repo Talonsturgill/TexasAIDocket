@@ -1,0 +1,225 @@
+{
+  "version": 2,
+  "selected": [
+    1,
+    5,
+    9
+  ],
+  "inputs": {
+    "slides/slide-01.html": "2adfbce6e84bda0a5708e1bf8df0f36e99e41155cef782b28f3c44ec3f138b96",
+    "render/slide-01.png": "a0cc1db4a74b3ad1cace0a885c397f1aac711a804666c0b238fe36a4dcba7d2c",
+    "assets/js/deck/2026-10-18-brush.js": "86a8a4cdff0f9a4ad32d03744b8ed4d27c00f1604bb578792c6da4440b27dde0",
+    "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+    "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+    "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+    "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+    "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+    "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+    "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+    "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+    "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+    "slides/slide-05.html": "82ac43177068f0f0c3e86f8c518df5fc798d88ac961470bf13aad4e2893d5c65",
+    "render/slide-05.png": "e490a28d4d0c9b91d0a8173ba71a701a86289c13d6ed843ccacbb29b55cce9b3",
+    "slides/slide-09.html": "9accbd2572d97c09f348f7de90559e82a20e8662cd367c98e72423bdbfdf26fc",
+    "render/slide-09.png": "a3ae7286cb517bf8d52bf0347ed7b25f3102e512c2d0e39a3eafa0d8100e0e60"
+  },
+  "value_measurements": [
+    {
+      "frame": "slide-01.png",
+      "median_L": 16.2,
+      "mid": 0.284,
+      "dark": 0.474
+    },
+    {
+      "frame": "slide-05.png",
+      "median_L": 2.9,
+      "mid": 0.078,
+      "dark": 0.833
+    },
+    {
+      "frame": "slide-09.png",
+      "median_L": 5.1,
+      "mid": 0.071,
+      "dark": 0.661
+    }
+  ],
+  "review": {
+    "decision": "accept",
+    "inputs": {
+      "slides/slide-01.html": "2adfbce6e84bda0a5708e1bf8df0f36e99e41155cef782b28f3c44ec3f138b96",
+      "render/slide-01.png": "a0cc1db4a74b3ad1cace0a885c397f1aac711a804666c0b238fe36a4dcba7d2c",
+      "assets/js/deck/2026-10-18-brush.js": "86a8a4cdff0f9a4ad32d03744b8ed4d27c00f1604bb578792c6da4440b27dde0",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+      "slides/slide-05.html": "82ac43177068f0f0c3e86f8c518df5fc798d88ac961470bf13aad4e2893d5c65",
+      "render/slide-05.png": "e490a28d4d0c9b91d0a8173ba71a701a86289c13d6ed843ccacbb29b55cce9b3",
+      "slides/slide-09.html": "9accbd2572d97c09f348f7de90559e82a20e8662cd367c98e72423bdbfdf26fc",
+      "render/slide-09.png": "a3ae7286cb517bf8d52bf0347ed7b25f3102e512c2d0e39a3eafa0d8100e0e60"
+    },
+    "frames": [
+      {
+        "slide": 1,
+        "role": "cover",
+        "subject": "A backlit galvanized lattice windmill on the right third with its stock tank and a drinking Hereford, a herd along a barbed wire fence on lit loam with long casts, a release aircraft low at left dropping a canister.",
+        "visual_consequence": "Working ranch country at last light with an aircraft dropping something over the cattle, a real place with ground, contact and casts.",
+        "weakness": "The banding repair holds. The mesquite's top leaf cards are lit flat white and the rear cattle's hind legs carry thin white streaks. Neither reads at feed size.",
+        "repair": "none required",
+        "encoding_reads": true,
+        "dominant_subject_finished": true,
+        "feed_legible": true,
+        "inputs": {
+          "slides/slide-01.html": "2adfbce6e84bda0a5708e1bf8df0f36e99e41155cef782b28f3c44ec3f138b96",
+          "render/slide-01.png": "a0cc1db4a74b3ad1cace0a885c397f1aac711a804666c0b238fe36a4dcba7d2c",
+          "assets/js/deck/2026-10-18-brush.js": "86a8a4cdff0f9a4ad32d03744b8ed4d27c00f1604bb578792c6da4440b27dde0",
+          "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+          "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+          "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+          "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+          "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+          "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+          "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+          "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+          "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de"
+        }
+      },
+      {
+        "slide": 5,
+        "role": "evidence",
+        "subject": "80 kraft boxes 8 rows by 10 in a 10 by 10 painted slot grid with the two near rows empty, three more slot rectangles of the same size receding behind, a worker at the near right corner with contact and a cast.",
+        "visual_consequence": "A mostly full block with two empty rows in front of three empty blocks of the same size: more than 80 of a possible 100 now and three times the full block projected, at physical scale.",
+        "weakness": "The worker repair holds, inside the frame edge with contact. The far outlines are uniform pale lines, the apron beyond falls near black, and the box faces carry little board texture. None defeats the encoding at feed size.",
+        "repair": "none required",
+        "encoding_reads": true,
+        "dominant_subject_finished": true,
+        "feed_legible": true,
+        "inputs": {
+          "assets/js/deck/2026-10-18-brush.js": "86a8a4cdff0f9a4ad32d03744b8ed4d27c00f1604bb578792c6da4440b27dde0",
+          "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+          "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+          "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+          "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+          "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+          "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+          "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+          "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+          "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+          "slides/slide-05.html": "82ac43177068f0f0c3e86f8c518df5fc798d88ac961470bf13aad4e2893d5c65",
+          "render/slide-05.png": "e490a28d4d0c9b91d0a8173ba71a701a86289c13d6ed843ccacbb29b55cce9b3"
+        }
+      },
+      {
+        "slide": 9,
+        "role": "close",
+        "subject": "A shut galvanized tube ranch gate between two posts in a tight pool, a rancher at the latch post, a Hereford behind the rails, the caliche road running up to the gate.",
+        "visual_consequence": "An animal held behind a closed gate, a person at the latch and an empty road, the instruction not to move the animal staged as one physical barrier.",
+        "weakness": "The gate is finished. The chain is a lumpy knot, the rancher's hair renders as strings, the Hereford is a smooth mass, and the loam streaks just behind the gate. None reads at feed size.",
+        "repair": "none required",
+        "encoding_reads": true,
+        "dominant_subject_finished": true,
+        "feed_legible": true,
+        "inputs": {
+          "assets/js/deck/2026-10-18-brush.js": "86a8a4cdff0f9a4ad32d03744b8ed4d27c00f1604bb578792c6da4440b27dde0",
+          "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+          "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+          "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+          "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+          "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+          "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+          "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+          "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+          "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+          "slides/slide-09.html": "9accbd2572d97c09f348f7de90559e82a20e8662cd367c98e72423bdbfdf26fc",
+          "render/slide-09.png": "a3ae7286cb517bf8d52bf0347ed7b25f3102e512c2d0e39a3eafa0d8100e0e60"
+        }
+      }
+    ]
+  },
+  "plan": {
+    "hardest_frame": 5,
+    "visual_argument": "Every count is drawn as units a reader can count at one stated scale, a box for a million flies a week, a windmill for a premises, an animal for a thousand seen, while the camera climbs a scale ladder from a fly on a fence wire to a region and back down to a trailer and a gate the models can't see.",
+    "build_risk": "The Edinburg apron must read as a place, 80 boxes in 100 painted slots with a 300 outline at the same pitch and a worker for size, never as bars. The cover's fly is the hardest single model, built in the chassis from primitives at true size.",
+    "distinct_from_recent": "No. 53 was nine material reliefs of a tissue section with type in a top band every frame. This deck stages seven exterior scenes and two reliefs with the type moving. No. 52 was nightSodium and a robotaxi; this is lastLight brush country with no vehicle hero. No. 51 was a lastLight courtroom with tiny figures on dead floor; here every subject fills a third to two thirds of the frame and the lower third carries ground, contact and texture."
+  },
+  "frame_inputs": {
+    "1": {
+      "slides/slide-01.html": "2adfbce6e84bda0a5708e1bf8df0f36e99e41155cef782b28f3c44ec3f138b96",
+      "render/slide-01.png": "a0cc1db4a74b3ad1cace0a885c397f1aac711a804666c0b238fe36a4dcba7d2c",
+      "assets/js/deck/2026-10-18-brush.js": "86a8a4cdff0f9a4ad32d03744b8ed4d27c00f1604bb578792c6da4440b27dde0",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de"
+    },
+    "5": {
+      "assets/js/deck/2026-10-18-brush.js": "86a8a4cdff0f9a4ad32d03744b8ed4d27c00f1604bb578792c6da4440b27dde0",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+      "slides/slide-05.html": "82ac43177068f0f0c3e86f8c518df5fc798d88ac961470bf13aad4e2893d5c65",
+      "render/slide-05.png": "e490a28d4d0c9b91d0a8173ba71a701a86289c13d6ed843ccacbb29b55cce9b3"
+    },
+    "9": {
+      "assets/js/deck/2026-10-18-brush.js": "86a8a4cdff0f9a4ad32d03744b8ed4d27c00f1604bb578792c6da4440b27dde0",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+      "slides/slide-09.html": "9accbd2572d97c09f348f7de90559e82a20e8662cd367c98e72423bdbfdf26fc",
+      "render/slide-09.png": "a3ae7286cb517bf8d52bf0347ed7b25f3102e512c2d0e39a3eafa0d8100e0e60"
+    }
+  },
+  "needs_review": [
+    5
+  ],
+  "shipped_inputs": {
+    "slides/slide-01.html": "2adfbce6e84bda0a5708e1bf8df0f36e99e41155cef782b28f3c44ec3f138b96",
+    "slide-01.webp": "7418b7f270b564f0f3ad53ea7cc5826cadb9d24eab4d9ecaccde90319291afcd",
+    "slides/slide-05.html": "82ac43177068f0f0c3e86f8c518df5fc798d88ac961470bf13aad4e2893d5c65",
+    "slide-05.webp": "f7cec7f245019dc6c5244c1c7f7fe22fca24c90d411128d26c0da340e8885c98",
+    "slides/slide-09.html": "9accbd2572d97c09f348f7de90559e82a20e8662cd367c98e72423bdbfdf26fc",
+    "slide-09.webp": "9a990e18da91b9c879ba5645c93deb08618913981ca8620a3d8b83171ac5523f"
+  },
+  "encodings": [
+    {
+      "to": "slide-01.webp",
+      "to_sha256": "7418b7f270b564f0f3ad53ea7cc5826cadb9d24eab4d9ecaccde90319291afcd",
+      "from_sha256": "a0cc1db4a74b3ad1cace0a885c397f1aac711a804666c0b238fe36a4dcba7d2c",
+      "psnr_db": 40.875
+    },
+    {
+      "to": "slide-05.webp",
+      "to_sha256": "f7cec7f245019dc6c5244c1c7f7fe22fca24c90d411128d26c0da340e8885c98",
+      "from_sha256": "e490a28d4d0c9b91d0a8173ba71a701a86289c13d6ed843ccacbb29b55cce9b3",
+      "psnr_db": 40.441
+    },
+    {
+      "to": "slide-09.webp",
+      "to_sha256": "9a990e18da91b9c879ba5645c93deb08618913981ca8620a3d8b83171ac5523f",
+      "from_sha256": "a3ae7286cb517bf8d52bf0347ed7b25f3102e512c2d0e39a3eafa0d8100e0e60",
+      "psnr_db": 40.896
+    }
+  ]
+}

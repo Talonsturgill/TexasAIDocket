@@ -9,7 +9,7 @@ The Speaker's interim charges give a charge to the House Committee on Delivery o
 - Public access: Public meeting
 - Take part: https://house.texas.gov/committees/committee/233
 
-- Last checked: 2026-10-15
+- Last checked: 2026-10-18
 
 ## Dates
 
@@ -39,6 +39,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-08 · The House committee studying state use of AI has still published no report.
 - 2026-10-11 · The House committee charged with studying state use of AI has published no report yet.
 - 2026-10-15 · The House committee charged with studying state use of AI has published no report.
+- 2026-10-18 · The House committee's charge to study AI for finding fraud in state spending still reads as issued. No report is posted.
 
 ## Evidence
 

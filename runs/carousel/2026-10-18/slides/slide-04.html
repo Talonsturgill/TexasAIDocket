@@ -1,0 +1,83 @@
+<!doctype html>
+<!-- 2026-10-18, frame 4 of 9. Archetype FIGURE_SCALE. RENDERED through txthree.js in the deck's lastLight world. A worker in a vest beside a T-post on a barbed wire fence with a screwworm fly trap hung on it, looking up at a release aircraft crossing the dark sky. One drawn thing for each use the models have: the worker for surveillance, the trap for fly trapping, the aircraft for releases. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">The models pick the place</h1>
+<p class="dek" data-follow="26">USDA's research service has models that use AI to predict where the fly is likely to take hold. They already pick areas for surveillance, fly trapping and sterile fly releases, says Kim Lohmeyer, who directs the Kerrville laboratory. Drawn&nbsp;to&nbsp;illustrate.</p>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-18-brush.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Kerrville", counter: "04 / 09", src: "c1 c4 c6 c3", fit: { min: 84, max: 110, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 34, far: 3000 });
+  /* the camera looks across the key, so the worker, the post and the trap are lit on the side toward the key and the rest falls to the dark */
+  const D2R = Math.PI / 180, kaz = -58 * D2R, fa = kaz + 80 * D2R, F = [Math.sin(fa), 0, Math.cos(fa)], Rt = [-F[2], 0, F[0]];
+  const at = (d, s) => [F[0] * d + Rt[0] * s, 0, F[2] * d + Rt[2] * s];
+  const along = Math.atan2(F[0], F[2]), across = Math.atan2(-Rt[2], Rt[0]);
+  const put = (obj, d, s, rot) => { const p = at(d, s); obj.position.set(p[0], p[1], p[2]); obj.rotation.y = rot; TXT.add(R, obj); return obj; };
+  /* THE FIGURE, model_uses: three uses, one drawn thing each */
+  const USES = ['surveillance', 'fly trapping', 'sterile fly releases'];
+  const FENCE_D = 10.0;
+  put(K.make('barbed_wire_fence', { length: 80, strands: 4, spacing: 3.6, seed: 5 }), FENCE_D, 0, across);
+  /* the T-post the trap hangs on: painted studded steel, driven into the loam */
+  const post = new THREE.Group();
+  { const steel = new THREE.MeshStandardMaterial({ color: 0x2f4634, metalness: 0.35, roughness: 0.55 });
+    const web = new THREE.Mesh(new THREE.BoxGeometry(0.05, 1.62, 0.012), steel); web.position.y = 0.81; post.add(web);
+    const flange = new THREE.Mesh(new THREE.BoxGeometry(0.012, 1.62, 0.04), steel); flange.position.set(0, 0.81, 0.012); post.add(flange);
+    for (let i = 0; i < 14; i++) { const st = new THREE.Mesh(new THREE.BoxGeometry(0.016, 0.012, 0.012), steel); st.position.set(0, 0.35 + i * 0.09, 0.034); post.add(st); }
+    post.traverse(m => { if (m.isMesh) { m.castShadow = true; m.receiveShadow = true; } }); }
+  put(post, FENCE_D - 0.05, 0.9, across);
+  /* the trap hung on the post at chest height, its bluebonnet lid the frame's one accent */
+  const trap = K.make('fly_trap', {}); trap.scale.setScalar(2.4);
+  /* the lid lit by itself a little, so it holds the deck's bluebonnet as the frame's one accent */
+  trap.traverse(m => { if (m.isMesh && m.material && m.material.emissive && m.material.emissiveIntensity > 0.1) { m.material = m.material.clone(); m.material.emissiveIntensity = 0.9; } });
+  { const p = at(FENCE_D - 0.16, 0.9); trap.position.set(p[0], 1.0, p[2]); trap.rotation.y = across; TXT.add(R, trap); }
+  /* the worker beside the post, three quarters away, looking up at the aircraft */
+  const worker = put(K.make('person', { role: 'worker', vest: true, hat: 'cap', pose: 'look_up', seed: 17 }), FENCE_D - 0.55, 0.52, along - 0.55);
+  /* the release aircraft crossing high over the pasture, a silhouette */
+  { const ac = K.make('release_aircraft', {}); const p = at(150, 30); ac.position.set(p[0], 16, p[2]); ac.rotation.y = across + 0.25; ac.rotation.z = 0.04; ac.scale.setScalar(1.3); R.scene.add(ac);
+    ac.traverse(m => { if (m.isMesh && m.material) { m.material = m.material.clone(); m.material.fog = false; } }); }
+  if (USES.length !== 3) throw new Error("uses and drawing disagree");
+  [[60, -18, 5.5], [85, 22, 6.5], [140, -4, 5]].forEach(([d, s, h], i) => put(K.make('mesquite', { height: h, seed: 31 + i }), d, s, i));
+  TXT.ground(R, { surface: 'dirt', size: 900, seed: 41 });
+  const from = [...at(1.2, 0.3)]; from[1] = 1.15;
+  const target = [...at(FENCE_D - 0.5, 0.5)]; target[1] = 1.0;
+  const look = CH.aim(THREE, R, TXT, from, target, 560, 920, 34);
+  TXT.frame(R, { fov: 34, from, look });
+  TXT.scatter(R, { kind: 'grass', count: 1600, area: [-50, -50, 50, 50], avoid: [[-3, -3, 3, 3], [Math.min(from[0], from[0]) - 4, Math.min(from[2], from[2]) - 4, from[0] + 4, from[2] + 4]], seed: 42 });
+  TXT.sky(R);
+  CH.warm(R, 0.2);
+  { const spec = CH.rigSpec(W, 16, 4096); TXT.deckRig(R, spec, CH.rigOpts(target, { distance: 45, shadowFar: 120 })); }
+  CH.unacne(R, 0.02);
+  /* the vest is cloth under the key, not a sticker: its own value comes down */
+  worker.traverse(m => { if (m.isMesh && m.material && m.material.color) { const c = m.material.color; if (c.g > 0.5 && c.g > c.b * 2) { m.material = m.material.clone(); m.material.color.multiplyScalar(0.62); } } });
+  [worker, post].forEach(o => TXT.contact(R, o));
+  TXT.stage(R, [worker, post, trap], { behind: 0.6, depth: 1.6, poolInner: 3.2, poolOuter: 6.5 });
+  TXT.weather(R, { grime: 0.2, height: 0.5 });
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0.34, veil: 0.2, footWash: 0.3 });
+  CH.knock(cx, [".tx-site", ".src"], 0.5);
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>
