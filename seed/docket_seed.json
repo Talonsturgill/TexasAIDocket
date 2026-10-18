@@ -15428,5 +15428,375 @@
     "note": "MD Anderson's release of October 13th describes the published model and its mucin finding as an idea to test in the lab, with no use in patient care reported."
    }
   ]
+ },
+ {
+  "title": "USDA's Kerrville laboratory builds AI models that pick where, when and how many sterile flies to release against New World screwworm",
+  "summary": "The USDA Agricultural Research Service says it is managing New World screwworm with predictive models. It says the models use advanced analytic tools and artificial intelligence to read ecological, environmental and historical information. USDA uses what the models show to choose the locations, timing and number of sterile flies to release. The models also guide where aircraft, fly traps and surveillance go. Kim Lohmeyer directs the agency's Knipling-Bushland Livestock Insects Research Laboratory in Kerrville and says the models already select areas for surveillance, trapping and sterile fly releases. Lohmeyer also says the models can't predict every scenario, especially people moving infested animals. KRGV reports USDA saying its drones have flown across Texas more than 2,000 times since June. The flights observed more than 36,000 animals and found no screwworm cases. USDA officials told the station the drones are not foolproof and use artificial intelligence to inspect animal wounds. Neither source gives an accuracy figure for the models or the drones.",
+  "topic": "research-and-science",
+  "decider": {
+   "name": "U.S. Department of Agriculture, Agricultural Research Service",
+   "type": "federal"
+  },
+  "geography": {
+   "statewide": true,
+   "counties": [
+    "Kerr"
+   ],
+   "on_ercot": null,
+   "metro": "Kerrville, TX"
+  },
+  "status": "decided",
+  "key_dates": [
+   {
+    "date": "2026-10-12",
+    "kind": "filed",
+    "note": "KRGV report of USDA's drone flight and animal counts"
+   }
+  ],
+  "public_access": {
+   "room": "contact_only",
+   "how": "USDA asks anyone who spots signs of New World screwworm infestation in an animal to report it to the responding official through its New World screwworm reporting page, and keeps current information at screwworm.gov. Livestock owners are told to work with their state animal health officials before moving livestock or wildlife in or out of infested areas.",
+   "url": "https://www.ars.usda.gov/news-events/news/research-news/2026/tracking-the-path-of-new-world-screwworm",
+   "closes": null
+  },
+  "confidence": "high",
+  "notes_for_editor": "Admitted on the ARS research news page, which carries no publication date and was last modified September 15th, 2026, and on KRGV's October 12th report for the drone counts. Kerr County is where the page itself places the laboratory. The drone counts and the drones' AI use rest on KRGV quoting USDA, and no USDA page carrying those counts was found. The APHIS response page last modified July 31st gave earlier, smaller counts.",
+  "claims": [
+   {
+    "text": "USDA's research service says its predictive models for New World screwworm use advanced analytic tools and artificial intelligence.",
+    "verbatim_quote": "Predictive models use advanced analytic tools and artificial intelligence (AI) to interpret ecological, environmental, and historical information to predict where New World screwworm is likely to become established and the potential pathways it may follow to spread.",
+    "source_url": "https://www.ars.usda.gov/news-events/news/research-news/2026/tracking-the-path-of-new-world-screwworm",
+    "source_title": "USDA Agricultural Research Service, Tracking the Path of New World Screwworm",
+    "source_type": "primary_official",
+    "fetched": "2026-10-18",
+    "id": "tx-2026-0218-c1"
+   },
+   {
+    "text": "USDA says it uses the models to choose where, when and how many sterile flies to release.",
+    "verbatim_quote": "USDA uses insights from the models to identify optimal locations, timing, and the number of sterile flies to release for the most effective application, to interrupt their reproductive cycle and spread.",
+    "source_url": "https://www.ars.usda.gov/news-events/news/research-news/2026/tracking-the-path-of-new-world-screwworm",
+    "source_title": "USDA Agricultural Research Service, Tracking the Path of New World Screwworm",
+    "source_type": "primary_official",
+    "fetched": "2026-10-18",
+    "id": "tx-2026-0218-c2"
+   },
+   {
+    "text": "The director of the Kerrville laboratory says the models are already used to select areas for surveillance, fly trapping and sterile fly releases, and can't predict every scenario.",
+    "verbatim_quote": "However, these models cannot predict every scenario, especially those impacted by unpredictable variables like people transporting infested animals.",
+    "source_url": "https://www.ars.usda.gov/news-events/news/research-news/2026/tracking-the-path-of-new-world-screwworm",
+    "source_title": "USDA Agricultural Research Service, Tracking the Path of New World Screwworm",
+    "source_type": "primary_official",
+    "fetched": "2026-10-18",
+    "id": "tx-2026-0218-c3"
+   },
+   {
+    "text": "The laboratory leading the work is the Knipling-Bushland Livestock Insects Research Laboratory in Kerrville.",
+    "verbatim_quote": "said Kim Lohmeyer, Director of the ARS Knipling-Bushland Livestock Insects Research Laboratory in Kerrville, TX",
+    "source_url": "https://www.ars.usda.gov/news-events/news/research-news/2026/tracking-the-path-of-new-world-screwworm",
+    "source_title": "USDA Agricultural Research Service, Tracking the Path of New World Screwworm",
+    "source_type": "primary_official",
+    "fetched": "2026-10-18",
+    "id": "tx-2026-0218-c4"
+   },
+   {
+    "text": "KRGV reports USDA saying its drones have flown across Texas more than 2,000 times since June looking for New World screwworm.",
+    "verbatim_quote": "The U.S. Department of Agriculture says it has flown drones across Texas more than 2,000 times since June to look for the New World screwworm.",
+    "source_url": "https://www.krgv.com/news/no-screwworm-cases-found-after-usda-conducts-2-000-drone-flights-over-texas",
+    "source_title": "KRGV, No screwworm cases found after USDA conducts 2,000 drone flights over Texas, October 12th, 2026",
+    "source_type": "journalism",
+    "fetched": "2026-10-18",
+    "id": "tx-2026-0218-c5"
+   },
+   {
+    "text": "KRGV reports USDA saying the flights observed more than 36,000 animals and found no screwworm cases.",
+    "verbatim_quote": "The USDA said it observed more than 36,000 animals and found no screwworm cases.",
+    "source_url": "https://www.krgv.com/news/no-screwworm-cases-found-after-usda-conducts-2-000-drone-flights-over-texas",
+    "source_title": "KRGV, No screwworm cases found after USDA conducts 2,000 drone flights over Texas, October 12th, 2026",
+    "source_type": "journalism",
+    "fetched": "2026-10-18",
+    "id": "tx-2026-0218-c6"
+   },
+   {
+    "text": "USDA officials told KRGV the drones are not foolproof and use artificial intelligence to inspect animal wounds.",
+    "verbatim_quote": "USDA officials said drones are not foolproof for detecting screwworms, but they use artificial intelligence to inspect animal wounds more effectively.",
+    "source_url": "https://www.krgv.com/news/no-screwworm-cases-found-after-usda-conducts-2-000-drone-flights-over-texas",
+    "source_title": "KRGV, No screwworm cases found after USDA conducts 2,000 drone flights over Texas, October 12th, 2026",
+    "source_type": "journalism",
+    "fetched": "2026-10-18",
+    "id": "tx-2026-0218-c7"
+   },
+   {
+    "text": "USDA asks anyone who sees signs of screwworm infestation in an animal to report it through its reporting page.",
+    "verbatim_quote": "If you spot signs of New World screwworm infestation in animals, report it to the appropriate responding official by visiting the USDA New World screwworm reporting page",
+    "source_url": "https://www.ars.usda.gov/news-events/news/research-news/2026/tracking-the-path-of-new-world-screwworm",
+    "source_title": "USDA Agricultural Research Service, Tracking the Path of New World Screwworm",
+    "source_type": "primary_official",
+    "fetched": "2026-10-18",
+    "id": "tx-2026-0218-c8"
+   }
+  ],
+  "id": "tx-2026-0218",
+  "last_verified": "2026-10-18",
+  "history": [
+   {
+    "date": "2026-10-18",
+    "note": "Admitted on the research service's own page and KRGV's report of USDA's drone counts. No case found is the result the drones report, and neither source gives an accuracy figure.",
+    "checked": true
+   }
+  ]
+ },
+ {
+  "title": "The utility commission sues the Attorney General to keep the county and water planning area of each surveyed data center from release",
+  "summary": "The Public Utility Commission of Texas filed an original petition in Travis County district court on October 5th, 2026 against Attorney General Ken Paxton in his official capacity. It challenges two open records letter rulings, OR2026-038988 and OR2026-040171, that would require it to release two fields from the facility level responses to its Energy and Water Use Survey, the facility county and the facility state regional water planning area. The commission asks the court to declare both fields confidential under the Public Information Act and the Texas Homeland Security Act. The rulings answered six requests from five requestors, among them reporters at the Texas Tribune, the Texas Observer and the Fort Worth Star-Telegram. The petition says the requestors may intervene.",
+  "topic": "data-centers",
+  "decider": {
+   "name": "Public Utility Commission of Texas",
+   "type": "state-agency"
+  },
+  "geography": {
+   "statewide": true,
+   "counties": [
+    "Travis"
+   ],
+   "on_ercot": null,
+   "metro": "Austin-Round Rock-San Marcos, TX"
+  },
+  "status": "pending",
+  "key_dates": [
+   {
+    "date": "2026-10-05",
+    "kind": "filed",
+    "note": "Original petition file stamped by the Travis County District Clerk, cause D-1-GN-26-010018, 200th District Court"
+   }
+  ],
+  "public_access": {
+   "room": "contact_only",
+   "how": "The case is cause D-1-GN-26-010018 in the 200th District Court of Travis County. The petition says each requestor has the right to intervene in the suit. No hearing date was found.",
+   "url": "https://www.texaspolicyresearch.com/wp-content/uploads/2026/10/D-1-GN-26-010018.pdf",
+   "closes": null
+  },
+  "confidence": "high",
+  "notes_for_editor": "Admitted on the file stamped petition as served from re:SearchTX and hosted by Texas Policy Research. The clerk's own docket was not opened, so no later filing is carried.",
+  "claims": [
+   {
+    "text": "The commission's suit challenges two open records letter rulings of the Attorney General.",
+    "verbatim_quote": "OR2026-038988 issued on September 2, 2026, which the Commission received on September 3, 2026, and OR2026-040171 issued on September 11, 2026",
+    "source_url": "https://www.texaspolicyresearch.com/wp-content/uploads/2026/10/D-1-GN-26-010018.pdf",
+    "source_title": "Public Utility Commission of Texas v. Ken Paxton, Plaintiff's Original Petition, cause D-1-GN-26-010018",
+    "source_type": "primary_official",
+    "fetched": "2026-10-18",
+    "id": "tx-2026-0219-c1"
+   },
+   {
+    "text": "The two fields at issue are each surveyed facility's county and its state regional water planning area.",
+    "verbatim_quote": "facility state regional water planning area (SRWPA) reported for each facility, identified as columns C and D in the Survey, respectively",
+    "source_url": "https://www.texaspolicyresearch.com/wp-content/uploads/2026/10/D-1-GN-26-010018.pdf",
+    "source_title": "Public Utility Commission of Texas v. Ken Paxton, Plaintiff's Original Petition, cause D-1-GN-26-010018",
+    "source_type": "primary_official",
+    "fetched": "2026-10-18",
+    "id": "tx-2026-0219-c2"
+   },
+   {
+    "text": "The rulings answered six requests from five requestors.",
+    "verbatim_quote": "The Letter Rulings address six (6) individual requests from five (5) requestors",
+    "source_url": "https://www.texaspolicyresearch.com/wp-content/uploads/2026/10/D-1-GN-26-010018.pdf",
+    "source_title": "Public Utility Commission of Texas v. Ken Paxton, Plaintiff's Original Petition, cause D-1-GN-26-010018",
+    "source_type": "primary_official",
+    "fetched": "2026-10-18",
+    "id": "tx-2026-0219-c3"
+   },
+   {
+    "text": "The commission argues the rulings conflict with the Public Information Act and the Texas Homeland Security Act.",
+    "verbatim_quote": "The Attorney General’s position is not supported by the PIA or the Texas Homeland Security Act",
+    "source_url": "https://www.texaspolicyresearch.com/wp-content/uploads/2026/10/D-1-GN-26-010018.pdf",
+    "source_title": "Public Utility Commission of Texas v. Ken Paxton, Plaintiff's Original Petition, cause D-1-GN-26-010018",
+    "source_type": "primary_official",
+    "fetched": "2026-10-18",
+    "id": "tx-2026-0219-c4"
+   },
+   {
+    "text": "The petition was file stamped by the Travis County District Clerk in the 200th District Court.",
+    "verbatim_quote": "200th District Court",
+    "source_url": "https://www.texaspolicyresearch.com/wp-content/uploads/2026/10/D-1-GN-26-010018.pdf",
+    "source_title": "Public Utility Commission of Texas v. Ken Paxton, Plaintiff's Original Petition, cause D-1-GN-26-010018",
+    "source_type": "primary_official",
+    "fetched": "2026-10-18",
+    "id": "tx-2026-0219-c5"
+   }
+  ],
+  "id": "tx-2026-0219",
+  "last_verified": "2026-10-18",
+  "history": [
+   {
+    "date": "2026-10-18",
+    "note": "Admitted on the file stamped petition. No hearing date or answer from the Attorney General was found.",
+    "checked": true
+   }
+  ]
+ },
+ {
+  "title": "San Antonio takes two data center zoning proposals to a public hearing on October 20th and a council vote on October 29th",
+  "summary": "The City of San Antonio's Department of Development Services presented two proposals to change the Unified Development Code for data centers. One would require every data center to receive a Specific Use Authorization zoning designation, which would give the City Council a vote on each proposed data center. The city says the proposals come before the Zoning Commission at a public hearing on October 20th, 2026 and go to a final City Council vote on October 29th, 2026, and that residents can sign up to comment at both meetings. Councilmember Ric Galvan, who asked for the review, says every new data center in city limits should require a council vote.",
+  "topic": "data-centers",
+  "decider": {
+   "name": "San Antonio City Council",
+   "type": "city"
+  },
+  "geography": {
+   "statewide": false,
+   "counties": [
+    "Bexar"
+   ],
+   "on_ercot": true,
+   "metro": "San Antonio-New Braunfels, TX"
+  },
+  "status": "pending",
+  "key_dates": [
+   {
+    "date": "2026-10-20",
+    "kind": "hearing",
+    "note": "Zoning Commission public hearing on the proposals, per the city's release"
+   },
+   {
+    "date": "2026-10-29",
+    "kind": "hearing",
+    "note": "City Council final vote, per the city's release"
+   }
+  ],
+  "public_access": {
+   "room": "open_meeting",
+   "how": "The city says community members can sign up to give public comment at the Zoning Commission hearing on October 20th, 2026 and at the City Council meeting on October 29th, 2026.",
+   "url": "https://www.sa.gov/Directory/News-Releases/D6-Councilmember-Calls-for-Stronger-Regulations-on-Data-Centers",
+   "closes": null
+  },
+  "confidence": "high",
+  "notes_for_editor": "Admitted on the city's own release of October 15th, 2026, issued from the District 6 office. The second proposal's terms are reported only by KSAT, whose site this project does not read, so the record carries only the Specific Use Authorization option.",
+  "claims": [
+   {
+    "text": "The city's development services department presented two proposals to change its zoning code for data centers, one requiring a council vote on every data center.",
+    "verbatim_quote": "DSD presented two proposals for changing the UDC to address data center construction, including a proposal to require that all data centers be granted a Specific Use Authorization zoning designation that would give the City Council the opportunity to vote on every proposed data center in San Antonio.",
+    "source_url": "https://www.sa.gov/Directory/News-Releases/D6-Councilmember-Calls-for-Stronger-Regulations-on-Data-Centers",
+    "source_title": "City of San Antonio, D6 Councilmember Calls for Stronger Regulations on Data Centers, October 15th, 2026",
+    "source_type": "primary_official",
+    "fetched": "2026-10-18",
+    "id": "tx-2026-0220-c1"
+   },
+   {
+    "text": "The Zoning Commission holds a public hearing on October 20th and the City Council votes on October 29th.",
+    "verbatim_quote": "The proposals will come before the Zoning Commission at a public hearing on October 20, 2026, and for a final vote by City Council on October 29, 2026.",
+    "source_url": "https://www.sa.gov/Directory/News-Releases/D6-Councilmember-Calls-for-Stronger-Regulations-on-Data-Centers",
+    "source_title": "City of San Antonio, D6 Councilmember Calls for Stronger Regulations on Data Centers, October 15th, 2026",
+    "source_type": "primary_official",
+    "fetched": "2026-10-18",
+    "id": "tx-2026-0220-c2"
+   },
+   {
+    "text": "Residents can sign up to comment at both meetings.",
+    "verbatim_quote": "Community members can sign up to provide public comment at both meetings.",
+    "source_url": "https://www.sa.gov/Directory/News-Releases/D6-Councilmember-Calls-for-Stronger-Regulations-on-Data-Centers",
+    "source_title": "City of San Antonio, D6 Councilmember Calls for Stronger Regulations on Data Centers, October 15th, 2026",
+    "source_type": "primary_official",
+    "fetched": "2026-10-18",
+    "id": "tx-2026-0220-c3"
+   },
+   {
+    "text": "Councilmember Galvan says every new data center in city limits should need a council vote.",
+    "verbatim_quote": "All new data centers within city limits should require a vote by City Council.",
+    "source_url": "https://www.sa.gov/Directory/News-Releases/D6-Councilmember-Calls-for-Stronger-Regulations-on-Data-Centers",
+    "source_title": "City of San Antonio, D6 Councilmember Calls for Stronger Regulations on Data Centers, October 15th, 2026",
+    "source_type": "primary_official",
+    "fetched": "2026-10-18",
+    "id": "tx-2026-0220-c4"
+   }
+  ],
+  "id": "tx-2026-0220",
+  "last_verified": "2026-10-18",
+  "history": [
+   {
+    "date": "2026-10-18",
+    "note": "Admitted on the city's release. The Zoning Commission hearing on October 20th and the council vote on October 29th are both still ahead.",
+    "checked": true
+   }
+  ]
+ },
+ {
+  "title": "Google.org funds a UT Austin team to build AI surrogate models for testing fusion reactor designs",
+  "summary": "The University of Texas at Austin says a team led by assistant professor of physics Joshua Burby was selected for the Google.org Impact Challenge on AI for Science and will receive funding and support over three years to use artificial intelligence in fusion energy research. The team will build surrogate models that make the repeated calculations used to test stellarator designs faster and cheaper. The university says the team is among 17 organizations sharing a combined $36 million. The award funds a plan, and no result has been reported.",
+  "topic": "research-and-science",
+  "decider": {
+   "name": "The University of Texas at Austin",
+   "type": "state-agency"
+  },
+  "geography": {
+   "statewide": false,
+   "counties": [
+    "Travis"
+   ],
+   "on_ercot": true,
+   "metro": "Austin-Round Rock-San Marcos, TX"
+  },
+  "status": "decided",
+  "key_dates": [
+   {
+    "date": "2026-10-16",
+    "kind": "filed",
+    "note": "Date of UT Austin's news item announcing the award"
+   }
+  ],
+  "public_access": {
+   "room": "contact_only",
+   "how": "The award is a private foundation grant to a university research team. No vote or comment window applies, and the university's news office handles questions about the work.",
+   "url": "https://news.utexas.edu/2026/10/16/in-brief-ut-led-fusion-research-team-wins-google-org-ai-award/",
+   "closes": null
+  },
+  "confidence": "high",
+  "notes_for_editor": "Admitted on UT Austin's own news item. The university's share of the combined funding is not stated, so no team figure is carried.",
+  "claims": [
+   {
+    "text": "A UT Austin team was selected for the Google.org Impact Challenge on AI for Science, with funding and support over three years.",
+    "verbatim_quote": "A research team at The University of Texas at Austin has been selected as a recipient of the Google.org Impact Challenge: AI for Science , and will receive funding and support from Google.org over three years to use artificial intelligence to accelerate fusion energy research.",
+    "source_url": "https://news.utexas.edu/2026/10/16/in-brief-ut-led-fusion-research-team-wins-google-org-ai-award/",
+    "source_title": "UT News, In Brief, UT-Led Fusion Research Team Wins Google.org AI Award, October 16th, 2026",
+    "source_type": "primary_official",
+    "fetched": "2026-10-18",
+    "id": "tx-2026-0221-c1"
+   },
+   {
+    "text": "The team will build surrogate models to make repeated calculations faster and cheaper.",
+    "verbatim_quote": "The team will build surrogate models that will make repeated calculations faster and more affordable.",
+    "source_url": "https://news.utexas.edu/2026/10/16/in-brief-ut-led-fusion-research-team-wins-google-org-ai-award/",
+    "source_title": "UT News, In Brief, UT-Led Fusion Research Team Wins Google.org AI Award, October 16th, 2026",
+    "source_type": "primary_official",
+    "fetched": "2026-10-18",
+    "id": "tx-2026-0221-c2"
+   },
+   {
+    "text": "Stellarator designs are hard and expensive to test in simulation.",
+    "verbatim_quote": "Their complex shapes make designs difficult and expensive to test through computer simulations.",
+    "source_url": "https://news.utexas.edu/2026/10/16/in-brief-ut-led-fusion-research-team-wins-google-org-ai-award/",
+    "source_title": "UT News, In Brief, UT-Led Fusion Research Team Wins Google.org AI Award, October 16th, 2026",
+    "source_type": "primary_official",
+    "fetched": "2026-10-18",
+    "id": "tx-2026-0221-c3"
+   },
+   {
+    "text": "The team led by Joshua Burby is among 17 organizations sharing a combined $36 million.",
+    "verbatim_quote": "The team, led by assistant professor of physics Joshua Burby , is among the 17 organizations selected to receive a combined $36 million in funding.",
+    "source_url": "https://news.utexas.edu/2026/10/16/in-brief-ut-led-fusion-research-team-wins-google-org-ai-award/",
+    "source_title": "UT News, In Brief, UT-Led Fusion Research Team Wins Google.org AI Award, October 16th, 2026",
+    "source_type": "primary_official",
+    "fetched": "2026-10-18",
+    "id": "tx-2026-0221-c4"
+   }
+  ],
+  "id": "tx-2026-0221",
+  "last_verified": "2026-10-18",
+  "history": [
+   {
+    "date": "2026-10-18",
+    "note": "Admitted on the university's own news item. The award funds a plan and no result is reported.",
+    "checked": true
+   }
+  ]
  }
 ]
