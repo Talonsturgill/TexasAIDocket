@@ -2090,7 +2090,7 @@
      "fetched": "2026-09-02"
     }
    ],
-   "last_verified": "2026-10-15",
+   "last_verified": "2026-10-20",
    "confidence": "high",
    "notes_for_editor": "Included because it is actionable and time limited, which is the highest value class of item for readers. The Texas relevance is real but INDIRECT and the item should say so plainly: this is a national rulemaking, not a Texas proceeding. The regulations_dot_gov_info comment_url came back null from the API, so the Federal Register document page is given as the participation URL instead of a direct regulations.gov deep link.",
    "history": [
@@ -2202,6 +2202,11 @@
     {
      "date": "2026-10-15",
      "note": "The reactor licensing proposal remains closed to comment. The register's full text is unconfirmed, since its reader routes to a path the register bars.",
+     "checked": true
+    },
+    {
+     "date": "2026-10-20",
+     "note": "The register's record still gives August 31st as the close of comment on the reactor licensing proposal. The full text stays unconfirmed.",
      "checked": true
     }
    ]
@@ -3663,8 +3668,8 @@
      "www.wilcotx.gov"
     ],
     "boundary": "blocks_every_client",
-    "checked": "2026-10-15",
-    "note": "www.wilcotx.gov answered 403 on 2026-10-09 to the project's own agent and to a browser agent, on the newsflash detail page /m/newsflash/Home/Detail/789 and on robots.txt alike. Not routed around. Re-measured 2026-10-15, www.wilcotx.gov answered 403 to the project's agent and 403 to a browser agent. Nothing was routed around."
+    "checked": "2026-10-20",
+    "note": "www.wilcotx.gov answered 403 on 2026-10-09 to the project's own agent and to a browser agent, on the newsflash detail page /m/newsflash/Home/Detail/789 and on robots.txt alike. Not routed around. Re-measured 2026-10-15, www.wilcotx.gov answered 403 to the project's agent and 403 to a browser agent. Nothing was routed around. Re-measured 2026-10-20, www.wilcotx.gov answered 403 to the project's agent and 403 to a browser agent. Nothing was routed around."
    }
   },
   {
@@ -4970,8 +4975,8 @@
      "www.ksat.com"
     ],
     "boundary": "robots",
-    "checked": "2026-10-15",
-    "note": "guadalupe.granicus.com, where the county's agendas page links its minutes, agendas and videos, disallows this project's path in robots.txt, measured 2026-10-04. seguingazette.com and www.ksat.com, the two published accounts of the vote, disallow it too. www.guadalupetx.gov answers and carries no record of the vote. Nothing was routed around. Re-measured 2026-10-08, guadalupe.granicus.com robots.txt still refuses the path; seguingazette.com robots.txt still refuses the path; www.ksat.com robots.txt still refuses the path. Re-measured 2026-10-15, guadalupe.granicus.com robots.txt still refuses this project; seguingazette.com robots.txt still refuses this project; www.ksat.com robots.txt still refuses this project. Nothing was routed around."
+    "checked": "2026-10-20",
+    "note": "guadalupe.granicus.com, where the county's agendas page links its minutes, agendas and videos, disallows this project's path in robots.txt, measured 2026-10-04. seguingazette.com and www.ksat.com, the two published accounts of the vote, disallow it too. www.guadalupetx.gov answers and carries no record of the vote. Nothing was routed around. Re-measured 2026-10-08, guadalupe.granicus.com robots.txt still refuses the path; seguingazette.com robots.txt still refuses the path; www.ksat.com robots.txt still refuses the path. Re-measured 2026-10-15, guadalupe.granicus.com robots.txt still refuses this project; seguingazette.com robots.txt still refuses this project; www.ksat.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-10-20, guadalupe.granicus.com robots.txt still refuses this project; seguingazette.com robots.txt still refuses this project; www.ksat.com robots.txt still refuses this project. Nothing was routed around."
    }
   },
   {
@@ -5938,8 +5943,8 @@
      "www.newschannel6now.com"
     ],
     "boundary": "blocks_every_client",
-    "checked": "2026-10-15",
-    "note": "Measured 2026-10-08. The item's own front door, www.wichitafallstx.gov/AgendaCenter, answered 403 to the project's agent and to a browser agent, where on 2026-10-05 it answered and held none of the cited quotations. www.newschannel6now.com, the only published account of the vote, still refuses this project in robots.txt. There is no other door the record can use, so nothing was routed around. Re-measured 2026-10-15, www.wichitafallstx.gov answered 403 to the project's agent and 403 to a browser agent; www.newschannel6now.com robots.txt still refuses this project. Nothing was routed around."
+    "checked": "2026-10-20",
+    "note": "Measured 2026-10-08. The item's own front door, www.wichitafallstx.gov/AgendaCenter, answered 403 to the project's agent and to a browser agent, where on 2026-10-05 it answered and held none of the cited quotations. www.newschannel6now.com, the only published account of the vote, still refuses this project in robots.txt. There is no other door the record can use, so nothing was routed around. Re-measured 2026-10-15, www.wichitafallstx.gov answered 403 to the project's agent and 403 to a browser agent; www.newschannel6now.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-10-20, www.wichitafallstx.gov answered 403 to the project's agent and 403 to a browser agent; www.newschannel6now.com robots.txt still refuses this project. Nothing was routed around."
    }
   },
   {
@@ -6326,8 +6331,8 @@
      "www.newschannel6now.com"
     ],
     "boundary": "robots",
-    "checked": "2026-10-15",
-    "note": "www.newschannel6now.com refuses this project's path in robots.txt, measured 2026-10-03 by fetch_doc's live robots check and the crawl boundary, on the item's own front door. Nothing was routed around. Re-measured 2026-10-08, www.newschannel6now.com robots.txt still refuses the path. Re-measured 2026-10-15, www.newschannel6now.com robots.txt still refuses this project. Nothing was routed around."
+    "checked": "2026-10-20",
+    "note": "www.newschannel6now.com refuses this project's path in robots.txt, measured 2026-10-03 by fetch_doc's live robots check and the crawl boundary, on the item's own front door. Nothing was routed around. Re-measured 2026-10-08, www.newschannel6now.com robots.txt still refuses the path. Re-measured 2026-10-15, www.newschannel6now.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-10-20, www.newschannel6now.com robots.txt still refuses this project. Nothing was routed around."
    }
   },
   {
@@ -6742,8 +6747,8 @@
      "www.kcbd.com"
     ],
     "boundary": "robots",
-    "checked": "2026-10-15",
-    "note": "www.kcbd.com refuses this project's path in robots.txt, measured 2026-10-03 by fetch_doc's live robots check and the crawl boundary, on the item's own front door. Nothing was routed around. Re-measured 2026-10-08, www.kcbd.com robots.txt still refuses the path. Re-measured 2026-10-15, www.kcbd.com robots.txt still refuses this project. Nothing was routed around."
+    "checked": "2026-10-20",
+    "note": "www.kcbd.com refuses this project's path in robots.txt, measured 2026-10-03 by fetch_doc's live robots check and the crawl boundary, on the item's own front door. Nothing was routed around. Re-measured 2026-10-08, www.kcbd.com robots.txt still refuses the path. Re-measured 2026-10-15, www.kcbd.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-10-20, www.kcbd.com robots.txt still refuses this project. Nothing was routed around."
    }
   },
   {
@@ -6958,8 +6963,8 @@
      "www.newschannel10.com"
     ],
     "boundary": "robots",
-    "checked": "2026-10-15",
-    "note": "www.newschannel10.com disallows ClaudeBot in robots.txt, re-measured 2026-10-05. www.sec.gov answered 403 on 2026-09-24. Nothing was routed around. Re-measured 2026-10-08, www.newschannel10.com robots.txt still refuses the path. Re-measured 2026-10-15, www.newschannel10.com robots.txt still refuses this project. Nothing was routed around."
+    "checked": "2026-10-20",
+    "note": "www.newschannel10.com disallows ClaudeBot in robots.txt, re-measured 2026-10-05. www.sec.gov answered 403 on 2026-09-24. Nothing was routed around. Re-measured 2026-10-08, www.newschannel10.com robots.txt still refuses the path. Re-measured 2026-10-15, www.newschannel10.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-10-20, www.newschannel10.com robots.txt still refuses this project. Nothing was routed around."
    }
   },
   {
@@ -9563,7 +9568,7 @@
     }
    ],
    "id": "tx-2026-0061",
-   "last_verified": "2026-10-15",
+   "last_verified": "2026-10-20",
    "history": [
     {
      "date": "2026-08-19",
@@ -9671,6 +9676,11 @@
      "date": "2026-10-15",
      "note": "San Marcos still defines data centers in its land code and bars them from every district. The station's report is unconfirmed.",
      "checked": true
+    },
+    {
+     "date": "2026-10-20",
+     "note": "The city's code updates page still says San Marcos defines data centers in its land development code. The television report on the 4 to 3 vote stays unconfirmed.",
+     "checked": true
     }
    ]
   },
@@ -9730,7 +9740,7 @@
     }
    ],
    "id": "tx-2026-0062",
-   "last_verified": "2026-10-17",
+   "last_verified": "2026-10-20",
    "history": [
     {
      "date": "2026-08-19",
@@ -9843,6 +9853,11 @@
     {
      "date": "2026-10-17",
      "note": "Community Impact's account still describes the first steps toward a Fort Worth pause, with hearings and readings to come and no adoption reported. KERA's account is unconfirmed, so its exact wording is not known.",
+     "checked": true
+    },
+    {
+     "date": "2026-10-20",
+     "note": "Community Impact still reports only the first steps toward Fort Worth's 90 day pause, with no adoption since. KERA's account stays unconfirmed, as its address now forwards to a page that refused the request.",
      "checked": true
     }
    ]
@@ -12284,8 +12299,8 @@
      "lrl.texas.gov"
     ],
     "boundary": "robots",
-    "checked": "2026-10-15",
-    "note": "lrl.texas.gov refuses this project's path in robots.txt, measured 2026-10-03 by fetch_doc's live robots check and the crawl boundary, on the item's own front door. Nothing was routed around. Re-measured 2026-10-08, lrl.texas.gov robots.txt still refuses the path. Re-measured 2026-10-15, lrl.texas.gov is excluded by the sources registry, its robots.txt naming this project's crawler. Nothing was routed around."
+    "checked": "2026-10-20",
+    "note": "lrl.texas.gov refuses this project's path in robots.txt, measured 2026-10-03 by fetch_doc's live robots check and the crawl boundary, on the item's own front door. Nothing was routed around. Re-measured 2026-10-08, lrl.texas.gov robots.txt still refuses the path. Re-measured 2026-10-15, lrl.texas.gov is excluded by the sources registry, its robots.txt naming this project's crawler. Nothing was routed around. Re-measured 2026-10-20, lrl.texas.gov is excluded by the sources registry, its robots.txt naming this project's crawler. Nothing was routed around."
    }
   },
   {
@@ -13099,7 +13114,7 @@
     }
    ],
    "id": "tx-2026-0078",
-   "last_verified": "2026-10-17",
+   "last_verified": "2026-10-20",
    "history": [
     {
      "date": "2026-08-21",
@@ -13196,6 +13211,11 @@
      "date": "2026-10-17",
      "note": "The committee's own meeting archive still lists the August 19th sitting and the two September sittings after it, with no later sitting posted. The charge wording on the Legislative Reference Library page is unconfirmed, since that host is off limits to this project.",
      "checked": true
+    },
+    {
+     "date": "2026-10-20",
+     "note": "House State Affairs still lists the August 19th sitting and the two September sittings after it, and has posted no later meeting. The charge wording on the Legislative Reference Library page stays unconfirmed.",
+     "checked": true
     }
    ]
   },
@@ -13258,7 +13278,7 @@
     }
    ],
    "id": "tx-2026-0079",
-   "last_verified": "2026-10-17",
+   "last_verified": "2026-10-20",
    "history": [
     {
      "date": "2026-08-21",
@@ -13356,6 +13376,11 @@
     {
      "date": "2026-10-17",
      "note": "The committee's own meeting archive still lists the August 20th sitting on AI in health care, with no later sitting posted. The charge wording on the Legislative Reference Library page is unconfirmed, since that host is off limits to this project.",
+     "checked": true
+    },
+    {
+     "date": "2026-10-20",
+     "note": "House Public Health still lists the August 20th sitting on AI in health care as its latest, with nothing later posted. The charge wording stays unconfirmed.",
      "checked": true
     }
    ]
@@ -15425,8 +15450,8 @@
      "capitol.texas.gov"
     ],
     "boundary": "robots",
-    "checked": "2026-10-15",
-    "note": "capitol.texas.gov refuses this project's path in robots.txt, measured 2026-10-03 by fetch_doc's live robots check and the crawl boundary, on the item's own front door. Nothing was routed around. Re-measured 2026-10-08, capitol.texas.gov robots.txt still refuses the path. Re-measured 2026-10-15, capitol.texas.gov is excluded by the sources registry, its robots.txt naming this project's crawler. Nothing was routed around."
+    "checked": "2026-10-20",
+    "note": "capitol.texas.gov refuses this project's path in robots.txt, measured 2026-10-03 by fetch_doc's live robots check and the crawl boundary, on the item's own front door. Nothing was routed around. Re-measured 2026-10-08, capitol.texas.gov robots.txt still refuses the path. Re-measured 2026-10-15, capitol.texas.gov is excluded by the sources registry, its robots.txt naming this project's crawler. Nothing was routed around. Re-measured 2026-10-20, capitol.texas.gov is excluded by the sources registry, its robots.txt naming this project's crawler. Nothing was routed around."
    }
   },
   {
@@ -17134,8 +17159,8 @@
      "www.brazoscountytx.gov"
     ],
     "boundary": "blocks_every_client",
-    "checked": "2026-10-15",
-    "note": "www.brazoscountytx.gov answered 403 to curl with a browser User-Agent on 2026-09-28, on the item's own front door, as it did on 2026-09-24. www.kbtx.com, which carries the vote, names ClaudeBot under Disallow: / in robots.txt. There is no second door the record can use, so nothing was routed around. Re-measured 2026-10-08, www.brazoscountytx.gov answered 403 to the project's agent and 403 to a browser agent. Re-measured 2026-10-15, www.brazoscountytx.gov answered 403 to the project's agent and 403 to a browser agent. Nothing was routed around."
+    "checked": "2026-10-20",
+    "note": "www.brazoscountytx.gov answered 403 to curl with a browser User-Agent on 2026-09-28, on the item's own front door, as it did on 2026-09-24. www.kbtx.com, which carries the vote, names ClaudeBot under Disallow: / in robots.txt. There is no second door the record can use, so nothing was routed around. Re-measured 2026-10-08, www.brazoscountytx.gov answered 403 to the project's agent and 403 to a browser agent. Re-measured 2026-10-15, www.brazoscountytx.gov answered 403 to the project's agent and 403 to a browser agent. Nothing was routed around. Re-measured 2026-10-20, www.brazoscountytx.gov answered 403 to the project's agent and 403 to a browser agent. Nothing was routed around."
    }
   },
   {
@@ -19485,8 +19510,8 @@
      "dir.texas.gov"
     ],
     "boundary": "robots",
-    "checked": "2026-10-15",
-    "note": "dir.texas.gov refuses this project's path in robots.txt, measured 2026-10-03 by fetch_doc's live robots check and the crawl boundary, on the item's own front door. Nothing was routed around. Re-measured 2026-10-08, dir.texas.gov robots.txt still refuses the path. Re-measured 2026-10-15, dir.texas.gov robots.txt still refuses this project. Nothing was routed around."
+    "checked": "2026-10-20",
+    "note": "dir.texas.gov refuses this project's path in robots.txt, measured 2026-10-03 by fetch_doc's live robots check and the crawl boundary, on the item's own front door. Nothing was routed around. Re-measured 2026-10-08, dir.texas.gov robots.txt still refuses the path. Re-measured 2026-10-15, dir.texas.gov robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-10-20, dir.texas.gov robots.txt still refuses this project. Nothing was routed around."
    }
   },
   {
@@ -20023,7 +20048,7 @@
    "confidence": "high",
    "notes_for_editor": "Published as statewide on the same reading as the other federal comment windows in this record, which apply in Texas without naming a county. federalregister.gov HTML redirected this client to an unblock page, and govinfo served the identical document cleanly.",
    "id": "tx-2026-0118",
-   "last_verified": "2026-10-18",
+   "last_verified": "2026-10-20",
    "history": [
     {
      "date": "2026-09-03",
@@ -20111,6 +20136,11 @@
     {
      "date": "2026-10-18",
      "note": "The request for comment on compute derivatives is still open, and it still closes on October 20th.",
+     "checked": true
+    },
+    {
+     "date": "2026-10-20",
+     "note": "The request for comment on trading compute derivatives is open through its last day, October 20th, and the commission's notice still reads as published.",
      "checked": true
     }
    ]
@@ -20759,8 +20789,8 @@
      "www.dhs.gov"
     ],
     "boundary": "blocks_every_client",
-    "checked": "2026-10-15",
-    "note": "www.dhs.gov answered 403 on 2026-09-30 to the project's own agent and to a browser agent, on the page and on robots.txt alike. Nothing was routed around. Re-measured 2026-10-08, www.dhs.gov answered 403 to the project's agent and 403 to a browser agent. Re-measured 2026-10-15, www.dhs.gov answered 403 to the project's agent and 403 to a browser agent. Nothing was routed around."
+    "checked": "2026-10-20",
+    "note": "www.dhs.gov answered 403 on 2026-09-30 to the project's own agent and to a browser agent, on the page and on robots.txt alike. Nothing was routed around. Re-measured 2026-10-08, www.dhs.gov answered 403 to the project's agent and 403 to a browser agent. Re-measured 2026-10-15, www.dhs.gov answered 403 to the project's agent and 403 to a browser agent. Nothing was routed around. Re-measured 2026-10-20, www.dhs.gov answered 403 to the project's agent and 403 to a browser agent. Nothing was routed around."
    }
   },
   {
@@ -21632,8 +21662,8 @@
      "search.txcourts.gov"
     ],
     "boundary": "robots",
-    "checked": "2026-10-15",
-    "note": "search.txcourts.gov serves `User-Agent: *` / `Disallow: /`, measured 2026-10-01, and it carries the court's case page and the list of causes set for argument. www.txcourts.gov permits its submission schedules, and as of 2026-10-01 they list no October sitting for 2026. Nothing was routed around. Re-measured 2026-10-08, search.txcourts.gov robots.txt still refuses the path. Re-measured 2026-10-15, search.txcourts.gov robots.txt still refuses this project. Nothing was routed around."
+    "checked": "2026-10-20",
+    "note": "search.txcourts.gov serves `User-Agent: *` / `Disallow: /`, measured 2026-10-01, and it carries the court's case page and the list of causes set for argument. www.txcourts.gov permits its submission schedules, and as of 2026-10-01 they list no October sitting for 2026. Nothing was routed around. Re-measured 2026-10-08, search.txcourts.gov robots.txt still refuses the path. Re-measured 2026-10-15, search.txcourts.gov robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-10-20, search.txcourts.gov robots.txt still refuses this project. Nothing was routed around."
    }
   },
   {
@@ -21859,8 +21889,8 @@
      "docs.tacc.utexas.edu"
     ],
     "boundary": "robots",
-    "checked": "2026-10-15",
-    "note": "docs.tacc.utexas.edu refuses this project's path in robots.txt, measured 2026-10-03 by fetch_doc's live robots check and the crawl boundary, on the item's own front door. Nothing was routed around. Re-measured 2026-10-08. docs.tacc.utexas.edu now answers 404 for robots.txt, and tacc.utexas.edu's own robots.txt still names ClaudeBot, so the registry keeps the whole domain off limits and nothing was fetched. Re-measured 2026-10-15, docs.tacc.utexas.edu is excluded by the sources registry, its robots.txt naming this project's crawler. Nothing was routed around."
+    "checked": "2026-10-20",
+    "note": "docs.tacc.utexas.edu refuses this project's path in robots.txt, measured 2026-10-03 by fetch_doc's live robots check and the crawl boundary, on the item's own front door. Nothing was routed around. Re-measured 2026-10-08. docs.tacc.utexas.edu now answers 404 for robots.txt, and tacc.utexas.edu's own robots.txt still names ClaudeBot, so the registry keeps the whole domain off limits and nothing was fetched. Re-measured 2026-10-15, docs.tacc.utexas.edu is excluded by the sources registry, its robots.txt naming this project's crawler. Nothing was routed around. Re-measured 2026-10-20, docs.tacc.utexas.edu is excluded by the sources registry, its robots.txt naming this project's crawler. Nothing was routed around."
    }
   },
   {
@@ -22000,8 +22030,8 @@
      "www.brownsvilletx.gov"
     ],
     "boundary": "blocks_every_client",
-    "checked": "2026-10-15",
-    "note": "www.brownsvilletx.gov answered 403 on 2026-10-09 to the project's own agent and to a browser agent, on the newsflash detail page /m/newsflash/home/detail/3425 and on robots.txt alike. Not routed around. Re-measured 2026-10-15, www.brownsvilletx.gov answered 403 to the project's agent and 403 to a browser agent. Nothing was routed around."
+    "checked": "2026-10-20",
+    "note": "www.brownsvilletx.gov answered 403 on 2026-10-09 to the project's own agent and to a browser agent, on the newsflash detail page /m/newsflash/home/detail/3425 and on robots.txt alike. Not routed around. Re-measured 2026-10-15, www.brownsvilletx.gov answered 403 to the project's agent and 403 to a browser agent. Nothing was routed around. Re-measured 2026-10-20, www.brownsvilletx.gov answered 403 to the project's agent and 403 to a browser agent. Nothing was routed around."
    }
   },
   {
@@ -23088,7 +23118,7 @@
     }
    ],
    "id": "tx-2026-0138",
-   "last_verified": "2026-10-17",
+   "last_verified": "2026-10-20",
    "history": [
     {
      "date": "2026-09-09",
@@ -23154,6 +23184,11 @@
     {
      "date": "2026-10-17",
      "note": "Public radio's account still has Lubbock's pause started and not yet declared. The city's own agenda record and the television report are unconfirmed, since the city's site refused the request and the station bars automated readers.",
+     "checked": true
+    },
+    {
+     "date": "2026-10-20",
+     "note": "Public radio's account still reads as a pause Lubbock has begun and not yet declared, with hearings to come. The city's agenda record and the station report remain unconfirmed.",
      "checked": true
     }
    ]
@@ -23430,7 +23465,7 @@
     }
    ],
    "id": "tx-2026-0126",
-   "last_verified": "2026-10-17",
+   "last_verified": "2026-10-20",
    "history": [
     {
      "date": "2026-09-07",
@@ -23498,6 +23533,11 @@
     {
      "date": "2026-10-17",
      "note": "The Senate committee's meetings page still lists the September 1st sitting on data center cooling water and the sitting the day after, with no later one posted. The notice text sits on a path this project does not read.",
+     "checked": true
+    },
+    {
+     "date": "2026-10-20",
+     "note": "The Senate water committee's meetings page still shows the September 1st sitting on data center cooling water and the one the next day, and no later sitting. The hearing notice text stays unread, since its path is closed to this project.",
      "checked": true
     }
    ]
@@ -25325,8 +25365,8 @@
      "eutils.ncbi.nlm.nih.gov"
     ],
     "boundary": "blocks_every_client",
-    "checked": "2026-10-15",
-    "note": "pubmed.ncbi.nlm.nih.gov served a cookie notice with no abstract text to the project's own agent and to a browser agent on 2026-10-14, and eutils.ncbi.nlm.nih.gov serves User-agent * Disallow / in robots.txt, so the cited abstract can't be read. Not routed around. Re-measured 2026-10-15, pubmed.ncbi.nlm.nih.gov answered 203 to the project's agent and 203 to a browser agent; eutils.ncbi.nlm.nih.gov robots.txt still refuses this project. Nothing was routed around."
+    "checked": "2026-10-20",
+    "note": "pubmed.ncbi.nlm.nih.gov served a cookie notice with no abstract text to the project's own agent and to a browser agent on 2026-10-14, and eutils.ncbi.nlm.nih.gov serves User-agent * Disallow / in robots.txt, so the cited abstract can't be read. Not routed around. Re-measured 2026-10-15, pubmed.ncbi.nlm.nih.gov answered 203 to the project's agent and 203 to a browser agent; eutils.ncbi.nlm.nih.gov robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-10-20, pubmed.ncbi.nlm.nih.gov answered 203 to the project's agent and 203 to a browser agent; eutils.ncbi.nlm.nih.gov robots.txt still refuses this project. Nothing was routed around."
    }
   },
   {
@@ -25490,8 +25530,8 @@
      "eutils.ncbi.nlm.nih.gov"
     ],
     "boundary": "blocks_every_client",
-    "checked": "2026-10-15",
-    "note": "pubmed.ncbi.nlm.nih.gov served a cookie notice with no abstract text to the project's own agent and to a browser agent on 2026-10-14, and eutils.ncbi.nlm.nih.gov serves User-agent * Disallow / in robots.txt, so the cited abstract can't be read. Not routed around. Re-measured 2026-10-15, pubmed.ncbi.nlm.nih.gov answered 203 to the project's agent and 203 to a browser agent; eutils.ncbi.nlm.nih.gov robots.txt still refuses this project. Nothing was routed around."
+    "checked": "2026-10-20",
+    "note": "pubmed.ncbi.nlm.nih.gov served a cookie notice with no abstract text to the project's own agent and to a browser agent on 2026-10-14, and eutils.ncbi.nlm.nih.gov serves User-agent * Disallow / in robots.txt, so the cited abstract can't be read. Not routed around. Re-measured 2026-10-15, pubmed.ncbi.nlm.nih.gov answered 203 to the project's agent and 203 to a browser agent; eutils.ncbi.nlm.nih.gov robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-10-20, pubmed.ncbi.nlm.nih.gov answered 203 to the project's agent and 203 to a browser agent; eutils.ncbi.nlm.nih.gov robots.txt still refuses this project. Nothing was routed around."
    }
   },
   {
@@ -27133,8 +27173,8 @@
      "clinicaltrials.gov"
     ],
     "boundary": "robots",
-    "checked": "2026-10-15",
-    "note": "clinicaltrials.gov serves the study page as a script shell with no record text, and the record itself is served from /api/v2/, which robots.txt disallows to this project, measured 2026-10-04. Nothing was routed around. Re-measured 2026-10-08, robots.txt still disallows /api/v2/ to this project. Re-measured 2026-10-15, clinicaltrials.gov robots.txt still refuses this project. Nothing was routed around."
+    "checked": "2026-10-20",
+    "note": "clinicaltrials.gov serves the study page as a script shell with no record text, and the record itself is served from /api/v2/, which robots.txt disallows to this project, measured 2026-10-04. Nothing was routed around. Re-measured 2026-10-08, robots.txt still disallows /api/v2/ to this project. Re-measured 2026-10-15, clinicaltrials.gov robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-10-20, clinicaltrials.gov robots.txt still refuses this project. Nothing was routed around."
    }
   },
   {
@@ -27352,8 +27392,8 @@
      "public.destinyhosted.com"
     ],
     "boundary": "robots",
-    "checked": "2026-10-15",
-    "note": "public.destinyhosted.com serves `User-agent: *` / `Disallow: /`, re-measured 2026-09-28, on a single line. www.hayscountytx.gov answered 403 on 2026-09-24 and 200 on 2026-09-28, so whether the county's own copy of this agenda entry can serve as a second door is for the next re-verification. The entry was not routed around. Re-measured 2026-10-08, public.destinyhosted.com robots.txt still refuses the path. Re-measured 2026-10-15, public.destinyhosted.com robots.txt still refuses this project. Nothing was routed around."
+    "checked": "2026-10-20",
+    "note": "public.destinyhosted.com serves `User-agent: *` / `Disallow: /`, re-measured 2026-09-28, on a single line. www.hayscountytx.gov answered 403 on 2026-09-24 and 200 on 2026-09-28, so whether the county's own copy of this agenda entry can serve as a second door is for the next re-verification. The entry was not routed around. Re-measured 2026-10-08, public.destinyhosted.com robots.txt still refuses the path. Re-measured 2026-10-15, public.destinyhosted.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-10-20, public.destinyhosted.com robots.txt still refuses this project. Nothing was routed around."
    }
   },
   {
@@ -27536,8 +27576,8 @@
      "public.destinyhosted.com"
     ],
     "boundary": "robots",
-    "checked": "2026-10-15",
-    "note": "public.destinyhosted.com serves `User-agent: *` / `Disallow: /`, re-measured 2026-09-28, on a single line. www.hayscountytx.gov answered 403 on 2026-09-24 and 200 on 2026-09-28, so whether the county's own copy of this agenda entry can serve as a second door is for the next re-verification. The entry was not routed around. Re-measured 2026-10-08, public.destinyhosted.com robots.txt still refuses the path. Re-measured 2026-10-15, public.destinyhosted.com robots.txt still refuses this project. Nothing was routed around."
+    "checked": "2026-10-20",
+    "note": "public.destinyhosted.com serves `User-agent: *` / `Disallow: /`, re-measured 2026-09-28, on a single line. www.hayscountytx.gov answered 403 on 2026-09-24 and 200 on 2026-09-28, so whether the county's own copy of this agenda entry can serve as a second door is for the next re-verification. The entry was not routed around. Re-measured 2026-10-08, public.destinyhosted.com robots.txt still refuses the path. Re-measured 2026-10-15, public.destinyhosted.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-10-20, public.destinyhosted.com robots.txt still refuses this project. Nothing was routed around."
    }
   },
   {
@@ -27696,8 +27736,8 @@
      "public.destinyhosted.com"
     ],
     "boundary": "robots",
-    "checked": "2026-10-15",
-    "note": "public.destinyhosted.com serves `User-agent: *` / `Disallow: /`, re-measured 2026-09-28, on a single line. www.hayscountytx.gov answered 403 on 2026-09-24 and 200 on 2026-09-28, so whether the county's own copy of this agenda entry can serve as a second door is for the next re-verification. The entry was not routed around. Re-measured 2026-10-08, public.destinyhosted.com robots.txt still refuses the path. Re-measured 2026-10-15, public.destinyhosted.com robots.txt still refuses this project. Nothing was routed around."
+    "checked": "2026-10-20",
+    "note": "public.destinyhosted.com serves `User-agent: *` / `Disallow: /`, re-measured 2026-09-28, on a single line. www.hayscountytx.gov answered 403 on 2026-09-24 and 200 on 2026-09-28, so whether the county's own copy of this agenda entry can serve as a second door is for the next re-verification. The entry was not routed around. Re-measured 2026-10-08, public.destinyhosted.com robots.txt still refuses the path. Re-measured 2026-10-15, public.destinyhosted.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-10-20, public.destinyhosted.com robots.txt still refuses this project. Nothing was routed around."
    }
   },
   {
@@ -27864,8 +27904,8 @@
      "gov.texas.gov"
     ],
     "boundary": "robots",
-    "checked": "2026-10-15",
-    "note": "gov.texas.gov refuses this project's path in robots.txt, measured 2026-10-03 by fetch_doc's live robots check and the crawl boundary, on the item's own front door. Nothing was routed around. Re-measured 2026-10-08, gov.texas.gov robots.txt still refuses the path. Re-measured 2026-10-15, gov.texas.gov is excluded by the sources registry, its robots.txt naming this project's crawler. Nothing was routed around."
+    "checked": "2026-10-20",
+    "note": "gov.texas.gov refuses this project's path in robots.txt, measured 2026-10-03 by fetch_doc's live robots check and the crawl boundary, on the item's own front door. Nothing was routed around. Re-measured 2026-10-08, gov.texas.gov robots.txt still refuses the path. Re-measured 2026-10-15, gov.texas.gov is excluded by the sources registry, its robots.txt naming this project's crawler. Nothing was routed around. Re-measured 2026-10-20, gov.texas.gov is excluded by the sources registry, its robots.txt naming this project's crawler. Nothing was routed around."
    }
   },
   {
@@ -29177,8 +29217,8 @@
      "www.leandertx.gov"
     ],
     "boundary": "blocks_every_client",
-    "checked": "2026-10-15",
-    "note": "www.leandertx.gov answered 403 on 2026-10-06 to the project's own agent and to a browser agent, on the newsflash detail page /m/newsflash/Home/Detail/1347. Its robots.txt carries no disallow for that path. The page read unchanged at that address on 2026-09-27 and 2026-10-03. Not routed around. Re-measured 2026-10-08, www.leandertx.gov answered 403 to the project's agent and 403 to a browser agent. Re-measured 2026-10-15, www.leandertx.gov answered 403 to the project's agent and 403 to a browser agent. Nothing was routed around."
+    "checked": "2026-10-20",
+    "note": "www.leandertx.gov answered 403 on 2026-10-06 to the project's own agent and to a browser agent, on the newsflash detail page /m/newsflash/Home/Detail/1347. Its robots.txt carries no disallow for that path. The page read unchanged at that address on 2026-09-27 and 2026-10-03. Not routed around. Re-measured 2026-10-08, www.leandertx.gov answered 403 to the project's agent and 403 to a browser agent. Re-measured 2026-10-15, www.leandertx.gov answered 403 to the project's agent and 403 to a browser agent. Nothing was routed around. Re-measured 2026-10-20, www.leandertx.gov answered 403 to the project's agent and 403 to a browser agent. Nothing was routed around."
    }
   },
   {
@@ -29297,8 +29337,8 @@
      "www.globenewswire.com"
     ],
     "boundary": "blocks_every_client",
-    "checked": "2026-10-16",
-    "note": "www.globenewswire.com answered 403 on 2026-10-16 to the project's own agent and to a browser agent, on the release page and on robots.txt alike. Battalion's own news page and SEC full-text search carry no copy of the release. Nothing was routed around."
+    "checked": "2026-10-20",
+    "note": "www.globenewswire.com answered 403 on 2026-10-16 to the project's own agent and to a browser agent, on the release page and on robots.txt alike. Battalion's own news page and SEC full-text search carry no copy of the release. Nothing was routed around. Re-measured 2026-10-20, www.globenewswire.com answered 403 to the project's agent and 403 to a browser agent. Nothing was routed around."
    }
   },
   {
@@ -29537,12 +29577,12 @@
      "id": "tx-2026-0186-c1"
     },
     {
-     "text": "The agency's page sets the comment deadline.",
-     "verbatim_quote": "Please review the Draft EA and submit your comments by October 11, 2026.",
+     "text": "The agency's page says the comment period on the draft closed on October 11th, 2026, and keeps the draft posted to read.",
+     "verbatim_quote": "The comment period closed on October 11, 2026, but a copy of the Draft EA is available here to view or download",
      "source_url": "https://www.faa.gov/uas/advanced_operations/nepa_and_drones",
      "source_title": "FAA, Public Involvement and Environmental Review for Drone Operations",
      "source_type": "primary_official",
-     "fetched": "2026-09-24",
+     "fetched": "2026-10-20",
      "id": "tx-2026-0186-c2"
     },
     {
@@ -29551,7 +29591,7 @@
      "source_url": "https://www.faa.gov/uas/advanced_operations/nepa_and_drones/20260911_Zipline_Texas_Metros_Draft_EA_CLEAN_ADA_Signed.pdf",
      "source_title": "FAA, Draft Environmental Assessment for Zipline International Inc. Proposed Drone Package Delivery Operations in Multiple Texas Metropolitan Areas, September 2026",
      "source_type": "primary_official",
-     "fetched": "2026-09-24",
+     "fetched": "2026-10-20",
      "id": "tx-2026-0186-c3"
     },
     {
@@ -29560,7 +29600,7 @@
      "source_url": "https://www.faa.gov/uas/advanced_operations/nepa_and_drones/20260911_Zipline_Texas_Metros_Draft_EA_CLEAN_ADA_Signed.pdf",
      "source_title": "FAA, Draft Environmental Assessment for Zipline International Inc. Proposed Drone Package Delivery Operations in Multiple Texas Metropolitan Areas, September 2026",
      "source_type": "primary_official",
-     "fetched": "2026-09-24",
+     "fetched": "2026-10-20",
      "id": "tx-2026-0186-c4"
     },
     {
@@ -29569,7 +29609,7 @@
      "source_url": "https://www.faa.gov/uas/advanced_operations/nepa_and_drones/20260911_Zipline_Texas_Metros_Draft_EA_CLEAN_ADA_Signed.pdf",
      "source_title": "FAA, Draft Environmental Assessment for Zipline International Inc. Proposed Drone Package Delivery Operations in Multiple Texas Metropolitan Areas, September 2026",
      "source_type": "primary_official",
-     "fetched": "2026-09-24",
+     "fetched": "2026-10-20",
      "id": "tx-2026-0186-c5"
     },
     {
@@ -29578,7 +29618,7 @@
      "source_url": "https://www.faa.gov/uas/advanced_operations/nepa_and_drones/20260911_Zipline_Texas_Metros_Draft_EA_CLEAN_ADA_Signed.pdf",
      "source_title": "FAA, Draft Environmental Assessment for Zipline International Inc. Proposed Drone Package Delivery Operations in Multiple Texas Metropolitan Areas, September 2026",
      "source_type": "primary_official",
-     "fetched": "2026-09-24",
+     "fetched": "2026-10-20",
      "id": "tx-2026-0186-c6"
     },
     {
@@ -29587,7 +29627,7 @@
      "source_url": "https://www.faa.gov/uas/advanced_operations/nepa_and_drones/20260911_Zipline_Texas_Metros_Draft_EA_CLEAN_ADA_Signed.pdf",
      "source_title": "FAA, Draft Environmental Assessment for Zipline International Inc. Proposed Drone Package Delivery Operations in Multiple Texas Metropolitan Areas, September 2026",
      "source_type": "primary_official",
-     "fetched": "2026-09-24",
+     "fetched": "2026-10-20",
      "id": "tx-2026-0186-c7"
     },
     {
@@ -29596,7 +29636,7 @@
      "source_url": "https://www.faa.gov/uas/advanced_operations/nepa_and_drones/20260911_Zipline_Texas_Metros_Draft_EA_CLEAN_ADA_Signed.pdf",
      "source_title": "FAA, Draft Environmental Assessment for Zipline International Inc. Proposed Drone Package Delivery Operations in Multiple Texas Metropolitan Areas, September 2026",
      "source_type": "primary_official",
-     "fetched": "2026-09-24",
+     "fetched": "2026-10-20",
      "id": "tx-2026-0186-c8"
     },
     {
@@ -29605,7 +29645,7 @@
      "source_url": "https://www.faa.gov/uas/advanced_operations/nepa_and_drones/20260911_Zipline_Texas_Metros_Draft_EA_CLEAN_ADA_Signed.pdf",
      "source_title": "FAA, Draft Environmental Assessment for Zipline International Inc. Proposed Drone Package Delivery Operations in Multiple Texas Metropolitan Areas, September 2026",
      "source_type": "primary_official",
-     "fetched": "2026-09-24",
+     "fetched": "2026-10-20",
      "id": "tx-2026-0186-c9"
     },
     {
@@ -29614,7 +29654,7 @@
      "source_url": "https://www.faa.gov/uas/advanced_operations/nepa_and_drones/20260911_Zipline_Texas_Metros_Draft_EA_CLEAN_ADA_Signed.pdf",
      "source_title": "FAA, Draft Environmental Assessment for Zipline International Inc. Proposed Drone Package Delivery Operations in Multiple Texas Metropolitan Areas, September 2026",
      "source_type": "primary_official",
-     "fetched": "2026-09-24",
+     "fetched": "2026-10-20",
      "id": "tx-2026-0186-c10"
     },
     {
@@ -29623,7 +29663,7 @@
      "source_url": "https://www.faa.gov/uas/advanced_operations/nepa_and_drones/20260911_Zipline_Texas_Metros_Draft_EA_CLEAN_ADA_Signed.pdf",
      "source_title": "FAA, Draft Environmental Assessment for Zipline International Inc. Proposed Drone Package Delivery Operations in Multiple Texas Metropolitan Areas, September 2026",
      "source_type": "primary_official",
-     "fetched": "2026-09-24",
+     "fetched": "2026-10-20",
      "id": "tx-2026-0186-c11"
     },
     {
@@ -29632,7 +29672,7 @@
      "source_url": "https://www.faa.gov/uas/advanced_operations/nepa_and_drones/20260911_Zipline_Texas_Metros_Draft_EA_CLEAN_ADA_Signed.pdf",
      "source_title": "FAA, Draft Environmental Assessment for Zipline International Inc. Proposed Drone Package Delivery Operations in Multiple Texas Metropolitan Areas, September 2026",
      "source_type": "primary_official",
-     "fetched": "2026-09-24",
+     "fetched": "2026-10-20",
      "id": "tx-2026-0186-c12"
     },
     {
@@ -29641,7 +29681,7 @@
      "source_url": "https://www.faa.gov/uas/advanced_operations/nepa_and_drones/20260911_Zipline_Texas_Metros_Draft_EA_CLEAN_ADA_Signed.pdf",
      "source_title": "FAA, Draft Environmental Assessment for Zipline International Inc. Proposed Drone Package Delivery Operations in Multiple Texas Metropolitan Areas, September 2026",
      "source_type": "primary_official",
-     "fetched": "2026-09-24",
+     "fetched": "2026-10-20",
      "id": "tx-2026-0186-c13"
     },
     {
@@ -29650,7 +29690,7 @@
      "source_url": "https://www.faa.gov/uas/advanced_operations/nepa_and_drones/20260911_Zipline_Texas_Metros_Draft_EA_CLEAN_ADA_Signed.pdf",
      "source_title": "FAA, Draft Environmental Assessment for Zipline International Inc. Proposed Drone Package Delivery Operations in Multiple Texas Metropolitan Areas, September 2026",
      "source_type": "primary_official",
-     "fetched": "2026-09-24",
+     "fetched": "2026-10-20",
      "id": "tx-2026-0186-c14"
     },
     {
@@ -29659,7 +29699,7 @@
      "source_url": "https://www.faa.gov/uas/advanced_operations/nepa_and_drones/20260911_Zipline_Texas_Metros_Draft_EA_CLEAN_ADA_Signed.pdf",
      "source_title": "FAA, Draft Environmental Assessment for Zipline International Inc. Proposed Drone Package Delivery Operations in Multiple Texas Metropolitan Areas, September 2026",
      "source_type": "primary_official",
-     "fetched": "2026-09-24",
+     "fetched": "2026-10-20",
      "id": "tx-2026-0186-c15"
     },
     {
@@ -29668,7 +29708,7 @@
      "source_url": "https://www.faa.gov/uas/advanced_operations/nepa_and_drones/20260911_Zipline_Texas_Metros_Draft_EA_CLEAN_ADA_Signed.pdf",
      "source_title": "FAA, Draft Environmental Assessment for Zipline International Inc. Proposed Drone Package Delivery Operations in Multiple Texas Metropolitan Areas, September 2026",
      "source_type": "primary_official",
-     "fetched": "2026-09-24",
+     "fetched": "2026-10-20",
      "id": "tx-2026-0186-c16"
     },
     {
@@ -29677,13 +29717,13 @@
      "source_url": "https://www.faa.gov/uas/advanced_operations/nepa_and_drones/20260911_Zipline_Texas_Metros_Draft_EA_CLEAN_ADA_Signed.pdf",
      "source_title": "FAA, Draft Environmental Assessment for Zipline International Inc. Proposed Drone Package Delivery Operations in Multiple Texas Metropolitan Areas, September 2026",
      "source_type": "primary_official",
-     "fetched": "2026-09-24",
+     "fetched": "2026-10-20",
      "id": "tx-2026-0186-c17"
     }
    ],
    "notes_for_editor": "Admitted on the FAA's own draft and its own review page. The environmental assessment is a draft prepared by the applicant under the agency's supervision, and the final decision on the operating approvals has not been made. The county list is the Section 106 letter's own list with two of its spellings, Atacosta and Roberston, read as Atascosa and Robertson. The letter's stated total and its list disagree, so no county count is published. The five metros straddle the ERCOT line, so on_ercot is null rather than either value. The letter states a county total its own list does not match, and that discrepancy is reported here rather than repaired.",
    "id": "tx-2026-0186",
-   "last_verified": "2026-10-15",
+   "last_verified": "2026-10-20",
    "history": [
     {
      "date": "2026-09-24",
@@ -29739,6 +29779,10 @@
      "date": "2026-10-15",
      "note": "The comment window on Zipline's Texas metros assessment closed on October 11th, as the agency's review page now says. The draft assessment is still posted there, and no final assessment or decision for it appears on the page.",
      "checked": true
+    },
+    {
+     "date": "2026-10-20",
+     "note": "The agency's review page has dropped its call for comments and now says the period on Zipline's Texas metros draft closed on October 11th. The draft and its noise study are still posted, and no final assessment or finding has been published."
     }
    ]
   },
@@ -32119,9 +32163,18 @@
      "source_title": "Kodiak AI, Kodiak AI Names Dallas-Houston As Long-Haul Driverless Launch Lane, September 25, 2026",
      "source_type": "primary_corporate",
      "fetched": "2026-10-03"
+    },
+    {
+     "text": "Kodiak says its readiness measure for driverless long haul reached 96 percent at the end of September and that it remains on track for an unsupervised launch by the end of 2026.",
+     "verbatim_quote": "The company's Autonomy Readiness Measure (\"ARM\") for long-haul driverless operations reached 96% at the end of September 2026, up from 93% at the end of August.",
+     "source_url": "https://kodiak.ai/news/autonomy-readiness-96-driverless-long-haul-launch",
+     "source_title": "Kodiak AI, On Track for Year-End Driverless Long-Haul Launch as Autonomy Readiness Measure Jumps to 96%",
+     "source_type": "primary_corporate",
+     "fetched": "2026-10-20",
+     "id": "tx-2026-0198-c17"
     }
    ],
-   "last_verified": "2026-10-15",
+   "last_verified": "2026-10-20",
    "confidence": "high",
    "notes_for_editor": "Admitted on three of the company's own pages. Counties are the two ends of the driver-out leg the company names, its Lancaster hub in Dallas County and Houston in Harris County. Frisco and Baytown are the ends of IKEA's longer route and are not counted as places the driverless leg runs. Filed under state-policy beside the state's authorization rule for the same vehicles, tx-2026-0188.",
    "history": [
@@ -32148,6 +32201,10 @@
      "date": "2026-10-15",
      "note": "Kodiak still names Interstate 45 from Dallas to Houston as its first driverless lane, with no date for an empty cab.",
      "checked": true
+    },
+    {
+     "date": "2026-10-20",
+     "note": "Kodiak's October 6th release puts its readiness measure for the Interstate 45 launch at 96% at the end of September, up from 93% a month earlier. The company still names the end of 2026 for an empty cab and gives no firmer date."
     }
    ]
   },
@@ -34044,9 +34101,14 @@
     {
      "date": "2026-10-16",
      "note": "Kodiak's own copy of its October 8th release still says the Dallas to Laredo trucks run with a safety driver behind the wheel. The driverless switch still waits on Kodiak finishing its safety case."
+    },
+    {
+     "date": "2026-10-20",
+     "note": "Kodiak and Charger USA's Dallas to Laredo trucks still run with a safety driver aboard, as the October 8th release says. No date for a driverless run on that lane has been named.",
+     "checked": true
     }
    ],
-   "last_verified": "2026-10-16",
+   "last_verified": "2026-10-20",
    "id": "tx-2026-0209"
   },
   {
@@ -34328,7 +34390,7 @@
     }
    ],
    "id": "tx-2026-0212",
-   "last_verified": "2026-10-18",
+   "last_verified": "2026-10-20",
    "history": [
     {
      "date": "2026-10-10",
@@ -34358,6 +34420,11 @@
     {
      "date": "2026-10-18",
      "note": "The college's own page still describes its AI policy as in development, with no adopted version.",
+     "checked": true
+    },
+    {
+     "date": "2026-10-20",
+     "note": "The college's page still calls its AI policy a work in development under the five rule framework, and no adopted policy has been posted.",
      "checked": true
     }
    ]
@@ -34838,11 +34905,16 @@
     }
    ],
    "id": "tx-2026-0216",
-   "last_verified": "2026-10-16",
+   "last_verified": "2026-10-20",
    "history": [
     {
      "date": "2026-10-16",
      "note": "Admitted to the record on Waymo's own post and the federal recall record. The recall's lasting remedy is still listed as under development."
+    },
+    {
+     "date": "2026-10-20",
+     "note": "Waymo's San Antonio service is still open to anyone with the app, the airport included. The recall record still lists its lasting remedy as under development.",
+     "checked": true
     }
    ]
   },
@@ -34980,11 +35052,16 @@
     }
    ],
    "id": "tx-2026-0217",
-   "last_verified": "2026-10-17",
+   "last_verified": "2026-10-20",
    "history": [
     {
      "date": "2026-10-17",
      "note": "MD Anderson's release of October 13th describes the published model and its mucin finding as an idea to test in the lab, with no use in patient care reported."
+    },
+    {
+     "date": "2026-10-20",
+     "note": "MD Anderson's October 13th release still frames the mucin finding as an idea for the lab to test, with no use in patient care reported.",
+     "checked": true
     }
    ]
   },
@@ -35354,11 +35431,16 @@
     }
    ],
    "id": "tx-2026-0220",
-   "last_verified": "2026-10-18",
+   "last_verified": "2026-10-20",
    "history": [
     {
      "date": "2026-10-18",
      "note": "Admitted on the city's release. The Zoning Commission hearing on October 20th and the council vote on October 29th are both still ahead.",
+     "checked": true
+    },
+    {
+     "date": "2026-10-20",
+     "note": "Both data center zoning proposals are still set for the Zoning Commission today, October 20th, with the council vote on October 29th still ahead.",
      "checked": true
     }
    ]
