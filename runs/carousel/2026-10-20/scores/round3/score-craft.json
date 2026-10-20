@@ -1,0 +1,85 @@
+{
+ "lens": "craft",
+ "deck": "carousel no. 55, 2026-10-20, round 3 (cap)",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.5,
+   "why": "9, 1, 3 and 4 strong (counts checked in pixels); 8 a mid-tone quote card, 7's board a Gantt-like panel and a robot-arm rig, 2 a card-grey plan with dark-stub cameras, 6 an empty weave band; light direction flips on 9."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.0,
+   "why": "One cold dark interior, the container and camera motifs working, the 3 to 4 hold the best cut; gold leaks onto 2 and 7, 8 is the one bright frame, reliefs alternate with renders."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.0,
+   "why": "Every numeral traces and the drawn counts match; all sources primary and the blog attributed; 5's headline states a 95% interval as bounds, the dek fixes it."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.5,
+   "why": "What, who and where clear; 9 gives a patient something concrete; no next step or place to act."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "The cover earns the swipe, 3 to 6 builds then qualifies, 7 is a real turn and 8 follows; 9 lands as a coda."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Clean and careful, a science-desk register with key-to-the-chart lines."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "A new world; the one-unit-per-count move, a fourth medical deck in 16 days, a second journal study in four days."
+  }
+ ],
+ "weighted_score": 7.17,
+ "hard_fails": [],
+ "ship": true,
+ "contested": [
+  "Frame 8 as type on a plate",
+  "Gold on frames 2 and 7",
+  "Frame 5's headline as a looseness",
+  "Light direction on 9"
+ ],
+ "artwork_weakest_frames": [
+  {
+   "slide": 8,
+   "problem": "A mid-tone beige quote card, flattest bands in the deck.",
+   "fix": "Cut the page to about 60 percent of its area, curl it so it casts, one narrow raking pool falling off hard below the c13 line."
+  },
+  {
+   "slide": 7,
+   "problem": "A Gantt-like board, a robot-arm rig, a gold block, a dead band above the tile.",
+   "fix": "Recolour the gold block, one wall plate, lens axis on the board's lanes, modelled magnets and tray, tile raised to the dek."
+  },
+  {
+   "slide": 2,
+   "problem": "A card-grey floor plan, dark-stub cameras with gold rings.",
+   "fix": "A 30 degree oblique aerial, cameras 1.5 times larger with cold white rings."
+  },
+  {
+   "slide": 6,
+   "problem": "An empty weave band between the dek and the clamps.",
+   "fix": "Move the rank up about 250 px, rings off the bottom edge, a lower key for longer casts."
+  },
+  {
+   "slide": 4,
+   "problem": "An evenly lit wall reading as a flat block with a tan band.",
+   "fix": "A real pool from high left with the right third and corners falling to black; the same on 3."
+  }
+ ],
+ "_note": "Transcribed from the judge's hand-back by the showrunner; scores, total and weakest frames as returned, reasons abridged."
+}

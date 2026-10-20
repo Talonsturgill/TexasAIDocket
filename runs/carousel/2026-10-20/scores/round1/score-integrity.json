@@ -1,0 +1,111 @@
+{
+ "judge": "integrity",
+ "deck": "carousel no. 55, 2026-10-20, round 1",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.0,
+   "why": "Every count is drawn correctly at its declared scale. I counted each one in the renders. Slide 3 has 26 rows of 13 plus 1 single end, which is 339. Slide 4 has the top row and 12 of row 27 in gold, which is 25, and 364 in total. Slide 5 has 41 bays (6x6 plus 5), 25 lids, and tape under bays 1 to 8 and a third of bay 9. Slide 6 has 11 clamps with the second one gold. Slide 2 has four camera brackets. Slides 3 and 4 are the best frames: a nurse at true scale against the wall, with contact on the floor. Slide 9's container has real detail. Most other frames are diagrams rather than lit objects. Slide 5 is a flat grid on a mid grey field and reads as a calendar chart (relief cast_fraction 0.059, height_range 19). Slide 8 is a grey stucco 'page' used as a plate for DOM type, which is the 4 descriptor's 'type on plates'. Slide 7 is a primitive camera and a whiteboard of flat coloured rectangles, with a hard diagonal shadow band running to the frame edge. Slide 2 reads as a floor plan. Slide 6's clamps look like wire tongs and the weave reads as diagonal stripes. The walls on 3 and 4 are evenly lit, so they half read as a stacked bar. Two frames meet the showstopper test. This sits between the 4 and the 7."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.0,
+   "why": "This is clearly one deck. It has one dark OR world, one cold key, and dusk gold used as the only accent. The container motif changes state from 3 to 4 to 5 to 9, and the camera recurs on 1, 2, 7 and 9. The storyboard declares CAMERA_MOVE, MOTIF_EVOLUTION and VALUE_ARC, and two of them visibly work. The reliefs are the frames that sit outside it. Slide 5's light grey floor, slide 6's green towel and slide 8's grey page lift into mid tones between dark spatial frames (machine_qa band values 0.81 on 5 and 0.96 on 6, against 0.25 to 0.28 on 1). Slide 5 also reads as a chart vocabulary rather than the room's materials."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 6.0,
+   "why": "Every printed numeral traces to figures.json, and each value there is regex-extracted from a quote in compute.py. 'Associated, not caused' (c10), the change-management confound (c11), the blog attribution for turnovers (c24) and the c16 exception are all handled carefully. Four things fall short. (1) The caption says 'The hospital holds a minority equity interest in Apella, the vendor', and #Apella is a hashtag. No quote in claims.json establishes that Apella supplies this camera system. c13's TEXT says 'the system's vendor', but its QUOTE says only 'Houston Methodist Hospital holds a minority equity interest in Apella Technology.' c14 only says an analyst is employed by Apella. The storyboard's 'from Apella' cites nothing. Slide 8's whole stake depends on that link, and no gate checked it (see hard_fails). (2) Slide 9's headline 'Three roles can open the footage' is an unscoped universal. c18 restricts only intraoperative recordings, 'from incision to skin closure', and slide 2 says the system logs arrival, draping and case end, which are mostly outside that window. The dek scopes it, but the headline does not, and the roles are never named ('those three roles'). (3) Slide 6 prints the placebo test's 'does not reach conventional significance' but drops 'directionally consistent'. No surface says the main estimate was statistically significant (c6: p < 0.01, Bonferroni-adjusted p < 0.05), so a reader can come away thinking the finding failed. (4) The storyboard records that the hospital's blog says no audio is captured, while slide 9 prints the paper's audio retention (c17, confidence medium). That conflict between the deck's two sources is not carried as a claim or shown to the reader. Attribution keeps it from being false, but the omission is real."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.5,
+   "why": "What happened, who and where are clear: four cameras in each of 15 Walter Tower cardiothoracic ORs, Houston Methodist, an estimated 25 more cases a month with an honest interval and confound. No body decided anything public and there is no dated next step (texan_check warns on both). The close turns to footage access rather than to anything a reader can do. Patient consent (c26) and staff concerns (c25), the two stakes a Texan patient would act on, are in claims but on no frame. The caption ends on a rhetorical question rather than a route."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "The cover earns the swipe. Slide 2 explains the system at once, slides 3 to 4 to 5 build the estimate and its uncertainty, and slide 7 is the declared turn. Slides 3 and 4 are the same camera and nearly the same image, so one could merge without loss. Slide 9 changes subject from evidence strength to footage retention, so the deck stops rather than lands its argument, which ran from estimate to limits to disclosure."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "The copy is clean and precise, with no banned words, colons, semicolons or 'cannot'. 'Somewhere from 8.3 to 41.0' and 'The study's 95% interval sizes the unknown' are good lines. Two flat spots: 'The deck draws each case of the month as one sterile container' in the caption is meta-commentary, and the deck has no Texas register beyond the proper nouns. Houston and the Medical Center are never placed."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "The world (an interior OR at floodlit) differs from nos. 51 to 54: courthouse stair, nightSodium robotaxi, darkfield reliefs, brush country. The instrument repeats, though. It is a peer-reviewed paper three days after no. 53's Nature BME paper, and the third clinical-AI deck since October 5th (nos. 43, 47, 53). It is also Houston Methodist again after no. 19 (September 9th, just outside the window). 'One object per unit, counted in a wall' is the house measure move, used in nos. 43, 49 and 54."
+  }
+ ],
+ "weighted_score": 6.45,
+ "weighted_score_arithmetic": "0.22*6.0 + 0.12*7.0 + 0.20*6.0 + 0.16*6.5 + 0.10*7.0 + 0.10*7.0 + 0.10*6.5 = 1.32 + 0.84 + 1.20 + 1.04 + 0.70 + 0.70 + 0.65 = 6.45",
+ "hard_fails": [
+  {
+   "rule": "an unverified fact presented as verified",
+   "where": "out/2026-10-20/caption.txt line 7, 'The hospital holds a minority equity interest in Apella, the vendor.' The same assertion is in claims.json c13's text ('the system's vendor'), and slide 8's whole argument depends on it.",
+   "evidence": "c13's verbatim quote is 'Houston Methodist Hospital holds a minority equity interest in Apella Technology.' It says nothing about Apella supplying the system. No other claim (c1 to c27) quotes a sentence naming Apella as the maker or provider of the image-based AI platform. c14 says only that the analyst is employed by Apella. The verbatim gate verified the quote, not the vendor relationship the text adds, so nothing in the record verifies the fact the caption prints. I think the fact is very likely true. The failure is that it was never verified, and the repair is one claim: quote the paper's methods or the hospital blog sentence that names Apella as the platform provider, or else cut 'the vendor' from the caption and c13's text."
+  }
+ ],
+ "ship": false,
+ "contested": [
+  "art_preflight.json carries review.decision 'accept' and frame 9's review inputs match the manifest hash (cb18c09b...), but 'needs_review' still lists [9]. Either that field is stale or the frame 9 re-review was written before the final render. panel_ready reportedly passes. I can't hash the PNG with read-only tools, so this is a lead for the integrity of the bound review, not a finding.",
+  "reviews/pixel_round1.md describes a worker on slide 7 and an unnamed paper on slide 9, and neither appears in the current renders. It is a pre-repair reading, and the changed frames have no newer pixel review in the files I was given."
+ ],
+ "one_sentence_fix": "Before copy, make every relationship the argument rests on carry its own verbatim quote (here, a sentence naming Apella as the camera system's provider, so the 'hospital owns part of the vendor' turn is verified rather than inferred from c13's paraphrase), and scope slide 9's headline to the incision-to-closure recordings the paper actually restricts.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 5,
+   "problem": "A flat orthographic grid on a mid grey field (cast_fraction 0.059, height_range 19) that reads as a calendar chart rather than lids on a taped vinyl floor. It is the deck's faded frame.",
+   "fix": "Drop the key to about 15 degrees elevation from the upper left so every lid throws a long cast. Darken the vinyl to near black outside a pool centred on the 25 lids. Raise the lids' height range so the ribs and rims model."
+  },
+  {
+   "slide": 8,
+   "problem": "The 'page' is a grey stucco slab used as a plate for DOM type, filling about 60 percent of the frame in mid tones, with no paper quality.",
+   "fix": "Model a warm off-white sheet with a lifted lower corner casting onto the steel. Crop so the page is about half the frame with the brushed steel falling to near black, and rake the key across the fibre."
+  },
+  {
+   "slide": 7,
+   "problem": "A primitive camera on a boom and a whiteboard of flat coloured rectangles, with a hard diagonal shadow streak crossing the lower left to the frame edge. It reads as kit primitives.",
+   "fix": "Replace the board's flat blocks with modelled magnets and marker-ruled lanes under a specular sheen. Soften or remove the boom's long cast. Bring the camera closer so its housing is at least 400 px wide."
+  },
+  {
+   "slide": 2,
+   "problem": "The plan relief reads as a floor plan diagram, with walls barely proud and the four camera brackets the least legible thing in the frame.",
+   "fix": "Tilt to a three-quarter aerial camera with walls twice as tall, so their casts fill the floor and the four brackets read as objects on the wall tops."
+  },
+  {
+   "slide": 6,
+   "problem": "The clamps read as thin wire tongs and the towel weave reads as diagonal stripes, so the 'surgical instrument' noun doesn't land at feed size.",
+   "fix": "Model hemostat geometry (thicker shanks, a visible ratchet, curved serrated jaws) with more relief height. Lower the key so each clamp casts a defined shadow into a finer diamond weave."
+  }
+ ],
+ "files_read": [
+  "/home/user/TexasAIDocket/config/carousel/scoring_rubric.yaml",
+  "/home/user/TexasAIDocket/prompts/carousel_studio.md",
+  "/home/user/TexasAIDocket/out/2026-10-20/copy.json",
+  "/home/user/TexasAIDocket/out/2026-10-20/caption.txt",
+  "/home/user/TexasAIDocket/out/2026-10-20/first_comment.txt",
+  "/home/user/TexasAIDocket/out/2026-10-20/copy_strings.json",
+  "/home/user/TexasAIDocket/out/2026-10-20/claims.json",
+  "/home/user/TexasAIDocket/out/2026-10-20/figures.json",
+  "/home/user/TexasAIDocket/out/2026-10-20/compute.py",
+  "/home/user/TexasAIDocket/out/2026-10-20/aggregates.json",
+  "/home/user/TexasAIDocket/out/2026-10-20/storyboard.md",
+  "/home/user/TexasAIDocket/out/2026-10-20/render/machine_qa.json",
+  "/home/user/TexasAIDocket/out/2026-10-20/reviews/pixel_round1.md",
+  "/home/user/TexasAIDocket/out/2026-10-20/art_preflight.json",
+  "/home/user/TexasAIDocket/out/2026-10-20/render/slide-01.png to slide-09.png",
+  "/home/user/TexasAIDocket/out/2026-10-20/final/contact_sheet.png",
+  "/home/user/TexasAIDocket/ledger/carousel/topics.json"
+ ],
+ "not_read": "The 432 px thumbs (feed legibility was judged from the contact sheet) and ledger/carousel/artwork.json and captions.json. The variety judgement relies on topics.json and the art_plan's distinct_from_recent field.",
+ "lens": "integrity"
+}

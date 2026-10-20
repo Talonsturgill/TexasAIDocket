@@ -1,0 +1,132 @@
+{
+ "date": "2026-10-20",
+ "_note": "Every count, span and multiple the deck states, with the claim it was quoted from or the code that computed it.",
+ "aggregates": [
+  {
+   "phrase": "Four cameras",
+   "slide": "slide-01.html",
+   "kind": "count",
+   "value": 4,
+   "quoted_from": "c3",
+   "quote": "Each operating room was outfitted with four high-resolution wall-mounted cameras",
+   "note": "quoted; figures.json cameras_per_room"
+  },
+  {
+   "phrase": "four wall cameras",
+   "slide": "slide-01.html",
+   "kind": "count",
+   "value": 4,
+   "quoted_from": "c3",
+   "quote": "Each operating room was outfitted with four high-resolution wall-mounted cameras",
+   "note": "quoted; figures.json cameras_per_room"
+  },
+  {
+   "phrase": "15 operating rooms",
+   "slide": "slide-01.html",
+   "kind": "count",
+   "value": 15,
+   "quoted_from": "c2",
+   "quote": "in a 15-room cardiothoracic suite at Houston Methodist Hospital (HMH)",
+   "note": "quoted; figures.json rooms"
+  },
+  {
+   "phrase": "339 cases",
+   "slide": "slide-03.html",
+   "kind": "count",
+   "value": 339,
+   "quoted_from": "c7",
+   "quote": "roughly 7% against a baseline of approximately 339 cases per month",
+   "note": "quoted; figures.json baseline_cases"
+  },
+  {
+   "phrase": "25 more cases",
+   "slide": "slide-04.html",
+   "kind": "count",
+   "value": 25,
+   "quoted_from": "c6",
+   "quote": "showed a statistically significant increase of approximately 25 cases per month (95% CI 8.3 to 41.0; p < 0.01; Bonferroni-adjusted p < 0.05), corresponding to a 7% increase in monthly case volume relative to baseline",
+   "note": "quoted; figures.json added_cases"
+  },
+  {
+   "phrase": "41.0 more cases",
+   "slide": "slide-05.html",
+   "kind": "count",
+   "value": 41.0,
+   "quoted_from": "c6",
+   "quote": "showed a statistically significant increase of approximately 25 cases per month (95% CI 8.3 to 41.0; p < 0.01; Bonferroni-adjusted p < 0.05), corresponding to a 7% increase in monthly case volume relative to baseline",
+   "note": "quoted; the interval's high end, figures.json ci_high"
+  },
+  {
+   "phrase": "10 donor sites",
+   "slide": "slide-06.html",
+   "kind": "count",
+   "value": 10,
+   "quoted_from": "c8",
+   "quote": "Walter Tower had the second-largest ratio of post-deployment to pre-deployment prediction error among the 11 units (Walter Tower and 10 donor sites; empirical p = 0.182)",
+   "note": "quoted; figures.json donor_sites"
+  },
+  {
+   "phrase": "Three roles",
+   "slide": "slide-09.html",
+   "kind": "count",
+   "value": 3,
+   "quoted_from": "c18",
+   "quote": "Access to intraoperative recordings, defined as the period from incision to skin closure, is restricted to three designated roles",
+   "note": "quoted; figures.json access_roles"
+  },
+  {
+   "phrase": "three roles",
+   "slide": "slide-09.html",
+   "kind": "count",
+   "value": 3,
+   "quoted_from": "c18",
+   "quote": "Access to intraoperative recordings, defined as the period from incision to skin closure, is restricted to three designated roles",
+   "note": "quoted; figures.json access_roles"
+  },
+  {
+   "phrase": "25 more surgeries",
+   "slide": "caption.txt",
+   "kind": "count",
+   "value": 25,
+   "quoted_from": "c6",
+   "quote": "showed a statistically significant increase of approximately 25 cases per month (95% CI 8.3 to 41.0; p < 0.01; Bonferroni-adjusted p < 0.05), corresponding to a 7% increase in monthly case volume relative to baseline",
+   "note": "quoted; figures.json added_cases"
+  },
+  {
+   "phrase": "four wall cameras",
+   "slide": "caption.txt",
+   "kind": "count",
+   "value": 4,
+   "quoted_from": "c3",
+   "quote": "Each operating room was outfitted with four high-resolution wall-mounted cameras",
+   "note": "quoted; figures.json cameras_per_room"
+  },
+  {
+   "phrase": "41.0 more cases",
+   "slide": "caption.txt",
+   "kind": "count",
+   "value": 41.0,
+   "quoted_from": "c6",
+   "quote": "showed a statistically significant increase of approximately 25 cases per month (95% CI 8.3 to 41.0; p < 0.01; Bonferroni-adjusted p < 0.05), corresponding to a 7% increase in monthly case volume relative to baseline",
+   "note": "quoted; figures.json ci_high"
+  },
+  {
+   "phrase": "four cameras",
+   "slide": "caption.txt",
+   "kind": "count",
+   "value": 4,
+   "quoted_from": "c3",
+   "quote": "Each operating room was outfitted with four high-resolution wall-mounted cameras",
+   "note": "quoted; figures.json cameras_per_room"
+  },
+  {
+   "phrase": "25 more cases",
+   "slide": "document_title",
+   "kind": "count",
+   "value": 25,
+   "quoted_from": "c6",
+   "quote": "showed a statistically significant increase of approximately 25 cases per month (95% CI 8.3 to 41.0; p < 0.01; Bonferroni-adjusted p < 0.05), corresponding to a 7% increase in monthly case volume relative to baseline",
+   "note": "quoted; figures.json added_cases"
+  }
+ ]
+}

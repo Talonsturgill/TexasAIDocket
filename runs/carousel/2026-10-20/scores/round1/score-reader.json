@@ -1,0 +1,102 @@
+{
+ "lens": "reader",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.3,
+   "why": "No frame passes the showstopper test at 432 px. The strongest pair is 3 and 4: a 13-across wall of 339 container ends beside a scrub nurse for scale, on a dark field. Even there the wall is lit flat and square-on, so it reads as a chart texture, and the 25 'gold' ends read peach. Frame 5 is a flat grid that reads as a table. Its relief report gives cast_fraction 0.059, the field is mid grey (bands 0.20/0.81/0.38), and the white low-end tape that carries the frame's whole argument can barely be seen in the thumb. On frame 7 the camera is a few primitives and the whiteboard holds flat coloured rectangles. A long diagonal arm shadow cuts across the frame and the upper 40% is dead dark band. Frame 9's container looks like matte peach plastic, closer to a toy than anodised metal. There is a dead band between the dek and the box, and the camera is a small grey sketch crowding the dek. Frame 2 is a diagram relief on a mid-tone green floor. Frame 8 is a grey stucco page that works as a plate for DOM type. The cover camera is a cylinder under a flat slab hood on an over-bright plate. Every frame is rendered and dark-registered, so it clears the 4 descriptor, but no single frame would stand as a magazine opener."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.0,
+   "why": "One cold interior world. The key comes from the upper left on every frame and every cast falls down-right on 1, 3, 4, 5, 6 and 7. Two motifs do real work: the container (3, 4, 5, 9) and the wall camera (1, 2, 7, 9). On the contact sheet the deck alternates between black perspective scenes and paler orthographic reliefs. Frames 6 and 8 are the light outliers (bands 0.62/0.96/0.93 and 0.72/0.70/0.66) against dark 1, 3, 4, 7 and 9, so the value strobes at 5 to 6 to 7 and again at 8 to 9. The storyboard says the gold accent means one thing, Walter Tower's added cases. Frame 9's gold container breaks that meaning, and a reader trained on frames 4 to 6 will try to read it as data."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.2,
+   "why": "Every numeral traces to a claim in figures.json: 15, 339, 25, 7%, 95%, 8.3, 41.0, 10, 11, 0.182, 30 and 7. Both sources are primary: the PMC paper and the hospital's own blog. The blog's turnover claim is attributed on frame 7 and in the caption. Three phrasings are looser than their sources. (1) Frame 9's headline 'Three roles can open the footage' drops c18's scope, which is intraoperative recordings from incision to closure only. The dek restores the scope, but the dek's 'those three roles' has no antecedent and the roles are never named. (2) Frame 1 cites c4, the December 2022 deployment, but never prints it, and no frame or caption line says the data ran only through September 2023 (c27). With 'A study published in June ties the system to more surgeries', a reader will think the result is current when it is three years old. (3) No slide ever identifies Apella as the system's vendor. c13 says so, but on the slides the word first appears in frame 8's headline. Nothing is fabricated, but omission 2 changes what a reader believes about how current the result is."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.5,
+   "why": "The reader learns what happened (60 cameras across 15 rooms, a measured association), who did it (Houston Methodist) and where (Walter Tower). They never learn when it happened. They also never learn that it is AI: the word appears in the caption and the document title but on none of the nine slides, so a swiper sees a security-camera story. Frame 8's disclosure lands on 'Apella', a name the slides never introduced. The texan gate warning is accurate. No body decides anything next and there is no deadline. The one fact that would give a Texas patient a concrete stake was fetched and verified as c26 and then left out of the deck and the caption: signs are posted in the ORs and camera consent is folded into the universal consent for care. Staff surveillance concerns (c25) were dropped as well. The stake as published is general: should other hospitals do this."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 6.8,
+   "why": "The cover hook 'Four cameras in every room' sounds like surveillance and earns a swipe. Frame 2 pays at once with what the system does. The 3 to 4 before/after at one held camera is the best move in the deck. Frame 6 mis-signals: 'Second of 11' reads like a ranking win, when the frame's real point is that the stronger test fell short of significance, and that sits in the dek behind 'empirical p' and 'donor sites'. The declared turn at 7 works. The close does not land. Frame 9 is an appendix about retention and access, unconnected to the deck's question of whether the 25 is real. Its visual, a gold box with a padlock, has to be decoded rather than read. Frame 9 could be cut or replaced without loss, and 3 could fold into 4."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Sober and precise, with the restraint on causation done correctly: 'associated, not caused', 'can't split the two', 'The study can't say which did the work'. House rules hold: no colons, no banned words, 'can't'. It reads as a careful analyst rather than a Texan. 'Empirical p of 0.182', 'donor sites' and 'change management program' are left for the reader to translate. 'Drawn to illustrate.' closes all nine deks as a mechanical tic. Houston as a place appears only inside the hospital's name. The caption's closing question, 'What would another Texas hospital want proven before mounting four cameras in every room?', is the one line with a regional point of view."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "No topic repeat. Houston Methodist was last no. 19 on September 9th, outside the window. The world is new against the last four (51 courthouse stair, 52 and 54 lastLight exteriors, 53 darkfield bench). Two moves are familiar. One counted object per unit (339 containers, 25 lids in 41 bays) is no. 54's 43 windmills, 80 boxes and 36 cattle from two days earlier, and no. 48's 79 desks. The instrument, a Houston medical institution's peer-reviewed journal paper on an AI model, is no. 53's (MD Anderson SPACER) from three days earlier, and the third Houston clinical AI deck since no. 47. The caption opens on a number, which is not in the six-run exclusion list."
+  }
+ ],
+ "weighted_score": 6.74,
+ "weighted_score_working": "6.3*0.22=1.386 + 7.0*0.12=0.840 + 7.2*0.20=1.440 + 6.5*0.16=1.040 + 6.8*0.10=0.680 + 7.0*0.10=0.700 + 6.5*0.10=0.650 = 6.736",
+ "hard_fails": [],
+ "ship": false,
+ "contested": [
+  "Not a hard fail but close to one. Frame 9's headline 'Three roles can open the footage' drops c18's intraoperative scope. The dek restores it, but a feed reader reads the headline. The integrity judge should decide whether this is a universal that fails to name its set.",
+  "I did not re-fetch the paper. c18's quote stops at 'three designated roles', so I can't confirm the source names them. If it does, the deck withheld the one detail frame 9 promises.",
+  "Gate warnings checked. The two unscoped absences on slide 6 ('does not reach conventional significance') are attributed to the authors, so I do not count them as hard fails. The texan warning (no deciding body, no dated next step) is real and is scored under story_and_stakes, not as a fail.",
+  "machine_qa.json shows 0 fails and 9 warns. All nine warns are engine verdict lines (ROOM IN FRAME, TXBENCH RELIEF), not defects.",
+  "The ship: false is a threshold dissent: 6.74 against the round 1 rung of 8.0. It is not a fault."
+ ],
+ "one_sentence_fix": "Make the nine slides carry what only the caption and claims carry now: on frame 1 or 2, call the cameras Apella's image based AI, deployed December 2022 and measured through September 2023, so the AI, the vendor and the age of the result are known before frame 8's disclosure. Then rebuild frame 9 as a close a Texas patient can act on, using c26 (signs in the OR, camera consent inside the universal consent for care) beside the scoped intraoperative access rule, instead of three unnamed 'roles' over a gold box.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 7,
+   "problem": "The declared turn frame is the weakest render. The camera is a few primitives, the whiteboard carries flat untextured coloured rectangles, the upper 40% is a dead dark band, and a long diagonal arm shadow cuts across the tile and reads as an artifact.",
+   "fix": "Move the eye to 1.5 m, about 2 m from the wall, so the board runs off the right and bottom edges and fills two thirds of the frame. Put the board in a pool from the key with the room falling off around it, give the case blocks magnet thickness and handwritten ruled labels, and bring the camera in close and large at upper left so its housing breaks the dead band."
+  },
+  {
+   "slide": 5,
+   "problem": "It reads as a table or chart. The lids are nearly flat (cast_fraction 0.059), the vinyl sits in the grey middle (band 0.81), and the white low-end tape, which carries the whole 8.3 argument, is a hairline at 432 px.",
+   "fix": "Raise lid height and drop the key elevation toward 25 degrees so every lid throws a long cast. Darken the vinyl outside a pool centred on the 25 lids. Make the low-end tape a thick, raised, bright strip, at least 3x its current width, ending visibly a third of the way into bay 9."
+  },
+  {
+   "slide": 9,
+   "problem": "The close's subject is a matte peach box that reads as plastic, toy-scale, with a dead band between the dek and the box. The camera is a small grey sketch crowding the dek. The gold body breaks the deck's accent rule that gold means the added cases.",
+   "fix": "Make the container brushed stainless with only its padlock and tamper tag in the accent. Raise the camera to own the upper right at three times its size, its lens turned on the container and catching the key. Drop the eye to table height so the container fills the lower half and runs off the right edge."
+  },
+  {
+   "slide": 2,
+   "problem": "A diagram relief on a mid-tone green-grey floor. The four camera brackets, the frame's data, are the least readable objects, and the bottom bracket is cropped.",
+   "fix": "Darken the floor outside a single pool on the table. Enlarge the four brackets and give each a faint cast view-cone wedge across the floor so 'four cameras' reads without the dek. Pull the model up so the near wall and its bracket sit fully in frame."
+  },
+  {
+   "slide": 8,
+   "problem": "The page reads as grey stucco and works as a plate for DOM type. The clip's cast is short and the steel shows banding.",
+   "fix": "Give the page warm paper fibre with a slight lifted corner and a longer clip cast across the first quote line. Take the surrounding steel to near black at the frame edges so the page is the one bright object, as the storyboard planned."
+  },
+  {
+   "slide": 1,
+   "problem": "The cover camera is a cylinder under a flat slab hood on an over-bright plate. The plate, not the lens, is the brightest thing on the frame.",
+   "fix": "Model the hood with a rounded drip edge. Drop the plate's albedo to mid grey so the lens bezel and its IR ring catch the key as the single brightest edge."
+  }
+ ],
+ "files_read": [
+  "/home/user/TexasAIDocket/config/carousel/scoring_rubric.yaml",
+  "/home/user/TexasAIDocket/prompts/carousel_studio.md",
+  "/home/user/TexasAIDocket/out/2026-10-20/tmp/thumb-01.png to thumb-09.png",
+  "/home/user/TexasAIDocket/out/2026-10-20/final/contact_sheet.png",
+  "/home/user/TexasAIDocket/out/2026-10-20/render/slide-01.png, slide-04.png, slide-05.png, slide-07.png, slide-09.png",
+  "/home/user/TexasAIDocket/out/2026-10-20/caption.txt, first_comment.txt, copy.json, copy_strings.json",
+  "/home/user/TexasAIDocket/out/2026-10-20/claims.json, figures.json, storyboard.md",
+  "/home/user/TexasAIDocket/out/2026-10-20/render/machine_qa.json, reviews/pixel_round1.md",
+  "/home/user/TexasAIDocket/ledger/carousel/topics.json, captions.json (head)"
+ ]
+}

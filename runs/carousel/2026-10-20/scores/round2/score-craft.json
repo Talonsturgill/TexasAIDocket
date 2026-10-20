@@ -1,0 +1,83 @@
+{
+ "lens": "craft",
+ "deck": "carousel no. 55, 2026-10-20, round 2 (rung 7.7)",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.4,
+   "why": "01, 09, 06 and 03/04 hold up; 07 primitives with two disjoint plates and a pastel board; 05 a chart grid with invisible tape; 02 a CAD plan; 08 type on a plate; 03/04 evenly lit with a tan crown. Four frames on primitives or defaults puts it under 7."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.3,
+   "why": ""
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.5,
+   "why": ""
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.5,
+   "why": ""
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": ""
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.3,
+   "why": ""
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.8,
+   "why": ""
+  }
+ ],
+ "weighted_score": 7.44,
+ "hard_fails": [],
+ "ship": false,
+ "contested": [
+  "art_preflight needs_review field stale",
+  "topics.json before October 8th not read"
+ ],
+ "artwork_weakest_frames": [
+  {
+   "slide": 7,
+   "problem": "Untextured primitives on a boom with two disconnected plates, a flat pastel board, a black blob at its corner.",
+   "fix": "Reuse the chassis camera on one plate and one jointed arm; marker lanes and case blocks in the deck's colours with a specular streak; soft casts from frame and tray."
+  },
+  {
+   "slide": 5,
+   "problem": "A mid grey chart grid; the white tape invisible at 432 px.",
+   "fix": "A raised band at L* 85 or more with its own cast; lids in a pool and the empty bays to black."
+  },
+  {
+   "slide": 2,
+   "problem": "A CAD plan, cameras as dark stubs.",
+   "fix": "A 30 to 40 degree three quarter view; pale lit camera housings."
+  },
+  {
+   "slide": 8,
+   "problem": "A beige page over 60 percent of the frame at uniform mid tone.",
+   "fix": "Angle and bleed the page, light only its upper half and the clip."
+  },
+  {
+   "slide": 4,
+   "problem": "An evenly lit wall, a tan crown, no bleed.",
+   "fix": "A hard rake from high left with a specular edge on the gold rows; widen so the wall bleeds; mirror on 3."
+  }
+ ],
+ "_note": "Transcribed from the judge's hand-back by the showrunner; scores, total and weakest frames as returned, reasons abridged."
+}

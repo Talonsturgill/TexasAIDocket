@@ -1861,6 +1861,43 @@
     "livestock",
     "Texas Animal Health Commission"
    ]
+  },
+  {
+   "date": "2026-10-20",
+   "carousel_no": 55,
+   "docket_item": "tx-2026-0222",
+   "related_items": [
+    "tx-2026-0101",
+    "tx-2026-0137"
+   ],
+   "instrument": "The Journal of Imaging paper on PubMed Central (PMC13412611) and Houston Methodist's Leading Medicine blog post on image based AI in its operating rooms, both fetched October 20th, 2026.",
+   "topic": "Houston Methodist fitted four high resolution wall cameras in each of the 15 operating rooms of Walter Tower's cardiothoracic suite. A Journal of Imaging study estimates the image based AI deployment was associated with about 25 more cases a month, a 95% interval of 8.3 to 41.0 over a baseline of about 339, calls it associated rather than caused, can't separate it from the change management program that came with it, ran a placebo test where the suite ranked second of 11, and discloses the hospital's minority equity interest in the vendor, Apella.",
+   "angle": "Rendered in the floodlit world inside a tiled operating room: the wall camera close on its tile for the cover, a white card relief model of one room with four camera brackets, a wall of 339 sterile container ends with a nurse for scale, the same wall crowned by 25 gold ends, 25 lids in 41 taped bays with a white stripe to 8.3, eleven clamps on a towel with the second gold, a crew member pointing at a turnover board under the camera, the paper's disclosure clipped to a steel back table, and the gold container waiting for the next case under the camera.",
+   "angle_note": "Every frame is drawn to illustrate. One container end is one case, one bay is one case and one clamp is one unit of the placebo test, all from figures.json. No real room, product or person is depicted.",
+   "entities": [
+    "Houston Methodist",
+    "Walter Tower",
+    "Apella Technology",
+    "Journal of Imaging"
+   ],
+   "places": [
+    "Houston",
+    "Harris County",
+    "Texas"
+   ],
+   "what_was_refused": "The 25 is never stated as a count or as caused by the cameras. The camera installation date and the software deployment date are kept apart. mdpi.com answered 403, so the paper is read on PubMed Central.",
+   "keywords": [
+    "Houston Methodist",
+    "operating room",
+    "computer vision",
+    "Apella",
+    "surgical cameras",
+    "case volume",
+    "AI",
+    "hospital",
+    "Walter Tower",
+    "Journal of Imaging"
+   ]
   }
  ]
 }

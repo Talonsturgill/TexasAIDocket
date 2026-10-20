@@ -1,0 +1,84 @@
+{
+ "lens": "reader",
+ "deck": "carousel no. 55, 2026-10-20, round 3 (cap)",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.6,
+   "why": "03 and 04 meet the bold standard and 01 is lit on a dark wall; 07's mount and flat board read as primitive kit, 02 a grey-box plan with dark-stub cameras, 05 a mid grey grid sinking into the footer, 09's body reads as clay, 08 a pale page of type."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.0,
+   "why": "One dark operating-room world under one cold key, the container and camera motifs working, the 03 to 04 hold the strongest; values strobe 05 to 08 and gold leaks on 07 and 09."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.5,
+   "why": "Every numeral traces; blog claims attributed; 08's quotes verbatim. The main estimate's own significance and the data's September 2023 end are not stated."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.5,
+   "why": "What, who and where clear and honest; no action, body or deadline; the close's patient stake stays abstract."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Cover earns the swipe, 03 to 04 is a real reveal, 07 a declared turn and 08 lands; 06 stalls a lay reader; the close opens a new subject."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.8,
+   "why": "Clean and on the house rules; a methods-summary register with paper language passed through."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "A new world; the one-object-per-unit count and a Houston medical AI subject are familiar."
+  }
+ ],
+ "weighted_score": 7.16,
+ "hard_fails": [],
+ "ship": true,
+ "contested": [
+  "06's rank as good news or not significant",
+  "Leaving out the main estimate's significance is an emphasis call",
+  "Gold on 09 and the orange block on 07"
+ ],
+ "artwork_weakest_frames": [
+  {
+   "slide": 7,
+   "problem": "The boom arm runs from one wall plate to a second white plate; the board is flat coloured rectangles.",
+   "fix": "One plate and a single two-joint arm; raised case magnets, a marker tray and frame edge casting under a raking key."
+  },
+  {
+   "slide": 2,
+   "problem": "A flat grey-box floor plan with four dark-stub cameras.",
+   "fix": "A 30 to 40 degree oblique view; pale housings with lit lenses."
+  },
+  {
+   "slide": 5,
+   "problem": "A mid grey grid whose last rows sink into the footer; bay 41 unmarked.",
+   "fix": "Shorten the bays about 15 percent; tape the high end at bay 41 too."
+  },
+  {
+   "slide": 9,
+   "problem": "The body reads as matte clay; the camera wedged against the dek; an empty tile band.",
+   "fix": "A metallic low-roughness anodised material with a key streak; move the camera into the lit pool clear of the dek."
+  },
+  {
+   "slide": 8,
+   "problem": "A pale page of type in the mid tones.",
+   "fix": "Narrow the key to the page's top half and the clip so the rest falls toward black."
+  }
+ ],
+ "_note": "Transcribed from the judge's hand-back by the showrunner; scores, total and weakest frames as returned, reasons abridged."
+}

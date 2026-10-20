@@ -1,0 +1,2037 @@
+{
+  "canvas": {
+    "width": 1080,
+    "height": 1350,
+    "scale": 2.0,
+    "px": [
+      2160,
+      2700
+    ]
+  },
+  "text_window": 320,
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "png": "slide-01.png",
+      "console_errors": [
+        "TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot shows its room"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 230, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Four cameras in every room",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 195,
+          "font_px": 99.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(236, 230, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              137,
+              674,
+              122
+            ],
+            [
+              80,
+              235,
+              472,
+              122
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Houston Methodist put four wall cameras in each of the 15 operating rooms of Walter Tower's cardiothoracic suite. A study published in June ties its image based AI to more surgeries after it went live in December 2022. Drawn to illustrate.",
+          "x": 82,
+          "y": 371,
+          "w": 820,
+          "h": 214,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(216, 207, 192)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              371,
+              812,
+              42
+            ],
+            [
+              82,
+              414,
+              761,
+              42
+            ],
+            [
+              82,
+              457,
+              799,
+              42
+            ],
+            [
+              82,
+              499,
+              784,
+              42
+            ],
+            [
+              82,
+              542,
+              279,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Houston Methodist",
+          "x": 80,
+          "y": 80,
+          "w": 282,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(216, 207, 192)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              282,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "01 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(216, 207, 192)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c2 c3 c4 c6 c1",
+          "x": 80,
+          "y": 1234,
+          "w": 225,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(216, 207, 192)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              225,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 10345,
+      "ok": true,
+      "load_ms": 136,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 23.7,
+          "variance": 843
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-02.html",
+      "png": "slide-02.png",
+      "console_errors": [
+        "TXBENCH: RELIEF {\"height_range\":78.15176143476083,\"materials\":8,\"cast_fraction\":0.2610420096021948,\"area\":1,\"render_ms\":11688.799999998882}"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 230, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Cameras log the workflow",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 76,
+          "font_px": 78,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(236, 230, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              140,
+              854,
+              96
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The hospital says the cameras identify and timestamp workflow steps. It says the system texts the surgeon when a patient arrives, when the patient is draped and when the case ends. Drawn to illustrate.",
+          "x": 82,
+          "y": 248,
+          "w": 820,
+          "h": 171,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(216, 207, 192)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              248,
+              794,
+              42
+            ],
+            [
+              82,
+              291,
+              771,
+              42
+            ],
+            [
+              82,
+              334,
+              796,
+              42
+            ],
+            [
+              82,
+              377,
+              586,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "patient arrives",
+          "x": 400,
+          "y": 1040,
+          "w": 257,
+          "h": 34,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 230, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              400,
+              1039,
+              257,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "draped",
+          "x": 660,
+          "y": 792,
+          "w": 103,
+          "h": 34,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 230, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              660,
+              791,
+              103,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "case ends",
+          "x": 660,
+          "y": 940,
+          "w": 154,
+          "h": 34,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 230, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              660,
+              939,
+              154,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The system",
+          "x": 80,
+          "y": 80,
+          "w": 166,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(216, 207, 192)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              166,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "02 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(216, 207, 192)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c3 c22 c23",
+          "x": 80,
+          "y": 1234,
+          "w": 161,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(216, 207, 192)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              161,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [
+        {
+          "kind": "svg",
+          "x": 365,
+          "y": 1080,
+          "w": 65,
+          "h": 126,
+          "by": "line",
+          "color": "rgb(8, 6, 15)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 365,
+          "y": 1080,
+          "w": 65,
+          "h": 126,
+          "by": "line",
+          "color": "rgb(236, 230, 218)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 566,
+          "y": 792,
+          "w": 86,
+          "h": 17,
+          "by": "line",
+          "color": "rgb(8, 6, 15)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 566,
+          "y": 792,
+          "w": 86,
+          "h": 17,
+          "by": "line",
+          "color": "rgb(236, 230, 218)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 566,
+          "y": 938,
+          "w": 86,
+          "h": 19,
+          "by": "line",
+          "color": "rgb(8, 6, 15)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 566,
+          "y": 938,
+          "w": 86,
+          "h": 19,
+          "by": "line",
+          "color": "rgb(236, 230, 218)",
+          "decorative": false,
+          "skip": []
+        }
+      ],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 16232,
+      "ok": true,
+      "load_ms": 105,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 26.8,
+          "variance": 689.7
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-03.html",
+      "png": "slide-03.png",
+      "console_errors": [
+        "TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot shows its room"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 230, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "About 339 a month",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 90,
+          "font_px": 91.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(236, 230, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              138,
+              743,
+              112
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The paper puts the suite's baseline at about 339 cases a month. One container is drawn for each case. Drawn to illustrate.",
+          "x": 82,
+          "y": 266,
+          "w": 820,
+          "h": 128,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(216, 207, 192)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              266,
+              798,
+              42
+            ],
+            [
+              82,
+              308,
+              686,
+              42
+            ],
+            [
+              82,
+              351,
+              279,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The baseline",
+          "x": 80,
+          "y": 80,
+          "w": 199,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(216, 207, 192)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              199,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "03 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(216, 207, 192)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c7",
+          "x": 80,
+          "y": 1234,
+          "w": 32,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(216, 207, 192)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              32,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 27773,
+      "ok": true,
+      "load_ms": 153,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 37.3,
+          "variance": 1880.5
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-04.html",
+      "png": "slide-04.png",
+      "console_errors": [
+        "TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot shows its room"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 230, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "About 25 more a month",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 84,
+          "font_px": 86,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(236, 230, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              139,
+              861,
+              106
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The study estimates the deployment was associated with about 25 more cases a month, 7% over a baseline of about 339. Gold marks the added cases. Drawn to illustrate.",
+          "x": 82,
+          "y": 260,
+          "w": 820,
+          "h": 171,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(216, 207, 192)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              260,
+              774,
+              42
+            ],
+            [
+              82,
+              303,
+              790,
+              42
+            ],
+            [
+              82,
+              346,
+              622,
+              42
+            ],
+            [
+              82,
+              389,
+              279,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The estimate",
+          "x": 80,
+          "y": 80,
+          "w": 199,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(216, 207, 192)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              199,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "04 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(216, 207, 192)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c6 c7",
+          "x": 80,
+          "y": 1234,
+          "w": 80,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(216, 207, 192)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              80,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 29230,
+      "ok": true,
+      "load_ms": 126,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 38.5,
+          "variance": 1936.3
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-05.html",
+      "png": "slide-05.png",
+      "console_errors": [
+        "TXBENCH: RELIEF {\"height_range\":35.47982130676684,\"materials\":5,\"cast_fraction\":0.12310733882030178,\"area\":1,\"render_ms\":7429.4000000003725}"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 230, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Somewhere from 8.3 to 41.0",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 73,
+          "font_px": 74,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(236, 230, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              140,
+              883,
+              91
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The 25 is the study's estimate. Its 95% interval runs from 8.3 to 41.0 more cases a month. Each bay is one case, and the white tape marks the low end. Drawn to illustrate.",
+          "x": 82,
+          "y": 245,
+          "w": 820,
+          "h": 171,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(216, 207, 192)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              245,
+              753,
+              42
+            ],
+            [
+              82,
+              287,
+              766,
+              42
+            ],
+            [
+              82,
+              330,
+              641,
+              42
+            ],
+            [
+              82,
+              373,
+              279,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The range",
+          "x": 80,
+          "y": 80,
+          "w": 149,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(216, 207, 192)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              149,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "05 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(216, 207, 192)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c6",
+          "x": 80,
+          "y": 1234,
+          "w": 32,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(216, 207, 192)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              32,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 11575,
+      "ok": true,
+      "load_ms": 111,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 51.7,
+          "variance": 2063.6
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-06.html",
+      "png": "slide-06.png",
+      "console_errors": [
+        "TXBENCH: RELIEF {\"height_range\":12.319551843894622,\"materials\":3,\"cast_fraction\":0.4911270576131687,\"area\":1,\"render_ms\":10323.900000000373}"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 230, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Second of 11",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 107,
+          "font_px": 109.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(236, 230, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              136,
+              558,
+              135
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "In a placebo test against 10 donor sites, Walter Tower ranked second of 11, an empirical p of 0.182. The authors say it points the same way but does not reach conventional significance. One clamp per unit, and the gold one is Walter Tower. Drawn to illustrate.",
+          "x": 82,
+          "y": 279,
+          "w": 820,
+          "h": 214,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(216, 207, 192)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              279,
+              778,
+              42
+            ],
+            [
+              82,
+              322,
+              814,
+              42
+            ],
+            [
+              82,
+              365,
+              669,
+              42
+            ],
+            [
+              82,
+              408,
+              799,
+              42
+            ],
+            [
+              82,
+              450,
+              648,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The placebo test",
+          "x": 80,
+          "y": 80,
+          "w": 265,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(216, 207, 192)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              265,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "06 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(216, 207, 192)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c8 c9",
+          "x": 80,
+          "y": 1234,
+          "w": 80,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(216, 207, 192)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              80,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 13619,
+      "ok": true,
+      "load_ms": 69,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 44.8,
+          "variance": 998.2
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-07.html",
+      "png": "slide-07.png",
+      "console_errors": [
+        "TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot shows its room"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 230, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Cameras plus a program",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 81,
+          "font_px": 82.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(236, 230, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              139,
+              853,
+              102
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The authors call the rise associated, not caused. A change management program came with the cameras, and the study can't split the two. The hospital's blog says turnovers got shorter. Drawn to illustrate.",
+          "x": 82,
+          "y": 257,
+          "w": 820,
+          "h": 171,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(216, 207, 192)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              257,
+              739,
+              42
+            ],
+            [
+              82,
+              300,
+              800,
+              42
+            ],
+            [
+              82,
+              342,
+              763,
+              42
+            ],
+            [
+              82,
+              385,
+              681,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The limit",
+          "x": 80,
+          "y": 80,
+          "w": 149,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(216, 207, 192)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              149,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "07 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(216, 207, 192)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c10 c11 c24",
+          "x": 80,
+          "y": 1234,
+          "w": 177,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(216, 207, 192)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              177,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 11302,
+      "ok": true,
+      "load_ms": 145,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 44.7,
+          "variance": 3346.7
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-08.html",
+      "png": "slide-08.png",
+      "console_errors": [
+        "TXBENCH: RELIEF {\"height_range\":48.24057185200685,\"materials\":3,\"cast_fraction\":0.07673559670781893,\"area\":1,\"render_ms\":9921.300000000745}"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 230, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The hospital owns part of Apella",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 65,
+          "font_px": 66.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(236, 230, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              141,
+              897,
+              82
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Apella is the system's vendor. The paper says an Apella employee ran the original analyses and a Houston Methodist analyst replicated them. It says Apella did not fund the study and had no role beyond those analyses. Drawn to illustrate.",
+          "x": 82,
+          "y": 237,
+          "w": 820,
+          "h": 214,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(216, 207, 192)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              237,
+              798,
+              42
+            ],
+            [
+              82,
+              280,
+              729,
+              42
+            ],
+            [
+              82,
+              323,
+              767,
+              42
+            ],
+            [
+              82,
+              365,
+              712,
+              42
+            ],
+            [
+              82,
+              408,
+              425,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "\"Houston Methodist Hospital holds a minority equity interest in Apella Technology.\"",
+          "x": 205,
+          "y": 640,
+          "w": 660,
+          "h": 126,
+          "font_px": 34,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(28, 26, 23)",
+          "decorative": false,
+          "overlap_ok": true,
+          "lines": [
+            [
+              205,
+              640,
+              616,
+              42
+            ],
+            [
+              205,
+              682,
+              557,
+              42
+            ],
+            [
+              205,
+              724,
+              216,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "\"These analyses were subsequently replicated independently by a Houston Methodist analyst using the same aggregated dataset.\"",
+          "x": 205,
+          "y": 792,
+          "w": 660,
+          "h": 117,
+          "font_px": 29,
+          "weight": "500",
+          "family": "Fraunces",
+          "color": "rgb(28, 26, 23)",
+          "decorative": false,
+          "overlap_ok": true,
+          "lines": [
+            [
+              205,
+              793,
+              621,
+              35
+            ],
+            [
+              205,
+              832,
+              633,
+              35
+            ],
+            [
+              205,
+              871,
+              483,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "\"Apella Technology did not fund the study and had no role in the study design, the interpretation of results, the decision to publish, or the preparation of the manuscript, beyond the analytical contribution described above\"",
+          "x": 205,
+          "y": 935,
+          "w": 660,
+          "h": 194,
+          "font_px": 29,
+          "weight": "500",
+          "family": "Fraunces",
+          "color": "rgb(28, 26, 23)",
+          "decorative": false,
+          "overlap_ok": true,
+          "lines": [
+            [
+              205,
+              936,
+              625,
+              35
+            ],
+            [
+              205,
+              975,
+              473,
+              35
+            ],
+            [
+              205,
+              1014,
+              655,
+              35
+            ],
+            [
+              205,
+              1053,
+              613,
+              35
+            ],
+            [
+              205,
+              1091,
+              599,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The disclosure",
+          "x": 80,
+          "y": 80,
+          "w": 232,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(216, 207, 192)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              232,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "08 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(216, 207, 192)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c28 c13 c14 c15 c16",
+          "x": 80,
+          "y": 1234,
+          "w": 306,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(216, 207, 192)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              306,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 14192,
+      "ok": true,
+      "load_ms": 80,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 77.2,
+          "variance": 4236.5
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-09.html",
+      "png": "slide-09.png",
+      "console_errors": [
+        "TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot shows its room"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 230, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Three roles can open surgery footage",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 129,
+          "font_px": 66,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(236, 230, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              141,
+              807,
+              82
+            ],
+            [
+              80,
+              206,
+              206,
+              82
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Recordings from incision to closure open to three roles, and the surgeon is told of each review. The hospital's blog says signs are posted in its operating rooms and consent is folded into universal consent for care. Drawn to illustrate.",
+          "x": 82,
+          "y": 305,
+          "w": 820,
+          "h": 214,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(216, 207, 192)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              305,
+              813,
+              42
+            ],
+            [
+              82,
+              348,
+              771,
+              42
+            ],
+            [
+              82,
+              391,
+              777,
+              42
+            ],
+            [
+              82,
+              434,
+              715,
+              42
+            ],
+            [
+              82,
+              476,
+              279,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The access",
+          "x": 80,
+          "y": 80,
+          "w": 166,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(216, 207, 192)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              166,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "09 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(216, 207, 192)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c18 c19 c26",
+          "x": 80,
+          "y": 1234,
+          "w": 177,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(216, 207, 192)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              177,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 15781,
+      "ok": true,
+      "load_ms": 146,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 34.2,
+          "variance": 1246.7
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    }
+  ]
+}

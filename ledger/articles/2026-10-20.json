@@ -1,0 +1,133 @@
+{
+ "_spec": {
+  "version": 1,
+  "purpose": "A standalone web edition of the archived visual story.",
+  "law": "Facts resolve to the original verified claim record. A layout rebuild does not reverify reporting.",
+  "written_by": "daily"
+ },
+ "section": "Health",
+ "dek": {
+  "text": "Houston Methodist put four AI cameras in each room of a {{number:c2}} room heart surgery suite. A study ties them to more cases a month and names its own limits.",
+  "claims": [
+   "c2",
+   "c3",
+   "c6"
+  ]
+ },
+ "introduction": [
+  {
+   "text": "[The study covers a {{number:c2}} room cardiothoracic operating suite at Houston Methodist Hospital](c2). [Each operating room there was fitted with four high resolution wall mounted cameras](c3). [The hospital says the cameras identify and timestamp workflow steps](c22). [The system texts surgeons when a patient arrives, when the patient is draped and when the case ends](c23).",
+   "claims": [
+    "c2",
+    "c3",
+    "c22",
+    "c23"
+   ]
+  },
+  {
+   "text": "[The study was published in the Journal of Imaging on {{date:c1}}](c1). [It estimates the deployment was associated with about {{number:c6}} more cases a month](c6). [That is roughly {{number:c7}} over a baseline of about {{number:c7:1}} cases a month](c7).",
+   "claims": [
+    "c1",
+    "c6",
+    "c7"
+   ]
+  }
+ ],
+ "sections": [
+  {
+   "heading": "What the study measured",
+   "paragraphs": [
+    {
+     "text": "[The software went live at Walter Tower in December {{number:c4}}](c4). [The study window ran {{number:c5}} months with {{number:c5:1}} before deployment and {{number:c5:2}} after](c5). [It covered {{number:c5:3}} surgical cases at the suite](c5).",
+     "claims": [
+      "c4",
+      "c5"
+     ]
+    },
+    {
+     "text": "[The estimate's {{number:c6:1}} confidence interval runs from {{number:c6:2}} to {{number:c6:3}} more cases a month](c6).",
+     "claims": [
+      "c6"
+     ]
+    },
+    {
+     "text": "[The detection system was trained on {{number:c20}} surgical cases from {{number:c20:1}} operating rooms](c20). [During a learning period a human led quality control team confirmed the locations and actions it identified](c21).",
+     "claims": [
+      "c20",
+      "c21"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "What the study can't establish",
+   "paragraphs": [
+    {
+     "text": "[The authors call the rise associated with the deployment rather than caused by it](c10). [A change management program came with the cameras, and the study can't attribute the gains to either one alone](c11).",
+     "claims": [
+      "c10",
+      "c11"
+     ]
+    },
+    {
+     "text": "[In a placebo test Walter Tower ranked second of {{number:c8}} units](c8). [The authors write that this result points the same way as the main estimate and does not reach conventional statistical significance](c9). [A sensitivity analysis found no significant change in total operative minutes a month](c12). [The hospital's blog says turnover times fell while operative minutes did not](c24).",
+     "claims": [
+      "c8",
+      "c9",
+      "c12",
+      "c24"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "Who ran the numbers",
+   "paragraphs": [
+    {
+     "text": "[The paper names Apella Technology as the vendor of the system it evaluates](c28). [Houston Methodist holds a minority equity interest in Apella](c13). [An Apella employee ran the original analyses](c14). [A Houston Methodist analyst then replicated them on the same aggregated dataset](c15). [The paper says Apella did not fund the study and had no role beyond those analyses](c16).",
+     "claims": [
+      "c28",
+      "c13",
+      "c14",
+      "c15",
+      "c16"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "What happens to the footage",
+   "paragraphs": [
+    {
+     "text": "[The paper says video is kept for at most {{number:c17}} days and audio for at most {{number:c17:1}}](c17). [Recordings from incision to skin closure are open to three designated roles](c18). [The surgeon is told whenever one of them is reviewed](c19).",
+     "claims": [
+      "c17",
+      "c18",
+      "c19"
+     ]
+    },
+    {
+     "text": "[The hospital's blog says staff raised concerns about surveillance, data security and privacy](c25). [It says signs are posted in operating rooms and patient consent is folded into universal consent for care](c26). Neither the paper nor the blog says whether a patient can ask not to be recorded.",
+     "claims": [
+      "c25",
+      "c26"
+     ]
+    }
+   ]
+  }
+ ],
+ "related": [
+  {
+   "id": "tx-2026-0222",
+   "label": "The record entry for Houston Methodist's operating room cameras"
+  },
+  {
+   "id": "tx-2026-0101",
+   "label": "Houston Methodist's imaging AI in front of its radiologists"
+  },
+  {
+   "id": "tx-2026-0137",
+   "label": "Case managers and Houston Methodist's discharge AI"
+  }
+ ]
+}

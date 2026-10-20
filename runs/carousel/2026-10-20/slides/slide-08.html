@@ -1,0 +1,82 @@
+<!doctype html>
+<!-- 2026-10-20, frame 8 of 9. Archetype DOCUMENT. A MATERIAL RELIEF through txbench.js under the deck's declared light: plan onto the brushed stainless back table, a letter page with fibre tooth held at its top edge by a steel clipboard clip whose cast falls across the page, angled a degree in the drawing. The paper's disclosure sentences sit on it as DOM type, verbatim, square to the frame. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+  #doc { position:absolute; left:205px; top:640px; width:660px; z-index:6; font-family:"Fraunces", serif; color:#1c1a17; text-shadow:none; }
+  #doc .q { font-size:29px; line-height:1.34; font-weight:500; margin-bottom:26px; font-variation-settings:"opsz" 24; }
+  #doc .q.lead { font-size:34px; font-weight:700; line-height:1.24; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">The hospital owns part of Apella</h1>
+<p class="dek" data-follow="22">Apella is the system's vendor. The paper says an Apella employee ran the original analyses and a Houston Methodist analyst replicated them. It says Apella did not fund the study and had no role beyond those analyses. Drawn&nbsp;to&nbsp;illustrate.</p>
+<div id="doc" data-overlap-ok>
+  <p class="q lead" data-claim="c13">"Houston Methodist Hospital holds a minority equity interest in Apella Technology."</p>
+  <p class="q" data-claim="c15">"These analyses were subsequently replicated independently by a Houston Methodist analyst using the same aggregated dataset."</p>
+  <p class="q" data-claim="c16">"Apella Technology did not fund the study and had no role in the study design, the interpretation of results, the decision to publish, or the preparation of the manuscript, beyond the analytical contribution described above"</p>
+</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/txbench.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-20-suite.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = (async () => {
+  await CH.bootFlat({ kicker: "The disclosure", counter: "08 / 09", src: "c28 c13 c14 c15 c16", fit: { min: 66, max: 88, maxLines: 1 } });
+  TX.reseed(20261028);
+  /* the page, a letter sheet at 92 px an inch, turned a degree on the table; the clip at its top edge */
+  const PX = 92, PW = 8.5 * PX, PCX = 535, PTOP = 520, ROT = 1 * Math.PI / 180;
+  const cr = Math.cos(ROT), sr = Math.sin(ROT);
+  const toPage = (X, Y) => { const dx = X - PCX, dy = Y - PTOP; return [dx * cr + dy * sr, -dx * sr + dy * cr]; };
+  /* the page ends above the footer, a sheet 700 px deep on the table */
+  const PD = 700;
+  const onPage = (X, Y) => { const [u, v] = toPage(X, Y); return Math.abs(u) <= PW / 2 && v >= 0 && v <= PD; };
+  const fibre = (X, Y) => TX.simplex2(X * 0.6, Y * 0.6) * 0.05 + TX.simplex2(X * 0.05, Y * 0.05) * 0.04;
+  const grain = (X, Y) => TX.simplex2(X * 0.9, Y * 0.012) * 0.14 + TX.simplex2(X * 0.2, Y * 0.004) * 0.12;
+  /* the back table's far edge runs below the type, and beyond it the floor drops away into the dark */
+  /* the table runs on under the type and falls into the dark there, the light pooled on the page */
+  const fall = (Y) => { const t = Math.min(1, Math.max(0, (Y - 330) / 170)); return t * t * (3 - 2 * t); };
+  /* the clip: a stamped steel plate across the top edge, its rolled spring bar and a wire lever */
+  const CW = 250, CH0 = PTOP - 34, CH1 = PTOP + 46;
+  const clipPlate = (X, Y) => Math.abs(X - PCX) < CW / 2 && Y > CH0 && Y < CH1;
+  const springBar = (X, Y) => Math.abs(X - PCX) < CW / 2 - 18 && Math.abs(Y - (CH0 + 22)) < 11;
+  const lever = (X, Y) => { const d = Math.abs(Y - (CH0 - 4)); return Math.abs(X - PCX) < CW / 2 - 40 && d < 5 || (Math.abs(Math.abs(X - PCX) - (CW / 2 - 40)) < 5 && Y > CH0 - 8 && Y < CH0 + 22); };
+  const rivet = (X, Y) => [PCX - CW / 2 + 22, PCX + CW / 2 - 22].some(x => Math.hypot(X - x, Y - (CH1 - 16)) < 7);
+  const cx = document.getElementById("art").getContext("2d");
+  const rep = TXBENCH.relief(cx, { x: 0, y: 0, w: 1080, h: 1350, scale: 2,
+    height: (X, Y) => {
+      if (lever(X, Y)) return 48;
+      if (springBar(X, Y)) return 38 + 6 * Math.cos((Y - (CH0 + 22)) / 11 * Math.PI / 2);
+      if (rivet(X, Y)) return 34;
+      if (clipPlate(X, Y)) return 27 + 0.15 * grain(X, Y);
+      if (onPage(X, Y)) { const [u, v] = toPage(X, Y); const edge = PW / 2 - Math.abs(u); const foot = PD - v; return 6 + fibre(X, Y) + (edge < 30 ? (30 - edge) / 30 * 1.5 * Math.min(1, v / 500) : 0) + (foot < 24 ? (24 - foot) / 24 * 1.8 : 0); }
+      return grain(X, Y);
+    },
+    material: (X, Y) => {
+      if (lever(X, Y) || springBar(X, Y) || rivet(X, Y) || clipPlate(X, Y)) return CH.M.STEEL;
+      if (onPage(X, Y)) return CH.M.PAPER;
+      return CH.M.BRUSHED;
+    },
+    /* the table's stainless is the darker satin finish of a back table that has been wiped down all day, so the lit page holds the frame */
+    albedo: (X, Y, m) => { const c = CH.albedo(X, Y, m), f = fall(Y); return m === CH.M.BRUSHED ? [c[0] * 0.16 * f, c[1] * 0.16 * f, c[2] * 0.18 * f] : m === CH.M.PAPER ? (() => { const [, v] = toPage(X, Y), k = 1 - 0.55 * Math.max(0, Math.min(1, (v - 300) / 400)); return [c[0] * 1.85 * k, c[1] * 1.76 * k, c[2] * 1.55 * k]; })() : c; },
+    spec: Object.assign({}, CH.SPEC, { 10: [0.22, 30] }),
+    ambient: 0.02, diffuse: 1.0, ao: 1.0, shadow: 0.9, softness: 4, castLength: 120 });
+  window.__relief = rep;
+  cx.setTransform(2, 0, 0, 2, 0, 0);
+  CH.post(cx, { a: 0.34, veil: 0.3, footWash: 0.5 });
+  CH.knock(cx, [".tx-site", ".src"], 0.5);
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

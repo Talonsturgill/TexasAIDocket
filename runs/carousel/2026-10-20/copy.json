@@ -1,0 +1,215 @@
+{
+ "date": "2026-10-20",
+ "carousel_no": 55,
+ "document_title": "Houston Methodist's operating room AI and a study tying it to about 25 more cases a month",
+ "_note": "Slide strings read off the render report's text nodes and each frame's own source line by build_copy.py.",
+ "caption": "About 25 more surgeries a month.\n\nThat is an estimate, not a count. A Journal of Imaging study ties it to the image based AI Houston Methodist put in Walter Tower's 15 room cardiothoracic suite, four wall cameras to a room.\n\nThe paper puts the baseline at about 339 a month. Operative minutes showed no significant change. The hospital's blog says turnovers got shorter.\n\nA change management program came with the cameras. The study can't say which did the work. The authors call the rise associated with the deployment, not caused by it. The hospital holds a minority equity interest in Apella, the vendor.\n\nThe study's 95% interval sizes the unknown. It runs from 8.3 to 41.0 more cases a month.\n\nThe deck draws each case of the month as one sterile container.\n\nWhat would another Texas hospital want proven before mounting four cameras in every room?\n\n#HoustonMethodist #Apella #OperatingRoom",
+ "slides": {
+  "S1": {
+   "n": 1,
+   "file": "slide-01.html",
+   "kicker": "Houston Methodist",
+   "headline": "Four cameras in every room",
+   "claims": [
+    "c2",
+    "c3",
+    "c4",
+    "c6",
+    "c1"
+   ],
+   "cite": "c2 c3 c4 c6 c1",
+   "body": "Houston Methodist put four wall cameras in each of the 15 operating rooms of Walter Tower's cardiothoracic suite. A study published in June ties its image based AI to more surgeries after it went live in December 2022. Drawn to illustrate.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "Four cameras in every room",
+    "Houston Methodist put four wall cameras in each of the 15 operating rooms of Walter Tower's cardiothoracic suite. A study published in June ties its image based AI to more surgeries after it went live in December 2022. Drawn to illustrate.",
+    "Houston Methodist",
+    "01 / 09",
+    "c2 c3 c4 c6 c1"
+   ]
+  },
+  "S2": {
+   "n": 2,
+   "file": "slide-02.html",
+   "kicker": "The system",
+   "headline": "Cameras log the workflow",
+   "claims": [
+    "c3",
+    "c22",
+    "c23"
+   ],
+   "cite": "c3 c22 c23",
+   "body": "The hospital says the cameras identify and timestamp workflow steps. It says the system texts the surgeon when a patient arrives, when the patient is draped and when the case ends. Drawn to illustrate.",
+   "labels": [
+    "patient arrives",
+    "draped",
+    "case ends"
+   ],
+   "strings": [
+    "texasaidocket.com",
+    "Cameras log the workflow",
+    "The hospital says the cameras identify and timestamp workflow steps. It says the system texts the surgeon when a patient arrives, when the patient is draped and when the case ends. Drawn to illustrate.",
+    "patient arrives",
+    "draped",
+    "case ends",
+    "The system",
+    "02 / 09",
+    "c3 c22 c23"
+   ]
+  },
+  "S3": {
+   "n": 3,
+   "file": "slide-03.html",
+   "kicker": "The baseline",
+   "headline": "About 339 a month",
+   "claims": [
+    "c7"
+   ],
+   "cite": "c7",
+   "body": "The paper puts the suite's baseline at about 339 cases a month. One container is drawn for each case. Drawn to illustrate.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "About 339 a month",
+    "The paper puts the suite's baseline at about 339 cases a month. One container is drawn for each case. Drawn to illustrate.",
+    "The baseline",
+    "03 / 09",
+    "c7"
+   ]
+  },
+  "S4": {
+   "n": 4,
+   "file": "slide-04.html",
+   "kicker": "The estimate",
+   "headline": "About 25 more a month",
+   "claims": [
+    "c6",
+    "c7"
+   ],
+   "cite": "c6 c7",
+   "body": "The study estimates the deployment was associated with about 25 more cases a month, 7% over a baseline of about 339. Gold marks the added cases. Drawn to illustrate.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "About 25 more a month",
+    "The study estimates the deployment was associated with about 25 more cases a month, 7% over a baseline of about 339. Gold marks the added cases. Drawn to illustrate.",
+    "The estimate",
+    "04 / 09",
+    "c6 c7"
+   ]
+  },
+  "S5": {
+   "n": 5,
+   "file": "slide-05.html",
+   "kicker": "The range",
+   "headline": "Somewhere from 8.3 to 41.0",
+   "claims": [
+    "c6"
+   ],
+   "cite": "c6",
+   "body": "The 25 is the study's estimate. Its 95% interval runs from 8.3 to 41.0 more cases a month. Each bay is one case, and the white tape marks the low end. Drawn to illustrate.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "Somewhere from 8.3 to 41.0",
+    "The 25 is the study's estimate. Its 95% interval runs from 8.3 to 41.0 more cases a month. Each bay is one case, and the white tape marks the low end. Drawn to illustrate.",
+    "The range",
+    "05 / 09",
+    "c6"
+   ]
+  },
+  "S6": {
+   "n": 6,
+   "file": "slide-06.html",
+   "kicker": "The placebo test",
+   "headline": "Second of 11",
+   "claims": [
+    "c8",
+    "c9"
+   ],
+   "cite": "c8 c9",
+   "body": "In a placebo test against 10 donor sites, Walter Tower ranked second of 11, an empirical p of 0.182. The authors say it points the same way but does not reach conventional significance. One clamp per unit, and the gold one is Walter Tower. Drawn to illustrate.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "Second of 11",
+    "In a placebo test against 10 donor sites, Walter Tower ranked second of 11, an empirical p of 0.182. The authors say it points the same way but does not reach conventional significance. One clamp per unit, and the gold one is Walter Tower. Drawn to illustrate.",
+    "The placebo test",
+    "06 / 09",
+    "c8 c9"
+   ]
+  },
+  "S7": {
+   "n": 7,
+   "file": "slide-07.html",
+   "kicker": "The limit",
+   "headline": "Cameras plus a program",
+   "claims": [
+    "c10",
+    "c11",
+    "c24"
+   ],
+   "cite": "c10 c11 c24",
+   "body": "The authors call the rise associated, not caused. A change management program came with the cameras, and the study can't split the two. The hospital's blog says turnovers got shorter. Drawn to illustrate.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "Cameras plus a program",
+    "The authors call the rise associated, not caused. A change management program came with the cameras, and the study can't split the two. The hospital's blog says turnovers got shorter. Drawn to illustrate.",
+    "The limit",
+    "07 / 09",
+    "c10 c11 c24"
+   ]
+  },
+  "S8": {
+   "n": 8,
+   "file": "slide-08.html",
+   "kicker": "The disclosure",
+   "headline": "The hospital owns part of Apella",
+   "claims": [
+    "c28",
+    "c13",
+    "c14",
+    "c15",
+    "c16"
+   ],
+   "cite": "c28 c13 c14 c15 c16",
+   "body": "Apella is the system's vendor. The paper says an Apella employee ran the original analyses and a Houston Methodist analyst replicated them. It says Apella did not fund the study and had no role beyond those analyses. Drawn to illustrate.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "The hospital owns part of Apella",
+    "Apella is the system's vendor. The paper says an Apella employee ran the original analyses and a Houston Methodist analyst replicated them. It says Apella did not fund the study and had no role beyond those analyses. Drawn to illustrate.",
+    "\"Houston Methodist Hospital holds a minority equity interest in Apella Technology.\"",
+    "\"These analyses were subsequently replicated independently by a Houston Methodist analyst using the same aggregated dataset.\"",
+    "\"Apella Technology did not fund the study and had no role in the study design, the interpretation of results, the decision to publish, or the preparation of the manuscript, beyond the analytical contribution described above\"",
+    "The disclosure",
+    "08 / 09",
+    "c28 c13 c14 c15 c16"
+   ]
+  },
+  "S9": {
+   "n": 9,
+   "file": "slide-09.html",
+   "kicker": "The access",
+   "headline": "Three roles can open surgery footage",
+   "claims": [
+    "c18",
+    "c19",
+    "c26"
+   ],
+   "cite": "c18 c19 c26",
+   "body": "Recordings from incision to closure open to three roles, and the surgeon is told of each review. The hospital's blog says signs are posted in its operating rooms and consent is folded into universal consent for care. Drawn to illustrate.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "Three roles can open surgery footage",
+    "Recordings from incision to closure open to three roles, and the surgeon is told of each review. The hospital's blog says signs are posted in its operating rooms and consent is folded into universal consent for care. Drawn to illustrate.",
+    "The access",
+    "09 / 09",
+    "c18 c19 c26"
+   ]
+  }
+ }
+}

@@ -1,0 +1,254 @@
+{
+ "weighted_score": 6.734,
+ "judges": [
+  6.45,
+  7.03,
+  6.74
+ ],
+ "spread": 0.58,
+ "criteria": {
+  "artwork_craft": {
+   "score": 6.2,
+   "weight": 0.22,
+   "judges": [
+    6.0,
+    6.2,
+    6.3
+   ]
+  },
+  "deck_coherence": {
+   "score": 7.0,
+   "weight": 0.12,
+   "judges": [
+    7.0,
+    7.5,
+    7.0
+   ]
+  },
+  "claim_integrity": {
+   "score": 7.2,
+   "weight": 0.2,
+   "judges": [
+    6.0,
+    7.5,
+    7.2
+   ]
+  },
+  "story_and_stakes": {
+   "score": 6.5,
+   "weight": 0.16,
+   "judges": [
+    6.5,
+    7.0,
+    6.5
+   ]
+  },
+  "sequence_and_momentum": {
+   "score": 7.0,
+   "weight": 0.1,
+   "judges": [
+    7.0,
+    7.5,
+    6.8
+   ]
+  },
+  "voice": {
+   "score": 7.0,
+   "weight": 0.1,
+   "judges": [
+    7.0,
+    7.0,
+    7.0
+   ]
+  },
+  "variety": {
+   "score": 6.5,
+   "weight": 0.1,
+   "judges": [
+    6.5,
+    7.0,
+    6.5
+   ]
+  }
+ },
+ "hard_fails": [
+  {
+   "rule": "an unverified fact presented as verified",
+   "where": "out/2026-10-20/caption.txt line 7, 'The hospital holds a minority equity interest in Apella, the vendor.' The same assertion is in claims.json c13's text ('the system's vendor'), and slide 8's whole argument depends on it.",
+   "evidence": "c13's verbatim quote is 'Houston Methodist Hospital holds a minority equity interest in Apella Technology.' It says nothing about Apella supplying the system. No other claim (c1 to c27) quotes a sentence naming Apella as the maker or provider of the image-based AI platform. c14 says only that the analyst is employed by Apella. The verbatim gate verified the quote, not the vendor relationship the text adds, so nothing in the record verifies the fact the caption prints. I think the fact is very likely true. The failure is that it was never verified, and the repair is one claim: quote the paper's methods or the hospital blog sentence that names Apella as the platform provider, or else cut 'the vendor' from the caption and c13's text."
+  }
+ ],
+ "hard_fails_by_judge": [
+  {
+   "judge": 1,
+   "fail": {
+    "rule": "an unverified fact presented as verified",
+    "where": "out/2026-10-20/caption.txt line 7, 'The hospital holds a minority equity interest in Apella, the vendor.' The same assertion is in claims.json c13's text ('the system's vendor'), and slide 8's whole argument depends on it.",
+    "evidence": "c13's verbatim quote is 'Houston Methodist Hospital holds a minority equity interest in Apella Technology.' It says nothing about Apella supplying the system. No other claim (c1 to c27) quotes a sentence naming Apella as the maker or provider of the image-based AI platform. c14 says only that the analyst is employed by Apella. The verbatim gate verified the quote, not the vendor relationship the text adds, so nothing in the record verifies the fact the caption prints. I think the fact is very likely true. The failure is that it was never verified, and the repair is one claim: quote the paper's methods or the hospital blog sentence that names Apella as the platform provider, or else cut 'the vendor' from the caption and c13's text."
+   }
+  }
+ ],
+ "ship": false,
+ "threshold": 8.0,
+ "over_threshold": false,
+ "method": "per-criterion median across three judges, then weighted by the rubric",
+ "threshold_dissents": [
+  "judge 2 refused on the threshold, not on a fault, and scored 7.03 against a 8.0 bar. That dissent is carried in the median",
+  "judge 3 refused on the threshold, not on a fault, and scored 6.74 against a 8.0 bar. That dissent is carried in the median"
+ ],
+ "threshold_dissents_by_judge": [
+  {
+   "judge": 2,
+   "score": 7.03,
+   "reason": "judge 2 refused on the threshold, not on a fault, and scored 7.03 against a 8.0 bar. That dissent is carried in the median"
+  },
+  {
+   "judge": 3,
+   "score": 6.74,
+   "reason": "judge 3 refused on the threshold, not on a fault, and scored 6.74 against a 8.0 bar. That dissent is carried in the median"
+  }
+ ],
+ "contested": [
+  "claim_integrity"
+ ],
+ "artwork_weakest_frames": [
+  {
+   "slide": 5,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "A flat orthographic grid on a mid grey field (cast_fraction 0.059, height_range 19) that reads as a calendar chart rather than lids on a taped vinyl floor. It is the deck's faded frame.",
+     "fix": "Drop the key to about 15 degrees elevation from the upper left so every lid throws a long cast. Darken the vinyl to near black outside a pool centred on the 25 lids. Raise the lids' height range so the ribs and rims model."
+    },
+    {
+     "judge": 2,
+     "problem": "A waffle chart in relief. The relief report gives cast_fraction 0.059 and height 19.5, the vinyl is mid charcoal, the grid sits inset instead of bleeding as the dossier specifies, and the empty bottom third is dead.",
+     "fix": "Bleed the bay grid off left, right and bottom, raise the lid height until the cast fraction is at least 0.2, and drop the vinyl outside a key pool centred on the lids to near black, so the 25 gold-rimmed lids are the only light and the empty bays fall into shadow."
+    },
+    {
+     "judge": 3,
+     "problem": "It reads as a table or chart. The lids are nearly flat (cast_fraction 0.059), the vinyl sits in the grey middle (band 0.81), and the white low-end tape, which carries the whole 8.3 argument, is a hairline at 432 px.",
+     "fix": "Raise lid height and drop the key elevation toward 25 degrees so every lid throws a long cast. Darken the vinyl outside a pool centred on the 25 lids. Make the low-end tape a thick, raised, bright strip, at least 3x its current width, ending visibly a third of the way into bay 9."
+    }
+   ]
+  },
+  {
+   "slide": 7,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "A primitive camera on a boom and a whiteboard of flat coloured rectangles, with a hard diagonal shadow streak crossing the lower left to the frame edge. It reads as kit primitives.",
+     "fix": "Replace the board's flat blocks with modelled magnets and marker-ruled lanes under a specular sheen. Soften or remove the boom's long cast. Bring the camera closer so its housing is at least 400 px wide."
+    },
+    {
+     "judge": 2,
+     "problem": "The deck's declared turn has an impossible mount. The camera hangs from a pale plate floating off the wall, and the lower arm ends in a rounded cap in front of a second plate, casting a stripe of about 1000 px across the frame (crop r2c1). The camera and arm are capsule primitives, and the turnover board is flat colour rectangles that read as a UI mock.",
+     "fix": "Rebuild the boom as one screwed wall plate, then a two-segment arm with knuckles, then the camera head, and delete the floating upper plate and the capped arm end. Give the board's case blocks magnet thickness with a printed label strip, so the key's specular sheen on the board is the brightest thing in the frame."
+    },
+    {
+     "judge": 3,
+     "problem": "The declared turn frame is the weakest render. The camera is a few primitives, the whiteboard carries flat untextured coloured rectangles, the upper 40% is a dead dark band, and a long diagonal arm shadow cuts across the tile and reads as an artifact.",
+     "fix": "Move the eye to 1.5 m, about 2 m from the wall, so the board runs off the right and bottom edges and fills two thirds of the frame. Put the board in a pool from the key with the room falling off around it, give the case blocks magnet thickness and handwritten ruled labels, and bring the camera in close and large at upper left so its housing breaks the dead band."
+    }
+   ]
+  },
+  {
+   "slide": 2,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The plan relief reads as a floor plan diagram, with walls barely proud and the four camera brackets the least legible thing in the frame.",
+     "fix": "Tilt to a three-quarter aerial camera with walls twice as tall, so their casts fill the floor and the four brackets read as objects on the wall tops."
+    },
+    {
+     "judge": 2,
+     "problem": "It reads as a floor plan drawing, not a model. Walls are barely proud, the furniture is flat grey boxes, the floor is a mid grey-green slab, and the four camera brackets are illegible at 432 px.",
+     "fix": "Raise the walls to about three times their height with lit tops and long casts, model the table with pads and the lighthead with its arm, double the camera brackets so each reads as a camera at feed size, and drop the floor inside the walls to near black outside one pool over the table."
+    },
+    {
+     "judge": 3,
+     "problem": "A diagram relief on a mid-tone green-grey floor. The four camera brackets, the frame's data, are the least readable objects, and the bottom bracket is cropped.",
+     "fix": "Darken the floor outside a single pool on the table. Enlarge the four brackets and give each a faint cast view-cone wedge across the floor so 'four cameras' reads without the dek. Pull the model up so the near wall and its bracket sit fully in frame."
+    }
+   ]
+  },
+  {
+   "slide": 8,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The 'page' is a grey stucco slab used as a plate for DOM type, filling about 60 percent of the frame in mid tones, with no paper quality.",
+     "fix": "Model a warm off-white sheet with a lifted lower corner casting onto the steel. Crop so the page is about half the frame with the brushed steel falling to near black, and rake the key across the fibre."
+    },
+    {
+     "judge": 2,
+     "problem": "The clip reads as a drawer pull and the page as grey stucco. The frame is a plate carrying DOM type more than an object.",
+     "fix": "Model a real clipboard clip with lever, spring roll and rivets, and give the page a paper fibre normal, a warmer off-white and a slight lift at its lower corners so it casts on the steel."
+    },
+    {
+     "judge": 3,
+     "problem": "The page reads as grey stucco and works as a plate for DOM type. The clip's cast is short and the steel shows banding.",
+     "fix": "Give the page warm paper fibre with a slight lifted corner and a longer clip cast across the first quote line. Take the surrounding steel to near black at the frame edges so the page is the one bright object, as the storyboard planned."
+    }
+   ]
+  },
+  {
+   "slide": 6,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The clamps read as thin wire tongs and the towel weave reads as diagonal stripes, so the 'surgical instrument' noun doesn't land at feed size.",
+     "fix": "Model hemostat geometry (thicker shanks, a visible ratchet, curved serrated jaws) with more relief height. Lower the key so each clamp casts a defined shadow into a finer diamond weave."
+    },
+    {
+     "judge": 2,
+     "problem": "The hemostats have jaws longer than their handles, so they read as cable ties or wires. The diagonal towel weave reads as a stripe pattern under the type block.",
+     "fix": "Remodel the clamp with jaws about a third of its length, a box lock and a ratchet at the rings, and flatten or darken the weave's height in the top half so the type sits on quiet cloth."
+    }
+   ]
+  },
+  {
+   "slide": 9,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 3,
+     "problem": "The close's subject is a matte peach box that reads as plastic, toy-scale, with a dead band between the dek and the box. The camera is a small grey sketch crowding the dek. The gold body breaks the deck's accent rule that gold means the added cases.",
+     "fix": "Make the container brushed stainless with only its padlock and tamper tag in the accent. Raise the camera to own the upper right at three times its size, its lens turned on the container and catching the key. Drop the eye to table height so the container fills the lower half and runs off the right edge."
+    }
+   ]
+  },
+  {
+   "slide": 4,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "This is the planned showstopper, but the wall is lit evenly with no raking falloff, the room is darkness and a floor line, and at 432 px the 25-case crown reads tan or peach, not gold (the preflight says so).",
+     "fix": "Drop the key's elevation and swing it hard left so the wall face falls off left to right and the top two rows catch a hot specular edge. Raise the gold rows' metalness and roughness contrast so they read as anodised gold at 432 px, and change slide 3 the same way to keep the hold."
+    }
+   ]
+  },
+  {
+   "slide": 1,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 3,
+     "problem": "The cover camera is a cylinder under a flat slab hood on an over-bright plate. The plate, not the lens, is the brightest thing on the frame.",
+     "fix": "Model the hood with a rounded drip edge. Drop the plate's albedo to mid grey so the lens bezel and its IR ring catch the key as the single brightest edge."
+    }
+   ]
+  }
+ ],
+ "rounds_derived": 1,
+ "rounds": 1,
+ "rounds_source": "this module's own log of cards it has scored",
+ "rung": 8.0,
+ "craft_floor": "waiting, because a hard fail is repaired first"
+}

@@ -1,0 +1,69 @@
+<!doctype html>
+<!-- 2026-10-20, frame 9 of 9. Archetype FULL_BLEED. RENDERED through txthree.js in the deck's floodlit world, inside a TXT.interior room. The room between cases: a sterile container anodised gold waits on the steel back table for the next case, the back wall camera rim lit high on the dark tile behind it, the operating table a dark shape at the left edge. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">Three roles can open surgery footage</h1>
+<p class="dek" data-follow="26">Recordings from incision to closure open to three roles, and the surgeon is told of each review. The hospital's blog says signs are posted in its operating rooms and consent is folded into universal consent for care. Drawn&nbsp;to&nbsp;illustrate.</p>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-20-suite.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "The access", counter: "09 / 09", src: "c18 c19 c26", fit: { min: 66, max: 84, maxLines: 1 } });
+  const R = CH.stage(TXT, gl, W, { fov: 40, far: 200 });
+  TXT.interior(R, { w: 7.2, d: 7.2, h: 3.2, floor: 'concrete', wall: 0x1e2a2a, trim: 0x151b1b, window: null });
+  /* the sheet vinyl floor laid over the slab, the surface every standing thing here meets */
+  TXT.ground(R, { surface: 'concrete', size: 9, y: 0.003, wear: 'interior', color: 0x39423f, seed: 20 });
+  CH.tileWall(THREE, R, { x: 0, z: -3.48, w: 7.2, h: 1.74, yaw: 0, tint: 0x3c4843 });
+  const T = [-2.9, 0, -1.9];
+  const table = K.make('or_table', { sheet: true }); table.position.set(T[0], 0, T[2]); table.rotation.y = 0.25; TXT.add(R, table); TXT.contact(R, table);
+  /* THE FIGURE, from figures.json: cameras_per_room, 4. One mount on each wall at 2.6 m, every lens on the
+   * table; the back wall's stands in frame, rim lit behind the waiting container. */
+  const CAMERAS = 4;
+  const mounts = [[0.62, 1.86, -3.42], [3.45, 2.62, -0.4], [-1.2, 2.62, 3.45], [-3.45, 2.62, 0.6]];
+  if (mounts.length !== CAMERAS) throw new Error("one mount per camera");
+  /* each plate flush on its own wall (back, right, front, left), each head panned on its knuckle to the table */
+  const wallYaw = [0, -Math.PI / 2, Math.PI, Math.PI / 2];
+  mounts.forEach((m, k) => TXT.add(R, CH.wallCamera(K, m, wallYaw[k], T, { tilt: 0.5, housing: 0xe4e3de, lamp: 1.4 })));
+  /* the next case's set waits on the back table, its container anodised gold: the room between cases */
+  const BT = [0.55, 0, 0.35];
+  const bt = K.make('back_table', { draped: false }); bt.position.set(...BT); bt.rotation.y = -0.2; TXT.add(R, bt); TXT.contact(R, bt);
+  const sc = K.make('sterile_container', { lock: 'gold' }); sc.position.set(BT[0], 0.9, BT[2]); sc.rotation.y = 0.8; TXT.add(R, sc); TXT.contact(R, sc);
+  const from = [1.0, 1.22, 1.68];
+  const look = CH.aim(THREE, R, TXT, from, [BT[0], 0.98, BT[2]], 560, 975, 40);
+  TXT.frame(R, { fov: 40, from, look });
+  { const spec = CH.rigSpec(W, 9, 4096); TXT.deckRig(R, spec, CH.rigOpts([BT[0], 0.9, BT[2]], { distance: 12, shadowFar: 40 })); }
+  CH.unacne(R, 0.02);
+  /* the back wall's camera rim lit from a ceiling can just in front of the tile, so its housing reads against the dark wall */
+  /* a second can washes the tile behind the container from above, so the grout reads as a lit wall and falls off upward */
+  { const wash = new THREE.SpotLight(0xf0f3ff, 16, 6.0, 0.36, 1.0, 1.5); wash.position.set(0.2, 1.5, -1.0); wash.target.position.set(0.45, 1.0, -3.45); R.scene.add(wash); R.scene.add(wash.target); }
+  { const can = new THREE.SpotLight(0xfff1e0, 6, 3.2, 0.38, 0.75, 2); can.position.set(0.92, 2.66, -2.85); can.target.position.set(0.62, 1.4, -3.45); R.scene.add(can); R.scene.add(can.target); }
+  TXT.stage(R, [sc], { behind: 1.4, depth: 1.6, poolInner: 1.2, poolOuter: 2.8 });
+  TXT.weather(R, { grime: 0.1, height: 0.25 });
+  const shot = await TXT.snapshot(R);
+  const cx = CH.develop(shot, gl);
+  CH.post(cx, { a: 0.45, veil: 0.25, footWash: 0.5, fade: 140 });
+  CH.knock(cx, [".tx-site", ".src"], 0.5);
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

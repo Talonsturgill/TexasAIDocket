@@ -1,0 +1,70 @@
+<!doctype html>
+<!-- 2026-10-20, frame 7 of 9. Archetype FULL_BLEED. RENDERED through txthree.js in the deck's floodlit world, inside a TXT.interior room. The bundle: the room's wall camera on a boom arm, near on the left, turned on the turnover board on the tile wall, the two changes the study can't separate on one wall. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">Cameras plus a program</h1>
+<p class="dek" data-follow="26">The authors call the rise associated, not caused. A change management program came with the cameras, and the study can&#39;t split the two. The hospital&#39;s blog says turnovers got shorter. Drawn&nbsp;to&nbsp;illustrate.</p>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-20-suite.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "The limit", counter: "07 / 09", src: "c10 c11 c24", fit: { min: 76, max: 100, maxLines: 1 } });
+  const R = CH.stage(TXT, gl, W, { fov: 44, far: 200 });
+  TXT.interior(R, { w: 7.2, d: 7.0, h: 4.4, floor: 'concrete', wall: 0x1e2a2a, trim: 0x151b1b, window: null });
+  /* the sheet vinyl floor laid over the slab, the surface every standing thing here meets */
+  TXT.ground(R, { surface: 'concrete', size: 9, y: 0.003, wear: 'interior', color: 0x39423f, seed: 27 });
+  const WALLZ = -3.39;
+  CH.tileWall(THREE, R, { x: 0, z: WALLZ, w: 7.2, h: 2.75, yaw: 0, tint: 0x6a7972 });
+  /* THE BUNDLE: the room's camera on its boom arm, near on the left, turned on the turnover board that came
+   * with it. The camera's cast falls across the board's lanes, one shadow made by the camera and the program
+   * together. The board carries ruled lanes and magnetic case blocks, no legible text. */
+  const CAMP = [-0.4, 2.12, -1.6];
+  const board = K.make('turnover_board', { seed: 7 }); board.position.set(0.75, 1.72, WALLZ); TXT.add(R, board);
+  const armM = new THREE.MeshStandardMaterial({ color: 0xcfd0cc, metalness: 0.4, roughness: 0.45 });
+  /* the board's case blocks in the deck's own colours, steel, ceil blue and a neutral, with one block in the gold of the added cases */
+  { const remap = { 0x6d8fa3: 0x6f93a8, 0x8a9a8e: 0x8d969b, 0x9c8a74: 0x9a9a92, 0x6f7f9a: 0x5f7f92 }; let first = true;
+    board.traverse(m => { if (!m.isMesh || !m.material || !m.material.color) return; const h = m.material.color.getHex();
+      if (remap[h] !== undefined) { m.material = m.material.clone(); m.material.color.setHex(first && h === 0x9c8a74 ? 0xe0956a : remap[h]); if (h === 0x9c8a74) first = false; } }); }
+  /* it rides out from the tile wall on a two piece boom arm with an elbow, the way surgical booms reach */
+  const ELB = [CAMP[0] - 0.35, CAMP[1] + 0.02, -2.5], WP = [CAMP[0] - 0.55, CAMP[1] + 0.02, WALLZ + 0.02];
+  /* the arm's two segments cast no long stripe across the board; the camera and the board carry the frame's shadows */
+  const arms = [K.bar(CAMP, ELB, 0.03, armM, 32), K.bar(ELB, WP, 0.03, armM, 32)]; arms.forEach(a => { TXT.add(R, a); a.castShadow = false; });
+  /* the camera's own plate closes the arm's end, so arm, plate, knuckle and head read as one fixture; the head pans on its knuckle to the board */
+  const cam = CH.wallCamera(K, CAMP, Math.atan2(CAMP[0] - ELB[0], CAMP[2] - ELB[2]), [0.75, 1.72, WALLZ], { tilt: 0.35, housing: 0xe4e3de, lamp: 0.25 }); TXT.add(R, cam);
+  { const el = new THREE.Mesh(new THREE.SphereGeometry(0.045, 32, 16), armM); el.position.set(...ELB); TXT.add(R, el);
+    const wp = TXT.roundedBox(0.18, 0.24, 0.03, 0.008, armM); wp.position.set(WP[0], WP[1], WALLZ + 0.015); TXT.add(R, wp); }
+  const from = [0.45, 1.5, 0.7];
+  const look = CH.aim(THREE, R, TXT, from, [0.15, 1.8, -2.6], 540, 880, 44);
+  TXT.frame(R, { fov: 44, from, look });
+  { const spec = CH.rigSpec(W, 6, 4096); TXT.deckRig(R, spec, CH.rigOpts([0.5, 1.4, WALLZ + 0.3], { distance: 12, shadowFar: 40 })); }
+  CH.unacne(R, 0.02);
+  TXT.stage(R, [board, cam], { behind: 1.4, depth: 1.6, poolInner: 2.6, poolOuter: 5.0 });
+  TXT.weather(R, { grime: 0.1, height: 0.25 });
+  const shot = await TXT.snapshot(R);
+  const cx = CH.develop(shot, gl);
+  CH.post(cx, { a: 0.42, veil: 0.2, footWash: 0.5, fade: 140 });
+  CH.knock(cx, [".tx-site", ".src"], 0.5);
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

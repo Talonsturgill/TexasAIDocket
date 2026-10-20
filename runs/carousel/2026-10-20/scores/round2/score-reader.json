@@ -1,0 +1,84 @@
+{
+ "lens": "reader",
+ "deck": "carousel no. 55, 2026-10-20, round 2 (rung 7.7)",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.5,
+   "why": "1, 3, 4 and 9 pass at feed size; 7 is primitive (boom between two plates, flat board, black band under the dek), 8 is type on a mid grey page, 5 reads as a table with the white tape invisible at 432 px, 2's cameras are dark stubs."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": ""
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.5,
+   "why": "Every numeral traces; attribution careful; 'every room' leans on the dek; slide 8's dek widens c16's list slightly with the quote beneath it."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.5,
+   "why": "Clear and honest; no deciding body or next step; the consent stake on 9 is left for the reader to infer."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": ""
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": ""
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": ""
+  }
+ ],
+ "weighted_score": 7.17,
+ "hard_fails": [],
+ "ship": false,
+ "contested": [
+  "Frame 8 as type on a plate",
+  "Variety of the counted-objects move",
+  "Whether a retrospective study should cost story points"
+ ],
+ "artwork_weakest_frames": [
+  {
+   "slide": 7,
+   "problem": "Boom links two plates that float apart, the board is flat rectangles, the tile ends in a hard edge into a black band under the dek.",
+   "fix": "One wall plate and a two piece arm, raised magnetic case cards with casts and a tray, tile extended up behind the dek."
+  },
+  {
+   "slide": 8,
+   "problem": "A pale mid grey page with DOM quotes, relief mostly the clip.",
+   "fix": "Page about 40 percent of the frame, a curled lower corner casting, only its upper half lit."
+  },
+  {
+   "slide": 5,
+   "problem": "The white tape is a grey strip, the 8.3 low end invisible at 432 px.",
+   "fix": "A bright raised white stripe three times wider; rake the key lower so lids cast long."
+  },
+  {
+   "slide": 2,
+   "problem": "The four cameras read as dark stubs.",
+   "fix": "Lit pale housings at twice the scale with faint view wedges."
+  },
+  {
+   "slide": 9,
+   "problem": "The wall camera crowds the dek's third line.",
+   "fix": "Drop it about 120 px and move it right."
+  }
+ ],
+ "_note": "Transcribed from the judge's hand-back by the showrunner; scores, total and weakest frames as returned, reasons abridged."
+}

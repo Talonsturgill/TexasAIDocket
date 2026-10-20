@@ -1,0 +1,89 @@
+{
+ "lens": "craft",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.2,
+   "why": "The value register is right. Medians run from L* 4.3 to 19.1, every frame sits on a dark field and the type is light. Frames 3, 4 and 9 come close to THE STAGE: one subject, contact shadows, a person for scale on 3 and 4, and the slide 9 container shows its contact on the steel. Frame by frame the craft drops off a lot. Slide 7, the turn frame, has a mount that doesn't work mechanically: in crop r2c1 the camera hangs from a pale plate floating off the wall, and the lower arm ends in a rounded cap in front of a second plate, casting a stripe about 1000 px long. The models are capsule primitives and the board is flat colour rectangles. Slide 2 is a floor plan: flat grey fills, primitive boxes for the furniture, walls barely proud of the floor, and camera brackets that are the least legible thing at 432 px, which is the exact risk its own dossier named. Slide 5 is a waffle chart in relief. The relief report gives cast_fraction 0.059 and height_range 19.5, the vinyl is mid charcoal, the grid sits inset and doesn't bleed although the dossier says bleeds left, right and bottom, and the bottom third is empty bays (crop r2c1). Slides 3 and 4 are lit evenly across the wall face with no raking falloff, and the room is darkness plus a floor line. At 432 px the gold crown on slide 4 reads tan or peach, and the preflight's own words are 'a muted tan band'. Slide 6's hemostats have jaws longer than their handles and read as cable ties, and the diagonal towel weave runs under the type. Slide 8's clip reads as a drawer pull and the page as grey stucco. Slide 1's camera is a cylinder under a flat hood plate, and the plate's contact on the near black tile is faint. More than one frame leans on a primitive or a chart default, which puts this under the 7 descriptor. No frame floats in a flat gradient and none uses a screen, so it sits above 4."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "This is one world: an operating room under a single floodlit key, with casts running down and to the right on 2, 5, 6, 7 and 8. Dusk gold means one thing, the estimate, on 4, 5, 6 and 9. Two motifs really change state: the container (a 339 wall on 3, a gold crown on 4, 25 lids on 5, one gold container on 9) and the camera (1, 2, 7, 9). The 3 to 4 held camera is a real filmstrip device. The value track has no strobe, with the largest step about 14 L* (4 to 5, and 7 to 8), and deck_coherence passes. What sits outside: the four txbench reliefs (2, 5, 6, 8) are flatter and more graphic than the five spatial renders. Slides 5 and 6 sit on textured grey and green fields rather than the black room, and the projection flips between plan and perspective four times. The deck reads as one, with a relief vocabulary that is visibly a second kind of stock."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.5,
+   "why": "Every numeral traces to figures.json or claims.json: 4, 15, 339, 25, 7%, 8.3, 41.0, 95%, 10, 11, 0.182, 30, 7 and three. All sources are primary: the PMC paper and the hospital's own blog. The associated-not-caused framing, the interval and the change-program confound are on frames 4, 5 and 7. The blog's turnover line is attributed on 7. The bay drawing on 5 is honest: tape across 8 and a third bays, 41 bays, 25 lids. The wall on 3 and 4 counts 26x13+1 and then 12+13 gold. One phrasing goes past its source. Slide 9's hook, 'Three roles can open the footage', reads as all footage, while c18 limits only intraoperative recordings, from incision to skin closure. The dek narrows it, but the hook is what a feed reader takes away. A smaller point is that slide 2's hook states the blog's claim as fact before the dek attributes it."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.0,
+   "why": "What happened, who did it and where are clear: Houston Methodist, Walter Tower, 15 rooms, four cameras each, December 2022 in c4. The finding is carried with all its limits, and the equity interest is on slide 8. The stake for a Texan is general. The close is about footage access, and the caption ends on a hypothetical question. No action, body, county or date a reader could act on is named, and Harris County never appears."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "The cover earns the swipe. Slide 2 is the mechanism, 3 then 4 is a real reveal, 5 and 6 qualify the estimate, and 7 is the declared turn. 8 brings the conflict and 9 closes. Slides 5 and 6 do similar work, both saying the estimate is less firm than it looks, so one could be cut or merged. The close moves from 'did it work' to 'who sees the footage', so it lands as a coda more than as the end of the argument."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Clean and on register, without hype or doom. 'Somewhere from 8.3 to 41.0' and 'Cameras plus a program' are good headlines, and the caption's 'That is an estimate, not a count.' is good. No house rule breaks were found: no colons, dashes, banned words, sentences opening with And or But, or first person. Little of it sounds specifically Texan, and slides 2 and 3 read like a methods summary."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "The interior floodlit operating room world and the container-as-case measure are new against nos. 52 (nightSodium robotaxi), 53 (darkfield reliefs) and 54 (lastLight brush country). The topic is outside the 30-day window: Houston Methodist was last on 09-09, no. 19. It is still the third clinical AI deck in 12 days (no. 47 UTMB on 10-09, no. 53 MD Anderson on 10-17), the second Houston medical institution in 4 days, and the instrument, a peer-reviewed paper, repeats no. 53's. The opening move, a close object, is familiar."
+  }
+ ],
+ "weighted_score": 7.03,
+ "weighted_score_working": "6.2x0.22=1.364 + 7.5x0.12=0.900 + 7.5x0.20=1.500 + 7.0x0.16=1.120 + 7.5x0.10=0.750 + 7.0x0.10=0.700 + 7.0x0.10=0.700 = 7.034",
+ "hard_fails": [],
+ "ship": false,
+ "contested": [
+  "out/2026-10-20/art_preflight.json still lists \"needs_review\": [9] next to decision accept. The frame 9 review entry binds render/slide-09.png cb18c09b..., but no hash could be computed from this seat. panel_ready should confirm the shipped slide-09.png matches that digest before this counts as cleared.",
+  "out/2026-10-20/reviews/pixel_round1.md describes earlier renders: a worker in frame 7, a slide 1 cite line missing c4 and c6, and a slide 9 dek not naming the paper. None of those match the current PNGs. No recorded pixel pass covers the current frames 7 and 9. This is a lead for the integrity judge, not a fault I can establish.",
+  "Slide 9 hook 'Three roles can open the footage' against c18's scope (intraoperative recordings only). Charged under claim_integrity, not as a hard fail, because the dek on the same frame states the scope."
+ ],
+ "one_sentence_fix": "Rebuild the four plan reliefs (2, 5, 6, 8) and the turn frame 7 inside the deck's own floodlit room: near-black field, one pool, real height that casts. That means a mechanically coherent single-arm camera mount on 7 and a raked, darker relief with bleeding bays on 2 and 5, because those are the frames where the deck drops from a rendered operating room to a chart.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 7,
+   "problem": "The deck's declared turn has an impossible mount. The camera hangs from a pale plate floating off the wall, and the lower arm ends in a rounded cap in front of a second plate, casting a stripe of about 1000 px across the frame (crop r2c1). The camera and arm are capsule primitives, and the turnover board is flat colour rectangles that read as a UI mock.",
+   "fix": "Rebuild the boom as one screwed wall plate, then a two-segment arm with knuckles, then the camera head, and delete the floating upper plate and the capped arm end. Give the board's case blocks magnet thickness with a printed label strip, so the key's specular sheen on the board is the brightest thing in the frame."
+  },
+  {
+   "slide": 2,
+   "problem": "It reads as a floor plan drawing, not a model. Walls are barely proud, the furniture is flat grey boxes, the floor is a mid grey-green slab, and the four camera brackets are illegible at 432 px.",
+   "fix": "Raise the walls to about three times their height with lit tops and long casts, model the table with pads and the lighthead with its arm, double the camera brackets so each reads as a camera at feed size, and drop the floor inside the walls to near black outside one pool over the table."
+  },
+  {
+   "slide": 5,
+   "problem": "A waffle chart in relief. The relief report gives cast_fraction 0.059 and height 19.5, the vinyl is mid charcoal, the grid sits inset instead of bleeding as the dossier specifies, and the empty bottom third is dead.",
+   "fix": "Bleed the bay grid off left, right and bottom, raise the lid height until the cast fraction is at least 0.2, and drop the vinyl outside a key pool centred on the lids to near black, so the 25 gold-rimmed lids are the only light and the empty bays fall into shadow."
+  },
+  {
+   "slide": 4,
+   "problem": "This is the planned showstopper, but the wall is lit evenly with no raking falloff, the room is darkness and a floor line, and at 432 px the 25-case crown reads tan or peach, not gold (the preflight says so).",
+   "fix": "Drop the key's elevation and swing it hard left so the wall face falls off left to right and the top two rows catch a hot specular edge. Raise the gold rows' metalness and roughness contrast so they read as anodised gold at 432 px, and change slide 3 the same way to keep the hold."
+  },
+  {
+   "slide": 6,
+   "problem": "The hemostats have jaws longer than their handles, so they read as cable ties or wires. The diagonal towel weave reads as a stripe pattern under the type block.",
+   "fix": "Remodel the clamp with jaws about a third of its length, a box lock and a ratchet at the rings, and flatten or darken the weave's height in the top half so the type sits on quiet cloth."
+  },
+  {
+   "slide": 8,
+   "problem": "The clip reads as a drawer pull and the page as grey stucco. The frame is a plate carrying DOM type more than an object.",
+   "fix": "Model a real clipboard clip with lever, spring roll and rivets, and give the page a paper fibre normal, a warmer off-white and a slight lift at its lower corners so it casts on the steel."
+  }
+ ]
+}
