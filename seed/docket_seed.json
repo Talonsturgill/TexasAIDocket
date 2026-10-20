@@ -15873,5 +15873,282 @@
     "checked": true
    }
   ]
+ },
+ {
+  "title": "Houston Methodist ties camera AI in 15 heart surgery rooms to about 25 more cases a month, and says it can't prove the cameras caused it",
+  "summary": "Houston Methodist researchers published a study in the Journal of Imaging on June 27th, 2026. It covers an image based AI system from Apella that the hospital put into a 15 room cardiothoracic suite at Walter Tower in December 2022. Four wall mounted cameras in each room feed a model that timestamps patient entry, draping and turnover. The system also texts surgeons as a case moves. Against a synthetic control built from 11 other Houston Methodist sites the suite ran about 25 more cases a month, a 7 percent rise. A placebo test returned p = 0.182 and fell short of conventional significance. The authors call the rise associated with the deployment rather than caused by it. The rollout came bundled with workflow reviews and the study can't separate the two. The hospital holds a minority equity interest in Apella. An Apella employee ran the original analyses and a hospital analyst replicated them.",
+  "topic": "health-and-education",
+  "decider": {
+   "name": "Houston Methodist Hospital",
+   "type": "company"
+  },
+  "geography": {
+   "statewide": false,
+   "counties": [
+    "Harris"
+   ],
+   "on_ercot": true,
+   "metro": "Houston-Pasadena-The Woodlands, TX"
+  },
+  "status": "decided",
+  "confidence": "high",
+  "key_dates": [
+   {
+    "date": "2026-06-27",
+    "kind": "filed",
+    "note": "Published in the Journal of Imaging"
+   }
+  ],
+  "public_access": {
+   "room": "contact_only",
+   "how": "The study is published open access and can be read in full with its methods, its limits and its conflict of interest statement. A hospital's choice of operating room software is not a public proceeding. Patients are told of the cameras by signs in the rooms.",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13412611/",
+   "closes": null
+  },
+  "claims": [
+   {
+    "text": "The study was published in the Journal of Imaging on June 27th, 2026.",
+    "verbatim_quote": "2026 Jun 27;12(7):283",
+    "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13412611/",
+    "source_title": "Journal of Imaging, Implementation of Image-Based Artificial Intelligence Is Associated with Increased Case Volume in a High-Acuity, 15-Room Cardiothoracic Operating Suite at a Tertiary Academic Hospital",
+    "source_type": "primary_official",
+    "fetched": "2026-10-20",
+    "id": "tx-2026-0222-c1"
+   },
+   {
+    "text": "The system ran in a 15 room cardiothoracic suite at Houston Methodist Hospital.",
+    "verbatim_quote": "in a 15-room cardiothoracic suite at Houston Methodist Hospital (HMH)",
+    "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13412611/",
+    "source_title": "Journal of Imaging, Implementation of Image-Based Artificial Intelligence Is Associated with Increased Case Volume in a High-Acuity, 15-Room Cardiothoracic Operating Suite at a Tertiary Academic Hospital",
+    "source_type": "primary_official",
+    "fetched": "2026-10-20",
+    "id": "tx-2026-0222-c2"
+   },
+   {
+    "text": "Each operating room in the suite was fitted with four wall mounted cameras.",
+    "verbatim_quote": "Each operating room was outfitted with four high-resolution wall-mounted cameras",
+    "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13412611/",
+    "source_title": "Journal of Imaging, Implementation of Image-Based Artificial Intelligence Is Associated with Increased Case Volume in a High-Acuity, 15-Room Cardiothoracic Operating Suite at a Tertiary Academic Hospital",
+    "source_type": "primary_official",
+    "fetched": "2026-10-20",
+    "id": "tx-2026-0222-c3"
+   },
+   {
+    "text": "The software went live at Walter Tower in December 2022.",
+    "verbatim_quote": "The IBAI software was deployed at Walter Tower (WT) in December 2022.",
+    "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13412611/",
+    "source_title": "Journal of Imaging, Implementation of Image-Based Artificial Intelligence Is Associated with Increased Case Volume in a High-Acuity, 15-Room Cardiothoracic Operating Suite at a Tertiary Academic Hospital",
+    "source_type": "primary_official",
+    "fetched": "2026-10-20",
+    "id": "tx-2026-0222-c4"
+   },
+   {
+    "text": "Over 16 months the system watched 5,417 surgical cases.",
+    "verbatim_quote": "Over a 16-month period spanning 6 months pre-deployment and 10 months post-deployment, the system monitored 5417 surgical cases",
+    "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13412611/",
+    "source_title": "Journal of Imaging, Implementation of Image-Based Artificial Intelligence Is Associated with Increased Case Volume in a High-Acuity, 15-Room Cardiothoracic Operating Suite at a Tertiary Academic Hospital",
+    "source_type": "primary_official",
+    "fetched": "2026-10-20",
+    "id": "tx-2026-0222-c5"
+   },
+   {
+    "text": "The study estimates about 25 more cases a month, a 7 percent rise.",
+    "verbatim_quote": "showed a statistically significant increase of approximately 25 cases per month (95% CI 8.3 to 41.0; p < 0.01; Bonferroni-adjusted p < 0.05), corresponding to a 7% increase in monthly case volume relative to baseline",
+    "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13412611/",
+    "source_title": "Journal of Imaging, Implementation of Image-Based Artificial Intelligence Is Associated with Increased Case Volume in a High-Acuity, 15-Room Cardiothoracic Operating Suite at a Tertiary Academic Hospital",
+    "source_type": "primary_official",
+    "fetched": "2026-10-20",
+    "id": "tx-2026-0222-c6"
+   },
+   {
+    "text": "The suite's baseline was about 339 cases a month.",
+    "verbatim_quote": "roughly 7% against a baseline of approximately 339 cases per month",
+    "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13412611/",
+    "source_title": "Journal of Imaging, Implementation of Image-Based Artificial Intelligence Is Associated with Increased Case Volume in a High-Acuity, 15-Room Cardiothoracic Operating Suite at a Tertiary Academic Hospital",
+    "source_type": "primary_official",
+    "fetched": "2026-10-20",
+    "id": "tx-2026-0222-c7"
+   },
+   {
+    "text": "A placebo test against the comparison sites returned p = 0.182.",
+    "verbatim_quote": "Walter Tower had the second-largest ratio of post-deployment to pre-deployment prediction error among the 11 units (Walter Tower and 10 donor sites; empirical p = 0.182)",
+    "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13412611/",
+    "source_title": "Journal of Imaging, Implementation of Image-Based Artificial Intelligence Is Associated with Increased Case Volume in a High-Acuity, 15-Room Cardiothoracic Operating Suite at a Tertiary Academic Hospital",
+    "source_type": "primary_official",
+    "fetched": "2026-10-20",
+    "id": "tx-2026-0222-c8"
+   },
+   {
+    "text": "The authors say that placebo test does not reach conventional significance.",
+    "verbatim_quote": "the permutation result is directionally consistent with the difference-in-differences estimate but does not reach conventional statistical significance",
+    "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13412611/",
+    "source_title": "Journal of Imaging, Implementation of Image-Based Artificial Intelligence Is Associated with Increased Case Volume in a High-Acuity, 15-Room Cardiothoracic Operating Suite at a Tertiary Academic Hospital",
+    "source_type": "primary_official",
+    "fetched": "2026-10-20",
+    "id": "tx-2026-0222-c9"
+   },
+   {
+    "text": "The authors call the rise associated with the deployment and not caused by it.",
+    "verbatim_quote": "we interpret the case-volume effect as associated with, rather than caused by, IBAI deployment",
+    "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13412611/",
+    "source_title": "Journal of Imaging, Implementation of Image-Based Artificial Intelligence Is Associated with Increased Case Volume in a High-Acuity, 15-Room Cardiothoracic Operating Suite at a Tertiary Academic Hospital",
+    "source_type": "primary_official",
+    "fetched": "2026-10-20",
+    "id": "tx-2026-0222-c10"
+   },
+   {
+    "text": "The deployment came bundled with workflow reviews, and the study can't split the cameras' share from the rest.",
+    "verbatim_quote": "cannot separately attribute the observed gains to one or the other component",
+    "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13412611/",
+    "source_title": "Journal of Imaging, Implementation of Image-Based Artificial Intelligence Is Associated with Increased Case Volume in a High-Acuity, 15-Room Cardiothoracic Operating Suite at a Tertiary Academic Hospital",
+    "source_type": "primary_official",
+    "fetched": "2026-10-20",
+    "id": "tx-2026-0222-c11"
+   },
+   {
+    "text": "Total operative minutes a month did not change significantly.",
+    "verbatim_quote": "In a sensitivity analysis using total operative minutes per month as a case-mix-insensitive outcome, the difference-in-differences estimate was not statistically significant",
+    "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13412611/",
+    "source_title": "Journal of Imaging, Implementation of Image-Based Artificial Intelligence Is Associated with Increased Case Volume in a High-Acuity, 15-Room Cardiothoracic Operating Suite at a Tertiary Academic Hospital",
+    "source_type": "primary_official",
+    "fetched": "2026-10-20",
+    "id": "tx-2026-0222-c12"
+   },
+   {
+    "text": "The hospital holds a minority equity interest in the vendor, Apella.",
+    "verbatim_quote": "Houston Methodist Hospital holds a minority equity interest in Apella Technology.",
+    "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13412611/",
+    "source_title": "Journal of Imaging, Implementation of Image-Based Artificial Intelligence Is Associated with Increased Case Volume in a High-Acuity, 15-Room Cardiothoracic Operating Suite at a Tertiary Academic Hospital",
+    "source_type": "primary_official",
+    "fetched": "2026-10-20",
+    "id": "tx-2026-0222-c13"
+   },
+   {
+    "text": "The original analyses were run by an Apella employee.",
+    "verbatim_quote": "Nate Hilger, acknowledged above for conducting the original synthetic control and difference-in-differences analyses, is employed by Apella Technology.",
+    "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13412611/",
+    "source_title": "Journal of Imaging, Implementation of Image-Based Artificial Intelligence Is Associated with Increased Case Volume in a High-Acuity, 15-Room Cardiothoracic Operating Suite at a Tertiary Academic Hospital",
+    "source_type": "primary_official",
+    "fetched": "2026-10-20",
+    "id": "tx-2026-0222-c14"
+   },
+   {
+    "text": "A Houston Methodist analyst replicated them on the same data.",
+    "verbatim_quote": "These analyses were subsequently replicated independently by a Houston Methodist analyst using the same aggregated dataset.",
+    "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13412611/",
+    "source_title": "Journal of Imaging, Implementation of Image-Based Artificial Intelligence Is Associated with Increased Case Volume in a High-Acuity, 15-Room Cardiothoracic Operating Suite at a Tertiary Academic Hospital",
+    "source_type": "primary_official",
+    "fetched": "2026-10-20",
+    "id": "tx-2026-0222-c15"
+   },
+   {
+    "text": "The paper says Apella did not fund the study or shape its design.",
+    "verbatim_quote": "Apella Technology did not fund the study and had no role in the study design, the interpretation of results, the decision to publish, or the preparation of the manuscript",
+    "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13412611/",
+    "source_title": "Journal of Imaging, Implementation of Image-Based Artificial Intelligence Is Associated with Increased Case Volume in a High-Acuity, 15-Room Cardiothoracic Operating Suite at a Tertiary Academic Hospital",
+    "source_type": "primary_official",
+    "fetched": "2026-10-20",
+    "id": "tx-2026-0222-c16"
+   },
+   {
+    "text": "Video is kept 30 days at most and audio 7.",
+    "verbatim_quote": "Video footage is retained for a maximum of 30 days and audio for a maximum of 7 days",
+    "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13412611/",
+    "source_title": "Journal of Imaging, Implementation of Image-Based Artificial Intelligence Is Associated with Increased Case Volume in a High-Acuity, 15-Room Cardiothoracic Operating Suite at a Tertiary Academic Hospital",
+    "source_type": "primary_official",
+    "fetched": "2026-10-20",
+    "id": "tx-2026-0222-c17"
+   },
+   {
+    "text": "Recordings from incision to closure can be opened by three roles only.",
+    "verbatim_quote": "Access to intraoperative recordings, defined as the period from incision to skin closure, is restricted to three designated roles",
+    "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13412611/",
+    "source_title": "Journal of Imaging, Implementation of Image-Based Artificial Intelligence Is Associated with Increased Case Volume in a High-Acuity, 15-Room Cardiothoracic Operating Suite at a Tertiary Academic Hospital",
+    "source_type": "primary_official",
+    "fetched": "2026-10-20",
+    "id": "tx-2026-0222-c18"
+   },
+   {
+    "text": "The surgeon is told whenever such a recording is reviewed.",
+    "verbatim_quote": "The surgeon is informed whenever an intraoperative recording is reviewed.",
+    "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13412611/",
+    "source_title": "Journal of Imaging, Implementation of Image-Based Artificial Intelligence Is Associated with Increased Case Volume in a High-Acuity, 15-Room Cardiothoracic Operating Suite at a Tertiary Academic Hospital",
+    "source_type": "primary_official",
+    "fetched": "2026-10-20",
+    "id": "tx-2026-0222-c19"
+   },
+   {
+    "text": "The model was trained on 137,517 cases in 315 operating rooms.",
+    "verbatim_quote": "The system was trained on a global dataset comprising 137,517 surgical cases performed across 315 operating rooms by 1853 surgeons.",
+    "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13412611/",
+    "source_title": "Journal of Imaging, Implementation of Image-Based Artificial Intelligence Is Associated with Increased Case Volume in a High-Acuity, 15-Room Cardiothoracic Operating Suite at a Tertiary Academic Hospital",
+    "source_type": "primary_official",
+    "fetched": "2026-10-20",
+    "id": "tx-2026-0222-c20"
+   },
+   {
+    "text": "People confirmed the locations and actions the system learned.",
+    "verbatim_quote": "Locations and actions were confirmed by a human-led quality control team.",
+    "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13412611/",
+    "source_title": "Journal of Imaging, Implementation of Image-Based Artificial Intelligence Is Associated with Increased Case Volume in a High-Acuity, 15-Room Cardiothoracic Operating Suite at a Tertiary Academic Hospital",
+    "source_type": "primary_official",
+    "fetched": "2026-10-20",
+    "id": "tx-2026-0222-c21"
+   },
+   {
+    "text": "Cameras in each operating room identify and timestamp workflow events.",
+    "verbatim_quote": "The new system uses wall‑mounted cameras in each OR to automatically identify and timestamp these moments.",
+    "source_url": "https://www.houstonmethodist.org/leading-medicine-blog/articles/2026/aug/image-based-ai-improves-or-efficiency-at-houston-methodist/",
+    "source_title": "Houston Methodist, Image-Based AI Improves OR Efficiency at Houston Methodist",
+    "source_type": "primary_corporate",
+    "fetched": "2026-10-20",
+    "id": "tx-2026-0222-c22"
+   },
+   {
+    "text": "The system texts surgeons when a patient arrives, is draped and when the case ends.",
+    "verbatim_quote": "It also sends text alerts to surgeons when a patient arrives, when the patient is draped and when the case ends.",
+    "source_url": "https://www.houstonmethodist.org/leading-medicine-blog/articles/2026/aug/image-based-ai-improves-or-efficiency-at-houston-methodist/",
+    "source_title": "Houston Methodist, Image-Based AI Improves OR Efficiency at Houston Methodist",
+    "source_type": "primary_corporate",
+    "fetched": "2026-10-20",
+    "id": "tx-2026-0222-c23"
+   },
+   {
+    "text": "The hospital says surgeons did not operate faster and turnovers got shorter.",
+    "verbatim_quote": "Operative minutes did not decrease, indicating surgeons were not operating faster. However, turnover times decreased, enabling more cases to be completed within the same OR hours.",
+    "source_url": "https://www.houstonmethodist.org/leading-medicine-blog/articles/2026/aug/image-based-ai-improves-or-efficiency-at-houston-methodist/",
+    "source_title": "Houston Methodist, Image-Based AI Improves OR Efficiency at Houston Methodist",
+    "source_type": "primary_corporate",
+    "fetched": "2026-10-20",
+    "id": "tx-2026-0222-c24"
+   },
+   {
+    "text": "Staff raised surveillance and privacy concerns before the rollout.",
+    "verbatim_quote": "Staff expressed concerns about surveillance, data security and privacy, prompting extensive discussions with legal, ethics and operations teams.",
+    "source_url": "https://www.houstonmethodist.org/leading-medicine-blog/articles/2026/aug/image-based-ai-improves-or-efficiency-at-houston-methodist/",
+    "source_title": "Houston Methodist, Image-Based AI Improves OR Efficiency at Houston Methodist",
+    "source_type": "primary_corporate",
+    "fetched": "2026-10-20",
+    "id": "tx-2026-0222-c25"
+   },
+   {
+    "text": "Patients are told by signs in the room, and consent is folded into general consent for care.",
+    "verbatim_quote": "For patients, clear signage is posted in ORs and consent is incorporated into universal consent for care.",
+    "source_url": "https://www.houstonmethodist.org/leading-medicine-blog/articles/2026/aug/image-based-ai-improves-or-efficiency-at-houston-methodist/",
+    "source_title": "Houston Methodist, Image-Based AI Improves OR Efficiency at Houston Methodist",
+    "source_type": "primary_corporate",
+    "fetched": "2026-10-20",
+    "id": "tx-2026-0222-c26"
+   }
+  ],
+  "notes_for_editor": "The cameras watch the room, not the operation. Never say the AI operates or advises on surgery. The 25 is an estimate with a 95 percent interval of 8.3 to 41.0, and associated is the authors' word.",
+  "id": "tx-2026-0222",
+  "last_verified": "2026-10-20",
+  "history": [
+   {
+    "date": "2026-10-20",
+    "note": "Admitted on the published study and the hospital's own account of it. Neither says how widely the cameras have spread since the study period, which ended in September 2023."
+   }
+  ]
  }
 ]
