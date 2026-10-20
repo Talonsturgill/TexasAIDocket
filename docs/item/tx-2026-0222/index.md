@@ -1,4 +1,4 @@
-# Houston Methodist ties camera AI in 15 heart surgery rooms to about 25 more cases a month, and says it can't prove the cameras caused it
+# Houston Methodist ties camera AI in 15 cardiothoracic surgery rooms to about 25 more cases a month, and says it can't prove the cameras caused it
 
 Houston Methodist researchers published a study in the Journal of Imaging on June 27th, 2026. It covers an image based AI system from Apella that the hospital put into a 15 room cardiothoracic suite at Walter Tower in December 2022. Four wall mounted cameras in each room feed a model that timestamps workflow events such as patient entry, draping and turnover. The system also texts surgeons as a case moves. The study compares the suite with a synthetic control built from 10 donor sites. It estimates about 25 more cases a month, a 7 percent rise, with an interval of 8.3 to 41.0. A placebo test returned p = 0.182 and fell short of conventional significance. The authors call the rise associated with the deployment rather than caused by it. The rollout came bundled with workflow reviews and the study can't separate the two. The hospital holds a minority equity interest in Apella. An Apella employee ran the original analyses and a hospital analyst replicated them.
 
@@ -155,7 +155,7 @@ Source (primary_official): https://pmc.ncbi.nlm.nih.gov/articles/PMC13412611/
 
 ### The hospital's blog says wall mounted cameras in each operating room automatically identify and timestamp workflow steps.
 
-> The new system uses wall‑mounted cameras in each OR to automatically identify and timestamp these moments.
+> The new system uses wall-mounted cameras in each OR to automatically identify and timestamp these moments.
 
 Source (primary_corporate): https://www.houstonmethodist.org/leading-medicine-blog/articles/2026/aug/image-based-ai-improves-or-efficiency-at-houston-methodist/
 

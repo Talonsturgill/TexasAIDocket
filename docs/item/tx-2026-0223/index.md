@@ -65,7 +65,7 @@ Source (primary_official): https://news.engineering.tamu.edu/news/2026/10/19/ai-
 
 ### Four open models were trained on mixes of junk and control data.
 
-> The four LLMs they selected — Llama3 8B Instruct, Qwen2.5 7B Instruct, Qwen2.5 0.5B Instruct and Qwen3 4B Instruct — are diverse in size and represent different model families.
+> Once the junk and control datasets were assembled, the researchers trained four LLMs on various proportions of junk and control data. Through training, LLMs learn to make predictions based on a dataset. The four LLMs they selected — Llama3 8B Instruct, Qwen2.5 7B Instruct, Qwen2.5 0.5B Instruct and Qwen3 4B Instruct — are diverse in size and represent different model families.
 
 Source (primary_official): https://news.engineering.tamu.edu/news/2026/10/19/ai-models-can-get-brain-rot-too/
 

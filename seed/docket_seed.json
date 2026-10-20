@@ -15875,7 +15875,7 @@
   ]
  },
  {
-  "title": "Houston Methodist ties camera AI in 15 heart surgery rooms to about 25 more cases a month, and says it can't prove the cameras caused it",
+  "title": "Houston Methodist ties camera AI in 15 cardiothoracic surgery rooms to about 25 more cases a month, and says it can't prove the cameras caused it",
   "summary": "Houston Methodist researchers published a study in the Journal of Imaging on June 27th, 2026. It covers an image based AI system from Apella that the hospital put into a 15 room cardiothoracic suite at Walter Tower in December 2022. Four wall mounted cameras in each room feed a model that timestamps patient entry, draping and turnover. The system also texts surgeons as a case moves. Against a synthetic control built from 11 other Houston Methodist sites the suite ran about 25 more cases a month, a 7 percent rise. A placebo test returned p = 0.182 and fell short of conventional significance. The authors call the rise associated with the deployment rather than caused by it. The rollout came bundled with workflow reviews and the study can't separate the two. The hospital holds a minority equity interest in Apella. An Apella employee ran the original analyses and a hospital analyst replicated them.",
   "topic": "health-and-education",
   "decider": {
@@ -16097,7 +16097,7 @@
    },
    {
     "text": "Cameras in each operating room identify and timestamp workflow events.",
-    "verbatim_quote": "The new system uses wall‑mounted cameras in each OR to automatically identify and timestamp these moments.",
+    "verbatim_quote": "The new system uses wall-mounted cameras in each OR to automatically identify and timestamp these moments.",
     "source_url": "https://www.houstonmethodist.org/leading-medicine-blog/articles/2026/aug/image-based-ai-improves-or-efficiency-at-houston-methodist/",
     "source_title": "Houston Methodist, Image-Based AI Improves OR Efficiency at Houston Methodist",
     "source_type": "primary_corporate",
@@ -16164,7 +16164,7 @@
    "counties": [
     "Brazos"
    ],
-   "on_ercot": false,
+   "on_ercot": true,
    "metro": "College Station-Bryan, TX"
   },
   "status": "decided",
@@ -16239,7 +16239,7 @@
    },
    {
     "text": "Four open models were trained on mixes of junk and control data.",
-    "verbatim_quote": "The four LLMs they selected — Llama3 8B Instruct, Qwen2.5 7B Instruct, Qwen2.5 0.5B Instruct and Qwen3 4B Instruct — are diverse in size and represent different model families.",
+    "verbatim_quote": "Once the junk and control datasets were assembled, the researchers trained four LLMs on various proportions of junk and control data. Through training, LLMs learn to make predictions based on a dataset. The four LLMs they selected — Llama3 8B Instruct, Qwen2.5 7B Instruct, Qwen2.5 0.5B Instruct and Qwen3 4B Instruct — are diverse in size and represent different model families.",
     "source_url": "https://news.engineering.tamu.edu/news/2026/10/19/ai-models-can-get-brain-rot-too/",
     "source_title": "Texas A&M Engineering News, AI models can get brain rot, too",
     "source_type": "primary_official",
@@ -16344,7 +16344,7 @@
    },
    {
     "text": "The Arc is scheduled to begin construction this fall, with Rice as a lead tenant.",
-    "verbatim_quote": "The Arc at the Ion District is a nearly 200,000-square-foot research and innovation hub scheduled to begin construction in Houston’s Ion District this fall.",
+    "verbatim_quote": "The Arc at the Ion District is a nearly 200,000-square-foot research and innovation hub scheduled to begin construction in Houston’s Ion District this fall. Rice will be a lead tenant",
     "source_url": "https://news.rice.edu/news/2026/rice-launches-transformational-ai-initiative-faculty-hiring-new-programs-and-facilities",
     "source_title": "Rice News, Rice launches transformational AI initiative with faculty hiring, new programs and facilities",
     "source_type": "primary_official",

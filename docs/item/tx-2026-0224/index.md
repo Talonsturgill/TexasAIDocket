@@ -59,7 +59,7 @@ Source (primary_official): https://news.rice.edu/news/2026/rice-launches-transfo
 
 ### The Arc is scheduled to begin construction this fall, with Rice as a lead tenant.
 
-> The Arc at the Ion District is a nearly 200,000-square-foot research and innovation hub scheduled to begin construction in Houston’s Ion District this fall.
+> The Arc at the Ion District is a nearly 200,000-square-foot research and innovation hub scheduled to begin construction in Houston’s Ion District this fall. Rice will be a lead tenant
 
 Source (primary_official): https://news.rice.edu/news/2026/rice-launches-transformational-ai-initiative-faculty-hiring-new-programs-and-facilities
 
