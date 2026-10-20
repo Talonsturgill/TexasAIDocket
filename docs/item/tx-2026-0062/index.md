@@ -11,7 +11,7 @@ The Fort Worth City Council took three data center votes on August 11th, 2026. M
 - Public access: Public meeting
 - Take part: https://www.keranews.org/news/2026-08-12/data-center-moratorium-takes-first-steps-after-fort-worth-city-councils-unanimous-vote
 
-- Last checked: 2026-10-17
+- Last checked: 2026-10-20
 
 ## Dates
 
@@ -46,6 +46,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-09 · Community Impact's account confirms the first steps toward Fort Worth's pause and the proposed adoption timeline after hearings and readings. The pause is not yet in force under that timeline. KERA's account remains unavailable, so its exact wording is unconfirmed.
 - 2026-10-14 · Community Impact's account still reads as cited, with the first steps toward a pause taken and no adoption reported. KERA's account and the city's own record are unconfirmed, so their wording is not known.
 - 2026-10-17 · Community Impact's account still describes the first steps toward a Fort Worth pause, with hearings and readings to come and no adoption reported. KERA's account is unconfirmed, so its exact wording is not known.
+- 2026-10-20 · Community Impact still reports only the first steps toward Fort Worth's 90 day pause, with no adoption since. KERA's account stays unconfirmed, as its address now forwards to a page that refused the request.
 
 ## Evidence
 

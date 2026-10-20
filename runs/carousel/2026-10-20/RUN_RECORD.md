@@ -99,6 +99,29 @@ Three judges each round, combined by `panel.py`. Read `score.json` for every fig
   pale, so both frames went back to the accepted state. **Not done**: 09's camera can't sit lower at a real mount
   height in this framing, and 04's rake and crown were left as the art director accepted them. The judges' round 2
   cards were transcribed by the showrunner from their hand-backs, scores and totals as returned, reasons abridged.
+- **Round 3, the cap**: no hard fail. **The deck ships at 7.09, 0.91 under the 8.0 top rung.** The art median is
+  6.5, under the 8.5 craft floor, which stands down at the cap. Round 3's cards were transcribed by the showrunner
+  from the judges' hand-backs, scores, totals and weakest frames as returned, reasons abridged.
+- **Named by the judges and not fixed, for the next run**: frame 7 is the weakest image in every round (the board's
+  flat blocks, the mount); frame 8 reads as type on a plate in the mid tones; frame 2 reads as a floor plan; frame 5
+  reads as a grid; the walls on 3 and 4 are lit evenly with the black base of the room's back wall behind them;
+  gold is used beyond its one meaning on 2, 7 and 9. On the copy, frame 7 carries the blog's turnover line where the
+  paper's own operative-minutes result (c12) belongs, the first comment's id list omits c12 though the caption
+  states it, and frame 5's headline reads a 95% interval as bounds. Past the cap only a hard fail may be repaired.
+
+## Ship
+
+Shipped images bound to the accepted review by `art_preflight --archive`, quality 40.1 to 44.6 dB against a 40.0
+floor; `measure_shipped` wrote `measurements.json` and its check matches. Ledgers updated by `update_ledgers.py`.
+The web edition is `ledger/articles/2026-10-20.json`, and `article_edition.mjs` passed 900 reader checks after
+`npm ci` installed its pinned Playwright; the article was read at 390 and 1280 px. `main` had nothing new to merge
+before the rebuild. The record rebuild found two of today's summaries over the 30 word backstop, and splitting
+tx-2026-0222's also corrected its "11 other" sites to c8's 10 donor sites. All nine verification checks exited 0.
+
+**Studio clock.** Minutes from wake: record_done 113.9, audition_done 117.0, art_done 120.4, review_done 175.4,
+panel_done 206.9, package_done 224.7. **record_done and audition_done were stamped late**, at 07:02 and after the
+fifth art reading rather than when each phase ended; the record work was committed at 05:44, about 36 minutes
+after wake, and the audition ran most of the two hours between.
 
 ## Discoverability signoff
 
@@ -117,3 +140,27 @@ already carries tx-2026-0222 to tx-2026-0224. The merged build is the one Phase 
   interchange.puc.texas.gov still leads with 144 claims.
 - **`/topic/`.** Health and education reads 30 of 196 decisions with its blurb and carries tx-2026-0222.
 - **`/place/`.** `county-harris` carries 30 items with its map and now includes tx-2026-0222.
+
+## Gate status
+
+<!-- gate-status:begin -->
+| gate | status | detail |
+|---|---|---|
+| claims         | PASS   | 28 verified claim(s) |
+| render         | PASS   | 9 slide(s) |
+| qa             | WARN   | 0 fail(s), 4 warn(s) |
+| aggregates     | PASS   | 9 declaration(s), 14 numeric phrase(s) in the render, all re-derived |
+| assembly       | PASS   | 9 slide(s), 8.8 MB, vector |
+| score          | WARN   | 7.09 at the round cap after 3 round(s), the finished deck ships; 8.0 top rung, shortfall named |
+| labels         | PASS   | 50 claim id(s) checked, every label beside one traces to the shape its claim proves |
+| quantifiers    | PASS   | 62 published string(s) read from one list, every universal names its set |
+| verbatim       | PASS   | 3 declared fragment(s) over 9 of 9 dossier(s), every one a literal substring of its own claim's quote |
+| dossiers       | PASS   | 34,998 chars planned |
+| caption        | PASS   | 152 words |
+| craft floor    | PASS   | 9 frame(s), median 1880, floor 338 |
+| plan vs render | PASS   | 9 of 50 acceptance item(s) checkable |
+| texan          | WARN   | places Houston / body NO / deadline yes / next step NO |
+| absences       | WARN   | 5 of 7 scoped to a named document, 2 unscoped |
+| numerals       | PASS   | 18 numeral(s) over 9 frame(s), every one reachable |
+| completion     | PASS   | the deck shipped |
+<!-- gate-status:end -->

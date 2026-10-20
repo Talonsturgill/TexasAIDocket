@@ -10,7 +10,7 @@ The Commodity Futures Trading Commission published a request for comment on Augu
 - Comment closes: 2026-10-20
 - Take part: https://www.govinfo.gov/content/pkg/FR-2026-08-21/html/2026-17163.htm
 
-- Last checked: 2026-10-18
+- Last checked: 2026-10-20
 
 ## Dates
 
@@ -39,6 +39,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-16 · The federal notice on derivatives whose underlying commodity is compute still takes comment until October 20th.
 - 2026-10-17 · The federal request for comment on compute derivatives is still taking comment, and its closing date of October 20th has not moved.
 - 2026-10-18 · The request for comment on compute derivatives is still open, and it still closes on October 20th.
+- 2026-10-20 · The request for comment on trading compute derivatives is open through its last day, October 20th, and the commission's notice still reads as published.
 
 ## Evidence
 
