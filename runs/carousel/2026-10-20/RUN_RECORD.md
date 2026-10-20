@@ -123,6 +123,8 @@ panel_done 206.9, package_done 224.7. **record_done and audition_done were stamp
 fifth art reading rather than when each phase ended; the record work was committed at 05:44, about 36 minutes
 after wake, and the audition ran most of the two hours between.
 
+**CI on the first head went red** on `gates`, `email_check --all`, because the email payload had not been built yet. Built and committed before the merge, as carousel no. 7 taught. Reproducing the rest of that job locally found `ledger_check` refusing today's topic prose for number words (four, one, eleven) that are not counting figures, so they became digits, and frame 7's line in the topic and artwork ledgers stopped describing the crew member that round 1 removed.
+
 ## Discoverability signoff
 
 Read on a temp-dir build of the record as it stands after today's three admissions (`site_build --out
