@@ -211,7 +211,8 @@
         "2026-10-08",
         "2026-10-10",
         "2026-10-12",
-        "2026-10-15"
+        "2026-10-15",
+        "2026-10-20"
       ],
       "contradicted": []
     },
@@ -627,7 +628,8 @@
         "2026-10-10",
         "2026-10-12",
         "2026-10-16",
-        "2026-10-17"
+        "2026-10-17",
+        "2026-10-20"
       ],
       "contradicted": []
     },
@@ -838,7 +840,8 @@
         "2026-09-26",
         "2026-09-29",
         "2026-10-10",
-        "2026-10-15"
+        "2026-10-15",
+        "2026-10-20"
       ],
       "contradicted": []
     },
@@ -1172,7 +1175,9 @@
       "learned": "2026-09-28",
       "instinct": "Shoot a kit model at the distance the kit holds and recompose the frame the moment a judge names its geometry twice, because re-rendering the same primitive closer never moves the craft score.",
       "evidence": "No. 36's frame 2 pole was named in panel rounds 1, 2 and 3 as a slab, then a toy top, at 2 m and 3 m, and read as a photograph only when it became a whole distribution line at 26 m.",
-      "confirmed": [],
+      "confirmed": [
+        "2026-10-20"
+      ],
       "contradicted": []
     },
     {
@@ -1484,6 +1489,24 @@
       "learned": "2026-10-18",
       "instinct": "When a kit figure close-up fails review twice, stand the camera back so the built structure carries the frame and the figure stays small.",
       "evidence": "No. 54 frame 9, two close-ups on the rancher at the latch failed the art director; the stand-back view of the whole gate passed on its first reading.",
+      "confirmed": [
+        "2026-10-20"
+      ],
+      "contradicted": []
+    },
+    {
+      "id": "interior-back-wall-is-thick",
+      "learned": "2026-10-20",
+      "instinct": "Place anything meant to hang on a TXT.interior back wall at -d/2 plus 0.1, never at -d/2, because the wall is a 0.2 m box centred on that plane and swallows whatever sits on it.",
+      "evidence": "No. 55 frame 7: a turnover board placed at the back wall's nominal plane rendered invisible until it moved 0.1 m forward.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "keep-the-wall-mount-on-its-wall",
+      "learned": "2026-10-20",
+      "instinct": "Mount a wall model with its plate flush to the wall and turn only its head, and give a wall-hung kit model keepOrigin, because K.make re-centres the footprint and a model rotated whole lifts its plate off the wall.",
+      "evidence": "No. 55: the turnover board's face was pulled behind the tile by K.make's re-centring, and the room camera's plate stood off the wall on frames 1 and 9 until a pan was added.",
       "confirmed": [],
       "contradicted": []
     }

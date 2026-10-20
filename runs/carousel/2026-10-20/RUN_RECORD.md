@@ -141,6 +141,29 @@ already carries tx-2026-0222 to tx-2026-0224. The merged build is the one Phase 
 - **`/topic/`.** Health and education reads 30 of 196 decisions with its blurb and carries tx-2026-0222.
 - **`/place/`.** `county-harris` carries 30 items with its map and now includes tx-2026-0222.
 
+## Retro
+
+- **Did this run wait on a human? Interim reading, Phase 17.** `prompt_audit.py` exited 1: 1,928 tool calls
+  measured and 23 whose permission decision took longer than an auto-approval, 21 of them subagent spawns and 2
+  Bash calls, each released without a refusal, the longest about 20.6 s. The no-stall hook was armed at 05:07:08 UTC,
+  judged the session unattended from session start (`CLAUDE_CODE_SESSION_ATTENDED=0`, and the host's value was 0),
+  and refused nothing. Phase 19 takes the reading that counts.
+- **Sources.** Seven findings appended to `knowledge/shared/SOURCES_FIELD_LOG.md`: pmc.ncbi.nlm.nih.gov,
+  www.houstonmethodist.org, kodiak.ai and Europe PMC answered 200; www.mdpi.com, a PDF on www.faa.gov and
+  www.mylubbock.us answered 403; www.keranews.org redirected to www.kera.org, which answered 403.
+- **Instincts confirmed**: `a-paraphrase-can-outrun-its-quote` (c13's text said vendor, its quote did not),
+  `the-records-own-prose-drifts-while-you-draw` (two summaries over the backstop found only at the rebuild),
+  `recompose-kit-primitives-at-distance` and `stand-back-from-a-kit-figure` (the close's worker cut, the container
+  rebuilt), `read-the-repair-at-feed-scale` (the deeper room behind 03 and 04 made them worse and was reverted).
+  **Added**: `interior-back-wall-is-thick`, `keep-the-wall-mount-on-its-wall`.
+- **Machine queue**: six new items (the eight operating room models to lift into the kit, TXT.interior's back wall
+  swallowing wall mounts, a small ground showing its edge in a wide shot, K.make re-centring wall-hung models,
+  depth_floor asking for a literal ground inside an interior, and judge cards that came back under three different
+  keys so six were transcribed by hand) and three repeats raised (the full length kit person, the detail floor on
+  dark walls, the audition re-binding after each copy repair). `machine_due.py`: the weekly pass is not due, last run
+  October 16th, 74 items queued.
+- **Arsenal** rebuilt and current.
+
 ## Gate status
 
 <!-- gate-status:begin -->
