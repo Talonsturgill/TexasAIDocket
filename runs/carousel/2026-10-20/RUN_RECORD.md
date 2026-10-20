@@ -78,6 +78,20 @@ Rock (the same company over the same metros as no. 33).
   frame 9 is not explained on that frame. The pixel critics rechecked the changed frames: 02 to 05, 07 and 08 ship,
   06 and 09 named one non-blocking defect each, both then repaired.
 
+## The panel
+
+Three judges each round, combined by `panel.py`. Read `score.json` for every figure.
+
+- **Round 1**: the integrity judge named one hard fail. The caption called Apella "the vendor" and slide 8's turn
+  rested on it, while c13's quote only said the hospital holds an equity interest in Apella. The paper does say it,
+  in its own words, and the run re-fetched the page and added that sentence as c28 to the claims and to
+  tx-2026-0222, with c13's text cut back to what its quote proves. Also repaired from the round: slide 9's hook
+  scoped to surgery footage and its close moved to the consent the hospital's blog describes (c26), dropping the
+  retention figures whose audio line the blog contradicts; slide 6 now says the placebo result points the same way
+  (c9); slide 1 says the system is image based AI and went live in December 2022 (c4); slide 8 names Apella as the
+  vendor (c28). Art, one change each: 05's lids taller with longer casts and the vinyl outside the pool darker, 02's
+  walls taller, 06's jaws shorter, 07's boom arm cast removed, 08's page warmer.
+
 ## Discoverability signoff
 
 Read on a temp-dir build of the record as it stands after today's three admissions (`site_build --out
