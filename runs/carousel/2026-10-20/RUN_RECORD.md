@@ -91,6 +91,14 @@ Three judges each round, combined by `panel.py`. Read `score.json` for every fig
   (c9); slide 1 says the system is image based AI and went live in December 2022 (c4); slide 8 names Apella as the
   vendor (c28). Art, one change each: 05's lids taller with longer casts and the vinyl outside the pool darker, 02's
   walls taller, 06's jaws shorter, 07's boom arm cast removed, 08's page warmer.
+- **Round 2**: no hard fail, under the 7.7 rung, so the work order said keep editing, frames 7, 5, 8, 2, 3, 4, 9 in
+  that order. Repaired, one change each: 07's camera now closes the boom arm on its own plate and the board's blocks
+  take the deck's colours with one gold; 05's low-end marker raised so the key reaches it, white at feed size; 08's
+  page falls into shadow below its upper half; 02's camera housings pale with gold lens rings. **Tried and reverted**:
+  a deeper room behind 03 and 04 to remove the black base of the back wall, which lit the container wall flat and
+  pale, so both frames went back to the accepted state. **Not done**: 09's camera can't sit lower at a real mount
+  height in this framing, and 04's rake and crown were left as the art director accepted them. The judges' round 2
+  cards were transcribed by the showrunner from their hand-backs, scores and totals as returned, reasons abridged.
 
 ## Discoverability signoff
 
