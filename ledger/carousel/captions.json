@@ -19,12 +19,12 @@
   "recent_lists_note": "These three lists are the exclusions handed to the caption room and they were hand-kept. On 2026-08-20 the fourth panel found structures_recent reading [\"ledger\", \"pivot\", \"question and answer\"] when the last three shipped structures were [\"ledger\", \"two columns\", \"question and answer\"], so it dropped a structure that IS off the table and held one that is not. Wrong in both directions from one hand edit. They are now recomputed from entries and are ordered OLDEST FIRST, matching the entries list, and scripts/carousel/caption_check.py should derive them rather than read them. That is an upgrade-lane change and it is written into this run's proposals."
  },
  "opening_moves_recent": [
-  "the correction",
   "the who",
   "the place",
   "the before and after",
   "the object",
-  "the plain question"
+  "the plain question",
+  "the two things"
  ],
  "entries": [
   {
@@ -978,15 +978,34 @@
    ],
    "critic_note": "Two candidates, one rewrite spent on A. B was refused because its first line put \"no case\" alone above the fold, the reading the claims file rejects, and it used c12's drone limit as evidence about the models' aim. A was rewritten: its unclaimed absence and its open question close (the last run's close) were cut, the 43 was named as confirmed detections, the Lohmeyer sentence was split, and the close became the reader's next step with B's \"Who on the place has that number?\". The showrunner changed the deck line after the cover was recomposed from a fly on a wire to a water point.",
    "move_note": "Opens on the two facts that pull against each other, drones finding no case and the commission counting 43 premises, pivots to what the models do and what they can't see, and closes on the reader's next step and the number to call."
+  },
+  {
+   "date": "2026-10-20",
+   "carousel_no": 55,
+   "opening_move": "the number that is wrong",
+   "structure": "Ledger",
+   "closing_move": "ask the one question the decision leaves open",
+   "first_line": "About 25 more surgeries a month.",
+   "words": 152,
+   "commas": 4,
+   "commas_per_100w": 2.63,
+   "chars": 895,
+   "hashtags": [
+    "#HoustonMethodist",
+    "#Apella",
+    "#OperatingRoom"
+   ],
+   "critic_note": "Winner A. B fails three ways. (1) caption_check fails it at 910 characters against the 300 to 900 band. (2) 'The deck draws the count, its range and the disclosure.' calls the 25 a count. That is the main fact trap, and it sits in the line that describes the deck. (3) 'Houston Methodist put four wall cameras in each of the 15 operating rooms ... in December 2022' attaches c4's date to the cameras. c4 says the SOFTWARE was deployed in December 2022. The claims file's own rejected entry says the cameras were installed in September 2022. B's first line, 'The surgeons didn't get faster.', is also the hospital blog's reading (c24), stated flat above the fold with no Texas place in it. A uses its opening move the way the menu defines it. 'About 25 more cases a month.' is the figure a reader will misjudge, and 'That is an estimate, not a count.' corrects it straight away. Every numeral in A tra",
+   "move_note": "Opens on the 25 a reader will take for a count and corrects it in the next line, then lays out what is known, what the study can't separate and the interval that sizes the unknown, and closes on what another Texas hospital would want proven."
   }
  ],
  "structures_recent": [
-  "Clock",
   "Ladder",
-  "Question and answer"
+  "Question and answer",
+  "Pivot"
  ],
  "closing_moves_recent": [
-  "ask the one question the decision leaves open"
+  "name what happens next and when"
  ],
  "_derived_note": "opening_moves_recent, structures_recent and closing_moves_recent are DERIVED by out/<date>/update_ledgers.py every run, by ledger_check.windows() and ledger_check's own slice of the entries before the newest date. They were hand-maintained until 2026-09-10 and had drifted, which mis-briefed the caption room on that run: the list said Ledger was excluded when it was not, and never mentioned Two columns or the close no. 19 actually shipped."
 }

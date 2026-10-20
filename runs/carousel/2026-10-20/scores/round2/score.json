@@ -1,0 +1,227 @@
+{
+ "weighted_score": 7.25,
+ "judges": [
+  7.22,
+  7.44,
+  7.17
+ ],
+ "spread": 0.27,
+ "criteria": {
+  "artwork_craft": {
+   "score": 6.5,
+   "weight": 0.22,
+   "judges": [
+    6.5,
+    6.4,
+    6.5
+   ]
+  },
+  "deck_coherence": {
+   "score": 7.5,
+   "weight": 0.12,
+   "judges": [
+    7.5,
+    7.3,
+    7.5
+   ]
+  },
+  "claim_integrity": {
+   "score": 8.5,
+   "weight": 0.2,
+   "judges": [
+    8.5,
+    8.5,
+    8.5
+   ]
+  },
+  "story_and_stakes": {
+   "score": 6.5,
+   "weight": 0.16,
+   "judges": [
+    6.5,
+    7.5,
+    6.5
+   ]
+  },
+  "sequence_and_momentum": {
+   "score": 7.5,
+   "weight": 0.1,
+   "judges": [
+    7.5,
+    7.5,
+    7.0
+   ]
+  },
+  "voice": {
+   "score": 7.3,
+   "weight": 0.1,
+   "judges": [
+    7.5,
+    7.3,
+    7.0
+   ]
+  },
+  "variety": {
+   "score": 7.0,
+   "weight": 0.1,
+   "judges": [
+    6.5,
+    7.8,
+    7.0
+   ]
+  }
+ },
+ "hard_fails": [],
+ "hard_fails_by_judge": [],
+ "ship": false,
+ "threshold": 8.0,
+ "over_threshold": false,
+ "method": "per-criterion median across three judges, then weighted by the rubric",
+ "threshold_dissents": [
+  "judge 1 refused on the threshold, not on a fault, and scored 7.22 against a 8.0 bar. That dissent is carried in the median",
+  "judge 2 refused on the threshold, not on a fault, and scored 7.44 against a 8.0 bar. That dissent is carried in the median",
+  "judge 3 refused on the threshold, not on a fault, and scored 7.17 against a 8.0 bar. That dissent is carried in the median"
+ ],
+ "threshold_dissents_by_judge": [
+  {
+   "judge": 1,
+   "score": 7.22,
+   "reason": "judge 1 refused on the threshold, not on a fault, and scored 7.22 against a 8.0 bar. That dissent is carried in the median"
+  },
+  {
+   "judge": 2,
+   "score": 7.44,
+   "reason": "judge 2 refused on the threshold, not on a fault, and scored 7.44 against a 8.0 bar. That dissent is carried in the median"
+  },
+  {
+   "judge": 3,
+   "score": 7.17,
+   "reason": "judge 3 refused on the threshold, not on a fault, and scored 7.17 against a 8.0 bar. That dissent is carried in the median"
+  }
+ ],
+ "artwork_weakest_frames": [
+  {
+   "slide": 7,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Primitive boom, UI-like board in an off-deck palette, empty black top.",
+     "fix": "A physical board in the deck's steel and green with one gold strip, the camera on one real mount, tile raised to the dek, the camera's cast across the board."
+    },
+    {
+     "judge": 2,
+     "problem": "Untextured primitives on a boom with two disconnected plates, a flat pastel board, a black blob at its corner.",
+     "fix": "Reuse the chassis camera on one plate and one jointed arm; marker lanes and case blocks in the deck's colours with a specular streak; soft casts from frame and tray."
+    },
+    {
+     "judge": 3,
+     "problem": "Boom links two plates that float apart, the board is flat rectangles, the tile ends in a hard edge into a black band under the dek.",
+     "fix": "One wall plate and a two piece arm, raised magnetic case cards with casts and a tray, tile extended up behind the dek."
+    }
+   ]
+  },
+  {
+   "slide": 5,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The white tape reads as faint grey wedges.",
+     "fix": "A bright white stripe of real height with its own cast; a few degrees off plan."
+    },
+    {
+     "judge": 2,
+     "problem": "A mid grey chart grid; the white tape invisible at 432 px.",
+     "fix": "A raised band at L* 85 or more with its own cast; lids in a pool and the empty bays to black."
+    },
+    {
+     "judge": 3,
+     "problem": "The white tape is a grey strip, the 8.3 low end invisible at 432 px.",
+     "fix": "A bright raised white stripe three times wider; rake the key lower so lids cast long."
+    }
+   ]
+  },
+  {
+   "slide": 8,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "A pale mid tone page, the one light frame.",
+     "fix": "Crop the page into dark steel on three sides, rake the key low, the lower third in shadow."
+    },
+    {
+     "judge": 2,
+     "problem": "A beige page over 60 percent of the frame at uniform mid tone.",
+     "fix": "Angle and bleed the page, light only its upper half and the clip."
+    },
+    {
+     "judge": 3,
+     "problem": "A pale mid grey page with DOM quotes, relief mostly the clip.",
+     "fix": "Page about 40 percent of the frame, a curled lower corner casting, only its upper half lit."
+    }
+   ]
+  },
+  {
+   "slide": 2,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Cameras as dark stubs, a flat plan.",
+     "fix": "Pale lit housings with long casts; taller walls."
+    },
+    {
+     "judge": 2,
+     "problem": "A CAD plan, cameras as dark stubs.",
+     "fix": "A 30 to 40 degree three quarter view; pale lit camera housings."
+    },
+    {
+     "judge": 3,
+     "problem": "The four cameras read as dark stubs.",
+     "fix": "Lit pale housings at twice the scale with faint view wedges."
+    }
+   ]
+  },
+  {
+   "slide": 3,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "A hard black back-wall base slab behind the wall on 3 and 4.",
+     "fix": "Extend the floor and pool to the far wall or lower the wall base below the horizon."
+    }
+   ]
+  },
+  {
+   "slide": 4,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "An evenly lit wall, a tan crown, no bleed.",
+     "fix": "A hard rake from high left with a specular edge on the gold rows; widen so the wall bleeds; mirror on 3."
+    }
+   ]
+  },
+  {
+   "slide": 9,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 3,
+     "problem": "The wall camera crowds the dek's third line.",
+     "fix": "Drop it about 120 px and move it right."
+    }
+   ]
+  }
+ ],
+ "rounds_derived": 2,
+ "rounds": 2,
+ "rounds_source": "this module's own log of cards it has scored",
+ "rung": 7.7,
+ "work_order": "no judge found a hard fail, and the median 7.25 is under this round's rung of 7.7. KEEP EDITING: fix the judges' named defects, re-render and re-score. At the round cap the finished deck ships whatever it scored. Start with the frames the judges charge the art for, in this order, slides 7, 5, 8, 2, 3, 4, 9 (`artwork_weakest_frames`), one concrete change each",
+ "craft_floor": "pending, because a deck under its rung is sent back by the work order first"
+}

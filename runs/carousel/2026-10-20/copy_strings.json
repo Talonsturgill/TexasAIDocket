@@ -1,0 +1,93 @@
+{
+ "document_title": "Houston Methodist's operating room AI and a study tying it to about 25 more cases a month",
+ "slides": {
+  "1": {
+   "kicker": "Houston Methodist",
+   "hook": "Four cameras in every room",
+   "dek": "Houston Methodist put four wall cameras in each of the 15 operating rooms of Walter Tower's cardiothoracic suite. A study published in June ties its image based AI to more surgeries after it went live in December 2022. Drawn to illustrate.",
+   "claims": [
+    "c2",
+    "c3",
+    "c4",
+    "c6",
+    "c1"
+   ]
+  },
+  "2": {
+   "kicker": "The system",
+   "hook": "Cameras log the workflow",
+   "dek": "The hospital says the cameras identify and timestamp workflow steps. It says the system texts the surgeon when a patient arrives, when the patient is draped and when the case ends. Drawn to illustrate.",
+   "claims": [
+    "c3",
+    "c22",
+    "c23"
+   ]
+  },
+  "3": {
+   "kicker": "The baseline",
+   "hook": "About 339 a month",
+   "dek": "The paper puts the suite's baseline at about 339 cases a month. One container is drawn for each case. Drawn to illustrate.",
+   "claims": [
+    "c7"
+   ]
+  },
+  "4": {
+   "kicker": "The estimate",
+   "hook": "About 25 more a month",
+   "dek": "The study estimates the deployment was associated with about 25 more cases a month, 7% over a baseline of about 339. Gold marks the added cases. Drawn to illustrate.",
+   "claims": [
+    "c6",
+    "c7"
+   ]
+  },
+  "5": {
+   "kicker": "The range",
+   "hook": "Somewhere from 8.3 to 41.0",
+   "dek": "The 25 is the study's estimate. Its 95% interval runs from 8.3 to 41.0 more cases a month. Each bay is one case, and the white tape marks the low end. Drawn to illustrate.",
+   "claims": [
+    "c6"
+   ]
+  },
+  "6": {
+   "kicker": "The placebo test",
+   "hook": "Second of 11",
+   "dek": "In a placebo test against 10 donor sites, Walter Tower ranked second of 11, an empirical p of 0.182. The authors say it points the same way but does not reach conventional significance. One clamp per unit, and the gold one is Walter Tower. Drawn to illustrate.",
+   "claims": [
+    "c8",
+    "c9"
+   ]
+  },
+  "7": {
+   "kicker": "The limit",
+   "hook": "Cameras plus a program",
+   "dek": "The authors call the rise associated, not caused. A change management program came with the cameras, and the study can't split the two. The hospital's blog says turnovers got shorter. Drawn to illustrate.",
+   "claims": [
+    "c10",
+    "c11",
+    "c24"
+   ]
+  },
+  "8": {
+   "kicker": "The disclosure",
+   "hook": "The hospital owns part of Apella",
+   "dek": "Apella is the system's vendor. The paper says an Apella employee ran the original analyses and a Houston Methodist analyst replicated them. It says Apella did not fund the study and had no role beyond those analyses. Drawn to illustrate.",
+   "claims": [
+    "c28",
+    "c13",
+    "c14",
+    "c15",
+    "c16"
+   ]
+  },
+  "9": {
+   "kicker": "The access",
+   "hook": "Three roles can open surgery footage",
+   "dek": "Recordings from incision to closure open to three roles, and the surgeon is told of each review. The hospital's blog says signs are posted in its operating rooms and consent is folded into universal consent for care. Drawn to illustrate.",
+   "claims": [
+    "c18",
+    "c19",
+    "c26"
+   ]
+  }
+ }
+}

@@ -1,0 +1,65 @@
+<!doctype html>
+<!-- 2026-10-20, frame 1 of 9. Archetype CLOSE_CROP. RENDERED through txthree.js in the deck's floodlit world, inside a TXT.interior room. A wall camera close on its plate above a glazed tile wainscot, its lens turned three quarters toward the reader. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">Four cameras in every room</h1>
+<p class="dek" data-follow="26">Houston Methodist put four wall cameras in each of the 15 operating rooms of Walter Tower&#39;s cardiothoracic suite. A study published in June ties its image based AI to more surgeries after it went live in December 2022. Drawn&nbsp;to&nbsp;illustrate.</p>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-20-suite.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Houston Methodist", counter: "01 / 09", src: "c2 c3 c4 c6 c1", fit: { min: 76, max: 100, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 34, far: 200 });
+  TXT.interior(R, { w: 7.2, d: 7.2, h: 3.2, ceiling: false, floor: 'concrete', wall: 0x1e2a2a, trim: 0x151b1b, window: null });
+  /* the sheet vinyl floor laid over the slab, the surface every standing thing here meets */
+  TXT.ground(R, { surface: 'concrete', size: 9, y: 0.003, wear: 'interior', color: 0x39423f, seed: 20 });
+  const T = [0.2, 0, -0.5];
+  const table = K.make('or_table', { sheet: true }); table.position.set(T[0], 0, T[2]); table.rotation.y = 0.15; TXT.add(R, table); TXT.contact(R, table);
+  const light = K.make('surgical_light', { ceiling: 3.15 }); light.position.set(0.3, 0, -0.8); light.rotation.y = 0.9; TXT.add(R, light);
+  const an = K.make('anesthesia_station'); an.position.set(-1.0, 0, -2.6); an.rotation.y = 0.35; TXT.add(R, an); TXT.contact(R, an);
+  const bt = K.make('back_table', { draped: true }); bt.position.set(2.0, 0, -1.4); bt.rotation.y = -0.5; TXT.add(R, bt); TXT.contact(R, bt);
+  const sc = K.make('sterile_container', { lock: 'steel' }); sc.position.set(2.0, 0.915, -1.4); sc.rotation.y = -0.5 + Math.PI / 2; TXT.add(R, sc);
+  /* THE CAMERA, one of the four in this room, on the right wall at 2.5 m, its lens turned on the table and
+   * on the reader who stands beside it. The table stands behind the reader, out of frame; its pool lights
+   * the camera from below. */
+  const mount = [3.48, 2.12, 0.2];
+  /* the plate flush on the right wall, whose face looks along -x; the head panned on its knuckle to the table */
+  const cam = CH.wallCamera(K, mount, -Math.PI / 2, T, { tilt: 0.3, housing: 0xe4e3de, lamp: 0.25 }); TXT.add(R, cam);
+  CH.tileWall(THREE, R, { x: 3.47, z: 0.0, w: 7.2, h: 2.25, yaw: -Math.PI / 2, tint: 0x46524d });
+  /* the wainscot's cap, a stainless trim along the tile's top edge that catches the key */
+  { const cap = TXT.roundedBox(0.03, 0.03, 7.2, 0.008, new THREE.MeshStandardMaterial({ color: 0xb9bdbf, metalness: 0.8, roughness: 0.3 })); cap.position.set(3.455, 2.26, 0); TXT.add(R, cap); }
+  const from = [2.45, 1.82, -0.45];
+  const look = CH.aim(THREE, R, TXT, from, [mount[0], mount[1] - 0.02, mount[2] + 0.12], 600, 1050, 34);
+  TXT.frame(R, { fov: 34, from, look });
+  { const spec = CH.rigSpec(W, 9, 4096); TXT.deckRig(R, spec, CH.rigOpts([mount[0], 1.6, mount[2]], { distance: 12, shadowFar: 40 })); }
+  CH.unacne(R, 0.02);
+  TXT.stage(R, [cam], { behind: 1.2, depth: 1.4, poolInner: 1.2, poolOuter: 3.0 });
+  TXT.weather(R, { grime: 0.1, height: 0.25, mottle: 0.5 });
+  const shot = await TXT.snapshot(R);
+  const cx = CH.develop(shot, gl);
+  CH.post(cx, { a: 0.4, veil: 0.12, footWash: 0.5, fade: 140 });
+  CH.knock(cx, [".tx-site", ".src"], 0.5);
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

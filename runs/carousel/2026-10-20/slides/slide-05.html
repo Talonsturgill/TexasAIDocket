@@ -1,0 +1,89 @@
+<!doctype html>
+<!-- 2026-10-20, frame 5 of 9. Archetype OBJECT_AND_CAPTION. A MATERIAL RELIEF through txbench.js under the deck's declared light: plan view onto the operating room's sheet vinyl floor, 41 taped bays in rows of six, one per case, the first 25 holding the ribbed stainless lids of sterilization containers with gold anodised rims and locks, the bays up to the interval's low end taped in a wider band. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">Somewhere from 8.3 to 41.0</h1>
+<p class="dek" data-follow="22">The 25 is the study&#39;s estimate. Its 95% interval runs from 8.3 to 41.0 more cases a month. Each bay is one case, and the white tape marks the low end. Drawn&nbsp;to&nbsp;illustrate.</p>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/txbench.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-20-suite.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = (async () => {
+  await CH.bootFlat({ kicker: "The range", counter: "05 / 09", src: "c6", fit: { min: 70, max: 92, maxLines: 1 } });
+  TX.reseed(20261020);
+  /* THE FIGURES, from figures.json: ci_high 41.0 sets the bay count, added_cases 25 the lids standing in
+   * the first bays, ci_low 8.3 the point where the inlaid strip ends. One bay is one case, a unit of this drawing. */
+  const CI_HIGH = 41.0, ADDED = 25, CI_LOW = 8.3;
+  const BAYS = Math.round(CI_HIGH), COLS = 6, ROWS = Math.ceil(BAYS / COLS);
+  /* plan scale: a bay is 0.64 by 0.34 m, a lid 0.58 by 0.28 m, at 255 px a metre */
+  const S = 240, BW = 0.64 * S, BH = 0.42 * S, LW = 0.58 * S, LH = 0.28 * S;
+  const X0 = (1080 - COLS * BW) / 2, Y0 = 520;
+  const isLow = (b) => b.i < Math.floor(CI_LOW) || (b.i === Math.floor(CI_LOW) && b.u < CI_LOW - Math.floor(CI_LOW));
+  const tapeW = (b) => 3;
+  /* the low end: a white tape stripe across the foot of every bay up to 8.3, below its lid, stopping a third of the way into bay 9 */
+  const lowStripe = (b) => isLow(b) && b.v > 0.74 && b.v < 0.97 && b.u > 0.05 && (b.i < Math.floor(CI_LOW) ? b.u < 0.95 : true);
+  const bayOf = (X, Y) => { const c = Math.floor((X - X0) / BW), r = Math.floor((Y - Y0) / BH); if (c < 0 || c >= COLS || r < 0 || r >= ROWS) return null; const i = r * COLS + c; return i < BAYS ? { i, c, r, u: (X - X0) / BW - c, v: (Y - Y0) / BH - r } : null; };
+  const vinyl = (X, Y) => TX.simplex2(X * 0.05, Y * 0.05) * 0.22 + TX.simplex2(X * 0.6, Y * 0.6) * 0.1;
+  function lidH(u, v) {
+    /* in bay coordinates 0..1; the lid sits centred, ribs across its long axis, two filter discs, a lock at the right end */
+    const lu = (u - 0.5) * BW / LW + 0.5, lv = (v - 0.41) * BH / LH + 0.5;
+    if (lu < 0 || lu > 1 || lv < 0 || lv > 1) return null;
+    const ex = Math.min(lu, 1 - lu) * LW, ey = Math.min(lv, 1 - lv) * LH, edge = Math.min(ex, ey);
+    let h = 26 + Math.min(1, edge / 3) * 4;
+    const rib = Math.abs(((lu * 9) % 1) - 0.5) < 0.12 && lv > 0.12 && lv < 0.88 ? 1.4 : 0;
+    const fd = Math.min(Math.hypot((lu - 0.3) * LW, (lv - 0.5) * LH), Math.hypot((lu - 0.7) * LW, (lv - 0.5) * LH));
+    const filt = fd < 0.055 * S ? 0.8 : 0;
+    const lock = Math.hypot((lu - 0.965) * LW, (lv - 0.72) * LH) < 5 ? 4 : 0;
+    return { h: h + rib + filt + lock, gold: lock > 0 || edge < 7, rib: rib > 0 };
+  }
+  /* the key's pool sits on the 25 lids; the empty bays and the vinyl beyond fall toward the deck's dark */
+  const pool = (X, Y) => { const r = Math.hypot((X - 540) / 1.25, Y - 720); return 0.1 + 0.9 * Math.max(0, Math.min(1, 1 - (r - 240) / 260)); };
+  const cx = document.getElementById("art").getContext("2d");
+  const rep = TXBENCH.relief(cx, { x: 0, y: 0, w: 1080, h: 1350, scale: 2,
+    height: (X, Y) => {
+      let h = 0.25 * vinyl(X, Y);
+      const b = bayOf(X, Y);
+      if (!b) return h;
+      const tape = Math.min(b.u, 1 - b.u) * BW < tapeW(b) || Math.min(b.v, 1 - b.v) * BH < tapeW(b);
+      if (tape) h += 0.8;
+      if (lowStripe(b)) h += 30;
+      if (b.i < ADDED) { const l = lidH(b.u, b.v); if (l) return l.h; }
+      return h;
+    },
+    material: (X, Y) => {
+      const b = bayOf(X, Y);
+      if (!b) return CH.M.VINYL;
+      const tape = Math.min(b.u, 1 - b.u) * BW < tapeW(b) || Math.min(b.v, 1 - b.v) * BH < tapeW(b);
+      if (b.i < ADDED) { const l = lidH(b.u, b.v); if (l) return l.gold ? CH.M.GOLD : CH.M.STEEL; }
+      /* the low end's wide band is white tape, the bays' own tape grey */
+      if (lowStripe(b)) return CH.M.PAPER;
+      if (tape) return CH.M.TAPE;
+      return CH.M.VINYL;
+    },
+    /* the low-end stripe is fresh white tape, brighter than the worn bay tape */
+    albedo: (X, Y, m) => { const c = CH.albedo(X, Y, m), k = m === CH.M.PAPER ? 2.4 : pool(X, Y); return [c[0] * k, c[1] * k, c[2] * k]; }, spec: CH.SPEC,
+    ambient: 0.03, diffuse: 1.35, ao: 1.0, shadow: 0.92, softness: 5, castLength: 190 });
+  window.__relief = rep;
+  cx.setTransform(2, 0, 0, 2, 0, 0);
+  CH.post(cx, { a: 0.3, veil: 0.3, footWash: 0.5 });
+  CH.knock(cx, [".tx-site", ".src"], 0.5);
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

@@ -12,7 +12,7 @@ Kodiak AI announced on September 25th, 2026 that its first driverless long-haul 
 - Public access: Write to the decider
 - Take part: https://kodiak.ai/news/kodiak-names-dallas-houston-driverless-launch-lane
 
-- Last checked: 2026-10-15
+- Last checked: 2026-10-20
 
 ## Dates
 
@@ -28,6 +28,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-09 · Checked and unchanged. Still pending, with no dated movement.
 - 2026-10-12 · Kodiak still names the Dallas to Houston run on Interstate 45 as its first driverless lane. No date for an empty cab has been given.
 - 2026-10-15 · Kodiak still names Interstate 45 from Dallas to Houston as its first driverless lane, with no date for an empty cab.
+- 2026-10-20 · Kodiak's October 6th release puts its readiness measure for the Interstate 45 launch at 96% at the end of September, up from 93% a month earlier. The company still names the end of 2026 for an empty cab and gives no firmer date.
 
 ## Evidence
 
@@ -128,4 +129,10 @@ Source (primary_corporate): https://kodiak.ai/news/driverless-long-haul-on-track
 > the testing and validation required to close its safety case in advance of driverless highway launch
 
 Source (primary_corporate): https://kodiak.ai/news/kodiak-names-dallas-houston-driverless-launch-lane
+
+### Kodiak says its readiness measure for driverless long haul reached 96 percent at the end of September and that it remains on track for an unsupervised launch by the end of 2026.
+
+> The company's Autonomy Readiness Measure ("ARM") for long-haul driverless operations reached 96% at the end of September 2026, up from 93% at the end of August.
+
+Source (primary_corporate): https://kodiak.ai/news/autonomy-readiness-96-driverless-long-haul-launch
 

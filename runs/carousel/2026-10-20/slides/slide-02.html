@@ -1,0 +1,130 @@
+<!doctype html>
+<!-- 2026-10-20, frame 2 of 9. Archetype DIAGRAM. A MATERIAL RELIEF through txbench.js under the deck's declared light: one operating room as an architect's model in plan, white card walls standing proud on a dark board, the table at its middle, the back table, the light head swung aside, the door and its engraved swing on the near wall, and four gloss black cameras on plates, one on each wall top, seen from above. Three DOM leaders name the moments the system texts the surgeon. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">Cameras log the workflow</h1>
+<p class="dek" data-follow="22">The hospital says the cameras identify and timestamp workflow steps. It says the system texts the surgeon when a patient arrives, when the patient is draped and when the case ends. Drawn&nbsp;to&nbsp;illustrate.</p>
+<svg id="ld" width="1080" height="1350" style="position:absolute;left:0;top:0;z-index:11;pointer-events:none"></svg>
+<div class="lab" id="lDoor">patient arrives</div>
+<div class="lab" id="lDrape">draped</div>
+<div class="lab" id="lEnd">case ends</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/txbench.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-20-suite.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = (async () => {
+  await CH.bootFlat({ kicker: "The system", counter: "02 / 09", src: "c3 c22 c23", fit: { min: 70, max: 92, maxLines: 1 } });
+  TX.reseed(20261021);
+  /* THE FIGURE, from figures.json: cameras_per_room 4, one gloss black bracket on each of the model's wall tops */
+  const CAMERAS = 4;
+  /* plan scale: the room is 7.2 m across at 108 px a metre; walls 0.15 m thick standing 18 px proud */
+  const PX = 108, RX0 = 150, RX1 = 930, RY0 = 492, RY1 = 1214, T = 18, WH = 58;
+  const DOOR0 = 300, DOOR1 = DOOR0 + Math.round(1.2 * PX);
+  const TC = [540, 860], TW = Math.round(0.56 * PX), TL = Math.round(2.0 * PX);
+  const BT = [770, 1085], BW = Math.round(1.2 * PX), BH = Math.round(0.6 * PX);
+  const LH = [705, 690], LR = Math.round(0.42 * PX);
+  const mids = [[(RX0 + RX1) / 2, RY0 + T / 2, 0], [RX1 - T / 2, TC[1] - 40, 1], [600, RY1 - T / 2, 2], [RX0 + T / 2, TC[1] + 30, 3]];
+  if (mids.length !== CAMERAS) throw new Error("one bracket per camera");
+  const inRect = (X, Y, x, y, w, h) => X >= x && X < x + w && Y >= y && Y < y + h;
+  const segD = (X, Y, a, b) => { const dx = b[0] - a[0], dy = b[1] - a[1], t = Math.max(0, Math.min(1, ((X - a[0]) * dx + (Y - a[1]) * dy) / (dx * dx + dy * dy))); return Math.hypot(X - a[0] - t * dx, Y - a[1] - t * dy); };
+  /* each camera seen from above: a plate on the wall top, a rounded housing reaching into the room, its lens at the inner end */
+  const NV = [[0, 1], [-1, 0], [0, -1], [1, 0]];
+  function camAt(X, Y) {
+    for (const [mx, my, side] of mids) {
+      const [nx, ny] = NV[side], dx = X - mx, dy = Y - my, along = dx * nx + dy * ny, across = Math.abs(dx * ny - dy * nx);
+      if (Math.abs(dx) < 16 && Math.abs(dy) < 16) return { h: WH + 8, m: "plate" };
+      if (along > 6 && along < 62 && across < 13) {
+        const lr = Math.hypot(along - 58, across * 0.0 + 0) ;
+        if (along > 54 && across < 10) return { h: WH + 15, m: across < 6 ? "lens" : "ring" };
+        return { h: WH + 13 + 7 * Math.sqrt(Math.max(0, 1 - (across / 13) ** 2)), m: "housing" };
+      }
+    }
+    return null;
+  }
+  const bracket = (X, Y) => { const c = camAt(X, Y); return c ? c.h : 0; };
+  function wall(X, Y) {
+    if (!inRect(X, Y, RX0, RY0, RX1 - RX0, RY1 - RY0)) return false;
+    const inner = inRect(X, Y, RX0 + T, RY0 + T, RX1 - RX0 - 2 * T, RY1 - RY0 - 2 * T);
+    if (inner) return false;
+    if (Y >= RY1 - T && X >= DOOR0 && X < DOOR1) return false;
+    return true;
+  }
+  /* the door leaf stands open into the room from its hinge at DOOR0, and its swing is engraved in the floor */
+  const HINGE = [DOOR0, RY1 - T];
+  const leaf = (X, Y) => X >= DOOR0 && X < DOOR0 + 4 && Y > HINGE[1] - (DOOR1 - DOOR0) && Y <= HINGE[1];
+  const swing = (X, Y) => { const r = Math.hypot(X - HINGE[0], Y - HINGE[1]); return X >= DOOR0 && Y <= HINGE[1] && Math.abs(r - (DOOR1 - DOOR0)) < 1.4; };
+  const table = (X, Y) => inRect(X, Y, TC[0] - TW / 2, TC[1] - TL / 2, TW, TL);
+  const pad = (X, Y) => inRect(X, Y, TC[0] - TW / 2 + 6, TC[1] - TL / 2 + 6, TW - 12, TL - 12);
+  const back = (X, Y) => inRect(X, Y, BT[0] - BW / 2, BT[1] - BH / 2, BW, BH);
+  const head = (X, Y) => Math.hypot(X - LH[0], Y - LH[1]) < LR;
+  /* the anaesthesia station at the table's head and a run of steel supply cabinets on the left wall */
+  const anes = (X, Y) => inRect(X, Y, TC[0] - 120, TC[1] - TL / 2 - 30, 80, 66);
+  const cab = (X, Y) => inRect(X, Y, RX0 + T, RY0 + 60, 58, 240);
+  const arm = (X, Y) => segD(X, Y, [TC[0], TC[1] - 60], LH) < 4;
+  const board = (X, Y) => TX.simplex2(X * 0.03, Y * 0.03) * 0.4 + TX.simplex2(X * 0.5, Y * 0.5) * 0.12;
+  const cx = document.getElementById("art").getContext("2d");
+  const rep = TXBENCH.relief(cx, { x: 0, y: 0, w: 1080, h: 1350, scale: 2,
+    height: (X, Y) => {
+      const br = bracket(X, Y); if (br) return br;
+      if (wall(X, Y)) return WH + 0.4 * board(X, Y);
+      if (head(X, Y)) return 26 - Math.hypot(X - LH[0], Y - LH[1]) / LR * 5;
+      if (arm(X, Y)) return 28;
+      if (table(X, Y)) return pad(X, Y) ? 16 + 0.6 * board(X * 3, Y * 3) : 13;
+      if (back(X, Y)) return 12;
+      if (anes(X, Y)) return 22;
+      if (cab(X, Y)) return 28 + (Math.abs(((Y - RY0 - 60) % 60) - 30) < 1 ? -3 : 0);
+      if (leaf(X, Y)) return 24;
+      const inside = inRect(X, Y, RX0, RY0, RX1 - RX0, RY1 - RY0);
+      if (inside && swing(X, Y)) return 0.6;
+      return inside ? 1.2 + 0.2 * board(X, Y) : 0.3 * board(X, Y);
+    },
+    material: (X, Y) => {
+      { const c = camAt(X, Y); if (c) return c.m === "ring" ? CH.M.GOLD : c.m === "plate" ? CH.M.STEEL : c.m === "lens" ? CH.M.VOID : CH.M.PAPER; }
+      if (wall(X, Y)) return CH.M.PAPER;
+      if (head(X, Y) || arm(X, Y)) return CH.M.STEEL;
+      if (table(X, Y)) return pad(X, Y) ? CH.M.PAPER : CH.M.STEEL;
+      if (back(X, Y)) return CH.M.BRUSHED;
+      if (anes(X, Y)) return CH.M.CARD;
+      if (cab(X, Y)) return CH.M.STEEL;
+      if (leaf(X, Y)) return CH.M.PAPER;
+      const inside = inRect(X, Y, RX0, RY0, RX1 - RX0, RY1 - RY0);
+      if (inside && swing(X, Y)) return CH.M.TAPE;
+      return inside ? CH.M.TOWEL : CH.M.VOID;
+    },
+    albedo: CH.albedo, spec: CH.SPEC,
+    ambient: 0.035, diffuse: 1.35, ao: 1.0, shadow: 0.9, softness: 8, castLength: 150 });
+  window.__relief = rep;
+  cx.setTransform(2, 0, 0, 2, 0, 0);
+  CH.post(cx, { a: 0.3, veil: 0.3, footWash: 0.5 });
+  CH.knock(cx, [".tx-site", ".src"], 0.5);
+  /* THE LEADERS, each ending on its target: the door opening, the table's head, the table's foot */
+  const tg = [[Math.round((DOOR0 + DOOR1) / 2), RY1 - 8], [TC[0] + TW / 2 - 4, TC[1] - TL / 2 + 40], [TC[0] + TW / 2 - 4, TC[1] + TL / 2 - 30]];
+  const ids = ["lDoor", "lDrape", "lEnd"], spots = [[400, 1040], [660, 792], [660, 940]], names = ["the door", "the table", "the table"];
+  const svg = document.getElementById("ld");
+  window.__txLeaders = [];
+  ids.forEach((id, k) => {
+    const el = document.getElementById(id); el.style.left = spots[k][0] + "px"; el.style.top = spots[k][1] + "px";
+    const r = el.getBoundingClientRect();
+    const from = k === 0 ? [Math.round(r.left + 30), Math.round(r.bottom + 6)] : [Math.round(r.left - 8), Math.round(r.top + r.height / 2)];
+    CH.leader(svg, from, tg[k]); window.__txLeaders.push({ target: names[k], at: tg[k], to: tg[k] });
+  });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

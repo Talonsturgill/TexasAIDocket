@@ -1,0 +1,226 @@
+{
+  "version": 2,
+  "selected": [
+    1,
+    4,
+    9
+  ],
+  "inputs": {
+    "slides/slide-01.html": "c50094cebe8ec44672b51ed48fec70c3dc0a27ca93a56b45ce87eb5cfadcbfa1",
+    "render/slide-01.png": "38f011a598dd59151619f2623239db30cf431c631451e44dc7ae5df1f8dcb8db",
+    "assets/js/deck/2026-10-20-suite.js": "5e8a4edad5afa74a6fbe9f13c927957f9355ab4353d59309870dcf166b0d0e23",
+    "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+    "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+    "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+    "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+    "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+    "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+    "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+    "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+    "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+    "slides/slide-04.html": "d43b3219207b28d22dc382025fe658d2e9c33024b661ed891fde36335748d30f",
+    "render/slide-04.png": "8bd0985613720855d94711b06cc1e315b957043d9daea0126001fed6b7b55333",
+    "slides/slide-09.html": "f42d827a7a4ac39f6c5fdbf12511f5c52282a0e588f6b08781ae94cf66fce7e3",
+    "render/slide-09.png": "086dca84b5a00f811102bcc9c7657caf6b2ebb392f71a41f4dbd9d1c37d63730"
+  },
+  "value_measurements": [
+    {
+      "frame": "slide-01.png",
+      "median_L": 7.0,
+      "mid": 0.046,
+      "dark": 0.884
+    },
+    {
+      "frame": "slide-04.png",
+      "median_L": 7.3,
+      "mid": 0.199,
+      "dark": 0.675
+    },
+    {
+      "frame": "slide-09.png",
+      "median_L": 4.2,
+      "mid": 0.169,
+      "dark": 0.695
+    }
+  ],
+  "review": {
+    "decision": "accept",
+    "inputs": {
+      "slides/slide-01.html": "c50094cebe8ec44672b51ed48fec70c3dc0a27ca93a56b45ce87eb5cfadcbfa1",
+      "render/slide-01.png": "38f011a598dd59151619f2623239db30cf431c631451e44dc7ae5df1f8dcb8db",
+      "assets/js/deck/2026-10-20-suite.js": "5e8a4edad5afa74a6fbe9f13c927957f9355ab4353d59309870dcf166b0d0e23",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+      "slides/slide-04.html": "d43b3219207b28d22dc382025fe658d2e9c33024b661ed891fde36335748d30f",
+      "render/slide-04.png": "8bd0985613720855d94711b06cc1e315b957043d9daea0126001fed6b7b55333",
+      "slides/slide-09.html": "f42d827a7a4ac39f6c5fdbf12511f5c52282a0e588f6b08781ae94cf66fce7e3",
+      "render/slide-09.png": "086dca84b5a00f811102bcc9c7657caf6b2ebb392f71a41f4dbd9d1c37d63730"
+    },
+    "frames": [
+      {
+        "slide": 1,
+        "role": "cover",
+        "subject": "A wall camera close in the lower half of the frame on a pale screwed plate flush to a dark glazed tile wainscot, rounded housing, pale hood, glossy lens in a bezel ringed by emitters, knuckle arm and cable loop, a stainless cap rail above the tile behind the hood and below the dek.",
+        "visual_consequence": "The lens meets the reader in front of clinical tile and a stainless cap, so the image says a fixed camera is watching inside a hospital room before any word is read.",
+        "weakness": "Scene unchanged. The dek now runs five lines and the cap rail clears its last line by about 30 design px at the left margin, tight but clear. Nonblocking lens glints and a small white status dot remain.",
+        "repair": "None required.",
+        "encoding_reads": true,
+        "dominant_subject_finished": true,
+        "feed_legible": true,
+        "inputs": {
+          "slides/slide-01.html": "c50094cebe8ec44672b51ed48fec70c3dc0a27ca93a56b45ce87eb5cfadcbfa1",
+          "render/slide-01.png": "38f011a598dd59151619f2623239db30cf431c631451e44dc7ae5df1f8dcb8db",
+          "assets/js/deck/2026-10-20-suite.js": "5e8a4edad5afa74a6fbe9f13c927957f9355ab4353d59309870dcf166b0d0e23",
+          "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+          "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+          "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+          "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+          "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+          "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+          "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+          "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+          "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de"
+        }
+      },
+      {
+        "slide": 4,
+        "role": "evidence",
+        "subject": "A wall of 364 container ends, 13 across and 28 high, the top 25 dusk gold, on one continuous vinyl floor with contact, per-unit value variation and a raking flood from high left, a nurse at the right foot.",
+        "visual_consequence": "A person dwarfed by hundreds of identical cases capped by a thin warm crown: a small, exactly counted addition on a large whole, sized against a body.",
+        "weakness": "None blocking. The gold crown reads as a muted tan band at 432 px, weaker than at native size but unmistakable against the blue. The nurse is a smooth-fabric kit figure, acceptable at this distance.",
+        "repair": "None required.",
+        "encoding_reads": true,
+        "dominant_subject_finished": true,
+        "feed_legible": true,
+        "inputs": {
+          "assets/js/deck/2026-10-20-suite.js": "5e8a4edad5afa74a6fbe9f13c927957f9355ab4353d59309870dcf166b0d0e23",
+          "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+          "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+          "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+          "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+          "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+          "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+          "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+          "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+          "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+          "slides/slide-04.html": "d43b3219207b28d22dc382025fe658d2e9c33024b661ed891fde36335748d30f",
+          "render/slide-04.png": "8bd0985613720855d94711b06cc1e315b957043d9daea0126001fed6b7b55333"
+        }
+      },
+      {
+        "slide": 9,
+        "role": "close",
+        "subject": "One whole dusk gold sterile container on a dark steel back table with contact and cast, a dark glazed tile wainscot with one soft low pool behind its right end, and a pale wall camera high on the dark wall above the tile, right of the dek.",
+        "visual_consequence": "The gold added case waits sealed and tagged under a camera's eye in a dark tiled room, matching a hook scoped to surgery footage.",
+        "weakness": "Scene unchanged. The new type sits clear of the art; the dek's third line ends about 28 design px left of the camera hood, a narrow gutter that touches no glyph.",
+        "repair": "None required.",
+        "encoding_reads": true,
+        "dominant_subject_finished": true,
+        "feed_legible": true,
+        "inputs": {
+          "assets/js/deck/2026-10-20-suite.js": "5e8a4edad5afa74a6fbe9f13c927957f9355ab4353d59309870dcf166b0d0e23",
+          "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+          "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+          "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+          "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+          "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+          "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+          "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+          "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+          "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+          "slides/slide-09.html": "f42d827a7a4ac39f6c5fdbf12511f5c52282a0e588f6b08781ae94cf66fce7e3",
+          "render/slide-09.png": "086dca84b5a00f811102bcc9c7657caf6b2ebb392f71a41f4dbd9d1c37d63730"
+        }
+      }
+    ]
+  },
+  "plan": {
+    "hardest_frame": 4,
+    "visual_argument": "One rigid sterilization container stands for one case at one scale: a wall of 339 steel locked ends with a person at its foot, then the same wall crowned by 25 gold locked ends, then the 25 lids in 41 taped bays for the interval, so the estimate reads as a thin gold crown and its range as empty bays a reader can count.",
+    "build_risk": "364 container ends in an instanced wall must stay separable at 432 px with seams, handles and locks, the gold must hold its hue under a cold key, and the wall must read as objects beside a person rather than a stacked bar. The cover's wall camera and surgical light heads are chassis models that must not read as a box on a stick or a flat disc.",
+    "distinct_from_recent": "No. 54 was a lastLight exterior of brush country with a fly and windmills; this is an interior deck in floodlit with no sky. No. 53 was nine darkfield reliefs of a tissue section with type in a fixed top band; here four reliefs sit among five room renders and the type moves. No. 52 was nightSodium with one robotaxi hero on every frame; here the unit is a sterile container that changes state, and there is no vehicle."
+  },
+  "frame_inputs": {
+    "1": {
+      "slides/slide-01.html": "c50094cebe8ec44672b51ed48fec70c3dc0a27ca93a56b45ce87eb5cfadcbfa1",
+      "render/slide-01.png": "38f011a598dd59151619f2623239db30cf431c631451e44dc7ae5df1f8dcb8db",
+      "assets/js/deck/2026-10-20-suite.js": "5e8a4edad5afa74a6fbe9f13c927957f9355ab4353d59309870dcf166b0d0e23",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de"
+    },
+    "4": {
+      "assets/js/deck/2026-10-20-suite.js": "5e8a4edad5afa74a6fbe9f13c927957f9355ab4353d59309870dcf166b0d0e23",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+      "slides/slide-04.html": "d43b3219207b28d22dc382025fe658d2e9c33024b661ed891fde36335748d30f",
+      "render/slide-04.png": "8bd0985613720855d94711b06cc1e315b957043d9daea0126001fed6b7b55333"
+    },
+    "9": {
+      "assets/js/deck/2026-10-20-suite.js": "5e8a4edad5afa74a6fbe9f13c927957f9355ab4353d59309870dcf166b0d0e23",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+      "slides/slide-09.html": "f42d827a7a4ac39f6c5fdbf12511f5c52282a0e588f6b08781ae94cf66fce7e3",
+      "render/slide-09.png": "086dca84b5a00f811102bcc9c7657caf6b2ebb392f71a41f4dbd9d1c37d63730"
+    }
+  },
+  "needs_review": [
+    1,
+    9
+  ],
+  "shipped_inputs": {
+    "slides/slide-01.html": "c50094cebe8ec44672b51ed48fec70c3dc0a27ca93a56b45ce87eb5cfadcbfa1",
+    "slide-01.webp": "c1360fb114c2400d2817b7ac4cd76b8ddda0804901f9c2f80632190c23e268c6",
+    "slides/slide-04.html": "d43b3219207b28d22dc382025fe658d2e9c33024b661ed891fde36335748d30f",
+    "slide-04.webp": "32b5fd83ec5e144d71ce19ceb43a3319708f6dc003a99455017b7a72ca6cb36f",
+    "slides/slide-09.html": "f42d827a7a4ac39f6c5fdbf12511f5c52282a0e588f6b08781ae94cf66fce7e3",
+    "slide-09.webp": "a56aa59bfeb7e3cb5532b5279bcb7e96ea57a9ae5020d3328e36c9b8dc19f99a"
+  },
+  "encodings": [
+    {
+      "to": "slide-01.webp",
+      "to_sha256": "c1360fb114c2400d2817b7ac4cd76b8ddda0804901f9c2f80632190c23e268c6",
+      "from_sha256": "38f011a598dd59151619f2623239db30cf431c631451e44dc7ae5df1f8dcb8db",
+      "psnr_db": 43.099
+    },
+    {
+      "to": "slide-04.webp",
+      "to_sha256": "32b5fd83ec5e144d71ce19ceb43a3319708f6dc003a99455017b7a72ca6cb36f",
+      "from_sha256": "8bd0985613720855d94711b06cc1e315b957043d9daea0126001fed6b7b55333",
+      "psnr_db": 41.379
+    },
+    {
+      "to": "slide-09.webp",
+      "to_sha256": "a56aa59bfeb7e3cb5532b5279bcb7e96ea57a9ae5020d3328e36c9b8dc19f99a",
+      "from_sha256": "086dca84b5a00f811102bcc9c7657caf6b2ebb392f71a41f4dbd9d1c37d63730",
+      "psnr_db": 41.84
+    }
+  ]
+}

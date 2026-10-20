@@ -1,0 +1,70 @@
+<!doctype html>
+<!-- 2026-10-20, frame 3 of 9. Archetype FIGURE_SCALE. RENDERED through txthree.js in the deck's floodlit world, inside a TXT.interior room. A wall of rigid sterilization container ends, one per case, the suite's monthly baseline, all steel locks, a scrub nurse at its foot. The same camera as frame 4. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">About 339 a month</h1>
+<p class="dek" data-follow="26">The paper puts the suite&#39;s baseline at about 339 cases a month. One container is drawn for each case. Drawn&nbsp;to&nbsp;illustrate.</p>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-20-suite.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "The baseline", counter: "03 / 09", src: "c7", fit: { min: 70, max: 92, maxLines: 1 } });
+  const R = CH.stage(TXT, gl, W, { fov: 21.5, far: 400 });
+  /* THE FIGURE, from figures.json: baseline_cases 339 container ends with steel locks, 26 full rows of 13 and
+   * one alone on the 27th, so the wall reads as a count. One container end is one case, a unit of this drawing.
+   * The camera and the wall's footing are frame 4's, so the two frames are a before and after. */
+  const BASELINE = 339, ADDED = 0, ACROSS = 13;
+  const total = BASELINE + ADDED, rows = 28;
+  TXT.interior(R, { w: 30, d: 40, h: 30, ceiling: false, floor: 'concrete', wall: 0x1e2a2a, trim: 0x151b1b, window: null });
+  /* the sheet vinyl floor laid over the slab, the surface every standing thing here meets */
+  TXT.ground(R, { surface: 'concrete', size: 60, y: 0.003, wear: 'interior', color: 0x39423f, seed: 20 });
+  const PW = 0.292, PH = 0.157, back = -3.6;
+  const steel = [], gold = [];
+  for (let i = 0; i < total; i++) {
+    const r = Math.floor(i / ACROSS), c = i % ACROSS;
+    const x = (c - (ACROSS - 1) / 2) * PW + Math.sin(i * 12.9898) * 0.004, y = r * PH, z = back + Math.cos(i * 78.233) * 0.006;
+    (i < BASELINE ? steel : gold).push([x, y, z, Math.sin(i * 3.7) * 0.012, i < BASELINE ? 0.93 + 0.07 * (0.5 + 0.5 * Math.sin(i * 91.7)) : null]);
+  }
+  const wall = new THREE.Group();
+  wall.add(CH.instanceModel(THREE, K.make('sterile_container', { lock: 'steel', detail: 'low' }), steel));
+  TXT.add(R, wall); TXT.contact(R, wall);
+  const nurse = K.make('person', { role: 'worker', pose: 'stand', hat: 'none', vest: false, shirt: 0x587d8f, trousers: 0x587d8f, seed: 7 });
+  nurse.position.set(2.55, 0, back + 0.9); nurse.rotation.y = -Math.PI * 0.78; TXT.add(R, nurse); TXT.contact(R, nurse);
+  const target = [0, rows * PH * 0.5, back];
+  const from = [0.7, 2.3, back + 22.5];
+  const look = CH.aim(THREE, R, TXT, from, [0, 0, back + 0.29], 470, 1180, 21.5);
+  TXT.frame(R, { fov: 21.5, from, look });
+  { const spec = CH.rigSpec(W, 9, 4096); TXT.deckRig(R, spec, CH.rigOpts(target, { distance: 26, shadowFar: 70 })); }
+  CH.unacne(R, 0.02);
+  /* a raking flood from high on the left: the wall's upper left takes the light and it falls off to the right and down */
+  { const fl = new THREE.SpotLight(0xf0f3ff, 95, 30, 0.34, 0.9, 1.6); fl.position.set(-5.5, 7.5, back + 5.5); fl.target.position.set(-0.6, rows * PH * 0.78, back); R.scene.add(fl); R.scene.add(fl.target); }
+  TXT.stage(R, [wall, nurse], { behind: 0.6, depth: 1.3, poolInner: 3.2, poolOuter: 6.5 });
+  TXT.weather(R, { grime: 0.28, height: 0.5 });
+  const shot = await TXT.snapshot(R);
+  const cx = CH.develop(shot, gl);
+  CH.post(cx, { a: 0.42, veil: 0.25, footWash: 0.5, fade: 140 });
+  CH.knock(cx, [".tx-site", ".src"], 0.5);
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

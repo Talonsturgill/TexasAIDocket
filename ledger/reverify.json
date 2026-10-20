@@ -1,7 +1,7 @@
 {
   "_spec": {
     "version": 1,
-    "generated": "2026-10-18",
+    "generated": "2026-10-20",
     "note": "One row per source url. ETag and Last-Modified drive the next conditional request, hash short circuits the text comparison, and proven records which claim quotes have been located here, which is what tells a real change apart from a page this check cannot read."
   },
   "sources": {
@@ -50,6 +50,17 @@
       "hash": "7569443d904a5112c88c2bf1692d6c9b0a9c8dde6e61118c6dbf5098a0d2b9b8",
       "proven": [
         "tx-2026-0040-c5"
+      ]
+    },
+    "https://api.nhtsa.gov/recalls/campaignNumber?campaignNumber=26E026": {
+      "etag": null,
+      "last_modified": null,
+      "hash": "c0c283a20f1339ec9c7856319e93bfb73fbebd4208b04f9ba839d24250e1dc2f",
+      "proven": [
+        "tx-2026-0216-c5",
+        "tx-2026-0216-c6",
+        "tx-2026-0216-c7",
+        "tx-2026-0216-c8"
       ]
     },
     "https://api.nsf.gov/services/v1/awards.json?id=2534344&printFields=id,title,awardeeName,startDate,expDate,estimatedTotalAmt,pdPIName,abstractText,date,transType,perfCity,perfStateCode": {
@@ -442,8 +453,8 @@
     },
     "https://communityimpact.com/keller-roanoke-northeast-fort-worth/government/fort-worth-city-council-approves-steps-to-start-moratorium-process-on-data-centers/": {
       "etag": null,
-      "last_modified": "Sat, 17 Oct 2026 05:23:19 GMT",
-      "hash": "87e1730b5c7db511192a41285b24bae8118e126d615c3a3a07126b410d485212",
+      "last_modified": "Tue, 20 Oct 2026 05:12:55 GMT",
+      "hash": "228e3934b33373acf4ac41984d7dbd4b7a568826f3d3755613378802d70123f6",
       "proven": [
         "tx-2026-0062-c1"
       ]
@@ -741,8 +752,8 @@
     },
     "https://infohub.austincc.edu/blog/2026/10/09/help-shape-accs-ai-policy-development/": {
       "etag": null,
-      "last_modified": "Sun, 18 Oct 2026 05:08:52 GMT",
-      "hash": "e5321aab76cb93357de0f20a71c0e9d2c43d424c1e47809ad676f1aa051637e4",
+      "last_modified": "Tue, 20 Oct 2026 05:12:56 GMT",
+      "hash": "22fbab825c93fb21a83936919d1479a353555c02462e0038be7c7d1b0c85842b",
       "proven": [
         "tx-2026-0212-c1",
         "tx-2026-0212-c10",
@@ -1015,7 +1026,7 @@
     "https://kodiak.ai/news/driverless-long-haul-on-track-arm-93": {
       "etag": null,
       "last_modified": null,
-      "hash": "f37a31941f2d0a3b395f2090b6fab1c81a912c4409cf13d5923cbf340459c2ed",
+      "hash": "d793476dfb6bb801aa722bdc780b3bd72540d3f847e324911b495bf11b923e35",
       "proven": [
         "tx-2026-0198-c14",
         "tx-2026-0198-c15"
@@ -1032,10 +1043,21 @@
         "tx-2026-0198-c13"
       ]
     },
+    "https://kodiak.ai/news/kodiak-charger-usa-autonomous-trucking-dallas-laredo": {
+      "etag": null,
+      "last_modified": null,
+      "hash": "4a90f5980816340f090fcd2cbde93fa5190b71128b849928130c46f6da1039fc",
+      "proven": [
+        "tx-2026-0209-c1",
+        "tx-2026-0209-c2",
+        "tx-2026-0209-c3",
+        "tx-2026-0209-c4"
+      ]
+    },
     "https://kodiak.ai/news/kodiak-names-dallas-houston-driverless-launch-lane": {
       "etag": null,
       "last_modified": null,
-      "hash": "55fdee3792c696ddb9c9723e04df5dabdf32034928ba29344be9ed247d35eb5e",
+      "hash": "85ee697abc4b1ad1511a4fc31b692897a526290d1ba3919379d652893e22d1d9",
       "proven": [
         "tx-2026-0198-c1",
         "tx-2026-0198-c16",
@@ -1514,7 +1536,7 @@
     },
     "https://sites.austincc.edu/ai-resource-hub/responsible-use-guidance/": {
       "etag": null,
-      "last_modified": "Sun, 18 Oct 2026 05:09:48 GMT",
+      "last_modified": "Tue, 20 Oct 2026 05:13:30 GMT",
       "hash": "2ed632a17b7a3af96aaafd47540bcedc9133ed977695c74f831983c1727d05a9",
       "proven": [
         "tx-2026-0212-c15"
@@ -1676,6 +1698,24 @@
       "hash": "3199fc411214b33fff6db7135eb6d29fa6427a64f72a6bed247f043bdcdf3183",
       "proven": [
         "tx-2026-0119-c13"
+      ]
+    },
+    "https://waymo.com/blog/2026/02/dallas-houston-san-antonio-orlando/": {
+      "etag": null,
+      "last_modified": null,
+      "hash": "d74c5aacbe00ad06db38d851ba932e4708599c7877b2c6ad1f6f3385834585b7",
+      "proven": [
+        "tx-2026-0216-c3",
+        "tx-2026-0216-c4"
+      ]
+    },
+    "https://waymo.com/blog/shorts/sat-sd-tpa/": {
+      "etag": null,
+      "last_modified": null,
+      "hash": "a24154b743cb622db54d9948c4ee7cee029547b64309892aa6fab2b6fea48438",
+      "proven": [
+        "tx-2026-0216-c1",
+        "tx-2026-0216-c2"
       ]
     },
     "https://web.risd.org/home/september-2026-board-meeting/": {
@@ -1972,8 +2012,8 @@
     },
     "https://www.austincc.edu/about-acc": {
       "etag": null,
-      "last_modified": "Sun, 18 Oct 2026 05:10:35 GMT",
-      "hash": "fdd561a3c3745081f1ea7c3a7480f9099af69ae885291222c3007816add31a2f",
+      "last_modified": "Tue, 20 Oct 2026 05:13:31 GMT",
+      "hash": "2482958c9b7d3f1ef01db7213d89d2f5117c7ffc94fe978e9926ba21231f355c",
       "proven": [
         "tx-2026-0212-c16"
       ]
@@ -2197,7 +2237,7 @@
     "https://www.federalregister.gov/api/v1/documents/2026-14341.json": {
       "etag": null,
       "last_modified": null,
-      "hash": "10fcb9bd976d6a0fe1996532a3e3659d8c7c7e8d7a55dd2f9559563b71ce7889",
+      "hash": "2623e70d5b5eaa45cb417e616056b5e3e17864601f14317fdf31b4d9cdf4903f",
       "proven": [
         "tx-2026-0015-c2",
         "tx-2026-0015-c9"
@@ -2212,7 +2252,7 @@
     "https://www.federalregister.gov/documents/2026/07/16/2026-14341/modernizing-reactor-licensing-safety-oversight-and-siting-practices": {
       "etag": null,
       "last_modified": null,
-      "hash": "5d812ef487e5a568b03e38c6c3924067f091e691dde0803eaabddebd6bc5d3df",
+      "hash": "bb195cb123ab15f747180eef86889ea52876c39f35e4bf2b671b1b28dd9434fe",
       "proven": []
     },
     "https://www.federalregister.gov/documents/full_text/text/2026/09/09/2026-18303.txt": {
@@ -2492,6 +2532,24 @@
         "tx-2026-0180-c2"
       ]
     },
+    "https://www.mdanderson.org/newsroom/research-newsroom/ai-tool-reveals-what-attracts-immune-cells-to-tumors-and-what-keeps-them-away.h00-159859290.html": {
+      "etag": null,
+      "last_modified": null,
+      "hash": "48d19effb6370c1fd03cf60dd68d4fb4e728496803330ecdc1ea10e3176f7ea0",
+      "proven": [
+        "tx-2026-0217-c1",
+        "tx-2026-0217-c10",
+        "tx-2026-0217-c11",
+        "tx-2026-0217-c2",
+        "tx-2026-0217-c3",
+        "tx-2026-0217-c4",
+        "tx-2026-0217-c5",
+        "tx-2026-0217-c6",
+        "tx-2026-0217-c7",
+        "tx-2026-0217-c8",
+        "tx-2026-0217-c9"
+      ]
+    },
     "https://www.mylubbock.us/AgendaCenter/ViewFile/Agenda/_09082026-225": {
       "etag": null,
       "last_modified": "Mon, 05 Oct 2026 06:29:58 GMT",
@@ -2637,6 +2695,17 @@
       "proven": [
         "tx-2026-0191-c15",
         "tx-2026-0192-c9"
+      ]
+    },
+    "https://www.sa.gov/Directory/News-Releases/D6-Councilmember-Calls-for-Stronger-Regulations-on-Data-Centers": {
+      "etag": null,
+      "last_modified": null,
+      "hash": "6a903e623ca9fb390bd3ebfdc4dfb2f9ed3f42ba19311b28a1a16ec8e1ff6212",
+      "proven": [
+        "tx-2026-0220-c1",
+        "tx-2026-0220-c2",
+        "tx-2026-0220-c3",
+        "tx-2026-0220-c4"
       ]
     },
     "https://www.sanangelo.gov/803/Data-Center-Information": {
@@ -2909,10 +2978,30 @@
         "tx-2026-0195-c10"
       ]
     },
+    "https://www.tpr.org/economy-and-labor/2026-05-10/waymo-set-to-return-to-san-antonio-after-flood-incidents-paused-service": {
+      "etag": null,
+      "last_modified": null,
+      "hash": "ed571f966544c30cd997d04eec730a997f8e7b526e62653cc218540b7f486423",
+      "proven": [
+        "tx-2026-0216-c13",
+        "tx-2026-0216-c14"
+      ]
+    },
+    "https://www.tpr.org/news/2026-05-13/waymo-recalls-almost-3-800-robotaxis-after-flooding-incident-in-san-antonio": {
+      "etag": null,
+      "last_modified": null,
+      "hash": "939e7963cae0fdeec0519b4a1233fc03f8e92562f12177c534d3320bd1430ba4",
+      "proven": [
+        "tx-2026-0216-c10",
+        "tx-2026-0216-c11",
+        "tx-2026-0216-c12",
+        "tx-2026-0216-c9"
+      ]
+    },
     "https://www.tpr.org/news/2026-09-23/lubbock-takes-first-step-toward-data-center-moratorium-questions-remain-with-approaching-legislative-session": {
       "etag": null,
       "last_modified": null,
-      "hash": "f3ddad8e299b92d1fc12985a3b8823bbb836825bed0cfa3f00ffd7d1537fbd87",
+      "hash": "cf9aa59c3ce66d900e4aea5a68a12d25e775c2ba2a058bf05b22cf31ee09d409",
       "proven": [
         "tx-2026-0138-c4",
         "tx-2026-0138-c5",

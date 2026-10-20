@@ -1,0 +1,207 @@
+{
+ "weighted_score": 7.09,
+ "judges": [
+  6.94,
+  7.17,
+  7.16
+ ],
+ "spread": 0.23,
+ "criteria": {
+  "artwork_craft": {
+   "score": 6.5,
+   "weight": 0.22,
+   "judges": [
+    6.4,
+    6.5,
+    6.6
+   ]
+  },
+  "deck_coherence": {
+   "score": 7.0,
+   "weight": 0.12,
+   "judges": [
+    6.8,
+    7.0,
+    7.0
+   ]
+  },
+  "claim_integrity": {
+   "score": 8.0,
+   "weight": 0.2,
+   "judges": [
+    7.5,
+    8.0,
+    8.5
+   ]
+  },
+  "story_and_stakes": {
+   "score": 7.0,
+   "weight": 0.16,
+   "judges": [
+    7.0,
+    7.5,
+    6.5
+   ]
+  },
+  "sequence_and_momentum": {
+   "score": 7.5,
+   "weight": 0.1,
+   "judges": [
+    7.5,
+    7.5,
+    7.0
+   ]
+  },
+  "voice": {
+   "score": 7.0,
+   "weight": 0.1,
+   "judges": [
+    7.0,
+    7.0,
+    6.8
+   ]
+  },
+  "variety": {
+   "score": 6.5,
+   "weight": 0.1,
+   "judges": [
+    6.5,
+    6.5,
+    7.5
+   ]
+  }
+ },
+ "hard_fails": [],
+ "hard_fails_by_judge": [],
+ "ship": true,
+ "threshold": 8.0,
+ "over_threshold": false,
+ "method": "per-criterion median across three judges, then weighted by the rubric",
+ "artwork_weakest_frames": [
+  {
+   "slide": 7,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "A flat board with a meaningless gold block; the camera between two disconnected plates.",
+     "fix": "One screwed wall plate and a single arm; magnetic case strips with bevels and a pen tray; the gold block steel."
+    },
+    {
+     "judge": 2,
+     "problem": "A Gantt-like board, a robot-arm rig, a gold block, a dead band above the tile.",
+     "fix": "Recolour the gold block, one wall plate, lens axis on the board's lanes, modelled magnets and tray, tile raised to the dek."
+    },
+    {
+     "judge": 3,
+     "problem": "The boom arm runs from one wall plate to a second white plate; the board is flat coloured rectangles.",
+     "fix": "One plate and a single two-joint arm; raised case magnets, a marker tray and frame edge casting under a raking key."
+    }
+   ]
+  },
+  {
+   "slide": 8,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "A pale grey plate carrying DOM type, lifting the frame into the mid tones.",
+     "fix": "Bleed the page off the bottom and right edges, rake the key low, steel to near black."
+    },
+    {
+     "judge": 2,
+     "problem": "A mid-tone beige quote card, flattest bands in the deck.",
+     "fix": "Cut the page to about 60 percent of its area, curl it so it casts, one narrow raking pool falling off hard below the c13 line."
+    },
+    {
+     "judge": 3,
+     "problem": "A pale page of type in the mid tones.",
+     "fix": "Narrow the key to the page's top half and the clip so the rest falls toward black."
+    }
+   ]
+  },
+  {
+   "slide": 2,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "A flat floor plan with stub cameras.",
+     "fix": "A three-quarter oblique view with walls three times taller; larger camera brackets."
+    },
+    {
+     "judge": 2,
+     "problem": "A card-grey floor plan, dark-stub cameras with gold rings.",
+     "fix": "A 30 degree oblique aerial, cameras 1.5 times larger with cold white rings."
+    },
+    {
+     "judge": 3,
+     "problem": "A flat grey-box floor plan with four dark-stub cameras.",
+     "fix": "A 30 to 40 degree oblique view; pale housings with lit lenses."
+    }
+   ]
+  },
+  {
+   "slide": 5,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Bays and lids seen square read as a spreadsheet grid.",
+     "fix": "A low oblique view so lids stand in perspective; the white tape a bright ridge."
+    },
+    {
+     "judge": 3,
+     "problem": "A mid grey grid whose last rows sink into the footer; bay 41 unmarked.",
+     "fix": "Shorten the bays about 15 percent; tape the high end at bay 41 too."
+    }
+   ]
+  },
+  {
+   "slide": 6,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "A mid-grey towel texture; clamps read as tweezers.",
+     "fix": "A pool on the gold clamp with the rest to black; curved jaws, box lock and ratchet teeth."
+    },
+    {
+     "judge": 2,
+     "problem": "An empty weave band between the dek and the clamps.",
+     "fix": "Move the rank up about 250 px, rings off the bottom edge, a lower key for longer casts."
+    }
+   ]
+  },
+  {
+   "slide": 9,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 3,
+     "problem": "The body reads as matte clay; the camera wedged against the dek; an empty tile band.",
+     "fix": "A metallic low-roughness anodised material with a key streak; move the camera into the lit pool clear of the dek."
+    }
+   ]
+  },
+  {
+   "slide": 4,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "An evenly lit wall reading as a flat block with a tan band.",
+     "fix": "A real pool from high left with the right third and corners falling to black; the same on 3."
+    }
+   ]
+  }
+ ],
+ "rounds_derived": 3,
+ "rounds": 3,
+ "rounds_source": "this module's own log of cards it has scored",
+ "at_cap": true,
+ "rung": null,
+ "shortfall": "at the round cap the finished deck ships at 7.09, 0.91 under the 8.0 top rung. Name that in the email and the run record",
+ "craft_floor": "capped",
+ "craft_note": "at the round cap the craft floor stands down. The art median 6.5 is under 8.5 and the deck ships as it is. Name it in the run record"
+}

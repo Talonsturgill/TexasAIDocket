@@ -1,0 +1,202 @@
+{
+ "_note": "Every value is extracted from a claim quote by compute.py, or computed here from values that were.",
+ "rooms": {
+  "value": 15,
+  "from": [
+   "c2"
+  ],
+  "basis": "operating rooms in Walter Tower's cardiothoracic suite"
+ },
+ "cameras_per_room": {
+  "value": 4,
+  "from": [
+   "c3"
+  ],
+  "basis": "wall mounted cameras in each operating room, the quote's 'four'"
+ },
+ "deploy_year": {
+  "value": 2022,
+  "from": [
+   "c4"
+  ],
+  "basis": "year the software was deployed at Walter Tower, December"
+ },
+ "window_months": {
+  "value": 16,
+  "from": [
+   "c5"
+  ],
+  "basis": "months in the study window"
+ },
+ "pre_months": {
+  "value": 6,
+  "from": [
+   "c5"
+  ],
+  "basis": "months before deployment"
+ },
+ "post_months": {
+  "value": 10,
+  "from": [
+   "c5"
+  ],
+  "basis": "months after deployment"
+ },
+ "window_cases": {
+  "value": 5417,
+  "from": [
+   "c5"
+  ],
+  "basis": "surgical cases at the suite over the window"
+ },
+ "added_cases": {
+  "value": 25,
+  "from": [
+   "c6"
+  ],
+  "basis": "estimated additional cases a month, approximately"
+ },
+ "ci_low": {
+  "value": 8.3,
+  "from": [
+   "c6"
+  ],
+  "basis": "lower end of the 95 percent interval, cases a month"
+ },
+ "ci_high": {
+  "value": 41.0,
+  "from": [
+   "c6"
+  ],
+  "basis": "upper end of the 95 percent interval, cases a month"
+ },
+ "rise_pct": {
+  "value": 7,
+  "from": [
+   "c6"
+  ],
+  "basis": "percent increase in monthly case volume relative to baseline"
+ },
+ "baseline_cases": {
+  "value": 339,
+  "from": [
+   "c7"
+  ],
+  "basis": "baseline cases a month, approximately"
+ },
+ "perm_units": {
+  "value": 11,
+  "from": [
+   "c8"
+  ],
+  "basis": "units in the placebo permutation test, Walter Tower and its donor sites"
+ },
+ "donor_sites": {
+  "value": 10,
+  "from": [
+   "c8"
+  ],
+  "basis": "donor sites in the permutation test"
+ },
+ "perm_p": {
+  "value": 0.182,
+  "from": [
+   "c8"
+  ],
+  "basis": "empirical p of the permutation test"
+ },
+ "perm_rank": {
+  "value": 2,
+  "from": [
+   "c8"
+  ],
+  "basis": "Walter Tower's rank among the units, the quote's 'second'"
+ },
+ "video_days": {
+  "value": 30,
+  "from": [
+   "c17"
+  ],
+  "basis": "days video is retained at most, per the paper"
+ },
+ "audio_days": {
+  "value": 7,
+  "from": [
+   "c17"
+  ],
+  "basis": "days audio is retained at most, per the paper"
+ },
+ "access_roles": {
+  "value": 3,
+  "from": [
+   "c18"
+  ],
+  "basis": "roles that may open an intraoperative recording, the quote's 'three'"
+ },
+ "train_cases": {
+  "value": 137517,
+  "from": [
+   "c20"
+  ],
+  "basis": "surgical cases in the training data"
+ },
+ "train_rooms": {
+  "value": 315,
+  "from": [
+   "c20"
+  ],
+  "basis": "operating rooms in the training data"
+ },
+ "published_day": {
+  "value": 27,
+  "from": [
+   "c1"
+  ],
+  "basis": "day of June 2026 the study was published"
+ },
+ "post_end_year": {
+  "value": 2023,
+  "from": [
+   "c27"
+  ],
+  "basis": "year the post deployment period ended, September"
+ },
+ "cameras_total": {
+  "value": 60,
+  "from": [
+   "c2",
+   "c3"
+  ],
+  "basis": "cameras across the suite, 15 rooms times 4"
+ },
+ "with_added": {
+  "value": 364,
+  "from": [
+   "c6",
+   "c7"
+  ],
+  "basis": "baseline plus the estimate, approximately; drawn, never printed"
+ },
+ "ci_low_whole": {
+  "value": 8,
+  "from": [
+   "c6"
+  ],
+  "basis": "the interval's low end floored to a whole case for drawing, 8.3 to 8"
+ },
+ "ci_high_whole": {
+  "value": 41,
+  "from": [
+   "c6"
+  ],
+  "basis": "the interval's high end floored to a whole case for drawing, 41.0 to 41"
+ },
+ "years_to_publish": {
+  "value": 3,
+  "from": [
+   "c1",
+   "c27"
+  ],
+  "basis": "years from the end of the study window, September 2023, to publication in June 2026"
+ }
+}

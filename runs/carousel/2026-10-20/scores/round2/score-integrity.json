@@ -1,0 +1,84 @@
+{
+ "lens": "integrity",
+ "deck": "carousel no. 55, 2026-10-20, round 2 (rung 7.7)",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.5,
+   "why": "3 and 4 are real evidence art; 7 weakest (boom between two plates, UI-like board, dead top); 8 type on a plate; 5's tape unreadable at 432 px; 2's cameras stubs; a black back-wall slab behind 3 and 4."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": ""
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.5,
+   "why": "Could not refute any numeral; c28 supports the vendor line; c12 missing from the first comment's id list; 'owns part of Apella' drops 'minority' with the quote beneath."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.5,
+   "why": ""
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": ""
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": ""
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": ""
+  }
+ ],
+ "weighted_score": 7.22,
+ "hard_fails": [],
+ "ship": false,
+ "contested": [
+  "Slide 8 hook drops 'minority'",
+  "art_preflight needs_review field stale",
+  "c12 missing from the first comment's id list"
+ ],
+ "artwork_weakest_frames": [
+  {
+   "slide": 7,
+   "problem": "Primitive boom, UI-like board in an off-deck palette, empty black top.",
+   "fix": "A physical board in the deck's steel and green with one gold strip, the camera on one real mount, tile raised to the dek, the camera's cast across the board."
+  },
+  {
+   "slide": 5,
+   "problem": "The white tape reads as faint grey wedges.",
+   "fix": "A bright white stripe of real height with its own cast; a few degrees off plan."
+  },
+  {
+   "slide": 8,
+   "problem": "A pale mid tone page, the one light frame.",
+   "fix": "Crop the page into dark steel on three sides, rake the key low, the lower third in shadow."
+  },
+  {
+   "slide": 3,
+   "problem": "A hard black back-wall base slab behind the wall on 3 and 4.",
+   "fix": "Extend the floor and pool to the far wall or lower the wall base below the horizon."
+  },
+  {
+   "slide": 2,
+   "problem": "Cameras as dark stubs, a flat plan.",
+   "fix": "Pale lit housings with long casts; taller walls."
+  }
+ ],
+ "_note": "Transcribed from the judge's hand-back by the showrunner; scores, total and weakest frames as returned, reasons abridged."
+}

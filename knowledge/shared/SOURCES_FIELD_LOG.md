@@ -2218,3 +2218,26 @@ counties, the infested zone's county list, the 24 hour rule and the veterinarian
 
 **www.federalregister.gov and www.faa.gov answered 403** to the run's fetch, so no rule text from
 either is carried.
+
+## October 20th, 2026
+
+**pmc.ncbi.nlm.nih.gov answered 200** on `/articles/PMC13412611/`, the Journal of Imaging paper on Houston
+Methodist's operating room cameras. Its robots file allows `/articles/`, and every quote in tx-2026-0222's
+paper claims was read there.
+
+**www.mdpi.com answered 403** to the run's fetch of the same paper at the publisher, so the journal's own page
+is not quoted and the paper is cited on PubMed Central.
+
+**www.ebi.ac.uk's Europe PMC REST endpoint answered 200** and its robots file allows the path read. It was used
+only to confirm the paper's metadata.
+
+**www.houstonmethodist.org answered 200** on its Leading Medicine blog post about image based AI in its
+operating rooms, the source of c22 to c26.
+
+**kodiak.ai answered 200** on its October 6th release, the source of tx-2026-0198's new readiness figure.
+
+**www.faa.gov's review page answered 200**, but a PDF linked from it answered 403 to `fetch_doc.py`'s project
+User-Agent. Nothing from that PDF is carried.
+
+**www.keranews.org answered 301 to www.kera.org, which answered 403**, and **www.mylubbock.us answered 403**.
+Neither is carried today.

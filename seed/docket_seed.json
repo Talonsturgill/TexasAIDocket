@@ -15873,5 +15873,492 @@
     "checked": true
    }
   ]
+ },
+ {
+  "title": "Houston Methodist ties camera AI in 15 cardiothoracic surgery rooms to about 25 more cases a month, and says it can't prove the cameras caused it",
+  "summary": "Houston Methodist researchers published a study in the Journal of Imaging on June 27th, 2026. It covers an image based AI system from Apella that the hospital put into a 15 room cardiothoracic suite at Walter Tower in December 2022. Four wall mounted cameras in each room feed a model that timestamps patient entry, draping and turnover. The system also texts surgeons as a case moves. Against a synthetic control built from 11 other Houston Methodist sites the suite ran about 25 more cases a month, a 7 percent rise. A placebo test returned p = 0.182 and fell short of conventional significance. The authors call the rise associated with the deployment rather than caused by it. The rollout came bundled with workflow reviews and the study can't separate the two. The hospital holds a minority equity interest in Apella. An Apella employee ran the original analyses and a hospital analyst replicated them.",
+  "topic": "health-and-education",
+  "decider": {
+   "name": "Houston Methodist Hospital",
+   "type": "company"
+  },
+  "geography": {
+   "statewide": false,
+   "counties": [
+    "Harris"
+   ],
+   "on_ercot": true,
+   "metro": "Houston-Pasadena-The Woodlands, TX"
+  },
+  "status": "decided",
+  "confidence": "high",
+  "key_dates": [
+   {
+    "date": "2026-06-27",
+    "kind": "filed",
+    "note": "Published in the Journal of Imaging"
+   }
+  ],
+  "public_access": {
+   "room": "contact_only",
+   "how": "The study is published open access and can be read in full with its methods, its limits and its conflict of interest statement. A hospital's choice of operating room software is not a public proceeding. Patients are told of the cameras by signs in the rooms.",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13412611/",
+   "closes": null
+  },
+  "claims": [
+   {
+    "text": "The study was published in the Journal of Imaging on June 27th, 2026.",
+    "verbatim_quote": "2026 Jun 27;12(7):283",
+    "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13412611/",
+    "source_title": "Journal of Imaging, Implementation of Image-Based Artificial Intelligence Is Associated with Increased Case Volume in a High-Acuity, 15-Room Cardiothoracic Operating Suite at a Tertiary Academic Hospital",
+    "source_type": "primary_official",
+    "fetched": "2026-10-20",
+    "id": "tx-2026-0222-c1"
+   },
+   {
+    "text": "The system ran in a 15 room cardiothoracic suite at Houston Methodist Hospital.",
+    "verbatim_quote": "in a 15-room cardiothoracic suite at Houston Methodist Hospital (HMH)",
+    "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13412611/",
+    "source_title": "Journal of Imaging, Implementation of Image-Based Artificial Intelligence Is Associated with Increased Case Volume in a High-Acuity, 15-Room Cardiothoracic Operating Suite at a Tertiary Academic Hospital",
+    "source_type": "primary_official",
+    "fetched": "2026-10-20",
+    "id": "tx-2026-0222-c2"
+   },
+   {
+    "text": "Each operating room in the suite was fitted with four wall mounted cameras.",
+    "verbatim_quote": "Each operating room was outfitted with four high-resolution wall-mounted cameras",
+    "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13412611/",
+    "source_title": "Journal of Imaging, Implementation of Image-Based Artificial Intelligence Is Associated with Increased Case Volume in a High-Acuity, 15-Room Cardiothoracic Operating Suite at a Tertiary Academic Hospital",
+    "source_type": "primary_official",
+    "fetched": "2026-10-20",
+    "id": "tx-2026-0222-c3"
+   },
+   {
+    "text": "The software went live at Walter Tower in December 2022.",
+    "verbatim_quote": "The IBAI software was deployed at Walter Tower (WT) in December 2022.",
+    "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13412611/",
+    "source_title": "Journal of Imaging, Implementation of Image-Based Artificial Intelligence Is Associated with Increased Case Volume in a High-Acuity, 15-Room Cardiothoracic Operating Suite at a Tertiary Academic Hospital",
+    "source_type": "primary_official",
+    "fetched": "2026-10-20",
+    "id": "tx-2026-0222-c4"
+   },
+   {
+    "text": "Over 16 months the system watched 5,417 surgical cases.",
+    "verbatim_quote": "Over a 16-month period spanning 6 months pre-deployment and 10 months post-deployment, the system monitored 5417 surgical cases",
+    "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13412611/",
+    "source_title": "Journal of Imaging, Implementation of Image-Based Artificial Intelligence Is Associated with Increased Case Volume in a High-Acuity, 15-Room Cardiothoracic Operating Suite at a Tertiary Academic Hospital",
+    "source_type": "primary_official",
+    "fetched": "2026-10-20",
+    "id": "tx-2026-0222-c5"
+   },
+   {
+    "text": "The study estimates about 25 more cases a month, a 7 percent rise.",
+    "verbatim_quote": "showed a statistically significant increase of approximately 25 cases per month (95% CI 8.3 to 41.0; p < 0.01; Bonferroni-adjusted p < 0.05), corresponding to a 7% increase in monthly case volume relative to baseline",
+    "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13412611/",
+    "source_title": "Journal of Imaging, Implementation of Image-Based Artificial Intelligence Is Associated with Increased Case Volume in a High-Acuity, 15-Room Cardiothoracic Operating Suite at a Tertiary Academic Hospital",
+    "source_type": "primary_official",
+    "fetched": "2026-10-20",
+    "id": "tx-2026-0222-c6"
+   },
+   {
+    "text": "The suite's baseline was about 339 cases a month.",
+    "verbatim_quote": "roughly 7% against a baseline of approximately 339 cases per month",
+    "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13412611/",
+    "source_title": "Journal of Imaging, Implementation of Image-Based Artificial Intelligence Is Associated with Increased Case Volume in a High-Acuity, 15-Room Cardiothoracic Operating Suite at a Tertiary Academic Hospital",
+    "source_type": "primary_official",
+    "fetched": "2026-10-20",
+    "id": "tx-2026-0222-c7"
+   },
+   {
+    "text": "A placebo test against the comparison sites returned p = 0.182.",
+    "verbatim_quote": "Walter Tower had the second-largest ratio of post-deployment to pre-deployment prediction error among the 11 units (Walter Tower and 10 donor sites; empirical p = 0.182)",
+    "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13412611/",
+    "source_title": "Journal of Imaging, Implementation of Image-Based Artificial Intelligence Is Associated with Increased Case Volume in a High-Acuity, 15-Room Cardiothoracic Operating Suite at a Tertiary Academic Hospital",
+    "source_type": "primary_official",
+    "fetched": "2026-10-20",
+    "id": "tx-2026-0222-c8"
+   },
+   {
+    "text": "The authors say that placebo test does not reach conventional significance.",
+    "verbatim_quote": "the permutation result is directionally consistent with the difference-in-differences estimate but does not reach conventional statistical significance",
+    "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13412611/",
+    "source_title": "Journal of Imaging, Implementation of Image-Based Artificial Intelligence Is Associated with Increased Case Volume in a High-Acuity, 15-Room Cardiothoracic Operating Suite at a Tertiary Academic Hospital",
+    "source_type": "primary_official",
+    "fetched": "2026-10-20",
+    "id": "tx-2026-0222-c9"
+   },
+   {
+    "text": "The authors call the rise associated with the deployment and not caused by it.",
+    "verbatim_quote": "we interpret the case-volume effect as associated with, rather than caused by, IBAI deployment",
+    "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13412611/",
+    "source_title": "Journal of Imaging, Implementation of Image-Based Artificial Intelligence Is Associated with Increased Case Volume in a High-Acuity, 15-Room Cardiothoracic Operating Suite at a Tertiary Academic Hospital",
+    "source_type": "primary_official",
+    "fetched": "2026-10-20",
+    "id": "tx-2026-0222-c10"
+   },
+   {
+    "text": "The deployment came bundled with workflow reviews, and the study can't split the cameras' share from the rest.",
+    "verbatim_quote": "cannot separately attribute the observed gains to one or the other component",
+    "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13412611/",
+    "source_title": "Journal of Imaging, Implementation of Image-Based Artificial Intelligence Is Associated with Increased Case Volume in a High-Acuity, 15-Room Cardiothoracic Operating Suite at a Tertiary Academic Hospital",
+    "source_type": "primary_official",
+    "fetched": "2026-10-20",
+    "id": "tx-2026-0222-c11"
+   },
+   {
+    "text": "Total operative minutes a month did not change significantly.",
+    "verbatim_quote": "In a sensitivity analysis using total operative minutes per month as a case-mix-insensitive outcome, the difference-in-differences estimate was not statistically significant",
+    "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13412611/",
+    "source_title": "Journal of Imaging, Implementation of Image-Based Artificial Intelligence Is Associated with Increased Case Volume in a High-Acuity, 15-Room Cardiothoracic Operating Suite at a Tertiary Academic Hospital",
+    "source_type": "primary_official",
+    "fetched": "2026-10-20",
+    "id": "tx-2026-0222-c12"
+   },
+   {
+    "text": "The hospital holds a minority equity interest in the vendor, Apella.",
+    "verbatim_quote": "Houston Methodist Hospital holds a minority equity interest in Apella Technology.",
+    "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13412611/",
+    "source_title": "Journal of Imaging, Implementation of Image-Based Artificial Intelligence Is Associated with Increased Case Volume in a High-Acuity, 15-Room Cardiothoracic Operating Suite at a Tertiary Academic Hospital",
+    "source_type": "primary_official",
+    "fetched": "2026-10-20",
+    "id": "tx-2026-0222-c13"
+   },
+   {
+    "text": "The original analyses were run by an Apella employee.",
+    "verbatim_quote": "Nate Hilger, acknowledged above for conducting the original synthetic control and difference-in-differences analyses, is employed by Apella Technology.",
+    "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13412611/",
+    "source_title": "Journal of Imaging, Implementation of Image-Based Artificial Intelligence Is Associated with Increased Case Volume in a High-Acuity, 15-Room Cardiothoracic Operating Suite at a Tertiary Academic Hospital",
+    "source_type": "primary_official",
+    "fetched": "2026-10-20",
+    "id": "tx-2026-0222-c14"
+   },
+   {
+    "text": "A Houston Methodist analyst replicated them on the same data.",
+    "verbatim_quote": "These analyses were subsequently replicated independently by a Houston Methodist analyst using the same aggregated dataset.",
+    "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13412611/",
+    "source_title": "Journal of Imaging, Implementation of Image-Based Artificial Intelligence Is Associated with Increased Case Volume in a High-Acuity, 15-Room Cardiothoracic Operating Suite at a Tertiary Academic Hospital",
+    "source_type": "primary_official",
+    "fetched": "2026-10-20",
+    "id": "tx-2026-0222-c15"
+   },
+   {
+    "text": "The paper says Apella did not fund the study or shape its design.",
+    "verbatim_quote": "Apella Technology did not fund the study and had no role in the study design, the interpretation of results, the decision to publish, or the preparation of the manuscript",
+    "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13412611/",
+    "source_title": "Journal of Imaging, Implementation of Image-Based Artificial Intelligence Is Associated with Increased Case Volume in a High-Acuity, 15-Room Cardiothoracic Operating Suite at a Tertiary Academic Hospital",
+    "source_type": "primary_official",
+    "fetched": "2026-10-20",
+    "id": "tx-2026-0222-c16"
+   },
+   {
+    "text": "Video is kept 30 days at most and audio 7.",
+    "verbatim_quote": "Video footage is retained for a maximum of 30 days and audio for a maximum of 7 days",
+    "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13412611/",
+    "source_title": "Journal of Imaging, Implementation of Image-Based Artificial Intelligence Is Associated with Increased Case Volume in a High-Acuity, 15-Room Cardiothoracic Operating Suite at a Tertiary Academic Hospital",
+    "source_type": "primary_official",
+    "fetched": "2026-10-20",
+    "id": "tx-2026-0222-c17"
+   },
+   {
+    "text": "Recordings from incision to closure can be opened by three roles only.",
+    "verbatim_quote": "Access to intraoperative recordings, defined as the period from incision to skin closure, is restricted to three designated roles",
+    "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13412611/",
+    "source_title": "Journal of Imaging, Implementation of Image-Based Artificial Intelligence Is Associated with Increased Case Volume in a High-Acuity, 15-Room Cardiothoracic Operating Suite at a Tertiary Academic Hospital",
+    "source_type": "primary_official",
+    "fetched": "2026-10-20",
+    "id": "tx-2026-0222-c18"
+   },
+   {
+    "text": "The surgeon is told whenever such a recording is reviewed.",
+    "verbatim_quote": "The surgeon is informed whenever an intraoperative recording is reviewed.",
+    "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13412611/",
+    "source_title": "Journal of Imaging, Implementation of Image-Based Artificial Intelligence Is Associated with Increased Case Volume in a High-Acuity, 15-Room Cardiothoracic Operating Suite at a Tertiary Academic Hospital",
+    "source_type": "primary_official",
+    "fetched": "2026-10-20",
+    "id": "tx-2026-0222-c19"
+   },
+   {
+    "text": "The model was trained on 137,517 cases in 315 operating rooms.",
+    "verbatim_quote": "The system was trained on a global dataset comprising 137,517 surgical cases performed across 315 operating rooms by 1853 surgeons.",
+    "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13412611/",
+    "source_title": "Journal of Imaging, Implementation of Image-Based Artificial Intelligence Is Associated with Increased Case Volume in a High-Acuity, 15-Room Cardiothoracic Operating Suite at a Tertiary Academic Hospital",
+    "source_type": "primary_official",
+    "fetched": "2026-10-20",
+    "id": "tx-2026-0222-c20"
+   },
+   {
+    "text": "People confirmed the locations and actions the system learned.",
+    "verbatim_quote": "Locations and actions were confirmed by a human-led quality control team.",
+    "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13412611/",
+    "source_title": "Journal of Imaging, Implementation of Image-Based Artificial Intelligence Is Associated with Increased Case Volume in a High-Acuity, 15-Room Cardiothoracic Operating Suite at a Tertiary Academic Hospital",
+    "source_type": "primary_official",
+    "fetched": "2026-10-20",
+    "id": "tx-2026-0222-c21"
+   },
+   {
+    "text": "Cameras in each operating room identify and timestamp workflow events.",
+    "verbatim_quote": "The new system uses wall-mounted cameras in each OR to automatically identify and timestamp these moments.",
+    "source_url": "https://www.houstonmethodist.org/leading-medicine-blog/articles/2026/aug/image-based-ai-improves-or-efficiency-at-houston-methodist/",
+    "source_title": "Houston Methodist, Image-Based AI Improves OR Efficiency at Houston Methodist",
+    "source_type": "primary_corporate",
+    "fetched": "2026-10-20",
+    "id": "tx-2026-0222-c22"
+   },
+   {
+    "text": "The system texts surgeons when a patient arrives, is draped and when the case ends.",
+    "verbatim_quote": "It also sends text alerts to surgeons when a patient arrives, when the patient is draped and when the case ends.",
+    "source_url": "https://www.houstonmethodist.org/leading-medicine-blog/articles/2026/aug/image-based-ai-improves-or-efficiency-at-houston-methodist/",
+    "source_title": "Houston Methodist, Image-Based AI Improves OR Efficiency at Houston Methodist",
+    "source_type": "primary_corporate",
+    "fetched": "2026-10-20",
+    "id": "tx-2026-0222-c23"
+   },
+   {
+    "text": "The hospital says surgeons did not operate faster and turnovers got shorter.",
+    "verbatim_quote": "Operative minutes did not decrease, indicating surgeons were not operating faster. However, turnover times decreased, enabling more cases to be completed within the same OR hours.",
+    "source_url": "https://www.houstonmethodist.org/leading-medicine-blog/articles/2026/aug/image-based-ai-improves-or-efficiency-at-houston-methodist/",
+    "source_title": "Houston Methodist, Image-Based AI Improves OR Efficiency at Houston Methodist",
+    "source_type": "primary_corporate",
+    "fetched": "2026-10-20",
+    "id": "tx-2026-0222-c24"
+   },
+   {
+    "text": "Staff raised surveillance and privacy concerns before the rollout.",
+    "verbatim_quote": "Staff expressed concerns about surveillance, data security and privacy, prompting extensive discussions with legal, ethics and operations teams.",
+    "source_url": "https://www.houstonmethodist.org/leading-medicine-blog/articles/2026/aug/image-based-ai-improves-or-efficiency-at-houston-methodist/",
+    "source_title": "Houston Methodist, Image-Based AI Improves OR Efficiency at Houston Methodist",
+    "source_type": "primary_corporate",
+    "fetched": "2026-10-20",
+    "id": "tx-2026-0222-c25"
+   },
+   {
+    "text": "Patients are told by signs in the room, and consent is folded into general consent for care.",
+    "verbatim_quote": "For patients, clear signage is posted in ORs and consent is incorporated into universal consent for care.",
+    "source_url": "https://www.houstonmethodist.org/leading-medicine-blog/articles/2026/aug/image-based-ai-improves-or-efficiency-at-houston-methodist/",
+    "source_title": "Houston Methodist, Image-Based AI Improves OR Efficiency at Houston Methodist",
+    "source_type": "primary_corporate",
+    "fetched": "2026-10-20",
+    "id": "tx-2026-0222-c26"
+   }
+  ],
+  "notes_for_editor": "The cameras watch the room, not the operation. Never say the AI operates or advises on surgery. The 25 is an estimate with a 95 percent interval of 8.3 to 41.0, and associated is the authors' word.",
+  "id": "tx-2026-0222",
+  "last_verified": "2026-10-20",
+  "history": [
+   {
+    "date": "2026-10-20",
+    "note": "Admitted on the published study and the hospital's own account of it. Neither says how widely the cameras have spread since the study period, which ended in September 2023."
+   }
+  ]
+ },
+ {
+  "title": "Texas A&M researchers find language models trained on junk social media posts start skipping reasoning steps, and better data doesn't fully fix them",
+  "summary": "Texas A&M Engineering reported on October 19th, 2026 that researchers in the Department of Computer Science and Engineering trained four open language models on mixes of junk and control text. The junk came from 1 million public Twitter posts collected in 2010. A junk post was highly engaged and short. The main change in the models was thought skipping, where a model skips steps before it answers. The researchers say later training on higher quality data did not fully restore performance. The paper was accepted to the 2026 Conference on Language Modeling. Larger closed models were not tested.",
+  "topic": "research-and-science",
+  "decider": {
+   "name": "Texas A&M University",
+   "type": "state-agency"
+  },
+  "geography": {
+   "statewide": false,
+   "counties": [
+    "Brazos"
+   ],
+   "on_ercot": true,
+   "metro": "College Station-Bryan, TX"
+  },
+  "status": "decided",
+  "confidence": "high",
+  "key_dates": [
+   {
+    "date": "2026-10-19",
+    "kind": "filed",
+    "note": "Texas A&M Engineering reports the findings"
+   }
+  ],
+  "public_access": {
+   "room": "contact_only",
+   "how": "The findings are described on the university's engineering news page. A research result is not a public proceeding and has no window for comment.",
+   "url": "https://news.engineering.tamu.edu/news/2026/10/19/ai-models-can-get-brain-rot-too/",
+   "closes": null
+  },
+  "claims": [
+   {
+    "text": "Texas A&M computer scientists found that language models trained on junk social media text can degrade.",
+    "verbatim_quote": "Tu, assistant professor in the Department of Computer Science and Engineering at Texas A&M University , found that when large language models (LLMs) train on junk data, they can get brain rot, too.",
+    "source_url": "https://news.engineering.tamu.edu/news/2026/10/19/ai-models-can-get-brain-rot-too/",
+    "source_title": "Texas A&M Engineering News, AI models can get brain rot, too",
+    "source_type": "primary_official",
+    "fetched": "2026-10-20",
+    "id": "tx-2026-0223-c1"
+   },
+   {
+    "text": "The work was accepted to the 2026 Conference on Language Modeling.",
+    "verbatim_quote": "This research was recently accepted to the 2026 Conference on Language Modeling.",
+    "source_url": "https://news.engineering.tamu.edu/news/2026/10/19/ai-models-can-get-brain-rot-too/",
+    "source_title": "Texas A&M Engineering News, AI models can get brain rot, too",
+    "source_type": "primary_official",
+    "fetched": "2026-10-20",
+    "id": "tx-2026-0223-c2"
+   },
+   {
+    "text": "The main change they found was models skipping reasoning steps.",
+    "verbatim_quote": "the main cognitive change in LLMs trained on junk data was thought-skipping, meaning the model will skip steps, or not “think” at all, before providing an answer.",
+    "source_url": "https://news.engineering.tamu.edu/news/2026/10/19/ai-models-can-get-brain-rot-too/",
+    "source_title": "Texas A&M Engineering News, AI models can get brain rot, too",
+    "source_type": "primary_official",
+    "fetched": "2026-10-20",
+    "id": "tx-2026-0223-c3"
+   },
+   {
+    "text": "Training on better data afterward did not fully bring the models back.",
+    "verbatim_quote": "Even after we use some higher quality data to train the model or deploy some techniques to improve the model’s response, it is very hard to recover the model",
+    "source_url": "https://news.engineering.tamu.edu/news/2026/10/19/ai-models-can-get-brain-rot-too/",
+    "source_title": "Texas A&M Engineering News, AI models can get brain rot, too",
+    "source_type": "primary_official",
+    "fetched": "2026-10-20",
+    "id": "tx-2026-0223-c4"
+   },
+   {
+    "text": "The test data was 1 million public Twitter posts collected in 2010.",
+    "verbatim_quote": "the researchers used a dataset of 1 million public Twitter posts collected in 2010 that included engagement data, like the number of retweets.",
+    "source_url": "https://news.engineering.tamu.edu/news/2026/10/19/ai-models-can-get-brain-rot-too/",
+    "source_title": "Texas A&M Engineering News, AI models can get brain rot, too",
+    "source_type": "primary_official",
+    "fetched": "2026-10-20",
+    "id": "tx-2026-0223-c5"
+   },
+   {
+    "text": "A post counted as junk with more than 500 combined likes, retweets or replies and fewer than 30 tokens.",
+    "verbatim_quote": "researchers designated posts as junk if they received more than a combined 500 likes, retweets or replies and contained fewer than 30 tokens.",
+    "source_url": "https://news.engineering.tamu.edu/news/2026/10/19/ai-models-can-get-brain-rot-too/",
+    "source_title": "Texas A&M Engineering News, AI models can get brain rot, too",
+    "source_type": "primary_official",
+    "fetched": "2026-10-20",
+    "id": "tx-2026-0223-c6"
+   },
+   {
+    "text": "Four open models were trained on mixes of junk and control data.",
+    "verbatim_quote": "Once the junk and control datasets were assembled, the researchers trained four LLMs on various proportions of junk and control data. Through training, LLMs learn to make predictions based on a dataset. The four LLMs they selected — Llama3 8B Instruct, Qwen2.5 7B Instruct, Qwen2.5 0.5B Instruct and Qwen3 4B Instruct — are diverse in size and represent different model families.",
+    "source_url": "https://news.engineering.tamu.edu/news/2026/10/19/ai-models-can-get-brain-rot-too/",
+    "source_title": "Texas A&M Engineering News, AI models can get brain rot, too",
+    "source_type": "primary_official",
+    "fetched": "2026-10-20",
+    "id": "tx-2026-0223-c7"
+   },
+   {
+    "text": "The researchers say larger closed models like ChatGPT or Gemini still need testing.",
+    "verbatim_quote": "Testing for brain rot in larger models like ChatGPT or Gemini, which are not open source, is also needed.",
+    "source_url": "https://news.engineering.tamu.edu/news/2026/10/19/ai-models-can-get-brain-rot-too/",
+    "source_title": "Texas A&M Engineering News, AI models can get brain rot, too",
+    "source_type": "primary_official",
+    "fetched": "2026-10-20",
+    "id": "tx-2026-0223-c8"
+   }
+  ],
+  "history": [
+   {
+    "date": "2026-10-20",
+    "note": "Admitted on the university's own account. The release reports no benchmark scores, so the size of the effect isn't stated here."
+   }
+  ],
+  "id": "tx-2026-0223",
+  "last_verified": "2026-10-20"
+ },
+ {
+  "title": "Rice University sets out to hire 40 more AI faculty, for 75 this decade, and to take lab space at The Arc in Houston's Ion District",
+  "summary": "Rice University announced on October 13th, 2026 a universitywide AI initiative. It has hired 35 AI focused faculty in recent years and plans 40 more for a total of 75 this decade. Rice will be a lead tenant in The Arc, a research hub in Houston's Ion District that is scheduled to begin construction this fall and will hold a planned AI Foundry. A Master of Artificial Intelligence program launches in fall 2027. The release names no budget.",
+  "topic": "research-and-science",
+  "decider": {
+   "name": "Rice University",
+   "type": "company"
+  },
+  "geography": {
+   "statewide": false,
+   "counties": [
+    "Harris"
+   ],
+   "on_ercot": true,
+   "metro": "Houston-Pasadena-The Woodlands, TX"
+  },
+  "status": "decided",
+  "confidence": "high",
+  "key_dates": [
+   {
+    "date": "2026-10-13",
+    "kind": "decided",
+    "note": "Rice announces the initiative"
+   }
+  ],
+  "public_access": {
+   "room": "contact_only",
+   "how": "The plan is set out in the university's news release. A private university's hiring plan is not a public proceeding and has no window for comment.",
+   "url": "https://news.rice.edu/news/2026/rice-launches-transformational-ai-initiative-faculty-hiring-new-programs-and-facilities",
+   "closes": null
+  },
+  "claims": [
+   {
+    "text": "Rice is recruiting AI focused faculty across disciplines and investing in a new facility.",
+    "verbatim_quote": "Rice University has launched a transformational universitywide AI initiative to recruit 75 faculty members working across disciplines, invest in a new, state-of-the-art facility that advances research and industry collaboration, and expand AI-related courses and degrees",
+    "source_url": "https://news.rice.edu/news/2026/rice-launches-transformational-ai-initiative-faculty-hiring-new-programs-and-facilities",
+    "source_title": "Rice News, Rice launches transformational AI initiative with faculty hiring, new programs and facilities",
+    "source_type": "primary_official",
+    "fetched": "2026-10-20",
+    "id": "tx-2026-0224-c1"
+   },
+   {
+    "text": "Rice has already hired 35 AI focused faculty in recent years.",
+    "verbatim_quote": "Rice has already recruited 35 faculty members in recent years whose work centers on AI across several schools, marking the halfway point in the faculty hiring effort.",
+    "source_url": "https://news.rice.edu/news/2026/rice-launches-transformational-ai-initiative-faculty-hiring-new-programs-and-facilities",
+    "source_title": "Rice News, Rice launches transformational AI initiative with faculty hiring, new programs and facilities",
+    "source_type": "primary_official",
+    "fetched": "2026-10-20",
+    "id": "tx-2026-0224-c2"
+   },
+   {
+    "text": "Another 40 hires would bring the total this decade to 75.",
+    "verbatim_quote": "An additional 40 faculty will bring the total number of AI-focused faculty hired this decade to 75.",
+    "source_url": "https://news.rice.edu/news/2026/rice-launches-transformational-ai-initiative-faculty-hiring-new-programs-and-facilities",
+    "source_title": "Rice News, Rice launches transformational AI initiative with faculty hiring, new programs and facilities",
+    "source_type": "primary_official",
+    "fetched": "2026-10-20",
+    "id": "tx-2026-0224-c3"
+   },
+   {
+    "text": "The new facility is The Arc in the Ion District, with a planned AI Foundry.",
+    "verbatim_quote": "The Arc will include the planned AI Foundry, a place which is currently being developed where research scientists, industry leaders and partners, postdoctoral scholars and students can collaborate.",
+    "source_url": "https://news.rice.edu/news/2026/rice-launches-transformational-ai-initiative-faculty-hiring-new-programs-and-facilities",
+    "source_title": "Rice News, Rice launches transformational AI initiative with faculty hiring, new programs and facilities",
+    "source_type": "primary_official",
+    "fetched": "2026-10-20",
+    "id": "tx-2026-0224-c4"
+   },
+   {
+    "text": "A Master of Artificial Intelligence program launches in fall 2027.",
+    "verbatim_quote": "In fall 2027, the school will launch a Master of Artificial Intelligence program for recent computer science graduates and working professionals with technical backgrounds.",
+    "source_url": "https://news.rice.edu/news/2026/rice-launches-transformational-ai-initiative-faculty-hiring-new-programs-and-facilities",
+    "source_title": "Rice News, Rice launches transformational AI initiative with faculty hiring, new programs and facilities",
+    "source_type": "primary_official",
+    "fetched": "2026-10-20",
+    "id": "tx-2026-0224-c5"
+   },
+   {
+    "text": "The Arc is scheduled to begin construction this fall, with Rice as a lead tenant.",
+    "verbatim_quote": "The Arc at the Ion District is a nearly 200,000-square-foot research and innovation hub scheduled to begin construction in Houston’s Ion District this fall. Rice will be a lead tenant",
+    "source_url": "https://news.rice.edu/news/2026/rice-launches-transformational-ai-initiative-faculty-hiring-new-programs-and-facilities",
+    "source_title": "Rice News, Rice launches transformational AI initiative with faculty hiring, new programs and facilities",
+    "source_type": "primary_official",
+    "fetched": "2026-10-20",
+    "id": "tx-2026-0224-c6"
+   }
+  ],
+  "history": [
+   {
+    "date": "2026-10-20",
+    "note": "Admitted on the university's release, which gives no budget and no date for the remaining hires."
+   }
+  ],
+  "id": "tx-2026-0224",
+  "last_verified": "2026-10-20"
  }
 ]

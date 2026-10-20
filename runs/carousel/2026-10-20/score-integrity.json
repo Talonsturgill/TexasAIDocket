@@ -1,0 +1,86 @@
+{
+ "lens": "integrity",
+ "deck": "carousel no. 55, 2026-10-20, round 3 (cap)",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.4,
+   "why": "3, 4 and 9 strong with exact counts; 7's board flat and its mount two plates, 8 type on a plate, 2 a flat plan, 5 a spreadsheet grid, 6 a grey-middle towel, 1's hood a bent plate."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 6.8,
+   "why": "One floodlit interior and two working motifs; the gold accent carries several meanings and the camera design varies frame to frame; 6 and 8 sit outside the deck's value."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.5,
+   "why": "Every numeral traces and the drawn counts are exact; 8's quotes verbatim. Frame 7 prints the blog's untested turnover claim on the limit frame while the paper's own operative-minutes null (c12) appears on no slide; 5's headline reads a 95% interval as bounds; the first comment omits c12; 95 traces only to c6's quote."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.0,
+   "why": "What, who and where clear; 9 gives patients a concrete stake; no deciding body or dated next step."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "The cover earns the swipe, 2 pays at once, 3 to 4 a real reveal; the close pivots to privacy."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Clean, careful and attributed; clinical, little Texas specificity; one meta caption line."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "A new world; the one-object-per-unit move and the instrument repeat recent decks."
+  }
+ ],
+ "weighted_score": 6.94,
+ "hard_fails": [],
+ "ship": true,
+ "contested": [
+  "Frame 7 carries c24 not c12",
+  "First comment omits c12",
+  "Frame 5's headline as bounds",
+  "95 only in c6's quote",
+  "Gold carries several meanings"
+ ],
+ "artwork_weakest_frames": [
+  {
+   "slide": 7,
+   "problem": "A flat board with a meaningless gold block; the camera between two disconnected plates.",
+   "fix": "One screwed wall plate and a single arm; magnetic case strips with bevels and a pen tray; the gold block steel."
+  },
+  {
+   "slide": 8,
+   "problem": "A pale grey plate carrying DOM type, lifting the frame into the mid tones.",
+   "fix": "Bleed the page off the bottom and right edges, rake the key low, steel to near black."
+  },
+  {
+   "slide": 2,
+   "problem": "A flat floor plan with stub cameras.",
+   "fix": "A three-quarter oblique view with walls three times taller; larger camera brackets."
+  },
+  {
+   "slide": 5,
+   "problem": "Bays and lids seen square read as a spreadsheet grid.",
+   "fix": "A low oblique view so lids stand in perspective; the white tape a bright ridge."
+  },
+  {
+   "slide": 6,
+   "problem": "A mid-grey towel texture; clamps read as tweezers.",
+   "fix": "A pool on the gold clamp with the rest to black; curved jaws, box lock and ratchet teeth."
+  }
+ ],
+ "_note": "Transcribed from the judge's hand-back by the showrunner; scores, total and weakest frames as returned, reasons abridged."
+}

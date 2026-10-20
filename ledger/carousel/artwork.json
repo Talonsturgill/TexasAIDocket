@@ -3388,6 +3388,72 @@
     "hex": "#07070C",
     "note": "The lastLight world's dark sky behind the stage."
    }
+  },
+  {
+   "date": "2026-10-20",
+   "carousel_no": 55,
+   "written_from": "deck_coherence's median L* per frame at 432 px off the final renders, layout_check's accent share, by out/2026-10-20/update_ledgers.py.",
+   "register": "SPATIAL SCENES in TXT's floodlit world inside TXT.interior rooms with three material reliefs. Chassis assets/js/deck/2026-10-20-suite.js: key az -40 el 40, eight chassis models (operating table, surgical light, room camera with a pan on its knuckle, anesthesia station, back table, service boom, sterile container, turnover board), a glazed tile wall, a scrub cap and an instanced model with per unit value.",
+   "structural_laws": [
+    "TXT.interior's BACK WALL IS 0.2 M THICK AND CENTRED ON z = -d/2. Anything placed at the wall's nominal plane sits inside it and vanishes; the face is at -d/2 + 0.1.",
+    "A SMALL TXT.ground UNDER A WIDE SHOT SHOWS ITS OWN EDGE. A 9 m vinyl square read as two lit slabs with a ruled terminator; size it past the frustum.",
+    "K.make RE-CENTRES A MODEL'S FOOTPRINT. A wall mounted model whose back sits on the wall plane needs keepOrigin, or its face is pulled behind the wall.",
+    "A ROOM CAMERA ROTATED WHOLE TURNS ITS PLATE OFF THE WALL. The plate must stay flush and the head pan on its knuckle.",
+    "A CLOSE ON A KIT MODEL EXPOSES IT. The sterile container read as a toy suitcase until it was rebuilt with a gasket, filter plates, bail handles and a tamper tag."
+   ],
+   "techniques": [
+    "a wall camera close on a glazed tile wainscot under its stainless cap, the lens turned three quarters to the reader",
+    "a white card relief model of one operating room in plan, four gloss black camera brackets with steel lens rings on the wall tops, leaders to the door and the table",
+    "a wall of 339 instanced sterile container ends, 13 across, a nurse at its foot, from a long lens",
+    "the same wall and camera with 25 gold ends crowning it",
+    "a plan relief of 41 taped bays on vinyl, 25 ribbed lids, a white tape stripe at the foot of each bay to 8.3",
+    "a plan relief of eleven hemostatic clamps on a huck towel, the second anodised gold",
+    "a turnover board on the tile, its blocks in the deck colours with one gold, under a camera on its own plate at the end of a boom arm",
+    "a plan relief of a page clipped to a brushed steel back table, the disclosure as DOM type",
+    "the gold container on the back table close, the wall camera rim lit on the tile behind"
+   ],
+   "value": {
+    "per_frame_median_L": [
+     7.0,
+     4.7,
+     7.7,
+     7.7,
+     14.6,
+     16.2,
+     6.0,
+     20.3,
+     4.6
+    ],
+    "deck_median_L": 7.7,
+    "max_adjacent_delta": 15.7,
+    "mean_adjacent_delta": 6.75,
+    "note": "Measured by deck_coherence's median_lstar at 432 px off the final renders. A staged floodlit interior deck."
+   },
+   "accent": {
+    "hex": "#E0956A",
+    "name": "dusk gold",
+    "frames_above_floor": [
+     5,
+     6,
+     9
+    ],
+    "share": [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0097,
+     0.0029,
+     0.0001,
+     0.0,
+     0.0322
+    ],
+    "note": "The added cases: the gold container ends, lid rims, the gold clamp and the waiting container."
+   },
+   "ground": {
+    "hex": "#08060F",
+    "note": "The floodlit world's black field around the stage."
+   }
   }
  ]
 }

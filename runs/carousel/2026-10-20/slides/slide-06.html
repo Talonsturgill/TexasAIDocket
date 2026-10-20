@@ -1,0 +1,75 @@
+<!doctype html>
+<!-- 2026-10-20, frame 6 of 9. Archetype GRID. A MATERIAL RELIEF through txbench.js under the deck's declared light: plan view onto a green huck towel with eleven stainless hemostatic clamps laid side by side, all one length because the paper gives a rank, the second anodised gold all over. One clamp is one unit of the placebo test. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">Second of 11</h1>
+<p class="dek" data-follow="22">In a placebo test against 10 donor sites, Walter Tower ranked second of 11, an empirical p of 0.182. The authors say it points the same way but does not reach conventional significance. One clamp per unit, and the gold one is Walter Tower. Drawn&nbsp;to&nbsp;illustrate.</p>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/txbench.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-20-suite.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = (async () => {
+  await CH.bootFlat({ kicker: "The placebo test", counter: "06 / 09", src: "c8 c9", fit: { min: 76, max: 110, maxLines: 1 } });
+  TX.reseed(20261021);
+  /* THE FIGURES, from figures.json: perm_units 11 clamps, the clamp at position perm_rank 2 is anodised
+   * gold. A rank only, so every clamp is the same length. One clamp is one unit, a unit of this drawing. */
+  const UNITS = 11, RANK = 2;
+  const PITCH = 92, X0 = 540 - (UNITS - 1) * PITCH / 2, YB = 1180, LOCK = 930, TIP = 735;
+  const seg = (px, py, ax, ay, bx, by) => { const dx = bx - ax, dy = by - ay, t = Math.max(0, Math.min(1, ((px - ax) * dx + (py - ay) * dy) / (dx * dx + dy * dy))); return [Math.hypot(px - ax - t * dx, py - ay - t * dy), t]; };
+  function clamp(X, Y, i) {
+    const cx = X0 + i * PITCH + Math.sin(i * 2.3) * 3, sk = Math.sin(i * 1.7) * 0.012;
+    const x = X - cx - (Y - YB) * sk, y = Y;
+    let h = null, part = "steel";
+    /* ring handles: two rings below the shanks */
+    for (const s of [-1, 1]) {
+      const d = Math.hypot(x - s * 22, y - (YB + 4));
+      if (d < 19 && d > 11) { h = 7 + Math.sqrt(Math.max(0, 1 - ((d - 15) / 4) ** 2)) * 3; part = "ring"; }
+      /* the shank from the ring's top to the box lock, a flat bar with a rounded top */
+      const [ds] = seg(x, y, s * 16, YB - 14, s * 4, LOCK + 14);
+      if (ds < 6.5 && h === null) { h = 7 + Math.min(1, Math.sqrt(Math.max(0, 1 - (ds / 6.5) ** 2)) * 1.6) * 2.5; }
+      /* the ratchet teeth where the shanks meet below the lock */
+      if (Math.abs(y - (YB - 40)) < 9 && Math.abs(x - s * 13) < 7) { h = 8.5 + (Math.sin(y * 1.6) > 0 ? 1.2 : 0); }
+    }
+    /* the box lock */
+    if (Math.abs(x) < 15 && Math.abs(y - LOCK) < 20) { h = 10.5 + (Math.hypot(x, y - LOCK) < 5 ? 1.8 : 0) - (Math.abs(x) > 12 || Math.abs(y - LOCK) > 17 ? 0.8 : 0); part = "steel"; }
+    /* the jaws, tapered toward the tip, serrated across */
+    const [dj, tj] = seg(x, y, 0, LOCK - 12, 0, TIP);
+    const wj = 11 - 5 * tj;
+    /* the jaws carry a flat face across their width, serrated, with rounded edges that catch the key */
+    if (dj < wj && h === null) { h = 8 + Math.min(1, Math.sqrt(Math.max(0, 1 - (dj / wj) ** 2)) * 1.8) * 2.2 + (Math.sin(y * 2.2) > 0.3 && dj < wj - 2 ? 0.6 : 0); }
+    if (h === null) return null;
+    return { h, gold: i === RANK - 1 };
+  }
+  /* huck weave: raised floats on a diamond, each yarn's thickness and the warp's drift varied so it reads as cloth */
+  const towel = (X, Y) => { const w = TX.simplex2(X * 0.011, Y * 0.011) * 3, u = (X + Y + w) * 0.21, v = (X - Y - w) * 0.21, yarn = 0.8 + 0.4 * TX.simplex2(X * 0.15, Y * 0.15); return 0.08 * yarn * (Math.abs(Math.sin(u)) * Math.abs(Math.sin(v))) + 0.02 * TX.simplex2(X * 0.03, Y * 0.03); };
+  const hit = (X, Y) => { const i = Math.round((X - X0) / PITCH); for (const k of [i - 1, i, i + 1]) { if (k < 0 || k >= UNITS) continue; const c = clamp(X, Y, k); if (c) return c; } return null; };
+  const cx = document.getElementById("art").getContext("2d");
+  const rep = TXBENCH.relief(cx, { x: 0, y: 0, w: 1080, h: 1350, scale: 2,
+    height: (X, Y) => { const c = hit(X, Y); return c ? c.h : towel(X, Y); },
+    material: (X, Y) => { const c = hit(X, Y); return c ? (c.gold ? CH.M.GOLD : CH.M.STEEL) : CH.M.TOWEL; },
+    albedo: CH.albedo, spec: CH.SPEC,
+    ambient: 0.03, diffuse: 1.6, ao: 1.0, shadow: 0.95, softness: 7, castLength: 150 });
+  window.__relief = rep;
+  cx.setTransform(2, 0, 0, 2, 0, 0);
+  CH.post(cx, { a: 0.3, veil: 0.3, footWash: 0.5 });
+  CH.knock(cx, [".tx-site", ".src"], 0.5);
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>
