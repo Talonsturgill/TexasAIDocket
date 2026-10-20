@@ -16150,5 +16150,215 @@
     "note": "Admitted on the published study and the hospital's own account of it. Neither says how widely the cameras have spread since the study period, which ended in September 2023."
    }
   ]
+ },
+ {
+  "title": "Texas A&M researchers find language models trained on junk social media posts start skipping reasoning steps, and better data doesn't fully fix them",
+  "summary": "Texas A&M Engineering reported on October 19th, 2026 that researchers in the Department of Computer Science and Engineering trained four open language models on mixes of junk and control text. The junk came from 1 million public Twitter posts collected in 2010. A junk post was highly engaged and short. The main change in the models was thought skipping, where a model skips steps before it answers. The researchers say later training on higher quality data did not fully restore performance. The paper was accepted to the 2026 Conference on Language Modeling. Larger closed models were not tested.",
+  "topic": "research-and-science",
+  "decider": {
+   "name": "Texas A&M University",
+   "type": "state-agency"
+  },
+  "geography": {
+   "statewide": false,
+   "counties": [
+    "Brazos"
+   ],
+   "on_ercot": false,
+   "metro": "College Station-Bryan, TX"
+  },
+  "status": "decided",
+  "confidence": "high",
+  "key_dates": [
+   {
+    "date": "2026-10-19",
+    "kind": "filed",
+    "note": "Texas A&M Engineering reports the findings"
+   }
+  ],
+  "public_access": {
+   "room": "contact_only",
+   "how": "The findings are described on the university's engineering news page. A research result is not a public proceeding and has no window for comment.",
+   "url": "https://news.engineering.tamu.edu/news/2026/10/19/ai-models-can-get-brain-rot-too/",
+   "closes": null
+  },
+  "claims": [
+   {
+    "text": "Texas A&M computer scientists found that language models trained on junk social media text can degrade.",
+    "verbatim_quote": "Tu, assistant professor in the Department of Computer Science and Engineering at Texas A&M University , found that when large language models (LLMs) train on junk data, they can get brain rot, too.",
+    "source_url": "https://news.engineering.tamu.edu/news/2026/10/19/ai-models-can-get-brain-rot-too/",
+    "source_title": "Texas A&M Engineering News, AI models can get brain rot, too",
+    "source_type": "primary_official",
+    "fetched": "2026-10-20",
+    "id": "tx-2026-0223-c1"
+   },
+   {
+    "text": "The work was accepted to the 2026 Conference on Language Modeling.",
+    "verbatim_quote": "This research was recently accepted to the 2026 Conference on Language Modeling.",
+    "source_url": "https://news.engineering.tamu.edu/news/2026/10/19/ai-models-can-get-brain-rot-too/",
+    "source_title": "Texas A&M Engineering News, AI models can get brain rot, too",
+    "source_type": "primary_official",
+    "fetched": "2026-10-20",
+    "id": "tx-2026-0223-c2"
+   },
+   {
+    "text": "The main change they found was models skipping reasoning steps.",
+    "verbatim_quote": "the main cognitive change in LLMs trained on junk data was thought-skipping, meaning the model will skip steps, or not “think” at all, before providing an answer.",
+    "source_url": "https://news.engineering.tamu.edu/news/2026/10/19/ai-models-can-get-brain-rot-too/",
+    "source_title": "Texas A&M Engineering News, AI models can get brain rot, too",
+    "source_type": "primary_official",
+    "fetched": "2026-10-20",
+    "id": "tx-2026-0223-c3"
+   },
+   {
+    "text": "Training on better data afterward did not fully bring the models back.",
+    "verbatim_quote": "Even after we use some higher quality data to train the model or deploy some techniques to improve the model’s response, it is very hard to recover the model",
+    "source_url": "https://news.engineering.tamu.edu/news/2026/10/19/ai-models-can-get-brain-rot-too/",
+    "source_title": "Texas A&M Engineering News, AI models can get brain rot, too",
+    "source_type": "primary_official",
+    "fetched": "2026-10-20",
+    "id": "tx-2026-0223-c4"
+   },
+   {
+    "text": "The test data was 1 million public Twitter posts collected in 2010.",
+    "verbatim_quote": "the researchers used a dataset of 1 million public Twitter posts collected in 2010 that included engagement data, like the number of retweets.",
+    "source_url": "https://news.engineering.tamu.edu/news/2026/10/19/ai-models-can-get-brain-rot-too/",
+    "source_title": "Texas A&M Engineering News, AI models can get brain rot, too",
+    "source_type": "primary_official",
+    "fetched": "2026-10-20",
+    "id": "tx-2026-0223-c5"
+   },
+   {
+    "text": "A post counted as junk with more than 500 combined likes, retweets or replies and fewer than 30 tokens.",
+    "verbatim_quote": "researchers designated posts as junk if they received more than a combined 500 likes, retweets or replies and contained fewer than 30 tokens.",
+    "source_url": "https://news.engineering.tamu.edu/news/2026/10/19/ai-models-can-get-brain-rot-too/",
+    "source_title": "Texas A&M Engineering News, AI models can get brain rot, too",
+    "source_type": "primary_official",
+    "fetched": "2026-10-20",
+    "id": "tx-2026-0223-c6"
+   },
+   {
+    "text": "Four open models were trained on mixes of junk and control data.",
+    "verbatim_quote": "The four LLMs they selected — Llama3 8B Instruct, Qwen2.5 7B Instruct, Qwen2.5 0.5B Instruct and Qwen3 4B Instruct — are diverse in size and represent different model families.",
+    "source_url": "https://news.engineering.tamu.edu/news/2026/10/19/ai-models-can-get-brain-rot-too/",
+    "source_title": "Texas A&M Engineering News, AI models can get brain rot, too",
+    "source_type": "primary_official",
+    "fetched": "2026-10-20",
+    "id": "tx-2026-0223-c7"
+   },
+   {
+    "text": "The researchers say larger closed models like ChatGPT or Gemini still need testing.",
+    "verbatim_quote": "Testing for brain rot in larger models like ChatGPT or Gemini, which are not open source, is also needed.",
+    "source_url": "https://news.engineering.tamu.edu/news/2026/10/19/ai-models-can-get-brain-rot-too/",
+    "source_title": "Texas A&M Engineering News, AI models can get brain rot, too",
+    "source_type": "primary_official",
+    "fetched": "2026-10-20",
+    "id": "tx-2026-0223-c8"
+   }
+  ],
+  "history": [
+   {
+    "date": "2026-10-20",
+    "note": "Admitted on the university's own account. The release reports no benchmark scores, so the size of the effect isn't stated here."
+   }
+  ],
+  "id": "tx-2026-0223",
+  "last_verified": "2026-10-20"
+ },
+ {
+  "title": "Rice University sets out to hire 40 more AI faculty, for 75 this decade, and to take lab space at The Arc in Houston's Ion District",
+  "summary": "Rice University announced on October 13th, 2026 a universitywide AI initiative. It has hired 35 AI focused faculty in recent years and plans 40 more for a total of 75 this decade. Rice will be a lead tenant in The Arc, a research hub in Houston's Ion District that is scheduled to begin construction this fall and will hold a planned AI Foundry. A Master of Artificial Intelligence program launches in fall 2027. The release names no budget.",
+  "topic": "research-and-science",
+  "decider": {
+   "name": "Rice University",
+   "type": "company"
+  },
+  "geography": {
+   "statewide": false,
+   "counties": [
+    "Harris"
+   ],
+   "on_ercot": true,
+   "metro": "Houston-Pasadena-The Woodlands, TX"
+  },
+  "status": "decided",
+  "confidence": "high",
+  "key_dates": [
+   {
+    "date": "2026-10-13",
+    "kind": "decided",
+    "note": "Rice announces the initiative"
+   }
+  ],
+  "public_access": {
+   "room": "contact_only",
+   "how": "The plan is set out in the university's news release. A private university's hiring plan is not a public proceeding and has no window for comment.",
+   "url": "https://news.rice.edu/news/2026/rice-launches-transformational-ai-initiative-faculty-hiring-new-programs-and-facilities",
+   "closes": null
+  },
+  "claims": [
+   {
+    "text": "Rice is recruiting AI focused faculty across disciplines and investing in a new facility.",
+    "verbatim_quote": "Rice University has launched a transformational universitywide AI initiative to recruit 75 faculty members working across disciplines, invest in a new, state-of-the-art facility that advances research and industry collaboration, and expand AI-related courses and degrees",
+    "source_url": "https://news.rice.edu/news/2026/rice-launches-transformational-ai-initiative-faculty-hiring-new-programs-and-facilities",
+    "source_title": "Rice News, Rice launches transformational AI initiative with faculty hiring, new programs and facilities",
+    "source_type": "primary_official",
+    "fetched": "2026-10-20",
+    "id": "tx-2026-0224-c1"
+   },
+   {
+    "text": "Rice has already hired 35 AI focused faculty in recent years.",
+    "verbatim_quote": "Rice has already recruited 35 faculty members in recent years whose work centers on AI across several schools, marking the halfway point in the faculty hiring effort.",
+    "source_url": "https://news.rice.edu/news/2026/rice-launches-transformational-ai-initiative-faculty-hiring-new-programs-and-facilities",
+    "source_title": "Rice News, Rice launches transformational AI initiative with faculty hiring, new programs and facilities",
+    "source_type": "primary_official",
+    "fetched": "2026-10-20",
+    "id": "tx-2026-0224-c2"
+   },
+   {
+    "text": "Another 40 hires would bring the total this decade to 75.",
+    "verbatim_quote": "An additional 40 faculty will bring the total number of AI-focused faculty hired this decade to 75.",
+    "source_url": "https://news.rice.edu/news/2026/rice-launches-transformational-ai-initiative-faculty-hiring-new-programs-and-facilities",
+    "source_title": "Rice News, Rice launches transformational AI initiative with faculty hiring, new programs and facilities",
+    "source_type": "primary_official",
+    "fetched": "2026-10-20",
+    "id": "tx-2026-0224-c3"
+   },
+   {
+    "text": "The new facility is The Arc in the Ion District, with a planned AI Foundry.",
+    "verbatim_quote": "The Arc will include the planned AI Foundry, a place which is currently being developed where research scientists, industry leaders and partners, postdoctoral scholars and students can collaborate.",
+    "source_url": "https://news.rice.edu/news/2026/rice-launches-transformational-ai-initiative-faculty-hiring-new-programs-and-facilities",
+    "source_title": "Rice News, Rice launches transformational AI initiative with faculty hiring, new programs and facilities",
+    "source_type": "primary_official",
+    "fetched": "2026-10-20",
+    "id": "tx-2026-0224-c4"
+   },
+   {
+    "text": "A Master of Artificial Intelligence program launches in fall 2027.",
+    "verbatim_quote": "In fall 2027, the school will launch a Master of Artificial Intelligence program for recent computer science graduates and working professionals with technical backgrounds.",
+    "source_url": "https://news.rice.edu/news/2026/rice-launches-transformational-ai-initiative-faculty-hiring-new-programs-and-facilities",
+    "source_title": "Rice News, Rice launches transformational AI initiative with faculty hiring, new programs and facilities",
+    "source_type": "primary_official",
+    "fetched": "2026-10-20",
+    "id": "tx-2026-0224-c5"
+   },
+   {
+    "text": "The Arc is scheduled to begin construction this fall, with Rice as a lead tenant.",
+    "verbatim_quote": "The Arc at the Ion District is a nearly 200,000-square-foot research and innovation hub scheduled to begin construction in Houston’s Ion District this fall.",
+    "source_url": "https://news.rice.edu/news/2026/rice-launches-transformational-ai-initiative-faculty-hiring-new-programs-and-facilities",
+    "source_title": "Rice News, Rice launches transformational AI initiative with faculty hiring, new programs and facilities",
+    "source_type": "primary_official",
+    "fetched": "2026-10-20",
+    "id": "tx-2026-0224-c6"
+   }
+  ],
+  "history": [
+   {
+    "date": "2026-10-20",
+    "note": "Admitted on the university's release, which gives no budget and no date for the remaining hires."
+   }
+  ],
+  "id": "tx-2026-0224",
+  "last_verified": "2026-10-20"
  }
 ]
