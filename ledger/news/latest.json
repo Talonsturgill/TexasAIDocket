@@ -1,8 +1,8 @@
 {
   "_spec": 2,
-  "checked_at": "2026-10-20T06:12:32Z",
+  "checked_at": "2026-10-20T12:50:27Z",
   "provider": "Publisher RSS and Atom",
-  "response_sha256": "8865029be4952b9dfe7b7812dcbe313d7ec102176600064ab632d05d12877cb5",
+  "response_sha256": "b8c91a371740a058901741e5b1be5b46e64425566b8483a25c499833ead713cc",
   "articles": [
     {
       "title": "Dallas’ Colossal Biosciences Unveils AI Platform to Help Revive the Dodo Bird",
@@ -68,6 +68,13 @@
       "feed": "https://feeds.texastribune.org/feeds/main/"
     },
     {
+      "title": "Texas data center boom could erase decades of progress on air quality",
+      "url": "https://feeds.texastribune.org/link/16799/17501286/data-centers-texas-air-quality-report-pollution-health-risks",
+      "first_seen_at": "2026-10-20T11:00:00Z",
+      "summary": "A new report warns that the state’s air quality progress could be reversed by the end of the decade, especially if facilities use natural gas power.",
+      "feed": "https://feeds.texastribune.org/feeds/main/"
+    },
+    {
       "title": "LightEdge/Lumen-occupied data center in Austin, Texas, up for sale",
       "url": "https://www.datacenterdynamics.com/en/news/lightedgelumen-occupied-data-center-in-austin-texas-up-for-sale/",
       "first_seen_at": "2026-10-15T08:18:22Z",
@@ -97,146 +104,20 @@
     }
   ],
   "selected": {
-    "title": "DFW Airport Creates New Role to Lead AI Push",
-    "url": "https://dallasinnovates.com/dfw-airport-creates-new-role-to-lead-ai-push/",
-    "first_seen_at": "2026-10-13T20:46:38Z",
-    "summary": "Dallas Fort Worth International Airport is looking for a tech wizard to pilot its AI program — a significant hire in the airport’s quest to further embrace AI. A job posting on DFW Airport’s website said the full-time principal AI lead, a newly created job, will be the airport-wide “strategic and technical authority” on this quickly evolving technology. …",
+    "title": "Dallas Cybersecurity Company Elisity Agrees to $1.3B Acquisition by Quantum Computing Company IonQ",
+    "url": "https://dallasinnovates.com/dallas-cybersecurity-company-elisity-agrees-to-1-3b-acquisition-by-quantum-computing-company-ionq/",
+    "first_seen_at": "2026-10-14T21:31:19Z",
+    "summary": "College Park, Maryland-based quantum computing company IonQ agreed to buy Dallas-based cybersecurity company Elisity in an all-stock deal valued at up to $1.3 billion. Publicly traded IonQ said the acquisition of privately held Elisity would create a broader cybersecurity platform for detecting and combating AI and quantum threats. …",
     "feed": "https://dallasinnovates.com/feed/",
     "publisher": "Dallas Innovates",
     "coverage": 1,
-    "score": 0.011899,
+    "score": 0.020077,
     "priority": 3
   },
-  "expires_at": "2026-10-20T20:46:38Z",
+  "expires_at": "2026-10-21T21:31:19Z",
   "rotation_version": 1,
   "carousel_version": 1,
   "editions": [
-    {
-      "starts_at": "2026-10-20T01:23:00Z",
-      "selected": {
-        "title": "DFW Airport Creates New Role to Lead AI Push",
-        "url": "https://dallasinnovates.com/dfw-airport-creates-new-role-to-lead-ai-push/",
-        "first_seen_at": "2026-10-13T20:46:38Z",
-        "summary": "Dallas Fort Worth International Airport is looking for a tech wizard to pilot its AI program — a significant hire in the airport’s quest to further embrace AI. A job posting on DFW Airport’s website said the full-time principal AI lead, a newly created job, will be the airport-wide “strategic and technical authority” on this quickly evolving technology. …",
-        "feed": "https://dallasinnovates.com/feed/",
-        "publisher": "Dallas Innovates",
-        "coverage": 1,
-        "score": 0.011899,
-        "priority": 3
-      },
-      "stories": [
-        {
-          "title": "DFW Airport Creates New Role to Lead AI Push",
-          "url": "https://dallasinnovates.com/dfw-airport-creates-new-role-to-lead-ai-push/",
-          "first_seen_at": "2026-10-13T20:46:38Z",
-          "summary": "Dallas Fort Worth International Airport is looking for a tech wizard to pilot its AI program — a significant hire in the airport’s quest to further embrace AI. A job posting on DFW Airport’s website said the full-time principal AI lead, a newly created job, will be the airport-wide “strategic and technical authority” on this quickly evolving technology. …",
-          "feed": "https://dallasinnovates.com/feed/",
-          "publisher": "Dallas Innovates",
-          "coverage": 1,
-          "score": 0.011899,
-          "priority": 3
-        },
-        {
-          "title": "Hunt Energy Spinout Watter Puts AI Computing in Hyatt Regency Dallas, Turns Server Heat Into Hot Water",
-          "url": "https://dallasinnovates.com/hunt-energy-spinout-watter-puts-ai-computing-in-hyatt-regency-dallas-turns-server-heat-into-hot-water/",
-          "first_seen_at": "2026-10-15T22:20:40Z",
-          "summary": "Dallas-based AI infrastructure startup Watter just rolled out a waste-heat-to-water platform for commercial buildings. Its first customer: Hyatt Regency Dallas at Reunion Tower. Watter’s hardware captures heat from computer servers inside a commercial building and converts it to hot water for the building. …",
-          "feed": "https://dallasinnovates.com/feed/",
-          "publisher": "Dallas Innovates",
-          "coverage": 1,
-          "score": 0.049801,
-          "priority": 3
-        },
-        {
-          "title": "No Wheel, No Pedals, No Mirrors: Tesla’s Autonomous Cybercab Revs Up for Dallas Debut",
-          "url": "https://dallasinnovates.com/no-wheel-no-pedals-no-mirrors-teslas-autonomous-cybercab-revs-up-for-dallas-debut/",
-          "first_seen_at": "2026-10-15T17:48:51Z",
-          "summary": "Tesla’s autonomous ride-hailing Cybercabs — which aren’t equipped with a steering wheel, accelerator pedal, brake pedal or rearview mirrors — will soon hit the streets of Dallas. In an Oct. 10 post on the X social media platform, Tesla’s vice president of AI software, Ashok Elluswamy, said Cybercabs are coming soon to Dallas. …",
-          "feed": "https://dallasinnovates.com/feed/",
-          "publisher": "Dallas Innovates",
-          "coverage": 1,
-          "score": 0.043693,
-          "priority": 3
-        },
-        {
-          "title": "Dallas’ Colossal Biosciences Unveils AI Platform to Help Revive the Dodo Bird",
-          "url": "https://dallasinnovates.com/dallas-colossal-biosciences-unveils-ai-platform-to-help-revive-the-dodo-bird/",
-          "first_seen_at": "2026-10-14T23:14:19Z",
-          "summary": "Dallas-based de-extinction company Colossal Biosciences unveiled a new AI platform, GenoMorph, on Wednesday to identify gene-editing targets for reviving the extinct dodo bird. Despite limited dodo genomic data, GenoMorph has identified an estimated 2,300 candidate genetic elements that may determine beak size and shape, the company said.…",
-          "feed": "https://dallasinnovates.com/feed/",
-          "publisher": "Dallas Innovates",
-          "coverage": 1,
-          "score": 0.025552,
-          "priority": 3
-        },
-        {
-          "title": "Dallas Cybersecurity Company Elisity Agrees to $1.3B Acquisition by Quantum Computing Company IonQ",
-          "url": "https://dallasinnovates.com/dallas-cybersecurity-company-elisity-agrees-to-1-3b-acquisition-by-quantum-computing-company-ionq/",
-          "first_seen_at": "2026-10-14T21:31:19Z",
-          "summary": "College Park, Maryland-based quantum computing company IonQ agreed to buy Dallas-based cybersecurity company Elisity in an all-stock deal valued at up to $1.3 billion. Publicly traded IonQ said the acquisition of privately held Elisity would create a broader cybersecurity platform for detecting and combating AI and quantum threats. …",
-          "feed": "https://dallasinnovates.com/feed/",
-          "publisher": "Dallas Innovates",
-          "coverage": 1,
-          "score": 0.024316,
-          "priority": 3
-        },
-        {
-          "title": "Patented: Citi’s AI-Generated Suspicious Activity Reports and 105 More Inventions Across North Texas",
-          "url": "https://dallasinnovates.com/patented-citis-ai-generated-suspicious-activity-reports-and-105-more-inventions-across-north-texas/",
-          "first_seen_at": "2026-10-14T20:16:41Z",
-          "summary": "A largely Irving-based team has patented a system that uses AI to help New York-based banking giant Citibank fight financial crime. The company, which has a large corporate office in Las Colinas, received a utility patent for systems and methods to draft suspicious activity reports using large language models.…",
-          "feed": "https://dallasinnovates.com/feed/",
-          "publisher": "Dallas Innovates",
-          "coverage": 1,
-          "score": 0.023458,
-          "priority": 3
-        },
-        {
-          "title": "15,000 Texas voter registrations caught up in backlog after another state software error",
-          "url": "https://www.tpr.org/2026-10-16/15-000-texas-voter-registrations-caught-up-in-backlog-after-another-state-software-error",
-          "first_seen_at": "2026-10-16T20:05:38Z",
-          "summary": "Counties must now process affected voter registrations before Monday, when Texans can start voting early in the midterm elections.",
-          "feed": "https://www.tpr.org/index.rss",
-          "publisher": "Texas Public Radio",
-          "coverage": 1,
-          "score": 0.093334,
-          "priority": 4
-        },
-        {
-          "title": "Stranded natural gas could power offshore data centers",
-          "url": "https://www.datacenterdynamics.com/en/news/stranded-natural-gas-could-power-offshore-data-centers/",
-          "first_seen_at": "2026-10-16T15:10:28Z",
-          "summary": "Houston, Texas, firms form new partnership to put compute at sea",
-          "feed": "https://www.datacenterdynamics.com/en/rss/",
-          "publisher": "Data Center Dynamics",
-          "coverage": 1,
-          "score": 0.080972,
-          "priority": 4
-        },
-        {
-          "title": "In race to lead Texas agriculture department, Sheets and Tucker clash on data centers, credentials",
-          "url": "https://feeds.texastribune.org/link/16799/17498329/texas-election-2026-agriculture-commissioner-nate-sheets-clayton-tucker",
-          "first_seen_at": "2026-10-15T16:54:09Z",
-          "summary": "The race to be the state’s first new agriculture commissioner in more than a decade has turned personal as both men have challenged each other’s ties to farm land.",
-          "feed": "https://feeds.texastribune.org/feeds/main/",
-          "publisher": "The Texas Tribune",
-          "coverage": 1,
-          "score": 0.042558,
-          "priority": 4
-        },
-        {
-          "title": "LightEdge/Lumen-occupied data center in Austin, Texas, up for sale",
-          "url": "https://www.datacenterdynamics.com/en/news/lightedgelumen-occupied-data-center-in-austin-texas-up-for-sale/",
-          "first_seen_at": "2026-10-15T08:18:22Z",
-          "summary": "Fully-leased facility seeks new landlord",
-          "feed": "https://www.datacenterdynamics.com/en/rss/",
-          "publisher": "Data Center Dynamics",
-          "coverage": 1,
-          "score": 0.033201,
-          "priority": 4
-        }
-      ]
-    },
     {
       "starts_at": "2026-10-20T07:23:00Z",
       "selected": {
@@ -247,7 +128,7 @@
         "feed": "https://dallasinnovates.com/feed/",
         "publisher": "Dallas Innovates",
         "coverage": 1,
-        "score": 0.023505,
+        "score": 0.020077,
         "priority": 3
       },
       "stories": [
@@ -259,8 +140,19 @@
           "feed": "https://dallasinnovates.com/feed/",
           "publisher": "Dallas Innovates",
           "coverage": 1,
-          "score": 0.023505,
+          "score": 0.020077,
           "priority": 3
+        },
+        {
+          "title": "Texas data center boom could erase decades of progress on air quality",
+          "url": "https://feeds.texastribune.org/link/16799/17501286/data-centers-texas-air-quality-report-pollution-health-risks",
+          "first_seen_at": "2026-10-20T11:00:00Z",
+          "summary": "A new report warns that the state’s air quality progress could be reversed by the end of the decade, especially if facilities use natural gas power.",
+          "feed": "https://feeds.texastribune.org/feeds/main/",
+          "publisher": "The Texas Tribune",
+          "coverage": 1,
+          "score": 0.948223,
+          "priority": 1
         },
         {
           "title": "Hunt Energy Spinout Watter Puts AI Computing in Hyatt Regency Dallas, Turns Server Heat Into Hot Water",
@@ -270,7 +162,7 @@
           "feed": "https://dallasinnovates.com/feed/",
           "publisher": "Dallas Innovates",
           "coverage": 1,
-          "score": 0.04814,
+          "score": 0.04112,
           "priority": 3
         },
         {
@@ -281,7 +173,7 @@
           "feed": "https://dallasinnovates.com/feed/",
           "publisher": "Dallas Innovates",
           "coverage": 1,
-          "score": 0.042236,
+          "score": 0.036077,
           "priority": 3
         },
         {
@@ -292,7 +184,7 @@
           "feed": "https://dallasinnovates.com/feed/",
           "publisher": "Dallas Innovates",
           "coverage": 1,
-          "score": 0.0247,
+          "score": 0.021098,
           "priority": 3
         },
         {
@@ -303,7 +195,7 @@
           "feed": "https://dallasinnovates.com/feed/",
           "publisher": "Dallas Innovates",
           "coverage": 1,
-          "score": 0.022676,
+          "score": 0.019369,
           "priority": 3
         },
         {
@@ -314,7 +206,7 @@
           "feed": "https://dallasinnovates.com/feed/",
           "publisher": "Dallas Innovates",
           "coverage": 1,
-          "score": 0.011502,
+          "score": 0.009825,
           "priority": 3
         },
         {
@@ -325,7 +217,7 @@
           "feed": "https://www.tpr.org/index.rss",
           "publisher": "Texas Public Radio",
           "coverage": 1,
-          "score": 0.090221,
+          "score": 0.077065,
           "priority": 4
         },
         {
@@ -336,7 +228,7 @@
           "feed": "https://www.datacenterdynamics.com/en/rss/",
           "publisher": "Data Center Dynamics",
           "coverage": 1,
-          "score": 0.078271,
+          "score": 0.066858,
           "priority": 4
         },
         {
@@ -347,18 +239,7 @@
           "feed": "https://feeds.texastribune.org/feeds/main/",
           "publisher": "The Texas Tribune",
           "coverage": 1,
-          "score": 0.041138,
-          "priority": 4
-        },
-        {
-          "title": "LightEdge/Lumen-occupied data center in Austin, Texas, up for sale",
-          "url": "https://www.datacenterdynamics.com/en/news/lightedgelumen-occupied-data-center-in-austin-texas-up-for-sale/",
-          "first_seen_at": "2026-10-15T08:18:22Z",
-          "summary": "Fully-leased facility seeks new landlord",
-          "feed": "https://www.datacenterdynamics.com/en/rss/",
-          "publisher": "Data Center Dynamics",
-          "coverage": 1,
-          "score": 0.032094,
+          "score": 0.035139,
           "priority": 4
         }
       ]
@@ -366,27 +247,27 @@
     {
       "starts_at": "2026-10-20T13:23:00Z",
       "selected": {
-        "title": "LightEdge/Lumen-occupied data center in Austin, Texas, up for sale",
-        "url": "https://www.datacenterdynamics.com/en/news/lightedgelumen-occupied-data-center-in-austin-texas-up-for-sale/",
-        "first_seen_at": "2026-10-15T08:18:22Z",
-        "summary": "Fully-leased facility seeks new landlord",
-        "feed": "https://www.datacenterdynamics.com/en/rss/",
-        "publisher": "Data Center Dynamics",
+        "title": "Texas data center boom could erase decades of progress on air quality",
+        "url": "https://feeds.texastribune.org/link/16799/17501286/data-centers-texas-air-quality-report-pollution-health-risks",
+        "first_seen_at": "2026-10-20T11:00:00Z",
+        "summary": "A new report warns that the state’s air quality progress could be reversed by the end of the decade, especially if facilities use natural gas power.",
+        "feed": "https://feeds.texastribune.org/feeds/main/",
+        "publisher": "The Texas Tribune",
         "coverage": 1,
-        "score": 0.026988,
-        "priority": 4
+        "score": 0.933482,
+        "priority": 1
       },
       "stories": [
         {
-          "title": "LightEdge/Lumen-occupied data center in Austin, Texas, up for sale",
-          "url": "https://www.datacenterdynamics.com/en/news/lightedgelumen-occupied-data-center-in-austin-texas-up-for-sale/",
-          "first_seen_at": "2026-10-15T08:18:22Z",
-          "summary": "Fully-leased facility seeks new landlord",
-          "feed": "https://www.datacenterdynamics.com/en/rss/",
-          "publisher": "Data Center Dynamics",
+          "title": "Texas data center boom could erase decades of progress on air quality",
+          "url": "https://feeds.texastribune.org/link/16799/17501286/data-centers-texas-air-quality-report-pollution-health-risks",
+          "first_seen_at": "2026-10-20T11:00:00Z",
+          "summary": "A new report warns that the state’s air quality progress could be reversed by the end of the decade, especially if facilities use natural gas power.",
+          "feed": "https://feeds.texastribune.org/feeds/main/",
+          "publisher": "The Texas Tribune",
           "coverage": 1,
-          "score": 0.026988,
-          "priority": 4
+          "score": 0.933482,
+          "priority": 1
         },
         {
           "title": "Hunt Energy Spinout Watter Puts AI Computing in Hyatt Regency Dallas, Turns Server Heat Into Hot Water",
@@ -515,6 +396,17 @@
           "priority": 4
         },
         {
+          "title": "Texas data center boom could erase decades of progress on air quality",
+          "url": "https://feeds.texastribune.org/link/16799/17501286/data-centers-texas-air-quality-report-pollution-health-risks",
+          "first_seen_at": "2026-10-20T11:00:00Z",
+          "summary": "A new report warns that the state’s air quality progress could be reversed by the end of the decade, especially if facilities use natural gas power.",
+          "feed": "https://feeds.texastribune.org/feeds/main/",
+          "publisher": "The Texas Tribune",
+          "coverage": 1,
+          "score": 0.784962,
+          "priority": 1
+        },
+        {
           "title": "Hunt Energy Spinout Watter Puts AI Computing in Hyatt Regency Dallas, Turns Server Heat Into Hot Water",
           "url": "https://dallasinnovates.com/hunt-energy-spinout-watter-puts-ai-computing-in-hyatt-regency-dallas-turns-server-heat-into-hot-water/",
           "first_seen_at": "2026-10-15T22:20:40Z",
@@ -601,7 +493,23 @@
           "coverage": 1,
           "score": 0.055346,
           "priority": 4
-        },
+        }
+      ]
+    },
+    {
+      "starts_at": "2026-10-21T01:23:00Z",
+      "selected": {
+        "title": "LightEdge/Lumen-occupied data center in Austin, Texas, up for sale",
+        "url": "https://www.datacenterdynamics.com/en/news/lightedgelumen-occupied-data-center-in-austin-texas-up-for-sale/",
+        "first_seen_at": "2026-10-15T08:18:22Z",
+        "summary": "Fully-leased facility seeks new landlord",
+        "feed": "https://www.datacenterdynamics.com/en/rss/",
+        "publisher": "Data Center Dynamics",
+        "coverage": 1,
+        "score": 0.019083,
+        "priority": 4
+      },
+      "stories": [
         {
           "title": "LightEdge/Lumen-occupied data center in Austin, Texas, up for sale",
           "url": "https://www.datacenterdynamics.com/en/news/lightedgelumen-occupied-data-center-in-austin-texas-up-for-sale/",
@@ -610,18 +518,112 @@
           "feed": "https://www.datacenterdynamics.com/en/rss/",
           "publisher": "Data Center Dynamics",
           "coverage": 1,
-          "score": 0.022694,
+          "score": 0.019083,
+          "priority": 4
+        },
+        {
+          "title": "Texas data center boom could erase decades of progress on air quality",
+          "url": "https://feeds.texastribune.org/link/16799/17501286/data-centers-texas-air-quality-report-pollution-health-risks",
+          "first_seen_at": "2026-10-20T11:00:00Z",
+          "summary": "A new report warns that the state’s air quality progress could be reversed by the end of the decade, especially if facilities use natural gas power.",
+          "feed": "https://feeds.texastribune.org/feeds/main/",
+          "publisher": "The Texas Tribune",
+          "coverage": 1,
+          "score": 0.660072,
+          "priority": 1
+        },
+        {
+          "title": "Hunt Energy Spinout Watter Puts AI Computing in Hyatt Regency Dallas, Turns Server Heat Into Hot Water",
+          "url": "https://dallasinnovates.com/hunt-energy-spinout-watter-puts-ai-computing-in-hyatt-regency-dallas-turns-server-heat-into-hot-water/",
+          "first_seen_at": "2026-10-15T22:20:40Z",
+          "summary": "Dallas-based AI infrastructure startup Watter just rolled out a waste-heat-to-water platform for commercial buildings. Its first customer: Hyatt Regency Dallas at Reunion Tower. Watter’s hardware captures heat from computer servers inside a commercial building and converts it to hot water for the building. …",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.028624,
+          "priority": 3
+        },
+        {
+          "title": "No Wheel, No Pedals, No Mirrors: Tesla’s Autonomous Cybercab Revs Up for Dallas Debut",
+          "url": "https://dallasinnovates.com/no-wheel-no-pedals-no-mirrors-teslas-autonomous-cybercab-revs-up-for-dallas-debut/",
+          "first_seen_at": "2026-10-15T17:48:51Z",
+          "summary": "Tesla’s autonomous ride-hailing Cybercabs — which aren’t equipped with a steering wheel, accelerator pedal, brake pedal or rearview mirrors — will soon hit the streets of Dallas. In an Oct. 10 post on the X social media platform, Tesla’s vice president of AI software, Ashok Elluswamy, said Cybercabs are coming soon to Dallas. …",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.025114,
+          "priority": 3
+        },
+        {
+          "title": "Dallas’ Colossal Biosciences Unveils AI Platform to Help Revive the Dodo Bird",
+          "url": "https://dallasinnovates.com/dallas-colossal-biosciences-unveils-ai-platform-to-help-revive-the-dodo-bird/",
+          "first_seen_at": "2026-10-14T23:14:19Z",
+          "summary": "Dallas-based de-extinction company Colossal Biosciences unveiled a new AI platform, GenoMorph, on Wednesday to identify gene-editing targets for reviving the extinct dodo bird. Despite limited dodo genomic data, GenoMorph has identified an estimated 2,300 candidate genetic elements that may determine beak size and shape, the company said.…",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.014687,
+          "priority": 3
+        },
+        {
+          "title": "Dallas Cybersecurity Company Elisity Agrees to $1.3B Acquisition by Quantum Computing Company IonQ",
+          "url": "https://dallasinnovates.com/dallas-cybersecurity-company-elisity-agrees-to-1-3b-acquisition-by-quantum-computing-company-ionq/",
+          "first_seen_at": "2026-10-14T21:31:19Z",
+          "summary": "College Park, Maryland-based quantum computing company IonQ agreed to buy Dallas-based cybersecurity company Elisity in an all-stock deal valued at up to $1.3 billion. Publicly traded IonQ said the acquisition of privately held Elisity would create a broader cybersecurity platform for detecting and combating AI and quantum threats. …",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.013976,
+          "priority": 3
+        },
+        {
+          "title": "Patented: Citi’s AI-Generated Suspicious Activity Reports and 105 More Inventions Across North Texas",
+          "url": "https://dallasinnovates.com/patented-citis-ai-generated-suspicious-activity-reports-and-105-more-inventions-across-north-texas/",
+          "first_seen_at": "2026-10-14T20:16:41Z",
+          "summary": "A largely Irving-based team has patented a system that uses AI to help New York-based banking giant Citibank fight financial crime. The company, which has a large corporate office in Las Colinas, received a utility patent for systems and methods to draft suspicious activity reports using large language models.…",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.013483,
+          "priority": 3
+        },
+        {
+          "title": "15,000 Texas voter registrations caught up in backlog after another state software error",
+          "url": "https://www.tpr.org/2026-10-16/15-000-texas-voter-registrations-caught-up-in-backlog-after-another-state-software-error",
+          "first_seen_at": "2026-10-16T20:05:38Z",
+          "summary": "Counties must now process affected voter registrations before Monday, when Texans can start voting early in the midterm elections.",
+          "feed": "https://www.tpr.org/index.rss",
+          "publisher": "Texas Public Radio",
+          "coverage": 1,
+          "score": 0.053646,
+          "priority": 4
+        },
+        {
+          "title": "Stranded natural gas could power offshore data centers",
+          "url": "https://www.datacenterdynamics.com/en/news/stranded-natural-gas-could-power-offshore-data-centers/",
+          "first_seen_at": "2026-10-16T15:10:28Z",
+          "summary": "Houston, Texas, firms form new partnership to put compute at sea",
+          "feed": "https://www.datacenterdynamics.com/en/rss/",
+          "publisher": "Data Center Dynamics",
+          "coverage": 1,
+          "score": 0.04654,
+          "priority": 4
+        },
+        {
+          "title": "In race to lead Texas agriculture department, Sheets and Tucker clash on data centers, credentials",
+          "url": "https://feeds.texastribune.org/link/16799/17498329/texas-election-2026-agriculture-commissioner-nate-sheets-clayton-tucker",
+          "first_seen_at": "2026-10-15T16:54:09Z",
+          "summary": "The race to be the state’s first new agriculture commissioner in more than a decade has turned personal as both men have challenged each other’s ties to farm land.",
+          "feed": "https://feeds.texastribune.org/feeds/main/",
+          "publisher": "The Texas Tribune",
+          "coverage": 1,
+          "score": 0.024461,
           "priority": 4
         }
       ]
     }
   ],
   "history": [
-    {
-      "url": "https://dallasinnovates.com/dallas-southwest-airlines-launches-chatgpt-plugin-to-help-customers-find-flights/",
-      "title": "Dallas’ Southwest Airlines Launches ChatGPT Plugin to Help Customers Find Flights",
-      "shown_at": "2026-10-13T07:23:00Z"
-    },
     {
       "url": "https://dallasinnovates.com/patented-lennoxs-machine-learning-thermostat-scheduling-and-105-more-inventions-across-north-texas/",
       "title": "Patented: Lennox’s Machine-Learning Thermostat Scheduling and 105 More Inventions Across North Texas",
@@ -771,22 +773,31 @@
       "url": "https://dallasinnovates.com/dfw-airport-creates-new-role-to-lead-ai-push/",
       "title": "DFW Airport Creates New Role to Lead AI Push",
       "shown_at": "2026-10-20T01:23:00Z"
+    },
+    {
+      "url": "https://dallasinnovates.com/dallas-cybersecurity-company-elisity-agrees-to-1-3b-acquisition-by-quantum-computing-company-ionq/",
+      "title": "Dallas Cybersecurity Company Elisity Agrees to $1.3B Acquisition by Quantum Computing Company IonQ",
+      "shown_at": "2026-10-20T07:23:00Z"
     }
   ],
   "feeds": [
     {
       "url": "https://dallasinnovates.com/feed/",
-      "status": "not_modified"
+      "status": "ok",
+      "items": 20,
+      "sha256": "033482ce8da7f4a4b9e871cae68a1519c18205d2f60b0032e1cfe19ae567bca5"
     },
     {
       "url": "https://feeds.texastribune.org/feeds/main/",
       "status": "ok",
       "items": 20,
-      "sha256": "a4fe8c76a042687c9a72d1e867e927762135da3778c55d09ddeda4d6ed916109"
+      "sha256": "02fcb6cc2d8ef7aeee29ce2e401c4f5e5b913dd9c9346dd53bf1e69eb83d5728"
     },
     {
       "url": "https://www.datacenterdynamics.com/en/rss/",
-      "status": "not_modified"
+      "status": "ok",
+      "items": 20,
+      "sha256": "ab5084cd98d6f43df0e731cdf46f844245d3240d5149c340ec0611d917eb3f9d"
     },
     {
       "url": "https://news.mit.edu/rss/topic/artificial-intelligence2",
@@ -798,13 +809,11 @@
       "url": "https://openai.com/news/rss.xml",
       "status": "ok",
       "items": 1300,
-      "sha256": "6a039dd02105053b09cf777bb6e548dc6c67334a9bb81d6bcc9464f71c57f12e"
+      "sha256": "27bb848c5f3ae15a66efb691328995069853801cca5c0330865ad8d5e3d62734"
     },
     {
       "url": "https://blogs.nvidia.com/feed/",
-      "status": "ok",
-      "items": 18,
-      "sha256": "f2b34194b1308e1a39eef9d971140d4189784bcfa0c0d0a881e2e828214a6fb1"
+      "status": "not_modified"
     },
     {
       "url": "https://blog.google/technology/ai/rss/",
@@ -816,22 +825,23 @@
       "url": "https://siliconangle.com/feed/",
       "status": "ok",
       "items": 30,
-      "sha256": "4298335014f20c894b55528c59cfaf1da7977041e5441c4e9623e39b74e00bd4"
+      "sha256": "0ca4f9ffe7b791ae0b984d686e309db3aca556312d80025fd5a738f326ccd66c"
     },
     {
       "url": "https://www.artificialintelligence-news.com/feed/",
-      "status": "backoff",
-      "retry_at": "2026-10-20T06:24:15Z"
+      "status": "unavailable",
+      "retry_at": "2026-10-21T12:50:23Z",
+      "reason": "syntax error: line 1, column 0"
     },
     {
       "url": "https://www.geekwire.com/tag/artificial-intelligence/feed/",
-      "status": "ok",
-      "items": 35,
-      "sha256": "e37eb6159b4914aad739b9bb7ec92bac0420e084dd6257e84ebfa76d77df66ba"
+      "status": "not_modified"
     },
     {
       "url": "https://www.techspot.com/backend.xml",
-      "status": "not_modified"
+      "status": "ok",
+      "items": 30,
+      "sha256": "c715955b86bfd46128cc5802469434adfb16599ceec1899f86e846de6492f034"
     },
     {
       "url": "https://www.sciencedaily.com/rss/computers_math/artificial_intelligence.xml",
@@ -850,97 +860,97 @@
   ],
   "feed_state": {
     "https://dallasinnovates.com/feed/": {
-      "etag": "\"3e49816abc22481edc159bfb3039eeda\"",
-      "last_modified": "Mon, 19 Oct 2026 16:01:14 GMT",
-      "failures": 0,
-      "ok_at": "2026-10-20T06:12:30Z",
-      "sha256": "36962115c8bbb9f82aabc8917aa09cd3a4ec8ba1603a0766f369bf15fa352cca",
-      "parser_version": 2
-    },
-    "https://feeds.texastribune.org/feeds/main/": {
-      "ok_at": "2026-10-20T06:12:30Z",
+      "ok_at": "2026-10-20T12:50:23Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "a4fe8c76a042687c9a72d1e867e927762135da3778c55d09ddeda4d6ed916109",
-      "etag": "\"6ad6f120-a2e0\"",
-      "last_modified": "Tue, 20 Oct 2026 04:42:08 GMT"
+      "sha256": "033482ce8da7f4a4b9e871cae68a1519c18205d2f60b0032e1cfe19ae567bca5",
+      "etag": "\"2217fd45d298bc8937ee7b03faa49969\"",
+      "last_modified": "Tue, 20 Oct 2026 12:06:40 GMT"
+    },
+    "https://feeds.texastribune.org/feeds/main/": {
+      "ok_at": "2026-10-20T12:50:23Z",
+      "failures": 0,
+      "parser_version": 2,
+      "sha256": "02fcb6cc2d8ef7aeee29ce2e401c4f5e5b913dd9c9346dd53bf1e69eb83d5728",
+      "etag": "\"6ad7624b-a034\"",
+      "last_modified": "Tue, 20 Oct 2026 12:44:59 GMT"
     },
     "https://www.datacenterdynamics.com/en/rss/": {
-      "last_modified": "Mon, 19 Oct 2026 16:32:32 GMT",
+      "ok_at": "2026-10-20T12:50:23Z",
       "failures": 0,
-      "ok_at": "2026-10-20T06:12:30Z",
-      "sha256": "521e2003d08ae6c145e75dc12240262d52a3848efbf9e3b3aaf31a680762860c",
-      "parser_version": 2
+      "parser_version": 2,
+      "sha256": "ab5084cd98d6f43df0e731cdf46f844245d3240d5149c340ec0611d917eb3f9d",
+      "last_modified": "Tue, 20 Oct 2026 12:47:24 GMT"
     },
     "https://news.mit.edu/rss/topic/artificial-intelligence2": {
-      "ok_at": "2026-10-20T06:12:30Z",
+      "ok_at": "2026-10-20T12:50:23Z",
       "failures": 0,
       "parser_version": 2,
       "sha256": "358cc840aea4f2ecb70681a52e777bb3225618a2ae4a5a5b9e4c65860ebd5e73",
-      "etag": "\"1792476594\"",
-      "last_modified": "Tue, 20 Oct 2026 06:09:54 GMT"
+      "etag": "\"1792499134\"",
+      "last_modified": "Tue, 20 Oct 2026 12:25:34 GMT"
     },
     "https://openai.com/news/rss.xml": {
-      "ok_at": "2026-10-20T06:12:30Z",
+      "ok_at": "2026-10-20T12:50:23Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "6a039dd02105053b09cf777bb6e548dc6c67334a9bb81d6bcc9464f71c57f12e"
+      "sha256": "27bb848c5f3ae15a66efb691328995069853801cca5c0330865ad8d5e3d62734"
     },
     "https://blogs.nvidia.com/feed/": {
-      "ok_at": "2026-10-20T06:12:30Z",
-      "failures": 0,
-      "parser_version": 2,
-      "sha256": "f2b34194b1308e1a39eef9d971140d4189784bcfa0c0d0a881e2e828214a6fb1",
       "etag": "\"1837c88d203477efefc8d3cd095135e2-gzip\"",
-      "last_modified": "Tue, 20 Oct 2026 05:00:00 GMT"
+      "last_modified": "Tue, 20 Oct 2026 05:00:00 GMT",
+      "failures": 0,
+      "ok_at": "2026-10-20T12:50:23Z",
+      "sha256": "f2b34194b1308e1a39eef9d971140d4189784bcfa0c0d0a881e2e828214a6fb1",
+      "parser_version": 2
     },
     "https://blog.google/technology/ai/rss/": {
-      "ok_at": "2026-10-20T06:12:30Z",
+      "ok_at": "2026-10-20T12:50:23Z",
       "failures": 0,
       "parser_version": 2,
       "sha256": "4ca4a11170d948e92b9abb8d8afd729bd9e46b89fbf611064691ecdddc4543c1"
     },
     "https://siliconangle.com/feed/": {
-      "ok_at": "2026-10-20T06:12:30Z",
+      "ok_at": "2026-10-20T12:50:23Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "4298335014f20c894b55528c59cfaf1da7977041e5441c4e9623e39b74e00bd4",
-      "etag": "\"cfce0b8214dbe778e20ec6909b219586\"",
-      "last_modified": "Tue, 20 Oct 2026 02:48:14 GMT"
+      "sha256": "0ca4f9ffe7b791ae0b984d686e309db3aca556312d80025fd5a738f326ccd66c",
+      "etag": "\"bf693258d5b91ced5a8826cd181e9f38\"",
+      "last_modified": "Tue, 20 Oct 2026 12:01:59 GMT"
     },
     "https://www.artificialintelligence-news.com/feed/": {
       "etag": "\"cd8cbe1fef0e10c2eef0af3ac2847598\"",
       "last_modified": "Thu, 24 Sep 2026 16:09:03 GMT",
-      "retry_at": "2026-10-20T06:24:15Z",
+      "retry_at": "2026-10-21T12:50:23Z",
       "failures": 8,
       "ok_at": "2026-09-25T06:15:30Z",
       "sha256": "5bc540c61a29cba5c140f729db0c656d52d41094c41b3832c30ed97cb3880e10",
       "parser_version": 2
     },
     "https://www.geekwire.com/tag/artificial-intelligence/feed/": {
-      "ok_at": "2026-10-20T06:12:30Z",
-      "failures": 0,
-      "parser_version": 2,
-      "sha256": "e37eb6159b4914aad739b9bb7ec92bac0420e084dd6257e84ebfa76d77df66ba",
       "etag": "W/\"efc6f00b83c3dec9663881d59e2aae67\"",
-      "last_modified": "Tue, 20 Oct 2026 01:34:28 GMT"
+      "last_modified": "Tue, 20 Oct 2026 01:34:28 GMT",
+      "failures": 0,
+      "ok_at": "2026-10-20T12:50:23Z",
+      "sha256": "e37eb6159b4914aad739b9bb7ec92bac0420e084dd6257e84ebfa76d77df66ba",
+      "parser_version": 2
     },
     "https://www.techspot.com/backend.xml": {
-      "etag": "W/\"82e069f66c61c8df810405e4cfd7b57e\"",
+      "ok_at": "2026-10-20T12:50:23Z",
       "failures": 0,
-      "ok_at": "2026-10-20T06:12:30Z",
-      "sha256": "8e18e8aa88b0243fd61d8ba8c0272bfcbe26ea22349874182eae0f69b9485d0e",
-      "parser_version": 2
+      "parser_version": 2,
+      "sha256": "c715955b86bfd46128cc5802469434adfb16599ceec1899f86e846de6492f034",
+      "etag": "W/\"75fc6d83f723d70e3759d144fbd38be9\""
     },
     "https://www.sciencedaily.com/rss/computers_math/artificial_intelligence.xml": {
       "last_modified": "Mon, 19 Oct 2026 13:28:46 GMT",
       "failures": 0,
-      "ok_at": "2026-10-20T06:12:30Z",
+      "ok_at": "2026-10-20T12:50:23Z",
       "sha256": "3f30074de3dc421936366bb5b1490294aa9c060fbc7f95617a57b2354a42a461",
       "parser_version": 2
     },
     "https://www.tpr.org/index.rss": {
-      "ok_at": "2026-10-20T06:12:30Z",
+      "ok_at": "2026-10-20T12:50:23Z",
       "failures": 0,
       "parser_version": 2,
       "sha256": "7e57895bfea8ca988b0bee02360abab834cd00bb7ca96da9d00d1c40a91bb4f2"
@@ -949,7 +959,7 @@
       "etag": "W/\"dc37e78c57c0e4cd41eb9be14125e3bf\"",
       "last_modified": "Mon, 19 Oct 2026 21:24:17 GMT",
       "failures": 0,
-      "ok_at": "2026-10-20T06:12:30Z",
+      "ok_at": "2026-10-20T12:50:23Z",
       "sha256": "c777bb1bbaf527494297f9a6926fcf7c994c25faf54b0a8b3fad55232dfc617c",
       "parser_version": 2
     }
