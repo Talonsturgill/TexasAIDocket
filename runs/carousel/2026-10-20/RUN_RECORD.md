@@ -52,6 +52,32 @@ the 17th and 18th), the Harris County plate reader working group and the Comptro
 only, and plate readers ran on October 1st), Plano's AI purchase (journalism only, no outcome), Zipline in Round
 Rock (the same company over the same metros as no. 33).
 
+## The deck
+
+- **Directors and plan.** Nine dossiers, CRAFT PLAN, continuity CAMERA_MOVE, MOTIF_EVOLUTION and VALUE_ARC, VALUE
+  CUT at frame 7. Scales from figures.json: one sterile container end per case (339 in steel, 25 more in gold),
+  one taped bay per case of the interval's high end (41, a white stripe to 8.3), one clamp per unit of the placebo
+  test (11, the second gold), four cameras per room.
+- **The audition, and what it cost.** The art director needed five readings before accepting 1, 4 and 9, and a
+  sixth after the pixel and flow repairs moved the chassis. Causes found and fixed: TXT.interior's back wall is
+  0.2 m thick and centred on its nominal plane, so a board placed there vanished; the lit back wall behind the
+  container wall read as an extruded slab, cured by taking the room out of the pool; the close was reshot twice,
+  first without the worker, then close on the container; the sterile container read as a toy suitcase until it was
+  rebuilt in the chassis with a gasket, perforated filter plates, bail handles, latches and a separate tamper tag;
+  coplanar card parts z-fought into slivers on the instanced wall.
+- **Pixel review** (two rounds, smaller tier). Round 1 returned all nine revise and round 2 cleared 01 only.
+  Summaries in `runs/carousel/2026-10-20/reviews/pixel_round1.md`. Named holdouts after round 2: 02's footer
+  crossing (fixed in the flow repairs), 03 and 04's even light (a raking flood added), 05's stripe contrast and
+  vinyl, 06's towel, 07's kit figure (cut), 08's grey page and 09's empty middle band.
+- **One flow pass** predicted art 6.0, weakest 7, 8, 5, 2, 3, 6, 4, and named a one-skeleton type layout on all nine
+  frames. Repairs, one each: 07 cut the figure and brought the camera near on a boom arm, turned on the board; 08
+  ended the page above the footer as the one bright object on near black steel; 05 staged the lids in the key's
+  pool; 02 lifted the model off the footer and modelled each camera from above; 03 and 04 took a raking flood from
+  the left; 06 a finer, quieter weave and a harder key; 09 pulled back to the whole container with its contact and a
+  tile wainscot washed behind it. **Not done**: the type skeleton is unchanged on all nine frames, and the gold on
+  frame 9 is not explained on that frame. The pixel critics rechecked the changed frames: 02 to 05, 07 and 08 ship,
+  06 and 09 named one non-blocking defect each, both then repaired.
+
 ## Discoverability signoff
 
 Read on a temp-dir build of the record as it stands after today's three admissions (`site_build --out
