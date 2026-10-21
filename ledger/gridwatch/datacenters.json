@@ -1,8 +1,8 @@
 {
  "_spec": 1,
- "read": "2026-10-20",
+ "read": "2026-10-21",
  "source": "https://comptroller.texas.gov/taxes/data-centers/data-center-lists.php",
- "digest": "e87775cd391c882e",
+ "digest": "4a991db959640d88",
  "facilities": [
   {
    "name": "NADC",
@@ -2176,6 +2176,20 @@
    ],
    "operators": [
     "Vanguard US Serviceco, LLC"
+   ]
+  },
+  {
+   "name": "HEL05",
+   "effective": "2026-08-21",
+   "owners": [
+    "Galaxy Helios III LLC"
+   ],
+   "occupants": [
+    "Coreweave, Inc."
+   ],
+   "operators": [
+    "Coreweave, Inc.",
+    "Galaxy Power, LLC"
    ]
   },
   {
