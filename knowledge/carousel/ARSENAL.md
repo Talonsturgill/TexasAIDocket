@@ -18,7 +18,7 @@
 | world presets | 8 |
 | kit models | 120 in 10 families |
 | asset libraries | 22 |
-| carousel and shared tools | 75 |
+| carousel and shared tools | 77 |
 | record and site tools the routine names | 20 |
 | agents | 11 |
 | knowledge files | 42 |
@@ -474,6 +474,8 @@ Run every gate by EXIT CODE, never by reading the last line. **Wired** says what
 | `scripts/shared/fetch_doc.py` | fetch a web document into the run's own scratch and read its text. | <url> --name --date --chars --self-test | CI self-test | context |
 | `scripts/shared/gen_port_manifest.py` | enumerate every file in the sibling machines and route it. | --out --refresh |  |  |
 | `scripts/shared/guards_local.py` | run what CI runs, here, before pushing. | --fast --only --list --strict --verdict --self-test | CI self-test | 0, 18 |
+| `scripts/shared/guards_remote.py` | Run the complete local guard runner on its finite, durable GitHub executor. | --repo --retry-run |  |  |
+| `scripts/shared/guards_remote_test.py` | Offline transport tests around an actual completed full-runner fixture verdict. |  |  |  |
 | `scripts/shared/guards_shape.py` | the guard workflow's own wiring, checked rather than remembered. | --self-test | CI |  |
 | `scripts/shared/lesson_refs.py` | the lesson a citation points at is the lesson it names. | --root --self-test | CI |  |
 | `scripts/shared/livecheck.py` | the published site answers, checked against the published site. | --url --self-test | CI self-test |  |
