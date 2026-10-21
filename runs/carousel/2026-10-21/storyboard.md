@@ -525,8 +525,7 @@ type:
   labels: []
 
 verbatim:
-  - claim: c20
-    text: "Opus interprets legacy designs and automates manufacturing and inspection"
+  - c20: "Opus interprets legacy designs and automates manufacturing and inspection"
 
 acceptance:
   - "the sheet spans at least 700 px of the frame width and its three views are distinguishable at 432 px"
@@ -582,8 +581,7 @@ type:
   labels: []
 
 verbatim:
-  - claim: c16
-    text: "the automation, software and workforce training from our own factories directly inside Lockheed Martin"
+  - c16: "the automation, software and workforce training from our own factories directly inside Lockheed Martin"
 
 acceptance:
   - "the pendant spans at least 420 px of the frame width, and a frame with no pendant fails"
