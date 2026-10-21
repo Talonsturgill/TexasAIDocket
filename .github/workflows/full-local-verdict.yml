@@ -1,0 +1,117 @@
+name: Full local verdict
+run-name: Full local verdict for ${{ inputs.candidate_sha }}
+
+# Execute the unchanged full local runner on a durable, finite host. This is additional
+# evidence, not a projection of the six guard jobs into a fabricated local verdict.
+on:
+  workflow_dispatch:
+    inputs:
+      candidate_sha:
+        description: Exact committed candidate that must earn the full atomic verdict
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: full-local-verdict-${{ inputs.candidate_sha }}
+  cancel-in-progress: false
+
+jobs:
+  full-local-verdict:
+    runs-on: ubuntu-latest
+    timeout-minutes: 240
+    env:
+      CANDIDATE_SHA: ${{ inputs.candidate_sha }}
+    steps:
+      - name: Validate the immutable candidate input
+        shell: bash
+        run: '[[ "$CANDIDATE_SHA" =~ ^[0-9a-f]{40}$ ]]'
+
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.candidate_sha }}
+          fetch-depth: 0
+          persist-credentials: false
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+          cache-dependency-path: |
+            requirements.txt
+            requirements-ci.txt
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+          cache: npm
+
+      - uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: pw-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+
+      - name: Prepare the same pinned guard environment
+        timeout-minutes: 15
+        run: |
+          python -m pip install --quiet --no-deps --requirement requirements-ci.txt
+          npm ci --ignore-scripts --no-audit --no-fund
+          npx --no-install playwright install chromium
+          git config user.name 'Talon Sturgill'
+          git config user.email 'Talon.sturgill@gmail.com'
+          git config core.hooksPath .githooks
+          test "$(git rev-parse HEAD)" = "$CANDIDATE_SHA"
+          test -z "$(git status --porcelain --untracked-files=all)"
+
+      - name: Execute every full-runner step and its actual atomic verdict
+        shell: bash
+        run: |
+          mkdir -p out/gates
+          set +e
+          python3 -u scripts/shared/guards_local.py > out/gates/full-run.log 2>&1
+          suite_rc=$?
+          python3 scripts/shared/guards_local.py --verdict > out/gates/full-verdict.txt 2>&1
+          verdict_rc=$?
+          set -e
+          export FULL_SUITE_EXIT="$suite_rc" FULL_VERDICT_EXIT="$verdict_rc"
+          python3 - <<'PY'
+          import hashlib, json, os, pathlib, subprocess
+          root = pathlib.Path('out/gates')
+          files = {}
+          for name in ('verdict.json', 'full-run.log', 'full-verdict.txt'):
+              path = root / name
+              if path.is_file():
+                  files[name] = {'sha256': hashlib.sha256(path.read_bytes()).hexdigest(),
+                                 'bytes': path.stat().st_size}
+          receipt = {'schema': 'docket_full_local_execution/1',
+                     'candidate_sha': os.environ['CANDIDATE_SHA'],
+                     'checkout_sha': subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip(),
+                     'workflow_sha': os.environ['GITHUB_SHA'],
+                     'workflow_ref': os.environ['GITHUB_WORKFLOW_REF'],
+                     'run_id': os.environ['GITHUB_RUN_ID'],
+                     'run_attempt': os.environ['GITHUB_RUN_ATTEMPT'],
+                     'suite_exit': int(os.environ['FULL_SUITE_EXIT']),
+                     'verdict_exit': int(os.environ['FULL_VERDICT_EXIT']),
+                     'files': files}
+          (root / 'execution.json').write_text(json.dumps(receipt, indent=2) + '\n')
+          PY
+          cat out/gates/full-verdict.txt
+          test "$suite_rc" -eq 0
+          test "$verdict_rc" -eq 0
+          test "$(git rev-parse HEAD)" = "$CANDIDATE_SHA"
+          test -z "$(git status --porcelain --untracked-files=all)"
+
+      - name: Retain exact completed or failed execution evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: full-local-${{ inputs.candidate_sha }}
+          path: |
+            out/gates/verdict.json
+            out/gates/full-run.log
+            out/gates/full-verdict.txt
+            out/gates/execution.json
+          if-no-files-found: error
+          retention-days: 30

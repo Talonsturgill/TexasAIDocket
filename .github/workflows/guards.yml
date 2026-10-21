@@ -235,6 +235,7 @@ jobs:
         run: |
           git config core.hooksPath .githooks
           python3 scripts/shared/guards_local.py --self-test
+          python3 -m unittest discover -s scripts/shared -p guards_remote_test.py
 
       # THE RESEARCHED DOSSIERS. Every figure is a field with a source and prose is forbidden a
       # digit, which is the only shape in which hand research can satisfy the compute-not-generate

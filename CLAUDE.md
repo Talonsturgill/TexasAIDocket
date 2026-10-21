@@ -1022,6 +1022,23 @@ once" for a big file. `out/<run>/tmp/` takes big files.
   branch, a verdict from before your last edit and a `--fast` verdict all exit non-zero and say
   which one they are. There is no state a half-finished run can leave that reads as green.
   Its `--self-test` walks all of them and CI runs it. GATE_LESSONS 69.
+
+  **A durable host for the same full runner.** When an ephemeral Claude worker or its native
+  command deadline prevents completion, use `.github/workflows/full-local-verdict.yml` with
+  the exact committed `candidate_sha`. It executes the unchanged full runner and its real
+  `--verdict` in one finite GitHub Actions job. Keep the six ordinary exact-head CI jobs too.
+  This route does not derive a verdict from those jobs or waive any runner step. Reuse an
+  existing matching execution instead of dispatching a duplicate. Before accepting its artifact,
+  verify the successful GitHub run, approved workflow revision, candidate and checkout SHA,
+  both recorded exit codes, and all artifact hashes. The original atomic verdict must bind
+  that unchanged candidate and full invocation. Retain incomplete and failed evidence as such.
+  Import the byte-identical verdict only into the same clean candidate's ignored `out/gates/`
+  and run `guards_local.py --verdict` there too. Name GitHub Actions as the execution host;
+  never claim the interrupted Claude process finished. This remains a pre-merge check.
+  `python3 scripts/shared/guards_remote.py --repo <unchanged-candidate>` implements this
+  handoff. Exit 3 names the pending execution and grants no pass. Wait on that same GitHub
+  run, then call the helper again. A failed execution stays failed; after repairing its actual
+  cause, `--retry-run <exact-failed-id>` admits one new dispatch without replaying an intent.
 - `assets/` — committed fonts, art libraries, Texas geodata, places gazetteer.
 - The front page's one live line is the **weather chip**, in `scripts/site/frontchip.py` with
   its collector in `scripts/gridwatch/weather_collect.py`.
