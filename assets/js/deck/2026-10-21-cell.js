@@ -97,7 +97,7 @@
   N.installKit = function (K, THREE, TXT) {
     if (K.registry.machining_centre) return;
     var alu = function (aniso) {
-      return K.mat("mc_alu_" + (aniso ? 1 : 0), { color: 0xdde6f0, metalness: 0.72, roughness: 0.26, anisotropy: aniso ? 0.6 : 0, clearcoat: 0.3, clearcoatRoughness: 0.2 }, true);
+      return K.mat("mc_alu_" + (aniso ? 1 : 0), { color: 0x98a2ac, metalness: 0.9, roughness: 0.32, anisotropy: aniso ? 0.7 : 0, clearcoat: 0.15, clearcoatRoughness: 0.25 }, true);
     };
     var aluRaw = function () { return K.mat("mc_alu_raw", { color: 0xb9bdc0, metalness: 0.95, roughness: 0.48 }); };
     var paint = function () { return K.mat("mc_paint", { color: 0x35383d, metalness: 0.25, roughness: 0.5 }); };
@@ -147,7 +147,7 @@
         var geo = new THREE.ExtrudeGeometry(outline, { depth: P.h - 0.001, bevelEnabled: true, bevelThickness: 0.0008, bevelSize: 0.0008, bevelSegments: 2, curveSegments: 12 });
         geo.rotateX(-Math.PI / 2); geo.translate(0, 0.0008, 0);
         var body = new THREE.Mesh(geo, A); g.add(body);
-        var floorM = K.mat("mc_alu_floor", { color: 0xc6cbd0, metalness: 0.7, roughness: 0.42 });
+        var floorM = K.mat("mc_alu_floor", { color: 0x8f969c, metalness: 0.75, roughness: 0.45 });
         var hole = K.mat("mc_hole", { color: 0x08090a, roughness: 0.9 });
         pockets.forEach(function (q) {
           var f = K.box(q[2] - q[0] - 0.0004, fl, q[3] - q[1] - 0.0004, floorM, (q[0] + q[2]) / 2, 0, (q[1] + q[3]) / 2); g.add(f);
@@ -171,15 +171,29 @@
       options: { open: 0.08 },
       note: "Precision machine vise: cast body, fixed and moving hardened jaws, screw, handle. Jaws across x, screw on +z.",
       make: function (o) {
+        /* a real vise: the fixed jaw is the body's raised far end, the moving jaw rides the bed toward it, and
+         * the screw runs from the moving jaw through the end housing to a crank handle. The jaw gap is centred
+         * on the origin, so the part placed there sits between the two hardened plates */
         var g = new THREE.Group(), I = iron(), S = steel(), B = black();
-        var body = TXT.roundedBox(0.15, 0.06, 0.40, 0.006, I); body.position.y = 0.03; g.add(body);
-        var bed = TXT.roundedBox(0.13, 0.008, 0.36, 0.002, K.mat("mc_vise_bed", { color: 0x4d5256, metalness: 0.8, roughness: 0.45 })); bed.position.set(0, 0.064, 0); g.add(bed);
-        var fixedJ = TXT.roundedBox(0.15, 0.05, 0.03, 0.004, I); fixedJ.position.set(0, 0.085, -o.open / 2 - 0.015); g.add(fixedJ);
-        var movJ = TXT.roundedBox(0.15, 0.05, 0.05, 0.004, I); movJ.position.set(0, 0.085, o.open / 2 + 0.025); g.add(movJ);
-        [-1, 1].forEach(function (s) { var jaw = TXT.roundedBox(0.148, 0.04, 0.008, 0.001, S); jaw.position.set(0, 0.09, s * (o.open / 2 - 0.0035)); g.add(jaw); });
-        var screw = new THREE.Mesh(new THREE.CylinderGeometry(0.012, 0.012, 0.09, 20), S); screw.rotation.x = Math.PI / 2; screw.position.set(0, 0.04, 0.24); g.add(screw);
-        var hex = new THREE.Mesh(new THREE.CylinderGeometry(0.016, 0.016, 0.02, 6), S); hex.rotation.x = Math.PI / 2; hex.position.set(0, 0.04, 0.29); g.add(hex);
-        g.add(K.bar([-0.11, 0.04, 0.29], [0.11, 0.04, 0.29], 0.006, B, 12));
+        var JP = K.mat("mc_jawplate", { color: 0x8a8f93, metalness: 0.85, roughness: 0.38 });
+        var JB = K.mat("mc_jawbody", { color: 0x6f7478, metalness: 0.8, roughness: 0.5 });
+        var h0 = o.open / 2, zF = -h0 - 0.09, zE = h0 + 0.15;
+        var body = TXT.roundedBox(0.15, 0.06, zE - zF, 0.006, I); body.position.set(0, 0.03, (zF + zE) / 2); g.add(body);
+        var bed = TXT.roundedBox(0.11, 0.006, zE - h0 - 0.08, 0.002, K.mat("mc_vise_bed", { color: 0x3e4246, metalness: 0.8, roughness: 0.5 })); bed.position.set(0, 0.063, (h0 + 0.07 + zE - 0.02) / 2); g.add(bed);
+        var fixedJ = TXT.roundedBox(0.15, 0.055, 0.09, 0.0012, JB); fixedJ.position.set(0, 0.0875, -h0 - 0.045); g.add(fixedJ);
+        var movJ = TXT.roundedBox(0.15, 0.05, 0.06, 0.0012, JB); movJ.position.set(0, 0.085, h0 + 0.03); g.add(movJ);
+        [-1, 1].forEach(function (sg) { var jaw = TXT.roundedBox(0.148, 0.04, 0.008, 0.001, JP); jaw.position.set(0, 0.09, sg * (h0 - 0.0035)); g.add(jaw);
+          for (var k = 0; k < 6; k++) { var sr = K.box(0.148, 0.0012, 0.0012, B, 0, 0.074 + k * 0.006, sg * (h0 - 0.0078)); g.add(sr); }
+          /* two socket cap screws holding each hardened plate to its jaw, on the plate's top edge */
+          [-0.05, 0.05].forEach(function (x) { var cs = new THREE.Mesh(new THREE.CylinderGeometry(0.0045, 0.0045, 0.003, 16), B); cs.position.set(x, 0.1115, sg * (h0 - 0.0035)); g.add(cs); }); });
+        var endH = TXT.roundedBox(0.12, 0.07, 0.03, 0.006, I); endH.position.set(0, 0.035, zE - 0.015); g.add(endH);
+        var screw = new THREE.Mesh(new THREE.CylinderGeometry(0.011, 0.011, zE - h0 - 0.06, 20), S); screw.rotation.x = Math.PI / 2; screw.position.set(0, 0.045, (h0 + 0.06 + zE) / 2); g.add(screw);
+        for (var t = 0; t < 12; t++) { var th = new THREE.Mesh(new THREE.TorusGeometry(0.011, 0.0015, 6, 16), S); th.position.set(0, 0.045, h0 + 0.07 + t * (zE - h0 - 0.08) / 12); g.add(th); }
+        var hex = new THREE.Mesh(new THREE.CylinderGeometry(0.016, 0.016, 0.022, 6), S); hex.rotation.x = Math.PI / 2; hex.position.set(0, 0.045, zE + 0.011); g.add(hex);
+        g.add(K.bar([-0.12, 0.045, zE + 0.03], [0.12, 0.045, zE + 0.03], 0.0065, B, 12));
+        [-0.12, 0.12].forEach(function (x) { var knob = new THREE.Mesh(new THREE.SphereGeometry(0.012, 14, 10), B); knob.position.set(x, 0.045, zE + 0.03); g.add(knob); });
+        /* the jaws stay centred on the origin, so a part placed there is clamped by both plates */
+        g.userData.keepOrigin = true;
         return g;
       }
     });
@@ -239,6 +253,8 @@
         var zu = o.zUp || 0;
         var col = TXT.roundedBox(0.36, 0.5, 0.36, 0.02, Pm); col.position.set(0, OY1 - 0.2 + zu, z0 - 0.48); g.add(col);
         var hd = TXT.roundedBox(0.3, 0.26, 0.34, 0.02, Pm); hd.position.set(0, OY1 - 0.32 + zu, z0 - 0.36); g.add(hd);
+        if (full) { var seamH = K.box(0.302, 0.006, 0.342, B, 0, OY1 - 0.34 + zu, z0 - 0.36); g.add(seamH);
+}
         var nose = new THREE.Mesh(new THREE.CylinderGeometry(0.065, 0.075, 0.06, 32), S); nose.position.set(0, OY1 - 0.48 + zu, z0 - 0.34); g.add(nose);
         var hold = TXT.lathe([[0, 0], [0.045, 0], [0.045, 0.02], [0.03, 0.025], [0.022, 0.07], [0.02, 0.1], [0, 0.1]], S); hold.rotation.x = Math.PI; hold.position.set(0, OY1 - 0.51 + zu, z0 - 0.34); g.add(hold);
         var mill = new THREE.Mesh(new THREE.CylinderGeometry(0.0062, 0.0062, 0.075, 16), carbide()); mill.position.set(0, OY1 - 0.65 + zu, z0 - 0.34); g.add(mill);
@@ -252,6 +268,8 @@
           [-1, 1].forEach(function (s) {
             var pts = []; for (var k = 0; k <= 8; k++) { var t = k / 8; pts.push([s * (0.12 - 0.07 * t), OY1 - 0.4 + zu - 0.18 * t, z0 - 0.28 - 0.04 * Math.sin(t * 3)]); }
             g.add(TXT.tube(pts, 0.009, hm));
+            for (var sk = 1; sk < pts.length; sk++) { var ring = new THREE.Mesh(new THREE.TorusGeometry(0.0093, 0.0016, 6, 14), hm); ring.position.set(pts[sk][0], pts[sk][1], pts[sk][2]); ring.rotation.x = Math.PI / 2; g.add(ring); }
+            var last = pts[pts.length - 1], noz = new THREE.Mesh(new THREE.CylinderGeometry(0.003, 0.008, 0.022, 12), K.mat("mc_nozzle", { color: 0x2a2c2f, roughness: 0.4 })); noz.position.set(last[0], last[1] - 0.008, last[2]); g.add(noz);
           });
           /* the work light bar in the upper back corner */
           var wl = K.box(0.6, 0.035, 0.04, o.workLight ? K.mat("mc_wl_on", { color: 0x111111, emissive: 0xf1e7d6, emissiveIntensity: 2.2 }) : K.mat("mc_wl_off", { color: 0x2b2d2f, roughness: 0.3 }), -0.2, OY1 - 0.08, z0 - 0.58); g.add(wl);
