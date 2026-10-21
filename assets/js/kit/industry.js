@@ -959,6 +959,9 @@ export function install(K, THREE, TXT) {
       return g;
     };
   }
+  // AFTER the wrapper above, on purpose: the machine shop models keep their own origin
+  // (userData.keepOrigin), which that wrapper would re-centre away.
+  installShop(K, THREE, TXT);
 }
 
 /* The site scale models live below, sharing the helpers above through `H`. */
@@ -1761,6 +1764,466 @@ function installBig(K, THREE, TXT, H) {
         tbox(1.2, 0.4, 2.4, std('skylight', { color: 0xd9dfe2, metalness: 0.1, roughness: 0.2 }), -L / 2 + (i + 0.5) * L / Math.floor(L / 18), Hh - 0.9, zb0 + (j + 0.5) * D / Math.floor(D / 22), root);
       for (let i = 0; i < 4; i++) tbox(3.2, 1.5, 2.0, paint(0xbfc1bf, 0.5, 0.3), L / 2 - 12 - i * 7, Hh - 0.9, zb1 - 8, root, 0, 0.04);
       return bake(root);
+    },
+  });
+}
+
+/* ======================================================================================
+ * THE MACHINE SHOP, lifted 2026-10-21 by the weekly machine pass from carousel no. 56's chassis
+ * (assets/js/deck/2026-10-21-cell.js), at the judges' named fix.
+ *
+ * No. 56 built its machining centre, vise, part and empty bay in the chassis because the kit had
+ * no machine shop. Its turn frame was a close on the control pendant, and every judge in all three
+ * panel rounds named that pendant "a rounded slab with 36 calculator keys", the chips "flat C
+ * rings" and the vise "a plain block". The named fix, round 1: "Model the pendant at full detail:
+ * bevel, e-stop mushroom, MPG handwheel, feed/spindle override knobs and a glass screen", and in
+ * round 3 "a graphite enclosure, a knurled handwheel and recessed keys raked from the left".
+ *
+ *   cnc_pendant                 the control pendant on its own, at that detail, with a yoke and a
+ *                               published mount point for a swing arm
+ *   vertical_machining_centre   the enclosure, doors, table, vise, spindle, tool drum, stack light
+ *                               and chip cart, carrying a cnc_pendant on its swing arm and, with
+ *                               `chips`, curled helical ribbons rather than flat rings
+ *   mill_vise                   a precision vise with a flanged cast body and clamp slots
+ *   machined_housing            an illustrative pocketed aluminium part, finished or a sawn billet
+ *   machine_pad                 an empty bay: epoxy pad, taped outline, levelling plates, drop cord
+ *
+ * NEW NAMES, not the chassis's, because no. 56's installKit returns early only on
+ * `machining_centre`, and K.define throws on a second definition of any of its other names.
+ * Every one is drawn to illustrate and to no maker's design. No mark or lettering is drawn.
+ * Each keeps its own origin (userData.keepOrigin) at the centre of its main body on the ground,
+ * and publishes the parts a frame aims at as named Object3Ds in userData, which move with it.
+ * ==================================================================================== */
+function installShop(K, THREE, TXT) {
+  const TAU = Math.PI * 2;
+  const M = {
+    graphite: () => K.mat('shop_graphite', { color: 0x33373c, metalness: 0.25, roughness: 0.42 }),
+    pale:     () => K.mat('shop_pale', { color: 0x8c9092, metalness: 0.2, roughness: 0.48 }),
+    paint:    () => K.mat('shop_paint', { color: 0x35383d, metalness: 0.25, roughness: 0.5 }),
+    plinth:   () => K.mat('shop_plinth', { color: 0x17181b, metalness: 0.15, roughness: 0.6 }),
+    steel:    () => K.mat('shop_steel', { color: 0xaeb3b7, metalness: 0.9, roughness: 0.3, anisotropy: 0.5 }, true),
+    iron:     () => K.mat('shop_iron', { color: 0x4a4d50, metalness: 0.85, roughness: 0.42 }),
+    black:    () => K.mat('shop_black', { color: 0x111214, metalness: 0.1, roughness: 0.55 }),
+    rubber:   () => K.mat('shop_rubber', { color: 0x0e0f10, metalness: 0, roughness: 0.85 }),
+    chrome:   () => K.mat('shop_chrome', { color: 0xd9dde0, metalness: 1, roughness: 0.16 }),
+    hole:     () => K.mat('shop_hole', { color: 0x08090a, roughness: 0.9 }),
+    alu:      () => K.mat('shop_alu', { color: 0x98a2ac, metalness: 0.9, roughness: 0.32, anisotropy: 0.7, clearcoat: 0.15, clearcoatRoughness: 0.25 }, true),
+    aluRaw:   () => K.mat('shop_alu_raw', { color: 0xb9bdc0, metalness: 0.95, roughness: 0.48 }),
+    chip:     () => K.mat('shop_chip', { color: 0xc9cdd1, metalness: 1, roughness: 0.28 }),
+    glass:    (lit) => lit ? K.mat('shop_glass_lit', { color: 0x1d2629, metalness: 0.1, roughness: 0.08, emissive: 0x9fb3b8, emissiveIntensity: 0.22 })
+                           : K.mat('shop_glass', { color: 0x0a0d0f, metalness: 0.2, roughness: 0.06 }),
+  };
+  /* a rounded rectangle Shape, x0..x1 by y0..y1, corner radius r */
+  function rrect(x0, y0, x1, y1, r) {
+    const sh = new THREE.Shape();
+    sh.moveTo(x0 + r, y0); sh.lineTo(x1 - r, y0); sh.quadraticCurveTo(x1, y0, x1, y0 + r); sh.lineTo(x1, y1 - r);
+    sh.quadraticCurveTo(x1, y1, x1 - r, y1); sh.lineTo(x0 + r, y1); sh.quadraticCurveTo(x0, y1, x0, y1 - r); sh.lineTo(x0, y0 + r);
+    sh.quadraticCurveTo(x0, y0, x0 + r, y0); return sh;
+  }
+  /* A BEVELLED FRAME: a rounded rectangular ring w x h with a border `b`, `depth` proud of its back
+   * face, its outer and inner edges chamfered so a raking key draws a bright line along both. The
+   * frame's back sits on z 0 and it faces +z. */
+  function bezel(w, h, b, depth, r, mat) {
+    const sh = rrect(-w / 2, -h / 2, w / 2, h / 2, r);
+    sh.holes.push(new THREE.Path(rrect(-w / 2 + b, -h / 2 + b, w / 2 - b, h / 2 - b, Math.max(0.001, r - b * 0.5)).getPoints(10)));
+    const bev = Math.min(depth * 0.4, b * 0.3);
+    const geo = new THREE.ExtrudeGeometry(sh, { depth: depth - bev, bevelEnabled: true, bevelThickness: bev, bevelSize: bev, bevelSegments: 2, curveSegments: 10 });
+    return new THREE.Mesh(geo, mat);
+  }
+  /* KNURLING: a lathe whose rim is fluted, n ridges round it, for every vertex further out than rMin.
+   * The ridges are geometry, so the low key draws one bright line per ridge rather than a printed stripe. */
+  function knurled(profile, n, rMin, amp, mat, seg) {
+    const geo = new THREE.LatheGeometry(profile.map((p) => new THREE.Vector2(p[0], p[1])), seg || n * 4);
+    const p = geo.attributes.position;
+    for (let i = 0; i < p.count; i++) {
+      const x = p.getX(i), z = p.getZ(i), r = Math.hypot(x, z);
+      if (r <= rMin) continue;
+      const k = 1 + amp * Math.cos(n * Math.atan2(z, x));
+      p.setX(i, x * k); p.setZ(i, z * k);
+    }
+    geo.computeVertexNormals();
+    const m = new THREE.Mesh(geo, mat); m.rotation.x = Math.PI / 2;   // the lathe's axis turned to +z
+    return m;
+  }
+  /* a small mark on a face, centred at (x, y), long side along `ang` radians from +x */
+  function mark(w, h, mat, x, y, z, ang) {
+    const m = new THREE.Mesh(new THREE.BoxGeometry(w, h, 0.0008), mat); m.position.set(x, y, z); m.rotation.z = ang || 0; return m;
+  }
+
+  /* ---- THE CONTROL PENDANT ----------------------------------------------------------------- */
+  /* 0.48 x 0.62 x 0.10 m housing, front on +z, base on y 0. A chamfered front frame round the face;
+   * a screen set behind its own bevelled bezel under coated glass; a row of soft keys; a keypad sunk
+   * in a raised surround so the keytops sit 5 mm under it, dark keycaps with light legend bars and a
+   * mid grey function row; feed and spindle override knobs, each fluted with a pointer and an arc of
+   * eleven ticks; a knurled manual pulse handwheel on a graduated dial with a crank knob; cycle start
+   * and feed hold in chrome bezels; a key switch; an emergency stop, a red mushroom on a yellow collar;
+   * a rubber grab handle on the right side; vents and screws on the back; and with `yoke` the clamp
+   * and stem that carry it off a swing arm, its top published as userData.parts.mount.
+   *   housing 'graphite' | 'pale', screen 'off' | 'on', yoke true | false, tilt radians (face up) */
+  K.define('cnc_pendant', {
+    size: [0.53, 0.79, 0.16],
+    options: { housing: 'graphite', screen: 'off', yoke: true, tilt: 0 },
+    note: 'CNC control pendant at full detail: chamfered frame, glass screen in a bevel, recessed keypad, feed and spindle override knobs, knurled handwheel, e-stop, cycle buttons, key switch, grab handle, yoke. userData.parts.mount (yoke top), .screen. Front +z.',
+    make(o) {
+      const g = new THREE.Group(), body = new THREE.Group(); g.add(body);
+      const PW = 0.48, PH = 0.62, PD = 0.1, F = PD / 2;
+      const HM = o.housing === 'pale' ? M.pale() : M.graphite(), B = M.black(), S = M.steel(), C = M.chrome();
+      const frameM = K.mat('pend_frame', { color: 0x2a2d31, metalness: 0.35, roughness: 0.36 });
+      const shell = TXT.roundedBox(PW, PH, PD, 0.022, HM); shell.position.set(0, PH / 2, 0); body.add(shell);
+      // the chamfered front frame, the edge the raking key finds
+      const fr = bezel(PW, PH, 0.018, 0.009, 0.022, frameM); fr.position.set(0, PH / 2, F - 0.001); body.add(fr);
+      // THE SCREEN behind its own bezel, under coated glass
+      const sy = PH - 0.17;
+      const sb = bezel(0.38, 0.26, 0.018, 0.008, 0.008, B); sb.position.set(0, sy, F); body.add(sb);
+      const well = K.box(0.35, 0.23, 0.004, B, 0, sy - 0.115, F + 0.001); body.add(well);
+      let face = M.glass(false);
+      if (o.screen === 'on') {
+        const c = document.createElement('canvas'); c.width = 256; c.height = 168; const x = c.getContext('2d');
+        x.fillStyle = '#071012'; x.fillRect(0, 0, 256, 168);
+        x.fillStyle = '#16343a'; x.fillRect(8, 8, 240, 14); x.fillRect(8, 140, 240, 20);
+        x.fillStyle = '#2d6670'; for (let i = 0; i < 6; i++) x.fillRect(12, 32 + i * 16, 90 + (i * 37) % 60, 6);
+        x.strokeStyle = '#3f8c96'; x.lineWidth = 2; x.strokeRect(130, 32, 110, 96);
+        x.beginPath(); x.moveTo(140, 110); x.lineTo(170, 70); x.lineTo(200, 90); x.lineTo(230, 48); x.stroke();
+        const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace;
+        face = new THREE.MeshStandardMaterial({ color: 0x050606, roughness: 0.2, emissive: 0xffffff, emissiveMap: t, emissiveIntensity: 0.55 });
+      }
+      const scr = K.box(0.344, 0.224, 0.002, face, 0, sy - 0.112, F + 0.003); body.add(scr);
+      const coat = new THREE.Mesh(new THREE.BoxGeometry(0.344, 0.224, 0.0015),
+        K.mat('pend_coat', { color: 0x050607, metalness: 0, roughness: 0.04, transparent: true, opacity: 0.35, clearcoat: 1, clearcoatRoughness: 0.02, envMapIntensity: 1.4 }, true));
+      coat.position.set(0, sy, F + 0.0058); body.add(coat);
+      // SOFT KEYS, a row of seven under the screen
+      const keyM = K.mat('pend_key', { color: 0x3a3d42, metalness: 0.05, roughness: 0.46 });
+      const fnM = K.mat('pend_key_fn', { color: 0x7a7e83, metalness: 0.05, roughness: 0.46 });
+      const legM = K.mat('pend_legend', { color: 0xcfd2d4, roughness: 0.6 });
+      for (let i = 0; i < 7; i++) { const k = TXT.roundedBox(0.038, 0.016, 0.008, 0.003, keyM); k.position.set(-0.144 + i * 0.048, sy - 0.148, F + 0.004); body.add(k); }
+      // THE KEYPAD, sunk in a raised surround: the keytops sit 5 mm under the surround's top
+      const kx = -0.065, ky = 0.2175, kw = 0.31, kh = 0.14;
+      const sur = bezel(kw, kh, 0.012, 0.013, 0.008, frameM); sur.position.set(kx, ky, F); body.add(sur);
+      const floor = K.box(kw - 0.02, kh - 0.02, 0.002, B, kx, ky - (kh - 0.02) / 2, F); body.add(floor);
+      const caps = { k: [], f: [], l: [] };
+      for (let r = 0; r < 4; r++) for (let c = 0; c < 7; c++) {
+        const x = kx - 0.126 + c * 0.042, y = ky + 0.048 - r * 0.032, fn = r === 0;
+        const k = TXT.roundedBox(0.034, 0.025, 0.008, 0.0035, fn ? fnM : keyM); k.position.set(x, y, F + 0.005); (fn ? caps.f : caps.k).push(k);
+        // a legend bar or two on each keytop, never lettering
+        caps.l.push(mark(0.012 + ((r * 7 + c) % 3) * 0.003, 0.0022, legM, x - 0.004, y + 0.005, F + 0.0094));
+        if ((r + c) % 2) caps.l.push(mark(0.007, 0.0022, legM, x - 0.006, y - 0.002, F + 0.0094));
+      }
+      body.add(K.merge(caps.k, keyM)); body.add(K.merge(caps.f, fnM)); body.add(K.merge(caps.l, legM));
+      // FEED AND SPINDLE OVERRIDE KNOBS: a skirt, a fluted grip, a pointer, an arc of eleven ticks
+      const knobM = K.mat('pend_knob', { color: 0x1b1c1f, metalness: 0.2, roughness: 0.38 });
+      const tickM = K.mat('pend_tick', { color: 0xb9bcbe, roughness: 0.6 });
+      for (const [i, y] of [[0, 0.255], [1, 0.175]]) {
+        const x = 0.165;
+        const kb = knurled([[0, 0], [0.03, 0], [0.03, 0.005], [0.025, 0.008], [0.023, 0.03], [0.019, 0.034], [0, 0.034]], 18, 0.0215, 0.05, knobM, 72);
+        kb.position.set(x, y, F); kb.rotation.z = (i ? -0.6 : 0.9); body.add(kb);
+        const ptr = mark(0.0028, 0.016, legM, x, y, F + 0.0346, 0); ptr.position.x += Math.sin(-(i ? -0.6 : 0.9)) * 0.009; ptr.position.y += Math.cos(i ? -0.6 : 0.9) * 0.009; ptr.rotation.z = (i ? -0.6 : 0.9); body.add(ptr);
+        const ticks = [];
+        for (let t = 0; t <= 10; t++) {
+          const a = Math.PI / 2 + 2.35 - t * 0.47, r = 0.038;
+          ticks.push(mark(0.0022, t % 5 ? 0.005 : 0.008, tickM, x + Math.cos(a) * r, y + Math.sin(a) * r, F + 0.0004, a - Math.PI / 2));
+        }
+        body.add(K.merge(ticks, tickM));
+      }
+      // THE MANUAL PULSE HANDWHEEL: a graduated dial, a knurled wheel, a crank knob and a chrome cap
+      const hx = -0.13, hy = 0.075;
+      const dial = new THREE.Mesh(new THREE.CylinderGeometry(0.06, 0.061, 0.005, 64), frameM); dial.rotation.x = Math.PI / 2; dial.position.set(hx, hy, F + 0.0025); body.add(dial);
+      const grad = [];
+      for (let t = 0; t < 50; t++) { const a = t / 50 * TAU, L = t % 5 ? 0.004 : 0.007; grad.push(mark(0.0016, L, tickM, hx + Math.cos(a) * (0.0575 - L / 2), hy + Math.sin(a) * (0.0575 - L / 2), F + 0.0052, a - Math.PI / 2)); }
+      body.add(K.merge(grad, tickM));
+      const wheel = knurled([[0, 0], [0.047, 0], [0.049, 0.004], [0.049, 0.018], [0.046, 0.022], [0.03, 0.019], [0, 0.017]], 60, 0.0455, 0.025, S, 240);
+      wheel.position.set(hx, hy, F + 0.005); body.add(wheel);
+      const crank = new THREE.Mesh(new THREE.CylinderGeometry(0.0065, 0.0075, 0.026, 20), knobM); crank.rotation.x = Math.PI / 2; crank.position.set(hx + 0.031, hy + 0.012, F + 0.035); body.add(crank);
+      const cap = new THREE.Mesh(new THREE.SphereGeometry(0.011, 20, 10, 0, TAU, 0, Math.PI / 2), C); cap.rotation.x = Math.PI / 2; cap.position.set(hx, hy, F + 0.024); body.add(cap);
+      // CYCLE START, FEED HOLD and a KEY SWITCH, each in a chrome bezel
+      const btn = (x, y, col) => {
+        const ring = new THREE.Mesh(new THREE.TorusGeometry(0.0135, 0.003, 10, 28), C); ring.position.set(x, y, F + 0.002); body.add(ring);
+        const c2 = new THREE.Mesh(new THREE.CylinderGeometry(0.011, 0.0115, 0.008, 28), K.mat('pend_btn' + col.toString(16), { color: col, roughness: 0.32, metalness: 0 })); c2.rotation.x = Math.PI / 2; c2.position.set(x, y, F + 0.004); body.add(c2);
+      };
+      btn(-0.035, 0.09, 0x2f8f46); btn(0.012, 0.09, 0xd6d1c4);
+      const ks = new THREE.Mesh(new THREE.CylinderGeometry(0.011, 0.012, 0.01, 24), C); ks.rotation.x = Math.PI / 2; ks.position.set(0.06, 0.09, F + 0.005); body.add(ks);
+      body.add(mark(0.0025, 0.012, B, 0.06, 0.09, F + 0.0105, 0.5));
+      // THE EMERGENCY STOP: a yellow collar and a red mushroom
+      const col = new THREE.Mesh(new THREE.CylinderGeometry(0.042, 0.043, 0.008, 40), K.mat('pend_estop_collar', { color: 0xd9a91a, roughness: 0.5 })); col.rotation.x = Math.PI / 2; col.position.set(0.165, 0.075, F + 0.004); body.add(col);
+      const mush = TXT.lathe([[0, 0], [0.012, 0], [0.012, 0.012], [0.029, 0.014], [0.031, 0.019], [0.027, 0.027], [0.016, 0.032], [0, 0.0335]],
+        K.mat('pend_estop', { color: 0xa8161a, roughness: 0.3, clearcoat: 0.6, clearcoatRoughness: 0.2 }, true), { segments: 48 });
+      mush.rotation.x = Math.PI / 2; mush.position.set(0.165, 0.075, F + 0.008); body.add(mush);
+      // a rubber grab handle on the right side
+      body.add(TXT.tube([[PW / 2 - 0.004, 0.13, 0], [PW / 2 + 0.034, 0.15, 0], [PW / 2 + 0.036, 0.3, 0], [PW / 2 + 0.034, 0.45, 0], [PW / 2 - 0.004, 0.47, 0]], 0.011, M.rubber(), { segments: 40, radial: 14 }));
+      // the back: a cover seam, vents and screws
+      body.add(K.box(PW - 0.06, 0.004, 0.003, B, 0, PH - 0.05, -F - 0.0005));
+      for (let i = 0; i < 8; i++) body.add(K.box(0.12, 0.006, 0.003, B, 0, 0.2 + i * 0.022, -F - 0.0005));
+      for (const sx of [-1, 1]) for (const yy of [0.04, PH - 0.04]) { const sc = new THREE.Mesh(new THREE.CylinderGeometry(0.004, 0.004, 0.003, 12), S); sc.rotation.x = Math.PI / 2; sc.position.set(sx * (PW / 2 - 0.04), yy, -F - 0.001); body.add(sc); }
+      // THE YOKE: a clamp block on the top edge and a stem up into the arm
+      const parts = {};
+      if (o.yoke) {
+        const yM = K.mat('pend_yoke', { color: 0x2b2e32, roughness: 0.4, metalness: 0.6 });
+        const yoke = TXT.roundedBox(0.14, 0.05, 0.08, 0.01, yM); yoke.position.set(0, PH + 0.025, -0.01); body.add(yoke);
+        for (const sx of [-1, 1]) { const b2 = new THREE.Mesh(new THREE.CylinderGeometry(0.006, 0.006, 0.004, 6), S); b2.rotation.x = Math.PI / 2; b2.position.set(sx * 0.045, PH + 0.025, 0.031); body.add(b2); }
+        const stem = new THREE.Mesh(new THREE.CylinderGeometry(0.03, 0.03, 0.12, 24), yM); stem.position.set(0, PH + 0.11, -0.03); body.add(stem);
+        const gl = new THREE.Mesh(new THREE.CylinderGeometry(0.016, 0.02, 0.03, 16), M.rubber()); gl.position.set(0.13, PH + 0.012, -0.03); body.add(gl);
+        parts.mount = new THREE.Object3D(); parts.mount.position.set(0, PH + 0.17, -0.03); body.add(parts.mount);
+      }
+      parts.screen = new THREE.Object3D(); parts.screen.position.set(0, sy, F + 0.006); body.add(parts.screen);
+      parts.handwheel = new THREE.Object3D(); parts.handwheel.position.set(hx, hy, F + 0.02); body.add(parts.handwheel);
+      parts.estop = new THREE.Object3D(); parts.estop.position.set(0.165, 0.075, F + 0.03); body.add(parts.estop);
+      // tilt the face up about the base's front edge, so it stays on the ground
+      if (o.tilt) { body.position.z = F; body.children.forEach((c) => { c.position.z -= F; }); body.rotation.x = -o.tilt; }
+      g.userData.parts = parts;
+      g.userData.keepOrigin = true;
+      return g;
+    },
+  });
+
+  /* ---- THE VISE -------------------------------------------------------------------------- */
+  /* 0.15 m jaws across x, the screw on +z, the jaw gap centred on the origin so a part placed there
+   * is held by both hardened plates. A flanged cast body with two clamp slots each side, a bed, the
+   * fixed and moving jaws with serrated plates on cap screws, the end housing, a threaded screw, a hex
+   * and a crank handle. `open` is the jaw gap in metres. */
+  K.define('mill_vise', {
+    size: [0.25, 0.12, 0.42],
+    options: { open: 0.08 },
+    note: 'Precision machine vise: flanged cast body with clamp slots, fixed and moving hardened jaws, screw, crank handle. Jaws across x, screw on +z, jaw gap on the origin.',
+    make(o) {
+      const g = new THREE.Group(), I = M.iron(), S = M.steel(), B = M.black();
+      const JP = K.mat('vise_jawplate', { color: 0x8a8f93, metalness: 0.85, roughness: 0.38 });
+      const JB = K.mat('vise_jawbody', { color: 0x6f7478, metalness: 0.8, roughness: 0.5 });
+      const h0 = o.open / 2, zF = -h0 - 0.09, zE = h0 + 0.15, L = zE - zF, zc = (zF + zE) / 2;
+      const body = TXT.roundedBox(0.15, 0.06, L, 0.006, I); body.position.set(0, 0.03, zc); g.add(body);
+      // the cast flange each side with two clamp slots, and a fillet where it meets the body
+      for (const s of [-1, 1]) {
+        const fl = TXT.roundedBox(0.045, 0.018, L * 0.82, 0.004, I); fl.position.set(s * 0.0975, 0.009, zc); g.add(fl);
+        const fil = TXT.roundedBox(0.012, 0.012, L * 0.8, 0.005, I); fil.position.set(s * 0.078, 0.022, zc); g.add(fil);
+        for (const dz of [-0.25, 0.25]) { const sl = K.box(0.016, 0.019, 0.05, M.hole(), s * 0.104, 0.0005, zc + dz * L, 0.003); g.add(sl); }
+      }
+      const bed = TXT.roundedBox(0.11, 0.006, zE - h0 - 0.08, 0.002, K.mat('vise_bed', { color: 0x3e4246, metalness: 0.8, roughness: 0.5 })); bed.position.set(0, 0.063, (h0 + 0.07 + zE - 0.02) / 2); g.add(bed);
+      const fixedJ = TXT.roundedBox(0.15, 0.055, 0.09, 0.0025, JB); fixedJ.position.set(0, 0.0875, -h0 - 0.045); g.add(fixedJ);
+      const movJ = TXT.roundedBox(0.15, 0.05, 0.06, 0.0025, JB); movJ.position.set(0, 0.085, h0 + 0.03); g.add(movJ);
+      for (const sg of [-1, 1]) {
+        const jaw = TXT.roundedBox(0.148, 0.04, 0.008, 0.001, JP); jaw.position.set(0, 0.09, sg * (h0 - 0.0035)); g.add(jaw);
+        const ser = []; for (let k = 0; k < 6; k++) ser.push(K.box(0.148, 0.0012, 0.0012, B, 0, 0.074 + k * 0.006, sg * (h0 - 0.0078)));
+        g.add(K.merge(ser, B));
+        for (const x of [-0.05, 0.05]) { const cs = new THREE.Mesh(new THREE.CylinderGeometry(0.0045, 0.0045, 0.003, 16), B); cs.position.set(x, 0.1115, sg * (h0 - 0.0035)); g.add(cs); }
+      }
+      const endH = TXT.roundedBox(0.12, 0.07, 0.03, 0.006, I); endH.position.set(0, 0.035, zE - 0.015); g.add(endH);
+      const screw = new THREE.Mesh(new THREE.CylinderGeometry(0.011, 0.011, zE - h0 - 0.06, 20), S); screw.rotation.x = Math.PI / 2; screw.position.set(0, 0.045, (h0 + 0.06 + zE) / 2); g.add(screw);
+      for (let t = 0; t < 12; t++) { const th = new THREE.Mesh(new THREE.TorusGeometry(0.011, 0.0015, 6, 16), S); th.position.set(0, 0.045, h0 + 0.07 + t * (zE - h0 - 0.08) / 12); g.add(th); }
+      const hex = new THREE.Mesh(new THREE.CylinderGeometry(0.016, 0.016, 0.022, 6), S); hex.rotation.x = Math.PI / 2; hex.position.set(0, 0.045, zE + 0.011); g.add(hex);
+      g.add(K.bar([-0.12, 0.045, zE + 0.03], [0.12, 0.045, zE + 0.03], 0.0065, B, 12));
+      for (const x of [-0.12, 0.12]) { const knob = new THREE.Mesh(new THREE.SphereGeometry(0.012, 14, 10), B); knob.position.set(x, 0.045, zE + 0.03); g.add(knob); }
+      g.userData.keepOrigin = true;
+      return g;
+    },
+  });
+
+  /* ---- THE PART -------------------------------------------------------------------------- */
+  /* An illustrative pocketed aluminium housing, 0.12 x 0.03 x 0.08 m: one solid billet with two blind
+   * pockets cut through to a milled floor, so each pocket holds its own shadow, a counterbored hole in
+   * each pocket floor and four tapped holes in the top. state 'raw' is the sawn billet. */
+  K.define('machined_housing', {
+    size: [0.13, 0.04, 0.09],
+    options: { state: 'finished' },
+    note: 'Illustrative pocketed aluminium housing (finished) or its sawn billet (raw), 0.12 x 0.03 x 0.08 m. Drawn to illustrate, no program design.',
+    make(o) {
+      const g = new THREE.Group(), P = { w: 0.12, d: 0.08, h: 0.03, floor: 0.012, wall: 0.006 };
+      if (o.state === 'raw') {
+        const b = TXT.roundedBox(0.13, 0.035, 0.09, 0.0015, M.aluRaw()); b.position.y = 0.0175; g.add(b);
+        const sm = K.mat('part_saw', { color: 0x7c8084, metalness: 0.9, roughness: 0.6 }), lines = [];
+        for (let i = 0; i < 14; i++) for (const x of [-0.0651, 0.0651]) lines.push(K.box(0.0006, 0.034, 0.0006, sm, x, 0.0005, -0.042 + i * 0.0065));
+        g.add(K.merge(lines, sm));
+        return g;
+      }
+      const t = P.wall, fl = P.floor, hw = P.w / 2, hd = P.d / 2, pr = 0.004;
+      const outline = rrect(-hw, -hd, hw, hd, 0.003);
+      const pockets = [[-hw + t, -hd + t, -t / 2, hd - t], [t / 2, -hd + t, hw - t, hd - t]];
+      pockets.forEach((q) => outline.holes.push(new THREE.Path(rrect(q[0], q[1], q[2], q[3], pr).getPoints(12))));
+      const geo = new THREE.ExtrudeGeometry(outline, { depth: P.h - 0.001, bevelEnabled: true, bevelThickness: 0.0008, bevelSize: 0.0008, bevelSegments: 2, curveSegments: 12 });
+      geo.rotateX(-Math.PI / 2); geo.translate(0, 0.0008, 0);
+      g.add(new THREE.Mesh(geo, M.alu()));
+      const floorM = K.mat('part_floor', { color: 0x8f969c, metalness: 0.75, roughness: 0.45 }), H = M.hole();
+      pockets.forEach((q) => {
+        g.add(K.box(q[2] - q[0] - 0.0004, fl, q[3] - q[1] - 0.0004, floorM, (q[0] + q[2]) / 2, 0, (q[1] + q[3]) / 2));
+        const cx = (q[0] + q[2]) / 2, cz = (q[1] + q[3]) / 2;
+        const cb = new THREE.Mesh(new THREE.CylinderGeometry(0.0055, 0.0055, 0.0008, 24), K.mat('part_cb', { color: 0x9da3a8, metalness: 0.8, roughness: 0.4 })); cb.position.set(cx, fl + 0.0001, cz); g.add(cb);
+        const bore = new THREE.Mesh(new THREE.CylinderGeometry(0.003, 0.003, 0.001, 16), H); bore.position.set(cx, fl + 0.0004, cz); g.add(bore);
+      });
+      for (const sg of [[-1, -1], [1, -1], [-1, 1], [1, 1]]) {
+        const th = new THREE.Mesh(new THREE.CylinderGeometry(0.0018, 0.0018, 0.0012, 12), H);
+        th.position.set(sg[0] * (hw - t / 2 - 0.0005), P.h + 0.0002, sg[1] * (hd - t / 2 - 0.0005)); g.add(th);
+      }
+      return g;
+    },
+  });
+
+  /* ---- CHIPS: curled ribbons, not rings ---------------------------------------------------- */
+  /* An end mill in aluminium throws short helical curls of thin ribbon. Each chip here is a 1.2 mm by
+   * 0.25 mm ribbon swept along a tapering helix of one and a half to three turns at a pitch wider
+   * than the ribbon, so it reads as an open curl with a bright edge on every turn, never a closed
+   * ring (the first proof's 2.4 mm ribbon at a 2 mm pitch closed into washers). One merged mesh. */
+  function chips(rng, n, area, y) {
+    const mat = M.chip(), shape = new THREE.Shape();
+    shape.moveTo(-0.0006, -0.000125); shape.lineTo(0.0006, -0.000125); shape.lineTo(0.0006, 0.000125); shape.lineTo(-0.0006, 0.000125); shape.closePath();
+    const variants = [];
+    for (let v = 0; v < 6; v++) {
+      const turns = 1.5 + rng() * 1.5, r0 = 0.003 + rng() * 0.0025, pitch = 0.0035 + rng() * 0.003, pts = [];
+      for (let k = 0; k <= 72; k++) { const t = k / 72, a = turns * TAU * t, r = r0 * (1 - 0.4 * t); pts.push(new THREE.Vector3(r * Math.cos(a), pitch * turns * t, r * Math.sin(a))); }
+      variants.push(new THREE.ExtrudeGeometry(shape, { steps: 96, bevelEnabled: false, extrudePath: new THREE.CatmullRomCurve3(pts) }));
+    }
+    const list = [];
+    for (let i = 0; i < n; i++) {
+      const m = new THREE.Mesh(variants[i % variants.length], mat);
+      m.position.set(area[0] + rng() * (area[2] - area[0]), y + 0.003, area[1] + rng() * (area[3] - area[1]));
+      m.rotation.set((rng() - 0.5) * 2.4, rng() * TAU, (rng() - 0.5) * 2.4);
+      list.push(m);
+    }
+    return K.merge(list, mat);
+  }
+
+  /* ---- THE MACHINING CENTRE ----------------------------------------------------------------- */
+  /* An illustrative vertical machining centre, 2.60 m wide, 2.70 m to its roof and 2.35 m deep, front
+   * on +z, origin at the enclosure's centre on the ground. Graphite enclosure over a charcoal plinth
+   * with a kick recess, a pale fascia band, bi-parting sliding doors over a 1.10 x 0.95 m opening with
+   * laminated windows in black gaskets, a cast iron T-slot table with way covers, a mill_vise holding a
+   * machined_housing, the spindle head on its column with a holder and a fluted end mill, coolant
+   * hoses, a work light bar, a side tool drum under a hood, a cnc_pendant on a swing arm at the front
+   * right, a three segment stack light, and a chip conveyor to a cart with the coolant tank behind.
+   *   door 0 (shut) to 1 (open), part 'finished' | 'raw' | null, workLight, lamp 'off' | 'warm' |
+   *   'green' | 'amber' | 'accent' (accent takes `accent` hex), screen 'off' | 'on', pendant
+   *   'graphite' | 'pale', chips, lod 'full' | 'low', zUp (spindle retract, metres).
+   * userData.parts: pendant (the cnc_pendant group), table (the table top centre), part, spindle. */
+  K.define('vertical_machining_centre', {
+    size: [3.4, 3.2, 4.1],
+    options: { door: 0, part: 'finished', workLight: false, lamp: 'off', accent: 0x8fe0f0, screen: 'off', pendant: 'graphite', chips: false, lod: 'full', zUp: 0 },
+    note: 'Vertical machining centre: enclosure, sliding windowed doors, T-slot table, mill_vise and machined_housing, spindle, tool drum, cnc_pendant on a swing arm, stack light, chip cart; chips are helical ribbons. userData.parts.pendant, .table, .part, .spindle. Front +z.',
+    make(o, rng) {
+      const g = new THREE.Group(), full = o.lod !== 'low', parts = {};
+      const W = 2.6, H = 2.7, D = 2.35, z0 = D / 2, OW = 1.1, OY0 = 0.95, OY1 = 1.9;
+      const Pm = M.paint(), PP = M.pale(), PL = M.plinth(), S = M.steel(), I = M.iron(), B = M.black(), R = M.rubber();
+      const pl = TXT.roundedBox(W - 0.06, 0.32, D - 0.06, 0.02, PL); pl.position.set(0, 0.16, -0.03); g.add(pl);
+      g.add(K.box(W - 0.3, 0.1, 0.02, B, 0, 0.02, z0 - 0.05));
+      const lower = TXT.roundedBox(W, OY0 - 0.32, D, 0.03, Pm); lower.position.set(0, 0.32 + (OY0 - 0.32) / 2, 0); g.add(lower);
+      const back = TXT.roundedBox(W, H - OY0, D - 0.64, 0.03, Pm); back.position.set(0, OY0 + (H - OY0) / 2, -0.32); g.add(back);
+      const sideW = (W - OW) / 2;
+      for (const s of [-1, 1]) { const p = TXT.roundedBox(sideW, H - OY0, 0.5, 0.03, Pm); p.position.set(s * (OW / 2 + sideW / 2), OY0 + (H - OY0) / 2, z0 - 0.25); g.add(p); }
+      const head = TXT.roundedBox(OW, H - OY1, 0.5, 0.03, Pm); head.position.set(0, OY1 + (H - OY1) / 2, z0 - 0.25); g.add(head);
+      const fas = TXT.roundedBox(W + 0.01, 0.12, 0.04, 0.01, PP); fas.position.set(0, H - 0.16, z0 + 0.005); g.add(fas);
+      const roof = TXT.roundedBox(W + 0.04, 0.05, D + 0.04, 0.015, Pm); roof.position.set(0, H + 0.02, 0); g.add(roof);
+      if (full) { const sm = []; for (const s of [-1, 1]) for (let k = 1; k < 4; k++) sm.push(K.box(0.004, H - 0.4, 0.006, B, s * (W / 2 + 0.001), 0.34, -D / 2 + k * D / 4)); g.add(K.merge(sm, B)); }
+      for (const b of [[OW + 0.08, 0.04, 0, OY1 + 0.02], [OW + 0.08, 0.04, 0, OY0 - 0.02]]) { const m = TXT.roundedBox(b[0], b[1], 0.06, 0.01, S); m.position.set(b[2], b[3], z0 + 0.012); g.add(m); }
+      for (const s of [-1, 1]) { const m = TXT.roundedBox(0.04, OY1 - OY0 + 0.08, 0.06, 0.01, S); m.position.set(s * (OW / 2 + 0.02), (OY0 + OY1) / 2, z0 + 0.012); g.add(m); }
+      const inner = K.mat('vmc_inner', { color: 0x08090a, metalness: 0.2, roughness: 0.85 });
+      g.add(K.box(OW, OY1 - OY0, 0.02, inner, 0, OY0, z0 - 0.62));
+      for (const s of [-1, 1]) g.add(K.box(0.02, OY1 - OY0, 0.6, inner, s * OW / 2, OY0, z0 - 0.31));
+      g.add(K.box(OW, 0.02, 0.6, inner, 0, OY1 - 0.02, z0 - 0.31));
+      g.add(K.box(OW, 0.02, 0.6, inner, 0, OY0 - 0.02, z0 - 0.31));
+      // the table, its T-slots and way covers, and the vise with the part
+      const tY = OY0 + 0.06;
+      const table = TXT.roundedBox(0.9, 0.08, 0.42, 0.006, I); table.position.set(0, tY - 0.04, z0 - 0.33); g.add(table);
+      parts.table = new THREE.Object3D(); parts.table.position.set(0, tY, z0 - 0.33); g.add(parts.table);
+      if (full) { const sl = []; for (let ts = -2; ts <= 2; ts++) sl.push(K.box(0.9, 0.003, 0.018, B, 0, tY - 0.0015, z0 - 0.33 + ts * 0.08)); g.add(K.merge(sl, B)); }
+      if (full) for (let wc = 0; wc < 4; wc++) for (const s of [-1, 1]) { const cov = TXT.roundedBox(0.1, 0.012, 0.42, 0.003, S); cov.position.set(s * (0.5 + wc * 0.012), tY - 0.06 + wc * 0.004, z0 - 0.33); g.add(cov); }
+      if (o.part || full) {
+        const vise = K.make('mill_vise', { open: o.part === 'raw' ? 0.105 : 0.095 }); vise.position.set(0, tY, z0 - 0.34); vise.rotation.y = Math.PI / 2; g.add(vise);
+        if (o.part) { const part = K.make('machined_housing', { state: o.part }); part.position.set(0, tY + 0.09, z0 - 0.34); part.rotation.y = Math.PI / 2; g.add(part); parts.part = part; }
+      }
+      // the spindle head on its column, a holder and a fluted end mill; zUp retracts them together
+      const zu = o.zUp || 0;
+      const colm = TXT.roundedBox(0.36, 0.5, 0.36, 0.02, Pm); colm.position.set(0, OY1 - 0.2 + zu, z0 - 0.48); g.add(colm);
+      const hd = TXT.roundedBox(0.3, 0.26, 0.34, 0.02, Pm); hd.position.set(0, OY1 - 0.32 + zu, z0 - 0.36); g.add(hd);
+      if (full) g.add(K.box(0.302, 0.006, 0.342, B, 0, OY1 - 0.343 + zu, z0 - 0.36));
+      const nose = new THREE.Mesh(new THREE.CylinderGeometry(0.065, 0.075, 0.06, 32), S); nose.position.set(0, OY1 - 0.48 + zu, z0 - 0.34); g.add(nose);
+      const hold = TXT.lathe([[0, 0], [0.045, 0], [0.045, 0.02], [0.03, 0.025], [0.022, 0.07], [0.02, 0.1], [0, 0.1]], S); hold.rotation.x = Math.PI; hold.position.set(0, OY1 - 0.51 + zu, z0 - 0.34); g.add(hold);
+      const mill = new THREE.Mesh(new THREE.CylinderGeometry(0.0062, 0.0062, 0.075, 16), K.mat('vmc_carbide', { color: 0x70757a, metalness: 0.9, roughness: 0.32 })); mill.position.set(0, OY1 - 0.65 + zu, z0 - 0.34); g.add(mill);
+      parts.spindle = new THREE.Object3D(); parts.spindle.position.set(0, OY1 - 0.6875 + zu, z0 - 0.34); g.add(parts.spindle);
+      if (full) {
+        const fl2 = K.mat('vmc_flute', { color: 0x1b1c1e, metalness: 0.6, roughness: 0.4 });
+        for (let fk = 0; fk < 3; fk++) { const hp = []; for (let q = 0; q <= 24; q++) { const tq = q / 24, an = fk * 2.094 + tq * 3.6; hp.push([Math.cos(an) * 0.0062, OY1 - 0.6875 + zu + tq * 0.045, z0 - 0.34 + Math.sin(an) * 0.0062]); } g.add(TXT.tube(hp, 0.0014, fl2)); }
+        const hm = K.mat('vmc_hose', { color: 0x40566a, metalness: 0.05, roughness: 0.4 });
+        for (const s of [-1, 1]) {
+          const pts = []; for (let k = 0; k <= 8; k++) { const t = k / 8; pts.push([s * (0.12 - 0.07 * t), OY1 - 0.4 + zu - 0.18 * t, z0 - 0.28 - 0.04 * Math.sin(t * 3)]); }
+          g.add(TXT.tube(pts, 0.009, hm));
+          for (let sk = 1; sk < pts.length; sk++) { const ring = new THREE.Mesh(new THREE.TorusGeometry(0.0093, 0.0016, 6, 14), hm); ring.position.set(pts[sk][0], pts[sk][1], pts[sk][2]); ring.rotation.x = Math.PI / 2; g.add(ring); }
+          const last = pts[pts.length - 1], noz = new THREE.Mesh(new THREE.CylinderGeometry(0.003, 0.008, 0.022, 12), K.mat('vmc_nozzle', { color: 0x2a2c2f, roughness: 0.4 })); noz.position.set(last[0], last[1] - 0.008, last[2]); g.add(noz);
+        }
+        g.add(K.box(0.6, 0.035, 0.04, o.workLight ? K.mat('vmc_wl_on', { color: 0x111111, emissive: 0xf1e7d6, emissiveIntensity: 2.2 }) : K.mat('vmc_wl_off', { color: 0x2b2d2f, roughness: 0.3 }), -0.2, OY1 - 0.08, z0 - 0.58));
+        // CHIPS: curled ribbons on the table either side of the vise, in the T-slots and on the way covers
+        if (o.chips) g.add(chips(rng, 140, [-0.44, z0 - 0.53, 0.44, z0 - 0.13], tY));
+      }
+      // the doors, two leaves, sliding apart by `door`
+      const leafW = 0.6, leafH = 1.06, slide = o.door * 0.6;
+      for (const s of [-1, 1]) {
+        const leaf = new THREE.Group();
+        leaf.add(TXT.roundedBox(leafW, leafH, 0.04, 0.01, Pm));
+        const gas = TXT.roundedBox(0.44, 0.59, 0.044, 0.01, R); gas.position.set(0, 0.12, 0); leaf.add(gas);
+        leaf.add(K.box(0.4, 0.55, 0.046, M.glass(o.workLight), 0, 0.12 - 0.275, 0));
+        if (full) for (let sc = 0; sc < 6; sc++) for (const yy of [0.42, -0.18]) { const scr = new THREE.Mesh(new THREE.CylinderGeometry(0.004, 0.004, 0.006, 8), S); scr.rotation.x = Math.PI / 2; scr.position.set(-0.21 + sc * 0.084, yy, 0.024); leaf.add(scr); }
+        const hdl = new THREE.Mesh(new THREE.CylinderGeometry(0.013, 0.013, 0.32, 16), S); hdl.position.set(-s * 0.24, -0.15, 0.06); leaf.add(hdl);
+        for (const dy of [-0.14, 0.14]) { const so = new THREE.Mesh(new THREE.CylinderGeometry(0.008, 0.008, 0.05, 10), S); so.rotation.x = Math.PI / 2; so.position.set(-s * 0.24, -0.15 + dy, 0.035); leaf.add(so); }
+        leaf.position.set(s * (leafW / 2 + slide), (OY0 + OY1) / 2 + 0.02, z0 + 0.06); g.add(leaf);
+      }
+      const rail = TXT.roundedBox(W - 0.2, 0.05, 0.05, 0.01, S); rail.position.set(0, OY1 + 0.1, z0 + 0.06); g.add(rail);
+      const hood = TXT.roundedBox(0.3, 0.95, 0.95, 0.03, Pm); hood.position.set(-W / 2 - 0.15, 1.65, -0.2); g.add(hood);
+      if (full) g.add(K.box(0.02, 0.36, 0.42, M.glass(false), -W / 2 - 0.3, 1.5, -0.2));
+      // THE PENDANT on its swing arm at the front right: the arm runs from the roof corner, through a
+      // knuckle, down into the pendant's own yoke
+      const pend = K.make('cnc_pendant', { housing: o.pendant, screen: o.screen, yoke: true, seed: o.seed });
+      pend.position.set(W / 2 + 0.18, 1.14, z0 + 0.35); pend.rotation.y = -0.35; pend.updateMatrix(); pend.updateMatrixWorld(true);
+      g.add(pend); parts.pendant = pend;
+      const mnt = pend.userData.parts.mount.getWorldPosition(new THREE.Vector3());
+      g.add(TXT.tube([[W / 2 - 0.05, H - 0.4, z0 - 0.1], [W / 2 + 0.12, H - 0.4, z0 + 0.1], [mnt.x, H - 0.4, mnt.z], [mnt.x, mnt.y, mnt.z]], 0.035, Pm));
+      const knuck = new THREE.Mesh(new THREE.CylinderGeometry(0.05, 0.05, 0.08, 20), PP); knuck.position.set(W / 2 + 0.12, H - 0.4, z0 + 0.1); g.add(knuck);
+      // the stack light on the roof's rear right corner
+      const pole = new THREE.Mesh(new THREE.CylinderGeometry(0.012, 0.012, 0.2, 10), S); pole.position.set(W / 2 - 0.2, H + 0.14, -D / 2 + 0.2); g.add(pole);
+      const lens = [K.mat('vmc_lens_g', { color: 0x16301e, roughness: 0.3 }), K.mat('vmc_lens_y', { color: 0x3a3214, roughness: 0.3 })];
+      const lit = { warm: 0xf1e7d6, green: 0x58d26a, amber: 0xf0a030, accent: o.accent }[o.lamp];
+      for (let sg = 0; sg < 3; sg++) {
+        const lm = sg === 2 ? (lit != null ? K.mat('vmc_lens_on' + lit.toString(16), { color: 0x222222, emissive: lit, emissiveIntensity: 1.3 }) : K.mat('vmc_lens_off', { color: 0x2c3436, roughness: 0.3 })) : lens[sg];
+        const seg = new THREE.Mesh(new THREE.CylinderGeometry(0.035, 0.035, 0.06, 24), lm); seg.position.set(W / 2 - 0.2, H + 0.27 + sg * 0.065, -D / 2 + 0.2); g.add(seg);
+      }
+      const cap = new THREE.Mesh(new THREE.SphereGeometry(0.035, 20, 10, 0, TAU, 0, Math.PI / 2), PL); cap.position.set(W / 2 - 0.2, H + 0.43, -D / 2 + 0.2); g.add(cap);
+      if (full) {
+        const cv = TXT.roundedBox(0.4, 0.18, 1.4, 0.02, Pm); cv.position.set(W / 2 - 0.45, 0.85, -D / 2 - 0.45); cv.rotation.x = -0.7; g.add(cv);
+        const cart = TXT.roundedBox(0.6, 0.5, 0.6, 0.03, K.mat('vmc_cart', { color: 0x2b2e31, metalness: 0.4, roughness: 0.55 })); cart.position.set(W / 2 - 0.45, 0.37, -D / 2 - 0.95); g.add(cart);
+        const tank = TXT.roundedBox(1.2, 0.5, 0.4, 0.02, Pm); tank.position.set(-0.4, 0.25, -D / 2 - 0.2); g.add(tank);
+      }
+      g.userData.opening = { y0: OY0, y1: OY1, w: OW, z: z0 };
+      g.userData.parts = parts;
+      g.userData.keepOrigin = true;
+      return g;
+    },
+  });
+
+  /* ---- AN EMPTY MACHINE BAY ------------------------------------------------------------------ */
+  /* 3.2 x 3.6 m on the floor: a satin epoxy pad 3 mm proud carrying the kit's concrete tooth at its
+   * own metres, an outline of 0.10 m floor tape with a rounded 2 mm body so a low key draws a line
+   * along it, four steel levelling plates with anchor bolts, a capped conduit stub and a drop cord
+   * from `cordTop` metres to 1.9 m. `tape` is the tape's hex. `tapeLit: true` draws the tape's top in
+   * an unlit material at that hex, outside the tone curve, so a thin accent holds its colour at feed
+   * size (no. 56 frame 6 measured a lit tape under layout_check's accent presence until it was). */
+  K.define('machine_pad', {
+    size: [3.2, 6, 3.6],
+    options: { cordTop: 6, tape: 0xd8b52a, tapeLit: false },
+    note: 'An empty machine bay: epoxy pad, taped outline (tape hex, tapeLit holds the hex outside the tone curve), levelling plates, conduit stub, drop cord. Origin at the pad centre.',
+    make(o) {
+      const g = new THREE.Group(), bw = 3.2, bd = 3.6, tw = 0.1;
+      const base = K.tex('concrete'), mtr = base.userData.metres || 3;
+      const tex = base.clone(); tex.repeat.set(bw / mtr, bd / mtr); tex.needsUpdate = true;
+      const pad = new THREE.Mesh(new THREE.PlaneGeometry(bw, bd), new THREE.MeshStandardMaterial({ color: 0x4a5158, metalness: 0.05, roughness: 0.16, map: tex }));
+      pad.rotation.x = -Math.PI / 2; pad.position.y = 0.003; pad.userData.txWear = false; pad.receiveShadow = true; g.add(pad);
+      const TM = o.tapeLit ? new THREE.MeshBasicMaterial({ color: new THREE.Color(o.tape), toneMapped: false })
+                           : K.mat('pad_tape', { color: o.tape, roughness: 0.6 });
+      for (const t of [[bw, tw, 0, -bd / 2 + tw / 2], [bw, tw, 0, bd / 2 - tw / 2], [tw, bd - 2 * tw, -bw / 2 + tw / 2, 0], [tw, bd - 2 * tw, bw / 2 - tw / 2, 0]]) {
+        const m = TXT.roundedBox(t[0], 0.004, t[1], 0.0018, TM); m.position.set(t[2], 0.005, t[3]); m.userData.txWear = false; g.add(m);
+      }
+      const S = M.steel();
+      for (const s of [[-1, -1], [1, -1], [-1, 1], [1, 1]]) {
+        const p = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.08, 0.015, 24), S); p.position.set(s[0] * (bw / 2 - 0.45), 0.0105, s[1] * (bd / 2 - 0.5)); g.add(p);
+        const bolt = new THREE.Mesh(new THREE.CylinderGeometry(0.012, 0.012, 0.05, 10), S); bolt.position.set(s[0] * (bw / 2 - 0.45), 0.04, s[1] * (bd / 2 - 0.5)); g.add(bolt);
+      }
+      const stub = new THREE.Mesh(new THREE.CylinderGeometry(0.027, 0.027, 0.12, 14), K.mat('pad_emt', { color: 0x8a8f93, metalness: 0.85, roughness: 0.35 })); stub.position.set(bw / 2 - 0.3, 0.06, -bd / 2 + 0.35); g.add(stub);
+      const cord = new THREE.Mesh(new THREE.CylinderGeometry(0.012, 0.012, o.cordTop - 1.9, 8), K.mat('pad_cord', { color: 0x141516, roughness: 0.6 })); cord.position.set(bw / 2 - 0.3, 1.9 + (o.cordTop - 1.9) / 2, -bd / 2 + 0.35); g.add(cord);
+      const plug = TXT.roundedBox(0.06, 0.12, 0.06, 0.01, K.mat('pad_plug', { color: 0x2b2b2b, roughness: 0.5 })); plug.position.set(bw / 2 - 0.3, 1.86, -bd / 2 + 0.35); g.add(plug);
+      g.userData.keepOrigin = true;
+      return g;
     },
   });
 }

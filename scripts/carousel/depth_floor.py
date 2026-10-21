@@ -210,7 +210,7 @@ GPU_BIND = re.compile(r"(?:(?:var|let|const)\s+)?([A-Za-z_$][\w$]*)\s*=\s*\(\s*a
                       r"[^)]*txthree\.js[^)]*\)\s*\)\s*\.init\s*\(")
 GPU_CUES = {
     "LINEAR_PERSPECTIVE": ("frame",),        # a perspective camera placed in the world
-    "HEIGHT_IN_FIELD":    ("ground",),       # the plane everything stands on
+    "HEIGHT_IN_FIELD":    ("ground", "interior"),   # the plane everything stands on; a room lays one
     "FORM_SHADING":       ("mat.",),         # a physically based material under a key light
 }
 
@@ -254,7 +254,14 @@ def gpu_report(src: str) -> dict | None:
     if rigged and added:
         cues.add("CAST_SHADOW")
     placed = has("frame") and added
-    grounded = has("ground")
+    # A ROOM IS A GROUND. TXT.interior lays its floor by calling TXT.ground itself, as a top level
+    # statement of its body, so a frame built in a room stands on a ground plane without writing a
+    # second one. Until 2026-10-21 this read the call by name only and refused every room frame,
+    # and nos. 55 and 56 laid a second TXT.ground under all eleven of their room frames to pass.
+    # The two planes z-fought into banding from 120 m on no. 56 frames 5 and 6, and the cure was to
+    # lift the second ground and every object 0.2 m. The self-test reads the engine and goes red if
+    # TXT.interior ever stops laying its floor unconditionally, which would end this exception.
+    grounded = has("ground") or has("interior")
     return {
         "cues": cues,
         "bench": True,
@@ -686,6 +693,36 @@ def self_test() -> int:
        not frame("n", GPU.replace("await T.snapshot(R);", ""))["staged"])
     ok("a GPU frame with no ground plane is NOT staged",
        not frame("f", GPU.replace("T.ground(R,{});", ""))["staged"])
+    # A ROOM IS A GROUND (2026-10-21, queue depth-floor-wants-a-literal-ground-in-interiors).
+    ROOM = GPU.replace("T.ground(R,{});", "T.interior(R,{w:12,d:10,h:4.2,ceiling:true});")
+    ok("a GPU frame standing in a TXT.interior room is STAGED without a second ground",
+       frame("room", ROOM)["staged"] and frame("room", ROOM)["ground"], str(frame("room", ROOM)))
+    ok("...and naming the method without calling it grounds nothing",
+       not frame("c", GPU.replace("T.ground(R,{});", "const s='T.interior'; const f=T.interior;"))["staged"])
+    ok("...and the room carries the plane's depth cue, as a ground does",
+       "HEIGHT_IN_FIELD" in frame("room", ROOM)["cues"], str(sorted(frame("room", ROOM)["cues"])))
+    ok("...and a room on an UNBOUND name grounds nothing",
+       not frame("u", GPU.replace("T.ground(R,{});", "X.interior(R,{});"))["staged"])
+    # THE EXCEPTION IS THE ENGINE'S, so it is read from the engine. TXT.interior must lay its floor
+    # by calling TXT.ground as a top level statement of its own body: indented one level, never
+    # under an option. If a maintainer puts the floor behind a flag, this goes red and the
+    # exception above has to be argued again.
+    eng = (REPO / "assets" / "js" / "txthree.js").read_text(encoding="utf-8")
+    start = eng.find("  TXT.interior = function (R, o) {")
+    end = eng.find("\n  };\n", start)
+    body = eng[start:end] if start >= 0 and end > start else ""
+    floor = [ln for ln in body.splitlines() if "TXT.ground(R" in ln]
+    ok("the engine's TXT.interior lays its floor with an unconditional TXT.ground call",
+       bool(floor) and all(re.match(r"^    TXT\.ground\(R", ln) for ln in floor), str(floor)[:200])
+    def interior_floor_ok(src: str) -> bool:
+        b = src[src.find("  TXT.interior = function (R, o) {"):]
+        b = b[:b.find("\n  };\n")]
+        ls = [ln for ln in b.splitlines() if "TXT.ground(R" in ln]
+        return bool(ls) and all(re.match(r"^    TXT\.ground\(R", ln) for ln in ls)
+    ok("...and that engine check goes red on a floor put behind an option",
+       not interior_floor_ok(body.replace("    TXT.ground(R", "    if (o.floor !== false) TXT.ground(R") + "\n  };\n"))
+    ok("...and on a room that lays no floor at all",
+       not interior_floor_ok(re.sub(r"    TXT\.ground\(R[^\n]*\n", "", body) + "\n  };\n"))
     STATIC = GPU.replace("const T=(await import('@@ASSETS@@/js/txthree.js')).init(THREE);",
                          "").replace("<script type=\"module\">",
                                      "<script type=\"module\">import { init } from "

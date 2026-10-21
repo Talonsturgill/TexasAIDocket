@@ -403,6 +403,33 @@ def _luma(a):
     return 0.2126 * a[:, :, 0] + 0.7152 * a[:, :, 1] + 0.0722 * a[:, :, 2]
 
 
+def _lstar(level: float) -> float:
+    """CIE L* of an sRGB level 0 to 255, by the sRGB transfer function and the CIE 1976 formula."""
+    c = max(0.0, min(255.0, level)) / 255.0
+    y = c / 12.92 if c <= 0.04045 else ((c + 0.055) / 1.055) ** 2.4
+    return 903.3 * y if y <= 0.008856 else 116.0 * y ** (1.0 / 3.0) - 16.0
+
+
+def detail_step(img, rect) -> tuple[float, float]:
+    """(the rect's median luminance level, the L* step that DETAIL_STD levels make at that level).
+
+    WHY THE FAILURE MESSAGE CARRIES THIS (2026-10-21, queue detail-floor-pushes-dark-plates-to-
+    graph-paper at repeat 2, nos. 53, 55 and 56). Three runs met the floor on a near black plate
+    and answered it with a ruled grid or rows of ticks, and every judge in every round then charged
+    those frames as graph paper. The queue proposed counting a cell's contrast relative to its own
+    mean. That would LOOSEN the floor exactly where it fired: sRGB levels are already close to even
+    in perceived lightness, and DETAIL_STD levels make a SMALLER L* step in the deep darks than at
+    mid grey, so the floor already asks less of a dark plate than of a grey one. The defect was the
+    answer a run reached for, so the message names the answer that holds."""
+    import numpy as np
+    from PIL import Image
+    small = np.asarray(img.resize(DETAIL_SCALE, Image.BOX)).astype(float)
+    x, y, w, h = rect
+    region = _luma(small)[int(round(y * 0.5)):int(round((y + h) * 0.5)), int(round(x * 0.5)):int(round((x + w) * 0.5))]
+    level = float(np.median(region)) if region.size else 0.0
+    return level, _lstar(level + DETAIL_STD) - _lstar(level)
+
+
 def detail_fraction(img, rect, boxes, count_text: bool = False) -> tuple[float, int, int]:
     """(share of kept cells with std above DETAIL_STD, cells kept, cells dropped for text).
 
@@ -799,10 +826,18 @@ def check(run_dir: Path, require: bool = False, image_overrides: dict[int, Path]
             problems.append(f"slide {n}: the rect {list(p['rect'])} has no 8 px cell that is not "
                             f"under type, so there is no room in it for an image at all")
         elif detail < DETAIL_SHARE:
+            level, step = detail_step(img, p["rect"])
             problems.append(f"slide {n}: {detail:.2f} of the {kept} cells inside the primary "
                             f"image rect carry any detail (luminance std over {DETAIL_STD:.0f}), "
                             f"under the {DETAIL_SHARE:.2f} line. The plan says {p['subject']!r} "
-                            f"is drawn there and the pixels say a flat plate is")
+                            f"is drawn there and the pixels say a flat plate is. At this rect's "
+                            f"median level of {level:.0f} that floor is a step of {step:.1f} L*, "
+                            f"no more than it asks of a mid grey, so a darker plate earns no "
+                            f"discount. NEVER ANSWER IT WITH A RULED GRID OR ROWS OF TICKS, which "
+                            f"the judges charged as graph paper on three decks. Model the "
+                            f"subject's own features inside the rect (joints, cuts, fixtures, "
+                            f"wear in the albedo, a pool falling off across them), or draw the "
+                            f"rect around the subject rather than the plate it stands on")
         # 5. A GRID is a count, so it is held to coming apart rather than to holding together.
         if cover < SIL_COVER:
             problems.append(f"slide {n}: at thumb scale the subject covers {cover:.3f} of the "
@@ -1078,6 +1113,14 @@ def self_test() -> int:
         ok("a flat plate inside the rect FAILS on detail, naming the slide and the plan's subject",
            code == 1 and any("slide 1" in p and "flat plate" in p and "subject 1" in p for p in probs),
            probs)
+        ok("...and the failure names the cure and refuses the ruled grid (nos. 53, 55, 56)",
+           any("slide 1" in p and "NEVER ANSWER IT WITH A RULED GRID" in p and " L*" in p for p in probs),
+           probs)
+        # the floor is already even in perceived lightness, and easier in the deep dark, which is
+        # why a contrast relative to the cell's own mean was refused as a loosening (2026-10-21)
+        ok("DETAIL_STD makes a smaller L* step near black than at mid grey",
+           0 < _lstar(8 + DETAIL_STD) - _lstar(8) < _lstar(128 + DETAIL_STD) - _lstar(128),
+           (_lstar(8 + DETAIL_STD) - _lstar(8), _lstar(128 + DETAIL_STD) - _lstar(128)))
         ok("...while every textured frame beside it passes",
            all(r["detail"] >= DETAIL_SHARE for r in rows if r.get("frame", 1) != 1),
            [(r.get("frame"), round(r.get("detail", 0), 2)) for r in rows if "frame" in r])

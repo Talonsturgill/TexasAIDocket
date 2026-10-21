@@ -275,6 +275,22 @@ def engine_doc(name: str, adjacent: str, comments, offset: int) -> str:
     return best
 
 
+# THE UNIT A ROW MUST CARRY, quoted from the engine and never asserted on its own (2026-10-21,
+# queue stage-behind-depth-given-in-metres at repeat 1). Nos. 54 and 56 passed TXT.stage `behind`
+# 10 to 30 and 3.5 and `depth` 30 to 90 and 4 as metres. They are fractions of the subject's
+# distance, so the fog began a kilometre out on no. 54 and the art director charged the lit band
+# behind every headline for three readings, and on no. 56 the change did nothing to the navy field
+# it was meant to clear. The engine says the unit in its header, and the row a run reads is only
+# the two-line comment over the function, which does not. A note is added to a row ONLY while the
+# engine's own text still says what the note says: if the evidence stops matching, the note is
+# withdrawn rather than left to describe an engine that changed.
+ENGINE_UNITS = {
+    "stage": ("UNITS: `behind` and `depth` are fractions of the subject's distance from the camera, "
+              "never metres. The world presets' own `stage` values in txthree.js are the scale.",
+              (r"`behind` \(a fraction of the subject's distance\)", r"whole `depth` subject distances later")),
+}
+
+
 def parse_engine(src: str) -> dict:
     lines = src.split("\n")
     comments = block_comments(src)
@@ -298,6 +314,9 @@ def parse_engine(src: str) -> dict:
             doc = re.sub(r"^\s*(?:[\u2013\u2014]+|-{1,2}|:)\s*", "", doc)
         entry = {"name": name, "sig": clean(sig), "async": bool(m.group(2)),
                  "doc": first_sentence(doc, 220) if doc else "", "line": idx + 1}
+        unit = ENGINE_UNITS.get(name)
+        if unit and all(re.search(rx, src) for rx in unit[1]):
+            entry["units"] = unit[0]
         if name in fns:
             entry["redefined"] = True
             if not entry["doc"]:
@@ -963,6 +982,7 @@ def build(root: Path = REPO_ROOT) -> str:
     rows = []
     for f in engine["functions"]:
         note = f["doc"] + (" (defined twice, the later one wins)" if f.get("redefined") else "")
+        note += (" " + f["units"]) if f.get("units") else ""
         rows.append([code(("await " if f["async"] else "") + f["sig"]), note])
     if engine.get("recipe"):
         L += ["**The whole stage, in the engine's own words** (quoted from its header):", "",
@@ -1204,6 +1224,15 @@ def self_test() -> int:
     ok("engine: surfaces survive a comma inside a string value",
        eng["surfaces"] == ["mud", "sand"], eng["surfaces"])
     ok("engine: scatter kinds", eng["scatter"] == ["reeds", "rocks"], eng["scatter"])
+    # the unit note, read against the REAL engine, and withdrawn when the engine stops saying it
+    real = (REPO_ROOT / "assets" / "js" / "txthree.js").read_text(encoding="utf-8")
+    st = next((f for f in parse_engine(real)["functions"] if f["name"] == "stage"), {})
+    ok("engine units: the real TXT.stage row says behind and depth are fractions, never metres",
+       "never metres" in st.get("units", ""), st.get("units"))
+    moved = real.replace("(a fraction of the subject's distance)", "(in metres)")
+    st2 = next((f for f in parse_engine(moved)["functions"] if f["name"] == "stage"), {})
+    ok("engine units: the note is WITHDRAWN once the engine no longer says the unit",
+       "units" not in st2, st2.get("units"))
 
     models, dynamic = parse_kit_family(FIX_FAMILY)
     by = {m["name"]: m for m in models}
