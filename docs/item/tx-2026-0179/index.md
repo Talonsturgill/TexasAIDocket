@@ -1,6 +1,6 @@
 # Dallas issues its first code citations from the AI cameras on its brush trucks
 
-The City of Dallas put AI enabled cameras on its sanitation brush trucks to photograph parcels from the public right of way and flag code violations. A December 9th, 2025 briefing to the council's Finance Committee set out the terms and drew a line under what the system would not be. It named automated ticketing and public safety surveillance among the three things it is not, and it stated that a human stands in the loop for all actions. The cameras went fully operational over the summer of 2026. A memo the city manager sent the council on September 8th, 2026 is reported to say that 57 citations have been issued at 34 properties. The same memo is reported to say that 39 of those citations went to three southern Dallas council districts. It is also reported to say the cameras scanned 10,000 properties and produced 3,700 violations that drew notices. The city's position is that the letters it sends are courtesy notices rather than warnings. The letter itself is reported to carry the words violations identified and to ask the owner to correct them to avoid further enforcement action. The assistant director of Code Compliance was asked about the difference and said you could call that a warning. The city manager briefs a council committee on the program on October 19th.
+The City of Dallas put AI enabled cameras on its sanitation brush trucks to photograph parcels from the public right of way and flag code violations. A December 9th, 2025 briefing to the council's Finance Committee set out the terms and drew a line under what the system would not be. It named automated ticketing and public safety surveillance among the three things it is not, and it stated that a human stands in the loop for all actions. The cameras went fully operational over the summer of 2026. A memo the city manager sent the council on September 8th, 2026 is reported to say that 57 citations have been issued at 34 properties. The same memo is reported to say that 39 of those citations went to three southern Dallas council districts. It is also reported to say the cameras scanned 10,000 properties and produced 3,700 violations that drew notices. The city's position is that the letters it sends are courtesy notices rather than warnings. The letter itself is reported to carry the words violations identified and to ask the owner to correct them to avoid further enforcement action. The assistant director of Code Compliance was asked about the difference and said you could call that a warning. At a committee meeting on October 19th the city reported 50 cameras on bulky trash trucks since mid April. Staff had reviewed 5,318 observations, sent 2,928 courtesy notices and made 473 field inspections, with 374 voluntary corrections and 101 formal enforcement actions. The city says those figures are not a step by step count from camera to enforcement. It plans to soften the notice's wording. Faces and license plates are blurred and images are kept for 12 months, and a council member called for an audit of the images.
 
 - Topic: surveillance-and-policing
 - Decided by: City of Dallas (city)
@@ -11,7 +11,7 @@ The City of Dallas put AI enabled cameras on its sanitation brush trucks to phot
 - Public access: Public meeting
 - Take part: https://dallascityhall.com/government/citymanager/Documents/Council%20Materials/A.%20Sanitation%20and%20Code.pdf
 
-- Last checked: 2026-10-18
+- Last checked: 2026-10-21
 
 ## Dates
 
@@ -35,6 +35,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-15 · Dallas still has a person review every camera flag before a citation goes out. The station's investigation is unconfirmed, since its site bars automated readers.
 - 2026-10-17 · The city's own briefing to its finance committee still says a person reviews every camera flag before a citation goes out. The Fox 4 account still reads as cited. The NBC 5 investigation is unconfirmed, since its site bars automated readers.
 - 2026-10-18 · The city's finance committee briefing and the Fox 4 account still read as cited. The NBC 5 investigation is unconfirmed, since its site bars automated readers.
+- 2026-10-21 · At the October 19th committee briefing the city reported 50 cameras, 2,928 courtesy notices and 101 formal enforcement actions since mid April. It said it will soften the notice's wording, and a council member called for an audit of the images.
 
 ## Evidence
 
@@ -123,4 +124,58 @@ Source (journalism): https://www.nbcdfw.com/investigations/dallas-issues-first-c
 > Near the top of the notice, in bold letters, it said "violations identified."
 
 Source (journalism): https://www.nbcdfw.com/investigations/dallas-issues-first-citations-tied-to-ai-code-enforcement-cameras/4078749/
+
+### The Dallas Morning News reports council members learned of the notice changes at a committee meeting on Monday, October 19th.
+
+> The changes are intended to make notices easier to understand, council members learned during a committee meeting Monday.
+
+Source (journalism): https://www.govtech.com/artificial-intelligence/dallas-revises-resident-notices-from-trash-truck-ai-cameras
+
+### The city has used 50 AI powered cameras on bulky sanitation trucks since mid April, the Dallas Morning News reports.
+
+> The city started using 50 AI-powered cameras mounted on bulky sanitation trucks in mid-April to scan for possible property and right-of-way concerns, including overgrown lawns, debris, unsafe structures, graffiti and sidewalk issues.
+
+Source (journalism): https://www.govtech.com/artificial-intelligence/dallas-revises-resident-notices-from-trash-truck-ai-cameras
+
+### Staff have reviewed 5,318 observations, sent 2,928 courtesy notices and conducted 473 field inspections.
+
+> Staff have reviewed 5,318 observations, sent 2,928 courtesy notices and conducted 473 field inspections.
+
+Source (journalism): https://www.govtech.com/artificial-intelligence/dallas-revises-resident-notices-from-trash-truck-ai-cameras
+
+### The department also reported 374 voluntary corrections and 101 formal enforcement actions.
+
+> The department also reported 374 voluntary corrections and 101 formal enforcement actions.
+
+Source (journalism): https://www.govtech.com/artificial-intelligence/dallas-revises-resident-notices-from-trash-truck-ai-cameras
+
+### The city says the figures are not a step by step count from camera detection to enforcement.
+
+> The numbers reflect different parts of the program, not a step-by-step count of cases moving from camera detection to enforcement.
+
+Source (journalism): https://www.govtech.com/artificial-intelligence/dallas-revises-resident-notices-from-trash-truck-ai-cameras
+
+### The code department plans to soften the wording of its courtesy notices.
+
+> The code department plans to soften the language it uses in its courtesy notices, so the notice feels less like an enforcement warning.
+
+Source (journalism): https://www.govtech.com/artificial-intelligence/dallas-revises-resident-notices-from-trash-truck-ai-cameras
+
+### A flagged image is not automatically treated as a violation, and licensed code officers decide on a response.
+
+> A flagged image is not automatically treated as a violation. Licensed code officers compare the image with the software’s finding and decide whether the issue warrants a response.
+
+Source (journalism): https://www.govtech.com/artificial-intelligence/dallas-revises-resident-notices-from-trash-truck-ai-cameras
+
+### Faces and license plates are blurred and images are kept for 12 months.
+
+> Faces and license plates are blurred, and images are retained for 12 months under city records-retention requirements.
+
+Source (journalism): https://www.govtech.com/artificial-intelligence/dallas-revises-resident-notices-from-trash-truck-ai-cameras
+
+### A council member called for an audit of images to check the privacy protections.
+
+> A council member called for an audit of images to verify that privacy protections are working.
+
+Source (journalism): https://www.govtech.com/artificial-intelligence/dallas-revises-resident-notices-from-trash-truck-ai-cameras
 

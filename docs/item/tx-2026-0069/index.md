@@ -11,7 +11,7 @@ The Texas Comptroller now lists application J0022 among current agreements under
 - Public access: Write to the decider
 - Take part: https://comptroller.texas.gov/economy/development/prop-tax/jeti/application-details.php?id=J0022
 
-- Last checked: 2026-10-18
+- Last checked: 2026-10-21
 
 ## Dates
 
@@ -45,6 +45,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-11 · The comptroller still lists the Energy Forge One agreement with Pecos-Barstow-Toyah ISD as executed.
 - 2026-10-15 · The comptroller still lists the Energy Forge One agreement with Pecos-Barstow-Toyah ISD as executed.
 - 2026-10-18 · The comptroller's application page still shows the Energy Forge One agreement with Pecos-Barstow-Toyah ISD. The Grist account is unconfirmed.
+- 2026-10-21 · Checked and unchanged. The decision still stands as decided.
 
 ## Evidence
 

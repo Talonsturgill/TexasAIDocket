@@ -11,7 +11,7 @@ El Paso Electric asked the Public Utility Commission of Texas to amend its certi
 - Public access: Public meeting
 - Take part: https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=59076&ItemMatch=Equal&DocumentType=ALL&SortBy=ItemNumber&SortOrder=Descending
 
-- Last checked: 2026-10-18
+- Last checked: 2026-10-21
 
 ## Dates
 
@@ -30,6 +30,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-11 · The commission has still not ruled on the judges' recommendation for El Paso Electric's gas plant.
 - 2026-10-15 · The commission still has not ruled on the judges' recommendation for El Paso Electric's gas plant.
 - 2026-10-18 · The commission still has not ruled on the judges' recommendation for El Paso Electric's gas plant for Meta.
+- 2026-10-21 · Checked and unchanged. Still pending, with no dated movement.
 
 ## Evidence
 

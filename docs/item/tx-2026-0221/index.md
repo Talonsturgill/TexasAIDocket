@@ -11,7 +11,7 @@ The University of Texas at Austin says a team led by assistant professor of phys
 - Public access: Write to the decider
 - Take part: https://news.utexas.edu/2026/10/16/in-brief-ut-led-fusion-research-team-wins-google-org-ai-award/
 
-- Last checked: 2026-10-18
+- Last checked: 2026-10-21
 
 ## Dates
 
@@ -22,6 +22,7 @@ The University of Texas at Austin says a team led by assistant professor of phys
 One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
 
 - 2026-10-18 · Admitted on the university's own news item. The award funds a plan and no result is reported.
+- 2026-10-21 · Checked and unchanged. The decision still stands as decided.
 
 ## Evidence
 

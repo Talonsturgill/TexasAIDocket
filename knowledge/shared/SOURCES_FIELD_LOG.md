@@ -2241,3 +2241,22 @@ User-Agent. Nothing from that PDF is carried.
 
 **www.keranews.org answered 301 to www.kera.org, which answered 403**, and **www.mylubbock.us answered 403**.
 Neither is carried today.
+
+## October 21st, 2026
+
+**news.lockheedmartin.com answered 200** on its October 14th release about the Grand Prairie expansion, the source
+of tx-2026-0225's c1 to c19.
+
+**www.hadrian.co answered 200** on its home page, its Series C post and its press page, and its robots file allows
+every path read. The home page's Opus and deployed-cell lines are c20 to c23.
+
+**www.lockheedmartin.com answered 200** on its PAC-3 product page, the source of c30 to c33.
+
+**www.tdlr.texas.gov answered 200** on the printable TABS project page for TABS2023008064, the filing that places
+Lockheed Martin Missile and Fire Control at 1701 West Marshall Drive in Dallas County.
+
+**www.taylortx.gov's news post for tx-2026-0203 now redirects to a missing page.** The item's other account still
+reads, and nothing new is carried from Taylor's site.
+
+**www.tahc.texas.gov answered 200** on its screwworm page and now counts 44 premises with a confirmed detection,
+up from 43, still in 17 counties.

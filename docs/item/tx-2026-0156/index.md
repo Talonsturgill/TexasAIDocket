@@ -9,7 +9,7 @@ ERCOT published the user guide for the Verification RFI on September 11th, 2026,
 - Public access: Write to the decider
 - Take part: https://www.ercot.com/files/docs/2026/09/11/Verification-RFI-User-Guide-v1.1.pdf
 
-- Last checked: 2026-10-18
+- Last checked: 2026-10-21
 
 ## Dates
 
@@ -32,6 +32,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-12 · The grid operator's guide for large loads answering its verification request still reads as posted.
 - 2026-10-15 · ERCOT's user guide for the verification request still reads as posted, notarized attestation included.
 - 2026-10-18 · ERCOT's user guide for the verification request still carries the notarized attestation.
+- 2026-10-21 · Checked and unchanged. The decision still stands as decided.
 
 ## Evidence
 

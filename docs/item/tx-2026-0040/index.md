@@ -11,7 +11,7 @@ The University of Texas System Board of Regents approved $25 million in Permanen
 - Public access: Public meeting
 - Take part: https://advancing.utsystem.edu/board-of-regents/meetings/board-meeting-2026-05-20
 
-- Last checked: 2026-10-18
+- Last checked: 2026-10-21
 
 ## Dates
 
@@ -43,6 +43,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-11 · The Regents' funding to finish San Pedro II for UTSA's AI college remains in place.
 - 2026-10-15 · The Regents' money to finish San Pedro II for UTSA's AI college is still in the capital program.
 - 2026-10-18 · The money to finish San Pedro II for UTSA's AI college is still in the Regents' capital program.
+- 2026-10-21 · Checked and unchanged. The decision still stands as decided.
 
 ## Evidence
 
