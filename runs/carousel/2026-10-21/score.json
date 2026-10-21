@@ -1,0 +1,205 @@
+{
+ "weighted_score": 6.902,
+ "judges": [
+  6.83,
+  7.2,
+  6.74
+ ],
+ "spread": 0.46,
+ "criteria": {
+  "artwork_craft": {
+   "score": 6.4,
+   "weight": 0.22,
+   "judges": [
+    6.4,
+    6.5,
+    6.2
+   ]
+  },
+  "deck_coherence": {
+   "score": 7.2,
+   "weight": 0.12,
+   "judges": [
+    7.2,
+    7.5,
+    7.0
+   ]
+  },
+  "claim_integrity": {
+   "score": 8.0,
+   "weight": 0.2,
+   "judges": [
+    7.8,
+    8.0,
+    8.0
+   ]
+  },
+  "story_and_stakes": {
+   "score": 6.5,
+   "weight": 0.16,
+   "judges": [
+    6.5,
+    7.0,
+    6.3
+   ]
+  },
+  "sequence_and_momentum": {
+   "score": 6.8,
+   "weight": 0.1,
+   "judges": [
+    6.8,
+    7.0,
+    6.5
+   ]
+  },
+  "voice": {
+   "score": 6.8,
+   "weight": 0.1,
+   "judges": [
+    6.8,
+    7.0,
+    6.5
+   ]
+  },
+  "variety": {
+   "score": 6.3,
+   "weight": 0.1,
+   "judges": [
+    6.0,
+    7.5,
+    6.3
+   ]
+  }
+ },
+ "hard_fails": [],
+ "hard_fails_by_judge": [],
+ "ship": true,
+ "threshold": 8.0,
+ "over_threshold": false,
+ "method": "per-criterion median across three judges, then weighted by the rubric",
+ "contested": [
+  "variety"
+ ],
+ "artwork_weakest_frames": [
+  {
+   "slide": 3,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The 312 pockets read as a keyboard and the lifted part is invisible at 432 px.",
+     "fix": "A close on the empty pocket with the lifted part at 300 px or more in the key's pool, the tray running off two edges."
+    },
+    {
+     "judge": 2,
+     "problem": "312 pockets read as a grille at 432 px and the lifted part never reads; flat light and a dead band above the tray.",
+     "fix": "A raking three-quarter close on the tray's corner with the lifted part large in the foreground beside its empty pocket in the key's pool."
+    },
+    {
+     "judge": 3,
+     "problem": "312 pockets read as texture, the lifted part tiny, a dark band above the tray.",
+     "fix": "Raise the tray to just under the dek and set an enlarged lifted part near the camera above its empty pocket with a strong cast."
+    }
+   ]
+  },
+  {
+   "slide": 8,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "A rounded slab with beige keys on a navy wall, the arm post into the dek, the knob at the footer.",
+     "fix": "Graphite enclosure and shut door falling to black, recessed keys and a knurled handwheel raked from the left, the post 40 px below the dek."
+    },
+    {
+     "judge": 2,
+     "problem": "A primitive box with a flat screen on a navy gradient void, a dark slab at left, the arm post touching the dek, the knob under the footer.",
+     "fix": "Swap the navy backdrop for the shop with the cell's taped bays receding behind the pendant, rake the bevel and handwheel, and drop the arm post 60 px below the dek."
+    },
+    {
+     "judge": 3,
+     "problem": "A primitive pendant in a flat blue void, the post touching the dek, the knob under the cite line.",
+     "fix": "Model the pendant at full detail against the shut door and graphite enclosure under the warm low key, the arm below the dek and the housing bleeding off the bottom."
+    }
+   ]
+  },
+  {
+   "slide": 7,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "A straight-down flat cyanotype, top-loaded.",
+     "fix": "Tilt about 25 degrees off plan so the sheet recedes and curls, and stand the part in depth."
+    },
+    {
+     "judge": 2,
+     "problem": "A hard polygon shadow, a flat glowing tab, a weak bottom third.",
+     "fix": "A contact-hardening cast and a curled corner lifting off the granite in the bottom right."
+    },
+    {
+     "judge": 3,
+     "problem": "A flat line drawing with one relief part, a UI-like tab, footer inside the border, a weak lower zone.",
+     "fix": "Shoot the sheet at a raking three-quarter angle with a curled corner and a long cast, bleeding off the bottom, and a physical tape tab."
+    }
+   ]
+  },
+  {
+   "slide": 2,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "A tile grid in the grey middle and a thin rolled corner.",
+     "fix": "Two or three wide saw joints on near-black concrete and a rolled cylinder 30 to 40 px high with its cast."
+    },
+    {
+     "judge": 2,
+     "problem": "The slab reads as tile, the pour a flat mid-grey square, no pool.",
+     "fix": "Light the slab in a pool falling off to the edges, raise the boards and roll so each casts long, darken and texture the pour."
+    },
+    {
+     "judge": 3,
+     "problem": "Grey middle, a UI diagram, the rolled corner an unexplained wedge.",
+     "fix": "Near-grazing key and a darker slab so only the joint lips and form boards catch light, the carpet corner a visible curl with its own highlight."
+    }
+   ]
+  },
+  {
+   "slide": 5,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Sheared dominoes and an empty right 40 percent.",
+     "fix": "A visible unmarked pool on the floor where 6 places the bays, and longer stack-pole casts."
+    },
+    {
+     "judge": 2,
+     "problem": "The right 40 percent is empty dark with streaky casts that read as artifacts.",
+     "fix": "Clip or soften the stack-pole casts and let the block bleed the right edge."
+    }
+   ]
+  },
+  {
+   "slide": 4,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Cool windows like a server aisle and empty floor below.",
+     "fix": "A warm lit window with the part visible, and the camera 0.4 m lower."
+    }
+   ]
+  }
+ ],
+ "rounds_derived": 3,
+ "rounds": 3,
+ "rounds_source": "this module's own log of cards it has scored",
+ "rounds_declared": 3,
+ "at_cap": true,
+ "rung": null,
+ "shortfall": "at the round cap the finished deck ships at 6.902, 1.098 under the 8.0 top rung. Name that in the email and the run record",
+ "craft_floor": "capped",
+ "craft_note": "at the round cap the craft floor stands down. The art median 6.4 is under 8.5 and the deck ships as it is. Name it in the run record"
+}

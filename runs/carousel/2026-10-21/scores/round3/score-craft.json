@@ -1,0 +1,80 @@
+{
+ "lens": "craft",
+ "round": 3,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.5,
+   "why": "Frames 1, 4, 6 and 9 hold up at about 7.5. Three frames fall clearly short. Frame 8's pendant is a rounded box with a flat screen and square keycaps on a navy gradient that reads as a void, a dark slab fills the left third, the arm's post touches the dek's last line and the knob sits under the footer. Frame 3's 312 pockets read as a grille at feed size, the lifted part about 15 px at 432, with a dead band between dek and tray. Frame 2's slab reads as tile and the pour is a flat mid-grey square. Frames 5 and 6 carry streaky casts in the empty upper right. Frame 7 is top-loaded with a hard polygon shadow and a flat tab. Per-frame mean about 6.6."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "Clearly one deck: one dark register, one type chassis, one material vocabulary, the accent held to 6, 7 and 9. The 5 to 6 filmstrip and the part motif do real work. Frame 7's blueprint navy and frame 8's navy gradient bring a cold blue between the warm graphite frames."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.0,
+   "why": "Every numeral traces to figures.json and a claim, sources are primary, the slide 8 quote is a verbatim substring of c16 and slide 7's is exactly c20. The cell is never shown running, the jobs are statewide, the 24 are apart from the 100. Frame 3 mixes 2025 output with today's headcount, and frame 7's dek scopes c20 to Hadrian's own factories. Neither changes what a reader believes."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.0,
+   "why": "What, who, where and when are named on 1, 6 and 9, and the AI stake is framed honestly on 8. The stake stays general, a corporate decision with nothing a Texan can act on."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "The cover earns the swipe, the turn on 6 is real, 7 and 8 set up the question and 9 closes on who runs it. Frame 2 defers the payoff and 3 could go without loss."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "A good caption opener and a clean structure, deks careful to the point of procedural, little regional texture."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "A machine shop with plan reliefs and a cold cyan accent is new in subject, palette and world against nos. 53 to 55. Familiar moves are the counted isotype and the object-in-a-pool cover."
+  }
+ ],
+ "weighted_score": 7.2,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Rebuild frame 8 as a spatial frame in the same shop, the pendant at full detail in front of the cell's taped bays falling to black, with the arm entirely below the dek.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 8,
+   "problem": "A primitive box with a flat screen on a navy gradient void, a dark slab at left, the arm post touching the dek, the knob under the footer.",
+   "fix": "Swap the navy backdrop for the shop with the cell's taped bays receding behind the pendant, rake the bevel and handwheel, and drop the arm post 60 px below the dek."
+  },
+  {
+   "slide": 3,
+   "problem": "312 pockets read as a grille at 432 px and the lifted part never reads; flat light and a dead band above the tray.",
+   "fix": "A raking three-quarter close on the tray's corner with the lifted part large in the foreground beside its empty pocket in the key's pool."
+  },
+  {
+   "slide": 2,
+   "problem": "The slab reads as tile, the pour a flat mid-grey square, no pool.",
+   "fix": "Light the slab in a pool falling off to the edges, raise the boards and roll so each casts long, darken and texture the pour."
+  },
+  {
+   "slide": 5,
+   "problem": "The right 40 percent is empty dark with streaky casts that read as artifacts.",
+   "fix": "Clip or soften the stack-pole casts and let the block bleed the right edge."
+  },
+  {
+   "slide": 7,
+   "problem": "A hard polygon shadow, a flat glowing tab, a weak bottom third.",
+   "fix": "A contact-hardening cast and a curled corner lifting off the granite in the bottom right."
+  }
+ ],
+ "transcribed": "by the showrunner from the judge's hand-back, scores and totals as returned, reasons abridged"
+}

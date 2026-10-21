@@ -1,0 +1,116 @@
+<!doctype html>
+<!-- 2026-10-21, frame 7 of 9. Archetype DOCUMENT. A MATERIAL RELIEF through txbench.js under the deck's declared light: a cyanotype engineering sheet of the deck's part on a black granite plate, three orthographic views in white line with leaders and no numerals, a blank title block with a comal lit tab, and the finished part standing on its own plan view casting onto the sheet. Hadrian's words about its software sit above it. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+  .vq { position:absolute; left:82px; width:900px; font-family:"Fraunces", serif; font-style:normal; font-weight:500; font-size:40px; line-height:1.22; color:#ECE6DA; z-index:10; text-shadow:0 0 2px rgba(4,3,8,0.6), 0 1px 14px rgba(4,3,8,0.45); }
+  .vs { position:absolute; left:84px; font-family:"JetBrains Mono", monospace; font-size:24px; letter-spacing:0.06em; color:#D8CFC0; z-index:10; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">Software it calls AI powered</h1>
+<p class="dek" data-follow="22">Hadrian says this of the software in its own factories. Its home page also offers manufacturing cells deployed at customer sites. Drawn&nbsp;to&nbsp;illustrate.</p>
+<p class="vq" id="vq">"Opus interprets legacy designs and automates manufacturing and inspection"</p>
+<div class="vs" id="vs">Hadrian&#39;s home page</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/txbench.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-21-cell.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = (async () => {
+  await CH.bootFlat({ kicker: "Hadrian's words", counter: "07 / 09", src: "c20 c21 c15 c22", fit: { min: 70, max: 92, maxLines: 1 } });
+  TX.reseed(20261027);
+  const dek = document.querySelector(".dek"), db = dek.getBoundingClientRect();
+  const vq = document.getElementById("vq"); vq.style.top = Math.round(db.bottom + 34) + "px";
+  const vqb = vq.getBoundingClientRect(), vs = document.getElementById("vs"); vs.style.top = Math.round(vqb.bottom + 10) + "px";
+  /* the sheet at 1:1 scale to the part drawn on it: the part is 0.12 by 0.08 m, drawn at 1500 px a metre, so its
+   * plan view is 180 by 120 px; the views are the part's own outline from CH.partPlan */
+  const SX = 78, SY = 580, SW = 924, SH = 720, S = 2500;
+  const PW = Math.round(0.12 * S), PD = Math.round(0.08 * S), PHh = Math.round(0.03 * S);
+  /* third angle: the plan above the front view, the right side view beside the front view, every one the part's own
+   * outline from CH.partPlan with its pockets and holes as dashed hidden lines, and a 4x detail of one counterbore */
+  const plan = [SX + 110, SY + 250], front = [SX + 110, SY + 250 + PD + 70], side = [SX + 110 + PW + 70, SY + 250 + PD + 70];
+  const STAND = [SX + 110, SY + 250];          /* the part stands on its own plan view */          /* the real part stands on a second plan view at the right */
+  const DET = [SX + 700, SY + 330], DR = Math.round(0.0075 * S * 2), DH = Math.round(0.0045 * S * 2);
+  const curl = () => 0;
+  function line(X, Y, x, y, w, h, t) { return X >= x - t && X <= x + w + t && Y >= y - t && Y <= y + h + t && !(X > x + t && X < x + w - t && Y > y + t && Y < y + h - t); }
+  const dash = (a) => Math.floor(a / 9) % 2 === 0, chain = (a) => { const m = a % 30; return m < 18 || (m > 22 && m < 25); };
+  function hidden(X, Y, x, y, w, h) { return line(X, Y, x, y, w, h, 1.0) && (Math.abs(Y - y) <= 1 || Math.abs(Y - y - h) <= 1 ? dash(X) : dash(Y)); }
+  function partOutline(X, Y, ox, oy) {
+    const u = (X - ox) / PW, v = (Y - oy) / PD; if (u < -0.02 || u > 1.02 || v < -0.02 || v > 1.02) return false;
+    const e = 1 / PW * 1.6, f = 1 / PD * 1.6, k = CH.partPlan(u, v).kind;
+    return k !== CH.partPlan(Math.min(1, u + e), v).kind || k !== CH.partPlan(u, Math.min(1, v + f)).kind || u < e || u > 1 - e || v < f || v > 1 - f;
+  }
+  const mm = (v) => Math.round(v * S), FL = mm(0.012), WL = mm(0.006), PK = mm(0.018), HC = mm(0.012), HW = mm(0.0045) / 2;
+  function ink(X, Y) {
+    if (partOutline(X, Y, plan[0], plan[1]) || partOutline(X, Y, STAND[0], STAND[1])) return true;
+    /* centre lines through the plan, chain dashed, running past the outline */
+    if (Math.abs(Y - (plan[1] + PD / 2)) < 0.8 && X > plan[0] - 24 && X < plan[0] + PW + 24 && chain(X)) return true;
+    if (Math.abs(X - (plan[0] + PW / 2)) < 0.8 && Y > plan[1] - 24 && Y < front[1] + PHh + 24 && chain(Y)) return true;
+    /* the front view: the outline, the two pockets and the four holes hidden */
+    if (line(X, Y, front[0], front[1], PW, PHh, 1.2)) return true;
+    if (hidden(X, Y, front[0] + PK, front[1], PW / 2 - PK - WL / 2, PHh - FL)) return true;
+    if (hidden(X, Y, front[0] + PW / 2 + WL / 2, front[1], PW / 2 - PK - WL / 2, PHh - FL)) return true;
+    for (const hx of [HC, PW - HC]) if (hidden(X, Y, front[0] + hx - HW, front[1], 2 * HW, PHh)) return true;
+    /* the right side view, the pocket and two holes hidden */
+    if (line(X, Y, side[0], side[1], PD, PHh, 1.2)) return true;
+    if (hidden(X, Y, side[0] + WL, side[1], PD - 2 * WL, PHh - FL)) return true;
+    for (const hz of [HC, PD - HC]) if (hidden(X, Y, side[0] + hz - HW, side[1], 2 * HW, PHh)) return true;
+    /* projection lines between the views, faint and broken */
+    if ((Math.abs(X - plan[0]) < 0.6 || Math.abs(X - (plan[0] + PW)) < 0.6) && Y > plan[1] + PD + 12 && Y < front[1] - 12 && dash(Y)) return true;
+    /* the detail: one counterbore at four times, its circle cut by a chain line */
+    const r = Math.hypot(X - DET[0], Y - DET[1]);
+    if (Math.abs(r - DR) < 1.2 || Math.abs(r - DH) < 1.2) return true;
+    if ((Math.abs(X - DET[0]) < 0.7 || Math.abs(Y - DET[1]) < 0.7) && r < DR + 22 && chain(X + Y)) return true;
+    if (Math.abs(r - (DR + 40)) < 0.9 && dash(Math.atan2(Y - DET[1], X - DET[0]) * 120)) return true;
+    /* the leader from the detail circle back to the plan's corner hole */
+    { const ax = plan[0] + HC, ay = plan[1] + PD - HC, bx = DET[0] - (DR + 40) * 0.6, by = DET[1] - (DR + 40) * 0.8;
+      const t = ((X - ax) * (bx - ax) + (Y - ay) * (by - ay)) / ((bx - ax) ** 2 + (by - ay) ** 2);
+      if (t > 0.08 && t < 1 && Math.hypot(X - (ax + t * (bx - ax)), Y - (ay + t * (by - ay))) < 0.9) return true; }
+    /* the border and the title block */
+    if (line(X, Y, SX + 24, SY + 24, SW - 48, SH - 48, 1.2)) return true;
+    if (line(X, Y, SX + SW - 300, SY + 40, 276, 120, 1.2)) return true;
+    if (Math.abs(Y - (SY + 92)) < 1 && X > SX + SW - 300 && X < SX + SW - 24) return true;
+    if (Math.abs(X - (SX + SW - 160)) < 1 && Y > SY + 92 && Y < SY + 160) return true;
+    return false;
+  }
+  const TAB = [SX + SW - 290, SY + 46, 120, 40];
+  function hm(X, Y) {
+    const onSheet = X >= SX && X < SX + SW && Y >= SY && Y < SY + SH;
+    if (onSheet) {
+      const ux = (X - STAND[0]) / PW, vy = (Y - STAND[1]) / PD;
+      if (ux >= 0 && ux < 1 && vy >= 0 && vy < 1) { const p = CH.partPlan(ux, vy); return [6 + 26 * p.h, p.kind === "hole" ? CH.M.VOID : CH.M.ALU]; }
+      if (X >= TAB[0] && X < TAB[0] + TAB[2] && Y >= TAB[1] && Y < TAB[1] + TAB[3]) return [3, CH.M.TAPE];
+      const c = curl(X, Y); if (c > 0) return [2 + c * 0.35, CH.M.CYAN];
+      return [2, ink(X, Y) ? CH.M.INK : CH.M.CYAN];
+    }
+    return [0, CH.M.GRANITE];
+  }
+  /* the low key lands in a pool on the part standing on its plan view, and the sheet falls off toward its edges */
+  const pool = (cx0, cy0, rx, ry, fl) => (X, Y) => { const d = Math.hypot((X - cx0) / rx, (Y - cy0) / ry), t = Math.max(0, Math.min(1, (d - 0.55) / 0.6)); return 1 - (1 - fl) * t * t * (3 - 2 * t); };
+  const cx = document.getElementById("art").getContext("2d");
+  const rep = TXBENCH.relief(cx, { x: 0, y: 0, w: 1080, h: 1350, scale: 2,
+    height: (X, Y) => hm(X, Y)[0], material: (X, Y) => hm(X, Y)[1],
+    /* the cyanotype is a deep Prussian blue, darker than the chassis's sheet so the page sits in the deck's register */
+    albedo: (X, Y, m) => { const a = CH.albedo(X, Y, m); if (m !== CH.M.CYAN) return a; const f = 0.66 + 0.14 * TX.simplex2(X * 0.9, Y * 0.12) + 0.1 * TX.simplex2(X * 0.05, Y * 0.05); return [a[0] * f, a[1] * f, a[2] * (f + 0.05)]; }, keyMask: pool(STAND[0] + PW / 2, STAND[1] + PD / 2, 420, 330, 0.4), spec: CH.SPEC, ambient: 0.05, diffuse: 2.0, ao: 1.0, shadow: 0.9, softness: 5, castLength: 110, visSharp: [CH.M.INK] });
+  window.__relief = rep;
+  cx.setTransform(2, 0, 0, 2, 0, 0);
+  /* the title block's tab is printed in the deck's accent, Hadrian's colour: a flat swatch, as a printed tab is */
+  cx.fillStyle = '#8FE0F0'; cx.fillRect(TAB[0] + 2, TAB[1] + 2, TAB[2] - 4, TAB[3] - 4);
+  CH.post(cx, { a: 0.35, veil: 0.1, veilH: 120, footWash: 0.4 });
+  CH.knock(cx, [".tx-site", ".src"], 0.5);
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

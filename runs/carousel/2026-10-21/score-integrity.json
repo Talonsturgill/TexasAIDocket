@@ -1,0 +1,85 @@
+{
+ "lens": "integrity",
+ "round": 3,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.4,
+   "why": "The cover is the one frame near the showstopper test, and 4, 6 and 9 stand as real images. Round 2's repairs landed only partly. 3 is one tray of 13 rows of 24 with the lifted part about 37 px and no lit pool, still a keyboard at 432 px. 8 is a rounded slab with beige keys on a navy wall, the arm's run clear but its post meeting 'cell.'. 7 is a flat cyanotype, top-loaded. 5's right 40 percent is near-empty black. 2's pour is now the brighter plane but the slab reads as graph paper. 4's windows read cool. 9's foreground slab is the brightest grey in the deck."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.2,
+   "why": "One plant world under a low key from the left, a near-black field throughout, the accent kept to 6, 7 and 9, the part motif from vise to tray to drawing, and the 5 to 6 hold. Slide 8's navy wall is the one frame outside the vocabulary, and plan reliefs and spatial rooms still read as two registers."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.8,
+   "why": "Every printed numeral traces through compute.py and figures.json, the drawn counts check, sources are primary, release-level absences are scoped and backed by the rejected list. Three looser spots: slide 7's dek scopes c20 to Hadrian's own factories while c22 offers cells at customer sites, slide 3's per-employee share is the deck's construct over two periods, slide 2's 'operation' for 'manufacturing footprint'."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.5,
+   "why": "What, who, where and when are named. A Texan gets nothing to do next, the jobs are statewide, and the AI half of the story is a question."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 6.8,
+   "why": "The cover earns the swipe, 2 pays less than promised, 4 and 5 could merge, 5 to 6 is a real turn, 8 states the question, and the close restates c3 and c4."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.8,
+   "why": "Clean against the house rules with a strong caption opener. 'Drawn to illustrate.' closes eight of nine deks mechanically and there is little regional texture."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.0,
+   "why": "The topic is new. The visual argument repeats nos. 53 to 55: taped bays, block beside block at the same pitch, dark-bench reliefs, the counted isotype and the close-crop object cover."
+  }
+ ],
+ "weighted_score": 6.83,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Rebuild slides 3 and 8, which every judge has named in every round: crop 3 to a close on the empty pocket and the lifted part in a lit pool, and replace 8's navy wall and slab with a graphite enclosure, a knurled handwheel and recessed keys raked from the left.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 3,
+   "problem": "The 312 pockets read as a keyboard and the lifted part is invisible at 432 px.",
+   "fix": "A close on the empty pocket with the lifted part at 300 px or more in the key's pool, the tray running off two edges."
+  },
+  {
+   "slide": 8,
+   "problem": "A rounded slab with beige keys on a navy wall, the arm post into the dek, the knob at the footer.",
+   "fix": "Graphite enclosure and shut door falling to black, recessed keys and a knurled handwheel raked from the left, the post 40 px below the dek."
+  },
+  {
+   "slide": 7,
+   "problem": "A straight-down flat cyanotype, top-loaded.",
+   "fix": "Tilt about 25 degrees off plan so the sheet recedes and curls, and stand the part in depth."
+  },
+  {
+   "slide": 5,
+   "problem": "Sheared dominoes and an empty right 40 percent.",
+   "fix": "A visible unmarked pool on the floor where 6 places the bays, and longer stack-pole casts."
+  },
+  {
+   "slide": 2,
+   "problem": "A tile grid in the grey middle and a thin rolled corner.",
+   "fix": "Two or three wide saw joints on near-black concrete and a rolled cylinder 30 to 40 px high with its cast."
+  },
+  {
+   "slide": 4,
+   "problem": "Cool windows like a server aisle and empty floor below.",
+   "fix": "A warm lit window with the part visible, and the camera 0.4 m lower."
+  }
+ ],
+ "transcribed": "by the showrunner from the judge's hand-back, scores and totals as returned, reasons abridged"
+}

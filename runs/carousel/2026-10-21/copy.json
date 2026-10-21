@@ -1,0 +1,223 @@
+{
+ "date": "2026-10-21",
+ "carousel_no": 56,
+ "document_title": "Lockheed Martin and Hadrian's 24 machine cell for Grand Prairie, expected in early 2027",
+ "_note": "Slide strings read off the render report's text nodes and each frame's own source line by build_copy.py.",
+ "caption": "The release gives AI no job description.\n\nOn October 14th Lockheed Martin said Hadrian will bring a highly automated 24 machine cell to the Grand Prairie plant. A state filing puts the plant in Dallas County.\n\nAnnounced. A cell expected in early 2027, to be run by Lockheed's own workforce. A $300 million investment in the plant. Plans for 2,000 Texas jobs, the company's own statewide figure.\n\nAlready done, by Lockheed's count. More than 30 machines added in a few months. The plant made 250,000 parts in 2025.\n\nHadrian says its own factories combine process engineering, AI and robotics. It says its software Opus \"interprets legacy designs and automates manufacturing and inspection\". Neither statement says what AI would do in this cell.\n\nThe deck runs from a finished part to 24 empty bays.\n\nHow many of the cell's 24 machines will use AI?\n\n#GrandPrairie #DallasCounty #Hadrian",
+ "slides": {
+  "S1": {
+   "n": 1,
+   "file": "slide-01.html",
+   "kicker": "Grand Prairie",
+   "headline": "A 24 machine cell, expected in early 2027",
+   "claims": [
+    "c3",
+    "c4",
+    "c7",
+    "c34"
+   ],
+   "cite": "c3 c4 c7 c34",
+   "body": "Lockheed Martin says Hadrian will bring a highly automated machining cell to its Grand Prairie missile plant, run by Lockheed's own workforce. Drawn to illustrate.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "A 24 machine cell, expected in early 2027",
+    "Lockheed Martin says Hadrian will bring a highly automated machining cell to its Grand Prairie missile plant, run by Lockheed's own workforce. Drawn to illustrate.",
+    "Grand Prairie",
+    "01 / 09",
+    "c3 c4 c7 c34"
+   ]
+  },
+  "S2": {
+   "n": 2,
+   "file": "slide-02.html",
+   "kicker": "The plant",
+   "headline": "Past 735,000 square feet",
+   "claims": [
+    "c1",
+    "c2"
+   ],
+   "cite": "c1 c2",
+   "body": "Lockheed says it is investing $300 million to grow the operation past 735,000 square feet, with 100,000 of new space and 85,000 of office turned to manufacturing. Each area is drawn as a square at one scale, not the plant's shape.",
+   "labels": [
+    "more than 735,000 sq ft",
+    "100,000 new",
+    "85,000 office"
+   ],
+   "strings": [
+    "texasaidocket.com",
+    "Past 735,000 square feet",
+    "Lockheed says it is investing $300 million to grow the operation past 735,000 square feet, with 100,000 of new space and 85,000 of office turned to manufacturing. Each area is drawn as a square at one scale, not the plant's shape.",
+    "more than 735,000 sq ft",
+    "100,000 new",
+    "85,000 office",
+    "The plant",
+    "02 / 09",
+    "c1 c2"
+   ]
+  },
+  "S3": {
+   "n": 3,
+   "file": "slide-03.html",
+   "kicker": "The work now",
+   "headline": "250,000 parts in 2025",
+   "claims": [
+    "c12",
+    "c7",
+    "c8"
+   ],
+   "cite": "c12 c7 c8",
+   "body": "The plant makes components for missiles such as PAC-3 MSE and THAAD. It made 250,000 parts in 2025 and has nearly 800 production employees now. Split evenly and rounded down, that fills this tray, one pocket a part. Drawn to illustrate.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "250,000 parts in 2025",
+    "The plant makes components for missiles such as PAC-3 MSE and THAAD. It made 250,000 parts in 2025 and has nearly 800 production employees now. Split evenly and rounded down, that fills this tray, one pocket a part. Drawn to illustrate.",
+    "PAC-3 MSE",
+    "The work now",
+    "03 / 09",
+    "c12 c7 c8"
+   ]
+  },
+  "S4": {
+   "n": 4,
+   "file": "slide-04.html",
+   "kicker": "Already added",
+   "headline": "More than 30 machines, already",
+   "claims": [
+    "c10",
+    "c2"
+   ],
+   "cite": "c10 c2",
+   "body": "The company says it turned former office space into manufacturing areas and installed more than 30 high precision machines in a few months. These are Lockheed's own, not Hadrian's cell. Drawn to illustrate.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "More than 30 machines, already",
+    "The company says it turned former office space into manufacturing areas and installed more than 30 high precision machines in a few months. These are Lockheed's own, not Hadrian's cell. Drawn to illustrate.",
+    "Already added",
+    "04 / 09",
+    "c10 c2"
+   ]
+  },
+  "S5": {
+   "n": 5,
+   "file": "slide-05.html",
+   "kicker": "By year's end",
+   "headline": "Nearly 100 new machines",
+   "claims": [
+    "c11"
+   ],
+   "cite": "c11",
+   "body": "Lockheed expects to have added nearly 100 new advanced machines across the facility by the end of 2026. The block draws 100, at one scale. Drawn to illustrate.",
+   "labels": [
+    "nearly 100 by end of 2026"
+   ],
+   "strings": [
+    "texasaidocket.com",
+    "Nearly 100 new machines",
+    "Lockheed expects to have added nearly 100 new advanced machines across the facility by the end of 2026. The block draws 100, at one scale. Drawn to illustrate.",
+    "nearly 100 by end of 2026",
+    "By year's end",
+    "05 / 09",
+    "c11"
+   ]
+  },
+  "S6": {
+   "n": 6,
+   "file": "slide-06.html",
+   "kicker": "Hadrian's cell",
+   "headline": "24 machines, expected in early 2027",
+   "claims": [
+    "c4",
+    "c11",
+    "c3"
+   ],
+   "cite": "c4 c11 c3",
+   "body": "The release doesn't say whether Hadrian's 24 count toward the nearly 100, so they are drawn apart, as empty bays. Drawn to illustrate.",
+   "labels": [
+    "nearly 100 by end of 2026",
+    "Hadrian's 24"
+   ],
+   "strings": [
+    "texasaidocket.com",
+    "24 machines, expected in early 2027",
+    "The release doesn't say whether Hadrian's 24 count toward the nearly 100, so they are drawn apart, as empty bays. Drawn to illustrate.",
+    "nearly 100 by end of 2026",
+    "Hadrian's 24",
+    "Hadrian's cell",
+    "06 / 09",
+    "c4 c11 c3"
+   ]
+  },
+  "S7": {
+   "n": 7,
+   "file": "slide-07.html",
+   "kicker": "Hadrian's words",
+   "headline": "Software it calls AI powered",
+   "claims": [
+    "c20",
+    "c21",
+    "c15",
+    "c22"
+   ],
+   "cite": "c20 c21 c15 c22",
+   "body": "Hadrian says this of the software in its own factories. Its home page also offers manufacturing cells deployed at customer sites. Drawn to illustrate.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "Software it calls AI powered",
+    "Hadrian says this of the software in its own factories. Its home page also offers manufacturing cells deployed at customer sites. Drawn to illustrate.",
+    "\"Opus interprets legacy designs and automates manufacturing and inspection\"",
+    "Hadrian's home page",
+    "Hadrian's words",
+    "07 / 09",
+    "c20 c21 c15 c22"
+   ]
+  },
+  "S8": {
+   "n": 8,
+   "file": "slide-08.html",
+   "kicker": "The open question",
+   "headline": "Will AI do anything here?",
+   "claims": [
+    "c3",
+    "c16",
+    "c15"
+   ],
+   "cite": "c3 c16 c15",
+   "body": "Hadrian's chief says it is bringing \"the automation, software and workforce training from our own factories directly inside Lockheed Martin\". The release never says whether AI does anything in this cell. Drawn to illustrate.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "Will AI do anything here?",
+    "Hadrian's chief says it is bringing \"the automation, software and workforce training from our own factories directly inside Lockheed Martin\". The release never says whether AI does anything in this cell. Drawn to illustrate.",
+    "The open question",
+    "08 / 09",
+    "c3 c16 c15"
+   ]
+  },
+  "S9": {
+   "n": 9,
+   "file": "slide-09.html",
+   "kicker": "Early 2027",
+   "headline": "Lockheed's own crews will run it",
+   "claims": [
+    "c3",
+    "c4",
+    "c5"
+   ],
+   "cite": "c3 c4 c5",
+   "body": "The cell is expected to be operational in early 2027 and run by Lockheed's production workforce. The release's 2,000 Texas jobs are the company's own figure, statewide. Drawn to illustrate.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "Lockheed's own crews will run it",
+    "The cell is expected to be operational in early 2027 and run by Lockheed's production workforce. The release's 2,000 Texas jobs are the company's own figure, statewide. Drawn to illustrate.",
+    "Early 2027",
+    "09 / 09",
+    "c3 c4 c5"
+   ]
+  }
+ }
+}

@@ -1,0 +1,109 @@
+{
+ "_spec": {
+  "version": 1,
+  "purpose": "A standalone web edition of the archived visual story.",
+  "law": "Facts resolve to the original verified claim record. A layout rebuild does not reverify reporting.",
+  "written_by": "daily"
+ },
+ "section": "Defense and manufacturing",
+ "dek": {
+  "text": "Lockheed Martin says Hadrian will bring a {{number:c4:1}} machine cell to its Grand Prairie plant. Hadrian calls its own factories AI powered. The release never says what AI would do in this cell.",
+  "claims": [
+   "c4",
+   "c15"
+  ]
+ },
+ "introduction": [
+  {
+   "text": "[Lockheed Martin made the announcement in a release datelined Dallas on {{date:c6}}](c6). [It says Hadrian will bring a highly automated machining cell to the Grand Prairie facility, run by Lockheed's own production workforce](c3). [The cell has {{number:c4:1}} machines and is expected to be operational early next year](c4). [The facility supports all of Lockheed's Missiles and Fire Control programs, among them PAC-{{number:c7}} MSE, THAAD, PrSM and JATM](c7). [A state accessibility filing puts the plant at {{number:c34}} West Marshall Drive in Dallas County](c34).",
+   "claims": [
+    "c6",
+    "c3",
+    "c4",
+    "c7",
+    "c34"
+   ]
+  },
+  {
+   "text": "[The cell sits inside a {{money:c1}} million investment that Lockheed says will grow the operation past {{number:c1:1}} square feet](c1). [That includes {{number:c2}} square feet of new space and {{number:c2:1}} square feet of office space turned over to manufacturing](c2).",
+   "claims": [
+    "c1",
+    "c2"
+   ]
+  }
+ ],
+ "sections": [
+  {
+   "heading": "What Lockheed says it has already done",
+   "paragraphs": [
+    {
+     "text": "[In a few months the company says it turned former office space into manufacturing areas and installed more than {{number:c10}} high precision machines](c10). [It expects to have added nearly {{number:c11:1}} new advanced machines across the facility by the end of the year](c11).",
+     "claims": [
+      "c10",
+      "c11"
+     ]
+    },
+    {
+     "text": "[Nearly {{number:c12}} production employees work at the plant](c12). [The company says it made {{number:c12:1}} parts in {{number:c12:2}}](c12). [The release does not say whether the {{number:c4:1}} machines in Hadrian's cell count toward the nearly {{number:c11:1}}](c4).",
+     "claims": [
+      "c12",
+      "c4",
+      "c11"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "What Hadrian says about AI",
+   "paragraphs": [
+    {
+     "text": "[Hadrian describes its own factories as highly automated and combining process engineering, AI and robotics](c15). [Its home page calls its software Opus a full stack, AI powered platform for factory autonomy](c21). [Hadrian says Opus interprets legacy designs and automates manufacturing and inspection](c20).",
+     "claims": [
+      "c15",
+      "c21",
+      "c20"
+     ]
+    },
+    {
+     "text": "[Hadrian chief executive Chris Power says the company is bringing the automation, software and workforce training from its own factories inside Lockheed Martin](c16). [Hadrian's home page also offers dedicated manufacturing or inspection cells deployed at customer sites](c22). The release does not name Opus. It does not say whether any of the cell's machines will use AI, or for what.",
+     "claims": [
+      "c16",
+      "c22",
+      "c3"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "The deal behind it",
+   "paragraphs": [
+    {
+     "text": "[The announcement follows a seven year agreement the two companies signed in {{number:c13}}](c13).",
+     "claims": [
+      "c13"
+     ]
+    },
+    {
+     "text": "[Lockheed says it plans to create {{number:c5}} jobs across the United States, {{number:c5:1}} of them in Texas](c5). Those are the company's own figures. The release gives no count for the Grand Prairie plant alone.",
+     "claims": [
+      "c5"
+     ]
+    }
+   ]
+  }
+ ],
+ "related": [
+  {
+   "id": "tx-2026-0225",
+   "label": "The record entry for Hadrian's cell at Lockheed Martin in Grand Prairie"
+  },
+  {
+   "id": "tx-2026-0204",
+   "label": "Saronic's autonomous ship factory at the Port of Brownsville"
+  },
+  {
+   "id": "tx-2026-0084",
+   "label": "Amazon's Austin factory for warehouse robotics"
+  }
+ ]
+}

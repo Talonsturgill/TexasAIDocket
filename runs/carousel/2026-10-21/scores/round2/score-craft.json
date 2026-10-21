@@ -1,0 +1,85 @@
+{
+ "lens": "craft",
+ "round": 2,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.3,
+   "why": "1 is the strongest frame, the part's pockets under the spindle and the type in the dark head housing, though the vise is a plain block, the chips flat C rings and a blue-white sliver shows behind the vise handle. 6 works: 24 cyan outlines beside the 100. 9 is a real close with a person at true scale in the taped bays, near pads matte and windows flat. 4 is better than round 1 with the pool on the machinist, but its blue-lit panels read as a data hall aisle and the lower 35 percent is empty floor. Four frames lean on a default. 3 reads as a keyboard or grille at 432 px with a 50 px lifted part. 8 is a rounded slab with 36 calculator keys on a navy field, the knobs under the footer and the arm's post under 'cell.'. 2 reads as graph paper, the pour mid grey and the rolled corner a thin fold. 7 is a flat cyanotype viewed straight down with a hard polygon cast. No frame passes the showstopper test, none is a decorated template."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.2,
+   "why": "One dark machine-shop world, one cyan accent for Hadrian's cell on 6, 7 and 9, medians 12.4, 1.7 and 8.2 on 1, 6 and 9 with nothing strobing. The 5 to 6 hold and the part motif do real work and the cut at 6 is the turn. 8's navy field belongs to no other frame, and the light wanders: casts right on 2 and 7, up-right on 5 and 6, an overhead pool on 4."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.5,
+   "why": "Every slide numeral traces to figures.json and the drawn counts follow them (312, 10 by 10, 24), and the squares on 2 measure as the square roots of 100k and 85k over 735k. Sources are primary and Dallas County comes from TDLR. The deck avoids the traps its claims file lists. On 7 'Hadrian, on its own factories' narrows c20 past what it says, which is conservative and does not change what a reader believes about this cell, so it is the 7 descriptor, not a hard fail."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.5,
+   "why": "A reader learns what happened and where. The decision is corporate, with no public body, deadline or action for a Texan. The stake is the open question on 8, honest but abstract, and the concrete stakes appear only as caveats on 3 and 9."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "The cover is a plain announcement, 2 pays at once with a measured scale, the turn at 6 is set up by holding 5 still, 8 asks the question and 9 closes on who runs it. 3 and 4 could move or merge without loss."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.8,
+   "why": "Clean and on register, and the caption opener is sharp. Slide copy turns procedural on 3 and 5, and 'Drawn to illustrate.' closes all nine deks. Texas presence is limited to Grand Prairie and Dallas County."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.8,
+   "why": "The subject is new against nos. 53 to 55. The recipe is familiar: the lastLight world again, relief and spatial frames mixed, a dark field with one cold accent, an object close-up cover."
+  }
+ ],
+ "weighted_score": 6.85,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Re-shoot frame 3 with the empty pocket and the lifted part large in the foreground pool, and rebuild frame 8's pendant at full detail against the graphite enclosure instead of the navy field.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 3,
+   "problem": "312 identical parts read as a keyboard texture at 432 px, the lifted part about 50 px with no pull, the second tray fading into a grey band.",
+   "fix": "Put the empty pocket and the lifted part in the foreground at 300 px or more with a long cast across the bench, and delete the second tray."
+  },
+  {
+   "slide": 8,
+   "problem": "A primitive rounded slab with 36 calculator keys on a saturated navy field, the knobs under the footer and the arm's post under 'cell.'.",
+   "fix": "Replace the navy with the graphite enclosure falling to black, model recessed keys and a knurled handwheel raked from the left, raise the crop so the knobs clear the footer and drop the arm below the dek."
+  },
+  {
+   "slide": 2,
+   "problem": "A regular saw-cut grid reads as graph paper in the grey middle, the pour mid grey, the rolled corner a thin fold.",
+   "fix": "Cut the joints to two or three wide saw cuts on near-black concrete, light the pour as the one bright surface and model the carpet corner as a rolled cylinder 30 to 40 px high."
+  },
+  {
+   "slide": 7,
+   "problem": "A flat UI mockup seen straight down, a hard polygon cast, the lower bands thin.",
+   "fix": "Stand the part in depth with a soft long cast across the linework and run the sheet off the bottom and right edges."
+  },
+  {
+   "slide": 5,
+   "problem": "Dominoes at a sheared oblique, the right 40 percent empty black.",
+   "fix": "Lay a faint unmarked pool of the low key on the empty floor and lengthen the stack-pole casts."
+  },
+  {
+   "slide": 4,
+   "problem": "Blue-lit panels read as a server aisle and the lower 35 percent is empty floor.",
+   "fix": "Turn the near machine's door window warm and lit from inside with the part visible, and drop the camera about 0.4 m."
+  }
+ ],
+ "transcribed": "by the showrunner from the judge's hand-back, scores and totals as returned, reasons abridged"
+}

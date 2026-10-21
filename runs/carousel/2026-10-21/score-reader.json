@@ -1,0 +1,75 @@
+{
+ "lens": "reader",
+ "round": 3,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.2,
+   "why": "Frames 1, 4 and 9 pass most of the showstopper test and 6 is a clean turn. Four fall short. 8 is a primitive pendant in a flat blue void, its post touching 'cell.' and its knob under the cite line. 7 is a flat line drawing with one relief part, a UI-like tab and a weak lower zone. 2 sits in the grey middle with an unexplained dark wedge for the rolled corner. 3's 312 pockets read as a texture, the lifted part about 12 px in the thumb, a dark band between dek and tray. Frame 2's squares follow the declared scale."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.0,
+   "why": "One deck: the part motif on 1, 3 and 7, cyan only for Hadrian on 6, 7 and 9, 6 reusing 5's bench and light, dark value without strobing. Frame 8's cold blue backdrop sits outside a warm machine shop, and 7's cyanotype cools the run from 7 to 8."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.0,
+   "why": "Every numeral traces to figures.json and a quoted claim, the drawn-only values are computed and never printed, Dallas County comes from TDLR, the jobs are statewide, the 24 kept apart from the 100. Looser points: frame 3's mixed-period division, frame 7's 'own factories' gloss with c22 on the same page, frame 2's 'operation' for 'manufacturing footprint'."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.3,
+   "why": "What, who, where and when are given, Dallas County only in the caption. Nothing to do, no hiring route, no public body. The AI angle resolves as 'the release never says'."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "The cover does not say why a feed reader should care. Frames 2 to 5 spend four frames on inventory before the cell returns on 6. The turn at 6 is real and 7 and 8 build the question well. The close lands softly."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "Clean, careful, no boosterism, a good caption opener. Elsewhere a fact-checker's ledger: frame 3's line is awkward and frame 9's is hedge on hedge. No regional texture beyond the city name."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.3,
+   "why": "The machine-shop world and the cyanotype are new. Frames 5 and 6 repeat no. 54's block beside slots, the taped bays repeat no. 55, the isotype is the house move for the fourth deck running, and the turn is again an absence."
+  }
+ ],
+ "weighted_score": 6.74,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Cut one of the inventory frames 2 to 5 so Hadrian's empty bays arrive by frame 5, and rewrite the cover hook around a 24-machine automated cell coming to a missile plant whose release never says what the AI will do.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 8,
+   "problem": "A primitive pendant in a flat blue void, the post touching the dek, the knob under the cite line.",
+   "fix": "Model the pendant at full detail against the shut door and graphite enclosure under the warm low key, the arm below the dek and the housing bleeding off the bottom."
+  },
+  {
+   "slide": 7,
+   "problem": "A flat line drawing with one relief part, a UI-like tab, footer inside the border, a weak lower zone.",
+   "fix": "Shoot the sheet at a raking three-quarter angle with a curled corner and a long cast, bleeding off the bottom, and a physical tape tab."
+  },
+  {
+   "slide": 2,
+   "problem": "Grey middle, a UI diagram, the rolled corner an unexplained wedge.",
+   "fix": "Near-grazing key and a darker slab so only the joint lips and form boards catch light, the carpet corner a visible curl with its own highlight."
+  },
+  {
+   "slide": 3,
+   "problem": "312 pockets read as texture, the lifted part tiny, a dark band above the tray.",
+   "fix": "Raise the tray to just under the dek and set an enlarged lifted part near the camera above its empty pocket with a strong cast."
+  }
+ ],
+ "transcribed": "by the showrunner from the judge's hand-back, scores and totals as returned, reasons abridged"
+}

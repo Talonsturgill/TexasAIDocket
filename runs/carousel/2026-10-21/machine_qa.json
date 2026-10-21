@@ -1,0 +1,125 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot shows its room"
+      ],
+      "bands": [
+        0.3697,
+        0.3256,
+        0.432
+      ],
+      "band_ratio": 1.1418
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [
+        "console error: TXBENCH: RELIEF {\"height_range\":18.19864273071289,\"materials\":5,\"cast_fraction\":0.061349622770919064,\"area\":1,\"render_ms\":10588.099999999627}"
+      ],
+      "bands": [
+        0.2353,
+        0.4433,
+        0.7868
+      ],
+      "band_ratio": 1.5672
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [
+        "console error: TXBENCH: RELIEF {\"height_range\":11,\"materials\":4,\"cast_fraction\":0.15608830589849107,\"area\":1,\"render_ms\":7372.799999998882}"
+      ],
+      "bands": [
+        0.3235,
+        0.355,
+        0.7151
+      ],
+      "band_ratio": 1.5025
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot stands inside something built"
+      ],
+      "bands": [
+        0.2857,
+        0.3592,
+        0.4577
+      ],
+      "band_ratio": 1.2316
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot shows its room"
+      ],
+      "bands": [
+        0.229,
+        0.3508,
+        0.5202
+      ],
+      "band_ratio": 1.3922
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot shows its room"
+      ],
+      "bands": [
+        0.25,
+        0.3655,
+        0.6838
+      ],
+      "band_ratio": 1.5383
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [
+        "top-loaded composition: the bottom third carries 67% of this slide's own average craft density (top 35% / mid 13% / bottom 13% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone",
+        "console error: TXBENCH: RELIEF {\"height_range\":32,\"materials\":6,\"cast_fraction\":0.046973936899862824,\"area\":1,\"render_ms\":10700.800000000745}"
+      ],
+      "bands": [
+        0.3487,
+        0.1261,
+        0.1342
+      ],
+      "band_ratio": 0.6714
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot shows its room"
+      ],
+      "bands": [
+        0.2269,
+        0.3929,
+        0.2812
+      ],
+      "band_ratio": 0.9392
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot shows its room"
+      ],
+      "bands": [
+        0.2311,
+        0.4118,
+        0.5551
+      ],
+      "band_ratio": 1.366
+    }
+  ],
+  "fails": 0,
+  "warns": 10,
+  "verdict": "WARN"
+}

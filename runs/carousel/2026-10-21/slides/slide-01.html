@@ -1,0 +1,69 @@
+<!doctype html>
+<!-- 2026-10-21, frame 1 of 9. Archetype CLOSE_CROP. RENDERED through txthree.js in the deck's lastLight world, inside a TXT.interior shop. The work zone of a vertical machining centre through its open door: a finished aluminium housing in the vise on the T-slot table, the end mill held clear above it, chips and coolant hoses, the low west key entering the door. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">A 24 machine cell, expected in early 2027</h1>
+<p class="dek" data-follow="26">Lockheed Martin says Hadrian will bring a highly automated machining cell to its Grand Prairie missile plant, run by Lockheed&#39;s own workforce. Drawn&nbsp;to&nbsp;illustrate.</p>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-21-cell.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Grand Prairie", counter: "01 / 09", src: "c3 c4 c7 c34", fit: { min: 76, max: 100, maxLines: 2 } });
+  /* THE FIGURES, from figures.json: cell_machines 24 and cell_year 2027 are in the headline; the art draws one
+   * machine of the plant's own, the work a cell is for. */
+  const R = CH.stage(TXT, gl, W, { fov: 32, far: 200 });
+  TXT.interior(R, { w: 16, d: 16, h: 6, ceiling: false, floor: 'concrete', wall: 0x1b1d20, trim: 0x111214, window: null });
+  /* the shop floor, sealed concrete with interior wear, the surface the machine stands on */
+  TXT.ground(R, { surface: 'concrete', size: 40, y: 0.003, wear: 'interior', color: 0x2c2e30, seed: 21 });
+  /* THE MACHINE, turned so its door faces thirty degrees off the declared key: the low west light enters
+   * the open door from the left and rakes the table, the vise and the part */
+  const mc = K.make('machining_centre', { door: 1, part: 'finished', workLight: true, chips: true, lamp: 'warm', zUp: 0.02, seed: 3 });
+  const yaw = (-64 + 30) * Math.PI / 180;
+  /* every chip lies on the table and casts onto it: the curls laid flat rather than standing on edge as hoops */
+  mc.traverse((m) => { if (!m.isMesh || !m.material || m.material.name !== 'mc_chip' && !(m.material.color && m.material.color.getHex() === 0xc8ccd0 && m.material.metalness === 1)) return;
+    m.castShadow = true; m.receiveShadow = true; if (m.geometry.type === 'TorusGeometry') { m.rotation.x = Math.PI / 2; m.rotation.y = 0; m.rotation.z = (Math.sin(m.position.x * 912.7 + m.position.z * 433.1) * 43758.5) % 6.283; } });
+  mc.rotation.y = yaw; mc.updateMatrixWorld(true);
+  TXT.add(R, mc); TXT.contact(R, mc);
+  const L = (x, y, z) => { const v = new THREE.Vector3(x, y, z).applyMatrix4(mc.matrixWorld); return [v.x, v.y, v.z]; };
+  const partAt = L(0, 1.11, 2.35 / 2 - 0.34);
+  const from = L(0.2, 1.95, 2.35 / 2 + 0.5);
+  const look = CH.aim(THREE, R, TXT, from, partAt, 540, 1040, 30);
+  TXT.frame(R, { fov: 30, from, look });
+  { const spec = CH.rigSpec(W, 4, 4096); TXT.deckRig(R, spec, CH.rigOpts(partAt, { distance: 14, shadowFar: 40 })); }
+  CH.unacne(R, 0.01);
+  CH.warm(R, 0.3);
+  /* THE MACHINE'S OWN WORK LAMP, the LED bar in the envelope's upper back corner, as the practical that lights the
+   * pocket floors the low west key can't reach, warm neutral and casting down onto the table */
+  { const wl = new THREE.SpotLight(0xf1e7d6, 9, 2.4, 0.7, 0.9, 1.5); wl.position.copy(new THREE.Vector3(-0.2, 1.82, 2.35 / 2 - 0.56).applyMatrix4(mc.matrixWorld));
+    wl.target.position.set(partAt[0], partAt[1], partAt[2]); wl.castShadow = false;
+    R.scene.add(wl); R.scene.add(wl.target); }
+  TXT.stage(R, [mc], { behind: 0.6, depth: 1.2, poolInner: 1.4, poolOuter: 3.2 });
+  TXT.weather(R, { grime: 0.12, height: 0.6, mottle: 0.08 });
+  const shot = await TXT.snapshot(R);
+  const cx = CH.develop(shot, gl);
+  CH.post(cx, { a: 0.4, veil: 0.12, footWash: 0.5, fade: 140 });
+  CH.knock(cx, [".tx-site", ".src"], 0.5);
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

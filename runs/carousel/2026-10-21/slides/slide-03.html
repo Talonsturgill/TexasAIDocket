@@ -1,0 +1,86 @@
+<!doctype html>
+<!-- 2026-10-21, frame 3 of 9. Archetype OBJECT_AND_CAPTION. A MATERIAL RELIEF through txbench.js under the deck's declared light: a black kitting foam tray in plan cut with one pocket for each part in one production employee's share of the plant's 2025 parts, 312 in rows of 24, each holding the deck's part with its two pockets and four holes, one pocket empty and its part lying on the dark steel bench above the tray. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">250,000 parts in 2025</h1>
+<p class="dek" data-follow="22">The plant makes components for missiles such as <span style="white-space:nowrap">PAC-3 MSE</span> and THAAD. It made 250,000 parts in 2025 and has nearly 800 production employees now. Split evenly and rounded down, that fills this tray, one pocket a part. Drawn&nbsp;to&nbsp;illustrate.</p>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/txbench.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-21-cell.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = (async () => {
+  await CH.bootFlat({ kicker: "The work now", counter: "03 / 09", src: "c12 c7 c8", fit: { min: 72, max: 88, maxLines: 1 } });
+  TX.reseed(20261023);
+  /* THE FIGURE, from figures.json: parts_per_employee 312, the plant's 250,000 parts of 2025 over its nearly 800
+   * production employees, floored to a whole part. One pocket is cut for each, in rows of 24 */
+  const PARTS_2025 = 250000, EMPLOYEES = 800, SHARE = 312, PER_ROW = 24;
+  if (SHARE !== Math.floor(PARTS_2025 / EMPLOYEES)) throw new Error("the share is computed, not typed");
+  const ROWS = Math.ceil(SHARE / PER_ROW);
+  /* one part is 0.12 by 0.08 m; at 300 px a metre it is 36 by 24 px, in a pocket 2 px larger all round */
+  const PW = 36, PD = 24, GX = 42, GY = 34, TX0 = 36, TY0 = 700, EMPTY = PER_ROW - 3;
+  const TW = PER_ROW * GX + 12, TH = ROWS * GY + 12;
+  function cell(X, Y) {
+    const c = Math.floor((X - TX0 - 6) / GX), r = Math.floor((Y - TY0 - 6) / GY);
+    if (c < 0 || r < 0 || c >= PER_ROW || r >= ROWS || r * PER_ROW + c >= SHARE) return null;
+    return { c, r, u: (X - TX0 - 6 - c * GX - (GX - PW) / 2) / PW, v: (Y - TY0 - 6 - r * GY - (GY - PD) / 2) / PD };
+  }
+  /* the lifted part, on the bench above the tray at the same scale */
+  const LX = TX0 + EMPTY * GX + 6 + (GX - PW) / 2 - 30, LY = TY0 - 64;
+  function partAt(u, v) { const p = CH.partPlan(u, v); return { h: 3 + 7 * p.h, m: p.kind === "hole" ? CH.M.VOID : CH.M.ALU }; }
+  const inTray = (X, Y) => X >= TX0 && X < TX0 + TW && Y >= TY0 && Y < TY0 + TH;
+  /* the next employee's tray below, full, running off the bottom edge: the share repeats */
+  const TY1 = 99999, inNext = () => false;   /* one employee's tray alone, no second tray */
+  /* every part sits a little differently in its pocket, a hash per cell */
+  const jit = (c, r) => { const h = Math.sin(c * 127.1 + r * 311.7) * 43758.5453; return h - Math.floor(h); };
+  /* the foam's rim is worn to a chamfer, 7 px from 12 down to 5 */
+  const rim = (X, Y, y0, y1) => { const d = Math.min(X - TX0, TX0 + TW - X, Y - y0, y1 - Y); return d < 7 ? 5 + d : 12; };
+  function hm(X, Y) {
+    if (X >= LX && X < LX + PW && Y >= LY && Y < LY + PD) { const p = partAt((X - LX) / PW, (Y - LY) / PD); return [p.h + 1, p.m]; }
+    if (inNext(X, Y)) {
+      const c = Math.floor((X - TX0 - 6) / GX), r = Math.floor((Y - TY1 - 6) / GY);
+      const u = (X - TX0 - 6 - c * GX - (GX - PW) / 2) / PW, v = (Y - TY1 - 6 - r * GY - (GY - PD) / 2) / PD;
+      if (c >= 0 && c < PER_ROW && r >= 0 && u > -0.06 && u < 1.06 && v > -0.08 && v < 1.08) {
+        if (u >= 0 && u < 1 && v >= 0 && v < 1) { const p = partAt(u, v); return [p.h + 1.5 * jit(c, r + 40) * u, p.m]; }
+        return [3, CH.M.FOAM];
+      }
+      return [rim(X, Y, TY1, 99999), CH.M.FOAM];
+    }
+    if (!inTray(X, Y)) return [1, CH.M.EPOXY];
+    const k = cell(X, Y);
+    if (k && k.u > -0.06 && k.u < 1.06 && k.v > -0.08 && k.v < 1.08) {
+      const inPart = k.u >= 0 && k.u < 1 && k.v >= 0 && k.v < 1;
+      if (inPart && !(k.r === 0 && k.c === EMPTY)) { const p = partAt(k.u, k.v); return [p.h + 1.5 * jit(k.c, k.r) * k.u, p.m]; }
+      return [3, CH.M.FOAM];                                             /* the pocket floor */
+    }
+    return [rim(X, Y, TY0, TY0 + TH), CH.M.FOAM];                         /* the foam top between pockets, worn at its rim */
+  }
+  /* the low key lands in a pool on the empty pocket and the part lifted out of it, and the tray falls off away from them */
+  const pool = (cx0, cy0, rx, ry, fl) => (X, Y) => { const d = Math.hypot((X - cx0) / rx, (Y - cy0) / ry), t = Math.max(0, Math.min(1, (d - 0.55) / 0.6)); return 1 - (1 - fl) * t * t * (3 - 2 * t); };
+  const cx = document.getElementById("art").getContext("2d");
+  const rep = TXBENCH.relief(cx, { x: 0, y: 0, w: 1080, h: 1350, scale: 2,
+    height: (X, Y) => hm(X, Y)[0], material: (X, Y) => hm(X, Y)[1],
+    albedo: (X, Y, m) => { const a = CH.albedo(X, Y, m); if (Y < TY1) return a; const k = Math.max(0.12, 0.7 - (Y - TY1) / 110); return [a[0] * k, a[1] * k, a[2] * k]; }, spec: CH.SPEC, keyMask: pool(LX + PW / 2, LY + 40, 330, 260, 0.32), ambient: 0.06, diffuse: 2.2, ao: 1.0, shadow: 0.9, softness: 4, castLength: 90 });
+  window.__relief = rep;
+  cx.setTransform(2, 0, 0, 2, 0, 0);
+  CH.post(cx, { a: 0.35, veil: 0.1, veilH: 120, footWash: 0.4 });
+  CH.knock(cx, [".tx-site", ".src"], 0.5);
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

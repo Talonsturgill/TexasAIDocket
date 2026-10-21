@@ -3454,6 +3454,72 @@
     "hex": "#08060F",
     "note": "The floodlit world's black field around the stage."
    }
+  },
+  {
+   "date": "2026-10-21",
+   "carousel_no": 56,
+   "written_from": "deck_coherence's median L* per frame at 432 px off the final renders, layout_check's accent share, by out/2026-10-21/update_ledgers.py.",
+   "register": "SPATIAL SCENES in TXT's lastLight world inside TXT.interior machine shop rooms with four material reliefs. Chassis assets/js/deck/2026-10-21-cell.js: key az -64 el 9, four chassis models (a pocketed housing part, a machine vise, a vertical machining centre with door, spindle, tool drum, pendant on a swing arm and stack light, an empty machine bay) and a relief vocabulary of epoxy, slab, pour, carpet, foam, granite and cyanotype.",
+   "structural_laws": [
+    "A HEIGHT NOISE UNDER A KEY NINE DEGREES UP TURNS TO BLOTCHES. On a relief lit that low, surface tooth belongs in albedo, never in height.",
+    "A WIDE AERIAL OF 100 INSTANCED MACHINES MERGES INTO ONE SILHOUETTE AT THUMB SCALE. A count of that size reads as a block, so plan it as a DIAGRAM half, not a GRID.",
+    "THE TONE CURVE GREYS A THIN ACCENT. Tape drawn through MeshStandardMaterial reads as grey at 432 px; draw it in MeshBasicMaterial with toneMapped false.",
+    "K.make RE-CENTRES A MODEL'S FOOTPRINT. A machine whose table and vise are placed in model coordinates needs keepOrigin.",
+    "TXT.interior's FLOOR Z FIGHTS A SECOND GROUND AT LONG RANGE. Lift the ground and everything on it 0.2 m in a wide aerial."
+   ],
+   "techniques": [
+    "a vise holding a finished pocketed housing under the end mill in an open machining centre, chips laid on the T slot table",
+    "a plan relief of three floor finishes as squares at one scale, a fresh pour inside timber forms and carpet tile with a rolled corner",
+    "a plan relief of a foam kitting tray of 312 parts in rows of 24, one pocket empty and its part on the bench, the next tray running off the edge",
+    "a converted room of 30 machining centres in two rows with a machinist for scale under the aisle's high bay",
+    "100 instanced machining centres from a steep aerial in ten rows of ten",
+    "the same 100 beside 24 empty taped bays in the accent across one aisle",
+    "a cyanotype third angle drawing of the part with hidden lines and a detail, the part standing on its own plan view",
+    "the control pendant close on its swing arm, its screen dark",
+    "24 empty taped bays at standing eye, a machinist on the near row, Lockheed's machines lit along the east wall"
+   ],
+   "value": {
+    "per_frame_median_L": [
+     12.5,
+     1.9,
+     4.3,
+     1.3,
+     1.8,
+     1.8,
+     5.1,
+     6.4,
+     10.0
+    ],
+    "deck_median_L": 4.3,
+    "max_adjacent_delta": 10.6,
+    "mean_adjacent_delta": 3.09,
+    "note": "Measured by deck_coherence's median_lstar at 432 px off the final renders. A staged lastLight machine shop deck."
+   },
+   "accent": {
+    "hex": "#8FE0F0",
+    "name": "comal lit",
+    "frames_above_floor": [
+     6,
+     7,
+     9
+    ],
+    "share": [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0074,
+     0.0028,
+     0.0,
+     0.0132
+    ],
+    "note": "Hadrian's cell only: the bay tape and the drawing's title tab."
+   },
+   "ground": {
+    "hex": "#08060F",
+    "note": "The lastLight world's black field around the stage."
+   }
   }
  ]
 }
