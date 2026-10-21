@@ -140,6 +140,34 @@ Read on the merged build in `docs/` (926 pages, 197 items).
 - **`/topic/`.** Defense and federal reads 10 of 197 decisions and carries tx-2026-0225.
 - **`/place/`.** `county-dallas` carries 12 items and `metro-dallas-fort-worth-arlington` 20, both with tx-2026-0225.
 
+## Retro
+
+- **Did this run wait on a human? Interim reading, Phase 17.** `prompt_audit.py` exited 1: 1,847 tool calls
+  measured and 71 whose permission decision took longer than an auto-approval, 26 of them subagent spawns, 44 Bash
+  calls and one SendMessage, each released without a refusal, the longest about 30.3 s on a subagent spawn. The
+  no-stall hook was armed at 05:07:32 UTC, judged the session unattended from session start
+  (`CLAUDE_CODE_SESSION_ATTENDED=0`, and the host's value was 0), and refused nothing. Phase 19 takes the reading
+  that counts.
+- **Sources.** Six findings appended to `knowledge/shared/SOURCES_FIELD_LOG.md`: news.lockheedmartin.com,
+  www.hadrian.co, www.lockheedmartin.com, www.tdlr.texas.gov and www.tahc.texas.gov answered 200; Taylor's news post
+  for tx-2026-0203 now redirects to a missing page.
+- **Instincts confirmed**: `stand-back-from-a-kit-figure`, `grid-frames-need-dark-gaps` (frame 5's 100 merged into
+  one silhouette at thumb scale), `a-paraphrase-can-outrun-its-quote` (slide 8 dropped c16's "from our own
+  factories"). **Added**: `tooth-in-albedo-under-a-low-key`, `recompose-a-frame-named-twice-in-round-one`.
+- **Machine queue**: five new items and five repeats raised, three of them to repeat 2, which made the weekly pass
+  due.
+- **The weekly pass ran** (`prompts/machine_weekly.md`, the week's digest of six runs and 13 themes). Four changes,
+  each verify command rerun here and exiting 0: the machine shop lifted into `assets/js/kit/industry.js` at the
+  judges' named fix (a full detail CNC pendant with glass screen, recessed keys, knurled handwheel, override knobs and
+  an e-stop, a machining centre with curled chips, a vise, a part and an empty bay), proven through the engine with
+  today's frames unchanged; `depth_floor` reads a bound `TXT.interior` call as a ground, so rooms no longer lay a
+  second floor that z-fights; the detail floor was not loosened and its failure message now names the cure; the
+  arsenal states that `TXT.stage` takes fractions, never metres. Deferred: the kit person at repeat 2, because today's
+  frames 4 and 9 render from it. Escalated to `UPGRADE_BACKLOG.md` for a maintainer: a closed room taking the sky's
+  navy (the engine), a stage unit warning, a wall anchor in the kit registry, a cheaper type-only audition reading
+  (the owner's call), and one GATE_LESSONS entry. `machine_due.py` for tomorrow: not due.
+- **Arsenal** rebuilt and current.
+
 ## Gate status
 
 <!-- gate-status:begin -->
