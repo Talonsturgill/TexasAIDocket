@@ -1,0 +1,90 @@
+<!doctype html>
+<!-- 2026-10-21, frame 5 of 9. Archetype DIAGRAM. RENDERED through txthree.js in the deck's lastLight world, inside a TXT.interior hall, from a high oblique camera: the plant's 100 machining centres in ten rows of ten, every one the chassis machining_centre at full detail. The floor east of them is left bare, where frame 6 sets the cell. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">Nearly 100 new machines</h1>
+<p class="dek" data-follow="22">Lockheed expects to have added nearly 100 new advanced machines across the facility by the end of 2026. The block draws 100, at one scale. Drawn&nbsp;to&nbsp;illustrate.</p>
+<div class="lab" id="lHundred">nearly 100 by end of 2026</div>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-21-cell.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "By year's end", counter: "05 / 09", src: "c11", fit: { min: 72, max: 96, maxLines: 1 } });
+  const R = CH.stage(TXT, gl, W, { fov: 30, far: 400 });
+  TXT.interior(R, { w: 300, d: 300, h: 12, ceiling: false, floor: 'concrete', wall: 0x14161a, trim: 0x0d0e10, window: null });
+  TXT.ground(R, { size: 420, y: 0.2, color: 0x16181b, seed: 6 });
+  /* THE FIGURE, from figures.json: machines_by_2026 100 machines in rows of ten. No cell on this floor yet, frame 6
+   * sets cell_machines beside them at this same scale */
+  const MACHINES = 100, PER_ROW = 10, CELL = 0, CELL_ROW = 4;
+  const PX = 3.6, PZ = 4.0, PZC = 4.2, X0 = -24, Z0 = -18;
+  const list = [];
+  for (let i = 0; i < MACHINES; i++) list.push([X0 + (i % PER_ROW) * PX, 0.2, Z0 + Math.floor(i / PER_ROW) * PZ, 0, 0.85 + 0.15 * ((i * 37) % 7) / 6]);
+  const model = K.make('machining_centre', { lod: 'full', door: 0, part: null, workLight: true, lamp: 'warm', seed: 11 });
+  /* SEEN FROM ABOVE A ROOF IS ONLY A SLAB, so each machine carries what its top shows in a real shop: the spindle
+   * column's cap standing proud at the rear in pale enclosure paint, the tool drum's round hood on the west side and
+   * the stack pole, so the low key draws a bright lip and a long cast on every one */
+  { const bb = new THREE.Box3().setFromObject(model), sz = bb.getSize(new THREE.Vector3()), top = bb.max.y;
+    const capM = new THREE.MeshStandardMaterial({ color: 0xc9cdd1, roughness: 0.42, metalness: 0.1 });
+    const hoodM = new THREE.MeshStandardMaterial({ color: 0x60666c, roughness: 0.38, metalness: 0.2 });
+    const cap = TXT.roundedBox(sz.x * 0.34, 0.42, sz.z * 0.3, 0.04, capM); cap.position.set((bb.min.x + bb.max.x) / 2, top + 0.21, bb.min.z + sz.z * 0.22); model.add(cap);
+    const hood = new THREE.Mesh(new THREE.CylinderGeometry(sz.z * 0.14, sz.z * 0.14, 0.5, 28), hoodM); hood.position.set(bb.min.x + sz.x * 0.16, top - 0.1, bb.min.z + sz.z * 0.45); model.add(hood);
+    const pole = new THREE.Mesh(new THREE.CylinderGeometry(0.03, 0.03, 0.9, 10), hoodM); pole.position.set(bb.max.x - 0.25, top + 0.45, bb.min.z + 0.25); model.add(pole);
+    [cap, hood, pole].forEach((m) => { m.castShadow = true; m.receiveShadow = true; }); }
+  const block = CH.instanceModel(THREE, model, list); TXT.add(R, block);
+  const CX0 = X0 + PER_ROW * PX + 4.6, rowsA = MACHINES / PER_ROW, rowsC = CELL / CELL_ROW;
+  const CZ0 = Z0 + rowsA * PZ - rowsC * PZC;
+  const bays = [];
+  for (let i = 0; i < CELL; i++) {
+    const b = K.make('machine_bay', { cordTop: 12 });
+    b.position.set(CX0 + (i % CELL_ROW) * PX, 0.2, CZ0 + Math.floor(i / CELL_ROW) * PZC);
+    /* seen from above the drop cords read as scratches, so this aerial leaves them and their plugs out */
+    b.traverse((m) => { if (m.isMesh && m.position.y > 1.2) m.visible = false; });
+    TXT.add(R, b); bays.push(b);
+  }
+  const from = [5, 122, 92];
+  const look = CH.aim(THREE, R, TXT, from, [X0 + 28.5, 0, Z0 + 21], 545, 930, 30);
+  TXT.frame(R, { fov: 30, from, look });
+  { const spec = CH.rigSpec(W, 64, 8192); TXT.deckRig(R, spec, CH.rigOpts([X0 + 22, 0, Z0 + 20], { distance: 90, shadowFar: 260 })); }
+  CH.unacne(R, 0.35);
+  /* a 90 m shadow frustum under a sun 9 degrees up: a deeper bias keeps the floor free of acne */
+  R.scene.traverse((l) => { if (l.isDirectionalLight && l.castShadow) l.shadow.bias = -0.004; });
+  CH.warm(R, 0.3);
+  /* the hall's own high bays over both blocks, practicals out of frame above, so roofs, hoods and pads take light
+   * from above while the low west key rakes their sides */
+  [[X0 + 18, Z0 + 20, 2600], [CX0 + 5.4, 9.4, 1100]].forEach(([x, z, I]) => { const hb = new THREE.SpotLight(0xf1e7d6, I, 70, 0.62, 0.8, 1.6);
+    hb.position.set(x - 4, 38, z + 6); hb.target.position.set(x, 0, z); hb.castShadow = false;
+    R.scene.add(hb); R.scene.add(hb.target); });
+  TXT.stage(R, [block], { behind: 0.2, depth: 0.5, poolInner: 20, poolOuter: 36 });
+  TXT.weather(R, { grime: 0.15, height: 0.6, mottle: 0.1 });
+  const shot = await TXT.snapshot(R);
+  const cx = CH.develop(shot, gl);
+  CH.post(cx, { a: 0.42, veil: 0.08, veilH: 140, footWash: 0.4, fade: 160 });
+  /* the labels sit over the near corner of each block, placed through the camera */
+  const pA = CH.project(THREE, R, [X0 - 1.3, 3.4, Z0 - 1.2]);
+  const lh = document.getElementById("lHundred");
+  lh.style.left = Math.max(80, Math.round(pA[0])) + "px"; lh.style.top = Math.round(pA[1] - 46) + "px";
+  CH.knock(cx, [".tx-site", ".src", "#lHundred"], 0.5);
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

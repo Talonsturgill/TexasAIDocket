@@ -212,7 +212,8 @@
         "2026-10-10",
         "2026-10-12",
         "2026-10-15",
-        "2026-10-20"
+        "2026-10-20",
+        "2026-10-21"
       ],
       "contradicted": []
     },
@@ -1441,7 +1442,9 @@
       "learned": "2026-10-16",
       "instinct": "Plan every GRID frame with dark gaps between its units on an unlit floor, because a lit floor joins the units into one piece at feed width and the count stops reading as a count.",
       "evidence": "2026-10-16: frames 5 and 7 each came apart into one piece under layout_check until the 3791 car field was parked in blocks with aisles and the calendar apron was made unlit; a pool decal and a specular floor both relit the gaps",
-      "confirmed": [],
+      "confirmed": [
+        "2026-10-21"
+      ],
       "contradicted": []
     },
     {
@@ -1490,7 +1493,8 @@
       "instinct": "When a kit figure close-up fails review twice, stand the camera back so the built structure carries the frame and the figure stays small.",
       "evidence": "No. 54 frame 9, two close-ups on the rancher at the latch failed the art director; the stand-back view of the whole gate passed on its first reading.",
       "confirmed": [
-        "2026-10-20"
+        "2026-10-20",
+        "2026-10-21"
       ],
       "contradicted": []
     },
@@ -1507,6 +1511,22 @@
       "learned": "2026-10-20",
       "instinct": "Mount a wall model with its plate flush to the wall and turn only its head, and give a wall-hung kit model keepOrigin, because K.make re-centres the footprint and a model rotated whole lifts its plate off the wall.",
       "evidence": "No. 55: the turnover board's face was pulled behind the tile by K.make's re-centring, and the room camera's plate stood off the wall on frames 1 and 9 until a pan was added.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "tooth-in-albedo-under-a-low-key",
+      "learned": "2026-10-21",
+      "instinct": "Under a key below fifteen degrees put a surface's tooth in its albedo, never in its height, or the raking light turns it to blotches.",
+      "evidence": "2026-10-21 frame 2: a 0.04 px height noise on the slab read as leopard print to two critics and vanished when moved to albedo.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "recompose-a-frame-named-twice-in-round-one",
+      "learned": "2026-10-21",
+      "instinct": "When every judge names the same frame in round one, recompose it before round two rather than re-lighting it.",
+      "evidence": "2026-10-21 frames 3 and 8: re-lit for round 2, named by all three judges again in rounds 2 and 3.",
       "confirmed": [],
       "contradicted": []
     }

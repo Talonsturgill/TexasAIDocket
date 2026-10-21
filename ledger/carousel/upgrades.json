@@ -3338,4 +3338,82 @@
  ],
  "not_done": "qa-glyph-run-as-rule (.claude/skills qa.py), grid-piece-count-reads-lit-ground-as-subject (engine and render.py id pass) and article-test-screenshots-fixed-path (tests/, human) carried with no. 52's evidence. The judicial robe and the hearing_dais horseshoe stay deferred; no. 52's other chassis models stay in the chassis, one lift per pass. No gate changed this pass, so GATE_LESSONS is unchanged. No frontier scan: the time went to the two proofs"
 }
+,
+"2026-10-21 weekly": {
+ "date": "2026-10-21",
+ "run": "weekly machine pass, read with carousel no. 56",
+ "actor": "upgrade",
+ "upgrades": [
+  {
+   "what": "Kit machine shop in assets/js/kit/industry.js: cnc_pendant at the judges' named fix (chamfered frame, glass screen in a bevel, keypad sunk in a raised surround with legend bars, fluted feed and spindle override knobs with tick arcs, knurled handwheel on a graduated dial, e-stop mushroom on a yellow collar, cycle buttons, key switch, grab handle, yoke with a published mount), vertical_machining_centre carrying it with curled helical ribbon chips and userData.parts, mill_vise with a flanged body and clamp slots, machined_housing, machine_pad with tapeLit",
+   "why": "Digest theme 'primitive or low-poly model where a kit model belongs', 6 runs and 16 rounds, the week's top theme. No. 56's top ranked artwork defect in rounds 1 and 3 was frame 8's pendant, 'a rounded slab with 36 calculator keys', named by all three judges in all three rounds, with the chips 'flat C rings' and the vise 'a plain block' (queue machine-shop-models-built-in-chassis). The kit had no machine shop, so the run built all four in its chassis",
+   "files": [
+    "assets/js/kit/industry.js",
+    "knowledge/carousel/ARSENAL.md"
+   ],
+   "verification": "Before and after proof pages through the carousel engine in no. 56's world and key (out/2026-10-21/tmp/machine/shop_pages.py: machine three quarter, pendant close on the machine, pendant alone, table with chips), read at full size; one defect found in the proof and fixed before handing over (a ribbon wider than its helix pitch closed into washers). python3 examples/kit/build.py --family industry --names cnc_pendant,vertical_machining_centre,mill_vise,machined_housing,machine_pad --world lastLight --surface concrete renders clean through render.py; python3 examples/kit/sizes.py exits 0, 125 of 125; today's frames 1 and 8 re-rendered with and without the change are pixel identical; python3 scripts/carousel/arsenal.py --check exits 0",
+   "revert": "the showrunner's upgrade commit for assets/js/kit/industry.js and knowledge/carousel/ARSENAL.md",
+   "how_i_would_know_this_was_wrong": "A deck using cnc_pendant still named a calculator or a slab, or its legend bars read as text; chips named as springs, wire or noise at the size a frame shows them; a chassis defining one of the five names and K.define throwing; a frame placing by model coordinates and missing because a deck expected K.make to re-centre (these keep their origin)"
+  },
+  {
+   "what": "depth_floor reads a bound TXT.interior call as the ground plane and its HEIGHT_IN_FIELD cue, and its self-test binds the exception to the engine: TXT.interior must lay its floor with an unconditional TXT.ground call",
+   "why": "Queue depth-floor-wants-a-literal-ground-in-interiors (no. 55) and interior-floor-zfights-a-ground-at-range (no. 56): all eleven room frames of the two decks laid a second TXT.ground to pass the floor, and on no. 56 frames 5 and 6 the two planes z-fought into banding from 120 m",
+   "files": [
+    "scripts/carousel/depth_floor.py"
+   ],
+   "verification": "python3 scripts/carousel/depth_floor.py --self-test exits 0 with seven new cases: a room frame stages and carries the plane cue; naming the method uncalled, or calling it on an unbound name, grounds nothing; the real engine's TXT.interior lays its floor unconditionally; that engine check goes red on a floor behind an option and on a room with no floor; the September 18th to 20th decks are still refused. Replay: nos. 55 and 56 with the second ground stripped fail before the change (4 and 3 of 9 staged) and pass after (9 of 9); both shipped decks pass unchanged",
+   "revert": "the showrunner's upgrade commit for scripts/carousel/depth_floor.py",
+   "how_i_would_know_this_was_wrong": "A room frame passing depth_floor whose solids visibly float; the engine adding a floor option and this self-test not going red; a run calling TXT.interior only to pass the floor in a frame that is not a room"
+  },
+  {
+   "what": "layout_check's detail failure prints the rect's median level and the L* step the floor is there, refuses a ruled grid by name and names the cure; the relative-contrast floor the queue proposed is refused as a loosening",
+   "why": "Queue detail-floor-pushes-dark-plates-to-graph-paper at repeat 2: nos. 53, 55 and 56 answered the floor on a near black plate with a ruled grid or ticks and every judge in every round charged graph paper. Measured: the floor's 6 sRGB levels are 1.8 L* at level 8 and 2.3 at 128, so it already asks less of a dark plate, and a relative measure would ask less again where it fired",
+   "files": [
+    "scripts/carousel/layout_check.py"
+   ],
+   "verification": "python3 scripts/carousel/layout_check.py --self-test exits 0 with two new cases: the flat plate fixture still FAILS and its message names the cure and refuses the grid; DETAIL_STD makes a smaller L* step near black than at mid grey. Threshold and measurement unchanged; python3 scripts/carousel/layout_check.py --run-dir runs/carousel/2026-10-21 exits 0 with the same measurements",
+   "revert": "the showrunner's upgrade commit for scripts/carousel/layout_check.py",
+   "how_i_would_know_this_was_wrong": "A run meeting the floor again and still laying a grid, which means the message is not the place a run reads; or a run declaring a rect smaller than the subject it plans just to pass, which the area floor and the judges should catch"
+  },
+  {
+   "what": "arsenal.py appends the unit to the TXT.stage row in ARSENAL.md (behind and depth are fractions of the subject's distance, never metres), quoted only while the engine's own header still says it and withdrawn when it stops",
+   "why": "Queue stage-behind-depth-given-in-metres at repeat 1: nos. 54 and 56 passed behind and depth as metres; on no. 54 the fog began a kilometre out and left a lit band behind every headline for three art director readings, and on no. 56 it changed nothing",
+   "files": [
+    "scripts/carousel/arsenal.py",
+    "knowledge/carousel/ARSENAL.md"
+   ],
+   "verification": "python3 scripts/carousel/arsenal.py --self-test exits 0, 30 of 30, with two new cases against the real engine: the row carries the unit, and a copy of the engine whose header no longer says it yields no note. python3 scripts/carousel/arsenal.py --check exits 0",
+   "revert": "the showrunner's upgrade commit for scripts/carousel/arsenal.py and knowledge/carousel/ARSENAL.md",
+   "how_i_would_know_this_was_wrong": "A run passing metres again with the note in ARSENAL.md, which says the row is not read at the moment of the call and the engine warning (proposal) is the fix; or the note vanishing silently after an engine edit that kept the unit in other words"
+  }
+ ],
+ "proposals_out_of_lane": [
+  {
+   "what": "A closed TXT.interior room keeps the sky out: the lastLight hemisphere fill and rim, the environment and the stage fog take the room's own wall value, and the stage veil is skipped",
+   "owner": "human",
+   "why": "Queue lastlight-fill-paints-a-closed-room-navy (no. 56 frame 8, all three judges in all three rounds) and snapshot-stages-interiors-to-sky-hue (no. 51 frames 3 and 8): one defect on two decks; digest 'object in a void' 4 runs and 7 rounds. assets/js/txthree.js (UPGRADE_BACKLOG 2026-10-21 item 6)"
+  },
+  {
+   "what": "TXT.stage warns when behind or depth reads as metres",
+   "owner": "human",
+   "why": "Nos. 54 and 56; the ARSENAL half shipped in this pass (UPGRADE_BACKLOG 2026-10-21 item 6)"
+  },
+  {
+   "what": "K.define takes anchor 'wall' and K.make never re-centres it",
+   "owner": "human",
+   "why": "Queue kmake-recentres-wall-hung-models at repeat 1, nos. 55 and 56; assets/js/txkit.js (UPGRADE_BACKLOG 2026-10-21 item 6)"
+  },
+  {
+   "what": "A type-only audition re-reading: render.py hashes the art canvas before the type, and art_preflight marks an entry type_only so the reviewer reads the new type over the reviewed art, still a fresh reading",
+   "owner": "human",
+   "why": "Queue audition-rebind-after-every-panel-repair at repeat 2 (nos. 54, 55, 56). The queue's own fix would let an approval survive a changed image, which the owner's rule forbids; .claude/skills render.py and prompts/carousel_studio.md (UPGRADE_BACKLOG 2026-10-21 item 6)"
+  },
+  {
+   "what": "A GATE_LESSONS entry: a gate that knew a ground by the name of the call",
+   "owner": "human",
+   "why": "The depth_floor change in this pass; the entry's text is in UPGRADE_BACKLOG 2026-10-21 item 2"
+  }
+ ],
+ "not_done": "The kit person (queue repeat 2, nos. 54 to 56) deferred, not refused: its causes are default geometry in assets/js/kit/people.js and no. 56's frames 4 and 9 render from it (UPGRADE_BACKLOG 2026-10-21 item 5). qa-glyph-run-as-rule, grid-piece-count-reads-lit-ground-as-subject and article-test-screenshots-fixed-path carried, none met since October 16th. 'Type sitting on the art', 6 runs and 12 rounds, got no change: its honest gate needs the id pass already proposed. No frontier scan: the time went to the proofs"
+}
 }

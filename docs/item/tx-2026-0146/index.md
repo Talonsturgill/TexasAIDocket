@@ -11,7 +11,7 @@ Amazon and Wiwynn announced an expansion of Wiwynn's manufacturing operations in
 - Public access: Write to the decider
 - Take part: https://www.aboutamazon.com/news/company-news/amazon-wiwynn-data-center-manufacturing-jobs-texas
 
-- Last checked: 2026-10-18
+- Last checked: 2026-10-21
 
 ## Dates
 
@@ -28,6 +28,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-10 · The announced expansion of the El Paso County rack plant reads as Amazon and Wiwynn first published it.
 - 2026-10-15 · The announced expansion of the El Paso County rack plant reads as Amazon and Wiwynn published it.
 - 2026-10-18 · Amazon and Wiwynn's announced expansion of the El Paso County rack plant reads as before.
+- 2026-10-21 · Checked and unchanged. The decision still stands as decided.
 
 ## Evidence
 

@@ -1,0 +1,90 @@
+<!doctype html>
+<!-- 2026-10-21, frame 8 of 9. Archetype CLOSE_CROP. RENDERED through txthree.js in the deck's lastLight world, inside a TXT.interior shop. The control pendant of a machining centre on its swing arm, close, its screen black and showing nothing, its keys, override knob and handwheel raked by the low west key, the machine's shut door and graphite enclosure falling away beside it. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">Will AI do anything here?</h1>
+<p class="dek" data-follow="26">Hadrian&#39;s chief says it is bringing &quot;the automation, software and workforce training from our own factories directly inside Lockheed Martin&quot;. The release never says whether AI does anything in this cell. Drawn&nbsp;to&nbsp;illustrate.</p>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-21-cell.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "The open question", counter: "08 / 09", src: "c3 c16 c15", fit: { min: 72, max: 96, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 36, far: 200 });
+  TXT.interior(R, { w: 24, d: 24, h: 7, ceiling: true, floor: 'concrete', wall: 0x15171a, trim: 0x0e0f11, window: null });
+  TXT.ground(R, { surface: 'concrete', size: 60, y: 0.003, wear: 'interior', color: 0x2a2c2e, seed: 8 });
+  /* the machine shut, its pendant screen dark */
+  const mc = K.make('machining_centre', { door: 0, part: 'finished', workLight: false, screen: 'off', lamp: 'off', seed: 8 });
+  TXT.add(R, mc); TXT.contact(R, mc); mc.updateMatrixWorld(true);
+  const pend = mc.userData.pendant;
+  /* the yoke that carries the pendant off the swing arm: a clamp block on its top edge and a short stem up into the
+   * arm's end, so the arm visibly holds it */
+  { const yM = new THREE.MeshStandardMaterial({ color: 0x2b2e32, roughness: 0.4, metalness: 0.6 });
+    const yoke = TXT.roundedBox(0.14, 0.05, 0.08, 0.01, yM); yoke.position.set(0, 0.325, -0.01); pend.add(yoke);
+    const stem = new THREE.Mesh(new THREE.CylinderGeometry(0.03, 0.03, 0.12, 20), yM); stem.position.set(0, 0.39, -0.03); pend.add(stem);
+    yoke.castShadow = stem.castShadow = true; }
+  /* THE CONTROL IN GRAPHITE ENAMEL, not pale plastic: the housing takes the deck's enclosure paint dark, its keycaps a
+   * worn grey a step above it, so the warm key draws a bright bevel and the screen stays the one black */
+  { const gM = new THREE.MeshStandardMaterial({ color: 0x33373c, roughness: 0.42, metalness: 0.25 });
+    const kM = new THREE.MeshStandardMaterial({ color: 0x70757a, roughness: 0.5, metalness: 0.05 });
+    pend.children[0].material = gM;
+    pend.traverse((m) => { if (m.isMesh && m.material && m.material.color && m.material.color.getHex() === 0x2a2c30) m.material = kM; }); }
+  { const smoke = new THREE.MeshStandardMaterial({ color: 0x15171a, roughness: 0.55, metalness: 0.15 });
+    mc.traverse((m) => { if (m.isMesh && m.material && m.material.roughness !== undefined && m.material.roughness < 0.12 && !pend.getObjectById(m.id)) m.material = smoke; }); }
+  pend.updateMatrixWorld(true);
+  const sc = new THREE.Vector3(0, 0.03, 0.06).applyMatrix4(pend.matrixWorld);
+  const at = [sc.x, sc.y, sc.z];
+  const from = [at[0] - 1.05, 1.8, at[2] + 1.6];
+  const look = CH.aim(THREE, R, TXT, from, at, 600, 975, 36);
+  TXT.frame(R, { fov: 36, from, look });
+  /* THE SWING ARM ENTERS FROM THE RIGHT, not down through the type: the machine's own arm and knuckle are left out of
+   * this shot and a level arm runs from the stem's top out past the frame's right edge, where the machine stands */
+  { R.camera.updateMatrixWorld(true);
+    mc.traverse((m) => { if (m.isMesh && m.geometry && (m.geometry.type === 'TubeGeometry' || (m.geometry.type === 'CylinderGeometry' && m.geometry.parameters.radiusTop === 0.05))) m.visible = false; });
+    const aM = new THREE.MeshStandardMaterial({ color: 0x2b2e32, roughness: 0.4, metalness: 0.6 });
+    const top = pend.localToWorld(new THREE.Vector3(0, 0.37, -0.03));
+    const right = new THREE.Vector3().setFromMatrixColumn(R.camera.matrixWorld, 0); right.y = 0; right.normalize();
+    const end = top.clone().addScaledVector(right, 3);
+    const arm = TXT.tube([[top.x, top.y, top.z], [end.x, end.y, end.z]], 0.035, aM); arm.castShadow = true; TXT.add(R, arm);
+    const elbow = new THREE.Mesh(new THREE.SphereGeometry(0.045, 24, 16), aM); elbow.position.copy(top); TXT.add(R, elbow); }
+  /* nothing pale may stand behind the hook: any light part of the machine that projects into the type's band is
+   * left out of this shot */
+  { const v = new THREE.Vector3(); R.camera.updateMatrixWorld(true);
+    mc.traverse((m) => { if (!m.isMesh || !m.material || !m.material.color) return; const c = m.material.color;
+      if (c.r + c.g + c.b < 1.2) return; m.getWorldPosition(v); v.project(R.camera);
+      const x = (v.x + 1) * 540, y = (1 - v.y) * 675; if (y > 120 && y < 560 && x < 420 && !pend.getObjectById(m.id)) m.visible = false; }); }
+  { const spec = CH.rigSpec(W, 4, 4096); TXT.deckRig(R, spec, CH.rigOpts(at, { distance: 14, shadowFar: 40 })); }
+  CH.unacne(R, 0.01);
+  CH.warm(R, 0.06);   /* the sky light held low in this closed room, so the enclosure falls to graphite and not to the sky's blue */
+  /* the shop's own work lamp off frame to the west, low and warm, raking the control's face and bevels */
+  { const wl = new THREE.SpotLight(0xf1dcc0, 10, 2.4, 0.32, 0.8, 2); wl.position.set(at[0] - 1.2, at[1] + 0.1, at[2] + 0.9);
+    wl.target.position.set(at[0], at[1], at[2]); wl.castShadow = false; R.scene.add(wl); R.scene.add(wl.target); }
+  TXT.stage(R, [pend], { behind: 3.5, depth: 4, poolInner: 0.8, poolOuter: 2.4 });
+  TXT.weather(R, { grime: 0.12, height: 0.6, mottle: 0.1 });
+  const shot = await TXT.snapshot(R);
+  const cx = CH.develop(shot, gl);
+  CH.post(cx, { a: 0.4, veil: 0.1, veilH: 140, footWash: 0.4, fade: 150 });
+  CH.knock(cx, [".tx-site", ".src"], 0.5);
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

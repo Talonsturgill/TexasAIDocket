@@ -1,0 +1,80 @@
+{
+ "lens": "reader",
+ "round": 2,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.3,
+   "why": "Strongest frames 1, 4, 6 and 9. Four frames still fail the showstopper test at 432 px. Frame 8 is a rounded slab with 36 beige keys on a flat navy wall no other frame has, the arm's post runs into the dek's last line and the bottom knob sits under the footer. Frame 3 is a straight-down plan of 13 rows of 24 (312, matching figures.json) that reads as an office tower's windows, the lifted part a speck and the second tray grey under the footer. Frame 7 is a flat drawing seen from above with the part a plate and a drop shadow, machine_qa bands 0.35/0.13/0.13. Frame 2's squares are at true scale (0.37 and 0.34 of the slab side) but the slab reads as graph paper and the rolled corner is a small wedge."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.0,
+   "why": "One dark machine shop, one warm low key from the left, the part motif runs 1 to 3 to 7, cyan means only Hadrian's cell on 6, 7 and 9, and 5 and 6 hold the same bench. Frame 8's saturated navy wall is a different world, and frame 3's tray does not read as the cover's part, so the motif breaks where it should multiply."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.8,
+   "why": "Every numeral traces to figures.json and aggregates.json and back to a quoted claim, and the 312 is computed and not printed. The fact check's refusals hold on 4, 6, 9 and 8. Two phrasings sit slightly past their sources: on 3, 'makes components for missiles such as PAC-3 MSE and THAAD' joins c7's programs with c8's components, and on 7 'Hadrian, on its own factories' adds a scope c20's homepage line does not state, though c21 and c15 support it. The substantive sources are the two companies describing themselves."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.5,
+   "why": "A Texan learns what happened and where. Dallas County appears only in the caption. The AI stake resolves to 'the release never says' on 8, honest but leaving the reader with a corporate expansion and an unanswerable question. No next step, no public body, no filing to watch."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 6.8,
+   "why": "The cover hook is jargon to a general reader. Frames 2 to 5 build scale one number at a time. 6 is a real turn. 7 and 8 bring in the AI question. The close lands softly on a fact the cover dek already stated. Frame 3 could be cut without loss."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "Clean and on house rules, but it reads as a fact-checker's annotations. 'The tray holds the first divided by the second, one pocket a part' is a formula, 2 and 5 carry method notes, and 'Drawn to illustrate.' closes all nine deks. The caption opener is the best line in the package."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.0,
+   "why": "No. 55 used a plan relief of 41 taped bays and an instanced count wall, and this deck repeats both moves. Another dark industrial interior inside TXT.interior. The machine-shop subject and the vise-crop cover are new."
+  }
+ ],
+ "weighted_score": 6.76,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Rebuild frame 8 as a real CNC pendant in the graphite shop under the warm low key in place of the navy wall, then move the deck's real news, AI language no source ties to this cell on a $300 million missile-parts expansion, into the cover hook.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 8,
+   "problem": "A primitive slab with 36 beige keys on a flat navy wall, the arm's post into the dek, the knob under the footer, a dead black screen.",
+   "fix": "Replace the navy wall with the graphite enclosure falling to black, add override knobs and a knurled handwheel, rake the keys from the left, and drop the arm's post 40 px below the dek."
+  },
+  {
+   "slide": 3,
+   "problem": "312 identical pockets read as a facade or keyboard at 432 px, the lifted part about 50 px, the second tray a grey band under the footer.",
+   "fix": "Put the empty pocket and the lifted part in a foreground pool at least 300 px wide with a long cast, and delete the second tray."
+  },
+  {
+   "slide": 7,
+   "problem": "A flat drawing seen from above, the part a plate with a drop shadow, the lower two thirds weak.",
+   "fix": "Deepen the sheet to near-black blue, run it off the bottom and right edges, and let the part cast long across the linework."
+  },
+  {
+   "slide": 2,
+   "problem": "The slab reads as graph paper, the pour a flat grey plate, the rolled corner a small wedge.",
+   "fix": "Drop the slab to near-black sealed concrete with a few wide saw joints and light the pour as the one bright plane."
+  },
+  {
+   "slide": 5,
+   "problem": "The 100 roofs read as dominoes on the left half and the right half is empty black.",
+   "fix": "Lay an unmarked pool of the low key on the empty floor at right and give each roof a stack-pole cast down its aisle."
+  }
+ ],
+ "transcribed": "by the showrunner from the judge's hand-back, scores and totals as returned, reasons abridged"
+}

@@ -11,7 +11,7 @@ The U.S. Department of Agriculture's National Institute of Food and Agriculture 
 - Public access: Write to the decider
 - Take part: https://news.tamus.edu/stories/wt-to-build-beef-cattle-research-facility-with-9-75-million-usda-grant/
 
-- Last checked: 2026-10-18
+- Last checked: 2026-10-21
 
 ## Dates
 
@@ -25,6 +25,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-11 · The A&M System's release on the feedlot grant is unchanged. The AI methods are still a stated plan.
 - 2026-10-15 · The A&M System's release on the feedlot grant is unchanged, its AI methods still a plan.
 - 2026-10-18 · The A&M System's release on the Canyon feedlot grant reads as before, its AI methods still a plan.
+- 2026-10-21 · Checked and unchanged. The decision still stands as decided.
 
 ## Evidence
 

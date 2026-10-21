@@ -1,0 +1,131 @@
+{
+ "date": "2026-10-21",
+ "_note": "Every count, span and multiple the deck states, with the claim it was quoted from or the code that computed it.",
+ "aggregates": [
+  {
+   "phrase": "250,000 parts",
+   "slide": "slide-03.html",
+   "kind": "count",
+   "value": 250000,
+   "quoted_from": "c12",
+   "quote": "Nearly 800 production employees currently work at the facility which manufactured 250,000 parts in 2025.",
+   "note": "quoted; figures.json parts_2025"
+  },
+  {
+   "phrase": "250,000 parts",
+   "slide": "caption.txt",
+   "kind": "count",
+   "value": 250000,
+   "quoted_from": "c12",
+   "quote": "Nearly 800 production employees currently work at the facility which manufactured 250,000 parts in 2025.",
+   "note": "quoted; figures.json parts_2025"
+  },
+  {
+   "phrase": "800 production employees",
+   "slide": "slide-03.html",
+   "kind": "count",
+   "value": 800,
+   "quoted_from": "c12",
+   "quote": "Nearly 800 production employees currently work at the facility which manufactured 250,000 parts in 2025.",
+   "note": "quoted, the release's nearly; figures.json employees"
+  },
+  {
+   "phrase": "30 machines",
+   "slide": "slide-04.html",
+   "kind": "count",
+   "value": 30,
+   "quoted_from": "c10",
+   "quote": "In just a few months, the company has transformed former office space into advanced manufacturing areas and installed more than 30 additional high-precision machines now producing thousands of critical components each week.",
+   "note": "quoted, the release's more than; figures.json added_machines"
+  },
+  {
+   "phrase": "30 high precision machines",
+   "slide": "slide-04.html",
+   "kind": "count",
+   "value": 30,
+   "quoted_from": "c10",
+   "quote": "In just a few months, the company has transformed former office space into advanced manufacturing areas and installed more than 30 additional high-precision machines now producing thousands of critical components each week.",
+   "note": "quoted, the release's more than; figures.json added_machines"
+  },
+  {
+   "phrase": "30 machines",
+   "slide": "caption.txt",
+   "kind": "count",
+   "value": 30,
+   "quoted_from": "c10",
+   "quote": "In just a few months, the company has transformed former office space into advanced manufacturing areas and installed more than 30 additional high-precision machines now producing thousands of critical components each week.",
+   "note": "quoted, the release's more than; figures.json added_machines"
+  },
+  {
+   "phrase": "100 new machines",
+   "slide": "slide-05.html",
+   "kind": "count",
+   "value": 100,
+   "quoted_from": "c11",
+   "quote": "By the end of 2026, Lockheed Martin expects to have added nearly 100 new advanced machines across the facility.",
+   "note": "quoted, the release's nearly; figures.json machines_by_2026"
+  },
+  {
+   "phrase": "100 new advanced machines across",
+   "slide": "slide-05.html",
+   "kind": "count",
+   "value": 100,
+   "quoted_from": "c11",
+   "quote": "By the end of 2026, Lockheed Martin expects to have added nearly 100 new advanced machines across the facility.",
+   "note": "quoted, the release's nearly; figures.json machines_by_2026"
+  },
+  {
+   "phrase": "24 machines",
+   "slide": "slide-06.html",
+   "kind": "count",
+   "value": 24,
+   "quoted_from": "c4",
+   "quote": "Expected to be operational in early 2027, the 24-machine cell will bring commercial-style manufacturing technology directly into Lockheed Martin's production environment",
+   "note": "quoted, the 24-machine cell; figures.json cell_machines"
+  },
+  {
+   "phrase": "24 machines",
+   "slide": "caption.txt",
+   "kind": "count",
+   "value": 24,
+   "quoted_from": "c4",
+   "quote": "Expected to be operational in early 2027, the 24-machine cell will bring commercial-style manufacturing technology directly into Lockheed Martin's production environment",
+   "note": "quoted, the 24-machine cell; figures.json cell_machines"
+  },
+  {
+   "phrase": "24 empty bays",
+   "slide": "caption.txt",
+   "kind": "count",
+   "value": 24,
+   "quoted_from": "c4",
+   "quote": "Expected to be operational in early 2027, the 24-machine cell will bring commercial-style manufacturing technology directly into Lockheed Martin's production environment",
+   "note": "quoted, the 24-machine cell; figures.json cell_machines"
+  },
+  {
+   "phrase": "2,000 Texas jobs",
+   "slide": "slide-09.html",
+   "kind": "count",
+   "value": 2000,
+   "quoted_from": "c5",
+   "quote": "today announced plans to create 6,000 jobs across the United States including 2,000 in Texas",
+   "note": "quoted, the company's own statewide figure; figures.json jobs_tx"
+  },
+  {
+   "phrase": "2,000 Texas jobs",
+   "slide": "caption.txt",
+   "kind": "count",
+   "value": 2000,
+   "quoted_from": "c5",
+   "quote": "today announced plans to create 6,000 jobs across the United States including 2,000 in Texas",
+   "note": "quoted, the company's own statewide figure; figures.json jobs_tx"
+  },
+  {
+   "phrase": "two first party accounts",
+   "slide": "first_comment.txt",
+   "kind": "count",
+   "value": 2,
+   "computed_by": "scripts/carousel/sources_block.py --build, len() of the distinct primary_corporate documents the deck's printed claim ids resolve to in out/2026-10-21/claims.json (Lockheed Martin's release and Hadrian's home page)",
+   "note": "computed"
+  }
+ ]
+}

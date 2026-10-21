@@ -11,7 +11,7 @@ JAMA Network Open published a quality improvement study on September 3rd, 2026. 
 - Public access: Write to the decider
 - Take part: https://pmc.ncbi.nlm.nih.gov/articles/PMC13543018/
 
-- Last checked: 2026-10-18
+- Last checked: 2026-10-21
 
 ## Dates
 
@@ -35,6 +35,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-11 · Houston Methodist's account still has case managers beating the discharge AI on the final day.
 - 2026-10-15 · Houston Methodist's account still has its case managers beating the discharge AI on the last day.
 - 2026-10-18 · Houston Methodist's account still has its case managers outperforming the discharge AI on the last day.
+- 2026-10-21 · Checked and unchanged. The decision still stands as decided.
 
 ## Evidence
 

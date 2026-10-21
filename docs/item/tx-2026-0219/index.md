@@ -11,7 +11,7 @@ The Public Utility Commission of Texas filed an original petition in Travis Coun
 - Public access: Write to the decider
 - Take part: https://www.texaspolicyresearch.com/wp-content/uploads/2026/10/D-1-GN-26-010018.pdf
 
-- Last checked: 2026-10-18
+- Last checked: 2026-10-21
 
 ## Dates
 
@@ -22,6 +22,7 @@ The Public Utility Commission of Texas filed an original petition in Travis Coun
 One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
 
 - 2026-10-18 · Admitted on the file stamped petition. No hearing date or answer from the Attorney General was found.
+- 2026-10-21 · Checked and unchanged. Still pending, with no dated movement.
 
 ## Evidence
 

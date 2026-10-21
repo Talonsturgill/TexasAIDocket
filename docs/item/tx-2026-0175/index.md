@@ -11,7 +11,7 @@ The National Science Foundation made a cooperative agreement to Texas Southern U
 - Public access: Write to the decider
 - Take part: https://api.nsf.gov/services/v1/awards.json?id=2619041&printFields=id,title,awardeeName,awardeeCity,awardeeStateCode,piFirstName,piLastName,date,startDate,expDate,estimatedTotalAmt,fundsObligatedAmt,fundProgramName,abstractText
 
-- Last checked: 2026-10-18
+- Last checked: 2026-10-21
 
 ## Dates
 
@@ -37,6 +37,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-10 · The foundation's award still names Texas Southern University as lead of its regional node.
 - 2026-10-15 · Texas Southern University is still named lead of its regional node in the foundation's award.
 - 2026-10-18 · Texas Southern University is still named lead of one regional node in the foundation's HBCU network.
+- 2026-10-21 · Checked and unchanged. The decision still stands as decided.
 
 ## Evidence
 

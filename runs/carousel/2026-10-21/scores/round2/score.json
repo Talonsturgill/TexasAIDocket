@@ -1,0 +1,238 @@
+{
+ "weighted_score": 6.77,
+ "judges": [
+  6.78,
+  6.85,
+  6.76
+ ],
+ "spread": 0.09,
+ "criteria": {
+  "artwork_craft": {
+   "score": 6.3,
+   "weight": 0.22,
+   "judges": [
+    6.2,
+    6.3,
+    6.3
+   ]
+  },
+  "deck_coherence": {
+   "score": 7.2,
+   "weight": 0.12,
+   "judges": [
+    7.2,
+    7.2,
+    7.0
+   ]
+  },
+  "claim_integrity": {
+   "score": 7.6,
+   "weight": 0.2,
+   "judges": [
+    7.6,
+    7.5,
+    7.8
+   ]
+  },
+  "story_and_stakes": {
+   "score": 6.5,
+   "weight": 0.16,
+   "judges": [
+    6.6,
+    6.5,
+    6.5
+   ]
+  },
+  "sequence_and_momentum": {
+   "score": 6.8,
+   "weight": 0.1,
+   "judges": [
+    6.8,
+    7.0,
+    6.8
+   ]
+  },
+  "voice": {
+   "score": 6.8,
+   "weight": 0.1,
+   "judges": [
+    7.0,
+    6.8,
+    6.5
+   ]
+  },
+  "variety": {
+   "score": 6.0,
+   "weight": 0.1,
+   "judges": [
+    6.0,
+    6.8,
+    6.0
+   ]
+  }
+ },
+ "hard_fails": [],
+ "hard_fails_by_judge": [],
+ "ship": false,
+ "threshold": 8.0,
+ "over_threshold": false,
+ "method": "per-criterion median across three judges, then weighted by the rubric",
+ "threshold_dissents": [
+  "judge 1 refused on the threshold, not on a fault, and scored 6.78 against a 8.0 bar. That dissent is carried in the median",
+  "judge 2 refused on the threshold, not on a fault, and scored 6.85 against a 8.0 bar. That dissent is carried in the median",
+  "judge 3 refused on the threshold, not on a fault, and scored 6.76 against a 8.0 bar. That dissent is carried in the median"
+ ],
+ "threshold_dissents_by_judge": [
+  {
+   "judge": 1,
+   "score": 6.78,
+   "reason": "judge 1 refused on the threshold, not on a fault, and scored 6.78 against a 8.0 bar. That dissent is carried in the median"
+  },
+  {
+   "judge": 2,
+   "score": 6.85,
+   "reason": "judge 2 refused on the threshold, not on a fault, and scored 6.85 against a 8.0 bar. That dissent is carried in the median"
+  },
+  {
+   "judge": 3,
+   "score": 6.76,
+   "reason": "judge 3 refused on the threshold, not on a fault, and scored 6.76 against a 8.0 bar. That dissent is carried in the median"
+  }
+ ],
+ "artwork_weakest_frames": [
+  {
+   "slide": 3,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "312 pockets read as a keyboard texture, the lifted part about 55 px, the second tray a dead band.",
+     "fix": "Delete the second tray and move the empty pocket and lifted part into a lit foreground pool at least 250 px wide."
+    },
+    {
+     "judge": 2,
+     "problem": "312 identical parts read as a keyboard texture at 432 px, the lifted part about 50 px with no pull, the second tray fading into a grey band.",
+     "fix": "Put the empty pocket and the lifted part in the foreground at 300 px or more with a long cast across the bench, and delete the second tray."
+    },
+    {
+     "judge": 3,
+     "problem": "312 identical pockets read as a facade or keyboard at 432 px, the lifted part about 50 px, the second tray a grey band under the footer.",
+     "fix": "Put the empty pocket and the lifted part in a foreground pool at least 300 px wide with a long cast, and delete the second tray."
+    }
+   ]
+  },
+  {
+   "slide": 8,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "A rounded slab with calculator keys on a navy wall, the knob and bottom key row under the footer.",
+     "fix": "Replace the navy with the graphite enclosure and shut door falling to black, model override knobs and a knurled handwheel, rake the keys from the left, and end the housing above the footer."
+    },
+    {
+     "judge": 2,
+     "problem": "A primitive rounded slab with 36 calculator keys on a saturated navy field, the knobs under the footer and the arm's post under 'cell.'.",
+     "fix": "Replace the navy with the graphite enclosure falling to black, model recessed keys and a knurled handwheel raked from the left, raise the crop so the knobs clear the footer and drop the arm below the dek."
+    },
+    {
+     "judge": 3,
+     "problem": "A primitive slab with 36 beige keys on a flat navy wall, the arm's post into the dek, the knob under the footer, a dead black screen.",
+     "fix": "Replace the navy wall with the graphite enclosure falling to black, add override knobs and a knurled handwheel, rake the keys from the left, and drop the arm's post 40 px below the dek."
+    }
+   ]
+  },
+  {
+   "slide": 2,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "A tile grid over the slab reads as graph paper, the pour a flat mid-grey plate, the rolled corner flat.",
+     "fix": "Keep a few wide saw joints, drop the slab toward near black and light the pour as the one bright plane."
+    },
+    {
+     "judge": 2,
+     "problem": "A regular saw-cut grid reads as graph paper in the grey middle, the pour mid grey, the rolled corner a thin fold.",
+     "fix": "Cut the joints to two or three wide saw cuts on near-black concrete, light the pour as the one bright surface and model the carpet corner as a rolled cylinder 30 to 40 px high."
+    },
+    {
+     "judge": 3,
+     "problem": "The slab reads as graph paper, the pour a flat grey plate, the rolled corner a small wedge.",
+     "fix": "Drop the slab to near-black sealed concrete with a few wide saw joints and light the pour as the one bright plane."
+    }
+   ]
+  },
+  {
+   "slide": 7,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Still a flat top-down cyanotype with the part the only object with height.",
+     "fix": "Let black granite show around the sheet and read the part's pockets in depth."
+    },
+    {
+     "judge": 2,
+     "problem": "A flat UI mockup seen straight down, a hard polygon cast, the lower bands thin.",
+     "fix": "Stand the part in depth with a soft long cast across the linework and run the sheet off the bottom and right edges."
+    },
+    {
+     "judge": 3,
+     "problem": "A flat drawing seen from above, the part a plate with a drop shadow, the lower two thirds weak.",
+     "fix": "Deepen the sheet to near-black blue, run it off the bottom and right edges, and let the part cast long across the linework."
+    }
+   ]
+  },
+  {
+   "slide": 5,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "A sheared block that reads as dominoes and an empty right half.",
+     "fix": "Lay an unmarked pool of the low key on the empty floor where frame 6 sets the cell."
+    },
+    {
+     "judge": 2,
+     "problem": "Dominoes at a sheared oblique, the right 40 percent empty black.",
+     "fix": "Lay a faint unmarked pool of the low key on the empty floor and lengthen the stack-pole casts."
+    },
+    {
+     "judge": 3,
+     "problem": "The 100 roofs read as dominoes on the left half and the right half is empty black.",
+     "fix": "Lay an unmarked pool of the low key on the empty floor at right and give each roof a stack-pole cast down its aisle."
+    }
+   ]
+  },
+  {
+   "slide": 9,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The foreground floor is the brightest region of the deck and the near tape outlines tangle.",
+     "fix": "Aim the pool on the near bay and let the foreground slab fall dark from the light."
+    }
+   ]
+  },
+  {
+   "slide": 4,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "Blue-lit panels read as a server aisle and the lower 35 percent is empty floor.",
+     "fix": "Turn the near machine's door window warm and lit from inside with the part visible, and drop the camera about 0.4 m."
+    }
+   ]
+  }
+ ],
+ "rounds_derived": 2,
+ "rounds": 2,
+ "rounds_source": "this module's own log of cards it has scored",
+ "rounds_declared": 2,
+ "rung": 7.7,
+ "work_order": "no judge found a hard fail, and the median 6.77 is under this round's rung of 7.7. KEEP EDITING: fix the judges' named defects, re-render and re-score. At the round cap the finished deck ships whatever it scored. Start with the frames the judges charge the art for, in this order, slides 3, 8, 2, 7, 5, 9, 4 (`artwork_weakest_frames`), one concrete change each",
+ "craft_floor": "pending, because a deck under its rung is sent back by the work order first"
+}

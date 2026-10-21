@@ -1,0 +1,90 @@
+{
+ "lens": "integrity",
+ "round": 2,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.2,
+   "why": "Strong: 6 (100 roofs beside 24 cyan bays at matched pitch), 4 (rows receding with a machinist in a pool), 9 (empty bays at standing eye). The cover is legible but plainly CG. Four of round 1's five named frames still fail the same way: 3 reads as a keyboard texture with a 55 px lifted part and a dead lower band, 8 is a slab with calculator keys on a navy wall, 2 carries a tile grid with a flat grey pour, 5 is sheared with an empty right half. 7 improved, the part larger and casting long, but still a flat cyanotype from above."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.2,
+   "why": "One material vocabulary and one accent held for Hadrian's cell on 6, 7 and 9. The 5 to 6 hold and the part motif work on the filmstrip. Frame 8's navy wall breaks the world, and frame 9's lit grey foreground (canvas mean 37.6 against 17.9 to 26.9 on 2 to 8) is a value jump at the close."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.6,
+   "why": "Every numeral traces through compute.py and figures.json, and every drawn count checks. Sources are primary and the absences are scoped and backed by the rejected list. Four looser phrasings: slide 7's 'Hadrian, on its own factories' scopes c20 past its quote, with c22 on the same page; slide 3's 'first divided by the second' while the tray draws the floor 312; 'components for missiles such as PAC-3 MSE and THAAD' joins c7 and c8; Dallas County rests on a TDLR filing at an address the release does not give. None changes what a reader believes."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.6,
+   "why": "What, who and where are named. The AI stake is an open question no source answers. Nothing tells a Texan what they can do, and the 2,000 jobs are statewide."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 6.8,
+   "why": "The turn lands at 6 and 8's headline is the strongest in the deck. The cover is a schedule, not a reason to swipe. 2 to 5 are four scale frames in a row. 9 restates slide 1's dek."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Clean and on register with no house-rule breaks. Lines on 3 and 5 read as engineering notes. Regional specificity stops at Grand Prairie and Dallas County."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.0,
+   "why": "The topic is new. Familiar moves: no. 45's squares at equal areas, no. 54's block beside slots at the same pitch, no. 55's taped bays, no. 49's release that names no AI tool. The machine shop palette and cyan-only accent are fresh."
+  }
+ ],
+ "weighted_score": 6.78,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "On frame 3 delete the second tray and bring the empty pocket and lifted part into a foreground pool at least 250 px wide, and on frame 8 replace the navy wall and keypad with the graphite enclosure and a modelled pendant raked by the west key.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 8,
+   "problem": "A rounded slab with calculator keys on a navy wall, the knob and bottom key row under the footer.",
+   "fix": "Replace the navy with the graphite enclosure and shut door falling to black, model override knobs and a knurled handwheel, rake the keys from the left, and end the housing above the footer."
+  },
+  {
+   "slide": 3,
+   "problem": "312 pockets read as a keyboard texture, the lifted part about 55 px, the second tray a dead band.",
+   "fix": "Delete the second tray and move the empty pocket and lifted part into a lit foreground pool at least 250 px wide."
+  },
+  {
+   "slide": 2,
+   "problem": "A tile grid over the slab reads as graph paper, the pour a flat mid-grey plate, the rolled corner flat.",
+   "fix": "Keep a few wide saw joints, drop the slab toward near black and light the pour as the one bright plane."
+  },
+  {
+   "slide": 5,
+   "problem": "A sheared block that reads as dominoes and an empty right half.",
+   "fix": "Lay an unmarked pool of the low key on the empty floor where frame 6 sets the cell."
+  },
+  {
+   "slide": 9,
+   "problem": "The foreground floor is the brightest region of the deck and the near tape outlines tangle.",
+   "fix": "Aim the pool on the near bay and let the foreground slab fall dark from the light."
+  },
+  {
+   "slide": 7,
+   "problem": "Still a flat top-down cyanotype with the part the only object with height.",
+   "fix": "Let black granite show around the sheet and read the part's pockets in depth."
+  }
+ ],
+ "integrity_notes_for_the_record": [
+  "Slide 7's attribution line should name the page, for example 'Hadrian's home page'.",
+  "Slide 3 should say the tray rounds down, since it draws the floor 312.",
+  "art_preflight needs_review [1] was cleared before round 2 by the art director's accept of the copy-only cover change; frames 2, 3, 4, 7 and 8 are not audition frames and were rechecked by the pixel critics."
+ ],
+ "transcribed": "by the showrunner from the judge's hand-back, scores and totals as returned, reasons abridged"
+}

@@ -11,7 +11,7 @@ Researchers at Texas Children's Hospital's Duncan Neurological Research Institut
 - Public access: Write to the decider
 - Take part: https://www.texome.org/
 
-- Last checked: 2026-10-18
+- Last checked: 2026-10-21
 
 ## Dates
 
@@ -27,6 +27,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-11 · The account of the genetic cause the AI tool flagged still reads as published.
 - 2026-10-15 · The account of the gene the AI tool flagged reads as published.
 - 2026-10-18 · The account of the gene the AI tool flagged for the Texome child reads as published.
+- 2026-10-21 · Checked and unchanged. The decision still stands as decided.
 
 ## Evidence
 

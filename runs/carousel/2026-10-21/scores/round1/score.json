@@ -1,0 +1,225 @@
+{
+ "weighted_score": 6.75,
+ "judges": [
+  6.46,
+  7.17,
+  6.68
+ ],
+ "spread": 0.71,
+ "criteria": {
+  "artwork_craft": {
+   "score": 6.2,
+   "weight": 0.22,
+   "judges": [
+    6.0,
+    6.4,
+    6.2
+   ]
+  },
+  "deck_coherence": {
+   "score": 7.3,
+   "weight": 0.12,
+   "judges": [
+    7.5,
+    7.3,
+    7.3
+   ]
+  },
+  "claim_integrity": {
+   "score": 7.2,
+   "weight": 0.2,
+   "judges": [
+    6.0,
+    8.6,
+    7.2
+   ]
+  },
+  "story_and_stakes": {
+   "score": 6.5,
+   "weight": 0.16,
+   "judges": [
+    6.5,
+    7.0,
+    6.3
+   ]
+  },
+  "sequence_and_momentum": {
+   "score": 7.0,
+   "weight": 0.1,
+   "judges": [
+    7.0,
+    7.0,
+    6.8
+   ]
+  },
+  "voice": {
+   "score": 7.0,
+   "weight": 0.1,
+   "judges": [
+    7.0,
+    7.0,
+    6.8
+   ]
+  },
+  "variety": {
+   "score": 6.3,
+   "weight": 0.1,
+   "judges": [
+    6.0,
+    6.5,
+    6.3
+   ]
+  }
+ },
+ "hard_fails": [],
+ "hard_fails_by_judge": [],
+ "ship": false,
+ "threshold": 8.0,
+ "over_threshold": false,
+ "method": "per-criterion median across three judges, then weighted by the rubric",
+ "threshold_dissents": [
+  "judge 1 refused on the threshold, not on a fault, and scored 6.46 against a 8.0 bar. That dissent is carried in the median",
+  "judge 2 refused on the threshold, not on a fault, and scored 7.17 against a 8.0 bar. That dissent is carried in the median",
+  "judge 3 refused on the threshold, not on a fault, and scored 6.68 against a 8.0 bar. That dissent is carried in the median"
+ ],
+ "threshold_dissents_by_judge": [
+  {
+   "judge": 1,
+   "score": 6.46,
+   "reason": "judge 1 refused on the threshold, not on a fault, and scored 6.46 against a 8.0 bar. That dissent is carried in the median"
+  },
+  {
+   "judge": 2,
+   "score": 7.17,
+   "reason": "judge 2 refused on the threshold, not on a fault, and scored 7.17 against a 8.0 bar. That dissent is carried in the median"
+  },
+  {
+   "judge": 3,
+   "score": 6.68,
+   "reason": "judge 3 refused on the threshold, not on a fault, and scored 6.68 against a 8.0 bar. That dissent is carried in the median"
+  }
+ ],
+ "contested": [
+  "claim_integrity"
+ ],
+ "artwork_weakest_frames": [
+  {
+   "slide": 2,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "A mid-grey slab grid with a flat grey pour square reads as graph paper sitting in the grey middle. The rolled carpet corner is the only relief.",
+     "fix": "Darken the slab to near-black sealed concrete with saw-cut joints caught only on their edges, and let the pour's timber form boards and the rolled carpet throw long casts so the pour is the one bright plane."
+    },
+    {
+     "judge": 2,
+     "problem": "A uniform mid-grey tile grid over the whole slab reads as graph paper and sits in the grey middle. The carpet's 'rolled corner' is a thin fold with almost no height or cast, so the relief reads as a flat diagram.",
+     "fix": "Drop the slab to near-black sealed concrete with only a few saw cuts and a raking key that shows its texture. Model the carpet corner as a real rolled cylinder 30 to 40 px high casting a long shadow to the right, and stand the form boards proud on the pour so they cast."
+    },
+    {
+     "judge": 3,
+     "problem": "At feed size it reads as a grey tile grid with a sunken grey tray. The fresh pour has no lit face, the rolled carpet corner is a sliver, and the slab's tile lines turn it into graph paper.",
+     "fix": "Take the regular grid off the slab and keep only wide-pitch saw joints, give the form boards and the rolled carpet corner long casts, and light the 100,000 pour as the one bright surface against a slab that falls to near black."
+    }
+   ]
+  },
+  {
+   "slide": 3,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Seen straight down, 312 parts in 13 rows of 24 read as a grey spreadsheet texture at 432 px. There is no single subject, the lifted part is a speck at top right, and the second tray fades into the mid tones.",
+     "fix": "Put the lifted part on the bench lit by the west key as the one subject, let the tray fall off away from it, and drop the second tray."
+    },
+    {
+     "judge": 2,
+     "problem": "In the straight-down plan, 312 identical pockets read as a grille or keyboard texture at 432 px. The lifted unit part is about 75 px wide at full size and has no focal pull, and the second tray fades into a dead grey lower band.",
+     "fix": "Tilt to an oblique raking view from the tray's near corner so the 13 rows of 24 run back toward a vanishing point. Put the empty pocket and the lifted part in the foreground at 300 px or more, with a long cast across the steel, and drop the second tray."
+    },
+    {
+     "judge": 3,
+     "problem": "312 identical tiny parts in flat plan read as a keyboard or rack texture. The lifted part, which carries the unit, is about 50 px and lost at top right.",
+     "fix": "Move the lifted part and its empty pocket into a foreground pool at least 250 px wide, and delete the second tray below."
+    }
+   ]
+  },
+  {
+   "slide": 8,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The pendant is a primitive rounded box with a calculator keypad, hung in front of a flat navy wall that belongs to no other frame. The huge black screen is a dead zone.",
+     "fix": "Model a real CNC pendant with override knobs and a handwheel, replace the navy wall with the machine's graphite enclosure, and rake the warm low key across the key edges from the left."
+    },
+    {
+     "judge": 2,
+     "problem": "The turn frame's subject is a primitive model: a rounded slab, a black rectangle and 36 beige calculator keys. It sits on a flat navy mid-tone back panel instead of the planned graphite falling to black, there is no raking light on the keys, and the bottom key rows and knob run under the footer type.",
+     "fix": "Model the pendant at full detail: bevel, e-stop mushroom, MPG handwheel, feed/spindle override knobs and a glass screen with a seam reflection. Replace the navy panel with the graphite enclosure and shut door falling to black, light the keys' west edges with the low warm key, and crop so the housing fills about half the frame above the footer."
+    },
+    {
+     "judge": 3,
+     "problem": "The pendant is a primitive rounded slab with toy-block keys on a flat saturated navy wall. The background breaks the deck's warm graphite world.",
+     "fix": "Replace the navy wall with the graphite enclosure and its shut door's lit window falling to black. Model a bevelled housing with an e-stop, recessed keys and a knurled handwheel. Rake the keys from the left."
+    }
+   ]
+  },
+  {
+   "slide": 7,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The cyanotype sheet and the part are both flat plates seen from above, and machine_qa flags a weak lower zone.",
+     "fix": "Let the part stand with visible height on its own plan view and cast across the views, and run the sheet off the bottom and side edges."
+    },
+    {
+     "judge": 2,
+     "problem": "The camera looks straight down at a flat blue sheet, so the part reads as a 2D icon with a drop shadow. The cyanotype lifts the frame into a cool mid-tone, and machine_qa flags a weak lower zone.",
+     "fix": "Move the camera to about 35 degrees oblique so the part stands on its plan view with its pocket walls and bosses visible in depth, casting long across the sheet. Deepen the cyanotype toward a near-black blue and let the sheet's edge and the granite fill the lower third."
+    },
+    {
+     "judge": 3,
+     "problem": "A flat cyanotype wireframe that reads as a UI mockup. The part sits on it with almost no cast, and machine_qa flags a weak lower zone.",
+     "fix": "Enlarge the part to about half the sheet width and set it in the lower third with a long cast across the linework, and let black granite show around the sheet's edges."
+    }
+   ]
+  },
+  {
+   "slide": 5,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The 100 roofs sit at a sheared oblique that reads as dominoes or a checkerboard rather than machines. The right half of the frame is empty black.",
+     "fix": "Give each roof a stack light and a pendant arm with long casts running right down the aisles, and fill the empty half."
+    },
+    {
+     "judge": 3,
+     "problem": "The right half of the frame is empty black, a dead zone at feed size, and the roofs read as dominoes more than machines.",
+     "fix": "Lay a faint, unmarked pool of the low key on the empty floor where frame 6 sets the cell, and strengthen the stack-pole casts down the aisles."
+    }
+   ]
+  },
+  {
+   "slide": 4,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "The two rows of enclosures with lit blue panels read as a server or data hall aisle. The floor pool lands on empty aisle rather than on the near machine and machinist, and no part or spindle tells you these are mills.",
+     "fix": "Light the near right-hand machine's window from inside with a lit part visible in its vise. Move the aisle pool onto the machinist and that machine, and add chip conveyors and coolant tanks at the machine bases so the rows read as machining centres."
+    }
+   ]
+  }
+ ],
+ "rounds_derived": 1,
+ "rounds": 1,
+ "rounds_source": "this module's own log of cards it has scored",
+ "rounds_declared": 1,
+ "rung": 8.0,
+ "work_order": "no judge found a hard fail, and the median 6.75 is under this round's rung of 8.0. KEEP EDITING: fix the judges' named defects, re-render and re-score. At the round cap the finished deck ships whatever it scored. Start with the frames the judges charge the art for, in this order, slides 2, 3, 8, 7, 5, 4 (`artwork_weakest_frames`), one concrete change each",
+ "craft_floor": "pending, because a deck under its rung is sent back by the work order first"
+}

@@ -1,41 +1,48 @@
 {
- "last_pass": "2026-10-16",
+ "last_pass": "2026-10-21",
  "themes": [
   {
    "theme": "primitive or low-poly model where a kit model belongs",
-   "runs": 5,
-   "rounds": 14,
+   "runs": 6,
+   "rounds": 16,
    "action": "fixed in part",
-   "what": "The kit person, named a mannequin on nos. 48, 49, 51 and 52 (queue repeat 3), lifted in assets/js/kit/people.js: arms at rest, hair in locks, strand albedo as locks, a beard below the cheek (a16dc485). The robe and the face's single value are carried."
+   "what": "No. 56's machine shop lifted into assets/js/kit/industry.js at the judges' named fix: cnc_pendant (chamfered frame, glass screen in a bevel, recessed keypad with legend bars, fluted override knobs, knurled handwheel, e-stop, cycle buttons, key switch, yoke), vertical_machining_centre with helical ribbon chips, mill_vise with a flanged body, machined_housing and machine_pad. The kit person, the theme's other named model (queue repeat 2, nos. 54 to 56), is deferred: its causes are default geometry today's frames 4 and 9 render from."
   },
   {
-   "theme": "largest object unmodelled (slab, bare wall, clean clay)",
-   "runs": 5,
-   "rounds": 15,
-   "action": "fixed in part",
-   "what": "No. 52's robotaxi, a boxy toy on four frames to every judge in rounds 2 and 3, lifted as the kit's lofted `crossover` with `sensors: true` (fa47390f). The objects differ per deck, so the theme stays open; every other kit car is still an extrusion with flat sides."
-  },
-  {
-   "theme": "object in a void, no sky, camera at the ground (with standing water that mirrors nothing)",
-   "runs": 5,
-   "rounds": 8,
-   "action": "escalated",
-   "what": "Engine (human): a TXT.water material over a planar reflection, queue standing-water-no-reflection. UPGRADE_BACKLOG 2026-10-16 item 3."
-  },
-  {
-   "theme": "dead or empty region (stage fog takes the far bank)",
+   "theme": "object in a void, no sky, camera at the ground (a closed room painted the sky's navy)",
    "runs": 4,
-   "rounds": 6,
+   "rounds": 7,
    "action": "escalated",
-   "what": "Engine (human): a TXT.stage `keep` group the fog spares, queue stage-fog-takes-the-far-bank. UPGRADE_BACKLOG 2026-10-16 item 3."
+   "what": "Engine (human): a closed TXT.interior room takes the sky's hemisphere fill, environment and fog hue; no. 51 frames 3 and 8 and no. 56 frame 8. UPGRADE_BACKLOG 2026-10-21 item 6."
   },
   {
-   "theme": "queue repeat offenders qa-glyph-run-as-rule, grid-piece-count-reads-lit-ground-as-subject, article-test-screenshots-fixed-path",
+   "theme": "queue repeat offender depth-floor-wants-a-literal-ground-in-interiors, with interior-floor-zfights-a-ground-at-range",
+   "runs": 0,
+   "rounds": 0,
+   "action": "fixed",
+   "what": "depth_floor reads a TXT.interior call as the ground and its depth cue, self-tested against the engine. Nos. 55 and 56 laid a second ground under all eleven room frames to pass, and on no. 56 the two z-fought. Queue items, not digest themes, so no run or round count."
+  },
+  {
+   "theme": "queue repeat offender detail-floor-pushes-dark-plates-to-graph-paper (repeat 2, nos. 53, 55, 56)",
+   "runs": 0,
+   "rounds": 0,
+   "action": "fixed in part",
+   "what": "The proposed relative-contrast floor refused as a loosening (the floor is already 1.8 L* near black against 2.3 at mid grey). layout_check's failure now prints the rect's computed L* step and names the cure, refusing a ruled grid."
+  },
+  {
+   "theme": "queue repeat offender stage-behind-depth-given-in-metres (repeat 1, nos. 54 and 56)",
+   "runs": 0,
+   "rounds": 0,
+   "action": "fixed in part",
+   "what": "ARSENAL's TXT.stage row carries the unit, quoted only while the engine says it. The warning in TXT.stage is human."
+  },
+  {
+   "theme": "queue repeat offender audition-rebind-after-every-panel-repair (repeat 2, nos. 54, 55, 56)",
    "runs": 0,
    "rounds": 0,
    "action": "escalated",
-   "what": "Each needs a maintainer's file (.claude/skills qa.py; the engine and render.py id pass; tests/article_edition.mjs). Carried with no. 52's evidence, UPGRADE_BACKLOG 2026-10-16 item 4. Queue item, not a digest theme, so no run or round count."
+   "what": "The fix would let an approval survive a changed image, against the owner's rule. UPGRADE_BACKLOG 2026-10-21 item 6."
   }
  ],
- "note": "Written by the weekly machine pass (prompts/daily_routine.md Phase 17) when it ships. Read by scripts/carousel/machine_due.py. Run and round counts are from scripts/carousel/week_digest.py --date 2026-10-16."
+ "note": "Written by the weekly machine pass (prompts/daily_routine.md Phase 17) when it ships. Read by scripts/carousel/machine_due.py. Run and round counts are from scripts/carousel/week_digest.py --date 2026-10-21."
 }

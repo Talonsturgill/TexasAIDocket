@@ -1,0 +1,225 @@
+{
+  "version": 2,
+  "selected": [
+    1,
+    6,
+    9
+  ],
+  "inputs": {
+    "slides/slide-01.html": "e9c87b020b80d4eea97a3c1855d7706aa4bec25f4f150a4d8f3f38e626e0ec18",
+    "render/slide-01.png": "70f34141ae6a2a04a74f653f015a4bde48084c60ee20837d834df59a598c8f02",
+    "assets/js/deck/2026-10-21-cell.js": "fc448f87b35d9c70a09f8a7b32a92374d0a8f25d659282184f9927a5634f326f",
+    "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+    "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+    "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+    "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+    "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+    "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+    "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+    "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+    "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+    "slides/slide-06.html": "d8f935ed16ef1dec043edcad69bea0ddb30f5b5092c79bb45fbac04acb03a7c6",
+    "render/slide-06.png": "1102112d878a41e0f3ceb72ac304df995ed860b0675bacd9c014a304207e6116",
+    "slides/slide-09.html": "8c2c57c03aad47ce52219f064481b83cfd5908ecc4157d3a68393dc5f08eeb31",
+    "render/slide-09.png": "07c5e028e49bac90bb448bc4eb3c7171de607a4e23ea13941b717926c8f304a1"
+  },
+  "value_measurements": [
+    {
+      "frame": "slide-01.png",
+      "median_L": 12.4,
+      "mid": 0.133,
+      "dark": 0.666
+    },
+    {
+      "frame": "slide-06.png",
+      "median_L": 1.7,
+      "mid": 0.097,
+      "dark": 0.75
+    },
+    {
+      "frame": "slide-09.png",
+      "median_L": 8.2,
+      "mid": 0.22,
+      "dark": 0.623
+    }
+  ],
+  "review": {
+    "decision": "accept",
+    "inputs": {
+      "slides/slide-01.html": "e9c87b020b80d4eea97a3c1855d7706aa4bec25f4f150a4d8f3f38e626e0ec18",
+      "render/slide-01.png": "70f34141ae6a2a04a74f653f015a4bde48084c60ee20837d834df59a598c8f02",
+      "assets/js/deck/2026-10-21-cell.js": "fc448f87b35d9c70a09f8a7b32a92374d0a8f25d659282184f9927a5634f326f",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+      "slides/slide-06.html": "d8f935ed16ef1dec043edcad69bea0ddb30f5b5092c79bb45fbac04acb03a7c6",
+      "render/slide-06.png": "1102112d878a41e0f3ceb72ac304df995ed860b0675bacd9c014a304207e6116",
+      "slides/slide-09.html": "8c2c57c03aad47ce52219f064481b83cfd5908ecc4157d3a68393dc5f08eeb31",
+      "render/slide-09.png": "07c5e028e49bac90bb448bc4eb3c7171de607a4e23ea13941b717926c8f304a1"
+    },
+    "frames": [
+      {
+        "slide": 1,
+        "role": "cover",
+        "subject": "The finished 6061 housing part sits in the vise on the cast iron T-slot table. It has two pockets with shadowed walls and four counterbored bosses. Above it the fluted end mill in its knurled holder is held clear between two coolant hoses, all under the dark spindle head that carries the type.",
+        "visual_consequence": "A finished aluminium part sits in an open machine with the cutter held off the work. The reader sees what the plant makes, and that the machine is waiting, before reading any number.",
+        "weakness": "The artwork is unchanged; only the type changed. The two-line hook ends inside the counter's right margin, and the spindle head's diagonal seam runs behind 'expected in early 2027', dark on dark at no cost to contrast. 'Drawn to illustrate.' sits alone on the dek's fourth line. Every chip is the same flat faceted C ring rather than a curled chip, one sits under 'c34', and a small blue-white rectangle remains behind the vise handle. Neither blocks the frame. No missile is drawn.",
+        "repair": "Optional polish: replace the planar C rings with curled helical chips of varied size and twist, and keep them out of the area around the 'c3 c4 c7 c34' line.",
+        "encoding_reads": true,
+        "dominant_subject_finished": true,
+        "feed_legible": true,
+        "inputs": {
+          "slides/slide-01.html": "e9c87b020b80d4eea97a3c1855d7706aa4bec25f4f150a4d8f3f38e626e0ec18",
+          "render/slide-01.png": "70f34141ae6a2a04a74f653f015a4bde48084c60ee20837d834df59a598c8f02",
+          "assets/js/deck/2026-10-21-cell.js": "fc448f87b35d9c70a09f8a7b32a92374d0a8f25d659282184f9927a5634f326f",
+          "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+          "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+          "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+          "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+          "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+          "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+          "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+          "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+          "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de"
+        }
+      },
+      {
+        "slide": 6,
+        "role": "evidence",
+        "subject": "Seen from a steep aerial, 100 machining centres in ten columns of ten, each with a dark enclosure roof, a pale spindle column cap standing proud at the rear, a round tool drum hood on its west side, a pendant, a stack pole and a front face with door windows. Across a dark aisle at lower right, a grey apron carries Hadrian's 24 as empty satin pads in cyan tape outlines, six rows of four, each with four levelling plates.",
+        "visual_consequence": "Without the headline a reader sees a large, dense block of distinct machines and, set apart at the same pitch, a small closed block of cyan outlines with nothing standing in them. The 24 read as planned and not yet there, beside a plant that is already full.",
+        "weakness": "Minor only. One pad, the second bay of the bottom row, still shows a fine horizontal hatch. The bottom-left machine's drum hood is cut by the left edge though its body is in frame. The near white column caps are the brightest values and compete a little with the cyan. The floor above the bays is near black with faint streaks. All 24 outlines close inside the frame and the footer sits on bare floor.",
+        "repair": "none required",
+        "encoding_reads": true,
+        "dominant_subject_finished": true,
+        "feed_legible": true,
+        "inputs": {
+          "assets/js/deck/2026-10-21-cell.js": "fc448f87b35d9c70a09f8a7b32a92374d0a8f25d659282184f9927a5634f326f",
+          "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+          "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+          "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+          "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+          "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+          "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+          "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+          "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+          "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+          "slides/slide-06.html": "d8f935ed16ef1dec043edcad69bea0ddb30f5b5092c79bb45fbac04acb03a7c6",
+          "render/slide-06.png": "1102112d878a41e0f3ceb72ac304df995ed860b0675bacd9c014a304207e6116"
+        }
+      },
+      {
+        "slide": 9,
+        "role": "close",
+        "subject": "The cell's empty bays at standing eye height: satin pads in cyan tape outlines with levelling plates, receding in rows across dark aisles. A machinist in a hard hat stands inside a bay two rows back. Along the east wall at right stand four of Lockheed's graphite enclosures with door windows, handles, pendants on arms and stack lights. No drop cord crosses the type.",
+        "visual_consequence": "The cell is still only tape and plates on an empty floor. Lockheed's own machines already stand beside it, and a Lockheed worker is standing in it. Who runs it, and that it doesn't exist yet, both read without the dek.",
+        "weakness": "Minor only. The near pads read as matte grey speckled concrete with a soft falloff and no sheen of the tape or plates. The four machines' windows are flat pale blue-grey, not lit. A tall steel post beside the foreground plate has no evident job. The fourth machine is cut by the right edge.",
+        "repair": "none required",
+        "encoding_reads": true,
+        "dominant_subject_finished": true,
+        "feed_legible": true,
+        "inputs": {
+          "assets/js/deck/2026-10-21-cell.js": "fc448f87b35d9c70a09f8a7b32a92374d0a8f25d659282184f9927a5634f326f",
+          "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+          "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+          "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+          "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+          "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+          "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+          "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+          "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+          "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+          "slides/slide-09.html": "8c2c57c03aad47ce52219f064481b83cfd5908ecc4157d3a68393dc5f08eeb31",
+          "render/slide-09.png": "07c5e028e49bac90bb448bc4eb3c7171de607a4e23ea13941b717926c8f304a1"
+        }
+      }
+    ]
+  },
+  "plan": {
+    "hardest_frame": 6,
+    "visual_argument": "One plant at one scale, counted in its own units: the part it already makes, the machines it already added and expects to add, and beside them Hadrian's 24 as empty taped bays, the one block of the story that has not cut a part and the only one the AI language belongs to.",
+    "build_risk": "Frame 6 is 124 units in plan on a dark floor under a low key: 100 machine roofs that must each read as a machine (column, tool drum hood, pendant, stack pole and its long cast) rather than graph paper, and 24 accent tape outlines that must read as empty bays at 432 px. Built with TXBENCH.relief from the machining_centre's own plan dimensions, aisles along the cast.",
+    "distinct_from_recent": "No. 55 (Oct 20) was floodlit operating room interiors under a cold high key with a wall of sterile containers and dusk gold. No. 54 (Oct 18) was lastLight brush country exteriors with a windmill and bluebonnet. No. 53 (Oct 17) was tissue section reliefs with dusk ember. This deck is a machine shop under a low west key through dock doors, machined aluminium and graphite enamel, plan reliefs of a floor at one scale, and a cold comal lit accent that marks only the cell."
+  },
+  "frame_inputs": {
+    "1": {
+      "slides/slide-01.html": "e9c87b020b80d4eea97a3c1855d7706aa4bec25f4f150a4d8f3f38e626e0ec18",
+      "render/slide-01.png": "70f34141ae6a2a04a74f653f015a4bde48084c60ee20837d834df59a598c8f02",
+      "assets/js/deck/2026-10-21-cell.js": "fc448f87b35d9c70a09f8a7b32a92374d0a8f25d659282184f9927a5634f326f",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de"
+    },
+    "6": {
+      "assets/js/deck/2026-10-21-cell.js": "fc448f87b35d9c70a09f8a7b32a92374d0a8f25d659282184f9927a5634f326f",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+      "slides/slide-06.html": "d8f935ed16ef1dec043edcad69bea0ddb30f5b5092c79bb45fbac04acb03a7c6",
+      "render/slide-06.png": "1102112d878a41e0f3ceb72ac304df995ed860b0675bacd9c014a304207e6116"
+    },
+    "9": {
+      "assets/js/deck/2026-10-21-cell.js": "fc448f87b35d9c70a09f8a7b32a92374d0a8f25d659282184f9927a5634f326f",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+      "slides/slide-09.html": "8c2c57c03aad47ce52219f064481b83cfd5908ecc4157d3a68393dc5f08eeb31",
+      "render/slide-09.png": "07c5e028e49bac90bb448bc4eb3c7171de607a4e23ea13941b717926c8f304a1"
+    }
+  },
+  "needs_review": [
+    1
+  ],
+  "shipped_inputs": {
+    "slides/slide-01.html": "e9c87b020b80d4eea97a3c1855d7706aa4bec25f4f150a4d8f3f38e626e0ec18",
+    "slide-01.webp": "9e45788ebefce157ff9ec0421bbb21c0542c4586e0abb3233d8dd0bb87159a00",
+    "slides/slide-06.html": "d8f935ed16ef1dec043edcad69bea0ddb30f5b5092c79bb45fbac04acb03a7c6",
+    "slide-06.webp": "02af7b72694874bfc571f36f5acd32aff1ebb016ecea3326cc2b9b50ec5adff5",
+    "slides/slide-09.html": "8c2c57c03aad47ce52219f064481b83cfd5908ecc4157d3a68393dc5f08eeb31",
+    "slide-09.webp": "1a2fc2d459b7cefb22d480cf254b4d7691af6f21ca1b4ff1a514fb6698631351"
+  },
+  "encodings": [
+    {
+      "to": "slide-01.webp",
+      "to_sha256": "9e45788ebefce157ff9ec0421bbb21c0542c4586e0abb3233d8dd0bb87159a00",
+      "from_sha256": "70f34141ae6a2a04a74f653f015a4bde48084c60ee20837d834df59a598c8f02",
+      "psnr_db": 43.03
+    },
+    {
+      "to": "slide-06.webp",
+      "to_sha256": "02af7b72694874bfc571f36f5acd32aff1ebb016ecea3326cc2b9b50ec5adff5",
+      "from_sha256": "1102112d878a41e0f3ceb72ac304df995ed860b0675bacd9c014a304207e6116",
+      "psnr_db": 40.206
+    },
+    {
+      "to": "slide-09.webp",
+      "to_sha256": "1a2fc2d459b7cefb22d480cf254b4d7691af6f21ca1b4ff1a514fb6698631351",
+      "from_sha256": "07c5e028e49bac90bb448bc4eb3c7171de607a4e23ea13941b717926c8f304a1",
+      "psnr_db": 40.304
+    }
+  ]
+}

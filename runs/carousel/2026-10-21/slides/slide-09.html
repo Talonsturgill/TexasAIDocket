@@ -1,0 +1,83 @@
+<!doctype html>
+<!-- 2026-10-21, frame 9 of 9. Archetype FULL_BLEED. RENDERED through txthree.js in the deck's lastLight world, inside a TXT.interior hall. Hadrian's cell as it is today, 24 empty machine bays at standing eye: the near bay's glossy epoxy pad, comal lit tape, levelling plates and drop cord, the rest receding in rows, a machinist three quarter away at its edge lit from the camera side, and a row of Lockheed's own machines far off with their windows lit. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .tx-site { font-size:24px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">Lockheed&#39;s own crews will run it</h1>
+<p class="dek" data-follow="26">The cell is expected to be operational in early 2027 and run by Lockheed&#39;s production workforce. The release&#39;s 2,000 Texas jobs are the company&#39;s own figure, statewide. Drawn&nbsp;to&nbsp;illustrate.</p>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-21-cell.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Early 2027", counter: "09 / 09", src: "c3 c4 c5", fit: { min: 72, max: 96, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 34, far: 300 });
+  TXT.interior(R, { w: 44, d: 70, h: 9, ceiling: true, floor: 'concrete', wall: 0x14161a, trim: 0x0d0e10, window: 'left', windowW: 6, windowH: 4.5, windowI: 1.4 });
+  TXT.ground(R, { surface: 'concrete', size: 120, y: 0.003, wear: 'interior', color: 0x1d1f22, seed: 9 });
+  /* THE FIGURE, from figures.json: cell_machines 24 empty bays, four across and six deep, each 3.2 by 3.6 m,
+   * pitched 3.6 m across and 4.2 m deep as on frame 6 */
+  const CELL = 24, ACROSS = 4, PXc = 3.6, PZc = 4.2;
+  const bays = [];
+  for (let i = 0; i < CELL; i++) {
+    const c = i % ACROSS, r = Math.floor(i / ACROSS);
+    const b = K.make('machine_bay', { cordTop: 9 });
+    b.position.set(c * PXc, 0, -r * PZc);
+    /* the drop cords hang through the type's column from this eye, so this frame leaves them and their plugs out */
+    b.traverse((m) => { if (m.isMesh && m.position.y > 1.2) m.visible = false; });
+    TXT.add(R, b); bays.push(b);
+  }
+  /* LOCKHEED'S OWN MACHINES, far off along the hall's east wall with their work lights on: a row of the plant's
+   * machines, never the cell's */
+  /* the tape is the deck's one accent, drawn in the accent itself rather than through the tone curve */
+  { const tapeM = new THREE.MeshBasicMaterial({ color: 0x8fe0f0, toneMapped: false });
+    bays.forEach((b) => b.traverse((m) => { if (m.isMesh && m.material && m.material.emissive && m.material.emissive.getHex() === 0x8fe0f0) m.material = tapeM; }));
+    /* satin epoxy pads over the slab's own tooth, so the low key lays a sheen across the near bay */
+    const padTex = K.tex('concrete').clone(); padTex.repeat.set(1.4, 1.6); padTex.needsUpdate = true;
+    const padM = new THREE.MeshStandardMaterial({ color: 0x5d646b, map: padTex, roughness: 0.42, metalness: 0.02 });
+    bays.forEach((b) => b.traverse((m) => { if (m.isMesh && m.geometry.type === 'PlaneGeometry') m.material = padM; })); }
+  const far = [];
+  for (let k = 0; k < 4; k++) {
+    const m = K.make('machining_centre', { lod: 'low', workLight: true, lamp: 'warm', part: null, seed: 40 + k });
+    m.position.set(19.6, 0, -15 - k * 3.6); m.rotation.y = -Math.PI / 2; TXT.add(R, m); TXT.contact(R, m); far.push(m);
+  }
+  /* THE MACHINIST at the near bay's far edge, turned three quarters away toward the empty rows */
+  const p = K.make('person', { role: 'worker', pose: 'stand', seed: 56, vest: false, hat: 'hard', shirt: 0x2f353b, trousers: 0x1f2226 });
+  p.position.set(6.1, 0, -9.6); p.rotation.y = Math.PI * 0.78; TXT.add(R, p); TXT.contact(R, p);
+  const from = [-2.4, 1.4, 3.6];
+  const look = CH.aim(THREE, R, TXT, from, [1.6, 0, -1.8], 560, 1130, 34);
+  TXT.frame(R, { fov: 34, from, look });
+  { const spec = CH.rigSpec(W, 18, 4096); TXT.deckRig(R, spec, CH.rigOpts([1.6, 0, -4], { distance: 30, shadowFar: 90 })); }
+  CH.unacne(R, 0.02);
+  CH.warm(R, 0.45);
+  /* THE PLANT'S OWN HIGH BAY over the near bays, out of frame above: a practical pool on the floor where the
+   * reader stands, warm neutral like the machines' work lights, its shadows falling straight down */
+  { const hb = new THREE.SpotLight(0xf1e7d6, 900, 24, 0.36, 0.55, 2); hb.position.set(1.0, 8.6, 0.2); hb.target.position.set(1.0, 0, -0.6);
+    hb.castShadow = false; R.scene.add(hb); R.scene.add(hb.target); }
+  TXT.stage(R, [bays[0], bays[1], bays[4], bays[5], p], { behind: 3.2, depth: 7, poolInner: 4, poolOuter: 11 });
+  TXT.weather(R, { grime: 0.2, height: 0.5, mottle: 0.3 });
+  const shot = await TXT.snapshot(R);
+  const cx = CH.develop(shot, gl);
+  CH.post(cx, { a: 0.4, veil: 0.05, veilH: 120, footWash: 0.22, fade: 160 });
+  CH.knock(cx, [".tx-site", ".src"], 0.5);
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

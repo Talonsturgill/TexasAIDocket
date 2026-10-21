@@ -19,12 +19,12 @@
   "recent_lists_note": "These three lists are the exclusions handed to the caption room and they were hand-kept. On 2026-08-20 the fourth panel found structures_recent reading [\"ledger\", \"pivot\", \"question and answer\"] when the last three shipped structures were [\"ledger\", \"two columns\", \"question and answer\"], so it dropped a structure that IS off the table and held one that is not. Wrong in both directions from one hand edit. They are now recomputed from entries and are ordered OLDEST FIRST, matching the entries list, and scripts/carousel/caption_check.py should derive them rather than read them. That is an upgrade-lane change and it is written into this run's proposals."
  },
  "opening_moves_recent": [
-  "the who",
   "the place",
   "the before and after",
   "the object",
   "the plain question",
-  "the two things"
+  "the two things",
+  "the number that is wrong"
  ],
  "entries": [
   {
@@ -997,15 +997,34 @@
    ],
    "critic_note": "Winner A. B fails three ways. (1) caption_check fails it at 910 characters against the 300 to 900 band. (2) 'The deck draws the count, its range and the disclosure.' calls the 25 a count. That is the main fact trap, and it sits in the line that describes the deck. (3) 'Houston Methodist put four wall cameras in each of the 15 operating rooms ... in December 2022' attaches c4's date to the cameras. c4 says the SOFTWARE was deployed in December 2022. The claims file's own rejected entry says the cameras were installed in September 2022. B's first line, 'The surgeons didn't get faster.', is also the hospital blog's reading (c24), stated flat above the fold with no Texas place in it. A uses its opening move the way the menu defines it. 'About 25 more cases a month.' is the figure a reader will misjudge, and 'That is an estimate, not a count.' corrects it straight away. Every numeral in A tra",
    "move_note": "Opens on the 25 a reader will take for a count and corrects it in the next line, then lays out what is known, what the study can't separate and the interval that sizes the unknown, and closes on what another Texas hospital would want proven."
+  },
+  {
+   "date": "2026-10-21",
+   "carousel_no": 56,
+   "opening_move": "the correction",
+   "structure": "Two columns",
+   "closing_move": "name what is still not public, and how big that is",
+   "first_line": "The release gives AI no job description.",
+   "words": 148,
+   "commas": 4,
+   "commas_per_100w": 2.7,
+   "chars": 884,
+   "hashtags": [
+    "#GrandPrairie",
+    "#DallasCounty",
+    "#Hadrian"
+   ],
+   "critic_note": "Winner B. A fails caption_check at 958 characters against the 300 to 900 band. B opens on the correction the deck turns on, that the release gives AI no job, then sets what is announced beside what is already done in two short columns, and closes by naming what is still not public and how big it is, the 24 machines. Every figure traces to a claim and to figures.json.",
+   "move_note": "Opens on the correction that the release gives AI no job, sets what is announced beside what Lockheed says is already done, names what Hadrian says of its own factories and closes on how many of the 24 machines will use AI."
   }
  ],
  "structures_recent": [
-  "Ladder",
   "Question and answer",
-  "Pivot"
+  "Pivot",
+  "Ledger"
  ],
  "closing_moves_recent": [
-  "name what happens next and when"
+  "ask the one question the decision leaves open"
  ],
  "_derived_note": "opening_moves_recent, structures_recent and closing_moves_recent are DERIVED by out/<date>/update_ledgers.py every run, by ledger_check.windows() and ledger_check's own slice of the entries before the newest date. They were hand-maintained until 2026-09-10 and had drifted, which mis-briefed the caption room on that run: the list said Ledger was excluded when it was not, and never mentioned Two columns or the close no. 19 actually shipped."
 }

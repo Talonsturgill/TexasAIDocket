@@ -11,7 +11,7 @@ The El Paso City Council passed two items on September 15th, 2026, and its own m
 - Public access: Public meeting
 - Take part: https://elpasotexas.legistar.com/MeetingDetail.aspx?ID=1438138&GUID=311EC2E9-C010-4038-B718-400EE54FD9C2&Options=info|&Search=
 
-- Last checked: 2026-10-18
+- Last checked: 2026-10-21
 
 ## Dates
 
@@ -31,6 +31,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-10 · El Paso's two plate reader items still stand in the revised form the council passed.
 - 2026-10-15 · El Paso's two plate reader items stand in the revised form the council passed.
 - 2026-10-18 · El Paso's two plate reader items still stand in the revised form the council passed.
+- 2026-10-21 · Checked and unchanged. The decision still stands as decided.
 
 ## Evidence
 

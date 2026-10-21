@@ -5904,3 +5904,159 @@ commit. `sky-banding-needs-deband-in-engine`, the aviation set and `dry_van` sta
 Value strobe or undeclared tonal cut, 4 runs and 5 rounds; grass or scatter, 2 and 5; render
 artifact, 2 and 4; horizon band, 2 and 3. No gate changed this pass, so GATE_LESSONS is unchanged.
 No frontier scan: the pass spent its time on the two proofs, read at full size.
+
+## 2026-10-21, the ninth weekly machine pass. One kit lift, three gate and tool changes, one deferral, five proposals
+
+Read from `out/2026-10-21/week_digest.md` (six shipped runs, October 15th to 21st) and the queue.
+The pass was due early because three items stood at repeat 2 after no. 56: the kit person, the
+audition rebind and the detail floor. `artwork_craft` had the lowest week mean (6.52) and was the
+lowest criterion on three decks, and `variety` was lowest on three. "Primitive or low-poly model
+where a kit model belongs" was named on all six decks in 16 rounds, "type sitting on or fighting the
+art" on six in 12, "largest object unmodelled" on five in 13, "dead or empty region" on five in 9,
+"no contact or grime" on five in 7, "value strobe" on five in 7 and "object in a void" on four in 7.
+The account is in `ledger/carousel/upgrades.json` under `2026-10-21 weekly`, and the pass is recorded
+in `config/carousel/machine_pass.json`. Proofs are in `out/2026-10-21/tmp/machine/` and die with the
+container.
+
+### 1. KIT LIFT: THE MACHINE SHOP, AT THE JUDGES' NAMED FIX (done, `assets/js/kit/industry.js`)
+
+No. 56's top ranked artwork defect in rounds 1 and 3 was frame 8's control pendant, "a rounded slab
+with 36 calculator keys", named by all three judges in all three rounds. The round 1 fix: "Model the
+pendant at full detail: bevel, e-stop mushroom, MPG handwheel, feed/spindle override knobs and a
+glass screen". Round 3: "a graphite enclosure, a knurled handwheel and recessed keys raked from the
+left". The chips were "flat C rings" and the vise "a plain block".
+
+Lifted under NEW names, because no. 56's `installKit` returns early only on `machining_centre`, and
+`K.define` throws on a second definition of any of its other names:
+
+- `cnc_pendant`: a chamfered front frame; the screen behind its own bevelled bezel under a coated
+  glass; seven soft keys; a keypad sunk in a raised surround so the keytops sit under it, dark caps
+  with light legend bars (never lettering) and a mid grey function row; feed and spindle override
+  knobs whose grips are fluted geometry, each with a pointer and an arc of eleven ticks; a knurled
+  handwheel (sixty ridges in the geometry) on a graduated dial with a crank knob; cycle start and
+  feed hold in chrome bezels; a key switch; an e-stop, a red clearcoat mushroom on a yellow collar;
+  a rubber grab handle; vents and screws behind; and the yoke slide 8 had to hand-build, with its top
+  published as `userData.parts.mount`. Options: housing, screen (an unlettered UI when on), yoke, tilt.
+- `vertical_machining_centre`: no. 56's machine, carrying a `cnc_pendant` whose arm now runs into
+  the yoke, and `chips: true` as curled helical ribbons. The first proof's ribbon was wider than its
+  helix pitch and closed into washers, so the ribbon is 1.2 mm on a pitch of 3.5 mm or more.
+  `userData.parts` names pendant, table, part and spindle, so a frame aims at a part rather than at
+  model coordinates (the queue's `kmake-recentres-wall-hung-models` asked for that).
+- `mill_vise` (a flanged cast body with two clamp slots each side), `machined_housing` (no. 56's
+  illustrative part) and `machine_pad` (the empty bay, with `tape` as a hex and `tapeLit` drawing the
+  tape outside the tone curve, which no. 56 frame 6 needed to meet the accent presence floor).
+
+Proof: before and after pages through the carousel engine in no. 56's own world and key
+(`out/2026-10-21/tmp/machine/shop_pages.py`: the machine three quarter, a pendant close on the
+machine, the pendant alone, the table with chips), read at full size, and
+`examples/kit/build.py --family industry --names cnc_pendant,vertical_machining_centre,mill_vise,machined_housing,machine_pad --world lastLight --surface concrete`
+rendered clean. `python3 examples/kit/sizes.py` exits 0, 125 of 125 models. Today's frames 1 and 8,
+re-rendered with and without the change, are pixel identical, because no name, material key or
+random draw the deck uses moved. ARSENAL.md rebuilt.
+
+### 2. DEPTH FLOOR: A ROOM IS A GROUND (done, `scripts/carousel/depth_floor.py`)
+
+Queue `depth-floor-wants-a-literal-ground-in-interiors` (no. 55) and
+`interior-floor-zfights-a-ground-at-range` (no. 56). `depth_floor` knew a ground plane only by the
+call `TXT.ground`, so a frame standing in a `TXT.interior` room was refused as "draws no ground
+plane, so its solids float", although `TXT.interior` lays its floor by calling `TXT.ground` itself.
+Every one of the eleven room frames in nos. 55 and 56 laid a second ground to pass, and on no. 56
+frames 5 and 6 the two planes z-fought into banding from 120 m, cured only by lifting the second
+ground and every object 0.2 m. Replayed: both decks with the second ground removed fail the floor
+before the change (4 and 3 of 9 staged) and pass after it (9 of 9). A bound `interior` call now
+grounds a frame and carries the plane's depth cue. The self-test adds that a room frame stages,
+that naming the method without calling it or calling it on an unbound name grounds nothing, and
+that the engine's `TXT.interior` lays its floor as an unconditional top level statement, with two
+fixtures proving that check goes red on a floor behind an option and on a room with no floor.
+
+**Proposed GATE_LESSONS entry (the file is `human`):** "A gate that knew a ground by the name of
+the call. `depth_floor` read `TXT.ground(` and refused every room frame, though the room calls it
+inside the engine. Two decks laid a second plane under eleven frames to pass, and the two planes
+z-fought on the frames the gate was protecting. What to check instead: read the thing a helper
+builds, and bind the exception to the engine's own source in the self-test, so the day the engine
+stops building it the exception goes red. Generalises to: any static gate that recognises a
+construct by its call name will refuse the same construct built one call deeper, and a run will
+satisfy it by building it twice."
+
+### 3. DETAIL FLOOR: THE QUEUE'S FIX REFUSED, THE FAILURE NAMES THE CURE (done, `scripts/carousel/layout_check.py`)
+
+Queue `detail-floor-pushes-dark-plates-to-graph-paper` at repeat 2: nos. 53, 55 and 56 met the
+detail floor on a near black plate, answered it with a ruled grid or rows of ticks, and every judge
+in every round charged those frames as graph paper. The queue proposed counting a cell as detailed
+by its contrast relative to its own mean. **Refused as a loosening, by measurement.** sRGB levels are
+already close to even in perceived lightness: the floor's 6 levels are a step of 1.8 L* at level 8,
+2.5 at 15, 3.0 at 25 and 2.3 at 128, so the floor already asks less of a deep dark plate than of a
+grey one, and a relative measure would ask less again exactly where it fired. What recurred was the
+run's answer, so the failure message, which is what a run reads when the floor fires, now prints the
+rect's median level and the L* step the floor is there, refuses a ruled grid by name, and names the
+answer that holds: the subject's own modelled features inside the rect (joints, cuts, fixtures, wear
+in the albedo, a pool falling off across them), or a rect drawn round the subject rather than the
+plate it stands on. Threshold, measurement and every existing result unchanged; today's deck
+measures as before. The self-test adds that the failure names the cure, and that the floor's step is
+smaller near black than at mid grey, which is the fact the refusal rests on.
+
+### 4. ARSENAL: THE TXT.stage ROW CARRIES ITS UNIT (done, `scripts/carousel/arsenal.py`, ARSENAL.md)
+
+Queue `stage-behind-depth-given-in-metres` at repeat 1: nos. 54 and 56 passed `behind` and `depth`
+as metres (10 to 30 and 30 to 90 on no. 54, 3.5 and 4 on no. 56). The engine's header says both
+are fractions of the subject's distance, and the row a run reads in ARSENAL.md is the two-line
+comment over the function, which does not. `arsenal.py` now appends the unit to that row ONLY while
+the engine's own text still says it, and withdraws it when the engine stops, so the note can never
+describe an engine that changed. Self-tested against the real engine both ways. The warning inside
+`TXT.stage` is item 6.
+
+### 5. DEFERRED, NOT REFUSED: THE KIT PERSON
+
+Queue `kit-person-full-length-reads-as-mannequin` at repeat 2: nos. 54 (no hand reaches the chain,
+a pale seam down the jacket back, string hair), 55 (hands detached, a floating cap, smooth fabric)
+and 56 (the machinist a game asset mannequin to the pixel critics in both rounds, a stray brim line
+at the face). Every named cause but the reach is DEFAULT geometry in `assets/js/kit/people.js`, and
+no. 56's frames 4 and 9 render a kit person, so this pass could not touch it without moving the
+frames of a deck still in its run. A `grip` pose alone answers no. 54 only. It is the next pass's
+first artwork item, or any run's Phase 17 once no. 56 has merged: render seeds 23 and 56 as worker
+with a cap and a hard hat from behind and at the face, find the seam (the garment weld at the back,
+`sdfMesh` and the shell's latitude weld) and the brim line, then add `pose: 'grip'` with a target
+point solved by two-bone reach and a closed hand.
+
+### 6. ESCALATED: FIVE PROPOSALS FOR A MAINTAINER
+
+- **Engine (`assets/js/txthree.js`): a closed room keeps the sky out.** Queue
+  `lastlight-fill-paints-a-closed-room-navy` (no. 56 frame 8: a close in a ceilinged `TXT.interior`
+  room kept a saturated navy field behind the pendant at environment intensity 0.06 with the stage
+  fog pushed back, and all three judges in all three rounds named it the one frame outside the deck)
+  and `snapshot-stages-interiors-to-sky-hue` (no. 51 frames 3 and 8, the walnut room fogged to the
+  sky's navy). One defect on two decks. Proposal: when the scene holds a `TXT.interior` room with a
+  ceiling, the lastLight hemisphere fill and rim, the environment and the stage fog take the room's
+  own wall value rather than the sky's, and the stage veil is skipped. Theme count: object in a void,
+  4 runs and 7 rounds. Verification for the maintainer: no. 56 frame 8 re-rendered, the field behind
+  the pendant measured within a few Lab units of the wall's own hex and no longer blue.
+- **Engine: `TXT.stage` warns on a unit error.** Console warn when `behind` or `depth` puts the
+  fog's start further from the subject than the subject is from the camera by some multiple the
+  maintainer chooses, naming the unit. Nos. 54 and 56.
+- **Kit registry (`assets/js/txkit.js`): `anchor: 'wall'`.** Queue `kmake-recentres-wall-hung-models`
+  at repeat 1 (nos. 55 and 56): `K.define` takes `anchor: 'wall'` (back on z 0, face on +z) and K.make
+  never re-centres it. The machine shop lift avoids it with `keepOrigin` and `userData.parts`.
+- **The owner's rule: a type-only rebind of the audition.** Queue
+  `audition-rebind-after-every-panel-repair` at repeat 2: nos. 54, 55 and 56 spent nine, eight and
+  four art director readings, several only because a hook or a dek changed. The queue's fix, keeping
+  an accepted entry when only the DOM strings changed, would let an approval survive a changed image,
+  which CLAUDE.md, `prompts/carousel_studio.md` and `art_preflight.py` all forbid, and the cover
+  entry no. 56 saw dropped is that rule working. If the owner wants the cost down, the route that
+  keeps the rule: `render.py` records a hash of the art canvas before the type is laid, and when only
+  the type changed `art_preflight` marks the entry `type_only`, so the reviewer reads the new type
+  over the reviewed art against a narrower brief, still a fresh reading. `render.py` is under
+  `.claude/skills` and the brief is the studio prompt, both a maintainer's.
+- **GATE_LESSONS** gets the entry in item 2, and the detail floor's refusal in item 3 is worth a
+  line under entry 77's "edge density is not detail": a proxy's floor must also not be argued down
+  for the case it fired on.
+
+### Carried, with this week's counts
+
+`qa-glyph-run-as-rule`, `grid-piece-count-reads-lit-ground-as-subject` and
+`article-test-screenshots-fixed-path`, none met since no. 52 on October 16th, are carried at their
+maintainer's files (2026-10-07 item 2, 2026-10-12 item 4, 2026-10-10 item 4). "Type sitting on or
+fighting the art", six runs and 12 rounds, is the week's second theme and got no change: its evidence
+is a different collision on each deck (an arm post under a dek line, a knob under the footer, a pole
+through a dek's edge, crowns behind a dek), and the honest gate for it, the projected box of each
+modelled part against the type boxes, needs the id pass already proposed (2026-10-12 item 4). No
+frontier scan: the pass spent its time on the proofs, read at full size.

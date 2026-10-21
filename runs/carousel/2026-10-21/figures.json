@@ -1,0 +1,151 @@
+{
+ "_note": "Every value is extracted from a claim quote by compute.py, or computed here from values that were.",
+ "invest_m": {
+  "value": 300,
+  "from": [
+   "c1"
+  ],
+  "basis": "millions of dollars Lockheed says it is investing at Grand Prairie"
+ },
+ "footprint_sqft": {
+  "value": 735000,
+  "from": [
+   "c1"
+  ],
+  "basis": "square feet the manufacturing footprint expands to, more than"
+ },
+ "new_sqft": {
+  "value": 100000,
+  "from": [
+   "c2"
+  ],
+  "basis": "square feet of new space"
+ },
+ "office_sqft": {
+  "value": 85000,
+  "from": [
+   "c2"
+  ],
+  "basis": "square feet of office space turned to manufacturing"
+ },
+ "cell_machines": {
+  "value": 24,
+  "from": [
+   "c4"
+  ],
+  "basis": "machines in the Hadrian cell"
+ },
+ "cell_year": {
+  "value": 2027,
+  "from": [
+   "c4"
+  ],
+  "basis": "year the cell is expected to be operational, early"
+ },
+ "jobs_us": {
+  "value": 6000,
+  "from": [
+   "c5"
+  ],
+  "basis": "jobs Lockheed plans across the United States, its own figure"
+ },
+ "jobs_tx": {
+  "value": 2000,
+  "from": [
+   "c5"
+  ],
+  "basis": "of those, jobs in Texas, its own figure"
+ },
+ "added_machines": {
+  "value": 30,
+  "from": [
+   "c10"
+  ],
+  "basis": "high precision machines installed in a few months, more than"
+ },
+ "machines_by_2026": {
+  "value": 100,
+  "from": [
+   "c11"
+  ],
+  "basis": "new advanced machines expected by the end of 2026, nearly"
+ },
+ "employees": {
+  "value": 800,
+  "from": [
+   "c12"
+  ],
+  "basis": "production employees, nearly"
+ },
+ "parts_2025": {
+  "value": 250000,
+  "from": [
+   "c12"
+  ],
+  "basis": "parts the facility made in 2025"
+ },
+ "parts_year": {
+  "value": 2025,
+  "from": [
+   "c12"
+  ],
+  "basis": "the year of the parts count"
+ },
+ "agreement_years": {
+  "value": 7,
+  "from": [
+   "c13"
+  ],
+  "basis": "years in the Lockheed and Hadrian agreement, the quote's 'seven'"
+ },
+ "agreement_signed": {
+  "value": 2025,
+  "from": [
+   "c13"
+  ],
+  "basis": "year the agreement was signed"
+ },
+ "facilities_us": {
+  "value": 20,
+  "from": [
+   "c9"
+  ],
+  "basis": "facilities Lockheed says it will modernize or expand, more than"
+ },
+ "hadrian_sites": {
+  "value": 4,
+  "from": [
+   "c17"
+  ],
+  "basis": "facilities Hadrian operates, the quote's 'four'"
+ },
+ "tech_days": {
+  "value": 30,
+  "from": [
+   "c23"
+  ],
+  "basis": "days Hadrian says it trains a factory technician in, or less"
+ },
+ "pac3_produced": {
+  "value": 2500,
+  "from": [
+   "c32"
+  ],
+  "basis": "PAC-3 MSEs produced, more than, per the PAC-3 page"
+ },
+ "cell_share_of_new_pct": {
+  "value": 24,
+  "from": [
+   "c4",
+   "c11"
+  ],
+  "basis": "the cell's 24 machines as a share of the nearly 100 expected by end of 2026, rounded half up to a whole percent; drawn, never printed"
+ },
+ "parts_per_employee": {
+  "value": 312,
+  "from": [
+   "c12"
+  ],
+  "basis": "250,000 parts over nearly 800 employees, floored to a whole part, and the 800 is a nearly; drawn, never printed"
+ }
+}
