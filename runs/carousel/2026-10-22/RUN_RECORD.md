@@ -178,6 +178,12 @@ checks after `npm ci`. `label_guard`, `quantifier_check` and `verbatim_check` wr
 panel_done 239.1, package_done 269.3. The audition was read seven times in all, five before the panel and two after
 it, the first of those two sent back because the figure rendered pale.
 
+**CI caught one more.** The first push's `browser-read` job failed `glyphs.mjs`: c58's quote carried the paper's
+table delta (U+0394), which the body face has no glyph for, on the article page's verification list. The quote is now
+the table's data row alone, a contiguous substring of the same page, and the claim text names the table. The note
+says why the caption beside it isn't quoted. `claims_check`, `article_check`, `shipped_check`, the glyph test, house
+style, freshness and the article browser test all reran clean before the push.
+
 ## The site after the rebuild
 
 Read on the rebuilt `docs/` (933 pages, 199 items).

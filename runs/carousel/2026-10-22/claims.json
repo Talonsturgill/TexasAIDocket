@@ -648,14 +648,14 @@
   {
    "id": "c58",
    "item": "tx-2026-0223",
-   "text": "In an appendix test, Llama3-70B-Instruct scored 57.8 on ARC Challenge at Base and 52.7 after 100% junk under M1.",
-   "quote": "Table 15: Performance under 100% Junk (M1) with Llama3-70B-Instruct as the backbone. Task Base 100% Junk (M1) Δ \\Delta ARC Easy 82.4 80.1 -2.3 ARC Challenge 57.8 52.7 -5.0",
+   "text": "The appendix table for Llama3-70B-Instruct reads 57.8 on ARC Challenge at Base and 52.7 after 100% junk under M1.",
+   "quote": "ARC Easy 82.4 80.1 -2.3 ARC Challenge 57.8 52.7 -5.0",
    "url": "https://arxiv.org/html/2510.13928v3",
    "source_type": "primary_official",
    "retrieved": "2026-10-22",
    "confidence": "high",
    "document": "LLMs Can Get \"Brain Rot\": A Pilot Study on Twitter/X (arXiv full text, v3)",
-   "note": "The live fetch confirmed Base 57.8 and 100% junk 52.7. This appendix model is in addition to the four main models."
+   "note": "The live fetch confirmed Base 57.8 and 100% junk 52.7. This appendix model is in addition to the four main models. The quote is the table's data row. The table's caption above it names the larger model as the backbone. The caption isn't quoted because the cell between them is a math glyph the site's face can't draw."
   },
   {
    "id": "c59",
