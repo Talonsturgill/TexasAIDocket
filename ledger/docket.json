@@ -1,7 +1,7 @@
 {
  "_spec": {
   "version": 2,
-  "generated": "2026-10-21",
+  "generated": "2026-10-22",
   "gates": [
    "banned words",
    "claims",
@@ -5217,7 +5217,7 @@
     }
    ],
    "id": "tx-2026-0037",
-   "last_verified": "2026-10-18",
+   "last_verified": "2026-10-22",
    "history": [
     {
      "date": "2026-08-18",
@@ -5321,6 +5321,11 @@
     {
      "date": "2026-10-18",
      "note": "Laredo's council records still show the moratorium declined and staff told to write permanent rules. The station's account is unconfirmed, since its site bars automated readers.",
+     "checked": true
+    },
+    {
+     "date": "2026-10-22",
+     "note": "Laredo's council records still show the moratorium turned down and staff sent to write permanent rules. The station's account stays unconfirmed, since its site bars automated readers.",
      "checked": true
     }
    ]
@@ -6556,7 +6561,7 @@
     }
    ],
    "id": "tx-2026-0044",
-   "last_verified": "2026-10-18",
+   "last_verified": "2026-10-22",
    "history": [
     {
      "date": "2026-08-19",
@@ -6669,6 +6674,11 @@
     {
      "date": "2026-10-18",
      "note": "Angelina County's minutes still record the resolution asking the Legislature for authority over data centers. Both news accounts are unconfirmed, since their sites bar automated readers.",
+     "checked": true
+    },
+    {
+     "date": "2026-10-22",
+     "note": "Angelina County's minutes still record the resolution asking the Legislature for authority over data centers. Both news accounts stay unconfirmed, since their sites bar automated readers.",
      "checked": true
     }
    ],
@@ -7606,7 +7616,7 @@
     }
    ],
    "id": "tx-2026-0049",
-   "last_verified": "2026-10-18",
+   "last_verified": "2026-10-22",
    "history": [
     {
      "date": "2026-08-19",
@@ -7713,6 +7723,11 @@
     {
      "date": "2026-10-18",
      "note": "Harris County's legislative record still carries the Flock renewal and its history. The station's report is unconfirmed, since its site bars automated readers.",
+     "checked": true
+    },
+    {
+     "date": "2026-10-22",
+     "note": "Harris County's legislative record still carries the Flock renewal and the amendment that followed it. The station's report stays unconfirmed, since its site bars automated readers.",
      "checked": true
     }
    ]
@@ -8142,7 +8157,7 @@
     }
    ],
    "id": "tx-2026-0052",
-   "last_verified": "2026-10-18",
+   "last_verified": "2026-10-22",
    "history": [
     {
      "date": "2026-08-19",
@@ -8242,6 +8257,11 @@
     {
      "date": "2026-10-18",
      "note": "Brazoria County's legislative record still carries the resolution on data center conditions as adopted. The station's report is unconfirmed.",
+     "checked": true
+    },
+    {
+     "date": "2026-10-22",
+     "note": "Brazoria County's legislative record still carries the resolution setting out the conditions it wants on data centers. The station's report stays unconfirmed.",
      "checked": true
     }
    ]
@@ -11752,7 +11772,7 @@
      "fetched": "2026-10-02"
     }
    ],
-   "last_verified": "2026-10-18",
+   "last_verified": "2026-10-22",
    "confidence": "high",
    "notes_for_editor": "Raw HTML fetched with a browser User-Agent. gov.texas.gov serves no robots.txt.",
    "history": [
@@ -11861,6 +11881,11 @@
     {
      "date": "2026-10-18",
      "note": "The comptroller's JETI page still carries the Grimes County application. The Governor's announcement is unconfirmed, since the office's site bars automated readers.",
+     "checked": true
+    },
+    {
+     "date": "2026-10-22",
+     "note": "The comptroller's page for the Grimes County application still carries the SpaceX plant. The Governor's announcement stays unconfirmed, since the office's site bars automated readers.",
      "checked": true
     }
    ]
@@ -12133,7 +12158,7 @@
      "fetched": "2026-08-23"
     }
    ],
-   "last_verified": "2026-10-18",
+   "last_verified": "2026-10-22",
    "confidence": "high",
    "notes_for_editor": "Raw HTML fetched with a browser User-Agent, quotes checked character for character.",
    "history": [
@@ -12270,6 +12295,11 @@
     {
      "date": "2026-10-18",
      "note": "ERCOT's audit presentation and the commission's agenda still lay out the audit every queued data center faces. The Governor's directive pages are unconfirmed.",
+     "checked": true
+    },
+    {
+     "date": "2026-10-22",
+     "note": "ERCOT's audit presentation and its letter to the commission still set out the verification every queued data center faces, with the December dates unchanged. The Governor's directive pages stay unconfirmed.",
      "checked": true
     }
    ]
@@ -12616,7 +12646,7 @@
      "fetched": "2026-08-23"
     }
    ],
-   "last_verified": "2026-10-18",
+   "last_verified": "2026-10-22",
    "confidence": "high",
    "notes_for_editor": "The quoted charter text carries semicolons and the abbreviation AI as the commission wrote them. It is quoted material and exempt from the house punctuation rules by design. The commission's report is a recommendation to the council. The ordinance submits the measures as listed in an exhibit that was not readable, so the record says the commission recommends this section and never that a ballot proposition carries this wording. The proposition letters are not published here for the same reason.",
    "history": [
@@ -12732,6 +12762,11 @@
     {
      "date": "2026-10-18",
      "note": "Pflugerville's legislative history still carries the charter election ordinance. The ordinance text and the review commission's report are unconfirmed.",
+     "checked": true
+    },
+    {
+     "date": "2026-10-22",
+     "note": "Pflugerville's legislative history still carries the ordinance calling the charter election, with its section on the city's use of artificial intelligence. The ordinance text and the review commission's report stay unconfirmed.",
      "checked": true
     }
    ]
@@ -16446,7 +16481,7 @@
     }
    ],
    "id": "tx-2026-0103",
-   "last_verified": "2026-10-18",
+   "last_verified": "2026-10-22",
    "history": [
     {
      "date": "2026-08-26",
@@ -16546,6 +16581,11 @@
      "date": "2026-10-18",
      "note": "The four Texas campuses still hold their roles in the Energy Department's AI for science program.",
      "checked": true
+    },
+    {
+     "date": "2026-10-22",
+     "note": "The Energy Department's program page still lists the Texas campuses in the AI for science effort. UT Arlington's own account is unconfirmed today, since its site did not answer.",
+     "checked": true
     }
    ]
   },
@@ -16618,7 +16658,7 @@
      "fetched": "2026-08-22"
     }
    ],
-   "last_verified": "2026-10-18",
+   "last_verified": "2026-10-22",
    "confidence": "high",
    "notes_for_editor": "The siting decision is Amazon's. The decider of record is the announcing office, which follows the record's own precedent for a company siting announced by the state. The exact site within Austin is reported in journalism and appears in neither primary release, so it is not carried. The Governor's release calls the development multi-billion-dollar and gives no capital figure.",
    "history": [
@@ -16724,6 +16764,11 @@
     {
      "date": "2026-10-18",
      "note": "Amazon's own announcement of the Austin robotics factory reads as published. The Governor's release is unconfirmed.",
+     "checked": true
+    },
+    {
+     "date": "2026-10-22",
+     "note": "Amazon's own announcement of the Austin robotics factory still reads as published. The Governor's release stays unconfirmed.",
      "checked": true
     }
    ]
@@ -19626,7 +19671,7 @@
     }
    ],
    "id": "tx-2026-0112",
-   "last_verified": "2026-10-18",
+   "last_verified": "2026-10-22",
    "history": [
     {
      "date": "2026-08-30",
@@ -19719,6 +19764,11 @@
     {
      "date": "2026-10-18",
      "note": "The commission filing and the Tribune's account still carry the approved route from Somervell County to Howard County. Oncor's project page is unconfirmed.",
+     "checked": true
+    },
+    {
+     "date": "2026-10-22",
+     "note": "The commission filing and the Tribune's account still carry the approved route from Somervell County to Howard County. Oncor's project page stays unconfirmed.",
      "checked": true
     }
    ]
@@ -23021,6 +23071,10 @@
      "date": "2026-10-18",
      "note": "The University of North Texas still lists its undergraduate degree in artificial intelligence.",
      "checked": true
+    },
+    {
+     "date": "2026-10-22",
+     "note": "The university's degree page did not answer today, so the undergraduate degree in artificial intelligence is unconfirmed since its last check."
     }
    ],
    "confidence": "high"
@@ -26991,6 +27045,10 @@
      "date": "2026-10-18",
      "note": "UT Arlington's tutor that holds back the answer is still described as built, beside its police training work.",
      "checked": true
+    },
+    {
+     "date": "2026-10-22",
+     "note": "The university's account did not answer today, so the tutor and the police training work are unconfirmed since their last check."
     }
    ]
   },
@@ -27118,7 +27176,7 @@
     }
    ],
    "id": "tx-2026-0162",
-   "last_verified": "2026-10-18",
+   "last_verified": "2026-10-22",
    "history": [
     {
      "date": "2026-09-17",
@@ -27172,6 +27230,11 @@
     {
      "date": "2026-10-18",
      "note": "Memorial Hermann's release still has clinicians editing the AI draft before a patient reads it. The trade press account is unconfirmed.",
+     "checked": true
+    },
+    {
+     "date": "2026-10-22",
+     "note": "Memorial Hermann's release still has a clinician editing the AI draft before a patient reads it. The trade press account stays unconfirmed.",
      "checked": true
     }
    ]
@@ -27498,6 +27561,10 @@
      "date": "2026-10-18",
      "note": "UNT's announcement still names the college of artificial intelligence and the gift behind it. One passage of it was not found as quoted, so that wording is unconfirmed.",
      "checked": true
+    },
+    {
+     "date": "2026-10-22",
+     "note": "The university's release did not answer today, so the gift and what it funds are unconfirmed since their last check."
     }
    ]
   },
@@ -28548,6 +28615,10 @@
      "date": "2026-10-18",
      "note": "UT Arlington's AI degrees still stand in place of its business analytics degrees.",
      "checked": true
+    },
+    {
+     "date": "2026-10-22",
+     "note": "The university's release did not answer today, so the replacement of the business analytics degrees is unconfirmed since its last check."
     }
    ]
   },
@@ -35153,7 +35224,7 @@
     }
    ],
    "id": "tx-2026-0212",
-   "last_verified": "2026-10-21",
+   "last_verified": "2026-10-22",
    "history": [
     {
      "date": "2026-10-10",
@@ -35192,6 +35263,11 @@
     },
     {
      "date": "2026-10-21",
+     "note": "Checked and unchanged. Still pending, with no dated movement.",
+     "checked": true
+    },
+    {
+     "date": "2026-10-22",
      "note": "Checked and unchanged. Still pending, with no dated movement.",
      "checked": true
     }
@@ -36233,7 +36309,7 @@
     }
    ],
    "id": "tx-2026-0220",
-   "last_verified": "2026-10-20",
+   "last_verified": "2026-10-22",
    "history": [
     {
      "date": "2026-10-18",
@@ -36243,6 +36319,11 @@
     {
      "date": "2026-10-20",
      "note": "Both data center zoning proposals are still set for the Zoning Commission today, October 20th, with the council vote on October 29th still ahead.",
+     "checked": true
+    },
+    {
+     "date": "2026-10-22",
+     "note": "Checked and unchanged. Still pending, with no dated movement.",
      "checked": true
     }
    ]
@@ -36994,6 +37075,205 @@
    ],
    "id": "tx-2026-0225",
    "last_verified": "2026-10-21"
+  },
+  {
+   "title": "Comptroller bars state grant money from buying or renewing Flock cameras and other license plate readers",
+   "summary": "Texas Comptroller Don Huffines announced on October 13th, 2026 a ban on using state grant money to buy or contract for Flock cameras, automated license plate readers and other vehicle identification systems that turn plate images into computer readable data. The restriction applies to all future grants the Comptroller's office administers. The agency says it will write it into grant solicitations and agreements. A grantee may not spend grant funds on the equipment or services, and may not enter into, extend or renew a contract for them. The release names Flock Safety, Motorola Solutions and Axon. It speaks only to grants the office administers and prints no count of the grants or dollars affected.",
+   "topic": "surveillance-and-policing",
+   "decider": {
+    "name": "Texas Comptroller of Public Accounts",
+    "type": "state-agency"
+   },
+   "geography": {
+    "statewide": true,
+    "counties": [],
+    "on_ercot": false
+   },
+   "status": "decided",
+   "confidence": "high",
+   "key_dates": [
+    {
+     "date": "2026-10-13",
+     "kind": "decided",
+     "note": "The Comptroller announces the ban on grant money for license plate readers"
+    }
+   ],
+   "public_access": {
+    "room": "contact_only",
+    "how": "The ban is set out in the Comptroller's news release and will be written into the office's grant solicitations and agreements. The release opens no comment window. The office publishes its media contact on the release itself.",
+    "url": "https://content.govdelivery.com/accounts/TXCOMPT/bulletins/42ee787",
+    "closes": null
+   },
+   "claims": [
+    {
+     "text": "The Comptroller announced a ban on using state grant money to buy or contract for Flock cameras, automated license plate readers and similar systems.",
+     "verbatim_quote": "Texas Comptroller Don Huffines today announced a ban on the use of state grant money to buy or contract for Flock cameras, automated license plate readers, and other vehicle-identification systems that convert license plate images into computer-readable data.",
+     "source_url": "https://content.govdelivery.com/accounts/TXCOMPT/bulletins/42ee787",
+     "source_title": "Texas Comptroller of Public Accounts, No Spy Cameras: Comptroller Huffines Announces Ban on Grant Money for Flock Cameras and License Plate Trackers",
+     "source_type": "primary_official",
+     "fetched": "2026-10-22",
+     "id": "tx-2026-0226-c1"
+    },
+    {
+     "text": "The restriction applies to all future grants the Comptroller's office administers.",
+     "verbatim_quote": "These requirements will apply to all future grants administered by the Texas Comptroller of Public Accounts.",
+     "source_url": "https://content.govdelivery.com/accounts/TXCOMPT/bulletins/42ee787",
+     "source_title": "Texas Comptroller of Public Accounts, No Spy Cameras: Comptroller Huffines Announces Ban on Grant Money for Flock Cameras and License Plate Trackers",
+     "source_type": "primary_official",
+     "fetched": "2026-10-22",
+     "id": "tx-2026-0226-c2"
+    },
+    {
+     "text": "The agency will put the restriction into its grant solicitations and agreements.",
+     "verbatim_quote": "The agency will incorporate the restriction into all relevant grant solicitations and agreements going forward.",
+     "source_url": "https://content.govdelivery.com/accounts/TXCOMPT/bulletins/42ee787",
+     "source_title": "Texas Comptroller of Public Accounts, No Spy Cameras: Comptroller Huffines Announces Ban on Grant Money for Flock Cameras and License Plate Trackers",
+     "source_type": "primary_official",
+     "fetched": "2026-10-22",
+     "id": "tx-2026-0226-c3"
+    },
+    {
+     "text": "A grantee may not spend grant funds on the equipment or services, or enter, extend or renew a contract for them.",
+     "verbatim_quote": "Under the ban, grantees may not obligate or expend grant funds to procure or obtain prohibited surveillance equipment or services, or to enter into, extend, or renew a contract to procure or obtain them.",
+     "source_url": "https://content.govdelivery.com/accounts/TXCOMPT/bulletins/42ee787",
+     "source_title": "Texas Comptroller of Public Accounts, No Spy Cameras: Comptroller Huffines Announces Ban on Grant Money for Flock Cameras and License Plate Trackers",
+     "source_type": "primary_official",
+     "fetched": "2026-10-22",
+     "id": "tx-2026-0226-c4"
+    },
+    {
+     "text": "The release names Flock Safety, Motorola Solutions and Axon among the companies whose systems are covered.",
+     "verbatim_quote": "Flock Group Inc. (d/b/a \"Flock Safety\"), Motorola Solutions Inc., Axon Enterprise Inc., and their successors, affiliates, or resellers",
+     "source_url": "https://content.govdelivery.com/accounts/TXCOMPT/bulletins/42ee787",
+     "source_title": "Texas Comptroller of Public Accounts, No Spy Cameras: Comptroller Huffines Announces Ban on Grant Money for Flock Cameras and License Plate Trackers",
+     "source_type": "primary_official",
+     "fetched": "2026-10-22",
+     "id": "tx-2026-0226-c5"
+    }
+   ],
+   "notes_for_editor": "Read on the Comptroller's GovDelivery bulletin of October 13th, 2026. The release is statewide in scope and names no county.",
+   "id": "tx-2026-0226",
+   "last_verified": "2026-10-22",
+   "history": [
+    {
+     "date": "2026-10-22",
+     "note": "Admitted on the Comptroller's own release, which sets out the ban and names the companies whose systems it covers."
+    }
+   ]
+  },
+  {
+   "title": "UTEP and El Paso Water test whether a NASA backed AI model can map flooded streets from satellite images after a storm",
+   "summary": "The University of Texas at El Paso announced on October 8th, 2026 that a team led by Yong Je Kim has received nearly $500,000 from NASA for a two year project. It will combine satellite imagery, Earth observation data and artificial intelligence to map flooded areas of El Paso after storms. The team will use Prithvi-EO, an AI foundation model that reads the context around an area rather than single pixels. In El Paso wet pavement, building shadows and swimming pools can look like floodwater in a satellite image. Sentinel-1 radar fills in when clouds block the optical view. El Paso Water is the research partner and intended user, and the plan is a dashboard of flood maps, confidence information and infrastructure overlays. The team says the tool is not meant to replace crews on the ground. The project is expected to finish by June 2028, and no result has been published.",
+   "topic": "research-and-science",
+   "decider": {
+    "name": "The University of Texas at El Paso",
+    "type": "state-agency"
+   },
+   "geography": {
+    "statewide": false,
+    "counties": [
+     "El Paso"
+    ],
+    "on_ercot": false
+   },
+   "status": "decided",
+   "confidence": "high",
+   "key_dates": [
+    {
+     "date": "2026-10-08",
+     "kind": "filed",
+     "note": "Date the university published the account of the NASA award"
+    }
+   ],
+   "public_access": {
+    "room": "contact_only",
+    "how": "The work is a funded university research project rather than a proceeding, so no comment window or hearing attaches to it. The university names the lead researcher and the partner utility on the release. El Paso Water is a public utility whose board meets in public.",
+    "url": "https://www.utep.edu/newsfeed/2026/October/from-space-to-the-streets-nasa-funded-research-takes-aim-at-el-paso-flooding.html",
+    "closes": null
+   },
+   "claims": [
+    {
+     "text": "The team received nearly $500,000 from NASA for a two year project to map flooded areas of El Paso.",
+     "verbatim_quote": "the research team has received nearly $500,000 from NASA for a two-year project that will combine satellite imagery, Earth observation data and artificial intelligence to rapidly map areas affected by flooding in El Paso.",
+     "source_url": "https://www.utep.edu/newsfeed/2026/October/from-space-to-the-streets-nasa-funded-research-takes-aim-at-el-paso-flooding.html",
+     "source_title": "The University of Texas at El Paso, From Space to the Streets: NASA-Funded Research Takes Aim at El Paso Flooding",
+     "source_type": "primary_official",
+     "fetched": "2026-10-22",
+     "id": "tx-2026-0227-c1"
+    },
+    {
+     "text": "The team will work with El Paso Water to see whether satellite data and AI can help crews find flooded areas and prioritize inspections.",
+     "verbatim_quote": "The researchers will work with El Paso Water, the local water utility, to explore how advanced NASA satellite data and AI could help utility crews identify flooded areas, prioritize inspections and assess potentially affected infrastructure more quickly after a major storm.",
+     "source_url": "https://www.utep.edu/newsfeed/2026/October/from-space-to-the-streets-nasa-funded-research-takes-aim-at-el-paso-flooding.html",
+     "source_title": "The University of Texas at El Paso, From Space to the Streets: NASA-Funded Research Takes Aim at El Paso Flooding",
+     "source_type": "primary_official",
+     "fetched": "2026-10-22",
+     "id": "tx-2026-0227-c2"
+    },
+    {
+     "text": "The team will use Prithvi-EO, an AI foundation model that reads the context around an area rather than individual pixels.",
+     "verbatim_quote": "The researchers will use NASA satellite imagery and Prithvi-EO, an advanced AI foundation model designed to analyze Earth observation data using the broader context surrounding an area rather than relying on individual pixels.",
+     "source_url": "https://www.utep.edu/newsfeed/2026/October/from-space-to-the-streets-nasa-funded-research-takes-aim-at-el-paso-flooding.html",
+     "source_title": "The University of Texas at El Paso, From Space to the Streets: NASA-Funded Research Takes Aim at El Paso Flooding",
+     "source_type": "primary_official",
+     "fetched": "2026-10-22",
+     "id": "tx-2026-0227-c3"
+    },
+    {
+     "text": "In El Paso wet pavement, building shadows and swimming pools can look like floodwater in satellite imagery.",
+     "verbatim_quote": "That capability could be particularly useful in El Paso, where wet pavement, building shadows and even swimming pools can resemble floodwater in satellite imagery.",
+     "source_url": "https://www.utep.edu/newsfeed/2026/October/from-space-to-the-streets-nasa-funded-research-takes-aim-at-el-paso-flooding.html",
+     "source_title": "The University of Texas at El Paso, From Space to the Streets: NASA-Funded Research Takes Aim at El Paso Flooding",
+     "source_type": "primary_official",
+     "fetched": "2026-10-22",
+     "id": "tx-2026-0227-c4"
+    },
+    {
+     "text": "Sentinel-1 radar data supplies observations when clouds block the optical images.",
+     "verbatim_quote": "The team will also combine optical satellite imagery with Sentinel-1 radar data, which can provide observations when clouds limit optical imagery.",
+     "source_url": "https://www.utep.edu/newsfeed/2026/October/from-space-to-the-streets-nasa-funded-research-takes-aim-at-el-paso-flooding.html",
+     "source_title": "The University of Texas at El Paso, From Space to the Streets: NASA-Funded Research Takes Aim at El Paso Flooding",
+     "source_type": "primary_official",
+     "fetched": "2026-10-22",
+     "id": "tx-2026-0227-c5"
+    },
+    {
+     "text": "El Paso Water is the research partner and intended end user.",
+     "verbatim_quote": "El Paso Water will serve as a research partner and intended end user, helping the team ensure the technology addresses real operational needs.",
+     "source_url": "https://www.utep.edu/newsfeed/2026/October/from-space-to-the-streets-nasa-funded-research-takes-aim-at-el-paso-flooding.html",
+     "source_title": "The University of Texas at El Paso, From Space to the Streets: NASA-Funded Research Takes Aim at El Paso Flooding",
+     "source_type": "primary_official",
+     "fetched": "2026-10-22",
+     "id": "tx-2026-0227-c6"
+    },
+    {
+     "text": "The team says the tool is not meant to replace crews on the ground.",
+     "verbatim_quote": "The technology is not intended to replace crews on the ground or existing emergency response procedures, the team said.",
+     "source_url": "https://www.utep.edu/newsfeed/2026/October/from-space-to-the-streets-nasa-funded-research-takes-aim-at-el-paso-flooding.html",
+     "source_title": "The University of Texas at El Paso, From Space to the Streets: NASA-Funded Research Takes Aim at El Paso Flooding",
+     "source_type": "primary_official",
+     "fetched": "2026-10-22",
+     "id": "tx-2026-0227-c7"
+    },
+    {
+     "text": "The project is expected to be completed by June 2028.",
+     "verbatim_quote": "The project is expected to be completed by June 2028.",
+     "source_url": "https://www.utep.edu/newsfeed/2026/October/from-space-to-the-streets-nasa-funded-research-takes-aim-at-el-paso-flooding.html",
+     "source_title": "The University of Texas at El Paso, From Space to the Streets: NASA-Funded Research Takes Aim at El Paso Flooding",
+     "source_type": "primary_official",
+     "fetched": "2026-10-22",
+     "id": "tx-2026-0227-c8"
+    }
+   ],
+   "notes_for_editor": "El Paso is outside ERCOT. The release names El Paso and El Paso Water, both in El Paso County. No accuracy result is published.",
+   "id": "tx-2026-0227",
+   "last_verified": "2026-10-22",
+   "history": [
+    {
+     "date": "2026-10-22",
+     "note": "Admitted on the university's own release, which names the NASA award, the AI model and El Paso Water as the intended user."
+    }
+   ]
   }
  ]
 }
