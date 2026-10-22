@@ -11,7 +11,7 @@ The Public Utility Commission of Texas approved an amendment to Oncor's certific
 - Public access: Closed
 - Take part: https://www.oncor.com/content/oncorwww/us/en/home/about-us/transmission-systems/current-transmission-line-projects/dinosaur-to-longshore-765-kv-transmission-line-project.html
 
-- Last checked: 2026-10-18
+- Last checked: 2026-10-22
 
 ## Dates
 
@@ -42,6 +42,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-11 · Both commission filings still carry the approved route from Somervell County to Howard County. Oncor's project page stays out of reach.
 - 2026-10-15 · Both commission filings still carry the approved route from Somervell County to Howard County. Oncor's project page is unconfirmed.
 - 2026-10-18 · The commission filing and the Tribune's account still carry the approved route from Somervell County to Howard County. Oncor's project page is unconfirmed.
+- 2026-10-22 · The commission filing and the Tribune's account still carry the approved route from Somervell County to Howard County. Oncor's project page stays unconfirmed.
 
 ## Evidence
 

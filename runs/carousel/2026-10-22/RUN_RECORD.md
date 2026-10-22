@@ -139,3 +139,100 @@ Three judges each round, combined by `panel.py`. Read `score.json` for every fig
   tighter on the repaired flight with the wall a step darker; frame 6's label brought to its tread; frame 9's figure
   in dark matte cloth, near a silhouette against the lit pier. A finer pier grain on frame 4 tiled visibly and was
   reverted.
+- **Round 3, the cap**: no hard fail. **The deck ships at 7.43, 0.27 under the 7.7 rung of round 2 and 0.57 under
+  the 8.0 top rung.** The art median is 7.3, under the 8.5 craft floor, which stands down at the cap. Before the
+  round, frame 9's figure rendered pale grey whatever clothing the kit was given, because a camera-side fill at
+  intensity 6 washed it; the fill came down and the cloth was set dark on the meshes, and the art director accepted
+  the frame on its own reading. **One fault of the showrunner's, stated plainly:** a binding script stamped an
+  audition reading as accepted when the reviewer had returned revise. It was caught and reverted to revise before
+  any gate or judge read it, and the frame was repaired and read again.
+- **After the cap**: the caption's 84% now names its junk measure, which two round 3 judges flagged. Copy only, and
+  `caption_check`, `copy_sync_check` and `word_ban` were rerun on it.
+- **Named by the judges and not fixed, for the next run**: frame 4 still reads to most judges as piers in elevation
+  with a large mid tone stone face and a camouflage mottle; frame 6's stacked treads read as a pile rather than a
+  length, and every judge asked for the CRAFT PLAN's row laid end to end; frame 8's empty pad is small and its lower
+  half is dead ground under the type; frame 5 repeats the cover's camera; the brass datum reads as painted coping on
+  3 and 9; frame 2's chips are two-tone. On the copy, "tokens", "ARC Challenge", "instruction tuning" and "the
+  Alpaca set" are never put in a reader's words, "Drawn to illustrate." closes all nine deks, and the stake for a
+  Texan stays general. Variety: a stair carried no. 51 a week ago, and this is the third paper deck in six days.
+
+## Ship
+
+Shipped images bound to the accepted review by `art_preflight --archive`, quality 40.1 to 42.4 dB against a 40.0
+floor, 64.33 MB of PNG down to 9.24 MB. `measure_shipped` wrote `measurements.json`. Ledgers updated by
+`update_ledgers.py`, and `ledger_check --derive` refreshed the caption lists. The web edition is
+`ledger/articles/2026-10-22.json`; `article_check` and `tests/test_article_edition.py` pass after two repairs
+(a 31 word sentence split, and the 80% bound to c31, the claim that carries it). `main` held nothing new at the
+merge before the rebuild.
+
+The rebuild's house style check found two sentences in today's admitted records over the 30 word backstop
+(tx-2026-0226 and tx-2026-0227's summaries), and on the article page "labelled" in c24 and a comma rate of 5.34
+against the 3.97 ceiling, almost all of it in the claims' own sentences. The record sentences were split, c24 spelled
+the American way, and twelve claim sentences split at their commas with the same facts and numerals. `claims_check`,
+`article_check`, `aggregate_check` and `word_ban` were rerun, the site rebuilt, and every verification check then
+exited 0: `house_style_check` clean across 933 pages, `site_fresh_check`, `schema_check`, `media_check`,
+`seo_check`, `schema_contract`, `port_audit` and `docket_build --validate`. `article_edition.mjs` passed 930 reader
+checks after `npm ci`. `label_guard`, `quantifier_check` and `verbatim_check` wrote their reports and exited 0.
+
+**Studio clock.** Minutes from wake: record_done 35.5, audition_done 78.0, art_done 86.9, review_done 182.5,
+panel_done 239.1, package_done 269.3. The audition was read seven times in all, five before the panel and two after
+it, the first of those two sent back because the figure rendered pale.
+
+## The site after the rebuild
+
+Read on the rebuilt `docs/` (933 pages, 199 items).
+
+- **Cards.** `og/tx-2026-0226.png` and `og/tx-2026-0227.png` written.
+- **`/questions/`.** The hub's ItemList carries 2,161 answered questions, up from 2,139 on October 21st.
+- **`llms.txt`, Open right now.** Austin Community College's tx-2026-0212 still leads, as the Phase 7 reading found.
+- **`/sources/`.** 1,223 of 1,397 claims rest on a primary document, across 363 documents from 159 publishers.
+- **`/topic/`.** Research and science reads 41 of 199 decisions and carries tx-2026-0223.
+
+## Retro
+
+- **Did this run wait on a human? Interim reading, Phase 17.** `prompt_audit.py` exited 1: 1,651 tool calls
+  measured and 46 whose permission decision took longer than an auto-approval, almost all of them subagent spawns,
+  the longest about 32.7 s on a subagent spawn, each released without a refusal. The no-stall hook was armed at
+  05:07:19 UTC, judged the session unattended from session start (`CLAUDE_CODE_SESSION_ATTENDED=0`, and the host's
+  value was 0), and refused nothing. Phase 19 takes the reading that counts.
+- **Sources.** Four findings appended to `knowledge/shared/SOURCES_FIELD_LOG.md`: the TLS failures on www.uta.edu,
+  news.unt.edu and engineering.unt.edu through the container's proxy, Oncor's robots disconnect, arxiv.org and
+  news.engineering.tamu.edu answering 200, and the release's own date and junk definition disagreeing with the paper.
+- **Instincts confirmed**: `a-paraphrase-can-outrun-its-quote` ("viral", "open", "dosed" and slide 9's reversed
+  recovery), `compute-every-drawn-proportion` (every frame reads figures.json by name now), `the-camera-is-what-
+  repeats` (frames 1 and 5). **Added**: `a-band-that-marks-a-level-rises-from-it`, `a-coplanar-face-is-a-screen`.
+- **Machine queue**: four new items (the stair models, the canvas tile seam, typed frame figures, the limestone
+  mottle) and six repeats raised, which made the weekly pass due.
+- **The weekly pass ran** (`prompts/machine_weekly.md`, a digest of six runs and 14 themes). Four commits, each verify
+  command rerun here and exiting 0: the kit person's untucked shirt hangs with no ledge at the waistband and a vest no
+  longer shows the shirt through its hem (the ragged hem the judges named on frame 9); `ledger_check --exclusions`
+  briefs the caption room with the newest caption's own moves, the defect that cost this run's caption room a
+  rewrite; `coherence_check` reads the type spine from the rendered page, so no run writes a no-op size into every
+  slide again (this run did, and it cost an audition reading); the pass's own records. Escalated to a maintainer: the
+  routine's Phase 10 line naming the stale caption lists, a GATE_LESSONS entry, and the audition re-read after every
+  repair at repeat 3. `machine_due.py` for tomorrow: not due; next pass October 29th.
+- **Arsenal** rebuilt and current.
+
+## Gate status
+
+<!-- gate-status:begin -->
+| gate | status | detail |
+|---|---|---|
+| claims         | PASS   | 73 verified claim(s) |
+| render         | PASS   | 9 slide(s) |
+| qa             | WARN   | 0 fail(s), 4 warn(s) |
+| aggregates     | PASS   | 11 declaration(s), 20 numeric phrase(s) in the render, all re-derived |
+| assembly       | PASS   | 9 slide(s), 9.34 MB, vector |
+| score          | WARN   | 7.43 at the round cap after 3 round(s), the finished deck ships; 8.0 top rung, shortfall named |
+| labels         | PASS   | 72 claim id(s) checked, every label beside one traces to the shape its claim proves |
+| quantifiers    | PASS   | 93 published string(s) read from one list, every universal names its set |
+| verbatim       | PASS   | 2 declared fragment(s) over 9 of 9 dossier(s), every one a literal substring of its own claim's quote |
+| dossiers       | PASS   | 35,854 chars planned |
+| caption        | PASS   | 159 words |
+| craft floor    | PASS   | 9 frame(s), median 623, floor 112 |
+| plan vs render | WARN   | 9 of 58 acceptance item(s) checkable |
+| texan          | WARN   | places Austin / body NO / deadline NO / next step NO |
+| absences       | WARN   | 6 of 15 scoped to a named document, 9 unscoped |
+| numerals       | PASS   | 45 numeral(s) over 9 frame(s), every one reachable |
+| completion     | PASS   | the deck shipped |
+<!-- gate-status:end -->

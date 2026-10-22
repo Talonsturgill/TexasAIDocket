@@ -36,7 +36,7 @@
   {
    "id": "c4",
    "item": "tx-2026-0223",
-   "text": "Shuo Xing, one of Tu's doctoral students, is a lead author on the paper.",
+   "text": "Shuo Xing is one of Tu's doctoral students and a lead author on the paper.",
    "quote": "Shuo Xing, one of Tu’s doctoral students and a lead author on the paper",
    "url": "https://news.engineering.tamu.edu/news/2026/10/19/ai-models-can-get-brain-rot-too/",
    "source_type": "primary_corporate",
@@ -193,7 +193,7 @@
   {
    "id": "c18",
    "item": "tx-2026-0223",
-   "text": "Under the engagement measure, junk was posts under 30 tokens with popularity over 500, and control was posts over 100 tokens with zero popularity.",
+   "text": "Under the engagement measure junk was posts under 30 tokens with popularity over 500. Control was posts over 100 tokens with zero popularity.",
    "quote": "For M1 , we choose samples with a token length < 30 <30 (the corpus median) and a popularity of > 500 >500 (the 97th percentile) as junk data, and samples with a token length > 100 >100 (the 99th percentile) and a popularity of = 0 =0 as control data",
    "url": "https://arxiv.org/html/2510.13928v3",
    "source_type": "primary_official",
@@ -260,7 +260,7 @@
   {
    "id": "c24",
    "item": "tx-2026-0223",
-   "text": "Three human annotators labelled samples with the same rubric the GPT model was given.",
+   "text": "Three human annotators labeled samples with the same rubric the GPT model was given.",
    "quote": "three human experts (junior, senior, and postdoctoral researchers) annotated the data using the rubric shown in Fig. 8 , which is identical to the prompt provided to the GPT model",
    "url": "https://arxiv.org/html/2510.13928v3",
    "source_type": "primary_official",
@@ -294,7 +294,7 @@
   {
    "id": "c27",
    "item": "tx-2026-0223",
-   "text": "Compared with the control group, junk training of 4 models caused declines above a Hedges' g of 0.3 in reasoning, long context understanding and safety.",
+   "text": "Junk training of 4 models caused declines above a Hedges' g of 0.3 against the control group. The declines were in reasoning and long context understanding and safety.",
    "quote": "continual pre-training of 4 LLMs on the junk dataset causes non-trivial declines (Hedges' g>0.3) on reasoning, long-context understanding, safety",
    "url": "https://arxiv.org/abs/2510.13928",
    "source_type": "primary_official",
@@ -340,7 +340,7 @@
   {
    "id": "c31",
    "item": "tx-2026-0223",
-   "text": "That table reports junk ratios of 100%, 80%, 50%, 20% and 0% under M1 and M2, plus a Base column.",
+   "text": "That table reports junk ratios of 100% and 80% and 50% and 20% and 0% under M1 and M2 beside a Base column.",
    "quote": "Junk Ratio by M1 (engagement degree) Junk Ratio by M2 (semantic quality) Base 100% 80% 50% 20% 0% 100% 80% 50% 20% 0% -",
    "url": "https://arxiv.org/html/2510.13928v3",
    "source_type": "primary_official",
@@ -363,7 +363,7 @@
   {
    "id": "c33",
    "item": "tx-2026-0223",
-   "text": "Under the engagement measure, ARC Challenge with chain of thought scored 57.2, 64.1, 69.3, 71.2 and 72.1, from all junk to no junk. Base scored 77.2.",
+   "text": "Under the engagement measure ARC Challenge with chain of thought scored 57.2 then 64.1 then 69.3 then 71.2 then 72.1 from all junk to no junk. Base scored 77.2.",
    "quote": "Challenge (COT) Acc. 57.2 64.1 69.3 71.2 72.1 67.7 77.6 77.3 77.6 76.6 77.2",
    "url": "https://arxiv.org/html/2510.13928v3",
    "source_type": "primary_official",
@@ -375,7 +375,7 @@
   {
    "id": "c34",
    "item": "tx-2026-0223",
-   "text": "Under the engagement measure, RULER overall scored 71, 79, 80, 89.7 and 89.7, from all junk to no junk. Base scored 93.9.",
+   "text": "Under the engagement measure RULER overall scored 71 then 79 then 80 then 89.7 then 89.7 from all junk to no junk. Base scored 93.9.",
    "quote": "Long-Context (RULER) Overall 71 79 80 89.7 89.7 86.2 92.9 93 93.4 93.8 93.9",
    "url": "https://arxiv.org/html/2510.13928v3",
    "source_type": "primary_official",
@@ -387,7 +387,7 @@
   {
    "id": "c35",
    "item": "tx-2026-0223",
-   "text": "Under the engagement measure, RULER common word extraction scored 52.3, 62.7, 61.8, 83.3 and 83.7, from all junk to no junk. Base scored 91.8.",
+   "text": "Under the engagement measure RULER common word extraction scored 52.3 then 62.7 then 61.8 then 83.3 then 83.7 from all junk to no junk. Base scored 91.8.",
    "quote": "Comm Word Ext (CWE) 52.3 62.7 61.8 83.3 83.7 68.2 94.7 97.3 96 96.8 91.8",
    "url": "https://arxiv.org/html/2510.13928v3",
    "source_type": "primary_official",
@@ -399,7 +399,7 @@
   {
    "id": "c36",
    "item": "tx-2026-0223",
-   "text": "Under the engagement measure, variable tracking scored 22.4, 60.7, 59.4, 85.5 and 86.3, from all junk to no junk. Base scored 98.3.",
+   "text": "Under the engagement measure variable tracking scored 22.4 then 60.7 then 59.4 then 85.5 then 86.3 from all junk to no junk. Base scored 98.3.",
    "quote": "Variable Tracking 22.4 60.7 59.4 85.5 86.3 86.6 98 99.4 99.2 98.6 98.3",
    "url": "https://arxiv.org/html/2510.13928v3",
    "source_type": "primary_official",
@@ -478,7 +478,7 @@
   {
    "id": "c43",
    "item": "tx-2026-0223",
-   "text": "For repair, instruction tuning data was scaled from 5k to 50k examples, the whole Alpaca dataset.",
+   "text": "For repair the instruction tuning data was scaled from 5k to 50k examples. That is the whole Alpaca dataset.",
    "quote": "we scale up the data used for IT from 5k to 50k examples (the whole Alpaca dataset)",
    "url": "https://arxiv.org/html/2510.13928v3",
    "source_type": "primary_official",
@@ -592,7 +592,7 @@
   {
    "id": "c53",
    "item": "tx-2026-0223",
-   "text": "On the two safety tests, junk and control groups both grew riskier, and the dose effect fluctuated.",
+   "text": "On the two safety tests the junk and control groups both grew riskier. The dose effect fluctuated.",
    "quote": "In HH-RLHF and AdvBench, both intervention and control groups suffer from increasing safety risks, but the dose effect is fluctuating",
    "url": "https://arxiv.org/html/2510.13928v3",
    "source_type": "primary_official",
@@ -626,7 +626,7 @@
   {
    "id": "c56",
    "item": "tx-2026-0223",
-   "text": "The paper also reports some positive shifts, including higher agreeableness, extroversion and openness, particularly under M2.",
+   "text": "The paper also reports some positive shifts. They include higher agreeableness and extroversion and openness, particularly under M2.",
    "quote": "positive effects can emerge with increased agreeableness, extroversion, and openness, particularly under M2",
    "url": "https://arxiv.org/html/2510.13928v3",
    "source_type": "primary_official",
@@ -726,7 +726,7 @@
   {
    "id": "c65",
    "item": "tx-2026-0223",
-   "text": "The release says testing larger models such as ChatGPT or Gemini, which are not open source, is still needed.",
+   "text": "The release says larger models such as ChatGPT or Gemini still need testing. Those models are not open source.",
    "quote": "Testing for brain rot in larger models like ChatGPT or Gemini, which are not open source, is also needed",
    "url": "https://news.engineering.tamu.edu/news/2026/10/19/ai-models-can-get-brain-rot-too/",
    "source_type": "primary_corporate",
