@@ -16,7 +16,9 @@ WHAT IT CHECKS
 
 Every canonical is the site followed by one path, with no second scheme in it, and it matches the
 page's own location on disk. Every page that is in the sitemap is reachable by following links
-from the home page, or is named in the allowlist below with a reason.
+from the home page, or is named in the allowlist below with a reason. Source-registered concept
+previews have the opposite discovery contract: their exact approved payload must be present,
+pass its content policy and have no reference anywhere else in the published output.
 
     link_check.py                 # check docs/
     link_check.py --self-test     # hermetic
@@ -27,6 +29,8 @@ import argparse
 import re
 import sys
 from pathlib import Path
+
+import unlisted_previews
 
 ROOT = Path(__file__).resolve().parents[2]
 DOCS = ROOT / "docs"
@@ -96,11 +100,24 @@ def reachable(docs: Path) -> set[str]:
     return seen
 
 
-def orphan_problems(docs: Path) -> list[str]:
+def orphan_problems(docs: Path, preview_source: Path = unlisted_previews.SOURCE) -> list[str]:
     got = reachable(docs)
     out = []
+    try:
+        registered = dict(unlisted_previews.payloads(preview_source))
+        if registered:
+            unlisted_previews.audit_discovery(docs, preview_source)
+            for rel in registered:
+                if (docs / rel).read_text(encoding="utf-8") != registered[rel]:
+                    out.append(f"{rel} differs from its approved unlisted source")
+    except ValueError as error:
+        return [f"unlisted preview contract: {error}"]
     for f in sorted(docs.rglob("*.html")):
         rel = f.relative_to(docs).as_posix()
+        if rel in registered:
+            if rel in got:
+                out.append(f"{rel} is an unlisted preview reachable from the home page")
+            continue
         if rel in got or rel in UNLINKED:
             continue
         out.append(f"{rel} is in the site and nothing links to it")
@@ -110,6 +127,10 @@ def orphan_problems(docs: Path) -> list[str]:
 def self_test() -> int:
     import tempfile
     checks = []
+    empty_registry = Path(tempfile.mkdtemp())
+
+    def orphans(docs):
+        return orphan_problems(docs, empty_registry)
 
     def ok(n, c, x=""):
         checks.append(bool(c))
@@ -130,7 +151,7 @@ def self_test() -> int:
     d = site({"index.html": pg(f"{SITE}/", '<a href="a/">a</a>'),
               "a/index.html": pg(f"{SITE}/a/")})
     ok("a correct canonical passes", canonical_problems(d) == [], canonical_problems(d))
-    ok("...and nothing is orphaned", orphan_problems(d) == [], orphan_problems(d))
+    ok("...and nothing is orphaned", orphans(d) == [], orphans(d))
 
     # THE DEFECT, replayed exactly.
     d2 = site({"index.html": pg(f"{SITE}/", '<a href="a/">a</a>'),
@@ -145,16 +166,16 @@ def self_test() -> int:
 
     # THE ORPHAN, replayed.
     d4 = site({"index.html": pg(f"{SITE}/"), "lost/index.html": pg(f"{SITE}/lost/")})
-    ok("a page nothing links to fails", orphan_problems(d4) != [], orphan_problems(d4))
-    ok("...and it is named in the report", "lost" in " ".join(orphan_problems(d4)))
+    ok("a page nothing links to fails", orphans(d4) != [], orphans(d4))
+    ok("...and it is named in the report", "lost" in " ".join(orphans(d4)))
 
     d5 = site({"index.html": pg(f"{SITE}/"), "404.html": pg(f"{SITE}/404.html")})
-    ok("the allowlisted page is not reported", orphan_problems(d5) == [], orphan_problems(d5))
+    ok("the allowlisted page is not reported", orphans(d5) == [], orphans(d5))
 
     d6 = site({"index.html": pg(f"{SITE}/", '<a href="a/">a</a>'),
                "a/index.html": pg(f"{SITE}/a/", '<a href="../b/">b</a>'),
                "b/index.html": pg(f"{SITE}/b/")})
-    ok("reachability follows a link two hops deep", orphan_problems(d6) == [], orphan_problems(d6))
+    ok("reachability follows a link two hops deep", orphans(d6) == [], orphans(d6))
 
     passed = sum(checks)
     print(f"\nlink_check self-test: {passed}/{len(checks)} passed")
@@ -175,7 +196,7 @@ def main() -> int:
     found = canonical_problems(docs) + orphan_problems(docs)
     if not found:
         n = sum(1 for _ in docs.rglob("*.html"))
-        print(f"links: every canonical resolves and every one of {n} page(s) is reachable")
+        print(f"links: canonical and discovery contracts pass across {n} page(s)")
         return 0
     print(f"link_check: {len(found)} problem(s)\n", file=sys.stderr)
     for p in found:

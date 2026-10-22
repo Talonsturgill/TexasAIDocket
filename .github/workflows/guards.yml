@@ -1228,6 +1228,9 @@ jobs:
       - name: The document index preserves its reviewed source contract
         run: python3 tests/test_document_demo.py
 
+      - name: Unlisted concepts preserve their non-discovery and content-policy boundaries
+        run: python3 tests/test_unlisted_previews.py
+
   freshness:
     # The published bytes against a fresh build of the same ledgers.
     #
