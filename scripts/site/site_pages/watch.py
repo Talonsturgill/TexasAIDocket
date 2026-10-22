@@ -689,7 +689,8 @@ def services_page(items: list, today: str) -> str:
 </section>
 """
     import mail_forms
-    body += mail_forms.SCRIPT
+    import services_anchor
+    body += services_anchor.ENHANCEMENT + mail_forms.SCRIPT
     return page(title=f"Services · {SITE_NAME}", depth=1, active="services/",
                 desc="AI systems built for Texas businesses by the desk that publishes the "
                      "Texas AI Docket. Three ways in, priced on a call.",
