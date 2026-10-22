@@ -3416,4 +3416,61 @@
  ],
  "not_done": "The kit person (queue repeat 2, nos. 54 to 56) deferred, not refused: its causes are default geometry in assets/js/kit/people.js and no. 56's frames 4 and 9 render from it (UPGRADE_BACKLOG 2026-10-21 item 5). qa-glyph-run-as-rule, grid-piece-count-reads-lit-ground-as-subject and article-test-screenshots-fixed-path carried, none met since October 16th. 'Type sitting on the art', 6 runs and 12 rounds, got no change: its honest gate needs the id pass already proposed. No frontier scan: the time went to the proofs"
 }
+,
+"2026-10-22 weekly": {
+ "date": "2026-10-22",
+ "run": "weekly machine pass, read with carousel no. 57",
+ "actor": "upgrade",
+ "upgrades": [
+  {
+   "what": "Kit person (assets/js/kit/people.js): an untucked shirt's rows below the waist are fitted to the trousers' measured surface, so the second, wider tier with a ledge at the waistband is gone and the hem is a rounded bead; the hi-vis vest grows each ring until it clears the shirt torso, so no shirt breaks through its lower edge",
+   "why": "Digest theme 'primitive or low-poly model where a kit model belongs', 6 runs and 16 rounds, the week's top theme, and queue kit-person-full-length-reads-as-mannequin at repeat 3 (nos. 54, 55, 56, 57). No. 57 frame 9's worker read as a mannequin to the art director in five readings and every judge in round 1, 'a ragged hem'; reproduced on its own call through the engine as a peplum tier from the clearance band cut flat at the waistband, and a ragged shirt fringe under every untucked worker's vest",
+   "files": [
+    "assets/js/kit/people.js"
+   ],
+   "verification": "Before and after proofs through render.py in the lastLight world (out/2026-10-22/tmp/machine/person_pages.py: no. 57 frame 9's call from behind and in front, seeds 23 and 56 with cap and hard hat front and back), read at full size; no. 57 frame 9 re-rendered from a copy of its HTML shows the waist tier gone and nothing else moved; a pose sheet (read, walk x4, official, sit_read, hands_on_hips, crowd of 14) shows no new clipping; python3 examples/kit/build.py --family people --world lastLight --surface concrete renders clean; python3 examples/kit/sizes.py --out out/2026-10-22/tmp/machine/person/sizes exits 0, 125 of 125. Two attempts were rejected by the proof: a smooth-min fillet (a jagged ridge on the same tier) and a vest measured against the whole shirt (a barrel, from the sleeves)",
+   "revert": "git revert 5560bfd9",
+   "how_i_would_know_this_was_wrong": "Judges or pixel critics name an untucked kit shirt as a bell, a balloon or a skirt, or a vest as standing off the body; or a deck's figure at a seed it used before changes its hair, hat or shirt colour (no random draw was added, so none should)"
+  },
+  {
+   "what": "ledger_check.py --exclusions prints the next caption room's brief (opening moves, structures, closes off the table) from every caption entry including the newest; CAPTION_CRAFT.md names it as the brief and says why the stored arrays are one run behind",
+   "why": "Queue caption-ledger-opening-moves-stale at repeat 2 (nos. 44, 45, 57) and its duplicate captions-derived-lists-lag-a-run. The stored *_recent lists are, by derived_lists' own definition, what the newest caption was held to, so a room briefed from them never sees the previous day's moves; no. 57's critic caught October 21st's move after the room wrote it, costing the one rewrite",
+   "files": [
+    "scripts/carousel/ledger_check.py",
+    "knowledge/carousel/CAPTION_CRAFT.md"
+   ],
+   "verification": "python3 scripts/carousel/ledger_check.py --self-test: five new cases, three of which FAIL when next_exclusions is replaced by the old derived_lists (shown by monkeypatch). On the real ledger --exclusions carries today's 'the who', 'Ladder' and close, which the stored lists omit; python3 scripts/carousel/ledger_check.py still exits 0, so nothing that judges the stored lists moved",
+   "revert": "git revert 43e9e72d",
+   "how_i_would_know_this_was_wrong": "A caption room briefed from --exclusions repeats a move the ledger check then fails, or the brief drifts from the doctrine's windows; or a run keeps briefing from captions.json because the routine's Phase 10 still says to (the proposal below)"
+  },
+  {
+   "what": "coherence_check reads the deck's type spine as rendered, from render_report.json's computed font_px when the report covers every slide by name, and from the slide HTML strings otherwise",
+   "why": "Queue type-spine-reads-html-only at repeat 1 (nos. 50 and 57), and one cause of audition-rebind-after-every-panel-repair at repeat 3: both runs wrote a no-op furniture size into every slide's HTML to pass a gate that read declarations, and on no. 50 that changed every HTML hash and threw away an accepted art review",
+   "files": [
+    "scripts/carousel/coherence_check.py"
+   ],
+   "verification": "python3 scripts/carousel/coherence_check.py --self-test: five new cases, three FAIL when the report reading is removed (shown by monkeypatch). Replayed: no. 57's shipped slides with every inline font-size stripped fail the old HTML reading and pass the rendered one. Swept every shipped deck through check_type_spine: 54 of 54 pass. A first cut that skipped decorative nodes failed no. 3 (2026-08-19), whose furniture is marked decorative, and was corrected before commit",
+   "revert": "git revert dd375c3c",
+   "how_i_would_know_this_was_wrong": "A deck whose frames visibly share no furniture size passes because a stale render report covered every slide name; or shipped_check's coherence sweep goes red on an old deck"
+  }
+ ],
+ "proposals_out_of_lane": [
+  {
+   "what": "prompts/daily_routine.md Phase 10: take the caption exclusions from `python3 scripts/carousel/ledger_check.py --exclusions`, not from captions.json",
+   "owner": "human",
+   "why": "The stored lists are one run behind by construction (43e9e72d); a run reading the routine literally still briefs its room from them (UPGRADE_BACKLOG 2026-10-22 item 4)"
+  },
+  {
+   "what": "A GATE_LESSONS entry: a gate that read the declaration and not the render (coherence_check's type spine)",
+   "owner": "human",
+   "why": "The gate change in dd375c3c; the entry's text is in UPGRADE_BACKLOG 2026-10-22 item 3"
+  },
+  {
+   "what": "A type-only audition re-reading (render.py canvas hash, studio brief), carried",
+   "owner": "human",
+   "why": "Queue audition-rebind-after-every-panel-repair at repeat 3; no. 57 read its audition seven times (UPGRADE_BACKLOG 2026-10-21 item 6)"
+  }
+ ],
+ "not_done": "The kit person's grip pose, vest cut, collar neck opening and skin chroma (measured C* 52 on no. 57's forearm, not moved by the sheen, so the SKIN palette; a published standard's values could not be confirmed this pass) carried in UPGRADE_BACKLOG 2026-10-22 item 1. 'Type sitting on the art', 6 runs and 14 rounds, got no change: its honest gate needs the id pass. qa-glyph-run-as-rule, grid-piece-count-reads-lit-ground-as-subject, article-test-screenshots-fixed-path and the detail floor carried. No frontier scan: the time went to the proofs"
+}
 }
