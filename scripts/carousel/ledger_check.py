@@ -198,6 +198,30 @@ def derived_lists(entries: list[dict], wins: dict[str, int]) -> dict[str, list[s
             "closing_moves_recent": [e["closing_move"] for e in prior[-wins["closing_move"]:]]}
 
 
+def next_exclusions(entries: list[dict], wins: dict[str, int]) -> dict[str, list[str]]:
+    """What is off the table for the NEXT caption, from every entry including the newest.
+
+    THE DEFECT THIS EXISTS FOR (weekly pass 2026-10-22, queue `caption-ledger-opening-moves-stale`
+    at repeat 2, met on nos. 44, 45 and 57). The three stored lists are, by `derived_lists`'s own
+    definition, the exclusions the NEWEST entry was held to: they slice the entries BEFORE the
+    newest date. That is the right subject for check 2, which proves the newest caption obeyed
+    them. It is the wrong brief for the next caption room, and the routine and CAPTION_CRAFT.md
+    both told the room to read them, so every room was briefed one run behind by construction and
+    never saw the previous day's own moves. No. 57's critic caught October 21st's move after the
+    room had already written it, and it cost a rewrite. `--derive` could never fix it, because the
+    stored lists were never wrong for the question they answer.
+
+    So the brief is its own derivation over ALL the entries, at the same doctrine windows, and
+    `ledger_check.py --exclusions` prints it. The stored lists are unchanged, as is everything
+    that judges them.
+    """
+    if not entries:
+        return {k: [] for k in DERIVED_KEYS}
+    return {"opening_moves_recent": [e["opening_move"] for e in entries[-wins["opening_move"]:]],
+            "structures_recent":    [e["structure"]    for e in entries[-wins["structure"]:]],
+            "closing_moves_recent": [e["closing_move"] for e in entries[-wins["closing_move"]:]]}
+
+
 def derive_text(cap_text: str, doctrine: str) -> str:
     """captions.json with the three derived lists rewritten, in the file's own formatting.
 
@@ -849,6 +873,33 @@ def self_test() -> int:
     ok("...and it is no longer counted among the entries that predate the measurement",
        misfiled_median(before["entries"][-1]) != [])
 
+    # ---- --exclusions, ADDED 2026-10-22. The next room's brief includes the newest entry.
+    # Replays no. 57: the stored lists, derived correctly, omitted October 21st's own moves, and
+    # the room was briefed from them. The derivation that judges must stay as it is, and the brief
+    # must differ from it by exactly the newest entry.
+    brief_rows = ledger([("2026-10-18", "the two things", "pivot", CLOSE_B),
+                         ("2026-10-20", "the number that is wrong", "ledger", CLOSE_A),
+                         ("2026-10-21", "the correction", "two columns", CLOSE_B)])
+    nxt = next_exclusions(brief_rows["entries"], W)
+    ok("the stored lists still leave out the newest entry (what it was held to)",
+       "the correction" not in brief_rows["opening_moves_recent"], brief_rows["opening_moves_recent"])
+    ok("--exclusions briefs the next room with the newest entry's opening, structure and close",
+       nxt["opening_moves_recent"][-1] == "the correction" and nxt["structures_recent"][-1] == "two columns"
+       and nxt["closing_moves_recent"] == [CLOSE_B], str(nxt))
+    ok("...at the doctrine's windows, not longer",
+       all(len(nxt[k]) <= W[w] for k, w in (("opening_moves_recent", "opening_move"),
+           ("structures_recent", "structure"), ("closing_moves_recent", "closing_move"))), str(nxt))
+    ok("a brief taken the old way, from the stored lists, would go red here",
+       derived_lists(brief_rows["entries"], W) != nxt, "the brief and the stored lists agree")
+    long_rows = ledger([(f"2026-09-{d:02d}", o, st, CLOSE_A if d % 2 else CLOSE_B) for d, o, st in [
+        (1, "the object", "pivot"), (2, "the who", "ledger"), (3, "the deadline", "ladder"),
+        (4, "the place", "clock"), (5, "the plain question", "zoom in"), (6, "the two things", "pivot"),
+        (7, "the correction", "ledger"), (8, "the quiet decision", "ladder")]])
+    nl = next_exclusions(long_rows["entries"], W)
+    ok("--exclusions drops what has aged out of a window",
+       "the object" not in nl["opening_moves_recent"] and "the who" not in nl["opening_moves_recent"]
+       and nl["opening_moves_recent"][-1] == "the quiet decision", str(nl))
+
     print("\nledger_check self-test: " + ("all passed" if not fails else f"{fails} FAILED"))
     return 1 if fails else 0
 
@@ -858,6 +909,11 @@ def main() -> int:
     ap.add_argument("--date", help="run date, to read out/<date>/figures.json")
     ap.add_argument("--ledger-dir", default="ledger/carousel")
     ap.add_argument("--self-test", action="store_true")
+    ap.add_argument("--exclusions", action="store_true",
+                    help="print, as JSON, the opening moves, structures and closes that are off "
+                         "the table for the NEXT caption, from every entry including the newest. "
+                         "This is the caption room's brief; the stored lists are one run behind it "
+                         "by definition. Writes nothing")
     ap.add_argument("--derive", action="store_true",
                     help="rewrite captions.json's three derived exclusion lists from its own "
                          "entries, then check. Writes nothing else and clears no other finding")
@@ -871,6 +927,13 @@ def main() -> int:
         if not p.exists():
             print(f"ledger_check: {p} does not exist", file=sys.stderr)
             return 2
+    if a.exclusions:
+        cap = json.loads(cp.read_text(encoding="utf-8"))
+        nxt = next_exclusions(cap.get("entries") or [],
+                              windows((REPO_ROOT / DOCTRINE).read_text(encoding="utf-8")))
+        newest = (cap.get("entries") or [{}])[-1].get("date")
+        print(json.dumps({"after": newest, "off_the_table": nxt}, indent=1))
+        return 0
     if a.derive:
         before = cp.read_text(encoding="utf-8")
         after = derive_text(before, (REPO_ROOT / DOCTRINE).read_text(encoding="utf-8"))
