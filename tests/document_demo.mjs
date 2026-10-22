@@ -22,6 +22,49 @@ const binary = process.env.PLAYWRIGHT_CHROMIUM || '/opt/pw-browsers/chromium';
 const browser = await chromium.launch(fs.existsSync(binary) ? {executablePath:binary} : {});
 let assertions = 0;
 const check = (label, condition) => { assert.ok(condition, label); assertions++; console.log(`ok ${label}`); };
+const anchorEvidence = [];
+// Visibility alone passes when the sticky masthead covers the first labels. Measure the
+// settled native fragment landing, including real fonts and the section's reveal transition.
+async function checkServicesAnchor(page, label) {
+  await page.evaluate(() => document.fonts.ready);
+  await page.waitForFunction(() => {
+    const start = document.querySelector('#start');
+    return location.hash === '#start' && scrollY > 0 && getComputedStyle(start).opacity === '1';
+  });
+  // Poll from the test process so settling also works with page scripts disabled.
+  let previous, stable = 0;
+  for (let sample = 0; sample < 50 && stable < 3; sample++) {
+    await new Promise(resolve => setTimeout(resolve,100));
+    const top = await page.locator('#start').evaluate(el => el.getBoundingClientRect().top);
+    stable = previous !== undefined && Math.abs(top - previous) < 0.1 ? stable + 1 : 0;
+    previous = top;
+  }
+  assert.ok(stable >= 3,`${label} fragment scroll settles`);
+  const geometry = await page.evaluate(() => {
+    const header = document.querySelector('.masthead');
+    const rect = selector => {
+      const r = document.querySelector(selector).getBoundingClientRect();
+      return {top:r.top, bottom:r.bottom};
+    };
+    return {header:rect('.masthead'), sticky:getComputedStyle(header).position === 'sticky',
+      start:rect('#start'), heading:rect('#start h2'), nameLabel:rect('label[for="lf-name"]'),
+      nameInput:rect('#lf-name'), companyLabel:rect('label[for="lf-co"]'),
+      viewport:{width:innerWidth,height:innerHeight}, scrollY};
+  });
+  anchorEvidence.push({label, ...geometry});
+  if (SCREENSHOTS) {
+    fs.mkdirSync(SCREENSHOTS,{recursive:true});
+    await page.screenshot({path:path.join(SCREENSHOTS,label+'.png')});
+    fs.writeFileSync(path.join(SCREENSHOTS,'services-anchor.json'),JSON.stringify(anchorEvidence,null,2)+'\n');
+  }
+  const edge = geometry.sticky ? geometry.header.bottom : 0;
+  check(`${label} enquiry heading clears the navigation`, geometry.heading.top >= edge && geometry.heading.bottom <= geometry.viewport.height);
+  if (geometry.viewport.width >= 896) {
+    check(`${label} first labels and input clear the navigation`,
+      geometry.nameLabel.top >= edge && geometry.companyLabel.top >= edge &&
+      geometry.nameInput.top >= edge && geometry.nameInput.bottom <= geometry.viewport.height);
+  }
+}
 try {
   for (const mode of [
     {name:'desktop-dark', width:1440, height:1000, colorScheme:'dark'},
@@ -76,6 +119,7 @@ try {
     check(`${mode.name} no browser storage is written`, await page.evaluate(() => sessionStorage.length === 0 && localStorage.length === 0));
     await page.getByRole('link', {name:'Discuss one workflow',exact:true}).click();
     check(`${mode.name} CTA reaches Services enquiry`, page.url().endsWith('/services/#start') && await page.locator('#servicesform').isVisible());
+    await checkServicesAnchor(page,mode.name+'-cross-page');
     check(`${mode.name} existing contact fields remain`, await page.locator('#servicesform input[name="email"]').count() === 1 && await page.locator('#servicesform textarea[name="message"]').count() === 1);
     await page.goBack();
     check(`${mode.name} back returns to working demo`, await page.locator('#di-query').isVisible());
@@ -104,5 +148,60 @@ try {
   check('no-script source links remain available', await page.locator('[data-source-link]').count() === 5);
   check('no-script controls are not misleading', !await page.locator('#di-query').isVisible());
   await context.close();
+  for (const mode of [
+    {name:'reported-desktop',width:1180,height:757,reducedMotion:'no-preference'},
+    {name:'wrapped-desktop',width:897,height:757,reducedMotion:'reduce'},
+    {name:'tablet',width:768,height:1024,reducedMotion:'reduce',isMobile:true,hasTouch:true},
+    {name:'small-phone',width:320,height:700,reducedMotion:'reduce',isMobile:true,hasTouch:true},
+    {name:'no-script-desktop',width:1180,height:757,javaScriptEnabled:false,reducedMotion:'reduce'},
+  ]) {
+    const {name, width, height, ...options} = mode;
+    const context = await browser.newContext({...options,viewport:{width,height}});
+    const page = await context.newPage();
+    const external = [], errors = [];
+    page.on('pageerror',error => errors.push(error.message));
+    page.on('console',message => { if (message.type() === 'error') errors.push(message.text()); });
+    page.on('response',response => { if (response.status() >= 400) errors.push(response.url()); });
+    await context.route('**/*',route => {
+      if (route.request().url().startsWith(origin)) return route.continue();
+      external.push(route.request().url());
+      return route.abort();
+    });
+    await page.goto(origin+'/services/#start');
+    await checkServicesAnchor(page,mode.name+'-direct');
+    await page.goto(origin+'/services/');
+    const cta = page.getByRole('link',{name:'Discuss one workflow',exact:true}).first();
+    await cta.click();
+    await checkServicesAnchor(page,mode.name+'-same-page');
+    // Repeat the same hash after the reader has moved away, then activate it with Enter.
+    await cta.focus();
+    await page.keyboard.press('Enter');
+    await checkServicesAnchor(page,mode.name+'-repeat-keyboard');
+    for (let tab = 0; tab < 6 && await page.locator('#lf-name').evaluate(el => el !== document.activeElement); tab++) {
+      await page.keyboard.press('Tab');
+    }
+    check(`${mode.name} keyboard reaches the name field`,await page.locator('#lf-name').evaluate(el => el === document.activeElement));
+    const field = await page.locator('#lf-name').boundingBox();
+    const label = await page.locator('label[for="lf-name"]').boundingBox();
+    const edge = await page.locator('.masthead').evaluate(el => getComputedStyle(el).position === 'sticky' ? el.getBoundingClientRect().bottom : 0);
+    check(`${mode.name} focused name field and label stay readable`,label.y >= edge && field.y + field.height <= mode.height);
+    if (name === 'reported-desktop') {
+      for (const resizedWidth of [897,390,1180]) {
+        await page.setViewportSize({width:resizedWidth,height});
+        await cta.focus();
+        await page.keyboard.press('Enter');
+        await checkServicesAnchor(page,`${name}-resized-${resizedWidth}`);
+      }
+    }
+    await page.goto(origin+'/services/document-demo/');
+    await page.getByRole('link',{name:'Discuss one workflow',exact:true}).click();
+    await checkServicesAnchor(page,mode.name+'-cross-page');
+    await page.goBack();
+    await page.goForward();
+    await checkServicesAnchor(page,mode.name+'-history');
+    check(`${mode.name} anchor navigation has no page errors ${JSON.stringify(errors)}`,errors.length === 0);
+    check(`${mode.name} anchor navigation makes no external requests`,external.length === 0);
+    await context.close();
+  }
   console.log(`document_demo: ${assertions} assertions passed`);
 } finally { await browser.close(); await new Promise(resolve => server.close(resolve)); }

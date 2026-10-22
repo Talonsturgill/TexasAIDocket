@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en-US">
 <head>
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self' 'sha256-49Byu3Xo+XZhPR12eGnwg7lHBB8NHi74OPUShkMXURY=' 'sha256-UZxH/th0q7M3+fSeCx8nRDpczxrqk7auKXy7TTLChmA=' 'sha256-F9TOw90k0mV6PXqA00p8PBXMbwkBuJOI0e5xmIraedM=' https://challenges.cloudflare.com; style-src 'self'; style-src-attr 'unsafe-inline'; img-src 'self' data: https://raw.githubusercontent.com; media-src 'self' https://raw.githubusercontent.com; font-src 'self'; connect-src 'self' https://formsubmit.co https://challenges.cloudflare.com https://texas-ask.talon-sturgill.workers.dev https://texas-scan.talon-sturgill.workers.dev; frame-src https://challenges.cloudflare.com; form-action 'self' https://formsubmit.co">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self' 'sha256-49Byu3Xo+XZhPR12eGnwg7lHBB8NHi74OPUShkMXURY=' 'sha256-THk0tHpi2//No3jkQBdT/8eFGzaQEVpqnxiL0EAF7a8=' 'sha256-UZxH/th0q7M3+fSeCx8nRDpczxrqk7auKXy7TTLChmA=' 'sha256-F9TOw90k0mV6PXqA00p8PBXMbwkBuJOI0e5xmIraedM=' https://challenges.cloudflare.com; style-src 'self' 'sha256-a6QWUWSmJFewvGlsphHwCX9ihExkEAZ0+h4Gm1IXXzk='; style-src-attr 'unsafe-inline'; img-src 'self' data: https://raw.githubusercontent.com; media-src 'self' https://raw.githubusercontent.com; font-src 'self'; connect-src 'self' https://formsubmit.co https://challenges.cloudflare.com https://texas-ask.talon-sturgill.workers.dev https://texas-scan.talon-sturgill.workers.dev; frame-src https://challenges.cloudflare.com; form-action 'self' https://formsubmit.co">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Services · Texas AI Docket</title>
@@ -154,7 +154,29 @@
     </form>
   </div>
 </section>
+<style>
+#start { scroll-margin-top:calc(var(--services-header-height,4rem) + 1rem); }
+@media (max-width:56rem) {
+  #start { scroll-margin-top:calc(var(--services-header-height,0px) + 1rem); }
+}
+</style>
 <script>
+(function(){
+  var start=document.getElementById('start'), header=document.querySelector('.masthead');
+  if(!start||!header) return;
+  function measure(){
+    var height=getComputedStyle(header).position==='sticky' ? header.getBoundingClientRect().height : 0;
+    start.style.setProperty('--services-header-height',height+'px');
+  }
+  measure();
+  if('ResizeObserver' in window) new ResizeObserver(measure).observe(header);
+  addEventListener('resize',measure,{passive:true});
+  // A native fragment click can arrive before the resize notification is delivered.
+  document.querySelectorAll('a[href="#start"]').forEach(function(link){
+    link.addEventListener('click',measure);
+  });
+})();
+</script><script>
 (function(){
   document.querySelectorAll('form[data-desk-form]').forEach(function(form){
     var note=form.querySelector('[data-submit-state]');
