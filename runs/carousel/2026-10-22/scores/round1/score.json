@@ -1,0 +1,239 @@
+{
+ "weighted_score": 7.12,
+ "judges": [
+  7.02,
+  7.18,
+  6.83
+ ],
+ "spread": 0.35,
+ "criteria": {
+  "artwork_craft": {
+   "score": 7.0,
+   "weight": 0.22,
+   "judges": [
+    7.0,
+    6.5,
+    7.0
+   ]
+  },
+  "deck_coherence": {
+   "score": 8.0,
+   "weight": 0.12,
+   "judges": [
+    8.0,
+    8.0,
+    8.0
+   ]
+  },
+  "claim_integrity": {
+   "score": 7.5,
+   "weight": 0.2,
+   "judges": [
+    7.0,
+    8.0,
+    7.5
+   ]
+  },
+  "story_and_stakes": {
+   "score": 6.5,
+   "weight": 0.16,
+   "judges": [
+    6.5,
+    6.5,
+    5.5
+   ]
+  },
+  "sequence_and_momentum": {
+   "score": 7.2,
+   "weight": 0.1,
+   "judges": [
+    7.2,
+    7.5,
+    7.0
+   ]
+  },
+  "voice": {
+   "score": 6.8,
+   "weight": 0.1,
+   "judges": [
+    6.8,
+    7.0,
+    6.5
+   ]
+  },
+  "variety": {
+   "score": 6.8,
+   "weight": 0.1,
+   "judges": [
+    6.8,
+    7.0,
+    6.0
+   ]
+  }
+ },
+ "hard_fails": [],
+ "hard_fails_by_judge": [],
+ "ship": false,
+ "threshold": 8.0,
+ "over_threshold": false,
+ "method": "per-criterion median across three judges, then weighted by the rubric",
+ "threshold_dissents": [
+  "judge 1 refused on the threshold, not on a fault, and scored 7.02 against a 8.0 bar. That dissent is carried in the median",
+  "judge 2 refused on the threshold, not on a fault, and scored 7.18 against a 8.0 bar. That dissent is carried in the median",
+  "judge 3 refused on the threshold, not on a fault, and scored 6.83 against a 8.0 bar. That dissent is carried in the median"
+ ],
+ "threshold_dissents_by_judge": [
+  {
+   "judge": 1,
+   "score": 7.02,
+   "reason": "judge 1 refused on the threshold, not on a fault, and scored 7.02 against a 8.0 bar. That dissent is carried in the median"
+  },
+  {
+   "judge": 2,
+   "score": 7.18,
+   "reason": "judge 2 refused on the threshold, not on a fault, and scored 7.18 against a 8.0 bar. That dissent is carried in the median"
+  },
+  {
+   "judge": 3,
+   "score": 6.83,
+   "reason": "judge 3 refused on the threshold, not on a fault, and scored 6.83 against a 8.0 bar. That dissent is carried in the median"
+  }
+ ],
+ "artwork_weakest_frames": [
+  {
+   "slide": 4,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "It reads as a stone bar chart. Three flat frontal pier faces with blotchy mottle, a peach rail on two sticks for the datum and a flat navy sky with no pool or ground contact. It is the 'chart in hardware' the build risk named, and it breaks the stair vocabulary.",
+     "fix": "Swing the camera to a low three-quarter from the left at about 0.45 m, as the storyboard planned. That way the 50 and 80 percent landings show their tread tops and nosings in the key and the drop to the 100 percent landing is a silhouette edge. Replace the post-mounted rail with the datum_wall and its brass band behind, as on frames 3, 7 and 9."
+    },
+    {
+     "judge": 2,
+     "problem": "A front elevation of three flat mottled slabs under a goalpost brass rail. It reads as a bar chart in stone, with no tread tops, no ground contact, blotch noise on the faces, and the right rail post striking through the 'base 98.3' label (display x about 1415, y about 930).",
+     "fix": "Re-shoot with the planned camera: eye 0.45 m on the 50% landing, looking along the walk at about 35 degrees oblique, so each landing shows a lit nosing and a top surface and the 80-to-100% drop rakes into shadow. Replace the goalpost with the datum wall's brass strip behind, and move tooth from height into albedo to kill the blotches."
+    },
+    {
+     "judge": 3,
+     "problem": "Three front-on mottled slabs read as a bar chart. The 0% landing the dek cites (86.3) is missing, and the brass post strikes the 'base 98.3' label.",
+     "fix": "Add the 0% landing at its computed height on the left. Turn the camera to a low three-quarter oblique so each landing shows its top, nosing and cast. Move the base label left of the post."
+    }
+   ]
+  },
+  {
+   "slide": 6,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "A lumpy, dough-like rock scatter owns the middle third and the subject is small in the bottom third. The junk tread is brown with dark specks rather than green and amber glass aggregate, so the junk-against-clean contrast is value only.",
+     "fix": "Cut the scatter to fine dark grit, drop the 16000-count rocks to under a fifth of their scale, and move the camera in and down to about 0.7 m so the two stacks fill the lower half. Give the junk slab the frame 2 glass chip aggregate material."
+    },
+    {
+     "judge": 2,
+     "problem": "The subject fills about a quarter of the frame. A dense field of brown pebble blobs owns the middle band. The clean treads are stacked, so 4.8 never reads as a length, and the junk tread reads as speckled brown rather than glass aggregate.",
+     "fix": "Lay the junk tread and the clean treads end to end in one row as the CRAFT PLAN says, the last sawn to 0.8. Drop the camera to 1.1 m and move in until the row spans the full width across the lower half. Thin the scatter by about 80% inside the pool, and give the junk tread visible green and amber chips."
+    },
+    {
+     "judge": 3,
+     "problem": "The two stacks sit in the bottom third under a busy mid-tone pebble field that fills the middle of the frame in grey-brown.",
+     "fix": "Cut the 16,000 rock scatter to a sparse foreground grit and move the camera lower and closer, so the junk tread and the 4.8 stack fill a third to half of the frame against dark ground."
+    }
+   ]
+  },
+  {
+   "slide": 9,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The kit figure is a mannequin facing the wall with an orange forearm raised. That forearm is the most saturated warm note below the brass and pulls the eye off the gap. A flat world-edge horizon shows at the left of the wall.",
+     "fix": "Move the person about 0.6 m right onto the broken flight's first tread and yaw them toward the missing treads, with a darker sleeve so the arm is not the accent. Extend the datum wall or pan right about 3 degrees so the left horizon falls out of frame."
+    },
+    {
+     "judge": 2,
+     "problem": "The kit figure reads as a mannequin. Its bare orange forearm is the most saturated note below the brass, and it stands between the stairs facing the wall, which pulls focus off the gap in the broken flight.",
+     "fix": "Move the figure about 0.6 m right onto the broken flight's first tread, yaw it toward the missing treads, and set its sleeve and skin to the deck's muted values so the gap stays the brightest edge."
+    },
+    {
+     "judge": 3,
+     "problem": "The kit person reads as a low-poly game mannequin at feed size.",
+     "fix": "Turn the figure fully away and make it smaller, a silhouette against the lit pier face, so it gives scale without a face or hands to read."
+    }
+   ]
+  },
+  {
+   "slide": 1,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The dek's last two lines run across the landing slab and the upper treads, so the cover's subject is crossed by type rather than sitting in quiet the picture made.",
+     "fix": "Narrow the dek's measure so its lines end left of design x 700, or drop the camera target about 60 px so the landing clears the dek's last line."
+    },
+    {
+     "judge": 2,
+     "problem": "The dek's last two lines run across the upper treads and the landing's front edge (preflight design x about 790 to 1000, y about 520 to 580), so the cover's subject is crossed by type at full size and in the thumb.",
+     "fix": "Narrow the dek measure so its lines end left of design x 760, or lower the camera target about 40 px so the landing clears the dek's last line."
+    },
+    {
+     "judge": 3,
+     "problem": "The stair's top landing runs behind the dek's last two lines, so the cover's type and art collide.",
+     "fix": "Shift the stair right and down (or lower the camera) so the landing sits below the dek baseline in the quiet dark band."
+    }
+   ]
+  },
+  {
+   "slide": 2,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 3,
+     "problem": "Type sits on a hard-edged flat black plate above an overhead relief that has no world or stair. The control rods run off the right edge, so the 'lengths at one scale' claim can't be checked.",
+     "fix": "Pull the relief camera back so every rod and chip has both ends in frame. Extend the surface to the top under a darkening wash so there is no plate edge, and drop the hard horizontal cut at y about 890."
+    }
+   ]
+  },
+  {
+   "slide": 5,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "Nearly a duplicate of the cover (same stair, pier at right, flight from lower left, same camera side), so the filmstrip stalls and the bare stringers carry no new view.",
+     "fix": "Move the camera to the stair's open side and below, at eye 1.0 m as planned, so the bare notched stringers silhouette against the sky as a rising diagonal from lower right to upper left. Crop the pier to its edge, so the bare run is the subject and not the stair as a whole."
+    }
+   ]
+  },
+  {
+   "slide": 7,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "Uniform CG brick fills about 60% of the frame. The 'repaired' stair has the same dark treads as every broken one, so the rebuilt state is invisible. The brass reads as peach plaster.",
+     "fix": "Put the camera on the repaired top landing as planned, so the landing's fresh pale limestone fills the bottom third with the brass line crossing at the computed 1.04 m above it. Re-material that stair's treads in lifted #B9AE98 limestone, and give the brass roughness 0.15 with one specular streak."
+    }
+   ]
+  },
+  {
+   "slide": 8,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The four flights are thin ladders running off the top. The model labels are 22 px, under the 24 px floor (machine_qa tiny-text on all five). The empty pad and its chalk outline, the frame's focal point, is small and dim at the right, and the lower half is flat ground under type.",
+     "fix": "Lower the camera to about 0.9 m and move it 4 m closer so the four flight feet and the empty pad fill the middle band at a larger size. Light the chalk outline with the pool's centre, and set the labels at 26 px."
+    }
+   ]
+  }
+ ],
+ "rounds_derived": 1,
+ "rounds": 1,
+ "rounds_source": "this module's own log of cards it has scored",
+ "rounds_declared": 1,
+ "rung": 8.0,
+ "work_order": "no judge found a hard fail, and the median 7.12 is under this round's rung of 8.0. KEEP EDITING: fix the judges' named defects, re-render and re-score. At the round cap the finished deck ships whatever it scored. Start with the frames the judges charge the art for, in this order, slides 4, 6, 9, 1, 2, 5, 7, 8 (`artwork_weakest_frames`), one concrete change each",
+ "craft_floor": "pending, because a deck under its rung is sent back by the work order first"
+}

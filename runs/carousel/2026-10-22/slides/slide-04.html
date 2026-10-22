@@ -1,0 +1,80 @@
+<!doctype html>
+<!-- 2026-10-22, frame 4 of 9. Archetype CLOSE_CROP. A spatial scene through txthree.js in the deck's lastLight world: from just above the half junk landing of the variable tracking walk, one short riser up to the 80 percent landing and then a sheer pier face down to the all junk landing, each landing's height its score at the deck's one scale, the brass datum high on the wall behind. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site" style="font-size:24px">texasaidocket.com</div>
+<h1 class="hook" id="hook">Half junk scored below 80% junk</h1>
+<p class="dek" data-follow="24">On a variable tracking test the same model scored 86.3 with no junk, 59.4 at half junk, 60.7 at 80% and 22.4 with all junk. The fall was not steady. Brass marks the base model at 98.3. Drawn to illustrate, heights at one scale.</p>
+<div class="lab" id="v0">0% 86.3</div>
+<div class="lab" id="v50">50% 59.4</div>
+<div class="lab" id="v80">80% 60.7</div>
+<div class="lab" id="v100">100% 22.4</div>
+<div class="lab" id="vb">base 98.3</div>
+<script>window.FIG = {"junk_ratios_m1":[100,80,50,20,0],"arc_cot_m1":[57.2,64.1,69.3,71.2,72.1],"arc_cot_base":77.2,"arc_cot_j100":57.2,"arc_cot_j80":64.1,"arc_cot_j50":69.3,"arc_cot_j20":71.2,"arc_cot_j0":72.1,"ruler_overall_m1":[71.0,79.0,80.0,89.7,89.7],"ruler_overall_base":93.9,"ruler_overall_j100":71.0,"ruler_overall_j80":79.0,"ruler_overall_j50":80.0,"ruler_overall_j20":89.7,"ruler_overall_j0":89.7,"ruler_cwe_m1":[52.3,62.7,61.8,83.3,83.7],"ruler_cwe_base":91.8,"ruler_cwe_j100":52.3,"ruler_cwe_j80":62.7,"ruler_cwe_j50":61.8,"ruler_cwe_j20":83.3,"ruler_cwe_j0":83.7,"var_tracking_m1":[22.4,60.7,59.4,85.5,86.3],"var_tracking_base":98.3,"var_tracking_j100":22.4,"var_tracking_j80":60.7,"var_tracking_j50":59.4,"var_tracking_j20":85.5,"var_tracking_j0":86.3,"posts_million":1,"junk_tokens_lt":30,"junk_pop_gt":500,"control_tokens_gt":100,"control_pop_eq":0,"tokens_million":1.22,"models":4,"no_thinking_all_pct":70,"no_thinking_m1_pct":84,"it_multiple":4.8,"it_from_k":5,"it_to_k":50,"cpt_million":2.4,"gap_arc_pct":17.3,"reflect_iters":6,"arc_drop_pts":14.9};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-22-stair.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Not a steady fall", counter: "04 / 09", src: "c30 c31 c36", fit: { min: 72, max: 96, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 30, near: 0.03, far: 3000 });
+  /* THE FIGURES, read by name from figures.json (window.FIG): var_tracking_m1 at the 0, 50, 80 and 100 percent
+   * junk shares and var_tracking_base, each at the deck's CH.S metres per point */
+  const VT = [4, 2, 1, 0].map((i) => [FIG.junk_ratios_m1[i], FIG.var_tracking_m1[i]]);   /* 0, 50, 80, 100 percent */
+  const VT_BASE = FIG.var_tracking_base;
+  const LW = 1.8;
+  /* the walk: four landings side by side, no junk first, so the fall, the short step up and the cliff read in order */
+  const piers = VT.map(([pct, score], i) => {
+    const p = K.make('landing_pier', { height: score * CH.S, width: LW, depth: 2.2, dose: pct / 100, seed: 60 + i });
+    p.position.set((i - 1) * LW, 0, 0); TXT.add(R, p); return p;
+  });
+  const wall = K.make('datum_wall', { length: 24, height: VT_BASE * CH.S + 0.45, datum: VT_BASE * CH.S, seed: 13 });
+  wall.position.set(0, 0, -3.4); TXT.add(R, wall);
+  /* the wall stands behind the walk and is held darker, so the landings separate from it by value */
+  wall.traverse((m) => { if (m.isMesh && m.material && m.material.map) { m.material = m.material.clone(); m.material.color.multiplyScalar(0.55); } });
+  /* the flight that climbs to the no junk landing, so the walk reads as stairs */
+  const up = K.make('stair_flight', { rise: VT[0][1] * CH.S, dose: 0, landing: 0, pier: false, seed: 64 });
+  up.rotation.y = -Math.PI / 2; up.position.set(-1.5 * LW + up.userData.landingZ, 0, 0); TXT.add(R, up);
+  TXT.ground(R, { surface: 'caliche', size: 600, color: 0x5a5244, seed: 29, tile: 4 });
+  TXT.scatter(R, { kind: 'rock', count: 500, area: [-10, -3, 12, 8], avoid: [[-12, -1.3, 4.6, 1.3]], seed: 41, scale: [0.03, 0.1], colors: [0x5e554a, 0x4a4238, 0x6a5e50] });
+  /* a low three quarter from the front left, the eye a little above the half junk landing, so every landing shows
+   * its top and lit nosing and the cliff after 80 percent falls away into shadow on the right */
+  const top50 = VT[1][1] * CH.S;
+  const from = [-7.5, top50 + 0.45, 15.5];
+  const look = CH.aim(THREE, R, TXT, from, [0.9, top50 - 0.9, 0.2], 540, 1010, 30);
+  TXT.frame(R, { fov: 30, from, look });
+  TXT.sky(R);
+  /* the metal's base is held dark on this frame, so its face glows in the accent instead of mirroring the sky */
+  CH.brassMat(THREE).color.set(0x7a4c2c);
+  CH.warm(R, 0.25);
+  { const spec = CH.rigSpec(W, 16, 4096); TXT.deckRig(R, spec, CH.rigOpts([1, 2.5, 0], { distance: 40, shadowFar: 120 })); }
+  CH.unacne(R, 0.02);
+  piers.forEach((p) => TXT.contact(R, p)); TXT.contact(R, up);
+  TXT.stage(R, [up, ...piers], { behind: 0.3, depth: 1.4, poolInner: 3.4, poolOuter: 9 });
+  TXT.weather(R, { grime: 0.25, height: 0.4, mottle: 0.3 });
+  const ids = ['v0', 'v50', 'v80', 'v100'];
+  const nudge = [[0, -46], [-56, -46], [64, -46], [0, -46]];   /* the two near level landings' labels part left and right */
+  piers.forEach((p, i) => { CH.pin(THREE, R, ids[i], [p.position.x, p.userData.top + 0.02, 0.6], nudge[i][0], nudge[i][1]); document.getElementById(ids[i]).style.transform = 'translateX(-50%)'; });
+  CH.pin(THREE, R, 'vb', [2.6, VT_BASE * CH.S, -3.15], 0, 14);
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0.4, pad: 0, fade: 30, veil: 0.2, footWash: 0.45 });
+  CH.knock(cx, [".tx-site", ".src", "#v0", "#v50", "#v80", "#v100", "#vb"], 0.5);
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

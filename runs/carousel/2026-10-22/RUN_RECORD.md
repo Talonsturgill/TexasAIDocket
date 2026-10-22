@@ -85,3 +85,57 @@ deck ran on October 12th), H&P's rig floor robots (no Texas place and no AI in t
 survey counts (journalism only), the Alpha pilots in Houston, Fort Davis and Aldine (the Alpha charter was no. 42 on
 October 4th). `texan_check` at selection: places Austin, Brazos County and College Station, no body, no deadline, no
 next step, so the close has to carry what follows.
+
+## The deck
+
+- **Directors and plan.** Nine dossiers, CRAFT PLAN, continuity MOTIF_EVOLUTION, CAMERA_MOVE and VALUE_ARC, VALUE
+  CUT at frame 6. One scale for every score, 0.06 m per point (`CH.S`), so a landing's height is its score and the
+  brass datum is the base model's. Counts from figures.json: five doses, three variable tracking landings, the bare
+  share of the carcass from the 84% No Thinking share, four whole treads and one sawn to 0.8 for 4.8 times the junk
+  tokens, four flights for four models.
+- **The chassis** (`assets/js/deck/2026-10-22-stair.js`) built five models the kit lacks: an open stair flight with
+  weathering steel stringers and aggregate treads, a landing on a limestone pier, a coursed datum wall with a brass
+  band, one loose cast tread and a chalked pad. They are queued for the weekly lift.
+- **The audition** took five readings before 1, 3 and 9 were accepted. Revise on the first build (a cork aggregate,
+  flat stone, a frontal frame 3 with no piers). Accept on the second. Revise twice more after the datum band changed:
+  hung down from the datum it ate the shortfall under the 0% landing, its coplanar accent plane z-fought into a moire
+  the critics read as a screen, then self-lit it read as a painted stripe, and the cover's feet were out of frame.
+  Accept on the fifth, with lit brass standing 4 cm proud, warm shadow-side steel and a cover standing on its ground.
+- **Pixel review** (two rounds on all nine, smaller tier, then one recheck of 4, 6, 7 and 8 after the flow pass).
+  Copy caught in review: "viral" on the cover was stronger than c18 and c19 say, "open" in "four open models" rests
+  on no claim, "the clean data" on slide 6 named the other repair, slide 9's dek read as if better data caused the
+  difficulty (c68 says the opposite), slide 7 said "model" where c47 says "models". All rewritten. Every critic read
+  the body face's straight apostrophe as curly; the DOM carries U+0027 throughout.
+- **One flow pass** predicted art 6.6, weakest 4, 7, 6, 8 and 2. Repaired one change each: frame 4 rebuilt as a low
+  side profile under a brass rail on posts, off the shared wall; frame 7 as a three quarter view of the whole repaired
+  flight with a fresh limestone landing; frame 6's stacks with every end in frame and worked ground behind; frame 8's
+  flights two metres apart with the pad in line as the fifth place. Not done: frame 2 (the relief), 1, 3 and 9 (bound
+  to the accepted audition), and frame 5, whose restaging under the open side rendered as a silhouette below the
+  detail floor and was reverted. The limestone mottle the flow critic named on five frames lives in the chassis and
+  was left, because changing it reopens the accepted audition.
+
+## The panel
+
+Three judges each round, combined by `panel.py`. Read `score.json` for every figure. The cards were written to
+`score-<lens>.json` from the judges' hand-backs as returned.
+
+- **Round 1**: no hard fail, median 7.12 under the 8.0 rung. All three named frame 4 first (a stone bar chart), then
+  6, 9 and 1. Integrity named slide 8's "four models" against the run's own c58, the appendix test on Llama3 70B
+  Instruct, and no slide naming Twitter/X; it also found the frame code holding typed constants beside comments that
+  said "from figures.json". Repaired, one change each where a frame was named: frame 4 rebuilt with the no junk
+  landing it cited and never drew, under the datum wall, from a low three quarter so every landing shows its top and
+  the cliff falls into shadow; frame 6's treads narrowed so the camera comes in with every end in frame, the scatter
+  cut to fine grit; frame 9's figure turned up the broken flight and held under a fifth of the frame; frame 1's dek
+  measure narrowed off the landing; frame 2's slivers kept whole in frame and its top edge feathered into the dark;
+  frame 8's labels on one baseline at the type floor. Slide 8 now names Twitter/X and the 70B result (c15, c58) and
+  says "Four main models". Every frame now reads its figures by name from figures.json, written into the page at
+  build time by `fig.py`, so no frame carries a typed number. The caption's opening line was rewritten, which two
+  judges called thin.
+- **Round 2**: no hard fail, median 7.16 under the 7.7 rung. Every judge again named frame 4 first, then 7, 6, 8
+  and 9. Integrity found slide 8's 57.8 and 52.7 for the 70B model readable against the chain of thought scores on
+  slides 3 and 7 (it is a different ARC Challenge measure), and the 84% stated without its junk measure. Repaired:
+  slide 8 now says the 70B model also fell, with no figure to misread; slide 5 says the 84% is for junk defined by
+  engagement; frame 4's eye lowered to just above the landings so the short riser is not inflated; frame 7 framed
+  tighter on the repaired flight with the wall a step darker; frame 6's label brought to its tread; frame 9's figure
+  in dark matte cloth, near a silhouette against the lit pier. A finer pier grain on frame 4 tiled visibly and was
+  reverted.

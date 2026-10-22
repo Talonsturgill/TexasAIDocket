@@ -1,0 +1,82 @@
+<!doctype html>
+<!-- 2026-10-22, frame 8 of 9. Archetype GRID. A spatial scene through txthree.js in the deck's lastLight world: four open stairs side by side, one per open model the study tested, running out of the top of the frame so no height is read, beside a bare concrete pad with a chalk outline and no stair, where no closed model was tested. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>.hook { top:800px !important; } .lab { font-size:24px !important; } #m2, #m3 { white-space:pre-line !important; text-align:center; }</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site" style="font-size:24px">texasaidocket.com</div>
+<h1 class="hook" id="hook">Four main models. No ChatGPT or Gemini.</h1>
+<p class="dek" data-follow="20">The study tested Llama3 8B Instruct, two Qwen2.5 models and Qwen3 4B Thinking on Twitter/X posts. An appendix test found the larger Llama3 70B Instruct also fell after all junk training. Closed models like ChatGPT or Gemini were not tested. Drawn&nbsp;to&nbsp;illustrate.</p>
+<div class="lab" id="m1">Llama3 8B</div>
+<div class="lab" id="m2">Qwen2.5
+7B</div>
+<div class="lab" id="m3">Qwen2.5
+0.5B</div>
+<div class="lab" id="m4">Qwen3 4B</div>
+<div class="lab" id="mx">not tested</div>
+<script>window.FIG = {"junk_ratios_m1":[100,80,50,20,0],"arc_cot_m1":[57.2,64.1,69.3,71.2,72.1],"arc_cot_base":77.2,"arc_cot_j100":57.2,"arc_cot_j80":64.1,"arc_cot_j50":69.3,"arc_cot_j20":71.2,"arc_cot_j0":72.1,"ruler_overall_m1":[71.0,79.0,80.0,89.7,89.7],"ruler_overall_base":93.9,"ruler_overall_j100":71.0,"ruler_overall_j80":79.0,"ruler_overall_j50":80.0,"ruler_overall_j20":89.7,"ruler_overall_j0":89.7,"ruler_cwe_m1":[52.3,62.7,61.8,83.3,83.7],"ruler_cwe_base":91.8,"ruler_cwe_j100":52.3,"ruler_cwe_j80":62.7,"ruler_cwe_j50":61.8,"ruler_cwe_j20":83.3,"ruler_cwe_j0":83.7,"var_tracking_m1":[22.4,60.7,59.4,85.5,86.3],"var_tracking_base":98.3,"var_tracking_j100":22.4,"var_tracking_j80":60.7,"var_tracking_j50":59.4,"var_tracking_j20":85.5,"var_tracking_j0":86.3,"posts_million":1,"junk_tokens_lt":30,"junk_pop_gt":500,"control_tokens_gt":100,"control_pop_eq":0,"tokens_million":1.22,"models":4,"no_thinking_all_pct":70,"no_thinking_m1_pct":84,"it_multiple":4.8,"it_from_k":5,"it_to_k":50,"cpt_million":2.4,"gap_arc_pct":17.3,"reflect_iters":6,"arc_drop_pts":14.9};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-22-stair.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "What wasn't tested", counter: "08 / 09", src: "c15 c25 c58 c65", fit: { min: 70, max: 88, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 41, near: 0.05, far: 3000 });
+  /* THE FIGURE, from figures.json: models 4, one stair flight built per model tested. The flights run out of
+   * the top of the frame, so no height is drawn and none can be read: no score is set by this frame */
+  const MODELS = FIG.models;
+  const PITCH = 2.0;   /* a flight's width apart, so four read as four */
+  const stairs = [];
+  for (let i = 0; i < MODELS; i++) {
+    const s = K.make('stair_flight', { rise: 14, dose: 0.5, landing: 0, pier: false, seed: 30 + i });
+    s.position.set((i - 2) * PITCH, 0, 0); TXT.add(R, s); stairs.push(s);
+  }
+  /* the place for a closed model: a pad with a chalk outline and nothing on it */
+  const pad = K.make('chalk_pad', { width: 1.4, depth: 4.6 });
+  pad.position.set((MODELS - 2) * PITCH, 0, -1.9);   /* the fifth place in the row, at the same spacing */
+  TXT.add(R, pad);
+  /* the chalk is the slide's point, so it carries a little of its own light and holds at 432 px */
+  pad.traverse((m) => { if (m.isMesh && m.geometry.parameters && m.geometry.parameters.height === 0.002) { m.material = m.material.clone(); m.material.emissive = new THREE.Color(0xe8e2d2); m.material.emissiveIntensity = 0.6; } });
+  /* one sawn limestone plinth under all four stairs and the empty pad, so the row stands as one built thing */
+  { const pl = TXT.roundedBox(4 * PITCH + 2.0, 0.22, 3.4, 0.02, CH.limeMat(K)); K.uvBox(pl.geometry, 1.6);
+    pl.position.set(0, 0.11, -0.6); pl.castShadow = pl.receiveShadow = true; TXT.add(R, pl); TXT.contact(R, pl);
+    stairs.forEach((s) => { s.position.y = 0.22; }); pad.position.y = 0.22; }
+  TXT.ground(R, { surface: 'caliche', size: 600, color: 0x5a5244, seed: 25, tile: 4 });
+  TXT.scatter(R, { kind: 'rock', count: 240, area: [-30, -20, 30, 30], avoid: [[-6, -8, 6.5, 14]], seed: 9, scale: [0.03, 0.12] });
+  const from = [6.5, 2.2, 19.0];
+  const look = CH.aim(THREE, R, TXT, from, [0.2, 0, -0.6], 540, 640, 41);
+  TXT.frame(R, { fov: 41, from, look });
+  TXT.sky(R);
+  CH.warm(R, 0.25);
+  { const spec = CH.rigSpec(W, 18, 4096); TXT.deckRig(R, spec, CH.rigOpts([0, 1.5, -2], { distance: 40, shadowFar: 120 })); }
+  CH.unacne(R, 0.02);
+  stairs.forEach((s) => TXT.contact(R, s));
+  TXT.stage(R, [...stairs, pad], { behind: 0.3, depth: 1.3, poolInner: 5, poolOuter: 12 });
+  TXT.weather(R, { grime: 0.25, height: 0.4, mottle: 0.3 });
+  const ids = ['m1', 'm2', 'm3', 'm4'];
+  stairs.forEach((s, i) => { CH.pin(THREE, R, ids[i], [s.position.x, 0.22, 0.15], 0, 14); document.getElementById(ids[i]).style.transform = 'translateX(-50%)'; });
+  CH.pin(THREE, R, 'mx', [pad.position.x, 0.22, 0.15], 0, 14); document.getElementById('mx').style.transform = 'translateX(-50%)';
+  /* the labels share one baseline, the lowest any of them projected to */
+  /* one baseline, each name centred under its own flight */
+  { const els = [...ids, 'mx'].map((i) => document.getElementById(i)); const y = Math.max(...els.map((e) => parseFloat(e.style.top))); els.forEach((e) => { e.style.top = y + 'px'; }); }
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0, low: { from: 760, a: 0.5, fade: 140 }, veil: 0.2, footWash: 0.4 });
+  CH.knock(cx, [".kick", ".count", ".tx-site", ".src", "#m1", "#m2", "#m3", "#m4", "#mx"], 0.54);
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

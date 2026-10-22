@@ -1,0 +1,149 @@
+{
+ "date": "2026-10-22",
+ "_note": "Every count, span and multiple the deck states, with the claim it was quoted from or the code that computed it.",
+ "aggregates": [
+  {
+   "phrase": "four language models",
+   "slide": "slide-01.html",
+   "kind": "count",
+   "value": 4,
+   "quoted_from": "c27",
+   "quote": "continual pre-training of 4 LLMs on the junk dataset causes non-trivial declines (Hedges' g>0.3) on reasoning, long-context understanding, safety",
+   "note": "quoted; figures.json models"
+  },
+  {
+   "phrase": "30 tokens",
+   "slide": "slide-02.html",
+   "kind": "count",
+   "value": 30,
+   "quoted_from": "c18",
+   "quote": "For M1 , we choose samples with a token length < 30 <30 (the corpus median) and a popularity of > 500 >500 (the 97th percentile) as junk data, and samples with a token length > 100 >100 (the 99th percentile) and a popularity of = 0 =0 as control data",
+   "note": "quoted; figures.json junk_tokens_lt"
+  },
+  {
+   "phrase": "100 tokens",
+   "slide": "slide-02.html",
+   "kind": "count",
+   "value": 100,
+   "quoted_from": "c18",
+   "quote": "For M1 , we choose samples with a token length < 30 <30 (the corpus median) and a popularity of > 500 >500 (the 97th percentile) as junk data, and samples with a token length > 100 >100 (the 99th percentile) and a popularity of = 0 =0 as control data",
+   "note": "quoted; figures.json control_tokens_gt"
+  },
+  {
+   "phrase": "1 million public posts",
+   "slide": "slide-02.html",
+   "kind": "count",
+   "value": 1,
+   "quoted_from": "c16",
+   "quote": "we subsample the 1-million public Twitter/X posts to construct junk and control datasets, separately",
+   "note": "quoted; figures.json posts_million"
+  },
+  {
+   "phrase": "four models",
+   "slide": "slide-03.html",
+   "kind": "count",
+   "value": 4,
+   "quoted_from": "c27",
+   "quote": "continual pre-training of 4 LLMs on the junk dataset causes non-trivial declines (Hedges' g>0.3) on reasoning, long-context understanding, safety",
+   "note": "quoted; figures.json models"
+  },
+  {
+   "phrase": "4.8 times",
+   "slide": "slide-06.html",
+   "kind": "ratio",
+   "value": 4.8,
+   "quoted_from": "c44",
+   "quote": "Even if we used up all instruction data, consisting of 4.8 4.8 times of the tokens used in junk intervention, the damage caused by junk intervention still cannot be fully undone",
+   "note": "quoted; figures.json it_multiple"
+  },
+  {
+   "phrase": "4.8 times the junk tokens",
+   "slide": "slide-06.html",
+   "kind": "ratio",
+   "value": 4.8,
+   "quoted_from": "c44",
+   "quote": "Even if we used up all instruction data, consisting of 4.8 4.8 times of the tokens used in junk intervention, the damage caused by junk intervention still cannot be fully undone",
+   "note": "quoted; figures.json it_multiple"
+  },
+  {
+   "phrase": "17.3 points",
+   "slide": "slide-07.html",
+   "kind": "span",
+   "value": 17.3,
+   "quoted_from": "c47",
+   "quote": "A large gap remains between the best mitigated models and the baseline: 17.3 % 17.3\\% (ARC-C COT), 9 % 9\\% (RULER), 17.4 % 17.4\\% (AdvBench) absolute difference",
+   "note": "quoted; figures.json gap_arc_pct, an absolute difference"
+  },
+  {
+   "phrase": "Four main models",
+   "slide": "slide-08.html",
+   "kind": "count",
+   "value": 4,
+   "quoted_from": "c27",
+   "quote": "continual pre-training of 4 LLMs on the junk dataset causes non-trivial declines (Hedges' g>0.3) on reasoning, long-context understanding, safety",
+   "note": "quoted; figures.json models"
+  },
+  {
+   "phrase": "Four models",
+   "slide": "caption.txt",
+   "kind": "count",
+   "value": 4,
+   "quoted_from": "c27",
+   "quote": "continual pre-training of 4 LLMs on the junk dataset causes non-trivial declines (Hedges' g>0.3) on reasoning, long-context understanding, safety",
+   "note": "quoted; figures.json models"
+  },
+  {
+   "phrase": "30 tokens",
+   "slide": "caption.txt",
+   "kind": "count",
+   "value": 30,
+   "quoted_from": "c18",
+   "quote": "For M1 , we choose samples with a token length < 30 <30 (the corpus median) and a popularity of > 500 >500 (the 97th percentile) as junk data, and samples with a token length > 100 >100 (the 99th percentile) and a popularity of = 0 =0 as control data",
+   "note": "quoted; figures.json junk_tokens_lt"
+  },
+  {
+   "phrase": "500 likes",
+   "slide": "caption.txt",
+   "kind": "count",
+   "value": 500,
+   "quoted_from": "c18",
+   "quote": "For M1 , we choose samples with a token length < 30 <30 (the corpus median) and a popularity of > 500 >500 (the 97th percentile) as junk data, and samples with a token length > 100 >100 (the 99th percentile) and a popularity of = 0 =0 as control data",
+   "note": "quoted; popularity over 500, which c19 defines as likes, retweets, replies and quotes; figures.json junk_pop_gt"
+  },
+  {
+   "phrase": "100 tokens",
+   "slide": "caption.txt",
+   "kind": "count",
+   "value": 100,
+   "quoted_from": "c18",
+   "quote": "For M1 , we choose samples with a token length < 30 <30 (the corpus median) and a popularity of > 500 >500 (the 97th percentile) as junk data, and samples with a token length > 100 >100 (the 99th percentile) and a popularity of = 0 =0 as control data",
+   "note": "quoted; figures.json control_tokens_gt"
+  },
+  {
+   "phrase": "4.8 times the junk tokens",
+   "slide": "caption.txt",
+   "kind": "ratio",
+   "value": 4.8,
+   "quoted_from": "c44",
+   "quote": "Even if we used up all instruction data, consisting of 4.8 4.8 times of the tokens used in junk intervention, the damage caused by junk intervention still cannot be fully undone",
+   "note": "quoted; figures.json it_multiple"
+  },
+  {
+   "phrase": "17.3 points",
+   "slide": "caption.txt",
+   "kind": "span",
+   "value": 17.3,
+   "quoted_from": "c47",
+   "quote": "A large gap remains between the best mitigated models and the baseline: 17.3 % 17.3\\% (ARC-C COT), 9 % 9\\% (RULER), 17.4 % 17.4\\% (AdvBench) absolute difference",
+   "note": "quoted; figures.json gap_arc_pct, an absolute difference"
+  },
+  {
+   "phrase": "two official records",
+   "slide": "first_comment.txt",
+   "kind": "count",
+   "value": 2,
+   "computed_by": "scripts/carousel/sources_block.py --build, len() of the distinct official_record documents the deck's printed claim ids resolve to in out/2026-10-22/claims.json (the arXiv full text and the arXiv abstract page)",
+   "note": "computed"
+  }
+ ]
+}

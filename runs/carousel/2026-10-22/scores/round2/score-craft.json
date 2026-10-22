@@ -1,0 +1,79 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.5,
+   "why": "Three frames are strong, three hold up, and three lean on primitives or put type on the art. STRONG: 01's stair is missing its middle treads, so the bare rusted notches read as 'can't be climbed' at 432 px. It has a lit pier face, contact shadow at the stringer feet and casts running right. 05's carcass (three treads at the foot, bare stringers to the landing) is the cleanest silhouette in the deck. 09 sets the whole stair at the brass beside the broken one with a figure for scale. HOLDS: 03 compares five landings against one datum, but the datum is a broad matte peach coping band with no metallic response. The brick-sized coursing fills the frame as mid brown. The 0% stair is cut by the left edge, and machine_qa warns '0% 72.1' is outside the safe zone. WEAK: 04 is a frontal elevation of three flat piers, a bar chart in stone, not the CRAFT PLAN's 0.45 m eye along the walk. The pier faces carry a low-frequency mottled noise that sits as a large mid-tone field. Dek line 4 ('model at 98.3. Drawn to illustrate') sits on the wall above the brass (crop slide-04-r2c1), and a cut rusted stringer stub hangs at the left edge. 06's subject fills only the bottom third: a stack of five rounded boxes that reads as cake slabs, out of alignment, with a dense pebble scatter filling the middle ground. 08's four flights curve into the sky like ladders under wide-angle distortion. The empty pad, the frame's focal, is a small pale rectangle, and machine_qa flags the dead lower zone (bottom band 0.33). Across the deck the subjects are brown on brown with few true bright edges, short of the bold-proof sibling row's single hot edge. The tread nosings on 07 carry glyph-like squiggle marks at native size (crop slide-07-r2c2). 02's relief sits under a hard-edged dark plate that ends in a visible seam near design y 590. Several frames lean on primitives, not one, so the score is under the 7 descriptor."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 8.0,
+   "why": "On the contact sheet this reads as one deck. One low key from the left runs through every frame, with casts going right on 01, 03, 05, 07 and 09. The materials are consistent throughout: weathering steel, limestone piers, the coursed datum wall and the gold datum. The stair motif changes state in a way a reader could describe unprompted: whole but gapped (1), dose walk (3), cliff (4), carcass (5), loose treads (6), repaired (7), four flights (8), two stairs (9). The camera moves around one object. Two frames sit slightly outside the world. 02 is an orthographic plan relief with no sky. 06's stacked slabs in a pebble field lose the stair and the wall entirely. Value holds dark with no strobing, though 04 and 07 carry more mid tone than their neighbours."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.5,
+   "why": "Every slide numeral traces to a primary arXiv claim. Slide 3's 72.1/71.2/69.3/64.1/57.2 and base 77.2 come from c33. Slide 4's 86.3/59.4/60.7/22.4 and 98.3 come from c36. Slide 5's 84% and 70% come from c39. Slide 6's 5k/50k and 4.8 come from c43 and c44. Slide 7's 17.3 comes from c47. Slide 8's 57.8 to 52.7 comes from c58. The caption's figures match the same claims. The fact check correctly refused the release's 2010 year and its quote-less junk definition. One phrasing is looser than its source: slide 5 says 84% 'after junk training', where c39 says '84% in M1 junk intervention', and c39 also notes a response can fall into several categories. Slide 8's 'were not tested' is an inference from c25's model list plus the release (c65), which is sound. No hard fail found."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.0,
+   "why": "What happened and who did it are clear: Texas A&M, UT Austin and Purdue are named on 01, the method is on 02 and the finding is on 03 to 07. The stake stays general. Nothing tells a Texan what this changes for them or what they can do. The close is a researcher quote ('We want to emphasize the importance of data') and the caption ends on an open question. That matches the 7 descriptor: clear and accurate, with the stake stated generally."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "The cover earns the swipe and frame 2 pays at once with the definition. The deck turns at 6 to the repair, as the storyboard declares, and 7's 'still 17.3 points short' lands the turn. Frame 4 (variable tracking, not steady) is a second benchmark that slows the run from dose to mechanism and could be cut with little loss. The close is a quote, not a landing image of the argument."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Clean and precise with no house-rule breaks found: no colons, no dashes, 'didn't', no banned words. Headlines like 'Half junk scored below 80% junk' and 'More junk, a shorter climb' are sharp. The register is academic, though, and nothing beyond the institutions' names sounds Texan. The caption's 'The junk shares were doses in a training mix and no measure of the internet' is correct but flat."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "A built stair as a measuring instrument is a fresh concept against no. 54 (brush country windmills), no. 55 (operating rooms and container ends) and no. 56 (machine shop). Familiar moves remain: another lastLight dark world, the dusk gold #E0956A accent last used on no. 43, and a coursed stone datum wall of the kind that recurs in the ledger."
+  }
+ ],
+ "weighted_score": 7.41,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Rebuild frames 4 and 6 to the CRAFT PLAN's own shots: 4 from a 0.45 m eye along the walk, so the riser and the cliff read as lit stone edges against the dark, and 6 as treads laid end to end across the frame width in the pool. That replaces three frontal mid-tone piers with type on the wall, and a small cake stack in a pebble field, with the stair at true scale like 01, 05 and 09.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 4,
+   "problem": "A frontal elevation of three flat piers reads as a bar chart in stone. The pier faces are a large mottled mid-tone field. Dek line 4 sits on the wall above the brass, and a cut rusted stringer stub hangs at the left edge (x 0 to 80).",
+   "fix": "Re-shoot at the planned 0.45 m eye just above the 50% landing, looking along the walk, so the short riser to 80% and the sheer drop to 100% become lit nosing edges against a dark drop. Frame the wall top below the dek's last line."
+  },
+  {
+   "slide": 6,
+   "problem": "The subject fills only the bottom third. The clean treads are rounded boxes stacked out of alignment like cake slabs, the junk tread shares their colour, and a dense pebble scatter fills the middle of the frame.",
+   "fix": "Lay the junk tread and the 4.8 clean treads end to end in a row across the frame from a 1.1 m eye 3 m back, each in its own contact shadow in the pool. Give the junk tread frame 2's glass-chip aggregate, and clear the scatter from the middle ground."
+  },
+  {
+   "slide": 8,
+   "problem": "Four flights curve into the sky like ladders under wide-angle distortion. The empty pad, the frame's focal, is a small pale rectangle at the right, and the bottom half is a dead zone (machine_qa band 0.33).",
+   "fix": "Swing and lower the camera so the empty pad with its chalk outline sits in the near foreground at about a third of the frame width, raked by the key, with the four flights receding beside and behind it on a longer lens."
+  },
+  {
+   "slide": 7,
+   "problem": "The brick wall fills about 70% of the frame as an even mid brown. The brass datum renders as a broad matte peach-to-cream band with no specular response. The tread nosings carry glyph-like squiggle marks at native size.",
+   "fix": "Narrow the datum to a thin inset metallic brass strip that catches the key as one bright line. Aim the key so the pool falls off along the wall, leaving the bare lit wall between the landing and the brass as the only bright surface."
+  },
+  {
+   "slide": 2,
+   "problem": "The type sits on a flat dark plate that ends in a hard horizontal seam above the relief (near design y 590). The glass chips are shaded as two flat tones split by a straight terminator, which reads as vector candy, not glass.",
+   "fix": "Extend the relief to the top edge and let the matrix fall into shadow under the type through the light, not a plate. Give the chips a rounded glass normal with a single specular hotspot."
+  }
+ ],
+ "lens": "craft",
+ "round": 2
+}

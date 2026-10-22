@@ -1,0 +1,127 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "bands": [
+        0.2584,
+        0.3718,
+        0.6379
+      ],
+      "band_ratio": 1.4749
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [
+        "console error: TXBENCH: RELIEF {\"height_range\":11,\"materials\":6,\"cast_fraction\":0.3529351851851852,\"area\":1,\"render_ms\":33052.80000000005}"
+      ],
+      "bands": [
+        0.2773,
+        0.7143,
+        0.921
+      ],
+      "band_ratio": 1.416
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky",
+        "outside safe zone: '0% 72.1' at 34,771 148x42 (margin 80px)"
+      ],
+      "bands": [
+        0.271,
+        0.4601,
+        0.7188
+      ],
+      "band_ratio": 1.455
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky",
+        "a drawn rule crosses the glyph band of '50% 59.4' (canvas edge .pixels at 325,847.5 137x0.5) and COULD NOT BE MEASURED: too little of the strip is clear of type to read its colour against the paper. Judge it by eye rather than reading this as a pass"
+      ],
+      "bands": [
+        0.2458,
+        0.7185,
+        0.8603
+      ],
+      "band_ratio": 1.3883
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "bands": [
+        0.2374,
+        0.2353,
+        0.546
+      ],
+      "band_ratio": 1.5647
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "bands": [
+        0.2122,
+        0.4349,
+        0.6765
+      ],
+      "band_ratio": 1.497
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "bands": [
+        0.2248,
+        0.7164,
+        0.7647
+      ],
+      "band_ratio": 1.3241
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [
+        "top-loaded composition: the bottom third carries 73% of this slide's own average craft density (top 49% / mid 57% / bottom 33% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone",
+        "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "bands": [
+        0.4895,
+        0.5672,
+        0.3327
+      ],
+      "band_ratio": 0.7277
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "bands": [
+        0.2857,
+        0.5168,
+        0.7335
+      ],
+      "band_ratio": 1.4049
+    }
+  ],
+  "fails": 0,
+  "warns": 12,
+  "verdict": "WARN"
+}

@@ -1,0 +1,30 @@
+{
+ "opening_move": "the who",
+ "structure": "Two columns",
+ "caption": "Texas A&M, UT Austin and Purdue tested junk.\n\nIn went Twitter/X posts as training for four open language models. Junk meant under 30 tokens with popularity over 500. Control meant over 100 tokens with popularity 0. The junk share ran from 0% to 100%. Those are lab doses and no estimate of the internet.\n\nOut came skipped steps, the paper's main reasoning failure. Llama3 8B Instruct was the most sensitive. Its ARC Challenge score with chain of thought fell from 72.1 with no junk to 57.2 with all junk. Instruction data 4.8 times the junk tokens didn't fully undo it. The best repaired model still sat 17.3 points under baseline on that test.\n\nTexas A&M's Zhengzhong Tu wants less focus on architectures and more on data. The deck draws each score as a stair.\n\nChatGPT and Gemini weren't tested. Who can run this on a model that isn't open source?\n\n#TexasAM #UTAustin #COLM2026",
+ "first_comment": "[c6] The paper lists its affiliations as Texas A&M University, the University of Texas at Austin and Purdue University. https://arxiv.org/html/2510.13928v3\n[c9] Work by J. Hong and Z. Wang was partly supported by Good Systems, a UT Austin Grand Challenge on responsible AI. https://arxiv.org/html/2510.13928v3\n[c16] The junk and control sets were drawn from 1 million public Twitter/X posts. https://arxiv.org/html/2510.13928v3\n[c25] The four models tested were Llama3 8B Instruct, Qwen2.5 7B Instruct, Qwen2.5 0.5B Instruct and Qwen3 4B Thinking 2507. https://arxiv.org/html/2510.13928v3\n[c26] Each model was continually pre-trained on a junk and control mixture, then instruction tuned again on 5k Alpaca English examples. https://arxiv.org/html/2510.13928v3\n[c18] Under the engagement measure, junk was posts under 30 tokens with popularity over 500, and control was posts over 100 tokens with zero popularity. https://arxiv.org/html/2510.13928v3\n[c19] The paper's popularity count is the total of a post's likes, retweets, replies and quotes. https://arxiv.org/html/2510.13928v3\n[c28] Under M1, ARC Challenge accuracy with chain of thought fell from 72.1 to 57.2 as the junk share rose from 0% to 100%. https://arxiv.org/abs/2510.13928\n[c31] Table 2 reports junk ratios of 100%, 80%, 50%, 20% and 0% under M1 and M2, plus a Base column. https://arxiv.org/html/2510.13928v3\n[c64] The junk ratios are doses within the training mixture, not estimates of how much of the internet is junk. https://arxiv.org/html/2510.13928v3\n[c38] The paper identifies thought skipping as the main reasoning failure. https://arxiv.org/abs/2510.13928\n[c30] The paper's dose response table reports Llama3 8B Instruct trained on varying mixtures of junk and control data. https://arxiv.org/html/2510.13928v3\n[c57] All four models showed some dose response. Llama3 8B Instruct was the most sensitive to junk and Qwen3 4B the least. https://arxiv.org/html/2510.13928v3\n[c33] Under the engagement measure, ARC Challenge with chain of thought scored 57.2, 64.1, 69.3, 71.2 and 72.1, from all junk to no junk. Base scored 77.2. https://arxiv.org/html/2510.13928v3\n[c42] The repair tests started from Llama3 8B Instruct after 100% M1 junk training. https://arxiv.org/html/2510.13928v3\n[c44] Instruction data totaling 4.8 times the junk tokens still did not fully undo the damage. https://arxiv.org/html/2510.13928v3\n[c47] The best repaired models still trailed the baseline by 17.3% on ARC Challenge with chain of thought, 9% on RULER and 17.4% on AdvBench. https://arxiv.org/html/2510.13928v3\n[c1] Zhengzhong Tu is an assistant professor in the Department of Computer Science and Engineering at Texas A&M University. https://news.engineering.tamu.edu/news/2026/10/19/ai-models-can-get-brain-rot-too/\n[c69] Tu said companies and researchers focus too much on model architectures and training resources. He wants more emphasis on data. https://news.engineering.tamu.edu/news/2026/10/19/ai-models-can-get-brain-rot-too/\n[c65] The release says testing larger models such as ChatGPT or Gemini, which are not open source, is still needed. https://news.engineering.tamu.edu/news/2026/10/19/ai-models-can-get-brain-rot-too/\n[c13] The arXiv listing marks the paper as published at COLM 2026. https://arxiv.org/abs/2510.13928",
+ "claim_ids_used": [
+  "c1",
+  "c6",
+  "c9",
+  "c13",
+  "c16",
+  "c18",
+  "c19",
+  "c25",
+  "c26",
+  "c28",
+  "c30",
+  "c31",
+  "c33",
+  "c38",
+  "c42",
+  "c44",
+  "c47",
+  "c57",
+  "c64",
+  "c65",
+  "c69"
+ ],
+ "why_this_opening": "The deck's hook is about what the models did, so naming the institutions plainly in the first line puts the Texas campuses in front of the reader, and \"tested junk\" stops short of the result."
+}

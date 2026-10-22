@@ -1,0 +1,76 @@
+<!doctype html>
+<!-- 2026-10-22, frame 3 of 9. Archetype DIAGRAM. A spatial scene through txthree.js in the deck's lastLight world: five open stairs side by side, one per junk dose, each rising to a landing on a pier at its ARC Challenge chain of thought score at the deck's one scale, the aggregate in their treads shifting from limestone to glass with the dose, and a sawn limestone wall behind carrying the brass datum at the base model's score. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>.lab { font-size:32px !important; }</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site" style="font-size:24px">texasaidocket.com</div>
+<h1 class="hook" id="hook">More junk, a shorter climb</h1>
+<p class="dek" data-follow="24">Llama3 8B Instruct was the most sensitive of the four models. Its ARC Challenge reasoning score fell from 72.1 with no junk to 57.2 with all junk. Each landing is its score at one scale. Brass marks the base model at 77.2. Drawn&nbsp;to&nbsp;illustrate.</p>
+<div class="lab" id="l0">0% 72.1</div>
+<div class="lab" id="l20">20% 71.2</div>
+<div class="lab" id="l50">50% 69.3</div>
+<div class="lab" id="l80">80% 64.1</div>
+<div class="lab" id="l100">100% 57.2</div>
+<div class="lab" id="lb">base 77.2</div>
+<script>window.FIG = {"junk_ratios_m1":[100,80,50,20,0],"arc_cot_m1":[57.2,64.1,69.3,71.2,72.1],"arc_cot_base":77.2,"arc_cot_j100":57.2,"arc_cot_j80":64.1,"arc_cot_j50":69.3,"arc_cot_j20":71.2,"arc_cot_j0":72.1,"ruler_overall_m1":[71.0,79.0,80.0,89.7,89.7],"ruler_overall_base":93.9,"ruler_overall_j100":71.0,"ruler_overall_j80":79.0,"ruler_overall_j50":80.0,"ruler_overall_j20":89.7,"ruler_overall_j0":89.7,"ruler_cwe_m1":[52.3,62.7,61.8,83.3,83.7],"ruler_cwe_base":91.8,"ruler_cwe_j100":52.3,"ruler_cwe_j80":62.7,"ruler_cwe_j50":61.8,"ruler_cwe_j20":83.3,"ruler_cwe_j0":83.7,"var_tracking_m1":[22.4,60.7,59.4,85.5,86.3],"var_tracking_base":98.3,"var_tracking_j100":22.4,"var_tracking_j80":60.7,"var_tracking_j50":59.4,"var_tracking_j20":85.5,"var_tracking_j0":86.3,"posts_million":1,"junk_tokens_lt":30,"junk_pop_gt":500,"control_tokens_gt":100,"control_pop_eq":0,"tokens_million":1.22,"models":4,"no_thinking_all_pct":70,"no_thinking_m1_pct":84,"it_multiple":4.8,"it_from_k":5,"it_to_k":50,"cpt_million":2.4,"gap_arc_pct":17.3,"reflect_iters":6,"arc_drop_pts":14.9};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-22-stair.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "The dose", counter: "03 / 09", src: "c28 c30 c31 c32 c33 c57", fit: { min: 76, max: 100, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 24, near: 0.1, far: 3000 });
+  /* THE FIGURES, from figures.json: arc_cot_j0 72.1, arc_cot_j20 71.2, arc_cot_j50 69.3, arc_cot_j80 64.1,
+   * arc_cot_j100 57.2 and arc_cot_base 77.2, each at the deck's CH.S metres per point */
+  const DOSES = [4, 3, 2, 1, 0].map((i) => [FIG.junk_ratios_m1[i], FIG.arc_cot_m1[i]]);   /* 0% to 100% junk */
+  const ARC_BASE = FIG.arc_cot_base;
+  const PITCH = 3.4;
+  const stairs = DOSES.map(([pct, score], i) => {
+    const s = K.make('stair_flight', { rise: score * CH.S, dose: pct / 100, landing: 1.3, seed: 3 + i });
+    s.position.set((i - 2) * PITCH, 0, 0); TXT.add(R, s); return s;
+  });
+  const zBack = stairs[0].userData.landingZ - 1.9;
+  const wall = K.make('datum_wall', { length: 26, height: ARC_BASE * CH.S + 0.8, datum: ARC_BASE * CH.S, seed: 4, band: 0.24 });
+  wall.position.set(1.5, 0, zBack); TXT.add(R, wall);
+  TXT.ground(R, { surface: 'caliche', size: 600, color: 0x5a5244, seed: 23, tile: 4 });
+  TXT.scatter(R, { kind: 'rock', count: 200, area: [-30, -20, 30, 30], avoid: [[-9, -12, 10, 3]], seed: 7, scale: [0.03, 0.12] });
+  /* a long lens 35 degrees off the wall's normal, raised to the landings, so each stair stands apart with
+   * its pier and the five landing tops step down against the one brass line */
+  const D2R = Math.PI / 180, dist = 42, az = 35 * D2R, mid = stairs[2].userData.landingZ;
+  const from = [Math.sin(az) * dist, 6.4, mid + Math.cos(az) * dist];
+  const look = CH.aim(THREE, R, TXT, from, [1.2, 3.9, mid - 0.3], 540, 790, 24);
+  TXT.frame(R, { fov: 24, from, look });
+  TXT.sky(R);
+  CH.warm(R, 0.25);
+  { const spec = CH.rigSpec(W, 24, 4096); TXT.deckRig(R, spec, CH.rigOpts([0, 3, mid], { distance: 45, shadowFar: 140 })); }
+  CH.unacne(R, 0.02);
+  stairs.forEach((s) => TXT.contact(R, s));
+  TXT.stage(R, [...stairs, wall], { behind: 0.3, depth: 1.3, poolInner: 8, poolOuter: 18 });
+  TXT.weather(R, { grime: 0.25, height: 0.4, mottle: 0.3 });
+  /* every dose label sits on its own landing, under the brass line, read off the camera */
+  const ids = ['l0', 'l20', 'l50', 'l80', 'l100'];
+  stairs.forEach((s, i) => { CH.pin(THREE, R, ids[i], [s.position.x, s.userData.rise, s.userData.landingZ - 0.65], 0, 30);
+    document.getElementById(ids[i]).style.transform = 'translateX(-50%)'; });
+  CH.pin(THREE, R, 'lb', [2.2, ARC_BASE * CH.S + 0.34, zBack + 0.25], 0, -44);   /* on the dark wall above the band */
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0.35, veil: 0.2, footWash: 0.45 });
+  CH.knock(cx, [".tx-site", ".src", "#l0", "#l20", "#l50", "#l80", "#l100", "#lb"], 0.5);
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

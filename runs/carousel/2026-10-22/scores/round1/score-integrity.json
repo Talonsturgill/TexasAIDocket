@@ -1,0 +1,79 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 7.0,
+   "why": "Every frame is a real render in one dark lastLight world with true blacks, a left key and cast shadows, so none of it is the deleted faded look. Frames 1, 2, 3, 5 and 7 are strong. Frame 2 is a convincing material relief: glossy green and amber chips against matte slivers with real height and casts. Frame 3 reads at 432 px as five built stairs stepping down under one brass line. Frame 5's bare notched stringers make 'skipped steps' physical. Several frames still lean on a default. Frame 4 is a stone bar chart seen square on. Its three flat pier faces carry blotchy low-frequency mottle, and the brass datum is a peach rail on two sticks against a flat navy sky with no pool, which is the 'chart in hardware' the build risk warned about. On frame 6 a field of lumpy dough-like scatter fills the middle third, and the subject sits small in the bottom third. The junk tread is brown with dark specks rather than the glass aggregate it is meant to be, so junk and clean differ only in value. Frame 9's kit figure is a mannequin in the look_up pose facing the wall. Its bare orange forearm is the hottest note below the brass, and the world edge shows as a flat horizon at the left. On frame 1 the dek's last two lines cross the landing and upper treads, so the type sits on the subject rather than in quiet. The datum walls on frames 3, 7 and 9 read as brick, not sawn limestone. The deck does not pass the showstopper test on every frame."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 8.0,
+   "why": "On the contact sheet this is a filmstrip. There is one stair motif that changes state: whole but gapped (1), walked down by dose (3), cliffed (4), stripped (5), cut into treads (6), rebuilt short (7), multiplied (8), whole beside broken (9). One brass datum recurs on 3, 4, 7 and 9, with one key from the left, one caliche ground and one grade. The value track stays dark throughout (art_preflight median L* 5.3, 4.7 and 1.8 on 1, 3 and 9) with no strobing. The storyboard names three devices (MOTIF_EVOLUTION, CAMERA_MOVE, VALUE_ARC), and the motif and the value hold visibly. Two frames sit slightly outside. Frame 2 is a top-down relief with no stair, which is declared. Frame 4's flat frontal piers under a rail on posts lose the stair's vocabulary."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.0,
+   "why": "Every printed numeral traces. I checked 72.1, 71.2, 69.3, 64.1, 57.2 and 77.2 against c33. I checked 86.3, 60.7, 59.4, 22.4 and 98.3 against c36, and 30, 500, 100, 0 and 1 million against c18 and c16. I also checked 84 and 70 (c39), 5k and 50k (c43), 4.8 (c44) and 17.3 (c47) against figures.json, and compute.py extracts each one from its quote. Sources are primary (arXiv full text and abstract, the TAMU release), and the 2010 dataset year and the 'Tu led' framing were correctly refused. Four integrity problems remain. (1) Frame 8, the 'What wasn't tested' frame, says 'Four models. No ChatGPT or Gemini.' and lists four tested models only. The run's own c58 records a fifth, Llama3-70B-Instruct, tested in the appendix: ARC Challenge 57.8 at Base and 52.7 after 100% junk, a 5.0 drop against the 8B model's 14.9. On the frame about scale, the deck leaves a reader believing nothing larger than 8B was tried, when a larger model was tried and fell less. That is an absence that changes what a reader believes, not a falsehood, so I hold it at the 7 line and do not hard fail it. (2) No slide names the platform. Frame 8 says 'posts from one platform', which hides the 'Twitter/X' that c15 and c62 scope the whole finding to. Only the caption carries it. (3) The 84% on frame 5 and in the caption drops the paper's 'M1' qualifier ('after junk training'). It also omits that GPT-4o-mini assigned the failure categories and that they overlap (c39 note). That is looser than the source, and the deck defines junk as M1, which softens it. (4) The frame code holds typed constants under comments that say 'from figures.json': slide-05.html NO_THINKING_M1 = 84, slide-06.html IT_MULTIPLE = 4.8, slide-09.html ARC_BASE = 77.2, ARC_J100 = 57.2. The values match figures.json, so no published numeral is untraced. Still, the storyboard's 'every rise computed from figures.json in the frame's own code' is not what the code does. One minor point: first_comment.txt counts the arXiv abstract and full text of one paper as 'two official records'."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.5,
+   "why": "A reader learns what happened and who did it. Texas A&M, UT Austin and Purdue trained four open models on junk, reasoning fell, the main failure was thought skipping and the repair was partial (frames 1, 3, 5, 6 and 7). The 'who decided, where, what next' half is thin. There is no Texas consequence, no place beyond institution names, and nothing a Texan can do. The close is a quote plus 'Testing larger closed models is still needed', and the caption ends on a question. The stake, why a Texan using these tools should care, is never stated, even though c67, c71 and c72 offer the authors' own framing. No slide names Twitter/X, which is the one fact a feed reader would want first. On these descriptors that is clear and accurate with the stake stated generally, short of 7."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.2,
+   "why": "The cover earns the swipe with an unclimbable stair and 'models skipped steps', and frame 2 pays at once with the definition. The order goes dose (3) to mechanism (5) to repair (6, 7) to limits (8) to the whole-versus-broken close (9). The turn at 6 is declared in the storyboard. Frame 4 is the cuttable one. Its headline 'Half junk scored below 80% junk' makes a 1.3 point inversion (59.4 against 60.7, a single run with no significance reported) the claim of a whole frame, and it interrupts the move from dose to mechanism. Frame 9 lands visually, but its text is a quote and a to-do for researchers rather than a turn for the reader."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.8,
+   "why": "The copy is clean and compliant. I checked the codepoints in the slide HTML: the apostrophes are U+0027 (&#39; in slide-06 and slide-09), the quotes are straight, and there are no colons, semicolons, dashes, banned words, And or But openers, or 'cannot'. The register is a careful paper summary rather than a Texan voice. Frame 3's 'Each landing is its score at one scale' and frame 5's 'The bare share of the stair is that 84%' explain the drawing instead of the world, and 'Drawn to illustrate' closes all nine deks. The caption's opener 'Texas A&M, UT Austin and Purdue dosed models.' is awkward, and nothing anywhere is regionally specific beyond the university names."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.8,
+   "why": "The topic is new: dedupe is clean across topics.json for September 22nd to October 21st, and there is no other LLM training study in the window. Structure and technique differ from nos. 53 to 56, the four decks before it. There are familiar moves, though. No. 51 on October 15th, a week ago, carried 'a granite courthouse stair with a riser for every month' through its deck, so the stair-as-measure motif repeats within a week, and art_preflight's distinct_from_recent never mentions it. The lastLight world and a single gold accent were also nos. 54 and 56. That makes it a fresh concept with one familiar move, held a little below 7 by the stair repeat."
+  }
+ ],
+ "weighted_score": 7.02,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Rewrite frame 8 so the limits frame tells the truth about scale and platform: name Twitter/X, and add the paper's appendix result that the larger Llama3 70B Instruct also fell after all junk training, 57.8 to 52.7 on ARC Challenge (c58, with the 5.0 drop computed in compute.py). Reword the headline from 'Four models' to the four main models, so a reader no longer believes nothing bigger than 8B was tested.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 4,
+   "problem": "It reads as a stone bar chart. Three flat frontal pier faces with blotchy mottle, a peach rail on two sticks for the datum and a flat navy sky with no pool or ground contact. It is the 'chart in hardware' the build risk named, and it breaks the stair vocabulary.",
+   "fix": "Swing the camera to a low three-quarter from the left at about 0.45 m, as the storyboard planned. That way the 50 and 80 percent landings show their tread tops and nosings in the key and the drop to the 100 percent landing is a silhouette edge. Replace the post-mounted rail with the datum_wall and its brass band behind, as on frames 3, 7 and 9."
+  },
+  {
+   "slide": 6,
+   "problem": "A lumpy, dough-like rock scatter owns the middle third and the subject is small in the bottom third. The junk tread is brown with dark specks rather than green and amber glass aggregate, so the junk-against-clean contrast is value only.",
+   "fix": "Cut the scatter to fine dark grit, drop the 16000-count rocks to under a fifth of their scale, and move the camera in and down to about 0.7 m so the two stacks fill the lower half. Give the junk slab the frame 2 glass chip aggregate material."
+  },
+  {
+   "slide": 9,
+   "problem": "The kit figure is a mannequin facing the wall with an orange forearm raised. That forearm is the most saturated warm note below the brass and pulls the eye off the gap. A flat world-edge horizon shows at the left of the wall.",
+   "fix": "Move the person about 0.6 m right onto the broken flight's first tread and yaw them toward the missing treads, with a darker sleeve so the arm is not the accent. Extend the datum wall or pan right about 3 degrees so the left horizon falls out of frame."
+  },
+  {
+   "slide": 8,
+   "problem": "The four flights are thin ladders running off the top. The model labels are 22 px, under the 24 px floor (machine_qa tiny-text on all five). The empty pad and its chalk outline, the frame's focal point, is small and dim at the right, and the lower half is flat ground under type.",
+   "fix": "Lower the camera to about 0.9 m and move it 4 m closer so the four flight feet and the empty pad fill the middle band at a larger size. Light the chalk outline with the pool's centre, and set the labels at 26 px."
+  },
+  {
+   "slide": 1,
+   "problem": "The dek's last two lines run across the landing slab and the upper treads, so the cover's subject is crossed by type rather than sitting in quiet the picture made.",
+   "fix": "Narrow the dek's measure so its lines end left of design x 700, or drop the camera target about 60 px so the landing clears the dek's last line."
+  }
+ ],
+ "lens": "integrity",
+ "round": 1
+}

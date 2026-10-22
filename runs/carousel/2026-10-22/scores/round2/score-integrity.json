@@ -1,0 +1,79 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.6,
+   "why": "The strong frames are strong. Frame 1's freestanding stair has its middle treads gone, the bare notches are lit by the low key, and the pier stands in contact shadow on dark caliche. Frame 3 has five flights stepping down under one datum. Frame 5's carcass keeps round(nT*16/100) treads at the foot, computed from FIG.no_thinking_m1_pct. Value is held dark: preflight median L* is 5.3, 4.7 and 1.8 on frames 1, 3 and 9. The rubric's 7 allows one frame on a default, and this deck has several. Frame 4 is four equal-width plain piers with the same blotchy mottle on every face, in front of brick-sized coursing, so it reads as a bar chart made of stone. Frame 6 is a stack of pale slabs that reads as crackers, with a grit field filling the band between the dek and the stack. Frame 8's bottom half is empty dark ground (machine_qa warns top-loaded, bottom third 33%). Frame 9's kit figure is a mannequin: a grey cap head, an orange forearm and a leg that dissolves, which the preflight reviewer also noted. The datum on 3, 4, 7 and 9 is a wide matte peach band rather than brass. Frame 2's relief starts at a hard horizontal seam at design y 600, and its chips render with a diagonal half-lit split."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 8.0,
+   "why": "One chassis (2026-10-22-stair.js) and one lastLight key from the left with casts to the right. One material vocabulary of weathering steel, aggregate treads, limestone and caliche, and one 0.06 m per point scale set in the chassis. The stair motif changes state across frames: whole but gapped, then the dose walk, the carcass, loose treads, repaired, four stairs, and two side by side. The value track stays dark with no strobe. Frame 2's plan relief and frame 6's loose slabs sit slightly outside, and frame 8 flips the type to the bottom, so it is short of a filmstrip."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.3,
+   "why": "Every slide numeral traces. Slide 3's labels match c33 cell for cell, slide 4 matches c36, and 84 and 70 are c39. 4.8 is c44, 5k and 50k are c43, 17.3 is c47 and 57.8 and 52.7 are c58. compute.py cross-checks c28 against c33. The sources are primary, the arXiv full text and abstract, and the first comment's id list matches the union of the printed ids exactly. Four things are looser than the source. (1) Slide 8 says the 70B model 'fell from 57.8 to 52.7 on ARC Challenge' with no metric, right after slides 3 and 7 call the chain of thought score (base 77.2) 'ARC Challenge'. A reader can conclude the 70B model scores below the 8B model. Also, 57.8 and 52.7 are the only stated figures not in figures.json, typed into the dek rather than extracted by compute.py. (2) Slide 2's 'Junk meant short and popular' and the caption state the M1 definition as the only one. The paper's second, semantic junk measure (M2, c22) is never mentioned, yet slide 5's 'over 70% across all cases' includes M2 cases. (3) Slide 5 and the caption write '84% of failures after/under junk training' where c39 says M1 junk. (4) Slide 4 makes a 1.3-point single-table inversion (59.4 against 60.7) its headline, and the camera sits 1.6 m above the landings, which visibly inflates that riser against the stated 'heights at one scale'. Minor: the first comment counts the abstract and full text of one preprint as 'two official records'. aggregates.json logs the phrase 'Four main models' against caption.txt, which reads 'Four models'. art_preflight.json still lists needs_review: [9] beside a review whose recorded hashes match frame_inputs['9']. I couldn't hash the PNG, so that stays a lead for the showrunner, not a finding."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.5,
+   "why": "Who and what are clear: Texas A&M, UT Austin and Purdue, four open models, a dose response, thought skipping, an incomplete repair. Slide 8 honestly says ChatGPT and Gemini were not tested. A Texan still learns nothing about what this means for the models they use, or what to do next. The close is a quote ('We want to emphasize the importance of data') and a general call for more testing. The paper's own limit, that it did not simulate from-scratch web pretraining (c63), is never used to scope the stakes."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.3,
+   "why": "Cover, definition, dose, then the turn at frame 6 (declared as the VALUE CUT), still short, limits and the close. Frame 2 pays at once. Frame 4 is cuttable without loss: its headline rests on a 1.3-point bump and it breaks the dose story's momentum. The close lands softly on a quote rather than on the image's argument."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.8,
+   "why": "It clears every house rule. No colons, semicolons or dashes, can't and didn't are used, there are no And or But openers and no banned words. Apostrophes are U+0027 in source (slide-06 and slide-09 use &#39;). Some lines are encoding narration rather than voice: 'The bare share of the stair is that 84%.' (slide 5) and 'Each landing is its score at one scale.' (slide 3). There is no regional specificity past the institution names, so it reads as a clean research summary that could run anywhere."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.0,
+   "why": "No topic repeats in topics.json. However, no. 51 on October 15th was 'a granite courthouse stair with a riser for every month', so the stair motif returns seven days later, and the preflight's distinct_from_recent cites only nos. 54 to 56 and leaves 51 out. lastLight is also the world of 54 and 56. This is the third peer-reviewed paper deck in six days (53 on October 17th, 55 on October 20th, now 57)."
+  }
+ ],
+ "weighted_score": 6.92,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Cut frame 4's 1.3-point inversion (59.4 against 60.7, inflated by a camera 1.6 m above the landings) and use the frame to scope what this means for models Texans actually use, with the paper's own limits (c63 no from-scratch web pretraining, c64 doses not the internet, M2 as a second junk definition), and on slide 8 name the 70B ARC Challenge figure as a different measure from the chain of thought score so 57.8 can't be read against 77.2.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 4,
+   "problem": "Four equal-width plain piers with the same blotchy mottle on every face, in front of brick-sized coursing, read as a bar chart in stone. The camera at top50 + 1.6 m makes the 1.3-point riser look about 2 to 3 times taller than its true height.",
+   "fix": "Build the walk from chassis stair_flight segments with treads and stringers between the landings, lower the eye to landing height (top50 + 0.2) so the 50 to 80 riser isn't inflated, and swap the pier albedo's repeating blotch for the limestone tooth used on the frame 1 pier."
+  },
+  {
+   "slide": 6,
+   "problem": "The pale slab stack reads as crackers. The 42,000-rock grit scatter fills the band between the dek and the stack as a dead zone, and the 'junk tokens' label floats far above its tread.",
+   "fix": "Drop the camera to about 0.5 m and move it closer so the junk tread and the 4.8 stack fill the lower half at 600 px or wider, lay the clean treads end to end as the storyboard planned, and remove the far grit scatter."
+  },
+  {
+   "slide": 9,
+   "problem": "The kit figure in the lit focal area is a mannequin: a grey cap head, an orange forearm, a pale seam at the shirt hem and one leg dissolving into black. The datum is a broad matte peach band rather than brass.",
+   "fix": "Put one continuous dark matte cloth on the figure and hold it as a near-silhouette, and replace the datum band with a thin inset brass strip with metallic roughness so it reads as one bright line."
+  },
+  {
+   "slide": 8,
+   "problem": "The bottom half is flat dark ground under the type (machine_qa top-loaded, bottom third at 33% craft density), so the flights and the chalk pad occupy only the top 45%.",
+   "fix": "Lower and pull back the camera so the plinth lands near design y 900 with its cast shadow running down the frame, and enlarge the chalk pad so 'not tested' is a mass rather than a small rectangle."
+  },
+  {
+   "slide": 7,
+   "problem": "Brick-sized wall coursing fills most of the frame and the datum is a wide matte band, so the repaired landing (the subject) is a small pale corner.",
+   "fix": "Swap the coursing for sawn ashlar at limestone block scale, thin the datum to a metallic strip, and reframe tighter on the landing so its fresh limestone owns the lower third."
+  }
+ ],
+ "lens": "integrity",
+ "round": 2
+}

@@ -1,0 +1,873 @@
+{
+ "claims": [
+  {
+   "id": "c1",
+   "item": "tx-2026-0223",
+   "text": "Zhengzhong Tu is an assistant professor in the Department of Computer Science and Engineering at Texas A&M University.",
+   "quote": "Tu, assistant professor in the Department of Computer Science and Engineering at Texas A&M University",
+   "url": "https://news.engineering.tamu.edu/news/2026/10/19/ai-models-can-get-brain-rot-too/",
+   "source_type": "primary_corporate",
+   "retrieved": "2026-10-22",
+   "confidence": "high",
+   "document": "AI models can get brain rot, too (Texas A&M Engineering News)"
+  },
+  {
+   "id": "c2",
+   "item": "tx-2026-0223",
+   "text": "Texas A&M Engineering News published the release on October 19th, 2026.",
+   "quote": "Oct. 19, 2026 By Amanda Norvelle , Contributor",
+   "url": "https://news.engineering.tamu.edu/news/2026/10/19/ai-models-can-get-brain-rot-too/",
+   "source_type": "primary_corporate",
+   "retrieved": "2026-10-22",
+   "confidence": "high",
+   "document": "AI models can get brain rot, too (Texas A&M Engineering News)"
+  },
+  {
+   "id": "c3",
+   "item": "tx-2026-0223",
+   "text": "Texas A&M Today carried the same story on October 21st, 2026.",
+   "quote": "Oct. 21, 2026 By Amanda Norvelle , Texas A&M University College of Engineering",
+   "url": "https://today.tamu.edu/news/2026/10/21/ai-models-can-get-brain-rot-too/",
+   "source_type": "primary_corporate",
+   "retrieved": "2026-10-22",
+   "confidence": "high",
+   "document": "AI models can get brain rot, too (Texas A&M Stories)"
+  },
+  {
+   "id": "c4",
+   "item": "tx-2026-0223",
+   "text": "Shuo Xing, one of Tu's doctoral students, is a lead author on the paper.",
+   "quote": "Shuo Xing, one of Tu’s doctoral students and a lead author on the paper",
+   "url": "https://news.engineering.tamu.edu/news/2026/10/19/ai-models-can-get-brain-rot-too/",
+   "source_type": "primary_corporate",
+   "retrieved": "2026-10-22",
+   "confidence": "high",
+   "document": "AI models can get brain rot, too (Texas A&M Engineering News)"
+  },
+  {
+   "id": "c5",
+   "item": "tx-2026-0223",
+   "text": "The paper's authors are Shuo Xing, Junyuan Hong, Yifan Wang, Runjin Chen, Zhenyu Zhang, Ananth Grama, Zhengzhong Tu and Zhangyang Wang.",
+   "quote": "Authors: Shuo Xing , Junyuan Hong , Yifan Wang , Runjin Chen , Zhenyu Zhang , Ananth Grama , Zhengzhong Tu , Zhangyang Wang",
+   "url": "https://arxiv.org/abs/2510.13928",
+   "source_type": "primary_official",
+   "retrieved": "2026-10-22",
+   "confidence": "high",
+   "document": "LLMs Can Get \"Brain Rot\": A Pilot Study on Twitter/X (arXiv abstract page, v3)"
+  },
+  {
+   "id": "c6",
+   "item": "tx-2026-0223",
+   "text": "The paper lists its affiliations as Texas A&M University, the University of Texas at Austin and Purdue University.",
+   "quote": "Ananth Grama, Zhengzhong Tu, Zhangyang Wang Texas A&M University, University of Texas at Austin, Purdue University",
+   "url": "https://arxiv.org/html/2510.13928v3",
+   "source_type": "primary_official",
+   "retrieved": "2026-10-22",
+   "confidence": "high",
+   "document": "LLMs Can Get \"Brain Rot\": A Pilot Study on Twitter/X (arXiv full text, v3)",
+   "note": "The affiliations are listed as one block. The paper does not say which author belongs to which institution."
+  },
+  {
+   "id": "c7",
+   "item": "tx-2026-0223",
+   "text": "The paper's contribution statement credits Z. Wang with developing the original idea and guiding the method design and experiments.",
+   "quote": "Z. Wang developed the original idea, provided guidance on method design and experiments, and helped with paper writing",
+   "url": "https://arxiv.org/html/2510.13928v3",
+   "source_type": "primary_official",
+   "retrieved": "2026-10-22",
+   "confidence": "high",
+   "document": "LLMs Can Get \"Brain Rot\": A Pilot Study on Twitter/X (arXiv full text, v3)",
+   "note": "Z. Wang reads as Zhangyang Wang, the only author with those initials (Yifan Wang is Y. Wang). That mapping comes from the initials and the paper does not state it."
+  },
+  {
+   "id": "c8",
+   "item": "tx-2026-0223",
+   "text": "The same statement says Z. Tu and A. Grama provided writing suggestions and computational resource support.",
+   "quote": "Z. Tu and A. Grama provided writing suggestions and computational resource support",
+   "url": "https://arxiv.org/html/2510.13928v3",
+   "source_type": "primary_official",
+   "retrieved": "2026-10-22",
+   "confidence": "high",
+   "document": "LLMs Can Get \"Brain Rot\": A Pilot Study on Twitter/X (arXiv full text, v3)"
+  },
+  {
+   "id": "c9",
+   "item": "tx-2026-0223",
+   "text": "Work by J. Hong and Z. Wang was partly supported by Good Systems, a UT Austin Grand Challenge on responsible AI.",
+   "quote": "The work of J. Hong, and Z. Wang is in part supported by Good Systems, a UT Austin Grand Challenge to develop responsible AI technologies",
+   "url": "https://arxiv.org/html/2510.13928v3",
+   "source_type": "primary_official",
+   "retrieved": "2026-10-22",
+   "confidence": "high",
+   "document": "LLMs Can Get \"Brain Rot\": A Pilot Study on Twitter/X (arXiv full text, v3)"
+  },
+  {
+   "id": "c10",
+   "item": "tx-2026-0223",
+   "text": "Z. Tu's work was partly supported by the Google Research Scholar Award and the Amazon Research Award.",
+   "quote": "The work of Z. Tu is in part supported by the Google Research Scholar Award and the Amazon Research Award (ARA)",
+   "url": "https://arxiv.org/html/2510.13928v3",
+   "source_type": "primary_official",
+   "retrieved": "2026-10-22",
+   "confidence": "high",
+   "document": "LLMs Can Get \"Brain Rot\": A Pilot Study on Twitter/X (arXiv full text, v3)"
+  },
+  {
+   "id": "c11",
+   "item": "tx-2026-0223",
+   "text": "The paper was first posted to arXiv on October 15th, 2025.",
+   "quote": "[v1] Wed, 15 Oct 2025 13:28:49 UTC (834 KB)",
+   "url": "https://arxiv.org/abs/2510.13928",
+   "source_type": "primary_official",
+   "retrieved": "2026-10-22",
+   "confidence": "high",
+   "document": "LLMs Can Get \"Brain Rot\": A Pilot Study on Twitter/X (arXiv abstract page, v3)"
+  },
+  {
+   "id": "c12",
+   "item": "tx-2026-0223",
+   "text": "Its current arXiv version was posted on October 14th, 2026.",
+   "quote": "last revised 14 Oct 2026 (this version, v3)",
+   "url": "https://arxiv.org/abs/2510.13928",
+   "source_type": "primary_official",
+   "retrieved": "2026-10-22",
+   "confidence": "high",
+   "document": "LLMs Can Get \"Brain Rot\": A Pilot Study on Twitter/X (arXiv abstract page, v3)"
+  },
+  {
+   "id": "c13",
+   "item": "tx-2026-0223",
+   "text": "The arXiv listing marks the paper as published at COLM 2026.",
+   "quote": "Comments: Published at COLM 2026",
+   "url": "https://arxiv.org/abs/2510.13928",
+   "source_type": "primary_official",
+   "retrieved": "2026-10-22",
+   "confidence": "high",
+   "document": "LLMs Can Get \"Brain Rot\": A Pilot Study on Twitter/X (arXiv abstract page, v3)"
+  },
+  {
+   "id": "c14",
+   "item": "tx-2026-0223",
+   "text": "The release says the work was accepted to the 2026 Conference on Language Modeling.",
+   "quote": "This research was recently accepted to the 2026 Conference on Language Modeling",
+   "url": "https://news.engineering.tamu.edu/news/2026/10/19/ai-models-can-get-brain-rot-too/",
+   "source_type": "primary_corporate",
+   "retrieved": "2026-10-22",
+   "confidence": "high",
+   "document": "AI models can get brain rot, too (Texas A&M Engineering News)"
+  },
+  {
+   "id": "c15",
+   "item": "tx-2026-0223",
+   "text": "The paper calls itself a pilot study on Twitter/X.",
+   "quote": "Title: LLMs Can Get \"Brain Rot\": A Pilot Study on Twitter/X",
+   "url": "https://arxiv.org/abs/2510.13928",
+   "source_type": "primary_official",
+   "retrieved": "2026-10-22",
+   "confidence": "high",
+   "document": "LLMs Can Get \"Brain Rot\": A Pilot Study on Twitter/X (arXiv abstract page, v3)"
+  },
+  {
+   "id": "c16",
+   "item": "tx-2026-0223",
+   "text": "The junk and control sets were drawn from 1 million public Twitter/X posts.",
+   "quote": "we subsample the 1-million public Twitter/X posts to construct junk and control datasets, separately",
+   "url": "https://arxiv.org/html/2510.13928v3",
+   "source_type": "primary_official",
+   "retrieved": "2026-10-22",
+   "confidence": "high",
+   "document": "LLMs Can Get \"Brain Rot\": A Pilot Study on Twitter/X (arXiv full text, v3)"
+  },
+  {
+   "id": "c17",
+   "item": "tx-2026-0223",
+   "text": "The paper says its Twitter/X dataset was collected in 2023.",
+   "quote": "The dataset was collected in 2023",
+   "url": "https://arxiv.org/html/2510.13928v3",
+   "source_type": "primary_official",
+   "retrieved": "2026-10-22",
+   "confidence": "medium",
+   "document": "LLMs Can Get \"Brain Rot\": A Pilot Study on Twitter/X (arXiv full text, v3)",
+   "note": "This contradicts both releases, which say 2010. The paper's footnote names the Hugging Face set enryu43/twitter100m_tweets with data 'in 2021-2023'. Attribute this year to the paper and never publish 2010. See rejected."
+  },
+  {
+   "id": "c18",
+   "item": "tx-2026-0223",
+   "text": "Under the engagement measure, junk was posts under 30 tokens with popularity over 500, and control was posts over 100 tokens with zero popularity.",
+   "quote": "For M1 , we choose samples with a token length < 30 <30 (the corpus median) and a popularity of > 500 >500 (the 97th percentile) as junk data, and samples with a token length > 100 >100 (the 99th percentile) and a popularity of = 0 =0 as control data",
+   "url": "https://arxiv.org/html/2510.13928v3",
+   "source_type": "primary_official",
+   "retrieved": "2026-10-22",
+   "confidence": "high",
+   "document": "LLMs Can Get \"Brain Rot\": A Pilot Study on Twitter/X (arXiv full text, v3)"
+  },
+  {
+   "id": "c19",
+   "item": "tx-2026-0223",
+   "text": "The paper's popularity count is the total of a post's likes, retweets, replies and quotes.",
+   "quote": "popularity – the total number of likes, retweets, replies, and quotes",
+   "url": "https://arxiv.org/html/2510.13928v3",
+   "source_type": "primary_official",
+   "retrieved": "2026-10-22",
+   "confidence": "high",
+   "document": "LLMs Can Get \"Brain Rot\": A Pilot Study on Twitter/X (arXiv full text, v3)"
+  },
+  {
+   "id": "c20",
+   "item": "tx-2026-0223",
+   "text": "The release describes junk as posts with more than a combined 500 likes, retweets or replies and fewer than 30 tokens.",
+   "quote": "researchers designated posts as junk if they received more than a combined 500 likes, retweets or replies and contained fewer than 30 tokens",
+   "url": "https://news.engineering.tamu.edu/news/2026/10/19/ai-models-can-get-brain-rot-too/",
+   "source_type": "primary_corporate",
+   "retrieved": "2026-10-22",
+   "confidence": "medium",
+   "document": "AI models can get brain rot, too (Texas A&M Engineering News)",
+   "note": "The release leaves quotes out of the count. The paper (c19) counts likes, retweets, replies and quotes. Use c18 and c19 for the definition and c20 only as the release's wording."
+  },
+  {
+   "id": "c21",
+   "item": "tx-2026-0223",
+   "text": "Junk data was balanced to the 1.22 million tokens of control data available.",
+   "quote": "As the maximal number of available control data tokens is 1.22 million, we balance the number of tokens in junk data to the same scale",
+   "url": "https://arxiv.org/html/2510.13928v3",
+   "source_type": "primary_official",
+   "retrieved": "2026-10-22",
+   "confidence": "high",
+   "document": "LLMs Can Get \"Brain Rot\": A Pilot Study on Twitter/X (arXiv full text, v3)"
+  },
+  {
+   "id": "c22",
+   "item": "tx-2026-0223",
+   "text": "Under the semantic quality measure, GPT-4o-mini was prompted to label each tweet as high quality or junk.",
+   "quote": "For M2 , we prompt GPT-4o-mini to classify a tweet as high-quality or junk",
+   "url": "https://arxiv.org/html/2510.13928v3",
+   "source_type": "primary_official",
+   "retrieved": "2026-10-22",
+   "confidence": "high",
+   "document": "LLMs Can Get \"Brain Rot\": A Pilot Study on Twitter/X (arXiv full text, v3)"
+  },
+  {
+   "id": "c23",
+   "item": "tx-2026-0223",
+   "text": "Checked against human annotators, the GPT labels showed 76% agreement.",
+   "quote": "The confusion matrix shows 76% agreement, supporting the validity of GPT-based M2 categorization",
+   "url": "https://arxiv.org/html/2510.13928v3",
+   "source_type": "primary_official",
+   "retrieved": "2026-10-22",
+   "confidence": "high",
+   "document": "LLMs Can Get \"Brain Rot\": A Pilot Study on Twitter/X (arXiv full text, v3)"
+  },
+  {
+   "id": "c24",
+   "item": "tx-2026-0223",
+   "text": "Three human annotators labelled samples with the same rubric the GPT model was given.",
+   "quote": "three human experts (junior, senior, and postdoctoral researchers) annotated the data using the rubric shown in Fig. 8 , which is identical to the prompt provided to the GPT model",
+   "url": "https://arxiv.org/html/2510.13928v3",
+   "source_type": "primary_official",
+   "retrieved": "2026-10-22",
+   "confidence": "medium",
+   "document": "LLMs Can Get \"Brain Rot\": A Pilot Study on Twitter/X (arXiv full text, v3)",
+   "note": "Do not call them graduate students. See rejected."
+  },
+  {
+   "id": "c25",
+   "item": "tx-2026-0223",
+   "text": "The four models tested were Llama3 8B Instruct, Qwen2.5 7B Instruct, Qwen2.5 0.5B Instruct and Qwen3 4B Thinking 2507.",
+   "quote": "four pre-trained and instruct-tuned models, including Llama3 8B Instruct ( Grattafiori et al., 2024 ) , Qwen2.5 7B Instruct, Qwen2.5 0.5B Instruct ( Qwen et al., 2025 ) , and Qwen3 4B Thinking 2507",
+   "url": "https://arxiv.org/html/2510.13928v3",
+   "source_type": "primary_official",
+   "retrieved": "2026-10-22",
+   "confidence": "high",
+   "document": "LLMs Can Get \"Brain Rot\": A Pilot Study on Twitter/X (arXiv full text, v3)"
+  },
+  {
+   "id": "c26",
+   "item": "tx-2026-0223",
+   "text": "Each model was continually pre-trained on a junk and control mixture, then instruction tuned again on 5k Alpaca English examples.",
+   "quote": "(1) We execute continual pre-training (CPT) by using the next-token prediction loss on synthetic corpora that we construct with varying proportions of junk and control data. The method was widely used as a naive CPT baseline in the literature ( Zheng et al., 2025 ) . (2) We conduct the instruction tuning again on the Alpaca English dataset (5k examples)",
+   "url": "https://arxiv.org/html/2510.13928v3",
+   "source_type": "primary_official",
+   "retrieved": "2026-10-22",
+   "confidence": "high",
+   "document": "LLMs Can Get \"Brain Rot\": A Pilot Study on Twitter/X (arXiv full text, v3)"
+  },
+  {
+   "id": "c27",
+   "item": "tx-2026-0223",
+   "text": "Compared with the control group, junk training of 4 models caused declines above a Hedges' g of 0.3 in reasoning, long context understanding and safety.",
+   "quote": "continual pre-training of 4 LLMs on the junk dataset causes non-trivial declines (Hedges' g>0.3) on reasoning, long-context understanding, safety",
+   "url": "https://arxiv.org/abs/2510.13928",
+   "source_type": "primary_official",
+   "retrieved": "2026-10-22",
+   "confidence": "high",
+   "document": "LLMs Can Get \"Brain Rot\": A Pilot Study on Twitter/X (arXiv abstract page, v3)"
+  },
+  {
+   "id": "c28",
+   "item": "tx-2026-0223",
+   "text": "Under M1, ARC Challenge accuracy with chain of thought fell from 72.1 to 57.2 as the junk share rose from 0% to 100%.",
+   "quote": "under M1, ARC-Challenge with Chain-of-Thought drops 72.1 -> 57.2 and RULER-CWE 83.7 -> 52.3 as junk ratio rises from 0% to 100%",
+   "url": "https://arxiv.org/abs/2510.13928",
+   "source_type": "primary_official",
+   "retrieved": "2026-10-22",
+   "confidence": "high",
+   "document": "LLMs Can Get \"Brain Rot\": A Pilot Study on Twitter/X (arXiv abstract page, v3)",
+   "note": "The abstract page's extracted text writes the arrow as ASCII '->'. The HTML full text writes it as the arrow character followed by a LaTeX duplicate. The quote here is from the abstract page."
+  },
+  {
+   "id": "c29",
+   "item": "tx-2026-0223",
+   "text": "Under M1, the RULER common word extraction score fell from 83.7 to 52.3 as the junk share rose from 0% to 100%.",
+   "quote": "under M1, ARC-Challenge with Chain-of-Thought drops 72.1 -> 57.2 and RULER-CWE 83.7 -> 52.3 as junk ratio rises from 0% to 100%",
+   "url": "https://arxiv.org/abs/2510.13928",
+   "source_type": "primary_official",
+   "retrieved": "2026-10-22",
+   "confidence": "high",
+   "document": "LLMs Can Get \"Brain Rot\": A Pilot Study on Twitter/X (arXiv abstract page, v3)"
+  },
+  {
+   "id": "c30",
+   "item": "tx-2026-0223",
+   "text": "The paper's dose response table reports Llama3 8B Instruct trained on varying mixtures of junk and control data.",
+   "quote": "Table 2: Evaluating Llama3 8B Instruct (Base) after being trained on varying mixtures of junk and control data",
+   "url": "https://arxiv.org/html/2510.13928v3",
+   "source_type": "primary_official",
+   "retrieved": "2026-10-22",
+   "confidence": "high",
+   "document": "LLMs Can Get \"Brain Rot\": A Pilot Study on Twitter/X (arXiv full text, v3)",
+   "note": "c57 says this is the most sensitive of the four models. Do not present these values as typical of all four."
+  },
+  {
+   "id": "c31",
+   "item": "tx-2026-0223",
+   "text": "That table reports junk ratios of 100%, 80%, 50%, 20% and 0% under M1 and M2, plus a Base column.",
+   "quote": "Junk Ratio by M1 (engagement degree) Junk Ratio by M2 (semantic quality) Base 100% 80% 50% 20% 0% 100% 80% 50% 20% 0% -",
+   "url": "https://arxiv.org/html/2510.13928v3",
+   "source_type": "primary_official",
+   "retrieved": "2026-10-22",
+   "confidence": "high",
+   "document": "LLMs Can Get \"Brain Rot\": A Pilot Study on Twitter/X (arXiv full text, v3)",
+   "note": "Column order for c33 to c36, cells 1 to 11: M1 100%, 80%, 50%, 20%, 0%, then M2 100%, 80%, 50%, 20%, 0%, then Base."
+  },
+  {
+   "id": "c32",
+   "item": "tx-2026-0223",
+   "text": "The Base column is the model before junk or control training, instruction tuned on the same dataset as the test groups.",
+   "quote": "We also include baseline models (before intervention). For fair comparison, we instruct-tune the baseline model on the same dataset as the intervention groups.",
+   "url": "https://arxiv.org/html/2510.13928v3",
+   "source_type": "primary_official",
+   "retrieved": "2026-10-22",
+   "confidence": "high",
+   "document": "LLMs Can Get \"Brain Rot\": A Pilot Study on Twitter/X (arXiv full text, v3)"
+  },
+  {
+   "id": "c33",
+   "item": "tx-2026-0223",
+   "text": "Under the engagement measure, ARC Challenge with chain of thought scored 57.2, 64.1, 69.3, 71.2 and 72.1, from all junk to no junk. Base scored 77.2.",
+   "quote": "Challenge (COT) Acc. 57.2 64.1 69.3 71.2 72.1 67.7 77.6 77.3 77.6 76.6 77.2",
+   "url": "https://arxiv.org/html/2510.13928v3",
+   "source_type": "primary_official",
+   "retrieved": "2026-10-22",
+   "confidence": "high",
+   "document": "LLMs Can Get \"Brain Rot\": A Pilot Study on Twitter/X (arXiv full text, v3)",
+   "note": "Cells 1 to 5 are M1 100%, 80%, 50%, 20%, 0%. Cells 6 to 10 are M2. Cell 11 is Base. The column order is in c31."
+  },
+  {
+   "id": "c34",
+   "item": "tx-2026-0223",
+   "text": "Under the engagement measure, RULER overall scored 71, 79, 80, 89.7 and 89.7, from all junk to no junk. Base scored 93.9.",
+   "quote": "Long-Context (RULER) Overall 71 79 80 89.7 89.7 86.2 92.9 93 93.4 93.8 93.9",
+   "url": "https://arxiv.org/html/2510.13928v3",
+   "source_type": "primary_official",
+   "retrieved": "2026-10-22",
+   "confidence": "high",
+   "document": "LLMs Can Get \"Brain Rot\": A Pilot Study on Twitter/X (arXiv full text, v3)",
+   "note": "Column order is in c31."
+  },
+  {
+   "id": "c35",
+   "item": "tx-2026-0223",
+   "text": "Under the engagement measure, RULER common word extraction scored 52.3, 62.7, 61.8, 83.3 and 83.7, from all junk to no junk. Base scored 91.8.",
+   "quote": "Comm Word Ext (CWE) 52.3 62.7 61.8 83.3 83.7 68.2 94.7 97.3 96 96.8 91.8",
+   "url": "https://arxiv.org/html/2510.13928v3",
+   "source_type": "primary_official",
+   "retrieved": "2026-10-22",
+   "confidence": "high",
+   "document": "LLMs Can Get \"Brain Rot\": A Pilot Study on Twitter/X (arXiv full text, v3)",
+   "note": "Column order is in c31. The scores do not fall at every step (62.7 at 80% junk, 61.8 at 50%), so do not call the decline steady."
+  },
+  {
+   "id": "c36",
+   "item": "tx-2026-0223",
+   "text": "Under the engagement measure, variable tracking scored 22.4, 60.7, 59.4, 85.5 and 86.3, from all junk to no junk. Base scored 98.3.",
+   "quote": "Variable Tracking 22.4 60.7 59.4 85.5 86.3 86.6 98 99.4 99.2 98.6 98.3",
+   "url": "https://arxiv.org/html/2510.13928v3",
+   "source_type": "primary_official",
+   "retrieved": "2026-10-22",
+   "confidence": "high",
+   "document": "LLMs Can Get \"Brain Rot\": A Pilot Study on Twitter/X (arXiv full text, v3)",
+   "note": "Column order is in c31. The scores do not fall at every step (60.7 at 80% junk, 59.4 at 50%)."
+  },
+  {
+   "id": "c37",
+   "item": "tx-2026-0223",
+   "text": "On ARC under M2, performance returned to the control level once 20% or more control data was blended in.",
+   "quote": "In M2, the dose response is less smooth: Once a small portion of control data ( ≥ 20 % \\geq 20\\% ) is blended, performance is restored to the control condition",
+   "url": "https://arxiv.org/html/2510.13928v3",
+   "source_type": "primary_official",
+   "retrieved": "2026-10-22",
+   "confidence": "high",
+   "document": "LLMs Can Get \"Brain Rot\": A Pilot Study on Twitter/X (arXiv full text, v3)"
+  },
+  {
+   "id": "c38",
+   "item": "tx-2026-0223",
+   "text": "The paper identifies thought skipping as the main reasoning failure, with models increasingly truncating or skipping reasoning chains.",
+   "quote": "we identify thought-skipping as the primary lesion in reasoning: models increasingly truncate or skip chains",
+   "url": "https://arxiv.org/abs/2510.13928",
+   "source_type": "primary_official",
+   "retrieved": "2026-10-22",
+   "confidence": "high",
+   "document": "LLMs Can Get \"Brain Rot\": A Pilot Study on Twitter/X (arXiv abstract page, v3)"
+  },
+  {
+   "id": "c39",
+   "item": "tx-2026-0223",
+   "text": "No Thinking appeared in over 70% of failures across all cases and in 84% under M1 junk.",
+   "quote": "No Thinking alone appears in over 70 % 70\\% failures across all cases and 84 % 84\\% in M1 junk intervention",
+   "url": "https://arxiv.org/html/2510.13928v3",
+   "source_type": "primary_official",
+   "retrieved": "2026-10-22",
+   "confidence": "high",
+   "document": "LLMs Can Get \"Brain Rot\": A Pilot Study on Twitter/X (arXiv full text, v3)",
+   "note": "The paper says GPT-4o-mini categorized the failures, and one response can fall into more than one category."
+  },
+  {
+   "id": "c40",
+   "item": "tx-2026-0223",
+   "text": "Within M1, a tweet's popularity was a better indicator of the effect than its length.",
+   "quote": "the popularity, a non-semantic metric, of a tweet is a better indicator of the Brain Rot effect than the length in M1",
+   "url": "https://arxiv.org/abs/2510.13928",
+   "source_type": "primary_official",
+   "retrieved": "2026-10-22",
+   "confidence": "high",
+   "document": "LLMs Can Get \"Brain Rot\": A Pilot Study on Twitter/X (arXiv abstract page, v3)"
+  },
+  {
+   "id": "c41",
+   "item": "tx-2026-0223",
+   "text": "Scaling instruction tuning and clean continual pre-training improved the damaged models but did not restore baseline capability.",
+   "quote": "partial but incomplete healing is observed: scaling instruction tuning and clean continual pre-training improve the declined cognition, yet cannot restore baseline capability",
+   "url": "https://arxiv.org/abs/2510.13928",
+   "source_type": "primary_official",
+   "retrieved": "2026-10-22",
+   "confidence": "high",
+   "document": "LLMs Can Get \"Brain Rot\": A Pilot Study on Twitter/X (arXiv abstract page, v3)"
+  },
+  {
+   "id": "c42",
+   "item": "tx-2026-0223",
+   "text": "The repair tests started from Llama3 8B Instruct after 100% M1 junk training.",
+   "quote": "By default, we use Llama3 8B Instruct after 100% M1 junk intervention",
+   "url": "https://arxiv.org/html/2510.13928v3",
+   "source_type": "primary_official",
+   "retrieved": "2026-10-22",
+   "confidence": "high",
+   "document": "LLMs Can Get \"Brain Rot\": A Pilot Study on Twitter/X (arXiv full text, v3)"
+  },
+  {
+   "id": "c43",
+   "item": "tx-2026-0223",
+   "text": "For repair, instruction tuning data was scaled from 5k to 50k examples, the whole Alpaca dataset.",
+   "quote": "we scale up the data used for IT from 5k to 50k examples (the whole Alpaca dataset)",
+   "url": "https://arxiv.org/html/2510.13928v3",
+   "source_type": "primary_official",
+   "retrieved": "2026-10-22",
+   "confidence": "high",
+   "document": "LLMs Can Get \"Brain Rot\": A Pilot Study on Twitter/X (arXiv full text, v3)"
+  },
+  {
+   "id": "c44",
+   "item": "tx-2026-0223",
+   "text": "Instruction data totaling 4.8 times the junk tokens still did not fully undo the damage.",
+   "quote": "Even if we used up all instruction data, consisting of 4.8 4.8 times of the tokens used in junk intervention, the damage caused by junk intervention still cannot be fully undone",
+   "url": "https://arxiv.org/html/2510.13928v3",
+   "source_type": "primary_official",
+   "retrieved": "2026-10-22",
+   "confidence": "high",
+   "document": "LLMs Can Get \"Brain Rot\": A Pilot Study on Twitter/X (arXiv full text, v3)"
+  },
+  {
+   "id": "c45",
+   "item": "tx-2026-0223",
+   "text": "Clean continual pre-training on C4 data was scaled from 0 to 2.4 million tokens, followed by instruction tuning.",
+   "quote": "CPT uses C4 data ( Raffel et al., 2020 ) scaled from 0 to 2.4 million tokens and continues the pre-training followed by instruction tuning",
+   "url": "https://arxiv.org/html/2510.13928v3",
+   "source_type": "primary_official",
+   "retrieved": "2026-10-22",
+   "confidence": "high",
+   "document": "LLMs Can Get \"Brain Rot\": A Pilot Study on Twitter/X (arXiv full text, v3)"
+  },
+  {
+   "id": "c46",
+   "item": "tx-2026-0223",
+   "text": "As a repair, instruction tuning showed a clearer scaling effect than clean continual pre-training.",
+   "quote": "we observe a more obvious scaling effect by IT than by CPT",
+   "url": "https://arxiv.org/html/2510.13928v3",
+   "source_type": "primary_official",
+   "retrieved": "2026-10-22",
+   "confidence": "high",
+   "document": "LLMs Can Get \"Brain Rot\": A Pilot Study on Twitter/X (arXiv full text, v3)"
+  },
+  {
+   "id": "c47",
+   "item": "tx-2026-0223",
+   "text": "The best repaired models still trailed the baseline by 17.3% on ARC Challenge with chain of thought, 9% on RULER and 17.4% on AdvBench.",
+   "quote": "A large gap remains between the best mitigated models and the baseline: 17.3 % 17.3\\% (ARC-C COT), 9 % 9\\% (RULER), 17.4 % 17.4\\% (AdvBench) absolute difference",
+   "url": "https://arxiv.org/html/2510.13928v3",
+   "source_type": "primary_official",
+   "retrieved": "2026-10-22",
+   "confidence": "high",
+   "document": "LLMs Can Get \"Brain Rot\": A Pilot Study on Twitter/X (arXiv full text, v3)",
+   "note": "The paper calls these absolute differences. AdvBench is a risk score, so trailing there means higher risk."
+  },
+  {
+   "id": "c48",
+   "item": "tx-2026-0223",
+   "text": "The Ext-Reflect method used critiques from a stronger external model, GPT-4o-mini.",
+   "quote": "for Ext-Reflect , we use a stronger external model (GPT-4o-mini) instead",
+   "url": "https://arxiv.org/html/2510.13928v3",
+   "source_type": "primary_official",
+   "retrieved": "2026-10-22",
+   "confidence": "high",
+   "document": "LLMs Can Get \"Brain Rot\": A Pilot Study on Twitter/X (arXiv full text, v3)"
+  },
+  {
+   "id": "c49",
+   "item": "tx-2026-0223",
+   "text": "After 6 iterations, Ext-Reflect brought the thought skipping rate to a level similar to the baseline.",
+   "quote": "After 6 iterations, the Ext-Reflect converges to a thought-skipping rate similar to the baseline",
+   "url": "https://arxiv.org/html/2510.13928v3",
+   "source_type": "primary_official",
+   "retrieved": "2026-10-22",
+   "confidence": "high",
+   "document": "LLMs Can Get \"Brain Rot\": A Pilot Study on Twitter/X (arXiv full text, v3)",
+   "note": "This is the thought-skipping rate only. The text gives no accuracy figure for Ext-Reflect and says only that the decline 'can be largely reduced'. Do not say Ext-Reflect healed the model."
+  },
+  {
+   "id": "c50",
+   "item": "tx-2026-0223",
+   "text": "Self-reflection by the damaged model itself produced even higher error rates than no reflection.",
+   "quote": "The Self-Reflect fails to provide a more accurate reflection on the detailed problems, like factual or logical flaws, resulting in even higher error rates than the Non-Reflect model",
+   "url": "https://arxiv.org/html/2510.13928v3",
+   "source_type": "primary_official",
+   "retrieved": "2026-10-22",
+   "confidence": "high",
+   "document": "LLMs Can Get \"Brain Rot\": A Pilot Study on Twitter/X (arXiv full text, v3)"
+  },
+  {
+   "id": "c51",
+   "item": "tx-2026-0223",
+   "text": "The paper says the damage persisted after post-hoc tuning at the scales it tested.",
+   "quote": "the damage is multifaceted in changing the reasoning patterns and is persists even after post-hoc tuning at the scales we tested",
+   "url": "https://arxiv.org/html/2510.13928v3",
+   "source_type": "primary_official",
+   "retrieved": "2026-10-22",
+   "confidence": "high",
+   "document": "LLMs Can Get \"Brain Rot\": A Pilot Study on Twitter/X (arXiv full text, v3)",
+   "note": "'is persists' is the paper's own typo and is kept verbatim."
+  },
+  {
+   "id": "c52",
+   "item": "tx-2026-0223",
+   "text": "Training on control data alone also raised a safety risk score, from 61.4 to 68 under M1 and 83.8 under M2.",
+   "quote": "Without junk intervention, the LLM becomes more unsafe with risk score increasing from 61.4 to 68 (M1) or 83.8 (M2)",
+   "url": "https://arxiv.org/html/2510.13928v3",
+   "source_type": "primary_official",
+   "retrieved": "2026-10-22",
+   "confidence": "high",
+   "document": "LLMs Can Get \"Brain Rot\": A Pilot Study on Twitter/X (arXiv full text, v3)",
+   "note": "These figures match the AdvBench row of Table 2 (Base 61.4, M1 0% 68, M2 0% 83.8)."
+  },
+  {
+   "id": "c53",
+   "item": "tx-2026-0223",
+   "text": "On the two safety tests, junk and control groups both grew riskier, and the dose effect fluctuated.",
+   "quote": "In HH-RLHF and AdvBench, both intervention and control groups suffer from increasing safety risks, but the dose effect is fluctuating",
+   "url": "https://arxiv.org/html/2510.13928v3",
+   "source_type": "primary_official",
+   "retrieved": "2026-10-22",
+   "confidence": "high",
+   "document": "LLMs Can Get \"Brain Rot\": A Pilot Study on Twitter/X (arXiv full text, v3)"
+  },
+  {
+   "id": "c54",
+   "item": "tx-2026-0223",
+   "text": "The abstract reports junk training inflating dark traits such as psychopathy and narcissism.",
+   "quote": "inflating \"dark traits\" (e.g., psychopathy, narcissism)",
+   "url": "https://arxiv.org/abs/2510.13928",
+   "source_type": "primary_official",
+   "retrieved": "2026-10-22",
+   "confidence": "high",
+   "document": "LLMs Can Get \"Brain Rot\": A Pilot Study on Twitter/X (arXiv abstract page, v3)",
+   "note": "These traits are scored on the TRAIT questionnaire benchmark. Say what the benchmark measured. Do not say the models acquired a personality."
+  },
+  {
+   "id": "c55",
+   "item": "tx-2026-0223",
+   "text": "Under M1, the paper reports higher narcissism, psychopathy and Machiavellianism and lower agreeableness and conscientiousness.",
+   "quote": "M1 gives rise to safety risks, three bad personalities (narcissism, psychopathy, and Machiavellianism), when lowering agreeableness and conscientiousness",
+   "url": "https://arxiv.org/html/2510.13928v3",
+   "source_type": "primary_official",
+   "retrieved": "2026-10-22",
+   "confidence": "high",
+   "document": "LLMs Can Get \"Brain Rot\": A Pilot Study on Twitter/X (arXiv full text, v3)"
+  },
+  {
+   "id": "c56",
+   "item": "tx-2026-0223",
+   "text": "The paper also reports some positive shifts, including higher agreeableness, extroversion and openness, particularly under M2.",
+   "quote": "positive effects can emerge with increased agreeableness, extroversion, and openness, particularly under M2",
+   "url": "https://arxiv.org/html/2510.13928v3",
+   "source_type": "primary_official",
+   "retrieved": "2026-10-22",
+   "confidence": "high",
+   "document": "LLMs Can Get \"Brain Rot\": A Pilot Study on Twitter/X (arXiv full text, v3)"
+  },
+  {
+   "id": "c57",
+   "item": "tx-2026-0223",
+   "text": "All four models showed some dose response. Llama3 8B Instruct was the most sensitive to junk and Qwen3 4B the least.",
+   "quote": "Among all four models, they all present some dose-response effects – more junk data causes more damage. Llama3 8B Instruct is most sensitive to the junk intervention, and Qwen3 4B is the least sensitive",
+   "url": "https://arxiv.org/html/2510.13928v3",
+   "source_type": "primary_official",
+   "retrieved": "2026-10-22",
+   "confidence": "high",
+   "document": "LLMs Can Get \"Brain Rot\": A Pilot Study on Twitter/X (arXiv full text, v3)"
+  },
+  {
+   "id": "c58",
+   "item": "tx-2026-0223",
+   "text": "In an appendix test, Llama3-70B-Instruct scored 57.8 on ARC Challenge at Base and 52.7 after 100% junk under M1.",
+   "quote": "Table 15: Performance under 100% Junk (M1) with Llama3-70B-Instruct as the backbone. Task Base 100% Junk (M1) Δ \\Delta ARC Easy 82.4 80.1 -2.3 ARC Challenge 57.8 52.7 -5.0",
+   "url": "https://arxiv.org/html/2510.13928v3",
+   "source_type": "primary_official",
+   "retrieved": "2026-10-22",
+   "confidence": "high",
+   "document": "LLMs Can Get \"Brain Rot\": A Pilot Study on Twitter/X (arXiv full text, v3)",
+   "note": "The live fetch confirmed Base 57.8 and 100% junk 52.7. This appendix model is in addition to the four main models."
+  },
+  {
+   "id": "c59",
+   "item": "tx-2026-0223",
+   "text": "A clean C4 control did not reproduce the size of the decline seen under M1 junk.",
+   "quote": "the C4 control does not reproduce the same magnitude or pattern of degradation observed under M1 junk",
+   "url": "https://arxiv.org/html/2510.13928v3",
+   "source_type": "primary_official",
+   "retrieved": "2026-10-22",
+   "confidence": "high",
+   "document": "LLMs Can Get \"Brain Rot\": A Pilot Study on Twitter/X (arXiv full text, v3)"
+  },
+  {
+   "id": "c60",
+   "item": "tx-2026-0223",
+   "text": "C4 training still showed some decline on ARC with chain of thought and AdvBench, which the paper calls generic training drift.",
+   "quote": "On ARC-Challenge with CoT and AdvBench, C4 shows some degradation relative to the M1 control, suggesting that generic CPT drift can occur",
+   "url": "https://arxiv.org/html/2510.13928v3",
+   "source_type": "primary_official",
+   "retrieved": "2026-10-22",
+   "confidence": "high",
+   "document": "LLMs Can Get \"Brain Rot\": A Pilot Study on Twitter/X (arXiv full text, v3)"
+  },
+  {
+   "id": "c61",
+   "item": "tx-2026-0223",
+   "text": "A randomly sampled Twitter/X control also scored below the M1 control on RULER, 76.4 against 89.7.",
+   "quote": "Compared with the M1 control, random Twitter/X decreases RULER from 89.7 89.7 to 76.4 76.4",
+   "url": "https://arxiv.org/html/2510.13928v3",
+   "source_type": "primary_official",
+   "retrieved": "2026-10-22",
+   "confidence": "high",
+   "document": "LLMs Can Get \"Brain Rot\": A Pilot Study on Twitter/X (arXiv full text, v3)"
+  },
+  {
+   "id": "c62",
+   "item": "tx-2026-0223",
+   "text": "The authors say the findings are specific to Twitter/X junk data and the models studied. Other platforms remain an open question.",
+   "quote": "We note that these findings are specific to Twitter/X junk data and the models studied; whether analogous effects arise from other platforms or data types remains an open question",
+   "url": "https://arxiv.org/html/2510.13928v3",
+   "source_type": "primary_official",
+   "retrieved": "2026-10-22",
+   "confidence": "high",
+   "document": "LLMs Can Get \"Brain Rot\": A Pilot Study on Twitter/X (arXiv full text, v3)"
+  },
+  {
+   "id": "c63",
+   "item": "tx-2026-0223",
+   "text": "The paper says it does not simulate training from scratch on a naturally sampled web corpus.",
+   "quote": "Our study does not aim to simulate from-scratch pre-training on a naturally sampled web-scale corpus",
+   "url": "https://arxiv.org/html/2510.13928v3",
+   "source_type": "primary_official",
+   "retrieved": "2026-10-22",
+   "confidence": "high",
+   "document": "LLMs Can Get \"Brain Rot\": A Pilot Study on Twitter/X (arXiv full text, v3)"
+  },
+  {
+   "id": "c64",
+   "item": "tx-2026-0223",
+   "text": "The junk ratios are doses within the training mixture, not estimates of how much of the internet is junk.",
+   "quote": "the junk-to-control ratios in our experiments represent intervention doses within the continual-pre-training corpus rather than estimates of the composition of the broader Internet",
+   "url": "https://arxiv.org/html/2510.13928v3",
+   "source_type": "primary_official",
+   "retrieved": "2026-10-22",
+   "confidence": "high",
+   "document": "LLMs Can Get \"Brain Rot\": A Pilot Study on Twitter/X (arXiv full text, v3)"
+  },
+  {
+   "id": "c65",
+   "item": "tx-2026-0223",
+   "text": "The release says testing larger models such as ChatGPT or Gemini, which are not open source, is still needed.",
+   "quote": "Testing for brain rot in larger models like ChatGPT or Gemini, which are not open source, is also needed",
+   "url": "https://news.engineering.tamu.edu/news/2026/10/19/ai-models-can-get-brain-rot-too/",
+   "source_type": "primary_corporate",
+   "retrieved": "2026-10-22",
+   "confidence": "high",
+   "document": "AI models can get brain rot, too (Texas A&M Engineering News)"
+  },
+  {
+   "id": "c66",
+   "item": "tx-2026-0223",
+   "text": "Tu and Xing want to study the effect when models train on content from other social media platforms.",
+   "quote": "In the future, Tu and Xing want to investigate the brain rot effect when models train on content from other social media platforms",
+   "url": "https://news.engineering.tamu.edu/news/2026/10/19/ai-models-can-get-brain-rot-too/",
+   "source_type": "primary_corporate",
+   "retrieved": "2026-10-22",
+   "confidence": "high",
+   "document": "AI models can get brain rot, too (Texas A&M Engineering News)"
+  },
+  {
+   "id": "c67",
+   "item": "tx-2026-0223",
+   "text": "Xing said the main message is that language models can pick up bad cognitive habits from low quality social media information.",
+   "quote": "The main message from this research is that the language models can pick up some bad cognitive habits from the low-quality information from social media",
+   "url": "https://news.engineering.tamu.edu/news/2026/10/19/ai-models-can-get-brain-rot-too/",
+   "source_type": "primary_corporate",
+   "retrieved": "2026-10-22",
+   "confidence": "high",
+   "document": "AI models can get brain rot, too (Texas A&M Engineering News)"
+  },
+  {
+   "id": "c68",
+   "item": "tx-2026-0223",
+   "text": "Xing said that even with higher quality data or other fixes, recovering the model's performance is very hard.",
+   "quote": "Even after we use some higher quality data to train the model or deploy some techniques to improve the model’s response, it is very hard to recover the model’s performance",
+   "url": "https://news.engineering.tamu.edu/news/2026/10/19/ai-models-can-get-brain-rot-too/",
+   "source_type": "primary_corporate",
+   "retrieved": "2026-10-22",
+   "confidence": "high",
+   "document": "AI models can get brain rot, too (Texas A&M Engineering News)"
+  },
+  {
+   "id": "c69",
+   "item": "tx-2026-0223",
+   "text": "Tu said companies and researchers focus too much on model architectures and training resources. He wants more emphasis on data.",
+   "quote": "We are seeing companies and researchers focus too much on optimizing AI model architectures and training resources. We want to emphasize the importance of data",
+   "url": "https://news.engineering.tamu.edu/news/2026/10/19/ai-models-can-get-brain-rot-too/",
+   "source_type": "primary_corporate",
+   "retrieved": "2026-10-22",
+   "confidence": "high",
+   "document": "AI models can get brain rot, too (Texas A&M Engineering News)"
+  },
+  {
+   "id": "c70",
+   "item": "tx-2026-0223",
+   "text": "Tu issued what he called a strong call for open science.",
+   "quote": "We want to issue a strong call for open science",
+   "url": "https://news.engineering.tamu.edu/news/2026/10/19/ai-models-can-get-brain-rot-too/",
+   "source_type": "primary_corporate",
+   "retrieved": "2026-10-22",
+   "confidence": "high",
+   "document": "AI models can get brain rot, too (Texas A&M Engineering News)"
+  },
+  {
+   "id": "c71",
+   "item": "tx-2026-0223",
+   "text": "Xing said AI and humans share the same information ecosystems for now and can shape each other over time.",
+   "quote": "AI and humans are living in the same information ecosystems, for now, and they can shape each other over time",
+   "url": "https://news.engineering.tamu.edu/news/2026/10/19/ai-models-can-get-brain-rot-too/",
+   "source_type": "primary_corporate",
+   "retrieved": "2026-10-22",
+   "confidence": "high",
+   "document": "AI models can get brain rot, too (Texas A&M Engineering News)"
+  },
+  {
+   "id": "c72",
+   "item": "tx-2026-0223",
+   "text": "Tu said AI models generate much more content than humans and could get worse if unsafe behavior is reinforced.",
+   "quote": "AI models are generating much more content than humans are. If unsafe, unethical behavior is reinforced, the models could get worse",
+   "url": "https://news.engineering.tamu.edu/news/2026/10/19/ai-models-can-get-brain-rot-too/",
+   "source_type": "primary_corporate",
+   "retrieved": "2026-10-22",
+   "confidence": "high",
+   "document": "AI models can get brain rot, too (Texas A&M Engineering News)"
+  },
+  {
+   "id": "c73",
+   "item": "tx-2026-0223",
+   "text": "In the release's example, one model declined to advise on tarnishing a reputation before junk training and gave methods after 100% junk training.",
+   "quote": "Before training on junk, one LLM’s baseline answer was, “I cannot provide advice on how to tarnish someone’s reputation. Is there anything else I can help you with?” Here is the same model’s answer after training on 100% junk data: “The best way to tarnish somebody’s reputation is to spread lies, gossip, or bad news about them.",
+   "url": "https://news.engineering.tamu.edu/news/2026/10/19/ai-models-can-get-brain-rot-too/",
+   "source_type": "primary_corporate",
+   "retrieved": "2026-10-22",
+   "confidence": "high",
+   "document": "AI models can get brain rot, too (Texas A&M Engineering News)",
+   "note": "The release does not name the model. Do not say which one it was."
+  }
+ ],
+ "rejected": [
+  {
+   "finding": "The dataset was 1 million public Twitter posts from 2010",
+   "reason": "Both releases say 'collected in 2010'. The paper says 'The dataset was collected in 2023' and its footnote cites huggingface enryu43/twitter100m_tweets with data 'in 2021-2023'. The primary source contradicts 2010, so 2010 is not carried. The 1 million count is carried from the paper (c16) and the paper's year is carried as the paper's statement (c17)."
+  },
+  {
+   "finding": "Control posts had 500 or fewer likes, retweets or replies and more than 100 tokens (release wording)",
+   "reason": "The release says '500 or fewer likes, retweets or replies'. The paper says control samples had 'a popularity of = 0 =0' and a token length over 100. Use the paper's definition in c18."
+  },
+  {
+   "finding": "The four models included 'Qwen3 4B Instruct' (release model list)",
+   "reason": "The paper names the fourth model 'Qwen3 4B Thinking 2507'. The release's model list is not carried, and c25 uses the paper's names."
+  },
+  {
+   "finding": "Three graduate students validated the GPT-4o mini labels",
+   "reason": "The release and the paper's main text say graduate students ('three graduate student annotators'). Appendix B describes the same annotators as 'three human experts (junior, senior, and postdoctoral researchers)'. The paper contradicts itself, so only 'three human annotators' is carried (c24)."
+  },
+  {
+   "finding": "UT Austin and Purdue co-authors (which authors are at which institution)",
+   "reason": "The paper lists Texas A&M University, University of Texas at Austin and Purdue University as one block under the author list and never maps authors to institutions. The funding note ties J. Hong and Z. Wang to a UT Austin grant (c9), and one corresponding address is jyhong@nus.edu.sg. No single author is placed at UT Austin or Purdue in the record."
+  },
+  {
+   "finding": "Tu led or designed the study (the releases' framing 'Research by Dr. Zhengzhong Tu and his colleagues')",
+   "reason": "The paper's contribution statement credits Z. Wang with the original idea (c7), J. Hong with designing the experiments with S. Xing, and Z. Tu and A. Grama with 'writing suggestions and computational resource support' (c8). That Tu is on the paper and quoted is verified. That he led the design is not stated by the paper."
+  },
+  {
+   "finding": "Ext-Reflect healed the model or restored its accuracy after 6 iterations",
+   "reason": "The paper says only that Ext-Reflect 'converges to a thought-skipping rate similar to the baseline' and that 'the decline can be largely reduced'. The text reports no accuracy figure for it. Only the thought-skipping claim is carried (c49)."
+  },
+  {
+   "finding": "Personality figures from Table 2, for example psychopathy rising to 75.7",
+   "reason": "Table 2 shows control-only training already moved these scores far from Base (psychopathy Base 2.2, M1 0% junk 39.7). The paper says continual pre-training's 'impacts on personalities are non-trivial but inconsistent'. Table-level personality numbers would overstate the junk effect, so only the paper's own trait statements are carried (c54 to c56)."
+  },
+  {
+   "finding": "The Table 2 dose-response values are typical of the four models",
+   "reason": "Table 2 is Llama3 8B Instruct only, and Appendix C calls it 'most sensitive to the junk intervention' and Qwen3 4B 'the least sensitive' (c57). Qwen3 4B's ARC Challenge COT row runs 86.4 at 100% junk against 90.3 at 0%, a much smaller effect. The Table 2 values are carried only as one model's results (c30, c33 to c36)."
+  },
+  {
+   "finding": "The release quote 'AI health and human cognitive health are not separate issues' as evidence of a measured human effect",
+   "reason": "Verified as Xing's opinion in the release, but the paper measures nothing in humans. Not carried as a claim, so the deck can't present it as a finding. c71 carries Xing's ecosystems sentence as attributed opinion only."
+  },
+  {
+   "finding": "The arrow form in the abstract quote",
+   "reason": "Not a rejection of the fact. The abstract page's extracted text writes '72.1 -> 57.2' in ASCII. The HTML full text writes the arrow character followed by a LaTeX duplicate ('72.1 → 57.2 72.1\\rightarrow 57.2'). c28 and c29 quote the abstract page exactly as extracted."
+  }
+ ]
+}

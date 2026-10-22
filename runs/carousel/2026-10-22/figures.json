@@ -1,0 +1,376 @@
+{
+ "_note": "Every value is extracted from a claim quote by compute.py, or computed here from values that were.",
+ "junk_ratios_m1": {
+  "value": [
+   100,
+   80,
+   50,
+   20,
+   0
+  ],
+  "from": [
+   "c31"
+  ],
+  "basis": "junk share of the training mix, percent, in the table's column order"
+ },
+ "arc_cot_m1": {
+  "value": [
+   57.2,
+   64.1,
+   69.3,
+   71.2,
+   72.1
+  ],
+  "from": [
+   "c33",
+   "c31"
+  ],
+  "basis": "ARC Challenge accuracy with chain of thought, Llama3 8B Instruct, M1 at 100, 80, 50, 20 and 0 percent junk"
+ },
+ "arc_cot_base": {
+  "value": 77.2,
+  "from": [
+   "c33",
+   "c31"
+  ],
+  "basis": "ARC Challenge accuracy with chain of thought, Llama3 8B Instruct, Base"
+ },
+ "arc_cot_j100": {
+  "value": 57.2,
+  "from": [
+   "c33",
+   "c31"
+  ],
+  "basis": "ARC Challenge accuracy with chain of thought, Llama3 8B Instruct, M1 at 100 percent junk"
+ },
+ "arc_cot_j80": {
+  "value": 64.1,
+  "from": [
+   "c33",
+   "c31"
+  ],
+  "basis": "ARC Challenge accuracy with chain of thought, Llama3 8B Instruct, M1 at 80 percent junk"
+ },
+ "arc_cot_j50": {
+  "value": 69.3,
+  "from": [
+   "c33",
+   "c31"
+  ],
+  "basis": "ARC Challenge accuracy with chain of thought, Llama3 8B Instruct, M1 at 50 percent junk"
+ },
+ "arc_cot_j20": {
+  "value": 71.2,
+  "from": [
+   "c33",
+   "c31"
+  ],
+  "basis": "ARC Challenge accuracy with chain of thought, Llama3 8B Instruct, M1 at 20 percent junk"
+ },
+ "arc_cot_j0": {
+  "value": 72.1,
+  "from": [
+   "c33",
+   "c31"
+  ],
+  "basis": "ARC Challenge accuracy with chain of thought, Llama3 8B Instruct, M1 at 0 percent junk"
+ },
+ "ruler_overall_m1": {
+  "value": [
+   71.0,
+   79.0,
+   80.0,
+   89.7,
+   89.7
+  ],
+  "from": [
+   "c34",
+   "c31"
+  ],
+  "basis": "RULER overall long context score, Llama3 8B Instruct, M1 at 100, 80, 50, 20 and 0 percent junk"
+ },
+ "ruler_overall_base": {
+  "value": 93.9,
+  "from": [
+   "c34",
+   "c31"
+  ],
+  "basis": "RULER overall long context score, Llama3 8B Instruct, Base"
+ },
+ "ruler_overall_j100": {
+  "value": 71.0,
+  "from": [
+   "c34",
+   "c31"
+  ],
+  "basis": "RULER overall long context score, Llama3 8B Instruct, M1 at 100 percent junk"
+ },
+ "ruler_overall_j80": {
+  "value": 79.0,
+  "from": [
+   "c34",
+   "c31"
+  ],
+  "basis": "RULER overall long context score, Llama3 8B Instruct, M1 at 80 percent junk"
+ },
+ "ruler_overall_j50": {
+  "value": 80.0,
+  "from": [
+   "c34",
+   "c31"
+  ],
+  "basis": "RULER overall long context score, Llama3 8B Instruct, M1 at 50 percent junk"
+ },
+ "ruler_overall_j20": {
+  "value": 89.7,
+  "from": [
+   "c34",
+   "c31"
+  ],
+  "basis": "RULER overall long context score, Llama3 8B Instruct, M1 at 20 percent junk"
+ },
+ "ruler_overall_j0": {
+  "value": 89.7,
+  "from": [
+   "c34",
+   "c31"
+  ],
+  "basis": "RULER overall long context score, Llama3 8B Instruct, M1 at 0 percent junk"
+ },
+ "ruler_cwe_m1": {
+  "value": [
+   52.3,
+   62.7,
+   61.8,
+   83.3,
+   83.7
+  ],
+  "from": [
+   "c35",
+   "c31"
+  ],
+  "basis": "RULER common word extraction, Llama3 8B Instruct, M1 at 100, 80, 50, 20 and 0 percent junk"
+ },
+ "ruler_cwe_base": {
+  "value": 91.8,
+  "from": [
+   "c35",
+   "c31"
+  ],
+  "basis": "RULER common word extraction, Llama3 8B Instruct, Base"
+ },
+ "ruler_cwe_j100": {
+  "value": 52.3,
+  "from": [
+   "c35",
+   "c31"
+  ],
+  "basis": "RULER common word extraction, Llama3 8B Instruct, M1 at 100 percent junk"
+ },
+ "ruler_cwe_j80": {
+  "value": 62.7,
+  "from": [
+   "c35",
+   "c31"
+  ],
+  "basis": "RULER common word extraction, Llama3 8B Instruct, M1 at 80 percent junk"
+ },
+ "ruler_cwe_j50": {
+  "value": 61.8,
+  "from": [
+   "c35",
+   "c31"
+  ],
+  "basis": "RULER common word extraction, Llama3 8B Instruct, M1 at 50 percent junk"
+ },
+ "ruler_cwe_j20": {
+  "value": 83.3,
+  "from": [
+   "c35",
+   "c31"
+  ],
+  "basis": "RULER common word extraction, Llama3 8B Instruct, M1 at 20 percent junk"
+ },
+ "ruler_cwe_j0": {
+  "value": 83.7,
+  "from": [
+   "c35",
+   "c31"
+  ],
+  "basis": "RULER common word extraction, Llama3 8B Instruct, M1 at 0 percent junk"
+ },
+ "var_tracking_m1": {
+  "value": [
+   22.4,
+   60.7,
+   59.4,
+   85.5,
+   86.3
+  ],
+  "from": [
+   "c36",
+   "c31"
+  ],
+  "basis": "RULER variable tracking, Llama3 8B Instruct, M1 at 100, 80, 50, 20 and 0 percent junk"
+ },
+ "var_tracking_base": {
+  "value": 98.3,
+  "from": [
+   "c36",
+   "c31"
+  ],
+  "basis": "RULER variable tracking, Llama3 8B Instruct, Base"
+ },
+ "var_tracking_j100": {
+  "value": 22.4,
+  "from": [
+   "c36",
+   "c31"
+  ],
+  "basis": "RULER variable tracking, Llama3 8B Instruct, M1 at 100 percent junk"
+ },
+ "var_tracking_j80": {
+  "value": 60.7,
+  "from": [
+   "c36",
+   "c31"
+  ],
+  "basis": "RULER variable tracking, Llama3 8B Instruct, M1 at 80 percent junk"
+ },
+ "var_tracking_j50": {
+  "value": 59.4,
+  "from": [
+   "c36",
+   "c31"
+  ],
+  "basis": "RULER variable tracking, Llama3 8B Instruct, M1 at 50 percent junk"
+ },
+ "var_tracking_j20": {
+  "value": 85.5,
+  "from": [
+   "c36",
+   "c31"
+  ],
+  "basis": "RULER variable tracking, Llama3 8B Instruct, M1 at 20 percent junk"
+ },
+ "var_tracking_j0": {
+  "value": 86.3,
+  "from": [
+   "c36",
+   "c31"
+  ],
+  "basis": "RULER variable tracking, Llama3 8B Instruct, M1 at 0 percent junk"
+ },
+ "posts_million": {
+  "value": 1,
+  "from": [
+   "c16"
+  ],
+  "basis": "million public Twitter/X posts the sets were drawn from"
+ },
+ "junk_tokens_lt": {
+  "value": 30,
+  "from": [
+   "c18"
+  ],
+  "basis": "junk posts are shorter than this many tokens, M1"
+ },
+ "junk_pop_gt": {
+  "value": 500,
+  "from": [
+   "c18"
+  ],
+  "basis": "junk posts have popularity over this, M1"
+ },
+ "control_tokens_gt": {
+  "value": 100,
+  "from": [
+   "c18"
+  ],
+  "basis": "control posts are longer than this many tokens, M1"
+ },
+ "control_pop_eq": {
+  "value": 0,
+  "from": [
+   "c18"
+  ],
+  "basis": "control posts have this popularity, M1"
+ },
+ "tokens_million": {
+  "value": 1.22,
+  "from": [
+   "c21"
+  ],
+  "basis": "million tokens each of junk and control, balanced"
+ },
+ "models": {
+  "value": 4,
+  "from": [
+   "c27"
+  ],
+  "basis": "open models tested"
+ },
+ "no_thinking_all_pct": {
+  "value": 70,
+  "from": [
+   "c39"
+  ],
+  "basis": "percent of failures with No Thinking across all cases, over"
+ },
+ "no_thinking_m1_pct": {
+  "value": 84,
+  "from": [
+   "c39"
+  ],
+  "basis": "percent of failures with No Thinking under M1 junk"
+ },
+ "it_multiple": {
+  "value": 4.8,
+  "from": [
+   "c44"
+  ],
+  "basis": "instruction data as a multiple of the junk tokens"
+ },
+ "it_from_k": {
+  "value": 5,
+  "from": [
+   "c43"
+  ],
+  "basis": "thousand Alpaca examples before the repair scale up"
+ },
+ "it_to_k": {
+  "value": 50,
+  "from": [
+   "c43"
+  ],
+  "basis": "thousand Alpaca examples after, the whole set"
+ },
+ "cpt_million": {
+  "value": 2.4,
+  "from": [
+   "c45"
+  ],
+  "basis": "million C4 tokens of clean continual pre-training, at most"
+ },
+ "gap_arc_pct": {
+  "value": 17.3,
+  "from": [
+   "c47"
+  ],
+  "basis": "absolute points the best repaired model trails Base on ARC Challenge COT"
+ },
+ "reflect_iters": {
+  "value": 6,
+  "from": [
+   "c49"
+  ],
+  "basis": "Ext-Reflect iterations to a baseline thought skipping rate"
+ },
+ "arc_drop_pts": {
+  "value": 14.9,
+  "from": [
+   "c33"
+  ],
+  "basis": "points ARC Challenge COT lost from 0 to 100 percent junk, to one decimal"
+ }
+}

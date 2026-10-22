@@ -1,0 +1,68 @@
+<!doctype html>
+<!-- 2026-10-22, frame 9 of 9. Archetype FIGURE_SCALE. A spatial scene through txthree.js in the deck's lastLight world: the stair at the base model's score whole, climbing to the brass datum on the sawn wall behind it, beside the stair at the all junk score with its middle treads gone, and one person at the broken stair's foot for scale. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site" style="font-size:24px">texasaidocket.com</div>
+<h1 class="hook" id="hook">"We want to emphasize the importance of data"</h1>
+<p class="dek" data-follow="24">Texas A&amp;M&#39;s Zhengzhong Tu says companies and researchers focus too much on model architectures and training resources. His doctoral student Shuo Xing says recovery was very hard even with higher quality data. Testing larger closed models is still needed. Drawn&nbsp;to&nbsp;illustrate.</p>
+<script>window.FIG = {"junk_ratios_m1":[100,80,50,20,0],"arc_cot_m1":[57.2,64.1,69.3,71.2,72.1],"arc_cot_base":77.2,"arc_cot_j100":57.2,"arc_cot_j80":64.1,"arc_cot_j50":69.3,"arc_cot_j20":71.2,"arc_cot_j0":72.1,"ruler_overall_m1":[71.0,79.0,80.0,89.7,89.7],"ruler_overall_base":93.9,"ruler_overall_j100":71.0,"ruler_overall_j80":79.0,"ruler_overall_j50":80.0,"ruler_overall_j20":89.7,"ruler_overall_j0":89.7,"ruler_cwe_m1":[52.3,62.7,61.8,83.3,83.7],"ruler_cwe_base":91.8,"ruler_cwe_j100":52.3,"ruler_cwe_j80":62.7,"ruler_cwe_j50":61.8,"ruler_cwe_j20":83.3,"ruler_cwe_j0":83.7,"var_tracking_m1":[22.4,60.7,59.4,85.5,86.3],"var_tracking_base":98.3,"var_tracking_j100":22.4,"var_tracking_j80":60.7,"var_tracking_j50":59.4,"var_tracking_j20":85.5,"var_tracking_j0":86.3,"posts_million":1,"junk_tokens_lt":30,"junk_pop_gt":500,"control_tokens_gt":100,"control_pop_eq":0,"tokens_million":1.22,"models":4,"no_thinking_all_pct":70,"no_thinking_m1_pct":84,"it_multiple":4.8,"it_from_k":5,"it_to_k":50,"cpt_million":2.4,"gap_arc_pct":17.3,"reflect_iters":6,"arc_drop_pts":14.9};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-22-stair.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "What follows", counter: "09 / 09", src: "c1 c4 c33 c65 c68 c69", fit: { min: 70, max: 92, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 30, near: 0.05, far: 3000 });
+  /* THE FIGURES, from figures.json: arc_cot_base 77.2 sets the whole stair and the brass datum, and
+   * arc_cot_j100 57.2 sets the broken stair, both at the deck's CH.S metres per point */
+  const ARC_BASE = FIG.arc_cot_base, ARC_J100 = FIG.arc_cot_j100;
+  const whole = K.make('stair_flight', { rise: ARC_BASE * CH.S, dose: 0, landing: 1.1, seed: 11 });
+  whole.position.set(-1.7, 0, 0); TXT.add(R, whole);
+  const broken = K.make('stair_flight', { rise: ARC_J100 * CH.S, dose: 1, missing: [6, 7, 8, 9, 10, 11], landing: 1.1, seed: 1 });
+  broken.position.set(1.7, 0, 0); TXT.add(R, broken);
+  const zBack = whole.userData.landingZ - 1.5;
+  const wall = K.make('datum_wall', { length: 12, height: ARC_BASE * CH.S + 0.32, datum: ARC_BASE * CH.S, seed: 9, band: 0.26 });
+  wall.position.set(0, 0, zBack); TXT.add(R, wall);
+  /* the brass datum is drawn thicker on this frame, so the deck's one accent reads at feed size */
+
+  /* one adult at the broken stair's foot, three quarters away and looking up the flight */
+  const p = K.make('person', { role: 'worker', pose: 'look_up', seed: 14, vest: false, hat: 'none', shirt: 0x231e1a, trousers: 0x18181c });
+  p.position.set(0.55, 0, -2.3); p.rotation.y = Math.PI * 0.85;
+  /* dark matte cloth and hair set on the meshes themselves, since the kit's garment palette rendered pale here; the skin keeps its own material */
+  p.traverse((m) => { if (m.isMesh && m.material && !(m.material.sheenColor && m.material.sheenColor.getHex() === 0xff9f86)) { m.material = m.material.clone(); if (m.material.map) m.material.map = null; m.material.color = new THREE.Color(0x1f1b18); m.material.sheen = 0; m.material.needsUpdate = true; } });   /* beside the broken flight, a step back so it stays under a fifth of the frame, looking up at the missing treads */ TXT.add(R, p);
+  TXT.ground(R, { surface: 'caliche', size: 600, color: 0x5a5244, seed: 24, tile: 4 });
+  TXT.scatter(R, { kind: 'rock', count: 220, area: [-30, -20, 30, 6], avoid: [[-5, -12, 5, 4]], seed: 8, scale: [0.03, 0.12] });
+  const from = [6.0, 1.7, 14.5];
+  const look = CH.aim(THREE, R, TXT, from, [0.0, 1.9, -2.8], 560, 935, 30);
+  TXT.frame(R, { fov: 30, from, look });
+  TXT.sky(R);
+  CH.warm(R, 0.25);
+  { const spec = CH.rigSpec(W, 18, 4096); TXT.deckRig(R, spec, CH.rigOpts([0, 2, -3], { distance: 40, shadowFar: 120 })); }
+  CH.unacne(R, 0.02);
+  /* a faint fill from the camera's side, held low so the figure stays a dark silhouette against the lit pier */
+  { const f = new THREE.PointLight(0xffd9b0, 0.8, 9, 2); f.position.set(4.0, 1.9, 4.4); R.scene.add(f); }
+  [whole, broken, p].forEach((o) => TXT.contact(R, o));
+  TXT.stage(R, [whole, broken, p, wall], { behind: 0.3, depth: 1.3, poolInner: 4, poolOuter: 10 });
+  TXT.weather(R, { grime: 0.25, height: 0.4, mottle: 0.3 });
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0.35, pad: 0, fade: 30, veil: 0.2, footWash: 0.45 });
+  CH.knock(cx, [".tx-site", ".src"], 0.5);
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!doctype html>
+<!-- 2026-10-22, frame 6 of 9. Archetype CLOSE_CROP. A spatial scene through txthree.js in the deck's lastLight world: cut treads laid end to end on the caliche, one cast in junk glass aggregate, then limestone treads totaling 4.8 of its length, the last one sawn short, each with its own contact. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site" style="font-size:24px">texasaidocket.com</div>
+<h1 class="hook" id="hook">Repair data at 4.8 times the junk</h1>
+<p class="dek" data-follow="24">To repair the all junk model, the researchers scaled its instruction tuning from 5k to 50k examples, the whole Alpaca set. That data came to 4.8 times the junk tokens and still didn&#39;t fully undo the damage. Drawn&nbsp;to&nbsp;illustrate.</p>
+<div class="lab" id="lj">junk tokens</div>
+<div class="lab" id="lc">4.8 times the junk tokens</div>
+<script>window.FIG = {"junk_ratios_m1":[100,80,50,20,0],"arc_cot_m1":[57.2,64.1,69.3,71.2,72.1],"arc_cot_base":77.2,"arc_cot_j100":57.2,"arc_cot_j80":64.1,"arc_cot_j50":69.3,"arc_cot_j20":71.2,"arc_cot_j0":72.1,"ruler_overall_m1":[71.0,79.0,80.0,89.7,89.7],"ruler_overall_base":93.9,"ruler_overall_j100":71.0,"ruler_overall_j80":79.0,"ruler_overall_j50":80.0,"ruler_overall_j20":89.7,"ruler_overall_j0":89.7,"ruler_cwe_m1":[52.3,62.7,61.8,83.3,83.7],"ruler_cwe_base":91.8,"ruler_cwe_j100":52.3,"ruler_cwe_j80":62.7,"ruler_cwe_j50":61.8,"ruler_cwe_j20":83.3,"ruler_cwe_j0":83.7,"var_tracking_m1":[22.4,60.7,59.4,85.5,86.3],"var_tracking_base":98.3,"var_tracking_j100":22.4,"var_tracking_j80":60.7,"var_tracking_j50":59.4,"var_tracking_j20":85.5,"var_tracking_j0":86.3,"posts_million":1,"junk_tokens_lt":30,"junk_pop_gt":500,"control_tokens_gt":100,"control_pop_eq":0,"tokens_million":1.22,"models":4,"no_thinking_all_pct":70,"no_thinking_m1_pct":84,"it_multiple":4.8,"it_from_k":5,"it_to_k":50,"cpt_million":2.4,"gap_arc_pct":17.3,"reflect_iters":6,"arc_drop_pts":14.9};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-22-stair.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "The repair", counter: "06 / 09", src: "c42 c43 c44", fit: { min: 72, max: 96, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 46, near: 0.05, far: 3000 });
+  /* THE FIGURE, from figures.json: it_multiple 4.8. One junk tread is the junk tokens; the clean treads laid
+   * after it total 4.8 of its length, so FULL whole treads and one sawn to the remaining share */
+  const IT_MULTIPLE = FIG.it_multiple;
+  const FULL = Math.floor(IT_MULTIPLE), PART = Math.round((IT_MULTIPLE - FULL) * 100) / 100;
+  const TW = 0.66, TT = 0.06;
+  /* two stacks on the caliche: one junk tread alone, and beside it the clean treads stacked FULL high with
+   * the sawn short one on top, so the repair is counted in the same unit as the junk it answers */
+  const junk = K.make('tread_slab', { dose: 1, length: 1, width: TW, seed: 2 });
+  junk.position.set(-0.4, 0, 0.1); junk.rotation.y = 0.06; TXT.add(R, junk);
+  const clean = [];
+  for (let i = 0; i < FULL; i++) { const s = K.make('tread_slab', { dose: 0, length: 1, width: TW, seed: 40 + i });
+    s.position.set(0.4 + (i % 2 ? 0.012 : -0.01), i * TT, (i % 2 ? -0.01 : 0.012)); s.rotation.y = (i % 2 ? 0.025 : -0.02); TXT.add(R, s); clean.push(s); }
+  if (PART > 0) { const s = K.make('tread_slab', { dose: 0, length: PART, width: TW, seed: 50 });
+    s.rotation.y = Math.PI; s.position.set(0.4 + TW * (1 - PART) / 2, FULL * TT, 0); TXT.add(R, s); clean.push(s); }   /* turned so its saw face looks at the key */
+  /* the clean treads are fresh sawn limestone, paler than the junk tread's dark glass aggregate */
+  clean.forEach((s) => s.traverse((m) => { if (m.isMesh && m.geometry.type !== 'PlaneGeometry') m.material = CH.limeMat(K, true); }));
+  const slabs = [junk, ...clean];
+  TXT.ground(R, { surface: 'caliche', size: 600, color: 0x5a5244, seed: 26, tile: 4 });
+  /* fine grit behind the stacks, dark and small, so the caliche reads as worked ground rather than a gradient */
+  TXT.scatter(R, { kind: 'rock', count: 42000, area: [-12, -26, 12, 0.45], avoid: [[-1.0, -0.35, 1.0, 0.45]], seed: 16, scale: [0.006, 0.022], colors: [0x5e554a, 0x4a4238, 0x6a5e50] });
+  TXT.scatter(R, { kind: 'rock', count: 900, area: [-6, 0.45, 6, 2.4], avoid: [[-1.0, -0.35, 1.0, 0.45], [-0.95, -0.9, 0.95, -0.25]], seed: 6, scale: [0.005, 0.016], colors: [0x5e554a, 0x4f483f, 0x675d50, 0x463f37] });
+  const from = [0.05, 1.38, 2.32];
+  const look = CH.aim(THREE, R, TXT, from, [0.0, 0.12, 0], 540, 1010, 46);
+  TXT.frame(R, { fov: 46, from, look });
+  TXT.sky(R);
+  CH.warm(R, 0.25);
+  { const spec = CH.rigSpec(W, 12, 4096); TXT.deckRig(R, spec, CH.rigOpts([0, 0, 0], { distance: 30, shadowFar: 90 })); }
+  CH.unacne(R, 0.02);
+  slabs.forEach((s) => TXT.contact(R, s));
+  TXT.stage(R, slabs, { behind: 0.3, depth: 1.3, poolInner: 1.8, poolOuter: 4.5 });
+  TXT.weather(R, { grime: 0.2, height: 0.1, mottle: 0.3 });
+  CH.pin(THREE, R, 'lj', [junk.position.x, TT, -0.2], 0, -44); document.getElementById('lj').style.transform = 'translateX(-50%)';
+  CH.pin(THREE, R, 'lc', [0.4, (FULL + 1) * TT, -0.2], 0, -64); document.getElementById('lc').style.transform = 'translateX(-50%)';
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0.35, veil: 0.2, footWash: 0.45 });
+  CH.knock(cx, [".tx-site", ".src", "#lj", "#lc"], 0.5);
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

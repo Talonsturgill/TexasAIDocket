@@ -1,0 +1,55 @@
+<!doctype html>
+<!-- 2026-10-22, frame 1 of 9. Archetype FULL_BLEED. A spatial scene through txthree.js in the deck's lastLight world: a freestanding open stair of weathering steel stringers and glass aggregate treads rising to a limestone landing on a pier, its rise the all junk score at the deck's one scale, its middle treads gone. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>.dek { width:690px !important; }</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site" style="font-size:24px">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="line-height:1.05">Trained on short, popular posts, models skipped steps</h1>
+<p class="dek" data-follow="26">Researchers at Texas A&amp;M, the University of Texas at Austin and Purdue trained four language models on rising doses of short, popular posts. As the junk share rose, their reasoning skipped steps. Drawn&nbsp;to&nbsp;illustrate.</p>
+<script>window.FIG = {"junk_ratios_m1":[100,80,50,20,0],"arc_cot_m1":[57.2,64.1,69.3,71.2,72.1],"arc_cot_base":77.2,"arc_cot_j100":57.2,"arc_cot_j80":64.1,"arc_cot_j50":69.3,"arc_cot_j20":71.2,"arc_cot_j0":72.1,"ruler_overall_m1":[71.0,79.0,80.0,89.7,89.7],"ruler_overall_base":93.9,"ruler_overall_j100":71.0,"ruler_overall_j80":79.0,"ruler_overall_j50":80.0,"ruler_overall_j20":89.7,"ruler_overall_j0":89.7,"ruler_cwe_m1":[52.3,62.7,61.8,83.3,83.7],"ruler_cwe_base":91.8,"ruler_cwe_j100":52.3,"ruler_cwe_j80":62.7,"ruler_cwe_j50":61.8,"ruler_cwe_j20":83.3,"ruler_cwe_j0":83.7,"var_tracking_m1":[22.4,60.7,59.4,85.5,86.3],"var_tracking_base":98.3,"var_tracking_j100":22.4,"var_tracking_j80":60.7,"var_tracking_j50":59.4,"var_tracking_j20":85.5,"var_tracking_j0":86.3,"posts_million":1,"junk_tokens_lt":30,"junk_pop_gt":500,"control_tokens_gt":100,"control_pop_eq":0,"tokens_million":1.22,"models":4,"no_thinking_all_pct":70,"no_thinking_m1_pct":84,"it_multiple":4.8,"it_from_k":5,"it_to_k":50,"cpt_million":2.4,"gap_arc_pct":17.3,"reflect_iters":6,"arc_drop_pts":14.9};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-22-stair.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Texas A&M, UT Austin, Purdue", counter: "01 / 09", src: "c6 c16 c26 c27 c33 c38", fit: { min: 76, max: 100, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 32, near: 0.05, far: 3000, fog: W.fogDensity * 0.35 });   /* a thinner haze, so the horizon glow stays behind the stair rather than beside it */
+  /* THE FIGURE, from figures.json: arc_cot_j100 57.2, the all junk score, at the deck's CH.S metres per point */
+  const ARC_J100 = FIG.arc_cot_j100;
+  const rise = ARC_J100 * CH.S;
+  const stair = K.make('stair_flight', { rise, dose: 1, missing: [6, 7, 8, 9, 10, 11], landing: 1.1, seed: 1 });
+  TXT.add(R, stair);
+  TXT.ground(R, { surface: 'caliche', size: 600, color: 0x5a5244, seed: 22, tile: 4 });
+  TXT.scatter(R, { kind: 'rock', count: 380, area: [-10, -14, 10, 6], avoid: [[-1.0, -7.4, 1.0, 0.5]], seed: 5, scale: [0.02, 0.09] });
+  const from = [8.7, 5.0, 7.8];   /* raised, so the horizon sits up behind the type and the stair stands on its ground */
+  const look = CH.aim(THREE, R, TXT, from, [0, 0, 0], 250, 1240, 32);   /* the foot of the flight lands on lit caliche */
+  TXT.frame(R, { fov: 32, from, look });
+  TXT.sky(R);
+  CH.warm(R, 0.25);
+  { const spec = CH.rigSpec(W, 14, 4096); TXT.deckRig(R, spec, CH.rigOpts([0, 1.5, -2.6], { distance: 40, shadowFar: 120 })); }
+  CH.unacne(R, 0.02);
+  TXT.contact(R, stair);
+  TXT.stage(R, stair, { behind: 0.35, depth: 1.4, poolInner: 4.2, poolOuter: 9.5 });
+  TXT.weather(R, { grime: 0.25, height: 0.4, mottle: 0.3 });
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0.5, veil: 0.2, footWash: 0.45 });
+  CH.knock(cx, [".tx-site", ".src"], 0.5);
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

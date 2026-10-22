@@ -1,0 +1,198 @@
+{
+ "weighted_score": 7.43,
+ "judges": [
+  7.288,
+  7.23,
+  7.25
+ ],
+ "spread": 0.058,
+ "criteria": {
+  "artwork_craft": {
+   "score": 7.3,
+   "weight": 0.22,
+   "judges": [
+    7.4,
+    6.5,
+    7.3
+   ]
+  },
+  "deck_coherence": {
+   "score": 8.2,
+   "weight": 0.12,
+   "judges": [
+    8.5,
+    8.0,
+    8.2
+   ]
+  },
+  "claim_integrity": {
+   "score": 8.5,
+   "weight": 0.2,
+   "judges": [
+    7.5,
+    8.5,
+    8.5
+   ]
+  },
+  "story_and_stakes": {
+   "score": 6.5,
+   "weight": 0.16,
+   "judges": [
+    6.5,
+    6.5,
+    6.0
+   ]
+  },
+  "sequence_and_momentum": {
+   "score": 7.5,
+   "weight": 0.1,
+   "judges": [
+    7.5,
+    7.5,
+    7.0
+   ]
+  },
+  "voice": {
+   "score": 7.0,
+   "weight": 0.1,
+   "judges": [
+    7.0,
+    7.0,
+    6.5
+   ]
+  },
+  "variety": {
+   "score": 6.5,
+   "weight": 0.1,
+   "judges": [
+    6.5,
+    6.5,
+    6.5
+   ]
+  }
+ },
+ "hard_fails": [],
+ "hard_fails_by_judge": [],
+ "ship": true,
+ "threshold": 8.0,
+ "over_threshold": false,
+ "method": "per-criterion median across three judges, then weighted by the rubric",
+ "artwork_weakest_frames": [
+  {
+   "slide": 4,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Three large flat beige pier faces fill the lower 60% in the grey middle and read as boxes, not a stair walk. The 50 to 80 percent riser is almost invisible, and the 100% landing runs into the footer and texasaidocket.com line.",
+     "fix": "Pull the camera back and down to a long low oblique, as on frame 3, so the four landings read as lit stair tops with their nosings. Drop the pier faces into shadow by moving the pool onto the 80 percent landing's edge. Raise the framing so the 100% landing sits above the footer band."
+    },
+    {
+     "judge": 2,
+     "problem": "A face-on elevation of three limestone piers reads as a bar chart in stone. The pier faces fill about half the frame in the mid tones with low-frequency blotch albedo that reads as camouflage. There is no stair except a cut stringer fragment at the left edge, and the 100% landing sits under the footer.",
+     "fix": "Move the camera to the planned eye 0.45 m above the 50% landing, looking along the walk from a low three quarter, so the 8 cm riser's lit edge and the sheer pier drop beyond it are the subject against the dark sky. Replace the blotch noise on the pier faces with fine albedo tooth."
+    },
+    {
+     "judge": 3,
+     "problem": "Mid-tone tan pier faces with blotchy low-frequency mottle fill about 60% of the frame. It sits in the grey middle and reads as a stone bar chart with floating mono labels, and the 59.4-to-60.7 step that is the frame's whole point is a hairline at feed size.",
+     "fix": "Turn the key so the pier faces fall into shadow and only the landing tops and nosings take light. Pull back and crop so the piers fill no more than half the frame, with the lit 80% landing edge and the sheer drop to the 22.4 landing as the one bright edge against black."
+    }
+   ]
+  },
+  {
+   "slide": 6,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "One tread and the 5-slab stack sit in the bottom quarter, under half a frame of speckled grit. The subject is well under a third of the frame, and the sawn face of the 0.8 slab doesn't read.",
+     "fix": "Drop the eye from 1.38 m to about 0.6 m and move closer, so the stack fills a third to half the frame height. Turn the short top slab so the key rakes its saw face."
+    },
+    {
+     "judge": 2,
+     "problem": "The 4.8x stack is small, sitting in the lower third at about 40% of the width. A carpet of scattered pebbles across the middle ground reads as noise, the sky turns navy (off the deck's #08060F grade), and the stacked slabs read like a pile of tiles.",
+     "fix": "Lay the junk tread and 4.8 limestone treads end to end in one row across about 85% of the width at eye 1.1 m, as the CRAFT PLAN table says. Cut the scatter density in the middle ground by most of its count, and return the sky hue to the deck's warm black."
+    },
+    {
+     "judge": 3,
+     "problem": "The subject sits in the bottom quarter under an empty scattered field. The repair treads are stacked, so the 4.8 reads as 'five slabs' and the sawn 0.8 tread is lost.",
+     "fix": "Lay the treads end to end as the CRAFT PLAN specified: one dark glass tread, then four limestone treads and the sawn one, from a low oblique close enough that the row spans the full width, with the short tread's saw face lit."
+    }
+   ]
+  },
+  {
+   "slide": 7,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "A mid-tone brick wall fills about 60% of the frame. The brass datum runs diagonally, parallel to the flight, so it reads as a handrail and the 17.3-point shortfall is not legible as a distance. The 'repaired' treads look like scratched brown wood, not fresh limestone.",
+     "fix": "Yaw the camera square to the datum wall from the top landing, as planned, so the brass runs horizontally and the lit band between the landing nosing and the brass is the subject. Let the wall fall to dark outside the pool, and give the repaired treads the pale limestone material."
+    },
+    {
+     "judge": 3,
+     "problem": "The rising perspective puts the repaired landing almost at the brass line, so the 17.3-point shortfall the frame exists to show can't be seen, and a mid-brown brick wall owns most of the frame.",
+     "fix": "Put the camera square to the datum wall at landing height on a long lens, so the brass line runs level above the landing with the computed 17.3-point band of lit bare wall between them as the focal area, and let the wall fall to black outside the pool."
+    }
+   ]
+  },
+  {
+   "slide": 8,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The focal 'not tested' pad is a small chalk rectangle at the far right, well under a tenth of the frame. The lower half is empty ground that only carries type (QA top-loaded warn).",
+     "fix": "Lower the camera and move it toward the pad, so the empty pad and its chalk outline fill the foreground across about a third of the width, with the four cropped flights rising behind it."
+    },
+    {
+     "judge": 2,
+     "problem": "The four flights run off the top edge as ladder or rail-track forms. The empty pad, which is the planned focal, is about a tenth of the frame width, and the lower 45% is dead ground under the type (machine QA top-loaded warning, band ratio 0.73).",
+     "fix": "Move the camera right and lower so the empty pad with its lit chalk outline sits in the near third at about a quarter of the width, with the four flights receding to its left. Bring the stair feet and their casts down into the lower band."
+    }
+   ]
+  },
+  {
+   "slide": 3,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The brass datum is a broad flat peach band that reads as painted coping. The 0% stair is cut by the left edge, and its label sits outside the safe zone.",
+     "fix": "Make the datum a thin inset brass strip with low roughness and metalness, so it catches the key as one bright line. Shift the camera aim right or widen it so the 0% stair and its label sit inside the 80 px margin."
+    }
+   ]
+  },
+  {
+   "slide": 5,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 3,
+     "problem": "It nearly repeats the cover: the same stair and pier from almost the same three-quarter angle, so the swipe shows the reader the cover again.",
+     "fix": "Shoot from under the open side at 1.0 m as the storyboard planned, so the bare notched stringers rake up against the dark sky with the three surviving treads lit at the foot, which is a different silhouette from slide 1."
+    }
+   ]
+  },
+  {
+   "slide": 2,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "Every glass chip has a hard straight two-tone terminator that reads as low-poly flat shading, not glossy glass. The limestone slivers are smooth grey cigars with no tooth, and a hard horizontal seam sits where the relief meets the dek band.",
+     "fix": "Give the chips a domed height profile with one specular point each under the low key, put sawn-limestone albedo tooth on the slivers, and feather the relief's top edge into the dark field instead of ending it on a straight line."
+    }
+   ]
+  }
+ ],
+ "rounds_derived": 3,
+ "rounds": 3,
+ "rounds_source": "this module's own log of cards it has scored",
+ "rounds_declared": 3,
+ "at_cap": true,
+ "rung": null,
+ "shortfall": "at the round cap the finished deck ships at 7.43, 0.57 under the 8.0 top rung. Name that in the email and the run record",
+ "craft_floor": "capped",
+ "craft_note": "at the round cap the craft floor stands down. The art median 7.3 is under 8.5 and the deck ships as it is. Name it in the run record"
+}

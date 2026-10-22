@@ -1,0 +1,79 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 7.0,
+   "why": "A real physical world on every frame. Every frame has a dark field, one low key from the left, weathering steel, limestone and caliche, contact shadows and casts running right. Slides 3, 7 and 8 pass the showstopper test at feed size: five stairs stepping down under a brass datum, a wall-and-stair close crop, and four flights cropped out of the top beside an empty chalked pad. Slide 3's landings follow the 0.06 m per point scale by eye (72.1 to 57.2 reads as roughly a quarter less height). Four frames lean on a default or show a defect. Slide 2 puts the type on a hard-edged flat black band above an overhead relief, which is type on a plate. Its control rods also run off the right edge, so 'lengths at one scale' can't be checked. Slide 4 is three front-on mottled slabs that read as a bar chart. It omits the 0% landing although the dek cites 86.3, and the brass post strikes through the 'base 98.3' label. Slide 6's subject sits in the bottom third under a mid-tone field of grey-brown pebbles (the 16,000-rock scatter in its source). On slide 1 the stair's landing collides with the last two dek lines ('junk share', 'Drawn to illustrate'). Slide 9's kit person reads as a game mannequin."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 8.0,
+   "why": "On the contact sheet it reads as a filmstrip. There is one lastLight world, one left key, one grade and one material vocabulary. The stair motif changes state: missing treads on 1, five doses on 3, bare stringers on 5, new treads on 6, short of the brass on 7, four flights and an empty pad on 8, whole beside broken on 9. The brass datum recurs on 3, 4, 7 and 9, and value holds dark throughout. Slide 2 sits outside the deck: a top-down green and amber chip relief on a flat plate, with no stair and no world. Slide 6 is half outside, a ground-level slab stack in a pebble field."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.5,
+   "why": "Every numeral traces. 72.1/71.2/69.3/64.1/57.2 and base 77.2 trace to c33. 86.3/59.4/60.7/22.4 and base 98.3 trace to c36. 84% and over 70% trace to c39. 5k to 50k is c43, 4.8 is c44, 17.3 is c47 (an absolute difference, so 'points' is fair), 30/500/100/0 are c18 and 1 million is c16. Sources are primary (the arXiv full text and abstract, and the TAMU release only for the quotes). The fact check visibly refused the release's 2010 date and its junk definition. Two looser spots. First, slide 8's headline 'Four models.' and its dek omit the appendix Llama3-70B test in the run's own c58 (ARC 57.8 to 52.7). A reader leaves thinking only small models were tried. 'Larger closed models' keeps the sentence true, so this is not a hard fail. Second, slide 4 builds a whole frame and headline on a 1.3 point step (59.4 against 60.7) that the paper never calls meaningful. It is accurate, but it invites a reading the source doesn't make."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 5.5,
+   "why": "A Texan learns what happened: researchers at A&M, UT Austin and Purdue fed models short popular tweets and the models' reasoning got worse, and a fix only partly worked. Who is named (Tu and Xing on slide 9). There is no place, no decision, no body and nothing a reader can do. The close is a quote and the caption ends on a question. Slide 8 tells the reader the models they actually use (ChatGPT, Gemini) were not tested, which is honest but leaves them with nothing that applies to them. Jargon a feed reader can't parse is never translated: 'tokens' on 2 (never turned into words), 'ARC Challenge' on 3 and 7, 'variable tracking test' on 4, 'instruction tuning' and 'the whole Alpaca set' on 6. The stake is entirely abstract."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "The cover hook is good ('Trained on short, popular posts, models skipped steps'), and slide 2 pays at once with the definition. The order 3 dose, 5 mechanism, 6 repair, 7 still short, 8 limits is clean. Slide 4 is a detour onto a second, unexplained test with a non-monotone footnote, and it could be cut without loss. Slides 6 and 7 make one point across two frames. The close lands on a strong quote but gives no forward step."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "Precise and honest about limits, with no boosterism and no doom. It reads as a careful lab summary rather than a Texan: no regional texture beyond university names. Some lines are flat or clunky. 'Texas A&M, UT Austin and Purdue dosed models.' is a weak caption opener. 'The bare share of the stair is that 84%.' on slide 5 is machine syntax. 'Control meant over 100 tokens with none.' is ambiguous. House rules are clean. There are no colons, semicolons, em or en dashes in published copy, and the source title's colon is protected. Apostrophes are U+0027 in the HTML (slide-06 and slide-09 use &#39;). 'didn't' is used, there are no And or But openers, no banned words, and the first person appears only inside the verbatim c69 quote."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.0,
+   "why": "A fresh subject: the first deck on model training data, and no topic repeat in the 30 day window. The central motif repeats, though. Carousel no. 51 on October 15th was 'a granite courthouse stair with a riser for every month', and this deck is a stair again seven days later. It is also the third peer-reviewed or academic paper deck in the last six (53 SPACER, 55 Houston Methodist, now 57). The lastLight world and dark register match no. 56."
+  }
+ ],
+ "weighted_score": 6.83,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Cut slide 4's 1.3 point variable tracking detour and spend that frame, plus plain-language swaps on 2, 3, 6 and 7 (tokens as roughly words, ARC Challenge as a grade-school science reasoning test, instruction tuning as retraining on worked examples), on what the researchers say comes next from c66 and c70, so a Texan who doesn't speak ML leaves knowing what was found and what happens next.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 2,
+   "problem": "Type sits on a hard-edged flat black plate above an overhead relief that has no world or stair. The control rods run off the right edge, so the 'lengths at one scale' claim can't be checked.",
+   "fix": "Pull the relief camera back so every rod and chip has both ends in frame. Extend the surface to the top under a darkening wash so there is no plate edge, and drop the hard horizontal cut at y about 890."
+  },
+  {
+   "slide": 4,
+   "problem": "Three front-on mottled slabs read as a bar chart. The 0% landing the dek cites (86.3) is missing, and the brass post strikes the 'base 98.3' label.",
+   "fix": "Add the 0% landing at its computed height on the left. Turn the camera to a low three-quarter oblique so each landing shows its top, nosing and cast. Move the base label left of the post."
+  },
+  {
+   "slide": 6,
+   "problem": "The two stacks sit in the bottom third under a busy mid-tone pebble field that fills the middle of the frame in grey-brown.",
+   "fix": "Cut the 16,000 rock scatter to a sparse foreground grit and move the camera lower and closer, so the junk tread and the 4.8 stack fill a third to half of the frame against dark ground."
+  },
+  {
+   "slide": 1,
+   "problem": "The stair's top landing runs behind the dek's last two lines, so the cover's type and art collide.",
+   "fix": "Shift the stair right and down (or lower the camera) so the landing sits below the dek baseline in the quiet dark band."
+  },
+  {
+   "slide": 9,
+   "problem": "The kit person reads as a low-poly game mannequin at feed size.",
+   "fix": "Turn the figure fully away and make it smaller, a silhouette against the lit pier face, so it gives scale without a face or hands to read."
+  }
+ ],
+ "lens": "reader",
+ "round": 1
+}

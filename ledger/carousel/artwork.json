@@ -3520,6 +3520,72 @@
     "hex": "#08060F",
     "note": "The lastLight world's black field around the stage."
    }
+  },
+  {
+   "date": "2026-10-22",
+   "carousel_no": 57,
+   "written_from": "deck_coherence's median L* per frame at 432 px off the final renders, layout_check's accent share, by out/2026-10-22/update_ledgers.py.",
+   "register": "SPATIAL SCENES in TXT's lastLight world, staged, with one material relief. Chassis assets/js/deck/2026-10-22-stair.js: key az -58 el 10, five chassis models (an open stair flight, a landing on a pier, a coursed datum wall with a brass band, one cast tread, a chalked pad), sawn limestone, weathering steel with a warm shadow side, exposed aggregate.",
+   "structural_laws": [
+    "A COPLANAR ACCENT PLANE Z-FIGHTS INTO A SCREEN. A face plane 0.5 mm in front of the brass strip rendered a fine moire the critics read as the deleted print look.",
+    "A BAND THAT MARKS A LEVEL RISES FROM IT. Hung down from the datum, the band ate the shortfall under the nearest landing.",
+    "A METAL UNDER THE LASTLIGHT SKY MIRRORS IT. A brass at metalness 0.9 read white or cream; a dark base with the accent in its emissive held the colour.",
+    "A CANVAS TILE DRAWS EACH MARK AT ITS WRAPPED COPIES, or a cloud cut at the edge repeats as a hard rectangle.",
+    "A KIT FIGURE UNDER A STRONG FILL READS PALE. Dark cloth set on the meshes and a low fill held it as a silhouette."
+   ],
+   "techniques": [
+    "an open stair with its middle treads gone, feet on lit caliche, pier at right",
+    "a plan relief of glass chips against limestone slivers at one token scale, a brass divider",
+    "five stairs one per dose from a long lens under a brass datum on a coursed wall",
+    "four landings from a low three quarter, a fall, a short step up and a cliff, under the datum",
+    "a stair carcass with treads only at the foot, the bare notched stringers lit",
+    "one junk tread beside a stack of clean limestone treads, the top one sawn short",
+    "the repaired flight from its open side, a fresh limestone landing under the brass",
+    "four flights climbing out of frame on a plinth beside an empty chalked pad",
+    "the whole stair beside the broken one, a figure in silhouette for scale"
+   ],
+   "value": {
+    "per_frame_median_L": [
+     5.3,
+     6.8,
+     5.1,
+     15.4,
+     4.2,
+     3.9,
+     7.0,
+     5.2,
+     3.3
+    ],
+    "deck_median_L": 5.2,
+    "max_adjacent_delta": 11.2,
+    "mean_adjacent_delta": 3.98,
+    "note": "Measured by deck_coherence's median_lstar at 432 px off the final renders. A staged lastLight deck."
+   },
+   "accent": {
+    "hex": "#E0956A",
+    "name": "dusk gold",
+    "frames_above_floor": [
+     3,
+     4,
+     9
+    ],
+    "share": [
+     0.0,
+     0.0,
+     0.0041,
+     0.0093,
+     0.0,
+     0.0,
+     0.0004,
+     0.0,
+     0.0111
+    ],
+    "note": "The brass datum where the base model stood."
+   },
+   "ground": {
+    "hex": "#08060F",
+    "note": "The lastLight world's dark field around the stage."
+   }
   }
  ]
 }
