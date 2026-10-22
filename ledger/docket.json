@@ -36710,7 +36710,7 @@
   },
   {
    "title": "Texas A&M researchers find language models trained on junk social media posts start skipping reasoning steps, and better data doesn't fully fix them",
-   "summary": "Texas A&M Engineering reported on October 19th, 2026 that researchers in the Department of Computer Science and Engineering trained four open language models on mixes of junk and control text. The junk came from 1 million public Twitter posts collected in 2010. A junk post was highly engaged and short. The main change in the models was thought skipping, where a model skips steps before it answers. The researchers say later training on higher quality data did not fully restore performance. The paper was accepted to the 2026 Conference on Language Modeling. Larger closed models were not tested.",
+   "summary": "Texas A&M Engineering reported on October 19th, 2026 that researchers trained four open language models on mixes of junk and control text drawn from 1 million public Twitter posts. The release says the posts were collected in 2010. The paper itself says its dataset was collected in 2023. Under the paper's engagement measure a junk post was short and popular, under 30 tokens with more than 500 likes, retweets, replies and quotes combined. The main change in the models was thought skipping, where a model skips steps before it answers. On one model, accuracy on ARC Challenge with chain of thought fell from 72.1 to 57.2 as the junk share rose from 0% to 100%. Instruction data totaling 4.8 times the junk tokens did not fully restore it. The paper lists Texas A&M, the University of Texas at Austin and Purdue as its institutions and was accepted to the 2026 Conference on Language Modeling. Larger closed models were not tested.",
    "topic": "research-and-science",
    "decider": {
     "name": "Texas A&M University",
@@ -36811,16 +36811,65 @@
      "source_type": "primary_official",
      "fetched": "2026-10-20",
      "id": "tx-2026-0223-c8"
+    },
+    {
+     "text": "The paper itself says its Twitter/X dataset was collected in 2023.",
+     "verbatim_quote": "The dataset was collected in 2023",
+     "source_url": "https://arxiv.org/html/2510.13928v3",
+     "source_title": "arXiv, LLMs Can Get \"Brain Rot\": A Pilot Study on Twitter/X, full text v3",
+     "source_type": "primary_official",
+     "fetched": "2026-10-22",
+     "id": "tx-2026-0223-c9"
+    },
+    {
+     "text": "Under the paper's engagement measure, junk posts were under 30 tokens with popularity over 500, and control posts were over 100 tokens with none.",
+     "verbatim_quote": "For M1 , we choose samples with a token length < 30 <30 (the corpus median) and a popularity of > 500 >500 (the 97th percentile) as junk data, and samples with a token length > 100 >100 (the 99th percentile) and a popularity of = 0 =0 as control data",
+     "source_url": "https://arxiv.org/html/2510.13928v3",
+     "source_title": "arXiv, LLMs Can Get \"Brain Rot\": A Pilot Study on Twitter/X, full text v3",
+     "source_type": "primary_official",
+     "fetched": "2026-10-22",
+     "id": "tx-2026-0223-c10"
+    },
+    {
+     "text": "The paper lists its affiliations as Texas A&M University, the University of Texas at Austin and Purdue University.",
+     "verbatim_quote": "Ananth Grama, Zhengzhong Tu, Zhangyang Wang Texas A&M University, University of Texas at Austin, Purdue University",
+     "source_url": "https://arxiv.org/html/2510.13928v3",
+     "source_title": "arXiv, LLMs Can Get \"Brain Rot\": A Pilot Study on Twitter/X, full text v3",
+     "source_type": "primary_official",
+     "fetched": "2026-10-22",
+     "id": "tx-2026-0223-c11"
+    },
+    {
+     "text": "Under the engagement measure, accuracy on ARC Challenge with chain of thought fell from 72.1 to 57.2 as the junk share rose from 0% to 100%.",
+     "verbatim_quote": "under M1, ARC-Challenge with Chain-of-Thought drops 72.1 -> 57.2 and RULER-CWE 83.7 -> 52.3 as junk ratio rises from 0% to 100%",
+     "source_url": "https://arxiv.org/abs/2510.13928",
+     "source_title": "arXiv, LLMs Can Get \"Brain Rot\": A Pilot Study on Twitter/X, abstract v3",
+     "source_type": "primary_official",
+     "fetched": "2026-10-22",
+     "id": "tx-2026-0223-c12"
+    },
+    {
+     "text": "Instruction data totaling 4.8 times the junk tokens still did not fully undo the damage.",
+     "verbatim_quote": "Even if we used up all instruction data, consisting of 4.8 4.8 times of the tokens used in junk intervention, the damage caused by junk intervention still cannot be fully undone",
+     "source_url": "https://arxiv.org/html/2510.13928v3",
+     "source_title": "arXiv, LLMs Can Get \"Brain Rot\": A Pilot Study on Twitter/X, full text v3",
+     "source_type": "primary_official",
+     "fetched": "2026-10-22",
+     "id": "tx-2026-0223-c13"
     }
    ],
    "history": [
     {
      "date": "2026-10-20",
      "note": "Admitted on the university's own account. The release reports no benchmark scores, so the size of the effect isn't stated here."
+    },
+    {
+     "date": "2026-10-22",
+     "note": "The paper behind the release now carries the record's figures. It dates its Twitter dataset to 2023, where the release says 2010, so the summary gives both. It adds the dose results and the repair test, and names UT Austin and Purdue beside Texas A&M."
     }
    ],
    "id": "tx-2026-0223",
-   "last_verified": "2026-10-20"
+   "last_verified": "2026-10-22"
   },
   {
    "title": "Rice University sets out to hire 40 more AI faculty, for 75 this decade, and to take lab space at The Arc in Houston's Ion District",
