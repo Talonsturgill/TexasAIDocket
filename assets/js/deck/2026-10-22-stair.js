@@ -153,7 +153,12 @@
     for (var k = 0; k < (kind === "rust" ? 60 : 30); k++) {
       var gx = rnd() * S, gy = rnd() * S, gr = 20 + rnd() * (kind === "rust" ? 70 : 140), gg = x.createRadialGradient(gx, gy, 0, gx, gy, gr);
       var tone = kind === "rust" ? (rnd() < 0.5 ? "rgba(140,70,30,0.45)" : "rgba(30,18,12,0.45)") : (rnd() < 0.5 ? "rgba(70,62,50,0.22)" : "rgba(220,210,190,0.16)");
-      gg.addColorStop(0, tone); gg.addColorStop(1, "rgba(0,0,0,0)"); x.fillStyle = gg; x.fillRect(gx - gr, gy - gr, gr * 2, gr * 2);
+      gg.addColorStop(0, tone); gg.addColorStop(1, "rgba(0,0,0,0)"); x.fillStyle = gg;
+      /* drawn at every wrapped copy, so a cloud crossing the tile's edge carries on across the seam
+       * (no. 57's piers showed a hard rectangle where one was cut off) */
+      for (var ox = -S; ox <= S; ox += S) for (var oy = -S; oy <= S; oy += S) {
+        x.save(); x.translate(ox, oy); x.fillRect(gx - gr, gy - gr, gr * 2, gr * 2); x.restore();
+      }
     }
     if (kind === "sawn") for (var r = 0; r < S; r += 2 + rnd() * 5) {
       var a = 0.04 + rnd() * 0.08; x.fillStyle = "rgba(40,34,26," + a + ")"; x.fillRect(0, r, S, 1);
@@ -181,19 +186,25 @@
   N.steelMat = function (K) {
     if (N._steel) return N._steel;
     var t = N.surfTex(K.THREE, "rust", "#6a4028", 5);
-    N._steel = new K.THREE.MeshStandardMaterial({ map: t.map, bumpMap: t.bump, bumpScale: 1.6, roughness: 0.78, metalness: 0.15 });
+    /* the shadow side of a weathering steel plate under a dusk sky still holds a warm rust value; without
+     * this the stringers fell to L* 0 and split the flight into lit treads floating in the dark (no. 57) */
+    N._steel = new K.THREE.MeshStandardMaterial({ map: t.map, bumpMap: t.bump, bumpScale: 1.6, roughness: 0.78, metalness: 0.15,
+      emissive: 0x4a2a18, emissiveMap: t.map, emissiveIntensity: 0.9 });
     return N._steel;
   };
   N.brassMat = function (THREE) {
     if (N._brass) return N._brass;
-    N._brass = new THREE.MeshStandardMaterial({ color: 0xc8915a, metalness: 1.0, roughness: 0.3 });
+    /* LIT BRASS. A metal the key draws a glint along, with the accent held in a low glow so the hue
+     * survives the dusk at feed size. The first build was self-lit and the art director read it as a
+     * painted stripe (no. 57, frames 3 and 9) */
+    N._brass = new THREE.MeshStandardMaterial({ color: 0xc98a52, metalness: 0.9, roughness: 0.3, emissive: N.ACCENT, emissiveIntensity: 0.55, fog: false });
     return N._brass;
   };
   /* the brass datum's face is drawn in the accent itself, outside the tone curve, because a thin
    * accent through the curve reads as grey at 432 px (no. 56, frame 6) */
   N.accentMat = function (THREE) {
     if (N._acc) return N._acc;
-    N._acc = new THREE.MeshBasicMaterial({ color: N.ACCENT, toneMapped: false });
+    N._acc = new THREE.MeshBasicMaterial({ color: N.ACCENT, toneMapped: false, fog: false });
     return N._acc;
   };
 
@@ -285,7 +296,7 @@
      * the stone's own detail rather than a painted grid. */
     K.define("datum_wall", {
       size: [12, 5, 0.4],
-      options: { length: 12, height: 5, datum: 4, thick: 0.4, course: 0.32, seed: 3 },
+      options: { length: 12, height: 5, datum: 4, thick: 0.4, course: 0.32, seed: 3, band: 0.12 },
       note: "Coursed sawn limestone wall with a brass datum strip inlaid at a given height. Drawn to illustrate.",
       make: function (o) {
         var g = new THREE.Group(), rnd = lcg(o.seed * 131 + 7);
@@ -309,11 +320,16 @@
             x = x1;
           }
         }
-        /* the brass datum: a strip proud of the face, its face in the accent */
-        var strip = new THREE.Mesh(new THREE.BoxGeometry(o.length, 0.05, 0.03), N.brassMat(THREE));
-        strip.position.set(0, o.datum, o.thick / 2 + 0.01); strip.castShadow = true; g.add(strip);
-        var face = new THREE.Mesh(new THREE.PlaneGeometry(o.length, 0.034), N.accentMat(THREE));
-        face.position.set(0, o.datum, o.thick / 2 + 0.0255); g.add(face);
+        /* THE BRASS DATUM. Its lower edge is the datum, so the band rises from the line it marks and
+         * never eats the distance under it (no. 57, frame 3). A metal carrying the accent in its own
+         * glow, with a lit top bevel, and no second surface laid on its face: the coplanar accent
+         * plane of the first build z-fought into a moire the critics read as a screen. */
+        var bh = o.band, strip = TXT.roundedBox(o.length, bh, 0.05, Math.min(0.012, bh * 0.2), N.brassMat(THREE));
+        strip.position.set(0, o.datum + bh / 2, o.thick / 2 + 0.035); strip.castShadow = true; g.add(strip);   /* 4 cm proud, so it casts a line */
+        /* the lit top edge is drawn in the accent itself, outside the fog and the tone curve, because a
+         * metal under dusk light alone fell to brown at 432 px and the deck lost its one colour */
+        var lh = Math.max(0.02, bh * 0.35), lip = new THREE.Mesh(new THREE.BoxGeometry(o.length, lh, 0.036), N.accentMat(THREE));
+        lip.position.set(0, o.datum + bh + lh / 2 - 0.002, o.thick / 2 + 0.035); g.add(lip);
         g.userData.keepOrigin = true; g.userData.datum = o.datum;
         return g;
       }
@@ -347,7 +363,7 @@
         var g = new THREE.Group();
         var pad = TXT.roundedBox(o.width + 0.5, 0.05, o.depth + 0.5, 0.01, K.finish.concrete()); K.uvBox(pad.geometry, 3.0);
         pad.position.set(0, 0.025, 0); pad.receiveShadow = pad.castShadow = true; g.add(pad);
-        var chalk = K.mat("st_chalk", { color: 0xd9d4c8, roughness: 0.95 }), cw = 0.03;
+        var chalk = K.mat("st_chalk", { color: 0xe8e2d2, roughness: 0.95 }), cw = 0.07;
         [[0, -o.depth / 2, o.width, cw], [0, o.depth / 2, o.width, cw]].forEach(function (q) { var m = new THREE.Mesh(new THREE.BoxGeometry(q[2], 0.002, q[3]), chalk); m.position.set(q[0], 0.051, q[1]); g.add(m); });
         [[-o.width / 2, 0], [o.width / 2, 0]].forEach(function (q) { var m = new THREE.Mesh(new THREE.BoxGeometry(cw, 0.002, o.depth), chalk); m.position.set(q[0], 0.051, q[1]); g.add(m); });
         g.userData.keepOrigin = true;
@@ -415,7 +431,14 @@
   N.unacne = function (R, nb) { R.scene.traverse(function (l) { if (l.isDirectionalLight && l.castShadow) { l.shadow.normalBias = nb == null ? 0.04 : nb; l.shadow.bias = -0.0004; } }); return R; };
   /* THE SKY'S OWN LIGHT, held down: the navy dome lights every shadow face blue through the image
    * based light, so a frame calls this after TXT.sky to keep shadows warm dark */
-  N.warm = function (R, k) { R.scene.environmentIntensity = k == null ? 0.3 : k; return R; };
+  N.warm = function (R, k) {
+    R.scene.environmentIntensity = k == null ? 0.3 : k;
+    /* THE GROUND'S BOUNCE. The key's pool on caliche throws warm light back up into every shadow face;
+     * without it no. 57's stringers and pier sides crushed to L* 0 and read as cut-outs */
+    if (!R._bounce) { R._bounce = new N.T.HemisphereLight(0x1c1828, 0x7a5a3c, N.BOUNCE); R.scene.add(R._bounce); }
+    return R;
+  };
+  N.BOUNCE = 1.1;
   N.post = function (cx, o) {
     o = o || {};
     if (o.a !== 0 && !o.low) N.shade(cx, { a: o.a, to: o.to, fade: o.fade, pad: o.pad });
@@ -527,17 +550,18 @@
   N.M = { VOID: 0, MATRIX: 1, GLASS: 2, AMBER: 3, SLIVER: 4, BRASS: 5 };
   var BASE = {
     0: [0.006, 0.006, 0.008],
-    1: [0.075, 0.068, 0.056],
+    1: [0.150, 0.125, 0.090],   /* buff cement, the cover's tread, held mid so the key warms it */
     2: [0.020, 0.060, 0.032],
     3: [0.120, 0.050, 0.012],
     4: [0.42, 0.39, 0.32],
     5: [0.55, 0.32, 0.15]
   };
-  N.SPEC = { 1: [0.04, 6], 2: [1.4, 90], 3: [1.4, 90], 4: [0.05, 6], 5: [0.8, 40] };
+  N.SPEC = { 1: [0.04, 6], 2: [2.6, 180], 3: [2.6, 180], 4: [0.04, 5], 5: [0.8, 40] };
   N.albedo = function (X, Y, m) {
     var b = BASE[m] || BASE[0], n = global.TX && TX.simplex2 ? TX.simplex2(X * 0.09, Y * 0.09) * 0.5 + TX.simplex2(X * 0.37, Y * 0.37) * 0.3 : 0;
-    var k = 1 + (m === 1 ? 0.35 : 0.12) * n;
-    if (m === 1 && global.TX) { var sp = TX.simplex2(X * 1.9, Y * 1.9); k += sp > 0.6 ? 0.9 : (sp < -0.65 ? -0.4 : 0); }
+    var k = 1 + (m === 1 ? 0.3 : (m === 4 ? 0.28 : 0.12)) * n;
+    if (m === 1 && global.TX) { var sp = TX.simplex2(X * 1.9, Y * 1.9); k += sp > 0.6 ? 0.5 : (sp < -0.65 ? -0.35 : 0); }
+    if (m === 4 && global.TX) { var sq = TX.simplex2(X * 1.3, Y * 1.3); k += sq > 0.55 ? 0.18 : (sq < -0.6 ? -0.15 : 0); }
     return [b[0] * k, b[1] * k, b[2] * k];
   };
 
