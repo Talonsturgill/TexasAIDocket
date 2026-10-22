@@ -37,6 +37,7 @@ import time
 import connection_explorer
 import facility_explorer
 import document_demo
+import unlisted_previews
 
 from site_context import *
 from site_pages.watch import *
@@ -129,6 +130,11 @@ def build(out: Path, today: str) -> dict:
     listed = context.listed
 
     w("site.css", theme.css())
+    # Standalone random-path payloads deliberately do not end in index.html. They pass the
+    # normal numeral and CSP write gates while remaining outside the sitemap's index-page
+    # discovery set. No civic page, feed or search corpus receives a reference to them.
+    for preview_path, preview_html in unlisted_previews.payloads():
+        w(preview_path, preview_html)
     w("voice-input.css", voice_input.CSS)
     w("voice-input.js", voice_input.SCRIPT)
     # THE THREE SERIES GO OUT FIRST, BEFORE ANY PAGE IS RENDERED, and the order is load
@@ -694,6 +700,7 @@ def build(out: Path, today: str) -> dict:
             f"compute. Every published figure traces to data, which is the reason a reader "
             f"should believe one here. Compute it, or authorise it where it is computed.")
 
+    unlisted_previews.audit_discovery(out)
     return {"pages": len(urls), "files": len(written), "items": len(items),
             "numerals_authorised": len(authorised)}
 

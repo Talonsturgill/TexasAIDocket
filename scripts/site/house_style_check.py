@@ -181,6 +181,9 @@ PARAGRAPH = re.compile(r"<(p|li)\b[^>]*>(.*?)</\1>", re.DOTALL | re.IGNORECASE)
 
 def _stripped(page_html: str) -> str:
     """The shared work: main, minus quotes, code, SVG, reader voice and verified date chips."""
+    # A JavaScript string can contain a complete <main> element. Remove code before
+    # selecting the document region so that string cannot become the document itself.
+    page_html = CODE.sub(" ", page_html)
     m = MAIN.search(page_html)
     body = m.group(1) if m else page_html
     body = HOUSE_VOICE.sub(" ", READER_VOICE.sub(" ", QUOTED.sub(" ", CODE.sub(" ", SVG.sub(" ", body)))))
@@ -189,6 +192,7 @@ def _stripped(page_html: str) -> str:
 
 def time_chip_problems(page_html: str) -> list:
     """The `<time>` elements that claimed the date exemption without earning it."""
+    page_html = CODE.sub(" ", page_html)
     m = MAIN.search(page_html)
     return _time_chips(m.group(1) if m else page_html)[1]
 
@@ -454,6 +458,20 @@ def self_test() -> int:
        coded)
     ok("inline style is not prose", "40-60" not in coded)
     ok("...and the sentence beside the code still is", "August 11th" in coded)
+    scripted_main = ('<html><body><p>Filed August 11th.</p>'
+                     '<script>const view = "<main><p>We cannot do this.</p>'
+                     '<time datetime=\\"2026-08-11\\">wrong date</time></main>";</script>'
+                     '</body></html>')
+    script_prose = our_prose(scripted_main)
+    ok("a main tag inside JavaScript cannot replace the document region",
+       "Filed August 11th" in script_prose and "cannot" not in script_prose, script_prose)
+    ok("time tags inside JavaScript are not document date chips",
+       not time_chip_problems(scripted_main), str(time_chip_problems(scripted_main)))
+    real_main = ('<html><body><main><p>The commission cannot act.</p></main>'
+                 '<script>const view = "<main><p>Permitted.</p></main>";</script>'
+                 '</body></html>')
+    ok("real document violations remain checked beside a scripted main tag",
+       any('cannot' in problem for problem in caption_check.check(our_prose(real_main))))
     voiced = our_prose('<main><p>Filed August 11th.</p>'
                        '<div data-voice="reader"><button>What can I comment on?</button></div>'
                        '</main>')
