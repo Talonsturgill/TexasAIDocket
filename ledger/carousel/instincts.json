@@ -213,7 +213,8 @@
         "2026-10-12",
         "2026-10-15",
         "2026-10-20",
-        "2026-10-21"
+        "2026-10-21",
+        "2026-10-22"
       ],
       "contradicted": []
     },
@@ -422,7 +423,8 @@
         "2026-09-03",
         "2026-09-26",
         "2026-09-29",
-        "2026-10-02"
+        "2026-10-02",
+        "2026-10-22"
       ],
       "contradicted": []
     },
@@ -697,7 +699,9 @@
       "learned": "2026-09-04",
       "instinct": "Compare the nine declared CAMERAS in the storyboard before any frame is built, because a repeated composition survives two rebuilds that change the geometry, the ink and the floor, and only changing the camera class separates the pair.",
       "evidence": "Deck 15 frames 1 and 4 were the closest pair at 0.746 source similarity for three scoring rounds, both one point corridors. Attempt two changed the geometry from a superposition to one geometry at two depths and the pair did not separate. Attempt three changed the camera to a flat elevation and it did. bespoke_check measures the rendered similarity AFTER the build, which is the most expensive place to learn it.",
-      "confirmed": [],
+      "confirmed": [
+        "2026-10-22"
+      ],
       "contradicted": []
     },
     {
@@ -1527,6 +1531,22 @@
       "learned": "2026-10-21",
       "instinct": "When every judge names the same frame in round one, recompose it before round two rather than re-lighting it.",
       "evidence": "2026-10-21 frames 3 and 8: re-lit for round 2, named by all three judges again in rounds 2 and 3.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "a-band-that-marks-a-level-rises-from-it",
+      "learned": "2026-10-22",
+      "instinct": "A band drawn to mark a level puts its lower edge on that level and rises from it. Hung down from the line, it eats the distance under it and says a shortfall is smaller than it is.",
+      "evidence": "No. 57, frame 3: the brass datum hung 0.24 m down from 77.2 left 0.066 m over the 0% landing where the deck's scale put 0.31 m, and the art director read the no junk model as nearly reaching base",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "a-coplanar-face-is-a-screen",
+      "learned": "2026-10-22",
+      "instinct": "Never lay a second surface half a millimetre over another to recolour it. At feed distance the two z-fight into a fine moire, which reads as exactly the print screen the deck is forbidden.",
+      "evidence": "No. 57 frames 3 and 9: an accent plane 0.5 mm in front of the brass strip rendered a mesh and moire the critics named as a screen texture; removing it cleared it",
       "confirmed": [],
       "contradicted": []
     }

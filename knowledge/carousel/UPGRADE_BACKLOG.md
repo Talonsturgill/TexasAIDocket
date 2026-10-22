@@ -6060,3 +6060,114 @@ is a different collision on each deck (an arm post under a dek line, a knob unde
 through a dek's edge, crowns behind a dek), and the honest gate for it, the projected box of each
 modelled part against the type boxes, needs the id pass already proposed (2026-10-12 item 4). No
 frontier scan: the pass spent its time on the proofs, read at full size.
+
+## 2026-10-22, the tenth weekly machine pass. One kit lift, two gate and tool changes, three proposals, carried items
+
+Read from `out/2026-10-22/week_digest.md` (six shipped runs, October 16th to 22nd) and the queue.
+The pass was due early on three repeat offenders: the kit person (repeat 3), the audition rebind
+(repeat 3) and the caption ledger's exclusions (repeat 2). `artwork_craft` had the lowest week mean
+(6.62); `variety` was the lowest criterion on four decks. "Primitive or low-poly model where a kit
+model belongs" was named on all six decks in 16 rounds, "type sitting on or fighting the art" on six
+in 14, "largest object unmodelled" on five in 13. The account is in `ledger/carousel/upgrades.json`
+under `2026-10-22 weekly`; the pass is recorded in `config/carousel/machine_pass.json`. Proofs are in
+`out/2026-10-22/tmp/machine/` and die with the container.
+
+### 1. KIT PERSON: THE UNTUCKED SHIRT AND THE VEST (done in part, `assets/js/kit/people.js`, 5560bfd9)
+
+Reproduced first, through the engine in the lastLight world: no. 57 frame 9's own call (worker,
+look_up, seed 14, no vest, dark shirt) from behind and in front, and workers at seeds 23 and 56 with
+a cap and a hard hat. What read as a mannequin at full size, in order of how much of the figure it
+took:
+
+- **A peplum.** Every untucked shirt wore a second, wider tier over the hips with a ledge on top and
+  a ragged pale lower edge, the "ragged hem" every judge named in no. 57's round 1. Cause, read in
+  the code: the shirt's rows below the waist cleared only the seat TABLE, and the trousers are the
+  seat and both thigh tubes, whose tops stand wider. A clearance band over the real trousers caught
+  it, joined with a hard min and cut flat at the waistband. A smooth-min fillet was tried first and
+  made it worse (a jagged ridge on top of the same tier). What shipped: each row below the waistband
+  is measured against the trousers (32 bearings, marched to the surface) and only the semi-axis a
+  point presses on grows, with a row added at the waistband, so the cloth hangs straight off the hips.
+  The hem is a rounded bead, because a plane cut is a crease narrower than the 1.6 cm mesh grid and
+  surface nets laid it down as a sawtooth. No random draw added, so no seed's other choices move.
+- **A ragged fringe under every vest.** The vest sat a fixed 1.3 cm off the torso table and the
+  untucked shirt stood further out, so it broke through the vest's lower edge on every untucked
+  worker. Each vest ring now walks its own superellipse against the shirt's torso field and grows
+  until it clears it, capped. Measuring against the whole shirt was tried first and ballooned the
+  vest into a barrel, because the sleeves are in that field.
+
+Proof: before and after at full size on all six views and on no. 57 frame 9's call re-rendered in a
+copy of the frame (the tier at the waist is gone, nothing else moved); a pose sheet (read, walk at
+four seeds, official, sit_read, hands_on_hips, a crowd of 14) shows no balloon or new clipping.
+`examples/kit/build.py --family people --world lastLight --surface concrete` renders clean through
+render.py, and `python3 examples/kit/sizes.py --out out/2026-10-22/tmp/machine/person/sizes` exits 0,
+125 of 125. Today's shipped deck is untouched; its frame 9 would render differently if re-rendered
+after this commit, and art_preflight on a shipped run reads no asset hashes.
+
+**Measured and NOT shipped:** the bare forearm. On no. 57 frame 9's call it measures C* 52 (median,
+L* 46). The skin's salmon sheen (0xff9f86) looked like the cause and is not: a near neutral sheen
+moved it to C* 51, so the change was reverted. The saturation is the `SKIN` palette's albedo under a
+warm key. The next pass should take the palette to a published skin tone standard (the Monk Skin
+Tone Scale is the candidate; its hex values could not be confirmed from Google's own page this pass,
+and a secondary source differed in the last digit on four of them, so none were typed in), keeping
+nine entries so a deck's `skin: <index>` keeps its order. Also still open: the `grip` pose (no. 54),
+the vest's cut (a flat-topped tube with no armholes, which reads as body armour from the front), the
+collar's sawtooth neck opening (a 1.2 cm bead was tried and did not clear it), and the cap brim's
+pale edge line.
+
+### 2. CAPTION EXCLUSIONS: THE BRIEF IS ITS OWN DERIVATION (done, `scripts/carousel/ledger_check.py`, CAPTION_CRAFT.md, 43e9e72d)
+
+Queue `caption-ledger-opening-moves-stale` at repeat 2 (nos. 44, 45, 57) and its duplicate
+`captions-derived-lists-lag-a-run`. Not a drift: `derived_lists` slices the entries BEFORE the
+newest date, by design, because check 2 holds the newest caption to them. So the stored arrays are
+what the newest caption was held to, and they omit its own moves by construction. The routine's
+Phase 10 and CAPTION_CRAFT.md both told the next room to read them, so every room was one run behind
+before it wrote, and `--derive` could never fix it because the lists were never wrong for the
+question they answer. Replayed on the real ledger today: the stored `opening_moves_recent` lacks
+today's "the who", and `--exclusions` carries it. `ledger_check.py --exclusions` prints the next
+room's brief as JSON, from every entry at the doctrine's own windows; nothing that judges the stored
+lists changed. Five self-test cases; three go red if the brief is taken the old way.
+
+### 3. TYPE SPINE AS RENDERED (done, `scripts/carousel/coherence_check.py`, dd375c3c)
+
+Queue `type-spine-reads-html-only` at repeat 1 (nos. 50 and 57), and one cause of the audition
+rebind at repeat 3. The spine read `font-size: Npx` strings in each slide's HTML, so a deck sizing
+its furniture once in chassis CSS failed while rendering 24px furniture on all nine frames, and both
+runs answered it with a no-op size written into every slide: a gate satisfied by text no reader sees,
+and on no. 50 an edit that changed every HTML hash and threw away an accepted art review. The spine
+now reads `render_report.json`'s computed `font_px` when the report covers every slide by name, and
+the HTML strings otherwise. A first cut skipped decorative nodes and the sweep caught it failing no. 3
+(2026-08-19), whose furniture is marked decorative, so decorative nodes count. Swept: all 54 shipped
+decks pass. Replayed: no. 57 with every inline size stripped fails the old reading and passes this
+one. Five self-test cases; three go red without the report reading.
+
+**Proposed GATE_LESSONS entry (the file is `human`):** "A gate that read the declaration and not the
+render. coherence_check looked for a size string in each slide's HTML, so furniture sized in the
+chassis CSS failed it and two runs wrote a size no reader sees into every slide to pass, which on
+no. 50 also discarded an accepted art review. What to check instead: the size the browser computed,
+which render.py already records. Generalises to: a static gate that reads WHERE a thing is written
+will be satisfied by writing it there, whether or not it takes effect."
+
+### 4. PROPOSALS FOR A MAINTAINER
+
+- **`prompts/daily_routine.md` Phase 10:** replace "Take the exclusions from
+  `ledger/carousel/captions.json` before anybody writes" with "Take the exclusions from
+  `python3 scripts/carousel/ledger_check.py --exclusions` before anybody writes". Until then a run
+  reading the routine literally still briefs its room one run behind; CAPTION_CRAFT.md says
+  otherwise and the caption director reads that file.
+- **GATE_LESSONS:** the entry in item 3.
+- **The audition rebind** stands as written in 2026-10-21 item 6 (a canvas-only hash in render.py
+  and a type-only re-reading in the studio brief), now at repeat 3 with no. 57's seven readings.
+
+### Carried, with this week's counts
+
+"Type sitting on or fighting the art", six runs and 14 rounds, got no change for the reason 2026-10-21
+gave: a different collision on each deck, and its honest gate needs the id pass (2026-10-12 item 4).
+`qa-glyph-run-as-rule`, `grid-piece-count-reads-lit-ground-as-subject` and
+`article-test-screenshots-fixed-path`, none met since no. 52, are carried at their maintainers' files.
+`detail-floor-pushes-dark-plates-to-graph-paper` is carried until a run meets the floor again.
+`kit-metal-mirrors-navy-sky-as-accent` reached repeat 1 today (no. 57's brass datum) and is the next
+kit materials item. No frontier scan: the time went to the proofs, read at full size.
+
+**For the run, not this pass:** `python3 scripts/carousel/arsenal.py --check` reports ARSENAL.md
+stale from line 406, because today's chassis `assets/js/deck/2026-10-22-stair.js` is not yet in its
+list of earlier chassis. Nothing in this pass caused it; regenerate before the push.

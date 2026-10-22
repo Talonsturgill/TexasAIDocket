@@ -1,0 +1,79 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.5,
+   "why": "Every frame is rendered and lit from one consistent low key on the left, with casts running right on 1, 3, 4, 5, 7 and 9, and nothing is printed. Frames 1, 5 and 9 pass most of THE SHOWSTOPPER TEST. On 1, one freestanding stair fills two thirds of the frame on a near black field, with lit nosings, bare stringer notches in the middle of the flight, a pier with tooth and contact on the caliche (preflight median L* 5.3, mid 0.06). On 9 the person gives true scale. Four frames hold the score well under the 10 descriptor. Frame 4 is a face-on elevation of three limestone piers that reads as a bar chart in stone, even in the 432 px thumb. Its pier faces fill about half the frame in the mid tones, carry low-frequency blotch albedo that reads as camouflage, and the 100% landing sits under the footer. Frame 7 is dominated by a mid-tone brick wall over about 60% of the frame. Its brass line runs diagonally, parallel to the flight, so it reads as a handrail rather than a distance, and the 'repaired' treads look like scratched brown wood rather than the fresh limestone the plan called for. On frame 6 the subject is a small stack in the lower third under a pebble carpet that reads as noise, and the sky turns navy, unlike every other frame. On frame 8 the flights run to the top edge as ladder or rail-track forms, the empty pad (the planned focal) is about a tenth of the width, and machine QA flags the lower third as dead (band ratio 0.73). Frame 2's relief reads, but every chip has a hard straight two-tone terminator that looks low-poly, the slivers are smooth grey cigars with no limestone tooth, and a hard horizontal seam sits where the relief meets the dek band. On frames 1 and 3 the dek and labels run over the subject's top treads. On frames 3, 4 and 9 the datum is a flat peach band, not brass. Strong in places, but more than one frame leans on a default, so this sits below the 7 descriptor."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 8.0,
+   "why": "As a filmstrip it is clearly one deck: one lastLight world, one key with every cast running right, and one material vocabulary of weathering steel stringers, aggregate treads, limestone piers and a warm datum. The visual argument is a stair at 0.06 m per point, carried through 1, 3, 4, 5, 7, 8 and 9. The motif changes state and works as a real continuity device: whole but gapped (1), five descending (3), cliff (4), stripped (5), short of the line (7), four plus an empty pad (8), whole beside broken (9). The camera returns to the cover's side for 9 as declared. Three frames sit slightly outside. Frame 2 is a top-down relief with green and amber chips that share none of the stair's silhouette. Frame 6's sky shifts to navy. Frame 8 inverts the layout and puts the type on dead ground. Value is dark throughout, with no strobe visible on the contact sheet. Frame 4's large lit stone faces are the brightest mid-tone mass and sit between two dark frames."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.5,
+   "why": "Every slide numeral traces to a primary claim. The dose labels on 3 trace to c33 (Table 2 cells). The variable-tracking labels on 4 trace to c36, and they correctly show 59.4 under 60.7. 84% and 70% trace to c39, 5k to 50k to c43, 4.8 to c44, 17.3 to c47 (an absolute difference, so 'points' is fair), and the model names to c25 and c58. Llama3 8B is correctly scoped as the most sensitive model (c57), not as typical, and the junk definition uses the paper's count including quotes (c18, c19), not the release's. The 2010 collection year was correctly rejected. One looseness is in the caption. 'showed up in 84% of failures under junk training' drops the M1 (engagement) qualifier that c39 carries and that slide 5 keeps ('with junk defined by engagement'). The closed-models absence on 8 and 9 leans on the A&M release (c65), not the paper. No hard fail."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.5,
+   "why": "Clear and accurate about what was found and by whom. The cover and slide 9 name Texas A&M, UT Austin, Purdue, Tu and Xing, the definition is on 2, and the repair falling short is on 6 and 7. It is a research finding, though, not a decision. No Texas body decided anything, there is no county, deadline or action open to a Texan, and the close ('Testing larger closed models is still needed') hands the stake to researchers. Slide 8 states the stake for the reader in general terms only, and the caption ends on an open question rather than on anything a reader can do."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "The cover's broken stair earns the swipe, and 2 pays at once with the definition. The sequence runs dose (3), non-monotone (4), mechanism (5), turn to repair at 6 (declared as the VALUE CUT), still short (7), limits (8) and quote (9). Frame 4 is the most cuttable, because it is a second dose curve whose point (not steady) a reader can lose without losing the argument. Frame 5 restates the cover's image with fewer treads."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Clean and on register. House rules held in what I read: no colons or semicolons in the copy, 'didn't' rather than 'did not', and no banned words. Texas presence is institutional (A&M, UT Austin) rather than regional, and the caption opener 'Texas A&M, UT Austin and Purdue trained models on junk.' is flat. Kickers such as 'What follows' and 'Still short' are serviceable rather than distinctive. Nothing reads as a press release."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "Using a stair's rise as a measured score scale is a fresh concept. Several familiar moves repeat from recent decks in the ledger. It is lastLight again, as on no. 54 and no. 56, with the key at the same azimuth (-58) as no. 54 and the same ground #08060F as nos. 51, 55 and 56. The accent is dusk gold #E0956A, as on no. 55. The stair motif itself, with lit nosings in a dark field, appeared on no. 51 seven days earlier. Opening move: a single object staged in the dark field, as on 54 and 56."
+  }
+ ],
+ "weighted_score": 7.23,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Re-shoot frames 4 and 7 from the low oblique the CRAFT PLAN specified (eye 0.45 m along the walk on 4, eye 1.6 m on the landing square to a horizontal datum on 7), so each frame's subject is lit stair nosings and a measurable drop or shortfall on the dark field, not a face-on pier elevation or a brick wall filling half the frame with mottled mid-tone stone.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 4,
+   "problem": "A face-on elevation of three limestone piers reads as a bar chart in stone. The pier faces fill about half the frame in the mid tones with low-frequency blotch albedo that reads as camouflage. There is no stair except a cut stringer fragment at the left edge, and the 100% landing sits under the footer.",
+   "fix": "Move the camera to the planned eye 0.45 m above the 50% landing, looking along the walk from a low three quarter, so the 8 cm riser's lit edge and the sheer pier drop beyond it are the subject against the dark sky. Replace the blotch noise on the pier faces with fine albedo tooth."
+  },
+  {
+   "slide": 7,
+   "problem": "A mid-tone brick wall fills about 60% of the frame. The brass datum runs diagonally, parallel to the flight, so it reads as a handrail and the 17.3-point shortfall is not legible as a distance. The 'repaired' treads look like scratched brown wood, not fresh limestone.",
+   "fix": "Yaw the camera square to the datum wall from the top landing, as planned, so the brass runs horizontally and the lit band between the landing nosing and the brass is the subject. Let the wall fall to dark outside the pool, and give the repaired treads the pale limestone material."
+  },
+  {
+   "slide": 6,
+   "problem": "The 4.8x stack is small, sitting in the lower third at about 40% of the width. A carpet of scattered pebbles across the middle ground reads as noise, the sky turns navy (off the deck's #08060F grade), and the stacked slabs read like a pile of tiles.",
+   "fix": "Lay the junk tread and 4.8 limestone treads end to end in one row across about 85% of the width at eye 1.1 m, as the CRAFT PLAN table says. Cut the scatter density in the middle ground by most of its count, and return the sky hue to the deck's warm black."
+  },
+  {
+   "slide": 8,
+   "problem": "The four flights run off the top edge as ladder or rail-track forms. The empty pad, which is the planned focal, is about a tenth of the frame width, and the lower 45% is dead ground under the type (machine QA top-loaded warning, band ratio 0.73).",
+   "fix": "Move the camera right and lower so the empty pad with its lit chalk outline sits in the near third at about a quarter of the width, with the four flights receding to its left. Bring the stair feet and their casts down into the lower band."
+  },
+  {
+   "slide": 2,
+   "problem": "Every glass chip has a hard straight two-tone terminator that reads as low-poly flat shading, not glossy glass. The limestone slivers are smooth grey cigars with no tooth, and a hard horizontal seam sits where the relief meets the dek band.",
+   "fix": "Give the chips a domed height profile with one specular point each under the low key, put sawn-limestone albedo tooth on the slivers, and feather the relief's top edge into the dark field instead of ending it on a straight line."
+  }
+ ],
+ "lens": "craft",
+ "round": 3
+}

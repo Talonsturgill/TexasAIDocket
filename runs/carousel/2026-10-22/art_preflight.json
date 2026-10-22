@@ -1,0 +1,225 @@
+{
+  "version": 2,
+  "selected": [
+    1,
+    3,
+    9
+  ],
+  "inputs": {
+    "slides/slide-01.html": "095ea564d9243701f3ae816cd66a0d4870a14cab577fc6e2174941649348d014",
+    "render/slide-01.png": "cfc540f1fac698af7329f6672844b9b5d2c3942b0e360eb4f60766b466a4c170",
+    "assets/js/deck/2026-10-22-stair.js": "a27a2151a72106cfa3cf2658ac4af715f5e0852d8d6f20df4438b0b71e89213d",
+    "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+    "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+    "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+    "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+    "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+    "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+    "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+    "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+    "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+    "slides/slide-03.html": "6209640912826348682d6e1cee63f08982dd203c9f27b705320dd78090d84536",
+    "render/slide-03.png": "e5fb036de74290b9a64f585d8ec5dba530ea0fd6117c54bef2afafb70996f9c8",
+    "slides/slide-09.html": "30e62be9b1a822e1ba991095819cd181d4bde16d7cb5d5f041c9d44b1ec210b4",
+    "render/slide-09.png": "f885e0882d83b78cf26a5e3d37c964f3eafe9a7bae9ae41b5bd57d2e819c581c"
+  },
+  "value_measurements": [
+    {
+      "frame": "slide-01.png",
+      "median_L": 5.3,
+      "mid": 0.06,
+      "dark": 0.867
+    },
+    {
+      "frame": "slide-03.png",
+      "median_L": 4.7,
+      "mid": 0.072,
+      "dark": 0.789
+    },
+    {
+      "frame": "slide-09.png",
+      "median_L": 1.8,
+      "mid": 0.095,
+      "dark": 0.728
+    }
+  ],
+  "review": {
+    "decision": "accept",
+    "inputs": {
+      "slides/slide-01.html": "095ea564d9243701f3ae816cd66a0d4870a14cab577fc6e2174941649348d014",
+      "render/slide-01.png": "cfc540f1fac698af7329f6672844b9b5d2c3942b0e360eb4f60766b466a4c170",
+      "assets/js/deck/2026-10-22-stair.js": "a27a2151a72106cfa3cf2658ac4af715f5e0852d8d6f20df4438b0b71e89213d",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+      "slides/slide-03.html": "6209640912826348682d6e1cee63f08982dd203c9f27b705320dd78090d84536",
+      "render/slide-03.png": "e5fb036de74290b9a64f585d8ec5dba530ea0fd6117c54bef2afafb70996f9c8",
+      "slides/slide-09.html": "30e62be9b1a822e1ba991095819cd181d4bde16d7cb5d5f041c9d44b1ec210b4",
+      "render/slide-09.png": "f885e0882d83b78cf26a5e3d37c964f3eafe9a7bae9ae41b5bd57d2e819c581c"
+    },
+    "frames": [
+      {
+        "slide": 1,
+        "role": "cover",
+        "subject": "A freestanding open stair: weathering steel sawtooth stringers, glass-chip aggregate treads with lit nosings, and a sawn limestone landing on a speckled limestone pier. It stands on dark caliche with scattered pebbles and long casts running right. The cover's job is the headline 'models skipped steps': you see a stair that can't be climbed.",
+        "visual_consequence": "The middle third of the flight has no treads. About six treads stand at the foot and six under the landing, and between them the bare rusted stringer notches climb, lit by the low key. Without reading the headline you see a stair you can't climb because its middle steps are gone. At native size the treads show glass chip aggregate and bullnose nosings, the pier carries tooth and an attached cast, and the stringer feet sit in contact shadow. The materials and the cast are finished.",
+        "weakness": "The narrower 690 px dek clears the landing slab but still runs over the upper flight. Line 4 ends with 'their' on the third tread below the landing. Line 5 ends with 'illustrate.' across the fourth and fifth treads (native tile r2c2, about x 0 to 385, y 200 to 340). The text stays legible because the treads are dark. Even so, the dek's line endings land on the top of the subject. Smaller polish: the pier's foot meets the caliche at a hard edge, with a thin dark sliver running to the right (tile r3c2, x 700 to 850, y 190 to 250).",
+        "repair": "Narrow the dek measure to about 560 px so lines 4 and 5 end left of the uppermost treads, or lower the stair another 70 px. Either way no line ending should overlap a tread.",
+        "encoding_reads": true,
+        "dominant_subject_finished": true,
+        "feed_legible": true,
+        "inputs": {
+          "slides/slide-01.html": "095ea564d9243701f3ae816cd66a0d4870a14cab577fc6e2174941649348d014",
+          "render/slide-01.png": "cfc540f1fac698af7329f6672844b9b5d2c3942b0e360eb4f60766b466a4c170",
+          "assets/js/deck/2026-10-22-stair.js": "a27a2151a72106cfa3cf2658ac4af715f5e0852d8d6f20df4438b0b71e89213d",
+          "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+          "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+          "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+          "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+          "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+          "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+          "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+          "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+          "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de"
+        }
+      },
+      {
+        "slide": 3,
+        "role": "evidence",
+        "subject": "Five open stairs side by side, one per junk dose. Each has weathering steel stringers, aggregate treads and a limestone landing on its own pier. They stand in front of a coursed wall that carries a warm datum strip at the base model's height, and each pier wall takes the stepped cast of the next flight. This is the planned hardest frame, and it tells the reader that every added share of junk took height off the climb.",
+        "visual_consequence": "The landings step down from left to right while the warm datum stays above all five. In the full view, the distance from each landing top to the datum measures about 58, 62, 72, 110 and 165 px. That climbs in order and widens sharply at 80 and 100 percent, so the fall reads without the headline. The first two landings are nearly level, as the data says. The long-lens recession compresses the right side slightly, which understates the drop rather than exaggerating it. At native size the treads have nosings and tooth, the piers carry speckled limestone albedo and raked stair casts, and every foot has contact on the caliche. It reads as built stone and steel rather than a step chart.",
+        "weakness": "1. The datum reads as a broad flat peach coping band, about 40 native px thick, with no metallic specular response, so it looks more like painted stone than a brass strip (tile r1c2/r2c2, y 490 to 580). 2. The wall coursing is brick sized and reads closer to brick or block than sawn limestone. 3. Each dose label sits over the upper treads of its own flight. The labels stay legible, but they add clutter to the top of the five flights. 4. The 0 percent stair is cut by the left edge, so its foot and half its pier are out of frame. None of these breaks the encoding at 432 px.",
+        "repair": "Narrow the datum to a thin inset brass strip with a metallic roughness response so it catches the key as one bright line, and leave the geometry unchanged.",
+        "encoding_reads": true,
+        "dominant_subject_finished": true,
+        "feed_legible": true,
+        "inputs": {
+          "assets/js/deck/2026-10-22-stair.js": "a27a2151a72106cfa3cf2658ac4af715f5e0852d8d6f20df4438b0b71e89213d",
+          "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+          "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+          "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+          "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+          "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+          "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+          "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+          "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+          "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+          "slides/slide-03.html": "6209640912826348682d6e1cee63f08982dd203c9f27b705320dd78090d84536",
+          "render/slide-03.png": "e5fb036de74290b9a64f585d8ec5dba530ea0fd6117c54bef2afafb70996f9c8"
+        }
+      },
+      {
+        "slide": 9,
+        "role": "close",
+        "subject": "Two open stairs stand in front of a coursed limestone datum wall. On the left is the whole base-height stair: weathering steel sawtooth stringers and aggregate treads rising to a landing just under the warm datum band. On the right is the shorter all-junk stair, with its middle treads gone and its bare rust-red stringer notches showing between the lower and upper treads. One adult stands at the foot of the broken flight, three quarters away and looking up with a hand at the temple. The scene sits on dark caliche, and long raked casts of the right stair cover the wall.",
+        "visual_consequence": "Without the headline you see one stair that reaches the warm line and a shorter one beside it that you can't climb, because its middle steps are missing. The person at its foot gives both stairs a human scale and turns the gap into something a body would have to cross. The close ties back to the cover's broken stair and to frame 3's datum, and it reads as consequence rather than another chart. The source sets both rises from arc_cot_base and arc_cot_j100 at the deck scale, and the whole stair's landing sits directly under the datum.",
+        "weakness": "The previous finding is fixed. In tile r3c2 (x 55 to 240, y 110 to 600) the figure now reads as a dark matte silhouette: near-black shirt and trousers, dark hair with strand separation, and only the raised forearm and hand carrying warm skin. It stands against the lit pier face, and the pale grey wash is gone. Remaining polish: (1) The datum is still a broad flat peach coping band, about 50 native px thick, with no metallic specular response (tile r2c2, y 290 to 400, and tile r2c1, y 345 to 445). It reads more like painted stone than brass, the same note left on frame 3. (2) The figure's lower legs and feet merge into the shadowed caliche below about y 560 in tile r3c2, so there is no separate foot or contact read. (3) The kit figure is simple in its modelling. Kept small, dark and turned away, it reads as a person rather than a mannequin at feed size. None of these breaks the encoding or the finish of the two stairs, which carry aggregate tooth, lit nosings, rusted stringer edges, contact at their feet and attached casts on the wall.",
+        "repair": "None required for acceptance. Optional polish, consistent with frame 3: narrow the datum to a thin inset brass strip with a metallic roughness response so it catches the key as one bright line.",
+        "encoding_reads": true,
+        "dominant_subject_finished": true,
+        "feed_legible": true,
+        "inputs": {
+          "assets/js/deck/2026-10-22-stair.js": "a27a2151a72106cfa3cf2658ac4af715f5e0852d8d6f20df4438b0b71e89213d",
+          "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+          "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+          "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+          "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+          "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+          "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+          "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+          "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+          "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+          "slides/slide-09.html": "30e62be9b1a822e1ba991095819cd181d4bde16d7cb5d5f041c9d44b1ec210b4",
+          "render/slide-09.png": "f885e0882d83b78cf26a5e3d37c964f3eafe9a7bae9ae41b5bd57d2e819c581c"
+        }
+      }
+    ]
+  },
+  "plan": {
+    "hardest_frame": 3,
+    "visual_argument": "Reasoning is a stair and every score is its rise at one scale, 0.06 m per point: the junk dose shortens the climb landing by landing, the skipped thinking is a stringer with its treads gone, and the repair rebuilds a stair that still stops under the brass line where the base model stood.",
+    "build_risk": "Frame 3 is five landings on stone piers joined by short limestone flights, descending from 72.1 to 57.2 at one scale under a brass datum at 77.2, seen through a long lens from a low oblique. It has to read as built stone with nosings, stringers, piers and cast shadows at 432 px and never as a step chart or a bar chart in hardware, which is what the judges charged no. 53's benchmark frames with. Built from the chassis stair_flight, landing_pier and datum_wall models in txthree under the lastLight key.",
+    "distinct_from_recent": "No. 56 (Oct 21) was a machine shop of machined parts and taped bays in interiors and plan reliefs under a comal lit accent. No. 55 (Oct 20) was floodlit operating rooms and walls of steel container ends. No. 54 (Oct 18) was lastLight brush country with windmills, cattle and counted boxes. This deck is one built thing, a freestanding limestone and weathering steel stair in an empty dark field, measured vertically against one brass line, with no interior, no counted isotype and no plan relief except one native scale surface on frame 2."
+  },
+  "frame_inputs": {
+    "1": {
+      "slides/slide-01.html": "095ea564d9243701f3ae816cd66a0d4870a14cab577fc6e2174941649348d014",
+      "render/slide-01.png": "cfc540f1fac698af7329f6672844b9b5d2c3942b0e360eb4f60766b466a4c170",
+      "assets/js/deck/2026-10-22-stair.js": "a27a2151a72106cfa3cf2658ac4af715f5e0852d8d6f20df4438b0b71e89213d",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de"
+    },
+    "3": {
+      "assets/js/deck/2026-10-22-stair.js": "a27a2151a72106cfa3cf2658ac4af715f5e0852d8d6f20df4438b0b71e89213d",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+      "slides/slide-03.html": "6209640912826348682d6e1cee63f08982dd203c9f27b705320dd78090d84536",
+      "render/slide-03.png": "e5fb036de74290b9a64f585d8ec5dba530ea0fd6117c54bef2afafb70996f9c8"
+    },
+    "9": {
+      "assets/js/deck/2026-10-22-stair.js": "a27a2151a72106cfa3cf2658ac4af715f5e0852d8d6f20df4438b0b71e89213d",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+      "slides/slide-09.html": "30e62be9b1a822e1ba991095819cd181d4bde16d7cb5d5f041c9d44b1ec210b4",
+      "render/slide-09.png": "f885e0882d83b78cf26a5e3d37c964f3eafe9a7bae9ae41b5bd57d2e819c581c"
+    }
+  },
+  "needs_review": [
+    9
+  ],
+  "shipped_inputs": {
+    "slides/slide-01.html": "095ea564d9243701f3ae816cd66a0d4870a14cab577fc6e2174941649348d014",
+    "slide-01.webp": "4f8028ac64f9c8a253092caf2eadc2beca4ef5dece41afe8082dc062f8fe8c18",
+    "slides/slide-03.html": "6209640912826348682d6e1cee63f08982dd203c9f27b705320dd78090d84536",
+    "slide-03.webp": "7ceae3eb68fcefdca97bbd083959c5a91c972eacda37044ef57c460e9e0aebf5",
+    "slides/slide-09.html": "30e62be9b1a822e1ba991095819cd181d4bde16d7cb5d5f041c9d44b1ec210b4",
+    "slide-09.webp": "6448b19e349ea41a6cf4fd2668e3015c3a1abbf6da4e4a3e007fc7fa41863243"
+  },
+  "encodings": [
+    {
+      "to": "slide-01.webp",
+      "to_sha256": "4f8028ac64f9c8a253092caf2eadc2beca4ef5dece41afe8082dc062f8fe8c18",
+      "from_sha256": "cfc540f1fac698af7329f6672844b9b5d2c3942b0e360eb4f60766b466a4c170",
+      "psnr_db": 999.0
+    },
+    {
+      "to": "slide-03.webp",
+      "to_sha256": "7ceae3eb68fcefdca97bbd083959c5a91c972eacda37044ef57c460e9e0aebf5",
+      "from_sha256": "e5fb036de74290b9a64f585d8ec5dba530ea0fd6117c54bef2afafb70996f9c8",
+      "psnr_db": 40.561
+    },
+    {
+      "to": "slide-09.webp",
+      "to_sha256": "6448b19e349ea41a6cf4fd2668e3015c3a1abbf6da4e4a3e007fc7fa41863243",
+      "from_sha256": "f885e0882d83b78cf26a5e3d37c964f3eafe9a7bae9ae41b5bd57d2e819c581c",
+      "psnr_db": 40.511
+    }
+  ]
+}

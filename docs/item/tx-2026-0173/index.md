@@ -31,6 +31,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-11 · UT Arlington's AI degrees still stand in place of its business analytics degrees.
 - 2026-10-15 · UT Arlington's AI degrees still stand in place of its business analytics degrees.
 - 2026-10-18 · UT Arlington's AI degrees still stand in place of its business analytics degrees.
+- 2026-10-22 · The university's release did not answer today, so the replacement of the business analytics degrees is unconfirmed since its last check.
 
 ## Evidence
 

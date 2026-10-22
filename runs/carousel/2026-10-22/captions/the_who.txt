@@ -1,0 +1,11 @@
+Texas A&M, UT Austin and Purdue tested junk.
+
+In went Twitter/X posts as training for four open language models. Junk meant under 30 tokens with popularity over 500. Control meant over 100 tokens with popularity 0. The junk share ran from 0% to 100%. Those are lab doses and no estimate of the internet.
+
+Out came skipped steps, the paper's main reasoning failure. Llama3 8B Instruct was the most sensitive. Its ARC Challenge score with chain of thought fell from 72.1 with no junk to 57.2 with all junk. Instruction data 4.8 times the junk tokens didn't fully undo it. The best repaired model still sat 17.3 points under baseline on that test.
+
+Texas A&M's Zhengzhong Tu wants less focus on architectures and more on data. The deck draws each score as a stair.
+
+ChatGPT and Gemini weren't tested. Who can run this on a model that isn't open source?
+
+#TexasAM #UTAustin #COLM2026

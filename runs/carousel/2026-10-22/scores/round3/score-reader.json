@@ -1,0 +1,74 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 7.3,
+   "why": "Every frame is rendered and physically lit, with a dark field, one warm low key from the left, contact shadows and caliche scatter. Nothing is printed or flat. The cover (slide 1) is the strongest frame: a weathering-steel stair with its middle treads gone, lit nosings and a long cast across a near-black ground. At 432 px it says 'skipped steps' before the type does. Slide 3 (five stairs under a brass datum), slide 8 (four flights climbing out of frame beside an empty chalk pad) and slide 9 (whole stair beside broken stair, a person for scale) all hold. Slide 2's glass-chip and limestone-sliver relief is a real material relief with measured lengths. Four frames hold the score down. Slide 4 is a wall of mid-tone tan pier faces with blotchy low-frequency mottle across about 60% of the frame, so it sits in the grey middle the rubric's 4 descriptor names and reads as a bar chart cast in stone. On slide 7 the brick wall dominates and the 17.3-point shortfall the frame exists to show can't be seen. Perspective puts the landing almost at the brass line. Slide 6 puts its subject in the bottom quarter under an empty scattered field, and the stacked slabs read as 'five slabs', so the 0.8 sawn tread is lost. Slide 5 nearly repeats the cover's stair-and-pier composition from almost the same angle. The kit person on slide 9 is serviceable but mannequin-stiff. Strong overall, with more than one frame leaning on a default, so a little above 7 and well short of the showstopper test."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 8.2,
+   "why": "On the contact sheet it reads as a filmstrip. There is one lastLight world and one key from the left, with casts running right on every frame. One material vocabulary runs through it: weathering steel, sawn limestone, glass-aggregate treads and a brass datum. The stair motif changes state across the deck as declared in storyboard.md under MOTIF_EVOLUTION: broken (1), its tread surface (2), the dose walk (3), the cliff (4), stripped (5), new treads (6), rebuilt and short (7), multiplied (8), whole beside broken (9). The brass datum recurs on 3, 4, 7 and 9 and means one thing, the base model. Value holds dark with no strobing. Slides 2 and 6 sit slightly outside as object close-ups off the stair, though their glass-aggregate and limestone materials tie them back. Slide 4's mid-tone piers are the one value bump. I did not find a deck_coherence.py or deck_chassis.py output in out/2026-10-22 to check against the cap."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.5,
+   "why": "I traced every numeral on the slides and in the caption to claims.json. Slide 3's labels and slide 4's variable-tracking values match the Table 2 cells in c33 and c36. 84% and 70% are c39, 4.8 and 5k to 50k are c43 and c44, 17.3 is c47, 30/500/100/0/1 million are c16, c18 and c19, and #COLM2026 is c13. The sources are primary: the arXiv full text and the abstract page. Scoping is careful. Slide 3 says Llama3 8B was 'the most sensitive of the four' (c57) rather than presenting it as typical. Slide 5 says 'with junk defined by engagement'. Slide 7 says 'at the scales it tested' (c51). The release's wrong 2010 date and its wrong junk definition are correctly refused. Three spots are looser than their sources. The caption drops slide 5's M1 qualifier and writes '84% of failures under junk training' (c39 is M1 only). Slide 8's 'Closed models like ChatGPT or Gemini were not tested' is inferred from the release saying such testing 'is also needed' (c65) plus the model list in c25 and c58, and the paper itself used GPT-4o-mini as a labeller and critic. Slide 9 states 'Testing larger closed models is still needed' in the deck's own voice, with no attribution to the release. None of these changes what a reader believes, and none is a hard fail."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.0,
+   "why": "Reader lens: a Texan in the feed learns clearly what happened. Texas A&M, UT Austin and Purdue researchers trained four open models on short viral posts, reasoning degraded, and the repair didn't fully work. They never learn why it touches them. No frame says what this means for the chatbots they use. Slide 8 says closed models weren't tested, which tells the reader the finding may not reach them, and the deck leaves it there. There is no body, no decision, no date and nothing a reader can do. The close is a general quote, 'We want to emphasize the importance of data'. The claims file held the concrete stake and the deck left it unused. c73 is the release's before and after: the model first declined to advise on tarnishing a reputation, then answered 'spread lies, gossip, or bad news'. c72 has Tu saying models could get worse if unsafe behavior is reinforced. Jargon also blocks the lay reader. 'Tokens' (slide 2), 'variable tracking test' (slide 4), 'the whole Alpaca set' and 'instruction tuning' (slide 6) are never explained. No place is named beyond the institutions, and College Station never appears. The story is clear and accurate, but its stake is less than general because it is absent. That puts it under 7."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "The cover hook 'Trained on short, popular posts, models skipped steps' earns a swipe. Slide 2 pays at once by defining junk. The turn at 6 to 7 (repair, still 17.3 points short) is real and lands. Slide 4 is cuttable. 'Half junk scored below 80% junk' is a statistical nuance on a second benchmark that a feed reader can't use, and it half-contradicts slide 3's clean dose story without saying why that matters. The close is a quote plus a to-do ('Testing larger closed models is still needed'), and the caption ends on a soft question ('Would posts from other platforms do the same?'), so the ending trails off rather than landing. The paper's own title phrase, 'Brain Rot', is the hook a scroller would stop for, and the deck never uses it."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "It is clean and on the house rules. I found no colons, semicolons, banned words, em dashes or first person outside a verbatim quote, and apostrophes are &#39; in slides/slide-06.html, slide-08.html and slide-09.html. The register reads as a careful paper summary rather than a Texan who knows the subject. 'Drawn to illustrate.' closes all nine deks. Legend sentences read like museum placards: 'Each landing is its score at one scale. Brass marks the base model at 77.2.' (slide 3) and 'The bare share of the stair is that 84%.' (slide 5). No line gives a regional angle, for example that two Texas flagships co-wrote a COLM paper or what it means here. Honest about limits without doom. Several flat lines make this a 6.5 rather than a 7."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "Checked against ledger/carousel/topics.json. The topic, tx-2026-0223 (brain rot), is new. Technique repeats recent decks. No. 51 on October 15th was 'a granite courthouse stair with a riser for every month', so a stair as the data-carrying spine came back within seven days. The lastLight world also ran on no. 56 yesterday. The instrument is a third peer-reviewed study in six decks, after no. 53 (Nature Biomedical Engineering, October 17th) and no. 55 (Journal of Imaging, October 20th). The palette and the dose-walk structure are fresh. This is a fresh concept with more than one familiar move."
+  }
+ ],
+ "weighted_score": 7.25,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Cut slide 4's variable-tracking nuance and put c73's before-and-after answer in its place (the model first declined to advise on tarnishing a reputation, then answered 'spread lies, gossip, or bad news'), and close on c72's warning, so a Texan in the feed sees what junk training does to a model's answers and why it reaches them, instead of four benchmark names and a quote about data.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 4,
+   "problem": "Mid-tone tan pier faces with blotchy low-frequency mottle fill about 60% of the frame. It sits in the grey middle and reads as a stone bar chart with floating mono labels, and the 59.4-to-60.7 step that is the frame's whole point is a hairline at feed size.",
+   "fix": "Turn the key so the pier faces fall into shadow and only the landing tops and nosings take light. Pull back and crop so the piers fill no more than half the frame, with the lit 80% landing edge and the sheer drop to the 22.4 landing as the one bright edge against black."
+  },
+  {
+   "slide": 7,
+   "problem": "The rising perspective puts the repaired landing almost at the brass line, so the 17.3-point shortfall the frame exists to show can't be seen, and a mid-brown brick wall owns most of the frame.",
+   "fix": "Put the camera square to the datum wall at landing height on a long lens, so the brass line runs level above the landing with the computed 17.3-point band of lit bare wall between them as the focal area, and let the wall fall to black outside the pool."
+  },
+  {
+   "slide": 6,
+   "problem": "The subject sits in the bottom quarter under an empty scattered field. The repair treads are stacked, so the 4.8 reads as 'five slabs' and the sawn 0.8 tread is lost.",
+   "fix": "Lay the treads end to end as the CRAFT PLAN specified: one dark glass tread, then four limestone treads and the sawn one, from a low oblique close enough that the row spans the full width, with the short tread's saw face lit."
+  },
+  {
+   "slide": 5,
+   "problem": "It nearly repeats the cover: the same stair and pier from almost the same three-quarter angle, so the swipe shows the reader the cover again.",
+   "fix": "Shoot from under the open side at 1.0 m as the storyboard planned, so the bare notched stringers rake up against the dark sky with the three surviving treads lit at the foot, which is a different silhouette from slide 1."
+  }
+ ],
+ "lens": "reader",
+ "round": 3
+}

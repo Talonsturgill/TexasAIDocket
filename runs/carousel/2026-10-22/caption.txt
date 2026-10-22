@@ -1,0 +1,15 @@
+Texas A&M, UT Austin and Purdue trained models on junk.
+
+Four models trained on mixes of junk and control Twitter/X posts. Junk meant under 30 tokens with over 500 likes, retweets, replies and quotes combined. Control meant over 100 tokens with none.
+
+Llama3 8B Instruct was the most sensitive. Its ARC Challenge score with chain of thought fell from 72.1 to 57.2 as junk went from 0% to 100%.
+
+Thought skipping was the main failure. The paper's "No Thinking" showed up in 84% of failures with junk defined by engagement.
+
+Instruction data 4.8 times the junk tokens didn't fully undo it. The best repaired models still trailed baseline by 17.3 points on ARC Challenge.
+
+The junk shares were doses in a training mix and no measure of the internet. The authors limit the findings to Twitter/X junk and the models studied.
+
+Would posts from other platforms do the same?
+
+#TexasAM #UTAustin #COLM2026

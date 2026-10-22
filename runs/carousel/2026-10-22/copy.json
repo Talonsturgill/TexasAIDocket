@@ -1,0 +1,259 @@
+{
+ "date": "2026-10-22",
+ "carousel_no": 57,
+ "document_title": "Trained on short, popular posts, models skipped steps",
+ "_note": "Slide strings read off the render report's text nodes and each frame's own source line by build_copy.py.",
+ "caption": "Texas A&M, UT Austin and Purdue trained models on junk.\n\nFour models trained on mixes of junk and control Twitter/X posts. Junk meant under 30 tokens with over 500 likes, retweets, replies and quotes combined. Control meant over 100 tokens with none.\n\nLlama3 8B Instruct was the most sensitive. Its ARC Challenge score with chain of thought fell from 72.1 to 57.2 as junk went from 0% to 100%.\n\nThought skipping was the main failure. The paper's \"No Thinking\" showed up in 84% of failures with junk defined by engagement.\n\nInstruction data 4.8 times the junk tokens didn't fully undo it. The best repaired models still trailed baseline by 17.3 points on ARC Challenge.\n\nThe junk shares were doses in a training mix and no measure of the internet. The authors limit the findings to Twitter/X junk and the models studied.\n\nWould posts from other platforms do the same?\n\n#TexasAM #UTAustin #COLM2026",
+ "slides": {
+  "S1": {
+   "n": 1,
+   "file": "slide-01.html",
+   "kicker": "Texas A&M, UT Austin, Purdue",
+   "headline": "Trained on short, popular posts, models skipped steps",
+   "claims": [
+    "c6",
+    "c16",
+    "c26",
+    "c27",
+    "c33",
+    "c38"
+   ],
+   "cite": "c6 c16 c26 c27 c33 c38",
+   "body": "Researchers at Texas A&M, the University of Texas at Austin and Purdue trained four language models on rising doses of short, popular posts. As the junk share rose, their reasoning skipped steps. Drawn to illustrate.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "Trained on short, popular posts, models skipped steps",
+    "Researchers at Texas A&M, the University of Texas at Austin and Purdue trained four language models on rising doses of short, popular posts. As the junk share rose, their reasoning skipped steps. Drawn to illustrate.",
+    "Texas A&M, UT Austin, Purdue",
+    "01 / 09",
+    "c6 c16 c26 c27 c33 c38"
+   ]
+  },
+  "S2": {
+   "n": 2,
+   "file": "slide-02.html",
+   "kicker": "Junk against control",
+   "headline": "Junk meant short and popular",
+   "claims": [
+    "c16",
+    "c18",
+    "c19"
+   ],
+   "cite": "c16 c18 c19",
+   "body": "Junk was posts under 30 tokens with popularity over 500, counting likes, retweets, replies and quotes. Control was posts over 100 tokens with popularity 0. Both came from the same 1 million public posts. Drawn to illustrate, lengths at one scale.",
+   "labels": [
+    "junk, under 30 tokens",
+    "control, over 100 tokens"
+   ],
+   "strings": [
+    "texasaidocket.com",
+    "Junk meant short and popular",
+    "Junk was posts under 30 tokens with popularity over 500, counting likes, retweets, replies and quotes. Control was posts over 100 tokens with popularity 0. Both came from the same 1 million public posts. Drawn to illustrate, lengths at one scale.",
+    "junk, under 30 tokens",
+    "control, over 100 tokens",
+    "Junk against control",
+    "02 / 09",
+    "c16 c18 c19"
+   ]
+  },
+  "S3": {
+   "n": 3,
+   "file": "slide-03.html",
+   "kicker": "The dose",
+   "headline": "More junk, a shorter climb",
+   "claims": [
+    "c28",
+    "c30",
+    "c31",
+    "c32",
+    "c33",
+    "c57"
+   ],
+   "cite": "c28 c30 c31 c32 c33 c57",
+   "body": "Llama3 8B Instruct was the most sensitive of the four models. Its ARC Challenge reasoning score fell from 72.1 with no junk to 57.2 with all junk. Each landing is its score at one scale. Brass marks the base model at 77.2. Drawn to illustrate.",
+   "labels": [
+    "0% 72.1",
+    "20% 71.2",
+    "50% 69.3",
+    "80% 64.1",
+    "100% 57.2",
+    "base 77.2"
+   ],
+   "strings": [
+    "texasaidocket.com",
+    "More junk, a shorter climb",
+    "Llama3 8B Instruct was the most sensitive of the four models. Its ARC Challenge reasoning score fell from 72.1 with no junk to 57.2 with all junk. Each landing is its score at one scale. Brass marks the base model at 77.2. Drawn to illustrate.",
+    "0% 72.1",
+    "20% 71.2",
+    "50% 69.3",
+    "80% 64.1",
+    "100% 57.2",
+    "base 77.2",
+    "The dose",
+    "03 / 09",
+    "c28 c30 c31 c32 c33 c57"
+   ]
+  },
+  "S4": {
+   "n": 4,
+   "file": "slide-04.html",
+   "kicker": "Not a steady fall",
+   "headline": "Half junk scored below 80% junk",
+   "claims": [
+    "c30",
+    "c31",
+    "c36"
+   ],
+   "cite": "c30 c31 c36",
+   "body": "On a variable tracking test the same model scored 86.3 with no junk, 59.4 at half junk, 60.7 at 80% and 22.4 with all junk. The fall was not steady. Brass marks the base model at 98.3. Drawn to illustrate, heights at one scale.",
+   "labels": [
+    "0% 86.3",
+    "50% 59.4",
+    "80% 60.7",
+    "100% 22.4",
+    "base 98.3"
+   ],
+   "strings": [
+    "texasaidocket.com",
+    "Half junk scored below 80% junk",
+    "On a variable tracking test the same model scored 86.3 with no junk, 59.4 at half junk, 60.7 at 80% and 22.4 with all junk. The fall was not steady. Brass marks the base model at 98.3. Drawn to illustrate, heights at one scale.",
+    "0% 86.3",
+    "50% 59.4",
+    "80% 60.7",
+    "100% 22.4",
+    "base 98.3",
+    "Not a steady fall",
+    "04 / 09",
+    "c30 c31 c36"
+   ]
+  },
+  "S5": {
+   "n": 5,
+   "file": "slide-05.html",
+   "kicker": "Thought skipping",
+   "headline": "Most failures skipped the thinking",
+   "claims": [
+    "c38",
+    "c39"
+   ],
+   "cite": "c38 c39",
+   "body": "The paper names thought skipping as the main reasoning failure. Its \"No Thinking\" category turned up in 84% of failures with junk defined by engagement and in over 70% across all cases. The bare share of the stair is that 84%. Drawn to illustrate.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "Most failures skipped the thinking",
+    "The paper names thought skipping as the main reasoning failure. Its \"No Thinking\" category turned up in 84% of failures with junk defined by engagement and in over 70% across all cases. The bare share of the stair is that 84%. Drawn to illustrate.",
+    "Thought skipping",
+    "05 / 09",
+    "c38 c39"
+   ]
+  },
+  "S6": {
+   "n": 6,
+   "file": "slide-06.html",
+   "kicker": "The repair",
+   "headline": "Repair data at 4.8 times the junk",
+   "claims": [
+    "c42",
+    "c43",
+    "c44"
+   ],
+   "cite": "c42 c43 c44",
+   "body": "To repair the all junk model, the researchers scaled its instruction tuning from 5k to 50k examples, the whole Alpaca set. That data came to 4.8 times the junk tokens and still didn't fully undo the damage. Drawn to illustrate.",
+   "labels": [
+    "junk tokens",
+    "4.8 times the junk tokens"
+   ],
+   "strings": [
+    "texasaidocket.com",
+    "Repair data at 4.8 times the junk",
+    "To repair the all junk model, the researchers scaled its instruction tuning from 5k to 50k examples, the whole Alpaca set. That data came to 4.8 times the junk tokens and still didn't fully undo the damage. Drawn to illustrate.",
+    "junk tokens",
+    "4.8 times the junk tokens",
+    "The repair",
+    "06 / 09",
+    "c42 c43 c44"
+   ]
+  },
+  "S7": {
+   "n": 7,
+   "file": "slide-07.html",
+   "kicker": "Still short",
+   "headline": "Repaired, still 17.3 points short",
+   "claims": [
+    "c41",
+    "c47",
+    "c51"
+   ],
+   "cite": "c41 c47 c51",
+   "body": "The best repaired models still trailed the baseline by 17.3 points on the ARC Challenge reasoning test. The paper says the damage persisted after tuning at the scales it tested. Drawn to illustrate.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "Repaired, still 17.3 points short",
+    "The best repaired models still trailed the baseline by 17.3 points on the ARC Challenge reasoning test. The paper says the damage persisted after tuning at the scales it tested. Drawn to illustrate.",
+    "Still short",
+    "07 / 09",
+    "c41 c47 c51"
+   ]
+  },
+  "S8": {
+   "n": 8,
+   "file": "slide-08.html",
+   "kicker": "What wasn't tested",
+   "headline": "Four main models. No ChatGPT or Gemini.",
+   "claims": [
+    "c15",
+    "c25",
+    "c58",
+    "c65"
+   ],
+   "cite": "c15 c25 c58 c65",
+   "body": "The study tested Llama3 8B Instruct, two Qwen2.5 models and Qwen3 4B Thinking on Twitter/X posts. An appendix test found the larger Llama3 70B Instruct also fell after all junk training. Closed models like ChatGPT or Gemini were not tested. Drawn to illustrate.",
+   "labels": [
+    "Llama3 8B",
+    "Qwen3 4B",
+    "not tested"
+   ],
+   "strings": [
+    "texasaidocket.com",
+    "Four main models. No ChatGPT or Gemini.",
+    "The study tested Llama3 8B Instruct, two Qwen2.5 models and Qwen3 4B Thinking on Twitter/X posts. An appendix test found the larger Llama3 70B Instruct also fell after all junk training. Closed models like ChatGPT or Gemini were not tested. Drawn to illustrate.",
+    "Llama3 8B",
+    "Qwen2.5 7B",
+    "Qwen2.5 0.5B",
+    "Qwen3 4B",
+    "not tested",
+    "What wasn't tested",
+    "08 / 09",
+    "c15 c25 c58 c65"
+   ]
+  },
+  "S9": {
+   "n": 9,
+   "file": "slide-09.html",
+   "kicker": "What follows",
+   "headline": "\"We want to emphasize the importance of data\"",
+   "claims": [
+    "c1",
+    "c4",
+    "c33",
+    "c65",
+    "c68",
+    "c69"
+   ],
+   "cite": "c1 c4 c33 c65 c68 c69",
+   "body": "Texas A&M's Zhengzhong Tu says companies and researchers focus too much on model architectures and training resources. His doctoral student Shuo Xing says recovery was very hard even with higher quality data. Testing larger closed models is still needed. Drawn to illustrate.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "\"We want to emphasize the importance of data\"",
+    "Texas A&M's Zhengzhong Tu says companies and researchers focus too much on model architectures and training resources. His doctoral student Shuo Xing says recovery was very hard even with higher quality data. Testing larger closed models is still needed. Drawn to illustrate.",
+    "What follows",
+    "09 / 09",
+    "c1 c4 c33 c65 c68 c69"
+   ]
+  }
+ }
+}

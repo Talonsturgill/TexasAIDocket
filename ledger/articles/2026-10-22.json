@@ -1,0 +1,122 @@
+{
+ "_spec": {
+  "version": 1,
+  "purpose": "A standalone web edition of the archived visual story.",
+  "law": "Facts resolve to the original verified claim record. A layout rebuild does not reverify reporting.",
+  "written_by": "daily"
+ },
+ "section": "Research",
+ "dek": {
+  "text": "Researchers at Texas A&M, UT Austin and Purdue trained four language models on doses of short, popular posts. Reasoning scores fell as the dose rose, and repair did not bring them back.",
+  "claims": [
+   "c6",
+   "c28",
+   "c41"
+  ]
+ },
+ "introduction": [
+  {
+   "text": "[Texas A&M Engineering News published the release on {{date:c2}}](c2). [The paper behind it lists its affiliations as Texas A&M University, the University of Texas at Austin and Purdue University](c6). [The arXiv listing marks it as published at COLM {{number:c13}}](c13). [It calls itself a pilot study on Twitter/X](c15).",
+   "claims": [
+    "c2",
+    "c6",
+    "c13",
+    "c15"
+   ]
+  },
+  {
+   "text": "[The junk and control sets came from {{number:c16}} million public Twitter/X posts](c16). [Junk meant posts under {{number:c18:1}} tokens with popularity over {{number:c18:3}}. Control meant posts over {{number:c18:6}} tokens with no popularity at all](c18). [Popularity is the total of a post's likes, retweets, replies and quotes](c19). [Each model was trained further on a mix of the two, then instruction tuned again](c26).",
+   "claims": [
+    "c16",
+    "c18",
+    "c19",
+    "c26"
+   ]
+  }
+ ],
+ "sections": [
+  {
+   "heading": "What the doses did",
+   "paragraphs": [
+    {
+     "text": "[The four models were Llama3 8B Instruct, Qwen2.5 7B Instruct, Qwen2.5 0.5B Instruct and Qwen3 4B Thinking 2507](c25). [All four showed some dose response. Llama3 8B Instruct was the most sensitive and Qwen3 4B the least](c57).",
+     "claims": [
+      "c25",
+      "c57"
+     ]
+    },
+    {
+     "text": "[On Llama3 8B Instruct, ARC Challenge with chain of thought fell from {{number:c28:1}} to {{number:c28:2}} as the junk share rose from none to all](c28). [The same model before any junk or control training scored {{number:c33:10}}](c33). [On a variable tracking test the fall was not steady. Half junk scored {{number:c36:2}}](c36). [The {{number:c31:3}}% junk mix](c31) [scored {{number:c36:1}}, with {{number:c36}} at all junk](c36).",
+     "claims": [
+      "c28",
+      "c33",
+      "c36",
+      "c31"
+     ]
+    },
+    {
+     "text": "[The paper names thought skipping as the main reasoning failure, with models cutting their reasoning short or leaving it out](c38). [Its No Thinking category turned up in over {{number:c39}}% of failures across all cases and in {{number:c39:2}}% under the engagement measure's junk](c39).",
+     "claims": [
+      "c38",
+      "c39"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "What repair did",
+   "paragraphs": [
+    {
+     "text": "[The repair tests started from Llama3 8B Instruct after all junk training](c42). [Instruction tuning was scaled from {{number:c43}}k to {{number:c43:1}}k examples, the whole Alpaca set](c43). [That data came to {{number:c44}} times the junk tokens and still did not fully undo the damage](c44).",
+     "claims": [
+      "c42",
+      "c43",
+      "c44"
+     ]
+    },
+    {
+     "text": "[The best repaired models still trailed the baseline by {{number:c47}} points on ARC Challenge with chain of thought](c47). [The paper says the damage persisted after tuning at the scales it tested](c51). [Shuo Xing, a lead author](c4), [said recovery stayed very hard even with higher quality data](c68).",
+     "claims": [
+      "c47",
+      "c51",
+      "c4",
+      "c68"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "What the study can't say",
+   "paragraphs": [
+    {
+     "text": "[The authors say the findings are specific to Twitter/X junk and the models they studied, and that other platforms remain an open question](c62). [The junk shares were doses in a training mix, not an estimate of how much of the internet is junk](c64). [The release says larger models such as ChatGPT or Gemini, which are not open source, still need testing](c65).",
+     "claims": [
+      "c62",
+      "c64",
+      "c65"
+     ]
+    },
+    {
+     "text": "[Zhengzhong Tu said companies and researchers focus too much on model architectures and training resources, and that he wants more emphasis on data](c69).",
+     "claims": [
+      "c69"
+     ]
+    }
+   ]
+  }
+ ],
+ "related": [
+  {
+   "id": "tx-2026-0223",
+   "label": "The record entry for the Texas A&M study of junk training data"
+  },
+  {
+   "id": "tx-2026-0092",
+   "label": "UT San Antonio and Texas A&M adapting language models on local machines"
+  },
+  {
+   "id": "tx-2026-0119",
+   "label": "The Texas A&M System's shared AI supercomputer"
+  }
+ ]
+}

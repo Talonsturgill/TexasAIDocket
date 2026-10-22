@@ -2260,3 +2260,21 @@ reads, and nothing new is carried from Taylor's site.
 
 **www.tahc.texas.gov answered 200** on its screwworm page and now counts 44 premises with a confirmed detection,
 up from 43, still in 17 counties.
+
+## October 22nd, 2026
+
+**www.uta.edu, news.unt.edu and engineering.unt.edu failed TLS verification through the container's proxy**
+(`self-signed certificate in certificate chain`), so tx-2026-0133, 0161, 0165 and 0173 were not stamped today and
+carry an unconfirmed history line instead. The failure is the proxy's chain, not the sites, and the next run should
+try again before reading anything into it.
+
+**www.oncor.com's robots.txt closes the connection to the project's reader** (`RemoteDisconnected`), so the reader
+can't learn whether Oncor permits it and reads nothing from the site.
+
+**arxiv.org answered 200** on both the abstract page and the HTML full text of 2510.13928v3, the primary source for
+c5 to c64. The HTML full text carries the tables, so the dose response rows were read from it rather than the PDF.
+
+**news.engineering.tamu.edu answered 200** on "AI models can get brain rot, too", the source of c1 to c4 and c65 to
+c73. **Its own dates disagree with the paper**: the release dates the posts to 2010 where the paper says its dataset
+was collected in 2023 (c17), and the release's junk definition counts likes, retweets or replies where the paper's
+counts quotes as well (c19, c20). The deck and the record follow the paper.

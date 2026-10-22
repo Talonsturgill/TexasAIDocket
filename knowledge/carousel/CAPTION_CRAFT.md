@@ -58,8 +58,15 @@ from the clock, so rebuilding an old run's first comment still renders what that
 ## Opening moves
 
 The caption room is handed an assignment and the ledger's exclusions. **The last six runs' opening
-moves are off the menu**, recorded in `ledger/carousel/captions.json` under
-`opening_moves_recent`.
+moves are off the menu**, and so are the structures and closes the sections below name. **The
+room's brief is `python3 scripts/carousel/ledger_check.py --exclusions`**, which derives all three
+from every shipped entry, the newest included.
+
+Never brief the room from the `*_recent` arrays stored in `ledger/carousel/captions.json`. Those
+are what the NEWEST caption was held to, so they leave out the newest caption's own moves by
+definition, and a room briefed from them is one run behind before it writes. That is how no. 57's
+room repeated October 21st's move and spent its one rewrite on it (nos. 44 and 45 met the same lag
+first). `ledger_check` still holds the stored arrays to their own derivation, unchanged.
 
 Aim at four to seven words for the first line, per the brevity principle in `brand.yaml`. Intrigue
 beats completeness. The sentence underneath is where the completeness goes.

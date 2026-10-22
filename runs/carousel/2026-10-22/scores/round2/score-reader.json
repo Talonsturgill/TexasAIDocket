@@ -1,0 +1,79 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 7.0,
+   "why": "Every frame is rendered and physical. The stair system works, with weathering steel stringers, aggregate treads, limestone piers, casts running right, contact on the caliche and a near black sky. Slide 3 is strong: five stairs descend under one brass datum, and 72.1 against 71.2 is honestly near level. Slide 5's bare stringers, with treads only on the foot's share, read at 432 px. Slide 2's glass chip and limestone sliver relief reads short and shiny against long and dull. Slide 8's four flights beside the outlined empty pad is a clean absence. Several frames fall short of the 10 descriptor. Slide 7's mid-brown block wall fills about 60% of the frame and sits in the grey middle, and the 'repaired' stair looks identical to every unrepaired stair, so the shortfall to the brass line is not the subject. Slide 6's stack of five pale slabs can't be read as 4.8 (no sawn 0.8 tread is visible), the junk tread reads as speckled tile rather than glass, and a dead pebble field fills the middle third. Slide 9's kit person reads as a mannequin with an awkward raised arm. Slide 4's huge pier faces carry a blotchy camouflage mottle and read as a bar chart. The cover's dek runs over the stair's landing and upper treads ('their', 'illustrate.')."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 8.5,
+   "why": "One lastLight world, one low warm key from the left with casts to the right on every spatial frame, one material vocabulary and one brass datum accent (3, 4, 7, 9). The stair motif changes state in the order the storyboard declares: missing middle treads (1), flight per dose (3), cliff (4), bare stringers (5), four flights plus an empty pad (8), whole beside broken (9). On the contact sheet it reads as a filmstrip. Two frames sit slightly outside it. Slide 2 is a plan view relief, and slide 6 is loose slabs on open ground with no stair or wall. Slides 4 and 7 rise into a brighter mid-brown than their neighbours, a mild lift rather than a strobe."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.5,
+   "why": "Every numeral I checked traces. Slide 2's 30, 500, 100, 0 and 1 million go to c18 and c16. Slide 3's labels go to c33. Slide 4's 86.3, 59.4, 60.7, 22.4 and 98.3 go to c36. Slide 5's 84% and 70% go to c39. Slide 6's 5k, 50k and 4.8 go to c43 and c44. Slide 7's 17.3 goes to c47, an absolute difference rendered as points, which is correct. Slide 8's 57.8 and 52.7 go to c58. Sources are primary (arXiv full text and abstract), with the A&M release used only for quotes. The c17, c20 and c24 traps were honoured, and 'most sensitive' (c57) keeps Llama3 from standing in for all four. Three phrasings are looser than their sources. Slide 9's 'Testing larger closed models is still needed' is the release's sentence (c65) in the deck's own voice. The caption's 'Texas A&M, UT Austin and Purdue trained models on junk' makes institutions the actors, though c6 notes the paper never maps authors to institutions. Slide 5 omits c39's note that GPT-4o-mini did the categorizing."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.0,
+   "why": "A Texan learns what happened: Texas A&M and UT researchers trained open models on short viral posts, reasoning fell, the models skipped steps, and repair fell short. They don't learn why it touches them or what to do. There is no body, no decision and no next step, the caption ends on an engagement question, and slide 8 deliberately says the chatbots they actually use were not tested, which leaves the stake hanging. Jargon blocks a feed reader. 'Tokens', 'ARC Challenge', 'variable tracking test', 'instruction tuning', 'the whole Alpaca set' and 'base model' are never put in plain words. Slide 3 shows base 77.2 above no-junk 72.1, so even clean training cost 5 points, and nothing tells the reader why. That makes the first chart harder to read than it should be."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "The cover earns a swipe ('models skipped steps'). Slide 2 pays at once with the definition, slide 3 gives the dose, and the turn to repair at slide 6 is declared and felt. Slide 8 moving the headline to the bottom under the flights is a good change of beat. Slide 4 is a second benchmark that a feed reader could lose without missing anything. Slides 6 and 7 split one repair finding across two frames. The close is a quote plus attributions and lands softly rather than giving the reader somewhere to go."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "Clean, restrained and house-rule compliant. I found no colons, semicolons, dashes, banned words or And/But openers. Apostrophes are U+0027 in the source (slide-09.html uses &#39;). It reads as a careful research summary, not a Texan who knows the subject. Lines that narrate the drawing ('Each landing is its score at one scale. Brass marks the base model at 77.2.', 'The bare share of the stair is that 84%.') and 'Drawn to illustrate' on all nine frames read as machine apparatus. Texas specificity stops at the university names. The caption's 'Control meant over 100 tokens with none.' is unclear."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.0,
+   "why": "The topic is new inside the window. Three moves repeat recent decks. No. 51 on October 15th was built on 'a granite courthouse stair with a riser for every month', so a stair as the measured spine one week later is a familiar move. The lastLight world and dusk brown, limestone and brass palette repeat no. 56 from yesterday. The instrument, an academic paper read with its university release, is the third in six days after no. 53 (SPACER, Nature BME) and no. 55 (Journal of Imaging). Mixing a plan relief with spatial frames is fresher."
+  }
+ ],
+ "weighted_score": 7.17,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Cut slide 4's variable-tracking detour and spend that frame, plus slide 3's dek, putting the study in a feed reader's words from claimed sources: what a token is, what the ARC Challenge test asks, and why the base model at 77.2 sits above even the no-junk run at 72.1. Then close on what the A&M team says comes next (c66, other platforms) rather than a bare quote, so a Texan leaves knowing what this means for the AI they use.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 7,
+   "problem": "A mid-brown block wall fills about 60% of the frame in the grey middle. The 'repaired' stair is indistinguishable from every damaged stair, so the 17.3 point shortfall to the brass line is not what the eye lands on.",
+   "fix": "Swing the camera onto the landing as planned (eye 1.6 m on the top landing looking along the wall). Make the landing and treads fresh pale limestone so the repair reads, pool the key on the bare wall band between landing and brass, and let the rest of the wall fall to near black."
+  },
+  {
+   "slide": 6,
+   "problem": "The five-slab stack can't be read as 4.8 (no visibly sawn 0.8 tread). Stacking turns a length ratio into a height pile, the junk tread reads as speckled tile rather than glass aggregate, and an empty pebble field fills the middle third.",
+   "fix": "Lay the clean treads end to end in one row beside the single junk tread, as the CRAFT PLAN specified, with the fifth visibly sawn to 0.8 and its saw face lit. Drop the camera so the row fills the lower half, and give the junk tread glossy green and amber chips."
+  },
+  {
+   "slide": 9,
+   "problem": "The kit person reads as a mannequin with an awkward raised arm at full size, and it is the only human in the deck, on the close.",
+   "fix": "Keep the figure under a fifth of the frame but set it in silhouette against the lit pier face with the arm at its side. Light it only by the rim of the key so the pose and the low-detail model don't show."
+  },
+  {
+   "slide": 4,
+   "problem": "Huge flat pier faces carry a blotchy camouflage mottle and read as a bar chart. The wall's top band runs behind the dek's last line.",
+   "fix": "Cut the weather mottle on the pier faces to a fine tooth, raise the camera's horizon so the wall top clears the dek, and rake the key across the 50% to 80% riser so the one wrong-way step is the brightest edge in frame."
+  },
+  {
+   "slide": 1,
+   "problem": "The dek runs over the stair's landing and upper treads, so the cover's focal gap shares space with type.",
+   "fix": "Move the stair 120 px right and down, or shorten the dek by one line, so the missing middle treads sit in clear dark below the type."
+  }
+ ],
+ "lens": "reader",
+ "round": 2
+}

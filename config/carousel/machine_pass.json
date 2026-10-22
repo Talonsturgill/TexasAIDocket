@@ -1,48 +1,41 @@
 {
- "last_pass": "2026-10-21",
+ "last_pass": "2026-10-22",
  "themes": [
   {
-   "theme": "primitive or low-poly model where a kit model belongs",
+   "theme": "primitive or low-poly model where a kit model belongs (the kit person, queue kit-person-full-length-reads-as-mannequin at repeat 3, nos. 54 to 57)",
    "runs": 6,
    "rounds": 16,
    "action": "fixed in part",
-   "what": "No. 56's machine shop lifted into assets/js/kit/industry.js at the judges' named fix: cnc_pendant (chamfered frame, glass screen in a bevel, recessed keypad with legend bars, fluted override knobs, knurled handwheel, e-stop, cycle buttons, key switch, yoke), vertical_machining_centre with helical ribbon chips, mill_vise with a flanged body, machined_housing and machine_pad. The kit person, the theme's other named model (queue repeat 2, nos. 54 to 56), is deferred: its causes are default geometry today's frames 4 and 9 render from."
+   "what": "assets/js/kit/people.js (5560bfd9): the untucked shirt's rows below the waist are fitted to the trousers' measured surface, so the peplum tier and its ledge at the waistband are gone, and the hem is a rounded bead; the hi-vis vest grows each ring until it clears the shirt torso, so no shirt breaks through its lower edge. The grip pose, the vest's cut, the collar's neck opening and the skin palette's chroma stay open."
   },
   {
-   "theme": "object in a void, no sky, camera at the ground (a closed room painted the sky's navy)",
-   "runs": 4,
-   "rounds": 7,
-   "action": "escalated",
-   "what": "Engine (human): a closed TXT.interior room takes the sky's hemisphere fill, environment and fog hue; no. 51 frames 3 and 8 and no. 56 frame 8. UPGRADE_BACKLOG 2026-10-21 item 6."
-  },
-  {
-   "theme": "queue repeat offender depth-floor-wants-a-literal-ground-in-interiors, with interior-floor-zfights-a-ground-at-range",
+   "theme": "queue repeat offender caption-ledger-opening-moves-stale (repeat 2, nos. 44, 45, 57)",
    "runs": 0,
    "rounds": 0,
    "action": "fixed",
-   "what": "depth_floor reads a TXT.interior call as the ground and its depth cue, self-tested against the engine. Nos. 55 and 56 laid a second ground under all eleven room frames to pass, and on no. 56 the two z-fought. Queue items, not digest themes, so no run or round count."
+   "what": "ledger_check --exclusions (43e9e72d) derives the next caption room's brief from every entry, the newest included; the stored lists are the newest caption's own exclusions and were one run behind by construction. CAPTION_CRAFT.md names the command. The routine's Phase 10 sentence is a proposal."
   },
   {
-   "theme": "queue repeat offender detail-floor-pushes-dark-plates-to-graph-paper (repeat 2, nos. 53, 55, 56)",
+   "theme": "queue type-spine-reads-html-only (repeat 1, nos. 50 and 57), and one cause of audition-rebind-after-every-panel-repair (repeat 3)",
    "runs": 0,
    "rounds": 0,
-   "action": "fixed in part",
-   "what": "The proposed relative-contrast floor refused as a loosening (the floor is already 1.8 L* near black against 2.3 at mid grey). layout_check's failure now prints the rect's computed L* step and names the cure, refusing a ruled grid."
+   "action": "fixed",
+   "what": "coherence_check reads the type spine as rendered from render_report.json (dd375c3c), so a deck no longer writes a no-op size into every slide's HTML, which changed every frame's hash and threw away an accepted art review on no. 50."
   },
   {
-   "theme": "queue repeat offender stage-behind-depth-given-in-metres (repeat 1, nos. 54 and 56)",
-   "runs": 0,
-   "rounds": 0,
-   "action": "fixed in part",
-   "what": "ARSENAL's TXT.stage row carries the unit, quoted only while the engine says it. The warning in TXT.stage is human."
-  },
-  {
-   "theme": "queue repeat offender audition-rebind-after-every-panel-repair (repeat 2, nos. 54, 55, 56)",
+   "theme": "queue repeat offender audition-rebind-after-every-panel-repair (repeat 3)",
    "runs": 0,
    "rounds": 0,
    "action": "escalated",
-   "what": "The fix would let an approval survive a changed image, against the owner's rule. UPGRADE_BACKLOG 2026-10-21 item 6."
+   "what": "The owner's rule; render.py and the studio brief are a maintainer's (UPGRADE_BACKLOG 2026-10-21 item 6)."
+  },
+  {
+   "theme": "type sitting on or fighting the art",
+   "runs": 6,
+   "rounds": 14,
+   "action": "deferred",
+   "what": "A different collision on each deck; the honest gate needs the id pass already proposed (UPGRADE_BACKLOG 2026-10-12 item 4)."
   }
  ],
- "note": "Written by the weekly machine pass (prompts/daily_routine.md Phase 17) when it ships. Read by scripts/carousel/machine_due.py. Run and round counts are from scripts/carousel/week_digest.py --date 2026-10-21."
+ "note": "Written by the weekly machine pass (prompts/daily_routine.md Phase 17) when it ships. Read by scripts/carousel/machine_due.py. Run and round counts are from scripts/carousel/week_digest.py --date 2026-10-22."
 }

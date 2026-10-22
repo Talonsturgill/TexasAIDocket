@@ -1,6 +1,6 @@
 # Texas A&M researchers find language models trained on junk social media posts start skipping reasoning steps, and better data doesn't fully fix them
 
-Texas A&M Engineering reported on October 19th, 2026 that researchers in the Department of Computer Science and Engineering trained four open language models on mixes of junk and control text. The junk came from 1 million public Twitter posts collected in 2010. A junk post was highly engaged and short. The main change in the models was thought skipping, where a model skips steps before it answers. The researchers say later training on higher quality data did not fully restore performance. The paper was accepted to the 2026 Conference on Language Modeling. Larger closed models were not tested.
+Texas A&M Engineering reported on October 19th, 2026 that researchers trained four open language models on mixes of junk and control text drawn from 1 million public Twitter posts. The release says the posts were collected in 2010. The paper itself says its dataset was collected in 2023. Under the paper's engagement measure a junk post was short and popular, under 30 tokens with more than 500 likes, retweets, replies and quotes combined. The main change in the models was thought skipping, where a model skips steps before it answers. On one model, accuracy on ARC Challenge with chain of thought fell from 72.1 to 57.2 as the junk share rose from 0% to 100%. Instruction data totaling 4.8 times the junk tokens did not fully restore it. The paper lists Texas A&M, the University of Texas at Austin and Purdue as its institutions and was accepted to the 2026 Conference on Language Modeling. Larger closed models were not tested.
 
 - Topic: research-and-science
 - Decided by: Texas A&M University (state-agency)
@@ -11,7 +11,7 @@ Texas A&M Engineering reported on October 19th, 2026 that researchers in the Dep
 - Public access: Write to the decider
 - Take part: https://news.engineering.tamu.edu/news/2026/10/19/ai-models-can-get-brain-rot-too/
 
-- Last checked: 2026-10-20
+- Last checked: 2026-10-22
 
 ## Dates
 
@@ -22,6 +22,7 @@ Texas A&M Engineering reported on October 19th, 2026 that researchers in the Dep
 One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
 
 - 2026-10-20 · Admitted on the university's own account. The release reports no benchmark scores, so the size of the effect isn't stated here.
+- 2026-10-22 · The paper behind the release now carries the record's figures. It dates its Twitter dataset to 2023, where the release says 2010, so the summary gives both. It adds the dose results and the repair test, and names UT Austin and Purdue beside Texas A&M.
 
 ## Evidence
 
@@ -74,4 +75,34 @@ Source (primary_official): https://news.engineering.tamu.edu/news/2026/10/19/ai-
 > Testing for brain rot in larger models like ChatGPT or Gemini, which are not open source, is also needed.
 
 Source (primary_official): https://news.engineering.tamu.edu/news/2026/10/19/ai-models-can-get-brain-rot-too/
+
+### The paper itself says its Twitter/X dataset was collected in 2023.
+
+> The dataset was collected in 2023
+
+Source (primary_official): https://arxiv.org/html/2510.13928v3
+
+### Under the paper's engagement measure, junk posts were under 30 tokens with popularity over 500, and control posts were over 100 tokens with none.
+
+> For M1 , we choose samples with a token length < 30 <30 (the corpus median) and a popularity of > 500 >500 (the 97th percentile) as junk data, and samples with a token length > 100 >100 (the 99th percentile) and a popularity of = 0 =0 as control data
+
+Source (primary_official): https://arxiv.org/html/2510.13928v3
+
+### The paper lists its affiliations as Texas A&M University, the University of Texas at Austin and Purdue University.
+
+> Ananth Grama, Zhengzhong Tu, Zhangyang Wang Texas A&M University, University of Texas at Austin, Purdue University
+
+Source (primary_official): https://arxiv.org/html/2510.13928v3
+
+### Under the engagement measure, accuracy on ARC Challenge with chain of thought fell from 72.1 to 57.2 as the junk share rose from 0% to 100%.
+
+> under M1, ARC-Challenge with Chain-of-Thought drops 72.1 -> 57.2 and RULER-CWE 83.7 -> 52.3 as junk ratio rises from 0% to 100%
+
+Source (primary_official): https://arxiv.org/abs/2510.13928
+
+### Instruction data totaling 4.8 times the junk tokens still did not fully undo the damage.
+
+> Even if we used up all instruction data, consisting of 4.8 4.8 times of the tokens used in junk intervention, the damage caused by junk intervention still cannot be fully undone
+
+Source (primary_official): https://arxiv.org/html/2510.13928v3
 

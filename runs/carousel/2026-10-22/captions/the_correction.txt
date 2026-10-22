@@ -1,0 +1,15 @@
+Popular isn't the same as good.
+
+Researchers at Texas A&M, the University of Texas at Austin and Purdue kept training four open models on short, popular Twitter/X posts.
+
+Llama3 8B Instruct took it hardest. Its reasoning score fell from 72.1 to 57.2 as the junk share rose from 0% to 100%. Popularity tracked the damage better than length did.
+
+The models skipped steps. The paper's "No Thinking" label appeared in 84% of failures under junk training.
+
+Instruction data at 4.8 times the junk tokens didn't fully undo the damage. The best repaired models still trailed the baseline by 17.3 points on reasoning.
+
+The deck builds each score as a stair's height.
+
+The junk shares were doses in a training mix, not a reading of the internet. ChatGPT and Gemini aren't open source and weren't tested. Would a closed model skip the same steps?
+
+#TexasAM #UTAustin #TrainingData

@@ -1,0 +1,100 @@
+<!doctype html>
+<!-- 2026-10-22, frame 2 of 9. Archetype CLOSE_CROP. A MATERIAL RELIEF through txbench.js under the deck's declared light: one tread's exposed aggregate surface at native size, short glossy glass chips on the left of a brass divider and long matte limestone slivers on the right, every chip shorter than the junk token limit and every sliver longer than the control token limit at one scale. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site" style="font-size:24px">texasaidocket.com</div>
+<h1 class="hook" id="hook">Junk meant short and popular</h1>
+<p class="dek" data-follow="24">Junk was posts under 30 tokens with popularity over 500, counting likes, retweets, replies and quotes. Control was posts over 100 tokens with popularity 0. Both came from the same 1 million public posts. Drawn to illustrate, lengths at one scale.</p>
+<div class="lab" id="lJ">junk, under 30 tokens</div>
+<div class="lab" id="lC">control, over 100 tokens</div>
+<script>window.FIG = {"junk_ratios_m1":[100,80,50,20,0],"arc_cot_m1":[57.2,64.1,69.3,71.2,72.1],"arc_cot_base":77.2,"arc_cot_j100":57.2,"arc_cot_j80":64.1,"arc_cot_j50":69.3,"arc_cot_j20":71.2,"arc_cot_j0":72.1,"ruler_overall_m1":[71.0,79.0,80.0,89.7,89.7],"ruler_overall_base":93.9,"ruler_overall_j100":71.0,"ruler_overall_j80":79.0,"ruler_overall_j50":80.0,"ruler_overall_j20":89.7,"ruler_overall_j0":89.7,"ruler_cwe_m1":[52.3,62.7,61.8,83.3,83.7],"ruler_cwe_base":91.8,"ruler_cwe_j100":52.3,"ruler_cwe_j80":62.7,"ruler_cwe_j50":61.8,"ruler_cwe_j20":83.3,"ruler_cwe_j0":83.7,"var_tracking_m1":[22.4,60.7,59.4,85.5,86.3],"var_tracking_base":98.3,"var_tracking_j100":22.4,"var_tracking_j80":60.7,"var_tracking_j50":59.4,"var_tracking_j20":85.5,"var_tracking_j0":86.3,"posts_million":1,"junk_tokens_lt":30,"junk_pop_gt":500,"control_tokens_gt":100,"control_pop_eq":0,"tokens_million":1.22,"models":4,"no_thinking_all_pct":70,"no_thinking_m1_pct":84,"it_multiple":4.8,"it_from_k":5,"it_to_k":50,"cpt_million":2.4,"gap_arc_pct":17.3,"reflect_iters":6,"arc_drop_pts":14.9};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/txbench.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-22-stair.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = (async () => {
+  const cx = await CH.bootFlat({ kicker: "Junk against control", counter: "02 / 09", src: "c16 c18 c19", fit: { min: 76, max: 100, maxLines: 2 } });
+  TX.reseed(20261022);
+  /* THE FIGURES, from figures.json: junk_tokens_lt 30 and control_tokens_gt 100, drawn at one scale of
+   * TOKEN_PX pixels per token: every glass chip is shorter than the junk limit and every limestone sliver
+   * longer than the control limit. The pieces stand for posts and their lengths are drawn to illustrate */
+  const JUNK_LT = FIG.junk_tokens_lt, CONTROL_GT = FIG.control_tokens_gt, TOKEN_PX = 4;
+  const Y0 = 600, rnd = TX.rng ? TX.rng(2210) : (() => { let s = 2210; return () => (s = (s * 16807) % 2147483647) / 2147483647; })();
+  /* the brass divider runs from the lower left to the upper right of the surface */
+  const DX0 = 330, DY0 = 1350, DX1 = 760, DY1 = Y0 + 66;   /* it stops under the label row */
+  const side = (X, Y) => (DX1 - DX0) * (Y - DY0) - (DY1 - DY0) * (X - DX0);   /* > 0 on the left of the divider */
+  const dline = (X, Y) => Math.abs(side(X, Y)) / Math.hypot(DX1 - DX0, DY1 - DY0);
+  const onStrip = (X, Y) => Y > DY1 && dline(X, Y) < 7;
+  const pieces = [];
+  /* glass chips, left of the divider: each shorter than JUNK_LT tokens */
+  for (let tries = 0; pieces.length < 40 && tries < 8000; tries++) {
+    const L = (0.45 + 0.5 * rnd()) * JUNK_LT * TOKEN_PX, Wd = L * (0.45 + 0.25 * rnd());
+    const x = 20 + rnd() * 760, y = Y0 + 60 + rnd() * 670, a = rnd() * Math.PI;
+    if (side(x, y) > 0 || dline(x, y) < L * 0.7) continue;
+    if (pieces.some((p) => Math.hypot(p.x - x, p.y - y) < (p.L + L) * 0.55)) continue;
+    pieces.push({ x, y, a, L, W: Wd, h: 7 + rnd() * 3, m: rnd() < 0.3 ? CH.M.AMBER : CH.M.GLASS });
+  }
+  /* limestone slivers, right of the divider: each longer than CONTROL_GT tokens */
+  const slivers = [];
+  for (let tries = 0; slivers.length < 9 && tries < 6000; tries++) {
+    const L = (1.03 + 0.35 * rnd()) * CONTROL_GT * TOKEN_PX, Wd = 26 + rnd() * 16;
+    const a = -0.35 + rnd() * 0.5, x = 380 + rnd() * 700, y = Y0 + 70 + rnd() * 660;
+    const ex = Math.cos(a) * L / 2, ey = Math.sin(a) * L / 2;
+    if (side(x - ex, y - ey) < 0 || side(x + ex, y + ey) < 0 || dline(x, y) < 40) continue;
+    if (y + Math.abs(ey) > 1185 && x + Math.abs(ex) > 560) continue;   /* no sliver under the footer row */
+    if (x + Math.abs(ex) > 1050 || x - Math.abs(ex) < 380) continue;   /* both ends in frame, so every length can be read */
+    /* no two slivers touch: sampled along both centre lines, every pair of points keeps a clear seam */
+    const pts = (q) => Array.from({ length: 11 }, (_, k) => { const t = k / 10 - 0.5; return [q.x + Math.cos(q.a) * q.L * t, q.y + Math.sin(q.a) * q.L * t]; });
+    const mine = pts({ x, y, a, L });
+    if (slivers.some((p) => pts(p).some((u) => mine.some((v) => Math.hypot(u[0] - v[0], u[1] - v[1]) < (p.W + Wd) / 2 + 16)))) continue;
+    slivers.push({ x, y, a, L, W: Wd, h: 8, m: CH.M.SLIVER });
+  }
+  pieces.push(...slivers);
+  /* a piece's height: a dome over its rounded outline, so it stands proud of the matrix and casts */
+  function inPiece(p, X, Y) {
+    const dx = X - p.x, dy = Y - p.y, c = Math.cos(p.a), s = Math.sin(p.a);
+    const u = (dx * c + dy * s) / (p.L / 2), v = (-dx * s + dy * c) / (p.W / 2);
+    const r = p.m === CH.M.SLIVER ? Math.pow(Math.pow(Math.abs(u), 6) + Math.pow(Math.abs(v), 2), 1 / 2) : Math.pow(Math.pow(Math.abs(u), 3) + Math.pow(Math.abs(v), 3), 1 / 3);
+    return r < 1 ? r : -1;
+  }
+  function h(X, Y) {
+    if (Y < Y0) return 0;
+    if (onStrip(X, Y)) return 11;
+    for (const p of pieces) { const r = inPiece(p, X, Y); if (r >= 0) return p.h * Math.sqrt(Math.max(0, 1 - r * r * r * r)) + 0.6; }
+    return 0.5 + 0.35 * TX.simplex2(X * 0.25, Y * 0.25);
+  }
+  function m(X, Y) {
+    if (Y < Y0) return CH.M.VOID;
+    if (onStrip(X, Y)) return CH.M.BRASS;
+    for (const p of pieces) if (inPiece(p, X, Y) >= 0) return p.m;
+    return CH.M.MATRIX;
+  }
+  /* the low key lands in a pool across the middle of the surface and the far edges fall off */
+  const pool = (X, Y) => { const d = Math.hypot((X - 520) / 620, (Y - 960) / 420), t = Math.max(0, Math.min(1, (d - 0.55) / 0.6)); return 1 - 0.75 * t * t * (3 - 2 * t); };
+  const rep = TXBENCH.relief(cx, { x: 0, y: 0, w: 1080, h: 1350, scale: 2, height: h, material: m, keyMask: pool,
+    albedo: (X, Y, mm) => CH.albedo(X, Y, mm), spec: CH.SPEC, ambient: 0.06, diffuse: 1.9, ao: 1.0, shadow: 0.9, softness: 5, castLength: 90 });
+  window.__relief = rep;
+  cx.setTransform(2, 0, 0, 2, 0, 0);
+  const lj = document.getElementById("lJ"), lc = document.getElementById("lC");
+  lj.style.left = "84px"; lj.style.top = (Y0 + 14) + "px";
+  lc.style.left = "auto"; lc.style.right = "80px"; lc.style.top = (Y0 + 14) + "px";
+  /* the surface's top edge falls off into the dark field rather than ending as a plate under the type */
+  { const g = cx.createLinearGradient(0, Y0 - 10, 0, Y0 + 70); g.addColorStop(0, 'rgba(6,5,10,0.9)'); g.addColorStop(1, 'rgba(6,5,10,0)'); cx.fillStyle = g; cx.fillRect(0, Y0 - 10, 1080, 80); }
+  CH.post(cx, { a: 0.3, veil: 0.2, footWash: 0.45 });
+  CH.knock(cx, [".tx-site", ".src", "#lJ", "#lC"], 0.54);
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

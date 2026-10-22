@@ -1,0 +1,84 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.5,
+   "why": "Every frame has a real physical render: a staged lastLight stair in weathering steel, aggregate and limestone, keyed from the left, casting long to the right, with contact and caliche scatter. Preflight measures a median L* of 5.3, 4.7 and 1.8 on frames 1, 3 and 9, so the field is truly dark. Frames 1, 3 and 8 are strong. On 1 the stair with its middle treads gone reads before a word. On 3 five stairs step down under one datum and the encoding reads at feed size. On 8 four flights climb out of the frame beside an empty pad, which is a bold graphic. The 7 descriptor allows ONE frame that leans on a default, and this deck has four. Frame 4 is a front elevation of three flat slabs on a goalpost rail. It reads as a bar chart in stone, with low-frequency blotch mottle on the slab faces, no visible ground contact, and the right rail post running through the 'base 98.3' label. The planned low 0.45 m eye along the walk was not built. Frame 5 is nearly the cover again (same stair, same pier at right, same lower-left climb), so the planned 'under the open side' camera was not shot either. On frame 6 the subject fills about a quarter of the frame. The middle band is a field of brown pebble blobs that steals the detail budget. The clean treads are a stack, so the 4.8 ratio does not read as length. The junk tread reads as speckled brown, not glass. On frame 7 a uniform CG brick wall fills most of the frame. The 'repaired' stair has the same dark treads as every other stair, so the fresh-limestone state of the motif never appears. Frame 9's kit figure is a mannequin, with a saturated orange raised forearm, standing between the stairs rather than at the broken one. Deck-wide, the brass datum reads as peach plaster, not metal (preflight says so too). On the cover, the dek's last lines cross the landing and upper treads (preflight design x about 790 to 1000, y about 520 to 580). That was named and not fixed."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 8.0,
+   "why": "This is a real filmstrip. One world (lastLight, key az -58 el 10), one material vocabulary (weathering steel stringers, aggregate treads, limestone piers, caliche), one scale at 0.06 m per point, and one brass datum on 3, 4, 7 and 9. The light is the same on every frame: casts run right, including frame 2's relief. Motif evolution and the value arc both work and are named in the storyboard, and any frame is plainly from this deck. It falls short of 10 on three counts. Frames 1 and 5 repeat instead of progress, so the declared camera move stalls in the middle. Frame 4's flat elevation and frame 2's top-down plan sit slightly outside the spatial run. The 'rebuilt' state on 7 is not visibly different from the broken stairs, so the spine's turn at 6 to 7 is told by the dek rather than the material."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.0,
+   "why": "Every numeral I checked traces to a primary arXiv claim. Slide 3's 72.1, 71.2, 69.3, 64.1, 57.2 and 77.2 are c33. Slide 4's 86.3, 59.4, 60.7, 22.4 and 98.3 are c36. Slide 5's 84% and 70% are c39. Slide 6's 4.8 and 5k to 50k are c44 and c43. Slide 7's 17.3 is c47 (absolute difference, so 'points' is fair). Slide 2's 30, 500, 100, 0 and 1 million are c16 and c18. The caption's #COLM2026 is c13. The 2010 release error and the release's junk definition were correctly refused. One phrasing is looser than the record. Slide 8 says 'Four models' and 'The study tested Llama3 8B Instruct, two Qwen2.5 models and Qwen3 4B Thinking', but c58 records an appendix test on Llama3-70B-Instruct as well. The universal should name its set as the four main models. 'No ChatGPT or Gemini' still stands, per c62 and c65."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.5,
+   "why": "It is clear who did what: Texas A&M, UT Austin and Purdue, with Tu and Xing quoted on 9. The finding is clear too: dose response on 3, thought skipping on 5, partial repair on 6 and 7. It is a lab study with no decision, no body, no deadline and nothing a Texan can do next. The stake for a Texas reader is never made concrete; the close is a quote about data and the caption ends on 'Would posts from other platforms do the same?'. This sits between the 7 descriptor (one stake stated generally) and the 4 descriptor (a topic rather than a story)."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "The cover states the finding as a picture. Frame 2 pays at once with the definition. Frame 6 is a declared turn from damage to repair, and 7 lands the shortfall. Frame 4 (variable tracking, non-monotone) is a tangent on a second benchmark and could be cut or moved without loss. Frames 1 and 5 repeating also blunts the middle. The close on a researcher quote lands softly rather than hard."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "The copy is clean and on register: no colons, can't/didn't, no banned words seen, careful attributions ('The paper says...'). It reads academic rather than Texan, with little regional texture beyond the institution names. The caption's opener 'Texas A&M, UT Austin and Purdue dosed models.' is clipped and odd. Headlines like 'Repair data at 4.8 times the junk' are flat."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "The last four decks (no. 53 relief bench, no. 54 brush country, no. 55 operating rooms, no. 56 machine shop) contain no stair, and a built object measured vertically against a datum is a fresh structure. The familiar moves are close behind, though. The artwork ledger shows no. 51 on October 15th built a lastLight stair with nosings as its counting device, with the same key azimuth -58 and the same ground #08060F. Dusk gold #E0956A was no. 55's accent. lastLight is shared with 54 and 56. That is a fresh concept with one familiar move."
+  }
+ ],
+ "weighted_score": 7.18,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Build frames 4, 5 and 6 from the cameras their own CRAFT PLAN declared: the 0.45 m eye along the walk on 4, under the open side on 5, and treads laid end to end at 1.1 m on 6. Today the deck's middle reads as a stone bar chart, a repeat of the cover and a pebble field, and that is where the artwork score is lost.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 4,
+   "problem": "A front elevation of three flat mottled slabs under a goalpost brass rail. It reads as a bar chart in stone, with no tread tops, no ground contact, blotch noise on the faces, and the right rail post striking through the 'base 98.3' label (display x about 1415, y about 930).",
+   "fix": "Re-shoot with the planned camera: eye 0.45 m on the 50% landing, looking along the walk at about 35 degrees oblique, so each landing shows a lit nosing and a top surface and the 80-to-100% drop rakes into shadow. Replace the goalpost with the datum wall's brass strip behind, and move tooth from height into albedo to kill the blotches."
+  },
+  {
+   "slide": 6,
+   "problem": "The subject fills about a quarter of the frame. A dense field of brown pebble blobs owns the middle band. The clean treads are stacked, so 4.8 never reads as a length, and the junk tread reads as speckled brown rather than glass aggregate.",
+   "fix": "Lay the junk tread and the clean treads end to end in one row as the CRAFT PLAN says, the last sawn to 0.8. Drop the camera to 1.1 m and move in until the row spans the full width across the lower half. Thin the scatter by about 80% inside the pool, and give the junk tread visible green and amber chips."
+  },
+  {
+   "slide": 5,
+   "problem": "Nearly a duplicate of the cover (same stair, pier at right, flight from lower left, same camera side), so the filmstrip stalls and the bare stringers carry no new view.",
+   "fix": "Move the camera to the stair's open side and below, at eye 1.0 m as planned, so the bare notched stringers silhouette against the sky as a rising diagonal from lower right to upper left. Crop the pier to its edge, so the bare run is the subject and not the stair as a whole."
+  },
+  {
+   "slide": 7,
+   "problem": "Uniform CG brick fills about 60% of the frame. The 'repaired' stair has the same dark treads as every broken one, so the rebuilt state is invisible. The brass reads as peach plaster.",
+   "fix": "Put the camera on the repaired top landing as planned, so the landing's fresh pale limestone fills the bottom third with the brass line crossing at the computed 1.04 m above it. Re-material that stair's treads in lifted #B9AE98 limestone, and give the brass roughness 0.15 with one specular streak."
+  },
+  {
+   "slide": 9,
+   "problem": "The kit figure reads as a mannequin. Its bare orange forearm is the most saturated note below the brass, and it stands between the stairs facing the wall, which pulls focus off the gap in the broken flight.",
+   "fix": "Move the figure about 0.6 m right onto the broken flight's first tread, yaw it toward the missing treads, and set its sleeve and skin to the deck's muted values so the gap stays the brightest edge."
+  },
+  {
+   "slide": 1,
+   "problem": "The dek's last two lines run across the upper treads and the landing's front edge (preflight design x about 790 to 1000, y about 520 to 580), so the cover's subject is crossed by type at full size and in the thumb.",
+   "fix": "Narrow the dek measure so its lines end left of design x 760, or lower the camera target about 40 px so the landing clears the dek's last line."
+  }
+ ],
+ "lens": "craft",
+ "round": 1
+}

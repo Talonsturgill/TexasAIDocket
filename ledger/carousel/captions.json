@@ -19,12 +19,12 @@
   "recent_lists_note": "These three lists are the exclusions handed to the caption room and they were hand-kept. On 2026-08-20 the fourth panel found structures_recent reading [\"ledger\", \"pivot\", \"question and answer\"] when the last three shipped structures were [\"ledger\", \"two columns\", \"question and answer\"], so it dropped a structure that IS off the table and held one that is not. Wrong in both directions from one hand edit. They are now recomputed from entries and are ordered OLDEST FIRST, matching the entries list, and scripts/carousel/caption_check.py should derive them rather than read them. That is an upgrade-lane change and it is written into this run's proposals."
  },
  "opening_moves_recent": [
-  "the place",
   "the before and after",
   "the object",
   "the plain question",
   "the two things",
-  "the number that is wrong"
+  "the number that is wrong",
+  "the correction"
  ],
  "entries": [
   {
@@ -1016,15 +1016,34 @@
    ],
    "critic_note": "Winner B. A fails caption_check at 958 characters against the 300 to 900 band. B opens on the correction the deck turns on, that the release gives AI no job, then sets what is announced beside what is already done in two short columns, and closes by naming what is still not public and how big it is, the 24 machines. Every figure traces to a claim and to figures.json.",
    "move_note": "Opens on the correction that the release gives AI no job, sets what is announced beside what Lockheed says is already done, names what Hadrian says of its own factories and closes on how many of the 24 machines will use AI."
+  },
+  {
+   "date": "2026-10-22",
+   "carousel_no": 57,
+   "opening_move": "the who",
+   "structure": "Ladder",
+   "closing_move": "ask the one question the decision leaves open",
+   "first_line": "Texas A&M, UT Austin and Purdue trained models on junk.",
+   "words": 159,
+   "commas": 3,
+   "commas_per_100w": 1.89,
+   "chars": 896,
+   "hashtags": [
+    "#TexasAM",
+    "#UTAustin",
+    "#COLM2026"
+   ],
+   "critic_note": "The critic refused both first candidates. \"The correction\" repeated October 21st's opening move and \"Two columns\" its structure, both missing from the stale ledger arrays the room had been briefed with. One rewrite on the who, a ladder and the open question passed. The showrunner later rewrote the first line after two panel judges called \"dosed models\" thin.",
+   "move_note": "Names the three institutions first, climbs from the junk definition through the dose, the failure and the repair to the limits, and closes on whether other platforms would do the same."
   }
  ],
  "structures_recent": [
-  "Question and answer",
   "Pivot",
-  "Ledger"
+  "Ledger",
+  "Two columns"
  ],
  "closing_moves_recent": [
-  "ask the one question the decision leaves open"
+  "name what is still not public, and how big that is"
  ],
  "_derived_note": "opening_moves_recent, structures_recent and closing_moves_recent are DERIVED by out/<date>/update_ledgers.py every run, by ledger_check.windows() and ledger_check's own slice of the entries before the newest date. They were hand-maintained until 2026-09-10 and had drifted, which mis-briefed the caption room on that run: the list said Ledger was excluded when it was not, and never mentioned Two columns or the close no. 19 actually shipped."
 }

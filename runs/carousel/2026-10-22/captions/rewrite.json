@@ -1,0 +1,25 @@
+{
+ "opening_move": "the who",
+ "structure": "Ladder",
+ "closing_move": "ask the one question the decision leaves open",
+ "caption": "Texas A&M, UT Austin and Purdue dosed models.\n\nFour models trained on mixes of junk and control Twitter/X posts. Junk meant under 30 tokens with over 500 likes, retweets, replies and quotes combined. Control meant over 100 tokens with none.\n\nLlama3 8B Instruct was the most sensitive. Its ARC Challenge score with chain of thought fell from 72.1 to 57.2 as junk went from 0% to 100%.\n\nThe paper names thought skipping the main failure. Its \"No Thinking\" category showed up in 84% of failures under junk training.\n\nInstruction data 4.8 times the junk tokens didn't fully undo it. The best repaired models still trailed baseline by 17.3 points on ARC Challenge.\n\nThe junk shares were doses in a training mix and no measure of the internet. The authors limit the findings to Twitter/X junk and the models studied.\n\nWould posts from other platforms do the same?\n\n#TexasAM #UTAustin #COLM2026",
+ "first_comment": "c6 The paper lists its affiliations as Texas A&M University, the University of Texas at Austin and Purdue University. https://arxiv.org/html/2510.13928v3\nc25 The four models tested were Llama3 8B Instruct, Qwen2.5 7B Instruct, Qwen2.5 0.5B Instruct and Qwen3 4B Thinking 2507. https://arxiv.org/html/2510.13928v3\nc26 Each model was continually pre-trained on a junk and control mixture, then instruction tuned again on 5k Alpaca English examples. https://arxiv.org/html/2510.13928v3\nc16 The junk and control sets were drawn from 1 million public Twitter/X posts. https://arxiv.org/html/2510.13928v3\nc18 Under the engagement measure, junk was posts under 30 tokens with popularity over 500, and control was posts over 100 tokens with zero popularity. https://arxiv.org/html/2510.13928v3\nc19 The paper's popularity count is the total of a post's likes, retweets, replies and quotes. https://arxiv.org/html/2510.13928v3\nc57 All four models showed some dose response. Llama3 8B Instruct was the most sensitive to junk and Qwen3 4B the least. https://arxiv.org/html/2510.13928v3\nc28 Under M1, ARC Challenge accuracy with chain of thought fell from 72.1 to 57.2 as the junk share rose from 0% to 100%. https://arxiv.org/abs/2510.13928\nc38 The paper identifies thought skipping as the main reasoning failure, with models increasingly truncating or skipping reasoning chains. https://arxiv.org/abs/2510.13928\nc39 No Thinking appeared in over 70% of failures across all cases and in 84% under M1 junk. https://arxiv.org/html/2510.13928v3\nc44 Instruction data totaling 4.8 times the junk tokens still did not fully undo the damage. https://arxiv.org/html/2510.13928v3\nc47 The best repaired models still trailed the baseline by 17.3% on ARC Challenge with chain of thought, 9% on RULER and 17.4% on AdvBench. https://arxiv.org/html/2510.13928v3\nc64 The junk ratios are doses within the training mixture, not estimates of how much of the internet is junk. https://arxiv.org/html/2510.13928v3\nc62 The authors say the findings are specific to Twitter/X junk data and the models studied. Other platforms remain an open question. https://arxiv.org/html/2510.13928v3\nc13 The arXiv listing marks the paper as published at COLM 2026. https://arxiv.org/abs/2510.13928",
+ "claim_ids_used": [
+  "c6",
+  "c13",
+  "c16",
+  "c18",
+  "c19",
+  "c25",
+  "c26",
+  "c28",
+  "c38",
+  "c39",
+  "c44",
+  "c47",
+  "c57",
+  "c62",
+  "c64"
+ ],
+ "why_this_opening": "It names the three institutions as one block with the paper's own verb, so the reader learns who did this before the ladder says what the dose was."
+}
