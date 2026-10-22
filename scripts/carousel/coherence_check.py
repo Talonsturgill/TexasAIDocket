@@ -204,14 +204,59 @@ def check_type_spine(slides_dir: Path) -> tuple:
     files = sorted(slides_dir.glob("slide-*.html"))
     if not files:
         return [], [f"no slide html in {slides_dir}, so the type spine was not measured"]
-    per = []
-    for f in files:
-        per.append(set(FONT_SIZE.findall(f.read_text(encoding="utf-8"))))
+    rendered = rendered_sizes(slides_dir, [f.name for f in files])
+    if rendered is not None:
+        per, source = rendered, "as rendered"
+    else:
+        per = [set(FONT_SIZE.findall(f.read_text(encoding="utf-8"))) for f in files]
+        source = "as written in the slide html, since no render report covers every slide"
     shared = set.intersection(*per) if per else set()
     if not shared:
-        return ([f"no type size is shared by all {len(files)} slides. The deck has no furniture in "
-                 f"common, so it reads as {len(files)} posters rather than one deck"], [])
+        return ([f"no type size is shared by all {len(files)} slides ({source}). The deck has no "
+                 f"furniture in common, so it reads as {len(files)} posters rather than one deck"], [])
     return [], []
+
+
+def rendered_sizes(slides_dir: Path, names: list[str]) -> list[set] | None:
+    """Each slide's non-decorative type sizes AS RENDERED, from the render report beside the slides.
+
+    THE DEFECT THIS EXISTS FOR (weekly pass 2026-10-22, queue `type-spine-reads-html-only` at
+    repeat 1, nos. 50 and 57). The spine was read as `font-size: Npx` strings in each slide's own
+    HTML, and a deck whose furniture is sized once in its chassis CSS, which is the right place for
+    it, carries no such string, so the gate failed a deck holding 24px furniture on all nine frames.
+    Both runs cleared it by writing a no-op size into every slide, which is a gate satisfied by text
+    the reader never sees, and on no. 50 the edit changed every slide's HTML hash and threw away an
+    accepted art review (the audition rebind the queue counts at repeat 3).
+
+    render.py records every text node's computed `font_px`, which is the size the reader gets
+    whatever wrote it. So the report wins when it covers every slide by name, and only then: a
+    report missing a slide falls back to the HTML strings, so a partial render can't pass a deck.
+    Decorative nodes count. The first decks marked their furniture decorative to exempt it from
+    the 24px floor (no. 3, 2026-08-19, holds its 24px and 25px furniture only on such nodes), and
+    a reading that dropped them failed a deck the HTML reading passed. Swept on 2026-10-22 over all
+    54 shipped decks: none fails the rendered reading.
+    """
+    for cand in (slides_dir.parent / "render" / "render_report.json", slides_dir.parent / "render_report.json"):
+        if not cand.exists():
+            continue
+        try:
+            rep = json.loads(cand.read_text(encoding="utf-8"))
+        except (OSError, ValueError):
+            return None
+        by = {Path(str(s.get("file", ""))).name: s for s in rep.get("slides") or [] if isinstance(s, dict)}
+        if not all(n in by for n in names):
+            return None
+        out = []
+        for n in names:
+            sizes = set()
+            for t in by[n].get("text_nodes") or []:
+                if t.get("font_px") is None:
+                    continue
+                v = float(t["font_px"])
+                sizes.add(str(int(v)) if v == int(v) else str(v))
+            out.append(sizes)
+        return out
+    return None
 
 
 BRAND_YAML = Path(__file__).resolve().parents[2] / "config" / "brand.yaml"
@@ -496,6 +541,38 @@ def self_test() -> int:
         ok("...and a slide sharing NO size with the others fails",
            any("no furniture in common" in f for f in check_type_spine(d)[0]),
            str(check_type_spine(d)))
+
+    # THE SPINE IS READ AS RENDERED (2026-10-22). Replays nos. 50 and 57: furniture sized in the
+    # chassis CSS, so no slide's HTML carries a size string, and the render report shows 24px
+    # furniture on every frame.
+    def node(px, deco=False):
+        return {"text": "x", "font_px": px, "decorative": deco}
+    with tempfile.TemporaryDirectory() as t:
+        run_dir = Path(t)
+        d = run_dir / "slides"
+        d.mkdir()
+        for n in (1, 2, 3):
+            (d / f"slide-{n:02}.html").write_text("<div class='tx-site'>a</div><h1>h</h1>", encoding="utf-8")
+        ok("chassis-sized furniture with no report FAILS on the HTML strings (the old reading)",
+           any("no furniture in common" in f for f in check_type_spine(d)[0]), str(check_type_spine(d)))
+        (run_dir / "render").mkdir()
+        rep = {"slides": [{"file": f"slide-{n:02}.html", "text_nodes": [node(24), node(70 + n)]} for n in (1, 2, 3)]}
+        (run_dir / "render" / "render_report.json").write_text(json.dumps(rep), encoding="utf-8")
+        ok("...and PASSES once the report shows 24px furniture rendered on every slide",
+           check_type_spine(d)[0] == [], str(check_type_spine(d)))
+        rep["slides"][2]["text_nodes"] = [node(24, deco=True), node(80)]
+        (run_dir / "render" / "render_report.json").write_text(json.dumps(rep), encoding="utf-8")
+        ok("furniture marked decorative (the first decks did) still holds the spine",
+           check_type_spine(d)[0] == [], str(check_type_spine(d)))
+        rep["slides"][2]["text_nodes"] = [node(31), node(80)]
+        (run_dir / "render" / "render_report.json").write_text(json.dumps(rep), encoding="utf-8")
+        ok("a rendered slide sharing no size FAILS",
+           any("no furniture in common" in f and "as rendered" in f for f in check_type_spine(d)[0]),
+           str(check_type_spine(d)))
+        rep["slides"] = rep["slides"][:2]
+        (run_dir / "render" / "render_report.json").write_text(json.dumps(rep), encoding="utf-8")
+        ok("a report missing a slide is not read, so the HTML decides and the deck FAILS",
+           any("as written in the slide html" in f for f in check_type_spine(d)[0]), str(check_type_spine(d)))
 
     # THE GATE MUST NOT FIRE ON THE CORRECT BEHAVIOUR IT WAS ALMOST BUILT TO PUNISH.
     src = open(__file__, encoding="utf-8").read()
