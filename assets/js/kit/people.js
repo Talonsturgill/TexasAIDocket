@@ -1129,6 +1129,48 @@ export function install(K, THREE, TXT) {
       return Math.max(d, y - waistTop);
     };
 
+    /* THE UNTUCKED SHIRT FALLS OVER THE HIPS (weekly pass 2026-10-22). Below the waist the shirt's
+     * rows were widened only to clear the seat TABLE, but the trousers are the seat and both thigh
+     * tubes, and the thighs' tops stand wider than the seat. A clearance band over the real trousers
+     * caught it, joined to the torso with a hard min and cut flat at the waistband, so the shirt's
+     * lower 6 cm stood out as a second, wider tier with a ledge on top: a peplum. The judges named it
+     * on no. 57 frame 9 as a ragged hem, and it is the waist of every untucked kit person. So each row
+     * below the waistband is measured against the trousers it hangs over: march out from the row's
+     * centre round 32 bearings to the trousers' surface, and scale the row's ellipse until every one
+     * of those points sits inside it by the clearance. A row at the waistband is added so the curve
+     * can't dip between the hip row and the chest. No random draw is added, so no seed moves. */
+    if (!tucked && !jacket) {
+      const clrT = 0.011 * k;
+      if (upper[1][0] < 0.6) {
+        upper.splice(2, 0, upper[1].slice()); upper[2][0] = 0.606;
+        // wk() blends hip to shoulder breadth by row INDEX, so the row pushed down one index keeps
+        // the breadth it had: the chest above the waist is exactly as before
+        upper[3][1] *= lerp(hw, bw, 2 / 3) / wk(3);
+      }
+      for (let i = 0; i < upper.length && upper[i][0] < 0.63; i++) {
+        const row = upper[i], y = Yl(row[0]), zc = row[4] * k;
+        const a = row[1] * k * wk(i), cF = row[2] * k, cB = row[3] * k;
+        const P = [];
+        for (let j = 0; j < 32; j++) {
+          const th = (j / 32) * Math.PI * 2, sx = Math.sin(th), sz = Math.cos(th);
+          let rOut = 0;
+          for (let rr = 0.02 * k; rr < 0.32 * k; rr += 0.003 * k) if (trouserF(rr * sx, y, zc + rr * sz) < 0) rOut = rr;
+          if (rOut) P.push([(rOut + clrT) * sx, (rOut + clrT) * sz]);
+        }
+        // grow only the semi-axis a point presses on (the breadth, the front or the back), so a
+        // seat that needs room behind does not also widen the hips: the cloth hangs, it isn't blown up
+        let A = a, F = cF, B = cB;
+        for (let it = 0; it < 24; it++) {
+          let worst = null, q = 1;
+          for (const [px, pz] of P) { const v = Math.hypot(px / A, pz / (pz > 0 ? F : B)); if (v > q) { q = v; worst = [px, pz]; } }
+          if (!worst) break;
+          const g = Math.min(q, 1.04);
+          if (Math.abs(worst[0] / A) >= Math.abs(worst[1] / (worst[1] > 0 ? F : B))) A *= g; else if (worst[1] > 0) F *= g; else B *= g;
+        }
+        row[1] *= A / a; row[2] *= F / cF; row[3] *= B / cB;
+      }
+    }
+
     /* SHIRT (or jacket): torso, trapezius and sleeves in one field. */
     const torsoRaw = tableLUT(upper, wk, JX);
     const hemAbs = Yl(hemY);
@@ -1154,9 +1196,13 @@ export function install(K, THREE, TXT) {
       if (Math.abs(yy - yw) < 0.09 * k) fold += fa * 0.0016 * k * side * Math.exp(-Math.pow((yy - yw) / (0.035 * k), 2)) * Math.sin((yy - yw) * 150 / k + ph[2]);
       fold += fa * 0.0011 * k * noise(x, yy, zz, 11);
       d -= fold;
-      // the hem, with a little life in it
+      // the hem, with a little life in it. ROUNDED, never a knife edge (weekly pass 2026-10-22): a
+      // plane cut through the field is a crease narrower than the 1.6 cm mesh grid, so surface nets
+      // put it down as a sawtooth with gradient normals scattered across it, and the judges read a
+      // pale ragged line under the shirt on no. 57 frame 9 and under the vest on every worker. A hem
+      // is cloth turned up on itself, so its edge is a bead about the grid's own size.
       const hem = hemAbs + (tucked ? 0 : 0.0025 * k * Math.sin(Math.atan2(x, zz) * 3 + ph[3]));
-      return Math.max(d, hem - yy);
+      return smax(d, hem - yy, HEMR);
     };
     const S0 = {}, Ecl = {}, Wrl = {};
     const traps = [];
@@ -1216,13 +1262,16 @@ export function install(K, THREE, TXT) {
     const neckC = leanV(V3(0, Yl(0.85), -0.012 * k));
     const clrLo = hemAbs - 0.005 * k, clrHi = Math.max(hemAbs + 0.1 * k, Yl(0.63));
     const clr = 0.011 * k, vY0 = Yl(0.69);
+    const HEMR = 0.012 * k;     // the hem's bead, see torsoF
     const shirtF = (x, y, z) => {
       let d = torsoF(x, y, z);
       for (const t of traps) if (t.lb(x, y, z) < d + 0.035 * k) d = smin(d, t(x, y, z), 0.035 * k);
       const ka = 0.024 * k * smooth((y - armpitY) / (0.07 * k));
       if (sleeveF[1].tube.lb(x, y, z) < d + ka) d = smin(d, sleeveF[1](x, y, z), ka);
       if (sleeveF[-1].tube.lb(x, y, z) < d + ka) d = smin(d, sleeveF[-1](x, y, z), ka);
-      if (!tucked && y > clrLo && y < clrHi) d = Math.min(d, Math.max(trouserF(x, y, z) - clr, hemAbs - y, y - clrHi));
+      // the clearance band is a backstop only: the torso table below the waist is already widened
+      // over the trousers (see THE UNTUCKED SHIRT FALLS OVER THE HIPS), so this band rarely shows
+      if (!tucked && y > clrLo && y < clrHi) d = Math.min(d, Math.max(smax(trouserF(x, y, z) - clr, hemAbs - y, HEMR), y - clrHi));
       // the neck opening and the top
       const nz = z - (neckC.z + (y - neckC.y) * 0.08);
       const hole = Math.max(ell2(x, nz, neckR + 0.004 * k, neckR * 0.96 + 0.004 * k), Yl(0.83) - y);
@@ -1361,9 +1410,31 @@ export function install(K, THREE, TXT) {
     if (vest) {
       const hv = cloth('hivis', pick(r, [0xc8f02a, 0xf06a1c, 0xd4f230]));
       const refl = K.mat('p-refl', { color: 0xcfd3d6, roughness: 0.25, metalness: 0.6, emissive: 0x303234, emissiveIntensity: 0.3 });
-      const vr = [0.585, 0.62, 0.66, 0.7, 0.74, 0.775, 0.8].map((yf) => ringAt(yf, 0.013 * k));
+      // THE VEST CLEARS THE SHIRT IT IS WORN OVER, measured (weekly pass 2026-10-22). It was laid a
+      // fixed 1.3 cm off the torso table, and an untucked shirt's hem stands further out than that
+      // over the hips and the seat, so the shirt broke through the vest's lower edge as a ragged pale
+      // fringe on every untucked worker (nos. 54 to 57). Each ring now walks its own superellipse
+      // against the shirt's torso field (never the sleeves, which a vest leaves outside its armholes)
+      // and grows until every point clears it, capped so a leaning pose the vest does not follow
+      // can't balloon it.
+      const vestExtra = (yf, m) => {
+        let extra = m;
+        for (let it = 0; it < 6; it++) {
+          const R = ringAt(yf, extra);
+          let worst = 1e9;
+          for (let j = 0; j < 32; j++) {
+            const th = (j / 32) * Math.PI * 2, c = Math.cos(th), sn = Math.sin(th);
+            const cx = Math.sign(c) * Math.pow(Math.abs(c), 2 / 2.2), cy = Math.sign(sn) * Math.pow(Math.abs(sn), 2 / 2.2);
+            worst = Math.min(worst, torsoF(R.p[0] + R.rx * cx, R.p[1], R.p[2] + (cy >= 0 ? R.ry : R.ryn) * cy));
+          }
+          if (worst >= m * 0.75) break;
+          extra = Math.min(m + 0.03 * k, extra + (m - worst));
+        }
+        return extra;
+      };
+      const vr = [0.585, 0.62, 0.66, 0.7, 0.74, 0.775, 0.8].map((yf) => ringAt(yf, vestExtra(yf, 0.013 * k)));
       body.add(new THREE.Mesh(loft(vr, { seg: 32, per: 3, n: 2.2, capStart: 'flat' }), hv));
-      for (const yf of [0.635, 0.695]) body.add(new THREE.Mesh(loft([ringAt(yf - 0.01, 0.016 * k), ringAt(yf + 0.01, 0.016 * k)], { seg: 32, per: 2, n: 2.2 }), refl));
+      for (const yf of [0.635, 0.695]) body.add(new THREE.Mesh(loft([ringAt(yf - 0.01, vestExtra(yf - 0.01, 0.013 * k) + 0.003 * k), ringAt(yf + 0.01, vestExtra(yf + 0.01, 0.013 * k) + 0.003 * k)], { seg: 32, per: 2, n: 2.2 }), refl));
       // shoulder straps laid over the shirt's own shoulder: each point pushed out of the field
       const settle = (p, m) => { for (let i = 0; i < 12; i++) { const d = shirtF(p[0], p[1], p[2]); if (d > m) break; p[1] += (m - d) + 0.001; } return p; };
       for (const s of [1, -1]) {
