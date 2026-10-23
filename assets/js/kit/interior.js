@@ -3,7 +3,8 @@
  * The rooms decisions are made in: a commissioners court dais, the lectern the public speaks
  * from, the rows it sits in, the office the paperwork lives in, and the server row the paperwork
  * is about, the laboratory bench (fly_vial, vial_tray), the clinical cart (workstation_cart), and
- * the deposition room (pro_camcorder, bound_transcript), and the patient record (patient_wristband).
+ * the deposition room (pro_camcorder, bound_transcript), and the patient record (patient_wristband,
+ * index_card_drawer).
  * Interior frames stand in a room built by TXT.interior; these models furnish it.
  * Every model: metres, y up, base on y = 0, FRONT faces +z (a dais faces its audience, a chair
  * faces the way its sitter looks, a rack shows its server fronts).
@@ -2403,7 +2404,7 @@ export function install(K, THREE, TXT) {
     },
   });
 
-  /* ---- THE PATIENT RECORD FAMILY ----------------------------------------
+  /* ---- THE PATIENT RECORD FAMILY: a wristband and an index card drawer ----------------------------------------
    * LIFTED 2026-10-23 from no. 58's chassis (assets/js/deck/2026-10-23-ledger.js) at the judges' named fix, under
    * NEW names, because that chassis's installKit returns early once the kit defines `record_card` and defines its own
    * `wristband` and `card_drawer` otherwise, so reusing either name would throw on a re-render of the shipped deck.
@@ -2564,5 +2565,101 @@ export function install(K, THREE, TXT) {
     },
   });
 
+  /* index_card_drawer. The chassis card_drawer spaced its blocks on a fixed 2.6 mm pitch whatever `length` said, so
+   * a shorter drawer moved its walls and not its cards and the end wall ran off the frame on every render of no. 58's
+   * frame 7 (queue card-drawer-spacing-ignores-length); its front was a flat slab every round 3 judge named as the
+   * frame's dead mass, and its tabbed dividers stood LOWER than the cards, so the blocks of ten never read as blocks.
+   * Here the card pitch is DERIVED from the inside length, so every block always fits between the walls, and a count
+   * that cannot fit throws rather than overflowing the drawer. Guide cards stand proud of the cards with their tabs,
+   * a follower plate holds the last block, and the front is a bevelled panel with a label holder and a cup pull. */
+  function paintIndexFace(x, W, H, r) {
+    x.fillStyle = '#e9e2d0'; x.fillRect(0, 0, W, H);
+    for (let i = 0; i < 2600; i++) { x.fillStyle = r() < 0.5 ? 'rgba(90,80,60,0.12)' : 'rgba(255,250,236,0.15)'; x.fillRect(r() * W, r() * H, 1.5, 1); }
+    x.fillStyle = 'rgba(150,62,52,0.55)'; x.fillRect(W * 0.04, H * 0.2, W * 0.92, 2);
+    x.fillStyle = 'rgba(80,98,130,0.32)'; for (let k = 1; k <= 8; k++) x.fillRect(W * 0.04, H * (0.2 + k * 0.09), W * 0.92, 1);
+  }
+  K.define('index_card_drawer', {
+    size: [0.16, 0.11, 0.42],
+    options: { length: 0.4, blocks: 10, per: 10, flagged: 1, fill: 0.84, color: 0x3a3c42, divider: 0x6c675b, flag: 0xb4664f, flagFront: false },
+    note: 'A steel 3 by 5 index card drawer, drawn to illustrate: `length` m long with the front on +z, `blocks` blocks of `per` upright cards separated by pressboard guide cards whose tabs stand proud of the cards (`divider` hex), the card pitch DERIVED from the inside length so the blocks always fill `fill` of it and a count that cannot fit throws. The last `flagged` blocks (the first, nearest the front, with flagFront true) carry a folded flag on every card (`flag` hex). A follower plate on the rod holds the last block. The front is a bevelled panel with a label holder and a cup pull, in `color`. userData.blocks gives each block centre z, userData.flagged the flagged blocks, userData.top the card tops, userData.pitch the derived pitch.',
+    make(o, r) {
+      const g = new THREE.Group(), Lz = Math.max(0.12, +o.length || 0.4), CW = 0.127, CH = 0.0762, CT = 0.00025;
+      const wall = 0.0012, iw = CW + 0.008, ht = 0.06, blocks = Math.max(1, o.blocks | 0), per = Math.max(1, o.per | 0);
+      const flagged = Math.max(0, Math.min(blocks, o.flagged | 0));
+      const steel = mat('icd-steel' + o.color, { color: o.color != null ? o.color : 0x3a3c42, roughness: 0.5, metalness: 0.35 });
+      const nickel = mat('icd-nickel', { color: 0xb9bcbf, roughness: 0.3, metalness: 0.85 });
+      const stock = mat('icd-stock', { color: 0xd6cfbd, roughness: 0.9 });
+      const face = mat('icd-face', { color: 0xffffff, roughness: 0.86, map: ltex('icd-face', paintIndexFace, {}, [256, 154]) });
+      const press = mat('icd-press' + o.divider, { color: o.divider != null ? o.divider : 0x6c675b, roughness: 0.82 });
+      const flagM = mat('icd-flag' + o.flag, { color: o.flag != null ? o.flag : 0xb4664f, roughness: 0.4, clearcoat: 0.6, clearcoatRoughness: 0.15 }, true);
+      // the body: floor, two sides with rolled nickel lips, a back, all centred on the origin
+      rbox(iw + 2 * wall, wall, Lz, 0.0005, steel, 0, 0, 0, g);
+      [-1, 1].forEach((s) => {
+        rbox(wall, ht, Lz, 0.0005, steel, s * (iw / 2 + wall / 2), 0, 0, g);
+        const lip = new THREE.Mesh(new THREE.CylinderGeometry(0.0022, 0.0022, Lz, 10), nickel);
+        lip.rotation.x = Math.PI / 2; lip.position.set(s * (iw / 2 + wall / 2), ht, 0); g.add(lip);
+      });
+      rbox(iw + 2 * wall, ht, wall, 0.0005, steel, 0, 0, -Lz / 2 + wall / 2, g);
+      // THE FRONT: a bevelled panel proud of the body, a label holder with a card in it, and a cup pull under it
+      const FW = iw + 2 * wall + 0.01, FH = ht + 0.022, fz = Lz / 2 + 0.006;
+      rbox(FW, FH, 0.012, 0.0035, steel, 0, 0, fz, g, 3);
+      const lh = new THREE.Group(); lh.position.set(0, FH * 0.64, fz + 0.0062); g.add(lh);
+      rbox(0.064, 0.026, 0.0012, 0.0006, nickel, 0, -0.013, 0, lh);
+      rbox(0.056, 0.019, 0.0006, 0.0002, mat('icd-labelcard', { color: 0xf0ebe0, roughness: 0.8 }), 0, -0.0095, 0.0009, lh);
+      const cup = new THREE.Mesh(new THREE.CylinderGeometry(0.014, 0.014, 0.05, 20, 1, false, 0, Math.PI), nickel);
+      cup.rotation.z = Math.PI / 2; cup.rotation.y = 0; cup.position.set(0, FH * 0.3, fz + 0.006); cup.scale.set(1, 1, 0.55); g.add(cup);
+      const rod = new THREE.Mesh(new THREE.CylinderGeometry(0.0025, 0.0025, Lz - 0.004, 10), nickel);
+      rod.rotation.x = Math.PI / 2; rod.position.y = 0.012; g.add(rod);
+      // THE PITCH IS DERIVED. Inside length minus the follower's room, `fill` of it holding cards and guide gaps,
+      // a guide gap being GAP card pitches. A count whose pitch would fall under a card's own thickness can't fit.
+      const GAP = 5, inside = Lz - 2 * wall - 0.026, fill = Math.max(0.3, Math.min(0.97, +o.fill || 0.84));
+      const steps = blocks * (per - 1) + (blocks - 1) * GAP + 1;
+      const pitch = fill * inside / steps;
+      if (pitch < CT * 1.2) throw new Error('index_card_drawer: ' + blocks * per + ' cards need more than ' + Lz + ' m');
+      const lean = -0.07;
+      let z = -Lz / 2 + wall + 0.02 + fill * inside;   // the front block's first card, the content ending at the follower
+      const plainN = (blocks - flagged) * per, flagN = flagged * per;
+      const cardGeo = new THREE.BoxGeometry(CW, CH, CT);
+      const mats = [stock, stock, stock, stock, face, stock];
+      const plain = new THREE.InstancedMesh(cardGeo, mats, Math.max(1, plainN)), fl = new THREE.InstancedMesh(cardGeo, mats, Math.max(1, flagN));
+      const flagGeo = new THREE.BoxGeometry(0.016, 0.026, CT * 6), flags = new THREE.InstancedMesh(flagGeo, flagM, Math.max(1, flagN));
+      const m4 = new THREE.Matrix4(), q = new THREE.Quaternion(), e = new THREE.Euler(), v = new THREE.Vector3(), one = new THREE.Vector3(1, 1, 1);
+      let pi = 0, fi = 0; const centres = [], flaggedZ = [];
+      for (let b = 0; b < blocks; b++) {
+        const isFlag = o.flagFront ? b < flagged : b >= blocks - flagged, z0 = z;
+        for (let c = 0; c < per; c++) {
+          const zc = z - c * pitch;
+          e.set(lean + (r() - 0.5) * 0.03, (r() - 0.5) * 0.015, (r() - 0.5) * 0.006); q.setFromEuler(e);
+          v.set((r() - 0.5) * 0.0012, 0.003 + CH / 2, zc); m4.compose(v, q, one);
+          if (isFlag) {
+            fl.setMatrixAt(fi, m4);
+            // the flag folded over the card's top edge, stepped across the block so every flag shows
+            const fx = -CW / 2 + 0.014 + (CW - 0.028) * (per > 1 ? c / (per - 1) : 0.5);
+            const fm = new THREE.Matrix4().compose(new THREE.Vector3(fx, CH / 2 - 0.004, 0), new THREE.Quaternion(), one);
+            flags.setMatrixAt(fi, m4.clone().multiply(fm)); fi++;
+          } else plain.setMatrixAt(pi++, m4);
+        }
+        const zEnd = z - (per - 1) * pitch; centres.push(+((z0 + zEnd) / 2).toFixed(4)); if (isFlag) flaggedZ.push(centres[b]);
+        z = zEnd;
+        if (b < blocks - 1) {
+          // a pressboard guide card in the middle of the gap, its tab standing proud of the cards, stepped across
+          const gz = z - GAP * pitch / 2, gd = new THREE.Group(); gd.position.set(0, 0.003, gz); gd.rotation.x = lean; g.add(gd);
+          rbox(CW, CH, 0.0006, 0.0002, press, 0, 0, 0, gd);
+          const tx = -CW / 2 + 0.02 + (b % 4) * (CW - 0.04) / 3;
+          rbox(0.03, 0.012, 0.0006, 0.0003, press, tx, CH - 0.0005, 0, gd);
+          rbox(0.024, 0.008, 0.0009, 0.0002, mat('icd-tabcard', { color: 0xe7e1d3, roughness: 0.8 }), tx, CH + 0.0015, 0, gd);
+          z -= GAP * pitch;
+        }
+      }
+      plain.count = plainN; fl.count = flagN; flags.count = flagN;
+      [plain, fl, flags].forEach((im) => { im.instanceMatrix.needsUpdate = true; if (im.count) g.add(im); });
+      // the follower: a steel plate leaning back against the last block, on the rod
+      const fol = new THREE.Group(); fol.position.set(0, 0.002, z - 0.006); fol.rotation.x = lean - 0.12; g.add(fol);
+      rbox(CW - 0.006, CH * 0.8, 0.0015, 0.0006, steel, 0, 0, 0, fol);
+      g.userData.keepOrigin = true; g.userData.blocks = centres; g.userData.flagged = flaggedZ;
+      g.userData.top = +(0.003 + CH).toFixed(4); g.userData.pitch = +pitch.toFixed(5); g.userData.height = ht;
+      return g;
+    },
+  });
 
 }

@@ -16,7 +16,7 @@
 |---|---|
 | engine calls (`TXT.*`) | 30 |
 | world presets | 8 |
-| kit models | 126 in 10 families |
+| kit models | 127 in 10 families |
 | asset libraries | 22 |
 | carousel and shared tools | 77 |
 | record and site tools the routine names | 20 |
@@ -300,7 +300,7 @@ THE KIT: the things Texas is made of, modelled once in 3D at TRUE SCALE.
 | `strip_mall` | 66 x 10.9 x 34.4 | units, parking | A Texas strip centre: stucco and stone, a stepped parapet with hipped tower ends, an arcade canopy, aluminium storefronts, blank sign panels, a striped parking row |
 | `traffic_signal` | 12.7 x 10.4 x 1.2 | arm, heads, finish, luminaire, lit | Mast arm signal: the pole stands at the origin (its footprint), arm over +x, heads facing +z; street blade and a ped head on the pole |
 
-### interior (22)
+### interior (23)
 
 `assets/js/kit/interior.js`, The rooms decisions are made in: a commissioners court dais, the lectern the public speaks from, the rows it sits in, the office the paperwork lives in, and the server row the paperwork is about, the ...
 
@@ -315,6 +315,7 @@ THE KIT: the things Texas is made of, modelled once in 3D at TRUE SCALE.
 | `flags_pair` | 2.2 x 2.55 x 1.2 | spacing, order | The United States and Texas flags on indoor floor stands: oak poles with brass spear finials and bell bases, 4 x 6 ft cloth draped as real geometry (arc length preserved, pleats along the fall), gold fringe on the free edges, gold cords and tassels. |
 | `fly_vial` | 0.026 x 0.106 x 0.026 | state, flies, pupae, plug, tape, tapeYaw, tapeArc, climbTop, droplets, flyScale, glint, front, backs | A clear polystyrene fruit fly culture vial (25 mm across, 95 mm tall): glass that reads by its edge and a rim at a flared lip, cornmeal food with a meniscus up the wall, a cellulose plug, pupae, and adult Drosophila at macro (red faceted eyes, bristled ... |
 | `hearing_dais` | 10.5 x 1.6 x 4 | seats, curve, wood, carpet, chairs, mics, plates, steps | Commissioners court or council dais: a raised millwork bench, concave toward the audience (curve = front radius in metres, 0 = straight), raised panel modesty front with pilasters, a transaction ledge with blank brass nameplates, gooseneck microphones and ... |
+| `index_card_drawer` | 0.16 x 0.11 x 0.42 | length, blocks, per, flagged, fill, color, divider, flag, flagFront | A steel 3 by 5 index card drawer, drawn to illustrate: `length` m long with the front on +z, `blocks` blocks of `per` upright cards separated by pressboard guide cards whose tabs stand proud of the cards (`divider` hex), the card pitch DERIVED from the inside ... |
 | `laptop` | 0.31 x 0.23 x 0.26 | open, finish, screen, dark | 14 in aluminium laptop at true size: unibody base, recessed keyboard with every key, glass trackpad, hinge, thin lid with a lit display (screen doc \| sheet \| chart \| dash \| off; no legible text) and a camera dot. open is the lid angle in degrees. |
 | `monitor` | 0.62 x 0.52 x 0.2 | inches, screen, dark, finish | Desktop monitor (27 in default) on a stand: thin bezel front with a lit display (screen chart \| dash \| doc \| sheet \| off; no legible text), a bulged rear housing with vents, a slim neck and a flat base. |
 | `office_chair` | 0.66 x 1.0 x 0.66 | style, color, arms | Swivel office chair facing +z: five star base on twin wheel casters, telescoping gas lift, tilt mechanism with knob and lever, waterfall seat, curved backrest with lumbar, T arms. style task (fabric) \| mesh \| exec (high back leather on polished aluminium). |
