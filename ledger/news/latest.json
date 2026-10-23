@@ -1,8 +1,8 @@
 {
   "_spec": 2,
-  "checked_at": "2026-10-23T17:56:26Z",
+  "checked_at": "2026-10-23T22:26:04Z",
   "provider": "Publisher RSS and Atom",
-  "response_sha256": "14cde47b152c169b5edeb7123e8d9852e63d51734ed1b7d2e1605c16c0b2083e",
+  "response_sha256": "1d1cb51d79397b77f8df3d000d7eec387ddbc9411cd524f1df4fccb1405f47db",
   "articles": [
     {
       "title": "Patented: 7-Eleven’s Item-Recognition Tech and 121 More Inventions Across North Texas",
@@ -47,6 +47,13 @@
       "feed": "https://feeds.texastribune.org/feeds/main/"
     },
     {
+      "title": "Texas Attorney General Ken Paxton sues ChatGPT-maker OpenAI",
+      "url": "https://feeds.texastribune.org/link/16799/17505297/ken-paxton-chatgpt-openai-lawsuit-texas-attorney-general",
+      "first_seen_at": "2026-10-23T19:44:30Z",
+      "summary": "CEO Sam Altman and ChatGPT are top competitors to Elon Musk, the tech billionaire fueling Paxton’s U.S. Senate campaign.",
+      "feed": "https://feeds.texastribune.org/feeds/main/"
+    },
+    {
       "title": "Soluna and Applied Digital to build 50MW data center in Texas",
       "url": "https://www.datacenterdynamics.com/en/news/soluna-and-applied-digital-to-build-50mw-data-center-in-texas/",
       "first_seen_at": "2026-10-22T11:02:52Z",
@@ -59,13 +66,6 @@
       "first_seen_at": "2026-10-20T17:46:03Z",
       "summary": "This article originally appeared on Inside Climate News, a nonprofit, non-partisan news organization that covers climate, energy, and the environment. Sign up for their newsletter here. Regulators in Texas did not stop processing permits for data center projects when Gov. Greg Abbott ordered a pause last month, according to an analysis of public records released […]",
       "feed": "https://www.texasobserver.org/feed/"
-    },
-    {
-      "title": "15,000 Texas voter registrations caught up in backlog after another state software error",
-      "url": "https://www.tpr.org/2026-10-16/15-000-texas-voter-registrations-caught-up-in-backlog-after-another-state-software-error",
-      "first_seen_at": "2026-10-16T20:05:38Z",
-      "summary": "Counties must now process affected voter registrations before Monday, when Texans can start voting early in the midterm elections.",
-      "feed": "https://www.tpr.org/index.rss"
     },
     {
       "title": "Despite Abbott moratorium, Texas kept on issuing data center permits. Now, the state agency is shutting down its automatic filing system.",
@@ -83,146 +83,20 @@
     }
   ],
   "selected": {
-    "title": "Fed up with data centers and Big Tech, rural Republican crossover could decide Democrats’ fate in Texas",
-    "url": "https://feeds.texastribune.org/link/16799/17504031/texas-rural-voters-data-centers-backlash-big-tech-2026-election",
-    "first_seen_at": "2026-10-23T10:00:00Z",
-    "summary": "Rural Republicans have long undercut Democrats’ gains in cities and suburbs. Will enough defect to make a difference this fall?",
-    "feed": "https://feeds.texastribune.org/feeds/main/",
-    "publisher": "The Texas Tribune",
+    "title": "Texas Continued Permitting Data Centers After Abbott’s Pause, Report Finds",
+    "url": "https://www.texasobserver.org/texas-continued-permitting-data-centers-after-abbott-pause/",
+    "first_seen_at": "2026-10-20T17:46:03Z",
+    "summary": "This article originally appeared on Inside Climate News, a nonprofit, non-partisan news organization that covers climate, energy, and the environment. Sign up for their newsletter here. Regulators in Texas did not stop processing permits for data center projects when Gov. Greg Abbott ordered a pause last month, according to an analysis of public records released […]",
+    "feed": "https://www.texasobserver.org/feed/",
+    "publisher": "Texas Observer",
     "coverage": 1,
-    "score": 0.795064,
-    "priority": 1
+    "score": 0.109238,
+    "priority": 4
   },
-  "expires_at": "2026-10-30T10:00:00Z",
+  "expires_at": "2026-10-27T17:46:03Z",
   "rotation_version": 1,
   "carousel_version": 1,
   "editions": [
-    {
-      "starts_at": "2026-10-23T13:23:00Z",
-      "selected": {
-        "title": "Fed up with data centers and Big Tech, rural Republican crossover could decide Democrats’ fate in Texas",
-        "url": "https://feeds.texastribune.org/link/16799/17504031/texas-rural-voters-data-centers-backlash-big-tech-2026-election",
-        "first_seen_at": "2026-10-23T10:00:00Z",
-        "summary": "Rural Republicans have long undercut Democrats’ gains in cities and suburbs. Will enough defect to make a difference this fall?",
-        "feed": "https://feeds.texastribune.org/feeds/main/",
-        "publisher": "The Texas Tribune",
-        "coverage": 1,
-        "score": 0.795064,
-        "priority": 1
-      },
-      "stories": [
-        {
-          "title": "Fed up with data centers and Big Tech, rural Republican crossover could decide Democrats’ fate in Texas",
-          "url": "https://feeds.texastribune.org/link/16799/17504031/texas-rural-voters-data-centers-backlash-big-tech-2026-election",
-          "first_seen_at": "2026-10-23T10:00:00Z",
-          "summary": "Rural Republicans have long undercut Democrats’ gains in cities and suburbs. Will enough defect to make a difference this fall?",
-          "feed": "https://feeds.texastribune.org/feeds/main/",
-          "publisher": "The Texas Tribune",
-          "coverage": 1,
-          "score": 0.795064,
-          "priority": 1
-        },
-        {
-          "title": "UTA and UT Southwestern Researchers Use AI to Pinpoint Eye Disease ‘Control Switches’",
-          "url": "https://dallasinnovates.com/uta-and-ut-southwestern-researchers-use-ai-to-pinpoint-eye-disease-control-switches/",
-          "first_seen_at": "2026-10-22T12:26:21Z",
-          "summary": "Researchers at the University of Texas at Arlington and UT Southwestern Medical Center in Dallas are using AI and advanced statistics to pinpoint the molecular “control switches” involved in several eye diseases. The diseases being studied include age-related macular degeneration, glaucoma and diabetic retinopathy. …",
-          "feed": "https://dallasinnovates.com/feed/",
-          "publisher": "Dallas Innovates",
-          "coverage": 1,
-          "score": 0.426547,
-          "priority": 0
-        },
-        {
-          "title": "San Antonio turns to AI to study its roaming-dog population",
-          "url": "https://www.tpr.org/science-technology/2026-10-20/san-antonio-turns-to-ai-to-study-its-roaming-dog-population",
-          "first_seen_at": "2026-10-20T23:32:43Z",
-          "summary": "Southwest Research Institute will use AI technology in a study to identify and count roaming dogs in 32 city areas.",
-          "feed": "https://www.tpr.org/index.rss",
-          "publisher": "Texas Public Radio",
-          "coverage": 1,
-          "score": 0.146964,
-          "priority": 0
-        },
-        {
-          "title": "Despite Abbott moratorium, Texas kept on issuing data center permits. Now, the state agency is shutting down its automatic filing system.",
-          "url": "https://www.tpr.org/economy-and-labor/2026-10-22/despite-abbott-moratorium-texas-kept-on-issuing-data-center-permits-now-the-state-agency-is-shutting-down-its-automatic-filing-system",
-          "first_seen_at": "2026-10-23T02:35:30Z",
-          "summary": "State regulators said permits issued after Gov. Abbott’s moratorium have now been suspended and its automatic filing system is shut down.",
-          "feed": "https://www.tpr.org/index.rss",
-          "publisher": "Texas Public Radio",
-          "coverage": 2,
-          "score": 1.283838,
-          "priority": 1
-        },
-        {
-          "title": "Soluna and Applied Digital to build 50MW data center in Texas",
-          "url": "https://www.datacenterdynamics.com/en/news/soluna-and-applied-digital-to-build-50mw-data-center-in-texas/",
-          "first_seen_at": "2026-10-22T11:02:52Z",
-          "summary": "Companies to build on Soluna’s Dorothy 3 site, lease capacity to Applied spin-out ChronoScale",
-          "feed": "https://www.datacenterdynamics.com/en/rss/",
-          "publisher": "Data Center Dynamics",
-          "coverage": 1,
-          "score": 0.409746,
-          "priority": 1
-        },
-        {
-          "title": "Patented: 7-Eleven’s Item-Recognition Tech and 121 More Inventions Across North Texas",
-          "url": "https://dallasinnovates.com/patented-7-elevens-item-recognition-tech-and-121-more-inventions-across-north-texas/",
-          "first_seen_at": "2026-10-21T20:14:31Z",
-          "summary": "Irving-based 7-Eleven added to its intellectual property with a pair of patents the week of Sept. 29. The patents relate to its ongoing work on inventory tracking and computer-vision item recognition. One patent improves data prediction in systems that track when items are removed from locations.…",
-          "feed": "https://dallasinnovates.com/feed/",
-          "publisher": "Dallas Innovates",
-          "coverage": 1,
-          "score": 0.267181,
-          "priority": 1
-        },
-        {
-          "title": "Greg Abbott ordered a pause on data center permits. Critics say some plans still moved forward.",
-          "url": "https://feeds.texastribune.org/link/16799/17501714/data-center-permits-tceq-abbott-texas-pause",
-          "first_seen_at": "2026-10-20T21:42:57Z",
-          "summary": "Public Citizen said the Texas Commission on Environmental Quality hadn’t stopped issuing data center permits as required. The agency said it was complying with the directive.",
-          "feed": "https://feeds.texastribune.org/feeds/main/",
-          "publisher": "The Texas Tribune",
-          "coverage": 1,
-          "score": 0.1394,
-          "priority": 1
-        },
-        {
-          "title": "Texas Continued Permitting Data Centers After Abbott’s Pause, Report Finds",
-          "url": "https://www.texasobserver.org/texas-continued-permitting-data-centers-after-abbott-pause/",
-          "first_seen_at": "2026-10-20T17:46:03Z",
-          "summary": "This article originally appeared on Inside Climate News, a nonprofit, non-partisan news organization that covers climate, energy, and the environment. Sign up for their newsletter here. Regulators in Texas did not stop processing permits for data center projects when Gov. Greg Abbott ordered a pause last month, according to an analysis of public records released […]",
-          "feed": "https://www.texasobserver.org/feed/",
-          "publisher": "Texas Observer",
-          "coverage": 1,
-          "score": 0.124377,
-          "priority": 4
-        },
-        {
-          "title": "Texas data center boom could erase decades of progress on air quality",
-          "url": "https://feeds.texastribune.org/link/16799/17501286/data-centers-texas-air-quality-report-pollution-health-risks",
-          "first_seen_at": "2026-10-20T11:00:00Z",
-          "summary": "A new report warns that the state’s air quality progress could be reversed by the end of the decade, especially if facilities use natural gas power.",
-          "feed": "https://feeds.texastribune.org/feeds/main/",
-          "publisher": "The Texas Tribune",
-          "coverage": 1,
-          "score": 0.102295,
-          "priority": 4
-        },
-        {
-          "title": "15,000 Texas voter registrations caught up in backlog after another state software error",
-          "url": "https://www.tpr.org/2026-10-16/15-000-texas-voter-registrations-caught-up-in-backlog-after-another-state-software-error",
-          "first_seen_at": "2026-10-16T20:05:38Z",
-          "summary": "Counties must now process affected voter registrations before Monday, when Texans can start voting early in the midterm elections.",
-          "feed": "https://www.tpr.org/index.rss",
-          "publisher": "Texas Public Radio",
-          "coverage": 1,
-          "score": 0.008314,
-          "priority": 4
-        }
-      ]
-    },
     {
       "starts_at": "2026-10-23T19:23:00Z",
       "selected": {
@@ -233,7 +107,7 @@
         "feed": "https://www.texasobserver.org/feed/",
         "publisher": "Texas Observer",
         "coverage": 1,
-        "score": 0.119301,
+        "score": 0.109238,
         "priority": 4
       },
       "stories": [
@@ -245,8 +119,19 @@
           "feed": "https://www.texasobserver.org/feed/",
           "publisher": "Texas Observer",
           "coverage": 1,
-          "score": 0.119301,
+          "score": 0.109238,
           "priority": 4
+        },
+        {
+          "title": "Texas Attorney General Ken Paxton sues ChatGPT-maker OpenAI",
+          "url": "https://feeds.texastribune.org/link/16799/17505297/ken-paxton-chatgpt-openai-lawsuit-texas-attorney-general",
+          "first_seen_at": "2026-10-23T19:44:30Z",
+          "summary": "CEO Sam Altman and ChatGPT are top competitors to Elon Musk, the tech billionaire fueling Paxton’s U.S. Senate campaign.",
+          "feed": "https://feeds.texastribune.org/feeds/main/",
+          "publisher": "The Texas Tribune",
+          "coverage": 1,
+          "score": 0.925177,
+          "priority": 0
         },
         {
           "title": "UTA and UT Southwestern Researchers Use AI to Pinpoint Eye Disease ‘Control Switches’",
@@ -256,7 +141,7 @@
           "feed": "https://dallasinnovates.com/feed/",
           "publisher": "Dallas Innovates",
           "coverage": 1,
-          "score": 0.409138,
+          "score": 0.374628,
           "priority": 0
         },
         {
@@ -267,7 +152,7 @@
           "feed": "https://www.tpr.org/index.rss",
           "publisher": "Texas Public Radio",
           "coverage": 1,
-          "score": 0.140966,
+          "score": 0.129075,
           "priority": 0
         },
         {
@@ -278,7 +163,7 @@
           "feed": "https://www.tpr.org/index.rss",
           "publisher": "Texas Public Radio",
           "coverage": 2,
-          "score": 1.231441,
+          "score": 1.12757,
           "priority": 1
         },
         {
@@ -289,7 +174,7 @@
           "feed": "https://feeds.texastribune.org/feeds/main/",
           "publisher": "The Texas Tribune",
           "coverage": 1,
-          "score": 0.762616,
+          "score": 0.69829,
           "priority": 1
         },
         {
@@ -300,7 +185,7 @@
           "feed": "https://www.datacenterdynamics.com/en/rss/",
           "publisher": "Data Center Dynamics",
           "coverage": 1,
-          "score": 0.393023,
+          "score": 0.359872,
           "priority": 1
         },
         {
@@ -311,7 +196,7 @@
           "feed": "https://dallasinnovates.com/feed/",
           "publisher": "Dallas Innovates",
           "coverage": 1,
-          "score": 0.256277,
+          "score": 0.23466,
           "priority": 1
         },
         {
@@ -322,8 +207,8 @@
           "feed": "https://feeds.texastribune.org/feeds/main/",
           "publisher": "The Texas Tribune",
           "coverage": 1,
-          "score": 0.133711,
-          "priority": 1
+          "score": 0.122432,
+          "priority": 4
         },
         {
           "title": "Texas data center boom could erase decades of progress on air quality",
@@ -333,18 +218,7 @@
           "feed": "https://feeds.texastribune.org/feeds/main/",
           "publisher": "The Texas Tribune",
           "coverage": 1,
-          "score": 0.09812,
-          "priority": 4
-        },
-        {
-          "title": "15,000 Texas voter registrations caught up in backlog after another state software error",
-          "url": "https://www.tpr.org/2026-10-16/15-000-texas-voter-registrations-caught-up-in-backlog-after-another-state-software-error",
-          "first_seen_at": "2026-10-16T20:05:38Z",
-          "summary": "Counties must now process affected voter registrations before Monday, when Texans can start voting early in the midterm elections.",
-          "feed": "https://www.tpr.org/index.rss",
-          "publisher": "Texas Public Radio",
-          "coverage": 1,
-          "score": 0.007974,
+          "score": 0.089844,
           "priority": 4
         }
       ]
@@ -352,27 +226,27 @@
     {
       "starts_at": "2026-10-24T01:23:00Z",
       "selected": {
-        "title": "San Antonio turns to AI to study its roaming-dog population",
-        "url": "https://www.tpr.org/science-technology/2026-10-20/san-antonio-turns-to-ai-to-study-its-roaming-dog-population",
-        "first_seen_at": "2026-10-20T23:32:43Z",
-        "summary": "Southwest Research Institute will use AI technology in a study to identify and count roaming dogs in 32 city areas.",
-        "feed": "https://www.tpr.org/index.rss",
-        "publisher": "Texas Public Radio",
+        "title": "Texas Attorney General Ken Paxton sues ChatGPT-maker OpenAI",
+        "url": "https://feeds.texastribune.org/link/16799/17505297/ken-paxton-chatgpt-openai-lawsuit-texas-attorney-general",
+        "first_seen_at": "2026-10-23T19:44:30Z",
+        "summary": "CEO Sam Altman and ChatGPT are top competitors to Elon Musk, the tech billionaire fueling Paxton’s U.S. Senate campaign.",
+        "feed": "https://feeds.texastribune.org/feeds/main/",
+        "publisher": "The Texas Tribune",
         "coverage": 1,
-        "score": 0.118537,
-        "priority": 3
+        "score": 0.849644,
+        "priority": 0
       },
       "stories": [
         {
-          "title": "San Antonio turns to AI to study its roaming-dog population",
-          "url": "https://www.tpr.org/science-technology/2026-10-20/san-antonio-turns-to-ai-to-study-its-roaming-dog-population",
-          "first_seen_at": "2026-10-20T23:32:43Z",
-          "summary": "Southwest Research Institute will use AI technology in a study to identify and count roaming dogs in 32 city areas.",
-          "feed": "https://www.tpr.org/index.rss",
-          "publisher": "Texas Public Radio",
+          "title": "Texas Attorney General Ken Paxton sues ChatGPT-maker OpenAI",
+          "url": "https://feeds.texastribune.org/link/16799/17505297/ken-paxton-chatgpt-openai-lawsuit-texas-attorney-general",
+          "first_seen_at": "2026-10-23T19:44:30Z",
+          "summary": "CEO Sam Altman and ChatGPT are top competitors to Elon Musk, the tech billionaire fueling Paxton’s U.S. Senate campaign.",
+          "feed": "https://feeds.texastribune.org/feeds/main/",
+          "publisher": "The Texas Tribune",
           "coverage": 1,
-          "score": 0.118537,
-          "priority": 3
+          "score": 0.849644,
+          "priority": 0
         },
         {
           "title": "UTA and UT Southwestern Researchers Use AI to Pinpoint Eye Disease ‘Control Switches’",
@@ -430,6 +304,17 @@
           "priority": 1
         },
         {
+          "title": "San Antonio turns to AI to study its roaming-dog population",
+          "url": "https://www.tpr.org/science-technology/2026-10-20/san-antonio-turns-to-ai-to-study-its-roaming-dog-population",
+          "first_seen_at": "2026-10-20T23:32:43Z",
+          "summary": "Southwest Research Institute will use AI technology in a study to identify and count roaming dogs in 32 city areas.",
+          "feed": "https://www.tpr.org/index.rss",
+          "publisher": "Texas Public Radio",
+          "coverage": 1,
+          "score": 0.118537,
+          "priority": 3
+        },
+        {
           "title": "Greg Abbott ordered a pause on data center permits. Critics say some plans still moved forward.",
           "url": "https://feeds.texastribune.org/link/16799/17501714/data-center-permits-tceq-abbott-texas-pause",
           "first_seen_at": "2026-10-20T21:42:57Z",
@@ -467,27 +352,38 @@
     {
       "starts_at": "2026-10-24T07:23:00Z",
       "selected": {
-        "title": "Greg Abbott ordered a pause on data center permits. Critics say some plans still moved forward.",
-        "url": "https://feeds.texastribune.org/link/16799/17501714/data-center-permits-tceq-abbott-texas-pause",
-        "first_seen_at": "2026-10-20T21:42:57Z",
-        "summary": "Public Citizen said the Texas Commission on Environmental Quality hadn’t stopped issuing data center permits as required. The agency said it was complying with the directive.",
-        "feed": "https://feeds.texastribune.org/feeds/main/",
-        "publisher": "The Texas Tribune",
+        "title": "San Antonio turns to AI to study its roaming-dog population",
+        "url": "https://www.tpr.org/science-technology/2026-10-20/san-antonio-turns-to-ai-to-study-its-roaming-dog-population",
+        "first_seen_at": "2026-10-20T23:32:43Z",
+        "summary": "Southwest Research Institute will use AI technology in a study to identify and count roaming dogs in 32 city areas.",
+        "feed": "https://www.tpr.org/index.rss",
+        "publisher": "Texas Public Radio",
         "coverage": 1,
-        "score": 0.094548,
-        "priority": 4
+        "score": 0.099678,
+        "priority": 3
       },
       "stories": [
         {
-          "title": "Greg Abbott ordered a pause on data center permits. Critics say some plans still moved forward.",
-          "url": "https://feeds.texastribune.org/link/16799/17501714/data-center-permits-tceq-abbott-texas-pause",
-          "first_seen_at": "2026-10-20T21:42:57Z",
-          "summary": "Public Citizen said the Texas Commission on Environmental Quality hadn’t stopped issuing data center permits as required. The agency said it was complying with the directive.",
+          "title": "San Antonio turns to AI to study its roaming-dog population",
+          "url": "https://www.tpr.org/science-technology/2026-10-20/san-antonio-turns-to-ai-to-study-its-roaming-dog-population",
+          "first_seen_at": "2026-10-20T23:32:43Z",
+          "summary": "Southwest Research Institute will use AI technology in a study to identify and count roaming dogs in 32 city areas.",
+          "feed": "https://www.tpr.org/index.rss",
+          "publisher": "Texas Public Radio",
+          "coverage": 1,
+          "score": 0.099678,
+          "priority": 3
+        },
+        {
+          "title": "Texas Attorney General Ken Paxton sues ChatGPT-maker OpenAI",
+          "url": "https://feeds.texastribune.org/link/16799/17505297/ken-paxton-chatgpt-openai-lawsuit-texas-attorney-general",
+          "first_seen_at": "2026-10-23T19:44:30Z",
+          "summary": "CEO Sam Altman and ChatGPT are top competitors to Elon Musk, the tech billionaire fueling Paxton’s U.S. Senate campaign.",
           "feed": "https://feeds.texastribune.org/feeds/main/",
           "publisher": "The Texas Tribune",
           "coverage": 1,
-          "score": 0.094548,
-          "priority": 4
+          "score": 0.714463,
+          "priority": 0
         },
         {
           "title": "UTA and UT Southwestern Researchers Use AI to Pinpoint Eye Disease ‘Control Switches’",
@@ -545,15 +441,15 @@
           "priority": 1
         },
         {
-          "title": "San Antonio turns to AI to study its roaming-dog population",
-          "url": "https://www.tpr.org/science-technology/2026-10-20/san-antonio-turns-to-ai-to-study-its-roaming-dog-population",
-          "first_seen_at": "2026-10-20T23:32:43Z",
-          "summary": "Southwest Research Institute will use AI technology in a study to identify and count roaming dogs in 32 city areas.",
-          "feed": "https://www.tpr.org/index.rss",
-          "publisher": "Texas Public Radio",
+          "title": "Greg Abbott ordered a pause on data center permits. Critics say some plans still moved forward.",
+          "url": "https://feeds.texastribune.org/link/16799/17501714/data-center-permits-tceq-abbott-texas-pause",
+          "first_seen_at": "2026-10-20T21:42:57Z",
+          "summary": "Public Citizen said the Texas Commission on Environmental Quality hadn’t stopped issuing data center permits as required. The agency said it was complying with the directive.",
+          "feed": "https://feeds.texastribune.org/feeds/main/",
+          "publisher": "The Texas Tribune",
           "coverage": 1,
-          "score": 0.099678,
-          "priority": 3
+          "score": 0.094548,
+          "priority": 4
         },
         {
           "title": "Texas Continued Permitting Data Centers After Abbott’s Pause, Report Finds",
@@ -578,14 +474,135 @@
           "priority": 4
         }
       ]
+    },
+    {
+      "starts_at": "2026-10-24T13:23:00Z",
+      "selected": {
+        "title": "Greg Abbott ordered a pause on data center permits. Critics say some plans still moved forward.",
+        "url": "https://feeds.texastribune.org/link/16799/17501714/data-center-permits-tceq-abbott-texas-pause",
+        "first_seen_at": "2026-10-20T21:42:57Z",
+        "summary": "Public Citizen said the Texas Commission on Environmental Quality hadn’t stopped issuing data center permits as required. The agency said it was complying with the directive.",
+        "feed": "https://feeds.texastribune.org/feeds/main/",
+        "publisher": "The Texas Tribune",
+        "coverage": 1,
+        "score": 0.079505,
+        "priority": 4
+      },
+      "stories": [
+        {
+          "title": "Greg Abbott ordered a pause on data center permits. Critics say some plans still moved forward.",
+          "url": "https://feeds.texastribune.org/link/16799/17501714/data-center-permits-tceq-abbott-texas-pause",
+          "first_seen_at": "2026-10-20T21:42:57Z",
+          "summary": "Public Citizen said the Texas Commission on Environmental Quality hadn’t stopped issuing data center permits as required. The agency said it was complying with the directive.",
+          "feed": "https://feeds.texastribune.org/feeds/main/",
+          "publisher": "The Texas Tribune",
+          "coverage": 1,
+          "score": 0.079505,
+          "priority": 4
+        },
+        {
+          "title": "Texas Attorney General Ken Paxton sues ChatGPT-maker OpenAI",
+          "url": "https://feeds.texastribune.org/link/16799/17505297/ken-paxton-chatgpt-openai-lawsuit-texas-attorney-general",
+          "first_seen_at": "2026-10-23T19:44:30Z",
+          "summary": "CEO Sam Altman and ChatGPT are top competitors to Elon Musk, the tech billionaire fueling Paxton’s U.S. Senate campaign.",
+          "feed": "https://feeds.texastribune.org/feeds/main/",
+          "publisher": "The Texas Tribune",
+          "coverage": 1,
+          "score": 0.600789,
+          "priority": 0
+        },
+        {
+          "title": "UTA and UT Southwestern Researchers Use AI to Pinpoint Eye Disease ‘Control Switches’",
+          "url": "https://dallasinnovates.com/uta-and-ut-southwestern-researchers-use-ai-to-pinpoint-eye-disease-control-switches/",
+          "first_seen_at": "2026-10-22T12:26:21Z",
+          "summary": "Researchers at the University of Texas at Arlington and UT Southwestern Medical Center in Dallas are using AI and advanced statistics to pinpoint the molecular “control switches” involved in several eye diseases. The diseases being studied include age-related macular degeneration, glaucoma and diabetic retinopathy. …",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.243275,
+          "priority": 0
+        },
+        {
+          "title": "Despite Abbott moratorium, Texas kept on issuing data center permits. Now, the state agency is shutting down its automatic filing system.",
+          "url": "https://www.tpr.org/economy-and-labor/2026-10-22/despite-abbott-moratorium-texas-kept-on-issuing-data-center-permits-now-the-state-agency-is-shutting-down-its-automatic-filing-system",
+          "first_seen_at": "2026-10-23T02:35:30Z",
+          "summary": "State regulators said permits issued after Gov. Abbott’s moratorium have now been suspended and its automatic filing system is shut down.",
+          "feed": "https://www.tpr.org/index.rss",
+          "publisher": "Texas Public Radio",
+          "coverage": 2,
+          "score": 0.732219,
+          "priority": 1
+        },
+        {
+          "title": "Fed up with data centers and Big Tech, rural Republican crossover could decide Democrats’ fate in Texas",
+          "url": "https://feeds.texastribune.org/link/16799/17504031/texas-rural-voters-data-centers-backlash-big-tech-2026-election",
+          "first_seen_at": "2026-10-23T10:00:00Z",
+          "summary": "Rural Republicans have long undercut Democrats’ gains in cities and suburbs. Will enough defect to make a difference this fall?",
+          "feed": "https://feeds.texastribune.org/feeds/main/",
+          "publisher": "The Texas Tribune",
+          "coverage": 1,
+          "score": 0.453454,
+          "priority": 1
+        },
+        {
+          "title": "Soluna and Applied Digital to build 50MW data center in Texas",
+          "url": "https://www.datacenterdynamics.com/en/news/soluna-and-applied-digital-to-build-50mw-data-center-in-texas/",
+          "first_seen_at": "2026-10-22T11:02:52Z",
+          "summary": "Companies to build on Soluna’s Dorothy 3 site, lease capacity to Applied spin-out ChronoScale",
+          "feed": "https://www.datacenterdynamics.com/en/rss/",
+          "publisher": "Data Center Dynamics",
+          "coverage": 1,
+          "score": 0.233693,
+          "priority": 1
+        },
+        {
+          "title": "Patented: 7-Eleven’s Item-Recognition Tech and 121 More Inventions Across North Texas",
+          "url": "https://dallasinnovates.com/patented-7-elevens-item-recognition-tech-and-121-more-inventions-across-north-texas/",
+          "first_seen_at": "2026-10-21T20:14:31Z",
+          "summary": "Irving-based 7-Eleven added to its intellectual property with a pair of patents the week of Sept. 29. The patents relate to its ongoing work on inventory tracking and computer-vision item recognition. One patent improves data prediction in systems that track when items are removed from locations.…",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.152383,
+          "priority": 1
+        },
+        {
+          "title": "San Antonio turns to AI to study its roaming-dog population",
+          "url": "https://www.tpr.org/science-technology/2026-10-20/san-antonio-turns-to-ai-to-study-its-roaming-dog-population",
+          "first_seen_at": "2026-10-20T23:32:43Z",
+          "summary": "Southwest Research Institute will use AI technology in a study to identify and count roaming dogs in 32 city areas.",
+          "feed": "https://www.tpr.org/index.rss",
+          "publisher": "Texas Public Radio",
+          "coverage": 1,
+          "score": 0.083819,
+          "priority": 3
+        },
+        {
+          "title": "Texas Continued Permitting Data Centers After Abbott’s Pause, Report Finds",
+          "url": "https://www.texasobserver.org/texas-continued-permitting-data-centers-after-abbott-pause/",
+          "first_seen_at": "2026-10-20T17:46:03Z",
+          "summary": "This article originally appeared on Inside Climate News, a nonprofit, non-partisan news organization that covers climate, energy, and the environment. Sign up for their newsletter here. Regulators in Texas did not stop processing permits for data center projects when Gov. Greg Abbott ordered a pause last month, according to an analysis of public records released […]",
+          "feed": "https://www.texasobserver.org/feed/",
+          "publisher": "Texas Observer",
+          "coverage": 1,
+          "score": 0.070937,
+          "priority": 4
+        },
+        {
+          "title": "Texas data center boom could erase decades of progress on air quality",
+          "url": "https://feeds.texastribune.org/link/16799/17501286/data-centers-texas-air-quality-report-pollution-health-risks",
+          "first_seen_at": "2026-10-20T11:00:00Z",
+          "summary": "A new report warns that the state’s air quality progress could be reversed by the end of the decade, especially if facilities use natural gas power.",
+          "feed": "https://feeds.texastribune.org/feeds/main/",
+          "publisher": "The Texas Tribune",
+          "coverage": 1,
+          "score": 0.058343,
+          "priority": 4
+        }
+      ]
     }
   ],
   "history": [
-    {
-      "url": "https://www.tpr.org/2026-10-16/15-000-texas-voter-registrations-caught-up-in-backlog-after-another-state-software-error",
-      "title": "15,000 Texas voter registrations caught up in backlog after another state software error",
-      "shown_at": "2026-10-17T01:23:00Z"
-    },
     {
       "url": "https://feeds.texastribune.org/link/16799/17497094/texas-data-centers-water-use-penalties-enforcement",
       "title": "Despite tough talk from Abbott and Paxton, Texas penalties for data center violations are light",
@@ -740,38 +757,39 @@
       "url": "https://feeds.texastribune.org/link/16799/17504031/texas-rural-voters-data-centers-backlash-big-tech-2026-election",
       "title": "Fed up with data centers and Big Tech, rural Republican crossover could decide Democrats’ fate in Texas",
       "shown_at": "2026-10-23T13:23:00Z"
+    },
+    {
+      "url": "https://www.texasobserver.org/texas-continued-permitting-data-centers-after-abbott-pause/",
+      "title": "Texas Continued Permitting Data Centers After Abbott’s Pause, Report Finds",
+      "shown_at": "2026-10-23T19:23:00Z"
     }
   ],
   "feeds": [
     {
       "url": "https://dallasinnovates.com/feed/",
-      "status": "ok",
-      "items": 20,
-      "sha256": "252431aad7e57e7b0f0b6aca3d699ef3ddcbf73b7d4fc0dbc7766754632c6d20"
+      "status": "not_modified"
     },
     {
       "url": "https://feeds.texastribune.org/feeds/main/",
       "status": "ok",
       "items": 20,
-      "sha256": "e425de058b471b702439a7078700528cc8cc2a89189d5a60dfdf4a6f8cc386bc"
+      "sha256": "9710ebdf974d8e4947da5ddd3e978611fd74ec238a3d42807e59570c3a28b698"
     },
     {
       "url": "https://www.datacenterdynamics.com/en/rss/",
-      "status": "ok",
-      "items": 20,
-      "sha256": "9ee528b53c07331a2396f312ee5a5b6bbd7022e22ac12c6be6839a56e67c3aad"
+      "status": "not_modified"
     },
     {
       "url": "https://news.mit.edu/rss/topic/artificial-intelligence2",
       "status": "ok",
       "items": 50,
-      "sha256": "0d68a1ddbba381801a04987e3d077dcd7b87d65045581d9f2a722ce191ad6841"
+      "sha256": "167625364fee77954131e2cc17151b9e8a46009a371e6bba4a2464375766f67e"
     },
     {
       "url": "https://openai.com/news/rss.xml",
       "status": "ok",
-      "items": 1317,
-      "sha256": "9e0489aedfa3a1156a33fcc2f801e3cbc672bea0d1a9dc5c7dbe84c224e89c24"
+      "items": 1318,
+      "sha256": "75838dc3b8d2cf8267cc6bac8e54e27d925162861a71f8a2c29133ba8118a795"
     },
     {
       "url": "https://blogs.nvidia.com/feed/",
@@ -789,25 +807,24 @@
       "url": "https://siliconangle.com/feed/",
       "status": "ok",
       "items": 30,
-      "sha256": "e49f5a516b02acb6ebfd5d5c431e94bbdc4bbf790882595e3a4268d5aa948053"
+      "sha256": "cd46da80905481367cd745bdcc1824ff9238849626da058bf055f6c3c35ba474"
     },
     {
       "url": "https://www.artificialintelligence-news.com/feed/",
-      "status": "unavailable",
-      "retry_at": "2026-10-24T17:56:24Z",
-      "reason": "not well-formed (invalid token): line 1, column 119"
+      "status": "backoff",
+      "retry_at": "2026-10-24T17:56:24Z"
     },
     {
       "url": "https://www.geekwire.com/tag/artificial-intelligence/feed/",
       "status": "ok",
       "items": 35,
-      "sha256": "5193e80952ea74988f36d2d51b0539e95c5107fa69bc66b3dc6d373204d06106"
+      "sha256": "23439235dea01840d4906fb296aaf7e76f273d9132cd6f50c8f4855eb6dcefdb"
     },
     {
       "url": "https://www.techspot.com/backend.xml",
       "status": "ok",
       "items": 30,
-      "sha256": "9fa813ac773a5f3ab3328d5f1587859d62bfc9be80290cb33b86869391118a0e"
+      "sha256": "5c3a4fb84044c7f9961da40ddb4c825fff98c28839789988922315b116195c44"
     },
     {
       "url": "https://www.sciencedaily.com/rss/computers_math/artificial_intelligence.xml",
@@ -817,74 +834,72 @@
       "url": "https://www.tpr.org/index.rss",
       "status": "ok",
       "items": 5,
-      "sha256": "7d920164df04a4e032d269010ce1ce5a7f9487a6ab9f82e8782173ee45fee565"
+      "sha256": "271c20a893932bf190c1c9bb1ed97a7e16d45ee6acb81e2265d762d29f79eff1"
     },
     {
       "url": "https://www.texasobserver.org/feed/",
-      "status": "ok",
-      "items": 10,
-      "sha256": "3804fbd18b1253dfb92b53f3d498b5f8c04de652933a12c9788a48ca6c38a4aa"
+      "status": "not_modified"
     }
   ],
   "feed_state": {
     "https://dallasinnovates.com/feed/": {
-      "ok_at": "2026-10-23T17:56:24Z",
-      "failures": 0,
-      "parser_version": 2,
-      "sha256": "252431aad7e57e7b0f0b6aca3d699ef3ddcbf73b7d4fc0dbc7766754632c6d20",
       "etag": "\"1a8116408f537ddca26b2444586aca0d\"",
-      "last_modified": "Fri, 23 Oct 2026 12:33:16 GMT"
+      "last_modified": "Fri, 23 Oct 2026 12:33:16 GMT",
+      "failures": 0,
+      "ok_at": "2026-10-23T22:26:02Z",
+      "sha256": "252431aad7e57e7b0f0b6aca3d699ef3ddcbf73b7d4fc0dbc7766754632c6d20",
+      "parser_version": 2
     },
     "https://feeds.texastribune.org/feeds/main/": {
-      "ok_at": "2026-10-23T17:56:24Z",
+      "ok_at": "2026-10-23T22:26:02Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "e425de058b471b702439a7078700528cc8cc2a89189d5a60dfdf4a6f8cc386bc",
-      "etag": "\"6adb8b7e-a164\"",
-      "last_modified": "Fri, 23 Oct 2026 16:29:50 GMT"
+      "sha256": "9710ebdf974d8e4947da5ddd3e978611fd74ec238a3d42807e59570c3a28b698",
+      "etag": "\"6adbd151-9e4e\"",
+      "last_modified": "Fri, 23 Oct 2026 21:27:45 GMT"
     },
     "https://www.datacenterdynamics.com/en/rss/": {
-      "ok_at": "2026-10-23T17:56:24Z",
+      "last_modified": "Fri, 23 Oct 2026 16:22:38 GMT",
       "failures": 0,
-      "parser_version": 2,
+      "ok_at": "2026-10-23T22:26:02Z",
       "sha256": "9ee528b53c07331a2396f312ee5a5b6bbd7022e22ac12c6be6839a56e67c3aad",
-      "last_modified": "Fri, 23 Oct 2026 16:22:38 GMT"
+      "parser_version": 2
     },
     "https://news.mit.edu/rss/topic/artificial-intelligence2": {
-      "ok_at": "2026-10-23T17:56:24Z",
+      "ok_at": "2026-10-23T22:26:02Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "0d68a1ddbba381801a04987e3d077dcd7b87d65045581d9f2a722ce191ad6841",
-      "etag": "\"1792777781\"",
-      "last_modified": "Fri, 23 Oct 2026 17:49:41 GMT"
+      "sha256": "167625364fee77954131e2cc17151b9e8a46009a371e6bba4a2464375766f67e",
+      "etag": "\"1792793231\"",
+      "last_modified": "Fri, 23 Oct 2026 22:07:11 GMT"
     },
     "https://openai.com/news/rss.xml": {
-      "ok_at": "2026-10-23T17:56:24Z",
+      "ok_at": "2026-10-23T22:26:02Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "9e0489aedfa3a1156a33fcc2f801e3cbc672bea0d1a9dc5c7dbe84c224e89c24"
+      "sha256": "75838dc3b8d2cf8267cc6bac8e54e27d925162861a71f8a2c29133ba8118a795"
     },
     "https://blogs.nvidia.com/feed/": {
-      "ok_at": "2026-10-23T17:56:24Z",
+      "ok_at": "2026-10-23T22:26:02Z",
       "failures": 0,
       "parser_version": 2,
       "sha256": "2a0f200c437e689bee264eb44c25b750b97aabc9d4b46c370e5fb23615d7bedc",
-      "etag": "\"0ca942bb4b958af712acd3ae9255f4a7-gzip\"",
-      "last_modified": "Fri, 23 Oct 2026 17:48:48 GMT"
+      "etag": "\"8db534a749f73d73c6f1683f66461cfb-gzip\"",
+      "last_modified": "Fri, 23 Oct 2026 21:35:24 GMT"
     },
     "https://blog.google/technology/ai/rss/": {
-      "ok_at": "2026-10-23T17:56:24Z",
+      "ok_at": "2026-10-23T22:26:02Z",
       "failures": 0,
       "parser_version": 2,
       "sha256": "c9eba296d46b9f2264e4a7365015b84945c8837df82d49e79006be0f6a2e5065"
     },
     "https://siliconangle.com/feed/": {
-      "ok_at": "2026-10-23T17:56:24Z",
+      "ok_at": "2026-10-23T22:26:02Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "e49f5a516b02acb6ebfd5d5c431e94bbdc4bbf790882595e3a4268d5aa948053",
-      "etag": "\"978a9e76912ad227acefeaea4d551b0e\"",
-      "last_modified": "Fri, 23 Oct 2026 17:46:35 GMT"
+      "sha256": "cd46da80905481367cd745bdcc1824ff9238849626da058bf055f6c3c35ba474",
+      "etag": "\"ba3eb617c56925ba84ccf2523cf73a1e\"",
+      "last_modified": "Fri, 23 Oct 2026 22:23:25 GMT"
     },
     "https://www.artificialintelligence-news.com/feed/": {
       "etag": "\"cd8cbe1fef0e10c2eef0af3ac2847598\"",
@@ -896,40 +911,40 @@
       "parser_version": 2
     },
     "https://www.geekwire.com/tag/artificial-intelligence/feed/": {
-      "ok_at": "2026-10-23T17:56:24Z",
+      "ok_at": "2026-10-23T22:26:02Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "5193e80952ea74988f36d2d51b0539e95c5107fa69bc66b3dc6d373204d06106",
-      "etag": "W/\"29b4357f9090ae6b59939b2bf3798efd\"",
-      "last_modified": "Fri, 23 Oct 2026 17:51:16 GMT"
+      "sha256": "23439235dea01840d4906fb296aaf7e76f273d9132cd6f50c8f4855eb6dcefdb",
+      "etag": "W/\"e58cb0d32aa54401afac7b731c00c6ef\"",
+      "last_modified": "Fri, 23 Oct 2026 19:08:06 GMT"
     },
     "https://www.techspot.com/backend.xml": {
-      "ok_at": "2026-10-23T17:56:24Z",
+      "ok_at": "2026-10-23T22:26:02Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "9fa813ac773a5f3ab3328d5f1587859d62bfc9be80290cb33b86869391118a0e",
-      "etag": "W/\"58d698975180cd6d429df46889e84878\""
+      "sha256": "5c3a4fb84044c7f9961da40ddb4c825fff98c28839789988922315b116195c44",
+      "etag": "W/\"07feef6ad5f877d7da0c02f0ab547be8\""
     },
     "https://www.sciencedaily.com/rss/computers_math/artificial_intelligence.xml": {
       "last_modified": "Fri, 23 Oct 2026 11:42:45 GMT",
       "failures": 0,
-      "ok_at": "2026-10-23T17:56:24Z",
+      "ok_at": "2026-10-23T22:26:02Z",
       "sha256": "dfaa631bf413822960418781a97937864d455e862c68d313b5a211fd5312de91",
       "parser_version": 2
     },
     "https://www.tpr.org/index.rss": {
-      "ok_at": "2026-10-23T17:56:24Z",
+      "ok_at": "2026-10-23T22:26:02Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "7d920164df04a4e032d269010ce1ce5a7f9487a6ab9f82e8782173ee45fee565"
+      "sha256": "271c20a893932bf190c1c9bb1ed97a7e16d45ee6acb81e2265d762d29f79eff1"
     },
     "https://www.texasobserver.org/feed/": {
-      "ok_at": "2026-10-23T17:56:24Z",
-      "failures": 0,
-      "parser_version": 2,
-      "sha256": "3804fbd18b1253dfb92b53f3d498b5f8c04de652933a12c9788a48ca6c38a4aa",
       "etag": "W/\"b0fcb32a6f327df4d3277e77763039a0\"",
-      "last_modified": "Fri, 23 Oct 2026 14:43:04 GMT"
+      "last_modified": "Fri, 23 Oct 2026 14:43:04 GMT",
+      "failures": 0,
+      "ok_at": "2026-10-23T22:26:02Z",
+      "sha256": "3804fbd18b1253dfb92b53f3d498b5f8c04de652933a12c9788a48ca6c38a4aa",
+      "parser_version": 2
     }
   }
 }
