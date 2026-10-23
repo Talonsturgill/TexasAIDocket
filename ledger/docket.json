@@ -2144,7 +2144,7 @@
      "fetched": "2026-09-02"
     }
    ],
-   "last_verified": "2026-10-20",
+   "last_verified": "2026-10-23",
    "confidence": "high",
    "notes_for_editor": "Included because it is actionable and time limited, which is the highest value class of item for readers. The Texas relevance is real but INDIRECT and the item should say so plainly: this is a national rulemaking, not a Texas proceeding. The regulations_dot_gov_info comment_url came back null from the API, so the Federal Register document page is given as the participation URL instead of a direct regulations.gov deep link.",
    "history": [
@@ -2261,6 +2261,11 @@
     {
      "date": "2026-10-20",
      "note": "The register's record still gives August 31st as the close of comment on the reactor licensing proposal. The full text stays unconfirmed.",
+     "checked": true
+    },
+    {
+     "date": "2026-10-23",
+     "note": "The register's record still closes comment on the reactor licensing proposal on August 31st, and no final rule has followed. The full text stays unconfirmed, since its reader routes to a path the register bars.",
      "checked": true
     }
    ]
@@ -9777,7 +9782,7 @@
     }
    ],
    "id": "tx-2026-0061",
-   "last_verified": "2026-10-20",
+   "last_verified": "2026-10-23",
    "history": [
     {
      "date": "2026-08-19",
@@ -9889,6 +9894,11 @@
     {
      "date": "2026-10-20",
      "note": "The city's code updates page still says San Marcos defines data centers in its land development code. The television report on the 4 to 3 vote stays unconfirmed.",
+     "checked": true
+    },
+    {
+     "date": "2026-10-23",
+     "note": "San Marcos still defines data centers in its land development code, as the city's code updates page says. The television account of the 4 to 3 vote stays unconfirmed.",
      "checked": true
     }
    ]
@@ -10068,6 +10078,10 @@
      "date": "2026-10-20",
      "note": "Community Impact still reports only the first steps toward Fort Worth's 90 day pause, with no adoption since. KERA's account stays unconfirmed, as its address now forwards to a page that refused the request.",
      "checked": true
+    },
+    {
+     "date": "2026-10-23",
+     "note": "Community Impact's account and KERA's are unconfirmed today, since both refused the request or did not answer in full. The record still holds Fort Worth's pause at its first steps."
     }
    ]
   },
@@ -13397,7 +13411,7 @@
     }
    ],
    "id": "tx-2026-0078",
-   "last_verified": "2026-10-20",
+   "last_verified": "2026-10-23",
    "history": [
     {
      "date": "2026-08-21",
@@ -13499,6 +13513,11 @@
      "date": "2026-10-20",
      "note": "House State Affairs still lists the August 19th sitting and the two September sittings after it, and has posted no later meeting. The charge wording on the Legislative Reference Library page stays unconfirmed.",
      "checked": true
+    },
+    {
+     "date": "2026-10-23",
+     "note": "House State Affairs still lists the August 19th sitting and the two September sittings after it, with no later meeting and no interim report posted. The charge wording stays unconfirmed.",
+     "checked": true
     }
    ]
   },
@@ -13561,7 +13580,7 @@
     }
    ],
    "id": "tx-2026-0079",
-   "last_verified": "2026-10-20",
+   "last_verified": "2026-10-23",
    "history": [
     {
      "date": "2026-08-21",
@@ -13664,6 +13683,11 @@
     {
      "date": "2026-10-20",
      "note": "House Public Health still lists the August 20th sitting on AI in health care as its latest, with nothing later posted. The charge wording stays unconfirmed.",
+     "checked": true
+    },
+    {
+     "date": "2026-10-23",
+     "note": "House Public Health's latest posted sitting is still the August 20th hearing on AI in health care. No interim report has appeared, and the charge wording stays unconfirmed.",
      "checked": true
     }
    ]
@@ -20424,7 +20448,7 @@
   },
   {
    "title": "Federal commodities regulator opens comment on trading derivatives whose underlying commodity is compute",
-   "summary": "The Commodity Futures Trading Commission published a request for comment on August 21st, 2026 asking what a designated contract market should weigh before listing derivatives with compute as the underlier. The document ties the supply side of a compute price to the cost of deploying and operating data centers, and to the cost of chips and energy. Comments are open until October 20th, 2026. The notice names no state.",
+   "summary": "The Commodity Futures Trading Commission published a request for comment on August 21st, 2026 asking what a designated contract market should weigh before listing derivatives with compute as the underlier. The document ties the supply side of a compute price to the cost of deploying and operating data centers, and to the cost of chips and energy. Comments closed on October 20th, 2026. The notice names no state.",
    "topic": "defense-and-federal",
    "decider": {
     "name": "Commodity Futures Trading Commission",
@@ -20435,7 +20459,7 @@
     "counties": [],
     "on_ercot": null
    },
-   "status": "open",
+   "status": "pending",
    "key_dates": [
     {
      "date": "2026-08-21",
@@ -20450,7 +20474,7 @@
    ],
    "public_access": {
     "room": "open_comment",
-    "how": "Comments go to the Commodity Futures Trading Commission by the methods listed in the notice. Refer to the Request for Comment on the Listing of Compute Derivatives Contracts, and file by October 20th, 2026. A request for comment is an earlier and more open stage than a proposed rule, so an answer here reaches the question before it is framed.",
+    "how": "The comment window closed on October 20th, 2026. Comments went to the Commodity Futures Trading Commission by the methods listed in the Request for Comment on the Listing of Compute Derivatives Contracts. A request for comment comes before a proposed rule, so any rule that follows would open its own comment period.",
     "url": "https://www.govinfo.gov/content/pkg/FR-2026-08-21/html/2026-17163.htm",
     "closes": "2026-10-20"
    },
@@ -20486,7 +20510,7 @@
    "confidence": "high",
    "notes_for_editor": "Published as statewide on the same reading as the other federal comment windows in this record, which apply in Texas without naming a county. federalregister.gov HTML redirected this client to an unblock page, and govinfo served the identical document cleanly.",
    "id": "tx-2026-0118",
-   "last_verified": "2026-10-20",
+   "last_verified": "2026-10-23",
    "history": [
     {
      "date": "2026-09-03",
@@ -20579,6 +20603,11 @@
     {
      "date": "2026-10-20",
      "note": "The request for comment on trading compute derivatives is open through its last day, October 20th, and the commission's notice still reads as published.",
+     "checked": true
+    },
+    {
+     "date": "2026-10-23",
+     "note": "The commission's notice still reads as published, and its comment window closed on October 20th. The record now waits on what the commission does with the answers.",
      "checked": true
     }
    ]
@@ -23075,6 +23104,10 @@
     {
      "date": "2026-10-22",
      "note": "The university's degree page did not answer today, so the undergraduate degree in artificial intelligence is unconfirmed since its last check."
+    },
+    {
+     "date": "2026-10-23",
+     "note": "The university's degree page could not be reached today, so the undergraduate degree in artificial intelligence stays unconfirmed since October 18th."
     }
    ],
    "confidence": "high"
@@ -23687,6 +23720,10 @@
      "date": "2026-10-20",
      "note": "Public radio's account still reads as a pause Lubbock has begun and not yet declared, with hearings to come. The city's agenda record and the station report remain unconfirmed.",
      "checked": true
+    },
+    {
+     "date": "2026-10-23",
+     "note": "Public radio's account and the city's agenda record are unconfirmed today, since the city's site refused the request. The record still holds Lubbock's pause as begun and not yet declared."
     }
    ]
   },
@@ -23967,7 +24004,7 @@
     }
    ],
    "id": "tx-2026-0126",
-   "last_verified": "2026-10-20",
+   "last_verified": "2026-10-23",
    "history": [
     {
      "date": "2026-09-07",
@@ -24040,6 +24077,11 @@
     {
      "date": "2026-10-20",
      "note": "The Senate water committee's meetings page still shows the September 1st sitting on data center cooling water and the one the next day, and no later sitting. The hearing notice text stays unread, since its path is closed to this project.",
+     "checked": true
+    },
+    {
+     "date": "2026-10-23",
+     "note": "The Senate water committee's page still shows the September 1st sitting on data center cooling water and the one after it, with no later sitting posted. The notice text stays unread, since its path is closed to this project.",
      "checked": true
     }
    ]
@@ -27049,6 +27091,10 @@
     {
      "date": "2026-10-22",
      "note": "The university's account did not answer today, so the tutor and the police training work are unconfirmed since their last check."
+    },
+    {
+     "date": "2026-10-23",
+     "note": "The university's account could not be reached today, so the tutor and the police training work stay unconfirmed since October 18th."
     }
    ]
   },
@@ -27565,6 +27611,10 @@
     {
      "date": "2026-10-22",
      "note": "The university's release did not answer today, so the gift and what it funds are unconfirmed since their last check."
+    },
+    {
+     "date": "2026-10-23",
+     "note": "The university's release could not be reached today, so the gift and the college it names stay unconfirmed since October 18th."
     }
    ]
   },
@@ -28619,6 +28669,10 @@
     {
      "date": "2026-10-22",
      "note": "The university's release did not answer today, so the replacement of the business analytics degrees is unconfirmed since its last check."
+    },
+    {
+     "date": "2026-10-23",
+     "note": "The university's release could not be reached today, so the change from business analytics degrees to AI degrees stays unconfirmed since October 18th."
     }
    ]
   },
@@ -30442,7 +30496,7 @@
    ],
    "notes_for_editor": "Admitted on the FAA's own draft and its own review page. The environmental assessment is a draft prepared by the applicant under the agency's supervision, and the final decision on the operating approvals has not been made. The county list is the Section 106 letter's own list with two of its spellings, Atacosta and Roberston, read as Atascosa and Robertson. The letter's stated total and its list disagree, so no county count is published. The five metros straddle the ERCOT line, so on_ercot is null rather than either value. The letter states a county total its own list does not match, and that discrepancy is reported here rather than repaired.",
    "id": "tx-2026-0186",
-   "last_verified": "2026-10-20",
+   "last_verified": "2026-10-23",
    "history": [
     {
      "date": "2026-09-24",
@@ -30502,6 +30556,11 @@
     {
      "date": "2026-10-20",
      "note": "The agency's review page has dropped its call for comments and now says the period on Zipline's Texas metros draft closed on October 11th. The draft and its noise study are still posted, and no final assessment or finding has been published."
+    },
+    {
+     "date": "2026-10-23",
+     "note": "The agency's drone review page still says comment on Zipline's Texas metros draft closed on October 11th. The draft and its noise study are still posted, and no final assessment or finding has appeared.",
+     "checked": true
     }
    ]
   },
@@ -32953,7 +33012,7 @@
      "id": "tx-2026-0198-c17"
     }
    ],
-   "last_verified": "2026-10-20",
+   "last_verified": "2026-10-23",
    "confidence": "high",
    "notes_for_editor": "Admitted on three of the company's own pages. Counties are the two ends of the driver-out leg the company names, its Lancaster hub in Dallas County and Houston in Harris County. Frisco and Baytown are the ends of IKEA's longer route and are not counted as places the driverless leg runs. Filed under state-policy beside the state's authorization rule for the same vehicles, tx-2026-0188.",
    "history": [
@@ -32984,6 +33043,11 @@
     {
      "date": "2026-10-20",
      "note": "Kodiak's October 6th release puts its readiness measure for the Interstate 45 launch at 96% at the end of September, up from 93% a month earlier. The company still names the end of 2026 for an empty cab and gives no firmer date."
+    },
+    {
+     "date": "2026-10-23",
+     "note": "Kodiak still names Interstate 45 from Dallas to Houston as its first driverless lane and still gives the end of 2026 for an empty cab, with no firmer date.",
+     "checked": true
     }
    ]
   },
@@ -34935,9 +34999,14 @@
      "date": "2026-10-20",
      "note": "Kodiak and Charger USA's Dallas to Laredo trucks still run with a safety driver aboard, as the October 8th release says. No date for a driverless run on that lane has been named.",
      "checked": true
+    },
+    {
+     "date": "2026-10-23",
+     "note": "The Dallas to Laredo trucks still carry a safety driver, as Kodiak's October 8th release says, and no driverless date for that lane has been named.",
+     "checked": true
     }
    ],
-   "last_verified": "2026-10-20",
+   "last_verified": "2026-10-23",
    "id": "tx-2026-0209"
   },
   {
@@ -35764,7 +35833,7 @@
     }
    ],
    "id": "tx-2026-0216",
-   "last_verified": "2026-10-20",
+   "last_verified": "2026-10-23",
    "history": [
     {
      "date": "2026-10-16",
@@ -35773,6 +35842,11 @@
     {
      "date": "2026-10-20",
      "note": "Waymo's San Antonio service is still open to anyone with the app, the airport included. The recall record still lists its lasting remedy as under development.",
+     "checked": true
+    },
+    {
+     "date": "2026-10-23",
+     "note": "Waymo's San Antonio service is still open to anyone with the app. The airport is included. The recall record still lists the lasting fix as under development.",
      "checked": true
     }
    ]
@@ -35911,7 +35985,7 @@
     }
    ],
    "id": "tx-2026-0217",
-   "last_verified": "2026-10-20",
+   "last_verified": "2026-10-23",
    "history": [
     {
      "date": "2026-10-17",
@@ -35920,6 +35994,11 @@
     {
      "date": "2026-10-20",
      "note": "MD Anderson's October 13th release still frames the mucin finding as an idea for the lab to test, with no use in patient care reported.",
+     "checked": true
+    },
+    {
+     "date": "2026-10-23",
+     "note": "MD Anderson's release still treats the mucin barrier as an idea to test in the lab. No use in patient care is reported.",
      "checked": true
     }
    ]
@@ -36309,7 +36388,7 @@
     }
    ],
    "id": "tx-2026-0220",
-   "last_verified": "2026-10-22",
+   "last_verified": "2026-10-23",
    "history": [
     {
      "date": "2026-10-18",
@@ -36324,6 +36403,11 @@
     {
      "date": "2026-10-22",
      "note": "Checked and unchanged. Still pending, with no dated movement.",
+     "checked": true
+    },
+    {
+     "date": "2026-10-23",
+     "note": "San Antonio's two data center zoning cases are still set for the council vote on October 29th, after the October 20th hearing.",
      "checked": true
     }
    ]
@@ -36700,11 +36784,16 @@
    ],
    "notes_for_editor": "The 25 is an estimate with a 95 percent interval of 8.3 to 41.0, and associated is the authors' word. The cameras do record during surgery (c18), so never say they don't see the operation. Turnover falling is the hospital blog's claim and not a study finding (c24). Video and audio retention is the paper's account and the blog says no audio is captured, so attribute either one (c17). The 5417 is the suite's case count over the window, not cases the cameras watched (c5).",
    "id": "tx-2026-0222",
-   "last_verified": "2026-10-20",
+   "last_verified": "2026-10-23",
    "history": [
     {
      "date": "2026-10-20",
      "note": "Admitted on the published study and the hospital's own account of it. Neither says how widely the cameras have spread since the study period, which ended in September 2023."
+    },
+    {
+     "date": "2026-10-23",
+     "note": "The study still ties the cameras to more cases a month and still says it can't show they caused the rise.",
+     "checked": true
     }
    ]
   },
@@ -36962,10 +37051,15 @@
     {
      "date": "2026-10-20",
      "note": "Admitted on the university's release, which gives no budget and no date for the remaining hires."
+    },
+    {
+     "date": "2026-10-23",
+     "note": "Rice's release still sets out 40 more AI faculty hires toward 75 this decade and lab space at The Arc. It still names no budget and no date for the remaining hires.",
+     "checked": true
     }
    ],
    "id": "tx-2026-0224",
-   "last_verified": "2026-10-20"
+   "last_verified": "2026-10-23"
   },
   {
    "title": "Lockheed Martin brings Hadrian's 24 machine automated machining cell into its Grand Prairie missile parts plant",
