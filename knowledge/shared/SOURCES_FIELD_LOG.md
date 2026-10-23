@@ -2278,3 +2278,26 @@ c5 to c64. The HTML full text carries the tables, so the dose response rows were
 c73. **Its own dates disagree with the paper**: the release dates the posts to 2010 where the paper says its dataset
 was collected in 2023 (c17), and the release's junk definition counts likes, retweets or replies where the paper's
 counts quotes as well (c19, c20). The deck and the record follow the paper.
+
+## October 23rd, 2026
+
+**www.uta.edu, news.unt.edu and engineering.unt.edu failed TLS verification through the container's proxy for a
+second day** (`self-signed certificate in certificate chain`), so tx-2026-0133, 0161, 0165 and 0173 carry another
+unconfirmed line. They reach the six day re-verify limit on October 24th if the hosts stay unreachable from here.
+
+**www.mylubbock.us and keranews.org answered 403** to the project's reader, so tx-2026-0138 and tx-2026-0062 were not
+stamped today.
+
+**www.faa.gov answered 403 to the project's agent again.** Its robots.txt permits `/uas/`, and a browser agent read the
+review page and the draft assessment for tx-2026-0186 with every quote found.
+
+**www3.tceq.texas.gov's robots.txt refuses the project's reader**, so TCEQ's own page on the STEERS change was not
+read and that lead was held.
+
+**www.nature.com answered with a client challenge** rather than the npj Digital Medicine article, so the published
+paper behind tx-2026-0228 was not read. The deck and the record rest on UT Southwestern's release and the authors'
+preprint, and say which is which.
+
+**www.utsouthwestern.edu answered 200** on the October 20th release, the source of c1 to c25. **www.researchsquare.com
+answered 200** on preprint rs-9249025 v1, both the abstract page (c26) and the PDF full text (c27 to c41). The
+preprint tested two models where the release describes three, so no preprint figure stands in for a published one.

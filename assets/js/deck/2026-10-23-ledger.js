@@ -126,7 +126,7 @@
    * clearcoat gives its raised edge a glint (no. 41 read a strong emissive as pink) */
   N.tapeMat = function (THREE) {
     if (N._tape) return N._tape;
-    N._tape = new THREE.MeshPhysicalMaterial({ color: 0x9c4a34, roughness: 0.36, metalness: 0, clearcoat: 0.8, clearcoatRoughness: 0.12,
+    N._tape = new THREE.MeshPhysicalMaterial({ color: 0x9c4a34, roughness: 0.36, metalness: 0, clearcoat: 1.0, clearcoatRoughness: 0.07,
       emissive: N.ACCENT, emissiveIntensity: 0.12, side: THREE.DoubleSide });
     return N._tape;
   };
@@ -152,7 +152,7 @@
     var S = 512, c = document.createElement("canvas"), b = document.createElement("canvas");
     c.width = c.height = b.width = b.height = S;
     var x = c.getContext("2d"), y = b.getContext("2d"), rnd = lcg(5501);
-    x.fillStyle = "#2a2b2f"; x.fillRect(0, 0, S, S); y.fillStyle = "#808080"; y.fillRect(0, 0, S, S);
+    x.fillStyle = "#4a4740"; x.fillRect(0, 0, S, S); y.fillStyle = "#808080"; y.fillRect(0, 0, S, S);
     for (var k = 0; k < 40; k++) {
       var gx = rnd() * S, gy = rnd() * S, gr = 30 + rnd() * 140, gg = x.createRadialGradient(gx, gy, 0, gx, gy, gr);
       gg.addColorStop(0, rnd() < 0.5 ? "rgba(10,10,12,0.35)" : "rgba(70,70,76,0.18)"); gg.addColorStop(1, "rgba(0,0,0,0)");
@@ -270,9 +270,9 @@
         if (o.flag != null) {
           /* an ember flag folded over the card's top edge, standing above it, at `flag` of the width from the left */
           var fx = -w / 2 + 0.02 + (w - 0.04) * o.flag, fm = N.tapeMat(THREE);
-          [-1, 1].forEach(function (sd) { var leg = TXT.roundedBox(0.016, 0.022, 0.0006, 0.0002, fm); leg.position.set(fx, h - 0.004, sd * (t / 2 + 0.0004)); leg.castShadow = true; g.add(leg); });
-          var cap = TXT.roundedBox(0.016, 0.0008, t + 0.0016, 0.0003, fm); cap.position.set(fx, h + 0.0072, 0); g.add(cap);
-          var up = TXT.roundedBox(0.016, 0.009, 0.0007, 0.0002, fm); up.position.set(fx, h + 0.003, 0); g.add(up);
+          [-1, 1].forEach(function (sd) { var leg = TXT.roundedBox(0.022, 0.03, 0.0006, 0.0002, fm); leg.position.set(fx, h - 0.004, sd * (t / 2 + 0.0004)); leg.castShadow = true; g.add(leg); });
+          var cap = TXT.roundedBox(0.022, 0.0008, t + 0.0016, 0.0003, fm); cap.position.set(fx, h + 0.0112, 0); g.add(cap);
+          var up = TXT.roundedBox(0.022, 0.016, 0.0007, 0.0002, fm); up.position.set(fx, h + 0.004, 0); g.add(up);
         }
         g.userData.keepOrigin = true; g.userData.w = w; g.userData.h = h;
         return g;
@@ -356,6 +356,8 @@
         [[false, -0.006, 0], [true, 0.004, 1]].forEach(function (c) {
           var card = K.make("record_card", { notch: c[0] });
           card.rotation.x = -Math.PI / 2; card.position.set(c[1], hgt + 0.0008 + c[2] * 0.0008, d / 2 + o.slide * (c[2] ? 1 : 0.55)); card.rotation.z = (c[2] ? 0.04 : -0.03);
+          /* the notched card swung end for end and twelve degrees off the stack, so its clipped corner faces the camera */
+          if (c[0]) { card.rotation.z = Math.PI + 0.21; card.position.z -= 0.203 * Math.cos(0.21); card.position.x -= 0.203 * Math.sin(0.21) * 0.5; }
           g.add(card);
         });
         g.userData.keepOrigin = true; g.userData.top = hgt;

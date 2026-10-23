@@ -1,5 +1,5 @@
 # Storyboard, 2026-10-23
-# "One added line moved the sicker patient back"
+# "One added line moved the higher risk patient back"
 
 ## The story, and what the fact check did to it
 
@@ -93,11 +93,11 @@ ledge #24262B with laminations, Blackland Prairie clay ground #17130F, the near 
 | 02 | WIDE, eye 0.40 m above the ledge, 1.5 m off, three quarter from the right, fov 30 | two stacks of the deck's card on the ledge, each a block of instanced card edges with a slight lean and a top pair slid forward to show one notched card and one plain card, contact at each foot, the key on the stack edges |
 | 03 | MEDIUM, eye 0.30 m above the ledge, 1.0 m off, a front three quarter from the right, fov 28 | three graphite steel stepped two slot sorting trays in a row, each holding a matched pair with the notched card in the front slot, the trays' folded edges catching the key, contact and grit at every foot |
 | 04 | MACRO, an orthographic relief of one card propped toward the key | the bone record card, card stock with tooth and debossed ruled lines lit along their edges by the key, a raised ember tape strip laid over one line with its near corner lifted, a steel prop rod casting to the left, the shale falling to black outside the pool |
-| 05 | CLOSE, eye 0.62 m above the ledge, 1.3 m off, a raised view from the front, fov 26 | seventeen closed white vinyl wristbands standing on edge in three rows of six, six and five on the ledge, each loop with a nickel snap and a small ember tab, each casting its own shadow to the left on the lit shale, dark gaps between them |
+| 05 | MEDIUM, eye 0.30 m above the ledge, 1.1 m off, a low view from the front, fov 24 | seventeen closed white vinyl wristbands standing on edge in three rows of six, six and five on the ledge, each loop with a nickel snap and no accent, each casting its own shadow to the left on the lit shale, dark gaps between them |
 | 06 | MEDIUM, frame 3's camera exactly | the same three sorting trays, the middle tray's notched card now in the back slot with its ember tape and the plain card in front, contact and grit at every foot, the tape the one warm thing |
-| 07 | CLOSE, eye 0.22 m above the drawer, 0.53 m off, a low three quarter over the drawer front, fov 30 | a graphite steel index card drawer on the ledge, a rod through 100 upright cards as instanced card stock, a tabbed divider near the back, ten notched cards behind it each carrying an ember flag folded over its top edge, the drawer seated on the lit shale with contact |
+| 07 | CLOSE, eye 0.28 m above the drawer, 0.8 m off, a low three quarter over the drawer front, fov 30 | a graphite steel index card drawer on the ledge, a rod through 100 upright cards as instanced card stock, a tabbed divider near the back, ten notched cards behind it each carrying an ember flag folded over its top edge, the drawer seated on the lit shale with contact |
 | 08 | MACRO, an orthographic relief of one card | a TXBENCH relief of a bone card carrying ten laid strips at small angles, two in ember vinyl and eight in bone, each with height and a cast to the left and a curled right end |
-| 09 | MEDIUM, eye 0.30 m above the ledge, 1.0 m off, a raised three quarter from the right, further back than the cover | the cover's holder and two bone cards, card stock lit by the key with contact at the holder's feet on the lit shale, the ember tape across the notched card stuck along its left two thirds and its right third curled off the card toward the camera, with its cast on the card |
+| 09 | CLOSE, eye 0.21 m above the ledge, 0.7 m off, a three quarter from the right closer than the cover, the left card cropped | the cover's holder and two bone cards, card stock lit by the key with contact at the holder's feet on the lit shale, the ember tape across the notched card stuck across most of its width and its free end curling off past the card's right edge over the dark ledge, with its cast on the card |
 
 Showstopper frame: 01, two bone cards standing in one pool of last light on near black shale, the ember tape's raised edge the brightest line and the dark sky above them
 Tonal arc: the two lit cards of 1 in a dark field, the darker stacks of 2, one pool on the trays of 3, the brightest frame at the card face of 4, the row of bands on 5, the darkest at the turn on 6 with only the tape warm, the drawer of 7, the strips of 8 and the close of 9 back to one pool
@@ -145,7 +145,7 @@ art:
     Frame median L* planned at 12.
 
 type:
-  hook: "One added line moved the sicker patient back"
+  hook: "One added line moved the higher risk patient back"
   dek: "UT Southwestern researchers asked AI models which of two matched emergency patients to see first. A single added detail sometimes shifted a model away from the patient who later deteriorated. The cards are drawn to illustrate."
   labels: []
 
@@ -168,8 +168,8 @@ slide: 2
 layout: DIAGRAM
 primary_image:
   subject: "two stacks of the deck's record card on the shale ledge, one per emergency department, each with its top pair slid forward"
-  rect: [0, 800, 1080, 500]
-  bleeds: [left, right]
+  rect: [30, 760, 1000, 450]
+  bleeds: []
 accent: none
 job: >
   Say where the records came from and how they were matched, two departments outside Texas and patients paired by severity.
@@ -207,7 +207,7 @@ art:
     Frame median L* planned at 14.
 
 type:
-  hook: "Two emergency departments, matched pairs"
+  hook: "Two emergency departments, paired patients"
   dek: "The records came from Stanford Medicine in California and Beth Israel Deaconess Medical Center in Massachusetts, not a Texas hospital. Each patient was paired with one of similar starting severity."
   labels: ["Stanford Medicine", "Beth Israel Deaconess"]
 
@@ -235,7 +235,7 @@ accent: none
 job: >
   Show the baseline, every model putting the patient who later deteriorated in front before any line was added.
 
-claims: [c9, c13]
+claims: [c9, c10, c13]
 numerals: []
 
 data_in_art:
@@ -268,8 +268,8 @@ art:
     Frame median L* planned at 13.
 
 type:
-  hook: "First, three models mostly got it right"
-  dek: "With no social or stigmatizing detail in the record, all three open source models picked the higher risk patient at rates well above chance. Each tray stands for one model."
+  hook: "First, all three models beat chance"
+  dek: "With no social or stigmatizing detail in the record, all three open source models picked the higher risk patient at rates well above chance. Each tray stands for one model, and the notched card is the patient who later deteriorated."
   labels: []
 
 verbatim: []
@@ -308,11 +308,11 @@ composition:
   structure: >
     The card fills the lower 55 percent, cropped off the right and bottom edges, its ruled lines running across it.
     The ember tape lies across the middle line with its near left corner lifted, and the neutral wording shows in DOM
-    type just above the tape as the line it covered. The prop rod's cast runs left.
+    type on the ruled line above the tape, and the stigmatizing wording is set on the tape itself.
   bands: >
     Top third, the dark ground with the hook and the dek. Middle third, the card's top edge, the neutral line in type
     and the tape with its lifted corner. Bottom third, the debossed ruled lines lit along their edges and the card's
-    stock texture with the prop rod's cast to the left.
+    stock texture under the key.
   focal: "the ember tape and its lifted corner, the brightest area"
 
 art:
@@ -324,7 +324,7 @@ art:
     casts. Frame median L* planned at 20.
 
 type:
-  hook: "Same patient, different words"
+  hook: "Neutral words against stigmatizing ones"
   dek: "One wording pair in the study set a neutral description against a stigmatizing one. The tape here carries the second, laid over the first."
   labels: ["established patient with multiple chronic conditions", "17 visits in the past 12 months"]
 
@@ -351,12 +351,12 @@ layout: GRID
 primary_image:
   subject: "seventeen closed white vinyl wristbands standing on edge in three rows of six, six and five on the shale ledge"
   rect: [0, 790, 1080, 440]
-  bleeds: [left]
+  bleeds: [left, right]
 accent: "#BD452C"
 job: >
   Make the stigmatizing line physical, seventeen visits a reader can count.
 
-claims: [c16, c19]
+claims: [c19]
 numerals:
   - value_from: c19
 
@@ -389,8 +389,8 @@ art:
     Lightest are the loop rims in the key. Darkest are the gaps between loops and the sky. Frame median L* planned at 15.
 
 type:
-  hook: "17 visits, one line on a chart"
-  dek: "The stigmatizing line counted 17 visits in the past 12 months. Records describing frequent emergency visits gave some of the strongest effects. One band stands for one visit."
+  hook: "17 visits, one line on a record"
+  dek: "The stigmatizing line counted 17 visits in the past 12 months. One wristband stands for one visit."
   labels: []
 
 verbatim: []
@@ -417,7 +417,7 @@ accent: "#BD452C"
 job: >
   Show the turn, the one card that moved back once the line was added, from the camera the reader already knows.
 
-claims: [c8, c14, c21]
+claims: [c8, c13, c14, c21]
 numerals: []
 
 data_in_art:
@@ -450,8 +450,8 @@ art:
     Frame median L* planned at 12.
 
 type:
-  hook: "Then the sicker patient sometimes went second"
-  dek: "A single added detail sometimes shifted a model's priority away from the patient who later deteriorated, the senior author says. The bias varied by model. One tray shows the move."
+  hook: "Then the higher risk patient sometimes went second"
+  dek: "A single added detail sometimes shifted a model's priority away from the patient who later deteriorated, the senior author says. The bias varied by model. One tray shows the taped card moved to the back."
   labels: []
 
 verbatim: []
@@ -513,7 +513,7 @@ art:
 
 type:
   hook: "Nearly 10% moved back"
-  dek: "In some instances nearly 10% of patients were incorrectly downgraded once stigmatizing information was added. The drawer holds 100 cards, and the flagged ones behind the divider are the share."
+  dek: "Nearly 10% of patients were incorrectly downgraded once stigmatizing information was added. The drawer holds 100 cards in blocks of ten, and the flagged block stands for the share."
   labels: ["nearly 10 in 100"]
 
 verbatim: []
@@ -572,8 +572,8 @@ art:
     Frame median L* planned at 22.
 
 type:
-  hook: "Visits and psychiatric history moved it most"
-  dek: "The study names frequent emergency use and past psychiatric emergencies among the strongest effects. The authors' May preprint, an earlier version, tested 10 added lines and found no harmful shift from race, language or insurance."
+  hook: "Visits and psychiatric history stood out"
+  dek: "The release names frequent emergency use and past psychiatric emergencies among the strongest effects. The authors' unreviewed May preprint tested 10 added lines and found no harmful shift from race, language or insurance."
   labels: ["frequent emergency visits", "psychiatric emergencies"]
 
 verbatim: []
@@ -593,14 +593,14 @@ risks:
 slide: 9
 layout: FULL_BLEED
 primary_image:
-  subject: "the cover's holder and two cards, the ember tape on the notched card with its right third curled off toward the camera"
+  subject: "the cover's holder and two cards, the ember tape on the notched card with its free end curling off past the card's right edge"
   rect: [100, 595, 815, 605]
   bleeds: []
 accent: "#BD452C"
 job: >
   Close on the consequence, how the record is written changes the answer, and the authors' ask before any hospital uses one.
 
-claims: [c11, c21, c22, c23]
+claims: [c1, c4, c21, c23]
 numerals: []
 
 depth:
@@ -611,9 +611,9 @@ depth:
 
 composition:
   structure: >
-    The camera stands further back than the cover's, the holder centred with both cards and the notched corner in
-    frame. The tape lies across the notched card where the cover laid it, stuck along its left two thirds, its right
-    third curled off the card toward the camera, so the line beneath it starts to show. The ledge bleeds off three edges and the dark sky holds the type.
+    The camera stands closer than the cover's, on the notched card with the left card cropped and the notched corner in
+    frame. The tape lies across the notched card where the cover laid it, stuck along its left half, its right
+    end curling off past the card's right edge over the dark ledge, so the lift reads in profile. The ledge bleeds off three edges and the dark sky holds the type.
   bands: >
     Top third, the dark sky with the hook and the dek. Middle third, the two cards in the holder and the tape with its
     lifted curl and its cast on the card. Bottom third, the holder's base and feet on the ledge's lit top with the casts to the
@@ -630,7 +630,7 @@ art:
 
 type:
   hook: "Test each tool on real outcomes first"
-  dek: "Bias varies by model, so each AI tool should be tested against real patient outcomes before use, the first author says. The release names no Texas hospital using them."
+  dek: "Bias varies by model, so each AI tool should be tested on real patient outcomes before use, the first author says. UT Southwestern's October 20th release names no Texas hospital using these models for triage."
   labels: []
 
 verbatim: []

@@ -9,8 +9,8 @@
 <body>
 <canvas id="art" width="2160" height="2700"></canvas>
 <div class="tx-site" id="site" style="font-size:24px">texasaidocket.com</div>
-<h1 class="hook" id="hook" style="line-height:1.05">Then the sicker patient sometimes went second</h1>
-<p class="dek" data-follow="24">A single added detail sometimes shifted a model's priority away from the patient who later deteriorated, the senior author says. The bias varied by model. One tray shows the&nbsp;move.</p>
+<h1 class="hook" id="hook" style="line-height:1.05">Then the higher risk patient sometimes went second</h1>
+<p class="dek" data-follow="24">A single added detail sometimes shifted a model's priority away from the patient who later deteriorated, the senior author says. The bias varied by model. One tray shows the taped card moved to the&nbsp;back.</p>
 <script>window.FIG = {"visits": 17, "months": 12, "downgraded_pct": 10, "downgraded_of_100": 10, "per_hundred": 100, "downgraded_one_in": 10, "models": 3, "departments": 2, "preprint_models": 2, "preprint_pairs_mimic": 999, "preprint_pairs_mcmed": 997, "preprint_pairs_total": 1996, "hours": 6, "conditions": 10, "psych_holds": 3, "preprint_psych_range": [2.9, 10.7], "preprint_freq_range": [2.9, 9.9]};</script>
 <script src="@@ASSETS@@/js/noise.js"></script>
 <script src="@@ASSETS@@/js/txtype.js"></script>
@@ -25,7 +25,7 @@ import { init } from '@@ASSETS@@/js/txthree.js';
 import { initKit } from '@@ASSETS@@/js/txkit.js';
 window.renderReady = (async () => {
   const TXT = init(THREE);
-  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "After the line", counter: "06 / 09", src: "c8 c14 c21", fit: { min: 76, max: 100, maxLines: 2 } });
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "After the line", counter: "06 / 09", src: "c8 c13 c14 c21", fit: { min: 76, max: 100, maxLines: 2 } });
   const R = CH.stage(TXT, gl, W, { fov: 28, near: 0.02, far: 3000, fog: W.fogDensity * 0.35 });
   const Y = CH.LEDGE_Y;
   const ledge = K.make('shale_ledge', { width: 2.4, height: Y, depth: 1.6 }); ledge.position.set(0, 0, -0.35); TXT.add(R, ledge);
@@ -33,23 +33,24 @@ window.renderReady = (async () => {
   const MODELS = FIG.models, MOVED = Math.floor(MODELS / 2);   /* the middle tray, chosen to illustrate; frame 3 has none moved */
   const trays = [];
   for (let k = 0; k < MODELS; k++) {
-    const t = K.make('sorting_tray', {}); t.position.set((k - (MODELS - 1) / 2) * 0.205, Y, -k * 0.05); t.rotation.y = 0.18; TXT.add(R, t); trays.push(t);
+    const t = K.make('sorting_tray', {}); t.position.set((k - (MODELS - 1) / 2) * 0.205 - 0.05, Y, -k * 0.05); t.rotation.y = 0.18; TXT.add(R, t); trays.push(t);
     const sl = t.userData.slots, moved = k === MOVED;
     const front = K.make('record_card', { notch: !moved, tape: false, seed: 10 + k });
     const back = K.make('record_card', { notch: moved, tape: moved, tapeAt: 0.86, seed: 20 + k });
+    if (moved) { const tm = CH.tapeMat(THREE); tm.color.setHex(0xc4502f); tm.emissiveIntensity = 0.3; }
     front.position.set(0.024, sl.front.y, sl.front.z); front.rotation.x = -0.14; t.add(front);
     back.position.set(-0.024, sl.back.y, sl.back.z); back.rotation.x = -0.14; t.add(back);
   }
   TXT.ground(R, { surface: 'dirt', size: 400, color: 0x17130f, seed: 23, tile: 3 });
-  const from = [0.64, Y + 0.34, 1.04];
+  const from = [0.60, Y + 0.38, 1.16];
   const look = CH.aim(THREE, R, TXT, from, [0, Y + 0.09, -0.06], 540, 1030, 28);
   TXT.frame(R, { fov: 28, from, look });
   TXT.sky(R);
   CH.warm(R, 0.22);
-  { const spec = CH.rigSpec(W, 1.4, 4096); TXT.deckRig(R, spec, CH.rigOpts([0, Y, -0.05], { distance: 8, shadowFar: 30, normalBias: 0.004 })); }
+  { const spec = CH.rigSpec(W, 1.4, 4096); spec.key = Object.assign({}, spec.key, { radius: 14 }); TXT.deckRig(R, spec, CH.rigOpts([0, Y, -0.05], { distance: 8, shadowFar: 30, normalBias: 0.004 })); }
   CH.unacne(R, 0.004);
   trays.forEach((t) => TXT.contact(R, t));
-  TXT.stage(R, trays, { behind: 0.6, depth: 1.6, poolInner: 0.45, poolOuter: 1.1 });
+  TXT.stage(R, trays[MOVED], { behind: 0.6, depth: 1.6, poolInner: 0.16, poolOuter: 0.42 });   /* the turn: only the moved tray stands in the light */
   TXT.weather(R, { grime: 0.15, height: 0.05, mottle: 0.25 });
   const cx = CH.develop(await TXT.snapshot(R), gl);
   CH.post(cx, { a: 0.45, veil: 0.2, footWash: 0.45 });

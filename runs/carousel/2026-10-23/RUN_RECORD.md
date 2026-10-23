@@ -70,3 +70,29 @@ result), Harris County's Flock vote (journalism only, Flock ran on October 1st),
 (journalism only). `texan_check` at selection: places Dallas, no body, no deadline, no next step, so the close carries
 the authors' own ask, test each tool against real patient outcomes before use. `health-and-education` is 7 of the 26
 decks in the window and the last deck was a paper, which the variety score will charge.
+
+## The deck
+
+- **Directors and plan.** Nine dossiers from Director B's record card spine with Director C's locked camera on 3 and
+  6, CRAFT PLAN, continuity MOTIF_EVOLUTION (the ember tape laid, moved, peeled), CAMERA_MOVE and VALUE_ARC, VALUE CUT
+  at frame 6. Counts from figures.json: two departments, three models, 17 wristbands for 17 visits, a drawer of 100
+  cards in ten blocks with one flagged, ten strips for the preprint's 10 conditions.
+- **The chassis** (`assets/js/deck/2026-10-23-ledger.js`) built the models the kit lacks: a record card (notch, tape,
+  peel, ruled, index, flag), a two slot holder, a stepped sorting tray, a vinyl wristband, a card stack, a card drawer
+  and a shale ledge. They go to the machine queue for the weekly lift.
+- **The audition** of 1, 7 and 9 was re-read after every repair batch and revised before each accept. The close's peel was the hard part: a tight roll
+  toward the lens read as a white block, a shallow peel toward the lens foreshortened to nothing and ribbed from its
+  segments, and it read only once one smooth bent strip curled off past the card's right edge in profile. The last
+  re-binding after the flow pass is in `art_preflight.json`.
+- **Pixel review** (two rounds on all nine, then one recheck of the frames the flow pass changed). Copy caught in
+  review: "sicker" on 1 and 6 (the claims say higher risk), slide 3's "mostly got it right" (c13 says above chance),
+  slide 7's unqualified "nearly 10%" (c15 says in some instances), slide 8's "the study names" (it is the release),
+  slide 9's "the first author says" without c4 on its strip, slide 5 restating slide 8's finding. All rewritten.
+  Art caught: a dark seam and prop rod on 4, frames 5 and 7 losing their sky, footers on the holder, the accent
+  missing on 6 and 8, labels struck by rules and smudged by footer halos on 4 and 8.
+- **One flow pass** predicted art 6.4, weakest 8, 5, 4, 7, 9, 2 and 3. Repaired one change each: 8 and 4 re-lit
+  through the relief's keyMask as a tight warm pool falling to black at the card's edges, bone card and strips; 5
+  without ember tabs (the accent was on seven frames, now six) and a lower closer camera; 7 a lower closer camera with
+  the flagged block near; 9 a closer three quarter on the notched card so it is no longer a re-shot of the cover; 2
+  the notched top card swung toward the camera; 3 and 6 a larger key for softer tray shadows; 6 the stage pool on the
+  moved tray only. Not done: the flow pass's layout break (card above the type on 4), which would rebuild the frame.

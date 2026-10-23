@@ -9,7 +9,7 @@
 <body>
 <canvas id="art" width="2160" height="2700"></canvas>
 <div class="tx-site" id="site" style="font-size:24px">texasaidocket.com</div>
-<h1 class="hook" id="hook" style="line-height:1.05">Two emergency departments, matched pairs</h1>
+<h1 class="hook" id="hook" style="line-height:1.05">Two emergency departments, paired patients</h1>
 <p class="dek" data-follow="24">The records came from Stanford Medicine in California and Beth Israel Deaconess Medical Center in Massachusetts, not a Texas hospital. Each patient was paired with one of similar starting&nbsp;severity.</p>
 <div class="lab" id="lA">Stanford Medicine</div>
 <div class="lab" id="lB">Beth Israel Deaconess</div>
@@ -35,12 +35,12 @@ window.renderReady = (async () => {
   /* THE FIGURE, from figures.json: departments, one stack per emergency department the release names */
   const DEPTS = FIG.departments, stacks = [];
   for (let k = 0; k < DEPTS; k++) {
-    const st = K.make('card_stack', { height: 0.11 + 0.012 * k, slide: 0.045, seed: k + 1 });
+    const st = K.make('card_stack', { height: 0.11 + 0.012 * k, slide: 0.07, seed: k + 1 });
     st.position.set((k - (DEPTS - 1) / 2) * 0.30, Y, -0.04 * k); st.rotation.y = 0.2 - 0.08 * k; TXT.add(R, st); stacks.push(st);
   }
   TXT.ground(R, { surface: 'dirt', size: 400, color: 0x17130f, seed: 23, tile: 3 });
-  const from = [0.50, Y + 0.40, 0.92];
-  const look = CH.aim(THREE, R, TXT, from, [0, Y + 0.08, 0], 540, 1010, 30);
+  const from = [0.46, Y + 0.44, 1.10];
+  const look = CH.aim(THREE, R, TXT, from, [0, Y + 0.08, 0], 540, 940, 30);
   TXT.frame(R, { fov: 30, from, look });
   TXT.sky(R);
   CH.warm(R, 0.22);

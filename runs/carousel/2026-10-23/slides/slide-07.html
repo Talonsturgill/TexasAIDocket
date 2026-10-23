@@ -9,8 +9,8 @@
 <body>
 <canvas id="art" width="2160" height="2700"></canvas>
 <div class="tx-site" id="site" style="font-size:24px">texasaidocket.com</div>
-<h1 class="hook" id="hook" style="line-height:1.05">Nearly 10% moved back</h1>
-<p class="dek" data-follow="24">In some instances nearly 10% of patients were incorrectly downgraded once stigmatizing information was added. The drawer holds 100 cards in blocks of ten, and the flagged block is the&nbsp;share.</p>
+<h1 class="hook" id="hook" style="line-height:1.05">In some instances, nearly 10% moved&nbsp;back</h1>
+<p class="dek" data-follow="24">Nearly 10% of patients were incorrectly downgraded once stigmatizing information was added. The drawer holds 100 cards in blocks of ten, and the flagged block stands for the&nbsp;share.</p>
 <div class="lab" id="lRank">nearly 10 in 100</div>
 <script>window.FIG = {"visits": 17, "months": 12, "downgraded_pct": 10, "downgraded_of_100": 10, "per_hundred": 100, "downgraded_one_in": 10, "models": 3, "departments": 2, "preprint_models": 2, "preprint_pairs_mimic": 999, "preprint_pairs_mcmed": 997, "preprint_pairs_total": 1996, "hours": 6, "conditions": 10, "psych_holds": 3, "preprint_psych_range": [2.9, 10.7], "preprint_freq_range": [2.9, 9.9]};</script>
 <script src="@@ASSETS@@/js/noise.js"></script>
@@ -38,16 +38,16 @@ window.renderReady = (async () => {
   drawer.position.set(0, Y, 0); drawer.rotation.y = Math.PI / 2 + 0.32; TXT.add(R, drawer);
   TXT.ground(R, { surface: 'dirt', size: 400, color: 0x17130f, seed: 23, tile: 3 });
   drawer.updateMatrixWorld(true);
-  const from = [-0.06, Y + 0.40, 0.90];
+  const from = [-0.10, Y + 0.28, 0.78];
   const target = drawer.localToWorld(new THREE.Vector3(0, 0.03, 0));
-  const look = CH.aim(THREE, R, TXT, from, [target.x, target.y, target.z], 600, 1030, 30);
+  const look = CH.aim(THREE, R, TXT, from, [target.x, target.y, target.z], 700, 1060, 30);
   TXT.frame(R, { fov: 30, from, look });
   TXT.sky(R);
   CH.warm(R, 0.22);
   { const spec = CH.rigSpec(W, 1.2, 4096); TXT.deckRig(R, spec, CH.rigOpts([0, Y, 0], { distance: 8, shadowFar: 30, normalBias: 0.003 })); }
   CH.unacne(R, 0.003);
   TXT.contact(R, drawer);
-  TXT.stage(R, drawer, { behind: 0.6, depth: 1.6, poolInner: 0.42, poolOuter: 1.0 });
+  TXT.stage(R, drawer, { behind: 0.6, depth: 1.6, poolInner: 0.6, poolOuter: 1.3 });
   TXT.weather(R, { grime: 0.15, height: 0.05, mottle: 0.25 });
   /* the label sits beside the leaning rank, at the rank's own top */
   const rankTop = drawer.localToWorld(new THREE.Vector3(0.0, 0.095, drawer.userData.lastBlockZ));
