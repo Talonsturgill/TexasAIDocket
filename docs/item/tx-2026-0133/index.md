@@ -36,6 +36,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-15 · The University of North Texas still lists its undergraduate AI degree.
 - 2026-10-18 · The University of North Texas still lists its undergraduate degree in artificial intelligence.
 - 2026-10-22 · The university's degree page did not answer today, so the undergraduate degree in artificial intelligence is unconfirmed since its last check.
+- 2026-10-23 · The university's degree page could not be reached today, so the undergraduate degree in artificial intelligence stays unconfirmed since October 18th.
 
 ## Evidence
 

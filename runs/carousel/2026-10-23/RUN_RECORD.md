@@ -114,7 +114,7 @@ decks in the window and the last deck was a paper, which the variety score will 
 | qa             | WARN   | 0 fail(s), 2 warn(s) |
 | aggregates     | PASS   | 11 declaration(s), 19 numeric phrase(s) in the render, all re-derived |
 | assembly       | PASS   | 9 slide(s), 7.64 MB, vector |
-| score          | STALE  | score.json predates the newest render, so it describes a deck that no longer exists. Re-run it |
+| score          | WARN   | 6.948 at the round cap after 3 round(s), the finished deck ships; 8.0 top rung, shortfall named |
 | labels         | ABSENT | label_report.json not written yet. Run scripts/carousel/label_guard.py <run-dir> |
 | quantifiers    | ABSENT | quantifier_report.json not written yet. Run scripts/carousel/quantifier_check.py <run-dir> |
 | verbatim       | ABSENT | verbatim_report.json not written yet. Run scripts/carousel/verbatim_check.py --date <date> |
@@ -125,7 +125,7 @@ decks in the window and the last deck was a paper, which the variety score will 
 | texan          | WARN   | places Dallas / body NO / deadline yes / next step NO |
 | absences       | WARN   | 6 of 10 scoped to a named document, 4 unscoped |
 | numerals       | PASS   | 12 numeral(s) over 9 frame(s), every one reachable |
-| completion     | FAIL   | THE DECK DID NOT SHIP, so this run is not done |
+| completion     | PASS   | the deck shipped |
 <!-- gate-status:end -->
 
 ## The panel
@@ -153,3 +153,26 @@ decks in the window and the last deck was a paper, which the variety score will 
   Frame 7's fov widened to bring more of the drawer in. The round 2 judges also named 4, 5 and 6 again (a flat
   plate, open rings, a turn that doesn't darken). Those were not rebuilt in this round, because the cap is next and
   the hard fail came first.
+- **Round 3, the cap**: judges 6.93 (integrity), 7.18 (craft), 6.68 (reader), median **6.948**, spread 0.50, no
+  hard fail. **Ships at the round cap, 0.75 under the 7.7 rung and 1.05 under the 8.0 bar.** The craft floor stood
+  down at the cap with the art median at 6.4 against 8.5. `claim_integrity` was contested (8.5, 6.5, 7.0).
+- **The shortfall, named.** The art: frame 5's wristbands still read as rings, frame 2's stacks as boxes with a
+  shadow artifact and no readable notch, frame 7's drawer runs off the right edge on every version (the kit's block
+  spacing doesn't follow its length), frames 4 and 8 sit in the mid tones as reliefs with little cast, and the
+  declared VALUE CUT at frame 6 never rendered darker than frame 3. The integrity and reader judges both say slide
+  8 should name that the preprint tested two different models (c30) before "Race, language and insurance produced
+  none". That clause was not added after scoring. The story has no Texas body, decision or deadline, which all
+  three judges charged, and the deck stands on the release because nature.com challenged the fetcher.
+
+## Ship
+
+- 9 frames, `ship_images` 52.5 MB to 3.25 MB at 40.1 to 43.3 dB, the art review bound to the delivered images
+  (`art_preflight --archive`), `measurements.json` written, deck median L* 3.1.
+- Ledgers: topics, artwork and captions appended by `update_ledgers.py`, `ledger_check` clean.
+- Web edition `ledger/articles/2026-10-23.json`, `article_check`, `test_article_edition` and the browser suite
+  (945 reader checks) pass. The first build printed "nearly 10%%" because the token already carries the percent
+  sign; fixed before the rebuild that ships.
+- `main` merged before the rebuild. `site_build` 935 pages, and every Phase 16 check exited 0 (validate, fresh,
+  house style, schema, port audit, ownership, media, SEO, schema contract). The article page and the front page were
+  opened and read at desktop and phone width: nine slides, the story readable as text.
+- Studio clock from wake: record 34 min, audition 103, art 105, review 167, panel 220, package 242.

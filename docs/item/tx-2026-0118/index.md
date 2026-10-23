@@ -1,16 +1,16 @@
 # Federal commodities regulator opens comment on trading derivatives whose underlying commodity is compute
 
-The Commodity Futures Trading Commission published a request for comment on August 21st, 2026 asking what a designated contract market should weigh before listing derivatives with compute as the underlier. The document ties the supply side of a compute price to the cost of deploying and operating data centers, and to the cost of chips and energy. Comments are open until October 20th, 2026. The notice names no state.
+The Commodity Futures Trading Commission published a request for comment on August 21st, 2026 asking what a designated contract market should weigh before listing derivatives with compute as the underlier. The document ties the supply side of a compute price to the cost of deploying and operating data centers, and to the cost of chips and energy. Comments closed on October 20th, 2026. The notice names no state.
 
 - Topic: defense-and-federal
 - Decided by: Commodity Futures Trading Commission (federal)
 - Where: Statewide
-- Status: open
+- Status: pending
 - Public access: Comment window open
 - Comment closes: 2026-10-20
 - Take part: https://www.govinfo.gov/content/pkg/FR-2026-08-21/html/2026-17163.htm
 
-- Last checked: 2026-10-20
+- Last checked: 2026-10-23
 
 ## Dates
 
@@ -40,6 +40,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-17 · The federal request for comment on compute derivatives is still taking comment, and its closing date of October 20th has not moved.
 - 2026-10-18 · The request for comment on compute derivatives is still open, and it still closes on October 20th.
 - 2026-10-20 · The request for comment on trading compute derivatives is open through its last day, October 20th, and the commission's notice still reads as published.
+- 2026-10-23 · The commission's notice still reads as published, and its comment window closed on October 20th. The record now waits on what the commission does with the answers.
 
 ## Evidence
 

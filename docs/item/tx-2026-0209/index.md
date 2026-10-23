@@ -12,7 +12,7 @@ Kodiak AI and Charger USA announced on October 8th that trucks running the Kodia
 - Public access: Write to the decider
 - Take part: https://www.txdmv.gov/about-us/txdmv-board-meetings
 
-- Last checked: 2026-10-20
+- Last checked: 2026-10-23
 
 ## Dates
 
@@ -26,6 +26,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-09 · Admitted to the record on Kodiak's own release announcing the Dallas to Laredo lane.
 - 2026-10-16 · Kodiak's own copy of its October 8th release still says the Dallas to Laredo trucks run with a safety driver behind the wheel. The driverless switch still waits on Kodiak finishing its safety case.
 - 2026-10-20 · Kodiak and Charger USA's Dallas to Laredo trucks still run with a safety driver aboard, as the October 8th release says. No date for a driverless run on that lane has been named.
+- 2026-10-23 · The Dallas to Laredo trucks still carry a safety driver, as Kodiak's October 8th release says, and no driverless date for that lane has been named.
 
 ## Evidence
 

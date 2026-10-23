@@ -33,6 +33,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-15 · UNT's gift and the college of artificial intelligence it names stand as announced.
 - 2026-10-18 · UNT's announcement still names the college of artificial intelligence and the gift behind it. One passage of it was not found as quoted, so that wording is unconfirmed.
 - 2026-10-22 · The university's release did not answer today, so the gift and what it funds are unconfirmed since their last check.
+- 2026-10-23 · The university's release could not be reached today, so the gift and the college it names stay unconfirmed since October 18th.
 
 ## Evidence
 

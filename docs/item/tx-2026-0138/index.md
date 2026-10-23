@@ -37,6 +37,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-14 · The public radio account still reads as cited, with the pause started and not yet declared. The city's own agenda record and the television station's report are unconfirmed, since the city's site refused the request and the station's site bars automated readers.
 - 2026-10-17 · Public radio's account still has Lubbock's pause started and not yet declared. The city's own agenda record and the television report are unconfirmed, since the city's site refused the request and the station bars automated readers.
 - 2026-10-20 · Public radio's account still reads as a pause Lubbock has begun and not yet declared, with hearings to come. The city's agenda record and the station report remain unconfirmed.
+- 2026-10-23 · Public radio's account and the city's agenda record are unconfirmed today, since the city's site refused the request. The record still holds Lubbock's pause as begun and not yet declared.
 
 ## Evidence
 
