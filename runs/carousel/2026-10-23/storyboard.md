@@ -533,7 +533,7 @@ risks:
 slide: 8
 layout: SPLIT_HORIZON
 primary_image:
-  subject: "one bone record card with its clipped corner, carrying ten laid strips, five in ember vinyl and five in bone, each standing proud with a cast"
+  subject: "one bone record card with its clipped corner, carrying ten laid strips, five in ember vinyl, three in bone and two dark, each standing proud with a cast"
   rect: [0, 720, 1080, 630]
   bleeds: [left, right, bottom]
 accent: "#BD452C"
@@ -546,7 +546,7 @@ numerals:
 
 data_in_art:
   figure: conditions
-  drives: the strip count on the card, one strip per condition the preprint tested, and harmful_lines (c42) sets how many are ember
+  drives: the strip count on the card, one strip per condition the preprint tested; harmful_lines (c42) sets how many are ember, cleared_lines (c38) how many are bone, and the unaccounted_lines no claim here describes are dark and unlabelled
 
 depth:
   projection: orthographic_relief
@@ -555,8 +555,8 @@ depth:
 composition:
   structure: >
     The card fills the lower half and bleeds off three edges. Ten strips lie across it at small angles, their right
-    ends curled. Five ember strips are spread down the card, and five DOM labels name them at their left ends in the
-    preprint's own words. The card's right edge and clipped corner are in frame. The split is the card's top edge against the dark ground above.
+    ends curled. Five ember strips are spread down the card, three bone strips are the lines the preprint clears, and two dark
+    strips no claim here describes stay unlabelled. DOM labels name the eight it describes in its own words. The card's right edge and clipped corner are in frame. The split is the card's top edge against the dark ground above.
   bands: >
     Top third, the dark ground with the hook and the dek. Middle third, the card's top edge, its clipped corner and the
     first strips with their labels. Bottom third, the last strips and labels, every strip lit along its edge with its cast to the left.
@@ -571,15 +571,15 @@ art:
     Frame median L* planned at 10.
 
 type:
-  hook: "In the preprint, five of 10 lines moved patients back"
-  dek: "In the authors' unreviewed May preprint, five of 10 added lines moved the patient who later deteriorated back. Race, language and insurance did not. The release names frequent emergency use and past psychiatric emergencies among the strongest effects."
-  labels: ["psychiatric history", "frequent ED use", "homelessness", "substance use", "altered age"]
+  hook: "Five lines stood out in the preprint"
+  dek: "In the authors' unreviewed May preprint, the most consistent harmful shifts came from five of 10 added lines. Race, language and insurance produced none. The release names frequent emergency use and past psychiatric emergencies among the strongest effects."
+  labels: ["psychiatric history", "frequent ED use", "homelessness", "substance use", "altered age", "race", "language", "insurance"]
 
 verbatim: []
 
 acceptance:
   - "ten strips lie on the card and each is countable at 432 px"
-  - "five strips are ember and five are bone"
+  - "five strips are ember, three are bone and two are dark and unlabelled"
   - "every strip stands proud of the card with a cast to the left"
   - "the card fills at least 40 percent of the frame area at full size"
   - "the frame's median L* at 432px is 30 or lower"

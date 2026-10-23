@@ -143,3 +143,13 @@ decks in the window and the last deck was a paper, which the variety score will 
   page, fetched again, carries the banner the PDF does not. Art: 7's drawer shifted and its grit thinned, 9 pulled
   back so the cards clear the dek, 4's card raised with its foot above the footer, 2's notched card laid square and
   grit on its ledge, 1's hook fitted to two lines.
+- **Round 2**: median 6.5, spread 0.31, under the 7.7 rung, and **one hard fail** from the integrity judge. Slide 8
+  said "five of 10 lines moved patients back" where c42 says only that those five gave the preprint's most
+  consistent harmful shifts, and its five plain strips told the reader the other five did nothing, where c38 clears
+  three. Two other judges named the same frame as a lead. Repaired for round 3: the hook reads "Five lines stood out
+  in the preprint", the dek quotes c42's terms, the three lines c38 clears are bone and labelled, and the two lines
+  no claim here describes are dark and unlabelled (`cleared_lines` and `unaccounted_lines` computed from c38, c34
+  and c42). The caption's first line reads "added one line" where it said "rewrote", which the reader judge caught.
+  Frame 7's fov widened to bring more of the drawer in. The round 2 judges also named 4, 5 and 6 again (a flat
+  plate, open rings, a turn that doesn't darken). Those were not rebuilt in this round, because the cap is next and
+  the hard fail came first.
