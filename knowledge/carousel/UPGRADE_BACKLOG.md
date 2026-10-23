@@ -6171,3 +6171,89 @@ kit materials item. No frontier scan: the time went to the proofs, read at full 
 **For the run, not this pass:** `python3 scripts/carousel/arsenal.py --check` reports ARSENAL.md
 stale from line 406, because today's chassis `assets/js/deck/2026-10-22-stair.js` is not yet in its
 list of earlier chassis. Nothing in this pass caused it; regenerate before the push.
+
+## 2026-10-23, the eleventh weekly machine pass. Two kit lifts, one tool and gate, four proposals
+
+Read from `out/2026-10-23/week_digest.md` (six shipped runs, October 17th to 23rd) and the queue.
+Due one day after the last pass because `article-token-drops-unit` reached repeat 2 with no. 58.
+`artwork_craft` had the lowest week mean (6.65) and was the lowest criterion on three decks;
+`variety` on three. "Primitive or low-poly model where a kit model belongs" was named on six decks
+in 16 rounds, "type sitting on or fighting the art" on six in 14, "value strobe or undeclared tonal
+cut" on six in 10, "largest object unmodelled" on five in 13. The account is in
+`ledger/carousel/upgrades.json` under `2026-10-23 weekly`; the pass is recorded in
+`config/carousel/machine_pass.json`. Proofs are in `out/2026-10-23/tmp/machine/` and die with the
+container.
+
+### 1. KIT LIFT: `patient_wristband` AT THE JUDGES' NAMED FIX (done, `assets/js/kit/interior.js`, 5a58238a)
+
+No. 58's round 3 ranked frame 5 the weakest frame on all three judge cards. The chassis band was an
+open `CylinderGeometry` pair, single sided, with no strap, label or closure, and every pixel round
+read it as an open C-ring or a napkin ring. The fixes, in substance: "a closed vinyl loop with real
+thickness and double-sided material, add a flat ID tab" (integrity), "a flat strap with a snap tab
+and an ember tab" resting on the ledge (craft), "a flat vinyl strap with a white label patch and a
+snap, not a ring" (reader). The kit model is a solid strap swept along the loop with all four faces
+wound outward, a raised label patch with a greeked barcode and name lines, the free end overlapping
+the band under a plastic snap and running on as a tail with adjustment holes, and an alert clip in
+`tab`. It lies on its side by default, the way a band rests, so a camera above sees a strap and a
+label rather than a bore; `pose: 'edge'` stands it on a flattened foot with the tail rising (a
+falling tail held the first proof's band off the ground). The strap is matte: a clearcoat mirrored
+the lastLight navy down every shaded face. Lifted under a NEW name because no. 58's `installKit`
+defines its own `wristband` unless the kit has `record_card`.
+
+### 2. KIT LIFT: `index_card_drawer`, THE PITCH DERIVED FROM THE LENGTH (done, same file, 8ed98838)
+
+Queue `card-drawer-spacing-ignores-length` and no. 58's second ranked frame in rounds 1 and 3.
+Replayed in the engine (`out/2026-10-23/tmp/machine/replay/`): the chassis `card_drawer` puts its
+cards from z -0.141 to 0.178 at every length, past both end walls at length 0.24 and 0.3. The kit
+model derives the pitch from the inside length, keeps every card inside at 0.24 to 0.46, and throws
+on a count that can't fit (1,200 cards in 0.12 m) rather than drawing through its walls. Guide cards
+now stand proud with stepped tabs, which is what makes blocks of ten read as blocks; a follower
+plate holds the last block; the front is a bevelled panel with a label holder and a cup pull, and
+`flagFront` puts the flagged block nearest the camera, which is the judges' composition. The rest
+of their fix (end wall to end wall, the front a thin lit lip) is the frame's camera.
+
+### 3. FIG LINES CARRY ONLY WHAT A SLIDE READS (done, `scripts/carousel/fig_inject.py`, `shipped_check` "fig lines", a8b1c940)
+
+Queue `make-slides-rewrites-every-frame` (nos. 45 and 58). Nos. 57 and 58 both read figures in
+frame code through one `window.FIG` line per slide, written by their own scripts as the whole of
+figures.json into every slide, so one added figure changed nine hashes, and no. 58 lost its bound
+three-frame art review twice. `fig_inject.py --run <dir>` writes each slide the figures its code
+reads, in figures.json's order, and writes a file only when its line changes; a name figures.json
+lacks fails, and a dynamic reader gets everything and is named. Its self-test replays the runs'
+whole-dict writer and goes red on it. Replayed on nos. 57 and 58: figure_bearing passes before and
+after. `gate_wiring` refused the tool while nothing ran it, so `shipped_check` holds every deck
+after October 23rd to it (CURRENT scope, older decks noted), with three self-test cases.
+
+### 4. PROPOSALS AND ESCALATIONS
+
+- **`article-token-drops-unit`, repeat 2 (nos. 45, 49, 58), for the RUN, not a maintainer.**
+  The 2026-10-12 escalation said `article_check.py` is not the upgrade lane, which is true and
+  incomplete: `scripts/site/**` is `daily` (ownership.yaml, narrowed 2026-08-30 so a routine fixes
+  its own breakage). `article_edition.py`'s number token already carries the quote's `%`
+  (`TOKEN`, the `number` branch's regex ends `%?`), so `{{number:c15}}%` prints "10%%". The check:
+  refuse a number token followed by `%` in the source, or `%%` after expansion, and a money token
+  whose quote carries "million" or "billion" the rendered figure dropped.
+- **Engine, `TXT.stage` keeps a key off part of the scene** (`assets/js/txthree.js`, human). Queue
+  `stage-pool-does-not-dim-neighbours`: no. 58 frame 6's declared VALUE CUT never rendered (canvas
+  mean 45.6 against frame 3's 44.3) and every round 2 and 3 judge charged it. Digest theme "value
+  strobe or undeclared tonal cut", six runs and 10 rounds. A `dim: [objects]` option, or a light
+  layer per subject, would let a frame darken its neighbours with the light rather than the grade.
+- **txbench relief casts too faint under a low deck key** (`assets/js/txbench.js`, human). Queue
+  `txbench-relief-cast-faint`: no. 58 frames 4 and 8 measured cast_fraction 0.016 and 0.025 and every
+  judge read them as flat plates or a bar chart.
+- **GATE_LESSONS entry** (`human`): "A writer whose output for one item depended on another. Two
+  runs wrote every computed figure into every slide, so a figure added for one frame changed nine
+  sources and discarded a review bound to their hashes. What to check instead: that each artifact
+  carries only what it reads, so an edit moves only what it means to. `fig_inject.py` and
+  shipped_check 'fig lines'."
+
+### Carried, with this week's counts
+
+"Type sitting on or fighting the art", six runs and 14 rounds, got no change for the reason the last
+two passes gave. `record_card`, `card_holder`, `sorting_tray`, `card_stack` and `shale_ledge` stay
+in no. 58's chassis; none was a ranked defect. No frontier scan: the time went to the proofs, read
+at full size.
+
+**For the run, not this pass:** `python3 scripts/carousel/shipped_check.py` is red on
+`2026-10-23 ledgers` before and after this pass (12 problems, first: topics.json's topic prose says
+'three' and the run computed [] for those counts). It is the run's ledger, not the machine.

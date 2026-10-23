@@ -1,0 +1,145 @@
+{
+ "date": "2026-10-23",
+ "_note": "Every count, span and multiple the deck states, with the claim it was quoted from or the code that computed it.",
+ "aggregates": [
+  {
+   "phrase": "two matched emergency patients",
+   "slide": "slide-01.html",
+   "kind": "count",
+   "value": 2,
+   "computed_by": "out/2026-10-23/compute.py, figures.json pair, the members of one of the pairs c12 says the study formed",
+   "note": "computed"
+  },
+  {
+   "phrase": "Two medical centers",
+   "slide": "slide-02.html",
+   "kind": "count",
+   "value": 2,
+   "computed_by": "out/2026-10-23/compute.py, len() of the medical centers named in c11's quote (Stanford Medicine, Beth Israel Deaconess Medical Center), figures.json departments",
+   "note": "computed"
+  },
+  {
+   "phrase": "three models",
+   "slide": "slide-03.html",
+   "kind": "count",
+   "value": 3,
+   "quoted_from": "c13",
+   "quote": "Before demographic, social, or potentially stigmatizing information was added, all three models identified higher-risk patients at rates well above chance.",
+   "note": "quoted; figures.json models"
+  },
+  {
+   "phrase": "three open source models",
+   "slide": "slide-03.html",
+   "kind": "count",
+   "value": 3,
+   "quoted_from": "c9",
+   "quote": "asked three open-source AI large language models (LLMs) to predict",
+   "note": "quoted; figures.json models"
+  },
+  {
+   "phrase": "12 months",
+   "slide": "slide-04.html",
+   "kind": "duration",
+   "value": 12,
+   "quoted_from": "c19",
+   "quote": "they compared neutral language and stigmatizing language: “established patient with multiple chronic conditions” vs. “17 visits in the past 12 months”",
+   "note": "quoted; figures.json months"
+  },
+  {
+   "phrase": "17 visits",
+   "slide": "slide-04.html",
+   "kind": "count",
+   "value": 17,
+   "quoted_from": "c19",
+   "quote": "they compared neutral language and stigmatizing language: “established patient with multiple chronic conditions” vs. “17 visits in the past 12 months”",
+   "note": "quoted; figures.json visits"
+  },
+  {
+   "phrase": "17 visits",
+   "slide": "slide-05.html",
+   "kind": "count",
+   "value": 17,
+   "quoted_from": "c19",
+   "quote": "they compared neutral language and stigmatizing language: “established patient with multiple chronic conditions” vs. “17 visits in the past 12 months”",
+   "note": "quoted; figures.json visits"
+  },
+  {
+   "phrase": "12 months",
+   "slide": "slide-05.html",
+   "kind": "duration",
+   "value": 12,
+   "quoted_from": "c19",
+   "quote": "they compared neutral language and stigmatizing language: “established patient with multiple chronic conditions” vs. “17 visits in the past 12 months”",
+   "note": "quoted; figures.json months"
+  },
+  {
+   "phrase": "100 cards",
+   "slide": "slide-07.html",
+   "kind": "count",
+   "value": 100,
+   "computed_by": "out/2026-10-23/compute.py, per_hundred in figures.json, a percent in c15 is a count per hundred so the drawer is built of this many cards",
+   "note": "computed"
+  },
+  {
+   "phrase": "three picked out higher-risk patients",
+   "slide": "caption.txt",
+   "kind": "count",
+   "value": 3,
+   "quoted_from": "c13",
+   "quote": "Before demographic, social, or potentially stigmatizing information was added, all three models identified higher-risk patients at rates well above chance.",
+   "note": "quoted; figures.json models"
+  },
+  {
+   "phrase": "12 months",
+   "slide": "caption.txt",
+   "kind": "duration",
+   "value": 12,
+   "quoted_from": "c19",
+   "quote": "they compared neutral language and stigmatizing language: “established patient with multiple chronic conditions” vs. “17 visits in the past 12 months”",
+   "note": "quoted; figures.json months"
+  },
+  {
+   "phrase": "17 visits",
+   "slide": "caption.txt",
+   "kind": "count",
+   "value": 17,
+   "quoted_from": "c19",
+   "quote": "they compared neutral language and stigmatizing language: “established patient with multiple chronic conditions” vs. “17 visits in the past 12 months”",
+   "note": "quoted; figures.json visits"
+  },
+  {
+   "phrase": "three models",
+   "slide": "caption.txt",
+   "kind": "count",
+   "value": 3,
+   "quoted_from": "c9",
+   "quote": "asked three open-source AI large language models (LLMs) to predict",
+   "note": "quoted; figures.json models"
+  },
+  {
+   "phrase": "five of 10",
+   "slide": "slide-08.html",
+   "kind": "ratio",
+   "value": 5,
+   "of": 10,
+   "computed_by": "out/2026-10-23/compute.py, figures.json harmful_lines over conditions: len() of the added lines c42's quote names as the preprint's most consistent harmful shifts, over the 10 conditions c34's quote says it tested",
+   "note": "computed"
+  },
+  {
+   "phrase": "two first party accounts",
+   "slide": "first_comment.txt",
+   "kind": "count",
+   "value": 2,
+   "computed_by": "scripts/carousel/sources_block.py --build, len() of the distinct primary_corporate documents the deck's printed claim ids resolve to in out/2026-10-23/claims.json (the UT Southwestern release and the preprint's full text), the preprint's abstract page counted apart by its source_noun",
+   "note": "computed"
+  },
+  {
+   "phrase": "Five lines",
+   "slide": "slide-08.html",
+   "kind": "count",
+   "value": 5,
+   "computed_by": "out/2026-10-23/compute.py, figures.json harmful_lines, len() of the added lines c42's quote names as the preprint's most consistent harmful shifts",
+   "note": "computed"
+  }
+ ]
+}

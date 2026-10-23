@@ -983,6 +983,34 @@ def g_value_register(d: Path):
     return probs
 
 
+FIG_SINCE = "2026-10-23"   # the newest deck shipped before fig_inject existed
+
+
+def g_fig_lines(d: Path):
+    """Each slide's `window.FIG` line carries the computed figures that slide reads, current.
+
+    Queue `make-slides-rewrites-every-frame` (weekly pass 2026-10-23): nos. 57 and 58 wrote the
+    whole of figures.json into every slide, so one added figure changed nine slides' hashes and threw
+    away a bound art review. `fig_inject.py --run <dir>` writes the right lines; this asks whether
+    they were written. A deck with no FIG line is not applicable. Decks on or before FIG_SINCE were
+    built by the runs' own whole-dict writers and are measured and noted, never failed.
+    """
+    import fig_inject as m
+    slides = sorted((d / "slides").glob("slide-*.html")) if (d / "slides").is_dir() else []
+    if not (d / "figures.json").exists() or not any(m.LINE.search(p.read_text(encoding="utf-8"))
+                                                    for p in slides):
+        # a string, not None: the deck reads no figure through a FIG line, which is a reason, and
+        # None would read as a loader that never ran in the reachability assertion below
+        return "this deck carries no window.FIG line, so no slide reads figures through one"
+    stale, problems, _ = m.run_dir(d, False)
+    probs = problems + [f"{n} carries a FIG line that is not what it reads from figures.json; "
+                        f"run python3 scripts/carousel/fig_inject.py --run <run dir>" for n in stale]
+    if probs and d.name <= FIG_SINCE:
+        return (f"built before fig_inject existed (through {FIG_SINCE}). Run into it anyway: "
+                f"{len(probs)} finding(s), first: {probs[0][:140]}")
+    return probs
+
+
 def g_art_preflight(d: Path):
     """A current deck includes the accepted three-frame review and its exact images."""
     import art_preflight
@@ -1276,6 +1304,7 @@ GATES = [
     ("print ban", g_print_ban, CURRENT),
     ("value register", g_value_register, CURRENT),
     ("art preflight", g_art_preflight, CURRENT),
+    ("fig lines", g_fig_lines, CURRENT),
     ("figure bearing", g_figure_bearing, CURRENT),
     ("depth floor", g_depth_floor, CURRENT),
     ("plan vs render", g_plan_render, CURRENT),
@@ -1655,6 +1684,26 @@ def self_test() -> int:
         ok("a claim citing the 2026-09-19 disallowed path is CAUGHT",
            probs and any("c1" in p for p in probs), str(probs))
         ok("...and the permitted claim beside it is not", probs and len(probs) == 1, str(probs))
+
+    # FIG LINES, 2026-10-23. Replays nos. 57 and 58: the whole of figures.json in every slide.
+    with _tempfile.TemporaryDirectory() as _t:
+        for _name in ("2026-10-24", "2026-10-22"):
+            _d = Path(_t) / _name
+            (_d / "slides").mkdir(parents=True)
+            (_d / "figures.json").write_text(_json.dumps({"visits": {"value": 17}, "months": {"value": 12}}))
+            for _n, _code in ((1, "draw(FIG.visits);"), (2, "draw(FIG.months);")):
+                (_d / "slides" / f"slide-0{_n}.html").write_text(
+                    '<script>window.FIG = {"visits": 17, "months": 12};</script>\n'
+                    f'<script type="module">{_code}</script>\n', encoding="utf-8")
+        _new, _old = Path(_t) / "2026-10-24", Path(_t) / "2026-10-22"
+        _p = g_fig_lines(_new)
+        ok("a deck after FIG_SINCE with the whole of figures.json in every slide is CAUGHT",
+           isinstance(_p, list) and len(_p) == 2, str(_p))
+        ok("...the same deck on or before FIG_SINCE is noted, never failed",
+           isinstance(g_fig_lines(_old), str), str(g_fig_lines(_old)))
+        import fig_inject as _fi
+        _fi.run_dir(_new, True)
+        ok("...and after fig_inject writes it the deck is clean", g_fig_lines(_new) == [], str(g_fig_lines(_new)))
 
     ok("the first new daily deck needs a three-frame review",
        bool(g_art_preflight(Path("2026-10-08"))), str(g_art_preflight(Path("2026-10-08"))))

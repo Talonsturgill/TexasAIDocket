@@ -3586,6 +3586,72 @@
     "hex": "#08060F",
     "note": "The lastLight world's dark field around the stage."
    }
+  },
+  {
+   "date": "2026-10-23",
+   "carousel_no": 58,
+   "written_from": "deck_coherence's median L* per frame at 432 px off the final renders, layout_check's accent share, by runs/carousel/2026-10-23/update_ledgers.py.",
+   "register": "SPATIAL SCENES in TXT's lastLight world, staged, with two material reliefs. Chassis assets/js/deck/2026-10-23-ledger.js: key az 62 el 14, chassis models record_card, card_holder, sorting_tray, wristband, card_stack, card_drawer and shale_ledge, ruled bone card stock, an ember clearcoat vinyl tape, graphite steel, Eagle Ford shale.",
+   "structural_laws": [
+    "A PEEL TOWARD THE LENS FORESHORTENS TO NOTHING. The close's lift only read once it curled out past the card's edge in profile over the dark ledge.",
+    "A CURL BUILT OF SEGMENTS RIBS. Rounded boxes along an arc showed a seam per segment; one box bent vertex by vertex shaded smooth.",
+    "A DARK SHALE SWALLOWS THE POOL. At #2a2b2f the ledge read black under the key; lifting the albedo let the contact and casts show.",
+    "A KNOCK BEHIND TYPE ON A PALE RELIEF IS A SMUDGE. The footer's dark halo over a light card read as a stain; the type sat cleaner on the foot wash alone.",
+    "A RELIEF ACCENT NEEDS ITS ALBEDO NEAR THE SRGB TARGET'S LINEAR VALUE, or the grade and the ambient grey it into brick."
+   ],
+   "techniques": [
+    "two bone cards in a graphite holder, the ember tape on the notched one, raking key",
+    "two card stacks on the ledge with leaders to the two department names",
+    "three steel sorting trays, the notched card in each front slot, one locked camera",
+    "a material relief of the card, the neutral line in ink above the tape's stigmatizing line",
+    "seventeen wristbands in three rows on the shale, ember tabs",
+    "the same three trays, the middle tray's taped card moved to the back slot",
+    "a long drawer of 100 index cards in ten blocks, the flagged block at the end",
+    "a relief of ten equal strips on a card, two in ember and named",
+    "the cover's pair again, the tape peeling off the notched card past its edge"
+   ],
+   "value": {
+    "per_frame_median_L": [
+     3.2,
+     2.8,
+     3.1,
+     5.6,
+     3.0,
+     3.1,
+     3.4,
+     8.3,
+     3.9
+    ],
+    "deck_median_L": 3.2,
+    "max_adjacent_delta": 4.9,
+    "mean_adjacent_delta": 1.94,
+    "note": "Measured by deck_coherence's median_lstar at 432 px off the final renders. A staged lastLight deck."
+   },
+   "accent": {
+    "hex": "#BD452C",
+    "name": "ember tape",
+    "frames_above_floor": [
+     1,
+     8,
+     9
+    ],
+    "share": [
+     0.0055,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0003,
+     0.0,
+     0.026,
+     0.0069
+    ],
+    "note": "The vinyl tape that stands for the added stigmatizing line."
+   },
+   "ground": {
+    "hex": "#07070C",
+    "note": "The lastLight world's dark field around the stage."
+   }
   }
  ]
 }

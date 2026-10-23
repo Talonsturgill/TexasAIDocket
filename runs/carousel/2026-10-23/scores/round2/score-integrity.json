@@ -1,0 +1,95 @@
+{
+ "lens": "integrity",
+ "round": 2,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.0,
+   "why": "The staged lastLight world holds. Slides 1, 7 and 9 measure median L* 2.9, 3.4 and 3.2 (art_preflight), the key comes from the right on every spatial frame and the casts run left. Slide 1's notched card with its raised ember strip reads before any words. Several frames still lean on primitive models, though. Slide 2's two stacks are tan blocks with stair-stepped silhouettes, black wedge artifacts at the left stack's right edge and a top sheet floating over a dark gap on the right stack. The planned notched and plain top pair can't be read. Slides 3 and 6 are flat bone planes with printed grey bars in plain boxy trays, and the cards fill the frame in the bone mid tone. Slide 5's seventeen 'wristbands' read as open C-rings or cuffs, not hospital bands, and the ember tabs the storyboard's continuity line promises are missing. Slide 7's drawer front is a broad flat brown slab lit only on its lip. The right end still runs off the frame, which the art review called a defect on the third render and which was not repaired. Slide 8 reads as a striped bar chart, with labels floating in a dead zone left of the strips. That is the 'no real chart' look the storyboard's own law refuses. The art review's footer repairs were never applied: the footer type still sits on the holder plates on slides 1 and 9. This is more than the one weak frame the 7 descriptor allows."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.0,
+   "why": "This is one deck. There is one card at one size, one ember accent that means only the added line, one shale ledge and one key from the right. Two continuity devices really work: the locked camera on 3 and 6, where the notched card moves to the back slot of the middle tray, and the tape motif changing state from the cover (laid) to slide 9 (curling off). The two reliefs, 4 and 8, sit outside the world. Each is a flat card on a black field with no ledge, and they are the brightest mid-tone frames, so the track lifts at 4 and 8 between dark spatial frames. The storyboard declares slide 6 the darkest frame at the turn, but slide 6 renders essentially at slide 3's value. The declared value cut is not in the pixels."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 5.5,
+   "why": "Most of the deck is clean and carefully hedged. Every slide string traces to c1 to c42. The '17 visits in the past 12 months' and 'nearly 10%' figures are verbatim (c19, c15). Slide 7 says 'In some instances' as the release does. The model names are honestly withheld on slide 9 and in the caption ('The release names none of the three models'). The preprint is labelled unreviewed (c26), and the absence claims on 6 and 9 are scoped to 'the release'. Every printed claim id resolves in first_comment.txt. Slide 8 stretches its source, though. The headline 'In the preprint, five of 10 lines moved patients back' and the dek 'five of 10 added lines moved the patient who later deteriorated back' rest on c42, which says only that 'the most consistent harmful shifts occurred when' those five lines were added. The run's own aggregates.json basis says 'the added lines c42's quote names as the preprint's most consistent harmful shifts', and the web edition (ledger/articles/2026-10-23.json) correctly writes 'Its most consistent harmful shifts came...'. The slide drops the qualifier and turns it into an exhaustive partition. The relief then draws the other five strips in plain bone as non-movers. c38 verifies that only three of those five (race, language, insurance) produced no harmful shifts. The remaining two are asserted by the picture and the 'of 10' with no claim behind them. The same frame lists 'altered age' among lines that moved patients back and leaves out the release's own caveat (c18) that age effects likely reflect real medical risk. It also leaves out c17's note that substance use responses were not what researchers expected. A smaller point: slide 6 draws exactly one of the three models shifting. The dek discloses that the count is unknown, but the art still encodes one. Separately, the study's results rest on the press release because the npj paper was not fetched (rejected finding 4). That is a primary institutional source, not journalism, but the paper existed."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.5,
+   "why": "A reader learns what happened (paired emergency records, a stigmatizing line added, nearly 10% downgraded in some instances), who did it (UT Southwestern, with Jarrett named in the caption) and where (Dallas researchers using California and Massachusetts records, said plainly on slide 2). No Texas body decided anything, no deadline exists, and the Texas stake arrives as a negative on slide 9 ('names no Texas hospital using these models'). The close, 'Test each tool on real outcomes first', is advice to hospitals. It gives a Texan nothing they can act on. The stake is stated generally."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "The cover earns the swipe. The before and after pair on 3 and 6 is a real turn from one camera. Slide 7 sizes the effect and slide 9 closes on the cover's card. Slide 5 restates slide 4's line as seventeen rings and could be cut without loss. Slide 8 is a detour into a different two-model version that the reader has to hold apart from everything before it."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "The deck follows the house rules and is honest about limits. There are no colons, no em dashes, no banned words, and the dates carry no year. Several lines read as machine-careful rather than a Texan writing: 'The tape here carries the second, set under the first.' (slide 4), 'One wristband stands for one visit.' (slide 5), and the repeated 'the patient who later deteriorated'. The caption opener 'In Dallas, researchers rewrote one line.' is good. Texas specificity is thin: the only Texas noun beyond Dallas and UT Southwestern is a negation."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "The topic is new (tx-2026-0228, with no repeat in topics.json inside 30 days), and a paper still life at hand distance is a fresh subject. Three moves are familiar, though. It is the third straight lastLight deck (nos. 56, 57, now 58). The one-object-equals-one-unit counting device (17 bands, 100 cards) repeats nos. 54, 55 and 56. It is also the fourth clinical or medical AI study in the last nine decks (47 UTMB, 53 MD Anderson, 55 Houston Methodist, 58 UT Southwestern)."
+  }
+ ],
+ "weighted_score": 6.3,
+ "hard_fails": [
+  "Slide 8 headline 'In the preprint, five of 10 lines moved patients back' and dek 'five of 10 added lines moved the patient who later deteriorated back' state an unverified fact as verified. c42 supports only that these five gave the preprint's 'most consistent harmful shifts', which is how the run's own aggregates.json basis and the web edition word it. No claim says the other five lines moved no patient back. c38 clears three of them, and the relief's five plain bone strips assert the remaining two with no source behind them."
+ ],
+ "ship": false,
+ "one_sentence_fix": "Rewrite slide 8 to what c42 actually says, for example 'In the preprint, five lines moved patients back most consistently', and redraw the relief so only the three strips c38 clears (race, language, insurance) are plain, the two unaccounted conditions are visibly unlabelled or neutral, and the age line carries the release's medical-risk caveat (c18).",
+ "artwork_weakest_frames": [
+  {
+   "slide": 2,
+   "problem": "The two record stacks are tan blocks with stair-stepped silhouettes and black wedge artifacts at the layer offsets. The top sheet floats over a dark gap on the right stack, and the planned notched and plain top pair can't be read at any size.",
+   "fix": "Rebuild each stack as instanced cards from the chassis record_card with a 0.5 mm jitter per card and no block offsets. Slide the top two cards forward 30 mm so the notched corner and the plain corner both catch the key."
+  },
+  {
+   "slide": 8,
+   "problem": "The relief reads as a striped bar chart. Ten flat strips sit on a flat card on a black field, with the labels floating in a dead zone left of the strips, and the frame lives in the bone mid tone.",
+   "fix": "Tilt the card about 15 degrees toward the key in a pool on the shale ledge, the way slide 4 is propped. Give each strip a real curl and lift with a cast, and set each label on its own strip, not in the empty left band."
+  },
+  {
+   "slide": 7,
+   "problem": "The drawer front is a broad flat brown slab lit only on its lip, and the right end runs off the frame. A reader can't see that the row stops at ten blocks, which the art review named on three renders.",
+   "fix": "Shorten the drawer by cutting the gaps between blocks to about 4 mm, or widen the fov from 30 to 36 degrees, so both end walls show with dark ledge beyond the right one. Bevel the front with a lit lower edge."
+  },
+  {
+   "slide": 5,
+   "problem": "The seventeen 'wristbands' read as open C-rings or cuffs, not hospital bands. The storyboard's ember tabs are missing, and a dead band of empty sky sits between the dek and the rows.",
+   "fix": "Model each band as a flat vinyl strap with a printed label panel and snap, laid in a loose closed loop. Add the ember tab on each label, and raise the camera so the rows start just under the dek."
+  },
+  {
+   "slide": 3,
+   "problem": "The cards are flat bone planes with printed grey bars in plain boxy trays. They fill the lower half in the mid tone, and the slide 6 version of the same composition gives the turn no value change.",
+   "fix": "Lower the key so only the front card tops and tray lips catch light and the card faces fall half into shadow. Carry that darker setting on slide 6 so the moved ember card is the one bright thing at the turn."
+  }
+ ],
+ "notes": [
+  "art_preflight.json records decision 'accept' and also lists needs_review [1, 7, 9]. Those two contradict each other. Confirm that the review binds the current hashes before panel_ready accepts it.",
+  "The art review's named repairs for slides 1 and 9 (raise the holder so the footer clears its base plate) and for slide 7 (show both end walls) are not in the renders.",
+  "machine_qa.json reports 0 fails and 9 warns, all of them engine verdict lines. It is not a hard fail."
+ ],
+ "files_read": [
+  "/home/user/TexasAIDocket/out/2026-10-23/copy.json",
+  "/home/user/TexasAIDocket/out/2026-10-23/claims.json",
+  "/home/user/TexasAIDocket/out/2026-10-23/aggregates.json",
+  "/home/user/TexasAIDocket/out/2026-10-23/figures.json",
+  "/home/user/TexasAIDocket/out/2026-10-23/art_preflight.json",
+  "/home/user/TexasAIDocket/out/2026-10-23/render/slide-08.png",
+  "/home/user/TexasAIDocket/ledger/articles/2026-10-23.json"
+ ]
+}

@@ -1,0 +1,234 @@
+# Run record, October 23rd, 2026
+
+Effort at wake: `high`, as the repo's settings carry it.
+
+**Wake.** Branch `claude/daily-2026-10-23` cut from `main` at f30f02bc. `bootstrap.sh` exited 0. `docket_build.py
+--validate` and `ownership_check.py --self-test` were run at wake.
+
+## The record, first
+
+- **Worklist.** `docket_staleness.py` named 44 items due and none deferred. 24 sit behind a measured crawl boundary
+  inside their window, so 20 were worked. Nothing was ROTTEN outside a measured boundary.
+- **Re-verify.** `reverify.py --apply` read 76 urls behind 302 claims (6 answered 304, 25 sent a body, 13 did not
+  answer, 32 were refused by the boundary and never requested) and stamped 7 items unchanged: tx-2026-0118, 0198,
+  0209, 0216, 0217, 0220 and 0222. Their deterministic notes were reworded and `reverify.py --check-notes` passed.
+- **By hand through `fetch_doc.py`**, every reachable quote confirmed and stamped with its own movement line:
+  tx-2026-0015, 0061, 0078, 0079, 0126 and 0224.
+- **tx-2026-0186.** www.faa.gov answered 403 to the project's agent again. Its robots.txt permits `/uas/`, so the
+  review page and the draft assessment were read with a browser agent as the earlier entries describe, and all 17
+  quotes were found. The page still lists the Texas metros draft with comment closed on October 11th and no final
+  assessment. Stamped.
+- **tx-2026-0118 moved.** The CFTC's comment window on compute derivatives closed on October 20th. Status `open` to
+  `pending`, the summary and the access note put in the past tense.
+- **Unconfirmed today, not stamped**: tx-2026-0138 (www.mylubbock.us 403), tx-2026-0062 (keranews.org 403), and
+  tx-2026-0133, 0161, 0165 and 0173. www.uta.edu, news.unt.edu and engineering.unt.edu still fail TLS through the
+  container's proxy (`self-signed certificate in certificate chain`), so the boundary reads their robots.txt as
+  refusing. Each item carries a dated line saying what is unconfirmed. The four university items reach the six day
+  hard limit tomorrow if the hosts stay unreachable.
+
+## Discoverability signoff
+
+Read on this run's final build in `docs/`, after `main` was merged in.
+
+- **Card, tx-2026-0228** (`og/tx-2026-0228.png`, opened as an image). Four lines at whole words, ending "emergency
+  patients..." with the ellipsis after a whole word. Clean.
+- **`/questions/`.** Opened and read. 201 answered on summaries, 199 on how the public takes part, 2 on open
+  comment windows. The two new items carry no new status or room, so no shape was stretched. Reads as questions a
+  person would type.
+- **`llms.txt`, Open right now.** Six entries. tx-2026-0118 is gone from it, which is right: the CFTC window closed
+  October 20th and the item moved to pending this run. San Antonio's tx-2026-0220 stays for its October 29th vote.
+- **`/sources/`.** 1,235 of 1,409 claims rest on a primary document, across 365 documents from 159 publishers, up
+  from 1,218 of 1,392 on October 22nd. The new claims were all primary. The top publisher is still
+  interchange.puc.texas.gov, the utility commission's own filings, and texastribune.org (54 claims, 0 primary) is
+  third, which is the record leaning on journalism where the filings were not reachable.
+- **`/topic/`.** Health and education carries tx-2026-0228, and its card's 31 decisions equals the 31 item links on
+  its page.
+- **`/place/`.** `county-dallas` and `metro-dallas-fort-worth-arlington` carry tx-2026-0228.
+
+## Craft refresh
+
+Focus: a measured quantity built as physical units under one low key, since the last four decks were spatial scenes
+in `lastLight` or `floodlit`, three of them in rooms.
+
+- One light at an angle carries a low key still life, and a gobo or black card keeps it off the background so the
+  dark does the work. https://expertphotography.com/low-key-photography-dramatic-lighting
+- A token visualization builds a count from identical units, and stacking is what turns a flat layout into a 3D
+  encoding. https://www.mitacs.ca/our-projects/designing-interaction-for-token-based-physical-visualizations/
+- Contact shadows are the cheap half of grounding and PCSS the costly half, so contact first and soft sun second.
+  https://threejs.org/manual/en/shadows
+- **Admitted.** tx-2026-0228, UT Southwestern's study of AI triage models and one stigmatizing line, on the medical
+  center's own release, Dallas County. tx-2026-0229, Texas A&M's $2 million WoodNext Foundation grant for the Aggie AI
+  Foundry, on the university's own release, Brazos County. Every quote was found in the fetched page before promotion.
+- **Held, not seeded.** TCEQ's shutdown of automatic approvals in STEERS to screen for data center filings (the agency
+  page is refused by www3.tceq.texas.gov's robots.txt, so it was not read, and the Tribune alone is journalism).
+  Harris County's Flock working group vote (journalism only). Dallas's changes to its City Detect trash truck cameras,
+  which tx-2026-0179 tracks (journalism only). Plano's ChatGPT Enterprise purchase (the agenda item is primary, the
+  outcome rests on GovTech). Tesla's Q3 update on Cybercabs and Texas Optimus (a company shareholder letter, and a
+  robotaxi deck ran on October 16th). The Public Citizen and FracTracker permit count (advocacy). The AG's water survey
+  letters (the AG's release is off limits to this project's reader, journalism only). Fort Worth's AeternZ abatement
+  vote on October 27th (journalism only, and the vote has not happened). UT Dallas's NSF award and the UTSA and Tec de
+  Monterrey aquifer work (funded plans, no result). The ERCOT data center RFI is already tx-2026-0172.
+- **Backlog.** The Phase 7 temp build printed no `backlog:` line.
+- **Instruments.** Every Phase 7 check exited 0: both page checks, the water page self-test, the build (932 pages),
+  media, schema, the cards, the favicon, the glyph reader, IndexNow and SEO. No instrument has stopped.
+- **Scanner ceiling.** Not checked. This run holds no Cloudflare D1 access and no read of the live `texas-scan`
+  Worker's `DAILY_CAP`, so today's scan count, the failures of the last day and the deployed cap are all unknown.
+
+## Selection
+
+**tx-2026-0228**, UT Southwestern's study of AI triage models. `dedupe_check` exit 0, nothing near the repeat
+threshold (UT REAL Health AI at 0.23), and the thirty day rule clears it against the 26 decks in the window. It was
+chosen because it is the one finding of the day with a measured result in a primary document, a Texas lab, and an
+honest counter-image built into the finding itself: the tool is the thing that failed. The deck draws on the
+release's figures (three models, two departments, 17 visits in 12 months, nearly 10%), and anything from the authors'
+May preprint is named as the preprint's, because the preprint tested two different models.
+
+Others and why not today: Tesla's Q3 letter (a shareholder update, robotaxi ran on October 16th), TCEQ's STEERS
+shutdown (the agency page is refused by robots.txt), the Aggie AI Foundry (admitted as tx-2026-0229, a plan with no
+result), Harris County's Flock vote (journalism only, Flock ran on October 1st), the AG's water survey letters
+(journalism only). `texan_check` at selection: places Dallas, no body, no deadline, no next step, so the close carries
+the authors' own ask, test each tool against real patient outcomes before use. `health-and-education` is 7 of the 26
+decks in the window and the last deck was a paper, which the variety score will charge.
+
+## The deck
+
+- **Directors and plan.** Nine dossiers from Director B's record card spine with Director C's locked camera on 3 and
+  6, CRAFT PLAN, continuity MOTIF_EVOLUTION (the ember tape laid, moved, peeled), CAMERA_MOVE and VALUE_ARC, VALUE CUT
+  at frame 6. Counts from figures.json: two departments, three models, 17 wristbands for 17 visits, a drawer of 100
+  cards in ten blocks with one flagged, ten strips for the preprint's 10 conditions.
+- **The chassis** (`assets/js/deck/2026-10-23-ledger.js`) built the models the kit lacks: a record card (notch, tape,
+  peel, ruled, index, flag), a two slot holder, a stepped sorting tray, a vinyl wristband, a card stack, a card drawer
+  and a shale ledge. They go to the machine queue for the weekly lift.
+- **The audition** of 1, 7 and 9 was re-read after every repair batch and revised before each accept. The close's peel was the hard part: a tight roll
+  toward the lens read as a white block, a shallow peel toward the lens foreshortened to nothing and ribbed from its
+  segments, and it read only once one smooth bent strip curled off past the card's right edge in profile. The last
+  re-binding after the flow pass is in `art_preflight.json`.
+- **Pixel review** (two rounds on all nine, then one recheck of the frames the flow pass changed). Copy caught in
+  review: "sicker" on 1 and 6 (the claims say higher risk), slide 3's "mostly got it right" (c13 says above chance),
+  slide 7's unqualified "nearly 10%" (c15 says in some instances), slide 8's "the study names" (it is the release),
+  slide 9's "the first author says" without c4 on its strip, slide 5 restating slide 8's finding. All rewritten.
+  Art caught: a dark seam and prop rod on 4, frames 5 and 7 losing their sky, footers on the holder, the accent
+  missing on 6 and 8, labels struck by rules and smudged by footer halos on 4 and 8.
+- **One flow pass** predicted art 6.4, weakest 8, 5, 4, 7, 9, 2 and 3. Repaired one change each: 8 and 4 re-lit
+  through the relief's keyMask as a tight warm pool falling to black at the card's edges, bone card and strips; 5
+  without ember tabs (the accent was on seven frames, now six) and a lower closer camera; 7 a lower closer camera with
+  the flagged block near; 9 a closer three quarter on the notched card so it is no longer a re-shot of the cover; 2
+  the notched top card swung toward the camera; 3 and 6 a larger key for softer tray shadows; 6 the stage pool on the
+  moved tray only. Not done: the flow pass's layout break (card above the type on 4), which would rebuild the frame.
+- **Before the panel.** `panel_ready` found five things and each was answered: slide 4's two wordings under the
+  contrast floor (a wider pool across the neutral line, darker ink, a darker tape under the light type), slide 7's
+  ledge a smooth gradient (seeded shale and caliche grit on the ledge top, the drawer raised into the band), slide
+  3's "all three open source" with no declared set (`quantifiers.json` names the release's three models), and the
+  value arc. **The arc was rewritten, not redrawn.** The plan had the deck at a median L* of 14 and the staged frames
+  came out near 3, so the dossiers now plan each frame at its measured median. The VALUE CUT at frame 6 did not
+  render as a darker frame than 3, which the flow critic also found.
+
+## Gate status
+
+<!-- gate-status:begin -->
+| gate | status | detail |
+|---|---|---|
+| claims         | PASS   | 42 verified claim(s) |
+| render         | PASS   | 9 slide(s) |
+| qa             | WARN   | 0 fail(s), 2 warn(s) |
+| aggregates     | PASS   | 11 declaration(s), 19 numeric phrase(s) in the render, all re-derived |
+| assembly       | PASS   | 9 slide(s), 7.64 MB, vector |
+| score          | WARN   | 6.948 at the round cap after 3 round(s), the finished deck ships; 8.0 top rung, shortfall named |
+| labels         | PASS   | 50 claim id(s) checked, every label beside one traces to the shape its claim proves |
+| quantifiers    | PASS   | 84 published string(s) read from one list, every universal names its set |
+| verbatim       | WARN   | no dossier declares a `verbatim:` block, so no on-frame string was held to a quote |
+| dossiers       | PASS   | 33,741 chars planned |
+| caption        | PASS   | 126 words |
+| craft floor    | WARN   | 9 frame(s), median 3472, floor 625, 2 quiet |
+| plan vs render | PASS   | 9 of 47 acceptance item(s) checkable |
+| texan          | WARN   | places Dallas / body NO / deadline yes / next step NO |
+| absences       | WARN   | 6 of 10 scoped to a named document, 4 unscoped |
+| numerals       | PASS   | 12 numeral(s) over 9 frame(s), every one reachable |
+| completion     | PASS   | the deck shipped |
+<!-- gate-status:end -->
+
+## The panel
+
+- **Round 1** (`score.json` round 1): median 6.63, spread 0.31, no hard fail, under the 8.0 rung. The three judges
+  agreed on the art first (weakest 9, 2, 7, 4, 8, 5, 6) and the integrity judge named the copy: the cover's
+  headline had dropped the source's "sometimes", slide 6's one moved tray implied one model in three, slide 8 fused
+  the preprint's ten lines with the release's two strongest effects, slide 2 said "emergency departments" where c11
+  names medical centers, and the first comment counted the preprint's abstract page as a third account.
+- **Repairs for round 2.** The cover keeps "sometimes". Slide 2 says "Two medical centers". Slide 6 says the release
+  does not say how many of the three models shifted, and its moved card stands proud of the front card. Slide 8 is
+  the preprint alone: ten strips, the five lines it names as its most consistent harmful shifts in ember (a new
+  claim, c42, quoted from the PDF and verified by `claims_check`), each named in its words. The first comment now
+  reads "two first party accounts and one abstract page of the same preprint", and c26's note records that the
+  page, fetched again, carries the banner the PDF does not. Art: 7's drawer shifted and its grit thinned, 9 pulled
+  back so the cards clear the dek, 4's card raised with its foot above the footer, 2's notched card laid square and
+  grit on its ledge, 1's hook fitted to two lines.
+- **Round 2**: median 6.5, spread 0.31, under the 7.7 rung, and **one hard fail** from the integrity judge. Slide 8
+  said "five of 10 lines moved patients back" where c42 says only that those five gave the preprint's most
+  consistent harmful shifts, and its five plain strips told the reader the other five did nothing, where c38 clears
+  three. Two other judges named the same frame as a lead. Repaired for round 3: the hook reads "Five lines stood out
+  in the preprint", the dek quotes c42's terms, the three lines c38 clears are bone and labelled, and the two lines
+  no claim here describes are dark and unlabelled (`cleared_lines` and `unaccounted_lines` computed from c38, c34
+  and c42). The caption's first line reads "added one line" where it said "rewrote", which the reader judge caught.
+  Frame 7's fov widened to bring more of the drawer in. The round 2 judges also named 4, 5 and 6 again (a flat
+  plate, open rings, a turn that doesn't darken). Those were not rebuilt in this round, because the cap is next and
+  the hard fail came first.
+- **Round 3, the cap**: judges 6.93 (integrity), 7.18 (craft), 6.68 (reader), median **6.948**, spread 0.50, no
+  hard fail. **Ships at the round cap, 0.75 under the 7.7 rung and 1.05 under the 8.0 bar.** The craft floor stood
+  down at the cap with the art median at 6.4 against 8.5. `claim_integrity` was contested (8.5, 6.5, 7.0).
+- **The shortfall, named.** The art: frame 5's wristbands still read as rings, frame 2's stacks as boxes with a
+  shadow artifact and no readable notch, frame 7's drawer runs off the right edge on every version (the kit's block
+  spacing doesn't follow its length), frames 4 and 8 sit in the mid tones as reliefs with little cast, and the
+  declared VALUE CUT at frame 6 never rendered darker than frame 3. The integrity and reader judges both say slide
+  8 should name that the preprint tested two different models (c30) before "Race, language and insurance produced
+  none". That clause was not added after scoring. The story has no Texas body, decision or deadline, which all
+  three judges charged, and the deck stands on the release because nature.com challenged the fetcher.
+
+## Ship
+
+- 9 frames, `ship_images` 52.5 MB to 3.25 MB at 40.1 to 43.3 dB, the art review bound to the delivered images
+  (`art_preflight --archive`), `measurements.json` written, deck median L* 3.1.
+- Ledgers: topics, artwork and captions appended by `update_ledgers.py`, `ledger_check` clean.
+- Web edition `ledger/articles/2026-10-23.json`, `article_check`, `test_article_edition` and the browser suite
+  (945 reader checks) pass. The first build printed "nearly 10%%" because the token already carries the percent
+  sign; fixed before the rebuild that ships.
+- `main` merged before the rebuild. `site_build` 935 pages, and every Phase 16 check exited 0 (validate, fresh,
+  house style, schema, port audit, ownership, media, SEO, schema contract). The article page and the front page were
+  opened and read at desktop and phone width: nine slides, the story readable as text.
+- Studio clock from wake: record 34 min, audition 103, art 105, review 167, panel 220, package 242.
+
+## Retro
+
+- **Did the run stop for a human?** Interim `prompt_audit` (Phase 17) exit 1: 242 of 1,812 calls measured as
+  waiting, led by Agent and SendMessage spawns at 5 to 28 s. The no-stall hook was armed at 05:03:52 UTC, judged
+  the session unattended from its first call (host `CLAUDE_CODE_SESSION_ATTENDED=0`) and refused nothing, and
+  nobody was present to answer a dialog. The pattern matches the closed queue item on auto mode latency, so it is
+  queued again as `prompt-audit-counts-agent-latency`. **This reading is interim.** Phase 19 takes the one that
+  counts.
+- **Machine queue** (weekly pass not due, last pass October 22nd, 83 items queued, 0 repeat offenders): six new
+  items (`card-drawer-spacing-ignores-length`, `ledger-models-built-in-chassis`,
+  `wristband-open-cylinder-reads-as-ring`, `stage-pool-does-not-dim-neighbours`, the engine one, a backlog
+  proposal for a maintainer, `txbench-relief-cast-faint`, `prompt-audit-counts-agent-latency`), and two raised:
+  `article-token-drops-unit` to 2 (the "10%%" in the first build) and `make-slides-rewrites-every-frame` to 1
+  (fig.py rewrites every slide, which invalidated the bound art review twice).
+- **Instincts added**: `peel-reads-in-profile` and `count-frame-shows-its-denominator`, both at 0.50.
+- **Sources** appended to `SOURCES_FIELD_LOG.md`: the uta and unt TLS failures for a second day, mylubbock and
+  kera 403s, faa.gov's 403 and the browser agent read, www3.tceq's robots refusal, nature.com's client challenge,
+  and the 200s from utsouthwestern.edu and researchsquare.com.
+- **What cost the most**: the three-frame art review is bound to file hashes, so every chassis or figures edit
+  re-opened it. It was re-read nine times. The close's peel took four builds to read, and the drawer's end wall
+  was never fixed because the chassis model ignored its own length.
+- `arsenal.py` rebuilt and `--check` ok.
+- **The weekly pass ran** (`machine_due` turned due once `article-token-drops-unit` reached its second repeat).
+  The upgrade engineer committed four `upgrade` commits: the kit's `patient_wristband` (a closed strap, label,
+  snap, tail and alert clip), the kit's `index_card_drawer` (card pitch from length, refuses a count that can't
+  fit), `fig_inject.py` with a `shipped_check` entry so slides carry only the figures they read, and the pass record
+  (`machine_pass.json`, queue marks, the backlog entry, `upgrades.json`). Reran by exit code: `fig_inject
+  --self-test`, `shipped_check --self-test`, `gate_wiring`, `arsenal --check`, `machine_due --self-test`, all 0,
+  and `node --check` on the kit file. Proposals for a maintainer: the engine's missing way to keep the key off
+  neighbours, and faint txbench casts. The `{{number}}%` check belongs in `article_check.py`, daily lane, and was
+  not made in this run.
+- `shipped_check` then found today's topic and angle prose naming counts no computed figure traces. Reworded to carry
+  none, and `shipped_check --run 2026-10-23` exits 0.
+- Email payload built by `gmail_draft.py`, `email_check --run` and `--all` exit 0. Pre-merge `prompt_audit`: 322 of
+  1,977 calls counted as waiting, the same dispatch latency pattern, hook armed and judging unattended, nothing
+  refused.

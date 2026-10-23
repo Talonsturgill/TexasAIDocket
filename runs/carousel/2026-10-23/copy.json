@@ -1,0 +1,235 @@
+{
+ "date": "2026-10-23",
+ "carousel_no": 58,
+ "document_title": "One added line sometimes moved the higher risk patient back",
+ "_note": "Slide strings read off the render report's text nodes and each frame's own source line by build_copy.py.",
+ "caption": "In Dallas, researchers added one line.\n\nUT Southwestern's team gave three open source AI models matched pairs of emergency patients. With no stigmatizing detail, all three picked out higher-risk patients at rates well above chance.\n\nOnce stigmatizing detail was added, nearly 10% of patients were incorrectly downgraded in some instances. One pair set \"established patient with multiple chronic conditions\" against \"17 visits in the past 12 months.\"\n\nThe records came from Stanford Medicine in California and Beth Israel Deaconess in Massachusetts. Hospitals increasingly explore AI to help prioritize care, the release says.\n\nFirst author Philip Jarrett says bias varies by model and each tool needs testing against real patient outcomes before use. The release names none of the three models. Which were they?\n\n#UTSouthwestern #EmergencyMedicine #Dallas",
+ "slides": {
+  "S1": {
+   "n": 1,
+   "file": "slide-01.html",
+   "kicker": "UT Southwestern, Dallas",
+   "headline": "One added line sometimes moved the higher risk patient back",
+   "claims": [
+    "c1",
+    "c2",
+    "c8",
+    "c10",
+    "c12"
+   ],
+   "cite": "c1 c2 c8 c10 c12",
+   "body": "UT Southwestern researchers asked AI models which of two matched emergency patients to see first. A single added detail sometimes shifted a model away from the patient who later deteriorated. The cards are drawn to illustrate.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "One added line sometimes moved the higher risk patient back",
+    "UT Southwestern researchers asked AI models which of two matched emergency patients to see first. A single added detail sometimes shifted a model away from the patient who later deteriorated. The cards are drawn to illustrate.",
+    "UT Southwestern, Dallas",
+    "01 / 09",
+    "c1 c2 c8 c10 c12"
+   ]
+  },
+  "S2": {
+   "n": 2,
+   "file": "slide-02.html",
+   "kicker": "The records",
+   "headline": "Two medical centers, paired patients",
+   "claims": [
+    "c11",
+    "c12"
+   ],
+   "cite": "c11 c12",
+   "body": "The records came from Stanford Medicine in California and Beth Israel Deaconess Medical Center in Massachusetts, not a Texas hospital. Each patient was paired with one of similar starting severity.",
+   "labels": [
+    "Stanford Medicine",
+    "Beth Israel Deaconess"
+   ],
+   "strings": [
+    "texasaidocket.com",
+    "Two medical centers, paired patients",
+    "The records came from Stanford Medicine in California and Beth Israel Deaconess Medical Center in Massachusetts, not a Texas hospital. Each patient was paired with one of similar starting severity.",
+    "Stanford Medicine",
+    "Beth Israel Deaconess",
+    "The records",
+    "02 / 09",
+    "c11 c12"
+   ]
+  },
+  "S3": {
+   "n": 3,
+   "file": "slide-03.html",
+   "kicker": "Before the line",
+   "headline": "First, all three models beat chance",
+   "claims": [
+    "c9",
+    "c10",
+    "c13"
+   ],
+   "cite": "c9 c10 c13",
+   "body": "With no social or stigmatizing detail in the record, all three open source models picked the higher risk patient at rates well above chance. Each tray stands for one model, and the notched card is the patient who later deteriorated.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "First, all three models beat chance",
+    "With no social or stigmatizing detail in the record, all three open source models picked the higher risk patient at rates well above chance. Each tray stands for one model, and the notched card is the patient who later deteriorated.",
+    "Before the line",
+    "03 / 09",
+    "c9 c10 c13"
+   ]
+  },
+  "S4": {
+   "n": 4,
+   "file": "slide-04.html",
+   "kicker": "The added line",
+   "headline": "Neutral words against stigmatizing ones",
+   "claims": [
+    "c19"
+   ],
+   "cite": "c19",
+   "body": "One wording pair in the study set a neutral description against a stigmatizing one. The tape here carries the second, set under the first.",
+   "labels": [
+    "established patient with multiple chronic conditions",
+    "17 visits in the past 12 months"
+   ],
+   "strings": [
+    "texasaidocket.com",
+    "Neutral words against stigmatizing ones",
+    "One wording pair in the study set a neutral description against a stigmatizing one. The tape here carries the second, set under the first.",
+    "established patient with multiple chronic conditions",
+    "17 visits in the past 12 months",
+    "The added line",
+    "04 / 09",
+    "c19"
+   ]
+  },
+  "S5": {
+   "n": 5,
+   "file": "slide-05.html",
+   "kicker": "17 visits",
+   "headline": "17 visits, one line on a record",
+   "claims": [
+    "c19"
+   ],
+   "cite": "c19",
+   "body": "The stigmatizing line counted 17 visits in the past 12 months. One wristband stands for one visit.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "17 visits, one line on a record",
+    "The stigmatizing line counted 17 visits in the past 12 months. One wristband stands for one visit.",
+    "17 visits",
+    "05 / 09",
+    "c19"
+   ]
+  },
+  "S6": {
+   "n": 6,
+   "file": "slide-06.html",
+   "kicker": "After the line",
+   "headline": "Then the higher risk patient sometimes went second",
+   "claims": [
+    "c8",
+    "c13",
+    "c14"
+   ],
+   "cite": "c8 c13 c14",
+   "body": "One added detail sometimes shifted a model away from the patient who later deteriorated, the senior author says. The release does not say how many of the three models shifted.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "Then the higher risk patient sometimes went second",
+    "One added detail sometimes shifted a model away from the patient who later deteriorated, the senior author says. The release does not say how many of the three models shifted.",
+    "After the line",
+    "06 / 09",
+    "c8 c13 c14"
+   ]
+  },
+  "S7": {
+   "n": 7,
+   "file": "slide-07.html",
+   "kicker": "How often",
+   "headline": "In some instances, nearly 10% moved back",
+   "claims": [
+    "c15"
+   ],
+   "cite": "c15",
+   "body": "Nearly 10% of patients were incorrectly downgraded once stigmatizing information was added. The drawer holds 100 cards in blocks of ten, and the flagged block stands for the share.",
+   "labels": [
+    "nearly 10 in 100"
+   ],
+   "strings": [
+    "texasaidocket.com",
+    "In some instances, nearly 10% moved back",
+    "Nearly 10% of patients were incorrectly downgraded once stigmatizing information was added. The drawer holds 100 cards in blocks of ten, and the flagged block stands for the share.",
+    "nearly 10 in 100",
+    "How often",
+    "07 / 09",
+    "c15"
+   ]
+  },
+  "S8": {
+   "n": 8,
+   "file": "slide-08.html",
+   "kicker": "The May preprint",
+   "headline": "Five lines stood out in the preprint",
+   "claims": [
+    "c16",
+    "c26",
+    "c34",
+    "c38",
+    "c42"
+   ],
+   "cite": "c16 c26 c34 c38 c42",
+   "body": "In the authors' unreviewed May preprint, the most consistent harmful shifts came from five of 10 added lines. Race, language and insurance produced none. The release names frequent emergency use and past psychiatric emergencies among the strongest effects.",
+   "labels": [
+    "psychiatric history",
+    "frequent ED use",
+    "homelessness",
+    "substance use",
+    "altered age",
+    "race",
+    "language",
+    "insurance"
+   ],
+   "strings": [
+    "texasaidocket.com",
+    "Five lines stood out in the preprint",
+    "In the authors' unreviewed May preprint, the most consistent harmful shifts came from five of 10 added lines. Race, language and insurance produced none. The release names frequent emergency use and past psychiatric emergencies among the strongest effects.",
+    "psychiatric history",
+    "frequent ED use",
+    "homelessness",
+    "substance use",
+    "altered age",
+    "race",
+    "language",
+    "insurance",
+    "The May preprint",
+    "08 / 09",
+    "c16 c26 c34 c38 c42"
+   ]
+  },
+  "S9": {
+   "n": 9,
+   "file": "slide-09.html",
+   "kicker": "Before any hospital uses one",
+   "headline": "Test each tool on real outcomes first",
+   "claims": [
+    "c1",
+    "c4",
+    "c21",
+    "c23"
+   ],
+   "cite": "c1 c4 c21 c23",
+   "body": "Bias varies by model, so each AI tool should be tested on real patient outcomes before use, the first author says. UT Southwestern's October 20th release names no Texas hospital using these models for triage.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "Test each tool on real outcomes first",
+    "Bias varies by model, so each AI tool should be tested on real patient outcomes before use, the first author says. UT Southwestern's October 20th release names no Texas hospital using these models for triage.",
+    "Before any hospital uses one",
+    "09 / 09",
+    "c1 c4 c21 c23"
+   ]
+  }
+ }
+}

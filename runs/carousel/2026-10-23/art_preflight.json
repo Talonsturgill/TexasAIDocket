@@ -1,0 +1,225 @@
+{
+  "version": 2,
+  "selected": [
+    1,
+    7,
+    9
+  ],
+  "inputs": {
+    "slides/slide-01.html": "db1eb8b35e0a41809e770f76721bbe5dcb56636ee2a568e06748c5aba50589b7",
+    "render/slide-01.png": "2f3244f2612063a053de8bb443c3ca6f5e01a592e39b2e2d9c36cd1e9d477f94",
+    "assets/js/deck/2026-10-23-ledger.js": "29953808827af6a9da4f7bad94e33cd9f542e09bea3d8ae861bc295d23f9cab9",
+    "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+    "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+    "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+    "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+    "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+    "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+    "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+    "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+    "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+    "slides/slide-07.html": "c06cdb35fc4842cdaba99fc2dac5a8208ed2dd597509716094c03fb5d45a9714",
+    "render/slide-07.png": "d337131296bcdd18978f3da5633274b24ddea718d2711ae09e3871fce30e535b",
+    "slides/slide-09.html": "2bd3957316042d88ddb13ec8a26503e240cd6567fa6a0c6a15cb7af6d1283db6",
+    "render/slide-09.png": "b023018058f7e881ff0a0fd4dbcd7ed0ecb324b3e04ade3857e4ded6b4b9c841"
+  },
+  "value_measurements": [
+    {
+      "frame": "slide-01.png",
+      "median_L": 2.9,
+      "mid": 0.104,
+      "dark": 0.738
+    },
+    {
+      "frame": "slide-07.png",
+      "median_L": 3.2,
+      "mid": 0.047,
+      "dark": 0.768
+    },
+    {
+      "frame": "slide-09.png",
+      "median_L": 3.1,
+      "mid": 0.123,
+      "dark": 0.703
+    }
+  ],
+  "review": {
+    "decision": "accept",
+    "inputs": {
+      "slides/slide-01.html": "db1eb8b35e0a41809e770f76721bbe5dcb56636ee2a568e06748c5aba50589b7",
+      "render/slide-01.png": "2f3244f2612063a053de8bb443c3ca6f5e01a592e39b2e2d9c36cd1e9d477f94",
+      "assets/js/deck/2026-10-23-ledger.js": "29953808827af6a9da4f7bad94e33cd9f542e09bea3d8ae861bc295d23f9cab9",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+      "slides/slide-07.html": "c06cdb35fc4842cdaba99fc2dac5a8208ed2dd597509716094c03fb5d45a9714",
+      "render/slide-07.png": "d337131296bcdd18978f3da5633274b24ddea718d2711ae09e3871fce30e535b",
+      "slides/slide-09.html": "2bd3957316042d88ddb13ec8a26503e240cd6567fa6a0c6a15cb7af6d1283db6",
+      "render/slide-09.png": "b023018058f7e881ff0a0fd4dbcd7ed0ecb324b3e04ade3857e4ded6b4b9c841"
+    },
+    "frames": [
+      {
+        "slide": 1,
+        "role": "cover",
+        "subject": "Two bone record cards stand upright in a rounded graphite two-slot holder on the shale ledge. The right card has a large clipped top-right corner and a raised clearcoat ember strip across its middle. Long casts run to the left across the lit pool.",
+        "visual_consequence": "With the headline covered, a reader sees two matching records that differ in one thing: the right one carries a raised red strip and a clipped corner. That is the study's paired design, readable before a word. The pair fills about two fifths of the frame on true blacks with one warm pool, and the hedged hook matches a picture that shows one pair rather than a rule.",
+        "weakness": "Only the HTML hash moved. The rendered PNG (2f3244f2) is byte-identical to the image whose tiles I read in full last round, so last round's findings stand. There is a gap of about 190 native px between the two-line hook and the dek that reads as a dropped line. The cards clear the dek by about 40 native px. The holder's base plate runs behind the texasaidocket.com line, which stays legible on near-black steel. The strip's face is one flat red.",
+        "repair": "Close the gap between hook and dek to about 60 native px, then raise the holder about 60 native px so its base plate clears the footer line.",
+        "encoding_reads": true,
+        "dominant_subject_finished": true,
+        "feed_legible": true,
+        "inputs": {
+          "slides/slide-01.html": "db1eb8b35e0a41809e770f76721bbe5dcb56636ee2a568e06748c5aba50589b7",
+          "render/slide-01.png": "2f3244f2612063a053de8bb443c3ca6f5e01a592e39b2e2d9c36cd1e9d477f94",
+          "assets/js/deck/2026-10-23-ledger.js": "29953808827af6a9da4f7bad94e33cd9f542e09bea3d8ae861bc295d23f9cab9",
+          "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+          "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+          "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+          "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+          "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+          "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+          "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+          "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+          "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de"
+        }
+      },
+      {
+        "slide": 7,
+        "role": "evidence",
+        "subject": "A graphite card drawer seen from a low three quarter through the 30 degree lens. It holds ten blocks of upright cards separated by dark gaps and steel tab dividers. The left end wall is in frame, the flagged block sits at the left end with ten ember strips over its card tops, and the 'nearly 10 in 100' label sits just above it. The shale beyond carries sparse grey-brown grit.",
+        "visual_consequence": "With the headline and label covered, a reader sees a row of equal card blocks with one block marked red at the near end. That reads as one block in a row of ten, the claim's share, without the caption. The flagged block plus nine plain block tops can be counted at full size, and at 432 px the red block is the frame's one warm accent and reads at once.",
+        "weakness": "This is the shipping version, with its defect named. (1) The right end wall still does not show. The drawer front and top lip run off the right edge at native x 2160 (about y 1830 to 2170), and the tenth block is cut there, so the row has no visible end. Shortening the body did not move the blocks, and the camera is unchanged, so the frame looks almost identical to the a89a2bcc version. (2) The body was shortened while the block spacing stayed fixed. The front wall's left corner now sits at about native x 405, and the flagged block's leftmost cards sit against the left side wall with no visible clearance (tile r3c1 top, about x 330 to 410). Check the model for cards clipping through that wall. (3) A broad band of plain shale between the dek and the drawer (native y about 1120 to 1600) holds only the label. (4) The drawer front is a flat brown face lit only on its top lip, and the plain blocks show grey-taupe faces turned from the key. None of these breaks the one-in-ten reading.",
+        "repair": "For the next run's kit, not this ship: make the drawer kit derive block spacing from drawer length, so the ten blocks and both end walls always fit the declared length. Then frame both end walls at 30 degrees, with about 60 native px of dark ledge beyond the right one.",
+        "encoding_reads": true,
+        "dominant_subject_finished": true,
+        "feed_legible": true,
+        "inputs": {
+          "assets/js/deck/2026-10-23-ledger.js": "29953808827af6a9da4f7bad94e33cd9f542e09bea3d8ae861bc295d23f9cab9",
+          "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+          "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+          "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+          "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+          "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+          "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+          "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+          "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+          "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+          "slides/slide-07.html": "c06cdb35fc4842cdaba99fc2dac5a8208ed2dd597509716094c03fb5d45a9714",
+          "render/slide-07.png": "d337131296bcdd18978f3da5633274b24ddea718d2711ae09e3871fce30e535b"
+        }
+      },
+      {
+        "slide": 9,
+        "role": "close",
+        "subject": "A low, close three quarter on the cover's pair with the notched card's clipped corner in frame. The ember strip lies across the notched card's middle, stuck along most of its length, and its free end curls gently out past the card's right edge over the dark ledge, casting a warm-dark shadow onto the card.",
+        "visual_consequence": "With the headline covered, a reader sees the cover's notched card with its red strip coming off: the free end leaves the card in profile against the dark ledge, and its shadow shows it is lifted. The peel reads at 432 px, and the lower, closer camera keeps the frame distinct from the cover.",
+        "weakness": "Raising the subject moved the collision from the footer to the dek and did not clear the footer. (1) The left card's top edge now sits about 20 native px below the dek's last line, 'using these models for triage.' (tile r2c1, baseline near y 1190, card top near y 1200), so the card nearly touches the type. (2) texasaidocket.com still runs across the right holder rail's base plate (tile r3c2, x 375 to 915, y 680 to 725). The claim ids sit on the lower edge of the base plate (tile r3c1). Both stay legible on near-black steel. (3) The curl still shows no pale underside, and its cast has a hard square edge. None of these breaks the reading or leaves the subject unfinished.",
+        "repair": "Pull the camera back about 8 percent instead of raising the subject, so the cards shrink away from the dek, leaving at least 60 native px clear, and the base plate ends above native y 2400.",
+        "encoding_reads": true,
+        "dominant_subject_finished": true,
+        "feed_legible": true,
+        "inputs": {
+          "assets/js/deck/2026-10-23-ledger.js": "29953808827af6a9da4f7bad94e33cd9f542e09bea3d8ae861bc295d23f9cab9",
+          "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+          "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+          "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+          "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+          "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+          "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+          "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+          "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+          "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+          "slides/slide-09.html": "2bd3957316042d88ddb13ec8a26503e240cd6567fa6a0c6a15cb7af6d1283db6",
+          "render/slide-09.png": "b023018058f7e881ff0a0fd4dbcd7ed0ecb324b3e04ade3857e4ded6b4b9c841"
+        }
+      }
+    ]
+  },
+  "plan": {
+    "hardest_frame": 7,
+    "visual_argument": "A patient record is a card at one measured size, and the one added line is a strip of ember tape laid on it: two matched cards stand in a pool of light, three sorting trays put the notched card of the patient who later deteriorated in front, and with the tape laid on, that card drops to the back slot, nearly ten in a hundred times, until the tape is peeled back at the close.",
+    "build_risk": "Frame 7 is a steel index card drawer of 100 upright cards at 0.25 mm each with ten notched, taped cards pushed behind a tabbed divider and leaning back so each tape takes the key. A hundred thin card tops merge into one block at 432 px and a low key shades each card with the next. The build answer is a drawer run across the sun, a dark gap at the divider, the ten leaning at 20 degrees with their faces turned into the key, cards built as instanced rounded boxes in the chassis, and the shadow box sized to the drawer. If one repair fails, the ten move to a separate rank behind the drawer and the hundred are counted as ten blocks of ten.",
+    "distinct_from_recent": "No. 57 (Oct 22) was a stair of sawn limestone and weathering steel in a lastLight field with the key from the left at az -58, hero often in the bottom quarter. No. 56 (Oct 21) was a machine shop of pockets, vises and taped bays inside TXT.interior rooms, with plan reliefs of trays and a cyanotype. No. 55 (Oct 20) was floodlit operating rooms with wall cameras and a grid of container ends. This deck is a still life at hand distance on a dark shale ledge outdoors at last light with the key from the right at az 62, small paper, vinyl and graphite steel objects filling a third to two thirds of each frame, ember tape as the only accent, and no room, no stone face and no grid of bays."
+  },
+  "frame_inputs": {
+    "1": {
+      "slides/slide-01.html": "db1eb8b35e0a41809e770f76721bbe5dcb56636ee2a568e06748c5aba50589b7",
+      "render/slide-01.png": "2f3244f2612063a053de8bb443c3ca6f5e01a592e39b2e2d9c36cd1e9d477f94",
+      "assets/js/deck/2026-10-23-ledger.js": "29953808827af6a9da4f7bad94e33cd9f542e09bea3d8ae861bc295d23f9cab9",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de"
+    },
+    "7": {
+      "assets/js/deck/2026-10-23-ledger.js": "29953808827af6a9da4f7bad94e33cd9f542e09bea3d8ae861bc295d23f9cab9",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+      "slides/slide-07.html": "c06cdb35fc4842cdaba99fc2dac5a8208ed2dd597509716094c03fb5d45a9714",
+      "render/slide-07.png": "d337131296bcdd18978f3da5633274b24ddea718d2711ae09e3871fce30e535b"
+    },
+    "9": {
+      "assets/js/deck/2026-10-23-ledger.js": "29953808827af6a9da4f7bad94e33cd9f542e09bea3d8ae861bc295d23f9cab9",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+      "slides/slide-09.html": "2bd3957316042d88ddb13ec8a26503e240cd6567fa6a0c6a15cb7af6d1283db6",
+      "render/slide-09.png": "b023018058f7e881ff0a0fd4dbcd7ed0ecb324b3e04ade3857e4ded6b4b9c841"
+    }
+  },
+  "needs_review": [
+    7
+  ],
+  "shipped_inputs": {
+    "slides/slide-01.html": "db1eb8b35e0a41809e770f76721bbe5dcb56636ee2a568e06748c5aba50589b7",
+    "slide-01.webp": "37e609b007ac64fb26215f22382047ca1465eb2483cdb546cb35c12b535c0102",
+    "slides/slide-07.html": "c06cdb35fc4842cdaba99fc2dac5a8208ed2dd597509716094c03fb5d45a9714",
+    "slide-07.webp": "062acedb6e908b4ca142d3acc069b93c7f0d69726052f54a0df0071ed74b6c7c",
+    "slides/slide-09.html": "2bd3957316042d88ddb13ec8a26503e240cd6567fa6a0c6a15cb7af6d1283db6",
+    "slide-09.webp": "525f406456f244b9d50f6faae9e4612a4e4fe25527be4a829f125b0e360d19b0"
+  },
+  "encodings": [
+    {
+      "to": "slide-01.webp",
+      "to_sha256": "37e609b007ac64fb26215f22382047ca1465eb2483cdb546cb35c12b535c0102",
+      "from_sha256": "2f3244f2612063a053de8bb443c3ca6f5e01a592e39b2e2d9c36cd1e9d477f94",
+      "psnr_db": 41.822
+    },
+    {
+      "to": "slide-07.webp",
+      "to_sha256": "062acedb6e908b4ca142d3acc069b93c7f0d69726052f54a0df0071ed74b6c7c",
+      "from_sha256": "d337131296bcdd18978f3da5633274b24ddea718d2711ae09e3871fce30e535b",
+      "psnr_db": 40.442
+    },
+    {
+      "to": "slide-09.webp",
+      "to_sha256": "525f406456f244b9d50f6faae9e4612a4e4fe25527be4a829f125b0e360d19b0",
+      "from_sha256": "b023018058f7e881ff0a0fd4dbcd7ed0ecb324b3e04ade3857e4ded6b4b9c841",
+      "psnr_db": 42.374
+    }
+  ]
+}

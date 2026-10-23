@@ -42,6 +42,13 @@ data_in_art:
 #
 # Then DRAW it. The gate looks for the value in the frame's code with the text nodes stripped
 # out, so a figure that reaches the headline and not the canvas does not satisfy this.
+#
+# Frame code reads a figure as `FIG.name` from one `<script>window.FIG = {...};</script>` line
+# per slide, and `python3 scripts/carousel/fig_inject.py --run out/<date>` writes that line with
+# ONLY the figures the slide reads, touching a slide only when its line changes. Never write the
+# whole of figures.json into every slide: nos. 57 and 58 did, so one figure added for one frame
+# changed nine hashes and threw away a bound art review. `shipped_check` holds every deck after
+# October 23rd to it ("fig lines").
 
 # A txbench relief uses `projection: orthographic_relief` and the cues FORM_SHADING,
 # CAST_SHADOW and OCCLUSION. Its fixed plan view needs no invented eye or horizon.

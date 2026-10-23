@@ -16,9 +16,9 @@
 |---|---|
 | engine calls (`TXT.*`) | 30 |
 | world presets | 8 |
-| kit models | 125 in 10 families |
+| kit models | 127 in 10 families |
 | asset libraries | 22 |
-| carousel and shared tools | 77 |
+| carousel and shared tools | 78 |
 | record and site tools the routine names | 20 |
 | agents | 11 |
 | knowledge files | 42 |
@@ -300,7 +300,7 @@ THE KIT: the things Texas is made of, modelled once in 3D at TRUE SCALE.
 | `strip_mall` | 66 x 10.9 x 34.4 | units, parking | A Texas strip centre: stucco and stone, a stepped parapet with hipped tower ends, an arcade canopy, aluminium storefronts, blank sign panels, a striped parking row |
 | `traffic_signal` | 12.7 x 10.4 x 1.2 | arm, heads, finish, luminaire, lit | Mast arm signal: the pole stands at the origin (its footprint), arm over +x, heads facing +z; street blade and a ped head on the pole |
 
-### interior (21)
+### interior (23)
 
 `assets/js/kit/interior.js`, The rooms decisions are made in: a commissioners court dais, the lectern the public speaks from, the rows it sits in, the office the paperwork lives in, and the server row the paperwork is about, the ...
 
@@ -315,9 +315,11 @@ THE KIT: the things Texas is made of, modelled once in 3D at TRUE SCALE.
 | `flags_pair` | 2.2 x 2.55 x 1.2 | spacing, order | The United States and Texas flags on indoor floor stands: oak poles with brass spear finials and bell bases, 4 x 6 ft cloth draped as real geometry (arc length preserved, pleats along the fall), gold fringe on the free edges, gold cords and tassels. |
 | `fly_vial` | 0.026 x 0.106 x 0.026 | state, flies, pupae, plug, tape, tapeYaw, tapeArc, climbTop, droplets, flyScale, glint, front, backs | A clear polystyrene fruit fly culture vial (25 mm across, 95 mm tall): glass that reads by its edge and a rim at a flared lip, cornmeal food with a meniscus up the wall, a cellulose plug, pupae, and adult Drosophila at macro (red faceted eyes, bristled ... |
 | `hearing_dais` | 10.5 x 1.6 x 4 | seats, curve, wood, carpet, chairs, mics, plates, steps | Commissioners court or council dais: a raised millwork bench, concave toward the audience (curve = front radius in metres, 0 = straight), raised panel modesty front with pilasters, a transaction ledge with blank brass nameplates, gooseneck microphones and ... |
+| `index_card_drawer` | 0.16 x 0.11 x 0.42 | length, blocks, per, flagged, fill, color, divider, flag, flagFront | A steel 3 by 5 index card drawer, drawn to illustrate: `length` m long with the front on +z, `blocks` blocks of `per` upright cards separated by pressboard guide cards whose tabs stand proud of the cards (`divider` hex), the card pitch DERIVED from the inside ... |
 | `laptop` | 0.31 x 0.23 x 0.26 | open, finish, screen, dark | 14 in aluminium laptop at true size: unibody base, recessed keyboard with every key, glass trackpad, hinge, thin lid with a lit display (screen doc \| sheet \| chart \| dash \| off; no legible text) and a camera dot. open is the lid angle in degrees. |
 | `monitor` | 0.62 x 0.52 x 0.2 | inches, screen, dark, finish | Desktop monitor (27 in default) on a stand: thin bezel front with a lit display (screen chart \| dash \| doc \| sheet \| off; no legible text), a bulged rear housing with vents, a slim neck and a flat base. |
 | `office_chair` | 0.66 x 1.0 x 0.66 | style, color, arms | Swivel office chair facing +z: five star base on twin wheel casters, telescoping gas lift, tilt mechanism with knob and lever, waterfall seat, curved backrest with lumbar, T arms. style task (fabric) \| mesh \| exec (high back leather on polished aluminium). |
+| `patient_wristband` | 0.11 x 0.03 x 0.08 | pose, girth, width, thick, color, label, snap, tail, tab, aspect | A closed hospital patient wristband, drawn to illustrate: a solid vinyl strap `width` m wide and `thick` m thick (every face present, double sided by construction) closed to a loop `girth` m round, a raised white label patch with a greeked barcode and name ... |
 | `podium` | 0.66 x 1.52 x 0.56 | wood, seal, mic | Speaker lectern: a raked veneer body wider at the top, sloped reading desk with a book stop, raised front panel with an optional blank round seal, plinth, and a gooseneck microphone. |
 | `pro_camcorder` | 0.95 x 1.38 x 1.06 | tripod, height, spread, screenAngle, screenGlow, tally, mic | A professional camcorder, drawn to illustrate: a bevelled body 0.13 m wide and 0.36 m long, a barrel with knurled focus and zoom rings, a square petal hood and coated front glass facing +z, a top handle with XLR block and shotgun mic (mic), a viewfinder, a ... |
 | `public_seating` | 5.6 x 0.95 x 2.9 | rows, perRow, aisle, type, color, frame, wood | Rows of public seating facing +z (toward the dais): padded stacking chairs on chrome or black tube frames, or wooden pews (type: pews). |
@@ -403,7 +405,7 @@ Classic scripts expose a global. The engine and the kit are ES modules and are a
 
 **The 2.5D object catalogue** (`TXOBJ.sprite(name)` on the `TXSCENE` bench, canvas only, for the rare frame that is not rendered; a rendered frame takes the kit): `ambulance` 6.7 x 2.7, `battery_container` 12.2 x 2.9, `billboard` 14.6 x 12.0, `camera_pole` 1.2 x 4.5, `capitol` 100.0 x 95.0, `cattle` 2.5 x 1.5, `civic_facade` 30.0 x 20.0, `cooling_tower` 90.0 x 130.0, `dais` 9.0 x 1.3, `data_center` 130.0 x 16.0, `desk` 1.6 x 1.2, `drone` 1.0 x 0.3, `fence_post` 0.2 x 1.4, `filing_box` 0.4 x 0.28, `helicopter` 13.0 x 3.8, `hospital` 60.0 x 30.0, `hospital_bed` 2.2 x 1.3, `house` 16.0 x 6.0, `live_oak` 16.0 x 11.0, `mesquite` 8.0 x 6.0, `office_chair` 0.7 x 1.2, `pallet_boxes` 1.2 x 1.7, `pickup` 5.9 x 1.95, `pine` 7.0 x 26.0, `podium` 0.7 x 1.25, `power_plant` 70.0 x 62.0, `pump_jack` 7.5 x 5.2, `road_sign` 2.0 x 3.0, `school` 60.0 x 8.0, `school_bus` 12.0 x 3.1, `sedan` 4.7 x 1.45, `server_rack` 0.6 x 2.1, `solar_panel` 4.2 x 2.6, `stock_tank` 8.0 x 1.0, `streetlight` 3.0 x 10.0, `strip_mall` 40.0 x 6.0, `student_desk` 0.9 x 0.85, `substation` 22.0 x 12.0, `traffic_signal` 8.0 x 6.5, `transmission_tower` 12.0 x 42.0, `truck_semi` 17.0 x 4.1, `utility_pole` 2.4 x 12.0, `voting_booth` 0.9 x 1.6, `warehouse` 90.0 x 12.0, `water_tower` 12.0 x 38.0, `wind_turbine` 8.0 x 150.0, `windmill` 3.0 x 11.0.
 
-**Earlier deck chassis** (`assets/js/deck/`, read how a `TXDECK.declare` is written, never copy a world): `2026-09-16-lamp.js`, `2026-09-17-nightdraft.js`, `2026-09-18-minutebook.js`, `2026-09-19-firstlight.js`, `2026-09-20-waterworks.js`, `2026-09-21-oakcliff.js`, `2026-09-23-gensetyard.js`, `2026-09-24-droneline.js`, `2026-09-26-fortyfive.js`, `2026-09-27-nightrent.js`, `2026-09-28-watchtower.js`, `2026-09-29-mccloud.js`, `2026-09-30-firstreader.js`, `2026-10-01-plates.js`, `2026-10-02-vials.js`, `2026-10-03-norther.js`, `2026-10-04-noonbell.js`, `2026-10-05-wards.js`, `2026-10-06-prairie.js`, `2026-10-07-portalpha.js`, `2026-10-08-nexus.js`, `2026-10-09-chart.js`, `2026-10-10-lastlawn.js`, `2026-10-11-feedyard.js`, `2026-10-12-crossing.js`, `2026-10-15-transcript.js`, `2026-10-16-curb.js`, `2026-10-16-studio-proof.js`, `2026-10-17-section.js`, `2026-10-18-brush.js`, `2026-10-20-suite.js`, `2026-10-21-cell.js`, `2026-10-22-stair.js`, `proof-port-art-direction.js`.
+**Earlier deck chassis** (`assets/js/deck/`, read how a `TXDECK.declare` is written, never copy a world): `2026-09-16-lamp.js`, `2026-09-17-nightdraft.js`, `2026-09-18-minutebook.js`, `2026-09-19-firstlight.js`, `2026-09-20-waterworks.js`, `2026-09-21-oakcliff.js`, `2026-09-23-gensetyard.js`, `2026-09-24-droneline.js`, `2026-09-26-fortyfive.js`, `2026-09-27-nightrent.js`, `2026-09-28-watchtower.js`, `2026-09-29-mccloud.js`, `2026-09-30-firstreader.js`, `2026-10-01-plates.js`, `2026-10-02-vials.js`, `2026-10-03-norther.js`, `2026-10-04-noonbell.js`, `2026-10-05-wards.js`, `2026-10-06-prairie.js`, `2026-10-07-portalpha.js`, `2026-10-08-nexus.js`, `2026-10-09-chart.js`, `2026-10-10-lastlawn.js`, `2026-10-11-feedyard.js`, `2026-10-12-crossing.js`, `2026-10-15-transcript.js`, `2026-10-16-curb.js`, `2026-10-16-studio-proof.js`, `2026-10-17-section.js`, `2026-10-18-brush.js`, `2026-10-20-suite.js`, `2026-10-21-cell.js`, `2026-10-22-stair.js`, `2026-10-23-ledger.js`, `proof-port-art-direction.js`.
 
 **Geodata** (`assets/geo/`):
 
@@ -442,6 +444,7 @@ Run every gate by EXIT CODE, never by reading the last line. **Wired** says what
 | `scripts/carousel/depth_floor.py` | THE FRAME STANDS IN A PLACE. | --date --slides-dir --out-root --plan --self-test | CI, shipped | state, artwork, 10.5 |
 | `scripts/carousel/dossier_check.py` | is the deck PLANNED, or is it nine slides of intention? | --date --out --self-test | CI self-test, shipped | context, artwork, 12b |
 | `scripts/carousel/email_check.py` | the run's email is the payload the builder produced, and it is postable. | --run --all --self-test | CI | 19 |
+| `scripts/carousel/fig_inject.py` | each slide carries the computed figures IT reads, and nothing else. | --run --check --self-test | shipped |  |
 | `scripts/carousel/figure_bearing.py` | THE ARTWORK CARRIES THE DATA. | --date --out-root --plan --self-test | CI, shipped | state, artwork, 10.5 |
 | `scripts/carousel/gate_status.py` | print the run's gate block from the artifacts, so no sentence can contradict what is on disk. | --date --out --sync --verify-pasted --strict --self-test | CI self-test | 12b, 15, 19 |
 | `scripts/carousel/gate_wiring.py` | a gate that nothing runs is a gate that is red, and nobody finds out. | --self-test | shipped |  |

@@ -9,7 +9,7 @@ The Texas House Committee on State Affairs met on August 19th, 2026 on two inter
 - Public access: Write to the decider
 - Take part: https://capitol.texas.gov/Committees/MeetingsByCmte.aspx?Leg=89&Chamber=H&CmteCode=C450
 
-- Last checked: 2026-10-20
+- Last checked: 2026-10-23
 
 ## Dates
 
@@ -40,6 +40,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-14 · The committee's own meeting archive still lists the August 19th sitting, now followed by two September sittings, with its minutes and witness list linked. The charge wording on the Legislative Reference Library page and any report index weren't re-read, since that host is off limits to this project.
 - 2026-10-17 · The committee's own meeting archive still lists the August 19th sitting and the two September sittings after it, with no later sitting posted. The charge wording on the Legislative Reference Library page is unconfirmed, since that host is off limits to this project.
 - 2026-10-20 · House State Affairs still lists the August 19th sitting and the two September sittings after it, and has posted no later meeting. The charge wording on the Legislative Reference Library page stays unconfirmed.
+- 2026-10-23 · House State Affairs still lists the August 19th sitting and the two September sittings after it, with no later meeting and no interim report posted. The charge wording stays unconfirmed.
 
 ## Evidence
 

@@ -1,0 +1,96 @@
+{
+ "lens": "reader",
+ "round": 1,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.0,
+   "why": "The deck is rendered and staged on a dark field, and the one ember accent carries the argument well on slides 1, 4 and 8. It still misses the SHOWSTOPPER test on most frames when the type is covered at 432 px. Slide 2's two stacks have top sheets that float and clip over the block. The notched card that the dossier's acceptance list requires can't be seen, and there is a dark wedge cut into the left stack. Slide 5's '17 wristbands' read as crescent rings with jagged rims, sit in a low strip, and leave the middle third of the frame empty. Slide 7 scatters orange speckle over the far ground, which reads as noise, and the drawer front is a large flat dead plane. The flagged block is small at the far left. Slide 4 is a mid-tone bone card filling about half the frame and reads flat at feed size. The render report flags its key verbatim, 'established patient with multiple chronic conditions', at 23 px, under the 24 px mobile floor. Slide 9 is the cover reshot closer. The tape, planned as a curl peeling off, renders as a rigid flat bar sticking out sideways, which is exactly the risk the storyboard names ('can read as a printed bar'). Slides 1, 3 and 6 are competent, with raking key and long casts to the left, but the cards are primitive flat planes with painted rules. This lands between the 4 and 7 descriptors."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "This is clearly one deck: one card at one size, one ember accent that always means 'the added line', and one key from the right with casts to the left on every frame. Frames 3 and 6 use one locked camera, the turn is declared, and the storyboard names MOTIF_EVOLUTION, CAMERA_MOVE and VALUE_ARC. Two things hold it under 8. The canvas means strobe (41.1, 28.8, 44.3, 50.5, 14.9, 43.3, 21.4, 37.3, 52.7), with hard steps at 4 to 5 to 6 to 7. The two orthographic reliefs, 4 and 8, sit on a flat black plate rather than the shale world the others stand in."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.0,
+   "why": "Every slide string traces to a claim. The numerals 17, 12, 10%, 10 (c34) and 100 (per-hundred rendering of c15) are all accounted for, and preprint material is labelled 'unreviewed May preprint' on slide 8. Three looser points keep it at 7. (1) The cover headline 'One added line moved the higher risk patient back' drops the 'sometimes / in some instances' that every source sentence carries (c8, c14, c15). copy.json's own document_title reads 'One added line sometimes moved...', so the hedge was lost on the one line a feed reader sees. (2) Slide 8's image draws ten strips, the preprint's two-model condition count (c34), and flags the release's two strongest effects (c16) among them. That visually merges two different versions of the study. (3) The deck rests on the institution's press release because the paper wasn't fetched, which is the 7 descriptor's 'leans on' case. The 'nearly 10 in 100' drawer also shows a full flagged block of ten, so the image says ten where the claim says nearly."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.0,
+   "why": "Read once in the feed, it's clear: UT Southwestern in Dallas, three unnamed open-source models, matched ED pairs, a stigmatizing line flipping some priorities, 'nearly 10%' in some instances. The deck is honest that the records came from California and Massachusetts (slide 2) and that no Texas hospital is named using these models (slide 9). A Texan finishes with nothing to do, though. There is no body, no decision, no deadline, and the close ('Test each tool on real outcomes first') is advice to hospitals, not to the reader. The most concrete stake for a Texan is that a chart describing frequent ED visits or a psychiatric history can move a model's triage call. That is never put in the reader's terms. The three models are unnamed, so a reader can't tell whether any tool near them is affected. The caption turns that into a question ('Which were they?'), which is honest but leaves the reader empty-handed."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "The cover earns a swipe. The 3 to 6 before-and-after on one camera is a real turn, set up by 'Before the line' and 'After the line' kickers. Frame 2 is method (data sources), not a payoff. Frame 5 is cuttable, since it restates the '17 visits in the past 12 months' slide 4 already showed and adds only a count of rings. The close reshoots the cover rather than landing somewhere new, so the deck ends where it began."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "The copy is clean and on register. House rules hold: no colons, semicolons, dashes, banned words or 'And/But' openers. The caption opener 'In Dallas, researchers rewrote one line.' is strong. Four frames spend their dek explaining the drawing: 'The tape here carries the second, set under the first' (4), 'One wristband stands for one visit' (5), 'The drawer holds 100 cards in blocks of ten' (7), 'Each tray stands for one model, and the notched card...' (3). That legend-speak is the most machine-sounding thing in the deck. Beyond the Dallas dateline there is no Texas texture, which is partly forced by the out-of-state data."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "The record-card and tape motif and the mix of a relief and spatial scenes are fresh. The familiar moves: the lastLight staged world on a dark ledge repeats nos. 56 and 57. The subject is the third medical-AI deck in six days (no. 53 MD Anderson, no. 55 Houston Methodist) and the fourth institutional research release in the last six (53, 55, 57, 58). The cover opens on an object under a raking key on black with the headline above, as no. 56 did. No topic repeats inside the window."
+  }
+ ],
+ "weighted_score": 6.58,
+ "hard_fails": [],
+ "ship": false,
+ "notes_for_panel": "No hard fail found. Two things for the integrity and machine owners to confirm, neither ruled a hard fail here. (a) out/2026-10-23/render/render_report.json marks slide-04 ok:true but carries an overflow_warning 'tiny-text ... font-size 23px < 24px mobile floor' on the verbatim neutral line, which is not decorative. If layout_check treats that floor as a failure, it becomes a machine QA hard fail. (b) out/2026-10-23/run_state.json still shows art, pixel, gates12b, assembly and panel_ready as 'pending', so this reader could not confirm that the panel_ready gate ran before scoring. ship:false here is the number (6.58 against the round 1 rung of 8.0), not a fault.",
+ "one_sentence_fix": "Rebuild the close so a Texan ends with something to see and do: replace the reshot cover (and its stiff tape bar) with frame 3's locked tray camera showing the taped card restored to the front slot, the test the authors ask for. Restore 'sometimes' to the cover headline, and put the stake in the reader's own terms: a chart line about frequent ED visits or psychiatric history can move a model's triage call, and no source names which three models were tested.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 9,
+   "problem": "The close is the cover reshot closer, and the planned peeling curl renders as a rigid flat red bar jutting horizontally past the card edge. It reads as a printed stick, not tape, and the image adds nothing new to the argument.",
+   "fix": "Model the tape as a thin lofted ribbon whose free end lifts and curls toward the camera with its pale underside showing and a soft cast on the card face. Or replace the frame with frame 3's tray camera, the taped card back in the front slot, so the close is a new state of the motif."
+  },
+  {
+   "slide": 2,
+   "problem": "The top sheets on both stacks float and clip over the block, a dark wedge cuts into the left stack, and the notched-card pair the dossier requires can't be seen. A wide dead dark zone sits between the stacks.",
+   "fix": "Lay the slid top pair as two separate solid cards resting on the stack tops, with the notched corner turned to camera. Push the camera in so the two stacks fill two thirds of the width, and let the key rake the instanced edges."
+  },
+  {
+   "slide": 5,
+   "problem": "The 17 'wristbands' read as crescent rings with jagged, aliased rims. They sit in a low strip and leave the frame's middle third empty, so a reader sees rings, not hospital bands.",
+   "fix": "Model each band as a flat strap with a tail and a visible snap, lying on its side rather than standing as a hoop. Raise the segment count to kill the jaggies, and enlarge the three rows until they fill the lower half."
+  },
+  {
+   "slide": 7,
+   "problem": "Orange speckle scattered over the far ground reads as render noise. The drawer front is a large flat dead plane, and the flagged block, the frame's whole point, is small at the far left.",
+   "fix": "Remove the scatter so the ground beyond the pool falls to black. Raise and swing the camera so the flagged block of cards sits large at centre-left, with the drawer front cropped off the bottom edge."
+  },
+  {
+   "slide": 4,
+   "problem": "The bone card is a near-flat mid-tone plate filling half the frame, the tape barely stands proud at feed size, and the neutral wording is set at 23 px, under the 24 px floor.",
+   "fix": "Set the neutral line at 26 px or more. Tilt the relief toward the key with a sharper falloff and lift the tape's near corner, so it casts a visible shadow and the card face drops toward black at its edges."
+  }
+ ],
+ "files_read": [
+  "/home/user/TexasAIDocket/config/carousel/scoring_rubric.yaml",
+  "/home/user/TexasAIDocket/prompts/carousel_studio.md",
+  "/home/user/TexasAIDocket/out/2026-10-23/final/contact_sheet.png",
+  "/home/user/TexasAIDocket/out/2026-10-23/render/slide-01.png through slide-09.png",
+  "/home/user/TexasAIDocket/out/2026-10-23/render/render_report.json",
+  "/home/user/TexasAIDocket/out/2026-10-23/caption.txt",
+  "/home/user/TexasAIDocket/out/2026-10-23/first_comment.txt",
+  "/home/user/TexasAIDocket/out/2026-10-23/copy.json",
+  "/home/user/TexasAIDocket/out/2026-10-23/claims.json",
+  "/home/user/TexasAIDocket/out/2026-10-23/storyboard.md",
+  "/home/user/TexasAIDocket/out/2026-10-23/run_state.json",
+  "/home/user/TexasAIDocket/ledger/carousel/topics.json",
+  "/home/user/TexasAIDocket/ledger/carousel/artwork.json",
+  "/home/user/TexasAIDocket/ledger/carousel/captions.json"
+ ]
+}

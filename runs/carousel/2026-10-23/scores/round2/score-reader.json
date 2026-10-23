@@ -1,0 +1,96 @@
+{
+ "lens": "reader",
+ "round": 2,
+ "deck": "Texas AI Docket carousel no. 58, 2026-10-23",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.5,
+   "why": "Every frame is rendered in one lastLight still-life world, and the type sits light on a dark sky throughout. Slides 1 and 9 are the strongest: two bone cards in a graphite holder, a long cast to the left, contact at the rail, and on 9 the ember tape curls off the card and throws its own shadow. Slides 3 and 6 use the same locked camera, which works. Several frames fall short of the 7 descriptor, which allows one weak frame. Slide 4 is a flat ruled card filling the lower 45% in a pale mid tone, with both wordings printed on it, so it reads as a type plate rather than a lit object. The relief's cast_fraction is 0.016. On slide 7 the drawer front is a big flat brown slab across the lower third, and the ten flagged cards, the frame's whole argument, are a small cluster at far left. Slide 2's stacks have broken geometry: a dark notch is cut into the left stack's right face, top sheets float over the edges, the tan sides sit in the mid tones and the speckled ground reads as noise. On slide 5 the bands read as finger rings at 432 px, and the ember tabs the storyboard planned are missing. Slide 8 reads as a striped bar chart. Coherent and finished, but not bold, and no frame passes the Showstopper test."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.8,
+   "why": "This is clearly one deck on the contact sheet. It has one key from the right with casts running left on 1, 2, 3, 5, 6, 7 and 9, one card at one size, one ember accent that means one thing (the added line), and three continuity devices that actually do work. The tape motif changes state from 1 to 4, 6, 7, 8 and 9. Frames 3 and 6 share a locked camera with the turn on 6. The close returns to the cover's holder with the tape peeling off. Below 8 because both txbench reliefs, 4 and 8, sit slightly outside the deck. They drop the sky and ledge for a pale card face in a black field, so the value track jumps (canvas means 44.3 to 50.8 to 14.9 across frames 3 to 5)."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 6.5,
+   "why": "Every numeral traces to a claim or a computation: 17 and 12 to c19, nearly 10% and '10 in 100' to c15, 10 conditions to c34, five as the count of c42's list, October 20th to c1. Sources are primary (the release and the preprint), the preprint is labelled unreviewed (c26), and c11 and c23 keep the Texas scope honest. Two problems a reader carries away. (1) Slide 8's headline 'five of 10 lines moved patients back', with a relief drawing five bone strips as non-movers, goes further than c42. c42 says only that 'the most consistent harmful shifts' came from those five. c38 clears three more (race, language, insurance), which leaves two conditions the deck silently presents as harmless. It also draws 'altered age' as a harm and omits c18, where the researchers say age effects likely reflect medical risk rather than bias. (2) Slide 6's picture moves the card in exactly one of three trays, while its own dek says 'The release does not say how many of the three models shifted.' The image asserts a count the text disclaims. A smaller point: the caption's 'researchers rewrote one line' when the source says the detail was added. None of these is an untraceable numeral, so none is filed as a hard fail, but (1) is close to 'a claim that stretches its source'."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.5,
+   "why": "On one swipe through, a Texan learns that UT Southwestern in Dallas tested three AI triage models, that stigmatizing chart wording ('17 visits in the past 12 months') sometimes pushed back the patient who later deteriorated, and that nearly 10% were downgraded in some instances. That is clear and concrete. What they can't get: who decided anything (no body, no decision), and what to do next. The close (slide 9) is advice to hospitals. It then says the release names no Texas hospital using these models, and slide 2 says the records came from California and Massachusetts. So the Texas stake is where the researchers work, and there is no deadline, county or action. The caption ends on 'Which were they?', a question the reader can't act on. Under the 10 descriptor on body, decision and deadline, and short of 7 because the stake for a Texan is stated generally."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "The cover hook is good but hedged ('sometimes'). Frame 2 is method (data sources) rather than a payoff of the cover. The real before and after is 3 to 6, and frames 4 and 5 sit between them. Frame 5 (17 wristbands) restates the number frame 4 already printed and could be cut without loss. Frame 6's dek repeats the cover's c8 sentence almost word for word ('a single added detail sometimes shifted a model away from the patient who later deteriorated'). Frame 8 swaps to a different study (the two-model preprint) for the deck's most specific finding, which blurs the turn. The close lands visually with the peeling tape. More than one frame is cuttable or redundant, which puts it under 7."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "Clean, accurate, no doom and no boosterism, and it follows the house rules (no colons, can't, no banned words). It reads as a careful methods summary rather than a Texan who knows emergency rooms. Four deks spend their second sentence explaining the drawing: 'Each tray stands for one model', 'The tape here carries the second, set under the first' (awkward), 'One wristband stands for one visit', 'The drawer holds 100 cards in blocks of ten, and the flagged block stands for the share'. Slide 7's headline is the release's own 'In some instances, nearly 10%'. There is no regional specificity beyond 'Dallas' and the repeated 'not a Texas hospital'."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.0,
+   "why": "The record-card and tape motif is new. Most else repeats recent decks. It uses the same staged lastLight world, dark navy sky and brown ledge as no. 56 (October 21st) and no. 57 (October 22nd), with a warm accent object close on the cover. By instrument it is the third institutional release on a health-research paper in six days (no. 53 MD Anderson SPACER, no. 55 Houston Methodist OR cameras, now UT Southwestern), and the fourth research-paper deck of the last six with no. 57's arXiv study. That is the instrument repeat earlier angle_notes warn dedupe_check can't see. Not a topic repeat: no. 43 (October 5th, UT REAL Health AI) touched emergency triage but is a different item."
+  }
+ ],
+ "weighted_score": 6.606,
+ "weighted_score_arithmetic": "6.5*0.22=1.430 + 7.8*0.12=0.936 + 6.5*0.20=1.300 + 6.5*0.16=1.040 + 6.5*0.10=0.650 + 6.5*0.10=0.650 + 6.0*0.10=0.600 = 6.606",
+ "hard_fails": [],
+ "ship": false,
+ "ship_note": "No hard fail found. The no is the number: 6.606 against the round 2 rung of 7.7. Render report ok:true on all nine frames. Numerals trace. The slide 8 overreach is charged in claim_integrity and the integrity judge should test it against the preprint text itself.",
+ "one_sentence_fix": "Rebuild frame 8 on the preprint's own words, 'the most consistent harmful shifts came from five of the 10 added lines'. Leave the two conditions c38 doesn't clear visibly unresolved rather than drawn as harmless bone strips, and carry c18's age caveat. Then make frame 6's one moved tray match its dek, or say the drawing shows one model only to illustrate. Those are the two places a reader leaves believing more than the sources say.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 4,
+   "problem": "A flat ruled card fills the lower 45% in a pale mid tone with both wordings printed on it. It reads as a type plate, not a lit relief, and the tape barely stands proud (cast_fraction 0.016).",
+   "fix": "Tilt the card about 25 degrees into the raking key in perspective. Lift the tape's near corner well clear so it casts a hard shadow across the neutral line, and let the card's far half fall into shadow so a true dark surrounds one bright edge."
+  },
+  {
+   "slide": 7,
+   "problem": "The drawer front is a large flat brown slab across the lower third, and the ten ember-flagged cards, the frame's argument, are a small cluster at far left that is nearly lost at feed size.",
+   "fix": "Move the camera to the flagged end and look down the drawer's length, so the ten flagged cards are large in the foreground and the other 90 recede into the dark. Crop the drawer front out of the bottom edge."
+  },
+  {
+   "slide": 2,
+   "problem": "Broken stack geometry: a dark notch is cut into the left stack's right face, top sheets float over the edges, and the tan stack sides sit in the grey middle on a ground whose grit reads as noise.",
+   "fix": "Rebuild each stack as a clean instanced block of the card with the top pair slid forward as the storyboard planned, one notched and one plain. Rake the key across the edges and drop the scatter density on the ledge."
+  },
+  {
+   "slide": 5,
+   "problem": "The 17 loops read as finger rings, not hospital wristbands, and the planned ember tabs are absent, so the motif breaks on this frame.",
+   "fix": "Give each band a flat ID panel and the ember tab, and raise the camera slightly so the band shape and panel read at 432 px."
+  },
+  {
+   "slide": 8,
+   "problem": "Ten straight full-width strips read as a striped bar chart or a flag rather than lines laid on a record, and the card face is a large mid-tone field.",
+   "fix": "Lay the strips at the small angles with curled right ends that the craft plan specified. Crop tighter on the card so strip height and cast show, and let the pool fall off to black at the left and bottom edges."
+  }
+ ],
+ "files_read": [
+  "/home/user/TexasAIDocket/config/carousel/scoring_rubric.yaml",
+  "/home/user/TexasAIDocket/out/2026-10-23/tmp/thumbs/slide-01.png",
+  "/home/user/TexasAIDocket/out/2026-10-23/final/contact_sheet.png",
+  "/home/user/TexasAIDocket/out/2026-10-23/render/slide-01.png through slide-09.png",
+  "/home/user/TexasAIDocket/out/2026-10-23/render/render_report.json",
+  "/home/user/TexasAIDocket/out/2026-10-23/caption.txt",
+  "/home/user/TexasAIDocket/out/2026-10-23/first_comment.txt",
+  "/home/user/TexasAIDocket/out/2026-10-23/copy.json",
+  "/home/user/TexasAIDocket/out/2026-10-23/claims.json",
+  "/home/user/TexasAIDocket/out/2026-10-23/storyboard.md",
+  "/home/user/TexasAIDocket/ledger/carousel/topics.json",
+  "/home/user/TexasAIDocket/ledger/carousel/captions.json"
+ ]
+}

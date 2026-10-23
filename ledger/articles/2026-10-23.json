@@ -1,0 +1,114 @@
+{
+ "_spec": {
+  "version": 1,
+  "purpose": "A standalone web edition of the archived visual story.",
+  "law": "Facts resolve to the original verified claim record. A layout rebuild does not reverify reporting.",
+  "written_by": "daily"
+ },
+ "section": "Health",
+ "dek": {
+  "text": "UT Southwestern researchers gave three open source AI models matched pairs of emergency patients. One added stigmatizing line sometimes moved the higher risk patient back.",
+  "claims": [
+   "c9",
+   "c12",
+   "c8"
+  ]
+ },
+ "introduction": [
+  {
+   "text": "[UT Southwestern Medical Center published the release on {{date:c1}}](c1). [It says the study appeared in npj Digital Medicine](c3). [The team asked three open source AI language models](c9) [to predict which patients were more likely to deteriorate and who should be seen first](c10).",
+   "claims": [
+    "c1",
+    "c3",
+    "c9",
+    "c10"
+   ]
+  },
+  {
+   "text": "[The records came from Stanford Medicine in California and Beth Israel Deaconess Medical Center in Massachusetts](c11). [Each patient was paired with another of similar starting severity](c12). [Philip Jarrett is the first author](c4) [and Andrew Jamieson the senior author](c6).",
+   "claims": [
+    "c11",
+    "c12",
+    "c4",
+    "c6"
+   ]
+  }
+ ],
+ "sections": [
+  {
+   "heading": "Before and after the added line",
+   "paragraphs": [
+    {
+     "text": "[With no demographic, social or stigmatizing detail in the record, all three models picked out higher risk patients at rates well above chance](c13). [In some cases a detail unrelated to a patient's immediate condition led the models to lower the priority of patients who later deteriorated seriously](c14). [In some instances nearly {{number:c15}} of patients were wrongly downgraded once stigmatizing detail was added](c15).",
+     "claims": [
+      "c13",
+      "c14",
+      "c15"
+     ]
+    },
+    {
+     "text": "[One pair set the neutral \"established patient with multiple chronic conditions\" against \"{{number:c19}} visits in the past {{number:c19:1}} months\"](c19). [Some of the strongest effects came when records described patients as frequent emergency users or noted past psychiatric emergencies](c16). [Age shifted some decisions too. The researchers think that reflected the greater medical risk of older age](c18).",
+     "claims": [
+      "c19",
+      "c16",
+      "c18"
+     ]
+    },
+    {
+     "text": "[Jamieson said a single added detail sometimes shifted a model's priority away from the patient who later deteriorated](c8).",
+     "claims": [
+      "c8"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "The earlier preprint",
+   "paragraphs": [
+    {
+     "text": "[The authors posted an earlier version on Research Square dated {{date:c27}}](c27). [It had not been peer reviewed](c26). [That version tested two models](c30) [on {{number:c33}} pairs from MIMIC-IV-ED and {{number:c33:1}} from MC-MED](c33).",
+     "claims": [
+      "c27",
+      "c26",
+      "c30",
+      "c33"
+     ]
+    },
+    {
+     "text": "[It tested {{number:c34}} added conditions, each from a distinct demographic or stigma domain](c34). [Its most consistent harmful shifts came when the added line indicated psychiatric history, frequent emergency use, homelessness, substance use or altered age](c42). [Race, language and insurance status did not produce harmful shifts](c38).",
+     "claims": [
+      "c34",
+      "c42",
+      "c38"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "What the study can't say",
+   "paragraphs": [
+    {
+     "text": "[Jarrett said bias varies by model, so each AI tool should be tested against real patient outcomes before use](c21). [The release says hospitals increasingly explore AI to help prioritize care](c23). [The preprint notes that both of its datasets came from academic medical centers in the United States. How the results carry to community hospitals is unknown](c41).",
+     "claims": [
+      "c21",
+      "c23",
+      "c41"
+     ]
+    },
+    {
+     "text": "[Institutional funds from the UT Southwestern Office of the President supported the study](c24). [Follow-up research has grant funding from the National Foundation of Emergency Medicine](c25).",
+     "claims": [
+      "c24",
+      "c25"
+     ]
+    }
+   ]
+  }
+ ],
+ "related": [
+  {
+   "id": "tx-2026-0228",
+   "label": "The record entry for the UT Southwestern triage bias study"
+  }
+ ]
+}

@@ -1,0 +1,2157 @@
+{
+  "canvas": {
+    "width": 1080,
+    "height": 1350,
+    "scale": 2.0,
+    "px": [
+      2160,
+      2700
+    ]
+  },
+  "text_window": 320,
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "png": "slide-01.png",
+      "console_errors": [
+        "TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 230, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "One added line sometimes moved the higher risk patient back",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 130,
+          "font_px": 62,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(236, 230, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              144,
+              862,
+              77
+            ],
+            [
+              80,
+              209,
+              712,
+              77
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "UT Southwestern researchers asked AI models which of two matched emergency patients to see first. A single added detail sometimes shifted a model away from the patient who later deteriorated. The cards are drawn to illustrate.",
+          "x": 82,
+          "y": 371,
+          "w": 700,
+          "h": 214,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(216, 207, 192)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              371,
+              684,
+              42
+            ],
+            [
+              82,
+              414,
+              664,
+              42
+            ],
+            [
+              82,
+              457,
+              613,
+              42
+            ],
+            [
+              82,
+              500,
+              697,
+              42
+            ],
+            [
+              82,
+              542,
+              682,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "UT Southwestern, Dallas",
+          "x": 80,
+          "y": 80,
+          "w": 381,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(216, 207, 192)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              381,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "01 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(216, 207, 192)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c1 c2 c8 c10 c12",
+          "x": 80,
+          "y": 1234,
+          "w": 257,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(216, 207, 192)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              257,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 15305,
+      "ok": true,
+      "load_ms": 317,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 40.7,
+          "variance": 3581
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-02.html",
+      "png": "slide-02.png",
+      "console_errors": [
+        "TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 230, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Two medical centers, paired patients",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 207,
+          "font_px": 98.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(236, 230, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              141,
+              864,
+              121
+            ],
+            [
+              80,
+              244,
+              617,
+              121
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The records came from Stanford Medicine in California and Beth Israel Deaconess Medical Center in Massachusetts, not a Texas hospital. Each patient was paired with one of similar starting severity.",
+          "x": 82,
+          "y": 381,
+          "w": 760,
+          "h": 214,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(216, 207, 192)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              381,
+              649,
+              42
+            ],
+            [
+              82,
+              424,
+              660,
+              42
+            ],
+            [
+              82,
+              466,
+              685,
+              42
+            ],
+            [
+              82,
+              509,
+              625,
+              42
+            ],
+            [
+              82,
+              552,
+              250,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Stanford Medicine",
+          "x": 123,
+          "y": 712,
+          "w": 292,
+          "h": 34,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 230, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              123,
+              711,
+              292,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Beth Israel Deaconess",
+          "x": 639,
+          "y": 729,
+          "w": 360,
+          "h": 34,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 230, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              639,
+              728,
+              360,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The records",
+          "x": 80,
+          "y": 80,
+          "w": 182,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(216, 207, 192)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              182,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "02 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(216, 207, 192)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c11 c12",
+          "x": 80,
+          "y": 1234,
+          "w": 113,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(216, 207, 192)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              113,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [
+        {
+          "kind": "svg",
+          "x": 269.5,
+          "y": 751.9,
+          "w": 5,
+          "h": 110,
+          "by": "line",
+          "color": "rgb(7, 7, 12)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 269.5,
+          "y": 751.9,
+          "w": 2,
+          "h": 110,
+          "by": "line",
+          "color": "rgb(236, 230, 218)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 860.4,
+          "y": 769.4,
+          "w": 5,
+          "h": 110,
+          "by": "line",
+          "color": "rgb(7, 7, 12)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 860.4,
+          "y": 769.4,
+          "w": 2,
+          "h": 110,
+          "by": "line",
+          "color": "rgb(236, 230, 218)",
+          "decorative": false,
+          "skip": []
+        }
+      ],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 17104,
+      "ok": true,
+      "load_ms": 118,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 29.4,
+          "variance": 2046.9
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-03.html",
+      "png": "slide-03.png",
+      "console_errors": [
+        "TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 230, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "First, all three models beat chance",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 209,
+          "font_px": 99.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(236, 230, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              141,
+              586,
+              122
+            ],
+            [
+              80,
+              245,
+              810,
+              122
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "With no social or stigmatizing detail in the record, all three open source models picked the higher risk patient at rates well above chance. Each tray stands for one model, and the notched card is the patient who later deteriorated.",
+          "x": 82,
+          "y": 383,
+          "w": 760,
+          "h": 214,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(216, 207, 192)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              383,
+              728,
+              42
+            ],
+            [
+              82,
+              426,
+              747,
+              42
+            ],
+            [
+              82,
+              468,
+              655,
+              42
+            ],
+            [
+              82,
+              511,
+              727,
+              42
+            ],
+            [
+              82,
+              554,
+              453,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Before the line",
+          "x": 80,
+          "y": 80,
+          "w": 248,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(216, 207, 192)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              248,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "03 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(216, 207, 192)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c9 c10 c13",
+          "x": 80,
+          "y": 1234,
+          "w": 161,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(216, 207, 192)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              161,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 16015,
+      "ok": true,
+      "load_ms": 119,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 44.3,
+          "variance": 4211.6
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-04.html",
+      "png": "slide-04.png",
+      "console_errors": [
+        "TXBENCH: RELIEF {\"height_range\":649.9306030273438,\"materials\":4,\"cast_fraction\":0.01643724279835391,\"area\":1,\"render_ms\":10423.699999999255}"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 230, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Neutral words against stigmatizing ones",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 182,
+          "font_px": 93,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(236, 230, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              138,
+              856,
+              115
+            ],
+            [
+              80,
+              229,
+              680,
+              115
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "One wording pair in the study set a neutral description against a stigmatizing one. The tape here carries the second, set under the first.",
+          "x": 82,
+          "y": 356,
+          "w": 800,
+          "h": 128,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(216, 207, 192)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              356,
+              797,
+              42
+            ],
+            [
+              82,
+              399,
+              774,
+              42
+            ],
+            [
+              82,
+              442,
+              399,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "established patient with multiple chronic conditions",
+          "x": 130,
+          "y": 754,
+          "w": 824,
+          "h": 31,
+          "font_px": 24,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(14, 10, 7)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              130,
+              754,
+              824,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "17 visits in the past 12 months",
+          "x": 230,
+          "y": 840,
+          "w": 532,
+          "h": 34,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 230, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              230,
+              839,
+              532,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The added line",
+          "x": 80,
+          "y": 80,
+          "w": 232,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(216, 207, 192)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              232,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "04 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(216, 207, 192)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c19",
+          "x": 80,
+          "y": 1234,
+          "w": 48,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(216, 207, 192)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              48,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 14329,
+      "ok": true,
+      "load_ms": 78,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 50.8,
+          "variance": 3472
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-05.html",
+      "png": "slide-05.png",
+      "console_errors": [
+        "TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 230, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "17 visits, one line on a record",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 217,
+          "font_px": 103.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(236, 230, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              140,
+              851,
+              127
+            ],
+            [
+              80,
+              249,
+              361,
+              127
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The stigmatizing line counted 17 visits in the past 12 months. One wristband stands for one visit.",
+          "x": 82,
+          "y": 391,
+          "w": 760,
+          "h": 86,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(216, 207, 192)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              391,
+              759,
+              42
+            ],
+            [
+              82,
+              434,
+              640,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "17 visits",
+          "x": 80,
+          "y": 80,
+          "w": 149,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(216, 207, 192)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              149,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "05 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(216, 207, 192)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c19",
+          "x": 80,
+          "y": 1234,
+          "w": 48,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(216, 207, 192)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              48,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 18773,
+      "ok": true,
+      "load_ms": 134,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 14.9,
+          "variance": 475.4
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-06.html",
+      "png": "slide-06.png",
+      "console_errors": [
+        "TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 230, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Then the higher risk patient sometimes went second",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 160,
+          "font_px": 76,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(236, 230, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              143,
+              889,
+              93
+            ],
+            [
+              80,
+              223,
+              748,
+              93
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "One added detail sometimes shifted a model away from the patient who later deteriorated, the senior author says. The release does not say how many of the three models shifted.",
+          "x": 82,
+          "y": 413,
+          "w": 760,
+          "h": 171,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(216, 207, 192)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              413,
+              734,
+              42
+            ],
+            [
+              82,
+              456,
+              741,
+              42
+            ],
+            [
+              82,
+              499,
+              744,
+              42
+            ],
+            [
+              82,
+              542,
+              372,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "After the line",
+          "x": 80,
+          "y": 80,
+          "w": 232,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(216, 207, 192)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              232,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "06 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(216, 207, 192)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c8 c13 c14",
+          "x": 80,
+          "y": 1234,
+          "w": 161,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(216, 207, 192)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              161,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 16417,
+      "ok": true,
+      "load_ms": 111,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 45.6,
+          "variance": 4325
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-07.html",
+      "png": "slide-07.png",
+      "console_errors": [
+        "TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 230, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "In some instances, nearly 10% moved back",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 177,
+          "font_px": 84.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(236, 230, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              141,
+              890,
+              105
+            ],
+            [
+              80,
+              230,
+              576,
+              105
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Nearly 10% of patients were incorrectly downgraded once stigmatizing information was added. The drawer holds 100 cards in blocks of ten, and the flagged block stands for the share.",
+          "x": 82,
+          "y": 351,
+          "w": 740,
+          "h": 171,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(216, 207, 192)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              351,
+              576,
+              42
+            ],
+            [
+              82,
+              394,
+              700,
+              42
+            ],
+            [
+              82,
+              437,
+              680,
+              42
+            ],
+            [
+              82,
+              480,
+              693,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "nearly 10 in 100",
+          "x": 205,
+          "y": 743,
+          "w": 275,
+          "h": 34,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 230, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              205,
+              742,
+              275,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "How often",
+          "x": 80,
+          "y": 80,
+          "w": 149,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(216, 207, 192)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              149,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "07 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(216, 207, 192)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c15",
+          "x": 80,
+          "y": 1234,
+          "w": 48,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(216, 207, 192)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              48,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 24861,
+      "ok": true,
+      "load_ms": 173,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 19.6,
+          "variance": 401.2
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-08.html",
+      "png": "slide-08.png",
+      "console_errors": [
+        "TXBENCH: RELIEF {\"height_range\":708.501220703125,\"materials\":5,\"cast_fraction\":0.0248261316872428,\"area\":1,\"render_ms\":15574.699999999255}"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 230, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Five lines stood out in the preprint",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 187,
+          "font_px": 95.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(236, 230, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              138,
+              858,
+              117
+            ],
+            [
+              80,
+              232,
+              483,
+              117
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "In the authors' unreviewed May preprint, the most consistent harmful shifts came from five of 10 added lines. Race, language and insurance produced none. The release names frequent emergency use and past psychiatric emergencies among the strongest effects.",
+          "x": 82,
+          "y": 361,
+          "w": 860,
+          "h": 214,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(216, 207, 192)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              361,
+              731,
+              42
+            ],
+            [
+              82,
+              404,
+              855,
+              42
+            ],
+            [
+              82,
+              447,
+              856,
+              42
+            ],
+            [
+              82,
+              489,
+              771,
+              42
+            ],
+            [
+              82,
+              532,
+              629,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "psychiatric history",
+          "x": 84,
+          "y": 692,
+          "w": 301,
+          "h": 31,
+          "font_px": 24,
+          "weight": "600",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 230, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              84,
+              692,
+              301,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "frequent ED use",
+          "x": 84,
+          "y": 796,
+          "w": 238,
+          "h": 31,
+          "font_px": 24,
+          "weight": "600",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 230, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              84,
+              796,
+              238,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "homelessness",
+          "x": 84,
+          "y": 952,
+          "w": 190,
+          "h": 31,
+          "font_px": 24,
+          "weight": "600",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 230, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              84,
+              952,
+              190,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "substance use",
+          "x": 84,
+          "y": 1056,
+          "w": 206,
+          "h": 31,
+          "font_px": 24,
+          "weight": "600",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 230, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              84,
+              1056,
+              206,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "altered age",
+          "x": 84,
+          "y": 1160,
+          "w": 174,
+          "h": 31,
+          "font_px": 24,
+          "weight": "600",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 230, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              84,
+              1160,
+              174,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "race",
+          "x": 84,
+          "y": 744,
+          "w": 63,
+          "h": 31,
+          "font_px": 24,
+          "weight": "600",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 230, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              84,
+              744,
+              63,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "language",
+          "x": 84,
+          "y": 848,
+          "w": 127,
+          "h": 31,
+          "font_px": 24,
+          "weight": "600",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 230, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              84,
+              848,
+              127,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "insurance",
+          "x": 84,
+          "y": 900,
+          "w": 143,
+          "h": 31,
+          "font_px": 24,
+          "weight": "600",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 230, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              84,
+              900,
+              143,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The May preprint",
+          "x": 80,
+          "y": 80,
+          "w": 265,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(216, 207, 192)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              265,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "08 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(216, 207, 192)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c16 c26 c34 c38 c42",
+          "x": 80,
+          "y": 1234,
+          "w": 306,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(216, 207, 192)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              306,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 19550,
+      "ok": true,
+      "load_ms": 59,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 39.9,
+          "variance": 2324.4
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-09.html",
+      "png": "slide-09.png",
+      "console_errors": [
+        "TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 230, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Test each tool on real outcomes first",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 209,
+          "font_px": 99.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(236, 230, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              141,
+              880,
+              122
+            ],
+            [
+              80,
+              245,
+              593,
+              122
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Bias varies by model, so each AI tool should be tested on real patient outcomes before use, the first author says. UT Southwestern's October 20th release names no Texas hospital using these models for triage.",
+          "x": 82,
+          "y": 385,
+          "w": 700,
+          "h": 214,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(216, 207, 192)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              385,
+              675,
+              42
+            ],
+            [
+              82,
+              428,
+              644,
+              42
+            ],
+            [
+              82,
+              470,
+              590,
+              42
+            ],
+            [
+              82,
+              513,
+              680,
+              42
+            ],
+            [
+              82,
+              556,
+              439,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Before any hospital uses one",
+          "x": 80,
+          "y": 80,
+          "w": 464,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(216, 207, 192)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              464,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "09 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(216, 207, 192)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c1 c4 c21 c23",
+          "x": 80,
+          "y": 1234,
+          "w": 209,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(216, 207, 192)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              209,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 15239,
+      "ok": true,
+      "load_ms": 111,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 44.7,
+          "variance": 3939.4
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    }
+  ]
+}

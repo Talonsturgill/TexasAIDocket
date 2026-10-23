@@ -1,0 +1,104 @@
+{
+ "lens": "craft",
+ "round": 2,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.0,
+   "why": "The good frames: 1, 3 and 9 are rendered, dark and lit from one side. On 1 two bone cards stand in a graphite holder in a warm pool, the casts run left, the sky is near black and the ember strip is the focal point (preflight median L* 2.9). On 9 the tape's free end curls past the card edge in profile and its cast lands on the card. On 3 the trays bleed off both sides, each with a hard cast on its card. None of them is a showstopper, though. The ledge is a featureless plane with a ruler-straight horizon, and the cards carry placeholder grey bars instead of any detail, so nothing makes a designer ask how it was made. The other frames have a fault each, which is more than the 7 descriptor allows. Slide 2: the stacks are offset boxes rather than instanced cards. A stair-step shadow-acne artifact runs down the left stack's right face (crop slide-02-r3c1, about x 730 to 870, y 100 to 200), and the planned 'slid top pair, one notched and one plain' doesn't read. Slide 5: every wristband reads as a broken C-ring with a torn, jagged cut at its lower front (crop slide-05-r3c1). The bands are sunk through the ledge or clipped, where the CRAFT PLAN called for 'closed' loops. The subject is small, dim and scattered (canvas mean 14.9), not one silhouette. Slide 4: a near-flat beige plate fills about 55% of the frame, with the highest canvas mean in the deck (50.8). The TXBENCH relief reports cast_fraction 0.016, so the only height that shows is the tape's lifted left corner. It reads as type on a plate. Slide 7: the drawer front is a broad flat mid-brown slab across the bottom third, lit only on its lip, a dead zone the preflight reviewer had already named after three renders. The ten flagged cards are a small cluster at the far left. Slide 8: a bar chart rebuilt as a relief, light labels on a mid-grey card. The frames are dark and grounded rather than faded templates, so this sits above the 4 descriptor. Four faulted frames hold it well under 7."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 6.8,
+   "why": "This is clearly one deck. One key from the right, with casts running left, holds on 1, 3, 5, 6 and 9, and the reliefs on 4 and 8 cast left too. One material set runs throughout: bone card, ember vinyl, graphite steel, shale. The ember-tape motif genuinely changes state from 1 to 4 to 6 to 7 to 8 to 9, and the locked camera on 3 and 6 is a working device. Against that, the declared VALUE ARC and VALUE CUT ('the darkest frame at the turn on 6') are false in the pixels. Canvas means run 40.7, 29.4, 44.3, 50.8, 14.9, 45.6, 20.4, 41.4, 45.5. Frame 6 is among the brightest, not the darkest, and 4 to 5 to 6 to 7 to 8 strobes with steps of 36, 31, 25 and 21. Frames 4 and 8 also drop the navy sky for a black void and sit slightly outside the world. Two devices work and one declared device fails, so this lands just under the 7 descriptor."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 6.5,
+   "why": "Every numeral traces. 17 and 12 come from c19, nearly 10% from c15, 100 and ten from the computed drawer encoding, 10 from c34, and five is the count of c42's list. The release is quoted faithfully, with careful hedges ('sometimes', 'in some instances', 'the release does not say how many of the three models shifted'), and the preprint is labelled unreviewed (c26). Two things hold it down. (1) Slide 8's headline 'five of 10 lines moved patients back', with five ember strips against five bone strips, stretches c42. c42 says these five produced 'the most consistent harmful shifts', not that only these five moved patients. c38 accounts for three of the remaining five, and the other two are unaccounted for, yet the picture tells the reader they did nothing. I'm passing this to the integrity judge as a lead, not a hard fail, because each of the five named lines is supported. (2) The deck stands on the institution's release because the npj paper itself was not fetched (client challenge), so the primary that exists was not read."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.8,
+   "why": "A Texan learns who (UT Southwestern, Dallas, first author Jarrett), what (one stigmatizing line moved models away from the patient who deteriorated, nearly 10% in some instances) and the exact wording pair (slide 4). The stake stays general. It is a study, not a decision, so there is no body, county or deadline. Slide 2 says the records are not from Texas, and slide 9 says no Texas hospital is named as using these models. The only action is 'test each tool on real outcomes first', and it is addressed to hospitals, not to the reader."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "The order is sound. Cover, then the records on 2, the baseline on 3, the added line on 4, the turn on 6, the size of the effect on 7, the preprint detail on 8 and the ask on 9. The before/after pair on 3 and 6 is the right structure. Slide 5 (17 wristbands) restates slide 4's line, and either could be cut without loss. The turn on 6 is undersold visually: at feed size it is frame 3 with one small red bar."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Clean, careful and on register, with no boosterism or doom. The caption opener 'In Dallas, researchers rewrote one line.' works. 'the release says' and 'the senior author says' repeat, and the cover dek spends its last sentence on 'The cards are drawn to illustrate.', a flat disclosure line in the deck's most valuable spot. Regional texture stops at 'Dallas'."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.8,
+   "why": "A still life of paper and vinyl objects with no room and no figure is a fresh concept beside no. 55 (floodlit operating rooms), no. 56 (machine-shop interiors) and no. 57 (a limestone stair). It is still the third lastLight deck in a row per topics.json and the art_preflight note, with the same dark-navy-sky-over-brown-ledge register and a single warm accent, and it is the third medical-institution story in six decks (nos. 53 and 55). Fresh concept, familiar world."
+  }
+ ],
+ "weighted_score": 6.6,
+ "weighted_score_arithmetic": "6.0*0.22 + 6.8*0.12 + 6.5*0.20 + 6.8*0.16 + 7.0*0.10 + 7.0*0.10 + 6.8*0.10 = 1.320 + 0.816 + 1.300 + 1.088 + 0.700 + 0.700 + 0.680 = 6.604",
+ "hard_fails": [],
+ "ship": false,
+ "ship_note": "This is a threshold dissent, not a fault. 6.60 is under the round 2 rung of 7.7. I found no hard fail: machine_qa reports 0 fails, every numeral traces to a claim or a computation, I found no topic within the 30-day window in topics.json, and I saw no house-rule break in caption.txt or first_comment.txt. The slide 8 'five of 10' framing is a lead for the integrity judge.",
+ "one_sentence_fix": "Make the turn on frame 6 happen in the pixels: keep frame 3's camera, but narrow the key to a pool on the middle tray only, so the left and right trays fall to near black and the moved notched card with its ember tape is the one lit thing. Right now the deck's argument turns on a frame that measures brighter than frame 3 (canvas mean 45.6 against 44.3) and reads at feed size as a repeat with one small red bar.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 5,
+   "problem": "All 17 wristbands read as broken C-rings with torn, jagged cuts at their lower front (crop slide-05-r3c1). The loops are sunk through or clipped by the ledge, where the plan called for closed bands. The rows are small and dim on a dark ground (canvas mean 14.9), so the count doesn't read as one subject.",
+   "fix": "Lift each band so its lowest point rests on the ledge at y=0 with TXT.contact, close the loop geometry, add the ember tab the motif plan promised, and move the camera in (or narrow fov from 24) so the three rows fill about two thirds of the frame width."
+  },
+  {
+   "slide": 2,
+   "problem": "The stacks are offset primitive boxes, not stacked cards. A stair-step shadow-acne artifact runs down the left stack's right face (crop slide-02-r3c1, about x 730 to 870, y 100 to 200). The planned slid notched/plain top pair doesn't read, so the frame is two tan mid-tone blocks under labels.",
+   "fix": "Rebuild each stack from the chassis card instanced at 0.25 mm with a small per-card jitter, raise the sun shadow normalBias to kill the acne, and slide the notched top card visibly forward of the plain one."
+  },
+  {
+   "slide": 4,
+   "problem": "A near-flat beige card fills about 55% of the frame (canvas mean 50.8, the deck's brightest) with TXBENCH cast_fraction 0.016. Only the tape's lifted left corner shows height, so it reads as type on a plate in the mid tones.",
+   "fix": "Drop the key to a low raking angle from the right so the light falls off to black across the card's lower and left areas, and raise the tape 2 to 3 mm along its whole length so it throws a continuous cast line beneath it."
+  },
+  {
+   "slide": 6,
+   "problem": "This is frame 3 re-rendered with one card swapped and the same exposure (mean 45.6 against 44.3). The declared darkest VALUE CUT never happens, and the change is one small red bar at feed size.",
+   "fix": "Keep the camera, kill the key on the left and right trays so they read as silhouettes, and leave one tight pool on the middle tray's moved card and its tape."
+  },
+  {
+   "slide": 7,
+   "problem": "The drawer front is a broad, flat mid-brown slab across the bottom third (preflight: native x 90 to 2160, y 1980 to 2330), lit only on its lip. The right end wall is still cut off, so the reader can't see the row stop at ten blocks.",
+   "fix": "Widen fov from 30 to about 36, or shorten the inter-block gaps, so both end walls show, and raise the camera so the front face foreshortens and falls into shadow rather than occupying a third of the frame."
+  },
+  {
+   "slide": 8,
+   "problem": "A relief bar chart on a mid-grey card, with the light DOM labels sitting on the mid-tone left side of the card at modest contrast. The strip heights barely register (cast_fraction 0.025).",
+   "fix": "Pull the pool right onto the strips so the label column on the left falls to near black under the light type, and raise the strips enough that each casts a visible shadow line to the left."
+  }
+ ],
+ "files_read": [
+  "/home/user/TexasAIDocket/config/carousel/scoring_rubric.yaml",
+  "/home/user/TexasAIDocket/out/2026-10-23/render/slide-01.png ... slide-09.png",
+  "/home/user/TexasAIDocket/out/2026-10-23/render/crops/slide-02-r3c1.png",
+  "/home/user/TexasAIDocket/out/2026-10-23/render/crops/slide-05-r3c1.png",
+  "/home/user/TexasAIDocket/out/2026-10-23/render/crops/slide-07-r2c1.png",
+  "/home/user/TexasAIDocket/out/2026-10-23/final/contact_sheet.png",
+  "/home/user/TexasAIDocket/out/2026-10-23/copy.json",
+  "/home/user/TexasAIDocket/out/2026-10-23/caption.txt",
+  "/home/user/TexasAIDocket/out/2026-10-23/first_comment.txt",
+  "/home/user/TexasAIDocket/out/2026-10-23/claims.json",
+  "/home/user/TexasAIDocket/out/2026-10-23/storyboard.md",
+  "/home/user/TexasAIDocket/out/2026-10-23/render/machine_qa.json",
+  "/home/user/TexasAIDocket/out/2026-10-23/render/render_report.json",
+  "/home/user/TexasAIDocket/out/2026-10-23/art_preflight.json",
+  "/home/user/TexasAIDocket/ledger/carousel/topics.json"
+ ],
+ "not_read": "The individual thumbs in out/2026-10-23/tmp/thumbs/ (I judged feed size from the contact sheet), ILLUSTRATION_SYSTEM.md in full (I scored against the SHOWSTOPPER and STAGE wording the rubric quotes), examples/bold-proof/, and the recent entries in artwork.json and captions.json (for variety I used the topics.json entries for nos. 51 to 57 and art_preflight's distinct_from_recent)."
+}

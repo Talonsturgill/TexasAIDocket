@@ -1,0 +1,161 @@
+{
+ "_note": "Every value is extracted from a claim quote by compute.py, or computed here from values that were.",
+ "visits": {
+  "value": 17,
+  "from": [
+   "c19",
+   "c35"
+  ],
+  "basis": "ED visits in the stigmatizing line, release and preprint alike"
+ },
+ "months": {
+  "value": 12,
+  "from": [
+   "c19",
+   "c35"
+  ],
+  "basis": "the months those visits are counted over"
+ },
+ "downgraded_pct": {
+  "value": 10,
+  "from": [
+   "c15"
+  ],
+  "basis": "nearly this percent of patients wrongly downgraded in some instances, the release's own about"
+ },
+ "downgraded_of_100": {
+  "value": 10,
+  "from": [
+   "c15"
+  ],
+  "basis": "the same share drawn as units out of 100"
+ },
+ "per_hundred": {
+  "value": 100,
+  "from": [
+   "c15"
+  ],
+  "basis": "a percent is a count per hundred, so the drawer holds this many cards"
+ },
+ "downgraded_one_in": {
+  "value": 10,
+  "from": [
+   "c15"
+  ],
+  "basis": "computed: 100 over the percent, so one unit in this many is drawn moved"
+ },
+ "models": {
+  "value": 3,
+  "from": [
+   "c9",
+   "c13"
+  ],
+  "basis": "open source language models in the published study, per the release"
+ },
+ "departments": {
+  "value": 2,
+  "from": [
+   "c11"
+  ],
+  "basis": "computed: medical centers the release names as the records' source, counted"
+ },
+ "pair": {
+  "value": 2,
+  "from": [
+   "c12"
+  ],
+  "basis": "computed: each comparison c12 describes is one pair, a patient and the one matched to it"
+ },
+ "preprint_models": {
+  "value": 2,
+  "from": [
+   "c30"
+  ],
+  "basis": "models in the May preprint"
+ },
+ "preprint_pairs_mimic": {
+  "value": 999,
+  "from": [
+   "c33"
+  ],
+  "basis": "preprint pairs from MIMIC-IV-ED"
+ },
+ "preprint_pairs_mcmed": {
+  "value": 997,
+  "from": [
+   "c33"
+  ],
+  "basis": "preprint pairs from MC-MED"
+ },
+ "preprint_pairs_total": {
+  "value": 1996,
+  "from": [
+   "c33"
+  ],
+  "basis": "computed: the two datasets' pairs summed"
+ },
+ "hours": {
+  "value": 6,
+  "from": [
+   "c32"
+  ],
+  "basis": "the preprint's window for the four interventions"
+ },
+ "conditions": {
+  "value": 10,
+  "from": [
+   "c34"
+  ],
+  "basis": "test conditions in the preprint"
+ },
+ "harmful_lines": {
+  "value": 5,
+  "from": [
+   "c42"
+  ],
+  "basis": "computed: the added lines the preprint names as its most consistent harmful shifts, counted"
+ },
+ "cleared_lines": {
+  "value": 3,
+  "from": [
+   "c38"
+  ],
+  "basis": "computed: the added lines the preprint says produced no harmful shifts, counted"
+ },
+ "unaccounted_lines": {
+  "value": 2,
+  "from": [
+   "c34",
+   "c38",
+   "c42"
+  ],
+  "basis": "computed: conditions less the harmful and the cleared lines, the ones no claim here describes"
+ },
+ "psych_holds": {
+  "value": 3,
+  "from": [
+   "c36"
+  ],
+  "basis": "prior psychiatric emergency holds in the preprint's added line"
+ },
+ "preprint_psych_range": {
+  "value": [
+   2.9,
+   10.7
+  ],
+  "from": [
+   "c39"
+  ],
+  "basis": "preprint harmful reprioritization range, psychiatric history"
+ },
+ "preprint_freq_range": {
+  "value": [
+   2.9,
+   9.9
+  ],
+  "from": [
+   "c39"
+  ],
+  "basis": "preprint harmful reprioritization range, frequent ED visitor"
+ }
+}

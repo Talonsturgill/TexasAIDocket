@@ -3,7 +3,8 @@
  * The rooms decisions are made in: a commissioners court dais, the lectern the public speaks
  * from, the rows it sits in, the office the paperwork lives in, and the server row the paperwork
  * is about, the laboratory bench (fly_vial, vial_tray), the clinical cart (workstation_cart), and
- * the deposition room (pro_camcorder, bound_transcript).
+ * the deposition room (pro_camcorder, bound_transcript), and the patient record (patient_wristband,
+ * index_card_drawer).
  * Interior frames stand in a room built by TXT.interior; these models furnish it.
  * Every model: metres, y up, base on y = 0, FRONT faces +z (a dais faces its audience, a chair
  * faces the way its sitter looks, a rack shows its server fronts).
@@ -2402,4 +2403,263 @@ export function install(K, THREE, TXT) {
       return g;
     },
   });
+
+  /* ---- THE PATIENT RECORD FAMILY: a wristband and an index card drawer ----------------------------------------
+   * LIFTED 2026-10-23 from no. 58's chassis (assets/js/deck/2026-10-23-ledger.js) at the judges' named fix, under
+   * NEW names, because that chassis's installKit returns early once the kit defines `record_card` and defines its own
+   * `wristband` and `card_drawer` otherwise, so reusing either name would throw on a re-render of the shipped deck.
+   *
+   * patient_wristband. The chassis band was an open CylinderGeometry pair, single sided, with no strap, label or
+   * closure, and every pixel round and all nine panel judges read it as an open C-ring or a napkin ring. The round 3
+   * fixes, verbatim in substance: "a closed vinyl loop with real thickness and double-sided material, add a flat ID
+   * tab" (integrity), "a flat strap with a snap tab and an ember tab ... resting on the ledge top" (craft), "a flat
+   * vinyl strap with a white label patch and a snap, not a ring" (reader). So the band is a SOLID swept strap (outer
+   * face, inner face and both edges, every face wound outward, so no face is missing from any side), a raised label
+   * patch with greeked print, the strap's free end passing over the band under a snap and running on as a tail with
+   * adjustment holes, and an optional alert clip. Its default pose lies on its side, the way a band rests on a
+   * surface, so a camera above sees a strap and a label and never looks down a ring's bore. */
+  function strapGeo(pts, B, w, th, closed, caps) {
+    // A rectangular strap swept along pts (Vector3[]) whose width runs along B (a unit Vector3, the loop's own axis)
+    // and whose thickness runs along N = T x B. Smooth normals along the path, crisp at the edges. u = arc length.
+    const n = pts.length, T = [], N = [], L = [0];
+    for (let i = 0; i < n; i++) {
+      const a = pts[closed ? (i - 1 + n) % n : Math.max(0, i - 1)], b = pts[closed ? (i + 1) % n : Math.min(n - 1, i + 1)];
+      const t = b.clone().sub(a).normalize(); T.push(t); N.push(new THREE.Vector3().crossVectors(t, B).normalize());
+      if (i) L.push(L[i - 1] + pts[i].distanceTo(pts[i - 1]));
+    }
+    const pos = [], nor = [], uv = [], idx = [], m = closed ? n + 1 : n;
+    const at = (i) => i % n;
+    // one strip per face: [offset along N, offset along B] for its two rails, its normal, and its winding
+    function strip(r0, r1, normal, flip) {
+      const base = pos.length / 3;
+      for (let k = 0; k < m; k++) {
+        const i = at(k), p = pts[i], u = k < n ? L[i] : L[n - 1] + pts[n - 1].distanceTo(pts[0]);
+        [r0, r1].forEach((r, j) => {
+          const q = p.clone().addScaledVector(N[i], r[0]).addScaledVector(B, r[1]); pos.push(q.x, q.y, q.z);
+          const nv = normal(i); nor.push(nv.x, nv.y, nv.z); uv.push(u, j);
+        });
+      }
+      for (let k = 0; k < m - 1; k++) {
+        const a = base + k * 2, b = a + 1, c = a + 2, d = a + 3;
+        if (flip) idx.push(a, b, c, b, d, c); else idx.push(a, c, b, b, c, d);
+      }
+    }
+    const h = th / 2, hw = w / 2, negB = B.clone().negate();
+    strip([h, -hw], [h, hw], (i) => N[i], false);                  // outer face, normal +N
+    strip([-h, -hw], [-h, hw], (i) => N[i].clone().negate(), true); // inner face, normal -N
+    strip([-h, hw], [h, hw], () => B, true);                       // upper edge, normal +B
+    strip([-h, -hw], [h, -hw], () => negB, false);                 // lower edge, normal -B
+    if (!closed && caps) {
+      [[0, -1], [n - 1, 1]].forEach(([i, s]) => {
+        const p = pts[i], base = pos.length / 3, tn = T[i].clone().multiplyScalar(s);
+        [[-h, -hw], [h, -hw], [-h, hw], [h, hw]].forEach((r) => {
+          const q = p.clone().addScaledVector(N[i], r[0]).addScaledVector(B, r[1]); pos.push(q.x, q.y, q.z);
+          nor.push(tn.x, tn.y, tn.z); uv.push(0, 0);
+        });
+        if (s > 0) idx.push(base, base + 1, base + 2, base + 1, base + 3, base + 2);
+        else idx.push(base, base + 2, base + 1, base + 1, base + 2, base + 3);
+      });
+    }
+    const g = new THREE.BufferGeometry();
+    g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3));
+    g.setAttribute('normal', new THREE.Float32BufferAttribute(nor, 3));
+    g.setAttribute('uv', new THREE.Float32BufferAttribute(uv, 2));
+    g.setIndex(idx);
+    return g;
+  }
+  // the label's print, greeked: a barcode block and name lines, nothing legible
+  function paintBandLabel(x, W, H, r) {
+    x.fillStyle = '#f4f1ea'; x.fillRect(0, 0, W, H);
+    x.fillStyle = 'rgba(28,30,36,0.85)';
+    let bx = W * 0.62; while (bx < W * 0.94) { const bw = 1 + Math.floor(r() * 3); x.fillRect(bx, H * 0.2, bw, H * 0.6); bx += bw + 1 + Math.floor(r() * 3); }
+    // name lines as printed type reads at a distance: thin, grey, uneven lengths, never a solid bar
+    [0.2, 0.36, 0.5, 0.64, 0.78].forEach((y, k) => {
+      x.fillStyle = k ? 'rgba(52,54,62,0.5)' : 'rgba(36,38,46,0.78)';
+      x.fillRect(W * 0.06, H * y, W * (k ? 0.22 + r() * 0.26 : 0.46), H * (k ? 0.045 : 0.075));
+    });
+  }
+
+  K.define('patient_wristband', {
+    size: [0.11, 0.03, 0.08],
+    options: { pose: 'side', girth: 0.2, width: 0.025, thick: 0.0009, color: 0xe6e2d8, label: true, snap: 0xf0ede6,
+               tail: 0.045, tab: 0xb4664f, aspect: 1.3 },
+    note: 'A closed hospital patient wristband, drawn to illustrate: a solid vinyl strap `width` m wide and `thick` m thick (every face present, double sided by construction) closed to a loop `girth` m round, a raised white label patch with a greeked barcode and name lines (label false drops it), the free end passing over the band under a plastic snap (`snap` hex, or null) and running on as a `tail` m tail with adjustment holes, and an alert clip in `tab` hex (null for none). pose side (default) lies it on its side as a band rests on a surface, the label facing +z; pose edge stands it on its edge with a flattened foot and the label on top. aspect is the loop oval. Base on y = 0.',
+    make(o, r) {
+      const g = new THREE.Group(), w = +o.width || 0.025, th = Math.max(0.0004, +o.thick || 0.0009);
+      const asp = (+o.aspect || 1.3) * (0.94 + r() * 0.12), edge = o.pose === 'edge';
+      // the loop's oval, scaled so the strap's centreline is `girth` round
+      const S = 96, unit = [];
+      for (let i = 0; i < S; i++) { const t = i / S * TAU; unit.push([asp * Math.cos(t), Math.sin(t)]); }
+      let per = 0; for (let i = 0; i < S; i++) { const a = unit[i], b = unit[(i + 1) % S]; per += Math.hypot(b[0] - a[0], b[1] - a[1]); }
+      const k = (+o.girth || 0.2) / per, by = edge ? 0 : w / 2;
+      // pose side: the loop lies in XZ and its width stands along y. pose edge: the loop stands in XY, width along z,
+      // its foot flattened where it bears on the ground so it rests there instead of balancing on a line.
+      const B = edge ? new THREE.Vector3(0, 0, 1) : new THREE.Vector3(0, 1, 0);
+      const footY = -0.7;
+      const P = (t) => {
+        const c = Math.cos(t), s = Math.sin(t);
+        if (!edge) return new THREE.Vector3(asp * c * k, by, s * k);
+        // the foot: below footY the loop eases into a nearly flat bearing, with no kink where it starts
+        const y = s >= footY ? s : footY - 0.2 * (1 - Math.exp((s - footY) / 0.2));
+        return new THREE.Vector3(asp * 0.85 * c * k, y * k, 0);
+      };
+      // pose side runs t clockwise seen from above so N = T x B points out of the loop; pose edge runs it the other way
+      const dir = edge ? 1 : -1, pts = [];
+      for (let i = 0; i < S; i++) pts.push(P(dir * i / S * TAU));
+      // matte vinyl, no clearcoat: a glossy coat mirrored the lastLight navy dome as blue down every shaded face
+      const strap = mat('wb-strap' + o.color, { color: o.color != null ? o.color : 0xe6e2d8, roughness: 0.6 });
+      g.add(new THREE.Mesh(strapGeo(pts, B, w, th, true), strap));
+      const out = (t, d) => { const p = P(t), q = P(t + 0.01 * dir), tt = q.clone().sub(p).normalize(); return p.addScaledVector(new THREE.Vector3().crossVectors(tt, B).normalize(), d); };
+      // THE LABEL, on the front of the loop (+z for side, the top for edge), raised and a little wider than the strap
+      const front = Math.PI / 2;
+      if (o.label !== false) {
+        const span = 0.62, lp = [];
+        for (let i = 0; i <= 24; i++) lp.push(out(front + dir * (-span / 2 + span * i / 24), th * 0.95));
+        const lt = ltex('wb-label', paintBandLabel, { seed: o.seed }, [512, 128]);
+        lt.wrapS = lt.wrapT = THREE.ClampToEdgeWrapping;
+        const lg = strapGeo(lp, B, w * 1.16, th * 0.9, false, true), uvA = lg.attributes.uv;
+        let Lm = 1e-6; for (let i = 0; i < uvA.count; i++) Lm = Math.max(Lm, uvA.getX(i));
+        for (let i = 0; i < uvA.count; i++) uvA.setX(i, uvA.getX(i) / Lm);
+        g.add(new THREE.Mesh(lg, mat('wb-label', { color: 0xffffff, roughness: 0.5, map: lt, clearcoat: 0.6, clearcoatRoughness: 0.15 }, true)));
+      }
+      // THE CLOSURE: the free end overlaps the band, a snap holds it, and the tail runs on with its adjustment holes.
+      // Lying on its side the tail leaves toward the back; standing on its edge it leaves UPWARD, because a tail
+      // leaving downward would be the lowest point and hold the whole band off the ground.
+      const sgn = edge ? -1 : 1, ts = dir * ((edge ? -0.1 : -0.28) + (r() - 0.5) * 0.2);
+      const lap = [], tailLen = Math.max(0.01, +o.tail || 0.045) * (0.85 + r() * 0.3);
+      for (let i = 0; i <= 10; i++) lap.push(out(ts + dir * sgn * 0.32 * (1 - i / 10), th * 1.02));
+      const end = lap[lap.length - 1], prev = lap[lap.length - 2], tdir = end.clone().sub(prev).normalize();
+      const nOut = new THREE.Vector3().crossVectors(tdir, B).normalize();
+      for (let i = 1; i <= 12; i++) {
+        const s = i / 12 * tailLen;
+        lap.push(end.clone().addScaledVector(tdir, s).addScaledVector(nOut, -0.12 * sgn * s * s / tailLen));   // the tail lifts a little away from the loop
+      }
+      g.add(new THREE.Mesh(strapGeo(lap, B, w * 0.96, th, false, true), strap));
+      const dark = mat('wb-hole', { color: 0x141416, roughness: 0.9 });
+      for (let i = 0; i < 5; i++) {
+        const j = 13 + Math.round(i * 1.9);
+        if (j >= lap.length - 1) break;
+        const p = lap[j], q = lap[j + 1], tt = q.clone().sub(p).normalize(), nn = new THREE.Vector3().crossVectors(tt, B).normalize();
+        const h = new THREE.Mesh(new THREE.CylinderGeometry(0.0013, 0.0013, th * 1.5, 12), dark);
+        h.position.copy(p); h.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), nn); g.add(h);
+      }
+      if (o.snap != null) {
+        const sp = out(ts + dir * sgn * 0.2, th * 1.5), nn = sp.clone().sub(P(ts + dir * sgn * 0.2)).normalize();
+        const sm = mat('wb-snap' + o.snap, { color: o.snap, roughness: 0.32, clearcoat: 0.8, clearcoatRoughness: 0.12 }, true);
+        const cap = new THREE.Mesh(new THREE.CylinderGeometry(0.0052, 0.0058, 0.0024, 24), sm);
+        cap.position.copy(sp).addScaledVector(nn, 0.0012); cap.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), nn); g.add(cap);
+        const dome = new THREE.Mesh(new THREE.SphereGeometry(0.0042, 20, 8, 0, TAU, 0, Math.PI / 2), sm);
+        dome.scale.set(1, 0.38, 1); dome.position.copy(sp).addScaledVector(nn, 0.0024); dome.quaternion.copy(cap.quaternion); g.add(dome);
+      }
+      // THE ALERT CLIP, wrapped round the strap on the far side of the label from the snap
+      if (o.tab != null) {
+        const tt = dir * (front + 0.95), p = P(tt), q = P(tt + 0.01 * dir), td = q.clone().sub(p).normalize();
+        const nn = new THREE.Vector3().crossVectors(td, B).normalize();
+        const clip = TXT.roundedBox(0.013, w + 0.0024, th * 3.4, 0.0007, mat('wb-tab' + o.tab, { color: o.tab, roughness: 0.38, clearcoat: 0.7, clearcoatRoughness: 0.1 }, true));
+        const basis = new THREE.Matrix4().makeBasis(td, B, nn); clip.quaternion.setFromRotationMatrix(basis);
+        clip.position.copy(p).addScaledVector(nn, th * 0.4); g.add(clip);
+      }
+      // rest it on the ground: the lowest point of the band, its snap and its clip at y = 0
+      const bb = new THREE.Box3().setFromObject(g); g.children.forEach((c) => { c.position.y -= bb.min.y; });
+      return g;
+    },
+  });
+
+  /* index_card_drawer. The chassis card_drawer spaced its blocks on a fixed 2.6 mm pitch whatever `length` said, so
+   * a shorter drawer moved its walls and not its cards and the end wall ran off the frame on every render of no. 58's
+   * frame 7 (queue card-drawer-spacing-ignores-length); its front was a flat slab every round 3 judge named as the
+   * frame's dead mass, and its tabbed dividers stood LOWER than the cards, so the blocks of ten never read as blocks.
+   * Here the card pitch is DERIVED from the inside length, so every block always fits between the walls, and a count
+   * that cannot fit throws rather than overflowing the drawer. Guide cards stand proud of the cards with their tabs,
+   * a follower plate holds the last block, and the front is a bevelled panel with a label holder and a cup pull. */
+  function paintIndexFace(x, W, H, r) {
+    x.fillStyle = '#e9e2d0'; x.fillRect(0, 0, W, H);
+    for (let i = 0; i < 2600; i++) { x.fillStyle = r() < 0.5 ? 'rgba(90,80,60,0.12)' : 'rgba(255,250,236,0.15)'; x.fillRect(r() * W, r() * H, 1.5, 1); }
+    x.fillStyle = 'rgba(150,62,52,0.55)'; x.fillRect(W * 0.04, H * 0.2, W * 0.92, 2);
+    x.fillStyle = 'rgba(80,98,130,0.32)'; for (let k = 1; k <= 8; k++) x.fillRect(W * 0.04, H * (0.2 + k * 0.09), W * 0.92, 1);
+  }
+  K.define('index_card_drawer', {
+    size: [0.16, 0.11, 0.42],
+    options: { length: 0.4, blocks: 10, per: 10, flagged: 1, fill: 0.84, color: 0x3a3c42, divider: 0x6c675b, flag: 0xb4664f, flagFront: false },
+    note: 'A steel 3 by 5 index card drawer, drawn to illustrate: `length` m long with the front on +z, `blocks` blocks of `per` upright cards separated by pressboard guide cards whose tabs stand proud of the cards (`divider` hex), the card pitch DERIVED from the inside length so the blocks always fill `fill` of it and a count that cannot fit throws. The last `flagged` blocks (the first, nearest the front, with flagFront true) carry a folded flag on every card (`flag` hex). A follower plate on the rod holds the last block. The front is a bevelled panel with a label holder and a cup pull, in `color`. userData.blocks gives each block centre z, userData.flagged the flagged blocks, userData.top the card tops, userData.pitch the derived pitch.',
+    make(o, r) {
+      const g = new THREE.Group(), Lz = Math.max(0.12, +o.length || 0.4), CW = 0.127, CH = 0.0762, CT = 0.00025;
+      const wall = 0.0012, iw = CW + 0.008, ht = 0.06, blocks = Math.max(1, o.blocks | 0), per = Math.max(1, o.per | 0);
+      const flagged = Math.max(0, Math.min(blocks, o.flagged | 0));
+      const steel = mat('icd-steel' + o.color, { color: o.color != null ? o.color : 0x3a3c42, roughness: 0.5, metalness: 0.35 });
+      const nickel = mat('icd-nickel', { color: 0xb9bcbf, roughness: 0.3, metalness: 0.85 });
+      const stock = mat('icd-stock', { color: 0xd6cfbd, roughness: 0.9 });
+      const face = mat('icd-face', { color: 0xffffff, roughness: 0.86, map: ltex('icd-face', paintIndexFace, {}, [256, 154]) });
+      const press = mat('icd-press' + o.divider, { color: o.divider != null ? o.divider : 0x6c675b, roughness: 0.82 });
+      const flagM = mat('icd-flag' + o.flag, { color: o.flag != null ? o.flag : 0xb4664f, roughness: 0.4, clearcoat: 0.6, clearcoatRoughness: 0.15 }, true);
+      // the body: floor, two sides with rolled nickel lips, a back, all centred on the origin
+      rbox(iw + 2 * wall, wall, Lz, 0.0005, steel, 0, 0, 0, g);
+      [-1, 1].forEach((s) => {
+        rbox(wall, ht, Lz, 0.0005, steel, s * (iw / 2 + wall / 2), 0, 0, g);
+        const lip = new THREE.Mesh(new THREE.CylinderGeometry(0.0022, 0.0022, Lz, 10), nickel);
+        lip.rotation.x = Math.PI / 2; lip.position.set(s * (iw / 2 + wall / 2), ht, 0); g.add(lip);
+      });
+      rbox(iw + 2 * wall, ht, wall, 0.0005, steel, 0, 0, -Lz / 2 + wall / 2, g);
+      // THE FRONT: a bevelled panel proud of the body, a label holder with a card in it, and a cup pull under it
+      const FW = iw + 2 * wall + 0.01, FH = ht + 0.022, fz = Lz / 2 + 0.006;
+      rbox(FW, FH, 0.012, 0.0035, steel, 0, 0, fz, g, 3);
+      const lh = new THREE.Group(); lh.position.set(0, FH * 0.64, fz + 0.0062); g.add(lh);
+      rbox(0.064, 0.026, 0.0012, 0.0006, nickel, 0, -0.013, 0, lh);
+      rbox(0.056, 0.019, 0.0006, 0.0002, mat('icd-labelcard', { color: 0xf0ebe0, roughness: 0.8 }), 0, -0.0095, 0.0009, lh);
+      const cup = new THREE.Mesh(new THREE.CylinderGeometry(0.014, 0.014, 0.05, 20, 1, false, 0, Math.PI), nickel);
+      cup.rotation.z = Math.PI / 2; cup.rotation.y = 0; cup.position.set(0, FH * 0.3, fz + 0.006); cup.scale.set(1, 1, 0.55); g.add(cup);
+      const rod = new THREE.Mesh(new THREE.CylinderGeometry(0.0025, 0.0025, Lz - 0.004, 10), nickel);
+      rod.rotation.x = Math.PI / 2; rod.position.y = 0.012; g.add(rod);
+      // THE PITCH IS DERIVED. Inside length minus the follower's room, `fill` of it holding cards and guide gaps,
+      // a guide gap being GAP card pitches. A count whose pitch would fall under a card's own thickness can't fit.
+      const GAP = 5, inside = Lz - 2 * wall - 0.026, fill = Math.max(0.3, Math.min(0.97, +o.fill || 0.84));
+      const steps = blocks * (per - 1) + (blocks - 1) * GAP + 1;
+      const pitch = fill * inside / steps;
+      if (pitch < CT * 1.2) throw new Error('index_card_drawer: ' + blocks * per + ' cards need more than ' + Lz + ' m');
+      const lean = -0.07;
+      let z = -Lz / 2 + wall + 0.02 + fill * inside;   // the front block's first card, the content ending at the follower
+      const plainN = (blocks - flagged) * per, flagN = flagged * per;
+      const cardGeo = new THREE.BoxGeometry(CW, CH, CT);
+      const mats = [stock, stock, stock, stock, face, stock];
+      const plain = new THREE.InstancedMesh(cardGeo, mats, Math.max(1, plainN)), fl = new THREE.InstancedMesh(cardGeo, mats, Math.max(1, flagN));
+      const flagGeo = new THREE.BoxGeometry(0.016, 0.026, CT * 6), flags = new THREE.InstancedMesh(flagGeo, flagM, Math.max(1, flagN));
+      const m4 = new THREE.Matrix4(), q = new THREE.Quaternion(), e = new THREE.Euler(), v = new THREE.Vector3(), one = new THREE.Vector3(1, 1, 1);
+      let pi = 0, fi = 0; const centres = [], flaggedZ = [];
+      for (let b = 0; b < blocks; b++) {
+        const isFlag = o.flagFront ? b < flagged : b >= blocks - flagged, z0 = z;
+        for (let c = 0; c < per; c++) {
+          const zc = z - c * pitch;
+          e.set(lean + (r() - 0.5) * 0.03, (r() - 0.5) * 0.015, (r() - 0.5) * 0.006); q.setFromEuler(e);
+          v.set((r() - 0.5) * 0.0012, 0.003 + CH / 2, zc); m4.compose(v, q, one);
+          if (isFlag) {
+            fl.setMatrixAt(fi, m4);
+            // the flag folded over the card's top edge, stepped across the block so every flag shows
+            const fx = -CW / 2 + 0.014 + (CW - 0.028) * (per > 1 ? c / (per - 1) : 0.5);
+            const fm = new THREE.Matrix4().compose(new THREE.Vector3(fx, CH / 2 - 0.004, 0), new THREE.Quaternion(), one);
+            flags.setMatrixAt(fi, m4.clone().multiply(fm)); fi++;
+          } else plain.setMatrixAt(pi++, m4);
+        }
+        const zEnd = z - (per - 1) * pitch; centres.push(+((z0 + zEnd) / 2).toFixed(4)); if (isFlag) flaggedZ.push(centres[b]);
+        z = zEnd;
+        if (b < blocks - 1) {
+          // a pressboard guide card in the middle of the gap, its tab standing proud of the cards, stepped across
+          const gz = z - GAP * pitch / 2, gd = new THREE.Group(); gd.position.set(0, 0.003, gz); gd.rotation.x = lean; g.add(gd);
+          rbox(CW, CH, 0.0006, 0.0002, press, 0, 0, 0, gd);
+          const tx = -CW / 2 + 0.02 + (b % 4) * (CW - 0.04) / 3;
+          rbox(0.03, 0.012, 0.0006, 0.0003, press, tx, CH - 0.0005, 0, gd);
+          rbox(0.024, 0.008, 0.0009, 0.0002, mat('icd-tabcard', { color: 0xe7e1d3, roughness: 0.8 }), tx, CH + 0.0015, 0, gd);
+          z -= GAP * pitch;
+        }
+      }
+      plain.count = plainN; fl.count = flagN; flags.count = flagN;
+      [plain, fl, flags].forEach((im) => { im.instanceMatrix.needsUpdate = true; if (im.count) g.add(im); });
+      // the follower: a steel plate leaning back against the last block, on the rod
+      const fol = new THREE.Group(); fol.position.set(0, 0.002, z - 0.006); fol.rotation.x = lean - 0.12; g.add(fol);
+      rbox(CW - 0.006, CH * 0.8, 0.0015, 0.0006, steel, 0, 0, 0, fol);
+      g.userData.keepOrigin = true; g.userData.blocks = centres; g.userData.flagged = flaggedZ;
+      g.userData.top = +(0.003 + CH).toFixed(4); g.userData.pitch = +pitch.toFixed(5); g.userData.height = ht;
+      return g;
+    },
+  });
+
 }

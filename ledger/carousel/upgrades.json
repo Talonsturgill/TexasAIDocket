@@ -3473,4 +3473,70 @@
  ],
  "not_done": "The kit person's grip pose, vest cut, collar neck opening and skin chroma (measured C* 52 on no. 57's forearm, not moved by the sheen, so the SKIN palette; a published standard's values could not be confirmed this pass) carried in UPGRADE_BACKLOG 2026-10-22 item 1. 'Type sitting on the art', 6 runs and 14 rounds, got no change: its honest gate needs the id pass. qa-glyph-run-as-rule, grid-piece-count-reads-lit-ground-as-subject, article-test-screenshots-fixed-path and the detail floor carried. No frontier scan: the time went to the proofs"
 }
+,
+"2026-10-23 weekly": {
+ "date": "2026-10-23",
+ "run": "weekly machine pass, read with carousel no. 58",
+ "actor": "upgrade",
+ "upgrades": [
+  {
+   "what": "Kit patient_wristband (assets/js/kit/interior.js): a solid vinyl strap swept along a closed loop with all four faces wound outward, a raised label patch with a greeked barcode and name lines, the free end overlapping the band under a plastic snap and running on as a tail with adjustment holes, an alert clip in `tab`; lies on its side by default, pose edge stands it on a flattened foot with the tail rising",
+   "why": "Digest theme 'primitive or low-poly model where a kit model belongs', 6 runs and 16 rounds, the week's top theme; no. 58's round 3 top ranked artwork defect on all three judge cards (frame 5, 'open C-rings', 'napkin rings', 'inner faces missing (single-sided geometry)'); queue wristband-open-cylinder-reads-as-ring. Lifted at the judges' named fix: closed loop with thickness, double sided, a label patch, a snap, an ember tab",
+   "files": [
+    "assets/js/kit/interior.js",
+    "knowledge/carousel/ARSENAL.md"
+   ],
+   "verification": "Close proofs through render.py in the lastLight world (out/2026-10-23/tmp/machine/proof.py: three bands at seeds 1 to 3, a hero at seed 4, pose edge at seed 5), read at full size: reads as a hospital band with label, snap and tail, no open faces; the first proof's falling tail held the edge pose off the ground and its clearcoat mirrored the navy dome, both fixed and re-rendered. python3 examples/kit/build.py --family interior --names patient_wristband,index_card_drawer --world lastLight --surface concrete renders clean through render.py; python3 examples/kit/sizes.py --out out/2026-10-23/tmp/machine/sizes exits 0, 127 of 127; arsenal --check exits 0",
+   "revert": "git revert 5a58238a",
+   "how_i_would_know_this_was_wrong": "A judge or pixel critic names a kit wristband as a ring, a cuff or a sticker, or a run reaches back to a chassis band; or the label patch reads as a black bar block at feed size; or the shaded face of the strap reads blue under a deck that held its environment light down"
+  },
+  {
+   "what": "Kit index_card_drawer (assets/js/kit/interior.js): the card pitch is derived from the inside length so every block stays between the end walls, a count that cannot fit throws, guide cards stand proud with stepped tabs, a follower holds the last block, the front is a bevelled panel with a label holder and a cup pull, flagFront puts the flagged block nearest the camera",
+   "why": "Queue card-drawer-spacing-ignores-length and no. 58's second ranked artwork frame (frame 7) in rounds 1 and 3 on every judge card: the drawer's end wall ran off the frame on every render across three panel rounds and four art reviews, the front a flat dead slab. Digest theme 'largest object unmodelled', 5 runs and 13 rounds",
+   "files": [
+    "assets/js/kit/interior.js",
+    "knowledge/carousel/ARSENAL.md"
+   ],
+   "verification": "Replay page through render.py (out/2026-10-23/tmp/machine/replay/): the chassis card_drawer's cards span z -0.141 to 0.178 at every length, outside the walls at length 0.24 and 0.3 (the defect); index_card_drawer stays inside at 0.24, 0.3, 0.36 and 0.46 and throws on 1,200 cards in 0.12 m. Close proofs at the default and at length 0.3 with flagFront from behind, read at full size. build.py and sizes.py as above",
+   "revert": "git revert 8ed98838",
+   "how_i_would_know_this_was_wrong": "A frame's cards draw through a wall, or a judge reads the guide tabs as black blocks or the front as a dead slab with the camera the judges asked for; or a run passes length and gets a drawer whose blocks bunch at the back with a large empty front (fill is the control)"
+  },
+  {
+   "what": "scripts/carousel/fig_inject.py writes each slide's window.FIG line with only the figures that slide's code reads, touching a file only when its line changes; shipped_check 'fig lines' holds every deck after October 23rd to it; SLIDE_DOSSIER_SPEC.md names it",
+   "why": "Queue make-slides-rewrites-every-frame (no. 45's generator, and no. 58's fig.py writing the whole of figures.json into every slide): one added figure changed nine hashes and threw away no. 58's bound three-frame art review twice and forced full re-renders. No. 57 used the same whole-dict line",
+   "files": [
+    "scripts/carousel/fig_inject.py",
+    "scripts/carousel/shipped_check.py",
+    "knowledge/carousel/SLIDE_DOSSIER_SPEC.md",
+    "knowledge/carousel/ARSENAL.md"
+   ],
+   "verification": "python3 scripts/carousel/fig_inject.py --self-test exits 0 (14 cases) and replays the runs' whole-dict writer, which goes red on 'slide 1's bytes'; a mutant that writes the whole dict fails 5 cases. python3 scripts/carousel/shipped_check.py --self-test exits 0 with three new cases (a deck after FIG_SINCE with whole-dict lines is caught, the same deck before is noted, clean after fig_inject). Replayed on copies of nos. 57 and 58: --check reports 9 stale, writes 9, --check then 0; figure_bearing passes before and after on both. gate_wiring exits 0 (it refused the tool before the shipped_check entry)",
+   "revert": "git revert a8b1c940",
+   "how_i_would_know_this_was_wrong": "CI goes red on 'fig lines' for a deck whose frames are right (a reading of FIG this regex misses, such as a destructured `const {a} = FIG`, which falls back to every figure and is named, or a name read in a way that is not FIG.x or FIG['x']); or figure_bearing goes red on a frame that read its figure only through the old whole-dict line, which would mean the frame never read it"
+  }
+ ],
+ "proposals_out_of_lane": [
+  {
+   "what": "article_check refuses a number token followed by % (or %% after expansion) and a money token whose quote carries million or billion the page dropped",
+   "owner": "daily",
+   "why": "Queue article-token-drops-unit at repeat 2 (nos. 45, 49, 58), the item that made this pass due. scripts/site/** is the daily lane, so the run that meets it may fix it under its own stamp; UPGRADE_BACKLOG 2026-10-23 item 4"
+  },
+  {
+   "what": "TXT.stage takes a way to keep the key off part of the scene, so a frame can darken its neighbours with the light",
+   "owner": "human",
+   "why": "Queue stage-pool-does-not-dim-neighbours: no. 58 frame 6's declared value cut never rendered (canvas mean 45.6 against 44.3) and every round 2 and 3 judge charged it; digest theme 'value strobe or undeclared tonal cut', 6 runs and 10 rounds"
+  },
+  {
+   "what": "txbench relief casts long enough to read under a low deck key",
+   "owner": "human",
+   "why": "Queue txbench-relief-cast-faint: no. 58 frames 4 and 8 measured cast_fraction 0.016 and 0.025 and every judge read them as flat plates"
+  },
+  {
+   "what": "GATE_LESSONS entry: a writer whose output for one item depended on another (the whole-dict FIG line), and what to check instead",
+   "owner": "human",
+   "why": "The upgrade adds a gate; the entry text is in UPGRADE_BACKLOG 2026-10-23 item 4"
+  }
+ ],
+ "not_done": "'Type sitting on the art', 6 runs and 14 rounds, got no change: a different collision on each deck, and its honest gate needs the id pass (2026-10-12 item 4). record_card, card_holder, sorting_tray, card_stack and shale_ledge stay in no. 58's chassis. No frontier scan: the time went to the proofs. shipped_check is red on 2026-10-23 ledgers before and after this pass, which is the run's own ledger"
+}
 }

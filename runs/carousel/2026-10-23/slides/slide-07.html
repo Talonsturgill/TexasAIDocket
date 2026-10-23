@@ -1,0 +1,79 @@
+<!doctype html>
+<!-- 2026-10-23, frame 7 of 9. Archetype CLOSE_CROP. A spatial scene through txthree.js in the deck's lastLight world: a graphite steel index card drawer seen side on across the shale ledge, a hundred upright cards in ten blocks of ten between tabbed dividers, the last block notched and flagged in ember. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>.dek { width:740px !important; }</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site" style="font-size:24px">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="line-height:1.05">In some instances, nearly 10% moved&nbsp;back</h1>
+<p class="dek" data-follow="24">Nearly 10% of patients were incorrectly downgraded once stigmatizing information was added. The drawer holds 100 cards in blocks of ten, and the flagged block stands for the&nbsp;share.</p>
+<div class="lab" id="lRank">nearly 10 in 100</div>
+<script>window.FIG = {"visits": 17, "months": 12, "downgraded_pct": 10, "downgraded_of_100": 10, "per_hundred": 100, "downgraded_one_in": 10, "models": 3, "departments": 2, "preprint_models": 2, "preprint_pairs_mimic": 999, "preprint_pairs_mcmed": 997, "preprint_pairs_total": 1996, "hours": 6, "conditions": 10, "harmful_lines": 5, "cleared_lines": 3, "unaccounted_lines": 2, "psych_holds": 3, "preprint_psych_range": [2.9, 10.7], "preprint_freq_range": [2.9, 9.9]};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-23-ledger.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "How often", counter: "07 / 09", src: "c15", fit: { min: 76, max: 104, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 30, near: 0.02, far: 3000, fog: W.fogDensity * 0.35 });
+  const Y = CH.LEDGE_Y;
+  const ledge = K.make('shale_ledge', { width: 2.4, height: Y, depth: 1.6 }); ledge.position.set(-0.2, 0, -0.35); TXT.add(R, ledge);
+  /* THE FIGURES, from figures.json: per_hundred cards in the drawer, downgraded_of_100 of them taped and behind the
+   * divider, the release's nearly 10% drawn as cards out of a hundred */
+  const CARDS = FIG.per_hundred, RANK = FIG.downgraded_of_100;
+  /* ten blocks of ten: CARDS / RANK blocks of RANK cards each, the last block flagged, read side on across the frame */
+  const drawer = K.make('card_drawer', { blocks: Math.round(CARDS / RANK), per: RANK, flagged: 1, length: 0.36 });
+  drawer.position.set(-0.12, Y, 0); drawer.rotation.y = Math.PI / 2 + 0.32; TXT.add(R, drawer);
+  TXT.ground(R, { surface: 'dirt', size: 400, color: 0x17130f, seed: 23, tile: 3 });
+  /* GRIT ON THE LEDGE behind the drawer: seeded chips of shale and caliche, so the ledge top reads as stone */
+  { let sd = 7; const rnd = () => (sd = (sd * 16807) % 2147483647) / 2147483647;
+    const geo = new THREE.DodecahedronGeometry(1, 0), n = 3200;
+    const mat = new THREE.MeshStandardMaterial({ color: 0x8a7a66, roughness: 0.9, metalness: 0 });
+    const im = new THREE.InstancedMesh(geo, mat, n), m4 = new THREE.Matrix4(), q = new THREE.Quaternion(), e = new THREE.Euler(), v = new THREE.Vector3(), sc = new THREE.Vector3();
+    const col = new THREE.Color();
+    for (let i = 0; i < n; i++) {
+      const sz = 0.0007 + Math.pow(rnd(), 3) * 0.0022;
+      v.set(-0.9 + rnd() * 1.8, Y + sz * 0.35, -0.25 - Math.pow(rnd(), 1.8) * 0.85);   /* thinning with distance */
+      e.set(rnd() * 3, rnd() * 3, rnd() * 3); q.setFromEuler(e); sc.set(sz, sz * (0.4 + rnd() * 0.4), sz * (0.7 + rnd() * 0.5));
+      m4.compose(v, q, sc); im.setMatrixAt(i, m4); col.setHSL(0.07, 0.05, 0.10 + rnd() * 0.14); im.setColorAt(i, col);
+    }
+    im.castShadow = im.receiveShadow = true; TXT.add(R, im); }
+
+  drawer.updateMatrixWorld(true);
+  const from = [-0.10, Y + 0.31, 0.88];
+  const target = drawer.localToWorld(new THREE.Vector3(0, 0.03, 0));
+  const look = CH.aim(THREE, R, TXT, from, [target.x, target.y, target.z], 680, 960, 30);
+  TXT.frame(R, { fov: 30, from, look });
+  TXT.sky(R);
+  CH.warm(R, 0.22);
+  { const spec = CH.rigSpec(W, 1.2, 4096); TXT.deckRig(R, spec, CH.rigOpts([0, Y, 0], { distance: 8, shadowFar: 30, normalBias: 0.003 })); }
+  CH.unacne(R, 0.003);
+  TXT.contact(R, drawer);
+  TXT.stage(R, drawer, { behind: 0.6, depth: 1.6, poolInner: 0.6, poolOuter: 1.3 });
+  TXT.weather(R, { grime: 0.15, height: 0.05, mottle: 0.25 });
+  /* the label sits beside the leaning rank, at the rank's own top */
+  const rankTop = drawer.localToWorld(new THREE.Vector3(0.0, 0.095, drawer.userData.lastBlockZ));
+  CH.pin(THREE, R, "lRank", [rankTop.x, rankTop.y, rankTop.z], -20, -70);
+  { const el = document.getElementById("lRank"); const b = el.getBoundingClientRect(); if (b.left < 84) el.style.left = "84px"; }
+  { const el = document.getElementById("lRank"); const b = el.getBoundingClientRect(); if (b.right > 1000) el.style.left = (1000 - b.width) + "px"; }
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0.45, veil: 0.2, footWash: 0.45 });
+  CH.knock(cx, [".tx-site", ".src", "#lRank"], 0.5);
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>
