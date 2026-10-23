@@ -16717,5 +16717,197 @@
     "note": "Admitted on the university's own release, which names the NASA award, the AI model and El Paso Water as the intended user."
    }
   ]
+ },
+ {
+  "title": "UT Southwestern finds AI triage models moved some emergency patients who later got worse down the line after one stigmatizing detail was added",
+  "summary": "UT Southwestern Medical Center reported on October 20th, 2026 a study published in npj Digital Medicine. Its researchers paired emergency patients of similar starting severity, using records from Stanford Medicine and Beth Israel Deaconess Medical Center. Three open source large language models were asked which patient was more likely to deteriorate and should be seen first. Before any social or stigmatizing detail was added, all three picked the higher risk patient at rates well above chance. A line describing frequent emergency visits or past psychiatric emergencies most often moved a model away from the patient who later deteriorated. In some instances nearly 10% of patients were wrongly downgraded. The authors say bias varies by model and that each tool should be tested against real patient outcomes before use. No Texas hospital is reported using these models for triage.",
+  "topic": "health-and-education",
+  "decider": {
+   "name": "University of Texas Southwestern Medical Center",
+   "type": "state-agency"
+  },
+  "geography": {
+   "statewide": false,
+   "counties": [
+    "Dallas"
+   ],
+   "on_ercot": true,
+   "metro": "Dallas-Fort Worth-Arlington, TX"
+  },
+  "status": "decided",
+  "confidence": "high",
+  "key_dates": [
+   {
+    "date": "2026-10-20",
+    "kind": "filed",
+    "note": "Date the medical center published its account of the study"
+   }
+  ],
+  "public_access": {
+   "room": "contact_only",
+   "how": "The work is a published study rather than a proceeding, so no comment window or hearing attaches to it. The medical center names the first and senior authors on its release, with a newsroom phone line.",
+   "url": "https://www.utsouthwestern.edu/newsroom/articles/year-2026/oct-ai-enabled-triage-tools-human-biases.html",
+   "closes": null
+  },
+  "claims": [
+   {
+    "text": "UT Southwestern researchers reported the triage study in npj Digital Medicine.",
+    "verbatim_quote": "researchers at UT Southwestern Medical Center reported in a study published in npj Digital Medicine",
+    "source_url": "https://www.utsouthwestern.edu/newsroom/articles/year-2026/oct-ai-enabled-triage-tools-human-biases.html",
+    "source_title": "UT Southwestern Medical Center, Artificial intelligence-enabled triage tools may reflect human biases",
+    "source_type": "primary_official",
+    "fetched": "2026-10-23",
+    "id": "tx-2026-0228-c1"
+   },
+   {
+    "text": "The records came from emergency departments at Stanford Medicine and Beth Israel Deaconess Medical Center.",
+    "verbatim_quote": "The team analyzed patient records from emergency departments (EDs) at two major academic institutions: Stanford Medicine in California and Beth Israel Deaconess Medical Center in Massachusetts.",
+    "source_url": "https://www.utsouthwestern.edu/newsroom/articles/year-2026/oct-ai-enabled-triage-tools-human-biases.html",
+    "source_title": "UT Southwestern Medical Center, Artificial intelligence-enabled triage tools may reflect human biases",
+    "source_type": "primary_official",
+    "fetched": "2026-10-23",
+    "id": "tx-2026-0228-c2"
+   },
+   {
+    "text": "Patients of similar starting severity were paired, and three open source models were asked who was more likely to deteriorate and who should be seen first.",
+    "verbatim_quote": "They paired patients with similar initial condition severity levels, then asked three open-source AI large language models (LLMs) to predict which patients were more likely to deteriorate and who should be prioritized for care.",
+    "source_url": "https://www.utsouthwestern.edu/newsroom/articles/year-2026/oct-ai-enabled-triage-tools-human-biases.html",
+    "source_title": "UT Southwestern Medical Center, Artificial intelligence-enabled triage tools may reflect human biases",
+    "source_type": "primary_official",
+    "fetched": "2026-10-23",
+    "id": "tx-2026-0228-c3"
+   },
+   {
+    "text": "Before any social or stigmatizing detail was added, all three models picked the higher risk patient at rates well above chance.",
+    "verbatim_quote": "Before demographic, social, or potentially stigmatizing information was added, all three models identified higher-risk patients at rates well above chance.",
+    "source_url": "https://www.utsouthwestern.edu/newsroom/articles/year-2026/oct-ai-enabled-triage-tools-human-biases.html",
+    "source_title": "UT Southwestern Medical Center, Artificial intelligence-enabled triage tools may reflect human biases",
+    "source_type": "primary_official",
+    "fetched": "2026-10-23",
+    "id": "tx-2026-0228-c4"
+   },
+   {
+    "text": "Details about frequent emergency visits or past psychiatric emergencies produced some of the strongest effects.",
+    "verbatim_quote": "Some of the strongest effects were seen when records described patients as frequent ED users or included a history of psychiatric emergencies.",
+    "source_url": "https://www.utsouthwestern.edu/newsroom/articles/year-2026/oct-ai-enabled-triage-tools-human-biases.html",
+    "source_title": "UT Southwestern Medical Center, Artificial intelligence-enabled triage tools may reflect human biases",
+    "source_type": "primary_official",
+    "fetched": "2026-10-23",
+    "id": "tx-2026-0228-c5"
+   },
+   {
+    "text": "In some instances nearly 10% of patients were wrongly downgraded after a stigmatizing detail was added.",
+    "verbatim_quote": "In some instances, nearly 10% of patients were incorrectly downgraded after stigmatizing information was added.",
+    "source_url": "https://www.utsouthwestern.edu/newsroom/articles/year-2026/oct-ai-enabled-triage-tools-human-biases.html",
+    "source_title": "UT Southwestern Medical Center, Artificial intelligence-enabled triage tools may reflect human biases",
+    "source_type": "primary_official",
+    "fetched": "2026-10-23",
+    "id": "tx-2026-0228-c6"
+   },
+   {
+    "text": "The first author says bias varies by model and each tool should be tested against real patient outcomes before use.",
+    "verbatim_quote": "bias varies by model, so each AI tool should be tested against real patient outcomes before use",
+    "source_url": "https://www.utsouthwestern.edu/newsroom/articles/year-2026/oct-ai-enabled-triage-tools-human-biases.html",
+    "source_title": "UT Southwestern Medical Center, Artificial intelligence-enabled triage tools may reflect human biases",
+    "source_type": "primary_official",
+    "fetched": "2026-10-23",
+    "id": "tx-2026-0228-c7"
+   }
+  ],
+  "id": "tx-2026-0228",
+  "last_verified": "2026-10-23",
+  "history": [
+   {
+    "date": "2026-10-23",
+    "note": "Admitted on the medical center's own account of the study. It names no Texas hospital using these models for triage, and the records came from hospitals in California and Massachusetts."
+   }
+  ]
+ },
+ {
+  "title": "Texas A&M takes a $2 million WoodNext Foundation grant to build the Aggie AI Foundry, where AI and robots would design and test new metal alloys",
+  "summary": "Texas A&M's Department of Materials Science and Engineering announced on October 22nd, 2026 a $2 million grant from the WoodNext Foundation. The money will build the Aggie AI Foundry, a campus facility meant to develop new metal alloys from idea to testing with AI and robotic arms. The university says the process would cut alloy development from months to a week or less. That is a goal and has not been measured. Its own researcher says no computational tool anywhere can predict how an alloy will behave, so the materials still have to be made and tested. No opening date is given.",
+  "topic": "research-and-science",
+  "decider": {
+   "name": "Texas A&M University",
+   "type": "state-agency"
+  },
+  "geography": {
+   "statewide": false,
+   "counties": [
+    "Brazos"
+   ],
+   "on_ercot": true,
+   "metro": "College Station-Bryan, TX"
+  },
+  "status": "decided",
+  "confidence": "high",
+  "key_dates": [
+   {
+    "date": "2026-10-22",
+    "kind": "filed",
+    "note": "Date the university published its account of the grant"
+   }
+  ],
+  "public_access": {
+   "room": "contact_only",
+   "how": "The grant funds a university research facility rather than a proceeding, so no comment window or hearing attaches to it. The release names the department head and the associate head who lead it, and an engineering news contact.",
+   "url": "https://news.engineering.tamu.edu/news/2026/10/22/texas-am-researchers-pursue-autonomous-ai-foundry/",
+   "closes": null
+  },
+  "claims": [
+   {
+    "text": "A $2 million grant goes to Texas A&M's Department of Materials Science and Engineering.",
+    "verbatim_quote": "a $2 million grant to Texas A&M University's Department of Materials Science and Engineering aims to revolutionize the manner and speed with which new metallic materials are discovered, developed and tested.",
+    "source_url": "https://news.engineering.tamu.edu/news/2026/10/22/texas-am-researchers-pursue-autonomous-ai-foundry/",
+    "source_title": "Texas A&M Engineering News, Texas A&M researchers pursue autonomous AI foundry",
+    "source_type": "primary_official",
+    "fetched": "2026-10-23",
+    "id": "tx-2026-0229-c1"
+   },
+   {
+    "text": "The grant will create the Aggie AI Foundry, a fully automated system for developing new metal alloys with AI and robots.",
+    "verbatim_quote": "will create the Aggie AI Foundry, a campus facility that will contain a fully automated system for developing novel metal alloys from idea generation through testing using AI brainpower and robotic workers.",
+    "source_url": "https://news.engineering.tamu.edu/news/2026/10/22/texas-am-researchers-pursue-autonomous-ai-foundry/",
+    "source_title": "Texas A&M Engineering News, Texas A&M researchers pursue autonomous AI foundry",
+    "source_type": "primary_official",
+    "fetched": "2026-10-23",
+    "id": "tx-2026-0229-c2"
+   },
+   {
+    "text": "The university says the process will cut alloy development from months to a week or less.",
+    "verbatim_quote": "The automated process will increase the rate at which metal alloys are developed from months to a week or less.",
+    "source_url": "https://news.engineering.tamu.edu/news/2026/10/22/texas-am-researchers-pursue-autonomous-ai-foundry/",
+    "source_title": "Texas A&M Engineering News, Texas A&M researchers pursue autonomous AI foundry",
+    "source_type": "primary_official",
+    "fetched": "2026-10-23",
+    "id": "tx-2026-0229-c3"
+   },
+   {
+    "text": "Robotic arms will mix, melt and test the materials.",
+    "verbatim_quote": "Robotics will mix, melt and test the materials for the desired qualities using computer-controlled arms that will work along an assembly line that takes samples of materials.",
+    "source_url": "https://news.engineering.tamu.edu/news/2026/10/22/texas-am-researchers-pursue-autonomous-ai-foundry/",
+    "source_title": "Texas A&M Engineering News, Texas A&M researchers pursue autonomous AI foundry",
+    "source_type": "primary_official",
+    "fetched": "2026-10-23",
+    "id": "tx-2026-0229-c4"
+   },
+   {
+    "text": "The associate department head says no computational tool can predict how an alloy will behave.",
+    "verbatim_quote": "there's no computational tool anywhere in the world that can predict how an alloy is going to behave",
+    "source_url": "https://news.engineering.tamu.edu/news/2026/10/22/texas-am-researchers-pursue-autonomous-ai-foundry/",
+    "source_title": "Texas A&M Engineering News, Texas A&M researchers pursue autonomous AI foundry",
+    "source_type": "primary_official",
+    "fetched": "2026-10-23",
+    "id": "tx-2026-0229-c5"
+   }
+  ],
+  "id": "tx-2026-0229",
+  "last_verified": "2026-10-23",
+  "history": [
+   {
+    "date": "2026-10-23",
+    "note": "Admitted on the university's own account of the grant. It gives no opening date and no measured result, and the speed it names is a goal."
+   }
+  ]
  }
 ]
