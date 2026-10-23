@@ -218,3 +218,17 @@ decks in the window and the last deck was a paper, which the variety score will 
   re-opened it. It was re-read nine times. The close's peel took four builds to read, and the drawer's end wall
   was never fixed because the chassis model ignored its own length.
 - `arsenal.py` rebuilt and `--check` ok.
+- **The weekly pass ran** (`machine_due` turned due once `article-token-drops-unit` reached its second repeat).
+  The upgrade engineer committed four `upgrade` commits: the kit's `patient_wristband` (a closed strap, label,
+  snap, tail and alert clip), the kit's `index_card_drawer` (card pitch from length, refuses a count that can't
+  fit), `fig_inject.py` with a `shipped_check` entry so slides carry only the figures they read, and the pass record
+  (`machine_pass.json`, queue marks, the backlog entry, `upgrades.json`). Reran by exit code: `fig_inject
+  --self-test`, `shipped_check --self-test`, `gate_wiring`, `arsenal --check`, `machine_due --self-test`, all 0,
+  and `node --check` on the kit file. Proposals for a maintainer: the engine's missing way to keep the key off
+  neighbours, and faint txbench casts. The `{{number}}%` check belongs in `article_check.py`, daily lane, and was
+  not made in this run.
+- `shipped_check` then found today's topic and angle prose naming counts no computed figure traces. Reworded to carry
+  none, and `shipped_check --run 2026-10-23` exits 0.
+- Email payload built by `gmail_draft.py`, `email_check --run` and `--all` exit 0. Pre-merge `prompt_audit`: 322 of
+  1,977 calls counted as waiting, the same dispatch latency pattern, hook armed and judging unattended, nothing
+  refused.
