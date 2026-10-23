@@ -12470,6 +12470,26 @@
       "tmax_f": 71,
       "tmin_f": 49,
       "verified": true
+    },
+    {
+      "_spec": 2,
+      "date": "2026-10-19",
+      "prcp_in": 0.0,
+      "source": "ncei daily-summaries",
+      "station": "USW00003927",
+      "tmax_f": 77,
+      "tmin_f": 52,
+      "verified": true
+    },
+    {
+      "_spec": 2,
+      "date": "2026-10-20",
+      "prcp_in": 0.0,
+      "source": "ncei daily-summaries",
+      "station": "USW00003927",
+      "tmax_f": 80,
+      "tmin_f": 57,
+      "verified": true
     }
   ]
 }
