@@ -18,7 +18,7 @@
 | world presets | 8 |
 | kit models | 127 in 10 families |
 | asset libraries | 22 |
-| carousel and shared tools | 77 |
+| carousel and shared tools | 78 |
 | record and site tools the routine names | 20 |
 | agents | 11 |
 | knowledge files | 42 |
@@ -444,6 +444,7 @@ Run every gate by EXIT CODE, never by reading the last line. **Wired** says what
 | `scripts/carousel/depth_floor.py` | THE FRAME STANDS IN A PLACE. | --date --slides-dir --out-root --plan --self-test | CI, shipped | state, artwork, 10.5 |
 | `scripts/carousel/dossier_check.py` | is the deck PLANNED, or is it nine slides of intention? | --date --out --self-test | CI self-test, shipped | context, artwork, 12b |
 | `scripts/carousel/email_check.py` | the run's email is the payload the builder produced, and it is postable. | --run --all --self-test | CI | 19 |
+| `scripts/carousel/fig_inject.py` | each slide carries the computed figures IT reads, and nothing else. | --run --check --self-test | shipped |  |
 | `scripts/carousel/figure_bearing.py` | THE ARTWORK CARRIES THE DATA. | --date --out-root --plan --self-test | CI, shipped | state, artwork, 10.5 |
 | `scripts/carousel/gate_status.py` | print the run's gate block from the artifacts, so no sentence can contradict what is on disk. | --date --out --sync --verify-pasted --strict --self-test | CI self-test | 12b, 15, 19 |
 | `scripts/carousel/gate_wiring.py` | a gate that nothing runs is a gate that is red, and nobody finds out. | --self-test | shipped |  |
