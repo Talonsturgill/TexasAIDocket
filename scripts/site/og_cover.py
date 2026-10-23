@@ -184,7 +184,9 @@ def pixels() -> bytes:
 def font(filename, size):
     """Real variable instances, not synthetic bold or a silent default weight."""
     path = texas_map.REPO_ROOT / "assets" / "fonts" / filename
-    face = ImageFont.truetype(str(path), round(size * SS))
+    # Optional RAQM changes glyph placement on otherwise identical installs.
+    # This fixed Latin masthead uses the layout engine available on every host.
+    face = ImageFont.truetype(str(path), round(size * SS), layout_engine=ImageFont.Layout.BASIC)
     if filename.endswith("-Var.ttf"):
         settings = {b"Weight": 650 if filename.startswith("Fraunces") else 500,
                     b"Optical Size": 72}
