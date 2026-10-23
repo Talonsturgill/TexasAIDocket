@@ -126,7 +126,7 @@
    * clearcoat gives its raised edge a glint (no. 41 read a strong emissive as pink) */
   N.tapeMat = function (THREE) {
     if (N._tape) return N._tape;
-    N._tape = new THREE.MeshPhysicalMaterial({ color: 0x9c4a34, roughness: 0.42, metalness: 0, clearcoat: 0.35, clearcoatRoughness: 0.3,
+    N._tape = new THREE.MeshPhysicalMaterial({ color: 0x9c4a34, roughness: 0.36, metalness: 0, clearcoat: 0.8, clearcoatRoughness: 0.12,
       emissive: N.ACCENT, emissiveIntensity: 0.12, side: THREE.DoubleSide });
     return N._tape;
   };
@@ -217,6 +217,21 @@
     return g;
   };
 
+  /* A TAPE STRIP WITH THICKNESS along a polyline in the XZ plane, `width` tall in y and `thick` deep: short rounded
+   * segments joined end to end, so the strip has an edge the key can catch and a cast of its own (no. 58's audition
+   * read a zero thickness ribbon as a printed bar) */
+  N.tapeStrip = function (THREE, TXT, pts, width, thick) {
+    var g = new THREE.Group(), mat = N.tapeMat(THREE);
+    for (var i = 1; i < pts.length; i++) {
+      var a = pts[i - 1], b = pts[i], dx = b[0] - a[0], dz = b[1] - a[1], L = Math.hypot(dx, dz);
+      if (L < 1e-5) continue;
+      var m = TXT.roundedBox(L + thick * 0.6, width, thick, Math.min(thick * 0.45, 0.0004), mat);
+      m.position.set((a[0] + b[0]) / 2, 0, (a[1] + b[1]) / 2); m.rotation.y = -Math.atan2(dz, dx);
+      m.castShadow = m.receiveShadow = true; g.add(m);
+    }
+    return g;
+  };
+
   N.installKit = function (K, THREE, TXT) {
     if (K.registry.record_card) return;
 
@@ -229,7 +244,7 @@
       options: { notch: false, tape: false, tapeAt: 0.52, peel: 0, ruled: true, index: false, flag: null },
       note: "Bone record card stock with printed ruled lines and no legible words, an optional corner notch and an optional ember tape strip, flat or peeled. Drawn to illustrate.",
       make: function (o) {
-        var g = new THREE.Group(), C = o.index ? N.INDEX : N.CARD, w = C.w, h = C.h, t = C.t, notch = o.notch ? (o.index ? 0.012 : 0.016) : 0;
+        var g = new THREE.Group(), C = o.index ? N.INDEX : N.CARD, w = C.w, h = C.h, t = C.t, notch = o.notch ? (o.index ? 0.014 : 0.022) : 0;
         var geo = N.cardShape(THREE, w, h, notch);
         var front = new THREE.Mesh(geo, N.cardMat(THREE, o.ruled && !o.index)); front.position.z = t / 2; front.castShadow = front.receiveShadow = true; g.add(front);
         var back = new THREE.Mesh(geo, N.stockMat(THREE)); back.rotation.y = Math.PI; back.position.z = -t / 2; back.castShadow = back.receiveShadow = true; g.add(back);
@@ -237,7 +252,7 @@
         var top = new THREE.Mesh(new THREE.BoxGeometry(w - (notch ? notch : 0.004), t, t), N.stockMat(THREE));
         top.position.set(-(notch ? notch / 2 : 0), h - t / 2, 0); g.add(top);
         if (o.tape) {
-          var tw = o.index ? 0.009 : 0.012, ty = h * o.tapeAt, x0 = -w * 0.43, x1 = w * 0.43, L = x1 - x0, zf = t / 2 + 0.0006;
+          var tw = o.index ? 0.009 : 0.012, ty = h * o.tapeAt, x0 = -w * 0.43, x1 = w * 0.43, L = x1 - x0, zf = t / 2 + 0.0005;
           var p = Math.max(0, Math.min(1, o.peel || 0)), xs = x0 + L * p, pts = [];
           if (p > 0) {
             /* the peeled end: a free length of tape leaving the card where it is still stuck and arcing out toward the
@@ -248,14 +263,16 @@
               pts.push([xs - Math.sin(a) * Rr, zf + (1 - Math.cos(a)) * Rr]);
             }
           }
-          for (var j = 0; j <= 12; j++) pts.push([xs + (x1 - xs) * j / 12, zf]);
-          var rib = new THREE.Mesh(N.ribbon(THREE, pts, tw), N.tapeMat(THREE)); rib.position.y = ty; rib.castShadow = true; rib.receiveShadow = true; g.add(rib);
+          for (var j = 0; j <= 1; j++) pts.push([xs + (x1 - xs) * j, zf]);
+          var rib = N.tapeStrip(THREE, TXT, pts, tw, 0.0007); rib.position.y = ty; g.add(rib);
           g.userData.tapeY = ty;
         }
         if (o.flag != null) {
           /* an ember flag folded over the card's top edge, standing above it, at `flag` of the width from the left */
-          var fl = TXT.roundedBox(0.026, 0.03, 0.0014, 0.0007, N.tapeMat(THREE));
-          fl.position.set(-w / 2 + 0.02 + (w - 0.04) * o.flag, h + 0.004, 0); fl.castShadow = true; g.add(fl);
+          var fx = -w / 2 + 0.02 + (w - 0.04) * o.flag, fm = N.tapeMat(THREE);
+          [-1, 1].forEach(function (sd) { var leg = TXT.roundedBox(0.016, 0.022, 0.0006, 0.0002, fm); leg.position.set(fx, h - 0.004, sd * (t / 2 + 0.0004)); leg.castShadow = true; g.add(leg); });
+          var cap = TXT.roundedBox(0.016, 0.0008, t + 0.0016, 0.0003, fm); cap.position.set(fx, h + 0.0072, 0); g.add(cap);
+          var up = TXT.roundedBox(0.016, 0.009, 0.0007, 0.0002, fm); up.position.set(fx, h + 0.003, 0); g.add(up);
         }
         g.userData.keepOrigin = true; g.userData.w = w; g.userData.h = h;
         return g;
@@ -362,38 +379,49 @@
      * cards on a rod, a tabbed divider `rank` cards from the back, and `rank` notched cards behind it carrying ember
      * flags and leaning back `lean` degrees. Every count is the frame's to pass. */
     K.define("card_drawer", {
-      size: [0.15, 0.08, 0.48],
-      options: { cards: 100, rank: 10, lean: 20, length: 0.46 },
-      note: "Graphite steel index card drawer with a rod, upright 3 by 5 cards, a tabbed divider and a leaning rank of taped cards behind it. Drawn to illustrate.",
+      size: [0.15, 0.08, 0.46],
+      options: { blocks: 10, per: 10, flagged: 1, length: 0.46 },
+      note: "Graphite steel index card drawer with a rod, upright 3 by 5 cards in blocks separated by tabbed dividers and dark gaps, the last blocks' cards notched and flagged in ember. Drawn to illustrate.",
       make: function (o) {
-        var g = new THREE.Group(), st = N.steelMat(THREE), Lz = o.length, iw = N.INDEX.w + 0.008, ht = 0.06, wall = 0.0018;
+        var g = new THREE.Group(), st = N.steelMat(THREE), Lz = o.length, iw = N.INDEX.w + 0.008, ht = 0.058, wall = 0.0018;
         var bot = TXT.roundedBox(iw + 2 * wall, wall, Lz, 0.001, st); bot.position.y = wall / 2; bot.castShadow = bot.receiveShadow = true; g.add(bot);
         [-1, 1].forEach(function (sg) {
-          var s = TXT.roundedBox(wall, ht, Lz, 0.001, st); s.position.set(sg * (iw / 2 + wall / 2), ht / 2, 0); s.castShadow = s.receiveShadow = true; g.add(s);
+          var sdw = TXT.roundedBox(wall, ht, Lz, 0.001, st); sdw.position.set(sg * (iw / 2 + wall / 2), ht / 2, 0); sdw.castShadow = sdw.receiveShadow = true; g.add(sdw);
+          var lip = TXT.roundedBox(wall * 3, wall * 2, Lz, 0.0008, N.nickelMat(THREE)); lip.position.set(sg * (iw / 2 + wall / 2), ht, 0); g.add(lip);
         });
         var fr = TXT.roundedBox(iw + 2 * wall + 0.006, ht + 0.012, 0.004, 0.0015, st); fr.position.set(0, (ht + 0.012) / 2, Lz / 2); fr.castShadow = fr.receiveShadow = true; g.add(fr);
         var bk = TXT.roundedBox(iw + 2 * wall, ht, wall, 0.001, st); bk.position.set(0, ht / 2, -Lz / 2); bk.castShadow = bk.receiveShadow = true; g.add(bk);
         var pull = TXT.roundedBox(0.05, 0.008, 0.012, 0.003, N.nickelMat(THREE)); pull.position.set(0, ht * 0.55, Lz / 2 + 0.008); pull.castShadow = true; g.add(pull);
         var rod = new THREE.Mesh(new THREE.CylinderGeometry(0.0025, 0.0025, Lz, 10), N.nickelMat(THREE)); rod.rotation.x = Math.PI / 2; rod.position.y = 0.012; g.add(rod);
-        /* the upright cards, front to back, with the divider and the leaning rank at the back */
-        var nUp = o.cards - o.rank, z0 = Lz / 2 - 0.012, zDiv = -Lz / 2 + 0.07, pitch = (z0 - zDiv - 0.01) / Math.max(1, nUp);
-        var im = new THREE.InstancedMesh(new THREE.BoxGeometry(N.INDEX.w, N.INDEX.h, N.INDEX.t), [N.stockMat(THREE), N.stockMat(THREE), N.stockMat(THREE), N.stockMat(THREE), N.cardMat(THREE, false), N.stockMat(THREE)], nUp);
-        var m4 = new THREE.Matrix4(), q = new THREE.Quaternion(), e = new THREE.Euler(), rnd = lcg(4410);
-        for (var i = 0; i < nUp; i++) {
-          e.set((rnd() - 0.5) * 0.06 - 0.05, (rnd() - 0.5) * 0.02, 0); q.setFromEuler(e);
-          m4.compose(new THREE.Vector3((rnd() - 0.5) * 0.002, N.INDEX.h / 2 + 0.002 + (i % 10 === 0 ? 0.002 : 0), z0 - i * pitch), q, new THREE.Vector3(1, 1, 1));
-          im.setMatrixAt(i, m4);
+        /* ten blocks from the front: cards at a 2.6 mm pitch, a dark gap and a tabbed divider between blocks */
+        var pitch = 0.0026, gapZ = 0.013, blockL = (o.per - 1) * pitch, used = o.blocks * blockL + (o.blocks - 1) * gapZ, z = used / 2, rnd = lcg(4410);
+        var plain = o.blocks - o.flagged, n = plain * o.per;
+        var im = new THREE.InstancedMesh(new THREE.BoxGeometry(N.INDEX.w, N.INDEX.h, N.INDEX.t), [N.stockMat(THREE), N.stockMat(THREE), N.stockMat(THREE), N.stockMat(THREE), N.cardMat(THREE, false), N.stockMat(THREE)], n);
+        var m4 = new THREE.Matrix4(), q = new THREE.Quaternion(), e = new THREE.Euler(), idx = 0;
+        g.userData.blocks = [];
+        for (var b = 0; b < o.blocks; b++) {
+          var zb = z; g.userData.blocks.push(zb - blockL / 2);
+          for (var c = 0; c < o.per; c++) {
+            var zc = z - c * pitch;
+            if (b < plain) {
+              e.set(-0.06 + (rnd() - 0.5) * 0.04, (rnd() - 0.5) * 0.02, 0); q.setFromEuler(e);
+              m4.compose(new THREE.Vector3((rnd() - 0.5) * 0.0015, N.INDEX.h / 2 + 0.002, zc), q, new THREE.Vector3(1, 1, 1)); im.setMatrixAt(idx++, m4);
+            } else {
+              var fc = K.make("record_card", { index: true, notch: true, flag: 0.12 + 0.76 * (c / Math.max(1, o.per - 1)) });
+              fc.rotation.x = -0.06 + (rnd() - 0.5) * 0.04; fc.position.set((rnd() - 0.5) * 0.0015, 0.002, zc); g.add(fc);
+            }
+          }
+          z -= blockL;
+          if (b < o.blocks - 1) {
+            /* the divider: steel, a little lower than the cards, with a nickel tab, in the middle of a dark gap */
+            var dz = z - gapZ / 2, dv = TXT.roundedBox(N.INDEX.w + 0.004, N.INDEX.h - 0.02, 0.0012, 0.0006, st);
+            dv.position.set(0, (N.INDEX.h - 0.02) / 2 + 0.002, dz); dv.castShadow = dv.receiveShadow = true; g.add(dv);
+            var tb = TXT.roundedBox(0.026, 0.014, 0.0012, 0.0008, N.nickelMat(THREE)); tb.position.set(-0.045 + (b % 3) * 0.045, N.INDEX.h - 0.012, dz); g.add(tb);
+            z -= gapZ;
+          }
         }
         im.castShadow = im.receiveShadow = true; g.add(im);
-        var div = TXT.roundedBox(N.INDEX.w, N.INDEX.h - 0.012, 0.0016, 0.001, st); div.position.set(0, (N.INDEX.h - 0.012) / 2 + 0.002, zDiv); div.castShadow = div.receiveShadow = true; g.add(div);
-        var tab = TXT.roundedBox(0.03, 0.012, 0.0016, 0.001, N.nickelMat(THREE)); tab.position.set(-0.035, N.INDEX.h - 0.004, zDiv); g.add(tab);
-        var gap = (zDiv + Lz / 2 - 0.004) / Math.max(1, o.rank);
-        for (var r = 0; r < o.rank; r++) {
-          var c = K.make("record_card", { index: true, notch: true, flag: 0.15 + 0.7 * ((r * 0.37) % 1) });
-          c.rotation.x = -o.lean * Math.PI / 180; c.position.set((r % 2 ? 0.002 : -0.002), 0.003 + 0.004, zDiv - 0.006 - r * gap);
-          g.add(c);
-        }
-        g.userData.keepOrigin = true; g.userData.zDiv = zDiv; g.userData.height = ht;
+        g.userData.keepOrigin = true; g.userData.height = ht; g.userData.lastBlockZ = z + blockL / 2;
         return g;
       }
     });
