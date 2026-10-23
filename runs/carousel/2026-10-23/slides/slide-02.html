@@ -39,8 +39,21 @@ window.renderReady = (async () => {
     st.position.set((k - (DEPTS - 1) / 2) * 0.30, Y, -0.04 * k); st.rotation.y = 0.2 - 0.08 * k; TXT.add(R, st); stacks.push(st);
   }
   TXT.ground(R, { surface: 'dirt', size: 400, color: 0x17130f, seed: 23, tile: 3 });
+  /* GRIT ON THE LEDGE behind the stacks: seeded chips of shale and caliche, so the ledge top reads as stone */
+  { let sd = 7; const rnd = () => (sd = (sd * 16807) % 2147483647) / 2147483647;
+    const geo = new THREE.DodecahedronGeometry(1, 0), n = 6000;
+    const mat = new THREE.MeshStandardMaterial({ color: 0x8a7a66, roughness: 0.9, metalness: 0 });
+    const im = new THREE.InstancedMesh(geo, mat, n), m4 = new THREE.Matrix4(), q = new THREE.Quaternion(), e = new THREE.Euler(), v = new THREE.Vector3(), sc = new THREE.Vector3();
+    const col = new THREE.Color();
+    for (let i = 0; i < n; i++) {
+      const sz = 0.0007 + Math.pow(rnd(), 3) * 0.0022;
+      v.set(-0.9 + rnd() * 1.8, Y + sz * 0.35, -0.30 - Math.pow(rnd(), 1.4) * 0.85);   /* thinning with distance */
+      e.set(rnd() * 3, rnd() * 3, rnd() * 3); q.setFromEuler(e); sc.set(sz, sz * (0.4 + rnd() * 0.4), sz * (0.7 + rnd() * 0.5));
+      m4.compose(v, q, sc); im.setMatrixAt(i, m4); col.setHSL(0.07, 0.05, 0.12 + rnd() * 0.2); im.setColorAt(i, col);
+    }
+    im.castShadow = im.receiveShadow = true; TXT.add(R, im); }
   const from = [0.46, Y + 0.44, 1.10];
-  const look = CH.aim(THREE, R, TXT, from, [0, Y + 0.08, 0], 540, 1000, 30);
+  const look = CH.aim(THREE, R, TXT, from, [0, Y + 0.08, 0], 540, 955, 30);
   TXT.frame(R, { fov: 30, from, look });
   TXT.sky(R);
   CH.warm(R, 0.22);

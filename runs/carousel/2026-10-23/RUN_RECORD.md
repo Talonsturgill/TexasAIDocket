@@ -109,21 +109,37 @@ decks in the window and the last deck was a paper, which the variety score will 
 <!-- gate-status:begin -->
 | gate | status | detail |
 |---|---|---|
-| claims         | PASS   | 41 verified claim(s) |
-| render         | WARN   | 9 slide(s), 1 overflow warning(s) |
-| qa             | WARN   | 0 fail(s), 3 warn(s) |
-| aggregates     | PASS   | 10 declaration(s), 17 numeric phrase(s) in the render, all re-derived |
-| assembly       | PASS   | 9 slide(s), 7.54 MB, vector |
-| score          | ABSENT | score.json not written yet |
+| claims         | PASS   | 42 verified claim(s) |
+| render         | PASS   | 9 slide(s) |
+| qa             | WARN   | 0 fail(s), 2 warn(s) |
+| aggregates     | PASS   | 10 declaration(s), 19 numeric phrase(s) in the render, all re-derived |
+| assembly       | PASS   | 9 slide(s), 7.64 MB, vector |
+| score          | STALE  | score.json predates the newest render, so it describes a deck that no longer exists. Re-run it |
 | labels         | ABSENT | label_report.json not written yet. Run scripts/carousel/label_guard.py <run-dir> |
 | quantifiers    | ABSENT | quantifier_report.json not written yet. Run scripts/carousel/quantifier_check.py <run-dir> |
 | verbatim       | ABSENT | verbatim_report.json not written yet. Run scripts/carousel/verbatim_check.py --date <date> |
-| dossiers       | PASS   | 33,271 chars planned |
+| dossiers       | PASS   | 33,476 chars planned |
 | caption        | PASS   | 126 words |
-| craft floor    | WARN   | 9 frame(s), median 3517, floor 633, 2 quiet |
+| craft floor    | WARN   | 9 frame(s), median 3472, floor 625, 2 quiet |
 | plan vs render | PASS   | 9 of 47 acceptance item(s) checkable |
 | texan          | WARN   | places Dallas / body NO / deadline yes / next step NO |
-| absences       | WARN   | 6 of 8 scoped to a named document, 2 unscoped |
-| numerals       | PASS   | 12 numeral(s) over 9 frame(s), every one reachable |
-| completion     | ABSENT | not scored yet |
+| absences       | WARN   | 6 of 10 scoped to a named document, 4 unscoped |
+| numerals       | PASS   | 13 numeral(s) over 9 frame(s), every one reachable |
+| completion     | FAIL   | THE DECK DID NOT SHIP, so this run is not done |
 <!-- gate-status:end -->
+
+## The panel
+
+- **Round 1** (`score.json` round 1): median 6.63, spread 0.31, no hard fail, under the 8.0 rung. The three judges
+  agreed on the art first (weakest 9, 2, 7, 4, 8, 5, 6) and the integrity judge named the copy: the cover's
+  headline had dropped the source's "sometimes", slide 6's one moved tray implied one model in three, slide 8 fused
+  the preprint's ten lines with the release's two strongest effects, slide 2 said "emergency departments" where c11
+  names medical centers, and the first comment counted the preprint's abstract page as a third account.
+- **Repairs for round 2.** The cover keeps "sometimes". Slide 2 says "Two medical centers". Slide 6 says the release
+  does not say how many of the three models shifted, and its moved card stands proud of the front card. Slide 8 is
+  the preprint alone: ten strips, the five lines it names as its most consistent harmful shifts in ember (a new
+  claim, c42, quoted from the PDF and verified by `claims_check`), each named in its words. The first comment now
+  reads "two first party accounts and one abstract page of the same preprint", and c26's note records that the
+  page, fetched again, carries the banner the PDF does not. Art: 7's drawer shifted and its grit thinned, 9 pulled
+  back so the cards clear the dek, 4's card raised with its foot above the footer, 2's notched card laid square and
+  grit on its ledge, 1's hook fitted to two lines.
