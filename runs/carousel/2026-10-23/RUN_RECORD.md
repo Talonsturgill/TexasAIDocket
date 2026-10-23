@@ -26,6 +26,25 @@ Effort at wake: `high`, as the repo's settings carry it.
   refusing. Each item carries a dated line saying what is unconfirmed. The four university items reach the six day
   hard limit tomorrow if the hosts stay unreachable.
 
+## Discoverability signoff
+
+Read on this run's final build in `docs/`, after `main` was merged in.
+
+- **Card, tx-2026-0228** (`og/tx-2026-0228.png`, opened as an image). Four lines at whole words, ending "emergency
+  patients..." with the ellipsis after a whole word. Clean.
+- **`/questions/`.** Opened and read. 201 answered on summaries, 199 on how the public takes part, 2 on open
+  comment windows. The two new items carry no new status or room, so no shape was stretched. Reads as questions a
+  person would type.
+- **`llms.txt`, Open right now.** Six entries. tx-2026-0118 is gone from it, which is right: the CFTC window closed
+  October 20th and the item moved to pending this run. San Antonio's tx-2026-0220 stays for its October 29th vote.
+- **`/sources/`.** 1,235 of 1,409 claims rest on a primary document, across 365 documents from 159 publishers, up
+  from 1,218 of 1,392 on October 22nd. The new claims were all primary. The top publisher is still
+  interchange.puc.texas.gov, the utility commission's own filings, and texastribune.org (54 claims, 0 primary) is
+  third, which is the record leaning on journalism where the filings were not reachable.
+- **`/topic/`.** Health and education carries tx-2026-0228, and its card's 31 decisions equals the 31 item links on
+  its page.
+- **`/place/`.** `county-dallas` and `metro-dallas-fort-worth-arlington` carry tx-2026-0228.
+
 ## Craft refresh
 
 Focus: a measured quantity built as physical units under one low key, since the last four decks were spatial scenes
@@ -115,9 +134,9 @@ decks in the window and the last deck was a paper, which the variety score will 
 | aggregates     | PASS   | 11 declaration(s), 19 numeric phrase(s) in the render, all re-derived |
 | assembly       | PASS   | 9 slide(s), 7.64 MB, vector |
 | score          | WARN   | 6.948 at the round cap after 3 round(s), the finished deck ships; 8.0 top rung, shortfall named |
-| labels         | ABSENT | label_report.json not written yet. Run scripts/carousel/label_guard.py <run-dir> |
-| quantifiers    | ABSENT | quantifier_report.json not written yet. Run scripts/carousel/quantifier_check.py <run-dir> |
-| verbatim       | ABSENT | verbatim_report.json not written yet. Run scripts/carousel/verbatim_check.py --date <date> |
+| labels         | PASS   | 50 claim id(s) checked, every label beside one traces to the shape its claim proves |
+| quantifiers    | PASS   | 84 published string(s) read from one list, every universal names its set |
+| verbatim       | WARN   | no dossier declares a `verbatim:` block, so no on-frame string was held to a quote |
 | dossiers       | PASS   | 33,741 chars planned |
 | caption        | PASS   | 126 words |
 | craft floor    | WARN   | 9 frame(s), median 3472, floor 625, 2 quiet |
