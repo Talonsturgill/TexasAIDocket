@@ -176,3 +176,26 @@ decks in the window and the last deck was a paper, which the variety score will 
   house style, schema, port audit, ownership, media, SEO, schema contract). The article page and the front page were
   opened and read at desktop and phone width: nine slides, the story readable as text.
 - Studio clock from wake: record 34 min, audition 103, art 105, review 167, panel 220, package 242.
+
+## Retro
+
+- **Did the run stop for a human?** Interim `prompt_audit` (Phase 17) exit 1: 242 of 1,812 calls measured as
+  waiting, led by Agent and SendMessage spawns at 5 to 28 s. The no-stall hook was armed at 05:03:52 UTC, judged
+  the session unattended from its first call (host `CLAUDE_CODE_SESSION_ATTENDED=0`) and refused nothing, and
+  nobody was present to answer a dialog. The pattern matches the closed queue item on auto mode latency, so it is
+  queued again as `prompt-audit-counts-agent-latency`. **This reading is interim.** Phase 19 takes the one that
+  counts.
+- **Machine queue** (weekly pass not due, last pass October 22nd, 83 items queued, 0 repeat offenders): six new
+  items (`card-drawer-spacing-ignores-length`, `ledger-models-built-in-chassis`,
+  `wristband-open-cylinder-reads-as-ring`, `stage-pool-does-not-dim-neighbours`, the engine one, a backlog
+  proposal for a maintainer, `txbench-relief-cast-faint`, `prompt-audit-counts-agent-latency`), and two raised:
+  `article-token-drops-unit` to 2 (the "10%%" in the first build) and `make-slides-rewrites-every-frame` to 1
+  (fig.py rewrites every slide, which invalidated the bound art review twice).
+- **Instincts added**: `peel-reads-in-profile` and `count-frame-shows-its-denominator`, both at 0.50.
+- **Sources** appended to `SOURCES_FIELD_LOG.md`: the uta and unt TLS failures for a second day, mylubbock and
+  kera 403s, faa.gov's 403 and the browser agent read, www3.tceq's robots refusal, nature.com's client challenge,
+  and the 200s from utsouthwestern.edu and researchsquare.com.
+- **What cost the most**: the three-frame art review is bound to file hashes, so every chassis or figures edit
+  re-opened it. It was re-read nine times. The close's peel took four builds to read, and the drawer's end wall
+  was never fixed because the chassis model ignored its own length.
+- `arsenal.py` rebuilt and `--check` ok.
