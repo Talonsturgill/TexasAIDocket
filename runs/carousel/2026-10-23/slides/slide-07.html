@@ -34,7 +34,7 @@ window.renderReady = (async () => {
    * divider, the release's nearly 10% drawn as cards out of a hundred */
   const CARDS = FIG.per_hundred, RANK = FIG.downgraded_of_100;
   /* ten blocks of ten: CARDS / RANK blocks of RANK cards each, the last block flagged, read side on across the frame */
-  const drawer = K.make('card_drawer', { blocks: Math.round(CARDS / RANK), per: RANK, flagged: 1, length: 0.46 });
+  const drawer = K.make('card_drawer', { blocks: Math.round(CARDS / RANK), per: RANK, flagged: 1, length: 0.36 });
   drawer.position.set(-0.12, Y, 0); drawer.rotation.y = Math.PI / 2 + 0.32; TXT.add(R, drawer);
   TXT.ground(R, { surface: 'dirt', size: 400, color: 0x17130f, seed: 23, tile: 3 });
   /* GRIT ON THE LEDGE behind the drawer: seeded chips of shale and caliche, so the ledge top reads as stone */
@@ -54,8 +54,8 @@ window.renderReady = (async () => {
   drawer.updateMatrixWorld(true);
   const from = [-0.10, Y + 0.31, 0.88];
   const target = drawer.localToWorld(new THREE.Vector3(0, 0.03, 0));
-  const look = CH.aim(THREE, R, TXT, from, [target.x, target.y, target.z], 680, 960, 36);
-  TXT.frame(R, { fov: 36, from, look });
+  const look = CH.aim(THREE, R, TXT, from, [target.x, target.y, target.z], 680, 960, 30);
+  TXT.frame(R, { fov: 30, from, look });
   TXT.sky(R);
   CH.warm(R, 0.22);
   { const spec = CH.rigSpec(W, 1.2, 4096); TXT.deckRig(R, spec, CH.rigOpts([0, Y, 0], { distance: 8, shadowFar: 30, normalBias: 0.003 })); }

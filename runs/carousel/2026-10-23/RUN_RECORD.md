@@ -112,19 +112,19 @@ decks in the window and the last deck was a paper, which the variety score will 
 | claims         | PASS   | 42 verified claim(s) |
 | render         | PASS   | 9 slide(s) |
 | qa             | WARN   | 0 fail(s), 2 warn(s) |
-| aggregates     | PASS   | 10 declaration(s), 19 numeric phrase(s) in the render, all re-derived |
+| aggregates     | PASS   | 11 declaration(s), 19 numeric phrase(s) in the render, all re-derived |
 | assembly       | PASS   | 9 slide(s), 7.64 MB, vector |
 | score          | STALE  | score.json predates the newest render, so it describes a deck that no longer exists. Re-run it |
 | labels         | ABSENT | label_report.json not written yet. Run scripts/carousel/label_guard.py <run-dir> |
 | quantifiers    | ABSENT | quantifier_report.json not written yet. Run scripts/carousel/quantifier_check.py <run-dir> |
 | verbatim       | ABSENT | verbatim_report.json not written yet. Run scripts/carousel/verbatim_check.py --date <date> |
-| dossiers       | PASS   | 33,476 chars planned |
+| dossiers       | PASS   | 33,741 chars planned |
 | caption        | PASS   | 126 words |
 | craft floor    | WARN   | 9 frame(s), median 3472, floor 625, 2 quiet |
 | plan vs render | PASS   | 9 of 47 acceptance item(s) checkable |
 | texan          | WARN   | places Dallas / body NO / deadline yes / next step NO |
 | absences       | WARN   | 6 of 10 scoped to a named document, 4 unscoped |
-| numerals       | PASS   | 13 numeral(s) over 9 frame(s), every one reachable |
+| numerals       | PASS   | 12 numeral(s) over 9 frame(s), every one reachable |
 | completion     | FAIL   | THE DECK DID NOT SHIP, so this run is not done |
 <!-- gate-status:end -->
 
