@@ -1,0 +1,79 @@
+<!doctype html>
+<!-- 2026-10-23, frame 4 of 9. Archetype DOCUMENT. A MATERIAL RELIEF through txbench.js under the deck's declared light: one bone record card in plan, its ruled lines debossed, an ember tape strip laid over one line with its left corner lifted, a steel prop rod across its foot, the shale falling to black outside the pool. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>.dek { width:800px !important; } #lN { color:#B9B1A2 !important; }</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site" style="font-size:24px">texasaidocket.com</div>
+<h1 class="hook" id="hook">Same patient, different words</h1>
+<p class="dek" data-follow="24">One wording pair in the study set a neutral description against a stigmatizing one. The tape here carries the second, laid over the&nbsp;first.</p>
+<div class="lab" id="lN">established patient with multiple chronic conditions</div>
+<div class="lab" id="lS">17 visits in the past 12 months</div>
+<svg id="lead" width="1080" height="1350" style="position:absolute;left:0;top:0;z-index:11;pointer-events:none"></svg>
+<script>window.FIG = {"visits": 17, "months": 12, "downgraded_pct": 10, "downgraded_of_100": 10, "per_hundred": 100, "downgraded_one_in": 10, "models": 3, "departments": 2, "preprint_models": 2, "preprint_pairs_mimic": 999, "preprint_pairs_mcmed": 997, "preprint_pairs_total": 1996, "hours": 6, "conditions": 10, "psych_holds": 3, "preprint_psych_range": [2.9, 10.7], "preprint_freq_range": [2.9, 9.9]};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/txbench.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-23-ledger.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = (async () => {
+  const cx = await CH.bootFlat({ kicker: "The added line", counter: "04 / 09", src: "c19", fit: { min: 80, max: 104, maxLines: 2 } });
+  TX.reseed(20261023);
+  /* THE CARD in plan, CSS px: its top edge at Y0, bleeding off the right and the bottom. Ruled lines every RULE px, the
+   * tape laid over the fourth line with its left end lifted. Heights in CSS px out of the shale. */
+  const X0 = 70, Y0 = 690, RULE = 64, CARD_H = 5, TAPE_ROW = 3, TAPE_W = 46, TX0 = 120, TX1 = 1080;
+  const rows = Array.from({ length: 10 }, (_, k) => Y0 + 70 + k * RULE);
+  const tapeY = rows[TAPE_ROW] - TAPE_W / 2 - 6;
+  const inCard = (X, Y) => X >= X0 && Y >= Y0;
+  const onTape = (X, Y) => X >= TX0 && X <= TX1 && Y >= tapeY && Y <= tapeY + TAPE_W;
+  const lift = (X) => X < TX0 + 90 ? Math.pow(1 - (X - TX0) / 90, 2) * 16 : 0;   /* the corner lifted off the card */
+  const onRod = (X, Y) => { const t = (X - 70) / 470, yy = 1300 - t * 40; return X >= 40 && X <= 560 && Math.abs(Y - yy) < 9; };
+  /* THE PROP: the card leans toward the key, so its plane rises away from the light, toward the lower left */
+  const tilt = (X, Y) => 0.55 * ((1080 - X) * 0.88 + (Y - Y0) * 0.47);
+  function h(X, Y) {
+    if (onRod(X, Y)) { const t = (X - 70) / 470, d = Math.abs(Y - (1300 - t * 40)) / 9; return tilt(X, Y) + CARD_H + 9 * Math.sqrt(Math.max(0, 1 - d * d)); }
+    if (!inCard(X, Y)) return 0.08 * TX.simplex2(X * 0.05, Y * 0.05);
+    let z = tilt(X, Y) + CARD_H + 0.25 * TX.simplex2(X * 0.6, Y * 0.6);
+    if (onTape(X, Y)) return z + 2.6 + lift(X) * (1 - (Y - tapeY) / TAPE_W * 0.35);
+    for (const r of rows) if (Math.abs(Y - r) < 1.6 && X > X0 + 36) return z - 1.0;
+    return z;
+  }
+  function m(X, Y) {
+    if (onRod(X, Y)) return CH.M.ROD;
+    if (!inCard(X, Y)) return CH.M.SHALE;
+    if (onTape(X, Y)) return CH.M.TAPE;
+    for (const r of rows) if (Math.abs(Y - r) < 1.6 && X > X0 + 36) return CH.M.RULE;
+    return CH.M.CARD;
+  }
+  /* the key lands in a pool over the taped line and the card's far reaches fall off into the dark */
+  const pool = (X, Y) => { const d = Math.hypot((X - 600) / 640, (Y - 930) / 430), t = Math.max(0, Math.min(1, (d - 0.5) / 0.6)); return 1 - 0.8 * t * t * (3 - 2 * t); };
+  const rep = TXBENCH.relief(cx, { x: 0, y: 0, w: 1080, h: 1350, scale: 2, height: h, material: m, keyMask: pool,
+    /* diffuse held down, because the propped plane takes the key nearly full on */
+    albedo: (X, Y, mm) => mm === CH.M.TAPE ? [0.17, 0.04, 0.021] : mm === CH.M.SHALE ? [0.014, 0.014, 0.017] : mm === CH.M.CARD ? CH.albedo(X, Y, mm).map((v) => v * 1.35) : CH.albedo(X, Y, mm), spec: Object.assign({}, CH.SPEC, { 3: [0.05, 10] }), ambient: 0.05, diffuse: 1.4, ao: 1.0, shadow: 0.9, softness: 4, castLength: 120 });
+  window.__relief = rep;
+  cx.setTransform(2, 0, 0, 2, 0, 0);
+  /* the two wordings above the card, each with a leader landing where it lives: the neutral one on the covered line
+   * under the lifted corner, the stigmatizing one on the tape */
+  const lN = document.getElementById("lN"), lS = document.getElementById("lS"), svg = document.getElementById("lead");
+  lN.style.left = "84px"; lN.style.top = (Y0 - 104) + "px"; lN.style.fontSize = "24px";
+  lS.style.left = "450px"; lS.style.top = (Y0 - 58) + "px"; lS.style.fontSize = "24px";
+  const atN = [TX0 + 24, rows[TAPE_ROW] - 4], atS = [560, tapeY + TAPE_W / 2];
+  CH.leader(svg, [100, Y0 - 72], atN); CH.leader(svg, [520, Y0 - 20], atS);
+  window.__txLeaders = [{ target: "the covered line under the tape's lifted corner", at: atN, to: atN }, { target: "the tape", at: atS, to: atS }];
+  { const g = cx.createLinearGradient(0, Y0 - 30, 0, Y0 + 40); g.addColorStop(0, 'rgba(6,5,10,0.7)'); g.addColorStop(1, 'rgba(6,5,10,0)'); cx.fillStyle = g; cx.fillRect(0, Y0 - 30, 1080, 70); }
+  CH.post(cx, { a: 0.3, veil: 0.2, footWash: 0.45 });
+  CH.knock(cx, [".tx-site", ".src", "#lN", "#lS"], 0.54);
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

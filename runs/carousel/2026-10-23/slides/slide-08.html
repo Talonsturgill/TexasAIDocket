@@ -1,0 +1,65 @@
+<!doctype html>
+<!-- 2026-10-23, frame 8 of 9. Archetype SPLIT_HORIZON. A MATERIAL RELIEF through txbench.js under the deck's declared light: one bone record card in plan, propped toward the key, carrying ten laid strips, two in ember vinyl and eight in bone, each standing proud with its cast and its right end curled. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>.dek { width:860px !important; } .lab.ink { color:#1d1813 !important; text-shadow:none !important; font-size:24px !important; }</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site" style="font-size:24px">texasaidocket.com</div>
+<h1 class="hook" id="hook">Visits and psychiatric history moved it most</h1>
+<p class="dek" data-follow="24">The study names frequent emergency use and past psychiatric emergencies among the strongest effects. The authors' May preprint, an earlier version, tested 10 added lines and found no harmful shift from race, language or&nbsp;insurance.</p>
+<div class="lab ink" id="lA">frequent emergency visits</div>
+<div class="lab ink" id="lB">psychiatric emergencies</div>
+<script>window.FIG = {"visits": 17, "months": 12, "downgraded_pct": 10, "downgraded_of_100": 10, "per_hundred": 100, "downgraded_one_in": 10, "models": 3, "departments": 2, "preprint_models": 2, "preprint_pairs_mimic": 999, "preprint_pairs_mcmed": 997, "preprint_pairs_total": 1996, "hours": 6, "conditions": 10, "psych_holds": 3, "preprint_psych_range": [2.9, 10.7], "preprint_freq_range": [2.9, 9.9]};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/txbench.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-23-ledger.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = (async () => {
+  const cx = await CH.bootFlat({ kicker: "In the May preprint", counter: "08 / 09", src: "c16 c26 c34 c38", fit: { min: 72, max: 96, maxLines: 2 } });
+  TX.reseed(20261023);
+  /* THE FIGURE, from figures.json: conditions, one laid strip per condition the preprint tested; the two the release
+   * names among the strongest effects (c16) are ember. The card bleeds off the left, right and bottom. */
+  const N = FIG.conditions, EMBER = [2, 5], X0 = -10, Y0 = 720, CARD_H = 5, SX0 = 476, SX1 = 1050, PITCH = 56, SW = 30;
+  const tilt = (X, Y) => 0.55 * ((1080 - X) * 0.88 + (Y - Y0) * 0.47);
+  const strips = Array.from({ length: N }, (_, k) => ({ y: Y0 + 50 + k * PITCH, a: ((k * 37) % 7 - 3) * 0.006, x0: SX0 + ((k * 53) % 5) * 10, ember: EMBER.includes(k) }));
+  const strip = (X, Y) => { for (const st of strips) { const yc = st.y + (X - st.x0) * st.a; if (X >= st.x0 && X <= SX1 && Math.abs(Y - yc) <= SW / 2) return st; } return null; };
+  function h(X, Y) {
+    if (Y < Y0) return 0.06 * TX.simplex2(X * 0.05, Y * 0.05);
+    let z = tilt(X, Y) + CARD_H + 0.25 * TX.simplex2(X * 0.6, Y * 0.6);
+    const st = strip(X, Y);
+    if (st) { const curl = X > SX1 - 70 ? Math.pow((X - (SX1 - 70)) / 70, 2) * 12 : 0; return z + 2.4 + curl; }
+    return z;
+  }
+  function m(X, Y) {
+    if (Y < Y0) return CH.M.SHALE;
+    const st = strip(X, Y);
+    if (st) return st.ember ? CH.M.TAPE : CH.M.RULE;
+    return CH.M.CARD;
+  }
+  const pool = (X, Y) => { const d = Math.hypot((X - 640) / 660, (Y - 1000) / 430), t = Math.max(0, Math.min(1, (d - 0.5) / 0.6)); return 1 - 0.8 * t * t * (3 - 2 * t); };
+  /* the bone strips are pale card stock laid on the card, told apart from it by their height and cast */
+  const rep = TXBENCH.relief(cx, { x: 0, y: 0, w: 1080, h: 1350, scale: 2, height: h, material: m, keyMask: pool,
+    albedo: (X, Y, mm) => mm === CH.M.TAPE ? [0.17, 0.04, 0.021] : mm === CH.M.SHALE ? [0.014, 0.014, 0.017] : mm === CH.M.RULE ? [0.27, 0.24, 0.19] : mm === CH.M.CARD ? CH.albedo(X, Y, mm).map((v) => v * 1.1) : CH.albedo(X, Y, mm),
+    spec: Object.assign({}, CH.SPEC, { 3: [0.05, 10], 4: [0.05, 8] }), ambient: 0.05, diffuse: 1.4, ao: 1.0, shadow: 0.9, softness: 4, castLength: 120 });
+  window.__relief = rep;
+  cx.setTransform(2, 0, 0, 2, 0, 0);
+  /* each ember strip named at its own left end, in dark ink on the card */
+  [["lA", strips[EMBER[0]]], ["lB", strips[EMBER[1]]]].forEach(([id, st]) => { const el = document.getElementById(id); el.style.left = "84px"; el.style.top = (st.y - 16) + "px"; });
+  { const g = cx.createLinearGradient(0, Y0 - 30, 0, Y0 + 40); g.addColorStop(0, 'rgba(6,5,10,0.7)'); g.addColorStop(1, 'rgba(6,5,10,0)'); cx.fillStyle = g; cx.fillRect(0, Y0 - 30, 1080, 70); }
+  CH.post(cx, { a: 0.3, veil: 0.2, footWash: 0.45 });
+  CH.knock(cx, [".tx-site", ".src"], 0.54);
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

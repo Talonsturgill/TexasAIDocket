@@ -1,0 +1,60 @@
+<!doctype html>
+<!-- 2026-10-23, frame 5 of 9. Archetype GRID. A spatial scene through txthree.js in the deck's lastLight world: seventeen closed white vinyl wristbands standing on edge in three rows of six, six and five on the shale ledge, each with a nickel snap and an ember tab. One band stands for one visit. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>.dek { width:760px !important; }</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site" style="font-size:24px">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="line-height:1.05">17 visits, one line on a chart</h1>
+<p class="dek" data-follow="24">The stigmatizing line counted 17 visits in the past 12 months. Records describing frequent emergency visits gave some of the strongest effects. One band stands for one&nbsp;visit.</p>
+<script>window.FIG = {"visits": 17, "months": 12, "downgraded_pct": 10, "downgraded_of_100": 10, "per_hundred": 100, "downgraded_one_in": 10, "models": 3, "departments": 2, "preprint_models": 2, "preprint_pairs_mimic": 999, "preprint_pairs_mcmed": 997, "preprint_pairs_total": 1996, "hours": 6, "conditions": 10, "psych_holds": 3, "preprint_psych_range": [2.9, 10.7], "preprint_freq_range": [2.9, 9.9]};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-23-ledger.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "17 visits", counter: "05 / 09", src: "c16 c19", fit: { min: 76, max: 104, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 26, near: 0.02, far: 3000, fog: W.fogDensity * 0.35 });
+  const Y = CH.LEDGE_Y;
+  const ledge = K.make('shale_ledge', { width: 3.0, height: Y, depth: 1.6 }); ledge.position.set(0, 0, -0.35); TXT.add(R, ledge);
+  /* THE FIGURE, from figures.json: visits, one wristband per visit in the stigmatizing line */
+  const VISITS = FIG.visits, PER_ROW = 6, PITCH = 0.072, ROW = 0.16;
+  const bands = [];
+  for (let k = 0; k < VISITS; k++) {
+    const row = Math.floor(k / PER_ROW), col = k % PER_ROW, inRow = Math.min(PER_ROW, VISITS - row * PER_ROW);
+    const b = K.make('wristband', { seed: k });
+    b.position.set((col - (inRow - 1) / 2) * PITCH + (row % 2) * 0.012, Y, -row * ROW + ((k * 7) % 5 - 2) * 0.003);
+    b.rotation.y = 0.30 + ((k * 3) % 4) * 0.04 - 0.06; TXT.add(R, b); bands.push(b);
+  }
+  TXT.ground(R, { surface: 'dirt', size: 400, color: 0x17130f, seed: 23, tile: 3 });
+  const from = [0.30, Y + 0.46, 1.12];
+  const look = CH.aim(THREE, R, TXT, from, [0, Y + 0.03, -0.16], 540, 1010, 26);
+  TXT.frame(R, { fov: 26, from, look });
+  TXT.sky(R);
+  CH.warm(R, 0.22);
+  { const spec = CH.rigSpec(W, 1.6, 4096); TXT.deckRig(R, spec, CH.rigOpts([0, Y, 0], { distance: 8, shadowFar: 30, normalBias: 0.004 })); }
+  CH.unacne(R, 0.004);
+  bands.forEach((b) => TXT.contact(R, b));
+  TXT.stage(R, bands, { behind: 0.6, depth: 1.6, poolInner: 0.4, poolOuter: 1.0 });
+  TXT.weather(R, { grime: 0.12, height: 0.03, mottle: 0.2 });
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0.45, veil: 0.2, footWash: 0.45 });
+  CH.knock(cx, [".tx-site", ".src"], 0.5);
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

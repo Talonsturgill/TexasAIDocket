@@ -55,7 +55,7 @@ nobody is looking at. No hospital room is drawn, which keeps clear of nos. 55 an
 | token | hex | where |
 |---|---|---|
 | `ground` | `#07070C` | the DOM body behind the render |
-| `accent` | `#BA432A` | dusk ember (#B4664F in the chassis) as it renders through the tone curve, the added line: 1, 4, 5, 6, 7, 8, 9 |
+| `accent` | `#BD452C` | dusk ember (#B4664F in the chassis) as it renders through the tone curve, the added line: 1, 4, 5, 6, 7, 8, 9 |
 | `hook` | `#ECE6DA` | light type on the dark |
 | `dek` | `#D8CFC0` | the dek |
 | `material` | `#D8D0BE` | Austin Chalk bone, the card face |
@@ -112,7 +112,7 @@ primary_image:
   subject: "two bone record cards upright in a graphite steel holder on a shale ledge, the right card notched and carrying an ember tape strip across its middle"
   rect: [160, 600, 800, 750]
   bleeds: [bottom]
-accent: "#BA432A"
+accent: "#BD452C"
 job: >
   Say the finding as one picture, two matched records that differ by one strip of tape, and say who found it.
 
@@ -292,7 +292,7 @@ primary_image:
   subject: "one bone record card propped toward the key, its ruled lines debossed and an ember tape strip laid over one line"
   rect: [70, 690, 1010, 660]
   bleeds: [right, bottom]
-accent: "#BA432A"
+accent: "#BD452C"
 job: >
   Put the two wordings side by side in the record's own place, the neutral line under the stigmatizing one.
 
@@ -352,7 +352,7 @@ primary_image:
   subject: "seventeen closed white vinyl wristbands standing on edge in three rows of six, six and five on the shale ledge"
   rect: [0, 790, 1080, 440]
   bleeds: [left]
-accent: "#BA432A"
+accent: "#BD452C"
 job: >
   Make the stigmatizing line physical, seventeen visits a reader can count.
 
@@ -413,7 +413,7 @@ primary_image:
   subject: "the same three sorting trays, the middle tray's notched card now in the back slot wearing the ember tape"
   rect: [0, 740, 1080, 450]
   bleeds: [left, right]
-accent: "#BA432A"
+accent: "#BD452C"
 job: >
   Show the turn, the one card that moved back once the line was added, from the camera the reader already knows.
 
@@ -474,7 +474,7 @@ primary_image:
   subject: "a graphite steel index card drawer of 100 upright cards, ten notched cards with ember flags behind a divider"
   rect: [0, 760, 1080, 420]
   bleeds: [left, right]
-accent: "#BA432A"
+accent: "#BD452C"
 job: >
   Size the effect, nearly ten in a hundred moved back, as cards a reader can count by their flags.
 
@@ -536,7 +536,7 @@ primary_image:
   subject: "one bone record card carrying ten laid strips, two in ember vinyl and eight in bone, each standing proud with a cast"
   rect: [0, 720, 1080, 630]
   bleeds: [left, right, bottom]
-accent: "#BA432A"
+accent: "#BD452C"
 job: >
   Name which added lines moved the models most and which did not, naming the preprint where its figures are used.
 
@@ -596,7 +596,7 @@ primary_image:
   subject: "the cover's holder and two cards, the ember tape on the notched card with its right third curled off toward the camera"
   rect: [100, 595, 815, 605]
   bleeds: []
-accent: "#BA432A"
+accent: "#BD452C"
 job: >
   Close on the consequence, how the record is written changes the answer, and the authors' ask before any hospital uses one.
 

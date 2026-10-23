@@ -1,0 +1,70 @@
+<!doctype html>
+<!-- 2026-10-23, frame 9 of 9. Archetype FULL_BLEED. A spatial scene through txthree.js in the deck's lastLight world: the cover's holder and two cards with the ember tape across the notched card stuck along its left two thirds and its right third curled off the card toward the camera. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>.dek { width:700px !important; }</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site" style="font-size:24px">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="line-height:1.05">Test each tool on real outcomes first</h1>
+<p class="dek" data-follow="26">Bias varies by model, so each AI tool should be tested against real patient outcomes before use, the first author says. The release names no Texas hospital using&nbsp;them.</p>
+<script>window.FIG = {"visits": 17, "months": 12, "downgraded_pct": 10, "downgraded_of_100": 10, "per_hundred": 100, "downgraded_one_in": 10, "models": 3, "departments": 2, "preprint_models": 2, "preprint_pairs_mimic": 999, "preprint_pairs_mcmed": 997, "preprint_pairs_total": 1996, "hours": 6, "conditions": 10, "psych_holds": 3, "preprint_psych_range": [2.9, 10.7], "preprint_freq_range": [2.9, 9.9]};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-23-ledger.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "What follows", counter: "09 / 09", src: "c11 c21 c22 c23", fit: { min: 76, max: 100, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 30, near: 0.02, far: 3000, fog: W.fogDensity * 0.35 });
+  const Y = CH.LEDGE_Y;
+  const ledge = K.make('shale_ledge', { width: 2.4, height: Y, depth: 1.6 }); ledge.position.set(0.1, 0, -0.35); TXT.add(R, ledge);
+  /* the matched pair: two cards in one holder, the right one notched (the patient who later deteriorated) and taped */
+  const holder = K.make('card_holder', {}); holder.position.set(0, Y, 0); holder.rotation.y = 0.2; TXT.add(R, holder);
+  const lean = -holder.userData.lean * Math.PI / 180, seat = holder.userData.seat;
+  holder.userData.slots.forEach((sx, i) => {
+    const c = K.make('record_card', { notch: i === 1, tape: false, seed: i });
+    c.position.set(sx, seat.y, seat.z); c.rotation.x = lean; c.rotation.y = i ? -0.03 : 0.02;
+    holder.add(c);
+  });
+  /* THE TAPE, PEELED: across the notched card where the cover laid it, stuck along its left two thirds, the right
+   * third lifted off the card in one curl toward the camera, so the line beneath it starts to show */
+  const right = holder.children.find((c) => c.userData && c.userData.kit === 'record_card' && c.position.x > 0);
+  const CW = right.userData.w, x0 = -CW * 0.43, x1 = CW * 0.43, xm = x0 + (x1 - x0) * 2 / 3, R0 = (x1 - xm) / 1.25, zf = 0.0011;
+  const pts = [[x0, zf], [xm, zf]];
+  for (let k = 1; k <= 24; k++) { const a = k / 24 * 2.6; pts.push([xm + Math.sin(a) * R0, zf + (1 - Math.cos(a)) * R0]); }
+  const tape = CH.tapeStrip(THREE, TXT, pts, 0.012, 0.0007); tape.position.y = right.userData.h * 0.52; right.add(tape);
+  /* the curl shows its adhesive side: pale and matte on the face that was against the card (the segments' -z face) */
+  const glue = new THREE.MeshStandardMaterial({ color: 0xcdbca6, roughness: 0.75, metalness: 0 }), tm = CH.tapeMat(THREE);
+  tape.children.forEach((m, i) => { if (i >= 1) m.material = [tm, tm, tm, tm, tm, glue]; });
+  tm.clearcoat = 0.35;
+  TXT.ground(R, { surface: 'dirt', size: 400, color: 0x17130f, seed: 23, tile: 3 });
+  const from = [0.34, Y + 0.24, 0.80];
+  const look = CH.aim(THREE, R, TXT, from, [0.0, Y + 0.08, 0.0], 540, 990, 30);
+  TXT.frame(R, { fov: 30, from, look });
+  TXT.sky(R);
+  CH.warm(R, 0.08); R._bounce.color.setHex(0x2a2018);   /* a warm sky term, so the cast under the lifted tape is warm dark rather than navy */
+  { const spec = CH.rigSpec(W, 0.6, 4096); spec.fill = Object.assign({}, spec.fill, { color: 0x6a5646 }); spec.ambient = Object.assign({}, spec.ambient, { color: 0x4a3e34 });   /* warm fill and ambient, so the cast under the curl is warm dark */ TXT.deckRig(R, spec, CH.rigOpts([0, Y, 0], { distance: 8, shadowFar: 30, normalBias: 0.004 })); }
+  CH.unacne(R, 0.004);
+  TXT.contact(R, holder);
+  TXT.stage(R, holder, { behind: 0.6, depth: 1.6, poolInner: 0.42, poolOuter: 1.0 });
+  TXT.weather(R, { grime: 0.15, height: 0.05, mottle: 0.25 });
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0.45, veil: 0.2, footWash: 0.45 });
+  CH.knock(cx, [".tx-site", ".src"], 0.5);
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>
