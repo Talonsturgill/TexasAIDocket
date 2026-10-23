@@ -426,6 +426,22 @@ def self_test() -> int:
                       and 48 <= baseline + y0 / og_cover.SS
                       <= baseline + y1 / og_cover.SS <= H - 30)
     ok("every cover line survives the narrower Featured crop", all(bounds))
+    # Pillow's default selects RAQM when it is compiled in. A package version
+    # alone therefore does not fix layout across Mac and Linux wheel builds.
+    from unittest.mock import patch
+    from PIL import features
+    print(f"  cover font runtime: RAQM={features.check_feature('raqm')}, "
+          f"FreeType={features.version_module('freetype2')}")
+    lettering = []
+    for available in (False, True):
+        with patch.object(og_cover.ImageFont.core, "HAVE_RAQM", available):
+            fixed = all(og_cover.font(row[0], row[2]).layout_engine == og_cover.ImageFont.Layout.BASIC
+                        for row in cover_lines())
+            ok(f"cover layout stays fixed with optional RAQM {available}", fixed)
+            if fixed:
+                lettering.append(og_cover.lettering(bytes(W * H * 3), cover_lines()))
+    ok("optional layout capability cannot change cover lettering pixels",
+       len(lettering) == 2 and lettering[0] == lettering[1])
     counties, _ = og_cover.geometry()
     projected = [og_cover.project(p, 57) for _, rings in counties for ring in rings for p in ring]
     ok("the complete Texas sculpture survives the narrower Featured crop",
