@@ -16,7 +16,7 @@
 |---|---|
 | engine calls (`TXT.*`) | 30 |
 | world presets | 8 |
-| kit models | 125 in 10 families |
+| kit models | 126 in 10 families |
 | asset libraries | 22 |
 | carousel and shared tools | 77 |
 | record and site tools the routine names | 20 |
@@ -300,7 +300,7 @@ THE KIT: the things Texas is made of, modelled once in 3D at TRUE SCALE.
 | `strip_mall` | 66 x 10.9 x 34.4 | units, parking | A Texas strip centre: stucco and stone, a stepped parapet with hipped tower ends, an arcade canopy, aluminium storefronts, blank sign panels, a striped parking row |
 | `traffic_signal` | 12.7 x 10.4 x 1.2 | arm, heads, finish, luminaire, lit | Mast arm signal: the pole stands at the origin (its footprint), arm over +x, heads facing +z; street blade and a ped head on the pole |
 
-### interior (21)
+### interior (22)
 
 `assets/js/kit/interior.js`, The rooms decisions are made in: a commissioners court dais, the lectern the public speaks from, the rows it sits in, the office the paperwork lives in, and the server row the paperwork is about, the ...
 
@@ -318,6 +318,7 @@ THE KIT: the things Texas is made of, modelled once in 3D at TRUE SCALE.
 | `laptop` | 0.31 x 0.23 x 0.26 | open, finish, screen, dark | 14 in aluminium laptop at true size: unibody base, recessed keyboard with every key, glass trackpad, hinge, thin lid with a lit display (screen doc \| sheet \| chart \| dash \| off; no legible text) and a camera dot. open is the lid angle in degrees. |
 | `monitor` | 0.62 x 0.52 x 0.2 | inches, screen, dark, finish | Desktop monitor (27 in default) on a stand: thin bezel front with a lit display (screen chart \| dash \| doc \| sheet \| off; no legible text), a bulged rear housing with vents, a slim neck and a flat base. |
 | `office_chair` | 0.66 x 1.0 x 0.66 | style, color, arms | Swivel office chair facing +z: five star base on twin wheel casters, telescoping gas lift, tilt mechanism with knob and lever, waterfall seat, curved backrest with lumbar, T arms. style task (fabric) \| mesh \| exec (high back leather on polished aluminium). |
+| `patient_wristband` | 0.11 x 0.03 x 0.08 | pose, girth, width, thick, color, label, snap, tail, tab, aspect | A closed hospital patient wristband, drawn to illustrate: a solid vinyl strap `width` m wide and `thick` m thick (every face present, double sided by construction) closed to a loop `girth` m round, a raised white label patch with a greeked barcode and name ... |
 | `podium` | 0.66 x 1.52 x 0.56 | wood, seal, mic | Speaker lectern: a raked veneer body wider at the top, sloped reading desk with a book stop, raised front panel with an optional blank round seal, plinth, and a gooseneck microphone. |
 | `pro_camcorder` | 0.95 x 1.38 x 1.06 | tripod, height, spread, screenAngle, screenGlow, tally, mic | A professional camcorder, drawn to illustrate: a bevelled body 0.13 m wide and 0.36 m long, a barrel with knurled focus and zoom rings, a square petal hood and coated front glass facing +z, a top handle with XLR block and shotgun mic (mic), a viewfinder, a ... |
 | `public_seating` | 5.6 x 0.95 x 2.9 | rows, perRow, aisle, type, color, frame, wood | Rows of public seating facing +z (toward the dais): padded stacking chairs on chrome or black tube frames, or wooden pews (type: pews). |
