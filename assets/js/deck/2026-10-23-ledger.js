@@ -356,8 +356,8 @@
         [[false, -0.006, 0], [true, 0.004, 1]].forEach(function (c) {
           var card = K.make("record_card", { notch: c[0] });
           card.rotation.x = -Math.PI / 2; card.position.set(c[1], hgt + 0.0008 + c[2] * 0.0008, d / 2 + o.slide * (c[2] ? 1 : 0.55)); card.rotation.z = (c[2] ? 0.04 : -0.03);
-          /* the notched card swung end for end and twelve degrees off the stack, so its clipped corner faces the camera */
-          if (c[0]) { card.rotation.z = Math.PI + 0.21; card.position.z -= 0.203 * Math.cos(0.21); card.position.x -= 0.203 * Math.sin(0.21) * 0.5; }
+          /* the notched card turned end for end and laid square, so its clipped corner faces the camera */
+          if (c[0]) { card.rotation.z = Math.PI; card.position.z -= 0.203; }
           g.add(card);
         });
         g.userData.keepOrigin = true; g.userData.top = hgt;

@@ -9,12 +9,12 @@
 <body>
 <canvas id="art" width="2160" height="2700"></canvas>
 <div class="tx-site" id="site" style="font-size:24px">texasaidocket.com</div>
-<h1 class="hook" id="hook" style="line-height:1.05">Two emergency departments, paired patients</h1>
+<h1 class="hook" id="hook" style="line-height:1.05">Two medical centers, paired patients</h1>
 <p class="dek" data-follow="24">The records came from Stanford Medicine in California and Beth Israel Deaconess Medical Center in Massachusetts, not a Texas hospital. Each patient was paired with one of similar starting&nbsp;severity.</p>
 <div class="lab" id="lA">Stanford Medicine</div>
 <div class="lab" id="lB">Beth Israel Deaconess</div>
 <svg id="lead" width="1080" height="1350" style="position:absolute;left:0;top:0;z-index:11;pointer-events:none"></svg>
-<script>window.FIG = {"visits": 17, "months": 12, "downgraded_pct": 10, "downgraded_of_100": 10, "per_hundred": 100, "downgraded_one_in": 10, "models": 3, "departments": 2, "preprint_models": 2, "preprint_pairs_mimic": 999, "preprint_pairs_mcmed": 997, "preprint_pairs_total": 1996, "hours": 6, "conditions": 10, "psych_holds": 3, "preprint_psych_range": [2.9, 10.7], "preprint_freq_range": [2.9, 9.9]};</script>
+<script>window.FIG = {"visits": 17, "months": 12, "downgraded_pct": 10, "downgraded_of_100": 10, "per_hundred": 100, "downgraded_one_in": 10, "models": 3, "departments": 2, "preprint_models": 2, "preprint_pairs_mimic": 999, "preprint_pairs_mcmed": 997, "preprint_pairs_total": 1996, "hours": 6, "conditions": 10, "harmful_lines": 5, "psych_holds": 3, "preprint_psych_range": [2.9, 10.7], "preprint_freq_range": [2.9, 9.9]};</script>
 <script src="@@ASSETS@@/js/noise.js"></script>
 <script src="@@ASSETS@@/js/txtype.js"></script>
 <script src="@@ASSETS@@/js/txcolor.js"></script>
@@ -40,7 +40,7 @@ window.renderReady = (async () => {
   }
   TXT.ground(R, { surface: 'dirt', size: 400, color: 0x17130f, seed: 23, tile: 3 });
   const from = [0.46, Y + 0.44, 1.10];
-  const look = CH.aim(THREE, R, TXT, from, [0, Y + 0.08, 0], 540, 940, 30);
+  const look = CH.aim(THREE, R, TXT, from, [0, Y + 0.08, 0], 540, 1000, 30);
   TXT.frame(R, { fov: 30, from, look });
   TXT.sky(R);
   CH.warm(R, 0.22);

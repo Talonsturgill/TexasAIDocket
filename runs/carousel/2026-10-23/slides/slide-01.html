@@ -9,9 +9,9 @@
 <body>
 <canvas id="art" width="2160" height="2700"></canvas>
 <div class="tx-site" id="site" style="font-size:24px">texasaidocket.com</div>
-<h1 class="hook" id="hook" style="line-height:1.05">One added line moved the higher risk patient back</h1>
+<h1 class="hook" id="hook" style="line-height:1.05">One added line sometimes moved the higher risk patient back</h1>
 <p class="dek" data-follow="26">UT Southwestern researchers asked AI models which of two matched emergency patients to see first. A single added detail sometimes shifted a model away from the patient who later deteriorated. The cards are drawn to&nbsp;illustrate.</p>
-<script>window.FIG = {"visits": 17, "months": 12, "downgraded_pct": 10, "downgraded_of_100": 10, "per_hundred": 100, "downgraded_one_in": 10, "models": 3, "departments": 2, "preprint_models": 2, "preprint_pairs_mimic": 999, "preprint_pairs_mcmed": 997, "preprint_pairs_total": 1996, "hours": 6, "conditions": 10, "psych_holds": 3, "preprint_psych_range": [2.9, 10.7], "preprint_freq_range": [2.9, 9.9]};</script>
+<script>window.FIG = {"visits": 17, "months": 12, "downgraded_pct": 10, "downgraded_of_100": 10, "per_hundred": 100, "downgraded_one_in": 10, "models": 3, "departments": 2, "preprint_models": 2, "preprint_pairs_mimic": 999, "preprint_pairs_mcmed": 997, "preprint_pairs_total": 1996, "hours": 6, "conditions": 10, "harmful_lines": 5, "psych_holds": 3, "preprint_psych_range": [2.9, 10.7], "preprint_freq_range": [2.9, 9.9]};</script>
 <script src="@@ASSETS@@/js/noise.js"></script>
 <script src="@@ASSETS@@/js/txtype.js"></script>
 <script src="@@ASSETS@@/js/txcolor.js"></script>
@@ -25,7 +25,7 @@ import { init } from '@@ASSETS@@/js/txthree.js';
 import { initKit } from '@@ASSETS@@/js/txkit.js';
 window.renderReady = (async () => {
   const TXT = init(THREE);
-  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "UT Southwestern, Dallas", counter: "01 / 09", src: "c1 c2 c8 c10 c12", fit: { min: 76, max: 100, maxLines: 2 } });
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "UT Southwestern, Dallas", counter: "01 / 09", src: "c1 c2 c8 c10 c12", fit: { min: 62, max: 100, maxLines: 2 } });
   const R = CH.stage(TXT, gl, W, { fov: 30, near: 0.02, far: 3000, fog: W.fogDensity * 0.35 });
   const Y = CH.LEDGE_Y;
   const ledge = K.make('shale_ledge', { width: 2.4, height: Y, depth: 1.6 }); ledge.position.set(0.1, 0, -0.35); TXT.add(R, ledge);
@@ -39,7 +39,7 @@ window.renderReady = (async () => {
   });
   TXT.ground(R, { surface: 'dirt', size: 400, color: 0x17130f, seed: 23, tile: 3 });
   const from = [0.64, Y + 0.27, 0.64];
-  const look = CH.aim(THREE, R, TXT, from, [0.0, Y + 0.08, 0], 560, 960, 30);
+  const look = CH.aim(THREE, R, TXT, from, [0.0, Y + 0.08, 0], 560, 978, 30);
   TXT.frame(R, { fov: 30, from, look });
   TXT.sky(R);
   CH.warm(R, 0.22);

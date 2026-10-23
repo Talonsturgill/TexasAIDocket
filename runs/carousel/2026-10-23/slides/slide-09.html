@@ -11,7 +11,7 @@
 <div class="tx-site" id="site" style="font-size:24px">texasaidocket.com</div>
 <h1 class="hook" id="hook" style="line-height:1.05">Test each tool on real outcomes first</h1>
 <p class="dek" data-follow="26">Bias varies by model, so each AI tool should be tested on real patient outcomes before use, the first author says. UT Southwestern's October 20th release names no Texas hospital using these models for&nbsp;triage.</p>
-<script>window.FIG = {"visits": 17, "months": 12, "downgraded_pct": 10, "downgraded_of_100": 10, "per_hundred": 100, "downgraded_one_in": 10, "models": 3, "departments": 2, "preprint_models": 2, "preprint_pairs_mimic": 999, "preprint_pairs_mcmed": 997, "preprint_pairs_total": 1996, "hours": 6, "conditions": 10, "psych_holds": 3, "preprint_psych_range": [2.9, 10.7], "preprint_freq_range": [2.9, 9.9]};</script>
+<script>window.FIG = {"visits": 17, "months": 12, "downgraded_pct": 10, "downgraded_of_100": 10, "per_hundred": 100, "downgraded_one_in": 10, "models": 3, "departments": 2, "preprint_models": 2, "preprint_pairs_mimic": 999, "preprint_pairs_mcmed": 997, "preprint_pairs_total": 1996, "hours": 6, "conditions": 10, "harmful_lines": 5, "psych_holds": 3, "preprint_psych_range": [2.9, 10.7], "preprint_freq_range": [2.9, 9.9]};</script>
 <script src="@@ASSETS@@/js/noise.js"></script>
 <script src="@@ASSETS@@/js/txtype.js"></script>
 <script src="@@ASSETS@@/js/txcolor.js"></script>
@@ -41,7 +41,7 @@ window.renderReady = (async () => {
    * third lifted off the card in one curl toward the camera, so the line beneath it starts to show */
   const right = holder.children.find((c) => c.userData && c.userData.kit === 'record_card' && c.position.x > 0);
   const CW = right.userData.w, x0 = -CW * 0.43, x1 = CW * 0.43, xm = x0 + (x1 - x0) * 2 / 3, R0 = (x1 - x0) * 0.45 / 1.05, zf = 0.0011;
-  const xs = CW * 0.40, TW = 0.012, TT = 0.0007, LC = 0.06, ANG = 1.75, RC = LC / ANG;
+  const xs = CW * 0.36, TW = 0.012, TT = 0.0007, LC = 0.07, ANG = 1.25, RC = LC / ANG;
   const tm = CH.tapeMat(THREE), glue = new THREE.MeshStandardMaterial({ color: 0xcdbca6, roughness: 0.75, metalness: 0 });
   /* the stuck half, flat on the card */
   const tape = CH.tapeStrip(THREE, TXT, [[x0, zf], [xs, zf]], TW, TT); tape.position.y = right.userData.h * 0.52; right.add(tape);
@@ -59,8 +59,8 @@ window.renderReady = (async () => {
     curl.position.y = right.userData.h * 0.52; right.add(curl); }
   tm.clearcoat = 0.35;
   TXT.ground(R, { surface: 'dirt', size: 400, color: 0x17130f, seed: 23, tile: 3 });
-  const from = [0.44, Y + 0.21, 0.60];
-  const look = CH.aim(THREE, R, TXT, from, [0.08, Y + 0.10, 0.0], 560, 1030, 30);
+  const from = [0.50, Y + 0.28, 0.72];
+  const look = CH.aim(THREE, R, TXT, from, [0.08, Y + 0.10, 0.0], 560, 1000, 30);
   TXT.frame(R, { fov: 30, from, look });
   TXT.sky(R);
   CH.warm(R, 0.08); R._bounce.color.setHex(0x2a2018);   /* a warm sky term, so the cast under the lifted tape is warm dark rather than navy */

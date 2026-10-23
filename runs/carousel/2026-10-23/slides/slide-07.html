@@ -12,7 +12,7 @@
 <h1 class="hook" id="hook" style="line-height:1.05">In some instances, nearly 10% moved&nbsp;back</h1>
 <p class="dek" data-follow="24">Nearly 10% of patients were incorrectly downgraded once stigmatizing information was added. The drawer holds 100 cards in blocks of ten, and the flagged block stands for the&nbsp;share.</p>
 <div class="lab" id="lRank">nearly 10 in 100</div>
-<script>window.FIG = {"visits": 17, "months": 12, "downgraded_pct": 10, "downgraded_of_100": 10, "per_hundred": 100, "downgraded_one_in": 10, "models": 3, "departments": 2, "preprint_models": 2, "preprint_pairs_mimic": 999, "preprint_pairs_mcmed": 997, "preprint_pairs_total": 1996, "hours": 6, "conditions": 10, "psych_holds": 3, "preprint_psych_range": [2.9, 10.7], "preprint_freq_range": [2.9, 9.9]};</script>
+<script>window.FIG = {"visits": 17, "months": 12, "downgraded_pct": 10, "downgraded_of_100": 10, "per_hundred": 100, "downgraded_one_in": 10, "models": 3, "departments": 2, "preprint_models": 2, "preprint_pairs_mimic": 999, "preprint_pairs_mcmed": 997, "preprint_pairs_total": 1996, "hours": 6, "conditions": 10, "harmful_lines": 5, "psych_holds": 3, "preprint_psych_range": [2.9, 10.7], "preprint_freq_range": [2.9, 9.9]};</script>
 <script src="@@ASSETS@@/js/noise.js"></script>
 <script src="@@ASSETS@@/js/txtype.js"></script>
 <script src="@@ASSETS@@/js/txcolor.js"></script>
@@ -35,19 +35,19 @@ window.renderReady = (async () => {
   const CARDS = FIG.per_hundred, RANK = FIG.downgraded_of_100;
   /* ten blocks of ten: CARDS / RANK blocks of RANK cards each, the last block flagged, read side on across the frame */
   const drawer = K.make('card_drawer', { blocks: Math.round(CARDS / RANK), per: RANK, flagged: 1, length: 0.46 });
-  drawer.position.set(0, Y, 0); drawer.rotation.y = Math.PI / 2 + 0.32; TXT.add(R, drawer);
+  drawer.position.set(-0.12, Y, 0); drawer.rotation.y = Math.PI / 2 + 0.32; TXT.add(R, drawer);
   TXT.ground(R, { surface: 'dirt', size: 400, color: 0x17130f, seed: 23, tile: 3 });
   /* GRIT ON THE LEDGE behind the drawer: seeded chips of shale and caliche, so the ledge top reads as stone */
   { let sd = 7; const rnd = () => (sd = (sd * 16807) % 2147483647) / 2147483647;
-    const geo = new THREE.DodecahedronGeometry(1, 0), n = 9000;
+    const geo = new THREE.DodecahedronGeometry(1, 0), n = 3200;
     const mat = new THREE.MeshStandardMaterial({ color: 0x8a7a66, roughness: 0.9, metalness: 0 });
     const im = new THREE.InstancedMesh(geo, mat, n), m4 = new THREE.Matrix4(), q = new THREE.Quaternion(), e = new THREE.Euler(), v = new THREE.Vector3(), sc = new THREE.Vector3();
     const col = new THREE.Color();
     for (let i = 0; i < n; i++) {
       const sz = 0.0007 + Math.pow(rnd(), 3) * 0.0022;
-      v.set(-0.9 + rnd() * 1.8, Y + sz * 0.35, -1.1 + rnd() * 0.85);
+      v.set(-0.9 + rnd() * 1.8, Y + sz * 0.35, -0.25 - Math.pow(rnd(), 1.8) * 0.85);   /* thinning with distance */
       e.set(rnd() * 3, rnd() * 3, rnd() * 3); q.setFromEuler(e); sc.set(sz, sz * (0.4 + rnd() * 0.4), sz * (0.7 + rnd() * 0.5));
-      m4.compose(v, q, sc); im.setMatrixAt(i, m4); col.setHSL(0.08, 0.12, 0.12 + rnd() * 0.16); im.setColorAt(i, col);
+      m4.compose(v, q, sc); im.setMatrixAt(i, m4); col.setHSL(0.07, 0.05, 0.10 + rnd() * 0.14); im.setColorAt(i, col);
     }
     im.castShadow = im.receiveShadow = true; TXT.add(R, im); }
 

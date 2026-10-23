@@ -1,5 +1,5 @@
 # Storyboard, 2026-10-23
-# "One added line moved the higher risk patient back"
+# "One added line sometimes moved the higher risk patient back"
 
 ## The story, and what the fact check did to it
 
@@ -145,7 +145,7 @@ art:
     Frame median L* planned at 3.
 
 type:
-  hook: "One added line moved the higher risk patient back"
+  hook: "One added line sometimes moved the higher risk patient back"
   dek: "UT Southwestern researchers asked AI models which of two matched emergency patients to see first. A single added detail sometimes shifted a model away from the patient who later deteriorated. The cards are drawn to illustrate."
   labels: []
 
@@ -207,7 +207,7 @@ art:
     Frame median L* planned at 3.
 
 type:
-  hook: "Two emergency departments, paired patients"
+  hook: "Two medical centers, paired patients"
   dek: "The records came from Stanford Medicine in California and Beth Israel Deaconess Medical Center in Massachusetts, not a Texas hospital. Each patient was paired with one of similar starting severity."
   labels: ["Stanford Medicine", "Beth Israel Deaconess"]
 
@@ -417,7 +417,7 @@ accent: "#BD452C"
 job: >
   Show the turn, the one card that moved back once the line was added, from the camera the reader already knows.
 
-claims: [c8, c13, c14, c21]
+claims: [c8, c13, c14]
 numerals: []
 
 data_in_art:
@@ -451,7 +451,7 @@ art:
 
 type:
   hook: "Then the higher risk patient sometimes went second"
-  dek: "A single added detail sometimes shifted a model's priority away from the patient who later deteriorated, the senior author says. The bias varied by model. One tray shows the taped card moved to the back."
+  dek: "One added detail sometimes shifted a model away from the patient who later deteriorated, the senior author says. The release does not say how many of the three models shifted."
   labels: []
 
 verbatim: []
@@ -533,20 +533,20 @@ risks:
 slide: 8
 layout: SPLIT_HORIZON
 primary_image:
-  subject: "one bone record card carrying ten laid strips, two in ember vinyl and eight in bone, each standing proud with a cast"
+  subject: "one bone record card with its clipped corner, carrying ten laid strips, five in ember vinyl and five in bone, each standing proud with a cast"
   rect: [0, 720, 1080, 630]
   bleeds: [left, right, bottom]
 accent: "#BD452C"
 job: >
-  Name which added lines moved the models most and which did not, naming the preprint where its figures are used.
+  Show which added lines the preprint found moved the deteriorating patient back, and that race, language and insurance did not, naming the preprint as the source.
 
-claims: [c16, c26, c34, c38]
+claims: [c16, c26, c34, c38, c42]
 numerals:
   - value_from: c34
 
 data_in_art:
   figure: conditions
-  drives: the strip count on the card, one strip per condition the preprint tested
+  drives: the strip count on the card, one strip per condition the preprint tested, and harmful_lines (c42) sets how many are ember
 
 depth:
   projection: orthographic_relief
@@ -555,32 +555,31 @@ depth:
 composition:
   structure: >
     The card fills the lower half and bleeds off three edges. Ten strips lie across it at small angles, their right
-    ends curled. The two ember strips sit third and sixth from the top. Two DOM labels name the ember strips at their
-    left ends. The split is the card's top edge against the dark ground above.
+    ends curled. Five ember strips are spread down the card, and five DOM labels name them at their left ends in the
+    preprint's own words. The card's right edge and clipped corner are in frame. The split is the card's top edge against the dark ground above.
   bands: >
-    Top third, the dark ground with the hook and the dek. Middle third, the card's top edge and the first five strips
-    with the first ember strip and its label. Bottom third, the last five strips with the second ember strip and its
-    label, every strip lit along its edge with its cast to the left.
-  focal: "the two ember strips, the brightest area"
+    Top third, the dark ground with the hook and the dek. Middle third, the card's top edge, its clipped corner and the
+    first strips with their labels. Bottom third, the last strips and labels, every strip lit along its edge with its cast to the left.
+  focal: "the five ember strips, the brightest area"
 
 art:
   technique: "material relief through txbench.js, three materials under the deck's light"
-  why_this_technique: "ten added lines are ten strips on one record, and the two that moved the models most are ember"
+  why_this_technique: "ten added lines are ten strips on one record, and the five the preprint found harmful are ember"
   palette: "bone card stock, ember vinyl, near black shale"
   value_structure: >
     Lightest are the strip edges and the card face in the pool. Darkest are the casts and the shale outside the pool.
     Frame median L* planned at 10.
 
 type:
-  hook: "Visits and psychiatric history stood out"
-  dek: "The release names frequent emergency use and past psychiatric emergencies among the strongest effects. The authors' unreviewed May preprint tested 10 added lines and found no harmful shift from race, language or insurance."
-  labels: ["frequent emergency visits", "psychiatric emergencies"]
+  hook: "In the preprint, five of 10 lines moved patients back"
+  dek: "In the authors' unreviewed May preprint, five of 10 added lines moved the patient who later deteriorated back. Race, language and insurance did not. The release names frequent emergency use and past psychiatric emergencies among the strongest effects."
+  labels: ["psychiatric history", "frequent ED use", "homelessness", "substance use", "altered age"]
 
 verbatim: []
 
 acceptance:
   - "ten strips lie on the card and each is countable at 432 px"
-  - "two strips are ember and eight are bone"
+  - "five strips are ember and five are bone"
   - "every strip stands proud of the card with a cast to the left"
   - "the card fills at least 40 percent of the frame area at full size"
   - "the frame's median L* at 432px is 30 or lower"

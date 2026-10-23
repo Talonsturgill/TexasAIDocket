@@ -13,7 +13,7 @@
 <p class="dek" data-follow="24">One wording pair in the study set a neutral description against a stigmatizing one. The tape here carries the second, set under the&nbsp;first.</p>
 <div class="lab" id="lN">established patient with multiple chronic conditions</div>
 <div class="lab" id="lS">17 visits in the past 12 months</div>
-<script>window.FIG = {"visits": 17, "months": 12, "downgraded_pct": 10, "downgraded_of_100": 10, "per_hundred": 100, "downgraded_one_in": 10, "models": 3, "departments": 2, "preprint_models": 2, "preprint_pairs_mimic": 999, "preprint_pairs_mcmed": 997, "preprint_pairs_total": 1996, "hours": 6, "conditions": 10, "psych_holds": 3, "preprint_psych_range": [2.9, 10.7], "preprint_freq_range": [2.9, 9.9]};</script>
+<script>window.FIG = {"visits": 17, "months": 12, "downgraded_pct": 10, "downgraded_of_100": 10, "per_hundred": 100, "downgraded_one_in": 10, "models": 3, "departments": 2, "preprint_models": 2, "preprint_pairs_mimic": 999, "preprint_pairs_mcmed": 997, "preprint_pairs_total": 1996, "hours": 6, "conditions": 10, "harmful_lines": 5, "psych_holds": 3, "preprint_psych_range": [2.9, 10.7], "preprint_freq_range": [2.9, 9.9]};</script>
 <script src="@@ASSETS@@/js/noise.js"></script>
 <script src="@@ASSETS@@/js/txtype.js"></script>
 <script src="@@ASSETS@@/js/txcolor.js"></script>
@@ -28,10 +28,10 @@ window.renderReady = (async () => {
   TX.reseed(20261023);
   /* THE CARD in plan, CSS px: its top edge at Y0, bleeding off the right and the bottom. Ruled lines every RULE px, the
    * tape laid over the fourth line with its left end lifted. Heights in CSS px out of the shale. */
-  const X0 = 70, Y0 = 690, RULE = 64, CARD_H = 5, TAPE_ROW = 3, TAPE_W = 46, TX0 = 120, TX1 = 1080;
+  const X0 = 70, Y0 = 600, RULE = 64, CARD_H = 5, TAPE_ROW = 3, TAPE_W = 46, TX0 = 120, TX1 = 1080;
   const rows = Array.from({ length: 10 }, (_, k) => Y0 + 70 + k * RULE);
   const tapeY = rows[TAPE_ROW] - TAPE_W / 2 - 6;
-  const inCard = (X, Y) => X >= X0 && Y >= Y0;
+  const inCard = (X, Y) => X >= X0 && Y >= Y0 && Y <= 1205;   /* the card's foot ends above the footer band */
   const onTape = (X, Y) => X >= TX0 && X <= TX1 && Y >= tapeY && Y <= tapeY + TAPE_W;
   const lift = (X) => X < TX0 + 90 ? Math.pow(1 - (X - TX0) / 90, 2) * 16 : 0;   /* the corner lifted off the card */
   const onRod = (X, Y) => { const t = (X - 70) / 470, yy = 1300 - t * 40; return X >= 40 && X <= 560 && Math.abs(Y - yy) < 9; };
@@ -51,7 +51,7 @@ window.renderReady = (async () => {
     return CH.M.CARD;
   }
   /* the key lands in a pool over the taped line and the card's far reaches fall off into the dark */
-  const pool = (X, Y) => { const d = Math.hypot((X - 470) / 760, (Y - 905) / 330), t = Math.max(0, Math.min(1, (d - 0.35) / 0.65)); return 1 - 0.97 * t * t * (3 - 2 * t); };
+  const pool = (X, Y) => { const d = Math.hypot((X - 470) / 760, (Y - 815) / 330), t = Math.max(0, Math.min(1, (d - 0.35) / 0.65)); return 1 - 0.97 * t * t * (3 - 2 * t); };
   const rep = TXBENCH.relief(cx, { x: 0, y: 0, w: 1080, h: 1350, scale: 2, height: h, material: m, keyMask: pool,
     /* diffuse held down, because the propped plane takes the key nearly full on */
     albedo: (X, Y, mm) => mm === CH.M.TAPE ? [0.42, 0.028, 0.0] : mm === CH.M.SHALE ? [0.014, 0.014, 0.017] : mm === CH.M.RULE ? [0.2, 0.18, 0.16] : mm === CH.M.CARD ? CH.albedo(X, Y, mm).map((v, i) => v * [1.42, 1.3, 1.02][i]) : CH.albedo(X, Y, mm), spec: Object.assign({}, CH.SPEC, { 3: [0.05, 10] }), ambient: 0.05, diffuse: 1.4, ao: 1.0, shadow: 0.9, softness: 4, castLength: 120 });
@@ -59,7 +59,7 @@ window.renderReady = (async () => {
   cx.setTransform(2, 0, 0, 2, 0, 0);
   /* the neutral wording on the ruled line above the tape, in card ink; the stigmatizing wording on the tape itself */
   const lN = document.getElementById("lN"), lS = document.getElementById("lS");
-  lN.style.left = (TX0 + 10) + "px"; lN.style.top = (rows[TAPE_ROW - 1] - 44) + "px"; lN.style.fontSize = "23px";
+  lN.style.left = (TX0 + 10) + "px"; lN.style.top = (rows[TAPE_ROW - 1] - 44) + "px"; lN.style.fontSize = "24px";
   lS.style.left = (TX0 + 110) + "px"; lS.style.top = (tapeY + (TAPE_W - 32) / 2) + "px"; lS.style.fontSize = "26px";
   CH.post(cx, { a: 0.3, veil: 0.2, footWash: 0.45 });
   TXDECK.finish(cx);

@@ -341,7 +341,11 @@
    "document": "Research Square preprint rs-9249025 v1, abstract page",
    "published": "2026-05-04",
    "version": "preprint",
-   "source_note": "The authors' own manuscript, not peer reviewed. The URL returns a 302 to the same PDF on assets-eu.researchsquare.com."
+   "source_noun": [
+    "abstract page of the same preprint",
+    "abstract pages of the same preprint"
+   ],
+   "source_note": "The authors' own manuscript, not peer reviewed. Fetched again on October 23rd through fetch_doc.py, the page answered 200 as HTML and carries this banner, which the PDF's text does not, so c26 alone cites the page. The checker's first fetch had rendered only the title."
   },
   {
    "id": "c27",
@@ -545,6 +549,19 @@
    "document": "Research Square preprint rs-9249025 v1, full text",
    "published": "2026-05-04",
    "version": "preprint"
+  },
+  {
+   "id": "c42",
+   "item": "tx-2026-0228",
+   "text": "In the May preprint, the most consistent harmful shifts came when the added line indicated psychiatric history, frequent ED use, homelessness, substance use or altered age.",
+   "quote": "the most consistent harmful shifts occurred when the added information indicated psychiatric history, frequent ED use, homelessness, substance use, or altered age",
+   "url": "https://www.researchsquare.com/article/rs-9249025/v1.pdf",
+   "source_type": "primary_corporate",
+   "retrieved": "2026-10-23",
+   "confidence": "high",
+   "document": "Research Square preprint rs-9249025 v1, full text",
+   "published": "2026-05-04",
+   "version": "preprint"
   }
  ],
  "rejected": [
@@ -570,7 +587,7 @@
   },
   {
    "finding": "Research Square abstract page as the citation for the preprint claims",
-   "reason": "Only the page title rendered for the checker. Every preprint claim cites the PDF instead."
+   "reason": "Only the page title rendered for the checker. Every preprint claim cites the PDF instead, except c26, whose banner is on the page alone (see its note)."
   },
   {
    "finding": "Jarrett's two-word quote on wording",
