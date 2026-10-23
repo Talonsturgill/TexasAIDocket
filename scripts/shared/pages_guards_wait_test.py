@@ -70,14 +70,23 @@ class Harness:
     def close(self):
         self.tmp.cleanup()
 
-    def install(self, responses, head=SHA):
+    def use_poll_clock(self):
+        """Let mutation probes count polls independently of process startup time."""
+        clock = self.root / "poll_clock.sh"
+        clock.write_text("unset SECONDS\nSECONDS=0\nsleep() { SECONDS=$((SECONDS + 1)); }\n")
+        self.env_extra["BASH_ENV"] = str(clock)
+
+    def install(self, responses, head=SHA, response_delay=0):
         """responses is a list of gh behaviours consumed in order, the last one repeating:
         a (status, conclusion) pair, None for a missing check, ("error", stderr_text) for a failing call,
-        or ("raw", text) for a successful call that prints something else."""
+        or ("raw", text) for a successful call that prints something else.
+        response_delay models a slow API read in seconds."""
         self.queue.write_text(json.dumps(responses))
         gh = self.bin / "gh"
         gh.write_text(f"""#!/usr/bin/env python3
-import json, sys
+import json, sys, time
+if {response_delay!r}:
+    time.sleep({response_delay!r})
 log = open({str(self.calls)!r}, "a"); log.write(" ".join(sys.argv[1:]) + "\\n"); log.close()
 queue = json.load(open({str(self.queue)!r}))
 index = len(open({str(self.calls)!r}).read().splitlines()) - 1
@@ -147,8 +156,17 @@ class WaitStep(unittest.TestCase):
         self.assertEqual(done.returncode, 1)
         self.assertIn("did not finish within 1 seconds", done.stdout)
         self.assertIn("refusing to deploy", done.stdout)
-        self.assertGreaterEqual(calls, 2)
+        # A slow first read can consume the deadline; another poll would be incorrect.
+        self.assertGreaterEqual(calls, 1)
         self.assertLessEqual(calls, 8)               # bounded, not an open ended poll
+
+    def test_a_slow_first_pending_read_refuses_when_the_deadline_has_elapsed(self):
+        h = self.harness(); h.install([("in_progress", "")], response_delay=1.1)
+        done, calls = h.run(wait="1", poll="0.2")
+        self.assertEqual((done.returncode, calls), (1, 1))
+        self.assertIn("did not finish within 1 seconds", done.stdout)
+        self.assertIn("refusing to deploy", done.stdout)
+        self.assertNotIn("waiting", done.stdout)
 
     def test_a_missing_check_that_never_appears_also_times_out(self):
         h = self.harness(); h.install([None])
@@ -249,7 +267,7 @@ class WaitStep(unittest.TestCase):
                     '  [ "$conclusion" = "success" ] && break\n'
                     '  if [ $((SECONDS - started)) -ge "${GUARDS_WAIT_SECONDS}" ]; then echo "did not finish; refusing to deploy"; exit 1; fi\n'
                     '  sleep "${GUARDS_POLL_SECONDS}"\ndone\n')
-        h = self.harness(old_read); h.install([["error", "gh: HTTP 403 forbidden"]])
+        h = self.harness(old_read); h.install([["error", "gh: HTTP 403 forbidden"]]); h.use_poll_clock()
         done, calls = h.run(wait="1", poll="0.2")
         self.assertGreater(calls, 1)                          # the collapsed loop kept polling a 403
         h = self.harness(); h.install([["error", "gh: HTTP 403 forbidden"]])
@@ -266,7 +284,7 @@ class WaitStep(unittest.TestCase):
         # 3 A loop that waits on a finished failure would sit out the whole bound before refusing.
         patient = real.replace('if [ -n "$conclusion" ] && [ "$conclusion" != "success" ]; then', 'if false; then')
         self.assertNotEqual(patient, real)
-        h = self.harness(patient); h.install([("completed", "failure")])
+        h = self.harness(patient); h.install([("completed", "failure")]); h.use_poll_clock()
         done, calls = h.run(wait="1", poll="0.2")
         self.assertGreater(calls, 1)                          # the real step refuses on the first read, see above
 
