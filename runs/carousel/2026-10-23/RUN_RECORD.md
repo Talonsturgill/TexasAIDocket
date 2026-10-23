@@ -96,3 +96,34 @@ decks in the window and the last deck was a paper, which the variety score will 
   the flagged block near; 9 a closer three quarter on the notched card so it is no longer a re-shot of the cover; 2
   the notched top card swung toward the camera; 3 and 6 a larger key for softer tray shadows; 6 the stage pool on the
   moved tray only. Not done: the flow pass's layout break (card above the type on 4), which would rebuild the frame.
+- **Before the panel.** `panel_ready` found five things and each was answered: slide 4's two wordings under the
+  contrast floor (a wider pool across the neutral line, darker ink, a darker tape under the light type), slide 7's
+  ledge a smooth gradient (seeded shale and caliche grit on the ledge top, the drawer raised into the band), slide
+  3's "all three open source" with no declared set (`quantifiers.json` names the release's three models), and the
+  value arc. **The arc was rewritten, not redrawn.** The plan had the deck at a median L* of 14 and the staged frames
+  came out near 3, so the dossiers now plan each frame at its measured median. The VALUE CUT at frame 6 did not
+  render as a darker frame than 3, which the flow critic also found.
+
+## Gate status
+
+<!-- gate-status:begin -->
+| gate | status | detail |
+|---|---|---|
+| claims         | PASS   | 41 verified claim(s) |
+| render         | WARN   | 9 slide(s), 1 overflow warning(s) |
+| qa             | WARN   | 0 fail(s), 3 warn(s) |
+| aggregates     | PASS   | 10 declaration(s), 17 numeric phrase(s) in the render, all re-derived |
+| assembly       | PASS   | 9 slide(s), 7.54 MB, vector |
+| score          | ABSENT | score.json not written yet |
+| labels         | ABSENT | label_report.json not written yet. Run scripts/carousel/label_guard.py <run-dir> |
+| quantifiers    | ABSENT | quantifier_report.json not written yet. Run scripts/carousel/quantifier_check.py <run-dir> |
+| verbatim       | ABSENT | verbatim_report.json not written yet. Run scripts/carousel/verbatim_check.py --date <date> |
+| dossiers       | PASS   | 33,271 chars planned |
+| caption        | PASS   | 126 words |
+| craft floor    | WARN   | 9 frame(s), median 3517, floor 633, 2 quiet |
+| plan vs render | PASS   | 9 of 47 acceptance item(s) checkable |
+| texan          | WARN   | places Dallas / body NO / deadline yes / next step NO |
+| absences       | WARN   | 6 of 8 scoped to a named document, 2 unscoped |
+| numerals       | PASS   | 12 numeral(s) over 9 frame(s), every one reachable |
+| completion     | ABSENT | not scored yet |
+<!-- gate-status:end -->

@@ -142,7 +142,7 @@ art:
   palette: "bone card stock, ember vinyl, graphite steel, Eagle Ford shale, a warm low key"
   value_structure: >
     Lightest are the card faces and their top edges in the key. Darkest are the sky and the shale beyond the pool.
-    Frame median L* planned at 12.
+    Frame median L* planned at 3.
 
 type:
   hook: "One added line moved the higher risk patient back"
@@ -204,7 +204,7 @@ art:
   palette: "bone card stock, graphite steel, Eagle Ford shale, a warm low key"
   value_structure: >
     Lightest are the slid card faces and the stack edges in the key. Darkest are the sky and the far ledge.
-    Frame median L* planned at 14.
+    Frame median L* planned at 3.
 
 type:
   hook: "Two emergency departments, paired patients"
@@ -265,7 +265,7 @@ art:
   palette: "graphite steel, bone card stock, Eagle Ford shale, a warm low key"
   value_structure: >
     Lightest are the card faces and the tray edges in the key. Darkest are the sky and the shadowed tray backs.
-    Frame median L* planned at 13.
+    Frame median L* planned at 3.
 
 type:
   hook: "First, all three models beat chance"
@@ -321,11 +321,11 @@ art:
   palette: "bone card stock, ember vinyl, graphite steel, near black shale"
   value_structure: >
     Lightest are the card face in the pool and the tape's raised edge. Darkest are the shale outside the pool and the
-    casts. Frame median L* planned at 20.
+    casts. Frame median L* planned at 8.
 
 type:
   hook: "Neutral words against stigmatizing ones"
-  dek: "One wording pair in the study set a neutral description against a stigmatizing one. The tape here carries the second, laid over the first."
+  dek: "One wording pair in the study set a neutral description against a stigmatizing one. The tape here carries the second, set under the first."
   labels: ["established patient with multiple chronic conditions", "17 visits in the past 12 months"]
 
 verbatim:
@@ -350,8 +350,8 @@ slide: 5
 layout: GRID
 primary_image:
   subject: "seventeen closed white vinyl wristbands standing on edge in three rows of six, six and five on the shale ledge"
-  rect: [0, 790, 1080, 440]
-  bleeds: [left, right]
+  rect: [20, 720, 1040, 460]
+  bleeds: []
 accent: "#BD452C"
 job: >
   Make the stigmatizing line physical, seventeen visits a reader can count.
@@ -386,7 +386,7 @@ art:
   why_this_technique: "a count of identical units reads as a count, and a wristband is the token a hospital visit leaves"
   palette: "white vinyl, nickel snaps, ember tabs, Eagle Ford shale, a warm low key"
   value_structure: >
-    Lightest are the loop rims in the key. Darkest are the gaps between loops and the sky. Frame median L* planned at 15.
+    Lightest are the loop rims in the key. Darkest are the gaps between loops and the sky. Frame median L* planned at 3.
 
 type:
   hook: "17 visits, one line on a record"
@@ -447,7 +447,7 @@ art:
   palette: "graphite steel, bone card stock, ember vinyl, Eagle Ford shale, a warm low key"
   value_structure: >
     Lightest are the ember tape and the moved card's top edge. Darkest are the sky and the shadowed trays.
-    Frame median L* planned at 12.
+    Frame median L* planned at 3.
 
 type:
   hook: "Then the higher risk patient sometimes went second"
@@ -509,7 +509,7 @@ art:
   palette: "graphite steel, bone card stock, ember vinyl, Eagle Ford shale, a warm low key"
   value_structure: >
     Lightest are the ten ember flags and the near card tops in the key. Darkest are the drawer's inside and the
-    sky. Frame median L* planned at 16.
+    sky. Frame median L* planned at 4.
 
 type:
   hook: "Nearly 10% moved back"
@@ -569,7 +569,7 @@ art:
   palette: "bone card stock, ember vinyl, near black shale"
   value_structure: >
     Lightest are the strip edges and the card face in the pool. Darkest are the casts and the shale outside the pool.
-    Frame median L* planned at 22.
+    Frame median L* planned at 10.
 
 type:
   hook: "Visits and psychiatric history stood out"
@@ -626,7 +626,7 @@ art:
   palette: "bone card stock, ember vinyl, graphite steel, Eagle Ford shale, a warm low key"
   value_structure: >
     Lightest are the card faces and the tape's lit edge. Darkest are the sky and the shale beyond the pool.
-    Frame median L* planned at 13.
+    Frame median L* planned at 5.
 
 type:
   hook: "Test each tool on real outcomes first"
@@ -639,7 +639,7 @@ acceptance:
   - "the two record cards stand in the holder and together span at least 420 px of the frame width at full size"
   - "the ember tape crosses the notched card and its curled end stands off the card, at least 50 px wide at 432px"
   - "the two bone cards stand at least 120 px tall at 432px"
-  - "the holder stands on the ledge with a contact shadow under its feet"
+  - "the holder rail stands under both cards, its feet cropped by the close"
   - "the notched card's clipped corner is in frame"
   - "the frame's median L* at 432px is 24 or lower"
 

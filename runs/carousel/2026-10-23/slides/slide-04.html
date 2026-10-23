@@ -4,13 +4,13 @@
 <head>
 <meta charset="utf-8">
 <link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
-<style>.dek { width:800px !important; } #lN { color:#1d1813 !important; text-shadow:none !important; } #lS { color:#ECE6DA !important; text-shadow:none !important; }</style>
+<style>.dek { width:800px !important; } #lN { color:#0e0a07 !important; font-weight:700 !important; text-shadow:none !important; } #lS { color:#ECE6DA !important; text-shadow:none !important; }</style>
 </head>
 <body>
 <canvas id="art" width="2160" height="2700"></canvas>
 <div class="tx-site" id="site" style="font-size:24px">texasaidocket.com</div>
 <h1 class="hook" id="hook">Neutral words against stigmatizing ones</h1>
-<p class="dek" data-follow="24">One wording pair in the study set a neutral description against a stigmatizing one. The tape here carries the second, laid over the&nbsp;first.</p>
+<p class="dek" data-follow="24">One wording pair in the study set a neutral description against a stigmatizing one. The tape here carries the second, set under the&nbsp;first.</p>
 <div class="lab" id="lN">established patient with multiple chronic conditions</div>
 <div class="lab" id="lS">17 visits in the past 12 months</div>
 <script>window.FIG = {"visits": 17, "months": 12, "downgraded_pct": 10, "downgraded_of_100": 10, "per_hundred": 100, "downgraded_one_in": 10, "models": 3, "departments": 2, "preprint_models": 2, "preprint_pairs_mimic": 999, "preprint_pairs_mcmed": 997, "preprint_pairs_total": 1996, "hours": 6, "conditions": 10, "psych_holds": 3, "preprint_psych_range": [2.9, 10.7], "preprint_freq_range": [2.9, 9.9]};</script>
@@ -51,10 +51,10 @@ window.renderReady = (async () => {
     return CH.M.CARD;
   }
   /* the key lands in a pool over the taped line and the card's far reaches fall off into the dark */
-  const pool = (X, Y) => { const d = Math.hypot((X - 420) / 620, (Y - 905) / 330), t = Math.max(0, Math.min(1, (d - 0.35) / 0.65)); return 1 - 0.97 * t * t * (3 - 2 * t); };
+  const pool = (X, Y) => { const d = Math.hypot((X - 470) / 760, (Y - 905) / 330), t = Math.max(0, Math.min(1, (d - 0.35) / 0.65)); return 1 - 0.97 * t * t * (3 - 2 * t); };
   const rep = TXBENCH.relief(cx, { x: 0, y: 0, w: 1080, h: 1350, scale: 2, height: h, material: m, keyMask: pool,
     /* diffuse held down, because the propped plane takes the key nearly full on */
-    albedo: (X, Y, mm) => mm === CH.M.TAPE ? [0.6, 0.035, 0.0] : mm === CH.M.SHALE ? [0.014, 0.014, 0.017] : mm === CH.M.RULE ? [0.2, 0.18, 0.16] : mm === CH.M.CARD ? CH.albedo(X, Y, mm).map((v, i) => v * [1.42, 1.3, 1.02][i]) : CH.albedo(X, Y, mm), spec: Object.assign({}, CH.SPEC, { 3: [0.05, 10] }), ambient: 0.05, diffuse: 1.4, ao: 1.0, shadow: 0.9, softness: 4, castLength: 120 });
+    albedo: (X, Y, mm) => mm === CH.M.TAPE ? [0.42, 0.028, 0.0] : mm === CH.M.SHALE ? [0.014, 0.014, 0.017] : mm === CH.M.RULE ? [0.2, 0.18, 0.16] : mm === CH.M.CARD ? CH.albedo(X, Y, mm).map((v, i) => v * [1.42, 1.3, 1.02][i]) : CH.albedo(X, Y, mm), spec: Object.assign({}, CH.SPEC, { 3: [0.05, 10] }), ambient: 0.05, diffuse: 1.4, ao: 1.0, shadow: 0.9, softness: 4, castLength: 120 });
   window.__relief = rep;
   cx.setTransform(2, 0, 0, 2, 0, 0);
   /* the neutral wording on the ruled line above the tape, in card ink; the stigmatizing wording on the tape itself */
