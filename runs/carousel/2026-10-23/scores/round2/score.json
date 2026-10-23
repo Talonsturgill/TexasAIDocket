@@ -1,0 +1,233 @@
+{
+ "weighted_score": 6.5,
+ "judges": [
+  6.3,
+  6.6,
+  6.606
+ ],
+ "spread": 0.306,
+ "criteria": {
+  "artwork_craft": {
+   "score": 6.0,
+   "weight": 0.22,
+   "judges": [
+    6.0,
+    6.0,
+    6.5
+   ]
+  },
+  "deck_coherence": {
+   "score": 7.0,
+   "weight": 0.12,
+   "judges": [
+    7.0,
+    6.8,
+    7.8
+   ]
+  },
+  "claim_integrity": {
+   "score": 6.5,
+   "weight": 0.2,
+   "judges": [
+    5.5,
+    6.5,
+    6.5
+   ]
+  },
+  "story_and_stakes": {
+   "score": 6.5,
+   "weight": 0.16,
+   "judges": [
+    6.5,
+    6.8,
+    6.5
+   ]
+  },
+  "sequence_and_momentum": {
+   "score": 7.0,
+   "weight": 0.1,
+   "judges": [
+    7.0,
+    7.0,
+    6.5
+   ]
+  },
+  "voice": {
+   "score": 6.5,
+   "weight": 0.1,
+   "judges": [
+    6.5,
+    7.0,
+    6.5
+   ]
+  },
+  "variety": {
+   "score": 6.5,
+   "weight": 0.1,
+   "judges": [
+    6.5,
+    6.8,
+    6.0
+   ]
+  }
+ },
+ "hard_fails": [
+  "Slide 8 headline 'In the preprint, five of 10 lines moved patients back' and dek 'five of 10 added lines moved the patient who later deteriorated back' state an unverified fact as verified. c42 supports only that these five gave the preprint's 'most consistent harmful shifts', which is how the run's own aggregates.json basis and the web edition word it. No claim says the other five lines moved no patient back. c38 clears three of them, and the relief's five plain bone strips assert the remaining two with no source behind them."
+ ],
+ "hard_fails_by_judge": [
+  {
+   "judge": 1,
+   "fail": "Slide 8 headline 'In the preprint, five of 10 lines moved patients back' and dek 'five of 10 added lines moved the patient who later deteriorated back' state an unverified fact as verified. c42 supports only that these five gave the preprint's 'most consistent harmful shifts', which is how the run's own aggregates.json basis and the web edition word it. No claim says the other five lines moved no patient back. c38 clears three of them, and the relief's five plain bone strips assert the remaining two with no source behind them."
+  }
+ ],
+ "ship": false,
+ "threshold": 8.0,
+ "over_threshold": false,
+ "method": "per-criterion median across three judges, then weighted by the rubric",
+ "threshold_dissents": [
+  "judge 2 refused on the threshold, not on a fault, and scored 6.6 against a 8.0 bar. That dissent is carried in the median",
+  "judge 3 refused on the threshold, not on a fault, and scored 6.606 against a 8.0 bar. That dissent is carried in the median"
+ ],
+ "threshold_dissents_by_judge": [
+  {
+   "judge": 2,
+   "score": 6.6,
+   "reason": "judge 2 refused on the threshold, not on a fault, and scored 6.6 against a 8.0 bar. That dissent is carried in the median"
+  },
+  {
+   "judge": 3,
+   "score": 6.606,
+   "reason": "judge 3 refused on the threshold, not on a fault, and scored 6.606 against a 8.0 bar. That dissent is carried in the median"
+  }
+ ],
+ "artwork_weakest_frames": [
+  {
+   "slide": 2,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The two record stacks are tan blocks with stair-stepped silhouettes and black wedge artifacts at the layer offsets. The top sheet floats over a dark gap on the right stack, and the planned notched and plain top pair can't be read at any size.",
+     "fix": "Rebuild each stack as instanced cards from the chassis record_card with a 0.5 mm jitter per card and no block offsets. Slide the top two cards forward 30 mm so the notched corner and the plain corner both catch the key."
+    },
+    {
+     "judge": 2,
+     "problem": "The stacks are offset primitive boxes, not stacked cards. A stair-step shadow-acne artifact runs down the left stack's right face (crop slide-02-r3c1, about x 730 to 870, y 100 to 200). The planned slid notched/plain top pair doesn't read, so the frame is two tan mid-tone blocks under labels.",
+     "fix": "Rebuild each stack from the chassis card instanced at 0.25 mm with a small per-card jitter, raise the sun shadow normalBias to kill the acne, and slide the notched top card visibly forward of the plain one."
+    },
+    {
+     "judge": 3,
+     "problem": "Broken stack geometry: a dark notch is cut into the left stack's right face, top sheets float over the edges, and the tan stack sides sit in the grey middle on a ground whose grit reads as noise.",
+     "fix": "Rebuild each stack as a clean instanced block of the card with the top pair slid forward as the storyboard planned, one notched and one plain. Rake the key across the edges and drop the scatter density on the ledge."
+    }
+   ]
+  },
+  {
+   "slide": 5,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The seventeen 'wristbands' read as open C-rings or cuffs, not hospital bands. The storyboard's ember tabs are missing, and a dead band of empty sky sits between the dek and the rows.",
+     "fix": "Model each band as a flat vinyl strap with a printed label panel and snap, laid in a loose closed loop. Add the ember tab on each label, and raise the camera so the rows start just under the dek."
+    },
+    {
+     "judge": 2,
+     "problem": "All 17 wristbands read as broken C-rings with torn, jagged cuts at their lower front (crop slide-05-r3c1). The loops are sunk through or clipped by the ledge, where the plan called for closed bands. The rows are small and dim on a dark ground (canvas mean 14.9), so the count doesn't read as one subject.",
+     "fix": "Lift each band so its lowest point rests on the ledge at y=0 with TXT.contact, close the loop geometry, add the ember tab the motif plan promised, and move the camera in (or narrow fov from 24) so the three rows fill about two thirds of the frame width."
+    },
+    {
+     "judge": 3,
+     "problem": "The 17 loops read as finger rings, not hospital wristbands, and the planned ember tabs are absent, so the motif breaks on this frame.",
+     "fix": "Give each band a flat ID panel and the ember tab, and raise the camera slightly so the band shape and panel read at 432 px."
+    }
+   ]
+  },
+  {
+   "slide": 7,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The drawer front is a broad flat brown slab lit only on its lip, and the right end runs off the frame. A reader can't see that the row stops at ten blocks, which the art review named on three renders.",
+     "fix": "Shorten the drawer by cutting the gaps between blocks to about 4 mm, or widen the fov from 30 to 36 degrees, so both end walls show with dark ledge beyond the right one. Bevel the front with a lit lower edge."
+    },
+    {
+     "judge": 2,
+     "problem": "The drawer front is a broad, flat mid-brown slab across the bottom third (preflight: native x 90 to 2160, y 1980 to 2330), lit only on its lip. The right end wall is still cut off, so the reader can't see the row stop at ten blocks.",
+     "fix": "Widen fov from 30 to about 36, or shorten the inter-block gaps, so both end walls show, and raise the camera so the front face foreshortens and falls into shadow rather than occupying a third of the frame."
+    },
+    {
+     "judge": 3,
+     "problem": "The drawer front is a large flat brown slab across the lower third, and the ten ember-flagged cards, the frame's argument, are a small cluster at far left that is nearly lost at feed size.",
+     "fix": "Move the camera to the flagged end and look down the drawer's length, so the ten flagged cards are large in the foreground and the other 90 recede into the dark. Crop the drawer front out of the bottom edge."
+    }
+   ]
+  },
+  {
+   "slide": 8,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The relief reads as a striped bar chart. Ten flat strips sit on a flat card on a black field, with the labels floating in a dead zone left of the strips, and the frame lives in the bone mid tone.",
+     "fix": "Tilt the card about 15 degrees toward the key in a pool on the shale ledge, the way slide 4 is propped. Give each strip a real curl and lift with a cast, and set each label on its own strip, not in the empty left band."
+    },
+    {
+     "judge": 2,
+     "problem": "A relief bar chart on a mid-grey card, with the light DOM labels sitting on the mid-tone left side of the card at modest contrast. The strip heights barely register (cast_fraction 0.025).",
+     "fix": "Pull the pool right onto the strips so the label column on the left falls to near black under the light type, and raise the strips enough that each casts a visible shadow line to the left."
+    },
+    {
+     "judge": 3,
+     "problem": "Ten straight full-width strips read as a striped bar chart or a flag rather than lines laid on a record, and the card face is a large mid-tone field.",
+     "fix": "Lay the strips at the small angles with curled right ends that the craft plan specified. Crop tighter on the card so strip height and cast show, and let the pool fall off to black at the left and bottom edges."
+    }
+   ]
+  },
+  {
+   "slide": 4,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "A near-flat beige card fills about 55% of the frame (canvas mean 50.8, the deck's brightest) with TXBENCH cast_fraction 0.016. Only the tape's lifted left corner shows height, so it reads as type on a plate in the mid tones.",
+     "fix": "Drop the key to a low raking angle from the right so the light falls off to black across the card's lower and left areas, and raise the tape 2 to 3 mm along its whole length so it throws a continuous cast line beneath it."
+    },
+    {
+     "judge": 3,
+     "problem": "A flat ruled card fills the lower 45% in a pale mid tone with both wordings printed on it. It reads as a type plate, not a lit relief, and the tape barely stands proud (cast_fraction 0.016).",
+     "fix": "Tilt the card about 25 degrees into the raking key in perspective. Lift the tape's near corner well clear so it casts a hard shadow across the neutral line, and let the card's far half fall into shadow so a true dark surrounds one bright edge."
+    }
+   ]
+  },
+  {
+   "slide": 6,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "This is frame 3 re-rendered with one card swapped and the same exposure (mean 45.6 against 44.3). The declared darkest VALUE CUT never happens, and the change is one small red bar at feed size.",
+     "fix": "Keep the camera, kill the key on the left and right trays so they read as silhouettes, and leave one tight pool on the middle tray's moved card and its tape."
+    }
+   ]
+  },
+  {
+   "slide": 3,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The cards are flat bone planes with printed grey bars in plain boxy trays. They fill the lower half in the mid tone, and the slide 6 version of the same composition gives the turn no value change.",
+     "fix": "Lower the key so only the front card tops and tray lips catch light and the card faces fall half into shadow. Carry that darker setting on slide 6 so the moved ember card is the one bright thing at the turn."
+    }
+   ]
+  }
+ ],
+ "rounds_derived": 2,
+ "rounds": 2,
+ "rounds_source": "this module's own log of cards it has scored",
+ "rounds_declared": 2,
+ "rung": 7.7,
+ "craft_floor": "waiting, because a hard fail is repaired first"
+}

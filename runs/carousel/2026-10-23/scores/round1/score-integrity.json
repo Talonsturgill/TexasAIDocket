@@ -1,0 +1,104 @@
+{
+ "lens": "integrity",
+ "round": 1,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.5,
+   "why": "The deck is staged, dark and rendered. Slide 1 is strong: two bone cards in a graphite holder, a tight pool of light, true blacks, long casts to the left, and a median L* of 3.0 per art_preflight. Slide 5 counts out 17 wristbands in rows of 5, 6 and 6, so the count matches c19. Slides 3 and 6 share a locked camera and are well lit. Five frames hold the score down. Slide 8 reads as a flat horizontal bar chart: ten strips with almost no visible height, in a broad mid-tone pool, labels at the left like axis names. The chassis law forbids a 'real chart' and this frame lands next to one. On slide 2 the stacks read as beige boxes with smeared top sheets, the 'notched card and one plain card' that the acceptance test asks for can't be read, and the horizon tilts. On slide 6, the turn, the moved card hides behind the front card, so at feed size the frame is almost identical to slide 3. On slide 9 the 'curl' is a rigid rectangular tab, and the claim ids and URL sit on the holder and card (art_preflight names both). On slide 4 the footer lines run across the card's ruled lines. On slide 7 the drawer runs off the right edge, so the 100 can't be checked, and a uniform layer of grit covers the ledge. None of the nine is a showstopper beside the sibling's work. That is one strong frame and several frames leaning on a default or an artifact, which is under the 7 descriptor."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 8.0,
+   "why": "This is clearly one deck. It keeps one lastLight ledge world with the key from the right at az 62, one card at one declared size, and ember tape as the only accent, and the tape works as a motif that changes state (on the card on 1, on the macro on 4, moved back on 6, flagged on 7, peeling at the close on 9). Slides 3 and 6 lock one camera, as the storyboard declares. Two frames sit slightly outside. The txbench reliefs on 4 and 8 leave the ledge for a flat card face and carry the deck's lightest mid tones (bands 0.66 and 0.44 against about 0.3 elsewhere). Slide 8's ground is neutral black, not the navy sky. The declared value cut at 6 is barely darker than 3."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 6.0,
+   "why": "Every numeral traces. 17 and 12 come from c19, 10% from c15, 100 is figures.json per_hundred, 10 on slide 8 is c34, and October 20th is c1. The caption's 10%, 17 and 12 also trace. The two absence claims are bounded correctly ('The release names none of the three models', c9 note, and 'names no Texas hospital using these models', c23 note). Several phrasings and encodings still go past their sources. (1) The cover headline reads 'One added line moved the higher risk patient back' with no hedge. c8 says 'sometimes', c15 says 'in some instances nearly 10%', and the deck's own document_title keeps 'sometimes'. The cover headline is the one line most readers take away. (2) Slide 6: per storyboard data_in_art, the trays are data-driven, one tray per model, and only one of the three trays shows the card moved back. A reader therefore takes it as one model in three affected, and no claim says how many models shifted. c21 says only that bias varied by model. (3) Slide 8's relief fuses two versions of the study. The strip count of 10 is driven by the preprint's conditions (c34, a two-model version that included GPT-4.1, which is not open source), and the two ember strips are the published release's strongest effects (c16). The storyboard promised that no preprint figure would stand in for the published result, and the picture does it. The dek's 'no harmful shift from race, language or insurance' is labelled as the preprint's, which helps, but the frame sits on a slide about the published study. (4) Slide 7 draws a full flagged block of exactly 10 for 'nearly 10%', and it draws the release's 'in some instances' figure as the share of the whole drawer. (5) Slide 2's 'Two emergency departments' goes past c11's quote, which names two medical centers. figures.json 'departments' claims to count EDs 'the release names', and the release names none. (6) The first comment says 'three first party accounts', but two of the three are the same preprint, as abstract page and PDF. The claims file contradicts itself here: the rejected list says the abstract page 'only rendered the page title' and that 'every preprint claim cites the PDF instead', yet c26 cites the abstract URL (its note says the URL 302s to the PDF). (7) The deck rests on the institution's press release, not the npj Digital Medicine paper, which was blocked by a client challenge and is disclosed in the storyboard. No single item is fabricated, but together they are more than the 7 descriptor's one loose phrasing."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.0,
+   "why": "A reader understands what happened: UT Southwestern in Dallas, three unnamed open-source models, matched ED pairs, one stigmatizing line, nearly 10% downgraded in some instances. The deck is honest that the records are from California and Massachusetts (slide 2) and that no Texas hospital is named as a user (slide 9). That honesty also exposes the weak Texas stake. No decision was made, no Texas body or county acts, there is no deadline, and the close (slide 9) is a researcher's recommendation with nothing a Texan can do. The caption's closing question, 'Which were they?', points at an unknown, not an action. This is closer to a topic told well than a Texas story with a stake."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "The order is sound: claim, records, baseline (3), the line (4), the count (5), the turn (6), how often (7), which lines (8), the ask (9). The before and after pair on 3 and 6 is the right structure. The turn is weak in the pixels, though, because slide 6 barely differs from slide 3 at feed size. Slide 5 restates slide 4's 17 visits and could be cut with little loss. Frame 2 is setup, not a payoff."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "The copy is clean and on register, with no doom and no boosterism, and it follows the house rules: no colons or semicolons in published copy, no banned words, ordinal dates without the year ('October 20th' on slide 9). It leans on 'the release says' and 'the senior author says' attributions, and some headlines are flat labels ('Two emergency departments, paired patients', 'Neutral words against stigmatizing ones'). Nothing in it sounds specifically Texan beyond 'In Dallas'. The caption's opening, 'In Dallas, researchers rewrote one line.', is good."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "A paper still life at hand distance is new against nos. 55 to 57 (operating rooms, a machine shop, a limestone stair). Two moves are familiar. This is the third lastLight deck in a row (no. 56 in lastLight interiors, no. 57 a lastLight field, here a lastLight ledge). The unit-count encoding (17 wristbands, 100 cards) repeats no. 54's windmills and boxes, no. 55's container ends and no. 56's 100 machines. It is also the third medical AI deck in eleven days (55, 53, and 47 before them)."
+  }
+ ],
+ "weighted_score": 6.6,
+ "weighted_score_arithmetic": "0.22*6.5 + 0.12*8.0 + 0.20*6.0 + 0.16*6.0 + 0.10*7.0 + 0.10*7.0 + 0.10*6.5 = 1.43 + 0.96 + 1.20 + 0.96 + 0.70 + 0.70 + 0.65 = 6.60",
+ "hard_fails": [],
+ "ship": false,
+ "ship_note": "Threshold dissent, not a fault. 6.60 is under the round 1 rung of 8.0. I found no hard fail. Machine QA has 0 fails (10 warns, including a 23px tiny-text warning on slide 4), every numeral traces to a claim or to figures.json, and no topic repeats inside the 30 days of ledger/carousel/topics.json. Leads the fact-checker should still resolve: c26 cites the Research Square abstract URL while the rejected list says that page only rendered its title, and the first comment counts that page as a third 'first party account'. Re-cite c26 to the PDF and correct the count to two documents.",
+ "one_sentence_fix": "Make every picture claim only what its source says: put 'sometimes' back into the cover headline as the document title already has it, stop slide 6's one-tray-per-model encoding from implying one model in three was affected (move the card in a way that is not data-coded or say none is), and rebuild slide 8 so the preprint's ten conditions and the release's strongest effects are not fused into one relief.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 8,
+   "problem": "The txbench relief reads as a flat horizontal bar chart: ten strips with almost no visible height or cast, in a wide mid-tone pool on a neutral black ground that leaves the deck's navy and ledge world, with labels placed like axis names. It also fuses the preprint's 10-condition count with the release's highlights.",
+   "fix": "Stand the card on the shale ledge in the lastLight world with the key raking from the right at a low angle, so each strip throws a visibly offset cast and its curled end lifts. Tighten the pool so the card's lower half falls to black, and drive the strip count from a published-study figure or drop the count entirely."
+  },
+  {
+   "slide": 2,
+   "problem": "The two stacks read as flat beige boxes with smeared top sheets. The slid notched and plain top pair can't be read, the stack faces sit in the mid tones, and the horizon tilts.",
+   "fix": "Drop the key so it rakes the stack edges into fine card lines, slide the top pair forward until the clipped corner is silhouetted against the dark ledge, level the horizon, and tighten the pool so the stack fronts fall off to black."
+  },
+  {
+   "slide": 6,
+   "problem": "The turn frame is nearly identical to slide 3. The moved taped card sits in the back slot almost entirely hidden by the front card, so the one change the deck turns on is about a strip of tape at 432 px.",
+   "fix": "Raise the back slot or lift the moved card so the taped notched card clears the front card by about half its height, and drop the other two trays out of the pool so the moved card is the only lit thing in the frame."
+  },
+  {
+   "slide": 9,
+   "problem": "The 'peeled curl' is a rigid rectangular tab with a hard wedge of shadow, and both footer lines sit on the holder rail and the notched card.",
+   "fix": "Model the free end as a thin strip on a curve that lifts toward the camera, and raise the camera target about 50 mm so the card bottoms and holder sit above native y 2400 and the footer lands on dark ledge."
+  },
+  {
+   "slide": 4,
+   "problem": "The card face fills the lower half in flat mid tone, its ruled lines run straight through the c19 and texasaidocket.com footer, and the neutral wording is at 23px, under the mobile floor.",
+   "fix": "Crop the card so its bottom edge ends above the footer band with the pool falling to black across the lower card, and set the neutral line at 24px or larger."
+  },
+  {
+   "slide": 7,
+   "problem": "The drawer runs off the right edge, so the 100 cards behind 'nearly 10 in 100' can't be counted. The grit is uniform in density and size and sits close to the ember hue.",
+   "fix": "Shift the drawer about 120 mm left in world space with the same camera so the end wall and last block return to frame, and cut the grit by two thirds with mixed sizes, falloff with distance, and a desaturated grey-brown."
+  }
+ ],
+ "files_read": [
+  "/home/user/TexasAIDocket/config/carousel/scoring_rubric.yaml",
+  "/home/user/TexasAIDocket/out/2026-10-23/copy.json",
+  "/home/user/TexasAIDocket/out/2026-10-23/claims.json",
+  "/home/user/TexasAIDocket/out/2026-10-23/figures.json",
+  "/home/user/TexasAIDocket/out/2026-10-23/aggregates.json",
+  "/home/user/TexasAIDocket/out/2026-10-23/quantifiers.json",
+  "/home/user/TexasAIDocket/out/2026-10-23/caption.txt",
+  "/home/user/TexasAIDocket/out/2026-10-23/first_comment.txt",
+  "/home/user/TexasAIDocket/out/2026-10-23/storyboard.md",
+  "/home/user/TexasAIDocket/out/2026-10-23/render/machine_qa.json",
+  "/home/user/TexasAIDocket/out/2026-10-23/art_preflight.json",
+  "/home/user/TexasAIDocket/out/2026-10-23/final/contact_sheet.png",
+  "/home/user/TexasAIDocket/out/2026-10-23/render/slide-01.png through slide-09.png (all nine viewed at full size except where the contact sheet sufficed)",
+  "/home/user/TexasAIDocket/ledger/articles/2026-10-23.json",
+  "/home/user/TexasAIDocket/ledger/carousel/topics.json",
+  "/home/user/TexasAIDocket/ledger/carousel/captions.json"
+ ]
+}

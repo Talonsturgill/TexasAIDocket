@@ -1,0 +1,84 @@
+{
+ "lens": "craft",
+ "round": 1,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 5.9,
+   "why": "The register is right. Every frame has a dark field with true blacks and light type on dark, ember is the only accent, and the casts run left from the key on the right. Frames 1, 3, 6 and 9 each have one subject filling a third to half of the frame (cover two cards in a holder; trays at a locked camera). Four frames lean on defaults, which is well past the 7 descriptor's 'one frame'. Slide 8 reads as a horizontal bar chart under a spotlight: ten bars, two red, no card edge visible, a dead mid-brown left half carrying the labels, and cast_fraction 0.018 in machine_qa. Slide 5 has 17 small rings scattered over a mostly empty ledge with no dominant silhouette. They read as napkin rings, not wristbands, with jagged lower edges (about x770 y1420 at display scale), and there is no ember tab although the motif list promises one. Slide 7: the grit reads as confetti across the middle band (y850 to 1250). The drawer runs off the right edge, so the '100 cards' can't be counted. The plain card faces render grey, not bone, and the drawer front is a flat brown slab. The art review's own repair (shift the drawer 120 mm left, cut the grit by two thirds) is not in the render. Slide 2: the stacks read as cardboard blocks. The slid top pairs look like draped sheets with no readable notch, a jagged black shadow artifact sits on the left stack's right face, and the ledge horizon cuts through the dek's last line. On the good frames the card itself is a primitive: an evenly lit plane with printed grey bars and no visible stock or tooth at feed size. Slide 9's 'curl' is a rigid stub (the review says so too)."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "Clearly one deck. There is one key (az 62, casts left) and one card at one declared size. The ember tape motif changes state across 1, 4, 6, 7, 8 and 9. The locked camera on 3 and 6 is the best continuity device here, and the turn reads by comparison alone. Three things sit outside. Slide 5's wristbands leave the card vocabulary and drop the ember. The two txbench reliefs (4, 8) swap the sky-and-ledge world for a flat black ground with a vignette pool. The declared VALUE CUT at 6 ('darker than 3') did not happen: the machine_qa bands are 0.233/0.286/0.555 against 3's 0.292/0.300/0.524, about the same frame."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.5,
+   "why": "Every slide fact traces to a release claim (c1 to c23) or a labelled preprint claim (c26, c34, c38). The preprint is named as 'unreviewed May preprint' on slide 8, and slide 9 states c23's absence correctly. Three points are looser than their sources. The cover hook 'One added line moved the higher risk patient back' drops c8's 'sometimes'; the dek restores it. Slide 8's art makes ten strips from the preprint's 10 conditions (c34) and paints the release's two strongest effects (c16) ember, which joins two study versions in one picture. Slide 7's dek promises '100 cards in blocks of ten', and the crop doesn't show them all. Caption numerals (10%, 17, 12, three) all trace to c9, c15 and c19."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.5,
+   "why": "What happened, who (UT Southwestern, first author Jarrett, senior author's quote), and where the data came from (Stanford, Beth Israel Deaconess, not Texas, slide 2) are all clear. There is no Texas decision, body or deadline, and the only action is the authors' general 'test each tool on real outcomes first' (slide 9). Slide 9 says no Texas hospital is named using these models, which is honest but leaves a Texan reader nothing to act on."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "The cover poses the finding, 2 sets up the records, 3 is the baseline, and 6 turns at the same camera, which is a real change in understanding. 7 sizes the effect, 8 names the strongest effects, and 9 closes on the ask. Slide 5 is cuttable: it restates slide 4's '17 visits' as a count with no new fact."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "Clean and on house style: no colons, no em dashes, no banned words seen, and the date has no year ('October 20th'). Several deks stop to explain the drawing in a machine's legend voice: 'Each tray stands for one model, and the notched card is the patient who later deteriorated' (3), 'One tray shows the taped card moved to the back' (6), 'One wristband stands for one visit' (5), 'The cards are drawn to illustrate' (1). There is little Texan specificity beyond 'In Dallas'."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "A still life of paper, vinyl and steel at hand distance diverges in subject and structure from no. 57 (limestone stair), no. 56 (machine-shop interiors) and no. 55 (floodlit operating rooms), per art_preflight's distinct_from_recent. One familiar move: it is the same lastLight world and warm-accent family as no. 57, with the key mirrored."
+  }
+ ],
+ "weighted_score": 6.888,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Rebuild the three counting frames (8, 5, 7) as subjects made of the deck's own card under the cover's raking key: slide 8 as the whole notched card on the ledge with ten lifted, long-casting strips instead of a spotlit bar chart, slide 5 as 17 flat vinyl bands with ember tabs filling the width at a lower, tighter camera, and slide 7 with the review's own repair applied so the end wall closes the row of ten blocks and the confetti grit is gone.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 8,
+   "problem": "Reads as a horizontal bar chart in a vignette spotlight. No card edge or notch is visible, the left half is a dead mid-brown field holding the labels, the strips' casts are hairlines (cast_fraction 0.018), and the 'curled right ends' are torn flat ends.",
+   "fix": "Render it as a spatial frame through txthree at the cover's key (az 62, el 14): the whole notched card lies on the shale, cropped only at the bottom. Model the ten strips with lifted, curled right ends so each throws a long cast to the left, and put the two labels on the dark ledge beside the card instead of a lit mid-tone panel."
+  },
+  {
+   "slide": 5,
+   "problem": "Seventeen small rings scattered on an empty ledge, with no dominant silhouette and about 60 percent of the image area empty dark ground. They read as napkin rings, the lower band edges render jagged, and the ember tab in the storyboard's motif list is missing, so the motif breaks.",
+   "fix": "Drop the camera to about 0.06 m with fov about 18 so the three rows fill about 70 percent of the width as one grouped mass. Model each band as a flat vinyl strip with a label panel and the ember tab, and raise the band geometry's segment count and shadow bias to clean up the ragged lower edges."
+  },
+  {
+   "slide": 7,
+   "problem": "Uniform warm grit reads as confetti across the middle band. The drawer runs off the right edge so the hundred can't be counted, the plain card faces turn grey away from the key, and the drawer front is a broad flat brown slab. The art review's repair was never applied.",
+   "fix": "Apply the review's own repair in one render: shift the drawer about 120 mm left so its end wall and last tab are in frame, cut the grit density by two thirds with mixed sizes and distance fade, and rotate the card blocks about 15 degrees into the key so their faces read bone."
+  },
+  {
+   "slide": 2,
+   "problem": "The stacks read as cardboard boxes, not cards. The slid top pairs drape like sheets and hide the notch, a jagged black shadow artifact sits on the left stack's right face, and the ledge horizon slices through the dek's last line.",
+   "fix": "Rebuild each stack as instanced rounded card boxes with every tenth card offset, and lay the slid pair flat and square so the notched corner faces the camera. Lower the camera target so the horizon falls below the dek, and tighten the shadow camera bounds to remove the jagged artifact."
+  },
+  {
+   "slide": 4,
+   "problem": "There is a dead dark band about 300 display px tall between the dek and the card. The card face is an evenly lit mid-tone field that falls to black by vignette, not by light, and the neutral wording is set at 23 px, under the 24 px floor (machine_qa warn).",
+   "fix": "Raise the card about 250 px to close the band, and drop the key elevation so it rakes low across the face, letting the debossed lines and the tape's lifted corner cast visibly. Set the neutral line at 24 px or more."
+  },
+  {
+   "slide": 9,
+   "problem": "The tape's free end is a rigid rectangular stub with a hard near-black wedge, not a peel, and the footer lines sit on the holder rail and card corner.",
+   "fix": "Model the free end as a curved peel bending 40 to 60 degrees toward the camera with a soft curl, and raise the camera target about 50 mm so the holder rails clear native y 2400 and both footer lines sit on the dark ledge."
+  }
+ ]
+}

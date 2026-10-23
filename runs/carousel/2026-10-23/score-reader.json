@@ -1,0 +1,80 @@
+{
+ "lens": "reader",
+ "round": 3,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.4,
+   "why": "Six frames read cleanly at 432 px: 1 and 9 (two bone cards in a graphite holder, one ember tape, casts running left), 3 and 6 (three trays, with the notched card dropping to the back slot on 6), 4 (a relief of the card with the tape standing proud) and 8 (a ten-strip relief). The dark field holds and the type sits light in the sky the composition leaves for it. Three frames fall well short of the showstopper test. Slide 5: seventeen loops in rows of 5, 6 and 6 fill only the bottom 40%, with a dead band of empty sky and ledge between the dek and the first row. At thumb size they read as finger rings, not hospital wristbands, several loops look cut open at the base, and the ember tab the storyboard promised is missing. Slide 2: the two stacks look like low-poly blocks with sheared slabs, there is a black notch artifact on the left stack's side, and the 'top pair slid forward, one notched and one plain' from the CRAFT PLAN can't be read. Slide 7: the flagged block is a small cluster at the far left end, the bare steel drawer front fills the bottom third, and a mid-brown grit ledge with nothing on it fills the middle. The models are simple throughout: the cards are flat slabs with grey bars for text. That is short of 'world renowned', and with three weak frames it falls below the 7 descriptor (one weak frame)."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "This is clearly one deck. There is one lastLight world with the key from the right and every cast running left, on 1, 3, 5, 6 and 9 alike. There is one material vocabulary (bone card, graphite steel, ember vinyl, shale), and ember means only 'the added line'. Two continuity devices are visibly working: the camera locked between 3 and 6, where only the middle tray changes, and the bookend between 1 and 9, where the tape curls off the card. The value holds dark with no strobe. Two frames sit outside it. Slide 5's wristbands leave the card vocabulary and carry no ember, and slide 7's drawer is the only frame where the subject is a large dull steel mass rather than lit card faces. I found no deck_coherence.py report in render/ to check against."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.0,
+   "why": "Every slide string traces to a claim. 'nearly 10%' with 'in some instances' (c15) is carried in slide 7's headline and in the caption. 17 and 12 come from c19, '10 added lines' from c34, 'Race, language and insurance produced none' from c38, and 'senior author says' from c8. The honest absences are stated: 'not a Texas hospital' (slide 2), 'does not say how many of the three models shifted' (slide 6), 'names no Texas hospital using these models' (slide 9). Two things hold it at 7. First, the whole deck stands on the institution's news release, because the npj Digital Medicine paper itself was never fetched. Second, slide 8 presents the May preprint's 'five of 10' result directly after slides 3 to 7 establish 'three open source models', but never tells the reader the preprint tested two different models, GPT-4.1 and DeepSeek v3.2 (c30, flagged in the storyboard itself). A feed reader will take slide 8 as describing the same three models. The 'unreviewed May preprint' label doesn't cover that. No hard fail: nothing is false, but one frame is looser than its source in a way that shapes belief."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.5,
+   "why": "From one pass in the feed, a Texan learns what happened. UT Southwestern in Dallas gave three AI models matched ER patient pairs, a stigmatizing chart line like '17 visits in the past 12 months' sometimes pushed the sicker patient back, nearly 10% in some instances, and the authors want each tool tested on real outcomes. That is clear and accurate. What they can't learn is who decides, or what they can do. No Texas body, rule, hospital or deadline is named, and slide 9 says outright that no Texas hospital is named as using these models. The close's ask goes to hospitals, not to the reader. The caption ends on 'Which were they?', which the reader can't act on either. The stake ('if your chart says frequent visitor') is never put to a Texan concretely. That is a well-told study, and short of the 7 descriptor's 'one stake stated generally', because here both the stake and the next step are missing."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "The cover earns the swipe: 'One added line sometimes moved the higher risk patient back' is a real hook. The turn at 6 is declared and drawn with the locked camera. Frame 2 doesn't pay at once, because it spends the first swipe on where the records came from. Slide 5 is cuttable: it restates slide 4's '17 visits in the past 12 months' and adds only a count of loops. Slide 6's dek nearly repeats the cover's dek word for word ('A single added detail sometimes shifted a model away from the patient who later deteriorated'). The close reuses the cover's picture, which makes a bookend but not a new beat. That is more than the one movable frame the 7 descriptor allows."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "Clean, careful and honest about costs without doom, with no banned words, colons, dashes or first person. It reads like a careful research desk, though, not a Texan who knows ERs. Apart from 'UT Southwestern, Dallas', nothing is Texas-specific. Too many dek words explain the drawings instead of the story: 'The cards are drawn to illustrate.' on the cover, 'The tape here carries the second, set under the first.' (4), 'One wristband stands for one visit.' (5), and 'The drawer holds 100 cards in blocks of ten, and the flagged block stands for the share.' (7). That is several flat lines where the 7 descriptor allows one."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.3,
+   "why": "The concept is fresh: a record card and a strip of tape as the whole experiment, which no recent deck used. The moves are familiar. This is the fourth lastLight staged world in five decks (54, 56, 57 and now 58; 55 was floodlit), again a navy-black sky over a warm ledge. The accent is the same dusk ember, #B4664F, as no. 53. The '100 slots with a share flagged' frame (7) repeats no. 54's 80 boxes in a 100-slot block and no. 56's 100 machines beside 24 bays. The count of instanced identical units (5) is the move used in 54, 55 and 56. The topic is a third medical or AI research study in six days (53, 55, 57). There is no topic repeat inside the window: the October UT System pilots deck is a different item."
+  }
+ ],
+ "weighted_score": 6.678,
+ "hard_fails": [],
+ "ship": true,
+ "ship_note": "Round 3 is max_rounds, so under the ladder the deck ships at the cap with its score and the shortfall named: 6.678 against 8.0 here. I found no hard fail. render_report.json shows ok:true on the slide I read in full. No numeral was untraced, no placeholder appeared, and the caption breaks no house rule I could find.",
+ "one_sentence_fix": "Cut slide 5, which repeats slide 4's '17 visits', and use the frame to give the Texan a stake: put the reader in the chart (if your record says frequent visitor, this is what a triage model may do with it) and name a fetched, claimed Texas fact about who governs AI in emergency triage. Then on slide 8 add one clause saying the May preprint tested two different models, so the close and the stakes come from the record and not from 'the release names no Texas hospital'.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 5,
+   "problem": "The seventeen loops fill only the bottom 40% with a dead band of empty sky and ledge above them. At 432 px they read as finger rings, several look cut open at the base, and the planned ember tab is absent, so the frame drops out of the deck's motif.",
+   "fix": "Lower the camera to about 0.12 m and use a longer lens (fov about 18) so the three rows fill the lower 55% and bleed off left and right. Model each band as a flat vinyl strap with a white label patch and a snap, not a ring, and give each one its ember tab."
+  },
+  {
+   "slide": 2,
+   "problem": "The stacks render as crude low-poly blocks with sheared slabs and a black notch artifact on the left stack's side. The slid top pair (one notched, one plain) can't be read, so the frame shows two boxes and not two sets of records.",
+   "fix": "Rebuild each stack from instanced cards at the chassis card size, offsetting every tenth card so the key rakes the edges into fine lines. Move the camera in so the left stack bleeds off the left edge and the notched top card's clipped corner catches the key."
+  },
+  {
+   "slide": 7,
+   "problem": "The ten flagged cards are a small cluster at the far left. The bare steel drawer front fills the bottom third and an empty grit ledge fills the middle, so the share isn't the focal point and the frame is mostly dead mass.",
+   "fix": "Put the camera behind and above the flagged block, looking down the drawer's length, so the ten ember-flagged cards are large in the foreground and the other ninety recede in their blocks of ten. Crop the steel front out at the bottom edge."
+  },
+  {
+   "slide": 8,
+   "problem": "Two unlabelled grey strips read as missing labels. The card is cropped square to the frame, so the relief reads as a bar chart and not as a record card.",
+   "fix": "Key the two grey strips in DOM type as 'two other lines', and turn the card a few degrees toward the key with its clipped corner and lower edge in frame, so it reads as the deck's card carrying ten strips."
+  },
+  {
+   "slide": 9,
+   "problem": "The close is nearly the cover's picture again (same holder, same cards, same light). The curled tape is the only change, so the last frame adds little to the eye.",
+   "fix": "Move the camera down to the curl in profile, macro, with the peeled tape's underside and its cast on the card as the subject and the second card a soft dark shape behind. That way the close is a new image of 'the line taken off the record'."
+  }
+ ]
+}

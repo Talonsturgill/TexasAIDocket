@@ -1,0 +1,211 @@
+{
+ "weighted_score": 6.948,
+ "judges": [
+  6.93,
+  7.18,
+  6.678
+ ],
+ "spread": 0.502,
+ "criteria": {
+  "artwork_craft": {
+   "score": 6.4,
+   "weight": 0.22,
+   "judges": [
+    6.5,
+    6.0,
+    6.4
+   ]
+  },
+  "deck_coherence": {
+   "score": 7.5,
+   "weight": 0.12,
+   "judges": [
+    8.0,
+    7.0,
+    7.5
+   ]
+  },
+  "claim_integrity": {
+   "score": 7.0,
+   "weight": 0.2,
+   "judges": [
+    6.5,
+    8.5,
+    7.0
+   ]
+  },
+  "story_and_stakes": {
+   "score": 6.5,
+   "weight": 0.16,
+   "judges": [
+    6.5,
+    7.0,
+    6.5
+   ]
+  },
+  "sequence_and_momentum": {
+   "score": 7.5,
+   "weight": 0.1,
+   "judges": [
+    7.5,
+    7.5,
+    6.5
+   ]
+  },
+  "voice": {
+   "score": 7.0,
+   "weight": 0.1,
+   "judges": [
+    7.0,
+    7.0,
+    6.5
+   ]
+  },
+  "variety": {
+   "score": 7.5,
+   "weight": 0.1,
+   "judges": [
+    7.5,
+    7.5,
+    6.3
+   ]
+  }
+ },
+ "hard_fails": [],
+ "hard_fails_by_judge": [],
+ "ship": true,
+ "threshold": 8.0,
+ "over_threshold": false,
+ "method": "per-criterion median across three judges, then weighted by the rubric",
+ "contested": [
+  "claim_integrity"
+ ],
+ "artwork_weakest_frames": [
+  {
+   "slide": 5,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The 17 wristbands render as broken C arcs with their inner faces missing (single-sided geometry). They read as rings, not hospital bands, and sit small in the lower half on a mid-brown ledge with a dead band of sky above.",
+     "fix": "Make each band a closed vinyl loop with real thickness and double-sided material, add a flat ID tab, and move the camera in and down so the three rows fill about two thirds of the frame width inside the lit pool."
+    },
+    {
+     "judge": 2,
+     "problem": "The wristbands render as open C-rings with jagged, torn ends where the geometry cuts into the ledge (crop r3c1). The bottom row floats in the black beyond the lit shale, there are no ember tabs although the continuity plan promises them, and at 432 px they read as napkin rings, not hospital bands.",
+     "fix": "Raise each band so it rests on the ledge top with a TXT.contact shadow, model it as a flat strap with a snap tab and an ember tab, and raise the camera about 10 degrees so all three rows sit inside the lit pool."
+    },
+    {
+     "judge": 3,
+     "problem": "The seventeen loops fill only the bottom 40% with a dead band of empty sky and ledge above them. At 432 px they read as finger rings, several look cut open at the base, and the planned ember tab is absent, so the frame drops out of the deck's motif.",
+     "fix": "Lower the camera to about 0.12 m and use a longer lens (fov about 18) so the three rows fill the lower 55% and bleed off left and right. Model each band as a flat vinyl strap with a white label patch and a snap, not a ring, and give each one its ember tab."
+    }
+   ]
+  },
+  {
+   "slide": 2,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Shadow wedges on the left stack's side read as render artifacts, and the top sheets overhang instead of showing the planned slid-forward notched card and plain card.",
+     "fix": "Correct the shadow bias on the stack mesh, and slide the top pair visibly forward with the notched corner turned to the camera so 'paired patients' reads before the dek."
+    },
+    {
+     "judge": 2,
+     "problem": "The stacks are flat-shaded boxes. A black shadow artifact is cut into the left stack's right face under the slid top pair (crop r3c1), the card edges are not raked into lines, and the contact is a thin plate rather than a seated shadow.",
+     "fix": "Drop the key's elevation so it rakes the stack fronts into individual card edges, fix the shadow bias under the overhang, and offset every tenth card a few millimetres as the storyboard's risk line planned."
+    },
+    {
+     "judge": 3,
+     "problem": "The stacks render as crude low-poly blocks with sheared slabs and a black notch artifact on the left stack's side. The slid top pair (one notched, one plain) can't be read, so the frame shows two boxes and not two sets of records.",
+     "fix": "Rebuild each stack from instanced cards at the chassis card size, offsetting every tenth card so the key rakes the edges into fine lines. Move the camera in so the left stack bleeds off the left edge and the notched top card's clipped corner catches the key."
+    }
+   ]
+  },
+  {
+   "slide": 7,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The drawer's flat, unlit brown front is the frame's largest shape. The flagged block that carries 'nearly 10 in 100' is a sliver jammed against the left wall, the right end is cut off, and the label floats with no leader.",
+     "fix": "Turn the drawer so the flagged block sits front-centre in the pool with its ember flags raised clear of the card tops, pull back until both end walls are in frame, and graze the key across the drawer front so it is no longer a flat slab."
+    },
+    {
+     "judge": 2,
+     "problem": "The drawer's flat brown front fills the lower third as a dead zone, the ten flagged cards are a small red cluster at the far left outside the key, and the row runs off the right edge, so the hundred can't be counted.",
+     "fix": "Turn the drawer so the flagged block is nearest the camera and in the key, pull back until both end walls are in frame with dark ledge beyond, and lower the camera so the front face drops to a thin lit lip."
+    },
+    {
+     "judge": 3,
+     "problem": "The ten flagged cards are a small cluster at the far left. The bare steel drawer front fills the bottom third and an empty grit ledge fills the middle, so the share isn't the focal point and the frame is mostly dead mass.",
+     "fix": "Put the camera behind and above the flagged block, looking down the drawer's length, so the ten ember-flagged cards are large in the foreground and the other ninety recede in their blocks of ten. Crop the steel front out at the bottom edge."
+    }
+   ]
+  },
+  {
+   "slide": 4,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The relief's measured cast_fraction is 0.016. The tape and card read nearly flat, like a drawing with a vignette, not a physical relief.",
+     "fix": "Lift the tape's left end and its whole strip higher off the card and drop the key elevation so a clear cast falls on the ruled lines beneath it."
+    },
+    {
+     "judge": 2,
+     "problem": "This is the deck's brightest frame (canvas mean 50.8), mostly flat bone mid-tone. The relief's cast_fraction is 0.016, and the 'lifted corner' reads as a detached grey patch at the tape's left end (crop r2c1).",
+     "fix": "Rake the key low across the card so the debossed rules and the tape's raised edge cast visibly, lift the tape's left corner off the card as one piece with its own shadow on the card, and let the light fall off to black across the lower third."
+    }
+   ]
+  },
+  {
+   "slide": 8,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "The card is a beige mid-tone field and the strips cast almost nothing (TXBENCH cast_fraction 0.025), so the relief reads as a flat striped bar chart, and the planned curled ends are not visible.",
+     "fix": "Lower the relief light to about 15 degrees from the right so every strip throws a long cast to the left, curl each strip's right end off the card, and tighten the pool so the card's left half, under the labels, falls to dark."
+    },
+    {
+     "judge": 3,
+     "problem": "Two unlabelled grey strips read as missing labels. The card is cropped square to the frame, so the relief reads as a bar chart and not as a record card.",
+     "fix": "Key the two grey strips in DOM type as 'two other lines', and turn the card a few degrees toward the key with its clipped corner and lower edge in frame, so it reads as the deck's card carrying ten strips."
+    }
+   ]
+  },
+  {
+   "slide": 6,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "The declared VALUE CUT never happened. The canvas mean is 45.6 against frame 3's 44.3, so the turn frame looks like a copy of 3 with one strip of tape added.",
+     "fix": "Keep frame 3's camera and narrow the key's pool to the middle tray, so the outer two trays fall into shadow and the moved card's tape is the one lit warm thing."
+    }
+   ]
+  },
+  {
+   "slide": 9,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 3,
+     "problem": "The close is nearly the cover's picture again (same holder, same cards, same light). The curled tape is the only change, so the last frame adds little to the eye.",
+     "fix": "Move the camera down to the curl in profile, macro, with the peeled tape's underside and its cast on the card as the subject and the second card a soft dark shape behind. That way the close is a new image of 'the line taken off the record'."
+    }
+   ]
+  }
+ ],
+ "rounds_derived": 3,
+ "rounds": 3,
+ "rounds_source": "this module's own log of cards it has scored",
+ "rounds_declared": 3,
+ "at_cap": true,
+ "rung": null,
+ "shortfall": "at the round cap the finished deck ships at 6.948, 1.052 under the 8.0 top rung. Name that in the email and the run record",
+ "craft_floor": "capped",
+ "craft_note": "at the round cap the craft floor stands down. The art median 6.4 is under 8.5 and the deck ships as it is. Name it in the run record"
+}

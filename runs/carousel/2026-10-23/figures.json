@@ -57,7 +57,14 @@
   "from": [
    "c11"
   ],
-  "basis": "computed: emergency departments the release names, counted"
+  "basis": "computed: medical centers the release names as the records' source, counted"
+ },
+ "pair": {
+  "value": 2,
+  "from": [
+   "c12"
+  ],
+  "basis": "computed: each comparison c12 describes is one pair, a patient and the one matched to it"
  },
  "preprint_models": {
   "value": 2,
@@ -100,6 +107,29 @@
    "c34"
   ],
   "basis": "test conditions in the preprint"
+ },
+ "harmful_lines": {
+  "value": 5,
+  "from": [
+   "c42"
+  ],
+  "basis": "computed: the added lines the preprint names as its most consistent harmful shifts, counted"
+ },
+ "cleared_lines": {
+  "value": 3,
+  "from": [
+   "c38"
+  ],
+  "basis": "computed: the added lines the preprint says produced no harmful shifts, counted"
+ },
+ "unaccounted_lines": {
+  "value": 2,
+  "from": [
+   "c34",
+   "c38",
+   "c42"
+  ],
+  "basis": "computed: conditions less the harmful and the cleared lines, the ones no claim here describes"
  },
  "psych_holds": {
   "value": 3,

@@ -1,0 +1,94 @@
+{
+ "lens": "integrity",
+ "round": 3,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.5,
+   "why": "This is a real staged deck. The value_measurements in art_preflight.json give median L* of 2.9, 3.2 and 3.1 on frames 1, 7 and 9, and on 1, 3, 6 and 9 the bone cards fill a third to half of the frame under one key from the right. Several frames still fall short of the 10. Slide 5: the 17 wristbands (I counted 5+6+6) render as broken C-shaped arcs. The inner face of each band is missing, which looks like single-sided geometry. They read as rings rather than hospital bands and sit small in the lower half on a mid-brown ledge. Slide 7: the drawer's flat brown front is the largest shape in the frame. The flagged block that carries the claim is a sliver at the far left edge, the tenth block is cut off at the right edge, and 'nearly 10 in 100' floats with no leader. The art reviewer's own weakness note on frame 7 says the same. Slide 2: dark shadow wedges on the left stack's side (about x 545-650, y 1290-1440 at display size). The top sheets overhang rather than read as the planned slid notched/plain pair. Slide 4: a txbench relief with cast_fraction 0.016 (machine_qa). It reads close to a flat drawing with a vignette. Slide 9: a visible seam where the stuck tape meets the curled end, and the left card's top edge touches the dek's last line. Slide 8 reads as an equal-length bar chart."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 8.0,
+   "why": "This is one world: shale ledge, one key from the right, bone card stock, graphite steel and ember tape as the only accent. All three continuity devices the storyboard declares are visible in the filmstrip. The tape motif changes state from frame 1 to 9. Frames 3 and 6 share a locked camera on the trays, and the only change is the notched card moving to the back slot in the middle tray. Frames 1 and 9 bookend the same holder. Frames 4 and 8 sit slightly outside. They are orthographic reliefs on pure black with no navy sky or horizon, and they read as a second register."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 6.5,
+   "why": "Every numeral traces. aggregates.json covers 17, 12, 10%, 100, 'five of 10', three and two, and figures.json covers the rest. No hard fail. Four looser points add up to more than the 7 descriptor's 'one'. (1) The whole published-study half rests on UTSW's press release. The primary npj Digital Medicine paper exists (Crossref DOI in c29's note) and was not read (rejected finding 4). (2) Slide 8 says 'Race, language and insurance produced none', from the May preprint (c38). The rest of the deck is about the three open source models (slides 3 and 6), but the preprint tested two different models, GPT-4.1 and DeepSeek v3.2 (c30). The slide never says this, so a reader leaves believing the published study cleared race. The claims file and the web edition ('That version tested two models') both know it. (3) Slide 6's art shows exactly one tray of three moving its notched card back. That encodes a 1-of-3 count which the dek itself says the release does not give. (4) Slide 7 draws c15's 'nearly 10%' as exactly ten flagged cards. figures.json downgraded_of_100 = 10 drops the 'nearly'. Smaller point: slide 3 has 'no social or stigmatizing detail' and the caption has 'no stigmatizing detail'. Both drop 'demographic' from c13's 'demographic, social, or potentially stigmatizing'. The care is real and visible. The slide 6 and slide 9 absences are stated as the release's, slide 1 says 'The cards are drawn to illustrate', and the slide 7 headline carries 'In some instances'."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.5,
+   "why": "What happened, who and where are clear. The deck names UT Southwestern in Dallas, first author Jarrett and the senior author, and says the records came from California and Massachusetts, not Texas (slide 2). It is a study, not a decision, so there is no deciding body, no deadline and no action a Texan can take. Slide 9's 'Test each tool on real outcomes first' is the authors' ask to hospitals. The Texas stake is general by the deck's own honest admission: 'names no Texas hospital using these models for triage'."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "The order works: cover, records, baseline (3), the wording (4), the turn (6, from the same camera as 3), size of the effect (7), preprint breakdown (8), close (9). Slide 5 can be cut. It repeats slide 4's '17 visits in the past 12 months' as a count of bands and moves nothing. The close is a near reprise of the cover."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Clean and on house rules. I found no colons, semicolons, em dashes, banned words or first person in the copy.json strings or caption.txt. Much of it is close release paraphrase, and the deck stacks hedges: 'the senior author says', 'The release does not say', 'the first author says', 'release names no'. The caption's closing 'Which were they?' points at an answer the unread paper holds. Little Texas specificity beyond 'In Dallas'."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "Still life at hand distance with paper, vinyl and graphite is a new move against no. 57's limestone stair, no. 56's machine shop and no. 55's operating rooms. The opening move 'In Dallas, researchers added one line.' is not in opening_moves_recent. Familiar moves: the lastLight world is used for the third time in four decks (56, 57, 58). This is also the third Texas medical AI study in seven days (no. 53 MD Anderson October 17th, no. 55 Houston Methodist October 20th). No 30-day topic repeat: topics.json has no UTSW triage entry."
+  }
+ ],
+ "weighted_score": 6.93,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Read the published npj Digital Medicine article (DOI 10.1038/s41746-026-03270-5, through PubMed Central or the publisher's API, since nature.com challenged the fetcher) so slides 6 to 8 carry the three-model study's own per-condition results and model names. Failing that, slide 8 must say in its dek that the preprint tested two different models, GPT-4.1 and DeepSeek v3.2 (c30), before it prints 'Race, language and insurance produced none'.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 5,
+   "problem": "The 17 wristbands render as broken C arcs with their inner faces missing (single-sided geometry). They read as rings, not hospital bands, and sit small in the lower half on a mid-brown ledge with a dead band of sky above.",
+   "fix": "Make each band a closed vinyl loop with real thickness and double-sided material, add a flat ID tab, and move the camera in and down so the three rows fill about two thirds of the frame width inside the lit pool."
+  },
+  {
+   "slide": 7,
+   "problem": "The drawer's flat, unlit brown front is the frame's largest shape. The flagged block that carries 'nearly 10 in 100' is a sliver jammed against the left wall, the right end is cut off, and the label floats with no leader.",
+   "fix": "Turn the drawer so the flagged block sits front-centre in the pool with its ember flags raised clear of the card tops, pull back until both end walls are in frame, and graze the key across the drawer front so it is no longer a flat slab."
+  },
+  {
+   "slide": 2,
+   "problem": "Shadow wedges on the left stack's side read as render artifacts, and the top sheets overhang instead of showing the planned slid-forward notched card and plain card.",
+   "fix": "Correct the shadow bias on the stack mesh, and slide the top pair visibly forward with the notched corner turned to the camera so 'paired patients' reads before the dek."
+  },
+  {
+   "slide": 4,
+   "problem": "The relief's measured cast_fraction is 0.016. The tape and card read nearly flat, like a drawing with a vignette, not a physical relief.",
+   "fix": "Lift the tape's left end and its whole strip higher off the card and drop the key elevation so a clear cast falls on the ruled lines beneath it."
+  }
+ ],
+ "files_read": [
+  "/home/user/TexasAIDocket/config/carousel/scoring_rubric.yaml",
+  "/home/user/TexasAIDocket/out/2026-10-23/copy.json",
+  "/home/user/TexasAIDocket/out/2026-10-23/caption.txt",
+  "/home/user/TexasAIDocket/out/2026-10-23/first_comment.txt",
+  "/home/user/TexasAIDocket/out/2026-10-23/claims.json",
+  "/home/user/TexasAIDocket/out/2026-10-23/figures.json",
+  "/home/user/TexasAIDocket/out/2026-10-23/aggregates.json",
+  "/home/user/TexasAIDocket/out/2026-10-23/quantifiers.json",
+  "/home/user/TexasAIDocket/out/2026-10-23/storyboard.md",
+  "/home/user/TexasAIDocket/out/2026-10-23/render/machine_qa.json",
+  "/home/user/TexasAIDocket/out/2026-10-23/render/render_report.json",
+  "/home/user/TexasAIDocket/out/2026-10-23/art_preflight.json",
+  "/home/user/TexasAIDocket/out/2026-10-23/final/contact_sheet.png",
+  "/home/user/TexasAIDocket/out/2026-10-23/render/slide-01.png to slide-09.png",
+  "/home/user/TexasAIDocket/ledger/carousel/topics.json",
+  "/home/user/TexasAIDocket/ledger/carousel/captions.json",
+  "/home/user/TexasAIDocket/ledger/articles/2026-10-23.json"
+ ],
+ "notes": "machine_qa.json reports 0 fails and 9 warns, all engine verdict lines. I could not run caption_check, numeral_lint or deck_coherence.py because this worker has read access only, so 'no hard fail' rests on reading the artifacts. Round 3 is max_rounds, so the deck ships at the cap at 6.93, 1.07 under the 8.0 threshold. That shortfall should be named in the email."
+}

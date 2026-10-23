@@ -47,7 +47,10 @@ if WORDS[grab("c13", r"all (\w+) models")] != m3:
     raise SystemExit("c9 and c13 disagree on the model count")
 F("models", m3, ["c9", "c13"], "open source language models in the published study, per the release")
 depts = len(re.findall(r"(Stanford Medicine|Beth Israel Deaconess Medical Center)", quote("c11")))
-F("departments", depts, ["c11"], "computed: emergency departments the release names, counted")
+F("departments", depts, ["c11"], "computed: medical centers the release names as the records' source, counted")
+if not re.search(r"\bpaired\b", quote("c12")):
+    raise SystemExit("c12 no longer says the patients were paired")
+F("pair", len(("one patient", "the patient matched to it")), ["c12"], "computed: each comparison c12 describes is one pair, a patient and the one matched to it")
 
 # the preprint, a different version: two models (c30), the pairs (c33), the window (c32), the conditions (c34)
 F("preprint_models", WORDS[grab("c30", r"(\w+) models were evaluated").lower()], ["c30"], "models in the May preprint")
@@ -57,6 +60,13 @@ F("preprint_pairs_mcmed", p2, ["c33"], "preprint pairs from MC-MED")
 F("preprint_pairs_total", p1 + p2, ["c33"], "computed: the two datasets' pairs summed")
 F("hours", int(grab("c32", r"within (\d+) hours")), ["c32"], "the preprint's window for the four interventions")
 F("conditions", int(grab("c34", r"tested (\d+) conditions")), ["c34"], "test conditions in the preprint")
+# the preprint's most consistent harmful lines (c42), counted off its own list
+tail = re.search(r"indicated (.+)$", quote("c42")).group(1)
+F("harmful_lines", len(re.split(r",\s*(?:or\s+)?", tail)), ["c42"], "computed: the added lines the preprint names as its most consistent harmful shifts, counted")
+# the lines the preprint clears (c38), counted off its own list, and the lines no claim here accounts for
+cleared = len(re.split(r",\s*(?:and\s+)?", re.search(r"^(.+?) status did not", quote("c38")).group(1)))
+F("cleared_lines", cleared, ["c38"], "computed: the added lines the preprint says produced no harmful shifts, counted")
+F("unaccounted_lines", figures["conditions"]["value"] - figures["harmful_lines"]["value"] - cleared, ["c34", "c38", "c42"], "computed: conditions less the harmful and the cleared lines, the ones no claim here describes")
 F("psych_holds", int(grab("c36", r"(\d+) prior psychiatric")), ["c36"], "prior psychiatric emergency holds in the preprint's added line")
 lo1, hi1 = float(grab("c39", r"psychiatric history \(([\d.]+)% to ([\d.]+)%")), float(grab("c39", r"psychiatric history \(([\d.]+)% to ([\d.]+)%", 2))
 lo2, hi2 = float(grab("c39", r"frequent ED visitor status \(([\d.]+)% to ([\d.]+)%")), float(grab("c39", r"frequent ED visitor status \(([\d.]+)% to ([\d.]+)%", 2))
