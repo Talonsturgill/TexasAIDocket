@@ -36,6 +36,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-15 · Houston Methodist's account still has its case managers beating the discharge AI on the last day.
 - 2026-10-18 · Houston Methodist's account still has its case managers outperforming the discharge AI on the last day.
 - 2026-10-21 · Checked and unchanged. The decision still stands as decided.
+- 2026-10-24 · The case managers' result against Houston Methodist's discharge AI is unconfirmed today, since the journal page answered with a browser check instead of the article.
 
 ## Evidence
 

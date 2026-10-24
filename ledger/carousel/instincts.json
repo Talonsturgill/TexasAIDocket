@@ -214,7 +214,8 @@
         "2026-10-15",
         "2026-10-20",
         "2026-10-21",
-        "2026-10-22"
+        "2026-10-22",
+        "2026-10-24"
       ],
       "contradicted": []
     },
@@ -321,7 +322,8 @@
         "2026-10-10",
         "2026-10-12",
         "2026-10-15",
-        "2026-10-16"
+        "2026-10-16",
+        "2026-10-24"
       ],
       "contradicted": []
     },
@@ -846,7 +848,8 @@
         "2026-09-29",
         "2026-10-10",
         "2026-10-15",
-        "2026-10-20"
+        "2026-10-20",
+        "2026-10-24"
       ],
       "contradicted": []
     },
@@ -1563,6 +1566,22 @@
       "learned": "2026-10-23",
       "instinct": "Frame every count so the whole denominator, both end walls of a row, sits inside the frame before the camera moves closer.",
       "evidence": "no. 58 frame 7: the drawer of 100 ran off the right edge on every version, so no judge could check the 100 behind 'nearly 10 in 100'.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "camera-with-the-key-not-into-it",
+      "learned": "2026-10-24",
+      "instinct": "Put the camera between the key and a small metal subject, never across from the key, because a backlit galvanized part reads black at feed size whatever its material.",
+      "evidence": "No. 59 frame 5: the art director refused the bolt group three times while the camera looked out of the bay into the flood; turning the camera to stand in the door with the flood over its shoulder lit every rod on the next render and it was accepted.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "a-covered-thing-is-a-new-mesh",
+      "learned": "2026-10-24",
+      "instinct": "Model anything under a cover as its own lofted shell rather than draping a kit model, because the kit merges a body by material and its mirrors, glass and seams come through any cloth.",
+      "evidence": "No. 59 frame 8: a draped kit crossover kept mirror stems and side glass through two repairs and drew a round 1 hard fail against c42; a superellipsoid fabric shell with a hem cleared it.",
       "confirmed": [],
       "contradicted": []
     }

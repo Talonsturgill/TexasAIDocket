@@ -30,6 +30,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-15 · CBS Austin's account of the council's vote still reads as cited. The city's own news post no longer answers at its address, so its wording is unconfirmed.
 - 2026-10-18 · CBS Austin's account of the council approving the annexation agreement still reads as cited. The city's own post did not answer, so its wording is unconfirmed.
 - 2026-10-21 · CBS Austin's account of the council approving the annexation agreement still reads as cited. The city's own news post now leads to a missing page, so its wording is unconfirmed.
+- 2026-10-24 · Taylor's annexation agreement for the data center campus is unconfirmed today, since the city's notice no longer answers at its old address.
 
 ## Evidence
 

@@ -11,7 +11,7 @@ The National Science Foundation made a cooperative agreement with Texas Southern
 - Public access: Write to the decider
 - Take part: https://www.nsf.gov/awardsearch/showAward?AWD_ID=2619041
 
-- Last checked: 2026-10-21
+- Last checked: 2026-10-24
 
 ## Dates
 
@@ -29,6 +29,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-15 · Texas Southern University remains one of the regional nodes in the foundation's network.
 - 2026-10-18 · Texas Southern University remains one of the five regional nodes in the foundation's AI and quantum network.
 - 2026-10-21 · Checked and unchanged. The decision still stands as decided.
+- 2026-10-24 · Texas Southern University still holds its place as a regional node in the NSF network for AI and quantum science.
 
 ## Evidence
 

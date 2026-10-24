@@ -9,7 +9,7 @@ On September 21st, 2026 the Governor directed the Texas Commission on Environmen
 - Public access: Write to the decider
 - Take part: https://www.texastribune.org/2026/09/21/texas-data-center-moratorium-water-energy/
 
-- Last checked: 2026-10-21
+- Last checked: 2026-10-24
 
 ## Dates
 
@@ -34,6 +34,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-17 · The three published accounts of the Governor's directive still say the environmental agency is to issue no permits sought by data center projects until the audits are done.
 - 2026-10-18 · The Governor's directive still tells the environmental agency to issue no data center permits until the audits finish.
 - 2026-10-21 · Checked and unchanged. The decision still stands as decided.
+- 2026-10-24 · The Governor's direction to the environmental agency to issue no data center permits until the grid audit is done still stands.
 
 ## Evidence
 

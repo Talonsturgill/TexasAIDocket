@@ -9,7 +9,7 @@ The Texas Department of Transportation launched the first phase of Project Nexus
 - Public access: Write to the decider
 - Take part: https://www.txdot.gov/about/newsroom/statewide/air-taxi-testing-taking-flight-in-texas.html
 
-- Last checked: 2026-10-21
+- Last checked: 2026-10-24
 
 ## Dates
 
@@ -24,6 +24,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-15 · TxDOT's release on the first phase of Project Nexus reads as published.
 - 2026-10-18 · TxDOT's release on the first phase of Project Nexus still says the first flights carry no passengers.
 - 2026-10-21 · Checked and unchanged. The decision still stands as decided.
+- 2026-10-24 · TxDOT's Project Nexus test still runs without passengers on its flights.
 
 ## Evidence
 

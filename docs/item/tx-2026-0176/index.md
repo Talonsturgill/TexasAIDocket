@@ -11,7 +11,7 @@ The National Science Foundation made a standard grant to the Texas A&M Engineeri
 - Public access: Write to the decider
 - Take part: https://api.nsf.gov/services/v1/awards.json?id=2640086&printFields=id,title,awardeeName,awardeeCity,awardeeStateCode,piFirstName,piLastName,date,startDate,expDate,estimatedTotalAmt,fundsObligatedAmt,fundProgramName,abstractText
 
-- Last checked: 2026-10-21
+- Last checked: 2026-10-24
 
 ## Dates
 
@@ -34,6 +34,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-15 · Texas A&M's award for AI digital twins of smaller water systems remains active.
 - 2026-10-18 · The Texas A&M project for AI digital twins of smaller water systems is still funded.
 - 2026-10-21 · Checked and unchanged. The decision still stands as decided.
+- 2026-10-24 · The NSF award for AI digital twins of small and mid-sized water systems at Texas A&M is still active.
 
 ## Evidence
 

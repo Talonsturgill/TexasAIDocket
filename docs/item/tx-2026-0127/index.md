@@ -11,7 +11,7 @@ In re Patrick Hughey is a mandamus proceeding filed May 29th, 2025. It began in 
 - Public access: Write to the decider
 - Take part: https://search.txcourts.gov/Case.aspx?cn=25-0463&coa=cossup
 
-- Last checked: 2026-10-18
+- Last checked: 2026-10-24
 
 ## Dates
 
@@ -42,6 +42,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-11 · The court's own submission schedule still lists the case for October 6th. A ruling is the next step.
 - 2026-10-15 · Courthouse News reports the court heard argument on October 6th, and the case awaits an opinion. The court's own case page bars automated readers, so its docket entries are unconfirmed.
 - 2026-10-18 · The court's submission schedule and the Courthouse News account still place the argument on October 6th. The court's own case page bars automated readers, so its docket entries are unconfirmed.
+- 2026-10-24 · The Supreme Court of Texas has heard the argument on the AI made deposition transcript, and the case still awaits its opinion.
 
 ## Evidence
 
