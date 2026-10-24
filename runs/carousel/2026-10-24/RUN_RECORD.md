@@ -139,11 +139,11 @@ named in all three rounds and was not recomposed this run.
 | qa             | WARN   | 0 fail(s), 2 warn(s) |
 | aggregates     | PASS   | 2 declaration(s), 2 numeric phrase(s) in the render, all re-derived |
 | assembly       | PASS   | 9 slide(s), 7.14 MB, vector |
-| score          | WARN   | 7.01 at the round cap after 3 round(s), the finished deck ships; 8.0 top rung, shortfall named |
+| score          | STALE  | score.json predates the newest render, so it describes a deck that no longer exists. Re-run it |
 | labels         | PASS   | 68 claim id(s) checked, every label beside one traces to the shape its claim proves |
 | quantifiers    | PASS   | 76 published string(s) read from one list, every universal names its set |
 | verbatim       | WARN   | no dossier declares a `verbatim:` block, so no on-frame string was held to a quote |
-| dossiers       | PASS   | 37,923 chars planned |
+| dossiers       | PASS   | 37,929 chars planned |
 | caption        | PASS   | 132 words |
 | craft floor    | WARN   | 9 frame(s), median 2049, floor 369, 1 quiet |
 | plan vs render | PASS   | 9 of 50 acceptance item(s) checkable |
@@ -152,3 +152,102 @@ named in all three rounds and was not recomposed this run.
 | numerals       | PASS   | 13 numeral(s) over 9 frame(s), every one reachable |
 | completion     | PASS   | the deck shipped |
 <!-- gate-status:end -->
+
+## The panel
+
+Three rounds of three judges, integrity, craft and reader, combined by `panel.py`. The cards are in `scores/`, and
+the repairs between rounds are in `reviews/panel_repairs.md`.
+
+| round | judges | median | hard fails |
+|---|---|---|---|
+| 1 | 6.19, 6.49, 6.79 | 6.54 | 2 |
+| 2 | 6.3, 7.02, 6.546 | 6.72 | 1 |
+| 3 | 6.9, 7.1, 7.18 | 7.01 | 0 |
+
+Round 1's hard fails were both real:
+- The cover said "Tesla's Texas rows read Production" over a page that lists two Texas rows at Early Ramp (c16, c17).
+- Frame 8 drew a four-door car with mirror stems on a slide citing c42, which says the car has no mirrors.
+
+Round 2's was one word in the web edition's dek, "still", which asserted an earlier quarter nobody fetched.
+
+**The deck shipped at the round cap with a median of 7.01, 0.99 under the 8.0 top rung.** The craft floor stood down
+at the cap with the art median at 6.5, under 8.5.
+
+What the final round still names, for the next run:
+- Frame 6 is a relief that reads as a tray, named in every round.
+- Frame 8's cover reads as a loaf under a tablecloth.
+- Frame 7's steel is flat.
+- Frame 2's kit cars read as toys.
+- Frame 9 is the deck's greyest frame.
+- Frame 1's dark door is too small.
+- Story and stakes are low on every card. The deck names no county, deadline or next step, and the cover's "rows"
+  is table language a feed reader has to decode.
+
+## Ship
+
+- Artifacts are copied to `runs/carousel/2026-10-24/`.
+- `ship_images.py` encoded nine WebP frames and `og.jpg` at 40.0 to 43.8 dB against a 40.0 floor.
+- `art_preflight --archive` bound the delivered images to the accepted review.
+- `measure_shipped` wrote `measurements.json`, with a deck median L* of 4.4.
+- The ledgers are updated by `update_ledgers.py` and `ledger_check` agrees. The caption's moves were relabelled onto
+  the menu and off the exclusion list: the quiet decision, Ledger, ask the one question.
+- `main` was merged in (already up to date) and the site rebuilt, with the verify list at exit 0.
+
+## Retro
+
+**Did this run stop and wait for a human (interim reading, Phase 17).** `prompt_audit.py` measured 1,876 tool calls
+and exited 1. It flagged 66 calls with a permission wait, 42 Bash, 20 Agent, 2 SendMessage and 2 SubagentHandback,
+from 1.1 to 30.9 seconds each and 350.5 seconds in all. The longest was an Agent spawn. No call waited minutes or
+hours, and the run never stalled. The no-stall hook was armed at 05:06:02 UTC. It judged the session unattended at
+session start, the host's `CLAUDE_CODE_SESSION_ATTENDED` was 0, and it refused nothing. This reading is interim, and
+Phase 19 takes the one that counts.
+
+**Sources.** Six findings are appended to `knowledge/shared/SOURCES_FIELD_LOG.md`: Tesla's and NHTSA's PDFs through
+`fetch_doc.py` (the Tesla PDF prints no publication date), PMC's reCAPTCHA, the refusing county and state hosts, and
+the TAHC page.
+
+**Instincts.** Three were confirmed:
+- `a-paraphrase-can-outrun-its-quote`, from "still", "three times" and the closed list of factors
+- `acceptance-items-need-a-floor`, from the critics finding trivially satisfiable lists
+- `the-records-own-prose-drifts-while-you-draw`, from the tx-2026-0168 note caught at Phase 16
+
+Two were added: `camera-with-the-key-not-into-it` and `a-covered-thing-is-a-new-mesh`.
+
+**The machine queue.** Four new items:
+- `plant-and-site-models-built-in-chassis`
+- `kit-has-no-cloth-cover`
+- `relief-plate-reads-as-a-tray`
+- `chassis-edit-rebinds-all-three-audition-frames`
+
+`scorer-cards-not-machine-readable` was raised to repeat 1.
+
+**The weekly machine pass was due** (`machine_due.py` exit 0, six repeat offenders) and ran here, in the `upgrade`
+lane:
+1. **Kit `structural_frame`** in `assets/js/kit/industry.js`, W columns that read as I sections with lit flange
+   edges, base plates on grout, gussets and joists. This is the judges' named fix for frame 7's flat columns in all
+   three rounds. It is proven through `examples/kit/build.py` and through frame 7's own camera, and `sizes.py`
+   reports 128 of 128 models. Shipped chassis are untouched.
+2. **`print_ban` fails a relief that casts under a measured floor**, (0.077 + 0.123) / 2 from the week's charged and
+   uncharged reliefs, for decks dated after October 24th. Its self-test exits 0 with six new cases. Replayed on
+   October 17th to 24th, it named exactly the six reliefs the final rounds called flat.
+3. Escalated to `UPGRADE_BACKLOG.md` for a maintainer:
+   - a GATE_LESSONS entry for that gate
+   - a matching warning inside `txbench.js`
+   - one JSON shape for the scorer cards, in `.claude/agents`
+
+Deferred with reasons: the cloth cover, type sitting on the art, and ground contact.
+
+I re-ran the verify commands. `node --check`, `arsenal.py --check`, `print_ban.py --self-test` and `print_ban --assets`
+exited 0. `tests/txworld.mjs` did not finish inside a 300 second local timeout, so CI's browser jobs answer it.
+
+**Shipped_check before the push.** It named two of today's rows:
+- The FIG lines carried every figure. They are now trimmed by `fig_inject.py`, and slide 7's dossier names
+  `fab_machines_placed`, the figure its code reads.
+- The topic angle prose carried count words the run computed nowhere. It is rewritten without them.
+
+The frames re-rendered from the trimmed FIG lines and the audition frames were rebound.
+
+**On the `score` row reading STALE.** The panel scored the frames before the FIG lines were trimmed. The re-render
+that followed is byte-identical where it was checked: frames 1, 5 and 9 carry the same PNG digests the round 3 rebind
+reviewed (0454242d, 98c28b81, 40fa0837). The row reads the files' times, not their bytes. `score.json` was not
+re-run, because a fourth panel past the round cap would score the same pixels. `run_complete.py` exits 0.

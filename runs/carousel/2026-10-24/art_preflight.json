@@ -6,7 +6,7 @@
     9
   ],
   "inputs": {
-    "slides/slide-01.html": "4bd58a0820267661bda43e18f5060298725b9f0d0638f5210829ea082ae02337",
+    "slides/slide-01.html": "d44730995cfe1dddc587200a75ba2a86a15d6508e50aba47ea1233c2e2e2e67b",
     "render/slide-01.png": "0454242d0985cc80acf6f2f6403e4ce3a3287e46256f643361f118163c4b6d49",
     "assets/js/deck/2026-10-24-apron.js": "62c340fadcf5f80a92829c81072dae746fc5d8e55e6cc41b491e59510e1701b3",
     "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
@@ -18,9 +18,9 @@
     "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
     "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
     "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
-    "slides/slide-05.html": "3811c807fcc2b7c248693b26f7d6b3b4aa3a3966c2148aea1973ca13c553ce7b",
+    "slides/slide-05.html": "dbf09f4a8bd146daadf2e811cd9fa5a265eee732679a0fa57ebd60964216ec01",
     "render/slide-05.png": "98c28b81f54f9aca008d4196429a8100c6a1320500dda4080707b28cb13b6fdc",
-    "slides/slide-09.html": "586e758ad56babe301fe4a05918d985d49b0798acba7f64bdef2bda24b5f3eb4",
+    "slides/slide-09.html": "c2cb2f747a56663124b90f1a0bf8295fa863d5c88c9b2791e235227c822305e2",
     "render/slide-09.png": "40fa083708cd7f16640c74fe9a6e58abbb6019263303785aaa2fb9f5f779ba7c"
   },
   "value_measurements": [
@@ -46,7 +46,7 @@
   "review": {
     "decision": "accept",
     "inputs": {
-      "slides/slide-01.html": "4bd58a0820267661bda43e18f5060298725b9f0d0638f5210829ea082ae02337",
+      "slides/slide-01.html": "d44730995cfe1dddc587200a75ba2a86a15d6508e50aba47ea1233c2e2e2e67b",
       "render/slide-01.png": "0454242d0985cc80acf6f2f6403e4ce3a3287e46256f643361f118163c4b6d49",
       "assets/js/deck/2026-10-24-apron.js": "62c340fadcf5f80a92829c81072dae746fc5d8e55e6cc41b491e59510e1701b3",
       "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
@@ -58,24 +58,24 @@
       "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
       "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
       "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
-      "slides/slide-05.html": "3811c807fcc2b7c248693b26f7d6b3b4aa3a3966c2148aea1973ca13c553ce7b",
+      "slides/slide-05.html": "dbf09f4a8bd146daadf2e811cd9fa5a265eee732679a0fa57ebd60964216ec01",
       "render/slide-05.png": "98c28b81f54f9aca008d4196429a8100c6a1320500dda4080707b28cb13b6fdc",
-      "slides/slide-09.html": "586e758ad56babe301fe4a05918d985d49b0798acba7f64bdef2bda24b5f3eb4",
+      "slides/slide-09.html": "c2cb2f747a56663124b90f1a0bf8295fa863d5c88c9b2791e235227c822305e2",
       "render/slide-09.png": "40fa083708cd7f16640c74fe9a6e58abbb6019263303785aaa2fb9f5f779ba7c"
     },
     "frames": [
       {
         "slide": 1,
         "role": "cover",
-        "subject": "A tilt-up plant wall at night from crane height, five door openings receding right. Four bays glow warm under pendant lamps, one holding the covered car on a carrier and one a white enclosure. The fifth is black, its shutter part lowered, two work lamps and blue tape on its threshold. A floodlit apron runs below with a lane line, joints, a bollard and a worker.",
-        "visual_consequence": "Four warm openings against one black opening. Without the headline every bay but the last is running, the table's status column as light, readable at 432 px.",
-        "weakness": "Polish only. The covered car's hem reads as a dark serrated band at native size. The lit bays' back walls are broad empty planes. The bollard and worker casts are short pools.",
+        "subject": "An 80 m tilt-up panel wall at night on a floodlit apron. Five vertical-lift door openings recede left to right, four lit warm inside, the fifth at the far end with its shutter half down, a black interior and two work lamps on bluebonnet tape.",
+        "visual_consequence": "Four warm openings and one dark opening on the same wall. Status reads as light against no light before the headline, matching the four Production rows and the one Construction row.",
+        "weakness": "Polish only. The lit bays hold little line equipment. The dark fifth door is the smallest opening. The bottom third is empty apron and the bollard's cast is short.",
         "repair": "none required",
         "encoding_reads": true,
         "dominant_subject_finished": true,
         "feed_legible": true,
         "inputs": {
-          "slides/slide-01.html": "4bd58a0820267661bda43e18f5060298725b9f0d0638f5210829ea082ae02337",
+          "slides/slide-01.html": "d44730995cfe1dddc587200a75ba2a86a15d6508e50aba47ea1233c2e2e2e67b",
           "render/slide-01.png": "0454242d0985cc80acf6f2f6403e4ce3a3287e46256f643361f118163c4b6d49",
           "assets/js/deck/2026-10-24-apron.js": "62c340fadcf5f80a92829c81072dae746fc5d8e55e6cc41b491e59510e1701b3",
           "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
@@ -92,9 +92,9 @@
       {
         "slide": 5,
         "role": "evidence",
-        "subject": "Inside the unlit Optimus bay at low eye height. Four galvanized anchor rods close and large, threads catching a specular line, hex nuts, plate washers and a grout plate inside a square of bluebonnet tape. Behind are a second taped pad and bolt group, a plywood crate face, a tripod work lamp and pendant fixtures present and off.",
-        "visual_consequence": "Bolts with nothing on them, taped empty footprints and dead overhead lamps read as built for and not yet installed, without the headline, at 432 px.",
-        "weakness": "Polish only. The rod casts are faint and the jamb shadow and tape own the lower band. The tape is a flat blue. The crate is one flat face. The second pad's plate is near white and the lamp's pool lies off to its left.",
+        "subject": "Inside the unlit Optimus bay. Four galvanized threaded anchor rods with hex nuts and plate washers on a grout pad inside a bluebonnet taped footprint, a second taped pad beyond, one plywood crate, a tripod work lamp and unlit pendant fixtures overhead.",
+        "visual_consequence": "Where the other bays hold lit lines, this one holds bolts, tape and switched off lamps with no carrier and no robot, so the missing figure reads as unfinished construction.",
+        "weakness": "Polish only. The crate is one flat face without strapping. The bolt casts are faint. The work lamp head is unlit beside its pool.",
         "repair": "none required",
         "encoding_reads": true,
         "dominant_subject_finished": true,
@@ -110,16 +110,16 @@
           "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
           "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
           "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
-          "slides/slide-05.html": "3811c807fcc2b7c248693b26f7d6b3b4aa3a3966c2148aea1973ca13c553ce7b",
+          "slides/slide-05.html": "dbf09f4a8bd146daadf2e811cd9fa5a265eee732679a0fa57ebd60964216ec01",
           "render/slide-05.png": "98c28b81f54f9aca008d4196429a8100c6a1320500dda4080707b28cb13b6fdc"
         }
       },
       {
         "slide": 9,
         "role": "close",
-        "subject": "The same plant wall from its east end. The dark fifth bay is the largest opening, its shutter part lowered, two glowing work lamps on a bluebonnet tape strip and one small bolt group on its floor. The four lit bays diminish to the left under the flood.",
-        "visual_consequence": "The cover reversed. The reader stands in the unlit row looking back at four warm doors that show light rather than output, so a lit bay reads as a status.",
-        "weakness": "Polish only. The lamp casts are soft blobs. The tape is flat. A faint pale wedge and a pale rectangle sit by the dark door's jamb. The dark bay's floor reads warm under the lamps.",
+        "subject": "The same panel wall from its east end. The dark fifth opening is nearest and largest, two lit work lamps on a bluebonnet threshold strip, a small bolt group inside, four warm openings diminishing to the left.",
+        "visual_consequence": "The camera stands at the unlit door looking back at the four lit ones, reversing the cover. The lit bays are mostly empty warm rooms, supporting a lit bay as a status, not a count.",
+        "weakness": "Polish only. The threshold tape is flat and unlit by the lamps. The lamp shadows are soft ellipses. The dark bay's floor reads warm.",
         "repair": "none required",
         "encoding_reads": true,
         "dominant_subject_finished": true,
@@ -135,7 +135,7 @@
           "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
           "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
           "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
-          "slides/slide-09.html": "586e758ad56babe301fe4a05918d985d49b0798acba7f64bdef2bda24b5f3eb4",
+          "slides/slide-09.html": "c2cb2f747a56663124b90f1a0bf8295fa863d5c88c9b2791e235227c822305e2",
           "render/slide-09.png": "40fa083708cd7f16640c74fe9a6e58abbb6019263303785aaa2fb9f5f779ba7c"
         }
       }
@@ -149,7 +149,7 @@
   },
   "frame_inputs": {
     "1": {
-      "slides/slide-01.html": "4bd58a0820267661bda43e18f5060298725b9f0d0638f5210829ea082ae02337",
+      "slides/slide-01.html": "d44730995cfe1dddc587200a75ba2a86a15d6508e50aba47ea1233c2e2e2e67b",
       "render/slide-01.png": "0454242d0985cc80acf6f2f6403e4ce3a3287e46256f643361f118163c4b6d49",
       "assets/js/deck/2026-10-24-apron.js": "62c340fadcf5f80a92829c81072dae746fc5d8e55e6cc41b491e59510e1701b3",
       "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
@@ -173,7 +173,7 @@
       "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
       "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
       "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
-      "slides/slide-05.html": "3811c807fcc2b7c248693b26f7d6b3b4aa3a3966c2148aea1973ca13c553ce7b",
+      "slides/slide-05.html": "dbf09f4a8bd146daadf2e811cd9fa5a265eee732679a0fa57ebd60964216ec01",
       "render/slide-05.png": "98c28b81f54f9aca008d4196429a8100c6a1320500dda4080707b28cb13b6fdc"
     },
     "9": {
@@ -187,7 +187,7 @@
       "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
       "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
       "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
-      "slides/slide-09.html": "586e758ad56babe301fe4a05918d985d49b0798acba7f64bdef2bda24b5f3eb4",
+      "slides/slide-09.html": "c2cb2f747a56663124b90f1a0bf8295fa863d5c88c9b2791e235227c822305e2",
       "render/slide-09.png": "40fa083708cd7f16640c74fe9a6e58abbb6019263303785aaa2fb9f5f779ba7c"
     }
   },
@@ -197,11 +197,11 @@
     9
   ],
   "shipped_inputs": {
-    "slides/slide-01.html": "4bd58a0820267661bda43e18f5060298725b9f0d0638f5210829ea082ae02337",
+    "slides/slide-01.html": "d44730995cfe1dddc587200a75ba2a86a15d6508e50aba47ea1233c2e2e2e67b",
     "slide-01.webp": "ecf0d121f4ccf959f021abb1460162e4cf7d3e212cdf17e2035e9f75e85263d0",
-    "slides/slide-05.html": "3811c807fcc2b7c248693b26f7d6b3b4aa3a3966c2148aea1973ca13c553ce7b",
+    "slides/slide-05.html": "dbf09f4a8bd146daadf2e811cd9fa5a265eee732679a0fa57ebd60964216ec01",
     "slide-05.webp": "f258fcf032b4bd261bcd0b5fc2d3f8fda201202c101b2b52da982379d7a72833",
-    "slides/slide-09.html": "586e758ad56babe301fe4a05918d985d49b0798acba7f64bdef2bda24b5f3eb4",
+    "slides/slide-09.html": "c2cb2f747a56663124b90f1a0bf8295fa863d5c88c9b2791e235227c822305e2",
     "slide-09.webp": "05e159c2ad2bf25d36fa99ff55e49e4ee12d735295d8a8e35a007c40b6b9899c"
   },
   "encodings": [

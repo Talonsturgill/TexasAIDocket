@@ -511,8 +511,8 @@ numerals:
   - value_from: c24
 
 data_in_art:
-  figure: fab_year
-  drives: machine count on the pads, zero machines placed on the two taped pads, because equipment commissioning is planned for that year and not begun
+  figure: fab_machines_placed
+  drives: machine count on the pads, zero machines placed on the two taped pads, because equipment commissioning is planned for 2027 and not begun
 
 depth:
   eye: 2.6
