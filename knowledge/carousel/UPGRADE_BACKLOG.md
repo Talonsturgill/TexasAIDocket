@@ -6257,3 +6257,82 @@ at full size.
 **For the run, not this pass:** `python3 scripts/carousel/shipped_check.py` is red on
 `2026-10-23 ledgers` before and after this pass (12 problems, first: topics.json's topic prose says
 'three' and the run computed [] for those counts). It is the run's ledger, not the machine.
+
+## 2026-10-24, the twelfth weekly machine pass. One kit lift, one gate, three proposals, carried items
+
+Read from `out/2026-10-24/week_digest.md` (six shipped runs, October 18th to 24th) and the queue.
+Due one day after the last pass because six queued items carry repeat 2 or more. `artwork_craft`
+had the lowest week mean (6.6) and was the lowest criterion on four decks of six. "Primitive or
+low-poly model where a kit model belongs" was named on six decks in 18 rounds, "largest object
+unmodelled" on six in 15, "type sitting on or fighting the art" on five in 13, "no contact" on five
+in 11. The account is in `ledger/carousel/upgrades.json` under `2026-10-24 weekly`, and the pass is
+recorded in `config/carousel/machine_pass.json`. Proofs are in `out/2026-10-24/tmp/machine/` and
+die with the container. No frontier scan. The time went to the proofs, read at full size.
+
+### 1. KIT LIFT: `structural_frame` AT THE JUDGES' NAMED FIX (done, `assets/js/kit/industry.js`)
+
+No. 59's round 3 craft card ranked frame 6 first, a relief whose fix is not a model (item 2), and
+then frame 8's cover and frame 7's columns. The columns were named in all three rounds, round 3's
+fix reading "W-section columns" and round 1's "W-section flanges catching the flood". The chassis
+`steel_frame` built each column as three boxes with the flanges facing +z, so a camera on +z saw one
+flat painted strip. The kit model extrudes a wide flange section with filleted roots and turns the
+strong axis along x by default, so the same camera sees the profile, a lit flange edge, the web in
+its shadow and the far flange. W girders and edge beams sit on bolted shear tabs, open web joists on
+bearing seats with double angle chords, round bar webs and a bridging line, lipped C girts on clips,
+galvanized rod X bracing with turnbuckles on gusset plates, and base plates with anchor rods,
+washers and nuts on grout pads. The primer is a fine mill mottle in two lots, held to a low
+amplitude because a broad cloud read as camouflage on no. 57. Members are mirrored in the section,
+never by a negative scale, because `bake()` writes the matrix into the geometry and a mirrored
+matrix turns the faces inside out. Proven three ways. `examples/kit/build.py` rendered the lineup
+and hero through the carousel engine. No. 59 frame 7's own source was rendered twice, once as
+shipped and once with only the model name changed, and the native size crops show the strip
+become an I section. `examples/kit/sizes.py` reports 128 of 128 models declaring the size they
+build. `tests/txworld.mjs` passes. Lifted under a NEW name because no. 59's `installKit` defines
+`steel_frame` unless the kit has `plant_wall`. One caution is written into the model's note: a long
+lens across every bay of joists reads as a lattice, so a far shot passes `joistBays` 0 or 1.
+
+### 2. GATE: A RELIEF THAT CASTS ALMOST NOTHING FAILS `print_ban` (done, `scripts/carousel/print_ban.py`)
+
+Queues `relief-plate-reads-as-a-tray` (no. 59) and `txbench-relief-cast-faint` (no. 58). Read off
+the shipped render reports, six reliefs on four decks this week cast under a tenth of their area and
+the final panel round charged every one as flat. No. 55 frame 8 at 0.077, no. 56 frames 2 and 7 at
+0.061 and 0.047, no. 58 frames 4 and 8 at 0.016 and 0.025, no. 59 frame 6 at 0.038. The proof's
+existing line asks only for 0.001, which tells a relief from a fallback. The floor is measured once,
+on 2026-10-24, midway between the highest cast fraction the final round charged as flat (no. 55
+frame 8) and the lowest it left uncharged (no. 55 frame 5 at 0.123). The file says it is never
+re-derived. It applies to decks after October 24th, at the probe, in Phase 12b on all nine and in
+CI through `shipped_check`, and its message names the cure in the light and the pieces, never the
+grade. Six self-test cases include no. 59 frame 6's own proof. A mutant that never fires fails two
+of them. Replayed on copies of the week's decks and no. 53's it names exactly those six frames, and
+nothing on nos. 53, 54 and 57.
+
+### 3. PROPOSALS AND ESCALATIONS
+
+- **GATE_LESSONS entry** (`human`). "A validity floor read as a quality floor. print_ban's relief
+  proof asked for a cast fraction of 0.001, enough to tell a relief from a fallback, and six reliefs
+  that cast almost nothing counted as measured material reliefs while the judges called each one a
+  flat card. What to check instead: the quantity the reader sees, at a floor measured once against
+  what the panel charged. print_ban's relief cast floor."
+- **TXBENCH.relief warns under the floor at render time** (`assets/js/txbench.js`, human), so a
+  chassis author sees it in the console before the probe. The gate in item 2 is the backstop.
+- **`kit-has-no-cloth-cover`, deferred, not refused.** One deck needed it, and the honest model
+  lofts a cloth from a vehicle's own sill, arch and glass line, a larger build than this pass had
+  time to prove. The next pass's artwork slot if a second deck covers a vehicle.
+- **`scorer-cards-not-machine-readable`, repeat 1** (nos. 55 and 59). The key and the bare JSON body
+  belong in `.claude/agents/carousel-scorer.md`, a protected path and a maintainer's edit.
+
+### Carried, with this week's counts
+
+"Type sitting on or fighting the art", five runs and 13 rounds, still needs the id pass (2026-10-12
+item 4). "No contact, dirt or grime where things meet the ground", five runs and 11 rounds, was a
+different cause on each deck (no. 59's floating tyre and a work lamp's shadowless point light). The
+six repeat offenders stay where the last passes left them: the person `grip` pose and vest cut in
+`people.js` (open, the next artwork slot that is not a ranked deck defect), the audition rebind
+(the owner's rule), the detail floor (open until a run meets the message), the glyph run rule and
+the article screenshots (both a maintainer's), and the GRID piece count (the id pass).
+Each carries an `escalated 2026-10-24` line in the queue, with `article-token-drops-unit`, the
+run's own lane, so tomorrow's run is not made due again by items this pass read and carried.
+
+**For the run, not this pass.** `python3 scripts/carousel/shipped_check.py` is red on `2026-10-24
+fig lines` and `2026-10-24 ledgers` before and after this pass, measured with this pass's files
+stashed. Both are the run's.

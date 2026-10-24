@@ -3539,4 +3539,51 @@
  ],
  "not_done": "'Type sitting on the art', 6 runs and 14 rounds, got no change: a different collision on each deck, and its honest gate needs the id pass (2026-10-12 item 4). record_card, card_holder, sorting_tray, card_stack and shale_ledge stay in no. 58's chassis. No frontier scan: the time went to the proofs. shipped_check is red on 2026-10-23 ledgers before and after this pass, which is the run's own ledger"
 }
+,
+"2026-10-24 weekly": {
+ "date": "2026-10-24",
+ "run": "weekly machine pass, read with carousel no. 59",
+ "actor": "upgrade",
+ "upgrades": [
+  {
+   "what": "Kit structural_frame (assets/js/kit/industry.js): W columns extruded from a filleted wide flange section and turned so the strong axis runs along x, W girders and edge beams on bolted shear tabs, open web joists on seats with double angle chords, round bar webs and bridging, lipped C girts on clips, galvanized rod X bracing with turnbuckles, base plates with anchor rods on grout pads, red oxide primer in two lots. Lifted under a new name so no. 59's chassis still re-renders",
+   "why": "Digest theme 'primitive or low-poly model where a kit model belongs', 6 runs and 18 rounds, the week's top theme; no. 59's chassis steel_frame drew each column as three boxes with the flanges facing the camera and the judges named 'flat columns' in all three rounds, round 3's craft fix 'W-section columns' and round 1's 'W-section flanges catching the flood'. Queue plant-and-site-models-built-in-chassis. Round 3's first ranked frame (6) is a relief whose fix is not a model, so this is the top ranked model defect with frame 8's cover",
+   "files": [
+    "assets/js/kit/industry.js",
+    "knowledge/carousel/ARSENAL.md"
+   ],
+   "verification": "examples/kit/build.py --family industry --names structural_frame rendered through .claude/skills/carousel-engine/render.py (lineup and hero, read at full size); no. 59 frame 7's shipped source rendered as shipped and with only the model name changed, native crops show the flat strip become an I section with base plates, gussets and clips; examples/kit/sizes.py exits 0 (128 of 128 declare the size they build, structural_frame declared 28 x 14.2 x 18.8, measured 27.76 x 14.06 x 18.76, centred); node tests/txworld.mjs all passed; arsenal.py --check ok after regeneration",
+   "revert": "the commit that carries assets/js/kit/industry.js in this pass (git revert <sha>), then python3 scripts/carousel/arsenal.py",
+   "how_i_would_know_this_was_wrong": "A deck that calls structural_frame is charged by the panel for a lattice or moire across the joists at a long lens (the note says pass joistBays 0 or 1), for columns that still read flat because its camera looks along x (strong 'z' is the option), or the build time or triangle count of a frame using it pushes render.py past its page timeout"
+  },
+  {
+   "what": "print_ban fails a material relief whose render proof casts under RELIEF_CAST_FLOOR, a floor measured once on 2026-10-24 midway between the highest cast fraction the final panel round charged as flat and the lowest it left uncharged, for every deck after October 24th (probe, Phase 12b and CI through shipped_check)",
+   "why": "Queues relief-plate-reads-as-a-tray (no. 59) and txbench-relief-cast-faint (no. 58). Six shipped reliefs on four decks this week cast under a tenth of their area and the final round charged every one as flat: no. 55 frame 8 at 0.077, no. 56 frames 2 and 7 at 0.061 and 0.047, no. 58 frames 4 and 8 at 0.016 and 0.025, no. 59 frame 6 at 0.038. The proof's existing floor of 0.001 tells a relief from a fallback and nothing more. Digest theme 'largest object unmodelled', 6 runs and 15 rounds, carries several of them",
+   "files": [
+    "scripts/carousel/print_ban.py"
+   ],
+   "verification": "python3 scripts/carousel/print_ban.py --self-test exits 0 with six new cases (no. 59 frame 6's proof 0.038 caught and named, 0.257 clean, just under the floor caught and at it clean, the last proof on a page decides, a deck dated RELIEF_CAST_SINCE not judged, the floor strictly between its two readings); a mutant that never fires fails two of them. Replayed on copies of the shipped decks of October 17th to 24th redated after the floor: it names exactly the six charged frames. print_ban --assets --run-dir runs/carousel/2026-10-24 exits 0 (today predates it); shipped_check --self-test exits 0; shipped_check's only red rows (2026-10-24 fig lines and ledgers) are red with this pass's files stashed too",
+   "revert": "the commit that carries scripts/carousel/print_ban.py in this pass (git revert <sha>)",
+   "how_i_would_know_this_was_wrong": "A run fails print_ban on a relief the judges then read as fully dimensional (a deliberately low engraved surface whose depth reads through cavity rather than cast), or a run answers the failure by darkening the plate or cropping into a sliver rather than raising or raking the pieces. Either means the cast fraction is the wrong measure for that relief, and the answer is an exception argued in data, never a lower floor"
+  }
+ ],
+ "proposals_out_of_lane": [
+  {
+   "what": "GATE_LESSONS entry: a validity floor read as a quality floor (print_ban's relief proof at 0.001), and what to check instead",
+   "owner": "human",
+   "why": "The upgrade changes a gate; the entry text is in UPGRADE_BACKLOG 2026-10-24 item 3"
+  },
+  {
+   "what": "TXBENCH.relief warns on the console when its cast fraction falls under print_ban's floor",
+   "owner": "human",
+   "why": "assets/js/txbench.js; a chassis author would see it before the probe, and print_ban is the backstop"
+  },
+  {
+   "what": "carousel-scorer returns one key and a bare JSON body",
+   "owner": "human",
+   "why": "Queue scorer-cards-not-machine-readable at repeat 1 (nos. 55 and 59), .claude/agents is a protected path"
+  }
+ ],
+ "not_done": "kit-has-no-cloth-cover deferred, not refused: one deck, a larger build than this pass could prove. 'Type sitting on the art' (5 runs, 13 rounds) still needs the id pass; 'no contact' (5 runs, 11 rounds) had a different cause on each deck. The six repeat offenders stay where the last passes left them. No frontier scan: the time went to the proofs"
+}
 }
