@@ -509,41 +509,72 @@ if('IntersectionObserver' in window){
 // With script the navigation is refused and the dialog opens over the page instead.
 (function(){
   var open=document.getElementById('contactopen'), box=document.getElementById('contactbox');
-  if(!open||!box) return;
+  if(!open||!box||!window.fetch||!window.AbortController) return;
   var form=document.getElementById('contactform'), note=document.getElementById('contactstatus'),
       send=document.getElementById('contactsend'), shut=document.getElementById('contactclose');
-  function close(){ if(typeof box.close==='function') box.close(); else box.removeAttribute('open'); }
+  var busy=false, label=send.textContent, closeTimer;
+  function cancelClose(){clearTimeout(closeTimer);}
+  function close(){
+    cancelClose();
+    if(typeof box.close==='function') box.close(); else box.removeAttribute('open');
+  }
+  box.addEventListener('close',cancelClose);
   open.addEventListener('click',function(ev){
     // A MODIFIED CLICK IS A REQUEST FOR THE OTHER THING. Command, control, shift or a middle
     // button means open it in a tab, and taking that away is taking away a browser.
     if(ev.metaKey||ev.ctrlKey||ev.shiftKey||ev.altKey||ev.button) return;
     ev.preventDefault();
-    note.textContent=''; send.disabled=false;
+    cancelClose();
+    if(!busy){note.textContent=''; delete note.dataset.state;}
     if(typeof box.showModal==='function') box.showModal(); else box.setAttribute('open','');
-    var t=document.getElementById('contactmsg'); if(t) t.focus();
+    var t=document.getElementById('contactmsg');
+    if(busy) shut.focus(); else if(t) t.focus();
   });
   shut.addEventListener('click',close);
   form.addEventListener('submit',function(ev){
     ev.preventDefault();
-    send.disabled=true; note.textContent='Sending';
+    if(busy||!form.reportValidity()) return;
+    cancelClose();
+    var payload=Object.fromEntries(new FormData(form).entries());
+    var controls=Array.from(form.querySelectorAll('input,textarea,button[type="submit"]'));
+    var disabled=controls.map(function(el){return el.disabled;});
+    busy=true;
+    form.setAttribute('aria-busy','true');
+    controls.forEach(function(el){el.disabled=true;});
+    send.textContent='Sending';
+    note.textContent='Sending your message.';
+    note.dataset.state='pending';
+    var abort=new AbortController();
+    var timer=setTimeout(function(){abort.abort();},15000);
     // THE AJAX ADDRESS IS DERIVED FROM THE ONE IN THE MARKUP rather than written a second
     // time. The form carries the plain endpoint because that is what the policy's form-action
     // is checked against, and a second copy of an endpoint is one of them going stale.
     fetch(form.action.replace('formsubmit.co/','formsubmit.co/ajax/'),{
-      method:'POST',
+      method:'POST', signal:abort.signal,
       headers:{'content-type':'application/json','accept':'application/json'},
-      body:JSON.stringify(Object.fromEntries(new FormData(form).entries()))
+      body:JSON.stringify(payload)
     }).then(function(r){
-      if(!r.ok) throw new Error('bad status');
-      note.textContent='Thank you. That reached the desk.';
+      if(!r.ok) throw new Error('unconfirmed');
+      return r.json();
+    }).then(function(result){
+      if(result.success!==true&&result.success!=='true') throw new Error('rejected');
       form.reset();
-      setTimeout(close,1600);
-    }).catch(function(){
+      note.dataset.state='success';
+      note.textContent='Thank you. Your message was accepted for forwarding.';
+      if(box.open) closeTimer=setTimeout(close,1600);
+    }).catch(function(error){
       // WHAT WAS TYPED STAYS IN THE BOX. Losing somebody's message and telling them it failed
       // is two bad things where one would do.
-      note.textContent='That did not send. Nothing was lost, so try again or use the form on '
-        + 'the services page.';
-      send.disabled=false;
+      note.dataset.state='error';
+      note.textContent=error.message==='rejected'
+        ? 'That did not send. Your message is still here. Try again.'
+        : 'A confirmation did not arrive. Your message is still here. Try again.';
+    }).finally(function(){
+      clearTimeout(timer);
+      controls.forEach(function(el,i){el.disabled=disabled[i];});
+      form.removeAttribute('aria-busy');
+      send.textContent=label;
+      busy=false;
     });
   });
 })();

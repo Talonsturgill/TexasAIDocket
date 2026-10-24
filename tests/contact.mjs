@@ -25,6 +25,8 @@ import http from "node:http";
 const PREINSTALLED = process.env.PLAYWRIGHT_CHROMIUM || "/opt/pw-browsers/chromium";
 const LAUNCH = fs.existsSync(PREINSTALLED) ? { executablePath: PREINSTALLED } : {};
 const SITE = path.resolve(process.env.SITE || "docs");
+const SHOTS = process.env.CONTACT_SCREENSHOTS;
+if (SHOTS) fs.mkdirSync(SHOTS, { recursive: true });
 
 let fails = 0;
 const ok = (label, cond, extra = "") => {
@@ -81,9 +83,14 @@ console.log("=== the message goes out, and nothing of ours goes with it ===");
   await p.fill("#contactmail", "reader@example.com");
   await p.click("#contactsend");
   await p.waitForFunction(
-    () => /reached the desk/.test(document.getElementById("contactstatus").textContent),
+    () => document.getElementById("contactstatus").dataset.state === "success",
     null, { timeout: 5000 });
-  ok("sending says so in words", true);
+  const acknowledgement = await p.locator("#contactstatus").innerText();
+  ok("it acknowledges provider acceptance without claiming inbox delivery",
+     /accepted for forwarding/.test(acknowledgement) && !/reached|delivered|inbox/i.test(acknowledgement),
+     acknowledgement);
+  ok("acceptance clears the fields", await p.locator("#contactmsg").inputValue() === "" &&
+     await p.locator("#contactmail").inputValue() === "");
   ok("...to the ajax endpoint, which is what keeps the reader on the page",
      sent.length === 1 && sent[0].url.includes("/ajax/"),
      JSON.stringify(sent.map((s) => s.url)));
@@ -105,6 +112,8 @@ console.log("=== the message goes out, and nothing of ours goes with it ===");
   await p.waitForFunction(() => !document.getElementById("contactbox").open, null,
                           { timeout: 5000 });
   ok("...then it closes itself, so there is nothing left to dismiss", true);
+  ok("...and returns keyboard focus to the opener",
+     await p.locator("#contactopen").evaluate(el => el === document.activeElement));
   await p.close();
 }
 
@@ -120,7 +129,7 @@ console.log("\n=== a send that fails keeps what was written ===");
   await p.fill("#contactmsg", "Something worth keeping.");
   await p.click("#contactsend");
   await p.waitForFunction(
-    () => /did not send/.test(document.getElementById("contactstatus").textContent),
+    () => /confirmation did not arrive/.test(document.getElementById("contactstatus").textContent),
     null, { timeout: 5000 });
   const r = await p.evaluate(() => ({
     open: document.getElementById("contactbox").open,
@@ -130,6 +139,176 @@ console.log("\n=== a send that fails keeps what was written ===");
   ok("it stays open, keeps the message and can be tried again",
      r.open && r.kept === "Something worth keeping." && r.canRetry, JSON.stringify(r));
   await p.close();
+}
+
+// These are the footer's own controls on Services, not the separate Services enquiry form.
+// Drive both widths through keyboard events in headless Chromium. Every provider request is
+// intercepted, including the retries. An HTTP 200 alone must never erase a reader's message.
+for (const width of [1280, 390]) {
+  const options = { ...CTX, viewport: { width, height: width === 390 ? 844 : 900 } };
+  const openWithKeyboard = async p => {
+    await p.locator("#contactopen").focus();
+    await p.keyboard.press("Enter");
+    await p.waitForFunction(() => document.getElementById("contactbox").open);
+  };
+  const waitForState = (p, state) => p.waitForFunction(
+    value => document.getElementById("contactstatus").dataset.state === value, state);
+  const screenshot = async (p, state) => {
+    if (SHOTS) await p.screenshot({ path: path.join(SHOTS, `footer-${width}-${state}.png`) });
+  };
+
+  console.log(`\n=== footer rejection, uncertainty and retry at ${width}px ===`);
+  for (const failure of ["rejected", "string-false", "missing-success", "null-json", "invalid-json",
+                         "server", "network", "timeout"]) {
+    const p = await browser.newPage(options);
+    let attempts = 0;
+    const sent = [];
+    await p.route("**/formsubmit.co/**", async route => {
+      attempts++;
+      sent.push(JSON.parse(route.request().postData()));
+      if (attempts > 1) return route.fulfill({ status: 200, contentType: "application/json",
+                                             body: '{"success":true}' });
+      if (failure === "timeout") return; // AbortController, advanced by the browser clock below.
+      if (failure === "network") return route.abort();
+      const bodies = { "string-false": '{"success":"false"}', "missing-success": '{}',
+                       "null-json": 'null', "invalid-json": 'broken', "server": '{"success":true}' };
+      return route.fulfill({ status: failure === "server" ? 500 : 200,
+        contentType: "application/json", body: bodies[failure] || '{"success":false}' });
+    });
+    await p.goto(`${ORIGIN}/services/`, { waitUntil: "domcontentloaded" });
+    if (failure === "timeout") await p.clock.install();
+    await openWithKeyboard(p);
+    const message = 'Keep <markup> & symbols exactly.\nThis is the second line.';
+    await p.locator("#contactmsg").fill(message);
+    await p.locator("#contactmail").fill("reader@example.com");
+    const requested = failure === "timeout"
+      ? p.waitForRequest(request => request.url().includes("/ajax/")) : null;
+    await p.locator("#contactsend").focus();
+    await p.keyboard.press("Enter");
+    if (failure === "timeout") {
+      await p.waitForFunction(() => document.getElementById("contactform").getAttribute("aria-busy") === "true");
+      await requested;
+      await p.clock.fastForward(15001);
+    }
+    await waitForState(p, "error");
+    ok(`${failure} at ${width}px keeps both fields and allows retry`,
+       await p.locator("#contactmsg").inputValue() === message &&
+       await p.locator("#contactmail").inputValue() === "reader@example.com" &&
+       await p.locator("#contactsend").isEnabled() &&
+       await p.locator("#contactform").getAttribute("aria-busy") === null &&
+       await p.locator("#contactsend").innerText() === "Send" &&
+       await p.locator("#contactbox").evaluate(box => box.open));
+    ok(`${failure} at ${width}px never claims success`,
+       !/accepted|reached|delivered/i.test(await p.locator("#contactstatus").innerText()));
+    if (failure === "rejected") await screenshot(p, "rejected");
+    await p.keyboard.press("Escape");
+    ok(`${failure} at ${width}px returns focus to the opener`,
+       await p.locator("#contactopen").evaluate(el => el === document.activeElement));
+    await openWithKeyboard(p);
+    ok(`${failure} at ${width}px survives close and reopen`,
+       await p.locator("#contactmsg").inputValue() === message &&
+       await p.locator("#contactmail").inputValue() === "reader@example.com" &&
+       await p.locator("#contactmsg").evaluate(el => el === document.activeElement));
+    await p.locator("#contactsend").focus();
+    await p.keyboard.press("Enter");
+    await waitForState(p, "success");
+    ok(`${failure} at ${width}px retries the exact payload and accepts boolean true`,
+       attempts === 2 && JSON.stringify(sent[0]) === JSON.stringify(sent[1]) &&
+       sent[0].message === message && await p.locator("#contactmsg").inputValue() === "" &&
+       await p.locator("#contactmail").inputValue() === "");
+    await p.close();
+  }
+
+  console.log(`\n=== footer validation, pending state and keyboard at ${width}px ===`);
+  {
+    const p = await browser.newPage(options);
+    let attempts = 0, release;
+    const response = new Promise(resolve => { release = resolve; });
+    await p.route("**/formsubmit.co/**", async route => {
+      attempts++;
+      await response;
+      return route.fulfill({ status: 200, contentType: "application/json", body: '{"success":true}' });
+    });
+    await p.goto(`${ORIGIN}/services/`, { waitUntil: "domcontentloaded" });
+    await openWithKeyboard(p);
+    await p.keyboard.press("Shift+Tab");
+    ok(`backward tab stays inside the modal at ${width}px`,
+       await p.locator("#contactbox").evaluate(box => box.contains(document.activeElement)));
+    await p.locator("#contactclose").focus();
+    await p.keyboard.press("Tab");
+    const edge = await p.evaluate(() => ({
+      inDialog: document.getElementById("contactbox").contains(document.activeElement),
+      inPage: document.hasFocus()
+    }));
+    // Chromium can tab through browser UI at the end of a native dialog. That must not
+    // focus the inert page behind it, and returning to the document must enter the dialog.
+    ok(`forward tab never enters the background page at ${width}px`, edge.inDialog || !edge.inPage);
+    if (!edge.inPage) await p.keyboard.press("Tab");
+    ok(`forward tab returns inside the modal at ${width}px`,
+       await p.locator("#contactbox").evaluate(box => box.contains(document.activeElement)));
+    await p.locator("#contactsend").focus();
+    await p.keyboard.press("Enter");
+    ok(`an empty message is rejected before fetch at ${width}px`, attempts === 0 &&
+       await p.locator("#contactmsg").evaluate(el => el === document.activeElement));
+    await p.locator("#contactmsg").fill("Keep this pending message.");
+    await p.locator("#contactmail").fill("invalid");
+    await p.locator("#contactsend").click();
+    ok(`an invalid optional email is rejected before fetch at ${width}px`, attempts === 0);
+    await p.locator("#contactmail").fill("");
+    await p.locator("#contactmsg").focus();
+    // The existing dictation buttons also belong in keyboard order when speech is supported.
+    const tabPastDictation = async () => {
+      await p.keyboard.press("Tab");
+      if (await p.locator("#contactbox .voice-input-button:focus").count()) await p.keyboard.press("Tab");
+    };
+    await tabPastDictation();
+    ok(`tab reaches the optional email at ${width}px`,
+       await p.locator("#contactmail").evaluate(el => el === document.activeElement));
+    await tabPastDictation();
+    ok(`tab reaches Send at ${width}px`,
+       await p.locator("#contactsend").evaluate(el => el === document.activeElement));
+    await p.keyboard.press("Enter");
+    await waitForState(p, "pending");
+    await p.waitForFunction(() => document.getElementById("contactsend").disabled);
+    await p.locator("#contactform").evaluate(form => {
+      form.dispatchEvent(new Event("submit", { bubbles: true, cancelable: true }));
+      form.dispatchEvent(new Event("submit", { bubbles: true, cancelable: true }));
+      document.getElementById("contactsend").click();
+    });
+    ok(`pending state protects inputs and announces progress at ${width}px`,
+       await p.locator("#contactform").getAttribute("aria-busy") === "true" &&
+       await p.locator('#contactform input:not(:disabled), #contactform textarea:not(:disabled)').count() === 0 &&
+       await p.locator("#contactsend").innerText() === "Sending" &&
+       await p.locator("#contactstatus").getAttribute("role") === "status" &&
+       /Sending/.test(await p.locator("#contactstatus").innerText()));
+    await screenshot(p, "pending");
+    await p.locator("#contactclose").focus();
+    await p.keyboard.press("Enter");
+    await openWithKeyboard(p);
+    await p.locator("#contactform").evaluate(form =>
+      form.dispatchEvent(new Event("submit", { bubbles: true, cancelable: true })));
+    ok(`close and reopen preserves pending state at ${width}px`,
+       await p.locator("#contactsend").isDisabled() &&
+       await p.locator("#contactmsg").inputValue() === "Keep this pending message." &&
+       await p.locator("#contactstatus").getAttribute("data-state") === "pending" &&
+       await p.locator("#contactclose").evaluate(el => el === document.activeElement));
+    release();
+    await waitForState(p, "success");
+    ok(`repeated clicks and reopened submits sent only once at ${width}px`, attempts === 1 &&
+       await p.locator("#contactsend").isEnabled() &&
+       await p.locator("#contactform").getAttribute("aria-busy") === null);
+    await screenshot(p, "accepted");
+    // Closing an accepted message must cancel its timer. It must not dismiss a new draft.
+    await p.keyboard.press("Escape");
+    await openWithKeyboard(p);
+    await p.locator("#contactmsg").fill("A new draft after acceptance.");
+    await p.waitForTimeout(1800);
+    ok(`an earlier acceptance cannot close a reopened draft at ${width}px`,
+       await p.locator("#contactbox").evaluate(box => box.open) &&
+       await p.locator("#contactmsg").inputValue() === "A new draft after acceptance." &&
+       await p.locator("#contactstatus").innerText() === "");
+    await p.close();
+  }
 }
 
 console.log("\n=== with no script at all ===");
