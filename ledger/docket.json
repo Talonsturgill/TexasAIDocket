@@ -23434,8 +23434,8 @@
    "confidence": "high"
   },
   {
-   "title": "University of North Texas opens an undergraduate artificial intelligence degree",
-   "summary": "The University of North Texas is offering a Bachelor of Science in Artificial Intelligence through its Department of Computer Science and Engineering, with the curriculum starting in 2026. The university describes it as a four year curriculum built around the applications of AI development rather than as a concentration inside a computer science degree. A named undergraduate credential in artificial intelligence changes what a hiring manager in the Dallas Fort Worth area is reading on a resume.",
+   "title": "University of North Texas lists an undergraduate artificial intelligence degree",
+   "summary": "The University of North Texas lists a Bachelor of Science in Artificial Intelligence through its Department of Computer Science and Engineering. The program page describes a four year curriculum starting in July 2026 and focused on the applications of AI development.",
    "topic": "health-and-education",
    "decider": {
     "name": "University of North Texas",
@@ -23469,7 +23469,7 @@
     }
    ],
    "id": "tx-2026-0133",
-   "last_verified": "2026-10-18",
+   "last_verified": "2026-10-24",
    "history": [
     {
      "date": "2026-09-08",
@@ -23556,6 +23556,10 @@
     {
      "date": "2026-10-24",
      "note": "The University of North Texas artificial intelligence degree is unconfirmed today, since the program page did not answer."
+    },
+    {
+     "date": "2026-10-24",
+     "note": "The university's program page confirms the named bachelor of science and the four year curriculum starting in July 2026."
     }
    ],
    "confidence": "high"
@@ -27498,8 +27502,8 @@
    ]
   },
   {
-   "title": "UT Arlington builds a federally funded AI tutor that withholds the answer and helps build Fort Worth police training on the same method",
-   "summary": "The University of Texas at Arlington published an account on September 10th, 2026 of an AI conversational tutor built on a National Science Foundation grant. The tutor is designed not to supply an answer. It asks the student questions and offers hints so the student reaches the answer, in the way a teacher does at a desk. The same account says the researchers are helping to develop Fort Worth Police Department training using real life scenarios, with prompts based on the principles of de escalation. The university describes the system judging whether an officer is listening and whether the officer follows what the other person wants to talk about. No evaluation result is published for either use.",
+   "title": "UT Arlington develops a federally funded AI tutor and tests related technology with Fort Worth police",
+   "summary": "The University of Texas at Arlington published an account on September 10th, 2026 of a project using a National Science Foundation grant to create an AI conversational tutor. The planned tutor will ask questions and offer hints so students can work toward answers themselves. The same account says testing has begun with the Fort Worth Police Department using real life training scenarios and prompts based on de escalation. The university describes the system judging whether an officer is listening and follows what the other person wants to discuss. A funding note separately attributes the police work to the U.S. Department of Justice. The release reports no evaluation results for either use.",
    "topic": "research-and-science",
    "decider": {
     "name": "The University of Texas at Arlington",
@@ -27523,7 +27527,7 @@
    ],
    "public_access": {
     "room": "contact_only",
-    "how": "The work is a funded university research project rather than a proceeding, so no comment window or hearing attaches to it. The university names both faculty leads and publishes a press contact on the release itself. The Fort Worth Police Department is a city department and the council that funds it meets in public.",
+    "how": "The release names the faculty leads and links to a press contact. It does not announce a public hearing or a comment window for either project.",
     "url": "https://www.uta.edu/news/news-releases/2026/09/10/uta-develops-ai-tutor-that-teaches-not-tells",
     "closes": null
    },
@@ -27541,11 +27545,11 @@
     },
     {
      "text": "Testing with the city police department has already started.",
-     "verbatim_quote": "helping to develop training using real-life scenarios with prompts based on the principles of de-escalation",
+     "verbatim_quote": "Deb has already begun testing the system with the Fort Worth Police Department",
      "source_url": "https://www.uta.edu/news/news-releases/2026/09/10/uta-develops-ai-tutor-that-teaches-not-tells",
      "source_title": "The University of Texas at Arlington, UTA develops AI tutor that teaches, not tells",
      "source_type": "primary_official",
-     "fetched": "2026-09-15",
+     "fetched": "2026-10-24",
      "id": "tx-2026-0161-c2"
     },
     {
@@ -27558,17 +27562,26 @@
      "id": "tx-2026-0161-c3"
     },
     {
-     "text": "The tutor is built to refuse the answer.",
+     "text": "The planned tutor will prompt students toward their own answers.",
      "verbatim_quote": "Back in Deb's classroom, her AI tutor will not provide answers. Instead, it will interact with students and prompt them with questions to help them discover the answers on their own, much like a classroom teacher helping a student at their desk.",
      "source_url": "https://www.uta.edu/news/news-releases/2026/09/10/uta-develops-ai-tutor-that-teaches-not-tells",
      "source_title": "The University of Texas at Arlington, UTA develops AI tutor that teaches, not tells",
      "source_type": "primary_official",
      "fetched": "2026-09-15",
      "id": "tx-2026-0161-c4"
+    },
+    {
+     "id": "tx-2026-0161-c5",
+     "text": "The police training work has separate Justice Department funding.",
+     "verbatim_quote": "funded by the U.S. Department of Justice",
+     "source_url": "https://www.uta.edu/news/news-releases/2026/09/10/uta-develops-ai-tutor-that-teaches-not-tells",
+     "source_title": "The University of Texas at Arlington, UTA develops AI tutor that teaches, not tells, police work funding note",
+     "source_type": "primary_official",
+     "fetched": "2026-10-24"
     }
    ],
    "id": "tx-2026-0161",
-   "last_verified": "2026-10-18",
+   "last_verified": "2026-10-24",
    "history": [
     {
      "date": "2026-09-15",
@@ -27640,6 +27653,10 @@
     {
      "date": "2026-10-24",
      "note": "UT Arlington's AI tutor that withholds the answer is unconfirmed today, since the university's release did not answer."
+    },
+    {
+     "date": "2026-10-24",
+     "note": "The university confirms the planned tutor and says police testing has begun. The police training is separately funded by the Justice Department. The release reports no evaluation results for either use."
     }
    ]
   },
@@ -28034,7 +28051,7 @@
   },
   {
    "title": "The University of North Texas takes a twenty million dollar gift and names a college of artificial intelligence after the donors",
-   "summary": "The University of North Texas announced a gift from Anuradha and Vikas Sinha and will name the Anuradha and Vikas Sinha College of Artificial Intelligence and Advanced Analytics. The university describes the college as an academic hub focused on the development, application and responsible use of artificial intelligence, intelligent systems and data analytics. The gift creates six permanent endowments covering college leadership, student scholarships and other purposes the announcement lists. One of the donors holds a doctorate from the university. Nothing in the announcement names a faculty appointment made, a student enrolled in the named college or a research result. What is decided here is the money and the name rather than a program already running.",
+   "summary": "The University of North Texas announced a gift from Anuradha and Vikas Sinha and will name the Anuradha and Vikas Sinha College of Artificial Intelligence and Advanced Analytics. The university describes the college as an academic hub focused on the development, application and responsible use of artificial intelligence, intelligent systems and data analytics. The gift will create six permanent endowments covering college leadership and student scholarships alongside other purposes listed in the announcement. The announcement covers the gift and the college's new name. It does not give a first enrollment date or a research result.",
    "topic": "health-and-education",
    "decider": {
     "name": "University of North Texas",
@@ -28052,13 +28069,13 @@
    "key_dates": [
     {
      "date": "2026-09-08",
-     "kind": "decided",
-     "note": "Date the university published the announcement"
+     "kind": "filed",
+     "note": "Date the university published the gift and naming announcement"
     }
    ],
    "public_access": {
     "room": "contact_only",
-    "how": "A university gift announcement carries no comment window. The University of North Texas System is governed by a board of regents that meets in public and posts its agendas, and a naming of this kind reaches that board. The announcement itself publishes the university's communications office as the contact.",
+    "how": "The university publishes its news office's contact details with the announcement. Questions about the gift and the college's name can go to that office.",
     "url": "https://news.unt.edu/news/2026/unt-receives-20-million-gift-to-advance-artificial-intelligence-advanced-analytics.html",
     "closes": null
    },
@@ -28095,14 +28112,14 @@
      "source_url": "https://news.unt.edu/news/2026/unt-receives-20-million-gift-to-advance-artificial-intelligence-advanced-analytics.html",
      "source_title": "University of North Texas announcement",
      "source_type": "primary_official",
-     "fetched": "2026-09-17",
+     "fetched": "2026-10-24",
      "id": "tx-2026-0165-c4",
      "text": "The university states the size of the gift and names the donors.",
-     "verbatim_quote": "A $20 million gift from Anuradha and Vikas Sinha will accelerate the University of North Texas' work in artificial intelligence and advanced analytics, creating new opportunities for students and faculty in fields rapidly reshaping industries, professions and society."
+     "verbatim_quote": "A $20 million gift from Anuradha and Vikas Sinha will accelerate"
     }
    ],
    "id": "tx-2026-0165",
-   "last_verified": "2026-10-18",
+   "last_verified": "2026-10-24",
    "history": [
     {
      "date": "2026-09-17",
@@ -28169,6 +28186,10 @@
     {
      "date": "2026-10-24",
      "note": "The gift naming a University of North Texas college of artificial intelligence is unconfirmed today, since the university's release did not answer."
+    },
+    {
+     "date": "2026-10-24",
+     "note": "The gift amount and donor names are confirmed in the university's announcement. Its publication date does not establish when a separate naming decision was made. The announcement describes endowments the gift will create."
     }
    ]
   },
@@ -29122,7 +29143,7 @@
   },
   {
    "title": "UT Arlington replaces its business analytics degrees with artificial intelligence degrees",
-   "summary": "The University of Texas at Arlington College of Business launched two artificial intelligence degrees on September 14th, 2026. They are a bachelor's program and a master's program in artificial intelligence. The new degrees take the place of the college's existing Business Analytics programs rather than sitting beside them. The college describes a redesigned curriculum aimed at using the technology for business strategy, productivity and decision making. New certificate offerings accompany the degrees. No start term and no first cohort size is stated in the announcement.",
+   "summary": "The University of Texas at Arlington College of Business announced on September 14th, 2026 that it had launched artificial intelligence degrees. They are a bachelor's program and a master's program in artificial intelligence. The new degrees take the place of the college's existing Business Analytics programs rather than sitting beside them. The college describes a redesigned curriculum aimed at using the technology for business strategy, productivity and decision making. New certificate offerings accompany the degrees. The announcement gives no exact launch date, start term or first cohort size.",
    "topic": "health-and-education",
    "decider": {
     "name": "University of Texas at Arlington College of Business",
@@ -29140,13 +29161,13 @@
    "key_dates": [
     {
      "date": "2026-09-14",
-     "kind": "decided",
-     "note": "Announcement date on the university's own newsroom"
+     "kind": "filed",
+     "note": "Publication date on the university's newsroom. The release does not give an exact launch date"
     }
    ],
    "public_access": {
     "room": "contact_only",
-    "how": "The announcement is published on the university's own newsroom. A prospective student reaches the college through the degree pages the announcement links to. No comment window attaches to a curriculum change a university makes for itself.",
+    "how": "The university's newsroom release links to a press contact. The announcement does not set a public comment window.",
     "url": "https://www.uta.edu/news/news-releases/2026/09/14/uta-launches-ai-degree-programs-for-business",
     "closes": null
    },
@@ -29181,7 +29202,7 @@
     }
    ],
    "id": "tx-2026-0173",
-   "last_verified": "2026-10-18",
+   "last_verified": "2026-10-24",
    "history": [
     {
      "date": "2026-09-19",
@@ -29244,6 +29265,10 @@
     {
      "date": "2026-10-24",
      "note": "UT Arlington's move from business analytics degrees to artificial intelligence degrees is unconfirmed today, since the university's release did not answer."
+    },
+    {
+     "date": "2026-10-24",
+     "note": "The university confirms that its AI for Business degrees replace Business Analytics and that certificates accompany them. September 14th, 2026 is the release's publication date. The release gives no exact launch date, start term or first cohort size."
     }
    ]
   },

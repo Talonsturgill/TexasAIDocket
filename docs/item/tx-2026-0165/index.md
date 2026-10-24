@@ -1,6 +1,6 @@
 # The University of North Texas takes a twenty million dollar gift and names a college of artificial intelligence after the donors
 
-The University of North Texas announced a gift from Anuradha and Vikas Sinha and will name the Anuradha and Vikas Sinha College of Artificial Intelligence and Advanced Analytics. The university describes the college as an academic hub focused on the development, application and responsible use of artificial intelligence, intelligent systems and data analytics. The gift creates six permanent endowments covering college leadership, student scholarships and other purposes the announcement lists. One of the donors holds a doctorate from the university. Nothing in the announcement names a faculty appointment made, a student enrolled in the named college or a research result. What is decided here is the money and the name rather than a program already running.
+The University of North Texas announced a gift from Anuradha and Vikas Sinha and will name the Anuradha and Vikas Sinha College of Artificial Intelligence and Advanced Analytics. The university describes the college as an academic hub focused on the development, application and responsible use of artificial intelligence, intelligent systems and data analytics. The gift will create six permanent endowments covering college leadership and student scholarships alongside other purposes listed in the announcement. The announcement covers the gift and the college's new name. It does not give a first enrollment date or a research result.
 
 - Topic: health-and-education
 - Decided by: University of North Texas (state-agency)
@@ -11,11 +11,11 @@ The University of North Texas announced a gift from Anuradha and Vikas Sinha and
 - Public access: Write to the decider
 - Take part: https://news.unt.edu/news/2026/unt-receives-20-million-gift-to-advance-artificial-intelligence-advanced-analytics.html
 
-- Last checked: 2026-10-18
+- Last checked: 2026-10-24
 
 ## Dates
 
-- 2026-09-08 · decided: Date the university published the announcement
+- 2026-09-08 · filed: Date the university published the gift and naming announcement
 
 ## How this decision moved
 
@@ -35,6 +35,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-22 · The university's release did not answer today, so the gift and what it funds are unconfirmed since their last check.
 - 2026-10-23 · The university's release could not be reached today, so the gift and the college it names stay unconfirmed since October 18th.
 - 2026-10-24 · The gift naming a University of North Texas college of artificial intelligence is unconfirmed today, since the university's release did not answer.
+- 2026-10-24 · The gift amount and donor names are confirmed in the university's announcement. Its publication date does not establish when a separate naming decision was made. The announcement describes endowments the gift will create.
 
 ## Evidence
 
@@ -60,7 +61,7 @@ Source (primary_official): https://news.unt.edu/news/2026/unt-receives-20-millio
 
 ### The university states the size of the gift and names the donors.
 
-> A $20 million gift from Anuradha and Vikas Sinha will accelerate the University of North Texas' work in artificial intelligence and advanced analytics, creating new opportunities for students and faculty in fields rapidly reshaping industries, professions and society.
+> A $20 million gift from Anuradha and Vikas Sinha will accelerate
 
 Source (primary_official): https://news.unt.edu/news/2026/unt-receives-20-million-gift-to-advance-artificial-intelligence-advanced-analytics.html
 

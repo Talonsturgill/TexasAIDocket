@@ -1,6 +1,6 @@
 # UT Arlington replaces its business analytics degrees with artificial intelligence degrees
 
-The University of Texas at Arlington College of Business launched two artificial intelligence degrees on September 14th, 2026. They are a bachelor's program and a master's program in artificial intelligence. The new degrees take the place of the college's existing Business Analytics programs rather than sitting beside them. The college describes a redesigned curriculum aimed at using the technology for business strategy, productivity and decision making. New certificate offerings accompany the degrees. No start term and no first cohort size is stated in the announcement.
+The University of Texas at Arlington College of Business announced on September 14th, 2026 that it had launched artificial intelligence degrees. They are a bachelor's program and a master's program in artificial intelligence. The new degrees take the place of the college's existing Business Analytics programs rather than sitting beside them. The college describes a redesigned curriculum aimed at using the technology for business strategy, productivity and decision making. New certificate offerings accompany the degrees. The announcement gives no exact launch date, start term or first cohort size.
 
 - Topic: health-and-education
 - Decided by: University of Texas at Arlington College of Business (state-agency)
@@ -11,11 +11,11 @@ The University of Texas at Arlington College of Business launched two artificial
 - Public access: Write to the decider
 - Take part: https://www.uta.edu/news/news-releases/2026/09/14/uta-launches-ai-degree-programs-for-business
 
-- Last checked: 2026-10-18
+- Last checked: 2026-10-24
 
 ## Dates
 
-- 2026-09-14 · decided: Announcement date on the university's own newsroom
+- 2026-09-14 · filed: Publication date on the university's newsroom. The release does not give an exact launch date
 
 ## How this decision moved
 
@@ -34,6 +34,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-22 · The university's release did not answer today, so the replacement of the business analytics degrees is unconfirmed since its last check.
 - 2026-10-23 · The university's release could not be reached today, so the change from business analytics degrees to AI degrees stays unconfirmed since October 18th.
 - 2026-10-24 · UT Arlington's move from business analytics degrees to artificial intelligence degrees is unconfirmed today, since the university's release did not answer.
+- 2026-10-24 · The university confirms that its AI for Business degrees replace Business Analytics and that certificates accompany them. September 14th, 2026 is the release's publication date. The release gives no exact launch date, start term or first cohort size.
 
 ## Evidence
 
