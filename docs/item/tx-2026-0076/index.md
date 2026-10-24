@@ -15,7 +15,7 @@ Oncor Electric Delivery has applied to amend its certificate of convenience and 
 - Public access: Public meeting
 - Take part: https://ftp.puc.texas.gov/public/puct-info/agency/om/082126Final.pdf
 
-- Last checked: 2026-10-21
+- Last checked: 2026-10-24
 
 ## Dates
 
@@ -49,6 +49,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-15 · Oncor's second west Texas line still stands as approved. The filings added since are compliance work.
 - 2026-10-18 · The commission's order approving Oncor's second west Texas line still stands. The filing index pages gave nothing to compare.
 - 2026-10-21 · The commission's order approving Oncor's second west Texas line still stands. Its filing index has grown from 514 to 531 entries since it was last counted.
+- 2026-10-24 · Oncor's application for the second 765 kV line across west Texas still stands as decided on the commission's docket.
 
 ## Evidence
 

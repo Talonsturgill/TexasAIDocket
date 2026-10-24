@@ -1,0 +1,79 @@
+{
+ "lens": "integrity",
+ "round": 3,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.8,
+   "why": "One floodlit night world with measured frames (3 at 3.0 to 1, 6 at scale, 4 with five enclosures); 6 a bar chart on an empty plate, 8 a loaf on a tablecloth, 2 primitive kit bodies, 5's flat tape and crate, 4's lit door shows a car, 9 the greyest wall."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "One world, one key, one accent meaning; camera move, lit and dark motif and the reversed close work; the reliefs sit a step outside; the close lifts."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.5,
+   "why": "Every numeral checked against the extraction; every round 1 and 2 repair verified. Looser points: 'humanoid robot' rests on c22's software sentence rather than a row quote; Megapack drawn as a door in the same wall as the vehicle lines; slide 4 says 'drawn here' rather than 'drawn to illustrate'; 'still under construction' stretches 'continued construction'."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.0,
+   "why": "What and who are clear; no county, deadline or action; a general stake."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 6.8,
+   "why": "Cover earns the swipe, 5 turns, 9 lands; 2 and 3 repeat a figure; 6 and 7 are detours."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.8,
+   "why": "Clean on every surface; a careful reader paraphrasing a filing."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.8,
+   "why": "No topic repeat; new world after three lastLight decks; taped empty bays repeat no. 56."
+  }
+ ],
+ "weighted_score": 6.9,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Fetch where each Texas row sits and NHTSA's next step before storyboarding.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 6,
+   "problem": "A diagram on an empty grey plate; flat 400 MW strip.",
+   "fix": "Raise the scale so the groove runs edge to edge, milled with lit and shadowed walls."
+  },
+  {
+   "slide": 8,
+   "problem": "A loaf on a tablecloth; straight skirt hem; disc wheels.",
+   "fix": "Cover pulled in under the sills and around the arches; camera at 0.9 m three quarter."
+  },
+  {
+   "slide": 2,
+   "problem": "Primitive kit bodies; wheels floating on blocks.",
+   "fix": "A three quarter crossover catching the rim light; tyres seated with contact."
+  },
+  {
+   "slide": 5,
+   "problem": "The lamp pool misses the bolts; flat tape; one flat crate face.",
+   "fix": "Aim the lamp pool onto the near bolt group; strap and bevel the crate."
+  },
+  {
+   "slide": 4,
+   "problem": "A car in the lit door behind the Megapack row; empty upper frame.",
+   "fix": "An enclosure in that door; camera toward 1.0 m."
+  }
+ ]
+}

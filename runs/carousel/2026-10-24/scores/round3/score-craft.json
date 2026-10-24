@@ -1,0 +1,84 @@
+{
+ "lens": "craft",
+ "round": 3,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.3,
+   "why": "Per frame 7.5, 6.5, 6.5, 6.5, 7.0, 5.0, 6.0, 5.5, 6.5. All real renders with black skies; four frames carry a visible defect: 6's flat groove and seam, 8's floating front tyre and tablecloth cover, 7's flat columns and footer grass, 2's toy cars, aliasing and plate blank. 1 and 5 pass four of five showstopper questions; 9 is the greyest."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 6.8,
+   "why": "Real devices; rotation passes; the worker cast flips between 1 and 4; the value track jumps at the close; the reliefs read as different stock; one skeleton on nine frames."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.0,
+   "why": "Every numeral traces and the scoping is careful; held under 9 because the quotes rest on the run's own extraction."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.0,
+   "why": "What, who and where; a general stake with nothing to watch next."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "Cover earns the swipe, 2 pays, 3 measures, 5 turns, 9 reverses the cover; 4, 6 or 7 could move."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.8,
+   "why": "Clean and precise; a careful clerk rather than a Texan."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "A new world, palette and opening move; plan reliefs recur from no. 56."
+  }
+ ],
+ "weighted_score": 7.1,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Conceive frame 6 as a physical object in the plant.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 6,
+   "problem": "Flat groove, a seam, blocks owning a fifth of the width, label halos.",
+   "fix": "A 20 px milled groove with lit and shadowed walls, a near black plate, the relief at 1.5x."
+  },
+  {
+   "slide": 8,
+   "problem": "The front tyre floats above its pad; tablecloth cover.",
+   "fix": "Pads under the tyre centres with contact; a raked windscreen line and the hem pulled in at the arches."
+  },
+  {
+   "slide": 7,
+   "problem": "Flat columns; pads in black; footer grass.",
+   "fix": "W-section columns; stage the near column and pads; a scatter avoid over the footer."
+  },
+  {
+   "slide": 2,
+   "problem": "Toy cars, aliasing, a plate blank, no lamp rows.",
+   "fix": "Supersample, delete the plate recess, tilt up to show a lit lamp row."
+  },
+  {
+   "slide": 9,
+   "problem": "Greyest frame; blob lamp casts.",
+   "fix": "Stage the dark door so the wall falls off; leg casts under the flood."
+  },
+  {
+   "slide": 4,
+   "problem": "The worker cast runs left against frame 1.",
+   "fix": "Read the key from the deck rig; weather the plinths."
+  }
+ ]
+}

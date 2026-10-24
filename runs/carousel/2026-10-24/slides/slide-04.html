@@ -1,0 +1,78 @@
+<!doctype html>
+<!-- 2026-10-24, frame 4 of 9. Archetype FIGURE_SCALE. A spatial scene through txthree.js in the deck's floodlit world: a row of illustrative battery enclosures on the apron outside the plant's fourth lit bay, one enclosure per ten GWh of the Megapack row, read from figures.json, a worker at the row's end for scale. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>.dek { width:760px !important; }</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site" style="font-size:24px">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="line-height:1.04">Tesla says Megafactory Texas began production</h1>
+<p class="dek" data-follow="24">The table lists Megapack in Texas at 50 GWh, status Production. The update's highlights call the same 50 GWh planned capacity. Each enclosure drawn here stands for a fifth of it.</p>
+<script>window.FIG = {"production_rows": 4, "construction_rows": 1, "megapack_units": 5};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-24-apron.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Megapack, Texas row", counter: "04 / 09", src: "c5 c25 c26", fit: { min: 70, max: 104, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 30, near: 0.1, far: 3000 });
+  /* THE FIGURE, from figures.json: one lit bay per Texas row whose status reads Production, then one dark bay for the
+   * row that reads Construction, in the table's order */
+  const lit = [];
+  for (let i = 0; i < FIG.production_rows; i++) lit.push(true);
+  for (let i = 0; i < FIG.construction_rows; i++) lit.push(false);
+  const wall = K.make('plant_wall', { lit }); TXT.add(R, wall);
+  const doors = wall.userData.doors, dark = doors[doors.length - 1];
+  /* the dark bay: two work lamps on its threshold, bluebonnet tape across it */
+  { const tp = CH.box(CH.BAY.door, 0.006, 0.4, CH.mats(THREE, K).tape, dark.x, 0.006, 0.6); R.scene.add(tp); }
+  [-3.2, 3.6].forEach((dx, i) => { const l = K.make('tripod_work_lamp', { aim: -0.45, light: 0.12 }); l.position.set(dark.x + dx, 0, 1.6 + i * 0.6); l.rotation.y = Math.PI + 0.5 - i * 1.0; TXT.add(R, l); TXT.contact(R, l, { dirt: false, grit: false }); });
+  /* each lit bay's line: bodies on carriers, crossovers in the first, covered bodies in the next two, enclosures in the
+   * fourth. No product is drawn, and the covers keep it so */
+  doors.forEach((d, i) => {
+    if (!d.lit) return;
+    for (let k = 0; k < 3; k++) {
+      const z = -5 - k * 7.6;
+      if (i === 3) { const u = K.make('megapack_unit', {}); u.rotation.y = Math.PI / 2; u.position.set(d.x, 0, z); TXT.add(R, u); continue; }
+      const c = K.make('line_carrier', {}); c.position.set(d.x, 0, z); TXT.add(R, c);
+      const body = i === 0 ? K.make('crossover', { color: 0x8a8c8e, metallic: false, sensors: false, seed: k }) : K.make('covered_pod', {});
+      body.position.set(d.x, c.userData.seat, z); TXT.add(R, body);
+    }
+  });
+  /* THE FIGURE, from figures.json: one enclosure per gwh_per_unit GWh of the Megapack row, in a row on the apron in
+   * front of the lit bays, the wall behind them */
+  const units = [], d3 = doors[3];
+  for (let i = 0; i < FIG.megapack_units; i++) { const u = K.make('megapack_unit', {}); u.position.set(8 + i * 8.6, 0, 30); TXT.add(R, u); units.push(u); }
+  const worker = K.make('person', { role: 'worker', pose: 'hands_on_hips', vest: false, hat: true, seed: 11 });
+  worker.scale.setScalar(0.92); worker.position.set(13.5, 0, 32.4); worker.rotation.y = 0.9; TXT.add(R, worker);
+  TXT.ground(R, { surface: 'concrete', size: 600, color: 0x6a6761, seed: 24, tile: 5, joints: 1 });
+  const from = [-7, 1.4, 39.5];
+  const look = CH.aim(THREE, R, TXT, from, [4.4, 1.3, 30.8], 250, 960, 50);
+  TXT.frame(R, { fov: 50, from, look });
+  TXT.sky(R);
+  CH.warm(R, 0.25);
+  { const spec = CH.rigSpec(W, 70, 4096); TXT.deckRig(R, spec, CH.rigOpts([30, 0, 0], { distance: 140, shadowFar: 400, normalBias: 0.02 })); }
+  CH.unacne(R, 0.02);
+  TXT.contact(R, worker);
+  units.forEach((u) => TXT.contact(R, u));
+  TXT.stage(R, [...units, worker], { behind: 0.6, depth: 1.6, pool: false });
+  TXT.weather(R, { grime: 0.3, height: 1.2, mottle: 0.22 });
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0.5, pad: 90, veil: 0.25, footWash: 0.54 });
+  /* the footer rides the full width foot wash; a per line knock read as a smudge */
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

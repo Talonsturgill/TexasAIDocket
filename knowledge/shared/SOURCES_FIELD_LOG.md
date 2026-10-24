@@ -2301,3 +2301,24 @@ preprint, and say which is which.
 **www.utsouthwestern.edu answered 200** on the October 20th release, the source of c1 to c25. **www.researchsquare.com
 answered 200** on preprint rs-9249025 v1, both the abstract page (c26) and the PDF full text (c27 to c41). The
 preprint tested two models where the release describes three, so no preprint figure stands in for a published one.
+
+## 2026-10-24
+
+**assets-ir.tesla.com served the Q3 2026 Update PDF** to `fetch_doc.py`, which extracted every page (c1 to c34). A
+WebFetch re-fetch the same day returned the PDF as undecoded binary, so the fact check matched quotes against the
+`fetch_doc` extraction. **The PDF prints no publication date.** Only the webcast date is in it, and claims taken from
+it carry none.
+
+**static.nhtsa.gov served the AQ26002 resume PDF** to `fetch_doc.py` (c35 to c44). WebFetch returned it undecoded,
+as with Tesla's PDF.
+
+**pmc.ncbi.nlm.nih.gov answered a reCAPTCHA page** rather than the article behind tx-2026-0137, so all eight quotes
+read as missing. That is a challenge page, not a content change, and the item was left unstamped.
+
+**The CivicPlus county and city sites, dir.texas.gov and globenewswire.com answered 403** to the project's reader,
+**rice.edu answered 406**, and **www.uta.edu and unt.edu still fail TLS** through the container's proxy. The items
+resting on them carry a dated unconfirmed line.
+
+**www.tahc.texas.gov's emergency news page** carries the screwworm counts behind tx-2026-0218, and the run updated
+the counts from what it carries today. Two older quotes (c11, c17) are not in the static fetch, and reverify says it has
+never found them there.

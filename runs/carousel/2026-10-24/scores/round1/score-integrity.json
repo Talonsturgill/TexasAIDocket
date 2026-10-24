@@ -1,0 +1,81 @@
+{
+ "lens": "integrity",
+ "round": 1,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.5,
+   "why": "Every frame rendered and dark; 1, 4 and 5 strongest. Frame 8's cover is a front skirt on a bare four-door body with mirror stalks; 6 is a bordered tray with a flat bar; 7 reads as wireframe; 3 has a dead slab; 9 is the greyest frame with blob lamp shadows; 2's kit cars read primitive."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "One world, one material vocabulary, one accent meaning; the camera walk and the reversed close work. One page skeleton on nine frames; the value arc lifts at the close; the reliefs sit slightly outside the world."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 5.0,
+   "why": "Primary sources and traced numerals, but the cover and title universal 'Tesla's Texas rows read Production' is refuted by c16 and c17 (Cathode and Lithium, Early Ramp). Slide 6 attaches c22's autonomy software to the Cortex rows where the source attaches it to the 400 MW plan. Slide 8's 'No count is given.' names no set. The first comment dates the update October 21st, which the PDF never prints."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.0,
+   "why": "A status column, not a decision; no county, plant, deadline or next step; the spine is an absence."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "Cover reads, 2 pays, 5 turns, 9 lands; 6 and 7 are detours and 8 changes subject late."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "Clean and on register; reads like an auditor transcribing a table; little regional specificity."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.0,
+   "why": "New cover move, but the floodlit world ran October 20th and empty taped bays beside lit bays repeat no. 56."
+  }
+ ],
+ "weighted_score": 6.19,
+ "hard_fails": [
+  "An unverified fact presented as verified, a universal the run's own claims refute. Slide 1's hook and the document title read 'Tesla's Texas rows read Production. The robot row reads Construction.' The source's page 7 lists two Texas rows reading Early Ramp, Cathode Materials 10 GWh and Lithium Refining 30 GWh (c16, c17), and the deck itself calls the page 7 table 'the Texas rows' on slide 6."
+ ],
+ "ship": false,
+ "one_sentence_fix": "Rewrite the cover hook and title to the set the source supports, the vehicle and Megapack rows, and attach the autonomy software clause to the 400 MW plan.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 8,
+   "problem": "Cover is a skirt over the nose; bare four-door body, rear glass and mirror stalks on a slide about a car with no mirrors (c42).",
+   "fix": "One continuous cloth over the whole body to the rocker line, mirror stalks and rear glass deleted, a single covered two-seat form."
+  },
+  {
+   "slide": 6,
+   "problem": "A bevelled tray floats in black; the 400 MW groove is a flat blue bar.",
+   "fix": "Plate bleeds off three edges, groove milled with a lit upper wall and shadowed lower wall, tape as raised vinyl."
+  },
+  {
+   "slide": 7,
+   "problem": "Flat members read as a wireframe lattice; pads small and far.",
+   "fix": "Nearest columns as W sections with flanges catching the flood; camera lower so a base plate and pad fill the lower third."
+  },
+  {
+   "slide": 9,
+   "problem": "Greyest frame; flat mid-grey wall face; blob lamp shadows.",
+   "fix": "Hard leg casts from the lamps; break the wall face with reveals, staining and a darker parapet."
+  },
+  {
+   "slide": 3,
+   "problem": "Empty mid-grey field right of the short channels.",
+   "fix": "Tighten the relief so the channels sit as one block and crop the slab to it."
+  }
+ ]
+}

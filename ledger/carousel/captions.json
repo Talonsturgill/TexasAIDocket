@@ -19,12 +19,12 @@
   "recent_lists_note": "These three lists are the exclusions handed to the caption room and they were hand-kept. On 2026-08-20 the fourth panel found structures_recent reading [\"ledger\", \"pivot\", \"question and answer\"] when the last three shipped structures were [\"ledger\", \"two columns\", \"question and answer\"], so it dropped a structure that IS off the table and held one that is not. Wrong in both directions from one hand edit. They are now recomputed from entries and are ordered OLDEST FIRST, matching the entries list, and scripts/carousel/caption_check.py should derive them rather than read them. That is an upgrade-lane change and it is written into this run's proposals."
  },
  "opening_moves_recent": [
-  "the object",
   "the plain question",
   "the two things",
   "the number that is wrong",
   "the correction",
-  "the who"
+  "the who",
+  "the place"
  ],
  "entries": [
   {
@@ -1054,15 +1054,34 @@
    ],
    "critic_note": "Neither candidate passed. B's first line (\"UT Southwestern in Dallas changed one line.\") shared October 22nd's skeleton and read as the excluded \"the who\"; its \"Beyond Dallas\" line cast Dallas as a hospital exploring AI, which the claims refuse, and its close reworded the excluded question move. A ran 187 characters over the band, carried an unclaimed framing sentence and narrated the deck. Both tied \"nearly 10%\" to the one wording pair, which the c39 note warns against. The critic wrote the one rewrite from B's opening and structure with A's before and after pairing, and the run filed it after caption_check passed.",
    "move_note": "Opens on Dallas and the one rewritten line, widens to the three models, the before and after, the record sources and hospitals exploring AI, and closes on the first author's ask and the models the release leaves unnamed."
+  },
+  {
+   "date": "2026-10-24",
+   "carousel_no": 59,
+   "opening_move": "the quiet decision",
+   "structure": "Ledger",
+   "closing_move": "Ask the one question the decision leaves open.",
+   "first_line": "Tesla's humanoid robot production began in California.",
+   "words": 132,
+   "commas": 4,
+   "commas_per_100w": 3.03,
+   "chars": 841,
+   "hashtags": [
+    "#Tesla",
+    "#Optimus",
+    "#Megapack"
+   ],
+   "critic_note": "The caption critic refused both candidates. Candidate A (an object ledger) and candidate B (a quiet question and answer) each led on the Cybercab and the federal audit query, a story the record told on September 10th and October 16th. It wrote the shipped caption, which opens on the Optimus row, the one line in the table nobody had covered, and then widens to the vehicle and Megapack rows and the footnote that installed capacity is not output. On round 1 of the panel the opening line moved from \"is made in California\" to \"production began in California\", because c27 says production began in Fremont, not that the robot is made only there.",
+   "move_note": "Opens on where robot production began, a fact settled with no announcement, then lays out what the table says, the Optimus row at Construction and the vehicle and Megapack rows at Production, then what it does not, since installed capacity is not output, and to the vehicle and Megapack rows at Production, then the footnote that installed capacity is not output, and closes on how much Tesla actually made in Texas."
   }
  ],
  "structures_recent": [
-  "Ledger",
   "Two columns",
-  "Ladder"
+  "Ladder",
+  "Zoom out"
  ],
  "closing_moves_recent": [
-  "ask the one question the decision leaves open"
+  "point at the record, plainly, without a call to action"
  ],
  "_derived_note": "opening_moves_recent, structures_recent and closing_moves_recent are DERIVED by out/<date>/update_ledgers.py every run, by ledger_check.windows() and ledger_check's own slice of the entries before the newest date. They were hand-maintained until 2026-09-10 and had drifted, which mis-briefed the caption room on that run: the list said Ledger was excluded when it was not, and never mentioned Two columns or the close no. 19 actually shipped."
 }

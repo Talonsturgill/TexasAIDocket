@@ -1,0 +1,232 @@
+{
+ "date": "2026-10-24",
+ "carousel_no": 59,
+ "document_title": "Tesla's Texas vehicle and Megapack rows read Production. The robot row reads Construction",
+ "_note": "Slide strings read off the render report's text nodes and each frame's own source line by build_copy.py.",
+ "caption": "Tesla's humanoid robot production began in California.\n\nIts row under Tesla's Texas label reads Construction, with no capacity figure. Tesla defines construction as factory and infrastructure buildout plus tool installation. Optimus production began on high volume lines in Fremont.\n\nThe vehicle and Megapack rows under the same label read Production. Model Y sits at more than 375,000 a year. The Cybertruck and the Cybercab sit at more than 125,000 each. Megapack sits at 50 GWh.\n\nThe table measures installed capacity. Tesla's own footnote says that is not the current production rate. It ties production rates to uptime, component supply, downtime for factory upgrades, regulation and other factors. The update gives no count of Cybercabs built.\n\nHow much did Tesla actually make in Texas in the third quarter?\n\n#Tesla #Optimus #Megapack",
+ "slides": {
+  "S1": {
+   "n": 1,
+   "file": "slide-01.html",
+   "kicker": "Tesla, Texas",
+   "headline": "Tesla's Texas vehicle and Megapack rows read Production. The robot row reads Construction.",
+   "claims": [
+    "c2",
+    "c3",
+    "c4",
+    "c5",
+    "c6"
+   ],
+   "cite": "c2 c3 c4 c5 c6",
+   "body": "The lit doors are Model Y, Cybertruck, Cybercab and Megapack under Tesla's Texas label. The dark door is Optimus, its humanoid robot. Drawn to illustrate.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "Tesla's Texas vehicle and Megapack rows read Production. The robot row reads Construction.",
+    "The lit doors are Model Y, Cybertruck, Cybercab and Megapack under Tesla's Texas label. The dark door is Optimus, its humanoid robot. Drawn to illustrate.",
+    "Tesla, Texas",
+    "01 / 09",
+    "c2 c3 c4 c5 c6"
+   ]
+  },
+  "S2": {
+   "n": 2,
+   "file": "slide-02.html",
+   "kicker": "Model Y, Texas row",
+   "headline": "More than 375,000 Model Y a year, installed",
+   "claims": [
+    "c2",
+    "c8"
+   ],
+   "cite": "c2 c8",
+   "body": "Tesla lists Model Y in Texas at more than 375,000 a year of installed capacity, status Production. It also says installed capacity is not the current production rate. The bay is drawn to illustrate.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "More than 375,000 Model Y a year, installed",
+    "Tesla lists Model Y in Texas at more than 375,000 a year of installed capacity, status Production. It also says installed capacity is not the current production rate. The bay is drawn to illustrate.",
+    "Model Y, Texas row",
+    "02 / 09",
+    "c2 c8"
+   ]
+  },
+  "S3": {
+   "n": 3,
+   "file": "slide-03.html",
+   "kicker": "The table, measured",
+   "headline": "Three vehicle rows on one scale",
+   "claims": [
+    "c2",
+    "c3",
+    "c4",
+    "c8"
+   ],
+   "cite": "c2 c3 c4 c8",
+   "body": "Each channel's length is the floor Tesla prints for its row. The Model Y floor is three times the Cybertruck and Cybercab floors, each printed as more than.",
+   "labels": [
+    "Model Y >375,000",
+    "Cybertruck >125,000",
+    "Cybercab >125,000",
+    "installed annual capacity, not output"
+   ],
+   "strings": [
+    "texasaidocket.com",
+    "Three vehicle rows on one scale",
+    "Each channel's length is the floor Tesla prints for its row. The Model Y floor is three times the Cybertruck and Cybercab floors, each printed as more than.",
+    "Model Y >375,000",
+    "Cybertruck >125,000",
+    "Cybercab >125,000",
+    "installed annual capacity, not output",
+    "The table, measured",
+    "03 / 09",
+    "c2 c3 c4 c8"
+   ]
+  },
+  "S4": {
+   "n": 4,
+   "file": "slide-04.html",
+   "kicker": "Megapack, Texas row",
+   "headline": "Tesla says Megafactory Texas began production",
+   "claims": [
+    "c5",
+    "c25",
+    "c26"
+   ],
+   "cite": "c5 c25 c26",
+   "body": "The table lists Megapack in Texas at 50 GWh, status Production. The update's highlights call the same 50 GWh planned capacity. Each enclosure drawn here stands for a fifth of it.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "Tesla says Megafactory Texas began production",
+    "The table lists Megapack in Texas at 50 GWh, status Production. The update's highlights call the same 50 GWh planned capacity. Each enclosure drawn here stands for a fifth of it.",
+    "Megapack, Texas row",
+    "04 / 09",
+    "c5 c25 c26"
+   ]
+  },
+  "S5": {
+   "n": 5,
+   "file": "slide-05.html",
+   "kicker": "Optimus, Texas row",
+   "headline": "Construction, with no figure",
+   "claims": [
+    "c6",
+    "c7",
+    "c11",
+    "c27"
+   ],
+   "cite": "c6 c7 c11 c27",
+   "body": "Tesla's Texas row for Optimus gives no capacity figure. Tesla defines construction as buildout and tool installation. Robot production began in Fremont, California. The bay is drawn to illustrate.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "Construction, with no figure",
+    "Tesla's Texas row for Optimus gives no capacity figure. Tesla defines construction as buildout and tool installation. Robot production began in Fremont, California. The bay is drawn to illustrate.",
+    "Optimus, Texas row",
+    "05 / 09",
+    "c6 c7 c11 c27"
+   ]
+  },
+  "S6": {
+   "n": 6,
+   "file": "slide-06.html",
+   "kicker": "Cortex, Texas rows",
+   "headline": "Training compute, in megawatts",
+   "claims": [
+    "c12",
+    "c13",
+    "c14",
+    "c21",
+    "c22"
+   ],
+   "cite": "c12 c13 c14 c21 c22",
+   "body": "The rows under Tesla's Texas label list Cortex 1 at more than 105 MW and Cortex 2 at more than 120. Tesla plans 400 MW by year end for vehicle and humanoid robot autonomy software and names no place.",
+   "labels": [
+    "Cortex 1 >105 MW",
+    "Cortex 2 >120 MW",
+    "other compute, place not given",
+    "400 MW planned, place not given"
+   ],
+   "strings": [
+    "texasaidocket.com",
+    "Training compute, in megawatts",
+    "The rows under Tesla's Texas label list Cortex 1 at more than 105 MW and Cortex 2 at more than 120. Tesla plans 400 MW by year end for vehicle and humanoid robot autonomy software and names no place.",
+    "Cortex 1 >105 MW",
+    "Cortex 2 >120 MW",
+    "other compute, place not given",
+    "400 MW planned, place not given",
+    "Cortex, Texas rows",
+    "06 / 09",
+    "c12 c13 c14 c21 c22"
+   ]
+  },
+  "S7": {
+   "n": 7,
+   "file": "slide-07.html",
+   "kicker": "Austin Fab",
+   "headline": "The Austin Fab is still under construction",
+   "claims": [
+    "c23",
+    "c24"
+   ],
+   "cite": "c23 c24",
+   "body": "Tesla says it kept building the Austin Fab this quarter and plans to start commissioning equipment there in 2027. The steel is drawn to illustrate.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "The Austin Fab is still under construction",
+    "Tesla says it kept building the Austin Fab this quarter and plans to start commissioning equipment there in 2027. The steel is drawn to illustrate.",
+    "Austin Fab",
+    "07 / 09",
+    "c23 c24"
+   ]
+  },
+  "S8": {
+   "n": 8,
+   "file": "slide-08.html",
+   "kicker": "Cybercab, Austin",
+   "headline": "Cybercab deployment began in Austin. Tesla gives no count.",
+   "claims": [
+    "c28",
+    "c34",
+    "c35",
+    "c42",
+    "c43"
+   ],
+   "cite": "c28 c34 c35 c42 c43",
+   "body": "The cars go into its Austin Robotaxi fleet. The update gives no count of cars built. Federal regulators are auditing how Tesla certified a car that lacks permanently attached pedals and steering wheel. The car is drawn to illustrate.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "Cybercab deployment began in Austin. Tesla gives no count.",
+    "The cars go into its Austin Robotaxi fleet. The update gives no count of cars built. Federal regulators are auditing how Tesla certified a car that lacks permanently attached pedals and steering wheel. The car is drawn to illustrate.",
+    "Cybercab, Austin",
+    "08 / 09",
+    "c28 c34 c35 c42 c43"
+   ]
+  },
+  "S9": {
+   "n": 9,
+   "file": "slide-09.html",
+   "kicker": "The footnote",
+   "headline": "A lit bay is a status, not a count",
+   "claims": [
+    "c8",
+    "c9",
+    "c10",
+    "c34"
+   ],
+   "cite": "c8 c9 c10 c34",
+   "body": "Tesla says installed capacity is not the current production rate, which turns on uptime, supply, downtime for upgrades, regulation and other factors. Its update gives no count of Cybercabs built.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "A lit bay is a status, not a count",
+    "Tesla says installed capacity is not the current production rate, which turns on uptime, supply, downtime for upgrades, regulation and other factors. Its update gives no count of Cybercabs built.",
+    "The footnote",
+    "09 / 09",
+    "c8 c9 c10 c34"
+   ]
+  }
+ }
+}

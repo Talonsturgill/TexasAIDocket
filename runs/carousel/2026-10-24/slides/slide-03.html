@@ -1,0 +1,82 @@
+<!doctype html>
+<!-- 2026-10-24, frame 3 of 9. Archetype DIAGRAM. A material relief through txbench.js under the deck's light: the apron in plan, three line channels milled into dark sealed concrete, each with a crowned steel rail and a galvanized stop block at its measured end. Every channel's length is its row's installed capacity at one scale, read from figures.json. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>.dek { width:820px !important; }</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site" style="font-size:24px">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="line-height:1.04">Three vehicle rows on one scale</h1>
+<p class="dek" data-follow="24">Each channel's length is the floor Tesla prints for its row. The Model Y floor is three times the Cybertruck and Cybercab floors, each printed as more&nbsp;than.</p>
+<div class="lab" id="l1">Model Y &gt;375,000</div>
+<div class="lab" id="l2">Cybertruck &gt;125,000</div>
+<div class="lab" id="l3">Cybercab &gt;125,000</div>
+<div class="lab" id="l4" style="font-size:28px">installed annual capacity, not output</div>
+<script>window.FIG = {"model_y": 375000, "cybertruck": 125000, "cybercab": 125000};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-24-apron.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script src="@@ASSETS@@/js/txbench.js"></script>
+<script>
+window.renderReady = (async () => {
+  const cx = await CH.bootFlat({ kicker: "The table, measured", counter: "03 / 09", src: "c2 c3 c4 c8", fit: { min: 76, max: 104, maxLines: 2 } });
+  TX.reseed(20261024);
+  /* THE FIGURES, from figures.json: one pixel scale for all three channels, set so the Model Y channel spans LONG px.
+   * Each channel's length is its row's installed capacity times that scale. */
+  const X0 = 112, LONG = 830, PX = LONG / FIG.model_y;
+  const rows = [
+    { y: 742, len: FIG.model_y * PX },
+    { y: 952, len: FIG.cybertruck * PX },
+    { y: 1112, len: FIG.cybercab * PX }
+  ];
+  const CW = 66, DEPTH = 20, RAIL = 12, STOP_H = 30, STOP_L = 40;
+  const joints = [500, 860];
+  /* a saw cut fades in and out along its length, so it reads as a cut and never as an axis tick */
+  const ss = (a, b, x) => { const t = Math.max(0, Math.min(1, (x - a) / (b - a))); return t * t * (3 - 2 * t); };
+  const jf = (Y) => ss(640, 740, Y) * (1 - ss(1000, 1100, Y));
+  /* the stop block sits INSIDE each measured length, so the far face of every channel lands at X0 + len and the visible ratio is the figure's */
+  const chan = (X, Y) => rows.find((r) => Y >= r.y - CW / 2 && Y <= r.y + CW / 2 && X >= X0 && X <= X0 + r.len - STOP_L);
+  const stop = (X, Y) => rows.find((r) => Y >= r.y - CW / 2 - 8 && Y <= r.y + CW / 2 + 8 && X > X0 + r.len - STOP_L && X <= X0 + r.len);
+  function h(X, Y) {
+    const s = stop(X, Y); if (s) return STOP_H - 3 * Math.pow(Math.abs(Y - s.y) / (CW / 2 + 8), 6);
+    const c = chan(X, Y);
+    if (c) { const d = Math.abs(Y - c.y); if (d < RAIL / 2) return -DEPTH + RAIL * Math.sqrt(1 - Math.pow(d / (RAIL / 2), 2)) * 0.9 + 2; return -DEPTH; }
+    for (const j of joints) { const dj = X - j, f = jf(Y); if (f > 0.02) { if (Math.abs(dj) < 0.9) return -2 * f; if (dj >= 0.9 && dj < 2.6) return 0.8 * f; } }
+    return 0.04 * TX.simplex2(X * 0.5, Y * 0.5) + 0.06 * TX.simplex2(X * 0.008, Y * 0.3);
+  }
+  function m(X, Y) {
+    if (stop(X, Y)) return CH.M.STOP;
+    const c = chan(X, Y);
+    if (c) return Math.abs(Y - c.y) < RAIL / 2 ? CH.M.RAIL : CH.M.CHANNEL;
+    for (const j of joints) if (Math.abs(X - j) < 0.9 && jf(Y) > 0.35) return CH.M.JOINT;
+    return CH.M.SLAB;
+  }
+  /* the flood lands in a pool across the three channels and the slab's corners fall to ambient */
+  const pool = (X, Y) => { const d = Math.hypot((X - 520) / 720, (Y - 930) / 420), t = Math.max(0, Math.min(1, (d - 0.4) / 0.6)); return 1 - 0.95 * t * t * (3 - 2 * t); };
+  /* trowel streaks: a long low frequency in the slab's albedo, so the concrete reads as finished by a float, not as a swatch */
+  const slabAlbedo = (X, Y, mm) => { const a = CH.albedo(X, Y, mm); if (mm !== CH.M.SLAB) return a; const k = 1 + 0.25 * TX.simplex2(X * 0.006, Y * 0.12); return [a[0] * k, a[1] * k, a[2] * k]; };
+  const rep = TXBENCH.relief(cx, { x: 0, y: 0, w: 1080, h: 1350, scale: 2, height: h, material: m, keyMask: pool,
+    albedo: slabAlbedo, spec: CH.SPEC, ambient: 0.05, diffuse: 1.3, ao: 1.0, shadow: 0.92, softness: 5, castLength: 160 });
+  window.__relief = rep;
+  cx.setTransform(2, 0, 0, 2, 0, 0);
+  /* labels above each channel's start, clear of the rails; the footnote under the last */
+  const place = (id, x, y) => { const el = document.getElementById(id); el.style.left = x + "px"; el.style.top = y + "px"; };
+  place("l1", X0, rows[0].y - CW / 2 - 50);
+  place("l2", X0, rows[1].y - CW / 2 - 50);
+  place("l3", X0, rows[2].y - CW / 2 - 50);
+  place("l4", X0, rows[2].y + CW / 2 + 22);
+  CH.post(cx, { a: 0.35, veil: 0.2, footWash: 0.54 });
+  CH.knock(cx, ["#l1", "#l2", "#l3", "#l4"], 0.5);
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,1990 @@
+{
+  "canvas": {
+    "width": 1080,
+    "height": 1350,
+    "scale": 2.0,
+    "px": [
+      2160,
+      2700
+    ]
+  },
+  "text_window": 320,
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "png": "slide-01.png",
+      "console_errors": [
+        "TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 232, 223)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Tesla's Texas vehicle and Megapack rows read Production. The robot row reads Construction.",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 187,
+          "font_px": 60,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(236, 232, 223)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              144,
+              886,
+              74
+            ],
+            [
+              80,
+              206,
+              824,
+              74
+            ],
+            [
+              80,
+              269,
+              606,
+              74
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The lit doors are Model Y, Cybertruck, Cybercab and Megapack under Tesla's Texas label. The dark door is Optimus, its humanoid robot. Drawn to illustrate.",
+          "x": 82,
+          "y": 426,
+          "w": 900,
+          "h": 128,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              426,
+              756,
+              42
+            ],
+            [
+              82,
+              468,
+              767,
+              42
+            ],
+            [
+              82,
+              511,
+              715,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Tesla, Texas",
+          "x": 80,
+          "y": 80,
+          "w": 199,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              199,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "01 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c2 c3 c4 c5 c6",
+          "x": 80,
+          "y": 1234,
+          "w": 225,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              225,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 24826,
+      "ok": true,
+      "load_ms": 249,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 38.7,
+          "variance": 2016.1
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-02.html",
+      "png": "slide-02.png",
+      "console_errors": [
+        "TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot shows its room"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 232, 223)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "More than 375,000 Model Y a year, installed",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 173,
+          "font_px": 83,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(236, 232, 223)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              142,
+              690,
+              102
+            ],
+            [
+              80,
+              228,
+              846,
+              102
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Tesla lists Model Y in Texas at more than 375,000 a year of installed capacity, status Production. It also says installed capacity is not the current production rate. The bay is drawn to illustrate.",
+          "x": 82,
+          "y": 347,
+          "w": 780,
+          "h": 171,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              347,
+              736,
+              42
+            ],
+            [
+              82,
+              389,
+              752,
+              42
+            ],
+            [
+              82,
+              432,
+              766,
+              42
+            ],
+            [
+              82,
+              475,
+              503,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Model Y, Texas row",
+          "x": 80,
+          "y": 80,
+          "w": 298,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              298,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "02 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c2 c8",
+          "x": 80,
+          "y": 1234,
+          "w": 80,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              80,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 20805,
+      "ok": true,
+      "load_ms": 233,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 41.1,
+          "variance": 3374.8
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-03.html",
+      "png": "slide-03.png",
+      "console_errors": [
+        "TXBENCH: RELIEF {\"height_range\":50,\"materials\":5,\"cast_fraction\":0.2565934499314129,\"area\":1,\"render_ms\":10908.89999999851}"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 232, 223)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Three vehicle rows on one scale",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 215,
+          "font_px": 103.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(236, 232, 223)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              140,
+              815,
+              127
+            ],
+            [
+              80,
+              248,
+              524,
+              127
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Each channel's length is the floor Tesla prints for its row. The Model Y floor is three times the Cybertruck and Cybercab floors, each printed as more than.",
+          "x": 82,
+          "y": 389,
+          "w": 820,
+          "h": 128,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              389,
+              755,
+              42
+            ],
+            [
+              82,
+              432,
+              820,
+              42
+            ],
+            [
+              82,
+              475,
+              644,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Model Y >375,000",
+          "x": 112,
+          "y": 659,
+          "w": 275,
+          "h": 34,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 232, 223)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              112,
+              658,
+              275,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Cybertruck >125,000",
+          "x": 112,
+          "y": 869,
+          "w": 326,
+          "h": 34,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 232, 223)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              112,
+              868,
+              326,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Cybercab >125,000",
+          "x": 112,
+          "y": 1029,
+          "w": 292,
+          "h": 34,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 232, 223)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              112,
+              1028,
+              292,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "installed annual capacity, not output",
+          "x": 112,
+          "y": 1167,
+          "w": 684,
+          "h": 36,
+          "font_px": 28,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 232, 223)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              112,
+              1166,
+              684,
+              37
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The table, measured",
+          "x": 80,
+          "y": 80,
+          "w": 315,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              315,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "03 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c2 c3 c4 c8",
+          "x": 80,
+          "y": 1234,
+          "w": 177,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              177,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 15146,
+      "ok": true,
+      "load_ms": 186,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 24,
+          "variance": 247.6
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-04.html",
+      "png": "slide-04.png",
+      "console_errors": [
+        "TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 232, 223)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Tesla says Megafactory Texas began production",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 180,
+          "font_px": 86.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(236, 232, 223)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              141,
+              833,
+              107
+            ],
+            [
+              80,
+              231,
+              865,
+              107
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The table lists Megapack in Texas at 50 GWh, status Production. The update's highlights call the same 50 GWh planned capacity. Each enclosure drawn here stands for a fifth of it.",
+          "x": 82,
+          "y": 354,
+          "w": 760,
+          "h": 171,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              354,
+              759,
+              42
+            ],
+            [
+              82,
+              397,
+              726,
+              42
+            ],
+            [
+              82,
+              439,
+              709,
+              42
+            ],
+            [
+              82,
+              482,
+              390,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Megapack, Texas row",
+          "x": 80,
+          "y": 80,
+          "w": 315,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              315,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "04 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c5 c25 c26",
+          "x": 80,
+          "y": 1234,
+          "w": 161,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              161,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 20906,
+      "ok": true,
+      "load_ms": 228,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 33.5,
+          "variance": 2272.1
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-05.html",
+      "png": "slide-05.png",
+      "console_errors": [
+        "TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot shows its room"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 232, 223)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Construction, with no figure",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 215,
+          "font_px": 103.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(236, 232, 223)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              140,
+              807,
+              127
+            ],
+            [
+              80,
+              248,
+              391,
+              127
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Tesla's Texas row for Optimus gives no capacity figure. Tesla defines construction as buildout and tool installation. Robot production began in Fremont, California. The bay is drawn to illustrate.",
+          "x": 82,
+          "y": 389,
+          "w": 800,
+          "h": 171,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              389,
+              794,
+              42
+            ],
+            [
+              82,
+              432,
+              691,
+              42
+            ],
+            [
+              82,
+              475,
+              715,
+              42
+            ],
+            [
+              82,
+              518,
+              587,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Optimus, Texas row",
+          "x": 80,
+          "y": 80,
+          "w": 298,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              298,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "05 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c6 c7 c11 c27",
+          "x": 80,
+          "y": 1234,
+          "w": 209,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              209,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 19328,
+      "ok": true,
+      "load_ms": 219,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 32.2,
+          "variance": 2048.7
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-06.html",
+      "png": "slide-06.png",
+      "console_errors": [
+        "TXBENCH: RELIEF {\"height_range\":46.19957787083098,\"materials\":5,\"cast_fraction\":0.038416152263374484,\"area\":1,\"render_ms\":11504.10000000149}"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 232, 223)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Training compute, in megawatts",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 207,
+          "font_px": 99.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(236, 232, 223)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              140,
+              871,
+              122
+            ],
+            [
+              80,
+              243,
+              449,
+              122
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The rows under Tesla's Texas label list Cortex 1 at more than 105 MW and Cortex 2 at more than 120. Tesla plans 400 MW by year end for vehicle and humanoid robot autonomy software and names no place.",
+          "x": 82,
+          "y": 381,
+          "w": 840,
+          "h": 171,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              381,
+              797,
+              42
+            ],
+            [
+              82,
+              424,
+              812,
+              42
+            ],
+            [
+              82,
+              466,
+              757,
+              42
+            ],
+            [
+              82,
+              509,
+              593,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Cortex 1 >105 MW",
+          "x": 100,
+          "y": 688,
+          "w": 275,
+          "h": 34,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 232, 223)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              100,
+              687,
+              275,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Cortex 2 >120 MW",
+          "x": 464,
+          "y": 884,
+          "w": 275,
+          "h": 34,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 232, 223)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              464,
+              883,
+              275,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "other compute, place not given",
+          "x": 523,
+          "y": 772,
+          "w": 475,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 232, 223)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              523,
+              772,
+              475,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "400 MW planned, place not given",
+          "x": 100,
+          "y": 1127,
+          "w": 491,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 232, 223)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              100,
+              1127,
+              491,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Cortex, Texas rows",
+          "x": 80,
+          "y": 80,
+          "w": 298,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              298,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "06 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c12 c13 c14 c21 c22",
+          "x": 80,
+          "y": 1234,
+          "w": 306,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              306,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 15408,
+      "ok": true,
+      "load_ms": 165,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 24.6,
+          "variance": 563
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-07.html",
+      "png": "slide-07.png",
+      "console_errors": [
+        "TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 232, 223)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The Austin Fab is still under construction",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 193,
+          "font_px": 93,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(236, 232, 223)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              140,
+              837,
+              115
+            ],
+            [
+              80,
+              237,
+              745,
+              115
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Tesla says it kept building the Austin Fab this quarter and plans to start commissioning equipment there in 2027. The steel is drawn to illustrate.",
+          "x": 82,
+          "y": 367,
+          "w": 820,
+          "h": 128,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              367,
+              773,
+              42
+            ],
+            [
+              82,
+              410,
+              776,
+              42
+            ],
+            [
+              82,
+              453,
+              537,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Austin Fab",
+          "x": 80,
+          "y": 80,
+          "w": 166,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              166,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "07 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c23 c24",
+          "x": 80,
+          "y": 1234,
+          "w": 113,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              113,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 12573,
+      "ok": true,
+      "load_ms": 221,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 18.6,
+          "variance": 458.7
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-08.html",
+      "png": "slide-08.png",
+      "console_errors": [
+        "TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its room"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 232, 223)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Cybercab deployment began in Austin. Tesla gives no count.",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 138,
+          "font_px": 66.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(236, 232, 223)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              143,
+              858,
+              82
+            ],
+            [
+              80,
+              212,
+              782,
+              82
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The cars go into its Austin Robotaxi fleet. The update gives no count of cars built. Federal regulators are auditing how Tesla certified a car that lacks permanently attached pedals and steering wheel. The car is drawn to illustrate.",
+          "x": 82,
+          "y": 312,
+          "w": 780,
+          "h": 214,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              312,
+              780,
+              42
+            ],
+            [
+              82,
+              355,
+              732,
+              42
+            ],
+            [
+              82,
+              398,
+              636,
+              42
+            ],
+            [
+              82,
+              441,
+              729,
+              42
+            ],
+            [
+              82,
+              483,
+              423,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Cybercab, Austin",
+          "x": 80,
+          "y": 80,
+          "w": 265,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              265,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "08 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c28 c34 c35 c42 c43",
+          "x": 80,
+          "y": 1234,
+          "w": 306,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              306,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 23666,
+      "ok": true,
+      "load_ms": 241,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 37.2,
+          "variance": 2326.3
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-09.html",
+      "png": "slide-09.png",
+      "console_errors": [
+        "TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 232, 223)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "A lit bay is a status, not a count",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 215,
+          "font_px": 103.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(236, 232, 223)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              140,
+              819,
+              127
+            ],
+            [
+              80,
+              248,
+              482,
+              127
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Tesla says installed capacity is not the current production rate, which turns on uptime, supply, downtime for upgrades, regulation and other factors. Its update gives no count of Cybercabs built.",
+          "x": 82,
+          "y": 389,
+          "w": 760,
+          "h": 214,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              389,
+              679,
+              42
+            ],
+            [
+              82,
+              432,
+              694,
+              42
+            ],
+            [
+              82,
+              475,
+              659,
+              42
+            ],
+            [
+              82,
+              518,
+              528,
+              42
+            ],
+            [
+              82,
+              560,
+              241,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The footnote",
+          "x": 80,
+          "y": 80,
+          "w": 199,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              199,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "09 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c8 c9 c10 c34",
+          "x": 80,
+          "y": 1234,
+          "w": 209,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              209,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 27749,
+      "ok": true,
+      "load_ms": 271,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 48.6,
+          "variance": 2057.1
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    }
+  ]
+}

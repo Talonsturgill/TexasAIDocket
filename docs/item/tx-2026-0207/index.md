@@ -26,6 +26,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-15 · The A&M System's release on the feedlot grant is unchanged, its AI methods still a plan.
 - 2026-10-18 · The A&M System's release on the Canyon feedlot grant reads as before, its AI methods still a plan.
 - 2026-10-21 · Checked and unchanged. The decision still stands as decided.
+- 2026-10-24 · The research feedlot near Canyon is unconfirmed today, since the system's story no longer answers at its old address.
 
 ## Evidence
 

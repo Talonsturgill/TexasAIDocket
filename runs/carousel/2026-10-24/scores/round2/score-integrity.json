@@ -1,0 +1,81 @@
+{
+ "lens": "integrity",
+ "round": 2,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.5,
+   "why": "1, 4, 9 and 3 good and measured; 6 a flat plate with a seam and cast fraction 0.038; 2's kit cars read as toys; 8's hem a sawtooth over flat wheel discs; 7's pads near invisible; 5's lamp pool not from the lamp."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.3,
+   "why": "One floodlit world, plant wall motif on 1, 4 and 9, dark value track; the reliefs and 7's site sit outside."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 5.5,
+   "why": "Every slide quote matches the extraction and absences are scoped. Charges: slide 3 turns a ratio of floors into a ratio of capacities; the web dek's 'still reads Construction' asserts an earlier quarter nobody fetched; slide 9 and the caption present a closed list where the source says 'including ... and other factors'; the web intro leans toward the rejected publication date."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.0,
+   "why": "What happened is clear; no county, plant name, deadline or action; the stake is abstract."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 6.8,
+   "why": "Cover earns the swipe, 2 pays, 5 turns, 9 lands; 6 and 7 step off the line; 8 arrives late."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "Clean on every house rule; a table-reading register with nothing regional."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.0,
+   "why": "Floodlit world repeats no. 55, taped empty bays repeat no. 56, the close is again an absence."
+  }
+ ],
+ "weighted_score": 6.3,
+ "hard_fails": [
+  "An unverified fact presented as verified on a published surface. ledger/articles/2026-10-24.json dek reads 'The Texas row for Optimus, its humanoid robot, still reads Construction.' No claim gives an earlier quarter's status for that row, so 'still' asserts a prior state nobody fetched."
+ ],
+ "ship": false,
+ "one_sentence_fix": "Read every comparative and temporal word against its claim quote, starting with slide 3's ratio of floors and the web dek's 'still'.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 6,
+   "problem": "Flat grey plate with a hard seam; blocks barely proud (cast fraction 0.038).",
+   "fix": "Blocks and offcut as proud as slide 3's stop blocks with casts of 50 px or more; plate under the type with a falloff, no seam."
+  },
+  {
+   "slide": 2,
+   "problem": "Sepia clay kit cars, mismatched bodies; no black sky or lit lamp row.",
+   "fix": "Three identical primer grey bodies, a visible lit high bay row, a true black back wall."
+  },
+  {
+   "slide": 8,
+   "problem": "Sawtooth hem over flat wheel discs; reads as a tall hatchback.",
+   "fix": "One smooth drape to the carrier deck hiding the wheels; a lower fastback roofline."
+  },
+  {
+   "slide": 7,
+   "problem": "The taped pads are nearly invisible; accent 0.0000.",
+   "fix": "Camera down and in so the nearer taped pad fills the lower third inside the lit wedge."
+  },
+  {
+   "slide": 5,
+   "problem": "The pool is not from the unlit lamp; crate a flat panel; faint casts.",
+   "fix": "Aim and light the lamp at the bolt group so its casts run long across the footprint."
+  }
+ ]
+}

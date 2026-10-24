@@ -119,6 +119,63 @@ VOIDS = ("no sky", "no room", "no render")
 # is a frame that never went through the engine's snapshot. Shipped decks up to this date predate
 # it and are not judged on it.
 VERDICT_SINCE = "2026-09-26"
+# A RELIEF THAT CASTS ALMOST NOTHING READS AS A FLAT DRAWING (weekly machine pass, 2026-10-24).
+# CLAUDE.md: "A physical relief needs measured height, distinct materials and cast shadows; a flat
+# drawing or a fallback never qualifies". The proof's validity line in place_verdict asks only for
+# SOME cast (0.001), which tells a relief from a fallback and nothing more. In the week to October
+# 24th six shipped reliefs on four decks cast under a tenth of their area, and the final panel round
+# charged every one as flat: no. 55 frame 8 at 0.077 ("a mid-tone beige quote card ... curl it so it
+# casts"), no. 56 frames 2 at 0.061 and 7 at 0.047, no. 58 frames 4 at 0.016 and 8 at 0.025, and
+# no. 59 frame 6 at 0.038 ("a grey tray", a UI tray or dashboard card in all three rounds).
+# THE FLOOR IS MEASURED ON OUR OWN CORPUS, ONCE, ON 2026-10-24, and is never re-derived from a later
+# corpus, because a floor re-measured on decks it already shaped is a ratchet. The two numbers are
+# the highest cast fraction the final round charged as flat (no. 55 frame 8) and the lowest it did
+# not charge at all (no. 55 frame 5, raised from round 1's 0.059 and unnamed in round 3), and the
+# floor sits midway. What it does NOT claim: a relief above it can still be charged for something
+# else (no. 56 frame 3 at 0.156 read as a grille). Read off the render report per frame, the page's
+# last relief proof, the way place_verdict reads it. Decks on or before RELIEF_CAST_SINCE predate it.
+RELIEF_CAST_CHARGED_MAX = 0.077      # no. 55 frame 8, charged flat in the final round
+RELIEF_CAST_CLEAR_MIN = 0.123        # no. 55 frame 5, not charged in the final round
+RELIEF_CAST_FLOOR = (RELIEF_CAST_CHARGED_MAX + RELIEF_CAST_CLEAR_MIN) / 2
+RELIEF_CAST_SINCE = "2026-10-24"
+
+
+def relief_cast(console_errors):
+    """The cast fraction of the page's LAST relief proof that carries one, or None."""
+    import json
+    import math
+    cast = None
+    for e in console_errors or []:
+        if str(e).startswith("TXBENCH: RELIEF "):
+            try:
+                v = json.loads(str(e).split("TXBENCH: RELIEF ", 1)[1])["cast_fraction"]
+                if type(v) in (int, float) and math.isfinite(v):
+                    cast = v
+            except (ValueError, KeyError, TypeError):
+                pass
+    return cast
+
+
+def read_relief_casts(run_dir: Path) -> dict:
+    """{frame: cast fraction} for every frame whose render printed a relief proof. An unreadable
+    report reads as none here, because read_sky_report already names it as a check that did not
+    run."""
+    import json
+    for rel in ("render/render_report.json", "render_report.json"):
+        rp = run_dir / rel
+        if rp.is_file():
+            try:
+                slides = json.loads(rp.read_text(encoding="utf-8")).get("slides")
+            except (ValueError, AttributeError):
+                return {}
+            out = {}
+            for rec in slides if isinstance(slides, list) else []:
+                if isinstance(rec, dict) and rec.get("file"):
+                    c = relief_cast(rec.get("console_errors"))
+                    if c is not None:
+                        out[str(rec["file"])] = c
+            return out
+    return {}
 
 
 def place_verdict(console_errors):
@@ -453,6 +510,16 @@ def check_run(run_dir: Path, floor: int = RENDERED_FLOOR, chassis_root: Path = A
                 out.append(f"{name}'s kept snapshot came out black or unreadable, so the frame fell "
                            f"back to whatever it draws instead, and a 2D fallback stands nowhere. Fix "
                            f"the render: qa.py's dead canvas and the render log say why (Codex, PR 369)")
+    if dated and run_dir.name > RELIEF_CAST_SINCE:
+        for name, cast in sorted(read_relief_casts(run_dir).items()):
+            if cast < RELIEF_CAST_FLOOR:
+                out.append(f"{name}'s material relief casts {cast:.3f} of its area, under the floor of "
+                           f"{RELIEF_CAST_FLOOR:.3f}, so it reads as a flat drawing. Every relief under "
+                           f"it in the week to October 24th was charged flat by the final panel round "
+                           f"(a quote card, a tray, a bar chart). Make the pieces cast, never the grade. "
+                           f"Lower the relief light's elevation so each cast runs long, raise the "
+                           f"measured pieces, or crop the relief to them so a bare plate stops diluting "
+                           f"the area. A groove is cut with one lit wall and one shadowed wall")
     return out
 
 
@@ -757,6 +824,46 @@ def self_test() -> int:
            all(f"TXT.{k} = '{v}'" in engine and f"console.error(TXT.{k}" in engine
                for k, v in (("NO_SKY", NO_SKY), ("SKY_SHOWN", SKY_SHOWN), ("NO_ROOM", NO_ROOM),
                             ("ROOM_SHOWN", ROOM_SHOWN), ("NO_RENDER", NO_RENDER))))
+
+    # THE RELIEF CAST FLOOR (2026-10-24), replayed on no. 59 frame 6's own proof, 0.038, against
+    # frame 3's 0.257 in the same deck.
+    import json as _json2
+    with tempfile.TemporaryDirectory() as td2:
+        relief = ("<script src=\"@@ASSETS@@/js/txbench.js\"></script><script>"
+                  "TXBENCH.relief(cx, { w: 1080, h: 1350 });</script>")
+
+        def relief_run(name, six):
+            d = Path(td2) / name
+            (d / "slides").mkdir(parents=True)
+            for i in range(1, 10):
+                (d / "slides" / f"slide-0{i}.html").write_text(relief)
+
+            def proof(c):
+                return "TXBENCH: RELIEF " + _json2.dumps(
+                    {"height_range": 46.2, "materials": 3, "cast_fraction": c, "area": 0.6})
+            (d / "render_report.json").write_text(_json2.dumps({"slides": [
+                {"file": f"slide-0{i}.html", "console_errors": [proof(six if i == 6 else 0.257)]}
+                for i in range(1, 10)]}))
+            return d
+
+        got = check_run(relief_run("2026-10-25", 0.038), chassis_root=ASSETS)
+        ok("a relief casting 0.038 of its area, no. 59 frame 6's proof, is CAUGHT and named",
+           any("slide-06.html" in g and "flat drawing" in g for g in got), got)
+        ok("...and the eight casting 0.257, no. 59 frame 3's, are no finding",
+           not any(f"slide-0{i}.html" in g and "flat drawing" in g
+                   for g in got for i in (1, 2, 3, 4, 5, 7, 8, 9)), got)
+        under = check_run(relief_run("2026-10-26", RELIEF_CAST_FLOOR - 0.001), chassis_root=ASSETS)
+        at = check_run(relief_run("2026-10-27", RELIEF_CAST_FLOOR), chassis_root=ASSETS)
+        ok("...a relief just under the floor is caught and one at it is not",
+           any("flat drawing" in g for g in under) and not any("flat drawing" in g for g in at), (under, at))
+        ok("...the page's LAST proof decides, the way the verdict does",
+           relief_cast(["TXBENCH: RELIEF " + _json2.dumps({"cast_fraction": 0.3}),
+                        "TXBENCH: RELIEF " + _json2.dumps({"cast_fraction": 0.02})]) == 0.02)
+        since = check_run(relief_run(RELIEF_CAST_SINCE, 0.038), chassis_root=ASSETS)
+        ok("...and a deck dated RELIEF_CAST_SINCE predates the floor and is not judged on it",
+           not any("flat drawing" in g for g in since), since)
+        ok("the floor sits between the two measured readings, never at either",
+           RELIEF_CAST_CHARGED_MAX < RELIEF_CAST_FLOOR < RELIEF_CAST_CLEAR_MIN)
 
     # The real repository, which is the case that matters.
     ok("THIS repository's assets carry no print", check_assets() == [], check_assets())

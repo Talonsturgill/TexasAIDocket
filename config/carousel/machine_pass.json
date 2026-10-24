@@ -1,48 +1,34 @@
 {
- "last_pass": "2026-10-23",
+ "last_pass": "2026-10-24",
  "themes": [
   {
-   "theme": "primitive or low-poly model where a kit model belongs (no. 58's round 3 top ranked artwork defect, the wristbands on frame 5, named by all three judges; queue wristband-open-cylinder-reads-as-ring)",
+   "theme": "primitive or low-poly model where a kit model belongs (no. 59's frame 7 columns, named flat in all three rounds; queue plant-and-site-models-built-in-chassis)",
    "runs": 6,
-   "rounds": 16,
+   "rounds": 18,
    "action": "fixed in part",
-   "what": "assets/js/kit/interior.js (5a58238a): patient_wristband, a solid swept strap with a label patch, a snap over the overlapping end, a tail with holes and an alert clip, lying on its side by default. Lifted under a new name so no. 58's chassis still re-renders."
+   "what": "assets/js/kit/industry.js: structural_frame, W columns turned so the profile reads, W girders and edge beams on bolted tabs, open web joists, C girts, rod X bracing, base plates on grout. Under a new name so no. 59's chassis still re-renders. tool_crate, the work lamp and the plant wall stay in the chassis."
   },
   {
-   "theme": "largest object unmodelled, and no. 58's second ranked defect (the card drawer on frame 7, every round 3 judge; queue card-drawer-spacing-ignores-length)",
-   "runs": 5,
-   "rounds": 13,
-   "action": "fixed in part",
-   "what": "assets/js/kit/interior.js (8ed98838): index_card_drawer derives its card pitch from its length and throws on a count that cannot fit (replayed: the chassis drawer overflowed both walls at 0.24 and 0.3 m), with proud guide tabs, a follower and a modelled front. The frame's camera half of the judges' fix stays the run's."
-  },
-  {
-   "theme": "queue make-slides-rewrites-every-frame (nos. 45 and 58), which threw away no. 58's bound art review twice",
-   "runs": 0,
-   "rounds": 0,
+   "theme": "largest object unmodelled, and the flat reliefs inside it (no. 59 frame 6 the round 3 top ranked defect; queues relief-plate-reads-as-a-tray, txbench-relief-cast-faint)",
+   "runs": 6,
+   "rounds": 15,
    "action": "fixed",
-   "what": "scripts/carousel/fig_inject.py and shipped_check 'fig lines' (a8b1c940): each slide carries only the figures it reads and is written only when its line changes; every deck after October 23rd is held to it in CI."
-  },
-  {
-   "theme": "queue article-token-drops-unit at repeat 2 (nos. 45, 49, 58), the defect that made this pass due",
-   "runs": 0,
-   "rounds": 0,
-   "action": "escalated",
-   "what": "scripts/site/** is the daily lane, not upgrade, so the run that meets it may fix article_check under its own stamp (UPGRADE_BACKLOG 2026-10-23 item 4)."
-  },
-  {
-   "theme": "value strobe or undeclared tonal cut (no. 58 frame 6, TXT.stage cannot dim the neighbours), and the faint txbench relief casts on nos. 58 frames 4 and 8",
-   "runs": 6,
-   "rounds": 10,
-   "action": "escalated",
-   "what": "Engine and txbench are human (UPGRADE_BACKLOG 2026-10-23 item 4)."
+   "what": "scripts/carousel/print_ban.py: a relief whose render proof casts under a floor measured once on the week's shipped reliefs fails, every deck after October 24th; replayed it names exactly the six frames the final rounds charged flat."
   },
   {
    "theme": "type sitting on or fighting the art",
-   "runs": 6,
-   "rounds": 14,
+   "runs": 5,
+   "rounds": 13,
    "action": "deferred",
-   "what": "A different collision on each deck again; the honest gate still needs the id pass (UPGRADE_BACKLOG 2026-10-12 item 4)."
+   "what": "A different collision on each deck; the honest gate still needs the id pass (UPGRADE_BACKLOG 2026-10-12 item 4)."
+  },
+  {
+   "theme": "no contact, dirt or grime where things meet the ground",
+   "runs": 5,
+   "rounds": 11,
+   "action": "deferred",
+   "what": "A different cause on each deck (no. 59's floating tyre and a shadowless work lamp), so no single machine fix this week."
   }
  ],
- "note": "Written by the weekly machine pass (prompts/daily_routine.md Phase 17) when it ships. Read by scripts/carousel/machine_due.py. Run and round counts are from scripts/carousel/week_digest.py --date 2026-10-23."
+ "note": "Written by the weekly machine pass (prompts/daily_routine.md Phase 17) when it ships. Read by scripts/carousel/machine_due.py. Run and round counts are from scripts/carousel/week_digest.py --date 2026-10-24."
 }

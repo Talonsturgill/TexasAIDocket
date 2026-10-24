@@ -12,7 +12,7 @@ Taylor City Council approved the Amended and Restated Tax Abatement Agreement wi
 - Comment closes: 2026-08-13
 - Take part: https://taylortx.portal.civicclerk.com/event/2010/files/agenda/5956
 
-- Last checked: 2026-10-21
+- Last checked: 2026-10-24
 
 ## Dates
 
@@ -49,6 +49,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-15 · Taylor's packet still records the unanimous vote on the amended Compal abatement. Two scanned pages of it yield no text, so their wording is unconfirmed.
 - 2026-10-18 · Taylor's agenda packet still records the unanimous vote on the amended Compal abatement. The minutes and one later page of the packet are unconfirmed.
 - 2026-10-21 · Taylor's scanned minutes still record the unanimous vote on the amended Compal abatement after the item was pulled from the consent agenda. The staff packet is unconfirmed.
+- 2026-10-24 · Taylor's minutes still record the council's unanimous approval of the amended Compal abatement, with the window that closed on August 13th behind it.
 
 ## Evidence
 

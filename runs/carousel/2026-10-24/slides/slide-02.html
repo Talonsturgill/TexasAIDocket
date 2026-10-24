@@ -1,0 +1,68 @@
+<!doctype html>
+<!-- 2026-10-24, frame 2 of 9. Archetype CLOSE_CROP. A spatial scene through txthree.js inside the first lit bay: an unbadged primer grey crossover on a steel line carrier at the line, the bay's warm downlight on its roof and the flood on the slab behind the camera. The bodies on the line are read from figures.json. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>.dek { width:780px !important; }</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site" style="font-size:24px">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="line-height:1.04">More than 375,000 Model Y a year, installed</h1>
+<p class="dek" data-follow="24">Tesla lists Model Y in Texas at more than 375,000 a year of installed capacity, status Production. It also says installed capacity is not the current production rate. The bay is drawn to&nbsp;illustrate.</p>
+<script>window.FIG = {};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-24-apron.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Model Y, Texas row", counter: "02 / 09", src: "c2 c8", fit: { min: 66, max: 86, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 36, near: 0.05, far: 2000 });
+  /* the first bay, lit, one body per carrier along its line; the row's status is Production, so its rows are lit */
+  CH.BAY_LIGHT = 2600;   /* this camera stands under the first lamp row, so the row is held down to keep the roofs below white */
+  const bay = K.make('plant_bay', { lit: true }); bay.position.set(0, 0, 15); TXT.add(R, bay);
+  bay.userData.lamps.position.y = 4.6;   /* the rows hang higher over this end of the line, above this camera's view and the type */
+  TXT.interior(R, { w: 15.6, d: 30, h: 12.4, floor: 'concrete', wall: 0x1a1917, window: null, ceiling: false, light: 0.12 });
+  const line = [];
+  for (let k = 0; k < 3; k++) {
+    const z = 8.4 - k * 7.6;
+    const c = K.make('line_carrier', {}); c.position.set(0, 0.012, z); TXT.add(R, c); line.push(c);
+    const car = K.make('crossover', { color: 0x45474a, metallic: false, sensors: false, seed: 3 + k }); car.position.set(0, 0.012 + c.userData.seat, z); TXT.add(R, car); line.push(car);
+  }
+  /* no plate on any body: the line carries no mark */
+  line.forEach((o) => o.traverse((m) => {
+    if (!m.isMesh || !m.material) return;
+    m.geometry.computeBoundingBox(); const bb = m.geometry.boundingBox;
+    /* no plate on any body: the line carries no mark */
+    if (/plate/.test(m.material.name || '') || (bb.max.x - bb.min.x < 0.34 && bb.max.y - bb.min.y < 0.18 && bb.max.z - bb.min.z < 0.05)) m.visible = false;
+    /* glass reads dark, its reflection held down, so no roof clips to white under the downlight */
+    if (m.material.transparent || m.material.transmission > 0) { m.material = m.material.clone(); m.material.envMapIntensity = 0.3; if (m.material.color) m.material.color.multiplyScalar(0.4); m.material.roughness = 0.15; }
+  }));
+  const hero = line[3];
+  const from = [3.6, 1.2, 14.6];
+  const look = CH.aim(THREE, R, TXT, from, [0.2, 0.8, 0.8], 560, 1010, 30);
+  TXT.frame(R, { fov: 30, from, look });
+  CH.warm(R, 0.14);
+  { const spec = CH.rigSpec(W, 40, 4096); TXT.deckRig(R, spec, CH.rigOpts([0, 0, 8], { distance: 60, shadowFar: 160, normalBias: 0.01 })); }
+  CH.unacne(R, 0.01);
+  line.forEach((o) => TXT.contact(R, o));
+  TXT.stage(R, [hero, line[2], line[0], line[1]], { behind: 0.5, depth: 1.2, pool: false });
+  TXT.weather(R, { grime: 0.25, height: 0.6, mottle: 0.2 });
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0.45, veil: 0.2, footWash: 0.54 });
+  /* the footer rides the full width foot wash; a per line knock read as a smudge */
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

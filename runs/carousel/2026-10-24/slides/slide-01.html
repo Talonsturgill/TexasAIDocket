@@ -1,0 +1,77 @@
+<!doctype html>
+<!-- 2026-10-24, frame 1 of 9. Archetype FULL_BLEED. A spatial scene through txthree.js in the deck's floodlit world: a tilt up plant wall along a sealed apron at night, five vertical lift door bays in the order of the table's Texas rows, the lit ones read from figures.json, the fifth dark with two work lamps. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>.dek { width:900px !important; }</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site" style="font-size:24px">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="line-height:1.04">Tesla's Texas vehicle and Megapack rows read Production. The robot row reads Construction.</h1>
+<p class="dek" data-follow="26">The lit doors are Model Y, Cybertruck, Cybercab and Megapack under Tesla's Texas label. The dark door is Optimus, its humanoid robot. Drawn to&nbsp;illustrate.</p>
+<script>window.FIG = {"production_rows": 4, "construction_rows": 1};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-24-apron.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Tesla, Texas", counter: "01 / 09", src: "c2 c3 c4 c5 c6", fit: { min: 60, max: 92, maxLines: 3 } });
+  const R = CH.stage(TXT, gl, W, { fov: 26, near: 0.1, far: 3000 });
+  /* THE FIGURE, from figures.json: one lit bay per Texas row whose status reads Production, then one dark bay for the
+   * row that reads Construction, in the table's order */
+  const lit = [];
+  for (let i = 0; i < FIG.production_rows; i++) lit.push(true);
+  for (let i = 0; i < FIG.construction_rows; i++) lit.push(false);
+  const wall = K.make('plant_wall', { lit }); TXT.add(R, wall);
+  const doors = wall.userData.doors, dark = doors[doors.length - 1];
+  /* the dark bay: two work lamps on its threshold, bluebonnet tape across it */
+  { const tp = CH.box(CH.BAY.door, 0.006, 0.4, CH.mats(THREE, K).tape, dark.x, 0.006, 0.6); R.scene.add(tp); }
+  [-3.2, 3.6].forEach((dx, i) => { const l = K.make('tripod_work_lamp', { aim: -0.45, light: 0.12 }); l.position.set(dark.x + dx, 0, 1.6 + i * 0.6); l.rotation.y = Math.PI + 0.5 - i * 1.0; TXT.add(R, l); TXT.contact(R, l, { dirt: false, grit: false }); });
+  /* each lit bay's line: bodies on carriers, crossovers in the first, covered bodies in the next two, enclosures in the
+   * fourth. No product is drawn, and the covers keep it so */
+  doors.forEach((d, i) => {
+    if (!d.lit) return;
+    for (let k = 0; k < 3; k++) {
+      const z = -5 - k * 7.6;
+      if (i === 3) { const u = K.make('megapack_unit', {}); u.rotation.y = Math.PI / 2; u.position.set(d.x, 0, z); TXT.add(R, u); continue; }
+      const c = K.make('line_carrier', {}); c.position.set(d.x, 0, z); TXT.add(R, c);
+      const body = i === 0 ? K.make('crossover', { color: 0x8a8c8e, metallic: false, sensors: false, seed: k }) : K.make('covered_pod', {});
+      body.position.set(d.x, c.userData.seat, z); TXT.add(R, body);
+    }
+  });
+  /* bollards at the first door's jambs, the painted lane along the wall */
+  [-5.6, 5.6].forEach((dx) => { const b = K.make('bollard', {}); b.position.set(doors[0].x + dx, 0, 1.2); TXT.add(R, b); TXT.contact(R, b); });
+  const lane = CH.box(130, 0.004, 0.15, CH.mats(THREE, K).lane, 60, 0.004, 4.2); R.scene.add(lane);
+  const lane2 = CH.box(130, 0.004, 0.15, CH.mats(THREE, K).lane, 60, 0.004, 5.8); R.scene.add(lane2);
+  const worker = K.make('person', { role: 'worker', pose: 'walk', vest: true, hat: true, seed: 4 });
+  worker.position.set(doors[1].x - 5.5, 0, 6.0); worker.rotation.y = Math.PI / 2 + 0.3; TXT.add(R, worker);
+  TXT.ground(R, { surface: 'concrete', size: 600, color: 0x6a6761, seed: 24, tile: 14, joints: 1 });
+  const from = [-30, 9, 40];
+  const look = CH.aim(THREE, R, TXT, from, [doors[2].x, 4.0, 0], 600, 900, 34);
+  TXT.frame(R, { fov: 34, from, look });
+  TXT.sky(R);
+  CH.warm(R, 0.25);
+  { const spec = CH.rigSpec(W, 70, 4096); TXT.deckRig(R, spec, CH.rigOpts([30, 0, 0], { distance: 140, shadowFar: 400, normalBias: 0.02 })); }
+  CH.unacne(R, 0.02);
+  TXT.contact(R, worker);
+  TXT.stage(R, [wall, worker], { behind: 0.6, depth: 1.4, pool: false });
+  TXT.weather(R, { grime: 0.3, height: 1.2, mottle: 0.22 });
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0.4, veil: 0.25, footWash: 0.54 });
+  /* the footer rides the full width foot wash; a per line knock read as a smudge */
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+{
+ "_spec": {
+  "version": 1,
+  "purpose": "A standalone web edition of the archived visual story.",
+  "law": "Facts resolve to the original verified claim record. A layout rebuild does not reverify reporting.",
+  "written_by": "daily"
+ },
+ "section": "Manufacturing",
+ "dek": {
+  "text": "Tesla's quarterly capacity table lists its Texas vehicle and Megapack rows as Production. The Texas row for Optimus, its humanoid robot, reads Construction.",
+  "claims": ["c2", "c5", "c6"]
+ },
+ "introduction": [
+  {
+   "text": "[Tesla's update for the third quarter of 2026 was released for a webcast set for {{date:c1}}](c1). [Its table of installed annual manufacturing capacity lists Model Y in Texas at more than {{number:c2}} a year, with the status Production](c2). [The Cybertruck](c3) [and the Cybercab sit in the rows under the same Texas label at more than {{number:c4}} each, also Production](c4). [Megapack in Texas is listed at {{number:c5}} GWh](c5).",
+   "claims": ["c1", "c2", "c3", "c4", "c5"]
+  },
+  {
+   "text": "[One row is different. The Texas row for Optimus reads Construction and gives no capacity figure](c6). [Tesla defines construction as factory and infrastructure buildout plus tool installation](c11). [Optimus production began on high volume lines in Fremont](c27), [where the California row reads Early Ramp](c7).",
+   "claims": ["c6", "c11", "c27", "c7"]
+  }
+ ],
+ "sections": [
+  {
+   "heading": "The machines that train the software",
+   "paragraphs": [
+    {
+     "text": "[The supporting table lists Cortex 1 in Texas at more than {{number:c12:1}} MW of training compute](c12) [and Cortex 2, in the row under it, at more than {{number:c13:1}} MW](c13). [Tesla plans to reach {{number:c21}} MW by the end of the year](c21), [supporting both vehicle and humanoid robot autonomy software](c22). The update does not say where that compute will sit.",
+     "claims": ["c12", "c13", "c22", "c21"]
+    },
+    {
+     "text": "[Tesla says it kept building the Austin Fab during the quarter](c23) [and plans to start commissioning equipment there in {{number:c24}}](c24). [It also says it began production at Megafactory Texas](c25).",
+     "claims": ["c23", "c24", "c25"]
+    }
+   ]
+  },
+  {
+   "heading": "What a capacity figure is not",
+   "paragraphs": [
+    {
+     "text": "[A footnote to the tables says installed capacity is not the current production rate](c8). [Tesla says production rates depend on equipment uptime](c9), [component supply, downtime for factory upgrades, regulatory considerations and other factors](c10). [The update gives no count of Cybercabs built, deployed or carrying riders](c34).",
+     "claims": ["c8", "c9", "c10", "c34"]
+    },
+    {
+     "text": "[Tesla says it began putting the Cybercab into its Robotaxi fleet in Austin](c28). [NHTSA records that commercial deployment began with a small number of Cybercab vehicles in Austin on {{date:c39}}](c39). [The vehicles lack permanently attached conventional controls such as a brake pedal, a gas pedal, a steering wheel and mirrors](c42). [NHTSA opened an audit query into the process and data behind Tesla's certification of the car](c43), [and its resume still shows that query as open](c35).",
+     "claims": ["c28", "c39", "c42", "c43", "c35"]
+    }
+   ]
+  }
+ ],
+ "related": [
+  {"id": "tx-2026-0230", "label": "The record entry for Tesla's Texas capacity table"},
+  {"id": "tx-2026-0140", "label": "The record entry for NHTSA's audit of the Cybercab's certification"}
+ ]
+}

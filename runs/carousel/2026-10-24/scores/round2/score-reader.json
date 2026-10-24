@@ -1,0 +1,74 @@
+{
+ "lens": "reader",
+ "round": 2,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.3,
+   "why": "Dark and one world; 5 is best, 4 reads; 6 a flat tray with a seam and UI blocks; 8 a rigid skirt with a sawtooth hem; 1's dark door is the smallest element; 3 reads as a progress bar; 9 the greyest frame."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "Clearly one deck with a describable spine; the close lifts 14 points; the reliefs sit outside; one skeleton on nine frames."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.5,
+   "why": "Every numeral traces and the round 1 scope is right. Slide 3's ratio of floors; slide 9 and the caption present a closed list; slide 6 says flatly 'The Texas rows list ... Cortex 2'."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 5.5,
+   "why": "Accurate but a company's table; no public body, county, action or deadline; closes on a question the deck can't answer."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "2 pays, 5 turns, 9 lands; the cover is document jargon at feed size; 6 and 7 are side branches."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.3,
+   "why": "Clean; a strong caption opener; compliance analyst register elsewhere."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.0,
+   "why": "New instrument; concept repeats no. 56; floodlit world repeats no. 55; open question close ran October 20th and 22nd."
+  }
+ ],
+ "weighted_score": 6.546,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Rewrite the cover in the reader's words and give the deck a Texas stake.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 6,
+   "problem": "Flat tray, seam, UI blocks, a floating label.",
+   "fix": "A raking three quarter view of the plate with lit and cast sides; labels seated on their blocks."
+  },
+  {
+   "slide": 8,
+   "problem": "Rigid skirt with sawtooth hem; blocks in front of the wheels; car under half the frame.",
+   "fix": "Soft folds pooling on the deck with contact; blocks under the tyres; camera in."
+  },
+  {
+   "slide": 1,
+   "problem": "Mid grey wall; the dark door smallest and farthest.",
+   "fix": "Flood off the wall face; the dark door large in the right third."
+  },
+  {
+   "slide": 3,
+   "problem": "Three thin bars on an empty slab.",
+   "fix": "Lower key, deeper channels, a tighter crop."
+  }
+ ]
+}

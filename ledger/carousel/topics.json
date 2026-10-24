@@ -2006,6 +2006,41 @@
     "Dallas",
     "npj Digital Medicine"
    ]
+  },
+  {
+   "date": "2026-10-24",
+   "carousel_no": 59,
+   "docket_item": "tx-2026-0230",
+   "related_items": [
+    "tx-2026-0140"
+   ],
+   "instrument": "Tesla's Q3 2026 Update (the investor relations PDF, its capacity table and footnotes) and NHTSA ODI's resume for Audit Query AQ26002, both fetched October 24th, 2026.",
+   "topic": "Tesla's own capacity table lists Model Y, Cybertruck, Cybercab and Megapack under its Texas label at Production, and Optimus, its humanoid robot, at Construction with no capacity figure. Optimus production began in Fremont. Installed capacity is not the current production rate, and the update gives no count of Cybercabs built.",
+   "angle": "Rendered in the floodlit world as a tilt up plant wall at night with a bay door per Texas row in the table's order, the Production rows lit and the Optimus bay dark. Inside the first lit bay the line, a relief of the vehicle rows at a shared scale, battery enclosures on the apron for the Megapack row, the dark bay's anchor bolts in taped pads under unlit lamps, a relief of the Cortex compute rows with the year end plan as an empty taped groove, the unclad Austin Fab steel on its taped pads, a covered car in a lit bay, and the wall again from the dark end for the close.",
+   "angle_note": "Every frame is drawn to illustrate. No Tesla plant, product or person is depicted, the bays follow the table's order rather than the site, and the covered car is a fabric shell, not a Cybercab likeness.",
+   "entities": [
+    "Tesla",
+    "NHTSA",
+    "Optimus",
+    "Cybercab",
+    "Megapack",
+    "Cortex"
+   ],
+   "places": [
+    "Austin",
+    "Texas",
+    "Fremont"
+   ],
+   "what_was_refused": "NHTSA's 1,000 as a deployed count, the 400 MW plan placed in Texas, the nearly two million unsupervised miles as Austin only, the October 21st date as the PDF's own, and Texas rows read as one universal over the Early Ramp cathode and lithium rows.",
+   "keywords": [
+    "Tesla",
+    "Optimus",
+    "installed capacity",
+    "Cybercab",
+    "Megapack",
+    "Cortex",
+    "NHTSA"
+   ]
   }
  ]
 }
