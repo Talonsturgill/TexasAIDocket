@@ -1,0 +1,79 @@
+{
+ "lens": "reader",
+ "round": 1,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.5,
+   "why": "Rendered and inside the register; 1, 2, 4 and 7 bold at true scale. 8's cover covers only the front with a sawtooth hem over a four-door crossover with mirror stubs; 6 reads as a UI widget; 5's crate, lamp and tape read as primitives; 9 is the greyest frame; 1's wall stops short of the right edge."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "Plainly one deck with two working continuity devices; 6 sits outside; the value arc is not felt; same skeleton on nine frames."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.5,
+   "why": "Numerals trace and the Texas label rows are handled honestly; the caption's 'made in California' overreaches c27; frame 3's three times is a ratio of floors; frame 8 draws mirror stubs against c42 without 'drawn to illustrate'."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.0,
+   "why": "The cover's 'rows' assume the reader knows the table; no slide names the document; no county, deadline or concrete Texas stake; the caption closes on a question."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "2 pays, 3 makes the ratio visible, 5 turns, 9 lands; 6 is a detour; 4 restates Production."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "Clean and on register; table-speak ('row', 'label'); no regional specificity."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "Fresh topic; the close repeats no. 56's taped bays beside lit machines three days on; floodlit world ran no. 55."
+  }
+ ],
+ "weighted_score": 6.79,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Name the instrument and place in plain words on the cover and in the caption's first lines.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 8,
+   "problem": "A skirt over the hood with a sawtooth hem; rear half an uncovered four-door crossover with mirror stubs.",
+   "fix": "Drape the whole body in one lofted cloth with smoothed hem vertices over a two-door short body, mirror geometry deleted."
+  },
+  {
+   "slide": 6,
+   "problem": "A bordered tray in black with a flat bar (cast fraction 0.041).",
+   "fix": "Plate bleeds off the frame; groove milled with a lit upper and shadowed lower wall, tape at its floor."
+  },
+  {
+   "slide": 9,
+   "problem": "Greyest frame; flat wall; blob lamp shadows.",
+   "fix": "Wall face toward the camera into shadow, lamp heads and bays bright, PCSS lamp casts."
+  },
+  {
+   "slide": 5,
+   "problem": "Crate a plain box, lamp head a flat rectangle, tape a flat fill.",
+   "fix": "Strapped crate, lamp on so its pool rakes the crate and far pad."
+  },
+  {
+   "slide": 1,
+   "problem": "Wall stops short of the right edge; bay interiors a brown wash.",
+   "fix": "Yaw so the wall runs off the right; drop bay back walls toward black."
+  }
+ ]
+}

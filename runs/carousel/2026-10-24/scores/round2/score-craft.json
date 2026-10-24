@@ -1,0 +1,79 @@
+{
+ "lens": "craft",
+ "round": 2,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.5,
+   "why": "One real world; 1, 4 and 5 pass most of the showstopper test; 3 measures 3.0 to 1. Frame 8's repair holds (no mirror, glass, seam or plate, 'drawn to illustrate' present) but reads as a tablecloth over a lump with a sawtooth hem and floating wheels; 6 is a bar chart on a seamed plate; 7 a red wireframe with dark pads; 2 has blocky hub artifacts; 5's crate a flat face and unlit lamp; 9's wall a flat mid grey."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "One chassis, flood and accent; camera walk and lit against dark motif work; the value arc does not hold at 5 and 9; 6 sits outside."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.0,
+   "why": "Every numeral traces; the round 1 scope repair holds. 'is deployed' is looser than c28's 'began deployment'; 'factory upgrades' looser than 'downtime related to factory upgrades'."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.5,
+   "why": "Learns the table and Fremont; no reason given for a Texan to care; nothing actionable."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Cover reads before type; 2 pays, 5 turns, 9 lands; 6 and 7 are side branches."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Clean; flat label hooks on 3 and 6; table language."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "New opening move and palette; floodlit world from no. 55 and taped bays from no. 56."
+  }
+ ],
+ "weighted_score": 7.02,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Rebuild 8, 6 and 7 to the standard of frame 5's bolts.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 8,
+   "problem": "A lump under a tablecloth; sawtooth hem; wheels hover; an uncaused roof shadow.",
+   "fix": "Hem follows the sill ending about 10 cm above the skillet in soft folds; tyres on the skillet with contact."
+  },
+  {
+   "slide": 6,
+   "problem": "A bar chart on a seamed grey plate; flat groove; cast fraction 0.038.",
+   "fix": "Mill the blocks, offcut and groove into frame 3's dark slab, full bleed; taller blocks with longer casts."
+  },
+  {
+   "slide": 7,
+   "problem": "Thin red wireframe; dark pads; grass in the footer.",
+   "fix": "Two near W-section columns own the left half; lit bluebonnet pads."
+  },
+  {
+   "slide": 5,
+   "problem": "Crate a flat face; lamp unlit beside its pool; faint casts; slab lighter than 4.",
+   "fix": "Boxed crate turned to the flood; emissive lamp head; a narrower wedge."
+  },
+  {
+   "slide": 9,
+   "problem": "Flat mid grey wall face; oval lamp shadows.",
+   "fix": "Pull the flood off the wall face; leg casts down and to the right."
+  }
+ ]
+}

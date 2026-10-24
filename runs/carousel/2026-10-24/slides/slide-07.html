@@ -1,0 +1,62 @@
+<!doctype html>
+<!-- 2026-10-24, frame 7 of 9. Archetype SPLIT_HORIZON. A spatial scene through txthree.js in the deck's floodlit world: an unclad steel frame in red oxide primer rising against the black sky on a slab in dark clay, two empty equipment pads in bluebonnet tape, the machine count on them read from figures.json. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>.dek { width:820px !important; } .hook { top:150px !important; }</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site" style="font-size:24px">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="line-height:1.04">The Austin Fab is still under construction</h1>
+<p class="dek" data-follow="24">Tesla says it kept building the Austin Fab this quarter and plans to start commissioning equipment there in 2027. The steel is drawn to&nbsp;illustrate.</p>
+<script>window.FIG = {"model_y": 375000, "cybertruck": 125000, "cybercab": 125000, "vehicle_rows": 3, "model_y_to_cybercab": 3, "unit": 125, "model_y_blocks": 3, "cybercab_blocks": 1, "cybertruck_blocks": 1, "megapack_gwh": 50, "cells_gwh": 40, "cathode_gwh": 10, "lithium_gwh": 30, "cortex1_mw": 105, "cortex2_mw": 120, "cortex_texas_mw": 225, "plan_mw": 400, "other_mw": 40, "mw_per_row": 5, "cortex1_rows": 21, "cortex2_rows": 24, "optimus_texas_capacity": 0, "hours_start": 6, "hours_open": 18, "hours_closed": 6, "fab_year": 2027, "fab_machines_placed": 0, "population": 1000, "controls_missing": 4, "audit_opened_day": 3, "texas_rows": 5, "production_rows": 4, "construction_rows": 1, "gwh_per_unit": 10, "megapack_units": 5};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-24-apron.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Austin Fab", counter: "07 / 09", src: "c23 c24", fit: { min: 70, max: 100, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 30, near: 0.1, far: 3000, exposure: 1.7 });
+  /* the frame stands on a slab poured in the clay */
+  const slabMat = new THREE.MeshStandardMaterial({ color: 0xb2ada4, roughness: 0.9, map: K.tex('concrete') });
+  const slab = CH.box(40, 0.3, 32, slabMat, 0, 0.15, -6); K.uvBox(slab.geometry, 3); R.scene.add(slab);
+  const frame = K.make('steel_frame', { cols: 4, rows: 3, bay: 9, height: 12 }); frame.position.set(0, 0.3, -6); TXT.add(R, frame);
+  /* THE FIGURE, from figures.json: commissioning is planned for fab_year and not begun, so the machines placed on the
+   * two taped pads number this many: none */
+  const placed = FIG.fab_machines_placed;
+  const pads = [];
+  [[0, 6.0], [9, 6.0]].forEach((p) => { const m = K.make('machine_pad', { tape: CH.ACCENT, tapeLit: true, cordTop: 1.9 }); m.position.set(p[0], 0.31, p[1]); m.rotation.y = Math.PI / 2; TXT.add(R, m); pads.push(m); const t = CH.tapeRect(THREE, K, 5.2, 4.6, 0.45); t.position.set(p[0], 0.31, p[1]); R.scene.add(t); });
+  for (let i = 0; i < placed; i++) { const c = K.make('tool_crate', {}); c.position.set(pads[i].position.x, 0.3, pads[i].position.z); TXT.add(R, c); }
+  TXT.ground(R, { surface: 'dirt', size: 600, color: 0x221c17, seed: 27, tile: 6 });
+  TXT.scatter(R, { kind: 'grass', count: 1400, area: [-120, -120, 120, 40], avoid: [[-21, -23, 21, 11]], seed: 24 });
+  const from = [17, 9.5, 44];
+  const look = CH.aim(THREE, R, TXT, from, [0, 1, -6], 540, 1000, 36);
+  TXT.frame(R, { fov: 36, from, look });
+  TXT.sky(R);
+  CH.warm(R, 0.25);
+  { const spec = CH.rigSpec(W, 60, 4096); TXT.deckRig(R, spec, CH.rigOpts([0, 0, -6], { distance: 120, shadowFar: 300, normalBias: 0.02 })); }
+  CH.unacne(R, 0.02);
+  TXT.contact(R, frame); pads.forEach((m) => TXT.contact(R, m, { dirt: false, grit: false }));
+  /* the epoxy pad's mirror finish reflected the black sky and read as a pit, so it is held at a satin finish */
+  pads.forEach((m) => m.traverse((o) => { if (o.isMesh && o.material && o.material.roughness < 0.2) { o.material = o.material.clone(); o.material.roughness = 0.62; o.material.color.setHex(0x6a7078); } }));
+  TXT.stage(R, [frame, ...pads], { behind: 0.5, depth: 1.4, poolInner: 0.6, poolOuter: 1.4 });
+  TXT.weather(R, { grime: 0.3, height: 1.0, mottle: 0.2 });
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0.35, veil: 0, footWash: 0.3 });
+  /* the footer rides the full width foot wash; a per line knock read as a smudge */
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,124 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "bands": [
+        0.2563,
+        0.395,
+        0.7757
+      ],
+      "band_ratio": 1.5854
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot shows its room"
+      ],
+      "bands": [
+        0.3319,
+        0.1261,
+        0.5607
+      ],
+      "band_ratio": 1.6037
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [
+        "console error: TXBENCH: RELIEF {\"height_range\":50,\"materials\":5,\"cast_fraction\":0.2565934499314129,\"area\":1,\"render_ms\":10136.400000002235}"
+      ],
+      "bands": [
+        0.4349,
+        0.6197,
+        0.7188
+      ],
+      "band_ratio": 1.2041
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "bands": [
+        0.2899,
+        0.1975,
+        0.6287
+      ],
+      "band_ratio": 1.6385
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot shows its room"
+      ],
+      "bands": [
+        0.3866,
+        0.1408,
+        0.7224
+      ],
+      "band_ratio": 1.6782
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [
+        "console error: TXBENCH: RELIEF {\"height_range\":46.19957787083098,\"materials\":5,\"cast_fraction\":0.038416152263374484,\"area\":1,\"render_ms\":11226.39999999851}"
+      ],
+      "bands": [
+        0.2479,
+        0.5126,
+        0.3915
+      ],
+      "band_ratio": 1.0187
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "bands": [
+        0.2311,
+        0.4601,
+        0.6158
+      ],
+      "band_ratio": 1.3874
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its room"
+      ],
+      "bands": [
+        0.2731,
+        0.2038,
+        0.6801
+      ],
+      "band_ratio": 1.7044
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "bands": [
+        0.3214,
+        0.4328,
+        0.75
+      ],
+      "band_ratio": 1.4628
+    }
+  ],
+  "fails": 0,
+  "warns": 9,
+  "verdict": "WARN"
+}

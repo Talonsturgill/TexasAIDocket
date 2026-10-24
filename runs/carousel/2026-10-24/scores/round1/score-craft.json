@@ -1,0 +1,86 @@
+{
+ "lens": "craft",
+ "round": 1,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.0,
+   "why": "One real world; 1 and 5 come close to the showstopper test, 3 and 6 measure correctly. Frame 8 is broken: a front skirt on an uncovered four-door crossover with glass, pillars, handles, mirror stems, a plate recess and a spiked hem. 6 is a UI card (cast fraction 0.041). 2 has boxy mirrors, a plate blank, no lamp row or sky. 4's worker cast runs left. 9 is the greyest with detached lamp shadows. 7's columns are flat sticks with no scale figure."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 6.5,
+   "why": "One chassis, one grade, one accent meaning, rotation passes; casts on 4 and 7 run left; value arc not felt; same skeleton on nine frames."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 6.5,
+   "why": "Numerals trace and the Texas label is handled carefully, but frame 8 draws a four-door crossover with mirror stems against c42 and carries no 'drawn to illustrate'. The caption's 'made in California' is broader than c27."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.5,
+   "why": "Says what happened and who; no county, reachable body or date; a disclosure explainer more than a decision story."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "Cover earns the swipe, 2 pays, 5 turns, 9 lands; 4 and 7 could swap and 6 is a detour."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Clean, plain and exact; thin Texas specificity; slide 6 dek reads as corporate phrasing."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.0,
+   "why": "New topic, familiar moves: floodlit world on no. 55, a night apron on no. 47, taped bays and plan reliefs on no. 56."
+  }
+ ],
+ "weighted_score": 6.49,
+ "hard_fails": [
+  "Frame 8 shows an unverified fact as verified and is unfinished. The hook says 'The Cybercab is deployed in Austin' and the frame cites c42 ('lack ... steering wheel, and mirrors'), while the car drawn is a four-door crossover with mirror stems, uncovered side glass with pillars, door seams and handles, a plate recess through the fabric and a sheared hem. Its dek carries no 'drawn to illustrate', and the dossier's own 'no badge, wordmark or cabin detail' item fails."
+ ],
+ "ship": false,
+ "one_sentence_fix": "Rebuild frame 8 as a two-door pod under one continuous fabric loft and add 'drawn to illustrate' to its dek.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 8,
+   "problem": "Front skirt only over an uncovered four-door crossover; spiked hem; plate recess.",
+   "fix": "A lower two-door pod body under one fabric loft from roof to just above the tyres, mirror and plate geometry deleted before draping."
+  },
+  {
+   "slide": 6,
+   "problem": "A grey tray with a drop shadow; flat blue bar; groove walls with no lit or shadow side.",
+   "fix": "Blackened plate edge to edge with no border, groove milled 30 px deep with a lit upper wall and cast lower wall, tape on the groove floor."
+  },
+  {
+   "slide": 2,
+   "problem": "Boxy kit mirrors, a plate blank, no lamp row or black sky.",
+   "fix": "Delete the plate blank, show two lamp rows receding in the top third, crop the near car tighter."
+  },
+  {
+   "slide": 4,
+   "problem": "Worker cast runs left; flat white near faces; dead lower third.",
+   "fix": "Casts right and away from the chassis key, long faces on the shadow side, camera at 1.0 m."
+  },
+  {
+   "slide": 9,
+   "problem": "Greyest frame; flat wall face; detached tripod shadows.",
+   "fix": "Shadow-casting lamp spots so casts start at the feet; pull the flood off the near wall face."
+  },
+  {
+   "slide": 7,
+   "problem": "Flat columns, no scale figure, casts run left.",
+   "fix": "A kit worker on the near pad, W-section flanges catching the flood."
+  }
+ ]
+}

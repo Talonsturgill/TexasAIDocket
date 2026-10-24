@@ -92,22 +92,22 @@
       lampLens: new THREE.MeshStandardMaterial({ color: 0x5a5d60, metalness: 0.1, roughness: 0.2 }),
       steel: K.mat("apron_steel", { color: 0x5b5f63, metalness: 0.75, roughness: 0.42 }),
       rail: K.mat("apron_rail", { color: 0xb8bcc0, metalness: 0.95, roughness: 0.22 }),
-      primer: K.mat("apron_primer", { color: 0x6e3424, metalness: 0.15, roughness: 0.62 }),
+      primer: K.mat("apron_primer", { color: 0x8c4630, metalness: 0.2, roughness: 0.5 }),
       ply: new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.85, map: K.tex("wood") }),
       strap: K.mat("apron_strap", { color: 0x2f3236, metalness: 0.8, roughness: 0.35 }),
-      fabric: K.mat("apron_fabric", { color: 0x5e6064, roughness: 0.95, metalness: 0 }),
+      fabric: K.mat("apron_fabric", { color: 0x4f5154, roughness: 0.95, metalness: 0, side: THREE.DoubleSide }),
       tyre: K.finish.rubber(),
       rim: K.mat("apron_rim", { color: 0x55595d, metalness: 0.8, roughness: 0.35 }),
       white: new THREE.MeshStandardMaterial({ color: 0xc9c9c4, roughness: 0.55, metalness: 0.1, map: stripes(THREE, 26, "#d8d8d3", "#a7a7a2", false) }),
       plinth: K.mat("apron_plinth", { color: 0x55575a, roughness: 0.8 }),
-      tape: new THREE.MeshBasicMaterial({ color: new THREE.Color(N.ACCENT), toneMapped: false }),
+      tape: new THREE.MeshBasicMaterial({ color: new THREE.Color(N.ACCENT), toneMapped: false, fog: false }),   /* the accent holds its hue at any distance */
       grout: K.mat("apron_grout", { color: 0x8a8781, roughness: 0.96 }),
-      thread: new THREE.MeshStandardMaterial({ color: 0xc2c6ca, metalness: 0.9, roughness: 0.3, bumpMap: stripes(THREE, 40, "#ffffff", "#000000", false, 128), bumpScale: 0.6 }),
+      thread: new THREE.MeshStandardMaterial({ color: 0xc9cdd1, metalness: 0.55, roughness: 0.38, bumpMap: stripes(THREE, 40, "#ffffff", "#000000", false, 128), bumpScale: 0.6 }),
       workLamp: new THREE.MeshStandardMaterial({ color: 0x111111, emissive: 0xfff1d8, emissiveIntensity: 3.2 }),
-      lampBody: K.mat("apron_lampbody", { color: 0xc2a12a, metalness: 0.3, roughness: 0.5 }),
+      lampBody: K.mat("apron_lampbody", { color: 0x55595f, metalness: 0.7, roughness: 0.45 }),   /* graphite: a pastel yellow mast read as a toy */
       lane: new THREE.MeshStandardMaterial({ color: 0x9f9a7c, roughness: 0.7 }),
       freshSlab: new THREE.MeshStandardMaterial({ color: 0x3a3834, roughness: 0.92, map: conc }),
-      leaf: K.mat("apron_leaf", { color: 0x5d6166, metalness: 0.55, roughness: 0.5 }),
+      leaf: K.mat("apron_leaf", { color: 0x3a3d41, metalness: 0.45, roughness: 0.6 }),
       film: new THREE.MeshPhysicalMaterial({ color: 0x77736c, roughness: 0.6, metalness: 0, clearcoat: 0.25, clearcoatRoughness: 0.6 })
     };
     m.white.map.repeat.set(1, 3);
@@ -306,9 +306,9 @@
         var g = new THREE.Group();
         box(7.3, 0.18, 1.75, M.plinth, 0, 0.09, 0, g, 0.02);
         var body = box(7.2, 2.4, 1.6, M.white, 0, 0.18 + 1.2, 0, g, 0.04); K.uvBox(body.geometry, 1.2);
-        box(7.3, 0.08, 1.7, M.galv, 0, 2.62, 0, g, 0.02);
+        box(7.3, 0.08, 1.7, M.plinth, 0, 2.62, 0, g, 0.02);
         for (var i = 1; i < 6; i++) box(0.025, 2.2, 0.02, M.reveal, -3.6 + i * 1.2, 1.38, 0.81, g);
-        [-1, 1].forEach(function (s) { box(0.04, 0.3, 0.04, M.galvDark, s * 3.2, 1.4, 0.82, g); });
+        [-1, 1].forEach(function (s) { box(0.04, 0.3, 0.04, M.plinth, s * 3.2, 1.4, 0.82, g); });
         g.userData.keepOrigin = true; return g;
       }
     });
@@ -347,7 +347,7 @@
         /* rod X bracing in the two end bays of the front line */
         [[0, 1], [o.cols - 2, o.cols - 1]].forEach(function (p) {
           var xa = W0 + p[0] * B, xb = W0 + p[1] * B, zf = Z0 + (o.rows - 1) * B;
-          var a = K.bar([xa, 0.4, zf], [xb, H - 1.2, zf], 0.012, M.strap), b = K.bar([xb, 0.4, zf], [xa, H - 1.2, zf], 0.012, M.strap);
+          var a = K.bar([xa, 0.4, zf], [xb, H - 1.2, zf], 0.03, M.galvDark), b = K.bar([xb, 0.4, zf], [xa, H - 1.2, zf], 0.03, M.galvDark);
           a.castShadow = b.castShadow = true; g.add(a, b);
         });
         g.userData.keepOrigin = true; g.userData.columns = { x0: W0, z0: Z0, bay: B, cols: o.cols, rows: o.rows };
@@ -358,22 +358,45 @@
     /* A COVERED POD: a two seat car under a fitted grey fabric cover, 4.2 by 1.95 m and 1.45 m tall, a hem with folds
      * just above the wheels, the four wheels showing. Length runs along z, the nose on +z. No maker's design. */
     K.define("covered_pod", {
-      size: [2.3, 1.62, 4.8],
+      size: [2.0, 1.5, 4.3],
       options: {},
-      note: "A car under a fitted grey fabric cover, the kit crossover's body draped and slightly loose, the tyres showing below the hem. No maker's design or mark. Drawn to illustrate.",
+      note: "A two seat car under a fitted grey fabric cover: one continuous lofted cloth from roof to a hem of folds just above the tyres, nothing of the car beneath showing through but its mass. No glass, mirror, seam, plate or maker's design. Drawn to illustrate.",
       make: function () {
-        var g = new THREE.Group();
-        var car = K.make("crossover", { color: 0x6b6d70, metallic: false, sensors: false, seed: 9 });
-        var drape = new THREE.Group(); drape.add(car); drape.scale.set(1.035, 1.03, 1.02); g.add(drape);
-        car.traverse(function (m) {
-          if (!m.isMesh) return;
-          var mat = Array.isArray(m.material) ? m.material[0] : m.material;
-          var c = mat && mat.color ? mat.color : null;
-          var dark = c && (c.r + c.g + c.b) < 0.25;
-          var low = (function () { m.geometry.computeBoundingBox(); var bb = m.geometry.boundingBox; return bb && (bb.max.y - bb.min.y) < 0.9 && bb.max.y < 0.85; })();
-          if (dark && low) { m.material = M.tyre; } else { m.material = M.fabric; }
-          m.castShadow = m.receiveShadow = true;
+        var g = new THREE.Group(), L = 4.2, Wd = 1.94, base = 0.4;
+        /* THE CLOTH: a box of segments pushed out to a rounded superellipsoid, then given the car's side profile, a
+         * short low nose, one swept cabin and a short tail, the way a cover lies over a small two seat body */
+        var geo = new THREE.BoxGeometry(2, 2, 2, 40, 18, 80), pos = geo.attributes.position, v = new THREE.Vector3();
+        var top = function (t) { return 0.92 + 0.5 * Math.exp(-Math.pow((t + 0.08) / 0.5, 2)) - 0.1 * Math.max(0, t - 0.55); };
+        for (var i = 0; i < pos.count; i++) {
+          v.fromBufferAttribute(pos, i);
+          var n = Math.pow(Math.pow(Math.abs(v.x), 4) + Math.pow(Math.abs(v.y), 4) + Math.pow(Math.abs(v.z), 4), 0.25);
+          var x = v.x / n, y = v.y / n, z = v.z / n;
+          var up = (y + 1) / 2, H = top(z);
+          var X = x * Wd / 2 * (1 - 0.2 * Math.pow(Math.max(0, up - 0.45), 1.4)), Y = base + up * (H - base), Z = z * L / 2;
+          /* tension wrinkles where the cloth pulls over the shoulders, a few millimetres, never a pattern a reader sees */
+          var w = 0.006 * Math.sin(Z * 9 + X * 3) * Math.sin(Y * 11) * up;
+          pos.setXYZ(i, X + Math.sign(X) * w, Y, Z);
+        }
+        geo.computeVertexNormals();
+        var shell = new THREE.Mesh(geo, M.fabric); g.add(shell);
+        /* four tyres, showing below the hem */
+        [[-1, 1], [1, 1], [-1, -1], [1, -1]].forEach(function (p) {
+          var t = new THREE.Mesh(new THREE.CylinderGeometry(0.33, 0.33, 0.22, 32), M.tyre); t.rotation.z = Math.PI / 2; t.position.set(p[0] * (Wd / 2 - 0.2), 0.33, p[1] * 1.32); g.add(t);
         });
+        /* THE HEM: the cloth's loose lower edge, a superellipse in plan just outside the shell, falling in folds to
+         * a quarter metre above the floor */
+        var hx = Wd / 2 * 1.015, hz = L / 2 * 1.01;
+        var hem = new THREE.CylinderGeometry(1, 1, 0.3, 240, 6, true), hp = hem.attributes.position;
+        for (var k = 0; k < hp.count; k++) {
+          v.fromBufferAttribute(hp, k);
+          var th = Math.atan2(v.z, v.x), c = Math.cos(th), sn = Math.sin(th), drop = (0.15 - v.y) / 0.3;
+          var fold = 1 + (0.004 + 0.02 * drop) * (0.6 * Math.sin(th * 23 + 1.3 * Math.sin(th * 4)) + 0.4 * Math.sin(th * 41 + 0.5));
+          var hxx = hx * Math.sign(c) * Math.pow(Math.abs(c), 0.5) * fold, hzz = hz * Math.sign(sn) * Math.pow(Math.abs(sn), 0.5) * fold;
+          hp.setXYZ(k, hxx, v.y - drop * drop * 0.012 * (1 + Math.sin(th * 23 + 1.3 * Math.sin(th * 4))), hzz);
+        }
+        hem.computeVertexNormals();
+        var skirt = new THREE.Mesh(hem, M.fabric); skirt.position.y = 0.36; g.add(skirt);
+        g.traverse(function (m) { if (m.isMesh) m.castShadow = m.receiveShadow = true; });
         g.userData.keepOrigin = true; return g;
       }
     });
@@ -519,7 +542,9 @@
       ".dek { position:absolute; left:82px; width:820px; font-size:31px; font-weight:600; line-height:1.38; color:" + dek + "; z-index:10; }",
       '.tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace; font-size:24px; letter-spacing:0.07em; line-height:1.5; color:' + ink + '; white-space:nowrap; z-index:20; }',
       '.lab { position:absolute; font-family:"JetBrains Mono", monospace; font-size:26px; font-weight:500; letter-spacing:0.06em; line-height:1.3; color:' + ink + '; white-space:nowrap; z-index:12; }',
-      ".hook, .dek, .tx-site, .kick, .src, .count, .lab { text-shadow:0 0 2px " + halo + ", 0 1px 14px " + halo2 + "; }"
+      ".hook, .dek, .kick, .count, .lab { text-shadow:0 0 2px " + halo + ", 0 1px 14px " + halo2 + "; }",
+      /* the footer lines carry a tight halo only: a 14 px blur read as a smudge on a lit apron */
+      ".tx-site, .src { text-shadow:0 0 2px " + halo + ", 0 1px 4px " + halo2 + "; }"
     ].join("\n");
   };
   N.start = function (o) {

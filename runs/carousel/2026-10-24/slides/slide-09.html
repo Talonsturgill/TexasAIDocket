@@ -1,0 +1,79 @@
+<!doctype html>
+<!-- 2026-10-24, frame 9 of 9. Archetype FULL_BLEED. The cover reversed: the same tilt up wall seen from its dark fifth bay, a work lamp and bluebonnet tape on the dark threshold in the foreground, the lit bays read from figures.json receding along the apron. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>.dek { width:760px !important; }</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site" style="font-size:24px">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="line-height:1.04">A lit bay is a status, not a count</h1>
+<p class="dek" data-follow="24">Tesla says installed capacity is not the current production rate, which turns on uptime, supply, downtime for upgrades, regulation and other factors. Its update gives no count of Cybercabs&nbsp;built.</p>
+<script>window.FIG = {"model_y": 375000, "cybertruck": 125000, "cybercab": 125000, "vehicle_rows": 3, "model_y_to_cybercab": 3, "unit": 125, "model_y_blocks": 3, "cybercab_blocks": 1, "cybertruck_blocks": 1, "megapack_gwh": 50, "cells_gwh": 40, "cathode_gwh": 10, "lithium_gwh": 30, "cortex1_mw": 105, "cortex2_mw": 120, "cortex_texas_mw": 225, "plan_mw": 400, "other_mw": 40, "mw_per_row": 5, "cortex1_rows": 21, "cortex2_rows": 24, "optimus_texas_capacity": 0, "hours_start": 6, "hours_open": 18, "hours_closed": 6, "fab_year": 2027, "fab_machines_placed": 0, "population": 1000, "controls_missing": 4, "audit_opened_day": 3, "texas_rows": 5, "production_rows": 4, "construction_rows": 1, "gwh_per_unit": 10, "megapack_units": 5};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-24-apron.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+const N_TAPE_W = () => CH.BAY.door;
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "The footnote", counter: "09 / 09", src: "c8 c9 c10 c34", fit: { min: 70, max: 104, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 26, near: 0.1, far: 3000 });
+  /* THE FIGURE, from figures.json: one lit bay per Texas row whose status reads Production, then one dark bay for the
+   * row that reads Construction, in the table's order */
+  const lit = [];
+  for (let i = 0; i < FIG.production_rows; i++) lit.push(true);
+  for (let i = 0; i < FIG.construction_rows; i++) lit.push(false);
+  const wall = K.make('plant_wall', { lit }); TXT.add(R, wall);
+  const doors = wall.userData.doors, dark = doors[doors.length - 1];
+  /* the dark bay: two work lamps standing on its threshold tape, in front of the door plane */
+  [[-2.2, 1.0, 0.9], [2.6, 1.5, 0.3]].forEach((p) => { const l = K.make('tripod_work_lamp', { aim: -0.5, light: 0.5, shadow: true }); l.scale.setScalar(1.5); l.position.set(dark.x + p[0], 0, p[1]); l.rotation.y = p[2]; TXT.add(R, l); TXT.contact(R, l, { dirt: false, grit: false }); });
+  /* bluebonnet tape across the dark bay's threshold: planned, not yet installed */
+  const tape = CH.box(N_TAPE_W(), 0.006, 2.6, CH.mats(THREE, K).tape, dark.x, 0.006, 0.4); R.scene.add(tape);
+  /* each lit bay's line: bodies on carriers, crossovers in the first, covered bodies in the next two, enclosures in the
+   * fourth. No product is drawn, and the covers keep it so */
+  doors.forEach((d, i) => {
+    if (!d.lit) return;
+    for (let k = 0; k < 3; k++) {
+      const z = -5 - k * 7.6;
+      if (i === 3) { const u = K.make('megapack_unit', {}); u.rotation.y = Math.PI / 2; u.position.set(d.x, 0, z); TXT.add(R, u); continue; }
+      const c = K.make('line_carrier', {}); c.position.set(d.x, 0, z); TXT.add(R, c);
+      const body = i === 0 ? K.make('crossover', { color: 0x8a8c8e, metallic: false, sensors: false, seed: k }) : K.make('covered_pod', {});
+      body.position.set(d.x, c.userData.seat, z); TXT.add(R, body);
+    }
+  });
+  /* bollards at the first door's jambs, the painted lane along the wall */
+  [-5.6, 5.6].forEach((dx) => { const b = K.make('bollard', {}); b.position.set(doors[0].x + dx, 0, 1.2); TXT.add(R, b); TXT.contact(R, b); });
+  const lane = CH.box(130, 0.004, 0.15, CH.mats(THREE, K).lane, 60, 0.004, 4.2); R.scene.add(lane);
+  const lane2 = CH.box(130, 0.004, 0.15, CH.mats(THREE, K).lane, 60, 0.004, 5.8); R.scene.add(lane2);
+  const worker = K.make('person', { role: 'worker', pose: 'walk', vest: true, hat: true, seed: 4 });
+  worker.position.set(doors[0].x + 6, 0, 5.0); worker.rotation.y = -Math.PI / 2 + 0.4; TXT.add(R, worker);
+  TXT.ground(R, { surface: 'concrete', size: 600, color: 0x6a6761, seed: 24, tile: 14, joints: 1 });
+  const from = [dark.x + 32, 7.5, 26];
+  const look = CH.aim(THREE, R, TXT, from, [doors[3].x, 4.0, 0], 470, 930, 42);
+  TXT.frame(R, { fov: 42, from, look });
+  TXT.sky(R);
+  CH.warm(R, 0.25);
+  { const spec = CH.rigSpec(W, 70, 4096); TXT.deckRig(R, spec, CH.rigOpts([30, 0, 0], { distance: 140, shadowFar: 400, normalBias: 0.02 })); }
+  CH.unacne(R, 0.02);
+  TXT.contact(R, worker);
+  TXT.stage(R, [dark.bay, tape], { behind: 2.5, depth: 4.0, pool: false });
+  TXT.weather(R, { grime: 0.3, height: 1.2, mottle: 0.22 });
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0.4, veil: 0, footWash: 0.3 });
+  /* the footer rides the full width foot wash; a per line knock read as a smudge */
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

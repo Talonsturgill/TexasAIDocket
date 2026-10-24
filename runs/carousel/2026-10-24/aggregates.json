@@ -1,0 +1,22 @@
+{
+ "date": "2026-10-24",
+ "_note": "Every count, span and multiple the deck states, with the claim it was quoted from or the code that computed it.",
+ "aggregates": [
+  {
+   "phrase": "three times",
+   "slide": "slide-03.html",
+   "kind": "count",
+   "value": 3,
+   "computed_by": "out/2026-10-24/compute.py, figures.json model_y_to_cybercab, the Model Y floor (c2) over the Cybercab floor (c4), checked to be a whole multiple",
+   "note": "computed"
+  },
+  {
+   "phrase": "Three vehicle rows",
+   "slide": "slide-03.html",
+   "kind": "count",
+   "value": 3,
+   "computed_by": "out/2026-10-24/compute.py, figures.json vehicle_rows, the vehicle rows under the Texas label the claims quote (c2, c3, c4), counted",
+   "note": "computed"
+  }
+ ]
+}

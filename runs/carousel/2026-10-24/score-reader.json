@@ -1,0 +1,79 @@
+{
+ "lens": "reader",
+ "round": 3,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.5,
+   "why": "One dark floodlit world in register; 5 best; 3 measured; 6 an infographic; 8 a lump under a tablecloth; the dark door smallest on the cover; 9 the greyest; 2's kit car boxy."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 8.0,
+   "why": "A filmstrip with one light and one accent meaning; the motif turns on 5 and reverses on 9; 6 and 8 slightly outside."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 9.0,
+   "why": "Tried to refute every slide string and the caption and found nothing; numerals trace, layout-only rows scoped, universals name their set."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.5,
+   "why": "A true, clear story with a turn; nothing to do, no county or deadline; Austin waits until slide 8."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "2 pays, 5 turns, 9 closes; 3 restates 2; 6 a placeless side trip."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "Clean on every house rule; auditor register; flat label headlines."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "Floodlit plant differs from nos. 56 to 58; the lit against taped empty bay move repeats no. 56."
+  }
+ ],
+ "weighted_score": 7.18,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Rebuild the cover around frame 9's composition with a plain-words hook.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 6,
+   "problem": "A tray with a flat blue fill.",
+   "fix": "Near black plate bleeding off four edges; milled groove; raised vinyl tape."
+  },
+  {
+   "slide": 8,
+   "problem": "A lump with a tablecloth skirt.",
+   "fix": "Drape to a two-seat contour with arches; low three quarter camera."
+  },
+  {
+   "slide": 1,
+   "problem": "The dark door is the smallest and furthest opening.",
+   "fix": "Swing the crane so the dark door sits mid frame and large."
+  },
+  {
+   "slide": 9,
+   "problem": "The greyest frame.",
+   "fix": "Rake the flood at a grazing angle so the panel faces go dark."
+  },
+  {
+   "slide": 2,
+   "problem": "Boxy kit crossover.",
+   "fix": "Crop onto the second car's glasshouse and roof rim."
+  }
+ ]
+}

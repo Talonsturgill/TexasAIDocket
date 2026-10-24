@@ -3652,6 +3652,72 @@
     "hex": "#07070C",
     "note": "The lastLight world's dark field around the stage."
    }
+  },
+  {
+   "date": "2026-10-24",
+   "carousel_no": 59,
+   "written_from": "deck_coherence's median L* per frame at 432 px off the final renders, layout_check's accent share, by update_ledgers.py.",
+   "register": "SPATIAL SCENES in TXT's floodlit world, staged, with two material reliefs. Chassis assets/js/deck/2026-10-24-apron.js: key az -58 el 25, chassis models plant_bay, plant_wall, line_carrier, bollard, anchor_bolt_set, tool_crate, tripod_work_lamp, megapack_unit, steel_frame and covered_pod, chalk tilt up panels, galvanized steel, warm 3500K bay light, bluebonnet tape.",
+   "structural_laws": [
+    "A CAMERA LOOKING INTO THE KEY SILHOUETTES ITS SUBJECT. The dark bay's bolts read black until the camera turned to stand in the door with the flood over its shoulder.",
+    "A KIT CAR UNDER A CLOTH IS STILL THE KIT CAR. Draping the merged crossover kept its mirrors, glass and seams; only a lofted shell with no car beneath read as covered.",
+    "A LIT MATERIAL ACCENT LEAVES THE ACCENT BAND. Satin tape took the key and the lamps and fell out of the 12 Lab unit band on two frames, so the tape stays a flat accent fill.",
+    "A BOTTOM VEIL EATS A TAPE NEAR THE FOOTER. The taped pads near the foot of a frame fell to navy under the veil and foot wash.",
+    "A PER LINE KNOCK BEHIND THE FOOTER READS AS A SMUDGE ON A LIT APRON. The full width foot wash replaced it."
+   ],
+   "techniques": [
+    "a crane eye on a 80 m tilt up wall, four lit bays and one dark bay, the apron under the flood",
+    "the first lit bay from its threshold, three bodies on carriers",
+    "a material relief of three milled channels at one scale, stop blocks inside each length",
+    "five battery enclosures in a row on the apron, the wall and its lit doors behind",
+    "the dark bay from its door, galvanized anchor bolts in a taped pad, crates, unlit lamps",
+    "a material relief of two finned blocks and an offcut on blackened steel, the 400 MW plan an empty taped groove",
+    "an unclad primed steel frame on two empty taped pads",
+    "a covered car on its carrier just inside the lit third bay",
+    "the wall from its dark end, two lamps on the taped threshold"
+   ],
+   "value": {
+    "per_frame_median_L": [
+     9.8,
+     4.7,
+     5.5,
+     4.0,
+     5.1,
+     5.9,
+     3.4,
+     6.9,
+     21.0
+    ],
+    "deck_median_L": 5.5,
+    "max_adjacent_delta": 14.1,
+    "mean_adjacent_delta": 3.67,
+    "note": "Measured by deck_coherence's median_lstar at 432 px off the final renders. A staged floodlit deck."
+   },
+   "accent": {
+    "hex": "#4E5FA8",
+    "name": "bluebonnet tape",
+    "frames_above_floor": [
+     5,
+     6,
+     9
+    ],
+    "share": [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0191,
+     0.0122,
+     0.0,
+     0.0,
+     0.0021
+    ],
+    "note": "Tape on what is planned or under construction, not yet installed."
+   },
+   "ground": {
+    "hex": "#08060F",
+    "note": "The floodlit world's black sky and dark apron."
+   }
   }
  ]
 }

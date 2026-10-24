@@ -1,0 +1,267 @@
+{
+ "_note": "Every value is extracted from a claim quote by compute.py, or computed here from values that were.",
+ "model_y": {
+  "value": 375000,
+  "from": [
+   "c2"
+  ],
+  "basis": "Model Y in Texas, installed annual capacity, more than this many"
+ },
+ "cybertruck": {
+  "value": 125000,
+  "from": [
+   "c3"
+  ],
+  "basis": "Cybertruck, installed annual capacity, more than this many"
+ },
+ "cybercab": {
+  "value": 125000,
+  "from": [
+   "c4"
+  ],
+  "basis": "Cybercab, installed annual capacity, more than this many"
+ },
+ "vehicle_rows": {
+  "value": 3,
+  "from": [
+   "c2",
+   "c3",
+   "c4"
+  ],
+  "basis": "computed: vehicle rows under the Texas label, counted"
+ },
+ "model_y_to_cybercab": {
+  "value": 3,
+  "from": [
+   "c2",
+   "c4"
+  ],
+  "basis": "computed: the Model Y floor over the Cybercab floor, a whole multiple"
+ },
+ "unit": {
+  "value": 125,
+  "from": [
+   "c4"
+  ],
+  "basis": "computed: one drawn block stands for this many thousand of installed capacity"
+ },
+ "model_y_blocks": {
+  "value": 3,
+  "from": [
+   "c2",
+   "c4"
+  ],
+  "basis": "computed: blocks in the Model Y row at one block per Cybercab floor"
+ },
+ "cybercab_blocks": {
+  "value": 1,
+  "from": [
+   "c4"
+  ],
+  "basis": "computed: the Cybercab row is one block at that scale"
+ },
+ "cybertruck_blocks": {
+  "value": 1,
+  "from": [
+   "c3",
+   "c4"
+  ],
+  "basis": "computed: the Cybertruck row at the same scale"
+ },
+ "megapack_gwh": {
+  "value": 50,
+  "from": [
+   "c5"
+  ],
+  "basis": "Megapack in Texas, GWh of installed annual capacity"
+ },
+ "cells_gwh": {
+  "value": 40,
+  "from": [
+   "c15"
+  ],
+  "basis": "4680 cells in Texas, more than this many GWh"
+ },
+ "cathode_gwh": {
+  "value": 10,
+  "from": [
+   "c16"
+  ],
+  "basis": "cathode materials, GWh, early ramp"
+ },
+ "lithium_gwh": {
+  "value": 30,
+  "from": [
+   "c17"
+  ],
+  "basis": "lithium refining, GWh, early ramp"
+ },
+ "cortex1_mw": {
+  "value": 105,
+  "from": [
+   "c12"
+  ],
+  "basis": "Cortex 1 in Texas, more than this many MW of training compute"
+ },
+ "cortex2_mw": {
+  "value": 120,
+  "from": [
+   "c13"
+  ],
+  "basis": "Cortex 2, more than this many MW of training compute"
+ },
+ "cortex_texas_mw": {
+  "value": 225,
+  "from": [
+   "c12",
+   "c13"
+  ],
+  "basis": "computed: the two Texas Cortex floors summed, more than this many MW"
+ },
+ "plan_mw": {
+  "value": 400,
+  "from": [
+   "c21"
+  ],
+  "basis": "the year end plan for training compute, with no location"
+ },
+ "other_mw": {
+  "value": 40,
+  "from": [
+   "c14"
+  ],
+  "basis": "other compute excluded from the Cortex rows, location not given"
+ },
+ "mw_per_row": {
+  "value": 5,
+  "from": [
+   "c12",
+   "c13"
+  ],
+  "basis": "a drawing rule: one server row stands for this many MW, so each hall's rows are its floor over this"
+ },
+ "cortex1_rows": {
+  "value": 21,
+  "from": [
+   "c12"
+  ],
+  "basis": "computed: Cortex 1 floor over the drawing rule"
+ },
+ "cortex2_rows": {
+  "value": 24,
+  "from": [
+   "c13"
+  ],
+  "basis": "computed: Cortex 2 floor over the drawing rule"
+ },
+ "optimus_texas_capacity": {
+  "value": 0,
+  "from": [
+   "c6"
+  ],
+  "basis": "the Texas Optimus row's capacity cell is a hyphen, drawn as an empty bay"
+ },
+ "hours_start": {
+  "value": 6,
+  "from": [
+   "c33"
+  ],
+  "basis": "operating hours begin at this hour of the morning"
+ },
+ "hours_open": {
+  "value": 18,
+  "from": [
+   "c33"
+  ],
+  "basis": "computed: from the start hour to midnight"
+ },
+ "hours_closed": {
+  "value": 6,
+  "from": [
+   "c33"
+  ],
+  "basis": "computed: midnight to the start hour"
+ },
+ "fab_year": {
+  "value": 2027,
+  "from": [
+   "c24"
+  ],
+  "basis": "the year Tesla plans to start commissioning equipment at the Austin Fab"
+ },
+ "fab_machines_placed": {
+  "value": 0,
+  "from": [
+   "c24"
+  ],
+  "basis": "computed: equipment commissioning is planned and not begun, so no machine is drawn on a pad"
+ },
+ "population": {
+  "value": 1000,
+  "from": [
+   "c38"
+  ],
+  "basis": "NHTSA's estimated population for the audit query, never a count deployed"
+ },
+ "controls_missing": {
+  "value": 4,
+  "from": [
+   "c42"
+  ],
+  "basis": "computed: the conventional manual controls NHTSA names as absent, counted"
+ },
+ "audit_opened_day": {
+  "value": 3,
+  "from": [
+   "c36"
+  ],
+  "basis": "the day of the month the audit query opened"
+ },
+ "texas_rows": {
+  "value": 5,
+  "from": [
+   "c2",
+   "c3",
+   "c4",
+   "c5",
+   "c6"
+  ],
+  "basis": "computed: the Texas rows of the manufacturing table the claims quote, counted"
+ },
+ "production_rows": {
+  "value": 4,
+  "from": [
+   "c2",
+   "c3",
+   "c4",
+   "c5",
+   "c6"
+  ],
+  "basis": "computed: of those rows, the ones whose status reads Production, counted"
+ },
+ "construction_rows": {
+  "value": 1,
+  "from": [
+   "c2",
+   "c3",
+   "c4",
+   "c5",
+   "c6"
+  ],
+  "basis": "computed: of those rows, the ones whose status reads Construction, counted"
+ },
+ "gwh_per_unit": {
+  "value": 10,
+  "from": [
+   "c5"
+  ],
+  "basis": "a drawing rule: one battery enclosure on frame 4 stands for this many GWh, stated in its dek"
+ },
+ "megapack_units": {
+  "value": 5,
+  "from": [
+   "c5"
+  ],
+  "basis": "computed: the Megapack row's GWh over the drawing rule, enclosures drawn"
+ }
+}

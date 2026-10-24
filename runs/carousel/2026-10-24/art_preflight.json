@@ -1,0 +1,227 @@
+{
+  "version": 2,
+  "selected": [
+    1,
+    5,
+    9
+  ],
+  "inputs": {
+    "slides/slide-01.html": "4bd58a0820267661bda43e18f5060298725b9f0d0638f5210829ea082ae02337",
+    "render/slide-01.png": "0454242d0985cc80acf6f2f6403e4ce3a3287e46256f643361f118163c4b6d49",
+    "assets/js/deck/2026-10-24-apron.js": "62c340fadcf5f80a92829c81072dae746fc5d8e55e6cc41b491e59510e1701b3",
+    "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+    "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+    "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+    "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+    "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+    "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+    "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+    "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+    "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+    "slides/slide-05.html": "3811c807fcc2b7c248693b26f7d6b3b4aa3a3966c2148aea1973ca13c553ce7b",
+    "render/slide-05.png": "98c28b81f54f9aca008d4196429a8100c6a1320500dda4080707b28cb13b6fdc",
+    "slides/slide-09.html": "586e758ad56babe301fe4a05918d985d49b0798acba7f64bdef2bda24b5f3eb4",
+    "render/slide-09.png": "40fa083708cd7f16640c74fe9a6e58abbb6019263303785aaa2fb9f5f779ba7c"
+  },
+  "value_measurements": [
+    {
+      "frame": "slide-01.png",
+      "median_L": 8.6,
+      "mid": 0.259,
+      "dark": 0.55
+    },
+    {
+      "frame": "slide-05.png",
+      "median_L": 3.2,
+      "mid": 0.184,
+      "dark": 0.696
+    },
+    {
+      "frame": "slide-09.png",
+      "median_L": 20.4,
+      "mid": 0.306,
+      "dark": 0.459
+    }
+  ],
+  "review": {
+    "decision": "accept",
+    "inputs": {
+      "slides/slide-01.html": "4bd58a0820267661bda43e18f5060298725b9f0d0638f5210829ea082ae02337",
+      "render/slide-01.png": "0454242d0985cc80acf6f2f6403e4ce3a3287e46256f643361f118163c4b6d49",
+      "assets/js/deck/2026-10-24-apron.js": "62c340fadcf5f80a92829c81072dae746fc5d8e55e6cc41b491e59510e1701b3",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+      "slides/slide-05.html": "3811c807fcc2b7c248693b26f7d6b3b4aa3a3966c2148aea1973ca13c553ce7b",
+      "render/slide-05.png": "98c28b81f54f9aca008d4196429a8100c6a1320500dda4080707b28cb13b6fdc",
+      "slides/slide-09.html": "586e758ad56babe301fe4a05918d985d49b0798acba7f64bdef2bda24b5f3eb4",
+      "render/slide-09.png": "40fa083708cd7f16640c74fe9a6e58abbb6019263303785aaa2fb9f5f779ba7c"
+    },
+    "frames": [
+      {
+        "slide": 1,
+        "role": "cover",
+        "subject": "A tilt-up plant wall at night from crane height, five door openings receding right. Four bays glow warm under pendant lamps, one holding the covered car on a carrier and one a white enclosure. The fifth is black, its shutter part lowered, two work lamps and blue tape on its threshold. A floodlit apron runs below with a lane line, joints, a bollard and a worker.",
+        "visual_consequence": "Four warm openings against one black opening. Without the headline every bay but the last is running, the table's status column as light, readable at 432 px.",
+        "weakness": "Polish only. The covered car's hem reads as a dark serrated band at native size. The lit bays' back walls are broad empty planes. The bollard and worker casts are short pools.",
+        "repair": "none required",
+        "encoding_reads": true,
+        "dominant_subject_finished": true,
+        "feed_legible": true,
+        "inputs": {
+          "slides/slide-01.html": "4bd58a0820267661bda43e18f5060298725b9f0d0638f5210829ea082ae02337",
+          "render/slide-01.png": "0454242d0985cc80acf6f2f6403e4ce3a3287e46256f643361f118163c4b6d49",
+          "assets/js/deck/2026-10-24-apron.js": "62c340fadcf5f80a92829c81072dae746fc5d8e55e6cc41b491e59510e1701b3",
+          "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+          "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+          "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+          "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+          "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+          "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+          "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+          "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+          "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de"
+        }
+      },
+      {
+        "slide": 5,
+        "role": "evidence",
+        "subject": "Inside the unlit Optimus bay at low eye height. Four galvanized anchor rods close and large, threads catching a specular line, hex nuts, plate washers and a grout plate inside a square of bluebonnet tape. Behind are a second taped pad and bolt group, a plywood crate face, a tripod work lamp and pendant fixtures present and off.",
+        "visual_consequence": "Bolts with nothing on them, taped empty footprints and dead overhead lamps read as built for and not yet installed, without the headline, at 432 px.",
+        "weakness": "Polish only. The rod casts are faint and the jamb shadow and tape own the lower band. The tape is a flat blue. The crate is one flat face. The second pad's plate is near white and the lamp's pool lies off to its left.",
+        "repair": "none required",
+        "encoding_reads": true,
+        "dominant_subject_finished": true,
+        "feed_legible": true,
+        "inputs": {
+          "assets/js/deck/2026-10-24-apron.js": "62c340fadcf5f80a92829c81072dae746fc5d8e55e6cc41b491e59510e1701b3",
+          "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+          "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+          "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+          "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+          "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+          "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+          "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+          "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+          "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+          "slides/slide-05.html": "3811c807fcc2b7c248693b26f7d6b3b4aa3a3966c2148aea1973ca13c553ce7b",
+          "render/slide-05.png": "98c28b81f54f9aca008d4196429a8100c6a1320500dda4080707b28cb13b6fdc"
+        }
+      },
+      {
+        "slide": 9,
+        "role": "close",
+        "subject": "The same plant wall from its east end. The dark fifth bay is the largest opening, its shutter part lowered, two glowing work lamps on a bluebonnet tape strip and one small bolt group on its floor. The four lit bays diminish to the left under the flood.",
+        "visual_consequence": "The cover reversed. The reader stands in the unlit row looking back at four warm doors that show light rather than output, so a lit bay reads as a status.",
+        "weakness": "Polish only. The lamp casts are soft blobs. The tape is flat. A faint pale wedge and a pale rectangle sit by the dark door's jamb. The dark bay's floor reads warm under the lamps.",
+        "repair": "none required",
+        "encoding_reads": true,
+        "dominant_subject_finished": true,
+        "feed_legible": true,
+        "inputs": {
+          "assets/js/deck/2026-10-24-apron.js": "62c340fadcf5f80a92829c81072dae746fc5d8e55e6cc41b491e59510e1701b3",
+          "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+          "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+          "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+          "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+          "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+          "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+          "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+          "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+          "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+          "slides/slide-09.html": "586e758ad56babe301fe4a05918d985d49b0798acba7f64bdef2bda24b5f3eb4",
+          "render/slide-09.png": "40fa083708cd7f16640c74fe9a6e58abbb6019263303785aaa2fb9f5f779ba7c"
+        }
+      }
+    ]
+  },
+  "plan": {
+    "hardest_frame": 5,
+    "visual_argument": "Tesla's own Texas capacity table walked as a plant at night: every bay whose row reads Production has its line lit, and the Optimus bay, whose row reads Construction with no figure, is a dark slab of anchor bolts, taped empty pads and crated tools under two work lamps, with its high bay lamps present and off. Two plan reliefs carry the figures the doors can't, at one scale each.",
+    "build_risk": "Frame 5 is an interior with no robot in it: a TXT.interior bay 24 by 30 m with the open door as its only key opening, four chassis models (anchor_bolt_set, tool_crate, tripod_work_lamp, high bay fixture rows switched off) and three kit machine_pads in bluebonnet tape. A dark slab as the largest shape is a charge the judges have made before, so the bolts are built close and large with threads that catch the flood, their casts own the lower third, and the crates carry plywood grain and steel strapping. If one repair fails, the camera moves onto the apron looking in through the door, the bolts and tape seen across the threshold with sky over the parapet.",
+    "distinct_from_recent": "No. 58 (Oct 23) was a lastLight still life of bone cards and ember tape on a shale ledge at hand distance. No. 57 (Oct 22) was a lastLight stair of limestone and weathering steel on caliche. No. 56 (Oct 21) was lastLight machine shop rooms with plan reliefs of trays. This deck is a floodlit night exterior at plant scale, tilt up walls, steel and a sealed apron under one cold LED flood from camera left at az -58 el 25, with bluebonnet tape as the only accent meaning planned or under construction, and no still life, no room built as a set piece except the one bay the claim is about."
+  },
+  "frame_inputs": {
+    "1": {
+      "slides/slide-01.html": "4bd58a0820267661bda43e18f5060298725b9f0d0638f5210829ea082ae02337",
+      "render/slide-01.png": "0454242d0985cc80acf6f2f6403e4ce3a3287e46256f643361f118163c4b6d49",
+      "assets/js/deck/2026-10-24-apron.js": "62c340fadcf5f80a92829c81072dae746fc5d8e55e6cc41b491e59510e1701b3",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de"
+    },
+    "5": {
+      "assets/js/deck/2026-10-24-apron.js": "62c340fadcf5f80a92829c81072dae746fc5d8e55e6cc41b491e59510e1701b3",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+      "slides/slide-05.html": "3811c807fcc2b7c248693b26f7d6b3b4aa3a3966c2148aea1973ca13c553ce7b",
+      "render/slide-05.png": "98c28b81f54f9aca008d4196429a8100c6a1320500dda4080707b28cb13b6fdc"
+    },
+    "9": {
+      "assets/js/deck/2026-10-24-apron.js": "62c340fadcf5f80a92829c81072dae746fc5d8e55e6cc41b491e59510e1701b3",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+      "slides/slide-09.html": "586e758ad56babe301fe4a05918d985d49b0798acba7f64bdef2bda24b5f3eb4",
+      "render/slide-09.png": "40fa083708cd7f16640c74fe9a6e58abbb6019263303785aaa2fb9f5f779ba7c"
+    }
+  },
+  "needs_review": [
+    1,
+    5,
+    9
+  ],
+  "shipped_inputs": {
+    "slides/slide-01.html": "4bd58a0820267661bda43e18f5060298725b9f0d0638f5210829ea082ae02337",
+    "slide-01.webp": "ecf0d121f4ccf959f021abb1460162e4cf7d3e212cdf17e2035e9f75e85263d0",
+    "slides/slide-05.html": "3811c807fcc2b7c248693b26f7d6b3b4aa3a3966c2148aea1973ca13c553ce7b",
+    "slide-05.webp": "f258fcf032b4bd261bcd0b5fc2d3f8fda201202c101b2b52da982379d7a72833",
+    "slides/slide-09.html": "586e758ad56babe301fe4a05918d985d49b0798acba7f64bdef2bda24b5f3eb4",
+    "slide-09.webp": "05e159c2ad2bf25d36fa99ff55e49e4ee12d735295d8a8e35a007c40b6b9899c"
+  },
+  "encodings": [
+    {
+      "to": "slide-01.webp",
+      "to_sha256": "ecf0d121f4ccf959f021abb1460162e4cf7d3e212cdf17e2035e9f75e85263d0",
+      "from_sha256": "0454242d0985cc80acf6f2f6403e4ce3a3287e46256f643361f118163c4b6d49",
+      "psnr_db": 41.986
+    },
+    {
+      "to": "slide-05.webp",
+      "to_sha256": "f258fcf032b4bd261bcd0b5fc2d3f8fda201202c101b2b52da982379d7a72833",
+      "from_sha256": "98c28b81f54f9aca008d4196429a8100c6a1320500dda4080707b28cb13b6fdc",
+      "psnr_db": 42.033
+    },
+    {
+      "to": "slide-09.webp",
+      "to_sha256": "05e159c2ad2bf25d36fa99ff55e49e4ee12d735295d8a8e35a007c40b6b9899c",
+      "from_sha256": "40fa083708cd7f16640c74fe9a6e58abbb6019263303785aaa2fb9f5f779ba7c",
+      "psnr_db": 40.938
+    }
+  ]
+}
