@@ -2322,3 +2322,22 @@ resting on them carry a dated unconfirmed line.
 **www.tahc.texas.gov's emergency news page** carries the screwworm counts behind tx-2026-0218, and the run updated
 the counts from what it carries today. Two older quotes (c11, c17) are not in the static fetch, and reverify says it has
 never found them there.
+
+## October 24th, 2026, university source recheck
+
+The repository's `fetch_doc.py` checked the registry and each host's live robots.txt, then read all four original university pages with normal TLS verification. Each answered HTTP 200. These successful reads follow the proxy TLS failures retained above and in the items' histories.
+
+| Item | Original source | Read at UTC | Body SHA-256 |
+|---|---|---|---|
+| tx-2026-0133 | https://engineering.unt.edu/cse/undergraduate/bsai.html | 2026-10-24T14:17:55Z | `985c8dcee42359c79de072b8450d50695966a5f0e943a238b6f44b7989149bc3` |
+| tx-2026-0161 | https://www.uta.edu/news/news-releases/2026/09/10/uta-develops-ai-tutor-that-teaches-not-tells | 2026-10-24T14:17:53Z | `6386af9d87abd3cc97c4de275397e9ce419df466746e8460facdf5cbb98ebfff` |
+| tx-2026-0165 | https://news.unt.edu/news/2026/unt-receives-20-million-gift-to-advance-artificial-intelligence-advanced-analytics.html | 2026-10-24T14:17:55Z | `3f99ed9833996b47a85cf17587e09c992f4dbf4310e1581176b6736032ffdeaa` |
+| tx-2026-0173 | https://www.uta.edu/news/news-releases/2026/09/14/uta-launches-ai-degree-programs-for-business | 2026-10-24T14:17:54Z | `7f5c5fe6afaf777c35f088fcc3169e2eb18b862dcc619c1f27976264dfaf46ff` |
+
+Every retained quote was compared with the fetched HTML after normalizing curly apostrophes and quotes, nonbreaking characters and whitespace. Every current claim quote also matches the repository's existing `reverify.flatten` and `norm_quote` comparison.
+
+**UNT gift, tx-2026-0165-c4.** The opening gift sentence is present. Its inline link leaves a space before the possessive apostrophe in the flattened HTML (`North Texas ’`). That accounts for the literal mismatch. Normalizing punctuation spacing confirms the old words. The current excerpt ends at `will accelerate`, before that link boundary, and directly retains the amount and donor names. The other three original gift quotes match too, including the donor's statement about teaching students how to use AI.
+
+**Claim scope.** UNT's degree page confirms the named degree and July curriculum month without an exact start day. UTA's tutor release describes development and testing rather than a completed classroom deployment, and its funding footnote attributes the police work separately to the U.S. Department of Justice. The gift announcement does not establish the date of a separate naming decision. UTA's business degree release is dated September 14th and says the degrees have launched, without an exact launch date, start term or first cohort size. The publication dates are retained as `filed` dates. Broader assertions about a nonoperating UNT college, naming approval by regents, evaluation results outside UTA's release and degree-page links absent from that release were removed or narrowed to what the original pages establish.
+
+The fetched source bytes and metadata are under `out/2026-10-24/tmp/src/` for this checkout. The item claims continue to cite the original university URLs. Earlier history entries and source observations are retained verbatim.

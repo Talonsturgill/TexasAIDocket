@@ -1,6 +1,6 @@
-# UT Arlington builds a federally funded AI tutor that withholds the answer and helps build Fort Worth police training on the same method
+# UT Arlington develops a federally funded AI tutor and tests related technology with Fort Worth police
 
-The University of Texas at Arlington published an account on September 10th, 2026 of an AI conversational tutor built on a National Science Foundation grant. The tutor is designed not to supply an answer. It asks the student questions and offers hints so the student reaches the answer, in the way a teacher does at a desk. The same account says the researchers are helping to develop Fort Worth Police Department training using real life scenarios, with prompts based on the principles of de escalation. The university describes the system judging whether an officer is listening and whether the officer follows what the other person wants to talk about. No evaluation result is published for either use.
+The University of Texas at Arlington published an account on September 10th, 2026 of a project using a National Science Foundation grant to create an AI conversational tutor. The planned tutor will ask questions and offer hints so students can work toward answers themselves. The same account says testing has begun with the Fort Worth Police Department using real life training scenarios and prompts based on de escalation. The university describes the system judging whether an officer is listening and follows what the other person wants to discuss. A funding note separately attributes the police work to the U.S. Department of Justice. The release reports no evaluation results for either use.
 
 - Topic: research-and-science
 - Decided by: The University of Texas at Arlington (state-agency)
@@ -11,7 +11,7 @@ The University of Texas at Arlington published an account on September 10th, 202
 - Public access: Write to the decider
 - Take part: https://www.uta.edu/news/news-releases/2026/09/10/uta-develops-ai-tutor-that-teaches-not-tells
 
-- Last checked: 2026-10-18
+- Last checked: 2026-10-24
 
 ## Dates
 
@@ -36,6 +36,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-22 · The university's account did not answer today, so the tutor and the police training work are unconfirmed since their last check.
 - 2026-10-23 · The university's account could not be reached today, so the tutor and the police training work stay unconfirmed since October 18th.
 - 2026-10-24 · UT Arlington's AI tutor that withholds the answer is unconfirmed today, since the university's release did not answer.
+- 2026-10-24 · The university confirms the planned tutor and says police testing has begun. The police training is separately funded by the Justice Department. The release reports no evaluation results for either use.
 
 ## Evidence
 
@@ -49,7 +50,7 @@ Source (primary_official): https://www.uta.edu/news/news-releases/2026/09/10/uta
 
 ### Testing with the city police department has already started.
 
-> helping to develop training using real-life scenarios with prompts based on the principles of de-escalation
+> Deb has already begun testing the system with the Fort Worth Police Department
 
 Source (primary_official): https://www.uta.edu/news/news-releases/2026/09/10/uta-develops-ai-tutor-that-teaches-not-tells
 
@@ -59,9 +60,15 @@ Source (primary_official): https://www.uta.edu/news/news-releases/2026/09/10/uta
 
 Source (primary_official): https://www.uta.edu/news/news-releases/2026/09/10/uta-develops-ai-tutor-that-teaches-not-tells
 
-### The tutor is built to refuse the answer.
+### The planned tutor will prompt students toward their own answers.
 
 > Back in Deb's classroom, her AI tutor will not provide answers. Instead, it will interact with students and prompt them with questions to help them discover the answers on their own, much like a classroom teacher helping a student at their desk.
+
+Source (primary_official): https://www.uta.edu/news/news-releases/2026/09/10/uta-develops-ai-tutor-that-teaches-not-tells
+
+### The police training work has separate Justice Department funding.
+
+> funded by the U.S. Department of Justice
 
 Source (primary_official): https://www.uta.edu/news/news-releases/2026/09/10/uta-develops-ai-tutor-that-teaches-not-tells
 
