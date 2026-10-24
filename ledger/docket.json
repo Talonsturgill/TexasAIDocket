@@ -1,7 +1,7 @@
 {
  "_spec": {
   "version": 2,
-  "generated": "2026-10-23",
+  "generated": "2026-10-24",
   "gates": [
    "banned words",
    "claims",
@@ -38395,6 +38395,191 @@
     {
      "date": "2026-10-23",
      "note": "Admitted on the university's own account of the grant. It gives no opening date and no measured result, and the speed it names is a goal."
+    }
+   ]
+  },
+  {
+   "title": "Tesla's own capacity table puts the Cybercab in production in Texas and lists the Texas Optimus robot line as still under construction",
+   "summary": "Tesla published its update for the third quarter of 2026 on October 21st. It says the company began putting the Cybercab into its Robotaxi fleet in Austin. Its table of installed annual capacity lists the Cybercab in Texas at more than 125,000 a year and in production. Model Y in Texas stands at more than 375,000 and the Cybertruck at more than 125,000. The same table lists Optimus, the company's humanoid robot, in Texas as under construction. Production of the robot began on lines in Fremont in California. Tesla says installed capacity is not the current production rate. The update gives no count of Cybercabs built or carrying riders. It lists two AI training compute sites in Texas. Cortex 1 is listed at more than 105 megawatts and Cortex 2 at more than 120. The company says it kept building an Austin chip fab where it plans to start commissioning equipment in 2027.",
+   "topic": "state-policy",
+   "decider": {
+    "name": "Tesla, Inc.",
+    "type": "company"
+   },
+   "geography": {
+    "statewide": false,
+    "counties": [
+     "Travis"
+    ],
+    "on_ercot": true
+   },
+   "status": "decided",
+   "confidence": "high",
+   "key_dates": [
+    {
+     "date": "2026-10-21",
+     "kind": "filed",
+     "note": "Date Tesla published its update for the third quarter of 2026"
+    }
+   ],
+   "public_access": {
+    "room": "closed",
+    "how": "A company's report to its shareholders, with no public comment window or hearing attached. Robotaxi service in Texas runs under a state authorization for commercial driverless vehicles.",
+    "url": "https://assets-ir.tesla.com/tesla-contents/IR/TSLA-Q3-2026-Update.pdf",
+    "closes": null
+   },
+   "claims": [
+    {
+     "text": "Tesla says it began putting the Cybercab into its Robotaxi fleet in Austin.",
+     "verbatim_quote": "We began deployment of Cybercab into our Robotaxi fleet in Austin.",
+     "source_url": "https://assets-ir.tesla.com/tesla-contents/IR/TSLA-Q3-2026-Update.pdf",
+     "source_title": "Tesla, Q3 2026 Update",
+     "source_type": "primary_corporate",
+     "fetched": "2026-10-24",
+     "id": "tx-2026-0230-c1"
+    },
+    {
+     "text": "Tesla's table of installed annual manufacturing capacity lists the Cybercab in Texas at more than 125,000 a year, in production.",
+     "verbatim_quote": "Cybercab >125,000 Production",
+     "source_url": "https://assets-ir.tesla.com/tesla-contents/IR/TSLA-Q3-2026-Update.pdf",
+     "source_title": "Tesla, Q3 2026 Update",
+     "source_type": "primary_corporate",
+     "fetched": "2026-10-24",
+     "id": "tx-2026-0230-c2"
+    },
+    {
+     "text": "The same table lists Model Y in Texas at more than 375,000 a year, in production.",
+     "verbatim_quote": "Texas Model Y >375,000 Production",
+     "source_url": "https://assets-ir.tesla.com/tesla-contents/IR/TSLA-Q3-2026-Update.pdf",
+     "source_title": "Tesla, Q3 2026 Update",
+     "source_type": "primary_corporate",
+     "fetched": "2026-10-24",
+     "id": "tx-2026-0230-c3"
+    },
+    {
+     "text": "The same table lists the Cybertruck at more than 125,000 a year, in production.",
+     "verbatim_quote": "Cybertruck >125,000 Production",
+     "source_url": "https://assets-ir.tesla.com/tesla-contents/IR/TSLA-Q3-2026-Update.pdf",
+     "source_title": "Tesla, Q3 2026 Update",
+     "source_type": "primary_corporate",
+     "fetched": "2026-10-24",
+     "id": "tx-2026-0230-c4"
+    },
+    {
+     "text": "The table lists Optimus, Tesla's humanoid robot, in Texas as under construction.",
+     "verbatim_quote": "Texas Optimus - Construction",
+     "source_url": "https://assets-ir.tesla.com/tesla-contents/IR/TSLA-Q3-2026-Update.pdf",
+     "source_title": "Tesla, Q3 2026 Update",
+     "source_type": "primary_corporate",
+     "fetched": "2026-10-24",
+     "id": "tx-2026-0230-c5"
+    },
+    {
+     "text": "The table lists Optimus in California at early ramp.",
+     "verbatim_quote": "California Optimus - Early Ramp",
+     "source_url": "https://assets-ir.tesla.com/tesla-contents/IR/TSLA-Q3-2026-Update.pdf",
+     "source_title": "Tesla, Q3 2026 Update",
+     "source_type": "primary_corporate",
+     "fetched": "2026-10-24",
+     "id": "tx-2026-0230-c6"
+    },
+    {
+     "text": "Tesla says Optimus production began on its high volume lines in Fremont, California.",
+     "verbatim_quote": "Optimus production began in Fremont on our high- volume lines.",
+     "source_url": "https://assets-ir.tesla.com/tesla-contents/IR/TSLA-Q3-2026-Update.pdf",
+     "source_title": "Tesla, Q3 2026 Update",
+     "source_type": "primary_corporate",
+     "fetched": "2026-10-24",
+     "id": "tx-2026-0230-c7"
+    },
+    {
+     "text": "Tesla says construction in its table includes factory and infrastructure buildout and tool installation.",
+     "verbatim_quote": "Construction includes factory and infrastructure buildout as well as tool installation.",
+     "source_url": "https://assets-ir.tesla.com/tesla-contents/IR/TSLA-Q3-2026-Update.pdf",
+     "source_title": "Tesla, Q3 2026 Update",
+     "source_type": "primary_corporate",
+     "fetched": "2026-10-24",
+     "id": "tx-2026-0230-c8"
+    },
+    {
+     "text": "Tesla says its production rates depend on equipment uptime, component supply, factory upgrades, regulation and other factors.",
+     "verbatim_quote": "Production rates depend on a variety of factors, including equipment uptime, component supply, downtime related to factory upgrades, regulatory considerations and other factors.",
+     "source_url": "https://assets-ir.tesla.com/tesla-contents/IR/TSLA-Q3-2026-Update.pdf",
+     "source_title": "Tesla, Q3 2026 Update",
+     "source_type": "primary_corporate",
+     "fetched": "2026-10-24",
+     "id": "tx-2026-0230-c9"
+    },
+    {
+     "text": "Tesla lists Cortex 1 in Texas at more than 105 megawatts of AI training compute, in production.",
+     "verbatim_quote": "Texas Cortex 1 >105 MW Production",
+     "source_url": "https://assets-ir.tesla.com/tesla-contents/IR/TSLA-Q3-2026-Update.pdf",
+     "source_title": "Tesla, Q3 2026 Update",
+     "source_type": "primary_corporate",
+     "fetched": "2026-10-24",
+     "id": "tx-2026-0230-c10"
+    },
+    {
+     "text": "Tesla lists Cortex 2 at more than 120 megawatts of AI training compute, in production.",
+     "verbatim_quote": "Cortex 2 >120 MW Production",
+     "source_url": "https://assets-ir.tesla.com/tesla-contents/IR/TSLA-Q3-2026-Update.pdf",
+     "source_title": "Tesla, Q3 2026 Update",
+     "source_type": "primary_corporate",
+     "fetched": "2026-10-24",
+     "id": "tx-2026-0230-c11"
+    },
+    {
+     "text": "Tesla says it plans to reach 400 megawatts of training compute by the end of the year for vehicle and humanoid robot autonomy software.",
+     "verbatim_quote": "We plan to reach 400 MW of SI training compute by the end of the year, supporting the development of both vehicle and humanoid robot autonomy software.",
+     "source_url": "https://assets-ir.tesla.com/tesla-contents/IR/TSLA-Q3-2026-Update.pdf",
+     "source_title": "Tesla, Q3 2026 Update",
+     "source_type": "primary_corporate",
+     "fetched": "2026-10-24",
+     "id": "tx-2026-0230-c12"
+    },
+    {
+     "text": "Tesla says it continued building the Austin Fab and plans to start commissioning equipment there in 2027.",
+     "verbatim_quote": "we continued construction for the Austin Fab, where we plan to start commissioning equipment in 2027.",
+     "source_url": "https://assets-ir.tesla.com/tesla-contents/IR/TSLA-Q3-2026-Update.pdf",
+     "source_title": "Tesla, Q3 2026 Update",
+     "source_type": "primary_corporate",
+     "fetched": "2026-10-24",
+     "id": "tx-2026-0230-c13"
+    },
+    {
+     "text": "Tesla says its Robotaxi service reached nearly two million cumulative unsupervised miles by the end of the quarter.",
+     "verbatim_quote": "We reached nearly two million cumulative unsupervised miles for our Robotaxi service as of the end of the quarter.",
+     "source_url": "https://assets-ir.tesla.com/tesla-contents/IR/TSLA-Q3-2026-Update.pdf",
+     "source_title": "Tesla, Q3 2026 Update",
+     "source_type": "primary_corporate",
+     "fetched": "2026-10-24",
+     "id": "tx-2026-0230-c14"
+    },
+    {
+     "text": "Tesla says Robotaxi operating hours in Austin are now 6am to midnight.",
+     "verbatim_quote": "Operating hours in Austin are now 6am to midnight",
+     "source_url": "https://assets-ir.tesla.com/tesla-contents/IR/TSLA-Q3-2026-Update.pdf",
+     "source_title": "Tesla, Q3 2026 Update",
+     "source_type": "primary_corporate",
+     "fetched": "2026-10-24",
+     "id": "tx-2026-0230-c15"
+    },
+    {
+     "text": "Tesla says it began production at Megafactory Texas.",
+     "verbatim_quote": "We began production at Megafactory Texas.",
+     "source_url": "https://assets-ir.tesla.com/tesla-contents/IR/TSLA-Q3-2026-Update.pdf",
+     "source_title": "Tesla, Q3 2026 Update",
+     "source_type": "primary_corporate",
+     "fetched": "2026-10-24",
+     "id": "tx-2026-0230-c16"
+    }
+   ],
+   "id": "tx-2026-0230",
+   "last_verified": "2026-10-24",
+   "history": [
+    {
+     "date": "2026-10-24",
+     "note": "Admitted on Tesla's own quarterly update. The capacity it lists is installed capacity, and the update itself says that is not output."
     }
    ]
   }
