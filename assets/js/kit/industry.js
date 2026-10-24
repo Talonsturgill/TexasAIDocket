@@ -962,6 +962,8 @@ export function install(K, THREE, TXT) {
   // AFTER the wrapper above, on purpose: the machine shop models keep their own origin
   // (userData.keepOrigin), which that wrapper would re-centre away.
   installShop(K, THREE, TXT);
+  // AFTER the wrapper too: the frame publishes its column grid in its own coordinates.
+  installSite(K, THREE, TXT, { bake, darkSteel, galv, concrete });
 }
 
 /* The site scale models live below, sharing the helpers above through `H`. */
@@ -2224,6 +2226,242 @@ function installShop(K, THREE, TXT) {
       const plug = TXT.roundedBox(0.06, 0.12, 0.06, 0.01, K.mat('pad_plug', { color: 0x2b2b2b, roughness: 0.5 })); plug.position.set(bw / 2 - 0.3, 1.86, -bd / 2 + 0.35); g.add(plug);
       g.userData.keepOrigin = true;
       return g;
+    },
+  });
+}
+
+/* ====================================================================================
+ * THE CONSTRUCTION SITE: an unclad structural steel frame, lifted 2026-10-24 by the weekly
+ * machine pass from no. 59's chassis (assets/js/deck/2026-10-24-apron.js `steel_frame`).
+ *
+ * WHY. The chassis drew each column as three flat boxes with the flanges facing the camera, so a
+ * column read as a painted flat strip, and every judge in all three panel rounds named it ("flat
+ * columns", "a wireframe", round 3's named fix "W-section columns ... flanges catching the
+ * flood"). A data hall under construction is this project's most frequent subject, so the frame
+ * belongs in the kit at the judges' fix, not in the next chassis.
+ *
+ *   structural_frame   wide flange (W) columns extruded from a filleted section, turned so the
+ *                      STRONG AXIS runs along x by default: a camera on +z sees each column's
+ *                      profile, the lit outer face of one flange, the web recessed in its shadow
+ *                      and the dark face of the other, never a flat strip. W girders along z,
+ *                      W edge beams along x on the front and back lines, each on bolted shear
+ *                      tabs; open web joists on seats with double angle chords, round bar webs
+ *                      and a bridging line; cold formed C girts on clips; galvanized rod X
+ *                      bracing with turnbuckles on gusset plates; base plates on grout pads with
+ *                      four anchor rods, washers and nuts. Red oxide shop primer with a fine mill
+ *                      mottle, two lots so neighbouring members differ a little.
+ *
+ * OPTIONS cols, rows, bay (m), height (m, top of steel), strong ('x' or 'z', the axis a column's
+ * depth runs along), joistBays (how many bays along x carry joists, the rest open, which is a
+ * frame mid erection), girts (heights in m on the front and side lines), bracing (X bracing in
+ * the front line's end bays), primer (hex). Origin at the centre of the column grid on the
+ * ground, kept (userData.keepOrigin), and userData.columns publishes the grid
+ * { x0, z0, bay, cols, rows, depth, strong } so a frame places pads and people between them.
+ * Drawn to illustrate, to no fabricator's or owner's design.
+ * ==================================================================================== */
+function installSite(K, THREE, TXT, H) {
+  const { bake, darkSteel, galv, concrete } = H;
+  const V3 = THREE.Vector3;
+  // AISC sections, metres: a W14x90 column, a W21x50 girder, a W16x31 edge beam, a 50 x 50 x 5
+  // angle, a 200 x 65 x 2.5 lipped C girt
+  const COL = { d: 0.356, bf: 0.369, tf: 0.018, tw: 0.011, r: 0.022 };
+  const GIR = { d: 0.529, bf: 0.166, tf: 0.0136, tw: 0.0097, r: 0.018 };
+  const EDGE = { d: 0.403, bf: 0.14, tf: 0.0112, tw: 0.007, r: 0.016 };
+
+  /* a wide flange section in the profile plane: x across the flanges, y along the depth, the web
+   * meeting each flange in a quarter round fillet so the root catches a line of light */
+  function wShape(s) {
+    const { d, bf, tf, tw, r } = s, a = d / 2, b = bf / 2, w = tw / 2, sh = new THREE.Shape();
+    sh.moveTo(-b, -a); sh.lineTo(b, -a); sh.lineTo(b, -a + tf); sh.lineTo(w + r, -a + tf);
+    sh.quadraticCurveTo(w, -a + tf, w, -a + tf + r); sh.lineTo(w, a - tf - r);
+    sh.quadraticCurveTo(w, a - tf, w + r, a - tf); sh.lineTo(b, a - tf); sh.lineTo(b, a); sh.lineTo(-b, a);
+    sh.lineTo(-b, a - tf); sh.lineTo(-w - r, a - tf); sh.quadraticCurveTo(-w, a - tf, -w, a - tf - r);
+    sh.lineTo(-w, -a + tf + r); sh.quadraticCurveTo(-w, -a + tf, -w - r, -a + tf); sh.lineTo(-b, -a + tf);
+    sh.closePath(); return sh;
+  }
+  // MIRRORED IN THE SECTION, never by a negative scale: bake() writes the matrix into the
+  // geometry and a mirrored matrix turns every face inside out, so a back culled chord vanishes.
+  // ExtrudeGeometry rewinds a clockwise outline itself.
+  function poly(pts, sx, sy) {
+    const sh = new THREE.Shape(); pts.forEach(([x, y], i) => (i ? sh.lineTo(x * sx, y * sy) : sh.moveTo(x * sx, y * sy)));
+    sh.closePath(); return sh;
+  }
+  // an equal angle, heel at the origin, legs along +x and +y before the mirror (sx, sy)
+  function angleShape(l, t, sx, sy) { return poly([[0, 0], [l, 0], [l, t], [t, t], [t, l], [0, l]], sx || 1, sy || 1); }
+  // a lipped C: web along y, flanges toward +x (toward -x with sx -1), lips turned in
+  function cShape(d, f, lip, t, sx) {
+    const a = d / 2;
+    return poly([[0, -a], [f, -a], [f, -a + lip], [f - t, -a + lip], [f - t, -a + t], [t, -a + t], [t, a - t], [f - t, a - t],
+      [f - t, a - lip], [f, a - lip], [f, a], [0, a]], sx || 1, 1);
+  }
+
+  // one extrusion per section and length, so UVs stay in metres and a frame of forty columns
+  // builds one geometry
+  const GEO = new Map();
+  function extruded(key, shapeFn, len) {
+    const k = key + '|' + len.toFixed(3);
+    if (!GEO.has(k)) {
+      const g = new THREE.ExtrudeGeometry(shapeFn(), { depth: len, bevelEnabled: false, curveSegments: 3 });
+      g.translate(0, 0, -len / 2); GEO.set(k, g);
+    }
+    return GEO.get(k);
+  }
+  /* a member from a to b: the section's y axis points along `up` (made square to the member), its
+   * x axis completes the frame, the extrusion runs a to b */
+  function member(key, shapeFn, a, b, up, mat, parent) {
+    const A = new V3(...a), B = new V3(...b), dir = B.clone().sub(A), len = dir.length(); dir.normalize();
+    const y = new V3(...up); y.sub(dir.clone().multiplyScalar(y.dot(dir))).normalize();
+    const x = new V3().crossVectors(y, dir);
+    const m = new THREE.Mesh(extruded(key, shapeFn, len), mat);
+    m.quaternion.setFromRotationMatrix(new THREE.Matrix4().makeBasis(x, y, dir));
+    m.position.copy(A).add(B).multiplyScalar(0.5);
+    parent.add(m); return m;
+  }
+  function plate(w, h, d, mat, x, y, z, parent) {
+    const m = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), mat); m.position.set(x, y, z); parent.add(m); return m;
+  }
+  function bolt(x, y, z, axis, mat, parent) {
+    const m = new THREE.Mesh(new THREE.CylinderGeometry(0.016, 0.016, 0.014, 6), mat);
+    if (axis === 'x') m.rotation.z = Math.PI / 2; else if (axis === 'z') m.rotation.x = Math.PI / 2;
+    m.position.set(x, y, z); parent.add(m); return m;
+  }
+
+  /* RED OXIDE SHOP PRIMER, painted once per hex and lot: a fine mill mottle a few levels either
+   * side of the base, faint vertical runs and a scatter of darker handling scuffs. Low amplitude
+   * and a fine scale on purpose: a broad soft cloud reads as camouflage at feed size (queue
+   * limestone-mottle-reads-as-camouflage, no. 57). One metre per tile. */
+  const PRIMER = new Map();
+  function primer(hex, lot) {
+    const key = hex + '|' + lot;
+    if (PRIMER.has(key)) return PRIMER.get(key);
+    const c = document.createElement('canvas'); c.width = c.height = 256; const x = c.getContext('2d');
+    const col = new THREE.Color(hex).offsetHSL(0, 0, lot ? -0.025 : 0);
+    x.fillStyle = '#' + col.getHexString(); x.fillRect(0, 0, 256, 256);
+    const rnd = TXT.rng(9173 + lot * 31 + (hex & 0xffff));
+    for (let i = 0; i < 1400; i++) {
+      const v = rnd() < 0.5 ? 0 : 255; x.fillStyle = `rgba(${v},${v},${v},${0.02 + rnd() * 0.03})`;
+      const s = 1 + rnd() * 3; x.fillRect(rnd() * 256, rnd() * 256, s, s);
+    }
+    for (let i = 0; i < 14; i++) {
+      x.fillStyle = `rgba(30,12,6,${0.03 + rnd() * 0.04})`; x.fillRect(rnd() * 256, rnd() * 256, 1 + rnd() * 2, 20 + rnd() * 90);
+    }
+    for (let i = 0; i < 10; i++) {
+      x.fillStyle = `rgba(20,10,6,${0.06 + rnd() * 0.06})`;
+      x.beginPath(); x.ellipse(rnd() * 256, rnd() * 256, 2 + rnd() * 6, 1 + rnd() * 3, rnd() * 3, 0, Math.PI * 2); x.fill();
+    }
+    const t = new THREE.CanvasTexture(c); t.wrapS = t.wrapT = THREE.RepeatWrapping; t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 8;
+    const m = new THREE.MeshStandardMaterial({ color: 0xffffff, map: t, roughness: 0.52, metalness: 0.12 });
+    PRIMER.set(key, m); return m;
+  }
+
+  K.define('structural_frame', {
+    size: [28, 14.2, 18.8],
+    options: { cols: 4, rows: 3, bay: 9, height: 14, strong: 'x', joistBays: null, girts: [4.5, 9], bracing: true, primer: 0x8c4630 },
+    note: 'An unclad structural steel frame in red oxide primer: W columns turned so their profile reads (strong axis along x by default), W girders and edge beams on bolted shear tabs, open web joists on seats with bridging, C girts on clips, rod X bracing with turnbuckles, base plates with anchor rods on grout pads. joistBays leaves bays open, mid erection, and a long lens across every bay of joists reads as a lattice, so a far shot passes joistBays 0 or 1. Origin at the grid centre; userData.columns is the grid. Drawn to illustrate.',
+    make(o, r) {
+      const root = new THREE.Group(), Ht = o.height, B = o.bay, nc = o.cols, nr = o.rows;
+      const X0 = -(nc - 1) * B / 2, Z0 = -(nr - 1) * B / 2, Xn = -X0, Zn = -Z0;
+      const P = [primer(o.primer, 0), primer(o.primer, 1)], lot = () => P[r() < 0.5 ? 0 : 1];
+      const DS = darkSteel(), GV = galv(), GROUT = concrete('#b9b4aa');
+      const sx = o.strong !== 'z';                       // the column's depth runs along x
+      const cdx = sx ? COL.d / 2 : COL.bf / 2, cdz = sx ? COL.bf / 2 : COL.d / 2;
+      const bp = 0.032, gr = 0.04, base = gr + bp;        // grout pad, then the base plate
+      // COLUMNS on base plates, each with four anchor rods, plate washers and heavy hex nuts
+      for (let i = 0; i < nc; i++) for (let j = 0; j < nr; j++) {
+        const x = X0 + i * B, z = Z0 + j * B;
+        plate(0.76, gr, 0.76, GROUT, x, gr / 2, z, root);
+        plate(0.6, bp, 0.6, DS, x, gr + bp / 2, z, root);
+        for (const s of [[-1, -1], [1, -1], [-1, 1], [1, 1]]) {
+          const ax = x + s[0] * 0.22, az = z + s[1] * 0.22;
+          plate(0.07, 0.008, 0.07, DS, ax, base + 0.004, az, root);
+          const nut = new THREE.Mesh(new THREE.CylinderGeometry(0.03, 0.03, 0.03, 6), DS); nut.position.set(ax, base + 0.023, az); root.add(nut);
+          const rod = new THREE.Mesh(new THREE.CylinderGeometry(0.0125, 0.0125, 0.09, 8), GV); rod.position.set(ax, base + 0.045, az); root.add(rod);
+        }
+        member('wcol', () => wShape(COL), [x, base, z], [x, Ht, z], sx ? [1, 0, 0] : [0, 0, 1], lot(), root);
+      }
+      // GIRDERS along z on every column line, top of steel at Ht, on shear tabs with three bolts
+      for (let i = 0; i < nc; i++) {
+        const x = X0 + i * B;
+        for (let j = 0; j < nr - 1; j++) {
+          const za = Z0 + j * B + cdz, zb = Z0 + (j + 1) * B - cdz;
+          member('wgir', () => wShape(GIR), [x, Ht - GIR.d / 2, za], [x, Ht - GIR.d / 2, zb], [0, 1, 0], lot(), root);
+          for (const [zc, sg] of [[za, 1], [zb, -1]]) {
+            plate(0.012, 0.3, 0.13, DS, x + GIR.tw / 2 + 0.006, Ht - GIR.d / 2, zc + sg * 0.065, root);
+            for (const yy of [-0.09, 0, 0.09]) bolt(x + GIR.tw / 2 + 0.019, Ht - GIR.d / 2 + yy, zc + sg * 0.08, 'x', DS, root);
+          }
+        }
+      }
+      // EDGE BEAMS along x on the front and back lines, on tabs at the column faces
+      for (const z of [Z0, Zn]) for (let i = 0; i < nc - 1; i++) {
+        const xa = X0 + i * B + cdx, xb = X0 + (i + 1) * B - cdx;
+        member('wedge', () => wShape(EDGE), [xa, Ht - EDGE.d / 2, z], [xb, Ht - EDGE.d / 2, z], [0, 1, 0], lot(), root);
+        for (const [xc, sg] of [[xa, 1], [xb, -1]]) {
+          plate(0.13, 0.24, 0.012, DS, xc + sg * 0.065, Ht - EDGE.d / 2, z + EDGE.tw / 2 + 0.006, root);
+          for (const yy of [-0.07, 0.07]) bolt(xc + sg * 0.08, Ht - EDGE.d / 2 + yy, z + EDGE.tw / 2 + 0.019, 'z', DS, root);
+        }
+      }
+      // OPEN WEB JOISTS along x between the girders, on seats, at about 1.8 m, double angle chords
+      // and a round bar web in panels, one bridging line at mid span top and bottom
+      const jd = 0.76, seat = 0.065, jt = Ht + seat, nb = Math.max(0, Math.min(nc - 1, o.joistBays == null ? nc - 1 : o.joistBays));
+      const nj = Math.max(1, Math.round((nr - 1) * B / 1.8)), pitch = (nr - 1) * B / nj;
+      // top chord: horizontal legs on top, vertical legs hanging; bottom chord the other way up.
+      // Each pair's horizontal legs point outward (section x runs to world -z on a member along x).
+      const LT = (s) => () => angleShape(0.05, 0.005, -s, -1), LB = (s) => () => angleShape(0.04, 0.004, -s, 1);
+      const L40 = () => angleShape(0.04, 0.004, 1, 1);
+      for (let i = 0; i < nb; i++) {
+        const xa = X0 + i * B + GIR.bf / 2 + 0.02, xb = X0 + (i + 1) * B - GIR.bf / 2 - 0.02, span = xb - xa;
+        const panels = Math.max(4, Math.round(span / 0.6)), pw = span / panels, J = lot();
+        for (let k = 1; k < nj; k++) {
+          const z = Z0 + k * pitch;
+          for (const s of [-1, 1]) {             // two angles back to back, a bar's width apart
+            member('jtop' + s, LT(s), [xa - 0.1, jt, z + s * 0.012], [xb + 0.1, jt, z + s * 0.012], [0, 1, 0], J, root);
+            member('jbot' + s, LB(s), [xa + pw, jt - jd, z + s * 0.012], [xb - pw, jt - jd, z + s * 0.012], [0, 1, 0], J, root);
+          }
+          // the bearing seats, standing on the girders' top flanges
+          plate(0.1, seat, 0.11, J, xa - 0.05, Ht + seat / 2, z, root); plate(0.1, seat, 0.11, J, xb + 0.05, Ht + seat / 2, z, root);
+          for (let p = 0; p < panels; p++) {
+            const xA = xa + p * pw, xB = xA + pw, up = p % 2 === 0;
+            if (p === 0 || p === panels - 1) { root.add(K.bar([p === 0 ? xa : xb, jt - 0.05, z], [p === 0 ? xa + pw : xb - pw, jt - jd + 0.02, z], 0.012, J, 6)); continue; }
+            root.add(K.bar([xA, up ? jt - jd + 0.02 : jt - 0.05, z], [xB, up ? jt - 0.05 : jt - jd + 0.02, z], 0.0095, J, 6));
+          }
+        }
+        const xm = (xa + xb) / 2;
+        member('bridgeT', L40, [xm, jt - 0.06, Z0 + pitch], [xm, jt - 0.06, Zn - pitch], [0, 1, 0], J, root);
+        member('bridgeB', L40, [xm, jt - jd - 0.002, Z0 + pitch], [xm, jt - jd - 0.002, Zn - pitch], [0, 1, 0], J, root);
+      }
+      // GIRTS, lipped Cs on clips outside the front line and both side lines
+      const C = (sx) => () => cShape(0.2, 0.065, 0.018, 0.0025, sx);
+      for (const gy of (o.girts || []).filter((h) => h > 1 && h < Ht - 1)) {
+        const zf = Zn + cdz + 0.12;
+        member('girt', C(1), [X0 - cdx - 0.05, gy, zf], [Xn + cdx + 0.05, gy, zf], [0, 1, 0], lot(), root);
+        for (let i = 0; i < nc; i++) plate(0.1, 0.19, 0.12, DS, X0 + i * B, gy, Zn + cdz + 0.06, root);
+        for (const sgn of [-1, 1]) {
+          const xs = sgn * (Xn + cdx + 0.12);
+          member('girt' + sgn, C(-sgn), [xs, gy, Z0 - cdz], [xs, gy, Zn + cdz + 0.05], [0, 1, 0], lot(), root);
+          for (let j = 0; j < nr; j++) plate(0.12, 0.19, 0.1, DS, sgn * (Xn + cdx + 0.06), gy, Z0 + j * B, root);
+        }
+      }
+      // ROD X BRACING in the front line's two end bays: gusset plates on the column flanges, a
+      // turnbuckle on each rod
+      if (o.bracing && nc > 1) {
+        const ends = nc > 2 ? [0, nc - 2] : [0];
+        for (const i of ends) {
+          const xa = X0 + i * B + cdx + 0.16, xb = X0 + (i + 1) * B - cdx - 0.16, ylo = base + 0.55, yhi = Ht - GIR.d - 0.5;
+          for (const [x1, y1, x2, y2] of [[xa, ylo, xb, yhi], [xb, ylo, xa, yhi]]) {
+            for (const [gx, gy] of [[x1, y1], [x2, y2]]) plate(0.34, 0.34, 0.012, DS, gx + (gx < (xa + xb) / 2 ? -0.06 : 0.06), gy, Zn, root);
+            root.add(K.bar([x1, y1, Zn + 0.014], [x2, y2, Zn + 0.014], 0.016, GV, 8));
+            const t = 0.3, tx = x1 + (x2 - x1) * t, ty = y1 + (y2 - y1) * t, L = 0.32;
+            const dx = (x2 - x1), dy = (y2 - y1), n = Math.hypot(dx, dy);
+            root.add(K.bar([tx - dx / n * L / 2, ty - dy / n * L / 2, Zn + 0.014], [tx + dx / n * L / 2, ty + dy / n * L / 2, Zn + 0.014], 0.03, GV, 8));
+          }
+        }
+      }
+      root.traverse((m) => { if (m.isMesh) { m.castShadow = true; m.receiveShadow = true; } });
+      const out = bake(root);
+      out.traverse((m) => { if (m.isMesh) { m.castShadow = true; m.receiveShadow = true; } });
+      out.userData.keepOrigin = true;
+      out.userData.columns = { x0: X0, z0: Z0, bay: B, cols: nc, rows: nr, depth: COL.d, strong: sx ? 'x' : 'z' };
+      return out;
     },
   });
 }
