@@ -185,3 +185,46 @@ What the final round still names, for the next run:
 
 Measured by `studio_clock.py --report`, in minutes from wake at 05:08 UTC: record done 27.0, audition done 94.4, art
 done 108.1, review done 168.6, panel done 226.0, package done 258.6.
+
+## Retro
+
+**Did this run stop and wait for a human (interim reading, Phase 17).** `prompt_audit.py` measured 1,697 tool calls
+and exited 1. It flagged 91 calls with a permission wait, 63 Bash, 21 Agent, 5 SubagentHandback and 2 SendMessage,
+from 1.0 to 28.9 seconds each and 448.2 seconds in all. The longest was an Agent spawn. No call waited minutes or
+hours, and the run never stalled. The no-stall hook was armed at 05:07:20 UTC. It judged the session unattended at
+session start, the host's `CLAUDE_CODE_SESSION_ATTENDED` was 0, and it refused nothing. This reading is interim, and
+Phase 19 takes the one that counts.
+
+**A safety classifier outage.** Earlier in the run, several tool calls came back without a verdict from the safety
+classifier. They were retried, spaced with read-only steps, and the owner was sent a notification that the run might
+stall. It did not stall.
+
+**Sources.** Six findings are appended to `knowledge/shared/SOURCES_FIELD_LOG.md`:
+- rice.edu's 406 to the re-verifier, where `fetch_doc.py` read both pages
+- news.tamus.edu's move to tamus.edu
+- taylortx.gov's 404 redirect, with robots refusing the target
+- texasattorneygeneral.gov's disallow
+- ERCOT's notice page reading cleanly, and the c5 excerpt that had cut its own word
+- the scout's WebFetch of dir.texas.gov against the record's boundary
+
+**Instincts.** Six were confirmed:
+- `a-paraphrase-can-outrun-its-quote`, from c5's "Substantiated" outside its stored quote
+- `acceptance-items-need-a-floor`, from `dossier_check` and the critics on trivially satisfiable lists
+- `read-the-repair-at-feed-scale`, from frame 5's wash and frame 6's close crop, both reverted
+- `tooth-in-albedo-under-a-low-key`, from frame 7's channel speckle
+- `the-plan-is-not-the-product`, from the stale `copywriter.json` the judges caught
+- `recompose-a-frame-named-twice-in-round-one`, from frames 5 and 6
+
+Two were added: `carry-the-motif-through-the-turn` and `a-close-crop-on-a-yard-strikes-the-type`.
+
+**The machine queue.** Six new items:
+- `plate-and-tank-models-built-in-chassis`
+- `kit-substation-reads-as-grey-clay`
+- `print-ban-sky-rule-forces-haze-on-a-downward-view`
+- `sources-block-needs-document-the-fact-checker-never-writes`
+- `gate-status-date-reads-out-while-label-guard-writes-runs`
+- `article-browser-test-cannot-import-global-playwright`
+
+`relief-height-noise-blotches-under-low-key` and `relief-plate-reads-as-a-tray` were each raised to repeat 1.
+`machine_due.py` says the weekly pass is not due, since the last ran October 24th. 90 items are queued and none is a
+repeat offender. `arsenal.py` was rebuilt and `--check` agrees.

@@ -215,7 +215,8 @@
         "2026-10-20",
         "2026-10-21",
         "2026-10-22",
-        "2026-10-24"
+        "2026-10-24",
+        "2026-10-25"
       ],
       "contradicted": []
     },
@@ -323,7 +324,8 @@
         "2026-10-12",
         "2026-10-15",
         "2026-10-16",
-        "2026-10-24"
+        "2026-10-24",
+        "2026-10-25"
       ],
       "contradicted": []
     },
@@ -634,7 +636,8 @@
         "2026-10-12",
         "2026-10-16",
         "2026-10-17",
-        "2026-10-20"
+        "2026-10-20",
+        "2026-10-25"
       ],
       "contradicted": []
     },
@@ -729,7 +732,8 @@
         "2026-09-20",
         "2026-10-05",
         "2026-10-09",
-        "2026-10-17"
+        "2026-10-17",
+        "2026-10-25"
       ],
       "contradicted": []
     },
@@ -1526,7 +1530,9 @@
       "learned": "2026-10-21",
       "instinct": "Under a key below fifteen degrees put a surface's tooth in its albedo, never in its height, or the raking light turns it to blotches.",
       "evidence": "2026-10-21 frame 2: a 0.04 px height noise on the slab read as leopard print to two critics and vanished when moved to albedo.",
-      "confirmed": [],
+      "confirmed": [
+        "2026-10-25"
+      ],
       "contradicted": []
     },
     {
@@ -1534,7 +1540,9 @@
       "learned": "2026-10-21",
       "instinct": "When every judge names the same frame in round one, recompose it before round two rather than re-lighting it.",
       "evidence": "2026-10-21 frames 3 and 8: re-lit for round 2, named by all three judges again in rounds 2 and 3.",
-      "confirmed": [],
+      "confirmed": [
+        "2026-10-25"
+      ],
       "contradicted": []
     },
     {
@@ -1582,6 +1590,22 @@
       "learned": "2026-10-24",
       "instinct": "Model anything under a cover as its own lofted shell rather than draping a kit model, because the kit merges a body by material and its mirrors, glass and seams come through any cloth.",
       "evidence": "No. 59 frame 8: a draped kit crossover kept mirror stems and side glass through two repairs and drew a round 1 hard fail against c42; a superellipsoid fabric shell with a hem cleared it.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "carry-the-motif-through-the-turn",
+      "learned": "2026-10-25",
+      "instinct": "Build the frames after the turn from the deck's own object and material, because new objects in new materials read to every judge as a second deck.",
+      "evidence": "No. 60, October 25th: all three round 3 judges named frames 6 to 8 (a substation, a bus bar, a notarized sheet) as leaving the return plate's iron and brass, and the art median held at 6.5 across three rounds while the plate frames scored 7.5 to 8.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "a-close-crop-on-a-yard-strikes-the-type",
+      "learned": "2026-10-25",
+      "instinct": "Hold a tall subject like a substation bay far enough back that its tallest part sits below the dek, because every close crop drives it through the hook or the footer.",
+      "evidence": "No. 60, October 25th: two close crops of the transformer bay each failed qa with eight strikes through the hook, the dek and the footer, and the bay held only from about 36 m.",
       "confirmed": [],
       "contradicted": []
     }

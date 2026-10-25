@@ -2341,3 +2341,26 @@ Every retained quote was compared with the fetched HTML after normalizing curly 
 **Claim scope.** UNT's degree page confirms the named degree and July curriculum month without an exact start day. UTA's tutor release describes development and testing rather than a completed classroom deployment, and its funding footnote attributes the police work separately to the U.S. Department of Justice. The gift announcement does not establish the date of a separate naming decision. UTA's business degree release is dated September 14th and says the degrees have launched, without an exact launch date, start term or first cohort size. The publication dates are retained as `filed` dates. Broader assertions about a nonoperating UNT college, naming approval by regents, evaluation results outside UTA's release and degree-page links absent from that release were removed or narrowed to what the original pages establish.
 
 The fetched source bytes and metadata are under `out/2026-10-24/tmp/src/` for this checkout. The item claims continue to cite the original university URLs. Earlier history entries and source observations are retained verbatim.
+
+## October 25th, 2026
+
+**rice.edu answered `reverify.py` with 406 again** on tx-2026-0099 and tx-2026-0215. `fetch_doc.py` read both pages
+and every quote matched. The 406 is the re-verifier's request rather than the host.
+
+**news.tamus.edu now answers 404** for tx-2026-0207's A&M System story. The same story lives at
+`tamus.edu/news/2026/10/07/wt-to-build-beef-cattle-research-facility-with-9-75-million-usda-grant/`, and all seven
+claims were re-pointed there.
+
+**taylortx.gov's city notice behind tx-2026-0203 redirects to a 404 page**, and the city's robots.txt refuses the
+redirect target. The item's terms rest on CBS Austin's report until another primary copy is found.
+
+**texasattorneygeneral.gov disallows this project in robots.txt**, as the registry says. The Attorney General's
+October 23rd petition against OpenAI was therefore not fetched, and the item was not admitted.
+
+**www.ercot.com's market notice page M-B091426-01 reads cleanly through `fetch_doc.py`** as HTML, 8,412 characters.
+The Substantiated Load sentence sits in the second addressee paragraph. An earlier excerpt had cut that sentence to its
+last clause, which put a claim's word outside its stored quote.
+
+**A scout fetched dir.texas.gov with WebFetch** although the record's boundary for tx-2026-0113 says its robots.txt
+refuses this project. Nothing from the page was used. The scout's brief named the refused hosts and the scout read
+one anyway.
