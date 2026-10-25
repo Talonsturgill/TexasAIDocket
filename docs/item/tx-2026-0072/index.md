@@ -54,6 +54,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-15 · The commission's orders still lay out the audit every queued data center must clear. The Governor's directive pages are unconfirmed, since that site bars automated readers.
 - 2026-10-18 · ERCOT's audit presentation and the commission's agenda still lay out the audit every queued data center faces. The Governor's directive pages are unconfirmed.
 - 2026-10-22 · ERCOT's audit presentation and its letter to the commission still set out the verification every queued data center faces, with the December dates unchanged. The Governor's directive pages stay unconfirmed.
+- 2026-10-25 · The Governor's directive for the data center audit stays unconfirmed on its own page, which bars automated readers. ERCOT's survey of developers closed on October 12th.
 
 ## Evidence
 

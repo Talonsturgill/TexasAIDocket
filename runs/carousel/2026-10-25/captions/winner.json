@@ -1,0 +1,29 @@
+{
+ "opening_move": "the before and after",
+ "structure": "Question and answer",
+ "caption": "The water board asked by mail. Now ERCOT asks before the power flows.\n\nRecords the Texas Tribune obtained for 2020 through 2025 count 334 data center facilities. 233 never submitted a requested water use survey. The Tribune reports a fine of up to $500 for skipping it. The board says it has no authority of its own to prosecute.\n\nDoes ERCOT's request reach those 233? No. The survey goes only to data centers already operating. The request reaches proposed data centers from 25 MW and Batch Zero loads not yet energized.\n\nERCOT's September 14th notice puts the water board's questions in Section C. The developer's own utility files each response. A complete one carries a notarized attestation. A failure to respond is reported to the PUC and the Office of the Governor.\n\nWill the report ERCOT expects to publish by December 10th say how many responded?\n\n#ERCOT #TWDB #BatchZero",
+ "first_comment": "c39 The Texas Tribune, the survey is sent by mail to thousands of municipal public water systems and industrial facilities. https://www.texastribune.org/2026/10/14/texas-data-centers-water-use-penalties-enforcement/\nc2 ERCOT, Request for Information on data center state and community impacts. https://www.ercot.com/services/comm/mkt_notices/M-B091426-01\nc7 ERCOT, Batch Zero facilities are covered only if they have not yet energized at transmission voltage of 60 kV or above. https://www.ercot.com/services/comm/mkt_notices/M-B091426-01\nc27 The Texas Tribune, records it obtained covering 2020 through 2025 identified 334 unique data center facilities. https://www.texastribune.org/2026/10/14/texas-data-centers-water-use-penalties-enforcement/\nc29 The Texas Tribune, 233 facilities never submitted a requested survey. https://www.texastribune.org/2026/10/14/texas-data-centers-water-use-penalties-enforcement/\nc30 The Texas Tribune, facilities that fail to complete required water use surveys can be charged with a Class C misdemeanor. https://www.texastribune.org/2026/10/14/texas-data-centers-water-use-penalties-enforcement/\nc31 The Texas Tribune, the misdemeanor is punishable by up to a $500 fine. https://www.texastribune.org/2026/10/14/texas-data-centers-water-use-penalties-enforcement/\nc32 The Texas Tribune, the water board says it has no authority to prosecute violations itself. https://www.texastribune.org/2026/10/14/texas-data-centers-water-use-penalties-enforcement/\nc40 The Texas Tribune, the water survey only goes out to data centers operating in that given year. https://www.texastribune.org/2026/10/14/texas-data-centers-water-use-penalties-enforcement/\nc3 ERCOT, the notice is addressed to developers of data centers of 25 MW and larger. https://www.ercot.com/services/comm/mkt_notices/M-B091426-01\nc4 ERCOT, it reaches developers of proposed data centers with a peak requested load of at least 25 MW but under 75 MW. https://www.ercot.com/services/comm/mkt_notices/M-B091426-01\nc6 ERCOT, it reaches large load entities whose data center facilities were classified as base load or studied load in Batch Zero. https://www.ercot.com/services/comm/mkt_notices/M-B091426-01\nc1 ERCOT, Market Notice M-B091426-01 is dated September 14th. https://www.ercot.com/services/comm/mkt_notices/M-B091426-01\nc13 ERCOT, Section C seeks information about water sources and consumption. https://www.ercot.com/services/comm/mkt_notices/M-B091426-01\nc14 ERCOT, the water board's Executive Administrator authorized ERCOT to issue the Section C questions on the board's behalf. https://www.ercot.com/services/comm/mkt_notices/M-B091426-01\nc21 ERCOT, each transmission or distribution service provider submits the RFI on behalf of the data center developer. https://www.ercot.com/services/comm/mkt_notices/M-B091426-01\nc20 ERCOT, a complete response includes a notarized attestation. https://www.ercot.com/services/comm/mkt_notices/M-B091426-01\nc23 ERCOT, failure to respond to the RFI or any part of it will be reported to the PUC and the Office of the Governor. https://www.ercot.com/services/comm/mkt_notices/M-B091426-01\nc25 ERCOT, it will coordinate with the PUC to publish a report of conclusions from its review. https://www.ercot.com/services/comm/mkt_notices/M-B091426-01\nc26 ERCOT, it expects to publish that report no later than December 10th. An expected date, not a published report. https://www.ercot.com/services/comm/mkt_notices/M-B091426-01",
+ "claim_ids_used": [
+  "c39",
+  "c2",
+  "c7",
+  "c27",
+  "c29",
+  "c30",
+  "c31",
+  "c32",
+  "c40",
+  "c3",
+  "c4",
+  "c6",
+  "c1",
+  "c13",
+  "c14",
+  "c21",
+  "c20",
+  "c23",
+  "c25",
+  "c26"
+ ],
+ "why_this_opening": "The water board's question used to arrive by mail at plants already running, and now ERCOT asks before a data center is energized, so the old way and the new one fit in two short sentences and set up the distinction the question then answers."
+}

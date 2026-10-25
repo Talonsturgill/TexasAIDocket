@@ -1,0 +1,58 @@
+<!doctype html>
+<!-- 2026-10-25, frame 3 of 9. Archetype TYPE_AS_OBJECT. A spatial scene through txthree.js in the deck's lastLight world: the return plate's foundry band seen from 12 cm, its lit arris across the frame and the open bores receding beyond it into the dark, under the figure set as the headline. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>.dek { width:860px !important; } .hook { width:940px !important; white-space:nowrap; }</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site" style="font-size:24px">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="line-height:1.02">Up to $500</h1>
+<p class="dek" data-follow="34">Skipping the survey is a Class C misdemeanor, the Tribune reports. The water board says it has no authority of its own to prosecute. State officials don't know whether any misdemeanor penalty has been issued against a data&nbsp;center.</p>
+<script>window.FIG = {"facilities": 334, "submitted": 101};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-25-returnplate.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "The penalty", counter: "03 / 09", src: "c30 c31 c32 c35 c46", fit: { min: 130, max: 190, maxLines: 1 } });
+  const R = CH.stage(TXT, gl, W, { fov: 34, near: 0.02, far: 2000 });
+  /* THE FIGURES, from figures.json: one bore per facility in the Tribune's records, a plug in each that returned a survey */
+  const plate = K.make('return_plate', { total: FIG.facilities, answered: FIG.submitted, plugs: false });
+  /* the plate is turned so its north row, where the plugs stand, faces the declared light: the camera at the open
+   * south end then looks into the seam across the open rows */
+  const set = new THREE.Group(); set.rotation.y = TXDECK.deck().light.az * Math.PI / 180 + Math.PI * 1.3;
+  set.add(plate); TXT.add(R, set);
+  const local = (p) => new THREE.Vector3(p[0], p[1], p[2]).applyAxisAngle(new THREE.Vector3(0, 1, 0), set.rotation.y).toArray();
+  set.updateMatrixWorld(true);
+  TXT.sky(R);
+  TXT.ground(R, { surface: 'caliche', size: 80, seed: 25 });
+  const L = plate.userData.layout;
+  const from = local([-0.1, 0.32, L.d / 2 + 0.10]);
+  const look = CH.aim(THREE, R, TXT, from, local([0.0, 0.075, L.d / 2 - 0.37]), 540, 1150, 30);
+  TXT.frame(R, { fov: 34, from, look });
+  CH.warm(R, 0.2);
+  { const spec = CH.rigSpec(W, 6, 4096); TXT.deckRig(R, spec, CH.rigOpts(local([0, 0, 0]), { distance: 30, shadowFar: 80, normalBias: 0.004 })); }
+  CH.unacne(R, 0.004);
+  TXT.contact(R, plate, { grit: false });
+  TXT.stage(R, plate);
+  TXT.weather(R, { grime: 0.3, height: 0.05, mottle: 0.25 });
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0.4, veil: 0.2, footWash: 0.4 });
+  CH.knock(cx, [".dek"], 0.35);
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

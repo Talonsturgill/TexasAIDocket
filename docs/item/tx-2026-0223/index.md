@@ -11,7 +11,7 @@ Texas A&M Engineering reported on October 19th, 2026 that researchers trained fo
 - Public access: Write to the decider
 - Take part: https://news.engineering.tamu.edu/news/2026/10/19/ai-models-can-get-brain-rot-too/
 
-- Last checked: 2026-10-22
+- Last checked: 2026-10-25
 
 ## Dates
 
@@ -23,6 +23,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 
 - 2026-10-20 · Admitted on the university's own account. The release reports no benchmark scores, so the size of the effect isn't stated here.
 - 2026-10-22 · The paper behind the release now carries the record's figures. It dates its Twitter dataset to 2023, where the release says 2010, so the summary gives both. It adds the dose results and the repair test, and names UT Austin and Purdue beside Texas A&M.
+- 2026-10-25 · The A&M release and the paper both still read as cited. The conference acceptance stands, and larger closed models remain untested.
 
 ## Evidence
 

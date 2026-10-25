@@ -19,12 +19,12 @@
   "recent_lists_note": "These three lists are the exclusions handed to the caption room and they were hand-kept. On 2026-08-20 the fourth panel found structures_recent reading [\"ledger\", \"pivot\", \"question and answer\"] when the last three shipped structures were [\"ledger\", \"two columns\", \"question and answer\"], so it dropped a structure that IS off the table and held one that is not. Wrong in both directions from one hand edit. They are now recomputed from entries and are ordered OLDEST FIRST, matching the entries list, and scripts/carousel/caption_check.py should derive them rather than read them. That is an upgrade-lane change and it is written into this run's proposals."
  },
  "opening_moves_recent": [
-  "the plain question",
   "the two things",
   "the number that is wrong",
   "the correction",
   "the who",
-  "the place"
+  "the place",
+  "the quiet decision"
  ],
  "entries": [
   {
@@ -1073,15 +1073,34 @@
    ],
    "critic_note": "The caption critic refused both candidates. Candidate A (an object ledger) and candidate B (a quiet question and answer) each led on the Cybercab and the federal audit query, a story the record told on September 10th and October 16th. It wrote the shipped caption, which opens on the Optimus row, the one line in the table nobody had covered, and then widens to the vehicle and Megapack rows and the footnote that installed capacity is not output. On round 1 of the panel the opening line moved from \"is made in California\" to \"production began in California\", because c27 says production began in Fremont, not that the robot is made only there.",
    "move_note": "Opens on where robot production began, a fact settled with no announcement, then lays out what the table says, the Optimus row at Construction and the vehicle and Megapack rows at Production, then what it does not, since installed capacity is not output, and to the vehicle and Megapack rows at Production, then the footnote that installed capacity is not output, and closes on how much Tesla actually made in Texas."
+  },
+  {
+   "date": "2026-10-25",
+   "carousel_no": 60,
+   "opening_move": "the before and after",
+   "structure": "Question and answer",
+   "closing_move": "Name what happens next and when.",
+   "first_line": "The water board asked by mail. Now ERCOT asks before the power flows.",
+   "words": 152,
+   "commas": 0,
+   "commas_per_100w": 0.0,
+   "chars": 900,
+   "hashtags": [
+    "#ERCOT",
+    "#TWDB",
+    "#BatchZero"
+   ],
+   "critic_note": "The water board's question used to arrive by mail at plants already running, and now ERCOT asks before a data center is energized, so the old way and the new one fit in two short sentences and set up the distinction the question then answers.",
+   "move_note": "Opens on the before and after, the mailed survey against the request that comes before the power flows, then the count and the fine, then whether the request reaches the 233 and why its list is drawn differently, then what the notice requires, and closes on whether ERCOT's expected report will say how many responded."
   }
  ],
  "structures_recent": [
-  "Two columns",
   "Ladder",
-  "Zoom out"
+  "Zoom out",
+  "Ledger"
  ],
  "closing_moves_recent": [
-  "point at the record, plainly, without a call to action"
+  "Ask the one question the decision leaves open."
  ],
  "_derived_note": "opening_moves_recent, structures_recent and closing_moves_recent are DERIVED by out/<date>/update_ledgers.py every run, by ledger_check.windows() and ledger_check's own slice of the entries before the newest date. They were hand-maintained until 2026-09-10 and had drifted, which mis-briefed the caption room on that run: the list said Ledger was excluded when it was not, and never mentioned Two columns or the close no. 19 actually shipped."
 }

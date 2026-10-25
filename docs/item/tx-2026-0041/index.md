@@ -44,6 +44,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-07 · The Wichita Falls permit is still unconfirmed. The only published account of the vote bars automated readers.
 - 2026-10-08 · The Wichita Falls permit remains unconfirmed. The only published account of the vote still bars automated readers.
 - 2026-10-09 · The Wichita Falls permit for the Airport Drive data center reads as approved on the records that answered today.
+- 2026-10-25 · The Wichita Falls permit for the Airport Drive data center stays unconfirmed. The city's site still turns away every reader and the station's site bars automated ones.
 
 ## Evidence
 

@@ -1,0 +1,56 @@
+<!doctype html>
+<!-- 2026-10-25, frame 6 of 9. Archetype CLOSE_CROP. A spatial scene through txthree.js in the deck's lastLight world: a kit padmount transformer close and low on its concrete pad, cropped by the right and bottom edges, its cabinet edges and radiator fins rim lit against the seam. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>.dek { width:860px !important; }</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site" style="font-size:24px">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="line-height:1.02">Now the grid operator asks</h1>
+<p class="dek" data-follow="26">ERCOT's September 14th notice carries the water board's questions in Section C, developed with the PUC and the board. ERCOT forwards the answers to the board. The transformer is drawn to&nbsp;illustrate.</p>
+<script>window.FIG = {};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-25-returnplate.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "The turn", counter: "06 / 09", src: "c1 c12 c13 c14 c15", fit: { min: 72, max: 100, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 30, near: 0.1, far: 3000 });
+  /* THE TURN, in the yard the request comes through: one autotransformer bay of an ERCOT substation, its radiators,
+   * conservator and shedded bushings, standing on the yard's crushed rock pad, the gantries behind fogged to the sky */
+  const set = new THREE.Group(); set.rotation.y = TXDECK.deck().light.az * Math.PI / 180 + Math.PI * 0.32;
+  const sub = K.make('substation', { size: 'small', kv: 345, leads: true }); set.add(sub); TXT.add(R, set);
+  const local = (p) => new THREE.Vector3(p[0], p[1], p[2]).applyAxisAngle(new THREE.Vector3(0, 1, 0), set.rotation.y).toArray();
+  set.updateMatrixWorld(true);
+  TXT.sky(R);
+  TXT.ground(R, { surface: 'caliche', size: 800, seed: 6 });
+  const T = [-11, 0, 5];                                   /* the first transformer bay of the small yard */
+  const from = local([T[0] + 13, 1.7, T[2] + 34]);
+  const look = CH.aim(THREE, R, TXT, from, local([T[0] + 0.5, 4.5, T[2]]), 600, 1150, 32);
+  TXT.frame(R, { fov: 32, from, look });
+  CH.warm(R, 0.4);
+  { const spec = CH.rigSpec(W, 40, 4096); TXT.deckRig(R, spec, CH.rigOpts(local([T[0], 4, T[2]]), { distance: 120, shadowFar: 300, normalBias: 0.02 })); }
+  CH.unacne(R, 0.02);
+  TXT.contact(R, sub, { grit: false });
+  TXT.stage(R, sub);
+  TXT.weather(R, { grime: 0.6, height: 1.6, mottle: 0.6 });
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0.4, veil: 0.3, footWash: 0.85 });
+  CH.knock(cx, [".dek"], 0.35);
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

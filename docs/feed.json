@@ -6,6 +6,106 @@
   "description": "A fact-checked record of AI decisions in Texas.",
   "items": [
     {
+      "id": "https://texasaidocket.com/item/tx-2026-0099/",
+      "url": "https://texasaidocket.com/item/tx-2026-0099/",
+      "title": "The Army funds a Rice research center on antenna arrays that carries AI as one of six disciplines",
+      "content_text": "The United States Army Research Office established a five year research center at Rice University for secure sensing, imaging and communications. Edward Knightly of the electrical and computer engineering department leads it. The center studies extremely large antenna arrays. It lists artificial intelligence alongside wireless networking, antennas, radar, circuits and physics. The release describes no specific AI method. What the models will actually do inside the work is not yet on the public record.",
+      "date_modified": "2026-10-25T00:00:00Z",
+      "tags": [
+        "research-and-science"
+      ]
+    },
+    {
+      "id": "https://texasaidocket.com/item/tx-2026-0137/",
+      "url": "https://texasaidocket.com/item/tx-2026-0137/",
+      "title": "Case managers beat Houston Methodist's discharge AI on the last day",
+      "content_text": "JAMA Network Open published a quality improvement study on September 3rd, 2026. It compared discharge dates from a commercial AI tool built into Houston Methodist Hospital's electronic health record against dates estimated by the hospital's own case managers. The study covered inpatient encounters discharged between August 1st, 2023 and February 28th, 2024. At admission the two were close. Nearer to discharge, which is when the answer is used to plan a bed, the case managers were substantially more accurate. It reports estimation accuracy rather than any effect on a patient, and says so.",
+      "date_modified": "2026-10-25T00:00:00Z",
+      "tags": [
+        "health-and-education"
+      ]
+    },
+    {
+      "id": "https://texasaidocket.com/item/tx-2026-0207/",
+      "url": "https://texasaidocket.com/item/tx-2026-0207/",
+      "title": "West Texas A&M wins a USDA grant to build a research feedlot near Canyon that will test feeding, health and handling with AI powered methods",
+      "content_text": "The U.S. Department of Agriculture's National Institute of Food and Agriculture awarded West Texas A&M University a grant to build a beef cattle research facility. The university calls it the largest federal award in its history. A dollar for dollar match from the A&M System and other sources completes the project. The plans call for a precision cattle handling facility, a veterinary hospital, a feed and production center and a metabolism center. The release says feeding, health and handling techniques there can be evaluated with traditional and AI powered approaches. It names no AI tool and reports no result yet.",
+      "date_modified": "2026-10-25T00:00:00Z",
+      "tags": [
+        "research-and-science"
+      ]
+    },
+    {
+      "id": "https://texasaidocket.com/item/tx-2026-0212/",
+      "url": "https://texasaidocket.com/item/tx-2026-0212/",
+      "title": "Austin Community College drafts what it calls its first AI policy under a five rule framework and opens it to a town hall on October 12th",
+      "content_text": "Austin Community College says it is developing what it calls its first-ever artificial intelligence policy. The policy is to follow a framework the college calls TRUST, which two collegewide AI committees developed. Its five rules ask people to say where AI was used and to check what it produces. They also ask people to keep their own judgment, to use AI for honest work and to respect copyright. The college's AI resource site already links a PDF titled Acceptable Use of Artificial Intelligence Policy, marked for faculty and staff only. The new policy is not the college's first written word on the subject. The college has set three October events for faculty, staff, students and community members. A town hall at the Rio Grande Campus on October 12th will explore the policies in progress. A faculty convocation on academic integrity follows on October 16th at Eastview. A community seminar meets on October 22nd at Highland. The college says more than 79,000 students rely on it each year. The announcement names no date for adopting the policy and does not say who will vote on it.",
+      "date_modified": "2026-10-25T00:00:00Z",
+      "tags": [
+        "health-and-education"
+      ]
+    },
+    {
+      "id": "https://texasaidocket.com/item/tx-2026-0215/",
+      "url": "https://texasaidocket.com/item/tx-2026-0215/",
+      "title": "Rice University sets out to hire 75 faculty working on AI and plans a research building for it in Houston's Ion District",
+      "content_text": "Rice University has launched a universitywide AI initiative. It says 35 of the 75 faculty members it means to recruit to work on AI are already hired and 40 more will follow. It plans to be a lead tenant of The Arc, a research and innovation hub in Houston's Ion District that is scheduled to begin construction this fall. It plans to house a planned AI Foundry there. It will launch a Master of Artificial Intelligence program in fall 2027. The release states no dollar amount for any part of it and reports no result, because most of the plan is still ahead.",
+      "date_modified": "2026-10-25T00:00:00Z",
+      "tags": [
+        "research-and-science"
+      ]
+    },
+    {
+      "id": "https://texasaidocket.com/item/tx-2026-0220/",
+      "url": "https://texasaidocket.com/item/tx-2026-0220/",
+      "title": "San Antonio takes two data center zoning proposals to a public hearing on October 20th and a council vote on October 29th",
+      "content_text": "The City of San Antonio's Department of Development Services presented two proposals to change the Unified Development Code for data centers. One would require every data center to receive a Specific Use Authorization zoning designation, which would give the City Council a vote on each proposed data center. The city says the proposals come before the Zoning Commission at a public hearing on October 20th, 2026. They go to a final City Council vote on October 29th, 2026. Residents can sign up to comment at both meetings. Councilmember Ric Galvan, who asked for the review, says every new data center in city limits should require a council vote.",
+      "date_modified": "2026-10-25T00:00:00Z",
+      "tags": [
+        "data-centers"
+      ]
+    },
+    {
+      "id": "https://texasaidocket.com/item/tx-2026-0223/",
+      "url": "https://texasaidocket.com/item/tx-2026-0223/",
+      "title": "Texas A&M researchers find language models trained on junk social media posts start skipping reasoning steps, and better data doesn't fully fix them",
+      "content_text": "Texas A&M Engineering reported on October 19th, 2026 that researchers trained four open language models on mixes of junk and control text drawn from 1 million public Twitter posts. The release says the posts were collected in 2010. The paper itself says its dataset was collected in 2023. Under the paper's engagement measure a junk post was short and popular, under 30 tokens with more than 500 likes, retweets, replies and quotes combined. The main change in the models was thought skipping, where a model skips steps before it answers. On one model, accuracy on ARC Challenge with chain of thought fell from 72.1 to 57.2 as the junk share rose from 0% to 100%. Instruction data totaling 4.8 times the junk tokens did not fully restore it. The paper lists Texas A&M, the University of Texas at Austin and Purdue as its institutions and was accepted to the 2026 Conference on Language Modeling. Larger closed models were not tested.",
+      "date_modified": "2026-10-25T00:00:00Z",
+      "tags": [
+        "research-and-science"
+      ]
+    },
+    {
+      "id": "https://texasaidocket.com/item/tx-2026-0226/",
+      "url": "https://texasaidocket.com/item/tx-2026-0226/",
+      "title": "Comptroller bars state grant money from buying or renewing Flock cameras and other license plate readers",
+      "content_text": "Texas Comptroller Don Huffines announced a ban on October 13th, 2026. State grant money may no longer buy or contract for Flock cameras, automated license plate readers and other vehicle identification systems. Those systems turn plate images into computer readable data. The restriction applies to all future grants the Comptroller's office administers. The agency says it will write it into grant solicitations and agreements. A grantee may not spend grant funds on the equipment or services, and may not enter into, extend or renew a contract for them. The release names Flock Safety, Motorola Solutions and Axon. It speaks only to grants the office administers and prints no count of the grants or dollars affected.",
+      "date_modified": "2026-10-25T00:00:00Z",
+      "tags": [
+        "surveillance-and-policing"
+      ]
+    },
+    {
+      "id": "https://texasaidocket.com/item/tx-2026-0227/",
+      "url": "https://texasaidocket.com/item/tx-2026-0227/",
+      "title": "UTEP and El Paso Water test whether a NASA backed AI model can map flooded streets from satellite images after a storm",
+      "content_text": "The University of Texas at El Paso announced on October 8th, 2026 that a team led by Yong Je Kim has received nearly $500,000 from NASA. The money is for a two year project. It will combine satellite imagery, Earth observation data and artificial intelligence to map flooded areas of El Paso after storms. The team will use Prithvi-EO, an AI foundation model that reads the context around an area rather than single pixels. In El Paso wet pavement, building shadows and swimming pools can look like floodwater in a satellite image. Sentinel-1 radar fills in when clouds block the optical view. El Paso Water is the research partner and intended user, and the plan is a dashboard of flood maps, confidence information and infrastructure overlays. The team says the tool is not meant to replace crews on the ground. The project is expected to finish by June 2028, and no result has been published.",
+      "date_modified": "2026-10-25T00:00:00Z",
+      "tags": [
+        "research-and-science"
+      ]
+    },
+    {
+      "id": "https://texasaidocket.com/item/tx-2026-0231/",
+      "url": "https://texasaidocket.com/item/tx-2026-0231/",
+      "title": "A UT Austin dance and engineering team wins an award to build an AI model that learns from recorded human movement",
+      "content_text": "The University of Texas at Austin says two of its researchers received a $643,719 research award to develop an AI driven movement language model. They are Sinclair Emoghene of the Department of Theatre and Dance and Lillian Chin of the Chandra Family Department of Electrical and Computer Engineering. Sensors built in Chin's lab capture movement, touch, force and pressure from recordings of dancers. The team says it has processed 155 dance recordings from 33 countries and plans to reach 500-plus recordings from more than 40 countries. The university's item does not name the funder, and no result from the model has been reported.",
+      "date_modified": "2026-10-25T00:00:00Z",
+      "tags": [
+        "research-and-science"
+      ]
+    },
+    {
       "id": "https://texasaidocket.com/item/tx-2026-0001/",
       "url": "https://texasaidocket.com/item/tx-2026-0001/",
       "title": "PUCT Project 58000, rulemaking to update ERCOT transmission cost recovery, comment deadline reached",
@@ -1406,16 +1506,6 @@
       ]
     },
     {
-      "id": "https://texasaidocket.com/item/tx-2026-0220/",
-      "url": "https://texasaidocket.com/item/tx-2026-0220/",
-      "title": "San Antonio takes two data center zoning proposals to a public hearing on October 20th and a council vote on October 29th",
-      "content_text": "The City of San Antonio's Department of Development Services presented two proposals to change the Unified Development Code for data centers. One would require every data center to receive a Specific Use Authorization zoning designation, which would give the City Council a vote on each proposed data center. The city says the proposals come before the Zoning Commission at a public hearing on October 20th, 2026. They go to a final City Council vote on October 29th, 2026. Residents can sign up to comment at both meetings. Councilmember Ric Galvan, who asked for the review, says every new data center in city limits should require a council vote.",
-      "date_modified": "2026-10-24T00:00:00Z",
-      "tags": [
-        "data-centers"
-      ]
-    },
-    {
       "id": "https://texasaidocket.com/item/tx-2026-0221/",
       "url": "https://texasaidocket.com/item/tx-2026-0221/",
       "title": "Google.org funds a UT Austin team to build AI surrogate models for testing fusion reactor designs",
@@ -1706,46 +1796,6 @@
       ]
     },
     {
-      "id": "https://texasaidocket.com/item/tx-2026-0212/",
-      "url": "https://texasaidocket.com/item/tx-2026-0212/",
-      "title": "Austin Community College drafts what it calls its first AI policy under a five rule framework and opens it to a town hall on October 12th",
-      "content_text": "Austin Community College says it is developing what it calls its first-ever artificial intelligence policy. The policy is to follow a framework the college calls TRUST, which two collegewide AI committees developed. Its five rules ask people to say where AI was used and to check what it produces. They also ask people to keep their own judgment, to use AI for honest work and to respect copyright. The college's AI resource site already links a PDF titled Acceptable Use of Artificial Intelligence Policy, marked for faculty and staff only. The new policy is not the college's first written word on the subject. The college has set three October events for faculty, staff, students and community members. A town hall at the Rio Grande Campus on October 12th will explore the policies in progress. A faculty convocation on academic integrity follows on October 16th at Eastview. A community seminar meets on October 22nd at Highland. The college says more than 79,000 students rely on it each year. The announcement names no date for adopting the policy and does not say who will vote on it.",
-      "date_modified": "2026-10-22T00:00:00Z",
-      "tags": [
-        "health-and-education"
-      ]
-    },
-    {
-      "id": "https://texasaidocket.com/item/tx-2026-0223/",
-      "url": "https://texasaidocket.com/item/tx-2026-0223/",
-      "title": "Texas A&M researchers find language models trained on junk social media posts start skipping reasoning steps, and better data doesn't fully fix them",
-      "content_text": "Texas A&M Engineering reported on October 19th, 2026 that researchers trained four open language models on mixes of junk and control text drawn from 1 million public Twitter posts. The release says the posts were collected in 2010. The paper itself says its dataset was collected in 2023. Under the paper's engagement measure a junk post was short and popular, under 30 tokens with more than 500 likes, retweets, replies and quotes combined. The main change in the models was thought skipping, where a model skips steps before it answers. On one model, accuracy on ARC Challenge with chain of thought fell from 72.1 to 57.2 as the junk share rose from 0% to 100%. Instruction data totaling 4.8 times the junk tokens did not fully restore it. The paper lists Texas A&M, the University of Texas at Austin and Purdue as its institutions and was accepted to the 2026 Conference on Language Modeling. Larger closed models were not tested.",
-      "date_modified": "2026-10-22T00:00:00Z",
-      "tags": [
-        "research-and-science"
-      ]
-    },
-    {
-      "id": "https://texasaidocket.com/item/tx-2026-0226/",
-      "url": "https://texasaidocket.com/item/tx-2026-0226/",
-      "title": "Comptroller bars state grant money from buying or renewing Flock cameras and other license plate readers",
-      "content_text": "Texas Comptroller Don Huffines announced a ban on October 13th, 2026. State grant money may no longer buy or contract for Flock cameras, automated license plate readers and other vehicle identification systems. Those systems turn plate images into computer readable data. The restriction applies to all future grants the Comptroller's office administers. The agency says it will write it into grant solicitations and agreements. A grantee may not spend grant funds on the equipment or services, and may not enter into, extend or renew a contract for them. The release names Flock Safety, Motorola Solutions and Axon. It speaks only to grants the office administers and prints no count of the grants or dollars affected.",
-      "date_modified": "2026-10-22T00:00:00Z",
-      "tags": [
-        "surveillance-and-policing"
-      ]
-    },
-    {
-      "id": "https://texasaidocket.com/item/tx-2026-0227/",
-      "url": "https://texasaidocket.com/item/tx-2026-0227/",
-      "title": "UTEP and El Paso Water test whether a NASA backed AI model can map flooded streets from satellite images after a storm",
-      "content_text": "The University of Texas at El Paso announced on October 8th, 2026 that a team led by Yong Je Kim has received nearly $500,000 from NASA. The money is for a two year project. It will combine satellite imagery, Earth observation data and artificial intelligence to map flooded areas of El Paso after storms. The team will use Prithvi-EO, an AI foundation model that reads the context around an area rather than single pixels. In El Paso wet pavement, building shadows and swimming pools can look like floodwater in a satellite image. Sentinel-1 radar fills in when clouds block the optical view. El Paso Water is the research partner and intended user, and the plan is a dashboard of flood maps, confidence information and infrastructure overlays. The team says the tool is not meant to replace crews on the ground. The project is expected to finish by June 2028, and no result has been published.",
-      "date_modified": "2026-10-22T00:00:00Z",
-      "tags": [
-        "research-and-science"
-      ]
-    },
-    {
       "id": "https://texasaidocket.com/item/tx-2026-0028/",
       "url": "https://texasaidocket.com/item/tx-2026-0028/",
       "title": "Hays County Commissioners Court adopted a 180-day emergency water review period for high water use developments and created a review board",
@@ -1756,26 +1806,6 @@
       ]
     },
     {
-      "id": "https://texasaidocket.com/item/tx-2026-0099/",
-      "url": "https://texasaidocket.com/item/tx-2026-0099/",
-      "title": "The Army funds a Rice research center on antenna arrays that carries AI as one of six disciplines",
-      "content_text": "The United States Army Research Office established a five year research center at Rice University for secure sensing, imaging and communications. Edward Knightly of the electrical and computer engineering department leads it. The center studies extremely large antenna arrays. It lists artificial intelligence alongside wireless networking, antennas, radar, circuits and physics. The release describes no specific AI method. What the models will actually do inside the work is not yet on the public record.",
-      "date_modified": "2026-10-21T00:00:00Z",
-      "tags": [
-        "research-and-science"
-      ]
-    },
-    {
-      "id": "https://texasaidocket.com/item/tx-2026-0137/",
-      "url": "https://texasaidocket.com/item/tx-2026-0137/",
-      "title": "Case managers beat Houston Methodist's discharge AI on the last day",
-      "content_text": "JAMA Network Open published a quality improvement study on September 3rd, 2026. It compared discharge dates from a commercial AI tool built into Houston Methodist Hospital's electronic health record against dates estimated by the hospital's own case managers. The study covered inpatient encounters discharged between August 1st, 2023 and February 28th, 2024. At admission the two were close. Nearer to discharge, which is when the answer is used to plan a bed, the case managers were substantially more accurate. It reports estimation accuracy rather than any effect on a patient, and says so.",
-      "date_modified": "2026-10-21T00:00:00Z",
-      "tags": [
-        "health-and-education"
-      ]
-    },
-    {
       "id": "https://texasaidocket.com/item/tx-2026-0203/",
       "url": "https://texasaidocket.com/item/tx-2026-0203/",
       "title": "Taylor City Council approves an agreement to annex a 664 acre data center campus under written water, setback and noise terms",
@@ -1783,26 +1813,6 @@
       "date_modified": "2026-10-21T00:00:00Z",
       "tags": [
         "data-centers"
-      ]
-    },
-    {
-      "id": "https://texasaidocket.com/item/tx-2026-0207/",
-      "url": "https://texasaidocket.com/item/tx-2026-0207/",
-      "title": "West Texas A&M wins a USDA grant to build a research feedlot near Canyon that will test feeding, health and handling with AI powered methods",
-      "content_text": "The U.S. Department of Agriculture's National Institute of Food and Agriculture awarded West Texas A&M University a grant to build a beef cattle research facility. The university calls it the largest federal award in its history. A dollar for dollar match from the A&M System and other sources completes the project. The plans call for a precision cattle handling facility, a veterinary hospital, a feed and production center and a metabolism center. The release says feeding, health and handling techniques there can be evaluated with traditional and AI powered approaches. It names no AI tool and reports no result yet.",
-      "date_modified": "2026-10-21T00:00:00Z",
-      "tags": [
-        "research-and-science"
-      ]
-    },
-    {
-      "id": "https://texasaidocket.com/item/tx-2026-0215/",
-      "url": "https://texasaidocket.com/item/tx-2026-0215/",
-      "title": "Rice University sets out to hire 75 faculty working on AI and plans a research building for it in Houston's Ion District",
-      "content_text": "Rice University has launched a universitywide AI initiative. It says 35 of the 75 faculty members it means to recruit to work on AI are already hired and 40 more will follow. It plans to be a lead tenant of The Arc, a research and innovation hub in Houston's Ion District that is scheduled to begin construction this fall. It plans to house a planned AI Foundry there. It will launch a Master of Artificial Intelligence program in fall 2027. The release states no dollar amount for any part of it and reports no result, because most of the plan is still ahead.",
-      "date_modified": "2026-10-21T00:00:00Z",
-      "tags": [
-        "research-and-science"
       ]
     },
     {

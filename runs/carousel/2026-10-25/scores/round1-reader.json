@@ -1,0 +1,24 @@
+{
+ "lens": "reader",
+ "round": 1,
+ "criteria": [
+  {"name": "artwork_craft", "weight": 0.22, "score": 6.5, "why": "Slide 4 is a real image: the tank side-lit from the left, with a stair and data hall for a size check, on a dark field. Slides 1 and 2 are bold and readable, and slide 2's 101 plugged out of 334 reads as a share at feed size. Three frames fail the showstopper test in the grey middle. On 3 the plate dissolves into a brown haze band, the dek sits on a visible scrim, and the image says nothing about $500. On 5 the 140 roofs read as grey buttons, a second plan grid after slide 2. On 8 a grey-olive sheet sits at mid tone and the seal reads as a washer. On 6 the bushings read as chess pieces on a box whose near face is dead black. On 7 the copper bar reads as a ruler, with unlabelled bar beyond its marks and a dead band under the dek. Machine QA warns that 'Up to $500' sits outside the safe zone."},
+  {"name": "deck_coherence", "weight": 0.12, "score": 7.5, "why": "One warm dark grade and one key from the upper left. One brass accent meaning an answer returned (1, 2, 9, and the seal on 8). The plate bookends the deck. The tank on 4 becomes the unit on 5. The value track lifts into mid tones on 3, 5 and 8 and strobes slightly. The 6 to 8 run steps out of the iron-and-brass vocabulary."},
+  {"name": "claim_integrity", "weight": 0.20, "score": 7.5, "why": "Every numeral traces to c27 to c29, c31, c38, c45, c4, c7, c19, c26, or a computed figure. The caption's 'It reaches a different set' is the deck's own inference and c7 covers a facility addition not yet energized. The caption drops 'itself' from c32. Slide 7 drops c5's Substantiated Load condition. copywriter.json's slide strings are stale against the render, and copy.json matches the pixels."},
+  {"name": "story_and_stakes", "weight": 0.16, "score": 6.5, "why": "A Texan learns who decided what. No place is named except Austin. The October 12th deadline had passed 13 days before the post and sits in a present-tense headline. The deck never says why the survey counts to a Texan and names no lever, though c33 and c34 carry one. Batch Zero and 60 kV arrive unexplained."},
+  {"name": "sequence_and_momentum", "weight": 0.10, "score": 7.0, "why": "The cover hook earns the swipe. The turn lands at 6, 7 pays it, and 9 closes on a date and the January session. Frame 2's headline restates the cover's dek. Frame 5 is cuttable."},
+  {"name": "voice", "weight": 0.10, "score": 6.5, "why": "Clean and careful, house rules held. The caption opener is a good Texan line. The slides read like a compliance memo. 'The Tribune reports' appears on 3, 4, 5 and 9, and a boilerplate 'drawn to illustrate' sentence closes six of nine deks."},
+  {"name": "variety", "weight": 0.10, "score": 6.5, "why": "The cast iron plate with brass plugs is new. No ERCOT RFI or water survey deck sits inside the 30-day window. The staged lastLight world repeats from 56 to 58, the one-counted-unit plan relief is the house move of 54 to 57, and the cover opens on an absence again."}
+ ],
+ "weighted_score": 6.87,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Give the Texan a stake and a lever: say what the state uses the survey's answers for, and rebuild frame 9's close around c33 and c34 so the reader knows the water board notifies county and district attorneys and they decide whether to bring a case.",
+ "artwork_weakest_frames": [
+  {"slide": 8, "problem": "A grey-olive sheet fills about 40 percent of the frame at mid tone, the seal reads as a washer and the rule is a murky strip.", "fix": "Darken the sheet toward a dark kraft and tighten the key pool onto the seal's quadrant so the paper falls to near black and the brass seal is the one bright form."},
+  {"slide": 3, "problem": "No subject. The plate dissolves into a haze band, the dek sits on a visible scrim, and nothing carries the $500.", "fix": "Drop the horizon below the dek so the type sits on black sky with no scrim, and raise the band's lit arris into the lower third as one raking edge."},
+  {"slide": 5, "problem": "140 grey roofs in plan read as buttons and repeat slide 2's top-down grid.", "fix": "Rebuild as an oblique txthree aerial of 140 chassis tanks at low key."},
+  {"slide": 6, "problem": "The bushings read as chess pieces on a featureless box whose near face is dead black.", "fix": "Dolly in and pitch up so shedded porcelain bushings rise large against the seam, with the fins rim-lit and the flat face out of the bottom edge."},
+  {"slide": 7, "problem": "The copper bar reads as a ruler with unlabelled length and a dead band under the dek.", "fix": "Raise the bar and labels into the band under the dek and label the 0 MW end cap or start the bar at the 25 MW step."}
+ ]
+}

@@ -3718,6 +3718,75 @@
     "hex": "#08060F",
     "note": "The floodlit world's black sky and dark apron."
    }
+  },
+  {
+   "date": "2026-10-25",
+   "carousel_no": 60,
+   "written_from": "deck_coherence's median L* per frame at 432 px off the final renders, layout_check's accent share, by update_ledgers.py.",
+   "register": "SPATIAL SCENES in TXT's lastLight world, staged, with three material reliefs. Chassis assets/js/deck/2026-10-25-returnplate.js: key az -62 el 13, chassis models return_plate and ground_storage_tank, gray cast iron with sand cast grain, brass hex plugs, caliche, a desert tan tank coating, tinned copper, glazed porcelain and cotton bond.",
+   "structural_laws": [
+    "A NOISY RELIEF SURFACE UNDER A CAST SPECKLES. Height noise on a channel web under a flange's cast broke into worm-like near-miss speckle; a flat height with tooth in the albedo cast one clean edge.",
+    "A PLAN GRID TWICE IS ONE COMPOSITION TWICE. The tank roofs in plan repeated the plate in plan; the oblique farm of clones read as tanks standing on ground.",
+    "A CLOSE CROP ON A SUBSTATION DRIVES ITS BUSHINGS THROUGH THE TYPE. Every close camera on the bay struck the hook, dek or footer; the yard held only from about 36 m.",
+    "A FRAME THAT CALLS TXT.sky MUST SHOW IT. Pitching down over the bores until the haze left the frame took the sky with it, so the horizon stays behind the hook.",
+    "THE ACCENT CAN CARRY THE MOTIF THROUGH THE TURN. The brass returned as the notary seal's foil disc on 8, so the answer-returned meaning crossed from the survey to the request."
+   ],
+   "techniques": [
+    "the return plate from 32 cm at its open end, open bores at the lens and the brass rank far",
+    "a material relief of the plate in plan, 334 bores and 101 brass plugs",
+    "the open bores from above under 'Up to $500', the horizon behind the figure",
+    "a 60 m tank raked from the left beside a data hall's end",
+    "an oblique aerial of 140 clones of that tank in blocks of seven by two",
+    "an autotransformer bay of a substation yard, bushings lit against the dark",
+    "a material relief of a copper bus bar at ten px per MW, the step at 25 and the slot to 75",
+    "a material relief of a cotton bond sheet with an embossed crimp seal and a brass foil disc, a cast iron day rule of 28 ticks",
+    "the plate reversed from behind the brass for the close"
+   ],
+   "value": {
+    "per_frame_median_L": [
+     5.9,
+     7.4,
+     8.5,
+     4.4,
+     14.1,
+     0.9,
+     2.3,
+     2.8,
+     5.1
+    ],
+    "deck_median_L": 5.1,
+    "max_adjacent_delta": 13.2,
+    "mean_adjacent_delta": 4.22,
+    "note": "Measured by deck_coherence's median_lstar at 432 px off the final renders. A staged lastLight deck."
+   },
+   "accent": {
+    "hex": "#C9B393",
+    "name": "brass of a returned survey",
+    "frames_above_floor": [
+     1,
+     2,
+     4,
+     6,
+     8,
+     9
+    ],
+    "share": [
+     0.0021,
+     0.0029,
+     0.0004,
+     0.0305,
+     0.0,
+     0.0057,
+     0.0,
+     0.004,
+     0.005
+    ],
+    "note": "Brass means an answer returned: the plugs on 1, 2 and 9 and the seal's foil on 8."
+   },
+   "ground": {
+    "hex": "#0A0807",
+    "note": "The lastLight world's dark sky and caliche."
+   }
   }
  ]
 }

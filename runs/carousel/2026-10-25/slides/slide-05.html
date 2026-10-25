@@ -1,0 +1,61 @@
+<!doctype html>
+<!-- 2026-10-25, frame 5 of 9. Archetype GRID. A spatial scene through txthree.js in the deck's lastLight world: the frame 4 tank repeated as a tank farm seen obliquely from the air, in blocks of seven by two on caliche with lanes between, every shell raked by the key and casting long across the ground. The tank count is read from figures.json. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>.dek { width:880px !important; }</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site" style="font-size:24px">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="line-height:1.02">97 facilities reported 1.4&nbsp;billion gallons</h1>
+<p class="dek" data-follow="22">The Tribune reports the total from last year's survey. That much would fill 140 tanks of 10 million gallons, drawn here to&nbsp;illustrate.</p>
+<script>window.FIG = {"tank_diameter_m": 60, "tank_height_m": 13.4, "tanks_reported": 140};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-25-returnplate.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Last year's answers", counter: "05 / 09", src: "c45 c38", fit: { min: 66, max: 88, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 30, near: 1, far: 9000 });
+  /* THE FIGURE, from figures.json: the reported gallons over the survey's line, as tanks of it, every one the frame 4
+   * tank at the same size, laid in blocks of seven by two so a reader can count blocks at feed size */
+  const N = FIG.tanks_reported, COLS = 14, ROWS = Math.ceil(N / COLS), PITCH = FIG.tank_diameter_m + 16, LANE = 46;
+  const set = new THREE.Group(); set.rotation.y = TXDECK.deck().light.az * Math.PI / 180 + Math.PI * 0.7;
+  const unit = K.make('ground_storage_tank', { diameter: FIG.tank_diameter_m, height: FIG.tank_height_m });
+  const gx = (c) => c * PITCH + (c >= 7 ? LANE : 0), gz = (r) => r * PITCH + Math.floor(r / 2) * LANE;
+  const W0 = gx(COLS - 1), D0 = gz(ROWS - 1), tanks = [];
+  for (let i = 0; i < N; i++) { const t = unit.clone(); t.position.set(gx(i % COLS) - W0 / 2, 0, gz(Math.floor(i / COLS)) - D0 / 2); set.add(t); tanks.push(t); }
+  if (tanks.length !== FIG.tanks_reported) throw new Error('the farm no longer holds one tank per figure');
+  TXT.add(R, set);
+  const local = (p) => new THREE.Vector3(p[0], p[1], p[2]).applyAxisAngle(new THREE.Vector3(0, 1, 0), set.rotation.y).toArray();
+  set.updateMatrixWorld(true);
+  TXT.sky(R);
+  TXT.ground(R, { surface: 'caliche', size: 6000, seed: 5 });
+  const from = local([-220, 250, D0 / 2 + 760]);
+  const look = CH.aim(THREE, R, TXT, from, local([-20, 0, 0]), 540, 770, 30);
+  TXT.frame(R, { fov: 30, from, look });
+  CH.warm(R, 0.2);
+  { const spec = CH.rigSpec(W, 1300, 4096); TXT.deckRig(R, spec, CH.rigOpts(local([0, 0, 0]), { distance: 1800, shadowFar: 4200, normalBias: 0.05 })); }
+  CH.unacne(R, 0.05);
+  TXT.contact(R, set, { grit: false });
+  TXT.stage(R, set);
+  TXT.weather(R, { grime: 0.6, height: 5, mottle: 0.6 });
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0.4, veil: 0.3, footWash: 0.5 });
+  CH.knock(cx, [".dek"], 0.35);
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

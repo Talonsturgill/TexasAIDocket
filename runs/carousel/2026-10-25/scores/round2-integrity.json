@@ -1,0 +1,24 @@
+{
+ "lens": "integrity",
+ "round": 2,
+ "criteria": [
+  {"name": "artwork_craft", "weight": 0.22, "score": 6.5, "why": "Frames 1, 4 and 9 meet the staged register. Frame 6 is a grey kit substation with no ground in frame and a flat mid-grey face. Frame 5's tanks read as dark pucks on a lighter mid-brown ground with no scale check. Frame 7's bar reads as a wooden ruler and its standoffs as toothed wheels. Frame 8's sheet is mid grey and its seal reads as a grille. Frame 3's top quarter is a mid-brown haze band."},
+  {"name": "deck_coherence", "weight": 0.12, "score": 7.0, "why": "One world, one key and one accent with one meaning. The plate returns and the tank becomes the farm's unit, two working devices. Frames 6 to 8 sit outside the caliche yard, and every frame shares one skeleton."},
+  {"name": "claim_integrity", "weight": 0.20, "score": 6.5, "why": "Every figure traces and the Tribune attribution is careful. Frame 7 prints 'classified as Substantiated' on c5, whose recorded quote does not carry the word. The first comment's sources leave out c5. The caption states the 25 to under 75 MW set without the Substantiated condition. Smaller: 'the developer's own utility' glosses c21, and copywriter.json carries stale strings."},
+  {"name": "story_and_stakes", "weight": 0.16, "score": 7.5, "why": "A reader learns what happened, the penalty, who decided, the deadline and what to watch. c18 and c8/c9 would have joined the deck's halves and are left out. The close gives a date but nothing to do."},
+  {"name": "sequence_and_momentum", "weight": 0.10, "score": 7.0, "why": "The cover earns the swipe. Frame 2 confirms rather than pays. The turn lands. Frame 5 is cuttable. The close lands quietly."},
+  {"name": "voice", "weight": 0.10, "score": 7.0, "why": "Clean and plain, and the caption opens well. Five 'drawn to illustrate' sentences, and 'A complete one' has no antecedent. No Texas place."},
+  {"name": "variety", "weight": 0.10, "score": 6.5, "why": "The topic is new to the window. lastLight for three of the last four decks, a brass datum in 57, the one-unit-per-count field again, and a count cover again."}
+ ],
+ "weighted_score": 6.82,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Re-fetch ERCOT's notice and record c5 with the verbatim sentence that names Substantiated Load, or drop the qualifier everywhere, then add c5 to the first comment and carry the same condition into the caption.",
+ "artwork_weakest_frames": [
+  {"slide": 6, "problem": "A grey kit substation in a void with no ground in frame and a flat mid-grey face.", "fix": "Drop the camera to about 1.2 m so the crushed rock pad runs off the bottom in the pool, turn the tank so the key rakes its radiators, and crop to one bay."},
+  {"slide": 5, "problem": "Dark pucks on a lighter ground, value inverted, nothing to check a 60 m tank against.", "fix": "Cut the veil and foot wash so the caliche goes dark outside the pool, raise the key on the shells, and put frame 4's data hall at the near corner."},
+  {"slide": 8, "problem": "A mid-grey sheet with rings and a disc that read as a grille.", "fix": "One raised crimp seal of radial ridges with the foil under one edge, and a tight pool so the lit corner reaches cream and the far edges fall to black."},
+  {"slide": 7, "problem": "A wooden ruler on a tray with toothed wheels behind it.", "fix": "One hard specular streak on the top face, and small ribbed post caps under the bar only."},
+  {"slide": 3, "problem": "A mid-brown haze band behind 'Up to $500'.", "fix": "Pitch further down so the bores fill to the top edge."}
+ ]
+}

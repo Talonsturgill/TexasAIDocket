@@ -1,0 +1,24 @@
+{
+ "lens": "integrity",
+ "round": 1,
+ "criteria": [
+  {"name": "artwork_craft", "weight": 0.22, "score": 6.5, "why": "Four frames are strong: frame 1's threaded bores against lit brass, frame 2's exactly countable plan, frame 4's tank sized right beside a data hall, and frame 9's reverse of the cover. Frame 6 is an object in a void. Frame 7's copper reads as a wooden ruler on a leather-grain field. Frame 8's sheet sits mid-grey with a seal laid on the paper. Frame 5's roofs read as buttons and repeat frame 2's grid. Frame 3's arris is soft."},
+  {"name": "deck_coherence", "weight": 0.12, "score": 7.0, "why": "One dark staged register with the key from the left. The plate opens and closes the deck, and the brass accent is held to its law. The tank on 4 becomes the unit on 5. Frames 6 to 8 leave the plate's world, and the planned skeleton alternation was never built."},
+  {"name": "claim_integrity", "weight": 0.20, "score": 6.3, "why": "Every numeral traces and every source was fetched. Phrasings that run past their sources: frame 7's dek and the caption say 'from 25 MW' where c4 bounds 25 to under 75 MW and c5 adds Substantiated Load. The caption's 'It reaches a different set' implies no overlap, though c7's quote covers a facility addition not yet energized. 'Last year's survey' on frame 5 rests on c45's paraphrase. The caption drops c32's 'itself'. c14's and c6's quotes are shorter than their claim text. The $500 rests on the Tribune. Frame 5's 'One roof for each tank' shows fewer than 140 roofs in frame."},
+  {"name": "story_and_stakes", "weight": 0.16, "score": 7.0, "why": "A reader learns what happened, who acts and the dates. The deck says the ERCOT route reaches a different population. No Texas place is named, the October 12th deadline had passed with no frame saying so, and the only thing left to do is wait for a report."},
+  {"name": "sequence_and_momentum", "weight": 0.10, "score": 7.0, "why": "The cover earns the swipe and frame 2 pays at once. The turn is declared at 6 and 7 clarifies it. Frames 4 and 5 are a gallons detour, and the close lands quietly."},
+  {"name": "voice", "weight": 0.10, "score": 6.8, "why": "Clean and within the house rules. Attribution-heavy, with 'drawn to illustrate' closing most deks. No regional texture. The caption opener is the best line."},
+  {"name": "variety", "weight": 0.10, "score": 5.5, "why": "Carousel no. 29 on September 19th covered the same docket item, tx-2026-0171, and the same ERCOT notice, 36 days back. The technique repeats nos. 56 to 58, the plan grid echoes 56 and 58, and the brass accent echoes 57."}
+ ],
+ "weighted_score": 6.58,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Bound the request to the set the notice names, on frame 7's dek and in the caption: proposed data centers of 25 to under 75 MW a utility has classified as Substantiated Load, plus Batch Zero facilities or facility additions not yet energized, and stop stating the two sets as disjoint.",
+ "artwork_weakest_frames": [
+  {"slide": 6, "problem": "Candlestick bushings on a featureless cabinet floating in black, with no pad, ground, fins or conductors.", "fix": "Lower and pull back the camera so a concrete pad, crushed rock and contact fill the lower third, with radiator fin banks and shedded porcelain bushings."},
+  {"slide": 7, "problem": "The bus bar reads as a wooden ruler on a leather-grain field, and the standoffs barely show.", "fix": "A metal response so the key throws one specular streak along the top face, smooth painted steel for the channel, and standoffs whose casts read under the bar."},
+  {"slide": 8, "problem": "The sheet sits in the grey middle and the seal reads as a ring laid on the paper. The cast is 0.109 against the dossier's 0.12.", "fix": "Emboss the seal into the sheet and tighten the pool so the sheet's edges fall to near black."},
+  {"slide": 5, "problem": "The roofs read as buttons, the frame repeats frame 2's grid, and the crop hides roofs while the dek says one roof for each of 140 tanks.", "fix": "Scale the field to fit all 14 by 10 roofs inside the frame below the dek, each with a visible shell and a long cast."},
+  {"slide": 3, "problem": "The band's arris is soft and the dek scrim's edge shows.", "fix": "Sharpen the bevel so the key draws one crisp line across 70 percent of the width, and remove the scrim."}
+ ]
+}

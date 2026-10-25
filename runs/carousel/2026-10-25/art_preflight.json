@@ -1,0 +1,224 @@
+{
+  "version": 2,
+  "selected": [
+    1,
+    2,
+    9
+  ],
+  "inputs": {
+    "slides/slide-01.html": "dcde746f5d90bbf8ff7ee83fdeb81d99b592b8743b0e311b741a7d6dc20fcbab",
+    "render/slide-01.png": "70c019d7d6da438caba660b95d17a928ec6ef0a05582ef368ce22b54c5b72505",
+    "assets/js/deck/2026-10-25-returnplate.js": "a079dba7e2a10413d1d27a823e80bf3fc6986324df09fa267468ed44d05574b4",
+    "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+    "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+    "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+    "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+    "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+    "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+    "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+    "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+    "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+    "slides/slide-02.html": "29ad2114372526bf2c76b63c619f4035ca67c79d89185a47d8fbc8d015e5bc17",
+    "render/slide-02.png": "b6d473165beb03d0c9b840e94789c99337e070a5f5e9708505e077021dd23168",
+    "assets/js/txbench.js": "6aee9f0f657aa8723a635683cb6482a2a0ad31aabcd5a633e3cb3a4d34f1f638",
+    "slides/slide-09.html": "977a1ddeec1d906fddffec634afa62b035496adf06a00aa8bf5ac98cd4ce2993",
+    "render/slide-09.png": "035369aaa2a5495bc501f3b819a7e5ff2d039c23c12e44697d05d444715290df"
+  },
+  "value_measurements": [
+    {
+      "frame": "slide-01.png",
+      "median_L": 5.8,
+      "mid": 0.067,
+      "dark": 0.792
+    },
+    {
+      "frame": "slide-02.png",
+      "median_L": 7.3,
+      "mid": 0.077,
+      "dark": 0.805
+    },
+    {
+      "frame": "slide-09.png",
+      "median_L": 4.9,
+      "mid": 0.084,
+      "dark": 0.751
+    }
+  ],
+  "review": {
+    "decision": "accept",
+    "inputs": {
+      "slides/slide-01.html": "dcde746f5d90bbf8ff7ee83fdeb81d99b592b8743b0e311b741a7d6dc20fcbab",
+      "render/slide-01.png": "70c019d7d6da438caba660b95d17a928ec6ef0a05582ef368ce22b54c5b72505",
+      "assets/js/deck/2026-10-25-returnplate.js": "a079dba7e2a10413d1d27a823e80bf3fc6986324df09fa267468ed44d05574b4",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+      "slides/slide-02.html": "29ad2114372526bf2c76b63c619f4035ca67c79d89185a47d8fbc8d015e5bc17",
+      "render/slide-02.png": "b6d473165beb03d0c9b840e94789c99337e070a5f5e9708505e077021dd23168",
+      "assets/js/txbench.js": "6aee9f0f657aa8723a635683cb6482a2a0ad31aabcd5a633e3cb3a4d34f1f638",
+      "slides/slide-09.html": "977a1ddeec1d906fddffec634afa62b035496adf06a00aa8bf5ac98cd4ce2993",
+      "render/slide-09.png": "035369aaa2a5495bc501f3b819a7e5ff2d039c23c12e44697d05d444715290df"
+    },
+    "frames": [
+      {
+        "slide": 1,
+        "role": "cover",
+        "subject": "the gray cast iron plate seen from 32 cm at its open end. Large threaded open bores fill the lower half and run off the left, right and bottom edges, and six rows of brass hex plugs on exposed threaded collars stand in the far rows against a warm seam.",
+        "visual_consequence": "With the headline covered, a reader sees a plate where most of the holes stand empty and swallow light, while a smaller block far away is sealed with lit brass. That most went unanswered and a minority answered reads before any number.",
+        "weakness": "The previous findings are fixed. In crops r3c1 and r3c2 the 3 o'clock rim notch is gone, and each near bore now shows a countersink ring and stepped thread crests lit warm on its far wall. In crops r2c1 and r2c2 the plugs have chamfered hex arrises, smooth domes, a visible threaded collar and a dark contact ring at the iron, and the pebbles near the dek are gone. Three minor items remain. The plate's far edge and its foot on the caliche are still not visible, because the rearmost plug row runs straight into the haze band. A faint lattice of thin dark lines shows on the iron between plug columns (r2c1, design x about 125 to 210, y about 730 to 810). The dome tops mirror the near black sky as dark caps. None of these stops the dominant subject reading as finished cast iron and brass at native or at feed size.",
+        "repair": "Optional, for the panel. Lower the camera target slightly so the plate's far edge and its contact shadow on the caliche show as a thin dark line under the rearmost plugs.",
+        "encoding_reads": true,
+        "dominant_subject_finished": true,
+        "feed_legible": true,
+        "inputs": {
+          "slides/slide-01.html": "dcde746f5d90bbf8ff7ee83fdeb81d99b592b8743b0e311b741a7d6dc20fcbab",
+          "render/slide-01.png": "70c019d7d6da438caba660b95d17a928ec6ef0a05582ef368ce22b54c5b72505",
+          "assets/js/deck/2026-10-25-returnplate.js": "a079dba7e2a10413d1d27a823e80bf3fc6986324df09fa267468ed44d05574b4",
+          "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+          "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+          "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+          "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+          "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+          "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+          "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+          "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+          "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de"
+        }
+      },
+      {
+        "slide": 2,
+        "role": "evidence",
+        "subject": "the return plate in plan as a TXBENCH relief. It has 20 columns of bores, starting under a slate machined chamfer along its top edge with a warm caliche strip above. Five full rows and one extra plug of warm brass hex plugs sit at the top, and countersunk threaded open bores below each show a lit crescent wall around a black core, fading under the footer toward a final row of 14.",
+        "visual_consequence": "With the headline covered, a warm block of sealed hexes takes about a third of a heavy iron plate and the rest is dark open holes, so the share reads as an area. The 101 can be counted as five rows of 20 plus one.",
+        "weakness": "Nothing in this change breaks the frame. The chamfer still reads as a cool slate band about 20 design px deep, and the new grain and arris barely show at native size. The stronger footer wash puts the last two rows, including the final row of 14, near the floor of visibility, so at feed size the 334 can no longer be checked from the image. The share and the 101 still read and the headline states both numbers.",
+        "repair": "Optional, for the panel. End the footer wash just above the final row, or hold it at 0.3 below design y 1270, so the row of 14 stays visible at 432 px.",
+        "encoding_reads": true,
+        "dominant_subject_finished": true,
+        "feed_legible": true,
+        "inputs": {
+          "assets/js/deck/2026-10-25-returnplate.js": "a079dba7e2a10413d1d27a823e80bf3fc6986324df09fa267468ed44d05574b4",
+          "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+          "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+          "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+          "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+          "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+          "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+          "slides/slide-02.html": "29ad2114372526bf2c76b63c619f4035ca67c79d89185a47d8fbc8d015e5bc17",
+          "render/slide-02.png": "b6d473165beb03d0c9b840e94789c99337e070a5f5e9708505e077021dd23168",
+          "assets/js/txbench.js": "6aee9f0f657aa8723a635683cb6482a2a0ad31aabcd5a633e3cb3a4d34f1f638"
+        }
+      },
+      {
+        "slide": 9,
+        "role": "close",
+        "subject": "the same plate seen from behind its answered end. About three rows of large brass hex plugs on threaded collars fill the lower third and run off the bottom edge, and threaded open bores recede to the plate's dark far edge against a warm caliche band.",
+        "visual_consequence": "With the headline covered, a reader is left looking past a few sealed, lit plugs at a much larger field of open holes running away to the horizon. It is the cover turned around, so the unanswered majority is what the reader is left with.",
+        "weakness": "The art is unchanged from the previous accepted reading. The broad hex faces are flat untextured tan, so close up the brass leans toward satin painted metal, and the bottom plug row sinks into the footer darkness. The rewritten dek runs four lines on the dark sky with no collision and reads in the thumb. Its place and its statement about the report must trace to c25 and c37.",
+        "repair": "Optional, for the panel. Add a fine directional scratch normal and slight roughness variation to the hex flats so the broad faces break up their highlight like turned brass.",
+        "encoding_reads": true,
+        "dominant_subject_finished": true,
+        "feed_legible": true,
+        "inputs": {
+          "assets/js/deck/2026-10-25-returnplate.js": "a079dba7e2a10413d1d27a823e80bf3fc6986324df09fa267468ed44d05574b4",
+          "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+          "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+          "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+          "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+          "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+          "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+          "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+          "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+          "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+          "slides/slide-09.html": "977a1ddeec1d906fddffec634afa62b035496adf06a00aa8bf5ac98cd4ce2993",
+          "render/slide-09.png": "035369aaa2a5495bc501f3b819a7e5ff2d039c23c12e44697d05d444715290df"
+        }
+      }
+    ]
+  },
+  "plan": {
+    "hardest_frame": 2,
+    "visual_argument": "One threaded bore for each of the 334 data center facilities in the Tribune's records, a brass plug in each of the 101 that returned the water board's survey and the 233 left open, so the count reads as light caught or swallowed before a word is read",
+    "build_risk": "Frame 2 must read as cast iron hardware at feed size and never as the UI tray no. 59 shipped: 334 bores at 50 px pitch with thread rings, 101 brass hex plugs with domes, the plate's lit edge wall casting onto caliche, the carrier bleeding three edges and a cast fraction of 0.12 or more, all through TXBENCH.relief under the chassis light",
+    "distinct_from_recent": "no. 57 was stair flights and a brass datum in a lastLight room and yard, no. 58 record cards, wristbands and a card drawer in lastLight, no. 59 a floodlit plant apron and bays with bluebonnet tape. This deck is a single cast iron plate and a water tank outdoors on caliche, with a dust brass accent and no building interior"
+  },
+  "frame_inputs": {
+    "1": {
+      "slides/slide-01.html": "dcde746f5d90bbf8ff7ee83fdeb81d99b592b8743b0e311b741a7d6dc20fcbab",
+      "render/slide-01.png": "70c019d7d6da438caba660b95d17a928ec6ef0a05582ef368ce22b54c5b72505",
+      "assets/js/deck/2026-10-25-returnplate.js": "a079dba7e2a10413d1d27a823e80bf3fc6986324df09fa267468ed44d05574b4",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de"
+    },
+    "2": {
+      "assets/js/deck/2026-10-25-returnplate.js": "a079dba7e2a10413d1d27a823e80bf3fc6986324df09fa267468ed44d05574b4",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+      "slides/slide-02.html": "29ad2114372526bf2c76b63c619f4035ca67c79d89185a47d8fbc8d015e5bc17",
+      "render/slide-02.png": "b6d473165beb03d0c9b840e94789c99337e070a5f5e9708505e077021dd23168",
+      "assets/js/txbench.js": "6aee9f0f657aa8723a635683cb6482a2a0ad31aabcd5a633e3cb3a4d34f1f638"
+    },
+    "9": {
+      "assets/js/deck/2026-10-25-returnplate.js": "a079dba7e2a10413d1d27a823e80bf3fc6986324df09fa267468ed44d05574b4",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+      "slides/slide-09.html": "977a1ddeec1d906fddffec634afa62b035496adf06a00aa8bf5ac98cd4ce2993",
+      "render/slide-09.png": "035369aaa2a5495bc501f3b819a7e5ff2d039c23c12e44697d05d444715290df"
+    }
+  },
+  "needs_review": [
+    2,
+    9
+  ],
+  "shipped_inputs": {
+    "slides/slide-01.html": "dcde746f5d90bbf8ff7ee83fdeb81d99b592b8743b0e311b741a7d6dc20fcbab",
+    "slide-01.webp": "6c18c07bd9c3e35be9307baa327dd82dd5450ae9ffdd1a3bf1afeb34e20c5f97",
+    "slides/slide-02.html": "29ad2114372526bf2c76b63c619f4035ca67c79d89185a47d8fbc8d015e5bc17",
+    "slide-02.webp": "92e91b3aa66c3afa176c18ebfd15b3c1978a4b45240b0e380300af220d0f784b",
+    "slides/slide-09.html": "977a1ddeec1d906fddffec634afa62b035496adf06a00aa8bf5ac98cd4ce2993",
+    "slide-09.webp": "4dfe24ecb7f9f436953a66b1c17d5d0afaead5883a3b77ec8fa26811ac202fec"
+  },
+  "encodings": [
+    {
+      "to": "slide-01.webp",
+      "to_sha256": "6c18c07bd9c3e35be9307baa327dd82dd5450ae9ffdd1a3bf1afeb34e20c5f97",
+      "from_sha256": "70c019d7d6da438caba660b95d17a928ec6ef0a05582ef368ce22b54c5b72505",
+      "psnr_db": 40.657
+    },
+    {
+      "to": "slide-02.webp",
+      "to_sha256": "92e91b3aa66c3afa176c18ebfd15b3c1978a4b45240b0e380300af220d0f784b",
+      "from_sha256": "b6d473165beb03d0c9b840e94789c99337e070a5f5e9708505e077021dd23168",
+      "psnr_db": 40.31
+    },
+    {
+      "to": "slide-09.webp",
+      "to_sha256": "4dfe24ecb7f9f436953a66b1c17d5d0afaead5883a3b77ec8fa26811ac202fec",
+      "from_sha256": "035369aaa2a5495bc501f3b819a7e5ff2d039c23c12e44697d05d444715290df",
+      "psnr_db": 40.959
+    }
+  ]
+}

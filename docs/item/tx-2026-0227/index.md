@@ -11,7 +11,7 @@ The University of Texas at El Paso announced on October 8th, 2026 that a team le
 - Public access: Write to the decider
 - Take part: https://www.utep.edu/newsfeed/2026/October/from-space-to-the-streets-nasa-funded-research-takes-aim-at-el-paso-flooding.html
 
-- Last checked: 2026-10-22
+- Last checked: 2026-10-25
 
 ## Dates
 
@@ -22,6 +22,7 @@ The University of Texas at El Paso announced on October 8th, 2026 that a team le
 One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
 
 - 2026-10-22 · Admitted on the university's own release, which names the NASA award, the AI model and El Paso Water as the intended user.
+- 2026-10-25 · Checked and unchanged. The decision still stands as decided.
 
 ## Evidence
 

@@ -11,7 +11,7 @@ Austin Community College says it is developing what it calls its first-ever arti
 - Public access: Public meeting
 - Take part: https://infohub.austincc.edu/blog/2026/10/09/help-shape-accs-ai-policy-development/
 
-- Last checked: 2026-10-22
+- Last checked: 2026-10-25
 
 ## Dates
 
@@ -32,6 +32,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-20 · The college's page still calls its AI policy a work in development under the five rule framework, and no adopted policy has been posted.
 - 2026-10-21 · Checked and unchanged. Still pending, with no dated movement.
 - 2026-10-22 · Checked and unchanged. Still pending, with no dated movement.
+- 2026-10-25 · Checked and unchanged. Still pending, with no dated movement.
 
 ## Evidence
 

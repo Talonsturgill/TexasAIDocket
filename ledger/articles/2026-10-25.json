@@ -1,0 +1,133 @@
+{
+ "_spec": {
+  "version": 1,
+  "purpose": "A standalone web edition of the archived visual story.",
+  "law": "Facts resolve to the original verified claim record. A layout rebuild does not reverify reporting.",
+  "written_by": "daily"
+ },
+ "section": "Water",
+ "dek": {
+  "text": "Of {{number:c27:2}} data centers in the Tribune's count, {{number:c29}} never returned the water board's mailed survey. ERCOT's new request carries the board's questions to data centers not yet energized.",
+  "claims": [
+   "c27",
+   "c29",
+   "c12",
+   "c4",
+   "c7"
+  ]
+ },
+ "introduction": [
+  {
+   "text": "[Records the Texas Tribune obtained for 2020 through 2025 identified {{number:c27:2}} unique data center facilities](c27). [By the Tribune's count {{number:c28}} of them submitted the water board's use survey at least once](c28). [The other {{number:c29}} never submitted a requested survey](c29).",
+   "claims": [
+    "c27",
+    "c28",
+    "c29"
+   ]
+  },
+  {
+   "text": "[ERCOT dated its Market Notice M-B091426-01 on {{date:c1}}](c1). [It carries water questions that ERCOT says it wrote with the utility commission and the water board](c12), [and ERCOT says it will pass the answers to the board](c15). [The request goes to data centers that are proposed or not yet energized](c4), [while the survey reaches only data centers that were operating in the year surveyed](c40).",
+   "claims": [
+    "c1",
+    "c12",
+    "c15",
+    "c4",
+    "c40"
+   ]
+  }
+ ],
+ "sections": [
+  {
+   "heading": "A mailed survey with a small fine",
+   "paragraphs": [
+    {
+     "text": "[The Tribune reported that the survey goes to operating facilities using more than {{number:c38}} million gallons a year](c38). [The water board says state law requires everyone who receives it to submit a completed one](c47). [Its FAQ names data centers among the industrial users that must](c50).",
+     "claims": [
+      "c38",
+      "c47",
+      "c50"
+     ]
+    },
+    {
+     "text": "[Skipping the survey can bring a Class C misdemeanor charge, the Tribune reported](c30), [with a fine of up to {{money:c31}}](c31). [The board says it has no authority of its own to prosecute](c32). [Local officials are left to decide whether to bring a case](c34). [State officials don't know whether any misdemeanor penalty has been issued against a data center](c35).",
+     "claims": [
+      "c30",
+      "c31",
+      "c32",
+      "c34",
+      "c35"
+     ]
+    },
+    {
+     "text": "[Last year {{number:c45}} facilities completed the survey and reported {{number:c45:1}} billion gallons of water between them](c45).",
+     "claims": [
+      "c45"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "A request that comes through the grid",
+   "paragraphs": [
+    {
+     "text": "[The notice is addressed to developers of data centers of {{number:c3}} MW and larger](c3). [It reaches developers of proposed data centers with a peak requested load of at least {{number:c4}} MW and under {{number:c4:1}} MW](c4). [A transmission or distribution provider has to have classified that load as Substantiated Load](c5). [It also reaches data centers ERCOT conditionally classified in its Batch Zero interconnection process](c6) [if they have not yet energized at {{number:c7}} kV or above](c7).",
+     "claims": [
+      "c3",
+      "c4",
+      "c5",
+      "c6",
+      "c7"
+     ]
+    },
+    {
+     "text": "[Each transmission or distribution provider files the response for the developer](c21). [A complete response had to include a notarized attestation](c20). [Responses were due by {{number:c19}} p.m. on {{date:c19}}](c19). [Any failure to respond will be reported to the utility commission and the Office of the Governor](c23). [The notice cites the Texas Water Code for any failure to fully answer the water questions](c17) [and warns that such a failure may expose a recipient to criminal penalties](c18).",
+     "claims": [
+      "c21",
+      "c20",
+      "c19",
+      "c23",
+      "c17",
+      "c18"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "What the record can't show yet",
+   "paragraphs": [
+    {
+     "text": "[The survey reaches operating facilities](c40) [and the request reaches proposed ones and those not yet energized](c4). Neither the notice nor the Tribune's reporting says the {{number:c29}} facilities that never returned a survey will be asked by ERCOT. [ERCOT says it will work with the utility commission on a report of conclusions from its review](c25). [It expects to publish that report by {{date:c26}}](c26). The report does not exist yet.",
+     "claims": [
+      "c40",
+      "c4",
+      "c29",
+      "c25",
+      "c26"
+     ]
+    },
+    {
+     "text": "[Raising the misdemeanor fine would take state legislation, the Tribune reported](c36). [Lawmakers don't meet in Austin until January](c37). [Governor Abbott has said he will work to put his executive actions into law when the Legislature returns](c56). That is a stated intention, not a law.",
+     "claims": [
+      "c36",
+      "c37",
+      "c56"
+     ]
+    }
+   ]
+  }
+ ],
+ "related": [
+  {
+   "id": "tx-2026-0171",
+   "label": "The record entry for the governor's order to enforce the water use survey"
+  },
+  {
+   "id": "tx-2026-0143",
+   "label": "The record entry for ERCOT's Batch Zero questionnaires"
+  },
+  {
+   "id": "tx-2026-0202",
+   "label": "The record entry for ERCOT's pause on energizing large data centers"
+  }
+ ]
+}

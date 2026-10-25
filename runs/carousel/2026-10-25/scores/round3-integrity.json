@@ -1,0 +1,24 @@
+{
+ "lens": "integrity",
+ "round": 3,
+ "criteria": [
+  {"name": "artwork_craft", "weight": 0.22, "score": 6.5, "why": "The first half is strong: frame 1's edge-lit brass over black bores, frame 9's reverse, frame 4's raked tank with the hall for scale, and frame 2's countable relief derived from FIG. Frame 6 is grey kit primitives with no ground or contact, and c12 sits on a cabinet box. Frame 7 reads as a wooden ruler on a mid-grey channel, though its scale is honest. Frame 8's seal reads as a combination dial on grey paper. Frame 5's tanks read as pucks under a brown haze. Frame 3's headline throws the safe-zone warning."},
+  {"name": "deck_coherence", "weight": 0.12, "score": 7.0, "why": "One key, one accent meaning, working devices and a declared turn, with the value track dark. Frames 6 to 8 leave the deck's stock for three unrelated objects, and the skeleton alternation was never built."},
+  {"name": "claim_integrity", "weight": 0.20, "score": 7.5, "why": "Every numeral traces and the computed figures and tank height check out. c5 now carries 'Substantiated Load' verbatim, and frame 7 and the caption carry the condition. The four rulings hold. Frame 7's headline is an unscoped universal while the bar draws only the 25 to 75 MW slot. Frame 3's figure rests on the Tribune. c45 is medium confidence. 'The developer's own utility' glosses c21. 'Now ERCOT asks' and 'Now the grid operator asks' are present tense for a request whose deadline passed."},
+  {"name": "story_and_stakes", "weight": 0.16, "score": 7.0, "why": "A Texan learns what happened, the fine, who can't prosecute, the bodies and the dates. No place is named, the Governor's August 3rd directive never appears, and the only action is to watch for a report."},
+  {"name": "sequence_and_momentum", "weight": 0.10, "score": 7.5, "why": "The cover earns the swipe, 2 pays, the turn changes understanding, 7 makes the caution and the close lands. Frame 5 is cuttable."},
+  {"name": "voice", "weight": 0.10, "score": 7.0, "why": "Clean and on register with a good opener. Five 'drawn to illustrate' disclaimers, a caption phrase that can misparse as 'classed as Substantiated and Batch Zero', and only frame 1's hook ending in a full stop."},
+  {"name": "variety", "weight": 0.10, "score": 6.5, "why": "A new subject on a familiar palette and engine: lastLight on 56 to 58, one object per counted unit again, and a count cover again."}
+ ],
+ "weighted_score": 6.99,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Build frames 6 to 8 on the deck's own iron, brass and caliche, and make frame 7's headline and bar name both routes.",
+ "artwork_weakest_frames": [
+  {"slide": 6, "problem": "Flat grey primitives with no ground or contact and a dead near face, c12 on a cabinet box.", "fix": "Camera down to about 1.2 m raking the bushings, a crushed-rock pad with contact, and the flat face cropped out of the bottom."},
+  {"slide": 7, "problem": "A wooden ruler on a mid-grey channel with hidden standoffs.", "fix": "The channel near black under a tight pool, a polished specular line on the copper's arris, and wider ribbed standoffs clear of the bar."},
+  {"slide": 8, "problem": "A seal like a combination dial and a grey mid-tone sheet.", "fix": "A shallow embossed rim with a fine crimp, no radial slots, a warm sheet with the pool falling to black."},
+  {"slide": 5, "problem": "Pucks under a brown mid-tone haze with low contrast.", "fix": "Camera down to about 150 m so each shell shows its height, with the far field into the dark sky."},
+  {"slide": 2, "problem": "The top chamfer reads as a flat UI strip.", "fix": "A taller step with a lit arris casting onto the caliche."}
+ ]
+}

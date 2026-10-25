@@ -1,0 +1,90 @@
+<!doctype html>
+<!-- 2026-10-25, frame 2 of 9. Archetype GRID. A material relief through txbench.js under the deck's light: the return plate in plan, one threaded bore per facility in rows of 20, a brass hex plug in each of the first in reading order, the iron running off three edges and its lit top wall against the caliche. The bore count, the plug count and the open count are read from figures.json. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>.dek { width:880px !important; }</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site" style="font-size:24px">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="line-height:1.02">101 answered, 233 never did</h1>
+<p class="dek" data-follow="22">A brass plug seals the bore of each facility that returned a survey at least once. No bore stands for a named facility. The plate is drawn to&nbsp;illustrate.</p>
+<script>window.FIG = {"facilities": 334, "submitted": 101, "never": 233};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-25-returnplate.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script src="@@ASSETS@@/js/txbench.js"></script>
+<script>
+window.renderReady = (async () => {
+  const cx = await CH.bootFlat({ kicker: "334 facilities, 2020 to 2025", counter: "02 / 09", src: "c27 c28 c29", fit: { min: 70, max: 92, maxLines: 1 } });
+  TX.reseed(20261025);
+  /* THE FIGURES, from figures.json: one bore per facility, a plug in each of the first that returned a survey, the
+   * rest open. The never count is checked against the drawing rather than assumed. */
+  const TOTAL = FIG.facilities, PLUGGED = FIG.submitted, OPEN = FIG.never;
+  if (TOTAL - PLUGGED !== OPEN) throw new Error("the open bores no longer equal the facilities less the plugged");
+  const COLS = 20, PITCH = 52, ROWS = Math.ceil(TOTAL / COLS);
+  const TOP = 448, X0 = (1080 - COLS * PITCH) / 2, Y0 = TOP + 18;
+  const BORE = 19, HEX = 19.8, DOME = 13;
+  /* the centre of position i, and the position under a point */
+  const centre = (i) => [X0 + (i % COLS + 0.5) * PITCH, Y0 + (Math.floor(i / COLS) + 0.5) * PITCH];
+  function at(X, Y) {
+    const c = Math.floor((X - X0) / PITCH), r = Math.floor((Y - Y0) / PITCH);
+    if (c < 0 || c >= COLS || r < 0 || r >= ROWS) return null;
+    const i = r * COLS + c; if (i >= TOTAL) return null;
+    const p = centre(i); return { i, dx: X - p[0], dy: Y - p[1] };
+  }
+  /* a hex 2*HEX across flats, flats top and bottom */
+  const hexd = (dx, dy) => Math.max(Math.abs(dy), Math.abs(dx) * 0.866 + Math.abs(dy) * 0.5);
+  function h(X, Y) {
+    if (Y < TOP - 20) return -42;                                               /* caliche below the plate's top face, its tooth in the albedo */
+    if (Y < TOP) return -42 * Math.pow((TOP - Y) / 20, 0.8) + 0.05 * TX.simplex2(X * 0.6, Y * 0.6) + (Y > TOP - 3 ? 1.4 : 0);   /* the plate's chamfered top edge, facing the key, its sand cast grain and a rounded arris along the top */
+    const q = at(X, Y);
+    let base = 0.05 * TX.simplex2(X * 0.6, Y * 0.6);                             /* sand cast grain */
+    if (!q) return base;
+    const r = Math.hypot(q.dx, q.dy);
+    if (q.i < PLUGGED) {
+      if (r < DOME) return 15 + 4 * Math.sqrt(Math.max(0, 1 - (r / DOME) ** 2));
+      const hd = hexd(q.dx, q.dy);
+      if (hd < HEX) return 13.5 - Math.max(0, hd - (HEX - 1.8)) * 1.2;             /* the hex, its arrises chamfered */
+      if (r < HEX + 3.5) return -0.8;                                            /* the contact line where it meets the iron */
+      return base;
+    }
+    /* AN OPEN BORE IS A CAVITY WITH A WALL: a countersink, then a conical threaded wall over nine px down to the
+     * black floor, so the lower right wall faces the key and lights as a crescent at feed size */
+    if (r < BORE - 9) return -40;
+    if (r < BORE) { const t = (BORE - r) / 9, crest = Math.sin(t * Math.PI * 4) > 0.3 ? 2.2 : 0; return -4 - 30 * t + crest; }
+    if (r < BORE + 2) return -1.5 * (BORE + 2 - r) / 2;                          /* the countersink */
+    return base;
+  }
+  function m(X, Y) {
+    if (Y < TOP - 20) return CH.M.CALICHE;
+    if (Y < TOP) return CH.M.THREAD;                                              /* the machined top edge */
+    const q = at(X, Y); if (!q) return CH.M.IRON;
+    const r = Math.hypot(q.dx, q.dy);
+    if (q.i < PLUGGED) return hexd(q.dx, q.dy) < HEX ? CH.M.BRASS : CH.M.IRON;
+    if (r < BORE - 9) return CH.M.BORE;
+    if (r < BORE + 2) return CH.M.THREAD;
+    return CH.M.IRON;
+  }
+  /* the last light lands in a pool over the plugs' boundary and falls off toward the corners */
+  const pool = (X, Y) => { const d = Math.hypot((X - 520) / 900, (Y - 780) / 640), t = Math.max(0, Math.min(1, (d - 0.35) / 0.65)); return 1 - 0.8 * t * t * (3 - 2 * t); };
+  /* caliche tooth lives in the albedo and stays quiet, so the low key never turns it into a blotch */
+  const albedo = (X, Y, mm) => mm === CH.M.BRASS ? (() => { const k = 1 + 0.06 * TX.simplex2(X * 0.5, Y * 0.5); return [0.68 * k, 0.47 * k, 0.20 * k]; })() : mm === CH.M.CALICHE ? (() => { const k = 0.55 + 0.08 * TX.simplex2(X * 0.9, Y * 0.9) + 0.05 * TX.simplex2(X * 0.02, Y * 0.06); const lift = 1 + 1.6 * Math.max(0, 1 - (TOP - Y) / 90); return [0.20 * k * lift, 0.17 * k * lift, 0.12 * k * lift]; })() : CH.albedo(X, Y, mm);
+  const rep = TXBENCH.relief(cx, { x: 0, y: 0, w: 1080, h: 1350, scale: 2, height: h, material: m, keyMask: pool,
+    albedo, spec: CH.SPEC, ambient: 0.05, diffuse: 1.35, ao: 1.0, shadow: 0.92, softness: 4, castLength: 150 });
+  window.__relief = rep;
+  cx.setTransform(2, 0, 0, 2, 0, 0);
+  CH.post(cx, { a: 0.3, to: TOP - 60, fade: 40, veil: 0.1, footWash: 0.5 });
+  CH.knock(cx, [".dek"], 0.35);
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>
