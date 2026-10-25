@@ -1,0 +1,24 @@
+{
+ "lens": "craft",
+ "round": 3,
+ "criteria": [
+  {"name": "artwork_craft", "weight": 0.22, "score": 6.5, "why": "The return plate frames are the strongest art these decks have had: real height, threaded bores with lit rims, brass plugs with lit flats, casts off the declared key. Frame 4 passes the showstopper test outright and 9 is a true reverse of the cover. Four frames fall short. Frame 8 reads as a safe door with a combination dial on a mid-grey sheet. Frame 6 is untextured grey clay with no ground or contact, gantry clutter and a nameplate square behind the footer's 'c12'. Frame 5's tanks read as pucks on a lit mid-tone floor with aliasing roof seams and no scale. Frame 3's top third is streaky brown haze behind the figure. Frame 7 reads as a ruler on a rail."},
+  {"name": "deck_coherence", "weight": 0.12, "score": 7.0, "why": "Two devices work, the camera move around one plate and the tank becoming the farm's unit. One light holds and the brass accent is disciplined. Frame 6 is grey clay against the iron and brass, 7 and 8 are desk objects from a different deck, and value strobes mildly on 3, 5, 7 and 8."},
+  {"name": "claim_integrity", "weight": 0.20, "score": 8.0, "why": "Every numeral traces, the computed figures and tank geometry check out, the four cautions are obeyed, and the ERCOT side is primary. The threshold and the operating-only reach lean on the Tribune, 'the developer's own utility' glosses c21, and 'before the power flows' is interpretive."},
+  {"name": "story_and_stakes", "weight": 0.16, "score": 7.5, "why": "A Texan learns what happened, who decides and when. No place, and the next step is to watch for a report."},
+  {"name": "sequence_and_momentum", "weight": 0.10, "score": 7.5, "why": "The cover earns the swipe, 2 pays exactly, the turn lands, 7 carries the caution and the close returns reversed. Frame 5 is cuttable and 3 and 4 restate the survey's terms."},
+  {"name": "voice", "weight": 0.10, "score": 7.0, "why": "Plain, specific and on register. The repeated hedges read machine-made, and frame 7's dek is a run of protocol nouns."},
+  {"name": "variety", "weight": 0.10, "score": 7.0, "why": "The concept and palette are fresh against 59 and 58. The staged lastLight register, one skeleton on all nine frames and a plan relief on a dark ground repeat house moves."}
+ ],
+ "weighted_score": 7.22,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Keep the turn inside the plate's world: frame 8's seal as a flat crimped disc with ribbon tails on a cream sheet with no folder border, and frame 6 recropped tight on the bushings and conservator against black sky with weathered galvanized steel.",
+ "artwork_weakest_frames": [
+  {"slide": 8, "problem": "Reads as a steel safe door with a combination dial, framed by the folder, the sheet mid grey.", "fix": "A flat embossed disc with a crimped scalloped rim and ribbon tails, no folder border, a cream sheet with the pool falling to black."},
+  {"slide": 6, "problem": "Untextured grey clay with no ground or contact, gantry clutter and a nameplate behind 'c12'.", "fix": "Recrop on the three tallest bushings and the conservator against black sky, weather the tank, delete the nameplate and drop the gantry."},
+  {"slide": 5, "problem": "Pucks on a lit mid-tone floor with aliasing seams and no scale.", "fix": "Pull the pool onto the nearest two blocks so the ground falls to black, light the shells' flanks, and stand the data hall at the near left edge."},
+  {"slide": 3, "problem": "Streaky brown haze behind the figure.", "fix": "Pitch down until the far edge leaves the top of the frame."},
+  {"slide": 7, "problem": "A ruler on a rail with a flat copper fill and hidden standoffs.", "fix": "Standoffs clear of the bar with their own casts, the web dark outside a pool on the step, and a bevelled lit arris on the copper."}
+ ]
+}

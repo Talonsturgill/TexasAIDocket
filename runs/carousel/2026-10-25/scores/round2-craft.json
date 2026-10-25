@@ -1,0 +1,24 @@
+{
+ "lens": "craft",
+ "round": 2,
+ "criteria": [
+  {"name": "artwork_craft", "weight": 0.22, "score": 6.4, "why": "The bookends and frame 4 are real work. Frame 1 has near bores running off the bottom and the brass rank catching the key. Frame 9 reverses it. Frame 4 is the best single image, close to THE SHOWSTOPPER TEST, though its foreground boulders are lumpy blobs and the mid-left sky is dead haze. Frame 3's top half is flat brown haze behind 'Up to $500', and its bores are an even repeat. Frame 5's tanks read as pucks with no scale anchor, between a brown haze band and empty ground, with striation on the shells. Frame 6 is untextured grey kit geometry with no ground contact, about thirty bushings and no focal point. Frame 7 is an orthographic copper rectangle with a 2 px step and half-hidden standoffs. Frame 8 is a grey-taupe slab over two thirds of the frame, with a seal like a burner and a rule like a UI strip. Per frame: 1 at 8, 2 at 7, 3 at 6, 4 at 8, 5 at 5.5, 6 at 5.5, 7 at 6, 8 at 5.5, 9 at 7.5."},
+  {"name": "deck_coherence", "weight": 0.12, "score": 6.8, "why": "One light and one grade hold. Three continuity devices work: the camera circling one plate, the brass motif through 1, 2, 9 and the seal on 8, and the tank becoming the farm's unit. Frames 6 to 8 break into three unrelated vocabularies, the value track strobes on 3, 5 and 8, and the skeleton alternation was not built."},
+  {"name": "claim_integrity", "weight": 0.20, "score": 8.0, "why": "Every numeral traces to a claim or a computation, the tank geometry checks out at about 10 million gallons, frame 7's leaders land on one scale, and the fact-check cautions hold. The facility counts lean on Tribune-obtained records. c5 'Substantiated' carries medium confidence."},
+  {"name": "story_and_stakes", "weight": 0.16, "score": 7.5, "why": "A reader learns what happened and who decided, with the deadline and what the request reaches. The deadline has passed, so the actionable stake is to watch for the report and the session. No place is named."},
+  {"name": "sequence_and_momentum", "weight": 0.10, "score": 7.6, "why": "The cover earns the swipe, 2 pays at once, the turn is declared, 7 holds the caution, and 9 closes by turning the cover's camera around. Frame 5 is cuttable and 3 and 5 slow the middle."},
+  {"name": "voice", "weight": 0.10, "score": 7.0, "why": "Clean and on register and honest about the fine. 'Drawn to illustrate' becomes a tic. Little regional texture, and the caption's 'A complete one' has an unclear referent after 'Section C'."},
+  {"name": "variety", "weight": 0.10, "score": 7.5, "why": "Cast iron and brass on an outdoor caliche yard and a macro opening diverge from 59 and 58. The same chassis on every frame and the staged low-key register repeat."}
+ ],
+ "weighted_score": 7.23,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Carry the plate's cast iron and brass, at the cover's low-key standard, through frames 6 to 8: one glazed bushing and its brass terminal tight against the seam, the copper bar low in perspective with a proud step, the brass seal cropped close with the sheet falling to black.",
+ "artwork_weakest_frames": [
+  {"slide": 8, "problem": "A grey-taupe sheet over two thirds of the frame in the grey middle, a seal like a burner with a smear, and a rule like a UI strip.", "fix": "Pull the framing in so only the sheet's lower-right quadrant and the seal sit in the pool, with the rest falling to black and the paper under 40 percent of the frame."},
+  {"slide": 6, "problem": "Untextured grey kit geometry with no ground or contact, about thirty bushings and no focal point, and a grey rectangle behind 'c12'.", "fix": "A three-quarter close on one transformer's three HV bushings and conservator against the seam, glazed and rim-lit, with the pad and contact showing."},
+  {"slide": 5, "problem": "Tanks read as pucks with no scale anchor, between a brown haze band and empty ground, with striation on the shells.", "fix": "Drop the camera to about 120 m so the nearest block runs off the bottom, fog into the dark sky, and set the frame 4 data hall at the near block's corner."},
+  {"slide": 3, "problem": "Flat brown haze behind the figure, and an even repeat of bores with no dominant form.", "fix": "Pitch further down until the far edge and haze leave the frame, and let one large nearest bore carry the focal point."},
+  {"slide": 7, "problem": "A flat orthographic rectangle with no arris, a 2 px step and half-hidden standoffs.", "fix": "Raise the step to a proud block that casts down and to the right, and put a specular arris along the bar's top edge."}
+ ]
+}

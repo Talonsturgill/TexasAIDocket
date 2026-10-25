@@ -34,6 +34,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-07 · The radiologists' published review and its Texas affiliations read as indexed, with nothing changed.
 - 2026-10-10 · The radiologists' published review is unconfirmed today, because the index that carries its abstract bars automated readers.
 - 2026-10-14 · The radiologists' published review stays unconfirmed, since the index that carries its abstract still bars automated readers.
+- 2026-10-25 · The radiologists' published review stays unconfirmed, since the index that carries its abstract still bars automated readers.
 
 ## Evidence
 

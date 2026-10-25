@@ -1,0 +1,64 @@
+<!doctype html>
+<!-- 2026-10-25, frame 4 of 9. Archetype FIGURE_SCALE. A spatial scene through txthree.js in the deck's lastLight world: the chassis ground storage tank, 60 m across and the height that holds 10 million gallons, beside the end of an unbadged kit data hall with kit chillers, on caliche. The tank height is read from figures.json. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>.dek { width:860px !important; }</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site" style="font-size:24px">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="line-height:1.02">The survey's line is 10&nbsp;million gallons a year</h1>
+<p class="dek" data-follow="26">It goes to operating facilities using more than that, the Tribune reports. This tank holds that much, drawn to illustrate. The survey doesn't ask how a data center cools its&nbsp;servers.</p>
+<script>window.FIG = {"tank_diameter_m": 60, "tank_height_m": 13.4};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-25-returnplate.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Who the survey reaches", counter: "04 / 09", src: "c38 c40 c41", fit: { min: 66, max: 90, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 32, near: 0.5, far: 5000 });
+  /* THE FIGURE, from figures.json: a tank drawn 60 m across, its shell the height that holds the survey's line */
+  const set = new THREE.Group(); set.rotation.y = TXDECK.deck().light.az * Math.PI / 180 + Math.PI * 0.7;
+  const tank = K.make('ground_storage_tank', { diameter: FIG.tank_diameter_m, height: FIG.tank_height_m }); set.add(tank);
+  const hall = K.make('data_center', { length: 160, gensets: false, fence: false, seed: 7 }); hall.position.set(-100, 0, -50); hall.rotation.y = Math.PI / 2; set.add(hall);
+  const chillers = [];
+  [[-44, 34], [-44, 50], [-44, 66]].forEach((p) => { const c = K.make('chiller', { fans: 8 }); c.position.set(p[0], 0, p[1]); c.rotation.y = Math.PI / 2; set.add(c); chillers.push(c); });
+  /* the shell's coating takes a weathered tooth here, so its lit flank reads as painted steel plate at feed size */
+  { const coat = CH.mats(THREE, K).coat.clone(); const t = K.tex('stucco').clone(); t.needsUpdate = true; t.repeat.set(12, 2); t.anisotropy = 8; coat.bumpMap = t; coat.bumpScale = 1.6; coat.roughnessMap = t;
+    tank.traverse((o) => { if (o.isMesh && o.material === CH.mats(THREE, K).coat) o.material = coat; }); }
+  TXT.add(R, set);
+  const local = (p) => new THREE.Vector3(p[0], p[1], p[2]).applyAxisAngle(new THREE.Vector3(0, 1, 0), set.rotation.y).toArray();
+  set.updateMatrixWorld(true);
+  TXT.sky(R);
+  TXT.ground(R, { surface: 'caliche', size: 1200, seed: 4 });
+  TXT.scatter(R, { kind: 'rock', count: 2600, area: [-70, 30, 40, 64], avoid: [[-34, -34, 34, 34]], seed: 4, scale: [0.2, 0.6] });
+  const from = local([-12, 1.6, 74]);
+  const look = CH.aim(THREE, R, TXT, from, local([-24, FIG.tank_height_m * 0.5, 14]), 520, 930, 32);
+  TXT.frame(R, { fov: 32, from, look });
+  CH.warm(R, 0.15);
+  { const spec = CH.rigSpec(W, 220, 4096); TXT.deckRig(R, spec, CH.rigOpts(local([-20, 0, 0]), { distance: 300, shadowFar: 700, normalBias: 0.02 })); }
+  CH.unacne(R, 0.02);
+  TXT.contact(R, tank, { grit: false });
+  chillers.forEach((c) => TXT.contact(R, c));
+  TXT.contact(R, hall);
+  TXT.stage(R, tank);
+  TXT.weather(R, { grime: 0.7, height: 6, mottle: 0.7 });
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0.4, veil: 0.3, footWash: 0.5 });
+  CH.knock(cx, [".dek"], 0.35);
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

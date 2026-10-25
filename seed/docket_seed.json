@@ -17094,5 +17094,84 @@
     "note": "Admitted on Tesla's own quarterly update. The capacity it lists is installed capacity, and the update itself says that is not output."
    }
   ]
+ },
+ {
+  "title": "A UT Austin dance and engineering team wins an award to build an AI model that learns from recorded human movement",
+  "summary": "The University of Texas at Austin says two of its researchers received a $643,719 research award to develop an AI driven movement language model. They are Sinclair Emoghene of the Department of Theatre and Dance and Lillian Chin of the Chandra Family Department of Electrical and Computer Engineering. Sensors built in Chin's lab capture movement, touch, force and pressure from recordings of dancers. The team says it has processed 155 dance recordings from 33 countries and plans to reach 500-plus recordings from more than 40 countries. The university's item does not name the funder, and no result from the model has been reported.",
+  "topic": "research-and-science",
+  "decider": {
+   "name": "The University of Texas at Austin",
+   "type": "state-agency"
+  },
+  "geography": {
+   "statewide": false,
+   "counties": [
+    "Travis"
+   ],
+   "on_ercot": true,
+   "metro": "Austin-Round Rock-San Marcos, TX"
+  },
+  "status": "decided",
+  "key_dates": [
+   {
+    "date": "2026-10-23",
+    "kind": "filed",
+    "note": "Date of UT Austin's news item announcing the award"
+   }
+  ],
+  "public_access": {
+   "room": "contact_only",
+   "how": "The award funds a university research project. No vote or comment window applies, and the university's news office and College of Fine Arts handle questions about the work.",
+   "url": "https://news.utexas.edu/2026/10/23/in-brief-research-award-advances-ai-project-exploring-human-movement-as-language/",
+   "closes": null
+  },
+  "confidence": "high",
+  "notes_for_editor": "Admitted on UT Austin's own news item. The item names no funder, so none is carried.",
+  "claims": [
+   {
+    "text": "Emoghene and Chin received a $643,719 research award to develop an AI driven movement language model.",
+    "verbatim_quote": "Researchers Sinclair Emoghene of UT Austin’s Department of Theatre and Dance and Lillian Chin of the Chandra Family Department of Electrical and Computer Engineering have received a $643,719 research award to develop an AI-driven movement language model.",
+    "source_url": "https://news.utexas.edu/2026/10/23/in-brief-research-award-advances-ai-project-exploring-human-movement-as-language/",
+    "source_title": "UT News, In Brief, Research Award Advances AI Project Exploring Human Movement as Language, October 23rd, 2026",
+    "source_type": "primary_official",
+    "fetched": "2026-10-25",
+    "id": "tx-2026-0231-c1"
+   },
+   {
+    "text": "Sensors from Chin's lab capture movement, touch, force and pressure data from recordings of dancers.",
+    "verbatim_quote": "Utilizing sensor technology developed by Chin’s lab , the research captures movement, touch, force and pressure data from recordings of dancers to help AI better understand how dance holds information about cultural history, geography and communities.",
+    "source_url": "https://news.utexas.edu/2026/10/23/in-brief-research-award-advances-ai-project-exploring-human-movement-as-language/",
+    "source_title": "UT News, In Brief, Research Award Advances AI Project Exploring Human Movement as Language, October 23rd, 2026",
+    "source_type": "primary_official",
+    "fetched": "2026-10-25",
+    "id": "tx-2026-0231-c2"
+   },
+   {
+    "text": "The team says it has processed 155 dance recordings from 33 countries.",
+    "verbatim_quote": "The team has already processed 155 dance recordings from 33 countries.",
+    "source_url": "https://news.utexas.edu/2026/10/23/in-brief-research-award-advances-ai-project-exploring-human-movement-as-language/",
+    "source_title": "UT News, In Brief, Research Award Advances AI Project Exploring Human Movement as Language, October 23rd, 2026",
+    "source_type": "primary_official",
+    "fetched": "2026-10-25",
+    "id": "tx-2026-0231-c3"
+   },
+   {
+    "text": "The team plans to grow the collection to 500-plus recordings from more than 40 countries.",
+    "verbatim_quote": "They plan to grow their collection to 500-plus recordings from more than 40 countries.",
+    "source_url": "https://news.utexas.edu/2026/10/23/in-brief-research-award-advances-ai-project-exploring-human-movement-as-language/",
+    "source_title": "UT News, In Brief, Research Award Advances AI Project Exploring Human Movement as Language, October 23rd, 2026",
+    "source_type": "primary_official",
+    "fetched": "2026-10-25",
+    "id": "tx-2026-0231-c4"
+   }
+  ],
+  "id": "tx-2026-0231",
+  "last_verified": "2026-10-25",
+  "history": [
+   {
+    "date": "2026-10-25",
+    "note": "Admitted on UT Austin's own news item. The award funds a model still being built, and the item names no funder."
+   }
+  ]
  }
 ]

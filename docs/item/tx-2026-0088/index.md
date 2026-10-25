@@ -49,6 +49,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-09 · The RELLIS abatement assignment is still unconfirmed. The county's notice refused the request again today.
 - 2026-10-10 · The RELLIS abatement assignment stays unconfirmed. The county's notice refused the request again.
 - 2026-10-24 · The assignment of the RELLIS abatement to ThisWay Global is unconfirmed today, since the county's notice refused the request and the station's site bars automated readers.
+- 2026-10-25 · The assignment of the RELLIS abatement to ThisWay Global stays unconfirmed. The county's notice still turns away every reader.
 
 ## Evidence
 

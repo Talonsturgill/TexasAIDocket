@@ -1,0 +1,205 @@
+{
+ "_note": "Every value is extracted from a claim quote by compute.py, or computed here from values that were.",
+ "facilities": {
+  "value": 334,
+  "from": [
+   "c27"
+  ],
+  "basis": "data center facilities in the Tribune's records, 2020 through 2025"
+ },
+ "submitted": {
+  "value": 101,
+  "from": [
+   "c28"
+  ],
+  "basis": "facilities that submitted the water survey at least once, per the Tribune"
+ },
+ "never": {
+  "value": 233,
+  "from": [
+   "c29"
+  ],
+  "basis": "facilities that never submitted a requested survey, per the Tribune"
+ },
+ "never_pct": {
+  "value": 70,
+  "from": [
+   "c27",
+   "c29"
+  ],
+  "basis": "computed: never submitted over facilities, as a whole percent, rounded half up from 69.76"
+ },
+ "submitted_pct": {
+  "value": 30,
+  "from": [
+   "c27",
+   "c28"
+  ],
+  "basis": "computed: submitted at least once over facilities, as a whole percent"
+ },
+ "record_first_year": {
+  "value": 2020,
+  "from": [
+   "c27"
+  ],
+  "basis": "the first year of the Tribune's records"
+ },
+ "record_last_year": {
+  "value": 2025,
+  "from": [
+   "c27"
+  ],
+  "basis": "the last year of the Tribune's records"
+ },
+ "fine": {
+  "value": 500,
+  "from": [
+   "c31"
+  ],
+  "basis": "the most a Class C misdemeanor fine can be, in dollars"
+ },
+ "survey_gallons_million": {
+  "value": 10,
+  "from": [
+   "c38"
+  ],
+  "basis": "the survey targets facilities using more than this many million gallons a year"
+ },
+ "surveyed_2025": {
+  "value": 329,
+  "from": [
+   "c44"
+  ],
+  "basis": "facilities the water board surveyed in 2025"
+ },
+ "new_2025": {
+  "value": 267,
+  "from": [
+   "c44"
+  ],
+  "basis": "of those, new to the board's tracking"
+ },
+ "new_2025_resp_pct": {
+  "value": 22.5,
+  "from": [
+   "c44"
+  ],
+  "basis": "the share of the new facilities that responded, as printed"
+ },
+ "completed_last_year": {
+  "value": 97,
+  "from": [
+   "c45"
+  ],
+  "basis": "facilities that completed the survey last year"
+ },
+ "gallons_billion": {
+  "value": 1.4,
+  "from": [
+   "c45"
+  ],
+  "basis": "billion gallons those facilities reported together"
+ },
+ "mw_floor": {
+  "value": 25,
+  "from": [
+   "c3",
+   "c4"
+  ],
+  "basis": "the smallest peak requested load the request reaches, MW"
+ },
+ "mw_upper": {
+  "value": 75,
+  "from": [
+   "c4"
+  ],
+  "basis": "the top of the smaller developers' band, MW"
+ },
+ "kv": {
+  "value": 60,
+  "from": [
+   "c7"
+  ],
+  "basis": "transmission voltage, kV and above"
+ },
+ "business_days": {
+  "value": 2,
+  "from": [
+   "c22"
+  ],
+  "basis": "business days a service provider had to enter the developer's contact"
+ },
+ "due_hour": {
+  "value": 5,
+  "from": [
+   "c19"
+  ],
+  "basis": "the response deadline's hour, p.m. Central Prevailing Time"
+ },
+ "notice_to_due_days": {
+  "value": 28,
+  "from": [
+   "c1",
+   "c19"
+  ],
+  "basis": "computed: calendar days from the notice date to the response deadline"
+ },
+ "due_to_report_days": {
+  "value": 59,
+  "from": [
+   "c19",
+   "c26"
+  ],
+  "basis": "computed: calendar days from the response deadline to the expected report"
+ },
+ "today_to_report_days": {
+  "value": 46,
+  "from": [
+   "c26"
+  ],
+  "basis": "computed: calendar days from this deck's date, October 25th, 2026, to the expected report"
+ },
+ "due_day": {
+  "value": 12,
+  "from": [
+   "c19"
+  ],
+  "basis": "the day of October the responses were due"
+ },
+ "report_day": {
+  "value": 10,
+  "from": [
+   "c26"
+  ],
+  "basis": "the day of December the report is expected by"
+ },
+ "permit_actions": {
+  "value": 35,
+  "from": [
+   "c55"
+  ],
+  "basis": "permitting actions FracTracker and Public Citizen counted after the pause, their count"
+ },
+ "tank_diameter_m": {
+  "value": 60,
+  "from": [
+   "c38"
+  ],
+  "basis": "a drawing rule: the threshold tank is drawn 60 m across"
+ },
+ "tank_height_m": {
+  "value": 13.4,
+  "from": [
+   "c38"
+  ],
+  "basis": "computed: 10 million US gallons in cubic metres over the area of a 60 m circle, to 0.1 m"
+ },
+ "tanks_reported": {
+  "value": 140,
+  "from": [
+   "c45",
+   "c38"
+  ],
+  "basis": "computed: the 1.4 billion gallons reported over the 10 million gallon threshold, tanks of it"
+ }
+}

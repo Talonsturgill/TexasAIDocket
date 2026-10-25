@@ -48,6 +48,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-15 · Pflugerville's charter election with its AI section is still set for the November ballot in the records that answered. The council attachments are unconfirmed.
 - 2026-10-18 · Pflugerville's legislative history still carries the charter election ordinance. The ordinance text and the review commission's report are unconfirmed.
 - 2026-10-22 · Pflugerville's legislative history still carries the ordinance calling the charter election, with its section on the city's use of artificial intelligence. The ordinance text and the review commission's report stay unconfirmed.
+- 2026-10-25 · Pflugerville's charter election with its section on artificial intelligence stays unconfirmed today, since the city's legislative host bars automated readers.
 
 ## Evidence
 

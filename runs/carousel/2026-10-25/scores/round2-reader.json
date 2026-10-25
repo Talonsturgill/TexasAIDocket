@@ -1,0 +1,23 @@
+{
+ "lens": "reader",
+ "round": 2,
+ "criteria": [
+  {"name": "artwork_craft", "weight": 0.22, "score": 6.5, "why": "Four frames pass the bold test at 432 px: 1, 2, 4 and 9. Slide 5's tanks read as pucks on a flat brown mid-tone ground. Slide 6 is a flat grey kit substation with a dead tank face and gantry clutter. Slide 7's copper bar reads as a ruler and its standoffs as wheels. Slide 8's sheet reads as grey steel and its seal as a grille. The 7 descriptor allows one weak frame, and this deck has four."},
+  {"name": "deck_coherence", "weight": 0.12, "score": 7.0, "why": "One world, one material vocabulary, one brass accent, with the plate opening and closing the deck. Frames 4 to 8 leave the plate for five unrelated subjects, and 6 and 8 sit outside the deck on the contact sheet."},
+  {"name": "claim_integrity", "weight": 0.20, "score": 7.5, "why": "Every numeral traces, and the deck refuses to say the RFI reaches the 233. The core counts, the $500 and the threshold rest on Tribune journalism. 'Substantiated' on slide 7 rests on c5, whose stored quote doesn't carry the word. 'The developer's own utility' is looser than c21."},
+  {"name": "story_and_stakes", "weight": 0.16, "score": 7.0, "why": "A Texan learns what happened in three swipes, with the bodies and dates named. What they can do is never said, why the water counts is never stated, no place appears, and slides 6 to 8 move into process language."},
+  {"name": "sequence_and_momentum", "weight": 0.10, "score": 7.0, "why": "The cover earns the swipe, 2 pays at once and 3 is a strong beat, with the turn at 6. Slide 5 is cuttable, 7 and 8 lose momentum in jargon, and the close is a watch-for."},
+  {"name": "voice", "weight": 0.10, "score": 6.5, "why": "Clean and careful, a wire desk rather than a Texan. 'Drawn to illustrate' appears on six frames, and filing language reads as machine disclaimer."},
+  {"name": "variety", "weight": 0.10, "score": 7.0, "why": "A fresh motif, bolder than 58 or 59. The lastLight world for the fourth deck in five, a statistic cover, and the same skeleton on 8 of 9 frames."}
+ ],
+ "weighted_score": 6.94,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Carry the return plate through the turn in its own iron and brass vocabulary and say in one plain sentence on slide 7 that the request reaches facilities not yet running.",
+ "artwork_weakest_frames": [
+  {"slide": 7, "problem": "The bar reads as a ruler or belt, the standoffs as wheels, and the encoding can't be read without the dek.", "fix": "Light only the 25 to 75 MW span with the key pool, drop the copper outside it into shadow, and set narrow ribbed porcelain posts beside the bar."},
+  {"slide": 8, "problem": "The sheet reads as grey steel, the seal as a grille, the frame lives in the grey middle and the rule is nearly invisible.", "fix": "Warm the sheet to cream, shrink it to about 40 percent with true black around it, rake the key so the seal casts hard, and lift the rule."},
+  {"slide": 6, "problem": "A flat grey kit substation with a dead tank face and clutter, so no single silhouette owns the frame.", "fix": "A close crop of two or three shed bushings and the conservator against the seam, with the tank face and gantries in black."},
+  {"slide": 5, "problem": "The tanks read as pucks on a flat brown mid-tone ground, and the scale link to slide 4 does not read.", "fix": "A lower, longer-lens oblique so the nearest block shows the tank's courses and stair, the pool on that block, the far blocks fogged to dark."}
+ ]
+}

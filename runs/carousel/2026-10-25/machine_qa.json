@@ -1,0 +1,125 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "bands": [
+        0.2479,
+        0.5903,
+        0.5882
+      ],
+      "band_ratio": 1.2239
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [
+        "console error: TXBENCH: RELIEF {\"height_range\":60.99851989746094,\"materials\":5,\"cast_fraction\":0.3059216392318244,\"area\":1,\"render_ms\":7720.399999999441}"
+      ],
+      "bands": [
+        0.4643,
+        0.7584,
+        0.818
+      ],
+      "band_ratio": 1.1916
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky",
+        "outside safe zone: 'Up to $500' at 80,150 940x193 (margin 80px)"
+      ],
+      "bands": [
+        0.3571,
+        0.5336,
+        0.3879
+      ],
+      "band_ratio": 0.9138
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "bands": [
+        0.3025,
+        0.3971,
+        0.7022
+      ],
+      "band_ratio": 1.4692
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "bands": [
+        0.2815,
+        0.6492,
+        0.6397
+      ],
+      "band_ratio": 1.2099
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "bands": [
+        0.2332,
+        0.1786,
+        0.5809
+      ],
+      "band_ratio": 1.6973
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [
+        "console error: TXBENCH: RELIEF {\"height_range\":176,\"materials\":5,\"cast_fraction\":0.14556910150891633,\"area\":1,\"render_ms\":12053}"
+      ],
+      "bands": [
+        0.3571,
+        0.5147,
+        0.4614
+      ],
+      "band_ratio": 1.0364
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [
+        "console error: TXBENCH: RELIEF {\"height_range\":60.03991557416602,\"materials\":6,\"cast_fraction\":0.44002234993614303,\"area\":0.6659259259259259,\"render_ms\":10424.400000000373}"
+      ],
+      "bands": [
+        0.2668,
+        0.5336,
+        0.4945
+      ],
+      "band_ratio": 1.1381
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "bands": [
+        0.3004,
+        0.6744,
+        0.8217
+      ],
+      "band_ratio": 1.3493
+    }
+  ],
+  "fails": 0,
+  "warns": 10,
+  "verdict": "WARN"
+}

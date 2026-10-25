@@ -1,0 +1,122 @@
+{
+ "date": "2026-10-25",
+ "_note": "Every count, span and multiple the deck states, with the claim it was quoted from or the code that computed it.",
+ "aggregates": [
+  {
+   "phrase": "334 data center facilities",
+   "slide": "slide-01.html",
+   "kind": "count",
+   "value": 334,
+   "quoted_from": "c27",
+   "quote": "identified 334 unique data center facilities",
+   "note": "quoted"
+  },
+  {
+   "phrase": "334 data center facilities",
+   "slide": "caption.txt",
+   "kind": "count",
+   "value": 334,
+   "quoted_from": "c27",
+   "quote": "identified 334 unique data center facilities",
+   "note": "quoted"
+  },
+  {
+   "phrase": "334 facilities",
+   "slide": "slide-02.html",
+   "kind": "count",
+   "value": 334,
+   "quoted_from": "c27",
+   "quote": "identified 334 unique data center facilities",
+   "note": "quoted"
+  },
+  {
+   "phrase": "10 million gallons",
+   "slide": "slide-04.html",
+   "kind": "count",
+   "value": 10,
+   "quoted_from": "c38",
+   "quote": "more than 10 million gallons per year",
+   "note": "quoted"
+  },
+  {
+   "phrase": "10 million gallons",
+   "slide": "slide-05.html",
+   "kind": "count",
+   "value": 10,
+   "quoted_from": "c38",
+   "quote": "more than 10 million gallons per year",
+   "note": "quoted"
+  },
+  {
+   "phrase": "97 facilities",
+   "slide": "slide-05.html",
+   "kind": "count",
+   "value": 97,
+   "quoted_from": "c45",
+   "quote": "97 facilities completed the survey",
+   "note": "quoted"
+  },
+  {
+   "phrase": "1.4 billion gallons",
+   "slide": "slide-05.html",
+   "kind": "count",
+   "value": 1.4,
+   "quoted_from": "c45",
+   "quote": "1.4 billion gallons",
+   "note": "quoted"
+  },
+  {
+   "phrase": "Zero facilities",
+   "slide": "slide-07.html",
+   "kind": "count",
+   "value": 0,
+   "quoted_from": "c24",
+   "quote": "Batch Zero Eligibility RFI",
+   "note": "quoted"
+  },
+  {
+   "phrase": "Zero facilities",
+   "slide": "caption.txt",
+   "kind": "count",
+   "value": 0,
+   "quoted_from": "c24",
+   "quote": "Batch Zero Eligibility RFI",
+   "note": "quoted"
+  },
+  {
+   "phrase": "28 days",
+   "slide": "slide-08.html",
+   "kind": "span",
+   "value": 28,
+   "from_date": "2026-09-14",
+   "to_date": "2026-10-12",
+   "computed_by": "out/2026-10-25/compute.py, figures.json notice_to_due_days, the notice date (c1) to the response deadline (c19)",
+   "note": "computed"
+  },
+  {
+   "phrase": "140 tanks",
+   "slide": "slide-05.html",
+   "kind": "count",
+   "value": 140,
+   "computed_by": "out/2026-10-25/compute.py, figures.json tanks_reported, the 1.4 billion gallons the 97 facilities reported (c45) over the survey's 10 million gallon line (c38)",
+   "note": "computed"
+  },
+  {
+   "phrase": "233 data centers",
+   "slide": "document_title",
+   "kind": "count",
+   "value": 233,
+   "quoted_from": "c29",
+   "quote": "233 facilities never submitted a requested survey",
+   "note": "quoted"
+  },
+  {
+   "phrase": "two official records",
+   "slide": "first_comment.txt",
+   "kind": "count",
+   "value": 2,
+   "computed_by": "scripts/carousel/sources_block.py, the distinct primary_official documents among the cited claims, ERCOT's notice (c1) and the water board's survey page (c46)",
+   "note": "computed"
+  }
+ ]
+}

@@ -1,0 +1,24 @@
+{
+ "lens": "reader",
+ "round": 3,
+ "criteria": [
+  {"name": "artwork_craft", "weight": 0.22, "score": 6.7, "why": "Frame 4 is the showstopper, a raked tank sized by the data hall. Frame 1 works as a cover and frame 2 makes the count readable without a legend. Frame 7's bar reads as a plank and illustrates only the MW band. Frame 8's seal reads as a safe dial and the rule is dim. Frame 5's tanks read as pucks in the mid tones. Frame 3's dek sits on a haze band. Frame 9 is a dimmer near repeat of the cover. Frame 6 is busy with a mostly black near face."},
+  {"name": "deck_coherence", "weight": 0.12, "score": 7.0, "why": "One deck on the contact sheet: one world, one field, light type, one skeleton, and a brass motif with one meaning. The plate recurs and the tank becomes the farm. Frames 6 to 8 bring three unrelated objects in three new materials, and 7 sits furthest outside."},
+  {"name": "claim_integrity", "weight": 0.20, "score": 8.5, "why": "Every numeral traces, every RFI fact is on the primary notice, the Class C offence is backed by c46, and the fact check's cautions are honoured. The core counts and the $500 rest on the Tribune, c28 and c45 carry medium confidence, and slide 8's 'own utility' is a looser gloss of c21."},
+  {"name": "story_and_stakes", "weight": 0.16, "score": 7.0, "why": "The core lands in two swipes, with bodies, decision and dates named. No place, no stated stake beyond water use, no action though c33 names the county and district attorneys, and the sharpest question appears only in the caption."},
+  {"name": "sequence_and_momentum", "weight": 0.10, "score": 7.5, "why": "The cover earns the swipe, 2 pays, 6 turns. Frame 5 is cuttable and slows the deck before the turn. The close lands softly."},
+  {"name": "voice", "weight": 0.10, "score": 7.5, "why": "Clean, plain and on register, with lines that sound like a person. Slide 7's dek is regulator prose, PUC is never expanded, and Austin is the only Texas place."},
+  {"name": "variety", "weight": 0.10, "score": 6.0, "why": "A fresh topic. lastLight again, a palette close to 56 and 58, one pocket per counted thing again, the absence-number hook again, and data center regulation recurring in the window."}
+ ],
+ "weighted_score": 7.23,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Put the deck's own question on a slide: frame 7 as the drilled plate beside an undrilled blank under the same key, and close frame 9 on the county and district attorneys who decide now (c33, c34) beside the December 10th report.",
+ "artwork_weakest_frames": [
+  {"slide": 7, "problem": "The bar reads as a plank or ruler and illustrates only the MW band, not the headline's turn.", "fix": "The return plate beside an undrilled cast-iron blank under the same key, the blank in the pool, with the MW figures in the dek."},
+  {"slide": 8, "problem": "Grey card with a seal like a safe dial and a dim rule.", "fix": "A plain embossed ring with a brass centre, a warm sheet in a tight pool, and a rule whose ticks cast."},
+  {"slide": 5, "problem": "Brown pucks in a mid-tone field.", "fix": "A lower camera so the nearest shells show their wall and run off the bottom, the pool narrowed to the near blocks."},
+  {"slide": 3, "problem": "A haze band behind the dek.", "fix": "Pitch down so the dek sits on the bore field."},
+  {"slide": 9, "problem": "A dimmer near repeat of the cover with dull brass.", "fix": "One plug large and lit in the foreground with the open bores running into black."}
+ ]
+}

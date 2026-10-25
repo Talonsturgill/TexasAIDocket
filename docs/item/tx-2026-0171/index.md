@@ -33,6 +33,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-08 · The governor's directive to the water board is still unconfirmed on its own page, which still bars automated readers. The water board's report back to the governor is due next week.
 - 2026-10-09 · The directive to the water board is still unconfirmed on its own page, which bars automated readers. The board's report back is due next week.
 - 2026-10-10 · The directive to the water board stays unconfirmed on its own page, which bars automated readers. The board's report back is due within the week.
+- 2026-10-25 · The Texas Tribune reported on October 14th that the water board says it has no authority to prosecute a facility that skips the survey. The directive's own page still bars automated readers.
 
 ## Evidence
 
@@ -79,4 +80,16 @@ Source (primary_official): https://gov.texas.gov/news/post/governor-abbott-direc
 > TWDB shall update the Office of the Governor by October 14, 2026, on the progress of its enforcement activities
 
 Source (primary_official): https://gov.texas.gov/news/post/governor-abbott-directs-twdb-to-penalize-data-center-reporting-failures
+
+### The Texas Tribune reports the water board says it has no authority to prosecute violations itself.
+
+> But the board says it has no authority to prosecute violations itself, and state officials don’t know if fines have been issued against data centers.
+
+Source (journalism): https://www.texastribune.org/2026/10/14/texas-data-centers-water-use-penalties-enforcement/
+
+### A facility that skips the survey can be charged with a Class C misdemeanor punishable by up to a $500 fine.
+
+> Under state law, facilities that fail to complete required water-use surveys can be charged with a Class C misdemeanor, punishable by up to a $500 fine, and barred from certain state funding and environmental permits.
+
+Source (journalism): https://www.texastribune.org/2026/10/14/texas-data-centers-water-use-penalties-enforcement/
 

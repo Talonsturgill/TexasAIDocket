@@ -1,0 +1,208 @@
+{
+ "weighted_score": 7.09,
+ "judges": [
+  6.99,
+  7.22,
+  7.23
+ ],
+ "spread": 0.24,
+ "criteria": {
+  "artwork_craft": {
+   "score": 6.5,
+   "weight": 0.22,
+   "judges": [
+    6.5,
+    6.5,
+    6.7
+   ]
+  },
+  "deck_coherence": {
+   "score": 7.0,
+   "weight": 0.12,
+   "judges": [
+    7.0,
+    7.0,
+    7.0
+   ]
+  },
+  "claim_integrity": {
+   "score": 8.0,
+   "weight": 0.2,
+   "judges": [
+    7.5,
+    8.0,
+    8.5
+   ]
+  },
+  "story_and_stakes": {
+   "score": 7.0,
+   "weight": 0.16,
+   "judges": [
+    7.0,
+    7.5,
+    7.0
+   ]
+  },
+  "sequence_and_momentum": {
+   "score": 7.5,
+   "weight": 0.1,
+   "judges": [
+    7.5,
+    7.5,
+    7.5
+   ]
+  },
+  "voice": {
+   "score": 7.0,
+   "weight": 0.1,
+   "judges": [
+    7.0,
+    7.0,
+    7.5
+   ]
+  },
+  "variety": {
+   "score": 6.5,
+   "weight": 0.1,
+   "judges": [
+    6.5,
+    7.0,
+    6.0
+   ]
+  }
+ },
+ "hard_fails": [],
+ "hard_fails_by_judge": [],
+ "ship": true,
+ "threshold": 8.0,
+ "over_threshold": false,
+ "method": "per-criterion median across three judges, then weighted by the rubric",
+ "artwork_weakest_frames": [
+  {
+   "slide": 7,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "A wooden ruler on a mid-grey channel with hidden standoffs.",
+     "fix": "The channel near black under a tight pool, a polished specular line on the copper's arris, and wider ribbed standoffs clear of the bar."
+    },
+    {
+     "judge": 2,
+     "problem": "A ruler on a rail with a flat copper fill and hidden standoffs.",
+     "fix": "Standoffs clear of the bar with their own casts, the web dark outside a pool on the step, and a bevelled lit arris on the copper."
+    },
+    {
+     "judge": 3,
+     "problem": "The bar reads as a plank or ruler and illustrates only the MW band, not the headline's turn.",
+     "fix": "The return plate beside an undrilled cast-iron blank under the same key, the blank in the pool, with the MW figures in the dek."
+    }
+   ]
+  },
+  {
+   "slide": 8,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "A seal like a combination dial and a grey mid-tone sheet.",
+     "fix": "A shallow embossed rim with a fine crimp, no radial slots, a warm sheet with the pool falling to black."
+    },
+    {
+     "judge": 2,
+     "problem": "Reads as a steel safe door with a combination dial, framed by the folder, the sheet mid grey.",
+     "fix": "A flat embossed disc with a crimped scalloped rim and ribbon tails, no folder border, a cream sheet with the pool falling to black."
+    },
+    {
+     "judge": 3,
+     "problem": "Grey card with a seal like a safe dial and a dim rule.",
+     "fix": "A plain embossed ring with a brass centre, a warm sheet in a tight pool, and a rule whose ticks cast."
+    }
+   ]
+  },
+  {
+   "slide": 5,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Pucks under a brown mid-tone haze with low contrast.",
+     "fix": "Camera down to about 150 m so each shell shows its height, with the far field into the dark sky."
+    },
+    {
+     "judge": 2,
+     "problem": "Pucks on a lit mid-tone floor with aliasing seams and no scale.",
+     "fix": "Pull the pool onto the nearest two blocks so the ground falls to black, light the shells' flanks, and stand the data hall at the near left edge."
+    },
+    {
+     "judge": 3,
+     "problem": "Brown pucks in a mid-tone field.",
+     "fix": "A lower camera so the nearest shells show their wall and run off the bottom, the pool narrowed to the near blocks."
+    }
+   ]
+  },
+  {
+   "slide": 6,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Flat grey primitives with no ground or contact and a dead near face, c12 on a cabinet box.",
+     "fix": "Camera down to about 1.2 m raking the bushings, a crushed-rock pad with contact, and the flat face cropped out of the bottom."
+    },
+    {
+     "judge": 2,
+     "problem": "Untextured grey clay with no ground or contact, gantry clutter and a nameplate behind 'c12'.",
+     "fix": "Recrop on the three tallest bushings and the conservator against black sky, weather the tank, delete the nameplate and drop the gantry."
+    }
+   ]
+  },
+  {
+   "slide": 3,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "Streaky brown haze behind the figure.",
+     "fix": "Pitch down until the far edge leaves the top of the frame."
+    },
+    {
+     "judge": 3,
+     "problem": "A haze band behind the dek.",
+     "fix": "Pitch down so the dek sits on the bore field."
+    }
+   ]
+  },
+  {
+   "slide": 2,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The top chamfer reads as a flat UI strip.",
+     "fix": "A taller step with a lit arris casting onto the caliche."
+    }
+   ]
+  },
+  {
+   "slide": 9,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 3,
+     "problem": "A dimmer near repeat of the cover with dull brass.",
+     "fix": "One plug large and lit in the foreground with the open bores running into black."
+    }
+   ]
+  }
+ ],
+ "rounds_derived": 3,
+ "rounds": 3,
+ "rounds_source": "this module's own log of cards it has scored",
+ "rounds_declared": 3,
+ "at_cap": true,
+ "rung": null,
+ "shortfall": "at the round cap the finished deck ships at 7.09, 0.91 under the 8.0 top rung. Name that in the email and the run record",
+ "craft_floor": "capped",
+ "craft_note": "at the round cap the craft floor stands down. The art median 6.5 is under 8.5 and the deck ships as it is. Name it in the run record"
+}

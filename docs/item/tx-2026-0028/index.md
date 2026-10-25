@@ -42,6 +42,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-15 · Hays County's emergency water review period still reads as adopted in the Community Impact account. The public radio report is unconfirmed, since its site bars automated readers.
 - 2026-10-18 · Community Impact's account still has Hays County adopting the emergency water review period. The public radio report is unconfirmed, since its site bars automated readers.
 - 2026-10-21 · Community Impact's account of the 180 day water review period still reads as cited. KUT's report is unconfirmed.
+- 2026-10-25 · Community Impact's account of Hays County's water review period is unconfirmed today because its page no longer shows the quoted line in readable form. KUT's report bars automated readers.
 
 ## Evidence
 

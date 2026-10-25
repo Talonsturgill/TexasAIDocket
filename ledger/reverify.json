@@ -1,7 +1,7 @@
 {
   "_spec": {
     "version": 1,
-    "generated": "2026-10-24",
+    "generated": "2026-10-25",
     "note": "One row per source url. ETag and Last-Modified drive the next conditional request, hash short circuits the text comparison, and proven records which claim quotes have been located here, which is what tells a real change apart from a page this check cannot read."
   },
   "sources": {
@@ -262,6 +262,25 @@
         "tx-2026-0092-c8"
       ]
     },
+    "https://arxiv.org/abs/2510.13928": {
+      "etag": null,
+      "last_modified": "Thu, 15 Oct 2026 00:27:12 GMT",
+      "hash": "6f279cf16820040d96070db4d405e34fee4946857ef25ec724928d5951d6b25b",
+      "proven": [
+        "tx-2026-0223-c12"
+      ]
+    },
+    "https://arxiv.org/html/2510.13928v3": {
+      "etag": "\"CKfWuODhupcDEAE=\"",
+      "last_modified": "Thu, 15 Oct 2026 00:27:15 GMT",
+      "hash": "68ff951ce51215b9255e8b4fe1a0b44617380fbf9c03a3306d78b5860ad9f988",
+      "proven": [
+        "tx-2026-0223-c10",
+        "tx-2026-0223-c11",
+        "tx-2026-0223-c13",
+        "tx-2026-0223-c9"
+      ]
+    },
     "https://blog.cstx.gov/2026/09/24/live-from-city-hall-thursdays-city-council-meeting-sept-24/": {
       "etag": null,
       "last_modified": "Sat, 24 Oct 2026 05:15:44 GMT",
@@ -387,7 +406,7 @@
     "https://cbsaustin.com/news/local/taylor-city-council-greenlights-data-center-after-months-of-debate": {
       "etag": null,
       "last_modified": null,
-      "hash": "fdf8ca866f01aafa3b30dd82bb3c26ee17ee7bd343b94520bfbf477756071ff1",
+      "hash": "9875eb10664e83195c3d8b9d4c1c1cd33028a73d40104d3adc0138f7f45d38d1",
       "proven": [
         "tx-2026-0203-c19"
       ]
@@ -421,8 +440,8 @@
     },
     "https://communityimpact.com/austin/san-marcos-buda-kyle/government/2026/06/23/hays-county-passes-resolution-pausing-consideration-of-high-water-use-developments-data-centers/": {
       "etag": null,
-      "last_modified": "Sat, 24 Oct 2026 05:15:49 GMT",
-      "hash": "0ff4b81108c1b5e6f8458b8126a8bf9bb024ef4640ed91f89dcfa405666100d6",
+      "last_modified": "Sun, 25 Oct 2026 05:13:28 GMT",
+      "hash": "6df69fcc9b8c08819c89897d4a8c1e0f7be0712ed48fe490acfc1b096ea84afc",
       "proven": [
         "tx-2026-0028-c1"
       ]
@@ -453,8 +472,8 @@
     },
     "https://communityimpact.com/keller-roanoke-northeast-fort-worth/government/fort-worth-city-council-approves-steps-to-start-moratorium-process-on-data-centers/": {
       "etag": null,
-      "last_modified": "Sat, 24 Oct 2026 05:15:50 GMT",
-      "hash": "3f165d743c99d5b8d9bfbb24700211b7de9789d7005c5a6f19c0ea82c4c28863",
+      "last_modified": "Sun, 25 Oct 2026 05:13:28 GMT",
+      "hash": "dcca22920fc144522bca4f5f9179f98896cb2206b446fb322d33c1cc4a3056ba",
       "proven": [
         "tx-2026-0062-c1"
       ]
@@ -469,8 +488,8 @@
     },
     "https://communityimpact.com/san-marcos-buda-kyle/government/hays-county-commissioners-reallocate-funds-away-from-potential-axon-ai-contract/": {
       "etag": null,
-      "last_modified": "Sat, 24 Oct 2026 05:15:51 GMT",
-      "hash": "b7de4e96b946212f9819564836c92cef77670ac92cb5920f416413a140d5aaa4",
+      "last_modified": "Sun, 25 Oct 2026 05:13:28 GMT",
+      "hash": "94ccb0630b4e556c67002d6a22fa72979b681d7ee9e3a0a71e26eb196273bc8d",
       "proven": [
         "tx-2026-0168-c8",
         "tx-2026-0168-c9"
@@ -487,7 +506,7 @@
     "https://comptroller.texas.gov/economy/development/prop-tax/jeti/application-details.php?id=J0040": {
       "etag": null,
       "last_modified": null,
-      "hash": "c233bb2c02ae79105f8c1a488cbd2b1ba9bc2cb15a51815e8ad224b142e52849",
+      "hash": "679e22f76fbd009f4c40689eb2b7b18e67b3c13f8c0723f7aaf9a69124010e42",
       "proven": [
         "tx-2026-0071-c8"
       ]
@@ -501,6 +520,18 @@
         "tx-2026-0013-c2",
         "tx-2026-0069-c2",
         "tx-2026-0069-c3"
+      ]
+    },
+    "https://content.govdelivery.com/accounts/TXCOMPT/bulletins/42ee787": {
+      "etag": "W/\"f26410923692025584427589fc290527\"",
+      "last_modified": null,
+      "hash": "f26410923692025584427589fc29052744e902d53b62b40e16f44c2c403f83d1",
+      "proven": [
+        "tx-2026-0226-c1",
+        "tx-2026-0226-c2",
+        "tx-2026-0226-c3",
+        "tx-2026-0226-c4",
+        "tx-2026-0226-c5"
       ]
     },
     "https://dallascityhall.com/government/citymanager/Documents/Council%20Materials/A.%20Sanitation%20and%20Code.pdf": {
@@ -752,8 +783,8 @@
     },
     "https://infohub.austincc.edu/blog/2026/10/09/help-shape-accs-ai-policy-development/": {
       "etag": null,
-      "last_modified": "Thu, 22 Oct 2026 05:21:27 GMT",
-      "hash": "62c1ac597dbd232be4da4dafc14fef5c604a5b84f457258729dbb00609c93047",
+      "last_modified": "Sun, 25 Oct 2026 05:13:33 GMT",
+      "hash": "f39f11e7b7366a760fa80e0c065583fb605bc5c0bf447f04d5437046fa682bb5",
       "proven": [
         "tx-2026-0212-c1",
         "tx-2026-0212-c10",
@@ -1175,6 +1206,20 @@
         "tx-2026-0122-c5"
       ]
     },
+    "https://news.engineering.tamu.edu/news/2026/10/19/ai-models-can-get-brain-rot-too/": {
+      "etag": null,
+      "last_modified": "Sun, 25 Oct 2026 05:13:36 GMT",
+      "hash": "c9e6854caf37dbeae223f492893f5cd80893f081de83a082dd4fe22d3e9c52ac",
+      "proven": [
+        "tx-2026-0223-c1",
+        "tx-2026-0223-c3",
+        "tx-2026-0223-c4",
+        "tx-2026-0223-c5",
+        "tx-2026-0223-c6",
+        "tx-2026-0223-c7",
+        "tx-2026-0223-c8"
+      ]
+    },
     "https://news.lockheedmartin.com/2026-10-14-Lockheed-Martin-Expands-Advanced-Munitions-Manufacturing-in-Texas,-Driving-Thousands-of-New-American-Jobs": {
       "etag": null,
       "last_modified": "Sat, 24 Oct 2026 04:08:48 GMT",
@@ -1259,7 +1304,7 @@
     "https://news.utexas.edu/2026/07/22/department-of-energys-new-ai-for-science-genesis-mission-awards-funding-to-5-ut-research-projects/": {
       "etag": null,
       "last_modified": null,
-      "hash": "12ac3bbd3b2b6a96bd261e2f1ea8596a7c9b07973c76c22d62838d390b648878",
+      "hash": "44d16b717caf70a4b4aa7470e99fda4ef41fdac38499c971d65032e4fade2bc5",
       "proven": [
         "tx-2026-0103-c1"
       ]
@@ -1384,7 +1429,7 @@
     "https://pmc.ncbi.nlm.nih.gov/articles/PMC13543018/": {
       "etag": null,
       "last_modified": null,
-      "hash": "4d8d333aae773f075174ace0302601a5d4fe2ac628caea0105160aa1aedc84d5",
+      "hash": "b6bb8dcf7ca26ee30009c3a818f2a97a95326efa0f50e9ced2467af936530d42",
       "proven": [
         "tx-2026-0137-c1",
         "tx-2026-0137-c2",
@@ -1605,7 +1650,7 @@
     },
     "https://sites.austincc.edu/ai-resource-hub/responsible-use-guidance/": {
       "etag": null,
-      "last_modified": "Thu, 22 Oct 2026 05:21:33 GMT",
+      "last_modified": "Sun, 25 Oct 2026 05:13:41 GMT",
       "hash": "2ed632a17b7a3af96aaafd47540bcedc9133ed977695c74f831983c1727d05a9",
       "proven": [
         "tx-2026-0212-c15"
@@ -2102,8 +2147,8 @@
     },
     "https://www.austincc.edu/about-acc": {
       "etag": null,
-      "last_modified": "Thu, 22 Oct 2026 05:21:39 GMT",
-      "hash": "e32a3a8076c7189c77b8446c043759fec4d3ec8c14ad4997b26bf8f6c8143bc4",
+      "last_modified": "Sun, 25 Oct 2026 05:11:31 GMT",
+      "hash": "6919766bc3270e6bdd1a8866c75b06a75f5e1b451fec5f8a2f92eab47486a840",
       "proven": [
         "tx-2026-0212-c16"
       ]
@@ -2467,7 +2512,7 @@
     "https://www.govtech.com/artificial-intelligence/laredo-texas-moves-to-set-permanent-data-center-standards": {
       "etag": null,
       "last_modified": null,
-      "hash": "61cff52b977250e3ff5e18885d25cc60db5df05991269ff376ef80cad62dffa0",
+      "hash": "414f69848492049ce22525586cfbd9c954a0522cccf685059c8210b7701cc258",
       "proven": [
         "tx-2026-0037-c1",
         "tx-2026-0037-c2",
@@ -2794,8 +2839,8 @@
     },
     "https://www.prnewswire.com/news-releases/memorial-hermann-health-system-clinicians-use-epics-ai-tool-to-help-patients-better-understand-test-results-302870772.html": {
       "etag": null,
-      "last_modified": "Sun, 18 Oct 2026 09:53:53 GMT",
-      "hash": "4f9ee6a7c7538b4a355e02d258eaf926d47a6bdf002d05b6fdd051e0e70f52e9",
+      "last_modified": "Sat, 24 Oct 2026 00:36:22 GMT",
+      "hash": "06611ed5f795635115b02b02c06534e7af0767f314db0b79054fcf82098562f0",
       "proven": [
         "tx-2026-0162-c1",
         "tx-2026-0162-c2",
@@ -2836,7 +2881,7 @@
     "https://www.sa.gov/Directory/News-Releases/D6-Councilmember-Calls-for-Stronger-Regulations-on-Data-Centers": {
       "etag": null,
       "last_modified": null,
-      "hash": "763f03a42421c935c8267eabd8efa05a54b38c7328b7432a162270e2d3fe32f0",
+      "hash": "4ab262641bcfe41a601c168a66b5a2f6e927b99efeefbced1fdaca43d7326f65",
       "proven": [
         "tx-2026-0220-c1",
         "tx-2026-0220-c2",
@@ -3056,8 +3101,8 @@
     },
     "https://www.texastribune.org/2026/08/28/transmission-lines-texas-energy/": {
       "etag": null,
-      "last_modified": "Wed, 21 Oct 2026 03:31:15 GMT",
-      "hash": "4ac2835bd880b3dfb0bd656259777e6eebbf7d19e924cd29e39d04bd2971c37a",
+      "last_modified": "Fri, 23 Oct 2026 23:36:19 GMT",
+      "hash": "0b76c4c5a0a1cc741cf974bad2b32d5e7eb2b149b9f3e45f5a147ce216676636",
       "proven": [
         "tx-2026-0112-c5"
       ]
@@ -3163,7 +3208,7 @@
     "https://www.tpr.org/news/2026-09-23/lubbock-takes-first-step-toward-data-center-moratorium-questions-remain-with-approaching-legislative-session": {
       "etag": null,
       "last_modified": null,
-      "hash": "2d6ab1326e53c62529dea242d5e4ea1db9c6988c081631f2787ed77a85172d50",
+      "hash": "10102e6b823764c2e53f62e1cafcafa03fdc51a08186f2b203633f774909255b",
       "proven": [
         "tx-2026-0138-c4",
         "tx-2026-0138-c5",
@@ -3302,6 +3347,21 @@
       "hash": "18c4d94bcd769cf61a6d225049d4c263fa06390c43e6e20cb745cbe583c8037d",
       "proven": [
         "tx-2026-0039-c3"
+      ]
+    },
+    "https://www.utep.edu/newsfeed/2026/October/from-space-to-the-streets-nasa-funded-research-takes-aim-at-el-paso-flooding.html": {
+      "etag": null,
+      "last_modified": null,
+      "hash": "17f40f9fb04f65fed304019dbfaffe8e909e50f9b09cef8a8a3631a33f52ce47",
+      "proven": [
+        "tx-2026-0227-c1",
+        "tx-2026-0227-c2",
+        "tx-2026-0227-c3",
+        "tx-2026-0227-c4",
+        "tx-2026-0227-c5",
+        "tx-2026-0227-c6",
+        "tx-2026-0227-c7",
+        "tx-2026-0227-c8"
       ]
     },
     "https://www.utmb.edu/news/article/utmb-news/2026/08/13/utmb-moves-health-data-to-cloud-based-system--enhancing-digitally-connected-care-initiatives": {

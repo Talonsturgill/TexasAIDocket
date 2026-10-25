@@ -11,7 +11,7 @@ The U.S. Department of Agriculture's National Institute of Food and Agriculture 
 - Public access: Write to the decider
 - Take part: https://news.tamus.edu/stories/wt-to-build-beef-cattle-research-facility-with-9-75-million-usda-grant/
 
-- Last checked: 2026-10-21
+- Last checked: 2026-10-25
 
 ## Dates
 
@@ -27,6 +27,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-18 · The A&M System's release on the Canyon feedlot grant reads as before, its AI methods still a plan.
 - 2026-10-21 · Checked and unchanged. The decision still stands as decided.
 - 2026-10-24 · The research feedlot near Canyon is unconfirmed today, since the system's story no longer answers at its old address.
+- 2026-10-25 · The A&M System's story of the grant now sits on its main site, and every line the record quotes from it still reads as cited. The feedlot near Canyon stands as funded.
 
 ## Evidence
 
@@ -36,41 +37,41 @@ Every fact above rests on one of these. The words are the source's own.
 
 > West Texas A&M University has received a $9.75 million grant from the U.S. Department of Agriculture—the largest federal award in University history—to fund what promises to be the most advanced cattle feedlot research facility in the world.
 
-Source (primary_official): https://news.tamus.edu/stories/wt-to-build-beef-cattle-research-facility-with-9-75-million-usda-grant/
+Source (primary_official): https://tamus.edu/news/2026/10/07/wt-to-build-beef-cattle-research-facility-with-9-75-million-usda-grant/
 
 ### The USDA's food and agriculture institute made the award under its Research Facilities Act Program.
 
 > The USDA’s National Institute for Food and Agriculture awarded the grant for a center for beef cattle research and innovation through its Research Facilities Act Program.
 
-Source (primary_official): https://news.tamus.edu/stories/wt-to-build-beef-cattle-research-facility-with-9-75-million-usda-grant/
+Source (primary_official): https://tamus.edu/news/2026/10/07/wt-to-build-beef-cattle-research-facility-with-9-75-million-usda-grant/
 
 ### A required match brings the project total higher.
 
 > A required dollar-for-dollar match—with $4.875 million from The Texas A&M University System and another $4.875 million from other sources—brings the project total to $19.5 million.
 
-Source (primary_official): https://news.tamus.edu/stories/wt-to-build-beef-cattle-research-facility-with-9-75-million-usda-grant/
+Source (primary_official): https://tamus.edu/news/2026/10/07/wt-to-build-beef-cattle-research-facility-with-9-75-million-usda-grant/
 
 ### The facility will test feeding, health and handling with traditional and AI powered approaches.
 
 > New feeding, health and handling techniques can be evaluated with traditional and artificial intelligence-powered approaches that are designed to increase beef production efficiency and advance feedlot management practices.
 
-Source (primary_official): https://news.tamus.edu/stories/wt-to-build-beef-cattle-research-facility-with-9-75-million-usda-grant/
+Source (primary_official): https://tamus.edu/news/2026/10/07/wt-to-build-beef-cattle-research-facility-with-9-75-million-usda-grant/
 
 ### The plans name four parts of the research feedlot.
 
 > Plans call for the research feedlot to include a precision beef cattle handling facility, a veterinary care and research hospital, an advanced technology feed and production center, and a metabolism and physiology center.
 
-Source (primary_official): https://news.tamus.edu/stories/wt-to-build-beef-cattle-research-facility-with-9-75-million-usda-grant/
+Source (primary_official): https://tamus.edu/news/2026/10/07/wt-to-build-beef-cattle-research-facility-with-9-75-million-usda-grant/
 
 ### The research feedlot is being built near WT's Nance Ranch.
 
 > The research feedlot and education facility, which are being constructed southwest of the existing WT feedlot near Nance Ranch, further solidifies WT’s classification as a Research University by the Carnegie Foundation.
 
-Source (primary_official): https://news.tamus.edu/stories/wt-to-build-beef-cattle-research-facility-with-9-75-million-usda-grant/
+Source (primary_official): https://tamus.edu/news/2026/10/07/wt-to-build-beef-cattle-research-facility-with-9-75-million-usda-grant/
 
 ### Nance Ranch lies about seven miles east of Canyon.
 
 > The Nance Ranch , located about seven miles east of Canyon, consists of 2,393 acres including the headquarters.
 
-Source (primary_official): https://news.tamus.edu/stories/wt-to-build-beef-cattle-research-facility-with-9-75-million-usda-grant/
+Source (primary_official): https://tamus.edu/news/2026/10/07/wt-to-build-beef-cattle-research-facility-with-9-75-million-usda-grant/
 

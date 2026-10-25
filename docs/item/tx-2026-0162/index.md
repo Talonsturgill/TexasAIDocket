@@ -33,6 +33,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-15 · Memorial Hermann's release still has clinicians editing the AI draft before a patient reads it. The trade press account is unconfirmed.
 - 2026-10-18 · Memorial Hermann's release still has clinicians editing the AI draft before a patient reads it. The trade press account is unconfirmed.
 - 2026-10-22 · Memorial Hermann's release still has a clinician editing the AI draft before a patient reads it. The trade press account stays unconfirmed.
+- 2026-10-25 · The trade press account of Memorial Hermann's AI drafted results stays unconfirmed, since its site bars automated readers.
 
 ## Evidence
 

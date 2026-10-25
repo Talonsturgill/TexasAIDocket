@@ -47,6 +47,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-15 · Harris County's agenda records still carry the Flock renewal and its countywide extension. The station's report is unconfirmed.
 - 2026-10-18 · Harris County's legislative record still carries the Flock renewal and its history. The station's report is unconfirmed, since its site bars automated readers.
 - 2026-10-22 · Harris County's legislative record still carries the Flock renewal and the amendment that followed it. The station's report stays unconfirmed, since its site bars automated readers.
+- 2026-10-25 · Harris County's Flock renewal stays unconfirmed today on the station's report, which bars automated readers.
 
 ## Evidence
 

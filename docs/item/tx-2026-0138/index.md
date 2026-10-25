@@ -39,6 +39,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-20 · Public radio's account still reads as a pause Lubbock has begun and not yet declared, with hearings to come. The city's agenda record and the station report remain unconfirmed.
 - 2026-10-23 · Public radio's account and the city's agenda record are unconfirmed today, since the city's site refused the request. The record still holds Lubbock's pause as begun and not yet declared.
 - 2026-10-24 · Lubbock's procedure toward a data center moratorium is unconfirmed today, since the city's agenda refused the request and the station's site bars automated readers.
+- 2026-10-25 · Lubbock's procedure toward a data center moratorium stays unconfirmed today. The city's agenda turned the request away and the station's site bars automated readers.
 
 ## Evidence
 
