@@ -10331,7 +10331,15 @@
      "note": "Fort Worth's data center pause stays at its first steps in the record. KERA's account is unconfirmed today, since the station turned the request away.",
      "checked": true
     }
-   ]
+   ],
+   "unreachable": {
+    "hosts": [
+     "www.keranews.org"
+    ],
+    "boundary": "blocks_every_client",
+    "checked": "2026-10-25",
+    "note": "www.keranews.org answered 403 on 2026-10-25 to the project's own agent and to a browser agent, on the story behind tx-2026-0062-c2. The crawl registry names no exclusion for it and its robots.txt does not refuse the path. Not routed around. Community Impact's account behind tx-2026-0062-c1 answered the same day and its quote is still on the page."
+   }
   },
   {
    "title": "TCEQ has four data center air permit applications posted with published public notices, including Crusoe's two Texas campuses",
@@ -24325,7 +24333,16 @@
      "note": "Lubbock's procedure toward a data center moratorium stays unconfirmed today. The city's agenda turned the request away and the station's site bars automated readers.",
      "checked": true
     }
-   ]
+   ],
+   "unreachable": {
+    "hosts": [
+     "www.mylubbock.us",
+     "www.fox34.com"
+    ],
+    "boundary": "blocks_every_client",
+    "checked": "2026-10-25",
+    "note": "www.mylubbock.us answered 403 on 2026-10-25 to the project's own agent and to a browser agent, on the September 8th agenda behind tx-2026-0138-c1 and c2. www.fox34.com's robots.txt disallows the story behind tx-2026-0138-c3 to this project, so it was not requested. Not routed around. Texas Public Radio's account behind c4 to c6 answered the same day and all three quotes are still on the page."
+   }
   },
   {
    "title": "The grid operator sets an October 6th workshop on how it would curtail a large load under Senate Bill 6",
