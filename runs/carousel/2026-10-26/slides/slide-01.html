@@ -1,0 +1,58 @@
+<!doctype html>
+<!-- 2026-10-26, frame 1 of 9. Archetype FULL_BLEED. A spatial scene through txthree.js in the deck's lastLight world: the chassis delivery aircraft at its own height over Round Rock, the pod with its dusk gold band on a short tether, the town's lamps far below. The aircraft's height is read from figures.json. Drawn to illustrate, to no maker's design. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">The drones came first</h1>
+<p class="dek" data-follow="26">Zipline began taking orders in Round Rock on October 9th, DroneXL reports. The City of Round Rock says its zoning ordinances don't specifically address drone delivery hubs. The aircraft is drawn to&nbsp;illustrate.</p>
+<script>window.FIG = {"station_m": 91.4};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-26-tether.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Drone delivery, Round Rock", counter: "01 / 09", src: "c1 c10 c28 c32", fit: { min: 84, max: 118, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 34, near: 0.2, far: 9000 });
+  /* THE FIGURE, from figures.json: the aircraft holds station this many metres over the ground */
+  const H = FIG.station_m;
+  const drone = K.make('delivery_drone', { tether: 0.22, blur: 0.42, rotorAng: 0.35, lights: true });
+  drone.position.set(0, H, 0); drone.rotation.y = -1.2; TXT.add(R, drone);
+  const a = drone.userData.attach.pod;
+  const pw = new THREE.Vector3(a[0], a[1], a[2]).applyAxisAngle(new THREE.Vector3(0, 1, 0), drone.rotation.y).add(drone.position);
+  const pod = K.make('delivery_pod', {}); pod.position.set(pw.x, pw.y - 0.64, pw.z); pod.rotation.y = -1.2; TXT.add(R, pod);
+  /* the town below: lamps on a jittered grid, and a few kit roofs under the aircraft where the stage light reaches */
+  const glow = K.make('street_glow', { area: [-3000, -3000, 3000, 3000], block: 140, pitch: 18, keep: 0.95, size: 2.2, seed: 26, turn: 0.42, within: [300, -300, 2600] }); TXT.add(R, glow);
+  const hood = K.make('street_glow', { area: [-1200, -1200, 1200, 1200], block: 55, pitch: 10, keep: 0.94, size: 2.4, seed: 29, turn: 0.42, within: [140, -150, 520] }); TXT.add(R, hood);
+  const farm = K.make('street_glow', { area: [-9000, -9000, 9000, 9000], pitch: 420, keep: 0.4, size: 1.8, seed: 27, avoid: [[-2400, -2900, 2900, 2400]] }); TXT.add(R, farm);
+  TXT.sky(R);
+  TXT.ground(R, { surface: 'dirt', size: 20000, seed: 6, color: 0x0b0a09 });
+  const from = [-4.3, H + 0.85, 4.7];
+  const look = CH.aim(THREE, R, TXT, from, [0, H - 0.2, 0], 540, 1035, 34);
+  TXT.frame(R, { fov: 34, from, look });
+  CH.warm(R, 0.22);
+  TXT.deckRig(R, CH.rigSpec(W, 8, 2048), CH.rigOpts([0, H, 0], { distance: 30, shadowFar: 80 }));
+  CH.unacne(R, 0.01);
+  CH.noShadows(R);
+  TXT.stage(R, [drone, pod], { pool: false });
+  TXT.weather(R, { grime: 0.2, height: 0.6, mottle: 0.25 });
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0.28, veil: 0.3 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

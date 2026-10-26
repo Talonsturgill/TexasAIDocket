@@ -1,0 +1,89 @@
+<!doctype html>
+<!-- 2026-10-26, frame 4 of 9. Archetype MAP. A spatial scene through txthree.js in the deck's lastLight world: the company's three mile reach drawn as a lit ring at true radius on the ground around the hub, the town inside it as street lamps, from 1,200 m. The ring's radius is read from figures.json. The lamp grid is no real street plan. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">Three miles from the hub</h1>
+<p class="dek" data-follow="26">Citing the company, the city says service reaches within three miles of the hub. A circle that wide covers about 28.3 square miles, computed here. The ring is drawn to&nbsp;illustrate.</p>
+<div class="lab" id="lab-ring">3 MILES</div>
+<div class="lab" id="lab-hub">THE HUB</div>
+<svg id="lead" width="1080" height="1350" style="position:absolute;left:0;top:0;z-index:11"></svg>
+<script>window.FIG = {"reach_m": 4828};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-26-tether.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "The company's reach", counter: "04 / 09", src: "c2 c3", fit: { min: 72, max: 100, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 50, near: 5, far: 40000, fog: 0.00011 });
+  /* THE FIGURE, from figures.json: the ring's radius on the ground, three miles in metres */
+  const RAD = FIG.reach_m;
+  /* the ring is a stripe laid ON the ground, emissive, and it takes the fog with distance like the land under it */
+  /* its width grows with distance from the eye, so the far arc holds its line at feed size instead of thinning to a hair */
+  const ringGeo = (() => { const N = 1440, eye = new THREE.Vector2(-7900, 10300), dNear = eye.length() - RAD, pos = [], idx = [];
+    for (let i = 0; i <= N; i++) { const a = i / N * Math.PI * 2, x = Math.cos(a) * RAD, z = Math.sin(a) * RAD;
+      const w = Math.min(320, 30 * Math.pow(Math.hypot(x - eye.x, z - eye.y) / dNear, 1.7));
+      pos.push(Math.cos(a) * (RAD - w), 0, Math.sin(a) * (RAD - w), Math.cos(a) * (RAD + w), 0, Math.sin(a) * (RAD + w));
+      if (i < N) { const k = i * 2; idx.push(k, k + 1, k + 2, k + 1, k + 3, k + 2); } }
+    const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3)); g.setIndex(idx); g.computeVertexNormals(); return g; })();
+  const ring = new THREE.Mesh(ringGeo, new THREE.MeshBasicMaterial({ color: 0xffe9c8, fog: false, side: THREE.DoubleSide, transparent: true, depthWrite: false })); ring.renderOrder = 5;
+  ring.position.y = 1.5; ring.userData.txWear = false; TXT.add(R, ring); ring.castShadow = false; ring.receiveShadow = false;
+  /* the radius, hub to the ring on the camera's side, the three miles itself */
+  const dir = new THREE.Vector3(-7900, 0, 10300).normalize().applyAxisAngle(new THREE.Vector3(0, 1, 0), -0.18);
+  const rim = dir.clone().multiplyScalar(RAD); rim.y = 3;
+  const spoke = new THREE.Mesh(new THREE.TubeGeometry(new THREE.LineCurve3(new THREE.Vector3(0, 3, 0), rim), 64, 5, 6, false), new THREE.MeshBasicMaterial({ color: 0xffe9c8, fog: false }));
+  spoke.userData.txWear = false; TXT.add(R, spoke); spoke.castShadow = false;
+  /* the hub at the centre: a lit pad with the chassis dock towers on it */
+  const pad = new THREE.Mesh(new THREE.PlaneGeometry(220, 140), new THREE.MeshBasicMaterial({ color: 0xffffff, toneMapped: false }));
+  pad.rotation.x = -Math.PI / 2; pad.position.y = 2; pad.userData.txWear = false; TXT.add(R, pad);
+  /* one town at one density across the land, inside the ring and outside it alike, so the ring reads as a measure
+   * laid over a place rather than a lit platter. Drawn to illustrate */
+  const town = K.make('street_glow', { area: [-9000, -9000, 9000, 9000], block: 320, pitch: 70, keep: 0.6, size: 1.6, seed: 4, turn: 0.35, within: [0, 0, RAD * 1.12] }); TXT.add(R, town);
+  /* the town thins out past the ring through a ragged fringe of lamps into the prairie's scattered farms */
+  const fringe = K.make('street_glow', { area: [-12000, -12000, 12000, 12000], block: 420, pitch: 110, keep: 0.28, size: 1.5, seed: 9, turn: 0.35, within: [500, -300, RAD * 1.55] }); TXT.add(R, fringe);
+  const fringe2 = K.make('street_glow', { area: [-12000, -12000, 12000, 12000], block: 560, pitch: 160, keep: 0.18, size: 1.4, seed: 17, turn: 0.35, within: [-700, 400, RAD * 1.8] }); TXT.add(R, fringe2);
+  const farm = K.make('street_glow', { area: [-24000, -24000, 24000, 24000], pitch: 600, keep: 0.3, size: 1.4, seed: 12, avoid: [[-6000, -6000, 6000, 6000]] }); TXT.add(R, farm);
+  /* the hub pad lit from its own floods, the brightest point on the land after the ring */
+  { const hub = new THREE.Sprite(new THREE.SpriteMaterial({ map: CH.glowTex(THREE), color: 0xfff1d8, blending: THREE.AdditiveBlending, depthWrite: false, fog: false, sizeAttenuation: false, toneMapped: false }));
+    hub.position.set(0, 12, 0); hub.scale.setScalar(0.055); TXT.add(R, hub); }
+  TXT.sky(R);
+  TXT.ground(R, { surface: 'dirt', size: 60000, seed: 3, color: 0x15120f });
+  const from = [-7900, 1900, 10300];
+  const look = CH.aim(THREE, R, TXT, from, [0, 0, 0], 560, 830, 50);
+  TXT.frame(R, { fov: 50, from, look });
+  CH.warm(R, 0.15);
+  TXT.deckRig(R, CH.rigSpec(W, 400, 1024), CH.rigOpts([0, 0, 0], { distance: 2000, shadowFar: 4000 }));
+  TXT.stage(R, ring, { pool: false });
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  /* the labels, pinned to the ring's near arc on the camera side and to the pad */
+  const mid = rim.clone().multiplyScalar(0.55).toArray(); mid[1] = 3;
+  /* 3 MILES sits at the foot of the radius it names, just outside the near arc where the land is dark */
+  const labR = document.getElementById("lab-ring");
+  const qr = CH.pin(THREE, R, "lab-ring", [rim.x, 3, rim.z], -(labR.getBoundingClientRect().width / 2), 22);
+  const qh = CH.pin(THREE, R, 'lab-hub', [0, 2, 0], 46, 26);
+  window.__txLeaders = [];
+  const svg = document.getElementById('lead');
+  const hubAt = CH.project(THREE, R, [0, 2, 0]);
+  CH.leader(svg, [qh[0] + 40, qh[1] + 30], hubAt);
+  window.__txLeaders.push({ target: "the hub's pad", at: hubAt, to: hubAt });
+  CH.post(cx, { a: 0.25, veil: 0.32 });
+  CH.knock(cx, ["#lab-ring", "#lab-hub"], 0.54);
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

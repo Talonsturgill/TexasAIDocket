@@ -1,0 +1,77 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.0,
+   "why": "Every frame uses a physical render and the dark world. Four frames are good: 1, 4, 7 and 9. Slide 1's lit airframe fills the width over a lamp field, though the pod is too large for the airframe and looks like a toy, and the lamps read as an even dot grid. Slide 7's walnut dais recedes well under six lit microphones, but the lectern grain is a stretched wavy procedural pattern that fails the zoom test. Slide 9's staked pad casts on lit asphalt, with I-35 lights on the horizon. The 7 descriptor allows one weak frame and this deck has three. Slide 2 is a thin lattice tower in a void. Its base is buried in cartoon boulders at the bottom edge (crop slide-02-r3c1), and the pad, cabinet, gravel apron, fence and contact shadow the repair promised are not in frame. Slide 3 is a sign with no ground, no horizon and no seam, on one hairline post. Its aircraft is a speck at the end of two red and green lines that read as laser beams. Slide 8's pod hangs in front of a fence seen square on, as flat as a stage set. Neither pod nor tether casts on the lawn or the fence (crop slide-08-r2c2), the porch-flood pool is not visible, and the lit lawn tufts look like pasted sprites. Slide 5 also has a layout defect: the route dashes cross the PARACHUTE glyphs (machine_qa warn, 51% span) and the two right-hand leaders cross each other."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.0,
+   "why": "It is clearly one deck: one near-black lastLight field, light type, and the gold band on the pod and cradle. Two devices work. The aircraft changes state across the deck (in flight 1, lifting 2, trail 3, ring 4, docked 5, screen line 6, absent 7, pod down 8, empty sky 9), and the camera comes down from the air to the ground. Slide 7's warm walnut is the declared value cut. The light does not hold. The deck's own rule puts lit edges on the left and casts to the right, but slide 2's column is lit on its right face and slide 9's stake shadows run left and toward the camera. Slide 6's orange screen dots spend the accent the storyboard reserves for things that come down to the ground. The 2 to 3 edge tease only half reads, because the aircraft at slide 2's top right is a dark sliver."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.0,
+   "why": "Every printed numeral traces. 6 to 0 is c47, about 5 pounds is c38, three miles is c3, and 28.3 square miles is marked computed. Most location and power claims rest on the city's own page (c1 to c14, primary_official). Each DroneXL claim is attributed on the slide (frames 1, 7 and 8), and the medium-confidence c36 figures are left out. Not a hard fail: c33 has DroneXL placing service around 3000 E. Palm Valley Blvd while c2 has the city placing it near North Kenney Fort and Joe DiMaggio. The deck uses the city's location and never mentions that the two disagree."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.5,
+   "why": "Names the two cities, the two orders, the ETJ site with its cross streets, the Renaissance Square site on northbound I-35, the 6 to 0 vote with Zipline as applicant, and what a resident can do: community@zipline.com for feedback, the FAA for safety. There is no deadline to act on. The county is never named, deliberately (fact-check note 1). The stake for a neighbor stays general."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "The cover puts the reader in the air and the hook earns the swipe. Frame 2 pays at once (the hub is outside city limits). The turn to Rowlett on 7 is declared and real. The close asks whether the hub coming first can write the rule, and the caption carries that question. Slide 6 (people watch) could be cut without losing the argument."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Clean, on register and unboosted. 'The neighbor gets an email address' is the best line. The attribution scaffolding repeats: 'drawn to illustrate' closes all nine deks, and 'Citing the company, the city says' appears twice (2, 4). It reads careful rather than local."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "The concept is fresh: comparing the order of operations in two cities. Rotating layouts and the dais and room interiors vary the structure. Two familiar moves: the subject is a delivery drone, which the storyboard says no. 33 used, and the world is the house lastLight stage. I did not check this against the last four artwork.json entries."
+  }
+ ],
+ "weighted_score": 7.11,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Put a lit, contact-shadowed ground under the three subjects that float in voids: the tower's concrete pad and foot inside frame 2, both sign posts planted in a roadside shoulder under a horizon seam on frame 3, and the pod's light pool and cast shadow on frame 8's lawn. Those three frames are what hold artwork_craft at 6.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 2,
+   "problem": "A thin lattice column stands in a dark void. Its foot is buried in cartoon boulders at the bottom edge, and no pad, cabinet, fence, contact shadow or key pool is visible. The aircraft is an unlit sliver cut at the top right.",
+   "fix": "Raise the camera and pull it back so the concrete pad, cabinet and tower foot sit around design y 1150 to 1250 in a key-light pool with a contact shadow. Swap the boulder scatter for a flat gravel apron. Bring the lifting aircraft lower and nearer, so its lit underside and gold band span about a quarter of the width before the right edge cuts it."
+  },
+  {
+   "slide": 3,
+   "problem": "The sign floats in pure black: no ground, no horizon, no lastLight seam, and one hairline post. The aircraft is a speck at the end of two red and green lines that read as lasers, and the right half is a dead zone (machine_qa: bottom third at 61% of the slide's average density).",
+   "fix": "Drop the camera to put a horizon and seam around design y 1500 behind lit shoulder grass. Model both U-channel posts going into the dirt with contact. End the trail on a lit, rimmed aircraft silhouette about 80 px long, so the trail reads as an aircraft and not as lasers."
+  },
+  {
+   "slide": 8,
+   "problem": "The fence is seen square on and flat as a stage set. The pod floats in front of it with no shadow or pool on the lawn. The lawn is a dark void with pasted lit sprite tufts, the resident is a saluting kit mannequin, and the oak and house wall do not read.",
+   "fix": "Yaw the camera about 30 degrees so the fence recedes in perspective. Lower the pod to about a metre above the grass with a pool and cast shadow under it from the porch flood, and use a lawn ground texture in place of the sprite tufts."
+  },
+  {
+   "slide": 5,
+   "problem": "The route dashes cross the PARACHUTE glyphs, the ROUTE and PARACHUTE leaders cross each other, and the tower stands in a navy mid-tone void with no ground.",
+   "fix": "Move the PARACHUTE label left of the route, around design x 880, y 1000, so its leader drops straight to the hatch. Keep the route leader landing on the nose without crossing it."
+  },
+  {
+   "slide": 6,
+   "problem": "All five monitors carry the same route graphic in the same orange-dot accent, which looks like a template.",
+   "fix": "Give each screen a different route state and map extent, and turn the dots to the screen's cyan white so the gold accent stays with the pod."
+  }
+ ]
+}

@@ -1,0 +1,82 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 5.8,
+   "why": "The register is right: dark fields, light type, pale subjects, and no faded frame in the grey middle tones. Too many frames fail THE SHOWSTOPPER TEST's 'standing in a world, contact where it meets the ground' clause. Slide 3 is a frontal green CITY LIMIT rectangle in a pure black void with no ground or horizon. The planned falloff across its face is barely there, and the 'long exposure trail' is two straight red and green lines that read as a vector overlay. Slide 2's tower is a thin lattice truss filling about 8 percent of the frame width (the plan called for a column filling two thirds of the height). It stands on a faint pad in a field of identical sprite grass tufts. The barbed wire fence is nearly invisible, and a navy haze band lifts the middle of the frame. Slide 5's aircraft hovers over an orange cradle plate rather than sitting in it. The wing is a flat slab and the V tail is two boxes. The ROUTE RESERVED BEFORE LAUNCH leader lands on a dashed light bar floating over the wing, which reads as a part of the airframe. The dotted corridor runs through the PARACHUTE label, and machine QA warned of art touching that label. Slide 8's pod renders near black, while slides 1 and 2 establish a pale pod. It hangs at chest height in front of a flat fence wall that splits the frame in two. There is no pool or contact on the lawn under it. The kit resident leans on the fence instead of looking up, the live oak is a sliver at the top left, and the planned ranch house is missing. Slide 6's operator is a plastic mannequin with a white cap, and his ear and profile show although the plan said only a shoulder and an arm. The screens are well staged as the room's one source. Slide 7's dais is a good composition with six lit tallies counting the vote. Its walnut is a procedural wavy-line texture, and the chairs are blank slabs. Slide 4's lamps inside the ring form regular diagonal strips (visible in crop r2c1) that read as a mesh texture, not a town. Slide 1 is the best exterior: a real airframe with the pod's gold band reading at feed size. Even there the town is a dot field on navy with no land under it, the pod is a plain capsule, and machine QA flags a dead lower third (band ratio 0.74). Slide 9 is the strongest frame: a lit asphalt pool, stakes casting, a string line, wheel stops and the I-35 lights on the horizon. Well above the 4 descriptor and below the 7, where only one frame leans on a primitive."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.0,
+   "why": "Clearly one deck. It has one dark field, one serif and mono type system, and the dusk gold accent on the pod (slides 1, 2, 8) and the cradle (slide 5). The declared camera move from the air to the ground is visible across slides 1, 2, 3, 4, 8 and 9. The aircraft motif changes state as planned, including its deliberate absence on slide 9. The slide 2 to 3 edge tease works roughly: the aircraft exits at the right edge and the light trail enters from the left. Breaks: the pod's material flips from pale to near black on slide 8. Slides 6 and 7 move into warm brown interiors, which the storyboard declares as the value cut at slide 7. Light is not one light. Slide 3's sign is lit flat, face on. Slide 9's nearest stake throws its long shadow toward the lower left, against the chassis law that casts run right and away. The lamp out of frame is a declared local source, so this is a partial excuse."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.8,
+   "why": "Most slide facts trace to Round Rock's own page (c1 to c14, primary_official, quotes on file) or to the Rowlett minutes. The medium claims are attributed on the slide itself, for example slide 7's 'DroneXL reports' and slide 8's 'Citing Community Impact, DroneXL reports'. The 28.3 square miles on slide 4 is computed and labelled as such. Two loose spots. The caption's 'Round Rock hasn't' [zoned for drone hubs] is firmer than c1's 'not specifically addressed under the City's current zoning ordinances'. Slide 4 draws dense lamps only inside the ring and sparse lamps outside, which visually implies the town matches the company's reach."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.5,
+   "why": "The bodies are named: the City of Round Rock, Rowlett's council (the 6 to 0 vote) and the FAA. So are the places: the North Kenney Fort and Joe DiMaggio site in the ETJ (slide 2) and Renaissance Square on northbound I-35 (slide 9). A reader gets an action on slide 8 (community@zipline.com, safety concerns to the FAA). Missing: no date or venue is given for when Round Rock will decide the in-city hub or its rules. The 'what can I do next' half stops at an email address."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "The cover hook 'The drones came first' earns the swipe, slide 2 pays at once (outside city limits), the turn at slide 7 (Rowlett wrote the rule first) is real, and the close 'Next, the hub comes before the rule' lands the order argument. Slides 5 and 6 (what the company says the aircraft does, and who watches) are a detour from the zoning spine. Slide 6 could go without loss."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Specific and on register: 'The neighbor gets an email address' is a good line, and the attributions stay honest. There is no boosterism and no doom. The deks are dense, and 'drawn to illustrate' closes every one of nine, which reads as machine boilerplate rather than a person writing."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "The subject is new (drones, a city limit sign, a council dais), and the deck uses no material reliefs where the last four each used one to three. The palette repeats: lastLight again (decks 57, 58 and 60 used it too), and the accent is the exact dusk gold #E0956A that no. 57 used on October 22nd. The close repeats no. 57's empty chalked pad as an empty staked pad. No. 60 also opened on a close object."
+  }
+ ],
+ "weighted_score": 6.98,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Put every exterior subject on lit ground with contact: rebuild slide 3 as a low camera on a real road shoulder (asphalt, grass and the sign's posts casting in a key pool, with the aircraft as a lit airframe instead of two vector lines), and give slides 1, 2, 5 and 8 the same treatment, because object in a void is what holds artwork_craft under 6 on four frames.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 3,
+   "problem": "A frontal flat green rectangle in a pure black void. There is no ground, no horizon and no visible falloff, and the 'aircraft' is two straight red and green lines that read as a vector graphic, not a render.",
+   "fix": "Drop the camera to 0.9 m on a TXT.ground road shoulder of asphalt edge and straw grass. Turn the sign about 25 degrees so the key rakes across its face and its posts cast on the ground. Replace the two lines with the chassis airframe at a readable size, nav lights on, crossing above the sign."
+  },
+  {
+   "slide": 8,
+   "problem": "The pod renders near black, breaking the pale pod from slides 1 and 2. It floats at chest height in front of a flat fence wall that cuts the frame in half, with no pool or contact on the lawn. The resident leans on the fence instead of looking up, and the oak and ranch house are almost absent.",
+   "fix": "Restore the pod's pale composite material and lower it to about 0.8 m over the lawn, with its own light pool and contact shadow under it. Pull the camera back and angle it so the fence runs diagonally into depth with the ranch house wall beyond. Pose the resident's head tilted up toward the tether."
+  },
+  {
+   "slide": 5,
+   "problem": "The aircraft hovers over the cradle plate instead of sitting in it, with no contact. The slab wing and box V tail read as primitive at feed size. The ROUTE RESERVED BEFORE LAUNCH leader lands on a floating dashed bar, and the corridor crosses the PARACHUTE label.",
+   "fix": "Seat the fuselage on the cradle with a contact shadow on the plate. Start the route corridor at the nose and route it up and right, clear of every label. Point the ROUTE leader at the corridor's origin, not at a bar hovering over the wing."
+  },
+  {
+   "slide": 2,
+   "problem": "The tower is a thin lattice truss filling about 8 percent of the frame width, set in a field of identical sprite grass tufts under a navy haze band. The barbed wire fence is invisible and contact on the pad is weak.",
+   "fix": "Move the camera in to about 12 m so the tower fills a third of the frame width, and model the planned galvanized column, not a truss. Bring two lit fence posts and their strands into the near foreground. Darken the haze band so the tower is the frame's one lit mass."
+  },
+  {
+   "slide": 4,
+   "problem": "The lamps inside the ring form regular diagonal strips that read as a mesh or moire texture, and only the inside of the ring is dense, so the ring reads as a lit platter, not a measurement laid over a town.",
+   "fix": "Generate the street lamp grid at one density across the whole town, with jitter and a road hierarchy, inside and outside the ring alike. Let only the ring tube and a lit hub pad carry the extra brightness."
+  },
+  {
+   "slide": 6,
+   "problem": "The operator is a plastic mannequin with a white cap, and his profile and ear show against the plan's 'shoulder and arm only'.",
+   "fix": "Crop the camera so only the operator's dark shoulder and forearm enter at the left edge, lit by the screens, and give the cap and skin a dark cloth and low fill so the figure reads as a silhouette."
+  }
+ ]
+}

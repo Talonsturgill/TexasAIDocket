@@ -1,0 +1,85 @@
+<!doctype html>
+<!-- 2026-10-26, frame 7 of 9. Archetype OBJECT_AND_CAPTION. A spatial scene through txthree.js inside a TXT.interior room in the deck's lastLight world: the kit hearing dais seen along its length from beside the public lectern, one seat and one lit microphone tally for each vote for the change, the count read from figures.json, and a sheet of minutes on the kit podium's desk in the foreground. Rowlett's chamber is not drawn from any record of it. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">Rowlett wrote the rule first, DroneXL reports</h1>
+<p class="dek" data-follow="26">Rowlett's minutes record a 6 to 0 vote adding drone hubs and kiosks to its zoning code on May 20th, 2025. Zipline was the applicant. In the minutes a member says the hub's special use permit "is the control." The chamber is drawn with one microphone per vote&nbsp;cast.</p>
+<script>window.FIG = {"rowlett_vote_for": 6};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-26-tether.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Rowlett, May 20th, 2025", counter: "07 / 09", src: "c43 c46 c47 c48 c51 c54", fit: { min: 72, max: 100, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 38, near: 0.02, far: 80 });
+  TXT.interior(R, { w: 16, d: 12, h: 4.6, ceiling: true, floor: 'concrete', wall: 0x1c1712, trim: 0x120e0b, window: 'left', windowColor: 0xffc890, windowI: 1.2, light: 0.05 });
+  TXT.ground(R, { surface: 'concrete', size: 16, y: 0.003, wear: 'interior', color: 0x45352a, seed: 23 });
+  /* the chamber floor catches a low warm spill in front of the bench, so the dais stands on something */
+  { const fl = new THREE.SpotLight(0xffc890, 40, 12, 0.7, 0.9, 2); fl.position.set(-2.5, 3.6, 1.5); fl.target.position.set(0.5, 0, -2.0); R.scene.add(fl, fl.target); }
+  /* THE FIGURE, from figures.json: one seat and one lit tally for each vote for the change */
+  const dais = K.make('hearing_dais', { seats: FIG.rowlett_vote_for, curve: 0, wood: 0x5e3a20 }); dais.position.set(0, 0, -3.2); TXT.add(R, dais); TXT.contact(R, dais);
+  dais.updateMatrixWorld(true);
+  /* quartered walnut at true scale: fine straight grain along each board, low contrast, in place of the kit's wave figure */
+  { const c = document.createElement('canvas'); c.width = 1024; c.height = 1024; const g = c.getContext('2d');
+    g.fillStyle = '#6a4428'; g.fillRect(0, 0, 1024, 1024); let sd = 11; const rnd = () => (sd = (sd * 16807) % 2147483647) / 2147483647;
+    for (let y = 0; y < 1024; y += 2 + rnd() * 3) { const v = rnd(); g.fillStyle = v < 0.5 ? 'rgba(40,22,10,' + (0.12 + v * 0.2) + ')' : 'rgba(150,100,60,' + (0.05 + (v - 0.5) * 0.12) + ')'; g.fillRect(0, y, 1024, 1 + rnd() * 1.5); }
+    const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.wrapS = t.wrapT = THREE.RepeatWrapping; t.anisotropy = 8;
+    const swap = new Map();
+    [dais].forEach((root) => root.traverse((o) => { if (o.isMesh && o.material && o.material.map && o.material.color && o.material.color.r > o.material.color.b * 1.3) {
+      if (!swap.has(o.material)) { const m = o.material.clone(); m.map = t; m.bumpMap = null; m.roughness = 0.55; m.color.multiplyScalar(0.8); swap.set(o.material, m); }
+      o.material = swap.get(o.material); } })); }
+  const tally = new THREE.MeshStandardMaterial({ color: 0x3a2a10, emissive: 0xffd9a0, emissiveIntensity: 3 });
+  const rings = [];
+  dais.traverse((o) => { if (o.isMesh && o.geometry.type === 'TorusGeometry' && o.geometry.parameters.radius < 0.01) { o.material = tally; rings.push(o); } });
+  const glowTex = (() => { const c = document.createElement('canvas'); c.width = c.height = 64; const g = c.getContext('2d');
+    const gr = g.createRadialGradient(32, 32, 0, 32, 32, 32); gr.addColorStop(0, 'rgba(255,255,255,1)'); gr.addColorStop(0.2, 'rgba(255,255,255,0.55)'); gr.addColorStop(1, 'rgba(255,255,255,0)');
+    g.fillStyle = gr; g.fillRect(0, 0, 64, 64); return new THREE.CanvasTexture(c); })();
+  rings.forEach((rg) => { const p = new THREE.Vector3(); rg.getWorldPosition(p);
+    const sp = new THREE.Sprite(new THREE.SpriteMaterial({ map: glowTex, color: 0xffd9a0, blending: THREE.AdditiveBlending, depthWrite: false, fog: false, sizeAttenuation: false, toneMapped: false }));
+    sp.position.copy(p); sp.scale.setScalar(0.016); R.scene.add(sp);
+    const pt = new THREE.PointLight(0xffc78a, 0.25, 1.2, 2); pt.position.copy(p); R.scene.add(pt); });
+  window.__txTallies = rings.length;
+  /* the dais lamps, warm downlights along the bench, the only light on the walnut front besides the window */
+  for (let i = 0; i < FIG.rowlett_vote_for; i++) { const x = (i - (FIG.rowlett_vote_for - 1) / 2) * 1.5;
+    const sl = new THREE.SpotLight(0xffd2a0, 3.5, 7, 0.45, 0.8, 2); sl.position.set(x, 4.4, -2.4); sl.target.position.set(x, 1.1, -3.1); sl.castShadow = true; sl.shadow.mapSize.set(512, 512); sl.shadow.bias = -0.0005; R.scene.add(sl, sl.target); }
+  /* the public lectern, facing the dais, and the sheet of minutes on its desk under the lectern lamp */
+  const pod = K.make('podium', { seal: false, mic: false }); pod.position.set(-5.63, 0, -0.45); pod.rotation.y = 2.02; TXT.add(R, pod); TXT.contact(R, pod); pod.traverse((o) => { if (o.isMesh) o.userData.noShadow = true; });
+  const paperTex = (() => { const c = document.createElement('canvas'); c.width = 432; c.height = 560; const g = c.getContext('2d');
+    g.fillStyle = '#efe9dc'; g.fillRect(0, 0, 432, 560); g.fillStyle = 'rgba(40,36,30,0.55)';
+    g.fillRect(140, 40, 150, 14); g.fillRect(110, 64, 210, 9);
+    let y = 100; for (let i = 0; i < 30; i++) { const w = i % 7 === 6 ? 180 : 300 + ((i * 37) % 50); g.fillRect(48, y, w, 6); y += i % 7 === 6 ? 24 : 14; }
+    const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; return t; })();
+  const sheet = new THREE.Mesh(new THREE.PlaneGeometry(0.216, 0.2), new THREE.MeshStandardMaterial({ map: paperTex, roughness: 0.9 }));
+  sheet.rotation.x = -Math.PI / 2 - 0.255; sheet.position.set(0.0, 1.19, 0.1); sheet.rotation.z = 0.06; pod.add(sheet);
+  const lamp = new THREE.SpotLight(0xffe2bd, 3, 3, 0.5, 0.8, 2); lamp.position.set(-6.1, 2.4, 0.4); lamp.target.position.set(-5.63, 1.15, -0.45); R.scene.add(lamp, lamp.target);
+  const from = [-7.6, 1.62, 1.0];
+  const look = CH.aim(THREE, R, TXT, from, [1.5, 1.1, -3.2], 640, 742, 38);
+  TXT.frame(R, { fov: 38, from, look });
+  CH.warm(R, 0.12);
+  { const spec = CH.rigSpec(W, 10, 2048); TXT.deckRig(R, spec, CH.rigOpts([0, 1, -2], { distance: 16, shadowFar: 40 })); }
+  CH.unacne(R, 0.01);
+  CH.noShadows(R);
+  TXT.stage(R, [dais], { behind: 1.2, depth: 2.0, poolInner: 2.0, poolOuter: 6.0 });
+  TXT.weather(R, { grime: 0.06, height: 0.2, mottle: 0.4 });
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0.3, veil: 0.15 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

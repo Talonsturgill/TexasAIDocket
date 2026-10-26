@@ -1,0 +1,76 @@
+<!doctype html>
+<!-- 2026-10-26, frame 8 of 9. Archetype FULL_BLEED. A spatial scene through txthree.js in the deck's lastLight world: a backyard at night, the chassis pod coming down on its lit tether into the lawn, the tether running up out of the frame to the aircraft at the station height read from figures.json, a kit resident at the kit cedar privacy fence looking up, a kit live oak and the wall of a kit ranch house. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">The neighbor gets an email address</h1>
+<p class="dek" data-follow="26">Round Rock directs operational feedback to Zipline at community@zipline.com and safety concerns to the FAA. Citing Community Impact, DroneXL reports a limit of about 5 pounds per order, lowered on a tether. The pod and yard are drawn to&nbsp;illustrate.</p>
+<script>window.FIG = {"station_m": 91.4};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-26-tether.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Under the flight path", counter: "08 / 09", src: "c6 c13 c14 c38", fit: { min: 72, max: 100, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 50, near: 0.05, far: 4000 });
+  const Y = new THREE.Vector3(0, 1, 0), TH = -Math.PI / 4;
+  /* the yard is built in its own frame, the camera looking along -z, then turned to face north east into the dark */
+  const set = new THREE.Group(); set.rotation.y = TH;
+  const L = (x, y, z) => new THREE.Vector3(x, y, z).applyAxisAngle(Y, TH);
+  const fence = K.make('privacy_fence', { length: 26, weathered: 0.95 }); fence.position.set(0, 0, -9.5); fence.rotation.y = -0.55; set.add(fence);
+  /* the cedar gone silver and in shadow, a dark field behind the lit pod rather than a lit wall */
+  fence.traverse((o) => { if (o.isMesh && o.material && o.material.color) { o.material = o.material.clone(); o.material.color.multiplyScalar(0.22); } });
+  const fenceL = K.make('privacy_fence', { length: 12, weathered: 0.7 }); fenceL.position.set(-9.5, 0, -4.6); fenceL.rotation.y = Math.PI / 2; set.add(fenceL);
+  const res = K.make('person', { seed: 21, role: 'resident', pose: 'look_up', shirt: 0x6b5a48, trousers: 0x2b2f38 }); res.position.set(-1.6, 0, -8.6); res.rotation.y = 0.69; set.add(res);
+  const oak = K.make('live_oak', { height: 8.5, spread: 15 }); oak.position.set(-9.5, 0, -10.5); set.add(oak);
+  const house = K.make('ranch_house', { material: 'brick', garage: 'none' }); house.position.set(14.5, 0, 1.0); house.rotation.y = -Math.PI / 2; set.add(house);
+  /* the pod, nearly down, its band gold, the line it hangs on running out of the top of the frame */
+  const pod = K.make('delivery_pod', {}); pod.position.set(1.15, 0.85, -5.3); pod.rotation.y = 0.6; set.add(pod);
+  TXT.add(R, set);
+  set.updateMatrixWorld(true);
+  [fence, fenceL, res, oak, house].forEach((o) => TXT.contact(R, o));
+  /* THE FIGURE, from figures.json: the tether runs from the pod's bail up to the aircraft holding at the station height, near plumb with a little drift */
+    TXT.sky(R);
+  TXT.ground(R, { surface: 'lawn', size: 600, seed: 18, color: 0x3a4226 });
+  TXT.scatter(R, { kind: 'grass', count: 9000, area: [-8, -9, 8, -4.5], seed: 13, scale: [0.12, 0.24] });
+  const from = L(-0.4, 1.5, -0.4).toArray();
+  const look = CH.aim(THREE, R, TXT, from, L(1.15, 1.1, -5.3).toArray(), 880, 900, 50);
+  TXT.frame(R, { fov: 50, from, look });
+  R.camera.updateMatrixWorld(); R.camera.updateProjectionMatrix();
+  const bail = L(1.15, 0.85 + 0.62, -5.3);
+  const ray = new THREE.Vector3(1120 / 540 - 1, 1 - (-200) / 675, 0.5).unproject(R.camera).sub(R.camera.position).normalize();
+  const top = R.camera.position.clone().addScaledVector(ray, (FIG.station_m - R.camera.position.y) / ray.y);
+  const tether = new THREE.Mesh(new THREE.TubeGeometry(new THREE.LineCurve3(bail, top), 800, 0.009, 6, false),
+    new THREE.MeshBasicMaterial({ color: 0xf2e4cc, fog: false, toneMapped: false })); tether.userData.noShadow = true; R.scene.add(tether);
+  /* the yard's pole flood high over the lawn, pooling where the pod comes down and laying its shadow on the grass */
+  const flood = new THREE.SpotLight(0xffd6a6, 3600, 26, 0.3, 0.8, 2); flood.castShadow = true; flood.shadow.mapSize.set(2048, 2048); flood.shadow.bias = -0.0004; flood.position.copy(L(0.4, 7.5, -3.6)); flood.target.position.copy(L(1.15, 0, -5.6)); R.scene.add(flood, flood.target);
+  /* under the porch flood the band's albedo would wash it pale, so here its colour is all emission */
+  pod.traverse((o) => { if (o.isMesh && o.material && o.material.emissive && o.material.emissive.getHex() !== 0) { o.material = o.material.clone(); o.material.color.setRGB(0, 0, 0); o.material.emissiveIntensity = 1; } });
+  CH.warm(R, 0.18);
+  TXT.deckRig(R, CH.rigSpec(W, 16, 2048), CH.rigOpts(L(0, 0, -5).toArray(), { distance: 40, shadowFar: 100 }));
+  CH.unacne(R, 0.01);
+  CH.noShadows(R);
+  TXT.stage(R, [pod, res], { poolInner: 2.2, poolOuter: 6 });
+  TXT.weather(R, { grime: 0.4, height: 0.8, mottle: 0.4 });
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0.3, veil: 0.3, footWash: 0.4 });
+  CH.knock(cx, [".tx-site", ".src"], 0.55);
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.5,
+   "why": "Every frame is a rendered night world, and four are strong. Frame 1: a lit airframe with its pod and gold band on near black, the starboard wing running off the right edge. Frame 4: a lit three-mile ring on a field of lamps, readable as a size at 432 px. Frame 7: a walnut dais with six lit tallies in perspective. Frame 9: staked pad, string line and a storm grate in one sodium pool. Several frames fall back on kit defaults. Frame 8 has two lights that disagree: the resident's shadow falls RIGHT on the fence, the pod's falls LEFT, and the pod's ground shadow is a hard black disc directly under it, so it reads as a hole. The lawn is flat grey with sprite tufts and no lit pool shows under the pod. Frame 6 copies the same dashed route with two orange dots onto every monitor, beside a cropped kit operator in a black box, so it reads as a template office. Frame 2's 6 m lattice tower is a hairline in the middle of about 40 percent empty sky between the dek and the tower top, and at feed size it reads as a stick, not a third of the frame. Frame 5's slab wings and stick booms float on a navy void. Frame 3's sign is a flat green panel on black posts, where the storyboard asked for galvanized posts. This is below the 7 descriptor (one frame leaning on a default) because three frames do."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "On the contact sheet it is one deck. One dark lastLight field, one light serif hook with a mono kicker, and a recurring pale airframe whose state changes: in flight (1), leaving the cradle (2), a trail (3), a ring (4), docked (5), a line on a screen (6), absent (7), the pod lowering (8), an empty sky (9). The 2-to-3 edge tease works: the aircraft is cut by frame 2's right edge and its trail enters frame 3 from the left. The camera does come down from the air to the ground. The warm brown chamber on 7 is the declared value cut. Frame 9's tan asphalt pool is the lightest large area in the deck and steps up after 8. Frame 8's contradictory casts break the 'one light' law the storyboard declares. Machine QA's own band warnings on 1 and 4 show the mass sitting high on those two."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.0,
+   "why": "Every numeral traces. October 9th is c32. 6 to 0 and May 20th, 2025 are c46 and c47 from Rowlett's own minutes. 5 pounds is c38. 28.3 is computed as pi times 3 squared, which is 28.27 rounded. 3 MILES is c3, and the 35 in Interstate 35 is c9. Primary sources are used where they exist: the city's own page for c1 to c14 and the Rowlett minutes for the vote. The spine, Rowlett zoned before Zipline opened there, rests on DroneXL's medium-confidence c43. It is attributed in frame 7's headline ('DroneXL reports') and in the caption, so it is honest, but the turn leans on journalism. Two phrasings run looser than the source. Frame 9's 'the hub comes before the rule' reads c10 fairly, but c11 says the city may already regulate hub location against homes, so not every rule comes after. Frame 4's 'A circle that wide' means a three-mile RADIUS and can be read as three miles across. Neither changes a fact."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.0,
+   "why": "A Round Rock reader learns what happened and where. Zipline started taking orders October 9th from a hub near North Kenney Fort and Joe DiMaggio, in the ETJ, under no specific zoning rule, and the city is working toward an in-city hub behind Renaissance Square on northbound I-35. The FAA owns the flight path, and frame 8 gives the one concrete lever: community@zipline.com, with safety concerns going to the FAA. What the reader can't learn is who approves the Renaissance Square hub and when they could speak to it. No council or commission and no meeting or deadline appears on frame 9 or in the caption. The Rowlett comparison never says what a resident there gets that a Round Rock resident doesn't, even though c54's 'SUP is the control' is right there to imply a per-hub hearing. Two of the 10 descriptor's four elements (body and deadline) are missing for the decision still to come."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "The cover earns the swipe ('The drones came first' over a pod at altitude), frame 2 pays at once, frame 7 is a real declared turn, and frame 9's 'Next, the hub comes before the rule' closes the cover's bookend. The middle is soft. Frames 2 and 4 both carry 'Citing the company, the city says service reaches ... three miles', nearly word for word. Frame 6 ('People watch from somewhere else') is the most cuttable frame in the deck. Frame 8 returns to a Round Rock yard after the Rowlett turn, which blunts it, and it could sit before 7 without loss."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "The headlines sound like a person: 'The neighbor gets an email address' is dry and local, and 'The city can't regulate the flight path' is plain. Regional detail is real: Kenney Fort, Joe DiMaggio, Renaissance Square, northbound I-35, Rowlett. The deks are attribution machinery. 'drawn to illustrate' closes all nine frames, and the frame 2 and frame 4 deks repeat each other. The caption carries 'The deck weighs what Zipline says the aircraft decides against what the city still decides.', a line narrating the deck, which the ledger shows being cut on September 24th, 26th and 30th. The close is the house open question again."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "The subject is Zipline drone delivery in Texas again, with a pod on a tether over a yard. That is no. 33 on September 24th ('A pod comes down 330 feet on a line', #Zipline), 32 days ago, just outside the window, and frame 8's storyboard admits the pod over a fence is no. 33's cover. The angle, unzoned land beside a city's written terms in Williamson County, is close to no. 44 on October 6th ('Left in Williamson County, no zoning. Annexed into Taylor, terms in feet.'). The lastLight dark world is the house register (nos. 56, 57, 58 and 60). The caption's opening move, the two things (last used October 18th), and its Clock structure (last used October 15th) are both legal. The order-of-operations spine and the Rowlett minutes are fresh."
+  }
+ ],
+ "weighted_score": 7.1,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Fetch the Renaissance Square hub's approval route (which Round Rock body acts on it, and at what meeting or comment step) and put that body and date on frame 9 and in the caption's close in place of the open question, so a Round Rock reader leaves knowing where and when to speak before the next hub is approved, not just an email address.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 8,
+   "problem": "The light contradicts itself: the resident's shadow falls right on the fence, the pod's falls left, and the pod's ground shadow is a hard black disc straight below it, reading as a hole. The lawn is flat grey with sprite tufts and no lit pool under the pod, and the resident reads as a mannequin.",
+   "fix": "Drive every cast from the single front-left key so the pod's fence shadow falls right like the resident's. Replace the black disc with a soft contact shadow offset along the key, and lower the pod to about a metre above the lawn so a warm pool visibly lights the grass under it."
+  },
+  {
+   "slide": 6,
+   "problem": "The same dashed route and two orange dots are copied onto every monitor, beside a cropped kit operator in a black box, so the frame reads as a stock office template, not a place.",
+   "fix": "Give each screen a different route at a different stage, and make the near screen a lit street grid carrying frame 4's three-mile ring so the motif continues. Crop in so one screen and the operator's screen-lit hand fill the right two thirds."
+  },
+  {
+   "slide": 2,
+   "problem": "The 6 m lattice tower is a hairline in the middle of about 40 percent empty sky between the dek and the tower top. At 432 px it reads as a stick, not a subject filling a third of the frame.",
+   "fix": "Move the camera to about 12 m and drop it to 1 m so the tower runs from the gravel apron to just under the dek, its arm and cradle spanning a third of the width. Bring the departing aircraft in larger at the upper right."
+  },
+  {
+   "slide": 5,
+   "problem": "The airframe and truss float on a navy void with only faint grass far below, and the slab wings and stick booms read as primitives.",
+   "fix": "Lower the camera so the column's foot, concrete pad and cabinet from frame 2 sit in frame and seat the tower in the world. Rim-light the airframe's leading edges from the key side so the model's form reads."
+  },
+  {
+   "slide": 3,
+   "problem": "The sign is a flat green panel on black posts with no prismatic falloff, and the aircraft is a dot at the end of its trail.",
+   "fix": "Model galvanized U-channel posts with key-side highlights, grade the sign face from the lamp side across its width, and step the camera in so the sign owns about a quarter of the frame."
+  }
+ ]
+}

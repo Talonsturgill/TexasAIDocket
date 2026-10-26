@@ -1,0 +1,77 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.2,
+   "why": "Every frame is a rendered 3D scene on a near black field, with light type on the dark and no plates. Nothing is printed or flat. Three frames pass the showstopper test at feed size. Slide 3's cropped green CITY LIMIT sign reads in a quarter second. Slide 4's lit three mile ring over street lamps is a real measured drawing. Slide 7's walnut dais has six lit microphones, matching the 6 to 0 vote. The rest fall short. Slide 2's subject is a thin lattice tower that covers well under a third of the frame. The grass is rendered as glowing yellow sprites that read as fireflies. The barbed wire fence is two hairline posts. The aircraft hangs top right with no relation to the cradle. On slide 8 the resident is a featureless kit mannequin facing the fence, with the pod behind them, so they are not looking up as planned. The fence is a flat board slab, and the live oak and ranch house in the plan are a sliver of leaves top left or missing. On slide 6 the operator is a white-headed mannequin in full view, which is the exact risk the storyboard said it would avoid by showing only a shoulder. On slide 1 the town below is ruled dotted lines in straight perspective, so it reads as a Tron grid or point cloud rather than lamps over Round Rock. Machine QA also flags slide 1's dead lower zone (band ratio 0.74). On slide 9 the staked pad is honest but sparse, an empty pool of light with 92 percent of its craft in the bottom band. This is strong overall, but more than one frame leans on a kit primitive, which is under the 7 descriptor."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 6.5,
+   "why": "There is one lastLight world, one near black field, one gold accent and one type system. Read as a filmstrip on the contact sheet it is clearly one deck. The storyboard's camera move from air to ground (frames 1 to 9) and the aircraft's changing state (in flight, cradle, trail, ring, docked, screen line, absent) both work. The edge tease from 2 into 3 half works: the aircraft sits at 2's right edge and 3's trail starts at the left. The main break is the pod motif. It is pale with a gold band on slides 1, 2 and 5, and a glossy BLACK capsule on slide 8, the one frame where it reaches the ground. A reader following the object sees a different object. Slide 6's cool blue screen room then cuts to slide 7's warm mid tone walnut. Slide 7 is the declared value cut, but 6 still sits outside the palette. That makes two frames sitting outside, which is under 7."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.5,
+   "why": "Every slide string carries claim ids and every numeral traces. 6 to 0 is c47. May 20th, 2025 is c46. October 9th is c32. About 5 pounds is c38. Interstate 35 is c9. 28.3 is computed from c3's three miles (pi x 9 = 28.27). Sources are primary where they exist: the Round Rock city page, Zipline's own fact sheet, and the Rowlett minutes found at rowletttx.gov instead of DroneXL's citizenportal link. Medium claims are attributed in the headline ('Rowlett wrote the rule first, DroneXL reports', c43), and the rejected list (200 ft buffer, Williamson County for the hub, noise routing) is honored on every surface. Two places are looser than the source. Slide 4's 'As the city relays the company, that reach covers about 28.3 square miles' hangs the deck's own computed area off the city's relay, so a reader can take the city to have said 28.3. And the Rowlett versus Round Rock 'which order' frame compares an in-city zoning code with an ETJ site without telling the reader that the city's own page frames its zoning power as inside city limits (c8)."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.0,
+   "why": "A Texan in the feed learns a real local story. Zipline is taking orders in Round Rock (since October 9th). The hub is in the ETJ near North Kenney Fort and Joe DiMaggio. The city can't regulate flight paths (slide 3, c7) but can decide where hubs sit inside its limits. A second hub behind Renaissance Square on I-35 is what the city says will teach it the rules (slide 9). Rowlett's council wrote the rule first, 6 to 0. Places and streets are concrete. Two things are missing. Round Rock's deciding body is never named (no council, no P&Z, only 'the city is working with Zipline'), and the Renaissance Square step has no date, hearing or process. The only thing a reader can do is slide 8's community@zipline.com and 'the FAA', which the deck itself frames wryly as thin ('The neighbor gets an email address'). The deadline and the venue to act are not named."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "The cover 'The drones came first' with a close airframe is a decent hook, though abstract until frame 2. Frame 2 pays at once ('The first hub is outside city limits'). Frame 3 sharpens the limit. The turn at 7 to Rowlett is the real change in understanding. The close on 9, 'Next, the hub comes before the rule', lands and sets up the caption question. Frames 5 and 6 (Zipline's autonomy claims, the remote operations room) are a detour from the zoning argument. They could be cut or merged without loss, and the caption has to spell out why they are there ('The deck weighs what Zipline says the aircraft decides...')."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Specific and local: Joe DiMaggio Boulevard, Renaissance Square, northbound Interstate 35, Rowlett's 'is the control.' 'The neighbor gets an email address' is the best line in the deck, dry and Texan. The house rules hold: can't, no colons, ordinal dates, no year on October 9th. Two habits flatten it. Every one of the nine deks ends on a 'drawn to illustrate' disclaimer, which reads as machine boilerplate by slide 4. And the attribution scaffolding is stilted ('Citing the company, the city says', 'As the city relays the company'). The caption line 'The deck weighs what Zipline says the aircraft decides against what the city still decides' is a meta sentence nobody from Round Rock would write."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "This is a fresh topic in the 30 day window. The storyboard says the Zipline/DFW deck it echoes is no. 33 of September 24th, 32 days back, outside the window. The opening move (an aircraft at its own height) and the comparative two-cities structure differ from nos. 57 to 60, which were stairs, record cards, a plant wall and a cast iron plate. It is all spatial scenes rather than measured reliefs, which also differs. The familiar move is the world: it is lastLight again, the same near black staged world as nos. 56, 57, 58 and 60. And slide 8's pod lowered over a backyard fence is the no. 33 cover image the storyboard said it refused, moved to frame 8."
+  }
+ ],
+ "weighted_score": 6.864,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Spend frame 6's slot on how Round Rock will actually decide the Renaissance Square hub: fetch and name the body, the process and any hearing date, so the close tells a neighbor where to show up instead of leaving them only an email address, and merge the Zipline autonomy claims into frame 5.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 8,
+   "problem": "Kit mannequin facing the fence with its back to a pod it isn't looking at. The pod is glossy black where frames 1, 2 and 5 drew it pale, so the motif breaks on the one frame where it lands. The fence is a flat board slab, the planned live oak and ranch house are a sliver or missing, and the grass is sparkle sprites on black.",
+   "fix": "Re-render the pod in frame 1's pale composite with its gold band, push the camera low inside the pod's pool of light so the pod and its lit contact patch on the lawn fill the right third, crop the resident to a shoulder and a raised face at the left edge turned up toward the tether, and bring in the brick wall and oak crown so the yard is a place."
+  },
+  {
+   "slide": 2,
+   "problem": "The subject is a hairline lattice tower filling well under a third of the frame. The aircraft floats top right unconnected to the cradle, the barbed wire fence reads as two thin posts, and the grass tufts glow like fireflies across the whole bottom third.",
+   "fix": "Move the camera to about 8 m off the pad and low, so the tower column and cantilever arm fill two thirds of the frame height with the cradle under the hook. Put the aircraft just above the cradle with its tether still lit, bring two thick fence posts and visible strands into the near foreground, and cut the grass to dark straw with no emissive tips."
+  },
+  {
+   "slide": 6,
+   "problem": "The operator is a full-body featureless kit mannequin with a white head, which is the risk the storyboard said it would avoid. The figure reads as a toy and pulls focus from the screens.",
+   "fix": "Reframe so only the operator's dark shoulder and forearm enter from the left edge, lit by the screen glow, and let the near monitors fill the right two thirds as the one light source."
+  },
+  {
+   "slide": 1,
+   "problem": "The town below is ruled dotted lines in straight perspective that read as a digital grid rather than street lamps, and machine QA flags the dead lower zone (band ratio 0.74).",
+   "fix": "Replace the ruled lamp grid with irregular clustered sodium points following curved subdivision streets, fogged toward the horizon. Drop the camera so the pod and its tether sit lower, carrying the mass into the bottom third."
+  },
+  {
+   "slide": 9,
+   "problem": "An empty pool of lit asphalt with small stakes. 92 percent of the craft density is in the bottom band, so the frame reads as having no subject at feed size.",
+   "fix": "Bring the camera to stake height about 4 m from the nearest stake, so one flagged stake and its string line run large across the lower left with a long cast shadow, and let the strip centre's dark rear wall and the I-35 light band hold the middle third."
+  }
+ ]
+}

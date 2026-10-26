@@ -1,0 +1,73 @@
+```json
+{
+ "deck": "carousel no. 61, 2026-10-26",
+ "reviewed": "full PNG, 432px thumb and native crops at 100 percent (slide-01 r1c1, r1c2, r2c1, r2c2, r3c1, r3c2 and slide-02 r1c1, r1c2, r2c1, r2c2, r3c1, r3c2). I had no tool to measure pixels, so every size and tonal figure below is read off the images. value_register.py was not supplied and I quote no line from it.",
+ "slides": [
+  {
+   "slide": "slide-01",
+   "transcription": "DRONE DELIVERY, ROUND ROCK | 01 / 09 | The drones came first | Zipline began taking orders in Round Rock on October 9th, DroneXL reports. The City of Round Rock says its zoning ordinances don't specifically address drone delivery hubs. The aircraft is drawn to illustrate. | c1 c10 c28 c32 | texasaidocket.com. Read from the thumb and confirmed at full size. The two agree and no glyph is misread. No colon, semicolon, dash, 'cannot', 'gap', 'matters' or 'pattern' in the copy.",
+   "illegible": [],
+   "checklist": [
+    {"item": "delivery_drone present and modelled: lathe fuselage, tapered wing, carbon booms, at least three rotors visible", "pass": false, "note": "Fuselage, wing, V tail and four nacelles are there. The rotor discs are almost invisible at 100 percent (faint hairline ellipses at about 1090,1150 and 1250,1150) and absent at the thumb. A reader sees motor stubs and not rotors. The booms are flat black wedges (about 165,1270 to 520,1230 and 820,1290 to 1250,1210) that read as cast shadows, not carbon tubes. The wing is a flat plank with no visible airfoil thickness. The V tail is two flat slabs."},
+    {"item": "drone owns at least 60 percent of frame width at 432px", "pass": true, "note": "It spans edge to edge, with the starboard tip running off the right edge."},
+    {"item": "airframe at least 120 px tall at 432px including rotors", "pass": false, "note": "At the thumb the airframe runs from about y=298 to y=370, so about 70 px. Only by counting the pod and tether (about 185 px) does it clear 120. The checklist says airframe, and the airframe is short and wide."},
+    {"item": "pod and gold band visible below the aircraft on a lit line", "pass": true, "note": "Pod at 690-890 x 1475-1800. The tether is a thin pale line. The band is #E0956A and is the only accent. It is rendered flat (see must_fix 3)."},
+    {"item": "street lamps visible far below and converging toward the horizon", "pass": false, "note": "Lamps are present. Only the upper-left streak lines (0-300 x 1090-1130) show any perspective. Below the horizon the lamps are a uniform scatter of same-size dots with no rows or convergence. At the thumb this reads as a starfield or stipple sheet, not a town below the aircraft."},
+    {"item": "hook and dek on dark sky, no airframe crosses their glyphs", "pass": true, "note": "Dek ends at about y=850 and the nearest art starts at y=1030. Type is cream on near black and fully legible at 432."},
+    {"item": "no logo, wordmark or registration marking", "pass": true, "note": "None seen."},
+    {"item": "median L* at 432px is 22 or lower", "pass": true, "note": "Estimated by eye, not measured. The frame is mostly near-black navy, probably L* under 12."}
+   ],
+   "primary_image_law": "World: the dark staged sky (lastLight) with a town far below. The light is a pale, almost shadowless fill on the airframe. It agrees with the deck's low key from the left only loosely. At thumb scale the subject is one word, a drone. It reads as one silhouette and it bleeds left, right and bottom as declared. The art is rendered, not screened, but the dot field of lamps is the nearest thing to a screen in the frame. The aircraft has a real silhouette but only a narrow band of height, about 35 percent of the frame. The airframe sits in the grey middle: matte cream and taupe with no rim edge, no specular and no clearcoat response. The sky is the true black. Pod and aircraft agree on size, but nothing in the frame gives a reader a scale to measure the aircraft against (no ground feature, no person).",
+   "verdict": "revise",
+   "must_fix": [
+    {"what": "The airframe is too short for its own acceptance item. About 70 px tall at 432 and the plan requires 120.", "where": "airframe band, design x 0-1600 / y 1115-1360 of 2000 at the full-size render", "fix": "Move the camera closer or lower the fov so the fuselage plus rotor discs span about 450 px at full size (about 120 px at 432), or, if the 120 px was meant to include the pod, amend the dossier. Do not leave the checklist and the picture disagreeing."},
+    {"what": "The lamp field reads as stars or stipple, not as a town. All the dots are one size and one brightness, with no rows and no convergence below the horizon.", "where": "lower half, y 1180-2000, the whole width. At the thumb it is a speckle.", "fix": "Lay the lamps out as street rows (long lines on a grid) that converge to the horizon. Vary the lamp size with distance and brightness (nearer lamps larger, farther rows denser and warmer). Thin the lamps to zero toward the bottom edge. Drop any random scatter."},
+    {"what": "The gold band on the pod is a flat, unshaded orange slab with no response to light, like a sticker on the pod. It overhangs the shell on the left edge and a small fin tab pokes out below it at about 880,1650-1750.", "where": "pod band, x 685-892 / y 1565-1700 (full-size)", "fix": "Give the band a roughness around 0.5 with a visible specular roll-off, a thin shadow line where it meets the shell, and a radius that hugs the pod curve. Take the dusk gold slightly down so it reads as lit paint. Remove or restyle the fin tab."},
+    {"what": "The airframe reads as dull matte plastic and the rotors are not visible. The rotor discs are hairline and the booms are black triangles. The brief promised clearcoat composite, panel tooth and blurred rotors.", "where": "whole airframe, x 30-1600 / y 1115-1360", "fix": "Add a warm rim from the key on the wing and fuselage tops, and put a clearcoat specular line along the fuselage. Render the rotor blur discs at 15 to 25 percent opacity with visible width. Thicken the wing leading edge so it has depth, and model the booms as tubes with a lit top."}
+   ],
+   "frame_causes": [
+    {"cause": "b", "problem": "The largest object is unfinished. The wing is a flat plank, the booms are flat wedges, the V tail is two slabs, the rotors are invisible and the pod band is a flat decal.", "fix": "Finish the airframe at detail: wing airfoil thickness, tube booms with a lit top, visible rotor discs and a shaded band."},
+    {"cause": "c", "problem": "The lower third and its left and right corners carry only a uniform dot scatter, so the area has no structure for the eye.", "fix": "Replace the scatter with converging street rows that give depth, with a few brighter arterial lines."},
+    {"cause": "d", "problem": "At 100 percent the dark sky carries a faint regular lattice (dither or grain tile repeat), most visible at about 100-600 x 100-500 in the lower crops.", "fix": "Hold the grain under 3 percent or change the grain seed or tile size so no repeating tile shows."}
+   ],
+   "would_improve": [
+    "Drop c10 from the footer. The slide's copy carries no c10 content (Renaissance Square, future regulation), and the dossier's claims list was c32, c1 and c28.",
+    "Add one ground feature or light, such as a lit hub pad far below, so the 91 m height has something to measure against."
+   ]
+  },
+  {
+   "slide": "slide-02",
+   "transcription": "THE EXTRATERRITORIAL JURISDICTION | 02 / 09 | The first hub is outside city limits | Round Rock places the facility near North Kenney Fort and Joe DiMaggio Boulevards, in its extraterritorial jurisdiction. Citing the company, the city says service reaches eligible customers within three miles. The tower and aircraft are drawn to illustrate. | c2 c3 c55 | texasaidocket.com. Read from the thumb and confirmed at full size. The two agree. The copy has no colon, semicolon, dash, 'cannot', 'gap', 'matters' or 'pattern'. 'three miles' is spelled out and traces to c3. The hook is stated flat while c55 is DroneXL's report. 'In its ETJ' is c2's own statement, so the hook is defensible and I do not fail it.",
+   "illegible": [],
+   "checklist": [
+    {"item": "tower column, arm and cradle visible, tower at least 200 px tall at 432px", "pass": true, "note": "The tower runs from about y=915 to y=1820 of 2000, so about 245 px at 432. At the thumb the truss reads as a crane or light mast. The cradle is just an orange flat slab at about 825-950 x 955-975."},
+    {"item": "aircraft above the cradle and its right wingtip cut by the right edge", "pass": false, "note": "The aircraft hovers well clear and to the right of the tower (x 1040-1490, y 925-1110). It is not above the cradle and not lifting off. The red wingtip light at about 1480,940 sits inside the frame, so the wing is not cut. The edge tease into slide 3 is broken."},
+    {"item": "pad and the tower's contact shadow visible on the clay", "pass": false, "note": "The pad is visible, a flat brown slab at 490-860 x 1740-1820. No contact shadow, ambient occlusion or dirt appears at its edge, and the tower casts no visible shadow on the clay. At 100 percent the pad edge meets near-black ground with no grime."},
+    {"item": "barbed wire strands and at least two fence posts cross the foreground", "pass": false, "note": "There is no fence, post or wire anywhere. Only grass tufts cross the foreground."},
+    {"item": "pod's gold band visible under the aircraft", "pass": true, "note": "At about 1225-1275 x 1050-1110 the band is small but visible."},
+    {"item": "median L* at 432px is 24 or lower", "pass": true, "note": "Estimated by eye, not measured. Most of the frame is near-black navy."}
+   ],
+   "primary_image_law": "World: the staged dark sky over a black clay field, with the key low from the left. The tower has a bright left edge, so the light direction is consistent with slide 1. At thumb scale the subject reads as a tall crane or lamp post beside a small drone, not a dock tower. It does not fill a third to a half of the frame by area, because a narrow lattice at 6 percent of the width carries it. The grass is the biggest problem. The gold tufts are the brightest and most numerous marks in the frame, all one sprite repeated and lit evenly, with no pool of light and no response to the key. They read as stuck-on clip art and out-compete the tower for attention. The ground has no light pool and no contact where the pad meets it. The aircraft is small and detached, and it carries the third accent spot (after the cradle slab and the beacon). Accent use here is wider than the dossier allows, which says the gold is the pod band only.",
+   "verdict": "revise",
+   "must_fix": [
+    {"what": "The fence is missing. The plan, the composition and the acceptance list all ask for barbed wire and two posts as the near edge.", "where": "foreground, bottom third (full-size y 1500-2000)", "fix": "Add the kit barbed wire fence: at least two posts at the left and right of the frame, 3 strands, a low camera behind it, lit on the key side with a thin catch light on each strand. Or amend the dossier if the fence is cut on purpose."},
+    {"what": "The aircraft is not lifting off the cradle and its wing is not cut by the right edge. It floats beside the tower.", "where": "x 1040-1490 / y 925-1110", "fix": "Move the aircraft so it hovers above the cradle slab (about x 830-950, y 860-940), or, if it should leave by the right edge, enlarge it and push the starboard wing off the frame at x=1600. Scale it to fit the tower (wingspan about 500 px). Then update the edge tease to slide 3."},
+    {"what": "There is no contact or grime where the pad meets the clay, and the tower casts no visible shadow. The pad looks placed.", "where": "pad, x 490-860 / y 1740-1820, and the clay to its right", "fix": "Add TXT.contact: a two-part shadow (a tight dark AO line plus a soft penumbra) along the pad edge. Put worn dirt and dust on the pad's lit top. Light the clay in a pool around the pad so the cast shadow reads, running long to the right."},
+    {"what": "Grass tufts sit behind the footer type and cross letterforms. This is scatter under type.", "where": "c2 c3 c55 at about 120-330 x 1840-1870, and texasaidocket.com at 1080-1480 x 1840-1870", "fix": "Clear the scatter inside a band y 1810-1900 across the full width, or keep it under the 8 percent value so it falls behind the type. Do not let a tuft cross the footer glyphs."},
+    {"what": "The grass competes with the subject. The tufts are the brightest repeated marks in the frame and they all share one even lit gold tone.", "where": "full width, y 1450-2000", "fix": "Cut the grass emissive to about 30 percent, vary the sprite sizes, and fall off with the key so the grass beyond the pool goes dark. The tower and pad should hold the brightest area, not the grass."}
+   ],
+   "frame_causes": [
+    {"cause": "b", "problem": "The largest object is unfinished. The tower has no readable cabinet (a grey block behind the column at about 680-720 x 1580-1740), the cradle is a flat orange plate, and nothing reads as a dock for an aircraft.", "fix": "Give the cradle a visible cup with structure under the plate, and render the cabinet as a lit box with a door at the tower's foot."},
+    {"cause": "c", "problem": "The left third from y 900 to 1400 and the right side below the aircraft are empty gradient, which leaves the tower and drone isolated.", "fix": "Bring the fence and its posts into the left foreground, and push a lit haze or distant light into the mid band to give the horizon a place."},
+    {"cause": "d", "problem": "The horizon is a soft blur band at y 1400-1500 where the sky gradient hits black ground, so the field has no edge and the grass sprites float at the seam. A faint grain lattice also shows in the dark sky at 100 percent.", "fix": "Define the horizon with a thin warm seam, ground the clay with a texture gradient, and keep the grain under 3 percent."}
+   ],
+   "would_improve": [
+    "Keep the gold to one use. The beacon at about 680,912 and the cradle slab are both orange, and the dossier restricts the accent to the pod band.",
+    "Open about 100 px between the tower beacon (y 910) and the last dek line (y 855). It is cramped now.",
+    "Make the tower wider, or nearer, so it fills more of the frame, which is a third to two thirds by area under the primary image law."
+   ]
+  }
+ ],
+ "plan_check": "The acceptance lists are not trivial. Slide 2's list caught real failures (no fence, aircraft misplaced, no contact), so the plan is not the problem, and the render did not execute it. Slide 1's '120 px tall including rotors' and 'lamps converge' items are testable and failed."
+}
+```

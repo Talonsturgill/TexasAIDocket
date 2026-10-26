@@ -1,0 +1,202 @@
+{
+ "weighted_score": 7.23,
+ "judges": [
+  7.13,
+  7.426,
+  7.1
+ ],
+ "spread": 0.326,
+ "criteria": {
+  "artwork_craft": {
+   "score": 6.5,
+   "weight": 0.22,
+   "judges": [
+    6.5,
+    6.8,
+    6.5
+   ]
+  },
+  "deck_coherence": {
+   "score": 7.5,
+   "weight": 0.12,
+   "judges": [
+    7.5,
+    7.5,
+    7.5
+   ]
+  },
+  "claim_integrity": {
+   "score": 8.0,
+   "weight": 0.2,
+   "judges": [
+    7.5,
+    8.0,
+    8.0
+   ]
+  },
+  "story_and_stakes": {
+   "score": 7.5,
+   "weight": 0.16,
+   "judges": [
+    7.5,
+    7.5,
+    7.0
+   ]
+  },
+  "sequence_and_momentum": {
+   "score": 7.5,
+   "weight": 0.1,
+   "judges": [
+    7.5,
+    7.5,
+    7.0
+   ]
+  },
+  "voice": {
+   "score": 7.0,
+   "weight": 0.1,
+   "judges": [
+    7.0,
+    7.5,
+    7.0
+   ]
+  },
+  "variety": {
+   "score": 6.5,
+   "weight": 0.1,
+   "judges": [
+    6.5,
+    7.3,
+    6.5
+   ]
+  }
+ },
+ "hard_fails": [],
+ "hard_fails_by_judge": [],
+ "ship": true,
+ "threshold": 8.0,
+ "over_threshold": false,
+ "method": "per-criterion median across three judges, then weighted by the rubric",
+ "artwork_weakest_frames": [
+  {
+   "slide": 8,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The light contradicts itself. The resident's shadow falls right on the fence and the pod's shadow falls left on the same fence. A hard black ellipse sits detached on the lawn far below the pod and reads as a hole. The kit resident holds a hand across the face, and the lawn reads as dark asphalt.",
+     "fix": "Light from one high flood at camera left only. Drop the pod's fence shadow and put its lawn shadow directly under the pod along that light, soft-edged and inside a visibly lit pool of grass. Re-pose the resident looking up with arms down."
+    },
+    {
+     "judge": 2,
+     "problem": "Two light sources cast contradictory shadows. The resident's shadow falls right on the fence and the pod's shadow falls left. The resident is a low-poly kit mannequin with a hand clamped over the face. The lawn reads as dark asphalt with sprite tufts, and the fence is a flat mid-tone plane across a quarter of the frame.",
+     "fix": "Make the high pole flood the only source near the pod, placed between camera and fence. Then the resident and the pod both cast away from it onto the boards, and the pool on the grass is visibly lit. Drop the kit figure to an unlit silhouette at the frame's left edge with arms down and face away. Give the lawn a real grass ground with the pool's falloff."
+    },
+    {
+     "judge": 3,
+     "problem": "The light contradicts itself: the resident's shadow falls right on the fence, the pod's falls left, and the pod's ground shadow is a hard black disc straight below it, reading as a hole. The lawn is flat grey with sprite tufts and no lit pool under the pod, and the resident reads as a mannequin.",
+     "fix": "Drive every cast from the single front-left key so the pod's fence shadow falls right like the resident's. Replace the black disc with a soft contact shadow offset along the key, and lower the pod to about a metre above the lawn so a warm pool visibly lights the grass under it."
+    }
+   ]
+  },
+  {
+   "slide": 5,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The dashes of the route corridor draw over the starboard wing (no depth test). The tower lattice runs under the ONBOARD DETECT AND AVOID label and the source line.",
+     "fix": "Turn on depth testing for the corridor so it emerges from behind the wing. Pan the camera right so the tower leaves frame left above the label and source-line rows."
+    },
+    {
+     "judge": 2,
+     "problem": "Stair-stepped blue shadow-map aliasing across the fuselage at the boom root (crop r3c2). The wings are flat slabs. The ONBOARD DETECT AND AVOID label and the claim-id footer sit over the tower lattice. The dashed route reads as a UI overlay, not a corridor in the world.",
+     "fix": "Raise the key's shadow map resolution and normal bias on this camera, or tighten the shadow camera frustum to the airframe, so the boom shadow lands as one soft edge. Pan the camera right about 10 percent so the lattice leaves the lower-left type column. Render the route as a lit tube that takes the stage fog with distance, not as screen-space dashes."
+    },
+    {
+     "judge": 3,
+     "problem": "The airframe and truss float on a navy void with only faint grass far below, and the slab wings and stick booms read as primitives.",
+     "fix": "Lower the camera so the column's foot, concrete pad and cabinet from frame 2 sit in frame and seat the tower in the world. Rim-light the airframe's leading edges from the key side so the model's form reads."
+    }
+   ]
+  },
+  {
+   "slide": 2,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The subject is undersized. The thin lattice tower is a narrow column, and about 40 percent of the frame is empty navy gradient between the dek and the ground. The source line sits over gravel and a fence post.",
+     "fix": "Push the camera to about 12 m and lower it so the tower, cabinet and pad fill the lower two thirds. Bring the departing aircraft down to overlap the tower arm. Keep the fence below the source-line row."
+    },
+    {
+     "judge": 2,
+     "problem": "The thin lattice tower does not own the frame and the middle third is empty dark. The gravel apron is fist-sized cobbles out of scale with a 6 m tower. The cabinet is a flat-lit untextured beige box.",
+     "fix": "Move the camera in to about 14 m and drop it to 1.2 m, so the tower runs from the pad to the dek's foot and the cradle sits at the frame's upper third. Scale the gravel scatter to about a fifth of its size. Give the cabinet a vent louvre, a door seam and a dirt gradient at its base."
+    },
+    {
+     "judge": 3,
+     "problem": "The 6 m lattice tower is a hairline in the middle of about 40 percent empty sky between the dek and the tower top. At 432 px it reads as a stick, not a subject filling a third of the frame.",
+     "fix": "Move the camera to about 12 m and drop it to 1 m so the tower runs from the gravel apron to just under the dek, its arm and cradle spanning a third of the width. Bring the departing aircraft in larger at the upper right."
+    }
+   ]
+  },
+  {
+   "slide": 3,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The sign is a flatly lit green rectangle on plain black rods, not galvanized U-channel. The aircraft is a single speck with a red and green line. The headline 'y' of 'city' touches the 'h' of 'flight'.",
+     "fix": "Move the camera to a low three-quarter view about 3 m from the sign so its face takes a third of the frame with visible falloff from a lamp on one side and lit, bolted U-channel posts. Rebreak or add leading to the headline so the descender clears line two."
+    },
+    {
+     "judge": 3,
+     "problem": "The sign is a flat green panel on black posts with no prismatic falloff, and the aircraft is a dot at the end of its trail.",
+     "fix": "Model galvanized U-channel posts with key-side highlights, grade the sign face from the lamp side across its width, and step the camera in so the sign owns about a quarter of the frame."
+    }
+   ]
+  },
+  {
+   "slide": 6,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "A generic CG office. The kit operator in a cap is cropped awkwardly at the top-left edge. A bright hotspot on the desk at the bottom has no source in the room, so the screens do not read as the only light.",
+     "fix": "Kill the fill that lights the desk foreground so the desk catches only the screens' blue spill, falling off toward the camera. Crop the operator to a shoulder and arm in silhouette against the far screens, as the storyboard planned."
+    },
+    {
+     "judge": 3,
+     "problem": "The same dashed route and two orange dots are copied onto every monitor, beside a cropped kit operator in a black box, so the frame reads as a stock office template, not a place.",
+     "fix": "Give each screen a different route at a different stage, and make the near screen a lit street grid carrying frame 4's three-mile ring so the motif continues. Crop in so one screen and the operator's screen-lit hand fill the right two thirds."
+    }
+   ]
+  },
+  {
+   "slide": 7,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The frame sits in the grey middle: procedural walnut on the dais and a big blank lectern box fill it at mid L*, and the microphones are small.",
+     "fix": "Darken the chamber to one key pool across the dais front and the six microphones. Crop the lectern to a sliver at lower left with only the lit sheet of minutes."
+    },
+    {
+     "judge": 2,
+     "problem": "The walnut is a repeating procedural wave grain, and the dais front fills most of the frame in warm mid-tone, so the frame sits in the grey middle more than any other.",
+     "fix": "Light the dais from the west-window key only, raking across the panel fronts so alternate stiles fall into shadow. Swap the wave grain for a straight quartered-walnut albedo, and let the far end of the bench fall to black."
+    }
+   ]
+  }
+ ],
+ "rounds_derived": 3,
+ "rounds": 3,
+ "rounds_source": "this module's own log of cards it has scored",
+ "at_cap": true,
+ "rounds_declared_note": "the cards carry a round number and it was not believed, because the cards carry [None, 3, None] and a round is one number. `rounds` is this module's own count of 3",
+ "rung": null,
+ "shortfall": "at the round cap the finished deck ships at 7.23, 0.77 under the 8.0 top rung. Name that in the email and the run record",
+ "craft_floor": "capped",
+ "craft_note": "at the round cap the craft floor stands down. The art median 6.5 is under 8.5 and the deck ships as it is. Name it in the run record"
+}

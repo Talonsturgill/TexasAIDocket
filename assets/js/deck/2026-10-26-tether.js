@@ -70,17 +70,47 @@
     for (var i = 0; i < 9000; i++) { var v = Math.floor(116 + r() * 24); x.fillStyle = "rgb(" + v + "," + v + "," + v + ")"; x.fillRect(r() * 256, r() * 256, 1.2, 1.2); }
     var t = new THREE.CanvasTexture(c); t.wrapS = t.wrapT = THREE.RepeatWrapping; t.anisotropy = 8; return t;
   }
+  /* the blade sweep, radial: clear at the hub, a soft band toward the tips, a thin bright rim at the tip path */
+  /* a soft radial glow for a lamp, built once */
+  N.glowTex = function (THREE) {
+    if (N._glow) return N._glow;
+    var c = document.createElement("canvas"); c.width = c.height = 64; var g = c.getContext("2d");
+    var gr = g.createRadialGradient(32, 32, 0, 32, 32, 32); gr.addColorStop(0, "rgba(255,255,255,1)"); gr.addColorStop(0.18, "rgba(255,255,255,0.6)"); gr.addColorStop(1, "rgba(255,255,255,0)");
+    g.fillStyle = gr; g.fillRect(0, 0, 64, 64); N._glow = new THREE.CanvasTexture(c); return N._glow;
+  };
+  N.blurTex = function (THREE) {
+    if (N._blur) return N._blur;
+    var c = document.createElement("canvas"); c.width = c.height = 256; var x = c.getContext("2d");
+    var g = x.createRadialGradient(128, 128, 6, 128, 128, 128);
+    g.addColorStop(0, "rgba(255,255,255,0)"); g.addColorStop(0.45, "rgba(255,255,255,0.05)"); g.addColorStop(0.85, "rgba(255,255,255,0.22)");
+    g.addColorStop(0.96, "rgba(255,255,255,0.45)"); g.addColorStop(1, "rgba(255,255,255,0)");
+    x.fillStyle = g; x.fillRect(0, 0, 256, 256);
+    var t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; N._blur = t; return t;
+  };
+  /* panel seams for the airframe: a few fine lines in a bump map, so the shell reads as assembled panels */
+  function seams(THREE) {
+    var c = document.createElement("canvas"); c.width = c.height = 512; var x = c.getContext("2d");
+    x.fillStyle = "#808080"; x.fillRect(0, 0, 512, 512); x.strokeStyle = "#5a5a5a"; x.lineWidth = 2;
+    [96, 230, 300, 420].forEach(function (v) { x.beginPath(); x.moveTo(v, 0); x.lineTo(v, 512); x.stroke(); });
+    [140, 380].forEach(function (v) { x.beginPath(); x.moveTo(0, v); x.lineTo(512, v); x.stroke(); });
+    x.fillStyle = "#606060"; for (var i = 0; i < 40; i++) { x.beginPath(); x.arc(96 + (i % 2) * 6, 10 + i * 12.5, 1.4, 0, 6.3); x.fill(); }
+    var t = new THREE.CanvasTexture(c); t.wrapS = t.wrapT = THREE.RepeatWrapping; return t;
+  }
   N.mats = function (THREE, K) {
     if (N._m) return N._m;
     var b = skin(THREE, N.SEED); b.repeat.set(4, 4);
     var m = {
-      shell: new THREE.MeshPhysicalMaterial({ color: 0xd8dbde, roughness: 0.42, metalness: 0.0, clearcoat: 0.6, clearcoatRoughness: 0.35, bumpMap: b, bumpScale: 0.35 }),
+      shell: new THREE.MeshPhysicalMaterial({ color: 0xd8dbde, roughness: 0.42, metalness: 0.0, clearcoat: 0.6, clearcoatRoughness: 0.35, bumpMap: seams(THREE), bumpScale: 0.9 }),
       shellDark: new THREE.MeshStandardMaterial({ color: 0x2a2d31, roughness: 0.55, metalness: 0.1 }),
       carbon: new THREE.MeshStandardMaterial({ color: 0x15171a, roughness: 0.38, metalness: 0.25 }),
       motor: new THREE.MeshStandardMaterial({ color: 0x3a3d42, roughness: 0.3, metalness: 0.75 }),
       blade: new THREE.MeshStandardMaterial({ color: 0x101113, roughness: 0.45, metalness: 0.05, side: THREE.DoubleSide }),
+      bladeSoft: new THREE.MeshStandardMaterial({ color: 0x2a2d31, roughness: 0.5, metalness: 0.05, side: THREE.DoubleSide, transparent: true, opacity: 0.35, depthWrite: false }),
       pod: new THREE.MeshPhysicalMaterial({ color: 0xe4e2dc, roughness: 0.36, metalness: 0.0, clearcoat: 0.5, clearcoatRoughness: 0.3 }),
-      podBand: new THREE.MeshStandardMaterial({ color: N.ACCENT, roughness: 0.45, metalness: 0.05, emissive: N.ACCENT, emissiveIntensity: 0.18 }),
+      /* the accent is unlit, so it holds its own hex under the dusk key and under the grade, where a lit band went brown */
+      hatch: new THREE.MeshStandardMaterial({ color: 0xeef0f2, roughness: 0.35, metalness: 0.05 }),
+      /* the gold holds its own hex as emission and keeps a dim albedo under it, so the band still turns with the light and reads as paint */
+      podBand: new THREE.MeshStandardMaterial({ color: new THREE.Color(N.ACCENT).multiplyScalar(0.3), roughness: 0.55, metalness: 0, emissive: N.ACCENT, emissiveIntensity: 0.9, toneMapped: false }),
       tether: new THREE.MeshStandardMaterial({ color: 0xc9c6bf, roughness: 0.5, metalness: 0.1 }),
       navRed: new THREE.MeshStandardMaterial({ color: 0xff2a1a, emissive: 0xff2a1a, emissiveIntensity: 3.2 }),
       navGreen: new THREE.MeshStandardMaterial({ color: 0x1aff6a, emissive: 0x1aff6a, emissiveIntensity: 3.0 }),
@@ -115,11 +145,11 @@
       for (var k = 0; k < 2; k++) {
         var sh = new THREE.Shape(); sh.moveTo(0.03, -0.012); sh.quadraticCurveTo(r * 0.45, -0.034, r, -0.012); sh.lineTo(r, 0.01); sh.quadraticCurveTo(r * 0.5, 0.026, 0.03, 0.014); sh.lineTo(0.03, -0.012);
         var geo = new THREE.ExtrudeGeometry(sh, { depth: 0.006, bevelEnabled: false }); geo.rotateX(-Math.PI / 2); geo.rotateY(0.06);
-        var bl = mesh(geo, M.blade, 0, 0.02, 0); bl.rotation.y = ang + k * Math.PI; g.add(bl);
+        var bl = mesh(geo, blur ? M.bladeSoft : M.blade, 0, 0.02, 0); bl.rotation.y = ang + k * Math.PI; if (blur) bl.userData.noShadow = true; g.add(bl);
       }
-      if (blur) { /* a faint disc where the blades sweep, for an aircraft in flight */
-        var d = new THREE.Mesh(new THREE.RingGeometry(0.05, r, 48), new THREE.MeshBasicMaterial({ color: 0x9aa3ad, transparent: true, opacity: blur * 0.5, side: THREE.DoubleSide, depthWrite: false }));
-        d.rotation.x = -Math.PI / 2; d.position.y = 0.03; g.add(d);
+      if (blur) { /* where the blades sweep: a radial gradient, densest near the tips, never a flat grey disc */
+        var d = new THREE.Mesh(new THREE.RingGeometry(0.05, r, 64), new THREE.MeshBasicMaterial({ map: N.blurTex(THREE), color: 0xb8bec6, transparent: true, opacity: Math.min(1, blur * 1.6), side: THREE.DoubleSide, depthWrite: false }));
+        d.rotation.x = -Math.PI / 2; d.position.y = 0.03; d.userData.noShadow = true; g.add(d);
       }
       return g;
     }
@@ -129,12 +159,12 @@
      * and userData.attach.pod is where its end hangs. Drawn to illustrate, to no maker's design. */
     K.define("delivery_drone", {
       size: [3.4, 0.6, 2.4],
-      options: { span: 3.4, tether: 0, rotorAng: 0.4, blur: 0, lights: true, sag: 0 },
+      options: { span: 3.4, tether: 0, rotorAng: 0.4, blur: 0, lights: true, sag: 0, chute: true },
       note: "An illustrative fixed wing VTOL delivery drone: lathe fuselage, straight wing, two booms with four lift rotors, a pusher, a V tail, nav lights, an optional tether lowered from the belly. Drawn to illustrate, to no maker's design.",
       make: function (o) {
         var g = new THREE.Group(), Y = 0.32;
         /* fuselage, a lathe profile along z */
-        var prof = [[0, -1.05], [0.06, -1.0], [0.11, -0.85], [0.16, -0.55], [0.19, -0.15], [0.2, 0.2], [0.185, 0.55], [0.15, 0.8], [0.09, 0.98], [0, 1.06]];
+        var prof = [[0, -1.05], [0.04, -1.0], [0.08, -0.85], [0.12, -0.55], [0.15, -0.15], [0.16, 0.2], [0.155, 0.55], [0.13, 0.8], [0.08, 0.98], [0, 1.06]];
         var lg = new THREE.LatheGeometry(prof.map(function (p) { return new THREE.Vector2(p[0], p[1]); }), 48);
         lg.rotateX(Math.PI / 2); lg.scale(1, 0.82, 1);
         g.add(mesh(lg, M.shell, 0, Y, 0));
@@ -163,19 +193,40 @@
           tip.scale.set(1.0, 0.8, 2.2); g.add(tip);
           /* the boom under each wing, fore to aft, and its two lift rotors */
           var bx = s * 0.62;
-          var boom = mesh(new THREE.CylinderGeometry(0.03, 0.03, 2.25, 16), M.carbon, bx, Y + 0.06, 0.05); boom.rotation.x = Math.PI / 2; g.add(boom);
+          /* a faired boom, a lathe that tapers to a point at both ends, faired into the wing's underside by a pylon */
+          var bp = []; for (var q = 0; q <= 24; q++) { var u = q / 24, rad = 0.036 * Math.pow(Math.sin(Math.PI * Math.min(1, Math.max(0, (u * 1.08 - 0.04)))), 0.35); bp.push(new THREE.Vector2(Math.max(0.002, rad), -1.15 + 2.3 * u)); }
+          var boomG = new THREE.LatheGeometry(bp, 20); boomG.rotateX(Math.PI / 2);
+          var boom = mesh(boomG, M.carbon, bx, Y + 0.06, 0.05); g.add(boom);
+          /* the pylon is a short airfoil fairing, chord fore and aft, so it reads as part of the wing and never as a block */
+          var pg = new THREE.ExtrudeGeometry(airfoil(0.3), { depth: 0.075, bevelEnabled: true, bevelThickness: 0.004, bevelSize: 0.004, bevelSegments: 2 });
+          pg.rotateX(-Math.PI / 2); pg.rotateY(Math.PI / 2); pg.scale(1.6, 1, 1); pg.computeVertexNormals();
+          var pyl = mesh(pg, M.shell, bx, Y + 0.06, 0.12); g.add(pyl);
           [0.95, -0.85].forEach(function (z, i) {
-            var pod = mesh(new THREE.CylinderGeometry(0.05, 0.045, 0.12, 20), M.shellDark, bx, Y + 0.1, z); g.add(pod);
-            var rr = rotor(0.4, o.rotorAng + (s > 0 ? 0.7 : 0) + i * 1.1, o.blur); rr.position.set(bx, Y + 0.17, z); g.add(rr);
+            /* the motor nacelle, a lathe with a domed spinner seat */
+            var np = [[0, 0], [0.04, 0.005], [0.052, 0.04], [0.05, 0.1], [0.036, 0.13], [0.012, 0.145], [0, 0.148]].map(function (p) { return new THREE.Vector2(p[0], p[1]); });
+            var pod = mesh(new THREE.LatheGeometry(np, 24), M.shellDark, bx, Y + 0.035, z); g.add(pod);
+            var rr = rotor(0.4, o.rotorAng + (s > 0 ? 0.7 : 0) + i * 1.1, o.blur); rr.position.set(bx, Y + 0.185, z); g.add(rr);
           });
         });
         /* the V tail and the pusher */
         [-1, 1].forEach(function (s) {
-          var fin = TXT.roundedBox(0.03, 0.34, 0.24, 0.012, M.shell); fin.castShadow = true;
-          fin.position.set(s * 0.12, Y + 0.18, -0.9); fin.rotation.z = -s * 0.62; g.add(fin);
+          var fin = TXT.roundedBox(0.02, 0.26, 0.17, 0.008, M.shell); fin.castShadow = true;
+          fin.position.set(s * 0.1, Y + 0.15, -0.92); fin.rotation.z = -s * 0.62; g.add(fin);
         });
-        var push = rotor(0.26, o.rotorAng * 2, o.blur); push.rotation.x = Math.PI / 2; push.position.set(0, Y, -1.1); g.add(push);
+        /* the pusher turns edge on to most cameras, so its sweep is only a faint streak and never a disc */
+        var push = rotor(0.26, o.rotorAng * 2, o.blur ? 0.05 : 0); push.rotation.x = Math.PI / 2; push.position.set(0, Y, -1.1); g.add(push);
         if (o.lights) g.add(mesh(new THREE.SphereGeometry(0.02, 12, 8), M.strobe, 0, Y + 0.17, -0.2));
+        /* each light carries a small glow, the way a night camera holds a lamp, so the lights read as lit at feed size */
+        if (o.lights) [[-span / 2, Y + 0.12, 0.16, 0xff4a38], [span / 2, Y + 0.12, 0.16, 0x4cff8c], [0, Y + 0.19, -0.2, 0xffffff]].forEach(function (q) {
+          var sp = new THREE.Sprite(new THREE.SpriteMaterial({ map: N.glowTex(THREE), color: q[3], blending: THREE.AdditiveBlending, depthWrite: false, toneMapped: false, transparent: true }));
+          sp.position.set(q[0], q[1], q[2]); sp.scale.setScalar(0.13); sp.userData.noShadow = true; g.add(sp);
+        });
+        /* the dorsal parachute hatch, a seamed panel with two latches ahead of the wing */
+        if (o.chute) {
+          var hp = TXT.roundedBox(0.17, 0.014, 0.28, 0.004, M.hatch); hp.position.set(0, Y + 0.158, 0.48); hp.rotation.x = -0.12; g.add(hp);
+          [-0.05, 0.05].forEach(function (lx) { g.add(mesh(new THREE.BoxGeometry(0.02, 0.01, 0.03), M.motor, lx, Y + 0.168, 0.36)); });
+          g.userData.chute = [0, Y + 0.16, 0.48];
+        }
         /* THE TETHER, a lit tube from the belly winch down to the pod's bail, with a slight sag if asked */
         var attach = { winch: [0, Y - 0.16, 0.05] };
         if (o.tether > 0) {
@@ -190,11 +241,11 @@
       }
     });
     /* THE DELIVERY POD, the package that rides the tether down: a rounded capsule about 0.62 m tall with a bail on
-     * top, two small guide fins and an amber band, the deck's one accent. Origin at its base. */
+     * top, and an amber band, the deck's one accent. Origin at its base. */
     K.define("delivery_pod", {
       size: [0.42, 0.66, 0.36],
       options: { band: true },
-      note: "An illustrative lowered delivery pod with a bail, guide fins and an amber band. Drawn to illustrate.",
+      note: "An illustrative lowered delivery pod with a bail and an amber band. Drawn to illustrate.",
       make: function (o) {
         var g = new THREE.Group();
         /* a smooth profile: a superellipse of half width 0.2 and half height 0.31, so the shoulders round off */
@@ -204,8 +255,10 @@
         prof[0].x = 0; prof[40].x = 0;
         var lg = new THREE.LatheGeometry(prof, 64);
         var body = mesh(lg, M.pod, 0, 0, 0); body.scale.set(1, 1, 0.86); g.add(body);
-        if (o.band) { var band = mesh(new THREE.CylinderGeometry(0.203, 0.203, 0.05, 48, 1, true), M.podBand, 0, 0.33, 0); band.scale.set(1, 1, 0.86); g.add(band); }
-        [-1, 1].forEach(function (s) { var f = TXT.roundedBox(0.012, 0.22, 0.12, 0.004, M.shellDark); f.position.set(s * 0.205, 0.22, 0); g.add(f); });
+        /* the band is a ring turned on the body's own profile, a hair proud of it, so it wraps the curve and takes the same light */
+        if (o.band) { var bp = prof.filter(function (v) { return v.y > 0.25 && v.y < 0.42; }).map(function (v) { return new THREE.Vector2(v.x * 1.012 + 0.0015, v.y); });
+          var band = mesh(new THREE.LatheGeometry(bp, 64), M.podBand, 0, 0, 0); band.scale.set(1, 1, 0.86); g.add(band); }
+        /* no guide fins: at every distance this deck shows the pod, a fin read as a flat white card stuck to it */
         var bail = mesh(new THREE.TorusGeometry(0.04, 0.008, 8, 24, Math.PI), M.motor, 0, 0.62, 0); g.add(bail);
         return g;
       }
@@ -213,23 +266,119 @@
     /* THE DOCK TOWER, where an aircraft launches, lands and charges: a steel column about `height` m on a concrete
      * pad with a cantilevered dock arm and a charging cradle, and a cabinet at its foot. Drawn to illustrate. */
     K.define("dock_tower", {
-      size: [2.6, 6.2, 1.8],
-      options: { height: 6, arm: 1.6, docked: false },
-      note: "An illustrative drone dock tower: a steel column on a concrete pad, a cantilever arm with a charging cradle, a cabinet at its foot. Drawn to illustrate.",
+      size: [2.6, 6.4, 2.4],
+      options: { height: 6, arm: 1.6, ring: true },
+      note: "An illustrative drone dock tower: a galvanized lattice mast on a concrete pad, a trussed cantilever arm with a charging cradle, a cabinet, conduit and a ladder. Drawn to illustrate.",
       make: function (o) {
-        var g = new THREE.Group(), h = o.height;
-        g.add(K.box(1.8, 0.2, 1.8, M.concrete, 0, 0, 0, 0.03));
-        var col = TXT.roundedBox(0.32, h, 0.32, 0.03, M.steel); col.position.set(0, 0.2 + h / 2, 0); col.castShadow = col.receiveShadow = true; g.add(col);
-        var arm = TXT.roundedBox(0.22, 0.18, o.arm, 0.02, M.steel); arm.position.set(0, 0.2 + h - 0.1, o.arm / 2); arm.castShadow = true; g.add(arm);
-        var cradle = TXT.roundedBox(0.7, 0.06, 0.5, 0.02, M.steelDark); cradle.position.set(0, 0.2 + h - 0.24, o.arm - 0.1); cradle.castShadow = true; g.add(cradle);
-        var cab = TXT.roundedBox(0.7, 1.3, 0.45, 0.03, M.steelDark); cab.position.set(0.55, 0.2 + 0.65, 0); cab.castShadow = cab.receiveShadow = true; g.add(cab);
-        var lamp = mesh(new THREE.SphereGeometry(0.04, 12, 8), M.strobe, 0, 0.2 + h + 0.06, 0); g.add(lamp);
-        g.userData.attach = { cradle: [0, 0.2 + h - 0.2, o.arm - 0.1] };
+        var g = new THREE.Group(), h = o.height, w = 0.42, base = 0.2;
+        g.add(K.box(2.0, base, 2.0, M.concrete, 0, 0, 0, 0.03));
+        /* four angle legs and K bracing every 0.6 m, so the mast reads as a built thing at any distance */
+        var leg = function (x, z) { var l = TXT.roundedBox(0.05, h, 0.05, 0.008, M.steel); l.position.set(x, base + h / 2, z); l.castShadow = l.receiveShadow = true; g.add(l); };
+        [[-1, -1], [1, -1], [1, 1], [-1, 1]].forEach(function (c) { leg(c[0] * w / 2, c[1] * w / 2); });
+        var bays = Math.round(h / 0.6);
+        for (var i = 0; i <= bays; i++) {
+          var y = base + i * h / bays;
+          [[0, -1, 0], [0, 1, 0], [-1, 0, 1], [1, 0, 1]].forEach(function (f) {
+            var r = TXT.roundedBox(f[2] ? 0.03 : w, 0.03, f[2] ? w : 0.03, 0.006, M.steel); r.position.set(f[0] * w / 2, y, f[1] * w / 2); r.castShadow = true; g.add(r);
+          });
+          if (i < bays) {
+            var dy = h / bays, diag = Math.sqrt(dy * dy + w * w), ang = Math.atan2(dy, w);
+            [[0, -1, 0], [0, 1, 0], [-1, 0, 1], [1, 0, 1]].forEach(function (f, k) {
+              var d = TXT.roundedBox(diag, 0.022, 0.022, 0.004, M.steel), sgn = (i + k) % 2 ? 1 : -1;
+              if (f[2]) { d.rotation.y = Math.PI / 2; d.rotation.x = sgn * ang; d.position.set(f[0] * w / 2, y + dy / 2, 0); }
+              else { d.rotation.z = sgn * ang; d.position.set(0, y + dy / 2, f[1] * w / 2); }
+              d.castShadow = true; g.add(d);
+            });
+          }
+        }
+        /* the trussed arm, top and bottom chords with web members, reaching +z */
+        var top = base + h;
+        /* `reach` stops the trussed arm short of its tip, so a docked aircraft sits on a long cradle plate cantilevered
+         * past the truss rather than inside it. Without it the plate is a short pad at the tip, under the chords. */
+        var reach = o.reach != null ? o.reach : o.arm + 0.3;
+        [top - 0.02, top - 0.32].forEach(function (yy) { var c = TXT.roundedBox(0.06, 0.06, reach, 0.01, M.steel); c.position.set(0, yy, reach / 2 - 0.1); c.castShadow = true; g.add(c); });
+        for (var j = 0; j < 4; j++) { var wz = 0.25 + j * ((reach - 0.35) / 3), wm = TXT.roundedBox(0.03, 0.34, 0.03, 0.005, M.steel); wm.position.set(0, top - 0.17, wz); wm.rotation.x = (j % 2 ? 1 : -1) * 0.5; wm.castShadow = true; g.add(wm); }
+        /* the charging cradle at the arm's tip, a dark plate with a dusk gold landing ring */
+        var pz0 = o.reach != null ? reach - 0.25 : o.arm - 0.3, pz1 = o.arm + 0.3, pl = pz1 - pz0, pc = (pz0 + pz1) / 2;
+        var cr = TXT.roundedBox(0.8, 0.07, pl, 0.02, M.steelDark); cr.position.set(0, top - 0.38, pc); cr.castShadow = cr.receiveShadow = true; g.add(cr);
+        if (o.ring) { var ring = mesh(new THREE.TorusGeometry(0.26, 0.04, 10, 48), M.podBand, 0, top - 0.33, o.arm); ring.rotation.x = Math.PI / 2; g.add(ring); }
+        /* the cradle plate's rim is banded in the same gold: this is where an order comes down to the ground first */
+        if (o.ring) [[0, pz0, 0.8, 0.03], [0, pz1, 0.8, 0.03], [0.4, pc, 0.03, pl], [-0.4, pc, 0.03, pl]].forEach(function (q) { var b = TXT.roundedBox(q[2], 0.03, q[3], 0.008, M.podBand); b.position.set(q[0], top - 0.38, q[1]); g.add(b); });
+        /* the cabinet, conduit up the mast and a caged ladder face */
+        var cab = TXT.roundedBox(0.7, 1.3, 0.45, 0.03, M.steelDark); cab.position.set(0.7, base + 0.65, -0.1); cab.castShadow = cab.receiveShadow = true; g.add(cab);
+        var cond = mesh(new THREE.CylinderGeometry(0.025, 0.025, h, 8), M.steelDark, w / 2 + 0.04, base + h / 2, 0); g.add(cond);
+        for (var k = 0; k < Math.round(h / 0.3); k++) { var rung = TXT.roundedBox(0.3, 0.02, 0.02, 0.004, M.steel); rung.position.set(0, base + 0.3 + k * 0.3, -w / 2 - 0.12); g.add(rung); }
+        var lamp = mesh(new THREE.SphereGeometry(0.045, 12, 8), M.navRed, 0, top + 0.06, 0); g.add(lamp);
+        g.userData.attach = { cradle: [0, top - 0.3, o.arm] };
+        return g;
+      }
+    });
+    /* THE STREET GLOW, a town at night seen from the air: instanced lamp points on a jittered block grid of `pitch`
+     * metres over `area` [x0, z0, x1, z1], skipping `avoid` rectangles, in sodium and LED whites. Emissive and never fogged
+     * by the stage alone, so a lamp far off stays a point. Drawn to illustrate, the grid is no real street plan. */
+    K.define("street_glow", {
+      size: [2000, 0.4, 2000],
+      options: { area: [-1000, -1000, 1000, 1000], pitch: 60, keep: 0.82, size: 2.2, avoid: [], block: 0, turn: 0, within: null },
+      note: "Instanced emissive street lamp points on a jittered block grid, for a town at night from the air. Drawn to illustrate.",
+      make: function (o, rng) {
+        var g = new THREE.Group(), pts = [], a = o.area, r = lcg((o.seed || 1) * 977);
+        var add = function (px, pz) { var skip = false;
+          (o.avoid || []).forEach(function (v) { if (px > v[0] && px < v[2] && pz > v[1] && pz < v[3]) skip = true; });
+          if (o.within && Math.hypot(px - o.within[0], pz - o.within[1]) > o.within[2]) skip = true;
+          if (!skip) pts.push([px, pz, r()]); };
+        if (o.block) {
+          /* STREETS: lamps every `pitch` metres along a grid of streets `block` apart, turned by `turn`, so rows of
+           * lamps converge in perspective the way a town does from the air; a few blocks go dark at random */
+          var ct = Math.cos(o.turn || 0), st = Math.sin(o.turn || 0);
+          for (var u = a[0]; u <= a[2]; u += o.block) for (var v = a[1]; v <= a[3]; v += o.pitch) {
+            if (r() > o.keep) continue; var p1 = [u, v + (r() - 0.5) * 3], q1 = [v + (r() - 0.5) * 3, u];
+            [p1, q1].forEach(function (pp) { add(pp[0] * ct - pp[1] * st, pp[0] * st + pp[1] * ct); });
+          }
+        } else {
+          for (var x = a[0]; x <= a[2]; x += o.pitch) for (var z = a[1]; z <= a[3]; z += o.pitch) {
+            if (r() > o.keep) continue;
+            add(x + (r() - 0.5) * o.pitch * 0.5, z + (r() - 0.5) * o.pitch * 0.5);
+          }
+        }
+        /* a lamp is a POINT of constant screen size, so one 3 km off is still a point and never an orb */
+        [[0xffb35c, true], [0xfff1d8, false]].forEach(function (c) {
+          var list = pts.filter(function (p) { return (p[2] < 0.7) === c[1]; }), arr = new Float32Array(list.length * 3);
+          list.forEach(function (p, i) { arr[i * 3] = p[0]; arr[i * 3 + 1] = 4; arr[i * 3 + 2] = p[1]; });
+          var geo = new THREE.BufferGeometry(); geo.setAttribute("position", new THREE.BufferAttribute(arr, 3));
+          /* each lamp a soft glow with a hot core, so a street reads as lit rather than as hard square sprites */
+          var pm = new THREE.PointsMaterial({ color: c[0], size: o.size * 2.8, map: N.glowTex(THREE), sizeAttenuation: false, fog: false, transparent: true, opacity: 1, depthWrite: false, blending: THREE.AdditiveBlending });
+          var pt = new THREE.Points(geo, pm); pt.userData.txWear = false; g.add(pt);
+        });
+        g.userData.keepOrigin = true; g.userData.count = pts.length;
+        return g;
+      }
+    });
+    /* A SURVEY STAKE: a pine lath 0.05 by 0.025 by 0.9 m with a pointed foot driven 0.15 m, a painted top and a tail of
+     * pink flagging ribbon. Origin at the ground. */
+    K.define("survey_stake", {
+      size: [0.3, 0.8, 0.05],
+      options: { lean: 0, flag: true },
+      note: "A pine survey lath with a painted top and pink flagging. Drawn to illustrate.",
+      make: function (o, rng) {
+        var g = new THREE.Group();
+        var pine = K.mat("tt_pine", { color: 0xc8ab7c, roughness: 0.85 }), paint = K.mat("tt_stake_paint", { color: 0xe0dccf, roughness: 0.6 });
+        var flagM = new THREE.MeshStandardMaterial({ color: 0xff4f8b, roughness: 0.7, side: THREE.DoubleSide });
+        var lath = TXT.roundedBox(0.05, 0.75, 0.025, 0.004, pine); lath.position.y = 0.375; lath.castShadow = lath.receiveShadow = true; g.add(lath);
+        var top = TXT.roundedBox(0.052, 0.08, 0.027, 0.004, paint); top.position.y = 0.71; top.castShadow = true; g.add(top);
+        if (o.flag) {
+          var fg = new THREE.PlaneGeometry(0.03, 0.32, 1, 8), pos = fg.attributes.position;
+          for (var i = 0; i < pos.count; i++) { var yy = pos.getY(i); pos.setX(i, pos.getX(i) + Math.sin((yy + 0.16) * 9) * 0.02); pos.setZ(i, (0.16 - yy) * 0.25); }
+          fg.computeVertexNormals();
+          var f = new THREE.Mesh(fg, flagM); f.position.set(0.03, 0.56, 0.02); f.rotation.y = 0.6; f.castShadow = true; g.add(f);
+        }
+        g.rotation.z = o.lean || 0;
         return g;
       }
     });
   };
 
+  /* after TXT.add: rotor blur discs and other marked meshes cast no shadow */
+  N.noShadows = function (R) { R.scene.traverse(function (o) { if (o.userData && o.userData.noShadow) { o.castShadow = false; o.receiveShadow = false; } }); };
   N.put = function (obj, contact) { N.TXT.add(N.R, obj); if (contact) N.TXT.contact(N.R, obj, contact === true ? undefined : contact); return obj; };
   N.project = function (THREE, R, p) {
     R.camera.updateMatrixWorld(true);

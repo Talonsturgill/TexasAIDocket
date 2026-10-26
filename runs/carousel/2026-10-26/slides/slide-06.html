@@ -1,0 +1,80 @@
+<!doctype html>
+<!-- 2026-10-26, frame 6 of 9. Archetype CLOSE_CROP. A spatial scene through txthree.js inside a TXT.interior room in the deck's lastLight world: three kit monitors on a kit desk in a dark operations room, their screens carrying a route line and the room's one source, a kit person seated and turned away, cropped at the shoulder. No room is in the record. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">People watch from somewhere else</h1>
+<p class="dek" data-follow="26">Zipline says trained staff monitor its flights from a remote operations center. The room is drawn to&nbsp;illustrate.</p>
+<script>window.FIG = {};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-26-tether.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "The operations center", counter: "06 / 09", src: "c24", fit: { min: 72, max: 100, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 42, near: 0.02, far: 60 });
+  TXT.interior(R, { w: 7, d: 6, h: 3, ceiling: true, floor: 'concrete', wall: 0x0a0b0d, trim: 0x08090a, window: null, light: 0.05 });
+  TXT.ground(R, { surface: 'concrete', size: 8, y: 0.003, wear: 'interior', color: 0x1d2024, seed: 22 });
+  /* the screens: a dark map with grey streets and one lit route from a hub to a yard, no text */
+  const routeTex = (seed) => { const c = document.createElement('canvas'); c.width = 1024; c.height = 576; const g = c.getContext('2d');
+    g.fillStyle = '#14293d'; g.fillRect(0, 0, 1024, 576);
+    let s = seed; const rnd = () => (s = (s * 16807) % 2147483647) / 2147483647;
+    g.strokeStyle = 'rgba(120,150,175,0.28)'; g.lineWidth = 2;
+    for (let i = 0; i < 26; i++) { const x = rnd() * 1024, y = rnd() * 576, a = rnd() * Math.PI; g.beginPath(); g.moveTo(x - Math.cos(a) * 600, y - Math.sin(a) * 600); g.lineTo(x + Math.cos(a) * 600, y + Math.sin(a) * 600); g.stroke(); }
+    g.strokeStyle = 'rgba(160,190,210,0.35)'; g.lineWidth = 6; g.beginPath(); g.moveTo(0, 470 - seed % 90); g.bezierCurveTo(300, 380, 700, 520, 1024, 300); g.stroke();
+    const hx = 150 + rnd() * 120, hy = 420 - rnd() * 80, ex = 700 + rnd() * 200, ey = 120 + rnd() * 160;
+    g.strokeStyle = '#cfeaff'; g.lineWidth = 7; g.shadowColor = '#7fc4ff'; g.shadowBlur = 18; g.setLineDash([26, 14]);
+    g.beginPath(); g.moveTo(hx, hy); g.bezierCurveTo(hx + 160, hy - 240, ex - 220, ey + 140, ex, ey); g.stroke(); g.setLineDash([]);
+    g.fillStyle = '#E0956A'; g.beginPath(); g.arc(hx, hy, 44, 0, 7); g.fill(); g.fillStyle = '#E0956A'; g.beginPath(); g.arc(ex, ey, 34, 0, 7); g.fill();
+    const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; return t; };
+  const desk = K.make('desk', { w: 1.9, d: 0.8, pedestal: 'right', wood: 0x3a2a1c }); TXT.add(R, desk); TXT.contact(R, desk);
+  const mons = [];
+  [[-0.62, 0.42], [0, 0], [0.62, -0.42]].forEach(([x, yaw], i) => {
+    const m = K.make('monitor', { inches: 27, screen: 'chart' }); m.position.set(x, 0.76, 0.12 + Math.abs(x) * 0.18); m.rotation.y = Math.PI + yaw; TXT.add(R, m); mons.push(m);
+    const mat = new THREE.MeshBasicMaterial({ map: routeTex(11 + i * 7), toneMapped: false });
+    m.traverse((o) => { if (o.isMesh && o.geometry.type === 'PlaneGeometry') { o.material = mat; o.userData.noShadow = true; } });
+  });
+  /* the screens' own light on the desk and the operator, the room's one source */
+  const glowL = new THREE.PointLight(0x9fd0ff, 3.2, 5, 2); glowL.position.set(0, 1.05, -0.15); R.scene.add(glowL);
+  const glowF = new THREE.SpotLight(0x9fd0ff, 1.8, 6, 0.9, 0.9, 2); glowF.position.set(0, 1.0, 0.0); glowF.target.position.set(0, 0.8, -1.2); R.scene.add(glowF, glowF.target);
+  /* the operator at the next desk, back to the camera, silhouetted against their own three screens */
+  const desk2 = K.make('desk', { w: 1.9, d: 0.8, pedestal: 'left', wood: 0x3a2a1c }); desk2.position.set(2.45, 0, 2.15); desk2.rotation.y = Math.PI; TXT.add(R, desk2); TXT.contact(R, desk2);
+  [[-0.6, -0.4], [0, 0], [0.6, 0.4]].forEach(([x, yaw], i) => {
+    const m = K.make('monitor', { inches: 27, screen: 'chart' }); m.position.set(2.45 + x, 0.76, 2.05 - Math.abs(x) * 0.18); m.rotation.y = Math.PI + yaw; TXT.add(R, m); mons.push(m);
+    const mat = new THREE.MeshBasicMaterial({ map: routeTex(41 + i * 5), toneMapped: false });
+    m.traverse((o) => { if (o.isMesh && o.geometry.type === 'PlaneGeometry') { o.material = mat; o.userData.noShadow = true; } });
+  });
+  const glow2 = new THREE.SpotLight(0x9fd0ff, 0.8, 6, 0.9, 0.9, 2); glow2.position.set(2.45, 1.0, 2.0); glow2.target.position.set(2.45, 0.8, 0.8); R.scene.add(glow2, glow2.target);
+  const chair = K.make('office_chair', { style: 'mesh', color: 0x1c2026 }); chair.position.set(2.45, 0, 1.45); TXT.add(R, chair); TXT.contact(R, chair);
+  const op = K.make('person', { seed: 3, role: 'worker', build: 'male', hat: 'cap', vest: 'none', pose: 'sit_read', shirt: 0x1f2630, trousers: 0x23262c, skin: 0x5a4034 }); op.position.set(2.45, 0, 1.52); TXT.add(R, op);
+  const from = [-0.8, 1.42, -1.45];
+  const look = CH.aim(THREE, R, TXT, from, [0.15, 1.0, 0.15], 560, 940, 42);
+  TXT.frame(R, { fov: 42, from, look });
+  CH.warm(R, 0.1);
+  { const spec = CH.rigSpec(W, 6, 2048); TXT.deckRig(R, spec, CH.rigOpts([0, 1, 0], { distance: 10, shadowFar: 30 })); }
+  CH.unacne(R, 0.01);
+  CH.noShadows(R);
+  TXT.stage(R, mons, { behind: 1.0, depth: 1.4, poolInner: 0.9, poolOuter: 2.4 });
+  TXT.weather(R, { grime: 0.08, height: 0.2, mottle: 0.4 });
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0.3, veil: 0.15 });
+  CH.knock(cx, [".tx-site", ".src"], 0.5);
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

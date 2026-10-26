@@ -1,0 +1,88 @@
+<!doctype html>
+<!-- 2026-10-26, frame 9 of 9. Archetype SPLIT_HORIZON. A spatial scene through txthree.js in the deck's lastLight world: an empty rectangle staked out on worn asphalt under one sodium lamp out of frame, a row of concrete wheel stops and a storm grate on the lot, the dark beyond them empty but for the lights of Interstate 35 on the horizon, the city's proposed hub inside its limits, with no aircraft in the sky. The stakes and the rectangle are drawn to illustrate; no site plan is in the record. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">Next, the hub comes before the rule</h1>
+<p class="dek" data-follow="26">Round Rock is working with Zipline toward a hub behind Renaissance Square on northbound Interstate 35. The city says that site will help it develop regulations for future facilities inside city limits. Drawn to&nbsp;illustrate.</p>
+<script>window.FIG = {};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-26-tether.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Renaissance Square, proposed", counter: "09 / 09", src: "c9 c10 c11", fit: { min: 72, max: 100, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 52, near: 0.1, far: 3000 });
+  /* no strip centre is drawn: nothing at the proposed site is in the record but the site itself, so the pad stands alone in the dark */
+  /* the staked rectangle, 16 by 10 m, its corners lathe stakes and a string line between them */
+  const C = [[-3, -2.25], [3, -2.25], [3, 2.25], [-3, 2.25]], stakes = [];
+  C.forEach((c, i) => { const s = K.make('survey_stake', { seed: 3 + i, lean: (i % 2 ? 0.04 : -0.03) }); s.position.set(c[0], 0, c[1]); s.rotation.y = 0.4 * i; TXT.add(R, s); TXT.contact(R, s, { y: 0 }); stakes.push(s); });
+  /* the lot's own wear in the albedo: one old parking stripe and oil where cars stood */
+  { const c = document.createElement('canvas'); c.width = c.height = 2048; const g = c.getContext('2d');
+    let sd = 7; const rnd = () => (sd = (sd * 16807) % 2147483647) / 2147483647;
+    /* the lot's expansion joints, straight saw cuts filled with tar, and one old parking stripe for scale */
+    g.strokeStyle = 'rgba(6,6,7,0.8)'; g.lineWidth = 7; [[0, 820, 2048, 760], [0, 1460, 2048, 1400], [700, 0, 760, 2048], [1520, 0, 1580, 2048]].forEach(([a, b, c, d]) => { g.beginPath(); g.moveTo(a, b); g.lineTo(c, d); g.stroke(); });
+    g.strokeStyle = 'rgba(214,206,186,0.28)'; g.lineWidth = 14; g.setLineDash([180, 22, 90, 30]); g.beginPath(); g.moveTo(1180, 300); g.lineTo(980, 1760); g.stroke(); g.beginPath(); g.moveTo(1640, 380); g.lineTo(1460, 1700); g.stroke(); g.beginPath(); g.moveTo(560, 260); g.lineTo(380, 1600); g.stroke(); g.setLineDash([]);
+    for (let k = 0; k < 9; k++) { const x = 300 + rnd() * 1400, y = 300 + rnd() * 1400, r = 60 + rnd() * 110, gr = g.createRadialGradient(x, y, 0, x, y, r);
+      gr.addColorStop(0, 'rgba(0,0,0,0.6)'); gr.addColorStop(1, 'rgba(0,0,0,0)'); g.fillStyle = gr; g.fillRect(x - r, y - r, 2 * r, 2 * r); }
+    const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 8;
+    const wear = new THREE.Mesh(new THREE.PlaneGeometry(30, 30), new THREE.MeshStandardMaterial({ map: t, transparent: true, roughness: 0.6, depthWrite: false, polygonOffset: true, polygonOffsetFactor: -2 }));
+    wear.rotation.x = -Math.PI / 2; wear.position.set(0, 0.004, 0); wear.receiveShadow = true; wear.userData.noShadow = true; R.scene.add(wear); }
+  /* a row of concrete wheel stops along the lot's old parking bays, the only built things near the pad, which give it scale */
+  { const cm = new THREE.MeshStandardMaterial({ color: 0x8d877c, roughness: 0.92 });
+    for (let k = -3; k <= 3; k++) { const w = TXT.roundedBox(1.8, 0.14, 0.22, 0.03, cm); w.position.set(k * 2.75 + 0.4, 0.07, -4.6 + k * 0.05); w.rotation.y = 0.02 * k; w.castShadow = w.receiveShadow = true; R.scene.add(w); }
+    for (let k = -2; k <= 2; k++) { const w = TXT.roundedBox(1.8, 0.14, 0.22, 0.03, cm); w.position.set(-7.4, 0.07, k * 2.75); w.rotation.y = Math.PI / 2; w.castShadow = w.receiveShadow = true; R.scene.add(w); } }
+  /* a storm inlet grate in the near asphalt, cast iron bars in an angle frame, the lot's drainage */
+  { const iron = new THREE.MeshStandardMaterial({ color: 0x3a3632, roughness: 0.6, metalness: 0.6 }), gx = -0.9, gz = 2.7;
+    const fr = TXT.roundedBox(1.0, 0.03, 0.62, 0.01, iron); fr.position.set(gx, 0.012, gz); fr.rotation.y = 0.785; R.scene.add(fr);
+    const pit = new THREE.Mesh(new THREE.PlaneGeometry(0.9, 0.52), new THREE.MeshBasicMaterial({ color: 0x050505 })); pit.rotation.x = -Math.PI / 2; pit.rotation.z = 0.785; pit.position.set(gx, 0.03, gz); R.scene.add(pit);
+    for (let k = 0; k < 12; k++) { const b = TXT.roundedBox(0.04, 0.04, 0.56, 0.008, iron); const o = new THREE.Vector3(-0.42 + k * 0.077, 0, 0).applyAxisAngle(new THREE.Vector3(0, 1, 0), 0.785); b.position.set(gx + o.x, 0.04, gz + o.z); b.rotation.y = 0.785; b.castShadow = true; R.scene.add(b); } }
+  /* Interstate 35 beyond the lot, the site's own address (c9): a line of sodium pole heads and the traffic under them, far off at the horizon */
+  { const poles = [], cars = [];
+    for (let x = -900; x <= 900; x += 36) { poles.push(x, 11, -320 - x * 0.18); }
+    for (let x = -900; x <= 900; x += 1.6 + (Math.abs(Math.sin(x * 12.9898)) * 3.5)) { cars.push(x, 1.0, -316 - x * 0.18 + (Math.sin(x * 7.1) > 0 ? 4 : -4)); }
+    const pt = (arr, col, size, op) => { const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.Float32BufferAttribute(arr, 3));
+      const p = new THREE.Points(g, new THREE.PointsMaterial({ color: col, size, map: CH.glowTex(THREE), sizeAttenuation: false, fog: false, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, opacity: op }));
+      p.userData.noShadow = true; R.scene.add(p); };
+    pt(poles, 0xffb469, 9, 0.95); pt(cars, 0xffe6c8, 5, 0.75); }
+  const strM = new THREE.MeshStandardMaterial({ color: 0xe9e2d2, roughness: 0.7 });
+  for (let i = 0; i < 4; i++) { const a = C[i], b = C[(i + 1) % 4];
+    const tube = new THREE.Mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3([new THREE.Vector3(a[0], 0.33, a[1]), new THREE.Vector3((a[0] + b[0]) / 2, 0.325, (a[1] + b[1]) / 2), new THREE.Vector3(b[0], 0.33, b[1])]), 48, 0.005, 6, false), strM); tube.userData.noShadow = true;
+    tube.castShadow = true; TXT.add(R, tube); }
+  TXT.sky(R);
+  TXT.ground(R, { surface: 'asphalt', size: 600, seed: 7 });
+  const from = [-7.6, 2.4, 7.6];
+  const look = CH.aim(THREE, R, TXT, from, [0.2, 0.0, -0.2], 560, 930, 52);
+  TXT.frame(R, { fov: 52, from, look });
+  CH.warm(R, 0.2);
+  TXT.deckRig(R, CH.rigSpec(W, 40, 2048), CH.rigOpts([0, 0, 0], { distance: 80, shadowFar: 200 }));
+  CH.unacne(R, 0.02);
+  CH.noShadows(R);
+  /* the one sodium head over the lane, its pool falling inside the staked rectangle */
+  const spot = new THREE.SpotLight(0xffd6a0, 2300, 40, 0.85, 0.7, 2);
+  spot.position.set(7.5, 8.8, 3.5); spot.target.position.set(-1.2, 0, 1.2); spot.castShadow = true;
+  spot.shadow.mapSize.set(2048, 2048); spot.shadow.bias = -0.0003; spot.shadow.normalBias = 0.02;
+  R.scene.add(spot); R.scene.add(spot.target);
+  TXT.stage(R, stakes);
+  TXT.weather(R, { grime: 0.4, height: 1.2, mottle: 0.4 });
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0.3, veil: 0.3, footWash: 0.4 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

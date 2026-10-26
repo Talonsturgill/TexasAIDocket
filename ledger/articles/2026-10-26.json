@@ -1,0 +1,128 @@
+{
+ "_spec": {
+  "version": 1,
+  "purpose": "A standalone web edition of the archived visual story.",
+  "law": "Facts resolve to the original verified claim record. A layout rebuild does not reverify reporting.",
+  "written_by": "daily"
+ },
+ "section": "Drones",
+ "dek": {
+  "text": "Zipline started taking drone delivery orders in Round Rock from a hub outside city limits. The city says its zoning doesn't specifically cover drone hubs. Rowlett wrote its rule first.",
+  "claims": [
+   "c32",
+   "c1",
+   "c55",
+   "c43"
+  ]
+ },
+ "introduction": [
+  {
+   "text": "[Zipline began taking First Flight orders in Round Rock in October, DroneXL reported](c32). [Round Rock says the company is flying from a facility near North Kenney Fort and Joe DiMaggio Boulevards in the city's extraterritorial jurisdiction](c2), [outside its city limits, DroneXL reported](c55). [The city says its current zoning ordinances don't specifically cover drone delivery hubs](c1).",
+   "claims": [
+    "c32",
+    "c2",
+    "c55",
+    "c1"
+   ]
+  },
+  {
+   "text": "[Round Rock is now working with Zipline toward a proposed hub inside city limits, behind the Renaissance Square shopping center along northbound Interstate 35](c9). [The city says that site will let it evaluate drone delivery and develop regulations for future facilities inside its limits](c10). In Round Rock the hub came before the rule. [Rowlett, east of Dallas, did it the other way, DroneXL reported](c43).",
+   "claims": [
+    "c9",
+    "c10",
+    "c43"
+   ]
+  }
+ ],
+ "sections": [
+  {
+   "heading": "What the city says it controls",
+   "paragraphs": [
+    {
+     "text": "[Round Rock tells residents the FAA regulates drone flight operations, airspace and flight paths included](c4). [The city says delivery drones may cross residential areas on approved flight paths](c6) [and that it can't regulate those paths](c7). [It says federal rules and state law leave it land use and zoning control over where drone infrastructure sits inside city limits](c8).",
+     "claims": [
+      "c4",
+      "c6",
+      "c7",
+      "c8"
+     ]
+    },
+    {
+     "text": "[Inside its limits the city says it may keep delivery hubs from sitting next to homes](c11). [Citing the company, it says customers within three miles of the facility outside its limits can be served](c3). [Operational feedback goes to Zipline at community@zipline.com](c13). [Safety concerns and suspected FAA violations go to the FAA](c14).",
+     "claims": [
+      "c11",
+      "c3",
+      "c13",
+      "c14"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "What the company says the aircraft decides",
+   "paragraphs": [
+    {
+     "text": "[Zipline says each aircraft reserves its own route in an FAA approved traffic management system before launch](c19). [It says an onboard detect and avoid system keeps the aircraft clear of other aircraft](c18) [and that onboard flight computers detect problems and respond to them automatically](c20). [An aircraft that can't resolve a problem deploys a parachute, the company says](c23). [Trained staff watch the flights from a remote operations center](c24). Every one of those statements is Zipline's own.",
+     "claims": [
+      "c19",
+      "c18",
+      "c20",
+      "c23",
+      "c24"
+     ]
+    },
+    {
+     "text": "[Citing Community Impact, DroneXL reported a limit of about {{number:c38}} pounds per order, lowered on a tether to a spot the customer picks](c38). [The FAA's comment period on a draft covering Zipline's Texas metros, Austin among them, closed two days after the first Round Rock order, DroneXL reported](c37).",
+     "claims": [
+      "c38",
+      "c37"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "Rowlett wrote the rule first",
+   "paragraphs": [
+    {
+     "text": "[Rowlett's City Council met on {{date:c46}}](c46). [Its minutes record a {{number:c47}} to {{number:c47:1}} vote adding drone hub and kiosk uses to its zoning code, with use specific standards](c47). [Zipline was the applicant](c51). [The city's Planning and Zoning Commission had recommended that a hub or kiosk sit more than {{number:c53}} feet from any residential property](c53).",
+     "claims": [
+      "c46",
+      "c47",
+      "c51",
+      "c53"
+     ]
+    },
+    {
+     "text": "[In the minutes a councilmember says the special use permit for a hub is the control](c54). [Ms. Musser told the council that requiring that permit for hubs gives the city a lot of latitude](c49). Round Rock's first hub sits where its zoning doesn't reach, and its permit questions arrive with a site already proposed.",
+     "claims": [
+      "c54",
+      "c49"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "What the record can't show yet",
+   "paragraphs": [
+    {
+     "text": "[Round Rock says the Renaissance Square site will help it write rules for future facilities](c10). The city's drone delivery page names no draft rules and no hearing date. [For now the city's stated levers are where a hub sits inside its limits](c11) [and routing complaints to the operator and the FAA](c13).",
+     "claims": [
+      "c10",
+      "c11",
+      "c13"
+     ]
+    }
+   ]
+  }
+ ],
+ "related": [
+  {
+   "id": "tx-2026-0232",
+   "label": "The record entry for Round Rock's statement on drone delivery hubs"
+  },
+  {
+   "id": "tx-2026-0186",
+   "label": "The record entry for the FAA's draft on Zipline's Texas operations"
+  }
+ ]
+}

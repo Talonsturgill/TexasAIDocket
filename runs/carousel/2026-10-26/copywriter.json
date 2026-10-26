@@ -1,0 +1,127 @@
+{
+ "document_title": "The drones came first. Drone hubs in Round Rock and Rowlett",
+ "slides": {
+  "1": {
+   "kicker": "Drone delivery, Round Rock",
+   "hook": "The drones came first",
+   "dek": "Zipline began taking orders in Round Rock on October 9th, DroneXL reports. The City of Round Rock says its zoning ordinances don't specifically address drone delivery hubs. The aircraft is drawn to illustrate.",
+   "labels": [],
+   "claims": [
+    "c32",
+    "c1",
+    "c28",
+    "c10"
+   ]
+  },
+  "2": {
+   "kicker": "The extraterritorial jurisdiction",
+   "hook": "The first hub is outside city limits",
+   "dek": "Round Rock places the facility near North Kenney Fort and Joe DiMaggio Boulevards, in its extraterritorial jurisdiction. Citing the company, the city says service reaches eligible customers within three miles. The tower and aircraft are drawn to illustrate.",
+   "labels": [],
+   "claims": [
+    "c2",
+    "c55",
+    "c3"
+   ]
+  },
+  "3": {
+   "kicker": "The city limit",
+   "hook": "The city can't regulate the flight path",
+   "dek": "Round Rock says the FAA regulates airspace and flight paths. Its page says drones may fly over residential areas on approved routes. Inside city limits it may regulate where drone infrastructure sits. The aircraft is drawn to illustrate.",
+   "labels": [],
+   "claims": [
+    "c4",
+    "c6",
+    "c7",
+    "c8"
+   ]
+  },
+  "4": {
+   "kicker": "The company's reach",
+   "hook": "Three miles from the hub",
+   "dek": "Citing the company, the city says service reaches within three miles of the hub. A circle that wide covers about 28.3 square miles, computed here. The ring is drawn to illustrate.",
+   "labels": [
+    "3 MILES",
+    "THE HUB"
+   ],
+   "claims": [
+    "c3",
+    "c2"
+   ]
+  },
+  "5": {
+   "kicker": "What the company says",
+   "hook": "Zipline says the aircraft decides",
+   "dek": "The company says each aircraft reserves its own route before launch, avoids other aircraft with an onboard system and responds to problems on its own. Every claim here is Zipline's. The aircraft and tower are drawn to illustrate.",
+   "labels": [
+    "ONBOARD DETECT AND AVOID",
+    "ROUTE RESERVED BEFORE LAUNCH",
+    "PARACHUTE"
+   ],
+   "claims": [
+    "c19",
+    "c18",
+    "c20",
+    "c23"
+   ]
+  },
+  "6": {
+   "kicker": "The operations center",
+   "hook": "People watch from somewhere else",
+   "dek": "Zipline says trained staff monitor its flights from a remote operations center. The room is drawn to illustrate.",
+   "labels": [],
+   "claims": [
+    "c24"
+   ]
+  },
+  "7": {
+   "kicker": "Rowlett, May 20th, 2025",
+   "hook": "Rowlett wrote the rule first, DroneXL reports",
+   "dek": "Rowlett's minutes record a 6 to 0 vote adding drone hubs and kiosks to its zoning code on May 20th, 2025. Zipline was the applicant. In the minutes a member says the hub's special use permit \"is the control.\" The chamber is drawn with one microphone per vote cast.",
+   "labels": [],
+   "claims": [
+    "c43",
+    "c46",
+    "c47",
+    "c48",
+    "c51",
+    "c54"
+   ]
+  },
+  "8": {
+   "kicker": "Under the flight path",
+   "hook": "The neighbor gets an email address",
+   "dek": "Round Rock directs operational feedback to Zipline at community@zipline.com and safety concerns to the FAA. Citing Community Impact, DroneXL reports a limit of about 5 pounds per order, lowered on a tether. The pod and yard are drawn to illustrate.",
+   "labels": [],
+   "claims": [
+    "c13",
+    "c14",
+    "c38",
+    "c6"
+   ]
+  },
+  "9": {
+   "kicker": "Renaissance Square, proposed",
+   "hook": "Next, the hub comes before the rule",
+   "dek": "Round Rock is working with Zipline toward a hub behind Renaissance Square on northbound Interstate 35. The city says that site will help it develop regulations for future facilities inside city limits. Drawn to illustrate.",
+   "labels": [],
+   "claims": [
+    "c9",
+    "c10",
+    "c11"
+   ]
+  }
+ },
+ "concerns": [
+  "FRAME 4 IS RENDERED AND ITS DEK CHANGED, for a house rule defect. The storyboard dek reads 'That reach, as the city relays the company, covers...', which fences a hedge inside a pair of commas, a hard fail under the comma construction rule. It now opens on the attribution ('As the city relays the company, that reach covers...'). In the same edit I put back 'specifically', which c1 carries and which frame 1 already prints. Without it the claim reads stronger than its source. The hook and labels are unchanged. The frame needs a new visual review because its dek pixels change.",
+  "Frames 1 and 9 are rendered and unchanged. In claim ids only, frame 1 gains c10, the city saying the trial site will help it write future rules, because that claim is what supports 'came first'. The pixels don't change.",
+  "Frame 9's hook 'Next, the hub comes before the rule' states a proposed hub (c9, 'proposed in-City hub') in a tense that reads as settled. c10 supports the order it describes, so I left it on a rendered frame. 'Next, a hub may come before the rule' would be the stricter wording if a reviewer wants it.",
+  "Frame 7 hook changed from 'In Rowlett, the rule came first' to 'Rowlett wrote the rule first, DroneXL reports'. The old hook is c43 (DroneXL's assertion, medium) stated as fact, and the brief requires that claim to be attributed to DroneXL. Since the hook now carries the attribution, the dek no longer repeats it. The dek also now credits the 'is the control' wording to the minutes, because c54 is the clerk's reported speech and not a transcript. I added 'The chamber is drawn to illustrate' because the six seats are drawn from the vote count, and Rowlett's council may not have six seats.",
+  "Frame 6 dropped 'Its safety fact sheet doesn't say where that room is.' That is a claim about what a source leaves out, and no claim in claims.json carries it. Restore it only if the fact checker adds it as a claim.",
+  "Frame 8 dek fixed a fact that outran its claim. 'An order of about 5 pounds' turned c38's weight LIMIT into an order's weight. It now reads 'a limit of about 5 pounds per order' and credits Community Impact, which c38 names. 'Round Rock sends feedback' became 'directs', because c13 has the city pointing residents to Zipline, not forwarding anything itself. Added c6 for the kicker 'Under the flight path'.",
+  "Frame 3 dek: 'fly over homes' became 'fly over residential areas', which is c6's wording. 'The city decides where drone infrastructure sits' became 'may regulate', which is c8's wording. The storyboard dek also had no 'drawn to illustrate' line although the frame shows the aircraft. I added one.",
+  "Frame 2 dek: 'the city says, citing the company' became an opening attribution, so no comma pair hangs off the sentence. I added 'eligible' from c3 and named what is drawn. Frame 5: 'drawn to illustrate' now names the aircraft and tower, and the label reads 'ONBOARD DETECT AND AVOID' with no comma. The PARACHUTE leader points at a dorsal hatch whose position no claim gives. The illustration line covers it, but a pixel critic may raise it.",
+  "CAPTION, carried verbatim, two notes. (1) 'It says that site will help it write rules for future hubs' drops c10's 'within city limits', so it reads a little broader than the source. (2) 'Rowlett zoned for drone hubs. Round Rock hasn't.' is accurate to c1. However, c8 limits Round Rock's siting power to 'within city limits', and the hub sits in the extraterritorial jurisdiction (c2), so its zoning may never have reached that site. A reader could take the contrast as Round Rock neglecting a rule it could have applied. No claim settles how far its zoning reaches outside city limits, so I raise it and don't fix it.",
+  "Banned words, dashes, colons, semicolons, 'cannot', And or But openers and first person are all absent from every string. The only year on any date is on Rowlett's 2025 date, which is not this year's."
+ ]
+}

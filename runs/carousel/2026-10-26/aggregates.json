@@ -1,0 +1,74 @@
+{
+ "date": "2026-10-26",
+ "_note": "Every count, span and area the deck states, with the claim it was quoted from or the code that computed it. The vote phrase is keyed as the scanner reads it out of '6 to 0 vote adding drone hubs'.",
+ "aggregates": [
+  {
+   "phrase": "0 vote adding drone hubs",
+   "slide": "slide-07.html",
+   "kind": "count",
+   "value": 6,
+   "quoted_from": "c47",
+   "quote": "Motion passed 6-0.",
+   "note": "quoted"
+  },
+  {
+   "phrase": "three miles",
+   "slide": "slide-02.html",
+   "kind": "span",
+   "value": 3,
+   "quoted_from": "c3",
+   "quote": "within three miles of this location",
+   "note": "quoted"
+  },
+  {
+   "phrase": "5 pounds",
+   "slide": "slide-08.html",
+   "kind": "count",
+   "value": 5,
+   "quoted_from": "c38",
+   "quote": "a delivery weight limit of about 5 pounds",
+   "note": "quoted"
+  },
+  {
+   "phrase": "28.3 square miles",
+   "slide": "slide-04.html",
+   "kind": "count",
+   "value": 28.3,
+   "computed_by": "out/2026-10-26/compute.py, figures.json reach_sq_mi, the area of a circle whose radius is the three miles the city relays from the company (c3), rounded to one decimal",
+   "note": "computed"
+  },
+  {
+   "phrase": "3 MILES",
+   "slide": "slide-04.html",
+   "kind": "span",
+   "value": 3,
+   "quoted_from": "c3",
+   "quote": "within three miles of this location",
+   "note": "quoted"
+  },
+  {
+   "phrase": "two first party accounts",
+   "slide": "first_comment.txt",
+   "kind": "count",
+   "value": 2,
+   "computed_by": "scripts/carousel/sources_block.py, the distinct primary_corporate documents among the cited claims, Zipline's safety fact sheet (c18) and its Austin announcement (c28)",
+   "note": "computed"
+  },
+  {
+   "phrase": "two official records",
+   "slide": "first_comment.txt",
+   "kind": "count",
+   "value": 2,
+   "computed_by": "scripts/carousel/sources_block.py, the distinct primary_official documents among the cited claims, Round Rock's drone delivery page (c1) and Rowlett's council minutes (c46)",
+   "note": "computed"
+  },
+  {
+   "phrase": "two news reports",
+   "slide": "first_comment.txt",
+   "kind": "count",
+   "value": 2,
+   "computed_by": "scripts/carousel/sources_block.py, the distinct journalism documents among the cited claims, DroneXL's October 9th report (c32) and its October 11th report (c55)",
+   "note": "computed"
+  }
+ ]
+}

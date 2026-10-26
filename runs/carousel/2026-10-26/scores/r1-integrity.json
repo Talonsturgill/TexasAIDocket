@@ -1,0 +1,98 @@
+{
+ "lens": "integrity",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.3,
+   "why": "Every frame is a rendered scene on a dark field, and the art preflight measured true blacks (slide 1 median L* 3.4, slide 4 1.3). Frames 1, 3, 7 and 9 work. Slide 9's stakes throw long casts across a lit asphalt pool, slide 3's cropped CITY LIMIT sign owns the frame, and slide 7's walnut dais has six lit tallies. Three frames fall back on defaults, though, and the 7 descriptor allows one. Slide 8 renders the pod near black with one specular hit, while slides 1 and 2 show a pale shell. There is no light pool under it, and the kit resident faces the fence with a hand on their head, reading as a mannequin. Slide 4's ring interior is a uniform diagonal hatch of lamp dots that reads as a textured disc, not a town, and the hub is a dot plus a label (the preflight's own note). Slide 6's operator is a stiff kit figure in a backward cap with the profile showing, against a plan that said the face would not be visible, and all four screens carry the same route graphic. Slide 7's source calls CH.noShadows(R), so the dais and mics cast nothing. Slide 1's ground is dots alone and reads close to a star field. Not a showstopper deck."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.3,
+   "why": "Clearly one deck. One lastLight night world runs throughout, #E0956A dusk gold is the only accent (pod band on 1, 2 and 8, cradle on 5), and the value stays dark from frame to frame with no strobe. The aircraft motif changes state as declared: in flight, lifting off, a light trail, a ring, docked, a line on a screen, absent from the dais, the pod in a yard, then an empty sky. The camera move and the edge tease from 2 to 3 are in the storyboard and visible. Slide 7's warm interior is the declared value cut. The break is slide 8. The recurring object turns from a pale shell into a black one, so the deck's one material constant fails on the frame that brings it to the ground. Slide 6's cyan room also sits slightly outside the vocabulary."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.0,
+   "why": "Traceable throughout. Every slide numeral (9th, 3, 28.3, 6, 0, 20th, 2025, 5, 35) traces to a claim quote or to compute.py. 28.3 is pi times 3 squared, rounded, and 35 comes from c9's 'I-35'. The primary sources were used where they exist: Round Rock's own page (c1 to c14) and Rowlett's own minutes (c46 to c54), not DroneXL's citizenportal link. The medium-confidence c43 is attributed every time it appears ('DroneXL reports' on slide 7's headline and in the caption). Rejected findings stay off every surface: the 200 ft buffer, noise routing, the hub's county, and the mileage figures. Three phrasings run looser than their sources. (1) Slide 4's dek reads 'As the city relays the company, that reach covers about 28.3 square miles'. The city relays three miles, not 28.3, which is the deck's own computation, so the attribution runs onto the computed figure. Its headline, 'Three miles in every direction', also upgrades c3's 'eligible customers within three miles' to uniform coverage, and the ring sits on an invented dense town with sparse land outside it. (2) Slide 7 draws one seat per vote (FIG.rowlett_vote_for drives seats:), so a reader counting the chairs reads a six-member council. A 6-0 motion establishes the votes cast, not the size of the body. (3) Slide 9's 'Next, the hub comes before the rule' is inference from c10 and leaves out c11, which it cites: the city says it can already regulate where hubs sit inside its limits. None of these is a fabrication or an untraced numeral."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.0,
+   "why": "A Texan learns what happened (Zipline taking orders from October 9th, slide 1) and where (the ETJ near North Kenney Fort and Joe DiMaggio Boulevards on slide 2, Renaissance Square on northbound I-35 on slide 9). They also learn what the city can and can't regulate (slide 3) and what they can do: community@zipline.com for operations and the FAA for safety (slide 8). Two things are missing. No body decided anything in Round Rock: the city's position is a web page, with no council action, hearing or date named for the Renaissance Square hub. No deadline appears either. The deck carries c37 (FAA comment window closed October 11th) and never uses it. The county is unnamed although c41 places Round Rock in Williamson County. Rowlett's council, vote and date are the one fully named decision."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "The cover's 'The drones came first' earns the swipe, and frame 2 pays at once with the hub outside city limits. The turn is declared at 7 (Rowlett wrote the rule first) and is legible. The close returns to the deck's thesis with 'the hub comes before the rule' over an empty staked pad and a sky with nothing in it. Frames 5 and 6, the company's autonomy claims and the operations room, are a detour from the order-of-operations spine and could move or merge without loss. Frames 2 and 4 both spend the same three-mile fact."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Clean and on register, with specific Round Rock places (North Kenney Fort, Joe DiMaggio, Renaissance Square, I-35) and no boosterism or doom. 'The neighbor gets an email address' is a sharp, fair line, and 'Every claim here is Zipline's' is honest. The attribution scaffolding ('says', 'DroneXL reports', 'citing the company') makes several deks read like wire copy. The caption's 'The deck weighs what Zipline says the aircraft decides against what the city still decides' is a flat meta line describing the product instead of the story. No banned words, colons, semicolons, dashes, first person or And/But openers were found."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.0,
+   "why": "No. 33 on September 24th, 32 days ago and just outside the 30-day window, covered the same company, the same aircraft and the same pod-on-a-tether motif for the same Austin metro. This deck's art plan (art_preflight distinct_from_recent) shows it knew this and changed the cover and the world. The lastLight world is also the register of nos. 46, 56, 57, 58 and 60, and no. 46 (October 8th) was another autonomous aircraft at last light. The structure (an order-of-operations comparison of two cities) and the minutes-plus-city-page instrument are fresh. A fresh concept with more than one familiar move."
+  }
+ ],
+ "weighted_score": 6.83,
+ "weighted_score_arithmetic": "6.3*0.22 + 7.3*0.12 + 7.0*0.20 + 7.0*0.16 + 7.5*0.10 + 7.0*0.10 + 6.0*0.10 = 1.386 + 0.876 + 1.400 + 1.120 + 0.750 + 0.700 + 0.600 = 6.832",
+ "hard_fails": [],
+ "ship": false,
+ "ship_note": "No hard fail found. ship is false only because 6.83 is under the round 1 rung of 8.0, so this is a threshold dissent, not a veto. Checked and cleared: (1) Every slide and caption numeral traces to a claim or to compute.py, and '35' traces to c9's 'I-35'. (2) machine_qa.json has 0 fails and 13 warns. (3) No caption house-rule breach found by reading. (4) Every cited source is in claims.json with a retrieved date. (5) c43 (medium) is attributed on every surface. (6) Topic window: no. 33, the same company, is 32 days back, outside the 30-day window. Leads for the showrunner, not failures: art_preflight.json lists needs_review: [9] even though its review block accepts slide 9 with input hashes matching frame_inputs, so confirm that field is stale before panel_ready relies on it. The first comment prints the minutes' title with 'May 20, 2025' verbatim, a source's own title.",
+ "one_sentence_fix": "Rebuild frame 4 and frame 8, the two frames where the art and the claim both slip. On 4, run one lamp grid unbroken inside and outside a thin ring, put a visible lit pad at the hub, and rewrite the dek to 'Three miles from the hub encloses about 28.3 square miles, computed here' with 'in every direction' cut. On 8, light the pod as the same pale banded shell as frames 1 and 2 in its own pool on the lawn, with the resident turned up toward it.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 8,
+   "problem": "The recurring pod renders near black with a single specular hit, while frames 1 and 2 show a pale shell. There is no light pool under it, the lawn is dark with sparse sprite grass, and the kit resident faces the fence with a hand on their head, reading as a mannequin. The subject is small and the frame breaks the deck's one material constant.",
+   "fix": "Swing the key to camera-left onto the pod's lit face (or add a tight spot from above along the tether) so the pale composite and gold band read. Put a warm pool on the lawn directly under the pod, turn the resident three-quarters toward the pod with the head tilted up, and push the camera in until the pod is about a third of frame height."
+  },
+  {
+   "slide": 4,
+   "problem": "The ring's interior is a uniform diagonal hatch of lamp dots that reads as a textured disc or UI overlay, not streets. It is dense inside and sparse outside, which invents geography the record doesn't give. The hub is only a white dot plus a label, and a stray dark sprite square sits below the near arc.",
+   "fix": "Draw one lamp grid of even density across the whole ground, with the dense diagonal striping inside the ring removed, so only the thin lit ring marks the reach. Build the hub as a visible lit pad with the dock tower at the centre, and delete the stray sprite."
+  },
+  {
+   "slide": 6,
+   "problem": "The kit operator is a stiff figure in a backward cap with the face in profile (the plan said it would not be visible), and all four monitors show the identical dotted route with two orange nodes, so the room reads as a template.",
+   "fix": "Crop the operator to a shoulder and forearm at the left edge as planned, give each screen a different route geometry or a map, and let the screens' light fall on the operator's sleeve and the desk as the room's only source."
+  },
+  {
+   "slide": 5,
+   "problem": "The airframe sits askew on a floating orange slab cantilevered from the lattice, with the port wing passing through the tower. There is no contact shadow where the aircraft meets the cradle, and the airframe is dim against a dark sky.",
+   "fix": "Seat the fuselage in a modelled cradle with TXT.contact under it and clear the wing from the lattice. Add a rim from the key side so the airframe's top edge is the frame's one bright edge."
+  },
+  {
+   "slide": 7,
+   "problem": "The source calls CH.noShadows(R), so the chairs, mics and nameplates cast nothing on the bench under six downlights, and the dais front reads flat.",
+   "fix": "Remove the noShadows call (fix acne with the existing unacne bias instead) so each downlight throws its mic and chair-back shadow across the walnut bench top."
+  }
+ ],
+ "files_read": [
+  "/home/user/TexasAIDocket/config/carousel/scoring_rubric.yaml",
+  "/home/user/TexasAIDocket/out/2026-10-26/copy.json",
+  "/home/user/TexasAIDocket/out/2026-10-26/claims.json",
+  "/home/user/TexasAIDocket/out/2026-10-26/caption.txt",
+  "/home/user/TexasAIDocket/out/2026-10-26/first_comment.txt",
+  "/home/user/TexasAIDocket/out/2026-10-26/figures.json",
+  "/home/user/TexasAIDocket/out/2026-10-26/compute.py",
+  "/home/user/TexasAIDocket/out/2026-10-26/aggregates.json",
+  "/home/user/TexasAIDocket/out/2026-10-26/render/machine_qa.json",
+  "/home/user/TexasAIDocket/out/2026-10-26/art_preflight.json",
+  "/home/user/TexasAIDocket/out/2026-10-26/storyboard.md",
+  "/home/user/TexasAIDocket/out/2026-10-26/slides/slide-07.html",
+  "/home/user/TexasAIDocket/out/2026-10-26/render/slide-01.png to slide-09.png",
+  "/home/user/TexasAIDocket/out/2026-10-26/final/contact_sheet.png",
+  "/home/user/TexasAIDocket/ledger/carousel/topics.json"
+ ],
+ "not_read": "The reviews directory could not be listed with the tools available, so the pixel, flow and art director reviews were not read and this judgment is independent of them."
+}

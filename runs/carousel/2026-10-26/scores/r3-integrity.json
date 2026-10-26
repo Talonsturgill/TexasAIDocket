@@ -1,0 +1,77 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.5,
+   "why": "Strong frames: 01 (lit composite airframe and pod with its gold band over a grid of town lamps), 09 (staked pad with string line, wheel stops and grate in one sodium pool) and 04 (ring on the lamp grid with a dark field and a real horizon). Several frames lean on kit defaults or have artifacts, which is more than the one the 7 descriptor allows. Frame 08: the resident's shadow falls RIGHT on the fence and the pod's shadow falls LEFT on the same fence, so the light disagrees with itself. There is also a hard black ellipse detached on the lawn far below and forward of the pod, which reads as a hole (crop slide-08-r3c2). The kit resident holds a hand across the face, the 'lawn' reads as dark asphalt with sparse tufts, and the tether runs about 15 degrees off vertical, not near plumb. Frame 03: the sign is a flatly lit green rectangle on plain black rods, not the galvanized U-channel the craft line declares. The aircraft is a single speck at the end of a red and green line. In the headline, the descender of 'y' in 'city' touches the 'h' of 'flight' (crop slide-03-r1c1). Frame 02: the lattice tower is a thin column, and about 40 percent of the frame is empty navy gradient between the dek and the ground. The 'c2 c3 c55' source line sits over gravel and a fence post. Frame 05: the dashes of the route corridor are drawn over the starboard wing (crop slide-05-r2c2), and the tower lattice runs under the ONBOARD label and the source line. Frame 07: a mid-tone brown frame of procedural wood, with the lectern as a big blank box. Frame 06: a mannequin operator in a cap and identical screens. Machine QA flags dead lower thirds on 01 and 04. The deck is graded, dark-field and lit, so 4 is too low. Too many frames carry a default or an artifact for a 7."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "On the contact sheet this is clearly one deck. It keeps one night world throughout, and dusk gold appears only on the pod band (01, 02, 08) and the cradle ring (05). The storyboard declares three devices and the frames show all three. The camera moves from air to ground (01 at the aircraft's height, then 02 pad, 03 sign, 04 reach, 05 cradle, 06 and 07 interiors, 08 yard, 09 pad). The aircraft motif changes state and ends absent on 09. The edge tease works: the aircraft leaves 02 by the right edge and enters 03 as a trail from the left. The value track holds dark until 07, where the warm brown chamber leans into mid tones, and 09's tan asphalt lifts the lower third. The cut at 07 is declared as the turn. Frame 07 sits slightly outside the deck."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.5,
+   "why": "Every numeral traces. '28.3 square miles' is pi times 3 squared in compute.py (reach_sq_mi from c3). '6 to 0' and '2025' trace to c47 and c46. '5 pounds' traces to c38, 'October 9th' to c32, '35' to c9's I-35, and the first comment's three 'two' counts to sources_block. Every Zipline autonomy statement on 05 matches c18, c19, c20 and c23 and is attributed ('Every claim here is Zipline's'). The medium-confidence c43 is attributed in the 07 headline ('DroneXL reports') and in the caption. The 07 dek is accurate: the minutes' '6-0' and c54's 'is the control' are quoted as minutes. The six microphones were checked in the render (six lit heads), and the dek says one per vote cast. Every frame that shows a drawn object says it is drawn to illustrate. Rejected findings (county, noise routing, 200 ft buffer, FAA ceiling, mileage) appear nowhere. Where it falls short of 10: the October 9th start rests on DroneXL (c32) although Zipline's own October 9th release (c28) exists. The 5 lb limit is journalism relaying journalism (DroneXL citing Community Impact). The deck's spine, Rowlett rule first, rests on a medium journalism claim with no primary opening date. One framing is looser than its sources: 'The drones came first' and 'Rowlett zoned for drone hubs. Round Rock hasn't.' set an in-city Rowlett ordinance against an ETJ hub, while the deck's own c8 says Round Rock's land use power applies 'within city limits'. A reader is left believing Round Rock let a hub in ahead of a rule it could have written for that site. Frame 08's headline says 'neighbor', but the picture shows a pod landing in the resident's own yard, which is the customer."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.5,
+   "why": "A Texan learns what happened (Zipline taking orders in Round Rock, per DroneXL), where (near North Kenney Fort and Joe DiMaggio, in the ETJ), what the city can and can't do (03), the other city's order (Rowlett, May 20th, 2025, 6 to 0, Zipline the applicant), and what a resident has (community@zipline.com and the FAA, 08). The close names the next step, Renaissance Square on northbound I-35. No deciding body, date or comment opportunity is named for that hub, and the record has none. The ETJ is never explained as the reason the city's zoning doesn't reach the first hub, so the stake is partly stated in general terms."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "The cover hook 'The drones came first' earns the swipe. Frame 02 pays at once with the hub's location outside city limits. The turn at 07 (Rowlett wrote the rule first) is where understanding changes. The close 'Next, the hub comes before the rule' lands the order argument. Frames 05 and 06 (the machine and the operations room) are a detour from the zoning order argument, and 04 or 06 could go without loss."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Clean and on register, with no house rule breaks found in the caption (no colons, contractions used, no year on October 9th, year kept on May 20th, 2025). Some lines are good: 'The neighbor gets an email address'. 'DroneXL reports' recurs on 01, 07, 08 and twice in the caption, so it reads like wire copy. The caption's 'The deck weighs what Zipline says the aircraft decides against what the city still decides' is meta and machine-flat. The copy has no local texture: Williamson County is withheld on purpose, and nothing about the I-35 corridor reaches the words."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "The topic is fresh: no drone delivery or Zipline topic appears in topics.json within 30 days, and no. 46 (Project Nexus) is a different story. The technique (all spatial scenes, no reliefs) diverges from the recent relief decks (53, 57, 59, 60). Familiar moves remain. The ledger says nos. 56, 57, 58 and 60 were rendered in the lastLight world, and this is that same night palette with a warm accent. The close (an empty pad with survey stakes and pink flagging) repeats no. 44's survey lath in survey pink on Williamson County clay, no. 49's stakes and no. 57's empty chalked pad. The cover (an aircraft at last light) echoes no. 46's Caravan."
+  }
+ ],
+ "weighted_score": 7.13,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Use the deck's own c8 on frame 2 to say Round Rock's zoning power stops at its city limits, so the ETJ hub was never its to zone, and aim the Rowlett comparison at the Renaissance Square in-city hub where the order question is real. As it stands, 'The drones came first' and 'Round Rock hasn't' imply the city let a hub in ahead of a rule it could have written for that site.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 8,
+   "problem": "The light contradicts itself. The resident's shadow falls right on the fence and the pod's shadow falls left on the same fence. A hard black ellipse sits detached on the lawn far below the pod and reads as a hole. The kit resident holds a hand across the face, and the lawn reads as dark asphalt.",
+   "fix": "Light from one high flood at camera left only. Drop the pod's fence shadow and put its lawn shadow directly under the pod along that light, soft-edged and inside a visibly lit pool of grass. Re-pose the resident looking up with arms down."
+  },
+  {
+   "slide": 3,
+   "problem": "The sign is a flatly lit green rectangle on plain black rods, not galvanized U-channel. The aircraft is a single speck with a red and green line. The headline 'y' of 'city' touches the 'h' of 'flight'.",
+   "fix": "Move the camera to a low three-quarter view about 3 m from the sign so its face takes a third of the frame with visible falloff from a lamp on one side and lit, bolted U-channel posts. Rebreak or add leading to the headline so the descender clears line two."
+  },
+  {
+   "slide": 2,
+   "problem": "The subject is undersized. The thin lattice tower is a narrow column, and about 40 percent of the frame is empty navy gradient between the dek and the ground. The source line sits over gravel and a fence post.",
+   "fix": "Push the camera to about 12 m and lower it so the tower, cabinet and pad fill the lower two thirds. Bring the departing aircraft down to overlap the tower arm. Keep the fence below the source-line row."
+  },
+  {
+   "slide": 5,
+   "problem": "The dashes of the route corridor draw over the starboard wing (no depth test). The tower lattice runs under the ONBOARD DETECT AND AVOID label and the source line.",
+   "fix": "Turn on depth testing for the corridor so it emerges from behind the wing. Pan the camera right so the tower leaves frame left above the label and source-line rows."
+  },
+  {
+   "slide": 7,
+   "problem": "The frame sits in the grey middle: procedural walnut on the dais and a big blank lectern box fill it at mid L*, and the microphones are small.",
+   "fix": "Darken the chamber to one key pool across the dais front and the six microphones. Crop the lectern to a sliver at lower left with only the lit sheet of minutes."
+  }
+ ]
+}

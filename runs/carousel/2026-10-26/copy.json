@@ -1,0 +1,223 @@
+{
+ "date": "2026-10-26",
+ "carousel_no": 61,
+ "document_title": "The drones came first. Drone hubs in Round Rock and Rowlett",
+ "_note": "Slide strings read off the render report's text nodes and each frame's own source line by build_copy.py.",
+ "caption": "Rowlett zoned for drone hubs. Round Rock hasn't.\n\nMay 20th, 2025. Rowlett's City Council voted 6 to 0 to add drone hubs to its zoning code. Zipline was the applicant. DroneXL reports the rule came before Zipline opened there.\n\nOctober 9th. Zipline began taking orders in Round Rock, DroneXL reports. The city puts the hub in its extraterritorial jurisdiction near North Kenney Fort and Joe DiMaggio Boulevards. Its zoning doesn't specifically address drone hubs.\n\nNow the city is working with Zipline toward an in-city hub behind Renaissance Square on Interstate 35. It says that site will help it write rules for future hubs. It routes operational feedback to Zipline and safety concerns to the FAA.\n\nThe deck weighs what Zipline says the aircraft decides against what the city still decides.\n\nWhich order serves neighbors better, the rule first or the hub first?\n\n#RoundRock #Rowlett #Zipline",
+ "slides": {
+  "S1": {
+   "n": 1,
+   "file": "slide-01.html",
+   "kicker": "Drone delivery, Round Rock",
+   "headline": "The drones came first",
+   "claims": [
+    "c1",
+    "c10",
+    "c28",
+    "c32"
+   ],
+   "cite": "c1 c10 c28 c32",
+   "body": "Zipline began taking orders in Round Rock on October 9th, DroneXL reports. The City of Round Rock says its zoning ordinances don't specifically address drone delivery hubs. The aircraft is drawn to illustrate.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "The drones came first",
+    "Zipline began taking orders in Round Rock on October 9th, DroneXL reports. The City of Round Rock says its zoning ordinances don't specifically address drone delivery hubs. The aircraft is drawn to illustrate.",
+    "Drone delivery, Round Rock",
+    "01 / 09",
+    "c1 c10 c28 c32"
+   ]
+  },
+  "S2": {
+   "n": 2,
+   "file": "slide-02.html",
+   "kicker": "The extraterritorial jurisdiction",
+   "headline": "The first hub is outside city limits",
+   "claims": [
+    "c2",
+    "c3",
+    "c55"
+   ],
+   "cite": "c2 c3 c55",
+   "body": "Round Rock places the facility near North Kenney Fort and Joe DiMaggio Boulevards, in its extraterritorial jurisdiction. Citing the company, the city says service reaches eligible customers within three miles. The tower and aircraft are drawn to illustrate.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "The first hub is outside city limits",
+    "Round Rock places the facility near North Kenney Fort and Joe DiMaggio Boulevards, in its extraterritorial jurisdiction. Citing the company, the city says service reaches eligible customers within three miles. The tower and aircraft are drawn to illustrate.",
+    "The extraterritorial jurisdiction",
+    "02 / 09",
+    "c2 c3 c55"
+   ]
+  },
+  "S3": {
+   "n": 3,
+   "file": "slide-03.html",
+   "kicker": "The city limit",
+   "headline": "The city can't regulate the flight path",
+   "claims": [
+    "c4",
+    "c6",
+    "c7",
+    "c8"
+   ],
+   "cite": "c4 c6 c7 c8",
+   "body": "Round Rock says the FAA regulates airspace and flight paths. Its page says drones may fly over residential areas on approved routes. Inside city limits it may regulate where drone infrastructure sits. The aircraft is drawn to illustrate.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "The city can't regulate the flight path",
+    "Round Rock says the FAA regulates airspace and flight paths. Its page says drones may fly over residential areas on approved routes. Inside city limits it may regulate where drone infrastructure sits. The aircraft is drawn to illustrate.",
+    "The city limit",
+    "03 / 09",
+    "c4 c6 c7 c8"
+   ]
+  },
+  "S4": {
+   "n": 4,
+   "file": "slide-04.html",
+   "kicker": "The company's reach",
+   "headline": "Three miles from the hub",
+   "claims": [
+    "c2",
+    "c3"
+   ],
+   "cite": "c2 c3",
+   "body": "Citing the company, the city says service reaches within three miles of the hub. A circle that wide covers about 28.3 square miles, computed here. The ring is drawn to illustrate.",
+   "labels": [
+    "3 MILES",
+    "THE HUB"
+   ],
+   "strings": [
+    "texasaidocket.com",
+    "Three miles from the hub",
+    "Citing the company, the city says service reaches within three miles of the hub. A circle that wide covers about 28.3 square miles, computed here. The ring is drawn to illustrate.",
+    "3 MILES",
+    "THE HUB",
+    "The company's reach",
+    "04 / 09",
+    "c2 c3"
+   ]
+  },
+  "S5": {
+   "n": 5,
+   "file": "slide-05.html",
+   "kicker": "What the company says",
+   "headline": "Zipline says the aircraft decides",
+   "claims": [
+    "c18",
+    "c19",
+    "c20",
+    "c23"
+   ],
+   "cite": "c18 c19 c20 c23",
+   "body": "The company says each aircraft reserves its own route before launch, avoids other aircraft with an onboard system and responds to problems on its own. Every claim here is Zipline's. The aircraft and tower are drawn to illustrate.",
+   "labels": [
+    "ONBOARD DETECT AND AVOID",
+    "ROUTE RESERVED BEFORE LAUNCH",
+    "PARACHUTE"
+   ],
+   "strings": [
+    "texasaidocket.com",
+    "Zipline says the aircraft decides",
+    "ONBOARD DETECT AND AVOID",
+    "ROUTE RESERVED BEFORE LAUNCH",
+    "PARACHUTE",
+    "The company says each aircraft reserves its own route before launch, avoids other aircraft with an onboard system and responds to problems on its own. Every claim here is Zipline's. The aircraft and tower are drawn to illustrate.",
+    "What the company says",
+    "05 / 09",
+    "c18 c19 c20 c23"
+   ]
+  },
+  "S6": {
+   "n": 6,
+   "file": "slide-06.html",
+   "kicker": "The operations center",
+   "headline": "People watch from somewhere else",
+   "claims": [
+    "c24"
+   ],
+   "cite": "c24",
+   "body": "Zipline says trained staff monitor its flights from a remote operations center. The room is drawn to illustrate.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "People watch from somewhere else",
+    "Zipline says trained staff monitor its flights from a remote operations center. The room is drawn to illustrate.",
+    "The operations center",
+    "06 / 09",
+    "c24"
+   ]
+  },
+  "S7": {
+   "n": 7,
+   "file": "slide-07.html",
+   "kicker": "Rowlett, May 20th, 2025",
+   "headline": "Rowlett wrote the rule first, DroneXL reports",
+   "claims": [
+    "c43",
+    "c46",
+    "c47",
+    "c48",
+    "c51",
+    "c54"
+   ],
+   "cite": "c43 c46 c47 c48 c51 c54",
+   "body": "Rowlett's minutes record a 6 to 0 vote adding drone hubs and kiosks to its zoning code on May 20th, 2025. Zipline was the applicant. In the minutes a member says the hub's special use permit \"is the control.\" The chamber is drawn with one microphone per vote cast.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "Rowlett wrote the rule first, DroneXL reports",
+    "Rowlett's minutes record a 6 to 0 vote adding drone hubs and kiosks to its zoning code on May 20th, 2025. Zipline was the applicant. In the minutes a member says the hub's special use permit \"is the control.\" The chamber is drawn with one microphone per vote cast.",
+    "Rowlett, May 20th, 2025",
+    "07 / 09",
+    "c43 c46 c47 c48 c51 c54"
+   ]
+  },
+  "S8": {
+   "n": 8,
+   "file": "slide-08.html",
+   "kicker": "Under the flight path",
+   "headline": "The neighbor gets an email address",
+   "claims": [
+    "c6",
+    "c13",
+    "c14",
+    "c38"
+   ],
+   "cite": "c6 c13 c14 c38",
+   "body": "Round Rock directs operational feedback to Zipline at community@zipline.com and safety concerns to the FAA. Citing Community Impact, DroneXL reports a limit of about 5 pounds per order, lowered on a tether. The pod and yard are drawn to illustrate.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "The neighbor gets an email address",
+    "Round Rock directs operational feedback to Zipline at community@zipline.com and safety concerns to the FAA. Citing Community Impact, DroneXL reports a limit of about 5 pounds per order, lowered on a tether. The pod and yard are drawn to illustrate.",
+    "Under the flight path",
+    "08 / 09",
+    "c6 c13 c14 c38"
+   ]
+  },
+  "S9": {
+   "n": 9,
+   "file": "slide-09.html",
+   "kicker": "Renaissance Square, proposed",
+   "headline": "Next, the hub comes before the rule",
+   "claims": [
+    "c9",
+    "c10",
+    "c11"
+   ],
+   "cite": "c9 c10 c11",
+   "body": "Round Rock is working with Zipline toward a hub behind Renaissance Square on northbound Interstate 35. The city says that site will help it develop regulations for future facilities inside city limits. Drawn to illustrate.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "Next, the hub comes before the rule",
+    "Round Rock is working with Zipline toward a hub behind Renaissance Square on northbound Interstate 35. The city says that site will help it develop regulations for future facilities inside city limits. Drawn to illustrate.",
+    "Renaissance Square, proposed",
+    "09 / 09",
+    "c9 c10 c11"
+   ]
+  }
+ }
+}

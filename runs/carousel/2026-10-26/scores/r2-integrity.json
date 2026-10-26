@@ -1,0 +1,77 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.6,
+   "why": "The best frames are close to bold. Frame 1 has the pale airframe over a converging lamp grid on near black (preflight median L* 3.4). Frame 4's ring with its radius leader reads as a measured circle (median L* 1.3). Frame 7's walnut dais is a real interior. Frame 9's staked pad has long casts, wheel stops and a grate. Three frames still fall toward the 4 descriptor of an object floating in a field. Frame 2 is a thin lattice mast on a black void. Its storyboard pad, cabinet, barbed wire fence and contact shadow are all absent, the base vanishes behind the footer and blobby rocks, and the aircraft is a fragment at the top right. Frame 3 is a sign hanging on one hairline post with no ground, and machine QA flags the dead lower third (bottom band 0.0956, ratio 0.61). Frame 8's tether runs about 35 degrees off vertical, which a pod lowered from a hovering aircraft would not do. The pod casts no shadow and has no pool on the lawn even though the plan made the pool the focal point, and the kit resident is stiff against a flat fence wall. Smaller defects: on frame 5 the dotted route crosses the PARACHUTE label (machine QA warns of art touching glyphs), and on frame 6 the cropped operator in a cap reads as a mannequin."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "One lastLight night world, one dark register and one gold accent family hold across the contact sheet. Two continuity devices work. The edge tease does real work: the aircraft leaves frame 2 at the right edge and its nav-light trail enters frame 3 from the left. The motif evolution also works, going from aircraft in flight (1), to docked (5), to a line on a screen (6), to absent from the dais (7), to the pod coming down (8), to an empty sky (9). Frame 7's warm walnut interior is the cut the storyboard declared at the turn. Two things sit slightly outside. The accent orange appears on frame 6's screen dots and frame 2's tower top, although the storyboard reserves it for what comes down to the ground. Frame 3's flat green sign in a void is the one image that does not feel cut from the same stock."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.0,
+   "why": "Every numeral traces. The 28.3 square miles is computed in compute.py as pi times 3 squared, rounded to one decimal. The 3 miles is c3, 6 to 0 is c47, May 20th, 2025 is c46, 5 pounds is c38, October 9th is c32 and Interstate 35 is c9's I-35. The first comment's counts of two, two and two match sources_block. Medium claims are attributed: 'Rowlett wrote the rule first, DroneXL reports' (c43) and the caption's 'DroneXL reports the rule came before Zipline opened there'. What holds the score down: (1) Frame 7's dek says in the deck's own voice that 'The chamber is drawn with one seat per vote cast', and the image does not show six. I count five lit chair backs at display x of about 330, 670, 850, 1040 and 1200, against six microphones and six nameplates that do not line up with the chairs. Two dark low shapes at about x 110 and 590 read as either unlit chairs or shadows, so a reader counts five or seven seats. (2) The deck's spine sets Round Rock's 'drones came first' against Rowlett's 'rule first'. Frame 1 and the caption put the ETJ hub beside 'its zoning doesn't specifically address drone hubs', but no surface says whether city zoning could reach an ETJ site at all. c8 only grants land-use power inside city limits. A reader can infer an ordering choice that the sources never establish. (3) 'Zipline says the aircraft decides' puts a stronger verb in Zipline's mouth than c18, c19 or c20 use ('automatically reserve', 'automatically respond'). (4) The 5 lb limit is journalism relaying journalism (DroneXL citing Community Impact) where Zipline's own spec would be primary. (5) The cite lines carry claims the frames never state: c10 and c28 on frame 1, c11 on frame 9."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.0,
+   "why": "What happened, where and who acted are concrete. The hub is near North Kenney Fort and Joe DiMaggio, in the ETJ. Rowlett's council voted 6 to 0 on May 20th, 2025 with Zipline as the applicant. The proposed in-city hub is behind Renaissance Square on northbound I-35, and frame 8 gives the routes a resident has: community@zipline.com and the FAA. The open decision, Round Rock's Renaissance Square approval, has no named body, meeting or date. The deck gives no deadline and no way to weigh in before the city writes its rule, so the final stake, 'Next, the hub comes before the rule', stays general."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "The cover earns the swipe with a big airframe and pod under 'The drones came first'. Frame 2 pays at once: the hub is outside city limits. The turn lands on frame 7 at Rowlett's dais, and the close on the empty staked pad answers the cover. Frames 5 and 6, the company's autonomy claims and the operations room, are the AI layer but form a detour from the order-of-operations spine, and either could move without loss."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "The deck is specific to place in street names, the ETJ, Renaissance Square and I-35. 'The neighbor gets an email address' has a dry local edge without doom. The caption's closing question is fair to both orders. The flat lines: 'is drawn to illustrate' repeats as boilerplate on eight of nine deks, and 'computed here' on frame 4 reads like machine furniture."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Against nos. 57 to 60 (stair reliefs, bone record cards, a tilt-up plant wall, a cast iron plate) this is a fresh spatial and airborne deck. Two moves are familiar. It uses the lastLight world again, as nos. 56, 57, 58 and 60 did. It returns to Zipline with a banded pod on a tether 32 days after no. 33 (September 24th, tx-2026-0186), which is outside the 30-day window but the same company and the same object family."
+  }
+ ],
+ "weighted_score": 7.07,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Rebuild frames 2, 3 and 8 so each subject stands on lit ground with contact (the hub's concrete pad, cabinet and barbed wire in the lower third, the sign's two U-channel posts in a lit verge, a plumb tether with the pod's pool and shadow on the lawn), and make frame 7 show exactly six chairs, one behind each of its six lit microphones, because its dek promises that count in the deck's own voice.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 2,
+   "problem": "The frame about where the hub is shows a lone hairline lattice mast on a black void. It has no pad, no fence, no cabinet and no contact shadow, the base is lost behind the footer and lumpy rocks, and the aircraft is an unreadable fragment at the top right.",
+   "fix": "Drop the camera to about 1 m behind two barbed wire strands and two posts. Bring the concrete pad, cabinet and the tower's contact shadow up into the lower third above the footer, and pull the aircraft in so its full wing and gold-band pod clear the right edge by only the starboard tip."
+  },
+  {
+   "slide": 8,
+   "problem": "The tether runs about 35 degrees off vertical from the upper right, which a pod lowered from a hovering aircraft would not do. The pod casts no shadow and has no pool on the lawn, so it reads as pasted onto the fence wall, and the stiff kit resident stands away from it.",
+   "fix": "Hang the tether plumb from the top edge. Light a pool on the lawn directly under the pod with its contact shadow, and move the resident into the pool's edge facing the pod so the person and the pod share one light."
+  },
+  {
+   "slide": 3,
+   "problem": "The sign floats on one hairline post with no ground, and the bottom third is dead (machine QA band 0.0956, top-loaded warn), so the frame is a flat green plate in a void.",
+   "fix": "Model the two galvanized U-channel posts into a lit grass and caliche verge with contact shadows. Lower and enlarge the sign crop so the posts and ground carry the bottom third under the nav-light trail."
+  },
+  {
+   "slide": 7,
+   "problem": "The six microphones and six nameplates do not line up with the five visible lit chairs. Two dark low shapes at about x 110 and 590 read as extra unlit chairs or as stray shadows, so the seat count the dek promises can't be read.",
+   "fix": "Put exactly six chairs on the bench, one directly behind each lit microphone and nameplate, and remove or relight the two dark shapes so a reader counts six seats at 432 px."
+  },
+  {
+   "slide": 6,
+   "problem": "The kit operator, cropped at the left edge in a cap, reads as a mannequin, and the screen dots use the gold accent the storyboard reserves for what comes down to the ground.",
+   "fix": "Crop the operator to a screen-lit shoulder and forearm on the keyboard, as the storyboard's risk note planned, and recolour the screen endpoints to the screens' cool white so the gold stays on the pod and cradle."
+  }
+ ]
+}

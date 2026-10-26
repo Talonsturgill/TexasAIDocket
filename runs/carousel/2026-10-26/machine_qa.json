@@ -1,0 +1,128 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [
+        "top-loaded composition: the bottom third carries 74% of this slide's own average craft density (top 17% / mid 36% / bottom 17% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone",
+        "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "bands": [
+        0.1702,
+        0.3571,
+        0.171
+      ],
+      "band_ratio": 0.7435
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "bands": [
+        0.3067,
+        0.1618,
+        0.3897
+      ],
+      "band_ratio": 1.3402
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky",
+        "busy art under text (bg edge density 0.08) beneath 'texasaidocket.com' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.05) beneath 'c4 c6 c7 c8' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
+      ],
+      "bands": [
+        0.2332,
+        0.1576,
+        0.4614
+      ],
+      "band_ratio": 1.5795
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [
+        "top-loaded composition: the bottom third carries 77% of this slide's own average craft density (top 24% / mid 25% / bottom 17% of cells carrying craft) -- the dead lower zone. Extend the anchor, run the annotation furniture down, or move the mass; do not answer it with a bigger quiet zone",
+        "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "bands": [
+        0.2353,
+        0.25,
+        0.1654
+      ],
+      "band_ratio": 0.771
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "bands": [
+        0.2836,
+        0.1849,
+        0.4614
+      ],
+      "band_ratio": 1.4562
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot stands inside something built"
+      ],
+      "bands": [
+        0.3067,
+        0.2437,
+        0.6562
+      ],
+      "band_ratio": 1.586
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot stands inside something built"
+      ],
+      "bands": [
+        0.2395,
+        0.4391,
+        0.8125
+      ],
+      "band_ratio": 1.5889
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "bands": [
+        0.3046,
+        0.3929,
+        0.5735
+      ],
+      "band_ratio": 1.3323
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "bands": [
+        0.3067,
+        0.1849,
+        0.9228
+      ],
+      "band_ratio": 1.8757
+    }
+  ],
+  "fails": 0,
+  "warns": 13,
+  "verdict": "WARN"
+}

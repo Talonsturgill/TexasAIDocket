@@ -3787,6 +3787,73 @@
     "hex": "#0A0807",
     "note": "The lastLight world's dark sky and caliche."
    }
+  },
+  {
+   "date": "2026-10-26",
+   "carousel_no": 61,
+   "written_from": "deck_coherence's median L* per frame at 432 px off the final renders, layout_check's accent share, by update_ledgers.py.",
+   "register": "SPATIAL SCENES in TXT's lastLight world, staged, two TXT.interior rooms. Chassis assets/js/deck/2026-10-26-tether.js: key az -55 el 8, chassis models delivery_drone, delivery_pod, dock_tower, street_glow and survey_stake, pale composite with carbon booms, galvanized lattice steel, dusk gold, walnut, cedar and worn asphalt.",
+   "structural_laws": [
+    "AN AIRCRAFT AT ITS TRUE HEIGHT IS A SPECK FROM THE GROUND. At 91.4 m the drone over the city limit sign was a few pixels at any honest camera, so its path became a long exposure of its wingtip lights at that height.",
+    "A CORRIDOR DRAWN AS A TUBE READS AS A SEARCHLIGHT. A dashed lit line laid along screen points carried out to the station height read as a planned route.",
+    "A KIT PERSON CLOSE TO THE LENS IS A MANNEQUIN. The operator held only at the next desk, seen whole from behind.",
+    "A RANDOM WALK CRACK TEXTURE READS AS SHADOWS OR ROOTS. Short straight runs with hard turns read as cracks.",
+    "AN UNLIT ACCENT IS A STICKER AND A LIT ONE LOSES ITS HEX. Emission at the hex over a dim albedo held both."
+   ],
+   "techniques": [
+    "the aircraft from 9 m off its port quarter at its station height over a street lamp grid",
+    "a galvanized lattice dock tower in a field behind barbed wire, the aircraft leaving by the right edge",
+    "a long exposure light trail at the station height over a city limit sign seen from below",
+    "an aerial of a three mile ring laid on the land around a lit hub, its stripe widening with distance",
+    "the aircraft docked in the cradle with leaders and a dashed route climbing out of frame",
+    "an operations room lit by its screens with an operator at the next desk",
+    "a walnut dais along its length from beside the lectern, one lit tally per vote, the minutes in the foreground",
+    "a backyard at night, a resident at a cedar fence, the pod nearly down on its tether",
+    "an empty staked pad on worn asphalt under one lamp"
+   ],
+   "value": {
+    "per_frame_median_L": [
+     3.5,
+     1.3,
+     2.3,
+     1.3,
+     3.8,
+     6.4,
+     6.5,
+     1.8,
+     3.9
+    ],
+    "deck_median_L": 3.5,
+    "max_adjacent_delta": 4.7,
+    "mean_adjacent_delta": 2.03,
+    "note": "Measured by deck_coherence's median_lstar at 432 px off the final renders. A staged lastLight deck."
+   },
+   "accent": {
+    "hex": "#E0956A",
+    "name": "dusk gold, what comes down to the ground",
+    "frames_above_floor": [
+     1,
+     5,
+     6,
+     8
+    ],
+    "share": [
+     0.0045,
+     0.0002,
+     0.0,
+     0.0,
+     0.0036,
+     0.0024,
+     0.0,
+     0.0026,
+     0.0001
+    ],
+    "note": "The pod's band on 1, 2 and 8, the cradle on 5 and the hub marks on the screens of 6."
+   },
+   "ground": {
+    "hex": "#08070D",
+    "note": "The lastLight world's dark sky."
+   }
   }
  ]
 }
