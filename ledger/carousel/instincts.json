@@ -637,7 +637,8 @@
         "2026-10-16",
         "2026-10-17",
         "2026-10-20",
-        "2026-10-25"
+        "2026-10-25",
+        "2026-10-26"
       ],
       "contradicted": []
     },
@@ -733,7 +734,8 @@
         "2026-10-05",
         "2026-10-09",
         "2026-10-17",
-        "2026-10-25"
+        "2026-10-25",
+        "2026-10-26"
       ],
       "contradicted": []
     },
@@ -853,7 +855,8 @@
         "2026-10-10",
         "2026-10-15",
         "2026-10-20",
-        "2026-10-24"
+        "2026-10-24",
+        "2026-10-26"
       ],
       "contradicted": []
     },
@@ -1606,6 +1609,22 @@
       "learned": "2026-10-25",
       "instinct": "Hold a tall subject like a substation bay far enough back that its tallest part sits below the dek, because every close crop drives it through the hook or the footer.",
       "evidence": "No. 60, October 25th: two close crops of the transformer bay each failed qa with eight strikes through the hook, the dek and the footer, and the bay held only from about 36 m.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "seat-the-subject-on-its-ground",
+      "learned": "2026-10-26",
+      "instinct": "Pull a spatial camera back until the subject's foot and the ground it stands on are inside the frame, because judges score a subject with no visible ground as an object in a void however well it is lit.",
+      "evidence": "Carousel no. 61, frames 2 and 3. All three judges charged the dock tower and the city limit sign as floating in round 2. Pulling the camera back to show the pad, gravel, fence, both sign posts and a lamp horizon cleared that charge in round 3 and lifted the craft card from 7.11 to 7.43.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "one-cast-per-hanging-object",
+      "learned": "2026-10-26",
+      "instinct": "Light a hanging or hovering object from one source whose cast lands on the ground under it, and check every other light in the scene does not throw a second shadow the other way.",
+      "evidence": "Carousel no. 61, frame 8, round 3. A pole flood put the pod's shadow on the lawn, but the deck rig's key still threw the pod and the resident onto the fence in opposite directions. All three judges named the contradictory casts first.",
       "confirmed": [],
       "contradicted": []
     }
