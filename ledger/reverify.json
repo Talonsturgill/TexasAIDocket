@@ -1,7 +1,7 @@
 {
   "_spec": {
     "version": 1,
-    "generated": "2026-10-25",
+    "generated": "2026-10-26",
     "note": "One row per source url. ETag and Last-Modified drive the next conditional request, hash short circuits the text comparison, and proven records which claim quotes have been located here, which is what tells a real change apart from a page this check cannot read."
   },
   "sources": {
@@ -406,7 +406,7 @@
     "https://cbsaustin.com/news/local/taylor-city-council-greenlights-data-center-after-months-of-debate": {
       "etag": null,
       "last_modified": null,
-      "hash": "9875eb10664e83195c3d8b9d4c1c1cd33028a73d40104d3adc0138f7f45d38d1",
+      "hash": "df29f974075f79613e955a2269d35bdb0fdedd45c8200334a4bf263d5c9a2caa",
       "proven": [
         "tx-2026-0203-c19"
       ]
@@ -440,8 +440,8 @@
     },
     "https://communityimpact.com/austin/san-marcos-buda-kyle/government/2026/06/23/hays-county-passes-resolution-pausing-consideration-of-high-water-use-developments-data-centers/": {
       "etag": null,
-      "last_modified": "Sun, 25 Oct 2026 05:13:28 GMT",
-      "hash": "6df69fcc9b8c08819c89897d4a8c1e0f7be0712ed48fe490acfc1b096ea84afc",
+      "last_modified": "Mon, 26 Oct 2026 05:09:00 GMT",
+      "hash": "344b9d66c6b221f471369689e620f6c15f179fe63d4ac9e5013cc2376abf2f62",
       "proven": [
         "tx-2026-0028-c1"
       ]
@@ -472,8 +472,8 @@
     },
     "https://communityimpact.com/keller-roanoke-northeast-fort-worth/government/fort-worth-city-council-approves-steps-to-start-moratorium-process-on-data-centers/": {
       "etag": null,
-      "last_modified": "Sun, 25 Oct 2026 05:13:28 GMT",
-      "hash": "dcca22920fc144522bca4f5f9179f98896cb2206b446fb322d33c1cc4a3056ba",
+      "last_modified": "Mon, 26 Oct 2026 05:09:00 GMT",
+      "hash": "26afc716cb45fc51e85720b86a7bd738a7ff8ace41e69fd171bd26680791d81c",
       "proven": [
         "tx-2026-0062-c1"
       ]
@@ -488,8 +488,8 @@
     },
     "https://communityimpact.com/san-marcos-buda-kyle/government/hays-county-commissioners-reallocate-funds-away-from-potential-axon-ai-contract/": {
       "etag": null,
-      "last_modified": "Sun, 25 Oct 2026 05:13:28 GMT",
-      "hash": "94ccb0630b4e556c67002d6a22fa72979b681d7ee9e3a0a71e26eb196273bc8d",
+      "last_modified": "Mon, 26 Oct 2026 05:09:01 GMT",
+      "hash": "3e77928b4a9db56ef92c62c1b06e914e629cf3d1e3a9bbf11f100c394797f7ab",
       "proven": [
         "tx-2026-0168-c8",
         "tx-2026-0168-c9"
@@ -1059,7 +1059,7 @@
     "https://kodiak.ai/news/autonomy-readiness-96-driverless-long-haul-launch": {
       "etag": null,
       "last_modified": null,
-      "hash": "dac649eea792c12bfdf72b8ccbacc6212f7987eb817319e2df6542af6b58eabb",
+      "hash": "a94d1f6e0e88b6f8486c2ba9657df9776824df52f87e7a8fb4c54bd25e8e840c",
       "proven": [
         "tx-2026-0198-c17"
       ]
@@ -1067,7 +1067,7 @@
     "https://kodiak.ai/news/driverless-long-haul-on-track-arm-93": {
       "etag": null,
       "last_modified": null,
-      "hash": "694dc895e908140ba7f010372b0224185f41ca2ec1e2d9c3db2b73c37a501f7d",
+      "hash": "dc5726cf02337c59eadfa39a3dfdfc8092cb327b996f26f5b3d7bf84c98d8b52",
       "proven": [
         "tx-2026-0198-c14",
         "tx-2026-0198-c15"
@@ -1076,7 +1076,7 @@
     "https://kodiak.ai/news/ikea-driverless-launch-partner": {
       "etag": null,
       "last_modified": null,
-      "hash": "e2b667fee3747a820097a7cdc3704376e56673889cd201a2466191ff3fd7531a",
+      "hash": "fff25806c0187d3f80e5b19e3b703c6dbe7943e05e6af58f91398f76142a5590",
       "proven": [
         "tx-2026-0198-c10",
         "tx-2026-0198-c11",
@@ -1087,7 +1087,7 @@
     "https://kodiak.ai/news/kodiak-charger-usa-autonomous-trucking-dallas-laredo": {
       "etag": null,
       "last_modified": null,
-      "hash": "652fbe0cf188f653266934c59e122f48ec7e0122bfdb90eb8e3f023e0d59f80e",
+      "hash": "f20d903bcc216822318ef23bf5d8e6280e6ae2de6e22c7014aa40c204a041bbc",
       "proven": [
         "tx-2026-0209-c1",
         "tx-2026-0209-c2",
@@ -1098,7 +1098,7 @@
     "https://kodiak.ai/news/kodiak-names-dallas-houston-driverless-launch-lane": {
       "etag": null,
       "last_modified": null,
-      "hash": "266678cae14dd5b724f96e4257ca0602589a15a2d8261ad0c52f86ef198e3b20",
+      "hash": "9e7fa4bdfaf730eb6d843946e10dd03cff0fe05d146342a465b19138525f0504",
       "proven": [
         "tx-2026-0198-c1",
         "tx-2026-0198-c16",
@@ -1218,6 +1218,18 @@
         "tx-2026-0223-c6",
         "tx-2026-0223-c7",
         "tx-2026-0223-c8"
+      ]
+    },
+    "https://news.engineering.tamu.edu/news/2026/10/22/texas-am-researchers-pursue-autonomous-ai-foundry/": {
+      "etag": null,
+      "last_modified": "Mon, 26 Oct 2026 05:09:12 GMT",
+      "hash": "f458e6c71618587dfa58d1cb88b35facff89d23361d258475f30445de6f5c53e",
+      "proven": [
+        "tx-2026-0229-c1",
+        "tx-2026-0229-c2",
+        "tx-2026-0229-c3",
+        "tx-2026-0229-c4",
+        "tx-2026-0229-c5"
       ]
     },
     "https://news.lockheedmartin.com/2026-10-14-Lockheed-Martin-Expands-Advanced-Munitions-Manufacturing-in-Texas,-Driving-Thousands-of-New-American-Jobs": {
@@ -1399,7 +1411,7 @@
     "https://pmc.ncbi.nlm.nih.gov/articles/PMC13412611/": {
       "etag": null,
       "last_modified": null,
-      "hash": "ee0977ab9f67788a0cdc52d55e3f9a6f84bd3ff6483e393114e049279e9fb36e",
+      "hash": "cd0560c5a15a8918c7d60bdfb5e9e0fc486a8e2d0851e69612d3771ae893e8ad",
       "proven": [
         "tx-2026-0222-c1",
         "tx-2026-0222-c10",
@@ -1817,7 +1829,7 @@
     "https://waymo.com/blog/2026/02/dallas-houston-san-antonio-orlando/": {
       "etag": null,
       "last_modified": null,
-      "hash": "4fb18c6b270e2f5293da40987b9c09ee0606cf36c2e9f91c9e8091644b86a743",
+      "hash": "875ee0867358bac690e3d842043060b79aac639347b7f325bba5d7f0259ea78d",
       "proven": [
         "tx-2026-0216-c3",
         "tx-2026-0216-c4"
@@ -1826,7 +1838,7 @@
     "https://waymo.com/blog/shorts/sat-sd-tpa/": {
       "etag": null,
       "last_modified": null,
-      "hash": "02b02078e4fcac18db9a7ddd224aca021e441018e8e26254e6194b29c7f7719a",
+      "hash": "7e15db2079023fd375dcbaf1534307a4594bb2a3836adde5c19cc3b733a328d4",
       "proven": [
         "tx-2026-0216-c1",
         "tx-2026-0216-c2"
@@ -2372,7 +2384,7 @@
     "https://www.federalregister.gov/api/v1/documents/2026-14341.json": {
       "etag": null,
       "last_modified": null,
-      "hash": "3d0d0b366aa8d4f994e260213fef9855a6e1997eafc4fcd7e9574a1fdbdb589f",
+      "hash": "0e5a58cce9fd1893981f27d2d253bb4f9386b8ae7c2f9b64380b3c3fc376b512",
       "proven": [
         "tx-2026-0015-c2",
         "tx-2026-0015-c9"
@@ -2387,7 +2399,7 @@
     "https://www.federalregister.gov/documents/2026/07/16/2026-14341/modernizing-reactor-licensing-safety-oversight-and-siting-practices": {
       "etag": null,
       "last_modified": null,
-      "hash": "6ead404230d56360bb5df470033210df9a32abad4e7bf502cccc29886636bfa1",
+      "hash": "f9e23f7efd86d61511d085248cdefe19e917437f0317935f3117767c7f156513",
       "proven": []
     },
     "https://www.federalregister.gov/documents/full_text/text/2026/09/09/2026-18303.txt": {
@@ -2512,7 +2524,7 @@
     "https://www.govtech.com/artificial-intelligence/laredo-texas-moves-to-set-permanent-data-center-standards": {
       "etag": null,
       "last_modified": null,
-      "hash": "414f69848492049ce22525586cfbd9c954a0522cccf685059c8210b7701cc258",
+      "hash": "99d54860fa1992ffe9672ece6a63bacfd1b80a86aed16e5f5d448dbf89f6bb20",
       "proven": [
         "tx-2026-0037-c1",
         "tx-2026-0037-c2",
@@ -2562,7 +2574,7 @@
     "https://www.houstonmethodist.org/leading-medicine-blog/articles/2026/aug/image-based-ai-improves-or-efficiency-at-houston-methodist/": {
       "etag": null,
       "last_modified": null,
-      "hash": "fae18823c02f89f4ed3fd1a12933c1c51cf7bec2601be0f5d76c1953b7c30312",
+      "hash": "1286f0a0937a0cfbb96ba3abcf42de21942cae681b9fe4b7e201948941eabac8",
       "proven": [
         "tx-2026-0222-c22",
         "tx-2026-0222-c23",
@@ -2881,7 +2893,7 @@
     "https://www.sa.gov/Directory/News-Releases/D6-Councilmember-Calls-for-Stronger-Regulations-on-Data-Centers": {
       "etag": null,
       "last_modified": null,
-      "hash": "4ab262641bcfe41a601c168a66b5a2f6e927b99efeefbced1fdaca43d7326f65",
+      "hash": "cdf63ea0e684dbca2b78d4668d1dada18cfceabe7f6ce691cc9ccc0e1fde087d",
       "proven": [
         "tx-2026-0220-c1",
         "tx-2026-0220-c2",
@@ -2920,7 +2932,7 @@
     "https://www.sanmarcostx.gov/2859/Code-Updates": {
       "etag": null,
       "last_modified": null,
-      "hash": "5da45eee7c169ba8876ab455ca85ae6668a793b28522e64ad0af6fd87205ef95",
+      "hash": "6d3d8dbd6bd6a1b918df50ffb8b96b3b843c03f5491e5367bb8d0fd2fdee2296",
       "proven": [
         "tx-2026-0061-c3"
       ]
@@ -3101,8 +3113,8 @@
     },
     "https://www.texastribune.org/2026/08/28/transmission-lines-texas-energy/": {
       "etag": null,
-      "last_modified": "Fri, 23 Oct 2026 23:36:19 GMT",
-      "hash": "0b76c4c5a0a1cc741cf974bad2b32d5e7eb2b149b9f3e45f5a147ce216676636",
+      "last_modified": "Sun, 25 Oct 2026 04:53:33 GMT",
+      "hash": "062911270464b4cfda94b26ad9418d748683408e0a0c3b226d3e3692e48bdc29",
       "proven": [
         "tx-2026-0112-c5"
       ]
@@ -3177,6 +3189,15 @@
         "tx-2026-0200-c9"
       ]
     },
+    "https://www.texastribune.org/2026/10/14/texas-data-centers-water-use-penalties-enforcement/": {
+      "etag": null,
+      "last_modified": "Sat, 24 Oct 2026 18:51:50 GMT",
+      "hash": "1050920f3e90a766977f4893cb7d7642e9ff624b2ce02ca6532608b4f4c8cb7e",
+      "proven": [
+        "tx-2026-0171-c8",
+        "tx-2026-0171-c9"
+      ]
+    },
     "https://www.texome.org/": {
       "etag": "W/\"08f80726642582431187f72bf2be8ac3\"",
       "last_modified": null,
@@ -3188,7 +3209,7 @@
     "https://www.tpr.org/economy-and-labor/2026-05-10/waymo-set-to-return-to-san-antonio-after-flood-incidents-paused-service": {
       "etag": null,
       "last_modified": null,
-      "hash": "ff2c905b270e7dcc15ae4c0e4019f9984c64a0b61d63c34e3daf25645d0ddf6d",
+      "hash": "33c3cf2b919fb0fde0acb5a364e3c84cb967e08a098cdf64ee03c198b1c55bf0",
       "proven": [
         "tx-2026-0216-c13",
         "tx-2026-0216-c14"
@@ -3197,7 +3218,7 @@
     "https://www.tpr.org/news/2026-05-13/waymo-recalls-almost-3-800-robotaxis-after-flooding-incident-in-san-antonio": {
       "etag": null,
       "last_modified": null,
-      "hash": "3d15e416b481f28c53ffb6d20f2af4f31dfc69630a2e3c35c35273952b3946b9",
+      "hash": "d6a5a47dc301f9feb22909b5066d07506917b1a3f55f43e89804bd32ce59c7c4",
       "proven": [
         "tx-2026-0216-c10",
         "tx-2026-0216-c11",
@@ -3208,7 +3229,7 @@
     "https://www.tpr.org/news/2026-09-23/lubbock-takes-first-step-toward-data-center-moratorium-questions-remain-with-approaching-legislative-session": {
       "etag": null,
       "last_modified": null,
-      "hash": "10102e6b823764c2e53f62e1cafcafa03fdc51a08186f2b203633f774909255b",
+      "hash": "15de36721da908a9c4d1259f6939d91f9640a1943ded3770587fdd104956621e",
       "proven": [
         "tx-2026-0138-c4",
         "tx-2026-0138-c5",
@@ -3387,6 +3408,20 @@
         "tx-2026-0208-c6",
         "tx-2026-0208-c7",
         "tx-2026-0208-c8"
+      ]
+    },
+    "https://www.utsouthwestern.edu/newsroom/articles/year-2026/oct-ai-enabled-triage-tools-human-biases.html": {
+      "etag": "W/\"055da8132c9d41c0b90bf0f4c6ee22df8\"",
+      "last_modified": "Mon, 26 Oct 2026 05:10:17 GMT",
+      "hash": "f24356b64996730a501b58a349c17627fda02722bde165f8ec1b0ccb2db26eff",
+      "proven": [
+        "tx-2026-0228-c1",
+        "tx-2026-0228-c2",
+        "tx-2026-0228-c3",
+        "tx-2026-0228-c4",
+        "tx-2026-0228-c5",
+        "tx-2026-0228-c6",
+        "tx-2026-0228-c7"
       ]
     },
     "https://www.utsouthwestern.edu/research/scientific-report/articles/ai-innovations-in-medical-education.html": {

@@ -2364,3 +2364,26 @@ last clause, which put a claim's word outside its stored quote.
 **A scout fetched dir.texas.gov with WebFetch** although the record's boundary for tx-2026-0113 says its robots.txt
 refuses this project. Nothing from the page was used. The scout's brief named the refused hosts and the scout read
 one anyway.
+
+## October 26th, 2026
+
+**www.roundrocktexas.gov allows this project in robots.txt.** The resident page "Drone Delivery in Round Rock" read
+cleanly through `fetch_doc.py` and carries the zoning, FAA, Renaissance Square and contact sentences the deck cites.
+
+**rowletttx.gov's council minutes for May 20th, 2025 are a scanned PDF** behind `Archive.aspx?ADID=12572`. The drone hub
+and kiosk item, ORD-014-25 and the 6-0 vote read on page 6 after text extraction. Quote matching has to allow for the
+scan's line breaks.
+
+**zipline.com and dronexl.co allow this project in robots.txt.** Zipline's safety fact sheet and its Austin newsroom
+release read as HTML. Every safety figure in them is the company's own and is attributed that way.
+
+**www.faa.gov answered 403** to the scout's fetch of the Zipline draft notice. The deck relies on DroneXL's account of
+the draft and its comment window, attributed to DroneXL.
+
+**govtech.com disallows ClaudeBot in robots.txt.** The Plano purchase story that rests only on it was held rather than
+admitted.
+
+**The Federal Register's HTML page for tx-2026-0015 redirects to an unblock interstitial.** The same document reads
+through the Federal Register API's JSON, and claim c1 was re-pointed there.
+
+**rice.edu read through `fetch_doc.py`** for tx-2026-0224 after the re-verifier's request was refused, as on October 25th.

@@ -1,0 +1,172 @@
+{
+ "_note": "Every value is extracted from a claim quote by compute.py, or computed here from values that were.",
+ "station_ft": {
+  "value": 300,
+  "from": [
+   "c40"
+  ],
+  "basis": "the aircraft holds station above this many feet while the droid rides the tether down, per DroneXL"
+ },
+ "station_m": {
+  "value": 91.4,
+  "from": [
+   "c40"
+  ],
+  "basis": "computed: feet times 0.3048, to one decimal"
+ },
+ "cruise_ft": {
+  "value": 300,
+  "from": [
+   "c45"
+  ],
+  "basis": "about this many feet in flight, per DroneXL"
+ },
+ "cruise_mph": {
+  "value": 75,
+  "from": [
+   "c45"
+  ],
+  "basis": "top speed in mph, per DroneXL"
+ },
+ "reach_mi": {
+  "value": 3,
+  "from": [
+   "c3"
+  ],
+  "basis": "the company's service reach from the ETJ facility, in miles, as Round Rock relays it"
+ },
+ "reach_m": {
+  "value": 4828,
+  "from": [
+   "c3"
+  ],
+  "basis": "computed: miles times 1,609.344, to the metre"
+ },
+ "reach_sq_mi": {
+  "value": 28.3,
+  "from": [
+   "c3"
+  ],
+  "basis": "computed: the area of a circle of that radius in square miles, to one decimal"
+ },
+ "austin_chargers": {
+  "value": 30,
+  "from": [
+   "c36"
+  ],
+  "basis": "Chargers in the draft's Austin ceiling, per DroneXL"
+ },
+ "austin_dropboxes": {
+  "value": 600,
+  "from": [
+   "c36"
+  ],
+  "basis": "Dropbox pickup kiosks in the draft's Austin ceiling, per DroneXL"
+ },
+ "austin_per_day": {
+  "value": 30000,
+  "from": [
+   "c36"
+  ],
+  "basis": "deliveries a day in the draft's Austin ceiling, per DroneXL"
+ },
+ "austin_sq_mi": {
+  "value": 2498,
+  "from": [
+   "c36"
+  ],
+  "basis": "square miles in the draft's Austin ceiling, per DroneXL"
+ },
+ "austin_over_reach": {
+  "value": 88,
+  "from": [
+   "c3",
+   "c36"
+  ],
+  "basis": "computed: the draft's Austin area over the three mile circle's area, to the whole number"
+ },
+ "first_order_day": {
+  "value": 9,
+  "from": [
+   "c32"
+  ],
+  "basis": "the day in October the first Round Rock orders were taken, per DroneXL"
+ },
+ "comment_close_day": {
+  "value": 11,
+  "from": [
+   "c37"
+  ],
+  "basis": "the day in October the FAA comment period closed, per DroneXL"
+ },
+ "days_after": {
+  "value": 2,
+  "from": [
+   "c37"
+  ],
+  "basis": "days the comment period ran after the first order, as DroneXL states it"
+ },
+ "rowlett_vote_for": {
+  "value": 6,
+  "from": [
+   "c47"
+  ],
+  "basis": "votes for Rowlett's hub and kiosk ordinance"
+ },
+ "rowlett_vote_against": {
+  "value": 0,
+  "from": [
+   "c47"
+  ],
+  "basis": "votes against"
+ },
+ "rowlett_year": {
+  "value": 2025,
+  "from": [
+   "c46"
+  ],
+  "basis": "the year of Rowlett's vote"
+ },
+ "first_5000": {
+  "value": 5000,
+  "from": [
+   "c29"
+  ],
+  "basis": "residents in First Flight's early access, per Zipline"
+ },
+ "pod_lb": {
+  "value": 5,
+  "from": [
+   "c38"
+  ],
+  "basis": "delivery weight limit, about this many pounds, per DroneXL citing Community Impact"
+ },
+ "tether_seconds": {
+  "value": 90,
+  "from": [
+   "c39"
+  ],
+  "basis": "the delivery sequence on the tether takes about this many seconds, per DroneXL"
+ },
+ "checks_per_s": {
+  "value": 500,
+  "from": [
+   "c21"
+  ],
+  "basis": "safety checks a second, per Zipline"
+ },
+ "adjust_ms": {
+  "value": 20,
+  "from": [
+   "c21"
+  ],
+  "basis": "position adjustment interval in ms, per Zipline"
+ },
+ "app_businesses": {
+  "value": 25,
+  "from": [
+   "c44"
+  ],
+  "basis": "businesses on the app in Round Rock on day one, per News 4 via DroneXL"
+ }
+}

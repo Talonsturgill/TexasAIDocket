@@ -6336,3 +6336,88 @@ run's own lane, so tomorrow's run is not made due again by items this pass read 
 **For the run, not this pass.** `python3 scripts/carousel/shipped_check.py` is red on `2026-10-24
 fig lines` and `2026-10-24 ledgers` before and after this pass, measured with this pass's files
 stashed. Both are the run's.
+
+## 2026-10-26, the thirteenth weekly machine pass. Two kit changes, three proposals, carried items
+
+Read from `out/2026-10-26/week_digest.md` (seven shipped runs, October 20th to 26th) and the queue.
+Due two days after the last pass because one queued item carried repeat 4 (the audition rebind).
+`artwork_craft` had the lowest week mean (6.59) and was the lowest criterion on five decks of seven.
+"Primitive or low-poly model where a kit model belongs" was named on seven decks in 19 rounds,
+"largest object unmodelled" on seven in 18, "type sitting on or fighting the art" on six in 15,
+"render artifact" on six in 10. The account is in `ledger/carousel/upgrades.json` under
+`2026-10-26 weekly`, and the pass is recorded in `config/carousel/machine_pass.json`. Proofs are in
+`out/2026-10-26/tmp/` and die with the container. The frontier scan was one question, the measured
+colour of human skin, because change 2 needed an external standard rather than a typed one.
+
+### 1. KIT LIFT: `vtol_drone`, `parcel_pod`, `drone_dock` AT NO. 61's NAMED FIXES (done, `assets/js/kit/vehicles.js`)
+
+No. 61 built its aircraft, pod and dock tower in its chassis because the kit had no aircraft of any
+kind, the third aircraft built in a chassis this month (no. 46's Caravan, no. 54's survey drone).
+Each fix is the judges'. "The slab wing and box V tail read as primitive at feed size" (round 1) and
+"its wings are flat slabs" (round 3): the wing is lofted through a cambered section about a seventh
+of its chord thick with a round leading edge, a split flap and aileron on a hinge gap and an
+elliptically closed tip, and the V tail is two tapered symmetric sections with ruddervators. "The
+aircraft hovers over the cradle plate instead of sitting in it": the chassis model's lowest point
+stood 0.17 m above its own origin, so every placement at y 0 floated it; here y 0 is the bottom of
+two belly skids and `userData.attach.seat` is that point, and `drone_dock`'s own `attach.seat` is
+the cradle top, so seating one on the other is one line (proven in the combined render). "Model the
+planned galvanized column, not a truss" and "the cabinet is an untextured flat-lit beige box": a
+tapered twelve sided galvanized pole with a spangle map on an anchor bolt base, step bolts, a flange,
+a box arm on a brace, a cradle with V guide rails and copper contacts, and a powder coated cabinet
+with door seams, hinges, a handle, louvres, a hood and a nameplate. "The gravel apron is fist-sized
+cobbles out of scale with a 6 m tower": the dock carries its own crushed rock apron, every stone 20
+to 60 mm, so a frame never sizes gravel by eye. Lifted under new names because no. 61's
+`installKit` returns early if the kit already defines `delivery_drone`, and would then lose its
+`street_glow` and `survey_stake` too. Proven through `examples/kit/build.py` and the engine (lineup
+and heroes, read at full size), a combined render of the drone seated on the dock beside a person
+and the pod, a top and a rear view of the tail, and `examples/kit/sizes.py` at 131 of 131.
+
+### 2. KIT PERSON: SKIN HELD TO MEASURED SKIN, SHADE HAND OPT IN, `hatColor` (done, `assets/js/kit/people.js`)
+
+The kit person read as a mannequin on four decks of seven (nos. 55, 56, 57, 61). The 2026-10-22
+pass measured no. 57's bare forearm at C* 52 and named the skin palette's albedo as the cause it
+could not reach. The palette's mid tones carried CIELAB a* up to 20.4. Spectrophotometer readings
+on the forearm and inner arm (PMC3465481, Table 1) put every group's mean a* between 7.1 and 9.8.
+people.js now holds that table as data and computes from it the widest mean +/- 2 SD envelope of
+any group of thirteen or more people; each palette rung keeps its lightness and its a* and b* are
+clamped into the envelope. A seed 14 worker's face under lastLight measured median C* 52.4 before
+and 45.4 after, the rest being the warm key and the skin sheen, which the 10-22 pass showed moves
+it by one. No. 61's resident looking up read as "a saluting kit mannequin" with "a hand clamped over
+the face" in rounds 2 and 3: `look_up` rolled that hand 60 percent of the time, and now raises it
+only with `shade: true`, the roll still drawn so the person's other seeded choices hold. `hatColor`
+lets a frame give a cap the "dark cloth" the judges asked for on frame 6, and the seeded pale stone
+cap, the brightest thing beside the face, is a worn khaki. Still open: the grip pose, the vest's cut,
+the collar's sawtooth neck and a near detail level for hands and hair.
+
+### 3. PROPOSALS AND ESCALATIONS, with their counts
+
+- **ENGINE: a key shadow bias scaled to the shadow map's texel** (`assets/js/txthree.js`, human).
+  "Render artifact (banding, aliasing, facets, stripes)" was named on six decks in 10 rounds, and
+  no. 61's round 3 craft card ranked frame 5's "stair-stepped blue shadow-map aliasing across the
+  fuselage at the boom root" first among its three dragging frames. `TXT.deckRig` sets
+  `normalBias` to a fixed 0.02 whatever the shadow camera's size, and eight consecutive chassis
+  (October 18th to 26th) each carry their own `N.unacne` to raise it to 0.04, 21 chassis in all
+  touch `normalBias`. A workaround copied into eight decks in a row is the field test. Proposal:
+  deckRig derives `normalBias` from the texel size, `2 * shadowSize / mapSize` times a constant
+  stated in the engine, and `N.unacne` retires.
+- **ENGINE: say what `TXT.scatter`'s rock `scale` means** (human). No. 61 frame 2 passed
+  `scale: [0.03, 0.08]` meaning gravel and got stones up to 16 cm, because the scale multiplies a
+  unit lump; the default `[0.03, 0.15]` makes 30 cm stones. Proposal: a `gravel` kind sized in
+  metres of stone diameter, or the doc comment stating the unit. `drone_dock`'s apron is the kit's
+  answer for a pad meanwhile.
+- **`chassis-edit-rebinds-all-three-audition-frames`, repeat 1** (nos. 59 and 61). Binding each
+  audition frame to the chassis models it instantiates would let a hem change on frame 8 keep frame
+  5's review. CLAUDE.md says an unchanged review keeps its exact source, image and SHARED ASSET
+  hashes, and the chassis is a shared asset, so the narrowing is the owner's call, not a pass's.
+- **`audition-rebind-after-every-panel-repair`, repeat 4**, carried, the owner's rule and
+  render.py plus the studio brief (2026-10-21 item 6). No. 61 read the audition nine times.
+
+### Carried, with this week's counts
+
+"Type sitting on or fighting the art", six runs and 15 rounds, still a different collision on each
+deck and still the id pass (2026-10-12 item 4). "No contact" (six runs, 12 rounds) and "dead or
+empty region" (six runs, 9 rounds) had a different cause on each deck. The other repeat offenders
+carry an `escalated 2026-10-26` line in the queue so tomorrow's run is not made due again by items
+this pass read and carried: the detail floor (no. 61 met it and its cures held, queued as
+`detail-floor-fights-the-dark-staged-world`), the glyph run rule and the article screenshots (both a
+maintainer's), the GRID piece count (the id pass) and `article-token-drops-unit` (the run's lane).

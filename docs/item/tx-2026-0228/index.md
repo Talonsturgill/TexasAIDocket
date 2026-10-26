@@ -11,7 +11,7 @@ UT Southwestern Medical Center reported on October 20th, 2026 a study published 
 - Public access: Write to the decider
 - Take part: https://www.utsouthwestern.edu/newsroom/articles/year-2026/oct-ai-enabled-triage-tools-human-biases.html
 
-- Last checked: 2026-10-23
+- Last checked: 2026-10-26
 
 ## Dates
 
@@ -22,6 +22,7 @@ UT Southwestern Medical Center reported on October 20th, 2026 a study published 
 One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
 
 - 2026-10-23 · Admitted on the medical center's own account of the study. It names no Texas hospital using these models for triage, and the records came from hospitals in California and Massachusetts.
+- 2026-10-26 · UT Southwestern's account of the triage study still reads as cited. It still names no Texas hospital using these models to sort patients.
 
 ## Evidence
 

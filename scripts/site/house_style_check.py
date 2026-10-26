@@ -327,6 +327,11 @@ _CITED = {
     # family asks whether it is eligible. The 2026-10-02 edition reports that free testing, so the
     # address is the reader's one next step, carried from the program's own words (claim c42).
     "texome-project@bcm.edu",
+    # Zipline's own community address, which the City of Round Rock's drone delivery page gives
+    # as where operational or company feedback goes. The 2026-10-26 edition reports what a
+    # resident under the flight path has, so the address is that fact, carried from the city's
+    # own words (claim c13).
+    "community@zipline.com",
 }
 
 

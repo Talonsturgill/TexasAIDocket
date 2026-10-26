@@ -45,6 +45,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-09 · Whether Frontera's queues closed for good as scheduled remains unconfirmed. The center's pages still bar automated readers.
 - 2026-10-10 · Whether Frontera's queues closed for good on schedule stays unconfirmed. The center's pages bar automated readers.
 - 2026-10-25 · Whether Frontera's queues closed for good on schedule stays unconfirmed. The center's pages still bar automated readers.
+- 2026-10-26 · The permanent close of Frontera's queues on its announced date is still unconfirmed. The center's documentation pages bar automated readers.
 
 ## Evidence
 

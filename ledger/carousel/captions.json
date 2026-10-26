@@ -19,12 +19,12 @@
   "recent_lists_note": "These three lists are the exclusions handed to the caption room and they were hand-kept. On 2026-08-20 the fourth panel found structures_recent reading [\"ledger\", \"pivot\", \"question and answer\"] when the last three shipped structures were [\"ledger\", \"two columns\", \"question and answer\"], so it dropped a structure that IS off the table and held one that is not. Wrong in both directions from one hand edit. They are now recomputed from entries and are ordered OLDEST FIRST, matching the entries list, and scripts/carousel/caption_check.py should derive them rather than read them. That is an upgrade-lane change and it is written into this run's proposals."
  },
  "opening_moves_recent": [
-  "the two things",
   "the number that is wrong",
   "the correction",
   "the who",
   "the place",
-  "the quiet decision"
+  "the quiet decision",
+  "the before and after"
  ],
  "entries": [
   {
@@ -1092,15 +1092,34 @@
    ],
    "critic_note": "The water board's question used to arrive by mail at plants already running, and now ERCOT asks before a data center is energized, so the old way and the new one fit in two short sentences and set up the distinction the question then answers.",
    "move_note": "Opens on the before and after, the mailed survey against the request that comes before the power flows, then the count and the fine, then whether the request reaches the 233 and why its list is drawn differently, then what the notice requires, and closes on whether ERCOT's expected report will say how many responded."
+  },
+  {
+   "date": "2026-10-26",
+   "carousel_no": 61,
+   "opening_move": "the two things",
+   "structure": "Clock",
+   "closing_move": "ask the one question the decision leaves open",
+   "first_line": "Rowlett zoned for drone hubs. Round Rock hasn't.",
+   "words": 145,
+   "commas": 2,
+   "commas_per_100w": 1.38,
+   "chars": 894,
+   "hashtags": [
+    "#RoundRock",
+    "#Rowlett",
+    "#Zipline"
+   ],
+   "critic_note": "Candidate B, edited. Two cities, two orders: Rowlett zoned for drone hubs before Zipline opened there and Round Rock has not, so the first line carries the whole contrast in eight words, then the clock runs from Rowlett's vote to Round Rock's first order to the city's proposed in-city site.",
+   "move_note": "Opens on the two cities in two orders, then runs the clock from Rowlett's vote to Round Rock's first order to the proposed in-city site, then names what the deck weighs, and closes on which order serves neighbors better."
   }
  ],
  "structures_recent": [
-  "Ladder",
   "Zoom out",
-  "Ledger"
+  "Ledger",
+  "Question and answer"
  ],
  "closing_moves_recent": [
-  "Ask the one question the decision leaves open."
+  "Name what happens next and when."
  ],
  "_derived_note": "opening_moves_recent, structures_recent and closing_moves_recent are DERIVED by out/<date>/update_ledgers.py every run, by ledger_check.windows() and ledger_check's own slice of the entries before the newest date. They were hand-maintained until 2026-09-10 and had drifted, which mis-briefed the caption room on that run: the list said Ledger was excluded when it was not, and never mentioned Two columns or the close no. 19 actually shipped."
 }

@@ -1,7 +1,7 @@
 {
  "_spec": {
   "version": 2,
-  "generated": "2026-10-25",
+  "generated": "2026-10-26",
   "gates": [
    "banned words",
    "claims",
@@ -2165,7 +2165,7 @@
      "id": "tx-2026-0015-c1",
      "text": "The NRC is revising its reactor licensing, oversight and siting rules under an executive order.",
      "verbatim_quote": "Consistent with Executive Order 14300, \"Ordering the Reform of the Nuclear Regulatory Commission,\" the U.S. Nuclear Regulatory Commission (NRC) is conducting a review and wholesale revision of its regulations. This proposed rule aims to modernize reactor licensing, safety oversight, and siting practices",
-     "source_url": "https://www.federalregister.gov/documents/2026/07/16/2026-14341/modernizing-reactor-licensing-safety-oversight-and-siting-practices",
+     "source_url": "https://www.federalregister.gov/api/v1/documents/2026-14341.json",
      "source_title": "Federal Register, Modernizing Reactor Licensing, Safety Oversight, and Siting Practices, abstract",
      "source_type": "primary_official",
      "fetched": "2026-08-28"
@@ -2189,7 +2189,7 @@
      "fetched": "2026-09-02"
     }
    ],
-   "last_verified": "2026-10-23",
+   "last_verified": "2026-10-26",
    "confidence": "high",
    "notes_for_editor": "Included because it is actionable and time limited, which is the highest value class of item for readers. The Texas relevance is real but INDIRECT and the item should say so plainly: this is a national rulemaking, not a Texas proceeding. The regulations_dot_gov_info comment_url came back null from the API, so the Federal Register document page is given as the participation URL instead of a direct regulations.gov deep link.",
    "history": [
@@ -2311,6 +2311,11 @@
     {
      "date": "2026-10-23",
      "note": "The register's record still closes comment on the reactor licensing proposal on August 31st, and no final rule has followed. The full text stays unconfirmed, since its reader routes to a path the register bars.",
+     "checked": true
+    },
+    {
+     "date": "2026-10-26",
+     "note": "The Federal Register record still carries the NRC's proposed overhaul of reactor licensing and siting, with comments closed on August 31st. No final rule appears.",
      "checked": true
     }
    ]
@@ -3608,6 +3613,11 @@
      "date": "2026-10-25",
      "note": "Community Impact's account of Hays County's water review period is unconfirmed today because its page no longer shows the quoted line in readable form. KUT's report bars automated readers.",
      "checked": true
+    },
+    {
+     "date": "2026-10-26",
+     "note": "Hays County's emergency water review period is still unconfirmed. KUT bars automated readers and Community Impact's page no longer shows the quoted line in readable text.",
+     "checked": true
     }
    ]
   },
@@ -3833,6 +3843,11 @@
     {
      "date": "2026-10-25",
      "note": "Williamson County's abatement for the Compal server plant in Georgetown stays unconfirmed. The county's notice still turns away every reader.",
+     "checked": true
+    },
+    {
+     "date": "2026-10-26",
+     "note": "The Williamson County abatement for Compal's Georgetown server plant is still unconfirmed. The county's notice refuses every reader.",
      "checked": true
     }
    ],
@@ -5204,6 +5219,11 @@
      "date": "2026-10-25",
      "note": "Guadalupe County's end of its plate reader contract stays unconfirmed. The minutes and both published accounts still bar automated readers.",
      "checked": true
+    },
+    {
+     "date": "2026-10-26",
+     "note": "Guadalupe County's vote to end its plate camera contract is still unconfirmed. The court's minutes and both newsroom accounts bar automated readers.",
+     "checked": true
     }
    ],
    "unreachable": {
@@ -5455,6 +5475,11 @@
     {
      "date": "2026-10-25",
      "note": "Laredo's council action on the moratorium stays unconfirmed today. The station that reported it still bars automated readers.",
+     "checked": true
+    },
+    {
+     "date": "2026-10-26",
+     "note": "Laredo's council vote against a data center moratorium is still unconfirmed on the station's report, which bars automated readers.",
      "checked": true
     }
    ]
@@ -6218,6 +6243,11 @@
      "date": "2026-10-25",
      "note": "The Wichita Falls permit for the Airport Drive data center stays unconfirmed. The city's site still turns away every reader and the station's site bars automated ones.",
      "checked": true
+    },
+    {
+     "date": "2026-10-26",
+     "note": "The Wichita Falls conditional use permit for the Airport Drive data center is still unconfirmed. The city site refuses every reader and the station bars automated ones.",
+     "checked": true
     }
    ],
    "unreachable": {
@@ -6622,6 +6652,11 @@
      "date": "2026-10-25",
      "note": "Archer County's denial of the data center abatement stays unconfirmed, since its one published account still bars automated readers.",
      "checked": true
+    },
+    {
+     "date": "2026-10-26",
+     "note": "Archer County's refusal of the data center abatement is still unconfirmed. The one station that reported it bars automated readers.",
+     "checked": true
     }
    ],
    "unreachable": {
@@ -6844,6 +6879,11 @@
      "date": "2026-10-25",
      "note": "Angelina County's resolution asking the Legislature for authority over data centers stays unconfirmed today. Both news accounts bar automated readers.",
      "checked": true
+    },
+    {
+     "date": "2026-10-26",
+     "note": "The county's own minutes still carry the commissioners' resolution asking the Legislature for authority over data centers. Both newsroom accounts bar automated readers, so their details are unconfirmed.",
+     "checked": true
     }
    ],
    "unreachable": {
@@ -7052,6 +7092,11 @@
     {
      "date": "2026-10-25",
      "note": "Lubbock County's disclosure resolution on large data centers stays unconfirmed, since its one published account still bars automated readers.",
+     "checked": true
+    },
+    {
+     "date": "2026-10-26",
+     "note": "Lubbock County's non binding disclosure resolution on large data centers is still unconfirmed. Its only published account bars automated readers.",
      "checked": true
     }
    ],
@@ -7918,6 +7963,11 @@
      "date": "2026-10-25",
      "note": "Harris County's Flock renewal stays unconfirmed today on the station's report, which bars automated readers.",
      "checked": true
+    },
+    {
+     "date": "2026-10-26",
+     "note": "Harris County's renewal of the Flock plate reader license is still unconfirmed on the station's report, which bars automated readers.",
+     "checked": true
     }
    ]
   },
@@ -8466,6 +8516,11 @@
     {
      "date": "2026-10-25",
      "note": "Brazoria County's resolution on data center conditions stays unconfirmed today on the station's report, which bars automated readers.",
+     "checked": true
+    },
+    {
+     "date": "2026-10-26",
+     "note": "Brazoria County's resolution setting conditions for data centers is still unconfirmed on the station's report, which bars automated readers.",
      "checked": true
     }
    ]
@@ -9033,6 +9088,11 @@
      "date": "2026-10-25",
      "note": "Conroe's vote on putting the plate camera contract to voters stays unconfirmed. Both published accounts still bar automated readers.",
      "checked": true
+    },
+    {
+     "date": "2026-10-26",
+     "note": "The Conroe council vote that kept the plate camera contract off the ballot is still unconfirmed. Both station accounts bar automated readers.",
+     "checked": true
     }
    ],
    "unreachable": {
@@ -9041,8 +9101,8 @@
      "www.click2houston.com"
     ],
     "boundary": "robots",
-    "checked": "2026-10-21",
-    "note": "Claim-source boundary v1.\nCounty page https://www.cityofconroe.org/government/city_council/agendas_minutes/index.php checked 2026-10-21 SHA256 0aead1df09ab117822accfc8c6205615188a3f8c15980acb0c2e41803633b723 contains no cited quotations.\nSource https://www.click2houston.com/news/local/2026/08/14/conroe-city-council-vote-falls-short-of-putting-flock-camera-question-on-november-ballot/ checked 2026-10-21 robots https://www.click2houston.com/robots.txt SHA256 c932efb68e84a20d76da3dea1252249bd251538ad5774daa8b8f6368e4f507f6 refuses project readers.\nSource https://abc13.com/story/conroe-city-council-indefinitely-tables-2-flock-camera-proposals/19575313/ checked 2026-10-21 robots https://abc13.com/robots.txt SHA256 c3b51bc2223f5b4e6e5bb8d08cf1d2ebe5273aeb6eddd021eda31f4d0a012f5a refuses project readers."
+    "checked": "2026-10-26",
+    "note": "Claim-source boundary v1.\nCounty page https://www.cityofconroe.org/government/city_council/agendas_minutes/index.php checked 2026-10-26 SHA256 b1bda8fcdefdad314d7d76ddb6cabc387a693afaa46252bdce3f6a8615877b84 contains no cited quotations.\nSource https://abc13.com/story/conroe-city-council-indefinitely-tables-2-flock-camera-proposals/19575313/ checked 2026-10-26 robots https://abc13.com/robots.txt SHA256 c3b51bc2223f5b4e6e5bb8d08cf1d2ebe5273aeb6eddd021eda31f4d0a012f5a refuses project readers.\nSource https://www.click2houston.com/news/local/2026/08/14/conroe-city-council-vote-falls-short-of-putting-flock-camera-question-on-november-ballot/ checked 2026-10-26 robots https://www.click2houston.com/robots.txt SHA256 c932efb68e84a20d76da3dea1252249bd251538ad5774daa8b8f6368e4f507f6 refuses project readers."
    }
   },
   {
@@ -10139,6 +10199,11 @@
      "date": "2026-10-23",
      "note": "San Marcos still defines data centers in its land development code, as the city's code updates page says. The television account of the 4 to 3 vote stays unconfirmed.",
      "checked": true
+    },
+    {
+     "date": "2026-10-26",
+     "note": "San Marcos still defines data centers in its land development code, per the city's own code update page. The station's account of the council vote is still unconfirmed.",
+     "checked": true
     }
    ]
   },
@@ -10329,6 +10394,11 @@
     {
      "date": "2026-10-25",
      "note": "Fort Worth's data center pause stays at its first steps in the record. KERA's account is unconfirmed today, since the station turned the request away.",
+     "checked": true
+    },
+    {
+     "date": "2026-10-26",
+     "note": "Fort Worth's data center pause is still unconfirmed past its first steps. KERA's account refused the request again.",
      "checked": true
     }
    ],
@@ -12202,6 +12272,11 @@
      "date": "2026-10-25",
      "note": "The Governor's announcement of the SpaceX plant in Grimes County stays unconfirmed, since the office's site bars automated readers.",
      "checked": true
+    },
+    {
+     "date": "2026-10-26",
+     "note": "The Governor's account of the SpaceX Terafab plant in Grimes County is still unconfirmed. The office's site bars automated readers.",
+     "checked": true
     }
    ]
   },
@@ -12621,6 +12696,11 @@
      "date": "2026-10-25",
      "note": "The Governor's directive for the data center audit stays unconfirmed on its own page, which bars automated readers. ERCOT's survey of developers closed on October 12th.",
      "checked": true
+    },
+    {
+     "date": "2026-10-26",
+     "note": "The Governor's directive for an audit of every large load request is still unconfirmed on its own page, which bars automated readers.",
+     "checked": true
     }
    ]
   },
@@ -12876,6 +12956,11 @@
      "date": "2026-10-25",
      "note": "The two House committee hearings stay unconfirmed on the Legislature's own pages, which still bar automated readers.",
      "checked": true
+    },
+    {
+     "date": "2026-10-26",
+     "note": "The two House committee hearings on data centers and AI in health care are still unconfirmed on the Legislature's pages, which bar automated readers.",
+     "checked": true
     }
    ],
    "unreachable": {
@@ -13097,6 +13182,11 @@
     {
      "date": "2026-10-25",
      "note": "Pflugerville's charter election with its section on artificial intelligence stays unconfirmed today, since the city's legislative host bars automated readers.",
+     "checked": true
+    },
+    {
+     "date": "2026-10-26",
+     "note": "Pflugerville's charter election and its artificial intelligence amendment are still unconfirmed. The city's legislative host bars automated readers.",
      "checked": true
     }
    ]
@@ -13844,6 +13934,11 @@
      "date": "2026-10-23",
      "note": "House State Affairs still lists the August 19th sitting and the two September sittings after it, with no later meeting and no interim report posted. The charge wording stays unconfirmed.",
      "checked": true
+    },
+    {
+     "date": "2026-10-26",
+     "note": "The committee page for House State Affairs reads as cited. The charge wording on the Legislature's interim pages is still unconfirmed, since that host bars automated readers.",
+     "checked": true
     }
    ]
   },
@@ -14014,6 +14109,11 @@
     {
      "date": "2026-10-23",
      "note": "House Public Health's latest posted sitting is still the August 20th hearing on AI in health care. No interim report has appeared, and the charge wording stays unconfirmed.",
+     "checked": true
+    },
+    {
+     "date": "2026-10-26",
+     "note": "The House Public Health hearing on AI in health care reads as cited on the committee page. The charge wording is still unconfirmed on a host that bars automated readers.",
      "checked": true
     }
    ]
@@ -16171,6 +16271,11 @@
      "date": "2026-10-25",
      "note": "The AI training requirement for state and local employees stays unconfirmed on the bill page, which still bars automated readers.",
      "checked": true
+    },
+    {
+     "date": "2026-10-26",
+     "note": "The AI training requirement for state and local government employees is still unconfirmed on the bill's own page, which bars automated readers.",
+     "checked": true
     }
    ],
    "unreachable": {
@@ -17015,6 +17120,11 @@
      "date": "2026-10-25",
      "note": "UT Arlington's own account of its role in the Energy Department's AI for science program stays unconfirmed, since its site bars automated readers.",
      "checked": true
+    },
+    {
+     "date": "2026-10-26",
+     "note": "UT Arlington's account of its role in the Energy Department's AI for science program is still unconfirmed. The campus site bars automated readers.",
+     "checked": true
     }
    ]
   },
@@ -17203,6 +17313,11 @@
     {
      "date": "2026-10-25",
      "note": "The Governor's release on Amazon's Austin robotics factory stays unconfirmed, since the office's site bars automated readers.",
+     "checked": true
+    },
+    {
+     "date": "2026-10-26",
+     "note": "The Governor's release on Amazon's Austin robotics factory is still unconfirmed. The office's site bars automated readers.",
      "checked": true
     }
    ]
@@ -17982,6 +18097,11 @@
     {
      "date": "2026-10-25",
      "note": "The assignment of the RELLIS abatement to ThisWay Global stays unconfirmed. The county's notice still turns away every reader.",
+     "checked": true
+    },
+    {
+     "date": "2026-10-26",
+     "note": "Brazos County's assignment of the RELLIS abatement to ThisWay Global is still unconfirmed. The county's notice refuses every reader and the station's report bars automated ones.",
      "checked": true
     }
    ],
@@ -20278,6 +20398,11 @@
      "date": "2026-10-25",
      "note": "Oncor's project page for the line from Somervell County to Howard County stays unconfirmed, since its site bars automated readers.",
      "checked": true
+    },
+    {
+     "date": "2026-10-26",
+     "note": "Oncor's project page for the line from Somervell County to Howard County is still unconfirmed. Its site bars automated readers.",
+     "checked": true
     }
    ]
   },
@@ -20442,6 +20567,11 @@
     {
      "date": "2026-10-25",
      "note": "The state technology agency's account of how it carries out the four AI laws stays unconfirmed, since its site bars automated readers.",
+     "checked": true
+    },
+    {
+     "date": "2026-10-26",
+     "note": "The state technology agency's account of carrying out the four AI laws is still unconfirmed. Its site bars automated readers.",
      "checked": true
     }
    ],
@@ -21018,7 +21148,7 @@
    "confidence": "high",
    "notes_for_editor": "Published as statewide on the same reading as the other federal comment windows in this record, which apply in Texas without naming a county. federalregister.gov HTML redirected this client to an unblock page, and govinfo served the identical document cleanly.",
    "id": "tx-2026-0118",
-   "last_verified": "2026-10-23",
+   "last_verified": "2026-10-26",
    "history": [
     {
      "date": "2026-09-03",
@@ -21116,6 +21246,11 @@
     {
      "date": "2026-10-23",
      "note": "The commission's notice still reads as published, and its comment window closed on October 20th. The record now waits on what the commission does with the answers.",
+     "checked": true
+    },
+    {
+     "date": "2026-10-26",
+     "note": "The commission's notice still reads as published. Its comment window closed on October 20th, and no action on the answers has been posted.",
      "checked": true
     }
    ]
@@ -22932,6 +23067,11 @@
      "date": "2026-10-25",
      "note": "Whether Frontera's queues closed for good on schedule stays unconfirmed. The center's pages still bar automated readers.",
      "checked": true
+    },
+    {
+     "date": "2026-10-26",
+     "note": "The permanent close of Frontera's queues on its announced date is still unconfirmed. The center's documentation pages bar automated readers.",
+     "checked": true
     }
    ],
    "unreachable": {
@@ -23081,6 +23221,11 @@
     {
      "date": "2026-10-25",
      "note": "Brownsville's temporary data center moratorium stays unconfirmed. The city's notice still turns away every reader.",
+     "checked": true
+    },
+    {
+     "date": "2026-10-26",
+     "note": "Brownsville's temporary data center moratorium is still unconfirmed. The city's notice refuses every reader.",
      "checked": true
     }
    ],
@@ -24332,6 +24477,11 @@
      "date": "2026-10-25",
      "note": "Lubbock's procedure toward a data center moratorium stays unconfirmed today. The city's agenda turned the request away and the station's site bars automated readers.",
      "checked": true
+    },
+    {
+     "date": "2026-10-26",
+     "note": "Lubbock's first step toward a data center moratorium is still unconfirmed. The city agenda refused the request and the station bars automated readers.",
+     "checked": true
     }
    ],
    "unreachable": {
@@ -24704,6 +24854,11 @@
     {
      "date": "2026-10-23",
      "note": "The Senate water committee's page still shows the September 1st sitting on data center cooling water and the one after it, with no later sitting posted. The notice text stays unread, since its path is closed to this project.",
+     "checked": true
+    },
+    {
+     "date": "2026-10-26",
+     "note": "The Senate water committee's sittings on data center cooling water read as cited. The hearing notice text is still unread, since its path is closed to this project.",
      "checked": true
     }
    ]
@@ -26628,6 +26783,11 @@
      "date": "2026-10-25",
      "note": "The radiologists' published review stays unconfirmed, since the index that carries its abstract still bars automated readers.",
      "checked": true
+    },
+    {
+     "date": "2026-10-26",
+     "note": "The radiologists' published review of imaging AI is still unconfirmed. The index carrying its abstract bars automated readers.",
+     "checked": true
     }
    ],
    "unreachable": {
@@ -26797,6 +26957,11 @@
     {
      "date": "2026-10-25",
      "note": "The MRI study's abstract and author affiliations stay unconfirmed, since the index that carries them still bars automated readers.",
+     "checked": true
+    },
+    {
+     "date": "2026-10-26",
+     "note": "The MD Anderson and UTMB MRI study is still unconfirmed on its abstract and author list. The index that carries both bars automated readers.",
      "checked": true
     }
    ],
@@ -28011,6 +28176,11 @@
      "date": "2026-10-25",
      "note": "The trade press account of Memorial Hermann's AI drafted results stays unconfirmed, since its site bars automated readers.",
      "checked": true
+    },
+    {
+     "date": "2026-10-26",
+     "note": "The trade press account of Memorial Hermann's AI drafted results explanations is still unconfirmed. That site bars automated readers.",
+     "checked": true
     }
    ]
   },
@@ -28558,6 +28728,11 @@
      "date": "2026-10-25",
      "note": "The fetal movement trial's registry record stays unconfirmed, since the registry still bars automated readers.",
      "checked": true
+    },
+    {
+     "date": "2026-10-26",
+     "note": "The registry record of the three campus fetal movement trial is still unconfirmed. The registry bars automated readers.",
+     "checked": true
     }
    ],
    "unreachable": {
@@ -28783,6 +28958,11 @@
     {
      "date": "2026-10-25",
      "note": "The sheriff's promise to return to the court before using AI report writing stays unconfirmed. The agenda host bars automated readers and the county archive turned the request away.",
+     "checked": true
+    },
+    {
+     "date": "2026-10-26",
+     "note": "The sheriff's promise to return to the court before switching on AI report writing is still unconfirmed. The agenda host and the county archive both refused the request.",
      "checked": true
     }
    ],
@@ -29142,6 +29322,11 @@
      "date": "2026-10-25",
      "note": "Hays County's policy on governing AI in surveillance stays unconfirmed. The agenda host bars automated readers and the county archive turned the request away.",
      "checked": true
+    },
+    {
+     "date": "2026-10-26",
+     "note": "The Hays County policy on AI in surveillance is still unconfirmed. Its agenda host bars automated readers and the county archive refused the request again.",
+     "checked": true
     }
    ],
    "last_verified": "2026-09-26",
@@ -29334,6 +29519,11 @@
     {
      "date": "2026-10-25",
      "note": "The Texas Tribune reported on October 14th that the water board says it has no authority to prosecute a facility that skips the survey. The directive's own page still bars automated readers."
+    },
+    {
+     "date": "2026-10-26",
+     "note": "The Governor's directive to the water board is still unconfirmed on its own page, which bars automated readers. The Tribune's account of the survey count reads as cited.",
+     "checked": true
     }
    ],
    "unreachable": {
@@ -30822,6 +31012,11 @@
      "date": "2026-10-25",
      "note": "Leander's end to its plate reader contract stays unconfirmed. The city's notice still turns away every reader.",
      "checked": true
+    },
+    {
+     "date": "2026-10-26",
+     "note": "Leander's decision to stop paying for its plate reader contract is still unconfirmed. The city's notice refuses every reader.",
+     "checked": true
     }
    ],
    "unreachable": {
@@ -30951,6 +31146,11 @@
      "date": "2026-10-25",
      "note": "The Houston producer's stake in an AI vendor and its Ward County commitment stay unconfirmed. The release still turns away every reader.",
      "checked": true
+    },
+    {
+     "date": "2026-10-26",
+     "note": "The Houston producer's stake in an AI vendor and its Ward County commitment are still unconfirmed. The wire release refuses every reader.",
+     "checked": true
     }
    ],
    "unreachable": {
@@ -31042,6 +31242,24 @@
      "source_type": "journalism",
      "fetched": "2026-09-23",
      "id": "tx-2026-0182-c5"
+    },
+    {
+     "text": "The environmental agency's October 19th letter to the Governor says that a permit application subject to the directive has been paused.",
+     "verbatim_quote": "If a permit application is subject to the directive, TCEQ has paused that permit application in accordance with your directive.",
+     "source_url": "https://www.tceq.texas.gov/downloads/response/tceq-response-gov-abbott-dc-directive.pdf",
+     "source_title": "Texas Commission on Environmental Quality, letter to Governor Abbott on the data center directive, October 19th, 2026",
+     "source_type": "primary_official",
+     "fetched": "2026-10-26",
+     "id": "tx-2026-0182-c6"
+    },
+    {
+     "text": "The letter says the agency met with the water board, the utility commission and ERCOT so that every agency's directives are aligned.",
+     "verbatim_quote": "TCEQ has met with the Texas Water Development Board (TWDB), the Public Utility Commission of Texas (PUCT), and the Electric Reliability Council of Texas (ERCOT) to ensure that all agency directives are aligned.",
+     "source_url": "https://www.tceq.texas.gov/downloads/response/tceq-response-gov-abbott-dc-directive.pdf",
+     "source_title": "Texas Commission on Environmental Quality, letter to Governor Abbott on the data center directive, October 19th, 2026",
+     "source_type": "primary_official",
+     "fetched": "2026-10-26",
+     "id": "tx-2026-0182-c7"
     }
    ],
    "id": "tx-2026-0182",
@@ -31120,6 +31338,10 @@
      "date": "2026-10-24",
      "note": "The Governor's direction to the environmental agency to issue no data center permits until the grid audit is done still stands.",
      "checked": true
+    },
+    {
+     "date": "2026-10-26",
+     "note": "The environmental agency answered the Governor on October 19th. Its letter says applications subject to the directive are paused and that it met with the water board, the utility commission and ERCOT to align their directives."
     }
    ]
   },
@@ -31350,6 +31572,15 @@
      "source_type": "primary_official",
      "fetched": "2026-09-24",
      "id": "tx-2026-0186-c17"
+    },
+    {
+     "text": "DroneXL reports that Zipline opened Austin area delivery from Round Rock on October 9th, before this comment window closed.",
+     "verbatim_quote": "Zipline opened drone delivery in the Austin area on Friday, October 9, with its First Flight early-access program taking orders in Round Rock for the first 5,000 residents who sign up.",
+     "source_url": "https://dronexl.co/2026/10/09/zipline-austin-round-rock-drone-delivery-launch/",
+     "source_title": "DroneXL, Zipline Starts Austin Deliveries With FAA Comment Window Still Open, October 9th, 2026",
+     "source_type": "journalism",
+     "fetched": "2026-10-26",
+     "id": "tx-2026-0186-c18"
     }
    ],
    "notes_for_editor": "Admitted on the FAA's own draft and its own review page. The environmental assessment is a draft prepared by the applicant under the agency's supervision, and the final decision on the operating approvals has not been made. The county list is the Section 106 letter's own list with two of its spellings, Atacosta and Roberston, read as Atascosa and Robertson. The letter's stated total and its list disagree, so no county count is published. The five metros straddle the ERCOT line, so on_ercot is null rather than either value. The letter states a county total its own list does not match, and that discrepancy is reported here rather than repaired.",
@@ -31419,6 +31650,15 @@
      "date": "2026-10-23",
      "note": "The agency's drone review page still says comment on Zipline's Texas metros draft closed on October 11th. The draft and its noise study are still posted, and no final assessment or finding has appeared.",
      "checked": true
+    },
+    {
+     "date": "2026-10-26",
+     "note": "The FAA review page for Zipline's Texas metros draft refused the request today, so the closed comment period and the posted draft are unconfirmed.",
+     "checked": true
+    },
+    {
+     "date": "2026-10-26",
+     "note": "Zipline began deliveries in Round Rock on October 9th, before this comment window closed, as DroneXL reports. No final assessment has appeared."
     }
    ]
   },
@@ -33930,7 +34170,7 @@
      "id": "tx-2026-0198-c17"
     }
    ],
-   "last_verified": "2026-10-23",
+   "last_verified": "2026-10-26",
    "confidence": "high",
    "notes_for_editor": "Admitted on three of the company's own pages. Counties are the two ends of the driver-out leg the company names, its Lancaster hub in Dallas County and Houston in Harris County. Frisco and Baytown are the ends of IKEA's longer route and are not counted as places the driverless leg runs. Filed under state-policy beside the state's authorization rule for the same vehicles, tx-2026-0188.",
    "history": [
@@ -33965,6 +34205,11 @@
     {
      "date": "2026-10-23",
      "note": "Kodiak still names Interstate 45 from Dallas to Houston as its first driverless lane and still gives the end of 2026 for an empty cab, with no firmer date.",
+     "checked": true
+    },
+    {
+     "date": "2026-10-26",
+     "note": "Kodiak still names Interstate 45 from Dallas to Houston as its first driverless lane, and still gives no firmer date for an empty cab.",
      "checked": true
     }
    ]
@@ -35156,6 +35401,11 @@
      "date": "2026-10-25",
      "note": "Taylor's annexation agreement for the data center campus stays unconfirmed on the city's notice, which no longer answers at its address. CBS Austin's report of the approval still reads as cited.",
      "checked": true
+    },
+    {
+     "date": "2026-10-26",
+     "note": "Taylor's annexation agreement for the data center campus is still unconfirmed on the city's notice, which no longer answers. CBS Austin's report of the approval reads as cited.",
+     "checked": true
     }
    ],
    "id": "tx-2026-0203"
@@ -35979,9 +36229,14 @@
      "date": "2026-10-23",
      "note": "The Dallas to Laredo trucks still carry a safety driver, as Kodiak's October 8th release says, and no driverless date for that lane has been named.",
      "checked": true
+    },
+    {
+     "date": "2026-10-26",
+     "note": "Kodiak's release still says the Dallas to Laredo trucks run with a safety driver aboard. No driverless date for that lane has appeared.",
+     "checked": true
     }
    ],
-   "last_verified": "2026-10-23",
+   "last_verified": "2026-10-26",
    "id": "tx-2026-0209"
   },
   {
@@ -36837,7 +37092,7 @@
     }
    ],
    "id": "tx-2026-0216",
-   "last_verified": "2026-10-23",
+   "last_verified": "2026-10-26",
    "history": [
     {
      "date": "2026-10-16",
@@ -36851,6 +37106,11 @@
     {
      "date": "2026-10-23",
      "note": "Waymo's San Antonio service is still open to anyone with the app. The airport is included. The recall record still lists the lasting fix as under development.",
+     "checked": true
+    },
+    {
+     "date": "2026-10-26",
+     "note": "Waymo's San Antonio service still takes any rider with the app, airport trips included. The recall record still calls the lasting fix under development.",
      "checked": true
     }
    ]
@@ -36989,7 +37249,7 @@
     }
    ],
    "id": "tx-2026-0217",
-   "last_verified": "2026-10-23",
+   "last_verified": "2026-10-26",
    "history": [
     {
      "date": "2026-10-17",
@@ -37003,6 +37263,11 @@
     {
      "date": "2026-10-23",
      "note": "MD Anderson's release still treats the mucin barrier as an idea to test in the lab. No use in patient care is reported.",
+     "checked": true
+    },
+    {
+     "date": "2026-10-26",
+     "note": "MD Anderson's account still frames mucin as a barrier to test in the lab rather than a treatment. Nothing about patient care has been added.",
      "checked": true
     }
    ]
@@ -37419,7 +37684,7 @@
     }
    ],
    "id": "tx-2026-0220",
-   "last_verified": "2026-10-25",
+   "last_verified": "2026-10-26",
    "history": [
     {
      "date": "2026-10-18",
@@ -37449,6 +37714,11 @@
     {
      "date": "2026-10-25",
      "note": "Checked and unchanged. Still pending, with no dated movement.",
+     "checked": true
+    },
+    {
+     "date": "2026-10-26",
+     "note": "San Antonio's two data center zoning cases still read as the city scheduled them. No council outcome has been posted yet.",
      "checked": true
     }
    ]
@@ -37830,7 +38100,7 @@
    ],
    "notes_for_editor": "The 25 is an estimate with a 95 percent interval of 8.3 to 41.0, and associated is the authors' word. The cameras do record during surgery (c18), so never say they don't see the operation. Turnover falling is the hospital blog's claim and not a study finding (c24). Video and audio retention is the paper's account and the blog says no audio is captured, so attribute either one (c17). The 5417 is the suite's case count over the window, not cases the cameras watched (c5).",
    "id": "tx-2026-0222",
-   "last_verified": "2026-10-23",
+   "last_verified": "2026-10-26",
    "history": [
     {
      "date": "2026-10-20",
@@ -37839,6 +38109,11 @@
     {
      "date": "2026-10-23",
      "note": "The study still ties the cameras to more cases a month and still says it can't show they caused the rise.",
+     "checked": true
+    },
+    {
+     "date": "2026-10-26",
+     "note": "Houston Methodist's study still links the operating room cameras to more cases a month and still says it can't show the cameras caused the rise.",
      "checked": true
     }
    ]
@@ -38107,10 +38382,15 @@
      "date": "2026-10-23",
      "note": "Rice's release still sets out 40 more AI faculty hires toward 75 this decade and lab space at The Arc. It still names no budget and no date for the remaining hires.",
      "checked": true
+    },
+    {
+     "date": "2026-10-26",
+     "note": "Rice's own release still sets out a universitywide AI initiative with 40 more AI faculty toward 75 this decade. It also names a Master of Artificial Intelligence program and lab space at The Arc. It still names no budget.",
+     "checked": true
     }
    ],
    "id": "tx-2026-0224",
-   "last_verified": "2026-10-23"
+   "last_verified": "2026-10-26"
   },
   {
    "title": "Lockheed Martin brings Hadrian's 24 machine automated machining cell into its Grand Prairie missile parts plant",
@@ -38581,11 +38861,16 @@
     }
    ],
    "id": "tx-2026-0228",
-   "last_verified": "2026-10-23",
+   "last_verified": "2026-10-26",
    "history": [
     {
      "date": "2026-10-23",
      "note": "Admitted on the medical center's own account of the study. It names no Texas hospital using these models for triage, and the records came from hospitals in California and Massachusetts."
+    },
+    {
+     "date": "2026-10-26",
+     "note": "UT Southwestern's account of the triage study still reads as cited. It still names no Texas hospital using these models to sort patients.",
+     "checked": true
     }
    ]
   },
@@ -38668,11 +38953,16 @@
     }
    ],
    "id": "tx-2026-0229",
-   "last_verified": "2026-10-23",
+   "last_verified": "2026-10-26",
    "history": [
     {
      "date": "2026-10-23",
      "note": "Admitted on the university's own account of the grant. It gives no opening date and no measured result, and the speed it names is a goal."
+    },
+    {
+     "date": "2026-10-26",
+     "note": "Texas A&M's account of the Aggie AI Foundry grant still reads as cited. It still gives no opening date and no measured result.",
+     "checked": true
     }
    ]
   },
@@ -38937,6 +39227,165 @@
     {
      "date": "2026-10-25",
      "note": "Admitted on UT Austin's own news item. The award funds a model still being built, and the item names no funder."
+    }
+   ]
+  },
+  {
+   "title": "Round Rock says its zoning does not cover drone delivery hubs as Zipline starts flying from one outside city limits",
+   "summary": "The City of Round Rock tells residents that drone delivery hubs are not specifically addressed in its current zoning ordinances. Zipline is beginning commercial deliveries from a facility in the city's extraterritorial jurisdiction, near North Kenney Fort and Joe DiMaggio Boulevards, where the city does not zone. The city says the FAA controls flight paths and that drones may fly over homes on approved routes. It is working with Zipline toward a second hub inside city limits behind Renaissance Square, and says that site will help it write rules for future hubs. Zipline says its aircraft carry onboard detect and avoid and are watched from a remote operations center. No hub rule has been adopted yet.",
+   "topic": "land-water-and-permitting",
+   "decider": {
+    "name": "City of Round Rock",
+    "type": "city"
+   },
+   "geography": {
+    "statewide": false,
+    "counties": [
+     "Williamson"
+    ],
+    "on_ercot": true
+   },
+   "status": "pending",
+   "key_dates": [
+    {
+     "date": "2026-10-09",
+     "kind": "effective",
+     "note": "Zipline's first Round Rock deliveries, as DroneXL reports"
+    }
+   ],
+   "public_access": {
+    "room": "contact_only",
+    "how": "No hearing or comment window is posted. The city's drone delivery page sends operational feedback to Zipline and safety concerns to the FAA. A hub inside city limits would come under the city's land use rules, and the city council is the body that would adopt them.",
+    "url": "https://www.roundrocktexas.gov/city-departments/administration/drone-delivery-in-round-rock/",
+    "closes": null
+   },
+   "confidence": "high",
+   "notes_for_editor": "Admitted on the city's own drone delivery page. The launch date rests on DroneXL. The FAA's review page refused the request this run.",
+   "claims": [
+    {
+     "text": "Round Rock says drone delivery hubs, where the aircraft are stored, launched and recharged, are not specifically addressed in its current zoning ordinances.",
+     "verbatim_quote": "Drone delivery hubs, where drones are stored, launched and recharged, are not specifically addressed under the City’s current zoning ordinances.",
+     "source_url": "https://www.roundrocktexas.gov/city-departments/administration/drone-delivery-in-round-rock/",
+     "source_title": "City of Round Rock, Drone Delivery in Round Rock",
+     "source_type": "primary_official",
+     "fetched": "2026-10-26",
+     "id": "tx-2026-0232-c1"
+    },
+    {
+     "text": "Zipline is beginning commercial drone deliveries from a facility near North Kenney Fort and Joe DiMaggio Boulevards, inside Round Rock's extraterritorial jurisdiction.",
+     "verbatim_quote": "Zipline is beginning commercial drone deliveries from a facility near the intersection of North Kenney Fort and Joe DiMaggio Boulevards, in Round Rock’s Extraterritorial Jurisdiction (ETJ).",
+     "source_url": "https://www.roundrocktexas.gov/city-departments/administration/drone-delivery-in-round-rock/",
+     "source_title": "City of Round Rock, Drone Delivery in Round Rock",
+     "source_type": "primary_official",
+     "fetched": "2026-10-26",
+     "id": "tx-2026-0232-c2"
+    },
+    {
+     "text": "The city says service will reach eligible customers within three miles of that facility, according to the company.",
+     "verbatim_quote": "According to the company, service will be available to eligible customers within three miles of this location and may expand to additional areas in the future.",
+     "source_url": "https://www.roundrocktexas.gov/city-departments/administration/drone-delivery-in-round-rock/",
+     "source_title": "City of Round Rock, Drone Delivery in Round Rock",
+     "source_type": "primary_official",
+     "fetched": "2026-10-26",
+     "id": "tx-2026-0232-c3"
+    },
+    {
+     "text": "The city is working with Zipline toward a proposed hub inside city limits, behind the Renaissance Square shopping center on northbound I-35.",
+     "verbatim_quote": "The City is working with Zipline to allow a proposed in-City hub at the rear of Renaissance Square shopping center along northbound I-35.",
+     "source_url": "https://www.roundrocktexas.gov/city-departments/administration/drone-delivery-in-round-rock/",
+     "source_title": "City of Round Rock, Drone Delivery in Round Rock",
+     "source_type": "primary_official",
+     "fetched": "2026-10-26",
+     "id": "tx-2026-0232-c4"
+    },
+    {
+     "text": "Round Rock says that site will let it evaluate drone delivery and its impacts and develop regulations for future hubs inside city limits.",
+     "verbatim_quote": "This location will provide an opportunity to evaluate drone delivery operations and their impacts, helping the City develop appropriate regulations for future facilities within city limits.",
+     "source_url": "https://www.roundrocktexas.gov/city-departments/administration/drone-delivery-in-round-rock/",
+     "source_title": "City of Round Rock, Drone Delivery in Round Rock",
+     "source_type": "primary_official",
+     "fetched": "2026-10-26",
+     "id": "tx-2026-0232-c5"
+    },
+    {
+     "text": "The city says the FAA regulates flight operations, airspace and flight paths, and the city does not decide where drones fly.",
+     "verbatim_quote": "The FAA regulates drone flight operations, including airspace and flight paths. The City does not determine where drones may fly.",
+     "source_url": "https://www.roundrocktexas.gov/city-departments/administration/drone-delivery-in-round-rock/",
+     "source_title": "City of Round Rock, Drone Delivery in Round Rock",
+     "source_type": "primary_official",
+     "fetched": "2026-10-26",
+     "id": "tx-2026-0232-c6"
+    },
+    {
+     "text": "Drones may fly over homes on approved flight paths, and the city says it can't regulate those paths.",
+     "verbatim_quote": "Drones may fly over residential areas as part of approved flight paths. The City cannot regulate drone flight paths.",
+     "source_url": "https://www.roundrocktexas.gov/city-departments/administration/drone-delivery-in-round-rock/",
+     "source_title": "City of Round Rock, Drone Delivery in Round Rock",
+     "source_type": "primary_official",
+     "fetched": "2026-10-26",
+     "id": "tx-2026-0232-c7"
+    },
+    {
+     "text": "Inside city limits the city may keep delivery hubs from sitting next to homes.",
+     "verbatim_quote": "The City is allowed to regulate the location of delivery hubs inside city limits to ensure they are not adjacent to residential properties to mitigate any potential issues.",
+     "source_url": "https://www.roundrocktexas.gov/city-departments/administration/drone-delivery-in-round-rock/",
+     "source_title": "City of Round Rock, Drone Delivery in Round Rock",
+     "source_type": "primary_official",
+     "fetched": "2026-10-26",
+     "id": "tx-2026-0232-c8"
+    },
+    {
+     "text": "Zipline says each aircraft carries an onboard detect and avoid system for other aircraft.",
+     "verbatim_quote": "Each aircraft has a Detect-and-Avoid system onboard to avoid other aircraft.",
+     "source_url": "https://www.zipline.com/about/zipline-safety-fact-sheet",
+     "source_title": "Zipline, Zipline Safety Fact Sheet",
+     "source_type": "primary_corporate",
+     "fetched": "2026-10-26",
+     "id": "tx-2026-0232-c9"
+    },
+    {
+     "text": "Zipline says trained staff watch the flights from a remote operations center.",
+     "verbatim_quote": "Trained Zipline personnel monitor flights from a remote operations center.",
+     "source_url": "https://www.zipline.com/about/zipline-safety-fact-sheet",
+     "source_title": "Zipline, Zipline Safety Fact Sheet",
+     "source_type": "primary_corporate",
+     "fetched": "2026-10-26",
+     "id": "tx-2026-0232-c10"
+    },
+    {
+     "text": "Zipline says each aircraft reserves its own route in an FAA approved traffic management system before launch.",
+     "verbatim_quote": "Before launch, aircraft automatically reserve their own strategic flight route in our FAA-approved traffic management system to avoid conflicts.",
+     "source_url": "https://www.zipline.com/about/zipline-safety-fact-sheet",
+     "source_title": "Zipline, Zipline Safety Fact Sheet",
+     "source_type": "primary_corporate",
+     "fetched": "2026-10-26",
+     "id": "tx-2026-0232-c11"
+    },
+    {
+     "text": "Zipline says its onboard flight computers detect and respond to problems on their own.",
+     "verbatim_quote": "The onboard flight computers can detect and automatically respond to issues.",
+     "source_url": "https://www.zipline.com/about/zipline-safety-fact-sheet",
+     "source_title": "Zipline, Zipline Safety Fact Sheet",
+     "source_type": "primary_corporate",
+     "fetched": "2026-10-26",
+     "id": "tx-2026-0232-c12"
+    },
+    {
+     "text": "DroneXL reports that Zipline opened Austin area delivery on October 9th, taking early access orders in Round Rock.",
+     "verbatim_quote": "Zipline opened drone delivery in the Austin area on Friday, October 9, with its First Flight early-access program taking orders in Round Rock for the first 5,000 residents who sign up.",
+     "source_url": "https://dronexl.co/2026/10/09/zipline-austin-round-rock-drone-delivery-launch/",
+     "source_title": "DroneXL, Zipline Starts Austin Deliveries With FAA Comment Window Still Open, October 9th, 2026",
+     "source_type": "journalism",
+     "fetched": "2026-10-26",
+     "id": "tx-2026-0232-c13"
+    }
+   ],
+   "id": "tx-2026-0232",
+   "last_verified": "2026-10-26",
+   "history": [
+    {
+     "date": "2026-10-26",
+     "note": "Admitted on the city's own page. The city has not adopted a rule for drone hubs, and its first hub inside city limits is still a proposal."
     }
    ]
   }

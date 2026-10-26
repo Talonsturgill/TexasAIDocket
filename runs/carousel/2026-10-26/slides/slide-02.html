@@ -1,0 +1,69 @@
+<!doctype html>
+<!-- 2026-10-26, frame 2 of 9. Archetype SPLIT_HORIZON. A spatial scene through txthree.js in the deck's lastLight world: a chassis dock tower on a concrete pad in a field of Blackland clay behind a kit barbed wire fence, the chassis aircraft lifting off its cradle and leaving by the right edge. No hub layout is in the record; the tower, pad and fence are drawn to illustrate, to no maker's design. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">The first hub is outside city limits</h1>
+<p class="dek" data-follow="26">Round Rock places the facility near North Kenney Fort and Joe DiMaggio Boulevards, in its extraterritorial jurisdiction. Citing the company, the city says service reaches eligible customers within three miles. The tower and aircraft are drawn to&nbsp;illustrate.</p>
+<script>window.FIG = {};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-26-tether.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "The extraterritorial jurisdiction", counter: "02 / 09", src: "c2 c3 c55", fit: { min: 72, max: 100, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 34, near: 0.1, far: 3000 });
+  const tower = K.make('dock_tower', { height: 6, arm: 1.6 }); tower.rotation.y = 0.5; TXT.add(R, tower); TXT.contact(R, tower);
+  const tower2 = K.make('dock_tower', { height: 6, arm: 1.6 }); tower2.position.set(-9, 0, -11); tower2.rotation.y = 0.5; TXT.add(R, tower2); TXT.contact(R, tower2);
+  const cab = new THREE.Vector3(...tower.userData.attach.cradle).applyAxisAngle(new THREE.Vector3(0, 1, 0), 0.5);
+  /* the aircraft has just lifted off the cradle and drifts east, out of the right edge */
+  const drone = K.make('delivery_drone', { tether: 0.25, blur: 0.3, rotorAng: 0.8, lights: true });
+  drone.position.set(cab.x + 2.0, cab.y + 0.3, cab.z + 3.6); drone.rotation.y = 1.9; TXT.add(R, drone);
+  const a = drone.userData.attach.pod;
+  const pw = new THREE.Vector3(a[0], a[1], a[2]).applyAxisAngle(new THREE.Vector3(0, 1, 0), drone.rotation.y).add(drone.position);
+  const pod = K.make('delivery_pod', {}); pod.position.set(pw.x, pw.y - 0.64, pw.z); pod.rotation.y = 1.9; TXT.add(R, pod);
+  /* the hub's concrete pad and its equipment cabinet, the foot of the tower standing on it */
+  const pad = new THREE.Mesh(new THREE.BoxGeometry(4.2, 0.16, 4.2), new THREE.MeshStandardMaterial({ color: 0x8a867e, roughness: 0.9 }));
+  pad.position.set(0, 0.08, 0); pad.rotation.y = 0.5; pad.castShadow = pad.receiveShadow = true; TXT.add(R, pad);
+  const cabinet = new THREE.Mesh(new THREE.BoxGeometry(0.9, 1.4, 0.6), new THREE.MeshStandardMaterial({ color: 0x8d9296, roughness: 0.5, metalness: 0.5 }));
+  cabinet.position.copy(new THREE.Vector3(-1.2, 0.86, 1.1).applyAxisAngle(new THREE.Vector3(0, 1, 0), 0.5)); cabinet.rotation.y = 0.5; cabinet.castShadow = cabinet.receiveShadow = true; TXT.add(R, cabinet); TXT.contact(R, cabinet);
+  const fence = K.make('barbed_wire_fence', { length: 40, strands: 4, spacing: 3.2 }); fence.position.set(-2.4, 0, 4.4); fence.rotation.y = -0.69; TXT.add(R, fence); TXT.contact(R, fence);
+  TXT.sky(R);
+  TXT.ground(R, { surface: 'dirt', size: 900, seed: 11, color: 0x3a3026 });
+  /* pulled back so the whole tower stands on its pad in the lower third, the aircraft lifting off toward the camera's right */
+  const from = [-15.4, 3.2, 20.9];
+  const look = CH.aim(THREE, R, TXT, from, [0.3, 3.0, 0.2], 520, 950, 34);
+  TXT.frame(R, { fov: 34, from, look });
+  TXT.scatter(R, { kind: 'rock', count: 4200, area: [-5, -5, 5, 5], avoid: [[-2.3, -2.3, 2.3, 2.3]], seed: 21, scale: [0.03, 0.08] });
+  TXT.scatter(R, { kind: 'grass', count: 1000, area: [-30, -30, 30, 2.5], avoid: [[-2.2, -2.2, 2.2, 2.2], [-11, -13, -7, -9]], seed: 5, scale: [0.5, 0.9] });
+  CH.warm(R, 0.2);
+  TXT.deckRig(R, CH.rigSpec(W, 30, 2048), CH.rigOpts([0, 0, 0], { distance: 70, shadowFar: 160 }));
+  CH.unacne(R, 0.02);
+  /* the pad's own work light on the cabinet, a cool LED washing up the mast, the one source at the hub */
+  const up = new THREE.SpotLight(0xdfe6ff, 260, 18, 0.5, 0.8, 2); up.position.set(1.6, 1.5, 1.4); up.target.position.set(0, 4.5, 0.4); up.castShadow = true; up.shadow.mapSize.set(1024, 1024);
+  R.scene.add(up); R.scene.add(up.target);
+  CH.noShadows(R);
+  TXT.stage(R, [tower, drone, pod]);
+  TXT.weather(R, { grime: 0.45, height: 1.6, mottle: 0.35 });
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0.3, veil: 0.32, footWash: 0.4 });
+  CH.knock(cx, [".tx-site", ".src"], 0.55);
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

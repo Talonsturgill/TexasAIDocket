@@ -44,6 +44,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-18 · Amazon's own announcement of the Austin robotics factory reads as published. The Governor's release is unconfirmed.
 - 2026-10-22 · Amazon's own announcement of the Austin robotics factory still reads as published. The Governor's release stays unconfirmed.
 - 2026-10-25 · The Governor's release on Amazon's Austin robotics factory stays unconfirmed, since the office's site bars automated readers.
+- 2026-10-26 · The Governor's release on Amazon's Austin robotics factory is still unconfirmed. The office's site bars automated readers.
 
 ## Evidence
 

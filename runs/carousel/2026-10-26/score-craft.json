@@ -1,0 +1,81 @@
+{
+ "lens": "craft",
+ "round": 3,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.8,
+   "why": "Two frames pass THE STAGE outright. Frame 1 shows the pale airframe large on a near-black field, with the wing running off the right edge, street lamps converging far below and the gold-banded pod hung on a short lit line. Frame 4 lays a lit ring on a lamp grid at true scale, with the hub glowing at its centre and the horizon kept in frame. Frames 3 and 9 are solid. The sign's green face reads at feed size over lit grass with a lamp horizon behind it. The staked rectangle on frame 9 casts long shadows and the storm grate is a good detail. On frame 3, though, the U-channel posts render pure black and are not lit on the key side as briefed. On frame 9 the lower 45 percent is beige mid-tone asphalt and the wheel stops read as toy blocks. Three frames each lean on a primitive model or a render artifact, which is more than the 7 descriptor allows. (a) Frame 5 has stair-stepped shadow-map aliasing in blue blocks across the fuselage at the boom root, visible at native size in crop r3c2. Its wings are flat slabs. ONBOARD DETECT AND AVOID and the claim-id line sit directly over the tower lattice. The dashed route reads as a UI overlay, not a corridor in the world. (b) Frame 8's resident is a low-poly kit mannequin with a hand clamped over the face (crop r2c1). The light contradicts itself: the resident's shadow falls to the RIGHT on the fence and the pod's shadow falls to the LEFT, which no single source can produce. The 'lawn' reads as dark asphalt with sprite tufts, and the fence is a flat mid-tone brown plane across a quarter of the frame. (c) On frame 2 the tower is a thin lattice that does not own the frame, and the middle third is empty dark. The gravel apron is fist-sized cobbles out of scale with a 6 m tower. The cabinet is an untextured flat-lit beige box (crop r3c1). Frame 6 is clean but generic. Its operator is a kit figure in a cap cut at the edge, and a bright desk hotspot at the bottom has no source in the room. Frame 7's walnut is a repeating procedural wave grain, and the dais fills most of the frame in warm mid-tone. Bold dark register throughout and no flat fills or plates. Under the 7 descriptor because three frames, not one, carry a default or an artifact."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "Read as a filmstrip it is clearly one deck. It has one lastLight world, near-black skies, one type system and one dusk-gold accent meaning 'what comes down', on the pod in 1, 2 and 8 and the cradle ring in 5. Three continuity devices actually work. The camera comes down from the air on 1 to the empty pad on 9. The aircraft motif changes state: in flight, lifting off, a light trail, a ring, docked, a line on a screen, absent, its pod in a yard, nothing over the site. The edge tease also lands: the aircraft exits frame 2 at the right and its trail enters frame 3 from the left. The value cut at frame 7 is declared in the storyboard as the Rowlett turn. Against that, the light does not run one way. Frames 1 to 3 key from the front left, frame 9 casts toward the left from a lamp out of frame right, and frame 8 contains two contradictory casts. The two interiors also split the deck: frame 6 is cool screen-blue and frame 7 is warm lit walnut. Frame 9's beige asphalt then lifts the close after a dark frame 8, so the track goes dark, warm-mid, dark, mid over 6 to 9. I could not run deck_coherence.py or deck_chassis.py as this leaf. The score assumes neither refuses."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.0,
+   "why": "Every numeral traces. 3 MILES and 'three miles' come from c3, the city citing the company. '28.3 square miles, computed here' is pi times 3 squared, 28.27. '6 to 0' is c47, the minutes, and 'May 20th, 2025' is c46. 'October 9th' is c32. 'about 5 pounds' is c38. 'Interstate 35' is c9. The fact check's six refusals are honoured on every surface: no county for the hub, no noise-complaint routing, no 200 ft buffer, no FAA Austin figures, no mileage. 'Before Zipline opened' is attributed to DroneXL in frame 7's headline and in the caption. Frame 7's dek quotes c54 verbatim ('is the control') and now discloses the six microphones as one per vote cast. Two leans keep this off 10. The Round Rock start date rests on DroneXL (c32) when Zipline's own dated release (c28, published October 9th) was in hand. The 5 lb limit is DroneXL relaying Community Impact. Frame 9's headline 'the hub comes before the rule' is an inference from c10 and is fair, but it is the deck's framing, not the city's sentence."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.5,
+   "why": "A Texan learns what happened: Zipline is flying out of Round Rock's ETJ, the city's zoning has no rule for hubs, and Rowlett wrote one first. They learn who decides what. The FAA sets flight paths (frame 3), Rowlett's council voted 6 to 0 (frame 7), and Round Rock may place infrastructure inside city limits. They learn where: North Kenney Fort and Joe DiMaggio, Renaissance Square on northbound I-35. Frame 8 gives an action, community@zipline.com and the FAA. What is missing is a lever on the decision still open. Nothing tells a Round Rock resident when or where the Renaissance Square hub or the coming regulations will be heard, so 'what they can do next' about the rule itself is stated generally. The county is withheld, rightly, because no source places the hub."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "The cover 'The drones came first' earns the swipe and frame 2 pays at once: the first hub is outside city limits. The turn at frame 7 is real and declared, 'Rowlett wrote the rule first'. The close, 'Next, the hub comes before the rule', lands the order argument on an empty staked pad. Frames 2 and 4 both state the three-mile reach. Frame 6, the operations room, could move or go without loss to the argument, since frame 5 already carries 'Zipline says' and frame 6 adds one claim (c24)."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "The headlines have a person in them: 'The neighbor gets an email address', 'The drones came first'. The local specifics are right: North Kenney Fort and Joe DiMaggio Boulevards, Renaissance Square, the Blackland world, Rowlett's own minutes. It is honest about the company's claims ('Every claim here is Zipline's') without doom. The deks are dense with attribution scaffolding, though. 'Citing the company, the city says' appears twice, a drawn-to-illustrate sentence ends seven of nine deks, and frame 9 ends on the bare fragment 'Drawn to illustrate.' The register drifts toward a careful report, not a Texan talking."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.3,
+   "why": "The subject and techniques are fresh against nos. 57 to 60: an aircraft at station height, a lamp-grid aerial with a measured ring, a roadside sign, a council dais. It is also the first deck in five with no material relief, which itself diverges from the last four, each of which carried one to three. Two moves are familiar. The world is the staged lastLight register of nos. 57, 58 and 60, by house policy. The accent is dusk gold #E0956A, the same hex no. 57 spent on October 22nd, four decks back. The cover is again one hero object on a black field."
+  }
+ ],
+ "weighted_score": 7.426,
+ "weighted_arithmetic": "6.8*0.22=1.496 + 7.5*0.12=0.900 + 8.0*0.20=1.600 + 7.5*0.16=1.200 + 7.5*0.10=0.750 + 7.5*0.10=0.750 + 7.3*0.10=0.730 = 7.426",
+ "hard_fails": [],
+ "ship": true,
+ "ship_note": "Round 3 is the round cap and I found no hard fail. machine_qa.json shows 0 fails, with 13 warns that are verdict notices plus busy-art-under-footer on frame 3. Every numeral traces to a claim or a computation, and the caption breaks no house rule I could find: no colons, no dashes, the year kept only on the 2025 date, no banned words. 7.426 is under the 8.0 top rung and ships at the cap with a shortfall of 0.574 against 8.0.",
+ "one_sentence_fix": "Hold every frame to one physically consistent key, and keep kit humans and low-detail kit props out of the focal plane. The three frames that drag the art score fail on lighting logic and primitive models, not on concept. Frame 8's two contradictory casts and mannequin, frame 5's shadow-map stair-stepping on the airframe, and frame 2's out-of-scale cobbles and flat box cabinet should each have been caught at the per-frame zoom test before scoring.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 8,
+   "problem": "Two light sources cast contradictory shadows. The resident's shadow falls right on the fence and the pod's shadow falls left. The resident is a low-poly kit mannequin with a hand clamped over the face. The lawn reads as dark asphalt with sprite tufts, and the fence is a flat mid-tone plane across a quarter of the frame.",
+   "fix": "Make the high pole flood the only source near the pod, placed between camera and fence. Then the resident and the pod both cast away from it onto the boards, and the pool on the grass is visibly lit. Drop the kit figure to an unlit silhouette at the frame's left edge with arms down and face away. Give the lawn a real grass ground with the pool's falloff."
+  },
+  {
+   "slide": 5,
+   "problem": "Stair-stepped blue shadow-map aliasing across the fuselage at the boom root (crop r3c2). The wings are flat slabs. The ONBOARD DETECT AND AVOID label and the claim-id footer sit over the tower lattice. The dashed route reads as a UI overlay, not a corridor in the world.",
+   "fix": "Raise the key's shadow map resolution and normal bias on this camera, or tighten the shadow camera frustum to the airframe, so the boom shadow lands as one soft edge. Pan the camera right about 10 percent so the lattice leaves the lower-left type column. Render the route as a lit tube that takes the stage fog with distance, not as screen-space dashes."
+  },
+  {
+   "slide": 2,
+   "problem": "The thin lattice tower does not own the frame and the middle third is empty dark. The gravel apron is fist-sized cobbles out of scale with a 6 m tower. The cabinet is a flat-lit untextured beige box.",
+   "fix": "Move the camera in to about 14 m and drop it to 1.2 m, so the tower runs from the pad to the dek's foot and the cradle sits at the frame's upper third. Scale the gravel scatter to about a fifth of its size. Give the cabinet a vent louvre, a door seam and a dirt gradient at its base."
+  },
+  {
+   "slide": 6,
+   "problem": "A generic CG office. The kit operator in a cap is cropped awkwardly at the top-left edge. A bright hotspot on the desk at the bottom has no source in the room, so the screens do not read as the only light.",
+   "fix": "Kill the fill that lights the desk foreground so the desk catches only the screens' blue spill, falling off toward the camera. Crop the operator to a shoulder and arm in silhouette against the far screens, as the storyboard planned."
+  },
+  {
+   "slide": 7,
+   "problem": "The walnut is a repeating procedural wave grain, and the dais front fills most of the frame in warm mid-tone, so the frame sits in the grey middle more than any other.",
+   "fix": "Light the dais from the west-window key only, raking across the panel fronts so alternate stiles fall into shadow. Swap the wave grain for a straight quartered-walnut albedo, and let the far end of the bench fall to black."
+  }
+ ]
+}

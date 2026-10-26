@@ -414,7 +414,43 @@ export function install(K, THREE, TXT) {
   }
 
   /* ---- palettes ------------------------------------------------------------------------- */
-  const SKIN = [0xf0d0b6, 0xe6b894, 0xd9a47c, 0xc98f64, 0xb37550, 0x9a6040, 0x7d4a2f, 0x5e3522, 0x4a2a1b];
+  /* SKIN IS HELD TO MEASURED HUMAN SKIN (weekly pass 2026-10-26). The kit person read as a mannequin
+   * on four decks of seven that week (nos. 55, 56, 57, 61), and no. 57's bare forearm measured C* 52.
+   * The palette was the cause the 2026-10-22 pass named and left open: its mid tones carried CIELAB a*
+   * up to 20, about twice the redness of real skin, so under a warm key every arm rendered as orange
+   * plastic. The envelope below is COMPUTED from a published in vivo measurement, never typed: Table 1
+   * of "Variation in skin colour by race/ethnicity and body site" (PMC3465481), spectrophotometer
+   * readings on the volar forearm and upper inner arm, as [mean, SD] per group. Each palette entry
+   * keeps its own lightness, and its a* and b* are clamped into the widest mean +/- 2 SD of any group of
+   * thirteen or more people, so the palette spans the measured hue and never leaves it. A deck that
+   * passes `skin` as a colour gets that colour, untouched. */
+  const SKIN_MEASURED = {        // [L*, a*, b*] as [mean, SD]; the five person biracial group is left out as too small
+    asian_volar: [[59.47, 7.33], [8.55, 1.53], [19.60, 2.17]], asian_inner: [[59.30, 8.37], [9.17, 1.56], [19.41, 2.99]],
+    black_volar: [[47.26, 7.66], [9.44, 1.12], [20.07, 2.07]], black_inner: [[46.49, 8.07], [9.84, 1.13], [20.13, 2.31]],
+    white_volar: [[65.00, 4.45], [7.14, 1.63], [17.37, 2.55]], white_inner: [[65.22, 4.88], [7.67, 1.58], [17.18, 2.96]],
+  };
+  const SKIN_ENV = (() => {
+    const rows = Object.values(SKIN_MEASURED), lo = (i) => Math.min(...rows.map((q) => q[i][0] - 2 * q[i][1])), hi = (i) => Math.max(...rows.map((q) => q[i][0] + 2 * q[i][1]));
+    return { a: [lo(1), hi(1)], b: [lo(2), hi(2)] };
+  })();
+  const LAB = (() => {             // sRGB D65 <-> CIELAB, the standard formulas
+    const lin = (c) => (c <= 0.04045 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4)), gam = (c) => (c <= 0.0031308 ? 12.92 * c : 1.055 * Math.pow(c, 1 / 2.4) - 0.055);
+    const W = [0.95047, 1, 1.08883], f = (t) => (t > 216 / 24389 ? Math.cbrt(t) : (24389 / 27 * t + 16) / 116), fi = (t) => (t * t * t > 216 / 24389 ? t * t * t : (116 * t - 16) / (24389 / 27));
+    const toLab = (hex) => {
+      const [r, g, b] = [16, 8, 0].map((k) => lin(((hex >> k) & 255) / 255));
+      const X = (0.4124 * r + 0.3576 * g + 0.1805 * b) / W[0], Y = 0.2126 * r + 0.7152 * g + 0.0722 * b, Z = (0.0193 * r + 0.1192 * g + 0.9505 * b) / W[2];
+      return [116 * f(Y) - 16, 500 * (f(X) - f(Y)), 200 * (f(Y) - f(Z))];
+    };
+    const toHex = ([L, a, b]) => {
+      const fy = (L + 16) / 116, X = W[0] * fi(fy + a / 500), Y = fi(fy), Z = W[2] * fi(fy - b / 200);
+      const rgb = [3.2406 * X - 1.5372 * Y - 0.4986 * Z, -0.9689 * X + 1.8758 * Y + 0.0415 * Z, 0.0557 * X - 0.2040 * Y + 1.0570 * Z];
+      return rgb.map((c) => Math.round(255 * clamp01(gam(clamp01(c))))).reduce((h, c) => h * 256 + c, 0);
+    };
+    return { toLab, toHex };
+  })();
+  const holdSkin = (hex) => { const [L, a, b] = LAB.toLab(hex), cl = (v, [p, q]) => Math.min(q, Math.max(p, v)); return LAB.toHex([L, cl(a, SKIN_ENV.a), cl(b, SKIN_ENV.b)]); };
+  // the lightness ladder as first drawn, light to deep; the hue of every rung is the measured one above
+  const SKIN = [0xf0d0b6, 0xe6b894, 0xd9a47c, 0xc98f64, 0xb37550, 0x9a6040, 0x7d4a2f, 0x5e3522, 0x4a2a1b].map(holdSkin);
   const HAIR = [0x1d1510, 0x2a1d14, 0x3b2a1c, 0x5a3d25, 0x7a5a38, 0x9a8468, 0x8c8a86, 0xc2bdb4, 0x121010];
   const SHIRTS = [0xf2f0ea, 0x9fb7d0, 0x2d3a52, 0x6b7d5c, 0xa2493b, 0x3d5f7a, 0xc9b58f, 0x484848, 0x7a2e2e, 0xe0d7c3, 0x5b6f8f];
   const PLAIDS = [[0x8c2a24, 0x2a2a2a, 0xd8c7a0], [0x2f4a6b, 0x1c2433, 0xc8c2b0], [0x4f6a3a, 0x2a3320, 0xd2c38f], [0x9d6a2f, 0x3b2a1a, 0xe8dcc0]];
@@ -910,8 +946,8 @@ export function install(K, THREE, TXT) {
   K.define('person', {
     size: [0.5, 1.75, 0.3],
     options: { seed: 1, role: 'resident', pose: 'stand', toward: 1, height: null, build: 'auto',
-               hat: 'auto', vest: 'auto', skin: null, shirt: null, trousers: null, detail: 'full' },
-    note: 'Articulated adult 1.60 to 1.90 m by seed, slim to heavy. role resident|worker|official; pose stand|walk|point|hands_on_hips|look_up|read|sit_read (read leans over a desk on +z, head down, forearms forward; sit_read folds the legs so the hips sit at seat height); toward -1|1 for point; hat auto|none|cap|cowboy|hard; build auto|male|female. Shirt and trousers are single distance-field garments with folds; hair has volume by style.',
+               hat: 'auto', hatColor: null, shade: false, vest: 'auto', skin: null, shirt: null, trousers: null, detail: 'full' },
+    note: 'Articulated adult 1.60 to 1.90 m by seed, slim to heavy. role resident|worker|official; pose stand|walk|point|hands_on_hips|look_up|read|sit_read (read leans over a desk on +z, head down, forearms forward; sit_read folds the legs so the hips sit at seat height); toward -1|1 for point; hat auto|none|cap|cowboy|hard, hatColor a colour for it; shade true raises a hand to shade the eyes in look_up (never by default); build auto|male|female. The seeded skin palette is held to measured human skin; skin as a colour overrides it. Shirt and trousers are single distance-field garments with folds; hair has volume by style.',
     make(o, r) {
       LOW = o.detail === 'low';
       try { return makePerson(o, r); } finally { LOW = false; }
@@ -998,7 +1034,12 @@ export function install(K, THREE, TXT) {
     } else if (pose === 'look_up') {
       headPitch = -0.5;
       const s = r() < 0.5 ? 1 : -1;
-      if (r() < 0.6) arm[s] = { u: n3(s * 0.55, 0.15, 0.55), f: n3(-s * 0.75, 0.45, -0.1), hand: 'shade' };
+      // A HAND SHADING THE EYES IS ASKED FOR, never rolled (weekly pass 2026-10-26). It was a 60 percent
+      // seeded roll, and no. 61's resident looking up at an aircraft read to every round 2 and 3 judge as
+      // "a saluting kit mannequin" with "a hand clamped over the face". The roll is still drawn so every
+      // later seeded choice for this person is the one it was.
+      r();
+      if (o.shade === true) arm[s] = { u: n3(s * 0.55, 0.15, 0.55), f: n3(-s * 0.75, 0.45, -0.1), hand: 'shade' };
     } else if (pose === 'read' || pose === 'sit_read') {
       // Reading a screen or a page on a desk in front (+z): head down, standing forearms angled
       // down so the hands land on a desk top at about 0.76 m, seated forearms forward to it.
@@ -1656,9 +1697,13 @@ export function install(K, THREE, TXT) {
       head.add(new THREE.Mesh(shellGeo(hg, beard), hairM));
     }
     if (hatKind !== 'none') {
-      const hatC = hatKind === 'hard' ? pick(r, [0xf2f0ea, 0xf2c200, 0xf07a1a, 0xf2f0ea])
+      let hatC = hatKind === 'hard' ? pick(r, [0xf2f0ea, 0xf2c200, 0xf07a1a, 0xf2f0ea])
         : hatKind === 'cowboy' ? pick(r, [0xd9c69a, 0x2a2420, 0xc2b49a, 0x6b4e34, 0xe0d2a8])
-        : pick(r, [0x1f2b44, 0x7a1f25, 0x3f4a3a, 0xe8e4dc, 0x2a2a2a, 0xb05a22]);
+        : pick(r, [0x1f2b44, 0x7a1f25, 0x3f4a3a, 0x6e6656, 0x2a2a2a, 0xb05a22]);
+      // `hatColor` sets it (no. 61's judges asked for "a dark cloth" cap and the frame had no way to give
+      // one). The seeded pick is still drawn first, so a person's other choices don't move. The cap's pale
+      // stone was the brightest thing beside the face, where the mannequin read lives; a worn khaki took it.
+      if (o.hatColor != null) hatC = o.hatColor;
       const hm = hatKind === 'hard' ? K.mat('p-hard', { color: hatC, roughness: 0.3, clearcoat: 0.8, clearcoatRoughness: 0.2 }, true)
         : K.mat('p-hat', { color: hatC, roughness: hatKind === 'cowboy' && (hatC === 0xd9c69a || hatC === 0xe0d2a8) ? 0.85 : 0.75 });
       head.add(hat(hatKind, Wd * 1.03, D * 1.03, Hh * (hatKind === 'cowboy' ? 0.36 : hatKind === 'cap' ? 0.32 : 0.36), hm, r, Hh));

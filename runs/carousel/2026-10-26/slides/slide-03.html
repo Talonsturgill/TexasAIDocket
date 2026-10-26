@@ -1,0 +1,84 @@
+<!doctype html>
+<!-- 2026-10-26, frame 3 of 9. Archetype CLOSE_CROP. A spatial scene through txthree.js in the deck's lastLight world: the kit city limit sign close at the left on a grass verge by a road edge, and the chassis aircraft crossing the dark sky beyond it at the height read from figures.json. The sign names no town. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">The city can't regulate the flight path</h1>
+<p class="dek" data-follow="26">Round Rock says the FAA regulates airspace and flight paths. Its page says drones may fly over residential areas on approved routes. Inside city limits it may regulate where drone infrastructure sits. The aircraft is drawn to&nbsp;illustrate.</p>
+<script>window.FIG = {"station_m": 91.4};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-26-tether.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "The city limit", counter: "03 / 09", src: "c4 c6 c7 c8", fit: { min: 72, max: 100, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 40, near: 0.05, far: 6000 });
+  const Y = new THREE.Vector3(0, 1, 0);
+  /* the sign at the verge, its face toward the camera and the low key raking it from the left */
+  const sign = K.make('city_limit_sign', { lit: -0.95, glow: 0.22, rim: 0.4 }); sign.rotation.y = 0.6; TXT.add(R, sign); TXT.contact(R, sign);
+  /* pulled back far enough that both posts reach the verge and the ground carries the bottom third */
+  const from = new THREE.Vector3(1.6, 1.0, 8.0).applyAxisAngle(Y, 0.35).toArray();
+  const look = CH.aim(THREE, R, TXT, from, new THREE.Vector3(0, 0.6, 0).applyAxisAngle(Y, 0.35).toArray(), 330, 1080, 40);
+  TXT.frame(R, { fov: 40, from, look });
+  /* THE FIGURE, from figures.json: the aircraft crosses at its station height, far enough out to clear the sign */
+  R.camera.updateMatrixWorld(); R.camera.updateProjectionMatrix();
+  /* a screen point carried out along its ray to the station height, so every point of the path sits at the figure */
+  const atH = (sx, sy) => { const ray = new THREE.Vector3(sx / 540 - 1, 1 - sy / 675, 0.5).unproject(R.camera).sub(R.camera.position).normalize();
+    return R.camera.position.clone().addScaledVector(ray, (FIG.station_m - R.camera.position.y) / ray.y); };
+  const path = new THREE.CatmullRomCurve3([[-160, 700], [880, 640]].map((q) => atH(q[0], q[1])));
+  const dp = path.getPoint(1), dir = path.getTangent(1).setY(0).normalize();
+  const drone = K.make('delivery_drone', { tether: 0.22, blur: 0.25, rotorAng: 0.5, lights: true });
+  drone.position.copy(dp); drone.rotation.y = Math.atan2(dir.x, dir.z); TXT.add(R, drone);
+  /* THE FLIGHT PATH as a long exposure would hold it: the wingtip lights drawn out behind the aircraft, fading toward the left edge */
+  const fade = (() => { const c = document.createElement('canvas'); c.width = 512; c.height = 4; const g = c.getContext('2d');
+    const gr = g.createLinearGradient(0, 0, 512, 0); gr.addColorStop(0, 'rgba(255,255,255,0)'); gr.addColorStop(0.55, 'rgba(255,255,255,0.55)'); gr.addColorStop(0.97, 'rgba(255,255,255,1)'); gr.addColorStop(1, 'rgba(255,255,255,0)');
+    g.fillStyle = gr; g.fillRect(0, 0, 512, 4); const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; return t; })();
+  const side = new THREE.Vector3(-dir.z, 0, dir.x);
+  [[-1.7, 0xff4a3a, 0.2], [1.7, 0x46ff8a, 0.2]].forEach(([o, col, r]) => {
+    const pts = path.getPoints(80).map((q) => q.clone().addScaledVector(side, o));
+    const tube = new THREE.Mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts), 160, r, 6, false),
+      new THREE.MeshBasicMaterial({ color: col, map: fade, transparent: true, blending: THREE.AdditiveBlending, depthWrite: false, fog: false, toneMapped: false }));
+    tube.userData.noShadow = true; R.scene.add(tube);
+  });
+  /* the wingtip and strobe lights, held as points of light the way a night sky shows an aircraft */
+  const glowTex = (() => { const c = document.createElement('canvas'); c.width = c.height = 64; const g = c.getContext('2d');
+    const gr = g.createRadialGradient(32, 32, 0, 32, 32, 32); gr.addColorStop(0, 'rgba(255,255,255,1)'); gr.addColorStop(0.25, 'rgba(255,255,255,0.5)'); gr.addColorStop(1, 'rgba(255,255,255,0)');
+    g.fillStyle = gr; g.fillRect(0, 0, 64, 64); return new THREE.CanvasTexture(c); })();
+  [[-1.7, 0xff5a48, 0.009], [1.7, 0x5cff98, 0.009], [0, 0xffffff, 0.012]].forEach(([o, col, sc]) => {
+    const sp = new THREE.Sprite(new THREE.SpriteMaterial({ map: glowTex, color: col, blending: THREE.AdditiveBlending, depthWrite: false, fog: false, sizeAttenuation: false, toneMapped: false }));
+    sp.position.copy(dp).addScaledVector(side, o).add(new THREE.Vector3(0, o ? 0 : 0.25, 0)); sp.scale.setScalar(sc); R.scene.add(sp);
+  });
+  /* the road the sign stands beside, and the town's lamps far off across it */
+  const road = new THREE.Mesh(new THREE.PlaneGeometry(7.2, 900), new THREE.MeshStandardMaterial({ color: 0x15151a, roughness: 0.85 }));
+  road.rotation.x = -Math.PI / 2; road.rotation.z = 0.35; road.position.copy(new THREE.Vector3(5.2, 0.012, 0).applyAxisAngle(Y, 0.35)); road.receiveShadow = true; R.scene.add(road);
+  const glow = K.make('street_glow', { area: [-2600, -2600, 2600, 2600], block: 120, pitch: 24, keep: 0.8, size: 1.8, seed: 31, turn: 0.35, within: [-400, -900, 900] }); TXT.add(R, glow);
+  TXT.sky(R);
+  TXT.ground(R, { surface: 'lawn', size: 1400, seed: 14, color: 0x1a1810 });
+  TXT.scatter(R, { kind: 'grass', count: 3200, area: [-6, -6, 3, 3], avoid: [[-0.9, -0.3, 0.9, 0.3]], seed: 8, scale: [0.35, 0.7] });
+  CH.warm(R, 0.2);
+  TXT.deckRig(R, CH.rigSpec(W, 8, 2048), CH.rigOpts([0, 0, 0], { distance: 30, shadowFar: 80 }));
+  CH.unacne(R, 0.01);
+  CH.noShadows(R);
+  TXT.stage(R, [sign]);
+  TXT.weather(R, { grime: 0.5, height: 0.5, mottle: 0.4 });
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0.3, veil: 0.32, footWash: 0.4 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

@@ -2000,6 +2000,426 @@ export function install(K, THREE, TXT) {
       return out;
     },
   });
+  /* ==== AVIATION: a delivery aircraft, its pod and its dock (weekly machine pass, 2026-10-26) ====
+   * Lifted from carousel no. 61's chassis (assets/js/deck/2026-10-26-tether.js), where delivery_drone,
+   * delivery_pod and dock_tower stay under their own names so that deck still re-renders exactly as it
+   * shipped. The week's top artwork theme was "primitive or low-poly model where a kit model belongs",
+   * named on 7 of 7 decks, and no. 61's judges named these three by part. Each fix below is theirs:
+   *
+   *   "The slab wing and box V tail read as primitive at feed size" (round 1), "its wings are flat slabs"
+   *     (round 3). The wing is now a lofted cambered section about a seventh of its chord thick, with a
+   *     round leading edge that carries a highlight, a split flap and aileron on a hinge gap, and a
+   *     rounded tip. The V tail is two tapered symmetric sections with ruddervators, never boxes.
+   *   "The aircraft hovers over the cradle plate instead of sitting in it, with no contact." The chassis
+   *     model's lowest point stood 0.17 m above its own origin. Here y = 0 is the bottom of two belly
+   *     skids, as the kit's convention says, and userData.attach.seat is that point.
+   *   "Model the planned galvanized column, not a truss" and "the cabinet is an untextured flat-lit beige
+   *     box". drone_dock is a tapered twelve sided galvanized pole on an anchor bolt base, a box section
+   *     arm on a brace, and a powder coated cabinet with a door, hinges, a handle, louvres and a hood.
+   *   "The gravel apron is fist-sized cobbles out of scale with a 6 m tower." The dock carries its own
+   *     crushed rock apron, every stone between 20 and 60 mm, so a frame never has to guess the scale.
+   *
+   * Drawn to illustrate, to no maker's design. Front +z. Metres. */
+  const AV = {};
+  const avCanvas = (n) => { const c = document.createElement('canvas'); c.width = c.height = n; return c; };
+  // A COMPOSITE SKIN: faint albedo tooth and a little exhaust and handling grime toward the bottom of
+  // every panel, so a white airframe under a low key reads as a worked aircraft and never as a toy.
+  AV.skinMap = () => AV._skin || (AV._skin = (() => {
+    const c = avCanvas(512), x = c.getContext('2d'), r = K.rng(4101);
+    x.fillStyle = '#ffffff'; x.fillRect(0, 0, 512, 512);
+    for (let i = 0; i < 14000; i++) { const v = 236 + Math.floor(r() * 19); x.fillStyle = `rgb(${v},${v},${v - 2})`; x.fillRect(r() * 512, r() * 512, 1.5, 1.5); }
+    for (let i = 0; i < 70; i++) {               // streaks run aft, along u
+      const y = r() * 512, l = 40 + r() * 160, x0 = r() * 512, a = 0.03 + r() * 0.05;
+      const g = x.createLinearGradient(x0, 0, x0 + l, 0); g.addColorStop(0, `rgba(90,86,80,${a})`); g.addColorStop(1, 'rgba(90,86,80,0)');
+      x.fillStyle = g; x.fillRect(x0, y, l, 1 + r() * 2.5);
+    }
+    const t = new THREE.CanvasTexture(c); t.wrapS = t.wrapT = THREE.RepeatWrapping; t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 8; return t;
+  })());
+  // PANEL SEAMS and fastener rows in a bump map, one tile per metre of skin.
+  AV.seamMap = () => AV._seam || (AV._seam = (() => {
+    const c = avCanvas(512), x = c.getContext('2d');
+    x.fillStyle = '#808080'; x.fillRect(0, 0, 512, 512); x.strokeStyle = '#4c4c4c'; x.lineWidth = 2;
+    [70, 226, 318, 451].forEach((v) => { x.beginPath(); x.moveTo(v, 0); x.lineTo(v, 512); x.stroke(); });
+    [128, 384].forEach((v) => { x.beginPath(); x.moveTo(0, v); x.lineTo(512, v); x.stroke(); });
+    x.fillStyle = '#5e5e5e';
+    [70, 318].forEach((v) => { for (let i = 0; i < 42; i++) { x.beginPath(); x.arc(v + 7, 6 + i * 12.2, 1.5, 0, 6.3); x.fill(); } });
+    const t = new THREE.CanvasTexture(c); t.wrapS = t.wrapT = THREE.RepeatWrapping; return t;
+  })());
+  // HOT DIP GALVANIZING: a coarse spangle of crystals in slightly different greys, and a dull run
+  // down from every joint, so the column answers the light as zinc and never as grey clay.
+  AV.galvMap = () => AV._galv || (AV._galv = (() => {
+    const c = avCanvas(512), x = c.getContext('2d'), r = K.rng(733);
+    x.fillStyle = '#b9bcbd'; x.fillRect(0, 0, 512, 512);
+    for (let i = 0; i < 900; i++) {
+      const v = 160 + Math.floor(r() * 70), cx = r() * 512, cy = r() * 512, s = 6 + r() * 22;
+      x.fillStyle = `rgba(${v},${v + 2},${v + 3},0.55)`; x.beginPath();
+      for (let k = 0; k < 6; k++) { const a = k / 6 * 6.283 + r() * 0.6, rr = s * (0.6 + r() * 0.5); x.lineTo(cx + Math.cos(a) * rr, cy + Math.sin(a) * rr); }
+      x.closePath(); x.fill();
+    }
+    for (let i = 0; i < 26; i++) { const x0 = r() * 512, w = 2 + r() * 6, a = 0.06 + r() * 0.08;
+      const g = x.createLinearGradient(0, 0, 0, 512); g.addColorStop(0, `rgba(70,66,58,${a})`); g.addColorStop(1, 'rgba(70,66,58,0)');
+      x.fillStyle = g; x.fillRect(x0, 0, w, 300 + r() * 212); }
+    const t = new THREE.CanvasTexture(c); t.wrapS = t.wrapT = THREE.RepeatWrapping; t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 8; return t;
+  })());
+  const AVM = {
+    shell: (c) => K.mat('av-shell', { color: c != null ? c : 0xe2e4e5, map: AV.skinMap(), bumpMap: AV.seamMap(), bumpScale: 0.6,
+      roughness: 0.4, metalness: 0, clearcoat: 0.55, clearcoatRoughness: 0.32 }, true),
+    dark: () => K.mat('av-dark', { color: 0x26292d, roughness: 0.52, metalness: 0.12 }),
+    carbon: () => K.mat('av-carbon', { color: 0x15171a, roughness: 0.36, metalness: 0.25, clearcoat: 0.6, clearcoatRoughness: 0.25 }, true),
+    motor: () => K.mat('av-motor', { color: 0x3c3f44, roughness: 0.3, metalness: 0.8 }),
+    blade: () => K.mat('av-blade', { color: 0x101113, roughness: 0.42, metalness: 0.05, side: THREE.DoubleSide }),
+    lens: () => K.finish.glass(0x0b1016),
+    rubber: () => K.finish.rubber(),
+    galv: () => K.mat('av-galv', { color: 0xffffff, map: AV.galvMap(), metalness: 0.78, roughness: 0.46 }),
+    galvDark: () => K.mat('av-galvd', { color: 0x777c7f, metalness: 0.7, roughness: 0.5 }),
+    plate: () => K.mat('av-plate', { color: 0x2c2f33, roughness: 0.62, metalness: 0.35 }),
+    copper: () => K.mat('av-cu', { color: 0xb87344, roughness: 0.3, metalness: 0.9 }),
+    powder: (c) => K.mat('av-powder', { color: c != null ? c : 0x5d6360, roughness: 0.58, metalness: 0.15 }),
+    lamp: (c) => K.mat('av-lamp', { color: 0x111111, emissive: c, emissiveIntensity: 3.2 }),
+    paint: (c) => K.mat('av-band', { color: c, roughness: 0.48, metalness: 0 }),
+    glow: (c) => K.mat('av-bandglow', { color: new THREE.Color(c).multiplyScalar(0.3), roughness: 0.55, emissive: c, emissiveIntensity: 0.9, toneMapped: false }),
+  };
+  const avMesh = (geo, mat, x, y, z, parent) => { const m = new THREE.Mesh(geo, mat); m.position.set(x || 0, y || 0, z || 0); m.castShadow = m.receiveShadow = true; if (parent) parent.add(m); return m; };
+
+  /* AN AIRFOIL, NACA four digit: camber m at p of the chord, thickness t. Returns one closed loop
+   * of [xc, yc] in chord fractions, upper surface from x1 back to x0 then lower from x0 to x1, so
+   * a loop cut at a hinge line closes itself with a straight face there. Cosine spaced, so the
+   * leading edge is round enough to hold a highlight. */
+  function naca(m, p, t, x0, x1, n) {
+    const up = [], lo = [];
+    for (let i = 0; i <= n; i++) {
+      const b = Math.PI * i / n, xc = x0 + (x1 - x0) * (1 - Math.cos(b)) / 2;
+      const yt = 5 * t * (0.2969 * Math.sqrt(xc) - 0.126 * xc - 0.3516 * xc * xc + 0.2843 * xc ** 3 - 0.1015 * xc ** 4);
+      const yc = m ? (xc < p ? m / (p * p) * (2 * p * xc - xc * xc) : m / ((1 - p) ** 2) * (1 - 2 * p + 2 * p * xc - xc * xc)) : 0;
+      const dy = m ? (xc < p ? 2 * m / (p * p) * (p - xc) : 2 * m / ((1 - p) ** 2) * (p - xc)) : 0, th = Math.atan(dy);
+      up.push([xc - yt * Math.sin(th), yc + yt * Math.cos(th)]); lo.push([xc + yt * Math.sin(th), yc - yt * Math.cos(th)]);
+    }
+    return up.reverse().concat(lo.slice(x0 === 0 ? 1 : 0));
+  }
+  /* A LOFT through span stations. Each station is { p: [x,y,z] the chord's 0 point (its leading
+   * edge), c: [x,y,z] unit chord axis (leading edge to trailing edge), t: [x,y,z] unit thickness
+   * axis, chord, thick (a scale on the section's thickness, 1 = as drawn), defl (a rotation of
+   * the section about its own front, for a control surface) }. Capped at both ends. UVs run in
+   * metres, u along the span and v around the loop, so the skin's seams sit at a real size. */
+  function loft(sections, stations) {
+    const n = sections.length, pos = [], uv = [], idx = [];
+    let span = 0;
+    stations.forEach((s, j) => {
+      if (j) span += Math.hypot(s.p[0] - stations[j - 1].p[0], s.p[1] - stations[j - 1].p[1], s.p[2] - stations[j - 1].p[2]);
+      const d = s.defl || 0, cd = Math.cos(d), sd = Math.sin(d);
+      const hinge = Math.min(...sections.map((q) => q[0]));
+      let around = 0;
+      sections.forEach((q, i) => {
+        let a = (q[0] - hinge), b = q[1] * (s.thick != null ? s.thick : 1);
+        const ra = a * cd + b * sd, rb = -a * sd + b * cd; a = hinge + ra; b = rb;   // a positive defl turns the trailing edge down
+        if (i) around += Math.hypot(q[0] - sections[i - 1][0], q[1] - sections[i - 1][1]) * s.chord;
+        for (let k = 0; k < 3; k++) pos.push(s.p[k] + s.c[k] * a * s.chord + s.t[k] * b * s.chord);
+        uv.push(span, around);
+      });
+    });
+    for (let j = 0; j < stations.length - 1; j++) for (let i = 0; i < n - 1; i++) {
+      const a = j * n + i, b = a + 1, c = a + n, e = c + 1; idx.push(a, c, b, b, c, e);
+    }
+    // close the loop between its last and first point (the trailing edge, or the hinge face)
+    for (let j = 0; j < stations.length - 1; j++) { const a = j * n + n - 1, b = j * n, c = a + n, e = b + n; idx.push(a, c, b, b, c, e); }
+    // caps, a fan from each end section's centroid
+    [0, stations.length - 1].forEach((j, end) => {
+      const base = j * n, cx = [0, 0, 0];
+      for (let i = 0; i < n; i++) for (let k = 0; k < 3; k++) cx[k] += pos[(base + i) * 3 + k] / n;
+      const ci = pos.length / 3; pos.push(...cx); uv.push(0, 0);
+      for (let i = 0; i < n; i++) { const a = base + i, b = base + (i + 1) % n; if (end) idx.push(ci, a, b); else idx.push(ci, b, a); }
+    });
+    const g = new THREE.BufferGeometry();
+    g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3));
+    g.setAttribute('uv', new THREE.Float32BufferAttribute(uv, 2));
+    g.setIndex(idx); g.computeVertexNormals();
+    return g;
+  }
+  // which way round a loft winds depends on the axes, so a surface is checked against its own
+  // thickness axis and turned inside out if its upper face points down
+  function outward(g, tAxis) {
+    const n = g.attributes.normal, pos = g.attributes.position; let best = -1, bi = 0;
+    for (let i = 0; i < pos.count; i++) { const h = pos.getX(i) * tAxis[0] + pos.getY(i) * tAxis[1] + pos.getZ(i) * tAxis[2]; if (h > best) { best = h; bi = i; } }
+    const dot = n.getX(bi) * tAxis[0] + n.getY(bi) * tAxis[1] + n.getZ(bi) * tAxis[2];
+    if (dot < 0) { const ix = g.index.array; for (let i = 0; i < ix.length; i += 3) { const t = ix[i + 1]; ix[i + 1] = ix[i + 2]; ix[i + 2] = t; } g.index.needsUpdate = true; g.computeVertexNormals(); }
+    return g;
+  }
+  /* A LIFTING SURFACE from root to tip along `dir` (unit, in the x y plane), with a hinged surface
+   * over [h0, h1] of the span behind `hingeAt` of the chord, deflected `defl` radians, and a tip
+   * rounded over its last `round` metres. Returns meshes, so the caller places them. */
+  function surface(o, mat) {
+    const { root, dir, len, c0, c1, sweep, foil, hingeAt, h0, h1, defl, round } = o;
+    // the thickness axis is the span turned a quarter toward UP, so a left wing's camber is not upside down
+    const tAx = dir[0] < 0 ? [dir[1], -dir[0], 0] : [-dir[1], dir[0], 0], cAx = [0, 0, -1], N = 22, out = [];
+    const st = (s, extra) => {
+      const u = s / len, chord = c0 + (c1 - c0) * u;
+      return Object.assign({ p: [root[0] + dir[0] * s, root[1] + dir[1] * s, root[2] + sweep * s - 0.25 * (c0 - chord)], c: cAx, t: tAx, chord }, extra || {});
+    };
+    const run = (s0, s1, steps, x0, x1, extra) => {
+      const S = []; for (let i = 0; i <= steps; i++) S.push(st(s0 + (s1 - s0) * i / steps, extra));
+      out.push(avMesh(outward(loft(naca(foil[0], foil[1], foil[2], x0, x1, N), S), tAx), mat));
+    };
+    const gap = 0.008, tipStart = len - round;
+    const cut = [[0, h0 * len - gap, false], [h0 * len, h1 * len, true], [h1 * len + gap, tipStart, false]];
+    cut.forEach(([a, b, hinged]) => {
+      if (b - a < 0.01) return;
+      if (!hinged) { run(a, b, 2, 0, 1); return; }
+      run(a, b, 2, 0, hingeAt - 0.012);
+      run(a + gap, b - gap, 2, hingeAt, 1, { defl: defl });
+    });
+    // the tip, the section shrinking on an ellipse toward its mid chord, so it closes round
+    const T = [];
+    for (let i = 0; i <= 8; i++) { const f = i / 8, s = tipStart + round * Math.sin(f * Math.PI / 2), k = Math.max(0.12, Math.cos(f * Math.PI / 2));
+      const b = st(s); b.p = [b.p[0], b.p[1], b.p[2] - (1 - k) * b.chord * 0.42]; b.chord *= k; b.thick = Math.max(0.15, k); T.push(b); }
+    out.push(avMesh(outward(loft(naca(foil[0], foil[1], foil[2], 0, 1, N), T), tAx), mat));
+    return out;
+  }
+  /* A TWO BLADE PROPELLER of radius r, hub at the origin, its disc in the x z plane: tapered, twisted
+   * blades with a spinner. `blur` 0 to 1 adds the swept disc a running rotor shows on camera, densest
+   * toward the tips and never a flat grey plate; a blurred rotor's blades cast no shadow. */
+  AV.blurTex = () => AV._blur || (AV._blur = (() => {
+    const c = avCanvas(256), x = c.getContext('2d'), g = x.createRadialGradient(128, 128, 6, 128, 128, 128);
+    g.addColorStop(0, 'rgba(255,255,255,0)'); g.addColorStop(0.45, 'rgba(255,255,255,0.05)'); g.addColorStop(0.85, 'rgba(255,255,255,0.22)');
+    g.addColorStop(0.96, 'rgba(255,255,255,0.45)'); g.addColorStop(1, 'rgba(255,255,255,0)');
+    x.fillStyle = g; x.fillRect(0, 0, 256, 256); const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; return t;
+  })());
+  function propeller(r, ang, blur) {
+    const g = new THREE.Group();
+    g.add(avMesh(new THREE.CylinderGeometry(0.03, 0.038, 0.05, 20), AVM.motor(), 0, -0.02, 0));
+    const sp = avMesh(new THREE.SphereGeometry(0.03, 16, 10, 0, Math.PI * 2, 0, Math.PI / 2), AVM.dark(), 0, 0.012, 0); g.add(sp);
+    for (let k = 0; k < 2; k++) {
+      const S = [];
+      for (let i = 0; i <= 6; i++) { const f = i / 6, s = 0.03 + (r - 0.03) * f, chord = 0.05 * (1 - 0.55 * f) + 0.012, tw = 0.42 * (1 - f) + 0.08;
+        S.push({ p: [s, 0.01, chord * 0.4], c: [0, -Math.sin(tw), -Math.cos(tw)], t: [0, Math.cos(tw), -Math.sin(tw)], chord, thick: 0.7 }); }
+      const bl = avMesh(outward(loft(naca(0.04, 0.4, 0.1, 0, 1, 10), S), [0, 1, 0]), AVM.blade());
+      bl.rotation.y = ang + k * Math.PI; if (blur) { bl.castShadow = false; bl.material = K.mat('av-blade-soft', { color: 0x2a2d31, roughness: 0.5, transparent: true, opacity: 0.35, depthWrite: false, side: THREE.DoubleSide }); }
+      g.add(bl);
+    }
+    if (blur) {
+      const d = new THREE.Mesh(new THREE.RingGeometry(0.045, r, 64), K.mat('av-blur|' + blur, { map: AV.blurTex(), color: 0xb8bec6, transparent: true,
+        opacity: Math.min(1, blur * 1.6), side: THREE.DoubleSide, depthWrite: false, roughness: 1 }));
+      d.rotation.x = -Math.PI / 2; d.position.y = 0.02; g.add(d);
+    }
+    return g;
+  }
+  /* A NAV LIGHT: an emissive bulb seated in a dark housing under a clear lens, so it reads as a lamp
+   * that is ON at feed size and never as a flat coloured disc (no. 54's survey drone). `glow` adds
+   * the soft halo a night camera holds round a lamp, which casts nothing. */
+  AV.glowTex = () => AV._glow || (AV._glow = (() => {
+    const c = avCanvas(64), x = c.getContext('2d'), g = x.createRadialGradient(32, 32, 0, 32, 32, 32);
+    g.addColorStop(0, 'rgba(255,255,255,1)'); g.addColorStop(0.18, 'rgba(255,255,255,0.6)'); g.addColorStop(1, 'rgba(255,255,255,0)');
+    x.fillStyle = g; x.fillRect(0, 0, 64, 64); return new THREE.CanvasTexture(c);
+  })());
+  function navLight(color, glow, parent, x, y, z, s) {
+    s = s || 1;
+    const hs = avMesh(new THREE.CylinderGeometry(0.016 * s, 0.02 * s, 0.03 * s, 16), AVM.dark(), x, y, z, parent); hs.rotation.x = Math.PI / 2;
+    const bulb = new THREE.Mesh(new THREE.SphereGeometry(0.012 * s, 14, 10), AVM.lamp(color)); bulb.position.set(x, y, z + 0.016 * s); parent.add(bulb);
+    const lens = new THREE.Mesh(new THREE.SphereGeometry(0.017 * s, 16, 12, 0, Math.PI * 2, 0, Math.PI / 2), AVM.lens()); lens.rotation.x = Math.PI / 2; lens.position.set(x, y, z + 0.014 * s); parent.add(lens);
+    if (glow) { const sp = new THREE.Sprite(new THREE.SpriteMaterial({ map: AV.glowTex(), color, blending: THREE.AdditiveBlending, depthWrite: false, toneMapped: false, transparent: true }));
+      sp.position.set(x, y, z + 0.02 * s); sp.scale.setScalar(0.13 * s); sp.castShadow = false; parent.add(sp); }
+  }
+
+  /* VTOL_DRONE: a fixed wing delivery aircraft that takes off and lands straight up. A lathe fuselage
+   * about 2.2 m long on two belly skids (y = 0 is the skid bottom), a high cambered wing of `span`
+   * with split flaps and ailerons and rounded tips, two faired carbon booms each carrying a lift
+   * rotor fore and aft, a pusher, a V tail with ruddervators, a sensor lens in its housing under the
+   * nose, a dorsal parachute hatch, nav lights in housings, and a belly winch. */
+  K.define('vtol_drone', {
+    size: [3.47, 0.51, 2.67],
+    options: { span: 3.4, color: null, flap: 0.06, rotorAng: 0.4, blur: 0, lights: true, glow: true, chute: true, skids: true, tether: 0, sag: 0 },
+    note: 'An illustrative fixed wing VTOL delivery aircraft, drawn to no maker\'s design. Lathe fuselage about 2.2 m on two belly skids, y 0 the skid bottom (sit it on a cradle at userData.attach.seat). High cambered wing of `span` m, split flap and aileron (`flap` rad of droop), rounded tips; two faired carbon booms with four lift rotors; a pusher; V tail with ruddervators; sensor lens under the nose; dorsal chute hatch (`chute`). blur 0 to 1 spins every rotor into a swept disc. lights puts red, green and white nav lamps in housings, glow their halo. tether lowers a line that many metres from the belly winch, sag bows it, and userData.attach.pod is its end. color tints the composite skin. skids false leaves the belly clean. Front +z.',
+    make: (o) => {
+      const g = new THREE.Group(), shell = AVM.shell(o.color), FR = 0.16, FY = 0.82;
+      const Y = (o.skids ? 0.05 : 0) + FR * FY;                       // the fuselage axis, so its belly sits on the skids
+      // THE FUSELAGE: a bulbous forward body tapering into a slim tail cone, flattened a little top to bottom
+      const prof = [[0, -1.12], [0.03, -1.1], [0.055, -0.98], [0.075, -0.75], [0.11, -0.45], [0.145, -0.15], [0.16, 0.15],
+        [0.158, 0.45], [0.142, 0.7], [0.11, 0.88], [0.065, 1.0], [0.02, 1.07], [0, 1.08]];
+      const fg = new THREE.LatheGeometry(prof.map((p) => new THREE.Vector2(p[0], p[1])), 56);
+      fg.rotateX(Math.PI / 2); fg.scale(1, FY, 1);
+      avMesh(fg, shell, 0, Y, 0, g);
+      // the sensor turret under the nose: a dark glass lens seated in a ringed housing
+      const hz = 0.74, hy = Y - FR * FY * 0.86;
+      avMesh(new THREE.CylinderGeometry(0.07, 0.078, 0.03, 32), AVM.dark(), 0, hy - 0.005, hz, g);
+      const lens = new THREE.Mesh(new THREE.SphereGeometry(0.06, 28, 14, 0, Math.PI * 2, Math.PI / 2, Math.PI / 2), AVM.lens()); lens.position.set(0, hy - 0.018, hz); g.add(lens);
+      // THE SKIDS: two low faired rails on short struts, the aircraft's own contact with a cradle
+      if (o.skids) [-1, 1].forEach((s) => {
+        const rail = TXT.roundedBox(0.03, 0.022, 0.86, 0.01, AVM.dark()); rail.position.set(s * 0.09, 0.011, 0.04); rail.castShadow = rail.receiveShadow = true; g.add(rail);
+        [-0.28, 0.36].forEach((z) => { const st = TXT.roundedBox(0.022, 0.06, 0.05, 0.008, AVM.dark()); st.position.set(s * 0.085, 0.045, z); st.rotation.z = s * 0.2; st.castShadow = true; g.add(st); });
+      });
+      // the winch hatch on the belly, ahead of the skids' midpoint
+      avMesh(new THREE.CylinderGeometry(0.085, 0.085, 0.012, 32), AVM.dark(), 0, Y - FR * FY + 0.004, 0.05, g);
+      // THE WING, a cambered section (NACA 2415) lofted out to each tip with a little dihedral
+      const span = o.span, wy = Y + FR * FY * 0.78, half = span / 2;
+      [-1, 1].forEach((s) => {
+        const dir = [s * Math.cos(0.035), Math.sin(0.035), 0];
+        surface({ root: [0, wy, 0.3], dir, len: half, c0: 0.4, c1: 0.27, sweep: -0.035, foil: [0.02, 0.4, 0.15],
+          hingeAt: 0.74, h0: 0.12, h1: 0.9, defl: o.flap, round: 0.06 }, shell).forEach((m) => g.add(m));
+        // a nav light at the tip, faired into it
+        if (o.lights) navLight(s < 0 ? 0xff2a1a : 0x1aff6a, o.glow, g, s * (half - 0.03), wy + Math.sin(0.035) * half, 0.24);
+        // THE BOOM under each wing, a faired carbon tube pointed at both ends, on an airfoil pylon
+        const bx = s * 0.62, by = wy - 0.07;
+        const bp = []; for (let q = 0; q <= 26; q++) { const u = q / 26, rad = 0.036 * Math.pow(Math.sin(Math.PI * Math.min(1, Math.max(0, u * 1.08 - 0.04))), 0.35); bp.push(new THREE.Vector2(Math.max(0.002, rad), -1.15 + 2.3 * u)); }
+        const bg = new THREE.LatheGeometry(bp, 22); bg.rotateX(Math.PI / 2); avMesh(bg, AVM.carbon(), bx, by, 0.05, g);
+        const pyl = surface({ root: [bx, by + 0.02, 0.28], dir: [0, 1, 0], len: 0.05, c0: 0.3, c1: 0.32, sweep: 0, foil: [0, 0.4, 0.14], hingeAt: 0.99, h0: 0, h1: 0, defl: 0, round: 0.001 }, shell);
+        pyl.forEach((m) => g.add(m));
+        [1.0, -0.9].forEach((z, i) => {
+          const np = [[0, 0], [0.038, 0.004], [0.05, 0.035], [0.048, 0.1], [0.034, 0.128], [0.012, 0.142], [0, 0.145]].map((p) => new THREE.Vector2(p[0], p[1]));
+          avMesh(new THREE.LatheGeometry(np, 24), AVM.dark(), bx, by - 0.035, z, g);
+          const pr = propeller(0.4, o.rotorAng + (s > 0 ? 0.7 : 0) + i * 1.1, o.blur); pr.position.set(bx, by + 0.13, z); g.add(pr);
+        });
+      });
+      // a fillet where the wing meets the fuselage, so the joint is faired and never a seam in the air
+      const fil = avMesh(new THREE.SphereGeometry(1, 32, 16), shell, 0, wy - 0.02, 0.18, g); fil.scale.set(0.16, 0.06, 0.42);
+      // THE V TAIL, two symmetric sections at 38 degrees above level, each with a ruddervator
+      [-1, 1].forEach((s) => {
+        const a = 0.66;
+        surface({ root: [0, Y + 0.03, -0.84], dir: [s * Math.cos(a), Math.sin(a), 0], len: 0.44, c0: 0.29, c1: 0.15, sweep: -0.22, foil: [0, 0.4, 0.11],
+          hingeAt: 0.66, h0: 0.1, h1: 0.86, defl: s * 0.04, round: 0.03 }, shell).forEach((m) => g.add(m));
+      });
+      // the pusher, its disc facing aft, so it turns edge on to most cameras
+      const push = propeller(0.26, o.rotorAng * 2, o.blur ? Math.min(0.12, o.blur) : 0); push.rotation.x = Math.PI / 2; push.position.set(0, Y, -1.15); g.add(push);
+      if (o.lights) navLight(0xffffff, o.glow, g, 0, Y + FR * FY + 0.01, -0.3, 0.8);
+      // THE PARACHUTE HATCH, a seamed panel with two latches ahead of the wing
+      const att = { seat: [0, 0, 0.04], winch: [0, Y - FR * FY, 0.05], tipL: [-half, wy, 0.24], tipR: [half, wy, 0.24] };
+      if (o.chute) {
+        const hp = TXT.roundedBox(0.1, 0.012, 0.24, 0.004, K.mat('av-hatch', { color: 0xeef0f2, roughness: 0.34 }));
+        // seated ON the skin: the fuselage falls toward the nose here by about 0.05 rad, and a hatch
+        // a tenth of a metre wide stands proud of the curve by under a centimetre at its edges
+        hp.position.set(0, Y + 0.147 * FY - 0.003, 0.6); hp.rotation.x = 0.05; hp.castShadow = true; g.add(hp);
+        [-0.03, 0.03].forEach((lx) => avMesh(new THREE.BoxGeometry(0.014, 0.01, 0.022), AVM.motor(), lx, Y + 0.15 * FY + 0.002, 0.47, g));
+        att.chute = [0, Y + FR * FY, 0.62];
+      }
+      // THE TETHER, from the belly winch down to the pod's bail
+      if (o.tether > 0) {
+        const top = new THREE.Vector3(0, Y - FR * FY, 0.05), bot = new THREE.Vector3(o.sag || 0, Y - FR * FY - o.tether, 0.05);
+        const mid = top.clone().lerp(bot, 0.5); mid.x += (o.sag || 0) * 0.6;
+        const tube = new THREE.Mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3([top, mid, bot]), 160, 0.006, 8, false),
+          K.mat('av-tether', { color: 0xc9c6bf, roughness: 0.5, metalness: 0.1 }));
+        tube.castShadow = true; g.add(tube); att.pod = [bot.x, bot.y, bot.z];
+      }
+      g.userData.attach = att;
+      return g;
+    },
+  });
+
+  /* PARCEL_POD: the package a delivery aircraft lowers on its line. A rounded composite capsule about
+   * 0.64 m tall with a rubber gasket at the parting line, a bumper ring at the base, a bail on top and
+   * a painted band. Origin at its base; userData.attach.bail is where a tether ties on. */
+  K.define('parcel_pod', {
+    size: [0.41, 0.68, 0.35],
+    options: { color: null, band: 0xd9822b, glow: false },
+    note: 'An illustrative lowered delivery pod: a superellipse composite capsule about 0.64 m tall, rubber gasket at the parting line, bumper ring at the base, a bail (userData.attach.bail, where a tether ties on), and a painted band in `band` (null for none). glow true makes the band emissive and outside the tone curve, so a thin accent keeps its own hex under a dusk key. Origin at its base.',
+    make: (o) => {
+      const g = new THREE.Group(), body = AVM.shell(o.color != null ? o.color : 0xe6e4de);
+      const prof = [];
+      for (let i = 0; i <= 44; i++) { const t = -Math.PI / 2 + Math.PI * i / 44, c = Math.cos(t), sn = Math.sin(t);
+        prof.push(new THREE.Vector2(0.2 * Math.pow(Math.abs(c), 0.55), 0.32 + 0.31 * Math.sign(sn) * Math.pow(Math.abs(sn), 0.8))); }
+      prof[0].x = 0; prof[44].x = 0;
+      const b = avMesh(new THREE.LatheGeometry(prof, 64), body, 0, 0, 0, g); b.scale.set(1, 1, 0.86);
+      // a ring turned on the body's own profile, a hair proud of it, so it wraps the curve and takes the same light
+      const rAtY = (y) => { for (let i = 1; i < prof.length; i++) if (prof[i].y >= y) { const a = prof[i - 1], c = prof[i], t = (y - a.y) / Math.max(1e-6, c.y - a.y); return a.x + (c.x - a.x) * t; } return 0; };
+      const ringAt = (y0, y1, grow, mat) => {
+        const pts = []; for (let i = 0; i <= 8; i++) { const y = y0 + (y1 - y0) * i / 8; pts.push(new THREE.Vector2(rAtY(y) * (1 + grow) + 0.002, y)); }
+        const m = avMesh(new THREE.LatheGeometry(pts, 64), mat, 0, 0, 0, g); m.scale.set(1, 1, 0.86);
+      };
+      if (o.band != null) ringAt(0.26, 0.42, 0.012, o.glow ? AVM.glow(o.band) : AVM.paint(o.band));
+      ringAt(0.445, 0.47, 0.02, AVM.rubber());       // the gasket where the two halves meet
+      ringAt(0.012, 0.05, 0.03, AVM.rubber());       // the bumper the pod lands on
+      const sock = avMesh(new THREE.CylinderGeometry(0.03, 0.036, 0.016, 20), AVM.dark(), 0, 0.632, 0, g); sock.castShadow = false;
+      avMesh(new THREE.TorusGeometry(0.04, 0.007, 8, 24, Math.PI), AVM.motor(), 0, 0.64, 0, g);
+      g.userData.attach = { bail: [0, 0.68, 0] };
+      return g;
+    },
+  });
+
+  /* DRONE_DOCK: where a delivery aircraft lands, charges and launches. A tapered twelve sided
+   * galvanized pole `height` m on an anchor bolt base and a concrete pad, with step bolts, a flange,
+   * an obstruction lamp, a box section arm reaching `arm` m toward +z on a diagonal brace, a dark
+   * cradle plate with V guide rails and copper charge contacts at its tip, a powder coated cabinet
+   * at its foot, conduit up the pole, and a crushed rock apron of real sized stones. */
+  K.define('drone_dock', {
+    size: [5.18, 6.45, 5.17],
+    anchor: 'base',
+    options: { height: 6, arm: 1.8, ring: null, cabinet: 0x5d6360, apron: 1.6, lamp: true },
+    note: 'An illustrative drone dock, drawn to no maker\'s design. A tapered twelve sided galvanized pole `height` m on a base plate with eight anchor bolts and a concrete pad, step bolts, a mid flange and a red obstruction lamp (`lamp`). A box section arm reaches `arm` m toward +z on a diagonal brace to a dark cradle plate with V guide rails and copper charge contacts; userData.attach.seat is the plate top at the cradle centre, where vtol_drone\'s own seat goes. ring paints the cradle rim in that colour (null for none). A powder coated cabinet (`cabinet` colour) with door, hinges, handle, louvres and a rain hood, conduit up the pole, and a crushed rock apron `apron` m wide round the pad, stones 20 to 60 mm (0 for none). Origin at the pole\'s foot.',
+    make: (o, r) => {
+      const g = new THREE.Group(), H = o.height, pad = 0.2, galv = AVM.galv(), gd = AVM.galvDark();
+      const conc = K.mat('av-conc', { color: 0xffffff, roughness: 0.92, map: K.tex('concrete') });
+      g.add(Object.assign(K.box(1.9, pad, 1.9, conc, 0, 0, 0, 0.03), { castShadow: true, receiveShadow: true }));
+      // the grout pad and base plate, and eight anchor bolts with nut and washer
+      K.box(0.62, 0.03, 0.62, K.mat('av-grout', { color: 0x9d9a93, roughness: 0.95 }), 0, pad, 0, 0.01, g);
+      const bp = K.box(0.56, 0.035, 0.56, gd, 0, pad + 0.03, 0, 0.006, g); bp.castShadow = bp.receiveShadow = true;
+      const pt = pad + 0.065;
+      for (let k = 0; k < 8; k++) { const a = k / 8 * Math.PI * 2 + Math.PI / 8, x = Math.cos(a) * 0.23, z = Math.sin(a) * 0.23;
+        avMesh(new THREE.CylinderGeometry(0.03, 0.03, 0.006, 16), gd, x, pt + 0.003, z, g);
+        avMesh(new THREE.CylinderGeometry(0.022, 0.022, 0.028, 6), gd, x, pt + 0.02, z, g);
+        avMesh(new THREE.CylinderGeometry(0.011, 0.011, 0.06, 8), gd, x, pt + 0.04, z, g); }
+      // THE POLE, twelve flat sides tapering up, its facets left hard so the key draws them
+      const r0 = 0.2, r1 = 0.13, pg = new THREE.CylinderGeometry(r1, r0, H, 12, 6, false);
+      const pole = avMesh(pg.toNonIndexed(), galv, 0, pt + H / 2, 0, g); pole.geometry.computeVertexNormals();
+      K.uvBox(pole.geometry, 1.2);
+      const rAt = (y) => r0 + (r1 - r0) * (y - pt) / H, top = pt + H;
+      // the slip flange at mid height, and a cap plate
+      const fy = pt + H * 0.48; avMesh(new THREE.CylinderGeometry(rAt(fy) + 0.03, rAt(fy) + 0.03, 0.03, 12), gd, 0, fy, 0, g);
+      avMesh(new THREE.CylinderGeometry(r1 + 0.02, r1 + 0.02, 0.025, 12), gd, 0, top + 0.012, 0, g);
+      // step bolts, alternating sides, from 2.4 m up
+      for (let y = pt + 2.4, k = 0; y < top - 0.4; y += 0.38, k++) { const a = k % 2 ? 2.4 : 3.9, rr = rAt(y);
+        const sb = avMesh(new THREE.CylinderGeometry(0.009, 0.009, 0.16, 8), gd, Math.cos(a) * (rr + 0.08), y, Math.sin(a) * (rr + 0.08), g);
+        sb.rotation.z = Math.PI / 2; sb.rotation.y = -a; }
+      if (o.lamp) { avMesh(new THREE.CylinderGeometry(0.05, 0.06, 0.05, 16), AVM.dark(), 0, top + 0.05, 0, g);
+        const lm = new THREE.Mesh(new THREE.SphereGeometry(0.045, 16, 10, 0, Math.PI * 2, 0, Math.PI / 2), AVM.lamp(0xff2a14)); lm.position.set(0, top + 0.075, 0); g.add(lm); }
+      // THE ARM, a box section on a welded collar, reaching +z, and its brace
+      const ay = top - 0.35, reach = o.arm + 0.55;
+      avMesh(new THREE.CylinderGeometry(r1 + 0.035, r1 + 0.035, 0.32, 12), gd, 0, ay, 0, g);
+      const arm = TXT.roundedBox(0.16, 0.24, reach, 0.012, galv); K.uvBox(arm.geometry, 1.2); arm.position.set(0, ay, reach / 2); arm.castShadow = arm.receiveShadow = true; g.add(arm);
+      g.add(Object.assign(K.bar([0, ay - 1.25, rAt(ay - 1.25) + 0.02], [0, ay - 0.12, reach * 0.62], 0.035, galv, 12), { castShadow: true }));
+      const gus = TXT.roundedBox(0.012, 0.3, 0.3, 0.004, gd); gus.position.set(0, ay - 0.24, r1 + 0.16); gus.castShadow = true; g.add(gus);
+      // THE CRADLE at the arm's tip: a dark plate with a raised rim, two V guide rails, copper contacts
+      const cz = o.arm, cy = ay + 0.12, pl = 1.3, pw = 0.9;
+      const plate = TXT.roundedBox(pw, 0.05, pl, 0.012, AVM.plate()); plate.position.set(0, cy + 0.025, cz); plate.castShadow = plate.receiveShadow = true; g.add(plate);
+      const rim = o.ring != null ? AVM.paint(o.ring) : gd;
+      [[0, cz - pl / 2 + 0.015, pw, 0.03], [0, cz + pl / 2 - 0.015, pw, 0.03], [pw / 2 - 0.015, cz, 0.03, pl], [-pw / 2 + 0.015, cz, 0.03, pl]].forEach((q) => {
+        const b = TXT.roundedBox(q[2], 0.035, q[3], 0.008, rim); b.position.set(q[0], cy + 0.065, q[1]); b.castShadow = true; g.add(b); });
+      [-1, 1].forEach((s) => { const v = TXT.roundedBox(0.05, 0.05, pl * 0.78, 0.01, gd); v.position.set(s * 0.17, cy + 0.07, cz); v.rotation.z = s * 0.6; v.castShadow = true; g.add(v);
+        [-0.22, 0.3].forEach((z) => avMesh(new THREE.BoxGeometry(0.05, 0.008, 0.09), AVM.copper(), s * 0.09, cy + 0.054, cz + z, g)); });
+      // THE CABINET, powder coated, on a plinth beside the pole, with its hood, door, hinges, handle and louvres
+      const cab = AVM.powder(o.cabinet), cx = 0.62, cw = 0.6, ch = 1.2, cd = 0.4, cb = pad + 0.08, czc = -0.18;
+      K.box(cw + 0.06, 0.08, cd + 0.06, conc, cx, pad, czc, 0.01, g);
+      const box = TXT.roundedBox(cw, ch, cd, 0.025, cab); box.position.set(cx, cb + ch / 2, czc); box.castShadow = box.receiveShadow = true; g.add(box);
+      const hood = TXT.roundedBox(cw + 0.06, 0.03, cd + 0.08, 0.01, cab); hood.position.set(cx, cb + ch + 0.02, czc + 0.01); hood.rotation.x = 0.06; hood.castShadow = true; g.add(hood);
+      const fz = czc + cd / 2, dk = AVM.dark();
+      [[cx, cb + 0.05, cw - 0.06, 0.006], [cx, cb + ch - 0.05, cw - 0.06, 0.006], [cx - cw / 2 + 0.03, cb + ch / 2, 0.006, ch - 0.1], [cx + cw / 2 - 0.03, cb + ch / 2, 0.006, ch - 0.1]].forEach((q) => {
+        K.mesh(new THREE.BoxGeometry(q[2], q[3], 0.004), dk, q[0], q[1], fz + 0.001, g); });
+      [cb + 0.22, cb + ch - 0.22].forEach((y) => avMesh(new THREE.CylinderGeometry(0.012, 0.012, 0.08, 10), gd, cx - cw / 2 + 0.03, y, fz + 0.01, g));
+      const hd = TXT.roundedBox(0.03, 0.14, 0.03, 0.008, AVM.motor()); hd.position.set(cx + cw / 2 - 0.07, cb + ch * 0.55, fz + 0.02); g.add(hd);
+      for (let i = 0; i < 6; i++) { const sl = TXT.roundedBox(cw * 0.55, 0.012, 0.03, 0.004, cab); sl.position.set(cx, cb + 0.16 + i * 0.035, fz + 0.012); sl.rotation.x = 0.5; g.add(sl); }
+      const plq = TXT.roundedBox(0.12, 0.07, 0.006, 0.002, K.mat('av-plq', { color: 0xc9c4b6, roughness: 0.5, metalness: 0.4 })); plq.position.set(cx, cb + ch - 0.16, fz + 0.004); g.add(plq);
+      // conduit from the cabinet's side into the pole and up to the arm, on straps
+      const cdt = K.mat('av-cdt', { color: 0x8f9396, roughness: 0.4, metalness: 0.6 });
+      g.add(Object.assign(TXT.tube([[cx - cw / 2, cb + 0.3, czc], [0.3, cb + 0.3, -0.05], [r0 + 0.03, cb + 0.5, 0]], 0.024, cdt, { segments: 24, radial: 10 }), { castShadow: true }));
+      g.add(Object.assign(TXT.tube([[r0 + 0.03, cb + 0.5, 0], [rAt(ay - 0.2) + 0.03, ay - 0.2, 0]], 0.024, cdt, { segments: 8, radial: 10 }), { castShadow: true }));
+      for (let y = cb + 1, k = 0; y < ay - 0.4; y += 0.9, k++) avMesh(new THREE.BoxGeometry(0.012, 0.03, 0.06), gd, rAt(y) + 0.032, y, 0, g);
+      // THE APRON: crushed rock round the pad, every stone 20 to 60 mm, on a dark fines bed
+      if (o.apron > 0) {
+        const R1 = 0.95 + o.apron, bed = new THREE.Mesh(new THREE.RingGeometry(0.9, R1, 64, 1), K.mat('av-fines', { color: 0x4f4b45, roughness: 1 }));
+        bed.rotation.x = -Math.PI / 2; bed.position.y = 0.004; bed.receiveShadow = true; g.add(bed);
+        const geo = new THREE.IcosahedronGeometry(1, 0), n = Math.round(Math.PI * (R1 * R1 - 0.95 * 0.95) / 0.0016);
+        const im = new THREE.InstancedMesh(geo, K.mat('av-rock', { color: 0xffffff, roughness: 0.9 }), n), M4 = new THREE.Matrix4(), q = new THREE.Quaternion(), e = new THREE.Euler(), s = new THREE.Vector3(), p = new THREE.Vector3(), col = new THREE.Color();
+        let k = 0;
+        while (k < n) { const x = (r() * 2 - 1) * R1, z = (r() * 2 - 1) * R1; const ax = Math.abs(x), az = Math.abs(z);
+          if (Math.hypot(x, z) > R1 || (ax < 0.97 && az < 0.97)) continue;
+          const d = 0.02 + r() * r() * 0.04; e.set(r() * 6.3, r() * 6.3, r() * 6.3); q.setFromEuler(e); s.set(d * (0.8 + r() * 0.4), d * 0.5, d * (0.8 + r() * 0.4));
+          p.set(x, d * 0.22, z); M4.compose(p, q, s); im.setMatrixAt(k, M4);
+          // limestone base course under a night key: mid greys with a warm cast, never chalk white
+          const v = 0.26 + r() * 0.22; col.setRGB(v * 1.05, v, v * 0.9); im.setColorAt(k, col); k++; }
+        im.instanceMatrix.needsUpdate = true; if (im.instanceColor) im.instanceColor.needsUpdate = true;
+        im.castShadow = true; im.receiveShadow = true; g.add(im);
+      }
+      g.userData.attach = { seat: [0, cy + 0.05, cz], lamp: [0, top + 0.1, 0] };
+      return g;
+    },
+  });
+
   const lerpN = (a, b, t) => a + (b - a) * t;
 
   for (const n of ['pickup', 'sedan', 'suv', 'delivery_van', 'school_bus', 'semi_truck', 'utility_bucket_truck']) {

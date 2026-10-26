@@ -45,6 +45,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-18 · The four Texas campuses still hold their roles in the Energy Department's AI for science program.
 - 2026-10-22 · The Energy Department's program page still lists the Texas campuses in the AI for science effort. UT Arlington's own account is unconfirmed today, since its site did not answer.
 - 2026-10-25 · UT Arlington's own account of its role in the Energy Department's AI for science program stays unconfirmed, since its site bars automated readers.
+- 2026-10-26 · UT Arlington's account of its role in the Energy Department's AI for science program is still unconfirmed. The campus site bars automated readers.
 
 ## Evidence
 

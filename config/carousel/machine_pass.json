@@ -1,34 +1,41 @@
 {
- "last_pass": "2026-10-24",
+ "last_pass": "2026-10-26",
  "themes": [
   {
-   "theme": "primitive or low-poly model where a kit model belongs (no. 59's frame 7 columns, named flat in all three rounds; queue plant-and-site-models-built-in-chassis)",
-   "runs": 6,
-   "rounds": 18,
-   "action": "fixed in part",
-   "what": "assets/js/kit/industry.js: structural_frame, W columns turned so the profile reads, W girders and edge beams on bolted tabs, open web joists, C girts, rod X bracing, base plates on grout. Under a new name so no. 59's chassis still re-renders. tool_crate, the work lamp and the plant wall stay in the chassis."
+   "theme": "primitive or low-poly model where a kit model belongs (no. 61's aircraft, pod and dock tower, built in its chassis; queue drone-pod-dock-models-built-in-chassis)",
+   "runs": 7,
+   "rounds": 19,
+   "action": "fixed",
+   "what": "assets/js/kit/vehicles.js: vtol_drone (lofted cambered wing with split flap and aileron and round tips, V tail of tapered sections with ruddervators, y 0 at the skid bottom and attach.seat), parcel_pod (gasket, bumper, bail, band) and drone_dock (galvanized twelve sided pole, box arm on a brace, cradle with guide rails and contacts, detailed cabinet, crushed rock apron of 20 to 60 mm stones). New names, so no. 61's chassis re-renders as shipped."
   },
   {
-   "theme": "largest object unmodelled, and the flat reliefs inside it (no. 59 frame 6 the round 3 top ranked defect; queues relief-plate-reads-as-a-tray, txbench-relief-cast-faint)",
+   "theme": "largest object unmodelled (no. 61 frame 2's truss tower and flat cabinet)",
+   "runs": 7,
+   "rounds": 18,
+   "action": "fixed in part",
+   "what": "The same lift: drone_dock is the tower no. 61's round 1 fix planned, a galvanized column with its cabinet modelled. The week's other instances were reliefs and slabs on other decks, which the 2026-10-24 print_ban relief floor already holds."
+  },
+  {
+   "theme": "kit person reads as a mannequin (queue kit-person-full-length-reads-as-mannequin, repeat 3, and kit-person-reads-as-mannequin-within-two-metres; nos. 55, 56, 57, 61)",
+   "runs": 4,
+   "rounds": null,
+   "action": "fixed in part",
+   "what": "assets/js/kit/people.js: skin palette held to an envelope computed from a published in vivo table, a rendered face C* 52.4 to 45.4; look_up's shade hand opt in; hatColor. Grip pose, vest cut, collar and a near detail level stay open."
+  },
+  {
+   "theme": "render artifact (banding, aliasing, facets, stripes), including no. 61 frame 5's shadow stair-stepping on the airframe",
    "runs": 6,
-   "rounds": 15,
-   "action": "fixed",
-   "what": "scripts/carousel/print_ban.py: a relief whose render proof casts under a floor measured once on the week's shipped reliefs fails, every deck after October 24th; replayed it names exactly the six frames the final rounds charged flat."
+   "rounds": 10,
+   "action": "escalated",
+   "what": "The engine's key normalBias is a fixed 0.02 and eight consecutive chassis carry their own N.unacne to raise it; proposed a texel-scaled bias in TXT.deckRig (assets/js/txthree.js, human), UPGRADE_BACKLOG 2026-10-26."
   },
   {
    "theme": "type sitting on or fighting the art",
-   "runs": 5,
-   "rounds": 13,
+   "runs": 6,
+   "rounds": 15,
    "action": "deferred",
    "what": "A different collision on each deck; the honest gate still needs the id pass (UPGRADE_BACKLOG 2026-10-12 item 4)."
-  },
-  {
-   "theme": "no contact, dirt or grime where things meet the ground",
-   "runs": 5,
-   "rounds": 11,
-   "action": "deferred",
-   "what": "A different cause on each deck (no. 59's floating tyre and a shadowless work lamp), so no single machine fix this week."
   }
  ],
- "note": "Written by the weekly machine pass (prompts/daily_routine.md Phase 17) when it ships. Read by scripts/carousel/machine_due.py. Run and round counts are from scripts/carousel/week_digest.py --date 2026-10-24."
+ "note": "Written by the weekly machine pass (prompts/daily_routine.md Phase 17) when it ships. Read by scripts/carousel/machine_due.py. Run and round counts are from scripts/carousel/week_digest.py --date 2026-10-26, except the person theme, counted by this pass from the queue's own evidence because the digest has no theme for it (rounds not counted)."
 }

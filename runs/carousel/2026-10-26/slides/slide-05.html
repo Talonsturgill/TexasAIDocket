@@ -1,0 +1,88 @@
+<!doctype html>
+<!-- 2026-10-26, frame 5 of 9. Archetype DIAGRAM. A spatial scene through txthree.js in the deck's lastLight world: the chassis aircraft docked in the chassis dock tower's cradle at kit detail, rotors stopped, seen three quarter from above, its reserved route rising away as a faint lit corridor whose apex height is read from figures.json. Leaders land on the things the company's claims name. Drawn to illustrate, to no maker's design. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">Zipline says the aircraft decides</h1>
+<div class="lab" id="lab-daa">ONBOARD DETECT AND AVOID</div>
+<div class="lab" id="lab-route">ROUTE RESERVED BEFORE LAUNCH</div>
+<div class="lab" id="lab-chute">PARACHUTE</div>
+<svg id="lead" width="1080" height="1350" style="position:absolute;left:0;top:0;z-index:11"></svg>
+<p class="dek" data-follow="26">The company says each aircraft reserves its own route before launch, avoids other aircraft with an onboard system and responds to problems on its own. Every claim here is Zipline's. The aircraft and tower are drawn to&nbsp;illustrate.</p>
+<script>window.FIG = {"station_m": 91.4};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-26-tether.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "What the company says", counter: "05 / 09", src: "c18 c19 c20 c23", fit: { min: 72, max: 100, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 32, near: 0.05, far: 6000 });
+  const Y = new THREE.Vector3(0, 1, 0);
+  const tower = K.make('dock_tower', { height: 6, arm: 2.3, reach: 1.05 }); TXT.add(R, tower); TXT.contact(R, tower);
+  const c = tower.userData.attach.cradle;
+  /* docked: the belly rests on the cradle plate, rotors stopped, nav lights on */
+  const drone = K.make('delivery_drone', { tether: 0, blur: 0, rotorAng: 0.9, lights: true });
+  drone.position.set(c[0], c[1] - 0.25, c[2]); drone.rotation.y = 0; TXT.add(R, drone);
+  /* the belly seated on the plate: a soft contact under the fuselage where it bears */
+  { const cs = new THREE.Mesh(new THREE.PlaneGeometry(0.34, 1.5), new THREE.MeshBasicMaterial({ color: 0x000000, transparent: true, opacity: 0.55, depthWrite: false, map: CH.glowTex(THREE) }));
+    cs.rotation.x = -Math.PI / 2; cs.position.set(c[0], c[1] - 0.04, c[2]); cs.renderOrder = 3; cs.userData.noShadow = true; R.scene.add(cs); }
+  const local = (p) => new THREE.Vector3(p[0], p[1], p[2]).applyAxisAngle(Y, drone.rotation.y).add(drone.position);
+  const top = new THREE.Vector3(c[0], c[1] + 0.1, c[2] + 1.15);
+  let route = null;
+  /* the route as a planned line rather than a beam: a lit dash every few metres, running out to the station height */
+  const dash = (() => { const cv = document.createElement('canvas'); cv.width = 64; cv.height = 4; const g = cv.getContext('2d');
+    g.fillStyle = '#fff'; g.fillRect(0, 0, 40, 4); const t = new THREE.CanvasTexture(cv); t.wrapS = THREE.RepeatWrapping; return t; })();
+  TXT.sky(R);
+  TXT.ground(R, { surface: 'dirt', size: 1400, seed: 15, color: 0x0c0b0a });
+  TXT.scatter(R, { kind: 'grass', count: 2600, area: [-14, -14, 14, 14], avoid: [[-1.2, -1.2, 1.2, 1.2]], seed: 9, scale: [0.4, 0.8] });
+  const from = [c[0] - 5.6, c[1] + 1.3, c[2] + 5.2];
+  const look = CH.aim(THREE, R, TXT, from, [c[0], c[1] - 0.2, c[2]], 600, 1000, 32);
+  TXT.frame(R, { fov: 32, from, look });
+  R.camera.updateMatrixWorld(); R.camera.updateProjectionMatrix();
+  const ray = (sx, sy) => new THREE.Vector3(sx / 540 - 1, 1 - sy / 675, 0.5).unproject(R.camera).sub(R.camera.position).normalize();
+  const along = (sx, sy, d) => R.camera.position.clone().addScaledVector(ray(sx, sy), d);
+  const toH = (sx, sy, h) => { const r = ray(sx, sy); return R.camera.position.clone().addScaledVector(r, (h - R.camera.position.y) / r.y); };
+  /* THE FIGURE, from figures.json: the reserved route climbs from the cradle and runs out of frame to the station height */
+  route = new THREE.CatmullRomCurve3([top, along(780, 850, 11), along(900, 760, 20), along(1010, 650, 45), toH(1130, 470, FIG.station_m)], false, 'centripetal');
+  dash.repeat.set(Math.round(route.getLength() / 0.7), 1);
+  const corridor = new THREE.Mesh(new THREE.TubeGeometry(route, 1200, 0.018, 8, false),
+    new THREE.MeshBasicMaterial({ color: 0xcfe0f2, map: dash, transparent: true, alphaTest: 0.5, fog: false, toneMapped: false }));
+  corridor.userData.noShadow = true; R.scene.add(corridor);
+  CH.warm(R, 0.2);
+  TXT.deckRig(R, CH.rigSpec(W, 6, 2048), CH.rigOpts([c[0], c[1], c[2]], { distance: 30, shadowFar: 80 }));
+  CH.unacne(R, 0.01);
+  CH.noShadows(R);
+  TXT.stage(R, [drone], { pool: false });
+  TXT.weather(R, { grime: 0.35, height: 0.5, mottle: 0.3 });
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  /* the leaders, each landing on the whole thing its claim names */
+  window.__txLeaders = [];
+  const svg = document.getElementById('lead');
+  const lead = (id, target, p, x, y, end) => { const el = document.getElementById(id); el.style.left = x + 'px'; el.style.top = y + 'px';
+    const at = CH.project(THREE, R, p.toArray ? p.toArray() : p), r = el.getBoundingClientRect();
+    const fromPt = end === 'right' ? [r.right + 10, r.top + r.height / 2] : end === 'left' ? [r.left - 10, r.top + r.height / 2] : [r.left + 40, r.bottom + 6];
+    CH.leader(svg, fromPt, at); window.__txLeaders.push({ target, at, to: at }); };
+  lead('lab-route', 'the reserved route corridor, from its start at the nose', route.getPoint(0.0), 300, 700, 'right');
+  lead('lab-chute', 'the dorsal parachute hatch', local(drone.userData.chute), 520, 770, 'bottom');
+  lead('lab-daa', 'the aircraft itself, forward of the wing', local([0, 0.3, 0.6]), 82, 1150, 'right');
+  CH.post(cx, { a: 0.28, veil: 0.3 });
+  CH.knock(cx, [".tx-site", ".src", "#lab-daa"], 0.5);
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

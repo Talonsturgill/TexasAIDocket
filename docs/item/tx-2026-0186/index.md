@@ -47,6 +47,8 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-15 · The comment window on Zipline's Texas metros assessment closed on October 11th, as the agency's review page now says. The draft assessment is still posted there, and no final assessment or decision for it appears on the page.
 - 2026-10-20 · The agency's review page has dropped its call for comments and now says the period on Zipline's Texas metros draft closed on October 11th. The draft and its noise study are still posted, and no final assessment or finding has been published.
 - 2026-10-23 · The agency's drone review page still says comment on Zipline's Texas metros draft closed on October 11th. The draft and its noise study are still posted, and no final assessment or finding has appeared.
+- 2026-10-26 · The FAA review page for Zipline's Texas metros draft refused the request today, so the closed comment period and the posted draft are unconfirmed.
+- 2026-10-26 · Zipline began deliveries in Round Rock on October 9th, before this comment window closed, as DroneXL reports. No final assessment has appeared.
 
 ## Evidence
 
@@ -153,4 +155,10 @@ Source (primary_official): https://www.faa.gov/uas/advanced_operations/nepa_and_
 > The pod is released from the Zipline UA and lowered to the ground via the winch line. During pod descent, the pod automatically controls its position laterally and evaluates the delivery location. If the delivery location is clear, the pod would continue to descend and deliver the payload at the delivery target.
 
 Source (primary_official): https://www.faa.gov/uas/advanced_operations/nepa_and_drones/20260911_Zipline_Texas_Metros_Draft_EA_CLEAN_ADA_Signed.pdf
+
+### DroneXL reports that Zipline opened Austin area delivery from Round Rock on October 9th, before this comment window closed.
+
+> Zipline opened drone delivery in the Austin area on Friday, October 9, with its First Flight early-access program taking orders in Round Rock for the first 5,000 residents who sign up.
+
+Source (journalism): https://dronexl.co/2026/10/09/zipline-austin-round-rock-drone-delivery-launch/
 
