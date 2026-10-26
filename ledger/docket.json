@@ -1,7 +1,7 @@
 {
  "_spec": {
   "version": 2,
-  "generated": "2026-10-25",
+  "generated": "2026-10-26",
   "gates": [
    "banned words",
    "claims",
@@ -31242,6 +31242,24 @@
      "source_type": "journalism",
      "fetched": "2026-09-23",
      "id": "tx-2026-0182-c5"
+    },
+    {
+     "text": "The environmental agency's October 19th letter to the Governor says that a permit application subject to the directive has been paused.",
+     "verbatim_quote": "If a permit application is subject to the directive, TCEQ has paused that permit application in accordance with your directive.",
+     "source_url": "https://www.tceq.texas.gov/downloads/response/tceq-response-gov-abbott-dc-directive.pdf",
+     "source_title": "Texas Commission on Environmental Quality, letter to Governor Abbott on the data center directive, October 19th, 2026",
+     "source_type": "primary_official",
+     "fetched": "2026-10-26",
+     "id": "tx-2026-0182-c6"
+    },
+    {
+     "text": "The letter says the agency met with the water board, the utility commission and ERCOT so that every agency's directives are aligned.",
+     "verbatim_quote": "TCEQ has met with the Texas Water Development Board (TWDB), the Public Utility Commission of Texas (PUCT), and the Electric Reliability Council of Texas (ERCOT) to ensure that all agency directives are aligned.",
+     "source_url": "https://www.tceq.texas.gov/downloads/response/tceq-response-gov-abbott-dc-directive.pdf",
+     "source_title": "Texas Commission on Environmental Quality, letter to Governor Abbott on the data center directive, October 19th, 2026",
+     "source_type": "primary_official",
+     "fetched": "2026-10-26",
+     "id": "tx-2026-0182-c7"
     }
    ],
    "id": "tx-2026-0182",
@@ -31320,6 +31338,10 @@
      "date": "2026-10-24",
      "note": "The Governor's direction to the environmental agency to issue no data center permits until the grid audit is done still stands.",
      "checked": true
+    },
+    {
+     "date": "2026-10-26",
+     "note": "The environmental agency answered the Governor on October 19th. Its letter says applications subject to the directive are paused and that it met with the water board, the utility commission and ERCOT to align their directives."
     }
    ]
   },
@@ -31550,6 +31572,15 @@
      "source_type": "primary_official",
      "fetched": "2026-09-24",
      "id": "tx-2026-0186-c17"
+    },
+    {
+     "text": "DroneXL reports that Zipline opened Austin area delivery from Round Rock on October 9th, before this comment window closed.",
+     "verbatim_quote": "Zipline opened drone delivery in the Austin area on Friday, October 9, with its First Flight early-access program taking orders in Round Rock for the first 5,000 residents who sign up.",
+     "source_url": "https://dronexl.co/2026/10/09/zipline-austin-round-rock-drone-delivery-launch/",
+     "source_title": "DroneXL, Zipline Starts Austin Deliveries With FAA Comment Window Still Open, October 9th, 2026",
+     "source_type": "journalism",
+     "fetched": "2026-10-26",
+     "id": "tx-2026-0186-c18"
     }
    ],
    "notes_for_editor": "Admitted on the FAA's own draft and its own review page. The environmental assessment is a draft prepared by the applicant under the agency's supervision, and the final decision on the operating approvals has not been made. The county list is the Section 106 letter's own list with two of its spellings, Atacosta and Roberston, read as Atascosa and Robertson. The letter's stated total and its list disagree, so no county count is published. The five metros straddle the ERCOT line, so on_ercot is null rather than either value. The letter states a county total its own list does not match, and that discrepancy is reported here rather than repaired.",
@@ -31624,6 +31655,10 @@
      "date": "2026-10-26",
      "note": "The FAA review page for Zipline's Texas metros draft refused the request today, so the closed comment period and the posted draft are unconfirmed.",
      "checked": true
+    },
+    {
+     "date": "2026-10-26",
+     "note": "Zipline began deliveries in Round Rock on October 9th, before this comment window closed, as DroneXL reports. No final assessment has appeared."
     }
    ]
   },
@@ -39192,6 +39227,165 @@
     {
      "date": "2026-10-25",
      "note": "Admitted on UT Austin's own news item. The award funds a model still being built, and the item names no funder."
+    }
+   ]
+  },
+  {
+   "title": "Round Rock says its zoning does not cover drone delivery hubs as Zipline starts flying from one outside city limits",
+   "summary": "The City of Round Rock tells residents that drone delivery hubs are not specifically addressed in its current zoning ordinances. Zipline is beginning commercial deliveries from a facility in the city's extraterritorial jurisdiction, near North Kenney Fort and Joe DiMaggio Boulevards, where the city does not zone. The city says the FAA controls flight paths and that drones may fly over homes on approved routes. It is working with Zipline toward a second hub inside city limits behind Renaissance Square, and says that site will help it write rules for future hubs. Zipline says its aircraft carry onboard detect and avoid and are watched from a remote operations center. No hub rule has been adopted yet.",
+   "topic": "land-water-and-permitting",
+   "decider": {
+    "name": "City of Round Rock",
+    "type": "city"
+   },
+   "geography": {
+    "statewide": false,
+    "counties": [
+     "Williamson"
+    ],
+    "on_ercot": true
+   },
+   "status": "pending",
+   "key_dates": [
+    {
+     "date": "2026-10-09",
+     "kind": "effective",
+     "note": "Zipline's first Round Rock deliveries, as DroneXL reports"
+    }
+   ],
+   "public_access": {
+    "room": "contact_only",
+    "how": "No hearing or comment window is posted. The city's drone delivery page sends operational feedback to Zipline and safety concerns to the FAA. A hub inside city limits would come under the city's land use rules, and the city council is the body that would adopt them.",
+    "url": "https://www.roundrocktexas.gov/city-departments/administration/drone-delivery-in-round-rock/",
+    "closes": null
+   },
+   "confidence": "high",
+   "notes_for_editor": "Admitted on the city's own drone delivery page. The launch date rests on DroneXL. The FAA's review page refused the request this run.",
+   "claims": [
+    {
+     "text": "Round Rock says drone delivery hubs, where the aircraft are stored, launched and recharged, are not specifically addressed in its current zoning ordinances.",
+     "verbatim_quote": "Drone delivery hubs, where drones are stored, launched and recharged, are not specifically addressed under the City’s current zoning ordinances.",
+     "source_url": "https://www.roundrocktexas.gov/city-departments/administration/drone-delivery-in-round-rock/",
+     "source_title": "City of Round Rock, Drone Delivery in Round Rock",
+     "source_type": "primary_official",
+     "fetched": "2026-10-26",
+     "id": "tx-2026-0232-c1"
+    },
+    {
+     "text": "Zipline is beginning commercial drone deliveries from a facility near North Kenney Fort and Joe DiMaggio Boulevards, inside Round Rock's extraterritorial jurisdiction.",
+     "verbatim_quote": "Zipline is beginning commercial drone deliveries from a facility near the intersection of North Kenney Fort and Joe DiMaggio Boulevards, in Round Rock’s Extraterritorial Jurisdiction (ETJ).",
+     "source_url": "https://www.roundrocktexas.gov/city-departments/administration/drone-delivery-in-round-rock/",
+     "source_title": "City of Round Rock, Drone Delivery in Round Rock",
+     "source_type": "primary_official",
+     "fetched": "2026-10-26",
+     "id": "tx-2026-0232-c2"
+    },
+    {
+     "text": "The city says service will reach eligible customers within three miles of that facility, according to the company.",
+     "verbatim_quote": "According to the company, service will be available to eligible customers within three miles of this location and may expand to additional areas in the future.",
+     "source_url": "https://www.roundrocktexas.gov/city-departments/administration/drone-delivery-in-round-rock/",
+     "source_title": "City of Round Rock, Drone Delivery in Round Rock",
+     "source_type": "primary_official",
+     "fetched": "2026-10-26",
+     "id": "tx-2026-0232-c3"
+    },
+    {
+     "text": "The city is working with Zipline toward a proposed hub inside city limits, behind the Renaissance Square shopping center on northbound I-35.",
+     "verbatim_quote": "The City is working with Zipline to allow a proposed in-City hub at the rear of Renaissance Square shopping center along northbound I-35.",
+     "source_url": "https://www.roundrocktexas.gov/city-departments/administration/drone-delivery-in-round-rock/",
+     "source_title": "City of Round Rock, Drone Delivery in Round Rock",
+     "source_type": "primary_official",
+     "fetched": "2026-10-26",
+     "id": "tx-2026-0232-c4"
+    },
+    {
+     "text": "Round Rock says that site will let it evaluate drone delivery and its impacts and develop regulations for future hubs inside city limits.",
+     "verbatim_quote": "This location will provide an opportunity to evaluate drone delivery operations and their impacts, helping the City develop appropriate regulations for future facilities within city limits.",
+     "source_url": "https://www.roundrocktexas.gov/city-departments/administration/drone-delivery-in-round-rock/",
+     "source_title": "City of Round Rock, Drone Delivery in Round Rock",
+     "source_type": "primary_official",
+     "fetched": "2026-10-26",
+     "id": "tx-2026-0232-c5"
+    },
+    {
+     "text": "The city says the FAA regulates flight operations, airspace and flight paths, and the city does not decide where drones fly.",
+     "verbatim_quote": "The FAA regulates drone flight operations, including airspace and flight paths. The City does not determine where drones may fly.",
+     "source_url": "https://www.roundrocktexas.gov/city-departments/administration/drone-delivery-in-round-rock/",
+     "source_title": "City of Round Rock, Drone Delivery in Round Rock",
+     "source_type": "primary_official",
+     "fetched": "2026-10-26",
+     "id": "tx-2026-0232-c6"
+    },
+    {
+     "text": "Drones may fly over homes on approved flight paths, and the city says it can't regulate those paths.",
+     "verbatim_quote": "Drones may fly over residential areas as part of approved flight paths. The City cannot regulate drone flight paths.",
+     "source_url": "https://www.roundrocktexas.gov/city-departments/administration/drone-delivery-in-round-rock/",
+     "source_title": "City of Round Rock, Drone Delivery in Round Rock",
+     "source_type": "primary_official",
+     "fetched": "2026-10-26",
+     "id": "tx-2026-0232-c7"
+    },
+    {
+     "text": "Inside city limits the city may keep delivery hubs from sitting next to homes.",
+     "verbatim_quote": "The City is allowed to regulate the location of delivery hubs inside city limits to ensure they are not adjacent to residential properties to mitigate any potential issues.",
+     "source_url": "https://www.roundrocktexas.gov/city-departments/administration/drone-delivery-in-round-rock/",
+     "source_title": "City of Round Rock, Drone Delivery in Round Rock",
+     "source_type": "primary_official",
+     "fetched": "2026-10-26",
+     "id": "tx-2026-0232-c8"
+    },
+    {
+     "text": "Zipline says each aircraft carries an onboard detect and avoid system for other aircraft.",
+     "verbatim_quote": "Each aircraft has a Detect-and-Avoid system onboard to avoid other aircraft.",
+     "source_url": "https://www.zipline.com/about/zipline-safety-fact-sheet",
+     "source_title": "Zipline, Zipline Safety Fact Sheet",
+     "source_type": "primary_corporate",
+     "fetched": "2026-10-26",
+     "id": "tx-2026-0232-c9"
+    },
+    {
+     "text": "Zipline says trained staff watch the flights from a remote operations center.",
+     "verbatim_quote": "Trained Zipline personnel monitor flights from a remote operations center.",
+     "source_url": "https://www.zipline.com/about/zipline-safety-fact-sheet",
+     "source_title": "Zipline, Zipline Safety Fact Sheet",
+     "source_type": "primary_corporate",
+     "fetched": "2026-10-26",
+     "id": "tx-2026-0232-c10"
+    },
+    {
+     "text": "Zipline says each aircraft reserves its own route in an FAA approved traffic management system before launch.",
+     "verbatim_quote": "Before launch, aircraft automatically reserve their own strategic flight route in our FAA-approved traffic management system to avoid conflicts.",
+     "source_url": "https://www.zipline.com/about/zipline-safety-fact-sheet",
+     "source_title": "Zipline, Zipline Safety Fact Sheet",
+     "source_type": "primary_corporate",
+     "fetched": "2026-10-26",
+     "id": "tx-2026-0232-c11"
+    },
+    {
+     "text": "Zipline says its onboard flight computers detect and respond to problems on their own.",
+     "verbatim_quote": "The onboard flight computers can detect and automatically respond to issues.",
+     "source_url": "https://www.zipline.com/about/zipline-safety-fact-sheet",
+     "source_title": "Zipline, Zipline Safety Fact Sheet",
+     "source_type": "primary_corporate",
+     "fetched": "2026-10-26",
+     "id": "tx-2026-0232-c12"
+    },
+    {
+     "text": "DroneXL reports that Zipline opened Austin area delivery on October 9th, taking early access orders in Round Rock.",
+     "verbatim_quote": "Zipline opened drone delivery in the Austin area on Friday, October 9, with its First Flight early-access program taking orders in Round Rock for the first 5,000 residents who sign up.",
+     "source_url": "https://dronexl.co/2026/10/09/zipline-austin-round-rock-drone-delivery-launch/",
+     "source_title": "DroneXL, Zipline Starts Austin Deliveries With FAA Comment Window Still Open, October 9th, 2026",
+     "source_type": "journalism",
+     "fetched": "2026-10-26",
+     "id": "tx-2026-0232-c13"
+    }
+   ],
+   "id": "tx-2026-0232",
+   "last_verified": "2026-10-26",
+   "history": [
+    {
+     "date": "2026-10-26",
+     "note": "Admitted on the city's own page. The city has not adopted a rule for drone hubs, and its first hub inside city limits is still a proposal."
     }
    ]
   }
