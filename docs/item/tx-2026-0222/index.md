@@ -11,7 +11,7 @@ Houston Methodist researchers published a study in the Journal of Imaging on Jun
 - Public access: Write to the decider
 - Take part: https://pmc.ncbi.nlm.nih.gov/articles/PMC13412611/
 
-- Last checked: 2026-10-23
+- Last checked: 2026-10-26
 
 ## Dates
 
@@ -23,6 +23,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 
 - 2026-10-20 · Admitted on the published study and the hospital's own account of it. Neither says how widely the cameras have spread since the study period, which ended in September 2023.
 - 2026-10-23 · The study still ties the cameras to more cases a month and still says it can't show they caused the rise.
+- 2026-10-26 · Houston Methodist's study still links the operating room cameras to more cases a month and still says it can't show the cameras caused the rise.
 
 ## Evidence
 

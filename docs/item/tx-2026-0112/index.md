@@ -44,6 +44,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-18 · The commission filing and the Tribune's account still carry the approved route from Somervell County to Howard County. Oncor's project page is unconfirmed.
 - 2026-10-22 · The commission filing and the Tribune's account still carry the approved route from Somervell County to Howard County. Oncor's project page stays unconfirmed.
 - 2026-10-25 · Oncor's project page for the line from Somervell County to Howard County stays unconfirmed, since its site bars automated readers.
+- 2026-10-26 · Oncor's project page for the line from Somervell County to Howard County is still unconfirmed. Its site bars automated readers.
 
 ## Evidence
 

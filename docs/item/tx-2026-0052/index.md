@@ -45,6 +45,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-18 · Brazoria County's legislative record still carries the resolution on data center conditions as adopted. The station's report is unconfirmed.
 - 2026-10-22 · Brazoria County's legislative record still carries the resolution setting out the conditions it wants on data centers. The station's report stays unconfirmed.
 - 2026-10-25 · Brazoria County's resolution on data center conditions stays unconfirmed today on the station's report, which bars automated readers.
+- 2026-10-26 · Brazoria County's resolution setting conditions for data centers is still unconfirmed on the station's report, which bars automated readers.
 
 ## Evidence
 

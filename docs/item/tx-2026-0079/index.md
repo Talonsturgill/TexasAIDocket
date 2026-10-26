@@ -41,6 +41,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-17 · The committee's own meeting archive still lists the August 20th sitting on AI in health care, with no later sitting posted. The charge wording on the Legislative Reference Library page is unconfirmed, since that host is off limits to this project.
 - 2026-10-20 · House Public Health still lists the August 20th sitting on AI in health care as its latest, with nothing later posted. The charge wording stays unconfirmed.
 - 2026-10-23 · House Public Health's latest posted sitting is still the August 20th hearing on AI in health care. No interim report has appeared, and the charge wording stays unconfirmed.
+- 2026-10-26 · The House Public Health hearing on AI in health care reads as cited on the committee page. The charge wording is still unconfirmed on a host that bars automated readers.
 
 ## Evidence
 

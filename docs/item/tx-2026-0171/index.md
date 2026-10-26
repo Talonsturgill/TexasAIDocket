@@ -34,6 +34,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-09 · The directive to the water board is still unconfirmed on its own page, which bars automated readers. The board's report back is due next week.
 - 2026-10-10 · The directive to the water board stays unconfirmed on its own page, which bars automated readers. The board's report back is due within the week.
 - 2026-10-25 · The Texas Tribune reported on October 14th that the water board says it has no authority to prosecute a facility that skips the survey. The directive's own page still bars automated readers.
+- 2026-10-26 · The Governor's directive to the water board is still unconfirmed on its own page, which bars automated readers. The Tribune's account of the survey count reads as cited.
 
 ## Evidence
 

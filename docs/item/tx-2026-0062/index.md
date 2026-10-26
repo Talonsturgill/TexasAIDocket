@@ -50,6 +50,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-23 · Community Impact's account and KERA's are unconfirmed today, since both refused the request or did not answer in full. The record still holds Fort Worth's pause at its first steps.
 - 2026-10-24 · The record still holds Fort Worth's data center pause at its first steps. KERA's account is unconfirmed today, since the station refused the request.
 - 2026-10-25 · Fort Worth's data center pause stays at its first steps in the record. KERA's account is unconfirmed today, since the station turned the request away.
+- 2026-10-26 · Fort Worth's data center pause is still unconfirmed past its first steps. KERA's account refused the request again.
 
 ## Evidence
 

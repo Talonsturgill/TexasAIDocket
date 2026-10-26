@@ -43,6 +43,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-18 · The comptroller's JETI page still carries the Grimes County application. The Governor's announcement is unconfirmed, since the office's site bars automated readers.
 - 2026-10-22 · The comptroller's page for the Grimes County application still carries the SpaceX plant. The Governor's announcement stays unconfirmed, since the office's site bars automated readers.
 - 2026-10-25 · The Governor's announcement of the SpaceX plant in Grimes County stays unconfirmed, since the office's site bars automated readers.
+- 2026-10-26 · The Governor's account of the SpaceX Terafab plant in Grimes County is still unconfirmed. The office's site bars automated readers.
 
 ## Evidence
 
