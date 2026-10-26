@@ -3586,4 +3586,52 @@
  ],
  "not_done": "kit-has-no-cloth-cover deferred, not refused: one deck, a larger build than this pass could prove. 'Type sitting on the art' (5 runs, 13 rounds) still needs the id pass; 'no contact' (5 runs, 11 rounds) had a different cause on each deck. The six repeat offenders stay where the last passes left them. No frontier scan: the time went to the proofs"
 }
+,
+"2026-10-26 weekly": {
+ "date": "2026-10-26",
+ "run": "weekly machine pass, read with carousel no. 61",
+ "actor": "upgrade",
+ "upgrades": [
+  {
+   "what": "Kit vtol_drone, parcel_pod and drone_dock (assets/js/kit/vehicles.js): a lofted cambered wing with split flap and aileron and round tips, a V tail of tapered sections with ruddervators, belly skids with y 0 at their bottom and attach.seat, nav lamps and a sensor lens in housings; a pod with gasket, bumper, bail and band; a tapered twelve sided galvanized pole on an anchor bolt base with a box arm, a cradle with guide rails and contacts whose attach.seat takes the drone's, a detailed powder coated cabinet and a 20 to 60 mm crushed rock apron. New names so no. 61's chassis re-renders as shipped",
+   "why": "Digest theme 'primitive or low-poly model where a kit model belongs', 7 runs of 7 and 19 rounds, the week's top theme, and 'largest object unmodelled', 7 runs and 18 rounds. No. 61 built all three in its chassis (queue drone-pod-dock-models-built-in-chassis); its judges named 'slab wing and box V tail' (r1), 'wings are flat slabs' (r3), 'hovers over the cradle plate instead of sitting in it' (r1; the chassis model's lowest point stood 0.17 m above its origin), 'model the planned galvanized column, not a truss' (r1), 'untextured flat-lit beige box' cabinet and 'fist-sized cobbles out of scale' (r3)",
+   "files": [
+    "assets/js/kit/vehicles.js",
+    "knowledge/carousel/ARSENAL.md"
+   ],
+   "verification": "python3 examples/kit/build.py --family vehicles --names vtol_drone,parcel_pod,drone_dock --world lastLight --out out/kit/av/slides then .claude/skills/carousel-engine/render.py on it, 4 of 4 rendered with no errors and read at full size; a combined render seats vtol_drone on drone_dock's attach.seat beside a person and the pod; top and rear views prove both V tail surfaces; a node check of the loft found positive signed volume on every surface; examples/kit/sizes.py exits 0, 131 of 131 declare the size they build; arsenal.py --check ok",
+   "revert": "git revert 530bc154, then python3 scripts/carousel/arsenal.py",
+   "how_i_would_know_this_was_wrong": "A deck that calls vtol_drone is still charged for a flat or slab wing, or for a floating aircraft when placed at its attach.seat; the panel names the dock's pole or cabinet as clay or primitive; the apron's stones read as confetti at a wide lens; or a frame using drone_dock's apron (about eleven thousand instanced stones) pushes render.py past its page timeout"
+  },
+  {
+   "what": "Kit person (assets/js/kit/people.js): the seeded skin palette held to an envelope computed from a published in vivo skin colour table (each rung keeps its lightness, a* and b* clamped to the widest group mean +/- 2 SD); look_up raises a shading hand only with shade true, the roll still drawn; a hatColor option, and the seeded pale stone cap replaced by a worn khaki",
+   "why": "The kit person read as a mannequin on 4 decks of 7 this week (nos. 55, 56, 57, 61; queue kit-person-full-length-reads-as-mannequin at repeat 3, kit-person-reads-as-mannequin-within-two-metres). The 2026-10-22 pass measured no. 57's forearm at C* 52 and named the palette's albedo, left open; the palette's a* reached 20.4 against measured group means of 7.1 to 9.8 (PMC3465481 Table 1). No. 61's resident read as 'a saluting kit mannequin' with 'a hand clamped over the face' (r2, r3), and its judges asked for 'a dark cloth' cap the kit could not give",
+   "files": [
+    "assets/js/kit/people.js",
+    "knowledge/carousel/ARSENAL.md"
+   ],
+   "verification": "A seed 14 worker rendered through the engine under lastLight before and after: face median C* 52.4 before, 45.4 after, median a* 33.2 to 25.3 (measured on the render). Every palette rung's a* and b* computed inside the envelope (a* 3.88 to 12.29, b* 11.26 to 25.39) except quantisation; the look_up resident seed 21 rendered without the raised hand; seed 3 with explicit skin and the old cap unchanged in pose; arsenal.py --check ok",
+   "revert": "git revert ac5528a6, then python3 scripts/carousel/arsenal.py",
+   "how_i_would_know_this_was_wrong": "The judges still charge the kit person's skin as orange or plastic at a comparable distance (then the key and the sheen are the cause, not the albedo), they call the skin grey or ashen (the envelope's floor is too low for a deep rung), or a deck that wanted the shading hand ships without it because nobody passed shade true"
+  }
+ ],
+ "proposals_out_of_lane": [
+  {
+   "what": "TXT.deckRig derives the key's normalBias from the shadow texel size and N.unacne retires",
+   "owner": "human",
+   "why": "'render artifact' 6 runs and 10 rounds; no. 61 frame 5's shadow stair-stepping on the airframe ranked first among its dragging frames in round 3; eight consecutive chassis carry N.unacne to raise the fixed 0.02 (UPGRADE_BACKLOG 2026-10-26)"
+  },
+  {
+   "what": "TXT.scatter states what a rock's scale means, or a gravel kind sized in metres",
+   "owner": "human",
+   "why": "No. 61 frame 2 passed scale 0.03 to 0.08 meaning gravel and got stones to 16 cm; 'grass or scatter' 2 runs and 4 rounds"
+  },
+  {
+   "what": "art_preflight binds each audition frame to the chassis models it instantiates",
+   "owner": "human",
+   "why": "queue chassis-edit-rebinds-all-three-audition-frames (nos. 59 and 61) and audition-rebind-after-every-panel-repair at repeat 4; CLAUDE.md binds an unchanged review to its shared asset hashes, so the narrowing is the owner's call"
+  }
+ ],
+ "not_done": "Type sitting on the art (6 runs, 15 rounds) got no change, a different collision on each deck and still the id pass. The person's grip pose, vest cut, collar and a near detail level stay open. A multirotor survey drone waits for the deck that flies one. Frontier scan limited to the skin colorimetry question; the time went to the proofs"
+}
 }
