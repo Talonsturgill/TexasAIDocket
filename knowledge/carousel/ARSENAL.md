@@ -178,7 +178,7 @@ THE KIT: the things Texas is made of, modelled once in 3D at TRUE SCALE.
 | model | size w x h x d (m) | options | note |
 |---|---|---|---|
 | `crowd` | 8 x 1.9 x 5.3 | n, detail, area, roles, poses, face | N seeded people over area [w, d] (centred), min 0.65 m apart. face: [x, z] a point they turn toward, in the frame of the crowd itself (kept in place, not recentred), else roughly +z. |
-| `person` | 0.5 x 1.75 x 0.3 | role, pose, toward, height, build, hat, vest, skin, shirt, trousers, detail | Articulated adult 1.60 to 1.90 m by seed, slim to heavy. role resident\|worker\|official; pose stand\|walk\|point\|hands_on_hips\|look_up\|read\|sit_read (read leans over a desk on +z, head down, forearms forward; sit_read folds the legs so the hips sit at seat ... |
+| `person` | 0.5 x 1.75 x 0.3 | role, pose, toward, height, build, hat, hatColor, shade, vest, skin, shirt, trousers, detail | Articulated adult 1.60 to 1.90 m by seed, slim to heavy. role resident\|worker\|official; pose stand\|walk\|point\|hands_on_hips\|look_up\|read\|sit_read (read leans over a desk on +z, head down, forearms forward; sit_read folds the legs so the hips sit at seat ... |
 
 ### homes (10)
 
