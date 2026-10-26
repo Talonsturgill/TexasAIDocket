@@ -16,7 +16,7 @@
 |---|---|
 | engine calls (`TXT.*`) | 30 |
 | world presets | 8 |
-| kit models | 128 in 10 families |
+| kit models | 131 in 10 families |
 | asset libraries | 22 |
 | carousel and shared tools | 78 |
 | record and site tools the routine names | 20 |
@@ -212,7 +212,7 @@ THE KIT: the things Texas is made of, modelled once in 3D at TRUE SCALE.
 | `pecan` | 22.4 x 23.1 x 21.3 | height, spread | Options: height m, spread m. |
 | `shrub` | 3.4 x 1.4 x 1.3 | kind, form, length, height, depth | Options: kind boxwood\|yaupon (yaupon carries red berries), form hedge\|mound, length, height, depth m (a mound uses length as its diameter). |
 
-### vehicles (12)
+### vehicles (15)
 
 `assets/js/kit/vehicles.js`, Every vehicle is built the way a body shop would describe it: a SIDE PROFILE of the body, with the wheel arches cut into it, extruded across the width with rounded edges; a glass greenhouse with ...
 
@@ -221,8 +221,10 @@ THE KIT: the things Texas is made of, modelled once in 3D at TRUE SCALE.
 | `autonomous_vessel` | 11.02 x 16.35 x 51.42 | length, beam, depth, draft, state, payload, paint, blocks, mast, rails, sheer, flare | An illustrative autonomous surface vessel, drawn to no maker's design: a hard chine steel hull with a sheer rising to a flared bow, a bulwark forward, stanchions and two rails aft, a black boot top and red antifouling, a long low windowless deckhouse in ... |
 | `crossover` | 2.21 x 1.56 x 4.68 | color, metallic, sensors, roof | Compact electric crossover, 4.68 m, fastback, lofted body with curved panels, wheel arch flares, flush handles and coated glass. |
 | `delivery_van` | 2.5 x 2.72 x 5.98 | color, lettering | High-roof cargo van, 5.98 m, sliding side door, twin rear doors. |
+| `drone_dock` | 5.18 x 6.45 x 5.17 | height, arm, ring, cabinet, apron, lamp | An illustrative drone dock, drawn to no maker's design. |
 | `event_recorder` | 0.27 x 0.5 x 0.33 | lamp, lampColor, cable | Sealed fanless data recorder on a bolted flange: machined fins, two circular connectors with cables, a label and one status lamp. |
 | `keel_block_line` | 1.5 x 1.4 x 60 | length, pitch, h | A line of keel blocks along +z from the origin, `length` m at `pitch` m, each a chamfered concrete base under two timber caps, `h` m tall. |
+| `parcel_pod` | 0.41 x 0.68 x 0.35 | color, band, glow | An illustrative lowered delivery pod: a superellipse composite capsule about 0.64 m tall, rubber gasket at the parting line, bumper ring at the base, a bail (userData.attach.bail, where a tether ties on), and a painted band in `band` (null for none). glow ... |
 | `pickup` | 2.4 x 1.96 x 5.89 | color, metallic, trim | Full-size crew-cab pickup (F-150 / Silverado class), 5.5 ft bed. trim chrome\|work\|dark; color hex for paint. |
 | `school_bus` | 2.9 x 3.2 x 11.2 | whiteRoof, stopArm, district | Type C school bus (conventional hood), 11.2 m, dual rear wheels, 11 windows a side, stop arm (stopArm:true deploys it). |
 | `sedan` | 2.05 x 1.44 x 4.88 | color, metallic | Mid-size four-door sedan, 4.88 m. |
@@ -230,6 +232,7 @@ THE KIT: the things Texas is made of, modelled once in 3D at TRUE SCALE.
 | `semi_truck` | 2.9 x 4.1 x 21.9 | color, trailer, trailerColor, lettering, sensors, podColor, visor | Class 8 sleeper tractor (long hood, chrome stacks and tanks) with a 53 ft dry van; trailer:false for bobtail. sensors: "pods" (mirror sensor pods in place of the mirrors), "roof" (a roof sensor bar with a spinning lidar), "full" (both, plus bumper radar) fits ... |
 | `suv` | 2.4 x 1.93 x 5.35 | color, metallic, rack | Full-size SUV, 5.35 m, roof rails. |
 | `utility_bucket_truck` | 3 x 3 x 9.8 | boom, swing, color, lettering | Lineman bucket truck. boom 0 (stowed) to 1 (raised about 11 m platform height); swing rotates the turret (radians). |
+| `vtol_drone` | 3.47 x 0.51 x 2.67 | span, color, flap, rotorAng, blur, lights, glow, chute, skids, tether, sag | An illustrative fixed wing VTOL delivery aircraft, drawn to no maker's design. |
 
 ### power (15)
 
@@ -406,7 +409,7 @@ Classic scripts expose a global. The engine and the kit are ES modules and are a
 
 **The 2.5D object catalogue** (`TXOBJ.sprite(name)` on the `TXSCENE` bench, canvas only, for the rare frame that is not rendered; a rendered frame takes the kit): `ambulance` 6.7 x 2.7, `battery_container` 12.2 x 2.9, `billboard` 14.6 x 12.0, `camera_pole` 1.2 x 4.5, `capitol` 100.0 x 95.0, `cattle` 2.5 x 1.5, `civic_facade` 30.0 x 20.0, `cooling_tower` 90.0 x 130.0, `dais` 9.0 x 1.3, `data_center` 130.0 x 16.0, `desk` 1.6 x 1.2, `drone` 1.0 x 0.3, `fence_post` 0.2 x 1.4, `filing_box` 0.4 x 0.28, `helicopter` 13.0 x 3.8, `hospital` 60.0 x 30.0, `hospital_bed` 2.2 x 1.3, `house` 16.0 x 6.0, `live_oak` 16.0 x 11.0, `mesquite` 8.0 x 6.0, `office_chair` 0.7 x 1.2, `pallet_boxes` 1.2 x 1.7, `pickup` 5.9 x 1.95, `pine` 7.0 x 26.0, `podium` 0.7 x 1.25, `power_plant` 70.0 x 62.0, `pump_jack` 7.5 x 5.2, `road_sign` 2.0 x 3.0, `school` 60.0 x 8.0, `school_bus` 12.0 x 3.1, `sedan` 4.7 x 1.45, `server_rack` 0.6 x 2.1, `solar_panel` 4.2 x 2.6, `stock_tank` 8.0 x 1.0, `streetlight` 3.0 x 10.0, `strip_mall` 40.0 x 6.0, `student_desk` 0.9 x 0.85, `substation` 22.0 x 12.0, `traffic_signal` 8.0 x 6.5, `transmission_tower` 12.0 x 42.0, `truck_semi` 17.0 x 4.1, `utility_pole` 2.4 x 12.0, `voting_booth` 0.9 x 1.6, `warehouse` 90.0 x 12.0, `water_tower` 12.0 x 38.0, `wind_turbine` 8.0 x 150.0, `windmill` 3.0 x 11.0.
 
-**Earlier deck chassis** (`assets/js/deck/`, read how a `TXDECK.declare` is written, never copy a world): `2026-09-16-lamp.js`, `2026-09-17-nightdraft.js`, `2026-09-18-minutebook.js`, `2026-09-19-firstlight.js`, `2026-09-20-waterworks.js`, `2026-09-21-oakcliff.js`, `2026-09-23-gensetyard.js`, `2026-09-24-droneline.js`, `2026-09-26-fortyfive.js`, `2026-09-27-nightrent.js`, `2026-09-28-watchtower.js`, `2026-09-29-mccloud.js`, `2026-09-30-firstreader.js`, `2026-10-01-plates.js`, `2026-10-02-vials.js`, `2026-10-03-norther.js`, `2026-10-04-noonbell.js`, `2026-10-05-wards.js`, `2026-10-06-prairie.js`, `2026-10-07-portalpha.js`, `2026-10-08-nexus.js`, `2026-10-09-chart.js`, `2026-10-10-lastlawn.js`, `2026-10-11-feedyard.js`, `2026-10-12-crossing.js`, `2026-10-15-transcript.js`, `2026-10-16-curb.js`, `2026-10-16-studio-proof.js`, `2026-10-17-section.js`, `2026-10-18-brush.js`, `2026-10-20-suite.js`, `2026-10-21-cell.js`, `2026-10-22-stair.js`, `2026-10-23-ledger.js`, `2026-10-24-apron.js`, `2026-10-25-returnplate.js`, `proof-port-art-direction.js`.
+**Earlier deck chassis** (`assets/js/deck/`, read how a `TXDECK.declare` is written, never copy a world): `2026-09-16-lamp.js`, `2026-09-17-nightdraft.js`, `2026-09-18-minutebook.js`, `2026-09-19-firstlight.js`, `2026-09-20-waterworks.js`, `2026-09-21-oakcliff.js`, `2026-09-23-gensetyard.js`, `2026-09-24-droneline.js`, `2026-09-26-fortyfive.js`, `2026-09-27-nightrent.js`, `2026-09-28-watchtower.js`, `2026-09-29-mccloud.js`, `2026-09-30-firstreader.js`, `2026-10-01-plates.js`, `2026-10-02-vials.js`, `2026-10-03-norther.js`, `2026-10-04-noonbell.js`, `2026-10-05-wards.js`, `2026-10-06-prairie.js`, `2026-10-07-portalpha.js`, `2026-10-08-nexus.js`, `2026-10-09-chart.js`, `2026-10-10-lastlawn.js`, `2026-10-11-feedyard.js`, `2026-10-12-crossing.js`, `2026-10-15-transcript.js`, `2026-10-16-curb.js`, `2026-10-16-studio-proof.js`, `2026-10-17-section.js`, `2026-10-18-brush.js`, `2026-10-20-suite.js`, `2026-10-21-cell.js`, `2026-10-22-stair.js`, `2026-10-23-ledger.js`, `2026-10-24-apron.js`, `2026-10-25-returnplate.js`, `2026-10-26-tether.js`, `proof-port-art-direction.js`.
 
 **Geodata** (`assets/geo/`):
 
