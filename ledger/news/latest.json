@@ -1,8 +1,8 @@
 {
   "_spec": 2,
-  "checked_at": "2026-10-27T06:30:19Z",
+  "checked_at": "2026-10-27T13:26:13Z",
   "provider": "Publisher RSS and Atom",
-  "response_sha256": "27be34ffee72bac5ad2961190e963895923ca109f0ecba6eca60f01615cd212d",
+  "response_sha256": "92923d67a8a9526b0e74c587cc1c1665eae1426da04f8c374d70cee3ed1bd2f0",
   "articles": [
     {
       "title": "Patented: 7-Eleven’s Item-Recognition Tech and 121 More Inventions Across North Texas",
@@ -17,13 +17,6 @@
       "first_seen_at": "2026-10-22T12:26:21Z",
       "summary": "Researchers at the University of Texas at Arlington and UT Southwestern Medical Center in Dallas are using AI and advanced statistics to pinpoint the molecular “control switches” involved in several eye diseases. The diseases being studied include age-related macular degeneration, glaucoma and diabetic retinopathy. …",
       "feed": "https://dallasinnovates.com/feed/"
-    },
-    {
-      "title": "Texas data center boom could erase decades of progress on air quality",
-      "url": "https://feeds.texastribune.org/link/16799/17501286/data-centers-texas-air-quality-report-pollution-health-risks",
-      "first_seen_at": "2026-10-20T11:00:00Z",
-      "summary": "A new report warns that the state’s air quality progress could be reversed by the end of the decade, especially if facilities use natural gas power.",
-      "feed": "https://feeds.texastribune.org/feeds/main/"
     },
     {
       "title": "Greg Abbott ordered a pause on data center permits. Critics say some plans still moved forward.",
@@ -54,9 +47,16 @@
       "feed": "https://feeds.texastribune.org/feeds/main/"
     },
     {
+      "title": "Coalition in deep East Texas aims to build tech workforce, connect region",
+      "url": "https://feeds.texastribune.org/link/16799/17507501/east-texas-technology-coalition-launches",
+      "first_seen_at": "2026-10-27T10:00:00Z",
+      "summary": "Led by community members from 11 counties, the group plans to address major concerns about broadband expansion and provide training on how to use technology.",
+      "feed": "https://feeds.texastribune.org/feeds/main/"
+    },
+    {
       "title": "Fireworks to lease data center capacity in Dallas, Texas",
       "url": "https://www.datacenterdynamics.com/en/news/fireworks-to-lease-data-center-capacity-in-dallas-texas/",
-      "first_seen_at": "2026-10-26T16:14:50Z",
+      "first_seen_at": "2026-10-26T16:14:00Z",
       "summary": "Company to lease capacity from Forum Markets/Edge Node venture",
       "feed": "https://www.datacenterdynamics.com/en/rss/"
     },
@@ -104,272 +104,20 @@
     }
   ],
   "selected": {
-    "title": "Fireworks to lease data center capacity in Dallas, Texas",
-    "url": "https://www.datacenterdynamics.com/en/news/fireworks-to-lease-data-center-capacity-in-dallas-texas/",
-    "first_seen_at": "2026-10-26T16:14:50Z",
-    "summary": "Company to lease capacity from Forum Markets/Edge Node venture",
-    "feed": "https://www.datacenterdynamics.com/en/rss/",
-    "publisher": "Data Center Dynamics",
-    "coverage": 1,
-    "score": 0.662464,
-    "priority": 1
+    "title": "Despite Abbott moratorium, Texas kept on issuing data center permits. Now, the state agency is shutting down its automatic filing system.",
+    "url": "https://www.tpr.org/economy-and-labor/2026-10-22/despite-abbott-moratorium-texas-kept-on-issuing-data-center-permits-now-the-state-agency-is-shutting-down-its-automatic-filing-system",
+    "first_seen_at": "2026-10-23T02:35:30Z",
+    "summary": "State regulators said permits issued after Gov. Abbott’s moratorium have now been suspended and its automatic filing system is shut down.",
+    "feed": "https://www.tpr.org/index.rss",
+    "publisher": "Texas Public Radio",
+    "coverage": 2,
+    "score": 0.091386,
+    "priority": 4
   },
-  "expires_at": "2026-11-02T16:14:50Z",
+  "expires_at": "2026-10-30T02:35:30Z",
   "rotation_version": 1,
   "carousel_version": 1,
   "editions": [
-    {
-      "starts_at": "2026-10-27T01:23:00Z",
-      "selected": {
-        "title": "Fireworks to lease data center capacity in Dallas, Texas",
-        "url": "https://www.datacenterdynamics.com/en/news/fireworks-to-lease-data-center-capacity-in-dallas-texas/",
-        "first_seen_at": "2026-10-26T16:14:50Z",
-        "summary": "Company to lease capacity from Forum Markets/Edge Node venture",
-        "feed": "https://www.datacenterdynamics.com/en/rss/",
-        "publisher": "Data Center Dynamics",
-        "coverage": 1,
-        "score": 0.662464,
-        "priority": 1
-      },
-      "stories": [
-        {
-          "title": "Fireworks to lease data center capacity in Dallas, Texas",
-          "url": "https://www.datacenterdynamics.com/en/news/fireworks-to-lease-data-center-capacity-in-dallas-texas/",
-          "first_seen_at": "2026-10-26T16:14:50Z",
-          "summary": "Company to lease capacity from Forum Markets/Edge Node venture",
-          "feed": "https://www.datacenterdynamics.com/en/rss/",
-          "publisher": "Data Center Dynamics",
-          "coverage": 1,
-          "score": 0.662464,
-          "priority": 1
-        },
-        {
-          "title": "Inside the New AI Slop Era of Texas Politics",
-          "url": "https://www.texasobserver.org/ai-slop-era-texas-political-ads-2026/",
-          "first_seen_at": "2026-10-26T14:21:05Z",
-          "summary": "Texans have seen it all this year: Senator John Cornyn twirling Congresswoman Jasmine Crockett on the dance floor; Attorney General Ken Paxton driving his mistresses down to the “Love Shack”; and Texas state Representative James Talarico in a dress singing a tune about transgender people—all made possible by the powers of generative artificial intelligence. Political […]",
-          "feed": "https://www.texasobserver.org/feed/",
-          "publisher": "Texas Observer",
-          "coverage": 1,
-          "score": 0.627167,
-          "priority": 0
-        },
-        {
-          "title": "Can language patterns reveal mild brain injuries in veterans? San Antonio researchers launch AI-powered study.",
-          "url": "https://www.tpr.org/bioscience-medicine/2026-10-25/can-language-patterns-reveal-mild-brain-injuries-in-veterans-san-antonio-researchers-launch-ai-powered-study",
-          "first_seen_at": "2026-10-25T16:56:12Z",
-          "summary": "Three San Antonio organizations are testing whether subtle changes in language could be a marker for mild traumatic brain injuries.",
-          "feed": "https://www.tpr.org/index.rss",
-          "publisher": "Texas Public Radio",
-          "coverage": 1,
-          "score": 0.337894,
-          "priority": 0
-        },
-        {
-          "title": "Texas Attorney General Ken Paxton sues ChatGPT-maker OpenAI",
-          "url": "https://feeds.texastribune.org/link/16799/17505297/ken-paxton-chatgpt-openai-lawsuit-texas-attorney-general",
-          "first_seen_at": "2026-10-23T19:44:30Z",
-          "summary": "CEO Sam Altman and ChatGPT are top competitors to Elon Musk, the tech billionaire fueling Paxton’s U.S. Senate campaign.",
-          "feed": "https://feeds.texastribune.org/feeds/main/",
-          "publisher": "The Texas Tribune",
-          "coverage": 1,
-          "score": 0.091602,
-          "priority": 3
-        },
-        {
-          "title": "UTA and UT Southwestern Researchers Use AI to Pinpoint Eye Disease ‘Control Switches’",
-          "url": "https://dallasinnovates.com/uta-and-ut-southwestern-researchers-use-ai-to-pinpoint-eye-disease-control-switches/",
-          "first_seen_at": "2026-10-22T12:26:21Z",
-          "summary": "Researchers at the University of Texas at Arlington and UT Southwestern Medical Center in Dallas are using AI and advanced statistics to pinpoint the molecular “control switches” involved in several eye diseases. The diseases being studied include age-related macular degeneration, glaucoma and diabetic retinopathy. …",
-          "feed": "https://dallasinnovates.com/feed/",
-          "publisher": "Dallas Innovates",
-          "coverage": 1,
-          "score": 0.037092,
-          "priority": 3
-        },
-        {
-          "title": "San Antonio turns to AI to study its roaming-dog population",
-          "url": "https://www.tpr.org/science-technology/2026-10-20/san-antonio-turns-to-ai-to-study-its-roaming-dog-population",
-          "first_seen_at": "2026-10-20T23:32:43Z",
-          "summary": "Southwest Research Institute will use AI technology in a study to identify and count roaming dogs in 32 city areas.",
-          "feed": "https://www.tpr.org/index.rss",
-          "publisher": "Texas Public Radio",
-          "coverage": 1,
-          "score": 0.01278,
-          "priority": 3
-        },
-        {
-          "title": "Despite Abbott moratorium, Texas kept on issuing data center permits. Now, the state agency is shutting down its automatic filing system.",
-          "url": "https://www.tpr.org/economy-and-labor/2026-10-22/despite-abbott-moratorium-texas-kept-on-issuing-data-center-permits-now-the-state-agency-is-shutting-down-its-automatic-filing-system",
-          "first_seen_at": "2026-10-23T02:35:30Z",
-          "summary": "State regulators said permits issued after Gov. Abbott’s moratorium have now been suspended and its automatic filing system is shut down.",
-          "feed": "https://www.tpr.org/index.rss",
-          "publisher": "Texas Public Radio",
-          "coverage": 2,
-          "score": 0.111641,
-          "priority": 4
-        },
-        {
-          "title": "Fed up with data centers and Big Tech, rural Republican crossover could decide Democrats’ fate in Texas",
-          "url": "https://feeds.texastribune.org/link/16799/17504031/texas-rural-voters-data-centers-backlash-big-tech-2026-election",
-          "first_seen_at": "2026-10-23T10:00:00Z",
-          "summary": "Rural Republicans have long undercut Democrats’ gains in cities and suburbs. Will enough defect to make a difference this fall?",
-          "feed": "https://feeds.texastribune.org/feeds/main/",
-          "publisher": "The Texas Tribune",
-          "coverage": 1,
-          "score": 0.069138,
-          "priority": 4
-        },
-        {
-          "title": "Soluna and Applied Digital to build 50MW data center in Texas",
-          "url": "https://www.datacenterdynamics.com/en/news/soluna-and-applied-digital-to-build-50mw-data-center-in-texas/",
-          "first_seen_at": "2026-10-22T11:02:52Z",
-          "summary": "Companies to build on Soluna’s Dorothy 3 site, lease capacity to Applied spin-out ChronoScale",
-          "feed": "https://www.datacenterdynamics.com/en/rss/",
-          "publisher": "Data Center Dynamics",
-          "coverage": 1,
-          "score": 0.035631,
-          "priority": 4
-        },
-        {
-          "title": "Patented: 7-Eleven’s Item-Recognition Tech and 121 More Inventions Across North Texas",
-          "url": "https://dallasinnovates.com/patented-7-elevens-item-recognition-tech-and-121-more-inventions-across-north-texas/",
-          "first_seen_at": "2026-10-21T20:14:31Z",
-          "summary": "Irving-based 7-Eleven added to its intellectual property with a pair of patents the week of Sept. 29. The patents relate to its ongoing work on inventory tracking and computer-vision item recognition. One patent improves data prediction in systems that track when items are removed from locations.…",
-          "feed": "https://dallasinnovates.com/feed/",
-          "publisher": "Dallas Innovates",
-          "coverage": 1,
-          "score": 0.023234,
-          "priority": 4
-        }
-      ]
-    },
-    {
-      "starts_at": "2026-10-27T07:23:00Z",
-      "selected": {
-        "title": "San Antonio turns to AI to study its roaming-dog population",
-        "url": "https://www.tpr.org/science-technology/2026-10-20/san-antonio-turns-to-ai-to-study-its-roaming-dog-population",
-        "first_seen_at": "2026-10-20T23:32:43Z",
-        "summary": "Southwest Research Institute will use AI technology in a study to identify and count roaming dogs in 32 city areas.",
-        "feed": "https://www.tpr.org/index.rss",
-        "publisher": "Texas Public Radio",
-        "coverage": 1,
-        "score": 0.01246,
-        "priority": 3
-      },
-      "stories": [
-        {
-          "title": "San Antonio turns to AI to study its roaming-dog population",
-          "url": "https://www.tpr.org/science-technology/2026-10-20/san-antonio-turns-to-ai-to-study-its-roaming-dog-population",
-          "first_seen_at": "2026-10-20T23:32:43Z",
-          "summary": "Southwest Research Institute will use AI technology in a study to identify and count roaming dogs in 32 city areas.",
-          "feed": "https://www.tpr.org/index.rss",
-          "publisher": "Texas Public Radio",
-          "coverage": 1,
-          "score": 0.01246,
-          "priority": 3
-        },
-        {
-          "title": "Inside the New AI Slop Era of Texas Politics",
-          "url": "https://www.texasobserver.org/ai-slop-era-texas-political-ads-2026/",
-          "first_seen_at": "2026-10-26T14:21:05Z",
-          "summary": "Texans have seen it all this year: Senator John Cornyn twirling Congresswoman Jasmine Crockett on the dance floor; Attorney General Ken Paxton driving his mistresses down to the “Love Shack”; and Texas state Representative James Talarico in a dress singing a tune about transgender people—all made possible by the powers of generative artificial intelligence. Political […]",
-          "feed": "https://www.texasobserver.org/feed/",
-          "publisher": "Texas Observer",
-          "coverage": 1,
-          "score": 0.611462,
-          "priority": 0
-        },
-        {
-          "title": "Can language patterns reveal mild brain injuries in veterans? San Antonio researchers launch AI-powered study.",
-          "url": "https://www.tpr.org/bioscience-medicine/2026-10-25/can-language-patterns-reveal-mild-brain-injuries-in-veterans-san-antonio-researchers-launch-ai-powered-study",
-          "first_seen_at": "2026-10-25T16:56:12Z",
-          "summary": "Three San Antonio organizations are testing whether subtle changes in language could be a marker for mild traumatic brain injuries.",
-          "feed": "https://www.tpr.org/index.rss",
-          "publisher": "Texas Public Radio",
-          "coverage": 1,
-          "score": 0.329433,
-          "priority": 0
-        },
-        {
-          "title": "Fireworks to lease data center capacity in Dallas, Texas",
-          "url": "https://www.datacenterdynamics.com/en/news/fireworks-to-lease-data-center-capacity-in-dallas-texas/",
-          "first_seen_at": "2026-10-26T16:14:50Z",
-          "summary": "Company to lease capacity from Forum Markets/Edge Node venture",
-          "feed": "https://www.datacenterdynamics.com/en/rss/",
-          "publisher": "Data Center Dynamics",
-          "coverage": 1,
-          "score": 0.645876,
-          "priority": 1
-        },
-        {
-          "title": "Texas Attorney General Ken Paxton sues ChatGPT-maker OpenAI",
-          "url": "https://feeds.texastribune.org/link/16799/17505297/ken-paxton-chatgpt-openai-lawsuit-texas-attorney-general",
-          "first_seen_at": "2026-10-23T19:44:30Z",
-          "summary": "CEO Sam Altman and ChatGPT are top competitors to Elon Musk, the tech billionaire fueling Paxton’s U.S. Senate campaign.",
-          "feed": "https://feeds.texastribune.org/feeds/main/",
-          "publisher": "The Texas Tribune",
-          "coverage": 1,
-          "score": 0.089308,
-          "priority": 3
-        },
-        {
-          "title": "UTA and UT Southwestern Researchers Use AI to Pinpoint Eye Disease ‘Control Switches’",
-          "url": "https://dallasinnovates.com/uta-and-ut-southwestern-researchers-use-ai-to-pinpoint-eye-disease-control-switches/",
-          "first_seen_at": "2026-10-22T12:26:21Z",
-          "summary": "Researchers at the University of Texas at Arlington and UT Southwestern Medical Center in Dallas are using AI and advanced statistics to pinpoint the molecular “control switches” involved in several eye diseases. The diseases being studied include age-related macular degeneration, glaucoma and diabetic retinopathy. …",
-          "feed": "https://dallasinnovates.com/feed/",
-          "publisher": "Dallas Innovates",
-          "coverage": 1,
-          "score": 0.036163,
-          "priority": 3
-        },
-        {
-          "title": "Despite Abbott moratorium, Texas kept on issuing data center permits. Now, the state agency is shutting down its automatic filing system.",
-          "url": "https://www.tpr.org/economy-and-labor/2026-10-22/despite-abbott-moratorium-texas-kept-on-issuing-data-center-permits-now-the-state-agency-is-shutting-down-its-automatic-filing-system",
-          "first_seen_at": "2026-10-23T02:35:30Z",
-          "summary": "State regulators said permits issued after Gov. Abbott’s moratorium have now been suspended and its automatic filing system is shut down.",
-          "feed": "https://www.tpr.org/index.rss",
-          "publisher": "Texas Public Radio",
-          "coverage": 2,
-          "score": 0.108845,
-          "priority": 4
-        },
-        {
-          "title": "Fed up with data centers and Big Tech, rural Republican crossover could decide Democrats’ fate in Texas",
-          "url": "https://feeds.texastribune.org/link/16799/17504031/texas-rural-voters-data-centers-backlash-big-tech-2026-election",
-          "first_seen_at": "2026-10-23T10:00:00Z",
-          "summary": "Rural Republicans have long undercut Democrats’ gains in cities and suburbs. Will enough defect to make a difference this fall?",
-          "feed": "https://feeds.texastribune.org/feeds/main/",
-          "publisher": "The Texas Tribune",
-          "coverage": 1,
-          "score": 0.067406,
-          "priority": 4
-        },
-        {
-          "title": "Soluna and Applied Digital to build 50MW data center in Texas",
-          "url": "https://www.datacenterdynamics.com/en/news/soluna-and-applied-digital-to-build-50mw-data-center-in-texas/",
-          "first_seen_at": "2026-10-22T11:02:52Z",
-          "summary": "Companies to build on Soluna’s Dorothy 3 site, lease capacity to Applied spin-out ChronoScale",
-          "feed": "https://www.datacenterdynamics.com/en/rss/",
-          "publisher": "Data Center Dynamics",
-          "coverage": 1,
-          "score": 0.034739,
-          "priority": 4
-        },
-        {
-          "title": "Patented: 7-Eleven’s Item-Recognition Tech and 121 More Inventions Across North Texas",
-          "url": "https://dallasinnovates.com/patented-7-elevens-item-recognition-tech-and-121-more-inventions-across-north-texas/",
-          "first_seen_at": "2026-10-21T20:14:31Z",
-          "summary": "Irving-based 7-Eleven added to its intellectual property with a pair of patents the week of Sept. 29. The patents relate to its ongoing work on inventory tracking and computer-vision item recognition. One patent improves data prediction in systems that track when items are removed from locations.…",
-          "feed": "https://dallasinnovates.com/feed/",
-          "publisher": "Dallas Innovates",
-          "coverage": 1,
-          "score": 0.022652,
-          "priority": 4
-        }
-      ]
-    },
     {
       "starts_at": "2026-10-27T13:23:00Z",
       "selected": {
@@ -380,7 +128,7 @@
         "feed": "https://www.tpr.org/index.rss",
         "publisher": "Texas Public Radio",
         "coverage": 2,
-        "score": 0.091527,
+        "score": 0.091386,
         "priority": 4
       },
       "stories": [
@@ -392,7 +140,7 @@
           "feed": "https://www.tpr.org/index.rss",
           "publisher": "Texas Public Radio",
           "coverage": 2,
-          "score": 0.091527,
+          "score": 0.091386,
           "priority": 4
         },
         {
@@ -403,7 +151,7 @@
           "feed": "https://www.texasobserver.org/feed/",
           "publisher": "Texas Observer",
           "coverage": 1,
-          "score": 0.514177,
+          "score": 0.513381,
           "priority": 0
         },
         {
@@ -414,18 +162,29 @@
           "feed": "https://www.tpr.org/index.rss",
           "publisher": "Texas Public Radio",
           "coverage": 1,
-          "score": 0.277019,
+          "score": 0.27659,
           "priority": 0
+        },
+        {
+          "title": "Coalition in deep East Texas aims to build tech workforce, connect region",
+          "url": "https://feeds.texastribune.org/link/16799/17507501/east-texas-technology-coalition-launches",
+          "first_seen_at": "2026-10-27T10:00:00Z",
+          "summary": "Led by community members from 11 counties, the group plans to address major concerns about broadband expansion and provide training on how to use technology.",
+          "feed": "https://feeds.texastribune.org/feeds/main/",
+          "publisher": "The Texas Tribune",
+          "coverage": 1,
+          "score": 0.905505,
+          "priority": 1
         },
         {
           "title": "Fireworks to lease data center capacity in Dallas, Texas",
           "url": "https://www.datacenterdynamics.com/en/news/fireworks-to-lease-data-center-capacity-in-dallas-texas/",
-          "first_seen_at": "2026-10-26T16:14:50Z",
+          "first_seen_at": "2026-10-26T16:14:00Z",
           "summary": "Company to lease capacity from Forum Markets/Edge Node venture",
           "feed": "https://www.datacenterdynamics.com/en/rss/",
           "publisher": "Data Center Dynamics",
           "coverage": 1,
-          "score": 0.543115,
+          "score": 0.542057,
           "priority": 1
         },
         {
@@ -436,7 +195,7 @@
           "feed": "https://feeds.texastribune.org/feeds/main/",
           "publisher": "The Texas Tribune",
           "coverage": 1,
-          "score": 0.075099,
+          "score": 0.074982,
           "priority": 3
         },
         {
@@ -447,7 +206,7 @@
           "feed": "https://dallasinnovates.com/feed/",
           "publisher": "Dallas Innovates",
           "coverage": 1,
-          "score": 0.030409,
+          "score": 0.030362,
           "priority": 3
         },
         {
@@ -458,7 +217,7 @@
           "feed": "https://www.tpr.org/index.rss",
           "publisher": "Texas Public Radio",
           "coverage": 1,
-          "score": 0.010477,
+          "score": 0.010461,
           "priority": 3
         },
         {
@@ -469,7 +228,7 @@
           "feed": "https://feeds.texastribune.org/feeds/main/",
           "publisher": "The Texas Tribune",
           "coverage": 1,
-          "score": 0.056682,
+          "score": 0.056594,
           "priority": 4
         },
         {
@@ -480,18 +239,7 @@
           "feed": "https://www.datacenterdynamics.com/en/rss/",
           "publisher": "Data Center Dynamics",
           "coverage": 1,
-          "score": 0.029212,
-          "priority": 4
-        },
-        {
-          "title": "Patented: 7-Eleven’s Item-Recognition Tech and 121 More Inventions Across North Texas",
-          "url": "https://dallasinnovates.com/patented-7-elevens-item-recognition-tech-and-121-more-inventions-across-north-texas/",
-          "first_seen_at": "2026-10-21T20:14:31Z",
-          "summary": "Irving-based 7-Eleven added to its intellectual property with a pair of patents the week of Sept. 29. The patents relate to its ongoing work on inventory tracking and computer-vision item recognition. One patent improves data prediction in systems that track when items are removed from locations.…",
-          "feed": "https://dallasinnovates.com/feed/",
-          "publisher": "Dallas Innovates",
-          "coverage": 1,
-          "score": 0.019048,
+          "score": 0.029166,
           "priority": 4
         }
       ]
@@ -499,27 +247,27 @@
     {
       "starts_at": "2026-10-27T19:23:00Z",
       "selected": {
-        "title": "Patented: 7-Eleven’s Item-Recognition Tech and 121 More Inventions Across North Texas",
-        "url": "https://dallasinnovates.com/patented-7-elevens-item-recognition-tech-and-121-more-inventions-across-north-texas/",
-        "first_seen_at": "2026-10-21T20:14:31Z",
-        "summary": "Irving-based 7-Eleven added to its intellectual property with a pair of patents the week of Sept. 29. The patents relate to its ongoing work on inventory tracking and computer-vision item recognition. One patent improves data prediction in systems that track when items are removed from locations.…",
-        "feed": "https://dallasinnovates.com/feed/",
-        "publisher": "Dallas Innovates",
+        "title": "Coalition in deep East Texas aims to build tech workforce, connect region",
+        "url": "https://feeds.texastribune.org/link/16799/17507501/east-texas-technology-coalition-launches",
+        "first_seen_at": "2026-10-27T10:00:00Z",
+        "summary": "Led by community members from 11 counties, the group plans to address major concerns about broadband expansion and provide training on how to use technology.",
+        "feed": "https://feeds.texastribune.org/feeds/main/",
+        "publisher": "The Texas Tribune",
         "coverage": 1,
-        "score": 0.016017,
-        "priority": 4
+        "score": 0.762616,
+        "priority": 1
       },
       "stories": [
         {
-          "title": "Patented: 7-Eleven’s Item-Recognition Tech and 121 More Inventions Across North Texas",
-          "url": "https://dallasinnovates.com/patented-7-elevens-item-recognition-tech-and-121-more-inventions-across-north-texas/",
-          "first_seen_at": "2026-10-21T20:14:31Z",
-          "summary": "Irving-based 7-Eleven added to its intellectual property with a pair of patents the week of Sept. 29. The patents relate to its ongoing work on inventory tracking and computer-vision item recognition. One patent improves data prediction in systems that track when items are removed from locations.…",
-          "feed": "https://dallasinnovates.com/feed/",
-          "publisher": "Dallas Innovates",
+          "title": "Coalition in deep East Texas aims to build tech workforce, connect region",
+          "url": "https://feeds.texastribune.org/link/16799/17507501/east-texas-technology-coalition-launches",
+          "first_seen_at": "2026-10-27T10:00:00Z",
+          "summary": "Led by community members from 11 counties, the group plans to address major concerns about broadband expansion and provide training on how to use technology.",
+          "feed": "https://feeds.texastribune.org/feeds/main/",
+          "publisher": "The Texas Tribune",
           "coverage": 1,
-          "score": 0.016017,
-          "priority": 4
+          "score": 0.762616,
+          "priority": 1
         },
         {
           "title": "Inside the New AI Slop Era of Texas Politics",
@@ -546,12 +294,12 @@
         {
           "title": "Fireworks to lease data center capacity in Dallas, Texas",
           "url": "https://www.datacenterdynamics.com/en/news/fireworks-to-lease-data-center-capacity-in-dallas-texas/",
-          "first_seen_at": "2026-10-26T16:14:50Z",
+          "first_seen_at": "2026-10-26T16:14:00Z",
           "summary": "Company to lease capacity from Forum Markets/Edge Node venture",
           "feed": "https://www.datacenterdynamics.com/en/rss/",
           "publisher": "Data Center Dynamics",
           "coverage": 1,
-          "score": 0.456703,
+          "score": 0.45652,
           "priority": 1
         },
         {
@@ -621,19 +369,261 @@
           "priority": 4
         }
       ]
+    },
+    {
+      "starts_at": "2026-10-28T01:23:00Z",
+      "selected": {
+        "title": "Patented: 7-Eleven’s Item-Recognition Tech and 121 More Inventions Across North Texas",
+        "url": "https://dallasinnovates.com/patented-7-elevens-item-recognition-tech-and-121-more-inventions-across-north-texas/",
+        "first_seen_at": "2026-10-21T20:14:31Z",
+        "summary": "Irving-based 7-Eleven added to its intellectual property with a pair of patents the week of Sept. 29. The patents relate to its ongoing work on inventory tracking and computer-vision item recognition. One patent improves data prediction in systems that track when items are removed from locations.…",
+        "feed": "https://dallasinnovates.com/feed/",
+        "publisher": "Dallas Innovates",
+        "coverage": 1,
+        "score": 0.013469,
+        "priority": 4
+      },
+      "stories": [
+        {
+          "title": "Patented: 7-Eleven’s Item-Recognition Tech and 121 More Inventions Across North Texas",
+          "url": "https://dallasinnovates.com/patented-7-elevens-item-recognition-tech-and-121-more-inventions-across-north-texas/",
+          "first_seen_at": "2026-10-21T20:14:31Z",
+          "summary": "Irving-based 7-Eleven added to its intellectual property with a pair of patents the week of Sept. 29. The patents relate to its ongoing work on inventory tracking and computer-vision item recognition. One patent improves data prediction in systems that track when items are removed from locations.…",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.013469,
+          "priority": 4
+        },
+        {
+          "title": "Inside the New AI Slop Era of Texas Politics",
+          "url": "https://www.texasobserver.org/ai-slop-era-texas-political-ads-2026/",
+          "first_seen_at": "2026-10-26T14:21:05Z",
+          "summary": "Texans have seen it all this year: Senator John Cornyn twirling Congresswoman Jasmine Crockett on the dance floor; Attorney General Ken Paxton driving his mistresses down to the “Love Shack”; and Texas state Representative James Talarico in a dress singing a tune about transgender people—all made possible by the powers of generative artificial intelligence. Political […]",
+          "feed": "https://www.texasobserver.org/feed/",
+          "publisher": "Texas Observer",
+          "coverage": 1,
+          "score": 0.363578,
+          "priority": 0
+        },
+        {
+          "title": "Can language patterns reveal mild brain injuries in veterans? San Antonio researchers launch AI-powered study.",
+          "url": "https://www.tpr.org/bioscience-medicine/2026-10-25/can-language-patterns-reveal-mild-brain-injuries-in-veterans-san-antonio-researchers-launch-ai-powered-study",
+          "first_seen_at": "2026-10-25T16:56:12Z",
+          "summary": "Three San Antonio organizations are testing whether subtle changes in language could be a marker for mild traumatic brain injuries.",
+          "feed": "https://www.tpr.org/index.rss",
+          "publisher": "Texas Public Radio",
+          "coverage": 1,
+          "score": 0.195882,
+          "priority": 0
+        },
+        {
+          "title": "Coalition in deep East Texas aims to build tech workforce, connect region",
+          "url": "https://feeds.texastribune.org/link/16799/17507501/east-texas-technology-coalition-launches",
+          "first_seen_at": "2026-10-27T10:00:00Z",
+          "summary": "Led by community members from 11 counties, the group plans to address major concerns about broadband expansion and provide training on how to use technology.",
+          "feed": "https://feeds.texastribune.org/feeds/main/",
+          "publisher": "The Texas Tribune",
+          "coverage": 1,
+          "score": 0.641281,
+          "priority": 1
+        },
+        {
+          "title": "Fireworks to lease data center capacity in Dallas, Texas",
+          "url": "https://www.datacenterdynamics.com/en/news/fireworks-to-lease-data-center-capacity-in-dallas-texas/",
+          "first_seen_at": "2026-10-26T16:14:00Z",
+          "summary": "Company to lease capacity from Forum Markets/Edge Node venture",
+          "feed": "https://www.datacenterdynamics.com/en/rss/",
+          "publisher": "Data Center Dynamics",
+          "coverage": 1,
+          "score": 0.383886,
+          "priority": 1
+        },
+        {
+          "title": "Texas Attorney General Ken Paxton sues ChatGPT-maker OpenAI",
+          "url": "https://feeds.texastribune.org/link/16799/17505297/ken-paxton-chatgpt-openai-lawsuit-texas-attorney-general",
+          "first_seen_at": "2026-10-23T19:44:30Z",
+          "summary": "CEO Sam Altman and ChatGPT are top competitors to Elon Musk, the tech billionaire fueling Paxton’s U.S. Senate campaign.",
+          "feed": "https://feeds.texastribune.org/feeds/main/",
+          "publisher": "The Texas Tribune",
+          "coverage": 1,
+          "score": 0.053103,
+          "priority": 3
+        },
+        {
+          "title": "UTA and UT Southwestern Researchers Use AI to Pinpoint Eye Disease ‘Control Switches’",
+          "url": "https://dallasinnovates.com/uta-and-ut-southwestern-researchers-use-ai-to-pinpoint-eye-disease-control-switches/",
+          "first_seen_at": "2026-10-22T12:26:21Z",
+          "summary": "Researchers at the University of Texas at Arlington and UT Southwestern Medical Center in Dallas are using AI and advanced statistics to pinpoint the molecular “control switches” involved in several eye diseases. The diseases being studied include age-related macular degeneration, glaucoma and diabetic retinopathy. …",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.021503,
+          "priority": 3
+        },
+        {
+          "title": "Despite Abbott moratorium, Texas kept on issuing data center permits. Now, the state agency is shutting down its automatic filing system.",
+          "url": "https://www.tpr.org/economy-and-labor/2026-10-22/despite-abbott-moratorium-texas-kept-on-issuing-data-center-permits-now-the-state-agency-is-shutting-down-its-automatic-filing-system",
+          "first_seen_at": "2026-10-23T02:35:30Z",
+          "summary": "State regulators said permits issued after Gov. Abbott’s moratorium have now been suspended and its automatic filing system is shut down.",
+          "feed": "https://www.tpr.org/index.rss",
+          "publisher": "Texas Public Radio",
+          "coverage": 2,
+          "score": 0.06472,
+          "priority": 4
+        },
+        {
+          "title": "Fed up with data centers and Big Tech, rural Republican crossover could decide Democrats’ fate in Texas",
+          "url": "https://feeds.texastribune.org/link/16799/17504031/texas-rural-voters-data-centers-backlash-big-tech-2026-election",
+          "first_seen_at": "2026-10-23T10:00:00Z",
+          "summary": "Rural Republicans have long undercut Democrats’ gains in cities and suburbs. Will enough defect to make a difference this fall?",
+          "feed": "https://feeds.texastribune.org/feeds/main/",
+          "publisher": "The Texas Tribune",
+          "coverage": 1,
+          "score": 0.04008,
+          "priority": 4
+        },
+        {
+          "title": "Soluna and Applied Digital to build 50MW data center in Texas",
+          "url": "https://www.datacenterdynamics.com/en/news/soluna-and-applied-digital-to-build-50mw-data-center-in-texas/",
+          "first_seen_at": "2026-10-22T11:02:52Z",
+          "summary": "Companies to build on Soluna’s Dorothy 3 site, lease capacity to Applied spin-out ChronoScale",
+          "feed": "https://www.datacenterdynamics.com/en/rss/",
+          "publisher": "Data Center Dynamics",
+          "coverage": 1,
+          "score": 0.020656,
+          "priority": 4
+        }
+      ]
+    },
+    {
+      "starts_at": "2026-10-28T07:23:00Z",
+      "selected": {
+        "title": "UTA and UT Southwestern Researchers Use AI to Pinpoint Eye Disease ‘Control Switches’",
+        "url": "https://dallasinnovates.com/uta-and-ut-southwestern-researchers-use-ai-to-pinpoint-eye-disease-control-switches/",
+        "first_seen_at": "2026-10-22T12:26:21Z",
+        "summary": "Researchers at the University of Texas at Arlington and UT Southwestern Medical Center in Dallas are using AI and advanced statistics to pinpoint the molecular “control switches” involved in several eye diseases. The diseases being studied include age-related macular degeneration, glaucoma and diabetic retinopathy. …",
+        "feed": "https://dallasinnovates.com/feed/",
+        "publisher": "Dallas Innovates",
+        "coverage": 1,
+        "score": 0.018082,
+        "priority": 3
+      },
+      "stories": [
+        {
+          "title": "UTA and UT Southwestern Researchers Use AI to Pinpoint Eye Disease ‘Control Switches’",
+          "url": "https://dallasinnovates.com/uta-and-ut-southwestern-researchers-use-ai-to-pinpoint-eye-disease-control-switches/",
+          "first_seen_at": "2026-10-22T12:26:21Z",
+          "summary": "Researchers at the University of Texas at Arlington and UT Southwestern Medical Center in Dallas are using AI and advanced statistics to pinpoint the molecular “control switches” involved in several eye diseases. The diseases being studied include age-related macular degeneration, glaucoma and diabetic retinopathy. …",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.018082,
+          "priority": 3
+        },
+        {
+          "title": "Inside the New AI Slop Era of Texas Politics",
+          "url": "https://www.texasobserver.org/ai-slop-era-texas-political-ads-2026/",
+          "first_seen_at": "2026-10-26T14:21:05Z",
+          "summary": "Texans have seen it all this year: Senator John Cornyn twirling Congresswoman Jasmine Crockett on the dance floor; Attorney General Ken Paxton driving his mistresses down to the “Love Shack”; and Texas state Representative James Talarico in a dress singing a tune about transgender people—all made possible by the powers of generative artificial intelligence. Political […]",
+          "feed": "https://www.texasobserver.org/feed/",
+          "publisher": "Texas Observer",
+          "coverage": 1,
+          "score": 0.305731,
+          "priority": 0
+        },
+        {
+          "title": "Can language patterns reveal mild brain injuries in veterans? San Antonio researchers launch AI-powered study.",
+          "url": "https://www.tpr.org/bioscience-medicine/2026-10-25/can-language-patterns-reveal-mild-brain-injuries-in-veterans-san-antonio-researchers-launch-ai-powered-study",
+          "first_seen_at": "2026-10-25T16:56:12Z",
+          "summary": "Three San Antonio organizations are testing whether subtle changes in language could be a marker for mild traumatic brain injuries.",
+          "feed": "https://www.tpr.org/index.rss",
+          "publisher": "Texas Public Radio",
+          "coverage": 1,
+          "score": 0.164716,
+          "priority": 0
+        },
+        {
+          "title": "Coalition in deep East Texas aims to build tech workforce, connect region",
+          "url": "https://feeds.texastribune.org/link/16799/17507501/east-texas-technology-coalition-launches",
+          "first_seen_at": "2026-10-27T10:00:00Z",
+          "summary": "Led by community members from 11 counties, the group plans to address major concerns about broadband expansion and provide training on how to use technology.",
+          "feed": "https://feeds.texastribune.org/feeds/main/",
+          "publisher": "The Texas Tribune",
+          "coverage": 1,
+          "score": 0.539251,
+          "priority": 1
+        },
+        {
+          "title": "Fireworks to lease data center capacity in Dallas, Texas",
+          "url": "https://www.datacenterdynamics.com/en/news/fireworks-to-lease-data-center-capacity-in-dallas-texas/",
+          "first_seen_at": "2026-10-26T16:14:00Z",
+          "summary": "Company to lease capacity from Forum Markets/Edge Node venture",
+          "feed": "https://www.datacenterdynamics.com/en/rss/",
+          "publisher": "Data Center Dynamics",
+          "coverage": 1,
+          "score": 0.322808,
+          "priority": 1
+        },
+        {
+          "title": "Texas Attorney General Ken Paxton sues ChatGPT-maker OpenAI",
+          "url": "https://feeds.texastribune.org/link/16799/17505297/ken-paxton-chatgpt-openai-lawsuit-texas-attorney-general",
+          "first_seen_at": "2026-10-23T19:44:30Z",
+          "summary": "CEO Sam Altman and ChatGPT are top competitors to Elon Musk, the tech billionaire fueling Paxton’s U.S. Senate campaign.",
+          "feed": "https://feeds.texastribune.org/feeds/main/",
+          "publisher": "The Texas Tribune",
+          "coverage": 1,
+          "score": 0.044654,
+          "priority": 3
+        },
+        {
+          "title": "Despite Abbott moratorium, Texas kept on issuing data center permits. Now, the state agency is shutting down its automatic filing system.",
+          "url": "https://www.tpr.org/economy-and-labor/2026-10-22/despite-abbott-moratorium-texas-kept-on-issuing-data-center-permits-now-the-state-agency-is-shutting-down-its-automatic-filing-system",
+          "first_seen_at": "2026-10-23T02:35:30Z",
+          "summary": "State regulators said permits issued after Gov. Abbott’s moratorium have now been suspended and its automatic filing system is shut down.",
+          "feed": "https://www.tpr.org/index.rss",
+          "publisher": "Texas Public Radio",
+          "coverage": 2,
+          "score": 0.054423,
+          "priority": 4
+        },
+        {
+          "title": "Fed up with data centers and Big Tech, rural Republican crossover could decide Democrats’ fate in Texas",
+          "url": "https://feeds.texastribune.org/link/16799/17504031/texas-rural-voters-data-centers-backlash-big-tech-2026-election",
+          "first_seen_at": "2026-10-23T10:00:00Z",
+          "summary": "Rural Republicans have long undercut Democrats’ gains in cities and suburbs. Will enough defect to make a difference this fall?",
+          "feed": "https://feeds.texastribune.org/feeds/main/",
+          "publisher": "The Texas Tribune",
+          "coverage": 1,
+          "score": 0.033703,
+          "priority": 4
+        },
+        {
+          "title": "Soluna and Applied Digital to build 50MW data center in Texas",
+          "url": "https://www.datacenterdynamics.com/en/news/soluna-and-applied-digital-to-build-50mw-data-center-in-texas/",
+          "first_seen_at": "2026-10-22T11:02:52Z",
+          "summary": "Companies to build on Soluna’s Dorothy 3 site, lease capacity to Applied spin-out ChronoScale",
+          "feed": "https://www.datacenterdynamics.com/en/rss/",
+          "publisher": "Data Center Dynamics",
+          "coverage": 1,
+          "score": 0.017369,
+          "priority": 4
+        },
+        {
+          "title": "Patented: 7-Eleven’s Item-Recognition Tech and 121 More Inventions Across North Texas",
+          "url": "https://dallasinnovates.com/patented-7-elevens-item-recognition-tech-and-121-more-inventions-across-north-texas/",
+          "first_seen_at": "2026-10-21T20:14:31Z",
+          "summary": "Irving-based 7-Eleven added to its intellectual property with a pair of patents the week of Sept. 29. The patents relate to its ongoing work on inventory tracking and computer-vision item recognition. One patent improves data prediction in systems that track when items are removed from locations.…",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.011326,
+          "priority": 4
+        }
+      ]
     }
   ],
   "history": [
-    {
-      "url": "https://dallasinnovates.com/dallas-cybersecurity-company-elisity-agrees-to-1-3b-acquisition-by-quantum-computing-company-ionq/",
-      "title": "Dallas Cybersecurity Company Elisity Agrees to $1.3B Acquisition by Quantum Computing Company IonQ",
-      "shown_at": "2026-10-20T07:23:00Z"
-    },
-    {
-      "url": "https://feeds.texastribune.org/link/16799/17501286/data-centers-texas-air-quality-report-pollution-health-risks",
-      "title": "Texas data center boom could erase decades of progress on air quality",
-      "shown_at": "2026-10-20T13:23:00Z"
-    },
     {
       "url": "https://www.texasobserver.org/texas-continued-permitting-data-centers-after-abbott-pause/",
       "title": "Texas Continued Permitting Data Centers After Abbott’s Pause, Report Finds",
@@ -778,6 +768,16 @@
       "url": "https://www.datacenterdynamics.com/en/news/fireworks-to-lease-data-center-capacity-in-dallas-texas/",
       "title": "Fireworks to lease data center capacity in Dallas, Texas",
       "shown_at": "2026-10-27T01:23:00Z"
+    },
+    {
+      "url": "https://www.tpr.org/science-technology/2026-10-20/san-antonio-turns-to-ai-to-study-its-roaming-dog-population",
+      "title": "San Antonio turns to AI to study its roaming-dog population",
+      "shown_at": "2026-10-27T07:23:00Z"
+    },
+    {
+      "url": "https://www.tpr.org/economy-and-labor/2026-10-22/despite-abbott-moratorium-texas-kept-on-issuing-data-center-permits-now-the-state-agency-is-shutting-down-its-automatic-filing-system",
+      "title": "Despite Abbott moratorium, Texas kept on issuing data center permits. Now, the state agency is shutting down its automatic filing system.",
+      "shown_at": "2026-10-27T13:23:00Z"
     }
   ],
   "feeds": [
@@ -789,11 +789,13 @@
       "url": "https://feeds.texastribune.org/feeds/main/",
       "status": "ok",
       "items": 20,
-      "sha256": "b16cdbf6ec7f9184937df581818f18d25d02898b2dd6deb6bc2046a324567a64"
+      "sha256": "6f09ae4fef83f435c4480ee8d69473d3856f3443f06f50c2830eddf555cc9b5c"
     },
     {
       "url": "https://www.datacenterdynamics.com/en/rss/",
-      "status": "not_modified"
+      "status": "ok",
+      "items": 20,
+      "sha256": "cbf7678bd2dd1d249a33e2c9ddde796c9e53940238ab359b45c48362554a7876"
     },
     {
       "url": "https://news.mit.edu/rss/topic/artificial-intelligence2",
@@ -805,7 +807,7 @@
       "url": "https://openai.com/news/rss.xml",
       "status": "ok",
       "items": 1325,
-      "sha256": "2dcdf56146c0b3956ac84cea6cbc850e43c75dac66111425b7facb8d977bd116"
+      "sha256": "3f42bf85a6d7b3e10b5e08493d79594e3299a60f5487dccef324a1c0734b4eeb"
     },
     {
       "url": "https://blogs.nvidia.com/feed/",
@@ -821,7 +823,7 @@
       "url": "https://siliconangle.com/feed/",
       "status": "ok",
       "items": 30,
-      "sha256": "53f2019dd8179fc332cd8175fb077455decb16aaa1dfbdc99899fafc173cdffc"
+      "sha256": "805bbc8d6c4fe010930df6a2031d0050d68742c3dcd34a5920b271cf012c4c6c"
     },
     {
       "url": "https://www.artificialintelligence-news.com/feed/",
@@ -830,17 +832,19 @@
     },
     {
       "url": "https://www.geekwire.com/tag/artificial-intelligence/feed/",
-      "status": "ok",
-      "items": 35,
-      "sha256": "7baaefe8ccb61b6f6dad198c9208933b52ffd4de461666e0e6b3b4bf3c4a4b01"
+      "status": "not_modified"
     },
     {
       "url": "https://www.techspot.com/backend.xml",
-      "status": "not_modified"
+      "status": "ok",
+      "items": 30,
+      "sha256": "425ed0365e6e25eda4b172817eff9d4fa8b78cc44bf0c2fded0808ecfe8a2277"
     },
     {
       "url": "https://www.sciencedaily.com/rss/computers_math/artificial_intelligence.xml",
-      "status": "not_modified"
+      "status": "ok",
+      "items": 60,
+      "sha256": "21f08f8ef904e273cca9d6d8f73c836f3a513adc5b1120a943e4394845a79419"
     },
     {
       "url": "https://www.tpr.org/index.rss",
@@ -858,60 +862,60 @@
       "etag": "\"12b02e0b15f4f830d4733a08486ac0ae\"",
       "last_modified": "Mon, 26 Oct 2026 13:15:10 GMT",
       "failures": 0,
-      "ok_at": "2026-10-27T06:30:18Z",
+      "ok_at": "2026-10-27T13:26:11Z",
       "sha256": "cdcf7628a3a3d9a1dea3e7a9fe4bac27374e5802cae34d35b9cf41203062e045",
       "parser_version": 2
     },
     "https://feeds.texastribune.org/feeds/main/": {
-      "ok_at": "2026-10-27T06:30:18Z",
+      "ok_at": "2026-10-27T13:26:11Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "b16cdbf6ec7f9184937df581818f18d25d02898b2dd6deb6bc2046a324567a64",
-      "etag": "\"6ae03d94-a4d1\"",
-      "last_modified": "Tue, 27 Oct 2026 05:58:44 GMT"
+      "sha256": "6f09ae4fef83f435c4480ee8d69473d3856f3443f06f50c2830eddf555cc9b5c",
+      "etag": "\"6ae09f7d-a2f1\"",
+      "last_modified": "Tue, 27 Oct 2026 12:56:29 GMT"
     },
     "https://www.datacenterdynamics.com/en/rss/": {
-      "last_modified": "Mon, 26 Oct 2026 17:30:24 GMT",
+      "ok_at": "2026-10-27T13:26:11Z",
       "failures": 0,
-      "ok_at": "2026-10-27T06:30:18Z",
-      "sha256": "a22993c4b3115d2c354cd4c9468e58bb92e2660a0260653275f4910897a2a1e3",
-      "parser_version": 2
+      "parser_version": 2,
+      "sha256": "cbf7678bd2dd1d249a33e2c9ddde796c9e53940238ab359b45c48362554a7876",
+      "last_modified": "Tue, 27 Oct 2026 12:33:32 GMT"
     },
     "https://news.mit.edu/rss/topic/artificial-intelligence2": {
-      "ok_at": "2026-10-27T06:30:18Z",
+      "ok_at": "2026-10-27T13:26:11Z",
       "failures": 0,
       "parser_version": 2,
       "sha256": "f1a434b0d7dc604720cd93c67016c30e8236c4ad2fda1324f359db1ab69b95fa",
-      "etag": "\"1793082074\"",
-      "last_modified": "Tue, 27 Oct 2026 06:21:14 GMT"
+      "etag": "\"1793107036\"",
+      "last_modified": "Tue, 27 Oct 2026 13:17:16 GMT"
     },
     "https://openai.com/news/rss.xml": {
-      "ok_at": "2026-10-27T06:30:18Z",
+      "ok_at": "2026-10-27T13:26:11Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "2dcdf56146c0b3956ac84cea6cbc850e43c75dac66111425b7facb8d977bd116"
+      "sha256": "3f42bf85a6d7b3e10b5e08493d79594e3299a60f5487dccef324a1c0734b4eeb"
     },
     "https://blogs.nvidia.com/feed/": {
       "etag": "\"505eb4c39ec7cd4ecda91cbdf2f57a30-gzip\"",
       "last_modified": "Mon, 26 Oct 2026 20:49:17 GMT",
       "failures": 0,
-      "ok_at": "2026-10-27T06:30:18Z",
+      "ok_at": "2026-10-27T13:26:11Z",
       "sha256": "489dc58479fd203dc303f018aa87deffeee321bda128b60d8d2714d61b50c633",
       "parser_version": 2
     },
     "https://blog.google/technology/ai/rss/": {
-      "ok_at": "2026-10-27T06:30:18Z",
+      "ok_at": "2026-10-27T13:26:11Z",
       "failures": 0,
       "parser_version": 2,
       "sha256": "f56750f5109a99ff6f6469adc7d5f83e0cad8cb9d49de3b044fea1c8f0f31f70"
     },
     "https://siliconangle.com/feed/": {
-      "ok_at": "2026-10-27T06:30:18Z",
+      "ok_at": "2026-10-27T13:26:11Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "53f2019dd8179fc332cd8175fb077455decb16aaa1dfbdc99899fafc173cdffc",
-      "etag": "\"4648ce7c1a030c1de99f06003f4e94ba\"",
-      "last_modified": "Tue, 27 Oct 2026 04:55:38 GMT"
+      "sha256": "805bbc8d6c4fe010930df6a2031d0050d68742c3dcd34a5920b271cf012c4c6c",
+      "etag": "\"dc7219a9e0bb87c653fccd6eec19cb4c\"",
+      "last_modified": "Tue, 27 Oct 2026 13:00:36 GMT"
     },
     "https://www.artificialintelligence-news.com/feed/": {
       "etag": "\"cd8cbe1fef0e10c2eef0af3ac2847598\"",
@@ -923,29 +927,29 @@
       "parser_version": 2
     },
     "https://www.geekwire.com/tag/artificial-intelligence/feed/": {
-      "ok_at": "2026-10-27T06:30:18Z",
-      "failures": 0,
-      "parser_version": 2,
-      "sha256": "7baaefe8ccb61b6f6dad198c9208933b52ffd4de461666e0e6b3b4bf3c4a4b01",
       "etag": "W/\"733b5a1b8ce20467cdbab2e34708990a\"",
-      "last_modified": "Tue, 27 Oct 2026 05:54:03 GMT"
+      "last_modified": "Tue, 27 Oct 2026 05:54:03 GMT",
+      "failures": 0,
+      "ok_at": "2026-10-27T13:26:11Z",
+      "sha256": "7baaefe8ccb61b6f6dad198c9208933b52ffd4de461666e0e6b3b4bf3c4a4b01",
+      "parser_version": 2
     },
     "https://www.techspot.com/backend.xml": {
-      "etag": "W/\"6a96a6f89cc1b043dd42887c55f75925\"",
+      "ok_at": "2026-10-27T13:26:11Z",
       "failures": 0,
-      "ok_at": "2026-10-27T06:30:18Z",
-      "sha256": "d2f69c6a10e808f49126d7ede7de61776349d91548c558e01cf3e9a4595c319b",
-      "parser_version": 2
+      "parser_version": 2,
+      "sha256": "425ed0365e6e25eda4b172817eff9d4fa8b78cc44bf0c2fded0808ecfe8a2277",
+      "etag": "W/\"1ccaf17ceb4a8da375331211f0182a89\""
     },
     "https://www.sciencedaily.com/rss/computers_math/artificial_intelligence.xml": {
-      "last_modified": "Mon, 26 Oct 2026 11:55:16 GMT",
+      "ok_at": "2026-10-27T13:26:11Z",
       "failures": 0,
-      "ok_at": "2026-10-27T06:30:18Z",
-      "sha256": "93ecaf4771827fadba8a24315f743bd24dcae761e29536c5ce12a8f88e91388c",
-      "parser_version": 2
+      "parser_version": 2,
+      "sha256": "21f08f8ef904e273cca9d6d8f73c836f3a513adc5b1120a943e4394845a79419",
+      "last_modified": "Tue, 27 Oct 2026 12:17:30 GMT"
     },
     "https://www.tpr.org/index.rss": {
-      "ok_at": "2026-10-27T06:30:18Z",
+      "ok_at": "2026-10-27T13:26:11Z",
       "failures": 0,
       "parser_version": 2,
       "sha256": "a8378a0f8b24c987e70a7d28ef30b5538201f6b6b0d68671fe0df9f2036cd45b"
@@ -954,7 +958,7 @@
       "etag": "W/\"259a73681b74dc488810e3c9b1593515\"",
       "last_modified": "Mon, 26 Oct 2026 16:45:38 GMT",
       "failures": 0,
-      "ok_at": "2026-10-27T06:30:18Z",
+      "ok_at": "2026-10-27T13:26:11Z",
       "sha256": "2c86e91a9b87b91356bd20ff5a3c4da816c899533de936fe2ff10a964e307058",
       "parser_version": 2
     }
