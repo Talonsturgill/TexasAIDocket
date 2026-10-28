@@ -1508,7 +1508,8 @@
       "evidence": "No. 54 frame 9, two close-ups on the rancher at the latch failed the art director; the stand-back view of the whole gate passed on its first reading.",
       "confirmed": [
         "2026-10-20",
-        "2026-10-21"
+        "2026-10-21",
+        "2026-10-28"
       ],
       "contradicted": []
     },
@@ -1544,7 +1545,8 @@
       "instinct": "When every judge names the same frame in round one, recompose it before round two rather than re-lighting it.",
       "evidence": "2026-10-21 frames 3 and 8: re-lit for round 2, named by all three judges again in rounds 2 and 3.",
       "confirmed": [
-        "2026-10-25"
+        "2026-10-25",
+        "2026-10-28"
       ],
       "contradicted": []
     },
@@ -1625,6 +1627,22 @@
       "learned": "2026-10-26",
       "instinct": "Light a hanging or hovering object from one source whose cast lands on the ground under it, and check every other light in the scene does not throw a second shadow the other way.",
       "evidence": "Carousel no. 61, frame 8, round 3. A pole flood put the pod's shadow on the lawn, but the deck rig's key still threw the pod and the resident onto the fence in opposite directions. All three judges named the contradictory casts first.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "a-count-is-stock-racked-in-a-place",
+      "learned": "2026-10-28",
+      "instinct": "Draw a set of counts as real stock racked at one scale in a place, never as pieces laid on a plate.",
+      "evidence": "Carousel no. 62, frame 5. A txbench curb relief of cut limbs failed the art director twice as flat bars on a tray. The same six counts as barked limbs on a galvanized cantilever rack in a city yard passed on the first look.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "check-the-origin-before-the-camera",
+      "learned": "2026-10-28",
+      "instinct": "When a placed model lands where its coordinates do not say, check whether the kit centred its footprint before moving the camera.",
+      "evidence": "Carousel no. 62, frame 5. The rack's limbs ran off the left edge and two renders went on flipping the rig's mirror, until debug spheres showed K.make had shifted every limb by half its length. userData.keepOrigin fixed it in one line.",
       "confirmed": [],
       "contradicted": []
     }

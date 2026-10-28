@@ -1,0 +1,148 @@
+{
+ "_spec": {
+  "version": 1,
+  "purpose": "A standalone web edition of the archived visual story.",
+  "law": "Facts resolve to the original verified claim record. A layout rebuild does not reverify reporting.",
+  "written_by": "daily"
+ },
+ "section": "Code enforcement",
+ "dek": {
+  "text": "Dallas runs computer vision cameras on {{number:c5}} brush trucks. Its October briefing says staff review every observation, and it publishes no accuracy figure.",
+  "claims": [
+   "c5",
+   "c13",
+   "c29"
+  ]
+ },
+ "introduction": [
+  {
+   "text": "[Dallas mounts computer vision cameras on {{number:c5}} Sanitation brush collection vehicles that already travel its neighborhoods on routine service](c5). [The software is City Detect, which flags possible exterior property and right-of-way conditions for trained staff to review](c3). [The city says no separate Code Compliance patrol routes are created](c6).",
+   "claims": [
+    "c5",
+    "c3",
+    "c6"
+   ]
+  },
+  {
+   "text": "[A briefing dated {{date:c2}}](c2) [went to the council's Quality of Life, Arts, and Culture Committee](c1). [It says a computer vision observation is not a confirmed Code violation and that city staff make that call](c4). [It lists calibrating detection accuracy among its next steps](c29). The briefing publishes no accuracy figure.",
+   "claims": [
+    "c2",
+    "c1",
+    "c4",
+    "c29"
+   ]
+  }
+ ],
+ "sections": [
+  {
+   "heading": "What the camera does, and what staff do",
+   "paragraphs": [
+    {
+     "text": "[The briefing says the technology identifies potential exterior conditions](c7) [and helps staff decide which areas to review first](c8). [It says the technology doesn't decide on its own that a violation exists](c9), [doesn't replace a Code Officer's judgment](c10) [and doesn't open formal enforcement from an observation alone](c11). [Staff review every computer generated observation before Code Compliance takes any action](c13).",
+     "claims": [
+      "c7",
+      "c8",
+      "c9",
+      "c10",
+      "c11",
+      "c13"
+     ]
+    },
+    {
+     "text": "[In a prioritized inspection a trained Code Officer first reviews the observation and decides whether it calls for a field inspection](c18). [A Code Inspector then goes on site to find out whether a violation exists](c19). [Faces and license plates are blurred inside the system, according to the city's privacy slide](c12).",
+     "claims": [
+      "c18",
+      "c19",
+      "c12"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "What the city counted",
+   "paragraphs": [
+    {
+     "text": "[The briefing's results table reports {{number:c22}} observations reviewed](c22), [{{number:c23:1}} courtesy notices](c23), [{{number:c24:1}} field inspections](c24), [{{number:c25:1}} voluntary corrections](c25), [{{number:c26:1}} direct abatements](c26) [and {{number:c27:1}} under formal enforcement](c27). The table doesn't say how one row relates to another, so none of these counts can be read as a rate.",
+     "claims": [
+      "c22",
+      "c23",
+      "c24",
+      "c25",
+      "c26",
+      "c27"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "The first letter changed",
+   "paragraphs": [
+    {
+     "text": "[Under the previous approach the first letter a resident received was a formal notice of violation, the first step toward a citation](c15). [Now, when a courtesy notice is used, the first letter is an educational reminder outside the citation process that sets no deadline](c16). [The city says a courtesy notice alone never opens a formal enforcement case](c17).",
+     "claims": [
+      "c15",
+      "c16",
+      "c17"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "The contract",
+   "paragraphs": [
+    {
+     "text": "[An earlier briefing to the Finance Committee is dated {{date:c33}}](c33). [It proposed putting {{number:c34}} AI-enabled cameras on Sanitation brush trucks](c34). [It put the cost at {{money:c36}} a year, covering the cameras with installation, data services, maintenance and replacement support](c36), [and said the city may end the contract at any time on {{number:c37}} days written notice without penalty](c37). [It said there is a human in the loop for all actions](c38).",
+     "claims": [
+      "c33",
+      "c34",
+      "c36",
+      "c37",
+      "c38"
+     ]
+    },
+    {
+     "text": "[A city memo dated {{date:c41}}](c41) [says the cameras go on {{number:c44}} brush and bulky waste trucks, two per vehicle](c44). [It says the technology will issue no automatic citations and that Code Compliance staff will verify every potential violation before acting](c45).",
+     "claims": [
+      "c41",
+      "c44",
+      "c45"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "What the briefing leaves open",
+   "paragraphs": [
+    {
+     "text": "[The city says success is measured by better neighborhood conditions and service delivery rather than by the number of citations generated](c28). [Its next steps include continuing to calibrate detection accuracy and staff validation](c29) [and setting performance measures for accuracy, response, voluntary compliance, resource use and neighborhood outcomes](c30). Those measures are named in the {{date:c2}} briefing as work still to come, and none of them is published in it. How often an observation proved to be a real condition is not stated there.",
+     "claims": [
+      "c28",
+      "c29",
+      "c30",
+      "c2"
+     ]
+    },
+    {
+     "text": "[The deck closes on its own summary, that technology identifies potential conditions and people make the decisions](c32).",
+     "claims": [
+      "c32"
+     ]
+    }
+   ]
+  }
+ ],
+ "related": [
+  {
+   "id": "tx-2026-0179",
+   "label": "The record entry for Dallas's first code citations from the brush truck cameras"
+  },
+  {
+   "id": "tx-2026-0116",
+   "label": "The record entry for the Dallas briefing on the police plate reader program"
+  },
+  {
+   "id": "tx-2026-0129",
+   "label": "The record entry for Austin's limits on AI park cameras and drones"
+  }
+ ]
+}
