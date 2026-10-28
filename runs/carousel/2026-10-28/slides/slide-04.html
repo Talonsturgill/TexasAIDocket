@@ -1,0 +1,81 @@
+<!doctype html>
+<!-- 2026-10-28, frame 4 of 9. Archetype CLOSE_CROP. A spatial scene through txthree.js inside a TXT.interior room in the deck's lastLight world: a reviewer's monitor on a desk in a dark office, its screen a field of small tiles, one per observation reviewed. The tile count is read from figures.json. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">5,318 observations, each one reviewed</h1>
+<p class="dek" data-follow="26">The city's results table counts 5,318 observations reviewed. Staff review every one before Code Compliance acts, the briefing says. One tile here stands for one observation, drawn to&nbsp;illustrate.</p>
+<script>window.FIG = {"observations": 5318};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-28-route.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "The reviewer", counter: "04 / 09", src: "c13 c22", fit: { min: 76, max: 104, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 40, near: 0.05, far: 200 });
+  TXT.interior(R, { w: 6, d: 5, h: 3, floor: 'concrete', wall: 0x0d0e10, window: null, ceiling: false, light: 0 });
+  const desk = K.make('desk', { w: 1.6, pedestal: 'right' }); desk.position.set(0.1, 0, -1.55); TXT.add(R, desk); TXT.contact(R, desk);
+  const mon = K.make('monitor', { inches: 27, screen: 'off' }); mon.position.set(0.25, 0.76, -1.72); TXT.add(R, mon);
+  const docs = K.make('document_stack', { count: 1, seed: 6 }); docs.position.set(-0.32, 0.76, -1.42); docs.rotation.y = 0.35; TXT.add(R, docs);
+  /* THE FIGURE, from figures.json: one tile per observation reviewed, laid in rows on the screen's canvas */
+  const N = FIG.observations, COLS = 98, ROWS = Math.ceil(N / COLS), T = 20;
+  const cv = document.createElement('canvas'); cv.width = COLS * T; const HDR = 130; cv.height = ROWS * T + HDR; const g = cv.getContext('2d');
+  g.fillStyle = '#05070a'; g.fillRect(0, 0, cv.width, cv.height);
+  /* the review queue's title bar in the deck's accent, the one place on this desk the camera's colour shows */
+  g.fillStyle = '#7CC6D6'; g.fillRect(0, 0, cv.width, HDR - 14);
+  g.translate(0, HDR);
+  const rr = CH.lcg(20261028);
+  /* flat tiles in three value steps, laid in runs as a review queue reads, never a per tile speckle */
+  const STEP = [0.42, 0.68, 0.96]; let run = 0, sv = 1;
+  for (let i = 0; i < N; i++) { const c = i % COLS, r = Math.floor(i / COLS);
+    if (run-- <= 0) { run = 6 + Math.floor(rr() * 30); sv = Math.floor(rr() * 3); }
+    const v = 0.8;
+    g.fillStyle = `rgb(${Math.round(206 * v)},${Math.round(228 * v)},${Math.round(234 * v)})`; g.fillRect(c * T + 2, r * T + 2, T - 4, T - 4); }
+  window.__tiles = N;
+  const tex = new THREE.CanvasTexture(cv); tex.colorSpace = THREE.SRGBColorSpace; tex.anisotropy = 8;
+  /* the panel seated in the monitor's own head, at the kit's own display rectangle inside the bezel */
+  const sw = 27 * 0.0254 * 16 / Math.hypot(16, 9), sh = 27 * 0.0254 * 9 / Math.hypot(16, 9), head = (() => { let h = null; mon.traverse((c) => { if (!h && c.isGroup && Math.abs(c.rotation.x + 0.06) < 1e-6) h = c; }); return h; })();
+  const screen = new THREE.Mesh(new THREE.PlaneGeometry(sw, sh), new THREE.MeshBasicMaterial({ map: tex, toneMapped: false }));
+  screen.position.set(0, -(sh + 0.03) / 2 + 0.026 + sh / 2, 0.0066); screen.userData.noShadow = true; head.add(screen);
+  /* the last row's empty slots drawn as dim outlines, so the remainder reads as a queue with room in it rather than a gap in the panel */
+  g.strokeStyle = 'rgba(120,140,148,0.35)'; g.lineWidth = 1; for (let i = N; i < COLS * ROWS; i++) { const c = i % COLS, r = Math.floor(i / COLS); g.strokeRect(c * T + 1.5, r * T + 1.5, T - 3, T - 3); }
+  /* the queue's title bar as its own strip over the screen's top, in the deck's accent at the value the grade lands on it */
+  const barH = sh * (HDR - 14) / cv.height, bar = new THREE.Mesh(new THREE.PlaneGeometry(sw, barH), new THREE.MeshBasicMaterial({ color: new THREE.Color(CH.ACCENT).multiplyScalar(1.2), toneMapped: false }));
+  bar.position.set(0, screen.position.y + sh / 2 - barH / 2, 0.0068); bar.userData.noShadow = true; head.add(bar);
+  mon.updateMatrixWorld(true); screen.getWorldPosition(screen.userData.wp = new THREE.Vector3());
+  /* the screen is the room's one source: a cool fill thrown forward onto the desk and the papers */
+  const SP = screen.userData.wp;
+  const spill = new THREE.PointLight(0x9fd0dc, 7, 4, 1.6); spill.position.set(SP.x, SP.y - 0.05, SP.z + 0.4); R.scene.add(spill);
+  const halo = new THREE.PointLight(0x7fb4c2, 3, 2.2, 1.6); halo.position.set(SP.x, SP.y, SP.z - 0.25); R.scene.add(halo);
+  const from = [0.95, 1.12, 0.75];
+  const look = CH.aim(THREE, R, TXT, from, [SP.x, SP.y, SP.z], 620, 860, 36);
+  TXT.frame(R, { fov: 36, from, look });
+  CH.warm(R, 0.02); if (R._bounce) R._bounce.intensity *= 0.25;
+  TXT.deckRig(R, CH.rigSpec(W, 6, 2048), CH.rigOpts([0, 0.8, -1.5], { distance: 20, shadowFar: 60 }));
+  CH.unacne(R, 0.01);
+  CH.noShadows(R);
+  /* the screen is the only source: the deck's key comes into this room as a trace on the desk edge and no more */
+  R.scene.traverse((l) => { if (l.isDirectionalLight) l.intensity *= 0.2; });
+  TXT.stage(R, [mon, desk]);
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0.3, veil: 0.34, footWash: 0.42 });
+  CH.knock(cx, ['.tx-site', '.src'], 0.54);
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

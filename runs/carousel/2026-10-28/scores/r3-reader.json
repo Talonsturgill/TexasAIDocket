@@ -1,0 +1,81 @@
+{
+ "lens": "reader",
+ "round": 3,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 7.0,
+   "why": "Every frame rendered and dark. Frame 1 comes closest to the showstopper test, frame 5's measured scale holds (2,928 ends near x 910 against a predicted 913), frame 6 is a strong North Texas object. Held down by 4 (a stock monitor and books, a uniform grey mesh screen, no reviewer), 3 (a flat ring lens and a pale boom shape), 8 (the label's last letters on the upright), 2 (brown fog and toy boxes) and 7 (a boxy cab and a mannequin)."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "One staged world, one accent meaning, a brush motif a reader can follow, a real camera move, the rack's declared state change. Frame 2's haze and frame 4's teal interior sit outside it, and the type block is the same template page on every frame."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.0,
+   "why": "Every numeral traces to a primary city document and the refusals hold. Frame 7 sets 473 beside 374 on the inspection frame, inviting a 374 of 473 reading, and frame 6's headline states the city's own description as fact."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.5,
+   "why": "A reader learns what happened, who said so and the courtesy letter change. No next meeting, vote, contact or route, no example of what gets flagged, no period for the 5,318, the close on the city's slogan."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "A good order after the swap with a real turn on 8. The cover is clear but not surprising, 2 restates 50, 4 and 5 both lead on 5,318, the close lands softly."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Clean and on register with real Dallas objects, but heavy attribution flattens it and the residents' own name for the program never appears."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.0,
+   "why": "The same program as no. 31 37 days back with the courtesy letter again a frame, lastLight again, a white vehicle under a cyan accent. The limb rack is fresh."
+  }
+ ],
+ "weighted_score": 7.08,
+ "weighted_arithmetic": "0.22*7.0 + 0.12*7.5 + 0.20*8.0 + 0.16*6.5 + 0.10*7.0 + 0.10*7.0 + 0.10*6.0 = 1.540 + 0.900 + 1.600 + 1.040 + 0.700 + 0.700 + 0.600 = 7.080",
+ "hard_fails": [],
+ "ship": true,
+ "ship_note": "No hard fail. Round 3 is the cap, so the deck ships. 7.08 is 0.62 under the 7.7 rung and the email should say so.",
+ "one_sentence_fix": "Give the Dallas homeowner something to do, the next committee date or the contact for a courtesy letter, and the briefing's own examples of what City Detect flags with the period behind the 5,318.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 4,
+   "problem": "A generic monitor and books, a uniform grey mesh screen, no reviewer.",
+   "fix": "Apply value steps in the tile fill, the camera behind a reviewer's shoulder with a hand on a mouse, the monitor two thirds of the width."
+  },
+  {
+   "slide": 3,
+   "problem": "A flat cyan ring lens and a pale boom silhouette.",
+   "fix": "A recessed coated glass element with a dark bore and one hard specular, the boom darkened or occluded."
+  },
+  {
+   "slide": 8,
+   "problem": "The label's last letters on the upright.",
+   "fix": "The label on two lines ending at least 40 px left of the upright, level with the tag."
+  },
+  {
+   "slide": 2,
+   "problem": "A brown fog mid tone and toy box trucks.",
+   "fix": "Fog beyond the third row to the near black sky, the eye at about 12 m."
+  },
+  {
+   "slide": 7,
+   "problem": "A boxy cab primitive and a mannequin inspector.",
+   "fix": "Tighter on the inspector and windrow with the cab off the right edge."
+  }
+ ]
+}

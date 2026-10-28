@@ -1,0 +1,72 @@
+<!doctype html>
+<!-- 2026-10-28, frame 3 of 9. Archetype CLOSE_CROP. A spatial scene through txthree.js in the deck's lastLight world: the curb side camera pod close on the brush truck's top rail, its lens turned to the curb, its cold lamp lit, the ribbed body below and the street falling away beyond. Drawn to illustrate, to no maker's design. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">The camera flags. Staff decide, the city says.</h1>
+<p class="dek" data-follow="26">City Detect flags possible conditions along the route for trained staff to review. The city says an observation is not a confirmed Code violation, and faces and license plates are blurred. Drawn to&nbsp;illustrate.</p>
+<script>window.FIG = {};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-28-route.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "The camera", counter: "03 / 09", src: "c3 c4 c6 c12", fit: { min: 80, max: 108, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 30, near: 0.05, far: 2000 });
+  const road = K.make('road', { length: 120, lanes: 2, sidewalk: true, parkway: true }); road.rotation.y = Math.PI / 2; TXT.add(R, road);
+  /* the truck at the west curb heading south, the curb side pod at its body's front corner, turned to the curb */
+  const truck = K.make('brush_truck', { load: 0.75, boom: 0, podScale: 1.6 }); truck.position.set(-1.9, 0, 0); TXT.add(R, truck); TXT.contact(R, truck, { vehicle: true });
+  /* the body's amber side marker would sit alone over the footer at this crop, so it is dark on this frame */
+  truck.traverse((m) => { if (m.isMesh && m.material && m.material.emissive && m.material.emissive.getHex() !== 0) { const h = {}; m.material.emissive.getHSL(h); if (h.h > 0.06 && h.h < 0.17) m.visible = false; } });
+  /* the folded boom sits behind the pod at this crop, so its enamel is taken down to shadow, and the near lens gets an iris ring and a dark pupil so it reads as glass */
+  truck.traverse((m) => { if (m.isMesh && m.material && m.material.color && m.material.color.getHex() === 0x2c4b6e) { m.material = m.material.clone(); m.material.color.multiplyScalar(0.35); m.material.clearcoat = 0.1; } });
+  truck.traverse((m) => { if (m.userData && m.userData.kit === 'camera_pod') { let head = null; m.traverse((h) => { if (!head && h.isGroup && Math.abs(h.position.y - 0.2) < 1e-6) head = h; });
+    if (head) { const ring = new THREE.Mesh(new THREE.TorusGeometry(0.031, 0.0045, 12, 48), new THREE.MeshStandardMaterial({ color: 0x0b0d10, roughness: 0.3, metalness: 0.6 })); ring.position.set(0, 0.012, 0.19); head.add(ring);
+      const pupil = new THREE.Mesh(new THREE.CircleGeometry(0.013, 32), new THREE.MeshStandardMaterial({ color: 0x050607, roughness: 0.15, metalness: 0.4 })); pupil.position.set(0, 0.012, 0.1935); head.add(pupil); } } });
+  /* the white cab sits right behind the pod at this crop and read as a pale cut-out, so its enamel is taken down to shadow on this frame */
+  truck.traverse((m) => { if (m.isMesh && m.material && m.material.color && m.material.color.getHex() === 0xe6e5df) { m.material = m.material.clone(); m.material.color.multiplyScalar(0.18); } });
+  /* the loader's blue cylinder behind the pod caught the sky in its clearcoat and read as a pale cut-out, so the city blue on this frame is matte and takes no sky */
+  truck.traverse((m) => { if (!m.isMesh || !m.material || !m.material.color) return; let inPod = false; for (let p = m; p; p = p.parent) if (p.userData && p.userData.kit === 'camera_pod') inPod = true;
+    if (inPod) return; const h = {}; m.material.color.getHSL(h); if (h.h > 0.52 && h.h < 0.7 && h.s > 0.3) { m.material = m.material.clone(); m.material.clearcoat = 0; m.material.roughness = 0.85; m.material.envMapIntensity = 0.12; } });
+  const pod = truck.userData.attach.pods[0];
+  const P = new THREE.Vector3(pod[0] - 1.9, pod[1], pod[2]);
+  const pile = K.make('brush_pile', { length: 4.06, height: 1.1, depth: 1.9, seed: 12 }); pile.position.set(-5.8, 0.15, -6); pile.rotation.y = Math.PI / 2; TXT.add(R, pile);
+  const house = K.make('ranch_house', { seed: 7, material: 'brick' }); house.position.set(-34, 0, -10); house.rotation.y = Math.PI / 2; TXT.add(R, house); TXT.contact(R, house);
+  const mb = K.make('mailbox', { style: 'brick' }); mb.position.set(-5.6, 0.15, -14); mb.rotation.y = Math.PI / 2; TXT.add(R, mb);
+  TXT.sky(R);
+  TXT.ground(R, { surface: 'grass', size: 700, seed: 33 });
+  /* the eye out over the curb at the pod's own height, a little ahead of it, so the pod is large on the right with its lens toward the eye and the body runs away behind it */
+  const from = [P.x - 1.6, P.y + 0.12, P.z + 1.45];
+  const look = CH.aim(THREE, R, TXT, from, [P.x, P.y + 0.15, P.z], 660, 840, 30);
+  TXT.frame(R, { fov: 30, from, look });
+  CH.warm(R, 0.24);
+  /* a warm fill from the street side and a rim from behind, so the dark housing reads as a moulded shell rather than a silhouette */
+  const fill = new THREE.PointLight(0xffd2a8, 9, 7, 2); fill.position.set(P.x - 1.3, P.y + 0.8, P.z + 1.2); R.scene.add(fill);
+  const rim = new THREE.SpotLight(0xffc896, 60, 9, 0.45, 0.6, 2); rim.position.set(P.x + 1.2, P.y + 1.5, P.z - 1.8); rim.target.position.copy(P); R.scene.add(rim, rim.target);
+  TXT.deckRig(R, CH.rigSpec(W, 10, 4096), CH.rigOpts([P.x, P.y - 1, P.z], { distance: 30, shadowFar: 80 }));
+  CH.unacne(R, 0.01);
+  CH.noShadows(R);
+  TXT.stage(R, [truck]);
+  TXT.weather(R, { grime: 0.3, height: 0.7, mottle: 0.3 });
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0.3, veil: 0.34, footWash: 0.42 });
+  CH.knock(cx, ['.tx-site', '.src'], 0.78);
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

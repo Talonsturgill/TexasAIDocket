@@ -1,0 +1,130 @@
+{
+ "date": "2026-10-28",
+ "_note": "Every count and span the deck states, with the claim it was quoted from or the code that computed it.",
+ "aggregates": [
+  {
+   "phrase": "two cameras",
+   "slide": "slide-01.html",
+   "kind": "count",
+   "value": 2,
+   "quoted_from": "c44",
+   "quote": "Cameras will be installed on 50 brush and bulky waste trucks (two per vehicle)",
+   "note": "quoted"
+  },
+  {
+   "phrase": "50 brush trucks",
+   "slide": "slide-01.html",
+   "kind": "count",
+   "value": 50,
+   "quoted_from": "c5",
+   "quote": "Cameras are mounted on 50 Sanitation brush collection vehicles that already travel Dallas neighborhoods during routine service.",
+   "note": "quoted"
+  },
+  {
+   "phrase": "50 trucks",
+   "slide": "slide-02.html",
+   "kind": "count",
+   "value": 50,
+   "quoted_from": "c5",
+   "quote": "Cameras are mounted on 50 Sanitation brush collection vehicles that already travel Dallas neighborhoods during routine service.",
+   "note": "quoted"
+  },
+  {
+   "phrase": "100 cameras",
+   "slide": "slide-02.html",
+   "kind": "count",
+   "value": 100,
+   "quoted_from": "c34",
+   "quote": "Implement 100 AI-enabled cameras on Sanitation brush trucks",
+   "note": "quoted"
+  },
+  {
+   "phrase": "5,318 observations",
+   "slide": "slide-04.html",
+   "kind": "count",
+   "value": 5318,
+   "quoted_from": "c22",
+   "quote": "citations generated. Observations Reviewed 5,318",
+   "note": "quoted"
+  },
+  {
+   "phrase": "Six rows",
+   "slide": "slide-05.html",
+   "kind": "count",
+   "value": 6,
+   "computed_by": "slide-05.html LENS, the six rows of the October 19th results table the frame draws, Observations Reviewed (c22), Courtesy Notices (c23), Field Inspections (c24), Voluntary Corrections (c25), Direct Abatements (c26) and Formal Enforcement (c27)",
+   "note": "computed"
+  },
+  {
+   "phrase": "2,928 courtesy notices",
+   "slide": "slide-06.html",
+   "kind": "count",
+   "value": 2928,
+   "quoted_from": "c23",
+   "quote": "Observations Reviewed 5,318 Courtesy Notices 2,928",
+   "note": "quoted"
+  },
+  {
+   "phrase": "473 field inspections",
+   "slide": "slide-07.html",
+   "kind": "count",
+   "value": 473,
+   "quoted_from": "c24",
+   "quote": "Courtesy Notices 2,928 Field Inspections 473",
+   "note": "quoted"
+  },
+  {
+   "phrase": "374 voluntary corrections",
+   "slide": "slide-07.html",
+   "kind": "count",
+   "value": 374,
+   "quoted_from": "c25",
+   "quote": "Field Inspections 473 Voluntary Corrections 374",
+   "note": "quoted"
+  },
+  {
+   "phrase": "10 days",
+   "slide": "slide-09.html",
+   "kind": "span",
+   "value": 10,
+   "quoted_from": "c37",
+   "quote": "The City may terminate the contract with 10 days’ written notice at any time, without penalty.",
+   "note": "quoted"
+  },
+  {
+   "phrase": "50 Dallas brush trucks",
+   "slide": "caption.txt",
+   "kind": "count",
+   "value": 50,
+   "quoted_from": "c5",
+   "quote": "Cameras are mounted on 50 Sanitation brush collection vehicles that already travel Dallas neighborhoods during routine service.",
+   "note": "quoted"
+  },
+  {
+   "phrase": "5,318 observations",
+   "slide": "caption.txt",
+   "kind": "count",
+   "value": 5318,
+   "quoted_from": "c22",
+   "quote": "citations generated. Observations Reviewed 5,318",
+   "note": "quoted"
+  },
+  {
+   "phrase": "50 Dallas brush trucks",
+   "slide": "document_title",
+   "kind": "count",
+   "value": 50,
+   "quoted_from": "c5",
+   "quote": "Cameras are mounted on 50 Sanitation brush collection vehicles that already travel Dallas neighborhoods during routine service.",
+   "note": "quoted"
+  },
+  {
+   "phrase": "three official records",
+   "slide": "first_comment.txt",
+   "kind": "count",
+   "value": 3,
+   "computed_by": "scripts/carousel/sources_block.py, the distinct primary_official documents among the cited claims, the October 19th briefing (c2), the December 9th, 2025 briefing (c33) and the April 10th memo (c44)",
+   "note": "computed"
+  }
+ ]
+}

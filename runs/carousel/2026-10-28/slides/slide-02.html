@@ -1,0 +1,72 @@
+<!doctype html>
+<!-- 2026-10-28, frame 2 of 9. Archetype GRID. A spatial scene through txthree.js in the deck's lastLight world: fifty chassis brush trucks parked in five rows of ten in a dark yard, seen from high to the south, a cold lamp lit on every camera pod. The truck count and the lamp count are read from figures.json. Drawn to illustrate, to no maker's design. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">50 trucks, 100 cameras planned</h1>
+<p class="dek" data-follow="26">The December 2025 plan priced the system at $852,000 a year for 100 cameras, with a human in the loop for all actions. The yard is drawn to&nbsp;illustrate.</p>
+<script>window.FIG = {"trucks": 50, "cameras_per_truck": 2};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-28-route.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "The fleet", counter: "02 / 09", src: "c5 c33 c34 c36 c38 c44", fit: { min: 84, max: 116, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 28, near: 0.5, far: 3000 });
+  /* THE FIGURES, from figures.json: this many trucks in rows of ten, and one cold lamp per camera */
+  const N = FIG.trucks, PER = FIG.cameras_per_truck, COLS = 10, ROWS = Math.ceil(N / COLS), DX = 4.6, DZ = 13.5;
+  const spots = []; for (let i = 0; i < N; i++) { const c = i % COLS, r = Math.floor(i / COLS); spots.push([(c - (COLS - 1) / 2) * DX, -r * DZ]); }
+  /* one truck, baked once, then every mesh instanced fifty times: fifty draw sets rather than fifty trucks */
+  const proto = K.make('brush_truck', { load: 0, boom: 0, podsLit: true, podScale: 1.5 });
+  proto.updateMatrixWorld(true);
+  const yard = new THREE.Group(), m4 = new THREE.Matrix4(), place = new THREE.Matrix4();
+  proto.traverse((o) => { if (!o.isMesh || o.isInstancedMesh) return;
+    const inst = new THREE.InstancedMesh(o.geometry, o.material, N);
+    spots.forEach((s, i) => { place.makeTranslation(s[0], 0, s[1]); m4.multiplyMatrices(place, o.matrixWorld); inst.setMatrixAt(i, m4); });
+    inst.castShadow = inst.receiveShadow = true; yard.add(inst); });
+  TXT.add(R, yard);
+  /* the cold lamps, one per camera, a glow the size a night lens holds */
+  let lamps = 0;
+  spots.forEach((s) => proto.userData.attach.pods.slice(0, PER).forEach((p) => {
+    const sp = new THREE.Sprite(new THREE.SpriteMaterial({ map: CH.glowTex(THREE), color: CH.ACCENT, blending: THREE.AdditiveBlending, depthWrite: false, toneMapped: false, transparent: true }));
+    sp.position.set(s[0] + p[0], p[1], s[1] + p[2]); sp.scale.setScalar(s[1] > -DZ * 1.5 ? 1.5 : 0.9); sp.userData.noShadow = true; R.scene.add(sp); lamps++; }));
+  window.__lamps = lamps;
+  /* the yard: worn concrete with painted stall lines and a chain link fence going dark beyond the rows */
+  for (let c = 0; c <= COLS; c++) { const ln = new THREE.Mesh(new THREE.PlaneGeometry(0.1, ROWS * DZ + 6), new THREE.MeshStandardMaterial({ color: 0xc9c4b2, roughness: 0.8 }));
+    ln.rotation.x = -Math.PI / 2; ln.position.set((c - COLS / 2) * DX, 0.012, -(ROWS - 1) * DZ / 2); ln.receiveShadow = true; R.scene.add(ln); }
+  const fence = K.make('chain_link_fence', { length: 60, height: 2.4 }); fence.position.set(0, 0, -(ROWS - 1) * DZ - 14); TXT.add(R, fence);
+  TXT.sky(R);
+  TXT.ground(R, { surface: 'concrete', size: 700, seed: 19 });
+  const from = [-6, 8, 22];
+  const look = CH.aim(THREE, R, TXT, from, [-2, 1.5, -6], 560, 1040, 28);
+  TXT.frame(R, { fov: 28, from, look });
+  CH.warm(R, 0.15);
+  TXT.deckRig(R, CH.rigSpec(W, 70, 4096), CH.rigOpts([0, 0, -24], { distance: 120, shadowFar: 300 }));
+  CH.unacne(R, 0.03);
+  CH.noShadows(R);
+  /* the pool falls on the near two rows only, so the rows beyond go down into the dark yard */
+  const near = new THREE.Mesh(new THREE.BoxGeometry(COLS * DX, 3.9, 2 * DZ - 3), new THREE.MeshBasicMaterial()); near.position.set(0, 1.95, -DZ / 2); near.updateMatrixWorld(true);
+  TXT.stage(R, near);
+  TXT.weather(R, { grime: 0.3, height: 0.7, mottle: 0.3 });
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0.3, veil: 0.34, footWash: 0.42 });
+  CH.knock(cx, ['.tx-site', '.src'], 0.54);
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

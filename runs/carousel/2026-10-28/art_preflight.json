@@ -1,0 +1,228 @@
+{
+  "version": 2,
+  "selected": [
+    1,
+    5,
+    9
+  ],
+  "inputs": {
+    "slides/slide-01.html": "e812de34ccd14729baa17bbddc3ffaf682ded2a14024c3342652b2b644500920",
+    "render/slide-01.png": "7304cb295d1e8bd48e2c3d40bdbfc99d0a570e8561ded80a32316bd6ec04b803",
+    "assets/js/deck/2026-10-28-route.js": "2f5b482e44f1d87db4e20ad3d3d33e500db2371afeba1a8a7a644255723ad867",
+    "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+    "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+    "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+    "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+    "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+    "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+    "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+    "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+    "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+    "slides/slide-05.html": "f709b67564e921326d74b9072f810e7c68d3db236aa1261c549eb153dff0b7d4",
+    "render/slide-05.png": "f2d91d1779e889f72fb6a503b3e9c96ebdc17fce1b40f27e8811401be4245330",
+    "slides/slide-09.html": "4342e2ea12dd6f83831e6a3a21129c809043ad4aae6a3985b360861488accb90",
+    "render/slide-09.png": "e23bc16dc1336d171e557bc26e4e3ea8a628a80503ba7e1cbc7114f1ae51c260"
+  },
+  "value_measurements": [
+    {
+      "frame": "slide-01.png",
+      "median_L": 3.5,
+      "mid": 0.049,
+      "dark": 0.854
+    },
+    {
+      "frame": "slide-05.png",
+      "median_L": 1.0,
+      "mid": 0.045,
+      "dark": 0.869
+    },
+    {
+      "frame": "slide-09.png",
+      "median_L": 2.5,
+      "mid": 0.072,
+      "dark": 0.786
+    }
+  ],
+  "review": {
+    "decision": "accept",
+    "inputs": {
+      "slides/slide-01.html": "e812de34ccd14729baa17bbddc3ffaf682ded2a14024c3342652b2b644500920",
+      "render/slide-01.png": "7304cb295d1e8bd48e2c3d40bdbfc99d0a570e8561ded80a32316bd6ec04b803",
+      "assets/js/deck/2026-10-28-route.js": "2f5b482e44f1d87db4e20ad3d3d33e500db2371afeba1a8a7a644255723ad867",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+      "slides/slide-05.html": "f709b67564e921326d74b9072f810e7c68d3db236aa1261c549eb153dff0b7d4",
+      "render/slide-05.png": "f2d91d1779e889f72fb6a503b3e9c96ebdc17fce1b40f27e8811401be4245330",
+      "slides/slide-09.html": "4342e2ea12dd6f83831e6a3a21129c809043ad4aae6a3985b360861488accb90",
+      "render/slide-09.png": "e23bc16dc1336d171e557bc26e4e3ea8a628a80503ba7e1cbc7114f1ae51c260"
+    },
+    "frames": [
+      {
+        "slide": 1,
+        "role": "cover",
+        "subject": "The brush truck's loaded open body seen from above its rear corner, the panelled tailgate in the bottom quarter, barked limbs with pale ringed ends heaped above it, two pods with cyan-coated lenses at the front corners, the blue boom crossing the upper right under the dek.",
+        "visual_consequence": "With the headline covered, the frame reads as a city truck full of cut brush carrying two cameras. The new hook is still carried by the image, one truck with its cameras standing for the fleet the number names.",
+        "weakness": "The two piercing limbs are gone. Culling them left a few leaf cards floating in the sky and over the right rail, a dark smear on the right side wall and one leaf chip on the wall, visible at native size and not at 432 px. The deep cut ends in the shadowed core still render as flat grey discs.",
+        "repair": "Cull the leaf cards and shadow casters of the removed limbs with the limbs the next time frame 1 is rendered for any reason.",
+        "encoding_reads": true,
+        "dominant_subject_finished": true,
+        "feed_legible": true,
+        "inputs": {
+          "slides/slide-01.html": "e812de34ccd14729baa17bbddc3ffaf682ded2a14024c3342652b2b644500920",
+          "render/slide-01.png": "7304cb295d1e8bd48e2c3d40bdbfc99d0a570e8561ded80a32316bd6ec04b803",
+          "assets/js/deck/2026-10-28-route.js": "2f5b482e44f1d87db4e20ad3d3d33e500db2371afeba1a8a7a644255723ad867",
+          "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+          "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+          "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+          "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+          "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+          "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+          "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+          "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+          "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de"
+        }
+      },
+      {
+        "slide": 5,
+        "role": "evidence",
+        "subject": "A galvanized cantilever limb rack square on in a city yard at night, six barked limbs at one scale on the first upright with cyan tape on the 5,318 limb, the second upright now carrying only the arm the 5,318 limb rests on.",
+        "visual_consequence": "With the headline covered, the frame reads as a crew's rack of limbs of very different lengths, and no empty arm competes with the bare-arm turn later in the deck.",
+        "weakness": "Both changes landed. The limbs are still straight uniform dowels and the bottom two labels sit over the fence mesh, a small contrast cost at native size only.",
+        "repair": "None required.",
+        "encoding_reads": true,
+        "dominant_subject_finished": true,
+        "feed_legible": true,
+        "inputs": {
+          "slides/slide-05.html": "f709b67564e921326d74b9072f810e7c68d3db236aa1261c549eb153dff0b7d4",
+          "render/slide-05.png": "f2d91d1779e889f72fb6a503b3e9c96ebdc17fce1b40f27e8811401be4245330",
+          "assets/js/deck/2026-10-28-route.js": "2f5b482e44f1d87db4e20ad3d3d33e500db2371afeba1a8a7a644255723ad867",
+          "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+          "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+          "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+          "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+          "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+          "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+          "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+          "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+          "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de"
+        }
+      },
+      {
+        "slide": 9,
+        "role": "close",
+        "subject": "The brush truck from behind 45 m up a dark residential street, two cyan pod glows, red tail lamps, the inspector in a warm pool at the right curb under an oak.",
+        "visual_consequence": "With the headline covered, the frame reads as the machine moving on while a person stays behind at the curb.",
+        "weakness": "The art matches the round 4 approval. The five line dek clears the oak canopy with a tight margin.",
+        "repair": "None required.",
+        "encoding_reads": true,
+        "dominant_subject_finished": true,
+        "feed_legible": true,
+        "inputs": {
+          "slides/slide-09.html": "4342e2ea12dd6f83831e6a3a21129c809043ad4aae6a3985b360861488accb90",
+          "render/slide-09.png": "e23bc16dc1336d171e557bc26e4e3ea8a628a80503ba7e1cbc7114f1ae51c260",
+          "assets/js/deck/2026-10-28-route.js": "2f5b482e44f1d87db4e20ad3d3d33e500db2371afeba1a8a7a644255723ad867",
+          "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+          "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+          "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+          "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+          "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+          "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+          "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+          "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+          "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de"
+        }
+      }
+    ],
+    "reviewer_notes": "Round 6 by carousel-art-director after the panel's round 1 repairs and copy changes on frames 1, 5 and 9. All three accepted, every boolean true."
+  },
+  "plan": {
+    "hardest_frame": 5,
+    "visual_argument": "Six rows of the city's own results table racked in a city yard at one scale in cut cedar elm limbs, so 5,318 observations reviewed reads against 101 formal enforcement before a numeral is read, and the next frame's bare seventh arm is the accuracy row the briefing does not fill.",
+    "build_risk": "A rack seen square on can flatten into a bar chart; the arms project toward the camera, the galvanized uprights and limbs cast onto the yard under the low key, the fence carries the depth, and the 34 limb is a stub carried by its label. A curb relief failed this frame twice and was replaced.",
+    "distinct_from_recent": "10-24 was a floodlit plant apron with concrete plan reliefs and an empty groove; this is a city yard at eye height and the measure is the story's own brush. 10-25 counted with bores in a cast iron plate under brass; here there are no holes and no brass, only lengths. 10-26 was a drone over Round Rock from the air in dusk gold; this stays at curb height with a ground vehicle and a cold cyan accent."
+  },
+  "frame_inputs": {
+    "1": {
+      "slides/slide-01.html": "e812de34ccd14729baa17bbddc3ffaf682ded2a14024c3342652b2b644500920",
+      "render/slide-01.png": "7304cb295d1e8bd48e2c3d40bdbfc99d0a570e8561ded80a32316bd6ec04b803",
+      "assets/js/deck/2026-10-28-route.js": "2f5b482e44f1d87db4e20ad3d3d33e500db2371afeba1a8a7a644255723ad867",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de"
+    },
+    "5": {
+      "assets/js/deck/2026-10-28-route.js": "2f5b482e44f1d87db4e20ad3d3d33e500db2371afeba1a8a7a644255723ad867",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+      "slides/slide-05.html": "f709b67564e921326d74b9072f810e7c68d3db236aa1261c549eb153dff0b7d4",
+      "render/slide-05.png": "f2d91d1779e889f72fb6a503b3e9c96ebdc17fce1b40f27e8811401be4245330"
+    },
+    "9": {
+      "assets/js/deck/2026-10-28-route.js": "2f5b482e44f1d87db4e20ad3d3d33e500db2371afeba1a8a7a644255723ad867",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+      "slides/slide-09.html": "4342e2ea12dd6f83831e6a3a21129c809043ad4aae6a3985b360861488accb90",
+      "render/slide-09.png": "e23bc16dc1336d171e557bc26e4e3ea8a628a80503ba7e1cbc7114f1ae51c260"
+    }
+  },
+  "needs_review": [
+    1,
+    5,
+    9
+  ],
+  "shipped_inputs": {
+    "slides/slide-01.html": "e812de34ccd14729baa17bbddc3ffaf682ded2a14024c3342652b2b644500920",
+    "slide-01.webp": "9b3e469f2881ba2b058c251b5a4a77ad0dfe0f8aeac6048c6f6e719148add931",
+    "slides/slide-05.html": "f709b67564e921326d74b9072f810e7c68d3db236aa1261c549eb153dff0b7d4",
+    "slide-05.webp": "c4049917046dab60ff3db83267e44a222e3ff52b78f0a88efcc02ebef5c2d36b",
+    "slides/slide-09.html": "4342e2ea12dd6f83831e6a3a21129c809043ad4aae6a3985b360861488accb90",
+    "slide-09.webp": "4a3390c86c992a83f586754cb64323354219e61cc69cb88b56ad477c37097219"
+  },
+  "encodings": [
+    {
+      "to": "slide-01.webp",
+      "to_sha256": "9b3e469f2881ba2b058c251b5a4a77ad0dfe0f8aeac6048c6f6e719148add931",
+      "from_sha256": "7304cb295d1e8bd48e2c3d40bdbfc99d0a570e8561ded80a32316bd6ec04b803",
+      "psnr_db": 40.161
+    },
+    {
+      "to": "slide-05.webp",
+      "to_sha256": "c4049917046dab60ff3db83267e44a222e3ff52b78f0a88efcc02ebef5c2d36b",
+      "from_sha256": "f2d91d1779e889f72fb6a503b3e9c96ebdc17fce1b40f27e8811401be4245330",
+      "psnr_db": 40.1
+    },
+    {
+      "to": "slide-09.webp",
+      "to_sha256": "4a3390c86c992a83f586754cb64323354219e61cc69cb88b56ad477c37097219",
+      "from_sha256": "e23bc16dc1336d171e557bc26e4e3ea8a628a80503ba7e1cbc7114f1ae51c260",
+      "psnr_db": 40.159
+    }
+  ]
+}

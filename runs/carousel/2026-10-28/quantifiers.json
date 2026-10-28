@@ -1,0 +1,37 @@
+{
+ "quantifiers": [
+  {
+   "phrase": "all actions",
+   "about": "the actions the camera system's December plan covers",
+   "from_items": [
+    "tx-2026-0179"
+   ],
+   "set": [
+    "every action the December 9th, 2025 Finance Committee briefing describes for the AI-powered camera system (c38), quoted from that briefing"
+   ],
+   "why": "The universal is the briefing's own words, 'There is a human in the loop for all actions' (c38). The slide attributes it to the December plan and claims nothing wider."
+  },
+  {
+   "phrase": "none of these",
+   "about": "the six rows of the October 19th results table",
+   "from_items": [
+    "tx-2026-0179"
+   ],
+   "set": [
+    "the six counts in the October 19th briefing's results table, observations reviewed, courtesy notices, field inspections, voluntary corrections, direct abatements and formal enforcement (c22 to c27)"
+   ],
+   "why": "The web edition says none of these counts can be read as a rate because the table states no relation between its rows. The set is the table's six rows and nothing else."
+  },
+  {
+   "phrase": "none of them",
+   "about": "the performance measures the October 19th briefing names as next steps",
+   "from_items": [
+    "tx-2026-0179"
+   ],
+   "set": [
+    "the measures for accuracy, response, voluntary compliance, resource use and neighborhood outcomes that the October 19th briefing lists as next steps (c30)"
+   ],
+   "why": "The web edition says none of those measures is published in the October 19th briefing. The set is the five measures c30 names, and the claim is scoped to that one document."
+  }
+ ]
+}

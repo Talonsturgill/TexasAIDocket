@@ -1,0 +1,26 @@
+{
+ "lens": "craft",
+ "round": 2,
+ "criteria": [
+  {"name": "artwork_craft", "weight": 0.22, "score": 6.3, "why": "Every frame has a real subject in one staged world with light type on dark. Frames 1 and 9 come close to the 10. Four fall short: 4 (a flat grey-blue screen over 45 percent of the frame, canvas mean 57.4, an empty room), 3 (cartoon ring lens, a pale polygon behind the pod, stretched bark), 6 (a black slot with a paper in it, a brick seam, no ground contact, no curb), 8 (an unlit sticky note tag and the label's last letters on the upright). Frames 2 and 7 carry a primitive cab and 2 a brown haze. Frame 5 reads clearly but close to a bar chart."},
+  {"name": "deck_coherence", "weight": 0.12, "score": 7.0, "why": "One light, one grade, a cyan accent on the camera's things, a working camera move and brush motif. Frame 4 sits outside at canvas mean 57.4 and 2 at 37.1, and the edge tease from 6 to 7 has no visible curb on 6."},
+  {"name": "claim_integrity", "weight": 0.20, "score": 8.0, "why": "Every numeral traces to a primary city document, the refusals are disciplined, the table's rows are never joined. Frame 2's present tense 100 cameras combines the October trucks with the April and December plans, though its dek attributes the figure."},
+  {"name": "story_and_stakes", "weight": 0.16, "score": 7.0, "why": "City, departments, the briefing and its committee, the tool, the cost and the exit clause are named. No next step or deadline a resident can act on."},
+  {"name": "sequence_and_momentum", "weight": 0.10, "score": 7.5, "why": "2 pays off the cover, the process runs in order, 8 is a declared turn answered by 9. 1 and 2 overlap and 6 could swap with 7."},
+  {"name": "voice", "weight": 0.10, "score": 7.0, "why": "Clean and fair, but a heavy attribution tic and Drawn to illustrate on nearly every dek, Texas mostly in the art."},
+  {"name": "variety", "weight": 0.10, "score": 7.0, "why": "A fresh concept against the last three decks, but the third count-as-length device in four decks and the same program as no. 31."}
+ ],
+ "weighted_score": 7.10,
+ "weighted_arithmetic": "6.3*0.22=1.386 + 7.0*0.12=0.840 + 8.0*0.20=1.600 + 7.0*0.16=1.120 + 7.5*0.10=0.750 + 7.0*0.10=0.700 + 7.0*0.10=0.700 = 7.096, reported 7.10",
+ "hard_fails": [],
+ "ship": false,
+ "ship_note": "A threshold dissent, not a fault. 7.10 under the round 2 rung of 7.7. No hard fail. The frame 8 label running onto the upright is a layout defect for the work order.",
+ "one_sentence_fix": "Re-stage frame 4 as a near black office where the tile screen is a small bright pool spilling cold light onto a reviewer's hand, keyboard and a sheet of paper.",
+ "artwork_weakest_frames": [
+  {"slide": 4, "problem": "A flat grey-blue tile grid over 45 percent of the frame, graph paper in the grey middle, an empty room.", "fix": "Camera back and down so the monitor is about a fifth of the frame, tiles in three or four value steps on a near black panel, a hand on a keyboard and a sheet in the spill."},
+  {"slide": 3, "problem": "Cartoon ring lens, a pale boom polygon behind the pod, stretched bark.", "fix": "Remove or darken the boom, a dark coated glass lens with a thin cyan reflection ring, a key rim on the housing."},
+  {"slide": 6, "problem": "A black slot with a paper, a brick seam, no ground contact, no curb.", "fix": "A steel box with its door open toward the camera, the seam fixed, the base on the lawn with contact, the curb's lit lip off the right edge."},
+  {"slide": 8, "problem": "An unlit cyan tag and the label running onto the upright.", "fix": "A lit card stock tag that casts on the yard, and the label offset from -560 to -620."},
+  {"slide": 2, "problem": "Primitive cabs and a brown mid tone fog band.", "fix": "Cut the fog so the far rows fall into the black sky, the pool on the near two rows."}
+ ]
+}

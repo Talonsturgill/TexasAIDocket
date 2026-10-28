@@ -1,0 +1,70 @@
+<!doctype html>
+<!-- 2026-10-28, frame 9 of 9. Archetype FULL_BLEED. A spatial scene through txthree.js in the deck's lastLight world: the chassis brush truck leaving up a dark Dallas street, loaded, its tail lamps and its two cold pod lamps the last lights before the seam, a streetlight just past it raking its tailgate, the inspector small at the curb in the pool of a streetlight out of frame. The pod lamp count is read from figures.json. Drawn to illustrate, to no maker's design. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">People make the decisions, the city says</h1>
+<p class="dek" data-follow="26">The October 19th briefing to the Quality of Life, Arts, and Culture Committee says success is not measured by citations. The December 2025 plan proposed $852,000 a year on a contract the city could end with 10 days written notice. Drawn to&nbsp;illustrate.</p>
+<script>window.FIG = {"cameras_per_truck": 2};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-28-route.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "The next block", counter: "09 / 09", src: "c1 c2 c28 c32 c33 c36 c37", fit: { min: 76, max: 100, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 34, near: 0.2, far: 4000 });
+  const road = K.make('road', { length: 420, lanes: 2, sidewalk: true, parkway: true }); road.rotation.y = Math.PI / 2; road.position.z = -150; TXT.add(R, road);
+  /* the truck heading north up the street, away from the camera, 42 m off, loaded, its rear and its pods to the camera */
+  const truck = K.make('brush_truck', { load: 0.9, boom: 0, podScale: 1.6 }); truck.position.set(1.8, 0, -45); truck.rotation.y = Math.PI; TXT.add(R, truck); TXT.contact(R, truck, { vehicle: true });
+  /* THE FIGURE, from figures.json: one cold lamp glow per pod, so the leaving truck carries exactly that many */
+  const pods = truck.userData.attach.pods.slice(0, FIG.cameras_per_truck);
+  pods.forEach((p) => { const w = new THREE.Vector3(p[0], p[1], p[2]).applyAxisAngle(new THREE.Vector3(0, 1, 0), truck.rotation.y).add(truck.position);
+    const sp = new THREE.Sprite(new THREE.SpriteMaterial({ map: CH.glowTex(THREE), color: CH.ACCENT, blending: THREE.AdditiveBlending, depthWrite: false, depthTest: false, toneMapped: false, transparent: true }));
+    sp.position.copy(w); sp.position.y += 0.25; sp.scale.setScalar(1.0); sp.userData.noShadow = true; R.scene.add(sp); });
+  /* two tail lamp glows */
+  [-1, 1].forEach((s) => { const sp = new THREE.Sprite(new THREE.SpriteMaterial({ map: CH.glowTex(THREE), color: 0xff2a14, blending: THREE.AdditiveBlending, depthWrite: false, toneMapped: false, transparent: true }));
+    sp.position.set(1.8 - s * 1.07, 0.98, -45 + 4.7); sp.scale.setScalar(0.9); sp.userData.noShadow = true; R.scene.add(sp); });
+  /* the houses both sides, going dark, and the inspector at the east curb under a streetlight */
+  [[-17, -14, 3, Math.PI / 2], [-17, -40, 8, Math.PI / 2], [-18, -70, 12, Math.PI / 2], [17, -20, 4, -Math.PI / 2], [18, -48, 9, -Math.PI / 2], [18, -78, 14, -Math.PI / 2], [-18, -100, 15, Math.PI / 2], [18, -106, 16, -Math.PI / 2], [-18, -130, 17, Math.PI / 2], [18, -136, 18, -Math.PI / 2]].forEach((h) => {
+    const m = K.make('ranch_house', { seed: h[2], material: h[2] % 3 ? 'brick' : 'limestone' }); m.position.set(h[0], 0, h[1]); m.rotation.y = h[3]; TXT.add(R, m); });
+  [[-10, -28, 3], [10, -34, 6], [-11, -58, 7], [11, -64, 2]].forEach((t) => { const tr = K.make(t[2] % 2 ? 'cedar_elm' : 'live_oak', { seed: t[2], height: 9 }); tr.position.set(t[0], 0, t[1]); TXT.add(R, tr); });
+  /* a streetlight out of frame overhead throws one pool on the curb where the inspector stands, and a second one between the
+   * camera and the truck on the east curb rakes its tailgate, with a third standing beyond it */
+  const lamp = K.make('streetlight', { height: 8 }); lamp.position.set(5.4, 0.15, -52); lamp.rotation.y = -Math.PI / 2; TXT.add(R, lamp);
+  /* the head glows the same warm sodium as its pool, so the pods carry the frame's only cyan */
+  lamp.traverse((m) => { if (m.material && m.material.emissive && m.material.emissive.getHex() !== 0) { m.material = m.material.clone(); m.material.emissive.setHex(0xffa448); m.material.color.setHex(0xffd49a); } });
+  const rake = new THREE.SpotLight(0xffc98a, 120, 26, 0.55, 0.5, 1.3); rake.position.set(4.6, 7.4, -35); rake.target.position.set(1.8, 1.4, -40.6); R.scene.add(rake); R.scene.add(rake.target);
+  const pool = new THREE.SpotLight(0xffc98a, 60, 22, 0.75, 0.6, 1.4); pool.position.set(3.2, 7.8, -16); pool.target.position.set(4.2, 0, -15); R.scene.add(pool); R.scene.add(pool.target);
+  const insp = K.make('person', { seed: 14, role: 'official', pose: 'stand', vest: true, toward: [0, 0, -45] }); insp.position.set(4.6, 0.15, -15); insp.rotation.y = Math.PI * 0.85; TXT.add(R, insp); TXT.contact(R, insp);
+  TXT.sky(R);
+  TXT.ground(R, { surface: 'grass', size: 900, seed: 40 });
+  const from = [-0.6, 1.5, 6];
+  const look = CH.aim(THREE, R, TXT, from, [1.8, 1.6, -45], 540, 1000, 34);
+  TXT.frame(R, { fov: 34, from, look });
+  CH.warm(R, 0.22);
+  TXT.deckRig(R, CH.rigSpec(W, 40, 2048), CH.rigOpts([1, 1, -30], { distance: 80, shadowFar: 200 }));
+  CH.unacne(R, 0.02);
+  CH.noShadows(R);
+  TXT.stage(R, [truck, insp]);
+  TXT.weather(R, { grime: 0.3, height: 0.7, mottle: 0.3 });
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0.3, veil: 0.34, footWash: 0.42 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

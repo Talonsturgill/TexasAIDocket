@@ -1,0 +1,27 @@
+{
+ "lens": "reader",
+ "round": 2,
+ "criteria": [
+  {"name": "artwork_craft", "weight": 0.22, "score": 6.6, "why": "Every frame rendered and staged dark. Five hold up: 5 the best (limb ratios measured 0.553 against 0.551), 8, 9, 7 and 1. Several lean on a default or show an artifact: 4 a stock monitor with a flat mid grey tile field, the most mid tone frame; 3 a pale untextured polygon behind the pod and a flat cyan ring lens; 6 vertical brick seams; 2 primitive trucks under a brown haze; 1 a load that reads as firewood; 8 the label level with the sixth arm."},
+  {"name": "deck_coherence", "weight": 0.12, "score": 7.5, "why": "One world, one accent, one type block, three working continuity devices. Slide 4's interior breaks the value run and slide 2's fog leans warm."},
+  {"name": "claim_integrity", "weight": 0.20, "score": 8.0, "why": "Every numeral traces and the sources are primary. Three looser phrasings: slide 2's 100 cameras as present fact, slide 6's hook as the city's own description unattributed, and slide 7 setting 473 beside 374 without slide 5's disclaimer. None is a hard fail."},
+  {"name": "story_and_stakes", "weight": 0.16, "score": 6.5, "why": "A reader learns what happened at city level. Who decided to deploy and who holds the termination are not stated, nothing a reader can do, untranslated terms, the close on the city's slogan."},
+  {"name": "sequence_and_momentum", "weight": 0.10, "score": 7.0, "why": "The order works and the turn on 8 is real. The cover is plain, 2 repeats the cover's 50, 4's 5,318 repeats on 5, the close is the subject's own line."},
+  {"name": "voice", "weight": 0.10, "score": 7.0, "why": "Clean and honest without doom, but a careful briefing summary rather than a Dallas voice, with repeated attributions and Drawn to illustrate on eight deks."},
+  {"name": "variety", "weight": 0.10, "score": 5.5, "why": "Same program and courtesy letter beat as no. 31 37 days ago, a white vehicle at last light with a cyan accent as in nos. 46 and 52, lastLight again. The limb rack is fresh."}
+ ],
+ "weighted_score": 6.94,
+ "weighted_arithmetic": "6.6*0.22=1.452 + 7.5*0.12=0.900 + 8.0*0.20=1.600 + 6.5*0.16=1.040 + 7.0*0.10=0.700 + 7.0*0.10=0.700 + 5.5*0.10=0.550 = 6.942",
+ "hard_fails": [],
+ "ship": false,
+ "ship_note": "A threshold dissent, not a fault. 6.94 under the round 2 rung of 7.7. No hard fail.",
+ "one_sentence_fix": "Print on frame 9 the one thing a Dallas resident can act on, the next committee or council date or what to do when a courtesy letter arrives, and name who holds the 10 day termination.",
+ "artwork_weakest_frames": [
+  {"slide": 4, "problem": "A stock monitor in a void, a flat mid grey tile field, the most mid tone frame, reads as a UI screenshot.", "fix": "A dark tile field with only cyan observation tiles lit, the reviewer's shoulder and hand in silhouette at the left, the monitor running off the right edge."},
+  {"slide": 3, "problem": "A pale untextured polygon behind the pod, flat emissive ring lens.", "fix": "The boom in dark painted steel or cropped out, a coated glass lens with a highlight and dark pupil."},
+  {"slide": 6, "problem": "Vertical brick texture seams and no ground contact.", "fix": "A continuous UV across the face, contact, grime and lawn blades at the base."},
+  {"slide": 2, "problem": "Primitive boxes under a brown haze band.", "fix": "Camera at about 12 m with the three near trucks large, far rows into a near black sky."},
+  {"slide": 8, "problem": "The label level with the sixth arm, not the bare seventh arm and tag.", "fix": "Move the label down to the bare arm's height left of the upright."},
+  {"slide": 1, "problem": "Uniform cut cylinders read as firewood, not curbside brush.", "fix": "Branched limbs with forks and leaf cards, a few cut ends lit."}
+ ]
+}

@@ -1,0 +1,25 @@
+{
+ "lens": "reader",
+ "round": 1,
+ "criteria": [
+  {"name": "artwork_craft", "weight": 0.22, "score": 6.3, "why": "Five frames hold up: 1 (lit barked load, two cyan pods), 5 (measured relief true to scale, 2,928 at 0.552 of 5,318 against 0.551), 6 (brick mailbox), 9 (the best frame). Four pull it down: 4 (generic monitor, tile screen reads as grey static, the most mid tone frame), 8 (subject in the right 15 percent, label far from the tag), 3 (primitive pod, flat cyan lens, a pale lavender polygon behind it), 2 (low poly cabs under a brown haze band). The 7 descriptor allows one frame on a default and this deck has three or four."},
+  {"name": "deck_coherence", "weight": 0.12, "score": 7.5, "why": "One lastLight world, one accent meaning, the brush motif changing state, the camera move along the route. Slide 2's warm haze and slide 4's teal lift break the value and hue."},
+  {"name": "claim_integrity", "weight": 0.20, "score": 7.0, "why": "Every numeral traces. Two looser items: the caption states the courtesy letter's educational nature without attribution in that paragraph, and slide 1's two cameras rests on the April memo's future tense (c44)."},
+  {"name": "story_and_stakes", "weight": 0.16, "score": 6.5, "why": "A resident learns what happened, but no slide names the deciding body (c1), no deadline or next meeting, no action a reader can take. The close repeats $852,000 and the termination clause."},
+  {"name": "sequence_and_momentum", "weight": 0.10, "score": 7.0, "why": "The cover earns the swipe and the turn on 8 lands second to last, with 9 answering it. Slides 4 and 5 both lead on 5,318, and 6 and 7 restate counts 5 already set."},
+  {"name": "voice", "weight": 0.10, "score": 6.8, "why": "Clean copy on register. Several deks explain the drawing instead of the story, Drawn to illustrate closes 7 of 9, and no Dallas texture."},
+  {"name": "variety", "weight": 0.10, "score": 6.5, "why": "The rack is fresh and the cyan accent differs, but the program is the one carousel no. 31 covered 37 days ago, back on the courtesy letter, and this is the fifth lastLight world in six decks."}
+ ],
+ "weighted_score": 6.756,
+ "weighted_arithmetic": "0.22*6.3=1.386 + 0.12*7.5=0.900 + 0.20*7.0=1.400 + 0.16*6.5=1.040 + 0.10*7.0=0.700 + 0.10*6.8=0.680 + 0.10*6.5=0.650 = 6.756",
+ "hard_fails": [],
+ "ship": false,
+ "ship_note": "A threshold dissent, not a fault. 6.756 is under the round 1 rung of 8.0. No hard fail. Every numeral traces.",
+ "one_sentence_fix": "Rebuild the close around what a Dallas resident can do, naming the Quality of Life, Arts, and Culture Committee from c1, in place of the $852,000 slide 2 already carries.",
+ "artwork_weakest_frames": [
+  {"slide": 4, "problem": "A generic kit monitor in an empty dark room, the screen reads as grey static at feed size, the most mid tone frame, nothing says a person reviews each one.", "fix": "Seat a kit person, back to camera, in silhouette across the left third against the screen, with the screen the only source."},
+  {"slide": 8, "problem": "The rack squeezed into the right 15 percent, two thirds empty fence, the label about 400 px from the tag it names.", "fix": "Pull the camera back and left so the upright and its seven arms fill about 40 percent of the width at centre right, the label beside the blank tag."},
+  {"slide": 3, "problem": "Primitive pod with a flat cyan lens and a pale lavender polygon behind it at the frame's brightest point.", "fix": "Delete or darken the pale boom shape and give the lens an inner iris ring and a rim-lit bezel."},
+  {"slide": 2, "problem": "Fifty low poly cabs in grey-blue mid tones under a warm haze band, breaking the deck's navy and black.", "fix": "Light only the near two rows, let rows three to five fall to black with only their pod lamps, and remove the brown fog band."}
+ ]
+}

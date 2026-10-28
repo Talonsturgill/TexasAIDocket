@@ -1,0 +1,26 @@
+{
+ "lens": "integrity",
+ "round": 1,
+ "criteria": [
+  {"name": "artwork_craft", "weight": 0.22, "score": 6.5, "why": "Every frame is a real render in one world and both encodings are honest (slide 5's limbs at 0.552 against 0.5506, slide 4 draws exactly 5,318 tiles). Frames 1, 5 and 9 hold up. Slide 2 sits under a mauve-brown haze with block trucks and blurred lamps, slide 3's pod is toy-like with a flat lens and a pale boom slab, slide 4 is a teal mid tone room with a striped field, slide 6's brick is flat tiled, slide 8's subject is a sliver with the label far from its tag, slide 7's cab is blocky and the inspector a mannequin."},
+  {"name": "deck_coherence", "weight": 0.12, "score": 7.0, "why": "One world, one accent meaning, the brush motif changing state, one route. The value track strobes at 2 and 4."},
+  {"name": "claim_integrity", "weight": 0.20, "score": 8.0, "why": "Every numeral traces and every cited source is primary official. The refusals are honoured. Three phrasings run past their sources: slide 1's present tense two cameras on the April memo's future tense (c44), slide 9's may end it reading as a live term of a December proposal, and slide 7 implying brush piles are the flagged condition beyond c3."},
+  {"name": "story_and_stakes", "weight": 0.16, "score": 6.5, "why": "What, where and who are clear and the courtesy letter is a concrete stake. No deadline, next meeting or action, the committee (c1) on no slide, the close on the city's slogan."},
+  {"name": "sequence_and_momentum", "weight": 0.10, "score": 7.0, "why": "The cover earns a look, 2 pays the scale, the swap gives a real turn at 8. Slides 3, 4 and 9 all say staff or people decide."},
+  {"name": "voice", "weight": 0.10, "score": 6.5, "why": "Clean and scrupulously attributed but procedural, with repeated phrases and little regional texture."},
+  {"name": "variety", "weight": 0.10, "score": 6.0, "why": "New measuring material, but the same program as carousel no. 31 37 days back, the fifth lastLight night in two weeks, and the empty slot device recurring from four recent decks."}
+ ],
+ "weighted_score": 6.86,
+ "weighted_arithmetic": "0.22*6.5 + 0.12*7.0 + 0.20*8.0 + 0.16*6.5 + 0.10*7.0 + 0.10*6.5 + 0.10*6.0 = 1.43 + 0.84 + 1.60 + 1.04 + 0.70 + 0.65 + 0.60 = 6.86",
+ "hard_fails": [],
+ "ship": false,
+ "ship_note": "A threshold dissent, not a fault. 6.86 against the round 1 bar of 8.0. Every numeral, noun and absence was tried and no hard fail found.",
+ "one_sentence_fix": "End slide 9 on a decision point naming the Quality of Life, Arts, and Culture Committee from c1, and make slide 1 say what the sources support, 50 brush trucks carry the cameras, two per truck under the April plan.",
+ "artwork_weakest_frames": [
+  {"slide": 2, "problem": "A mauve-brown haze sky over lavender block trucks, the deck's worst value break, lamps as soft blurs.", "fix": "Re-stage in the near black sky with the fog darkened, pool the key on the near two rows only, hard emissive pod points."},
+  {"slide": 8, "problem": "The subject a narrow sliver on the right edge and the label floating 170 px from the tag.", "fix": "Camera left and closer so the upright, the butts and the bare arm fill the right 40 percent with the arm in its own pool, the label beside the tag."},
+  {"slide": 3, "problem": "A toy-like pod, a flat cyan lens and a pale boom slab behind it.", "fix": "Darken or retexture the boom as blue enamel in shadow, a coated glass lens with a key-lit rim and recessed bezel."},
+  {"slide": 6, "problem": "A primitive box under flat tiled brick, the letter a small glyph.", "fix": "Displaced brick with recessed mortar, camera at about 1.4 m pushed in so the box and letter take the focal third."},
+  {"slide": 4, "problem": "A teal mid tone room and a striped UI field.", "fix": "Wall and room fill near black, the reviewer's shoulder or hand in silhouette in the foreground."}
+ ]
+}
