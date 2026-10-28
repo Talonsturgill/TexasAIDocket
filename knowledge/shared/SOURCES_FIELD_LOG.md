@@ -2412,3 +2412,6 @@ tx-2026-0186 was not read and was not stamped.
 
 **lrl.texas.gov's robots.txt names ClaudeBot under `Disallow: /`, and capitol.texas.gov's disallows `/TLODOCS/`.**
 Both read with the project's own client today. The committee meeting pages on capitol.texas.gov read cleanly.
+
+**Correction to the faa.gov entry above.** The refusal came from this session's own safety classifier, not from the
+host. faa.gov itself answered only the 403 to `fetch_doc.py` and the 200 to curl's agent.
