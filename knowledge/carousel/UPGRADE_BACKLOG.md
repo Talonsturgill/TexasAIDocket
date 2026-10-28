@@ -6421,3 +6421,79 @@ carry an `escalated 2026-10-26` line in the queue so tomorrow's run is not made 
 this pass read and carried: the detail floor (no. 61 met it and its cures held, queued as
 `detail-floor-fights-the-dark-staged-world`), the glyph run rule and the article screenshots (both a
 maintainer's), the GRID piece count (the id pass) and `article-token-drops-unit` (the run's lane).
+
+## 2026-10-28, the fourteenth weekly machine pass. Four changes, three proposals, carried items
+
+Due early on two repeat offenders (`relief-plate-reads-as-a-tray` and
+`chassis-edit-rebinds-all-three-audition-frames`, each at repeat 2 with no. 62 on October 28th).
+The digest (`week_digest.py --date 2026-10-28`, six shipped runs, October 22nd to 28th) puts
+`artwork_craft` lowest on four decks of six at a week mean of 6.67, and its top two themes are
+"largest object unmodelled" and "primitive or low-poly model where a kit model belongs", each six
+runs of six and 16 rounds. The changes are uncommitted in the working tree for the showrunner's
+upgrade commits.
+
+### 1. KIT LIFT: `grapple_truck`, `fleet_camera_pod`, `brush_limb`, `cantilever_rack` AT NO. 62's NAMED FIXES (done)
+
+`assets/js/kit/vehicles.js`, `assets/js/kit/trees.js`, `assets/js/kit/industry.js`. No. 62 built
+all four in its chassis. Its judges named the load "a firewood load" and "a dumpster of logs" with
+"floating leaf cards" and "two limbs through the wall", the cab "primitive box cabs", the body "rust
+brown", the camera "a faceted flat cyan lens" and "a cartoon ring lens", and the rack's limbs
+"untapered" and "a bar chart drawn in sticks". Their fixes, in their words, were "branchy brush with small
+leaves", "a chamfered hood and windscreen on the instanced cab", "recessed coated glass with one
+highlight, cyan only on the lamp", "tapered bent limbs", "remove the unused arms from the second
+upright". The load is now grown by the trees' own grower (`K.growBrush`), each leaf a modelled
+cedar elm leaf 3 to 5.5 cm with its petiole on a twig, the wood and every leaf held inside the body's
+walls by a clip box the grower honours. The first proof used the trees' leaf atlas and every card read
+as a flat feather with a black underside at two metres, so the leaves were modelled instead. The proof
+is `examples/kit/build.py` through render.py, read at full size, and hand framed pages in
+`out/2026-10-28/tmp/machine/proof`. `examples/kit/sizes.py` exits 0.
+
+### 2. KIT MONITOR PUBLISHES ITS DISPLAY RECTANGLE (done, `assets/js/kit/interior.js`)
+
+An empty node `monitor_display` at the display centre in the tilted head and
+`userData.display.size`. A plane of that size added to it lands within 0.08 mm of the kit's own
+screen corners. Geometry and bounds unchanged.
+
+### 3. ARSENAL: THE REGISTRY'S CONVENTIONS QUOTED, AND AN ORIGIN COLUMN (done, `scripts/carousel/arsenal.py`)
+
+K.make re-centring a model's meaningful origin bit nos. 47, 50, 55, 56 and 62 across three queue
+items. The page's kit paragraph carried a typed sentence, "origin at the footprint centre", that left
+out the registry's three exceptions. It now quotes the registry's METRES and FRONT bullets and says per
+model whether K.make keeps or moves the origin, read from the spec and checked against sizes.py's
+measured anchoring on all 135 models. Self-tested both ways, including the row going to `centred` when
+its keepOrigin line is deleted.
+
+### 4. GATE MESSAGE: `layout_check` SAYS WHAT REACHES THE ACCENT MEASURE (done, `scripts/carousel/layout_check.py`)
+
+The accent measure bit nos. 48, 49, 50 and 62. No. 62 set its accent in DOM type and lamp glows and
+the gate counted it on no frame. The threshold is unchanged. A presence failure now prints the solid
+patch that reaches it, computed from the gate's constants, and the three closest frames. A self-test
+proves an accent carried only by lines of type still fails.
+
+### 5. PROPOSALS AND ESCALATIONS, with their counts
+
+- **REGISTRY: `K.define` takes `anchor: 'origin'` (and `'wall'`)** (`assets/js/txkit.js`, human).
+  Five decks (nos. 47, 50, 55, 56, 62). The arsenal's origin column says which models move. A
+  declared anchor would say it in the spec, where a builder writes it, rather than in a userData flag
+  the builder has to know about.
+- **GATE_LESSONS entry** (`knowledge/shared/GATE_LESSONS.md`, human). A gate's failure message is
+  part of the gate. `layout_check`'s accent presence was right on no. 62 and still cost rounds, because
+  it said the count was short and not what a frame needed to reach it. The proposed entry says that when a gate
+  fires on something a run then can't cure in one try, the fix is the message carrying the computed
+  cure, and the threshold stays.
+- **ROUTINE: a detail measure at the probe and the audition** (`prompts/daily_routine.md`, human).
+  `detail-floor-fights-the-dark-staged-world` (nos. 61 and 62) and
+  `detail-floor-pushes-dark-plates-to-graph-paper` (nos. 53, 55, 56) are the same floor met late.
+  No. 62 failed it on frames 1, 3 and 7, and frame 1 is the probe. The proposal is `layout_check --frames`
+  measuring the per frame half (detail and silhouette) on the frames rendered so far, called by the
+  routine beside `value_register --probe` and again at the audition. Not built here, because a mode
+  the routine does not call is a gate wired to nothing.
+- **`chassis-edit-rebinds-all-three-audition-frames`, now three decks** (nos. 59, 61, 62). Still the
+  owner's call, as written on 2026-10-26.
+
+### Carried, with this week's counts
+
+"No contact, dirt or grime" (six runs, 12 rounds), "render artifact" (five runs, 11 rounds, the
+engine's normalBias proposal of 2026-10-26 stands), "object in a
+void" (five runs, 10 rounds) and "type sitting on the art" (five runs, 10 rounds) had a different
+cause on each deck. The other repeat offenders carry an `escalated 2026-10-28` line in the queue.

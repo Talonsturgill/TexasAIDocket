@@ -1,41 +1,55 @@
 {
- "last_pass": "2026-10-26",
+ "last_pass": "2026-10-28",
  "themes": [
   {
-   "theme": "primitive or low-poly model where a kit model belongs (no. 61's aircraft, pod and dock tower, built in its chassis; queue drone-pod-dock-models-built-in-chassis)",
-   "runs": 7,
-   "rounds": 19,
+   "theme": "primitive or low-poly model where a kit model belongs (no. 62's brush truck, camera, cut limb and rack built in its chassis; queue brush-truck-and-limb-rack-models-built-in-chassis)",
+   "runs": 6,
+   "rounds": 16,
    "action": "fixed",
-   "what": "assets/js/kit/vehicles.js: vtol_drone (lofted cambered wing with split flap and aileron and round tips, V tail of tapered sections with ruddervators, y 0 at the skid bottom and attach.seat), parcel_pod (gasket, bumper, bail, band) and drone_dock (galvanized twelve sided pole, box arm on a brace, cradle with guide rails and contacts, detailed cabinet, crushed rock apron of 20 to 60 mm stones). New names, so no. 61's chassis re-renders as shipped."
+   "what": "grapple_truck and fleet_camera_pod in assets/js/kit/vehicles.js, brush_limb and K.growBrush in assets/js/kit/trees.js, cantilever_rack in assets/js/kit/industry.js, at the judges' named fixes (grown branchy load with modelled leaves held inside the walls, chamfered hood and raked windscreen, painted body, recessed glass lens with the accent only on the lamp, tapered bent limbs, armsB). New names, so no. 62 re-renders as shipped."
   },
   {
-   "theme": "largest object unmodelled (no. 61 frame 2's truss tower and flat cabinet)",
-   "runs": 7,
-   "rounds": 18,
+   "theme": "largest object unmodelled (no. 62 frame 1's log load and dull body wall)",
+   "runs": 6,
+   "rounds": 16,
    "action": "fixed in part",
-   "what": "The same lift: drone_dock is the tower no. 61's round 1 fix planned, a galvanized column with its cabinet modelled. The week's other instances were reliefs and slabs on other decks, which the 2026-10-24 print_ban relief floor already holds."
+   "what": "The same lift: the load and the body wall were frame 1's largest objects. The week's other instances were other decks' reliefs and slabs, which the 2026-10-24 relief cast floor already holds."
   },
   {
-   "theme": "kit person reads as a mannequin (queue kit-person-full-length-reads-as-mannequin, repeat 3, and kit-person-reads-as-mannequin-within-two-metres; nos. 55, 56, 57, 61)",
+   "theme": "K.make re-centring a model's meaningful origin (queue kmake-recentres-after-make, kmake-recentres-wall-hung-models, kmake-centring-moves-a-models-meaningful-origin; nos. 47, 50, 55, 56, 62)",
+   "runs": 5,
+   "rounds": null,
+   "action": "fixed in part",
+   "what": "scripts/carousel/arsenal.py quotes the registry's own conventions and gives every kit model an origin column read from its spec. anchor 'origin' in K.define is assets/js/txkit.js, escalated."
+  },
+  {
+   "theme": "accent never registering at thumb (queue accent-in-dom-type-never-registers-at-thumb, lit-accent-drifts-in-lab, accent-presence-forces-a-pool; nos. 48, 49, 50, 62)",
    "runs": 4,
    "rounds": null,
    "action": "fixed in part",
-   "what": "assets/js/kit/people.js: skin palette held to an envelope computed from a published in vivo table, a rendered face C* 52.4 to 45.4; look_up's shade hand opt in; hatColor. Grip pose, vest cut, collar and a near detail level stay open."
+   "what": "scripts/carousel/layout_check.py's presence failure prints the computed solid patch that reaches the measure and the closest frames; threshold unchanged. Measuring on the accent object's own pixels still needs the engine or render.py (UPGRADE_BACKLOG 2026-10-12 item 4)."
   },
   {
-   "theme": "render artifact (banding, aliasing, facets, stripes), including no. 61 frame 5's shadow stair-stepping on the airframe",
-   "runs": 6,
-   "rounds": 10,
+   "theme": "kit monitor hides its display rectangle (queue kit-monitor-hides-its-display-rectangle, no. 62)",
+   "runs": 1,
+   "rounds": null,
+   "action": "fixed",
+   "what": "assets/js/kit/interior.js publishes a monitor_display node and userData.display.size."
+  },
+  {
+   "theme": "detail floor met late in a dark staged world (queue detail-floor-fights-the-dark-staged-world and detail-floor-pushes-dark-plates-to-graph-paper; nos. 53, 55, 56, 61, 62)",
+   "runs": 5,
+   "rounds": null,
    "action": "escalated",
-   "what": "The engine's key normalBias is a fixed 0.02 and eight consecutive chassis carry their own N.unacne to raise it; proposed a texel-scaled bias in TXT.deckRig (assets/js/txthree.js, human), UPGRADE_BACKLOG 2026-10-26."
+   "what": "Measuring it at the probe and the audition needs the routine to call it there (prompts/daily_routine.md, human); UPGRADE_BACKLOG 2026-10-28."
   },
   {
-   "theme": "type sitting on or fighting the art",
-   "runs": 6,
-   "rounds": 15,
-   "action": "deferred",
-   "what": "A different collision on each deck; the honest gate still needs the id pass (UPGRADE_BACKLOG 2026-10-12 item 4)."
+   "theme": "chassis edit rebinds all three audition frames (queue, nos. 59, 61, 62)",
+   "runs": 3,
+   "rounds": null,
+   "action": "escalated",
+   "what": "Narrows CLAUDE.md's shared asset hash rule, the owner's call; count raised in UPGRADE_BACKLOG 2026-10-28."
   }
  ],
- "note": "Written by the weekly machine pass (prompts/daily_routine.md Phase 17) when it ships. Read by scripts/carousel/machine_due.py. Run and round counts are from scripts/carousel/week_digest.py --date 2026-10-26, except the person theme, counted by this pass from the queue's own evidence because the digest has no theme for it (rounds not counted)."
+ "note": "Written by the weekly machine pass (prompts/daily_routine.md Phase 17) when it ships. Read by scripts/carousel/machine_due.py. Run and round counts for the first two themes are from scripts/carousel/week_digest.py --date 2026-10-28; the queue themes are counted by this pass from the queue's own evidence because the digest has no theme for them (rounds not counted)."
 }

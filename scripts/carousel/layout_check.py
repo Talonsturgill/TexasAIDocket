@@ -533,6 +533,28 @@ def silhouette(img, rect, boxes) -> tuple[float, float, int]:
     return n / subject.size, max(sizes) / n, sum(1 for s in sizes if s >= PIECE_MIN * n)
 
 
+def accent_presence_cure(rows: list[dict]) -> str:
+    """What a frame needs to register the accent, COMPUTED from this file's own constants.
+
+    WHY (2026-10-28, queue accent-in-dom-type-never-registers-at-thumb, with lit-accent-drifts-in-lab
+    and accent-presence-forces-a-pool: carousels no. 48, 49, 50 and 62). No. 62 set its accent in
+    the DOM label type and in lamp glows and this check counted it on no frame, because the measure
+    runs at thumb scale where 24 px type and a glow sprite blur into the field. Finding that out
+    took a coated lens, a tape band, a blank tag and a title strip, round after round. The rule did
+    not move. The failure now says what reaches it, in design pixels, and how close each frame
+    came, so the cure is planned rather than found."""
+    thumb_px = ACCENT_PRESENT * THUMB[0] * THUMB[1]
+    side = (ACCENT_PRESENT * W * H) ** 0.5
+    near = sorted(((r["accent"], r["frame"]) for r in rows if r.get("accent") is not None), reverse=True)[:3]
+    best = ", ".join(f"slide {n} at {a:.4f}" for a, n in near) or "none measured"
+    return (f"Presence is {ACCENT_PRESENT} of the frame measured at {THUMB[0]} by {THUMB[1]}, about "
+            f"{thumb_px:.0f} thumb pixels, which is a SOLID patch of about {side:.0f} by {side:.0f} px "
+            f"at the {W} by {H} design size in the accent's own colour within {LAB_NEAR:.0f} Lab units. "
+            f"Type set in the accent, a glow and a hairline blur into the field at that scale and do "
+            f"not reach it. Put the accent on a solid lit surface of that area (a coated band, a tag, a "
+            f"lamp lens, a painted panel). Closest frames: {best}")
+
+
 def accent_coverage(img, hex_colour: str) -> float:
     import numpy as np
     from PIL import Image
@@ -867,7 +889,7 @@ def check(run_dir: Path, require: bool = False, image_overrides: dict[int, Path]
             problems.append(f"the accent {deck_accent} is present on {len(present)} frame(s) "
                             f"({', '.join(map(str, present)) or 'none'}), under "
                             f"{ACCENT_MIN_FRAMES}. One accent, used, is what makes a deck read as "
-                            f"one deck")
+                            f"one deck. " + accent_presence_cure(rows))
         if len(present) > ACCENT_MAX_FRAMES:
             problems.append(f"the accent {deck_accent} is present on {len(present)} frames "
                             f"({', '.join(map(str, present))}), over {ACCENT_MAX_FRAMES}. An "
@@ -957,7 +979,7 @@ def self_test() -> int:
     PAGE = (100, 400, 880, 800)   # a page of type, for the DOCUMENT case
 
     def render(d: Path, flat=(), accent_on=ACCENT_ON, accent_hex=ACC, big=(), scale=1, doc=(),
-               units=()):
+               units=(), type_accent=()):
         """Nine frames plus the render report, in the shape render.py writes. `doc` frames
         carry one page-sized text box instead of a subject; `units` frames carry their subject
         as twelve separate blobs, the way a GRID does."""
@@ -995,6 +1017,13 @@ def self_test() -> int:
             if i in accent_on:
                 size = 400 if i in big else 100
                 a[40:40 + size, W - 40 - size:W - 40] = hex_rgb(accent_hex)
+            if i in type_accent:
+                # three lines of 24 px label type in the accent: vertical glyph strokes 3 px wide
+                # on a 14 px pitch, 520 px long, the way a mono label prints
+                for ln in range(3):
+                    y0 = 300 + ln * 40
+                    for gx in range(300, 820, 14):
+                        a[y0:y0 + 24, gx:gx + 3] = hex_rgb(accent_hex)
             img = Image.fromarray(a)
             if scale != 1:
                 img = img.resize((W * scale, H * scale), Image.NEAREST)
@@ -1169,6 +1198,17 @@ def self_test() -> int:
         code, probs, _ = check(d1)
         ok("the accent on 1 frame FAILS presence",
            code == 1 and any("present on 1 frame(s)" in p and "under 3" in p for p in probs), probs)
+        side = round((ACCENT_PRESENT * W * H) ** 0.5)
+        ok("...and the failure names the solid patch that reaches it, computed from the constants",
+           any(f"about {side} by {side} px" in p and "Closest frames: slide 1 at" in p for p in probs), probs)
+        # THE ACCENT ONLY IN TYPE (no. 62): four frames whose accent is lines of 24 px type, each
+        # line a run of glyph strokes 3 px wide, FAIL presence. It was never counted and still isn't
+        dt = root / "accent_type"
+        render(dt, accent_on=(), type_accent=(1, 3, 5, 7))
+        board(dt, accent_on=(1, 3, 5, 7))
+        code, probs, _ = check(dt)
+        ok("an accent carried only by lines of type on four frames FAILS presence, naming the cure",
+           code == 1 and any("present on 0 frame(s)" in p and "SOLID patch" in p for p in probs), probs)
         db = root / "big"
         render(db, big=(3,))
         board(db)

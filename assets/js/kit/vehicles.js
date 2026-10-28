@@ -2420,6 +2420,226 @@ export function install(K, THREE, TXT) {
     },
   });
 
+  /* =========================================================================================
+   * THE BRUSH COLLECTION TRUCK AND ITS CAMERA. LIFTED 2026-10-28 by the weekly machine pass from
+   * carousel no. 62's chassis (assets/js/deck/2026-10-28-route.js, `brush_truck` and `camera_pod`),
+   * AT THE JUDGES' NAMED FIX, under new names because that chassis defines the old ones and must
+   * re-render as it shipped. What the judges charged and what changed:
+   *   - "a firewood load", "a dumpster of logs", "floating leaf cards", "two limbs through the
+   *     wall": the load is now GROWN brush (K.growBrush, kit/trees.js), branchy limbs with twigs
+   *     and leaf clusters seated on the twig tips, held inside the body's walls by a clip box, so no
+   *     limb pierces a wall and no leaf hangs in the air. It heaps over the top rail at a full load.
+   *   - "primitive box cabs", fix "a chamfered hood and windscreen": the hood is a profile with
+   *     the front arch cut, extruded with a deep rounded bevel and its nose pulled in plan, the cab
+   *     a raked profile, the windscreen raked glass in a rubber surround, framed side glass, seams,
+   *     a handle, a west coast mirror, chrome grille and lamps snapped to the nose.
+   *   - "a rust brown body", "a dull body wall": the body is painted steel (`body` colour) with
+   *     scrapes along the top rail where limbs drag over it and grime toward the floor, laid in
+   *     metres, hat section stakes, a rub rail, a bulkhead with a cab shield, barn doors with
+   *     hinges and lock rods.
+   *   - "faceted flat cyan lens", "a cartoon ring lens", fix "recessed coated glass with one
+   *     highlight, cyan only on the lamp": the camera's lens is a domed glass element seated in a
+   *     dark barrel behind a chamfered bezel, holding the sky's one highlight, and the only
+   *     colour on the camera is its status lamp (`led`).
+   * Merged by material, so a fleet of them instances cheaply. Drawn to illustrate, to no maker's
+   * design. Front +z.
+   * ========================================================================================= */
+  function cameraPod(o) {
+    const g = new THREE.Group(), tilt = o.tilt != null ? o.tilt : 0.12;
+    const shell = K.mat('cp-shell', { color: o.color != null ? o.color : 0x1e2023, roughness: 0.36, metalness: 0.2, clearcoat: 0.5, clearcoatRoughness: 0.28 }, true);
+    const metal = K.mat('cp-metal', { color: 0x8c9095, roughness: 0.34, metalness: 0.85 });
+    const barrel = K.mat('cp-barrel', { color: 0x050506, roughness: 0.65, side: THREE.DoubleSide });
+    const glass = K.mat('cp-glass', { color: 0x0b1216, roughness: 0.025, metalness: 0.15, clearcoat: 1, clearcoatRoughness: 0.02, envMapIntensity: 1.6 }, true);
+    // the bracket: a clamp plate, a swivel post and a yoke holding the head on trunnions
+    box(0.1, 0.022, 0.1, M.frame(), 0, 0, 0, 0.008, g);
+    g.add(K.cyl(0.022, 0.028, 0.11, metal, 0, 0.02, 0, 20));
+    box(0.2, 0.02, 0.05, metal, 0, 0.11, 0, 0.006, g);
+    for (const s of [1, -1]) box(0.014, 0.095, 0.05, metal, s * 0.095, 0.11, 0, 0.004, g);
+    const head = new THREE.Group(); head.position.y = 0.2; head.rotation.x = tilt; g.add(head);
+    for (const s of [1, -1]) { const tr = new THREE.Mesh(new THREE.CylinderGeometry(0.016, 0.016, 0.012, 16), metal); tr.rotation.z = Math.PI / 2; tr.position.set(s * 0.093, 0, 0); head.add(tr); }
+    // the housing, a side profile with a rounded back and a chamfered front, a visor over the lens
+    head.add(sideExtrude([['m', -0.15, -0.065], ['l', 0.15, -0.065], ['q', 0.17, -0.065, 0.17, -0.045], ['l', 0.17, 0.05], ['q', 0.17, 0.07, 0.15, 0.07],
+      ['l', -0.12, 0.07], ['q', -0.175, 0.07, -0.175, 0.025], ['l', -0.175, -0.03], ['q', -0.175, -0.065, -0.15, -0.065]], 0.17, 0.022, shell, { sizeK: 0.8 }));
+    head.add(sideExtrude([['m', 0.11, 0.068], ['l', 0.235, 0.06], ['l', 0.235, 0.069], ['l', 0.11, 0.081]], 0.19, 0.004, shell, { sizeK: 0.6 }));
+    // the sunshield's side skirts, so the visor reads as a hood over the lens rather than a shelf
+    for (const s of [1, -1]) { const sk = sidePane([[0.13, 0.072], [0.235, 0.064], [0.225, 0.03], [0.16, 0.02]], s * 0.093, 0.004, shell, 0.0015); head.add(sk); }
+    // a lens: a chamfered bezel ring proud of the face, a dark barrel, and a domed glass element
+    // seated a few millimetres inside it, which holds one highlight from the sky
+    const lens = (x, y, R) => {
+      const ring = new THREE.LatheGeometry([[R * 1.02, 0], [R * 1.32, 0], [R * 1.3, R * 0.16], [R * 1.12, R * 0.26], [R * 1.02, R * 0.26]].map((q) => new THREE.Vector2(q[0], q[1])), 48);
+      const rm = new THREE.Mesh(ring, M.frame()); rm.rotation.x = Math.PI / 2; rm.position.set(x, y, 0.17); head.add(rm);
+      const bl = new THREE.Mesh(new THREE.CylinderGeometry(R * 1.02, R * 1.02, R * 0.6, 48, 1, true), barrel); bl.rotation.x = Math.PI / 2; bl.position.set(x, y, 0.17 + R * 0.26 - R * 0.3); head.add(bl);
+      const cap = 0.36 * Math.PI, SR = R / Math.sin(cap);
+      const gl = new THREE.Mesh(new THREE.SphereGeometry(SR, 48, 16, 0, Math.PI * 2, 0, cap), glass); gl.rotation.x = Math.PI / 2;
+      gl.position.set(x, y, 0.17 + R * 0.1 - SR * Math.cos(cap)); head.add(gl);
+      return [x, y, 0.17 + R * 0.1];
+    };
+    const main = lens(0, 0.006, 0.042); lens(0.05, -0.04, 0.014);
+    // the status lamp, the one coloured thing on the camera, in a dark housing under a clear dome
+    const hs = new THREE.Mesh(new THREE.CylinderGeometry(0.009, 0.011, 0.01, 16), M.frame()); hs.rotation.x = Math.PI / 2; hs.position.set(-0.05, -0.042, 0.172); head.add(hs);
+    const led = new THREE.Mesh(new THREE.SphereGeometry(0.0065, 14, 10), K.mat('cp-led|' + (o.led >>> 0) + '|' + (o.lit ? 1 : 0),
+      { color: new THREE.Color(o.led).multiplyScalar(0.25), emissive: o.led, emissiveIntensity: o.lit ? 1.3 : 0, roughness: 0.3 }));
+    led.position.set(-0.05, -0.042, 0.177); head.add(led);
+    // the cable gland at the back
+    const gd = new THREE.Mesh(new THREE.CylinderGeometry(0.012, 0.014, 0.03, 14), M.frame()); gd.rotation.x = Math.PI / 2; gd.position.set(0, -0.03, -0.185); head.add(gd);
+    g.updateMatrixWorld(true);
+    const lw = head.localToWorld(new THREE.Vector3(main[0], main[1], main[2]));
+    g.userData.attach = { lens: [lw.x, lw.y, lw.z] };
+    return g;
+  }
+  K.define('fleet_camera_pod', {
+    size: [0.2, 0.29, 0.45],
+    options: { lit: true, led: 0x7cc6d6, tilt: 0.12, color: null },
+    note: 'An illustrative vehicle mounted computer vision camera, drawn to no maker\'s design: a dark clearcoat housing with a rounded back and a visor, a main lens and a small second lens, each a domed glass element seated in a dark barrel behind a chamfered bezel, so it holds one highlight; a status lamp in `led` (lit), the only colour on it; on a clamp plate, swivel post and yoke, the head tipped down `tilt` rad. Origin at the bracket foot, lens toward +z; userData.attach.lens is the main lens centre.',
+    make: (o) => cameraPod(o),
+  });
+
+  /* the body's paint: scrapes along the top rail where limbs drag over it, primer showing through,
+   * and grime rising from the floor. One tile is 2 m tall and the body's walls are laid in world
+   * metres with the tile's foot at the body floor, so the grime is always at the bottom. */
+  const bodyTex = () => ctex('brushbody', 512, (x, N, r) => {
+    x.fillStyle = '#f2f2f0'; x.fillRect(0, 0, N, N);
+    for (let i = 0; i < 1400; i++) { x.fillStyle = r() < 0.5 ? 'rgba(0,0,0,0.035)' : 'rgba(255,255,255,0.05)'; x.fillRect(r() * N, r() * N, 2 + r() * 6, 1 + r() * 3); }
+    const gr = x.createLinearGradient(0, N, 0, N * 0.55); gr.addColorStop(0, 'rgba(58,48,38,0.55)'); gr.addColorStop(1, 'rgba(58,48,38,0)');
+    x.fillStyle = gr; x.fillRect(0, N * 0.55, N, N * 0.45);
+    for (let i = 0; i < 70; i++) { const yy = N * (0.03 + r() * 0.16), len = 20 + r() * 140; x.strokeStyle = r() < 0.6 ? 'rgba(215,215,210,0.32)' : 'rgba(120,104,88,0.25)';
+      x.lineWidth = 1 + r() * 2; x.beginPath(); x.moveTo(r() * N, yy); x.lineTo(r() * N + len, yy + (r() - 0.5) * 6); x.stroke(); }
+    for (let i = 0; i < 90; i++) { x.fillStyle = 'rgba(40,32,26,' + (0.08 + r() * 0.12).toFixed(2) + ')'; const w = 1 + r() * 3; x.fillRect(r() * N, N * (0.6 + r() * 0.4), w, 10 + r() * 40); }
+  });
+
+  K.define('grapple_truck', {
+    size: [3.32, 3.73, 9.71],
+    options: { load: 0.6, boom: 0, cab: 0xeceae4, body: 0x5b6064, boomColor: 0x2e4c6a, beacon: true, pods: true, podsLit: true,
+      podScale: 1.4, led: 0x7cc6d6, leaves: true, dry: 0.4 },
+    note: 'An illustrative municipal brush collection truck, drawn to no maker\'s design: a conventional cab (`cab` colour) with a chamfered hood, raked windscreen in a rubber surround, chrome grille and lamps; a tandem chassis on steel duals; an open painted steel brush body (`body` colour) with stakes, rub rail, top rail scrapes, a bulkhead with cab shield and barn doors; a knuckle boom grapple loader behind the cab (`boom` 0 folded over the body to 1 reaching out); two fleet_camera_pod cameras on the body\'s front corners turned to the sides (`pods`, `podsLit`, `podScale`, `led`). `load` 0 to 1 fills the body with grown cut brush held inside its walls, heaping over the rail when full (`leaves`, `dry`). Merged by material. userData.attach: pods (the two lens centres), body (top centre of the body), cab, grapple. Front +z.',
+    make(o, r) {
+      const G = new THREE.Group(), P = paint(o.cab != null ? o.cab : 0xeceae4, 0);
+      const W = 2.44, hw = W / 2, R = 0.52, zf = 4.7, steer = 3.45;
+      // the frame rails and the bumper
+      box(0.95, 0.26, 9.1, M.frame(), 0, 0.66, 0.05, 0.02, G);
+      box(2.46, 0.3, 0.28, M.chrome(), 0, 0.58, zf + 0.06, 0.05, G);
+      // THE HOOD: the arch cut into its profile, a deep rounded bevel for the chamfered shoulders,
+      // the nose pulled in plan so its corners turn rather than stop
+      const hood = sideExtrude([['m', 2.55, 0.98], ['arch', steer, R + 0.12, R], ['l', zf - 0.15, 0.98], ['l', zf, 1.04], ['l', zf, 1.62],
+        ['q', zf - 0.02, 1.8, zf - 0.32, 1.84], ['l', 2.55, 2.0]], 2.16, 0.15, P, { sizeK: 0.9, deform: planRound(zf, -1e3, 0.07, 0.55) });
+      G.add(hood);
+      for (const s of [1, -1]) {
+        const lip = new THREE.Mesh(new THREE.TorusGeometry(R + 0.14, 0.024, 8, 32, Math.PI), M.trim()); lip.rotation.y = Math.PI / 2; lip.position.set(s * 1.07, R, steer); G.add(lip);
+        for (let lv = 0; lv < 6; lv++) box(0.02, 0.022, 0.42, M.trim(), s * 1.075, 1.42 + lv * 0.06, 3.55, 0.006, G);
+      }
+      const nose = snapper([hood], 1, zf);
+      const gr = RB(1.04, 0.62, 0.05, 0.04, M.chrome()); gr.position.set(0, 1.36, nose(0, 1.36) + 0.02); G.add(gr);
+      box(0.94, 0.52, 0.04, M.well(), 0, 1.1, nose(0, 1.36) + 0.035, 0.01, G);
+      for (let i = 0; i < 6; i++) box(0.92, 0.02, 0.025, M.chrome(), 0, 1.15 + i * 0.085, nose(0, 1.36) + 0.05, 0.005, G);
+      lamp(G, 0.3, 0.18, 0.8, 1.42, nose, 'head');
+      lamp(G, 0.13, 0.07, 0.8, 1.22, nose, 'amber');
+      // THE CAB: a raked profile, the windscreen raked glass in a rubber surround, framed side glass
+      G.add(sideExtrude([['m', 0.75, 1.05], ['l', 2.6, 1.05], ['l', 2.6, 2.04], ['l', 2.32, 2.9], ['q', 2.24, 3.0, 2.08, 3.0], ['l', 0.86, 3.0], ['q', 0.75, 3.0, 0.75, 2.88]], W, 0.1, P));
+      G.add(sideExtrude([['m', 2.62, 2.02], ['l', 2.345, 2.9], ['l', 2.31, 2.9], ['l', 2.585, 2.02]], W - 0.14, 0.012, M.trim()));
+      G.add(sideExtrude([['m', 2.625, 2.07], ['l', 2.355, 2.86], ['l', 2.335, 2.86], ['l', 2.605, 2.07]], W - 0.24, 0.008, M.glass()));
+      for (const s of [1, -1]) sideWindow(G, [[2.44, 2.1], [2.25, 2.8], [1.05, 2.8], [1.05, 2.1]], s * hw, s);
+      seam(G, hw, 2.58, 1.1, 2.58, 2.02); seam(G, hw, 1.0, 1.1, 1.0, 2.8);
+      handle(G, hw, 1.95, 1.3, M.satin());
+      mirror(G, hw, 2.1, 2.42, M.trim(), true);
+      for (const s of [1, -1]) {
+        box(0.34, 0.04, 0.5, M.satin(), s * (hw - 0.05), 0.7, 1.55, 0.01, G);                       // the step
+        const tank = new THREE.Mesh(new THREE.CylinderGeometry(0.3, 0.3, 1.1, 28), M.alloy()); tank.rotation.x = Math.PI / 2; tank.position.set(s * 0.92, 0.82, 0.5); G.add(tank);
+        for (const z of [0.12, 0.88]) { const st = new THREE.Mesh(new THREE.TorusGeometry(0.305, 0.012, 6, 28), M.frame()); st.position.set(s * 0.92, 0.82, z); G.add(st); }
+        bar([s * (hw + 0.03), 1.25, 0.86], [s * (hw + 0.03), 2.6, 0.86], 0.016, M.chrome(), G);      // the grab handle
+      }
+      if (o.beacon) { box(1.1, 0.1, 0.24, M.frame(), 0, 3.0, 1.5, 0.04, G); box(0.98, 0.09, 0.2, M.amber(), 0, 3.09, 1.5, 0.04, G); }
+      for (let i = -2; i <= 2; i++) box(0.09, 0.04, 0.05, M.amber(), i * 0.25, 2.99, 2.12, 0.01, G);
+      G.add(K.cyl(0.08, 0.08, 2.3, M.chrome(), -hw + 0.18, 1.05, 0.62, 18));
+      // THE BODY: painted steel, its walls laid in world metres so the grime sits at the floor
+      const bz0 = 0.0, bz1 = -4.65, by0 = 1.12, by1 = 3.1, bl = bz0 - bz1, bc = (bz0 + bz1) / 2;
+      const btex = bodyTex(); btex.repeat.set(1, 1); btex.offset.set(0, -by0 / 2);
+      const BM = K.mat('brushbody|' + ((o.body != null ? o.body : 0x5b6064) >>> 0), { color: o.body != null ? o.body : 0x5b6064, map: btex, roughness: 0.52, metalness: 0.25,
+        clearcoat: 0.25, clearcoatRoughness: 0.5 }, true);
+      const part = (w, h, d, rr, x, y, z) => { const m = RB(w, h, d, rr, BM); m.geometry = m.geometry.clone(); m.geometry.translate(x, y, z); K.uvBox(m.geometry, 2); G.add(m); return m; };
+      box(W, 0.12, bl, K.mat('brushfloor', { color: 0x2a2724, roughness: 0.85, metalness: 0.2 }), 0, by0 - 0.06, bc, 0.02, G);   // the floor, scuffed dark by bark
+      for (const s of [1, -1]) {
+        part(0.05, by1 - by0, bl, 0.01, s * (hw - 0.025), (by0 + by1) / 2, bc);
+        part(0.1, 0.1, bl + 0.04, 0.03, s * hw, by1, bc);
+        for (let i = 0; i <= 7; i++) part(0.07, by1 - by0, 0.09, 0.02, s * (hw + 0.02), (by0 + by1) / 2, bz0 - 0.1 - i * (bl - 0.2) / 7);
+        box(0.06, 0.1, bl, M.frame(), s * (hw + 0.045), by0 + 0.26, bc, 0.02, G);                  // the rub rail
+        box(0.12, 0.12, bl, M.frame(), s * hw, by0 - 0.14, bc, 0.02, G);                           // the sill
+        lamp(G, 0.06, 0.04, hw + 0.05, by1 - 0.1, bz0 - 0.2, 'amber');
+      }
+      for (let z = bz0 - 0.3; z > bz1; z -= 0.6) box(W - 0.2, 0.1, 0.08, M.frame(), 0, by0 - 0.1, z, 0.01, G);   // crossmembers
+      part(W, by1 - by0 + 0.5, 0.08, 0.02, 0, (by0 + by1 + 0.5) / 2, bz0);                          // the bulkhead
+      part(W, 0.08, 0.55, 0.02, 0, by1 + 0.5, bz0 + 0.22);                                          // the cab shield
+      // the barn doors: two leaves with stiffeners, hinges, two lock rods with handles
+      for (const s of [1, -1]) {
+        part(hw - 0.01, by1 - by0, 0.06, 0.01, s * (hw / 2), (by0 + by1) / 2, bz1);
+        for (const yy of [by0 + 0.55, by0 + 1.3]) part(hw - 0.12, 0.07, 0.05, 0.012, s * (hw / 2), yy, bz1 - 0.05);
+        for (const yy of [by0 + 0.3, by0 + 1.0, by1 - 0.3]) { const h = new THREE.Mesh(new THREE.CylinderGeometry(0.03, 0.03, 0.14, 12), M.frame()); h.position.set(s * (hw + 0.01), yy, bz1 - 0.02); G.add(h); }
+        bar([s * 0.3, by0 + 0.05, bz1 - 0.09], [s * 0.3, by1 + 0.02, bz1 - 0.09], 0.016, M.chrome(), G);
+        box(0.16, 0.03, 0.03, M.chrome(), s * 0.36, by0 + 0.9, bz1 - 0.1, 0.008, G);
+        lamp(G, 0.17, 0.12, hw - 0.18, 0.95, bz1 - 0.06, 'tail', -1);
+        box(0.5, 0.55, 0.02, M.rubber(), s * 0.95, 0.42, -4.62, 0.004, G);                         // mud flaps
+      }
+      box(0.04, by1 - by0, 0.04, M.frame(), 0, by0, bz1 - 0.05, 0.01, G);
+      box(2.3, 0.14, 0.12, M.frame(), 0, 0.6, bz1 - 0.1, 0.02, G);                                  // the under-ride bar
+      // THE LOADER: a pedestal behind the cab, the inner boom raised, the outer folded back over
+      // the body, a rotator and a four tine grapple hanging open, chrome rams and hoses
+      const BC = K.mat('brushboom|' + (o.boomColor >>> 0), { color: o.boomColor, roughness: 0.42, metalness: 0.15, clearcoat: 0.45, clearcoatRoughness: 0.35 }, true);
+      G.add(K.cyl(0.26, 0.32, 0.5, M.frame(), 0.35, 0.95, 0.4, 24));
+      box(0.36, 2.2, 0.36, BC, 0.35, 1.3, 0.4, 0.05, G);
+      const k = clamp01(o.boom || 0);
+      const inner = new THREE.Group(); inner.position.set(0.35, 3.4, 0.4); inner.rotation.x = 0.06 + 0.5 * k; inner.rotation.y = k * 1.3; G.add(inner);
+      box(0.28, 0.32, 2.5, BC, 0, -0.16, -1.15, 0.05, inner);
+      bar([0, -0.3, -0.05], [0, -0.22, -1.35], 0.06, M.chrome(), inner, 14);
+      for (const hx of [-0.1, 0.1]) inner.add(TXT.tube([[hx, 0.17, 0.2], [hx, 0.2, -1.2], [hx, 0.17, -2.3]], 0.018, M.rubber(), { segments: 20, radial: 6 }));
+      const elbow = new THREE.Group(); elbow.position.set(0, 0, -2.4); inner.add(elbow);
+      const kn = new THREE.Mesh(new THREE.CylinderGeometry(0.17, 0.17, 0.4, 20), BC); kn.rotation.z = Math.PI / 2; elbow.add(kn);
+      const outer = new THREE.Group(); outer.rotation.x = -0.95 + 0.5 * k; elbow.add(outer);
+      box(0.24, 0.26, 2.4, BC, 0, -0.13, -1.15, 0.05, outer);
+      const grap = new THREE.Group(); grap.position.set(0, 0, -2.4); outer.add(grap);
+      const lev = new THREE.Group(); lev.rotation.x = -(outer.rotation.x + inner.rotation.x); grap.add(lev);
+      box(0.22, 0.3, 0.22, M.frame(), 0, -0.3, 0, 0.03, lev);
+      lev.add(K.cyl(0.1, 0.1, 0.18, M.chrome(), 0, -0.45, 0, 16));
+      box(0.5, 0.12, 0.2, M.frame(), 0, -0.56, 0, 0.03, lev);
+      for (const s of [1, -1]) for (const zz of [-0.13, 0.13]) {
+        const pts = []; for (let i = 0; i <= 10; i++) { const a = i / 10; pts.push([s * (0.12 + 0.62 * Math.sin(a * 2.3)), -0.5 - 0.66 * a, zz]); }
+        lev.add(TXT.tube(pts, 0.035, M.frame(), { segments: 24, radial: 8 }));
+      }
+      // THE LOAD: grown brush inside the walls, heaped over the rail when full
+      if (o.load > 0) {
+        const L = clamp01(o.load), n = Math.max(3, Math.round(56 * L)), topY = by0 + (by1 - by0) * Math.min(1.12, 0.3 + 0.8 * L), limbs = [];
+        for (let i = 0; i < n; i++) {
+          const fwd = r() < 0.5, len = Math.min(bl - 0.4, 1.4 + r() * 2.1), rad = 0.03 + Math.pow(r(), 1.5) * 0.065;
+          const y = by0 + 0.1 + rad + (topY - by0 - 0.2) * Math.pow((i + r()) / n, 0.75);
+          limbs.push({ at: [(r() - 0.5) * (W - 0.5), y, fwd ? bz0 - 0.18 - r() * 0.5 : bz1 + 0.18 + r() * 0.5],
+            dir: [(r() - 0.5) * 0.5, 0.06 + r() * 0.28, fwd ? -1 : 1], len, rad });
+        }
+        G.add(K.growBrush({ limbs, branches: 1, leaves: o.leaves !== false, dry: o.dry, floor: by0 + 0.07, leafDensity: 7,
+          clip: [-hw + 0.06, by0 + 0.07, bz1 + 0.08, hw - 0.06, topY + 0.55 * L, bz0 - 0.09] }, r));
+      }
+      // THE CAMERAS: one on each front corner of the body, on an arm off the top rail, turned out
+      const pods = [];
+      if (o.pods) for (const s of [1, -1]) {
+        const sc = o.podScale || 1.4, pd = cameraPod({ lit: o.podsLit, led: o.led, tilt: 0.18 });
+        pd.scale.setScalar(sc); pd.position.set(s * (hw + 0.1), by1 + 0.06, bz0 - 0.35); pd.rotation.y = s * Math.PI / 2; G.add(pd);
+        box(0.14, 0.04, 0.12, M.frame(), s * (hw + 0.04), by1 + 0.04, bz0 - 0.35, 0.01, G);
+        pd.updateMatrixWorld(true);
+        const l = pd.userData.attach.lens, w = pd.localToWorld(new THREE.Vector3(l[0], l[1], l[2])); pods.push([w.x, w.y, w.z]);
+      }
+      // the wheels: the steer axle and the tandem's duals
+      axle(G, steer, R, 0.3, 2.06, 'truck', M.steelWheel(), { rimR: 0.3, wellW: 1.4 });
+      axle(G, -2.7, R, 0.28, 2.3, 'truck', M.steelWheel(), { rimR: 0.3, dual: true, wellW: 0.9 });
+      axle(G, -3.95, R, 0.28, 2.3, 'truck', M.steelWheel(), { rimR: 0.3, dual: true, wellW: 0.9 });
+      // centre the footprint HERE, before publishing coordinates, so K.make leaves it alone
+      // (merged first: the merge bakes each mesh into the root's frame, and an instanced load keeps
+      // its own, so shifting the merged children moves both alike)
+      const bb = new THREE.Box3().setFromObject(G), cx = (bb.min.x + bb.max.x) / 2, cz = (bb.min.z + bb.max.z) / 2;
+      const out = mergeByMaterial(G);
+      out.children.forEach((c) => { c.position.x -= cx; c.position.z -= cz; });
+      const sh = (p) => [+(p[0] - cx).toFixed(3), +p[1].toFixed(3), +(p[2] - cz).toFixed(3)];
+      out.userData.attach = { pods: pods.map(sh), body: sh([0, by1, bc]), cab: sh([0, 2.4, 1.8]), grapple: sh([0.35, 2.4, -2.2]) };
+      return out;
+    },
+  });
+
   const lerpN = (a, b, t) => a + (b - a) * t;
 
   for (const n of ['pickup', 'sedan', 'suv', 'delivery_van', 'school_bus', 'semi_truck', 'utility_bucket_truck']) {

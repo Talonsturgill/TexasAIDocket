@@ -3634,4 +3634,80 @@
  ],
  "not_done": "Type sitting on the art (6 runs, 15 rounds) got no change, a different collision on each deck and still the id pass. The person's grip pose, vest cut, collar and a near detail level stay open. A multirotor survey drone waits for the deck that flies one. Frontier scan limited to the skin colorimetry question; the time went to the proofs"
 }
+,
+"2026-10-28 weekly": {
+ "date": "2026-10-28",
+ "run": "weekly machine pass, read with carousel no. 62",
+ "actor": "upgrade",
+ "upgrades": [
+  {
+   "what": "Kit grapple_truck and fleet_camera_pod (assets/js/kit/vehicles.js), brush_limb and K.growBrush (assets/js/kit/trees.js), cantilever_rack (assets/js/kit/industry.js), lifted from no. 62's chassis at its judges' named fixes: a load grown by the trees' grower with modelled cedar elm leaves seated on the twigs and wood and leaves held inside the body walls by a clip box, a chamfered hood and raked windscreen in a rubber surround, a painted body with top rail scrapes in place of rust brown, a camera lens of domed glass in a dark barrel behind a chamfered bezel with the accent only on its status lamp, tapered bent limbs with saw cut end grain whose butt keeps its origin, and wide flange rack uprights whose later uprights carry only armsB arms. New names, so no. 62's chassis re-renders as shipped. The grower gained an optional clip box, a radial multiplier and the trunk ends, all inert for the trees",
+   "why": "Digest themes 'largest object unmodelled' and 'primitive or low-poly model where a kit model belongs', each 6 runs of 6 and 16 rounds, the week's top two; artwork_craft lowest on 4 decks of 6 (week mean 6.67). No. 62 built all four in its chassis (queue brush-truck-and-limb-rack-models-built-in-chassis). Its judges named 'a firewood load', 'a dumpster of logs', 'floating leaf cards', 'two limbs through the wall', 'primitive box cabs', 'a rust brown body', 'faceted flat cyan lens', 'a cartoon ring lens', 'untapered limbs' and 'five empty arms on the second upright', and asked for 'branchy brush with small leaves', 'a chamfered hood and windscreen', 'recessed coated glass with one highlight, cyan only on the lamp' and 'tapered bent limbs'",
+   "files": [
+    "assets/js/kit/vehicles.js",
+    "assets/js/kit/trees.js",
+    "assets/js/kit/industry.js",
+    "knowledge/carousel/ARSENAL.md"
+   ],
+   "verification": "python3 examples/kit/build.py for each family (vehicles grapple_truck,fleet_camera_pod; trees brush_limb; industry cantilever_rack) with --world lastLight, rendered through .claude/skills/carousel-engine/render.py with no errors and read at full size; hand framed proofs in out/2026-10-28/tmp/machine/proof show the load from above inside the walls with no leaf on an outside face, the pod's recessed lens and lamp, limbs on the rack's arms starting on one line, and the far upright carrying two arms. The first proof used the trees' leaf atlas and every card read as a flat feather at two metres, so leaves are modelled. examples/kit/sizes.py exits 0, 135 of 135; arsenal.py --check ok",
+   "revert": "uncommitted at handoff; the showrunner's upgrade commit for this change, or git checkout of the three kit files, then python3 scripts/carousel/arsenal.py",
+   "how_i_would_know_this_was_wrong": "A deck that calls grapple_truck is still charged for a log load, a box cab or a dark lens; a leaf or limb shows through a body wall; brush_limb's bark is charged as pale or stretched under a warm key; a full load pushes render.py past its page timeout; or a tree renders differently from before (the grower's additions are meant to be inert for trees)"
+  },
+  {
+   "what": "Kit monitor publishes its display: an empty node named monitor_display at the display centre in the tilted head, a fifth of a millimetre in front of the kit's screen, and userData.display.size",
+   "why": "Queue kit-monitor-hides-its-display-rectangle: no. 62 frame 4 seated its own screen from the monitor's bounding box, left of and in front of the bezel, which a pixel critic charged as a misregistered panel, and seating it took a traverse for the head and the kit's own arithmetic",
+   "files": [
+    "assets/js/kit/interior.js",
+    "knowledge/carousel/ARSENAL.md"
+   ],
+   "verification": "out/2026-10-28/tmp/machine/proof slide 6: a plane of userData.display.size added to the node lands within 0.00008 m of the kit's own screen corners, read at full size; the node is empty, so geometry, bounds and no. 62 frame 4's traverse are unchanged",
+   "revert": "uncommitted at handoff; the showrunner's upgrade commit, or git checkout assets/js/kit/interior.js",
+   "how_i_would_know_this_was_wrong": "A frame that adds its canvas to monitor_display is still charged with a misregistered or floating screen, or a deck that clones a monitor loses the node"
+  },
+  {
+   "what": "arsenal.py quotes the kit registry's own METRES and FRONT conventions in place of a typed sentence that left out the origin exceptions, and every kit model row carries an origin column (centred, kept, kept on some options, kept anchor base) read from the spec, the make body and the local functions it calls",
+   "why": "K.make re-centring a model's meaningful origin bit nos. 47, 50, 55, 56 and 62 across three queue items (kmake-recentres-after-make, kmake-recentres-wall-hung-models, kmake-centring-moves-a-models-meaningful-origin); no. 62 spent two audition renders finding it with debug spheres. Item kmake-recentres-after-make proposed saying it in ARSENAL's kit conventions on 2026-10-09 and it stayed undone because ARSENAL is generated, though its generator is this lane's",
+   "files": [
+    "scripts/carousel/arsenal.py",
+    "knowledge/carousel/ARSENAL.md"
+   ],
+   "verification": "arsenal.py --self-test 38 of 38, including the origin read four ways, an option guarded keepOrigin reading kept on some options, the row GOING RED to centred when its keepOrigin line is deleted, and the conventions line withdrawn when the header stops stating it; the column checked against examples/kit/sizes.py's measured anchoring on all 135 models with one conservative miss (crop_rows reads kept on some options and keeps its origin on both branches); arsenal.py --check ok",
+   "revert": "uncommitted at handoff; the showrunner's upgrade commit, or git checkout scripts/carousel/arsenal.py, then python3 scripts/carousel/arsenal.py",
+   "how_i_would_know_this_was_wrong": "A deck plans a builder coordinate on a model the column calls kept and finds it moved (the static read missed a wrapper, as industry's pre wrapper models would be if one ever set keepOrigin), or the next sizes.py run disagrees with the column on a model it calls kept"
+  },
+  {
+   "what": "layout_check's accent presence failure prints the solid patch that reaches the measure, computed from its own constants (about 54 by 54 design px), says type, glows and hairlines do not reach it, and names the three closest frames; the threshold is unchanged",
+   "why": "The accent measure bit nos. 48, 49, 50 and 62 (queue lit-accent-drifts-in-lab, accent-presence-forces-a-pool, accent-in-dom-type-never-registers-at-thumb). No. 62 set its accent in DOM label type and lamp glows, the gate counted it on no frame, and the run found the cure by trial over several renders",
+   "files": [
+    "scripts/carousel/layout_check.py"
+   ],
+   "verification": "layout_check --self-test passes with two new cases: a one frame accent failure names the computed patch and the closest frame, and an accent carried only by lines of 24 px type on four frames FAILS presence. With the message reverted both new cases FAIL (mutation run, exit 1). layout_check --date 2026-10-28 --require on the shipped no. 62 still exits 0",
+   "revert": "uncommitted at handoff; the showrunner's upgrade commit, or git checkout scripts/carousel/layout_check.py",
+   "how_i_would_know_this_was_wrong": "A run reads the message and still spends rounds finding a surface that registers, or a patch of the printed size fails to register under a dusk key (then the Lab drift is the cause and the item lit-accent-drifts-in-lab is the one to move)"
+  }
+ ],
+ "proposals_out_of_lane": [
+  {
+   "what": "K.define takes anchor 'origin' and 'wall'",
+   "owner": "human",
+   "why": "K.make re-centring bit nos. 47, 50, 55, 56, 62; assets/js/txkit.js (UPGRADE_BACKLOG 2026-10-28)"
+  },
+  {
+   "what": "A GATE_LESSONS entry: a gate's failure message carrying the computed cure is part of the gate",
+   "owner": "human",
+   "why": "layout_check's accent presence was right on no. 62 and still cost rounds; knowledge/shared is human (UPGRADE_BACKLOG 2026-10-28)"
+  },
+  {
+   "what": "The routine measures layout_check's per frame detail floor at the probe and the audition",
+   "owner": "human",
+   "why": "detail-floor-fights-the-dark-staged-world (nos. 61, 62) and detail-floor-pushes-dark-plates-to-graph-paper (nos. 53, 55, 56); no. 62's probe frame failed the floor later; prompts/daily_routine.md (UPGRADE_BACKLOG 2026-10-28)"
+  },
+  {
+   "what": "art_preflight binds each audition frame to the chassis models it instantiates",
+   "owner": "human",
+   "why": "chassis-edit-rebinds-all-three-audition-frames, now nos. 59, 61, 62; narrows CLAUDE.md's shared asset hash rule, the owner's call"
+  }
+ ],
+ "not_done": "No frontier scan: the time went to the proofs, which took three render rounds to get the leaves right. Contact and grime (6 runs, 12 rounds), render artifacts (5 runs, 11 rounds, the engine normalBias proposal of 2026-10-26 stands), objects in a void and type on the art (5 runs, 10 rounds each) had a different cause on each deck. brush_pile, count_token and notice_letter stay in no. 62's chassis, one deck each. scripts/site/ask_answers.py was modified in the working tree by another process during this pass and is not part of it"
+}
 }

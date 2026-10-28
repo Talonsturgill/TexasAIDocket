@@ -320,7 +320,7 @@ export function install(K, THREE, TXT) {
    *   spread (pull away from the trunk axis), taper (end radius / start radius) } ],
    *   leaves: { per (clusters per terminal twig), from (t), size [min,max], key, cards } } */
   function grow(S, r) {
-    const wood = { pos: [], nor: [], uv: [], idx: [] }, clusters = [], tips = [];
+    const wood = { pos: [], nor: [], uv: [], idx: [] }, clusters = [], tips = [], trunkEnds = [];
     let tris = 0;
     function perp(d) { const a = Math.abs(d.y) < 0.9 ? new V3(0, 1, 0) : new V3(1, 0, 0); const u = a.clone().cross(d).normalize(); return [u, d.clone().cross(u).normalize()]; }
     function branch(p0, d0, len, rad, lvl, az0) {
@@ -334,14 +334,25 @@ export function install(K, THREE, TXT) {
          .add(new V3(0, (L.up || 0) - (L.droop || 0) * t, 0)).addScaledVector(out, L.spread || 0).normalize();
         p = p.clone().addScaledVector(d, len / nSteps);
         if (S.floor != null && p.y < S.floor) { p.y = S.floor; d.y = Math.abs(d.y) * 0.5; d.normalize(); }
+        // S.clip [x0, y0, z0, x1, y1, z1]: a box the wood may not leave (a brush body's walls), the
+        // surface held a radius inside it and the branch turned back in, the way the floor does it
+        if (S.clip) {
+          const C = S.clip, m = rad * 1.05;
+          [['x', 0, 3], ['y', 1, 4], ['z', 2, 5]].forEach(([ax, lo, hi]) => {
+            if (p[ax] < C[lo] + m) { p[ax] = C[lo] + m; d[ax] = Math.abs(d[ax]) * 0.5; d.normalize(); }
+            else if (p[ax] > C[hi] - m) { p[ax] = C[hi] - m; d[ax] = -Math.abs(d[ax]) * 0.5; d.normalize(); }
+          });
+        }
         pts.push(p); radii.push(rad * (1 - (1 - L.taper) * Math.pow(t, L.taperPow || 1)));
       }
-      const radial = rad > 0.25 ? 14 : rad > 0.1 ? 10 : rad > 0.04 ? 7 : rad > 0.018 ? 5 : 4;
+      // S.radialK: more sides for wood a camera meets within a metre or two (cut brush); trees leave it 1
+      const radial = Math.round((rad > 0.25 ? 14 : rad > 0.1 ? 10 : rad > 0.04 ? 7 : rad > 0.018 ? 5 : 4) * (S.radialK || 1));
       if (lvl === 0 && S.flare) {
         // root flare: fatten the first metre and add buttress roots running into the ground
         for (let i = 0; i < pts.length; i++) { const h = Math.max(0, pts[i].y); radii[i] *= 1 + S.flare * Math.exp(-h * 4.5); }
       }
       taperTube(pts, radii, radial, wood); tris += (pts.length - 1) * radial * 2;
+      if (lvl === 0) { const e = pts[pts.length - 1]; trunkEnds.push([e.clone(), e.clone().sub(pts[pts.length - 2]).normalize(), radii[radii.length - 1]]); }
       if (lvl === 0 && S.roots) {
         // buttress roots: short tapering tubes leaving the trunk foot and diving under the grade
         const nr = S.roots, r0 = rad * (1 + (S.flare || 0));
@@ -384,7 +395,7 @@ export function install(K, THREE, TXT) {
       }
     }
     S.trunks.forEach((T, i) => branch(new V3(T.at[0], T.at[1] || 0, T.at[2] != null ? T.at[2] : T.at[1] || 0), new V3(...T.dir), T.len, T.rad, 0, T.az));
-    return { wood, clusters, tips, tris };
+    return { wood, clusters, tips, tris, trunkEnds };
   }
   // the canopy occlusion term and the instanced foliage
   function foliage(g, list, lm, geoKey, cards, colors, r, o) {
@@ -833,6 +844,150 @@ export function install(K, THREE, TXT) {
         c.setRGB(0.8 + r() * 0.3, 0.75 + r() * 0.3, 0.7 + r() * 0.25); imD.setColorAt(i, c);
       }
       [imF, imP, imD].filter((m) => m.count > 0).forEach((m) => { m.instanceMatrix.needsUpdate = true; if (m.instanceColor) m.instanceColor.needsUpdate = true; g.add(m); });
+      return g;
+    },
+  });
+
+  /* =======================================================================================
+   * CUT BRUSH: a limb a crew sawed off a street tree, the way it lies at a curb, on a rack or in
+   * a brush truck. LIFTED 2026-10-28 by the weekly machine pass from carousel no. 62's chassis
+   * (assets/js/deck/2026-10-28-route.js, `cut_limb` and the truck's load), AT THE JUDGES' NAMED FIX.
+   * Its judges charged the chassis load as "a firewood load", "reads as a dumpster of logs" and
+   * "floating leaf cards", asked for "branchy brush with small leaves" and "the orphaned cards"
+   * culled, and charged the rack's limbs as "untapered" and "a bar chart drawn in sticks", asking
+   * for "tapered bent limbs". So a limb here is GROWN by the same grower as the trees: a tapered
+   * main stem with a seeded bend, side branches and twigs off it (none for a bare cut limb, which
+   * keeps short twig stubs), cedar elm bark at a scale for wood this thin, a saw cut at the butt
+   * showing pale ringed end grain with a bark rim, and leaves only as the species' own clusters
+   * seated on the twig tips, so no leaf exists that is not on a twig.
+   *
+   * K.growBrush({ limbs, branches, leaves, dry, bend, clip, floor, cutTip }, r) grows any number
+   * of limbs into ONE wood mesh, one instanced foliage mesh and one instanced end grain mesh, for
+   * a load. `limbs` is [{ at: [x, y, z] (the butt's axis), dir, len, rad }]. `clip` is a box
+   * [x0, y0, z0, x1, y1, z1] neither wood nor leaf cluster leaves, which is how a truck's load
+   * stays inside its walls. userData.butts lists every butt as [x, y, z, rad].
+   * ===================================================================================== */
+  const ENDGRAIN = () => mat('endgrain', () => new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.82,
+    map: texture('endgrain', 256, 256, (x, W, H, r) => {
+      const c = W / 2;
+      x.fillStyle = '#d6bb8e'; x.fillRect(0, 0, W, H);
+      // growth rings, a little eccentric the way a limb's are, wider on the side it leaned to
+      const ox = (r() - 0.5) * 18, oy = (r() - 0.5) * 18;
+      for (let k = 1; k < 26; k++) {
+        const t = k / 26;
+        x.strokeStyle = 'rgba(' + Math.round(132 + r() * 24) + ',' + Math.round(96 + r() * 16) + ',58,' + (0.3 + r() * 0.3).toFixed(2) + ')';
+        x.lineWidth = 0.8 + r() * 1.4;
+        x.beginPath(); x.ellipse(c + ox * (1 - t), c + oy * (1 - t), t * (c - 14), t * (c - 14) * (0.95 + r() * 0.08), r() * 0.3, 0, 6.3); x.stroke();
+      }
+      const hg = x.createRadialGradient(c + ox, c + oy, 0, c + ox, c + oy, c * 0.28);
+      hg.addColorStop(0, 'rgba(120,80,44,0.65)'); hg.addColorStop(1, 'rgba(120,80,44,0)'); x.fillStyle = hg; x.fillRect(0, 0, W, H);
+      // drying checks and the saw's arc marks
+      for (let k = 0; k < 5; k++) { const a = r() * 6.283; x.strokeStyle = 'rgba(70,46,26,0.55)'; x.lineWidth = 1.2;
+        x.beginPath(); x.moveTo(c + ox * 0.6, c + oy * 0.6); x.lineTo(c + Math.cos(a) * (c - 20) * (0.4 + r() * 0.5), c + Math.sin(a) * (c - 20) * (0.4 + r() * 0.5)); x.stroke(); }
+      for (let k = 0; k < 9; k++) { x.strokeStyle = 'rgba(255,240,210,0.12)'; x.lineWidth = 2; x.beginPath(); x.arc(c - 300, c + (k - 4) * 26, 300, -0.5, 0.5); x.stroke(); }
+      // the bark rim
+      x.strokeStyle = '#3e3229'; x.lineWidth = 13; x.beginPath(); x.arc(c, c, c - 7, 0, 6.3); x.stroke();
+      x.strokeStyle = '#7a6a58'; x.lineWidth = 2; x.beginPath(); x.arc(c, c, c - 13, 0, 6.3); x.stroke();
+      grain(x, W, H, 0.22);
+    }) }));
+  // one cedar elm leaf, unit length along +x from its petiole at the origin, folded up a little on
+  // its midrib (+y is its face), a slightly toothed ovate outline
+  const LEAFGEO = () => GEOC.leaf || (GEOC.leaf = (() => {
+    const P = [], I = [], seg = 5;
+    for (let i = 0; i <= seg; i++) {
+      const t = i / seg, x = 0.08 + 0.92 * t, w = 0.27 * Math.sin(Math.PI * Math.pow(t, 0.8)) * (1 + 0.06 * ((i % 2) ? 1 : -1));
+      P.push(x, 0.02 * Math.sin(Math.PI * t), 0, x, 0.07 * w, w, x, 0.07 * w, -w);
+    }
+    for (let i = 0; i < seg; i++) { const a = i * 3, b = a + 3; I.push(a, b, a + 1, b, b + 1, a + 1, a, a + 2, b, b, a + 2, b + 2); }
+    P.push(0, 0, 0); const pe = P.length / 3 - 1; I.push(pe, 0, 1, pe, 2, 0);
+    const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.Float32BufferAttribute(P, 3)); g.setIndex(I); g.computeVertexNormals(); return g;
+  })());
+  const GEOC = {};
+  const LEAFMAT = () => mat('brushleaf', () => new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.72, metalness: 0, side: THREE.DoubleSide, envMapIntensity: 0.5 }));
+  // elm bark at a scale for wood a few centimetres thick: the trunk's furrows, finer
+  const fineBark = () => mat('bark|elm|fine', () => {
+    const m = barkMat('elm').clone();
+    m.map = m.map.clone(); m.map.repeat.set(2, 2); m.map.needsUpdate = true;
+    m.bumpMap = m.bumpMap.clone(); m.bumpMap.repeat.set(2, 2); m.bumpMap.needsUpdate = true;
+    m.color = new THREE.Color(0x6a625a); m.bumpScale = 1.3; return m;
+  });
+  function growBrush(o, r) {
+    const b = Math.max(0, Math.min(1, o.branches != null ? o.branches : 1)), bend = o.bend != null ? o.bend : 1;
+    const levels = [{ step: 0.2, wander: 0.09 * bend, up: 0, taper: o.taper != null ? o.taper : 0.45, taperPow: 0.9 }];
+    if (b > 0) {
+      levels.push({ n: Math.max(1, Math.round(4 * b)), t0: 0.28, t1: 0.96, angle: 0.62, angleJit: 0.35, lenK: 0.42, radK: 0.5, shorten: 0.35,
+        step: 0.16, wander: 0.3, up: 0.02, droop: 0.02, taper: 0.3 });
+      levels.push({ n: Math.max(1, Math.round(4 * b)), t0: 0.3, t1: 1.0, angle: 0.75, angleJit: 0.5, lenK: 0.46, radK: 0.5, shorten: 0.3,
+        step: 0.1, wander: 0.4, taper: 0.35 });
+    } else {
+      // a bare cut limb keeps the short stubs of the twigs that were trimmed off it
+      levels.push({ n: 3, t0: 0.18, t1: 0.86, angle: 1.0, angleJit: 0.4, lenK: 0.045, radK: 0.32, shorten: 0, step: 0.05, wander: 0.05, taper: 0.7 });
+    }
+    const leaves = o.leaves !== false && b > 0;
+    const S = { trunks: o.limbs.map((L) => ({ at: L.at, dir: L.dir, len: L.len, rad: L.rad, az: r() * 6.283 })),
+      levels, floor: o.floor != null ? o.floor : null, clip: o.clip || null, minRad: 0.006, radialK: 2.4,
+      leaves: { per: leaves ? 6 : 0, from: 0.35, size: [0, 0], lift: 0 } };
+    const res = grow(S, r), g = new THREE.Group();
+    g.add(woodMesh(res.wood, fineBark()));
+    // the saw cuts: end grain over the butt's open ring (and the tip's, for a bare limb), 1 mm proud
+    const ends = [];
+    S.trunks.forEach((T) => {
+      const d = new V3(...T.dir).normalize();
+      ends.push([new V3(T.at[0], T.at[1], T.at[2]).addScaledVector(d, -0.001), d.clone().negate(), T.rad]);
+    });
+    if (o.cutTip) res.trunkEnds.forEach(([p, n, rr]) => ends.push([p.clone().addScaledVector(n, 0.001), n, rr]));
+    if (ends.length) {
+      const im = new THREE.InstancedMesh(new THREE.CircleGeometry(1, 32), ENDGRAIN(), ends.length), Mx = new THREE.Matrix4(),
+        q = new THREE.Quaternion(), zf = new V3(0, 0, 1), sc = new V3();
+      ends.forEach(([p, n, rr], i) => { q.setFromUnitVectors(zf, n); q.multiply(new THREE.Quaternion().setFromAxisAngle(zf, r() * 6.283)); sc.set(rr, rr, rr); Mx.compose(p, q, sc); im.setMatrixAt(i, Mx); });
+      im.instanceMatrix.needsUpdate = true; g.add(im);
+    }
+    // LEAVES ARE MODELLED, NOT CARDS. A tree's leaf atlas is read from ten metres; brush is read from
+    // one or two, where a card shows as a flat feather with a black underside (the 2026-10-28 proof
+    // of the first cut of this lift). So every leaf is a small cedar elm leaf, 3 to 5.5 cm, folded
+    // on its midrib, its petiole ON a twig: the grower lays points along the last part of each
+    // terminal twig, and leaves fan out from those points. A leaf whose tip would leave the clip box
+    // is turned back, so no leaf crosses a wall.
+    if (leaves && res.clusters.length) {
+      const C = o.clip, inside = (v) => !C || (v.x > C[0] && v.x < C[3] && v.y > C[1] && v.y < C[4] + 0.3 && v.z > C[2] && v.z < C[5]);
+      const per = o.leafDensity != null ? o.leafDensity : 6, n = res.clusters.length * per;
+      const im = new THREE.InstancedMesh(LEAFGEO(), LEAFMAT(), n), Mx = new THREE.Matrix4(), q = new THREE.Quaternion(), sc = new V3(), c = new THREE.Color();
+      const dry = Math.max(0, Math.min(1, o.dry != null ? o.dry : 0.35));
+      const live = [0x4b5f2b, 0x56692f, 0x3f5326, 0x61733a].map((h) => new THREE.Color(h)), dead = [0x8c6c3c, 0x9e7f4a, 0x735b36].map((h) => new THREE.Color(h));
+      let k = 0;
+      res.clusters.forEach((cl) => {
+        const base = new V3(cl[0], cl[1], cl[2]);
+        for (let j = 0; j < per; j++) {
+          // the leaf's length direction: outward and a little up; its face: toward the sky, tilted
+          let dir = new V3(r() - 0.5, (r() - 0.3) * 0.8, r() - 0.5).normalize();
+          const len = 0.03 + r() * 0.025;
+          if (!inside(base.clone().addScaledVector(dir, len))) dir.negate();
+          if (!inside(base.clone().addScaledVector(dir, len))) continue;
+          const up = new V3((r() - 0.5) * 0.9, 1, (r() - 0.5) * 0.9); up.sub(dir.clone().multiplyScalar(up.dot(dir))).normalize();
+          const side = new V3().crossVectors(dir, up);
+          q.setFromRotationMatrix(new THREE.Matrix4().makeBasis(dir, up, side));
+          sc.set(len, len, len); Mx.compose(base, q, sc); im.setMatrixAt(k, Mx);
+          const pool = r() < dry ? dead : live; c.copy(pool[Math.floor(r() * pool.length)]).multiplyScalar(0.85 + r() * 0.3); im.setColorAt(k, c); k++;
+        }
+      });
+      im.count = k; im.instanceMatrix.needsUpdate = true; if (im.instanceColor) im.instanceColor.needsUpdate = true;
+      g.add(im);
+    }
+    g.userData.butts = S.trunks.map((T) => [T.at[0], T.at[1], T.at[2], T.rad]);
+    return g;
+  }
+  K.growBrush = K.growBrush || growBrush;
+
+  K.define('brush_limb', {
+    size: [3.04, 0.96, 1.46],
+    options: { length: 2.4, radius: 0.07, branches: 1, leaves: true, dry: 0.35, bend: 1, taper: 0.45 },
+    note: 'A limb sawed off a street tree (cedar elm bark and leaves): a tapered main stem `length` m long and `radius` m at the butt with a seeded bend (`bend` 0 for nearly straight), side branches and twigs off it (`branches` 0 to 1; 0 is a bare cut limb with twig stubs and a saw cut at both ends), leaf clusters seated only on the twig tips (`leaves`), wilting toward straw with `dry` 0 to 1, and pale ringed end grain at the butt. The butt keeps its origin: it lies along +x from the butt at [0, radius, 0], resting on y 0, so limbs started on one line start on it. Use K.growBrush for a load of many limbs in one mesh.',
+    make(o, r) {
+      const L = Math.max(0.2, o.length), rad = Math.max(0.01, o.radius);
+      const g = growBrush({ limbs: [{ at: [0, rad, 0], dir: [1, 0, 0], len: L, rad }], branches: o.branches, leaves: o.leaves,
+        dry: o.dry, bend: o.bend, taper: o.taper, floor: 0.004, cutTip: !(o.branches > 0) }, r);
+      g.userData.keepOrigin = true;   // the butt is the meaningful origin, and K.make must not move it
+      g.userData.butt = [0, rad, 0];
       return g;
     },
   });
