@@ -2415,3 +2415,7 @@ Both read with the project's own client today. The committee meeting pages on ca
 
 **Correction to the faa.gov entry above.** The refusal came from this session's own safety classifier, not from the
 host. faa.gov itself answered only the 403 to `fetch_doc.py` and the 200 to curl's agent.
+
+**www.faa.gov answered 403 to the session's own WebFetch tool too**, on the Zipline review page. That makes two
+declared clients refused in one day. The run did not try another identity, because a refusal of a declared agent is a
+refusal to respect, so tx-2026-0186 waits for a maintainer's read.

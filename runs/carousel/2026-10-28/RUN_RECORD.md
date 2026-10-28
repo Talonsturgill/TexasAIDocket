@@ -24,8 +24,24 @@ stopped; its steps were rerun in the foreground and passed.
   (legistar1.granicus.com) carry front door boundaries measured today.
 - **tx-2026-0186 stays rotten and holds the merge.** www.faa.gov answers 403 to this project's agent and 200 to other
   clients. The field log's practice for this host is a browser agent read, and this session's safety classifier refused
-  that request as bot check circumvention. The run did not work around the refusal, so CI's rot gate stays red on this
+  that request as bot check circumvention. The session's own WebFetch tool was then tried once and also answered 403. The run did not work around either refusal, so CI's rot gate stays red on this
   one item until a maintainer re-verifies it.
+- **The ask engine's El Paso answer, red in CI and a maintainer's to fix.** `tests/ask_engine.mjs` failed one check:
+  "What is happening in El Paso?" answered "10 items in El Paso County" where the El Paso area holds 11. The October
+  27th re-verify, which this branch carries to `main`, correctly added Hudspeth County to tx-2026-0218, and Hudspeth
+  is the second county of the El Paso metropolitan area. Until then the county and the area held the same ten items,
+  so the router's fault never showed. The router finds the area by name, then the catalogue scorer overrules it
+  because "What is happening in El Paso County?" ties "What is happening in El Paso?" on every typed word and sits
+  first in the catalogue. `scripts/site/ask_answers.py` and the test are `human` lane, so this run did not commit a
+  fix. The proposal below lets a place found by name win over a place found by score. Tried in a scratch build, it
+  passes the browser test and the engine's self-test, and `tests/ask_eval.mjs` reads identically with and without it.
+
+  ```diff
+  +    var PLACE = { by_county: 1, by_metro: 1 };
+  +    if (direct && PLACE[direct.view] && top && top.c.route && PLACE[top.c.route.view])
+  +      return direct;
+       if (direct && (directExact || !top || top.score < 2.5)) return direct;
+  ```
 - **Admitted.** None. The scouts' leads went to selection and the record.
 - **Instrument check (Phase 7).** The Grid Watch and Water Watch page checks, the site self-tests and the schema check
   ran. The schema check named three stale citations on item pages, the two re-pointed items and tx-2026-0179's govtech
