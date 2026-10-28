@@ -9,7 +9,7 @@ Galaxy Digital published an account on September 8th, 2026 of the conditional Ba
 - Public access: Write to the decider
 - Take part: https://www.prnewswire.com/news-releases/galaxy-provides-update-on-ercot-batch-zero-large-load-classifications-302872795.html
 
-- Last checked: 2026-10-24
+- Last checked: 2026-10-28
 
 ## Dates
 
@@ -33,6 +33,8 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-18 · The developer's report to shareholders on what Batch Zero did to its Texas projects reads as filed.
 - 2026-10-21 · Checked and unchanged. The decision still stands as decided.
 - 2026-10-24 · The developer's account to shareholders of what the Batch Zero list did to its Texas projects still reads as published.
+- 2026-10-27 · Galaxy's account of its five Texas projects is unconfirmed in part. The release's address now opens a different page.
+- 2026-10-28 · Galaxy Digital's account of the Batch Zero classes for its five Texas projects still reads as the record quotes it.
 
 ## Evidence
 

@@ -850,6 +850,18 @@ export function install(K, THREE, TXT) {
       }
       const led = new THREE.Mesh(new THREE.CircleGeometry(0.0015, 12), mat('pwrled', { color: 0x001100, emissive: 0xffffff, emissiveIntensity: 1.2 }));
       led.position.set(sw / 2 - 0.02, -(sh + 0.03) / 2 + 0.008, 0.0065); head.add(led);
+      // THE DISPLAY RECTANGLE, PUBLISHED (2026-10-28, queue kit-monitor-hides-its-display-rectangle).
+      // Carousel no. 62 laid its own screen canvas on this monitor from the model's bounding box and
+      // seated it left of and in front of the bezel, which a pixel critic charged as a misregistered
+      // panel; seating it took a traverse for the tilted head and the kit's own display arithmetic.
+      // So an empty node named 'monitor_display' sits at the display's centre in the head's frame,
+      // a fifth of a millimetre in front of the kit's own screen: add a PlaneGeometry of
+      // userData.display.size to mon.getObjectByName('monitor_display') and it lies on the glass at
+      // the head's tilt wherever K.make and the caller moved the monitor. Empty, so it adds nothing
+      // to the render or the bounding box, and named rather than referenced so a clone keeps it.
+      const disp = new THREE.Group(); disp.name = 'monitor_display';
+      disp.position.set(0, -(sh + 0.03) / 2 + 0.026 + sh / 2, 0.0068); head.add(disp);
+      g.userData.display = { node: 'monitor_display', size: [+sw.toFixed(4), +sh.toFixed(4)] };
       const rear = TXT.roundedBox(sw * 0.7, sh * 0.72, 0.045, 0.02, body, { segments: 3 });
       rear.position.set(0, -0.01, -0.028); head.add(rear);
       // THE STAND IS ONE PIECE FROM THE BASE TO THE HOUSING (2026-10-02). The neck used to start

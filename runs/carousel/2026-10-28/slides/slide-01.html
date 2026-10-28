@@ -1,0 +1,63 @@
+<!doctype html>
+<!-- 2026-10-28, frame 1 of 9. Archetype FULL_BLEED. A spatial scene through txthree.js in the deck's lastLight world: the chassis brush truck working a Dallas curb at last light, its knuckle boom reaching over a brush windrow, the camera pod's cold lamp lit on the body's corner, a brick ranch house going dark behind. The windrow's length is read from figures.json. Drawn to illustrate, to no maker's design. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">Cameras ride 50 brush trucks</h1>
+<p class="dek" data-follow="26">The trucks already run routine Sanitation routes, the city's October 19th briefing says. An April city memo planned two cameras per truck. The truck is drawn to&nbsp;illustrate.</p>
+<script>window.FIG = {"pile_len_m": 4.06};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-28-route.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Dallas Sanitation", counter: "01 / 09", src: "c2 c5 c6 c41 c44", fit: { min: 84, max: 116, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 34, near: 0.1, far: 3000 });
+  /* THE STREET runs north and south. The truck works the west curb heading south, its curb side to the west and the low key, the boom reaching over the windrow on the parkway */
+  const road = K.make('road', { length: 140, lanes: 2, sidewalk: true, parkway: true }); road.rotation.y = Math.PI / 2; TXT.add(R, road);
+  const truck = K.make('brush_truck', { load: 0.75, boom: 0.75, podScale: 1.8 }); truck.position.set(-1.9, 0, 0); truck.rotation.y = 0; TXT.add(R, truck); TXT.contact(R, truck, { vehicle: true });
+  /* no limb of the load stands proud of the body's side walls on this frame */
+  truck.updateMatrixWorld(true); { const inv = new THREE.Matrix4().copy(truck.matrixWorld).invert(), bx = new THREE.Box3(), cut = [];
+    truck.children.forEach((c) => { if (c.userData.kit !== 'cut_limb') return; bx.setFromObject(c).applyMatrix4(inv); if (Math.max(Math.abs(bx.min.x), Math.abs(bx.max.x)) > 1.12) cut.push(c); });
+    cut.forEach((c) => truck.remove(c)); }
+  /* both pod lamps read as the pair the hook names, never one hidden under its visor */
+  truck.traverse((m) => { if (m.isSprite) { m.material.depthTest = false; m.scale.multiplyScalar(1.35); } });
+  /* THE FIGURE, from figures.json: a ten cubic yard pickup laid as a windrow at the curb, its length solved in compute.py */
+  const pile = K.make('brush_pile', { length: FIG.pile_len_m, height: 1.1, depth: 1.9, seed: 11 }); pile.position.set(-5.9, 0.15, -2.4); pile.rotation.y = Math.PI / 2; TXT.add(R, pile);
+  const house = K.make('ranch_house', { seed: 4, material: 'brick', garage: 'left' }); house.position.set(19, 0, 2); house.rotation.y = -Math.PI / 2; TXT.add(R, house); TXT.contact(R, house);
+  const house2 = K.make('ranch_house', { seed: 9, material: 'limestone' }); house2.position.set(20, 0, -26); house2.rotation.y = -Math.PI / 2; TXT.add(R, house2);
+  const elm = K.make('cedar_elm', { seed: 5, height: 11 }); elm.position.set(12, 0, -20); TXT.add(R, elm);
+  const oak = K.make('live_oak', { seed: 2, height: 8, spread: 14 }); oak.position.set(11, 0, -14); TXT.add(R, oak);
+  TXT.sky(R);
+  TXT.ground(R, { surface: 'grass', size: 900, seed: 28 });
+  const from = [-3.9, 4.3, -9.6];
+  const look = CH.aim(THREE, R, TXT, from, [-2.0, 3.45, -0.5], 560, 720, 34);
+  TXT.frame(R, { fov: 34, from, look });
+  CH.warm(R, 0.24);
+  TXT.deckRig(R, CH.rigSpec(W, 18, 4096), CH.rigOpts([-3, 1, 0], { distance: 50, shadowFar: 120 }));
+  CH.unacne(R, 0.02);
+  CH.noShadows(R);
+  TXT.stage(R, [truck, pile]);
+  TXT.weather(R, { grime: 0.3, height: 0.7, mottle: 0.3 });
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0.28, veil: 0.34, footWash: 0.42 });
+  CH.knock(cx, ['.tx-site', '.src'], 0.54);
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

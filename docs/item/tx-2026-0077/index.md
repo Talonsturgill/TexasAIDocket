@@ -45,6 +45,8 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-18 · The committee's interim charges and the Senate's meeting list still answer. The hearing notice and the library's archive are unconfirmed, and no interim report is posted.
 - 2026-10-21 · The comment window closed on August 25th.
 - 2026-10-24 · Senate Transportation's hearing on driverless deployment was held on August 25th, and the committee's record of it still reads as before.
+- 2026-10-27 · The Senate Transportation hearing on driverless vehicles is unconfirmed in part. The Legislature's pages bar automated readers.
+- 2026-10-28 · The Senate Transportation hearing on driverless vehicles is unconfirmed in part. The Legislature's pages bar automated readers.
 
 ## Evidence
 

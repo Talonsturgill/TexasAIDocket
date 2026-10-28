@@ -1,6 +1,6 @@
 # Hays County Commissioners Court adopted a 180-day emergency water review period for high water use developments and created a review board
 
-The Hays County Commissioners Court approved a resolution on June 23rd, 2026 establishing a 180-day emergency water protection review period for high water use development applications, including data centers. The same resolution creates a review board that evaluates those proposals and advises the court. Commissioners voted unanimously. The county has been operating under drought conditions and water use restrictions tied to declining aquifer levels, which is the stated reason for the measure. This is the counter-image to the incentive votes elsewhere in Central Texas, since a county here chose to slow its own review rather than speed it up.
+The Hays County Commissioners Court approved a resolution on June 23rd, 2026 establishing a 180-day emergency water protection review period for high water use development applications, including data centers. The same resolution creates a review board that evaluates those proposals and advises the court. The county has been operating under drought conditions and water use restrictions tied to declining aquifer levels, which is the stated reason for the measure. This is the counter-image to the incentive votes elsewhere in Central Texas, since a county here chose to slow its own review rather than speed it up.
 
 - Topic: land-water-and-permitting
 - Decided by: Hays County Commissioners Court (county)
@@ -11,7 +11,7 @@ The Hays County Commissioners Court approved a resolution on June 23rd, 2026 est
 - Public access: Public meeting
 - Take part: https://www.hayscountytx.gov/877/Commissioners-Court-Minutes
 
-- Last checked: 2026-10-21
+- Last checked: 2026-10-28
 
 ## Dates
 
@@ -44,6 +44,8 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-21 · Community Impact's account of the 180 day water review period still reads as cited. KUT's report is unconfirmed.
 - 2026-10-25 · Community Impact's account of Hays County's water review period is unconfirmed today because its page no longer shows the quoted line in readable form. KUT's report bars automated readers.
 - 2026-10-26 · Hays County's emergency water review period is still unconfirmed. KUT bars automated readers and Community Impact's page no longer shows the quoted line in readable text.
+- 2026-10-27 · Hays County's emergency water review period is still unconfirmed. The station that reported it bars automated readers.
+- 2026-10-28 · The vote count rested on KUT's account, which now bars this project's reader, so the record no longer states it. Community Impact still carries the review period, the board and the drought context as quoted.
 
 ## Evidence
 
@@ -55,11 +57,11 @@ Every fact above rests on one of these. The words are the source's own.
 
 Source (journalism): https://communityimpact.com/austin/san-marcos-buda-kyle/government/2026/06/23/hays-county-passes-resolution-pausing-consideration-of-high-water-use-developments-data-centers/
 
-### The vote was unanimous and the board evaluates intensive water use developments such as data centers.
+### The board evaluates industrial developments that need large amounts of water and reports to the court.
 
-> Hays County commissioners voted unanimously on Tuesday to establish a review board to evaluate proposed intensive-water-use developments like data centers.
+> The board will evaluate proposed industrial developments requiring large amounts of water and their potential impact on the region and surrounding area, according to the resolution.
 
-Source (journalism): https://www.kut.org/energy-environment/2026-06-23/hays-county-tx-data-centers-water-review-board
+Source (journalism): https://communityimpact.com/austin/san-marcos-buda-kyle/government/2026/06/23/hays-county-passes-resolution-pausing-consideration-of-high-water-use-developments-data-centers/
 
 ### The county's stated context is prolonged drought and declining aquifer levels.
 

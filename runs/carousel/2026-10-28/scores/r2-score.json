@@ -1,0 +1,230 @@
+{
+ "weighted_score": 6.992,
+ "judges": [
+  6.9,
+  7.1,
+  6.94
+ ],
+ "spread": 0.2,
+ "criteria": {
+  "artwork_craft": {
+   "score": 6.6,
+   "weight": 0.22,
+   "judges": [
+    6.8,
+    6.3,
+    6.6
+   ]
+  },
+  "deck_coherence": {
+   "score": 7.5,
+   "weight": 0.12,
+   "judges": [
+    7.5,
+    7.0,
+    7.5
+   ]
+  },
+  "claim_integrity": {
+   "score": 8.0,
+   "weight": 0.2,
+   "judges": [
+    7.3,
+    8.0,
+    8.0
+   ]
+  },
+  "story_and_stakes": {
+   "score": 6.5,
+   "weight": 0.16,
+   "judges": [
+    6.5,
+    7.0,
+    6.5
+   ]
+  },
+  "sequence_and_momentum": {
+   "score": 7.0,
+   "weight": 0.1,
+   "judges": [
+    7.0,
+    7.5,
+    7.0
+   ]
+  },
+  "voice": {
+   "score": 7.0,
+   "weight": 0.1,
+   "judges": [
+    7.0,
+    7.0,
+    7.0
+   ]
+  },
+  "variety": {
+   "score": 6.0,
+   "weight": 0.1,
+   "judges": [
+    6.0,
+    7.0,
+    5.5
+   ]
+  }
+ },
+ "hard_fails": [],
+ "hard_fails_by_judge": [],
+ "ship": false,
+ "threshold": 8.0,
+ "over_threshold": false,
+ "method": "per-criterion median across three judges, then weighted by the rubric",
+ "threshold_dissents": [
+  "judge 1 refused on the threshold, not on a fault, and scored 6.9 against a 8.0 bar. That dissent is carried in the median",
+  "judge 2 refused on the threshold, not on a fault, and scored 7.1 against a 8.0 bar. That dissent is carried in the median",
+  "judge 3 refused on the threshold, not on a fault, and scored 6.94 against a 8.0 bar. That dissent is carried in the median"
+ ],
+ "threshold_dissents_by_judge": [
+  {
+   "judge": 1,
+   "score": 6.9,
+   "reason": "judge 1 refused on the threshold, not on a fault, and scored 6.9 against a 8.0 bar. That dissent is carried in the median"
+  },
+  {
+   "judge": 2,
+   "score": 7.1,
+   "reason": "judge 2 refused on the threshold, not on a fault, and scored 7.1 against a 8.0 bar. That dissent is carried in the median"
+  },
+  {
+   "judge": 3,
+   "score": 6.94,
+   "reason": "judge 3 refused on the threshold, not on a fault, and scored 6.94 against a 8.0 bar. That dissent is carried in the median"
+  }
+ ],
+ "contested": [
+  "variety"
+ ],
+ "artwork_weakest_frames": [
+  {
+   "slide": 4,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "One flat mid grey slab because every tile uses v = 0.9, the canvas running into the chin, no person under The reviewer.",
+     "fix": "v = STEP[sv] so the tiles fall into value runs, the screen scaled to the display rectangle, a reviewer's shoulder and hand in the left foreground."
+    },
+    {
+     "judge": 2,
+     "problem": "A flat grey-blue tile grid over 45 percent of the frame, graph paper in the grey middle, an empty room.",
+     "fix": "Camera back and down so the monitor is about a fifth of the frame, tiles in three or four value steps on a near black panel, a hand on a keyboard and a sheet in the spill."
+    },
+    {
+     "judge": 3,
+     "problem": "A stock monitor in a void, a flat mid grey tile field, the most mid tone frame, reads as a UI screenshot.",
+     "fix": "A dark tile field with only cyan observation tiles lit, the reviewer's shoulder and hand in silhouette at the left, the monitor running off the right edge."
+    }
+   ]
+  },
+  {
+   "slide": 3,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "A toy pod, a cartoon ring lens, an unlit pale boom polygon behind it.",
+     "fix": "Hide or darken the boom on this frame, a darker coated glass lens with a thin specular rim."
+    },
+    {
+     "judge": 2,
+     "problem": "Cartoon ring lens, a pale boom polygon behind the pod, stretched bark.",
+     "fix": "Remove or darken the boom, a dark coated glass lens with a thin cyan reflection ring, a key rim on the housing."
+    },
+    {
+     "judge": 3,
+     "problem": "A pale untextured polygon behind the pod, flat emissive ring lens.",
+     "fix": "The boom in dark painted steel or cropped out, a coated glass lens with a highlight and dark pupil."
+    }
+   ]
+  },
+  {
+   "slide": 6,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "A procedural brick tile, a flat black grid on the shadow face, the letter a pale glyph on a dead lawn.",
+     "fix": "Per unit brick variation, darker mortar on the shadow face, a low key across the open box."
+    },
+    {
+     "judge": 2,
+     "problem": "A black slot with a paper, a brick seam, no ground contact, no curb.",
+     "fix": "A steel box with its door open toward the camera, the seam fixed, the base on the lawn with contact, the curb's lit lip off the right edge."
+    },
+    {
+     "judge": 3,
+     "problem": "Vertical brick texture seams and no ground contact.",
+     "fix": "A continuous UV across the face, contact, grime and lawn blades at the base."
+    }
+   ]
+  },
+  {
+   "slide": 2,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "A brown mid tone haze behind the dek and identical toy trucks.",
+     "fix": "Fog to the near black sky above the far rows, a lower camera so the near two cabs are cut large."
+    },
+    {
+     "judge": 2,
+     "problem": "Primitive cabs and a brown mid tone fog band.",
+     "fix": "Cut the fog so the far rows fall into the black sky, the pool on the near two rows."
+    },
+    {
+     "judge": 3,
+     "problem": "Primitive boxes under a brown haze band.",
+     "fix": "Camera at about 12 m with the three near trucks large, far rows into a near black sky."
+    }
+   ]
+  },
+  {
+   "slide": 8,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The label level with the sixth arm.",
+     "fix": "Anchor the label at the seventh arm's y directly left of the tag."
+    },
+    {
+     "judge": 2,
+     "problem": "An unlit cyan tag and the label running onto the upright.",
+     "fix": "A lit card stock tag that casts on the yard, and the label offset from -560 to -620."
+    },
+    {
+     "judge": 3,
+     "problem": "The label level with the sixth arm, not the bare seventh arm and tag.",
+     "fix": "Move the label down to the bare arm's height left of the upright."
+    }
+   ]
+  },
+  {
+   "slide": 1,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 3,
+     "problem": "Uniform cut cylinders read as firewood, not curbside brush.",
+     "fix": "Branched limbs with forks and leaf cards, a few cut ends lit."
+    }
+   ]
+  }
+ ],
+ "rounds_derived": 2,
+ "rounds": 2,
+ "rounds_source": "this module's own log of cards it has scored",
+ "rounds_declared": 2,
+ "rung": 7.7,
+ "work_order": "no judge found a hard fail, and the median 6.992 is under this round's rung of 7.7. KEEP EDITING: fix the judges' named defects, re-render and re-score. At the round cap the finished deck ships whatever it scored. Start with the frames the judges charge the art for, in this order, slides 4, 3, 6, 2, 8, 1 (`artwork_weakest_frames`), one concrete change each",
+ "craft_floor": "pending, because a deck under its rung is sent back by the work order first"
+}

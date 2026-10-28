@@ -1,0 +1,26 @@
+{
+ "lens": "integrity",
+ "round": 2,
+ "criteria": [
+  {"name": "artwork_craft", "weight": 0.22, "score": 6.8, "why": "One dark world, most frames one subject on a dark field. Frames 1, 5 and 9 pass or nearly, and slide 5's encoding checks against the pixels. Frame 4 is one flat mid grey slab (v = 0.9 for every tile) running into the chin, the highest canvas mean. Frame 3's pod is toy-like with a pale boom polygon behind it. Frame 6's brick is a procedural tile. Frame 2 has a brown haze and boxy trucks."},
+  {"name": "deck_coherence", "weight": 0.12, "score": 7.5, "why": "One deck with three working continuity devices and a dark value run, except the interior on 4. Slide 8's cyan label and tag sit uneasily with the storyboard's rule that cyan means a computer vision observation."},
+  {"name": "claim_integrity", "weight": 0.20, "score": 7.3, "why": "Every numeral traces, every rejection honoured, universals declared. Four looser spots: slide 2's 50 trucks, 100 cameras as one present fact; slide 3's Staff decide and the caption's review sentence in the deck's voice; slide 8's label level with the sixth arm; the windrow sized from c31 with no frame citing c31, and the first comment leaving out c1 and c41."},
+  {"name": "story_and_stakes", "weight": 0.16, "score": 6.5, "why": "What happened is clear at city level. No named decider for the deployment, nothing a resident can do, the caption closes on a rhetorical question. Slide 6 has the one concrete household stake."},
+  {"name": "sequence_and_momentum", "weight": 0.10, "score": 7.0, "why": "The order runs camera, review, count, letter, inspection, then the turn at 8 answered by 9. Frames 1 and 2 and frames 4 and 5 repeat a beat."},
+  {"name": "voice", "weight": 0.10, "score": 7.0, "why": "Clean and restrained, house rules hold, Dallas generic rather than Texan. The document title can read as staff choosing what the camera flags."},
+  {"name": "variety", "weight": 0.10, "score": 6.0, "why": "Same program as no. 31 37 days back, lastLight again, a hero vehicle opener, count as object at one scale the house device. The rack and the bare arm are fresh."}
+ ],
+ "weighted_score": 6.90,
+ "weighted_arithmetic": "0.22*6.8 + 0.12*7.5 + 0.20*7.3 + 0.16*6.5 + 0.10*7.0 + 0.10*7.0 + 0.10*6.0 = 1.496 + 0.900 + 1.460 + 1.040 + 0.700 + 0.700 + 0.600 = 6.896",
+ "hard_fails": [],
+ "ship": false,
+ "ship_note": "No hard fail. A threshold dissent, 6.90 under round 2's 7.7 rung.",
+ "one_sentence_fix": "Attribute slide 3's Staff decide and slide 2's 100 cameras to the city's own plan rather than the deck's voice, and name who approved the cameras and when a resident can next speak once that is fetched.",
+ "artwork_weakest_frames": [
+  {"slide": 4, "problem": "One flat mid grey slab because every tile uses v = 0.9, the canvas running into the chin, no person under The reviewer.", "fix": "v = STEP[sv] so the tiles fall into value runs, the screen scaled to the display rectangle, a reviewer's shoulder and hand in the left foreground."},
+  {"slide": 3, "problem": "A toy pod, a cartoon ring lens, an unlit pale boom polygon behind it.", "fix": "Hide or darken the boom on this frame, a darker coated glass lens with a thin specular rim."},
+  {"slide": 6, "problem": "A procedural brick tile, a flat black grid on the shadow face, the letter a pale glyph on a dead lawn.", "fix": "Per unit brick variation, darker mortar on the shadow face, a low key across the open box."},
+  {"slide": 2, "problem": "A brown mid tone haze behind the dek and identical toy trucks.", "fix": "Fog to the near black sky above the far rows, a lower camera so the near two cabs are cut large."},
+  {"slide": 8, "problem": "The label level with the sixth arm.", "fix": "Anchor the label at the seventh arm's y directly left of the tag."}
+ ]
+}

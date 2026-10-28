@@ -1,0 +1,231 @@
+{
+ "weighted_score": 6.896,
+ "judges": [
+  6.86,
+  7.23,
+  6.756
+ ],
+ "spread": 0.474,
+ "criteria": {
+  "artwork_craft": {
+   "score": 6.3,
+   "weight": 0.22,
+   "judges": [
+    6.5,
+    6.2,
+    6.3
+   ]
+  },
+  "deck_coherence": {
+   "score": 7.0,
+   "weight": 0.12,
+   "judges": [
+    7.0,
+    6.8,
+    7.5
+   ]
+  },
+  "claim_integrity": {
+   "score": 8.0,
+   "weight": 0.2,
+   "judges": [
+    8.0,
+    8.5,
+    7.0
+   ]
+  },
+  "story_and_stakes": {
+   "score": 6.5,
+   "weight": 0.16,
+   "judges": [
+    6.5,
+    7.5,
+    6.5
+   ]
+  },
+  "sequence_and_momentum": {
+   "score": 7.0,
+   "weight": 0.1,
+   "judges": [
+    7.0,
+    7.5,
+    7.0
+   ]
+  },
+  "voice": {
+   "score": 6.8,
+   "weight": 0.1,
+   "judges": [
+    6.5,
+    7.0,
+    6.8
+   ]
+  },
+  "variety": {
+   "score": 6.5,
+   "weight": 0.1,
+   "judges": [
+    6.0,
+    7.0,
+    6.5
+   ]
+  }
+ },
+ "hard_fails": [],
+ "hard_fails_by_judge": [],
+ "ship": false,
+ "threshold": 8.0,
+ "over_threshold": false,
+ "method": "per-criterion median across three judges, then weighted by the rubric",
+ "threshold_dissents": [
+  "judge 1 refused on the threshold, not on a fault, and scored 6.86 against a 8.0 bar. That dissent is carried in the median",
+  "judge 2 refused on the threshold, not on a fault, and scored 7.23 against a 8.0 bar. That dissent is carried in the median",
+  "judge 3 refused on the threshold, not on a fault, and scored 6.756 against a 8.0 bar. That dissent is carried in the median"
+ ],
+ "threshold_dissents_by_judge": [
+  {
+   "judge": 1,
+   "score": 6.86,
+   "reason": "judge 1 refused on the threshold, not on a fault, and scored 6.86 against a 8.0 bar. That dissent is carried in the median"
+  },
+  {
+   "judge": 2,
+   "score": 7.23,
+   "reason": "judge 2 refused on the threshold, not on a fault, and scored 7.23 against a 8.0 bar. That dissent is carried in the median"
+  },
+  {
+   "judge": 3,
+   "score": 6.756,
+   "reason": "judge 3 refused on the threshold, not on a fault, and scored 6.756 against a 8.0 bar. That dissent is carried in the median"
+  }
+ ],
+ "contested": [
+  "claim_integrity"
+ ],
+ "artwork_weakest_frames": [
+  {
+   "slide": 2,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "A mauve-brown haze sky over lavender block trucks, the deck's worst value break, lamps as soft blurs.",
+     "fix": "Re-stage in the near black sky with the fog darkened, pool the key on the near two rows only, hard emissive pod points."
+    },
+    {
+     "judge": 2,
+     "problem": "Fifty identical low poly trucks are a count not a subject, lavender cabs, a warm brown haze in the top half.",
+     "fix": "Eye at about 8 m at the yard's south edge so the front row fills the lower half in a pool, the rest fogged to the cool dark, CH.warm taken off."
+    },
+    {
+     "judge": 3,
+     "problem": "Fifty low poly cabs in grey-blue mid tones under a warm haze band, breaking the deck's navy and black.",
+     "fix": "Light only the near two rows, let rows three to five fall to black with only their pod lamps, and remove the brown fog band."
+    }
+   ]
+  },
+  {
+   "slide": 4,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "A teal mid tone room and a striped UI field.",
+     "fix": "Wall and room fill near black, the reviewer's shoulder or hand in silhouette in the foreground."
+    },
+    {
+     "judge": 2,
+     "problem": "The value strobe of the deck with a lit teal wall, the grid reads as barcode stripes, the cyan title bar reads as a UI screenshot.",
+     "fix": "A near black wall and zero room bounce, delete the title bar, one tile value with a dark gutter on every tile."
+    },
+    {
+     "judge": 3,
+     "problem": "A generic kit monitor in an empty dark room, the screen reads as grey static at feed size, the most mid tone frame, nothing says a person reviews each one.",
+     "fix": "Seat a kit person, back to camera, in silhouette across the left third against the screen, with the screen the only source."
+    }
+   ]
+  },
+  {
+   "slide": 8,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The subject a narrow sliver on the right edge and the label floating 170 px from the tag.",
+     "fix": "Camera left and closer so the upright, the butts and the bare arm fill the right 40 percent with the arm in its own pool, the label beside the tag."
+    },
+    {
+     "judge": 2,
+     "problem": "The rack a 260 px sliver at the right edge, 70 percent dark, the bare arm not distinguishable at 432, a flat cyan tag, the label far from it.",
+     "fix": "Frame 5's camera at fov 34 square on so the upright and seven arms span 40 to 60 percent of the width, the pool on the seventh arm, a shaded card tag with a cast, the label directly left of the bare arm."
+    },
+    {
+     "judge": 3,
+     "problem": "The rack squeezed into the right 15 percent, two thirds empty fence, the label about 400 px from the tag it names.",
+     "fix": "Pull the camera back and left so the upright and its seven arms fill about 40 percent of the width at centre right, the label beside the blank tag."
+    }
+   ]
+  },
+  {
+   "slide": 3,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "A toy-like pod, a flat cyan lens and a pale boom slab behind it.",
+     "fix": "Darken or retexture the boom as blue enamel in shadow, a coated glass lens with a key-lit rim and recessed bezel."
+    },
+    {
+     "judge": 2,
+     "problem": "Faceted flat cyan lens and a pale low poly shape behind the pod.",
+     "fix": "A high segment glass lens with a clearcoat reflection, and hide or darken the pale boom shape."
+    },
+    {
+     "judge": 3,
+     "problem": "Primitive pod with a flat cyan lens and a pale lavender polygon behind it at the frame's brightest point.",
+     "fix": "Delete or darken the pale boom shape and give the lens an inner iris ring and a rim-lit bezel."
+    }
+   ]
+  },
+  {
+   "slide": 6,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "A primitive box under flat tiled brick, the letter a small glyph.",
+     "fix": "Displaced brick with recessed mortar, camera at about 1.4 m pushed in so the box and letter take the focal third."
+    }
+   ]
+  },
+  {
+   "slide": 1,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "Reads as a dumpster of logs, the white truck a sliver, a dull body wall, no ground, two limbs through the wall.",
+     "fix": "Swing to the driver side rear quarter at about 2.5 m so the white cab side takes the key and the curb and contact enter the bottom third, and lift the piercing limbs."
+    }
+   ]
+  },
+  {
+   "slide": 5,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "Five empty arms on the second upright pre-empt the turn, untapered limbs, labels touching the upright.",
+     "fix": "Remove the unused arms from the second upright, taper the limbs with lit cut ends, shift the labels about 20 px right."
+    }
+   ]
+  }
+ ],
+ "rounds_derived": 1,
+ "rounds": 1,
+ "rounds_source": "this module's own log of cards it has scored",
+ "rounds_declared": 1,
+ "rung": 8.0,
+ "work_order": "no judge found a hard fail, and the median 6.896 is under this round's rung of 8.0. KEEP EDITING: fix the judges' named defects, re-render and re-score. At the round cap the finished deck ships whatever it scored. Start with the frames the judges charge the art for, in this order, slides 2, 4, 8, 3, 6, 1, 5 (`artwork_weakest_frames`), one concrete change each",
+ "craft_floor": "pending, because a deck under its rung is sent back by the work order first"
+}

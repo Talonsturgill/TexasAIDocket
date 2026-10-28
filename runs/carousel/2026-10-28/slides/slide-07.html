@@ -1,0 +1,61 @@
+<!doctype html>
+<!-- 2026-10-28, frame 7 of 9. Archetype FIGURE_SCALE. A spatial scene through txthree.js in the deck's lastLight world: the brush truck parked at the curb with its boom stowed, and a person in a vest standing at the curb six metres from the camera, turned away toward the brush windrow. The windrow's length is read from figures.json. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">A person walks to the curb</h1>
+<p class="dek" data-follow="26">In a prioritized inspection a Code Inspector checks on site whether a violation exists. The table counts 473 field inspections and 374 voluntary corrections. Drawn to&nbsp;illustrate.</p>
+<script>window.FIG = {"pile_len_m": 4.06};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-28-route.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "The inspection", counter: "07 / 09", src: "c18 c19 c24 c25", fit: { min: 84, max: 116, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 34, near: 0.1, far: 3000 });
+  const road = K.make('road', { length: 140, lanes: 2, sidewalk: true, parkway: true }); road.rotation.y = Math.PI / 2; TXT.add(R, road);
+  const truck = K.make('brush_truck', { load: 0.5, boom: 0, podsLit: false }); truck.position.set(-1.9, 0, -4); TXT.add(R, truck); TXT.contact(R, truck, { vehicle: true });
+  /* no limb of the load stands proud of the body's side walls on this frame */
+  truck.updateMatrixWorld(true); { const inv = new THREE.Matrix4().copy(truck.matrixWorld).invert(), bx = new THREE.Box3(), cut = [];
+    truck.children.forEach((c) => { if (c.userData.kit !== 'cut_limb') return; bx.setFromObject(c).applyMatrix4(inv); if (Math.max(Math.abs(bx.min.x), Math.abs(bx.max.x)) > 1.12) cut.push(c); });
+    cut.forEach((c) => truck.remove(c)); }
+  /* THE FIGURE, from figures.json: the windrow on the parkway the inspector has walked to */
+  const pile = K.make('brush_pile', { length: FIG.pile_len_m, height: 1.1, depth: 1.8, seed: 21 }); pile.position.set(-5.8, 0.15, -1.2); pile.rotation.y = Math.PI / 2; TXT.add(R, pile);
+  const insp = K.make('person', { seed: 14, role: 'official', pose: 'stand', vest: true }); insp.position.set(-6.7, 0.15, 2.6); insp.rotation.y = Math.PI * 1.08; TXT.add(R, insp); TXT.contact(R, insp);
+  /* the vest gone dull in the dusk, so the white cab stays the brightest thing */
+  insp.traverse((m) => { if (!m.material || !m.material.color) return; const h = {}; m.material.color.getHSL(h); if (h.s > 0.6 && h.h < 0.14) { m.material = m.material.clone(); m.material.color.setHSL(h.h, h.s * 0.72, h.l * 0.72); } });
+  const house = K.make('ranch_house', { seed: 4, material: 'brick', garage: 'left' }); house.position.set(14, 0, -15); house.rotation.y = -Math.PI / 2; TXT.add(R, house); TXT.contact(R, house);
+  const oak = K.make('live_oak', { seed: 2, height: 8, spread: 14 }); oak.position.set(4, 0, -28); TXT.add(R, oak);
+  TXT.sky(R);
+  TXT.ground(R, { surface: 'grass', size: 900, seed: 52 });
+  const from = [-12.5, 1.6, 14.5];
+  const look = CH.aim(THREE, R, TXT, from, [-3.5, 1.6, 0], 560, 920, 34);
+  TXT.frame(R, { fov: 34, from, look });
+  CH.warm(R, 0.24);
+  TXT.deckRig(R, CH.rigSpec(W, 22, 4096), CH.rigOpts([-4, 1, 2], { distance: 50, shadowFar: 120 }));
+  CH.unacne(R, 0.02);
+  CH.noShadows(R);
+  TXT.stage(R, [truck, insp, pile]);
+  TXT.weather(R, { grime: 0.3, height: 0.7, mottle: 0.3 });
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0.3, veil: 0.34, footWash: 0.42 });
+  CH.knock(cx, ['.tx-site', '.src'], 0.54);
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

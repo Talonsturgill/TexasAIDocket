@@ -378,6 +378,115 @@ def parse_size(v: str) -> str:
     return " x ".join(nums) if nums and v.strip().startswith("[") else clean(v)
 
 
+# WHETHER K.make MOVES A MODEL'S ORIGIN (2026-10-28, queue kmake-centring-moves-a-models-meaningful-
+# origin, kmake-recentres-wall-hung-models and kmake-recentres-after-make: carousels no. 47, 50, 55,
+# 56 and 62). K.make centres every model's footprint on its origin unless the spec declares anchor
+# 'base' or the built group publishes coordinates (userData.keepOrigin, attach or heightAt). Five
+# decks placed parts in a builder's own coordinates and found them shifted at render, because the
+# page's kit paragraph said only "origin at the footprint centre". So each model row now says which
+# it is, READ from the spec: the make body and any local function it calls, one level down.
+_KEEPS = re.compile(r"userData\.(?:keepOrigin|attach|heightAt)\b")
+
+
+def kit_origin(spec: dict, src: str) -> str:
+    """'kept, anchor base', 'kept' or 'centred', for one K.define spec read out of `src`."""
+    if re.fullmatch(r"\s*['\"]base['\"]\s*", spec.get("anchor", "")):
+        return "kept, anchor base"
+    body = spec.get("make", "")
+    texts = [body]
+    for name in sorted(set(re.findall(r"(?<![\w.$])([A-Za-z_]\w*)\s*\(", body))):
+        fm = re.search(r"function\s+" + re.escape(name) + r"\s*\([^)]*\)\s*\{", src)
+        if fm:
+            texts.append(src[fm.end() - 1:match_close(src, fm.end() - 1) + 1])
+    found = [unconditional(t, m.start()) for t in texts for m in _KEEPS.finditer(t)]
+    if any(found):
+        return "kept"
+    return "kept on some options" if found else "centred"
+
+
+def brace_kind(body: str, i: int) -> str:
+    """'block' for the brace of an if, else, for, while, switch, try or catch; 'fn' otherwise."""
+    prev = body[:i].rstrip()
+    if re.search(r"(?:\belse|\btry|\bdo|\bfinally)$", prev):
+        return "block"
+    if prev.endswith(")"):
+        d, j = 0, len(prev) - 1
+        while j >= 0:
+            if prev[j] == ")":
+                d += 1
+            elif prev[j] == "(":
+                d -= 1
+                if d == 0:
+                    break
+            j -= 1
+        if re.search(r"\b(?:if|for|while|switch|catch|with)\s*$", prev[:max(0, j)]):
+            return "block"
+    return "fn"
+
+
+def unconditional(body: str, at: int) -> bool:
+    """True when the statement at `at` runs on every call: at the function's own brace depth and
+    not behind an `if (` on its line. power_line keeps its origin only when handed `structures`,
+    and a column that said kept would mislead exactly the caller this column is for."""
+    depth, i, returns, kinds = 0, 0, [], []
+    while i < at:
+        c = body[i]
+        if body.startswith("//", i):           # a comment's apostrophe is not a string
+            j = body.find("\n", i)
+            i = at if j < 0 else j
+            continue
+        if body.startswith("/*", i):
+            j = body.find("*/", i + 2)
+            i = at if j < 0 else j + 2
+            continue
+        if c in "'\"`":
+            i = skip_string(body, i)
+            continue
+        if c == "{":
+            depth += 1
+            kinds.append(brace_kind(body, i))
+        elif c == "}":
+            depth -= 1
+            if kinds:
+                kinds.pop()
+        elif c == "r" and re.match(r"return\b", body[i:i + 7]) and not re.match(r"[\w.$]", body[i - 1:i] or " "):
+            # an early return in this function's own flow (not inside a nested function): whatever
+            # follows it runs on some calls only
+            if all(k == "block" for k in kinds[1:]):
+                returns.append(depth)
+        i += 1
+    line = body[body.rfind("\n", 0, at) + 1:at]
+    first = body.find("{")
+    top = 1 if 0 <= first < at else 0
+    early = bool(returns)
+    return depth <= top and not early and not re.search(r"\bif\s*\(|\?|&&", line)
+
+
+def kit_conventions(header_src: str) -> list[str]:
+    """The registry's own CONVENTIONS bullets on units, origin and front, verbatim and one line each.
+
+    Read rather than typed: the sentence this page carried before 2026-10-28 said the origin is at
+    the footprint centre and left out the three exceptions the registry states, which is the copy
+    that kept five decks guessing. A header that stops saying it withdraws the line."""
+    lines = [re.sub(r"^\s*\*\s?", "", ln) for ln in header_src.split("\n")]
+    out, cur = [], None
+    for ln in lines:
+        bm = re.match(r"\s*-\s+(.*)", ln)
+        if bm:
+            if cur is not None:
+                out.append(cur)
+            cur = bm.group(1).strip()
+        elif cur is not None and ln.strip() and not re.match(r"\s*[A-Z][A-Za-z ]+\.$", ln):
+            cur += " " + ln.strip()
+        elif cur is not None:
+            out.append(cur)
+            cur = None
+    if cur is not None:
+        out.append(cur)
+    keep = [c for c in out if re.match(r"(?i)(metres|the model's front)", c)]
+    return [clean(re.sub(r"\s+", " ", c)) for c in keep]
+
+
 def parse_kit_family(src: str) -> tuple[list[dict], int]:
     """Every model a family file registers, and the count of definitions it could not read."""
     definers = {"K.define"}
@@ -405,6 +514,7 @@ def parse_kit_family(src: str) -> tuple[list[dict], int]:
             options = clean(opts) if opts else ""
         models.append({
             "name": m.group(3),
+            "origin": kit_origin(d, src),
             "size": parse_size(d.get("size", "")) if "size" in d else "?",
             "options": options,
             "note": first_sentence(js_string_value(d["note"]), 260) if "note" in d else "",
@@ -465,8 +575,10 @@ def parse_kit(root: Path) -> dict:
     src = kit_js.read_text(encoding="utf-8")
     header = ""
     hm = re.match(r"\s*/\*(.*?)\*/", src, re.S)
+    conventions: list[str] = []
     if hm:
         header = first_sentence(strip_name_prefix(re.sub(r"^\s*\*\s?", "", hm.group(1), flags=re.M)))
+        conventions = kit_conventions(hm.group(1))
     fam_srcs = {p.stem: p.read_text(encoding="utf-8", errors="replace")
                 for p in sorted((root / "assets/js/kit").glob("*.js"))}
     helpers = kit_helpers(src, fam_srcs)
@@ -496,7 +608,7 @@ def parse_kit(root: Path) -> dict:
         families.append({"family": name, "file": p.relative_to(root).as_posix(),
                          "summary": summary, "models": sorted(models, key=lambda m: m["name"]),
                          "dynamic": dynamic, "imported": name in order})
-    return {"helpers": helpers, "families": families, "header": header}
+    return {"helpers": helpers, "families": families, "header": header, "conventions": conventions}
 
 
 # ------------------------------------------------------------------------------ libraries
@@ -1009,11 +1121,20 @@ def build(root: Path = REPO_ROOT) -> str:
         L += [kit["header"], ""]
     L += ["`import { initKit } from '@@ASSETS@@/js/txkit.js'; const K = initKit(THREE, TXT);` then "
           "`const m = K.make('name', { seed, ...options }); TXT.add(R, m); TXT.contact(R, m);`. "
-          "Metres, y up, origin at the footprint centre on the ground, front faces +z. The size "
+          "The size "
           "column is an ENVELOPE sampled over sixteen seeds by `examples/kit/sizes.py`, not a bound "
           "on every seed: to place a built model exactly, read its own `m.userData.size`, which "
           "`K.make` measures on every call. Proof pages: "
           "`python3 examples/kit/build.py --family <family> --out out/kit/<family>/slides`.", ""]
+    if kit.get("conventions"):
+        L += ["**The registry's conventions, in its own words** (quoted from `assets/js/txkit.js`):", ""]
+        L += [f"- {c}" for c in kit["conventions"]] + [""]
+        L += ["The **origin** column says which a model is, read from its spec: `centred` means K.make "
+              "moves the built footprint onto the origin, so a coordinate computed in the builder is not "
+              "where the part lands; `kept` means the model publishes coordinates (or sets keepOrigin) "
+              "and its own origin stands; `kept on some options` keeps it only behind an option its note "
+              "names; `kept, anchor base` is a pole or mast held at its foot. A "
+              "model built in a chassis that must keep a meaningful origin sets userData.keepOrigin.", ""]
     if kit["helpers"]:
         L += ["**Builder helpers**, for new geometry made the kit's way:", ""]
         L += table(["helper", "note"], [[code(h["sig"]), h["doc"]] for h in kit["helpers"]]) + [""]
@@ -1032,8 +1153,9 @@ def build(root: Path = REPO_ROOT) -> str:
             L += [f"{fam['dynamic']} definition(s) here use a computed name and are not listed. "
                   "Run `K.list()` in a page for the whole set.", ""]
         if fam["models"]:
-            L += table(["model", "size w x h x d (m)", "options", "note"],
-                       [[code(m["name"]), m["size"], m["options"], m["note"]] for m in fam["models"]])
+            L += table(["model", "size w x h x d (m)", "origin", "options", "note"],
+                       [[code(m["name"]), m["size"], m.get("origin", ""), m["options"], m["note"]]
+                        for m in fam["models"]])
             L += [""]
         else:
             L += ["No models registered yet.", ""]
@@ -1189,6 +1311,31 @@ export function install(K, THREE, TXT) {
 }
 """
 
+FIX_KIT_HEADER = """ txkit.js, fixture.
+ *
+ * CONVENTIONS, every model:
+ *   - METRES, y up, origin at the centre of the footprint ON THE GROUND. K.make centres it, except
+ *     anchor: 'base' and a model setting userData.keepOrigin.
+ *   - The model's FRONT faces +z.
+ *   - `seed` varies it deterministically.
+ *
+ * Families live in kit files.
+ """
+
+FIX_FAMILY_ORIGIN = """export function install(K, THREE, TXT) {
+  function grow(o) { const g = new THREE.Group(); g.userData.keepOrigin = true; return g; }
+  K.define('limb', { size: [2, 0.2, 0.2], make(o, r) { return grow(o); } });
+  K.define('truck', { size: [2.6, 3.9, 9.4], make(o) { const g = new THREE.Group(); g.userData.attach = { pods: [] }; return g; } });
+  K.define('mast', { anchor: 'base', size: [1, 9, 1], make() { return new THREE.Group(); } });
+  K.define('crate', { size: [1, 1, 1], make() { return box(1, 1, 1); } });
+  K.define('line', { size: [90, 12, 1], make(o) {
+    const g = new THREE.Group();
+    if (o.structures) g.userData.keepOrigin = true;
+    return g;
+  } });
+}
+"""
+
 FIX_TOOL = '''#!/usr/bin/env python3
 """fake_gate.py \u2014 a fixture gate that checks nothing at all. It has a second sentence."""
 import argparse
@@ -1246,6 +1393,30 @@ def self_test() -> int:
        silo.get("note") == "A grain silo with a {braced} note, and a comma.", silo.get("note"))
     ok("kit: a computed-name definition is counted rather than silently missed", dynamic == 1,
        dynamic)
+
+    # THE ORIGIN COLUMN, and that it can go red: delete the keepOrigin line and the row says centred
+    om, _ = parse_kit_family(FIX_FAMILY_ORIGIN)
+    ob = {m["name"]: m["origin"] for m in om}
+    ok("kit origin: a model setting keepOrigin in a helper its make calls reads kept",
+       ob.get("limb") == "kept", ob.get("limb"))
+    ok("kit origin: a model publishing userData.attach in its own make reads kept",
+       ob.get("truck") == "kept", ob.get("truck"))
+    ok("kit origin: anchor 'base' reads kept, anchor base", ob.get("mast") == "kept, anchor base",
+       ob.get("mast"))
+    ok("kit origin: a model with none of them reads centred", ob.get("crate") == "centred",
+       ob.get("crate"))
+    ok("kit origin: a keepOrigin behind an option reads kept on some options, never kept",
+       ob.get("line") == "kept on some options", ob.get("line"))
+    om2, _ = parse_kit_family(FIX_FAMILY_ORIGIN.replace("g.userData.keepOrigin = true;", ""))
+    ok("kit origin: GOES RED, the same limb without its keepOrigin line reads centred",
+       {m["name"]: m["origin"] for m in om2}.get("limb") == "centred",
+       {m["name"]: m["origin"] for m in om2}.get("limb"))
+    conv = kit_conventions(FIX_KIT_HEADER)
+    ok("kit conventions: the registry's METRES and FRONT bullets are read whole, continuation lines joined",
+       len(conv) == 2 and "userData.keepOrigin" in conv[0] and conv[1].startswith("The model's FRONT"), conv)
+    ok("kit conventions: WITHDRAWN when the header no longer states them",
+       kit_conventions(FIX_KIT_HEADER.replace("METRES", "Units").replace("The model's FRONT", "Its face")) == [],
+       kit_conventions(FIX_KIT_HEADER.replace("METRES", "Units").replace("The model's FRONT", "Its face")))
 
     hs = [h["sig"] for h in kit_helpers(
         "  K.box = function (w, h, d) {\n  };\n  K.finish = {\n    galvanized: () => 1,\n    steelPaint: (c) => 2,\n  };\n",

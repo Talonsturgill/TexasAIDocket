@@ -1,0 +1,85 @@
+<!doctype html>
+<!-- 2026-10-28, frame 8 of 9. Archetype DIAGRAM. A spatial scene through txthree.js in the deck's lastLight world: the frame 5 rack with a seventh arm, the six cut limbs on the top six arms at the frame 5 scale and the lowest arm bare, where an accuracy figure would lie. Every length is read from figures.json. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>.lab { font-size:24px !important; }</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">Accuracy is still a&nbsp;next step</h1>
+<p class="dek" data-follow="26">The October 19th briefing lists calibrating detection accuracy and setting accuracy measures as next steps. It publishes no accuracy figure, so the lowest arm holds no limb and its tag is&nbsp;blank.</p>
+<div class="lab" id="l6">ACCURACY, NO FIGURE IN THE BRIEFING</div>
+<script>window.FIG = {"observations_m": 8.4, "notices_m": 4.625, "inspections_m": 0.747, "corrections_m": 0.591, "abatements_m": 0.054, "enforcement_m": 0.16};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-28-route.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "The next step", counter: "08 / 09", src: "c2 c22 c23 c24 c25 c26 c27 c29 c30", fit: { min: 80, max: 104, maxLines: 2 } });
+  /* THE FIGURES, from figures.json: the frame 5 limbs at the frame 5 scale on the top six arms, and nothing on the seventh */
+  const LENS = [FIG.observations_m, FIG.notices_m, FIG.inspections_m, FIG.corrections_m, FIG.abatements_m, FIG.enforcement_m, null], ROWS = 7;
+  const R = CH.stage(TXT, gl, W, { fov: 40, near: 0.1, far: 2000 });
+  /* THE RACK faces west to the camera across a city yard, so the last light comes over the camera's left shoulder.
+   * Local +x (each limb's length) runs to the camera's right, and every limb's cut butt sits on one line at the left. */
+  const rig = new THREE.Group(); rig.rotation.y = -Math.PI / 2; rig.scale.set(1, 1, 1);
+  const rack = K.make('limb_rack', { rows: ROWS, pitch: 0.5, y0: 0.9, span: 5.6, reach: 0.75 }); rig.add(rack);
+  /* the second upright keeps only the arm the 5,318 limb rests on, so the only empty arm the deck shows is the turn's */
+  { const keepY = rack.userData.arms[0][1] - 0.05, sz = new THREE.Vector3();
+    rack.children.slice().forEach((c) => { if (!c.isMesh || Math.abs(c.position.x - 5.6) > 0.05) return; c.geometry.computeBoundingBox(); c.geometry.boundingBox.getSize(sz);
+      const arm = Math.abs(sz.z - 0.75) < 0.06 && sz.y < 0.15, lip = sz.x < 0.1 && sz.y < 0.07 && sz.z < 0.05;
+      if ((arm || lip) && Math.abs(c.position.y - keepY) > 0.12) rack.remove(c); }); }
+  const X0 = -0.03, LABELS = [];
+  const toWorld = (p) => { rig.updateMatrixWorld(true); return new THREE.Vector3(p[0], p[1], p[2]).applyMatrix4(rig.matrixWorld); };
+  LENS.forEach((L, k) => { if (L == null) return; const a = rack.userData.arms[k], rad = 0.12 - k * 0.008;
+    const limb = K.make('cut_limb', { length: L, radius: rad, taper: 0.32, seed: 40 + k }); limb.position.set(X0, a[1], a[2]); rig.add(limb);
+    if (k === 0) { /* the frame 5 flagging tape on the 5,318 limb, the same band and tail */
+      const tm = new THREE.MeshBasicMaterial({ color: CH.ACCENT, toneMapped: false, side: THREE.DoubleSide });
+      const band = new THREE.Mesh(new THREE.CylinderGeometry(rad * 1.07, rad * 1.07, 0.09, 24, 1, true), tm); band.rotation.z = Math.PI / 2; band.position.set(0.32, rad, 0); limb.add(band);
+      const tail = new THREE.Mesh(new THREE.PlaneGeometry(0.05, 0.26), tm); tail.position.set(0.34, rad - 0.14, rad * 1.05); tail.rotation.z = 0.12; limb.add(tail); }
+    LABELS.push(['l' + k, toWorld([X0, a[1] + 2 * rad + 0.02, a[2] + 0.2]).toArray()]); });
+  TXT.add(R, rig); TXT.contact(R, rack);
+  const fence = K.make('chain_link_fence', { length: 40, height: 2.4 }); fence.position.set(9, 0, 4); fence.rotation.y = Math.PI / 2; TXT.add(R, fence);
+  TXT.sky(R);
+  TXT.ground(R, { surface: 'concrete', size: 600, seed: 61 });
+  TXT.scatter(R, { kind: 'grass', count: 1400, area: [6, -20, 30, 30], seed: 9, scale: [0.3, 0.6] });
+  { const a = rack.userData.arms[6]; LABELS.push(['l6', toWorld([X0, a[1] - 0.3, a[2] + 0.2]).toArray(), 0]); }
+  /* a blank stock tag in the deck's accent hung from the bare arm's tip on a wire, under its label, where the crew would write the row's count, and nothing is written */
+  { const a = rack.userData.arms[6], tip = [0, a[1] - 0.02, 0.66];
+    const tagM = new THREE.MeshBasicMaterial({ color: CH.ACCENT, toneMapped: false, side: THREE.DoubleSide });
+    const tag = new THREE.Mesh(new THREE.PlaneGeometry(0.4, 0.52), tagM); tag.position.set(tip[0] + 0.02, tip[1] - 0.1 - 0.26, tip[2]); tag.rotation.y = -0.18; tag.rotation.z = -0.04; rig.add(tag);
+    const hole = new THREE.Mesh(new THREE.CircleGeometry(0.018, 16), new THREE.MeshStandardMaterial({ color: 0x0b0c0e, roughness: 0.8 })); hole.position.set(0, 0.22, 0.002); tag.add(hole);
+    const wire = new THREE.Mesh(new THREE.CylinderGeometry(0.004, 0.004, 0.12, 6), K.finish.galvanized()); wire.position.set(tip[0] + 0.02, tip[1] - 0.05, tip[2]); rig.add(wire); }
+  /* low and close on the bare seventh arm, which projects toward the reader in its own pool, the racked limbs rising above it into the dark */
+  const ARM = toWorld([0, rack.userData.arms[6][1], 0.6]);
+  const from = [ARM.x - 11.5, 1.45, ARM.z - 3.6];
+  const look = CH.aim(THREE, R, TXT, from, [ARM.x, ARM.y, ARM.z], 650, 1050, 40);
+  const pool = new THREE.SpotLight(0xffd7a8, 40, 9, 0.32, 0.55, 2); pool.position.set(ARM.x - 1.6, ARM.y + 3.2, ARM.z + 0.6); pool.target.position.set(ARM.x, ARM.y - 0.4, ARM.z); pool.castShadow = true; R.scene.add(pool, pool.target);
+  TXT.frame(R, { fov: 40, from, look });
+  CH.warm(R, 0.24);
+  TXT.deckRig(R, CH.rigSpec(W, 12, 4096), CH.rigOpts([0, 1.4, 3], { distance: 40, shadowFar: 100 }));
+  CH.unacne(R, 0.01);
+  CH.noShadows(R);
+  TXT.stage(R, [rack]);
+  TXT.weather(R, { grime: 0.3, height: 0.7, mottle: 0.3 });
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  /* each label set just above its own limb's left end, read off the camera, never across a limb */
+  LABELS.forEach(([id, p, dy]) => { const el = document.getElementById(id); if (!el) return; const q = CH.project(THREE, R, p); el.style.left = Math.round(Math.max(80, q[0] + (id === 'l6' ? -630 : -4))) + 'px'; el.style.top = Math.round(q[1] - 34 + (dy || 0)) + 'px'; });
+  CH.post(cx, { a: 0.3, veil: 0.34, footWash: 0.42 });
+  CH.knock(cx, ['.tx-site', '.src'].concat(LABELS.filter(l => document.getElementById(l[0])).map(l => '#' + l[0])), 0.82);
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

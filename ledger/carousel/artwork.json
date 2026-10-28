@@ -3854,6 +3854,72 @@
     "hex": "#08070D",
     "note": "The lastLight world's dark sky."
    }
+  },
+  {
+   "date": "2026-10-28",
+   "carousel_no": 62,
+   "written_from": "deck_coherence's median L* per frame at 432 px off the final renders, layout_check's accent share, by update_ledgers.py.",
+   "register": "SPATIAL SCENES in TXT's lastLight world, staged, one TXT.interior room. Chassis assets/js/deck/2026-10-28-route.js: key az -125 el 12, chassis models brush_truck, camera_pod, brush_pile, cut_limb, limb_rack, count_token and notice_letter, white enamel, worked rust streaked steel, city blue, cedar elm bark with ringed pale cut ends, galvanized steel.",
+   "structural_laws": [
+    "A PLAN VIEW RELIEF OF BARS ON A CURB READS AS A BAR CHART OR A UI TRAY. Two audition rounds failed it, and a rack of real limbs at one scale in a yard read as stock a crew would stack.",
+    "K.MAKE CENTRES A MODEL'S FOOTPRINT. A model whose origin carries meaning, a limb's butt or a rack's published arm coordinates, must set userData.keepOrigin or every butt shifts by half its own length.",
+    "A LOAD OF FACETED PRISMS READS AS TOY BLOCKS. The truck load rebuilt from the barked, bent cut_limb with ringed ends read as wood at feed size.",
+    "A SCREEN PLANE PLACED BY BOUNDING BOX MISREGISTERS AGAINST THE BEZEL. Seated in the kit monitor's own head at its display rectangle it sat flush.",
+    "AN ACCENT IN DOM TYPE DOESN'T COUNT AT THUMB SCALE. Solid accent surfaces, a coated lens, a tape band, a blank tag and a title strip, carried it."
+   ],
+   "techniques": [
+    "the loaded brush truck from above its rear corner with both pods lit",
+    "fifty trucks instanced in a dark yard from above, the near rows in the pool",
+    "the camera pod close on the body's top rail with a warm fill and rim",
+    "a monitor in a dark office, its screen 5,318 flat tiles in runs",
+    "a galvanized cantilever rack in a city yard carrying six limbs at one scale",
+    "a brick mailbox at the curb with the letter under the mail door's pull",
+    "the same rack closer with a bare seventh arm and a blank cyan stock tag",
+    "an inspector at the truck's front on the sidewalk beside the windrow",
+    "the truck leaving up a dark street, the inspector in a warm pool at the curb"
+   ],
+   "value": {
+    "per_frame_median_L": [
+     3.8,
+     13.0,
+     2.8,
+     5.1,
+     1.2,
+     6.5,
+     3.8,
+     1.3,
+     2.8
+    ],
+    "deck_median_L": 3.8,
+    "max_adjacent_delta": 10.2,
+    "mean_adjacent_delta": 4.7,
+    "note": "Measured by deck_coherence's median_lstar at 432 px off the final renders. A staged lastLight deck."
+   },
+   "accent": {
+    "hex": "#7CC6D6",
+    "name": "the camera's cold cyan",
+    "frames_above_floor": [
+     3,
+     4,
+     8
+    ],
+    "share": [
+     0.0001,
+     0.0003,
+     0.0037,
+     0.0086,
+     0.0001,
+     0.0,
+     0.0,
+     0.0027,
+     0.0
+    ],
+    "note": "The pods' coated lenses and lamps, the review queue's title strip on 4, the tape on the 5,318 limb and the blank accuracy tag on 7."
+   },
+   "ground": {
+    "hex": "#08070C",
+    "note": "The lastLight world's dark sky."
+   }
   }
  ]
 }

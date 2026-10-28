@@ -1,0 +1,223 @@
+{
+ "weighted_score": 7.086,
+ "judges": [
+  6.862,
+  7.37,
+  7.08
+ ],
+ "spread": 0.508,
+ "criteria": {
+  "artwork_craft": {
+   "score": 6.8,
+   "weight": 0.22,
+   "judges": [
+    6.8,
+    6.6,
+    7.0
+   ]
+  },
+  "deck_coherence": {
+   "score": 7.5,
+   "weight": 0.12,
+   "judges": [
+    7.3,
+    7.5,
+    7.5
+   ]
+  },
+  "claim_integrity": {
+   "score": 8.0,
+   "weight": 0.2,
+   "judges": [
+    7.0,
+    8.5,
+    8.0
+   ]
+  },
+  "story_and_stakes": {
+   "score": 6.5,
+   "weight": 0.16,
+   "judges": [
+    6.5,
+    7.0,
+    6.5
+   ]
+  },
+  "sequence_and_momentum": {
+   "score": 7.0,
+   "weight": 0.1,
+   "judges": [
+    7.0,
+    7.5,
+    7.0
+   ]
+  },
+  "voice": {
+   "score": 7.0,
+   "weight": 0.1,
+   "judges": [
+    7.0,
+    7.0,
+    7.0
+   ]
+  },
+  "variety": {
+   "score": 6.5,
+   "weight": 0.1,
+   "judges": [
+    6.5,
+    7.5,
+    6.0
+   ]
+  }
+ },
+ "hard_fails": [],
+ "hard_fails_by_judge": [],
+ "ship": true,
+ "threshold": 8.0,
+ "over_threshold": false,
+ "method": "per-criterion median across three judges, then weighted by the rubric",
+ "contested": [
+  "claim_integrity",
+  "variety"
+ ],
+ "artwork_weakest_frames": [
+  {
+   "slide": 4,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "A uniform flat grey grid, dimmer than the desk spill.",
+     "fix": "Tiles at value steps, the screen the brightest value, the camera in so the screen fills about half the width, the books cropped."
+    },
+    {
+     "judge": 2,
+     "problem": "A stock monitor and slab books in a teal gradient void, a mid grey mesh screen, the largest mid tone block.",
+     "fix": "A built office over a reviewer's shoulder, an emissive screen as the brightest value and only source, the books deleted."
+    },
+    {
+     "judge": 3,
+     "problem": "A generic monitor and books, a uniform grey mesh screen, no reviewer.",
+     "fix": "Apply value steps in the tile fill, the camera behind a reviewer's shoulder with a hand on a mouse, the monitor two thirds of the width."
+    }
+   ]
+  },
+  {
+   "slide": 3,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The pale boom silhouette and flat tiled bark.",
+     "fix": "Remove the boom shape, replace the logs with the barked cut_limb models."
+    },
+    {
+     "judge": 2,
+     "problem": "A cartoon ring lens, a pale faceted shape behind the pod, stretched bark, an empty top.",
+     "fix": "Recessed coated glass with one highlight, cyan only on the lamp, the boom culled, the camera dropped against the lit body side."
+    },
+    {
+     "judge": 3,
+     "problem": "A flat cyan ring lens and a pale boom silhouette.",
+     "fix": "A recessed coated glass element with a dark bore and one hard specular, the boom darkened or occluded."
+    }
+   ]
+  },
+  {
+   "slide": 2,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Brown haze, primitive cabs, under half the 50 trucks in view.",
+     "fix": "Drop the warm fog, raise the camera so all five rows recede in frame."
+    },
+    {
+     "judge": 2,
+     "problem": "A brown-mauve haze in the top third, primitive box cabs.",
+     "fix": "Fog to the near black sky above the far rows, a chamfered hood and windscreen on the instanced cab."
+    },
+    {
+     "judge": 3,
+     "problem": "A brown fog mid tone and toy box trucks.",
+     "fix": "Fog beyond the third row to the near black sky, the eye at about 12 m."
+    }
+   ]
+  },
+  {
+   "slide": 8,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "The label's last letters on the upright, a flat cyan tag, a dead left half.",
+     "fix": "The label on two lines ending clear of the upright, a paper stock tag with a cast, the camera in and down on the bare arm."
+    },
+    {
+     "judge": 3,
+     "problem": "The label's last letters on the upright.",
+     "fix": "The label on two lines ending at least 40 px left of the upright, level with the tag."
+    }
+   ]
+  },
+  {
+   "slide": 7,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "A mannequin inspector beside a chunky cab that owns the frame.",
+     "fix": "Crop to the inspector and windrow with the truck's dark body as backdrop, rim light the figure."
+    },
+    {
+     "judge": 3,
+     "problem": "A boxy cab primitive and a mannequin inspector.",
+     "fix": "Tighter on the inspector and windrow with the cab off the right edge."
+    }
+   ]
+  },
+  {
+   "slide": 9,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The truck an eighth of the width, no dominant image.",
+     "fix": "The camera 12 to 15 m behind the truck so the body and pods fill a third of the width."
+    }
+   ]
+  },
+  {
+   "slide": 5,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "A bar chart drawn in sticks square on, labels over busy fence.",
+     "fix": "Rotate about 25 degrees off square and lower, tapered bent limbs, the fence a stop darker behind the labels."
+    }
+   ]
+  },
+  {
+   "slide": 1,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "A firewood load, a rust brown body, floating leaf cards.",
+     "fix": "Branchy brush with small leaves, cull the orphaned cards, swing to catch the white cab."
+    }
+   ]
+  }
+ ],
+ "rounds_derived": 3,
+ "rounds": 3,
+ "rounds_source": "this module's own log of cards it has scored",
+ "rounds_declared": 3,
+ "at_cap": true,
+ "rung": null,
+ "shortfall": "at the round cap the finished deck ships at 7.086, 0.914 under the 8.0 top rung. Name that in the email and the run record",
+ "craft_floor": "capped",
+ "craft_note": "at the round cap the craft floor stands down. The art median 6.8 is under 8.5 and the deck ships as it is. Name it in the run record"
+}

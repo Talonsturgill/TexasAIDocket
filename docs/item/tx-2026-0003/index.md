@@ -55,6 +55,8 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-18 · The commission's order approving Oncor's line and route still stands. The filing index pages gave nothing to compare, so the latest compliance entries are unconfirmed.
 - 2026-10-21 · The commission's order approving Oncor's line and route still stands. The docket's filing index has grown from 5829 to 5861 entries since it was last counted, all of them filed after the order.
 - 2026-10-24 · Oncor's application for the 765 kV line across west and central Texas still stands as decided on the commission's docket.
+- 2026-10-27 · Oncor's 765 kV application in Docket 59315 is still decided on the record, and the docket has kept drawing new filings since. The latest filing count is unconfirmed.
+- 2026-10-28 · Oncor's 765 kV application in Docket 59315 is still decided on the record, and the docket has kept drawing new filings since. The latest filing count is unconfirmed.
 
 ## Evidence
 

@@ -1,0 +1,64 @@
+<!doctype html>
+<!-- 2026-10-28, frame 6 of 9. Archetype OBJECT_AND_CAPTION. A spatial scene through txthree.js in the deck's lastLight world: a brick mailbox at the curb with a folded city letter laid on its cast stone cap, the curb running off the right edge, a brush windrow beyond. The windrow's length is read from figures.json. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">A courtesy letter sets no deadline</h1>
+<p class="dek" data-follow="26">The table counts 2,928 courtesy notices. A courtesy letter is now an educational reminder outside the citation process, the briefing says. The first letter used to be a formal notice of violation. Drawn to&nbsp;illustrate.</p>
+<script>window.FIG = {"pile_len_m": 4.06};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-28-route.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "The letter", counter: "06 / 09", src: "c15 c16 c23", fit: { min: 80, max: 108, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 38, near: 0.05, far: 2000 });
+  const road = K.make('road', { length: 120, lanes: 2, sidewalk: true, parkway: true }); road.rotation.y = Math.PI / 2; TXT.add(R, road);
+  /* the mailbox on the east parkway facing the street (west), lit by the low key across the street */
+  const mb = K.make('mailbox', { style: 'brick', seed: 4 }); mb.position.set(5.4, 0.15, 0); mb.rotation.y = -Math.PI / 2; TXT.add(R, mb); TXT.contact(R, mb);
+  /* the kit's blank address tile would be the palest thing on the column and steal the eye from the letter, so it is left off */
+  mb.traverse((m) => { if (m.isMesh && m.material && m.material.color && m.material.color.getHex() === 0xe5ddcc) m.visible = false; });
+  /* the letter tucked upright under the mail door's pull bar, its face to the street, so the pale paper is what the eye finds on the brick */
+  const letter = K.make('notice_letter', { open: 0.15 }); letter.position.set(5.4 - 0.31, 0.15 + 0.98, 0.02); letter.rotation.set(0.1, 0.32, Math.PI / 2 - 0.34); TXT.add(R, letter);
+  /* the mail door hinged at its bottom edge and swung down toward the street, with a low key raking the open box so the letter casts on its floor */
+  { const door = new THREE.Mesh(new THREE.BoxGeometry(0.012, 0.25, 0.31), new THREE.MeshStandardMaterial({ color: 0x1a1a1a, roughness: 0.45, metalness: 0.5 }));
+    door.geometry.translate(0, -0.125, 0); door.position.set(5.4 - 0.31, 0.15 + 0.82, 0); door.rotation.z = -1.35; door.castShadow = true; TXT.add(R, door);
+    const pull = new THREE.Mesh(new THREE.BoxGeometry(0.02, 0.015, 0.05), new THREE.MeshStandardMaterial({ color: 0xd8d8d8, roughness: 0.2, metalness: 1 })); pull.position.set(-0.012, -0.21, 0); door.add(pull);
+    const key = new THREE.SpotLight(0xffd4a0, 6, 4, 0.35, 0.6, 2); key.position.set(5.4 - 1.6, 1.9, 0.9); key.target.position.set(5.4 - 0.25, 1.05, 0); R.scene.add(key, key.target); }
+  /* THE FIGURE, from figures.json: the windrow at the curb behind the box, at the length a ten cubic yard pickup reaches */
+  const pile = K.make('brush_pile', { length: FIG.pile_len_m, height: 1.1, depth: 1.8, seed: 17 }); pile.position.set(5.9, 0.15, -6.5); pile.rotation.y = Math.PI / 2; TXT.add(R, pile);
+  const house = K.make('ranch_house', { seed: 5, material: 'brick' }); house.position.set(20, 0, -3); house.rotation.y = -Math.PI / 2; TXT.add(R, house); TXT.contact(R, house);
+  const elm = K.make('cedar_elm', { seed: 8, height: 10 }); elm.position.set(12, 0, 6); TXT.add(R, elm);
+  TXT.sky(R);
+  TXT.ground(R, { surface: 'grass', size: 700, seed: 46 });
+  const from = [2.6, 1.15, 2.4];
+  const look = CH.aim(THREE, R, TXT, from, [5.2, 0.85, 0], 520, 1000, 38);
+  TXT.frame(R, { fov: 38, from, look });
+  CH.warm(R, 0.24);
+  TXT.deckRig(R, CH.rigSpec(W, 10, 4096), CH.rigOpts([5.4, 0.8, 0], { distance: 30, shadowFar: 80 }));
+  CH.unacne(R, 0.01);
+  CH.noShadows(R);
+  TXT.stage(R, [mb, letter]);
+  TXT.weather(R, { grime: 0.3, height: 0.7, mottle: 0.3 });
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0.3, veil: 0.34, footWash: 0.42 });
+  CH.knock(cx, ['.tx-site', '.src'], 0.54);
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

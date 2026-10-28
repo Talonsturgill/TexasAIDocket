@@ -1,12 +1,13 @@
 # USDA's Kerrville laboratory builds AI models that pick where, when and how many sterile flies to release against New World screwworm
 
-The USDA Agricultural Research Service says it is managing New World screwworm with predictive models. It says the models use advanced analytic tools and artificial intelligence to read ecological, environmental and historical information. USDA uses what the models show to choose the locations, timing and number of sterile flies to release. The models also guide where aircraft, fly traps and surveillance go. Kim Lohmeyer directs the agency's Knipling-Bushland Livestock Insects Research Laboratory in Kerrville and says the models already select areas for surveillance, trapping and sterile fly releases. Lohmeyer also says the models can't predict every scenario, especially people moving infested animals. KRGV reports USDA saying its drones have flown across Texas more than 2,000 times since June. The flights observed more than 36,000 animals and found no screwworm cases. USDA officials told the station the drones are not foolproof and use artificial intelligence to inspect animal wounds. Neither source gives an accuracy figure for the models or the drones. The Texas Animal Health Commission counts 47 premises in 18 Texas counties with a confirmed detection, the first in a Zavala County calf on June 3rd. The drones' count of no cases covers only what the flights observed. An agency page last modified July 31st says USDA's dispersal facility in Edinburg deploys more than 80 million sterile flies a week over Texas and Mexico. The commission keeps movement restrictions in place across an established infested zone.
+The USDA Agricultural Research Service says it is managing New World screwworm with predictive models. It says the models use advanced analytic tools and artificial intelligence to read ecological, environmental and historical information. USDA uses what the models show to choose the locations, timing and number of sterile flies to release. The models also guide where aircraft, fly traps and surveillance go. Kim Lohmeyer directs the agency's Knipling-Bushland Livestock Insects Research Laboratory in Kerrville and says the models already select areas for surveillance, trapping and sterile fly releases. Lohmeyer also says the models can't predict every scenario, especially people moving infested animals. KRGV reports USDA saying its drones have flown across Texas more than 2,000 times since June. The flights observed more than 36,000 animals and found no screwworm cases. USDA officials told the station the drones are not foolproof and use artificial intelligence to inspect animal wounds. Neither source gives an accuracy figure for the models or the drones. The Texas Animal Health Commission counts 49 premises in 19 Texas counties with a confirmed detection, the first in a Zavala County calf on June 3rd. The drones' count of no cases covers only what the flights observed. An agency page last modified July 31st says USDA's dispersal facility in Edinburg deploys more than 80 million sterile flies a week over Texas and Mexico. The commission keeps movement restrictions in place across an established infested zone.
 
 - Topic: research-and-science
 - Decided by: U.S. Department of Agriculture, Agricultural Research Service (federal)
 - Where: Statewide
 - Statistical areas:
   - Del Rio, TX
+  - El Paso, TX
   - Kerrville, TX
   - Rio Grande City-Roma, TX
   - Zapata, TX
@@ -14,7 +15,7 @@ The USDA Agricultural Research Service says it is managing New World screwworm w
 - Public access: Write to the decider
 - Take part: https://www.ars.usda.gov/news-events/news/research-news/2026/tracking-the-path-of-new-world-screwworm
 
-- Last checked: 2026-10-24
+- Last checked: 2026-10-27
 
 ## Dates
 
@@ -27,6 +28,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-18 · Admitted on the research service's own page and KRGV's report of USDA's drone counts. No case found is the result the drones report, and neither source gives an accuracy figure.
 - 2026-10-21 · The Texas Animal Health Commission now counts 44 Texas premises with a confirmed screwworm detection, up from 43, still across 17 counties. The research service's account of its models still reads as cited.
 - 2026-10-24 · The commission's count rose to 47 premises in 18 Texas counties with a confirmed detection, up from 44 premises in 17 counties. The infested zone restrictions stay in place.
+- 2026-10-27 · The commission's count rose to 49 premises in 19 Texas counties, up from 47 premises in 18. Hudspeth County joined the infested zone where movement restrictions apply. The research service's account of its models still reads as cited.
 
 ## Evidence
 
@@ -143,6 +145,24 @@ Source (primary_official): https://www.tahc.texas.gov/emergency/nws.html
 ### The Texas Animal Health Commission counts 47 Texas premises confirmed with at least one New World screwworm detection.
 
 > Total Texas premises confirmed with at least one NWS detection: 47
+
+Source (primary_official): https://www.tahc.texas.gov/emergency/nws.html
+
+### The Texas Animal Health Commission counts 19 Texas counties with a confirmed New World screwworm detection in the 2026 outbreak.
+
+> Total Texas counties with a confirmed NWS detection: 19
+
+Source (primary_official): https://www.tahc.texas.gov/emergency/nws.html
+
+### The Texas Animal Health Commission counts 49 Texas premises confirmed with at least one New World screwworm detection.
+
+> Total Texas premises confirmed with at least one NWS detection: 49
+
+Source (primary_official): https://www.tahc.texas.gov/emergency/nws.html
+
+### The commission says movement restrictions are in place in an established infested zone whose list of counties now includes Hudspeth.
+
+> There are currently movement restrictions in place due to an established New World Screwworm Infested Zone in parts of the following Texas counties: Brewster, Crockett, Edwards, Hudspeth, Jeff Davis, Pecos, Presidio, Schleicher, Starr, Sutton, Terrell, Val Verde, Zapata.
 
 Source (primary_official): https://www.tahc.texas.gov/emergency/nws.html
 

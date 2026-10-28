@@ -46,6 +46,8 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-09 · The Wichita Falls permit for the Airport Drive data center reads as approved on the records that answered today.
 - 2026-10-25 · The Wichita Falls permit for the Airport Drive data center stays unconfirmed. The city's site still turns away every reader and the station's site bars automated ones.
 - 2026-10-26 · The Wichita Falls conditional use permit for the Airport Drive data center is still unconfirmed. The city site refuses every reader and the station bars automated ones.
+- 2026-10-27 · The Wichita Falls permit for the Airport Drive data center is still unconfirmed. The station bars automated readers.
+- 2026-10-28 · The Wichita Falls permit for the Airport Drive data center is still unconfirmed. The station bars automated readers.
 
 ## Evidence
 

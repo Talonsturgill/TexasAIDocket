@@ -49,6 +49,8 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-23 · The agency's drone review page still says comment on Zipline's Texas metros draft closed on October 11th. The draft and its noise study are still posted, and no final assessment or finding has appeared.
 - 2026-10-26 · The FAA review page for Zipline's Texas metros draft refused the request today, so the closed comment period and the posted draft are unconfirmed.
 - 2026-10-26 · Zipline began deliveries in Round Rock on October 9th, before this comment window closed, as DroneXL reports. No final assessment has appeared.
+- 2026-10-27 · The FAA's comment window on Zipline's round the clock flights is still unconfirmed. The agency's site refuses every reader.
+- 2026-10-28 · The FAA's comment window on Zipline's round the clock flights is still unconfirmed. The agency's site refuses this project's reader.
 
 ## Evidence
 

@@ -2464,4 +2464,71 @@ function installSite(K, THREE, TXT, H) {
       return out;
     },
   });
+
+  /* CANTILEVER_RACK: the yard rack long stock is kept on, pipe, lumber, cut limbs. LIFTED 2026-10-28
+   * by the weekly machine pass from carousel no. 62's chassis (`limb_rack`, assets/js/deck/
+   * 2026-10-28-route.js), under a new name because that chassis defines the old one. Its judges
+   * charged the chassis rack's arms as flat bars and asked for "the unused arms" removed from the
+   * second upright, because empty arms there pre-empted the deck's turn. So the uprights are true
+   * wide flange columns (a flange catches the key, the web sits in its shadow) on long base beams
+   * with leveling plates and anchor bolts, braced at the back by C struts and rod X bracing; each
+   * arm is a tapered box section pitched up a little toward its tip, bolted to the column on a
+   * plate with a gusset under it and an upturned stop at the end; and `armsB` sets how many arms
+   * (from the top) the uprights after the first carry. The origin is KEPT, on the ground under the
+   * first upright, because the arm points are published: userData.arms[k] is the top of arm k
+   * (k 0 the top arm) at the first upright, half way out; userData.armsAll lists every upright's. */
+  const RACKCOL = { d: 0.2, bf: 0.15, tf: 0.011, tw: 0.0075, r: 0.01 };
+  K.define('cantilever_rack', {
+    size: [5.4, 3.75, 1.39],
+    options: { rows: 6, pitch: 0.58, y0: 0.42, span: 5.2, reach: 0.75, uprights: 2, armsB: null, brace: true },
+    note: 'An illustrative galvanized cantilever rack for long stock: `uprights` wide flange columns `span` m apart along +x on base beams with leveling plates and anchor bolts, C struts and rod X bracing at the back (`brace`), and `rows` tapered box section arms `pitch` m apart reaching `reach` m toward +z, the lowest at `y0`, each pitched up toward an upturned stop and bolted on a plate with a gusset. `armsB` (null for all) is how many arms from the top the uprights after the first carry. Origin kept on the ground under the first upright; userData.arms[k] is the top of arm k (k 0 the top arm) at the first upright half way out, userData.armsAll every upright\'s, userData.height the column top.',
+    make(o) {
+      const g = new THREE.Group(), G = galv(), dk = darkSteel(), rows = Math.max(1, Math.round(o.rows)), nU = Math.max(1, Math.round(o.uprights));
+      const H = o.y0 + (rows - 1) * o.pitch + 0.42, zf = RACKCOL.d / 2, reach = o.reach, armsAll = [];
+      const armGeo = (() => {
+        // the arm's side profile in (z, y): 0.1 deep at the column, 0.065 at the tip, the top pitched up 2 degrees
+        const L = reach, rise = L * Math.tan(2 * Math.PI / 180), sh = new THREE.Shape();
+        sh.moveTo(0, -0.1); sh.lineTo(L, rise - 0.065); sh.lineTo(L, rise); sh.lineTo(0, 0); sh.closePath();
+        const gg = new THREE.ExtrudeGeometry(sh, { depth: 0.07, bevelEnabled: true, bevelThickness: 0.006, bevelSize: 0.006, bevelSegments: 2, curveSegments: 2 });
+        gg.translate(0, 0, -0.035); gg.rotateY(-Math.PI / 2); return [gg, rise];
+      })();
+      for (let u = 0; u < nU; u++) {
+        const x = u * o.span, nA = u === 0 || o.armsB == null ? rows : Math.max(0, Math.min(rows, Math.round(o.armsB))), list = [];
+        member('rack-col', () => wShape(RACKCOL), [x, 0.15, 0], [x, H, 0], [0, 0, 1], G, g);
+        plate(0.17, 0.012, 0.22, G, x, H + 0.006, 0, g);                                    // the cap plate
+        // the base beam, front to back, and its leveling plates with anchor bolts
+        member('rack-base', () => wShape({ d: 0.15, bf: 0.1, tf: 0.009, tw: 0.006, r: 0.008 }), [x, 0.075, -0.45], [x, 0.075, zf + reach * 1.05], [0, 1, 0], G, g);
+        for (const z of [-0.4, zf + reach * 1.05 - 0.06]) {
+          plate(0.2, 0.012, 0.16, dk, x, 0.006, z, g);
+          for (const s of [1, -1]) bolt(x + s * 0.075, 0.016, z, 'y', dk, g);
+        }
+        plate(0.16, 0.14, 0.012, G, x, 0.22, zf + 0.006, g);                                // the column's base stiffener
+        for (let k = 0; k < nA; k++) {
+          const y = o.y0 + (rows - 1 - k) * o.pitch;
+          const arm = new THREE.Mesh(armGeo[0], G); arm.position.set(x, y, zf + 0.012); g.add(arm);
+          plate(0.15, 0.2, 0.012, G, x, y - 0.06, zf + 0.006, g);                           // the bolted arm plate
+          for (const sx of [1, -1]) for (const sy of [0.02, -0.14]) bolt(x + sx * 0.055, y + sy, zf + 0.014, 'z', dk, g);
+          const gus = new THREE.Shape(); gus.moveTo(0, 0); gus.lineTo(0.16, 0); gus.lineTo(0, -0.12); gus.closePath();
+          const gg = new THREE.ExtrudeGeometry(gus, { depth: 0.008, bevelEnabled: false }); gg.translate(0, 0, -0.004); gg.rotateY(-Math.PI / 2);
+          const gm = new THREE.Mesh(gg, G); gm.position.set(x, y - 0.1, zf + 0.012); g.add(gm);
+          plate(0.07, 0.05, 0.014, G, x, y + armGeo[1] + 0.025, zf + 0.012 + reach - 0.01, g);  // the upturned stop
+          const zm = zf + 0.012 + reach / 2;
+          list.push([+x.toFixed(3), +(y + armGeo[1] / 2 + 0.006).toFixed(3), +zm.toFixed(3)]);
+        }
+        armsAll.push(list);
+        // the back bracing to the next upright: C struts low and high, rod X bracing between them
+        if (o.brace && u + 1 < nU) {
+          const x2 = (u + 1) * o.span, zb = -zf - 0.02, ys = [0.55, H - 0.35];
+          for (const yy of ys) member('rack-strut', () => cShape(0.1, 0.05, 0.015, 0.003, 1), [x + 0.08, yy, zb], [x2 - 0.08, yy, zb], [0, 1, 0], G, g);
+          const rod = (a, b) => { const A = new V3(...a), B = new V3(...b), m = new THREE.Mesh(new THREE.CylinderGeometry(0.008, 0.008, A.distanceTo(B), 8), G);
+            m.position.copy(A).add(B).multiplyScalar(0.5); m.quaternion.setFromUnitVectors(new V3(0, 1, 0), B.clone().sub(A).normalize()); g.add(m); };
+          rod([x + 0.08, ys[0], zb], [x2 - 0.08, ys[1], zb]); rod([x + 0.08, ys[1], zb], [x2 - 0.08, ys[0], zb]);
+        }
+      }
+      const out = bake(g);
+      out.userData.arms = armsAll[0]; out.userData.armsAll = armsAll; out.userData.height = +H.toFixed(3);
+      out.userData.keepOrigin = true;   // the arm points are published coordinates
+      return out;
+    },
+  });
 }

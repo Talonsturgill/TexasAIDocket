@@ -44,6 +44,8 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-10 · The AI training requirement for state and local employees stays unconfirmed on the bill page, which bars automated readers.
 - 2026-10-25 · The AI training requirement for state and local employees stays unconfirmed on the bill page, which still bars automated readers.
 - 2026-10-26 · The AI training requirement for state and local government employees is still unconfirmed on the bill's own page, which bars automated readers.
+- 2026-10-27 · The state's AI training requirement for public employees is still unconfirmed. The Legislature's pages bar automated readers.
+- 2026-10-28 · The state's AI training requirement for public employees is still unconfirmed. The Legislature's pages bar automated readers.
 
 ## Evidence
 

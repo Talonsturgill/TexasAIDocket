@@ -17332,5 +17332,93 @@
     "note": "Admitted on the city's own page. The city has not adopted a rule for drone hubs, and its first hub inside city limits is still a proposal."
    }
   ]
+ },
+ {
+  "id": "tx-2026-0233",
+  "title": "A foundation grant funds a Texas A&M campus lab where AI and robots are to develop new metal alloys",
+  "summary": "Texas A&M says a $2 million grant to its Department of Materials Science and Engineering will create the Aggie AI Foundry. The grant comes through the WoodNext Foundation, which manages the philanthropy of Roku founder Anthony Wood and his wife Susan. The university describes a campus facility with a fully automated system that takes a new metal alloy from idea through testing, with AI and robotic workers doing the work. It says the process will cut alloy development from months to a week or less. It also says the foundry will be the first lab of its kind in academia. The speed figure is the university's projection for a facility that is not yet built, and the release gives no opening date.",
+  "topic": "research-and-science",
+  "decider": {
+   "name": "WoodNext Foundation",
+   "type": "company"
+  },
+  "geography": {
+   "statewide": false,
+   "counties": [
+    "Brazos"
+   ],
+   "on_ercot": true
+  },
+  "status": "decided",
+  "key_dates": [
+   {
+    "date": "2026-10-22",
+    "kind": "filed",
+    "note": "Date of Texas A&M Engineering's news item announcing the grant"
+   }
+  ],
+  "public_access": {
+   "room": "contact_only",
+   "how": "The award is a private foundation grant to a university department. No vote or comment window applies, and Texas A&M Engineering's news office handles questions about the work.",
+   "url": "https://news.engineering.tamu.edu/news/2026/10/22/texas-am-researchers-pursue-autonomous-ai-foundry/",
+   "closes": null
+  },
+  "confidence": "high",
+  "notes_for_editor": "Admitted on Texas A&M Engineering's own news item. No opening date, location on campus or equipment list is given, so none is carried. Brazos County follows the record's other Texas A&M campus items.",
+  "claims": [
+   {
+    "text": "Texas A&M says a $2 million grant to its Department of Materials Science and Engineering will build an autonomous alloy lab.",
+    "verbatim_quote": "a $2 million grant to Texas A&M University’s Department of Materials Science and Engineering aims to revolutionize the manner and speed with which new metallic materials are discovered, developed and tested.",
+    "source_url": "https://news.engineering.tamu.edu/news/2026/10/22/texas-am-researchers-pursue-autonomous-ai-foundry/",
+    "source_title": "Texas A&M Engineering News, Texas A&M researchers pursue autonomous AI foundry",
+    "source_type": "primary_official",
+    "fetched": "2026-10-27",
+    "id": "tx-2026-0233-c1"
+   },
+   {
+    "text": "The university says the WoodNext Foundation's support will create the Aggie AI Foundry, a campus facility with a fully automated alloy system.",
+    "verbatim_quote": "will create the Aggie AI Foundry, a campus facility that will contain a fully automated system for developing novel metal alloys from idea generation through testing using AI brainpower and robotic workers.",
+    "source_url": "https://news.engineering.tamu.edu/news/2026/10/22/texas-am-researchers-pursue-autonomous-ai-foundry/",
+    "source_title": "Texas A&M Engineering News, Texas A&M researchers pursue autonomous AI foundry",
+    "source_type": "primary_official",
+    "fetched": "2026-10-27",
+    "id": "tx-2026-0233-c2"
+   },
+   {
+    "text": "Texas A&M projects the automated process will cut alloy development from months to a week or less.",
+    "verbatim_quote": "The automated process will increase the rate at which metal alloys are developed from months to a week or less.",
+    "source_url": "https://news.engineering.tamu.edu/news/2026/10/22/texas-am-researchers-pursue-autonomous-ai-foundry/",
+    "source_title": "Texas A&M Engineering News, Texas A&M researchers pursue autonomous AI foundry",
+    "source_type": "primary_official",
+    "fetched": "2026-10-27",
+    "id": "tx-2026-0233-c3"
+   },
+   {
+    "text": "The university says the foundry will be the first lab of its kind in academia.",
+    "verbatim_quote": "The Aggie AI Foundry will be the first lab of its kind in academia.",
+    "source_url": "https://news.engineering.tamu.edu/news/2026/10/22/texas-am-researchers-pursue-autonomous-ai-foundry/",
+    "source_title": "Texas A&M Engineering News, Texas A&M researchers pursue autonomous AI foundry",
+    "source_type": "primary_official",
+    "fetched": "2026-10-27",
+    "id": "tx-2026-0233-c4"
+   },
+   {
+    "text": "The release says the research is supported through the WoodNext TAMU Fund, a donor advised fund program.",
+    "verbatim_quote": "This research is supported through the WoodNext TAMU Fund, a donor-advised fund program.",
+    "source_url": "https://news.engineering.tamu.edu/news/2026/10/22/texas-am-researchers-pursue-autonomous-ai-foundry/",
+    "source_title": "Texas A&M Engineering News, Texas A&M researchers pursue autonomous AI foundry",
+    "source_type": "primary_official",
+    "fetched": "2026-10-27",
+    "id": "tx-2026-0233-c5"
+   }
+  ],
+  "last_verified": "2026-10-27",
+  "history": [
+   {
+    "date": "2026-10-27",
+    "note": "Admitted on Texas A&M Engineering's own announcement. The speed figure is the university's projection for a lab not yet built, and no opening date is given.",
+    "checked": true
+   }
+  ]
  }
 ]

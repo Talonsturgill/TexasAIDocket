@@ -1,0 +1,81 @@
+{
+ "lens": "integrity",
+ "round": 3,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.8,
+   "why": "Every frame rendered on a dark field with no screen or plate. Frames 1 and 6 strong, frame 5's lengths follow the declared scale (0.553 against 0.551). Held down by 4 (a flat grey grid, every tile at one value, the screen not the brightest thing), 9 (the truck an eighth of the width), 2 (brown haze, primitive cabs, under half the trucks visible), 7 (a mannequin beside a low poly cab), 3 (the pale boom silhouette and flat logs)."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.3,
+   "why": "One world, one accent meaning, a brush motif from 1 to 9, the rack's declared return. Frame 4's teal interior and frame 2's warm haze sit outside it."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.0,
+   "why": "Every numeral traces, sources primary, refusals correct, the absence scoped. Three looser things: frame 6's headline states the city's own description as fact, frame 3 drops c12's within the system qualifier on the blurring, and frames 7 and 9 draw the inspector at the truck where c18 and c19 put an officer's review first."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.5,
+   "why": "What, who and where are clear and the stake is concrete. No surface gives a Texan anything to do and the close rests on the city's slogan."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "The process order works and 8 is the turn. Frame 2 mostly repeats 1 and the last beat belongs to the subject."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Clean and on register with house rules held. Drawn to illustrate on eight deks, repeated attribution, little Dallas texture in the copy."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "The limb rack is new, but the same program and letter frame as no. 31 37 days back, the third lastLight night in four decks, an object cover with a numeric hook."
+  }
+ ],
+ "weighted_score": 6.862,
+ "weighted_arithmetic": "0.22*6.8=1.496 + 0.12*7.3=0.876 + 0.20*7.0=1.400 + 0.16*6.5=1.040 + 0.10*7.0=0.700 + 0.10*7.0=0.700 + 0.10*6.5=0.650 = 6.862",
+ "hard_fails": [],
+ "ship": true,
+ "ship_note": "No hard fail. At round 3, the cap, the deck ships at 6.862, 0.838 under the 7.7 rung, and the email should name the shortfall. Frame 6's unattributed headline is the one integrity item to repair before it posts.",
+ "one_sentence_fix": "Attribute frame 6's headline to the briefing and close on the next committee or council date where the accuracy measures are due.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 4,
+   "problem": "A uniform flat grey grid, dimmer than the desk spill.",
+   "fix": "Tiles at value steps, the screen the brightest value, the camera in so the screen fills about half the width, the books cropped."
+  },
+  {
+   "slide": 9,
+   "problem": "The truck an eighth of the width, no dominant image.",
+   "fix": "The camera 12 to 15 m behind the truck so the body and pods fill a third of the width."
+  },
+  {
+   "slide": 2,
+   "problem": "Brown haze, primitive cabs, under half the 50 trucks in view.",
+   "fix": "Drop the warm fog, raise the camera so all five rows recede in frame."
+  },
+  {
+   "slide": 7,
+   "problem": "A mannequin inspector beside a chunky cab that owns the frame.",
+   "fix": "Crop to the inspector and windrow with the truck's dark body as backdrop, rim light the figure."
+  },
+  {
+   "slide": 3,
+   "problem": "The pale boom silhouette and flat tiled bark.",
+   "fix": "Remove the boom shape, replace the logs with the barked cut_limb models."
+  }
+ ]
+}

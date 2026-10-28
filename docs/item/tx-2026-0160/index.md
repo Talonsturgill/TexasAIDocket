@@ -11,7 +11,7 @@ UT Physicians is the clinical practice of McGovern Medical School at UTHealth Ho
 - Public access: Write to the decider
 - Take part: https://med.uth.edu/blog/2026/09/09/deans-dialogue-highlights-progress-plans-for-year-ahead/
 
-- Last checked: 2026-10-24
+- Last checked: 2026-10-27
 
 ## Dates
 
@@ -35,6 +35,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-18 · The physician group is still moving from two ambient AI pilots to one platform. No switch date is announced.
 - 2026-10-21 · Checked and unchanged. Still pending, with no dated movement.
 - 2026-10-24 · The Houston physician group is still moving from its two ambient AI pilots toward one documentation platform.
+- 2026-10-27 · The Houston physician group's move toward one ambient AI documentation platform is still pending.
 
 ## Evidence
 

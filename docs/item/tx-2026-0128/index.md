@@ -37,6 +37,8 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-24 · Brownsville's temporary data center moratorium is unconfirmed today, since the city's notice refused the request.
 - 2026-10-25 · Brownsville's temporary data center moratorium stays unconfirmed. The city's notice still turns away every reader.
 - 2026-10-26 · Brownsville's temporary data center moratorium is still unconfirmed. The city's notice refuses every reader.
+- 2026-10-27 · Brownsville's temporary data center moratorium is still unconfirmed. The city's site refuses every reader.
+- 2026-10-28 · Brownsville's temporary data center moratorium is still unconfirmed. The city's site refuses every reader.
 
 ## Evidence
 

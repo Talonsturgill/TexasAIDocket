@@ -1,0 +1,27 @@
+{
+ "lens": "craft",
+ "round": 1,
+ "criteria": [
+  {"name": "artwork_craft", "weight": 0.22, "score": 6.2, "why": "Per frame at feed size: F1 6.5, F2 5, F3 6, F4 6, F5 7, F6 7, F7 7, F8 4.5, F9 7.5. F9 is the best frame. F5's measured relief is honest (5,318 against 2,928 at 1.81 against 1.816) but the limbs are untapered dowels close to a bar chart. F8, the turn, fails the first showstopper question, the rack a sliver at the right edge and 70 percent of the frame dark. F2 is a count rather than a subject under a warm haze. F4 is the deck's value strobe and its screen reads as barcode stripes. F3's lens is flat and a pale shape sits behind the pod. F1 reads as a dumpster of logs with two limbs through the wall. Four frames lean on primitives and one fails."},
+  {"name": "deck_coherence", "weight": 0.12, "score": 6.8, "why": "One world, one grade, one accent, one chassis, the brush motif on all nine and a real camera move. F2's warm haze and F4's teal room sit outside it, the edge tease from 6 to 7 is weak, and F5's second upright already shows empty arms before F8's turn."},
+  {"name": "claim_integrity", "weight": 0.2, "score": 8.5, "why": "Every numeral traces to c2, c5, c22 to c27, c33, c34, c36, c37, c44 or compute.py, the art carries the figures honestly, and the fact check's refusals are obeyed. Two phrasings are slightly looser than their sources, slide 4's universal and slide 1's present tense for a memo's will be installed."},
+  {"name": "story_and_stakes", "weight": 0.16, "score": 7.5, "why": "What, who, when and the concrete stake are clear. No next step a reader can act on and the committee is never named on a slide."},
+  {"name": "sequence_and_momentum", "weight": 0.1, "score": 7.5, "why": "After the swap the order follows the process and the turn is declared. Some counts repeat across 5, 6 and 7, and the close lands softly."},
+  {"name": "voice", "weight": 0.1, "score": 7.0, "why": "Clean and careful attribution, but procedural rather than Texan, and Drawn to illustrate on 8 of 9 deks reads as boilerplate."},
+  {"name": "variety", "weight": 0.1, "score": 7.0, "why": "Fresh subject and representation. lastLight near black with one cold accent and the same top left type block are the house default again."}
+ ],
+ "weighted_score": 7.23,
+ "weighted_arithmetic": "0.22*6.2=1.364 + 0.12*6.8=0.816 + 0.20*8.5=1.700 + 0.16*7.5=1.200 + 0.10*7.5=0.750 + 0.10*7.0=0.700 + 0.10*7.0=0.700 = 7.230",
+ "hard_fails": [],
+ "ship": false,
+ "ship_note": "A threshold dissent, not a fault. 7.23 is under the round 1 rung of 8.0. No hard fail.",
+ "one_sentence_fix": "Recompose frame 8 so the turn is a subject, the whole first upright and seven arms filling a third to two thirds of the frame square on, the bare seventh arm in its own pool with the label beside it, and remove the unused arms from frame 5's second upright.",
+ "artwork_weakest_frames": [
+  {"slide": 8, "problem": "The rack a 260 px sliver at the right edge, 70 percent dark, the bare arm not distinguishable at 432, a flat cyan tag, the label far from it.", "fix": "Frame 5's camera at fov 34 square on so the upright and seven arms span 40 to 60 percent of the width, the pool on the seventh arm, a shaded card tag with a cast, the label directly left of the bare arm."},
+  {"slide": 2, "problem": "Fifty identical low poly trucks are a count not a subject, lavender cabs, a warm brown haze in the top half.", "fix": "Eye at about 8 m at the yard's south edge so the front row fills the lower half in a pool, the rest fogged to the cool dark, CH.warm taken off."},
+  {"slide": 4, "problem": "The value strobe of the deck with a lit teal wall, the grid reads as barcode stripes, the cyan title bar reads as a UI screenshot.", "fix": "A near black wall and zero room bounce, delete the title bar, one tile value with a dark gutter on every tile."},
+  {"slide": 3, "problem": "Faceted flat cyan lens and a pale low poly shape behind the pod.", "fix": "A high segment glass lens with a clearcoat reflection, and hide or darken the pale boom shape."},
+  {"slide": 1, "problem": "Reads as a dumpster of logs, the white truck a sliver, a dull body wall, no ground, two limbs through the wall.", "fix": "Swing to the driver side rear quarter at about 2.5 m so the white cab side takes the key and the curb and contact enter the bottom third, and lift the piercing limbs."},
+  {"slide": 5, "problem": "Five empty arms on the second upright pre-empt the turn, untapered limbs, labels touching the upright.", "fix": "Remove the unused arms from the second upright, taper the limbs with lit cut ends, shift the labels about 20 px right."}
+ ]
+}

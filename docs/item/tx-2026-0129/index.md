@@ -11,7 +11,7 @@ Austin City Council adopted Resolution No. 20260812-017 on August 12th, 2026. It
 - Public access: Public meeting
 - Take part: https://services.austintexas.gov/edims/document.cfm?id=479192
 
-- Last checked: 2026-10-24
+- Last checked: 2026-10-27
 
 ## Dates
 
@@ -38,6 +38,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-18 · Austin's agenda and the surveillance ordinance still answer as cited. The executed resolution barring AI park cameras and drones is unconfirmed.
 - 2026-10-21 · Austin's resolution still bars the city manager from considering any park camera or drone that depends on artificial intelligence. A progress update is due to the council committee by December 9th.
 - 2026-10-24 · Austin's resolution still bars the city manager from buying any park camera or drone that depends on AI.
+- 2026-10-27 · Austin's bar on the city manager buying park cameras or drones that depend on AI still stands.
 
 ## Evidence
 

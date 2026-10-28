@@ -11,7 +11,7 @@ The U.S. Department of Agriculture's National Institute of Food and Agriculture 
 - Public access: Write to the decider
 - Take part: https://news.tamus.edu/stories/wt-to-build-beef-cattle-research-facility-with-9-75-million-usda-grant/
 
-- Last checked: 2026-10-25
+- Last checked: 2026-10-28
 
 ## Dates
 
@@ -28,6 +28,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-21 · Checked and unchanged. The decision still stands as decided.
 - 2026-10-24 · The research feedlot near Canyon is unconfirmed today, since the system's story no longer answers at its old address.
 - 2026-10-25 · The A&M System's story of the grant now sits on its main site, and every line the record quotes from it still reads as cited. The feedlot near Canyon stands as funded.
+- 2026-10-28 · West Texas A&M's USDA grant for the research feedlot near Canyon still reads as cited.
 
 ## Evidence
 

@@ -42,6 +42,8 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-15 · The clerk's request for AI written minutes is still on the county's posted record. The agenda host and the county archive are unconfirmed.
 - 2026-10-18 · The clerk's request for AI written minutes is still on the posted record that answered. The county archive and the agenda host are unconfirmed.
 - 2026-10-24 · The Hays County Clerk's request to buy AI that writes the county's official minutes still reads as the vendor's account describes it. The county agenda stays unconfirmed, since its host bars automated readers.
+- 2026-10-27 · The Hays County Clerk's request for AI written minutes is unconfirmed in part. The county's pages refuse every reader.
+- 2026-10-28 · The Hays County Clerk's request for AI written minutes is unconfirmed in part. The county's pages refuse every reader.
 
 ## Evidence
 

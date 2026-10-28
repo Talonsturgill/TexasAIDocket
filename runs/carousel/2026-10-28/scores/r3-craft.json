@@ -1,0 +1,86 @@
+{
+ "lens": "craft",
+ "round": 3,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.6,
+   "why": "Every frame rendered, dark and staged, the bold register holds. Best frames 9, 6 and 1. Several still lean on primitive or default models: 4 a stock monitor in a teal gradient void with a mid grey mesh screen and slab books; 3 a flat cyan ring lens, a pale faceted shape behind the pod, stretched bark; 1 a firewood load and floating leaf cards from the culled limbs; 5 a bar chart in sticks square on; 8 the label's last letters on the upright; 7 a blocky kit truck with a mannequin. Per frame about 7.5, 7, 6, 5.5, 6.5, 7.5, 7, 6.5, 8."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "One chassis, one key, one field, one accent, a real camera move and brush motif, and the 5 to 8 rack callback. Frame 4's teal cast and frame 2's haze sit outside it, and the edge tease from 6 to 7 does not complete."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.5,
+   "why": "Every slide numeral traces to a primary claim with a verbatim quote, the refusals hold, frame 5 guards against a funnel. Staff review every one renders c13's subject to staff review slightly loosely."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.0,
+   "why": "What happened, who said it and where are clear, with the household change on 6 and the open stake on 8. Nothing a resident can do next."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "The cover earns the swipe, 2 pays at once, the swap made a real turn answered by 9. 3 and 4 make neighbouring points and $852,000 repeats."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Clean and on register, a heavy attribution tic, Drawn to illustrate on eight deks, the regional texture never reaching the copy."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "Technique and palette diverge from the last three decks. The hero object cover is familiar and the program was covered 37 days ago."
+  }
+ ],
+ "weighted_score": 7.37,
+ "weighted_arithmetic": "6.6*0.22=1.452 + 7.5*0.12=0.900 + 8.5*0.20=1.700 + 7.0*0.16=1.120 + 7.5*0.10=0.750 + 7.0*0.10=0.700 + 7.5*0.10=0.750 = 7.372",
+ "hard_fails": [],
+ "ship": true,
+ "ship_note": "No hard fail. 7.37 under the rungs, but round 3 is the cap, so the deck ships with the shortfall named. Frame 8's label still touches the upright.",
+ "one_sentence_fix": "Rebuild frame 4 as a built TXT.interior office over a face-free reviewer's shoulder with the tile screen the only light.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 4,
+   "problem": "A stock monitor and slab books in a teal gradient void, a mid grey mesh screen, the largest mid tone block.",
+   "fix": "A built office over a reviewer's shoulder, an emissive screen as the brightest value and only source, the books deleted."
+  },
+  {
+   "slide": 3,
+   "problem": "A cartoon ring lens, a pale faceted shape behind the pod, stretched bark, an empty top.",
+   "fix": "Recessed coated glass with one highlight, cyan only on the lamp, the boom culled, the camera dropped against the lit body side."
+  },
+  {
+   "slide": 8,
+   "problem": "The label's last letters on the upright, a flat cyan tag, a dead left half.",
+   "fix": "The label on two lines ending clear of the upright, a paper stock tag with a cast, the camera in and down on the bare arm."
+  },
+  {
+   "slide": 5,
+   "problem": "A bar chart drawn in sticks square on, labels over busy fence.",
+   "fix": "Rotate about 25 degrees off square and lower, tapered bent limbs, the fence a stop darker behind the labels."
+  },
+  {
+   "slide": 1,
+   "problem": "A firewood load, a rust brown body, floating leaf cards.",
+   "fix": "Branchy brush with small leaves, cull the orphaned cards, swing to catch the white cab."
+  },
+  {
+   "slide": 2,
+   "problem": "A brown-mauve haze in the top third, primitive box cabs.",
+   "fix": "Fog to the near black sky above the far rows, a chamfered hood and windscreen on the instanced cab."
+  }
+ ]
+}

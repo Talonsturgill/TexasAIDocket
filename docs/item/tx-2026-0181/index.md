@@ -32,6 +32,8 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-24 · The Houston producer's stake in an AI vendor and its Ward County commitment are unconfirmed today, since the release refused the request.
 - 2026-10-25 · The Houston producer's stake in an AI vendor and its Ward County commitment stay unconfirmed. The release still turns away every reader.
 - 2026-10-26 · The Houston producer's stake in an AI vendor and its Ward County commitment are still unconfirmed. The wire release refuses every reader.
+- 2026-10-27 · The Houston producer's stake in an AI vendor is still unconfirmed. The release host refuses every reader.
+- 2026-10-28 · The Houston producer's stake in an AI vendor is still unconfirmed. The release host refuses every reader.
 
 ## Evidence
 

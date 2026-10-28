@@ -1,0 +1,80 @@
+<!doctype html>
+<!-- 2026-10-28, frame 5 of 9. Archetype DIAGRAM. A spatial scene through txthree.js in the deck's lastLight world: six cut cedar elm limbs on the arms of a galvanized cantilever rack in a city yard, their cut butts on one line, each limb as long as one row of the October 19th results table at one scale, the table's own order from the top arm down, every limb in one plane facing the camera so perspective keeps them at one scale. Every length is read from figures.json. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>.lab { font-size:24px !important; }</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook">What the city counted</h1>
+<p class="dek" data-follow="26">Six rows of the October 19th results table at one scale, one length of limb per item. The table doesn't say one row comes out of&nbsp;another.</p>
+<div class="lab" id="l0">OBSERVATIONS REVIEWED 5,318</div>
+<div class="lab" id="l1">COURTESY NOTICES 2,928</div>
+<div class="lab" id="l2">FIELD INSPECTIONS 473</div>
+<div class="lab" id="l3">VOLUNTARY CORRECTIONS 374</div>
+<div class="lab" id="l4">DIRECT ABATEMENTS 34</div>
+<div class="lab" id="l5">FORMAL ENFORCEMENT 101</div>
+<script>window.FIG = {"observations_m": 8.4, "notices_m": 4.625, "inspections_m": 0.747, "corrections_m": 0.591, "abatements_m": 0.054, "enforcement_m": 0.16};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-28-route.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "The results table", counter: "05 / 09", src: "c2 c22 c23 c24 c25 c26 c27", fit: { min: 80, max: 104, maxLines: 2 } });
+  /* THE FIGURES, from figures.json: each limb's length in metres at one scale, the table's own order from the top arm down */
+  const LENS = [FIG.observations_m, FIG.notices_m, FIG.inspections_m, FIG.corrections_m, FIG.abatements_m, FIG.enforcement_m], ROWS = 6;
+  const R = CH.stage(TXT, gl, W, { fov: 40, near: 0.1, far: 2000 });
+  /* THE RACK faces west to the camera across a city yard, so the last light comes over the camera's left shoulder.
+   * Local +x (each limb's length) runs to the camera's right, and every limb's cut butt sits on one line at the left. */
+  const rig = new THREE.Group(); rig.rotation.y = -Math.PI / 2; rig.scale.set(1, 1, 1);
+  const rack = K.make('limb_rack', { rows: ROWS, pitch: 0.8, y0: 0.42, span: 5.6, reach: 0.75 }); rig.add(rack);
+  /* the second upright keeps only the arm the 5,318 limb rests on, so the only empty arm the deck shows is the turn's */
+  { const keepY = rack.userData.arms[0][1] - 0.05, sz = new THREE.Vector3();
+    rack.children.slice().forEach((c) => { if (!c.isMesh || Math.abs(c.position.x - 5.6) > 0.05) return; c.geometry.computeBoundingBox(); c.geometry.boundingBox.getSize(sz);
+      const arm = Math.abs(sz.z - 0.75) < 0.06 && sz.y < 0.15, lip = sz.x < 0.1 && sz.y < 0.07 && sz.z < 0.05;
+      if ((arm || lip) && Math.abs(c.position.y - keepY) > 0.12) rack.remove(c); }); }
+  const X0 = -0.03, LABELS = [];
+  const toWorld = (p) => { rig.updateMatrixWorld(true); return new THREE.Vector3(p[0], p[1], p[2]).applyMatrix4(rig.matrixWorld); };
+  LENS.forEach((L, k) => { if (L == null) return; const a = rack.userData.arms[k], rad = 0.12 - k * 0.008;
+    const limb = K.make('cut_limb', { length: L, radius: rad, taper: 0.32, seed: 40 + k }); limb.position.set(X0, a[1], a[2]); rig.add(limb);
+    if (k === 0) { /* a band of the accent's flagging tape round the 5,318 limb near its butt, as a crew marks stock, with one tail hanging */
+      const tm = new THREE.MeshBasicMaterial({ color: CH.ACCENT, toneMapped: false, side: THREE.DoubleSide });
+      const band = new THREE.Mesh(new THREE.CylinderGeometry(rad * 1.07, rad * 1.07, 0.09, 24, 1, true), tm); band.rotation.z = Math.PI / 2; band.position.set(0.32, rad, 0); limb.add(band);
+      const tail = new THREE.Mesh(new THREE.PlaneGeometry(0.05, 0.26), tm); tail.position.set(0.34, rad - 0.14, rad * 1.05); tail.rotation.z = 0.12; limb.add(tail); }
+    LABELS.push(['l' + k, toWorld([X0, a[1] + 2 * rad + 0.02, a[2] + 0.2]).toArray()]); });
+  TXT.add(R, rig); TXT.contact(R, rack);
+  const fence = K.make('chain_link_fence', { length: 40, height: 2.4 }); fence.position.set(9, 0, 4); fence.rotation.y = Math.PI / 2; TXT.add(R, fence);
+  TXT.sky(R);
+  TXT.ground(R, { surface: 'concrete', size: 600, seed: 61 });
+  TXT.scatter(R, { kind: 'grass', count: 1400, area: [6, -20, 30, 30], seed: 9, scale: [0.3, 0.6] });
+  const from = [-16.7, 1.8, 4.2];
+  const look = CH.aim(THREE, R, TXT, from, [0, 2.2, 4.2], 570, 926, 40);
+  TXT.frame(R, { fov: 40, from, look });
+  CH.warm(R, 0.24);
+  TXT.deckRig(R, CH.rigSpec(W, 12, 4096), CH.rigOpts([0, 1.6, 4.2], { distance: 40, shadowFar: 100 }));
+  CH.unacne(R, 0.01);
+  CH.noShadows(R);
+  TXT.stage(R, [rig]);
+  TXT.weather(R, { grime: 0.3, height: 0.7, mottle: 0.3 });
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  /* each label set just above its own limb's left end, read off the camera, never across a limb */
+  LABELS.forEach(([id, p, dy]) => { const el = document.getElementById(id); if (!el) return; const q = CH.project(THREE, R, p); el.style.left = Math.round(Math.max(80, q[0] + 56)) + 'px'; el.style.top = Math.round(q[1] - 34 + (dy || 0)) + 'px'; });
+  CH.post(cx, { a: 0.3, veil: 0.34, footWash: 0.42 });
+  CH.knock(cx, ['.tx-site', '.src'].concat(LABELS.filter(l => document.getElementById(l[0])).map(l => '#' + l[0])), 0.5);
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

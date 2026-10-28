@@ -1,0 +1,226 @@
+{
+ "_note": "Every value is extracted from a claim quote by compute.py, or computed here from values that were.",
+ "observations": {
+  "value": 5318,
+  "from": [
+   "c22"
+  ],
+  "basis": "observations reviewed, the results table of the October 19th briefing"
+ },
+ "notices": {
+  "value": 2928,
+  "from": [
+   "c23"
+  ],
+  "basis": "courtesy notices, the results table of the October 19th briefing"
+ },
+ "inspections": {
+  "value": 473,
+  "from": [
+   "c24"
+  ],
+  "basis": "field inspections, the results table of the October 19th briefing"
+ },
+ "corrections": {
+  "value": 374,
+  "from": [
+   "c25"
+  ],
+  "basis": "voluntary corrections, the results table of the October 19th briefing"
+ },
+ "abatements": {
+  "value": 34,
+  "from": [
+   "c26"
+  ],
+  "basis": "direct abatements, the results table of the October 19th briefing"
+ },
+ "enforcement": {
+  "value": 101,
+  "from": [
+   "c27"
+  ],
+  "basis": "formal enforcement, the results table of the October 19th briefing"
+ },
+ "observations_px": {
+  "value": 900.0,
+  "from": [
+   "c22",
+   "c22"
+  ],
+  "basis": "computed: observations reviewed times 900 over observations reviewed, the px length at one scale, to one decimal"
+ },
+ "notices_px": {
+  "value": 495.5,
+  "from": [
+   "c23",
+   "c22"
+  ],
+  "basis": "computed: courtesy notices times 900 over observations reviewed, the px length at one scale, to one decimal"
+ },
+ "inspections_px": {
+  "value": 80.0,
+  "from": [
+   "c24",
+   "c22"
+  ],
+  "basis": "computed: field inspections times 900 over observations reviewed, the px length at one scale, to one decimal"
+ },
+ "corrections_px": {
+  "value": 63.3,
+  "from": [
+   "c25",
+   "c22"
+  ],
+  "basis": "computed: voluntary corrections times 900 over observations reviewed, the px length at one scale, to one decimal"
+ },
+ "abatements_px": {
+  "value": 5.8,
+  "from": [
+   "c26",
+   "c22"
+  ],
+  "basis": "computed: direct abatements times 900 over observations reviewed, the px length at one scale, to one decimal"
+ },
+ "enforcement_px": {
+  "value": 17.1,
+  "from": [
+   "c27",
+   "c22"
+  ],
+  "basis": "computed: formal enforcement times 900 over observations reviewed, the px length at one scale, to one decimal"
+ },
+ "observations_m": {
+  "value": 8.4,
+  "from": [
+   "c22",
+   "c22"
+  ],
+  "basis": "computed: observations reviewed times 8.4 m over observations reviewed, the limb length in metres at one scale, to the millimetre"
+ },
+ "notices_m": {
+  "value": 4.625,
+  "from": [
+   "c23",
+   "c22"
+  ],
+  "basis": "computed: courtesy notices times 8.4 m over observations reviewed, the limb length in metres at one scale, to the millimetre"
+ },
+ "inspections_m": {
+  "value": 0.747,
+  "from": [
+   "c24",
+   "c22"
+  ],
+  "basis": "computed: field inspections times 8.4 m over observations reviewed, the limb length in metres at one scale, to the millimetre"
+ },
+ "corrections_m": {
+  "value": 0.591,
+  "from": [
+   "c25",
+   "c22"
+  ],
+  "basis": "computed: voluntary corrections times 8.4 m over observations reviewed, the limb length in metres at one scale, to the millimetre"
+ },
+ "abatements_m": {
+  "value": 0.054,
+  "from": [
+   "c26",
+   "c22"
+  ],
+  "basis": "computed: direct abatements times 8.4 m over observations reviewed, the limb length in metres at one scale, to the millimetre"
+ },
+ "enforcement_m": {
+  "value": 0.16,
+  "from": [
+   "c27",
+   "c22"
+  ],
+  "basis": "computed: formal enforcement times 8.4 m over observations reviewed, the limb length in metres at one scale, to the millimetre"
+ },
+ "trucks": {
+  "value": 50,
+  "from": [
+   "c5"
+  ],
+  "basis": "Sanitation brush collection vehicles carrying cameras, October 19th briefing"
+ },
+ "cameras_per_truck": {
+  "value": 2,
+  "from": [
+   "c44"
+  ],
+  "basis": "cameras per vehicle, the April 10th memo"
+ },
+ "cameras_planned": {
+  "value": 100,
+  "from": [
+   "c34"
+  ],
+  "basis": "cameras the December 9th briefing proposed"
+ },
+ "cameras_fleet": {
+  "value": 100,
+  "from": [
+   "c5",
+   "c44"
+  ],
+  "basis": "computed: vehicles times cameras per vehicle"
+ },
+ "cost_year": {
+  "value": 852000,
+  "from": [
+   "c36"
+  ],
+  "basis": "contract cost per year, December 9th briefing"
+ },
+ "cost_three_year": {
+  "value": 2556000,
+  "from": [
+   "c35"
+  ],
+  "basis": "three-year estimated amount, December 9th briefing"
+ },
+ "notice_days": {
+  "value": 10,
+  "from": [
+   "c37"
+  ],
+  "basis": "days of written notice to end the contract, December 9th briefing"
+ },
+ "pile_yd3": {
+  "value": 10,
+  "from": [
+   "c31"
+  ],
+  "basis": "cubic yards a monthly brush pickup may reach, October 19th briefing"
+ },
+ "pile_m3": {
+  "value": 7.65,
+  "from": [
+   "c31"
+  ],
+  "basis": "computed: cubic yards times 0.764555, to two decimals"
+ },
+ "pile_len_m": {
+  "value": 4.06,
+  "from": [
+   "c31"
+  ],
+  "basis": "computed: the windrow length whose half ellipse section 1.2 m high by 2.0 m deep holds pile_m3, to two decimals"
+ },
+ "proactive_pct": {
+  "value": 32,
+  "from": [
+   "c21"
+  ],
+  "basis": "percent proactive as the slide prints it, with no stated base"
+ },
+ "reactive_pct": {
+  "value": 68,
+  "from": [
+   "c21"
+  ],
+  "basis": "percent reactive as the slide prints it, with no stated base"
+ }
+}

@@ -19,12 +19,12 @@
   "recent_lists_note": "These three lists are the exclusions handed to the caption room and they were hand-kept. On 2026-08-20 the fourth panel found structures_recent reading [\"ledger\", \"pivot\", \"question and answer\"] when the last three shipped structures were [\"ledger\", \"two columns\", \"question and answer\"], so it dropped a structure that IS off the table and held one that is not. Wrong in both directions from one hand edit. They are now recomputed from entries and are ordered OLDEST FIRST, matching the entries list, and scripts/carousel/caption_check.py should derive them rather than read them. That is an upgrade-lane change and it is written into this run's proposals."
  },
  "opening_moves_recent": [
-  "the number that is wrong",
   "the correction",
   "the who",
   "the place",
   "the quiet decision",
-  "the before and after"
+  "the before and after",
+  "the two things"
  ],
  "entries": [
   {
@@ -1111,15 +1111,34 @@
    ],
    "critic_note": "Candidate B, edited. Two cities, two orders: Rowlett zoned for drone hubs before Zipline opened there and Round Rock has not, so the first line carries the whole contrast in eight words, then the clock runs from Rowlett's vote to Round Rock's first order to the city's proposed in-city site.",
    "move_note": "Opens on the two cities in two orders, then runs the clock from Rowlett's vote to Round Rock's first order to the proposed in-city site, then names what the deck weighs, and closes on which order serves neighbors better."
+  },
+  {
+   "date": "2026-10-28",
+   "carousel_no": 62,
+   "opening_move": "the object",
+   "structure": "Pivot",
+   "closing_move": "name what is still not public",
+   "first_line": "Cameras ride 50 Dallas brush trucks.",
+   "words": 135,
+   "commas": 0,
+   "commas_per_100w": 0.0,
+   "chars": 857,
+   "hashtags": [
+    "#Dallas",
+    "#CityDetect",
+    "#CodeCompliance"
+   ],
+   "critic_note": "The caption critic chose neither candidate as written and wrote the one allowed rewrite, keeping Candidate 1's opening move (the object, cameras on the city's brush trucks) and its Pivot structure, and Candidate 2's close. Candidate 2 was out on the ledger because it ran as Question and answer, a structure excluded by the last three runs. The rewrite sets up the reading everybody has, cameras that ticket, then turns on the briefing's own line that an observation is not a confirmed violation, and closes on the accuracy figure the briefing doesn't publish.",
+   "move_note": "Opens on the cameras riding the brush trucks, sets up the ticketing reading, turns on the briefing's line that an observation is not a confirmed violation and that staff review every one, then the changed first letter, and closes on the accuracy figure the briefing doesn't publish."
   }
  ],
  "structures_recent": [
-  "Zoom out",
   "Ledger",
-  "Question and answer"
+  "Question and answer",
+  "Clock"
  ],
  "closing_moves_recent": [
-  "Name what happens next and when."
+  "ask the one question the decision leaves open"
  ],
  "_derived_note": "opening_moves_recent, structures_recent and closing_moves_recent are DERIVED by out/<date>/update_ledgers.py every run, by ledger_check.windows() and ledger_check's own slice of the entries before the newest date. They were hand-maintained until 2026-09-10 and had drifted, which mis-briefed the caption room on that run: the list said Ledger was excluded when it was not, and never mentioned Two columns or the close no. 19 actually shipped."
 }

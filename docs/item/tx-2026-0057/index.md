@@ -48,6 +48,8 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-18 · The agency's cancellation notice for the Carson County meeting still reads as posted. Its hearings calendar is unconfirmed.
 - 2026-10-21 · The agency's cancellation notice for the Carson County meeting still reads as posted, and no new date has been published. Its hearings calendar no longer lists the canceled meeting.
 - 2026-10-24 · TCEQ's notice of the canceled Carson County meeting on Fermi's air permits has rolled off its calendar, and the permits still read as pending.
+- 2026-10-27 · TCEQ's cancellation of the Carson County meeting on Fermi's air permits is unconfirmed. The hearings page no longer lists the notice, and no new date is posted.
+- 2026-10-28 · TCEQ's cancellation of the Carson County meeting on Fermi's air permits is unconfirmed. The hearings page no longer lists the notice, and no new date is posted.
 
 ## Evidence
 

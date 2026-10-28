@@ -11,7 +11,7 @@ Lockheed Martin announced on October 14th, 2026 that it is investing $300 millio
 - Public access: Write to the decider
 - Take part: https://news.lockheedmartin.com/2026-10-14-Lockheed-Martin-Expands-Advanced-Munitions-Manufacturing-in-Texas,-Driving-Thousands-of-New-American-Jobs
 
-- Last checked: 2026-10-24
+- Last checked: 2026-10-27
 
 ## Dates
 
@@ -23,6 +23,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 
 - 2026-10-21 · Admitted on the company's release and a state filing that names the county. The cell is not running yet. No source says what its AI does.
 - 2026-10-24 · Lockheed Martin's plan for Hadrian's automated machining cell at the Grand Prairie plant still stands as announced.
+- 2026-10-27 · Lockheed Martin's plan for Hadrian's automated machining cell in Grand Prairie still stands as announced.
 
 ## Evidence
 
