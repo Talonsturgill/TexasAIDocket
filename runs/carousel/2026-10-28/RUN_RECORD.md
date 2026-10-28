@@ -112,6 +112,10 @@ slide 1, `measurements.json` written and checked. Web edition `ledger/articles/2
 the browser test clean. Variety ledgers updated. The site rebuilt (948 pages) and the Phase 16 suite exited 0 on every
 step.
 
+## The email
+
+The draft was built by `gmail_draft.py` and passed as `htmlBody`. Read back raw, the connector had deleted all nine linked thumbnails, so the draft had no slides, and the same is probably true of every earlier run's draft. A test draft showed that `cid:att0` reaches the first inline attachment. The nine slides went into the draft as one inline sheet, the draft without images and the two test drafts were deleted, and the builder fix is queued as `gmail-connector-strips-linked-draft-images`.
+
 ## Timing
 
 Elapsed minutes from wake, from `studio_clock.json`: record 26.8, audition 124.9, art 151.2, review 179.3, panel
