@@ -36,6 +36,8 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-20 · The Senate water committee's meetings page still shows the September 1st sitting on data center cooling water and the one the next day, and no later sitting. The hearing notice text stays unread, since its path is closed to this project.
 - 2026-10-23 · The Senate water committee's page still shows the September 1st sitting on data center cooling water and the one after it, with no later sitting posted. The notice text stays unread, since its path is closed to this project.
 - 2026-10-26 · The Senate water committee's sittings on data center cooling water read as cited. The hearing notice text is still unread, since its path is closed to this project.
+- 2026-10-27 · The Senate committee's hearing on data center cooling water is unconfirmed in part. The Legislature's pages bar automated readers.
+- 2026-10-28 · The Senate committee's hearing on data center cooling water is unconfirmed in part. The Legislature's pages bar automated readers.
 
 ## Evidence
 

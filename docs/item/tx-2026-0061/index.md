@@ -47,6 +47,8 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-20 · The city's code updates page still says San Marcos defines data centers in its land development code. The television report on the 4 to 3 vote stays unconfirmed.
 - 2026-10-23 · San Marcos still defines data centers in its land development code, as the city's code updates page says. The television account of the 4 to 3 vote stays unconfirmed.
 - 2026-10-26 · San Marcos still defines data centers in its land development code, per the city's own code update page. The station's account of the council vote is still unconfirmed.
+- 2026-10-27 · San Marcos's vote defining data centers and making them ineligible is unconfirmed in part. The station bars automated readers.
+- 2026-10-28 · San Marcos's vote defining data centers and making them ineligible is unconfirmed in part. The station bars automated readers.
 
 ## Evidence
 

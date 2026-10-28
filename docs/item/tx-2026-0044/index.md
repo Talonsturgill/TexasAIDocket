@@ -49,6 +49,8 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-22 · Angelina County's minutes still record the resolution asking the Legislature for authority over data centers. Both news accounts stay unconfirmed, since their sites bar automated readers.
 - 2026-10-25 · Angelina County's resolution asking the Legislature for authority over data centers stays unconfirmed today. Both news accounts bar automated readers.
 - 2026-10-26 · The county's own minutes still carry the commissioners' resolution asking the Legislature for authority over data centers. Both newsroom accounts bar automated readers, so their details are unconfirmed.
+- 2026-10-27 · Angelina County's resolution asking for authority over data centers is unconfirmed in part. Both local accounts bar automated readers.
+- 2026-10-28 · Angelina County's resolution asking for authority over data centers is unconfirmed in part. Both local accounts bar automated readers.
 
 ## Evidence
 

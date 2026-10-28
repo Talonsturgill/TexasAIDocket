@@ -1,6 +1,6 @@
 # Dallas issues its first code citations from the AI cameras on its brush trucks
 
-The City of Dallas put AI enabled cameras on its sanitation brush trucks to photograph parcels from the public right of way and flag code violations. A December 9th, 2025 briefing to the council's Finance Committee set out the terms and drew a line under what the system would not be. It named automated ticketing and public safety surveillance among the three things it is not, and it stated that a human stands in the loop for all actions. The cameras went fully operational over the summer of 2026. A memo the city manager sent the council on September 8th, 2026 is reported to say that 57 citations have been issued at 34 properties. The same memo is reported to say that 39 of those citations went to three southern Dallas council districts. It is also reported to say the cameras scanned 10,000 properties and produced 3,700 violations that drew notices. The city's position is that the letters it sends are courtesy notices rather than warnings. The letter itself is reported to carry the words violations identified and to ask the owner to correct them to avoid further enforcement action. The assistant director of Code Compliance was asked about the difference and said you could call that a warning. At a committee meeting on October 19th the city reported 50 cameras on bulky trash trucks since mid April. Staff had reviewed 5,318 observations, sent 2,928 courtesy notices and made 473 field inspections, with 374 voluntary corrections and 101 formal enforcement actions. The city says those figures are not a step by step count from camera to enforcement. It plans to soften the notice's wording. Faces and license plates are blurred and images are kept for 12 months, and a council member called for an audit of the images.
+The City of Dallas put AI enabled cameras on its sanitation brush trucks to photograph parcels from the public right of way and flag code violations. A December 9th, 2025 briefing to the council's Finance Committee set out the terms and drew a line under what the system would not be. It named automated ticketing and public safety surveillance among the three things it is not, and it stated that a human stands in the loop for all actions. The cameras went fully operational over the summer of 2026. A memo the city manager sent the council on September 8th, 2026 is reported to say that 57 citations have been issued at 34 properties. The same memo is reported to say that 39 of those citations went to three southern Dallas council districts. It is also reported to say the cameras scanned 10,000 properties and produced 3,700 violations that drew notices. The city's position is that the letters it sends are courtesy notices rather than warnings. The letter itself is reported to carry the words violations identified and to ask the owner to correct them to avoid further enforcement action. The assistant director of Code Compliance was asked about the difference and said you could call that a warning. The city's own briefing to the Quality of Life, Arts, and Culture Committee on October 19th says the cameras ride on 50 Sanitation brush collection vehicles. It counts 5,318 observations reviewed, 2,928 courtesy notices, 473 field inspections, 374 voluntary corrections, 34 direct abatements and 101 formal enforcement actions. It says an observation is not a confirmed violation and that a courtesy notice is now an educational reminder that sets no deadline. It lists establishing performance measures around accuracy as a next step. Faces and license plates are blurred within the system.
 
 - Topic: surveillance-and-policing
 - Decided by: City of Dallas (city)
@@ -37,6 +37,8 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-18 · The city's finance committee briefing and the Fox 4 account still read as cited. The NBC 5 investigation is unconfirmed, since its site bars automated readers.
 - 2026-10-21 · At the October 19th committee briefing the city reported 50 cameras, 2,928 courtesy notices and 101 formal enforcement actions since mid April. It said it will soften the notice's wording, and a council member called for an audit of the images.
 - 2026-10-24 · Dallas still issues code citations from the AI cameras on its brush trucks, as the city's own records describe.
+- 2026-10-27 · The city's own October 19th briefing now carries the program's figures, which earlier rested on a news account. It counts 101 formal enforcement actions and lists measuring the system's accuracy as a step still to come. The station's account of the first citations bars automated readers, so that part is unconfirmed.
+- 2026-10-28 · Dallas's own October 19th briefing still carries the program's figures. The claims resting on other pages are unconfirmed today.
 
 ## Evidence
 
@@ -126,57 +128,75 @@ Source (journalism): https://www.nbcdfw.com/investigations/dallas-issues-first-c
 
 Source (journalism): https://www.nbcdfw.com/investigations/dallas-issues-first-citations-tied-to-ai-code-enforcement-cameras/4078749/
 
-### The Dallas Morning News reports council members learned of the notice changes at a committee meeting on Monday, October 19th.
+### Officials pledged on October 19th, 2026 to soften the language in the program's violation notices, NBC 5 reported.
 
-> The changes are intended to make notices easier to understand, council members learned during a committee meeting Monday.
+> Officials also pledged to soften the language in violation notices,
 
-Source (journalism): https://www.govtech.com/artificial-intelligence/dallas-revises-resident-notices-from-trash-truck-ai-cameras
+Source (journalism): https://www.nbcdfw.com/investigations/dallas-makes-changes-to-ai-camera-code-enforcement-program-following-nbc-5-investigation/4093127/
 
-### The city has used 50 AI powered cameras on bulky sanitation trucks since mid April, the Dallas Morning News reports.
+### The city's October 19th, 2026 briefing says the cameras are mounted on 50 Sanitation brush collection vehicles on routine routes.
 
-> The city started using 50 AI-powered cameras mounted on bulky sanitation trucks in mid-April to scan for possible property and right-of-way concerns, including overgrown lawns, debris, unsafe structures, graffiti and sidewalk issues.
+> Cameras are mounted on 50 Sanitation brush collection vehicles that already travel Dallas neighborhoods during routine service.
 
-Source (journalism): https://www.govtech.com/artificial-intelligence/dallas-revises-resident-notices-from-trash-truck-ai-cameras
+Source (primary_official): https://dallascityhall.com/government/citymanager/Documents/Council%20Materials/Item%20A%20Update%20on%20the%20Sanitation%20and%20Code%20Compliance%20AI%20Deadlink.pdf
 
-### Staff have reviewed 5,318 observations, sent 2,928 courtesy notices and conducted 473 field inspections.
+### The briefing counts 5,318 observations reviewed, 2,928 courtesy notices and 473 field inspections.
 
-> Staff have reviewed 5,318 observations, sent 2,928 courtesy notices and conducted 473 field inspections.
+> Observations Reviewed 5,318 Courtesy Notices 2,928 Field Inspections 473
 
-Source (journalism): https://www.govtech.com/artificial-intelligence/dallas-revises-resident-notices-from-trash-truck-ai-cameras
+Source (primary_official): https://dallascityhall.com/government/citymanager/Documents/Council%20Materials/Item%20A%20Update%20on%20the%20Sanitation%20and%20Code%20Compliance%20AI%20Deadlink.pdf
 
-### The department also reported 374 voluntary corrections and 101 formal enforcement actions.
+### The briefing counts 374 voluntary corrections, 34 direct abatements and 101 formal enforcement actions.
 
-> The department also reported 374 voluntary corrections and 101 formal enforcement actions.
+> Voluntary Corrections 374 Direct Abatements 34 Formal Enforcement 101
 
-Source (journalism): https://www.govtech.com/artificial-intelligence/dallas-revises-resident-notices-from-trash-truck-ai-cameras
+Source (primary_official): https://dallascityhall.com/government/citymanager/Documents/Council%20Materials/Item%20A%20Update%20on%20the%20Sanitation%20and%20Code%20Compliance%20AI%20Deadlink.pdf
 
-### The city says the figures are not a step by step count from camera detection to enforcement.
+### The city says its camera observations should not be read as confirmed violations or enforcement actions.
 
-> The numbers reflect different parts of the program, not a step-by-step count of cases moving from camera detection to enforcement.
+> should not be interpreted as confirmed violations or enforcement actions.
 
-Source (journalism): https://www.govtech.com/artificial-intelligence/dallas-revises-resident-notices-from-trash-truck-ai-cameras
+Source (primary_official): https://dallascityhall.com/government/citymanager/Documents/Council%20Materials/Item%20A%20Update%20on%20the%20Sanitation%20and%20Code%20Compliance%20AI%20Deadlink.pdf
 
-### The code department plans to soften the wording of its courtesy notices.
+### The briefing says a courtesy notice is now an educational reminder outside the citation process that sets no deadline.
 
-> The code department plans to soften the language it uses in its courtesy notices, so the notice feels less like an enforcement warning.
+> a friendly reminder that is not part of the citation process and sets no deadline.
 
-Source (journalism): https://www.govtech.com/artificial-intelligence/dallas-revises-resident-notices-from-trash-truck-ai-cameras
+Source (primary_official): https://dallascityhall.com/government/citymanager/Documents/Council%20Materials/Item%20A%20Update%20on%20the%20Sanitation%20and%20Code%20Compliance%20AI%20Deadlink.pdf
 
-### A flagged image is not automatically treated as a violation, and licensed code officers decide on a response.
+### The city says a camera observation is not a confirmed code violation and that staff make that determination.
 
-> A flagged image is not automatically treated as a violation. Licensed code officers compare the image with the software’s finding and decide whether the issue warrants a response.
+> A computer vision observation is not a confirmed Code violation. City staff make that determination.
 
-Source (journalism): https://www.govtech.com/artificial-intelligence/dallas-revises-resident-notices-from-trash-truck-ai-cameras
+Source (primary_official): https://dallascityhall.com/government/citymanager/Documents/Council%20Materials/Item%20A%20Update%20on%20the%20Sanitation%20and%20Code%20Compliance%20AI%20Deadlink.pdf
 
-### Faces and license plates are blurred and images are kept for 12 months.
+### The briefing says faces and license plates are blurred within the system.
 
-> Faces and license plates are blurred, and images are retained for 12 months under city records-retention requirements.
+> Faces and license plates are blurred within the system.
 
-Source (journalism): https://www.govtech.com/artificial-intelligence/dallas-revises-resident-notices-from-trash-truck-ai-cameras
+Source (primary_official): https://dallascityhall.com/government/citymanager/Documents/Council%20Materials/Item%20A%20Update%20on%20the%20Sanitation%20and%20Code%20Compliance%20AI%20Deadlink.pdf
 
-### A council member called for an audit of images to check the privacy protections.
+### The city lists establishing performance measures around accuracy among the program's next steps.
 
-> A council member called for an audit of images to verify that privacy protections are working.
+> Establish performance measures around accuracy, response, voluntary compliance, resource utilization and neighborhood outcomes.
 
-Source (journalism): https://www.govtech.com/artificial-intelligence/dallas-revises-resident-notices-from-trash-truck-ai-cameras
+Source (primary_official): https://dallascityhall.com/government/citymanager/Documents/Council%20Materials/Item%20A%20Update%20on%20the%20Sanitation%20and%20Code%20Compliance%20AI%20Deadlink.pdf
+
+### An April 10th, 2026 city memo says no automatic citations will be issued as a result of the technology.
+
+> No automatic citations will be issued as a result of this technology.
+
+Source (primary_official): https://dallascityhall.com/government/citymanager/Documents/FY25-26%20Memos/City-council-listening-session-fy26-27.pdf
+
+### The same memo says Code Compliance staff will review and verify every potential violation before any action is taken.
+
+> All potential violations will be reviewed and verified by Code Compliance staff before any action is taken.
+
+Source (primary_official): https://dallascityhall.com/government/citymanager/Documents/FY25-26%20Memos/City-council-listening-session-fy26-27.pdf
+
+### The briefing says the city measures success by neighborhood conditions and service delivery rather than by citations.
+
+> not by the number of citations generated.
+
+Source (primary_official): https://dallascityhall.com/government/citymanager/Documents/Council%20Materials/Item%20A%20Update%20on%20the%20Sanitation%20and%20Code%20Compliance%20AI%20Deadlink.pdf
 

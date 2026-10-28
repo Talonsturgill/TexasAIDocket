@@ -48,6 +48,8 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-22 · Laredo's council records still show the moratorium turned down and staff sent to write permanent rules. The station's account stays unconfirmed, since its site bars automated readers.
 - 2026-10-25 · Laredo's council action on the moratorium stays unconfirmed today. The station that reported it still bars automated readers.
 - 2026-10-26 · Laredo's council vote against a data center moratorium is still unconfirmed on the station's report, which bars automated readers.
+- 2026-10-27 · Laredo's decision against a data center moratorium is unconfirmed in part. The station's report bars automated readers.
+- 2026-10-28 · Laredo's decision against a data center moratorium is unconfirmed in part. The station's report bars automated readers.
 
 ## Evidence
 

@@ -46,6 +46,8 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-09 · The pedestrian face capture trial at the Progreso bridge remains unconfirmed. The department's feature still refuses every reader.
 - 2026-10-10 · The pedestrian face capture trial at the Progreso bridge stays unconfirmed, because the department's feature refuses every reader.
 - 2026-10-24 · The federal agency's account of the facial biometric test on pedestrians leaving at the Progreso bridge still reads as published.
+- 2026-10-27 · The pedestrian biometric test at the Progreso bridge is still unconfirmed. The department's site refuses every reader.
+- 2026-10-28 · The pedestrian biometric test at the Progreso bridge is still unconfirmed. The department's site refuses every reader.
 
 ## Evidence
 

@@ -11,7 +11,7 @@ The El Paso City Council voted on July 20th, 2026 to adopt a Data Center Policy 
 - Public access: Public meeting
 - Take part: https://webapi.legistar.com/v1/elpasotexas/Matters/15758
 
-- Last checked: 2026-10-24
+- Last checked: 2026-10-27
 
 ## Dates
 
@@ -45,6 +45,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-18 · El Paso's legislative record still shows the framework adopted with a special permit for a hyperscale project. KVIA's account is unconfirmed.
 - 2026-10-21 · Checked and unchanged. The decision still stands as decided.
 - 2026-10-24 · El Paso's Data Center Policy Framework still requires a special permit for hyperscale projects, as the council adopted it.
+- 2026-10-27 · El Paso's Data Center Policy Framework and its special permit requirement still stand as the station reported them.
 
 ## Evidence
 

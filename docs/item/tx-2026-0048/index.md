@@ -12,7 +12,7 @@ On August 11th, 2026 the League City City Council approved Ordinance No. 2026-27
 - Comment closes: 2026-11-03
 - Take part: https://leaguecity.legistar.com/MeetingDetail.aspx?LEGID=2222&GID=84&G=2D7DD9CC-BD32-4A4F-B8D5-83638663C82D
 
-- Last checked: 2026-10-24
+- Last checked: 2026-10-27
 
 ## Dates
 
@@ -50,6 +50,8 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-18 · League City's news post and meeting record still carry the November election on plate reader cameras. The ordinance's own file is unconfirmed.
 - 2026-10-21 · The comment window is still open, closing November 3rd.
 - 2026-10-24 · League City's plate reader proposition is still set for the special election on November 3rd.
+- 2026-10-27 · League City's ordinance calling the November 3rd vote on its plate reader cameras still stands. Election day is next week.
+- 2026-10-28 · League City's ordinance calling the November 3rd vote on its plate reader cameras still stands. Election day is next week.
 
 ## Evidence
 

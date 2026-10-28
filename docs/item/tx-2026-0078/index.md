@@ -42,6 +42,8 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-20 · House State Affairs still lists the August 19th sitting and the two September sittings after it, and has posted no later meeting. The charge wording on the Legislative Reference Library page stays unconfirmed.
 - 2026-10-23 · House State Affairs still lists the August 19th sitting and the two September sittings after it, with no later meeting and no interim report posted. The charge wording stays unconfirmed.
 - 2026-10-26 · The committee page for House State Affairs reads as cited. The charge wording on the Legislature's interim pages is still unconfirmed, since that host bars automated readers.
+- 2026-10-27 · The House State Affairs hearing on data centers is unconfirmed in part. The library's pages bar automated readers.
+- 2026-10-28 · The House State Affairs hearing on data centers is unconfirmed in part. The library's pages bar automated readers.
 
 ## Evidence
 

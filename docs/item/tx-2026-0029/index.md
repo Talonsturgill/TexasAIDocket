@@ -49,6 +49,8 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-24 · Williamson County's abatement for the Compal server plant in Georgetown is unconfirmed today, since the county's own notice refused the request.
 - 2026-10-25 · Williamson County's abatement for the Compal server plant in Georgetown stays unconfirmed. The county's notice still turns away every reader.
 - 2026-10-26 · The Williamson County abatement for Compal's Georgetown server plant is still unconfirmed. The county's notice refuses every reader.
+- 2026-10-27 · The Williamson County abatement for Compal's Georgetown server plant is still unconfirmed. The county's notice refuses every reader.
+- 2026-10-28 · The Williamson County abatement for Compal's Georgetown server plant is still unconfirmed. The county's notice refuses every reader.
 
 ## Evidence
 

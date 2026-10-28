@@ -48,6 +48,8 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-10 · Archer County's denial of the data center abatement stays unconfirmed, since the one published account bars automated readers.
 - 2026-10-25 · Archer County's denial of the data center abatement stays unconfirmed, since its one published account still bars automated readers.
 - 2026-10-26 · Archer County's refusal of the data center abatement is still unconfirmed. The one station that reported it bars automated readers.
+- 2026-10-27 · Archer County's refusal of the data center abatement is still unconfirmed. The one station that reported it bars automated readers.
+- 2026-10-28 · Archer County's refusal of the data center abatement is still unconfirmed. The one station that reported it bars automated readers.
 
 ## Evidence
 

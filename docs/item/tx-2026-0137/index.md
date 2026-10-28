@@ -38,6 +38,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-21 · Checked and unchanged. The decision still stands as decided.
 - 2026-10-24 · The case managers' result against Houston Methodist's discharge AI is unconfirmed today, since the journal page answered with a browser check instead of the article.
 - 2026-10-25 · Checked and unchanged. The decision still stands as decided.
+- 2026-10-28 · The study of Houston Methodist's discharge AI is unconfirmed today. The article index answered with a browser check rather than the paper.
 
 ## Evidence
 

@@ -29,6 +29,8 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-18 · The account of the gene the AI tool flagged for the Texome child reads as published.
 - 2026-10-21 · Checked and unchanged. The decision still stands as decided.
 - 2026-10-24 · The researchers' account of the AI tool that flagged the likely genetic cause still reads as published.
+- 2026-10-27 · The genetic finding flagged by an AI tool is unconfirmed in part. The hospital's page no longer answers at its address.
+- 2026-10-28 · The genetic finding flagged by an AI tool is unconfirmed in part. The hospital's page no longer answers at its address.
 
 ## Evidence
 

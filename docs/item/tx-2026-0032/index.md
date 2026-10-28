@@ -45,6 +45,8 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-18 · Texas Scorecard's account of the planning commission voting the permit down still reads as cited. The city's own agenda and the television report are unconfirmed.
 - 2026-10-21 · Checked and unchanged. Still open, with no dated movement.
 - 2026-10-24 · Killeen's planning commission vote against the ONMINE data center permit still stands on the city's record.
+- 2026-10-27 · The Killeen commission's vote against the ONMINE data center permit is unconfirmed in part. The station's account bars automated readers.
+- 2026-10-28 · The Killeen commission's vote against the ONMINE data center permit is unconfirmed in part. The station's account bars automated readers.
 
 ## Evidence
 

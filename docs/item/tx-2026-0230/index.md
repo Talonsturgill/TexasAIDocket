@@ -11,7 +11,7 @@ Tesla published its update for the third quarter of 2026 on October 21st. It say
 - Public access: Closed
 - Take part: https://assets-ir.tesla.com/tesla-contents/IR/TSLA-Q3-2026-Update.pdf
 
-- Last checked: 2026-10-24
+- Last checked: 2026-10-27
 
 ## Dates
 
@@ -22,6 +22,7 @@ Tesla published its update for the third quarter of 2026 on October 21st. It say
 One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
 
 - 2026-10-24 · Admitted on Tesla's own quarterly update. The capacity it lists is installed capacity, and the update itself says that is not output.
+- 2026-10-27 · Tesla's capacity table still lists the Cybercab in production in Texas and Optimus under construction.
 
 ## Evidence
 

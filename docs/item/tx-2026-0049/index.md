@@ -49,6 +49,8 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-22 · Harris County's legislative record still carries the Flock renewal and the amendment that followed it. The station's report stays unconfirmed, since its site bars automated readers.
 - 2026-10-25 · Harris County's Flock renewal stays unconfirmed today on the station's report, which bars automated readers.
 - 2026-10-26 · Harris County's renewal of the Flock plate reader license is still unconfirmed on the station's report, which bars automated readers.
+- 2026-10-27 · Harris County's renewed Flock contract is unconfirmed in part. The station's account bars automated readers.
+- 2026-10-28 · Harris County's renewed Flock contract is unconfirmed in part. The station's account bars automated readers.
 
 ## Evidence
 
