@@ -138,8 +138,8 @@ Elapsed minutes from wake, from `studio_clock.json`: record 26.8, audition 124.9
 | aggregates     | PASS   | 12 declaration(s), 16 numeric phrase(s) in the render, all re-derived |
 | assembly       | PASS   | 9 slide(s), 8.2 MB, vector |
 | score          | WARN   | 7.086 at the round cap after 3 round(s), the finished deck ships; 8.0 top rung, shortfall named |
-| labels         | ABSENT | label_report.json not written yet. Run scripts/carousel/label_guard.py <run-dir> |
-| quantifiers    | ABSENT | quantifier_report.json not written yet. Run scripts/carousel/quantifier_check.py <run-dir> |
+| labels         | PASS   | 94 claim id(s) checked, every label beside one traces to the shape its claim proves |
+| quantifiers    | PASS   | 83 published string(s) read from one list, every universal names its set |
 | verbatim       | WARN   | no dossier declares a `verbatim:` block, so no on-frame string was held to a quote |
 | dossiers       | PASS   | 35,640 chars planned |
 | caption        | PASS   | 135 words |
