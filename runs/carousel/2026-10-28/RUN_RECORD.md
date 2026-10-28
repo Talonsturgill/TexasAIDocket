@@ -16,6 +16,16 @@ stopped; its steps were rerun in the foreground and passed.
     Technology Campus project page, with the four quotes that changed recorded in the item's history.
   - tx-2026-0028. KUT disallows this project in robots.txt, so claim c2 moved to Community Impact's report of the
     resolution, and the summary sentence that only KUT carried was removed.
+- **Rot found by CI, repaired before the merge.** The first CI run on the PR failed `docket_staleness`: seven live items
+  were past twice their two day leash, because this morning's re-verify wrote "unconfirmed in part" lines without a
+  stamp. Six were repaired from fresh reads. tx-2026-0037's GovTech and city records read exactly as quoted.
+  tx-2026-0078, tx-2026-0079 and tx-2026-0126's committee pages confirm their sittings, with the refused charge and
+  notice text noted as unconfirmed, the form earlier runs used. tx-2026-0072 (gov.texas.gov) and tx-2026-0075
+  (legistar1.granicus.com) carry front door boundaries measured today.
+- **tx-2026-0186 stays rotten and holds the merge.** www.faa.gov answers 403 to this project's agent and 200 to other
+  clients. The field log's practice for this host is a browser agent read, and this session's safety classifier refused
+  that request as bot check circumvention. The run did not work around the refusal, so CI's rot gate stays red on this
+  one item until a maintainer re-verifies it.
 - **Admitted.** None. The scouts' leads went to selection and the record.
 - **Instrument check (Phase 7).** The Grid Watch and Water Watch page checks, the site self-tests and the schema check
   ran. The schema check named three stale citations on item pages, the two re-pointed items and tx-2026-0179's govtech

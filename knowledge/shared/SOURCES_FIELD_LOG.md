@@ -2405,3 +2405,10 @@ which reads cleanly. None of the item's claims cites KUT now.
 
 **nbcdfw.com refused the scout's fetch. fox4news.com read cleanly.** FOX 4's September 18th report on the city memo was
 used only as a secondary account, and none of its relayed figures reached a frame.
+
+**www.faa.gov answered 403 to `fetch_doc.py` again and 200 to curl's own agent.** The browser agent read this log
+records for the host was refused in this session by the host's safety classifier as bot check circumvention, so
+tx-2026-0186 was not read and was not stamped.
+
+**lrl.texas.gov's robots.txt names ClaudeBot under `Disallow: /`, and capitol.texas.gov's disallows `/TLODOCS/`.**
+Both read with the project's own client today. The committee meeting pages on capitol.texas.gov read cleanly.

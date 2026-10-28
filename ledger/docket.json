@@ -5510,7 +5510,7 @@
     }
    ],
    "id": "tx-2026-0037",
-   "last_verified": "2026-10-22",
+   "last_verified": "2026-10-28",
    "history": [
     {
      "date": "2026-08-18",
@@ -5639,6 +5639,11 @@
     {
      "date": "2026-10-28",
      "note": "Laredo's decision against a data center moratorium is unconfirmed in part. The station's report bars automated readers.",
+     "checked": true
+    },
+    {
+     "date": "2026-10-28",
+     "note": "The council's direction, the city attorney's words and the county's answer read in the Laredo Morning Times report on GovTech exactly as quoted. The city's matter history still records no action taken on June 15th and July 27th. The station report behind the moratorium call still bars automated readers, so that one claim stands as first verified.",
      "checked": true
     }
    ]
@@ -13106,7 +13111,15 @@
      "note": "The Governor's order to audit every data center in the queue is unconfirmed in part. His office bars automated readers.",
      "checked": true
     }
-   ]
+   ],
+   "unreachable": {
+    "hosts": [
+     "gov.texas.gov"
+    ],
+    "boundary": "robots",
+    "checked": "2026-10-28",
+    "note": "gov.texas.gov is excluded by the sources registry, its robots.txt naming this project's crawler, measured 2026-10-28 by fetch_doc's live robots check and the crawl boundary, on the item's own front door. Nothing was routed around."
+   }
   },
   {
    "id": "tx-2026-0073",
@@ -13613,7 +13626,15 @@
      "note": "Pflugerville's charter election with its AI section is unconfirmed in part. The city's agenda host bars automated readers.",
      "checked": true
     }
-   ]
+   ],
+   "unreachable": {
+    "hosts": [
+     "legistar1.granicus.com"
+    ],
+    "boundary": "robots",
+    "checked": "2026-10-28",
+    "note": "legistar1.granicus.com disallows this path to this project in robots.txt, measured 2026-10-28 by fetch_doc's live robots check and the crawl boundary, on the item's own front door. Nothing was routed around."
+   }
   },
   {
    "id": "tx-2026-0076",
@@ -14271,7 +14292,7 @@
     }
    ],
    "id": "tx-2026-0078",
-   "last_verified": "2026-10-23",
+   "last_verified": "2026-10-28",
    "history": [
     {
      "date": "2026-08-21",
@@ -14393,6 +14414,11 @@
      "date": "2026-10-28",
      "note": "The House State Affairs hearing on data centers is unconfirmed in part. The library's pages bar automated readers.",
      "checked": true
+    },
+    {
+     "date": "2026-10-28",
+     "note": "House State Affairs' committee page still lists the August 19th sitting and the two September sittings, with no later meeting posted. The charge wording on the Legislature's library pages stays unconfirmed, since that host bars this project's reader.",
+     "checked": true
     }
    ]
   },
@@ -14455,7 +14481,7 @@
     }
    ],
    "id": "tx-2026-0079",
-   "last_verified": "2026-10-23",
+   "last_verified": "2026-10-28",
    "history": [
     {
      "date": "2026-08-21",
@@ -14578,6 +14604,11 @@
     {
      "date": "2026-10-28",
      "note": "The House Public Health hearing on AI in health care is unconfirmed in part. The library's pages bar automated readers.",
+     "checked": true
+    },
+    {
+     "date": "2026-10-28",
+     "note": "House Public Health's committee page reads as cited. The charge wording on the Legislature's library pages stays unconfirmed, since that host bars this project's reader.",
      "checked": true
     }
    ]
@@ -25560,7 +25591,7 @@
     }
    ],
    "id": "tx-2026-0126",
-   "last_verified": "2026-10-23",
+   "last_verified": "2026-10-28",
    "history": [
     {
      "date": "2026-09-07",
@@ -25653,6 +25684,11 @@
     {
      "date": "2026-10-28",
      "note": "The Senate committee's hearing on data center cooling water is unconfirmed in part. The Legislature's pages bar automated readers.",
+     "checked": true
+    },
+    {
+     "date": "2026-10-28",
+     "note": "The Senate water committee's page still shows the September 1st and 2nd sittings, with no later sitting posted. The hearing notice text stays unread, since its path is closed to this project.",
      "checked": true
     }
    ]
@@ -32749,7 +32785,7 @@
     },
     {
      "date": "2026-10-28",
-     "note": "The FAA's comment window on Zipline's round the clock flights is still unconfirmed. The agency's site refuses every reader.",
+     "note": "The FAA's comment window on Zipline's round the clock flights is still unconfirmed. The agency's site refuses this project's reader.",
      "checked": true
     }
    ]
