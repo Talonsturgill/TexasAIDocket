@@ -250,9 +250,14 @@ def robots_refusal(url: str, opener=None) -> str | None:
     return None
 
 
+def boundary_opener(boundary: list[dict]):
+    """Shared HTTP transport that checks the source policy before each redirect."""
+    return urllib.request.build_opener(_BoundaryRedirects(boundary)).open
+
+
 def fetch(url: str, boundary: list[dict], opener=None) -> dict:
     """{state, status, final_url, content_type, body}. Never raises for a network failure."""
-    op = opener or urllib.request.build_opener(_BoundaryRedirects(boundary)).open
+    op = opener or boundary_opener(boundary)
     try:
         req = urllib.request.Request(url, headers={"User-Agent": user_agent(), "Accept": "*/*"})
         with op(req, timeout=TIMEOUT) as r:

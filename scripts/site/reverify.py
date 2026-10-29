@@ -77,10 +77,10 @@ Asserting a saving would be the same sin as asserting a figure, so here is the r
      33 of 69 items stamped outright, 47 percent
      42 of 124 urls will send a conditional request next run
 
-**The 92 are not a failure and they are not going away.** 30 are PDFs and most of the rest are
-javascript portals and consent walls that serve a shell to a plain fetch. Those pages were always
-going to need reading. The honest claim is that this removes about half the phase on day one and
-grows, because every quote it locates is remembered, not that it removes the phase.
+That first pass left PDFs, javascript portals and consent walls for manual reading. The reader
+now uses the existing document parser for PDFs with extractable text. Scanned or damaged files
+remain unconfirmed. Redirect targets must pass the same source policy as the original URL,
+and a conditional response retains only quote evidence already earned from readable content.
 
 RUN IT BY EXIT CODE.
 
@@ -97,6 +97,8 @@ import datetime as _dt
 import hashlib
 import html
 import json
+import os
+import subprocess
 import re
 import sys
 import urllib.error
@@ -113,6 +115,7 @@ import docket_staleness as ds  # noqa: E402
 import docket_build as dk  # noqa: E402  the numeral machinery, one definition
 sys.path.insert(0, str(REPO_ROOT / "scripts" / "shared"))
 import crawl_boundary  # noqa: E402  the one reader of the registry's boundary
+import fetch_doc  # noqa: E402  shared redirect-safe HTTP transport
 
 UA = ("TexasAIDocket/1.0 re-verification (+https://texasaidocket.com) "
       "one conditional request per source per two days")
@@ -124,9 +127,8 @@ UNCHANGED, MISSING, UNREACHABLE, UNREADABLE = (
 # A SOURCE THIS CHECK CANNOT READ IS NOT A SOURCE THAT CHANGED, and telling them apart is the
 # difference between a useful report and a boy who cried wolf. The first version had one bucket
 # for both and reported 92 of 314 claims as missing on its very first run against the real
-# record. Almost none of them had moved. 30 were PDFs, whose bytes flatten to nothing a quote
-# can be found in, and most of the rest were javascript rendered portals and consent walls that
-# serve a shell to a plain fetch. A phase handed 92 false alarms reads none of them.
+# record. Almost none of them had moved. PDFs now use the shared text extractor; a damaged or
+# scanned PDF and a javascript portal with no readable quote still carry no confirmation.
 PDF_HINT = (".pdf",)
 
 
@@ -200,6 +202,12 @@ def norm_quote(q: str) -> str:
     return _WS.sub(" ", q).strip()
 
 
+def claim_fingerprint(claim: dict) -> str:
+    """Bind source evidence to the complete claim, including its quote and citation."""
+    return hashlib.sha256(json.dumps(claim, sort_keys=True, ensure_ascii=False,
+                                     separators=(",", ":")).encode("utf-8")).hexdigest()
+
+
 # --------------------------------------------------------------------------- fetch
 def fetch(url: str, cached: dict, opener=None) -> tuple[str, bytes | None, dict]:
     """`(state, body, meta)`. `state` is one of the three outcomes, body is None unless 200.
@@ -213,14 +221,19 @@ def fetch(url: str, cached: dict, opener=None) -> tuple[str, bytes | None, dict]
         req.add_header("If-None-Match", cached["etag"])
     if cached.get("last_modified"):
         req.add_header("If-Modified-Since", cached["last_modified"])
-    op = opener or urllib.request.urlopen
     try:
+        # The first URL's allowance does not allow a redirect to a restricted host.
+        # Keep conditional requests and cache handling here, but share fetch_doc's
+        # per-redirect policy check so an access challenge is never requested.
+        op = opener or fetch_doc.boundary_opener(crawl_boundary.rules())
         with op(req, timeout=TIMEOUT) as r:
             body = r.read()
             meta = {"etag": r.headers.get("ETag"),
                     "last_modified": r.headers.get("Last-Modified"),
                     "hash": hashlib.sha256(body).hexdigest()}
             return UNCHANGED, body, meta
+    except fetch_doc.Refused as e:
+        return UNREACHABLE, None, {"status": str(e)}
     except urllib.error.HTTPError as e:
         if e.code == 304:
             # THE SERVER SAID SO, which is the cheapest and the most certain answer available.
@@ -369,7 +382,17 @@ def check(items: list, cache: dict, opener=None, gate=None) -> tuple[list, dict,
                                  "state": UNREACHABLE,
                                  "why": f"not requested. The crawl boundary refuses it: {why}"})
             continue
-        state, body, meta = fetch(url, prior, opener)
+        # A 304 only preserves evidence bound to the complete current claim and body.
+        # Cached validators also exist for unreadable PDFs and challenge pages.
+        # Ask for the body when any quote has never been located on this source.
+        prior_proofs = prior.get("proofs") or {}
+        proven_before = {c["id"] for _, c in pairs
+                         if prior_proofs.get(c["id"]) == {
+                             "claim_sha256": claim_fingerprint(c),
+                             "body_sha256": prior.get("hash")}}
+        request_cache = prior if all(c["id"] in proven_before for _, c in pairs) else {
+            key: value for key, value in prior.items() if key not in ("etag", "last_modified")}
+        state, body, meta = fetch(url, request_cache, opener)
 
         if state == UNREACHABLE:
             stats["unreachable"] += 1
@@ -379,25 +402,39 @@ def check(items: list, cache: dict, opener=None, gate=None) -> tuple[list, dict,
             continue
 
         if body is None:
-            # A 304. Every quote behind this url is unchanged and no text was read at all.
+            # A valid conditional response retains prior proof; it creates none.
             stats["not_modified"] += 1
             fresh[url] = prior
             for it, c in pairs:
+                was = c["id"] in proven_before
                 findings.append({"item": it["id"], "claim": c["id"], "url": url,
-                                 "state": UNCHANGED, "why": "304"})
+                                 "state": UNCHANGED if was else UNREADABLE,
+                                 "why": "304" if was else
+                                 "a 304 can't confirm a quote never located on this page"})
             continue
 
         stats["fetched"] += 1
         proven = set(prior.get("proven") or [])
         meta["proven"] = sorted(proven)
+        proofs = dict(prior_proofs)
+        meta["proofs"] = proofs
         fresh[url] = meta
 
         if url.lower().endswith(PDF_HINT) or body[:5] == b"%PDF-":
-            stats["unreadable"] += 1
-            for it, c in pairs:
-                findings.append({"item": it["id"], "claim": c["id"], "url": url,
-                                 "state": UNREADABLE, "why": "a PDF, which this check can't read"})
-            continue
+            try:
+                extracted, _, characters = fetch_doc.pdf_text(body)
+                text = norm_quote(extracted) if characters else ""
+            except Exception:  # damaged or scanned source is not proof of a changed claim
+                text = ""
+            if not text:
+                stats["unreadable"] += 1
+                for it, c in pairs:
+                    findings.append({"item": it["id"], "claim": c["id"], "url": url,
+                                     "state": UNREADABLE,
+                                     "why": "the PDF yielded no readable text"})
+                continue
+        else:
+            text = flatten(body)
         # THE BYTES CAN BE IDENTICAL AND THAT IS STILL NOT THE ANSWER. A matching hash proves
         # the page did not move, which proves the quote is still on it, so the containment test
         # is skipped. A DIFFERENT hash proves nothing either way, because a page that changed
@@ -411,18 +448,20 @@ def check(items: list, cache: dict, opener=None, gate=None) -> tuple[list, dict,
         # after that reported them as real changes. tx-2026-0015-c2 is the one that showed it:
         # its stored quote is a pipe delimited digest the routine composed rather than anything
         # that appears on the page, so it can never be located, and it was proven anyway.
-        prior_proven = set(prior.get("proven") or [])
         same = bool(prior.get("hash")) and prior["hash"] == meta["hash"]
-        text = flatten(body)
         for it, c in pairs:
             q = norm_quote(c.get("verbatim_quote") or "")
-            was = c["id"] in prior_proven
-            found = bool(q) and ((same and was) or q in text)
+            fingerprint = claim_fingerprint(c)
+            was = (prior_proofs.get(c["id"]) or {}).get("claim_sha256") == fingerprint
+            current = c["id"] in proven_before
+            found = bool(q) and ((same and current) or q in text)
             if found:
                 proven.add(c["id"])
+                proofs[c["id"]] = {"claim_sha256": fingerprint,
+                                   "body_sha256": meta["hash"]}
                 findings.append({"item": it["id"], "claim": c["id"], "url": url,
                                  "state": UNCHANGED,
-                                 "why": "hash" if (same and was) else "quote"})
+                                 "why": "hash" if (same and current) else "quote"})
             elif was:
                 # THIS CHECK HAS FOUND THIS QUOTE ON THIS PAGE BEFORE, so it is readable, and
                 # the quote going missing now is a real change rather than a format it cannot
@@ -559,7 +598,108 @@ def report(findings: list, stats: dict, stamped: list | None) -> int:
 
 
 # --------------------------------------------------------------------------- the note gate
-def check_notes(items: list) -> list:
+def _note_numbers(item: dict, entry: dict) -> set[str]:
+    """The existing numeric allowance, evaluated against one item snapshot."""
+    when = ds.parse_date(entry.get("date"))
+    return set(dk._quoted_numerals(item)) | set(dk._prose_numerals(movement_line(item, when)))
+
+
+class HistoricalNoteProof:
+    """Replay an unchanged published note against its canonical introduction snapshot.
+
+    This proves historical publication provenance, not the truth of a withdrawn claim.
+    Candidate commits and caller-authored correction text cannot supply this allowance.
+    Missing Git history fails closed; the current-claim rule remains sufficient on its own.
+    """
+    def __init__(self, repo: Path = REPO_ROOT):
+        self.repo = repo
+        self.records: dict[str, dict] = {}
+        self.proofs: dict[tuple, dict | None] = {}
+        self.ref = None
+        self.main = {}
+        try:
+            remote = self.git("remote", "get-url", "origin").removesuffix(".git")
+            if remote not in ("https://github.com/Talonsturgill/TexasAIDocket",
+                              "git@github.com:Talonsturgill/TexasAIDocket"):
+                return
+            main = self.git("rev-parse", "refs/remotes/origin/main")
+            ref = main
+            if os.environ.get("GITHUB_ACTIONS") == "true":
+                if os.environ.get("GITHUB_REPOSITORY") != "Talonsturgill/TexasAIDocket":
+                    return
+                event_path = os.environ.get("GITHUB_EVENT_PATH")
+                event = json.loads(Path(event_path).read_text()) if event_path else {}
+                if (event.get("repository") or {}).get("full_name") != "Talonsturgill/TexasAIDocket":
+                    return
+                if os.environ.get("GITHUB_EVENT_NAME") == "pull_request":
+                    base = (event.get("pull_request") or {}).get("base") or {}
+                    if (base.get("repo") or {}).get("full_name") != "Talonsturgill/TexasAIDocket" or base.get("ref") != "main":
+                        return
+                    ref = base.get("sha")
+                elif os.environ.get("GITHUB_EVENT_NAME") == "push":
+                    if event.get("ref") != "refs/heads/main":
+                        return
+                    ref = event.get("before")
+            if not isinstance(ref, str) or not re.fullmatch(r"[0-9a-f]{40}", ref):
+                return
+            self.git("merge-base", "--is-ancestor", ref, main)
+            self.ref = ref
+            self.main = self.record(ref)
+        except (OSError, ValueError, subprocess.SubprocessError):
+            self.ref = None
+
+    def git(self, *args: str) -> str:
+        return subprocess.check_output(["git", *args], cwd=self.repo, text=True,
+                                       stderr=subprocess.DEVNULL, timeout=30).strip()
+
+    def record(self, sha: str) -> dict:
+        if sha not in self.records:
+            body = json.loads(self.git("show", sha + ":ledger/docket.json"))
+            self.records[sha] = {item["id"]: item for item in body["items"]}
+        return self.records[sha]
+
+    def prove(self, item: dict, index: int) -> dict | None:
+        if not self.ref:
+            return None
+        canonical = self.main.get(item["id"], {})
+        history, published = item.get("history", []), canonical.get("history", [])
+        # The entire published history is append-only, including notes that need no fallback.
+        if index >= len(published) or history[:len(published)] != published:
+            return None
+        entry = history[index]
+        key = (item["id"], index, json.dumps(entry, sort_keys=True, ensure_ascii=False))
+        if key in self.proofs:
+            return self.proofs[key]
+        self.proofs[key] = None
+        try:
+            # Pickaxe narrows the history reads; every candidate is then checked structurally.
+            commits = set()
+            for ascii_only in (False, True):
+                needle = json.dumps(str(entry.get("note", "")), ensure_ascii=ascii_only)[1:-1]
+                commits.update(self.git("log", "--first-parent", "--format=%H", "-S", needle,
+                                        self.ref, "--", "ledger/docket.json").splitlines())
+            chronology = self.git("rev-list", "--first-parent", "--reverse", self.ref).splitlines()
+            for sha in (sha for sha in chronology if sha in commits):
+                snapshot = self.record(sha).get(item["id"], {})
+                prefix = published[:index + 1]
+                if snapshot.get("history", [])[:index + 1] != prefix:
+                    continue
+                parent_sha = self.git("rev-list", "--parents", "-n", "1", sha).split()
+                prior = self.record(parent_sha[1]).get(item["id"], {}) if len(parent_sha) > 1 else {}
+                if prior.get("history", [])[:index + 1] == prefix:
+                    continue
+                allowed = _note_numbers(snapshot, entry)
+                if not set(dk._prose_numerals(str(entry.get("note", "")))) <= allowed:
+                    continue
+                proof = {"commit": sha, "blob": self.git("rev-parse", sha + ":ledger/docket.json")}
+                self.proofs[key] = proof
+                return proof
+        except (OSError, ValueError, KeyError, subprocess.SubprocessError):
+            pass
+        return None
+
+
+def check_notes(items: list, *, historical=None, diagnostics: list | None = None) -> list:
     """Every `checked` note may be re-worded freely and may not gain a figure.
 
     WHY THIS EXISTS. `gate_numerals` reads reader copy with `include_history=False`, on purpose
@@ -582,11 +722,14 @@ def check_notes(items: list) -> list:
     The rule is deliberately narrow. A re-worded note may use any figure the deterministic line
     used, and any figure the item's own claims quote. It may not introduce one from anywhere
     else, which leaves the run free to write a better sentence and not free to invent a number.
+    An unchanged published note may instead replay that same rule against its original
+    canonical-main introduction snapshot. Corrections do not rewrite historical publication.
     """
     bad = []
+    archive = historical
     for it in items:
         allowed = set(dk._quoted_numerals(it))
-        for h in (it.get("history") or []):
+        for index, h in enumerate(it.get("history") or []):
             if not isinstance(h, dict) or not h.get("checked"):
                 continue
             try:
@@ -595,9 +738,17 @@ def check_notes(items: list) -> list:
                 bad.append(f'{it["id"]}: a checked note carries no readable date')
                 continue
             base = set(dk._prose_numerals(movement_line(it, when)))
-            for got in dk._prose_numerals(str(h.get("note") or "")):
-                if got not in base and got not in allowed:
-                    bad.append(
+            missing = [got for got in dk._prose_numerals(str(h.get("note") or ""))
+                       if got not in base and got not in allowed]
+            if missing:
+                archive = archive or HistoricalNoteProof()
+                proof = archive.prove(it, index)
+                if proof:
+                    if diagnostics is not None:
+                        diagnostics.append({"item": it["id"], "ordinal": index, "date": h["date"], **proof})
+                    continue
+            for got in missing:
+                bad.append(
                         f'{it["id"]} {h["date"]}: the note states "{got}", which is in no claim '
                         f"quote and in nothing this check established. Re-wording may not add a "
                         f"figure")
@@ -628,8 +779,9 @@ def save_cache(sources: dict, today: _dt.date) -> None:
         {"_spec": {"version": CACHE_SPEC, "generated": today.isoformat(),
                    "note": "One row per source url. ETag and Last-Modified drive the next "
                            "conditional request, hash short circuits the text comparison, and "
-                           "proven records which claim quotes have been located here, which is "
-                           "what tells a real change apart from a page this check cannot read."},
+                           "proven records which claim quotes have been located here. Each "
+                           "proof binds the complete claim digest to the body hash that "
+                           "contained its quote; legacy entries require a new body."},
          "sources": dict(sorted(sources.items()))}, indent=2) + "\n", encoding="utf-8")
 
 
@@ -724,7 +876,9 @@ def self_test() -> int:  # noqa: C901
     f, _, _ = check([gone], {}, server({"https://b/": page}))
     ok("a quote never seen here is UNREADABLE, not MISSING",
        f[0]["state"] == UNREADABLE, str(f))
-    f, fresh2, _ = check([gone], {"https://b/": {"proven": ["tx-2-c1"]}},
+    f, fresh2, _ = check([gone], {"https://b/": {"proven": ["tx-2-c1"], "hash": "previous",
+                         "proofs": {"tx-2-c1": {"claim_sha256": claim_fingerprint(gone["claims"][0]),
+                                                 "body_sha256": "previous"}}}},
                          server({"https://b/": page}))
     ok("...and once it HAS been found here, its absence is MISSING",
        f[0]["state"] == MISSING, str(f))
@@ -752,11 +906,14 @@ def self_test() -> int:  # noqa: C901
     present = item("tx-2y", "https://k/", quote)
     pri2 = {"https://k/": {"hash": __import__("hashlib").sha256(page).hexdigest(),
                            "proven": ["tx-2y-c1"]}}
+    pri2["https://k/"]["proofs"] = {"tx-2y-c1": {
+        "claim_sha256": claim_fingerprint(present["claims"][0]),
+        "body_sha256": pri2["https://k/"]["hash"]}}
     f, _, _ = check([present], pri2, server({"https://k/": page}))
     ok("...while a proven claim still short circuits on the hash",
        f[0]["state"] == UNCHANGED and f[0]["why"] == "hash", str(f))
 
-    print("\na PDF is never read, and is never reported as a change")
+    print("\nPDF text is checked; unreadable files never confirm or erase a claim")
     f, _, st = check([item("tx-2c", "https://x/f.pdf", quote)], {},
                      server({"https://x/f.pdf": b"%PDF-1.7 binary"}))
     ok("a PDF is UNREADABLE", f[0]["state"] == UNREADABLE, str(f))
@@ -765,12 +922,67 @@ def self_test() -> int:  # noqa: C901
                     server({"https://x/nosuffix": b"%PDF-1.7 binary"}))
     ok("...detected by its bytes when the url does not say pdf",
        f[0]["state"] == UNREADABLE, str(f))
+    pdf_item = item("tx-pdf", "https://x/document.pdf", quote)
+    pdf_body = fetch_doc._tiny_pdf(quote)
+    f, pdf_cache, _ = check([pdf_item], {}, server({"https://x/document.pdf": pdf_body}))
+    ok("an extracted PDF quote is confirmed and recorded as proven",
+       f[0]["state"] == UNCHANGED and f[0]["why"] == "quote"
+       and pdf_item["claims"][0]["id"] in pdf_cache["https://x/document.pdf"]["proven"], str(f))
+    f, _, _ = check([pdf_item], pdf_cache,
+                    server({"https://x/document.pdf": fetch_doc._tiny_pdf("A different statement.")}))
+    ok("a previously proven PDF quote that disappears is a real change",
+       f[0]["state"] == MISSING, str(f))
+    f, _, _ = check([pdf_item], pdf_cache,
+                    server({"https://x/document.pdf": fetch_doc._tiny_pdf("")}))
+    ok("a PDF without extractable text withholds the stamp without claiming a change",
+       f[0]["state"] == UNREADABLE and apply([pdf_item], f, today) == [], str(f))
     f, _, _ = check([item("tx-3", "https://c/", quote)], {}, server({"https://c/": 404}))
     ok("a 404 is UNREACHABLE and never unchanged", f[0]["state"] == UNREACHABLE, str(f))
-    f, _, st = check([item("tx-4", "https://d/", quote)], {"https://d/": {"etag": '"e1"'}},
+    unchanged_item = item("tx-4", "https://d/", quote)
+    f, _, st = check([unchanged_item],
+                     {"https://d/": {"etag": '"e1"', "hash": "previous", "proven": ["tx-4-c1"],
+                      "proofs": {"tx-4-c1": {"claim_sha256": claim_fingerprint(unchanged_item["claims"][0]),
+                                              "body_sha256": "previous"}}}},
                      server({"https://d/": 304}))
     ok("a 304 is unchanged and reads no body", f[0]["state"] == UNCHANGED and st["fetched"] == 0,
        str(st))
+    unproven = item("tx-unproven-304", "https://d/", quote)
+    f, _, _ = check([unproven], {"https://d/": {"etag": '"e1"'}},
+                    server({"https://d/": 304}))
+    ok("an unsolicited 304 never proves an unlocated quote or stamps its item",
+       f[0]["state"] == UNREADABLE and apply([unproven], f, today) == [], str(f))
+    sent_headers = []
+
+    def body_for_unproven(req, timeout=None):
+        sent_headers.append(dict(req.header_items()))
+        return server({"https://d/": page})(req, timeout)
+
+    f, _, _ = check([unproven], {"https://d/": {"etag": '"e1"', "last_modified": "old"}},
+                    body_for_unproven, gate=lambda url, items: None)
+    ok("an unlocated quote requests a body without validators and earns actual proof",
+       f[0]["state"] == UNCHANGED and f[0]["why"] == "quote"
+       and "If-none-match" not in sent_headers[0]
+       and "If-modified-since" not in sent_headers[0], str(sent_headers))
+
+    # Reusing an ID does not reuse evidence for a different claim or quote.
+    for field, value in (("text", "Revised claim text"), ("verbatim_quote", "An absent quote"),
+                         ("source_title", "Revised title"), ("fetched", "2026-08-26"),
+                         ("source_url", "https://changed.example/")):
+        changed = json.loads(json.dumps(present))
+        changed["claims"][0][field] = value
+        f, _, _ = check([changed], pri2, server({changed["claims"][0]["source_url"]: 304}),
+                        gate=lambda url, items: None)
+        ok(f"same-ID edit to {field} invalidates a conditional proof",
+           f[0]["state"] == UNREADABLE and apply([changed], f, today) == [], str(f))
+    f, _, _ = check([gone], fresh2, server({"https://b/": 304}),
+                    gate=lambda url, items: None)
+    ok("a 304 cannot revive a quote absent from the cached body",
+       f[0]["state"] == UNREADABLE and apply([gone], f, today) == [], str(f))
+    f, _, _ = check([present], {"https://k/": {"etag": '"old"', "hash": pri2["https://k/"]["hash"],
+                                               "proven": ["tx-2y-c1"]}},
+                    server({"https://k/": 304}), gate=lambda url, items: None)
+    ok("legacy ID-only cache entries cannot authorize a verification stamp",
+       f[0]["state"] == UNREADABLE, str(f))
 
     print("\none fetch per url, however many claims sit behind it")
     two = {"id": "tx-5", "status": "open", "claims": [
@@ -952,6 +1164,120 @@ def self_test() -> int:  # noqa: C901
     ok("a robots.txt that answers 404 states no rule, and the page is read",
        f7[0]["state"] == UNCHANGED, str(f7))
 
+    print("\nredirects obey the same source policy without changing cache semantics")
+    import io
+    from email.message import Message
+    from unittest.mock import patch
+    from urllib.response import addinfourl
+
+    redirect_hits, redirect_pages = [], {}
+
+    class RedirectFixture(urllib.request.HTTPSHandler):
+        def https_open(self, req):
+            redirect_hits.append((req.full_url, dict(req.header_items())))
+            code, headers, payload = redirect_pages[req.full_url]
+            message = Message()
+            for key, value in headers.items():
+                message[key] = value
+            response = addinfourl(io.BytesIO(payload), message, req.full_url, code)
+            response.msg = "fixture"
+            return response
+
+    build_opener = urllib.request.build_opener
+    source, target = "https://source.example/notice", "https://target.example/notice"
+    redirect_pages[source] = (302, {"Location": target}, b"")
+    redirect_pages[target] = (200, {"ETag": '"new"'}, page)
+    candidate = item("tx-redirect", source, quote)
+    prior = {source: {"etag": '"old"', "last_modified": "Tue, 20 Oct 2026 00:00:00 GMT",
+                      "hash": "original", "proven": ["tx-redirect-c1"]}}
+    prior[source]["proofs"] = {"tx-redirect-c1": {
+        "claim_sha256": claim_fingerprint(candidate["claims"][0]), "body_sha256": "original"}}
+    with patch.object(urllib.request, "build_opener",
+                      side_effect=lambda *handlers: build_opener(*handlers, RedirectFixture())), \
+            patch.object(fetch_doc, "robots_refusal", return_value="robots refuses target"):
+        refused, retained, _ = check([candidate], prior, gate=lambda url, items: None)
+    ok("a refused redirect is never requested or confirmed",
+       [url for url, _ in redirect_hits] == [source]
+       and refused[0]["state"] == UNREACHABLE
+       and "robots refuses target" in refused[0]["why"], str(refused))
+    ok("a refused redirect preserves the cache and withholds the item stamp",
+       retained == prior and apply([candidate], refused, today) == [])
+
+    redirect_hits.clear()
+    with patch.object(urllib.request, "build_opener",
+                      side_effect=lambda *handlers: build_opener(*handlers, RedirectFixture())), \
+            patch.object(fetch_doc, "robots_refusal", return_value=None):
+        allowed, updated, _ = check([candidate], prior, gate=lambda url, items: None)
+    ok("an allowed redirect still verifies the actual quote and its provenance",
+       allowed[0]["state"] == UNCHANGED and allowed[0]["why"] == "quote"
+       and updated[source]["etag"] == '"new"'
+       and "tx-redirect-c1" in updated[source]["proven"], str(allowed))
+    ok("conditional headers survive an allowed redirect",
+       len(redirect_hits) == 2 and all(headers.get("If-none-match") == '"old"'
+                                     and headers.get("If-modified-since") == prior[source]["last_modified"]
+                                     for _, headers in redirect_hits), str(redirect_hits))
+
+    redirect_pages[target] = (304, {}, b"")
+    with patch.object(urllib.request, "build_opener",
+                      side_effect=lambda *handlers: build_opener(*handlers, RedirectFixture())), \
+            patch.object(fetch_doc, "robots_refusal", return_value=None):
+        unchanged, retained, statistics = check([candidate], prior, gate=lambda url, items: None)
+    ok("a 304 after an allowed redirect retains the original cache without a body",
+       unchanged[0]["state"] == UNCHANGED and unchanged[0]["why"] == "304"
+       and retained == prior and statistics["not_modified"] == 1, str(unchanged))
+
+    print("\nhistorical corrections retain proof without licensing new figures")
+    import tempfile
+    import copy
+    with tempfile.TemporaryDirectory() as td, patch.dict(os.environ, {"GITHUB_ACTIONS": ""}):
+        repo = Path(td)
+        def git(*args):
+            return subprocess.check_output(["git", *args], cwd=repo, text=True,
+                                           stderr=subprocess.DEVNULL).strip()
+        git("init", "-q")
+        git("config", "user.name", "Fixture")
+        git("config", "user.email", "fixture@example.invalid")
+        git("remote", "add", "origin", "https://github.com/Talonsturgill/TexasAIDocket.git")
+        (repo / "ledger").mkdir()
+        original = noted("The line is 765 kV.", "A 765 kV line.")
+        original["history"].insert(0, {"date": "2026-08-24", "note": "The record was admitted."})
+        def commit_record(record, message):
+            (repo / "ledger/docket.json").write_text(json.dumps({"items": [record]}))
+            git("add", "ledger/docket.json")
+            git("commit", "-qm", message)
+            return git("rev-parse", "HEAD")
+        introduced = commit_record(original, "Publish verified note")
+        git("update-ref", "refs/remotes/origin/main", introduced)
+        corrected = copy.deepcopy(original)
+        corrected["claims"][0]["verbatim_quote"] = "A transmission line."
+        corrected["history"].append({"date": "2026-08-26", "note": "Correction. The earlier figure is withdrawn."})
+        proof_reader = HistoricalNoteProof(repo)
+        receipts = []
+        ok("an exact published note replays against its introducing source snapshot",
+           not check_notes([corrected], historical=proof_reader, diagnostics=receipts)
+           and receipts[0]["commit"] == introduced, str(receipts))
+        for label, mutate in (
+                ("changed note", lambda x: x["history"][1].update(note="The line is 999 kV.")),
+                ("duplicate old note", lambda x: x["history"].append(copy.deepcopy(original["history"][1]))),
+                ("deleted prefix", lambda x: x["history"].pop(0)),
+                ("reordered prefix", lambda x: x["history"].reverse())):
+            candidate = copy.deepcopy(corrected)
+            mutate(candidate)
+            ok(label + " cannot use historical proof", bool(check_notes([candidate], historical=proof_reader)))
+        candidate_sha = commit_record(corrected, "Correct current source")
+        # A subsequent main baseline no longer quotes the figure. Its original introduction does.
+        git("update-ref", "refs/remotes/origin/main", candidate_sha)
+        ok("the next merged baseline still uses the original introduction",
+           not check_notes([corrected], historical=HistoricalNoteProof(repo)))
+        fake = copy.deepcopy(corrected)
+        fake["history"].append({"date": "2026-08-27", "note": "Checked 999 filings.", "checked": True})
+        commit_record(fake, "Unmerged candidate note")
+        ok("a candidate-only commit and new figure are not publication evidence",
+           bool(check_notes([fake], historical=HistoricalNoteProof(repo))))
+        git("remote", "set-url", "origin", "https://github.com/other/repository.git")
+        ok("a noncanonical origin cannot authorize historical proof",
+           bool(check_notes([corrected], historical=HistoricalNoteProof(repo))))
+
     print("\nreverify self-test: " + ("all passed" if not fails else f"{fails} FAILED"))
     return 1 if fails else 0
 
@@ -975,7 +1301,10 @@ def main() -> int:
         except Exception as e:  # noqa: BLE001
             print(f"reverify: the record could not be read ({e})", file=sys.stderr)
             return 2
-        bad = check_notes(items)
+        historical_proofs = []
+        bad = check_notes(items, diagnostics=historical_proofs)
+        for proof in historical_proofs:
+            print("reverify: historical note provenance " + json.dumps(proof, sort_keys=True))
         n = sum(1 for i in items for h in (i.get("history") or [])
                 if isinstance(h, dict) and h.get("checked"))
         if bad:
