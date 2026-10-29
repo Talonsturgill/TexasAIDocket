@@ -1,0 +1,110 @@
+{
+ "_spec": {
+  "version": 1,
+  "purpose": "A standalone web edition of the archived visual story.",
+  "law": "Facts resolve to the original verified claim record. A layout rebuild does not reverify reporting.",
+  "written_by": "daily"
+ },
+ "section": "Data centers",
+ "dek": {
+  "text": "Soluna and Applied Digital plan a joint AI data center on land across the road from the Briscoe Wind Farm's substation. Closing waits on a Briscoe County tax abatement.",
+  "claims": [
+   "c1",
+   "c2",
+   "c20",
+   "c4"
+  ]
+ },
+ "introduction": [
+  {
+   "text": "[Soluna Holdings announced on {{date:c1}} a definitive agreement to form a jointly owned company with Applied Digital](c1). [That company is to develop a planned {{number:c2}} MW critical IT data center for AI and high performance computing at Project Dorothy 3, Soluna's development site near Silverton in Briscoe County](c2). [Soluna says Applied is expected to hold {{number:c3}}% of the company after closing and Soluna the remaining {{number:c3:1}}%](c3).",
+   "claims": [
+    "c1",
+    "c2",
+    "c3"
+   ]
+  },
+  {
+   "text": "[Closing depends on conditions that include approval of a tax abatement for the project in Briscoe County](c4). [Soluna expects the transactions to close by the end of the calendar year](c5). The deal is a company's account of its own plan. No county action on the abatement is part of the record here.",
+   "claims": [
+    "c4",
+    "c5"
+   ]
+  }
+ ],
+ "sections": [
+  {
+   "heading": "A load built beside its generator",
+   "paragraphs": [
+    {
+     "text": "[Soluna describes Briscoe Wind as a {{number:c6}} MW wind farm in Briscoe County and Dorothy 3 as a planned AI data center beside it](c6). [It describes the existing Project Dorothy campus as {{number:c12}} MW, built behind the meter at the same wind farm, which it says it acquired in April](c12). [In its September release it said the two Dorothy sites already running account for {{number:c13}} MW of energized capacity](c13).",
+     "claims": [
+      "c6",
+      "c12",
+      "c13"
+     ]
+    },
+    {
+     "text": "[Soluna's chief executive, John Belizaire, said the company was built \"to bring load to the generation\" so the power would be ready when demand arrived](c10). [He said the constraint in AI is energy access rather than chips](c11). Behind the meter means the campus draws on the wind farm's own output before that power reaches the grid's wires.",
+     "claims": [
+      "c10",
+      "c11"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "The land and the plan",
+   "paragraphs": [
+    {
+     "text": "[Soluna announced on {{date:c18}} that it had closed the purchase of {{number:c18}} acres in Briscoe County](c18). [It says the land will host Dorothy 3, which it describes as a planned campus with potential capacity of up to {{number:c19}} MW](c19). [The company says the wind farm's substation sits directly across from the property, which it says positions Dorothy 3 for behind the meter access to generation it owns outright](c20).",
+     "claims": [
+      "c18",
+      "c19",
+      "c20"
+     ]
+    },
+    {
+     "text": "[Soluna says the {{number:c21}} acres exceed the {{number:c21:1}} acres it first identified for the campus, and that the extra land leaves room for more data halls if further generation or storage becomes available](c21). [The first phase of Dorothy 3 is the {{number:c7}} MW in the new deal, and Soluna expects it to draw power from both Briscoe Wind and the grid, subject to definitive documentation](c7). The release does not say how that load would be split between the two.",
+     "claims": [
+      "c21",
+      "c7"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "What is signed and what is not",
+   "paragraphs": [
+    {
+     "text": "[ChronoScale, a publicly traded company majority owned by Applied, has signed a non-binding letter of intent to lease the planned facility](c8). [Soluna states there is no assurance a definitive lease will be signed on those terms or at all](c9). So the record holds a definitive agreement to form the company, a non-binding intent to lease and a condition still open in the county.",
+     "claims": [
+      "c8",
+      "c9"
+     ]
+    },
+    {
+     "text": "[The Public Notices page on the Briscoe County website lists a document titled Tax Abatement Guidelines and Criteria beside its Commissioners Court agendas](c22). [Soluna names approval of the abatement as a condition of closing](c4). The release does not say which county body would vote or when, and no agenda item for this project was found in the material checked for this account.",
+     "claims": [
+      "c22",
+      "c4"
+     ]
+    }
+   ]
+  }
+ ],
+ "related": [
+  {
+   "id": "tx-2026-0233",
+   "label": "Soluna and Applied Digital's Briscoe County deal on the Docket"
+  },
+  {
+   "id": "tx-2026-0187",
+   "label": "The PUCT's Senate Bill 6 large load interconnection rule"
+  },
+  {
+   "id": "tx-2026-0152",
+   "label": "ERCOT's provisional Batch Zero placements"
+  }
+ ]
+}
