@@ -10146,8 +10146,8 @@
    ]
   },
   {
-   "title": "San Marcos City Council voted 4 to 3 to define data centers in its land development code and make them ineligible citywide",
-   "summary": "The San Marcos City Council voted on June 16th, 2026 to define data centers in the city's zoning rules and make them ineligible for development anywhere inside the city. Council members cited concern that the facilities would draw water and energy away from the local community. The vote came after a long fight over a proposed campus and is the first ban of its kind by a Texas city. The city adopted an amended Land Development Code on the same date under ORD-2026-08, effective that day.",
+   "title": "San Marcos adopted a citywide prohibition on data centers in every zoning district",
+   "summary": "San Marcos adopted an amended Land Development Code on June 16th, 2026 under ORD-2026-08, effective that day. The city's adopted justification table states that data centers are prohibited in all zoning districts and that the amendment was approved on second reading at the June 16th council meeting. The city publishes the adopted code, redlines and justification table on its Code Updates page.",
    "topic": "land-water-and-permitting",
    "decider": {
     "name": "San Marcos City Council",
@@ -10166,7 +10166,7 @@
     {
      "date": "2026-06-16",
      "kind": "ordered",
-     "note": "council vote of 4 to 3 to make data centers ineligible in every zoning district"
+     "note": "second-reading approval of the prohibition on data centers in every zoning district"
     },
     {
      "date": "2026-06-16",
@@ -10182,22 +10182,13 @@
    },
    "claims": [
     {
-     "text": "The council voted 4 to 3 on June 16th to define data centers in zoning law and make them ineligible for development anywhere in the city.",
-     "verbatim_quote": "San Marcos City Council voted 4-3 on June 16 to define data centers and make them ineligible for any part of the city in its zoning laws, citing concerns that these developments would funnel water and energy resources from the local community.",
-     "source_url": "https://www.ksat.com/news/texas/2026/06/30/san-marcos-becomes-the-first-texas-city-to-ban-data-centers-testing-its-local-control/",
-     "source_title": "San Marcos becomes the first Texas city to ban data centers, testing its local control | KSAT",
-     "source_type": "journalism",
-     "fetched": "2026-08-26",
+     "text": "The adopted code prohibits data centers in all zoning districts, following second-reading approval at the June 16th council meeting.",
+     "verbatim_quote": "Amend Table 5.1, Land Use Matrix, to prohibit Data Center in all zoning districts. This amendment was approved on second reading at the June 16th City Council Meeting.",
+     "source_url": "https://www.sanmarcostx.gov/DocumentCenter/View/47237/ORD-2026-08-Development-Code-Effective-20260616_Justification-Table",
+     "source_title": "City of San Marcos, ORD-2026-08 Development Code Justification Table, item5-7",
+     "source_type": "primary_official",
+     "fetched": "2026-10-29",
      "id": "tx-2026-0061-c1"
-    },
-    {
-     "text": "Council member Lorenzo Gonzalez said the promised benefits stayed speculative while residents' concerns went unresolved.",
-     "verbatim_quote": "The promised benefits remained speculative while many of the concerns raised by residents remained unresolved.",
-     "source_url": "https://www.ksat.com/news/texas/2026/06/30/san-marcos-becomes-the-first-texas-city-to-ban-data-centers-testing-its-local-control/",
-     "source_title": "San Marcos becomes the first Texas city to ban data centers, testing its local control | KSAT",
-     "source_type": "journalism",
-     "fetched": "2026-08-26",
-     "id": "tx-2026-0061-c2"
     },
     {
      "text": "San Marcos adopted an amended Land Development Code on June 16th, 2026 under ordinance ORD-2026-08.",
@@ -10205,12 +10196,12 @@
      "source_url": "https://www.sanmarcostx.gov/2859/Code-Updates",
      "source_title": "Code Updates | City of San Marcos, TX",
      "source_type": "primary_official",
-     "fetched": "2026-08-14",
+     "fetched": "2026-10-29",
      "id": "tx-2026-0061-c3"
     }
    ],
    "id": "tx-2026-0061",
-   "last_verified": "2026-10-23",
+   "last_verified": "2026-10-29",
    "history": [
     {
      "date": "2026-08-19",
@@ -10332,6 +10323,15 @@
     {
      "date": "2026-10-26",
      "note": "San Marcos still defines data centers in its land development code, per the city's own code update page. The station's account of the council vote is still unconfirmed.",
+     "checked": true
+    },
+    {
+     "date": "2026-10-29",
+     "note": "Correction. The adopted code confirms the citywide prohibition. The vote tally, attributed council-member quotation and earlier account of the debate have been removed because they could not be reverified from permitted official sources."
+    },
+    {
+     "date": "2026-10-29",
+     "note": "Checked and unchanged. The decision still stands as decided.",
      "checked": true
     }
    ]

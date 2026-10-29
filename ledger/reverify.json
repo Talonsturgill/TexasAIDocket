@@ -1,7 +1,7 @@
 {
   "_spec": {
     "version": 1,
-    "generated": "2026-10-28",
+    "generated": "2026-10-29",
     "note": "One row per source url. ETag and Last-Modified drive the next conditional request, hash short circuits the text comparison, and proven records which claim quotes have been located here. Each proof binds the complete claim digest to the body hash that contained its quote; legacy entries require a new body."
   },
   "sources": {
@@ -7290,10 +7290,24 @@
       ],
       "proofs": {
         "tx-2026-0061-c3": {
-          "claim_sha256": "a8c87ab7ebbc6c80ee44d743bcab8de605d6843fe00a20bc63da5cfcd3ca931f",
+          "claim_sha256": "b8a18fcb96c641656ae2d21c90d65491928b8809a37332c94a28d1e16e70f7b1",
           "body_sha256": "6d3d8dbd6bd6a1b918df50ffb8b96b3b843c03f5491e5367bb8d0fd2fdee2296"
         }
       }
+    },
+    "https://www.sanmarcostx.gov/DocumentCenter/View/47237/ORD-2026-08-Development-Code-Effective-20260616_Justification-Table": {
+      "hash": "4eb2257b123fd39c8c3965c0ebedd67da9d996379df36a3baa1d7d2146661648",
+      "etag": null,
+      "last_modified": null,
+      "proofs": {
+        "tx-2026-0061-c1": {
+          "claim_sha256": "b58a5537bdb9c23cf2488413a7879d1f584fe5d1914894dcdc172084e0a414e3",
+          "body_sha256": "4eb2257b123fd39c8c3965c0ebedd67da9d996379df36a3baa1d7d2146661648"
+        }
+      },
+      "proven": [
+        "tx-2026-0061-c1"
+      ]
     },
     "https://www.sec.gov/Archives/edgar/data/2071778/000207177826000051/frmi-20260630.htm": {
       "etag": null,
