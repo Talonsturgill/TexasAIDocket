@@ -105,54 +105,66 @@
     var RAD = 2.15, H = 1.0, FL = 2.27, FT = 0.07;
     function shade(o) { o.traverse(function (c) { if (c.isMesh) { c.castShadow = c.receiveShadow = true; } }); return o; }
 
-    /* ONE CAN OF A WIND TOWER: a rolled steel shell 4.3 m across and 1.0 m tall with a mid height weld seam, an L flange
-     * at its foot that stands proud of the shell, a bolt circle on the flange's top face and a rim band painted on the
-     * flange's outer edge. Options: rim 'galv' (what exists) or 'plan' (the accent, what is planned), dusty (red dust at
-     * the foot), top (draw the top flange with its open bolt holes). Drawn to illustrate. */
+    /* ONE CAN OF A WIND TOWER: a rolled steel shell 1.0 m tall that TAPERS like a real tubular tower, narrowing by
+     * TAPER metres of radius per metre of height (the kit wind_turbine's own rate, 2.15 m at the foot to 1.40 m at 88 m),
+     * with one flush bolted flange at its foot that stands a few centimetres proud and catches the key as one lit line.
+     * Options: r0 (radius at its foot), rim 'galv' (what exists) or 'plan' (the accent band painted on the flange's outer
+     * face, what is planned), dusty (red dust at the foot), top (the top flange with its open bore), door (the tower's
+     * base door and steel steps, so the column reads as a wind tower's own base). Drawn to illustrate. */
+    var TAPER = (2.15 - 1.4) / 88;
     K.define("tower_section", {
       size: [FL * 2, H, FL * 2],
-      options: { rim: "galv", dusty: false, top: false, bolts: 36 },
-      note: "One flanged wind tower can, 4.3 m across and 1.0 m tall, a drawing unit. rim galv|plan, dusty, top, bolts.",
+      options: { r0: RAD, rim: "galv", dusty: false, top: false, door: false, bolts: 40 },
+      note: "One flanged wind tower can, 1.0 m tall, tapering at the kit turbine's rate, a drawing unit. r0, rim galv|plan, dusty, top, door.",
       make: function (o) {
-        var g = new THREE.Group();
-        var shell = new THREE.Mesh(new THREE.CylinderGeometry(RAD, RAD, H - FT, 64, 1, true), o.dusty ? M.paintDusty : M.paint);
+        var g = new THREE.Group(), r0 = o.r0 || RAD, r1 = r0 - TAPER * H;
+        var shell = new THREE.Mesh(new THREE.CylinderGeometry(r1, r0 - TAPER * FT, H - FT, 96, 1, true), o.dusty ? M.paintDusty : M.paint);
         shell.position.y = FT + (H - FT) / 2; g.add(shell);
-        var seam = new THREE.Mesh(new THREE.TorusGeometry(RAD + 0.004, 0.012, 6, 96), M.machined); seam.rotation.x = Math.PI / 2; seam.position.y = FT + (H - FT) * 0.5; g.add(seam);
-        /* the foot flange, a ring with a chamfered top edge, the lit tick every section shows */
-        var prof = [[RAD - 0.12, 0], [FL, 0], [FL, FT - 0.015], [FL - 0.015, FT], [RAD - 0.12, FT]].map(function (p) { return new THREE.Vector2(p[0], p[1]); });
-        var fl = new THREE.Mesh(new THREE.LatheGeometry(prof, 96), M.machined); g.add(fl);
-        var rh = o.rim === "plan" ? 0.13 : FT * 0.8;
-        var rim = new THREE.Mesh(new THREE.CylinderGeometry(FL + 0.004, FL + 0.004, rh, 96, 1, true), o.rim === "plan" ? M.rimPlan : M.galv);
-        rim.position.y = o.rim === "plan" ? rh / 2 : FT * 0.45; g.add(rim);
+        /* the foot flange, flush: 4 cm proud of the shell with a chamfered top edge, the one lit tick per section */
+        var ro = r0 + 0.04;
+        var prof = [[r0 - 0.1, 0], [ro, 0], [ro, FT - 0.02], [ro - 0.02, FT], [r0 - 0.1, FT]].map(function (p) { return new THREE.Vector2(p[0], p[1]); });
+        var fl = new THREE.Mesh(new THREE.LatheGeometry(prof, 128), M.machined); g.add(fl);
+        if (o.rim === "plan") {
+          /* a painted band on the shell just above the flange, flush, as a planned can would carry a mark */
+          var bh = 0.14, rb = r0 - TAPER * (FT + bh / 2) + 0.004;
+          var band = new THREE.Mesh(new THREE.CylinderGeometry(rb - TAPER * bh / 2, rb + TAPER * bh / 2, bh, 128, 1, true), M.rimPlan);
+          band.position.y = FT + bh / 2; g.add(band);
+        }
         /* bolt heads on the flange's top face */
-        var nb = o.bolts || 36, bg = new THREE.CylinderGeometry(0.03, 0.03, 0.035, 6), list = [];
-        for (var i = 0; i < nb; i++) { var a = i / nb * Math.PI * 2; list.push([Math.cos(a) * (RAD + 0.06), FT + 0.017, Math.sin(a) * (RAD + 0.06), -a, 1]); }
+        var nb = o.bolts || 40, bg = new THREE.CylinderGeometry(0.022, 0.022, 0.03, 6), list = [];
+        for (var i = 0; i < nb; i++) { var a = i / nb * Math.PI * 2; list.push([Math.cos(a) * (r0 + 0.012), FT + 0.015, Math.sin(a) * (r0 + 0.012), -a, 1]); }
         K.instances(bg, M.bolt, list, g);
+        if (o.door) {
+          /* the tower's base door with a steel stair and landing, on the +z face, as the kit turbine draws it */
+          var dz = r0 - 0.02;
+          var frame = TXT.roundedBox(1.0, 0.9, 0.1, 0.03, M.paint); frame.position.set(0, 0.55, dz + 0.03); g.add(frame);
+          var door = TXT.roundedBox(0.8, 0.8, 0.04, 0.02, K.mat("cp_door", { color: 0xb5b8b4, roughness: 0.45 })); door.position.set(0, 0.55, dz + 0.07); g.add(door);
+        }
         if (o.top) {
-          var tp = new THREE.Mesh(new THREE.LatheGeometry(prof, 96), M.machined); tp.position.y = H - FT; g.add(tp);
-          var trim = new THREE.Mesh(new THREE.CylinderGeometry(FL + 0.003, FL + 0.003, FT * 0.8, 96, 1, true), o.rim === "plan" ? M.rimPlan : M.galv);
-          trim.position.y = H - FT * 0.55; g.add(trim);
-          /* the open bore, dark inside, so the top reads as a can rather than a solid post */
-          var bore = new THREE.Mesh(new THREE.CircleGeometry(RAD - 0.12, 64), new THREE.MeshStandardMaterial({ color: 0x0c0b0d, roughness: 0.9 }));
+          var tp = new THREE.Mesh(new THREE.LatheGeometry([[r1 - 0.1, 0], [r1 + 0.04, 0], [r1 + 0.04, FT], [r1 - 0.1, FT]].map(function (p) { return new THREE.Vector2(p[0], p[1]); }), 128), M.machined);
+          tp.position.y = H - FT; g.add(tp);
+          var bore = new THREE.Mesh(new THREE.CircleGeometry(r1 - 0.1, 64), new THREE.MeshStandardMaterial({ color: 0x0c0b0d, roughness: 0.9 }));
           bore.rotation.x = -Math.PI / 2; bore.position.y = H - 0.25; g.add(bore);
         }
         return shade(g);
       }
     });
 
-    /* A COLUMN OF SECTIONS: n cans bolted flange to flange, the top one carrying its open top flange. Only the bottom
-     * two carry red dust. */
+    /* A COLUMN OF SECTIONS: n cans bolted flange to flange, each starting where the one below it ended so the column
+     * tapers continuously, the foot carrying the base door and the top its open flange. Only the bottom two carry dust. */
     K.define("section_stack", {
       anchor: "base",
       size: [FL * 2, 15, FL * 2],
-      options: { n: 15, rim: "galv" },
-      note: "n tower_sections bolted into a column. n, rim galv|plan.",
+      options: { n: 15, rim: "galv", door: false },
+      note: "n tower_sections bolted into a tapering column. n, rim galv|plan, door.",
       make: function (o) {
         var g = new THREE.Group(), n = Math.max(1, Math.round(o.n || 1));
         for (var i = 0; i < n; i++) {
-          var s = K.make("tower_section", { rim: o.rim, dusty: i < 2, top: i === n - 1 });
+          var s = K.make("tower_section", { r0: RAD - TAPER * H * i, rim: o.rim, dusty: i < 2, top: i === n - 1, door: o.door && i === 0 });
           s.position.y = i * H; g.add(s);
         }
+        /* the door's steps stand on the ground in front of it */
+        if (o.door) for (var k = 0; k < 2; k++) { var st = TXT.roundedBox(1.0, 0.04, 0.3, 0.01, K.mat("cp_galv_step", { color: 0x8d9296, metalness: 0.6, roughness: 0.5 })); st.position.set(0, 0.06 + k * 0.08, RAD + 0.35 - k * 0.2); st.castShadow = st.receiveShadow = true; g.add(st); }
         g.userData.height = n * H;
         return g;
       }
