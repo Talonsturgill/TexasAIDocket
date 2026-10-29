@@ -9,7 +9,7 @@ The Public Utility Commission of Texas has proposed a new rule governing demand 
 - Public access: Write to the decider
 - Take part: https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=58482&ItemMatch=Equal&DocumentType=ALL&SortOrder=Ascending
 
-- Last checked: 2026-10-24
+- Last checked: 2026-10-29
 
 ## Dates
 
@@ -50,6 +50,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-18 · The demand management proposal still sits on its project page without an adopting order. The commission has set no date to take it up.
 - 2026-10-21 · Checked and unchanged. Still open, with no dated movement.
 - 2026-10-24 · The demand management service rule still sits at the proposal stage on the commission's docket, and its comment window remains shut.
+- 2026-10-29 · The large load demand management rule is still a proposal on the commission's docket. Its comment window stays shut.
 
 ## Evidence
 

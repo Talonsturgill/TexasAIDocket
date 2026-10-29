@@ -1,0 +1,104 @@
+<!doctype html>
+<!-- 2026-10-29, frame 7 of 9. Archetype DIAGRAM. A material relief through txbench.js under the chassis key: the parcel in plan at one scale, a square of the acres bought and a nested square of the acres first identified, sides computed in figures.json, cut as disked furrow strips, fence posts proud along the outer edge, the county road on the west and the substation pad across it. Squares are drawn to area, not the parcel's shape. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:900px">Room for more data halls</h1>
+<p class="dek" data-follow="20" style="width:900px">The 397 acres exceed the 300 acres Soluna first identified for the campus. Soluna says the extra 97 acres leave room to add data halls if more generation or storage becomes available. Squares are drawn to area, not the parcel&#39;s&nbsp;shape.</p>
+<div class="lab" id="lab-out">397 ACRES</div>
+<div class="lab" id="lab-in">300 ACRES</div>
+<div class="lab" id="lab-sub">SUBSTATION</div>
+<div class="lab" id="lab-x">97 ACRES MORE</div>
+<script>window.FIG = {"side_m_acres": 1267.5, "side_m_first": 1101.8};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-29-caprock.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script src="@@ASSETS@@/js/txbench.js"></script>
+<script>
+window.renderReady = (async () => {
+  const cx = await CH.bootFlat({ kicker: "The land Soluna bought", counter: "07 / 09", src: "c18 c21 c20", fit: { min: 70, max: 96, maxLines: 2 } });
+  TX.reseed(20261029);
+  /* THE FIGURES, from figures.json: the two squares' sides in metres, drawn at one px per metre scale */
+  const PX = 650 / FIG.side_m_acres;                    /* px per metre, the outer square 650 px across */
+  const SO = FIG.side_m_acres * PX, SI = FIG.side_m_first * PX;
+  const X0 = 330, Y0 = 560;                             /* the shared road corner, top left */
+  const POST = 34, ROW = 14;                             /* the fence post pitch and the disked row pitch, drawing sizes */
+  const ROADX = X0 - 62, ROADW = 36, PAD = [96, Y0 + 80, 96, 96];
+  const M = { GRASS: 0, FURROW: 1, PLAN: 2, ROAD: 3, ROCK: 4, STEEL: 5, CONC: 6, BERM: 7 };
+  const inSq = (X, Y, s) => X >= X0 && X <= X0 + s && Y >= Y0 && Y <= Y0 + s;
+  /* the berm where the first 300 acres end, a low ridge with one lit and one shadowed wall */
+  const onBerm = (X, Y) => inSq(X, Y, SO) && ((Math.abs(X - (X0 + SI)) < 3 && Y <= Y0 + SI + 3) || (Math.abs(Y - (Y0 + SI)) < 3 && X <= X0 + SI + 3));
+  /* disked rows run north and south across both pieces, cut below grade so the low key from the west lights one wall */
+  const rows = (X) => -1.8 + 1.5 * Math.sin((X - X0) / ROW * Math.PI * 2);
+  /* the fence posts along the outer square's edge */
+  function post(X, Y) {
+    const e = 6, edges = [[X0 - e, null], [X0 + SO + e, null], [null, Y0 - e], [null, Y0 + SO + e]];
+    for (const [ex, ey] of edges) {
+      if (ex != null && Y >= Y0 - e && Y <= Y0 + SO + e) { const py = Y0 + Math.round((Y - Y0) / POST) * POST; if (Math.hypot(X - ex, Y - py) < 4) return true; }
+      if (ey != null && X >= X0 - e && X <= X0 + SO + e) { const px = X0 + Math.round((X - X0) / POST) * POST; if (Math.hypot(X - px, Y - ey) < 4) return true; }
+    }
+    return false;
+  }
+  function h(X, Y) {
+    if (post(X, Y)) return 34;
+    if (Y > Y0 - 20 && X > ROADX && X < ROADX + ROADW) { const t = (X - ROADX) / ROADW; return 1.4 * Math.sin(t * Math.PI); }   /* a crowned road */
+    if (Y > Y0 - 20 && X > ROADX - 7 && X <= ROADX) return -2.4 * Math.sin((ROADX - X) / 7 * Math.PI);                         /* its bar ditch */
+    if (X >= PAD[0] && X <= PAD[0] + PAD[2] && Y >= PAD[1] && Y <= PAD[1] + PAD[3]) {
+      const lx = X - PAD[0], ly = Y - PAD[1];
+      if ((lx > 14 && lx < 30 || lx > 42 && lx < 58 || lx > 70 && lx < 86) && ly > 46 && ly < 66) return 22;   /* three transformer blocks */
+      if ((Math.abs(lx - 22) < 2 || Math.abs(lx - 50) < 2 || Math.abs(lx - 78) < 2) && ly > 12 && ly < 40) return 26; /* gantry legs */
+      if (Math.abs(ly - 26) < 2 && lx > 14 && lx < 86) return 26;                                                  /* the bus across them */
+      return 6;                                                                                                  /* the crushed rock pad */
+    }
+    if (onBerm(X, Y)) return 6;
+    if (inSq(X, Y, SO)) return rows(X);
+    return 0;
+  }
+  function m(X, Y) {
+    if (post(X, Y)) return M.STEEL;
+    if (Y > Y0 - 20 && X > ROADX - 7 && X < ROADX + ROADW) return M.ROAD;
+    if (X >= PAD[0] && X <= PAD[0] + PAD[2] && Y >= PAD[1] && Y <= PAD[1] + PAD[3]) { const lx = X - PAD[0], ly = Y - PAD[1]; return h(X, Y) > 20 ? M.STEEL : M.ROCK; }
+    if (onBerm(X, Y)) return M.BERM;
+    if (inSq(X, Y, SI)) return M.FURROW;
+    if (inSq(X, Y, SO)) return M.PLAN;
+    return M.GRASS;
+  }
+  const albedo = (X, Y, mm) => {
+    const n = TX.simplex2(X * 0.04, Y * 0.04) * 0.5 + TX.simplex2(X * 0.2, Y * 0.2) * 0.2;
+    if (mm === M.GRASS) { const k = 1 + 0.15 * n; return [0.11 * k, 0.085 * k, 0.045 * k]; }
+    if (mm === M.FURROW) { const k = 1 + 0.12 * n; return [0.36 * k, 0.15 * k, 0.08 * k]; }
+    if (mm === M.PLAN) { const k = 2.4 * (1 + 0.08 * n); return [0.36 * k, 0.45 * k, 0.24 * k]; }
+    if (mm === M.BERM) return [0.5, 0.3, 0.18];
+    if (mm === M.ROAD) { const k = 1 + 0.08 * n; return [0.5 * k, 0.43 * k, 0.34 * k]; }
+    if (mm === M.ROCK) { const k = 1 + 0.2 * TX.simplex2(X * 1.2, Y * 1.2); return [0.42 * k, 0.42 * k, 0.40 * k]; }
+    if (mm === M.CONC) return [0.5, 0.5, 0.48];
+    return [0.62, 0.62, 0.6];
+  };
+  /* the last light lands in a pool over the parcel, strongest on the 97 acres, and falls off toward the edges and the type */
+  const pool = (X, Y) => { const d = Math.hypot((X - (X0 + SO * 0.6)) / 700, (Y - (Y0 + SO * 0.6)) / 640), t = Math.max(0, Math.min(1, (d - 0.42) / 0.62)); return 1 - 0.85 * t * t * (3 - 2 * t); };
+  const rep = TXBENCH.relief(cx, { x: 0, y: 0, w: 1080, h: 1350, scale: 2, height: h, material: m, keyMask: pool, albedo,
+    spec: { [M.STEEL]: [0.6, 40], [M.CONC]: [0.15, 12], [M.ROAD]: [0.08, 8] }, ambient: 0.035, diffuse: 1.5, ao: 1.0, shadow: 0.9, softness: 3, castLength: 160 });
+  window.__relief = rep;
+  cx.setTransform(2, 0, 0, 2, 0, 0);
+  const put = (id, x, y) => { const el = document.getElementById(id); el.style.left = x + 'px'; el.style.top = y + 'px'; };
+  put('lab-out', X0 + SO - 182, Y0 + 14);
+  put('lab-in', X0 + SI * 0.5 - 70, Y0 + SI * 0.5 - 16);
+  put('lab-sub', PAD[0] - 6, PAD[1] - 40);
+  put('lab-x', X0 + SI * 0.5 - 100, Y0 + SI + (SO - SI) * 0.5 - 16);
+  CH.post(cx, { a: 0.3, to: Y0 - 60, fade: 40, veil: 0.2, footWash: 0.5 });
+  CH.knock(cx, ['#lab-out', '#lab-in', '#lab-sub', '#lab-x'], 0.5);
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

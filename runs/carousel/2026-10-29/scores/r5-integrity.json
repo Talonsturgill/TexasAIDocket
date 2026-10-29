@@ -1,0 +1,79 @@
+{
+ "lens": "integrity",
+ "round": "hard-fail repair 2",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.6,
+   "why": "Dark staged register on every frame, slide 5 a showstopper candidate with exact counts, slides 1 and 4 strong. Slide 2 a flat card, slide 6's flags rigid planks, slide 3's panels out of line with the louvres, slide 7 corrugated."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.3,
+   "why": "One lastLight world, one key, one accent meaning, a dusk to night arc. Slide 2 sits outside, the fence motif faint."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.8,
+   "why": "Every figure traces and every drawn count matches its unit. Looser: Phase 1 joined to the 50 MW by matching MW and site, slide 5's headline, c1's date and c22's placement from claim text, the cover's past tense, no 8-K."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.8,
+   "why": "What, where and the condition are clear. No deciding body and no date, the grid draw stated without consequence."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "The turn sits at 5 and 6 follows, the link left soft. Three frames about the land."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.8,
+   "why": "Clean and specific, Drawn to illustrate on eight deks, no Caprock texture in the copy."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "The tower-section unit and road camera are fresh, lastLight and the stake row and squares line repeat."
+  }
+ ],
+ "weighted_score": 7.01,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Fetch the Commissioners Court's calendar and the county's abatement guidelines so the close names the body and the next date.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 2,
+   "problem": "A flat mottled card with a 27 px square.",
+   "fix": "A 35 degree oblique showing a lit cliff and its cast, the plateau two thirds of the frame, raised neighbours."
+  },
+  {
+   "slide": 6,
+   "problem": "Rigid curved plank flags.",
+   "fix": "Cloth ribbons tied at the stake top, the nearest stake a third of the frame tall with a cast."
+  },
+  {
+   "slide": 3,
+   "problem": "Panels out of line with the louvres, the pole line invisible.",
+   "fix": "Glow behind the louvre blades, a lit pole line."
+  },
+  {
+   "slide": 7,
+   "problem": "Corrugated siding and streaking post casts.",
+   "fix": "Lower ridges, straw patches in the L, shorter edge casts."
+  },
+  {
+   "slide": 8,
+   "problem": "A heap of rings and a doubled post.",
+   "fix": "Linked chain through both stiles, one gate post."
+  }
+ ]
+}

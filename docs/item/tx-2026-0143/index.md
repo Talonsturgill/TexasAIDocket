@@ -9,7 +9,7 @@ ERCOT issued a market notice on September 9th, 2026. It states that the grid ope
 - Public access: Write to the decider
 - Take part: https://www.ercot.com/services/comm/mkt_notices/M-A090926-01
 
-- Last checked: 2026-10-24
+- Last checked: 2026-10-29
 
 ## Dates
 
@@ -34,6 +34,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-18 · ERCOT's notice on the Batch Zero questionnaires reads as issued. A data center that does not answer still drops off the list.
 - 2026-10-21 · Checked and unchanged. Still pending, with no dated movement.
 - 2026-10-24 · The Batch Zero questionnaires still carry the same rule. A data center that does not answer comes off the list.
+- 2026-10-29 · ERCOT's Batch Zero questionnaires still carry the rule that a data center that does not answer comes off the list.
 
 ## Evidence
 

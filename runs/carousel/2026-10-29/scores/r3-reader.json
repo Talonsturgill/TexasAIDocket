@@ -1,0 +1,79 @@
+{
+ "lens": "reader",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.5,
+   "why": "Slide 5 nearly passes the showstopper test, slides 1 and 4 solid. Slide 2 fails at 432 px, slide 6 showed only four stakes for 50 MW with flat flags and invisible conductors, slide 3's bays are slabs, slide 9 a kit courthouse, slide 7 reads as corrugated metal."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.0,
+   "why": "One lastLight world, one key, one accent meaning planned, a declared value arc. The two reliefs sit outside the filmstrip and the fence and road devices are invisible."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 6.5,
+   "why": "Every string traces and the absences are honoured. Charged for slide 6 drawing four stakes against 10 MW a stake for 50 MW, and slide 5's headline dropping up to."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.5,
+   "why": "Who, what, where, the condition and the closing target land. Which body votes and when is not said, and the abatement's size and term are missing."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Frame 2 pays at once and slide 5 is a real turn. The cover line is jargon and slides 2, 4 and 7 restate the land."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Clean and Panhandle specific, heavy on hedges and Drawn to illustrate."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "No topic repeat. The third lastLight deck in a row, a data center and county abatement subject near nos. 44 and 45, the squares device from no. 45."
+  }
+ ],
+ "weighted_score": 6.82,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Name the Commissioners Court as the body that votes the abatement and its next posted meeting from a primary source.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 6,
+   "problem": "Only four stakes visible against 10 MW a stake for 50 MW, flat flags, invisible conductors.",
+   "fix": "All five stakes clear with no occlusion, conductors key-lit into the substation bus."
+  },
+  {
+   "slide": 2,
+   "problem": "A flat grey noise card with cardboard-like panels above.",
+   "fix": "A raking oblique camera so the cliff edge throws a long shadow, coarser caliche grain."
+  },
+  {
+   "slide": 3,
+   "problem": "Flat orange slabs not registered to the louvres.",
+   "fix": "Emissive louvres inside the hall's own openings, warmer and dimmer, the tenth at 0.8."
+  },
+  {
+   "slide": 9,
+   "problem": "A turreted castle kit courthouse and a stiff resident.",
+   "fix": "A plain brick block courthouse or a tight crop on the steps, the resident mid-stride."
+  },
+  {
+   "slide": 8,
+   "problem": "A fused double post and a chain like loose springs.",
+   "fix": "One post, one chain through both leaves' end tubes, the padlock below, raked by the key."
+  }
+ ],
+ "note": "Slide 6's four-stake count was a regression from a round 2 camera change and was repaired after this card: all five stakes restored and verified in frame."
+}

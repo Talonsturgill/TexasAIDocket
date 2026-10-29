@@ -1,0 +1,78 @@
+{
+ "lens": "reader",
+ "round": "hard-fail repair",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.6,
+   "why": "Frames 1, 3, 5 and 9 pass the feed test. Frame 2 is a mid-tone card with a speck for the square, frame 7 reads as a grille, frame 6 has five thin stakes and nothing owning the frame, frame 4's transformer is primitive, frame 3's bays aren't registered to the louvres."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 6.8,
+   "why": "One Caprock road world with one key and a working camera move. The two orthographic reliefs break the filmstrip and the fence motif fades."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.0,
+   "why": "Every numeral and drawn count traces, five stakes for 50 MW now. The caption's first line states Soluna's claim without attribution and slide 5's headline drops up to."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.0,
+   "why": "What, where, who and the hinge land. The deciding body and date are missing and behind the meter is not explained."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.2,
+   "why": "The turn at 5 lands and 6 follows. Frames 2 and 7 both spend a frame on the 397 acres."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Clean, Texas specific, honest about the letter of intent, attribution heavy."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.0,
+   "why": "No topic repeat. The third lastLight deck in a row and several echoes, the tower-section scale fresh."
+  }
+ ],
+ "weighted_score": 7.01,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Name the body that votes the abatement and its posting rule from a primary source.",
+ "round3_hard_fails": {
+  "slide_6_stakes": "fixed, five counted",
+  "apostrophes": "not a hard fail, U+0027 in source and laid-out text"
+ },
+ "artwork_weakest_frames": [
+  {
+   "slide": 2,
+   "problem": "A flat grey card with the square a speck.",
+   "fix": "Zoom about 3x on Silverton, the escarpment edge casting across two frame edges."
+  },
+  {
+   "slide": 7,
+   "problem": "Uniform vertical ribs reading as a grille.",
+   "fix": "Halve the furrow contrast, noise in the pitch, a raked oblique view."
+  },
+  {
+   "slide": 6,
+   "problem": "Thin stakes scattered and nothing owning the frame.",
+   "fix": "The nearest stake about 3 m off at half the frame height, the rest receding in one row."
+  },
+  {
+   "slide": 4,
+   "problem": "A flat grey box with stacked disc bushings.",
+   "fix": "Turn so the fins rake into the key, tapered porcelain bushings with sheds."
+  }
+ ]
+}

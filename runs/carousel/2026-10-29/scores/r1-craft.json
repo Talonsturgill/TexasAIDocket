@@ -1,0 +1,83 @@
+{
+ "lens": "craft",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.0,
+   "why": "Slides 1, 9 and 5 are strong, though 5's columns cover maybe 15 percent of the frame and its turbine hub sits below the column top. Slide 2 is a mottled beige card in the mid tones with shadow streak acne. Slide 6 has a lavender mid-tone ground, ghosted turbines, card flagging and a hairline wood line. Slide 3's bays are flat orange slabs not registered to the louvres over a black void. Slide 4's bushings hover over a primitive box. Slide 8's chain floats unattached. Slide 7 reads as a striped rug. The type sits on true dark everywhere with no plates."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 6.5,
+   "why": "One road world at last light, one type system, the accent doing real work as planned. The fence motif doesn't work. Slides 2 and 6 sit outside the value register. Four low-eye shots and the headline on top on all nine."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.5,
+   "why": "Every numeral traces and the data-driven art checks out to measurement. Held under 10 for slide 5's hook dropping up to and every figure being the company's own."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.5,
+   "why": "What, where, the condition and the timing land. The deciding body and date are not established."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "The cover earns the swipe and the turn on 5 lands. Slide 7 revisits slide 2 and slides 4 and 6 both stand on the substation."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "Regional and specific with headlines that have spine, house clean, flattening into attribution chains in places."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "Fresh subject and cover move, with lastLight, the transformer bay, survey stakes, the shut gate and the squares caveat familiar."
+  }
+ ],
+ "weighted_score": 7.12,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Re-stage frames 2 and 6 the way 1, 5 and 9 are staged, one lit pool on near-black ground.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 2,
+   "problem": "A mottled beige card in the mid tones, a tray, streak acne in the lower neighbour.",
+   "fix": "Darken the plateau and light it only with a pool on Silverton, the neighbours to near black, a taller cliff, crop in so Briscoe fills about 70 percent of the width."
+  },
+  {
+   "slide": 6,
+   "problem": "Lavender mid-tone ground, ghosted turbines, card flagging, a hairline wood line.",
+   "fix": "Dark red earth outside one pool on the substation and stakes, cut the haze on the turbines, draped flagging, two or three H-frames forward."
+  },
+  {
+   "slide": 3,
+   "problem": "Flat orange slabs not registered to the louvres, a black void below.",
+   "fix": "Emissive behind the louvre blades with warm spill, camera lower and in so the lit pad fills the lower third."
+  },
+  {
+   "slide": 8,
+   "problem": "The chain floats unattached and the seam post renders as two fused cylinders.",
+   "fix": "One continuous chain wrapped twice round the latch stiles, the padlock hung by its shackle."
+  },
+  {
+   "slide": 4,
+   "problem": "Bushings hover over a primitive box, the chain link only in a corner.",
+   "fix": "Seat the bushings on flanged turrets with contact, add a conservator, bring the mesh across the near foreground."
+  },
+  {
+   "slide": 5,
+   "problem": "Thin columns, lime ticks, the turbine hub below the column top.",
+   "fix": "Camera in and lower so the columns span a third of the width, hub level with the 30th flange, rims held to the accent hex."
+  }
+ ]
+}

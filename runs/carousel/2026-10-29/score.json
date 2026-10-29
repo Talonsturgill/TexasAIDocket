@@ -1,0 +1,201 @@
+{
+ "weighted_score": 7.0,
+ "judges": [
+  7.01,
+  7.26,
+  6.94
+ ],
+ "spread": 0.32,
+ "criteria": {
+  "artwork_craft": {
+   "score": 6.5,
+   "weight": 0.22,
+   "judges": [
+    6.6,
+    6.4,
+    6.5
+   ]
+  },
+  "deck_coherence": {
+   "score": 7.0,
+   "weight": 0.12,
+   "judges": [
+    7.3,
+    7.0,
+    7.0
+   ]
+  },
+  "claim_integrity": {
+   "score": 7.8,
+   "weight": 0.2,
+   "judges": [
+    7.8,
+    8.5,
+    7.5
+   ]
+  },
+  "story_and_stakes": {
+   "score": 7.0,
+   "weight": 0.16,
+   "judges": [
+    6.8,
+    7.5,
+    7.0
+   ]
+  },
+  "sequence_and_momentum": {
+   "score": 7.0,
+   "weight": 0.1,
+   "judges": [
+    7.0,
+    7.3,
+    7.0
+   ]
+  },
+  "voice": {
+   "score": 7.0,
+   "weight": 0.1,
+   "judges": [
+    6.8,
+    7.3,
+    7.0
+   ]
+  },
+  "variety": {
+   "score": 6.5,
+   "weight": 0.1,
+   "judges": [
+    6.5,
+    6.5,
+    6.5
+   ]
+  }
+ },
+ "hard_fails": [],
+ "hard_fails_by_judge": [],
+ "ship": true,
+ "threshold": 8.0,
+ "over_threshold": false,
+ "method": "per-criterion median across three judges, then weighted by the rubric",
+ "artwork_weakest_frames": [
+  {
+   "slide": 2,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "A flat mottled card with a 27 px square.",
+     "fix": "A 35 degree oblique showing a lit cliff and its cast, the plateau two thirds of the frame, raised neighbours."
+    },
+    {
+     "judge": 2,
+     "problem": "An evenly lit mid-grey card, a groove through the dek, halo plates.",
+     "fix": "A 35 degree oblique with a raking key, the pool tight on Silverton, no groove under the type."
+    },
+    {
+     "judge": 3,
+     "problem": "A flat mid-grey noise square, the parcel a speck.",
+     "fix": "Crop to the ten miles around Silverton, cut the escarpment into the height field under a grazing key."
+    }
+   ]
+  },
+  {
+   "slide": 6,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Rigid curved plank flags.",
+     "fix": "Cloth ribbons tied at the stake top, the nearest stake a third of the frame tall with a cast."
+    },
+    {
+     "judge": 2,
+     "problem": "A lilac pasture with no pool, the two lines as one pole and one tower.",
+     "fix": "The pool on the substation and nearest stakes, receding H-frames and lattice towers landing on the yard."
+    },
+    {
+     "judge": 3,
+     "problem": "The BRISCOE WIND leader lands on a bare pole.",
+     "fix": "Retarget it to a turbine, let the pasture beyond the pool fall to black."
+    }
+   ]
+  },
+  {
+   "slide": 3,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Panels out of line with the louvres, the pole line invisible.",
+     "fix": "Glow behind the louvre blades, a lit pole line."
+    },
+    {
+     "judge": 2,
+     "problem": "Saturated orange stripes off the louvres, dead grass below.",
+     "fix": "A warm sodium glow behind the louvres spilling onto a caliche pad, camera lower."
+    },
+    {
+     "judge": 3,
+     "problem": "Bays laid over the louvres, empty grass below.",
+     "fix": "Glow through the kit louvres, camera lower and in."
+    }
+   ]
+  },
+  {
+   "slide": 4,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "A smooth box with slab fins and disc bushings.",
+     "fix": "Pressed panels on header pipes, skirted porcelain sheds, crisp chain link."
+    },
+    {
+     "judge": 3,
+     "problem": "An anonymous grey box at feed size.",
+     "fix": "Pull back so the gantry, road and pasture fence share the frame."
+    }
+   ]
+  },
+  {
+   "slide": 7,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Corrugated siding and streaking post casts.",
+     "fix": "Lower ridges, straw patches in the L, shorter edge casts."
+    },
+    {
+     "judge": 3,
+     "problem": "A striped bar chart.",
+     "fix": "A grazing key so each furrow casts, darker troughs, a scale figure."
+    }
+   ]
+  },
+  {
+   "slide": 8,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "A heap of rings and a doubled post.",
+     "fix": "Linked chain through both stiles, one gate post."
+    },
+    {
+     "judge": 2,
+     "problem": "Loose floating rings and a black centre mass.",
+     "fix": "One continuous chain to the padlock, galvanized posts catching the key."
+    }
+   ]
+  }
+ ],
+ "rounds_derived": 4,
+ "rounds": 4,
+ "rounds_source": "this module's own log of cards it has scored",
+ "at_cap": true,
+ "rung": null,
+ "shortfall": "at the round cap the finished deck ships at 7.0, 1.0 under the 8.0 top rung. Name that in the email and the run record",
+ "craft_floor": "capped",
+ "craft_note": "at the round cap the craft floor stands down. The art median 6.5 is under 8.5 and the deck ships as it is. Name it in the run record"
+}

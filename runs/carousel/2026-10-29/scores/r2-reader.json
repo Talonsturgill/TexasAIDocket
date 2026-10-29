@@ -1,0 +1,73 @@
+{
+ "lens": "reader",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.3,
+   "why": "Frames 1, 3 and 5 pass the bold test at feed size. Frames 4 and 8 are competent but primitive. Frame 2 fails outright as a grey-brown card, frame 6 has no dominant subject, frame 7 reads as a chart with a postage-stamp substation, frame 9's courthouse is evenly lit and toy-like."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.0,
+   "why": "One lastLight world and one road, the accent marks what is planned. The value track strobes at 2, 6 and 7, the fence motif is invisible on 1 and 6."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.8,
+   "why": "Every numeral traces and all sources are primary. Frame 5's headline drops up to, the caption's it can read as Briscoe Wind, frame 3's fractional bay doesn't show."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.0,
+   "why": "What, where and the public hinge land. The decider and the date are not given and the caption asks the reader."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "The cover earns the swipe and the turn on 5 is in the right place. Frame 7 overlaps 2 and 4, the close lands softly."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.8,
+   "why": "On register and Texas specific. Drawn to illustrate closes seven of nine deks and the attribution cadence repeats."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "New subject, no topic repeat. lastLight, survey stakes, the shut gate, the squares caveat and the courthouse close repeat recent decks."
+  }
+ ],
+ "weighted_score": 6.94,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Fetch the county's abatement guidelines and the Commissioners Court's next meeting so the close names the body and the date.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 2,
+   "problem": "A featureless grey-brown card in the grey middle, the square too small to find.",
+   "fix": "Briscoe raised in pale caliche, darker neighbours bleeding off three edges, grooves lit and shadowed, the field outside the pool near black."
+  },
+  {
+   "slide": 6,
+   "problem": "No dominant subject and a mid-tone purple pasture.",
+   "fix": "Camera down and in so the nearest stake stands a third of the frame tall, the substation pool the single far light, the pasture outside it near black."
+  },
+  {
+   "slide": 7,
+   "problem": "A nested-square chart in mid browns, the substation a postage stamp.",
+   "fix": "Light the 97 acre L as the brightest material, the 300 acre block a stop darker, the substation pad larger."
+  },
+  {
+   "slide": 9,
+   "problem": "An evenly lit toy-like courthouse with no strong cast.",
+   "fix": "Rake the facade hard from the low left key and move the camera closer."
+  }
+ ]
+}

@@ -11,7 +11,7 @@ Emails obtained by The Texas Tribune and ProPublica show Texas Education Agency 
 - Public access: Public meeting
 - Take part: https://fdisd.com/page/board-meetings
 
-- Last checked: 2026-10-24
+- Last checked: 2026-10-29
 
 ## Dates
 
@@ -29,6 +29,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-18 · The board's vote against the Alpha charter stands. The record of staff helping the platform into pilots reads as cited.
 - 2026-10-21 · Checked and unchanged. The decision still stands as decided.
 - 2026-10-24 · The reporting on Alpha platform pilots in Houston, Aldine and Fort Davis still reads as published.
+- 2026-10-29 · The account of state education staff helping Alpha School's platform into the Houston, Aldine and Fort Davis pilots still reads as cited.
 
 ## Evidence
 

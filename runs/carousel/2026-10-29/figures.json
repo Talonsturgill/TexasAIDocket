@@ -1,0 +1,187 @@
+{
+ "_note": "Every value is extracted from a claim quote by compute.py, or computed here from values that were.",
+ "wind_mw": {
+  "value": 150,
+  "from": [
+   "c6",
+   "c12"
+  ],
+  "basis": "the Briscoe Wind Farm's size in MW, per Soluna"
+ },
+ "dorothy_mw": {
+  "value": 100,
+  "from": [
+   "c12"
+  ],
+  "basis": "the older Dorothy campus in MW, built behind the meter, per Soluna"
+ },
+ "energized_mw": {
+  "value": 98,
+  "from": [
+   "c13"
+  ],
+  "basis": "Dorothy 1 and 2 energized capacity in MW, per Soluna on September 14th"
+ },
+ "d3_mw": {
+  "value": 300,
+  "from": [
+   "c14",
+   "c19"
+  ],
+  "basis": "Dorothy 3, the next phase, in MW, up to this, per Soluna"
+ },
+ "phase1_mw": {
+  "value": 50,
+  "from": [
+   "c2",
+   "c7"
+  ],
+  "basis": "Phase 1 of Dorothy 3 in MW of critical IT, per Soluna"
+ },
+ "applied_pct": {
+  "value": 51,
+  "from": [
+   "c3"
+  ],
+  "basis": "Applied's expected share of the project company, per Soluna"
+ },
+ "soluna_pct": {
+  "value": 49,
+  "from": [
+   "c3"
+  ],
+  "basis": "Soluna's expected share of the project company, per Soluna"
+ },
+ "acres": {
+  "value": 397,
+  "from": [
+   "c18"
+  ],
+  "basis": "acres Soluna bought for Dorothy 3"
+ },
+ "acres_first": {
+  "value": 300,
+  "from": [
+   "c21"
+  ],
+  "basis": "acres Soluna first identified for the campus"
+ },
+ "acres_extra": {
+  "value": 97,
+  "from": [
+   "c18",
+   "c21"
+  ],
+  "basis": "computed: acres bought minus acres first identified"
+ },
+ "extra_request_mw": {
+  "value": 50,
+  "from": [
+   "c17"
+  ],
+  "basis": "a further load request at the Dorothy campus in MW, under study, per Soluna"
+ },
+ "d3_over_wind": {
+  "value": 2.0,
+  "from": [
+   "c14",
+   "c6"
+  ],
+  "basis": "computed: Dorothy 3's planned MW over the wind farm's MW, to two decimals"
+ },
+ "d3_minus_wind": {
+  "value": 150,
+  "from": [
+   "c14",
+   "c6"
+  ],
+  "basis": "computed: MW by which Dorothy 3's plan exceeds the wind farm's size"
+ },
+ "energized_pct_of_wind": {
+  "value": 65,
+  "from": [
+   "c13",
+   "c6"
+  ],
+  "basis": "computed: energized MW over the wind farm's MW, as a whole percent"
+ },
+ "phase1_pct_of_d3": {
+  "value": 17,
+  "from": [
+   "c7",
+   "c14"
+  ],
+  "basis": "computed: Phase 1's MW over Dorothy 3's planned MW, as a whole percent"
+ },
+ "campus_planned_mw": {
+  "value": 400,
+  "from": [
+   "c12",
+   "c14"
+  ],
+  "basis": "computed: the older campus's MW plus Dorothy 3's planned MW"
+ },
+ "campus_over_wind": {
+  "value": 2.67,
+  "from": [
+   "c12",
+   "c14",
+   "c6"
+  ],
+  "basis": "computed: the two campuses' MW over the wind farm's MW, to two decimals"
+ },
+ "section_mw": {
+  "value": 10,
+  "from": [],
+  "basis": "the drawing unit: megawatts one tower section stands for on the deck's columns. A choice, not a claim"
+ },
+ "sections_wind": {
+  "value": 15.0,
+  "from": [
+   "c6"
+  ],
+  "basis": "computed: the wind farm's MW in sections"
+ },
+ "sections_d3": {
+  "value": 30.0,
+  "from": [
+   "c14"
+  ],
+  "basis": "computed: Dorothy 3's planned MW in sections"
+ },
+ "sections_phase1": {
+  "value": 5,
+  "from": [
+   "c7"
+  ],
+  "basis": "computed: Phase 1's MW in sections, a whole count when the unit divides it"
+ },
+ "bays_dorothy": {
+  "value": 10.0,
+  "from": [
+   "c12"
+  ],
+  "basis": "computed: the older campus's MW in bays at the same unit"
+ },
+ "bays_energized": {
+  "value": 9.8,
+  "from": [
+   "c13"
+  ],
+  "basis": "computed: energized MW in bays at the same unit"
+ },
+ "side_m_acres": {
+  "value": 1267.5,
+  "from": [
+   "c18"
+  ],
+  "basis": "computed: the side in metres of a square of the acres bought"
+ },
+ "side_m_first": {
+  "value": 1101.8,
+  "from": [
+   "c21"
+  ],
+  "basis": "computed: the side in metres of a square of the acres first identified"
+ }
+}

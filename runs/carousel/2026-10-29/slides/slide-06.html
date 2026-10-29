@@ -1,0 +1,83 @@
+<!doctype html>
+<!-- 2026-10-29, frame 6 of 9. Archetype FULL_BLEED. A spatial scene through txthree.js in the deck's lastLight world: survey stakes on the pasture, one per section_mw of Phase 1 from figures.json, and across the county road the wind farm's substation with a wood pole line coming in from the turbines and a lattice line coming in from the grid. No connection design is in the record. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:900px">Two feeds for Phase 1</h1>
+<p class="dek" data-follow="22" style="width:880px">Phase 1 of Dorothy 3 is the 50 MW in the deal. Soluna expects it to draw power from both Briscoe Wind and the grid, subject to definitive documentation. Each stake stands for a fifth of it, a drawing unit. Drawn to&nbsp;illustrate.</p>
+<div class="lab" id="lab-w">BRISCOE WIND</div>
+<div class="lab" id="lab-g">THE GRID</div>
+<svg id="lead" width="1080" height="1350" style="position:absolute;left:0;top:0;z-index:11"></svg>
+<script>window.FIG = {"sections_phase1": 5};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-29-caprock.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "The power plan", counter: "06 / 09", src: "c7 c2", fit: { min: 70, max: 100, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 44, near: 0.05, far: 8000, fog: 0.0003 });
+  /* the camera stands on the pasture looking north west, the sun well off to the left of the frame. `along` places a
+   * thing at a distance ahead and a lateral offset, positive to the left */
+  const from = [22, 1.15, 6.5];
+  const f = new THREE.Vector2(-1, -1).normalize(), lf = new THREE.Vector2(f.y, -f.x);
+  const along = (d, lat) => [from[0] + f.x * d + lf.x * lat, from[2] + f.y * d + lf.y * lat];
+  /* the wind farm's substation across the county road */
+  const SP = along(230, 0), SUB = [SP[0], 0, SP[1]];
+  const sub = K.make('substation', { size: 'small', kv: 345, leads: true, seed: 6 }); sub.position.set(SUB[0], 0, SUB[2]); sub.rotation.y = Math.PI / 4; CH.put(sub, true);
+  const run = (pts) => pts.map((p, i) => { const q = pts[Math.min(i + 1, pts.length - 1)], o = pts[Math.max(i - 1, 0)]; return [p[0], p[1], Math.atan2(q[0] - o[0], q[1] - o[1])]; });
+  /* the wind's line, wood H-frames coming in from the turbines on the left */
+  const hPts = [along(226, 30), along(214, 80), along(200, 130), along(186, 180)];
+  CH.put(K.make('power_line', { structure: 'h_frame', voltage: 138, material: 'wood', structures: run(hPts) }), true);
+  /* the grid's 345 kV lattice line coming in from the right */
+  const gPts = [along(268, -38), along(290, -114), along(314, -194)];
+  CH.put(K.make('power_line', { structure: 'transmission_tower', voltage: 345, insulator: 'porcelain', structures: run(gPts) }), true);
+  /* the wind farm the H-frames come from, beyond the yard on the left */
+  [[560, 150, 30, 90], [720, 250, 20, 60], [480, 230, 40, 35], [860, 120, 25, 80]].forEach(([d, lat, yaw, rot]) => {
+    const [x, z] = along(d, lat), t = K.make('wind_turbine', { hub: 90, diameter: 120, yaw, rotor: rot }); t.position.set(x, 0, z); TXT.add(R, t); });
+  /* the county road between the pasture and the yard, north and south */
+  const road = K.make('caliche_road', { length: 900, width: 7, curve: 0.004, centerGrass: true, verge: 2.6 }); road.position.set(along(70, 0)[0], 0, 0); TXT.add(R, road);
+  /* THE FIGURE, from figures.json: one survey stake per section_mw of Phase 1, a row receding across the pasture */
+  const nStake = Math.round(FIG.sections_phase1), stakes = [];
+  for (let i = 0; i < nStake; i++) {
+    const [x, z] = along(5.2 + i * 2.7, -1.25 + i * 0.95);
+    const st = K.make('survey_stake', { lean: (i % 2 ? 0.03 : -0.02) }); st.position.set(x, 0, z); st.rotation.y = -0.5 + i * 0.2; CH.put(st, true); stakes.push(st); }
+  TXT.sky(R);
+  TXT.ground(R, { surface: 'dirt', size: 12000, seed: 61, color: 0x4e2a1e });
+  const look = CH.aim(THREE, R, TXT, from, [SUB[0], 2, SUB[2]], 540, 840, 44);
+  TXT.frame(R, { fov: 44, from, look });
+  TXT.scatter(R, { kind: 'grass', count: 6000, area: [-40, -45, 24, 14], seed: 23, scale: [0.3, 0.55] });
+  CH.warm(R, 0.3);
+  TXT.deckRig(R, CH.rigSpec(W, 160, 4096), CH.rigOpts([along(12, 0)[0], 0, along(12, 0)[1]], { distance: 60, shadowFar: 200 }));
+  TXT.weather(R, { grime: 0.5, height: 2 });
+  TXT.stage(R, [sub, ...stakes], { poolInner: 1.6, poolOuter: 4.2 });
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  /* the labels on the two lines, each with a leader to a structure the frame drew */
+  const svg = document.getElementById('lead'); window.__txLeaders = [];
+  const wAt = CH.project(THREE, R, [hPts[0][0], 12, hPts[0][1]]), gAt = CH.project(THREE, R, [gPts[0][0], 36, gPts[0][1]]);
+  const lw = document.getElementById('lab-w'), lg = document.getElementById('lab-g');
+  lw.style.left = '84px'; lw.style.top = '640px';
+  lg.style.left = Math.round(gAt[0] - lg.getBoundingClientRect().width - 40) + 'px'; lg.style.top = Math.round(gAt[1] + 34) + 'px';
+  const rw = lw.getBoundingClientRect(), rg = lg.getBoundingClientRect();
+  CH.leader(svg, [rw.left + rw.width / 2, rw.bottom + 6], wAt); window.__txLeaders.push({ target: "an H-frame of the wind's line", at: wAt, to: wAt });
+  CH.leader(svg, [rg.right + 6, rg.top + rg.height / 2], gAt); window.__txLeaders.push({ target: "a lattice tower of the grid's line", at: gAt, to: gAt });
+  CH.post(cx, { a: 0.3, veil: 0.32, footWash: 0.6 });
+  CH.knock(cx, ['#lab-w', '#lab-g'], 0.5);
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!doctype html>
+<!-- 2026-10-29, frame 1 of 9. Archetype FULL_BLEED. A spatial scene through txthree.js in the deck's lastLight world: a utility scale wind turbine on the flat Caprock raked by the last light, the caliche county road and a barbed wire fence across the foreground. No turbine model or site layout is in the record. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:600px;top:770px">The load went to the wind</h1>
+<p class="dek" data-follow="20" style="width:610px">Soluna announced on October 21st a deal with Applied Digital for a 50 MW AI data center beside the Briscoe Wind Farm near Silverton. Closing depends in part on a tax abatement in Briscoe County. Drawn to&nbsp;illustrate.</p>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-29-caprock.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Briscoe County", counter: "01 / 09", src: "c1 c2 c4 c6", fit: { min: 64, max: 84, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 50, near: 0.2, far: 6000, fog: 0.0011 });
+  /* the turbine west of the road, its rotor turned a little toward the camera so the blades read in three quarter */
+  const T = [-46, 0, -150];
+  const wt = K.make('wind_turbine', { hub: 90, diameter: 120, yaw: 50, rotor: 14 });
+  wt.position.set(T[0], 0, T[2]); CH.put(wt, true);
+  /* the turbine's caliche gravel pad and crane hardstand, a pale apron round the tower foot reaching toward the road, with
+   * the pad mount transformer standing on it */
+  const padM = K.mat('cp_turbine_pad', { color: 0xb8a68a, roughness: 0.95, map: K.tex('concrete') });
+  const padG = new THREE.CircleGeometry(16, 48); padG.rotateX(-Math.PI / 2);
+  const pad = new THREE.Mesh(padG, padM); pad.position.set(T[0] + 6, 0.04, T[2] + 4); pad.receiveShadow = true; TXT.add(R, pad);
+  const xf = K.make('padmount_transformer', {}); xf.position.set(T[0] + 9, 0.04, T[2] + 7); xf.rotation.y = 0.6; CH.put(xf, true);
+  /* two more of the farm far behind it on the seam, under the veil */
+  [[-420, -760, 40, 64], [-900, -540, 12, 15], [260, -1300, -20, 90]].forEach(([x, z, yaw, rot]) => {
+    const f = K.make('wind_turbine', { hub: 90, diameter: 120, yaw, rotor: rot }); f.position.set(x, 0, z); TXT.add(R, f); });
+  /* the caliche county road north and south along x = 0, and the wire fence on its west verge */
+  /* the caliche county road comes in from the lower right corner and runs to the turbine's pad, and the pasture's
+   * barbed wire fence follows its east verge, both clear of the type on the left */
+  const C0 = [8, 0, 94], dl = Math.hypot(T[0] - C0[0], T[2] - C0[2]);
+  const D = [(T[0] - C0[0]) / dl, (T[2] - C0[2]) / dl], RT = [-D[1], D[0]];
+  const S = [C0[0] + D[0] * 6 + RT[0] * 7.6, C0[2] + D[1] * 6 + RT[1] * 7.6], P = [T[0] + RT[0] * 12, T[2] + RT[1] * 12];
+  const ang = Math.atan2(P[0] - S[0], P[1] - S[1]), len = Math.hypot(P[0] - S[0], P[1] - S[1]) + 40;
+  const road = K.make('caliche_road', { length: len, width: 7, curve: 0.04, centerGrass: true, verge: 2.6 });
+  road.rotation.y = ang; road.position.set((S[0] + P[0]) / 2, 0, (S[1] + P[1]) / 2); TXT.add(R, road);
+  /* the pasture fence on the road's east verge, posts every 3.2 m, the open pasture beyond it */
+  const fence = K.make('barbed_wire_fence', { length: len, strands: 4, spacing: 3.2 });
+  fence.rotation.y = ang + Math.PI / 2; fence.position.set((S[0] + P[0]) / 2 + RT[0] * 6.2, 0, (S[1] + P[1]) / 2 + RT[1] * 6.2);
+  CH.put(fence, true);
+  TXT.sky(R);
+  TXT.ground(R, { surface: 'dirt', size: 9000, seed: 29, color: 0x6a4434 });
+  const from = [8, 2.4, 94];
+  const look = CH.aim(THREE, R, TXT, from, [T[0], 88, T[2]], 730, 240, 50);
+  TXT.frame(R, { fov: 50, from, look });
+  TXT.scatter(R, { kind: 'grass', count: 2600, area: [-30, -200, 120, 60], avoid: [[-60, 40, 40, 120]], seed: 7, scale: [0.4, 0.8] });
+  /* sparse straw across the red pasture west of the road, thinning toward the type */
+  TXT.scatter(R, { kind: 'grass', count: 2400, area: [-200, -160, -12, 70], seed: 11, scale: [0.3, 0.6] });
+  CH.warm(R, 0.18);
+  TXT.deckRig(R, CH.rigSpec(W, 180, 4096), CH.rigOpts([T[0], 40, T[2]], { distance: 400, shadowFar: 900 }));
+  TXT.weather(R, { grime: 0.5, height: 4 });
+  TXT.stage(R, wt);
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0, low: { from: 780, a: 0.4, fade: 140 }, veil: 0.3, footWash: 0.5 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

@@ -2387,3 +2387,17 @@ admitted.
 through the Federal Register API's JSON, and claim c1 was re-pointed there.
 
 **rice.edu read through `fetch_doc.py`** for tx-2026-0224 after the re-verifier's request was refused, as on October 25th.
+
+## 2026-10-29
+
+**www2.census.gov's robots.txt carries no rule for this project's fetcher and no Gazetteer rule today.** It lists
+named crawlers only, with no wildcard group. `fetch_doc.robots_refusal` and `crawl_boundary.forbidden` both
+allow `geo/docs/maps-data/data/gazetteer/2023_Gazetteer/2023_Gaz_place_national.zip`. This differs from the
+October 11th entry, which saw the Gazetteer path refused. The run fetched the national places file with curl
+for Silverton's internal point, GEOID 4867904. **The per-state file
+`2023_Gazetteer/2023_gaz_place_48.zip` answered an HTML "Page not found" with status 200**, so a fetch of it
+looks successful until the bytes are read. The national file is the one that is served.
+
+**solunacomputing.com release pages** read cleanly with curl and carry the release title in `<h1>`. Claims
+from them did not record a `document` field, and `sources_block` needed one, so the titles were read off
+the pages at ship.

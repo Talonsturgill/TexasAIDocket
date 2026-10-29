@@ -1,0 +1,101 @@
+{
+ "date": "2026-10-29",
+ "_note": "Every count, span and area the deck states, with the claim it was quoted from or the code that computed it. Two feeds counts the two sources c7 names, Briscoe Wind and the grid.",
+ "aggregates": [
+  {
+   "phrase": "397 acres",
+   "slide": "slide-02.html",
+   "kind": "count",
+   "value": 397,
+   "quoted_from": "c18",
+   "quote": "today announced it has closed the purchase of 397 acres in Briscoe County, Texas",
+   "note": "quoted"
+  },
+  {
+   "phrase": "397 ACRES",
+   "slide": "slide-02.html",
+   "kind": "count",
+   "value": 397,
+   "quoted_from": "c18",
+   "quote": "today announced it has closed the purchase of 397 acres in Briscoe County, Texas",
+   "note": "quoted"
+  },
+  {
+   "phrase": "397 acres",
+   "slide": "slide-07.html",
+   "kind": "count",
+   "value": 397,
+   "quoted_from": "c18",
+   "quote": "today announced it has closed the purchase of 397 acres in Briscoe County, Texas",
+   "note": "quoted"
+  },
+  {
+   "phrase": "397 ACRES",
+   "slide": "slide-07.html",
+   "kind": "count",
+   "value": 397,
+   "quoted_from": "c18",
+   "quote": "today announced it has closed the purchase of 397 acres in Briscoe County, Texas",
+   "note": "quoted"
+  },
+  {
+   "phrase": "397 acres",
+   "slide": "caption.txt",
+   "kind": "count",
+   "value": 397,
+   "quoted_from": "c18",
+   "quote": "today announced it has closed the purchase of 397 acres in Briscoe County, Texas",
+   "note": "quoted"
+  },
+  {
+   "phrase": "300 acres",
+   "slide": "slide-07.html",
+   "kind": "count",
+   "value": 300,
+   "quoted_from": "c21",
+   "quote": "The 397 acres exceed the 300 acres Soluna originally identified for the campus.",
+   "note": "quoted"
+  },
+  {
+   "phrase": "300 ACRES",
+   "slide": "slide-07.html",
+   "kind": "count",
+   "value": 300,
+   "quoted_from": "c21",
+   "quote": "The 397 acres exceed the 300 acres Soluna originally identified for the campus.",
+   "note": "quoted"
+  },
+  {
+   "phrase": "97 acres",
+   "slide": "slide-07.html",
+   "kind": "count",
+   "value": 97,
+   "computed_by": "out/2026-10-29/compute.py, figures.json acres_extra, the 397 acres bought (c18) minus the 300 acres first identified (c21)",
+   "note": "computed"
+  },
+  {
+   "phrase": "97 ACRES",
+   "slide": "slide-07.html",
+   "kind": "count",
+   "value": 97,
+   "computed_by": "out/2026-10-29/compute.py, figures.json acres_extra, the 397 acres bought (c18) minus the 300 acres first identified (c21)",
+   "note": "computed"
+  },
+  {
+   "phrase": "Two feeds",
+   "slide": "slide-06.html",
+   "kind": "count",
+   "value": 2,
+   "note": "computed",
+   "computed_by": "counted from c7, which names the two sources Phase 1 is expected to draw power from, Briscoe Wind and the grid"
+  },
+  {
+   "phrase": "three first party accounts",
+   "slide": "first_comment.txt",
+   "kind": "count",
+   "value": 3,
+   "computed_by": "scripts/carousel/sources_block.py, the distinct primary_corporate documents among the cited claims, Soluna's three releases (c1, c12, c18)",
+   "note": "computed"
+  }
+ ]
+}

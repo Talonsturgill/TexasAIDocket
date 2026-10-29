@@ -11,7 +11,7 @@ An agenda item asked the Denton City Council to approve a resolution on a morato
 - Public access: Public meeting
 - Take part: https://denton-tx.legistar.com/LegislationDetail.aspx?ID=8169473&GUID=01691CB0-D683-4CB1-BBE2-9D9452063A32
 
-- Last checked: 2026-10-24
+- Last checked: 2026-10-29
 
 ## Dates
 
@@ -44,6 +44,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-18 · Denton's moratorium resolution and its hearing schedule still read as taken up, with no final vote posted.
 - 2026-10-21 · Checked and unchanged. Still pending, with no dated movement.
 - 2026-10-24 · Denton's moratorium resolution and its schedule of public hearings still read as the council took them up.
+- 2026-10-29 · The council held its second and final hearing and heard the ordinance's first reading on October 27th. A vote could come as early as December 1st.
 
 ## Evidence
 
@@ -60,4 +61,16 @@ Source (primary_official): https://denton-tx.legistar.com/LegislationDetail.aspx
 > Please note: this meeting's minutes have not been finalized yet. Actions taken on legislation and their results are not available.
 
 Source (primary_official): https://denton-tx.legistar.com/MeetingDetail.aspx?ID=1356104&GUID=2C80918D-F58E-4522-A845-6B78CAC3DB44
+
+### Denton City Council held the second and final public hearing on the moratorium and heard the first reading of the ordinance on October 27th.
+
+> Denton City Council held the second and final public hearing regarding a proposed data center moratorium and officials presented the first reading of the ordinance during its regular meeting Oct. 27.
+
+Source (journalism): https://communityimpact.com/denton/government/denton-holds-final-hearing-first-reading-of-proposed-data-center-moratorium/
+
+### A council vote on the moratorium could come as early as December 1st.
+
+> Denton City Council’s vote on implementing a moratorium could take place as early as Dec. 1.
+
+Source (journalism): https://communityimpact.com/denton/government/denton-holds-final-hearing-first-reading-of-proposed-data-center-moratorium/
 

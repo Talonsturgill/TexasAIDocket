@@ -1,0 +1,80 @@
+<!doctype html>
+<!-- 2026-10-29, frame 3 of 9. Archetype OBJECT_AND_CAPTION. A spatial scene through txthree.js in the deck's lastLight world: a long single storey data hall among wind turbines with a row of intake bays lit warm, one bay per section_mw of the energized MW from figures.json, the last bay lit to its fraction, and a wood H-frame line from the turbines to the hall. The hall and its bays are drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:900px">Built behind the meter</h1>
+<p class="dek" data-follow="22" style="width:900px">Soluna describes Project Dorothy as 100 MW built behind the meter at the 150 MW wind farm. In September it said 98 MW was energized. Its chief executive says Soluna was built "to bring load to the generation". One bay stands for 10 MW. Drawn to&nbsp;illustrate.</p>
+<div class="lab" id="lab-bay">ONE BAY, 10 MW</div>
+<svg id="lead" width="1080" height="1350" style="position:absolute;left:0;top:0;z-index:11"></svg>
+<script>window.FIG = {"bays_dorothy": 10.0, "bays_energized": 9.8};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-29-caprock.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Project Dorothy", counter: "03 / 09", src: "c10 c12 c13", fit: { min: 70, max: 100, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 40, near: 0.1, far: 8000, fog: 0.0011 });
+  /* the hall, turned so its plain long wall faces the camera and its generator yard is on the far side */
+  const hall = K.make('data_center', { length: 130, depth: 60, height: 14, fence: false, site: false, color: 0xd9dbd6, seed: 3 });
+  hall.rotation.y = Math.PI; hall.position.set(0, 0, 0); CH.put(hall, true); hall.updateMatrixWorld(true);
+  const hb = new THREE.Box3().setFromObject(hall);
+  /* THE FIGURE, from figures.json: one intake bay per section_mw of the campus, lit for the energized MW, the last
+   * bay's glow set to its fraction: the chassis's intake_bays on the near wall rather than the model's own panel count. */
+  const nBay = Math.round(FIG.bays_dorothy), lit = FIG.bays_energized, wallZ = hb.max.z + 0.06;
+  const x0 = hb.min.x + 14, x1 = hb.max.x - 14;
+  const row = K.make('intake_bays', { n: nBay, lit, length: x1 - x0 }); row.position.set((x0 + x1) / 2, 0, wallZ); CH.put(row);
+  const bays = row.userData.bays.map(([x, y, z]) => [x + (x0 + x1) / 2, y, z + wallZ]);
+  /* the camera on the pasture off the hall's near corner; the wind farm stands beyond the hall along its line of sight */
+  const from = [hb.min.x - 52, 1.7, hb.max.z + 90], aimAt = [hb.max.x - 26, 5, wallZ];
+  const f = new THREE.Vector2(aimAt[0] - from[0], aimAt[2] - from[2]).normalize(), lf = new THREE.Vector2(f.y, -f.x);
+  const along = (d, lat) => [from[0] + f.x * d + lf.x * lat, from[2] + f.y * d + lf.y * lat];
+  const tur = [[430, 150, 30, 10], [560, 40, 35, 50], [700, -60, 25, 80], [900, 200, 30, 25]].map(([d, lat, yaw, rot]) => {
+    const [x, z] = along(d, lat), t = K.make('wind_turbine', { hub: 90, diameter: 120, yaw, rotor: rot }); t.position.set(x, 0, z); TXT.add(R, t); return [x, z]; });
+  /* a wood H-frame line behind the hall, its poles standing above the roofline, running from the hall's near end along
+   * its length and on out to a turbine, behind the meter */
+  const zB = hb.min.z - 14, B = tur[1];
+  const hPts = [[hb.min.x + 6, zB], [hb.min.x + 40, zB], [hb.min.x + 74, zB], [hb.max.x - 22, zB], [hb.max.x + 14, zB - 20], [(hb.max.x + B[0]) / 2, (zB + B[1]) / 2]];
+  const run = (pts) => pts.map((p, i) => { const q = pts[Math.min(i + 1, pts.length - 1)], o = pts[Math.max(i - 1, 0)]; return [p[0], p[1], Math.atan2(q[0] - o[0], q[1] - o[1])]; });
+  CH.put(K.make('power_line', { structure: 'h_frame', voltage: 138, material: 'wood', height: 24, structures: run(hPts) }), true);
+  /* the caliche pad along the wall */
+  const pad = new THREE.Mesh(new THREE.PlaneGeometry(hb.max.x - hb.min.x + 30, 26), K.mat('caliche_pad', { color: 0xb8a58a, roughness: 0.95 }));
+  pad.rotation.x = -Math.PI / 2; pad.position.set((hb.min.x + hb.max.x) / 2, 0.015, hb.max.z + 13); pad.receiveShadow = true; TXT.add(R, pad);
+  TXT.sky(R);
+  TXT.ground(R, { surface: 'dirt', size: 12000, seed: 31, color: 0x6a4434 });
+  TXT.scatter(R, { kind: 'grass', count: 9000, area: [hb.min.x - 60, hb.max.z + 26, hb.max.x + 40, hb.max.z + 120], seed: 17, scale: [0.35, 0.65] });
+  const look = CH.aim(THREE, R, TXT, from, aimAt, 965, 880, 40);
+  TXT.frame(R, { fov: 40, from, look });
+  CH.warm(R, 0.3);
+  TXT.deckRig(R, CH.rigSpec(W, 260, 4096), CH.rigOpts([0, 0, 0], { distance: 260, shadowFar: 600 }));
+  CH.unacne(R, 0.08);
+  TXT.weather(R, { grime: 0.5, height: 2 });
+  TXT.stage(R, [hall, row], { poolInner: 0.8, poolOuter: 1.6 });
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  /* the bay unit's label, its leader landing on the first lit bay */
+  const svg = document.getElementById('lead'); window.__txLeaders = [];
+  const bAt = CH.project(THREE, R, bays[1]), lb = document.getElementById('lab-bay');
+  lb.style.left = Math.max(84, Math.round(bAt[0] - 20)) + 'px'; lb.style.top = Math.round(bAt[1] + 150) + 'px';
+  const rb = lb.getBoundingClientRect();
+  CH.leader(svg, [rb.left + 30, rb.top - 6], bAt); window.__txLeaders.push({ target: "a lit intake bay", at: bAt, to: bAt });
+  CH.post(cx, { a: 0.3, veil: 0.32, footWash: 0.6 });
+  CH.knock(cx, ['#lab-bay'], 0.5);
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

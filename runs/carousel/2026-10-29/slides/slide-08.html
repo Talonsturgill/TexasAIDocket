@@ -1,0 +1,71 @@
+<!doctype html>
+<!-- 2026-10-29, frame 8 of 9. Archetype OBJECT_AND_CAPTION. A spatial scene through txthree.js in the deck's lastLight world: a double galvanized ranch gate closed across the pasture's caliche entrance, its two leaves in the ratio of the two ownership shares from figures.json, a chain and padlock at the seam. No site plan is in the record. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:900px">A letter of intent,<br>not a lease</h1>
+<p class="dek" data-follow="24" style="width:880px">After closing Soluna expects Applied to hold 51% and itself 49%. ChronoScale is majority owned by Applied. ChronoScale has signed a non-binding letter of intent to lease. Soluna says a lease may not follow. It expects closing by year end. Drawn to&nbsp;illustrate.</p>
+<div class="lab" id="lab-a">APPLIED 51%</div>
+<div class="lab" id="lab-s">SOLUNA 49%</div>
+<script>window.FIG = {"applied_pct": 51, "soluna_pct": 49};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-29-caprock.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "The deal's terms", counter: "08 / 09", src: "c3 c8 c9 c5", fit: { min: 70, max: 92, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 40, near: 0.05, far: 3000, fog: 0.012 });
+  /* THE FIGURES, from figures.json: the two leaves' widths as shares of one opening, the left leaf Applied's */
+  const OPEN = 7.4, wA = OPEN * FIG.applied_pct / 100, wS = OPEN * FIG.soluna_pct / 100;
+  /* the entrance faces south and the camera looks north, so the last light from the west rakes the gate's face from the
+   * camera's left and its shadows fall to the right, as on frames 5 and 6 */
+  const TH = 0, cs = Math.cos(TH), sn = Math.sin(TH);
+  const P = (x, z) => [x * cs + z * sn, -x * sn + z * cs];
+  const place = (o, x, y, z) => { const q = P(x, z); o.position.set(q[0], y, q[1]); o.rotation.y += TH; return o; };
+  const gA = place(K.make('ranch_gate', { w: wA, finish: 'galvanized', fence: false, seed: 3 }), -(wA / 2 + 0.13), 0, 0); CH.put(gA, true);
+  const gS = K.make('ranch_gate', { w: wS, finish: 'galvanized', fence: false, seed: 4 }); gS.scale.x = -1; place(gS, wS / 2 + 0.13, 0, 0); CH.put(gS, true);
+  /* the chain and padlock hang at the seam between the two latch posts */
+  const lock = place(K.make('gate_lock', { links: 11 }), 0, 0.42, 0.12); lock.scale.setScalar(2.1); TXT.add(R, lock);
+  /* the loose chain links go, so the padlock reads as one silhouette locked through the latch */
+  lock.children.forEach((c) => { if (c.isMesh && c.geometry && c.geometry.type === 'TorusGeometry' && c.scale.y > 1.2) c.visible = false; });   /* a heavy ranch padlock, a 12 cm body */
+  /* the barbed wire fence runs on out of the frame from both hinge posts */
+  const fL = place(K.make('barbed_wire_fence', { length: 40, strands: 4, spacing: 3.2 }), -wA - 0.3 - 20, 0, 0); CH.put(fL, true);
+  const fR = place(K.make('barbed_wire_fence', { length: 40, strands: 4, spacing: 3.2 }), wS + 0.3 + 20, 0, 0); CH.put(fR, true);
+  /* the caliche entrance runs in under the gate from the county road behind the camera to the dark pasture */
+  const road = place(K.make('caliche_road', { length: 70, width: 6.4, curve: 0.02, centerGrass: false, verge: 2.2 }), 0, 0, 10); TXT.add(R, road);
+  TXT.sky(R);
+  TXT.ground(R, { surface: 'dirt', size: 3000, seed: 52, color: 0x6a4434 });
+  const fq = P(-0.5, 4.3), from = [fq[0], 2.0, fq[1]];
+  const lk = P(0, 0.09);
+  const look = CH.aim(THREE, R, TXT, from, [lk[0], 0.82, lk[1]], 560, 990, 40);
+  TXT.frame(R, { fov: 40, from, look });
+  TXT.scatter(R, { kind: 'grass', count: 16000, area: [-50, -60, 30, 20], avoid: [[-6, -6, 6, 30]], seed: 19, scale: [0.5, 0.95] });
+  CH.warm(R, 0.3);
+  TXT.deckRig(R, CH.rigSpec(W, 14, 4096), CH.rigOpts([0, 0.8, 0], { distance: 40, shadowFar: 90 }));
+  CH.unacne(R, 0.03);
+  TXT.weather(R, { grime: 0.5, height: 0.6 });
+  TXT.stage(R, [gA, gS], { poolInner: 1.6, poolOuter: 4 });
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  const la = document.getElementById('lab-a'), ls = document.getElementById('lab-s');
+  la.style.left = '120px'; la.style.top = '752px'; ls.style.left = (1080 - 120 - ls.getBoundingClientRect().width) + 'px'; ls.style.top = '752px';
+  CH.post(cx, { a: 0.3, veil: 0.32, footWash: 0.6 });
+  CH.knock(cx, ['#lab-a', '#lab-s'], 0.5);
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

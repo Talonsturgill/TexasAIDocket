@@ -1,0 +1,83 @@
+{
+ "lens": "integrity",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.0,
+   "why": "Slides 1 and 9 meet most of the bold standard and slide 5 is the best evidence frame though its columns are thin poles. Slides 2, 3, 6, 7 and 8 fall toward the 4 descriptor and slide 4's transformer is primitive."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 6.5,
+   "why": "One lastLight world and a real camera move along one road. The two plan reliefs leave that world, slide 3's orange is a colour no other frame uses, the fence motif barely shows."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.0,
+   "why": "Every numeral and drawn count traces and was measured. Held at 8 for one company's releases standing in for a filing, slide 5's headline dropping up to, the caption's pronoun and omitted condition, and c22's paraphrase beyond its quote."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.5,
+   "why": "What, who, where and the condition are said. The deciding body is never named, no meeting date, no size, no contact, the Batch Zero context left out."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "The cover earns the swipe and slide 5 is a well placed turn. Slide 7 steps back to the land after the turn."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "Clean, no house rule breaks. An attribution chain on almost every dek, Drawn to illustrate on eight frames, no regional specifics in the copy."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.0,
+   "why": "New subject and accent. The third lastLight deck in a row, a transformer bay, survey stakes, a shut gate and the squares line repeat."
+  }
+ ],
+ "weighted_score": 6.69,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Rebuild frames 2, 6 and 7 so each has one modelled subject owning a third of the frame inside the staged pool, and register frame 3's glow inside the louvres.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 2,
+   "problem": "A flat grey card, no neighbour visible, specks for the square and pin.",
+   "fix": "An oblique of about 35 degrees, lit red bed neighbours bleeding three edges, Briscoe's edge a casting cliff, the square a raised block."
+  },
+  {
+   "slide": 6,
+   "problem": "No dominant subject on a lit purple mid-tone ground.",
+   "fix": "The nearest stake at about 1.5 m owning the right third with modelled flagging, the pasture outside the pool near black, the wood line visible into the yard."
+  },
+  {
+   "slide": 3,
+   "problem": "Flat orange slats out of register with the louvres, the left bay cut, dead grass below.",
+   "fix": "Glow inside the louvres, the tenth at 0.8, all ten bays inside the frame."
+  },
+  {
+   "slide": 7,
+   "problem": "A corduroy tray with a hard edge and streaking casts.",
+   "fix": "Ground past three edges, coarser furrows, fix the post casts."
+  },
+  {
+   "slide": 8,
+   "problem": "A centre double post hides the seam and both leaves run off the frame.",
+   "fix": "Pull back until both hinge posts are inside the frame, one real chain across the latch stiles."
+  },
+  {
+   "slide": 4,
+   "problem": "A primitive box with disc-stack bushings and fences that barely register.",
+   "fix": "Crop tighter on a modelled radiator bank, shedded porcelain bushings, the pasture fence posts in the pool."
+  }
+ ]
+}

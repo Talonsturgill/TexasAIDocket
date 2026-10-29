@@ -1,0 +1,80 @@
+{
+ "lens": "integrity",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.8,
+   "why": "Per frame 8, 5, 7, 7, 7.5, 6.5, 6.5, 6.5, 7. Slide 1 strongest, slide 5 delivers the turn, slide 2 weakest as a flat card, slide 6 showed four stakes, slide 8's leaves bleed off, slide 7 reads as a chart panel, slide 4 plastic, slide 9 a good kit courthouse."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.0,
+   "why": "One lastLight Caprock world, one key, the accent meaning planned. The two reliefs sit outside the filmstrip."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 6.0,
+   "why": "Typed copy strong and the drawn square and nested ratio measured true. Held down by slide 6 drawing four stakes for 50 MW and slide 5's headline dropping up to."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.0,
+   "why": "What, who, where and the gating condition land. The deciding body and date are not stated."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "The cover earns the swipe and the turn is at 5. Slides 4 and 7 both make the substation point."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Clean and on register, attribution heavy."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.0,
+   "why": "New subject and unit. The third lastLight deck in a row and several familiar moves."
+  }
+ ],
+ "weighted_score": 6.66,
+ "hard_fails": [
+  "Slide 6 showed 4 stakes for a 50 MW phase against its own key of 10 MW a stake, so the drawing said 40 MW."
+ ],
+ "ship": false,
+ "one_sentence_fix": "Re-render slide 6 so all five stakes fall inside the frame, and add a gate that counts data-in-art objects in frame.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 2,
+   "problem": "A flat beige card with almost no relief.",
+   "fix": "A grazing key and a raised plateau casting onto the neighbours, crop so it bleeds three edges."
+  },
+  {
+   "slide": 6,
+   "problem": "Four of five stakes in frame, flat flags, a faint substation.",
+   "fix": "Shift the row so all five project in frame, tied tape flagging, the pool on the yard."
+  },
+  {
+   "slide": 8,
+   "problem": "A doubled centre post and leaves bleeding off.",
+   "fix": "Pull back so both leaves end on hinge posts, one latch seam."
+  },
+  {
+   "slide": 7,
+   "problem": "A corrugated chart panel with post-cast streaks.",
+   "fix": "Lower key furrows, ground past every edge, clean casts."
+  },
+  {
+   "slide": 4,
+   "problem": "Plastic fins and bushings, a faint far fence.",
+   "fix": "Weathered galvanized fins, porcelain sheds, the pool on the far fence."
+  }
+ ]
+}

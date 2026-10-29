@@ -46,6 +46,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-24 · The sheriff's promise to come back to the court before using AI report writing is unconfirmed today. The county agenda host bars automated readers and the county archive refused the request.
 - 2026-10-25 · The sheriff's promise to return to the court before using AI report writing stays unconfirmed. The agenda host bars automated readers and the county archive turned the request away.
 - 2026-10-26 · The sheriff's promise to return to the court before switching on AI report writing is still unconfirmed. The agenda host and the county archive both refused the request.
+- 2026-10-29 · Hays County's posting of the sheriff's promise on AI report writing is still unconfirmed. The agenda portal bars automated readers.
 
 ## Evidence
 

@@ -216,7 +216,8 @@
         "2026-10-21",
         "2026-10-22",
         "2026-10-24",
-        "2026-10-25"
+        "2026-10-25",
+        "2026-10-29"
       ],
       "contradicted": []
     },
@@ -638,7 +639,8 @@
         "2026-10-17",
         "2026-10-20",
         "2026-10-25",
-        "2026-10-26"
+        "2026-10-26",
+        "2026-10-29"
       ],
       "contradicted": []
     },
@@ -1625,6 +1627,22 @@
       "learned": "2026-10-26",
       "instinct": "Light a hanging or hovering object from one source whose cast lands on the ground under it, and check every other light in the scene does not throw a second shadow the other way.",
       "evidence": "Carousel no. 61, frame 8, round 3. A pole flood put the pod's shadow on the lawn, but the deck rig's key still threw the pod and the resident onto the fence in opposite directions. All three judges named the contradictory casts first.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "count-the-drawn-figure-after-every-camera-move",
+      "learned": "2026-10-29",
+      "instinct": "Count every data-in-art object in the rendered frame after any camera or crop change, because a drawn count is a numeral and a moved camera can drop one off the edge.",
+      "evidence": "Carousel no. 62, 2026-10-29: a round 2 camera change on frame 6 pushed one of five stakes out of frame, so at 10 MW a stake the drawing said 40 MW against a 50 MW phase. Two round 3 judges filed it as a hard fail.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "grain-in-albedo-under-a-low-key",
+      "learned": "2026-10-29",
+      "instinct": "Put surface grain in a relief's albedo and keep its height smooth, because under a 10 degree key every bump of height casts a long blotch.",
+      "evidence": "Carousel no. 62, 2026-10-29: noise in frame 2's relief height turned the Briscoe plateau into a camouflage print; flat height with grain in the albedo cleared it.",
       "confirmed": [],
       "contradicted": []
     }

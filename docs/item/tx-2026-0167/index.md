@@ -11,7 +11,7 @@ The University of Texas at San Antonio published an account on September 28th, 2
 - Public access: Write to the decider
 - Take part: http://news.utsa.edu/2026/09/ut-san-antonio-researcher-builds-self-powered-smart-warning-system-to-catch-local-floods-before-disaster-strikes/
 
-- Last checked: 2026-10-24
+- Last checked: 2026-10-29
 
 ## Dates
 
@@ -35,6 +35,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-18 · UT San Antonio still calls its flood sensor a prototype. No city or county is named as installing one.
 - 2026-10-21 · Checked and unchanged. The decision still stands as decided.
 - 2026-10-24 · UT San Antonio's flood sensor still runs its model on the device instead of a server.
+- 2026-10-29 · UTSA's on-device flood sensor still reads as the university described it.
 
 ## Evidence
 
