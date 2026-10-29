@@ -226,7 +226,7 @@
       "file": "slide-02.html",
       "png": "slide-02.png",
       "console_errors": [
-        "TXBENCH: RELIEF {\"height_range\":107,\"materials\":6,\"cast_fraction\":0.11310545267489712,\"area\":1,\"render_ms\":13086}"
+        "TXBENCH: RELIEF {\"height_range\":107,\"materials\":6,\"cast_fraction\":0.11310545267489712,\"area\":1,\"render_ms\":13505.5}"
       ],
       "page_errors": [],
       "overflow_warnings": [],
@@ -501,9 +501,9 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 18500,
+      "render_ms": 18730,
       "ok": true,
-      "load_ms": 244,
+      "load_ms": 266,
       "canvases": [
         {
           "x": 0,
@@ -1301,7 +1301,7 @@
           "anc": []
         },
         {
-          "text": "Phase 1 of Dorothy 3 is the 50 MW in the deal. Soluna expects it to draw power from both Briscoe Wind and the grid, subject to definitive documentation. One stake stands for 10 MW, a drawing unit. Drawn to illustrate.",
+          "text": "Phase 1 of Dorothy 3 is the 50 MW in the deal. Soluna expects it to draw power from both Briscoe Wind and the grid, subject to definitive documentation. Each stake stands for a fifth of it, a drawing unit. Drawn to illustrate.",
           "x": 82,
           "y": 367,
           "w": 880,
@@ -1328,13 +1328,13 @@
             [
               82,
               453,
-              876,
+              780,
               42
             ],
             [
               82,
               495,
-              658,
+              824,
               42
             ]
           ],
@@ -1503,9 +1503,9 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 18899,
+      "render_ms": 18301,
       "ok": true,
-      "load_ms": 288,
+      "load_ms": 267,
       "canvases": [
         {
           "x": 0,

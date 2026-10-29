@@ -17,7 +17,7 @@
       "file": "slide-02.html",
       "fails": [],
       "warns": [
-        "console error: TXBENCH: RELIEF {\"height_range\":107,\"materials\":6,\"cast_fraction\":0.11310545267489712,\"area\":1,\"render_ms\":13086}"
+        "console error: TXBENCH: RELIEF {\"height_range\":107,\"materials\":6,\"cast_fraction\":0.11310545267489712,\"area\":1,\"render_ms\":13505.5}"
       ],
       "bands": [
         0.2878,
@@ -73,10 +73,10 @@
       ],
       "bands": [
         0.2311,
-        0.4454,
+        0.4559,
         0.9853
       ],
-      "band_ratio": 1.7179
+      "band_ratio": 1.708
     },
     {
       "file": "slide-07.html",

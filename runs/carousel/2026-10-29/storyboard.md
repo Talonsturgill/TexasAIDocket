@@ -469,7 +469,7 @@ art:
 
 type:
   hook: "Two feeds for Phase 1"
-  dek: "Phase 1 of Dorothy 3 is the 50 MW in the deal. Soluna expects it to draw power from both Briscoe Wind and the grid, subject to definitive documentation. One stake stands for 10 MW, a drawing unit. Drawn to illustrate."
+  dek: "Phase 1 of Dorothy 3 is the 50 MW in the deal. Soluna expects it to draw power from both Briscoe Wind and the grid, subject to definitive documentation. Each stake stands for a fifth of it, a drawing unit. Drawn to illustrate."
   labels: ["BRISCOE WIND", "THE GRID"]
 
 verbatim: []
