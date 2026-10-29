@@ -45,6 +45,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-18 · The committee's interim charges and the Senate's meeting list still answer. The hearing notice and the library's archive are unconfirmed, and no interim report is posted.
 - 2026-10-21 · The comment window closed on August 25th.
 - 2026-10-24 · Senate Transportation's hearing on driverless deployment was held on August 25th, and the committee's record of it still reads as before.
+- 2026-10-28 · The committee's archive still lists the hearing. The original notice's testimony instructions remain unconfirmed on a fresh reading.
 
 ## Evidence
 
@@ -100,7 +101,7 @@ Source (primary_official): https://capitol.texas.gov/Committees/MeetingsByCmte.a
 
 ### The committee's own page lists the August 25th hearing in its archive of recorded meetings.
 
-> Video/Audio — Archives 89th Session Interim August 25, 2026
+> 89th Session Interim August 25, 2026
 
 Source (primary_official): https://senate.texas.gov/cmte.php?c=640
 

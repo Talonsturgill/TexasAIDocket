@@ -1,6 +1,6 @@
-# A Texas Senate committee set a hearing on how much water data center cooling uses and whether local water providers are told
+# Texas Senate water committee is assigned a study of data center cooling demand and water affordability
 
-The Senate Committee on Water, Agriculture and Rural Affairs posted notice that it would meet at 9:00 AM on Tuesday, September 1st, 2026 in hearing room E1.012. Senator Charles Perry chairs it. The notice sets one interim charge and says the committee will hear invited and public testimony on it. The charge is to examine current water consumption rates for high consumption cooling technologies including data centers. It directs the committee to make recommendations improving transparency for local water providers. It also tells the committee to weigh industrial growth against water affordability for households and for agricultural producers. The notice limits public testimony to two minutes and routes written testimony to the committee clerk. The sitting the notice set has passed. The committee's meetings page now lists that sitting and a second one the next day, under columns for the hearing notice, minutes and witness list. Neither the notice nor that page says what the committee heard or what it will recommend.
+The Senate Committee on Water, Agriculture and Rural Affairs is assigned a study of water consumption by high-consumption cooling technologies, including data centers. Its published interim charge calls for recommendations to improve transparency for local water providers and protect water affordability for residents and agricultural producers as industry grows. The committee's meeting calendar lists sittings on September 1st and September 2nd, 2026, under columns for hearing notices, minutes and witness lists. Those calendar entries do not establish what testimony was heard or what the committee will recommend.
 
 - Topic: land-water-and-permitting
 - Decided by: Texas Senate Committee on Water, Agriculture and Rural Affairs (state-agency)
@@ -9,7 +9,7 @@ The Senate Committee on Water, Agriculture and Rural Affairs posted notice that 
 - Public access: Write to the decider
 - Take part: https://capitol.texas.gov/Committees/MeetingsByCmte.aspx?Leg=89&Chamber=S&CmteCode=C700
 
-- Last checked: 2026-10-23
+- Last checked: 2026-10-28
 
 ## Dates
 
@@ -36,48 +36,26 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-20 · The Senate water committee's meetings page still shows the September 1st sitting on data center cooling water and the one the next day, and no later sitting. The hearing notice text stays unread, since its path is closed to this project.
 - 2026-10-23 · The Senate water committee's page still shows the September 1st sitting on data center cooling water and the one after it, with no later sitting posted. The notice text stays unread, since its path is closed to this project.
 - 2026-10-26 · The Senate water committee's sittings on data center cooling water read as cited. The hearing notice text is still unread, since its path is closed to this project.
+- 2026-10-28 · Correction. The committee's published charge confirms the data center water study, and its calendar confirms the listed sittings. Earlier hearing-room and testimony instructions have been removed because the old notice could not be reverified from permitted sources.
+- 2026-10-28 · Checked and unchanged. Still pending, with no dated movement.
 
 ## Evidence
 
 Every fact above rests on one of these. The words are the source's own.
 
-### The posted notice states the committee, the hour, the date, the room and the chair.
-
-> COMMITTEE: Water, Agriculture and Rural Affairs TIME & DATE: 9:00 AM, Tuesday, September 1, 2026 PLACE: E1.012 (Hearing Room) CHAIR: Senator Charles Perry
-
-Source (primary_official): https://capitol.texas.gov/tlodocs/89R/schedules/html/C7002026090109001.htm
-
 ### The interim charge names the technology it is examining and what it asks the committee to recommend.
 
 > Assessing the Water Demands of Energy-Intensive Technologies: Examine the current water consumption rates for high-consumption cooling technologies, including data centers. Make recommendations to improve transparency for local water providers and ensure industrial growth does not compromise the affordability of water for Texas residents and agricultural producers.
 
-Source (primary_official): https://capitol.texas.gov/tlodocs/89R/schedules/html/C7002026090109001.htm
+Source (primary_official): https://senate.texas.gov/cmte.php?c=700
 
-### The notice states how long a member of the public may speak.
-
-> Public testimony is limited to 2 minutes.
-
-Source (primary_official): https://capitol.texas.gov/tlodocs/89R/schedules/html/C7002026090109001.htm
-
-### The notice states that the committee will meet and what it will hear.
-
-> The Senate Committee on Water, Agriculture, and Rural Affairs will meet Tuesday, September 1, 2026 at 9:00 am to hear invited and public testimony on the following interim charges
-
-Source (primary_official): https://capitol.texas.gov/tlodocs/89R/schedules/html/C7002026090109001.htm
-
-### The notice tells a member of the public how to submit written testimony.
-
-> If submitting written testimony, please provide 15 copies to the committee clerk with your name and/or the name of your organization on each copy, and email a digital copy to the clerk of the committee
-
-Source (primary_official): https://capitol.texas.gov/tlodocs/89R/schedules/html/C7002026090109001.htm
-
-### The committee's meetings page lists the September 1st sitting the notice set.
+### The committee’s meetings page lists a September 1st sitting.
 
 > September 1, 2026 9:00 AM
 
 Source (primary_official): https://capitol.texas.gov/Committees/MeetingsByCmte.aspx?Leg=89&Chamber=S&CmteCode=C700
 
-### The committee's meetings page now lists a second sitting beside the September 1st one, under columns for the hearing notice, minutes and witness list.
+### The committee’s meetings page lists September 1st and September 2nd sittings under columns for hearing notices, minutes and witness lists.
 
 > Date and Time Hearing Notice Minutes Witness List Handouts Comments September 2, 2026 9:00 AM September 1, 2026 9:00 AM
 

@@ -9,7 +9,7 @@ TCEQ's pending new source review page lists air permit applications whose notice
 - Public access: Write to the decider
 - Take part: https://www.tceq.texas.gov/permitting/air/newsourcereview/airpermits-pendingpermit-apps
 
-- Last checked: 2026-10-24
+- Last checked: 2026-10-28
 
 ## Dates
 
@@ -42,6 +42,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-18 · The agency's list of pending air permit notices still answers, though the quoted entries were not found in it this time, so their wording is unconfirmed.
 - 2026-10-21 · Checked and unchanged. Still pending, with no dated movement.
 - 2026-10-24 · TCEQ's page of pending air permit applications with published notices still carries the data center applications, Crusoe's two campuses among them.
+- 2026-10-28 · Checked and unchanged. Still pending, with no dated movement.
 
 ## Evidence
 
@@ -49,7 +50,7 @@ Every fact above rests on one of these. The words are the source's own.
 
 ### TCEQ requires air permit applicants to publish notice and provide plain language summaries under state rule.
 
-> Air permit applicants are required to publish notice and provide plain language summaries in accordance with 30 TAC Chapter 39 Subchapter H. These documents are available in English and may be required in alternative languages.
+> Air permit applicants are required to publish notice and provide plain language summaries in accordance with 30 TAC Chapter 39 Subchapter H
 
 Source (primary_official): https://www.tceq.texas.gov/permitting/air/newsourcereview/airpermits-pendingpermit-apps
 

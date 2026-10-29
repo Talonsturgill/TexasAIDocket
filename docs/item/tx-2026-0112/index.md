@@ -1,6 +1,6 @@
 # Utility commission approves a 765 kilovolt line from Somervell County to Howard County
 
-The Public Utility Commission of Texas approved an amendment to Oncor's certificate of convenience and necessity for a new 765 kilovolt transmission line. The company's own project page records the decision as approved on August 28th, 2026. The line runs from a proposed switch about 3 miles north of Glen Rose in Somervell County to an existing switch about 4.5 miles west of Forsan in Howard County. Oncor filed the application on February 19th, 2026 under Docket No. 59315. It states the route will run approximately 235 to 270 miles depending on the route chosen, and is planned for completion in 2029. It is a voltage class new to the Texas grid.
+The Public Utility Commission of Texas approved an amendment to Oncor's certificate for a new 765 kilovolt transmission line. The order was filed on August 28th, 2026. The approved route 559 is approximately 242.6 miles long, between the proposed Dinosaur switch near Glen Rose in Somervell County and the existing Longshore switch near Forsan in Howard County. Oncor filed the application on February 19th, 2026. The order records the company's application estimate of completion and energization by June 2029, contingent on approval timing and other factors. The Middle Trinity Groundwater Conservation District filed a motion asking the commission to reconsider its order.
 
 - Topic: power-and-the-grid
 - Decided by: Public Utility Commission of Texas (state-agency)
@@ -9,9 +9,9 @@ The Public Utility Commission of Texas approved an amendment to Oncor's certific
   - Big Spring, TX
 - Status: decided
 - Public access: Closed
-- Take part: https://www.oncor.com/content/oncorwww/us/en/home/about-us/transmission-systems/current-transmission-line-projects/dinosaur-to-longshore-765-kv-transmission-line-project.html
+- Take part: https://interchange.puc.texas.gov/Documents/59315_5819_1678289.PDF
 
-- Last checked: 2026-10-22
+- Last checked: 2026-10-28
 
 ## Dates
 
@@ -45,34 +45,36 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-22 · The commission filing and the Tribune's account still carry the approved route from Somervell County to Howard County. Oncor's project page stays unconfirmed.
 - 2026-10-25 · Oncor's project page for the line from Somervell County to Howard County stays unconfirmed, since its site bars automated readers.
 - 2026-10-26 · Oncor's project page for the line from Somervell County to Howard County is still unconfirmed. Its site bars automated readers.
+- 2026-10-28 · Correction. The official order identifies the approved route and replaces the earlier proposed length range. The construction date is retained as the company's conditional application estimate, and the subsequent rehearing request is recorded without claiming an outcome.
+- 2026-10-28 · Checked and unchanged. The decision still stands as decided.
 
 ## Evidence
 
 Every fact above rests on one of these. The words are the source's own.
 
-### The company's project page records the commission's decision as approved on August 28th, 2026.
+### The official order approving the line was filed on August 28th, 2026.
 
-> PUC Decision – Approved on August 28, 2026.
+> Filed Date - 2026-08-28 02:11:56 PM
 
-Source (primary_corporate): https://www.oncor.com/content/oncorwww/us/en/home/about-us/transmission-systems/current-transmission-line-projects/dinosaur-to-longshore-765-kv-transmission-line-project.html
+Source (primary_official): https://interchange.puc.texas.gov/Documents/59315_5819_1678289.PDF
 
-### The line runs from a switch near Glen Rose in Somervell County to a switch near Forsan in Howard County.
+### The official order identifies the Dinosaur and Longshore switches near Glen Rose and Forsan.
 
-> it proposes to construct a new 765 kilovolt (kV) transmission line from Oncor's proposed Dinosaur Switch, located approximately 3 miles north of the City of Glen Rose in Somervell County, to Oncor's existing Longshore Switch located approximately 4.5 miles west of the City of Forsan in Howard County, Texas (Project).
+> Oncor's Longshore switch is located approximately 4.5 miles west of the city of Forsan in Howard County. 11. Oncor's proposed Dinosaur switch will be located approximately 3 miles north of the city of Glen Rose in Somervell County, directly adjacent to multiple 345-kV circuits.
 
-Source (primary_corporate): https://www.oncor.com/content/oncorwww/us/en/home/about-us/transmission-systems/current-transmission-line-projects/dinosaur-to-longshore-765-kv-transmission-line-project.html
+Source (primary_official): https://interchange.puc.texas.gov/Documents/59315_5819_1678289.PDF
 
-### The route runs approximately 235 to 270 miles and is planned for completion in 2029.
+### The approved route is route 559, approximately 242.6 miles long.
 
-> The proposed transmission line project will be approximately 235-270 miles long depending on the route if approved by the Public Utility Commission of Texas (“PUCT”). The Proposed Transmission Line Project is currently planned for completion in 2029.
+> Route 559, approximately 242.6 miles in length
 
-Source (primary_corporate): https://www.oncor.com/content/oncorwww/us/en/home/about-us/transmission-systems/current-transmission-line-projects/dinosaur-to-longshore-765-kv-transmission-line-project.html
+Source (primary_official): https://interchange.puc.texas.gov/Documents/59315_5819_1678289.PDF
 
-### Oncor filed the application on February 19th, 2026 under Docket No. 59315.
+### Oncor filed its application on February 19th, 2026.
 
-> On February 19, 2026 Oncor filed an Application at the Public Utility Commission of Texas (PUCT) under Docket No. 59315 to construct and operate the proposed project.
+> On February 19, 2026, Oncor filed an application with the Commission to amend its CCN
 
-Source (primary_corporate): https://www.oncor.com/content/oncorwww/us/en/home/about-us/transmission-systems/current-transmission-line-projects/dinosaur-to-longshore-765-kv-transmission-line-project.html
+Source (primary_official): https://interchange.puc.texas.gov/Documents/59315_5819_1678289.PDF
 
 ### The commission authorized more than 400 miles of transmission line at the same sitting.
 
@@ -82,7 +84,7 @@ Source (journalism): https://www.texastribune.org/2026/08/28/transmission-lines-
 
 ### The commission's order adopts the proposal for decision in part and amends Oncor's certificate to include the new line.
 
-> The Commission adopts the proposal for decision in part and rejects it in part, including findings of fact and conclusions of law, and amends Oncor's CCN number 30043 to include the construction and operation of the proposed transmission facilities
+> The Commission adopts the proposal for decision in part and rejects it in part, including findings of fact and conclusions of law, and amends Oncor's CCN number 30043 to include the construction and operation of the proposed transmission facilities, including a 765-kV single- circuit transmission line along route 559
 
 Source (primary_official): https://interchange.puc.texas.gov/Documents/59315_5819_1678289.PDF
 
@@ -91,4 +93,10 @@ Source (primary_official): https://interchange.puc.texas.gov/Documents/59315_581
 > The Middle Trinity Groundwater Conservation District (the "District") files this Motion for Rehearing
 
 Source (primary_official): https://interchange.puc.texas.gov/Documents/59315_5840_1685751.PDF
+
+### The order records Oncor’s application estimate for completion and energization by June 2029, contingent on approval timing and other factors.
+
+> In the application, Oncor estimated that it would acquire all rights-of-way by June 2027, finalize engineering and design by January 2028, procure material and equipment by May 2029, complete construction by June 2029, and energize the proposed transmission facilities by June 2029. Oncor's estimates were premised on the Commission's approval ofthe application within 180 days ofthe application's filing and numerous other factors.
+
+Source (primary_official): https://interchange.puc.texas.gov/Documents/59315_5819_1678289.PDF
 

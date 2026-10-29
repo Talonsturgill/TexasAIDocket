@@ -1,6 +1,6 @@
 # Amazon selects Austin for a factory building the robotics systems used in its warehouses, and the mayor says no incentives were requested
 
-Amazon announced a new manufacturing facility in Austin that will produce the robotics systems used in its fulfillment operations. The Office of the Governor announced the same siting and put it at 300 to 500 new jobs in manufacturing and engineering. Austin Mayor Kirk Watson is quoted in Amazon's own release saying the company asked for no economic incentives and no public money. That sets this apart from most large technology sitings the record carries.
+Amazon announced a new manufacturing facility in Austin that will produce the robotics systems used in its fulfillment operations. The company states it will create 300 to 500 jobs in manufacturing and engineering. Austin Mayor Kirk Watson is quoted in Amazon's release saying the company asked for no economic incentives and no public money.
 
 - Topic: state-policy
 - Decided by: Office of the Texas Governor (governor)
@@ -11,7 +11,7 @@ Amazon announced a new manufacturing facility in Austin that will produce the ro
 - Public access: Write to the decider
 - Take part: https://press.aboutamazon.com/2026/8/amazon-announces-new-manufacturing-facility-in-austin-texas
 
-- Last checked: 2026-10-22
+- Last checked: 2026-10-28
 
 ## Dates
 
@@ -45,6 +45,8 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-22 · Amazon's own announcement of the Austin robotics factory still reads as published. The Governor's release stays unconfirmed.
 - 2026-10-25 · The Governor's release on Amazon's Austin robotics factory stays unconfirmed, since the office's site bars automated readers.
 - 2026-10-26 · The Governor's release on Amazon's Austin robotics factory is still unconfirmed. The office's site bars automated readers.
+- 2026-10-28 · Correction. The siting and job range are attributed to Amazon's own announcement. The separate state-announcement quotation has been removed because it could not be reverified from permitted sources.
+- 2026-10-28 · Checked and unchanged. The decision still stands as decided.
 
 ## Evidence
 
@@ -62,15 +64,9 @@ Source (primary_corporate): https://press.aboutamazon.com/2026/8/amazon-announce
 
 Source (primary_corporate): https://press.aboutamazon.com/2026/8/amazon-announces-new-manufacturing-facility-in-austin-texas
 
-### The state announced the siting.
+### Amazon states the facility’s manufacturing and engineering job range.
 
-> Governor Greg Abbott today announced Amazon has selected Austin as the site of a new robotics manufacturing facility.
+> the new facility will create 300 - 500 high-paying jobs in manufacturing and engineering
 
-Source (primary_official): https://gov.texas.gov/news/post/governor-abbott-announces-amazon-expansion-in-austin
-
-### The state gives the job range for the facility.
-
-> 300–500 new jobs in manufacturing and engineering.
-
-Source (primary_official): https://gov.texas.gov/news/post/governor-abbott-announces-amazon-expansion-in-austin
+Source (primary_corporate): https://press.aboutamazon.com/2026/8/amazon-announces-new-manufacturing-facility-in-austin-texas
 

@@ -11,7 +11,7 @@ The Williamson County Commissioners Court approved a Chapter 312 tax abatement i
 - Public access: Write to the decider
 - Take part: https://www.wilcotx.gov/m/newsflash/Home/Detail/789
 
-- Last checked: 2026-10-05
+- Last checked: 2026-10-28
 
 ## Dates
 
@@ -49,6 +49,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-24 · Williamson County's abatement for the Compal server plant in Georgetown is unconfirmed today, since the county's own notice refused the request.
 - 2026-10-25 · Williamson County's abatement for the Compal server plant in Georgetown stays unconfirmed. The county's notice still turns away every reader.
 - 2026-10-26 · The Williamson County abatement for Compal's Georgetown server plant is still unconfirmed. The county's notice refuses every reader.
+- 2026-10-28 · Checked and unchanged. The decision still stands as decided.
 
 ## Evidence
 

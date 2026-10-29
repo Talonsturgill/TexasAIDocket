@@ -1,6 +1,6 @@
-# House Public Health held an interim hearing on artificial intelligence use in health care
+# House Public Health is assigned studies of clinical AI and artificial intelligence's effects on minors
 
-The Texas House Committee on Public Health met on August 20th, 2026 on a charge about clinical artificial intelligence. It directs the committee to study the use of artificial intelligence in the health care system to improve access and quality and efficiency of care. The same charge tells the committee to evaluate potential risks to patient safety and privacy and access to care for Texans. A second charge on the same agenda covers what social media platforms and artificial intelligence technologies do to the mental health and the cognitive development of minors. This is the committee that would write any statute governing clinical AI in the next session. Clinical AI is already running in Texas hospitals.
+The Texas House Committee on Public Health is assigned an interim study of artificial intelligence in health care. The charge directs it to study access, quality and efficiency of care while evaluating risks to patient safety, privacy and access for Texans. Another interim charge covers the effects of social media platforms and artificial intelligence technologies on minors' mental health, cognitive development and behavioral well-being. The committee's calendar lists an August 20th, 2026 sitting, but that listing does not establish which testimony was heard.
 
 - Topic: health-and-education
 - Decided by: Texas House Committee on Public Health (legislature)
@@ -9,7 +9,7 @@ The Texas House Committee on Public Health met on August 20th, 2026 on a charge 
 - Public access: Write to the decider
 - Take part: https://capitol.texas.gov/Committees/MeetingsByCmte.aspx?Leg=89&Chamber=H&CmteCode=C410
 
-- Last checked: 2026-10-23
+- Last checked: 2026-10-28
 
 ## Dates
 
@@ -42,6 +42,8 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-20 · House Public Health still lists the August 20th sitting on AI in health care as its latest, with nothing later posted. The charge wording stays unconfirmed.
 - 2026-10-23 · House Public Health's latest posted sitting is still the August 20th hearing on AI in health care. No interim report has appeared, and the charge wording stays unconfirmed.
 - 2026-10-26 · The House Public Health hearing on AI in health care reads as cited on the committee page. The charge wording is still unconfirmed on a host that bars automated readers.
+- 2026-10-28 · Correction. The clinical AI and youth-health studies are confirmed in the House's published interim charges. The calendar confirms a sitting, without establishing which subjects were heard there.
+- 2026-10-28 · Checked and unchanged. Still pending, with no dated movement.
 
 ## Evidence
 
@@ -55,13 +57,13 @@ Source (primary_official): https://capitol.texas.gov/Committees/MeetingsByCmte.a
 
 ### The charge states what the committee is directed to study about clinical AI.
 
-> Charge: Artificial Intelligence Use in Health Care: Study the use of artificial intelligence in the health care system to improve access, quality, and efficiency of care, while evaluating potential risks to patient safety, privacy, and access to care for Texans.
+> Artificial Intelligence Use in Health Care: Study the use of artificial intelligence in the health care system to improve access, quality, and efficiency of care, while evaluating potential risks to patient safety, privacy, and access to care for Texans.
 
-Source (primary_official): https://lrl.texas.gov/whatsNew/client/index.cfm/2026/8/12/Interim-Hearings--Week-of-August-17-2026
+Source (primary_official): https://www.house.texas.gov/pdfs/speaker/F-Interim-Charges-3.25.pdf
 
-### A second charge on the same agenda reaches minors.
+### Another Public Health interim charge directs the committee to study social media and artificial intelligence effects on minors.
 
-> Charge: Social Media’s Impact on Youth Health and Well-Being: Study the impact of social media platforms and artificial intelligence technologies on the mental health, cognitive development, and behavioral well-being of minors in Texas.
+> Social Media’s Impact on Youth Health and Well-Being: Study the impact of social media platforms and artificial intelligence technologies on the mental health, cognitive development, and behavioral well-being of minors in Texas.
 
-Source (primary_official): https://lrl.texas.gov/whatsNew/client/index.cfm/2026/8/12/Interim-Hearings--Week-of-August-17-2026
+Source (primary_official): https://www.house.texas.gov/pdfs/speaker/F-Interim-Charges-3.25.pdf
 

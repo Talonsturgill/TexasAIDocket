@@ -1,6 +1,6 @@
 # Memorial Hermann clinicians send Houston patients an AI drafted explanation of their own test results
 
-Memorial Hermann Health System says its clinicians are using an artificial intelligence assistant built into Epic to draft the note a patient receives with a lab or imaging result. The draft is written in plain language rather than clinical terms and the clinician can review, edit and personalize it before sharing it with the patient. The health system reports that patients sent 32% fewer follow up messages about test results when the clinician started from the draft. It reports the tool has helped care teams write over 55,000 messages and that clinicians starting from a draft saved an average of nine seconds per result comment. The feature was piloted in December of 2025 in the system's innovation clinic and use has since expanded across the system. A health system trade publication that read the same announcement noted every one of those figures comes from the software vendor and its customer. No baseline, control arm or denominator is published beside them, and the share describes only the clinicians who chose to work from a draft. The system's chief medical information officer says the technology is designed to support rather than replace the clinician's judgment.
+Memorial Hermann Health System says its clinicians are using an artificial intelligence assistant built into Epic to draft the note a patient receives with a lab or imaging result. The draft is written in plain language rather than clinical terms and the clinician can review, edit and personalize it before sharing it with the patient. The health system reports that patients sent 32% fewer follow up messages about test results when the clinician started from the draft. It reports the tool has helped care teams write over 55,000 messages and that clinicians starting from a draft saved an average of nine seconds per result comment. The feature was piloted in December of 2025 in the system's innovation clinic and use has since expanded across the system. The system's chief medical information officer says the technology is designed to support rather than replace the clinician's judgment.
 
 - Topic: health-and-education
 - Decided by: Memorial Hermann Health System (company)
@@ -11,7 +11,7 @@ Memorial Hermann Health System says its clinicians are using an artificial intel
 - Public access: Write to the decider
 - Take part: https://www.prnewswire.com/news-releases/memorial-hermann-health-system-clinicians-use-epics-ai-tool-to-help-patients-better-understand-test-results-302870772.html
 
-- Last checked: 2026-10-22
+- Last checked: 2026-10-28
 
 ## Dates
 
@@ -35,6 +35,8 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-22 · Memorial Hermann's release still has a clinician editing the AI draft before a patient reads it. The trade press account stays unconfirmed.
 - 2026-10-25 · The trade press account of Memorial Hermann's AI drafted results stays unconfirmed, since its site bars automated readers.
 - 2026-10-26 · The trade press account of Memorial Hermann's AI drafted results explanations is still unconfirmed. That site bars automated readers.
+- 2026-10-28 · Correction. The trade publication's assessment has been removed because its quotations could not be reverified from permitted sources. The reported results remain attributed to the health system's announcement.
+- 2026-10-28 · Checked and unchanged. The decision still stands as decided.
 
 ## Evidence
 
@@ -87,16 +89,4 @@ Source (primary_corporate): https://www.prnewswire.com/news-releases/memorial-he
 > This technology is designed to support, not replace, the role of the clinician's judgment and relationship with the patient.
 
 Source (primary_corporate): https://www.prnewswire.com/news-releases/memorial-hermann-health-system-clinicians-use-epics-ai-tool-to-help-patients-better-understand-test-results-302870772.html
-
-### A trade publication names what the published figures do not establish.
-
-> All three figures come from Epic and its customer. No baseline, control arm or denominator accompanies them.
-
-Source (journalism): https://healthsystemcio.com/2026/09/10/in-basket-ai-wrong-metric/
-
-### The same publication names who the reported share was measured on.
-
-> Specifically, the 32% describes clinicians who chose to work from a draft.
-
-Source (journalism): https://healthsystemcio.com/2026/09/10/in-basket-ai-wrong-metric/
 

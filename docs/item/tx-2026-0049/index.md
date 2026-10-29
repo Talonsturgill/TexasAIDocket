@@ -11,7 +11,7 @@ Harris County Commissioners Court approved a renewal option with Flock Group, In
 - Public access: Public meeting
 - Take part: https://agenda.harriscountytx.gov/
 
-- Last checked: 2026-10-22
+- Last checked: 2026-10-28
 
 ## Dates
 
@@ -49,6 +49,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-22 · Harris County's legislative record still carries the Flock renewal and the amendment that followed it. The station's report stays unconfirmed, since its site bars automated readers.
 - 2026-10-25 · Harris County's Flock renewal stays unconfirmed today on the station's report, which bars automated readers.
 - 2026-10-26 · Harris County's renewal of the Flock plate reader license is still unconfirmed on the station's report, which bars automated readers.
+- 2026-10-28 · Checked and unchanged. The decision still stands as decided.
 
 ## Evidence
 
@@ -74,7 +75,7 @@ Source (primary_official): https://webapi.legistar.com/v1/harriscountytx/matters
 
 ### The county judge abstained and the renewal carried with four votes.
 
-> The contract ultimately passed with four votes. Hidalgo abstained.
+> [{"VoteId":184585,"VoteGuid":"9111753D-7389-445C-8C9B-FF4BC4F685F0","VoteLastModifiedUtc":"2026-06-08T15:34:38.223","VoteRowVersion":"AAAAAAaBy3s=","VotePersonId":202,"VotePersonName":"Lina Hidalgo","VoteValueId":21,"VoteValueName":"Abstain","VoteSort":1,"VoteResult":0,"VoteEventItemId":188649},{"VoteId":184586,"VoteGuid":"9F1EBED4-6AD2-41E3-8558-F005AC2FE507","VoteLastModifiedUtc":"2026-06-08T15:34:38.227","VoteRowVersion":"AAAAAAaBy3Y=","VotePersonId":203,"VotePersonName":"Rodney Ellis","VoteValueId":16,"VoteValueName":"Aye","VoteSort":4,"VoteResult":1,"VoteEventItemId":188649},{"VoteId":184587,"VoteGuid":"1D0A2EA3-4CFA-4989-9EC7-2C59A7638414","VoteLastModifiedUtc":"2026-06-08T15:34:38.227","VoteRowVersion":"AAAAAAaBy3c=","VotePersonId":204,"VotePersonName":"Adrian Garcia","VoteValueId":16,"VoteValueName":"Aye","VoteSort":5,"VoteResult":1,"VoteEventItemId":188649},{"VoteId":184588,"VoteGuid":"795CD779-9C8A-47BA-B3C6-48E662D1C832","VoteLastModifiedUtc":"2026-06-08T15:34:38.227","VoteRowVersion":"AAAAAAaBy3g=","VotePersonId":228,"VotePersonName":"Tom  S. Ramsey, P.E.","VoteValueId":16,"VoteValueName":"Aye","VoteSort":9,"VoteResult":1,"VoteEventItemId":188649},{"VoteId":184589,"VoteGuid":"15F02B67-EA47-4001-B8BC-CC57B04A9AA8","VoteLastModifiedUtc":"2026-06-08T15:34:38.23","VoteRowVersion":"AAAAAAaBy3k=","VotePersonId":617,"VotePersonName":"Lesley Briones","VoteValueId":16,"VoteValueName":"Aye","VoteSort":11,"VoteResult":1,"VoteEventItemId":188649}]
 
-Source (journalism): https://www.click2houston.com/news/local/2026/05/29/'y'all-are-playing-games':-discussion-over-harris-county's-flock-camera-contract-renewal-turns-tense/
+Source (primary_official): https://webapi.legistar.com/v1/harriscountytx/eventitems/188649/votes
 

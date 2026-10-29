@@ -11,7 +11,7 @@ Laredo City Council declined to impose a temporary moratorium on data center per
 - Public access: Public meeting
 - Take part: https://cityoflaredo.legistar.com/Calendar.aspx
 
-- Last checked: 2026-10-22
+- Last checked: 2026-10-28
 
 ## Dates
 
@@ -48,6 +48,8 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-22 · Laredo's council records still show the moratorium turned down and staff sent to write permanent rules. The station's account stays unconfirmed, since its site bars automated readers.
 - 2026-10-25 · Laredo's council action on the moratorium stays unconfirmed today. The station that reported it still bars automated readers.
 - 2026-10-26 · Laredo's council vote against a data center moratorium is still unconfirmed on the station's report, which bars automated readers.
+- 2026-10-28 · Correction. A previously attributed call for a moratorium has been removed because its quotation could not be reverified from permitted sources. The official council history remains available.
+- 2026-10-28 · Checked and unchanged. Still open, with no dated movement.
 
 ## Evidence
 
@@ -76,12 +78,6 @@ Source (journalism): https://www.govtech.com/artificial-intelligence/laredo-texa
 > It is about ensuring that growth is responsible, sustainable, and in the best long-term interests of our community.
 
 Source (journalism): https://www.govtech.com/artificial-intelligence/laredo-texas-moves-to-set-permanent-data-center-standards
-
-### Before the final direction, a council member had publicly called for a moratorium modeled on Harlingen's.
-
-> we need a moratorium on data centers for Laredo, just like the City of Harlingen did... to write the rules for any potential applications that we get.
-
-Source (journalism): https://www.kgns.tv/2026/07/31/laredo-council-moves-freeze-data-center-applications-amid-regulatory-gap/
 
 ### The city files the direction as a council item naming high intensity data processing facilities and listing what staff is asked to evaluate.
 

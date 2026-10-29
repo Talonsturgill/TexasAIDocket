@@ -11,7 +11,7 @@ The National Science Foundation has made a Science and Technology Center award t
 - Public access: Write to the decider
 - Take part: https://api.nsf.gov/services/v1/awards.json?id=2535195&printFields=id,title,awardeeName,awardeeStateCode,awardeeCity,piFirstName,piLastName,date,startDate,expDate,estimatedTotalAmt,fundsObligatedAmt,abstractText,fundProgramName
 
-- Last checked: 2026-10-24
+- Last checked: 2026-10-28
 
 ## Dates
 
@@ -36,6 +36,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-18 · The UT Austin center for assistive robots in occupied homes and workplaces is still funded.
 - 2026-10-21 · Checked and unchanged. The decision still stands as decided.
 - 2026-10-24 · The NSF funded UT Austin center for assistive robots in homes, workplaces and care facilities is still active.
+- 2026-10-28 · Checked and unchanged. The decision still stands as decided.
 
 ## Evidence
 

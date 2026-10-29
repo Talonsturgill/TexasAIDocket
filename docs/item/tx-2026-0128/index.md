@@ -11,7 +11,7 @@ At its September 1st, 2026 meeting the Brownsville City Commission considered st
 - Public access: Public meeting
 - Take part: https://www.brownsvilletx.gov/m/newsflash/home/detail/3425
 
-- Last checked: 2026-10-05
+- Last checked: 2026-10-28
 
 ## Dates
 
@@ -37,6 +37,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-24 · Brownsville's temporary data center moratorium is unconfirmed today, since the city's notice refused the request.
 - 2026-10-25 · Brownsville's temporary data center moratorium stays unconfirmed. The city's notice still turns away every reader.
 - 2026-10-26 · Brownsville's temporary data center moratorium is still unconfirmed. The city's notice refuses every reader.
+- 2026-10-28 · Checked and unchanged. Still pending, with no dated movement.
 
 ## Evidence
 

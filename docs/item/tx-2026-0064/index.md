@@ -11,7 +11,7 @@ The Texas Commission on Environmental Quality's executive director finished tech
 - Public access: Write to the decider
 - Take part: https://www.tceq.texas.gov/downloads/permitting/air/bilingual/pending-permit-notices/182126-napd-english.pdf
 
-- Last checked: 2026-10-24
+- Last checked: 2026-10-28
 
 ## Dates
 
@@ -47,14 +47,16 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-18 · Crusoe's gas plant permit for the Abilene campus still stands at the preliminary decision, with the comment route as listed.
 - 2026-10-21 · Checked and unchanged. Still open, with no dated movement.
 - 2026-10-24 · TCEQ's preliminary decision on Crusoe's gas plant at the Abilene campus still stands as published.
+- 2026-10-28 · The permit notice still identifies the applicant, proposed permits and Abilene facility address.
+- 2026-10-28 · Checked and unchanged. Still open, with no dated movement.
 
 ## Evidence
 
 Every fact above rests on one of these. The words are the source's own.
 
-### Crusoe Technologies LLC has applied for three air permits authorizing an electric power generation facility at the Abilene data center campus address in Taylor County.
+### Crusoe Technologies LLC has applied for three air permits authorizing an electric power generation facility at the stated Abilene address in Taylor County.
 
-> Crusoe Technologies LLC, 255 Fillmore Street, Denver, CO 80206-5030, has applied to the Texas Commission on Environmental Quality (TCEQ) for issuance of proposed State Air Quality Permit 182126, issuance of Prevention of Significant Deterioration (PSD) Air Quality Permit PSDTX1688, and issuance of Greenhouse Gas (GHG) PSD Air Quality Permit GHGPSDTX263 for emissions of GHGs, which would authorize construction of an electric power generation facility located at 615 Farm-to-Market Road 2404, Abilene, Taylor County, Texas 79601.
+> Crusoe Technologies LLC, 255 Fillmore Street, Denver, CO 80206- 5030, has applied to the Texas Commission on Environmental Quality (TCEQ) for issuance of proposed State Air Quality Permit 182126, issuance of Prevention of Significant Deterioration (PSD) Air Quality Permit PSDTX1688, and issuance of Greenhouse Gas (GHG) PSD Air Quality Permit GHGPSDTX263 for emissions of GHGs, which would authorize construction of an electric power generation facility located at 615 Farm-to-Market Road 2404, Abilene, Taylor County, Texas 79601.
 
 Source (primary_official): https://www.tceq.texas.gov/downloads/permitting/air/bilingual/pending-permit-notices/182126-napd-english.pdf
 
