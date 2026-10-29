@@ -85,6 +85,7 @@
       paintDusty: new THREE.MeshPhysicalMaterial({ color: 0xdcded9, map: dustMap(THREE), roughness: 0.55, metalness: 0.0, bumpMap: b, bumpScale: 0.6 }),
       machined: new THREE.MeshStandardMaterial({ color: 0x9da2a6, roughness: 0.3, metalness: 0.85 }),
       galv: new THREE.MeshStandardMaterial({ color: 0xa3a8ab, roughness: 0.5, metalness: 0.55 }),
+      galvLit: new THREE.MeshStandardMaterial({ color: 0xd3d7d9, roughness: 0.3, metalness: 0.4 }),
       bolt: new THREE.MeshStandardMaterial({ color: 0x55595d, roughness: 0.45, metalness: 0.7 }),
       /* the accent holds its own hex as emission with a dim albedo under it, so the rim still turns with the light and
        * reads as paint, and the tone curve can't grey it (queue tone-curve-greys-a-thin-accent) */
@@ -123,7 +124,8 @@
         /* the foot flange, flush: 4 cm proud of the shell with a chamfered top edge, the one lit tick per section */
         var ro = r0 + 0.04;
         var prof = [[r0 - 0.1, 0], [ro, 0], [ro, FT - 0.02], [ro - 0.02, FT], [r0 - 0.1, FT]].map(function (p) { return new THREE.Vector2(p[0], p[1]); });
-        var fl = new THREE.Mesh(new THREE.LatheGeometry(prof, 128), M.machined); g.add(fl);
+        /* a galvanized flange is lighter and less mirror-like than machined steel, so it catches the key as a lit tick */
+        var fl = new THREE.Mesh(new THREE.LatheGeometry(prof, 128), o.rim === "plan" ? M.machined : M.galvLit); g.add(fl);
         if (o.rim === "plan") {
           /* a painted band on the shell just above the flange, flush, as a planned can would carry a mark */
           var bh = 0.14, rb = r0 - TAPER * (FT + bh / 2) + 0.004;
@@ -170,7 +172,7 @@
       }
     });
 
-    /* A SURVEY LATH, pine, a painted top and a strip of flagging in the accent, 1.2 m tall. Drawn to illustrate. */
+    /* A SURVEY LATH, pine, its top painted and a strip of flagging hung, both in the accent, 1.2 m tall. Drawn to illustrate. */
     K.define("survey_stake", {
       anchor: "base",
       size: [0.3, 1.2, 0.05],
@@ -178,14 +180,13 @@
       note: "A pine survey lath, 1.2 m, with flagging in the accent. Drawn to illustrate.",
       make: function (o) {
         var g = new THREE.Group();
-        var paint = K.mat("cp_stake_paint", { color: 0xe0dccf, roughness: 0.6 });
         var lath = TXT.roundedBox(0.045, 1.2, 0.012, 0.003, M.pine); lath.position.y = 0.6; g.add(lath);
-        var top = TXT.roundedBox(0.047, 0.1, 0.014, 0.003, paint); top.position.y = 1.14; g.add(top);
+        var top = TXT.roundedBox(0.047, 0.26, 0.014, 0.003, M.rimPlan); top.position.y = 1.07; g.add(top);
         if (o.flag) {
-          var fg = new THREE.PlaneGeometry(0.035, 0.42, 1, 10), pos = fg.attributes.position;
-          for (var i = 0; i < pos.count; i++) { var yy = pos.getY(i); pos.setX(i, pos.getX(i) + Math.sin((yy + 0.21) * 8) * 0.025); pos.setZ(i, (0.21 - yy) * 0.3); }
+          var fg = new THREE.PlaneGeometry(0.05, 0.6, 1, 12), pos = fg.attributes.position;
+          for (var i = 0; i < pos.count; i++) { var yy = pos.getY(i); pos.setX(i, pos.getX(i) + Math.sin((yy + 0.3) * 7) * 0.03); pos.setZ(i, (0.3 - yy) * 0.3); }
           fg.computeVertexNormals();
-          var f = new THREE.Mesh(fg, M.flag); f.position.set(0.035, 0.92, 0.02); f.rotation.y = 0.7; g.add(f);
+          var f = new THREE.Mesh(fg, M.flag); f.position.set(0.04, 0.84, 0.02); f.rotation.y = 0.7; g.add(f);
         }
         g.rotation.z = o.lean || 0;
         return shade(g);
@@ -210,6 +211,70 @@
         var sh = new THREE.Mesh(new THREE.TorusGeometry(0.019, 0.0045, 6, 16, Math.PI), M.chain); sh.position.set(0, 0.226, 0.01); g.add(sh);
         var tag = TXT.roundedBox(0.03, 0.045, 0.002, 0.002, M.rimPlan); tag.position.set(0.01, 0.155, 0.02); tag.rotation.z = 0.2; g.add(tag);
         return shade(g);
+      }
+    });
+
+    /* A TRANSFORMER'S RADIATOR BANK, close enough to crop: weathered galvanized fins hung on two headers, the tank wall
+     * behind them with its stiffeners and lid flange, cooling fans beneath, on a concrete pad with its curb. The fins run
+     * along z and the tank wall is on -x. Drawn at a plausible size for an autotransformer, no rating printed. */
+    K.define("radiator_bank", {
+      size: [3.4, 4.9, 4.8],
+      options: { fins: 22, pitch: 0.11 },
+      note: "A transformer radiator bank on its tank wall and pad. fins, pitch (m). Drawn to illustrate.",
+      make: function (o) {
+        var g = new THREE.Group(), nF = o.fins || 22, pitch = o.pitch || 0.11, finW = 0.78, finH = 3.1, y0 = 1.25;
+        var skin = M.galv.clone(); skin.color.set(0x9aa0a3); skin.metalness = 0.82; skin.roughness = 0.46; skin.map = dustMap(THREE);
+        var conc = K.mat("cp_pad_conc", { color: 0x9c968c, roughness: 0.9 });
+        var finG = new THREE.BoxGeometry(finW, finH, 0.014), list = [];
+        for (var i = 0; i < nF; i++) list.push([0, y0 + finH / 2, (i - (nF - 1) / 2) * pitch, 0, 1]);
+        K.instances(finG, skin, list, g);
+        [y0 + 0.08, y0 + finH - 0.08].forEach(function (yy) { var h = new THREE.Mesh(new THREE.CylinderGeometry(0.075, 0.075, nF * pitch + 0.2, 16), skin); h.rotation.x = Math.PI / 2; h.position.set(-finW / 2 - 0.12, yy, 0); g.add(h); });
+        var tank = TXT.roundedBox(0.3, 4.4, 3.6, 0.04, skin); tank.position.set(-finW / 2 - 0.4, 0.45 + 2.2, 0); g.add(tank);
+        for (var k = -3; k <= 3; k++) { var rib = new THREE.Mesh(new THREE.BoxGeometry(0.12, 4.2, 0.1), skin); rib.position.set(-finW / 2 - 0.2, 0.45 + 2.15, k * 0.55); g.add(rib); }
+        var lid = TXT.roundedBox(0.5, 0.14, 3.8, 0.03, skin); lid.position.set(-finW / 2 - 0.4, 0.45 + 4.4, 0); g.add(lid);
+        for (var f = 0; f < 2; f++) { var fan = new THREE.Mesh(new THREE.CylinderGeometry(0.45, 0.45, 0.3, 24, 1, true), M.bolt); fan.position.set(0, y0 - 0.35, (f - 0.5) * 1.2); g.add(fan); }
+        var pad = TXT.roundedBox(3.4, 0.35, 4.8, 0.05, conc); pad.position.set(-0.6, 0.175, 0); g.add(pad);
+        /* three porcelain bushings on the tank lid, so the bank reads as a transformer's */
+        var porc = K.mat("cp_porcelain", { color: 0x6b4a36, roughness: 0.25, clearcoat: 0.8 });
+        for (var b2 = -1; b2 <= 1; b2++) {
+          var bush = new THREE.Group();
+          for (var sk = 0; sk < 5; sk++) { var d = new THREE.Mesh(new THREE.CylinderGeometry(0.13, 0.13, 0.04, 18), porc); d.position.y = 0.08 + sk * 0.11; bush.add(d); }
+          var core = new THREE.Mesh(new THREE.CylinderGeometry(0.06, 0.08, 0.66, 12), porc); core.position.y = 0.33; bush.add(core);
+          bush.position.set(-finW / 2 - 0.15, 0.45 + 4.5, b2 * 0.9); g.add(bush);
+        }
+        return shade(g);
+      }
+    });
+
+    /* A ROW OF LIT INTAKE BAYS for a data hall's long wall: n louvred bays across a given length, each a warm glowing
+     * panel behind raked slats, and `lit` decides the glow, the bay at index i lit to min(1, max(0, lit - i)), so a
+     * fractional count lights its last bay to its fraction. Faces +z. Drawn to illustrate. */
+    K.define("intake_bays", {
+      anchor: "base",
+      size: [150, 7.6, 0.5],
+      options: { n: 10, lit: 10, length: 150, height: 6.2, glow: 0.9 },
+      note: "n louvred intake bays across length m, lit by count, a fractional last bay filled from the bottom like a gauge, warm spill in front. Faces +z. Drawn to illustrate.",
+      make: function (o) {
+        var g = new THREE.Group(), n = Math.max(1, Math.round(o.n)), L = o.length || 150, hB = o.height || 6.2, bw = L / n, wB = bw * 0.62;
+        var slat = K.mat("cp_bay_slat", { color: 0x2a2c2e, roughness: 0.6, metalness: 0.4 }), slatG = new THREE.BoxGeometry(wB, 0.12, 0.28), centres = [];
+        for (var i = 0; i < n; i++) {
+          var k = Math.max(0, Math.min(1, o.lit - i)), cx = -L / 2 + (i + 0.5) * bw;
+          var glow = new THREE.MeshStandardMaterial({ color: 0x1a1410, emissive: 0xff9448, emissiveIntensity: (o.glow || 0.9) * k, toneMapped: false });
+          /* a part-lit bay fills from the bottom to its fraction like a gauge, the rest of it dark glass, so the
+           * fraction reads at feed size where a uniform dimming would not */
+          var hL = hB * (k > 0 && k < 1 ? k : 1), on = k > 0 ? 1 : 0;
+          var p = new THREE.Mesh(new THREE.PlaneGeometry(wB, hL), on ? new THREE.MeshStandardMaterial({ color: 0x1a1410, emissive: 0xff9448, emissiveIntensity: (o.glow || 0.9), toneMapped: false }) : glow);
+          p.position.set(cx, 1.4 + hL / 2, 0); g.add(p);
+          if (hL < hB) { var dk = new THREE.Mesh(new THREE.PlaneGeometry(wB, hB - hL), glow); dk.material.emissiveIntensity = 0; dk.position.set(cx, 1.4 + hL + (hB - hL) / 2, 0); g.add(dk); }
+          if (on) { var spill = new THREE.PointLight(0xff9a50, 6 * Math.max(k, 0.5), 14, 2); spill.position.set(cx, 1.6, 2.2); g.add(spill); }
+          var list = [];
+          for (var j = 0; j < 9; j++) list.push([cx, 1.4 + 0.35 + j * (hB - 0.7) / 8, 0.16, 0, 1]);
+          var sl = K.instances(slatG, slat, list, g);
+          centres.push([cx, 1.4 + hB / 2, 0]);
+        }
+        g.userData.bays = centres;
+        g.userData.keepOrigin = true;
+        return g;
       }
     });
   };
