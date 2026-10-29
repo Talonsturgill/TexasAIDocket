@@ -1,6 +1,6 @@
-# House State Affairs held an interim hearing on data center development and the proposed 765 kV transmission lines
+# House State Affairs is assigned a study of data center development, SB 6 and ERCOT's large load process
 
-The Texas House Committee on State Affairs met on August 19th, 2026 on two interim charges. The first directs it to study the development of data centers in Texas and to review the regulatory framework governing that development. It also directs it to study the implementation of SB 6 and the Large Load Batch Study Process proposed by ERCOT as it relates to data centers. The second directs it to review the regulatory and planning processes regarding the proposed 765 kV transmission lines. Those are the same lines the commission has two Oncor applications for. The committee's product is a report to the next Legislature rather than an order, so nothing binds until the session convenes in January 2027.
+The Texas House Committee on State Affairs is assigned an interim study of data center development in Texas. The charge directs it to review the regulatory framework and recommend ways to streamline regulations while enabling communities to plan and manage growth responsibly. It also directs a study of SB 6 implementation and ERCOT's proposed Large Load Batch Study Process, including how grid-connected data centers and co-located resources can support grid reliability. Separately, the committee's meeting archive lists sittings on August 19th, September 14th and September 15th, 2026. Those calendar entries do not establish which testimony the committee heard.
 
 - Topic: data-centers
 - Decided by: Texas House Committee on State Affairs (legislature)
@@ -9,7 +9,7 @@ The Texas House Committee on State Affairs met on August 19th, 2026 on two inter
 - Public access: Write to the decider
 - Take part: https://capitol.texas.gov/Committees/MeetingsByCmte.aspx?Leg=89&Chamber=H&CmteCode=C450
 
-- Last checked: 2026-10-23
+- Last checked: 2026-10-28
 
 ## Dates
 
@@ -42,6 +42,8 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-20 · House State Affairs still lists the August 19th sitting and the two September sittings after it, and has posted no later meeting. The charge wording on the Legislative Reference Library page stays unconfirmed.
 - 2026-10-23 · House State Affairs still lists the August 19th sitting and the two September sittings after it, with no later meeting and no interim report posted. The charge wording stays unconfirmed.
 - 2026-10-26 · The committee page for House State Affairs reads as cited. The charge wording on the Legislature's interim pages is still unconfirmed, since that host bars automated readers.
+- 2026-10-28 · Correction. The data center study is confirmed in the House's published interim charges. the meeting calendar does not establish what was heard at a particular sitting. The separately attributed transmission-line charge has been removed because it could not be reverified from permitted sources.
+- 2026-10-28 · Checked and unchanged. Still pending, with no dated movement.
 
 ## Evidence
 
@@ -55,21 +57,15 @@ Source (primary_official): https://capitol.texas.gov/Committees/MeetingsByCmte.a
 
 ### The data center charge states what the committee is directed to study.
 
-> Charge: Data Centers: Study the development of data centers in Texas, including its importance to global competitiveness and national security.
+> Data Centers: Study the development of data centers in Texas, including its importance to global competitiveness and national security.
 
-Source (primary_official): https://lrl.texas.gov/whatsNew/client/index.cfm/2026/8/12/Interim-Hearings--Week-of-August-17-2026
+Source (primary_official): https://www.house.texas.gov/pdfs/speaker/F-Interim-Charges-3.25.pdf
 
-### The same charge reaches the existing regulatory framework and the large load process ERCOT has proposed.
+### The data center charge also directs a review of the regulatory framework, implementation of SB 6 and ERCOT’s proposed Large Load Batch Study Process.
 
 > Review the existing regulatory framework governing data center development and recommend proposals to streamline regulations while enabling communities to plan and manage growth responsibly. Study the implementation of SB 6 and the Large Load Batch Study Process proposed by the Electric Reliability Council of Texas, as it relates to data centers, and identify how grid-connected data center facilities and co-located resources can support grid resilience and reliability.
 
-Source (primary_official): https://lrl.texas.gov/whatsNew/client/index.cfm/2026/8/12/Interim-Hearings--Week-of-August-17-2026
-
-### A second charge on the same agenda covers the transmission lines.
-
-> Charge: 765-kV Transmission Lines: Review the regulatory and planning processes regarding the proposed 765-kV transmission lines.
-
-Source (primary_official): https://lrl.texas.gov/whatsNew/client/index.cfm/2026/8/12/Interim-Hearings--Week-of-August-17-2026
+Source (primary_official): https://www.house.texas.gov/pdfs/speaker/F-Interim-Charges-3.25.pdf
 
 ### The committee's own permanent meeting archive lists a sitting on September 14th, 2026.
 

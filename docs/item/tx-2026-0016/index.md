@@ -46,6 +46,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-18 · The Federal Register's own record of the time use survey proposal still shows its comment window closed. The abstract page is unconfirmed, since that site now turns automated readers away.
 - 2026-10-21 · The comment window closed on September 8th.
 - 2026-10-24 · The comment window on adding AI questions to the American Time Use Survey closed on September 8th, and the notice still reads as published.
+- 2026-10-28 · The original consultation notice remains unconfirmed on a fresh reading. Its historical quotation and verification date are retained.
 
 ## Evidence
 

@@ -1,6 +1,6 @@
 # Brazoria County Commissioners Court adopted a resolution stating conditions it wants on data center development
 
-On June 9th, 2026 Brazoria County Commissioners Court adopted a measure on data center development. Its own agenda system records it as a resolution about data centers and related facilities in Texas. The item was introduced on May 29th, 2026, reached the court and was approved. Reporting on the resolution says the court supports responsible economic development, including appropriately designed and sited data centers. It also says no future data center should proceed without an independent impact assessment. A county resolution is not an ordinance and Texas counties have no zoning power outside city limits, so this sets a stated position rather than a rule. It came from the same court that had already refused the reinvestment zone behind the Old Ocean Datacenter and Bulldog Power abatement applications.
+On June 9th, 2026 Brazoria County Commissioners Court approved a resolution on data centers and related facilities in Texas. The county's agenda system records the resolution and the approval. Hoodline's report quotes the resolution calling for an independent impact assessment before any future data center or related facility proceeds. The county publishes the resolution's record and attachments in its agenda system.
 
 - Topic: data-centers
 - Decided by: Brazoria County Commissioners Court (county)
@@ -11,7 +11,7 @@ On June 9th, 2026 Brazoria County Commissioners Court adopted a measure on data 
 - Public access: Public meeting
 - Take part: https://brazoriacountytx.legistar.com/MainBody.aspx
 
-- Last checked: 2026-10-22
+- Last checked: 2026-10-28
 
 ## Dates
 
@@ -46,6 +46,8 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-22 · Brazoria County's legislative record still carries the resolution setting out the conditions it wants on data centers. The station's report stays unconfirmed.
 - 2026-10-25 · Brazoria County's resolution on data center conditions stays unconfirmed today on the station's report, which bars automated readers.
 - 2026-10-26 · Brazoria County's resolution setting conditions for data centers is still unconfirmed on the station's report, which bars automated readers.
+- 2026-10-28 · Correction. The approval remains confirmed in the county's official record. The impact-assessment request is now attributed to independently available reporting, and the summary omits details that could not be reverified from permitted sources.
+- 2026-10-28 · Checked and unchanged. The decision still stands as decided.
 
 ## Evidence
 
@@ -63,9 +65,9 @@ Source (primary_official): https://webapi.legistar.com/v1/brazoriacountytx/matte
 
 Source (primary_official): https://webapi.legistar.com/v1/brazoriacountytx/matters/4786/histories
 
-### Reporting describes the resolution as supporting appropriately designed and sited data centers while asking for an independent impact assessment before any future project proceeds.
+### Hoodline reports that the resolution calls for an independent impact assessment before future data center development.
 
-> The Brazoria County Commissioners Court supports responsible economic development, including appropriately designed and sited data centers and related facilities.
+> no future data center or related facility should proceed without an independent impact assessment
 
-Source (journalism): https://www.click2houston.com/news/local/2026/06/08/is-brazoria-county-anti-data-center-new-resolution-seeks-tougher-rules-on-future-projects/
+Source (journalism): https://hoodline.com/2026/06/brazoria-revolts-as-data-center-hum-gets-too-loud/
 

@@ -11,7 +11,7 @@ The Department of Homeland Security Science and Technology Directorate brought i
 - Public access: Write to the decider
 - Take part: https://www.dhs.gov/science-and-technology/news/2026/09/01/feature-article-biometrics-border-making-exit-secure-and-efficient
 
-- Last checked: 2026-10-24
+- Last checked: 2026-10-28
 
 ## Dates
 
@@ -46,6 +46,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-09 · The pedestrian face capture trial at the Progreso bridge remains unconfirmed. The department's feature still refuses every reader.
 - 2026-10-10 · The pedestrian face capture trial at the Progreso bridge stays unconfirmed, because the department's feature refuses every reader.
 - 2026-10-24 · The federal agency's account of the facial biometric test on pedestrians leaving at the Progreso bridge still reads as published.
+- 2026-10-28 · Checked and unchanged. The decision still stands as decided.
 
 ## Evidence
 

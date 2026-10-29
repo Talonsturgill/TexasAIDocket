@@ -1,6 +1,6 @@
 # Angelina County Commissioners Court adopts Resolution 010-26 asking the Legislature for authority over data centers
 
-Angelina County Commissioners Court voted unanimously on July 14th, 2026 to adopt Resolution 010-26. It asks the Texas Legislature to grant counties specific powers over large scale industrial development that local government currently can't reach. The requests include buffer and setback rules, noise and heat attenuation standards, light pollution limits, water impact statements and public hearings. County Judge Keith Wright framed the problem plainly. Without an abatement the county has no control over a data center at all. He also said the ask was kept narrow on purpose because a broad one would fail. The resolution carries no force by itself and lands with a Legislature that is not in regular session.
+Angelina County Commissioners Court approved Resolution 010-26 at the meeting recorded in the court's minutes. The motion supports limited regulatory authority for counties in rural areas over emerging technologies including data centers and battery storage facilities. Kermit Kennedy moved approval and Tim Sprinkle seconded the motion. The minutes record no votes against.
 
 - Topic: data-centers
 - Decided by: Angelina County Commissioners Court (county)
@@ -11,7 +11,7 @@ Angelina County Commissioners Court voted unanimously on July 14th, 2026 to adop
 - Public access: Public meeting
 - Take part: https://www.angelinacounty.net/comcourt/
 
-- Last checked: 2026-10-22
+- Last checked: 2026-10-28
 
 ## Dates
 
@@ -49,6 +49,8 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-22 · Angelina County's minutes still record the resolution asking the Legislature for authority over data centers. Both news accounts stay unconfirmed, since their sites bar automated readers.
 - 2026-10-25 · Angelina County's resolution asking the Legislature for authority over data centers stays unconfirmed today. Both news accounts bar automated readers.
 - 2026-10-26 · The county's own minutes still carry the commissioners' resolution asking the Legislature for authority over data centers. Both newsroom accounts bar automated readers, so their details are unconfirmed.
+- 2026-10-28 · Correction. Previously attributed remarks and detailed policy requests have been removed because they could not be reverified from permitted sources. The summary now follows the published minutes and retains the resolution and vote.
+- 2026-10-28 · Checked and unchanged. The decision still stands as decided.
 
 ## Evidence
 
@@ -56,33 +58,15 @@ Every fact above rests on one of these. The words are the source's own.
 
 ### Commissioners voted unanimously to ask the Legislature for limited authority to regulate data centers.
 
-> Angelina County commissioners voted unanimously Tuesday to formally ask the Texas Legislature for limited authority to regulate data centers.
+> Kermit Kennedy made a motion to approve a Resolution #010-26 Supporting the Limited Regulatory Authority of Counties in Rural Areas on Emerging Technologies including Data Centers and Battery Storage Facilities. Tim Sprinkle seconded the motion. Voted For: Tim Sprinlde, Kermit Kennedy , Tom Berry and Kenneth Jeffrey Voted Against: (None) Motion carried
 
-Source (journalism): https://www.kltv.com/2026/07/14/angelina-county-commissioners-vote-ask-state-authority-regulate-data-centers/
+Source (primary_official): https://www.angelinacounty.net/files/pdf/minutes/ccm071426.pdf
 
-### The measure is Resolution 010-26 and it seeks county powers over large scale industrial development.
+### Resolution 010-26 supports limited county regulatory authority in rural areas over emerging technologies including data centers and battery storage facilities.
 
-> The court approved Resolution 010-26, which requests that the state grant counties specific powers to oversee large-scale industrial developments that are currently beyond local control.
+> Kermit Kennedy made a motion to approve a Resolution #010-26 Supporting the Limited Regulatory Authority of Counties in Rural Areas on Emerging Technologies including Data Centers and Battery Storage Facilities.
 
-Source (journalism): https://www.kltv.com/2026/07/14/angelina-county-commissioners-vote-ask-state-authority-regulate-data-centers/
-
-### The county judge said that without an abatement the county has no control over a data center.
-
-> "If we can't get an abatement, if there's not going to be an abatement, then there are zero control that we have over these data centers."
-
-Source (journalism): https://www.kltv.com/2026/07/14/angelina-county-commissioners-vote-ask-state-authority-regulate-data-centers/
-
-### The county judge said the ask was deliberately limited to what the county thought it could win.
-
-> "You can always ask for a lot, but we tried to limit to what we thought we could get."
-
-Source (journalism): https://www.kltv.com/2026/07/14/angelina-county-commissioners-vote-ask-state-authority-regulate-data-centers/
-
-### The county judge said commissioners do not want unfettered development in rural East Texas.
-
-> "Just because it's rural East Texas and rural areas outside of a city, I don't think they should just have unfettered access to do whatever they want."
-
-Source (journalism): https://lufkindailynews.com/news/local/angelina-county-seeks-greater-authority-over-data-center-development/article_fd27c36a-51de-595b-9bf4-58e8634b6641.html
+Source (primary_official): https://www.angelinacounty.net/files/pdf/minutes/ccm071426.pdf
 
 ### The court's own minutes of its July 14th regular session record the motion to approve Resolution 010-26, seconded, carried with no member voting against.
 
