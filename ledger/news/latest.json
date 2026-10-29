@@ -1,8 +1,8 @@
 {
   "_spec": 2,
-  "checked_at": "2026-10-28T23:22:56Z",
+  "checked_at": "2026-10-29T07:20:13Z",
   "provider": "Publisher RSS and Atom",
-  "response_sha256": "64d0652aae3b67771dce819f2774640347aef646eab1966d6549c148b46ab08f",
+  "response_sha256": "f278d6e48f218955750c445df320eb03b1b9004543a2e690d63ad317322cf443",
   "articles": [
     {
       "title": "Archer Aviation Unveils Air Taxi Networks in Dallas-Fort Worth, Houston and Austin",
@@ -24,13 +24,6 @@
       "first_seen_at": "2026-10-22T12:26:21Z",
       "summary": "Researchers at the University of Texas at Arlington and UT Southwestern Medical Center in Dallas are using AI and advanced statistics to pinpoint the molecular “control switches” involved in several eye diseases. The diseases being studied include age-related macular degeneration, glaucoma and diabetic retinopathy. …",
       "feed": "https://dallasinnovates.com/feed/"
-    },
-    {
-      "title": "Texas environmental agency shuts down online permit filing system after data center controversy",
-      "url": "https://feeds.texastribune.org/link/16799/17502387/data-center-permits-tceq-texas",
-      "first_seen_at": "2026-10-21T23:57:29Z",
-      "summary": "Texas environmental officials disabled an online filing system after watchdog groups raised concerns about the agency issuing permits related to data centers.",
-      "feed": "https://feeds.texastribune.org/feeds/main/"
     },
     {
       "title": "Fed up with data centers and Big Tech, rural Republican crossover could decide Democrats’ fate in Texas",
@@ -90,146 +83,20 @@
     }
   ],
   "selected": {
-    "title": "Can language patterns reveal mild brain injuries in veterans? San Antonio researchers launch AI-powered study.",
-    "url": "https://www.tpr.org/bioscience-medicine/2026-10-25/can-language-patterns-reveal-mild-brain-injuries-in-veterans-san-antonio-researchers-launch-ai-powered-study",
-    "first_seen_at": "2026-10-25T16:56:12Z",
-    "summary": "Three San Antonio organizations are testing whether subtle changes in language could be a marker for mild traumatic brain injuries.",
-    "feed": "https://www.tpr.org/index.rss",
-    "publisher": "Texas Public Radio",
+    "title": "Dallas-Based Disruptive Raises $10B Flagship Fund",
+    "url": "https://dallasinnovates.com/dallas-based-disruptive-raises-10b-flagship-fund/",
+    "first_seen_at": "2026-10-27T20:35:32Z",
+    "summary": "Dallas-based venture capital firm Disruptive Technology Advisers has raised a $10 billion fund, its largest to date. The fund plans to invest up to $1 billion each in about 10 growth or late-stage companies, the firm said. It cited artificial intelligence, AI infrastructure, defense and national security as areas where it sees significant business opportunities in need of large amounts of capital. …",
+    "feed": "https://dallasinnovates.com/feed/",
+    "publisher": "Dallas Innovates",
     "coverage": 1,
-    "score": 0.103768,
-    "priority": 3
+    "score": 0.366606,
+    "priority": 0
   },
-  "expires_at": "2026-11-01T16:56:12Z",
+  "expires_at": "2026-11-03T20:35:32Z",
   "rotation_version": 1,
   "carousel_version": 1,
   "editions": [
-    {
-      "starts_at": "2026-10-28T19:23:00Z",
-      "selected": {
-        "title": "Can language patterns reveal mild brain injuries in veterans? San Antonio researchers launch AI-powered study.",
-        "url": "https://www.tpr.org/bioscience-medicine/2026-10-25/can-language-patterns-reveal-mild-brain-injuries-in-veterans-san-antonio-researchers-launch-ai-powered-study",
-        "first_seen_at": "2026-10-25T16:56:12Z",
-        "summary": "Three San Antonio organizations are testing whether subtle changes in language could be a marker for mild traumatic brain injuries.",
-        "feed": "https://www.tpr.org/index.rss",
-        "publisher": "Texas Public Radio",
-        "coverage": 1,
-        "score": 0.103768,
-        "priority": 3
-      },
-      "stories": [
-        {
-          "title": "Can language patterns reveal mild brain injuries in veterans? San Antonio researchers launch AI-powered study.",
-          "url": "https://www.tpr.org/bioscience-medicine/2026-10-25/can-language-patterns-reveal-mild-brain-injuries-in-veterans-san-antonio-researchers-launch-ai-powered-study",
-          "first_seen_at": "2026-10-25T16:56:12Z",
-          "summary": "Three San Antonio organizations are testing whether subtle changes in language could be a marker for mild traumatic brain injuries.",
-          "feed": "https://www.tpr.org/index.rss",
-          "publisher": "Texas Public Radio",
-          "coverage": 1,
-          "score": 0.103768,
-          "priority": 3
-        },
-        {
-          "title": "Dallas-Based Disruptive Raises $10B Flagship Fund",
-          "url": "https://dallasinnovates.com/dallas-based-disruptive-raises-10b-flagship-fund/",
-          "first_seen_at": "2026-10-27T20:35:32Z",
-          "summary": "Dallas-based venture capital firm Disruptive Technology Advisers has raised a $10 billion fund, its largest to date. The fund plans to invest up to $1 billion each in about 10 growth or late-stage companies, the firm said. It cited artificial intelligence, AI infrastructure, defense and national security as areas where it sees significant business opportunities in need of large amounts of capital. …",
-          "feed": "https://dallasinnovates.com/feed/",
-          "publisher": "Dallas Innovates",
-          "coverage": 1,
-          "score": 0.461291,
-          "priority": 0
-        },
-        {
-          "title": "Inside the New AI Slop Era of Texas Politics",
-          "url": "https://www.texasobserver.org/ai-slop-era-texas-political-ads-2026/",
-          "first_seen_at": "2026-10-26T14:21:05Z",
-          "summary": "Texans have seen it all this year: Senator John Cornyn twirling Congresswoman Jasmine Crockett on the dance floor; Attorney General Ken Paxton driving his mistresses down to the “Love Shack”; and Texas state Representative James Talarico in a dress singing a tune about transgender people—all made possible by the powers of generative artificial intelligence. Political […]",
-          "feed": "https://www.texasobserver.org/feed/",
-          "publisher": "Texas Observer",
-          "coverage": 1,
-          "score": 0.192605,
-          "priority": 0
-        },
-        {
-          "title": "Archer Aviation Unveils Air Taxi Networks in Dallas-Fort Worth, Houston and Austin",
-          "url": "https://dallasinnovates.com/archer-aviation-unveils-air-taxi-networks-in-dallas-fort-worth-houston-and-austin/",
-          "first_seen_at": "2026-10-27T17:06:33Z",
-          "summary": "In the next few months, North Texans may see air taxis — with paying passengers aboard — in the sky. San Jose, California-based Archer Aviation (NYSE: ACHR) just unveiled plans for three air taxi networks in the Texas Triangle. They will connect airports and business districts within Dallas-Fort Worth, Austin and Houston. …",
-          "feed": "https://dallasinnovates.com/feed/",
-          "publisher": "Dallas Innovates",
-          "coverage": 1,
-          "score": 0.417146,
-          "priority": 1
-        },
-        {
-          "title": "Coalition in deep East Texas aims to build tech workforce, connect region",
-          "url": "https://feeds.texastribune.org/link/16799/17507501/east-texas-technology-coalition-launches",
-          "first_seen_at": "2026-10-27T10:00:00Z",
-          "summary": "Led by community members from 11 counties, the group plans to address major concerns about broadband expansion and provide training on how to use technology.",
-          "feed": "https://feeds.texastribune.org/feeds/main/",
-          "publisher": "The Texas Tribune",
-          "coverage": 1,
-          "score": 0.339717,
-          "priority": 1
-        },
-        {
-          "title": "Fireworks to lease data center capacity in Dallas, Texas",
-          "url": "https://www.datacenterdynamics.com/en/news/fireworks-to-lease-data-center-capacity-in-dallas-texas/",
-          "first_seen_at": "2026-10-26T16:14:00Z",
-          "summary": "Company to lease capacity from Forum Markets/Edge Node venture",
-          "feed": "https://www.datacenterdynamics.com/en/rss/",
-          "publisher": "Data Center Dynamics",
-          "coverage": 1,
-          "score": 0.203363,
-          "priority": 1
-        },
-        {
-          "title": "Texas Attorney General Ken Paxton sues ChatGPT-maker OpenAI",
-          "url": "https://feeds.texastribune.org/link/16799/17505297/ken-paxton-chatgpt-openai-lawsuit-texas-attorney-general",
-          "first_seen_at": "2026-10-23T19:44:30Z",
-          "summary": "CEO Sam Altman and ChatGPT are top competitors to Elon Musk, the tech billionaire fueling Paxton’s U.S. Senate campaign.",
-          "feed": "https://feeds.texastribune.org/feeds/main/",
-          "publisher": "The Texas Tribune",
-          "coverage": 1,
-          "score": 0.028131,
-          "priority": 3
-        },
-        {
-          "title": "UTA and UT Southwestern Researchers Use AI to Pinpoint Eye Disease ‘Control Switches’",
-          "url": "https://dallasinnovates.com/uta-and-ut-southwestern-researchers-use-ai-to-pinpoint-eye-disease-control-switches/",
-          "first_seen_at": "2026-10-22T12:26:21Z",
-          "summary": "Researchers at the University of Texas at Arlington and UT Southwestern Medical Center in Dallas are using AI and advanced statistics to pinpoint the molecular “control switches” involved in several eye diseases. The diseases being studied include age-related macular degeneration, glaucoma and diabetic retinopathy. …",
-          "feed": "https://dallasinnovates.com/feed/",
-          "publisher": "Dallas Innovates",
-          "coverage": 1,
-          "score": 0.011391,
-          "priority": 3
-        },
-        {
-          "title": "Despite Abbott moratorium, Texas kept on issuing data center permits. Now, the state agency is shutting down its automatic filing system.",
-          "url": "https://www.tpr.org/economy-and-labor/2026-10-22/despite-abbott-moratorium-texas-kept-on-issuing-data-center-permits-now-the-state-agency-is-shutting-down-its-automatic-filing-system",
-          "first_seen_at": "2026-10-23T02:35:30Z",
-          "summary": "State regulators said permits issued after Gov. Abbott’s moratorium have now been suspended and its automatic filing system is shut down.",
-          "feed": "https://www.tpr.org/index.rss",
-          "publisher": "Texas Public Radio",
-          "coverage": 2,
-          "score": 0.034285,
-          "priority": 4
-        },
-        {
-          "title": "Fed up with data centers and Big Tech, rural Republican crossover could decide Democrats’ fate in Texas",
-          "url": "https://feeds.texastribune.org/link/16799/17504031/texas-rural-voters-data-centers-backlash-big-tech-2026-election",
-          "first_seen_at": "2026-10-23T10:00:00Z",
-          "summary": "Rural Republicans have long undercut Democrats’ gains in cities and suburbs. Will enough defect to make a difference this fall?",
-          "feed": "https://feeds.texastribune.org/feeds/main/",
-          "publisher": "The Texas Tribune",
-          "coverage": 1,
-          "score": 0.021232,
-          "priority": 4
-        }
-      ]
-    },
     {
       "starts_at": "2026-10-29T01:23:00Z",
       "selected": {
@@ -240,7 +107,7 @@
         "feed": "https://dallasinnovates.com/feed/",
         "publisher": "Dallas Innovates",
         "coverage": 1,
-        "score": 0.435387,
+        "score": 0.366606,
         "priority": 0
       },
       "stories": [
@@ -252,7 +119,7 @@
           "feed": "https://dallasinnovates.com/feed/",
           "publisher": "Dallas Innovates",
           "coverage": 1,
-          "score": 0.435387,
+          "score": 0.366606,
           "priority": 0
         },
         {
@@ -263,7 +130,7 @@
           "feed": "https://www.texasobserver.org/feed/",
           "publisher": "Texas Observer",
           "coverage": 1,
-          "score": 0.181789,
+          "score": 0.153071,
           "priority": 0
         },
         {
@@ -274,7 +141,7 @@
           "feed": "https://dallasinnovates.com/feed/",
           "publisher": "Dallas Innovates",
           "coverage": 1,
-          "score": 0.39372,
+          "score": 0.331522,
           "priority": 1
         },
         {
@@ -285,7 +152,7 @@
           "feed": "https://feeds.texastribune.org/feeds/main/",
           "publisher": "The Texas Tribune",
           "coverage": 1,
-          "score": 0.32064,
+          "score": 0.269987,
           "priority": 1
         },
         {
@@ -296,7 +163,7 @@
           "feed": "https://www.datacenterdynamics.com/en/rss/",
           "publisher": "Data Center Dynamics",
           "coverage": 1,
-          "score": 0.191943,
+          "score": 0.161621,
           "priority": 1
         },
         {
@@ -307,7 +174,7 @@
           "feed": "https://www.tpr.org/index.rss",
           "publisher": "Texas Public Radio",
           "coverage": 1,
-          "score": 0.097941,
+          "score": 0.082469,
           "priority": 3
         },
         {
@@ -318,7 +185,7 @@
           "feed": "https://feeds.texastribune.org/feeds/main/",
           "publisher": "The Texas Tribune",
           "coverage": 1,
-          "score": 0.026551,
+          "score": 0.022357,
           "priority": 3
         },
         {
@@ -329,7 +196,7 @@
           "feed": "https://dallasinnovates.com/feed/",
           "publisher": "Dallas Innovates",
           "coverage": 1,
-          "score": 0.010751,
+          "score": 0.009053,
           "priority": 3
         },
         {
@@ -340,7 +207,7 @@
           "feed": "https://feeds.texastribune.org/feeds/main/",
           "publisher": "The Texas Tribune",
           "coverage": 1,
-          "score": 0.02004,
+          "score": 0.016874,
           "priority": 4
         },
         {
@@ -351,7 +218,7 @@
           "feed": "https://www.tpr.org/index.rss",
           "publisher": "Texas Public Radio",
           "coverage": 1,
-          "score": 0.01618,
+          "score": 0.013624,
           "priority": 4
         }
       ]
@@ -596,19 +463,124 @@
           "priority": 4
         }
       ]
+    },
+    {
+      "starts_at": "2026-10-29T19:23:00Z",
+      "selected": {
+        "title": "Inside the New AI Slop Era of Texas Politics",
+        "url": "https://www.texasobserver.org/ai-slop-era-texas-political-ads-2026/",
+        "first_seen_at": "2026-10-26T14:21:05Z",
+        "summary": "Texans have seen it all this year: Senator John Cornyn twirling Congresswoman Jasmine Crockett on the dance floor; Attorney General Ken Paxton driving his mistresses down to the “Love Shack”; and Texas state Representative James Talarico in a dress singing a tune about transgender people—all made possible by the powers of generative artificial intelligence. Political […]",
+        "feed": "https://www.texasobserver.org/feed/",
+        "publisher": "Texas Observer",
+        "coverage": 1,
+        "score": 0.108092,
+        "priority": 3
+      },
+      "stories": [
+        {
+          "title": "Inside the New AI Slop Era of Texas Politics",
+          "url": "https://www.texasobserver.org/ai-slop-era-texas-political-ads-2026/",
+          "first_seen_at": "2026-10-26T14:21:05Z",
+          "summary": "Texans have seen it all this year: Senator John Cornyn twirling Congresswoman Jasmine Crockett on the dance floor; Attorney General Ken Paxton driving his mistresses down to the “Love Shack”; and Texas state Representative James Talarico in a dress singing a tune about transgender people—all made possible by the powers of generative artificial intelligence. Political […]",
+          "feed": "https://www.texasobserver.org/feed/",
+          "publisher": "Texas Observer",
+          "coverage": 1,
+          "score": 0.108092,
+          "priority": 3
+        },
+        {
+          "title": "Dallas-Based Disruptive Raises $10B Flagship Fund",
+          "url": "https://dallasinnovates.com/dallas-based-disruptive-raises-10b-flagship-fund/",
+          "first_seen_at": "2026-10-27T20:35:32Z",
+          "summary": "Dallas-based venture capital firm Disruptive Technology Advisers has raised a $10 billion fund, its largest to date. The fund plans to invest up to $1 billion each in about 10 growth or late-stage companies, the firm said. It cited artificial intelligence, AI infrastructure, defense and national security as areas where it sees significant business opportunities in need of large amounts of capital. …",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.258883,
+          "priority": 0
+        },
+        {
+          "title": "Archer Aviation Unveils Air Taxi Networks in Dallas-Fort Worth, Houston and Austin",
+          "url": "https://dallasinnovates.com/archer-aviation-unveils-air-taxi-networks-in-dallas-fort-worth-houston-and-austin/",
+          "first_seen_at": "2026-10-27T17:06:33Z",
+          "summary": "In the next few months, North Texans may see air taxis — with paying passengers aboard — in the sky. San Jose, California-based Archer Aviation (NYSE: ACHR) just unveiled plans for three air taxi networks in the Texas Triangle. They will connect airports and business districts within Dallas-Fort Worth, Austin and Houston. …",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.234107,
+          "priority": 1
+        },
+        {
+          "title": "Coalition in deep East Texas aims to build tech workforce, connect region",
+          "url": "https://feeds.texastribune.org/link/16799/17507501/east-texas-technology-coalition-launches",
+          "first_seen_at": "2026-10-27T10:00:00Z",
+          "summary": "Led by community members from 11 counties, the group plans to address major concerns about broadband expansion and provide training on how to use technology.",
+          "feed": "https://feeds.texastribune.org/feeds/main/",
+          "publisher": "The Texas Tribune",
+          "coverage": 1,
+          "score": 0.190654,
+          "priority": 1
+        },
+        {
+          "title": "Can language patterns reveal mild brain injuries in veterans? San Antonio researchers launch AI-powered study.",
+          "url": "https://www.tpr.org/bioscience-medicine/2026-10-25/can-language-patterns-reveal-mild-brain-injuries-in-veterans-san-antonio-researchers-launch-ai-powered-study",
+          "first_seen_at": "2026-10-25T16:56:12Z",
+          "summary": "Three San Antonio organizations are testing whether subtle changes in language could be a marker for mild traumatic brain injuries.",
+          "feed": "https://www.tpr.org/index.rss",
+          "publisher": "Texas Public Radio",
+          "coverage": 1,
+          "score": 0.058236,
+          "priority": 3
+        },
+        {
+          "title": "Texas Attorney General Ken Paxton sues ChatGPT-maker OpenAI",
+          "url": "https://feeds.texastribune.org/link/16799/17505297/ken-paxton-chatgpt-openai-lawsuit-texas-attorney-general",
+          "first_seen_at": "2026-10-23T19:44:30Z",
+          "summary": "CEO Sam Altman and ChatGPT are top competitors to Elon Musk, the tech billionaire fueling Paxton’s U.S. Senate campaign.",
+          "feed": "https://feeds.texastribune.org/feeds/main/",
+          "publisher": "The Texas Tribune",
+          "coverage": 1,
+          "score": 0.015788,
+          "priority": 3
+        },
+        {
+          "title": "Fireworks to lease data center capacity in Dallas, Texas",
+          "url": "https://www.datacenterdynamics.com/en/news/fireworks-to-lease-data-center-capacity-in-dallas-texas/",
+          "first_seen_at": "2026-10-26T16:14:00Z",
+          "summary": "Company to lease capacity from Forum Markets/Edge Node venture",
+          "feed": "https://www.datacenterdynamics.com/en/rss/",
+          "publisher": "Data Center Dynamics",
+          "coverage": 1,
+          "score": 0.11413,
+          "priority": 4
+        },
+        {
+          "title": "Fed up with data centers and Big Tech, rural Republican crossover could decide Democrats’ fate in Texas",
+          "url": "https://feeds.texastribune.org/link/16799/17504031/texas-rural-voters-data-centers-backlash-big-tech-2026-election",
+          "first_seen_at": "2026-10-23T10:00:00Z",
+          "summary": "Rural Republicans have long undercut Democrats’ gains in cities and suburbs. Will enough defect to make a difference this fall?",
+          "feed": "https://feeds.texastribune.org/feeds/main/",
+          "publisher": "The Texas Tribune",
+          "coverage": 1,
+          "score": 0.011916,
+          "priority": 4
+        },
+        {
+          "title": "Despite Abbott moratorium, Texas kept on issuing data center permits. Now, the state agency is shutting down its automatic filing system.",
+          "url": "https://www.tpr.org/economy-and-labor/2026-10-22/despite-abbott-moratorium-texas-kept-on-issuing-data-center-permits-now-the-state-agency-is-shutting-down-its-automatic-filing-system",
+          "first_seen_at": "2026-10-23T02:35:30Z",
+          "summary": "State regulators said permits issued after Gov. Abbott’s moratorium have now been suspended and its automatic filing system is shut down.",
+          "feed": "https://www.tpr.org/index.rss",
+          "publisher": "Texas Public Radio",
+          "coverage": 1,
+          "score": 0.009621,
+          "priority": 4
+        }
+      ]
     }
   ],
   "history": [
-    {
-      "url": "https://feeds.texastribune.org/link/16799/17502387/data-center-permits-tceq-texas",
-      "title": "Texas environmental agency shuts down online permit filing system after data center controversy",
-      "shown_at": "2026-10-22T01:23:00Z"
-    },
-    {
-      "url": "https://www.datacenterdynamics.com/en/news/lightedgelumen-occupied-data-center-in-austin-texas-up-for-sale/",
-      "title": "LightEdge/Lumen-occupied data center in Austin, Texas, up for sale",
-      "shown_at": "2026-10-22T01:23:00Z"
-    },
     {
       "url": "https://dallasinnovates.com/patented-7-elevens-item-recognition-tech-and-121-more-inventions-across-north-texas/",
       "title": "Patented: 7-Eleven’s Item-Recognition Tech and 121 More Inventions Across North Texas",
@@ -748,26 +720,27 @@
       "url": "https://www.tpr.org/bioscience-medicine/2026-10-25/can-language-patterns-reveal-mild-brain-injuries-in-veterans-san-antonio-researchers-launch-ai-powered-study",
       "title": "Can language patterns reveal mild brain injuries in veterans? San Antonio researchers launch AI-powered study.",
       "shown_at": "2026-10-28T19:23:00Z"
+    },
+    {
+      "url": "https://dallasinnovates.com/dallas-based-disruptive-raises-10b-flagship-fund/",
+      "title": "Dallas-Based Disruptive Raises $10B Flagship Fund",
+      "shown_at": "2026-10-29T01:23:00Z"
     }
   ],
   "feeds": [
     {
       "url": "https://dallasinnovates.com/feed/",
-      "status": "ok",
-      "items": 20,
-      "sha256": "6111dd323fe57222a6d5d9df5bb03fd69b27ecbabdd20df0eeb9d9b3baf37cff"
+      "status": "not_modified"
     },
     {
       "url": "https://feeds.texastribune.org/feeds/main/",
       "status": "ok",
       "items": 20,
-      "sha256": "e2e1d409d79409580ce16b45ef2f29bcedc6bf0daaf510cdbdc8fb8c599bafd1"
+      "sha256": "6f4b3f1e99d600e597c82211148e0b36ce1ee557bede1b48f133e756a5c9b715"
     },
     {
       "url": "https://www.datacenterdynamics.com/en/rss/",
-      "status": "ok",
-      "items": 20,
-      "sha256": "482a32e5ec8a293bfec243bbe07d41db345db0cf059c7cc1d16ad33b6cc3daf4"
+      "status": "not_modified"
     },
     {
       "url": "https://news.mit.edu/rss/topic/artificial-intelligence2",
@@ -779,13 +752,11 @@
       "url": "https://openai.com/news/rss.xml",
       "status": "ok",
       "items": 1334,
-      "sha256": "eb3058acefba8b2c50256b331f4ecdc4591842b4ac80ef68b38d50f0222053e9"
+      "sha256": "aa0d71587dfb416de8f503566869ae2f6f264390696682cfeb783ca2fc5ef2fd"
     },
     {
       "url": "https://blogs.nvidia.com/feed/",
-      "status": "ok",
-      "items": 18,
-      "sha256": "8d82a0aa6443b5a6667fa17ab0ceb257a6141667e682e9016be85ac48ab287d6"
+      "status": "not_modified"
     },
     {
       "url": "https://blog.google/technology/ai/rss/",
@@ -797,34 +768,35 @@
       "url": "https://siliconangle.com/feed/",
       "status": "ok",
       "items": 30,
-      "sha256": "bac3fc0d8a98667e2e9b4762b379cc2a2f3c6da84a31783b954e4f66a70d0efb"
+      "sha256": "ad60d78fba38a509411a0e87c9b7ebfd34b57efb6fd9b404f7ef866824d5dc71"
     },
     {
       "url": "https://www.artificialintelligence-news.com/feed/",
-      "status": "backoff",
-      "retry_at": "2026-10-29T06:59:07Z"
+      "status": "unavailable",
+      "retry_at": "2026-10-30T07:20:12Z",
+      "reason": "not well-formed (invalid token): line 1, column 119"
     },
     {
       "url": "https://www.geekwire.com/tag/artificial-intelligence/feed/",
       "status": "ok",
       "items": 35,
-      "sha256": "8f8f6974eef4020a3d7c5ae2fefe654f4a91af63e293db49a661d4bdc9561f3e"
+      "sha256": "cc9b360b8df57a41ac32728ffa5a87f7fdb505408f67698ff26425f9250597f8"
     },
     {
       "url": "https://www.techspot.com/backend.xml",
-      "status": "ok",
-      "items": 30,
-      "sha256": "2fc725b485a80dd99e926c14ecd7b8fd9574587c9299eb078f179863a406db74"
+      "status": "not_modified"
     },
     {
       "url": "https://www.sciencedaily.com/rss/computers_math/artificial_intelligence.xml",
-      "status": "not_modified"
+      "status": "ok",
+      "items": 60,
+      "sha256": "1f4fde95486ba4ca9e7c4c9163a4a02c30b7278c74e9884a27f450014daf8785"
     },
     {
       "url": "https://www.tpr.org/index.rss",
       "status": "ok",
       "items": 5,
-      "sha256": "df32d4b6a46037e1e24f398b534fc84a2515f5b4eee885f23cd2bb6a338ba4f7"
+      "sha256": "b1bb6e20c72a997840d52076785473a072d8e5a82db0855a31180be70e32776e"
     },
     {
       "url": "https://www.texasobserver.org/feed/",
@@ -833,106 +805,106 @@
   ],
   "feed_state": {
     "https://dallasinnovates.com/feed/": {
-      "ok_at": "2026-10-28T23:22:53Z",
-      "failures": 0,
-      "parser_version": 2,
-      "sha256": "6111dd323fe57222a6d5d9df5bb03fd69b27ecbabdd20df0eeb9d9b3baf37cff",
       "etag": "\"60230902be9b22860dbe819fb19969b4\"",
-      "last_modified": "Wed, 28 Oct 2026 21:42:06 GMT"
+      "last_modified": "Wed, 28 Oct 2026 21:42:06 GMT",
+      "failures": 0,
+      "ok_at": "2026-10-29T07:20:12Z",
+      "sha256": "6111dd323fe57222a6d5d9df5bb03fd69b27ecbabdd20df0eeb9d9b3baf37cff",
+      "parser_version": 2
     },
     "https://feeds.texastribune.org/feeds/main/": {
-      "ok_at": "2026-10-28T23:22:53Z",
+      "ok_at": "2026-10-29T07:20:12Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "e2e1d409d79409580ce16b45ef2f29bcedc6bf0daaf510cdbdc8fb8c599bafd1",
-      "etag": "\"6ae27a67-a3bb\"",
-      "last_modified": "Wed, 28 Oct 2026 22:42:47 GMT"
+      "sha256": "6f4b3f1e99d600e597c82211148e0b36ce1ee557bede1b48f133e756a5c9b715",
+      "etag": "\"6ae2e7b3-a43d\"",
+      "last_modified": "Thu, 29 Oct 2026 06:29:07 GMT"
     },
     "https://www.datacenterdynamics.com/en/rss/": {
-      "ok_at": "2026-10-28T23:22:53Z",
+      "last_modified": "Wed, 28 Oct 2026 20:58:39 GMT",
       "failures": 0,
-      "parser_version": 2,
+      "ok_at": "2026-10-29T07:20:12Z",
       "sha256": "482a32e5ec8a293bfec243bbe07d41db345db0cf059c7cc1d16ad33b6cc3daf4",
-      "last_modified": "Wed, 28 Oct 2026 20:58:39 GMT"
+      "parser_version": 2
     },
     "https://news.mit.edu/rss/topic/artificial-intelligence2": {
-      "ok_at": "2026-10-28T23:22:53Z",
+      "ok_at": "2026-10-29T07:20:12Z",
       "failures": 0,
       "parser_version": 2,
       "sha256": "2d1dda7902fe9176aabcf687724bc38952e6732c6313d5eef90a3e951f809476",
-      "etag": "\"1793228031\"",
-      "last_modified": "Wed, 28 Oct 2026 22:53:51 GMT"
+      "etag": "\"1793257801\"",
+      "last_modified": "Thu, 29 Oct 2026 07:10:01 GMT"
     },
     "https://openai.com/news/rss.xml": {
-      "ok_at": "2026-10-28T23:22:53Z",
+      "ok_at": "2026-10-29T07:20:12Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "eb3058acefba8b2c50256b331f4ecdc4591842b4ac80ef68b38d50f0222053e9"
+      "sha256": "aa0d71587dfb416de8f503566869ae2f6f264390696682cfeb783ca2fc5ef2fd"
     },
     "https://blogs.nvidia.com/feed/": {
-      "ok_at": "2026-10-28T23:22:53Z",
-      "failures": 0,
-      "parser_version": 2,
-      "sha256": "8d82a0aa6443b5a6667fa17ab0ceb257a6141667e682e9016be85ac48ab287d6",
       "etag": "\"8e1c28ff23734f703dd205e2e657990c-gzip\"",
-      "last_modified": "Wed, 28 Oct 2026 17:28:26 GMT"
+      "last_modified": "Wed, 28 Oct 2026 17:28:26 GMT",
+      "failures": 0,
+      "ok_at": "2026-10-29T07:20:12Z",
+      "sha256": "8d82a0aa6443b5a6667fa17ab0ceb257a6141667e682e9016be85ac48ab287d6",
+      "parser_version": 2
     },
     "https://blog.google/technology/ai/rss/": {
-      "ok_at": "2026-10-28T23:22:53Z",
+      "ok_at": "2026-10-29T07:20:12Z",
       "failures": 0,
       "parser_version": 2,
       "sha256": "f56750f5109a99ff6f6469adc7d5f83e0cad8cb9d49de3b044fea1c8f0f31f70"
     },
     "https://siliconangle.com/feed/": {
-      "ok_at": "2026-10-28T23:22:53Z",
+      "ok_at": "2026-10-29T07:20:12Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "bac3fc0d8a98667e2e9b4762b379cc2a2f3c6da84a31783b954e4f66a70d0efb",
-      "etag": "\"255d562d89abd7c410e91f1fdd13ba0f\"",
-      "last_modified": "Wed, 28 Oct 2026 23:04:04 GMT"
+      "sha256": "ad60d78fba38a509411a0e87c9b7ebfd34b57efb6fd9b404f7ef866824d5dc71",
+      "etag": "\"f34124dd40bdaacd94f83d7a2e291c44\"",
+      "last_modified": "Thu, 29 Oct 2026 04:35:15 GMT"
     },
     "https://www.artificialintelligence-news.com/feed/": {
       "etag": "\"cd8cbe1fef0e10c2eef0af3ac2847598\"",
       "last_modified": "Thu, 24 Sep 2026 16:09:03 GMT",
-      "retry_at": "2026-10-29T06:59:07Z",
+      "retry_at": "2026-10-30T07:20:12Z",
       "failures": 8,
       "ok_at": "2026-09-25T06:15:30Z",
       "sha256": "5bc540c61a29cba5c140f729db0c656d52d41094c41b3832c30ed97cb3880e10",
       "parser_version": 2
     },
     "https://www.geekwire.com/tag/artificial-intelligence/feed/": {
-      "ok_at": "2026-10-28T23:22:53Z",
+      "ok_at": "2026-10-29T07:20:12Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "8f8f6974eef4020a3d7c5ae2fefe654f4a91af63e293db49a661d4bdc9561f3e",
-      "etag": "W/\"5fd8ef040be1e4fb8cb117b55e845078\"",
-      "last_modified": "Wed, 28 Oct 2026 22:11:36 GMT"
+      "sha256": "cc9b360b8df57a41ac32728ffa5a87f7fdb505408f67698ff26425f9250597f8",
+      "etag": "W/\"3a3cc6c9955762003bbc17c17b97d0d7\"",
+      "last_modified": "Thu, 29 Oct 2026 05:33:43 GMT"
     },
     "https://www.techspot.com/backend.xml": {
-      "ok_at": "2026-10-28T23:22:53Z",
+      "etag": "W/\"e135c629c16f37d3a1b655092d3a4282\"",
       "failures": 0,
-      "parser_version": 2,
+      "ok_at": "2026-10-29T07:20:12Z",
       "sha256": "2fc725b485a80dd99e926c14ecd7b8fd9574587c9299eb078f179863a406db74",
-      "etag": "W/\"e135c629c16f37d3a1b655092d3a4282\""
-    },
-    "https://www.sciencedaily.com/rss/computers_math/artificial_intelligence.xml": {
-      "last_modified": "Wed, 28 Oct 2026 13:24:04 GMT",
-      "failures": 0,
-      "ok_at": "2026-10-28T23:22:53Z",
-      "sha256": "a5a8061d70b05eee9b5b8951eac0f46bcb398ea4e3396d3432bb0fbdc2936850",
       "parser_version": 2
     },
-    "https://www.tpr.org/index.rss": {
-      "ok_at": "2026-10-28T23:22:53Z",
+    "https://www.sciencedaily.com/rss/computers_math/artificial_intelligence.xml": {
+      "ok_at": "2026-10-29T07:20:12Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "df32d4b6a46037e1e24f398b534fc84a2515f5b4eee885f23cd2bb6a338ba4f7"
+      "sha256": "1f4fde95486ba4ca9e7c4c9163a4a02c30b7278c74e9884a27f450014daf8785",
+      "last_modified": "Thu, 29 Oct 2026 04:13:41 GMT"
+    },
+    "https://www.tpr.org/index.rss": {
+      "ok_at": "2026-10-29T07:20:12Z",
+      "failures": 0,
+      "parser_version": 2,
+      "sha256": "b1bb6e20c72a997840d52076785473a072d8e5a82db0855a31180be70e32776e"
     },
     "https://www.texasobserver.org/feed/": {
       "etag": "W/\"bfc7538fb74af98cdbc313e606176984\"",
       "last_modified": "Wed, 28 Oct 2026 12:00:00 GMT",
       "failures": 0,
-      "ok_at": "2026-10-28T23:22:53Z",
+      "ok_at": "2026-10-29T07:20:12Z",
       "sha256": "403e6e8d4d7c25f35d35cc08909195e40e477da0248e844f5d8259cc5332f15e",
       "parser_version": 2
     }
