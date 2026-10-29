@@ -605,25 +605,23 @@ def _note_numbers(item: dict, entry: dict) -> set[str]:
 
 
 class HistoricalNoteProof:
-    """Replay an unchanged published note against its canonical introduction snapshot.
+    """Replay unchanged published history against its original canonical introduction.
 
-    This proves historical publication provenance, not the truth of a withdrawn claim.
-    Candidate commits and caller-authored correction text cannot supply this allowance.
-    Missing Git history fails closed; the current-claim rule remains sufficient on its own.
+    This proves publication provenance, not the truth of a withdrawn claim. GitHub event
+    boundaries identify approved history; local use verifies the fetched main against origin.
     """
     def __init__(self, repo: Path = REPO_ROOT):
-        self.repo = repo
-        self.records: dict[str, dict] = {}
-        self.proofs: dict[tuple, dict | None] = {}
-        self.ref = None
-        self.main = {}
+        self.repo, self.ref, self.main = repo, None, {}
+        self.records, self.proofs, self.targets = {}, {}, set()
+        self.scanned = False
         try:
             remote = self.git("remote", "get-url", "origin").removesuffix(".git")
             if remote not in ("https://github.com/Talonsturgill/TexasAIDocket",
                               "git@github.com:Talonsturgill/TexasAIDocket"):
                 return
+            if self.git("rev-parse", "--is-shallow-repository") != "false":
+                return
             main = self.git("rev-parse", "refs/remotes/origin/main")
-            ref = main
             if os.environ.get("GITHUB_ACTIONS") == "true":
                 if os.environ.get("GITHUB_REPOSITORY") != "Talonsturgill/TexasAIDocket":
                     return
@@ -631,20 +629,28 @@ class HistoricalNoteProof:
                 event = json.loads(Path(event_path).read_text()) if event_path else {}
                 if (event.get("repository") or {}).get("full_name") != "Talonsturgill/TexasAIDocket":
                     return
-                if os.environ.get("GITHUB_EVENT_NAME") == "pull_request":
+                event_name = os.environ.get("GITHUB_EVENT_NAME")
+                if event_name == "pull_request":
                     base = (event.get("pull_request") or {}).get("base") or {}
                     if (base.get("repo") or {}).get("full_name") != "Talonsturgill/TexasAIDocket" or base.get("ref") != "main":
                         return
                     ref = base.get("sha")
-                elif os.environ.get("GITHUB_EVENT_NAME") == "push":
-                    if event.get("ref") != "refs/heads/main":
-                        return
+                elif event_name == "push" and event.get("ref") == "refs/heads/main":
                     ref = event.get("before")
+                elif event_name == "workflow_dispatch" and os.environ.get("GITHUB_REF") == "refs/heads/main":
+                    ref = os.environ.get("GITHUB_SHA")
+                else:
+                    return
+            else:
+                ref = self.remote_main()
+                if ref != main:
+                    return
             if not isinstance(ref, str) or not re.fullmatch(r"[0-9a-f]{40}", ref):
                 return
             self.git("merge-base", "--is-ancestor", ref, main)
             self.ref = ref
-            self.main = self.record(ref)
+            body = json.loads(self.git("show", ref + ":ledger/docket.json"))
+            self.main = {item["id"]: item for item in body["items"]}
         except (OSError, ValueError, subprocess.SubprocessError):
             self.ref = None
 
@@ -652,51 +658,59 @@ class HistoricalNoteProof:
         return subprocess.check_output(["git", *args], cwd=self.repo, text=True,
                                        stderr=subprocess.DEVNULL, timeout=30).strip()
 
-    def record(self, sha: str) -> dict:
-        if sha not in self.records:
-            body = json.loads(self.git("show", sha + ":ledger/docket.json"))
-            self.records[sha] = {item["id"]: item for item in body["items"]}
-        return self.records[sha]
+    def remote_main(self) -> str:
+        rows = self.git("ls-remote", "origin", "refs/heads/main").splitlines()
+        return rows[0].split()[0] if len(rows) == 1 else ""
+
+    def prefix_problem(self, item: dict) -> str | None:
+        if not self.ref:
+            return "canonical published history could not be established"
+        if item["id"] not in self.main:
+            return None
+        published = self.main[item["id"]].get("history", [])
+        if item.get("history", [])[:len(published)] != published:
+            return "published history must remain an exact unchanged prefix"
+        return None
+
+    def scan(self) -> None:
+        """One structurally complete first-parent traversal for all requested entries."""
+        if self.scanned or not self.ref:
+            return
+        self.scanned = True
+        pending = set(self.targets)
+        ids = {key[0] for key in pending}
+        try:
+            commits = self.git("log", "--first-parent", "--reverse", "--format=%H",
+                               self.ref, "--", "ledger/docket.json").splitlines()
+            for sha in commits:
+                body = json.loads(self.git("show", sha + ":ledger/docket.json"))
+                # Cache only the relevant item snapshots, not every full ledger version.
+                record = {item["id"]: item for item in body["items"] if item["id"] in ids}
+                self.records[sha] = record
+                for key in list(pending):
+                    iid, index = key
+                    snapshot = record.get(iid, {})
+                    prefix = self.main[iid].get("history", [])[:index + 1]
+                    if snapshot.get("history", [])[:index + 1] != prefix:
+                        continue
+                    # This is its first structural appearance. A failed proof cannot be
+                    # laundered through a later deletion and reintroduction of the note.
+                    pending.remove(key)
+                    self.proofs[key] = None
+                    entry = prefix[-1]
+                    if set(dk._prose_numerals(str(entry.get("note", "")))) <= _note_numbers(snapshot, entry):
+                        self.proofs[key] = {"commit": sha,
+                                            "blob": self.git("rev-parse", sha + ":ledger/docket.json")}
+                if not pending:
+                    break
+        except (OSError, ValueError, KeyError, subprocess.SubprocessError):
+            return
 
     def prove(self, item: dict, index: int) -> dict | None:
-        if not self.ref:
+        if self.prefix_problem(item) or index >= len(self.main.get(item["id"], {}).get("history", [])):
             return None
-        canonical = self.main.get(item["id"], {})
-        history, published = item.get("history", []), canonical.get("history", [])
-        # The entire published history is append-only, including notes that need no fallback.
-        if index >= len(published) or history[:len(published)] != published:
-            return None
-        entry = history[index]
-        key = (item["id"], index, json.dumps(entry, sort_keys=True, ensure_ascii=False))
-        if key in self.proofs:
-            return self.proofs[key]
-        self.proofs[key] = None
-        try:
-            # Pickaxe narrows the history reads; every candidate is then checked structurally.
-            commits = set()
-            for ascii_only in (False, True):
-                needle = json.dumps(str(entry.get("note", "")), ensure_ascii=ascii_only)[1:-1]
-                commits.update(self.git("log", "--first-parent", "--format=%H", "-S", needle,
-                                        self.ref, "--", "ledger/docket.json").splitlines())
-            chronology = self.git("rev-list", "--first-parent", "--reverse", self.ref).splitlines()
-            for sha in (sha for sha in chronology if sha in commits):
-                snapshot = self.record(sha).get(item["id"], {})
-                prefix = published[:index + 1]
-                if snapshot.get("history", [])[:index + 1] != prefix:
-                    continue
-                parent_sha = self.git("rev-list", "--parents", "-n", "1", sha).split()
-                prior = self.record(parent_sha[1]).get(item["id"], {}) if len(parent_sha) > 1 else {}
-                if prior.get("history", [])[:index + 1] == prefix:
-                    continue
-                allowed = _note_numbers(snapshot, entry)
-                if not set(dk._prose_numerals(str(entry.get("note", "")))) <= allowed:
-                    continue
-                proof = {"commit": sha, "blob": self.git("rev-parse", sha + ":ledger/docket.json")}
-                self.proofs[key] = proof
-                return proof
-        except (OSError, ValueError, KeyError, subprocess.SubprocessError):
-            pass
-        return None
+        self.scan()
+        return self.proofs.get((item["id"], index))
 
 
 def check_notes(items: list, *, historical=None, diagnostics: list | None = None) -> list:
@@ -726,32 +740,38 @@ def check_notes(items: list, *, historical=None, diagnostics: list | None = None
     canonical-main introduction snapshot. Corrections do not rewrite historical publication.
     """
     bad = []
-    archive = historical
+    archive = historical or HistoricalNoteProof()
+    pending = []
     for it in items:
+        prefix_problem = archive.prefix_problem(it)
+        if prefix_problem:
+            bad.append(f'{it["id"]}: {prefix_problem}')
         allowed = set(dk._quoted_numerals(it))
         for index, h in enumerate(it.get("history") or []):
             if not isinstance(h, dict) or not h.get("checked"):
                 continue
             try:
                 when = ds.parse_date(h.get("date"))
-            except Exception:  # noqa: BLE001
+            except Exception:
                 bad.append(f'{it["id"]}: a checked note carries no readable date')
                 continue
             base = set(dk._prose_numerals(movement_line(it, when)))
             missing = [got for got in dk._prose_numerals(str(h.get("note") or ""))
                        if got not in base and got not in allowed]
             if missing:
-                archive = archive or HistoricalNoteProof()
-                proof = archive.prove(it, index)
-                if proof:
-                    if diagnostics is not None:
-                        diagnostics.append({"item": it["id"], "ordinal": index, "date": h["date"], **proof})
-                    continue
-            for got in missing:
-                bad.append(
-                        f'{it["id"]} {h["date"]}: the note states "{got}", which is in no claim '
-                        f"quote and in nothing this check established. Re-wording may not add a "
-                        f"figure")
+                pending.append((it, index, h, missing))
+    archive.targets.update((it["id"], index) for it, index, _, _ in pending
+                           if it["id"] in archive.main
+                           and index < len(archive.main[it["id"]].get("history", [])))
+    for it, index, h, missing in pending:
+        proof = archive.prove(it, index)
+        if proof:
+            if diagnostics is not None:
+                diagnostics.append({"item": it["id"], "ordinal": index, "date": h["date"], **proof})
+            continue
+        for got in missing:
+            bad.append(f'{it["id"]} {h["date"]}: the note states "{got}", which is in no claim '
+                       f"quote and in nothing this check established. Re-wording may not add a figure")
     return bad
 
 
@@ -1229,7 +1249,8 @@ def self_test() -> int:  # noqa: C901
     print("\nhistorical corrections retain proof without licensing new figures")
     import tempfile
     import copy
-    with tempfile.TemporaryDirectory() as td, patch.dict(os.environ, {"GITHUB_ACTIONS": ""}):
+    with tempfile.TemporaryDirectory() as td, patch.dict(os.environ, {"GITHUB_ACTIONS": ""}), \
+            patch.object(HistoricalNoteProof, "remote_main", lambda self: self.git("rev-parse", "refs/remotes/origin/main")):
         repo = Path(td)
         def git(*args):
             return subprocess.check_output(["git", *args], cwd=repo, text=True,
@@ -1242,7 +1263,7 @@ def self_test() -> int:  # noqa: C901
         original = noted("The line is 765 kV.", "A 765 kV line.")
         original["history"].insert(0, {"date": "2026-08-24", "note": "The record was admitted."})
         def commit_record(record, message):
-            (repo / "ledger/docket.json").write_text(json.dumps({"items": [record]}))
+            (repo / "ledger/docket.json").write_text(json.dumps({"items": record if isinstance(record, list) else [record]}))
             git("add", "ledger/docket.json")
             git("commit", "-qm", message)
             return git("rev-parse", "HEAD")
@@ -1260,6 +1281,8 @@ def self_test() -> int:  # noqa: C901
                 ("changed note", lambda x: x["history"][1].update(note="The line is 999 kV.")),
                 ("duplicate old note", lambda x: x["history"].append(copy.deepcopy(original["history"][1]))),
                 ("deleted prefix", lambda x: x["history"].pop(0)),
+                ("deleted only checked note", lambda x: x["history"].pop(1)),
+                ("cleared checked marker", lambda x: x["history"][1].pop("checked")),
                 ("reordered prefix", lambda x: x["history"].reverse())):
             candidate = copy.deepcopy(corrected)
             mutate(candidate)
@@ -1274,6 +1297,39 @@ def self_test() -> int:  # noqa: C901
         commit_record(fake, "Unmerged candidate note")
         ok("a candidate-only commit and new figure are not publication evidence",
            bool(check_notes([fake], historical=HistoricalNoteProof(repo))))
+        approved = candidate_sha
+        forged = git("rev-parse", "HEAD")
+        git("update-ref", "refs/remotes/origin/main", forged)
+        with patch.object(HistoricalNoteProof, "remote_main", return_value=approved):
+            ok("a locally relabeled candidate is not the actual remote main",
+               bool(check_notes([corrected], historical=HistoricalNoteProof(repo))))
+        # Same global note count, but a different item's first structural appearance.
+        moved_from = copy.deepcopy(original)
+        moved_from["id"] = "tx-source"
+        commit_record(moved_from, "Publish source item")
+        moved_to = copy.deepcopy(original)
+        moved_to["id"] = "tx-target"
+        moved_from["history"] = []
+        moved_sha = commit_record([moved_from, moved_to], "Move exact note between items")
+        git("update-ref", "refs/remotes/origin/main", moved_sha)
+        moved_to["claims"][0]["verbatim_quote"] = "A transmission line."
+        ok("item-specific discovery finds a note moved without a global count change",
+           not check_notes([moved_to], historical=HistoricalNoteProof(repo)))
+        # The first publication is invalid; a later removal and reintroduction cannot fix it.
+        invalid = copy.deepcopy(original)
+        invalid["id"] = "tx-invalid"
+        invalid["claims"][0]["verbatim_quote"] = "A transmission line."
+        commit_record(invalid, "Publish unsupported historical figure")
+        removed = copy.deepcopy(invalid)
+        removed["history"].pop()
+        commit_record(removed, "Remove invalid note")
+        supported_later = copy.deepcopy(invalid)
+        supported_later["claims"][0]["verbatim_quote"] = "A 765 kV line."
+        commit_record(supported_later, "Reintroduce note with later numeric support")
+        latest = commit_record(invalid, "Correct later active claim")
+        git("update-ref", "refs/remotes/origin/main", latest)
+        ok("a later supported reintroduction cannot launder a failed original note",
+           bool(check_notes([invalid], historical=HistoricalNoteProof(repo))))
         git("remote", "set-url", "origin", "https://github.com/other/repository.git")
         ok("a noncanonical origin cannot authorize historical proof",
            bool(check_notes([corrected], historical=HistoricalNoteProof(repo))))
