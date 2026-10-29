@@ -1,0 +1,389 @@
+/* deck/2026-10-29-caprock.js — the chassis for the 2026-10-29 deck: Soluna Holdings and Applied Digital's planned AI
+ * data center, Dorothy 3, beside the Briscoe Wind Farm near Silverton in Briscoe County (tx-2026-0233).
+ *
+ * THE VISUAL ARGUMENT. One county road on the Caprock. The wind farm and its substation stand on the west side, the
+ * pasture where Dorothy 3 is planned lies on the east side, and the road between them is the "directly across from" the
+ * record states. The measure is the flanged wind tower section: one section stands for a fixed number of megawatts, a
+ * drawing unit each frame reads from figures.json, so the load is measured in the wind's own parts.
+ *
+ * THE WORLD. lastLight, a STAGED world: the sun just down, a near black sky, one warm seam low on the key's side, the
+ * subject in a pool of light and the world behind it gone dark.
+ *
+ * THE LIGHT is azimuth -78, elevation 10. +x is east and +z is south, the road runs north and south along x = 0. The last
+ * light stands low in the west south west. A camera looking north (-z) has the key on its LEFT, every lit edge is on the
+ * left, and every cast runs long to the right. A camera looking west sees the turbines against the warm seam.
+ *
+ * THE KIT MODELS THIS DECK BUILDS, the kit having none of them: `tower_section` (one flanged wind tower can, 4.3 m across
+ * and 1.0 m tall), `section_stack` (n of them bolted into a column), `survey_stake` (a pine lath with flagging) and
+ * `gate_lock` (a chain and padlock). All are drawn to illustrate, in the kit's conventions (metres, y up, origin on the
+ * ground, front on +z) so Phase 17 can queue the lift.
+ *
+ * THE ACCENT is mesquite, #6E7A5A, and it means ONE thing: what is planned for Dorothy 3.
+ *
+ * WHAT THIS FILE IS NOT. There is no drawFrame. It hands a frame the world, the models and the way type is seated.
+ * Every frame composes its own picture, and every quantity a frame draws is read from figures.json in that frame's own
+ * code. The chassis types no figure of the story.
+ */
+(function (global) {
+  "use strict";
+  if (!global.TXDECK) throw new Error("caprock.js needs txdeck.js loaded first");
+
+  TXDECK.declare({
+    world: "caprock",
+    light: { az: -78, el: 10 },
+    sky: "lastLight",
+    ground: "#08060F",
+    material: "#DFE1DD",
+    accent: "#6E7A5A",
+    grade: {
+      exposure: 0,
+      saturation: 1.0,
+      contrast: 1.07,
+      filmic: true,
+      lift: [0.002, 0.003, 0.005],
+      gain: [1.0, 1.0, 1.0],
+      vignette: 0.22,
+      bloom: { threshold: 0.86, strength: 0.12, radius: 8 },
+      grain: { amount: 0.016, size: 2, seed: 20261029 },
+      aberration: 0,
+      dither: true,
+      sharpen: 0.12
+    }
+  });
+
+  var N = {};
+  N.W = 1080;
+  N.H = 1350;
+  N.SEED = 20261029;
+  N.ACCENT = 0x6e7a5a;   /* mesquite, brand.yaml's deck token, and it means ONE thing: what is planned for Dorothy 3 */
+  N.INK = "#ECE8DF";
+
+  function lcg(seed) { var s = seed >>> 0 || 1; return function () { s = (s * 1664525 + 1013904223) >>> 0; return s / 4294967296; }; }
+  N.lcg = lcg;
+
+  /* ---- the materials of the world --------------------------------------------------------- */
+  /* TOWER PAINT: a satin off white with faint roller tooth in a bump map, so a section reads as painted steel and
+   * never as a white plastic tube under the low key */
+  function tooth(THREE, seed) {
+    var c = document.createElement("canvas"); c.width = c.height = 256; var x = c.getContext("2d"), r = lcg(seed);
+    x.fillStyle = "#808080"; x.fillRect(0, 0, 256, 256);
+    for (var i = 0; i < 7000; i++) { var v = Math.floor(118 + r() * 20); x.fillStyle = "rgb(" + v + "," + v + "," + v + ")"; x.fillRect(r() * 256, r() * 256, 1.4, 1.4); }
+    var t = new THREE.CanvasTexture(c); t.wrapS = t.wrapT = THREE.RepeatWrapping; t.anisotropy = 8; return t;
+  }
+  /* RED DUST, a vertical gradient map: the bottom of a section that stood in Caprock wind carries red bed dust */
+  function dustMap(THREE) {
+    var c = document.createElement("canvas"); c.width = 8; c.height = 256; var x = c.getContext("2d");
+    var g = x.createLinearGradient(0, 0, 0, 256); g.addColorStop(0, "#ffffff"); g.addColorStop(0.7, "#f6efe8"); g.addColorStop(1, "#d6b7a2");
+    x.fillStyle = g; x.fillRect(0, 0, 8, 256);
+    var t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; return t;
+  }
+  N.mats = function (THREE, K) {
+    if (N._m) return N._m;
+    var b = tooth(THREE, N.SEED); b.repeat.set(6, 2);
+    var m = {
+      paint: new THREE.MeshPhysicalMaterial({ color: 0xdcded9, roughness: 0.46, metalness: 0.0, clearcoat: 0.25, clearcoatRoughness: 0.5, bumpMap: b, bumpScale: 0.6 }),
+      paintDusty: new THREE.MeshPhysicalMaterial({ color: 0xdcded9, map: dustMap(THREE), roughness: 0.55, metalness: 0.0, bumpMap: b, bumpScale: 0.6 }),
+      machined: new THREE.MeshStandardMaterial({ color: 0x9da2a6, roughness: 0.3, metalness: 0.85 }),
+      galv: new THREE.MeshStandardMaterial({ color: 0xa3a8ab, roughness: 0.5, metalness: 0.55 }),
+      bolt: new THREE.MeshStandardMaterial({ color: 0x55595d, roughness: 0.45, metalness: 0.7 }),
+      /* the accent holds its own hex as emission with a dim albedo under it, so the rim still turns with the light and
+       * reads as paint, and the tone curve can't grey it (queue tone-curve-greys-a-thin-accent) */
+      rimPlan: new THREE.MeshStandardMaterial({ color: new THREE.Color(N.ACCENT).multiplyScalar(0.45), roughness: 0.5, metalness: 0, emissive: N.ACCENT, emissiveIntensity: 1.9, toneMapped: false }),
+      pine: K.mat("cp_pine", { color: 0xb59a72, roughness: 0.86 }),
+      flag: new THREE.MeshStandardMaterial({ color: new THREE.Color(N.ACCENT).multiplyScalar(0.5), roughness: 0.7, emissive: N.ACCENT, emissiveIntensity: 1.3, toneMapped: false, side: THREE.DoubleSide }),
+      chain: new THREE.MeshStandardMaterial({ color: 0x6b6f72, roughness: 0.42, metalness: 0.8 }),
+      brass: new THREE.MeshStandardMaterial({ color: 0x8a7444, roughness: 0.35, metalness: 0.85 })
+    };
+    N._m = m;
+    return m;
+  };
+
+  /* ---- the kit models this deck builds ---------------------------------------------------- */
+  N.installKit = function (K, THREE, TXT) {
+    if (K.registry.tower_section) return;
+    var M = N.mats(THREE, K);
+    var RAD = 2.15, H = 1.0, FL = 2.27, FT = 0.07;
+    function shade(o) { o.traverse(function (c) { if (c.isMesh) { c.castShadow = c.receiveShadow = true; } }); return o; }
+
+    /* ONE CAN OF A WIND TOWER: a rolled steel shell 4.3 m across and 1.0 m tall with a mid height weld seam, an L flange
+     * at its foot that stands proud of the shell, a bolt circle on the flange's top face and a rim band painted on the
+     * flange's outer edge. Options: rim 'galv' (what exists) or 'plan' (the accent, what is planned), dusty (red dust at
+     * the foot), top (draw the top flange with its open bolt holes). Drawn to illustrate. */
+    K.define("tower_section", {
+      size: [FL * 2, H, FL * 2],
+      options: { rim: "galv", dusty: false, top: false, bolts: 36 },
+      note: "One flanged wind tower can, 4.3 m across and 1.0 m tall, a drawing unit. rim galv|plan, dusty, top, bolts.",
+      make: function (o) {
+        var g = new THREE.Group();
+        var shell = new THREE.Mesh(new THREE.CylinderGeometry(RAD, RAD, H - FT, 64, 1, true), o.dusty ? M.paintDusty : M.paint);
+        shell.position.y = FT + (H - FT) / 2; g.add(shell);
+        var seam = new THREE.Mesh(new THREE.TorusGeometry(RAD + 0.004, 0.012, 6, 96), M.machined); seam.rotation.x = Math.PI / 2; seam.position.y = FT + (H - FT) * 0.5; g.add(seam);
+        /* the foot flange, a ring with a chamfered top edge, the lit tick every section shows */
+        var prof = [[RAD - 0.12, 0], [FL, 0], [FL, FT - 0.015], [FL - 0.015, FT], [RAD - 0.12, FT]].map(function (p) { return new THREE.Vector2(p[0], p[1]); });
+        var fl = new THREE.Mesh(new THREE.LatheGeometry(prof, 96), M.machined); g.add(fl);
+        var rh = o.rim === "plan" ? 0.13 : FT * 0.8;
+        var rim = new THREE.Mesh(new THREE.CylinderGeometry(FL + 0.004, FL + 0.004, rh, 96, 1, true), o.rim === "plan" ? M.rimPlan : M.galv);
+        rim.position.y = o.rim === "plan" ? rh / 2 : FT * 0.45; g.add(rim);
+        /* bolt heads on the flange's top face */
+        var nb = o.bolts || 36, bg = new THREE.CylinderGeometry(0.03, 0.03, 0.035, 6), list = [];
+        for (var i = 0; i < nb; i++) { var a = i / nb * Math.PI * 2; list.push([Math.cos(a) * (RAD + 0.06), FT + 0.017, Math.sin(a) * (RAD + 0.06), -a, 1]); }
+        K.instances(bg, M.bolt, list, g);
+        if (o.top) {
+          var tp = new THREE.Mesh(new THREE.LatheGeometry(prof, 96), M.machined); tp.position.y = H - FT; g.add(tp);
+          var trim = new THREE.Mesh(new THREE.CylinderGeometry(FL + 0.003, FL + 0.003, FT * 0.8, 96, 1, true), o.rim === "plan" ? M.rimPlan : M.galv);
+          trim.position.y = H - FT * 0.55; g.add(trim);
+          /* the open bore, dark inside, so the top reads as a can rather than a solid post */
+          var bore = new THREE.Mesh(new THREE.CircleGeometry(RAD - 0.12, 64), new THREE.MeshStandardMaterial({ color: 0x0c0b0d, roughness: 0.9 }));
+          bore.rotation.x = -Math.PI / 2; bore.position.y = H - 0.25; g.add(bore);
+        }
+        return shade(g);
+      }
+    });
+
+    /* A COLUMN OF SECTIONS: n cans bolted flange to flange, the top one carrying its open top flange. Only the bottom
+     * two carry red dust. */
+    K.define("section_stack", {
+      anchor: "base",
+      size: [FL * 2, 15, FL * 2],
+      options: { n: 15, rim: "galv" },
+      note: "n tower_sections bolted into a column. n, rim galv|plan.",
+      make: function (o) {
+        var g = new THREE.Group(), n = Math.max(1, Math.round(o.n || 1));
+        for (var i = 0; i < n; i++) {
+          var s = K.make("tower_section", { rim: o.rim, dusty: i < 2, top: i === n - 1 });
+          s.position.y = i * H; g.add(s);
+        }
+        g.userData.height = n * H;
+        return g;
+      }
+    });
+
+    /* A SURVEY LATH, pine, a painted top and a strip of flagging in the accent, 1.2 m tall. Drawn to illustrate. */
+    K.define("survey_stake", {
+      anchor: "base",
+      size: [0.3, 1.2, 0.05],
+      options: { lean: 0, flag: true },
+      note: "A pine survey lath, 1.2 m, with flagging in the accent. Drawn to illustrate.",
+      make: function (o) {
+        var g = new THREE.Group();
+        var paint = K.mat("cp_stake_paint", { color: 0xe0dccf, roughness: 0.6 });
+        var lath = TXT.roundedBox(0.045, 1.2, 0.012, 0.003, M.pine); lath.position.y = 0.6; g.add(lath);
+        var top = TXT.roundedBox(0.047, 0.1, 0.014, 0.003, paint); top.position.y = 1.14; g.add(top);
+        if (o.flag) {
+          var fg = new THREE.PlaneGeometry(0.035, 0.42, 1, 10), pos = fg.attributes.position;
+          for (var i = 0; i < pos.count; i++) { var yy = pos.getY(i); pos.setX(i, pos.getX(i) + Math.sin((yy + 0.21) * 8) * 0.025); pos.setZ(i, (0.21 - yy) * 0.3); }
+          fg.computeVertexNormals();
+          var f = new THREE.Mesh(fg, M.flag); f.position.set(0.035, 0.92, 0.02); f.rotation.y = 0.7; g.add(f);
+        }
+        g.rotation.z = o.lean || 0;
+        return shade(g);
+      }
+    });
+
+    /* A CHAIN AND PADLOCK at a gate seam: a short run of oval links hanging in a U, a brass bodied lock with a steel
+     * shackle and an accent tag. Drawn to illustrate. */
+    K.define("gate_lock", {
+      anchor: "base",
+      size: [0.3, 0.5, 0.1],
+      options: { links: 9 },
+      note: "A hanging chain with a padlock and an accent tag. Drawn to illustrate.",
+      make: function (o) {
+        var g = new THREE.Group(), n = o.links || 9, lg = new THREE.TorusGeometry(0.022, 0.006, 6, 14);
+        for (var i = 0; i < n; i++) {
+          var t = i / (n - 1), x = (t - 0.5) * 0.16, y = 0.42 - Math.sin(t * Math.PI) * 0.16;
+          var l = new THREE.Mesh(lg, M.chain); l.scale.set(1, 1.6, 1); l.position.set(x, y, 0); l.rotation.y = i % 2 ? Math.PI / 2 : 0;
+          l.rotation.z = (t - 0.5) * 1.6; g.add(l);
+        }
+        var body = TXT.roundedBox(0.06, 0.05, 0.026, 0.006, M.brass); body.position.set(0, 0.2, 0.01); g.add(body);
+        var sh = new THREE.Mesh(new THREE.TorusGeometry(0.019, 0.0045, 6, 16, Math.PI), M.chain); sh.position.set(0, 0.226, 0.01); g.add(sh);
+        var tag = TXT.roundedBox(0.03, 0.045, 0.002, 0.002, M.rimPlan); tag.position.set(0.01, 0.155, 0.02); tag.rotation.z = 0.2; g.add(tag);
+        return shade(g);
+      }
+    });
+  };
+
+  N.glowTex = function (THREE) {
+    if (N._glow) return N._glow;
+    var c = document.createElement("canvas"); c.width = c.height = 64; var g = c.getContext("2d");
+    var gr = g.createRadialGradient(32, 32, 0, 32, 32, 32); gr.addColorStop(0, "rgba(255,255,255,1)"); gr.addColorStop(0.18, "rgba(255,255,255,0.6)"); gr.addColorStop(1, "rgba(255,255,255,0)");
+    g.fillStyle = gr; g.fillRect(0, 0, 64, 64); N._glow = new THREE.CanvasTexture(c); return N._glow;
+  };
+  N.noShadows = function (R) { R.scene.traverse(function (o) { if (o.userData && o.userData.noShadow) { o.castShadow = false; o.receiveShadow = false; } }); };
+  N.put = function (obj, contact) { N.TXT.add(N.R, obj); if (contact) N.TXT.contact(N.R, obj, contact === true ? undefined : contact); return obj; };
+  N.project = function (THREE, R, p) {
+    R.camera.updateMatrixWorld(true);
+    var v = new THREE.Vector3(p[0], p[1], p[2]).project(R.camera);
+    return [(v.x + 1) / 2 * N.W, (1 - v.y) / 2 * N.H];
+  };
+  /* AIM SO A POINT LANDS WHERE THE LAYOUT WANTS IT: from a fixed camera, solve the look target so
+   * `point` projects to screen (sx, sy). Returns the look target. */
+  N.aim = function (THREE, R, TXT, from, point, sx, sy, fov) {
+    var look = point.slice(), cam = R.camera;
+    for (var it = 0; it < 40; it++) {
+      TXT.frame(R, { fov: fov, from: from, look: look });
+      var q = N.project(THREE, R, point);
+      var ex = q[0] - sx, ey = q[1] - sy;
+      if (Math.abs(ex) < 0.5 && Math.abs(ey) < 0.5) break;
+      cam.updateMatrixWorld(true);
+      var right = new THREE.Vector3().setFromMatrixColumn(cam.matrixWorld, 0), up = new THREE.Vector3().setFromMatrixColumn(cam.matrixWorld, 1);
+      var d = new THREE.Vector3(look[0] - from[0], look[1] - from[1], look[2] - from[2]).length();
+      var k = 2 * d * Math.tan(fov * Math.PI / 360) / N.H;
+      look = [look[0] + right.x * ex * k - up.x * ey * k, look[1] + right.y * ex * k - up.y * ey * k, look[2] + right.z * ex * k - up.z * ey * k];
+    }
+    return look;
+  };
+  /* THE KEY is the last light, low and warm, and the world's cool rim is held low so a shadow side
+   * of weathering steel stays warm dark rather than the navy of the sky */
+  N.rigSpec = function (W, size, map) {
+    var rim = Object.assign({}, W.rig.rim, { i: (W.rig.rim.i || 0.8) * 0.45 });
+    return Object.assign({}, W.rig, { rim: rim, key: Object.assign({}, W.rig.key, { shadowSize: size || 12, mapSize: map || 2048 }) });
+  };
+  N.rigOpts = function (target, o) {
+    o = o || {};
+    return { target: target, distance: o.distance || 40, shadowFar: o.shadowFar || 120, normalBias: o.normalBias == null ? 0.02 : o.normalBias };
+  };
+  /* THE DARK BAND THE TYPE STANDS IN. Light type on the dark field, and the band only ever DARKENS. */
+  N.shade = function (cx, o) {
+    o = o || {};
+    var dek = document.querySelector(".dek"), bottom = o.to;
+    if (bottom == null && dek) { var b = dek.getBoundingClientRect(); bottom = b.top + b.height; }
+    if (bottom != null) bottom += o.pad == null ? 60 : o.pad;
+    var a = Math.min(0.5, o.a == null ? 0.3 : o.a), c = "6,5,10";
+    if (bottom != null && a > 0) {
+      var fade = o.fade || 180, g = cx.createLinearGradient(0, 0, 0, bottom + fade);
+      g.addColorStop(0, "rgba(" + c + "," + a + ")");
+      g.addColorStop(Math.max(0.05, bottom / (bottom + fade)), "rgba(" + c + "," + (a * 0.85) + ")");
+      g.addColorStop(1, "rgba(" + c + ",0)");
+      cx.fillStyle = g; cx.fillRect(0, 0, N.W, bottom + fade);
+    }
+  };
+  N.shadeLow = function (cx, o) {
+    o = o || {};
+    var top = o.from, a = Math.min(0.5, o.a == null ? 0.35 : o.a), fade = o.fade || 200;
+    var g = cx.createLinearGradient(0, top - fade, 0, N.H);
+    g.addColorStop(0, "rgba(6,5,10,0)"); g.addColorStop(fade / (N.H - top + fade), "rgba(6,5,10," + a + ")"); g.addColorStop(1, "rgba(6,5,10," + a + ")");
+    cx.fillStyle = g; cx.fillRect(0, top - fade, N.W, N.H - top + fade);
+  };
+  N.unacne = function (R, nb) { R.scene.traverse(function (l) { if (l.isDirectionalLight && l.castShadow) { l.shadow.normalBias = nb == null ? 0.04 : nb; l.shadow.bias = -0.0004; } }); return R; };
+  /* THE SKY'S OWN LIGHT, held down: the navy dome lights every shadow face blue through the image
+   * based light, so a frame calls this after TXT.sky to keep shadows warm dark */
+  N.warm = function (R, k) {
+    R.scene.environmentIntensity = k == null ? 0.3 : k;
+    /* THE GROUND'S BOUNCE. The key's pool on caliche throws warm light back up into every shadow face;
+     * without it no. 57's stringers and pier sides crushed to L* 0 and read as cut-outs */
+    if (!R._bounce) { R._bounce = new N.T.HemisphereLight(0x161a24, 0x4a4743, N.BOUNCE); R.scene.add(R._bounce); }
+    return R;
+  };
+  N.BOUNCE = 0.6;
+  N.post = function (cx, o) {
+    o = o || {};
+    if (o.a !== 0 && !o.low) N.shade(cx, { a: o.a, to: o.to, fade: o.fade, pad: o.pad });
+    if (o.low) N.shadeLow(cx, o.low);
+    var y0 = N.H - (o.veilH || 240), v = cx.createLinearGradient(0, y0, 0, N.H);
+    for (var k = 0; k <= 8; k++) { var t = k / 8, e = t * t * (3 - 2 * t); v.addColorStop(t, "rgba(6,5,10," + (Math.min(0.5, o.veil == null ? 0.3 : o.veil) * e).toFixed(4) + ")"); }
+    cx.fillStyle = v; cx.fillRect(0, y0, N.W, N.H - y0);
+    var f = document.querySelector(".tx-site");
+    if (f && o.footWash) {
+      var r = f.getBoundingClientRect(), feather = N.H - r.bottom, fa = Math.min(o.footWash, 0.54);
+      var fw = cx.createLinearGradient(0, r.top - feather, 0, N.H);
+      fw.addColorStop(0, "rgba(6,5,10,0)");
+      fw.addColorStop(feather / (N.H - r.top + feather), "rgba(6,5,10," + fa + ")");
+      fw.addColorStop(1, "rgba(6,5,10," + fa + ")");
+      cx.fillStyle = fw; cx.fillRect(0, r.top - feather, N.W, N.H - r.top + feather);
+    }
+  };
+  /* A RESERVE under one line of type: a feathered dark patch, darken only */
+  N.knock = function (cx, els, a) {
+    (els || []).forEach(function (el) {
+      if (typeof el === "string") el = document.querySelector(el);
+      if (!el) return;
+      var r = el.getBoundingClientRect(), off = 4000;
+      cx.save(); cx.shadowColor = "rgba(6,5,10," + (a == null ? 0.5 : Math.min(0.54, a)) + ")"; cx.shadowBlur = 44; cx.shadowOffsetX = off * 2;
+      cx.fillStyle = "#000"; cx.fillRect(r.left - 14 - off, r.top - 6, r.width + 28, r.height + 12); cx.restore();
+    });
+  };
+  N.leader = function (svg, from, to) {
+    var u = document.createElementNS("http://www.w3.org/2000/svg", "line");
+    u.setAttribute("x1", from[0]); u.setAttribute("y1", from[1]); u.setAttribute("x2", to[0]); u.setAttribute("y2", to[1]);
+    u.setAttribute("stroke", "#07070C"); u.setAttribute("stroke-width", "5"); u.setAttribute("stroke-opacity", "0.6"); svg.appendChild(u);
+    var l = document.createElementNS("http://www.w3.org/2000/svg", "line");
+    l.setAttribute("x1", from[0]); l.setAttribute("y1", from[1]); l.setAttribute("x2", to[0]); l.setAttribute("y2", to[1]);
+    l.setAttribute("stroke", N.INK); l.setAttribute("stroke-width", "2"); l.setAttribute("stroke-opacity", "0.85"); svg.appendChild(l);
+    var c = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+    c.setAttribute("cx", to[0]); c.setAttribute("cy", to[1]); c.setAttribute("r", "5"); c.setAttribute("fill", N.INK); svg.appendChild(c);
+  };
+  N.CSS = function () {
+    var ink = N.INK, dek = "#D6D0C4", halo = "rgba(4,3,8,0.6)", halo2 = "rgba(4,3,8,0.45)";
+    return [
+      "* { margin:0; padding:0; box-sizing:border-box; }",
+      "html, body { width:1080px; height:1350px; overflow:hidden; background:#07070C; }",
+      'body { position:relative; font-family:"Manrope", sans-serif; -webkit-font-smoothing:antialiased; }',
+      "canvas#art { position:absolute; left:0; top:0; width:1080px; height:1350px; }",
+      '.hook { position:absolute; left:80px; top:150px; width:900px; font-family:"Fraunces", serif; font-weight:700; line-height:0.98; letter-spacing:0.004em; color:' + ink + '; font-variation-settings:"opsz" 144; word-spacing:0.05em; z-index:10; }',
+      ".dek { position:absolute; left:82px; width:820px; font-size:31px; font-weight:600; line-height:1.38; color:" + dek + "; z-index:10; }",
+      '.tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace; font-size:24px; letter-spacing:0.07em; line-height:1.5; color:' + ink + '; white-space:nowrap; z-index:20; }',
+      '.lab { position:absolute; font-family:"JetBrains Mono", monospace; font-size:26px; font-weight:500; letter-spacing:0.06em; line-height:1.3; color:' + ink + '; white-space:nowrap; z-index:12; }',
+      ".hook, .dek, .kick, .count, .lab { text-shadow:0 0 2px " + halo + ", 0 1px 14px " + halo2 + "; }",
+      /* the footer lines carry a tight halo only: a 14 px blur read as a smudge on a lit ground */
+      ".tx-site, .src { text-shadow:0 0 2px " + halo + ", 0 1px 4px " + halo2 + "; }"
+    ].join("\n");
+  };
+  N.start = function (o) {
+    var st = document.createElement("style"); st.textContent = N.CSS();
+    document.head.insertBefore(st, document.head.firstChild);
+    TXLAYOUT.mount(document.body, { kicker: o.kicker, counter: o.counter, src: o.src, ink: "#D6D0C4" });
+    TX.fitText(document.getElementById("hook"), o.fit || { min: 80, max: 104, maxLines: 2 });
+    N.follow();
+  };
+  N.boot = async function (THREE, bench, initKit, o) {
+    N.T = THREE;
+    await document.fonts.ready;
+    N.start(o);
+    var TXT = typeof bench === "function" ? bench(THREE) : bench, K = initKit(THREE, TXT);
+    N.K = K; N.TXT = TXT; N.installKit(K, THREE, TXT);
+    return { TXT: TXT, K: K, gl: N.glCanvas(), W: TXT.deckWorld() };
+  };
+  /* a relief frame boots the type alone, with no three.js world */
+  N.bootFlat = async function (o) {
+    await document.fonts.ready;
+    N.start(o);
+    return document.getElementById("art").getContext("2d");
+  };
+  N.EXPOSURE = 1.0;
+  N.stage = function (TXT, gl, W, o) {
+    o = o || {};
+    N.R = TXT.setup(gl, { w: N.W, h: N.H, fog: [W.haze, o.fog == null ? W.fogDensity : o.fog], exposure: W.exposure * N.EXPOSURE * (o.exposure || 1),
+                           tone: W.tone, fov: o.fov || 32, near: o.near || 0.02, far: o.far || 8000 });
+    return N.R;
+  };
+  N.follow = function () {
+    var h = document.getElementById("hook");
+    Array.prototype.forEach.call(document.querySelectorAll(".dek[data-follow]"), function (d) {
+      d.style.top = (h.offsetTop + h.getBoundingClientRect().height + (+d.dataset.follow)) + "px";
+    });
+  };
+  N.glCanvas = function () {
+    var c = document.createElement("canvas");
+    c.width = N.W * 2; c.height = N.H * 2;
+    return c;
+  };
+  N.develop = function (shot, glCanvas) {
+    if (!shot || !shot.ok) throw new Error("the GPU frame came back black: " + JSON.stringify(shot));
+    var cx = document.getElementById("art").getContext("2d");
+    cx.scale(2, 2);
+    cx.drawImage(glCanvas, 0, 0, N.W, N.H);
+    return cx;
+  };
+  /* a DOM label pinned to a world point, nudged by (dx, dy) */
+  N.pin = function (THREE, R, id, p, dx, dy) {
+    var q = N.project(THREE, R, p), el = document.getElementById(id);
+    if (!el) return q;
+    el.style.left = Math.round(q[0] + (dx || 0)) + "px"; el.style.top = Math.round(q[1] + (dy || 0)) + "px";
+    return q;
+  };
+
+
+
+
+  global.CH = N;
+})(this);
