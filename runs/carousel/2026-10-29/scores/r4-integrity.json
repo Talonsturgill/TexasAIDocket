@@ -1,0 +1,10 @@
+{
+ "lens": "integrity",
+ "round": "hard-fail repair",
+ "weighted_score": 7.04,
+ "ship": false,
+ "hard_fails": [
+  "Curly apostrophes painted on slides 2 and 4 in Manrope 600, while slide 7 paints straight in the same face; the render report records U+0027."
+ ],
+ "note": "Confirmed by a native-pixel comparison: Manrope's contextual alternates curl the apostrophe after some letters. Repaired with font-feature-settings calt 0 on those deks; all three now paint straight."
+}

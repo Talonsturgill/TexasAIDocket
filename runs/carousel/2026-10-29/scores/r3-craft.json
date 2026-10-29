@@ -1,0 +1,86 @@
+{
+ "lens": "craft",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.0,
+   "why": "Slides 1, 9, 8 and 5 pass most of the stage. Slides 2, 7, 6, 3 and 4 fall on a default or a primitive. Label halos on 2, 5, 6 and 7 are soft plates."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 6.5,
+   "why": "One key honoured and two working devices, camera walk and accent. The fence motif doesn't register and the value track strobes at 2, 6 and 8."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 6.0,
+   "why": "Every printed numeral traces. Slide 6 drew four stakes for 50 MW. Slide 5's headline drops up to."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.5,
+   "why": "What, who, where, condition and deadline named, the letter of intent kept honest. The next step is general."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "The cover earns the swipe and 5 is a real turn. The land carries three frames."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Clean, attribution cadence, no place texture in the copy."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "New cover, unit and accent. lastLight again and several echoes."
+  }
+ ],
+ "weighted_score": 6.55,
+ "hard_fails": [
+  "Slide 6 rendered four stakes against 10 MW a stake for a 50 MW phase.",
+  "Curly apostrophes in published slide copy on slides 2 and 4."
+ ],
+ "ship": false,
+ "one_sentence_fix": "Relight the two reliefs and frame 6's ground as Caprock earth in a dark pool, and drive frame 6's stake count from sections_phase1.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 2,
+   "problem": "A flat beige noise card in the grey middle.",
+   "fix": "Dark caliche, a tight pool on Silverton, raised walls casting long."
+  },
+  {
+   "slide": 7,
+   "problem": "Corrugated sheet metal, an icon substation, label halos.",
+   "fix": "Matte disked red earth for the 300 acres, straw for the 97 acre L."
+  },
+  {
+   "slide": 6,
+   "problem": "A rippled lake ground, plank flags, four stakes, an unlit substation.",
+   "fix": "Frame 5's ground, the fifth stake in frame, the pool on the yard."
+  },
+  {
+   "slide": 3,
+   "problem": "Saturated orange plates, a black void, blades across the dek.",
+   "fix": "Light leaking between louvre slats, a lit caliche pad, camera right."
+  },
+  {
+   "slide": 4,
+   "problem": "A primitive box with plastic fins and disc bushings.",
+   "fix": "Pressed fin panels with spangle and white rust, porcelain skirts, a lower eye."
+  },
+  {
+   "slide": 5,
+   "problem": "Thin poles, short casts, halo labels.",
+   "fix": "Camera nearer and lower, lit straw for long casts, labels without halos."
+  }
+ ]
+}

@@ -1,0 +1,79 @@
+{
+ "lens": "craft",
+ "round": "hard-fail repair 2",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.4,
+   "why": "Slides 5 and 1 reach the showstopper standard and 9 is close. Slide 8's chain floats and its centre post is a dead mass, slide 7 reads as a grille, slide 2 is a grey card with a groove crossing the dek, slide 4 is primitive, slide 3's bays sit off the louvres, slide 6's pasture is lilac with no pool."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.0,
+   "why": "One lastLight world, one key, the accent and camera move working. The reliefs strobe and the fence motif fades."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.5,
+   "why": "Every fact traces and company figures are attributed. Slide 5's headline drops up to, and the deck rests on one company's releases."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.5,
+   "why": "What, who, where and the condition land. The deciding body and hearing date are not established."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.3,
+   "why": "The cover earns the swipe, 5 is a real turn. 2 and 7 overlap, 4 and 7 overlap."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.3,
+   "why": "Sharp Texas-specific headlines, deks heavy with compliance text."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "Another lastLight night deck with several echoes, the tower-section unit and mesquite accent fresh."
+  }
+ ],
+ "weighted_score": 7.26,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Rebuild slide 2 as a low oblique relief with a raking key and no groove crossing the dek, then replace slide 4's primitive transformer.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 2,
+   "problem": "An evenly lit mid-grey card, a groove through the dek, halo plates.",
+   "fix": "A 35 degree oblique with a raking key, the pool tight on Silverton, no groove under the type."
+  },
+  {
+   "slide": 4,
+   "problem": "A smooth box with slab fins and disc bushings.",
+   "fix": "Pressed panels on header pipes, skirted porcelain sheds, crisp chain link."
+  },
+  {
+   "slide": 3,
+   "problem": "Saturated orange stripes off the louvres, dead grass below.",
+   "fix": "A warm sodium glow behind the louvres spilling onto a caliche pad, camera lower."
+  },
+  {
+   "slide": 6,
+   "problem": "A lilac pasture with no pool, the two lines as one pole and one tower.",
+   "fix": "The pool on the substation and nearest stakes, receding H-frames and lattice towers landing on the yard."
+  },
+  {
+   "slide": 8,
+   "problem": "Loose floating rings and a black centre mass.",
+   "fix": "One continuous chain to the padlock, galvanized posts catching the key."
+  }
+ ]
+}

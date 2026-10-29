@@ -1,0 +1,83 @@
+{
+ "lens": "craft",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.2,
+   "why": "S5 is the best frame, 2 to 1 at the thumb, held back by short shadow bands. S1 bold but thin. S9 dark but plainly a kit model. S2 the weakest, a mid-grey square on dark planks failing three of its own acceptance lines. S6 no dominant subject. S4 a primitive transformer. S8 a fused latch post with floating rings. S3's bays not registered to the louvres. S7 an honest relief that reads as a diagram. Four frames on a default puts it under 7."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.2,
+   "why": "One Caprock night under one key, the accent meaning planned, the turbine recurring, the camera walk legible. S2 strobes and S7 sits on the edge, the fence motif too faint."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.0,
+   "why": "Every numeral traces and the drawn counts match their figures. Looser wording on S7's Soluna says the extra 97 acres, S5's headline dropping up to, and the caption's it."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.5,
+   "why": "What, who, where, the condition and the timing are named. The decider and the next step are implied, not named."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "The cover earns the swipe, the turn lands at S5, S8 is a sharp late beat. S7 restates S2 and S3 to S4 is a slow middle."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.3,
+   "why": "On register and regionally specific with tight headlines. Flattens into attribution boilerplate and Drawn to illustrate on seven deks."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.8,
+   "why": "New turbine cover, tower sections as the unit, the mesquite accent. lastLight, a transformer frame, a shut gate and a courthouse are familiar."
+  }
+ ],
+ "weighted_score": 7.19,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Rebuild frame 2 as the full-bleed lit county relief its acceptance lines asked for.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 2,
+   "problem": "A mid-grey mottled square on near-black panels, no neighbour relief, no bleed, a 25 px subject.",
+   "fix": "Pull in until Briscoe fills the width, lift the neighbours to lit red earth one value below the caliche, lower the key so the walls cast."
+  },
+  {
+   "slide": 6,
+   "problem": "No dominant subject, paper flags, a silhouette substation, a purple-grey pasture, dead dark under the headline.",
+   "fix": "Camera about 2 m from the nearest stake so it stands a third of the frame tall, cloth flags, raise the dek."
+  },
+  {
+   "slide": 4,
+   "problem": "A primitive transformer with stacked disc bushings and invisible fences.",
+   "fix": "Crop to the radiator fin bank with headers, swap or crop the bushings, put the chain link sharp across the near foreground."
+  },
+  {
+   "slide": 8,
+   "problem": "A fused latch post, floating rings, a flat tag, mid-tone caliche.",
+   "fix": "Linked chain from both frames to the padlock on one latch post, the pool pulled down so the rails and lock are brightest."
+  },
+  {
+   "slide": 3,
+   "problem": "Flat orange planes not registered to the louvres, faint turbines and pole line.",
+   "fix": "Glow behind the hall's own louvre slats at lower saturation, rim light on the H-frame line."
+  },
+  {
+   "slide": 7,
+   "problem": "Reads as a diagram board with an icon substation.",
+   "fix": "A small raised yard casting under the key, coarser furrow pitch."
+  }
+ ]
+}

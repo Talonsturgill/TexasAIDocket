@@ -1,0 +1,78 @@
+{
+ "lens": "integrity",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.3,
+   "why": "Frame 5 nearly passes the showstopper test. Frame 1's turbine is finished but thin. Three frames lean on a primitive or a default: frame 4's radiator bank with floating bushings and hairline far fence, frame 2's flat caliche card with a pin shadow longer than the square, frame 8's chain tangle with both leaves cropped. Frame 3's bay plates don't register to the hall's louvres. Frame 9 has sliced turret windows and several lit windows. Frame 7 reads closer to a corrugated chart than land."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "One world and one light, the key low from the left on every spatial frame, the accent meaning what is planned, a dark value held. Frame 2 sits outside. The fence motif is faint on 1 and 6."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 6.8,
+   "why": "Every numeral traces. Charged: slide 8's majority ownership sat outside c8's stored quote; no Applied Digital release or SEC filing used; the cover's past tense paraphrases c10, not cited on slide 1; slide 5's headline drops up to; the caption's it after Briscoe Wind; slide 9's An abatement comes first reads as if one will be granted."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.5,
+   "why": "What, who, where and timing land. The deciding body is never named and the caption closes on a question. Nothing says what an abatement means for the county's tax base."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "The turn sits at 5 and the close lands on the county condition. Frame 7 repeats frame 4's geometry from above."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Clean and on house rules. Attribution heavy, Drawn to illustrate as boilerplate, the Caprock never reaches the copy."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "The turbine cover and tower-section unit are new. lastLight for the fourth deck in five, survey stakes, the shut gate and squares drawn to area recur."
+  }
+ ],
+ "weighted_score": 6.896,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Make slide 8's ChronoScale is majority owned by Applied rest on a stored quote that says it, then rebuild frame 4's substation and frame 2's card-flat map.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 4,
+   "problem": "A primitive box with plate fins and floating bushings that doesn't read as a substation, the fence across the road hairlines.",
+   "fix": "Use the kit substation yard and shoot through the chain link from 15 to 20 m back so the lit pasture fence sits mid-frame with three posts readable."
+  },
+  {
+   "slide": 2,
+   "problem": "The plateau reads as a flat card and the pin's shadow dwarfs the square.",
+   "fix": "Swap the pin for a flush disc, model the Caprock escarpment as a lit cliff edge, give the neighbours red bed albedo and lit groove walls."
+  },
+  {
+   "slide": 8,
+   "problem": "The chain is a tangle and both leaves run off the edges, so 51/49 can't be read.",
+   "fix": "Pull back until both hinge posts and leaf ends show, one chain wrapped twice through the latch hanging to the padlock."
+  },
+  {
+   "slide": 3,
+   "problem": "The orange bay plates don't register to the kit hall's louvre openings and muddle the 10 bay count.",
+   "fix": "Drive the emissive onto the kit's own louvres, exactly ten openings, the tenth lit to 0.8 of its height."
+  },
+  {
+   "slide": 5,
+   "problem": "The near turbine measures the columns and the casts are a short band.",
+   "fix": "Push the turbine deeper as backdrop and raise the lit pool so the long casts run across the straw."
+  }
+ ]
+}

@@ -1,0 +1,63 @@
+<!doctype html>
+<!-- 2026-10-29, frame 4 of 9. Archetype CLOSE_CROP. A spatial scene through txthree.js in the deck's lastLight world: inside the wind farm's substation fence, a transformer's radiator bank close and cropped, and across the county road the pasture's barbed wire fence. The yard, the road and the pasture are drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>.dek[data-apos="straight"]{font-feature-settings:"calt" 0,"liga" 0}</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:900px">Directly across from the land</h1>
+<p class="dek" data-apos="straight" data-follow="22" style="width:880px">Soluna says the wind farm&#39;s substation sits directly across from the land it bought. It says that positions Dorothy 3 for behind the meter access to generation it owns outright. The substation, road and pasture are drawn to&nbsp;illustrate.</p>
+<script>window.FIG = {};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-29-caprock.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "The wind farm's substation", counter: "04 / 09", src: "c20 c18", fit: { min: 70, max: 100, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 52, near: 0.05, far: 6000, fog: 0.003 });
+  const M = CH.mats(THREE, K);
+  /* the camera stands in the yard on the crushed rock, looking east across the county road at the pasture fence */
+  const from = [-21.5, 4.9, 4.2], FENCE_AT = [7.5, 0.9, -7];
+  const f = new THREE.Vector3(FENCE_AT[0] - from[0], 0, FENCE_AT[2] - from[2]).normalize(), rt = new THREE.Vector3(-f.z, 0, f.x);
+  const at = (fw, lf) => [from[0] + f.x * fw - rt.x * lf, from[2] + f.z * fw - rt.z * lf];
+  /* the transformer's radiator bank, the chassis's kit model, close at the lower left, its bushings seated on the lid */
+  const rad = K.make('radiator_bank', {});
+  rad.children.filter((c) => c.isGroup && c.children.length === 6).forEach((b) => { b.position.x -= 0.28; b.position.y -= 0.03; });
+  rad.traverse((o) => { if (o.isMesh && o.material && o.material.color && o.material.color.getHex() === 0x6b4a36) { o.material = o.material.clone(); o.material.color.set(0x3e3430); o.material.roughness = 0.38; o.material.metalness = 0; } });   /* glazed brown porcelain, not copper */
+  const RP = at(4.6, 2.3); rad.position.set(RP[0], 0, RP[1]); rad.rotation.y = Math.atan2(f.x, f.z) + Math.PI / 2 + 0.55; CH.put(rad, true);
+  /* the yard's crushed rock, then its chain link fence on the east side, 14 m from the road's centre */
+  const rock = new THREE.Mesh(new THREE.PlaneGeometry(60, 120), K.mat('crushed_rock', { color: 0x7d7a74, roughness: 0.95 })); rock.rotation.x = -Math.PI / 2; rock.position.set(-44.5, 0.012, 0); rock.receiveShadow = true; TXT.add(R, rock);
+  const yard = K.make('chain_link_fence', { length: 90 }); yard.rotation.y = Math.PI / 2; yard.position.set(-11.5, 0, -6); CH.put(yard, true);
+  /* the county road, and the pasture's barbed wire fence on its east verge */
+  const road = K.make('caliche_road', { length: 700, width: 7, curve: 0.004, centerGrass: true, verge: 2.6 }); road.position.set(0, 0, 0); TXT.add(R, road);
+  const fence = K.make('barbed_wire_fence', { length: 120, strands: 4, spacing: 2.6 }); fence.rotation.y = Math.PI / 2; fence.position.set(7.5, 0, -10); CH.put(fence, true);
+  TXT.sky(R);
+  TXT.ground(R, { surface: 'dirt', size: 9000, seed: 41, color: 0x6a4434 });
+  TXT.scatter(R, { kind: 'grass', count: 9000, area: [9, -80, 60, 40], seed: 29, scale: [0.35, 0.65] });
+  const look = CH.aim(THREE, R, TXT, from, FENCE_AT, 760, 960, 52);
+  TXT.frame(R, { fov: 52, from, look });
+  CH.warm(R, 0.32);
+  TXT.deckRig(R, CH.rigSpec(W, 120, 4096), CH.rigOpts([-8, 0, 0], { distance: 60, shadowFar: 200 }));
+  CH.unacne(R, 0.08);
+  TXT.weather(R, { grime: 0.55, height: 2 });
+  TXT.stage(R, [fence, rad], { poolInner: 4, poolOuter: 14 });
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0.3, veil: 0.32, footWash: 0.6 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

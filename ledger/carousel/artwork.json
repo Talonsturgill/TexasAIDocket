@@ -3854,6 +3854,72 @@
     "hex": "#08070D",
     "note": "The lastLight world's dark sky."
    }
+  },
+  {
+   "date": "2026-10-29",
+   "carousel_no": 62,
+   "written_from": "deck_coherence's median L* per frame at 432 px off the final renders, layout_check's accent share, by update_ledgers.py.",
+   "register": "SPATIAL SCENES in TXT's lastLight world, staged, with two TXBENCH material reliefs. Chassis assets/js/deck/2026-10-29-caprock.js: key az -78 el 10, chassis models tower_section, section_stack, survey_stake, gate_lock, radiator_bank and intake_bays, white tower paint, lit galvanized flanges, caliche, red bed earth and a mesquite accent for what is planned.",
+   "structural_laws": [
+    "A STACK OF SHORT CANS READS AS A SILO. At 1 m a section on a 4.3 m diameter the columns read as grain bins; at 3 m a section the thirty stand at a kit turbine's hub height and taper at its rate, and read as towers.",
+    "A FRAME FACING THE LOW SUN IS A HAZE FIELD. The power frame looking into the key was a grey middle; turned north west with the sun off the frame, the substation read.",
+    "A RELIEF CASTS ONLY DOWNWIND OF ITS KEY. Briscoe's plateau cast only east, so a tighter crop that left less ground east of it cut the cast fraction under the floor.",
+    "MICRO HEIGHT UNDER A 10 DEGREE KEY IS A CAMOUFLAGE PRINT. Noise in a relief's height cast long blotches; the grain belongs in the albedo.",
+    "A KIT MODEL'S MERGED WINDOW MESH LIGHTS EVERY PANE OR NONE. The courthouse could not show one lit window."
+   ],
+   "techniques": [
+    "a kit turbine at last light over a caliche county road and a barbed wire fence",
+    "Briscoe County raised as a caliche relief among red bed neighbours with Silverton's pin and a square of the acres at map scale",
+    "a data hall's ten intake bays lit one per 10 MW, the last filled to its fraction, wind turbines behind",
+    "a transformer's radiator bank close at the lower left, the county road and the pasture fence beyond",
+    "the wind's fifteen tower sections beside the plan's thirty, a worker at their feet and a turbine at their depth",
+    "survey stakes on the pasture for Phase 1 before the substation with a wood line from the left and a lattice line from the right",
+    "the parcel in plan as a relief, the 300 acres in disked red earth and the 97 acre L lit in the accent",
+    "a padlocked double ranch gate across the caliche entrance, its leaves at 51 and 49",
+    "the county courthouse at night with a resident on the walk"
+   ],
+   "value": {
+    "per_frame_median_L": [
+     4.4,
+     11.2,
+     0.9,
+     2.1,
+     1.7,
+     8.6,
+     8.0,
+     7.5,
+     0.9
+    ],
+    "deck_median_L": 4.4,
+    "max_adjacent_delta": 10.3,
+    "mean_adjacent_delta": 4.16,
+    "note": "Measured by deck_coherence's median_lstar at 432 px off the final renders. A staged lastLight deck."
+   },
+   "accent": {
+    "hex": "#6E7A5A",
+    "name": "mesquite, what is planned",
+    "frames_above_floor": [
+     5,
+     6,
+     7
+    ],
+    "share": [
+     0.0,
+     0.0003,
+     0.0,
+     0.0,
+     0.003,
+     0.0047,
+     0.0129,
+     0.0002,
+     0.0
+    ],
+    "note": "The planned column's bands on 5, the stake tops and flagging on 6, the 97 acre L on 7, the padlock tag on 8."
+   },
+   "ground": {
+    "hex": "#08060F",
+    "note": "The lastLight world's dark sky."
+   }
   }
  ]
 }

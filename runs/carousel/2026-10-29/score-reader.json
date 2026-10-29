@@ -1,0 +1,79 @@
+{
+ "lens": "reader",
+ "round": "hard-fail repair 2",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.5,
+   "why": "Slides 1, 5 and 8 pass the bold test at 432 px. Slide 2 is a mid-grey card with a speck for the parcel, slide 7 reads as a bar chart, slide 3's bays sit over the louvres, slide 4's transformer is a grey box, slide 9 lights many panes."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.0,
+   "why": "One staged last-light world, one key, the accent kept for planned. The reliefs step out of the spatial world and the fence motif is too faint."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.5,
+   "why": "Every figure traces and attribution is kept. The caption's first line states c20 as fact, and every deal fact rests on Soluna's releases with no 8-K fetched."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.0,
+   "why": "County, town, parties, plan, condition and close all land. The deciding body, a date and what an abatement means for taxpayers are missing."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "The turn sits at 5 and 6 pays it off. The cover is jargon, frame 2 doesn't pay at once, slide 7 restates acreage."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Clean and on register, attribution heavy, careful rather than Texan."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "New geography and subject, the same staged last-light register and several familiar devices."
+  }
+ ],
+ "weighted_score": 6.94,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Name the Commissioners Court as the body that votes the abatement, what it gives up and when it next meets, from a primary source.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 2,
+   "problem": "A flat mid-grey noise square, the parcel a speck.",
+   "fix": "Crop to the ten miles around Silverton, cut the escarpment into the height field under a grazing key."
+  },
+  {
+   "slide": 7,
+   "problem": "A striped bar chart.",
+   "fix": "A grazing key so each furrow casts, darker troughs, a scale figure."
+  },
+  {
+   "slide": 3,
+   "problem": "Bays laid over the louvres, empty grass below.",
+   "fix": "Glow through the kit louvres, camera lower and in."
+  },
+  {
+   "slide": 4,
+   "problem": "An anonymous grey box at feed size.",
+   "fix": "Pull back so the gantry, road and pasture fence share the frame."
+  },
+  {
+   "slide": 6,
+   "problem": "The BRISCOE WIND leader lands on a bare pole.",
+   "fix": "Retarget it to a turbine, let the pasture beyond the pool fall to black."
+  }
+ ]
+}

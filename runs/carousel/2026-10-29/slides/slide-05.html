@@ -1,0 +1,69 @@
+<!doctype html>
+<!-- 2026-10-29, frame 5 of 9. Archetype FIGURE_SCALE. A spatial scene through txthree.js in the deck's lastLight world: two columns of flanged wind tower sections on the pasture, one section per section_mw from figures.json, the wind farm's at sections_wind and Dorothy 3's planned at sections_d3, a worker at their foot. The section is a drawing unit. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:560px">The plan is twice the wind</h1>
+<p class="dek" data-follow="24" style="width:500px">Soluna describes Dorothy 3 as up to 300 MW and the wind farm beside it as 150 MW. Each section stands for 10 MW, a drawing unit. Drawn to&nbsp;illustrate.</p>
+<div class="lab" id="lab-wind">WIND FARM<br>150 MW</div>
+<div class="lab" id="lab-plan">DOROTHY 3<br>UP TO 300 MW</div>
+<script>window.FIG = {"sections_wind": 15.0, "sections_d3": 30.0};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-29-caprock.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Measured in tower sections", counter: "05 / 09", src: "c6 c14 c19", fit: { min: 72, max: 96, maxLines: 3 } });
+  const R = CH.stage(TXT, gl, W, { fov: 46, near: 0.2, far: 6000, fog: 0.0016 });
+  /* THE FIGURES, from figures.json: the two columns' section counts at one section_mw a section */
+  const nW = Math.round(FIG.sections_wind), nP = Math.round(FIG.sections_d3);
+  const A = [-5.2, 0, -60], B = [5.2, 0, -60];
+  const colW = K.make('section_stack', { n: nW, rim: 'galv', door: true }); colW.position.set(A[0], 0, A[2]); CH.put(colW, true);
+  const colP = K.make('section_stack', { n: nP, rim: 'plan', door: true }); colP.position.set(B[0], 0, B[2]); CH.put(colP, true);
+  /* a worker at the foot of the wind column, three quarters away, weight on one leg, lit from the camera's side */
+  const man = K.make('person', { role: 'worker', pose: 'look_up', vest: true, hat: 'hard', hatColor: 0x2a2620, seed: 14 });
+  man.position.set(A[0] + 3.2, 0, A[2] + 4.6); man.rotation.y = Math.PI * 0.82; CH.put(man, true);
+  /* a kit turbine at the columns' own depth, its 90 m hub level with the planned column's top, so the thirty sections stand
+   * exactly as tall as a real turbine tower and the wind's fifteen at half of one. Its rotor runs off the top and right edges */
+  const near = K.make('wind_turbine', { hub: 90, diameter: 120, yaw: 75, rotor: 8 }); near.position.set(B[0] + 37, 0, B[2] - 4); CH.put(near, true);
+  /* the pasture's fence, in front of the columns, the ground they stand inside */
+  const fence = K.make('barbed_wire_fence', { length: 70, strands: 4, spacing: 3.2 }); fence.position.set(0, 0, -32); CH.put(fence, true);
+  /* the farm behind on the seam, one of its turbines nearer on the right so the sections read as its own, the rest under the veil */
+  [[-520, -900, 30, 20], [-980, -700, 10, 70], [-260, -1500, 20, 40], [150, -760, 25, 55]].forEach(([x, z, yaw, rot]) => {
+    const f = K.make('wind_turbine', { hub: 90, diameter: 120, yaw, rotor: rot }); f.position.set(x, 0, z); TXT.add(R, f); });
+  TXT.sky(R);
+  TXT.ground(R, { surface: 'dirt', size: 9000, seed: 31, color: 0x9a6e52 });
+  const from = [B[0] - 50, 12, B[2] + 135];
+  const look = CH.aim(THREE, R, TXT, from, [B[0], 0, B[2]], 720, 1110, 46);
+  TXT.frame(R, { fov: 46, from, look });
+  TXT.scatter(R, { kind: 'grass', count: 9000, area: [-80, -160, 120, 70], avoid: [[-9, -65, 9, -55]], seed: 11, scale: [0.3, 0.5] });
+  CH.warm(R, 0.34);
+  TXT.deckRig(R, CH.rigSpec(W, 160, 4096), CH.rigOpts([20, 30, A[2]], { distance: 260, shadowFar: 700 }));
+  CH.unacne(R, 0.09);
+  TXT.weather(R, { grime: 0.65, height: 2.6 });
+  TXT.stage(R, [colW, colP], { poolInner: 2.6, poolOuter: 9 });
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  const lw = document.getElementById('lab-wind'), lp = document.getElementById('lab-plan');
+  CH.pin(THREE, R, 'lab-wind', [A[0], 0, A[2] + 3], -lw.getBoundingClientRect().width - 30, -6);
+  CH.pin(THREE, R, 'lab-plan', [B[0], 0, B[2] + 3], 30, -10);
+  CH.post(cx, { a: 0.28, veil: 0.32, footWash: 0.6 });
+  CH.knock(cx, ['#lab-wind', '#lab-plan'], 0.5);
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

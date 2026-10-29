@@ -1,0 +1,112 @@
+<!doctype html>
+<!-- 2026-10-29, frame 2 of 9. Archetype MAP. A material relief through txbench.js under the chassis key: committed county geometry with Briscoe County raised as a caliche plateau, its neighbours lower red bed earth, every county line grooved, a red sandstone pin at Silverton's Census gazetteer point, and a raised square of the acres bought at the map's own scale, its side computed in figures.json. Its place on the map is drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>.dek[data-apos="straight"]{font-feature-settings:"calt" 0,"liga" 0}</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:900px">397 acres near Silverton</h1>
+<p class="dek" data-apos="straight" data-follow="20" style="width:900px">Soluna bought the land in August for Dorothy 3, its planned AI campus. The square is 397 acres at the map&#39;s own scale. Its place on the map is drawn to&nbsp;illustrate.</p>
+<div class="lab" id="lab-co">BRISCOE</div>
+<div class="lab" id="lab-sil">SILVERTON</div>
+<div class="lab" id="lab-sq">397 ACRES</div>
+<svg id="lead" width="1080" height="1350" style="position:absolute;left:0;top:0;z-index:11"></svg>
+<script>window.FIG = {"side_m_acres": 1267.5};
+/* Silverton city, Census 2023 national place gazetteer, GEOID 4867904, internal point. Position only, never printed. */
+window.GEO = {"silverton": [-101.304049, 34.471372]};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-29-caprock.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script src="@@ASSETS@@/js/txbench.js"></script>
+<script src="@@ASSETS@@/js/d3.v7.min.js"></script>
+<script src="@@ASSETS@@/js/topojson-client.min.js"></script>
+<script src="@@ASSETS@@/js/txgeo.js"></script>
+<script>
+window.renderReady = (async () => {
+  const get = (u) => new Promise((ok, bad) => { const x = new XMLHttpRequest(); x.open("GET", u); x.onload = () => ok(JSON.parse(x.responseText)); x.onerror = bad; x.send(); });
+  const cx = await CH.bootFlat({ kicker: "On the map", counter: "02 / 09", src: "c2 c18 c19", fit: { min: 70, max: 96, maxLines: 2 } });
+  TX.reseed(20261002);
+  const topo = await get("@@ASSETS@@/geo/tx-counties.topo.json");
+  const places = (await get("@@ASSETS@@/geo/tx-places.json")).places;
+  const counties = TXGeo.counties(topo), state = TXGeo.outline(topo);
+  const nm = (f) => f.properties.name || f.properties.NAME;
+  const bris = counties.features.find((f) => nm(f) === "Briscoe");
+  const bc = places.find((p) => p.id === "county-briscoe");
+  /* the projection: Briscoe's centroid low in the frame, at a zoom that makes the county most of the frame's width */
+  const proj = TXGeo.texasProjection(state, [[0, 0], [1080, 1350]]);
+  TXGeo.zoomTo(proj, state, [bc.lon, bc.lat], [540, 985], 17);
+  /* THE FIGURE, from figures.json: the square's side in metres, drawn at the map's own px per metre, measured off the
+   * projection across one kilometre of ground at the county's centroid */
+  const pa = proj([bc.lon, bc.lat]), km = 1000 / 6371008.8 * 180 / Math.PI, pb = proj([bc.lon, bc.lat + km]);
+  const pxm = Math.hypot(pb[0] - pa[0], pb[1] - pa[1]) / 1000, SQ = FIG.side_m_acres * pxm;
+  const sil = proj(GEO.silverton), SQC = [sil[0] + 26, sil[1] + 16];          /* the square beside the town, drawn to illustrate */
+  const W = 1080, H = 1350, S = 2;
+  const off = document.createElement("canvas"); off.width = W * S; off.height = H * S; const o = off.getContext("2d"); o.scale(S, S);
+  const p2d = d3.geoPath(proj, o);
+  o.fillStyle = "rgb(0,0,0)"; o.fillRect(0, 0, W, H);
+  counties.features.forEach((f) => { o.beginPath(); p2d(f); o.fillStyle = "rgb(1,0,0)"; o.fill(); });
+  o.beginPath(); p2d(bris); o.fillStyle = "rgb(2,0,0)"; o.fill();
+  o.beginPath(); p2d(TXGeo.borders(topo)); o.lineWidth = 3.6; o.strokeStyle = "rgb(9,0,0)"; o.stroke();
+  const id = o.getImageData(0, 0, W * S, H * S).data;
+  const at = (X, Y) => id[((Math.min(H * S - 1, Math.max(0, Math.round(Y * S))) * W * S) + Math.min(W * S - 1, Math.max(0, Math.round(X * S)))) * 4];
+  const M = { EARTH: 0, CALICHE: 1, GROOVE: 2, PIN: 3, PLAN: 4, FIELD: 5 };
+  const inSq = (X, Y) => Math.abs(X - SQC[0]) <= SQ / 2 && Math.abs(Y - SQC[1]) <= SQ / 2;
+  const pinR = 7, pinD = (X, Y) => Math.hypot(X - sil[0], Y - sil[1]);
+  /* the plateau's farmland as a patchwork of mile sections at the map's own scale, each its own tone of turned or
+   * standing ground. Albedo only, no ruled lines */
+  /* continuous fine grain for caliche and red earth, no tiles: two octaves of noise at field and clod scale */
+  const field = (X, Y) => 0.5 + 0.26 * TX.simplex2(X * 0.045, Y * 0.045) + 0.2 * TX.simplex2(X * 0.13, Y * 0.13) + 0.24 * TX.simplex2(X * 0.42, Y * 0.42);
+  function h(X, Y) {
+    const d = pinD(X, Y); if (d < pinR) return 92 + 5 * Math.sqrt(1 - (d / pinR) * (d / pinR));
+    if (inSq(X, Y)) return 99;
+    const m = at(X, Y);
+    if (m === 9) return -8;
+    if (m === 2) return 92;
+    if (m === 1) return 10;
+    return 4;
+  }
+  function mat(X, Y) {
+    if (pinD(X, Y) < pinR) return M.PIN;
+    if (inSq(X, Y)) return M.PLAN;
+    const m = at(X, Y);
+    return m === 9 ? M.GROOVE : m === 2 ? M.CALICHE : m === 1 ? M.EARTH : M.FIELD;
+  }
+  const albedo = (X, Y, m) => {
+    const n = 1 + 0.3 * (TX.simplex2(X * 0.06, Y * 0.06) * 0.5 + TX.simplex2(X * 0.22, Y * 0.22) * 0.35 + TX.simplex2(X * 0.7, Y * 0.7) * 0.15);
+    if (m === M.CALICHE) { const k = n * (0.6 + 0.62 * field(X, Y)); return [0.86 * k, 0.69 * k, 0.48 * k]; }
+    if (m === M.EARTH) { const k = n * (0.66 + 0.55 * field(X + 3.1, Y)); return [0.4 * k, 0.16 * k, 0.085 * k]; }
+    if (m === M.GROOVE) return [0.16, 0.08, 0.05];
+    if (m === M.PIN) return [0.62, 0.24, 0.14];
+    if (m === M.PLAN) return [0.52, 0.66, 0.34];
+    return [0.1 * n, 0.06 * n, 0.04 * n];
+  };
+  const bp = d3.geoPath(proj).centroid(bris);
+  const pool = (X, Y) => { const d = Math.hypot((X - sil[0]) / 640, (Y - sil[1]) / 560), t = Math.max(0, Math.min(1, (d - 0.35) / 0.7)); return 1 - 0.85 * t * t * (3 - 2 * t); };
+  const rep = TXBENCH.relief(cx, { x: 0, y: 0, w: W, h: H, scale: 2, height: h, material: mat, keyMask: pool, albedo,
+    spec: { [M.PIN]: [0.25, 20], [M.PLAN]: [0.12, 10], [M.CALICHE]: [0.06, 8] }, ambient: 0.04, diffuse: 1.6, ao: 1.0, shadow: 0.9, softness: 4, castLength: 320 });
+  window.__relief = rep;
+  cx.setTransform(2, 0, 0, 2, 0, 0);
+  /* labels beside their places, with leaders to the pin and the square */
+  const svg = document.getElementById("lead"); window.__txLeaders = [];
+  const put = (idn, x, y) => { const el = document.getElementById(idn); el.style.left = Math.round(x) + "px"; el.style.top = Math.round(y) + "px"; return el.getBoundingClientRect(); };
+  put("lab-co", bp[0] - 60, bp[1] - 200);
+  const rs = put("lab-sil", sil[0] - 150, sil[1] - 120);
+  CH.leader(svg, [rs.right + 6, rs.bottom], [sil[0] - pinR, sil[1] - 4]); window.__txLeaders.push({ target: "Silverton's pin", at: sil, to: sil });
+  const rq = put("lab-sq", SQC[0] + 70, SQC[1] + 70);
+  CH.leader(svg, [rq.left - 6, rq.top + rq.height / 2], [SQC[0] + SQ / 2 + 2, SQC[1] + SQ / 2 + 2]); window.__txLeaders.push({ target: "the 397 acre square", at: SQC, to: SQC });
+  CH.post(cx, { a: 0.3, to: 560, fade: 90, veil: 0.2, footWash: 0.5 });
+  CH.knock(cx, ["#lab-co", "#lab-sil", "#lab-sq"], 0.5);
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

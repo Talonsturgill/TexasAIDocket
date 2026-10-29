@@ -1,0 +1,78 @@
+{
+ "lens": "reader",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.2,
+   "why": "Slide 5 is strongest, slide 1 clean, slide 9 well lit but generic. Slides 2, 4, 6 and 8 fall to the 4 to 6 descriptors, slide 3's bays read as stickers, slide 7's furrows as corduroy."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.0,
+   "why": "One dusk to night world and one key. The two top-down reliefs cut out of the road world, slide 3's orange a second signal colour."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.5,
+   "why": "Every numeral traces. Slide 5's headline drops up to, the caption's first line drops Soluna says, slide 8's majority ownership rested on c8's text alone."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.0,
+   "why": "What, where, what it rests on and what is soft all land. The deciding body and any date are missing, and behind the meter is never explained."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "The turn at 5 sets up 6. Slide 7 is the cuttable frame, slide 3 delays the turn."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.8,
+   "why": "Clean and on register, relays the company more than it reports, Texas texture only in the art."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "The cover's move is fresh. lastLight again, the transformer bay of no. 60, the staked pasture, the courthouse close, squares drawn to area."
+  }
+ ],
+ "weighted_score": 6.85,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Name the body that votes on a Texas county tax abatement and its next meeting from a primary source.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 2,
+   "problem": "A flat beige card on seamed tiles, the square a dot, the pin's shadow a smear.",
+   "fix": "One continuous red earth height field off all four edges, Briscoe with the Caprock escarpment as a lit wall."
+  },
+  {
+   "slide": 4,
+   "problem": "The transformer reads as clay and the pasture across the road is an unreadable strip.",
+   "fix": "Pull back from the substation gate looking east so the road splits the lower third and the fence stands lit at 30 percent of the width."
+  },
+  {
+   "slide": 8,
+   "problem": "The chain is floating rings and the 51/49 split is invisible.",
+   "fix": "One wrapped run of 8 to 10 heavy links with the padlock under the seam."
+  },
+  {
+   "slide": 6,
+   "problem": "The near pasture sits in lavender mid-grey and the substation is a dim silhouette.",
+   "fix": "Light pool on the yard, the near pasture to near black, only stake tops and flagging rim-lit."
+  },
+  {
+   "slide": 3,
+   "problem": "Bay plates pasted over the wall and an empty grass band.",
+   "fix": "Glow behind the louvre slats and a crop with the hall in the lower third."
+  }
+ ]
+}
