@@ -12,7 +12,7 @@ The Tarrant Regional Water District publishes a standing page on data center raw
 - Public access: Public meeting
 - Take part: https://www.trwd.com/resource/data-center-water-request/
 
-- Last checked: 2026-10-24
+- Last checked: 2026-10-29
 
 ## Dates
 
@@ -47,6 +47,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-18 · The water district still says it has signed no supply contract with a data center.
 - 2026-10-21 · Checked and unchanged. The decision still stands as decided.
 - 2026-10-24 · Tarrant Regional Water District still says it has signed no data center water contract, and the Cedar Creek request stays withdrawn.
+- 2026-10-29 · Tarrant Regional Water District still says it holds no data center water contract and that the Cedar Creek request was withdrawn.
 
 ## Evidence
 

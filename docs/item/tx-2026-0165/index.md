@@ -36,6 +36,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-23 · The university's release could not be reached today, so the gift and the college it names stay unconfirmed since October 18th.
 - 2026-10-24 · The gift naming a University of North Texas college of artificial intelligence is unconfirmed today, since the university's release did not answer.
 - 2026-10-24 · The gift amount and donor names are confirmed in the university's announcement. Its publication date does not establish when a separate naming decision was made. The announcement describes endowments the gift will create.
+- 2026-10-29 · UNT's gift and its college of artificial intelligence are still unconfirmed. The university's news site bars automated readers.
 
 ## Evidence
 

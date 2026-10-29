@@ -11,7 +11,7 @@ Texas A&M's Department of Materials Science and Engineering announced on October
 - Public access: Write to the decider
 - Take part: https://news.engineering.tamu.edu/news/2026/10/22/texas-am-researchers-pursue-autonomous-ai-foundry/
 
-- Last checked: 2026-10-26
+- Last checked: 2026-10-29
 
 ## Dates
 
@@ -23,6 +23,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 
 - 2026-10-23 · Admitted on the university's own account of the grant. It gives no opening date and no measured result, and the speed it names is a goal.
 - 2026-10-26 · Texas A&M's account of the Aggie AI Foundry grant still reads as cited. It still gives no opening date and no measured result.
+- 2026-10-29 · Texas A&M's Aggie AI Foundry grant still stands, and the foundry is still described in the future tense.
 
 ## Evidence
 

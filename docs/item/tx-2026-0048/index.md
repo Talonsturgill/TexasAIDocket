@@ -12,7 +12,7 @@ On August 11th, 2026 the League City City Council approved Ordinance No. 2026-27
 - Comment closes: 2026-11-03
 - Take part: https://leaguecity.legistar.com/MeetingDetail.aspx?LEGID=2222&GID=84&G=2D7DD9CC-BD32-4A4F-B8D5-83638663C82D
 
-- Last checked: 2026-10-24
+- Last checked: 2026-10-29
 
 ## Dates
 
@@ -50,6 +50,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-18 · League City's news post and meeting record still carry the November election on plate reader cameras. The ordinance's own file is unconfirmed.
 - 2026-10-21 · The comment window is still open, closing November 3rd.
 - 2026-10-24 · League City's plate reader proposition is still set for the special election on November 3rd.
+- 2026-10-29 · The council approved a resolution to switch the Flock cameras off within 72 hours if most voters reject them in November.
 
 ## Evidence
 
@@ -78,4 +79,10 @@ Source (primary_official): https://www.leaguecitytx.gov/m/newsflash/Home/Detail/
 > The City Council of the City of League City, Texas, met in a regular meeting in the Council Chambers at 200 West Walker Street on the above date at 6:00 p.m.
 
 Source (primary_official): https://webapi.legistar.com/v1/leaguecity/events/2222/eventitems
+
+### League City's council approved a resolution requiring the city to disable its Flock cameras within 72 hours if most voters reject them in November.
+
+> League City council members approved a resolution on Tuesday requiring the city to disable Flock Safety cameras within 72 hours if a majority of voters reject them in the upcoming election in November.
+
+Source (journalism): https://www.kedt.org/texas-news/2026-10-14/league-city-to-disable-flock-cameras-if-voters-reject-them-in-november
 

@@ -43,6 +43,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-24 · The state technology agency's account of how it is carrying out the four AI laws is unconfirmed today, since its page refused the request.
 - 2026-10-25 · The state technology agency's account of how it carries out the four AI laws stays unconfirmed, since its site bars automated readers.
 - 2026-10-26 · The state technology agency's account of carrying out the four AI laws is still unconfirmed. Its site bars automated readers.
+- 2026-10-29 · The state technology agency's account of how it is carrying out the AI laws is still unconfirmed. Its site bars automated readers.
 
 ## Evidence
 

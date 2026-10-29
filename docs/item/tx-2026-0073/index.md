@@ -49,6 +49,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-10 · The two House committee hearings stay unconfirmed on the Legislature's own pages, which bar automated readers.
 - 2026-10-25 · The two House committee hearings stay unconfirmed on the Legislature's own pages, which still bar automated readers.
 - 2026-10-26 · The two House committee hearings on data centers and AI in health care are still unconfirmed on the Legislature's pages, which bar automated readers.
+- 2026-10-29 · The two House committee hearings on data centers and AI in health care are still unconfirmed on the Legislature's own pages, which bar automated readers.
 
 ## Evidence
 

@@ -37,6 +37,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-23 · The university's account could not be reached today, so the tutor and the police training work stay unconfirmed since October 18th.
 - 2026-10-24 · UT Arlington's AI tutor that withholds the answer is unconfirmed today, since the university's release did not answer.
 - 2026-10-24 · The university confirms the planned tutor and says police testing has begun. The police training is separately funded by the Justice Department. The release reports no evaluation results for either use.
+- 2026-10-29 · UT Arlington's AI tutor and its work with Fort Worth police are still unconfirmed. The university's site did not answer.
 
 ## Evidence
 

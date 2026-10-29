@@ -17,7 +17,7 @@
  },
  "introduction": [
   {
-   "text": "[Soluna Holdings announced on {{date:c1}} a definitive agreement to form a jointly owned company with Applied Digital](c1). [That company is to develop a planned {{number:c2}} MW critical IT data center for AI and high performance computing at Project Dorothy 3, Soluna's development site near Silverton in Briscoe County](c2). [Soluna says Applied is expected to hold {{number:c3}}% of the company after closing and Soluna the remaining {{number:c3:1}}%](c3).",
+   "text": "[Soluna Holdings announced on {{date:c1}} a definitive agreement to form a jointly owned company with Applied Digital](c1). [That company is to develop a planned {{number:c2}} MW critical IT data center for AI and high performance computing. The site is Project Dorothy 3, Soluna's development site near Silverton in Briscoe County](c2). [Soluna says Applied is expected to hold {{number:c3}} of the company after closing and Soluna the remaining {{number:c3:1}}](c3).",
    "claims": [
     "c1",
     "c2",
@@ -37,7 +37,7 @@
    "heading": "A load built beside its generator",
    "paragraphs": [
     {
-     "text": "[Soluna describes Briscoe Wind as a {{number:c6}} MW wind farm in Briscoe County and Dorothy 3 as a planned AI data center beside it](c6). [It describes the existing Project Dorothy campus as {{number:c12}} MW, built behind the meter at the same wind farm, which it says it acquired in April](c12). [In its September release it said the two Dorothy sites already running account for {{number:c13}} MW of energized capacity](c13).",
+     "text": "[Soluna describes Briscoe Wind as a {{number:c6:1}} MW wind farm in Briscoe County and Dorothy 3 as a planned AI data center beside it](c6). [It describes the existing Project Dorothy campus as {{number:c12}} MW, built behind the meter at the same wind farm, which it says it acquired in April](c12). [In its September release it said the two Dorothy sites already running account for {{number:c13:2}} MW of energized capacity](c13).",
      "claims": [
       "c6",
       "c12",
@@ -57,7 +57,7 @@
    "heading": "The land and the plan",
    "paragraphs": [
     {
-     "text": "[Soluna announced on {{date:c18}} that it had closed the purchase of {{number:c18}} acres in Briscoe County](c18). [It says the land will host Dorothy 3, which it describes as a planned campus with potential capacity of up to {{number:c19}} MW](c19). [The company says the wind farm's substation sits directly across from the property, which it says positions Dorothy 3 for behind the meter access to generation it owns outright](c20).",
+     "text": "[Soluna announced on {{date:c18}} that it had closed the purchase of {{number:c18}} acres in Briscoe County](c18). [It says the land will host Dorothy 3, which it describes as a planned campus with potential capacity of up to {{number:c19:1}} MW](c19). [The company says the wind farm's substation sits directly across from the property, which it says positions Dorothy 3 for behind the meter access to generation it owns outright](c20).",
      "claims": [
       "c18",
       "c19",
@@ -65,7 +65,7 @@
      ]
     },
     {
-     "text": "[Soluna says the {{number:c21}} acres exceed the {{number:c21:1}} acres it first identified for the campus. It says the extra land leaves room for more data halls if further generation or storage becomes available](c21). [The first phase of Dorothy 3 is the {{number:c7}} MW in the new deal. Soluna expects it to draw power from both Briscoe Wind and the grid, subject to definitive documentation](c7). The release does not say how that load would be split between the two.",
+     "text": "[Soluna says the {{number:c21}} acres exceed the {{number:c21:1}} acres it first identified for the campus. It says the extra land leaves room for more data halls if further generation or storage becomes available](c21). [The first phase of Dorothy 3 is the {{number:c7:2}} MW in the new deal. Soluna expects it to draw power from both Briscoe Wind and the grid, subject to definitive documentation](c7). The release does not say how that load would be split between the two.",
      "claims": [
       "c21",
       "c7"

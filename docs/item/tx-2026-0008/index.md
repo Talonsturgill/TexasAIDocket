@@ -8,7 +8,7 @@ Three separate acts of the 89th Legislature each added a Subchapter S to Governm
 - Status: open
 - Public access: Write to the decider
 
-- Last checked: 2026-10-24
+- Last checked: 2026-10-29
 
 ## Dates
 
@@ -42,6 +42,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-18 · The three AI subchapters in the Government Code still share one letter and repeat section numbers. No cleanup bill has changed that.
 - 2026-10-21 · Checked and unchanged. Still open, with no dated movement.
 - 2026-10-24 · The Government Code still carries the three conflicting subchapters on AI with their duplicated section numbers.
+- 2026-10-29 · Chapter 2054 of the Government Code still carries three separate Subchapter S provisions on AI with overlapping section numbers.
 
 ## Evidence
 
