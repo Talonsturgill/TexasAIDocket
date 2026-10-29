@@ -103,10 +103,10 @@
   N.installKit = function (K, THREE, TXT) {
     if (K.registry.tower_section) return;
     var M = N.mats(THREE, K);
-    var RAD = 2.15, H = 1.0, FL = 2.27, FT = 0.07;
+    var RAD = 2.15, H = 3.0, FL = 2.32, FT = 0.1;
     function shade(o) { o.traverse(function (c) { if (c.isMesh) { c.castShadow = c.receiveShadow = true; } }); return o; }
 
-    /* ONE CAN OF A WIND TOWER: a rolled steel shell 1.0 m tall that TAPERS like a real tubular tower, narrowing by
+    /* ONE CAN OF A WIND TOWER: a rolled steel shell 3.0 m tall, so a stack of thirty stands at the kit turbine's own hub height, that TAPERS like a real tubular tower, narrowing by
      * TAPER metres of radius per metre of height (the kit wind_turbine's own rate, 2.15 m at the foot to 1.40 m at 88 m),
      * with one flush bolted flange at its foot that stands a few centimetres proud and catches the key as one lit line.
      * Options: r0 (radius at its foot), rim 'galv' (what exists) or 'plan' (the accent band painted on the flange's outer
@@ -116,19 +116,20 @@
     K.define("tower_section", {
       size: [FL * 2, H, FL * 2],
       options: { r0: RAD, rim: "galv", dusty: false, top: false, door: false, bolts: 40 },
-      note: "One flanged wind tower can, 1.0 m tall, tapering at the kit turbine's rate, a drawing unit. r0, rim galv|plan, dusty, top, door.",
+      note: "One flanged wind tower can, 3.0 m tall, tapering at the kit turbine's rate, a drawing unit. r0, rim galv|plan, dusty, top, door.",
       make: function (o) {
         var g = new THREE.Group(), r0 = o.r0 || RAD, r1 = r0 - TAPER * H;
         var shell = new THREE.Mesh(new THREE.CylinderGeometry(r1, r0 - TAPER * FT, H - FT, 96, 1, true), o.dusty ? M.paintDusty : M.paint);
         shell.position.y = FT + (H - FT) / 2; g.add(shell);
-        /* the foot flange, flush: 4 cm proud of the shell with a chamfered top edge, the one lit tick per section */
-        var ro = r0 + 0.04;
+        /* the foot flange, a bolted lip 9 cm proud of the shell with a chamfered top edge, so every section joint catches the key
+         * as one lit tick with a shadow line under it, the way a tower's flanges read from the ground */
+        var ro = r0 + 0.09;
         var prof = [[r0 - 0.1, 0], [ro, 0], [ro, FT - 0.02], [ro - 0.02, FT], [r0 - 0.1, FT]].map(function (p) { return new THREE.Vector2(p[0], p[1]); });
         /* a galvanized flange is lighter and less mirror-like than machined steel, so it catches the key as a lit tick */
         var fl = new THREE.Mesh(new THREE.LatheGeometry(prof, 128), o.rim === "plan" ? M.machined : M.galvLit); g.add(fl);
         if (o.rim === "plan") {
           /* a painted band on the shell just above the flange, flush, as a planned can would carry a mark */
-          var bh = 0.14, rb = r0 - TAPER * (FT + bh / 2) + 0.004;
+          var bh = 0.6, rb = r0 - TAPER * (FT + bh / 2) + 0.004;
           var band = new THREE.Mesh(new THREE.CylinderGeometry(rb - TAPER * bh / 2, rb + TAPER * bh / 2, bh, 128, 1, true), M.rimPlan);
           band.position.y = FT + bh / 2; g.add(band);
         }
@@ -156,7 +157,7 @@
      * tapers continuously, the foot carrying the base door and the top its open flange. Only the bottom two carry dust. */
     K.define("section_stack", {
       anchor: "base",
-      size: [FL * 2, 15, FL * 2],
+      size: [FL * 2, 45, FL * 2],
       options: { n: 15, rim: "galv", door: false },
       note: "n tower_sections bolted into a tapering column. n, rim galv|plan, door.",
       make: function (o) {
@@ -167,7 +168,11 @@
         }
         /* the door's steps stand on the ground in front of it */
         if (o.door) for (var k = 0; k < 2; k++) { var st = TXT.roundedBox(1.0, 0.04, 0.3, 0.01, K.mat("cp_galv_step", { color: 0x8d9296, metalness: 0.6, roughness: 0.5 })); st.position.set(0, 0.06 + k * 0.08, RAD + 0.35 - k * 0.2); st.castShadow = st.receiveShadow = true; g.add(st); }
-        g.userData.height = n * H;
+        /* the concrete foundation pedestal the bottom can bolts to, a wind tower's own base rather than a silo's slab */
+        var ped = new THREE.Mesh(new THREE.CylinderGeometry(RAD + 0.55, RAD + 0.75, 0.5, 64), K.mat("cp_pedestal", { color: 0x9a948a, roughness: 0.92 }));
+        ped.position.y = -0.25; ped.castShadow = ped.receiveShadow = true; g.add(ped);
+        for (var c = 0; c < g.children.length; c++) if (g.children[c] !== ped) g.children[c].position.y += 0.5;
+        g.userData.height = n * H + 0.5;
         return g;
       }
     });
