@@ -150,11 +150,11 @@
   "basis": "computed: Dorothy 3's planned MW in sections"
  },
  "sections_phase1": {
-  "value": 5.0,
+  "value": 5,
   "from": [
    "c7"
   ],
-  "basis": "computed: Phase 1's MW in sections"
+  "basis": "computed: Phase 1's MW in sections, a whole count when the unit divides it"
  },
  "bays_dorothy": {
   "value": 10.0,

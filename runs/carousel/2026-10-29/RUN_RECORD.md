@@ -129,6 +129,30 @@ checks the rendered figure against the claim's meaning. Queued as article-number
 
 `machine_due.py` reported the weekly pass not due (last pass October 26th, 101 items queued, no repeat offender).
 
+## Phase 18, before the merge
+
+**CI went red on `gates` at 07076bcc, on the record and not the deck.** `docket_staleness.py` called tx-2026-0186 ROTTEN.
+It is the FAA's Zipline Texas metros draft, last verified October 23rd and live at pending. Today's re-verify got a 403 on
+every one of its FAA pages, so it was not stamped, and nothing recorded why. The routine's WebFetch reader got a 403 on
+the review page too. Earlier runs read that page through a browser agent string. This run's attempt to measure with one
+was refused by the session's own classifier as bot check circumvention, and it was not retried. With no client this
+routine has that can read the page, the item now carries a measured `blocks_every_client` boundary on www.faa.gov dated
+today. That moves it to UNREACHABLE for seven days and does not move `last_verified`. `docket_staleness` exits 0 and
+`docket_build --validate` is clean. **The FAA item is unverified since October 23rd** and the next run re-measures it.
+
+**Frame 6 got the new visual review its Phase 17 rewording required, and the review found a regression.** The four
+line dek now ran over a turbine rotor, and the lattice tower's tip nearly touched "illustrate.". The rotor was turned
+and the grid line moved about 28 m farther off, and the re-review passed it to ship with five stakes counted
+(`reviews/frame06_postpanel.json`). The critic's craft notes on the feeds, the ground and the flagging predate the
+rewording and are recorded, not rebuilt, at the round cap. The panel didn't score this frame, so the score row reads
+STALE, honestly.
+
+**figure_bearing failed frame 6 on the shipped deck.** Its literal check looks for "5" and the frame's FIG held "5.0",
+so the count read through `FIG` was invisible to it and the deck counted 5 bearing frames of the 6 required.
+`compute.py` now emits the section count as a whole number when the unit divides it. figures.json and the FIG line read
+5, and `fig_inject --check` and `figure_bearing` both pass. The weakness is the lexical check's, and it sits beside the
+two FIG and numeral trace items already queued.
+
 ## Discoverability signoff
 
 See `out/2026-10-29/tmp/signoff.md`, carried here:
@@ -152,8 +176,8 @@ See `out/2026-10-29/tmp/signoff.md`, carried here:
 | aggregates     | PASS   | 5 declaration(s), 13 numeric phrase(s) in the render, all re-derived |
 | assembly       | PASS   | 9 slide(s), 7.82 MB, vector |
 | score          | STALE  | score.json predates the newest render, so it describes a deck that no longer exists. Re-run it |
-| labels         | ABSENT | label_report.json not written yet. Run scripts/carousel/label_guard.py <run-dir> |
-| quantifiers    | ABSENT | quantifier_report.json not written yet. Run scripts/carousel/quantifier_check.py <run-dir> |
+| labels         | PASS   | 52 claim id(s) checked, every label beside one traces to the shape its claim proves |
+| quantifiers    | PASS   | 86 published string(s) read from one list, every universal names its set |
 | verbatim       | WARN   | no dossier declares a `verbatim:` block, so no on-frame string was held to a quote, 1 slot note(s) |
 | dossiers       | PASS   | 37,862 chars planned |
 | caption        | PASS   | 152 words |

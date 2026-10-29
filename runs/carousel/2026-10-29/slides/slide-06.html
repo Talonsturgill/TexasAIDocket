@@ -13,7 +13,7 @@
 <div class="lab" id="lab-w">BRISCOE WIND</div>
 <div class="lab" id="lab-g">THE GRID</div>
 <svg id="lead" width="1080" height="1350" style="position:absolute;left:0;top:0;z-index:11"></svg>
-<script>window.FIG = {"sections_phase1": 5.0};</script>
+<script>window.FIG = {"sections_phase1": 5};</script>
 <script src="@@ASSETS@@/js/noise.js"></script>
 <script src="@@ASSETS@@/js/txtype.js"></script>
 <script src="@@ASSETS@@/js/txcolor.js"></script>
@@ -42,10 +42,10 @@ window.renderReady = (async () => {
   const hPts = [along(226, 30), along(214, 80), along(200, 130), along(186, 180)];
   CH.put(K.make('power_line', { structure: 'h_frame', voltage: 138, material: 'wood', structures: run(hPts) }), true);
   /* the grid's 345 kV lattice line coming in from the right */
-  const gPts = [along(240, -34), along(262, -110), along(286, -190)];
+  const gPts = [along(268, -38), along(290, -114), along(314, -194)];
   CH.put(K.make('power_line', { structure: 'transmission_tower', voltage: 345, insulator: 'porcelain', structures: run(gPts) }), true);
   /* the wind farm the H-frames come from, beyond the yard on the left */
-  [[560, 150, 30, 10], [720, 250, 20, 60], [480, 230, 40, 35], [860, 120, 25, 80]].forEach(([d, lat, yaw, rot]) => {
+  [[560, 150, 30, 90], [720, 250, 20, 60], [480, 230, 40, 35], [860, 120, 25, 80]].forEach(([d, lat, yaw, rot]) => {
     const [x, z] = along(d, lat), t = K.make('wind_turbine', { hub: 90, diameter: 120, yaw, rotor: rot }); t.position.set(x, 0, z); TXT.add(R, t); });
   /* the county road between the pasture and the yard, north and south */
   const road = K.make('caliche_road', { length: 900, width: 7, curve: 0.004, centerGrass: true, verge: 2.6 }); road.position.set(along(70, 0)[0], 0, 0); TXT.add(R, road);

@@ -1,0 +1,26 @@
+{
+ "slide": "slide-06",
+ "when": "after the panel, Phase 18",
+ "why": "the dek was reworded at Phase 17 to clear a numeral trace failure, so the changed frame needed its own visual review",
+ "review_1": {
+  "verdict": "revise",
+  "must_fix": [
+   "the reworded four line dek reached down onto a turbine rotor, and the lattice tower's tip nearly touched 'illustrate.'",
+   "the two feeds read as single structures rather than lines"
+  ]
+ },
+ "repair": "the left turbine's rotor turned so no blade passes behind the dek, and the grid line moved about 28 m farther off so the tower tip clears the dek. The line-structure note predates the rewording and is recorded, not rebuilt, at the round cap",
+ "review_2": {
+  "verdict": "ship",
+  "must_fix": [],
+  "stakes_counted": 5,
+  "leaders": "both land on a structure"
+ },
+ "recorded_not_rebuilt": [
+  "the feeds read as one pole and one tower, not lines",
+  "ground reads as rippled water, uniform tufts, a speckle band at the horizon",
+  "flagging is a flat ribbon and the stakes are thin",
+  "lower half sits in a lavender grey mid band",
+  "the left turbine tower passes behind the B of BRISCOE WIND under the label halo"
+ ]
+}

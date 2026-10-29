@@ -32507,7 +32507,15 @@
      "note": "The FAA's comment window on round the clock Zipline flights has closed. The agency's own notice refuses every reader.",
      "checked": true
     }
-   ]
+   ],
+   "unreachable": {
+    "hosts": [
+     "www.faa.gov"
+    ],
+    "boundary": "blocks_every_client",
+    "checked": "2026-10-29",
+    "note": "www.faa.gov answered 403 on 2026-10-29 to the project's own agent on all of tx-2026-0186's cited pages, and 403 to the routine's WebFetch reader on the review page. Earlier runs read the page through a browser agent string. The routine no longer presents itself as a browser, so no client it has can read the page. Nothing was routed around."
+   }
   },
   {
    "title": "PUCT adopts the SB 6 large load interconnection rule, requires $50,000 per megawatt of security and drops the interconnection fee",

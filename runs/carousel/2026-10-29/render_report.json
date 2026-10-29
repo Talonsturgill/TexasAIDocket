@@ -1364,8 +1364,8 @@
         },
         {
           "text": "THE GRID",
-          "x": 597,
-          "y": 639,
+          "x": 598,
+          "y": 664,
           "w": 137,
           "h": 34,
           "font_px": 26,
@@ -1376,8 +1376,8 @@
           "overlap_ok": false,
           "lines": [
             [
-              597,
-              638,
+              598,
+              663,
               137,
               35
             ]
@@ -1479,10 +1479,10 @@
         },
         {
           "kind": "svg",
-          "x": 740.3,
-          "y": 604.7,
-          "w": 34.1,
-          "h": 51.2,
+          "x": 741.3,
+          "y": 629.6,
+          "w": 33.7,
+          "h": 51.3,
           "by": "line",
           "color": "rgb(7, 7, 12)",
           "decorative": false,
@@ -1490,10 +1490,10 @@
         },
         {
           "kind": "svg",
-          "x": 740.3,
-          "y": 604.7,
-          "w": 34.1,
-          "h": 51.2,
+          "x": 741.3,
+          "y": 629.6,
+          "w": 33.7,
+          "h": 51.3,
           "by": "line",
           "color": "rgb(236, 232, 223)",
           "decorative": false,
@@ -1503,9 +1503,9 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 18301,
+      "render_ms": 24549,
       "ok": true,
-      "load_ms": 267,
+      "load_ms": 402,
       "canvases": [
         {
           "x": 0,
@@ -1517,8 +1517,8 @@
           "area_frac": 1,
           "backing_ratio": 2,
           "sample_ok": true,
-          "mean": 29,
-          "variance": 730.5
+          "mean": 29.1,
+          "variance": 731.2
         }
       ],
       "breather": false,

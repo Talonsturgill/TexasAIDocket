@@ -61,7 +61,7 @@ SECTION_MW = 10
 F("section_mw", SECTION_MW, [], "the drawing unit: megawatts one tower section stands for on the deck's columns. A choice, not a claim")
 F("sections_wind", round(wind / SECTION_MW, 2), ["c6"], "computed: the wind farm's MW in sections")
 F("sections_d3", round(d3 / SECTION_MW, 2), ["c14"], "computed: Dorothy 3's planned MW in sections")
-F("sections_phase1", round(phase1 / SECTION_MW, 2), ["c7"], "computed: Phase 1's MW in sections")
+F("sections_phase1", phase1 // SECTION_MW if phase1 % SECTION_MW == 0 else round(phase1 / SECTION_MW, 2), ["c7"], "computed: Phase 1's MW in sections, a whole count when the unit divides it")
 F("bays_dorothy", round(dorothy / SECTION_MW, 2), ["c12"], "computed: the older campus's MW in bays at the same unit")
 F("bays_energized", round(energized / SECTION_MW, 2), ["c13"], "computed: energized MW in bays at the same unit")
 ACRE_M2 = 4046.8564224   # square metres in an international acre, by definition
