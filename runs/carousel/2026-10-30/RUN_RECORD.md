@@ -28,3 +28,27 @@ current. No `prompts/NEXT_RUN.md` was queued.
   the Attorney General's own release and petition sit under a robots disallow.
 - **tx-2026-0182.** The TCEQ letter of October 19th the power scout returned was already in the record (claims c6 to c8).
 - **Backlog.** The build printed no `backlog:` lines, the same as at wake.
+- **Correction, commit efce6ffe.** tx-2026-0234 first carried two GovTech quotes. govtech.com disallows ClaudeBot
+  site wide, and `fetch_doc.py` fetched it anyway, so both claims were dropped. The approval now rests on the meeting's
+  own draft minutes note, stated as draft. The fetch_doc defect is queued for the weekly pass.
+
+## Selection
+
+tx-2026-0234. A city buying a chatbot and, in the same item, a platform to watch it, on a consent agenda that passed in
+one motion, with minutes still marked draft. Primary sources only. The story is the item's own four lines.
+
+## The deck
+
+Carousel no. 63, "Weighed in one motion". Seven spatial scenes in the staged lastLight world and two TXBENCH material
+reliefs (frames 2 and 5). The chassis `assets/js/deck/2026-10-30-balance.js` builds slotted_weight, weight_stack,
+equal_arm_balance, weight_case and chalk_plinth. The accent is blued steel for the watcher's line. The data in the art:
+one slotted weight is $10,000, a drawing unit equal to the Microsoft line and the greatest common divisor of the four
+lines, so the item is 19 brass, 15 blued, 1 nickel and 4 empty wells, 39 in all. The beam's tilt is a drawing rule and
+every frame that shows it says so.
+
+**Representation changed after a failed repair.** Frame 3's material relief of the case read as dial faces twice, so it
+was rebuilt as a txthree oblique of the open case on a desk.
+
+**A relief artifact worked around, not fixed.** TXBENCH frames booted through `CH.bootFlat` showed a dark rectangle in
+the upper left quadrant, about 540 by 675 css pixels, that no line of the frame's own code draws. Frames 2 and 5 confine
+the relief below the type with a flat dark field above it. Queued for the weekly pass.
