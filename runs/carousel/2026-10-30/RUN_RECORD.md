@@ -52,3 +52,12 @@ was rebuilt as a txthree oblique of the open case on a desk.
 **A relief artifact worked around, not fixed.** TXBENCH frames booted through `CH.bootFlat` showed a dark rectangle in
 the upper left quadrant, about 540 by 675 css pixels, that no line of the frame's own code draws. Frames 2 and 5 confine
 the relief below the type with a flat dark field above it. Queued for the weekly pass.
+
+**The audition (1, 3, 9) was accepted on its sixth reading.** Four readings fell to chassis or slide edits made after
+an acceptance. The fifth, a fresh reading after the blued accent was raised for layout_check's accent floor, said
+revise. It named frame 9 as the one composition to rebuild, because the plinth's blank face was larger than the balance
+it carried. It also charged stray slot notches on every stack, a mid grey floor behind frame 3's type and streaky chalk.
+The chassis now lines every stack's slots up on the far side, cuts a slot into each cased weight and pits the chalk finer.
+Frame 3 stands on a long council table, so the field above the case is dark wood. Frame 9 was re-staged at 3 m and 1.2 m
+eye height on the pans, with the resident moved back to clear the source line. The sixth reading accepted all three
+frames with no repair required, and `art_preflight.py` confirms the review matches all three.

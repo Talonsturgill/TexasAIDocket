@@ -1,0 +1,110 @@
+{
+ "_spec": {
+  "version": 1,
+  "purpose": "A standalone web edition of the archived visual story.",
+  "law": "Facts resolve to the original verified claim record. A layout rebuild does not reverify reporting.",
+  "written_by": "daily"
+ },
+ "section": "Local government",
+ "dek": {
+  "text": "Plano's council took up one consent agenda item for ChatGPT Enterprise, a platform to monitor AI use, Microsoft licenses and a reserve. Its minutes are still a draft.",
+  "claims": [
+   "c1",
+   "c2",
+   "c3",
+   "c4",
+   "c6",
+   "c8"
+  ]
+ },
+ "introduction": [
+  {
+   "text": "[Plano's City Council agenda for {{date:c5}} carried one item to buy ChatGPT Enterprise from Carahsoft Technology Corporation for {{money:c1}}](c1). [The same item buys the Darwin AI platform from the same reseller for {{money:c2}}](c2), [and Microsoft Enterprise from SHI Government Solutions for {{money:c3}}](c3). [A further {{money:c4}} stays available for approved growth in licenses, usage and other costs, inside a not to exceed total of ${{number:c4:1}}](c4).",
+   "claims": [
+    "c1",
+    "c2",
+    "c3",
+    "c4",
+    "c5"
+   ]
+  },
+  {
+   "text": "So a city buying a generative AI assistant also bought, in the same item, a separate product whose maker says it watches how AI is used. The two lines sit side by side on the agenda, each with its own state contract number.",
+   "claims": [
+    "c1",
+    "c2"
+   ]
+  }
+ ],
+ "sections": [
+  {
+   "heading": "One motion, and a draft",
+   "paragraphs": [
+    {
+     "text": "[The council's agenda says items on its consent agenda are acted upon in one motion](c6). [The meeting's minutes note on the purchase reads approved](c7). [Those minutes are still marked as a draft on the city's Legistar record](c8).",
+     "claims": [
+      "c6",
+      "c7",
+      "c8"
+     ]
+    },
+    {
+     "text": "A draft minutes note is the city's own working record of the vote, and it can change before the council adopts the minutes. The record here states the approval as that note states it, and no more.",
+     "claims": [
+      "c7",
+      "c8"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "What the watcher says it does",
+   "paragraphs": [
+    {
+     "text": "[Darwin AI says its platform tracks AI use across users, tools and departments](c9). [It describes continuous monitoring of AI activity, investigation of violations and a complete audit trail](c10). [It says it turns written AI policies into automated controls across departments, roles and tools](c11), [and that it applies data loss prevention directly to AI interactions to catch sensitive data in prompts and responses](c12).",
+     "claims": [
+      "c9",
+      "c10",
+      "c11",
+      "c12"
+     ]
+    },
+    {
+     "text": "Those are the company's own descriptions of its product. Nothing in the item says which of these features Plano will turn on, which departments the licenses go to or how many staff will use either tool.",
+     "claims": [
+      "c9",
+      "c1",
+      "c2"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "What the record does not show",
+   "paragraphs": [
+    {
+     "text": "[Plano sits partly in Collin County](c13) [and partly in Denton County](c14). The item's public text names vendors, contract numbers and dollar lines. It gives no license count, no list of planned uses and no written AI policy for the monitoring platform to enforce. The city's agenda memo sits on a host that bars automated readers, so it was not read here.",
+     "claims": [
+      "c13",
+      "c14",
+      "c1"
+     ]
+    }
+   ]
+  }
+ ],
+ "related": [
+  {
+   "id": "tx-2026-0234",
+   "label": "Plano's AI purchase on the Docket"
+  },
+  {
+   "id": "tx-2026-0030",
+   "label": "Austin's surveillance technology ordinance"
+  },
+  {
+   "id": "tx-2026-0075",
+   "label": "Pflugerville's charter amendment on the city's use of AI"
+  }
+ ]
+}
