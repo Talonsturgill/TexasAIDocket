@@ -2401,3 +2401,26 @@ looks successful until the bytes are read. The national file is the one that is 
 **solunacomputing.com release pages** read cleanly with curl and carry the release title in `<h1>`. Claims
 from them did not record a `document` field, and `sources_block` needed one, so the titles were read off
 the pages at ship.
+
+## 2026-10-30
+
+**www.govtech.com names `User-agent: ClaudeBot` with `Disallow: /` for the whole host**, alongside named AI
+answer engines that are allowed (Claude-SearchBot, Claude-User, ChatGPT-User). `User-agent: *` is `Allow: /` with a
+crawl delay of 10 and `Content-Signal: ai-train=no`. This is the lrl.texas.gov shape, so the run treated the host as
+off limits to every client. **`fetch_doc.py` fetched one article from it anyway**, because its robots check matched
+the project's own agent to the `*` group and passed it. The fact checker caught the ClaudeBot group, and every claim
+from the article was dropped before anything published. The host is not in the registry.
+
+**webapi.legistar.com serves no robots.txt (404)** and answered every Plano call, including
+`events/<id>/eventitems?AgendaNote=1&MinutesNote=1`, whose minutes note arrives as RTF inside the JSON.
+**plano.legistar1.com disallows all readers**, so a Plano agenda memo is out of reach.
+
+**engineering.unt.edu, news.unt.edu and www.uta.edu served no robots.txt today.** The project's agent failed TLS on
+each site's own certificate chain, through the proxy's CA bundle as well, and WebFetch got a 503 from all three.
+
+**The Texas Children's release `content/news-release/together-human-genetics-ai-and-animal-studies-provide-diagnosis-for-rare`
+now answers 404.** The same release is at `content/research-news-release/together-human-genetics-ai-and-animal-studies-provide-diagnosis-for`,
+with its dateline printed as "HOUSTON – (Sept. 28, 2026)".
+
+**www.darwingov.com is Darwin AI's domain** (darwin.ai answered 503 and darwinai.com didn't resolve). Its robots.txt
+carries only a sitemap line.
