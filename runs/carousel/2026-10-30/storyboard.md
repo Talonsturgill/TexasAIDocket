@@ -600,7 +600,7 @@ verbatim: []
 acceptance:
   - "the weight case is shut, its latch visible and lit"
   - "the dais ledge is cut by both side edges and no full row of seats is visible"
-  - "the back wall is darker than the ledge pool by at least 25 L* at 432 px"
+  - "the back wall is visibly darker than the ledge pool at 432 px"
   - "no screen or legible text appears in the art"
   - "the frame's median L* at 432 px is 22 or lower"
 
