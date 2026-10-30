@@ -40,6 +40,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-25 · The fetal movement trial's registry record stays unconfirmed, since the registry still bars automated readers.
 - 2026-10-26 · The registry record of the three campus fetal movement trial is still unconfirmed. The registry bars automated readers.
 - 2026-10-29 · The three campus fetal movement trial is still unconfirmed on the federal trials registry, which bars automated readers.
+- 2026-10-30 · The fetal movement trial at three campuses remains unconfirmed on the federal trials registry, which still bars automated readers.
 
 ## Evidence
 

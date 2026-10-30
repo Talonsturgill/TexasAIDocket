@@ -37,6 +37,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-25 · The radiologists' published review stays unconfirmed, since the index that carries its abstract still bars automated readers.
 - 2026-10-26 · The radiologists' published review of imaging AI is still unconfirmed. The index carrying its abstract bars automated readers.
 - 2026-10-29 · The pediatric imaging AI review by Texas Children's and UT Southwestern radiologists is still unconfirmed on the federal literature index, which bars automated readers.
+- 2026-10-30 · The pediatric imaging AI review remains unconfirmed on the federal literature index, which still bars automated readers.
 
 ## Evidence
 

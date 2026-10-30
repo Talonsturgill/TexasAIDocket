@@ -102,26 +102,62 @@ cut as a radial notch to a centre hole on warm paper, frame 5's discs given a ra
 frame 6's arc lifted, frame 7's camera raised so all fifteen discs clear the rim, frame 9's camera brought in with the
 resident moved back to the glazing.
 
+**Round 3, the cap: 7.246, no hard fail, ships.** Judges 7.07 (integrity), 7.13 (craft), 7.21 (reader), spread 0.14.
+The deck ships 0.754 under the 8.0 top rung. The art median is 6.8, under the 8.5 craft floor, which stands down at
+the cap. What the judges still charge: frame 8's dais reads as a generic CG interior with the weights shut away; frames 2
+and 5 are flat plan reliefs where the argument turns; frame 6 repeats frame 1's camera and its strings reach the footer;
+frame 6's headline stages an arithmetic coincidence as a reading; the close's meeting date is not tied to the item and
+gives no route to comment; voice is clerical ("133 cents", "Drawn to illustrate." on eight deks). The 133 cents wording
+was forced by numeral_trace and aggregate_check together (queued on October 29th), where "$1.33" would have read better.
+
+## Ship
+
+- Images shrunk by `ship_images.py` at 40.0 to 42.9 dB, 48.96 MB to 6.06 MB, og.jpg from slide 1. The art review is
+  bound to the delivered images (`art_preflight.py --archive`), and `measure_shipped.py --check` matches.
+- Ledgers updated (topics, artwork, captions) and `ledger_check` agrees. The web edition passes `article_check` and
+  `tests/test_article_edition.py`, and `SITE=docs node tests/article_edition.mjs` passed 1,020 reader checks once the
+  pre-installed playwright was linked into the gitignored `node_modules`.
+- **The record's own title carried the cover's hard fail.** tx-2026-0234 said the Darwin AI platform "monitors how city
+  staff use AI", which no source states. Corrected the same day with a dated history line, in the ledger and the seed.
+- The site rebuilt on `main` (955 pages) and every verification step exited 0.
+- The article page was opened at 1280 and 390 px: the story reads as text with the visual edition beside it, nine
+  slides in the gallery, the October 26th minutes and the November 9th meeting in the text.
+
+## Timing
+
+`record_done` was missed at Phase 8 and stamped late, so the clock's record phase is wrong: the record's last commit
+(efce6ffe) landed at 05:38:55 UTC, about 33 minutes from wake, and the stamp reads 138.81. From wake: audition 93.12,
+art 141.48, review 192.44, panel 263.94, package 285.95 minutes.
+
+## Discoverability signoff
+
+- **Card, tx-2026-0234** (`og/tx-2026-0234.png`, opened as an image). The corrected title wraps at whole words over four lines and ends "Enterprise and the..." The ellipsis follows a whole word, but the word is "the", so the card stops on an article. Worth a shorter title next time.
+- **/questions/**. Read as text. "Who decides" answers 204 entries and "Where a comment window is open" 206. The per-shape figures were read off the page, and the questions themselves were NOT LOOKED AT one by one.
+- **llms.txt, Open right now**. It lists tx-2026-0145 (closing November 9th), tx-2026-0072 and tx-2026-0189. The new item has no comment window and is correctly absent.
+- **/sources/**. The share at the top reads 1303 of 1484 claims on a primary document, across 381 documents from 168 publishers. The new item rests on the city's Legistar API and the Census. The publisher list was NOT LOOKED AT.
+- **/topic/state-policy/**. The new item is listed under its corrected title. The card count against the page count was NOT LOOKED AT.
+- **/place/county-collin/**. The page reads "2 items in the record" and places Collin County in the Dallas-Fort Worth-Arlington metropolitan statistical area. /place/county-denton/ also carries the item.
+
 ## Gate status
 
 <!-- gate-status:begin -->
 | gate | status | detail |
 |---|---|---|
-| claims         | PASS   | 15 verified claim(s) |
+| claims         | PASS   | 22 verified claim(s) |
 | render         | PASS   | 9 slide(s) |
 | qa             | WARN   | 0 fail(s), 3 warn(s) |
-| aggregates     | PASS   | 9 declaration(s), 11 numeric phrase(s) in the render, all re-derived |
-| assembly       | PASS   | 9 slide(s), 6.61 MB, vector |
-| score          | ABSENT | score.json not written yet |
-| labels         | ABSENT | label_report.json not written yet. Run scripts/carousel/label_guard.py <run-dir> |
+| aggregates     | PASS   | 10 declaration(s), 12 numeric phrase(s) in the render, all re-derived |
+| assembly       | PASS   | 9 slide(s), 6.69 MB, vector |
+| score          | WARN   | 7.246 at the round cap after 3 round(s), the finished deck ships; 8.0 top rung, shortfall named |
+| labels         | PASS   | 62 claim id(s) checked, every label beside one traces to the shape its claim proves |
 | quantifiers    | PASS   | 79 published string(s) read from one list, every universal names its set |
-| verbatim       | ABSENT | verbatim_report.json not written yet. Run scripts/carousel/verbatim_check.py --date <date> |
-| dossiers       | PASS   | 35,709 chars planned |
-| caption        | PASS   | 127 words |
-| craft floor    | PASS   | 9 frame(s), median 645, floor 116 |
+| verbatim       | PASS   | 2 declared fragment(s) over 9 of 9 dossier(s), every one a literal substring of its own claim's quote |
+| dossiers       | PASS   | 35,928 chars planned |
+| caption        | PASS   | 146 words |
+| craft floor    | PASS   | 9 frame(s), median 567, floor 102 |
 | plan vs render | PASS   | 9 of 54 acceptance item(s) checkable |
 | texan          | WARN   | places Plano / body yes / deadline yes / next step NO |
 | absences       | PASS   | 0 of 0 scoped to a named document |
 | numerals       | PASS   | 22 numeral(s) over 9 frame(s), every one reachable |
-| completion     | ABSENT | not scored yet |
+| completion     | PASS   | the deck shipped |
 <!-- gate-status:end -->
