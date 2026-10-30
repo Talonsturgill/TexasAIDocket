@@ -1,41 +1,48 @@
 {
- "last_pass": "2026-10-26",
+ "last_pass": "2026-10-30",
  "themes": [
   {
-   "theme": "primitive or low-poly model where a kit model belongs (no. 61's aircraft, pod and dock tower, built in its chassis; queue drone-pod-dock-models-built-in-chassis)",
-   "runs": 7,
-   "rounds": 19,
-   "action": "fixed",
-   "what": "assets/js/kit/vehicles.js: vtol_drone (lofted cambered wing with split flap and aileron and round tips, V tail of tapered sections with ruddervators, y 0 at the skid bottom and attach.seat), parcel_pod (gasket, bumper, bail, band) and drone_dock (galvanized twelve sided pole, box arm on a brace, cradle with guide rails and contacts, detailed cabinet, crushed rock apron of 20 to 60 mm stones). New names, so no. 61's chassis re-renders as shipped."
-  },
-  {
-   "theme": "largest object unmodelled (no. 61 frame 2's truss tower and flat cabinet)",
-   "runs": 7,
-   "rounds": 18,
-   "action": "fixed in part",
-   "what": "The same lift: drone_dock is the tower no. 61's round 1 fix planned, a galvanized column with its cabinet modelled. The week's other instances were reliefs and slabs on other decks, which the 2026-10-24 print_ban relief floor already holds."
-  },
-  {
-   "theme": "kit person reads as a mannequin (queue kit-person-full-length-reads-as-mannequin, repeat 3, and kit-person-reads-as-mannequin-within-two-metres; nos. 55, 56, 57, 61)",
-   "runs": 4,
-   "rounds": null,
-   "action": "fixed in part",
-   "what": "assets/js/kit/people.js: skin palette held to an envelope computed from a published in vivo table, a rendered face C* 52.4 to 45.4; look_up's shade hand opt in; hatColor. Grip pose, vest cut, collar and a near detail level stay open."
-  },
-  {
-   "theme": "render artifact (banding, aliasing, facets, stripes), including no. 61 frame 5's shadow stair-stepping on the airframe",
-   "runs": 6,
+   "theme": "primitive or low-poly model where a kit model belongs (the close transformer charged on no. 60 frame 6 and no. 62 frame 4; queue kit-substation-reads-as-grey-clay, repeat 1)",
+   "runs": 5,
    "rounds": 10,
-   "action": "escalated",
-   "what": "The engine's key normalBias is a fixed 0.02 and eight consecutive chassis carry their own N.unacne to raise it; proposed a texel-scaled bias in TXT.deckRig (assets/js/txthree.js, human), UPGRADE_BACKLOG 2026-10-26."
+   "action": "fixed",
+   "what": "assets/js/kit/power.js: power_transformer, built for a close crop at both decks' named fixes: weathered galvanized tank on wxSkin at metalness 0.4, pressed steel radiator panels on header pipes with valves, skirted alternating porcelain sheds on flanged turrets, conservator with Buchholz pipe, gauge and breather, surge arresters, containment curb on a crushed rock apron. New name, c50080c8a."
+  },
+  {
+   "theme": "largest object unmodelled",
+   "runs": 5,
+   "rounds": 10,
+   "action": "fixed in part",
+   "what": "The same lift answers the transformer instances; the week's other instances were reliefs and a dais, answered by the relief entry below and by no. 63's own repairs."
+  },
+  {
+   "theme": "render artifact (banding, aliasing, facets, stripes), including no. 63's relief band (queue flat-frame-post-runs-at-device-scale)",
+   "runs": 4,
+   "rounds": 7,
+   "action": "fixed in part",
+   "what": "deck_chassis refuses a bootFlat frame whose post pass runs at device scale, b8f23256f. The shadow acne half stays the engine normalBias proposal (UPGRADE_BACKLOG 2026-10-26)."
+  },
+  {
+   "theme": "detail floor fights the dark staged world (queue, repeat 2, nos. 61, 62, 63, eight frames)",
+   "runs": 3,
+   "rounds": null,
+   "action": "fixed",
+   "what": "art_preflight --write reads layout_check's DETAIL floor on the three audition frames before the review is bound, dff1f2c31."
+  },
+  {
+   "theme": "flat 2D overlay on a rendered frame, and the TXBENCH relief failures queued by six decks (dials, tray, card, blotches, meander)",
+   "runs": 4,
+   "rounds": 5,
+   "action": "fixed",
+   "what": "TECHNIQUE_LIBRARY material relief bench entry with five measured failures and cures, 9fef9735d."
   },
   {
    "theme": "type sitting on or fighting the art",
-   "runs": 6,
-   "rounds": 15,
+   "runs": 4,
+   "rounds": 7,
    "action": "deferred",
-   "what": "A different collision on each deck; the honest gate still needs the id pass (UPGRADE_BACKLOG 2026-10-12 item 4)."
+   "what": "A different collision on each deck; still the id pass (UPGRADE_BACKLOG 2026-10-12 item 4)."
   }
  ],
- "note": "Written by the weekly machine pass (prompts/daily_routine.md Phase 17) when it ships. Read by scripts/carousel/machine_due.py. Run and round counts are from scripts/carousel/week_digest.py --date 2026-10-26, except the person theme, counted by this pass from the queue's own evidence because the digest has no theme for it (rounds not counted)."
+ "note": "Written by the weekly machine pass (prompts/daily_routine.md Phase 17) when it ships. Read by scripts/carousel/machine_due.py. Run and round counts are from scripts/carousel/week_digest.py --date 2026-10-30, five shipped runs, except the detail floor theme, counted by this pass from the queue's own evidence because the digest has no theme for it (rounds not counted)."
 }
