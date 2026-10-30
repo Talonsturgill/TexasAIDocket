@@ -62,6 +62,36 @@ Frame 3 stands on a long council table, so the field above the case is dark wood
 eye height on the pans, with the resident moved back to clear the source line. The sixth reading accepted all three
 frames with no repair required, and `art_preflight.py` confirms the review matches all three.
 
+**Pixel review and the flow pass.** Two pixel rounds over all nine frames, then one flow pass. Round 1 also found copy that
+claimed more than the record: frame 5's hook stated in the deck's voice what the money watches, frame 8 read as approved
+quickly and carried an absence claim no claim backed (the same sentence was in the caption and was cut there too), and
+frame 9 read the ceiling as spend. Round 2 found frame 8's "went through" and frame 4's "goes to". The flow critic
+predicted artwork_craft 6.4 and named 8, 2, 5, 6 and 1. The planned needle macro on 6 failed twice (the pillar runs
+through the type at 0.6 m; at the right edge the needle hides behind it) and 6 kept its camera. Holdouts are in
+`reviews/flow_and_pixel_summary.md`.
+
+**The relief band was this deck's own bug, found in round 1 of the panel.** Frames 2 and 5 called `CH.post` before
+setting the 2x transform, so the type scrim and the veil drew in device pixels at CSS sizes and darkened only the top
+left quadrant. Every earlier workaround in this run answered that. The transform now comes first and both frames read
+level left to right. The machine queue line is corrected to the cause.
+
+## The panel
+
+**Round 1: 6.822, one hard fail.** Judges 6.32 (integrity), 7.02 (craft), 6.84 (reader). The integrity judge failed the
+cover: "A chatbot for Plano, and a watcher for it", the document title and frame 7's hook said, unattributed, that Darwin
+AI was bought to watch ChatGPT, and no fetched record tied darwingov.com to the agenda's "Darwin AI from Carahsoft
+(DIR-CPO-5687)". Repaired:
+- The cover now reads "A chatbot for Plano, and an AI governance platform", the maker's own category, and frame 7's hook
+  "What Darwin AI says it does". The document title follows.
+- Carahsoft's Darwin AI for Government page (c16) links to darwingov.com (c17), which ties the reseller on the item to
+  the maker the deck quotes. Frames 1 and 7 cite it.
+- Checking the next meeting turned up a fact the deck had missed: the October 26th meeting's minutes note marks the
+  October 12th minutes approved (c18), and those October 26th minutes are themselves a draft (c22). Frame 8 now says
+  so, and so do the caption and the web edition.
+- The close names the council's next meeting on November 9th (c21), which both other judges asked for.
+- Frame 3 counts 39 wells rather than 39 weights and calls the item a ceiling rather than a bill. Frame 2's hook says
+  consent agenda. Frame 7's camera rose so all 15 blued discs clear the pan rim.
+
 ## Gate status
 
 <!-- gate-status:begin -->
