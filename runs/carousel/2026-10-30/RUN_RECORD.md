@@ -61,3 +61,27 @@ The chassis now lines every stack's slots up on the far side, cuts a slot into e
 Frame 3 stands on a long council table, so the field above the case is dark wood. Frame 9 was re-staged at 3 m and 1.2 m
 eye height on the pans, with the resident moved back to clear the source line. The sixth reading accepted all three
 frames with no repair required, and `art_preflight.py` confirms the review matches all three.
+
+## Gate status
+
+<!-- gate-status:begin -->
+| gate | status | detail |
+|---|---|---|
+| claims         | PASS   | 15 verified claim(s) |
+| render         | PASS   | 9 slide(s) |
+| qa             | WARN   | 0 fail(s), 3 warn(s) |
+| aggregates     | STALE  | aggregate_report.json predates the newest render, so it describes a deck that no longer exists. Re-run it |
+| assembly       | PASS   | 9 slide(s), 6.61 MB, vector |
+| score          | ABSENT | score.json not written yet |
+| labels         | ABSENT | label_report.json not written yet. Run scripts/carousel/label_guard.py <run-dir> |
+| quantifiers    | PASS   | 79 published string(s) read from one list, every universal names its set |
+| verbatim       | ABSENT | verbatim_report.json not written yet. Run scripts/carousel/verbatim_check.py --date <date> |
+| dossiers       | PASS   | 35,696 chars planned |
+| caption        | PASS   | 127 words |
+| craft floor    | PASS   | 9 frame(s), median 645, floor 116 |
+| plan vs render | PASS   | 9 of 54 acceptance item(s) checkable |
+| texan          | WARN   | places Plano / body yes / deadline yes / next step NO |
+| absences       | PASS   | 0 of 0 scoped to a named document |
+| numerals       | FAIL   | 22 numeral(s) over 9 frame(s), 3 the cited claims do not reach: s4 prints '49' in "The chatbot is 49 percent of the ceiling" and NO claim in this run carr |
+| completion     | ABSENT | not scored yet |
+<!-- gate-status:end -->
