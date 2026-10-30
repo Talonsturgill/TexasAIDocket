@@ -78,10 +78,12 @@
   /* PECAN GRAIN, a streaked albedo map: heartwood with darker growth lines */
   function grainTex(THREE, seed) {
     var c = document.createElement("canvas"); c.width = 512; c.height = 128; var x = c.getContext("2d"), r = lcg(seed);
-    x.fillStyle = "#6b4a32"; x.fillRect(0, 0, 512, 128);
+    x.fillStyle = "#5a3e2a"; x.fillRect(0, 0, 512, 128);
+    /* each growth line is one wave with a whole number of periods across the tile, so the map repeats with no seam */
     for (var i = 0; i < 160; i++) {
-      var y = r() * 128, a = 0.05 + r() * 0.14; x.strokeStyle = "rgba(30,18,10," + a + ")"; x.lineWidth = 0.6 + r() * 1.8;
-      x.beginPath(); x.moveTo(0, y); for (var k = 0; k <= 16; k++) x.lineTo(k * 32, y + Math.sin(k * 0.7 + i) * 2.2 * r()); x.stroke();
+      var y = r() * 128, a = 0.05 + r() * 0.14, amp = 2.2 * r(), per = 1 + Math.floor(r() * 3), ph = r() * Math.PI * 2;
+      x.strokeStyle = "rgba(30,18,10," + a + ")"; x.lineWidth = 0.6 + r() * 1.8;
+      x.beginPath(); x.moveTo(0, y + Math.sin(ph) * amp); for (var k = 1; k <= 64; k++) x.lineTo(k * 8, y + Math.sin(ph + k / 64 * per * Math.PI * 2) * amp); x.stroke();
     }
     var t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.wrapS = t.wrapT = THREE.RepeatWrapping; return t;
   }
@@ -95,7 +97,9 @@
       /* heat blued steel carries the deck's one accent, so it is held near #4E5FA8 in the render: a thinner metal response,
        * a clearcoat for the bright edge, and a faint emission standing in for the blued oxide's own colour */
       blued: new THREE.MeshPhysicalMaterial({ color: 0x5568b8, metalness: 0.5, roughness: 0.3, clearcoat: 0.5, clearcoatRoughness: 0.18, emissive: 0x2c3a7a, emissiveIntensity: 0.6, bumpMap: tooth, bumpScale: 0.2 }),
-      nickel: new THREE.MeshPhysicalMaterial({ color: 0xa9adb0, metalness: 1, roughness: 0.26, bumpMap: tooth, bumpScale: 0.15 }),
+      nickel: new THREE.MeshPhysicalMaterial({ color: 0xd2d6da, metalness: 1, roughness: 0.18, clearcoat: 0.4, clearcoatRoughness: 0.2 }),
+      /* the arc's nickel silver, a warmer white metal brushed a little so its face catches the key as a broad sheen */
+      nickelSilver: new THREE.MeshPhysicalMaterial({ color: 0xd9d4c4, metalness: 0.9, roughness: 0.3, emissive: 0x2a2822, emissiveIntensity: 0.4 }),
       slot: new THREE.MeshStandardMaterial({ color: 0x0b0a0c, roughness: 0.8 }),
       pecan: new THREE.MeshStandardMaterial({ map: grainTex(THREE, 5), roughness: 0.55, bumpMap: tooth, bumpScale: 0.4 }),
       ebony: new THREE.MeshPhysicalMaterial({ color: 0x1a1210, roughness: 0.38, clearcoat: 0.5, clearcoatRoughness: 0.3 }),
@@ -105,7 +109,7 @@
        * than a mirror of a dark ceiling */
       brassCase: new THREE.MeshPhysicalMaterial({ color: 0xc9a265, metalness: 0.85, roughness: 0.42, bumpMap: tooth, bumpScale: 0.3 }),
       bluedCase: new THREE.MeshPhysicalMaterial({ color: 0x5568b8, metalness: 0.45, roughness: 0.4, clearcoat: 0.3, clearcoatRoughness: 0.3, emissive: 0x2c3a7a, emissiveIntensity: 0.45, bumpMap: tooth, bumpScale: 0.2 }),
-      nickelCase: new THREE.MeshPhysicalMaterial({ color: 0xc4c8cb, metalness: 0.85, roughness: 0.36, bumpMap: tooth, bumpScale: 0.15 })
+      nickelCase: new THREE.MeshPhysicalMaterial({ color: 0xdfe4ea, metalness: 0.9, roughness: 0.28, clearcoat: 0.3, clearcoatRoughness: 0.25, bumpMap: tooth, bumpScale: 0.12 })
     };
     return N._M;
   };
@@ -131,8 +135,8 @@
         var prof = [[0.006, 0], [WR - c, 0], [WR, c], [WR, WT - c], [WR - c, WT], [0.006, WT]].map(function (p) { return new THREE.Vector2(p[0], p[1]); });
         var body = new THREE.Mesh(new THREE.LatheGeometry(prof, 96), mat); g.add(body);
         /* the knurl: thin vertical ribs proud of the edge in a band, instanced */
-        var rib = new THREE.BoxGeometry(0.0009, WT * 0.46, 0.0012), list = [];
-        for (var i = 0; i < 120; i++) { var a = i / 120 * Math.PI * 2; list.push([Math.cos(a) * (WR + 0.0003), WT / 2, Math.sin(a) * (WR + 0.0003), -a, 1]); }
+        var rib = new THREE.BoxGeometry(0.0012, WT * 0.46, 0.0006), list = [];
+        for (var i = 0; i < 84; i++) { var a = i / 84 * Math.PI * 2; list.push([Math.cos(a) * (WR + 0.00012), WT / 2, Math.sin(a) * (WR + 0.00012), -a, 1]); }
         K.instances(rib, mat, list, g);
         /* the slot, a dark radial cut from the bore to the rim on +z (yaw turns it) */
         if (o.cased) {
@@ -192,12 +196,12 @@
         var pp = [[0.0, 0.048], [0.034, 0.048], [0.034, 0.056], [0.022, 0.066], [0.016, 0.09], [0.016, 0.50], [0.022, 0.51], [0.022, 0.525], [0.014, 0.535], [0.012, PIVOT_Y - 0.012], [0.0, PIVOT_Y - 0.012]];
         g.add(new THREE.Mesh(new THREE.LatheGeometry(pp.map(function (p) { return new THREE.Vector2(p[0], p[1]); }), 64), M.brass));
         /* the arc scale on a bracket, below the beam, facing +z */
-        var arcG = new THREE.Group(), ay = PIVOT_Y, R0 = NEEDLE - 0.03, R1 = NEEDLE - 0.005, span = (GRAD - 1) / 2 * N.TILT_PER_UNIT * Math.PI / 180 + 0.04;
+        var arcG = new THREE.Group(); arcG.name = 'arc'; var ay = PIVOT_Y, R0 = NEEDLE - 0.03, R1 = NEEDLE - 0.005, span = (GRAD - 1) / 2 * N.TILT_PER_UNIT * Math.PI / 180 + 0.04;
         var arcShape = new THREE.Shape();
         arcShape.absarc(0, 0, R1, -Math.PI / 2 - span, -Math.PI / 2 + span, false);
         arcShape.absarc(0, 0, R0, -Math.PI / 2 + span, -Math.PI / 2 - span, true);
         var arcGeo = new THREE.ExtrudeGeometry(arcShape, { depth: 0.003, bevelEnabled: true, bevelThickness: 0.0008, bevelSize: 0.0008, bevelSegments: 2, curveSegments: 96 });
-        var arc = new THREE.Mesh(arcGeo, M.nickel); arc.position.set(0, ay, 0.024); arcG.add(arc);
+        var arc = new THREE.Mesh(arcGeo, M.nickelSilver); arc.position.set(0, ay, 0.024); arcG.add(arc);
         var tick = new THREE.BoxGeometry(0.0011, 1, 0.0009), list = [];
         for (var k = 0; k < GRAD; k++) {
           var u = k - (GRAD - 1) / 2, a = -Math.PI / 2 + u * N.TILT_PER_UNIT * Math.PI / 180, len = (u % 5 === 0) ? 0.016 : 0.009;
@@ -220,8 +224,8 @@
         var boss = new THREE.Mesh(new THREE.CylinderGeometry(0.022, 0.022, 0.03, 48), M.brass); boss.rotation.x = Math.PI / 2; beam.add(boss);
         var ped = new THREE.Mesh(new THREE.ConeGeometry(0.012, 0.03, 32), M.brass); ped.position.y = 0.03; beam.add(ped);
         /* the needle, a tapered nickel blade hanging from the beam centre */
-        var nShape = new THREE.Shape(); nShape.moveTo(-0.004, 0); nShape.lineTo(0.004, 0); nShape.lineTo(0.0006, -NEEDLE); nShape.lineTo(-0.0006, -NEEDLE); nShape.lineTo(-0.004, 0);
-        var needle = new THREE.Mesh(new THREE.ExtrudeGeometry(nShape, { depth: 0.0016, bevelEnabled: false }), M.nickel); needle.position.z = 0.03; beam.add(needle);
+        var nShape = new THREE.Shape(); nShape.moveTo(-0.0075, 0); nShape.lineTo(0.0075, 0); nShape.lineTo(0.0014, -NEEDLE); nShape.lineTo(-0.0014, -NEEDLE); nShape.lineTo(-0.0075, 0);
+        var needle = new THREE.Mesh(new THREE.ExtrudeGeometry(nShape, { depth: 0.0018, bevelEnabled: true, bevelThickness: 0.0006, bevelSize: 0.0006, bevelSegments: 2 }), M.nickel); needle.position.z = 0.03; beam.add(needle);
         /* the ends: a stirrup at each, the pans hanging plumb from it */
         [[-1, o.left, o.leftFinish], [1, o.right, o.rightFinish]].forEach(function (s) {
           var ex = s[0] * ARM, endW = new THREE.Vector3(ex * Math.cos(tilt), PIVOT_Y + ex * Math.sin(tilt), 0);
