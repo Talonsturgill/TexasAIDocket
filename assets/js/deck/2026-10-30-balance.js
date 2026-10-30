@@ -98,7 +98,12 @@
       pecan: new THREE.MeshStandardMaterial({ map: grainTex(THREE, 5), roughness: 0.55, bumpMap: tooth, bumpScale: 0.4 }),
       ebony: new THREE.MeshPhysicalMaterial({ color: 0x1a1210, roughness: 0.38, clearcoat: 0.5, clearcoatRoughness: 0.3 }),
       chalk: new THREE.MeshStandardMaterial({ color: 0x8e8775, roughness: 0.92, bumpMap: chalkBump, bumpScale: 1.6 }),
-      felt: new THREE.MeshStandardMaterial({ color: 0x111014, roughness: 1 })
+      felt: new THREE.MeshStandardMaterial({ color: 0x111014, roughness: 1 }),
+      /* the same metals handled and lying in a case, a little rougher, so a top facing up shows a broad sheen rather
+       * than a mirror of a dark ceiling */
+      brassCase: new THREE.MeshPhysicalMaterial({ color: 0xc9a265, metalness: 0.85, roughness: 0.42, bumpMap: tooth, bumpScale: 0.3 }),
+      bluedCase: new THREE.MeshPhysicalMaterial({ color: 0x4e5fa8, metalness: 0.75, roughness: 0.38, clearcoat: 0.3, clearcoatRoughness: 0.3, bumpMap: tooth, bumpScale: 0.2 }),
+      nickelCase: new THREE.MeshPhysicalMaterial({ color: 0xc4c8cb, metalness: 0.85, roughness: 0.36, bumpMap: tooth, bumpScale: 0.15 })
     };
     return N._M;
   };
@@ -110,17 +115,17 @@
     function shade(o) { o.traverse(function (c) { if (c.isMesh) { c.castShadow = c.receiveShadow = true; } }); return o; }
     var WR = 0.034, WT = 0.010;
     N.WR = WR; N.WT = WT;
-    function finishOf(f) { return f === "blued" ? M.blued : f === "nickel" ? M.nickel : M.brass; }
+    function finishOf(f, cased) { if (cased) return f === "blued" ? M.bluedCase : f === "nickel" ? M.nickelCase : M.brassCase; return f === "blued" ? M.blued : f === "nickel" ? M.nickel : M.brass; }
 
     /* ONE SLOTTED WEIGHT: a turned disc 68 mm across and 10 mm thick with a chamfer on both faces, a radial slot to the
      * centre bore so it can be slipped onto a hanger, and a knurled band round its edge that catches the key as a row of
      * tiny lit ticks. finish brass|blued|nickel. Drawn to illustrate. */
     K.define("slotted_weight", {
       size: [WR * 2, WT, WR * 2],
-      options: { finish: "brass", yaw: 0 },
-      note: "A slotted disc weight 68 mm by 10 mm, a drawing unit. finish brass|blued|nickel, yaw (radians) turns the slot.",
+      options: { finish: "brass", yaw: 0, cased: false },
+      note: "A slotted disc weight 68 mm by 10 mm, a drawing unit. finish brass|blued|nickel, yaw (radians) turns the slot, cased (lying in its case: a turned boss stands where the slot was, and the metal is a little rougher).",
       make: function (o) {
-        var g = new THREE.Group(), mat = finishOf(o.finish), c = 0.0018;
+        var g = new THREE.Group(), mat = finishOf(o.finish, o.cased), c = 0.0018;
         var prof = [[0.006, 0], [WR - c, 0], [WR, c], [WR, WT - c], [WR - c, WT], [0.006, WT]].map(function (p) { return new THREE.Vector2(p[0], p[1]); });
         var body = new THREE.Mesh(new THREE.LatheGeometry(prof, 96), mat); g.add(body);
         /* the knurl: thin vertical ribs proud of the edge in a band, instanced */
@@ -128,8 +133,15 @@
         for (var i = 0; i < 120; i++) { var a = i / 120 * Math.PI * 2; list.push([Math.cos(a) * (WR + 0.0003), WT / 2, Math.sin(a) * (WR + 0.0003), -a, 1]); }
         K.instances(rib, mat, list, g);
         /* the slot, a dark radial cut from the bore to the rim on +z (yaw turns it) */
-        var slot = new THREE.Mesh(new THREE.BoxGeometry(0.008, WT + 0.0004, WR), M.slot); slot.position.set(0, WT / 2, WR / 2); g.add(slot);
-        var bore = new THREE.Mesh(new THREE.CylinderGeometry(0.006, 0.006, WT + 0.0004, 24), M.slot); bore.position.y = WT / 2; g.add(bore);
+        if (o.cased) {
+          /* a weight lying in its case shows its turned top: a raised boss with a chamfered shoulder at the centre */
+          var bp = [[0, WT], [0.014, WT], [0.014, WT + 0.003], [0.012, WT + 0.0045], [0, WT + 0.0045]].map(function (p) { return new THREE.Vector2(p[0], p[1]); });
+          g.add(new THREE.Mesh(new THREE.LatheGeometry(bp, 64), mat));
+          var ring = new THREE.Mesh(new THREE.TorusGeometry(0.022, 0.0007, 6, 64), M.slot); ring.rotation.x = Math.PI / 2; ring.position.y = WT + 0.0002; g.add(ring);
+        } else {
+          var slot = new THREE.Mesh(new THREE.BoxGeometry(0.008, WT + 0.0004, WR), M.slot); slot.position.set(0, WT / 2, WR / 2); g.add(slot);
+          var bore = new THREE.Mesh(new THREE.CylinderGeometry(0.006, 0.006, WT + 0.0004, 24), M.slot); bore.position.y = WT / 2; g.add(bore);
+        }
         g.rotation.y = o.yaw || 0;
         return shade(g);
       }
@@ -249,7 +261,7 @@
         rows.forEach(function (n, ri) { for (var i = 0; i < n; i++) wells.push([(i - (n - 1) / 2) * PITCH_X, z0 + ri * PITCH_Z]); });
         g.userData.wells = wells;
         /* the shell: walls and a floor of pecan, the felt bed inside, and the top plate cut with the wells */
-        var FLOOR = 0.03, FELT = 0.034, TOP = 0.036, PLATE = 0.004;
+        var FLOOR = 0.03, FELT = 0.034, TOP = 0.034, PLATE = 0.002;
         var shell = TXT.roundedBox(CW, FLOOR, CD, 0.006, M.pecan); shell.position.y = FLOOR / 2; g.add(shell);
         var felt = new THREE.Mesh(new THREE.BoxGeometry(CW - 0.03, FELT - FLOOR, CD - 0.03), M.felt); felt.position.y = FLOOR + (FELT - FLOOR) / 2; g.add(felt);
         var sh = new THREE.Shape(); sh.moveTo(-CW / 2, -CD / 2); sh.lineTo(CW / 2, -CD / 2); sh.lineTo(CW / 2, CD / 2); sh.lineTo(-CW / 2, CD / 2); sh.lineTo(-CW / 2, -CD / 2);
@@ -260,7 +272,7 @@
         var rr = lcg(o.seed || 5);
         (o.fill || []).forEach(function (f, i) {
           if (!f || i >= wells.length) return;
-          var w = K.make("slotted_weight", { finish: f, yaw: rr() * Math.PI * 2 });
+          var w = K.make("slotted_weight", { finish: f, yaw: rr() * Math.PI * 2, cased: true });
           w.position.set(wells[i][0], FELT, wells[i][1]); g.add(w);
         });
         return shade(g);
