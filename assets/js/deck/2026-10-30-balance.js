@@ -97,9 +97,9 @@
       /* heat blued steel carries the deck's one accent, so it is held near #4E5FA8 in the render: a thinner metal response,
        * a clearcoat for the bright edge, and a faint emission standing in for the blued oxide's own colour */
       blued: new THREE.MeshPhysicalMaterial({ color: 0x5568b8, metalness: 0.5, roughness: 0.3, clearcoat: 0.5, clearcoatRoughness: 0.18, emissive: 0x2c3a7a, emissiveIntensity: 0.6, bumpMap: tooth, bumpScale: 0.2 }),
-      nickel: new THREE.MeshPhysicalMaterial({ color: 0xd2d6da, metalness: 1, roughness: 0.18, clearcoat: 0.4, clearcoatRoughness: 0.2 }),
+      nickel: new THREE.MeshPhysicalMaterial({ color: 0xd2d6da, metalness: 1, roughness: 0.18, clearcoat: 0.4, clearcoatRoughness: 0.2, emissive: 0x3a3f46, emissiveIntensity: 0.5 }),
       /* the arc's nickel silver, a warmer white metal brushed a little so its face catches the key as a broad sheen */
-      nickelSilver: new THREE.MeshPhysicalMaterial({ color: 0xd9d4c4, metalness: 0.9, roughness: 0.3, emissive: 0x2a2822, emissiveIntensity: 0.4 }),
+      nickelSilver: new THREE.MeshPhysicalMaterial({ color: 0xb4b2aa, metalness: 1, roughness: 0.26, emissive: 0x1e1e1c, emissiveIntensity: 0.3 }),
       slot: new THREE.MeshStandardMaterial({ color: 0x0b0a0c, roughness: 0.8 }),
       pecan: new THREE.MeshStandardMaterial({ map: grainTex(THREE, 5), roughness: 0.55, bumpMap: tooth, bumpScale: 0.4 }),
       ebony: new THREE.MeshPhysicalMaterial({ color: 0x1a1210, roughness: 0.38, clearcoat: 0.5, clearcoatRoughness: 0.3 }),
@@ -109,7 +109,7 @@
        * than a mirror of a dark ceiling */
       brassCase: new THREE.MeshPhysicalMaterial({ color: 0xc9a265, metalness: 0.85, roughness: 0.42, bumpMap: tooth, bumpScale: 0.3 }),
       bluedCase: new THREE.MeshPhysicalMaterial({ color: 0x5568b8, metalness: 0.45, roughness: 0.4, clearcoat: 0.3, clearcoatRoughness: 0.3, emissive: 0x2c3a7a, emissiveIntensity: 0.45, bumpMap: tooth, bumpScale: 0.2 }),
-      nickelCase: new THREE.MeshPhysicalMaterial({ color: 0xdfe4ea, metalness: 0.9, roughness: 0.28, clearcoat: 0.3, clearcoatRoughness: 0.25, bumpMap: tooth, bumpScale: 0.12 })
+      nickelCase: new THREE.MeshPhysicalMaterial({ color: 0xdfe4ea, metalness: 0.9, roughness: 0.28, clearcoat: 0.3, clearcoatRoughness: 0.25, emissive: 0x2a3446, emissiveIntensity: 0.55, bumpMap: tooth, bumpScale: 0.12 })
     };
     return N._M;
   };
