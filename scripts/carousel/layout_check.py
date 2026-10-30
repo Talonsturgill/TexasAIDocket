@@ -465,6 +465,62 @@ def detail_fraction(img, rect, boxes, count_text: bool = False) -> tuple[float, 
     return float((std[keep] > DETAIL_STD).mean()), kept, int(dropped.sum())
 
 
+def detail_message(n: int, detail: float, kept: int, img, p: dict) -> str:
+    """The DETAIL failure, one wording for the full gate and for the audition's early read."""
+    level, step = detail_step(img, p["rect"])
+    return (f"slide {n}: {detail:.2f} of the {kept} cells inside the primary "
+            f"image rect carry any detail (luminance std over {DETAIL_STD:.0f}), "
+            f"under the {DETAIL_SHARE:.2f} line. The plan says {p['subject']!r} "
+            f"is drawn there and the pixels say a flat plate is. At this rect's "
+            f"median level of {level:.0f} that floor is a step of {step:.1f} L*, "
+            f"no more than it asks of a mid grey, so a darker plate earns no "
+            f"discount. NEVER ANSWER IT WITH A RULED GRID OR ROWS OF TICKS, which "
+            f"the judges charged as graph paper on three decks. Model the "
+            f"subject's own features inside the rect (joints, cuts, fixtures, "
+            f"wear in the albedo, a pool falling off across them), or draw the "
+            f"rect around the subject rather than the plate it stands on")
+
+
+def frame_detail_problems(run_dir: Path, frames: list[int]) -> list[str]:
+    """THE DETAIL MEASURE ON NAMED FRAMES ONLY, for the audition (2026-10-30, weekly pass).
+
+    WHY. Queue `detail-floor-fights-the-dark-staged-world` bit three runs in a row (nos. 61, 62 and
+    63, eight frames): a staged world leaves the field dark by design, a rect drawn around more
+    field than subject fails this floor, and the run learned it only at Phase 12, after the art
+    director had already read the audition. Every cure that changed the image (a gravel apron, a
+    raised board, a grain rebuild) then rebound a review, and every rect redeclaration cost a render
+    round. Of the eight frames, four were audition frames (no. 61 frame 9, no. 62 frame 1, no. 63
+    frames 3 and 9). `art_preflight --write` calls this on its three frames, so the floor that
+    Phase 12 holds every frame to is read BEFORE the reviewer sees them.
+
+    It is the same floor, the same cells, the same text masking and the same message as `check`.
+    It never asks less: a frame this passes still meets the full gate at Phase 12. Frames with no
+    declared plan, a run with no storyboard and a run with no layout keys return nothing here,
+    because the full gate owns those findings and says them in its own words.
+    """
+    run_dir = Path(run_dir)
+    board = run_dir / "storyboard.md"
+    rep = find_report(run_dir)
+    if not board.exists() or not rep:
+        return []
+    dossiers = _dossier_module().parse_dossiers(board.read_text(encoding="utf-8"))
+    pngs = {(_slide_no(p.name) or 0): p for p in find_renders(run_dir)}
+    boxes = text_boxes(json.loads(rep.read_text(encoding="utf-8")))
+    out = []
+    for n in frames:
+        d = dossiers.get(n)
+        if not isinstance(d, dict) or "layout" not in d or n not in pngs:
+            continue
+        p, _ = plan_of(n, d)
+        if not p:
+            continue
+        img = load_frame(pngs[n])
+        detail, kept, _ = detail_fraction(img, p["rect"], boxes.get(n, []), count_text=p["layout"] == "DOCUMENT")
+        if kept and detail < DETAIL_SHARE:
+            out.append(detail_message(n, detail, kept, img, p))
+    return out
+
+
 def _components(mask) -> list[int]:
     """Sizes of every 4-connected True region. The mask is at most 54 x 68, so a plain
     breadth-first walk is the whole cost."""
@@ -826,18 +882,7 @@ def check(run_dir: Path, require: bool = False, image_overrides: dict[int, Path]
             problems.append(f"slide {n}: the rect {list(p['rect'])} has no 8 px cell that is not "
                             f"under type, so there is no room in it for an image at all")
         elif detail < DETAIL_SHARE:
-            level, step = detail_step(img, p["rect"])
-            problems.append(f"slide {n}: {detail:.2f} of the {kept} cells inside the primary "
-                            f"image rect carry any detail (luminance std over {DETAIL_STD:.0f}), "
-                            f"under the {DETAIL_SHARE:.2f} line. The plan says {p['subject']!r} "
-                            f"is drawn there and the pixels say a flat plate is. At this rect's "
-                            f"median level of {level:.0f} that floor is a step of {step:.1f} L*, "
-                            f"no more than it asks of a mid grey, so a darker plate earns no "
-                            f"discount. NEVER ANSWER IT WITH A RULED GRID OR ROWS OF TICKS, which "
-                            f"the judges charged as graph paper on three decks. Model the "
-                            f"subject's own features inside the rect (joints, cuts, fixtures, "
-                            f"wear in the albedo, a pool falling off across them), or draw the "
-                            f"rect around the subject rather than the plate it stands on")
+            problems.append(detail_message(n, detail, kept, img, p))
         # 5. A GRID is a count, so it is held to coming apart rather than to holding together.
         if cover < SIL_COVER:
             problems.append(f"slide {n}: at thumb scale the subject covers {cover:.3f} of the "
@@ -1121,6 +1166,17 @@ def self_test() -> int:
         ok("DETAIL_STD makes a smaller L* step near black than at mid grey",
            0 < _lstar(8 + DETAIL_STD) - _lstar(8) < _lstar(128 + DETAIL_STD) - _lstar(128),
            (_lstar(8 + DETAIL_STD) - _lstar(8), _lstar(128 + DETAIL_STD) - _lstar(128)))
+        # (d2) THE AUDITION'S EARLY READ (2026-10-30): the same floor on the three frames
+        # art_preflight --write is about to hand the reviewer, so a flat frame is refused before
+        # a review is bound to it rather than at Phase 12 after
+        early = frame_detail_problems(df, [1, 4, 9])
+        ok("the audition read FAILS the flat cover with the full gate's own message",
+           len(early) == 1 and early[0] == next((p for p in probs if p.startswith("slide 1: ") and "flat plate" in p), None),
+           early)
+        ok("...and an audition that does not select the flat frame is clean",
+           frame_detail_problems(df, [2, 4, 9]) == [], frame_detail_problems(df, [2, 4, 9]))
+        ok("...and a run with no storyboard is left to the full gate",
+           frame_detail_problems(root / "no-such-run", [1, 4, 9]) == [])
         ok("...while every textured frame beside it passes",
            all(r["detail"] >= DETAIL_SHARE for r in rows if r.get("frame", 1) != 1),
            [(r.get("frame"), round(r.get("detail", 0), 2)) for r in rows if "frame" in r])
