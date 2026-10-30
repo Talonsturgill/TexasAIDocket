@@ -92,6 +92,16 @@ AI was bought to watch ChatGPT, and no fetched record tied darwingov.com to the 
 - Frame 3 counts 39 wells rather than 39 weights and calls the item a ceiling rather than a bill. Frame 2's hook says
   consent agenda. Frame 7's camera rose so all 15 blued discs clear the pan rim.
 
+**Round 2: 6.968, no hard fail, under the 7.7 rung.** Judges 6.62 (integrity), 7.04 (craft), 7.10 (reader). The integrity
+judge confirmed round 1's hard fail cured and named looser phrasings, each repaired: the cover's "AI governance platform"
+was the deck's voice and now reads "A chatbot for Plano, and Darwin AI beside it"; "meets next on November 9th" became
+"Plano's Legistar lists the council's next meeting for November 9th", which is what c21 says; frame 6 no longer calls the
+reserve "the same $40,000"; the web edition's dek and intro attribute Darwin through the reseller. The work order named
+8, 2, 5, 6, 7 and 9, one change each: frame 8's window key and pool narrowed so the dais front falls dark, frame 2's weight
+cut as a radial notch to a centre hole on warm paper, frame 5's discs given a raised boss in place of the pointer slot,
+frame 6's arc lifted, frame 7's camera raised so all fifteen discs clear the rim, frame 9's camera brought in with the
+resident moved back to the glazing.
+
 ## Gate status
 
 <!-- gate-status:begin -->
