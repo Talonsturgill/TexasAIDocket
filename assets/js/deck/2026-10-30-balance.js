@@ -97,7 +97,7 @@
       slot: new THREE.MeshStandardMaterial({ color: 0x0b0a0c, roughness: 0.8 }),
       pecan: new THREE.MeshStandardMaterial({ map: grainTex(THREE, 5), roughness: 0.55, bumpMap: tooth, bumpScale: 0.4 }),
       ebony: new THREE.MeshPhysicalMaterial({ color: 0x1a1210, roughness: 0.38, clearcoat: 0.5, clearcoatRoughness: 0.3 }),
-      chalk: new THREE.MeshStandardMaterial({ color: 0xcfc8b6, roughness: 0.92, bumpMap: chalkBump, bumpScale: 1.6 }),
+      chalk: new THREE.MeshStandardMaterial({ color: 0x8e8775, roughness: 0.92, bumpMap: chalkBump, bumpScale: 1.6 }),
       felt: new THREE.MeshStandardMaterial({ color: 0x111014, roughness: 1 })
     };
     return N._M;
@@ -224,31 +224,59 @@
       }
     });
 
-    /* THE CASE, SHUT: a fitted pecan case with a lid, a brass latch and two brass hinges, 0.62 x 0.08 x 0.36 m */
+    /* THE CASE: a fitted pecan weight case 0.66 x 0.10 x 0.52 m with a brass latch and hinges. Shut, it is a lidded box.
+     * Open, its top plate is cut with `wells` round wells in staggered rows (long, short, long ...) lined in black felt,
+     * and `fill` lists what stands in each well in reading order: 'brass', 'blued', 'nickel' or null for an empty well.
+     * userData.wells holds every well centre in the case's own frame, so a frame can label or measure them. */
+    var CW = 0.66, CD = 0.52, PITCH_X = 0.084, PITCH_Z = 0.072, WELL_R = 0.038;
     K.define("weight_case", {
-      size: [0.62, 0.09, 0.36],
-      options: { open: false },
-      note: "A fitted pecan weight case, shut, 0.62 x 0.09 x 0.36 m, brass latch and hinges.",
+      size: [CW, 0.1, CD],
+      options: { open: false, wells: 39, fill: null, long: 7, short: 6, seed: 5 },
+      note: "A fitted pecan weight case. open, wells (count), fill (list of brass|blued|nickel|null in reading order), long, short (row lengths).",
       make: function (o) {
         var g = new THREE.Group();
-        var b = TXT.roundedBox(0.62, 0.05, 0.36, 0.006, M.pecan); b.position.y = 0.025; g.add(b);
-        var l = TXT.roundedBox(0.622, 0.036, 0.362, 0.008, M.pecan); l.position.y = 0.05 + 0.018 + 0.001; g.add(l);
-        var seam = new THREE.Mesh(new THREE.BoxGeometry(0.624, 0.0016, 0.364), M.slot); seam.position.y = 0.0505; g.add(seam);
-        var latch = TXT.roundedBox(0.05, 0.03, 0.008, 0.002, M.brass); latch.position.set(0, 0.05, 0.183); g.add(latch);
-        var hasp = new THREE.Mesh(new THREE.CylinderGeometry(0.004, 0.004, 0.012, 16), M.brass); hasp.rotation.x = Math.PI / 2; hasp.position.set(0, 0.05, 0.19); g.add(hasp);
-        [-0.2, 0.2].forEach(function (x) { var h = TXT.roundedBox(0.05, 0.016, 0.006, 0.002, M.brassDull); h.position.set(x, 0.05, -0.183); g.add(h); });
+        if (!o.open) {
+          var b = TXT.roundedBox(CW, 0.05, CD, 0.006, M.pecan); b.position.y = 0.025; g.add(b);
+          var l = TXT.roundedBox(CW + 0.002, 0.036, CD + 0.002, 0.008, M.pecan); l.position.y = 0.05 + 0.018 + 0.001; g.add(l);
+          var seam = new THREE.Mesh(new THREE.BoxGeometry(CW + 0.004, 0.0016, CD + 0.004), M.slot); seam.position.y = 0.0505; g.add(seam);
+          var latch = TXT.roundedBox(0.05, 0.03, 0.008, 0.002, M.brass); latch.position.set(0, 0.05, CD / 2 + 0.003); g.add(latch);
+          [-0.22, 0.22].forEach(function (x) { var h = TXT.roundedBox(0.05, 0.016, 0.006, 0.002, M.brassDull); h.position.set(x, 0.05, -CD / 2 - 0.003); g.add(h); });
+          return shade(g);
+        }
+        /* the well centres, in staggered rows derived from the count */
+        var rows = [], left = o.wells, r = 0; while (left > 0) { var n = Math.min(left, r % 2 ? o.short : o.long); rows.push(n); left -= n; r++; }
+        var z0 = -(rows.length - 1) * PITCH_Z / 2, wells = [];
+        rows.forEach(function (n, ri) { for (var i = 0; i < n; i++) wells.push([(i - (n - 1) / 2) * PITCH_X, z0 + ri * PITCH_Z]); });
+        g.userData.wells = wells;
+        /* the shell: walls and a floor of pecan, the felt bed inside, and the top plate cut with the wells */
+        var FLOOR = 0.03, FELT = 0.034, TOP = 0.036, PLATE = 0.004;
+        var shell = TXT.roundedBox(CW, FLOOR, CD, 0.006, M.pecan); shell.position.y = FLOOR / 2; g.add(shell);
+        var felt = new THREE.Mesh(new THREE.BoxGeometry(CW - 0.03, FELT - FLOOR, CD - 0.03), M.felt); felt.position.y = FLOOR + (FELT - FLOOR) / 2; g.add(felt);
+        var sh = new THREE.Shape(); sh.moveTo(-CW / 2, -CD / 2); sh.lineTo(CW / 2, -CD / 2); sh.lineTo(CW / 2, CD / 2); sh.lineTo(-CW / 2, CD / 2); sh.lineTo(-CW / 2, -CD / 2);
+        wells.forEach(function (w) { var h = new THREE.Path(); h.absarc(w[0], -w[1], WELL_R, 0, Math.PI * 2, true); sh.holes.push(h); });
+        var plateGeo = new THREE.ExtrudeGeometry(sh, { depth: TOP + PLATE - FELT, bevelEnabled: true, bevelThickness: 0.0015, bevelSize: 0.0015, bevelSegments: 2, curveSegments: 40 });
+        K.uvBox(plateGeo, 0.4);
+        var plate = new THREE.Mesh(plateGeo, M.pecan); plate.rotation.x = -Math.PI / 2; plate.position.y = FELT; g.add(plate);
+        var rr = lcg(o.seed || 5);
+        (o.fill || []).forEach(function (f, i) {
+          if (!f || i >= wells.length) return;
+          var w = K.make("slotted_weight", { finish: f, yaw: rr() * Math.PI * 2 });
+          w.position.set(wells[i][0], FELT, wells[i][1]); g.add(w);
+        });
         return shade(g);
       }
     });
 
-    /* THE PLINTH: an Austin chalk block with a bevelled top edge, w x h x d */
+    /* THE PLINTH: an Austin chalk block w x h x d with a chamfered top arris on a recessed base course, so it reads as
+     * dressed limestone rather than a slab. UVs are box projected in metres so the chalk never streaks at a corner. */
     K.define("chalk_plinth", {
       size: [0.9, 1.0, 0.6],
       options: { w: 0.9, h: 1.0, d: 0.6 },
-      note: "An Austin chalk plinth block. w, h, d (m).",
+      note: "An Austin chalk plinth block on a recessed base course. w, h, d (m).",
       make: function (o) {
-        var g = new THREE.Group(), w = o.w || 0.9, h = o.h || 1.0, d = o.d || 0.6;
-        var m = TXT.roundedBox(w, h, d, 0.01, M.chalk); K.uvBox(m.geometry, 0.35); m.position.y = h / 2; g.add(m);
+        var g = new THREE.Group(), w = o.w || 0.9, h = o.h || 1.0, d = o.d || 0.6, BC = 0.09, IN = 0.035;
+        var base = TXT.roundedBox(w - IN * 2, BC, d - IN * 2, 0.006, M.chalk); K.uvBox(base.geometry, 0.35); base.position.y = BC / 2; g.add(base);
+        var body = TXT.roundedBox(w, h - BC, d, 0.022, M.chalk); K.uvBox(body.geometry, 0.35); body.position.y = BC + (h - BC) / 2; g.add(body);
         return shade(g);
       }
     });
