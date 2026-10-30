@@ -259,6 +259,60 @@ def finish_problems(name: str, html: str) -> list[str]:
     return []
 
 
+# --------------------------------------------------------------------------- the flat frame's scale
+BOOTFLAT_RE = re.compile(r"(?<![\w$.])([A-Za-z_$][\w$]*)\s*\.\s*bootFlat\s*\(")
+TRANSFORM_RE = re.compile(r"\.\s*(setTransform|resetTransform|scale)\s*\(([^)]*)\)")
+
+
+def _is_css_scale(kind: str, args: str) -> bool:
+    """True for a call that leaves a 2160 wide context drawing in 1080 CSS pixels."""
+    nums = [a.strip() for a in args.split(",")]
+    if kind == "setTransform":
+        return len(nums) >= 4 and nums[0] in ("2", "2.0") and nums[3] in ("2", "2.0")
+    if kind == "scale":
+        return bool(nums) and all(n in ("2", "2.0") for n in nums[:2])
+    return False
+
+
+def post_scale_problems(name: str, html: str) -> list[str]:
+    """A flat frame's post pass runs at the CSS scale it was written for.
+
+    WHY (2026-10-30, carousel no. 63, queue flat-frame-post-runs-at-device-scale). A TXBENCH frame
+    booted through the chassis's `bootFlat` gets the art canvas's context at its identity
+    transform, 2160 x 2700 device pixels, because the relief draws in device pixels. The chassis's
+    `post` (the type scrim, the veil, the foot wash) measures the DOM in 1080 CSS pixels. Frames 2
+    and 5 called `CH.post` BEFORE `cx.setTransform(2, 0, 0, 2, 0, 0)`, so every wash landed in the
+    top left quadrant (x under 540, y under 675) and read as a dark rectangle with a notch. It cost
+    four workarounds and every panel judge charged it as a seam before the cause was read. The 17
+    bootFlat frames shipped from October 20th to 29th all set the 2x transform first, which is why
+    this holds for every shipped deck without a since date: each chassis is copied from the last,
+    so the order is a convention nothing carried, and the first frame that broke it shipped the
+    artifact. The rule reads the source, so it fires at Phase 10.5 on the probe, before a render.
+
+    The LAST transform call before the first post on the bootFlat chassis must leave a 2x scale:
+    `setTransform(2, 0, 0, 2, ...)` or `scale(2, 2)`. A frame booted through the 3D path gets its
+    scale from the chassis's `develop` and is not read here.
+    """
+    code = _code_only(html)
+    boot = BOOTFLAT_RE.search(code)
+    if not boot:
+        return []
+    obj = re.escape(boot.group(1))
+    post = re.compile(r"(?<![\w$.])" + obj + r"\s*\.\s*post\s*\(").search(code, boot.end())
+    if not post:
+        return []
+    calls = list(TRANSFORM_RE.finditer(code, boot.end(), post.start()))
+    if calls and _is_css_scale(calls[-1].group(1), calls[-1].group(2)):
+        return []
+    line = code.count("\n", 0, post.start()) + 1
+    had = (f"the last transform before it is {calls[-1].group(1)}({calls[-1].group(2).strip()})"
+           if calls else "no transform is set before it")
+    return [f"{name}: line {line} calls {boot.group(1)}.post on a bootFlat frame and {had}, so the "
+            f"post pass draws its CSS pixel washes on the 2160 wide canvas at device scale and "
+            f"darkens only the top left quadrant (no. 63's relief band). Call "
+            f"cx.setTransform(2, 0, 0, 2, 0, 0) after the relief and before {boot.group(1)}.post"]
+
+
 # --------------------------------------------------------------------------- the type reserve
 POSITION_RE = re.compile(
     r"(?<![\w$.])([A-Za-z_$][\w$]*)\s*\.\s*style\s*\.\s*(left|top|right|bottom|transform)\s*=(?!=)")
@@ -437,6 +491,7 @@ def check_deck(slides_dir: Path, repo_root: Path = REPO_ROOT) -> list[str]:
                     f"so re-checking or reproducing it would render the later deck's light")
 
         problems.extend(finish_problems(name, html))
+        problems.extend(post_scale_problems(name, html))
         problems.extend(reserve_order_problems(name, html))
 
         # A frame grading itself is a frame holding its own opinion about the deck's look.
@@ -693,6 +748,31 @@ def self_test() -> int:
     case("a chassis with no declaration fails", nine,
          {"2026-09-16-caprock.js": _GOOD_CHASSIS.replace("TXDECK.declare(", "noop(")},
          "never calls TXDECK.declare")
+
+    # 5. THE RELIEF BAND, no. 63 frames 2 and 5 (2026-10-30): a bootFlat frame whose post pass ran
+    # at device scale. The draft order is replayed verbatim, then the shipped order.
+    def flat(body: str) -> str:
+        return _GOOD_SLIDE.replace("<script>TXCAPROCK.mesa(cx, {});",
+                                   "<script>(async () => { const cx = await CH.bootFlat({ kicker: 'k' });\n"
+                                   "TXBENCH.relief(cx, { x: 0, y: 540, w: 1080, h: 810, scale: 2 });\n" + body)
+    drafted = dict(nine)
+    drafted["slide-02.html"] = flat("CH.post(cx, { a: 0.0, veil: 0.3, footWash: 0.5 });\n"
+                                    "cx.setTransform(2, 0, 0, 2, 0, 0);")
+    case("no. 63's draft, post before the 2x transform, fails", drafted, good_ch, "darkens only the top left quadrant")
+    bare = dict(nine)
+    bare["slide-05.html"] = flat("CH.post(cx, { a: 0.42, veil: 0.32 });")
+    case("a bootFlat post with no transform at all fails", bare, good_ch, "no transform is set before it")
+    reset = dict(nine)
+    reset["slide-05.html"] = flat("cx.setTransform(2, 0, 0, 2, 0, 0); cx.resetTransform();\nCH.post(cx, {});")
+    case("a 2x transform undone before the post fails", reset, good_ch, "resetTransform")
+    shipped = dict(nine)
+    shipped["slide-02.html"] = flat("/* CH.post(cx, {}) in a comment is not a call */\n"
+                                    "cx.setTransform(2, 0, 0, 2, 0, 0);\nCH.post(cx, { a: 0.42, veil: 0.3 });")
+    case("no. 63's shipped order, the 2x transform first, passes", shipped, good_ch, None)
+    spatial = dict(nine)
+    spatial["slide-03.html"] = _GOOD_SLIDE.replace("<script>TXCAPROCK.mesa(cx, {});",
+                                                   "<script>const cx = CH.develop(shot, gl); CH.post(cx, {});")
+    case("a 3D frame scaled by develop is not read", spatial, good_ch, None)
 
     if fails:
         print(f"deck_chassis --self-test: FAIL, {len(fails)} case(s)", file=sys.stderr)
