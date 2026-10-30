@@ -88,7 +88,7 @@
   N.mats = function (THREE, K) {
     if (N._M) return N._M;
     var tooth = noiseTex(THREE, 7, 108, 150, 9000, 1.6);
-    var chalkBump = noiseTex(THREE, 11, 70, 190, 14000, 2.2);
+    var chalkBump = noiseTex(THREE, 11, 104, 156, 9000, 1.6);
     N._M = {
       brass: new THREE.MeshPhysicalMaterial({ color: 0xc9a265, metalness: 1, roughness: 0.24, clearcoat: 0.2, clearcoatRoughness: 0.4, bumpMap: tooth, bumpScale: 0.25 }),
       brassDull: new THREE.MeshPhysicalMaterial({ color: 0x8f7344, metalness: 1, roughness: 0.42, bumpMap: tooth, bumpScale: 0.3 }),
@@ -99,7 +99,7 @@
       slot: new THREE.MeshStandardMaterial({ color: 0x0b0a0c, roughness: 0.8 }),
       pecan: new THREE.MeshStandardMaterial({ map: grainTex(THREE, 5), roughness: 0.55, bumpMap: tooth, bumpScale: 0.4 }),
       ebony: new THREE.MeshPhysicalMaterial({ color: 0x1a1210, roughness: 0.38, clearcoat: 0.5, clearcoatRoughness: 0.3 }),
-      chalk: new THREE.MeshStandardMaterial({ color: 0x8e8775, roughness: 0.92, bumpMap: chalkBump, bumpScale: 1.6 }),
+      chalk: new THREE.MeshStandardMaterial({ color: 0x9a927f, roughness: 0.9, bumpMap: chalkBump, bumpScale: 0.6 }),
       felt: new THREE.MeshStandardMaterial({ color: 0x111014, roughness: 1 }),
       /* the same metals handled and lying in a case, a little rougher, so a top facing up shows a broad sheen rather
        * than a mirror of a dark ceiling */
@@ -125,7 +125,7 @@
     K.define("slotted_weight", {
       size: [WR * 2, WT, WR * 2],
       options: { finish: "brass", yaw: 0, cased: false },
-      note: "A slotted disc weight 68 mm by 10 mm, a drawing unit. finish brass|blued|nickel, yaw (radians) turns the slot, cased (lying in its case: a turned boss stands where the slot was, and the metal is a little rougher).",
+      note: "A slotted disc weight 68 mm by 10 mm, a drawing unit. finish brass|blued|nickel, yaw (radians) turns the slot, cased (lying in its case: a turned boss at the centre with the slot cut from its shoulder to the rim, and the metal a little rougher).",
       make: function (o) {
         var g = new THREE.Group(), mat = finishOf(o.finish, o.cased), c = 0.0018;
         var prof = [[0.006, 0], [WR - c, 0], [WR, c], [WR, WT - c], [WR - c, WT], [0.006, WT]].map(function (p) { return new THREE.Vector2(p[0], p[1]); });
@@ -140,6 +140,8 @@
           var bp = [[0, WT], [0.014, WT], [0.014, WT + 0.003], [0.012, WT + 0.0045], [0, WT + 0.0045]].map(function (p) { return new THREE.Vector2(p[0], p[1]); });
           g.add(new THREE.Mesh(new THREE.LatheGeometry(bp, 64), mat));
           var ring = new THREE.Mesh(new THREE.TorusGeometry(0.022, 0.0007, 6, 64), M.slot); ring.rotation.x = Math.PI / 2; ring.position.y = WT + 0.0002; g.add(ring);
+          /* and its slot, cut from the boss's shoulder to the rim, so a cased weight is still a slotted weight */
+          var cut = new THREE.Mesh(new THREE.BoxGeometry(0.0055, 0.0012, WR - 0.015), M.slot); cut.position.set(0, WT + 0.0001, (0.015 + WR) / 2); g.add(cut);
         } else {
           var slot = new THREE.Mesh(new THREE.BoxGeometry(0.008, WT + 0.0004, WR), M.slot); slot.position.set(0, WT / 2, WR / 2); g.add(slot);
           var bore = new THREE.Mesh(new THREE.CylinderGeometry(0.006, 0.006, WT + 0.0004, 24), M.slot); bore.position.y = WT / 2; g.add(bore);
@@ -149,16 +151,17 @@
       }
     });
 
-    /* A STACK of n weights, each turned a little so the slots stagger, each a hair off centre as stacked by hand */
+    /* A STACK of n weights, their slots lined up on the far side as a hanger would hold them, each turned a hair and a hair
+     * off centre as stacked by hand, so the stack reads as countable discs and no slot shows as a stray notch */
     K.define("weight_stack", {
       anchor: "base",
       size: [WR * 2, WT * 19, WR * 2],
       options: { n: 10, finish: "brass", seed: 1 },
-      note: "n slotted_weights stacked by hand, slots staggered. n, finish, seed.",
+      note: "n slotted_weights stacked by hand, slots lined up on the far side (-z). n, finish, seed.",
       make: function (o) {
         var g = new THREE.Group(), r = lcg(o.seed || 1);
         for (var i = 0; i < o.n; i++) {
-          var w = K.make("slotted_weight", { finish: o.finish, yaw: r() * Math.PI * 2 });
+          var w = K.make("slotted_weight", { finish: o.finish, yaw: Math.PI + (r() - 0.5) * 0.3 });
           w.position.set((r() - 0.5) * 0.0016, i * WT, (r() - 0.5) * 0.0016); g.add(w);
         }
         return g;
@@ -274,7 +277,7 @@
         var rr = lcg(o.seed || 5);
         (o.fill || []).forEach(function (f, i) {
           if (!f || i >= wells.length) return;
-          var w = K.make("slotted_weight", { finish: f, yaw: rr() * Math.PI * 2, cased: true });
+          var w = K.make("slotted_weight", { finish: f, yaw: 0.6 + (rr() - 0.5) * 0.24, cased: true });
           w.position.set(wells[i][0], FELT, wells[i][1]); g.add(w);
         });
         return shade(g);
