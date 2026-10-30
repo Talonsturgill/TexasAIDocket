@@ -1,8 +1,8 @@
 {
  "_spec": 1,
- "read": "2026-10-29",
+ "read": "2026-10-30",
  "source": "https://comptroller.texas.gov/taxes/data-centers/data-center-lists.php",
- "digest": "0fa13c9d3304c710",
+ "digest": "993dfbebcb1f8d9c",
  "facilities": [
   {
    "name": "NADC",
@@ -1632,7 +1632,12 @@
     "EDC Austin, LLC"
    ],
    "operators": [
-    "EDC Austin, LLC"
+    "EDC Austin, LLC",
+    "EDC OPCO LLC",
+    "CDE Acquisitions LLC",
+    "EDC Austin 2 LLC",
+    "EDC Austin 3 LLC",
+    "EDC Austin 4 LLC"
    ]
   },
   {
@@ -2361,6 +2366,32 @@
    ],
    "operators": [
     "Powerbridge LLC"
+   ]
+  },
+  {
+   "name": "AUS01-04, 05, 06 Data Center",
+   "effective": "2026-10-27",
+   "owners": [
+    "Lockhart Property LLC"
+   ],
+   "occupants": [
+    "Lockhart Property LLC"
+   ],
+   "operators": [
+    "Lockhart Property LLC"
+   ]
+  },
+  {
+   "name": "Project Kati II",
+   "effective": "2026-10-27",
+   "owners": [
+    "Soluna MB Kati 2 OPCO, LLC"
+   ],
+   "occupants": [
+    "Soluna MB Kati 2 OPCO, LLC"
+   ],
+   "operators": [
+    "Soluna MB Kati 2 OPCO, LLC"
    ]
   }
  ]
