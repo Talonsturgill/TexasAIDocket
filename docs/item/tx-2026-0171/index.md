@@ -36,6 +36,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-25 · The Texas Tribune reported on October 14th that the water board says it has no authority to prosecute a facility that skips the survey. The directive's own page still bars automated readers.
 - 2026-10-26 · The Governor's directive to the water board is still unconfirmed on its own page, which bars automated readers. The Tribune's account of the survey count reads as cited.
 - 2026-10-29 · The Governor's direction to the water board on the water use survey is still unconfirmed, since the office's site bars automated readers.
+- 2026-10-30 · The Governor's direction on the water use survey remains unconfirmed, because the office's site still bars automated readers.
 
 ## Evidence
 

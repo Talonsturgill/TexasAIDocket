@@ -3634,4 +3634,67 @@
  ],
  "not_done": "Type sitting on the art (6 runs, 15 rounds) got no change, a different collision on each deck and still the id pass. The person's grip pose, vest cut, collar and a near detail level stay open. A multirotor survey drone waits for the deck that flies one. Frontier scan limited to the skin colorimetry question; the time went to the proofs"
 }
+,
+"2026-10-30 weekly": {
+ "date": "2026-10-30",
+ "run": "weekly machine pass, read with carousel no. 63",
+ "actor": "upgrade",
+ "upgrades": [
+  {
+   "what": "Kit power_transformer (assets/js/kit/power.js): a substation power transformer built for a close crop, a weathered galvanized tank on wxSkin at metalness 0.4 with channel stiffeners and a bolted lid flange, pressed steel radiator panels with rolled channels necked into header pipes valved to the tank, fans under the banks, three HV bushings of skirted alternating porcelain sheds on flanged turrets with bolt circles, three LV and a neutral, a conservator on saddles with Buchholz pipe and relay, oil gauge and breather, surge arresters on brackets, a control cabinet, ladder and ground leads, on a foundation with containment curb and a crushed rock apron; nameplate off by default. New name, so no shipped deck re-renders differently",
+   "why": "Digest themes 'primitive or low-poly model where a kit model belongs' and 'largest object unmodelled', each 5 runs of 5 and 10 rounds. Two decks this week framed a transformer close and both were charged a primitive: no. 60 frame 6 on the kit substation ('a rounded beige cabinet ... candlestick bushings, no fins', r1; 'untextured grey clay with no ground or contact', r3) and no. 62 frame 4, which built radiator_bank in its chassis and was still charged 'a smooth box with slab fins and disc bushings' and 'bushings hover over a primitive box' in every round (queue kit-substation-reads-as-grey-clay, repeat 1). Each named fix is modelled: galvanized and weathered, pressed panels on header pipes, skirted sheds, bushings seated on flanged turrets, a conservator, the pad and crushed rock",
+   "files": [
+    "assets/js/kit/power.js",
+    "knowledge/carousel/ARSENAL.md"
+   ],
+   "verification": "python3 examples/kit/build.py --family power --names power_transformer --world lastLight --surface caliche --out out/2026-10-30/tmp/machine/ptx/slides then render.py on it, 2 of 2 rendered with no errors; two close crops (5 to 15 m, brown porcelain from the front three quarter, grey from the back) rendered and read at full size, and a crossing breather pipe found and rerouted; examples/kit/sizes.py exits 0, 132 of 132 declare the size they build, centred; arsenal.py --check ok",
+   "revert": "git revert c50080c8a, then python3 scripts/carousel/arsenal.py",
+   "how_i_would_know_this_was_wrong": "A deck that calls power_transformer is still charged for clay, slab fins or hovering bushings; the radiator panels read as flat fins at a 10 m crop; the shadow side mirrors navy as an accent; or a deck reaches for the kit substation for a close frame because ARSENAL does not lead it here"
+  },
+  {
+   "what": "deck_chassis.py refuses a bootFlat frame whose post pass runs at device scale: the last transform call before the first chassis post on a bootFlat frame must leave a 2x scale (setTransform(2, 0, 0, 2, ...) or scale(2, 2))",
+   "why": "Queue flat-frame-post-runs-at-device-scale (no. 63 frames 2 and 5): CH.post ran before cx.setTransform(2, ...), so the scrim and veil darkened only the top left quadrant; it cost four workarounds and every panel judge charged it as a seam with a notch (digest 'render artifact', 4 runs, 7 rounds, 2026-10-30 r1 and r2 among them). The 17 bootFlat frames shipped October 20th to 29th all set the transform first, a convention copied chassis to chassis that nothing checked. The rule reads source, so it fires at the probe before a render",
+   "files": [
+    "scripts/carousel/deck_chassis.py"
+   ],
+   "verification": "deck_chassis --self-test, 24 cases, five new: no. 63's draft order fails, a post with no transform fails, a 2x transform undone by resetTransform fails, the shipped order passes, a 3D frame scaled by develop is not read. Replayed red on out/2026-10-30/tmp/drafts/slide-02.html and slide-05.html and the exp copy; clean on runs/carousel/2026-10-30 and every shipped deck (no deck_chassis finding names the new rule); examples/lamp-deck clean",
+   "revert": "git revert b8f23256f",
+   "how_i_would_know_this_was_wrong": "A correct flat frame is refused because it scales through a helper the regex does not read (a chassis function that sets the transform itself), or a quadrant artifact ships again from a frame this rule passed"
+  },
+  {
+   "what": "art_preflight --write reads layout_check's DETAIL floor on its three audition frames and refuses to write the proof under it, with the full gate's own message (layout_check.frame_detail_problems; the message factored into detail_message so the two can't drift)",
+   "why": "Queue detail-floor-fights-the-dark-staged-world at repeat 2, the item that made this pass due: nos. 61, 62 and 63, eight frames failed the 0.25 floor at Phase 12 in staged worlds, each costing a render round or a rect redeclaration, and four of the eight were audition frames (no. 61 f9, no. 62 f1, no. 63 f3 and f9), so a cure that changed the image rebound a review the art director had already given",
+   "files": [
+    "scripts/carousel/layout_check.py",
+    "scripts/carousel/art_preflight.py"
+   ],
+   "verification": "layout_check --self-test: the audition read fails the flat cover with exactly the full gate's message, is clean when the flat frame is not selected, and leaves a run with no storyboard to the full gate; art_preflight --self-test proves build calls it before writing the proof. Replayed on a copy of no. 63 with frame 9's rect redrawn round the whole dark frame: 0.17 of 4400 cells, refused; shipped no. 63 [1, 3, 9] clean; layout_check --require on runs 2026-10-29 and 2026-10-30 still exit 0",
+   "revert": "git revert dff1f2c31",
+   "how_i_would_know_this_was_wrong": "The audition refuses a frame that layout_check at Phase 12 passes (the two would have drifted), or runs keep meeting the floor at Phase 12 on frames 2 to 8, which this does not reach; then the next step is the storyboard-time estimate the queue also proposed"
+  },
+  {
+   "what": "TECHNIQUE_LIBRARY.md gains the material relief bench (TXBENCH) entry with its five measured failures and cures: discs in plan read as dials, a plate reads as a tray, a county reads as a card, tooth in the height blotches under a low key, a meandering ground mark reads as a shadow",
+   "why": "TXBENCH has been a physical route since 2026-10-17 and the library had no entry for it. Six decks between October 21st and 30th met these failures at render and queued them one at a time (relief-of-round-objects-reads-as-dials no. 63; relief-plate-reads-as-a-tray nos. 59 and 60; county-relief-reads-as-a-card no. 62; relief-height-noise-blotches-under-low-key nos. 56 and 60; random-walk-texture-reads-as-shadow-or-roots no. 61). Digest 'flat 2D overlay on a rendered frame', 4 runs, 5 rounds",
+   "files": [
+    "knowledge/carousel/TECHNIQUE_LIBRARY.md"
+   ],
+   "verification": "Every frame, round and measured value cited was read from the queue's evidence and the digest; layout_check --prose ok; sensitive_paths, absence_check, coherence_check and verbatim_check self-tests exit 0. A doctrine change cannot be proven red; what would show it working is the next relief deck's treatment citing it",
+   "revert": "git revert 9fef9735d",
+   "how_i_would_know_this_was_wrong": "A relief deck after today is charged for dials, a tray, a card, blotches or a root network again with the entry in place, which says doctrine is not reaching the treatment and a check is needed"
+  }
+ ],
+ "proposals_out_of_lane": [
+  {
+   "what": "fetch_doc.robots_refusal and reverify.robots_refuses also refuse when a ClaudeBot group disallows the path, whatever the * group says, with a self-test on govtech.com's own robots.txt shape",
+   "owner": "daily",
+   "why": "queue fetch-doc-robots-ignores-claudebot-group (no. 63's record work); scripts/shared/fetch_doc.py and scripts/site/reverify.py are daily lane, so the run itself can fix it as a defect it was bitten by"
+  },
+  {
+   "what": "GATE_LESSONS entry for the deck_chassis bootFlat scale rule: a convention copied chassis to chassis is not a contract, and the first frame that broke the order shipped an artifact every judge saw and no gate read",
+   "owner": "human",
+   "why": "knowledge/shared/GATE_LESSONS.md is human lane; the gate change belongs in it per the upgrade brief"
+  }
+ ],
+ "not_done": "Type sitting on the art (4 runs, 7 rounds) got no change, a different collision on each deck. Render artifact (4 runs, 7 rounds) beyond the relief band is still the engine's fixed normalBias proposal (UPGRADE_BACKLOG 2026-10-26). No. 63's balance, weight, case and plinth models stay in its chassis, one deck. No frontier scan; the time went to the proofs"
+}
 }

@@ -1,0 +1,82 @@
+<!doctype html>
+<!-- 2026-10-30, frame 9 of 9. Archetype FIGURE_SCALE. A spatial scene through txthree.js in the deck's lastLight world: the chassis balance close at eye height on its chalk plinth, loaded with chatgpt_units brass and darwin_units blued weights from figures.json at the same computed tilt as frame 1, a kit resident passing just behind it toward the lit glazed chamber of the kit city_hall. Each weight is unit_usd, a drawing unit. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:900px">A ceiling of about 133 cents a resident</h1>
+<p class="dek" data-follow="26" style="width:860px">The $390,000 ceiling spread over Plano's 293,286 residents in the Census estimate. Plano's Legistar lists the council's next meeting for November 9th. Drawn&nbsp;to&nbsp;illustrate.</p>
+<script>window.FIG = {"chatgpt_units": 19, "darwin_units": 15};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-30-balance.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "What comes next", counter: "09 / 09", src: "c4 c15 c21", fit: { min: 70, max: 90, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 34, near: 0.05, far: 3000, fog: 0.006 });
+  /* THE FIGURES, from figures.json: the same loaded state as frame 1 */
+  const nL = Math.round(FIG.chatgpt_units), nR = Math.round(FIG.darwin_units);
+  const P = [0.45, 0, 0];
+  const plinth = K.make('chalk_plinth', { w: 0.82, h: 1.0, d: 0.5 }); plinth.position.set(P[0], 0, P[2]);
+  /* the plinth turned so the low key GRAZES its face toward the camera: the face normal stands at right angles to the sun,
+   * a little toward it, so the chalk rakes from a lit leading edge into shadow */
+  { const sd = TXT.sunDir(), hz = new THREE.Vector3(sd.x, 0, sd.z).normalize(); let n = new THREE.Vector3(hz.z, 0, -hz.x);
+    if (n.z < 0) n.negate(); n.addScaledVector(hz, 0.18).normalize(); plinth.rotation.y = Math.atan2(n.x, n.z); }
+  CH.put(plinth, { grit: false });
+  const bal = K.make('equal_arm_balance', { left: nL, right: nR, seed: 63 }); bal.position.set(P[0], 1.0, P[2]); bal.rotation.y = 0.1; CH.put(bal);
+  /* the city hall across the plaza. Its chamber glazing carries the light of the lit room behind it */
+  const hall = K.make('city_hall', { floors: 3, seed: 3 }); hall.position.set(-14, 0, -84); hall.rotation.y = 0.32; TXT.add(R, hall); TXT.contact(R, hall);
+  const lit = new Map();
+  const isGlass = m => m && m.clearcoat === 1 && m.roughness <= 0.06;
+  const warmGlass = m => { let w = lit.get(m); if (!w) { w = m.clone(); w.emissive = new THREE.Color(0xffa962); w.emissiveIntensity = 1.6; lit.set(m, w); } return w; };
+  hall.traverse(o => { if (!o.isMesh) return;
+    if (Array.isArray(o.material)) o.material = o.material.map(m => isGlass(m) ? warmGlass(m) : m);
+    else if (isGlass(o.material)) o.material = warmGlass(o.material); });
+  /* the room's light: brightest low where the lamps and the dais are, falling off toward the ceiling, with two warm pools */
+  function roomTex() {
+    const c = document.createElement('canvas'); c.width = 256; c.height = 160; const x = c.getContext('2d');
+    const g = x.createLinearGradient(0, 160, 0, 0); g.addColorStop(0, 'rgb(150,86,38)'); g.addColorStop(0.45, 'rgb(92,50,22)'); g.addColorStop(1, 'rgb(26,14,8)');
+    x.fillStyle = g; x.fillRect(0, 0, 256, 160);
+    [[70, 120, 60], [180, 112, 70]].forEach(([cx0, cy0, r]) => { const rg = x.createRadialGradient(cx0, cy0, 0, cx0, cy0, r); rg.addColorStop(0, 'rgba(255,170,90,0.55)'); rg.addColorStop(1, 'rgba(255,170,90,0)'); x.fillStyle = rg; x.fillRect(0, 0, 256, 160); });
+    const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; return t;
+  }
+  const sheet = new THREE.Mesh(new THREE.PlaneGeometry(15.4, 9.0), new THREE.MeshBasicMaterial({ map: roomTex(), transparent: true, opacity: 0.8, blending: THREE.AdditiveBlending, depthWrite: false, fog: false, toneMapped: false }));
+  sheet.position.set(13, 0.3 + 4.6, 10.07); hall.add(sheet);
+  const glow = new THREE.PointLight(0xffa962, 260, 40, 2); glow.position.copy(hall.localToWorld(new THREE.Vector3(13, 3, 16))); R.scene.add(glow);
+  /* a resident crossing toward the chamber, three quarters away, lit from the camera's side */
+  const man = K.make('person', { role: 'resident', pose: 'walk', seed: 4, hat: 'cap', hatColor: 0x22201c }); man.position.set(-0.45, 0, -24); man.rotation.y = Math.PI * 0.9; CH.put(man, true);
+  const fill = new THREE.SpotLight(0xffd9b0, 30, 40, 0.16, 0.6, 1.4); fill.position.set(-0.6, 3.2, 2); fill.target = man; R.scene.add(fill); R.scene.add(fill.target);
+  TXT.sky(R);
+  TXT.ground(R, { surface: 'concrete', size: 600, seed: 22 });
+  /* close on the pans at eye height: the loaded beam owns the frame, the plinth's top in the lower third with its face
+   * cut by the bottom edge, and one resident passing just behind it toward the lit chamber */
+  const from = [-0.08, 1.36, 2.35];
+  const look = CH.aim(THREE, R, TXT, from, [P[0], 1.5, P[2]], 640, 710, 31);
+  TXT.frame(R, { fov: 31, from, look });
+  /* a key-side fill on the instrument, so the beam's top edge and the arc's face carry a line against the sky */
+  const kick = new THREE.SpotLight(0xffd2a0, 6, 6, 0.42, 0.7, 1.5); kick.position.set(P[0] - 1.6, 2.4, 1.2); kick.target = bal; R.scene.add(kick);
+  CH.warm(R, 0.3);
+  TXT.deckRig(R, CH.rigSpec(W, 14, 4096), CH.rigOpts([0, 1, -3], { distance: 40, shadowFar: 120 }));
+  CH.unacne(R, 0.02);
+  TXT.weather(R, { grime: 0.3, height: 1.2 });
+  TXT.stage(R, [bal, man], { poolInner: 1.1, poolOuter: 6 });
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0.3, veil: 0.32, footWash: 0.5 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

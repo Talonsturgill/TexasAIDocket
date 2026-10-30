@@ -1,0 +1,63 @@
+<!doctype html>
+<!-- 2026-10-30, frame 8 of 9. Archetype FULL_BLEED. A spatial scene through txthree.js: the kit hearing_dais ledge in a dark TXT.interior council room lit through one window by the deck key, the chassis weight_case shut and latched on the ledge. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:900px">Approved, in records still marked draft</h1>
+<p class="dek" data-follow="26" style="width:860px">The October 12th minutes note the item approved. The October 26th minutes, also a draft, mark those minutes approved. Drawn to&nbsp;illustrate.</p>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-30-balance.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "What the record shows", counter: "08 / 09", src: "c7 c8 c18 c20 c22", fit: { min: 70, max: 92, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 40, near: 0.05, far: 200, fog: 0.0 });
+  /* THE ROOM: a council chamber dark around one source, the deck's key entering through the window on the left */
+  TXT.interior(R, { w: 14, d: 10, h: 4.6, floor: 'concrete', wall: 0x2c2723, window: 'left', light: 0.3 });
+  const dais = K.make('hearing_dais', { seats: 7, curve: 0, wood: 0x6a4428, chairs: false, mics: true, plates: true, steps: false, seed: 8 });
+  dais.position.set(0, 0, -2.6); TXT.add(R, dais); TXT.contact(R, dais);
+  const ds = dais.userData.size || [10.5, 1.6, 4];
+  /* the chamber's back wall: a blank round seal and the two flags behind the bench, drawn to illustrate */
+  const seal = K.make('seal_plaque', { d: 1.2, finish: 'bronze' }); seal.position.set(-0.3, 2.7, -4.97); TXT.add(R, seal);
+  const box = K.make('weight_case', {}); /* the case shut on the transaction ledge (1.145 m), between two nameplates */
+  box.rotation.y = 0.06;
+  /* seat it on the transaction ledge the dais actually built, which runs along the dais front: take the front from the
+   * dais's own bounds, stand the case a hand behind it, and drop it onto the first surface met from above */
+  { dais.updateMatrixWorld(true); const bb = new THREE.Box3().setFromObject(dais); box.position.set(-0.35, 1.6, bb.max.z - 0.2);
+    const ray = new THREE.Raycaster(new THREE.Vector3(box.position.x, 2.5, box.position.z), new THREE.Vector3(0, -1, 0));
+    const hit = ray.intersectObject(dais, true).find(h => h.point.y > 1.05); box.position.y = hit ? hit.point.y : 1.147; }
+  CH.put(box);
+  const from = [-1.7, 1.75, 0.9];
+  const look = CH.aim(THREE, R, TXT, from, [box.position.x, box.position.y + 0.05, box.position.z], 500, 800, 40);
+  TXT.frame(R, { fov: 40, from, look });
+  /* THE WINDOW'S KEY: low sun through the window on the left, raking across the case lid and its latch and onto the ledge */
+  const win = new THREE.SpotLight(0xffc48a, 80, 14, 0.11, 0.45, 1.0);
+  win.position.set(-4.5, box.position.y + 1.1, box.position.z + 0.6); win.target.position.copy(box.position); win.castShadow = true;
+  win.shadow.mapSize.set(4096, 4096); win.shadow.bias = -0.0002; win.shadow.normalBias = 0.002;
+  R.scene.add(win); R.scene.add(win.target);
+  TXT.deckRig(R, CH.rigSpec(W, 6, 4096), CH.rigOpts([0, 1, -2.6], { distance: 14, shadowFar: 40 }));
+  CH.unacne(R, 0.01);
+  TXT.weather(R, { grime: 0.2, height: 0.8 });
+  TXT.stage(R, [box], { poolInner: 0.5, poolOuter: 1.5 });
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0.3, veil: 0.3, footWash: 0.7 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

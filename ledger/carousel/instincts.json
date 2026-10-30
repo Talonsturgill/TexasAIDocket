@@ -217,7 +217,8 @@
         "2026-10-22",
         "2026-10-24",
         "2026-10-25",
-        "2026-10-29"
+        "2026-10-29",
+        "2026-10-30"
       ],
       "contradicted": []
     },
@@ -263,7 +264,8 @@
       "instinct": "Apply every copy repair to every published surface in one pass, reading them from one list, because a fix that lands on the frame a judge named leaves the same sentence shipping in the caption.",
       "evidence": "Rounds 13 and 14 hard failed three times on one sentence. Round 13 failed frame 3 for 'Nothing in their sources says the action binds'. The frame was repaired and round 14 failed the run twice more for the same sentence on frame 6's foot and in the caption. Both round 14 judges' one-sentence fix was this.",
       "confirmed": [
-        "2026-10-08"
+        "2026-10-08",
+        "2026-10-30"
       ],
       "contradicted": []
     },
@@ -1643,6 +1645,14 @@
       "learned": "2026-10-29",
       "instinct": "Put surface grain in a relief's albedo and keep its height smooth, because under a 10 degree key every bump of height casts a long blotch.",
       "evidence": "Carousel no. 62, 2026-10-29: noise in frame 2's relief height turned the Briscoe plateau into a camouflage print; flat height with grain in the albedo cleared it.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "a-quadrant-artifact-is-a-scale-bug",
+      "learned": "2026-10-30",
+      "instinct": "When an artifact is confined to exactly one quadrant of the canvas, look for a draw call made at the wrong scale before working around it, because a 2x canvas drawn in CSS units darkens precisely the top left quarter.",
+      "evidence": "no. 63 frames 2 and 5 called CH.post before cx.setTransform(2, ...), so the type scrim and veil covered x under 540 and y under 675; four workarounds and two panel rounds charged it as a seam before the measured left right split named the cause",
       "confirmed": [],
       "contradicted": []
     }

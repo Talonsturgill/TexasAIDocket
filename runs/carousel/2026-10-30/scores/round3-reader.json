@@ -1,0 +1,74 @@
+{
+ "lens": "reader",
+ "round": 3,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.8,
+   "why": "Three frames pass the showstopper test: 3's open case (19/15/1/4 counted, every weight casting), 4's brass macro on true black, 7's blued stack from below. 5's grooves make the 79 cent ratio a visible length. 8's lower 55 percent is a mid tone walnut dais with a blank box and a flat navy void; 2's cool grey relief reads as a wireframe at feed size; 6 re-shoots 1's balance with stacks cropped into the corners and strings near the footer. Smaller: soft plates behind type on 4 and 7, and 9's resident reads as a kit mannequin."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.8,
+   "why": "One instrument carries the deck, the colour code holds on every frame, the balance changes state frame to frame and the light is consistent. 2's grey sheet and 8's bright dais break the register, and 1, 6 and 9 are the same plaza balance three times."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.7,
+   "why": "Every numeral traces and every source is primary; rejected GovTech material appears nowhere; 'approved' is held to the draft minutes' own word; Darwin's function is always its maker's words. Looser: item (f) rests on c6's note, and 6's headline promotes an arithmetic coincidence into a finding. Neither is a hard fail."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.9,
+   "why": "What, who and when are clear and the record status is honest. The stake stays abstract: the ratio isn't placed, the county is only in hashtags, and the November 9th meeting isn't tied to the item or given a comment route."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 6.4,
+   "why": "The sharpest hook is in the caption, not on the cover. Frames 3 to 6 rework the same four numbers; 6 could be cut. The close lands softly."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.4,
+   "why": "Clean, honest and on house rules, but it reads as a machine filing a report: 'Drawn to illustrate.' on eight deks, 'The item's reseller links to this maker.', '133 cents a resident'. Plano itself is barely present."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "A fresh topic and a new object, but the treatment repeats house moves from the last four decks: lastLight, a drawing unit count, brass on a dark field, one changing object."
+  }
+ ],
+ "weighted_score": 7.21,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Cut frame 6's coincidence and use that frame and the close for a fetched action a Plano resident can take on item 26-884, and put the caption's opener on the cover.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 8,
+   "problem": "A bright mid tone walnut dais, a featureless box and a flat navy void with no window in frame.",
+   "fix": "Pull down and in on the shut case with its lit latch, put the window in shot as the single source, and let the dais front fall to near black."
+  },
+  {
+   "slide": 2,
+   "problem": "A cool grey sheet with greeked bars reads as a wireframe placeholder.",
+   "fix": "A real printed sheet with grain and a curled edge, under a tight snoot on row (f) and the weight."
+  },
+  {
+   "slide": 6,
+   "problem": "Re-shoots 1's balance; stacks cropped into the corners; strings near the footer.",
+   "fix": "Crop to the planned macro of the needle and arc with no pans or strings in shot."
+  },
+  {
+   "slide": 9,
+   "problem": "A third plaza shot of the balance; a mid grey plinth face; a mannequin resident.",
+   "fix": "A view over the resident's shoulder with the balance small against the lit glazing."
+  }
+ ]
+}

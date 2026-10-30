@@ -40,6 +40,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-24 · The University of North Texas artificial intelligence degree is unconfirmed today, since the program page did not answer.
 - 2026-10-24 · The university's program page confirms the named bachelor of science and the four year curriculum starting in July 2026.
 - 2026-10-29 · UNT's undergraduate AI degree listing is still unconfirmed. The college's page bars automated readers.
+- 2026-10-30 · UNT's undergraduate AI degree listing remains unconfirmed. The college's site would not serve its crawling rules today, so the page was left unread.
 
 ## Evidence
 

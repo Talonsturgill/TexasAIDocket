@@ -1,0 +1,79 @@
+{
+ "lens": "craft",
+ "round": 3,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.3,
+   "why": "03 is the best frame (19/15/1/4 counted, every weight seated) at about 7.5, held by streak grain and lilac blued. 04 is bold with 19 discs and a specular line (about 7.5), held by knurl bars and a soft wash behind the headline. 01 and 09 are properly staged balances (about 7 each): 01's plinth face a flat taupe band and its hall a cool box; 09's c15 and c21 on the pale plinth face. 02 is a flat mid grey sheet with a hard seam at x about 355, a dead band and a coin-like disc (about 5.5). 05, the turn, is a flat plan diagram that reads as paving and a UI slider at 432 px (about 5.5). 06 repeats 01's camera with stacks cropped into the footer and a dead lower zone (about 5.5). 08 is a CG wood dais under a flat navy wall with a small case (about 6). 07's blue stack is strong but sits under soft plates, with the plinth behind 'What' and 'does' and violet blued (about 6.5). More than one default, so under 7."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.0,
+   "why": "Clearly one deck: the balance changes state every frame, one palette with bluebonnet only for Darwin, a consistent key, and motif evolution and camera move both working. The two orthographic plans look cut from different stock than the PBR obliques, 02 strobes up, and 08 drops the instrument (bottom band 0.954)."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.5,
+   "why": "Every numeral traces; every source is primary; no vote is claimed; 'approved' is attributed to the draft minutes; Darwin's function is always its maker's words; GovTech's facts were refused. The 06 headline and label stage an arithmetic coincidence as a reading, though the dek calls the tilt a drawing."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.0,
+   "why": "What, who, how and the record's state are clear and the next meeting is named. The deck never says what a resident can do or what the city will use the tools for; 133 cents is a soft stake."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 6.8,
+   "why": "The cover sets up the comparison, 02 pays at once and 05 is a real turn. 03 and 04 overlap and 06 is cuttable. The close reads as a footnote."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "Clean and on register with a good caption opener. '133 cents a resident', the verbless opening of 09's dek, 'The item's reseller links to this maker' and 'Of the ceiling, 49 percent covers the chatbot' read machine built."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "A tabletop brass instrument and fitted case is fresh against nos. 60 to 62; lastLight, the city hall backdrop and kit interiors are the familiar moves."
+  }
+ ],
+ "weighted_score": 7.13,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Rebuild the turn (05) and the consent frame (02) as raking light txthree obliques of real objects in 03's world.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 5,
+   "problem": "The turn is a flat orthographic diagram reading as paving and a UI slider, with a dead field above.",
+   "fix": "A txthree oblique like 03: two brass railed grooves in the pecan case at about 30 degrees, filling the lower two thirds, the crack texture deleted."
+  },
+  {
+   "slide": 2,
+   "problem": "A mid grey sheet with a hard seam, a dead band and a coin-like disc.",
+   "fix": "A 35 degree oblique with the slotted weight upright on row (f), the paper a pooled cool slate, the sheet run off the left edge."
+  },
+  {
+   "slide": 6,
+   "problem": "Near repeat of 01's camera, stacks cropped into the footer, mid grey glazing, a dead lower zone.",
+   "fix": "The planned macro with the pillar exiting left, the hall hidden, both stacks out of frame."
+  },
+  {
+   "slide": 8,
+   "problem": "A generic CG dais under a flat navy wall with a small case.",
+   "fix": "Ledge height at a 1.2 m three quarter view, the case a third of the frame, the wall and dais front falling to near black."
+  },
+  {
+   "slide": 7,
+   "problem": "Soft plates behind the type, the plinth behind the hook, violet blued.",
+   "fix": "Let the pan's underside and the shadowed plinth carry the quiet, delete the plates, move the base out, cut the warm key on the blued."
+  }
+ ]
+}

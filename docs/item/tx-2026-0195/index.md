@@ -11,7 +11,7 @@ Researchers at Texas Children's Hospital's Duncan Neurological Research Institut
 - Public access: Write to the decider
 - Take part: https://www.texome.org/
 
-- Last checked: 2026-10-24
+- Last checked: 2026-10-30
 
 ## Dates
 
@@ -30,6 +30,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-21 · Checked and unchanged. The decision still stands as decided.
 - 2026-10-24 · The researchers' account of the AI tool that flagged the likely genetic cause still reads as published.
 - 2026-10-29 · The Texas Children's and Baylor account of the AI flagged gene is unconfirmed. The hospital's release no longer answers at its address.
+- 2026-10-30 · The hospital's release moved to a new address and still reads as published, naming BRSK1 as the likely diagnosis the AI tool first flagged.
 
 ## Evidence
 
@@ -39,55 +40,55 @@ Every fact above rests on one of these. The words are the source's own.
 
 > have identified variants in gene BRSK1 as a likely diagnosis for individuals with a rare and complex neurodevelopmental disorder who until now had not received an explanation for their condition.
 
-Source (primary_corporate): https://www.texaschildrens.org/content/news-release/together-human-genetics-ai-and-animal-studies-provide-diagnosis-for-rare
+Source (primary_corporate): https://www.texaschildrens.org/content/research-news-release/together-human-genetics-ai-and-animal-studies-provide-diagnosis-for
 
 ### The study appears in the American Journal of Human Genetics.
 
 > The study appears in the American Journal of Human Genetics.
 
-Source (primary_corporate): https://www.texaschildrens.org/content/news-release/together-human-genetics-ai-and-animal-studies-provide-diagnosis-for-rare
+Source (primary_corporate): https://www.texaschildrens.org/content/research-news-release/together-human-genetics-ai-and-animal-studies-provide-diagnosis-for
 
 ### The work began with a child in the Texome Project, which provides free genetic testing for underserved people with rare undiagnosed conditions.
 
 > The project began with a child enrolled in the Texome Project, a program that provides free genetic testing for medically underserved individuals with rare, undiagnosed conditions
 
-Source (primary_corporate): https://www.texaschildrens.org/content/news-release/together-human-genetics-ai-and-animal-studies-provide-diagnosis-for-rare
+Source (primary_corporate): https://www.texaschildrens.org/content/research-news-release/together-human-genetics-ai-and-animal-studies-provide-diagnosis-for
 
 ### Standard analysis found no answer and the AI-MARRVEL tool highlighted a rare change in BRSK1.
 
 > Standard genetic analyses of a parent and child with the condition did not reveal an answer, but when a new artificial intelligence-based tool called AI-MARRVEL analyzed the genomic data, it highlighted a rare change in the BRSK1 gene as a promising candidate for a genetic diagnosis.
 
-Source (primary_corporate): https://www.texaschildrens.org/content/news-release/together-human-genetics-ai-and-animal-studies-provide-diagnosis-for-rare
+Source (primary_corporate): https://www.texaschildrens.org/content/research-news-release/together-human-genetics-ai-and-animal-studies-provide-diagnosis-for
 
 ### After sharing through GeneMatcher the team studied ten affected people from seven unrelated families.
 
 > Altogether, we studied 10 affected individuals from seven unrelated families
 
-Source (primary_corporate): https://www.texaschildrens.org/content/news-release/together-human-genetics-ai-and-animal-studies-provide-diagnosis-for-rare
+Source (primary_corporate): https://www.texaschildrens.org/content/research-news-release/together-human-genetics-ai-and-animal-studies-provide-diagnosis-for
 
 ### Flies with the fly gene disabled had trouble moving and lived shorter lives.
 
 > When the fly gene was disabled, the flies developed difficulties moving, showed increased sensitivity to stressors that can trigger seizure-like behavior, became more vulnerable to heat-induced paralysis and lived shorter lives.
 
-Source (primary_corporate): https://www.texaschildrens.org/content/news-release/together-human-genetics-ai-and-animal-studies-provide-diagnosis-for-rare
+Source (primary_corporate): https://www.texaschildrens.org/content/research-news-release/together-human-genetics-ai-and-animal-studies-provide-diagnosis-for
 
 ### The normal human gene largely corrected the flies.
 
 > the human gene largely corrected the flies' movement and neurological problems
 
-Source (primary_corporate): https://www.texaschildrens.org/content/news-release/together-human-genetics-ai-and-animal-studies-provide-diagnosis-for-rare
+Source (primary_corporate): https://www.texaschildrens.org/content/research-news-release/together-human-genetics-ai-and-animal-studies-provide-diagnosis-for
 
 ### The patients' variants only partly restored the flies.
 
 > when we introduced the gene variants found in affected individuals, the neurological and movement problems were only partially restored
 
-Source (primary_corporate): https://www.texaschildrens.org/content/news-release/together-human-genetics-ai-and-animal-studies-provide-diagnosis-for-rare
+Source (primary_corporate): https://www.texaschildrens.org/content/research-news-release/together-human-genetics-ai-and-animal-studies-provide-diagnosis-for
 
 ### The release is dated September 28th, 2026.
 
-> HOUSTON (September 28, 2026)
+> (Sept. 28, 2026)
 
-Source (primary_corporate): https://www.texaschildrens.org/content/news-release/together-human-genetics-ai-and-animal-studies-provide-diagnosis-for-rare
+Source (primary_corporate): https://www.texaschildrens.org/content/research-news-release/together-human-genetics-ai-and-animal-studies-provide-diagnosis-for
 
 ### The Texome Project serves people who have no insurance or can't pay for genomic testing.
 

@@ -1,0 +1,74 @@
+{
+ "lens": "reader",
+ "round": 2,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.6,
+   "why": "Frames 3, 4 and 7 come close to a showstopper: the counted case (19/15/1/4 by row), the brass macro stack, the blued stack high on a lit pan. Frames 1 and 9 are sound staged renders but the stacks are small at 432 px, and on 9 the kit resident reads as a mannequin. Frame 8 fills its lower 60 percent with bright orange procedural grain and the shut case reads as a laptop on a generic dais. Frame 2 is a flat cool grey slab with a top-down disc whose slot looks like a Q. Frame 5 reads as a bar chart of chips over a Voronoi texture. On 7, 'does' sits over the plinth edge. More than the single weak frame the 7 descriptor allows."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "One brass balance, brass for the chatbot and blued for Darwin AI, holding without exception on 1, 3, 4, 5, 6, 7 and 9; the camera moves around one instrument and 1 and 9 rhyme. Frame 8's bright warm interior and frame 2's mid grey sheet strobe the value track."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.0,
+   "why": "Every numeral checks against figures.json and primary Legistar and Census sources, including October 26th (c20) and November 9th (c21). 'Approved' is held to the draft minutes' word (c7, c8, c18, c22) and the deck never says the council voted. Darwin's capabilities are attributed every time. Looser: frame 6 presents an arithmetic coincidence as a finding; the caption's 'held for growth' is narrower than c4; the cover's 'AI governance platform' is in the deck's voice, from the maker's page title, while c2 says only 'Darwin AI'."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.0,
+   "why": "A Plano reader learns what happened, who decided and how, accurately and concretely. The stake stays general: whose AI use Darwin watches is never said, Collin and Denton appear only as hashtags, and the November 9th close does not tie that meeting to this item or say how to comment."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 6.8,
+   "why": "Frame 2 pays at once and the 79 cents turn is real, but the reader learns what Darwin is only on frame 7, after the ratio. Frame 4 restates frame 3's 19 weights. Frame 6's coincidence can be cut. The cover hook is flatter than the caption's opener, and the close lands on 133 cents rather than an action."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "Clean and on house rules, but clerical: 'Drawn to illustrate' on 8 of 9 deks, 'Each weight is $10,000, a drawing unit', 'The item's reseller links to this maker', the fronted 'Of the ceiling, 49 percent covers the chatbot', 'about 133 cents a resident', and frame 8's aside fenced between commas. Nothing regional beyond the city's name."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "The topic is clear of the 30 day window and the balance is a fresh instrument. This is the fourth recent deck whose spine is one counted unit at a declared scale, again in the staged lastLight world."
+  }
+ ],
+ "weighted_score": 7.1,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Move Darwin AI's own description ahead of the 79 cents turn into frame 6's cuttable slot, and rebuild the close on a fetched, cited next step for a Plano resident with Collin and Denton named on the frame.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 8,
+   "problem": "Bright orange procedural grain in the lower 60 percent; the shut case reads as a laptop; no weight shows.",
+   "fix": "Narrow the window key to one shaft raking the ledge so the dais front falls to near black, and crack the lid so the weights catch it."
+  },
+  {
+   "slide": 2,
+   "problem": "A flat cool grey slab with a top-down Q-like disc; the pool has no true black.",
+   "fix": "Warm white paper with a lifted corner on dark pecan under a tight snoot, at a low oblique so the weight stands and casts across the rows."
+  },
+  {
+   "slide": 5,
+   "problem": "An orthographic plan relief reading as a bar chart of chips; the empty sockets do not read as cavities.",
+   "fix": "A raking oblique of about 20 degrees along the grooves so the discs stand with long casts and the four sockets hold shadow."
+  },
+  {
+   "slide": 9,
+   "problem": "The kit resident reads as a mannequin and the stacks are small at 432 px.",
+   "fix": "Push in until the balance fills two thirds of the width and move the person back to the glazing as a backlit silhouette."
+  }
+ ]
+}

@@ -146,6 +146,39 @@ cooling tower. *Fails when:* used for terrain, which it is not built for.
 per deck at most. *Fails when:* the step count is tuned for the full-size render and the thumbnail
 gets a different surface.
 
+**Material relief bench** — `TXBENCH.relief` in `txbench.js`, a height field lit by a raking key
+with real casts, one of the two physical routes since 2026-10-17 (`prompts/carousel_studio.md`).
+This entry did not exist until the weekly pass of 2026-10-30 found six decks between October 21st
+and 30th meeting the same five failures at render, each queued separately. Every one below was charged by
+the panel or the art director in at least two readings, and every cure is the one that cleared it.
+
+- *Fails when a field of round objects is seen in plan.* No. 63 frame 3, 39 slotted weights in a
+  case from straight above, read as clock or dial faces to the art director twice, through two
+  repairs, and frame 5's discs in grooves read as a UI slider to the round 3 craft judge. A disc seen
+  face on has no thickness to show and no cast to throw. Give round objects an oblique camera
+  (no. 63 rebuilt frame 3 as a `txthree` oblique on a desk and it held), a visible edge, and a key
+  low enough that each casts across its neighbour. (queue relief-of-round-objects-reads-as-dials)
+- *Fails when the relief is a plate on a ground.* No. 59 frame 6 read as a dashboard card in all
+  three rounds at a cast fraction of 0.038 to 0.041 against 0.257 on the frame beside it, and
+  no. 60 frame 2's top chamfer read as a tray edge. The plate is the ground: full bleed, no border,
+  the measured pieces standing proud enough to cast, a groove cut with one lit and one shadowed
+  wall. `print_ban` fails a relief whose casts fall under its measured floor, and its message says
+  the same. (queue relief-plate-reads-as-a-tray)
+- *Fails when a county is a card on a table.* No. 62 frame 2 was the top ranked defect in all four
+  rounds. Height noise cast camouflage blotches under a 10 degree key, tiled albedo read as a
+  mosaic, and a tight crop cut off the casts that fell east. Grain goes in the albedo only, the
+  camera rakes or turns oblique, the neighbouring counties sit one value below, and the pool lands
+  on the place. Leave casting room on the lee side of the crop. (queue county-relief-reads-as-a-card,
+  the doctrine half; the bounds helper is a TXGeo change and stays open)
+- *Fails when tooth is put in the height.* No. 56 frame 2 and no. 60 frame 7, fine height noise
+  under a key below about 15 degrees broke into leopard print and worm-like speckle that critics
+  read as leather, and cleared both times only when the height went flat and the marks moved to
+  the albedo. (queue relief-height-noise-blotches-under-low-key, the doctrine half)
+- *Fails when a ground mark meanders.* No. 61 frame 9, tar cracks drawn as random walks read to two
+  pixel critics and the art director as cast shadows or roots. Straight saw cuts and stripes read
+  correctly. A mark at feed scale is straight or angular and stays lighter than a cast. (queue
+  random-walk-texture-reads-as-shadow-or-roots)
+
 **Three.js bench** — `txthree.js`, GPU through SwiftShader, and since 2026-09-23 the surface of at
 least six frames of nine (ILLUSTRATION_SYSTEM.md, THE RENDER). *Fails when:* it is used because it is
 impressive rather than because the claim needs it, which the `why_this_technique` field exists to

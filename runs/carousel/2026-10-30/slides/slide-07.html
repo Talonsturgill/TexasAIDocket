@@ -1,0 +1,56 @@
+<!doctype html>
+<!-- 2026-10-30, frame 7 of 9. Archetype OBJECT_AND_CAPTION. A spatial scene through txthree.js in the deck lastLight world, the watcher end of the balance from a low eye at the plinth edge, darwin_units blued weights from figures.json against the last light seam. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>.quote { position:absolute; left:82px; width:880px; font-family:"Fraunces", serif; font-size:40px; line-height:1.22; font-weight:500; color:#ECE8DF; z-index:12; font-feature-settings:"calt" 0; text-shadow:0 0 2px rgba(4,3,8,0.6), 0 1px 14px rgba(4,3,8,0.45); }  #dek7 { top:916px !important; } #q1 { top:968px; } #q2 { top:1096px; } </style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:900px;top:700px">What Darwin AI says it does</h1>
+<p class="dek" id="dek7" style="width:860px">The item's reseller links to this maker. Drawn to&nbsp;illustrate.</p><div class="quote" id="q1">"Track AI usage across users, tools, and departments"</div><div class="quote" id="q2">"Continuously monitor AI activity, investigate violations, and maintain a complete audit trail."</div>
+<script>window.FIG = {"chatgpt_units": 19, "darwin_units": 15};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-30-balance.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Its maker's words", counter: "07 / 09", src: "c9 c10 c17", fit: { min: 70, max: 92, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 32, near: 0.02, far: 3000, fog: 0.012 });
+  /* THE FIGURES, from figures.json: the blued stack's count, darwin_units weights at one unit_usd a weight */
+  const nL = Math.round(FIG.chatgpt_units), nR = Math.round(FIG.darwin_units);
+  const plinth = K.make('chalk_plinth', { w: 1.0, h: 1.0, d: 0.62 }); CH.put(plinth, true);
+  const bal = K.make('equal_arm_balance', { left: nL, right: nR, index: null, seed: 63 }); bal.position.set(0, 1.0, 0); CH.put(bal); bal.getObjectByName('arc').visible = false;
+  TXT.sky(R);
+  TXT.ground(R, { surface: 'concrete', size: 600, seed: 21 });
+  const tilt = CH.balanceState(nL, nR) * Math.PI / 180, ex = CH.ARM * Math.cos(tilt), ey = 1.0 + CH.PIVOT_Y + CH.ARM * Math.sin(tilt) - CH.ROD;
+  const from = [ex + 0.3, 1.2, 0.62];
+  const look = CH.aim(THREE, R, TXT, from, [ex, ey + nR * CH.WT * 0.5, 0], 700, 420, 32);
+  TXT.frame(R, { fov: 32, from, look });
+  CH.warm(R, 0.3);
+  TXT.deckRig(R, CH.rigSpec(W, 1.4, 4096), CH.rigOpts([ex, ey, 0], { distance: 8, shadowFar: 30 }));
+  const rim = new THREE.DirectionalLight(0x9fb4ff, 0.6); rim.position.set(ex + 1.5, ey + 1.2, -2.0); rim.target.position.set(ex, ey, 0); R.scene.add(rim); R.scene.add(rim.target);
+  /* the plinth's warm bounce under the pan, so the spun underside shows its turning rather than a black ellipse */
+  const bounce = new THREE.PointLight(0xffc79a, 0.9, 1.2, 2); bounce.position.set(ex, ey - 0.22, 0.12); R.scene.add(bounce);
+  CH.unacne(R, 0.004);
+  TXT.weather(R, { grime: 0.15, height: 0.4 });
+  TXT.stage(R, [bal], { poolInner: 0.5, poolOuter: 1.6 });
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0, low: { from: 700, a: 0.62, fade: 160 }, veil: 0.3, footWash: 0.5 });
+  CH.knock(cx, ['#q1', '#q2', '#dek7', '.kick'], 0.5);
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

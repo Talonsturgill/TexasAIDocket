@@ -1,0 +1,133 @@
+{
+ "date": "2026-10-30",
+ "_note": "Every count, ratio and share the deck states, with the claim it was quoted from or the figures.json key compute.py wrote it to. One weight is unit_usd, a drawing unit.",
+ "aggregates": [
+  {
+   "phrase": "four lines",
+   "slide": "slide-02.html",
+   "kind": "count",
+   "value": 4,
+   "from": [
+    "c1",
+    "c2",
+    "c3",
+    "c4"
+   ],
+   "computed_by": "out/2026-10-30/compute.py, figures.json lines_on_item, counted: the four money lines the agenda item names",
+   "note": "computed"
+  },
+  {
+   "phrase": "39 wells",
+   "slide": "slide-03.html",
+   "kind": "count",
+   "value": 39,
+   "from": [
+    "c3",
+    "c4"
+   ],
+   "computed_by": "out/2026-10-30/compute.py, figures.json ceiling_units, computed: the ceiling in weights of unit_usd",
+   "note": "computed"
+  },
+  {
+   "phrase": "4 empty wells",
+   "slide": "slide-03.html",
+   "kind": "count",
+   "value": 4,
+   "from": [
+    "c3",
+    "c4"
+   ],
+   "computed_by": "out/2026-10-30/compute.py, figures.json reserve_units, computed: the reserve in weights of unit_usd",
+   "note": "computed"
+  },
+  {
+   "phrase": "19 weights",
+   "slide": "slide-04.html",
+   "kind": "count",
+   "value": 19,
+   "from": [
+    "c1",
+    "c3"
+   ],
+   "computed_by": "out/2026-10-30/compute.py, figures.json chatgpt_units, computed: ChatGPT Enterprise in weights of unit_usd",
+   "note": "computed"
+  },
+  {
+   "phrase": "79 cents",
+   "slide": "slide-05.html",
+   "kind": "ratio",
+   "value": 79,
+   "from": [
+    "c1",
+    "c2"
+   ],
+   "computed_by": "out/2026-10-30/compute.py, figures.json darwin_cents_per_chat_dollar, computed: Darwin AI's dollars over ChatGPT Enterprise's dollars, in whole cents per dollar",
+   "note": "computed",
+   "of": 100
+  },
+  {
+   "phrase": "293,286 residents",
+   "slide": "slide-09.html",
+   "kind": "count",
+   "value": 293286,
+   "note": "computed",
+   "from": [
+    "c15"
+   ],
+   "computed_by": "out/2026-10-30/compute.py, figures.json population_2024, parsed from the Census csv row c15 quotes, the last column, the Census Bureau's 2024 population estimate for the city of Plano"
+  },
+  {
+   "phrase": "79 cents",
+   "slide": "caption.txt",
+   "kind": "ratio",
+   "value": 79,
+   "from": [
+    "c1",
+    "c2"
+   ],
+   "computed_by": "out/2026-10-30/compute.py, figures.json darwin_cents_per_chat_dollar, computed: Darwin AI's dollars over ChatGPT Enterprise's dollars, in whole cents per dollar",
+   "note": "computed",
+   "of": 100
+  },
+  {
+   "phrase": "49 percent covers",
+   "slide": "slide-04.html",
+   "kind": "count",
+   "value": 49,
+   "from": [
+    "c1",
+    "c4"
+   ],
+   "computed_by": "out/2026-10-30/compute.py, figures.json chatgpt_pct_of_ceiling, computed: ChatGPT Enterprise's share of the ceiling, whole percent",
+   "note": "computed"
+  },
+  {
+   "phrase": "133 cents",
+   "slide": "slide-09.html",
+   "kind": "count",
+   "value": 133,
+   "from": [
+    "c4",
+    "c15"
+   ],
+   "computed_by": "out/2026-10-30/compute.py, figures.json ceiling_cents_per_resident, computed: the ceiling over the 2024 population estimate, whole cents",
+   "note": "computed"
+  },
+  {
+   "phrase": "seven official records",
+   "slide": "first_comment.txt",
+   "kind": "count",
+   "value": 7,
+   "computed_by": "scripts/carousel/sources_block.py, the distinct primary_official documents among the cited claims: Legistar matter 1967 (c1), events 1155 (c5), 1155 items (c6), 1156 items (c18), 1156 (c20), 1157 (c21), and the Census estimates (c15)",
+   "note": "computed"
+  },
+  {
+   "phrase": "two first party accounts",
+   "slide": "first_comment.txt",
+   "kind": "count",
+   "value": 2,
+   "computed_by": "scripts/carousel/sources_block.py, the distinct primary_corporate documents among the cited claims: Darwin AI's site (c9) and Carahsoft's Darwin AI page source (c17)",
+   "note": "computed"
+  }
+ ]
+}

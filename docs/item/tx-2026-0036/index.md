@@ -49,6 +49,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-25 · Guadalupe County's end of its plate reader contract stays unconfirmed. The minutes and both published accounts still bar automated readers.
 - 2026-10-26 · Guadalupe County's vote to end its plate camera contract is still unconfirmed. The court's minutes and both newsroom accounts bar automated readers.
 - 2026-10-29 · Guadalupe County's vote to end its plate camera contract is still unconfirmed. The minutes and both newsroom accounts bar automated readers.
+- 2026-10-30 · Guadalupe County's decision to end the plate camera contract remains unconfirmed. Its minutes and both news accounts still bar automated readers.
 
 ## Evidence
 

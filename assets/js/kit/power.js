@@ -2224,6 +2224,203 @@ export function install(K, THREE, TXT) {
     },
   });
 
+  /* ===================================================================== power transformer */
+  /* A SUBSTATION POWER TRANSFORMER AT CROP DISTANCE, lifted 2026-10-30 by the weekly machine pass.
+   *
+   * Two decks in one week framed a transformer close and both were charged a primitive: no. 60
+   * frame 6 cropped the kit substation's autotransformer bay ("a rounded beige cabinet with
+   * veneer-like streaks, candlestick bushings, no fins", round 1; "untextured grey clay with no
+   * ground or contact", round 3), and no. 62 built a radiator_bank in its chassis because the kit's
+   * transformer read as clay, and judges in every round still named "a smooth box with slab fins
+   * and disc bushings" and "bushings hover over a primitive box". The substation's
+   * powerTransformer is a yard part seen from 40 m. This is the same machine built for 5 m, AT THE
+   * JUDGES' NAMED FIXES:
+   *   - "a galvanized grey tank ... weather the tank": the tank, lid and turrets carry wxSkin, the
+   *     weathering atlas padmount_transformer uses (dust up the base, run-off under the lid flange,
+   *     rust at the seams), at metalness 0.4 so a lastLight zenith can't mirror navy into it
+   *     (queue kit-metal-mirrors-navy-sky-as-accent);
+   *   - "pressed panels on header pipes": each radiator is a stack of pressed steel panels whose
+   *     section carries six rolled channels, necked into an upper and a lower header, the headers
+   *     flanged to the tank through butterfly valves, fans under the bank;
+   *   - "skirted porcelain sheds" and "many-shed capped bushings": a lathe of alternating large and
+   *     small sheds, each with a drip skirt, on a mounting flange, under a domed cap and stud;
+   *   - "seat the bushings on flanged turrets with contact": every bushing stands on a turret whose
+   *     bolted flange ring is wider than the bushing's own, so it sits ON the tank;
+   *   - "add a conservator": on saddle stands, with a Buchholz pipe, an oil gauge and a breather;
+   *   - "the camera pulled back ... so the pad, crushed rock and contact show": a concrete
+   *     foundation with an oil containment curb on a crushed rock apron, ground leads to the pad.
+   * No nameplate by default (no. 60 round 3: "delete the nameplate"). DRAWN, no rating printed.
+   *
+   * Tank long along x, HV bushings along -z, LV along +z, front +z, origin on the ground.
+   * userData.hv and .lv are the bushing terminals in model metres, for a deck stringing leads. */
+  function shedGeo(h, r0, rL, rS, pitch) {
+    return tpl('shed' + [h, r0, rL, rS, pitch].map(v => (+v).toFixed(3)).join(','), () => {
+      const P = [[0, 0], [r0 + 0.09, 0], [r0 + 0.09, 0.05], [r0 + 0.035, 0.065], [r0, 0.1]];
+      let y = 0.18, big = true;
+      while (y < h - 0.3) {
+        // one shed, walked outward along its underside, down its drip skirt, up its rim and back up its sloped top to the core
+        const rs = big ? rL : rS, d = pitch * 0.16, rise = pitch * 0.28;
+        P.push([r0, y], [r0 + (rs - r0) * 0.55, y - d * 0.4], [rs - 0.01, y - d], [rs, y - d + 0.004], [rs + 0.004, y + 0.012], [r0 + 0.015, y + rise]);
+        y += rise + pitch * (big ? 0.3 : 0.22); big = !big;
+      }
+      const top = h - 0.12;
+      P.push([r0, top], [r0 + 0.045, top + 0.01], [r0 + 0.045, top + 0.06], [r0 * 0.75, h - 0.03], [r0 * 0.3, h], [0, h]);
+      return new THREE.LatheGeometry(P.map(p => new THREE.Vector2(p[0], p[1])), 28);
+    });
+  }
+  function pressedPanelGeo(w, h, t) {
+    return tpl('ppanel' + [w, h, t].join(','), () => {
+      const S = new THREE.Shape(), n = 6, N = 48, pts = [];
+      for (let i = 0; i <= N; i++) {
+        const u = i / N, x = (u - 0.5) * w, ch = Math.abs(Math.sin(u * n * Math.PI));
+        pts.push([x, t * (0.25 + 0.75 * ch)]);
+      }
+      S.moveTo(pts[0][0], 0);
+      pts.forEach(([x, z]) => S.lineTo(x, z));
+      for (let i = N; i >= 0; i--) S.lineTo(pts[i][0], -pts[i][1]);
+      const g = new THREE.ExtrudeGeometry(S, { depth: h, bevelEnabled: true, bevelThickness: 0.01, bevelSize: 0.004, bevelSegments: 2, curveSegments: 4 });
+      g.rotateX(-Math.PI / 2);            // extrude along +y, section in x (panel width) and z (thickness)
+      g.computeVertexNormals();
+      return g;
+    });
+  }
+  K.define('power_transformer', {
+    size: [10.6, 7.51, 8.4],
+    options: { hv: 3, porcelain: 'brown', panels: 18, fans: true, nameplate: false, xcolor: null },
+    note: 'A substation power transformer built for a close crop (5 to 15 m). OPTIONS porcelain brown | grey | polymer; panels per radiator bank (12 to 26); fans under the banks; nameplate (default off); xcolor tank colour. A weathered galvanized grey tank with stiffeners and a bolted lid flange, pressed steel radiator panels on header pipes with valves at both ends, three HV bushings of skirted alternating sheds on flanged turrets along -z, three LV and a neutral along +z, a conservator on saddles with Buchholz pipe, oil gauge and breather, surge arresters, a control cabinet and ladder, on a concrete foundation with containment curb on a crushed rock apron. DRAWN, no rating printed. userData.hv, .lv (terminals, model metres).',
+    make(o, r) {
+      const g = new THREE.Group(), b = new Bld(), tk = new Bld();
+      const col = o.xcolor != null ? o.xcolor : 0x8c9293, variant = (((o.seed | 0) % 3) + 3) % 3;
+      const W = 4.6, D = 2.5, H = 3.3, y0 = 0.62, yt = y0 + 0.22 + H;
+      const skin = wxSkin('ptx|' + col.toString(16) + '|' + variant, {
+        seed: 9203 + variant * 71, color: col, dust: 0xa59c8a, metal: 0.4, fw: W, fh: H + 0.22, fd: D,
+        side: { dustH: 0.45, k: 0.55, sources: [{ x: W / 2, y: H + 0.12, w: W - 0.3 }], seams: [W * 0.25, W * 0.5, W * 0.75] },
+        end: { dustH: 0.45, k: 0.55, sources: [{ x: D / 2, y: H + 0.12, w: D - 0.3 }], seams: [D * 0.5] }, roof: {} });
+      const fin = kmat('ptx-fin|' + col.toString(16), { color: new THREE.Color(col).multiplyScalar(0.9).getHex(), roughness: 0.62, metalness: 0.42 });
+      const hw = kmat('ptx-hw', { color: 0x5d6163, roughness: 0.55, metalness: 0.5 });
+      const porc = o.porcelain === 'grey' ? M.porcGrey() : o.porcelain === 'polymer' ? M.polymer() : M.porc();
+      const conc = M.concrete();
+      // ---- ground: crushed rock apron, foundation, containment curb, the tank's skid
+      pad(b, -5.3, -4.2, 5.3, 4.2);
+      b.box(conc, 7.6, 0.4, 4.6, 0, 0.2, 0);
+      [[1, 0], [-1, 0]].forEach(([sx]) => b.box(conc, 0.22, 0.28, 4.6, sx * 3.69, 0.54, 0));
+      [1, -1].forEach((sz) => b.box(conc, 7.6, 0.28, 0.22, 0, 0.54, sz * 2.19));
+      b.box(hw, W + 0.2, 0.22, 0.24, 0, 0.51, D * 0.36); b.box(hw, W + 0.2, 0.22, 0.24, 0, 0.51, -D * 0.36);   // skid rails
+      // ---- the tank, on the weathered skin
+      tk.box(skin, W, 0.22, D, 0, y0 + 0.11, 0);
+      tk.geo(skin, rbox(W, H, D, 0.05), V3(0, y0 + 0.22 + H / 2, 0));
+      tk.geo(skin, rbox(W + 0.16, 0.1, D + 0.16, 0.02), V3(0, yt - 0.02, 0));                        // lid flange
+      tk.geo(skin, rbox(W - 0.1, 0.08, D - 0.1, 0.03), V3(0, yt + 0.07, 0));                         // lid
+      const nS = 6;
+      for (let i = 0; i < nS; i++) {                                                                 // channel stiffeners
+        const xx = -W / 2 + 0.35 + i * (W - 0.7) / (nS - 1);
+        [1, -1].forEach((sz) => { tk.box(skin, 0.14, H - 0.25, 0.09, xx, y0 + 0.22 + H / 2, sz * (D / 2 + 0.045)); tk.box(skin, 0.03, H - 0.25, 0.16, xx, y0 + 0.22 + H / 2, sz * (D / 2 + 0.08)); });
+      }
+      [1, -1].forEach((sz) => tk.box(skin, W - 0.2, 0.12, 0.08, 0, y0 + 0.22 + H * 0.5, sz * (D / 2 + 0.04)));   // girth band
+      // bolts round the lid flange
+      const bolt = tpl('ptxbolt', () => new THREE.CylinderGeometry(0.018, 0.018, 0.05, 6));
+      for (let x = -W / 2; x <= W / 2 + 1e-6; x += 0.18) [1, -1].forEach((sz) => b.geo(hw, bolt, V3(x, yt + 0.045, sz * (D / 2 + 0.05))));
+      for (let z = -D / 2 + 0.09; z <= D / 2 - 0.09; z += 0.18) [1, -1].forEach((sx) => b.geo(hw, bolt, V3(sx * (W / 2 + 0.05), yt + 0.045, z)));
+      // ---- radiator banks at both ends: pressed panels between two headers, valved to the tank
+      const nP = Math.max(12, Math.min(26, o.panels | 0)), pitch = 0.062, pw = 0.5, ph = 2.45, py0 = y0 + 0.62;
+      const panel = pressedPanelGeo(pw, ph, 0.016), neck = tpl('ptxneck', () => new THREE.CylinderGeometry(0.03, 0.045, 0.1, 10));
+      [1, -1].forEach((sx) => {
+        const bx = sx * (W / 2 + 0.42 + pw / 2), L = (nP - 1) * pitch;
+        [-1, 1].forEach((bz) => {
+          const zc = bz * D * 0.25;
+          for (let i = 0; i < nP; i++) {
+            const zz = zc - L / 2 + i * pitch;
+            b.geo(fin, panel, V3(bx, py0, zz));                                                        // width along x, pressed channels across it
+            b.geo(fin, neck, V3(bx - sx * (pw / 2 - 0.06), py0 - 0.05, zz));
+            b.geo(fin, neck, V3(bx - sx * (pw / 2 - 0.06), py0 + ph + 0.05, zz), new THREE.Quaternion().setFromAxisAngle(V3(1, 0, 0), Math.PI));
+          }
+          [py0 - 0.1, py0 + ph + 0.1].forEach((yy) => {
+            const hx = bx - sx * (pw / 2 - 0.06);
+            b.bar(fin, [hx, yy, zc - L / 2 - 0.08], [hx, yy, zc + L / 2 + 0.08], 0.075, 14);           // header pipe
+            b.bar(fin, [hx, yy, zc], [sx * W / 2, yy, zc], 0.07, 14);                                  // to the tank
+            b.geo(hw, tpl('ptxvalve', () => new THREE.CylinderGeometry(0.13, 0.13, 0.06, 18)), V3(sx * (W / 2 + 0.16), yy, zc), new THREE.Quaternion().setFromAxisAngle(V3(0, 0, 1), Math.PI / 2));
+            b.geo(hw, tpl('ptxflange', () => new THREE.CylinderGeometry(0.12, 0.12, 0.04, 18)), V3(sx * (W / 2 + 0.03), yy, zc), new THREE.Quaternion().setFromAxisAngle(V3(0, 0, 1), Math.PI / 2));
+            b.box(hw, 0.04, 0.05, 0.06, sx * (W / 2 + 0.16), yy + 0.16, zc);                            // valve handle
+          });
+          if (o.fans !== false) {                                                                      // a fan under each bank
+            const fy = py0 - 0.42;
+            b.geo(hw, tpl('ptxfan', () => new THREE.CylinderGeometry(0.4, 0.4, 0.24, 28, 1, true)), V3(bx, fy, zc));
+            b.geo(hw, tpl('ptxfanhub', () => new THREE.CylinderGeometry(0.08, 0.1, 0.16, 12)), V3(bx, fy, zc));
+            for (let k = 0; k < 5; k++) b.beam(hw, [bx, fy, zc], [bx + 0.36 * Math.cos(k * 1.2566), fy, zc + 0.36 * Math.sin(k * 1.2566)], 0.02, 0.12, [0, 1, 0]);
+            for (let k = 0; k < 7; k++) b.bar(hw, [bx - 0.4, fy - 0.12, zc - 0.36 + k * 0.12], [bx + 0.4, fy - 0.12, zc - 0.36 + k * 0.12], 0.006, 4);   // guard
+            b.beam(hw, [bx, 0.68, zc], [bx, fy - 0.12, zc], 0.06, 0.06);
+          }
+          b.beam(hw, [bx, 0.68, zc - L / 2], [bx, py0 - 0.1, zc - L / 2], 0.06, 0.06);                // bank leg
+          b.beam(hw, [bx, 0.68, zc + L / 2], [bx, py0 - 0.1, zc + L / 2], 0.06, 0.06);
+        });
+      });
+      // ---- bushings: HV on flanged turrets along -z, LV and the neutral along +z
+      const hv = [], lv = [], hvH = 2.3, lvH = 1.15;
+      const ring = (rr) => tpl('ptxring' + rr, () => new THREE.CylinderGeometry(rr, rr, 0.05, 28));
+      const nH = Math.max(1, Math.min(3, o.hv | 0));
+      for (let i = 0; i < nH; i++) {
+        const xx = (i - (nH - 1) / 2) * 1.35, zz = -D * 0.28;
+        tk.geo(skin, new THREE.CylinderGeometry(0.3, 0.36, 0.62, 24), V3(xx, yt + 0.12 + 0.31, zz));   // turret
+        b.geo(hw, ring(0.42), V3(xx, yt + 0.14, zz)); b.geo(hw, ring(0.36), V3(xx, yt + 0.12 + 0.62, zz));
+        for (let k = 0; k < 12; k++) { const a = k * Math.PI / 6; b.geo(hw, bolt, V3(xx + 0.32 * Math.cos(a), yt + 0.12 + 0.66, zz + 0.32 * Math.sin(a))); }
+        b.geo(porc, shedGeo(hvH, 0.12, 0.27, 0.2, 0.2), V3(xx, yt + 0.12 + 0.645, zz));
+        const tY = yt + 0.12 + 0.645 + hvH;
+        b.geo(M.alu(), tpl('ptxstud', () => new THREE.CylinderGeometry(0.035, 0.035, 0.22, 10)), V3(xx, tY + 0.1, zz));
+        b.geo(M.alu(), tpl('ptxpad', () => new THREE.BoxGeometry(0.12, 0.14, 0.02)), V3(xx, tY + 0.24, zz));
+        hv.push({ x: xx, y: tY + 0.24, z: zz });
+        // surge arrester on a bracket off the tank wall
+        const ax = xx + 0.62, az = -D / 2 - 0.42;
+        b.box(hw, 0.5, 0.08, 0.6, ax, yt - 0.3, -D / 2 - 0.24);
+        b.beam(hw, [ax, yt - 0.34, -D / 2 - 0.05], [ax, yt - 1.0, -D / 2 - 0.05], 0.08, 0.08);
+        b.geo(M.polymer(), shedGeo(1.4, 0.07, 0.15, 0.11, 0.14), V3(ax, yt - 0.26, az));
+        b.cable(M.alu(), [ax, yt - 0.26 + 1.4, az], [xx, tY + 0.2, zz], 0.25, 0.012, 10, 5);
+      }
+      [-1, 0, 1, 1.75].forEach((f, i) => {
+        const xx = f * 1.2, zz = D * 0.3, h = i === 3 ? lvH * 0.6 : lvH;
+        tk.geo(skin, new THREE.CylinderGeometry(0.2, 0.24, 0.26, 20), V3(xx, yt + 0.12 + 0.13, zz));
+        b.geo(hw, ring(0.27), V3(xx, yt + 0.12 + 0.26, zz));
+        b.geo(porc, shedGeo(h, 0.08, 0.18, 0.14, 0.15), V3(xx, yt + 0.12 + 0.28, zz));
+        const tY = yt + 0.12 + 0.28 + h;
+        b.geo(M.alu(), tpl('ptxstud', () => new THREE.CylinderGeometry(0.035, 0.035, 0.22, 10)), V3(xx, tY + 0.1, zz));
+        lv.push({ x: xx, y: tY + 0.2, z: zz });
+      });
+      // ---- conservator on saddles, Buchholz pipe, oil gauge, breather
+      const cx = -W * 0.18, cz = D * 0.05, cy = yt + 1.55, cl = W * 0.62, cr = 0.42;
+      const cq = new THREE.Quaternion().setFromAxisAngle(V3(0, 0, 1), Math.PI / 2);
+      tk.geo(skin, new THREE.CylinderGeometry(cr, cr, cl, 32), V3(cx, cy, cz), cq);
+      [-1, 1].forEach((e) => {
+        tk.geo(skin, new THREE.SphereGeometry(cr, 28, 8, 0, Math.PI * 2, 0, Math.PI / 2), V3(cx + e * cl / 2, cy, cz), new THREE.Quaternion().setFromAxisAngle(V3(0, 0, 1), -e * Math.PI / 2));
+        b.box(hw, 0.12, cy - yt - cr * 0.6, 0.6, cx + e * cl * 0.33, (yt + cy - cr * 0.6) / 2 + 0.06, cz);     // saddle stand
+        b.geo(hw, tpl('ptxband', () => new THREE.TorusGeometry(cr + 0.012, 0.018, 6, 32)), V3(cx + e * cl * 0.33, cy, cz), new THREE.Quaternion().setFromAxisAngle(Y, Math.PI / 2));
+      });
+      b.bar(fin, [cx + cl * 0.15, yt + 0.1, cz], [cx + cl * 0.15, cy - cr * 0.9, cz], 0.05, 10);          // Buchholz pipe
+      b.geo(hw, rbox(0.22, 0.2, 0.18, 0.02), V3(cx + cl * 0.15, yt + 0.55, cz));                          // Buchholz relay
+      b.geo(M.white(), tpl('ptxdial', () => new THREE.CylinderGeometry(0.14, 0.14, 0.03, 24)), V3(cx - cl / 2 - cr - 0.01, cy, cz), cq);     // oil gauge face
+      b.geo(hw, tpl('ptxbezel', () => new THREE.TorusGeometry(0.145, 0.015, 6, 24)), V3(cx - cl / 2 - cr - 0.02, cy, cz), new THREE.Quaternion().setFromAxisAngle(Y, Math.PI / 2));
+      // the breather pipe drops straight from the conservator to the lid, runs to the front edge and down the face to its gel canister
+      const bxp = -1.55, bzp = D / 2 + 0.16;
+      b.bar(fin, [bxp, cy - cr * 0.7, cz], [bxp, yt + 0.16, cz], 0.025, 8);
+      b.bar(fin, [bxp, yt + 0.16, cz], [bxp, yt + 0.16, bzp], 0.025, 8);
+      b.bar(fin, [bxp, yt + 0.16, bzp], [bxp, y0 + 1.72, bzp], 0.025, 8);
+      b.geo(kmat('ptx-gel', { color: 0x8a6a3a, roughness: 0.4, transparent: true, opacity: 0.85 }), tpl('ptxgel', () => new THREE.CylinderGeometry(0.08, 0.08, 0.36, 14)), V3(bxp, y0 + 1.52, bzp));
+      // ---- control cabinet, ladder, ground leads, the optional nameplate
+      tk.geo(skin, rbox(1.1, 1.7, 0.5, 0.03), V3(W * 0.24, y0 + 1.5, D / 2 + 0.36));
+      b.box(M.black(), 0.012, 1.45, 0.01, W * 0.24, y0 + 1.5, D / 2 + 0.615);
+      b.box(hw, 0.04, 0.16, 0.04, W * 0.24 + 0.42, y0 + 1.5, D / 2 + 0.63);
+      [-0.21, 0.21].forEach((dx) => b.bar(hw, [-W * 0.42 + dx, 0.68, D / 2 + 0.22], [-W * 0.42 + dx, yt + 0.9, D / 2 + 0.22], 0.022, 8));
+      for (let yy = 0.95; yy < yt + 0.8; yy += 0.3) b.bar(hw, [-W * 0.42 - 0.21, yy, D / 2 + 0.22], [-W * 0.42 + 0.21, yy, D / 2 + 0.22], 0.013, 6);
+      const cu = kmat('ptx-cu', { color: 0x7a4a2e, roughness: 0.5, metalness: 0.6 });
+      [[-W / 2 + 0.2, D / 2 + 0.02], [W / 2 - 0.2, -D / 2 - 0.02]].forEach(([gx, gz]) => b.cable(cu, [gx, y0 + 0.35, gz], [gx + 0.3 * Math.sign(gx), 0.42, gz + 0.5 * Math.sign(gz)], 0.06, 0.012, 8, 5));
+      if (o.nameplate) b.box(M.white(), 0.42, 0.3, 0.01, -W * 0.05, y0 + 2.2, D / 2 + 0.135);
+      b.build(g);
+      const baked = new THREE.Group(); tk.build(baked);
+      g.add(bakeSkin(baked, skin, { x0: -W / 2, x1: W / 2, y0: y0, y1: y0 + 0.22 + H, z0: -D / 2, z1: D / 2 }));
+      g.traverse((c) => { if (c.isMesh) { c.castShadow = true; c.receiveShadow = true; } });
+      g.userData.hv = hv; g.userData.lv = lv;
+      return g;
+    },
+  });
+
   /* one block: n units (4 or 5) side by side along x, doors to +z, on a shared concrete pad,
    * the step-up transformer at the +x end of the row, a conduit trench to it. */
   K.define('genset_block', {

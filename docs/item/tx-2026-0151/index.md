@@ -36,6 +36,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-25 · The MRI study's abstract and author affiliations stay unconfirmed, since the index that carries them still bars automated readers.
 - 2026-10-26 · The MD Anderson and UTMB MRI study is still unconfirmed on its abstract and author list. The index that carries both bars automated readers.
 - 2026-10-29 · The MD Anderson and UTMB MRI model study is still unconfirmed on the federal literature index, which bars automated readers.
+- 2026-10-30 · The MD Anderson and UTMB study of the MRI model remains unconfirmed on the federal literature index, which still bars automated readers.
 
 ## Evidence
 

@@ -6421,3 +6421,78 @@ carry an `escalated 2026-10-26` line in the queue so tomorrow's run is not made 
 this pass read and carried: the detail floor (no. 61 met it and its cures held, queued as
 `detail-floor-fights-the-dark-staged-world`), the glyph run rule and the article screenshots (both a
 maintainer's), the GRID piece count (the id pass) and `article-token-drops-unit` (the run's lane).
+
+## 2026-10-30, the fourteenth weekly machine pass. One kit lift, two gate changes, one doctrine entry, three proposals
+
+Read from `out/2026-10-30/week_digest.md` (five shipped runs, October 24th to 30th, no. 63 among
+them) and the queue. Due because `detail-floor-fights-the-dark-staged-world` reached repeat 2.
+`artwork_craft` had the lowest week mean (6.56) and was the lowest criterion on four decks of five.
+"Primitive or low-poly model where a kit model belongs" and "largest object unmodelled" were each
+named on five decks in 10 rounds, "render artifact" on four in 7, "type sitting on or fighting the
+art" on four in 7, "flat 2D overlay on a rendered frame" on four in 5. The account is in
+`ledger/carousel/upgrades.json` under `2026-10-30 weekly`, and the pass is recorded in
+`config/carousel/machine_pass.json`. Proofs are in `out/2026-10-30/tmp/machine/` and die with the
+container. No frontier scan this pass; the time went to the proofs.
+
+### 1. KIT LIFT: `power_transformer` AT THE NAMED FIXES OF NOS. 60 AND 62 (done, c50080c8a)
+
+Two decks this week framed a transformer close and both were charged a primitive. No. 60 frame 6
+cropped the kit substation's bay ("a rounded beige cabinet with veneer-like streaks, candlestick
+bushings, no fins", round 1; "untextured grey clay with no ground or contact", round 3). No. 62
+frame 4 built a `radiator_bank` in its chassis and was still charged "a smooth box with slab fins
+and disc bushings" and "bushings hover over a primitive box" in every round. The substation's
+transformer is a yard part seen from 40 m; `power_transformer` is the same machine built for 5 to
+15 m: a weathered galvanized tank on the padmount's weathering atlas at metalness 0.4 (so a navy
+zenith can't mirror in, queue kit-metal-mirrors-navy-sky-as-accent), pressed steel radiator panels
+with rolled channels necked into header pipes valved to the tank, skirted alternating sheds on
+flanged turrets with bolt circles, a conservator with Buchholz pipe, gauge and breather, surge
+arresters, a containment curb on a crushed rock apron, and no nameplate by default. Proven through
+`examples/kit/build.py`, two close crops read at full size (one found a breather pipe crossing the
+lid diagonally, rerouted), and `examples/kit/sizes.py` at 132 of 132.
+
+### 2. GATE: `deck_chassis` REFUSES A FLAT FRAME WHOSE POST PASS RUNS AT DEVICE SCALE (done, b8f23256f)
+
+No. 63's relief band: frames 2 and 5 called `CH.post` before `cx.setTransform(2, ...)`, so the
+scrim and veil landed in the top left quadrant. Every panel judge charged it as a seam with a notch,
+and it cost four workarounds before the cause was read. All 17 bootFlat frames shipped before it set
+the transform first, by a convention copied chassis to chassis. The rule reads source, so it fires on
+the probe. Self-tested five ways and replayed red on the run's own drafts.
+
+### 3. GATE: THE AUDITION READS THE DETAIL FLOOR BEFORE ITS REVIEW IS BOUND (done, dff1f2c31)
+
+Eight frames on nos. 61, 62 and 63 failed `layout_check`'s detail floor at Phase 12 in staged worlds,
+four of them audition frames, so every cure that changed pixels rebound a review the art director had
+given. `art_preflight --write` now runs the same measure, through `layout_check.frame_detail_problems`
+and one shared message, on its three frames and refuses the proof under the floor. Frames 2 to 8 are
+still read at Phase 12; if they keep costing rounds, the storyboard-time estimate is the next step.
+
+### 4. DOCTRINE: THE MATERIAL RELIEF BENCH IN `TECHNIQUE_LIBRARY.md` (done, 9fef9735d)
+
+TXBENCH has been a physical route since October 17th and the library had no entry. Six decks queued
+its failures one at a time: discs in plan read as dials (no. 63), a plate reads as a tray (nos. 59,
+60), a county reads as a card (no. 62), tooth in the height blotches (nos. 56, 60), a meandering mark
+reads as a shadow (no. 61). Each now stands with the cure that cleared it.
+
+### 5. PROPOSALS, with their counts
+
+- **For the run (daily lane): `fetch_doc.robots_refusal` and `reverify.robots_refuses` honour a
+  ClaudeBot group.** Queue fetch-doc-robots-ignores-claudebot-group, no. 63's record work:
+  govtech.com names `User-agent: ClaudeBot` with `Disallow: /` and leaves `*` open, and the reader
+  matched `*`. Both files are `daily`, so the run bitten by it can fix it under its own stamp, with a
+  self-test on that file's shape.
+- **For a maintainer (human): a GATE_LESSONS entry for change 2.** A convention copied from chassis
+  to chassis is not a contract: seventeen frames kept the order by imitation, the eighteenth broke it,
+  and an artifact every judge saw shipped through every gate, because none read the order. The brief
+  says a gate change belongs in that file, and it is `human` lane.
+- **For a daily run or a maintainer: `prompt_audit.py` separates agent spawn latency from a dialog.**
+  Queue prompt-audit-counts-agent-latency, repeat 1 (nos. 58 and 63: 242 of 1,812 and 136 of 1,158
+  calls reported as waiting, led by Agent spawns, in sessions the no-stall hook judged unattended and
+  where it refused nothing). `scripts/shared/prompt_audit.py` is `daily` lane.
+
+### Carried, with this week's counts
+
+"Type sitting on or fighting the art", four runs and 7 rounds, still a different collision on each
+deck and still the id pass (2026-10-12 item 4). The render artifact theme beyond the relief band is
+the engine's normalBias proposal (2026-10-26). No. 63's balance, weight, case and plinth models stay
+in its chassis, one deck, first in line for the next instruments deck. The other repeat offenders
+carry an `escalated 2026-10-30` line in the queue.

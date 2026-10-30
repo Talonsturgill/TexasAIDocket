@@ -1,0 +1,187 @@
+{
+ "weighted_score": 7.246,
+ "judges": [
+  7.07,
+  7.13,
+  7.21
+ ],
+ "spread": 0.14,
+ "criteria": {
+  "artwork_craft": {
+   "score": 6.8,
+   "weight": 0.22,
+   "judges": [
+    6.8,
+    6.3,
+    6.8
+   ]
+  },
+  "deck_coherence": {
+   "score": 7.5,
+   "weight": 0.12,
+   "judges": [
+    7.5,
+    7.0,
+    7.8
+   ]
+  },
+  "claim_integrity": {
+   "score": 8.5,
+   "weight": 0.2,
+   "judges": [
+    7.5,
+    8.5,
+    8.7
+   ]
+  },
+  "story_and_stakes": {
+   "score": 7.0,
+   "weight": 0.16,
+   "judges": [
+    7.0,
+    7.0,
+    6.9
+   ]
+  },
+  "sequence_and_momentum": {
+   "score": 6.8,
+   "weight": 0.1,
+   "judges": [
+    7.0,
+    6.8,
+    6.4
+   ]
+  },
+  "voice": {
+   "score": 6.5,
+   "weight": 0.1,
+   "judges": [
+    6.5,
+    6.5,
+    6.4
+   ]
+  },
+  "variety": {
+   "score": 7.0,
+   "weight": 0.1,
+   "judges": [
+    7.0,
+    7.5,
+    6.5
+   ]
+  }
+ },
+ "hard_fails": [],
+ "hard_fails_by_judge": [],
+ "ship": true,
+ "threshold": 8.0,
+ "over_threshold": false,
+ "method": "per-criterion median across three judges, then weighted by the rubric",
+ "artwork_weakest_frames": [
+  {
+   "slide": 8,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "A generic CG dais with bright streak-noise wood and no visible weights.",
+     "fix": "Open the case on the ledge in the window pool, crop tight so the ledge runs off both edges, drop the dais front to near black."
+    },
+    {
+     "judge": 2,
+     "problem": "A generic CG dais under a flat navy wall with a small case.",
+     "fix": "Ledge height at a 1.2 m three quarter view, the case a third of the frame, the wall and dais front falling to near black."
+    },
+    {
+     "judge": 3,
+     "problem": "A bright mid tone walnut dais, a featureless box and a flat navy void with no window in frame.",
+     "fix": "Pull down and in on the shut case with its lit latch, put the window in shot as the single source, and let the dais front fall to near black."
+    }
+   ]
+  },
+  {
+   "slide": 2,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "A flat grey sheet reading as a diagram card; the (f) label floating off its row.",
+     "fix": "Snap the label to row (f), pool the key tighter, raise the rows' relief so each casts across the next."
+    },
+    {
+     "judge": 2,
+     "problem": "A mid grey sheet with a hard seam, a dead band and a coin-like disc.",
+     "fix": "A 35 degree oblique with the slotted weight upright on row (f), the paper a pooled cool slate, the sheet run off the left edge."
+    },
+    {
+     "judge": 3,
+     "problem": "A cool grey sheet with greeked bars reads as a wireframe placeholder.",
+     "fix": "A real printed sheet with grain and a curled edge, under a tight snoot on row (f) and the weight."
+    }
+   ]
+  },
+  {
+   "slide": 6,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Stacks cropped into the corners under the footer, wires crossing type, a dead lower zone, an arc with nothing to read.",
+     "fix": "Pull back and up so both pans hang in frame above the footer, and light a brass index where the needle rests."
+    },
+    {
+     "judge": 2,
+     "problem": "Near repeat of 01's camera, stacks cropped into the footer, mid grey glazing, a dead lower zone.",
+     "fix": "The planned macro with the pillar exiting left, the hall hidden, both stacks out of frame."
+    },
+    {
+     "judge": 3,
+     "problem": "Re-shoots 1's balance; stacks cropped into the corners; strings near the footer.",
+     "fix": "Crop to the planned macro of the needle and arc with no pans or strings in shot."
+    }
+   ]
+  },
+  {
+   "slide": 5,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "The turn is a flat orthographic diagram reading as paving and a UI slider, with a dead field above.",
+     "fix": "A txthree oblique like 03: two brass railed grooves in the pecan case at about 30 degrees, filling the lower two thirds, the crack texture deleted."
+    }
+   ]
+  },
+  {
+   "slide": 9,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 3,
+     "problem": "A third plaza shot of the balance; a mid grey plinth face; a mannequin resident.",
+     "fix": "A view over the resident's shoulder with the balance small against the lit glazing."
+    }
+   ]
+  },
+  {
+   "slide": 7,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "Soft plates behind the type, the plinth behind the hook, violet blued.",
+     "fix": "Let the pan's underside and the shadowed plinth carry the quiet, delete the plates, move the base out, cut the warm key on the blued."
+    }
+   ]
+  }
+ ],
+ "rounds_derived": 3,
+ "rounds": 3,
+ "rounds_source": "this module's own log of cards it has scored",
+ "rounds_declared": 3,
+ "at_cap": true,
+ "rung": null,
+ "shortfall": "at the round cap the finished deck ships at 7.246, 0.754 under the 8.0 top rung. Name that in the email and the run record",
+ "craft_floor": "capped",
+ "craft_note": "at the round cap the craft floor stands down. The art median 6.8 is under 8.5 and the deck ships as it is. Name it in the run record"
+}

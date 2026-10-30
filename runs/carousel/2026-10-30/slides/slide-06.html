@@ -1,0 +1,71 @@
+<!doctype html>
+<!-- 2026-10-30, frame 6 of 9. Archetype CLOSE_CROP. A spatial scene through txthree.js in the deck lastLight world, macro on the balance needle over its arc of graduations; chat_minus_darwin_units sets the needle through the drawing rule and reserve_units sets the brass index, both from figures.json. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<svg id="ldr" width="1080" height="1350" style="position:absolute;left:0;top:0;z-index:11"></svg><div class="lab" id="lab-idx">THE NEEDLE ON THE RESERVE</div>
+<h1 class="hook" id="hook" style="width:900px">The difference equals the reserve</h1>
+<p class="dek" data-follow="26" style="width:860px">ChatGPT Enterprise outweighs Darwin AI by $40,000. The reserve the item holds for more licenses and other costs is also $40,000. The tilt is a drawing.</p>
+<script>window.FIG = {"chatgpt_units": 19, "darwin_units": 15, "reserve_units": 4};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-30-balance.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Read off the needle", counter: "06 / 09", src: "c1 c2 c4", fit: { min: 70, max: 92, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 22, near: 0.02, far: 3000, fog: 0.012 });
+  /* THE FIGURES, from figures.json: the difference in weights sets the needle (through the chassis drawing rule) and the
+   * reserve's weight count sets the brass index, so the needle lands on the index only if the two are equal */
+  const nRes = Math.round(FIG.reserve_units);
+  const nL = Math.round(FIG.chatgpt_units), nR = Math.round(FIG.darwin_units);
+  const plinth = K.make('chalk_plinth', { w: 1.0, h: 1.0, d: 0.62 }); CH.put(plinth, true);
+  const bal = K.make('equal_arm_balance', { left: nL, right: nR, index: nRes, seed: 63 }); bal.position.set(0, 1.0, 0); CH.put(bal);
+  /* the arc in polished nickel silver, lifted for this frame, whose reading is the arc */
+  bal.getObjectByName('arc').traverse(o => { if (o.isMesh && o.material && o.material.metalness >= 0.9 && o.material.color && o.material.color.r > 0.5) { o.material = o.material.clone(); o.material.color.setHex(0xe2ddcf); o.material.roughness = 0.22; o.material.emissive = new THREE.Color(0x3a382f); o.material.emissiveIntensity = 0.6; } });
+  /* the chamber across the plaza, behind the instrument, the room the reserve was decided in */
+  const hall = K.make('city_hall', { floors: 3, seed: 3 }); hall.position.set(-13, 0, -72); hall.rotation.y = 0.3; TXT.add(R, hall); TXT.contact(R, hall);
+  const isGlass = m => m && m.clearcoat === 1 && m.roughness <= 0.06, lit = new Map();
+  const warmGlass = m => { let w = lit.get(m); if (!w) { w = m.clone(); w.emissive = new THREE.Color(0xffa962); w.emissiveIntensity = 1.2; lit.set(m, w); } return w; };
+  hall.traverse(o => { if (!o.isMesh) return;
+    if (Array.isArray(o.material)) o.material = o.material.map(m => isGlass(m) ? warmGlass(m) : m);
+    else if (isGlass(o.material)) o.material = warmGlass(o.material); });
+  TXT.sky(R);
+  TXT.ground(R, { surface: 'concrete', size: 600, seed: 21 });
+  const ay = 1.0 + CH.PIVOT_Y - CH.NEEDLE + 0.02;
+  const from = [0.18, 1.42, 2.2];
+  const look = CH.aim(THREE, R, TXT, from, [0.0, 1.0 + CH.PIVOT_Y, 0.0], 540, 600, 22);
+  TXT.frame(R, { fov: 22, from, look });
+  /* the leader from the label to the brass index, which lands on the index's own coordinates */
+  const idx = bal.localToWorld(new THREE.Vector3(...CH.indexAt)); bal.updateMatrixWorld(true);
+  CH.warm(R, 0.34);
+  TXT.deckRig(R, CH.rigSpec(W, 1.0, 4096), CH.rigOpts([0, ay, 0], { distance: 8, shadowFar: 30 }));
+  CH.unacne(R, 0.003);
+  TXT.weather(R, { grime: 0.1, height: 0.3 });
+  TXT.stage(R, [bal], { poolInner: 0.4, poolOuter: 1.4 });
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0.3, veil: 0.3, footWash: 0.5 });
+  const at = CH.project(THREE, R, [idx.x, idx.y, idx.z]);
+  const lab = document.getElementById('lab-idx'); const lb = lab.getBoundingClientRect();
+  const lx = Math.max(80, at[0] - 90 - lb.width), ly = at[1] - 150; lab.style.left = lx + 'px'; lab.style.top = ly + 'px';
+  const svg = document.getElementById('ldr'); const to = [at[0], at[1] + 8];
+  CH.leader(svg, [lx + lb.width - 10, ly + lb.height + 6], to);
+  window.__txLeaders = [{ target: "the brass index at the reserve's graduation", at: [at[0], at[1] + 8], to }];
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

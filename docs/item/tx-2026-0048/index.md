@@ -51,6 +51,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-21 · The comment window is still open, closing November 3rd.
 - 2026-10-24 · League City's plate reader proposition is still set for the special election on November 3rd.
 - 2026-10-29 · The council approved a resolution to switch the Flock cameras off within 72 hours if most voters reject them in November.
+- 2026-10-30 · The city's agenda record still carries the special election on the plate reader cameras and the council's resolution to switch them off if voters reject them.
 
 ## Evidence
 

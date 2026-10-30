@@ -180,6 +180,14 @@ def build(base: Path, middle: int | None, assets: Path) -> None:
     problems = value_register.judge(rows, True, base.name)
     if problems:
         raise ValueError(problems[0])
+    # THE DETAIL FLOOR, READ BEFORE THE REVIEW (2026-10-30, queue detail-floor-fights-the-dark-
+    # staged-world, three runs). Phase 12's layout_check holds every frame to it; read here, a
+    # frame whose rect is mostly dark field is fixed before a review is bound to its pixels,
+    # instead of rebinding the review after. Same floor, same message, never less.
+    import layout_check
+    problems = layout_check.frame_detail_problems(base, selected)
+    if problems:
+        raise ValueError(problems[0])
     record = {"version": 1, "selected": selected, "inputs": inputs(base, selected, assets),
               "value_measurements": rows, "review": {"decision": "revise", "frames": []}}
     if plan is not None:
@@ -314,6 +322,13 @@ def self_test() -> int:
         except ValueError:
             rejected = True
         test("a different image cannot be exported as a faithful encode", rejected)
+    # WIRED, NOT DECORATIVE (2026-10-30): the audition's detail read exists only if build calls it
+    # before writing the proof, and a refactor that drops the call would leave layout_check's own
+    # self-test green. Read the source of build, not the docstring.
+    import inspect
+    src = inspect.getsource(build)
+    at_call, at_write = src.find("layout_check.frame_detail_problems(base, selected)"), src.find("art_preflight.json\").write_text")
+    test("build reads the detail floor on its three frames before it writes the proof", 0 < at_call < at_write)
     return int(bool(bad))
 
 

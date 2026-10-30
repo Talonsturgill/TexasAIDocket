@@ -52,6 +52,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-25 · The assignment of the RELLIS abatement to ThisWay Global stays unconfirmed. The county's notice still turns away every reader.
 - 2026-10-26 · Brazos County's assignment of the RELLIS abatement to ThisWay Global is still unconfirmed. The county's notice refuses every reader and the station's report bars automated ones.
 - 2026-10-29 · Brazos County's assignment of the RELLIS abatement to ThisWay Global is still unconfirmed. The county site refuses every reader.
+- 2026-10-30 · The RELLIS abatement's assignment to ThisWay Global remains unconfirmed, because Brazos County's site still turns away every reader.
 
 ## Evidence
 

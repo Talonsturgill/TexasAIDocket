@@ -1,0 +1,79 @@
+{
+ "lens": "integrity",
+ "round": 2,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.4,
+   "why": "Uneven. 03 (19/15/1/4 counted, real contact and casts) and 04 (19 discs with lit chamfers) are strongest. 02 is a mid grey sheet over the lower 55 percent with a Q-slot coin; 08 is a generic CG dais whose orange wood fills the bottom 45 percent in the mid tones (machine_qa bottom band 0.987) and the shut case reads as a laptop; 05's cracks read as paving with a dead lower third; 06 nearly repeats 01's camera with pans cut at the corners and machine_qa's top-loaded warning; 07's blued reads lilac with a stray plinth wedge behind the widowed 'does'."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 6.8,
+   "why": "One brass balance and one set of weights change state; brass is the chatbot, blue is Darwin, one dark field and key on most frames. 02 and 08 break the value track and 06 reuses 01's angle."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 6.8,
+   "why": "The round 1 hard fail is cured: the cover no longer gives a purpose, frame 7 is attributed, c9 and c10 match their source, and c17 ties the reseller in c2 to darwingov.com. Every numeral traces. The minutes repair is faithful to c18 and c22. Loosenesses: (1) the cover hook and title call Darwin 'an AI governance platform' without attribution; (2) c7's quote is a bare RTF 'Approved' with no item identifier; (3) item (f) rests on c6's note; (4) 'meets next on November 9th' is stronger than c21's 'next meeting on Plano's Legistar'; (5) the web edition's dek calls Darwin 'a platform to monitor AI use' without attribution and its intro says the city 'also bought'."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.5,
+   "why": "Body, date, mechanism, money and the record's state are named. The stake is thin: what either tool will do is unknown because the memo is blocked, and the November 9th meeting has no stated tie to the item or a route for a resident."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 6.0,
+   "why": "The accurate cover no longer earns a swipe. 03 to 06 spend four frames on the same four numbers; 05's turn restates 03; 06's coincidence is cuttable. 08 is the real turn and comes late. The close lands on a figure."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "Clean and on house rules but clinical: '133 cents' where a person says $1.33, 'Drawn to illustrate.' on eight deks, the caption's meta line about the balance, and frame 8's aside between paired commas. The first comment prints years on four dates, defensible as citation labels."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "A fresh concept against nos. 60, 61 and 62; the staged lastLight field and a per-resident close with a kit person are the familiar moves."
+  }
+ ],
+ "weighted_score": 6.62,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Cut frame 06's coincidence and spend the slot and the close on a fetched route for a resident to raise the item on November 9th, with the honest open question of what the city will monitor with Darwin; attribute 'AI governance platform' and 'monitor AI use' to the maker.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 8,
+   "problem": "Generic CG wood dais in the grey middle; the shut case reads as a laptop.",
+   "fix": "Drop to ledge height and crop tight on the case and its lit latch; let the dais front fall to near black outside a narrow window pool."
+  },
+  {
+   "slide": 2,
+   "problem": "A mid grey sheet as a flat plate and a Q-slot coin.",
+   "fix": "Dark slate stock with a tight grazing pool on row (f), and the deck's knurled slotted weight standing proud and casting across the four rules."
+  },
+  {
+   "slide": 5,
+   "problem": "Cracks read as paving, a dead lower third, and the four empty wells unexplained since the reserve label was cut.",
+   "fix": "Crop to the grooves, darken the clay with sparse cracks, and label or light the four empty wells as the reserve."
+  },
+  {
+   "slide": 6,
+   "problem": "Repeats 01's camera, pans lost off the corners, dead lower zone.",
+   "fix": "Build the planned macro with the pillar off axis; fill the lower two thirds with the arc and needle."
+  },
+  {
+   "slide": 7,
+   "problem": "Lilac blued and a stray plinth wedge behind the widowed 'does'.",
+   "fix": "Cool the blued specular, remove the plinth fragment, rewrap the hook."
+  }
+ ]
+}
