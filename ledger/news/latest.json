@@ -1,8 +1,8 @@
 {
   "_spec": 2,
-  "checked_at": "2026-10-30T14:28:31Z",
+  "checked_at": "2026-10-30T23:05:32Z",
   "provider": "Publisher RSS and Atom",
-  "response_sha256": "be7ff7c10fbd1340bef7c84927f110c7b21fa29ab4d7452d3924569cf23744f8",
+  "response_sha256": "3e997ef309f267810a0982ceb4497966c99e39ce7d6d8a7679839c0fe995254c",
   "articles": [
     {
       "title": "Archer Aviation Unveils Air Taxi Networks in Dallas-Fort Worth, Houston and Austin",
@@ -26,13 +26,6 @@
       "feed": "https://dallasinnovates.com/feed/"
     },
     {
-      "title": "Texas Attorney General Ken Paxton sues ChatGPT-maker OpenAI",
-      "url": "https://feeds.texastribune.org/link/16799/17505297/ken-paxton-chatgpt-openai-lawsuit-texas-attorney-general",
-      "first_seen_at": "2026-10-23T19:44:30Z",
-      "summary": "CEO Sam Altman and ChatGPT are top competitors to Elon Musk, the tech billionaire fueling Paxton’s U.S. Senate campaign.",
-      "feed": "https://feeds.texastribune.org/feeds/main/"
-    },
-    {
       "title": "Coalition in deep East Texas aims to build tech workforce, connect region",
       "url": "https://feeds.texastribune.org/link/16799/17507501/east-texas-technology-coalition-launches",
       "first_seen_at": "2026-10-27T10:00:00Z",
@@ -44,6 +37,13 @@
       "url": "https://www.datacenterdynamics.com/en/news/fireworks-to-lease-data-center-capacity-in-dallas-texas/",
       "first_seen_at": "2026-10-26T16:14:00Z",
       "summary": "Company to lease capacity from Forum Markets/Edge Node venture",
+      "feed": "https://www.datacenterdynamics.com/en/rss/"
+    },
+    {
+      "title": "Sabey DC to pilot HVO fuel as diesel replacement at its data center in Austin, Texas",
+      "url": "https://www.datacenterdynamics.com/en/news/sabey-dc-to-pilot-hvo-fuel-as-diesel-replacement-at-its-data-center-in-austin-texas/",
+      "first_seen_at": "2026-10-30T15:38:59Z",
+      "summary": "If successful, the company plans to expand to additional sites",
       "feed": "https://www.datacenterdynamics.com/en/rss/"
     },
     {
@@ -69,135 +69,20 @@
     }
   ],
   "selected": {
-    "title": "Fireworks to lease data center capacity in Dallas, Texas",
-    "url": "https://www.datacenterdynamics.com/en/news/fireworks-to-lease-data-center-capacity-in-dallas-texas/",
-    "first_seen_at": "2026-10-26T16:14:00Z",
-    "summary": "Company to lease capacity from Forum Markets/Edge Node venture",
-    "feed": "https://www.datacenterdynamics.com/en/rss/",
-    "publisher": "Data Center Dynamics",
+    "title": "Coalition in deep East Texas aims to build tech workforce, connect region",
+    "url": "https://feeds.texastribune.org/link/16799/17507501/east-texas-technology-coalition-launches",
+    "first_seen_at": "2026-10-27T10:00:00Z",
+    "summary": "Led by community members from 11 counties, the group plans to address major concerns about broadband expansion and provide training on how to use technology.",
+    "feed": "https://feeds.texastribune.org/feeds/main/",
+    "publisher": "The Texas Tribune",
     "coverage": 1,
-    "score": 0.065755,
+    "score": 0.085644,
     "priority": 4
   },
-  "expires_at": "2026-11-02T16:14:00Z",
+  "expires_at": "2026-11-03T10:00:00Z",
   "rotation_version": 1,
   "carousel_version": 1,
   "editions": [
-    {
-      "starts_at": "2026-10-30T13:23:00Z",
-      "selected": {
-        "title": "Fireworks to lease data center capacity in Dallas, Texas",
-        "url": "https://www.datacenterdynamics.com/en/news/fireworks-to-lease-data-center-capacity-in-dallas-texas/",
-        "first_seen_at": "2026-10-26T16:14:00Z",
-        "summary": "Company to lease capacity from Forum Markets/Edge Node venture",
-        "feed": "https://www.datacenterdynamics.com/en/rss/",
-        "publisher": "Data Center Dynamics",
-        "coverage": 1,
-        "score": 0.065755,
-        "priority": 4
-      },
-      "stories": [
-        {
-          "title": "Fireworks to lease data center capacity in Dallas, Texas",
-          "url": "https://www.datacenterdynamics.com/en/news/fireworks-to-lease-data-center-capacity-in-dallas-texas/",
-          "first_seen_at": "2026-10-26T16:14:00Z",
-          "summary": "Company to lease capacity from Forum Markets/Edge Node venture",
-          "feed": "https://www.datacenterdynamics.com/en/rss/",
-          "publisher": "Data Center Dynamics",
-          "coverage": 1,
-          "score": 0.065755,
-          "priority": 4
-        },
-        {
-          "title": "Dallas-Based GDT Opens AI Lab Where Businesses Can Test Projects Before Buying Equipment",
-          "url": "https://dallasinnovates.com/dallas-based-gdt-opens-ai-lab-where-businesses-can-test-projects-before-buying-equipment/",
-          "first_seen_at": "2026-10-29T15:38:21Z",
-          "summary": "Dallas-based IT services provider GDT debuted a supercomputer-level AI lab that lets businesses test technology before adopting it. Attendees at the lab’s open house, held at the company’s Dallas headquarters Oct. 22, could watch AI demonstrations and ask GDT executives about AI trends. …",
-          "feed": "https://dallasinnovates.com/feed/",
-          "publisher": "Dallas Innovates",
-          "coverage": 1,
-          "score": 0.517093,
-          "priority": 0
-        },
-        {
-          "title": "Dallas-Based Disruptive Raises $10B Flagship Fund",
-          "url": "https://dallasinnovates.com/dallas-based-disruptive-raises-10b-flagship-fund/",
-          "first_seen_at": "2026-10-27T20:35:32Z",
-          "summary": "Dallas-based venture capital firm Disruptive Technology Advisers has raised a $10 billion fund, its largest to date. The fund plans to invest up to $1 billion each in about 10 growth or late-stage companies, the firm said. It cited artificial intelligence, AI infrastructure, defense and national security as areas where it sees significant business opportunities in need of large amounts of capital. …",
-          "feed": "https://dallasinnovates.com/feed/",
-          "publisher": "Dallas Innovates",
-          "coverage": 1,
-          "score": 0.149154,
-          "priority": 0
-        },
-        {
-          "title": "San Antonio leaders will now have to OK every new data center",
-          "url": "https://www.tpr.org/government-politics/2026-10-29/san-antonio-leaders-will-now-have-to-ok-every-new-data-center",
-          "first_seen_at": "2026-10-30T00:03:12Z",
-          "summary": "Every data center developer that wants to build in San Antonio will have to get permission from City Council before it can begin construction.",
-          "feed": "https://www.tpr.org/index.rss",
-          "publisher": "Texas Public Radio",
-          "coverage": 1,
-          "score": 0.659336,
-          "priority": 1
-        },
-        {
-          "title": "Archer Aviation Unveils Air Taxi Networks in Dallas-Fort Worth, Houston and Austin",
-          "url": "https://dallasinnovates.com/archer-aviation-unveils-air-taxi-networks-in-dallas-fort-worth-houston-and-austin/",
-          "first_seen_at": "2026-10-27T17:06:33Z",
-          "summary": "In the next few months, North Texans may see air taxis — with paying passengers aboard — in the sky. San Jose, California-based Archer Aviation (NYSE: ACHR) just unveiled plans for three air taxi networks in the Texas Triangle. They will connect airports and business districts within Dallas-Fort Worth, Austin and Houston. …",
-          "feed": "https://dallasinnovates.com/feed/",
-          "publisher": "Dallas Innovates",
-          "coverage": 1,
-          "score": 0.13488,
-          "priority": 1
-        },
-        {
-          "title": "Inside the New AI Slop Era of Texas Politics",
-          "url": "https://www.texasobserver.org/ai-slop-era-texas-political-ads-2026/",
-          "first_seen_at": "2026-10-26T14:21:05Z",
-          "summary": "Texans have seen it all this year: Senator John Cornyn twirling Congresswoman Jasmine Crockett on the dance floor; Attorney General Ken Paxton driving his mistresses down to the “Love Shack”; and Texas state Representative James Talarico in a dress singing a tune about transgender people—all made possible by the powers of generative artificial intelligence. Political […]",
-          "feed": "https://www.texasobserver.org/feed/",
-          "publisher": "Texas Observer",
-          "coverage": 1,
-          "score": 0.062277,
-          "priority": 3
-        },
-        {
-          "title": "Can language patterns reveal mild brain injuries in veterans? San Antonio researchers launch AI-powered study.",
-          "url": "https://www.tpr.org/bioscience-medicine/2026-10-25/can-language-patterns-reveal-mild-brain-injuries-in-veterans-san-antonio-researchers-launch-ai-powered-study",
-          "first_seen_at": "2026-10-25T16:56:12Z",
-          "summary": "Three San Antonio organizations are testing whether subtle changes in language could be a marker for mild traumatic brain injuries.",
-          "feed": "https://www.tpr.org/index.rss",
-          "publisher": "Texas Public Radio",
-          "coverage": 1,
-          "score": 0.033552,
-          "priority": 3
-        },
-        {
-          "title": "Texas Attorney General Ken Paxton sues ChatGPT-maker OpenAI",
-          "url": "https://feeds.texastribune.org/link/16799/17505297/ken-paxton-chatgpt-openai-lawsuit-texas-attorney-general",
-          "first_seen_at": "2026-10-23T19:44:30Z",
-          "summary": "CEO Sam Altman and ChatGPT are top competitors to Elon Musk, the tech billionaire fueling Paxton’s U.S. Senate campaign.",
-          "feed": "https://feeds.texastribune.org/feeds/main/",
-          "publisher": "The Texas Tribune",
-          "coverage": 1,
-          "score": 0.009096,
-          "priority": 3
-        },
-        {
-          "title": "Coalition in deep East Texas aims to build tech workforce, connect region",
-          "url": "https://feeds.texastribune.org/link/16799/17507501/east-texas-technology-coalition-launches",
-          "first_seen_at": "2026-10-27T10:00:00Z",
-          "summary": "Led by community members from 11 counties, the group plans to address major concerns about broadband expansion and provide training on how to use technology.",
-          "feed": "https://feeds.texastribune.org/feeds/main/",
-          "publisher": "The Texas Tribune",
-          "coverage": 1,
-          "score": 0.109844,
-          "priority": 4
-        }
-      ]
-    },
     {
       "starts_at": "2026-10-30T19:23:00Z",
       "selected": {
@@ -208,7 +93,7 @@
         "feed": "https://feeds.texastribune.org/feeds/main/",
         "publisher": "The Texas Tribune",
         "coverage": 1,
-        "score": 0.095327,
+        "score": 0.085644,
         "priority": 4
       },
       "stories": [
@@ -220,7 +105,7 @@
           "feed": "https://feeds.texastribune.org/feeds/main/",
           "publisher": "The Texas Tribune",
           "coverage": 1,
-          "score": 0.095327,
+          "score": 0.085644,
           "priority": 4
         },
         {
@@ -231,19 +116,19 @@
           "feed": "https://dallasinnovates.com/feed/",
           "publisher": "Dallas Innovates",
           "coverage": 1,
-          "score": 0.448753,
+          "score": 0.403169,
           "priority": 0
         },
         {
-          "title": "Dallas-Based Disruptive Raises $10B Flagship Fund",
-          "url": "https://dallasinnovates.com/dallas-based-disruptive-raises-10b-flagship-fund/",
-          "first_seen_at": "2026-10-27T20:35:32Z",
-          "summary": "Dallas-based venture capital firm Disruptive Technology Advisers has raised a $10 billion fund, its largest to date. The fund plans to invest up to $1 billion each in about 10 growth or late-stage companies, the firm said. It cited artificial intelligence, AI infrastructure, defense and national security as areas where it sees significant business opportunities in need of large amounts of capital. …",
-          "feed": "https://dallasinnovates.com/feed/",
-          "publisher": "Dallas Innovates",
+          "title": "Sabey DC to pilot HVO fuel as diesel replacement at its data center in Austin, Texas",
+          "url": "https://www.datacenterdynamics.com/en/news/sabey-dc-to-pilot-hvo-fuel-as-diesel-replacement-at-its-data-center-in-austin-texas/",
+          "first_seen_at": "2026-10-30T15:38:59Z",
+          "summary": "If successful, the company plans to expand to additional sites",
+          "feed": "https://www.datacenterdynamics.com/en/rss/",
+          "publisher": "Data Center Dynamics",
           "coverage": 1,
-          "score": 0.129441,
-          "priority": 0
+          "score": 0.806584,
+          "priority": 1
         },
         {
           "title": "San Antonio leaders will now have to OK every new data center",
@@ -253,8 +138,19 @@
           "feed": "https://www.tpr.org/index.rss",
           "publisher": "Texas Public Radio",
           "coverage": 1,
-          "score": 0.572197,
+          "score": 0.514073,
           "priority": 1
+        },
+        {
+          "title": "Dallas-Based Disruptive Raises $10B Flagship Fund",
+          "url": "https://dallasinnovates.com/dallas-based-disruptive-raises-10b-flagship-fund/",
+          "first_seen_at": "2026-10-27T20:35:32Z",
+          "summary": "Dallas-based venture capital firm Disruptive Technology Advisers has raised a $10 billion fund, its largest to date. The fund plans to invest up to $1 billion each in about 10 growth or late-stage companies, the firm said. It cited artificial intelligence, AI infrastructure, defense and national security as areas where it sees significant business opportunities in need of large amounts of capital. …",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.116293,
+          "priority": 3
         },
         {
           "title": "Inside the New AI Slop Era of Texas Politics",
@@ -264,7 +160,7 @@
           "feed": "https://www.texasobserver.org/feed/",
           "publisher": "Texas Observer",
           "coverage": 1,
-          "score": 0.054046,
+          "score": 0.048556,
           "priority": 3
         },
         {
@@ -275,18 +171,7 @@
           "feed": "https://www.tpr.org/index.rss",
           "publisher": "Texas Public Radio",
           "coverage": 1,
-          "score": 0.029118,
-          "priority": 3
-        },
-        {
-          "title": "Texas Attorney General Ken Paxton sues ChatGPT-maker OpenAI",
-          "url": "https://feeds.texastribune.org/link/16799/17505297/ken-paxton-chatgpt-openai-lawsuit-texas-attorney-general",
-          "first_seen_at": "2026-10-23T19:44:30Z",
-          "summary": "CEO Sam Altman and ChatGPT are top competitors to Elon Musk, the tech billionaire fueling Paxton’s U.S. Senate campaign.",
-          "feed": "https://feeds.texastribune.org/feeds/main/",
-          "publisher": "The Texas Tribune",
-          "coverage": 1,
-          "score": 0.007894,
+          "score": 0.02616,
           "priority": 3
         },
         {
@@ -297,7 +182,7 @@
           "feed": "https://dallasinnovates.com/feed/",
           "publisher": "Dallas Innovates",
           "coverage": 1,
-          "score": 0.117054,
+          "score": 0.105164,
           "priority": 4
         },
         {
@@ -308,7 +193,7 @@
           "feed": "https://www.datacenterdynamics.com/en/rss/",
           "publisher": "Data Center Dynamics",
           "coverage": 1,
-          "score": 0.057065,
+          "score": 0.051268,
           "priority": 4
         }
       ]
@@ -316,27 +201,27 @@
     {
       "starts_at": "2026-10-31T01:23:00Z",
       "selected": {
-        "title": "Archer Aviation Unveils Air Taxi Networks in Dallas-Fort Worth, Houston and Austin",
-        "url": "https://dallasinnovates.com/archer-aviation-unveils-air-taxi-networks-in-dallas-fort-worth-houston-and-austin/",
-        "first_seen_at": "2026-10-27T17:06:33Z",
-        "summary": "In the next few months, North Texans may see air taxis — with paying passengers aboard — in the sky. San Jose, California-based Archer Aviation (NYSE: ACHR) just unveiled plans for three air taxi networks in the Texas Triangle. They will connect airports and business districts within Dallas-Fort Worth, Austin and Houston. …",
-        "feed": "https://dallasinnovates.com/feed/",
-        "publisher": "Dallas Innovates",
+        "title": "Sabey DC to pilot HVO fuel as diesel replacement at its data center in Austin, Texas",
+        "url": "https://www.datacenterdynamics.com/en/news/sabey-dc-to-pilot-hvo-fuel-as-diesel-replacement-at-its-data-center-in-austin-texas/",
+        "first_seen_at": "2026-10-30T15:38:59Z",
+        "summary": "If successful, the company plans to expand to additional sites",
+        "feed": "https://www.datacenterdynamics.com/en/rss/",
+        "publisher": "Data Center Dynamics",
         "coverage": 1,
-        "score": 0.09843,
-        "priority": 4
+        "score": 0.754939,
+        "priority": 1
       },
       "stories": [
         {
-          "title": "Archer Aviation Unveils Air Taxi Networks in Dallas-Fort Worth, Houston and Austin",
-          "url": "https://dallasinnovates.com/archer-aviation-unveils-air-taxi-networks-in-dallas-fort-worth-houston-and-austin/",
-          "first_seen_at": "2026-10-27T17:06:33Z",
-          "summary": "In the next few months, North Texans may see air taxis — with paying passengers aboard — in the sky. San Jose, California-based Archer Aviation (NYSE: ACHR) just unveiled plans for three air taxi networks in the Texas Triangle. They will connect airports and business districts within Dallas-Fort Worth, Austin and Houston. …",
-          "feed": "https://dallasinnovates.com/feed/",
-          "publisher": "Dallas Innovates",
+          "title": "Sabey DC to pilot HVO fuel as diesel replacement at its data center in Austin, Texas",
+          "url": "https://www.datacenterdynamics.com/en/news/sabey-dc-to-pilot-hvo-fuel-as-diesel-replacement-at-its-data-center-in-austin-texas/",
+          "first_seen_at": "2026-10-30T15:38:59Z",
+          "summary": "If successful, the company plans to expand to additional sites",
+          "feed": "https://www.datacenterdynamics.com/en/rss/",
+          "publisher": "Data Center Dynamics",
           "coverage": 1,
-          "score": 0.09843,
-          "priority": 4
+          "score": 0.754939,
+          "priority": 1
         },
         {
           "title": "Dallas-Based GDT Opens AI Lab Where Businesses Can Test Projects Before Buying Equipment",
@@ -394,6 +279,17 @@
           "priority": 3
         },
         {
+          "title": "Archer Aviation Unveils Air Taxi Networks in Dallas-Fort Worth, Houston and Austin",
+          "url": "https://dallasinnovates.com/archer-aviation-unveils-air-taxi-networks-in-dallas-fort-worth-houston-and-austin/",
+          "first_seen_at": "2026-10-27T17:06:33Z",
+          "summary": "In the next few months, North Texans may see air taxis — with paying passengers aboard — in the sky. San Jose, California-based Archer Aviation (NYSE: ACHR) just unveiled plans for three air taxi networks in the Texas Triangle. They will connect airports and business districts within Dallas-Fort Worth, Austin and Houston. …",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.09843,
+          "priority": 4
+        },
+        {
           "title": "Coalition in deep East Texas aims to build tech workforce, connect region",
           "url": "https://feeds.texastribune.org/link/16799/17507501/east-texas-technology-coalition-launches",
           "first_seen_at": "2026-10-27T10:00:00Z",
@@ -420,27 +316,27 @@
     {
       "starts_at": "2026-10-31T07:23:00Z",
       "selected": {
-        "title": "Can language patterns reveal mild brain injuries in veterans? San Antonio researchers launch AI-powered study.",
-        "url": "https://www.tpr.org/bioscience-medicine/2026-10-25/can-language-patterns-reveal-mild-brain-injuries-in-veterans-san-antonio-researchers-launch-ai-powered-study",
-        "first_seen_at": "2026-10-25T16:56:12Z",
-        "summary": "Three San Antonio organizations are testing whether subtle changes in language could be a marker for mild traumatic brain injuries.",
-        "feed": "https://www.tpr.org/index.rss",
-        "publisher": "Texas Public Radio",
+        "title": "Archer Aviation Unveils Air Taxi Networks in Dallas-Fort Worth, Houston and Austin",
+        "url": "https://dallasinnovates.com/archer-aviation-unveils-air-taxi-networks-in-dallas-fort-worth-houston-and-austin/",
+        "first_seen_at": "2026-10-27T17:06:33Z",
+        "summary": "In the next few months, North Texans may see air taxis — with paying passengers aboard — in the sky. San Jose, California-based Archer Aviation (NYSE: ACHR) just unveiled plans for three air taxi networks in the Texas Triangle. They will connect airports and business districts within Dallas-Fort Worth, Austin and Houston. …",
+        "feed": "https://dallasinnovates.com/feed/",
+        "publisher": "Dallas Innovates",
         "coverage": 1,
-        "score": 0.02059,
-        "priority": 3
+        "score": 0.08277,
+        "priority": 4
       },
       "stories": [
         {
-          "title": "Can language patterns reveal mild brain injuries in veterans? San Antonio researchers launch AI-powered study.",
-          "url": "https://www.tpr.org/bioscience-medicine/2026-10-25/can-language-patterns-reveal-mild-brain-injuries-in-veterans-san-antonio-researchers-launch-ai-powered-study",
-          "first_seen_at": "2026-10-25T16:56:12Z",
-          "summary": "Three San Antonio organizations are testing whether subtle changes in language could be a marker for mild traumatic brain injuries.",
-          "feed": "https://www.tpr.org/index.rss",
-          "publisher": "Texas Public Radio",
+          "title": "Archer Aviation Unveils Air Taxi Networks in Dallas-Fort Worth, Houston and Austin",
+          "url": "https://dallasinnovates.com/archer-aviation-unveils-air-taxi-networks-in-dallas-fort-worth-houston-and-austin/",
+          "first_seen_at": "2026-10-27T17:06:33Z",
+          "summary": "In the next few months, North Texans may see air taxis — with paying passengers aboard — in the sky. San Jose, California-based Archer Aviation (NYSE: ACHR) just unveiled plans for three air taxi networks in the Texas Triangle. They will connect airports and business districts within Dallas-Fort Worth, Austin and Houston. …",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
           "coverage": 1,
-          "score": 0.02059,
-          "priority": 3
+          "score": 0.08277,
+          "priority": 4
         },
         {
           "title": "Dallas-Based GDT Opens AI Lab Where Businesses Can Test Projects Before Buying Equipment",
@@ -452,6 +348,17 @@
           "coverage": 1,
           "score": 0.317316,
           "priority": 0
+        },
+        {
+          "title": "Sabey DC to pilot HVO fuel as diesel replacement at its data center in Austin, Texas",
+          "url": "https://www.datacenterdynamics.com/en/news/sabey-dc-to-pilot-hvo-fuel-as-diesel-replacement-at-its-data-center-in-austin-texas/",
+          "first_seen_at": "2026-10-30T15:38:59Z",
+          "summary": "If successful, the company plans to expand to additional sites",
+          "feed": "https://www.datacenterdynamics.com/en/rss/",
+          "publisher": "Data Center Dynamics",
+          "coverage": 1,
+          "score": 0.634826,
+          "priority": 1
         },
         {
           "title": "San Antonio leaders will now have to OK every new data center",
@@ -487,15 +394,15 @@
           "priority": 3
         },
         {
-          "title": "Archer Aviation Unveils Air Taxi Networks in Dallas-Fort Worth, Houston and Austin",
-          "url": "https://dallasinnovates.com/archer-aviation-unveils-air-taxi-networks-in-dallas-fort-worth-houston-and-austin/",
-          "first_seen_at": "2026-10-27T17:06:33Z",
-          "summary": "In the next few months, North Texans may see air taxis — with paying passengers aboard — in the sky. San Jose, California-based Archer Aviation (NYSE: ACHR) just unveiled plans for three air taxi networks in the Texas Triangle. They will connect airports and business districts within Dallas-Fort Worth, Austin and Houston. …",
-          "feed": "https://dallasinnovates.com/feed/",
-          "publisher": "Dallas Innovates",
+          "title": "Can language patterns reveal mild brain injuries in veterans? San Antonio researchers launch AI-powered study.",
+          "url": "https://www.tpr.org/bioscience-medicine/2026-10-25/can-language-patterns-reveal-mild-brain-injuries-in-veterans-san-antonio-researchers-launch-ai-powered-study",
+          "first_seen_at": "2026-10-25T16:56:12Z",
+          "summary": "Three San Antonio organizations are testing whether subtle changes in language could be a marker for mild traumatic brain injuries.",
+          "feed": "https://www.tpr.org/index.rss",
+          "publisher": "Texas Public Radio",
           "coverage": 1,
-          "score": 0.08277,
-          "priority": 4
+          "score": 0.02059,
+          "priority": 3
         },
         {
           "title": "Coalition in deep East Texas aims to build tech workforce, connect region",
@@ -520,14 +427,124 @@
           "priority": 4
         }
       ]
+    },
+    {
+      "starts_at": "2026-10-31T13:23:00Z",
+      "selected": {
+        "title": "Can language patterns reveal mild brain injuries in veterans? San Antonio researchers launch AI-powered study.",
+        "url": "https://www.tpr.org/bioscience-medicine/2026-10-25/can-language-patterns-reveal-mild-brain-injuries-in-veterans-san-antonio-researchers-launch-ai-powered-study",
+        "first_seen_at": "2026-10-25T16:56:12Z",
+        "summary": "Three San Antonio organizations are testing whether subtle changes in language could be a marker for mild traumatic brain injuries.",
+        "feed": "https://www.tpr.org/index.rss",
+        "publisher": "Texas Public Radio",
+        "coverage": 1,
+        "score": 0.017314,
+        "priority": 3
+      },
+      "stories": [
+        {
+          "title": "Can language patterns reveal mild brain injuries in veterans? San Antonio researchers launch AI-powered study.",
+          "url": "https://www.tpr.org/bioscience-medicine/2026-10-25/can-language-patterns-reveal-mild-brain-injuries-in-veterans-san-antonio-researchers-launch-ai-powered-study",
+          "first_seen_at": "2026-10-25T16:56:12Z",
+          "summary": "Three San Antonio organizations are testing whether subtle changes in language could be a marker for mild traumatic brain injuries.",
+          "feed": "https://www.tpr.org/index.rss",
+          "publisher": "Texas Public Radio",
+          "coverage": 1,
+          "score": 0.017314,
+          "priority": 3
+        },
+        {
+          "title": "Dallas-Based GDT Opens AI Lab Where Businesses Can Test Projects Before Buying Equipment",
+          "url": "https://dallasinnovates.com/dallas-based-gdt-opens-ai-lab-where-businesses-can-test-projects-before-buying-equipment/",
+          "first_seen_at": "2026-10-29T15:38:21Z",
+          "summary": "Dallas-based IT services provider GDT debuted a supercomputer-level AI lab that lets businesses test technology before adopting it. Attendees at the lab’s open house, held at the company’s Dallas headquarters Oct. 22, could watch AI demonstrations and ask GDT executives about AI trends. …",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.26683,
+          "priority": 0
+        },
+        {
+          "title": "Sabey DC to pilot HVO fuel as diesel replacement at its data center in Austin, Texas",
+          "url": "https://www.datacenterdynamics.com/en/news/sabey-dc-to-pilot-hvo-fuel-as-diesel-replacement-at-its-data-center-in-austin-texas/",
+          "first_seen_at": "2026-10-30T15:38:59Z",
+          "summary": "If successful, the company plans to expand to additional sites",
+          "feed": "https://www.datacenterdynamics.com/en/rss/",
+          "publisher": "Data Center Dynamics",
+          "coverage": 1,
+          "score": 0.533823,
+          "priority": 1
+        },
+        {
+          "title": "San Antonio leaders will now have to OK every new data center",
+          "url": "https://www.tpr.org/government-politics/2026-10-29/san-antonio-leaders-will-now-have-to-ok-every-new-data-center",
+          "first_seen_at": "2026-10-30T00:03:12Z",
+          "summary": "Every data center developer that wants to build in San Antonio will have to get permission from City Council before it can begin construction.",
+          "feed": "https://www.tpr.org/index.rss",
+          "publisher": "Texas Public Radio",
+          "coverage": 1,
+          "score": 0.34023,
+          "priority": 1
+        },
+        {
+          "title": "Dallas-Based Disruptive Raises $10B Flagship Fund",
+          "url": "https://dallasinnovates.com/dallas-based-disruptive-raises-10b-flagship-fund/",
+          "first_seen_at": "2026-10-27T20:35:32Z",
+          "summary": "Dallas-based venture capital firm Disruptive Technology Advisers has raised a $10 billion fund, its largest to date. The fund plans to invest up to $1 billion each in about 10 growth or late-stage companies, the firm said. It cited artificial intelligence, AI infrastructure, defense and national security as areas where it sees significant business opportunities in need of large amounts of capital. …",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.076966,
+          "priority": 3
+        },
+        {
+          "title": "Inside the New AI Slop Era of Texas Politics",
+          "url": "https://www.texasobserver.org/ai-slop-era-texas-political-ads-2026/",
+          "first_seen_at": "2026-10-26T14:21:05Z",
+          "summary": "Texans have seen it all this year: Senator John Cornyn twirling Congresswoman Jasmine Crockett on the dance floor; Attorney General Ken Paxton driving his mistresses down to the “Love Shack”; and Texas state Representative James Talarico in a dress singing a tune about transgender people—all made possible by the powers of generative artificial intelligence. Political […]",
+          "feed": "https://www.texasobserver.org/feed/",
+          "publisher": "Texas Observer",
+          "coverage": 1,
+          "score": 0.032136,
+          "priority": 3
+        },
+        {
+          "title": "Archer Aviation Unveils Air Taxi Networks in Dallas-Fort Worth, Houston and Austin",
+          "url": "https://dallasinnovates.com/archer-aviation-unveils-air-taxi-networks-in-dallas-fort-worth-houston-and-austin/",
+          "first_seen_at": "2026-10-27T17:06:33Z",
+          "summary": "In the next few months, North Texans may see air taxis — with paying passengers aboard — in the sky. San Jose, California-based Archer Aviation (NYSE: ACHR) just unveiled plans for three air taxi networks in the Texas Triangle. They will connect airports and business districts within Dallas-Fort Worth, Austin and Houston. …",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.069601,
+          "priority": 4
+        },
+        {
+          "title": "Coalition in deep East Texas aims to build tech workforce, connect region",
+          "url": "https://feeds.texastribune.org/link/16799/17507501/east-texas-technology-coalition-launches",
+          "first_seen_at": "2026-10-27T10:00:00Z",
+          "summary": "Led by community members from 11 counties, the group plans to address major concerns about broadband expansion and provide training on how to use technology.",
+          "feed": "https://feeds.texastribune.org/feeds/main/",
+          "publisher": "The Texas Tribune",
+          "coverage": 1,
+          "score": 0.056682,
+          "priority": 4
+        },
+        {
+          "title": "Fireworks to lease data center capacity in Dallas, Texas",
+          "url": "https://www.datacenterdynamics.com/en/news/fireworks-to-lease-data-center-capacity-in-dallas-texas/",
+          "first_seen_at": "2026-10-26T16:14:00Z",
+          "summary": "Company to lease capacity from Forum Markets/Edge Node venture",
+          "feed": "https://www.datacenterdynamics.com/en/rss/",
+          "publisher": "Data Center Dynamics",
+          "coverage": 1,
+          "score": 0.033931,
+          "priority": 4
+        }
+      ]
     }
   ],
   "history": [
-    {
-      "url": "https://www.texasobserver.org/texas-continued-permitting-data-centers-after-abbott-pause/",
-      "title": "Texas Continued Permitting Data Centers After Abbott’s Pause, Report Finds",
-      "shown_at": "2026-10-23T19:23:00Z"
-    },
     {
       "url": "https://feeds.texastribune.org/link/16799/17505297/ken-paxton-chatgpt-openai-lawsuit-texas-attorney-general",
       "title": "Texas Attorney General Ken Paxton sues ChatGPT-maker OpenAI",
@@ -662,6 +679,11 @@
       "url": "https://www.datacenterdynamics.com/en/news/fireworks-to-lease-data-center-capacity-in-dallas-texas/",
       "title": "Fireworks to lease data center capacity in Dallas, Texas",
       "shown_at": "2026-10-30T13:23:00Z"
+    },
+    {
+      "url": "https://feeds.texastribune.org/link/16799/17507501/east-texas-technology-coalition-launches",
+      "title": "Coalition in deep East Texas aims to build tech workforce, connect region",
+      "shown_at": "2026-10-30T19:23:00Z"
     }
   ],
   "feeds": [
@@ -669,35 +691,37 @@
       "url": "https://dallasinnovates.com/feed/",
       "status": "ok",
       "items": 20,
-      "sha256": "6d9fa2a3474663d31bb22f355365cbfe2300911b9eb80547e3a8766ee70281d4"
+      "sha256": "55e8c1f4fd2ac1fecddeaa5d69a88cc4558f5b42d4b3bfaa25d5bb86bdff78fc"
     },
     {
       "url": "https://feeds.texastribune.org/feeds/main/",
       "status": "ok",
       "items": 20,
-      "sha256": "b81ff5450db8a882ccc77e1c366bfa493da01c21198830489f2c00c98fd88cb4"
+      "sha256": "8ff233bba1981f7be408cd9dca1c5012fe857eb575bbc2b9080a55e19c196282"
     },
     {
       "url": "https://www.datacenterdynamics.com/en/rss/",
       "status": "ok",
       "items": 20,
-      "sha256": "d54cd41d5196454852bb55b45d10971893ab198996018c2847c0f144f19d4e34"
+      "sha256": "ef23636fbb46a12ae5fd659bbb496aa0f83f7f797e5353b48a1084e98330c288"
     },
     {
       "url": "https://news.mit.edu/rss/topic/artificial-intelligence2",
       "status": "ok",
       "items": 50,
-      "sha256": "2d1dda7902fe9176aabcf687724bc38952e6732c6313d5eef90a3e951f809476"
+      "sha256": "4429d0f39d7b0928e360eea2c519d86afad731b4eda1683abca04f8acf2673ba"
     },
     {
       "url": "https://openai.com/news/rss.xml",
       "status": "ok",
-      "items": 1337,
-      "sha256": "56294fae6bcd908bc81e04e4f33c0562e821014b8f224a330829db433ab1af59"
+      "items": 1341,
+      "sha256": "d4d77dfd0270523555b930c3edd258af8abb6a2ca174befc7888daf4428fdb03"
     },
     {
       "url": "https://blogs.nvidia.com/feed/",
-      "status": "not_modified"
+      "status": "ok",
+      "items": 18,
+      "sha256": "08da2b202b99f41eb136be000423cd975d7c188bb699525eb5411e67be61b9ab"
     },
     {
       "url": "https://blog.google/technology/ai/rss/",
@@ -709,7 +733,7 @@
       "url": "https://siliconangle.com/feed/",
       "status": "ok",
       "items": 30,
-      "sha256": "cc0947ace2646594f1f0f6862675762f15cd9e2ca0e4163fea72cdc84720ac4b"
+      "sha256": "5b5838fbd4b2f07dcbf62370bf05a7f44f7692289440775846b694a4d99f5ac3"
     },
     {
       "url": "https://www.artificialintelligence-news.com/feed/",
@@ -718,92 +742,92 @@
     },
     {
       "url": "https://www.geekwire.com/tag/artificial-intelligence/feed/",
-      "status": "not_modified"
+      "status": "unavailable",
+      "retry_at": "2026-10-31T05:05:16Z",
+      "reason": "The read operation timed out"
     },
     {
       "url": "https://www.techspot.com/backend.xml",
       "status": "ok",
       "items": 30,
-      "sha256": "323691f4f846eabdbf744be52a13313ec6f074265796f5156f179bd55cdadd27"
+      "sha256": "b7247ad3cead4156ed51d9fd79b3bef9a262a3ad72bb7c11f69890177580662a"
     },
     {
       "url": "https://www.sciencedaily.com/rss/computers_math/artificial_intelligence.xml",
-      "status": "ok",
-      "items": 60,
-      "sha256": "4c070a5afa0158203eba0940a5108a59df8f3be7d7cc1a62d99b9e2e6fcc300c"
+      "status": "not_modified"
     },
     {
       "url": "https://www.tpr.org/index.rss",
       "status": "ok",
       "items": 5,
-      "sha256": "4afd0aa0cb89041d8fb9f668a4e5003be63f5449c5484d022e629d0811f83d0f"
+      "sha256": "d543f46363edfe2634be0079daf0122003910e68d999b44937e8d2800b7e7c5a"
     },
     {
       "url": "https://www.texasobserver.org/feed/",
       "status": "ok",
       "items": 10,
-      "sha256": "6be3f1a1374d0a0b156f1360fe44c2ffcd0fd123dfb708d9405833c617669e8b"
+      "sha256": "00d83a8e8c32a44d56dddfb3282e39c81cd811f2d7a8f0c07de1369115168a46"
     }
   ],
   "feed_state": {
     "https://dallasinnovates.com/feed/": {
-      "ok_at": "2026-10-30T14:28:24Z",
+      "ok_at": "2026-10-30T23:05:16Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "6d9fa2a3474663d31bb22f355365cbfe2300911b9eb80547e3a8766ee70281d4",
-      "etag": "\"bbe6d2b1f93c3d26ced83ce90db4ac97\"",
-      "last_modified": "Fri, 30 Oct 2026 13:18:48 GMT"
+      "sha256": "55e8c1f4fd2ac1fecddeaa5d69a88cc4558f5b42d4b3bfaa25d5bb86bdff78fc",
+      "etag": "\"93d4b83a6c52e166ae6af4508c9e1971\"",
+      "last_modified": "Fri, 30 Oct 2026 20:07:33 GMT"
     },
     "https://feeds.texastribune.org/feeds/main/": {
-      "ok_at": "2026-10-30T14:28:24Z",
+      "ok_at": "2026-10-30T23:05:16Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "b81ff5450db8a882ccc77e1c366bfa493da01c21198830489f2c00c98fd88cb4",
-      "etag": "\"6ae49ae5-a460\"",
-      "last_modified": "Fri, 30 Oct 2026 13:25:57 GMT"
+      "sha256": "8ff233bba1981f7be408cd9dca1c5012fe857eb575bbc2b9080a55e19c196282",
+      "etag": "\"6ae5093f-a063\"",
+      "last_modified": "Fri, 30 Oct 2026 21:16:47 GMT"
     },
     "https://www.datacenterdynamics.com/en/rss/": {
-      "ok_at": "2026-10-30T14:28:24Z",
+      "ok_at": "2026-10-30T23:05:16Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "d54cd41d5196454852bb55b45d10971893ab198996018c2847c0f144f19d4e34",
-      "last_modified": "Fri, 30 Oct 2026 13:40:28 GMT"
+      "sha256": "ef23636fbb46a12ae5fd659bbb496aa0f83f7f797e5353b48a1084e98330c288",
+      "last_modified": "Fri, 30 Oct 2026 17:59:06 GMT"
     },
     "https://news.mit.edu/rss/topic/artificial-intelligence2": {
-      "ok_at": "2026-10-30T14:28:24Z",
+      "ok_at": "2026-10-30T23:05:16Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "2d1dda7902fe9176aabcf687724bc38952e6732c6313d5eef90a3e951f809476",
-      "etag": "\"1793370374\"",
-      "last_modified": "Fri, 30 Oct 2026 14:26:14 GMT"
+      "sha256": "4429d0f39d7b0928e360eea2c519d86afad731b4eda1683abca04f8acf2673ba",
+      "etag": "\"1793399996\"",
+      "last_modified": "Fri, 30 Oct 2026 22:39:56 GMT"
     },
     "https://openai.com/news/rss.xml": {
-      "ok_at": "2026-10-30T14:28:24Z",
+      "ok_at": "2026-10-30T23:05:16Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "56294fae6bcd908bc81e04e4f33c0562e821014b8f224a330829db433ab1af59"
+      "sha256": "d4d77dfd0270523555b930c3edd258af8abb6a2ca174befc7888daf4428fdb03"
     },
     "https://blogs.nvidia.com/feed/": {
-      "etag": "\"80c38a8c4583d4e2a868d6585a04e46e-gzip\"",
-      "last_modified": "Thu, 29 Oct 2026 18:36:02 GMT",
+      "ok_at": "2026-10-30T23:05:16Z",
       "failures": 0,
-      "ok_at": "2026-10-30T14:28:24Z",
-      "sha256": "a922f5e74132110d9fb0eb298aa2d304770b58a0af65608400ee6b311e051cf9",
-      "parser_version": 2
+      "parser_version": 2,
+      "sha256": "08da2b202b99f41eb136be000423cd975d7c188bb699525eb5411e67be61b9ab",
+      "etag": "\"8092c10fd92f30734175cbf6cace2eda-gzip\"",
+      "last_modified": "Fri, 30 Oct 2026 15:00:10 GMT"
     },
     "https://blog.google/technology/ai/rss/": {
-      "ok_at": "2026-10-30T14:28:24Z",
+      "ok_at": "2026-10-30T23:05:16Z",
       "failures": 0,
       "parser_version": 2,
       "sha256": "f56750f5109a99ff6f6469adc7d5f83e0cad8cb9d49de3b044fea1c8f0f31f70"
     },
     "https://siliconangle.com/feed/": {
-      "ok_at": "2026-10-30T14:28:24Z",
+      "ok_at": "2026-10-30T23:05:16Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "cc0947ace2646594f1f0f6862675762f15cd9e2ca0e4163fea72cdc84720ac4b",
-      "etag": "\"7e6b671d86af5f5e9024b5f8601091af\"",
-      "last_modified": "Fri, 30 Oct 2026 14:28:05 GMT"
+      "sha256": "5b5838fbd4b2f07dcbf62370bf05a7f44f7692289440775846b694a4d99f5ac3",
+      "etag": "\"707981c765f4a256e20c11b5d8b797e2\"",
+      "last_modified": "Fri, 30 Oct 2026 22:27:09 GMT"
     },
     "https://www.artificialintelligence-news.com/feed/": {
       "etag": "\"cd8cbe1fef0e10c2eef0af3ac2847598\"",
@@ -817,38 +841,39 @@
     "https://www.geekwire.com/tag/artificial-intelligence/feed/": {
       "etag": "W/\"b3f5c1f761eb8eef430dcc11d658c15c\"",
       "last_modified": "Fri, 30 Oct 2026 04:23:35 GMT",
-      "failures": 0,
+      "failures": 1,
       "ok_at": "2026-10-30T14:28:24Z",
       "sha256": "e0f7a17996512b5173bcd14d3be913e9ba1930fec0e92efcd504e258d8933591",
-      "parser_version": 2
+      "parser_version": 2,
+      "retry_at": "2026-10-31T05:05:16Z"
     },
     "https://www.techspot.com/backend.xml": {
-      "ok_at": "2026-10-30T14:28:24Z",
+      "ok_at": "2026-10-30T23:05:16Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "323691f4f846eabdbf744be52a13313ec6f074265796f5156f179bd55cdadd27",
-      "etag": "W/\"95308352ebf9011a88ac9133353ed82d\""
+      "sha256": "b7247ad3cead4156ed51d9fd79b3bef9a262a3ad72bb7c11f69890177580662a",
+      "etag": "W/\"a28b3d7bcc05143743a3054c6123b5d8\""
     },
     "https://www.sciencedaily.com/rss/computers_math/artificial_intelligence.xml": {
-      "ok_at": "2026-10-30T14:28:24Z",
+      "last_modified": "Fri, 30 Oct 2026 12:32:20 GMT",
       "failures": 0,
-      "parser_version": 2,
+      "ok_at": "2026-10-30T23:05:16Z",
       "sha256": "4c070a5afa0158203eba0940a5108a59df8f3be7d7cc1a62d99b9e2e6fcc300c",
-      "last_modified": "Fri, 30 Oct 2026 12:32:20 GMT"
+      "parser_version": 2
     },
     "https://www.tpr.org/index.rss": {
-      "ok_at": "2026-10-30T14:28:24Z",
+      "ok_at": "2026-10-30T23:05:16Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "4afd0aa0cb89041d8fb9f668a4e5003be63f5449c5484d022e629d0811f83d0f"
+      "sha256": "d543f46363edfe2634be0079daf0122003910e68d999b44937e8d2800b7e7c5a"
     },
     "https://www.texasobserver.org/feed/": {
-      "ok_at": "2026-10-30T14:28:24Z",
+      "ok_at": "2026-10-30T23:05:16Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "6be3f1a1374d0a0b156f1360fe44c2ffcd0fd123dfb708d9405833c617669e8b",
-      "etag": "W/\"4eed026626c8e6b90fdd8b85ec2af306\"",
-      "last_modified": "Fri, 30 Oct 2026 12:00:00 GMT"
+      "sha256": "00d83a8e8c32a44d56dddfb3282e39c81cd811f2d7a8f0c07de1369115168a46",
+      "etag": "\"b55e0c6719c6233e733c3694ba0bb5d1\"",
+      "last_modified": "Fri, 30 Oct 2026 16:09:48 GMT"
     }
   }
 }
