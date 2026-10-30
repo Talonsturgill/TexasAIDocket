@@ -92,7 +92,9 @@
     N._M = {
       brass: new THREE.MeshPhysicalMaterial({ color: 0xc9a265, metalness: 1, roughness: 0.24, clearcoat: 0.2, clearcoatRoughness: 0.4, bumpMap: tooth, bumpScale: 0.25 }),
       brassDull: new THREE.MeshPhysicalMaterial({ color: 0x8f7344, metalness: 1, roughness: 0.42, bumpMap: tooth, bumpScale: 0.3 }),
-      blued: new THREE.MeshPhysicalMaterial({ color: 0x4e5fa8, metalness: 0.9, roughness: 0.24, clearcoat: 0.45, clearcoatRoughness: 0.18, bumpMap: tooth, bumpScale: 0.2 }),
+      /* heat blued steel carries the deck's one accent, so it is held near #4E5FA8 in the render: a thinner metal response,
+       * a clearcoat for the bright edge, and a faint emission standing in for the blued oxide's own colour */
+      blued: new THREE.MeshPhysicalMaterial({ color: 0x5568b8, metalness: 0.5, roughness: 0.3, clearcoat: 0.5, clearcoatRoughness: 0.18, emissive: 0x2c3a7a, emissiveIntensity: 0.6, bumpMap: tooth, bumpScale: 0.2 }),
       nickel: new THREE.MeshPhysicalMaterial({ color: 0xa9adb0, metalness: 1, roughness: 0.26, bumpMap: tooth, bumpScale: 0.15 }),
       slot: new THREE.MeshStandardMaterial({ color: 0x0b0a0c, roughness: 0.8 }),
       pecan: new THREE.MeshStandardMaterial({ map: grainTex(THREE, 5), roughness: 0.55, bumpMap: tooth, bumpScale: 0.4 }),
@@ -102,7 +104,7 @@
       /* the same metals handled and lying in a case, a little rougher, so a top facing up shows a broad sheen rather
        * than a mirror of a dark ceiling */
       brassCase: new THREE.MeshPhysicalMaterial({ color: 0xc9a265, metalness: 0.85, roughness: 0.42, bumpMap: tooth, bumpScale: 0.3 }),
-      bluedCase: new THREE.MeshPhysicalMaterial({ color: 0x4e5fa8, metalness: 0.75, roughness: 0.38, clearcoat: 0.3, clearcoatRoughness: 0.3, bumpMap: tooth, bumpScale: 0.2 }),
+      bluedCase: new THREE.MeshPhysicalMaterial({ color: 0x5568b8, metalness: 0.45, roughness: 0.4, clearcoat: 0.3, clearcoatRoughness: 0.3, emissive: 0x2c3a7a, emissiveIntensity: 0.45, bumpMap: tooth, bumpScale: 0.2 }),
       nickelCase: new THREE.MeshPhysicalMaterial({ color: 0xc4c8cb, metalness: 0.85, roughness: 0.36, bumpMap: tooth, bumpScale: 0.15 })
     };
     return N._M;
