@@ -19,12 +19,12 @@
   "recent_lists_note": "These three lists are the exclusions handed to the caption room and they were hand-kept. On 2026-08-20 the fourth panel found structures_recent reading [\"ledger\", \"pivot\", \"question and answer\"] when the last three shipped structures were [\"ledger\", \"two columns\", \"question and answer\"], so it dropped a structure that IS off the table and held one that is not. Wrong in both directions from one hand edit. They are now recomputed from entries and are ordered OLDEST FIRST, matching the entries list, and scripts/carousel/caption_check.py should derive them rather than read them. That is an upgrade-lane change and it is written into this run's proposals."
  },
  "opening_moves_recent": [
-  "the correction",
   "the who",
   "the place",
   "the quiet decision",
   "the before and after",
-  "the two things"
+  "the two things",
+  "the object"
  ],
  "entries": [
   {
@@ -1130,15 +1130,34 @@
    ],
    "critic_note": "Opens on the object the story turns on, the wind farm's substation across a county road from the land, then zooms in from the deal to the phase, the land, the power plan and the county condition, and closes on who decides the abatement and when.",
    "move_note": "Opens on the substation across from 397 acres, then zooms in from the deal to Phase 1, the land and the wind farm, then the county condition, and closes on which public body decides the abatement and when."
+  },
+  {
+   "date": "2026-10-30",
+   "carousel_no": 63,
+   "opening_move": "the number that is wrong",
+   "structure": "Ledger",
+   "closing_move": "name what is still not public, and how big that is",
+   "first_line": "$390,000 is not what ChatGPT costs Plano.",
+   "words": 146,
+   "commas": 4,
+   "commas_per_100w": 2.74,
+   "chars": 836,
+   "hashtags": [
+    "#Plano",
+    "#CollinCounty",
+    "#DentonCounty"
+   ],
+   "critic_note": "Opens by correcting the figure a reader would assume, then lists the item line by line as a ledger, then the consent agenda and the minutes, and closes on which city work the two tools will serve.",
+   "move_note": "Opens on what $390,000 is not, walks the four lines and the 79 cents, then the one motion, the minutes and the next meeting, and closes on a question about use."
   }
  ],
  "structures_recent": [
-  "Ledger",
   "Question and answer",
-  "Clock"
+  "Clock",
+  "Zoom in"
  ],
  "closing_moves_recent": [
-  "ask the one question the decision leaves open"
+  "Point at the record, plainly, without a call to action"
  ],
  "_derived_note": "opening_moves_recent, structures_recent and closing_moves_recent are DERIVED by out/<date>/update_ledgers.py every run, by ledger_check.windows() and ledger_check's own slice of the entries before the newest date. They were hand-maintained until 2026-09-10 and had drifted, which mis-briefed the caption room on that run: the list said Ledger was excluded when it was not, and never mentioned Two columns or the close no. 19 actually shipped."
 }

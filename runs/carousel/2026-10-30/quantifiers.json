@@ -1,0 +1,16 @@
+{
+ "quantifiers": [
+  {
+   "phrase": "every line of the item",
+   "figures_key": "lines_on_item",
+   "about": "the item's own money lines",
+   "note": "the four lines File 26-884 names, c1 to c4, all drawn on frame 3"
+  },
+  {
+   "phrase": "every chatbot dollar",
+   "figures_key": "darwin_cents_per_chat_dollar",
+   "about": "a ratio of two quoted lines",
+   "note": "computed from c1 and c2, the same ratio for each dollar by construction"
+  }
+ ]
+}

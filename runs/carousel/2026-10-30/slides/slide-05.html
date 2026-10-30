@@ -1,0 +1,110 @@
+<!doctype html>
+<!-- 2026-10-30, frame 5 of 9. Archetype DIAGRAM. A TXBENCH material relief in plan under the deck declared key: a Blackland clay board with two grooves from one brass bar, chatgpt_units brass weights above, darwin_units blued below and chat_minus_darwin_units empty weight widths, all from figures.json. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>.lab { position:absolute; font-family:"JetBrains Mono", monospace; font-size:24px; font-weight:500; letter-spacing:0.06em; color:#ECE8DF; z-index:12; white-space:nowrap; font-feature-settings:"calt" 0; text-shadow:0 0 2px rgba(4,3,8,0.6), 0 1px 10px rgba(4,3,8,0.5); }</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:900px">79 cents for Darwin AI per chatbot dollar</h1>
+<p class="dek" data-follow="24" style="width:880px">For each dollar of ChatGPT Enterprise, the item sets aside 79 cents for Darwin AI. Drawn to&nbsp;illustrate.</p>
+<div class="lab" id="lab-a">CHATGPT ENTERPRISE</div>
+<div class="lab" id="lab-b">DARWIN AI</div>
+<script>window.FIG = {"darwin_cents_per_chat_dollar": 79, "chatgpt_units": 19, "darwin_units": 15, "chat_minus_darwin_units": 4};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-30-balance.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script src="@@ASSETS@@/js/txbench.js"></script>
+<script>
+window.renderReady = (async () => {
+  const cx = await CH.bootFlat({ kicker: "The turn", counter: "05 / 09", src: "c1 c2", fit: { min: 70, max: 92, maxLines: 2 } });
+  TX.reseed(20261030);
+  /* ONE WEIGHT in plan: a flat turned face, a milled rim and a raised centre boss, so each disc reads as a weight and not a knob */
+  const SA = Math.PI * 0.25, SX = Math.cos(SA), SY = Math.sin(SA);
+  function weight(dx, dy, r, top) {
+    const d = Math.hypot(dx, dy); if (d >= r) return null;
+    const along = dx * SX + dy * SY, across = -dx * SY + dy * SX;
+    let h = top;
+    if (d < r * 0.28) h += 2.5;
+    if (d > r * 0.74 && d < r * 0.82) h += 1.6;
+    if (d > r * 0.87) h -= (d - r * 0.87) * 1.8;
+    return h;
+  }
+  /* THE FIGURES, from figures.json: two rows of the same weight at one pitch, chatgpt_units brass above and darwin_units
+   * blued below, and the lower groove running on empty for chat_minus_darwin_units weights */
+  const nB = Math.round(FIG.chatgpt_units), nD = Math.round(FIG.darwin_units), nE = Math.round(FIG.chat_minus_darwin_units);
+  if (nD + nE !== nB) throw new Error('the rows no longer differ by the reserve');
+  const R0 = 24, PITCH = 50, X0 = 86, YA = 790, YB = 1010, GH = 36;
+  const M = { CLAY: 0, BRASS: 1, BLUED: 2, BAR: 3, GROOVE: 4, SLOT: 5, BOARD: 6 };
+  const BOARD = 700;
+  /* the 79 cents, drawn: a brass stop set into the lower groove at darwin_cents_per_chat_dollar hundredths of the upper
+   * row's length, which lands within one weight of the watcher row's own end */
+  const STOP = X0 + nB * PITCH * FIG.darwin_cents_per_chat_dollar / 100;
+  if (Math.abs(STOP - (X0 + nD * PITCH)) > PITCH) throw new Error('the stop no longer meets the watcher row');
+  /* BLACKLAND CRACKS: the shrink swell network of a dried vertisol, the edges of a jittered cell grid, one scale */
+  const CELL = 84, seed = (i, j) => { const v = Math.sin(i * 127.1 + j * 311.7) * 43758.5453; return v - Math.floor(v); };
+  function cracked(X, Y) {
+    const ci = Math.floor(X / CELL), cj = Math.floor(Y / CELL); let d1 = 1e9, d2 = 1e9;
+    for (let i = ci - 1; i <= ci + 1; i++) for (let j = cj - 1; j <= cj + 1; j++) {
+      const px = (i + 0.15 + 0.7 * seed(i, j)) * CELL, py = (j + 0.15 + 0.7 * seed(j, i + 7)) * CELL, d = Math.hypot(X - px, Y - py);
+      if (d < d1) { d2 = d1; d1 = d; } else if (d < d2) d2 = d;
+    }
+    return d2 - d1 < 1.0;
+  }
+  function sample(X, Y) {
+    if (Y < BOARD) return [cracked(X, Y) ? -17 : -12, M.CLAY];
+    if (X > X0 - 38 && X < X0 - 12 && Y > YA - 44 && Y < YB + 44) return [26, M.BAR];
+    /* the board the grooves are cut in: a raised slab of the same clay, one piece under both rows */
+    const onBoard = X > X0 - 56 && X < X0 + nB * PITCH + 30 && Y > YA - 74 && Y < YB + 74;
+    if (Math.abs(X - STOP) < 4 && Math.abs(Y - YB) < GH + 6) return [18, M.BAR];
+    for (const [yc, n, mat] of [[YA, nB, M.BRASS], [YB, nD, M.BLUED]]) {
+      if (Math.abs(Y - yc) < GH && X > X0 - 10 && X < X0 + nB * PITCH + 8) {
+        const k = Math.floor((X - X0) / PITCH), cxk = X0 + k * PITCH + PITCH / 2;
+        if (k >= 0 && k < n) { const h = weight(X - cxk, Y - yc, R0, 22); if (h != null) return [h, h < 6 ? M.SLOT : mat]; }
+        /* the reserve: an empty round seat cut for each weight the lower row lacks, so the four can be counted */
+        if (mat === M.BLUED && k >= n && k < nB && Math.hypot(X - cxk, Y - yc) < R0 * 0.92) return [-9, M.SLOT];
+        const e = Math.min(Y - (yc - GH), (yc + GH) - Y);
+        return [-4, M.GROOVE];
+      }
+    }
+    if (onBoard) return [cracked(X, Y) ? 4.5 : 8, M.BOARD];
+    return [0, M.CLAY];
+  }
+  const cache = new Map(), key = (X, Y) => (X * 4 | 0) + ',' + (Y * 4 | 0);
+  const S = (X, Y) => { const kk = key(X, Y); let v = cache.get(kk); if (!v) { v = sample(X, Y); cache.set(kk, v); } return v; };
+  const albedo = (X, Y, m) => {
+    if (m === M.CLAY) { const c = 1 + 0.5 * TX.simplex2(X * 0.09, Y * 0.09); return [0.09 * c, 0.08 * c, 0.07 * c]; }
+    if (m === M.GROOVE) return [0.05, 0.045, 0.042];
+    if (m === M.BOARD) { const c = 1 + 0.06 * TX.simplex2(X * 0.006, Y * 0.006); return [0.085 * c, 0.075 * c, 0.065 * c]; }
+    if (m === M.BRASS || m === M.BAR) return [0.7, 0.5, 0.2];
+    if (m === M.BLUED) return [0.17, 0.25, 0.78];
+    return [0.01, 0.01, 0.012];
+  };
+  const pool = (X, Y) => { const d = Math.hypot((X - 600) / 640, (Y - 900) / 440), t = Math.max(0, Math.min(1, (d - 0.3) / 0.75)); return 1 - 0.93 * t * t * (3 - 2 * t); };
+  /* the relief stands below the type: the field above it is the dark ground, flat, with nothing to read */
+  cx.fillStyle = '#0a090d'; cx.fillRect(0, 0, 2160, 2700);
+  const rep = TXBENCH.relief(cx, { x: 0, y: 560, w: 1080, h: 790, scale: 2, height: (X, Y) => S(X, Y)[0], material: (X, Y) => S(X, Y)[1], keyMask: pool, albedo,
+    spec: { [M.BRASS]: [1.6, 28], [M.BLUED]: [1.5, 36], [M.BAR]: [1.8, 40] }, ambient: 0.025, diffuse: 1.5, ao: 1.0, shadow: 0.92, softness: 3, castLength: 120 });
+  /* the field above falls from dark into the board over a soft band rather than ending on a cut line */
+  { const g = cx.createLinearGradient(0, 1120, 0, 1240); g.addColorStop(0, 'rgba(10,9,13,0.9)'); g.addColorStop(1, 'rgba(10,9,13,0)');
+    cx.fillStyle = '#0a090d'; cx.fillRect(0, 0, 2160, 1120); cx.fillStyle = g; cx.fillRect(0, 1120, 2160, 120); }
+  const put = (id, x, y) => { const el = document.getElementById(id); el.style.left = x + 'px'; el.style.top = y + 'px'; };
+  put('lab-a', X0, YA - GH - 44); put('lab-b', X0, YB + GH + 14);
+  /* the post pass works in CSS pixels, so the 2x transform is set first: run at device scale it darkened only the
+   * top left quadrant, the band every earlier repair worked around */
+  cx.setTransform(2, 0, 0, 2, 0, 0);
+  CH.post(cx, { a: 0.42, pad: 90, fade: 240, veil: 0.32, footWash: 0.5 });
+  window.__relief = rep;
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

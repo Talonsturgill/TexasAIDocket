@@ -1,0 +1,79 @@
+{
+ "lens": "craft",
+ "round": 2,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.3,
+   "why": "Every frame is rendered and most sit on a dark field. 04 is the boldest (19 discs, rim edge on near black) though a soft plate sits behind the hook and the knurl reads as bars on the shadow side. 03 is the showstopper as planned (19/15/1/4 counted) though the table grain is streak noise. 09 works: warm chamber glow, a small person with contact, the same loaded state as 01. 01 reads but the subject is thin, the plinth face a bare taupe slab and the glazing cool. Then: 08 is a generic CG interior with bright procedural walnut in the lower 40 percent (bottom band 0.987) on a flat navy wall, no nameplates, the mic growing from behind the case. 05 has uniform Voronoi polylines, knob-like discs, sawtooth casts under the brass groove, a residual hairline above the board and dead clay between rows. 02's weight slot reads as Q and the paper is a flat grey slab. 06 is 01's camera again; the needle on a dark brown arc barely reads, the leader crosses the pillar and a stirrup rod grazes the site line. 07's blued reads lilac, 'does' sits on the base's top edge, and 14 bands clear the pan rim, not 15. Five frames lean on a default, primitive or artifact, so between 4 and 7."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.0,
+   "why": "One key, one material vocabulary, bluebonnet only for the watcher, and a readable motif evolution across all nine. 08's orange walnut and 02's mid grey strobe the value track, and 01, 06 and 09 are three near-identical medium shots of the balance. art_preflight.json lists needs_review [1, 3, 9] beside an accepted decision."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.6,
+   "why": "Every numeral traces to a claim or a computation and the sources are primary. 'Approved' is held to the draft minutes and no vote is claimed. Looser: 06 turns an arithmetic coincidence into an identity of money; 02's item (f) rests on a claim note; 07 draws 14 visible blued discs where darwin_units is 15. Nothing unsourced and no hard fail."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.3,
+   "why": "What, who, when and the record's state are named, and the next meeting is named on 09. A Texan isn't told what they can do there, and the stake stays a ratio and a per resident figure. The caption's question about which city work the tools serve is the real stake and the slides never reach it."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 6.8,
+   "why": "The opener earns the swipe and 02 pays at once. 03 to 06 re-slice the same four figures; 05's turn is another ratio and 06 is cuttable. 07 and 08 turn. The close lands softly."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.9,
+   "why": "Clean and on every house rule, careful without doom, but clerical: 'Drawn to illustrate.' on eight deks, '133 cents a resident', and Texas specificity limited to Plano and the hashtags."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.6,
+   "why": "A tabletop instrument in brass, blued steel and pecan departs clearly from nos. 60 to 62, and plan reliefs mixed with macro and interior is a fresh structure; the lastLight hero on a plinth is the familiar move."
+  }
+ ],
+ "weighted_score": 7.04,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Rebuild frame 8 as the weight case opened on the dais ledge inside a tight window pool, its 39 wells visible, with the walnut dais front left outside the light.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 8,
+   "problem": "Generic CG interior: bright walnut in the grey middle on a flat navy wall, no nameplates, mic from behind the case, footer on grain.",
+   "fix": "Narrow the key to a raking pool on the ledge top and the case, drop the camera so the dais front falls outside the pool, add the brass nameplates trailing into shadow."
+  },
+  {
+   "slide": 5,
+   "problem": "Uniform Voronoi polylines, knob-like discs, sawtooth casts, a hairline above the board, dead clay between rows.",
+   "fix": "Double the disc diameter, drop the pointer slot, close the grooves up, and drive the clay from a shrink swell height field with cavity."
+  },
+  {
+   "slide": 6,
+   "problem": "01's camera repeated; the needle on a dark arc doesn't read; the leader crosses the pillar; a stirrup rod grazes the site line.",
+   "fix": "Model the arc as polished nickel silver lit by the key and crop to arc and needle alone at fov 26 with the hall and pans out."
+  },
+  {
+   "slide": 2,
+   "problem": "The weight slot reads as a Q and the paper is a flat grey slab under a vignette.",
+   "fix": "A classic slotted weight, a radial notch from rim to a centre hole, and paper with fibre height and a warm off white albedo inside the pool."
+  },
+  {
+   "slide": 7,
+   "problem": "14 bands clear the rim, not 15; lilac blued; 'does' sits on the base's top edge.",
+   "fix": "Lower the pan relative to the camera so all 15 stand above the rim, slide the base out of frame left, and push the blued toward deep blue black."
+  }
+ ]
+}

@@ -1,0 +1,200 @@
+{
+ "_note": "Every value is extracted from a claim quote by compute.py, or computed here from values that were.",
+ "chatgpt_usd": {
+  "value": 190000,
+  "from": [
+   "c1"
+  ],
+  "basis": "ChatGPT Enterprise from Carahsoft, dollars, per the agenda item"
+ },
+ "darwin_usd": {
+  "value": 150000,
+  "from": [
+   "c2"
+  ],
+  "basis": "the Darwin AI governance platform from Carahsoft, dollars, per the agenda item"
+ },
+ "microsoft_usd": {
+  "value": 10000,
+  "from": [
+   "c3"
+  ],
+  "basis": "Microsoft Enterprise from SHI Government Solutions, dollars, per the agenda item"
+ },
+ "reserve_usd": {
+  "value": 40000,
+  "from": [
+   "c4"
+  ],
+  "basis": "the amount held for approved growth, dollars, per the agenda item"
+ },
+ "ceiling_usd": {
+  "value": 390000,
+  "from": [
+   "c4"
+  ],
+  "basis": "the not to exceed total, dollars, per the agenda item"
+ },
+ "population_2024": {
+  "value": 293286,
+  "from": [
+   "c15"
+  ],
+  "basis": "the Census Bureau's 2024 population estimate for the city of Plano"
+ },
+ "darwin_cents_per_chat_dollar": {
+  "value": 79,
+  "from": [
+   "c1",
+   "c2"
+  ],
+  "basis": "computed: Darwin AI's dollars over ChatGPT Enterprise's dollars, in whole cents per dollar"
+ },
+ "darwin_pct_of_ceiling": {
+  "value": 38,
+  "from": [
+   "c2",
+   "c4"
+  ],
+  "basis": "computed: Darwin AI's share of the ceiling, whole percent"
+ },
+ "chatgpt_pct_of_ceiling": {
+  "value": 49,
+  "from": [
+   "c1",
+   "c4"
+  ],
+  "basis": "computed: ChatGPT Enterprise's share of the ceiling, whole percent"
+ },
+ "microsoft_pct_of_ceiling": {
+  "value": 3,
+  "from": [
+   "c3",
+   "c4"
+  ],
+  "basis": "computed: Microsoft's share of the ceiling, whole percent"
+ },
+ "reserve_pct_of_ceiling": {
+  "value": 10,
+  "from": [
+   "c4"
+  ],
+  "basis": "computed: the reserve's share of the ceiling, whole percent"
+ },
+ "chat_plus_darwin_usd": {
+  "value": 340000,
+  "from": [
+   "c1",
+   "c2"
+  ],
+  "basis": "computed: ChatGPT Enterprise plus Darwin AI, dollars"
+ },
+ "chat_minus_darwin_usd": {
+  "value": 40000,
+  "from": [
+   "c1",
+   "c2"
+  ],
+  "basis": "computed: how many dollars more the chatbot line is than the governance line"
+ },
+ "ceiling_cents_per_resident": {
+  "value": 133,
+  "from": [
+   "c4",
+   "c15"
+  ],
+  "basis": "computed: the ceiling over the 2024 population estimate, whole cents"
+ },
+ "darwin_cents_per_resident": {
+  "value": 51,
+  "from": [
+   "c2",
+   "c15"
+  ],
+  "basis": "computed: Darwin AI's dollars over the 2024 population estimate, whole cents"
+ },
+ "chatgpt_cents_per_resident": {
+  "value": 65,
+  "from": [
+   "c1",
+   "c15"
+  ],
+  "basis": "computed: ChatGPT Enterprise's dollars over the 2024 population estimate, whole cents"
+ },
+ "ceiling_usd_per_resident": {
+  "value": 1.33,
+  "from": [
+   "c4",
+   "c15"
+  ],
+  "basis": "computed: the ceiling over the 2024 population estimate, dollars to two decimals"
+ },
+ "lines_on_item": {
+  "value": 4,
+  "from": [
+   "c1",
+   "c2",
+   "c3",
+   "c4"
+  ],
+  "basis": "counted: the four money lines the agenda item names"
+ },
+ "unit_usd": {
+  "value": 10000,
+  "from": [
+   "c1",
+   "c2",
+   "c3",
+   "c4"
+  ],
+  "basis": "computed: the greatest common divisor of the four lines, dollars per drawn weight, equal to the Microsoft line"
+ },
+ "chatgpt_units": {
+  "value": 19,
+  "from": [
+   "c1",
+   "c3"
+  ],
+  "basis": "computed: ChatGPT Enterprise in weights of unit_usd"
+ },
+ "darwin_units": {
+  "value": 15,
+  "from": [
+   "c2",
+   "c3"
+  ],
+  "basis": "computed: Darwin AI in weights of unit_usd"
+ },
+ "microsoft_units": {
+  "value": 1,
+  "from": [
+   "c3"
+  ],
+  "basis": "computed: Microsoft in weights of unit_usd"
+ },
+ "reserve_units": {
+  "value": 4,
+  "from": [
+   "c3",
+   "c4"
+  ],
+  "basis": "computed: the reserve in weights of unit_usd"
+ },
+ "ceiling_units": {
+  "value": 39,
+  "from": [
+   "c3",
+   "c4"
+  ],
+  "basis": "computed: the ceiling in weights of unit_usd"
+ },
+ "chat_minus_darwin_units": {
+  "value": 4,
+  "from": [
+   "c1",
+   "c2",
+   "c3"
+  ],
+  "basis": "computed: the chatbot line less the watcher line, in weights"
+ }
+}

@@ -1,0 +1,70 @@
+<!doctype html>
+<!-- 2026-10-30, frame 3 of 9. Archetype OBJECT_AND_CAPTION. A spatial scene through txthree.js: the chassis weight_case open on a desk in a dark council office, ceiling_units felt lined wells, chatgpt_units brass weights, darwin_units blued, microsoft_units nickel and reserve_units wells left empty, all from figures.json, lit through one window by the deck key. Each weight is unit_usd, a drawing unit. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>
+  .key { position:absolute; left:82px; font-family:"JetBrains Mono", monospace; font-size:24px; font-weight:500; letter-spacing:0.05em; color:#D6D0C4; z-index:12; white-space:nowrap; }
+  .sw { display:inline-block; vertical-align:-2px; margin-right:10px; }
+</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:900px">The whole ceiling, in weights</h1>
+<p class="dek" data-follow="24" style="width:880px">39 wells of $10,000 each. 19 hold ChatGPT Enterprise, 15 Darwin AI and 1 Microsoft. The 4 empty wells are the reserve the item holds for growth and other costs. Drawn to&nbsp;illustrate.</p>
+<div class="key" id="key1"><svg class="sw" width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="8" fill="#B08D57"/></svg>CHATGPT ENTERPRISE&nbsp;&nbsp;&nbsp;<svg class="sw" width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="8" fill="#4E5FA8"/></svg>DARWIN AI</div>
+<div class="key" id="key2"><svg class="sw" width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="8" fill="#A9ADB0"/></svg>MICROSOFT&nbsp;&nbsp;&nbsp;<svg class="sw" width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="8" fill="#14121A" stroke="#8A8478" stroke-width="2"/></svg>RESERVE, EMPTY</div>
+<script>window.FIG = {"chatgpt_units": 19, "darwin_units": 15, "microsoft_units": 1, "reserve_units": 4, "ceiling_units": 39};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-30-balance.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Every line of the item", counter: "03 / 09", src: "c1 c2 c3 c4", fit: { min: 70, max: 84, maxLines: 1 } });
+  const R = CH.stage(TXT, gl, W, { fov: 34, near: 0.02, far: 200, fog: 0.0 });
+  /* THE FIGURES, from figures.json: the well count and the fill of each metal, one weight per unit_usd */
+  const NW = Math.round(FIG.ceiling_units), nB = Math.round(FIG.chatgpt_units), nD = Math.round(FIG.darwin_units),
+        nM = Math.round(FIG.microsoft_units), nE = Math.round(FIG.reserve_units);
+  if (nB + nD + nM + nE !== NW) throw new Error('the lines no longer fill the case');
+  const fill = [].concat(Array(nB).fill('brass'), Array(nD).fill('blued'), Array(nM).fill('nickel'), Array(nE).fill(null));
+  /* THE ROOM: a council office dark around one source, its long table running out past the top of the frame, the deck's key through the window on the left, a ceiling over the camera */
+  TXT.interior(R, { w: 6, d: 5, h: 3.0, floor: 'concrete', wall: 0x2f2b28, window: 'left', ceiling: true, light: 0.12 });
+  const desk = K.make('desk', { w: 2.4, d: 1.8, pedestal: 'right', wood: 0x2e1d12, seed: 3 }); desk.position.set(0, 0, -0.86); TXT.add(R, desk); TXT.contact(R, desk);
+  const dh = (desk.userData.size || [1.52, 0.76, 0.76])[1];
+  const box = K.make('weight_case', { open: true, wells: NW, fill, seed: 9 }); box.position.set(0, dh, -0.36); box.rotation.y = 0.04; CH.put(box);
+  const from = [0.1, dh + 1.32, 0.5];
+  const look = CH.aim(THREE, R, TXT, from, [0, dh + 0.02, -0.36], 540, 900, 34);
+  TXT.frame(R, { fov: 34, from, look });
+  /* the room's own reflections: flat metal facing up shows what is above it, so the studio panels give the brass and
+   * blued tops something to mirror instead of a black ceiling */
+  TXT.environment(R, { intensity: 0.7, force: true });
+  /* THE WINDOW'S KEY: low sun through the window on the left, grazing the plate so every weight casts into its well */
+  const win = new THREE.SpotLight(0xffc48a, 60, 12, 0.32, 0.5, 1.0);
+  win.position.set(-2.6, dh + 0.62, -0.1); win.target.position.set(0, dh, -0.36); win.castShadow = true;
+  win.shadow.mapSize.set(4096, 4096); win.shadow.bias = -0.0002; win.shadow.normalBias = 0.002; win.shadow.radius = 2;
+  R.scene.add(win); R.scene.add(win.target);
+  TXT.deckRig(R, CH.rigSpec(W, 1.6, 4096), CH.rigOpts([0, dh, -0.36], { distance: 8, shadowFar: 30 }));
+  CH.unacne(R, 0.003);
+  TXT.weather(R, { grime: 0.15, height: 0.5 });
+  TXT.stage(R, [box], { poolInner: 0.42, poolOuter: 1.2 });
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  const k1 = document.getElementById('key1'), k2 = document.getElementById('key2');
+  const dek = document.querySelector('.dek').getBoundingClientRect();
+  k1.style.top = (dek.bottom + 18) + 'px'; k2.style.top = (dek.bottom + 54) + 'px';
+  CH.post(cx, { a: 0.3, veil: 0.32, footWash: 0.5 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

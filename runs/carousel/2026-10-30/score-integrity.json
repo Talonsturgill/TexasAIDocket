@@ -1,0 +1,69 @@
+{
+ "lens": "integrity",
+ "round": 3,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.8,
+   "why": "Frame 3 is the deck's best (19/15/1/4 counted, three metals separate at feed size), 4 is a bold 19-disc macro, 7 shows the 15 blued in a raised pan, 5's rail counts 19 over 15 with 4 empty. 8 is a generic CG dais with bright streak-noise wood (bottom band 0.954) and no visible weights. 6 crops both stacks into the corners with the cite over the brass stack and wires crossing the site line and the label, and machine_qa warns of a dead lower zone. 2 is a mid grey sheet with the (f) label floating in the margin. 1's needle and arc are a little primitive and 9's resident reads as a mannequin."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "One instrument and its weights run through, brass always ChatGPT and blued always Darwin, a consistent key, and two working continuity devices. 8 sits outside the deck, and 2's grey sheet and 5's clay board are a different stock."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.5,
+   "why": "Every numeral traces and compute.py asserts the sums; every source is primary; the outcome is handled honestly and Darwin is always attributed. Looser: (1) item (f) on the consent agenda rests on c6's note, not a claim's text or quote; (2) 6's headline and label present an arithmetic coincidence as a reading; (3) 9's kicker sits over a November 9th meeting c21 does not tie to the item; (4) the 133 cents uses the 2024 estimate unnamed and spreads a ceiling of unstated term. None is a fabrication."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.0,
+   "why": "What, who and where are clear. The county appears only in hashtags, a reader isn't told what they can do, and whose activity Darwin would watch is left unsaid."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "2 pays at once, 3 counts the item and the turn at 5 lands. The cover hook is soft, 4 restates 3, 6 is cuttable, and the close drops to a figure and a date."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "House rules clean throughout. Two stilted headlines (4 inverted, 9's 133 cents), 'Drawn to illustrate.' on eight deks, a meta caption line, thin regional texture."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "A fresh concept; the fourth lastLight world in a row, no. 62's drawing unit convention, and a council dais five days after no. 61's."
+  }
+ ],
+ "weighted_score": 7.07,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Cut frame 6's coincidence and spend the slot on whose AI use Darwin's monitoring would cover and a claim-backed route to raise the item on November 9th; put File 26-884's consent placement into a claim's own text and quote.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 8,
+   "problem": "A generic CG dais with bright streak-noise wood and no visible weights.",
+   "fix": "Open the case on the ledge in the window pool, crop tight so the ledge runs off both edges, drop the dais front to near black."
+  },
+  {
+   "slide": 6,
+   "problem": "Stacks cropped into the corners under the footer, wires crossing type, a dead lower zone, an arc with nothing to read.",
+   "fix": "Pull back and up so both pans hang in frame above the footer, and light a brass index where the needle rests."
+  },
+  {
+   "slide": 2,
+   "problem": "A flat grey sheet reading as a diagram card; the (f) label floating off its row.",
+   "fix": "Snap the label to row (f), pool the key tighter, raise the rows' relief so each casts across the next."
+  }
+ ]
+}

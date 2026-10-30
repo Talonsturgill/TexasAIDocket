@@ -1,0 +1,84 @@
+<!doctype html>
+<!-- 2026-10-30, frame 2 of 9. Archetype DOCUMENT. A TXBENCH material relief in plan under the deck declared key: an agenda sheet on a pecan board, greeked consent rows raised, lines_on_item raised rules under row (f) from figures.json, one brass slotted weight standing on the row. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>.lab { position:absolute; font-family:"JetBrains Mono", monospace; font-size:28px; font-weight:700; color:#ECE8DF; z-index:12; white-space:nowrap; }</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:900px">One item, on the consent agenda</h1>
+<p class="dek" data-follow="24" style="width:880px">Item (f) sat on the consent agenda, which the council acts on in one motion. It held four lines inside a ceiling of $390,000. Drawn to&nbsp;illustrate.</p>
+<div class="lab" id="lab-f">(f)</div>
+<script>window.FIG = {"lines_on_item": 4};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-30-balance.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script src="@@ASSETS@@/js/txbench.js"></script>
+<script>
+window.renderReady = (async () => {
+  const cx = await CH.bootFlat({ kicker: "How it reached the city", counter: "02 / 09", src: "c4 c6", fit: { min: 70, max: 92, maxLines: 2 } });
+  TX.reseed(20261030);
+  /* ONE SLOTTED WEIGHT in plan: a domed chamfered top and the classic radial notch from the rim to a centre hole, lower right */
+  const SA = Math.PI * 0.25, SX = Math.cos(SA), SY = Math.sin(SA);
+  function weight(dx, dy, r, top) {
+    const d = Math.hypot(dx, dy); if (d >= r) return null;
+    const along = dx * SX + dy * SY, across = -dx * SY + dy * SX;
+    if (d < r * 0.16 || (along > 0 && Math.abs(across) < r * 0.1)) return top * 0.2;
+    const t = d / r; let h = top * 0.75 + top * 0.3 * (1 - t * t);
+    if (d > r * 0.87) h -= (d - r * 0.87) * 1.8;
+    return h;
+  }
+  /* THE FIGURES, from figures.json: lines_on_item sets the raised rules under row (f) */
+  const nL = Math.round(FIG.lines_on_item);
+  const SH = { x0: 240, x1: 1120, y0: 600, y1: 1420 };
+  const ROWS = 12, ROW_H = 44, F = 3, Y0 = SH.y0 + 48;
+  const M = { PECAN: 0, PAPER: 1, INK: 2, BRASS: 3, SLOT: 4 };
+  const rowY = k => Y0 + k * ROW_H + (k > F ? nL * 18 + 10 : 0);
+  const WX = SH.x0 + 440, WY = rowY(F) + 4;
+  function sample(X, Y) {
+    const wh = weight(X - WX, Y - WY, 84, 52); if (wh != null) return [wh, wh < 10 ? M.SLOT : M.BRASS];
+    if (X < SH.x0 || X > SH.x1 || Y < SH.y0 || Y > SH.y1) { return [-4 + 0.3 * TX.simplex2(X * 0.02, Y * 0.2), M.PECAN]; }
+    for (let k = 0; k < ROWS; k++) {
+      const y = rowY(k);
+      if (Math.abs(Y - y) < 4 && X > SH.x0 + 90 && X < SH.x0 + 90 + 560 + 220 * TX.simplex2(k * 3.1, 1.7) * 0.5) return [5, M.INK];
+      if (k === F) for (let j = 0; j < nL; j++) { const yy = y + 18 * (j + 1); if (Math.abs(Y - yy) < 2.6 && X > SH.x0 + 130 && X < SH.x0 + 130 + 420 - j * 30) return [6, M.INK]; }
+    }
+    const e = Math.min(X - SH.x0, Y - SH.y0);
+    return [Math.min(2, e * 0.5), M.PAPER];
+  }
+  const cache = new Map(), key = (X, Y) => (X * 4 | 0) + ',' + (Y * 4 | 0);
+  const S = (X, Y) => { const kk = key(X, Y); let v = cache.get(kk); if (!v) { v = sample(X, Y); cache.set(kk, v); } return v; };
+  const albedo = (X, Y, m) => {
+    if (m === M.PECAN) { const g = 1 + 0.35 * (TX.simplex2(X * 0.06, Y * 0.012) * 0.5 + TX.simplex2(X * 0.4, Y * 0.03) * 0.25); return [0.17 * g, 0.1 * g, 0.055 * g]; }
+    if (m === M.PAPER) { const f = 1 + 0.03 * TX.simplex2(X * 0.4, Y * 0.4); const fb = 1 + 0.04 * TX.simplex2(X * 1.6, Y * 0.5); return [0.68 * f * fb, 0.64 * f * fb, 0.56 * f * fb]; }
+    if (m === M.INK) return [0.07, 0.07, 0.08];
+    if (m === M.BRASS) return [0.7, 0.5, 0.2];
+    return [0.01, 0.01, 0.012];
+  };
+  const pool = (X, Y) => { const d = Math.hypot((X - WX) / 440, (Y - (WY + 40)) / 300), t = Math.max(0, Math.min(1, (d - 0.2) / 0.6)); return 1 - 0.95 * t * t * (3 - 2 * t); };
+  /* the relief stands below the type: the field above it is the dark ground, flat, with nothing to read */
+  cx.fillStyle = '#0a090d'; cx.fillRect(0, 0, 2160, 2700);
+  const rep = TXBENCH.relief(cx, { x: 0, y: 540, w: 1080, h: 810, scale: 2, height: (X, Y) => S(X, Y)[0], material: (X, Y) => S(X, Y)[1], keyMask: pool, albedo,
+    spec: { [M.BRASS]: [1.6, 28], [M.PAPER]: [0.05, 6] }, ambient: 0.03, diffuse: 1.3, ao: 1.0, shadow: 0.92, softness: 3, castLength: 160 });
+  /* the field above falls from dark into the board over a soft band rather than ending on a cut line */
+  { const g = cx.createLinearGradient(0, 1080, 0, 1200); g.addColorStop(0, 'rgba(10,9,13,0.9)'); g.addColorStop(1, 'rgba(10,9,13,0)');
+    cx.fillStyle = '#0a090d'; cx.fillRect(0, 0, 2160, 1080); cx.fillStyle = g; cx.fillRect(0, 1080, 2160, 120); }
+  const lf = document.getElementById('lab-f'); lf.style.left = (SH.x0 - 74) + 'px'; lf.style.top = (rowY(F) - 17) + 'px';
+  /* the post pass works in CSS pixels, so the 2x transform is set first: run at device scale it darkened only the
+   * top left quadrant, the band every earlier repair worked around */
+  cx.setTransform(2, 0, 0, 2, 0, 0);
+  CH.post(cx, { a: 0.42, pad: 90, fade: 240, veil: 0.3, footWash: 0.5 });
+  window.__relief = rep;
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

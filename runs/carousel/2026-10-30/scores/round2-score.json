@@ -1,0 +1,217 @@
+{
+ "weighted_score": 6.968,
+ "judges": [
+  6.62,
+  7.04,
+  7.1
+ ],
+ "spread": 0.48,
+ "criteria": {
+  "artwork_craft": {
+   "score": 6.4,
+   "weight": 0.22,
+   "judges": [
+    6.4,
+    6.3,
+    6.6
+   ]
+  },
+  "deck_coherence": {
+   "score": 7.0,
+   "weight": 0.12,
+   "judges": [
+    6.8,
+    7.0,
+    7.5
+   ]
+  },
+  "claim_integrity": {
+   "score": 7.6,
+   "weight": 0.2,
+   "judges": [
+    6.8,
+    7.6,
+    8.0
+   ]
+  },
+  "story_and_stakes": {
+   "score": 7.0,
+   "weight": 0.16,
+   "judges": [
+    6.5,
+    7.3,
+    7.0
+   ]
+  },
+  "sequence_and_momentum": {
+   "score": 6.8,
+   "weight": 0.1,
+   "judges": [
+    6.0,
+    6.8,
+    6.8
+   ]
+  },
+  "voice": {
+   "score": 6.5,
+   "weight": 0.1,
+   "judges": [
+    6.5,
+    6.9,
+    6.5
+   ]
+  },
+  "variety": {
+   "score": 7.5,
+   "weight": 0.1,
+   "judges": [
+    7.5,
+    7.6,
+    7.0
+   ]
+  }
+ },
+ "hard_fails": [],
+ "hard_fails_by_judge": [],
+ "ship": false,
+ "threshold": 8.0,
+ "over_threshold": false,
+ "method": "per-criterion median across three judges, then weighted by the rubric",
+ "threshold_dissents": [
+  "judge 1 refused on the threshold, not on a fault, and scored 6.62 against a 8.0 bar. That dissent is carried in the median",
+  "judge 2 refused on the threshold, not on a fault, and scored 7.04 against a 8.0 bar. That dissent is carried in the median",
+  "judge 3 refused on the threshold, not on a fault, and scored 7.1 against a 8.0 bar. That dissent is carried in the median"
+ ],
+ "threshold_dissents_by_judge": [
+  {
+   "judge": 1,
+   "score": 6.62,
+   "reason": "judge 1 refused on the threshold, not on a fault, and scored 6.62 against a 8.0 bar. That dissent is carried in the median"
+  },
+  {
+   "judge": 2,
+   "score": 7.04,
+   "reason": "judge 2 refused on the threshold, not on a fault, and scored 7.04 against a 8.0 bar. That dissent is carried in the median"
+  },
+  {
+   "judge": 3,
+   "score": 7.1,
+   "reason": "judge 3 refused on the threshold, not on a fault, and scored 7.1 against a 8.0 bar. That dissent is carried in the median"
+  }
+ ],
+ "artwork_weakest_frames": [
+  {
+   "slide": 8,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Generic CG wood dais in the grey middle; the shut case reads as a laptop.",
+     "fix": "Drop to ledge height and crop tight on the case and its lit latch; let the dais front fall to near black outside a narrow window pool."
+    },
+    {
+     "judge": 2,
+     "problem": "Generic CG interior: bright walnut in the grey middle on a flat navy wall, no nameplates, mic from behind the case, footer on grain.",
+     "fix": "Narrow the key to a raking pool on the ledge top and the case, drop the camera so the dais front falls outside the pool, add the brass nameplates trailing into shadow."
+    },
+    {
+     "judge": 3,
+     "problem": "Bright orange procedural grain in the lower 60 percent; the shut case reads as a laptop; no weight shows.",
+     "fix": "Narrow the window key to one shaft raking the ledge so the dais front falls to near black, and crack the lid so the weights catch it."
+    }
+   ]
+  },
+  {
+   "slide": 2,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "A mid grey sheet as a flat plate and a Q-slot coin.",
+     "fix": "Dark slate stock with a tight grazing pool on row (f), and the deck's knurled slotted weight standing proud and casting across the four rules."
+    },
+    {
+     "judge": 2,
+     "problem": "The weight slot reads as a Q and the paper is a flat grey slab under a vignette.",
+     "fix": "A classic slotted weight, a radial notch from rim to a centre hole, and paper with fibre height and a warm off white albedo inside the pool."
+    },
+    {
+     "judge": 3,
+     "problem": "A flat cool grey slab with a top-down Q-like disc; the pool has no true black.",
+     "fix": "Warm white paper with a lifted corner on dark pecan under a tight snoot, at a low oblique so the weight stands and casts across the rows."
+    }
+   ]
+  },
+  {
+   "slide": 5,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Cracks read as paving, a dead lower third, and the four empty wells unexplained since the reserve label was cut.",
+     "fix": "Crop to the grooves, darken the clay with sparse cracks, and label or light the four empty wells as the reserve."
+    },
+    {
+     "judge": 2,
+     "problem": "Uniform Voronoi polylines, knob-like discs, sawtooth casts, a hairline above the board, dead clay between rows.",
+     "fix": "Double the disc diameter, drop the pointer slot, close the grooves up, and drive the clay from a shrink swell height field with cavity."
+    },
+    {
+     "judge": 3,
+     "problem": "An orthographic plan relief reading as a bar chart of chips; the empty sockets do not read as cavities.",
+     "fix": "A raking oblique of about 20 degrees along the grooves so the discs stand with long casts and the four sockets hold shadow."
+    }
+   ]
+  },
+  {
+   "slide": 6,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Repeats 01's camera, pans lost off the corners, dead lower zone.",
+     "fix": "Build the planned macro with the pillar off axis; fill the lower two thirds with the arc and needle."
+    },
+    {
+     "judge": 2,
+     "problem": "01's camera repeated; the needle on a dark arc doesn't read; the leader crosses the pillar; a stirrup rod grazes the site line.",
+     "fix": "Model the arc as polished nickel silver lit by the key and crop to arc and needle alone at fov 26 with the hall and pans out."
+    }
+   ]
+  },
+  {
+   "slide": 7,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Lilac blued and a stray plinth wedge behind the widowed 'does'.",
+     "fix": "Cool the blued specular, remove the plinth fragment, rewrap the hook."
+    },
+    {
+     "judge": 2,
+     "problem": "14 bands clear the rim, not 15; lilac blued; 'does' sits on the base's top edge.",
+     "fix": "Lower the pan relative to the camera so all 15 stand above the rim, slide the base out of frame left, and push the blued toward deep blue black."
+    }
+   ]
+  },
+  {
+   "slide": 9,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 3,
+     "problem": "The kit resident reads as a mannequin and the stacks are small at 432 px.",
+     "fix": "Push in until the balance fills two thirds of the width and move the person back to the glazing as a backlit silhouette."
+    }
+   ]
+  }
+ ],
+ "rounds_derived": 2,
+ "rounds": 2,
+ "rounds_source": "this module's own log of cards it has scored",
+ "rounds_declared": 2,
+ "rung": 7.7,
+ "work_order": "no judge found a hard fail, and the median 6.968 is under this round's rung of 7.7. KEEP EDITING: fix the judges' named defects, re-render and re-score. At the round cap the finished deck ships whatever it scored. Start with the frames the judges charge the art for, in this order, slides 8, 2, 5, 6, 7, 9 (`artwork_weakest_frames`), one concrete change each",
+ "craft_floor": "pending, because a deck under its rung is sent back by the work order first"
+}

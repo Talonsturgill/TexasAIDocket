@@ -1,0 +1,226 @@
+{
+  "version": 2,
+  "selected": [
+    1,
+    3,
+    9
+  ],
+  "inputs": {
+    "slides/slide-01.html": "252f5e7da820a84091bb26124d2d1cbc4612f664059f278b57fab6c5891d47c2",
+    "render/slide-01.png": "79d037e67ae0fb3318d1c9a6b9b848560fb8252267bbac5f557774f677aab85a",
+    "assets/js/deck/2026-10-30-balance.js": "17dbcc31f23c77b8e851f943dd2b5eb865c3a935949107b4038116d4cd376168",
+    "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+    "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+    "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+    "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+    "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+    "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+    "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+    "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+    "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+    "slides/slide-03.html": "54473f95b1ead55d5b4b34a46a2365ec9d98a5ac7204efa831acb6905fce8596",
+    "render/slide-03.png": "c0a414e454dc9caf894e097825432fca5e137d428f0c5bf97969fd4cabf3c102",
+    "slides/slide-09.html": "da00b3ef31ccf45c1b9b9d07f6b0aadf5090487b4c81e048d44e85b496d4608b",
+    "render/slide-09.png": "f5dcef8c77b05cd3caaa19ab189ffc3408849bcd3375a7356d8848adeb3a531d"
+  },
+  "value_measurements": [
+    {
+      "frame": "slide-01.png",
+      "median_L": 4.7,
+      "mid": 0.053,
+      "dark": 0.803
+    },
+    {
+      "frame": "slide-03.png",
+      "median_L": 9.8,
+      "mid": 0.233,
+      "dark": 0.601
+    },
+    {
+      "frame": "slide-09.png",
+      "median_L": 3.2,
+      "mid": 0.129,
+      "dark": 0.716
+    }
+  ],
+  "review": {
+    "decision": "accept",
+    "inputs": {
+      "slides/slide-01.html": "252f5e7da820a84091bb26124d2d1cbc4612f664059f278b57fab6c5891d47c2",
+      "render/slide-01.png": "79d037e67ae0fb3318d1c9a6b9b848560fb8252267bbac5f557774f677aab85a",
+      "assets/js/deck/2026-10-30-balance.js": "17dbcc31f23c77b8e851f943dd2b5eb865c3a935949107b4038116d4cd376168",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+      "slides/slide-03.html": "54473f95b1ead55d5b4b34a46a2365ec9d98a5ac7204efa831acb6905fce8596",
+      "render/slide-03.png": "c0a414e454dc9caf894e097825432fca5e137d428f0c5bf97969fd4cabf3c102",
+      "slides/slide-09.html": "da00b3ef31ccf45c1b9b9d07f6b0aadf5090487b4c81e048d44e85b496d4608b",
+      "render/slide-09.png": "f5dcef8c77b05cd3caaa19ab189ffc3408849bcd3375a7356d8848adeb3a531d"
+    },
+    "frames": [
+      {
+        "slide": 1,
+        "role": "cover",
+        "subject": "A brass pillar balance on an ebonized base, standing on a chalk plinth. The beam is tilted down to the left. The left pan holds a tall polished brass stack and the right pan a shorter blued stack. A bevelled nickel needle crosses a chalk arc, and the dim city hall glazing sits behind in a navy field.",
+        "visual_consequence": "Without the headline the beam leans toward the taller brass stack, and the two metals separate cleanly at feed size. One line is heavier than the other on the same instrument, and the heavier one is the brass.",
+        "weakness": "None blocking. The hook 'A chatbot for Plano, and / Darwin AI beside it' sets in two lines inside the margins, ending short of the counter (r1c2). Its last line clears the dek cap height with a normal gap (r1c1). The dek ends about 300 native px above the beam's left end (r2c1), so no type crosses the balance. The cite and site lines sit on the plinth face, clear of the pan and base (r3c1, r3c2). The art is unchanged from my previous reading. The plinth face is still a warm lit band, the glazing still reads navy gray, and the dek's lower lines sit over the faint city hall silhouette, where they stay legible.",
+        "repair": "none required",
+        "encoding_reads": true,
+        "dominant_subject_finished": true,
+        "feed_legible": true,
+        "inputs": {
+          "slides/slide-01.html": "252f5e7da820a84091bb26124d2d1cbc4612f664059f278b57fab6c5891d47c2",
+          "render/slide-01.png": "79d037e67ae0fb3318d1c9a6b9b848560fb8252267bbac5f557774f677aab85a",
+          "assets/js/deck/2026-10-30-balance.js": "17dbcc31f23c77b8e851f943dd2b5eb865c3a935949107b4038116d4cd376168",
+          "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+          "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+          "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+          "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+          "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+          "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+          "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+          "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+          "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de"
+        }
+      },
+      {
+        "slide": 3,
+        "role": "evidence",
+        "subject": "An oblique view of a pecan plate lying on a long dark council table, with 39 round wells. Counted off the image, they hold 19 polished brass slotted weights (rows of 7, 6 and 6), then 15 blued (1, 6, 7 and 1), then 1 cool nickel, then 4 empty dark wells in reading order. Each weight has a boss, two engraved rings, a fine knurled edge and a slot running from the boss to the rim, all aligned toward the lower right.",
+        "visual_consequence": "With the type covered, the brass block is visibly larger than the blued block, the single pale nickel weight stands apart, and the four empty wells at the end read as missing weights, the reserve. The count matches figures.json exactly: 19, 15, 1 and 4. All three metals and the holes separate at feed size.",
+        "weakness": "None blocking. The taller type stays clear of the case. The hook 'The whole ceiling, in weights' sets on one line. The four-line dek and the two-line legend sit on the dark table field. The legend's second row ('MICROSOFT', 'RESERVE, EMPTY') ends about 175 native px above the plate's back edge at the left (r2c1, legend baseline near y 90, plate edge near y 265), and the gap is wider at the right (r2c2). No glyph touches a weight or the plate. The legend rides over faint pale grain filaments in the table and stays legible. The one typographic blemish: the dek breaks 'Drawn / to illustrate.', leaving a short fourth line under a long second line (r1c1, r1c2). It is legible, and rewrapping is optional. The art is unchanged from my last reading. The cite and site lines are on the plate apron, and the table grain is still stretched streak noise.",
+        "repair": "none required",
+        "encoding_reads": true,
+        "dominant_subject_finished": true,
+        "feed_legible": true,
+        "inputs": {
+          "assets/js/deck/2026-10-30-balance.js": "17dbcc31f23c77b8e851f943dd2b5eb865c3a935949107b4038116d4cd376168",
+          "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+          "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+          "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+          "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+          "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+          "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+          "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+          "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+          "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+          "slides/slide-03.html": "54473f95b1ead55d5b4b34a46a2365ec9d98a5ac7204efa831acb6905fce8596",
+          "render/slide-03.png": "c0a414e454dc9caf894e097825432fca5e137d428f0c5bf97969fd4cabf3c102"
+        }
+      },
+      {
+        "slide": 9,
+        "role": "close",
+        "subject": "The loaded balance close at eye height, filling about 75 percent of the frame width, its ebonized base standing on a pale plinth top that runs out of the bottom edge. A small resident in a dark cap walks far back toward the warm lit glazing of the city hall chamber.",
+        "visual_consequence": "The same loaded state as the cover (taller brass stack, lower brass pan, blued pan riding high) stands in the plaza where it was decided, with one resident passing it toward the chamber. The bill and a person who pays a share of it read in one frame at feed size.",
+        "weakness": "None blocking, and both footer collisions are repaired. The brass pan's lowest point now sits near y 600 in r3c1, about 85 native px above the cap height of 'c4 c15 c21' at y 688, and no glyph meets the rim or a rod. The base slab ends near y 650 and its foot near y 655 in r3c2, about 30 native px (15 design px) above 'texasaidocket.com' at y 685. That is under the 30 design px I asked for, but nothing touches, and the site line sits on the plinth top below the foot. One footer edge for layout_check's contrast measure: the plinth's pale front face now starts near x 315 in r3c1, so the '5' of 'c15' and all of 'c21' print on that light surface, not on the dark paving. At 100 percent they read, but it is near-white type on a mid-light ground. The headline and dek are clean on the near-black sky, and the dek's last line ends about 50 native px above the city hall roofline (r2c1). The art holds. The resident's feet and cast are clear of type (r3c1, top), the beam is still a near-black bar, and the arc reads dark brown.",
+        "repair": "none required",
+        "encoding_reads": true,
+        "dominant_subject_finished": true,
+        "feed_legible": true,
+        "inputs": {
+          "assets/js/deck/2026-10-30-balance.js": "17dbcc31f23c77b8e851f943dd2b5eb865c3a935949107b4038116d4cd376168",
+          "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+          "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+          "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+          "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+          "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+          "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+          "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+          "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+          "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+          "slides/slide-09.html": "da00b3ef31ccf45c1b9b9d07f6b0aadf5090487b4c81e048d44e85b496d4608b",
+          "render/slide-09.png": "f5dcef8c77b05cd3caaa19ab189ffc3408849bcd3375a7356d8848adeb3a531d"
+        }
+      }
+    ]
+  },
+  "plan": {
+    "hardest_frame": 3,
+    "visual_argument": "With the type covered, a reader counts two stacks of identical weights in two metals: the brass stack of the chatbot is visibly larger than the blued stack of the platform that watches it, and the four empty wells in the case are the reserve.",
+    "build_risk": "Frame 3 is a TXBENCH plan relief of 39 small slotted weights in a fitted case, the representation no. 62 lost four rounds to when its relief read as a flat mottled card at 432 px. Three metals and empty felt wells must separate at feed size and every weight must cast. Implementation: TXBENCH.relief with weights 30 px proud under the chassis key at elevation 13, per-material specular, a keyMask pool, and a fallback to a txthree oblique of the open case if one repair fails.",
+    "distinct_from_recent": "No. 60 was return plates and tanks in an exterior lastLight yard, no. 61 a drone and dock with two generic offices, no. 62 tower sections and a county relief at landscape scale. This deck's subject is a 0.6 m tabletop instrument in brass, blued steel, pecan and chalk, seen at macro and plan distance, with one interior lit by a single window and no industrial model, screen or operator."
+  },
+  "frame_inputs": {
+    "1": {
+      "slides/slide-01.html": "252f5e7da820a84091bb26124d2d1cbc4612f664059f278b57fab6c5891d47c2",
+      "render/slide-01.png": "79d037e67ae0fb3318d1c9a6b9b848560fb8252267bbac5f557774f677aab85a",
+      "assets/js/deck/2026-10-30-balance.js": "17dbcc31f23c77b8e851f943dd2b5eb865c3a935949107b4038116d4cd376168",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de"
+    },
+    "3": {
+      "assets/js/deck/2026-10-30-balance.js": "17dbcc31f23c77b8e851f943dd2b5eb865c3a935949107b4038116d4cd376168",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+      "slides/slide-03.html": "54473f95b1ead55d5b4b34a46a2365ec9d98a5ac7204efa831acb6905fce8596",
+      "render/slide-03.png": "c0a414e454dc9caf894e097825432fca5e137d428f0c5bf97969fd4cabf3c102"
+    },
+    "9": {
+      "assets/js/deck/2026-10-30-balance.js": "17dbcc31f23c77b8e851f943dd2b5eb865c3a935949107b4038116d4cd376168",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+      "slides/slide-09.html": "da00b3ef31ccf45c1b9b9d07f6b0aadf5090487b4c81e048d44e85b496d4608b",
+      "render/slide-09.png": "f5dcef8c77b05cd3caaa19ab189ffc3408849bcd3375a7356d8848adeb3a531d"
+    }
+  },
+  "needs_review": [
+    1,
+    9
+  ],
+  "shipped_inputs": {
+    "slides/slide-01.html": "252f5e7da820a84091bb26124d2d1cbc4612f664059f278b57fab6c5891d47c2",
+    "slide-01.webp": "ed3bca061826369bc7fbc36f6e71d5669a7d19c3104ecf91b59217fae5310f77",
+    "slides/slide-03.html": "54473f95b1ead55d5b4b34a46a2365ec9d98a5ac7204efa831acb6905fce8596",
+    "slide-03.webp": "0ab8f3ee7844a30b9e528cac54acdcbf8debb1419191306f4d7c2f051d73245f",
+    "slides/slide-09.html": "da00b3ef31ccf45c1b9b9d07f6b0aadf5090487b4c81e048d44e85b496d4608b",
+    "slide-09.webp": "7db301d740a0b23442203ddd36616b149998bda81d136cb7ba1a6ed0947f655a"
+  },
+  "encodings": [
+    {
+      "to": "slide-01.webp",
+      "to_sha256": "ed3bca061826369bc7fbc36f6e71d5669a7d19c3104ecf91b59217fae5310f77",
+      "from_sha256": "79d037e67ae0fb3318d1c9a6b9b848560fb8252267bbac5f557774f677aab85a",
+      "psnr_db": 41.364
+    },
+    {
+      "to": "slide-03.webp",
+      "to_sha256": "0ab8f3ee7844a30b9e528cac54acdcbf8debb1419191306f4d7c2f051d73245f",
+      "from_sha256": "c0a414e454dc9caf894e097825432fca5e137d428f0c5bf97969fd4cabf3c102",
+      "psnr_db": 40.279
+    },
+    {
+      "to": "slide-09.webp",
+      "to_sha256": "7db301d740a0b23442203ddd36616b149998bda81d136cb7ba1a6ed0947f655a",
+      "from_sha256": "f5dcef8c77b05cd3caaa19ab189ffc3408849bcd3375a7356d8848adeb3a531d",
+      "psnr_db": 41.139
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+<!doctype html>
+<!-- 2026-10-30, frame 4 of 9. Archetype CLOSE_CROP. A spatial scene through txthree.js in the deck lastLight world, macro on the balance left pan holding chatgpt_units brass weights from figures.json. Each weight is unit_usd, a drawing unit. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:900px;top:880px">Of the ceiling, 49 percent covers the chatbot</h1>
+<p class="dek" data-follow="26" style="width:860px">ChatGPT Enterprise from Carahsoft is $190,000 of the $390,000 ceiling. 19 weights of $10,000. Drawn to&nbsp;illustrate.</p>
+<script>window.FIG = {"chatgpt_units": 19, "darwin_units": 15};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-30-balance.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "The biggest line", counter: "04 / 09", src: "c1 c3 c4", fit: { min: 70, max: 92, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 28, near: 0.02, far: 3000, fog: 0.012 });
+  /* THE FIGURES, from figures.json: the brass stack's count, chatgpt_units weights at one unit_usd a weight */
+  const nL = Math.round(FIG.chatgpt_units), nR = Math.round(FIG.darwin_units);
+  const plinth = K.make('chalk_plinth', { w: 1.0, h: 1.0, d: 0.62 }); CH.put(plinth, true);
+  const bal = K.make('equal_arm_balance', { left: nL, right: nR, index: null, seed: 63 }); bal.position.set(0, 1.0, 0); CH.put(bal);
+  TXT.sky(R);
+  TXT.ground(R, { surface: 'concrete', size: 600, seed: 21 });
+  const tilt = CH.balanceState(nL, nR) * Math.PI / 180, ex = -CH.ARM * Math.cos(tilt), ey = 1.0 + CH.PIVOT_Y - CH.ARM * Math.sin(tilt) - CH.ROD;
+  const mid = [ex, ey + nL * CH.WT * 0.55, 0];
+  const from = [ex + 0.2, mid[1] + 0.04, 0.68];
+  const look = CH.aim(THREE, R, TXT, from, mid, 650, 440, 28);
+  TXT.frame(R, { fov: 28, from, look });
+  CH.warm(R, 0.32);
+  TXT.deckRig(R, CH.rigSpec(W, 1.2, 4096), CH.rigOpts([ex, ey, 0], { distance: 8, shadowFar: 30 }));
+  CH.unacne(R, 0.004);
+  TXT.weather(R, { grime: 0.15, height: 0.4 });
+  TXT.stage(R, [bal], { poolInner: 0.5, poolOuter: 1.6 });
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0, low: { from: 820, a: 0.62, fade: 180 }, veil: 0.3, footWash: 0.5 });
+  CH.knock(cx, ['.kick', '#hook'], 0.6);
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

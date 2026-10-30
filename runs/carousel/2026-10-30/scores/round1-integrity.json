@@ -1,0 +1,81 @@
+{
+ "lens": "integrity",
+ "round": 1,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.3,
+   "why": "Two frames are strong: slide 3's counted case (19/15/1/4 matching figures.json) and slide 4's 19-disc brass macro. Slides 1, 9 and 6 work but are flawed: flat taupe plinth face and cool glazing on 1; stringy kit hair and a near-black beam on 9; 6 repeats 1's camera, with both pan strings crossing the type ('THE' of the label and the site line) and the left stack against 'c1'. Four frames hold the score down: 8 is a generic CG dais with an empty navy wall, procedural orange wood and no window or nameplates; 2 is a flat grey sheet under a dead band with a coin-like weight; 5's cracks read as paving with a dead top 45 percent; 2 and 5 share a hard seam with a notch near x 800, y 1000 display (the bootFlat artifact). On 7 the blued reads lilac, only about 13 of 15 discs show above the pan rim, and a dark bar sits behind the dek at left. Machine QA flags 6's dead lower zone."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.0,
+   "why": "Clearly one deck: one brass balance and one slotted weight through 1, 3, 4, 5, 6, 7 and 9, brass always ChatGPT and blued always Darwin, one lastLight key casting lower right, beam tilt, needle swing and pan heights agreeing on 1, 6 and 9. The value arc is declared but not delivered: 2's grey sheet and 8's orange wood strobe out of the near-black run, and 6 repeats 1's camera so CAMERA_MOVE loses a step."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 5.5,
+   "why": "Every numeral traces and every source is primary. The stretch is on the cover: 'A chatbot for Plano, and a watcher for it', the document title 'A chatbot and its watcher' and slide 7's 'What the watcher says it does' state, unattributed, that Plano bought Darwin to watch ChatGPT; no claim says this and the storyboard concedes 'Nothing says what Plano will use it for'. The 79-cents turn borrows its meaning from that inference. No claim ties the agenda's 'Darwin AI from Carahsoft (DIR-CPO-5687)' to darwingov.com, yet slides 1 and 7 and the caption print that site's description as the purchased product's. Smaller: slide 3 says '39 weights of $10,000' while drawing 35 and 4 empty wells; 'held for growth' drops 'implementation needs'; slide 2's 'a one motion agenda' overstates c6, which covers the consent agenda only; item (f) rests on c6's note; slide 9's kicker 'Where it was decided' sits over a kit city hall."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.5,
+   "why": "What happened, which body, which city and the money are clear on 1 to 3 and in the caption, and the outcome is worded as the draft minutes' 'approved', never as a vote. Collin and Denton appear only as hashtags. No frame tells a Plano reader what they can do: no next meeting, no point at which the draft minutes get approved, no contact. Slide 9's 133 cents a resident is a framing, not a stake."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "The cover earns the swipe and slide 2 pays at once. Slides 3 and 4 both carry '19 weights of $10,000'. Slide 6 spends a frame on an arithmetic coincidence that reads as meaningful and isn't. The close on 133 cents lands softly."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "Clean and on house rules. 'Of the ceiling, 49 percent covers the chatbot' is contorted, 'about 133 cents a resident' dodges $1.33, and 'Drawn to illustrate.' repeats on eight of nine deks. Regional texture is thin beyond the name Plano."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "The instrument and the subject are fresh. Counted drawing units repeat no. 62 and no. 60, the lastLight world is the fourth consecutive, and brass is the hero metal one deck after no. 60."
+  }
+ ],
+ "weighted_score": 6.32,
+ "hard_fails": [
+  "An unverified fact presented as verified. The cover headline 'A chatbot for Plano, and a watcher for it', the document title 'A chatbot and its watcher' and slide 7's hook 'What the watcher says it does' state without attribution that Darwin AI was bought to watch ChatGPT Enterprise. No claim in claims.json says that. c9 and c10 support only that Darwin describes tracking AI use in general, and they come from darwingov.com. No fetched record ties that site to the agenda's 'Darwin AI from Carahsoft (DIR-CPO-5687)'."
+ ],
+ "ship": false,
+ "one_sentence_fix": "Rewrite the cover hook, document title and slide 7 hook to Darwin's attributed function, and add a fetched claim tying the agenda's Darwin AI on DIR-CPO-5687 to darwingov.com before any surface prints that site's description as the purchased product's.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 8,
+   "problem": "A generic CG dais: empty navy wall over procedural orange wood, no window source or nameplate in frame.",
+   "fix": "Put the window in frame at left as the single visible source, crop the wall to a band so the case and a nameplate fill the lower half, and let the wood outside the pool fall to black."
+  },
+  {
+   "slide": 2,
+   "problem": "A flat grey sheet under a dead band, a hard seam with a notch near x 800 (the bootFlat artifact), and a coin-like weight.",
+   "fix": "Raise the relief so the sheet starts under the dek and the seam leaves the frame; stand the chassis slotted weight on row (f) at a low oblique."
+  },
+  {
+   "slide": 5,
+   "problem": "Cracks read as paving, the same seam artifact, and a dead top 45 percent.",
+   "fix": "Move the board up to span y 700 to 1800 and use sparse hairline shrink swell cracks."
+  },
+  {
+   "slide": 7,
+   "problem": "Blued reads lilac, only about 13 of 15 discs clear the pan rim, and a dark bar sits behind the dek at x 0 to 585, y 1305 to 1480.",
+   "fix": "Lower the camera so all 15 discs stand above the rim, delete the bar object, and pull the blued toward #4E5FA8."
+  },
+  {
+   "slide": 6,
+   "problem": "Near repeat of slide 1's camera; both pan strings cross the type and the brass stack sits against 'c1'.",
+   "fix": "Build the planned level macro on the needle and arc with the pillar cut by the bottom edge, so no stirrup or stack enters the type bands."
+  }
+ ]
+}

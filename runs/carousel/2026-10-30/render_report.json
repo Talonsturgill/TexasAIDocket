@@ -1,0 +1,1977 @@
+{
+  "canvas": {
+    "width": 1080,
+    "height": 1350,
+    "scale": 2.0,
+    "px": [
+      2160,
+      2700
+    ]
+  },
+  "text_window": 320,
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "png": "slide-01.png",
+      "console_errors": [
+        "TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 232, 223)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "A chatbot for Plano, and Darwin AI beside it",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 169,
+          "font_px": 86,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(236, 232, 223)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              139,
+              873,
+              106
+            ],
+            [
+              80,
+              223,
+              692,
+              106
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The city's October 12th agenda carried $190,000 for ChatGPT Enterprise and $150,000 for Darwin AI, a platform its maker says tracks AI use. Each weight is $10,000, a drawing unit. Drawn to illustrate.",
+          "x": 82,
+          "y": 345,
+          "w": 860,
+          "h": 171,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              345,
+              757,
+              42
+            ],
+            [
+              82,
+              387,
+              857,
+              42
+            ],
+            [
+              82,
+              430,
+              788,
+              42
+            ],
+            [
+              82,
+              473,
+              478,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Plano's AI purchase, weighed",
+          "x": 80,
+          "y": 80,
+          "w": 464,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              464,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "01 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c1 c2 c3 c5 c9 c17",
+          "x": 80,
+          "y": 1234,
+          "w": 289,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              289,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 15959,
+      "ok": true,
+      "load_ms": 354,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 20.7,
+          "variance": 502.7
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-02.html",
+      "png": "slide-02.png",
+      "console_errors": [
+        "TXBENCH: RELIEF {\"height_range\":58.497770093714095,\"materials\":4,\"cast_fraction\":0.1010553840877915,\"area\":0.6,\"render_ms\":9658.699999999255}"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 232, 223)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "One item, on the consent agenda",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 179,
+          "font_px": 91.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(236, 232, 223)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              138,
+              629,
+              112
+            ],
+            [
+              80,
+              228,
+              592,
+              112
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Item (f) sat on the consent agenda, which the council acts on in one motion. It held four lines inside a ceiling of $390,000. Drawn to illustrate.",
+          "x": 82,
+          "y": 353,
+          "w": 880,
+          "h": 128,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              353,
+              855,
+              42
+            ],
+            [
+              82,
+              396,
+              757,
+              42
+            ],
+            [
+              82,
+              439,
+              439,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "(f)",
+          "x": 166,
+          "y": 763,
+          "w": 55,
+          "h": 36,
+          "font_px": 28,
+          "weight": "700",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 232, 223)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              166,
+              762,
+              55,
+              37
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "How it reached the city",
+          "x": 80,
+          "y": 80,
+          "w": 381,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              381,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "02 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c4 c6",
+          "x": 80,
+          "y": 1234,
+          "w": 80,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              80,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 13093,
+      "ok": true,
+      "load_ms": 11167,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 24.3,
+          "variance": 551.3
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-03.html",
+      "png": "slide-03.png",
+      "console_errors": [
+        "TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot stands inside something built"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 232, 223)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The whole ceiling, in weights",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 70,
+          "font_px": 71.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(236, 232, 223)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              141,
+              859,
+              88
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "39 wells of $10,000 each. 19 hold ChatGPT Enterprise, 15 Darwin AI and 1 Microsoft. The 4 empty wells are the reserve the item holds for growth and other costs. Drawn to illustrate.",
+          "x": 82,
+          "y": 244,
+          "w": 880,
+          "h": 171,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              244,
+              824,
+              42
+            ],
+            [
+              82,
+              287,
+              874,
+              42
+            ],
+            [
+              82,
+              330,
+              716,
+              42
+            ],
+            [
+              82,
+              372,
+              179,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "CHATGPT ENTERPRISE DARWIN AI",
+          "x": 82,
+          "y": 433,
+          "w": 528,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              112,
+              433,
+              328,
+              31
+            ],
+            [
+              470,
+              433,
+              140,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "MICROSOFT RESERVE, EMPTY",
+          "x": 82,
+          "y": 469,
+          "w": 466,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              112,
+              469,
+              187,
+              31
+            ],
+            [
+              329,
+              469,
+              218,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Every line of the item",
+          "x": 80,
+          "y": 80,
+          "w": 364,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              364,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "03 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c1 c2 c3 c4",
+          "x": 80,
+          "y": 1234,
+          "w": 177,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              177,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 21535,
+      "ok": true,
+      "load_ms": 19213,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 38.3,
+          "variance": 1719.9
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-04.html",
+      "png": "slide-04.png",
+      "console_errors": [
+        "TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 232, 223)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Of the ceiling, 49 percent covers the chatbot",
+          "x": 80,
+          "y": 880,
+          "w": 900,
+          "h": 160,
+          "font_px": 81.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(236, 232, 223)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              869,
+              864,
+              101
+            ],
+            [
+              80,
+              949,
+              618,
+              101
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "ChatGPT Enterprise from Carahsoft is $190,000 of the $390,000 ceiling. 19 weights of $10,000. Drawn to illustrate.",
+          "x": 82,
+          "y": 1066,
+          "w": 860,
+          "h": 128,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              1066,
+              793,
+              42
+            ],
+            [
+              82,
+              1108,
+              693,
+              42
+            ],
+            [
+              82,
+              1151,
+              179,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The biggest line",
+          "x": 80,
+          "y": 80,
+          "w": 265,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              265,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "04 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c1 c3 c4",
+          "x": 80,
+          "y": 1234,
+          "w": 129,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              129,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 14846,
+      "ok": true,
+      "load_ms": 317,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 25.8,
+          "variance": 608.9
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-05.html",
+      "png": "slide-05.png",
+      "console_errors": [
+        "TXBENCH: RELIEF {\"height_range\":43,\"materials\":7,\"cast_fraction\":0.19010841537740272,\"area\":0.5851851851851851,\"render_ms\":8328.900000000373}"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 232, 223)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "79 cents for Darwin AI per chatbot dollar",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 179,
+          "font_px": 91.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(236, 232, 223)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              138,
+              873,
+              112
+            ],
+            [
+              80,
+              228,
+              687,
+              112
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "For each dollar of ChatGPT Enterprise, the item sets aside 79 cents for Darwin AI. Drawn to illustrate.",
+          "x": 82,
+          "y": 353,
+          "w": 880,
+          "h": 86,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              353,
+              845,
+              42
+            ],
+            [
+              82,
+              396,
+              611,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "CHATGPT ENTERPRISE",
+          "x": 86,
+          "y": 710,
+          "w": 285,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 232, 223)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              86,
+              710,
+              285,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "DARWIN AI",
+          "x": 86,
+          "y": 1060,
+          "w": 143,
+          "h": 31,
+          "font_px": 24,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 232, 223)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              86,
+              1060,
+              143,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The turn",
+          "x": 80,
+          "y": 80,
+          "w": 132,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              132,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "05 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c1 c2",
+          "x": 80,
+          "y": 1234,
+          "w": 80,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              80,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 11772,
+      "ok": true,
+      "load_ms": 156,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 18.8,
+          "variance": 400.8
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-06.html",
+      "png": "slide-06.png",
+      "console_errors": [
+        "TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 232, 223)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "THE NEEDLE ON THE RESERVE",
+          "x": 80,
+          "y": 969,
+          "w": 429,
+          "h": 34,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 232, 223)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              968,
+              429,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The difference equals the reserve",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 179,
+          "font_px": 91.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(236, 232, 223)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              138,
+              820,
+              112
+            ],
+            [
+              80,
+              228,
+              422,
+              112
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "ChatGPT Enterprise outweighs Darwin AI by $40,000. The reserve the item holds for more licenses and other costs is also $40,000. The tilt is a drawing.",
+          "x": 82,
+          "y": 355,
+          "w": 860,
+          "h": 128,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              355,
+              843,
+              42
+            ],
+            [
+              82,
+              398,
+              856,
+              42
+            ],
+            [
+              82,
+              441,
+              502,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Read off the needle",
+          "x": 80,
+          "y": 80,
+          "w": 315,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              315,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "06 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c1 c2 c4",
+          "x": 80,
+          "y": 1234,
+          "w": 129,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              129,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [
+        {
+          "kind": "svg",
+          "x": 499,
+          "y": 1008.5,
+          "w": 92.6,
+          "h": 118.2,
+          "by": "line",
+          "color": "rgb(7, 7, 12)",
+          "decorative": false,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 499,
+          "y": 1008.5,
+          "w": 92.6,
+          "h": 118.2,
+          "by": "line",
+          "color": "rgb(236, 232, 223)",
+          "decorative": false,
+          "skip": []
+        }
+      ],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 15999,
+      "ok": true,
+      "load_ms": 226,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 23.4,
+          "variance": 567.3
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-07.html",
+      "png": "slide-07.png",
+      "console_errors": [
+        "TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 232, 223)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "What Darwin AI says it does",
+          "x": 80,
+          "y": 700,
+          "w": 900,
+          "h": 179,
+          "font_px": 91.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(236, 232, 223)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              688,
+              886,
+              112
+            ],
+            [
+              80,
+              778,
+              175,
+              112
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The item's reseller links to this maker. Drawn to illustrate.",
+          "x": 82,
+          "y": 916,
+          "w": 860,
+          "h": 43,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              916,
+              831,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "\"Track AI usage across users, tools, and departments\"",
+          "x": 82,
+          "y": 968,
+          "w": 880,
+          "h": 98,
+          "font_px": 40,
+          "weight": "500",
+          "family": "Fraunces",
+          "color": "rgb(236, 232, 223)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              967,
+              725,
+              49
+            ],
+            [
+              82,
+              1016,
+              251,
+              49
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "\"Continuously monitor AI activity, investigate violations, and maintain a complete audit trail.\"",
+          "x": 82,
+          "y": 1096,
+          "w": 880,
+          "h": 98,
+          "font_px": 40,
+          "weight": "500",
+          "family": "Fraunces",
+          "color": "rgb(236, 232, 223)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              1095,
+              841,
+              49
+            ],
+            [
+              82,
+              1144,
+              868,
+              49
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Its maker's words",
+          "x": 80,
+          "y": 80,
+          "w": 282,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              282,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "07 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c9 c10 c17",
+          "x": 80,
+          "y": 1234,
+          "w": 161,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              161,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 14203,
+      "ok": true,
+      "load_ms": 12163,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 32.7,
+          "variance": 821.2
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-08.html",
+      "png": "slide-08.png",
+      "console_errors": [
+        "TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot shows its room"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 232, 223)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Approved, in records still marked draft",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 179,
+          "font_px": 91.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(236, 232, 223)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              138,
+              800,
+              112
+            ],
+            [
+              80,
+              228,
+              667,
+              112
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The October 12th minutes note the item approved. The October 26th minutes, also a draft, mark those minutes approved. Drawn to illustrate.",
+          "x": 82,
+          "y": 355,
+          "w": 860,
+          "h": 128,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              355,
+              801,
+              42
+            ],
+            [
+              82,
+              398,
+              811,
+              42
+            ],
+            [
+              82,
+              441,
+              433,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "What the record shows",
+          "x": 80,
+          "y": 80,
+          "w": 348,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              348,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "08 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c7 c8 c18 c20 c22",
+          "x": 80,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 17313,
+      "ok": true,
+      "load_ms": 255,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 34.9,
+          "variance": 388.3
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-09.html",
+      "png": "slide-09.png",
+      "console_errors": [
+        "TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 232, 223)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "A ceiling of about 133 cents a resident",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 175,
+          "font_px": 89.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(236, 232, 223)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              138,
+              800,
+              111
+            ],
+            [
+              80,
+              226,
+              582,
+              111
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The $390,000 ceiling spread over Plano's 293,286 residents in the Census estimate. Plano's Legistar lists the council's next meeting for November 9th. Drawn to illustrate.",
+          "x": 82,
+          "y": 351,
+          "w": 860,
+          "h": 171,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              351,
+              727,
+              42
+            ],
+            [
+              82,
+              394,
+              859,
+              42
+            ],
+            [
+              82,
+              437,
+              602,
+              42
+            ],
+            [
+              82,
+              480,
+              279,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "What comes next",
+          "x": 80,
+          "y": 80,
+          "w": 248,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              248,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "09 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c4 c15 c21",
+          "x": 80,
+          "y": 1234,
+          "w": 161,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              161,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 16053,
+      "ok": true,
+      "load_ms": 284,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 24.9,
+          "variance": 1057.3
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    }
+  ]
+}

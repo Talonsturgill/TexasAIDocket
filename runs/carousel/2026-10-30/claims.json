@@ -1,0 +1,247 @@
+{
+ "claims": [
+  {
+   "id": "c1",
+   "text": "Plano's City Council agenda item buys ChatGPT Enterprise from Carahsoft Technology Corporation for $190,000 under state contract DIR-CPO-5683.",
+   "quote": "To approve the purchase and implementation of ChatGPT Enterprise Solution for Technology Solutions from Carahsoft Technology Corporation in the amount of $190,000 (DIR-CPO-5683)",
+   "url": "https://webapi.legistar.com/v1/plano/matters/1967",
+   "source_type": "primary_official",
+   "retrieved": "2026-10-30",
+   "confidence": "high",
+   "document": "City of Plano Legistar, Matter 1967, File 26-884"
+  },
+  {
+   "id": "c2",
+   "text": "The same item buys the Darwin AI platform from Carahsoft Technology Corporation for $150,000 under state contract DIR-CPO-5687.",
+   "quote": "Darwin AI from Carahsoft Technology Corporation in the amount of $150,000 (DIR-CPO-5687)",
+   "url": "https://webapi.legistar.com/v1/plano/matters/1967",
+   "source_type": "primary_official",
+   "retrieved": "2026-10-30",
+   "confidence": "high",
+   "document": "City of Plano Legistar, Matter 1967, File 26-884"
+  },
+  {
+   "id": "c3",
+   "text": "It also buys Microsoft Enterprise from SHI Government Solutions for $10,000 under state contract DIR-CPO-5237.",
+   "quote": "Microsoft Enterprise from SHI Government Solutions, Inc. in the amount of $10,000 (DIR-CPO-5237)",
+   "url": "https://webapi.legistar.com/v1/plano/matters/1967",
+   "source_type": "primary_official",
+   "retrieved": "2026-10-30",
+   "confidence": "high",
+   "document": "City of Plano Legistar, Matter 1967, File 26-884"
+  },
+  {
+   "id": "c4",
+   "text": "A further $40,000 stays available for approved growth in licenses, usage and other costs, inside a not to exceed total of $390,000.",
+   "quote": "an additional $40,000 that will remain available for approved increases in license demand, usage capacity, implementation needs, and other costs within the authorized scope in the not-to-exceed amount of $390,000 through an existing contract",
+   "url": "https://webapi.legistar.com/v1/plano/matters/1967",
+   "source_type": "primary_official",
+   "retrieved": "2026-10-30",
+   "confidence": "high",
+   "document": "City of Plano Legistar, Matter 1967, File 26-884"
+  },
+  {
+   "id": "c5",
+   "text": "The City Council meeting whose agenda carried the purchase was dated October 12th, 2026.",
+   "quote": "\"EventDate\":\"2026-10-12T00:00:00\"",
+   "url": "https://webapi.legistar.com/v1/plano/events/1155",
+   "source_type": "primary_official",
+   "retrieved": "2026-10-30",
+   "confidence": "high",
+   "document": "City of Plano Legistar, City Council meeting, October 12th, 2026"
+  },
+  {
+   "id": "c6",
+   "text": "The council's agenda says items on its consent agenda are acted upon in one motion.",
+   "quote": "The Consent Agenda will be acted upon in one motion and contains items which are routine and typically noncontroversial.",
+   "url": "https://webapi.legistar.com/v1/plano/events/1155/eventitems?AgendaNote=1&MinutesNote=1",
+   "source_type": "primary_official",
+   "retrieved": "2026-10-30",
+   "confidence": "high",
+   "document": "City of Plano Legistar, City Council meeting agenda items, October 12th, 2026",
+   "note": "The quote proves the one motion sentence. File 26-884 is agenda item (f) inside the consent run (a) to (n) of the same event's items."
+  },
+  {
+   "id": "c7",
+   "text": "The October 12th meeting's minutes note on the purchase reads approved.",
+   "quote": "\\\\pard\\\\cf1\\\\b\\\\fs24 Approved\\\\b0\\\\par",
+   "url": "https://webapi.legistar.com/v1/plano/events/1155/eventitems?AgendaNote=1&MinutesNote=1",
+   "source_type": "primary_official",
+   "retrieved": "2026-10-30",
+   "confidence": "high",
+   "document": "City of Plano Legistar, City Council meeting agenda items, October 12th, 2026"
+  },
+  {
+   "id": "c8",
+   "text": "The minutes of that meeting are still marked as a draft.",
+   "quote": "\"EventMinutesStatusName\":\"Draft\"",
+   "url": "https://webapi.legistar.com/v1/plano/events/1155",
+   "source_type": "primary_official",
+   "retrieved": "2026-10-30",
+   "confidence": "high",
+   "document": "City of Plano Legistar, City Council meeting, October 12th, 2026"
+  },
+  {
+   "id": "c9",
+   "text": "Darwin AI says its platform tracks AI use across users, tools and departments.",
+   "quote": "Track AI usage across users, tools, and departments",
+   "url": "https://www.darwingov.com/",
+   "source_type": "primary_corporate",
+   "retrieved": "2026-10-30",
+   "confidence": "high",
+   "document": "Darwin AI, The AI Governance Platform for State and Local Government"
+  },
+  {
+   "id": "c10",
+   "text": "Darwin AI describes continuous monitoring of AI activity, investigation of violations and a complete audit trail.",
+   "quote": "Continuously monitor AI activity, investigate violations, and maintain a complete audit trail.",
+   "url": "https://www.darwingov.com/",
+   "source_type": "primary_corporate",
+   "retrieved": "2026-10-30",
+   "confidence": "high",
+   "document": "Darwin AI, The AI Governance Platform for State and Local Government"
+  },
+  {
+   "id": "c11",
+   "text": "Darwin AI says it turns written AI policies into automated controls across departments, roles and tools.",
+   "quote": "Transform written AI policies into automated controls that guide AI use across departments, roles, and tools.",
+   "url": "https://www.darwingov.com/",
+   "source_type": "primary_corporate",
+   "retrieved": "2026-10-30",
+   "confidence": "high",
+   "document": "Darwin AI, The AI Governance Platform for State and Local Government"
+  },
+  {
+   "id": "c12",
+   "text": "Darwin AI says it applies data loss prevention directly to AI interactions to catch sensitive data in prompts and responses.",
+   "quote": "Darwin applies DLP directly to AI interactions, detecting sensitive data in prompts and responses",
+   "url": "https://www.darwingov.com/",
+   "source_type": "primary_corporate",
+   "retrieved": "2026-10-30",
+   "confidence": "high",
+   "document": "Darwin AI, The AI Governance Platform for State and Local Government"
+  },
+  {
+   "id": "c13",
+   "text": "Census Bureau records place the city of Plano partly in Collin County.",
+   "quote": "TX|48|085|Collin County|58016|02411437|Plano city|INCORPORATED PLACE|C1|A",
+   "url": "https://www2.census.gov/geo/docs/reference/codes2020/place_by_cou/st48_tx_place_by_county2020.txt",
+   "source_type": "primary_official",
+   "retrieved": "2026-10-30",
+   "confidence": "high",
+   "document": "US Census Bureau, 2020 Texas place by county relationship file"
+  },
+  {
+   "id": "c14",
+   "text": "Census Bureau records place the city of Plano partly in Denton County as well.",
+   "quote": "TX|48|121|Denton County|58016|02411437|Plano city|INCORPORATED PLACE|C1|A",
+   "url": "https://www2.census.gov/geo/docs/reference/codes2020/place_by_cou/st48_tx_place_by_county2020.txt",
+   "source_type": "primary_official",
+   "retrieved": "2026-10-30",
+   "confidence": "high",
+   "document": "US Census Bureau, 2020 Texas place by county relationship file"
+  },
+  {
+   "id": "c15",
+   "text": "The Census Bureau's 2024 population estimate for the city of Plano is 293286.",
+   "quote": "162,48,000,58016,00000,00000,0,A,Plano city,Texas,285464,286422,288876,291079,293413,293286",
+   "url": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2024/cities/totals/sub-est2024_48.csv",
+   "source_type": "primary_official",
+   "retrieved": "2026-10-30",
+   "confidence": "high",
+   "document": "US Census Bureau, Vintage 2024 subcounty population estimates, Texas"
+  },
+  {
+   "id": "c16",
+   "text": "Carahsoft, the reseller on the item, sells Darwin AI to governments as a way to see how AI is actually being used.",
+   "quote": "Darwin AI addresses this gap by giving governments a clear, operational understanding of how AI is actually being used",
+   "url": "https://www.carahsoft.com/darwin-ai",
+   "source_type": "primary_corporate",
+   "retrieved": "2026-10-30",
+   "confidence": "high",
+   "document": "Carahsoft, Darwin AI for Government"
+  },
+  {
+   "id": "c17",
+   "text": "Carahsoft's Darwin AI page links to darwingov.com, the maker's site quoted for c9 to c12.",
+   "quote": "href=\"https://www.darwingov.com/\"",
+   "url": "https://www.carahsoft.com/darwin-ai",
+   "source_type": "primary_corporate",
+   "retrieved": "2026-10-30",
+   "confidence": "high",
+   "document": "Carahsoft, Darwin AI for Government (page source)"
+  },
+  {
+   "id": "c18",
+   "text": "The October 26th meeting's minutes note marks the October 12th minutes approved.",
+   "quote": "Approved\\\\b0\\\\par\\r\\n}\\r\\n\",\"EventItemActionId\":null,\"EventItemActionName\":null,\"EventItemActionText\":null,\"EventItemPassedFlag\":null,\"EventItemPassedFlagName\":null,\"EventItemRollCallFlag\":0,\"EventItemFlagExtra\":0,\"EventItemTitle\":\"October 12, 2026\"",
+   "url": "https://webapi.legistar.com/v1/plano/events/1156/eventitems?AgendaNote=1&MinutesNote=1",
+   "source_type": "primary_official",
+   "retrieved": "2026-10-30",
+   "confidence": "high",
+   "document": "City of Plano Legistar, City Council meeting agenda items, October 26th, 2026"
+  },
+  {
+   "id": "c19",
+   "text": "The October 26th City Council agenda carried an item for approval of minutes.",
+   "quote": "\"EventItemTitle\":\"Approval of Minutes\"",
+   "url": "https://webapi.legistar.com/v1/plano/events/1156/eventitems?AgendaNote=1&MinutesNote=1",
+   "source_type": "primary_official",
+   "retrieved": "2026-10-30",
+   "confidence": "high",
+   "document": "City of Plano Legistar, City Council meeting agenda items, October 26th, 2026"
+  },
+  {
+   "id": "c20",
+   "text": "The City Council met on October 26th, 2026.",
+   "quote": "\"EventBodyName\":\"City Council\",\"EventDate\":\"2026-10-26T00:00:00\"",
+   "url": "https://webapi.legistar.com/v1/plano/events/1156",
+   "source_type": "primary_official",
+   "retrieved": "2026-10-30",
+   "confidence": "high",
+   "document": "City of Plano Legistar, City Council meeting, October 26th, 2026"
+  },
+  {
+   "id": "c21",
+   "text": "The City Council's next meeting on Plano's Legistar is November 9th, 2026, at 7:00 PM.",
+   "quote": "\"EventBodyName\":\"City Council\",\"EventDate\":\"2026-11-09T00:00:00\",\"EventTime\":\"7:00 PM\"",
+   "url": "https://webapi.legistar.com/v1/plano/events/1157",
+   "source_type": "primary_official",
+   "retrieved": "2026-10-30",
+   "confidence": "high",
+   "document": "City of Plano Legistar, City Council meeting, November 9th, 2026"
+  },
+  {
+   "id": "c22",
+   "text": "The minutes of the October 26th meeting are also marked as a draft.",
+   "quote": "\"EventMinutesStatusName\":\"Draft\"",
+   "url": "https://webapi.legistar.com/v1/plano/events/1156",
+   "source_type": "primary_official",
+   "retrieved": "2026-10-30",
+   "confidence": "high",
+   "document": "City of Plano Legistar, City Council meeting, October 26th, 2026"
+  }
+ ],
+ "rejected": [
+  {
+   "finding": "Plano plans to begin with 150 ChatGPT Enterprise licenses at an estimated annual cost, and the city's stated uses and funding sources",
+   "reason": "Reported only by Government Technology, whose robots.txt names ClaudeBot with Disallow / for the whole host. Off limits under the registry's per host rule, so not cited."
+  },
+  {
+   "finding": "A vote, mover, seconder or tally for the item",
+   "reason": "Every action field on event item 22203 is null, the matter's history is empty and its status reads Agenda Ready. The only record of the outcome is the draft minutes note."
+  },
+  {
+   "finding": "City of Plano employee or position count",
+   "reason": "No plano.gov page reached prints one. The budget documents load dynamically and render empty to this client."
+  },
+  {
+   "finding": "What OpenAI says ChatGPT Enterprise does with business data",
+   "reason": "openai.com answered 403 to every enterprise page. Not a robots decision, and no quote was obtained."
+  },
+  {
+   "finding": "The agenda memo for File 26-884",
+   "reason": "plano.legistar1.com robots.txt disallows all readers."
+  }
+ ]
+}

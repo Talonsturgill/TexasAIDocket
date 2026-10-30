@@ -1,0 +1,59 @@
+<!doctype html>
+<!-- 2026-10-30, frame 1 of 9. Archetype FULL_BLEED. A spatial scene through txthree.js in the deck's lastLight world: the chassis equal_arm_balance on a chalk plinth on a city hall plaza, chatgpt_units brass weights in the left pan and darwin_units blued weights in the right, the beam tilted by the chassis drawing rule. Each weight is unit_usd, a drawing unit. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:900px">A chatbot for Plano, and Darwin AI beside it</h1>
+<p class="dek" data-follow="26" style="width:860px">The city's October 12th agenda carried $190,000 for ChatGPT Enterprise and $150,000 for Darwin AI, a platform its maker says tracks AI use. Each weight is $10,000, a drawing unit. Drawn to&nbsp;illustrate.</p>
+<script>window.FIG = {"chatgpt_units": 19, "darwin_units": 15};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-30-balance.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Plano's AI purchase, weighed", counter: "01 / 09", src: "c1 c2 c3 c5 c9 c17", fit: { min: 70, max: 92, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 32, near: 0.05, far: 3000, fog: 0.012 });
+  /* THE FIGURES, from figures.json: the weight count in each pan at one unit_usd a weight */
+  const nL = Math.round(FIG.chatgpt_units), nR = Math.round(FIG.darwin_units);
+  const plinth = K.make('chalk_plinth', { w: 1.0, h: 1.0, d: 0.62 }); CH.put(plinth, true);
+  const bal = K.make('equal_arm_balance', { left: nL, right: nR, seed: 63 }); bal.position.set(0, 1.0, 0); bal.rotation.y = -0.42; CH.put(bal);
+  /* the city hall far behind on the plaza, its glazed chamber lit from inside by lights placed behind the glass */
+  const hall = K.make('city_hall', { floors: 3, seed: 3 }); hall.position.set(8, 0, -80); hall.rotation.y = 0.35; TXT.add(R, hall);
+  /* the chamber behind lit warm, the room the item was decided in: its glazing carries an ember from the lit room */
+  const isGlass = m => m && m.clearcoat === 1 && m.roughness <= 0.06, lit = new Map();
+  const warmGlass = m => { let w = lit.get(m); if (!w) { w = m.clone(); w.emissive = new THREE.Color(0xffa962); w.emissiveIntensity = 0.9; lit.set(m, w); } return w; };
+  hall.traverse(o => { if (!o.isMesh) return;
+    if (Array.isArray(o.material)) o.material = o.material.map(m => isGlass(m) ? warmGlass(m) : m);
+    else if (isGlass(o.material)) o.material = warmGlass(o.material); });
+  [[-4, 4, -68], [4, 4, -66], [12, 4, -65]].forEach(([x, y, z]) => { const l = new THREE.PointLight(0xffb070, 60, 22, 2); l.position.set(x, y, z); R.scene.add(l); });
+  TXT.sky(R);
+  TXT.ground(R, { surface: 'concrete', size: 600, seed: 21 });
+  const from = [-0.8, 1.46, 2.35];
+  const look = CH.aim(THREE, R, TXT, from, [0, 1.25, 0], 540, 960, 32);
+  TXT.frame(R, { fov: 32, from, look });
+  CH.warm(R, 0.32);
+  TXT.deckRig(R, CH.rigSpec(W, 1.7, 4096), CH.rigOpts([0, 1.2, 0], { distance: 12, shadowFar: 40 }));
+  CH.unacne(R, 0.01);
+  TXT.weather(R, { grime: 0.45, height: 0.6 });
+  TXT.stage(R, [bal], { poolInner: 0.6, poolOuter: 1.8 });
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0.3, veil: 0.3, footWash: 0.5 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>
