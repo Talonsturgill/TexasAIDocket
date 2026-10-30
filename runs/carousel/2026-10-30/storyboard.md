@@ -171,7 +171,6 @@ acceptance:
   - "the plinth meets the ground with a contact shadow and the weights cast onto the plinth top"
   - "no beam, pan or weight crosses a glyph of the hook or dek"
   - "the frame's median L* at 432 px is 26 or lower"
-
   - "the chassis equal_arm_balance is present with its pillar, beam, both pans and needle modelled"
   - "the balance owns at least half of the frame width and at least 220 px of height at 432px"
 risks:
@@ -232,7 +231,6 @@ acceptance:
   - "the paper reads as a sheet with an edge that casts onto the board"
   - "no legible text is rendered in the art, only the DOM label (f)"
   - "the frame's median L* at 432 px is 34 or lower"
-
   - "the agenda sheet on the pecan board is present with its raised consent rows"
   - "the agenda sheet owns at least half of the frame height at 432px"
 risks:
@@ -296,7 +294,6 @@ acceptance:
   - "at 432 px the three metals are told apart and the empty wells read as dark holes"
   - "every weight sits in its well with contact occlusion and a short cast to the lower right, so each reads attached"
   - "the frame's median L* at 432 px is 30 or lower"
-
   - "the weight case owns at least a third of the frame height at 432px"
 risks:
   - "dozens of small cylinders in plan can read as a dotted card at 432 px, the no. 62 failure, so the weights stand 30 px proud under el 13 with a snooted pool, and if one repair fails the frame becomes a txthree oblique of the open case"
@@ -417,7 +414,6 @@ acceptance:
   - "the lower groove continues empty for exactly 4 disc widths past its last disc"
   - "every disc casts onto the clay at 432 px"
   - "the frame's median L* at 432 px is 26 or lower"
-
   - "the clay board with its two grooves spans at least two thirds of the frame width at 432px"
 risks:
   - "two rows in plan can read as a striped bar chart, so each disc has a raised rim and a slot and the key grazes along the grooves"
@@ -479,7 +475,6 @@ acceptance:
   - "the needle tip sits on the fourth graduation from zero, on the brass index, within 6 px at full size"
   - "the needle reads as nickel against the seam at 432 px"
   - "the frame's median L* at 432 px is 24 or lower"
-
   - "the needle and arc span at least half of the frame width at 432px"
 risks:
   - "engraved graduations at macro can alias, so they are geometry with a bevel and the camera stays level with the arc"
@@ -540,7 +535,6 @@ acceptance:
   - "the pan reads as higher than the camera with its underside visible"
   - "both quoted lines are set in straight quotes and match c9 and c10 word for word"
   - "the frame's median L* at 432 px is 24 or lower"
-
   - "the watcher end of the beam riding high is present with its stirrups, pan and blued stack"
   - "the watcher end of the beam with its blued stack stands at least 120 px tall at 432px"
 risks:
@@ -603,7 +597,6 @@ acceptance:
   - "the back wall is visibly darker than the ledge pool at 432 px"
   - "no screen or legible text appears in the art"
   - "the frame's median L* at 432 px is 22 or lower"
-
   - "the dais ledge spans the full frame width and at least 90 px of height at 432px"
 risks:
   - "the room can read as a generic CG interior, so the crop is tight on the ledge with one window source and no person"
@@ -668,7 +661,6 @@ acceptance:
   - "the city hall's chamber glazing is lit and is the brightest large area beyond the balance"
   - "the person meets the ground with a contact shadow and the balance's feet meet the plinth top"
   - "the frame's median L* at 432 px is 22 or lower"
-
   - "the balance on its plinth stands at least 160 px tall at 432px"
 risks:
   - "the kit person within a few metres reads as a mannequin, so it stays small, three quarters away and lit from the camera side"
