@@ -2424,3 +2424,12 @@ with its dateline printed as "HOUSTON – (Sept. 28, 2026)".
 
 **www.darwingov.com is Darwin AI's domain** (darwin.ai answered 503 and darwinai.com didn't resolve). Its robots.txt
 carries only a sitemap line.
+
+**www.carahsoft.com serves a robots.txt with a `*` group and no ClaudeBot group**, and its Darwin AI for Government
+page (`/darwin-ai`) answered to `fetch_doc.py`. The page links to `https://www.darwingov.com/` in its own source, which
+is what ties the reseller on a city's purchase to the maker's site. `/darwin` and `/darwinai` are 404.
+
+**webapi.legistar.com carries the next meetings and the minutes notes of later meetings.** `events?$filter=EventDate ge
+datetime'<date>'` lists upcoming bodies, and a later meeting's `eventitems?MinutesNote=1` carried the approval of an
+earlier meeting's minutes while that earlier meeting's `EventMinutesStatusName` still read Draft. Read both before
+writing that minutes are "still a draft".

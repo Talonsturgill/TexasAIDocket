@@ -138,6 +138,35 @@ art 141.48, review 192.44, panel 263.94, package 285.95 minutes.
 - **/topic/state-policy/**. The new item is listed under its corrected title. The card count against the page count was NOT LOOKED AT.
 - **/place/county-collin/**. The page reads "2 items in the record" and places Collin County in the Dallas-Fort Worth-Arlington metropolitan statistical area. /place/county-denton/ also carries the item.
 
+## Retro
+
+**Did this run stop and wait for a human? Interim reading, before the merge.** `prompt_audit.py` measured 1,886 tool
+calls and reported 257 as waiting on a human, led by Agent and SendMessage dispatches of 3 to 25 seconds and Bash calls
+of about 2 seconds. The no-stall hook was armed at 05:03:37 UTC, judged the session unattended from its first call with
+the host's `CLAUDE_CODE_SESSION_ATTENDED=0`, and refused nothing. Those waits read as dispatch latency, not dialogs,
+which is the queued `prompt-audit-counts-agent-latency` (now repeat 1). This reading is interim: everything after it
+can still prompt, and Phase 19 reads it again.
+
+**What went wrong, and what it cost.**
+- The relief band cost four workarounds and charges in every panel round before the measured left and right split named
+  the cause, a post pass drawn at device scale. A one-quadrant artifact is a scale bug first.
+- The audition was re-bound eleven times. Each chassis or type change after an acceptance invalidated it, and
+  `art_preflight --write` drops the stored review each time, so the review had to be rebuilt from the agent's reply.
+- The panel's round 1 hard fail was a framing word, "watcher", that every earlier reviewer read past, and the record's own
+  title carried the same overreach. The repair found the October 26th minutes note, which the deck had missed.
+- Computed figures that numeral_trace and aggregate_check can't agree on forced "133 cents" over "$1.33" and "covers"
+  over a natural verb. That is the October 29th queue item, met again.
+- `record_done` was missed at Phase 8.
+
+**Field log.** The 2026-10-30 section of `knowledge/shared/SOURCES_FIELD_LOG.md` records govtech.com's ClaudeBot
+disallow, webapi.legistar.com's open API and plano.legistar1.com's disallow, the UNT and UTA failures, the moved Texas
+Children's release and darwingov.com. Carahsoft's page (`www.carahsoft.com/darwin-ai`) answered with no ClaudeBot group,
+and is added below.
+
+**Instincts.** Confirmed `a-paraphrase-can-outrun-its-quote` (the cover and the record's title) and
+`a-repair-lands-on-every-surface` (the minutes repair went to the deck, caption and web edition in one pass). Added
+`a-quadrant-artifact-is-a-scale-bug`.
+
 ## Gate status
 
 <!-- gate-status:begin -->
