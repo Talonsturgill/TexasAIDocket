@@ -1,7 +1,7 @@
 {
  "_spec": {
   "version": 2,
-  "generated": "2026-10-29",
+  "generated": "2026-10-30",
   "gates": [
    "banned words",
    "claims",
@@ -3950,6 +3950,11 @@
      "date": "2026-10-29",
      "note": "Williamson County's abatement for Compal's Georgetown service center is still unconfirmed. The county's notice refuses every reader.",
      "checked": true
+    },
+    {
+     "date": "2026-10-30",
+     "note": "The Compal abatement in Williamson County remains unconfirmed. The county's notice still refuses every reader.",
+     "checked": true
     }
    ],
    "unreachable": {
@@ -5360,6 +5365,11 @@
      "date": "2026-10-29",
      "note": "Guadalupe County's vote to end its plate camera contract is still unconfirmed. The minutes and both newsroom accounts bar automated readers.",
      "checked": true
+    },
+    {
+     "date": "2026-10-30",
+     "note": "Guadalupe County's decision to end the plate camera contract remains unconfirmed. Its minutes and both news accounts still bar automated readers.",
+     "checked": true
     }
    ],
    "unreachable": {
@@ -6409,6 +6419,11 @@
      "date": "2026-10-29",
      "note": "The Wichita Falls permit for the Airport Drive data center is still unconfirmed. The station's report bars automated readers.",
      "checked": true
+    },
+    {
+     "date": "2026-10-30",
+     "note": "The Airport Drive data center permit in Wichita Falls remains unconfirmed. The station's report still bars automated readers.",
+     "checked": true
     }
    ],
    "unreachable": {
@@ -6827,6 +6842,11 @@
     {
      "date": "2026-10-29",
      "note": "Archer County's refusal of the data center abatement is still unconfirmed. The one station that reported it bars automated readers.",
+     "checked": true
+    },
+    {
+     "date": "2026-10-30",
+     "note": "Archer County's denial of the data center abatement remains unconfirmed. The station that reported it still bars automated readers.",
      "checked": true
     }
    ],
@@ -7278,6 +7298,11 @@
     {
      "date": "2026-10-29",
      "note": "Lubbock County's non binding disclosure resolution is still unconfirmed. Its only published account bars automated readers.",
+     "checked": true
+    },
+    {
+     "date": "2026-10-30",
+     "note": "Lubbock County's disclosure resolution remains unconfirmed, since its one published account still bars automated readers.",
      "checked": true
     }
    ],
@@ -7961,6 +7986,11 @@
     {
      "date": "2026-10-29",
      "note": "The council approved a resolution to switch the Flock cameras off within 72 hours if most voters reject them in November."
+    },
+    {
+     "date": "2026-10-30",
+     "note": "The city's agenda record still carries the special election on the plate reader cameras and the council's resolution to switch them off if voters reject them.",
+     "checked": true
     }
    ],
    "notes_for_editor": "2026-08-20, three corrections to this item's own prose and none to a fetched fact. The summary gave the mover a first name, Courtney, that no fetched record carries, and dropped the seconder the quote names. It also said the council passed the ordinance twice that evening, once on first reading and once on first and final reading, where the quote establishes one motion on first and final reading and nothing establishes a second. It called the cameras Flock Safety devices where the reporting says Flock cameras and Pflugerville's own item title says Flock Group, Inc. The heavier one was in public_access.how, which read 'The decision itself now goes to registered voters at the November 3rd, 2026 election'. That sat four lines below this item's own sentence saying the council keeps the decision either way, and against the ballot's published first clause, in the field the site prints under how to take part. Root cause: the field was written on 2026-08-14 from the ordinance, which orders an election, and was never revisited when the ballot wording arrived on 2026-08-20 and turned the election into a preference poll. A field that describes access was carrying a claim about effect.\n\n2026-08-20, second pass. The address, the date and the hour had been carried in public_access prose since the 14th with no quote behind them, and the day's deck was printing all three as its largest type. The meeting's own agenda was fetched instead, Legistar event 2222, and it carries the room and the street verbatim in item 1. Going to get it turned up the stronger finding: the agenda is FINAL with 61 titled items and not one names a licence plate reader, Flock or a camera. Until today this item could only say the record did not establish the question WAS on that agenda. It can now say the posted final agenda does not carry it. What that does NOT say, and this item must not: that the council will not reach the question on another date, or that the agenda's own ITEMS ADDED AFTER ELECTRONIC AGENDA COMPLETED placeholder will stay empty.\n\n2026-08-20, third pass. public_access.how still carried 'with a Council Budget and CIP Workshop at 5:00 PM', an hour no claim in this run establishes, in the same field whose note two paragraphs up was written to get unquoted particulars OUT of it. The event fetch returned exactly one League City event between August 20th and August 31st and it is the 6:00 PM council meeting. The workshop and its hour are removed. A correction that names a fault and then leaves an instance of it in the same paragraph is the fault surviving its own repair."
@@ -9331,6 +9361,11 @@
     {
      "date": "2026-10-29",
      "note": "Conroe's failed vote to put its Flock contract on the ballot is still unconfirmed. Both station reports bar automated readers.",
+     "checked": true
+    },
+    {
+     "date": "2026-10-30",
+     "note": "Conroe's vote that fell short of a Flock ballot question remains unconfirmed. Both station accounts still bar automated readers.",
      "checked": true
     }
    ],
@@ -13290,6 +13325,11 @@
      "date": "2026-10-29",
      "note": "The two House committee hearings on data centers and AI in health care are still unconfirmed on the Legislature's own pages, which bar automated readers.",
      "checked": true
+    },
+    {
+     "date": "2026-10-30",
+     "note": "The House committee hearings on data centers and AI in health care remain unconfirmed, since the Legislature's pages still bar automated readers.",
+     "checked": true
     }
    ],
    "unreachable": {
@@ -13521,6 +13561,11 @@
     {
      "date": "2026-10-29",
      "note": "Pflugerville's charter election, with its section on the city's use of AI, is still set for the November ballot.",
+     "checked": true
+    },
+    {
+     "date": "2026-10-30",
+     "note": "The city's legislative record still carries the charter election with its section on the city's use of AI. The ordinance files bar automated readers.",
      "checked": true
     }
    ]
@@ -16688,6 +16733,11 @@
      "date": "2026-10-29",
      "note": "The state's AI training requirement for government employees is still unconfirmed on the statute site, which bars automated readers.",
      "checked": true
+    },
+    {
+     "date": "2026-10-30",
+     "note": "The AI training requirement for government employees remains unconfirmed on the statute site, which still bars automated readers.",
+     "checked": true
     }
    ],
    "unreachable": {
@@ -18581,6 +18631,11 @@
     {
      "date": "2026-10-29",
      "note": "Brazos County's assignment of the RELLIS abatement to ThisWay Global is still unconfirmed. The county site refuses every reader.",
+     "checked": true
+    },
+    {
+     "date": "2026-10-30",
+     "note": "The RELLIS abatement's assignment to ThisWay Global remains unconfirmed, because Brazos County's site still turns away every reader.",
      "checked": true
     }
    ],
@@ -21107,6 +21162,11 @@
      "date": "2026-10-29",
      "note": "The state technology agency's account of how it is carrying out the AI laws is still unconfirmed. Its site bars automated readers.",
      "checked": true
+    },
+    {
+     "date": "2026-10-30",
+     "note": "The state technology agency's account of its work under the AI laws remains unconfirmed. Its site still bars automated readers.",
+     "checked": true
     }
    ],
    "unreachable": {
@@ -22486,6 +22546,11 @@
      "date": "2026-10-29",
      "note": "The Homeland Security account of facial capture at the Progreso bridge is still unconfirmed. The department's page refuses every reader.",
      "checked": true
+    },
+    {
+     "date": "2026-10-30",
+     "note": "The facial capture test at the Progreso bridge remains unconfirmed. The department's page still refuses every reader.",
+     "checked": true
     }
    ],
    "unreachable": {
@@ -23671,6 +23736,11 @@
      "date": "2026-10-29",
      "note": "Frontera's permanent queue closure is still unconfirmed on the center's documentation site, which bars automated readers.",
      "checked": true
+    },
+    {
+     "date": "2026-10-30",
+     "note": "Frontera's permanent queue closure remains unconfirmed, since the center's documentation site still bars automated readers.",
+     "checked": true
     }
    ],
    "unreachable": {
@@ -23830,6 +23900,11 @@
     {
      "date": "2026-10-29",
      "note": "Brownsville's temporary moratorium proposal is still unconfirmed. The city's page refuses every reader.",
+     "checked": true
+    },
+    {
+     "date": "2026-10-30",
+     "note": "Brownsville's proposed data center moratorium remains unconfirmed. The city's page still refuses every reader.",
      "checked": true
     }
    ],
@@ -24462,9 +24537,22 @@
      "date": "2026-10-29",
      "note": "UNT's undergraduate AI degree listing is still unconfirmed. The college's page bars automated readers.",
      "checked": true
+    },
+    {
+     "date": "2026-10-30",
+     "note": "UNT's undergraduate AI degree listing remains unconfirmed. The college's site would not serve its crawling rules today, so the page was left unread.",
+     "checked": true
     }
    ],
-   "confidence": "high"
+   "confidence": "high",
+   "unreachable": {
+    "hosts": [
+     "engineering.unt.edu"
+    ],
+    "boundary": "robots",
+    "checked": "2026-10-30",
+    "note": "engineering.unt.edu did not serve robots.txt on 2026-10-30. The project's agent failed on the site's certificate chain and the routine's WebFetch reader got a 503, so the file is read as refusing and the cited page was not requested. Nothing was routed around."
+   }
   },
   {
    "title": "Federal investigators opened a defect evaluation into a driverless system after crashes in Dallas and Austin",
@@ -27492,6 +27580,11 @@
      "date": "2026-10-29",
      "note": "The pediatric imaging AI review by Texas Children's and UT Southwestern radiologists is still unconfirmed on the federal literature index, which bars automated readers.",
      "checked": true
+    },
+    {
+     "date": "2026-10-30",
+     "note": "The pediatric imaging AI review remains unconfirmed on the federal literature index, which still bars automated readers.",
+     "checked": true
     }
    ],
    "unreachable": {
@@ -27671,6 +27764,11 @@
     {
      "date": "2026-10-29",
      "note": "The MD Anderson and UTMB MRI model study is still unconfirmed on the federal literature index, which bars automated readers.",
+     "checked": true
+    },
+    {
+     "date": "2026-10-30",
+     "note": "The MD Anderson and UTMB study of the MRI model remains unconfirmed on the federal literature index, which still bars automated readers.",
      "checked": true
     }
    ],
@@ -28723,8 +28821,21 @@
      "date": "2026-10-29",
      "note": "UT Arlington's AI tutor and its work with Fort Worth police are still unconfirmed. The university's site did not answer.",
      "checked": true
+    },
+    {
+     "date": "2026-10-30",
+     "note": "UT Arlington's AI tutor and its police work remain unconfirmed. The university's site would not serve its crawling rules today, so the release was left unread.",
+     "checked": true
     }
-   ]
+   ],
+   "unreachable": {
+    "hosts": [
+     "www.uta.edu"
+    ],
+    "boundary": "robots",
+    "checked": "2026-10-30",
+    "note": "www.uta.edu did not serve robots.txt on 2026-10-30. The project's agent failed on the site's certificate chain and the routine's WebFetch reader got a 503, so the file is read as refusing and the cited page was not requested. Nothing was routed around."
+   }
   },
   {
    "title": "Memorial Hermann clinicians send Houston patients an AI drafted explanation of their own test results",
@@ -29281,8 +29392,21 @@
      "date": "2026-10-29",
      "note": "UNT's gift and its college of artificial intelligence are still unconfirmed. The university's news site bars automated readers.",
      "checked": true
+    },
+    {
+     "date": "2026-10-30",
+     "note": "UNT's gift and its college of artificial intelligence remain unconfirmed. The news site would not serve its crawling rules today, so the release was left unread.",
+     "checked": true
     }
-   ]
+   ],
+   "unreachable": {
+    "hosts": [
+     "news.unt.edu"
+    ],
+    "boundary": "robots",
+    "checked": "2026-10-30",
+    "note": "news.unt.edu did not serve robots.txt on 2026-10-30. The project's agent failed on the site's certificate chain and the routine's WebFetch reader got a 503, so the file is read as refusing and the cited page was not requested. Nothing was routed around."
+   }
   },
   {
    "title": "A three campus Texas trial tests whether a phone microphone held to the abdomen can count fetal movement by machine",
@@ -29491,6 +29615,11 @@
     {
      "date": "2026-10-29",
      "note": "The three campus fetal movement trial is still unconfirmed on the federal trials registry, which bars automated readers.",
+     "checked": true
+    },
+    {
+     "date": "2026-10-30",
+     "note": "The fetal movement trial at three campuses remains unconfirmed on the federal trials registry, which still bars automated readers.",
      "checked": true
     }
    ],
@@ -29728,6 +29857,11 @@
      "date": "2026-10-29",
      "note": "Hays County's posting of the sheriff's promise on AI report writing is still unconfirmed. The agenda portal bars automated readers.",
      "checked": true
+    },
+    {
+     "date": "2026-10-30",
+     "note": "The sheriff's promise on AI report writing remains unconfirmed on the county agenda portal, which still bars automated readers.",
+     "checked": true
     }
    ],
    "last_verified": "2026-10-18",
@@ -29922,6 +30056,11 @@
      "date": "2026-10-29",
      "note": "The Hays County Clerk's request for AI that writes the official minutes is still unconfirmed on the agenda portal, which bars automated readers.",
      "checked": true
+    },
+    {
+     "date": "2026-10-30",
+     "note": "The Clerk's request for AI that drafts the official minutes remains unconfirmed on the county agenda portal, which still bars automated readers.",
+     "checked": true
     }
    ],
    "last_verified": "2026-10-24",
@@ -30100,6 +30239,11 @@
     {
      "date": "2026-10-29",
      "note": "Hays County's policy on AI in surveillance is still unconfirmed. The agenda portal bars automated readers.",
+     "checked": true
+    },
+    {
+     "date": "2026-10-30",
+     "note": "Whether Hays County has adopted its policy on AI in surveillance is not confirmed today. Its agenda portal still bars automated readers.",
      "checked": true
     }
    ],
@@ -30303,6 +30447,11 @@
      "date": "2026-10-29",
      "note": "The Governor's direction to the water board on the water use survey is still unconfirmed, since the office's site bars automated readers.",
      "checked": true
+    },
+    {
+     "date": "2026-10-30",
+     "note": "The Governor's direction on the water use survey remains unconfirmed, because the office's site still bars automated readers.",
+     "checked": true
     }
    ],
    "unreachable": {
@@ -30447,8 +30596,21 @@
      "date": "2026-10-29",
      "note": "UT Arlington's switch from business analytics to AI degrees is still unconfirmed. The university's site did not answer.",
      "checked": true
+    },
+    {
+     "date": "2026-10-30",
+     "note": "UT Arlington's move from business analytics to AI degrees remains unconfirmed. The university's site would not serve its crawling rules today, so the release was left unread.",
+     "checked": true
     }
-   ]
+   ],
+   "unreachable": {
+    "hosts": [
+     "www.uta.edu"
+    ],
+    "boundary": "robots",
+    "checked": "2026-10-30",
+    "note": "www.uta.edu did not serve robots.txt on 2026-10-30. The project's agent failed on the site's certificate chain and the routine's WebFetch reader got a 503, so the file is read as refusing and the cited page was not requested. Nothing was routed around."
+   }
   },
   {
    "title": "Grid operator asks the water board's questions and gives data centers until October 12th",
@@ -31841,6 +32003,11 @@
      "date": "2026-10-29",
      "note": "Leander's end to plate reader payments is still unconfirmed. The city's page refuses every reader.",
      "checked": true
+    },
+    {
+     "date": "2026-10-30",
+     "note": "Leander's end to plate reader payments remains unconfirmed, since the city's page still refuses every reader.",
+     "checked": true
     }
    ],
    "unreachable": {
@@ -31979,6 +32146,11 @@
     {
      "date": "2026-10-29",
      "note": "The Houston producer's stake in the AI vendor and its Ward County commitment are still unconfirmed. The release page refuses every reader.",
+     "checked": true
+    },
+    {
+     "date": "2026-10-30",
+     "note": "The producer's stake in the AI vendor and its Ward County commitment remain unconfirmed, since the release page still refuses every reader.",
      "checked": true
     }
    ],
@@ -32505,6 +32677,11 @@
     {
      "date": "2026-10-29",
      "note": "The FAA's comment window on round the clock Zipline flights has closed. The agency's own notice refuses every reader.",
+     "checked": true
+    },
+    {
+     "date": "2026-10-30",
+     "note": "The FAA's comment window on Zipline's round the clock flights stays closed with no decision confirmed. The agency's notice still refuses every reader.",
      "checked": true
     }
    ],
@@ -34408,7 +34585,7 @@
      "id": "tx-2026-0195-c1",
      "text": "The researchers identify variants in BRSK1 as a likely diagnosis for a rare neurodevelopmental disorder.",
      "verbatim_quote": "have identified variants in gene BRSK1 as a likely diagnosis for individuals with a rare and complex neurodevelopmental disorder who until now had not received an explanation for their condition.",
-     "source_url": "https://www.texaschildrens.org/content/news-release/together-human-genetics-ai-and-animal-studies-provide-diagnosis-for-rare",
+     "source_url": "https://www.texaschildrens.org/content/research-news-release/together-human-genetics-ai-and-animal-studies-provide-diagnosis-for",
      "source_title": "Together human genetics, AI and animal studies provide diagnosis for rare, complex neurodevelopmental disorder, Texas Children's",
      "source_type": "primary_corporate",
      "fetched": "2026-10-02"
@@ -34417,7 +34594,7 @@
      "id": "tx-2026-0195-c2",
      "text": "The study appears in the American Journal of Human Genetics.",
      "verbatim_quote": "The study appears in the American Journal of Human Genetics.",
-     "source_url": "https://www.texaschildrens.org/content/news-release/together-human-genetics-ai-and-animal-studies-provide-diagnosis-for-rare",
+     "source_url": "https://www.texaschildrens.org/content/research-news-release/together-human-genetics-ai-and-animal-studies-provide-diagnosis-for",
      "source_title": "Together human genetics, AI and animal studies provide diagnosis for rare, complex neurodevelopmental disorder, Texas Children's",
      "source_type": "primary_corporate",
      "fetched": "2026-10-02"
@@ -34426,7 +34603,7 @@
      "id": "tx-2026-0195-c3",
      "text": "The work began with a child in the Texome Project, which provides free genetic testing for underserved people with rare undiagnosed conditions.",
      "verbatim_quote": "The project began with a child enrolled in the Texome Project, a program that provides free genetic testing for medically underserved individuals with rare, undiagnosed conditions",
-     "source_url": "https://www.texaschildrens.org/content/news-release/together-human-genetics-ai-and-animal-studies-provide-diagnosis-for-rare",
+     "source_url": "https://www.texaschildrens.org/content/research-news-release/together-human-genetics-ai-and-animal-studies-provide-diagnosis-for",
      "source_title": "Together human genetics, AI and animal studies provide diagnosis for rare, complex neurodevelopmental disorder, Texas Children's",
      "source_type": "primary_corporate",
      "fetched": "2026-10-02"
@@ -34435,7 +34612,7 @@
      "id": "tx-2026-0195-c4",
      "text": "Standard analysis found no answer and the AI-MARRVEL tool highlighted a rare change in BRSK1.",
      "verbatim_quote": "Standard genetic analyses of a parent and child with the condition did not reveal an answer, but when a new artificial intelligence-based tool called AI-MARRVEL analyzed the genomic data, it highlighted a rare change in the BRSK1 gene as a promising candidate for a genetic diagnosis.",
-     "source_url": "https://www.texaschildrens.org/content/news-release/together-human-genetics-ai-and-animal-studies-provide-diagnosis-for-rare",
+     "source_url": "https://www.texaschildrens.org/content/research-news-release/together-human-genetics-ai-and-animal-studies-provide-diagnosis-for",
      "source_title": "Together human genetics, AI and animal studies provide diagnosis for rare, complex neurodevelopmental disorder, Texas Children's",
      "source_type": "primary_corporate",
      "fetched": "2026-10-02"
@@ -34444,7 +34621,7 @@
      "id": "tx-2026-0195-c5",
      "text": "After sharing through GeneMatcher the team studied ten affected people from seven unrelated families.",
      "verbatim_quote": "Altogether, we studied 10 affected individuals from seven unrelated families",
-     "source_url": "https://www.texaschildrens.org/content/news-release/together-human-genetics-ai-and-animal-studies-provide-diagnosis-for-rare",
+     "source_url": "https://www.texaschildrens.org/content/research-news-release/together-human-genetics-ai-and-animal-studies-provide-diagnosis-for",
      "source_title": "Together human genetics, AI and animal studies provide diagnosis for rare, complex neurodevelopmental disorder, Texas Children's",
      "source_type": "primary_corporate",
      "fetched": "2026-10-02"
@@ -34453,7 +34630,7 @@
      "id": "tx-2026-0195-c6",
      "text": "Flies with the fly gene disabled had trouble moving and lived shorter lives.",
      "verbatim_quote": "When the fly gene was disabled, the flies developed difficulties moving, showed increased sensitivity to stressors that can trigger seizure-like behavior, became more vulnerable to heat-induced paralysis and lived shorter lives.",
-     "source_url": "https://www.texaschildrens.org/content/news-release/together-human-genetics-ai-and-animal-studies-provide-diagnosis-for-rare",
+     "source_url": "https://www.texaschildrens.org/content/research-news-release/together-human-genetics-ai-and-animal-studies-provide-diagnosis-for",
      "source_title": "Together human genetics, AI and animal studies provide diagnosis for rare, complex neurodevelopmental disorder, Texas Children's",
      "source_type": "primary_corporate",
      "fetched": "2026-10-02"
@@ -34462,7 +34639,7 @@
      "id": "tx-2026-0195-c7",
      "text": "The normal human gene largely corrected the flies.",
      "verbatim_quote": "the human gene largely corrected the flies' movement and neurological problems",
-     "source_url": "https://www.texaschildrens.org/content/news-release/together-human-genetics-ai-and-animal-studies-provide-diagnosis-for-rare",
+     "source_url": "https://www.texaschildrens.org/content/research-news-release/together-human-genetics-ai-and-animal-studies-provide-diagnosis-for",
      "source_title": "Together human genetics, AI and animal studies provide diagnosis for rare, complex neurodevelopmental disorder, Texas Children's",
      "source_type": "primary_corporate",
      "fetched": "2026-10-02"
@@ -34471,7 +34648,7 @@
      "id": "tx-2026-0195-c8",
      "text": "The patients' variants only partly restored the flies.",
      "verbatim_quote": "when we introduced the gene variants found in affected individuals, the neurological and movement problems were only partially restored",
-     "source_url": "https://www.texaschildrens.org/content/news-release/together-human-genetics-ai-and-animal-studies-provide-diagnosis-for-rare",
+     "source_url": "https://www.texaschildrens.org/content/research-news-release/together-human-genetics-ai-and-animal-studies-provide-diagnosis-for",
      "source_title": "Together human genetics, AI and animal studies provide diagnosis for rare, complex neurodevelopmental disorder, Texas Children's",
      "source_type": "primary_corporate",
      "fetched": "2026-10-02"
@@ -34479,8 +34656,8 @@
     {
      "id": "tx-2026-0195-c9",
      "text": "The release is dated September 28th, 2026.",
-     "verbatim_quote": "HOUSTON (September 28, 2026)",
-     "source_url": "https://www.texaschildrens.org/content/news-release/together-human-genetics-ai-and-animal-studies-provide-diagnosis-for-rare",
+     "verbatim_quote": "(Sept. 28, 2026)",
+     "source_url": "https://www.texaschildrens.org/content/research-news-release/together-human-genetics-ai-and-animal-studies-provide-diagnosis-for",
      "source_title": "Together human genetics, AI and animal studies provide diagnosis for rare, complex neurodevelopmental disorder, Texas Children's",
      "source_type": "primary_corporate",
      "fetched": "2026-10-02"
@@ -34495,7 +34672,7 @@
      "fetched": "2026-10-02"
     }
    ],
-   "last_verified": "2026-10-24",
+   "last_verified": "2026-10-30",
    "confidence": "high",
    "notes_for_editor": "Sourced to Texas Children's own release of the study and to the Texome Project's site. The journal article at doi.org/10.1016/j.ajhg.2026.09.005 rendered no text to the fetcher. A follow up should watch for the hospital or Baylor stating whether AI-MARRVEL is used in clinical diagnosis rather than research.",
    "history": [
@@ -34542,6 +34719,10 @@
      "date": "2026-10-29",
      "note": "The Texas Children's and Baylor account of the AI flagged gene is unconfirmed. The hospital's release no longer answers at its address.",
      "checked": true
+    },
+    {
+     "date": "2026-10-30",
+     "note": "The hospital's release moved to a new address and still reads as published, naming BRSK1 as the likely diagnosis the AI tool first flagged."
     }
    ]
   },
@@ -40646,6 +40827,176 @@
     {
      "date": "2026-10-29",
      "note": "Admitted on Soluna's own releases. The deal has not closed, and no Briscoe County vote on the abatement is on record yet."
+    }
+   ]
+  },
+  {
+   "title": "Plano City Council approves up to $390,000 for ChatGPT Enterprise and an AI platform that watches how city staff use it",
+   "summary": "Plano's City Council approved a citywide AI purchase on its October 12th consent agenda. It buys ChatGPT Enterprise from Carahsoft for up to $190,000 and the Darwin AI governance platform for $150,000. It adds $10,000 of Microsoft licenses and holds $40,000 for growth, inside a ceiling of $390,000. The city calls ChatGPT Enterprise its standard generative AI platform and plans to start with 150 licenses. Darwin AI is meant to monitor the AI tools the city uses, enforce its policies and keep records for oversight. Every line was bought through state DIR contracts.",
+   "topic": "state-policy",
+   "decider": {
+    "name": "Plano City Council",
+    "type": "city"
+   },
+   "geography": {
+    "statewide": false,
+    "counties": [
+     "Collin",
+     "Denton"
+    ],
+    "on_ercot": true,
+    "metro": "Dallas-Fort Worth-Arlington, TX"
+   },
+   "status": "decided",
+   "key_dates": [
+    {
+     "date": "2026-10-12",
+     "kind": "decided",
+     "note": "City Council approves the purchase on its consent agenda"
+    }
+   ],
+   "public_access": {
+    "room": "contact_only",
+    "how": "The purchase is approved and no hearing or comment window follows it. The City Council posts its agendas and records on the city's Legistar site, and a resident reaches the council through the city.",
+    "url": "https://webapi.legistar.com/v1/plano/matters/1967",
+    "closes": null
+   },
+   "confidence": "high",
+   "notes_for_editor": "Admitted on the city's own Legistar record of File 26-884 and its October 12th action. License count, annual cost and the governance platform's job come from Government Technology's reading of the agenda memo, which sits on a host that bars automated readers.",
+   "claims": [
+    {
+     "text": "Plano's City Council agenda carried the purchase of ChatGPT Enterprise from Carahsoft for up to $190,000 under a state DIR contract.",
+     "verbatim_quote": "To approve the purchase and implementation of ChatGPT Enterprise Solution for Technology Solutions from Carahsoft Technology Corporation in the amount of $190,000 (DIR-CPO-5683)",
+     "source_url": "https://webapi.legistar.com/v1/plano/matters/1967",
+     "source_title": "City of Plano Legistar, File 26-884, ChatGPT Enterprise, Darwin AI and Microsoft purchase",
+     "source_type": "primary_official",
+     "fetched": "2026-10-30",
+     "id": "tx-2026-0234-c1"
+    },
+    {
+     "text": "The same item buys the Darwin AI platform from Carahsoft for $150,000.",
+     "verbatim_quote": "Darwin AI from Carahsoft Technology Corporation in the amount of $150,000 (DIR-CPO-5687)",
+     "source_url": "https://webapi.legistar.com/v1/plano/matters/1967",
+     "source_title": "City of Plano Legistar, File 26-884, ChatGPT Enterprise, Darwin AI and Microsoft purchase",
+     "source_type": "primary_official",
+     "fetched": "2026-10-30",
+     "id": "tx-2026-0234-c2"
+    },
+    {
+     "text": "It buys Microsoft Enterprise from SHI Government Solutions for $10,000.",
+     "verbatim_quote": "Microsoft Enterprise from SHI Government Solutions, Inc. in the amount of $10,000 (DIR-CPO-5237)",
+     "source_url": "https://webapi.legistar.com/v1/plano/matters/1967",
+     "source_title": "City of Plano Legistar, File 26-884, ChatGPT Enterprise, Darwin AI and Microsoft purchase",
+     "source_type": "primary_official",
+     "fetched": "2026-10-30",
+     "id": "tx-2026-0234-c3"
+    },
+    {
+     "text": "A further $40,000 is held for more licenses and other costs, inside a ceiling of $390,000.",
+     "verbatim_quote": "an additional $40,000 that will remain available for approved increases in license demand, usage capacity, implementation needs, and other costs within the authorized scope in the not-to-exceed amount of $390,000 through an existing contract",
+     "source_url": "https://webapi.legistar.com/v1/plano/matters/1967",
+     "source_title": "City of Plano Legistar, File 26-884, ChatGPT Enterprise, Darwin AI and Microsoft purchase",
+     "source_type": "primary_official",
+     "fetched": "2026-10-30",
+     "id": "tx-2026-0234-c4"
+    },
+    {
+     "text": "The item was on the consent agenda, which the council acts on in one motion.",
+     "verbatim_quote": "The Consent Agenda will be acted upon in one motion and contains items which are routine and typically noncontroversial.",
+     "source_url": "https://webapi.legistar.com/v1/plano/events/1155/eventitems?AgendaNote=1&MinutesNote=1",
+     "source_title": "City of Plano Legistar, City Council meeting agenda items, October 12th, 2026",
+     "source_type": "primary_official",
+     "fetched": "2026-10-30",
+     "id": "tx-2026-0234-c5"
+    },
+    {
+     "text": "The council's record marks the item approved.",
+     "verbatim_quote": "Approved",
+     "source_url": "https://webapi.legistar.com/v1/plano/events/1155/eventitems?AgendaNote=1&MinutesNote=1",
+     "source_title": "City of Plano Legistar, City Council meeting agenda items, October 12th, 2026",
+     "source_type": "primary_official",
+     "fetched": "2026-10-30",
+     "id": "tx-2026-0234-c6"
+    },
+    {
+     "text": "The City Council meeting that took the item was dated October 12th, 2026.",
+     "verbatim_quote": "\"EventDate\":\"2026-10-12T00:00:00\"",
+     "source_url": "https://webapi.legistar.com/v1/plano/events/1155",
+     "source_title": "City of Plano Legistar, City Council meeting, October 12th, 2026",
+     "source_type": "primary_official",
+     "fetched": "2026-10-30",
+     "id": "tx-2026-0234-c7"
+    },
+    {
+     "text": "Plano plans to start with 150 ChatGPT Enterprise licenses at an estimated $57,024 a year.",
+     "verbatim_quote": "Plano plans to begin with 150 licenses at an estimated annual cost of $57,024, while retaining authority to expand licensing as demand grows.",
+     "source_url": "https://www.govtech.com/artificial-intelligence/plano-texas-oks-spending-390k-for-citywide-ai-initiative",
+     "source_title": "Government Technology, Plano, Texas, OKs Spending $390K for Citywide AI Initiative",
+     "source_type": "journalism",
+     "fetched": "2026-10-30",
+     "id": "tx-2026-0234-c8"
+    },
+    {
+     "text": "The Darwin AI platform monitors the AI tools the city uses, enforces policies, protects sensitive information and keeps records for oversight.",
+     "verbatim_quote": "The platform will support AI governance by monitoring tools used by the city, enforcing policies, protecting sensitive information and maintaining records for compliance and oversight.",
+     "source_url": "https://www.govtech.com/artificial-intelligence/plano-texas-oks-spending-390k-for-citywide-ai-initiative",
+     "source_title": "Government Technology, Plano, Texas, OKs Spending $390K for Citywide AI Initiative",
+     "source_type": "journalism",
+     "fetched": "2026-10-30",
+     "id": "tx-2026-0234-c9"
+    },
+    {
+     "text": "The city calls ChatGPT Enterprise its standard general purpose generative AI platform.",
+     "verbatim_quote": "The city described ChatGPT Enterprise as its standard general-purpose generative AI platform.",
+     "source_url": "https://www.govtech.com/artificial-intelligence/plano-texas-oks-spending-390k-for-citywide-ai-initiative",
+     "source_title": "Government Technology, Plano, Texas, OKs Spending $390K for Citywide AI Initiative",
+     "source_type": "journalism",
+     "fetched": "2026-10-30",
+     "id": "tx-2026-0234-c10"
+    },
+    {
+     "text": "The Microsoft purchase is for AI meeting recaps, notes and recommended tasks.",
+     "verbatim_quote": "The city plans to use features including AI-generated meeting recaps, notes and recommended tasks for approved uses.",
+     "source_url": "https://www.govtech.com/artificial-intelligence/plano-texas-oks-spending-390k-for-citywide-ai-initiative",
+     "source_title": "Government Technology, Plano, Texas, OKs Spending $390K for Citywide AI Initiative",
+     "source_type": "journalism",
+     "fetched": "2026-10-30",
+     "id": "tx-2026-0234-c11"
+    },
+    {
+     "text": "The money comes from two city technology funds in fiscal year 2026 to 2027.",
+     "verbatim_quote": "Funding includes $240,000 from the Fiscal Year 2026-27 Technology Solutions Fund and $150,000 from the FY 2026-27 Technology Fund.",
+     "source_url": "https://www.govtech.com/artificial-intelligence/plano-texas-oks-spending-390k-for-citywide-ai-initiative",
+     "source_title": "Government Technology, Plano, Texas, OKs Spending $390K for Citywide AI Initiative",
+     "source_type": "journalism",
+     "fetched": "2026-10-30",
+     "id": "tx-2026-0234-c12"
+    },
+    {
+     "text": "Census Bureau records place the city of Plano in Collin County.",
+     "verbatim_quote": "TX|48|085|Collin County|58016|02411437|Plano city",
+     "source_url": "https://www2.census.gov/geo/docs/reference/codes2020/place_by_cou/st48_tx_place_by_county2020.txt",
+     "source_title": "US Census Bureau, 2020 Texas place by county relationship file",
+     "source_type": "primary_official",
+     "fetched": "2026-10-30",
+     "id": "tx-2026-0234-c13"
+    },
+    {
+     "text": "Census Bureau records place the city of Plano in Denton County as well.",
+     "verbatim_quote": "TX|48|121|Denton County|58016|02411437|Plano city",
+     "source_url": "https://www2.census.gov/geo/docs/reference/codes2020/place_by_cou/st48_tx_place_by_county2020.txt",
+     "source_title": "US Census Bureau, 2020 Texas place by county relationship file",
+     "source_type": "primary_official",
+     "fetched": "2026-10-30",
+     "id": "tx-2026-0234-c14"
+    }
+   ],
+   "id": "tx-2026-0234",
+   "last_verified": "2026-10-30",
+   "history": [
+    {
+     "date": "2026-10-30",
+     "note": "Admitted on the city's own record of the October 12th consent agenda, which marks the purchase approved. No use figures for the licenses are published yet."
     }
    ]
   }

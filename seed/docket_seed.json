@@ -17482,5 +17482,175 @@
     "note": "Admitted on Soluna's own releases. The deal has not closed, and no Briscoe County vote on the abatement is on record yet."
    }
   ]
+ },
+ {
+  "title": "Plano City Council approves up to $390,000 for ChatGPT Enterprise and an AI platform that watches how city staff use it",
+  "summary": "Plano's City Council approved a citywide AI purchase on its October 12th consent agenda. It buys ChatGPT Enterprise from Carahsoft for up to $190,000 and the Darwin AI governance platform for $150,000. It adds $10,000 of Microsoft licenses and holds $40,000 for growth, inside a ceiling of $390,000. The city calls ChatGPT Enterprise its standard generative AI platform and plans to start with 150 licenses. Darwin AI is meant to monitor the AI tools the city uses, enforce its policies and keep records for oversight. Every line was bought through state DIR contracts.",
+  "topic": "state-policy",
+  "decider": {
+   "name": "Plano City Council",
+   "type": "city"
+  },
+  "geography": {
+   "statewide": false,
+   "counties": [
+    "Collin",
+    "Denton"
+   ],
+   "on_ercot": true,
+   "metro": "Dallas-Fort Worth-Arlington, TX"
+  },
+  "status": "decided",
+  "key_dates": [
+   {
+    "date": "2026-10-12",
+    "kind": "decided",
+    "note": "City Council approves the purchase on its consent agenda"
+   }
+  ],
+  "public_access": {
+   "room": "contact_only",
+   "how": "The purchase is approved and no hearing or comment window follows it. The City Council posts its agendas and records on the city's Legistar site, and a resident reaches the council through the city.",
+   "url": "https://webapi.legistar.com/v1/plano/matters/1967",
+   "closes": null
+  },
+  "confidence": "high",
+  "notes_for_editor": "Admitted on the city's own Legistar record of File 26-884 and its October 12th action. License count, annual cost and the governance platform's job come from Government Technology's reading of the agenda memo, which sits on a host that bars automated readers.",
+  "claims": [
+   {
+    "text": "Plano's City Council agenda carried the purchase of ChatGPT Enterprise from Carahsoft for up to $190,000 under a state DIR contract.",
+    "verbatim_quote": "To approve the purchase and implementation of ChatGPT Enterprise Solution for Technology Solutions from Carahsoft Technology Corporation in the amount of $190,000 (DIR-CPO-5683)",
+    "source_url": "https://webapi.legistar.com/v1/plano/matters/1967",
+    "source_title": "City of Plano Legistar, File 26-884, ChatGPT Enterprise, Darwin AI and Microsoft purchase",
+    "source_type": "primary_official",
+    "fetched": "2026-10-30",
+    "id": "tx-2026-0234-c1"
+   },
+   {
+    "text": "The same item buys the Darwin AI platform from Carahsoft for $150,000.",
+    "verbatim_quote": "Darwin AI from Carahsoft Technology Corporation in the amount of $150,000 (DIR-CPO-5687)",
+    "source_url": "https://webapi.legistar.com/v1/plano/matters/1967",
+    "source_title": "City of Plano Legistar, File 26-884, ChatGPT Enterprise, Darwin AI and Microsoft purchase",
+    "source_type": "primary_official",
+    "fetched": "2026-10-30",
+    "id": "tx-2026-0234-c2"
+   },
+   {
+    "text": "It buys Microsoft Enterprise from SHI Government Solutions for $10,000.",
+    "verbatim_quote": "Microsoft Enterprise from SHI Government Solutions, Inc. in the amount of $10,000 (DIR-CPO-5237)",
+    "source_url": "https://webapi.legistar.com/v1/plano/matters/1967",
+    "source_title": "City of Plano Legistar, File 26-884, ChatGPT Enterprise, Darwin AI and Microsoft purchase",
+    "source_type": "primary_official",
+    "fetched": "2026-10-30",
+    "id": "tx-2026-0234-c3"
+   },
+   {
+    "text": "A further $40,000 is held for more licenses and other costs, inside a ceiling of $390,000.",
+    "verbatim_quote": "an additional $40,000 that will remain available for approved increases in license demand, usage capacity, implementation needs, and other costs within the authorized scope in the not-to-exceed amount of $390,000 through an existing contract",
+    "source_url": "https://webapi.legistar.com/v1/plano/matters/1967",
+    "source_title": "City of Plano Legistar, File 26-884, ChatGPT Enterprise, Darwin AI and Microsoft purchase",
+    "source_type": "primary_official",
+    "fetched": "2026-10-30",
+    "id": "tx-2026-0234-c4"
+   },
+   {
+    "text": "The item was on the consent agenda, which the council acts on in one motion.",
+    "verbatim_quote": "The Consent Agenda will be acted upon in one motion and contains items which are routine and typically noncontroversial.",
+    "source_url": "https://webapi.legistar.com/v1/plano/events/1155/eventitems?AgendaNote=1&MinutesNote=1",
+    "source_title": "City of Plano Legistar, City Council meeting agenda items, October 12th, 2026",
+    "source_type": "primary_official",
+    "fetched": "2026-10-30",
+    "id": "tx-2026-0234-c5"
+   },
+   {
+    "text": "The council's record marks the item approved.",
+    "verbatim_quote": "Approved",
+    "source_url": "https://webapi.legistar.com/v1/plano/events/1155/eventitems?AgendaNote=1&MinutesNote=1",
+    "source_title": "City of Plano Legistar, City Council meeting agenda items, October 12th, 2026",
+    "source_type": "primary_official",
+    "fetched": "2026-10-30",
+    "id": "tx-2026-0234-c6"
+   },
+   {
+    "text": "The City Council meeting that took the item was dated October 12th, 2026.",
+    "verbatim_quote": "\"EventDate\":\"2026-10-12T00:00:00\"",
+    "source_url": "https://webapi.legistar.com/v1/plano/events/1155",
+    "source_title": "City of Plano Legistar, City Council meeting, October 12th, 2026",
+    "source_type": "primary_official",
+    "fetched": "2026-10-30",
+    "id": "tx-2026-0234-c7"
+   },
+   {
+    "text": "Plano plans to start with 150 ChatGPT Enterprise licenses at an estimated $57,024 a year.",
+    "verbatim_quote": "Plano plans to begin with 150 licenses at an estimated annual cost of $57,024, while retaining authority to expand licensing as demand grows.",
+    "source_url": "https://www.govtech.com/artificial-intelligence/plano-texas-oks-spending-390k-for-citywide-ai-initiative",
+    "source_title": "Government Technology, Plano, Texas, OKs Spending $390K for Citywide AI Initiative",
+    "source_type": "journalism",
+    "fetched": "2026-10-30",
+    "id": "tx-2026-0234-c8"
+   },
+   {
+    "text": "The Darwin AI platform monitors the AI tools the city uses, enforces policies, protects sensitive information and keeps records for oversight.",
+    "verbatim_quote": "The platform will support AI governance by monitoring tools used by the city, enforcing policies, protecting sensitive information and maintaining records for compliance and oversight.",
+    "source_url": "https://www.govtech.com/artificial-intelligence/plano-texas-oks-spending-390k-for-citywide-ai-initiative",
+    "source_title": "Government Technology, Plano, Texas, OKs Spending $390K for Citywide AI Initiative",
+    "source_type": "journalism",
+    "fetched": "2026-10-30",
+    "id": "tx-2026-0234-c9"
+   },
+   {
+    "text": "The city calls ChatGPT Enterprise its standard general purpose generative AI platform.",
+    "verbatim_quote": "The city described ChatGPT Enterprise as its standard general-purpose generative AI platform.",
+    "source_url": "https://www.govtech.com/artificial-intelligence/plano-texas-oks-spending-390k-for-citywide-ai-initiative",
+    "source_title": "Government Technology, Plano, Texas, OKs Spending $390K for Citywide AI Initiative",
+    "source_type": "journalism",
+    "fetched": "2026-10-30",
+    "id": "tx-2026-0234-c10"
+   },
+   {
+    "text": "The Microsoft purchase is for AI meeting recaps, notes and recommended tasks.",
+    "verbatim_quote": "The city plans to use features including AI-generated meeting recaps, notes and recommended tasks for approved uses.",
+    "source_url": "https://www.govtech.com/artificial-intelligence/plano-texas-oks-spending-390k-for-citywide-ai-initiative",
+    "source_title": "Government Technology, Plano, Texas, OKs Spending $390K for Citywide AI Initiative",
+    "source_type": "journalism",
+    "fetched": "2026-10-30",
+    "id": "tx-2026-0234-c11"
+   },
+   {
+    "text": "The money comes from two city technology funds in fiscal year 2026 to 2027.",
+    "verbatim_quote": "Funding includes $240,000 from the Fiscal Year 2026-27 Technology Solutions Fund and $150,000 from the FY 2026-27 Technology Fund.",
+    "source_url": "https://www.govtech.com/artificial-intelligence/plano-texas-oks-spending-390k-for-citywide-ai-initiative",
+    "source_title": "Government Technology, Plano, Texas, OKs Spending $390K for Citywide AI Initiative",
+    "source_type": "journalism",
+    "fetched": "2026-10-30",
+    "id": "tx-2026-0234-c12"
+   },
+   {
+    "text": "Census Bureau records place the city of Plano in Collin County.",
+    "verbatim_quote": "TX|48|085|Collin County|58016|02411437|Plano city",
+    "source_url": "https://www2.census.gov/geo/docs/reference/codes2020/place_by_cou/st48_tx_place_by_county2020.txt",
+    "source_title": "US Census Bureau, 2020 Texas place by county relationship file",
+    "source_type": "primary_official",
+    "fetched": "2026-10-30",
+    "id": "tx-2026-0234-c13"
+   },
+   {
+    "text": "Census Bureau records place the city of Plano in Denton County as well.",
+    "verbatim_quote": "TX|48|121|Denton County|58016|02411437|Plano city",
+    "source_url": "https://www2.census.gov/geo/docs/reference/codes2020/place_by_cou/st48_tx_place_by_county2020.txt",
+    "source_title": "US Census Bureau, 2020 Texas place by county relationship file",
+    "source_type": "primary_official",
+    "fetched": "2026-10-30",
+    "id": "tx-2026-0234-c14"
+   }
+  ],
+  "id": "tx-2026-0234",
+  "last_verified": "2026-10-30",
+  "history": [
+   {
+    "date": "2026-10-30",
+    "note": "Admitted on the city's own record of the October 12th consent agenda, which marks the purchase approved. No use figures for the licenses are published yet."
+   }
+  ]
  }
 ]
