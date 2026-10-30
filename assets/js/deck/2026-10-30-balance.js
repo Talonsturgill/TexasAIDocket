@@ -156,7 +156,7 @@
      * the beam pointing down, and a nickel silver arc on the pillar engraved with 39 graduations (no numerals) and a brass
      * index. left and right are weight counts in each pan, tilt (degrees) is N.balanceState(left, right) unless given,
      * index is the graduation the brass index marks. The pans always hang plumb. */
-    var PIVOT_Y = 0.62, ARM = 0.32, ROD = 0.36, NEEDLE = 0.36, GRAD = 39;
+    var PIVOT_Y = 0.62, ARM = 0.32, ROD = 0.545, NEEDLE = 0.36, GRAD = 39;
     N.PIVOT_Y = PIVOT_Y; N.ARM = ARM; N.ROD = ROD; N.NEEDLE = NEEDLE;
     K.define("equal_arm_balance", {
       anchor: "base",
@@ -248,7 +248,7 @@
       note: "An Austin chalk plinth block. w, h, d (m).",
       make: function (o) {
         var g = new THREE.Group(), w = o.w || 0.9, h = o.h || 1.0, d = o.d || 0.6;
-        var m = TXT.roundedBox(w, h, d, 0.03, M.chalk); m.position.y = h / 2; g.add(m);
+        var m = TXT.roundedBox(w, h, d, 0.01, M.chalk); K.uvBox(m.geometry, 0.35); m.position.y = h / 2; g.add(m);
         return shade(g);
       }
     });
