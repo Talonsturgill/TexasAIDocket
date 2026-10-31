@@ -2433,3 +2433,26 @@ is what ties the reseller on a city's purchase to the maker's site. `/darwin` an
 datetime'<date>'` lists upcoming bodies, and a later meeting's `eventitems?MinutesNote=1` carried the approval of an
 earlier meeting's minutes while that earlier meeting's `EventMinutesStatusName` still read Draft. Read both before
 writing that minutes are "still a draft".
+
+## 2026-10-31
+
+**webapi.legistar.com answered 500 for part of the run** on League City calls (`/v1/leaguecity/matters/<id>/histories`
+and `/eventitems/<id>/votes`), from Python's urllib and curl alike, and recovered later in the session. Every quote was
+checked against the copy saved earlier in the run rather than refetched. The `eventitems/<id>` urls themselves answer
+404 while their `/votes` children answer, so a vote row is tied to its matter only through the history's event item id.
+
+**leaguecitytx.gov's robots.txt did not answer**, so the city's own newsflash and election pages were read as refusing and
+nothing on them was fetched. **legistar1.granicus.com** (League City's agenda packets) was not fetched, per the registry.
+
+**The Flock transparency portal for League City sits behind a bot challenge.** Its figures (agencies with access, searches
+per 30 days) reach the record only through the Texas Tribune's report of October 30th, which hyperlinks the portal.
+
+**Harris County's sample ballot is a PDF on hctxdnnstg.blob.core.windows.net** behind a signed url, and it answered.
+Galveston County's elections page returned no usable text for the November 3rd hours, so the deck gives Harris County's
+hours only and says League City lies in both counties.
+
+**pubmed.ncbi.nlm.nih.gov answered** the two PubMed records for tx-2026-0150 and tx-2026-0151, and both items were
+repointed there from their eutils urls and stamped.
+
+**www.texastribune.org and www.kedt.org answered** (the Tribune's article of October 30th, Houston Public Media's report
+republished by KEDT on October 14th). **hpcwire.com disallows ClaudeBot**, as a scout reported, and nothing from it was used.

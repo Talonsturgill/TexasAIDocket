@@ -89,6 +89,39 @@ saying they differ; Galveston County's hours absent; the closing question unansw
 
 From wake: record 17.39, audition and art 130.11, review 174.95, panel 226.38, package 258.24 minutes.
 
+## Retro
+
+**Did this run stop and wait for a human? Interim reading, before the merge.** `prompt_audit.py` measured 1,962 tool
+calls and reported 188 as waiting on a human, led by Agent and SendMessage dispatches of 6 to 29 seconds and Bash calls
+of about one second. The no-stall hook was armed at 05:06:52 UTC, judged the session unattended from its first call with
+the host's `CLAUDE_CODE_SESSION_ATTENDED=0`, and refused nothing. Those waits read as dispatch latency, not dialogs,
+which is the queued `prompt-audit-counts-agent-latency` (now repeat 2). This reading is interim. Phase 19 reads it again.
+
+**The instrument check.** gridwatch and waterwatch page checks exited 0. `schema_check` failed only on the committed
+`docs/` before the rebuild (two eutils urls the ledger no longer cited), and the ship rebuild cleared it.
+
+**What went wrong, and what it cost.**
+- Frame 7 cost three relights and an eye change before the cause showed: the camera stood over the sidewalk slab and its
+  top face was the "nearest bar". Then round 2's repair darkened the bar tops and the craft judge scored the frame lower.
+- The audition was bound nine times, and `art_preflight --write` dropped the stored review each time.
+- A frame 5 camera swing to clear the kerb wedge pushed the first near bar off the frame, the defect the art director had
+  charged twice before. It was reverted.
+- Two copy repairs needed a second pass because the first was looser than its claim: "the department requires two" for
+  c39, and "a resolution on the cameras" briefly without c22.
+- Round 1's repair dropped Houston Public Media's account of the 72 hours rather than disclosing it.
+
+**Machine queue.** Raised: prompt-audit-counts-agent-latency, grid-piece-count-reads-lit-ground-as-subject,
+lit-accent-drifts-in-lab, accent-presence-forces-a-pool, relief-plate-reads-as-a-tray,
+audition-rebind-after-every-panel-repair. Added: roadpaint-models-built-in-chassis, sources-block-labels-skip-the-date-rule,
+build-copy-keeps-hook-markup. With two repeat offenders the weekly pass came due today and ran before the merge.
+
+**Field log.** The 2026-10-31 section of `knowledge/shared/SOURCES_FIELD_LOG.md` records the Legistar API's 500s and
+404 event items, leaguecitytx.gov's unanswered robots file, the Flock portal's challenge, the Harris County sample ballot
+and Galveston County's missing hours.
+
+**Instincts.** Confirmed `read-the-repair-at-feed-scale`, `a-count-must-name-the-set-it-counted` and
+`a-paraphrase-can-outrun-its-quote`. Added `a-low-camera-sees-what-it-stands-on` and `disclose-two-accounts-dont-drop-one`.
+
 ## Gate status
 
 <!-- gate-status:begin -->

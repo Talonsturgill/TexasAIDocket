@@ -60,7 +60,8 @@
         "2026-09-13",
         "2026-09-27",
         "2026-09-28",
-        "2026-10-09"
+        "2026-10-09",
+        "2026-10-31"
       ],
       "contradicted": []
     },
@@ -218,7 +219,8 @@
         "2026-10-24",
         "2026-10-25",
         "2026-10-29",
-        "2026-10-30"
+        "2026-10-30",
+        "2026-10-31"
       ],
       "contradicted": []
     },
@@ -642,7 +644,8 @@
         "2026-10-20",
         "2026-10-25",
         "2026-10-26",
-        "2026-10-29"
+        "2026-10-29",
+        "2026-10-31"
       ],
       "contradicted": []
     },
@@ -1653,6 +1656,22 @@
       "learned": "2026-10-30",
       "instinct": "When an artifact is confined to exactly one quadrant of the canvas, look for a draw call made at the wrong scale before working around it, because a 2x canvas drawn in CSS units darkens precisely the top left quarter.",
       "evidence": "no. 63 frames 2 and 5 called CH.post before cx.setTransform(2, ...), so the type scrim and veil covered x under 540 and y under 675; four workarounds and two panel rounds charged it as a seam before the measured left right split named the cause",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "a-low-camera-sees-what-it-stands-on",
+      "learned": "2026-10-31",
+      "instinct": "Before relighting a frame whose lower third reads as a flat mid tone band, check what the camera is standing over, because a camera at paint height above a kerb or sidewalk renders that slab's top face as the subject.",
+      "evidence": "No. 64 frame 7: the flow critic and two pixel critics charged a tan mid tone band as the nearest crosswalk bar; three relights and an eye change failed until the camera, standing over the sidewalk slab, moved into the road off the kerb and the band vanished.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "disclose-two-accounts-dont-drop-one",
+      "learned": "2026-10-31",
+      "instinct": "When two fetched sources state the same promise differently, put both on the surface with their attributions rather than dropping the one that complicates the frame.",
+      "evidence": "No. 64 frame 8: round 1's repair dropped Houston Public Media's 'down within 72 hours' (c46) beside the Tribune's 'start bagging 72 hours after' (c33); the round 2 integrity judge charged the silent drop, and round 3 credited the disclosure.",
       "confirmed": [],
       "contradicted": []
     }
