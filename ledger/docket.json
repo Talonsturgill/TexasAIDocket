@@ -1,7 +1,7 @@
 {
  "_spec": {
   "version": 2,
-  "generated": "2026-10-30",
+  "generated": "2026-10-31",
   "gates": [
    "banned words",
    "claims",
@@ -7798,7 +7798,7 @@
   },
   {
    "title": "League City City Council ordered a November 3rd special election on whether police may keep using automated license plate reader cameras",
-   "summary": "On August 11th, 2026 the League City City Council approved Ordinance No. 2026-27 on first and final reading. The ordinance orders a special election on November 3rd, 2026. It asks voters about the police department's continued use of automated license plate reader cameras at fixed locations on public roadways. The wording the city published opens by telling voters the result is a nonbinding statement of preference, so the council keeps the decision either way. Mayor Long sponsored the item and asked for approval on first and final reading. Council member Chadwell moved it, seconded by Council member Cones. Reporting in the Houston region identifies the cameras as Flock cameras.",
+   "summary": "On August 11th, 2026 the League City City Council approved Ordinance No. 2026-27 on first and final reading. The ordinance orders a special election on November 3rd, 2026. It asks voters about the police department's continued use of automated license plate reader cameras at fixed locations on public roadways. The wording the city published opens by telling voters the result is a nonbinding statement of preference, so the council keeps the decision either way. Mayor Long sponsored the item and asked for approval on first and final reading. Council member Chadwell moved it, seconded by Council member Cones. Reporting in the Houston region identifies the cameras as Flock cameras. On October 13th the council voted to remove the fixed cameras if a majority rejects them, with every member on the roll for it. The same night it created a Citizen Data Privacy Committee to oversee the system.",
    "topic": "surveillance-and-policing",
    "decider": {
     "name": "League City City Council",
@@ -7807,7 +7807,8 @@
    "geography": {
     "statewide": false,
     "counties": [
-     "Galveston"
+     "Galveston",
+     "Harris"
     ],
     "metro": "Houston-Pasadena-The Woodlands, TX",
     "on_ercot": true
@@ -7881,6 +7882,51 @@
      "source_title": "KEDT, League City to disable Flock cameras if voters reject them in November",
      "source_type": "journalism",
      "fetched": "2026-10-29"
+    },
+    {
+     "text": "League City's council approved a resolution directing removal of the fixed plate reader cameras if a majority rejects them on November 3rd.",
+     "verbatim_quote": "to approve Resolution No. 2026-185 directing removal of the City’s automated license plate reader cameras at fixed locations along public roadways if a majority rejects continued use of those cameras in the November 3, 2026 election",
+     "source_url": "https://webapi.legistar.com/v1/leaguecity/matters/13936/histories",
+     "source_title": "City of League City Legistar, File 26-0429, Contingent Flock Removal, history",
+     "source_type": "primary_official",
+     "fetched": "2026-10-31",
+     "id": "tx-2026-0048-c6"
+    },
+    {
+     "text": "The council's vote record on the removal resolution lists Mayor Nick Long voting for it, and every one of the eight names on the roll is recorded as For.",
+     "verbatim_quote": "\"VotePersonName\":\"Nick Long\",\"VoteValueId\":16,\"VoteValueName\":\"For\"",
+     "source_url": "https://webapi.legistar.com/v1/leaguecity/eventitems/82914/votes",
+     "source_title": "City of League City Legistar, votes on Resolution No. 2026-185",
+     "source_type": "primary_official",
+     "fetched": "2026-10-31",
+     "id": "tx-2026-0048-c7"
+    },
+    {
+     "text": "On October 13th the council also approved on second reading an ordinance creating a Citizen Data Privacy Committee to oversee the plate reader system.",
+     "verbatim_quote": "Consider and take action on Ordinance 2026-39 creating a Citizen Data Privacy Committee to provide oversight of the City’s automated license plate reader system - Second Reading",
+     "source_url": "https://webapi.legistar.com/v1/leaguecity/matters/13938",
+     "source_title": "City of League City Legistar, File 26-0431, Citizen Data Privacy Committee",
+     "source_type": "primary_official",
+     "fetched": "2026-10-31",
+     "id": "tx-2026-0048-c8"
+    },
+    {
+     "text": "Census Bureau records place League City in Galveston County.",
+     "verbatim_quote": "TX|48|167|Galveston County|41980|02411642|League City city",
+     "source_url": "https://www2.census.gov/geo/docs/reference/codes2020/place_by_cou/st48_tx_place_by_county2020.txt",
+     "source_title": "US Census Bureau, 2020 Texas place by county relationship file",
+     "source_type": "primary_official",
+     "fetched": "2026-10-31",
+     "id": "tx-2026-0048-c9"
+    },
+    {
+     "text": "Census Bureau records place League City in Harris County as well.",
+     "verbatim_quote": "TX|48|201|Harris County|41980|02411642|League City city",
+     "source_url": "https://www2.census.gov/geo/docs/reference/codes2020/place_by_cou/st48_tx_place_by_county2020.txt",
+     "source_title": "US Census Bureau, 2020 Texas place by county relationship file",
+     "source_type": "primary_official",
+     "fetched": "2026-10-31",
+     "id": "tx-2026-0048-c10"
     }
    ],
    "id": "tx-2026-0048",
@@ -8019,7 +8065,7 @@
     },
     {
      "date": "2026-10-31",
-     "note": "League City's Legistar file for the election order still answers and still names the special election on the plate reader cameras, now days away.",
+     "note": "League City's council record now carries Resolution No. 2026-185, which directs the fixed cameras' removal if most voters reject them. Every member on the roll voted for it. The city also lies partly in Harris County.",
      "checked": true
     }
    ],
@@ -41112,6 +41158,109 @@
      "note": "Title corrected the same day. It had said the Darwin AI platform monitors how city staff use AI, which no source states. The platform's function now rests only on its maker's own words."
     }
    ]
+  },
+  {
+   "id": "tx-2026-0235",
+   "title": "Pflugerville's City Council adopts SAFE standards for how the city uses technology, with facial recognition covered",
+   "summary": "The Pflugerville City Council approved Resolution RES-1443 on October 27th, 2026. It adopts standards the city calls SAFE, for secure, accountable, fair and explainable technology use. It also directs staff to carry them out. The staff overview added a section that creates a Safe Technology Committee. Staff confirmed the policy covers facial recognition when a council member asked about it. Every member voted in favor. Voters in the same city decide a charter section on its use of AI on November 3rd, 2026.",
+   "topic": "surveillance-and-policing",
+   "decider": {
+    "name": "Pflugerville City Council",
+    "type": "city"
+   },
+   "geography": {
+    "statewide": false,
+    "counties": [
+     "Travis",
+     "Williamson"
+    ],
+    "on_ercot": true,
+    "metro": "Austin-Round Rock-San Marcos, TX"
+   },
+   "status": "decided",
+   "key_dates": [
+    {
+     "date": "2026-08-11",
+     "kind": "filed",
+     "note": "The resolution is introduced on the council's record"
+    },
+    {
+     "date": "2026-10-27",
+     "kind": "decided",
+     "note": "City Council approves RES-1443"
+    }
+   ],
+   "public_access": {
+    "room": "contact_only",
+    "how": "The resolution is adopted and no hearing or comment window follows it on the record. The City Council posts its agendas and records on the city's Legistar site. A resident reaches the council through the city.",
+    "url": "https://webapi.legistar.com/v1/pflugerville/matters/18184",
+    "closes": null
+   },
+   "confidence": "high",
+   "notes_for_editor": "Admitted on the city's own Legistar record of RES-1443 and its October 27th history row. The Census place file places the city in Travis and Williamson counties. The resolution's own text sits on a host whose robots.txt refuses this project, so its tiers and provisions are not in the record. Related to tx-2026-0075, the city's November charter election.",
+   "claims": [
+    {
+     "text": "Pflugerville's resolution adopts standards for secure, accountable, fair and explainable technology use and directs their implementation.",
+     "verbatim_quote": "A Resolution of the City of Pflugerville, TX, adopting standards for secure, accountable, fair, and explainable (SAFE) technology use; directing implementation, and providing an effective date.",
+     "source_url": "https://webapi.legistar.com/v1/pflugerville/matters/18184",
+     "source_title": "City of Pflugerville Legistar, RES-1443, SAFE technology use standards",
+     "source_type": "primary_official",
+     "fetched": "2026-10-31",
+     "id": "tx-2026-0235-c1"
+    },
+    {
+     "text": "The council approved the resolution on a motion by Mr. Metayer, seconded by Mr. Rogers, with every member voting in favor.",
+     "verbatim_quote": "Mr. Metayer moved to approve the item. Mr. Rogers seconded the motion. All voted in favor. The motion carried.",
+     "source_url": "https://webapi.legistar.com/v1/pflugerville/matters/18184/histories",
+     "source_title": "City of Pflugerville Legistar, RES-1443, SAFE technology use standards, history",
+     "source_type": "primary_official",
+     "fetched": "2026-10-31",
+     "id": "tx-2026-0235-c2"
+    },
+    {
+     "text": "Staff presented the policy with an added section creating a Safe Technology Committee.",
+     "verbatim_quote": "Mr. Hartshorn gave an overview of the policy and the addition of a section involving the creation of the Safe Technology Committee.",
+     "source_url": "https://webapi.legistar.com/v1/pflugerville/matters/18184/histories",
+     "source_title": "City of Pflugerville Legistar, RES-1443, SAFE technology use standards, history",
+     "source_type": "primary_official",
+     "fetched": "2026-10-31",
+     "id": "tx-2026-0235-c3"
+    },
+    {
+     "text": "Asked about facial recognition, staff confirmed the policy covers it.",
+     "verbatim_quote": "Mr. Rogers brought up concerns about Facial Recognition. Mr. Hartshorn confirmed that Facial Recognition is covered in the policy.",
+     "source_url": "https://webapi.legistar.com/v1/pflugerville/matters/18184/histories",
+     "source_title": "City of Pflugerville Legistar, RES-1443, SAFE technology use standards, history",
+     "source_type": "primary_official",
+     "fetched": "2026-10-31",
+     "id": "tx-2026-0235-c4"
+    },
+    {
+     "text": "Census Bureau records place the city of Pflugerville in Travis County.",
+     "verbatim_quote": "TX|48|453|Travis County|57176|02411411|Pflugerville city",
+     "source_url": "https://www2.census.gov/geo/docs/reference/codes2020/place_by_cou/st48_tx_place_by_county2020.txt",
+     "source_title": "US Census Bureau, 2020 Texas place by county relationship file",
+     "source_type": "primary_official",
+     "fetched": "2026-10-31",
+     "id": "tx-2026-0235-c5"
+    },
+    {
+     "text": "Census Bureau records place the city of Pflugerville in Williamson County as well.",
+     "verbatim_quote": "TX|48|491|Williamson County|57176|02411411|Pflugerville city",
+     "source_url": "https://www2.census.gov/geo/docs/reference/codes2020/place_by_cou/st48_tx_place_by_county2020.txt",
+     "source_title": "US Census Bureau, 2020 Texas place by county relationship file",
+     "source_type": "primary_official",
+     "fetched": "2026-10-31",
+     "id": "tx-2026-0235-c6"
+    }
+   ],
+   "history": [
+    {
+     "date": "2026-10-31",
+     "note": "Admitted on the council's own record of the October 27th vote. The resolution's text is not readable here, so its specific rules are not yet in the record."
+    }
+   ],
+   "last_verified": "2026-10-31"
   }
  ]
 }
