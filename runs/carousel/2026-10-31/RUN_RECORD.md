@@ -106,6 +106,9 @@ which is the queued `prompt-audit-counts-agent-latency` (now repeat 2). This rea
 - The audition was bound nine times, and `art_preflight --write` dropped the stored review each time.
 - A frame 5 camera swing to clear the kerb wedge pushed the first near bar off the frame, the defect the art director had
   charged twice before. It was reverted.
+- CI's gates job went red after the push on `ledger_check --date 2026-10-31`. The topics angle said "one corner" and
+  "three crosswalks", and the run had computed none of the counting figures that prose is held to. Locally the check had
+  been run without `--date`, which skips that comparison. The angle was reworded in `update_ledgers.py` and re-derived.
 - Two copy repairs needed a second pass because the first was looser than its claim: "the department requires two" for
   c39, and "a resolution on the cameras" briefly without c22.
 - Round 1's repair dropped Houston Public Media's account of the 72 hours rather than disclosing it.
