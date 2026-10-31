@@ -1,0 +1,81 @@
+{
+ "lens": "integrity",
+ "round": 2,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.8,
+   "why": "Every frame rendered on a dark field; 2 and 8 true reliefs with measured height and casts; 5 counts 7, 7 plus a saw cut, 8; 9 seated and lit; 1's headlights throw and the plate is muted. Held down: 3 a thin pan about a fifth of the height in a void, its 55 bar 0.83 of the 70 in screen space; 7's lower 55 percent broad beige planks in the mid tones, the nearest bar under the footer; 4's field bleeds both edges and reads as wallpaper; 6's resident mannequin-smooth."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 8.0,
+   "why": "One deck: thermoplastic on near-black asphalt, key left and casts right, terracotta held to 6, 8 and 9, value dark with no strobe, MOTIF_EVOLUTION and the one-corner camera move reading. Frame 9's slab a different class of object; frame 3's navy band cooler."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 6.8,
+   "why": "Every numeral traces; the council's actions rest on Legistar; round 1's charges repaired. Leans: 'The Tribune counts 55' says the Tribune did the counting where the rejected entry says the figure is hyperlinked to the city's portal; frame 8 keeps c33's clock and dropped c46 rather than disclosing Houston Public Media's 'within 72 hours'; frame 4's legend over a field cut at both edges; frame 3's art shows 55 as 0.83 of 70; frame 4's 'The mayor says six' carries no attribution; the vote rows tie to matters through the history id. Nothing fabricated, no hard fail."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.3,
+   "why": "City, body, proposition, date and twist named. The action half thin: only Harris County's hours; no surface says what the cameras record (c34 unused); the council's own privacy committee (c17 to c21) absent; the closing question answered nowhere."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.3,
+   "why": "Timely cover, frame 2 pays at once, the turn lands 6 to 7, the close points to Kyle and Laredo. Frame 3 a defensive correction frame; frame 4 a detour; frame 5's headline cryptic until the dek."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.2,
+   "why": "Clean, every house rule kept, some snap. Much reads as an attribution ledger; 'Drawn to illustrate.' closes eight deks; frame 5's dek fragments; frame 4's 'can look' soft."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 5.8,
+   "why": "The technique new; the subject the third Flock deck (nos. 4, 12, 39), no. 4 the same docket item and ballot, no. 39 thirty days ago carrying the vote and Laredo's referendum; the cover echoes no. 39's road; the palette repeats nos. 56 and 60 to 63. dedupe_check clears the window, so charged here, not hard-failed."
+  }
+ ],
+ "weighted_score": 7.01,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Rebuild frame 3 as an orthographic relief from one zero tick, label 55 as the figure the Tribune reports, and state on frame 8 that Houston Public Media reported the clock as within 72 hours.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 3,
+   "problem": "A thin pan in a dark void with stray pebbles; the 55 bar 0.83 of the 70.",
+   "fix": "An orthographic TXBENCH plan relief like frame 2, both bars from one lit zero saw cut, filling 40 to 50 percent of the height, the ratio checked in screen pixels."
+  },
+  {
+   "slide": 7,
+   "problem": "Broad beige bar tops in the mid tones, no single focal; the nearest bar under the footer.",
+   "fix": "Key the bar tops into shadow so only chamfers catch the key; stop the nearest bar above the footer; bring the terracotta warning panel into the left foreground."
+  },
+  {
+   "slide": 4,
+   "problem": "The field bleeds both edges and reads as wallpaper; far rows as bright as near.",
+   "fix": "Pull back so all 400 sit inside with a dark margin; light a pool on the front rows and the amber row."
+  },
+  {
+   "slide": 6,
+   "problem": "The kit resident mannequin-smooth.",
+   "fix": "A rim light from the key side, cloth normal maps, dolly in to about a third of the height."
+  }
+ ],
+ "notes_for_panel": [
+  "No hard fail.",
+  "Frame 8's 72-hour clock has two fetched accounts, c33 and c45/c46.",
+  "The 55 is cited as the Tribune's count though the figure links to the city's portal.",
+  "'votes Tuesday' correct only if the post goes out before November 3rd.",
+  "Frame 7 alone omits 'Drawn to illustrate.'."
+ ]
+}

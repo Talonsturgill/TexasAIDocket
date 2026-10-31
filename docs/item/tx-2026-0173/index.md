@@ -37,6 +37,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-24 · The university confirms that its AI for Business degrees replace Business Analytics and that certificates accompany them. September 14th, 2026 is the release's publication date. The release gives no exact launch date, start term or first cohort size.
 - 2026-10-29 · UT Arlington's switch from business analytics to AI degrees is still unconfirmed. The university's site did not answer.
 - 2026-10-30 · UT Arlington's move from business analytics to AI degrees remains unconfirmed. The university's site would not serve its crawling rules today, so the release was left unread.
+- 2026-10-31 · UT Arlington's switch from business analytics to AI degrees stays unconfirmed. The university's site did not answer for its crawling rules today.
 
 ## Evidence
 

@@ -19,12 +19,12 @@
   "recent_lists_note": "These three lists are the exclusions handed to the caption room and they were hand-kept. On 2026-08-20 the fourth panel found structures_recent reading [\"ledger\", \"pivot\", \"question and answer\"] when the last three shipped structures were [\"ledger\", \"two columns\", \"question and answer\"], so it dropped a structure that IS off the table and held one that is not. Wrong in both directions from one hand edit. They are now recomputed from entries and are ordered OLDEST FIRST, matching the entries list, and scripts/carousel/caption_check.py should derive them rather than read them. That is an upgrade-lane change and it is written into this run's proposals."
  },
  "opening_moves_recent": [
-  "the who",
   "the place",
   "the quiet decision",
   "the before and after",
   "the two things",
-  "the object"
+  "the object",
+  "the number that is wrong"
  ],
  "entries": [
   {
@@ -1149,15 +1149,34 @@
    ],
    "critic_note": "Opens by correcting the figure a reader would assume, then lists the item line by line as a ledger, then the consent agenda and the minutes, and closes on which city work the two tools will serve.",
    "move_note": "Opens on what $390,000 is not, walks the four lines and the 79 cents, then the one motion, the minutes and the next meeting, and closes on a question about use."
+  },
+  {
+   "date": "2026-10-31",
+   "carousel_no": 64,
+   "opening_move": "the correction",
+   "structure": "Two columns",
+   "closing_move": "ask the one question the decision leaves open",
+   "first_line": "A \"nonbinding\" no would reach League City's cameras.",
+   "words": 147,
+   "commas": 4,
+   "commas_per_100w": 2.72,
+   "chars": 891,
+   "hashtags": [
+    "#LeagueCity",
+    "#GalvestonCounty",
+    "#PropositionA"
+   ],
+   "critic_note": "Opens by correcting what nonbinding suggests, sets the ballot's word against the council's own record in two columns, and closes on the certification date nobody has named.",
+   "move_note": "Opens on what a nonbinding no would still reach, then the ballot and the hours, then the October 13th resolution and the mayor's words, and closes asking when the count will be certified."
   }
  ],
  "structures_recent": [
-  "Question and answer",
   "Clock",
-  "Zoom in"
+  "Zoom in",
+  "Ledger"
  ],
  "closing_moves_recent": [
-  "Point at the record, plainly, without a call to action"
+  "name what is still not public, and how big that is"
  ],
  "_derived_note": "opening_moves_recent, structures_recent and closing_moves_recent are DERIVED by out/<date>/update_ledgers.py every run, by ledger_check.windows() and ledger_check's own slice of the entries before the newest date. They were hand-maintained until 2026-09-10 and had drifted, which mis-briefed the caption room on that run: the list said Ledger was excluded when it was not, and never mentioned Two columns or the close no. 19 actually shipped."
 }

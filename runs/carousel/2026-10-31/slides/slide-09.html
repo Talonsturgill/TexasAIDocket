@@ -1,0 +1,114 @@
+<!doctype html>
+<!-- 2026-10-31, frame 9 of 9. Archetype MAP. A spatial scene through txthree.js in the deck's lastLight world: Texas extruded from TXGeo's merged county outline as a slab of dark asphalt standing on the ground, three thermoplastic studs placed at the Census 2020 gazetteer interior points of League City, Kyle and Laredo read from figures.json. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<svg id="ov" width="1080" height="1350" style="position:absolute;left:0;top:0;z-index:11" data-decorative></svg>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:900px">Tuesday first, then Kyle and Laredo in May</h1>
+<p class="dek" data-follow="26" style="width:880px">League City lies in Galveston and Harris counties. Harris County vote centers take voters from 7 a.m. to 7 p.m. on Tuesday, November 3rd. Kyle and Laredo plan their own votes in May, the Tribune reported. Drawn to&nbsp;illustrate.</p>
+<div class="lab" id="lab-lc">LEAGUE CITY</div>
+<div class="lab" id="lab-ky">KYLE</div>
+<div class="lab" id="lab-la">LAREDO</div>
+<script>window.FIG = {"league_city_lat": 29.490064, "league_city_lon": -95.109093, "kyle_lat": 29.991784, "kyle_lon": -97.884272, "laredo_lat": 27.561661, "laredo_lon": -99.488203};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-31-roadpaint.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script src="@@ASSETS@@/js/d3.v7.min.js"></script>
+<script src="@@ASSETS@@/js/topojson-client.min.js"></script>
+<script src="@@ASSETS@@/js/txgeo.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const get = (u) => new Promise((ok, bad) => { const x = new XMLHttpRequest(); x.open("GET", u); x.onload = () => ok(JSON.parse(x.responseText)); x.onerror = bad; x.send(); });
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "What comes next", counter: "09 / 09", src: "c25 c26 c28 c35 c47 c48 c49", fit: { min: 66, max: 88, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 42, near: 0.05, far: 3000, fog: 0.012 });
+  const M = CH.mats(THREE, K);
+  const topo = await get("@@ASSETS@@/geo/tx-counties.topo.json");
+  const state = TXGeo.outline(topo);
+  const proj = TXGeo.texasProjection(state, [[0, 0], [900, 900]]);
+  /* the state's outer ring, the largest polygon of the merged outline, projected to the slab's plane: 100 px a metre */
+  const geom = state.geometry || state, polys = geom.type === 'MultiPolygon' ? geom.coordinates : [geom.coordinates];
+  const ring = polys.map(p => p[0]).sort((a, b) => b.length - a.length)[0];
+  const toM = (lon, lat) => { const p = proj([lon, lat]); return [(p[0] - 450) / 100, -(p[1] - 450) / 100]; };
+  /* the outline thinned to points at least 4 cm apart before it is extruded, so the side wall is long faces that take
+   * the light as one surface rather than a comb of slivers each catching it differently */
+  const outline = [];
+  ring.map(([lon, lat]) => toM(lon, lat)).forEach((p) => { const q = outline[outline.length - 1]; if (!q || Math.hypot(p[0] - q[0], p[1] - q[1]) > 0.04) outline.push(p); });
+  const D = 0.25;
+  /* the map's terracotta is held nearer the token than the street frames', because no warm headlight or key pool lifts it here */
+  const terra = M.terracottaPaint.clone(); terra.color.setHex(0xc07f6e); terra.emissive.setHex(0x864e40); terra.emissiveIntensity = 1.08;
+  const slabMat = M.asphaltSlab.clone(); slabMat.color.setHex(0x4e4b46);
+  const slab = TXT.extrude(outline, D, slabMat, { bevelThickness: 0.012, bevelSize: 0.012, bevelSegments: 2 });
+  slab.rotation.x = -Math.PI / 2; slab.castShadow = slab.receiveShadow = true; TXT.add(R, slab);
+  /* the state's edge laid in road paint: a fresh thermoplastic line along the top arris, so the outline reads on the dark */
+  const edge = new THREE.CatmullRomCurve3(outline.filter((_, i) => i % 2 === 0).map(([x, y]) => new THREE.Vector3(x, D + 0.014, -y)), true, 'centripetal');
+  const line = new THREE.Mesh(new THREE.TubeGeometry(edge, 2400, 0.022, 6, true), M.fresh); line.castShadow = true; TXT.add(R, line);
+  /* the county lines, the state's own joints, laid as fine worn paint on the slab's top: one quad strip per border segment */
+  { const b = TXGeo.borders(topo), lines = b.type === 'MultiLineString' ? b.coordinates : [b.coordinates], pos = [], HW = 0.0095, Y = D + 0.0125;
+    lines.forEach((ln) => { for (let i = 1; i < ln.length; i++) {
+      const [ax, ay] = toM(ln[i - 1][0], ln[i - 1][1]), [bx, by] = toM(ln[i][0], ln[i][1]);
+      const dx = bx - ax, dy = by - ay, L = Math.hypot(dx, dy) || 1, nx = -dy / L * HW, ny = dx / L * HW;
+      const q = [[ax + nx, ay + ny], [bx + nx, by + ny], [bx - nx, by - ny], [ax - nx, ay - ny]].map(([x, y]) => [x, Y, -y]);
+      [0, 1, 2, 0, 2, 3].forEach((k) => pos.push(...q[k]));
+    } });
+    const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3)); g.computeVertexNormals();
+    const m = new THREE.Mesh(g, new THREE.MeshStandardMaterial({ color: 0xb3aea6, roughness: 0.75, side: THREE.DoubleSide })); m.receiveShadow = true; TXT.add(R, m);
+  }
+  /* League City's two counties, Galveston and Harris as the Census place file lists them, laid in terracotta paint on the slab, proud of its bevelled top so they read */
+  { const cs = TXGeo.counties(topo), nm = (f) => f.properties.name || f.properties.NAME;
+    cs.features.filter((f) => ['Galveston', 'Harris'].includes(nm(f))).forEach((f) => {
+      const g = f.geometry, ps = g.type === 'MultiPolygon' ? g.coordinates : [g.coordinates];
+      ps.forEach((poly) => { const ring = poly[0].map(([lon, lat]) => toM(lon, lat));
+        const m = TXT.extrude(ring, 0.05, terra, { bevel: false }); m.rotation.x = -Math.PI / 2; m.position.y = D + 0.006; m.receiveShadow = true; TXT.add(R, m); });
+    });
+  }
+  /* THE PINS, from figures.json: each stud stands at its town's Census gazetteer point */
+  const studs = [['lab-lc', FIG.league_city_lon, FIG.league_city_lat, terra], ['lab-ky', FIG.kyle_lon, FIG.kyle_lat, M.fresh], ['lab-la', FIG.laredo_lon, FIG.laredo_lat, M.fresh]];
+  const top = D + 0.012, pts = {};
+  studs.forEach(([id, lon, lat, mat]) => {
+    const [x, y] = toM(lon, lat);
+    const big = mat === terra, rr = 0.13, hh = big ? 0.15 : 0.08; const s = new THREE.Mesh(new THREE.CylinderGeometry(rr, rr * 1.1, hh, 40), mat); s.position.set(x, top + (big ? 0.04 : 0) + hh / 2, -y); s.castShadow = s.receiveShadow = true; TXT.add(R, s);
+    /* League City's stud stands on a cream thermoplastic collar, so the pin separates from its own county's terracotta */
+    if (big) { const col = new THREE.Mesh(new THREE.CylinderGeometry(rr * 1.45, rr * 1.55, 0.04, 40), M.fresh); col.position.set(x, top + 0.02, -y); col.castShadow = col.receiveShadow = true; TXT.add(R, col); }
+    pts[id] = [x, top + (big ? 0.04 : 0) + hh, -y];
+  });
+  TXT.sky(R);
+  TXT.ground(R, { surface: 'asphalt', size: 600, seed: 9 });
+  const from = [1.7, 6.5, 11.9];
+  const look = CH.aim(THREE, R, TXT, from, [1.0, 0, 0.45], 570, 950, 42);
+  TXT.frame(R, { fov: 42, from, look });
+  CH.warm(R, 0.32);
+  TXT.deckRig(R, CH.rigSpec(W, 14, 4096), CH.rigOpts([0, 0, 0], { distance: 30, shadowFar: 80 }));
+  CH.unacne(R, 0.01);
+  TXT.contact(R, slab);
+  TXT.weather(R, { grime: 0.4, height: 0.3 });
+  TXT.stage(R, [slab], { poolInner: 6, poolOuter: 12 });
+  /* labels pinned to their studs, with leaders that land on each stud */
+  const svg = document.getElementById('ov'), leaders = [];
+  [['lab-lc', 60, 110], ['lab-ky', -120, -70], ['lab-la', 36, 26]].forEach(([id, dx, dy]) => {
+    const at = CH.project(THREE, R, pts[id]), el = document.getElementById(id);
+    el.style.left = Math.round(Math.min(960 - el.getBoundingClientRect().width, at[0] + dx)) + 'px'; el.style.top = Math.round(at[1] + dy) + 'px';
+    const b = el.getBoundingClientRect(), from2 = [dx > 0 ? b.left - 6 : b.right + 6, b.top + b.height / 2];
+    CH.leader(svg, from2, at); leaders.push({ target: id.replace('lab-', '') + ' stud', at, to: at });
+  });
+  window.__txLeaders = leaders;
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0.3, veil: 0.3, footWash: 0.5 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

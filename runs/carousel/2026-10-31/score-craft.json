@@ -1,0 +1,85 @@
+{
+ "lens": "craft",
+ "round": 3,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.8,
+   "why": "Every frame a real render on a dark field, the reliefs honest. 02 about 8 (a true relief, stripes separate by value, every stripe casts). 09 about 7.5 (slab seated, inlays the focal; the Gulf rim tangled rails, its tip near the site line). 06 about 7.5 (the best composition; a mannequin-smooth figure; a flat brown sidewalk). 01 about 7 (lamps and lit bars lead; a primitive body, flat black windshield, the hard ground edge held). 03 about 6.5, up from 5.5 (truthful relief with chamfers, casts and a tick ruler; reads as an embossed bar chart on a stucco plate; the bars share the concrete's noise). 08 about 7 (lit groove walls, a strong start bar; a flat evenly lit rectangle). 05 about 6.5 (flat quads with a thin lip, no visible cast; a near-black void upper left). 04 about 6.5 (the field fills the lower half; boxy markers, navy-black prism faces). 07 about 5.5, the weakest, round 2's repair made it worse (brown planks barely off the asphalt, the stop bar and panel outshine the paint, a mid-brown kerb plane, a stair-stepped shadow edge, a scrim behind the claim line)."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.7,
+   "why": "Clearly one deck: near-black asphalt, bead-white paint, one terracotta accent on 6 to 9, casts to the right, one type band, no strobe; MOTIF_EVOLUTION and CAMERA_MOVE work. 01's warm haze and 07's brown frame sit outside; the declared VALUE CUT at 5 is not visible."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.0,
+   "why": "Every numeral traces; the roll calls counted, the leases from MatterTitles, the caption's 8 to 0 from the counted rows; the Tribune figures attributed; 'nonbinding' quoted whole. Remaining: frame 2's '2023, 70 IN ALL' sits over the 28 fresh stripes only."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.8,
+   "why": "City, council, proposition, wording, date, resolution and condition, the mayor's 72 hours and the next cities named; 6 to 8 make the stake concrete. Only Harris County's hours; the closing question answered nowhere."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "Cover sets place and vote; 2 pays at once; 3 a correction frame and 4 a detour; 5 to 7 lands; 8 to 9 drive to a usable close."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "Specific, local, unhyped; a strong caption opening and frame 7 headline. 'Drawn to illustrate.' closes all nine; frame 5's dek fragments."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Road paint as a fresh material argument, no camera anywhere. Familiar: the second Flock deck in a month, a road at night with a vehicle on the cover, the dark plus warm accent register of nos. 61 to 63."
+  }
+ ],
+ "weighted_score": 7.468,
+ "hard_fails": [],
+ "ship": true,
+ "ship_note": "Round 3 is max_rounds, so the finished deck ships at its score, 0.232 under the 7.7 rung on this card. No hard fail.",
+ "one_sentence_fix": "Rebuild the chassis continental_crosswalk as a true bevelled 7 mm extrusion with bead-white tops and a high-resolution shadow map so every bar casts, then re-render 5 and 7 with 7's tops restored to white.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 7,
+   "problem": "Darkened tops read as brown planks; the stop bar and panel outshine the paint; a mid-brown kerb plane; a stair-stepped shadow edge; a scrim behind the claim line.",
+   "fix": "Restore bead-white tops raked only on the chamfers; raise the eye to about 0.5 m and pitch down so the bars fill y 900 to 1800; double the sun shadow map."
+  },
+  {
+   "slide": 5,
+   "problem": "Flat quads with a thin lip and no visible cast; a near-black void upper left.",
+   "fix": "Bevelled 7 mm bars with soft casts; swing about 8 degrees left and lower the eye so the crosswalks fill the width."
+  },
+  {
+   "slide": 4,
+   "problem": "Boxy markers with navy-black prism faces; a uniform tan pattern at 432; small amber markers above the claim line.",
+   "fix": "Warm reflective prism insets; eye about 0.6 m at fov 28 so the amber row stands about 25 percent up at twice the size."
+  },
+  {
+   "slide": 3,
+   "problem": "An embossed bar chart on a stucco plate; the bars share the concrete's noise; a hard-edged band with dead black above and below.",
+   "fix": "A smooth bead-glint height field for the bars; extend the pan to y 760 to 1760 with the pool falling off."
+  },
+  {
+   "slide": 1,
+   "problem": "A primitive body, flat black windshield, the hard ground edge.",
+   "fix": "Extend the ground under the fog; an environment reflection in the windshield."
+  },
+  {
+   "slide": 8,
+   "problem": "A flat evenly lit rectangle reading as a vent grille.",
+   "fix": "Tighten the pool on the start bar and row 1; a lit top arris on the strip."
+  }
+ ]
+}

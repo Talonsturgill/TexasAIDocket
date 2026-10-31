@@ -11,7 +11,7 @@ The authors include radiologists at the University of Texas MD Anderson Cancer C
 - Public access: Write to the decider
 - Take part: https://pubmed.ncbi.nlm.nih.gov/42716711/
 
-- Last checked: 2026-10-07
+- Last checked: 2026-10-31
 
 ## Dates
 
@@ -37,6 +37,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-26 · The MD Anderson and UTMB MRI study is still unconfirmed on its abstract and author list. The index that carries both bars automated readers.
 - 2026-10-29 · The MD Anderson and UTMB MRI model study is still unconfirmed on the federal literature index, which bars automated readers.
 - 2026-10-30 · The MD Anderson and UTMB study of the MRI model remains unconfirmed on the federal literature index, which still bars automated readers.
+- 2026-10-31 · The study's abstract on PubMed still reports the weaker score on patients outside the training cohort and still advises treating radiomics as exploratory.
 
 ## Evidence
 
@@ -46,41 +47,41 @@ Every fact above rests on one of these. The words are the source's own.
 
 > This retrospective study developed a T1 postcontrast MRI radiomics survival model in a public brain metastasis cohort of 198 patients and externally validated the fixed radiomics model, without refitting or recalibration, in an independent cohort of 69 patients.
 
-Source (primary_official): https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=42716711&rettype=abstract&retmode=xml
+Source (primary_official): https://pubmed.ncbi.nlm.nih.gov/42716711/
 
 ### The model's discrimination was lower on the outside cohort than on the cohort it was built on.
 
 > The radiomics score had a C-index of 0.615 (95% CI, 0.543-0.687) in the training cohort and 0.574 (95% CI, 0.491-0.658) in external validation.
 
-Source (primary_official): https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=42716711&rettype=abstract&retmode=xml
+Source (primary_official): https://pubmed.ncbi.nlm.nih.gov/42716711/
 
 ### The authors state the conclusion as a limit rather than as a result.
 
 > T1 postcontrast MRI radiomics showed limited standalone discrimination for overall survival in patients with brain metastases.
 
-Source (primary_official): https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=42716711&rettype=abstract&retmode=xml
+Source (primary_official): https://pubmed.ncbi.nlm.nih.gov/42716711/
 
 ### The authors ask for cautious use and for models that carry more than imaging.
 
 > These results support cautious use of radiomics as an exploratory imaging biomarker and emphasize the need for integrated prognostic models that include clinical, treatment, molecular, and systemic disease variables.
 
-Source (primary_official): https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=42716711&rettype=abstract&retmode=xml
+Source (primary_official): https://pubmed.ncbi.nlm.nih.gov/42716711/
 
 ### The neuroradiology authors are at MD Anderson in Houston and the radiology authors at the Medical Branch in Galveston.
 
 > From the Department of Neuroradiology (R.E., H.A.Q., S.A., A.M., P.K.), The University of Texas MD Anderson Cancer Center, Houston, TX 77030, USA; Department of Radiology (E.C.), Duke University Medical Center, Durham, NC, USA; Department of Radiology (H.A.S., A.N., M.W.), The University of Texas Medical Branch, Galveston, TX, USA
 
-Source (primary_official): https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=42716711&rettype=abstract&retmode=xml
+Source (primary_official): https://pubmed.ncbi.nlm.nih.gov/42716711/
 
 ### The final model kept a small number of imaging features after selection.
 
 > The final model retained 7 nonzero T1 postcontrast radiomics features after correlation filtering and elastic-net selection.
 
-Source (primary_official): https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=42716711&rettype=abstract&retmode=xml
+Source (primary_official): https://pubmed.ncbi.nlm.nih.gov/42716711/
 
 ### Adding the established clinical score did not lift the model above its training figure.
 
 > In the external-validation subset with available Graded Prognostic Assessment, the combined radiomics plus Graded Prognostic Assessment model had a C-index of 0.591 (95% CI, 0.509-0.672).
 
-Source (primary_official): https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=42716711&rettype=abstract&retmode=xml
+Source (primary_official): https://pubmed.ncbi.nlm.nih.gov/42716711/
 

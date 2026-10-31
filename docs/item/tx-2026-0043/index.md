@@ -50,6 +50,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-26 · Archer County's refusal of the data center abatement is still unconfirmed. The one station that reported it bars automated readers.
 - 2026-10-29 · Archer County's refusal of the data center abatement is still unconfirmed. The one station that reported it bars automated readers.
 - 2026-10-30 · Archer County's denial of the data center abatement remains unconfirmed. The station that reported it still bars automated readers.
+- 2026-10-31 · Archer County's vote against the Dynamo Ventures abatement is still unconfirmed. Its only published account refuses automated readers.
 
 ## Evidence
 

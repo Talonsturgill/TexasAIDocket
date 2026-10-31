@@ -1,0 +1,80 @@
+{
+ "lens": "integrity",
+ "round": 3,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.8,
+   "why": "All nine frames rendered on a dark field with counts drawn at their declared scale (counted: 42 and 28 stripes, 7, 7 plus a saw cut, 8, 3 rows of 24 grooves, 6 amber markers with two close). Frame 3's 55 bar now measures 0.785 of the 70 against a true 0.786, round 2's charge fixed. 1, 2 and 9 strong. Held down: 7's lower half mid-tone brown; 3 a two-bar chart on a uniformly lit band; 8 a vent grille with rows 2 and 3 indented; 4's field bleeds both edges; 6's resident mannequin-smooth; 5's bars a thin lip with no visible cast."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 8.0,
+   "why": "One deck: one material vocabulary, key upper left and casts right, terracotta held to 6 to 9, value dark with no strobe; MOTIF_EVOLUTION and the one-corner camera move do real work. 3 and 8 flat plan reliefs among oblique scenes; 9's slab a different class of object."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.4,
+   "why": "Every numeral traces; the roll calls counted, the caption's 8 to 0 counted, the first comment's 15 official records match its list; round 2's charges repaired. Looser than its sources: frame 8's headline states one clock while the dek sets two press accounts side by side without saying they differ and the resolution's text was not fetched beyond its title; frame 4's legend over about 280 visible markers; frame 3's headline and label assert 55 without attribution (the dek attributes it); the August 11th date comes from c14's history row; the vote URLs tie to matters through history ids. Nothing fabricated."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.3,
+   "why": "Place, both counties, body, decision and deadline named; the twist concrete. The action half thin: only Harris County's hours; nothing on what the cameras record (c34); the privacy committee (c17 to c21) absent; the closing question unanswered."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.3,
+   "why": "Timely cover, frame 2 pays at once, the turn 6 to 7, frame 8 lands the clock, the close points outward. Frame 3 defensive, frame 4 a detour; frame 5's headline cryptic until the dek."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.2,
+   "why": "Every house rule held; 'The word is the ballot's.' has snap. An attribution ledger ('the Tribune reported' five times); 'Drawn to illustrate.' on all nine; frame 5's dek fragments; 'can look' soft."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.0,
+   "why": "The technique new; the subject Flock again (nos. 4, 12, 39), the cover a night road with a car after no. 39's blue-hour road, the dark warm palette repeating nos. 61 to 63. dedupe_check clears the window, so charged here."
+  }
+ ],
+ "weighted_score": 7.15,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Relight frames 7, 3 and 8 so a pool falls on the subject and the concrete and gutter outside it go to black.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 7,
+   "problem": "Lower half mid-tone brown; dull dark planks with no focal; the gutter band a grey middle.",
+   "fix": "Drop the gutter and kerb albedo to black and tilt up so the gutter leaves the frame, leaving the chamfers and panel as the only lights."
+  },
+  {
+   "slide": 3,
+   "problem": "A two-bar chart on a uniformly lit grey band, no pool or falloff.",
+   "fix": "A keyMask pool on the bar ends and the 55 to 70 ticks, the pan falling to black at its edges; raise the bars for long casts."
+  },
+  {
+   "slide": 8,
+   "problem": "Evenly lit grooves, a vent grille; rows 2 and 3 indented leave a dead block under the start bar.",
+   "fix": "Pool the key on the start bar and row 1; shift rows 2 and 3 left to start at the start bar."
+  },
+  {
+   "slide": 4,
+   "problem": "The field bleeds both edges as wallpaper; far rows as bright as near; the legend can't be checked.",
+   "fix": "Pull back so the whole block sits inside a dark margin; stage the light on the front rows."
+  }
+ ],
+ "notes_for_panel": [
+  "No hard fail.",
+  "Frame 8 shows two press accounts of the 72-hour clock without saying they differ; the resolution's own text not fetched beyond its title.",
+  "art_preflight's needs_review lists 5 while its review accepts with matching hashes; panel_ready exited 0.",
+  "'Votes Tuesday' correct only if the post goes out before November 3rd."
+ ]
+}

@@ -1,0 +1,237 @@
+{
+  "version": 2,
+  "selected": [
+    1,
+    5,
+    9
+  ],
+  "inputs": {
+    "slides/slide-01.html": "5fc393552b996be938902dbd4cae7d362d4f6689f6b302f04a86af767af6fdfc",
+    "render/slide-01.png": "2330a84c11b52fcda0817f9cd2e6a660fd379a9fa78e4b14da2fce5d19fdcaf5",
+    "assets/js/deck/2026-10-31-roadpaint.js": "7522b1164100d2cd37f5c8d03a2383edf1af897ad1c4b69ed43100f2ddf3b7b7",
+    "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+    "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+    "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+    "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+    "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+    "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+    "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+    "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+    "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+    "slides/slide-05.html": "f835da0d620dd8e0a399b652f7706b646f7a9970b912aab55c354bb3dad4fa89",
+    "render/slide-05.png": "58f2cb80292418a7e86bdc611fc8b173f5b00b0b9b2497cdd180e7b07bdb2b60",
+    "slides/slide-09.html": "602aa339a8fa5da2d1b0807249ae6263fb597b2733c1c70fce00071f1faba26b",
+    "render/slide-09.png": "1cd83f29acb6fc297b9a93c8900e04c0d60d9844b0651a9d788e77cad0f52059",
+    "assets/js/d3.v7.min.js": "f2094bbf6141b359722c4fe454eb6c4b0f0e42cc10cc7af921fc158fceb86539",
+    "assets/js/topojson-client.min.js": "25cd02ae486cc5063e0215a4e4cfb15de83700c87ac48bac4d57dc6aaf3ebb89",
+    "assets/js/txgeo.js": "20778482eebc6c44ae967cdee00e0ef0a9f2e84c900a7e0a01df83fb1051ca12"
+  },
+  "value_measurements": [
+    {
+      "frame": "slide-01.png",
+      "median_L": 11.2,
+      "mid": 0.103,
+      "dark": 0.635
+    },
+    {
+      "frame": "slide-05.png",
+      "median_L": 5.0,
+      "mid": 0.062,
+      "dark": 0.871
+    },
+    {
+      "frame": "slide-09.png",
+      "median_L": 5.4,
+      "mid": 0.038,
+      "dark": 0.879
+    }
+  ],
+  "review": {
+    "decision": "accept",
+    "inputs": {
+      "slides/slide-01.html": "5fc393552b996be938902dbd4cae7d362d4f6689f6b302f04a86af767af6fdfc",
+      "render/slide-01.png": "2330a84c11b52fcda0817f9cd2e6a660fd379a9fa78e4b14da2fce5d19fdcaf5",
+      "assets/js/deck/2026-10-31-roadpaint.js": "7522b1164100d2cd37f5c8d03a2383edf1af897ad1c4b69ed43100f2ddf3b7b7",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+      "slides/slide-05.html": "f835da0d620dd8e0a399b652f7706b646f7a9970b912aab55c354bb3dad4fa89",
+      "render/slide-05.png": "58f2cb80292418a7e86bdc611fc8b173f5b00b0b9b2497cdd180e7b07bdb2b60",
+      "slides/slide-09.html": "602aa339a8fa5da2d1b0807249ae6263fb597b2733c1c70fce00071f1faba26b",
+      "render/slide-09.png": "1cd83f29acb6fc297b9a93c8900e04c0d60d9844b0651a9d788e77cad0f52059",
+      "assets/js/d3.v7.min.js": "f2094bbf6141b359722c4fe454eb6c4b0f0e42cc10cc7af921fc158fceb86539",
+      "assets/js/topojson-client.min.js": "25cd02ae486cc5063e0215a4e4cfb15de83700c87ac48bac4d57dc6aaf3ebb89",
+      "assets/js/txgeo.js": "20778482eebc6c44ae967cdee00e0ef0a9f2e84c900a7e0a01df83fb1051ca12"
+    },
+    "frames": [
+      {
+        "slide": 1,
+        "role": "cover",
+        "subject": "The kit crossover seen head on at a white stop bar at night. Two emissive lamp strips sit on the nose, a fill lights the lower fascia and intake bar, and two spot lobes fall onto the continental crosswalk bars running toward the reader.",
+        "visual_consequence": "A car with its lamps on waits at painted crossing markings on a public road after dark, which is the place Proposition A governs. No camera is shown, and the paint is the lit subject. That reads without the headline.",
+        "weakness": "Carried over unchanged. The plate reads as a muted grey panel below the lamp strips and the lit bars in value. Minor: two soft fill hot spots, a cold top face on the stop bar's shadowed half, a hairline bar edge with no visible cast.",
+        "repair": "none required",
+        "encoding_reads": true,
+        "dominant_subject_finished": true,
+        "feed_legible": true,
+        "inputs": {
+          "slides/slide-01.html": "5fc393552b996be938902dbd4cae7d362d4f6689f6b302f04a86af767af6fdfc",
+          "render/slide-01.png": "2330a84c11b52fcda0817f9cd2e6a660fd379a9fa78e4b14da2fce5d19fdcaf5",
+          "assets/js/deck/2026-10-31-roadpaint.js": "7522b1164100d2cd37f5c8d03a2383edf1af897ad1c4b69ed43100f2ddf3b7b7",
+          "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+          "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+          "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+          "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+          "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+          "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+          "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+          "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+          "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de"
+        }
+      },
+      {
+        "slide": 5,
+        "role": "evidence",
+        "subject": "One dark asphalt lane receding into the dark, a kerb and gutter on the left held near the asphalt's own value and a worn edge line on the right, crossed by three crosswalks: 7 dull brown bars, 7 cream bars and one black scraped slot, and 8 cream bars, labelled 2023 LEASE, ELECTION ORDER and OCTOBER 13TH.",
+        "visual_consequence": "Without the headline, the reader counts seven, seven with one black hole, then eight, each row ending inside the frame. The three crosswalks are the only bright shapes on the road, so the eye goes straight to the record and ends on the nearest and fullest row.",
+        "weakness": "Fixed: the tan kerb wedge is gone; the kerb reads as a form by a faint lit arris. Minor: near and middle rows close in value; bar height a thin lit lip; the upper left a large near-black area, consistent with the staged register.",
+        "repair": "none required",
+        "encoding_reads": true,
+        "dominant_subject_finished": true,
+        "feed_legible": true,
+        "inputs": {
+          "assets/js/deck/2026-10-31-roadpaint.js": "7522b1164100d2cd37f5c8d03a2383edf1af897ad1c4b69ed43100f2ddf3b7b7",
+          "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+          "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+          "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+          "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+          "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+          "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+          "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+          "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+          "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+          "slides/slide-05.html": "f835da0d620dd8e0a399b652f7706b646f7a9970b912aab55c354bb3dad4fa89",
+          "render/slide-05.png": "58f2cb80292418a7e86bdc611fc8b173f5b00b0b9b2497cdd180e7b07bdb2b60"
+        }
+      },
+      {
+        "slide": 9,
+        "role": "close",
+        "subject": "Texas extruded as a dark slab on a low oblique with inlaid county lines and a cream rim. Terracotta Harris and Galveston inlays on the upper Gulf coast, a terracotta stud on a cream collar at League City, white studs at Kyle and Laredo, each with a DOM leader.",
+        "visual_consequence": "League City's two counties stand out on the coast in the deck's one accent, which matches the dek's opening line. Kyle and Laredo are white points inland. The vote happens here first and others follow elsewhere.",
+        "weakness": "Carried over unchanged. The claim line sits on dark ground clear of the Rio Grande wall. Borderline: the Gulf rim's tip within about 3 design px of the site line's first letter; machine QA reports no strike. Minor: the taller League City stud, the smooth slab top.",
+        "repair": "Only if a strike is reported: raise the slab about 15 design px.",
+        "encoding_reads": true,
+        "dominant_subject_finished": true,
+        "feed_legible": true,
+        "inputs": {
+          "assets/js/deck/2026-10-31-roadpaint.js": "7522b1164100d2cd37f5c8d03a2383edf1af897ad1c4b69ed43100f2ddf3b7b7",
+          "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+          "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+          "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+          "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+          "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+          "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+          "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+          "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+          "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+          "slides/slide-09.html": "602aa339a8fa5da2d1b0807249ae6263fb597b2733c1c70fce00071f1faba26b",
+          "render/slide-09.png": "1cd83f29acb6fc297b9a93c8900e04c0d60d9844b0651a9d788e77cad0f52059",
+          "assets/js/d3.v7.min.js": "f2094bbf6141b359722c4fe454eb6c4b0f0e42cc10cc7af921fc158fceb86539",
+          "assets/js/topojson-client.min.js": "25cd02ae486cc5063e0215a4e4cfb15de83700c87ac48bac4d57dc6aaf3ebb89",
+          "assets/js/txgeo.js": "20778482eebc6c44ae967cdee00e0ef0a9f2e84c900a7e0a01df83fb1051ca12"
+        }
+      }
+    ]
+  },
+  "plan": {
+    "hardest_frame": 5,
+    "visual_argument": "Every count in League City's record is laid in the material of a public road, white thermoplastic on Gulf Coast asphalt, because Proposition A defines the cameras by where they stand: fixed locations on public roadways. One stripe, bar, marker or groove is one counted thing, so a reader counts the record without the headline.",
+    "build_risk": "Frame 5 lays the three roll calls as three crosswalks across one lane, one behind another, through txthree: 7 worn bars farthest, 7 fresh bars beside one bare saw cut, 8 fresh bars nearest. The audition's first reading charged the planned plan relief as a bevelled tile chart, so it was rebuilt as this oblique, the plan's own fallback.",
+    "distinct_from_recent": "No. 63 was a brass balance and weights on a chalk plinth, warm metal, blued accent. No. 62 was turbine tower sections and survey stakes on caliche, mesquite accent. No. 61 was a delivery drone and a lattice dock tower, dusk gold accent. No. 39, the last Flock deck, carried a plate reader on its pole at blue hour through nine frames. This deck shows no camera at all: its subject is road paint, cut grooves and raised markers on black asphalt, a cold matte white against a terracotta accent at the kerb."
+  },
+  "frame_inputs": {
+    "1": {
+      "slides/slide-01.html": "5fc393552b996be938902dbd4cae7d362d4f6689f6b302f04a86af767af6fdfc",
+      "render/slide-01.png": "2330a84c11b52fcda0817f9cd2e6a660fd379a9fa78e4b14da2fce5d19fdcaf5",
+      "assets/js/deck/2026-10-31-roadpaint.js": "7522b1164100d2cd37f5c8d03a2383edf1af897ad1c4b69ed43100f2ddf3b7b7",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de"
+    },
+    "5": {
+      "assets/js/deck/2026-10-31-roadpaint.js": "7522b1164100d2cd37f5c8d03a2383edf1af897ad1c4b69ed43100f2ddf3b7b7",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+      "slides/slide-05.html": "f835da0d620dd8e0a399b652f7706b646f7a9970b912aab55c354bb3dad4fa89",
+      "render/slide-05.png": "58f2cb80292418a7e86bdc611fc8b173f5b00b0b9b2497cdd180e7b07bdb2b60"
+    },
+    "9": {
+      "assets/js/deck/2026-10-31-roadpaint.js": "7522b1164100d2cd37f5c8d03a2383edf1af897ad1c4b69ed43100f2ddf3b7b7",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+      "slides/slide-09.html": "602aa339a8fa5da2d1b0807249ae6263fb597b2733c1c70fce00071f1faba26b",
+      "render/slide-09.png": "1cd83f29acb6fc297b9a93c8900e04c0d60d9844b0651a9d788e77cad0f52059",
+      "assets/js/d3.v7.min.js": "f2094bbf6141b359722c4fe454eb6c4b0f0e42cc10cc7af921fc158fceb86539",
+      "assets/js/topojson-client.min.js": "25cd02ae486cc5063e0215a4e4cfb15de83700c87ac48bac4d57dc6aaf3ebb89",
+      "assets/js/txgeo.js": "20778482eebc6c44ae967cdee00e0ef0a9f2e84c900a7e0a01df83fb1051ca12"
+    }
+  },
+  "needs_review": [
+    5
+  ],
+  "shipped_inputs": {
+    "slides/slide-01.html": "5fc393552b996be938902dbd4cae7d362d4f6689f6b302f04a86af767af6fdfc",
+    "slide-01.webp": "1850b1630faf3738040736d79c67a9f0a4ade0c2396f8e2902f6f18b57364770",
+    "slides/slide-05.html": "f835da0d620dd8e0a399b652f7706b646f7a9970b912aab55c354bb3dad4fa89",
+    "slide-05.webp": "3d142847f96341d37d83cd6a1c62f8c5e61c32df139288f952e477030fabe637",
+    "slides/slide-09.html": "602aa339a8fa5da2d1b0807249ae6263fb597b2733c1c70fce00071f1faba26b",
+    "slide-09.webp": "fc2ab4886e84fb2b0b1e04bc925333a01b1cdb5aa16bd7e334f7ae3c62449364"
+  },
+  "encodings": [
+    {
+      "to": "slide-01.webp",
+      "to_sha256": "1850b1630faf3738040736d79c67a9f0a4ade0c2396f8e2902f6f18b57364770",
+      "from_sha256": "2330a84c11b52fcda0817f9cd2e6a660fd379a9fa78e4b14da2fce5d19fdcaf5",
+      "psnr_db": 41.989
+    },
+    {
+      "to": "slide-05.webp",
+      "to_sha256": "3d142847f96341d37d83cd6a1c62f8c5e61c32df139288f952e477030fabe637",
+      "from_sha256": "58f2cb80292418a7e86bdc611fc8b173f5b00b0b9b2497cdd180e7b07bdb2b60",
+      "psnr_db": 41.423
+    },
+    {
+      "to": "slide-09.webp",
+      "to_sha256": "fc2ab4886e84fb2b0b1e04bc925333a01b1cdb5aa16bd7e334f7ae3c62449364",
+      "from_sha256": "1cd83f29acb6fc297b9a93c8900e04c0d60d9844b0651a9d788e77cad0f52059",
+      "psnr_db": 40.652
+    }
+  ]
+}

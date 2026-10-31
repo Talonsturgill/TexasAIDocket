@@ -1,0 +1,80 @@
+<!doctype html>
+<!-- 2026-10-31, frame 2 of 9. Archetype GRID. A TXBENCH material relief in plan under the deck's declared key: thermoplastic tally stripes on black asphalt in rows of 14, cameras_2022 worn stripes for the 2022 lease and cameras_added_2023 fresh stripes for what the 2023 lease added. One stripe is one camera. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:900px"><span style="font-variation-settings:'opsz' 36">42</span> cameras in 2022, then 70</h1>
+<p class="dek" data-follow="24" style="width:900px">The council leased 42 Flock cameras over two years for up to $233,400, then restated a five year lease of 70 for up to $899,600. One stripe is one camera. Drawn to&nbsp;illustrate.</p>
+<div class="lab" id="lab-a">2022</div>
+<div class="lab" id="lab-b">2023, 70 IN ALL</div>
+<script>window.FIG = {"cameras_2022": 42, "cameras_added_2023": 28};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-31-roadpaint.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script src="@@ASSETS@@/js/txbench.js"></script>
+<script>
+window.renderReady = (async () => {
+  const cx = await CH.bootFlat({ kicker: "What the city leased", counter: "02 / 09", src: "c1 c2 c3 c4 c5 c6", fit: { min: 72, max: 96, maxLines: 2 } });
+  TX.reseed(20261031);
+  /* THE FIGURES, from figures.json: one stripe per camera, the 2022 lease's cameras worn and the cameras the 2023 lease added
+   * fresh, laid in rows of PER at one pitch, so the two blocks read as old paint and new paint */
+  const nOld = Math.round(FIG.cameras_2022), nNew = Math.round(FIG.cameras_added_2023), PER = 14;
+  const SW = 32, SH = 84, RG = 38, X0 = 84, X1 = 996, Y0 = 600, SG = (X1 - X0 - PER * SW) / (PER - 1);
+  /* the 2023 lease's added stripes start a block of their own, a wider joint below the last worn row */
+  const NEW_ROW = Math.ceil(nOld / PER), EXTRA = 40, YJ = Y0 + NEW_ROW * (SH + RG);
+  const M = { ASPH: 0, WORN: 1, FRESH: 2 };
+  const asphH = (X, Y) => 0.5 * TX.fbm2(X * 0.09, Y * 0.09, 3) + 0.35 * TX.simplex2(X * 0.6, Y * 0.6);
+  /* rows of PER, the fresh stripes continuing straight after the last worn one */
+  function sample(X, Y0X) {
+    const Y = Y0X >= YJ + EXTRA ? Y0X - EXTRA : (Y0X >= YJ ? -1e9 : Y0X);
+    if (Y < -1e8) return [asphH(X, Y0X), M.ASPH];
+    const row = Math.floor((Y - Y0) / (SH + RG)), col = Math.floor((X - X0) / (SW + SG));
+    if (row >= 0 && col >= 0 && col < PER) {
+      const idx = row * PER + col;
+      if (idx < nOld + nNew) {
+        const bx = X0 + col * (SW + SG), by = Y0 + row * (SH + RG), dx = X - bx, dy = Y - by;
+        if (dx >= 0 && dx <= SW && dy >= 0 && dy <= SH) {
+          const edge = Math.min(dx, SW - dx, dy, SH - dy), bev = Math.min(1, edge / 3), worn = idx < nOld;
+          const pit = worn ? 1.1 * Math.max(0, TX.simplex2(X * 0.35, Y * 0.35) - 0.2) : 0;
+          return [(worn ? 6 : 10) * bev - pit, worn ? M.WORN : M.FRESH];
+        }
+      }
+    }
+    return [asphH(X, Y0X), M.ASPH];
+  }
+  const cache = new Map(), key = (X, Y) => (X * 4 | 0) + ',' + (Y * 4 | 0);
+  const S = (X, Y) => { const kk = key(X, Y); let v = cache.get(kk); if (!v) { v = sample(X, Y); cache.set(kk, v); } return v; };
+  const albedo = (X, Y, m) => {
+    if (m === M.ASPH) { const a = 1 + 0.45 * TX.simplex2(X * 0.5, Y * 0.5) + 0.25 * TX.simplex2(X * 0.04, Y * 0.04); const s = TX.simplex2(X * 1.3, Y * 1.3) > 0.72 ? 2.2 : 1; return [0.034 * a * s, 0.035 * a * s, 0.039 * a * s]; }
+    if (m === M.WORN) { const p = TX.simplex2(X * 0.4, Y * 0.4) > 0.3 ? 0.45 : 1; return [0.43 * p, 0.42 * p, 0.4 * p]; }
+    return [0.95, 0.93, 0.88];
+  };
+  const pool = (X, Y) => { const d = Math.hypot((X - 540) / 680, (Y - 1050) / 560), t = Math.max(0, Math.min(1, (d - 0.35) / 0.8)); return 1 - 0.94 * t * t * (3 - 2 * t); };
+  cx.fillStyle = '#09080c'; cx.fillRect(0, 0, 2160, 2700);
+  const rep = TXBENCH.relief(cx, { x: 0, y: 580, w: 1080, h: 770, scale: 2, height: (X, Y) => S(X, Y)[0], material: (X, Y) => S(X, Y)[1], keyMask: pool, albedo,
+    spec: { [M.FRESH]: [0.9, 40], [M.WORN]: [0.12, 14] }, keyColor: [1, 0.88, 0.74], ambColor: [0.55, 0.62, 0.8],
+    ambient: 0.06, diffuse: 2.6, ao: 1.0, shadow: 0.92, softness: 3, castLength: 200 });
+  { const g = cx.createLinearGradient(0, 1150, 0, 1290); g.addColorStop(0, 'rgba(9,8,12,1)'); g.addColorStop(1, 'rgba(9,8,12,0)'); cx.fillStyle = g; cx.fillRect(0, 1150, 2160, 150); }
+  const put = (id, x, y) => { const el = document.getElementById(id); el.style.left = x + 'px'; el.style.top = y + 'px'; };
+  /* the year labels sit where each block begins: 2022 over the first worn row, 2023 beside the first fresh stripe's row */
+  const firstNewRow = Math.floor(nOld / PER), firstNewCol = nOld % PER;
+  put('lab-a', X0, Y0 - 38);
+  put('lab-b', X0, YJ + EXTRA / 2 - 22);
+  cx.setTransform(2, 0, 0, 2, 0, 0);
+  CH.post(cx, { a: 0.4, pad: 80, fade: 220, veil: 0.32, footWash: 0.5 });
+  window.__relief = rep;
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+{
+ "lens": "reader",
+ "round": 3,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 7.2,
+   "why": "Every frame rendered on a dark field; six do real work at 432 px: 2's relief shows the growth without counting; 3 now a true relief with measured height and the bars at 55:70 against a saw-cut ruler, fixing the strip in a void; 5 counts 7, 7 plus a saw cut, 8; 6 seats the resident on the panel; 9 seated and lit; 4's amber row clear of the claim line. Held down: 7 broad brown mid-tone planks, the new panel not a picture of removal directed; 8 a flat grille-like rectangle; 4's field bleeds both edges as wallpaper; 1's car primitive with a flat black windshield."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 8.0,
+   "why": "Clearly one deck: thermoplastic on near-black asphalt, key left and casts right, terracotta held to 6 to 9, value dark, the road-paint motif changing state frame by frame, the one-corner camera move 1, 6, 7. 3 and 8 read slightly as boards set into the world."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.2,
+   "why": "Every numeral traces; the roll calls counted from vote rows; the first comment's 15 official records and two news reports match its list; the Tribune figures attributed; slide 8 discloses Houston Public Media's 'within 72 hours' beside the Tribune's clock. Held under 9: slide 4's legend over a field cut at both edges; the ballot wording rests on one county's sample ballot for a two-county city."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.5,
+   "why": "What, who, where (both counties), when and the twist named. The only hours are Harris County's and no surface says Galveston's were not read; the caption's closing question has no answer; nothing says what the cameras record (c34 unused)."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "The cover earns the swipe, frame 2 pays at once, 6 to 7 the real turn, 8 the clock, 9 the next step. Slide 3 a defensive correction; slide 5's headline cryptic until the dek."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.3,
+   "why": "Clean, every house rule held, some good lines. Much reads as an attribution ledger; 'Drawn to illustrate.' closes all nine; 'Seven For' and 'can look' flat; the closing question an engagement device."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.3,
+   "why": "The technique fresh; the subject not: no. 39 thirty days ago named the vote and Laredo's referendum and this close repeats its ending. The topics differ and dedupe_check passed, so charged here. The register and the night-road cover follow recent decks."
+  }
+ ],
+ "weighted_score": 7.494,
+ "hard_fails": [],
+ "ship": true,
+ "ship_note": "No hard fail. 7.494 is under the 7.7 rung; round 3 is the cap, so the deck ships with the shortfall named.",
+ "one_sentence_fix": "Give the reader the action half: a where-and-when line for both counties, or say plainly that Galveston County's hours were not read, and spend slide 3 on what the cameras record.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 7,
+   "problem": "Broad brown mid-tone plank tops, no single subject; the panel does not show removal directed.",
+   "fix": "Drop the top albedo so only chamfers catch the key; dolly low over the panel so it owns the lower left third."
+  },
+  {
+   "slide": 4,
+   "problem": "The field bleeds both edges at even brightness, wallpaper; the legend can't be checked.",
+   "fix": "Pull back so the block sits inside with a dark margin; pool the key on the front rows and the amber markers."
+  },
+  {
+   "slide": 8,
+   "problem": "A flat evenly lit rectangle of grooves, a vent grille; CERTIFIED floats above the strip.",
+   "fix": "Tighten the pool on the start bar and row 1; set CERTIFIED beside the start bar with a leader."
+  },
+  {
+   "slide": 1,
+   "problem": "A primitive car body, flat black windshield, blank plate.",
+   "fix": "An environment reflection in the glass, a warm rim, the headlight throw on a fictional plate."
+  }
+ ]
+}

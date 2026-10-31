@@ -1,0 +1,135 @@
+{
+ "_spec": {
+  "version": 1,
+  "purpose": "A standalone web edition of the archived visual story.",
+  "law": "Facts resolve to the original verified claim record. A layout rebuild does not reverify reporting.",
+  "written_by": "daily"
+ },
+ "section": "Local government",
+ "dek": {
+  "text": "League City votes Tuesday on its Flock license plate cameras. The ballot calls the question nonbinding, yet the council has already directed removal if voters say no.",
+  "claims": [
+   "c12",
+   "c27",
+   "c22"
+  ]
+ },
+ "introduction": [
+  {
+   "text": "[League City voters decide Proposition A in a special election on {{date:c12}}](c12). [It asks whether the police department keeps using license plate reader cameras at fixed locations on public roadways](c13). [The Texas Tribune reported that the city's voters will be the first in Texas to decide whether to remove Flock cameras from city streets](c29).",
+   "claims": [
+    "c12",
+    "c13",
+    "c29"
+   ]
+  },
+  {
+   "text": "[Harris County's sample ballot frames the question as a nonbinding statement of voter preference](c27). [The council put that word in itself, amending its motion before it ordered the election](c15) [on {{date:c14}}](c14). [On {{date:c23}} the council passed a resolution](c23) [that directs removal of the fixed cameras if a majority rejects their continued use](c22).",
+   "claims": [
+    "c27",
+    "c15",
+    "c14",
+    "c23",
+    "c22"
+   ]
+  }
+ ],
+ "sections": [
+  {
+   "heading": "What the city leased",
+   "paragraphs": [
+    {
+     "text": "[A League City resolution authorized a lease of {{number:c1}} automated license plate reader cameras from Flock Safety](c1), [over two years at a cost not to exceed {{money:c2}}](c2). [The council approved it on its consent agenda](c3). [On {{date:c4}} it approved an updated and restated agreement](c4) [with Flock Group for {{number:c5}} cameras](c5), [capped at {{money:c6}}](c6).",
+     "claims": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5",
+      "c6"
+     ]
+    },
+    {
+     "text": "[The Tribune reported that the proposition asks about {{number:c30:1}} Flock cameras along public roads](c30). The lease names the cameras the city rents. The proposition asks about the cameras on public roads. The two numbers measure different things.",
+     "claims": [
+      "c5",
+      "c30"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "Who can search the data",
+   "paragraphs": [
+    {
+     "text": "[The Tribune reported that League City lets more than {{number:c40}} agencies access its Flock camera data](c40). [All of them are in Texas except the FBI, it reported from the city's transparency portal](c41). [Mayor Nick Long said only six officers have access to the city's system](c38), [and the Tribune reported that two officers must work together to scan the data](c39).",
+     "claims": [
+      "c40",
+      "c41",
+      "c38",
+      "c39"
+     ]
+    },
+    {
+     "text": "[The Tribune described the devices as AI-powered cameras that compile vehicle information into a database](c34). [It reported that the city has kept using them in the run-up to Election Day](c37).",
+     "claims": [
+      "c34",
+      "c37"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "If the answer is no",
+   "paragraphs": [
+    {
+     "text": "[Long said at the council meeting on {{date:c32}} that no second vote is needed](c32). [He told the council the city will start bagging the cameras {{number:c33}} hours after the vote is certified](c33), the Tribune reported. [Houston Public Media quoted him calling the resolution a commitment to take the cameras down within {{number:c46}} hours](c46).",
+     "claims": [
+      "c32",
+      "c33",
+      "c46"
+     ]
+    },
+    {
+     "text": "[Harris County's vote centers take voters from {{number:c28}} a.m. to {{number:c28:1}} p.m. on Election Day](c28). [Kyle and Laredo plan to put the same question to their own voters in May, the Tribune reported](c35).",
+     "claims": [
+      "c28",
+      "c35"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "What the record does not show",
+   "paragraphs": [
+    {
+     "text": "[The Census Bureau lists League City in Galveston County](c25) [as well as in Harris County](c26). Galveston County's polling hours were not part of the record read here. [The resolution sets what follows a no](c22). It does not say when the count will be certified, so the day the cameras would start coming down is not yet known.",
+     "claims": [
+      "c25",
+      "c26",
+      "c22",
+      "c33"
+     ]
+    }
+   ]
+  }
+ ],
+ "related": [
+  {
+   "id": "tx-2026-0048",
+   "label": "League City's Proposition A on the Docket"
+  },
+  {
+   "id": "tx-2026-0180",
+   "label": "Leander's plate reader contract"
+  },
+  {
+   "id": "tx-2026-0030",
+   "label": "Austin's surveillance technology ordinance"
+  },
+  {
+   "id": "tx-2026-0075",
+   "label": "Pflugerville's charter amendment on the city's use of AI"
+  }
+ ]
+}

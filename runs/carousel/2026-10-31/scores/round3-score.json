@@ -1,0 +1,197 @@
+{
+ "weighted_score": 7.366,
+ "judges": [
+  7.15,
+  7.468,
+  7.494
+ ],
+ "spread": 0.344,
+ "criteria": {
+  "artwork_craft": {
+   "score": 6.8,
+   "weight": 0.22,
+   "judges": [
+    6.8,
+    6.8,
+    7.2
+   ]
+  },
+  "deck_coherence": {
+   "score": 8.0,
+   "weight": 0.12,
+   "judges": [
+    8.0,
+    7.7,
+    8.0
+   ]
+  },
+  "claim_integrity": {
+   "score": 8.0,
+   "weight": 0.2,
+   "judges": [
+    7.4,
+    8.0,
+    8.2
+   ]
+  },
+  "story_and_stakes": {
+   "score": 7.5,
+   "weight": 0.16,
+   "judges": [
+    7.3,
+    7.8,
+    7.5
+   ]
+  },
+  "sequence_and_momentum": {
+   "score": 7.5,
+   "weight": 0.1,
+   "judges": [
+    7.3,
+    7.5,
+    7.5
+   ]
+  },
+  "voice": {
+   "score": 7.3,
+   "weight": 0.1,
+   "judges": [
+    7.2,
+    7.5,
+    7.3
+   ]
+  },
+  "variety": {
+   "score": 6.3,
+   "weight": 0.1,
+   "judges": [
+    6.0,
+    7.0,
+    6.3
+   ]
+  }
+ },
+ "hard_fails": [],
+ "hard_fails_by_judge": [],
+ "ship": true,
+ "threshold": 8.0,
+ "over_threshold": false,
+ "method": "per-criterion median across three judges, then weighted by the rubric",
+ "artwork_weakest_frames": [
+  {
+   "slide": 7,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Lower half mid-tone brown; dull dark planks with no focal; the gutter band a grey middle.",
+     "fix": "Drop the gutter and kerb albedo to black and tilt up so the gutter leaves the frame, leaving the chamfers and panel as the only lights."
+    },
+    {
+     "judge": 2,
+     "problem": "Darkened tops read as brown planks; the stop bar and panel outshine the paint; a mid-brown kerb plane; a stair-stepped shadow edge; a scrim behind the claim line.",
+     "fix": "Restore bead-white tops raked only on the chamfers; raise the eye to about 0.5 m and pitch down so the bars fill y 900 to 1800; double the sun shadow map."
+    },
+    {
+     "judge": 3,
+     "problem": "Broad brown mid-tone plank tops, no single subject; the panel does not show removal directed.",
+     "fix": "Drop the top albedo so only chamfers catch the key; dolly low over the panel so it owns the lower left third."
+    }
+   ]
+  },
+  {
+   "slide": 4,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The field bleeds both edges as wallpaper; far rows as bright as near; the legend can't be checked.",
+     "fix": "Pull back so the whole block sits inside a dark margin; stage the light on the front rows."
+    },
+    {
+     "judge": 2,
+     "problem": "Boxy markers with navy-black prism faces; a uniform tan pattern at 432; small amber markers above the claim line.",
+     "fix": "Warm reflective prism insets; eye about 0.6 m at fov 28 so the amber row stands about 25 percent up at twice the size."
+    },
+    {
+     "judge": 3,
+     "problem": "The field bleeds both edges at even brightness, wallpaper; the legend can't be checked.",
+     "fix": "Pull back so the block sits inside with a dark margin; pool the key on the front rows and the amber markers."
+    }
+   ]
+  },
+  {
+   "slide": 8,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Evenly lit grooves, a vent grille; rows 2 and 3 indented leave a dead block under the start bar.",
+     "fix": "Pool the key on the start bar and row 1; shift rows 2 and 3 left to start at the start bar."
+    },
+    {
+     "judge": 2,
+     "problem": "A flat evenly lit rectangle reading as a vent grille.",
+     "fix": "Tighten the pool on the start bar and row 1; a lit top arris on the strip."
+    },
+    {
+     "judge": 3,
+     "problem": "A flat evenly lit rectangle of grooves, a vent grille; CERTIFIED floats above the strip.",
+     "fix": "Tighten the pool on the start bar and row 1; set CERTIFIED beside the start bar with a leader."
+    }
+   ]
+  },
+  {
+   "slide": 3,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "A two-bar chart on a uniformly lit grey band, no pool or falloff.",
+     "fix": "A keyMask pool on the bar ends and the 55 to 70 ticks, the pan falling to black at its edges; raise the bars for long casts."
+    },
+    {
+     "judge": 2,
+     "problem": "An embossed bar chart on a stucco plate; the bars share the concrete's noise; a hard-edged band with dead black above and below.",
+     "fix": "A smooth bead-glint height field for the bars; extend the pan to y 760 to 1760 with the pool falling off."
+    }
+   ]
+  },
+  {
+   "slide": 1,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "A primitive body, flat black windshield, the hard ground edge.",
+     "fix": "Extend the ground under the fog; an environment reflection in the windshield."
+    },
+    {
+     "judge": 3,
+     "problem": "A primitive car body, flat black windshield, blank plate.",
+     "fix": "An environment reflection in the glass, a warm rim, the headlight throw on a fictional plate."
+    }
+   ]
+  },
+  {
+   "slide": 5,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "Flat quads with a thin lip and no visible cast; a near-black void upper left.",
+     "fix": "Bevelled 7 mm bars with soft casts; swing about 8 degrees left and lower the eye so the crosswalks fill the width."
+    }
+   ]
+  }
+ ],
+ "rounds_derived": 3,
+ "rounds": 3,
+ "rounds_source": "this module's own log of cards it has scored",
+ "rounds_declared": 3,
+ "at_cap": true,
+ "rung": null,
+ "shortfall": "at the round cap the finished deck ships at 7.366, 0.634 under the 8.0 top rung. Name that in the email and the run record",
+ "craft_floor": "capped",
+ "craft_note": "at the round cap the craft floor stands down. The art median 6.8 is under 8.5 and the deck ships as it is. Name it in the run record"
+}

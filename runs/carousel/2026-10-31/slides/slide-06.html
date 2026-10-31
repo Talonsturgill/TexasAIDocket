@@ -1,0 +1,68 @@
+<!doctype html>
+<!-- 2026-10-31, frame 6 of 9. Archetype FULL_BLEED. A spatial scene through txthree.js in the deck's lastLight world: a kit person standing on the chassis curb_ramp_warning at the kerb, the chassis continental_crosswalk of removal_roll bars running across the road in front. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:900px">The ballot calls itself nonbinding</h1>
+<p class="dek" data-follow="26" style="width:880px">Harris County's sample ballot reads "As a nonbinding statement of voter preference, should the League City Police Department continue using automated license plate reader cameras at fixed locations on public roadways for law enforcement purposes?" The council added the word on August 11th. Drawn to&nbsp;illustrate.</p>
+<script>window.FIG = {"removal_roll": 8};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-31-roadpaint.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "The question", counter: "06 / 09", src: "c13 c14 c15 c27", fit: { min: 66, max: 92, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 36, near: 0.05, far: 3000, fog: 0.01 });
+  /* THE CORNER, shared by frames 6 and 7: a kerb and sidewalk on the west side of a two lane road, the terracotta warning
+   * panel at the kerb ramp, a continental crosswalk of removal_roll bars running east across the road, and a stop bar */
+  const M = CH.mats(THREE, K);
+  const nBars = Math.round(FIG.removal_roll);
+  const xw = K.make('continental_crosswalk', { n: nBars, w: 0.6, gap: 0.6, l: 3.0, wear: 'fresh' });
+  xw.position.set(0.25, 0, 0); TXT.add(R, xw);
+  const stop = K.make('thermo_bar', { w: 3.6, l: 0.45, wear: 'fresh' }); stop.position.set(-2.4, 0, 2.6); TXT.add(R, stop);
+  const walk = K.box(6, 0.15, 60, M.kerb, -7.65, 0, -6); TXT.add(R, walk);
+  const kerb = TXT.roundedBox(0.16, 0.16, 60, 0.02, M.kerb); kerb.position.set(-4.65, 0.08, -6); TXT.add(R, kerb);
+  const panel = K.make('curb_ramp_warning', { w: 1.22, d: 0.61 }); panel.rotation.y = Math.PI / 2; panel.position.set(-5.1, 0.15, 0); TXT.add(R, panel);
+  for (let i = 0; i < 4; i++) { const d = K.make('thermo_bar', { w: 0.12, l: 3.0, wear: 'worn' }); d.position.set(0.0, 0, 5 + i * 9.0); TXT.add(R, d); }
+  /* the resident on the warning panel, turned three quarters toward the road, lit from the camera's side by the low west key */
+  const who = K.make('person', { seed: 11, role: 'resident', pose: 'stand', hat: 'none', detail: 'full', shirt: 0x2b3548 }); who.rotation.y = Math.PI / 2 - 0.5; who.position.set(-5.1, 0.15, 0.05); CH.put(who, true);
+  /* under the pool the deck's terracotta reads as a hot red, so this panel is held nearer the dusk_ember token */
+  const terra6 = M.terracotta.clone(); terra6.color.setHex(0xc4806a); terra6.emissive.setHex(0x8a4c3a); terra6.emissiveIntensity = 1.0;
+  panel.traverse(o => { if (o.isMesh && o.material === M.terracotta) o.material = terra6; });
+  const sl = K.make('streetlight', { height: 9.1, reach: 2.4 }); sl.position.set(-7.4, 0.15, -6.5); TXT.add(R, sl);
+  /* the sidewalk's own control joints, saw cut every 1.5 m, so the slab the resident stands on reads as poured concrete */
+  const jm = new THREE.MeshStandardMaterial({ color: 0x15130f, roughness: 0.95 });
+  for (let i = -6; i <= 8; i++) { const j = K.box(6, 0.004, 0.025, jm, -7.65, 0.15, i * 1.5); TXT.add(R, j); }
+  for (let i = -6; i <= 8; i++) { const j = K.box(0.025, 0.004, 1.5, jm, -7.65, 0.15, i * 1.5 + 0.75); TXT.add(R, j); }
+  TXT.sky(R);
+  TXT.ground(R, { surface: 'asphalt', size: 600, seed: 61 });
+  const from = [-11.6, 3.4, 8.6];
+  const look = CH.aim(THREE, R, TXT, from, [-4.6, 0.6, -0.4], 330, 900, 33);
+  TXT.frame(R, { fov: 33, from, look });
+  CH.warm(R, 0.32);
+  TXT.deckRig(R, CH.rigSpec(W, 14, 4096), CH.rigOpts([-3, 0.5, 0], { distance: 30, shadowFar: 80 }));
+  CH.unacne(R, 0.004);
+  TXT.weather(R, { grime: 0.45, height: 0.5 });
+  TXT.stage(R, [who, panel, xw], { poolInner: 4.5, poolOuter: 13 });
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0.32, veil: 0.3, footWash: 0.5 });
+  CH.knock(cx, ['.src', '.tx-site'], 0.54);
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

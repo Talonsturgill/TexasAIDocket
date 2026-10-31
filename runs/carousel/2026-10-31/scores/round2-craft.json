@@ -1,0 +1,84 @@
+{
+ "lens": "craft",
+ "round": 2,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.6,
+   "why": "Every frame a real render on a dark field. 09 about 8 passes (slab seated, inlays the focal). 02 about 7.5 a true relief, worn rows in the grey middle. 06 about 7, the best composition, the kit figure mannequin-smooth. 01 about 7, the lamps lead; windshield flat black, a hard ground edge left of the car. 07 about 6.5, a bold diagonal now; the bar tops one broad mid-tone band, a stair-stepped shadow edge, a colour fringe bottom right. 05 about 6.5, the kerb wedge and gutter aliasing stand, bars flat quads. 08 about 6.5, a flat dim rectangle with little pool falloff. 04 about 6, a uniform pattern at 432, the amber row about 10 px on the claim line, prism faces navy-black. 03 about 5.5, a strip about 8 percent of the height between a dead sky and a dead foreground."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.8,
+   "why": "Clearly one deck: near-black asphalt, bead-white paint, one terracotta accent on 6, 8 and 9, casts to the right, one type band, no strobe; MOTIF_EVOLUTION real; CAMERA_MOVE 6 to 7. 01's warm haze and 03's brown band sit slightly outside."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.0,
+   "why": "Every numeral traces; round 1's leads closed (both counties named, the ballot sentence whole, c46 dropped). Remaining looseness: frame 4's dek says brass where the markers render amber; frame 2's '2023, 70 IN ALL' sits over the 28 fresh stripes only; the 72 hours and 'no second vote' rest on the Tribune, attributed."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.8,
+   "why": "Place, body, proposition, date, resolution and its condition all named; frames 6 to 8 make the stake concrete. The action step covers only Harris County's hours; the caption's closing question answered nowhere."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "Cover sets place and vote, frame 2 pays at once, frame 3 a correction frame, frame 4 a detour, the turn 5 to 7 lands, 8 to 9 drive to a usable close."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "Specific, local, unhyped; strong lines. 'Drawn to illustrate.' a tic on eight deks; frame 5's dek a run of fragments."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "The technique fresh, the palette and accent register familiar, the subject close to no. 39 and its road-at-night cover."
+  }
+ ],
+ "weighted_score": 7.436,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Re-camera frames 3 and 4 low and close so the bars and the officer row fill the lower half, and drop frame 5's kerb to the asphalt's value.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 3,
+   "problem": "A strip about 8 percent of the frame between a dead sky and a dead foreground; a flat curb band; arbitrary pebbles.",
+   "fix": "Eye about 0.6 m, about 1.8 m off the pan at fov 28, pan and bars corner to corner across the lower half; remove the pebbles; curb to the asphalt's value."
+  },
+  {
+   "slide": 5,
+   "problem": "A tan kerb wedge upper left, gutter-lip aliasing, bars flat quads.",
+   "fix": "Kerb and gutter albedo to the asphalt's value; raise the shadow map resolution so each bar casts."
+  },
+  {
+   "slide": 4,
+   "problem": "A uniform tan pattern at 432; the amber markers about 10 px on the claim line; prism faces navy-black.",
+   "fix": "Eye about 0.6 m at fov 28 with the amber row about 25 percent up from the bottom; warm the prism faces."
+  },
+  {
+   "slide": 7,
+   "problem": "Bar tops one broad mid-tone band; a stair-stepped near shadow; a colour fringe bottom right.",
+   "fix": "Darken the top albedo so only the chamfers catch the key; raise shadow map size; crop the fringe."
+  },
+  {
+   "slide": 8,
+   "problem": "A flat dim rectangle with hard edges and little pool falloff; reads as a grille.",
+   "fix": "Tighten the pool on the start bar and row 1, near black by row 3; a lit kerb edge at the top."
+  },
+  {
+   "slide": 1,
+   "problem": "Flat black windshield, primitive body, a hard ground edge left of the car.",
+   "fix": "An environment reflection in the glass; extend the ground under the fog."
+  }
+ ]
+}

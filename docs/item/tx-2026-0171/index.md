@@ -37,6 +37,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-26 · The Governor's directive to the water board is still unconfirmed on its own page, which bars automated readers. The Tribune's account of the survey count reads as cited.
 - 2026-10-29 · The Governor's direction to the water board on the water use survey is still unconfirmed, since the office's site bars automated readers.
 - 2026-10-30 · The Governor's direction on the water use survey remains unconfirmed, because the office's site still bars automated readers.
+- 2026-10-31 · The Governor's order to enforce the water use survey against data centers is still unconfirmed, because the office's site refuses automated readers.
 
 ## Evidence
 

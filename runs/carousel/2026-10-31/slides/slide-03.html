@@ -1,0 +1,79 @@
+<!doctype html>
+<!-- 2026-10-31, frame 3 of 9. Archetype DIAGRAM. A TXBENCH material relief in plan under the deck's declared key: a concrete gutter pan cut with a saw cut ruler of cameras_2023 units from one zero cut, two thermoplastic bars inlaid against it, the lease's cameras_2023 and the Tribune's cameras_tribune at one scale. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:900px">70 leased, 55 on the roads</h1>
+<p class="dek" data-follow="24" style="width:900px">The 2023 lease covers 70 cameras. Proposition A asks about 55 along public roads, the Tribune reported. A lease and a road count measure different things. Drawn to&nbsp;illustrate.</p>
+<div class="lab" id="lab-a">70, THE 2023 LEASE</div>
+<div class="lab" id="lab-b">55, ON THE ROADS</div>
+<script>window.FIG = {"cameras_2023": 70, "cameras_tribune": 55};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-31-roadpaint.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script src="@@ASSETS@@/js/txbench.js"></script>
+<script>
+window.renderReady = (async () => {
+  const cx = await CH.bootFlat({ kicker: "Lease and count", counter: "03 / 09", src: "c5 c30", fit: { min: 72, max: 96, maxLines: 2 } });
+  TX.reseed(20261031);
+  /* THE FIGURES, from figures.json: one ruler unit is one camera, the bars measured from one zero cut at one scale, so the
+   * shorter bar is the Tribune's count and the longer the lease's, and the ratio on the pan is the ratio in the record */
+  const nLease = Math.round(FIG.cameras_2023), nCount = Math.round(FIG.cameras_tribune);
+  const X0 = 96, U = (1000 - X0) / nLease, SX0 = -20, SX1 = 1100, SY0 = 610, SY1 = 1170;
+  const BH = 92, B1 = 690, B2 = 830, T0 = 970, ZW = 6;
+  const M = { ASPH: 0, CONC: 1, CUT: 2, PAINT: 3 };
+  const asphH = (X, Y) => 0.5 * TX.fbm2(X * 0.09, Y * 0.09, 3) + 0.35 * TX.simplex2(X * 0.6, Y * 0.6);
+  /* a saw cut with a floor and a sloped far wall, the wall facing the key rising out of the floor */
+  const cut = (top, u) => { const w = Math.max(0, Math.min(1, (u - 0.45) / 0.55)); return [top - 9 + 9 * w * w * (3 - 2 * w), w > 0.25 ? M.CONC : M.CUT]; };
+  function sample(X, Y) {
+    if (X < SX0 || X > SX1 || Y < SY0 || Y > SY1) return [asphH(X, Y), M.ASPH];
+    const edge = Math.min(X - SX0, SX1 - X, Y - SY0, SY1 - Y), top = 14 * Math.min(1, edge / 4) + 0.25 * TX.fbm2(X * 0.1, Y * 0.1, 2);
+    /* the zero cut every measure starts from, the full depth of the ruler */
+    if (X >= X0 - ZW && X <= X0 && Y > B1 - 30 && Y < T0 + 70) return cut(top, (X - (X0 - ZW)) / ZW);
+    /* the two inlaid bars, thermoplastic 7 mm proud with a bevel */
+    for (const [y, n] of [[B1, nLease], [B2, nCount]]) {
+      const x1 = X0 + n * U;
+      if (X > X0 + 2 && X < x1 && Y > y && Y < y + BH) { const e = Math.min(X - X0 - 2, x1 - X, Y - y, y + BH - Y); return [top + 8 * Math.min(1, e / 3), M.PAINT]; }
+    }
+    /* the ruler: a saw cut every camera, longer every five, longest every ten */
+    if (Y > T0 && X > X0) { const k = Math.round((X - X0) / U), gx = X0 + k * U, L = k % 10 === 0 ? 62 : k % 5 === 0 ? 42 : 24;
+      if (k >= 1 && k <= nLease && Math.abs(X - gx) <= 2.5 && Y < T0 + L) return cut(top, (X - gx + 2.5) / 5); }
+    return [top, M.CONC];
+  }
+  const cache = new Map(), key = (X, Y) => (X * 4 | 0) + ',' + (Y * 4 | 0);
+  const S = (X, Y) => { const kk = key(X, Y); let v = cache.get(kk); if (!v) { v = sample(X, Y); cache.set(kk, v); } return v; };
+  const albedo = (X, Y, m) => {
+    if (m === M.ASPH) { const a = 1 + 0.45 * TX.simplex2(X * 0.5, Y * 0.5); return [0.03 * a, 0.031 * a, 0.035 * a]; }
+    if (m === M.CONC) { const a = 1 + 0.18 * TX.simplex2(X * 0.3, Y * 0.3) + 0.1 * TX.simplex2(X * 0.02, Y * 0.02); return [0.12 * a, 0.12 * a, 0.115 * a]; }
+    if (m === M.CUT) return [0.03, 0.03, 0.03];
+    return [0.95, 0.93, 0.88];
+  };
+  const pool = (X, Y) => { const d = Math.hypot((X - 520) / 700, (Y - 830) / 400), t = Math.max(0, Math.min(1, (d - 0.35) / 0.8)); return 1 - 0.94 * t * t * (3 - 2 * t); };
+  cx.fillStyle = '#09080c'; cx.fillRect(0, 0, 2160, 2700);
+  const rep = TXBENCH.relief(cx, { x: 0, y: 560, w: 1080, h: 790, scale: 2, height: (X, Y) => S(X, Y)[0], material: (X, Y) => S(X, Y)[1], keyMask: pool, albedo,
+    spec: { [M.CONC]: [0.1, 12], [M.PAINT]: [0.9, 40] }, keyColor: [1, 0.88, 0.74], ambColor: [0.55, 0.62, 0.8],
+    ambient: 0.05, diffuse: 2.2, ao: 1.0, shadow: 0.92, softness: 3, castLength: 200 });
+  { const g = cx.createLinearGradient(0, 1150, 0, 1260); g.addColorStop(0, 'rgba(9,8,12,1)'); g.addColorStop(1, 'rgba(9,8,12,0)'); cx.fillStyle = g; cx.fillRect(0, 1140, 2160, 130); }
+  /* each label sits on the pan at its own bar's end, the lease's above, the count's below */
+  const put = (id, x, y) => { const el = document.getElementById(id); el.style.left = x + 'px'; el.style.top = y + 'px'; };
+  const wa = document.getElementById('lab-a').getBoundingClientRect().width, wb = document.getElementById('lab-b').getBoundingClientRect().width;
+  put('lab-a', Math.round(X0 + nLease * U - wa), B1 - 44);
+  put('lab-b', Math.round(X0 + nCount * U - wb), B2 + BH + 6);
+  cx.setTransform(2, 0, 0, 2, 0, 0);
+  CH.post(cx, { a: 0.4, pad: 80, fade: 220, veil: 0.32, footWash: 0.5 });
+  window.__relief = rep;
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>
