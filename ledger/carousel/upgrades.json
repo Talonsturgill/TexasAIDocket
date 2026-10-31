@@ -3697,4 +3697,51 @@
  ],
  "not_done": "Type sitting on the art (4 runs, 7 rounds) got no change, a different collision on each deck. Render artifact (4 runs, 7 rounds) beyond the relief band is still the engine's fixed normalBias proposal (UPGRADE_BACKLOG 2026-10-26). No. 63's balance, weight, case and plinth models stay in its chassis, one deck. No frontier scan; the time went to the proofs"
 }
+,
+"2026-10-31 weekly": {
+ "date": "2026-10-31",
+ "run": "weekly machine pass, read with carousel no. 64",
+ "actor": "upgrade",
+ "upgrades": [
+  {
+   "what": "Kit road paint in assets/js/kit/civic.js: pavement_bar (a hot applied thermoplastic bar extruded up from its footprint with a slumped rounded shoulder, a bead-white crown whose roughness map carries glass bead glints, fresh or worn), crosswalk (a continental crosswalk of pavement_bars, with removed bars drawn as a paint ghost in a grinder scar), pavement_marker (a raised marker as a rounded frustum on a bitumen pad, its reflector a cube-corner facet lens coplanar with each sloped face, warm, with a weak environment term so it never mirrors the sky) and warning_panel (a detectable warning plate with lathed truncated domes at the ADA standard's smallest dome). New names, so carousel no. 64's chassis still installs its own models and its frames re-render as shipped",
+   "why": "The week's top artwork defect on the round 3 craft card of no. 64 is the bars: frame 7 'darkened tops read as brown planks', frame 5 'flat quads with a thin lip and no visible cast', and the one sentence fix 'rebuild the chassis continental_crosswalk as a true bevelled 7 mm extrusion with bead-white tops ... so every bar casts'; frame 4's markers were 'boxy markers with navy-black prism faces', fix 'warm reflective prism insets'. Digest themes 'primitive or low-poly model where a kit model belongs' (5 runs of 5, 10 rounds) and 'largest object unmodelled' (5 runs, 11 rounds), each naming 2026-10-31 r1, r2 and r3. Queue roadpaint-models-built-in-chassis",
+   "files": [
+    "assets/js/kit/civic.js",
+    "knowledge/carousel/ARSENAL.md"
+   ],
+   "verification": "examples/kit/build.py --family civic --names pavement_bar,crosswalk,pavement_marker,warning_panel --world lastLight --surface asphalt, rendered through the carousel engine's render.py, 5 of 5 with no page errors; three close proofs at the deck's own key (az -64, el 14, a 6 m sun frustum at a 4096 map) read at full size: the bar's lit shoulder and its far cast show at a 0.5 m eye, the worn bar shows aggregate through the paint, and the marker lens was found in two proofs first overhanging the side slopes and then sinking under the face, both fixed by building it from the face's own corners; examples/kit/sizes.py exits 0, 136 of 136 declare the size they build, centred (the chassis's crosswalk declared 8.4 m wide and built 9.0); arsenal.py --check ok",
+   "revert": "git revert <commit of this change>, then python3 scripts/carousel/arsenal.py",
+   "how_i_would_know_this_was_wrong": "A road deck that calls pavement_bar or crosswalk is still charged for planks, flat quads or bars that do not cast under a tight sun frustum; a marker lens reads as a sticker or mirrors navy; or a deck builds road paint in its chassis again because ARSENAL did not lead it here"
+  },
+  {
+   "what": "sources_block --check fails a first comment whose authored labels carry a bare date or the post's own year, on every run named on or after 2026-10-31, with BARE_DATE and DATED_YEAR imported from caption_check rather than restated",
+   "why": "Queue sources-block-labels-skip-the-date-rule: no. 64's round 1 integrity judge found 'Texas Tribune, October 30, 2026' and 'November 3, 2026' in the first comment, with sources_block --check and caption_check both green, because build() prints each claim's authored `document` field verbatim and nothing reads it for house style. It was not one deck: the shipped first comments of 2026-10-26 ('Tuesday May 20, 2025') and 2026-10-30 ('October 12th, 2026' among five own-year dates) carry the same defect uncaught, so three of the week's five decks shipped or nearly shipped it, and 2026-10-15 had too",
+   "files": [
+    "scripts/carousel/sources_block.py"
+   ],
+   "verification": "sources_block --self-test exits 0 with eleven new cases: no. 64's round 1 labels go red (both bare dates), the repaired labels pass and the URLs' own dates are never read, an own-year ordinal goes red, another year keeps its year, the 2026-10-26 'Tuesday May 20, 2025' is red, the 2026-10-30 shipped block goes red under the function and is left alone by check() because it shipped before the rule, no. 64's shipped block is clean, and through check() end to end a block built from 'October 30, 2026' fails and passes once the label is fixed and the block rebuilt. --check exits 0 on every shipped run before and after the change",
+   "revert": "git revert <commit of this change>",
+   "how_i_would_know_this_was_wrong": "A run's --check fails on a label date that the house rules allow (a quoted document title the owner wants verbatim, or a date range the patterns misread), or a judge again finds a bare or own-year date in a first comment that this gate passed"
+  }
+ ],
+ "proposals_out_of_lane": [
+  {
+   "what": "GATE_LESSONS entry for the sources_block label date rule: a gate that reads a file for one property (which ids it lists) certifies the file, and the authored prose inside it went out under a green banner on three decks in one week",
+   "owner": "human",
+   "why": "knowledge/shared/GATE_LESSONS.md is human lane; the upgrade brief says a gate change belongs there"
+  },
+  {
+   "what": "prompt_audit.py separates agent and SendMessage dispatch latency from a permission dialog (queue prompt-audit-counts-agent-latency, repeat 2, nos. 58, 63 and 64: 188 of 1,962 calls reported waiting today, led by Agent and SendMessage dispatches of 6 to 29 s, with the hook armed and refusing nothing)",
+   "owner": "daily",
+   "why": "scripts/shared/prompt_audit.py is daily lane; the run bitten by it can fix it under its own stamp"
+  },
+  {
+   "what": "The id pass (the engine reports each tagged object's projected pixels) for layout_check's GRID piece count, accent presence and accent hue; queue grid-piece-count-reads-lit-ground-as-subject (repeat 5), lit-accent-drifts-in-lab (repeat 2) and accent-presence-forces-a-pool (repeat 2) all bit no. 64",
+   "owner": "human",
+   "why": "assets/js/txthree.js and render.py (.claude/skills) are not upgrade reachable; UPGRADE_BACKLOG 2026-10-12 item 4, re-counted today"
+  }
+ ],
+ "not_done": "No frontier scan; the time went to the proofs. Relief-plate-reads-as-a-tray (repeat 2) got no change: no. 64's frames 3 and 8 cast 0.473 and 0.348, far over print_ban's floor, and were still charged as an embossed chart and a vent grille, so cast is no longer the residual cause and a check for an evenly lit plate would be a guess. The audition rebind (repeat 5) is still the owner's rule. build-copy-keeps-hook-markup and gutter_rule (one deck each) are carried"
+}
 }
