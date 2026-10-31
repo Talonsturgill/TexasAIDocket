@@ -1,0 +1,69 @@
+{
+ "lens": "reader",
+ "round": 2,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 7.0,
+   "why": "Six frames carry a real image on a dark field at 432 px (1's headlights on the bars, 2's relief counted without counting, 5's three crosswalks, 6's resident on the panel, 8's grooves and start bar, 9's seated slab with the inlay focal). Slide 3 is two thin strips across an eighth of the frame between empty navy and pebbled ground; slide 7 still reads as diagonal beige planks with no subject, the nearest bar under the footer; slide 4's brass markers about 12 px against the claim line; slide 9's site line over the slab's southern tip."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 8.0,
+   "why": "One deck: road paint changing state frame by frame, key from the left, casts right, terracotta only on 6, 8 and 9, value dark with no strobe, the camera move round one corner doing real work. Slide 3's navy band and slide 9's slab sit slightly outside."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.0,
+   "why": "Every numeral traces, the counted roll calls from the vote records, the first comment's 15 official records matching its list; round 1's charges fixed. Held under 9: slide 3's 'Neither counts cameras taken down' is the deck's own gloss; slide 4's 'The mayor says six' carries no Tribune attribution in that sentence though c38 is the Tribune's report."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.8,
+   "why": "What, who, where (both counties), the turn and the clock, then Kyle and Laredo. The only hours are Harris County's; the caption's closing question goes unanswered; the deck never says what the cameras record (c34)."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "The cover earns the swipe, frame 2 pays at once, frame 7 is the real turn after 6, frame 9 closes on the next step. Slide 3 could go without loss; slide 5's headline cryptic until the dek."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.3,
+   "why": "Clean, every house rule kept, some good lines. Much reads like an attribution ledger; 'Drawn to illustrate.' closes eight deks; the closing question reads like a device."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "The technique fresh. The story is not: no. 4 on August 20th was this docket item on the same nonbinding clause, and no. 39 named the vote, Kyle and Laredo. dedupe_check clears the window, so not a hard fail. The world and palette match nos. 56 and 60 to 63; the night car echoes nos. 52 and 39."
+  }
+ ],
+ "weighted_score": 7.478,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Give the Galveston County side its own Election Day hours on slide 9 and in the caption, and replace the caption's unanswered certification question with a sourced canvass date.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 7,
+   "problem": "Diagonal beige planks with no subject; the lower half mid-tone paint; no scale; the nearest bar under the footer.",
+   "fix": "Bring the terracotta warning panel and the lit kerb lip into the lower left third; key the bar tops dark so only chamfers catch light; end the nearest bar above the footer."
+  },
+  {
+   "slide": 3,
+   "problem": "Two thin strips across an eighth of the frame; empty navy above, pebbled brown ground below.",
+   "fix": "Rebuild as a TXBENCH plan relief in frame 2's unit, 70 and 55 in two blocks from one zero edge, filling half the height."
+  },
+  {
+   "slide": 4,
+   "problem": "The six brass markers about 12 px in the bottom row against the claim line.",
+   "fix": "Camera back and up so the brass row sits about 70 percent down, clear of the footer; scale the brass markers 1.5 times one marker width ahead of the block."
+  }
+ ]
+}

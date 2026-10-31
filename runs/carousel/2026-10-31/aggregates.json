@@ -1,0 +1,124 @@
+{
+ "date": "2026-10-31",
+ "_note": "Every count and duration the deck states, with the claim it was quoted from, the claims it tallies, or the figures.json key compute.py counted it into. The vote counts are rows counted in the council's own vote records.",
+ "aggregates": [
+  {
+   "phrase": "42 cameras",
+   "slide": "slide-02.html",
+   "kind": "count",
+   "value": 42,
+   "quoted_from": "c1",
+   "quote": "lease of 42 Automated License Plate Reader",
+   "note": "quoted"
+  },
+  {
+   "phrase": "42 Flock cameras",
+   "slide": "slide-02.html",
+   "kind": "count",
+   "value": 42,
+   "quoted_from": "c1",
+   "quote": "lease of 42 Automated License Plate Reader",
+   "note": "quoted"
+  },
+  {
+   "phrase": "two years",
+   "slide": "slide-02.html",
+   "kind": "duration",
+   "value": 2,
+   "quoted_from": "c2",
+   "quote": "over a two-year period",
+   "note": "quoted"
+  },
+  {
+   "phrase": "five year",
+   "slide": "slide-02.html",
+   "kind": "duration",
+   "value": 5,
+   "quoted_from": "c4",
+   "quote": "five (5) year",
+   "note": "quoted"
+  },
+  {
+   "phrase": "70 cameras",
+   "slide": "slide-03.html",
+   "kind": "count",
+   "value": 70,
+   "quoted_from": "c5",
+   "quote": "seventy (70) Automated License Plate Reader",
+   "note": "quoted"
+  },
+  {
+   "phrase": "55 along public roads",
+   "slide": "slide-03.html",
+   "kind": "count",
+   "value": 55,
+   "quoted_from": "c30",
+   "quote": "55 Flock cameras along public roads",
+   "note": "quoted"
+  },
+  {
+   "phrase": "400 agencies",
+   "slide": "slide-04.html",
+   "kind": "count",
+   "value": 400,
+   "quoted_from": "c40",
+   "quote": "more than 400 agencies",
+   "note": "quoted"
+  },
+  {
+   "phrase": "six League City officers",
+   "slide": "slide-04.html",
+   "kind": "count",
+   "value": 6,
+   "quoted_from": "c38",
+   "quote": "only six officers have access",
+   "note": "quoted"
+  },
+  {
+   "phrase": "72 hours",
+   "slide": "slide-08.html",
+   "kind": "duration",
+   "value": 72,
+   "quoted_from": "c33",
+   "quote": "72 hours after",
+   "note": "quoted"
+  },
+  {
+   "phrase": "72 hours",
+   "slide": "caption.txt",
+   "kind": "duration",
+   "value": 72,
+   "quoted_from": "c33",
+   "quote": "72 hours after",
+   "note": "quoted"
+  },
+  {
+   "phrase": "15 official records",
+   "slide": "first_comment.txt",
+   "kind": "count",
+   "value": 15,
+   "computed_by": "scripts/carousel/sources_block.py, the distinct primary_official documents among the cited claims: Legistar matters 11650 and its history (c1 to c3), 12283 and its history (c4 to c6), the vote rows of event items 75733 (c8), 82592 (c16) and 82914 (c24), matters 13827 and its history (c12 to c15), 13936 and its history (c22, c23), the Census place files for Galveston and Harris counties (c25, c26), the Harris County sample ballot (c27), the Harris County elections page (c28) and the Census gazetteer (c47 to c49)",
+   "note": "computed"
+  },
+  {
+   "phrase": "three rolls",
+   "slide": "slide-05.html",
+   "kind": "count",
+   "value": 3,
+   "from_claims": [
+    "c8",
+    "c16",
+    "c24"
+   ],
+   "note": "counted: one vote record each, Resolution No. 2023-197, Ordinance No. 2026-27 and Resolution No. 2026-185"
+  },
+  {
+   "phrase": "two news reports",
+   "slide": "first_comment.txt",
+   "kind": "count",
+   "value": 2,
+   "computed_by": "scripts/carousel/sources_block.py, the distinct secondary_reported documents among the cited claims: the Texas Tribune of October 30th (c29 to c42) and Houston Public Media via KEDT (c46)",
+   "note": "computed"
+  }
+ ]
+}

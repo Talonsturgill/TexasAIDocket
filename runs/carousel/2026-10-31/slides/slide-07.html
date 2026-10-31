@@ -1,0 +1,65 @@
+<!doctype html>
+<!-- 2026-10-31, frame 7 of 9. Archetype GRID. A spatial scene through txthree.js in the deck's lastLight world: the chassis continental_crosswalk of removal_votes_for bars seen from the kerb corner, receding across the road. Drawn to illustrate. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:900px;line-height:1.08">If voters say no, removal is already directed</h1>
+<p class="dek" data-follow="26" style="width:880px">Resolution No. 2026-185 passed on October 13th with every member on the roll voting For. "There's no second vote needed," Mayor Nick Long said, the Tribune reported. Drawn to&nbsp;illustrate.</p>
+<script>window.FIG = {"removal_votes_for": 8};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-31-roadpaint.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "The resolution", counter: "07 / 09", src: "c22 c23 c24 c32", fit: { min: 66, max: 92, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 40, near: 0.02, far: 3000, fog: 0.01 });
+  /* THE CORNER, shared by frames 6 and 7: a kerb and sidewalk on the west side of a two lane road, the terracotta warning
+   * panel at the kerb ramp, a continental crosswalk of removal_roll bars running east across the road, and a stop bar */
+  const M = CH.mats(THREE, K);
+  const nBars = Math.round(FIG.removal_votes_for);
+  const xw = K.make('continental_crosswalk', { n: nBars, w: 0.6, gap: 0.6, l: 3.0, wear: 'fresh' });
+  xw.position.set(0.25, 0, 0); TXT.add(R, xw);
+  const stop = K.make('thermo_bar', { w: 3.6, l: 0.45, wear: 'fresh' }); stop.position.set(-2.4, 0, 2.6); TXT.add(R, stop);
+  const walk = K.box(6, 0.15, 60, M.kerb, -7.65, 0, -6); TXT.add(R, walk);
+  const kerb = TXT.roundedBox(0.16, 0.16, 60, 0.02, M.kerb); kerb.position.set(-4.65, 0.08, -6); TXT.add(R, kerb);
+  const panel = K.make('curb_ramp_warning', { w: 1.22, d: 0.61 }); panel.rotation.y = Math.PI / 2; panel.position.set(-5.1, 0.15, 0); TXT.add(R, panel);
+  for (let i = 0; i < 4; i++) { const d = K.make('thermo_bar', { w: 0.12, l: 3.0, wear: 'worn' }); d.position.set(0.0, 0, 5 + i * 9.0); TXT.add(R, d); }
+  TXT.sky(R);
+  TXT.ground(R, { surface: 'asphalt', size: 600, seed: 61 });
+  /* the crosswalk's paint held darker on its tops than the deck's default, so in the low key only the chamfers and the
+   * bead edges catch the light and the bars read as paint at its true thickness, not as planks */
+  { const top = M.fresh.clone(); top.emissiveIntensity = 0.12; top.color = new THREE.Color(0x8a8780);
+    xw.traverse((o) => { if (o.isMesh && o.material === M.fresh) o.material = top; }); }
+  /* from behind the kerb corner, the warning panel in the near right and the crosswalk receding from it across the road */
+  { const terra7 = M.terracotta.clone(); terra7.color.setHex(0xc4806a); terra7.emissive.setHex(0x8a4c3a); terra7.emissiveIntensity = 0.7;
+    panel.traverse((o) => { if (o.isMesh && o.material === M.terracotta) o.material = terra7; }); }
+  const from = [-6.7, 1.15, -3.3];
+  const look = CH.aim(THREE, R, TXT, from, [-3.4, 0.0, 0.4], 560, 830, 42);
+  TXT.frame(R, { fov: 42, from, look });
+  CH.warm(R, 0.32);
+  TXT.deckRig(R, CH.rigSpec(W, 8, 4096), CH.rigOpts([-2.5, 0, 1.5], { distance: 30, shadowFar: 80 }));
+  CH.unacne(R, 0.003);
+  TXT.weather(R, { grime: 0.45, height: 0.3 });
+  TXT.stage(R, [stop, xw], { poolInner: 3.5, poolOuter: 9 });
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0.32, veil: 0.3, footWash: 0.5 });
+  CH.knock(cx, ['.src', '.tx-site'], 0.54);
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!doctype html>
+<!-- 2026-10-31, frame 5 of 9. Archetype DIAGRAM. A spatial scene through txthree.js in the deck's lastLight world: three of the chassis continental_crosswalk laid across one lane, one behind another, as the council's three recorded votes on the cameras. lease_2023_votes_for worn bars farthest, election_order_votes_for bars beside election_order_votes_absent bare saw cut in the middle, removal_votes_for fresh bars nearest. One bar is one recorded vote. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<svg id="ov" width="1080" height="1350" style="position:absolute;left:0;top:0;z-index:11" data-decorative></svg>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:900px">Seven For, seven For, then eight</h1>
+<p class="dek" data-follow="24" style="width:900px">December 12th, 2023, the lease. August 11th, the election order, one member absent. October 13th, a resolution on the cameras. No member on the three rolls voted against. One bar is one recorded vote. Drawn to&nbsp;illustrate.</p>
+<div class="lab" id="lab-a">2023 LEASE</div>
+<div class="lab" id="lab-b">ELECTION ORDER</div>
+<div class="lab" id="lab-c">OCTOBER 13TH</div>
+<script>window.FIG = {"removal_votes_for": 8, "election_order_votes_for": 7, "election_order_votes_absent": 1, "lease_2023_votes_for": 7};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-31-roadpaint.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "The roll calls", counter: "05 / 09", src: "c4 c8 c14 c16 c22 c23 c24", fit: { min: 68, max: 84, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 40, near: 0.05, far: 3000, fog: 0.012 });
+  const M = CH.mats(THREE, K);
+  /* THE FIGURES, from figures.json, counted by compute.py from the council's own vote rows. One bar is one recorded vote:
+   * the 2023 lease's For votes as worn bars farthest, the election order's For votes and its one absence as a bare saw cut,
+   * and the removal resolution's For votes as fresh bars nearest. The absent member's place is the second name on that
+   * roll, as the vote record lists it. */
+  const nLease = Math.round(FIG.lease_2023_votes_for), nOrder = Math.round(FIG.election_order_votes_for), nAbs = Math.round(FIG.election_order_votes_absent), nRem = Math.round(FIG.removal_votes_for);
+  const BW = 0.34, GAP = 0.34, BL = 1.25, Z = [-5.9, -3.75, -1.6];
+  const xw = [
+    K.make('continental_crosswalk', { n: nLease, w: BW, gap: GAP, l: BL, wear: 'worn' }),
+    K.make('continental_crosswalk', { n: nOrder + nAbs, w: BW, gap: GAP, l: BL, wear: 'fresh', bare: nAbs ? [1] : [] }),
+    K.make('continental_crosswalk', { n: nRem, w: BW, gap: GAP, l: BL, wear: 'fresh' })
+  ];
+  /* every crosswalk starts at the same kerb, so a row one bar short ends one bar early */
+  const x0 = -2.2;
+  xw.forEach((c, i) => { const n = c.userData.bars.length, half = (n - 1) * (BW + GAP) / 2; c.position.set(x0 + half, 0, Z[i]); TXT.add(R, c); });
+  /* THE ABSENCE MADE LEGIBLE: the bare slot's floor is the scraped, darker asphalt where paint was never laid, and its two
+   * long kerf lips are fresh cut edges that catch the key, so it reads at feed size as an empty slot, not an outline */
+  { const c = xw[1], b = c.userData.bars[1], bx = c.position.x + b[0], bz = Z[1];
+    const floor = new THREE.Mesh(new THREE.BoxGeometry(BW, 0.002, BL), new THREE.MeshStandardMaterial({ color: 0x050505, roughness: 0.4 }));
+    floor.position.set(bx, 0.0011, bz); floor.receiveShadow = true; TXT.add(R, floor);
+    [-1, 1].forEach((sd) => { const lip = TXT.roundedBox(0.03, 0.012, BL + 0.04, 0.004, M.concrete); lip.position.set(bx + sd * (BW / 2 + 0.015), 0.006, bz); lip.castShadow = lip.receiveShadow = true; TXT.add(R, lip); });
+    [-1, 1].forEach((sd) => { const lip = TXT.roundedBox(BW + 0.06, 0.012, 0.03, 0.004, M.concrete); lip.position.set(bx, 0.006, bz + sd * (BL / 2 + 0.015)); lip.castShadow = lip.receiveShadow = true; TXT.add(R, lip); }); }
+  /* the kerb and gutter pan on the left, the lane edge line on the right */
+  const gut = TXT.roundedBox(0.6, 0.03, 40, 0.01, M.concrete); gut.position.set(-3.1, 0.015, -6); TXT.add(R, gut);
+  const kerb = TXT.roundedBox(0.16, 0.16, 40, 0.02, M.kerb); kerb.position.set(-3.48, 0.08, -6); TXT.add(R, kerb);
+  const walk = K.box(4, 0.15, 40, M.kerb, -5.56, 0, -6); TXT.add(R, walk);
+  /* the kerb, gutter and sidewalk held near the asphalt's own value, so the three crosswalks are the only bright shapes on the lane */
+  { const dk = M.kerb.clone(); dk.color.setHex(0x3a3833); const dc = M.concrete.clone(); dc.color.setHex(0x3a3935);
+    [walk, kerb].forEach((m) => m.traverse((o) => { if (o.isMesh) o.material = dk; })); gut.traverse((o) => { if (o.isMesh) o.material = dc; }); }
+  const edge = K.make('thermo_bar', { w: 0.12, l: 40, wear: 'worn' }); edge.position.set(3.3, 0, -6); TXT.add(R, edge);
+  TXT.sky(R);
+  TXT.ground(R, { surface: 'asphalt', size: 600, seed: 51 });
+  const from = [1.15, 6.3, 8.1];
+  const look = CH.aim(THREE, R, TXT, from, [0.35, 0, -3.75], 560, 940, 40);
+  TXT.frame(R, { fov: 40, from, look });
+  CH.warm(R, 0.32);
+  TXT.deckRig(R, CH.rigSpec(W, 12, 4096), CH.rigOpts([0, 0, -3.6], { distance: 30, shadowFar: 80 }));
+  CH.unacne(R, 0.004);
+  TXT.weather(R, { grime: 0.5, height: 0.2 });
+  TXT.stage(R, [xw[2], xw[1], xw[0]], { poolInner: 2.6, poolOuter: 5 });
+  /* the two fresh crosswalks' paint held brighter than the deck's default, bead white lifting in the low key, so the near
+   * eight are the brightest thing in the frame without lighting the asphalt between them */
+  { const bright = M.fresh.clone(); bright.emissiveIntensity = 1.1; const brightest = M.fresh.clone(); brightest.emissiveIntensity = 2.4;
+    xw[1].traverse((o) => { if (o.isMesh && o.material === M.fresh) o.material = bright; });
+    xw[2].traverse((o) => { if (o.isMesh && o.material && o.material.emissive && o.material !== M.cut) { const b = o.material.clone(); b.emissive = brightest.emissive.clone(); b.emissiveIntensity = brightest.emissiveIntensity; o.material = b; } }); }
+  /* labels beside each crosswalk's far end, leaders landing on the last bar of each row */
+  const svg = document.getElementById('ov'), leaders = [];
+  ['lab-a', 'lab-b', 'lab-c'].forEach((id, i) => {
+    const c = xw[i], first = c.userData.bars[0];
+    const at = CH.project(THREE, R, [c.position.x + first[0], 0.01, Z[i] - BL / 2 + 0.05]), el = document.getElementById(id);
+    el.style.left = Math.round(Math.max(80, at[0] - 6)) + 'px'; el.style.top = Math.round(at[1] - 46) + 'px';
+    const b = el.getBoundingClientRect(); CH.leader(svg, [b.left + 4, b.bottom + 2], at);
+    leaders.push({ target: id + ' first bar', at, to: at });
+  });
+  window.__txLeaders = leaders;
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0.32, veil: 0.3, footWash: 0.5 });
+  CH.knock(cx, ['.src', '.tx-site'], 0.54);
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

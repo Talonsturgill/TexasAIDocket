@@ -17634,5 +17634,108 @@
     "note": "Admitted on the city's own record of the October 12th consent agenda. Its draft minutes mark the purchase approved, and no use figures for the licenses are published yet."
    }
   ]
+ },
+ {
+  "id": "tx-2026-0235",
+  "title": "Pflugerville's City Council adopts SAFE standards for how the city uses technology, with facial recognition covered",
+  "summary": "The Pflugerville City Council approved Resolution RES-1443 on October 27th, 2026. It adopts standards the city calls SAFE, for secure, accountable, fair and explainable technology use. It also directs staff to carry them out. The staff overview added a section that creates a Safe Technology Committee. Staff confirmed the policy covers facial recognition when a council member asked about it. Every member voted in favor. Voters in the same city decide a charter section on its use of AI on November 3rd, 2026.",
+  "topic": "surveillance-and-policing",
+  "decider": {
+   "name": "Pflugerville City Council",
+   "type": "city"
+  },
+  "geography": {
+   "statewide": false,
+   "counties": [
+    "Travis",
+    "Williamson"
+   ],
+   "on_ercot": true,
+   "metro": "Austin-Round Rock-San Marcos, TX"
+  },
+  "status": "decided",
+  "key_dates": [
+   {
+    "date": "2026-08-11",
+    "kind": "filed",
+    "note": "The resolution is introduced on the council's record"
+   },
+   {
+    "date": "2026-10-27",
+    "kind": "decided",
+    "note": "City Council approves RES-1443"
+   }
+  ],
+  "public_access": {
+   "room": "contact_only",
+   "how": "The resolution is adopted and no hearing or comment window follows it on the record. The City Council posts its agendas and records on the city's Legistar site. A resident reaches the council through the city.",
+   "url": "https://webapi.legistar.com/v1/pflugerville/matters/18184",
+   "closes": null
+  },
+  "confidence": "high",
+  "notes_for_editor": "Admitted on the city's own Legistar record of RES-1443 and its October 27th history row. The Census place file places the city in Travis and Williamson counties. The resolution's own text sits on a host whose robots.txt refuses this project, so its tiers and provisions are not in the record. Related to tx-2026-0075, the city's November charter election.",
+  "claims": [
+   {
+    "text": "Pflugerville's resolution adopts standards for secure, accountable, fair and explainable technology use and directs their implementation.",
+    "verbatim_quote": "A Resolution of the City of Pflugerville, TX, adopting standards for secure, accountable, fair, and explainable (SAFE) technology use; directing implementation, and providing an effective date.",
+    "source_url": "https://webapi.legistar.com/v1/pflugerville/matters/18184",
+    "source_title": "City of Pflugerville Legistar, RES-1443, SAFE technology use standards",
+    "source_type": "primary_official",
+    "fetched": "2026-10-31",
+    "id": "tx-2026-0235-c1"
+   },
+   {
+    "text": "The council approved the resolution on a motion by Mr. Metayer, seconded by Mr. Rogers, with every member voting in favor.",
+    "verbatim_quote": "Mr. Metayer moved to approve the item. Mr. Rogers seconded the motion. All voted in favor. The motion carried.",
+    "source_url": "https://webapi.legistar.com/v1/pflugerville/matters/18184/histories",
+    "source_title": "City of Pflugerville Legistar, RES-1443, SAFE technology use standards, history",
+    "source_type": "primary_official",
+    "fetched": "2026-10-31",
+    "id": "tx-2026-0235-c2"
+   },
+   {
+    "text": "Staff presented the policy with an added section creating a Safe Technology Committee.",
+    "verbatim_quote": "Mr. Hartshorn gave an overview of the policy and the addition of a section involving the creation of the Safe Technology Committee.",
+    "source_url": "https://webapi.legistar.com/v1/pflugerville/matters/18184/histories",
+    "source_title": "City of Pflugerville Legistar, RES-1443, SAFE technology use standards, history",
+    "source_type": "primary_official",
+    "fetched": "2026-10-31",
+    "id": "tx-2026-0235-c3"
+   },
+   {
+    "text": "Asked about facial recognition, staff confirmed the policy covers it.",
+    "verbatim_quote": "Mr. Rogers brought up concerns about Facial Recognition. Mr. Hartshorn confirmed that Facial Recognition is covered in the policy.",
+    "source_url": "https://webapi.legistar.com/v1/pflugerville/matters/18184/histories",
+    "source_title": "City of Pflugerville Legistar, RES-1443, SAFE technology use standards, history",
+    "source_type": "primary_official",
+    "fetched": "2026-10-31",
+    "id": "tx-2026-0235-c4"
+   },
+   {
+    "text": "Census Bureau records place the city of Pflugerville in Travis County.",
+    "verbatim_quote": "TX|48|453|Travis County|57176|02411411|Pflugerville city",
+    "source_url": "https://www2.census.gov/geo/docs/reference/codes2020/place_by_cou/st48_tx_place_by_county2020.txt",
+    "source_title": "US Census Bureau, 2020 Texas place by county relationship file",
+    "source_type": "primary_official",
+    "fetched": "2026-10-31",
+    "id": "tx-2026-0235-c5"
+   },
+   {
+    "text": "Census Bureau records place the city of Pflugerville in Williamson County as well.",
+    "verbatim_quote": "TX|48|491|Williamson County|57176|02411411|Pflugerville city",
+    "source_url": "https://www2.census.gov/geo/docs/reference/codes2020/place_by_cou/st48_tx_place_by_county2020.txt",
+    "source_title": "US Census Bureau, 2020 Texas place by county relationship file",
+    "source_type": "primary_official",
+    "fetched": "2026-10-31",
+    "id": "tx-2026-0235-c6"
+   }
+  ],
+  "history": [
+   {
+    "date": "2026-10-31",
+    "note": "Admitted on the council's own record of the October 27th vote. The resolution's text is not readable here, so its specific rules are not yet in the record."
+   }
+  ],
+  "last_verified": "2026-10-31"
  }
 ]

@@ -51,6 +51,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-26 · Zipline began deliveries in Round Rock on October 9th, before this comment window closed, as DroneXL reports. No final assessment has appeared.
 - 2026-10-29 · The FAA's comment window on round the clock Zipline flights has closed. The agency's own notice refuses every reader.
 - 2026-10-30 · The FAA's comment window on Zipline's round the clock flights stays closed with no decision confirmed. The agency's notice still refuses every reader.
+- 2026-10-31 · No FAA decision on Zipline's round the clock deliveries could be confirmed today. The agency's environmental notice answers no reader.
 
 ## Evidence
 

@@ -1,0 +1,65 @@
+<!doctype html>
+<!-- 2026-10-31, frame 4 of 9. Archetype GRID. A spatial scene through txthree.js in the deck's lastLight world: agencies_floor chassis raised_marker wedges in a staggered block on an asphalt apron, officers_with_access amber markers in the front row with officers_per_search of them set close together. One marker is one agency. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:900px">More than <span style="font-variation-settings:'opsz' 36">400</span> agencies can look</h1>
+<p class="dek" data-follow="26" style="width:880px">All but the FBI are in Texas. The mayor said six League City officers have access. Two must work together to scan the data. Each line is from the Tribune's reporting. One white marker is one agency, one amber marker one officer. Drawn to&nbsp;illustrate.</p>
+<script>window.FIG = {"agencies_floor": 400, "officers_with_access": 6, "officers_per_search": 2};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-31-roadpaint.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Who can search", counter: "04 / 09", src: "c38 c39 c40 c41 c42", fit: { min: 66, max: 92, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 50, near: 0.05, far: 3000, fog: 0.012 });
+  /* THE FIGURES, from figures.json: one white marker per agency with access, a floor of agencies_floor, in a staggered block
+   * of COLS, and in front of it one amber marker per League City officer with access, officers_per_search of them set close */
+  const nA = Math.round(FIG.agencies_floor), nO = Math.round(FIG.officers_with_access), nP = Math.round(FIG.officers_per_search);
+  const COLS = 20, P = 0.3, rowsN = Math.ceil(nA / COLS), blk = new THREE.Group();
+  for (let i = 0; i < nA; i++) {
+    const r = Math.floor(i / COLS), c = i % COLS, m = K.make('raised_marker', { color: 'white' });
+    m.position.set((c - (COLS - 1) / 2) * P + (r % 2 ? P / 2 : 0), 0, -r * P); blk.add(m);
+  }
+  blk.position.set(0, 0, -1.0); TXT.add(R, blk);
+  const amb = new THREE.Group(), xs = [];
+  for (let i = 0; i < nO; i++) xs.push(i < nO - nP ? (i - (nO - 1) / 2) * 0.3 : 0);
+  /* the pair who must work together stand close at the row's right end */
+  const base = (nO - nP - 1 - (nO - 1) / 2) * 0.3 + 0.3;
+  for (let k = 0; k < nP; k++) xs[nO - nP + k] = base + k * 0.13;
+  xs.forEach((x) => { const m = K.make('raised_marker', { color: 'amber' }); m.position.set(x, 0, 0); amb.add(m); });
+  amb.position.set(0.15, 0, -0.8); TXT.add(R, amb);
+  /* the officers' markers held to a muted brass in the paint's own family, so no saturated orange reads as the accent */
+  amb.traverse((o) => { if (o.isMesh) { o.material = o.material.clone(); o.material.color.setHex(0xc89a52); if (o.material.emissive) o.material.emissive.setHex(0x1e160a); } });
+  TXT.sky(R);
+  TXT.ground(R, { surface: 'asphalt', size: 600, seed: 71 });
+  const from = [0.35, 1.5, 2.6];
+  const look = CH.aim(THREE, R, TXT, from, [0.4, 0.0, -1.6], 560, 1020, 40);
+  TXT.frame(R, { fov: 40, from, look });
+  CH.warm(R, 0.32);
+  TXT.deckRig(R, CH.rigSpec(W, 10, 4096), CH.rigOpts([0, 0, -2], { distance: 25, shadowFar: 60 }));
+  CH.unacne(R, 0.002);
+  TXT.weather(R, { grime: 0.4, height: 0.05 });
+  TXT.stage(R, [amb, blk], { poolInner: 2.0, poolOuter: 6 });
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0.32, veil: 0.3, footWash: 0.5 });
+  CH.knock(cx, ['.src', '.tx-site'], 0.54);
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

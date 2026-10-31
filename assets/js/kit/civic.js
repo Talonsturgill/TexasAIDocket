@@ -2052,5 +2052,183 @@ export function install(K, THREE, TXT) {
       return B.flush(G);
     },
   });
+  /* ================================ road paint ================================ */
+  /* LIFTED FROM CAROUSEL no. 64 (deck/2026-10-31-roadpaint.js) BY THE WEEKLY PASS, 2026-10-31, at
+   * the judges' named fix. The chassis drew a bar as a flat extrusion with a chamfer of a few
+   * millimetres, so at the deck's 14 degree key the tops read as "brown planks" and "flat quads with
+   * a thin lip and no visible cast" (round 3, frames 5 and 7), and its marker lenses were mirror
+   * finish, so they reflected the navy dome as "navy-black prism faces" (frame 4). The craft judge's
+   * one sentence fix: "a true bevelled 7 mm extrusion with bead-white tops ... so every bar casts".
+   *
+   * So a bar here is its footprint extruded UP with a slumped shoulder, the way hot applied
+   * thermoplastic lies: full width at the road, a rounded shoulder, a flat bead-white crown. The
+   * crown's roughness carries glass bead glints (low roughness specks), so a raking key draws the
+   * lit shoulder and sparkles the top while the far shoulder casts. A marker's reflector is a
+   * cube-corner facet lens that RETURNS light, drawn as warm facets with a low emissive stand-in for
+   * retroreflection and a weak environment term, so it never mirrors the sky.
+   *
+   * New names, not the chassis's (thermo_bar, continental_crosswalk, raised_marker,
+   * curb_ramp_warning, gutter_rule), so no. 64's chassis still installs its own and its shipped
+   * frames re-render as they shipped. gutter_rule stays in the chassis: it is that deck's ruler. */
+  const PAINT = { white: '#ebe7de', yellow: '#e2ac2a' };
+  function paintMat(color, wear) {
+    const hex = PAINT[color] || (typeof color === 'number' ? '#' + color.toString(16).padStart(6, '0') : color || PAINT.white);
+    const worn = wear === 'worn', key = 'rp|' + hex + '|' + (worn ? 'w' : 'f');
+    if (MC.has(key)) return MC.get(key);
+    // albedo: the paint with the asphalt's aggregate showing in pits, far more of it when worn
+    const alb = ctex(key + '|a', 256, 256, (x, W, H) => {
+      const r = hash(worn ? 913 : 311);
+      x.fillStyle = rgb(hex, worn ? 0.78 : 1); x.fillRect(0, 0, W, H);
+      const pits = worn ? 5200 : 260, pa = worn ? 0.8 : 0.35;
+      for (let i = 0; i < pits; i++) { const s = 0.8 + r() * (worn ? 3.4 : 1.0); x.fillStyle = 'rgba(30,30,32,' + (pa * (0.4 + 0.6 * r())).toFixed(3) + ')'; x.fillRect(r() * W, r() * H, s, s * (0.6 + r())); }
+      if (worn) for (let k = 0; k < 26; k++) { x.fillStyle = 'rgba(44,44,46,' + (0.25 + r() * 0.35).toFixed(3) + ')'; x.beginPath(); x.ellipse(r() * W, r() * H, 6 + r() * 26, 3 + r() * 10, r() * PI, 0, 2 * PI); x.fill(); }
+      speckle(x, W, H, r, 0.05);
+    }, 0.5);
+    // roughness: a matte binder with glass bead glints, the beads that make the paint retroreflective
+    const rgh = ctex(key + '|r', 256, 256, (x, W, H) => {
+      const r = hash(worn ? 917 : 317);
+      x.fillStyle = worn ? 'rgb(214,214,214)' : 'rgb(168,168,168)'; x.fillRect(0, 0, W, H);
+      const n = worn ? 500 : 2600;
+      for (let i = 0; i < n; i++) { const v = 25 + Math.floor(r() * 50); x.fillStyle = 'rgb(' + v + ',' + v + ',' + v + ')'; x.fillRect(r() * W, r() * H, 1, 1); }
+    }, 0.5);
+    alb.colorSpace = THREE.SRGBColorSpace; rgh.colorSpace = THREE.NoColorSpace;
+    const m = new THREE.MeshPhysicalMaterial({ color: 0xffffff, map: alb, roughnessMap: rgh, roughness: 1, metalness: 0,
+                                               clearcoat: worn ? 0 : 0.15, clearcoatRoughness: 0.45 });
+    m.userData.uvm = 0.5;
+    MC.set(key, m);
+    return m;
+  }
+  // a rounded rectangle footprint w x l in the shape's xy plane, corner radius rc
+  function rrect(w, l, rc) {
+    const s = new THREE.Shape(), x = w / 2, y = l / 2, c = Math.max(0.0005, Math.min(rc, x * 0.9, y * 0.9));
+    s.moveTo(-x + c, -y); s.lineTo(x - c, -y); s.quadraticCurveTo(x, -y, x, -y + c); s.lineTo(x, y - c);
+    s.quadraticCurveTo(x, y, x - c, y); s.lineTo(-x + c, y); s.quadraticCurveTo(-x, y, -x, y - c); s.lineTo(-x, -y + c);
+    s.quadraticCurveTo(-x, -y, -x + c, -y);
+    return s;
+  }
+  /* A FOOTPRINT RAISED WITH A SHOULDER: w x l on the ground (x across, z along), t tall, the top
+   * inset by `run` through a profile of `seg` steps (1 is a flat chamfer, more is a rounded slump).
+   * ExtrudeGeometry's bevel grows the body OUT from the shape by bevelSize, so the shape is the top
+   * and the body is the full footprint. The lower bevel would undercut the base, so it is clamped to
+   * the ground plane, where it is never seen. */
+  function shoulderGeo(w, l, t, run, seg, rc) {
+    const bt = Math.min(t * 0.92, t - 0.0004), depth = t - bt;
+    const top = rrect(Math.max(0.002, w - 2 * run), Math.max(0.002, l - 2 * run), rc);
+    const g = new THREE.ExtrudeGeometry(top, { depth, bevelEnabled: true, bevelThickness: bt, bevelSize: run, bevelSegments: seg, curveSegments: 6 });
+    g.rotateX(-PI / 2);   // extrusion +z becomes +y; the shape's y becomes -z
+    const P = g.attributes.position;
+    for (let i = 0; i < P.count; i++) if (P.getY(i) < 0) P.setY(i, 0);
+    g.computeVertexNormals();
+    return g;
+  }
+
+  K.define('pavement_bar', {
+    size: [0.6, 0.01, 3.0],
+    options: { w: 0.6, l: 3.0, t: 0.007, color: 'white', wear: 'fresh' },
+    note: 'One hot applied thermoplastic marking bar, w across x and l along z (default a 0.6 x 3 m crosswalk bar), t tall (default 7 mm, a heavy profile marking), its shoulder slumped and rounded so a raking key lights one long edge and the other casts; a bead-white crown with glass bead glints. color white|yellow|hex, wear fresh|worn (aggregate through the paint, thinner).',
+    make(o, r) {
+      const G = new THREE.Group(), B = Builder(), worn = o.wear === 'worn';
+      const t = worn ? o.t * 0.6 : o.t, w = o.w * (1 + (r() - 0.5) * 0.02), l = o.l * (1 + (r() - 0.5) * 0.01);
+      B.geo(shoulderGeo(w, l, t, t * 1.6, 4, t * 2), paintMat(o.color, o.wear), 0, 0, 0);
+      return B.flush(G);
+    },
+  });
+
+  K.define('crosswalk', {
+    size: [9.0, 0.01, 3.0],
+    options: { n: 8, w: 0.6, gap: 0.6, l: 3.0, t: 0.007, color: 'white', wear: 'fresh', bare: [] },
+    note: 'A continental (ladder) crosswalk: n pavement_bars across x at one pitch (w + gap), each l long on z. wear fresh|worn sets every painted bar; `bare` lists bar indices drawn as what removal leaves, a grey paint ghost inside a dark grinder scar, no relief. userData.bars holds each bar centre [x, z] in the model frame. Paint lies on the road: never TXT.contact it (the contact blob darkens the asphalt between the bars), and a bar casts only under a sun frustum a few metres across at a high map size.',
+    make(o, r) {
+      const G = new THREE.Group(), B = Builder(), pitch = o.w + o.gap, x0 = -(o.n - 1) * pitch / 2, bars = [];
+      const ghost = mat('rp-ghost', { color: 0x4b4a47, roughness: 0.95 }), scar = mat('rp-scar', { color: 0x161617, roughness: 0.98 });
+      const bare = o.bare || [];
+      for (let i = 0; i < o.n; i++) {
+        const x = x0 + i * pitch; bars.push([+x.toFixed(4), 0]);
+        if (bare.indexOf(i) >= 0) {
+          B.geo(new THREE.ShapeGeometry(rrect(o.w + 0.04, o.l + 0.04, 0.03), 4), scar, x, 0.0004, 0, -PI / 2, 0, 0);
+          B.geo(new THREE.ShapeGeometry(rrect(o.w * 0.94, o.l * 0.97, 0.02), 4), ghost, x, 0.0008, 0, -PI / 2, 0, 0);
+          continue;
+        }
+        const bt = o.wear === 'worn' ? o.t * 0.6 : o.t, bw = o.w * (1 + (r() - 0.5) * 0.02);
+        B.geo(shoulderGeo(bw, o.l, bt, bt * 1.6, 4, bt * 2), paintMat(o.color, o.wear), x, 0, 0);
+      }
+      B.flush(G);
+      G.userData.bars = bars;
+      return G;
+    },
+  });
+
+  // a cube-corner reflector's face: hexes split into three rhombi at three tones, warm, tileable
+  function prismTex(hex) {
+    return ctex('prism|' + hex, 128, 128, (x, W, H) => {
+      x.fillStyle = rgb(hex, 0.35); x.fillRect(0, 0, W, H);
+      const R = 5, dx = R * Math.sqrt(3), dy = R * 1.5, tones = [1.0, 0.72, 0.5];
+      for (let row = -1; row * dy < H + R; row++) for (let col = -1; col * dx < W + dx; col++) {
+        const cx = col * dx + (row % 2 ? dx / 2 : 0), cy = row * dy;
+        for (let k = 0; k < 3; k++) {
+          const a0 = -PI / 2 + k * 2 * PI / 3;
+          x.beginPath(); x.moveTo(cx, cy);
+          [a0, a0 + PI / 3, a0 + 2 * PI / 3].forEach((a) => x.lineTo(cx + R * Math.cos(a), cy + R * Math.sin(a)));
+          x.closePath(); x.fillStyle = rgb(hex, tones[k]); x.fill();
+        }
+      }
+    }, 1);
+  }
+  K.define('pavement_marker', {
+    size: [0.11, 0.02, 0.11],
+    options: { color: 'white', faces: 2 },
+    note: 'A raised pavement marker, a 0.1 m square frustum 18 mm tall with rounded corners, set on a black bitumen pad that squeezes out round its base, a cube-corner reflector lens on the +z face (and -z when faces is 2). The lens is warm facets that return light, never a mirror of the sky. color white|amber.',
+    make(o) {
+      const G = new THREE.Group(), B = Builder(), amber = o.color === 'amber';
+      const s = 0.1, h = 0.018, run = 0.028;
+      const body = mat('rpm-body' + (amber ? 'A' : 'W'), amber ? { color: 0xd8901f, roughness: 0.38 } : { color: 0xe4e1d9, roughness: 0.34 });
+      const pad = mat('rpm-pad', { color: 0x0e0d0d, roughness: 0.85 });
+      B.geo(shoulderGeo(s + 0.008, s + 0.008, 0.0012, 0.003, 2, 0.012), pad, 0, 0, 0);
+      B.geo(shoulderGeo(s, s, h, run, 1, 0.01), body, 0, 0.001, 0);
+      const lensHex = amber ? '#ffab3a' : '#f6ead2', tex = prismTex(lensHex);
+      const lens = mat('rpm-lens' + (amber ? 'A' : 'W'), { color: 0xffffff, map: tex, emissiveMap: tex, emissive: 0xffffff,
+        emissiveIntensity: 0.32, roughness: 0.18, metalness: 0, clearcoat: 1, clearcoatRoughness: 0.06, envMapIntensity: 0.35 }, true);
+      // THE LENS IS COPLANAR WITH ITS FACE, built from the face's own corners: the face is a
+      // trapezoid (full width at the road, the top's width at the crown), so a rectangle laid on it
+      // overhangs the side slopes at its upper corners, which the first proof of this model showed
+      // the slope rises from the body's thin vertical band (shoulderGeo's depth) to the crown
+      const bt = Math.min(h * 0.92, h - 0.0004), band = h - bt;
+      const L = Math.hypot(bt, run), nY = run / L, nZ = bt / L, off = 0.0006, y0 = 0.001 + band;
+      const sides = o.faces === 1 ? [1] : [1, -1];
+      sides.forEach((sz) => {
+        const at = (u, v) => {   // u 0..1 up the slope, v -1..1 across it, inset from the rounded corners
+          const half = (s / 2 - run * u) * 0.7;
+          return [v * half, y0 + bt * u + nY * off, sz * (s / 2 - run * u + nZ * off)];
+        };
+        const q = [at(0.16, -1), at(0.16, 1), at(0.84, 1), at(0.84, -1)];
+        const g = new THREE.BufferGeometry();
+        g.setAttribute('position', new THREE.Float32BufferAttribute([].concat(...q), 3));
+        g.setAttribute('uv', new THREE.Float32BufferAttribute([0, 0, 1, 0, 1, 1, 0, 1], 2));
+        g.setIndex(sz > 0 ? [0, 1, 2, 0, 2, 3] : [0, 2, 1, 0, 3, 2]);
+        g.computeVertexNormals();
+        B.geo(g, lens, 0, 0, 0);
+      });
+      return B.flush(G);
+    },
+  });
+
+  K.define('warning_panel', {
+    size: [1.22, 0.012, 0.61],
+    options: { w: 1.22, d: 0.61, pitch: 0.06, color: 0x9c4a36 },
+    note: 'A detectable warning panel at a kerb ramp, w x d, a polymer plate cast with truncated domes on a square pitch (the smallest dome the ADA standard allows, 23 mm across the base, a flat top a little over half that, 5 mm tall, on a 60 mm pitch), each dome lathed with a rounded top so a low key draws a crescent on every one. color hex (default a brick red; yellow is the other common colour).',
+    make(o) {
+      const G = new THREE.Group(), B = Builder();
+      const m = mat('wp|' + o.color, { color: o.color, roughness: 0.66 });
+      B.geo(shoulderGeo(o.w, o.d, 0.006, 0.003, 2, 0.004), m, 0, 0, 0);
+      B.flush(G);
+      const prof = [[0, 0], [0.0115, 0], [0.0106, 0.003], [0.0086, 0.0047], [0.0065, 0.0051], [0, 0.0051]].map((p) => new THREE.Vector2(p[0], p[1]));
+      const dome = new THREE.LatheGeometry(prof, 18), list = [];
+      const nx = Math.max(1, Math.floor(o.w / o.pitch)), nz = Math.max(1, Math.floor(o.d / o.pitch));
+      for (let i = 0; i < nx; i++) for (let j = 0; j < nz; j++) list.push([(i - (nx - 1) / 2) * o.pitch, 0.006, (j - (nz - 1) / 2) * o.pitch, 0, 1]);
+      K.instances(dome, m, list, G);
+      return G;
+    },
+  });
+
   K.define = coreDefine;
 }

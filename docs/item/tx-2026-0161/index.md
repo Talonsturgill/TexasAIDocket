@@ -39,6 +39,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-24 · The university confirms the planned tutor and says police testing has begun. The police training is separately funded by the Justice Department. The release reports no evaluation results for either use.
 - 2026-10-29 · UT Arlington's AI tutor and its work with Fort Worth police are still unconfirmed. The university's site did not answer.
 - 2026-10-30 · UT Arlington's AI tutor and its police work remain unconfirmed. The university's site would not serve its crawling rules today, so the release was left unread.
+- 2026-10-31 · UT Arlington's federally funded AI tutor and its work with Fort Worth police stay unconfirmed. The university's site did not answer for its crawling rules today.
 
 ## Evidence
 

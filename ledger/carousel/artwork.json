@@ -3987,6 +3987,73 @@
     "hex": "#0A090D",
     "note": "The lastLight world's dark sky and the flat frames' dark field."
    }
+  },
+  {
+   "date": "2026-10-31",
+   "carousel_no": 64,
+   "written_from": "deck_coherence's median L* per frame at 432 px off the final renders, layout_check's accent share, by update_ledgers.py.",
+   "register": "SPATIAL SCENES in TXT's lastLight world, staged, with two TXBENCH material reliefs. Chassis assets/js/deck/2026-10-31-roadpaint.js: thermo_bar, continental_crosswalk, curb_ramp_warning, raised_marker and gutter_rule, fresh and worn thermoplastic on asphalt, concrete, and dusk_ember terracotta as the one accent for the public.",
+   "structural_laws": [
+    "A CAMERA AT PAINT HEIGHT OVER A SIDEWALK SEES THE SIDEWALK. Frame 7's lower third was the slab's top face, not a bar, until the eye moved into the road off the kerb.",
+    "A LIGHT THAT LIGHTS THE GROUND MERGES A COUNT. A spot over the crosswalks lifted the asphalt with the paint and the GRID came apart into three pieces; emissive paint kept the gaps dark.",
+    "A RAISED INLAY UNDER A BEVELLED SLAB TOP IS HIDDEN. The county fills sat below the slab's bevel until they stood proud of it.",
+    "A BIGGER PIN IS A SECOND SCALE. On a map whose dek says Census points, a wider stud read as a proportional symbol; colour and a collar carry emphasis without one.",
+    "A ZOOM ON A LOW PITCHED CAMERA LOSES THE SKY. Narrowing the lens on frame 3 would have put the horizon out of frame, which print_ban refuses."
+   ],
+   "techniques": [
+    "the kit crossover head on at a stop bar, lamps lit in their housings, throwing light onto an eight bar crosswalk",
+    "a plan relief of tally stripes, worn for the first lease and fresh for the cameras the second added",
+    "a concrete gutter pan with a saw cut ruler and two inlaid bars, the lease's ceiling beside the Tribune's count",
+    "a staggered field of raised pavement markers with six brass markers for the officers",
+    "three crosswalks on one lane, seven worn, seven fresh with one bare saw cut, and eight fresh",
+    "a resident on a terracotta curb ramp warning panel at the kerb, the crosswalk running away under a streetlight's cast",
+    "the crosswalk at paint height from just off the kerb, chamfers lit over black gaps",
+    "a kerb strip relief of saw cut grooves in rows of a day, a terracotta start bar at the head",
+    "Texas extruded as an asphalt slab with county lines, League City's counties in terracotta and three Census studs"
+   ],
+   "value": {
+    "per_frame_median_L": [
+     11.5,
+     3.4,
+     2.8,
+     5.4,
+     5.1,
+     5.8,
+     7.5,
+     3.3,
+     5.5
+    ],
+    "deck_median_L": 5.4,
+    "max_adjacent_delta": 8.1,
+    "mean_adjacent_delta": 2.55,
+    "note": "Measured by deck_coherence's median_lstar at 432 px off the final renders. A staged lastLight deck."
+   },
+   "accent": {
+    "hex": "#B4664F",
+    "name": "dusk_ember terracotta, the public",
+    "frames_above_floor": [
+     6,
+     7,
+     8,
+     9
+    ],
+    "share": [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0047,
+     0.0195,
+     0.0026,
+     0.0022
+    ],
+    "note": "The warning panel where the resident stands, the start bar of the hours, and League City's counties."
+   },
+   "ground": {
+    "hex": "#0A090D",
+    "note": "The lastLight world's dark sky and the flat frames' dark field."
+   }
   }
  ]
 }

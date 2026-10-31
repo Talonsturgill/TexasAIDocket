@@ -1,10 +1,10 @@
 # League City City Council ordered a November 3rd special election on whether police may keep using automated license plate reader cameras
 
-On August 11th, 2026 the League City City Council approved Ordinance No. 2026-27 on first and final reading. The ordinance orders a special election on November 3rd, 2026. It asks voters about the police department's continued use of automated license plate reader cameras at fixed locations on public roadways. The wording the city published opens by telling voters the result is a nonbinding statement of preference, so the council keeps the decision either way. Mayor Long sponsored the item and asked for approval on first and final reading. Council member Chadwell moved it, seconded by Council member Cones. Reporting in the Houston region identifies the cameras as Flock cameras.
+On August 11th, 2026 the League City City Council approved Ordinance No. 2026-27 on first and final reading. The ordinance orders a special election on November 3rd, 2026. It asks voters about the police department's continued use of automated license plate reader cameras at fixed locations on public roadways. The wording the city published opens by telling voters the result is a nonbinding statement of preference, so the council keeps the decision either way. Mayor Long sponsored the item and asked for approval on first and final reading. Council member Chadwell moved it, seconded by Council member Cones. Reporting in the Houston region identifies the cameras as Flock cameras. On October 13th the council voted to remove the fixed cameras if a majority rejects them, with every member on the roll for it. The same night it created a Citizen Data Privacy Committee to oversee the system.
 
 - Topic: surveillance-and-policing
 - Decided by: League City City Council (city)
-- Where: Galveston
+- Where: Galveston, Harris
 - Statistical areas:
   - Houston-Pasadena-The Woodlands, TX
 - Status: decided
@@ -52,6 +52,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-24 · League City's plate reader proposition is still set for the special election on November 3rd.
 - 2026-10-29 · The council approved a resolution to switch the Flock cameras off within 72 hours if most voters reject them in November.
 - 2026-10-30 · The city's agenda record still carries the special election on the plate reader cameras and the council's resolution to switch them off if voters reject them.
+- 2026-10-31 · League City's council record now carries Resolution No. 2026-185, which directs the fixed cameras' removal if most voters reject them. Every member on the roll voted for it. The city also lies partly in Harris County.
 
 ## Evidence
 
@@ -86,4 +87,34 @@ Source (primary_official): https://webapi.legistar.com/v1/leaguecity/events/2222
 > League City council members approved a resolution on Tuesday requiring the city to disable Flock Safety cameras within 72 hours if a majority of voters reject them in the upcoming election in November.
 
 Source (journalism): https://www.kedt.org/texas-news/2026-10-14/league-city-to-disable-flock-cameras-if-voters-reject-them-in-november
+
+### League City's council approved a resolution directing removal of the fixed plate reader cameras if a majority rejects them on November 3rd.
+
+> to approve Resolution No. 2026-185 directing removal of the City’s automated license plate reader cameras at fixed locations along public roadways if a majority rejects continued use of those cameras in the November 3, 2026 election
+
+Source (primary_official): https://webapi.legistar.com/v1/leaguecity/matters/13936/histories
+
+### The council's vote record on the removal resolution lists Mayor Nick Long voting for it, and every one of the eight names on the roll is recorded as For.
+
+> "VotePersonName":"Nick Long","VoteValueId":16,"VoteValueName":"For"
+
+Source (primary_official): https://webapi.legistar.com/v1/leaguecity/eventitems/82914/votes
+
+### On October 13th the council also approved on second reading an ordinance creating a Citizen Data Privacy Committee to oversee the plate reader system.
+
+> Consider and take action on Ordinance 2026-39 creating a Citizen Data Privacy Committee to provide oversight of the City’s automated license plate reader system - Second Reading
+
+Source (primary_official): https://webapi.legistar.com/v1/leaguecity/matters/13938
+
+### Census Bureau records place League City in Galveston County.
+
+> TX|48|167|Galveston County|41980|02411642|League City city
+
+Source (primary_official): https://www2.census.gov/geo/docs/reference/codes2020/place_by_cou/st48_tx_place_by_county2020.txt
+
+### Census Bureau records place League City in Harris County as well.
+
+> TX|48|201|Harris County|41980|02411642|League City city
+
+Source (primary_official): https://www2.census.gov/geo/docs/reference/codes2020/place_by_cou/st48_tx_place_by_county2020.txt
 

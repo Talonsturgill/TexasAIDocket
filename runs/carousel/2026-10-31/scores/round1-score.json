@@ -1,0 +1,210 @@
+{
+ "weighted_score": 7.29,
+ "judges": [
+  6.81,
+  7.29,
+  7.474
+ ],
+ "spread": 0.664,
+ "criteria": {
+  "artwork_craft": {
+   "score": 6.5,
+   "weight": 0.22,
+   "judges": [
+    6.5,
+    6.5,
+    7.2
+   ]
+  },
+  "deck_coherence": {
+   "score": 8.0,
+   "weight": 0.12,
+   "judges": [
+    8.0,
+    8.0,
+    8.0
+   ]
+  },
+  "claim_integrity": {
+   "score": 7.5,
+   "weight": 0.2,
+   "judges": [
+    6.5,
+    7.5,
+    7.5
+   ]
+  },
+  "story_and_stakes": {
+   "score": 7.5,
+   "weight": 0.16,
+   "judges": [
+    7.0,
+    7.5,
+    8.0
+   ]
+  },
+  "sequence_and_momentum": {
+   "score": 7.5,
+   "weight": 0.1,
+   "judges": [
+    7.0,
+    7.5,
+    7.5
+   ]
+  },
+  "voice": {
+   "score": 7.5,
+   "weight": 0.1,
+   "judges": [
+    7.5,
+    7.5,
+    7.0
+   ]
+  },
+  "variety": {
+   "score": 7.0,
+   "weight": 0.1,
+   "judges": [
+    5.5,
+    7.0,
+    7.0
+   ]
+  }
+ },
+ "hard_fails": [],
+ "hard_fails_by_judge": [],
+ "ship": false,
+ "threshold": 8.0,
+ "over_threshold": false,
+ "method": "per-criterion median across three judges, then weighted by the rubric",
+ "threshold_dissents": [
+  "judge 1 refused on the threshold, not on a fault, and scored 6.81 against a 8.0 bar. That dissent is carried in the median",
+  "judge 2 refused on the threshold, not on a fault, and scored 7.29 against a 8.0 bar. That dissent is carried in the median",
+  "judge 3 refused on the threshold, not on a fault, and scored 7.474 against a 8.0 bar. That dissent is carried in the median"
+ ],
+ "threshold_dissents_by_judge": [
+  {
+   "judge": 1,
+   "score": 6.81,
+   "reason": "judge 1 refused on the threshold, not on a fault, and scored 6.81 against a 8.0 bar. That dissent is carried in the median"
+  },
+  {
+   "judge": 2,
+   "score": 7.29,
+   "reason": "judge 2 refused on the threshold, not on a fault, and scored 7.29 against a 8.0 bar. That dissent is carried in the median"
+  },
+  {
+   "judge": 3,
+   "score": 7.474,
+   "reason": "judge 3 refused on the threshold, not on a fault, and scored 7.474 against a 8.0 bar. That dissent is carried in the median"
+  }
+ ],
+ "contested": [
+  "variety"
+ ],
+ "artwork_weakest_frames": [
+  {
+   "slide": 7,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "A mid-tone macro of beige thermoplastic over most of the lower 60 percent, no single subject, no stop bar.",
+     "fix": "Yaw the camera about 35 degrees so the bars recede diagonally to the stop bar and the lit terracotta kerb panel; keymask the nearest bar's top into shadow."
+    },
+    {
+     "judge": 2,
+     "problem": "At a 0.28 m eye the bars read as tan planks about 30 cm thick, a broad mid-tone band, no kerb, stop bar or figure for scale.",
+     "fix": "Raise the camera to about 1.0 m at the kerb with the warning panel's edge and the stop bar in the near foreground; narrow the light so only the chamfers catch it and the tops fall dark."
+    },
+    {
+     "judge": 3,
+     "problem": "At 432 px the paint-height macro reads as abstract beige bands, half the lower frame in the grey middle, the nearest bar under the footer with a visible dark plate behind the cite and site line.",
+     "fix": "Raise the eye to about 0.6 m and yaw toward the kerb so the warning panel and stop bar enter the left third; tighten the pool to the two nearest chamfers; stop the foreground bar short of the footer band."
+    }
+   ]
+  },
+  {
+   "slide": 3,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "A thin tan mid-tone pan under a dead upper middle; the bars start at different x.",
+     "fix": "Drop the camera to about 0.9 m and move in until the pan fills about 60 percent of the height; darken the concrete; start both bars on one lit zero saw cut."
+    },
+    {
+     "judge": 2,
+     "problem": "A tan board across the middle band with a featureless cylinder curb; thin cream ribbons; brown mid tones; no subject fills a third.",
+     "fix": "Drop the concrete albedo near the asphalt's value and darken the curb so the bars and lit tick walls are the only bright values; dolly in, keeping a sliver of sky."
+    },
+    {
+     "judge": 3,
+     "problem": "The gutter pan is a thin mid-tone slab across a fifth of the frame with an empty lower third; perspective makes the 55 bar 0.83 of the 70 bar instead of 0.79.",
+     "fix": "Rebuild as a TXBENCH plan relief like slide 2, or a near overhead look-down, filling 40 to 50 percent of the height with both bars from one zero tick, the ratio checked in screen space."
+    }
+   ]
+  },
+  {
+   "slide": 4,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "400 markers alias into texture; the six amber markers are a few pixels each.",
+     "fix": "Lower the eye to about 1.2 m at fov 30, 4 m back, so the amber markers are large in the foreground."
+    },
+    {
+     "judge": 2,
+     "problem": "400 evenly lit markers read as tan specks at 432 px with no pool; the six amber markers tiny, the close pair nearly merged.",
+     "fix": "Lower the eye to about 1.2 m at fov 30 so the amber row stands in the near foreground at about three times a white marker's size; light a pool on the front rows."
+    },
+    {
+     "judge": 3,
+     "problem": "400 markers alias into dotted noise at feed size and the six brass officer markers are a thin strip at the bottom.",
+     "fix": "Bring the camera down to about 1.2 m and forward so the front rows show prism faces; set the six brass markers alone one marker width ahead of the block, two touching; let the rear rows fall dark."
+    }
+   ]
+  },
+  {
+   "slide": 5,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "A dead mid-tone kerb wedge over the upper left third, stair-step aliasing on the gutter lip, bars flat quads.",
+     "fix": "Swing the camera about 8 degrees right so the kerb slab leaves frame except its lit lip; give the bars a visible cast under the declared key."
+    }
+   ]
+  },
+  {
+   "slide": 6,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The kit resident small and mannequin-like in a mostly empty road.",
+     "fix": "Bring the camera to about 6 m and lower it so the resident stands a third of the frame against the lit crosswalk."
+    }
+   ]
+  },
+  {
+   "slide": 1,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "A flat black windshield, a primitive dark body, the plate the brightest object on the car.",
+     "fix": "Give the glass an environment reflection of the warm seam and drop the plate albedo to mid grey."
+    }
+   ]
+  }
+ ],
+ "rounds_derived": 1,
+ "rounds": 1,
+ "rounds_source": "this module's own log of cards it has scored",
+ "rounds_declared": 1,
+ "rung": 8.0,
+ "work_order": "no judge found a hard fail, and the median 7.29 is under this round's rung of 8.0. KEEP EDITING: fix the judges' named defects, re-render and re-score. At the round cap the finished deck ships whatever it scored. Start with the frames the judges charge the art for, in this order, slides 7, 3, 4, 5, 6, 1 (`artwork_weakest_frames`), one concrete change each",
+ "craft_floor": "pending, because a deck under its rung is sent back by the work order first"
+}

@@ -6496,3 +6496,62 @@ deck and still the id pass (2026-10-12 item 4). The render artifact theme beyond
 the engine's normalBias proposal (2026-10-26). No. 63's balance, weight, case and plinth models stay
 in its chassis, one deck, first in line for the next instruments deck. The other repeat offenders
 carry an `escalated 2026-10-30` line in the queue.
+
+## 2026-10-31, the fifteenth weekly machine pass. One kit lift, one gate, three proposals, carried items
+
+Read with carousel no. 64 (League City's road paint deck). The digest counted five shipped runs from
+October 25th to 31st. `artwork_craft` was lowest on three of them and `variety` on four. The two model
+themes again named every run: "largest object unmodelled" (5 runs, 11 rounds) and "primitive or
+low-poly model where a kit model belongs" (5 runs, 10 rounds), each in all three of no. 64's rounds.
+
+### 1. KIT: ROAD PAINT IN `civic.js` (done, this pass's first upgrade commit)
+
+No. 64's round 3 craft card ranked frame 7's bars the weakest art ("darkened tops read as brown
+planks") and frame 5's "flat quads with a thin lip and no visible cast", with the fix "a true bevelled
+7 mm extrusion with bead-white tops ... so every bar casts". Frame 4's markers had "navy-black prism
+faces", with the fix "warm reflective prism insets". `pavement_bar`, `crosswalk`, `pavement_marker`
+and `warning_panel` are built at those fixes. A bar is its footprint extruded up with a slumped
+rounded shoulder and a bead-white crown with bead glints in its roughness. A marker's lens is a
+cube-corner facet face built on its sloped face's own corners, warm, with a weak environment term.
+They are new names, so no. 64 re-renders as shipped. `gutter_rule` stays in its chassis as that
+deck's ruler. Two things the proofs taught, written into the notes: paint takes no `TXT.contact`,
+because the blob darkens the asphalt between the bars, and a 7 mm bar casts only under a tight sun frustum at a high
+map size.
+
+### 2. GATE: THE SOURCES BLOCK'S LABELS OBEY THE DATE RULES (done, this pass's second upgrade commit)
+
+`build()` prints each claim's authored `document` field verbatim, and nothing read it for house
+style. No. 64's round 1 integrity judge found "Texas Tribune, October 30, 2026" and "November 3, 2026"
+in the first comment with every gate green. The shipped comments of 2026-10-26 ("Tuesday May 20,
+2025") and 2026-10-30 ("October 12th, 2026" among five own-year dates) carry the same defect, so
+three of the week's five decks shipped it or nearly did. `sources_block --check` now fails a bare
+or own-year date in a non-URL line, with the patterns imported from `caption_check`, for runs named
+on or after October 31st. Shipped blocks are left as they shipped, and the self-test proves the
+2026-10-30 block goes red under the rule and stays exempt in `check()`.
+
+### 3. PROPOSALS, with their counts
+
+- **For a maintainer (human): a GATE_LESSONS entry for change 2.** A gate that reads a file for one
+  property certifies the whole file. `sources_block --check` read which ids the block listed, its
+  green banner covered the authored prose inside it, and that prose broke the date rules on three
+  decks in one week. The brief says a gate change belongs in that file, and it is `human` lane.
+- **For today's run or a maintainer (daily lane): `prompt_audit.py` separates agent dispatch
+  latency from a dialog.** Queue prompt-audit-counts-agent-latency, repeat 2. No. 58 reported 242 of
+  1,812 calls waiting, no. 63 reported 136 of 1,158 and no. 64 reported 188 of 1,962, led by Agent and
+  SendMessage dispatches, in sessions the no-stall hook judged unattended and in which it refused
+  nothing. The email's prompt line reads as a stall on every run until it is fixed.
+- **For a maintainer (human): the id pass, re-counted.** 2026-10-12 item 4, the engine reporting each
+  tagged object's projected pixels for `layout_check`. All three of its consumers bit no. 64:
+  grid-piece-count-reads-lit-ground-as-subject (repeat 5, frame 5 split into three pieces under a spot
+  on the crosswalks), lit-accent-drifts-in-lab (repeat 2, the terracotta retuned per frame on 6, 7
+  and 9) and accent-presence-forces-a-pool (repeat 2, frame 9's inlays thickened over nine retunes).
+
+### Carried, with this week's counts
+
+relief-plate-reads-as-a-tray (repeat 2) got no change, and the reason is measured. No. 64's frames 3
+and 8 cast 0.473 and 0.348 of their area, far above `print_ban`'s floor, and were still charged as an
+embossed chart and a vent grille. So the cast is no longer the residual cause. The judges' cures were
+the pool, and a check for an evenly lit plate would be a guess. The audition rebind (repeat 5) is still
+the owner's rule. "Type sitting on or fighting the art" (4 runs, 7 rounds) and "render artifact"
+(4 runs, 7 rounds) carry as before (2026-10-12 item 4, 2026-10-26). build-copy-keeps-hook-markup is
+one deck. No frontier scan this week, because the time went to the proofs.

@@ -400,6 +400,54 @@ def cited_ids(run_dir: Path, copy: dict) -> list[str]:
     return sorted(out, key=lambda c: int(c[1:]))
 
 
+# THE BLOCK'S AUTHORED LABELS OBEY THE DATE RULES, 2026-10-31 (the weekly machine pass).
+#
+# `build()` prints each document's `document` field verbatim, and that field is AUTHORED by the
+# run (the docstring above says so). So the dates a run types into a label reach a published
+# LinkedIn comment with nothing between them and the reader. Carousel no. 64's round 1 integrity
+# judge found "Texas Tribune, October 30, 2026" and "November 3, 2026" in its first comment, a
+# bare date and a redundant year at once, with `--check` and `caption_check` both green, because
+# this gate read only the ids and caption_check never reads this file. It was not one deck. In the
+# same week the 2026-10-26 deck shipped "Tuesday May 20, 2025" and the 2026-10-30 deck shipped
+# "October 12th, 2026" among five own-year dates, and the 2026-10-15 deck had shipped
+# "October 6, 2026" and "October 9, 2026". Only no. 64's was caught, and only by a judge.
+#
+# The two rules are CLAUDE.md's: dates take the ordinal, and a date in the post's own year
+# carries no year. Both patterns are IMPORTED from caption_check, never restated, for the reason
+# copy_sync_check.redundant_year gives (GATE_LESSONS 75: a pattern in two files is two patterns).
+# The year is the run directory's own, never the clock's, as build() already does.
+#
+# FROM THIS RUN FORWARD. Shipped first comments are not failed or rewritten (CLAUDE.md, on a rule
+# that postdates them), so the rule binds a run named on or after the day it was written. The
+# self-test proves no. 63's shipped block goes red under the function and stays exempt in check().
+LABEL_DATE_RULE_FROM = "2026-10-31"
+
+
+def label_date_problems(text: str, year: str) -> list[str]:
+    """Bare dates and dates printing the post's own year, in the block's non-URL lines."""
+    try:
+        import caption_check as house
+    except ImportError as exc:                                          # pragma: no cover
+        raise SystemExit(f"sources_block: cannot import caption_check, which owns BARE_DATE and "
+                         f"DATED_YEAR ({exc}). This gate will not restate them. Fix the import")
+    out: list[str] = []
+    for line in text.splitlines():
+        if line.strip().startswith(("http://", "https://")):
+            continue
+        prose = re.sub(r"https?://\S+", "", line)
+        for m in house.BARE_DATE.finditer(prose):
+            out.append(f"{m.group(0)!r} in the label {line.strip()[:90]!r} has no ordinal. House "
+                       f"style is month first with the ordinal day. Fix the claim's `document` "
+                       f"field and rebuild the block")
+        for m in house.DATED_YEAR.finditer(prose):
+            if m.group(1) == year:
+                bare = m.group(0)[:m.start(1) - m.start(0)].rstrip().rstrip(",").rstrip()
+                out.append(f"{m.group(0)!r} in the label {line.strip()[:90]!r} prints the post's "
+                           f"own year, {year}. Write {bare!r}. Fix the claim's `document` field "
+                           f"and rebuild the block")
+    return out
+
+
 def check(run_dir: Path) -> list[str]:
     """Every id the deck prints must resolve in the block, and the block may list no other.
 
@@ -448,6 +496,8 @@ def check(run_dir: Path) -> list[str]:
                 "for a citation no reader can see. THE BLOCK IS STALE: it was built before the "
                 "deck moved. Round 2 of 2026-09-19 moved c14 off frame 8 and this gate exited 0, "
                 "because a superset satisfied the one direction it asked about")
+    if re.fullmatch(r"\d{4}-\d{2}-\d{2}", run_dir.name) and run_dir.name >= LABEL_DATE_RULE_FROM:
+        problems += label_date_problems(text, run_dir.name[:4])
     by_id = {c["id"]: c for c in claims}
     for cid in sorted(listed, key=lambda c: int(c[1:])):
         if cid not in by_id:
@@ -777,6 +827,61 @@ def self_test() -> int:
             ok("a claim with no document title refuses to build", False, "no error raised")
         except SystemExit as e:
             ok("a claim with no document title refuses to build", "document" in str(e), str(e))
+
+    # ---- THE LABELS' DATES, 2026-10-31 -------------------------------------------------
+    # no. 64's round 1 block, in its own shape: a bare date with the post's year, and a label
+    # carrying "November 3, 2026". Both went out green under --check and caption_check.
+    r1 = ("Sources, 15 official records and two news reports, all fetched October 31st.\n"
+          "Texas Tribune, October 30, 2026. c29 c30\n"
+          "https://www.texastribune.org/2026/10/30/texas-election-flock-cameras/\n"
+          "Harris County sample ballot for November 3, 2026, Proposition A. c27\n"
+          "https://example.org/SampleBallot/2026/11-3/ballot.pdf\n")
+    p64 = label_date_problems(r1, "2026")
+    ok("no. 64's round 1 labels go RED, the bare date with its year and the ballot date",
+       sum("has no ordinal" in x for x in p64) == 2, str(p64))
+    ok("...and the shipped repair is clean, while the URLs' own dates are never read",
+       label_date_problems(r1.replace("October 30, 2026", "October 30th")
+                           .replace("November 3, 2026", "November 3rd"), "2026") == [],
+       str(label_date_problems(r1.replace("October 30, 2026", "October 30th")
+                               .replace("November 3, 2026", "November 3rd"), "2026")))
+    ok("an ordinal date printing the post's own year goes RED (the 2026-10-30 deck's shape)",
+       any("own year" in x for x in label_date_problems(
+           "City of Plano Legistar, City Council meeting, October 12th, 2026. c5 c8\n", "2026")))
+    ok("...and a date in another year keeps its year",
+       label_date_problems("Council minutes, May 20th, 2025. c46\n", "2026") == [])
+    ok("...and the 2026-10-26 deck's 'Tuesday May 20, 2025' is a bare date",
+       any("has no ordinal" in x for x in label_date_problems(
+           "City of Rowlett City Council Meeting Minutes, Tuesday May 20, 2025. c46\n", "2026")))
+    # REPLAYED ON THE SHIPPED BLOCKS: no. 63's goes red under the function, and check() leaves it
+    # alone because it shipped before the rule. no. 64's shipped block (the repaired one) is clean.
+    s63 = REPO_ROOT / "runs" / "carousel" / "2026-10-30" / "first_comment.txt"
+    if s63.exists():
+        ok("the 2026-10-30 shipped block goes RED under the label rule",
+           any("own year" in x for x in label_date_problems(s63.read_text(encoding="utf-8"), "2026")))
+        ok("...and check() does not fail it, because it shipped before the rule",
+           not any("own year" in x or "no ordinal" in x for x in check(s63.parent)),
+           str(check(s63.parent))[:200])
+    s64 = REPO_ROOT / "runs" / "carousel" / "2026-10-31" / "first_comment.txt"
+    if s64.exists():
+        ok("no. 64's shipped block is clean under the rule it is the first run bound by",
+           label_date_problems(s64.read_text(encoding="utf-8"), "2026") == [],
+           str(label_date_problems(s64.read_text(encoding="utf-8"), "2026")))
+    # AND THROUGH check(), end to end, in a run named on the day the rule binds.
+    with tempfile.TemporaryDirectory() as td2:
+        rd = Path(td2) / LABEL_DATE_RULE_FROM
+        rd.mkdir()
+        (rd / "copy.json").write_text(json.dumps({"slides": {"S1": {"claims": ["c1"]}}}))
+        (rd / "claims.json").write_text(json.dumps({"claims": [
+            {"id": "c1", "source_url": "https://a.example/t", "document": "Texas Tribune, October 30, 2026",
+             "retrieved": "2026-10-31", "source_type": "secondary_reported"}]}))
+        (rd / "first_comment.txt").write_text(build(rd))
+        ok("check() fails a block built from a label carrying 'October 30, 2026'",
+           any("has no ordinal" in x for x in check(rd)), str(check(rd)))
+        (rd / "claims.json").write_text(json.dumps({"claims": [
+            {"id": "c1", "source_url": "https://a.example/t", "document": "Texas Tribune, October 30th",
+             "retrieved": "2026-10-31", "source_type": "secondary_reported"}]}))
+        (rd / "first_comment.txt").write_text(build(rd))
+        ok("...and passes once the label is fixed and the block rebuilt", check(rd) == [], str(check(rd)))
 
     print("\nsources_block self-test: " + ("all passed" if not fails else f"{fails} FAILED"))
     return 1 if fails else 0

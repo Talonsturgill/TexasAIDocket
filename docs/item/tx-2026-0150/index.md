@@ -12,7 +12,7 @@ An expert panel review in the American Journal of Roentgenology states that pedi
 - Public access: Write to the decider
 - Take part: https://pubmed.ncbi.nlm.nih.gov/42714442/
 
-- Last checked: 2026-10-07
+- Last checked: 2026-10-31
 
 ## Dates
 
@@ -38,6 +38,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-26 · The radiologists' published review of imaging AI is still unconfirmed. The index carrying its abstract bars automated readers.
 - 2026-10-29 · The pediatric imaging AI review by Texas Children's and UT Southwestern radiologists is still unconfirmed on the federal literature index, which bars automated readers.
 - 2026-10-30 · The pediatric imaging AI review remains unconfirmed on the federal literature index, which still bars automated readers.
+- 2026-10-31 · The review's abstract was read again on PubMed and still carries every quoted line, the call for a dedicated pediatric AI infrastructure among them.
 
 ## Evidence
 
@@ -47,47 +48,47 @@ Every fact above rests on one of these. The words are the source's own.
 
 > Artificial intelligence (AI) applications have transformed radiology, yet pediatric medical imaging remains substantially underrepresented in AI development, validation, regulation, and implementation.
 
-Source (primary_official): https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=42714442&rettype=abstract&retmode=xml
+Source (primary_official): https://pubmed.ncbi.nlm.nih.gov/42714442/
 
 ### The panel's stated reason is that children change as they grow, so a model trained on adults is not the same model.
 
 > Unlike adults, children go through continuous physiologic and anatomic changes that require age-specific models trained on representative developmental data.
 
-Source (primary_official): https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=42714442&rettype=abstract&retmode=xml
+Source (primary_official): https://pubmed.ncbi.nlm.nih.gov/42714442/
 
 ### The panel names what pediatric AI is limited by.
 
 > However, pediatric AI is limited by scarce publicly available datasets, fragmented institutional data, rare diseases, heterogeneous reporting practices, and insufficient external validation.
 
-Source (primary_official): https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=42714442&rettype=abstract&retmode=xml
+Source (primary_official): https://pubmed.ncbi.nlm.nih.gov/42714442/
 
 ### Off-label use of a model trained on adults is named as an ethical and regulatory concern in children.
 
 > Ethical and regulatory challenges are also a concern in children, including consent for secondary data use, off-label use of adult-trained AI models, and the need for postdeployment surveillance.
 
-Source (primary_official): https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=42714442&rettype=abstract&retmode=xml
+Source (primary_official): https://pubmed.ncbi.nlm.nih.gov/42714442/
 
 ### The panel asks for a dedicated pediatric AI infrastructure and standards rather than for adult tools to be reused.
 
 > The panel gives key recommendations, emphasizing the importance of an implementation roadmap to establish a dedicated pediatric AI infrastructure and standards that are essential to ensure diagnostic accuracy, workflow efficiency, and optimal clinical outcomes for children while minimizing bias and protecting patient safety.
 
-Source (primary_official): https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=42714442&rettype=abstract&retmode=xml
+Source (primary_official): https://pubmed.ncbi.nlm.nih.gov/42714442/
 
 ### One of the review's authors is in the radiology department shared by Baylor College of Medicine and Texas Children's Hospital in Houston.
 
 > Department of Radiology, Baylor College of Medicine and Texas Children's Hospital, Houston, Texas, USA.
 
-Source (primary_official): https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=42714442&rettype=abstract&retmode=xml
+Source (primary_official): https://pubmed.ncbi.nlm.nih.gov/42714442/
 
 ### Another author is in the radiology department at UT Southwestern Medical Center in Dallas.
 
 > Department of Radiology, UT Southwestern Medical Center, Dallas, Texas, USA.
 
-Source (primary_official): https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=42714442&rettype=abstract&retmode=xml
+Source (primary_official): https://pubmed.ncbi.nlm.nih.gov/42714442/
 
 ### The review names reimbursement as misaligned with what pediatric AI would need.
 
 > Additionally, reimbursement is misaligned and must be optimized to allow innovation.
 
-Source (primary_official): https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=42714442&rettype=abstract&retmode=xml
+Source (primary_official): https://pubmed.ncbi.nlm.nih.gov/42714442/
 

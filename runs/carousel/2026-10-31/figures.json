@@ -1,0 +1,289 @@
+{
+ "_note": "Every value is extracted from a claim quote or counted from the council's vote rows by compute.py, or computed here from values that were.",
+ "cameras_2022": {
+  "value": 42,
+  "from": [
+   "c1"
+  ],
+  "basis": "cameras in the 2022 Flock Safety lease, per the resolution's title"
+ },
+ "lease_2022_usd": {
+  "value": 233400,
+  "from": [
+   "c2"
+  ],
+  "basis": "the 2022 lease's not to exceed amount, dollars"
+ },
+ "lease_2022_years": {
+  "value": 2,
+  "from": [
+   "c2"
+  ],
+  "basis": "the 2022 lease's term in years"
+ },
+ "cameras_2023": {
+  "value": 70,
+  "from": [
+   "c5"
+  ],
+  "basis": "cameras in the restated 2023 Flock Group lease, per the resolution's title"
+ },
+ "lease_2023_usd": {
+  "value": 899600,
+  "from": [
+   "c6"
+  ],
+  "basis": "the 2023 agreement's not to exceed amount, dollars"
+ },
+ "lease_2023_years": {
+  "value": 5,
+  "from": [
+   "c4"
+  ],
+  "basis": "the 2023 agreement's term in years"
+ },
+ "dickinson_cameras": {
+  "value": 2,
+  "from": [
+   "c10"
+  ],
+  "basis": "Flock cameras the 2024 agreement places inside Dickinson"
+ },
+ "cameras_tribune": {
+  "value": 55,
+  "from": [
+   "c30"
+  ],
+  "basis": "Flock cameras the Tribune reports Proposition A asks about"
+ },
+ "population_tribune": {
+  "value": 120000,
+  "from": [
+   "c30"
+  ],
+  "basis": "League City's population as the Tribune states it"
+ },
+ "agencies_floor": {
+  "value": 400,
+  "from": [
+   "c40"
+  ],
+  "basis": "agencies with access to League City's Flock data, a floor, per the Tribune"
+ },
+ "searches_per_30_days": {
+  "value": 200,
+  "from": [
+   "c42"
+  ],
+  "basis": "League City police searches in an average 30 day period, roughly, per the Tribune"
+ },
+ "search_window_days": {
+  "value": 30,
+  "from": [
+   "c42"
+  ],
+  "basis": "the averaging window in days, per the Tribune"
+ },
+ "officers_with_access": {
+  "value": 6,
+  "from": [
+   "c38"
+  ],
+  "basis": "officers with access to the system, per the mayor via the Tribune"
+ },
+ "officers_per_search": {
+  "value": 2,
+  "from": [
+   "c39"
+  ],
+  "basis": "officers who must work together to scan the data, per the Tribune"
+ },
+ "hours_after_certification": {
+  "value": 72,
+  "from": [
+   "c33"
+  ],
+  "basis": "hours after certification when bagging starts, per the mayor via the Tribune"
+ },
+ "removal_votes_for": {
+  "value": 8,
+  "from": [
+   "c24"
+  ],
+  "basis": "counted: rows reading For in the council's vote record on Resolution No. 2026-185 of October 13th, 2026"
+ },
+ "removal_votes_absent": {
+  "value": 0,
+  "from": [
+   "c24"
+  ],
+  "basis": "counted: rows reading Absent in the council's vote record on Resolution No. 2026-185 of October 13th, 2026"
+ },
+ "removal_roll": {
+  "value": 8,
+  "from": [
+   "c24"
+  ],
+  "basis": "counted: names on the council's vote record on Resolution No. 2026-185 of October 13th, 2026"
+ },
+ "removal_votes_against": {
+  "value": 0,
+  "from": [
+   "c24"
+  ],
+  "basis": "counted: rows reading Against in the council's vote record on Resolution No. 2026-185 of October 13th, 2026"
+ },
+ "election_order_votes_for": {
+  "value": 7,
+  "from": [
+   "c16"
+  ],
+  "basis": "counted: rows reading For in the council's vote record on Ordinance No. 2026-27 of August 11th, 2026"
+ },
+ "election_order_votes_absent": {
+  "value": 1,
+  "from": [
+   "c16"
+  ],
+  "basis": "counted: rows reading Absent in the council's vote record on Ordinance No. 2026-27 of August 11th, 2026"
+ },
+ "election_order_roll": {
+  "value": 8,
+  "from": [
+   "c16"
+  ],
+  "basis": "counted: names on the council's vote record on Ordinance No. 2026-27 of August 11th, 2026"
+ },
+ "election_order_votes_against": {
+  "value": 0,
+  "from": [
+   "c16"
+  ],
+  "basis": "counted: rows reading Against in the council's vote record on Ordinance No. 2026-27 of August 11th, 2026"
+ },
+ "lease_2023_votes_for": {
+  "value": 7,
+  "from": [
+   "c8"
+  ],
+  "basis": "counted: rows reading For in the council's vote record on Resolution No. 2023-197 of December 12th, 2023"
+ },
+ "lease_2023_votes_absent": {
+  "value": 0,
+  "from": [
+   "c8"
+  ],
+  "basis": "counted: rows reading Absent in the council's vote record on Resolution No. 2023-197 of December 12th, 2023"
+ },
+ "lease_2023_roll": {
+  "value": 7,
+  "from": [
+   "c8"
+  ],
+  "basis": "counted: names on the council's vote record on Resolution No. 2023-197 of December 12th, 2023"
+ },
+ "lease_2023_votes_against": {
+  "value": 0,
+  "from": [
+   "c8"
+  ],
+  "basis": "counted: rows reading Against in the council's vote record on Resolution No. 2023-197 of December 12th, 2023"
+ },
+ "cameras_added_2023": {
+  "value": 28,
+  "from": [
+   "c1",
+   "c5"
+  ],
+  "basis": "computed: cameras in the 2023 lease less cameras in the 2022 lease"
+ },
+ "lease_minus_tribune": {
+  "value": 15,
+  "from": [
+   "c5",
+   "c30"
+  ],
+  "basis": "computed: the most cameras the 2023 lease covers less the cameras the Tribune counts. Two kinds of number, never a count of removed cameras"
+ },
+ "removal_to_election_days": {
+  "value": 21,
+  "from": [
+   "c12",
+   "c23"
+  ],
+  "basis": "computed: days from the October 13th removal vote to the November 3rd election"
+ },
+ "order_to_election_days": {
+  "value": 84,
+  "from": [
+   "c12",
+   "c14"
+  ],
+  "basis": "computed: days from the August 11th election order to the November 3rd election"
+ },
+ "first_lease_to_election_years": {
+  "value": 4,
+  "from": [
+   "c3",
+   "c12"
+  ],
+  "basis": "computed: calendar years from the first lease's approval to the election"
+ },
+ "years_of_council_votes": {
+  "value": [
+   2022,
+   2023,
+   2024,
+   2026
+  ],
+  "from": [
+   "c3",
+   "c4",
+   "c11",
+   "c14"
+  ],
+  "basis": "the years of the council's Flock votes, from their records"
+ },
+ "league_city_lat": {
+  "value": 29.490064,
+  "from": [
+   "c47"
+  ],
+  "basis": "the Census 2020 gazetteer interior point latitude"
+ },
+ "league_city_lon": {
+  "value": -95.109093,
+  "from": [
+   "c47"
+  ],
+  "basis": "the Census 2020 gazetteer interior point longitude"
+ },
+ "kyle_lat": {
+  "value": 29.991784,
+  "from": [
+   "c48"
+  ],
+  "basis": "the Census 2020 gazetteer interior point latitude"
+ },
+ "kyle_lon": {
+  "value": -97.884272,
+  "from": [
+   "c48"
+  ],
+  "basis": "the Census 2020 gazetteer interior point longitude"
+ },
+ "laredo_lat": {
+  "value": 27.561661,
+  "from": [
+   "c49"
+  ],
+  "basis": "the Census 2020 gazetteer interior point latitude"
+ },
+ "laredo_lon": {
+  "value": -99.488203,
+  "from": [
+   "c49"
+  ],
+  "basis": "the Census 2020 gazetteer interior point longitude"
+ }
+}

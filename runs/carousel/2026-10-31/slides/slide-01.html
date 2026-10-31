@@ -1,0 +1,97 @@
+<!doctype html>
+<!-- 2026-10-31, frame 1 of 9. Archetype FULL_BLEED. A spatial scene through txthree.js in the deck's lastLight world: a kit crossover waiting at a thermoplastic stop bar, the chassis continental_crosswalk of removal_roll bars in front of it, the chassis curb_ramp_warning at the kerb corner. Drawn to illustrate, to no maker's design. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:900px">League City votes Tuesday on its Flock cameras</h1>
+<p class="dek" data-follow="26" style="width:880px">Proposition A asks whether police keep plate reader cameras at fixed locations on public roadways. The Tribune reports it is the first such vote in Texas. Drawn to&nbsp;illustrate.</p>
+<script>window.FIG = {"removal_roll": 8};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-10-31-roadpaint.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Proposition A", counter: "01 / 09", src: "c12 c13 c27 c29", fit: { min: 70, max: 96, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 40, near: 0.05, far: 3000, fog: 0.01 });
+  const M = CH.mats(THREE, K);
+  /* THE FIGURE, from figures.json: one crosswalk bar per name on the council's removal vote */
+  const nBars = Math.round(FIG.removal_roll);
+  /* the crosswalk across the road, bars running with traffic, centred 5.4 m ahead of the stop bar's line */
+  const xw = K.make('continental_crosswalk', { n: nBars, w: 0.6, gap: 0.6, l: 3.0, wear: 'fresh' });
+  xw.position.set(0, 0, -6.6); TXT.add(R, xw);
+  /* the stop bar across the near lane, 0.45 m deep, and the car waiting behind it in the right lane */
+  const stop = K.make('thermo_bar', { w: 3.2, l: 0.45, wear: 'fresh' }); stop.position.set(2.0, 0, -4.2); TXT.add(R, stop);
+  const car = K.make('crossover', { seed: 5, color: 0x6b6f76, metallic: 0.6 }); car.rotation.y = Math.PI; car.position.set(1.9, 0, -1.4); CH.put(car, { grit: false });
+  /* the car's headlights on, lit IN their housings: the kit's own lamp line on the nose, its lens and strip turned to a warm
+   * emissive, a spot source set inside each one throwing toward the crosswalk, and a short fill just ahead of each lamp so
+   * the fascia, the intake and the plate below catch the light they give off */
+  const hot = new THREE.MeshStandardMaterial({ color: 0xfff4e2, emissive: 0xffe4bc, emissiveIntensity: 6, roughness: 0.35 });
+  /* the kit lays both lamps of the nose as one merged line, so the lens centres are its two halves, a third of the way in */
+  const lampAt = { 1: [], [-1]: [] };
+  car.updateMatrixWorld(true);
+  car.traverse((o) => {
+    if (!o.isMesh || !o.geometry) return;
+    o.geometry.computeBoundingBox(); const bb = o.geometry.boundingBox, c = bb.getCenter(new THREE.Vector3()), e = bb.getSize(new THREE.Vector3());
+    if (Math.abs(c.y - 0.8) < 0.04 && c.z > 1.6 && e.x > 1) {
+      o.material = hot;
+      [1, -1].forEach((k) => lampAt[k].push(o.localToWorld(new THREE.Vector3(k * (bb.max.x - e.x * 0.2), c.y, bb.max.z))));
+    }
+  });
+  /* the plate held to a mid grey so the lamps and the lit bars are the brightest values on the car */
+  car.traverse((o) => { if (o.isMesh && o.material && o.material.color && o.material.color.getHex() === 0xe8e6de) { o.material = o.material.clone(); o.material.color.setHex(0x6e6c66); } });
+  [1, -1].forEach((k) => {
+    const ps = lampAt[k]; if (!ps.length) return;
+    const c = ps.reduce((a, b) => a.add(b), new THREE.Vector3()).multiplyScalar(1 / ps.length);
+    const sp = new THREE.SpotLight(0xffe2b8, 60, 20, 0.55, 0.55, 1.4); sp.position.set(c.x, c.y, c.z - 0.04); sp.target.position.set(c.x + (c.x - 1.9), 0, -9); R.scene.add(sp); R.scene.add(sp.target);
+    const fill = new THREE.PointLight(0xffe2b8, 1.3, 1.7, 2); fill.position.set(c.x - (c.x - 1.9) * 0.4, c.y - 0.22, c.z - 0.3); R.scene.add(fill);
+    /* the bloom each lens gives off, seated ON the lens line rather than floating ahead of the fascia */
+    const g = new THREE.Sprite(new THREE.SpriteMaterial({ map: CH.glowTex(THREE), color: 0xffeccc, transparent: true, opacity: 0.75, depthWrite: false }));
+    g.scale.set(0.5, 0.2, 1); g.position.set(c.x, c.y, c.z - 0.02); R.scene.add(g);
+  });
+  /* the road's own wear in the headlights' throw: an oil stain where cars wait, and a manhole cover */
+  {
+    const oil = new THREE.Mesh(new THREE.CircleGeometry(0.9, 40), new THREE.MeshStandardMaterial({ color: 0x0a0a0b, roughness: 0.25, transparent: true, opacity: 0.55 }));
+    oil.rotation.x = -Math.PI / 2; oil.scale.set(1, 1.7, 1); oil.position.set(1.9, 0.0012, -3.0); R.scene.add(oil);
+    const iron = new THREE.MeshStandardMaterial({ color: 0x2a2826, metalness: 0.6, roughness: 0.55 });
+    const mh = new THREE.Mesh(new THREE.CylinderGeometry(0.34, 0.34, 0.012, 48), iron); mh.position.set(-1.6, 0.006, -10.6); mh.receiveShadow = true; R.scene.add(mh);
+    for (let k = -3; k <= 3; k++) { const g = new THREE.Mesh(new THREE.BoxGeometry(0.52 - Math.abs(k) * 0.05, 0.006, 0.025), iron); g.position.set(-1.6, 0.014, -10.6 + k * 0.08); R.scene.add(g); }
+  }
+  /* the centre line, worn, running back past the car */
+  for (let i = 0; i < 4; i++) { const d = K.make('thermo_bar', { w: 0.12, l: 3.0, wear: 'worn' }); d.position.set(0.0, 0, -0.4 + i * 9.0); TXT.add(R, d); }
+  /* the kerb and sidewalk on the left, with the warning panel at the corner where the crosswalk lands */
+  const walk = K.box(6, 0.15, 60, M.kerb, -7.65, 0, -6); TXT.add(R, walk);
+  const kerb = TXT.roundedBox(0.16, 0.16, 60, 0.02, M.kerb); kerb.position.set(-4.65, 0.08, -6); TXT.add(R, kerb);
+  const panel = K.make('curb_ramp_warning', { w: 1.22, d: 0.61 }); panel.rotation.y = Math.PI / 2; panel.position.set(-5.1, 0.15, -7.4); TXT.add(R, panel);
+  TXT.sky(R);
+  TXT.ground(R, { surface: 'asphalt', size: 600, seed: 31 });
+  const from = [-0.45, 2.5, -12.0];
+  const look = CH.aim(THREE, R, TXT, from, [0.9, 0.3, -5.0], 560, 1010, 40);
+  TXT.frame(R, { fov: 40, from, look });
+  TXT.scatter(R, { kind: 'grass', count: 900, area: [[-30, -60], [-11.3, 8]], seed: 4, scale: 0.8 });
+  CH.warm(R, 0.32);
+  TXT.deckRig(R, CH.rigSpec(W, 18, 4096), CH.rigOpts([1, 0.5, -4], { distance: 30, shadowFar: 80 }));
+  CH.unacne(R, 0.01);
+  TXT.weather(R, { grime: 0.45, height: 0.6 });
+  TXT.stage(R, [car, xw], { poolInner: 5.5, poolOuter: 12 });
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  /* a deep feathered veil over the foot of the frame, so the lit bars dim gradually toward the footer lines */
+  CH.post(cx, { a: 0.3, veil: 0.5, veilH: 360, footWash: 0.54 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

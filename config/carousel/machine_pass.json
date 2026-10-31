@@ -1,48 +1,48 @@
 {
- "last_pass": "2026-10-30",
+ "last_pass": "2026-10-31",
  "themes": [
   {
-   "theme": "primitive or low-poly model where a kit model belongs (the close transformer charged on no. 60 frame 6 and no. 62 frame 4; queue kit-substation-reads-as-grey-clay, repeat 1)",
+   "theme": "primitive or low-poly model where a kit model belongs (no. 64's crosswalk bars and markers, the round 3 craft card's top ranked defect; queue roadpaint-models-built-in-chassis)",
    "runs": 5,
    "rounds": 10,
    "action": "fixed",
-   "what": "assets/js/kit/power.js: power_transformer, built for a close crop at both decks' named fixes: weathered galvanized tank on wxSkin at metalness 0.4, pressed steel radiator panels on header pipes with valves, skirted alternating porcelain sheds on flanged turrets, conservator with Buchholz pipe, gauge and breather, surge arresters, containment curb on a crushed rock apron. New name, c50080c8a."
+   "what": "assets/js/kit/civic.js: pavement_bar, crosswalk, pavement_marker and warning_panel at the judges' named fix, a shouldered 7 mm bar with a bead-white crown that casts, and a warm facet lens coplanar with the marker's faces. New names."
   },
   {
    "theme": "largest object unmodelled",
    "runs": 5,
-   "rounds": 10,
+   "rounds": 11,
    "action": "fixed in part",
-   "what": "The same lift answers the transformer instances; the week's other instances were reliefs and a dais, answered by the relief entry below and by no. 63's own repairs."
+   "what": "The same lift answers no. 64's bars, the week's largest objects on frames 5 and 7; the week's other instances were reliefs and frames carried below."
   },
   {
-   "theme": "render artifact (banding, aliasing, facets, stripes), including no. 63's relief band (queue flat-frame-post-runs-at-device-scale)",
-   "runs": 4,
-   "rounds": 7,
-   "action": "fixed in part",
-   "what": "deck_chassis refuses a bootFlat frame whose post pass runs at device scale, b8f23256f. The shadow acne half stays the engine normalBias proposal (UPGRADE_BACKLOG 2026-10-26)."
-  },
-  {
-   "theme": "detail floor fights the dark staged world (queue, repeat 2, nos. 61, 62, 63, eight frames)",
+   "theme": "sources block labels break the date rules (queue sources-block-labels-skip-the-date-rule; shipped on the 2026-10-26 and 2026-10-30 decks and caught by a judge on 2026-10-31)",
    "runs": 3,
    "rounds": null,
    "action": "fixed",
-   "what": "art_preflight --write reads layout_check's DETAIL floor on the three audition frames before the review is bound, dff1f2c31."
+   "what": "sources_block --check fails a bare or own-year date in the block's authored labels from 2026-10-31, patterns imported from caption_check."
   },
   {
-   "theme": "flat 2D overlay on a rendered frame, and the TXBENCH relief failures queued by six decks (dials, tray, card, blotches, meander)",
+   "theme": "render artifact (banding, aliasing, facets, stripes)",
    "runs": 4,
-   "rounds": 5,
-   "action": "fixed",
-   "what": "TECHNIQUE_LIBRARY material relief bench entry with five measured failures and cures, 9fef9735d."
+   "rounds": 7,
+   "action": "deferred",
+   "what": "No. 64's stair-stepped casts are the sun frustum and map size, now named in the kit notes; the engine normalBias proposal stands (UPGRADE_BACKLOG 2026-10-26)."
   },
   {
    "theme": "type sitting on or fighting the art",
    "runs": 4,
    "rounds": 7,
    "action": "deferred",
-   "what": "A different collision on each deck; still the id pass (UPGRADE_BACKLOG 2026-10-12 item 4)."
+   "what": "Still the id pass (UPGRADE_BACKLOG 2026-10-12 item 4)."
+  },
+  {
+   "theme": "relief plate reads as a tray (queue, repeat 2; nos. 60 and 64 this week)",
+   "runs": 2,
+   "rounds": null,
+   "action": "escalated",
+   "what": "No. 64's charged reliefs cast 0.473 and 0.348, far over print_ban's floor, so cast is not the residual cause; no safe check yet."
   }
  ],
- "note": "Written by the weekly machine pass (prompts/daily_routine.md Phase 17) when it ships. Read by scripts/carousel/machine_due.py. Run and round counts are from scripts/carousel/week_digest.py --date 2026-10-30, five shipped runs, except the detail floor theme, counted by this pass from the queue's own evidence because the digest has no theme for it (rounds not counted)."
+ "note": "Written by the weekly machine pass (prompts/daily_routine.md Phase 17) when it ships. Read by scripts/carousel/machine_due.py. Run and round counts are from scripts/carousel/week_digest.py --date 2026-10-31, five shipped runs, except the sources block theme (counted by this pass from the shipped first comments of 2026-10-26 and 2026-10-30 and no. 64's round 1 integrity card) and the relief theme (the queue's own evidence, nos. 60 and 64 inside the week); rounds not counted for either."
 }
