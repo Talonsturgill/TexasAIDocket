@@ -1,7 +1,7 @@
 {
   "_spec": {
     "version": 1,
-    "generated": "2026-10-30",
+    "generated": "2026-10-31",
     "note": "One row per source url. ETag and Last-Modified drive the next conditional request, hash short circuits the text comparison, and proven records which claim quotes have been located here, which is what tells a real change apart from a page this check cannot read."
   },
   "sources": {
@@ -494,8 +494,8 @@
     },
     "https://communityimpact.com/san-marcos-buda-kyle/government/hays-county-commissioners-reallocate-funds-away-from-potential-axon-ai-contract/": {
       "etag": null,
-      "last_modified": "Fri, 30 Oct 2026 05:10:28 GMT",
-      "hash": "90a2639596afa6cc3322c252fe1858d57f34b207144e807e10919e92fb22c459",
+      "last_modified": "Sat, 31 Oct 2026 05:10:52 GMT",
+      "hash": "ee9471fa9174ccca184dea03550ef5021b9544242a554996a51ed23a8f001562",
       "proven": [
         "tx-2026-0168-c8",
         "tx-2026-0168-c9"
@@ -613,8 +613,8 @@
     },
     "https://dronexl.co/2026/10/09/zipline-austin-round-rock-drone-delivery-launch/": {
       "etag": null,
-      "last_modified": "Fri, 30 Oct 2026 05:10:28 GMT",
-      "hash": "219fe8e524254fd82b5c50c7346f611b572a4f87ce5050d3781b5619abbcdc73",
+      "last_modified": "Sat, 31 Oct 2026 05:10:53 GMT",
+      "hash": "96f9e5334d2c2c96b6056e3a345d08b9900e441c5fc04e7e68b4ac8a68dc0f53",
       "proven": [
         "tx-2026-0186-c18",
         "tx-2026-0232-c13"
@@ -2661,7 +2661,7 @@
     "https://www.kedt.org/texas-news/2026-10-14/league-city-to-disable-flock-cameras-if-voters-reject-them-in-november": {
       "etag": null,
       "last_modified": null,
-      "hash": "5d89b88c99d562c422d82eee539ee1412925b4a6b1ffbd3a483e13bc4623c7fc",
+      "hash": "486f74d28c80bcadcff80d1b173ee45664c11455ab1a7ad21e4f31028923184a",
       "proven": [
         "tx-2026-0048-c5"
       ]
@@ -2750,7 +2750,7 @@
     "https://www.leaguecitytx.gov/m/newsflash/Home/Detail/6318": {
       "etag": null,
       "last_modified": null,
-      "hash": "56b3f885a96913ca94ef172e3ccb1a6c760acf5d9393e7a880814281226bac69",
+      "hash": "89a37e98c213689a806898c5ff06a280fab666998cfe3867d7b12d4e4cd4716f",
       "proven": [
         "tx-2026-0048-c3"
       ]
@@ -3260,8 +3260,8 @@
     },
     "https://www.texastribune.org/2026/10/14/texas-data-centers-water-use-penalties-enforcement/": {
       "etag": null,
-      "last_modified": "Wed, 28 Oct 2026 19:50:04 GMT",
-      "hash": "d74fc434d707acbdacde1b2071a778d0cb48659f4492215f12dea5720f65da8e",
+      "last_modified": "Sat, 31 Oct 2026 03:35:17 GMT",
+      "hash": "d20f568e16abc9b99141e63a740c36d42973de6fc71cc4a8d99f6214329ed2ef",
       "proven": [
         "tx-2026-0171-c8",
         "tx-2026-0171-c9"
