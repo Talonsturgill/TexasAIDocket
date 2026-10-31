@@ -18,7 +18,7 @@
     "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
     "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
     "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
-    "slides/slide-05.html": "f835da0d620dd8e0a399b652f7706b646f7a9970b912aab55c354bb3dad4fa89",
+    "slides/slide-05.html": "d0f43bfc139ec918a49064044eb024ab11f70c68db03c6a8f71515214fa0d0c5",
     "render/slide-05.png": "58f2cb80292418a7e86bdc611fc8b173f5b00b0b9b2497cdd180e7b07bdb2b60",
     "slides/slide-09.html": "602aa339a8fa5da2d1b0807249ae6263fb597b2733c1c70fce00071f1faba26b",
     "render/slide-09.png": "1cd83f29acb6fc297b9a93c8900e04c0d60d9844b0651a9d788e77cad0f52059",
@@ -61,7 +61,7 @@
       "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
       "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
       "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
-      "slides/slide-05.html": "f835da0d620dd8e0a399b652f7706b646f7a9970b912aab55c354bb3dad4fa89",
+      "slides/slide-05.html": "d0f43bfc139ec918a49064044eb024ab11f70c68db03c6a8f71515214fa0d0c5",
       "render/slide-05.png": "58f2cb80292418a7e86bdc611fc8b173f5b00b0b9b2497cdd180e7b07bdb2b60",
       "slides/slide-09.html": "602aa339a8fa5da2d1b0807249ae6263fb597b2733c1c70fce00071f1faba26b",
       "render/slide-09.png": "1cd83f29acb6fc297b9a93c8900e04c0d60d9844b0651a9d788e77cad0f52059",
@@ -73,9 +73,9 @@
       {
         "slide": 1,
         "role": "cover",
-        "subject": "The kit crossover seen head on at a white stop bar at night. Two emissive lamp strips sit on the nose, a fill lights the lower fascia and intake bar, and two spot lobes fall onto the continental crosswalk bars running toward the reader.",
-        "visual_consequence": "A car with its lamps on waits at painted crossing markings on a public road after dark, which is the place Proposition A governs. No camera is shown, and the paint is the lit subject. That reads without the headline.",
-        "weakness": "Carried over unchanged. The plate reads as a muted grey panel below the lamp strips and the lit bars in value. Minor: two soft fill hot spots, a cold top face on the stop bar's shadowed half, a hairline bar edge with no visible cast.",
+        "subject": "A kit crossover seen head on at night behind a white stop bar. Two emissive lamp strips sit on the nose, and two warm spot lobes fall from the lower fascia onto continental crosswalk bars that run off the bottom edge toward the reader. A worn centre dash line recedes into a dark terracotta haze.",
+        "visual_consequence": "Without the headline, a car with its lamps on waits at painted crossing markings on a public road after dark, the place Proposition A governs. No camera is shown. The lit paint is the subject, which sets up the deck's road-paint vocabulary.",
+        "weakness": "Same as the earlier reading. The plate reads as a muted grey and blue panel, lower in value than the lamp strips and the lit bars. The fill puts two soft hot spots on the fascia. The stop bar's shadowed half has a cold top face. The upper body and glass are simple dark planes, rounded enough that the car does not read as boxes.",
         "repair": "none required",
         "encoding_reads": true,
         "dominant_subject_finished": true,
@@ -98,9 +98,9 @@
       {
         "slide": 5,
         "role": "evidence",
-        "subject": "One dark asphalt lane receding into the dark, a kerb and gutter on the left held near the asphalt's own value and a worn edge line on the right, crossed by three crosswalks: 7 dull brown bars, 7 cream bars and one black scraped slot, and 8 cream bars, labelled 2023 LEASE, ELECTION ORDER and OCTOBER 13TH.",
-        "visual_consequence": "Without the headline, the reader counts seven, seven with one black hole, then eight, each row ending inside the frame. The three crosswalks are the only bright shapes on the road, so the eye goes straight to the record and ends on the nearest and fullest row.",
-        "weakness": "Fixed: the tan kerb wedge is gone; the kerb reads as a form by a faint lit arris. Minor: near and middle rows close in value; bar height a thin lit lip; the upper left a large near-black area, consistent with the staged register.",
+        "subject": "One dark asphalt lane on an oblique, with a kerb, gutter and sidewalk on the left held near the asphalt's value and a worn edge line on the right. Three crosswalks cross it one behind another. The farthest has 7 dull brown worn bars (2023 LEASE). The middle has 7 cream bars and one black saw-cut slot in second position with lit kerf lips (ELECTION ORDER). The nearest has 8 cream bars (OCTOBER 13TH). Every row starts at the same kerb offset.",
+        "visual_consequence": "Without the headline, a reader counts seven, then seven with one empty slot, then eight. Each row ends inside the frame, so the nearest row is visibly one bar longer. Worn against fresh paint separates the 2023 roll from the two 2026 rolls. The three crosswalks are the only bright shapes on the road, so the eye goes straight to the record. The source's FIG has the same four keys and values, and the counts in the image match them.",
+        "weakness": "The image and every native tile match what was accepted earlier today. At 100 percent the bars show a fine thermoplastic speckle and a thin lit lip, but their raised height reads only as that hairline lip with very little cast onto the asphalt. The near and middle rows sit close in value. The kerb and sidewalk wedge in the upper left is a large near-black area, which fits the staged register and is not a blank slab at feed size. The saw-cut slot reads as an empty cut with lit kerf edges, not as an outline.",
         "repair": "none required",
         "encoding_reads": true,
         "dominant_subject_finished": true,
@@ -116,16 +116,16 @@
           "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
           "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
           "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
-          "slides/slide-05.html": "f835da0d620dd8e0a399b652f7706b646f7a9970b912aab55c354bb3dad4fa89",
+          "slides/slide-05.html": "d0f43bfc139ec918a49064044eb024ab11f70c68db03c6a8f71515214fa0d0c5",
           "render/slide-05.png": "58f2cb80292418a7e86bdc611fc8b173f5b00b0b9b2497cdd180e7b07bdb2b60"
         }
       },
       {
         "slide": 9,
         "role": "close",
-        "subject": "Texas extruded as a dark slab on a low oblique with inlaid county lines and a cream rim. Terracotta Harris and Galveston inlays on the upper Gulf coast, a terracotta stud on a cream collar at League City, white studs at Kyle and Laredo, each with a DOM leader.",
-        "visual_consequence": "League City's two counties stand out on the coast in the deck's one accent, which matches the dek's opening line. Kyle and Laredo are white points inland. The vote happens here first and others follow elsewhere.",
-        "weakness": "Carried over unchanged. The claim line sits on dark ground clear of the Rio Grande wall. Borderline: the Gulf rim's tip within about 3 design px of the site line's first letter; machine QA reports no strike. Minor: the taller League City stud, the smooth slab top.",
+        "subject": "Texas extruded as a dark slab on a low oblique, with inlaid county lines, a cream rim and a lit side wall along the Rio Grande. Terracotta Harris and Galveston inlays sit on the upper Gulf coast with a stud on a cream collar at League City. Cream studs mark Kyle and Laredo, and each place has a DOM leader.",
+        "visual_consequence": "League City's two counties stand out on the coast in the deck's one accent, which matches the dek's opening line. Kyle and Laredo are pale points inland. The reader sees that the vote happens here first and others follow elsewhere.",
+        "weakness": "Same as the earlier reading. The slab top is smooth and lacks material relief. The Gulf rim's southern tip passes close beneath the first letters of the site line. The League City stud is the tallest marker.",
         "repair": "Only if a strike is reported: raise the slab about 15 design px.",
         "encoding_reads": true,
         "dominant_subject_finished": true,
@@ -182,7 +182,7 @@
       "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
       "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
       "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
-      "slides/slide-05.html": "f835da0d620dd8e0a399b652f7706b646f7a9970b912aab55c354bb3dad4fa89",
+      "slides/slide-05.html": "d0f43bfc139ec918a49064044eb024ab11f70c68db03c6a8f71515214fa0d0c5",
       "render/slide-05.png": "58f2cb80292418a7e86bdc611fc8b173f5b00b0b9b2497cdd180e7b07bdb2b60"
     },
     "9": {
@@ -209,7 +209,7 @@
   "shipped_inputs": {
     "slides/slide-01.html": "5fc393552b996be938902dbd4cae7d362d4f6689f6b302f04a86af767af6fdfc",
     "slide-01.webp": "1850b1630faf3738040736d79c67a9f0a4ade0c2396f8e2902f6f18b57364770",
-    "slides/slide-05.html": "f835da0d620dd8e0a399b652f7706b646f7a9970b912aab55c354bb3dad4fa89",
+    "slides/slide-05.html": "d0f43bfc139ec918a49064044eb024ab11f70c68db03c6a8f71515214fa0d0c5",
     "slide-05.webp": "3d142847f96341d37d83cd6a1c62f8c5e61c32df139288f952e477030fabe637",
     "slides/slide-09.html": "602aa339a8fa5da2d1b0807249ae6263fb597b2733c1c70fce00071f1faba26b",
     "slide-09.webp": "fc2ab4886e84fb2b0b1e04bc925333a01b1cdb5aa16bd7e334f7ae3c62449364"

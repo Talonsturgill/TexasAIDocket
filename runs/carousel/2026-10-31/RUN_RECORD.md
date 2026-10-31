@@ -109,6 +109,9 @@ which is the queued `prompt-audit-counts-agent-latency` (now repeat 2). This rea
 - CI's gates job went red after the push on `ledger_check --date 2026-10-31`. The topics angle said "one corner" and
   "three crosswalks", and the run had computed none of the counting figures that prose is held to. Locally the check had
   been run without `--date`, which skips that comparison. The angle was reworded in `update_ledgers.py` and re-derived.
+  The same job also failed `fig_inject --check` on frame 5, whose FIG line held the right four values in a hand-written
+  order. `fig_inject` rewrote it. Frame 5 re-rendered byte identical (sha256 58f2cb80), and the art director read the
+  audition again and accepted it before the review was re-bound and archived to the delivered images.
 - Two copy repairs needed a second pass because the first was looser than its claim: "the department requires two" for
   c39, and "a resolution on the cameras" briefly without c22.
 - Round 1's repair dropped Houston Public Media's account of the 72 hours rather than disclosing it.
