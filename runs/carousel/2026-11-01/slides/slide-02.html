@@ -1,0 +1,68 @@
+<!doctype html>
+<!-- 2026-11-01, frame 2 of 9. Archetype CLOSE_CROP. A TXBENCH material relief under the chassis light: five slumped heaps of metal powder on a dark anodised tray, each its own material, raked from the upper left so each casts long to the lower right. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:900px">Roughly a trillion ways to mix them</h1>
+<p class="dek" data-follow="26" style="width:860px">Several dozen elements give AI roughly a trillion possible mixes, the university says. Existing self driving labs focus on materials that are relatively easy to make. Drawn&nbsp;to&nbsp;illustrate.</p>
+<script>window.FIG = {};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-01-foundry.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script src="@@ASSETS@@/js/txbench.js"></script>
+<script>
+window.renderReady = (async () => {
+  const cx = await CH.bootFlat({ kicker: "Before there is an alloy", counter: "02 / 09", src: "c11 c18", fit: { min: 76, max: 100, maxLines: 2 } });
+  TX.reseed(20261101);
+  /* five heaps, each a slumped cone of one powder: centre, base radius and height in CSS px, the nearest cropped by the edges */
+  const HEAPS = [[190, 820, 150, 120, 1], [520, 760, 165, 132, 2], [835, 850, 160, 122, 3], [320, 1100, 190, 150, 4], [730, 1135, 200, 160, 5]];
+  const M = { TRAY: 0 };
+  function sample(X, Y) {
+    let best = 0, mat = M.TRAY;
+    for (const [hx, hy, r, h, m] of HEAPS) {
+      const ang = Math.atan2(Y - hy, X - hx), rr = r * (1 + 0.09 * TX.simplex2(Math.cos(ang) * 1.1 + m * 7, Math.sin(ang) * 1.1 + m * 3));
+      const d = Math.hypot(X - hx, Y - hy) / rr;
+      if (d < 1.0) {
+        /* a tall cone at the powder's angle of repose, its crest slightly rounded and its flanks sagging into the tray, no foot ring */
+        const t = Math.max(0, 1 - d), z = h * (d < 1 ? (t > 0.25 ? 0.18 + (t - 0.25) * 1.093 : 0.72 * t * t / 0.25 * 1.0) : 0);
+        const grain = 1.6 * TX.simplex2(X * 0.55, Y * 0.55) + 0.45 * TX.simplex2(X * 1.7, Y * 1.7);
+        const zz = z > 0.5 ? z + grain * Math.min(1, z / 10) * (1 - 0.6 * Math.min(1, z / h)) : z;
+        if (zz > best) { best = zz; mat = m; }
+      }
+    }
+    const tray = 0.4 * TX.simplex2(X * 0.08, Y * 0.08) + 0.25 * TX.simplex2(X * 0.9, Y * 0.9);
+    return best > 0.6 ? [best, mat] : [tray, M.TRAY];
+  }
+  const cache = new Map(), key = (X, Y) => (X * 4 | 0) + ',' + (Y * 4 | 0);
+  const S = (X, Y) => { const k = key(X, Y); let v = cache.get(k); if (!v) { v = sample(X, Y); cache.set(k, v); } return v; };
+  /* the powders, each its own value and hue at feed size: graphite black, copper, nickel white, titanium blue grey, brass gold */
+  const ALB = { 1: [0.09, 0.09, 0.1], 2: [0.48, 0.24, 0.13], 3: [0.62, 0.61, 0.58], 4: [0.3, 0.34, 0.43], 5: [0.5, 0.4, 0.16] };
+  const albedo = (X, Y, m) => {
+    if (m === M.TRAY) { const a = 1 + 0.3 * TX.simplex2(X * 0.4, Y * 0.4); return [0.028 * a, 0.03 * a, 0.035 * a]; }
+    const n = 1 + 0.11 * TX.simplex2(X * 2.2, Y * 2.2); const c = ALB[m]; return [c[0] * n, c[1] * n, c[2] * n];
+  };
+  /* the window's pane on the tray: a soft lit field centred on the heaps, falling to black at the edges */
+  const pool = (X, Y) => { const d = Math.hypot((X - 520) / 640, (Y - 960) / 520), t = Math.max(0, Math.min(1, (d - 0.3) / 0.85)); return 1 - 0.95 * t * t * (3 - 2 * t); };
+  cx.fillStyle = '#08080b'; cx.fillRect(0, 0, 2160, 2700);
+  const rep = TXBENCH.relief(cx, { x: 0, y: 560, w: 1080, h: 790, scale: 2, height: (X, Y) => S(X, Y)[0], material: (X, Y) => S(X, Y)[1], keyMask: pool, albedo,
+    spec: { 2: [0.25, 18], 3: [0.35, 20], 5: [0.3, 20], 4: [0.15, 14] }, keyColor: [1, 0.9, 0.78], ambColor: [0.5, 0.58, 0.78],
+    ambient: 0.04, diffuse: 2.5, ao: 1.6, shadow: 0.95, softness: 9, castLength: 420 });
+  { const g = cx.createLinearGradient(0, 1120, 0, 1260); g.addColorStop(0, 'rgba(8,8,11,1)'); g.addColorStop(1, 'rgba(8,8,11,0)'); cx.fillStyle = g; cx.fillRect(0, 1120, 2160, 140); }
+  cx.setTransform(2, 0, 0, 2, 0, 0);
+  CH.post(cx, { a: 0.4, pad: 80, fade: 220, veil: 0.32 });
+  window.__relief = rep;
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

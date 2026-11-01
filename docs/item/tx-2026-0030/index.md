@@ -11,7 +11,7 @@ Austin City Council approved Ordinance No. 20260423-029 on April 23rd, 2026. It 
 - Public access: Public meeting
 - Take part: https://www.austintexas.gov/council/2026/20260423-reg
 
-- Last checked: 2026-10-29
+- Last checked: 2026-11-01
 
 ## Dates
 
@@ -47,6 +47,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-21 · Checked and unchanged. The decision still stands as decided.
 - 2026-10-24 · Austin's surveillance technology chapter still stands in City Code as the council adopted it.
 - 2026-10-29 · Austin's surveillance technology ordinance still stands as City Code Chapter 2-19.
+- 2026-11-01 · Austin's ordinance creating its City Code chapter on the subject still stands as adopted.
 
 ## Evidence
 

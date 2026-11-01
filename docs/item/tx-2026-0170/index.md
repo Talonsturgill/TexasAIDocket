@@ -44,6 +44,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-29 · Hays County's policy on AI in surveillance is still unconfirmed. The agenda portal bars automated readers.
 - 2026-10-30 · Whether Hays County has adopted its policy on AI in surveillance is not confirmed today. Its agenda portal still bars automated readers.
 - 2026-10-31 · No adopted Hays County policy on AI in surveillance could be confirmed today. The agenda portal that carries it still refuses automated readers.
+- 2026-11-01 · No Hays County policy on AI in surveillance can be confirmed today. The agenda portal still refuses this project.
 
 ## Evidence
 

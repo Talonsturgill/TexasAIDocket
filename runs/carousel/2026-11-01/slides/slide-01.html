@@ -1,0 +1,76 @@
+<!doctype html>
+<!-- 2026-11-01, frame 1 of 9. Archetype FULL_BLEED. A spatial scene through txthree.js in a dark TXT.interior room: the chassis copper_hearth with one pocket per $100,000 of the WoodNext grant (grant_buttons from figures.json, in rows of five), one alloy_button glowing in the middle pocket of the second row, the copper block running on past the bottom of the frame. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:900px">The metal still has to be melted</h1>
+<p class="dek" data-follow="26" style="width:860px">Texas A&amp;M plans the Aggie AI Foundry, where computer controlled arms will mix, melt and test new alloys. A $2&nbsp;million WoodNext Foundation grant will help build it. Drawn to&nbsp;illustrate.</p>
+<script>window.FIG = {"grant_buttons": 20};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-01-foundry.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Texas A&M", counter: "01 / 09", src: "c1 c2 c5 c7 c8", fit: { min: 80, max: 104, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 30, near: 0.06, far: 30, fog: 0.02 });
+  /* PCF soft on this macro: the default contact hardening sampler broke the bowl's penumbra under each dome into blocks */
+  R.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+  const M = CH.mats(THREE, K);
+  TXT.interior(R, { w: 7, d: 6, h: 3.2, floor: 'concrete', wall: 0x2c2b2a, window: 'left', ceiling: true, light: 0.2 });
+  const Y = 0.9;
+  const benchMat = M.benchTop.clone(); benchMat.color.setScalar(0.4); const bench = TXT.roundedBox(1.8, 0.04, 1.8, 0.006, benchMat); bench.position.set(0, Y - 0.02, 0.4); TXT.add(R, bench);
+  const legs = TXT.roundedBox(1.7, Y - 0.04, 1.1, 0.01, M.steelDark); legs.position.set(0, (Y - 0.04) / 2, 0.1); TXT.add(R, legs); TXT.contact(R, legs);
+  /* THE FIGURE: one pocket per drawing unit of the grant, five to a row */
+  const COLS = 5, ROWS = Math.round(FIG.grant_buttons / COLS);
+  const hearth = K.make('copper_hearth', { rows: ROWS, cols: COLS, w: 0.36, d: 0.61, fd: 0.27, fz: -0.17, pr: 0.022, depth: 0.0065, hoses: false }); hearth.position.set(0, Y, 0.17); hearth.rotation.y = -0.12; TXT.add(R, hearth); hearth.updateMatrixWorld(true); CH.contact(THREE, R, hearth, { pad: 1.12, opacity: 0.92 });
+  /* the cooled domes take no shadow on this frame: at this macro the pocket rim's cast cut each dome with a hard stepped
+   * terminator, so a dome is shaded by its light and its reflection alone, and the bowl under it still carries the contact.
+   * the pocket bowls take their own copper, drawn from inside and casting from outside, so a bowl does not shadow itself
+   * along each button's foot (the shared copper was left double sided by the bowl meshes) */
+  const bowlMat = M.copper.clone(); { bowlMat.side = THREE.BackSide; bowlMat.shadowSide = THREE.FrontSide; hearth.traverse((o) => { if (o.isMesh && o.geometry && o.geometry.type === 'SphereGeometry') o.material = bowlMat; }); }
+  const pk = hearth.userData.pockets;
+  /* the chassis ripple bump is a coarse canvas that steps the normals at this macro, and the geometry already carries the
+   * freeze ripples, so on this frame the buttons drop it */
+  { const hm = CH.hotMat(THREE); hm.emissiveIntensity = 3.2; hm.bumpMap = null; hm.bumpScale = 0; hm.needsUpdate = true; }
+  /* the glowing button is the middle pocket of the second row from the camera, so the near row and the copper in front of it run off the bottom of the frame */
+  const hotIdx = (ROWS - 2) * COLS + 2;
+  pk.forEach((p, i) => { const b = K.make('alloy_button', { state: i === hotIdx ? 'hot' : (i % 3 === 0 ? 'dark' : 'cool'), seed: i + 2 }); const w = new THREE.Vector3(p[0], p[1] + 0.0015, p[2]).applyMatrix4(hearth.matrixWorld); b.position.copy(w); b.rotation.y = i * 1.7; if (i !== hotIdx) b.traverse((o) => { if (o.material && o.material.color) { o.material = o.material.clone(); o.material.color.multiplyScalar(0.45); o.material.envMapIntensity = 0.3; o.material.bumpScale = 0.0; o.material.bumpMap = null; o.material.roughness = 0.5; o.material.clearcoat = 0; o.material.needsUpdate = true; o.receiveShadow = false; } }); TXT.add(R, b); });
+  const hp = (() => { const w = new THREE.Vector3(pk[hotIdx][0], pk[hotIdx][1], pk[hotIdx][2]).applyMatrix4(hearth.matrixWorld); return [w.x, w.y - Y, w.z]; })();
+  CH.heat(THREE, R, [hp[0], Y + 0.03, hp[2]], 0.5, 0.2);
+  CH.copperEnv(THREE, R, [0.4, 0.7, -0.62], { w: 3.4, h: 5, i: 5 }); bowlMat.envMap = M.copper.envMap; bowlMat.envMapIntensity = M.copper.envMapIntensity; bowlMat.needsUpdate = true;
+  /* A LOW MACRO: eye a quarter metre over the bench and a little more back from the hot pocket, on a wide lens, so the
+   * hot button is the largest form and the far rows fall away small into the dark */
+  const from = [hp[0] - 0.03, Y + 0.24, hp[2] + 0.42];
+  TXT.frame(R, { fov: 42, from, look: [hp[0] + 0.0, Y + 0.0, hp[2] - 0.39] });
+  /* the glow of the hot button, a soft additive halo so it is the brightest thing in the frame */
+  const halo = new THREE.Sprite(new THREE.SpriteMaterial({ map: CH.glowTex(THREE), color: 0xffb070, transparent: true, opacity: 0.55, blending: THREE.AdditiveBlending, depthWrite: false, depthTest: false }));
+  halo.scale.set(0.075, 0.075, 1); halo.position.set(hp[0], Y + hp[1] + 0.008, hp[2]); halo.userData.noShadow = true; R.scene.add(halo);
+  CH.warm(R, 0.22);
+  TXT.deckRig(R, CH.rigSpec(W, 0.45, 4096), CH.rigOpts([hp[0], Y, hp[2]], { distance: 0.5, shadowFar: 1.0 }));
+  CH.unacne(R, 0.002);
+  /* the key's shadow is fitted to the pocket field alone, so a texel falls well under a native pixel at this macro */
+  R.scene.traverse((l) => { if (l.isDirectionalLight && l.castShadow) { const c = l.shadow.camera; l.target.position.set(hp[0], Y, hp[2] - 0.08); l.target.updateMatrixWorld(); c.left = -0.25; c.right = 0.25; c.top = 0.25; c.bottom = -0.25; c.near = 0.05; c.far = 1.2; c.updateProjectionMatrix(); if (l.shadow.map) { l.shadow.map.dispose(); l.shadow.map = null; } } });
+  TXT.weather(R, { grime: 0.25, height: 0.15 });
+  TXT.stage(R, [hearth], { pool: false });
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0.35, veil: 0.5, veilH: 400 });
+  /* no grade bloom on this macro: it samples a quarter resolution buffer and laid blocky halos round every bright dome edge; the hot button carries its own halo */
+  TXDECK.finish(cx, { bloom: { threshold: 0.72, strength: 0, radius: 8 } });
+  return true;
+})();
+</script>
+</body>
+</html>

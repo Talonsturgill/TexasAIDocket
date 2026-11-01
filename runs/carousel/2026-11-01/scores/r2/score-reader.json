@@ -1,0 +1,75 @@
+{
+ "lens": "reader",
+ "round": 2,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.5,
+   "why": "Slides 3, 8 and 9 read well. Slide 4's arm is still primitive with no button visible in the gripper, slide 5's stack is a flat tan slab with a cartoon ring, slide 1's right copper is a flat tan plane with banded buttons, slide 7's bars read as glyphs."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.0,
+   "why": "One dark bench and one vocabulary with the button motif, but the navy room frames alternate with the black reliefs and slides 1 and 5 lift into tan mid tones."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.8,
+   "why": "Every numeral traces and the universals are attributed. Slide 5's co-originator rests on claim text rather than a quoted line, and the $100,000 drawing unit sits close to the line."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.5,
+   "why": "What, who and what it does are clear. No city, no opening date and no slide saying the sources give none, slide 9's actions have no route, and the NSF award's relation to the foundry is unstated."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "The cover and close loop. The explaining turn arrives only on slide 8, and slides 5 and 7 could move."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Clean and on register. A few lines read like art direction rather than prose."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "A new topic and a fresh look, but money counted in wells repeats nos. 63 and 56."
+  }
+ ],
+ "weighted_score": 6.97,
+ "hard_fails": [],
+ "ship": false,
+ "ship_note": "",
+ "one_sentence_fix": "Make slide 9 an actual action and pull Arróyave's line forward so the cover pays on the first swipe.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 5,
+   "problem": "Flat tan slab, cardboard edges, a cartoon ring.",
+   "fix": "Only the sheet edge rim catches the key, paper albedo about 0.35 with offset sheets, crop off the left and bottom, a pen stroke for the mark."
+  },
+  {
+   "slide": 4,
+   "problem": "Primitive arm, a paper cup crucible, cube grips, no button visible in the gripper.",
+   "fix": "Bench height close on the gripper over the glowing pocket with a lit button in its jaws, serrated grips clamping the marked dogbone."
+  },
+  {
+   "slide": 1,
+   "problem": "The right copper a flat bright tan plane, the buttons band like clay.",
+   "fix": "Let the copper fall to black past the second column, roughness variation on the buttons."
+  },
+  {
+   "slide": 7,
+   "problem": "Bars read as glyphs or a grille, year labels outside the safe zone.",
+   "fix": "A lower key with long casts, the pool on the first row only, labels inside the margin."
+  }
+ ]
+}

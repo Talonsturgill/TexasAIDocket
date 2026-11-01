@@ -1,0 +1,58 @@
+<!doctype html>
+<!-- 2026-11-01, frame 5 of 9. Archetype OBJECT_AND_CAPTION. A spatial scene through txthree.js in a dark TXT.interior room: the chassis offprint_stack of papers_together sheets from figures.json with the marked alloy_button on top. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:900px">Two researchers, more than 100 papers</h1>
+<p class="dek" data-follow="26" style="width:880px">Ibrahim Karaman, who heads the department, and Raymundo Arróyave conceived the foundry. They have published more than 100 papers together. The university calls it the first lab of its kind in academia. Drawn&nbsp;to&nbsp;illustrate.</p>
+<script>window.FIG = {"papers_together": 100};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-01-foundry.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const BOOT = { kicker: "Who conceived it", counter: "05 / 09", src: "c12 c13 c14 c15 c16", fit: { min: 72, max: 96, maxLines: 2 } };
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, BOOT);
+  const R = CH.stage(TXT, gl, W, { fov: 32, near: 0.004, far: 60, fog: 0.02 });
+  const M = CH.mats(THREE, K);
+  TXT.interior(R, { w: 7, d: 6, h: 3.2, floor: 'concrete', wall: 0x2c2b2a, window: 'left', ceiling: true, light: 0.2 });
+  const Y = 0.9;
+  const bench = TXT.roundedBox(2.0, 0.04, 1.2, 0.006, M.benchTop); bench.position.set(0, Y - 0.02, 0.05); TXT.add(R, bench);
+  const legs = TXT.roundedBox(1.9, Y - 0.04, 1.1, 0.01, M.steelDark); legs.position.set(0, (Y - 0.04) / 2, 0.05); TXT.add(R, legs); TXT.contact(R, legs);
+  /* THE FIGURE, from figures.json: one sheet per paper, a floor, since the claim says more than */
+  const n = Math.round(FIG.papers_together);
+  const stack = K.make('offprint_stack', { n, t: 0.0004 }); stack.traverse((o) => { if (o.material && o.material.color) { o.material = o.material.clone(); o.material.color.set(0xcfc8b8); o.material.color.multiplyScalar(0.4); o.material.roughness = 0.85; } }); stack.position.set(0, Y, 0); stack.rotation.y = -0.35; TXT.add(R, stack); CH.contact(THREE, R, stack);
+  const top = Y + stack.userData.top;
+  const btn = K.make('alloy_button', { d: 0.046, h: 0.021, state: 'cool', seed: 77 }); btn.position.set(-0.023, top, 0.067); TXT.add(R, btn);
+  /* the bluebonnet mark on the button's flank, toward the camera */
+  const mark = new THREE.Mesh(new THREE.TorusGeometry(0.0206, 0.0036, 16, 200, 3.4), new THREE.MeshBasicMaterial({ color: 0x4e5fa8, toneMapped: false })); mark.rotation.x = Math.PI / 2; mark.rotation.z = 0.2; mark.position.set(-0.023, top + 0.005, 0.067); TXT.add(R, mark);
+  const from = [-0.3, Y + 0.085, 0.44];
+  TXT.frame(R, { fov: 36, from, look: [0.0, Y + 0.05, 0.0] });
+  CH.contact(THREE, R, stack, { pad: 1.08, opacity: 0.9 });
+  CH.warm(R, 0.24);
+  TXT.deckRig(R, CH.rigSpec(W, 1.0, 4096), CH.rigOpts([0, Y, 0], { distance: 1.2, shadowFar: 2.6 }));
+  CH.unacne(R, 0.002);
+  TXT.weather(R, { grime: 0.25, height: 0.15 });
+  TXT.stage(R, [stack, btn]);
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0.35, veil: 0.3 });
+  /* no grade bloom: its quarter resolution buffer lays square cells round bright highlights on a dark surface */
+  TXDECK.finish(cx, { bloom: { threshold: 0.72, strength: 0, radius: 8 } });
+  return true;
+})();
+</script>
+</body>
+</html>
