@@ -321,7 +321,7 @@ art:
 
 type:
   hook: "Mix, melt and test, on one line"
-  dek: "Robotics will mix, melt and test the materials with computer controlled arms along an assembly line that takes samples, the university says. Existing self driving labs can't handle alloys at up to 3,000 degrees Celsius. Drawn to illustrate."
+  dek: "Robotics will mix, melt and test the materials with computer controlled arms along an assembly line that takes samples, the university says. It says existing self driving labs can't handle alloys at up to 3,000 degrees Celsius. Drawn to illustrate."
   labels: ["MIX", "MELT", "TEST"]
 
 verbatim: []
@@ -556,7 +556,7 @@ art:
     Frame median L* planned at 16.
 
 type:
-  hook: "No tool can say how it will behave"
+  hook: "No computational tool can predict it, Arróyave says"
   dek: "Arróyave says no computational tool anywhere in the world can predict how an alloy is going to behave. His NSF backed PhaseForge applies machine learning to CALPHAD to say whether a material can exist at all. Drawn to illustrate."
   labels: []
 
@@ -610,7 +610,7 @@ art:
     Frame median L* planned at 14.
 
 type:
-  hook: "So the bar still gets pulled"
+  hook: "So the metal still gets tested"
   dek: "Texas A&M's goal is alloys in a week or less instead of months, a target and not a result. PhaseForge is free online and anyone can contribute to it. The NSF platform is open access. Drawn to illustrate."
   labels: []
 
