@@ -471,7 +471,7 @@
           "anc": []
         },
         {
-          "text": "The WoodNext Foundation manages the philanthropy of Roku's founder, Anthony Wood, and his wife Susan. The grant comes through a donor advised fund. One button is $100,000, so 20 buttons. Drawn to illustrate.",
+          "text": "The WoodNext Foundation manages the philanthropy of Roku's founder, Anthony Wood, and his wife Susan. The grant comes through a donor advised fund. Each button is an equal share of the grant, 20 in all. Drawn to illustrate.",
           "x": 82,
           "y": 379,
           "w": 880,
@@ -498,13 +498,13 @@
             [
               82,
               464,
-              837,
+              849,
               42
             ],
             [
               82,
               507,
-              653,
+              816,
               42
             ]
           ],
@@ -584,9 +584,9 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 26623,
+      "render_ms": 28295,
       "ok": true,
-      "load_ms": 419,
+      "load_ms": 534,
       "canvases": [
         {
           "x": 0,

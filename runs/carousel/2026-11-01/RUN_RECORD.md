@@ -128,3 +128,52 @@ the branch.
 
 From wake: record 39.41, audition 277.61, review 322.21, panel 373.33 minutes.
 
+## Gate status
+
+<!-- gate-status:begin -->
+| gate | status | detail |
+|---|---|---|
+| claims         | PASS   | 34 verified claim(s) |
+| render         | PASS   | 9 slide(s) |
+| qa             | WARN   | 0 fail(s), 6 warn(s) |
+| aggregates     | PASS   | 7 declaration(s), 9 numeric phrase(s) in the render, all re-derived |
+| assembly       | PASS   | 9 slide(s), 9.19 MB, vector |
+| score          | WARN   | 7.15 at the round cap after 3 round(s), the finished deck ships; 8.0 top rung, shortfall named |
+| labels         | PASS   | 80 claim id(s) checked, every label beside one traces to the shape its claim proves |
+| quantifiers    | PASS   | 79 published string(s) read from one list, every universal names its set |
+| verbatim       | WARN   | no dossier declares a `verbatim:` block, so no on-frame string was held to a quote |
+| dossiers       | PASS   | 33,764 chars planned |
+| caption        | PASS   | 155 words |
+| craft floor    | WARN   | 9 frame(s), median 776, floor 140, 1 quiet |
+| plan vs render | WARN   | 9 of 57 acceptance item(s) checkable |
+| texan          | WARN   | places NONE / body yes / deadline yes / next step NO |
+| absences       | WARN   | 0 of 4 scoped to a named document, 4 unscoped |
+| numerals       | PASS   | 13 numeral(s) over 9 frame(s), every one reachable |
+| completion     | PASS   | the deck shipped |
+<!-- gate-status:end -->
+
+## After the panel
+
+Two changes landed after round 3, both to clear a gate rather than to chase a score, and no judge saw either. Frame 3's
+dek no longer prints the $100,000 drawing unit ("Each button is an equal share of the grant, 20 in all."), because the
+numerals gate and `shipped_check` found no claim cited on that frame that reaches it; frame 6 still prints it, where it
+passes only because "100000" sits inside c25's "4100000", which is the substring coincidence the queue already names.
+Claim c14's text no longer carries the title "Chevron Professor I", because `house_style_check` read the Roman numeral
+as first person on the web edition's verification panel; the title stays in the quote. `score.json` was re-derived
+from the same three round 3 cards so it postdates the final render.
+
+## Retro
+
+- **Prompt audit:** 2,118 tool calls measured and 109 flagged as waiting, every one of them under twenty seconds (28
+  agent launches and 81 shell calls). No call waited on a person for any length of time, and nothing stopped the run.
+  The no-stall hook was armed at 05:03:34 UTC, judged the session unattended (`CLAUDE_CODE_SESSION_ATTENDED=0`) and
+  refused nothing.
+- **Machine queue** (upgrade commit 87b2cc78): the foundry's lab models; the grade's quarter resolution bloom on a dark
+  macro; a rig distance that puts the shadow camera's near plane at the target; a practical light that saturates its
+  neighbours; the audition loop with no diagnostic step; the robot arm charged as a toy in every round; the interior
+  wall that meets the bench as a hard band behind the type. `machine_due` says the weekly pass is not due.
+- **Instincts:** confirmed `read-the-repair-at-feed-scale` and `a-paraphrase-can-outrun-its-quote`, added
+  `isolate-the-render-pass-before-another-review`.
+- **Field log:** ERCOT's yearless filename, the four sources that answered, and the refused browser probe.
+- **Next run:** the queue reading stays stopped until a maintainer or the gridwatch lane adds the yearless candidate
+  filename to `queue_collect.py`, and until then CI is red on every push and no daily pull request can merge.

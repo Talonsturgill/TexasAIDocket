@@ -2456,3 +2456,21 @@ repointed there from their eutils urls and stamped.
 
 **www.texastribune.org and www.kedt.org answered** (the Tribune's article of October 30th, Houston Public Media's report
 republished by KEDT on October 14th). **hpcwire.com disallows ClaudeBot**, as a scout reported, and nothing from it was used.
+
+## 2026-11-01
+
+**www.ercot.com named the September 2026 Monthly Operational Overview without a year.** It was published October 16th
+at `/files/docs/2026/10/16/ERCOT-Monthly-Operational-Overview-September.pdf`, while every earlier month's file carried
+`-2026` in its name. `scripts/gridwatch/queue_collect.py` builds the name with the year, so every daily queue reading
+since October 16th recorded the month as not yet published, and on November 1st the two month slack ran out and
+`gridwatch_pagecheck` began exiting 3. The collector is gridwatch lane and this run changed nothing in it.
+
+**news.engineering.tamu.edu, stories.tamu.edu and api.nsf.gov answered** (the Aggie AI Foundry release of October 22nd,
+the Stories piece of October 26th, the PhaseForge release of September 4th and the NSF award record 2534344 as JSON).
+The NSF record's `perfCity` gives College Station, which no claim of this run carries.
+
+**www.tceq.texas.gov answered** the stormwater permitting page behind tx-2026-0182's new claims (STEERS closed for data
+center review, the multi sector general permit renewal).
+
+**A browser user agent probe of the boundary items was refused by the auto mode classifier** as bot check
+circumvention, and the run re-measured all 30 boundaries with the project's own agent only.

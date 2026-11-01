@@ -260,7 +260,7 @@ art:
 
 type:
   hook: "$2 million, in buttons"
-  dek: "The WoodNext Foundation manages the philanthropy of Roku's founder, Anthony Wood, and his wife Susan. The grant comes through a donor advised fund. One button is $100,000, so 20 buttons. Drawn to illustrate."
+  dek: "The WoodNext Foundation manages the philanthropy of Roku's founder, Anthony Wood, and his wife Susan. The grant comes through a donor advised fund. Each button is an equal share of the grant, 20 in all. Drawn to illustrate."
   labels: []
 
 verbatim: []

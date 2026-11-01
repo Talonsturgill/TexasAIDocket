@@ -3,17 +3,6 @@
  "_note": "Every count, span and duration the deck states, with the claim it was quoted from, the claims it tallies, or the figures.json key compute.py computed.",
  "aggregates": [
   {
-   "phrase": "20 buttons",
-   "slide": "slide-03.html",
-   "kind": "count",
-   "value": 20,
-   "from_claims": [
-    "c1"
-   ],
-   "computed_by": "out/2026-11-01/compute.py, grant_buttons = grant_usd / button_unit_usd, the $2 million of c1 at the drawing unit of $100,000 a button",
-   "note": "computed"
-  },
-  {
    "phrase": "3,000 degrees Celsius",
    "slide": "slide-04.html",
    "kind": "count",

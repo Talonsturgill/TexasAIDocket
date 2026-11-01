@@ -14,7 +14,7 @@ The USDA Agricultural Research Service says it is managing New World screwworm w
 - Public access: Write to the decider
 - Take part: https://www.ars.usda.gov/news-events/news/research-news/2026/tracking-the-path-of-new-world-screwworm
 
-- Last checked: 2026-10-29
+- Last checked: 2026-11-01
 
 ## Dates
 
@@ -28,6 +28,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-21 · The Texas Animal Health Commission now counts 44 Texas premises with a confirmed screwworm detection, up from 43, still across 17 counties. The research service's account of its models still reads as cited.
 - 2026-10-24 · The commission's count rose to 47 premises in 18 Texas counties with a confirmed detection, up from 44 premises in 17 counties. The infested zone restrictions stay in place.
 - 2026-10-29 · The commission now counts 50 Texas premises in 20 counties with a confirmed screwworm detection. The infested zone restrictions now reach El Paso and Hudspeth counties too.
+- 2026-11-01 · The commission now counts 54 Texas premises with a confirmed screwworm detection, up from 50, still across 20 counties. The infested zone now reaches parts of Culberson and Reeves counties too.
 
 ## Evidence
 
@@ -162,6 +163,18 @@ Source (primary_official): https://www.tahc.texas.gov/emergency/nws.html
 ### Movement restrictions apply in parts of the counties the commission lists for the infested zone, now including El Paso and Hudspeth.
 
 > There are currently movement restrictions in place due to an established New World Screwworm Infested Zone in parts of the following Texas counties: Brewster, Crockett, Edwards, El Paso, Hudspeth, Jeff Davis, Pecos, Presidio, Schleicher, Starr, Sutton, Terrell, Val Verde, Zapata.
+
+Source (primary_official): https://www.tahc.texas.gov/emergency/nws.html
+
+### The commission counts 54 Texas premises with at least one confirmed New World screwworm detection.
+
+> Total Texas premises confirmed with at least one NWS detection: 54
+
+Source (primary_official): https://www.tahc.texas.gov/emergency/nws.html
+
+### The infested zone now takes in parts of Culberson and Reeves counties as well.
+
+> There are currently movement restrictions in place due to an established New World Screwworm Infested Zone in parts of the following Texas counties: Brewster, Crockett, Culberson, Edwards, El Paso, Hudspeth, Jeff Davis, Pecos, Presidio, Reeves, Schleicher, Starr, Sutton, Terrell, Val Verde, Zapata.
 
 Source (primary_official): https://www.tahc.texas.gov/emergency/nws.html
 

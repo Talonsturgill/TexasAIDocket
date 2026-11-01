@@ -45,6 +45,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-24 · The Army funded antenna array center at Rice is unconfirmed today, since the university's release refused the request.
 - 2026-10-25 · Rice's account of the Army research center it leads still reads as cited, with the sensing and communications work unchanged.
 - 2026-10-29 · The Army funded Rice antenna center, AI among its disciplines, still stands as announced.
+- 2026-11-01 · The Army funded antenna center at Rice is unconfirmed today, because the university's news site refused the request.
 
 ## Evidence
 
