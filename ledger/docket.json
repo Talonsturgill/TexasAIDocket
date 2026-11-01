@@ -33208,6 +33208,33 @@
      "source_title": "TCEQ, response to the Governor's data center directive, October 19, 2026",
      "source_type": "primary_official",
      "fetched": "2026-10-29"
+    },
+    {
+     "id": "tx-2026-0182-c9",
+     "text": "TCEQ says it shut its electronic filing portal so that staff review every application related to data centers, under the Governor's directive.",
+     "verbatim_quote": "The Texas Commission on Environmental Quality’s electronic filing portal, the State of Texas Environmental Electronic Reporting System (STEERS), has been temporarily shut down to ensure all applications related to data centers are reviewed by TCEQ staff",
+     "source_url": "https://www.tceq.texas.gov/permitting/stormwater",
+     "source_title": "TCEQ, Stormwater Permits",
+     "source_type": "primary_official",
+     "fetched": "2026-11-01"
+    },
+    {
+     "id": "tx-2026-0182-c10",
+     "text": "TCEQ says it is changing the portal so staff can review applications before an authorization is issued, and expects that work to finish in mid November.",
+     "verbatim_quote": "TCEQ is working to modify STEERS functionality to allow staff to review applications before an authorization is issued. TCEQ anticipates that this work will be completed in mid-November.",
+     "source_url": "https://www.tceq.texas.gov/permitting/stormwater",
+     "source_title": "TCEQ, Stormwater Permits",
+     "source_type": "primary_official",
+     "fetched": "2026-11-01"
+    },
+    {
+     "id": "tx-2026-0182-c11",
+     "text": "While the portal is down, TCEQ has extended the renewal deadline for its industrial stormwater general permit to December 28th, 2026.",
+     "verbatim_quote": "The deadline is extended until Monday, Dec. 28, 2026.",
+     "source_url": "https://www.tceq.texas.gov/permitting/stormwater",
+     "source_title": "TCEQ, Stormwater Permits",
+     "source_type": "primary_official",
+     "fetched": "2026-11-01"
     }
    ],
    "id": "tx-2026-0182",
@@ -33297,8 +33324,7 @@
     },
     {
      "date": "2026-11-01",
-     "note": "The Governor's order to TCEQ to issue no data center permits still stands.",
-     "checked": true
+     "note": "TCEQ has shut its electronic permit filing portal so that staff read every application tied to data centers before anything is authorized. The agency expects the change to the portal to be finished in mid November."
     }
    ]
   },
