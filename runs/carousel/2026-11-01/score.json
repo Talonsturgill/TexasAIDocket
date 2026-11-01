@@ -1,0 +1,207 @@
+{
+ "weighted_score": 7.15,
+ "judges": [
+  6.92,
+  7.35,
+  7.22
+ ],
+ "spread": 0.43,
+ "criteria": {
+  "artwork_craft": {
+   "score": 6.5,
+   "weight": 0.22,
+   "judges": [
+    6.5,
+    6.5,
+    6.8
+   ]
+  },
+  "deck_coherence": {
+   "score": 7.5,
+   "weight": 0.12,
+   "judges": [
+    7.5,
+    7.5,
+    7.5
+   ]
+  },
+  "claim_integrity": {
+   "score": 8.5,
+   "weight": 0.2,
+   "judges": [
+    7.5,
+    8.5,
+    8.5
+   ]
+  },
+  "story_and_stakes": {
+   "score": 6.5,
+   "weight": 0.16,
+   "judges": [
+    6.5,
+    7.0,
+    6.5
+   ]
+  },
+  "sequence_and_momentum": {
+   "score": 6.8,
+   "weight": 0.1,
+   "judges": [
+    6.5,
+    7.5,
+    6.8
+   ]
+  },
+  "voice": {
+   "score": 7.0,
+   "weight": 0.1,
+   "judges": [
+    7.0,
+    7.0,
+    7.2
+   ]
+  },
+  "variety": {
+   "score": 7.0,
+   "weight": 0.1,
+   "judges": [
+    7.0,
+    7.5,
+    6.8
+   ]
+  }
+ },
+ "hard_fails": [],
+ "hard_fails_by_judge": [],
+ "ship": true,
+ "threshold": 8.0,
+ "over_threshold": false,
+ "method": "per-criterion median across three judges, then weighted by the rubric",
+ "artwork_weakest_frames": [
+  {
+   "slide": 4,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "A toy arm of cylinders and boxes, plain primitives, a mid grey floor.",
+     "fix": "Filleted castings, joint housings and a cable run, tight on the gripper over the glowing pocket, the floor outside the pool to black."
+    },
+    {
+     "judge": 2,
+     "problem": "A toy arm, no button visible, a six pocket box that contradicts slide 1, a plain cup crucible.",
+     "fix": "A modelled six axis arm closed on a glowing button over slide 1's copper_hearth, the base cropped off the right edge."
+    },
+    {
+     "judge": 3,
+     "problem": "Primitive arm, unlabelled rule, floating stations.",
+     "fix": "Low macro tight on the gripper holding the glowing button, the wrist casting filling a third of the frame."
+    }
+   ]
+  },
+  {
+   "slide": 5,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "A beige slab in the grey middle, a thick flat ring for the mark.",
+     "fix": "Near edge on so only the sheet edges catch the key, a thin paint pen stroke."
+    },
+    {
+     "judge": 2,
+     "problem": "A flat tan slab with regular stripes, no seated contact, a rubber band mark, mid tones under a navy wall.",
+     "fix": "The long edge takes the key, offset curled top sheets, a contact, a brushed stroke on the dome."
+    },
+    {
+     "judge": 3,
+     "problem": "Flat tan slab, a painted band, empty lower floor.",
+     "fix": "Camera at about 0.15 m, stack off the bottom and left edges on its shadow side, a thin pen line for the mark."
+    }
+   ]
+  },
+  {
+   "slide": 1,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "A smooth tan lower right gradient, stepped dome rings.",
+     "fix": "Milled arc roughness, more dome segments."
+    },
+    {
+     "judge": 2,
+     "problem": "Stepped dome rings, a pale lower right gradient without milled arcs, a flat navy wall with a seam.",
+     "fix": "Smoother dome normals, the milled arc roughness, less key on the right copper."
+    },
+    {
+     "judge": 3,
+     "problem": "A flat orange copper gradient on the right, no scale.",
+     "fix": "Tighten onto the glowing pocket, copper falling to black on the right, a tong tip for scale."
+    }
+   ]
+  },
+  {
+   "slide": 7,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "72 dogbones at relief height 10 read as an embossed calendar tile, a hard plate edge, labels outside the safe zone.",
+     "fix": "Real height with fillets, an oblique crop bleeding off the right and bottom, labels inside the margin."
+    },
+    {
+     "judge": 2,
+     "problem": "Dogbones read as I glyphs on a rectangular plate.",
+     "fix": "Wider grips with radiused fillets, the plate running off the left and bottom edges."
+    },
+    {
+     "judge": 3,
+     "problem": "The pool on the first 17 bars reads as elapsed months.",
+     "fix": "Rake the bars evenly, or light exactly the elapsed months and say so."
+    }
+   ]
+  },
+  {
+   "slide": 6,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Two flat trays under a dead band, a vent grille at feed size.",
+     "fix": "Lower and push in so the 249 tray bleeds off the right, scuffed bevelled tops, the pool on the 41 filled wells."
+    },
+    {
+     "judge": 2,
+     "problem": "Two flat dark trays in a quarter of the frame, a dead band, a pegboard field.",
+     "fix": "Push in and lower so the long tray runs off the right edge, bevel catch lights and scuffs."
+    },
+    {
+     "judge": 3,
+     "problem": "The 249 well tray reads as a grille at 432 px.",
+     "fix": "Pool on the filled corner, empty wells to true black, a lower camera for rim highlights."
+    }
+   ]
+  },
+  {
+   "slide": 2,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "Starred apexes like chocolate kisses, near heaps under the footer.",
+     "fix": "Rounded slumped crowns with avalanche facets, near heaps clear of the footer."
+    }
+   ]
+  }
+ ],
+ "rounds_derived": 3,
+ "rounds": 3,
+ "rounds_source": "this module's own log of cards it has scored",
+ "rounds_declared": 3,
+ "at_cap": true,
+ "rung": null,
+ "shortfall": "at the round cap the finished deck ships at 7.15, 0.85 under the 8.0 top rung. Name that in the email and the run record",
+ "craft_floor": "capped",
+ "craft_note": "at the round cap the craft floor stands down. The art median 6.5 is under 8.5 and the deck ships as it is. Name it in the run record"
+}

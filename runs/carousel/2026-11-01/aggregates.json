@@ -1,0 +1,105 @@
+{
+ "date": "2026-11-01",
+ "_note": "Every count, span and duration the deck states, with the claim it was quoted from, the claims it tallies, or the figures.json key compute.py computed.",
+ "aggregates": [
+  {
+   "phrase": "20 buttons",
+   "slide": "slide-03.html",
+   "kind": "count",
+   "value": 20,
+   "from_claims": [
+    "c1"
+   ],
+   "computed_by": "out/2026-11-01/compute.py, grant_buttons = grant_usd / button_unit_usd, the $2 million of c1 at the drawing unit of $100,000 a button",
+   "note": "computed"
+  },
+  {
+   "phrase": "3,000 degrees Celsius",
+   "slide": "slide-04.html",
+   "kind": "count",
+   "value": 3000,
+   "quoted_from": "c10",
+   "quote": "temperatures up to 3,000 degrees Celsius",
+   "note": "quoted"
+  },
+  {
+   "phrase": "3,000 degrees Celsius",
+   "slide": "caption.txt",
+   "kind": "count",
+   "value": 3000,
+   "quoted_from": "c10",
+   "quote": "temperatures up to 3,000 degrees Celsius",
+   "note": "quoted"
+  },
+  {
+   "phrase": "Two researchers",
+   "slide": "slide-05.html",
+   "kind": "count",
+   "value": 2,
+   "from_claims": [
+    "c13",
+    "c15"
+   ],
+   "note": "counted: Ibrahim Karaman (c13) and Raymundo Arróyave (c15), the two people the university names as conceiving the foundry"
+  },
+  {
+   "phrase": "100 papers",
+   "slide": "slide-05.html",
+   "kind": "count",
+   "value": 100,
+   "quoted_from": "c16",
+   "quote": "having published more than 100 papers together",
+   "note": "quoted"
+  },
+  {
+   "phrase": "Six years",
+   "slide": "slide-07.html",
+   "kind": "span",
+   "value": 6,
+   "from_claims": [
+    "c27",
+    "c28"
+   ],
+   "computed_by": "out/2026-11-01/compute.py, award_years from the award record's startDate 09/01/2026 (c27) and expDate 08/31/2032 (c28)",
+   "note": "computed",
+   "from_date": "2026-09-01",
+   "to_date": "2032-08-31"
+  },
+  {
+   "phrase": "September 1st to August 31st",
+   "slide": "slide-07.html",
+   "kind": "span",
+   "value": 72,
+   "from_claims": [
+    "c27",
+    "c28"
+   ],
+   "computed_by": "out/2026-11-01/compute.py, award_months, the months from startDate 09/01/2026 (c27) to expDate 08/31/2032 (c28)",
+   "note": "computed",
+   "from_date": "2026-09-01",
+   "to_date": "2032-08-31"
+  },
+  {
+   "phrase": "one month",
+   "slide": "slide-07.html",
+   "kind": "span",
+   "value": 1,
+   "from_claims": [
+    "c27",
+    "c28"
+   ],
+   "computed_by": "the drawing unit of slide 7, one bar per month of award_months in out/2026-11-01/compute.py",
+   "note": "computed",
+   "from_date": "2026-09-01",
+   "to_date": "2026-09-30"
+  },
+  {
+   "phrase": "three first party accounts",
+   "slide": "first_comment.txt",
+   "kind": "count",
+   "value": 3,
+   "computed_by": "scripts/carousel/sources_block.py, the distinct first party documents among the cited claims: Texas A&M Engineering news of October 22nd and of September 4th, and Texas A&M Stories of October 26th",
+   "note": "computed"
+  }
+ ]
+}
