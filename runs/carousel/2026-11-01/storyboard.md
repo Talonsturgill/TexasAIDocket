@@ -110,7 +110,7 @@ accent: "none"
 job: >
   Put the reader at the moment the metal is made, the one step software can't do, and name the foundry and its money.
 
-claims: [c1, c2, c7, c8]
+claims: [c1, c2, c5, c7, c8]
 numerals:
   - value_from: c1
 
@@ -173,7 +173,7 @@ accent: "none"
 job: >
   Show what the AI is choosing among, elements as powder before any alloy exists, and the size of the choice in words.
 
-claims: [c3, c11, c18]
+claims: [c11, c18]
 numerals: []
 
 depth:
@@ -611,7 +611,7 @@ art:
 
 type:
   hook: "So the bar still gets pulled"
-  dek: "The goal is alloys in a week or less instead of months, a target and not a result. PhaseForge is free online and anyone can contribute to it. The NSF platform is open to outside researchers. Drawn to illustrate."
+  dek: "Texas A&M's goal is alloys in a week or less instead of months, a target and not a result. PhaseForge is free online and anyone can contribute to it. The NSF platform is open access. Drawn to illustrate."
   labels: []
 
 verbatim: []
