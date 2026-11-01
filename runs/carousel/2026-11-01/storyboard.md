@@ -403,13 +403,13 @@ slide: 6
 layout: GRID
 primary_image:
   subject: "two anodised trays at one scale on the bench, 20 buttons filling the left tray, a 249 well tray on the right in rows of 25 with its first 41 wells holding buttons"
-  rect: [0, 820, 1080, 420]
+  rect: [0, 870, 1080, 460]
   bleeds: [left, right]
 accent: "none"
 job: >
   Set the WoodNext grant beside the NSF award at one scale: what NSF has obligated and the whole estimated award.
 
-claims: [c1, c20, c22, c24, c25, c26]
+claims: [c1, c20, c21, c22, c25, c26]
 numerals:
   - value_from: c25
   - value_from: c26
@@ -445,7 +445,7 @@ art:
 
 type:
   hook: "NSF has obligated $4.1 million of $24.9 million"
-  dek: "The $24.9 million is the award's estimated total. Its Autonomous Robotic Metallurgist at the Texas A&M Engineering Experiment Station is built to design, make, test and learn from new alloys. In front, the WoodNext grant at $100,000 a button. Drawn to illustrate."
+  dek: "The $24.9 million is the award's estimated total. Its Autonomous Robotic Metallurgist at Texas A&M is built to design, make, test and learn from new alloys. In front, the WoodNext grant at $100,000 a button. Drawn to illustrate."
   labels: ["WOODNEXT", "NSF ARM-MIP"]
 
 verbatim: []
@@ -584,7 +584,7 @@ accent: "#4E5FA8"
 job: >
   Close on the answer only testing gives, a broken bar, and on what a reader can do: add to PhaseForge or use the platform.
 
-claims: [c9, c21, c23, c31]
+claims: [c8, c9, c21, c23, c31]
 numerals: []
 
 depth:
