@@ -1,0 +1,97 @@
+{
+ "_spec": {
+  "version": 1,
+  "purpose": "A standalone web edition of the archived visual story.",
+  "law": "Facts resolve to the original verified claim record. A layout rebuild does not reverify reporting.",
+  "written_by": "daily"
+ },
+ "section": "Cities",
+ "dek": {
+  "text": "San Antonio is repeating its count of loose dogs with a phone on a car window and object detection software. A person reviews every clip, and the survey is a sample.",
+  "claims": [
+   "c1",
+   "c3",
+   "c4",
+   "c19"
+  ]
+ },
+ "introduction": [
+  {
+   "text": "[Southwest Research Institute is working with the City of San Antonio on an automated survey of unrestrained dogs](c1), and [the city's Animal Care Services says it is collaborating with the institute's researchers](c15). [The program pairs machine vision software with cell phone cameras](c2). [A phone mounted to a vehicle window runs object detection and data analysis software](c3), so the first look at each dog on the street is taken by a machine riding past.",
+   "claims": [
+    "c1",
+    "c15",
+    "c2",
+    "c3"
+   ]
+  },
+  {
+   "text": "[The automated project recreates a manual survey from {{number:c9}}](c9), and [it covers the same {{number:c17}} study areas the city used in that effort](c17). [The city published its own account of the study on {{date:c16}}](c16).",
+   "claims": [
+    "c9",
+    "c17",
+    "c16"
+   ]
+  }
+ ],
+ "sections": [
+  {
+   "heading": "What the software sees and what a person checks",
+   "paragraphs": [
+    {
+     "text": "[Automated and human review of the video clips checks that each detected animal was unrestrained](c4). [The same review records any human supervision, how many dogs were present and whether each dog was owned or a stray](c5). The release does not say how the automated and the human halves divide that work, or which one has the last word.",
+     "claims": [
+      "c4",
+      "c5"
+     ]
+    },
+    {
+     "text": "The release describes the two labels a loose dog can get in terms of how it looks and acts. [Strays appear malnourished and skittish](c6), while [dogs that seem healthier and more approachable are likely owned by local families and are classified as roaming](c7). That is a judgement about a dog seen for a few seconds from a passing car, and the record does not yet hold any measure of how often it is right.",
+     "claims": [
+      "c6",
+      "c7"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "A sample, not a census",
+   "paragraphs": [
+    {
+     "text": "[Mike Koets of the institute said the study takes a sampling approach rather than surveying the entire city](c12). [The city says the same thing in its own release. Because the project samples, it is not intended to count every unrestrained dog in San Antonio](c19). Any figure it produces will describe the {{number:c17}} areas, not the whole city.",
+     "claims": [
+      "c12",
+      "c19",
+      "c17"
+     ]
+    },
+    {
+     "text": "[The Animal Care Services statistics page links to a 2019 Unrestrained Dog Study](c22). Its findings are not part of this account, so no 2019 count appears here, and the comparison the new survey is built to make can't be stated yet.",
+     "claims": [
+      "c22"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "What comes next",
+   "paragraphs": [
+    {
+     "text": "[Field research is expected to run through December 2026](c20). [The institute will then compile a final report with summary data and videos of the dogs it observed](c11), and [it will forward that report to Animal Care Services](c21). [ACS Director Jon Gary called the study another tool for understanding where unrestrained dogs are being seen](c14). Questions about the results belong with the department, which receives the report.",
+     "claims": [
+      "c20",
+      "c11",
+      "c21",
+      "c14"
+     ]
+    }
+   ]
+  }
+ ],
+ "related": [
+  {
+   "id": "tx-2026-0236",
+   "label": "San Antonio's phone camera count of loose dogs"
+  }
+ ]
+}
