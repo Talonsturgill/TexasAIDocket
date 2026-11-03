@@ -1,0 +1,30 @@
+{
+ "judge": "reader",
+ "round": 3,
+ "criteria": [
+  {"name": "artwork_craft", "weight": 0.22, "score": 6.0, "why": "Dark-field renders with a warm pool; slides 1 and 4 work. The SDF dog reads as a toy, worst on 9; slide 2's phone reads as a kiosk; slide 3's dog about 60 px in a mid-tone band; slide 5 primitives with 23px labels under the 24px floor; slide 8 one bar with a dead lower band. Reliefs carry measured height and casts; slide 7's rule has 7 divisions."},
+  {"name": "deck_coherence", "weight": 0.12, "score": 6.5, "why": "One grade and one key, the box motif changes state and retires, one dog; 6 to 8 from another stock, 6 and 7 two grids back to back."},
+  {"name": "claim_integrity", "weight": 0.20, "score": 8.5, "why": "Every fact traces to primaries, quotes verbatim, numerals traced, the 2019 absence stated. Slide 3's 'on each clip' where c4 and c5 check each animal; 'will survey' though field work is under way per c10; the contractor's release carries most of the load."},
+  {"name": "story_and_stakes", "weight": 0.16, "score": 6.0, "why": "What, who and where are clear; areas unnamed, no decision record, no use of the label, nothing to do; the appearance stake shown once."},
+  {"name": "sequence_and_momentum", "weight": 0.10, "score": 6.0, "why": "Cover stops a thumb; 2 restates the cover, 3 and 5 list the same checks, 6 and 7 both say 32 areas; the close does not land."},
+  {"name": "voice", "weight": 0.10, "score": 6.5, "why": "Clean plain hooks; body leans on 'The release says'; little regional texture; flat passive caption opener."},
+  {"name": "variety", "weight": 0.10, "score": 6.5, "why": "First animal hero and a lens-view cover; the lastLight dark field again and the counted-units relief again."}
+ ],
+ "weighted_score": 6.66,
+ "hard_fails": [],
+ "ranked_defects": [
+  {"slide": 9, "defect": "The close does not land.", "fix": "Close on the caption's question against the report going to ACS."},
+  {"slide": 5, "defect": "Repeats slide 3's checks; 23px labels under the 24px floor.", "fix": "Cut the list or use the frame for human review overruling the machine."},
+  {"slide": 7, "defect": "A second grid of 32 squares after slide 6.", "fix": "Merge 6 and 7."},
+  {"slide": 2, "defect": "The phone reads as a kiosk.", "fix": "Reframe from inside the cabin with the glass edge and seal."},
+  {"slide": 1, "defect": "'will survey' for field work already running.", "fix": "Present tense."},
+  {"slide": 4, "defect": "The strongest beat is never developed.", "fix": "Say what the classification decides, or that the release doesn't say."}
+ ],
+ "artwork_weakest_frames": [
+  {"slide": 2, "problem": "Kiosk on a pedestal, no glass or door for scale.", "fix": "Camera inside the cabin behind the phone, glass edge and seal framing it."},
+  {"slide": 9, "problem": "Toy-like dog, dead lower concrete, spike grass.", "fix": "Crop the empty concrete, fur normal and rim, parkway straw."},
+  {"slide": 3, "problem": "Small dog in a mid-tone band; labels on busy fence.", "fix": "Eye to about 2 m, tighter fov, ground outside the pool to near black."},
+  {"slide": 8, "problem": "One bar with a dead lower 40 percent.", "fix": "Rule to the middle, block two thirds of the width, week graduations."},
+  {"slide": 5, "problem": "Primitive monitor, small check rows.", "fix": "Push in, rows at 26px or larger."}
+ ]
+}

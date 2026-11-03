@@ -55,6 +55,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-30 · The RELLIS abatement's assignment to ThisWay Global remains unconfirmed, because Brazos County's site still turns away every reader.
 - 2026-10-31 · Brazos County's own site still answers no reader at all, so the abatement's move to ThisWay Global is not confirmed today.
 - 2026-11-01 · The move of the RELLIS abatement to ThisWay Global stays unconfirmed. Brazos County's site still answers no request from this project.
+- 2026-11-02 · The RELLIS data center assignment in Brazos County is unconfirmed today, because the county's notice turns away every reader.
 
 ## Evidence
 

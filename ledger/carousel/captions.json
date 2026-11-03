@@ -19,12 +19,12 @@
   "recent_lists_note": "These three lists are the exclusions handed to the caption room and they were hand-kept. On 2026-08-20 the fourth panel found structures_recent reading [\"ledger\", \"pivot\", \"question and answer\"] when the last three shipped structures were [\"ledger\", \"two columns\", \"question and answer\"], so it dropped a structure that IS off the table and held one that is not. Wrong in both directions from one hand edit. They are now recomputed from entries and are ordered OLDEST FIRST, matching the entries list, and scripts/carousel/caption_check.py should derive them rather than read them. That is an upgrade-lane change and it is written into this run's proposals."
  },
  "opening_moves_recent": [
-  "the quiet decision",
   "the before and after",
   "the two things",
   "the object",
   "the number that is wrong",
-  "the correction"
+  "the correction",
+  "the plain question"
  ],
  "entries": [
   {
@@ -1187,15 +1187,34 @@
    ],
    "critic_note": "Opens on the question a reader would ask of an AI lab with a furnace, pivots from the software claim to the physical line, and closes on the award record's named users.",
    "move_note": "Opens asking why an AI lab melts metal, gives the trillion mixes and Arróyave's limit, then the grant, the line and the goal stated as a goal, then the separate NSF award, and closes asking who outside Texas A&M makes the first alloy."
+  },
+  {
+   "date": "2026-11-02",
+   "carousel_no": 66,
+   "opening_move": "the quiet decision",
+   "structure": "Ladder",
+   "closing_move": "name what happens next and when",
+   "first_line": "How a stray looks is spelled out.",
+   "words": 151,
+   "commas": 1,
+   "commas_per_100w": 0.66,
+   "chars": 890,
+   "hashtags": [
+    "#SanAntonio",
+    "#SAACS",
+    "#SwRI"
+   ],
+   "critic_note": "Opens on the release's own definition of a stray, climbs through the instrument, the review, the sample and the timeline, and closes on the question the report could answer.",
+   "move_note": "Opens on how a stray looks, quotes the release's two labels, then the phone, the software and the review in the release's tense, the 2019 repeat in 32 areas as a sample, the director's line and the December window, and closes asking whether the report will say how often a person and the software disagreed."
   }
  ],
  "structures_recent": [
-  "Zoom in",
   "Ledger",
-  "Two columns"
+  "Two columns",
+  "Pivot"
  ],
  "closing_moves_recent": [
-  "ask the one question the decision leaves open"
+  "point at the record, plainly, without a call to action"
  ],
  "_derived_note": "opening_moves_recent, structures_recent and closing_moves_recent are DERIVED by out/<date>/update_ledgers.py every run, by ledger_check.windows() and ledger_check's own slice of the entries before the newest date. They were hand-maintained until 2026-09-10 and had drifted, which mis-briefed the caption room on that run: the list said Ledger was excluded when it was not, and never mentioned Two columns or the close no. 19 actually shipped."
 }

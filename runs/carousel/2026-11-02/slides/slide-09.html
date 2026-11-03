@@ -1,0 +1,100 @@
+<!doctype html>
+<!-- 2026-11-02, frame 9 of 9. Archetype OBJECT_AND_CAPTION. Turned around: the camera at the dog's own eye height on the sidewalk, the tan dog standing where the driveway meets it, three quarter away, looking east down the dark street after the survey car, whose tail lamps are small. The seam is behind the camera. No box. Drawn to illustrate, to no breed. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:900px">The ACS director calls it another tool</h1>
+<p class="dek" data-follow="26" style="width:880px">ACS Director Jon Gary says the study gives the city "another tool to better understand where we are seeing unrestrained dogs". SwRI will forward the final report to the&nbsp;department.</p>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-02-sightline.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "What comes next", counter: "09 / 09", src: "c14 c21 c15", fit: { min: 70, max: 96, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 28, near: 0.05, far: 3000, fog: 0.006 });
+  const B = CH.BLOCK, gx = B.driveX;
+  CH.street(K, TXT, R, { road: true, parkway: true });
+  /* the fence in two runs either side of the driveway's opening */
+  [[-16, gx - 2.7], [gx + 2.7, 30]].forEach(([a, b]) => {
+    const f = K.make('chain_link_fence', { length: b - a, height: 1.22, color: 'galvanized' }); f.position.set((a + b) / 2, 0.2, B.fenceZ); TXT.add(R, f); TXT.contact(R, f);
+  });
+  /* the yards either side of the driveway, kept off its concrete */
+  [[-16, gx - 2.4], [gx + 2.4, 30]].forEach(([a, b]) => { const y = K.make('yard', { size: [b - a, 10], dryness: 0.72 }); y.position.set((a + b) / 2, 0.2, B.fenceZ - 5.2); TXT.add(R, y); });
+  /* the driveway runs from the street back through the opening; its street end on +z */
+  const dw = K.make('driveway', { width: 4.6, length: 12, flare: true, age: 0.6 }); dw.position.set(gx, 0.2, B.fenceZ + 0.6); TXT.add(R, dw);
+  /* the sidewalk's own surface, laid over the kit's: broom finished concrete with a tooled joint every 1.5 m, the
+   * finish running across the walk so a low camera sees tooth rather than streaks */
+  {
+    const c = document.createElement('canvas'); c.width = 1024; c.height = 1024; const x = c.getContext('2d'), r = CH.lcg(77);
+    /* per pixel: fine aggregate grain, broom grooves running across the walk (along v), and a broad stain */
+    { const im = x.createImageData(1024, 1024), dd = im.data;
+      for (let j = 0; j < 1024; j++) for (let i = 0; i < 1024; i++) {
+        const broom = 12 * Math.sin(i * 0.9 + 2 * TX.simplex2(i * 0.02, j * 0.004)) + 7 * TX.simplex2(i * 0.6, j * 0.02);
+        const v = 165 + broom + 22 * TX.fbm2(i * 0.01, j * 0.01, 3) + (r() - 0.5) * 30; const k = (j * 1024 + i) * 4;
+        dd[k] = v; dd[k + 1] = v - 2; dd[k + 2] = v - 6; dd[k + 3] = 255; }
+      x.putImageData(im, 0, 0); }
+    for (let i = 0; i < 0; i++) { const xx = r() * 512; x.strokeStyle = `rgba(60,58,54,${0.04 + r() * 0.05})`; x.lineWidth = 0.6; x.beginPath(); x.moveTo(xx, 0); x.lineTo(xx + (r() - 0.5) * 3, 256); x.stroke(); }
+    x.fillStyle = 'rgba(30,28,26,0.4)'; x.fillRect(0, 0, 4, 1024);
+    const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.wrapS = t.wrapT = THREE.RepeatWrapping; t.repeat.set(40 / 1.5, 1); t.anisotropy = 16; t.generateMipmaps = true;
+    const walk = new THREE.Mesh(new THREE.PlaneGeometry(40, 1.5), new THREE.MeshStandardMaterial({ map: t, roughness: 0.92 }));
+    walk.rotation.x = -Math.PI / 2; walk.position.set(gx + 10, 0.27, (B.sidewalk[0] + B.sidewalk[1]) / 2); walk.receiveShadow = true; R.scene.add(walk);
+    /* the driveway's apron where it crosses the walk, in the same finish */
+    const t2 = t.clone(); t2.repeat.set(4.6 / 1.5, 3.8 / 1.5); t2.needsUpdate = true;
+    const apron = new THREE.Mesh(new THREE.PlaneGeometry(4.6, 3.8), new THREE.MeshStandardMaterial({ map: t2, roughness: 0.9 }));
+    apron.rotation.x = -Math.PI / 2; apron.position.set(gx, 0.268, B.fenceZ + 1.9); apron.receiveShadow = true; R.scene.add(apron);
+  }
+  /* the house behind the fence, gone dark */
+  const hs = K.make('ranch_house', { material: 'limestone', seed: 3, garage: 'right', chimney: true }); hs.position.set(B.house[0], 0.2, B.house[1]); TXT.add(R, hs); TXT.contact(R, hs);
+  /* the survey car leaving down the south lane to the east, its tail lamps lit in their housings */
+  const car = K.make('crossover', { seed: 5, color: 0x5f6266, metallic: 0.5 }); car.rotation.y = Math.PI / 2; car.position.set(52, 0.06, B.car[1]); CH.put(car, { grit: false });
+  const red = new THREE.MeshStandardMaterial({ color: 0x5a0a08, emissive: 0x8a1a12, emissiveIntensity: 26, roughness: 0.4, fog: false });
+  [-0.62, 0.62].forEach((dz) => {
+    const t = TXT.roundedBox(0.04, 0.09, 0.36, 0.01, red); t.position.set(52 - 2.36, 0.92, B.car[1] + dz); R.scene.add(t);
+    /* the lamp's glow, and its red spill on the asphalt behind the car */
+    const g = new THREE.Sprite(new THREE.SpriteMaterial({ map: CH.glowTex(THREE), color: 0xff3a22, transparent: true, opacity: 0.95, depthWrite: false, fog: false })); g.scale.set(1.0, 0.36, 1); g.position.set(52 - 2.45, 0.92, B.car[1] + dz); R.scene.add(g);
+    const sp = new THREE.PointLight(0xff2a14, 3.5, 5, 2); sp.position.set(52 - 2.9, 0.6, B.car[1] + dz); R.scene.add(sp);
+  });
+  /* a dim sky rim over the car's roof and rear glass so the crossover's shape shows round its lamps */
+  { const rim = new THREE.PointLight(0x7f90b8, 9, 7, 2); rim.position.set(52 - 1.0, 3.2, B.car[1]); R.scene.add(rim); }
+  /* the dog in the opening, three quarter away, looking west down the street after the car */
+  const dog = K.make('street_dog', { build: 'full', pose: 'easy', coat: 'tan', seed: 66 });
+  dog.rotation.y = Math.PI / 2 - 0.62; dog.position.set(gx + 0.4, 0.268, -6.35); TXT.add(R, dog); TXT.contact(R, dog, { grit: false });
+  TXT.sky(R);
+  TXT.ground(R, { surface: 'asphalt', size: 600, seed: 9 });
+  const from = [gx - 6.1, 0.62, -6.0];
+  const look = CH.aim(THREE, R, TXT, from, [gx + 0.4, 0.4, -6.35], 420, 930, 28);
+  TXT.frame(R, { fov: 28, from, look });
+  CH.warm(R, 0.28);
+  TXT.deckRig(R, CH.rigSpec(W, 10, 4096), CH.rigOpts([gx, 0.3, B.fenceZ], { distance: 30, shadowFar: 70 }));
+  CH.unacne(R, 0.01);
+  TXT.weather(R, { grime: 0.4, height: 0.5 });
+  TXT.stage(R, [dog], { poolInner: 3.0, poolOuter: 8, behind: 0.6, depth: 1.6 });
+  /* a low warm side key from camera left, across the dog's flank, so the haunch and back carry a lit side and a core shadow */
+  { const sk = new THREE.DirectionalLight(0xffc89e, 4.2); const t0 = new THREE.Vector3(gx + 0.4, 0.4, -6.35);
+    sk.position.copy(t0).add(new THREE.Vector3(-0.9, 1.0, -3.6)); sk.target.position.copy(t0); sk.castShadow = true;
+    sk.shadow.mapSize.set(2048, 2048); Object.assign(sk.shadow.camera, { left: -1.5, right: 1.5, top: 1.5, bottom: -1.5, near: 0.1, far: 10 }); sk.shadow.bias = -0.0004;
+    /* halve the frontal key and the sky fill so the side key models the body; the lamps keep their own lights */
+    R.scene.traverse((l) => { if (l.isLight && l !== sk && !l.isPointLight) l.intensity *= 0.35; });
+    R.scene.environmentIntensity = (R.scene.environmentIntensity || 0.3) * 0.5;
+    R.scene.add(sk); R.scene.add(sk.target); }
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0.34, veil: 0.4, veilH: 300 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

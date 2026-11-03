@@ -1,0 +1,29 @@
+{
+ "judge": "reader",
+ "round": 2,
+ "criteria": [
+  {"name": "artwork_craft", "weight": 0.22, "score": 6.3, "why": "Bold register on every frame, real measured reliefs on 6 to 8 with correct counts; 1 and 9 strongest. The dog is a smooth SDF figurine, slide 5 a primitive monitor with unlabelled bars, slide 8 a slab on a rail with a dead lower band, slide 3 labels on plates with the car out of frame, 6 and 7 two waffle grids."},
+  {"name": "deck_coherence", "weight": 0.12, "score": 6.8, "why": "Three continuity devices work, one key, one grade; 6 to 8 leave the street world and 5 is a fourth setting, so two decks joined at 6."},
+  {"name": "claim_integrity", "weight": 0.20, "score": 8.5, "why": "Every numeral traces, sources primary, quotes verbatim, the 2019 absence stated. The caption's 'Object detection software will find the dogs' infers a little past c3; slide 3 makes a per-clip check per-dog."},
+  {"name": "story_and_stakes", "weight": 0.16, "score": 6.0, "why": "What, who and when are clear; why, which areas, who decided and what a reader can do are missing; the appearance stake is never cashed out on a slide."},
+  {"name": "sequence_and_momentum", "weight": 0.10, "score": 6.5, "why": "Legible cover, modest slide 2, real turn at 4 then away; 5 restates 3; 6 and 7 both carry 32 areas; the close is soft."},
+  {"name": "voice", "weight": 0.10, "score": 7.0, "why": "Clean and on register, a good closing question; flat caption opener and generic hooks on 5 and 9; no regional texture."},
+  {"name": "variety", "weight": 0.10, "score": 7.0, "why": "New subject and world against nos. 62 to 65; the lastLight stage again and counted squares echo nos. 63 and 64."}
+ ],
+ "weighted_score": 6.91,
+ "hard_fails": [],
+ "ranked_defects": [
+  {"slide": 9, "defect": "Soft official close.", "fix": "Make the hook the open question about the stray versus owned call; name ACS as recipient after December."},
+  {"slide": 7, "defect": "Repeats slide 6 and slide 1.", "fix": "Fold the 2019 mould and cast into slide 6."},
+  {"slide": 4, "defect": "The appearance stake is never stated.", "fix": "State that the release gives no measure of how often an appearance call is right."},
+  {"slide": 5, "defect": "Restates slide 3; blank grey rows.", "fix": "Print the four c5 check names as DOM row labels."},
+  {"slide": 1, "defect": "Hook names a method, not a consequence.", "fix": "Lead with the classification stake."}
+ ],
+ "artwork_weakest_frames": [
+  {"slide": 8, "problem": "Slab on a rail reads as a progress bar, lower 40 percent dead.", "fix": "Crop tight so the block fills a third of the frame height with its long cast."},
+  {"slide": 5, "problem": "Primitive monitor in a near void, unlabelled bars.", "fix": "Reviewer's shoulder silhouette, DOM labels from c5."},
+  {"slide": 3, "problem": "Labels on plates, car and phone out of frame.", "fix": "Car rear quarter and lit lens in the bottom right; labels without plates."},
+  {"slide": 6, "problem": "Regular grid reads as a waffle.", "fix": "Deeper street grooves, irregular plug positions."},
+  {"slide": 2, "problem": "Phone reads as a kiosk.", "fix": "Closer, lower camera with clamp jaws and glass edge large."}
+ ]
+}
