@@ -1,7 +1,7 @@
 {
  "_spec": {
   "version": 2,
-  "generated": "2026-10-31",
+  "generated": "2026-11-02",
   "gates": [
    "banned words",
    "claims",
@@ -42418,6 +42418,258 @@
     }
    ],
    "last_verified": "2026-10-31"
+  },
+  {
+   "title": "San Antonio counts loose dogs in 32 study areas with phone cameras and object detection software",
+   "summary": "San Antonio Animal Care Services is working with Southwest Research Institute on an automated survey of unrestrained dogs. A cell phone mounted on a vehicle window films the street, and object detection and data analysis software picks dogs out of the video. Automated and human review then checks whether each dog was unrestrained, whether anyone was supervising it, how many dogs were present and whether it was owned or a stray. That last call rests on appearance. Strays look malnourished and skittish, while healthier and more approachable dogs are classified as roaming and likely owned. The survey repeats the city's 2019 count in the same 32 study areas, and field research is expected to run through December 2026. The city says a sample like this is not meant to count every unrestrained dog in San Antonio. SwRI will send the department a final report with its findings and data.",
+   "topic": "research-and-science",
+   "decider": {
+    "name": "City of San Antonio Animal Care Services",
+    "type": "city"
+   },
+   "geography": {
+    "statewide": false,
+    "counties": [
+     "Bexar",
+     "Comal",
+     "Medina"
+    ],
+    "on_ercot": true,
+    "metro": "San Antonio-New Braunfels, TX"
+   },
+   "status": "decided",
+   "key_dates": [
+    {
+     "date": "2026-10-20",
+     "kind": "effective",
+     "note": "The city and SwRI announce the survey"
+    }
+   ],
+   "public_access": {
+    "room": "contact_only",
+    "how": "No hearing or comment window is posted. Animal Care Services runs the study with SwRI, and the final report goes to the department.",
+    "url": "https://www.sa.gov/Directory/News-Releases/Southwest-Research-Institute-Leads-Citys-Roaming-Dog-Study",
+    "closes": null
+   },
+   "confidence": "high",
+   "notes_for_editor": "Admitted on the city's own release and SwRI's. The 2019 study's findings sit in an ACS PDF too large for the fetcher this run.",
+   "claims": [
+    {
+     "text": "Southwest Research Institute is working with the City of San Antonio on an automated survey of unrestrained dogs.",
+     "verbatim_quote": "Southwest Research Institute (SwRI) is working with the city of San Antonio to conduct an automated survey",
+     "source_url": "https://www.swri.org/newsroom/press-releases/swri-applies-automation-count-unrestrained-dogs-san-antonio",
+     "source_title": "Southwest Research Institute, SwRI applies automation to count unrestrained dogs in San Antonio",
+     "source_type": "primary_corporate",
+     "fetched": "2026-11-02",
+     "id": "tx-2026-0236-c1"
+    },
+    {
+     "text": "The program pairs machine vision software with cell phone cameras.",
+     "verbatim_quote": "The program is using machine vision software paired with cell phone cameras",
+     "source_url": "https://www.swri.org/newsroom/press-releases/swri-applies-automation-count-unrestrained-dogs-san-antonio",
+     "source_title": "Southwest Research Institute, SwRI applies automation to count unrestrained dogs in San Antonio",
+     "source_type": "primary_corporate",
+     "fetched": "2026-11-02",
+     "id": "tx-2026-0236-c2"
+    },
+    {
+     "text": "The SwRI tools put a cell phone on a vehicle window and pair it with object detection and data analysis software.",
+     "verbatim_quote": "a cellular phone mounted to a vehicle window with object detection and data analysis software",
+     "source_url": "https://www.swri.org/newsroom/press-releases/swri-applies-automation-count-unrestrained-dogs-san-antonio",
+     "source_title": "Southwest Research Institute, SwRI applies automation to count unrestrained dogs in San Antonio",
+     "source_type": "primary_corporate",
+     "fetched": "2026-11-02",
+     "id": "tx-2026-0236-c3"
+    },
+    {
+     "text": "Automated review and human review of the video clips check that each detected animal was unrestrained.",
+     "verbatim_quote": "Automated and human review of the video clips will verify that the detected animals were unrestrained",
+     "source_url": "https://www.swri.org/newsroom/press-releases/swri-applies-automation-count-unrestrained-dogs-san-antonio",
+     "source_title": "Southwest Research Institute, SwRI applies automation to count unrestrained dogs in San Antonio",
+     "source_type": "primary_corporate",
+     "fetched": "2026-11-02",
+     "id": "tx-2026-0236-c4"
+    },
+    {
+     "text": "The same review records any human supervision, how many dogs were present and whether each dog was owned or a stray.",
+     "verbatim_quote": "determine any human supervision, verify the number of dogs present and assess whether the dog was owned or a stray",
+     "source_url": "https://www.swri.org/newsroom/press-releases/swri-applies-automation-count-unrestrained-dogs-san-antonio",
+     "source_title": "Southwest Research Institute, SwRI applies automation to count unrestrained dogs in San Antonio",
+     "source_type": "primary_corporate",
+     "fetched": "2026-11-02",
+     "id": "tx-2026-0236-c5"
+    },
+    {
+     "text": "In the release, strays look malnourished and skittish. Dogs that look healthier and more approachable count as something else.",
+     "verbatim_quote": "Strays appear to be malnourished and skittish, while dogs that seem healthier and more approachable",
+     "source_url": "https://www.swri.org/newsroom/press-releases/swri-applies-automation-count-unrestrained-dogs-san-antonio",
+     "source_title": "Southwest Research Institute, SwRI applies automation to count unrestrained dogs in San Antonio",
+     "source_type": "primary_corporate",
+     "fetched": "2026-11-02",
+     "id": "tx-2026-0236-c6"
+    },
+    {
+     "text": "The healthier and more approachable dogs are probably owned by local families and get classified as roaming.",
+     "verbatim_quote": "are likely owned by local families and are classified as roaming.",
+     "source_url": "https://www.swri.org/newsroom/press-releases/swri-applies-automation-count-unrestrained-dogs-san-antonio",
+     "source_title": "Southwest Research Institute, SwRI applies automation to count unrestrained dogs in San Antonio",
+     "source_type": "primary_corporate",
+     "fetched": "2026-11-02",
+     "id": "tx-2026-0236-c7"
+    },
+    {
+     "text": "The automated project repeats a manual survey from 2019.",
+     "verbatim_quote": "The automated project will recreate a manual survey conducted in 2019",
+     "source_url": "https://www.swri.org/newsroom/press-releases/swri-applies-automation-count-unrestrained-dogs-san-antonio",
+     "source_title": "Southwest Research Institute, SwRI applies automation to count unrestrained dogs in San Antonio",
+     "source_type": "primary_corporate",
+     "fetched": "2026-11-02",
+     "id": "tx-2026-0236-c8"
+    },
+    {
+     "text": "SwRI plans to run its research between October and December of 2026.",
+     "verbatim_quote": "After conducting research between October and December of 2026",
+     "source_url": "https://www.swri.org/newsroom/press-releases/swri-applies-automation-count-unrestrained-dogs-san-antonio",
+     "source_title": "Southwest Research Institute, SwRI applies automation to count unrestrained dogs in San Antonio",
+     "source_type": "primary_corporate",
+     "fetched": "2026-11-02",
+     "id": "tx-2026-0236-c9"
+    },
+    {
+     "text": "SwRI will then put together a final report with summary data and videos of the dogs it observed.",
+     "verbatim_quote": "SwRI will compile a final report with summary data and videos of observed dogs",
+     "source_url": "https://www.swri.org/newsroom/press-releases/swri-applies-automation-count-unrestrained-dogs-san-antonio",
+     "source_title": "Southwest Research Institute, SwRI applies automation to count unrestrained dogs in San Antonio",
+     "source_type": "primary_corporate",
+     "fetched": "2026-11-02",
+     "id": "tx-2026-0236-c10"
+    },
+    {
+     "text": "Mike Koets of SwRI said the study samples the city instead of surveying all of it.",
+     "verbatim_quote": "This study takes a sampling approach, so we are not surveying the entire city",
+     "source_url": "https://www.swri.org/newsroom/press-releases/swri-applies-automation-count-unrestrained-dogs-san-antonio",
+     "source_title": "Southwest Research Institute, SwRI applies automation to count unrestrained dogs in San Antonio",
+     "source_type": "primary_corporate",
+     "fetched": "2026-11-02",
+     "id": "tx-2026-0236-c11"
+    },
+    {
+     "text": "ACS Director Jon Gary said the study gives the city another tool for seeing where unrestrained dogs turn up.",
+     "verbatim_quote": "This study gives us another tool to better understand where we are seeing unrestrained dogs",
+     "source_url": "https://www.swri.org/newsroom/press-releases/swri-applies-automation-count-unrestrained-dogs-san-antonio",
+     "source_title": "Southwest Research Institute, SwRI applies automation to count unrestrained dogs in San Antonio",
+     "source_type": "primary_corporate",
+     "fetched": "2026-11-02",
+     "id": "tx-2026-0236-c12"
+    },
+    {
+     "text": "San Antonio Animal Care Services says it is working with researchers at Southwest Research Institute on the study.",
+     "verbatim_quote": "San Antonio Animal Care Services (SAACS) is collaborating with researchers at the",
+     "source_url": "https://www.sa.gov/Directory/News-Releases/Southwest-Research-Institute-Leads-Citys-Roaming-Dog-Study",
+     "source_title": "City of San Antonio, Southwest Research Institute Leads City's Roaming Dog Study",
+     "source_type": "primary_official",
+     "fetched": "2026-11-02",
+     "id": "tx-2026-0236-c13"
+    },
+    {
+     "text": "The City of San Antonio published its own release on the roaming dog study on October 20th, 2026.",
+     "verbatim_quote": "Published on October 20, 2026",
+     "source_url": "https://www.sa.gov/Directory/News-Releases/Southwest-Research-Institute-Leads-Citys-Roaming-Dog-Study",
+     "source_title": "City of San Antonio, Southwest Research Institute Leads City's Roaming Dog Study",
+     "source_type": "primary_official",
+     "fetched": "2026-11-02",
+     "id": "tx-2026-0236-c14"
+    },
+    {
+     "text": "The city says SwRI researchers will survey the same 32 study areas the city used in its 2019 effort.",
+     "verbatim_quote": "SwRI researchers will survey the same 32 study areas as in the City's 2019 effort",
+     "source_url": "https://www.sa.gov/Directory/News-Releases/Southwest-Research-Institute-Leads-Citys-Roaming-Dog-Study",
+     "source_title": "City of San Antonio, Southwest Research Institute Leads City's Roaming Dog Study",
+     "source_type": "primary_official",
+     "fetched": "2026-11-02",
+     "id": "tx-2026-0236-c15"
+    },
+    {
+     "text": "In the city's account, the survey uses smartphone cameras and automated technology.",
+     "verbatim_quote": "using smartphone cameras and automated technology",
+     "source_url": "https://www.sa.gov/Directory/News-Releases/Southwest-Research-Institute-Leads-Citys-Roaming-Dog-Study",
+     "source_title": "City of San Antonio, Southwest Research Institute Leads City's Roaming Dog Study",
+     "source_type": "primary_official",
+     "fetched": "2026-11-02",
+     "id": "tx-2026-0236-c16"
+    },
+    {
+     "text": "The city says the study works from a sample and is not meant to count every unrestrained dog in San Antonio.",
+     "verbatim_quote": "Because the project uses a sampling methodology, it is not intended to count every unrestrained dog in San Antonio",
+     "source_url": "https://www.sa.gov/Directory/News-Releases/Southwest-Research-Institute-Leads-Citys-Roaming-Dog-Study",
+     "source_title": "City of San Antonio, Southwest Research Institute Leads City's Roaming Dog Study",
+     "source_type": "primary_official",
+     "fetched": "2026-11-02",
+     "id": "tx-2026-0236-c17"
+    },
+    {
+     "text": "The city expects field research to run through December 2026.",
+     "verbatim_quote": "Field research is expected to take place through December 2026.",
+     "source_url": "https://www.sa.gov/Directory/News-Releases/Southwest-Research-Institute-Leads-Citys-Roaming-Dog-Study",
+     "source_title": "City of San Antonio, Southwest Research Institute Leads City's Roaming Dog Study",
+     "source_type": "primary_official",
+     "fetched": "2026-11-02",
+     "id": "tx-2026-0236-c18"
+    },
+    {
+     "text": "After the analysis, SwRI will send Animal Care Services a final report on what the study found and the data it collected.",
+     "verbatim_quote": "SwRI will forward a final report to SAACS summarizing the study findings and data collected.",
+     "source_url": "https://www.sa.gov/Directory/News-Releases/Southwest-Research-Institute-Leads-Citys-Roaming-Dog-Study",
+     "source_title": "City of San Antonio, Southwest Research Institute Leads City's Roaming Dog Study",
+     "source_type": "primary_official",
+     "fetched": "2026-11-02",
+     "id": "tx-2026-0236-c19"
+    },
+    {
+     "text": "The Animal Care Services statistics page links to a 2019 Unrestrained Dog Study.",
+     "verbatim_quote": "2019 Unrestrained Dog Study",
+     "source_url": "https://www.sa.gov/Directory/Departments/ACS/About/Statistics",
+     "source_title": "City of San Antonio Animal Care Services, Statistics",
+     "source_type": "primary_official",
+     "fetched": "2026-11-02",
+     "id": "tx-2026-0236-c20"
+    },
+    {
+     "text": "The 2020 Census places part of the city of San Antonio in Bexar County.",
+     "verbatim_quote": "TX|48|029|Bexar County|65000|02411774|San Antonio city",
+     "source_url": "https://www2.census.gov/geo/docs/reference/codes2020/place_by_cou/st48_tx_place_by_county2020.txt",
+     "source_title": "U.S. Census Bureau, 2020 Census place by county relationship file for Texas",
+     "source_type": "primary_official",
+     "fetched": "2026-11-02",
+     "id": "tx-2026-0236-c21"
+    },
+    {
+     "text": "The 2020 Census places part of the city of San Antonio in Comal County.",
+     "verbatim_quote": "TX|48|091|Comal County|65000|02411774|San Antonio city",
+     "source_url": "https://www2.census.gov/geo/docs/reference/codes2020/place_by_cou/st48_tx_place_by_county2020.txt",
+     "source_title": "U.S. Census Bureau, 2020 Census place by county relationship file for Texas",
+     "source_type": "primary_official",
+     "fetched": "2026-11-02",
+     "id": "tx-2026-0236-c22"
+    },
+    {
+     "text": "The 2020 Census places part of the city of San Antonio in Medina County.",
+     "verbatim_quote": "TX|48|325|Medina County|65000|02411774|San Antonio city",
+     "source_url": "https://www2.census.gov/geo/docs/reference/codes2020/place_by_cou/st48_tx_place_by_county2020.txt",
+     "source_title": "U.S. Census Bureau, 2020 Census place by county relationship file for Texas",
+     "source_type": "primary_official",
+     "fetched": "2026-11-02",
+     "id": "tx-2026-0236-c23"
+    }
+   ],
+   "id": "tx-2026-0236",
+   "last_verified": "2026-11-02",
+   "history": [
+    {
+     "date": "2026-11-02",
+     "note": "Admitted on the city's release and SwRI's. Field research is under way and the final report has not been published."
+    }
+   ]
   }
  ]
 }
