@@ -17,7 +17,7 @@
  },
  "introduction": [
   {
-   "text": "[Southwest Research Institute is working with the City of San Antonio on an automated survey of unrestrained dogs](c1), and [the city's Animal Care Services says it is collaborating with the institute's researchers](c15). [The program pairs machine vision software with cell phone cameras](c2). [A phone mounted to a vehicle window runs object detection and data analysis software](c3).",
+   "text": "[Southwest Research Institute is working with the City of San Antonio on an automated survey of unrestrained dogs](c1), and [the city's Animal Care Services says it is collaborating with the institute's researchers](c15). [The program pairs machine vision software with cell phone cameras](c2). [A phone mounted to a vehicle window is paired with object detection and data analysis software](c3).",
    "claims": [
     "c1",
     "c15",
@@ -39,7 +39,7 @@
    "heading": "What the software sees and what a person checks",
    "paragraphs": [
     {
-     "text": "[Automated and human review of the video clips will verify that each detected animal was unrestrained](c4). [The same review will record any human supervision, how many dogs were present and whether each dog was owned or a stray](c5). The release does not say how the automated and the human halves divide that work, or which one has the last word.",
+     "text": "[Automated and human review of the video clips will verify that each detected animal was unrestrained](c4). [The same review will record any human supervision, how many dogs were present and whether each dog was owned or a stray](c5).",
      "claims": [
       "c4",
       "c5"
@@ -58,11 +58,10 @@
    "heading": "A sample, not a census",
    "paragraphs": [
     {
-     "text": "[Mike Koets of the institute said the study takes a sampling approach rather than surveying the entire city](c12). [The city says the same thing in its own release. Because the project samples, it is not intended to count every unrestrained dog in San Antonio](c19). Any figure it produces will describe the {{number:c17}} areas, not the whole city.",
+     "text": "[Mike Koets of the institute said the study takes a sampling approach rather than surveying the entire city](c12). [The city says the same thing in its own release. Because the project samples, it is not intended to count every unrestrained dog in San Antonio](c19).",
      "claims": [
       "c12",
-      "c19",
-      "c17"
+      "c19"
      ]
     },
     {
