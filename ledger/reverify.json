@@ -1,7 +1,7 @@
 {
   "_spec": {
     "version": 1,
-    "generated": "2026-11-02",
+    "generated": "2026-11-03",
     "note": "One row per source url. ETag and Last-Modified drive the next conditional request, hash short circuits the text comparison, and proven records which claim quotes have been located here, which is what tells a real change apart from a page this check cannot read."
   },
   "sources": {
@@ -503,8 +503,8 @@
     },
     "https://communityimpact.com/san-marcos-buda-kyle/government/hays-county-commissioners-reallocate-funds-away-from-potential-axon-ai-contract/": {
       "etag": null,
-      "last_modified": "Tue, 03 Nov 2026 05:06:49 GMT",
-      "hash": "bfc8ea4b1a448f7aebf07539d3a8e232097b56b1024b51dbb7d7c13940892876",
+      "last_modified": "Tue, 03 Nov 2026 09:23:09 GMT",
+      "hash": "9d3395d38d1327c0159381413a8c4971b4029c7b3d7ea3ba7c9059f06bc12d39",
       "proven": [
         "tx-2026-0168-c8",
         "tx-2026-0168-c9"
@@ -622,7 +622,7 @@
     },
     "https://dronexl.co/2026/10/09/zipline-austin-round-rock-drone-delivery-launch/": {
       "etag": null,
-      "last_modified": "Tue, 03 Nov 2026 05:06:49 GMT",
+      "last_modified": "Tue, 03 Nov 2026 09:23:09 GMT",
       "hash": "c6a5934ef27e2feda981aeacf512cab11d996b0f4ad999203a812b5c14957ec2",
       "proven": [
         "tx-2026-0186-c18",
@@ -1543,6 +1543,35 @@
         "tx-2026-0170-c4"
       ]
     },
+    "https://pubmed.ncbi.nlm.nih.gov/42714442/": {
+      "etag": null,
+      "last_modified": null,
+      "hash": "bdf49c8e90df18946fc0f0959b3622a052506e67bcabf07756611b4a114adf5c",
+      "proven": [
+        "tx-2026-0147-c1",
+        "tx-2026-0147-c2",
+        "tx-2026-0147-c3",
+        "tx-2026-0147-c4",
+        "tx-2026-0147-c5",
+        "tx-2026-0147-c6",
+        "tx-2026-0147-c7",
+        "tx-2026-0147-c8"
+      ]
+    },
+    "https://pubmed.ncbi.nlm.nih.gov/42716711/": {
+      "etag": null,
+      "last_modified": null,
+      "hash": "b4222bb5c92c0b3f8b92bf31e85ab914c97a392665da76122cccb083f6818c21",
+      "proven": [
+        "tx-2026-0148-c1",
+        "tx-2026-0148-c2",
+        "tx-2026-0148-c3",
+        "tx-2026-0148-c4",
+        "tx-2026-0148-c5",
+        "tx-2026-0148-c6",
+        "tx-2026-0148-c7"
+      ]
+    },
     "https://puc.texas.gov/agency/calendar/GetCalendarRss.aspx": {
       "etag": null,
       "last_modified": null,
@@ -2166,6 +2195,24 @@
         "tx-2026-0075-c5"
       ]
     },
+    "https://webapi.legistar.com/v1/pflugerville/matters/18184": {
+      "etag": null,
+      "last_modified": null,
+      "hash": "b15c1ebcc9c0124b5bfc66848dc08f14e19e939559ed45ff2988e627543d975d",
+      "proven": [
+        "tx-2026-0235-c1"
+      ]
+    },
+    "https://webapi.legistar.com/v1/pflugerville/matters/18184/histories": {
+      "etag": null,
+      "last_modified": null,
+      "hash": "756254671af07843004149d8ab5bbfdc5cf1ff5835c810ae92ddceb111f3a48b",
+      "proven": [
+        "tx-2026-0235-c2",
+        "tx-2026-0235-c3",
+        "tx-2026-0235-c4"
+      ]
+    },
     "https://webapi.legistar.com/v1/plano/events/1155": {
       "etag": null,
       "last_modified": null,
@@ -2218,9 +2265,9 @@
       ]
     },
     "https://www.aect.net/southwest-power-pool-spp": {
-      "etag": "W/\"741152920714bb1099262092a4d2628c\"",
+      "etag": "W/\"741152920714bb1099262092a4d2628c--gzip\"",
       "last_modified": null,
-      "hash": "4836d141eb5fa2adc2078dae8e2c95c75741ab8f823e06b7f0283aee64ec06d5",
+      "hash": "5912daf6d3f4f89fd47844063c8e3921187fde511b5935cb278284922b01217f",
       "proven": [
         "tx-2026-0046-c6",
         "tx-2026-0047-c7"
@@ -2735,7 +2782,7 @@
     "https://www.kedt.org/texas-news/2026-10-14/league-city-to-disable-flock-cameras-if-voters-reject-them-in-november": {
       "etag": null,
       "last_modified": null,
-      "hash": "deb82bf69921077ff3c77e1a4292d36458a0e7c283165fc623799a4682ffbe23",
+      "hash": "709a8d0f3b26e10950defb90072c2208b65aef8c777684c2b72f54b09e21277b",
       "proven": [
         "tx-2026-0048-c5"
       ]
@@ -3436,7 +3483,7 @@
     "https://www.tpr.org/news/2026-09-23/lubbock-takes-first-step-toward-data-center-moratorium-questions-remain-with-approaching-legislative-session": {
       "etag": null,
       "last_modified": null,
-      "hash": "3175f55aadd1e59c5f3d1e22295d4f48204be58ac917090efb188f2fc0d2ead7",
+      "hash": "e867a0377b9bcc169ce90f1cbefae2647b61d89d4bbf525b91caeabd37c66c22",
       "proven": [
         "tx-2026-0138-c4",
         "tx-2026-0138-c5",

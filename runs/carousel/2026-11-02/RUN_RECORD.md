@@ -35,6 +35,7 @@ build itself learned is in the artwork ledger entry and under "Retro" below.
   release describes strays as appearing malnourished and skittish, in the release's tense. Its key date is still kind
   `effective` for an announcement, because `DATE_KINDS` has no `announced`; that is a schema question for a maintainer.
 - The Federal Register poll failed at discovery and the scouts' sweep was folded in instead.
+- **CI's freshness gate went red on the first pull request head** because the runner's day was already November 3rd: tx-2026-0032 and tx-2026-0042 were five days past verification against a two day leash. Both front doors refuse the project in robots.txt (www.kwtx.com and www.olneyenterprise.com name ClaudeBot and anthropic-ai under Disallow). The boundary was measured on November 3rd and declared on each item as `unreachable`, the way the record carries 30 others, and `reverify.py --today 2026-11-03 --apply` stamped 4 more items. Nothing was routed around.
 - `docket_build.py --validate` exits 0.
 
 ## Selection

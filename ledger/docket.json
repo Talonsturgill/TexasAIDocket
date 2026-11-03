@@ -4685,7 +4685,15 @@
      "note": "The Killeen data center permit denial is unconfirmed today. The city's agenda would not load and the news report refuses this project.",
      "checked": true
     }
-   ]
+   ],
+   "unreachable": {
+    "hosts": [
+     "www.kwtx.com"
+    ],
+    "boundary": "robots",
+    "checked": "2026-11-03",
+    "note": "www.kwtx.com's robots.txt names ClaudeBot, Claude-Web and anthropic-ai under Disallow: / (measured 2026-11-03, SHA256 992aa1bebe1ed54a25151b7e78d2defe6d59cae04f4af4ac771ae82d0f254b8b). The station's report is the item's front door. The city's agenda packet is a PDF the re-verify check can't read, and the Texas Scorecard account answered. Nothing was routed around."
+   }
   },
   {
    "title": "El Paso City Council adopts a Data Center Policy Framework requiring a Special Permit for hyperscale projects",
@@ -6814,7 +6822,15 @@
      "note": "Young County's receipt of the Project Saltworks abatement application is unconfirmed today. Its only published account refuses this project.",
      "checked": true
     }
-   ]
+   ],
+   "unreachable": {
+    "hosts": [
+     "www.olneyenterprise.com"
+    ],
+    "boundary": "robots",
+    "checked": "2026-11-03",
+    "note": "www.olneyenterprise.com's robots.txt names ClaudeBot, Claude-User, Claude-SearchBot and anthropic-ai in its disallowed group (measured 2026-11-03, SHA256 fe8def7ff1a5a48d5213c6f26af839d48b7c72606cf36d3bfc8a7d7da2b01449). The Olney Enterprise report is the item's only published account. Nothing was routed around."
+   }
   },
   {
    "title": "Archer County Commissioners Court unanimously denies a tax abatement for a Dynamo Ventures data center",
@@ -27377,7 +27393,7 @@
    "confidence": "high",
    "notes_for_editor": "A different collection from the American Time Use Survey window the record already carries at tx-2026-0016, which closed September 8th.",
    "id": "tx-2026-0145",
-   "last_verified": "2026-11-02",
+   "last_verified": "2026-11-03",
    "history": [
     {
      "date": "2026-09-11",
@@ -27466,6 +27482,11 @@
     {
      "date": "2026-11-02",
      "note": "The survey office's question on whether the household internet survey should start counting AI use is still open to comment, closing November 9th.",
+     "checked": true
+    },
+    {
+     "date": "2026-11-03",
+     "note": "The comment window is still open, closing November 9th.",
      "checked": true
     }
    ]
@@ -28341,7 +28362,7 @@
    ],
    "confidence": "high",
    "id": "tx-2026-0150",
-   "last_verified": "2026-10-31",
+   "last_verified": "2026-11-03",
    "history": [
     {
      "date": "2026-09-13",
@@ -28420,6 +28441,11 @@
     {
      "date": "2026-10-31",
      "note": "The review's abstract was read again on PubMed and still carries every quoted line, the call for a dedicated pediatric AI infrastructure among them.",
+     "checked": true
+    },
+    {
+     "date": "2026-11-03",
+     "note": "Checked and unchanged. The decision still stands as decided.",
      "checked": true
     }
    ]
@@ -28522,7 +28548,7 @@
    ],
    "confidence": "high",
    "id": "tx-2026-0151",
-   "last_verified": "2026-10-31",
+   "last_verified": "2026-11-03",
    "history": [
     {
      "date": "2026-09-13",
@@ -28601,6 +28627,11 @@
     {
      "date": "2026-10-31",
      "note": "The study's abstract on PubMed still reports the weaker score on patients outside the training cohort and still advises treating radiomics as exploratory.",
+     "checked": true
+    },
+    {
+     "date": "2026-11-03",
+     "note": "Checked and unchanged. The decision still stands as decided.",
      "checked": true
     }
    ]
@@ -42415,9 +42446,14 @@
     {
      "date": "2026-10-31",
      "note": "Admitted on the council's own record of the October 27th vote. The resolution's text is not readable here, so its specific rules are not yet in the record."
+    },
+    {
+     "date": "2026-11-03",
+     "note": "Checked and unchanged. The decision still stands as decided.",
+     "checked": true
     }
    ],
-   "last_verified": "2026-10-31"
+   "last_verified": "2026-11-03"
   },
   {
    "title": "San Antonio counts loose dogs in 32 study areas with phone cameras and object detection software",
