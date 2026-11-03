@@ -7,7 +7,7 @@
  },
  "section": "Cities",
  "dek": {
-  "text": "San Antonio is repeating its count of loose dogs with a phone on a car window and object detection software. A person reviews every clip, and the survey is a sample.",
+  "text": "San Antonio will repeat its count of loose dogs with a phone on a vehicle window and object detection software. Automated and human review will check the clips, and the survey is a sample.",
   "claims": [
    "c1",
    "c3",
@@ -17,7 +17,7 @@
  },
  "introduction": [
   {
-   "text": "[Southwest Research Institute is working with the City of San Antonio on an automated survey of unrestrained dogs](c1), and [the city's Animal Care Services says it is collaborating with the institute's researchers](c15). [The program pairs machine vision software with cell phone cameras](c2). [A phone mounted to a vehicle window runs object detection and data analysis software](c3), so the first look at each dog on the street is taken by a machine riding past.",
+   "text": "[Southwest Research Institute is working with the City of San Antonio on an automated survey of unrestrained dogs](c1), and [the city's Animal Care Services says it is collaborating with the institute's researchers](c15). [The program pairs machine vision software with cell phone cameras](c2). [A phone mounted to a vehicle window runs object detection and data analysis software](c3).",
    "claims": [
     "c1",
     "c15",
@@ -26,7 +26,7 @@
    ]
   },
   {
-   "text": "[The automated project recreates a manual survey from {{number:c9}}](c9), and [it covers the same {{number:c17}} study areas the city used in that effort](c17). [The city published its own account of the study on {{date:c16}}](c16).",
+   "text": "[The automated project will recreate a manual survey from {{number:c9}}](c9), and [it will cover the same {{number:c17}} study areas the city used in that effort](c17). [The city published its own account of the study on {{date:c16}}](c16).",
    "claims": [
     "c9",
     "c17",
@@ -39,14 +39,14 @@
    "heading": "What the software sees and what a person checks",
    "paragraphs": [
     {
-     "text": "[Automated and human review of the video clips checks that each detected animal was unrestrained](c4). [The same review records any human supervision, how many dogs were present and whether each dog was owned or a stray](c5). The release does not say how the automated and the human halves divide that work, or which one has the last word.",
+     "text": "[Automated and human review of the video clips will verify that each detected animal was unrestrained](c4). [The same review will record any human supervision, how many dogs were present and whether each dog was owned or a stray](c5). The release does not say how the automated and the human halves divide that work, or which one has the last word.",
      "claims": [
       "c4",
       "c5"
      ]
     },
     {
-     "text": "The release describes the two labels a loose dog can get in terms of how it looks and acts. [Strays appear malnourished and skittish](c6), while [dogs that seem healthier and more approachable are likely owned by local families and are classified as roaming](c7). That is a judgement about a dog seen for a few seconds from a passing car, and the record does not yet hold any measure of how often it is right.",
+     "text": "The release describes the two labels a loose dog can get in terms of how it looks and acts. [Strays appear malnourished and skittish](c6), while [dogs that seem healthier and more approachable are likely owned by local families and are classified as roaming](c7). That is a judgement made from video of a dog on the street, and the record does not yet hold any measure of how often it is right.",
      "claims": [
       "c6",
       "c7"
