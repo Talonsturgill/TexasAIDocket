@@ -39,6 +39,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-29 · UNT's gift and its college of artificial intelligence are still unconfirmed. The university's news site bars automated readers.
 - 2026-10-30 · UNT's gift and its college of artificial intelligence remain unconfirmed. The news site would not serve its crawling rules today, so the release was left unread.
 - 2026-10-31 · The gift that named UNT's college of artificial intelligence stays unconfirmed. The university's news site did not answer for its crawling rules today.
+- 2026-11-01 · The gift that named UNT's college of artificial intelligence stays unconfirmed, since the news site still refuses this project.
 
 ## Evidence
 

@@ -52,6 +52,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-25 · Fort Worth's data center pause stays at its first steps in the record. KERA's account is unconfirmed today, since the station turned the request away.
 - 2026-10-26 · Fort Worth's data center pause is still unconfirmed past its first steps. KERA's account refused the request again.
 - 2026-10-29 · Fort Worth's moratorium and grid filing rules still read as reported. The public radio account is unconfirmed.
+- 2026-11-01 · Fort Worth's moratorium and grid filing rules stay unconfirmed today. The public radio account answers no request from this project.
 
 ## Evidence
 

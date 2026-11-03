@@ -1,0 +1,76 @@
+<!doctype html>
+<!-- 2026-11-01, frame 4 of 9. Archetype DIAGRAM. A spatial scene through txthree.js in a dark TXT.interior room: the chassis robot_arm on the bench between a crucible of powder, a copper_hearth with one glowing alloy_button and a marked tensile_bar, a chassis steel_rule beside the hearth ticked once per 500 degrees up to max_temp_c from figures.json. Drawn to illustrate, to no maker design. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<svg id="ov" width="1080" height="1350" style="position:absolute;left:0;top:0;z-index:11" data-decorative></svg>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:790px">Mix, melt and test, on one line</h1>
+<p class="dek" data-follow="26" style="width:880px">Robotics will mix, melt and test the materials with computer controlled arms along an assembly line that takes samples, the university says. It says existing self driving labs can't handle alloys at up to 3,000 degrees Celsius. Drawn to&nbsp;illustrate.</p>
+<div class="lab" id="lab-a">MIX</div>
+<div class="lab" id="lab-b">MELT</div>
+<div class="lab" id="lab-c">TEST</div>
+<script>window.FIG = {"max_temp_c": 3000};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-01-foundry.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const BOOT = { kicker: "The line", counter: "04 / 09", src: "c8 c10 c11", fit: { min: 76, max: 100, maxLines: 2 } };
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, BOOT);
+  const R = CH.stage(TXT, gl, W, { fov: 32, near: 0.004, far: 60, fog: 0.02 });
+  const M = CH.mats(THREE, K);
+  TXT.interior(R, { w: 7, d: 6, h: 3.2, floor: 'concrete', wall: 0x121314, window: false, ceiling: true, light: 0.1 });
+  const Y = 0.9;
+  const benchMat = M.benchTop.clone(); benchMat.color.setScalar(1.1); benchMat.roughness = 0.85; benchMat.metalness = 0; benchMat.envMapIntensity = 0.2; benchMat.map = M.benchTop.map.clone(); benchMat.map.repeat.set(6, 3.6); benchMat.map.needsUpdate = true; const bench = TXT.roundedBox(2.4, 0.04, 3.6, 0.006, benchMat); bench.position.set(0, Y - 0.02, -0.8); TXT.add(R, bench);
+  const legs = TXT.roundedBox(1.9, Y - 0.04, 1.1, 0.01, M.steelDark); legs.position.set(0, (Y - 0.04) / 2, 0.05); TXT.add(R, legs); TXT.contact(R, legs);
+  /* MIX: a crucible of powder on the left */
+  const cru = K.make('crucible', { r: 0.034, h: 0.07 }); cru.position.set(-0.19, Y, 0.06); TXT.add(R, cru); CH.contact(THREE, R, cru);
+  /* MELT: a copper hearth, one button glowing */
+  const hearth = K.make('copper_hearth', { rows: 2, cols: 3, hoses: false, w: 0.24, d: 0.16, pr: 0.02 }); hearth.position.set(0.0, Y, 0.02); TXT.add(R, hearth); CH.contact(THREE, R, hearth);
+  hearth.userData.pockets.forEach((p, i) => { const b = K.make('alloy_button', { d: 0.03, h: 0.014, state: i === 4 ? 'hot' : 'cool', seed: i + 60 }); b.position.set(0.0 + p[0], Y + p[1] + 0.0015, 0.02 + p[2]); TXT.add(R, b); });
+  const hp = hearth.userData.pockets[4]; CH.heat(THREE, R, [0.0 + hp[0], Y + 0.07, 0.02 + hp[2]], 0.45, 0.07);
+  /* THE FIGURE: a rule beside the hearth, one tick per 500 degrees up to the temperature the university names */
+  const rule = K.make('steel_rule', { H: 0.17, ticks: Math.round(FIG.max_temp_c / 500) }); rule.position.set(-0.13, Y, -0.12); rule.rotation.y = 0.35; TXT.add(R, rule); CH.contact(THREE, R, rule);
+  /* TEST: grips with a marked bar on the right */
+  const bar = K.make('tensile_bar', { round: true, L: 0.11, gl: 0.05, gr: 0.0075, rr: 0.0045 }); bar.position.set(0.27, Y + 0.035, -0.06); TXT.add(R, bar);
+  const mark = new THREE.Mesh(new THREE.CylinderGeometry(0.0078, 0.0078, 0.011, 48, 1, true), M.mark); mark.rotation.z = Math.PI / 2; mark.position.set(-0.026, 0.0075, 0); bar.add(mark);
+  [-1, 1].forEach((s) => { const gp = TXT.roundedBox(0.04, 0.055, 0.05, 0.004, M.steelDark); gp.position.set(0.27 + s * 0.058, Y + 0.0275, -0.06); TXT.add(R, gp); CH.contact(THREE, R, gp); });
+  /* THE ARM, at the back of the bench, its gripper over the hearth */
+  const gb = K.make('alloy_button', { d: 0.03, h: 0.014, state: 'cool', seed: 91 }); const arm = K.make('robot_arm', { pose: [2.75, -1.05, 2.35, 1.25], upper: 0.36, fore: 0.32, scale: 0.28, grip: gb }); arm.position.set(0.17, Y, -0.16); TXT.add(R, arm); CH.contact(THREE, R, arm, { pad: 1.0 });
+  const from = [0.12, Y + 0.55, 1.08];
+  TXT.frame(R, { fov: 32, from, look: [0.04, Y + 0.185, -0.04] });
+  CH.warm(R, 0.24);
+  CH.copperEnv(THREE, R, [0.4, 0.5, -0.75], { w: 3.4, h: 2.2, i: 5 });
+  TXT.deckRig(R, CH.rigSpec(W, 1.0, 4096), CH.rigOpts([0, Y, 0], { distance: 1.2, shadowFar: 2.6 }));
+  CH.unacne(R, 0.002);
+  TXT.weather(R, { grime: 0.25, height: 0.15 });
+  TXT.stage(R, [arm, hearth, bar]);
+  const svg = document.getElementById('ov'), leaders = [];
+  [['lab-a', [-0.19, Y + 0.075, 0.06], 'the crucible', [10, -95]], ['lab-b', [0.0, Y + 0.065, 0.08], 'the hearth', [-30, 150]], ['lab-c', [0.27, Y + 0.05, -0.06], 'the bar in the grips', [-40, 80]]].forEach(([id, p, t, off]) => {
+    const at = CH.project(THREE, R, p), el = document.getElementById(id);
+    el.style.left = Math.round(Math.max(80, Math.min(1000 - el.getBoundingClientRect().width, at[0] + off[0]))) + 'px'; el.style.top = Math.round(Math.min(1180, at[1] + off[1])) + 'px';
+    const b = el.getBoundingClientRect(); CH.leader(svg, [b.left + b.width / 2, at[1] > b.top + b.height ? b.top + b.height + 6 : b.top - 6], at); leaders.push({ target: t, at, to: at });
+  });
+  window.__txLeaders = leaders;
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0.35, veil: 0.3 });
+  /* no grade bloom: its quarter resolution buffer lays square cells round bright highlights on a dark surface */
+  TXDECK.finish(cx, { bloom: { threshold: 0.72, strength: 0, radius: 8 } });
+  return true;
+})();
+</script>
+</body>
+</html>

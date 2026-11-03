@@ -220,7 +220,8 @@
         "2026-10-25",
         "2026-10-29",
         "2026-10-30",
-        "2026-10-31"
+        "2026-10-31",
+        "2026-11-01"
       ],
       "contradicted": []
     },
@@ -645,7 +646,8 @@
         "2026-10-25",
         "2026-10-26",
         "2026-10-29",
-        "2026-10-31"
+        "2026-10-31",
+        "2026-11-01"
       ],
       "contradicted": []
     },
@@ -1672,6 +1674,14 @@
       "learned": "2026-10-31",
       "instinct": "When two fetched sources state the same promise differently, put both on the surface with their attributions rather than dropping the one that complicates the frame.",
       "evidence": "No. 64 frame 8: round 1's repair dropped Houston Public Media's 'down within 72 hours' (c46) beside the Tribune's 'start bagging 72 hours after' (c33); the round 2 integrity judge charged the silent drop, and round 3 credited the disclosure.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "isolate-the-render-pass-before-another-review",
+      "learned": "2026-11-01",
+      "instinct": "Isolate a native size artifact named twice with a diagnostic render before changing anything, because a guessed cause costs a full review to disprove.",
+      "evidence": "no. 65's cover took sixteen art director readings; three guessed causes (shadow map size, the bump, the shadow receiver) were disproved one review each before diagnostic renders found the practical light, the shadow camera planes and the grade's bloom",
       "confirmed": [],
       "contradicted": []
     }

@@ -1,0 +1,80 @@
+{
+ "lens": "reader",
+ "round": 3,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.8,
+   "why": "Slides 2, 8, 9 and 7 are physical work that reads at 432 px, slides 3 and 6 make the money countable. Slide 4's arm is primitive with an unlabelled rule and floating stations, slide 5's stack is a flat tan slab with an empty lower floor, slide 1's right half is a flat copper gradient, slide 6's tray reads as a grille in the thumb, slide 7's pool can read as elapsed months."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "One bench, one key, one vocabulary, a motif that changes state with the bluebonnet mark. The navy interiors and black reliefs split the strip, and slides 1 and 5 jump in value."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.5,
+   "why": "Every numeral traces, sources primary, attribution careful, the separate award stated. Slight looseness: slide 2 drops a conditional, the first comment says day counts where the deck computes months, slide 9 implies a causal link."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.5,
+   "why": "What, who and where at the level of the university. No city, the stake general, the close's action without a route, EPSCoR unexplained. Honest about the missing opening date."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 6.8,
+   "why": "The cover earns the swipe and frame 2 pays. The argument arrives on slide 8, the money splits across 3 and 6, slide 5 could go. The close rhymes with the cover."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.2,
+   "why": "Clean and honest with a few voiced lines, low on Texas specificity, procedural repetition."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.8,
+   "why": "A fresh bench macro world, but counting money in drawing units is now a recurring move, and the third A&M family deck in eleven days."
+  }
+ ],
+ "weighted_score": 7.22,
+ "hard_fails": [],
+ "ship": true,
+ "ship_note": "",
+ "one_sentence_fix": "Make Arróyave's line the premise on frame 2 and give the close a concrete route in.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 4,
+   "problem": "Primitive arm, unlabelled rule, floating stations.",
+   "fix": "Low macro tight on the gripper holding the glowing button, the wrist casting filling a third of the frame."
+  },
+  {
+   "slide": 5,
+   "problem": "Flat tan slab, a painted band, empty lower floor.",
+   "fix": "Camera at about 0.15 m, stack off the bottom and left edges on its shadow side, a thin pen line for the mark."
+  },
+  {
+   "slide": 1,
+   "problem": "A flat orange copper gradient on the right, no scale.",
+   "fix": "Tighten onto the glowing pocket, copper falling to black on the right, a tong tip for scale."
+  },
+  {
+   "slide": 6,
+   "problem": "The 249 well tray reads as a grille at 432 px.",
+   "fix": "Pool on the filled corner, empty wells to true black, a lower camera for rim highlights."
+  },
+  {
+   "slide": 7,
+   "problem": "The pool on the first 17 bars reads as elapsed months.",
+   "fix": "Rake the bars evenly, or light exactly the elapsed months and say so."
+  }
+ ]
+}

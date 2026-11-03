@@ -1,0 +1,85 @@
+{
+ "lens": "craft",
+ "round": 3,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.5,
+   "why": "Reliefs carry the deck. Slide 8 is the best frame, slide 9 a strong silhouette reading as a thin plate, slide 2's heaps pinch to starred apexes with the near heaps under the footer, slide 7's dogbones read as capital I glyphs on a plate. Slide 4's arm is primitives with no button visible and a six pocket hearth that contradicts slide 1, slide 5's stack is a tan slab with a rubber band mark, slides 1 and 3 show stepped dome rings, slide 6 is two flat dark trays with a dead band."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "One light through the deck, a dark field without strobing, a button motif that changes state. Two registers split it, and the hearth changes model between slides 1 and 4."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.5,
+   "why": "Every numeral traces, the sources are primary, the fact check's moves are obeyed on every surface. The caption trims c17's 'in the world', attributed and meaning kept."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.0,
+   "why": "Clear on what, who and the money. The actions are general for a Texan reader, no deadline exists, place stops at Texas A&M."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "The cover earns the swipe, slide 2 pays, the turn at 4 moves from money to process, 9 closes the loop. Slide 5 could move."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Clean and within the house rules, institutional rather than regional."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "A dark bench scale lab departs from nos. 62 to 64. The counted unit tray echoes nos. 63 and 64."
+  }
+ ],
+ "weighted_score": 7.35,
+ "hard_fails": [],
+ "ship": true,
+ "ship_note": "",
+ "one_sentence_fix": "Rebuild slide 4 with a cast, cabled arm holding a glowing button over slide 1's own hearth, and slide 5 as paper with offset sheets, a contact and a painted mark.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 4,
+   "problem": "A toy arm, no button visible, a six pocket box that contradicts slide 1, a plain cup crucible.",
+   "fix": "A modelled six axis arm closed on a glowing button over slide 1's copper_hearth, the base cropped off the right edge."
+  },
+  {
+   "slide": 5,
+   "problem": "A flat tan slab with regular stripes, no seated contact, a rubber band mark, mid tones under a navy wall.",
+   "fix": "The long edge takes the key, offset curled top sheets, a contact, a brushed stroke on the dome."
+  },
+  {
+   "slide": 1,
+   "problem": "Stepped dome rings, a pale lower right gradient without milled arcs, a flat navy wall with a seam.",
+   "fix": "Smoother dome normals, the milled arc roughness, less key on the right copper."
+  },
+  {
+   "slide": 6,
+   "problem": "Two flat dark trays in a quarter of the frame, a dead band, a pegboard field.",
+   "fix": "Push in and lower so the long tray runs off the right edge, bevel catch lights and scuffs."
+  },
+  {
+   "slide": 7,
+   "problem": "Dogbones read as I glyphs on a rectangular plate.",
+   "fix": "Wider grips with radiused fillets, the plate running off the left and bottom edges."
+  },
+  {
+   "slide": 2,
+   "problem": "Starred apexes like chocolate kisses, near heaps under the footer.",
+   "fix": "Rounded slumped crowns with avalanche facets, near heaps clear of the footer."
+  }
+ ]
+}

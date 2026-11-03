@@ -1,0 +1,131 @@
+{
+ "_note": "Every value is extracted from a claim quote by compute.py, or computed here from values that were.",
+ "grant_usd": {
+  "value": 2000000,
+  "from": [
+   "c1"
+  ],
+  "basis": "the WoodNext Foundation grant, dollars, from '$2 million'"
+ },
+ "nsf_obligated_usd": {
+  "value": 4100000,
+  "from": [
+   "c25"
+  ],
+  "basis": "NSF funds obligated to the ARM-MIP award, dollars"
+ },
+ "nsf_total_usd": {
+  "value": 24900000,
+  "from": [
+   "c26"
+  ],
+  "basis": "NSF estimated total for the ARM-MIP award, dollars"
+ },
+ "award_start": {
+  "value": "2026-09-01",
+  "from": [
+   "c27"
+  ],
+  "basis": "the award's start date"
+ },
+ "award_end": {
+  "value": "2032-08-31",
+  "from": [
+   "c28"
+  ],
+  "basis": "the award's end date"
+ },
+ "award_months": {
+  "value": 72,
+  "from": [
+   "c27",
+   "c28"
+  ],
+  "basis": "computed: whole calendar months from the start date to the end date, the last month counted when the end date falls at its end"
+ },
+ "award_years": {
+  "value": 6,
+  "from": [
+   "c27",
+   "c28"
+  ],
+  "basis": "computed: award_months divided by 12"
+ },
+ "max_temp_c": {
+  "value": 3000,
+  "from": [
+   "c10"
+  ],
+  "basis": "degrees Celsius the university says existing self driving labs can't handle"
+ },
+ "papers_together": {
+  "value": 100,
+  "from": [
+   "c16"
+  ],
+  "basis": "papers Karaman and Arróyave have published together, a floor"
+ },
+ "button_unit_usd": {
+  "value": 100000,
+  "from": [],
+  "basis": "a drawing rule: one alloy button stands for this many dollars. Not a claim"
+ },
+ "grant_buttons": {
+  "value": 20,
+  "from": [
+   "c1"
+  ],
+  "basis": "computed: grant_usd divided by the drawing unit"
+ },
+ "nsf_obligated_buttons": {
+  "value": 41,
+  "from": [
+   "c25"
+  ],
+  "basis": "computed: nsf_obligated_usd divided by the drawing unit"
+ },
+ "nsf_total_buttons": {
+  "value": 249,
+  "from": [
+   "c26"
+  ],
+  "basis": "computed: nsf_total_usd divided by the drawing unit"
+ },
+ "nsf_total_over_grant": {
+  "value": 12.4,
+  "from": [
+   "c1",
+   "c26"
+  ],
+  "basis": "computed: the NSF estimated total divided by the WoodNext grant, to one decimal place"
+ },
+ "nsf_obligated_share_pct": {
+  "value": 16,
+  "from": [
+   "c25",
+   "c26"
+  ],
+  "basis": "computed: obligated over estimated total, as a whole percent"
+ },
+ "grant_money_m": {
+  "value": 2.0,
+  "from": [
+   "c1"
+  ],
+  "basis": "computed: grant in millions"
+ },
+ "nsf_total_money_m": {
+  "value": 24.9,
+  "from": [
+   "c26"
+  ],
+  "basis": "computed: NSF estimated total in millions"
+ },
+ "nsf_obligated_money_m": {
+  "value": 4.1,
+  "from": [
+   "c25"
+  ],
+  "basis": "computed: NSF obligated in millions"
+ }
+}

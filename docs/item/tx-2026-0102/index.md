@@ -43,6 +43,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-21 · Checked and unchanged. The decision still stands as decided.
 - 2026-10-24 · UT Southwestern still says AI does most of the grading on its medical students' clinical exam notes.
 - 2026-10-29 · UT Southwestern's account of AI grading most clinical exam notes still reads as published.
+- 2026-11-01 · UT Southwestern's use of AI to grade clinical exam notes is unconfirmed today. Its site refuses this project.
 
 ## Evidence
 

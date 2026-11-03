@@ -4054,6 +4054,72 @@
     "hex": "#0A090D",
     "note": "The lastLight world's dark sky and the flat frames' dark field."
    }
+  },
+  {
+   "date": "2026-11-01",
+   "carousel_no": 65,
+   "written_from": "deck_coherence's median L* per frame at 432 px off the final renders, layout_check's accent share, by update_ledgers.py.",
+   "register": "SPATIAL SCENES in a dark TXT.interior lab, staged, with four TXBENCH material reliefs. Chassis assets/js/deck/2026-11-01-foundry.js: copper_hearth, alloy_button, sample_tray, tensile_bar, crucible, robot_arm, offprint_stack and steel_rule, true metal copper with its own studio reflection, and bluebonnet as the one accent for the same alloy.",
+   "structural_laws": [
+    "A RASTERISED METAL REFLECTS ONLY ITS ENVIRONMENT. Copper with a grind painted into its colour read as walnut until it was metalness 1 with the grind in its roughness and a softbox on the camera's mirror ray.",
+    "A PRACTICAL LIGHT A FEW CENTIMETRES FROM A DOME SATURATES IT. The hot button's point light clipped its neighbours' facing sides into hard stepped edges until it was cut to a quarter.",
+    "A SHADOW CAMERA'S NEAR PLANE AT ITS TARGET CLIPS WHAT STANDS ABOVE IT. A rig distance of half a metre put the near plane at the bench and broke every dome's shadow into blocks.",
+    "THE GRADE'S BLOOM SAMPLES A QUARTER RESOLUTION BUFFER. On a dark macro it laid square cells round every bright dome edge, so a macro frame passes bloom strength zero.",
+    "A SECOND BOX BUTTED ON A BLOCK IS A SEAM. The hearth was made one deep block with its pockets offset back rather than a block and an extension."
+   ],
+   "techniques": [
+    "a low macro over a water cooled copper hearth, one button glowing among nineteen cooled ones",
+    "five powder heaps as a raking material relief, graphite, copper, nickel, titanium and brass",
+    "a sample tray of twenty buttons, one per $100,000 of the grant",
+    "the line of crucible, hearth and grips with a six axis arm, labelled mix, melt and test",
+    "one button on a stack of a hundred offprints, the accent band on its flank",
+    "two trays at one unit, twenty buttons for WoodNext and forty one of two hundred forty nine for NSF",
+    "a rack relief of seventy two tensile bars in rows of twelve, one a month",
+    "an etched section of a button with dendrites standing proud, the accent across the mount",
+    "a pulled flat tensile bar broken in two as an orthographic relief, the accent on its grip"
+   ],
+   "value": {
+    "per_frame_median_L": [
+     8.3,
+     3.0,
+     7.3,
+     9.1,
+     8.9,
+     7.5,
+     2.8,
+     8.7,
+     3.3
+    ],
+    "deck_median_L": 7.5,
+    "max_adjacent_delta": 5.9,
+    "mean_adjacent_delta": 3.62,
+    "note": "Measured by deck_coherence's median_lstar at 432 px off the final renders. A staged dark lab."
+   },
+   "accent": {
+    "hex": "#4E5FA8",
+    "name": "bluebonnet, the same alloy",
+    "frames_above_floor": [
+     5,
+     8,
+     9
+    ],
+    "share": [
+     0.0,
+     0.0,
+     0.0,
+     0.0003,
+     0.0035,
+     0.0,
+     0.0,
+     0.0025,
+     0.0072
+    ],
+    "note": "The band on the button over the papers, the mark across the section's mount and the paint on the broken bar's grip."
+   },
+   "ground": {
+    "hex": "#08080B",
+    "note": "The dark lab and the reliefs' black phenolic."
+   }
   }
  ]
 }
