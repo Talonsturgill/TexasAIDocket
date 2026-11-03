@@ -12,7 +12,7 @@ The National Science Foundation award to William Marsh Rice University funds REA
 - Public access: Closed
 - Take part: https://api.nsf.gov/services/v1/awards/2607553.json
 
-- Last checked: 2026-10-29
+- Last checked: 2026-11-01
 
 ## Dates
 
@@ -43,6 +43,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-21 · Checked and unchanged. The decision still stands as decided.
 - 2026-10-24 · The Rice laboratory where a model designs the experiment and a robot runs it is still funded and still bookable remotely.
 - 2026-10-29 · The NSF funded Rice laboratory where a model designs experiments and a robot runs them still stands on the foundation's record.
+- 2026-11-01 · The Rice laboratory where a model designs the experiment is still funded.
 
 ## Evidence
 

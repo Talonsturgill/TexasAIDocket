@@ -24,6 +24,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-23 · Admitted on the medical center's own account of the study. It names no Texas hospital using these models for triage, and the records came from hospitals in California and Massachusetts.
 - 2026-10-26 · UT Southwestern's account of the triage study still reads as cited. It still names no Texas hospital using these models to sort patients.
 - 2026-10-29 · UT Southwestern's finding on AI triage models and one stigmatizing detail still reads as published.
+- 2026-11-01 · UT Southwestern's finding on AI triage models is unconfirmed today, since its site refuses this project.
 
 ## Evidence
 

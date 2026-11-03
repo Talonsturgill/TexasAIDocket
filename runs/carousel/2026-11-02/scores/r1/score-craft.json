@@ -1,0 +1,31 @@
+{
+ "judge": "craft",
+ "round": 1,
+ "criteria": [
+  {"name": "artwork_craft", "weight": 0.22, "score": 6.0, "why": "Every frame rendered and staged dark; 1 and 4 come close to the stage. Slide 3 car roof and phone not identifiable, dog an eighth of the frame, a line across the dog, labels on halo plates. Slide 2 phone on a ball and pole stand, no glass, specular strip on the pillar. Slide 5 kit monitor on a flat wall with grey bars. 6 a uniform lattice reading as tiles, 7 art in a central column with merged casts, 8 a large mid-grey steel band. 9 a soft clay dog over flat concrete."},
+  {"name": "deck_coherence", "weight": 0.12, "score": 6.8, "why": "One chassis and world, motif changes state, one dog recurs, rotation obeys the rule; 6 to 8 read as a separate deck and 6 and 7 are two grids back to back."},
+  {"name": "claim_integrity", "weight": 0.20, "score": 8.5, "why": "Primary sources, verbatim quotes, numerals trace, the 2019 finding refused; slide 3's 'Every clip gets four questions' frames c4 and c5 as a fixed per-clip checklist."},
+  {"name": "story_and_stakes", "weight": 0.16, "score": 7.0, "why": "What, who, where, when and what follows are clear; the appearance stake is drawn and asked; no reader action at the close."},
+  {"name": "sequence_and_momentum", "weight": 0.10, "score": 6.8, "why": "Cover earns the swipe, 2 to 5 walk the pipeline; 2 pays weakly, 6 and 7 could merge, 9 echoes 8."},
+  {"name": "voice", "weight": 0.10, "score": 7.0, "why": "Clean and on house rules; much reads close to the release; nothing places it in San Antonio beyond the name."},
+  {"name": "variety", "weight": 0.10, "score": 7.0, "why": "Fresh subject and accent; a fourth straight staged lastLight deck closing on TXBENCH grids, a steel rule, the kit crossover again."}
+ ],
+ "weighted_score": 7.04,
+ "hard_fails": [],
+ "ranked_defects": [
+  {"slide": 3, "defect": "Car and phone at the convergence point unidentifiable; small dog; line across it; label collides with bracket; halo plates.", "fix": "Camera about 2.4 m over the rear quarter at fov 40 so roof rail, rear glass and clamped phone fill the bottom fifth; dog a fifth of the frame height."},
+  {"slide": 2, "defect": "Plastic phone on a ball and pole stand, no glass, no lens discs, white strip on the pillar.", "fix": "Clamp jaws gripping a lowered glass edge; raise the pillar roughness."},
+  {"slide": 5, "defect": "Primitive monitor on a dead wall, grey bars, flat clip, no window light.", "fix": "Set the four c5 check labels as type on the screen rows; window key from the left; chair back silhouette."},
+  {"slide": 7, "defect": "Relief in a central column with dead margins, merged casts, chart-card rule.", "fix": "Scale the relief about 1.4 times to bleed both sides; taller plugs; brushed rule with a lit bevel."},
+  {"slide": 6, "defect": "Uniform lattice reads as tiles; lumpy plug tops; pale wedge at the left edge.", "fix": "Irregular street network; remove the wedge; straight saw courses, darker albedo."},
+  {"slide": 9, "defect": "Soft clay hero; flat concrete lower 40 percent; low-poly grass; fence aliasing.", "fix": "Camera to about 0.45 m and crop the foreground; harden the side key."}
+ ],
+ "artwork_weakest_frames": [
+  {"slide": 3, "problem": "Convergence point a glow on an unreadable slab; small dog.", "fix": "Camera over the rear quarter so roof rail, glass and phone fill the bottom fifth."},
+  {"slide": 2, "problem": "Primitive phone on a stand, no glass.", "fix": "Clamp jaws on the lowered glass; phone back to camera with lens rings."},
+  {"slide": 5, "problem": "Kit monitor, flat wall, grey placeholder bars.", "fix": "Check labels as type on the screen rows."},
+  {"slide": 7, "problem": "Central 46 percent column, merged casts.", "fix": "Scale 1.4 times to bleed both edges."},
+  {"slide": 6, "problem": "Uniform lattice, lumpy tops, wedge leak.", "fix": "Irregular street network, remove the wedge."},
+  {"slide": 9, "problem": "Clay hero over flat concrete.", "fix": "Camera to 0.45 m, crop the foreground."}
+ ]
+}

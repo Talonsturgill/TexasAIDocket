@@ -220,7 +220,8 @@
         "2026-10-25",
         "2026-10-29",
         "2026-10-30",
-        "2026-10-31"
+        "2026-10-31",
+        "2026-11-01"
       ],
       "contradicted": []
     },
@@ -645,7 +646,8 @@
         "2026-10-25",
         "2026-10-26",
         "2026-10-29",
-        "2026-10-31"
+        "2026-10-31",
+        "2026-11-01"
       ],
       "contradicted": []
     },
@@ -1672,6 +1674,30 @@
       "learned": "2026-10-31",
       "instinct": "When two fetched sources state the same promise differently, put both on the surface with their attributions rather than dropping the one that complicates the frame.",
       "evidence": "No. 64 frame 8: round 1's repair dropped Houston Public Media's 'down within 72 hours' (c46) beside the Tribune's 'start bagging 72 hours after' (c33); the round 2 integrity judge charged the silent drop, and round 3 credited the disclosure.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "isolate-the-render-pass-before-another-review",
+      "learned": "2026-11-01",
+      "instinct": "Isolate a native size artifact named twice with a diagnostic render before changing anything, because a guessed cause costs a full review to disprove.",
+      "evidence": "no. 65's cover took sixteen art director readings; three guessed causes (shadow map size, the bump, the shadow receiver) were disproved one review each before diagnostic renders found the practical light, the shadow camera planes and the grade's bloom",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "occluder-reads-the-camera",
+      "learned": "2026-11-03",
+      "instinct": "Place every camera space occluder from the camera's own fov, never a typed one, because a later fov change moves the frame and not the occluder.",
+      "evidence": "No. 66 frame 1, the window seal kept fov 26 after the frame moved to 30 and its bevel crossed the type column for a pixel round.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "release-tense-before-panel",
+      "learned": "2026-11-03",
+      "instinct": "Before the first panel, read every sentence against its claim's tense and actor, because a release's will becomes present fact and a joint review becomes the software's in paraphrase.",
+      "evidence": "No. 66 round 1, the integrity judge scored claim integrity 5.5 on flattened tense, car for vehicle and checks given to software; the same judge's next round scored 8.0 after the copy was fixed.",
       "confirmed": [],
       "contradicted": []
     }

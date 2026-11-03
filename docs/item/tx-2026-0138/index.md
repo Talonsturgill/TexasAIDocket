@@ -42,6 +42,8 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-25 · Lubbock's procedure toward a data center moratorium stays unconfirmed today. The city's agenda turned the request away and the station's site bars automated readers.
 - 2026-10-26 · Lubbock's first step toward a data center moratorium is still unconfirmed. The city agenda refused the request and the station bars automated readers.
 - 2026-10-29 · Lubbock's start on a moratorium procedure still reads as reported. The city's own page and the station's report are unconfirmed.
+- 2026-11-01 · Lubbock's start on a moratorium procedure still reads as reported by public radio. The city's own page answers no request from this project.
+- 2026-11-02 · Lubbock's first step toward a data center moratorium is unconfirmed today, because the city's agenda refuses every reader.
 
 ## Evidence
 

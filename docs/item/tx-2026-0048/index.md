@@ -12,7 +12,7 @@ On August 11th, 2026 the League City City Council approved Ordinance No. 2026-27
 - Comment closes: 2026-11-03
 - Take part: https://leaguecity.legistar.com/MeetingDetail.aspx?LEGID=2222&GID=84&G=2D7DD9CC-BD32-4A4F-B8D5-83638663C82D
 
-- Last checked: 2026-10-29
+- Last checked: 2026-11-02
 
 ## Dates
 
@@ -53,6 +53,8 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-29 · The council approved a resolution to switch the Flock cameras off within 72 hours if most voters reject them in November.
 - 2026-10-30 · The city's agenda record still carries the special election on the plate reader cameras and the council's resolution to switch them off if voters reject them.
 - 2026-10-31 · League City's council record now carries Resolution No. 2026-185, which directs the fixed cameras' removal if most voters reject them. Every member on the roll voted for it. The city also lies partly in Harris County.
+- 2026-11-01 · League City's council records still show the special election set for Tuesday, and the October resolution on removing the cameras still reads as passed.
+- 2026-11-02 · League City's council record still orders Tuesday's special election on the fixed plate reader cameras, a day before voters decide it.
 
 ## Evidence
 

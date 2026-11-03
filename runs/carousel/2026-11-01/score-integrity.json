@@ -1,0 +1,80 @@
+{
+ "lens": "integrity",
+ "round": 3,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.5,
+   "why": "Frames 1, 2, 8 and 9 clear the bold test. Frame 4's arm is a toy of primitives on a mid grey floor, frame 5 a beige slab with a rubber band mark, frame 7 an embossed I glyph calendar tile, frame 6 two flat trays under a dead band, frame 1's lower right copper smooth with stepped dome rings."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "Clearly one piece: one key, one button motif, one material vocabulary, a value arc from glow to cold steel. The navy room alternates with the black relief field, and frame 5 sits outside the dark register."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.5,
+   "why": "Every numeral traces and attribution discipline is good. Held down by: slide 5's co-originator assertion not in the stored quotes of c13 and c15; the first comment's 'Day counts computed in compute.py' when the deck computes months; slide 9's cite line listing c23 with nothing on the slide stating it; every foundry fact resting on the university's own releases."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.5,
+   "why": "What and who paid are clear. No place below Texas A&M, no date, frame 9 gives no route."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "The hook works and frame 2 pays. The argument's motive arrives at frame 8, frame 5 could move, the real turn is frame 6's switch to the separate award."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Clean and on register with characterful headlines, clerkly deks, no Texas texture, the department never named."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "A new palette and world. The one unit counted in a grid spine repeats nos. 62 to 64, and frame 7's calendar grid repeats nos. 52 and 64."
+  }
+ ],
+ "weighted_score": 6.92,
+ "hard_fails": [],
+ "ship": true,
+ "ship_note": "",
+ "one_sentence_fix": "Make frame 9 a real 'what a reader can do' with ARM-MIP's access page and PhaseForge's repository, and name College Station from the NSF record.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 4,
+   "problem": "A toy arm of cylinders and boxes, plain primitives, a mid grey floor.",
+   "fix": "Filleted castings, joint housings and a cable run, tight on the gripper over the glowing pocket, the floor outside the pool to black."
+  },
+  {
+   "slide": 5,
+   "problem": "A beige slab in the grey middle, a thick flat ring for the mark.",
+   "fix": "Near edge on so only the sheet edges catch the key, a thin paint pen stroke."
+  },
+  {
+   "slide": 7,
+   "problem": "72 dogbones at relief height 10 read as an embossed calendar tile, a hard plate edge, labels outside the safe zone.",
+   "fix": "Real height with fillets, an oblique crop bleeding off the right and bottom, labels inside the margin."
+  },
+  {
+   "slide": 6,
+   "problem": "Two flat trays under a dead band, a vent grille at feed size.",
+   "fix": "Lower and push in so the 249 tray bleeds off the right, scuffed bevelled tops, the pool on the 41 filled wells."
+  },
+  {
+   "slide": 1,
+   "problem": "A smooth tan lower right gradient, stepped dome rings.",
+   "fix": "Milled arc roughness, more dome segments."
+  }
+ ]
+}

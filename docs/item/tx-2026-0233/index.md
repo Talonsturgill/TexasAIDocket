@@ -9,7 +9,7 @@ Soluna Holdings and Applied Digital agreed on October 21st to form a jointly own
 - Public access: Write to the decider
 - Take part: https://www.solunacomputing.com/news/soluna-applied-digital-chronoscale/
 
-- Last checked: 2026-10-29
+- Last checked: 2026-11-01
 
 ## Dates
 
@@ -20,6 +20,7 @@ Soluna Holdings and Applied Digital agreed on October 21st to form a jointly own
 One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
 
 - 2026-10-29 · Admitted on Soluna's own releases. The deal has not closed, and no Briscoe County vote on the abatement is on record yet.
+- 2026-11-01 · Soluna and Applied Digital's agreement on a joint data center beside the Briscoe wind farm still reads as announced.
 
 ## Evidence
 

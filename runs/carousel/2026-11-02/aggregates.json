@@ -1,0 +1,88 @@
+{
+ "date": "2026-11-02",
+ "_note": "Every count, span and duration the deck states, with the claim it was quoted from, the claims it tallies, or the figures.json key compute.py computed.",
+ "aggregates": [
+  {
+   "phrase": "32 study areas",
+   "slide": "slide-06.html",
+   "kind": "count",
+   "value": 32,
+   "quoted_from": "c17",
+   "quote": "SwRI researchers will survey the same 32 study areas as in the City's 2019 effort",
+   "note": "quoted"
+  },
+  {
+   "phrase": "32 places",
+   "slide": "slide-07.html",
+   "kind": "count",
+   "value": 32,
+   "quoted_from": "c17",
+   "quote": "SwRI researchers will survey the same 32 study areas as in the City's 2019 effort",
+   "note": "quoted"
+  },
+  {
+   "phrase": "32 study areas",
+   "slide": "caption.txt",
+   "kind": "count",
+   "value": 32,
+   "quoted_from": "c17",
+   "quote": "SwRI researchers will survey the same 32 study areas as in the City's 2019 effort",
+   "note": "quoted"
+  },
+  {
+   "phrase": "Four checks",
+   "slide": "slide-03.html",
+   "kind": "count",
+   "value": 4,
+   "computed_by": "out/2026-11-02/compute.py, review_checks, the checks the review makes on each detected dog: unrestrained (c4), human supervision, number of dogs present, owned or a stray (c5)",
+   "note": "computed"
+  },
+  {
+   "phrase": "Two labels",
+   "slide": "slide-04.html",
+   "kind": "count",
+   "value": 2,
+   "from_claims": [
+    "c6",
+    "c7"
+   ],
+   "note": "counted: stray (c6) and roaming (c7); figures.json classes"
+  },
+  {
+   "phrase": "7 years",
+   "slide": "slide-07.html",
+   "kind": "span",
+   "value": 7,
+   "from_claims": [
+    "c9",
+    "c10"
+   ],
+   "note": "computed",
+   "computed_by": "out/2026-11-02/compute.py, years_between, survey_year 2026 (c10) minus prior_survey_year 2019 (c9). Both sources give years only, so the span is taken calendar year to calendar year",
+   "from_date": "2019-01-01",
+   "to_date": "2026-01-01"
+  },
+  {
+   "phrase": "Seven years",
+   "slide": "slide-07.html",
+   "kind": "span",
+   "value": 7,
+   "from_claims": [
+    "c9",
+    "c10"
+   ],
+   "computed_by": "out/2026-11-02/compute.py, years_between, the kicker of slide 7",
+   "note": "computed",
+   "from_date": "2019-01-01",
+   "to_date": "2026-01-01"
+  },
+  {
+   "phrase": "two official records",
+   "slide": "first_comment.txt",
+   "kind": "count",
+   "value": 2,
+   "computed_by": "scripts/carousel/sources_block.py, the distinct official City of San Antonio documents among the cited claims: the news release of October 20th (c15 c17 c18 c19 c20 c21) and the Animal Care Services statistics page (c22)",
+   "note": "computed"
+  }
+ ]
+}

@@ -11,7 +11,7 @@ The City of Taylor has a proposed development agreement with Big Watt Digital an
 - Public access: Closed
 - Take part: https://www.taylortx.gov/1416/Taylor-Technology-Campus
 
-- Last checked: 2026-10-29
+- Last checked: 2026-11-01
 
 ## Dates
 
@@ -34,6 +34,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-25 · Taylor's annexation agreement for the data center campus stays unconfirmed on the city's notice, which no longer answers at its address. CBS Austin's report of the approval still reads as cited.
 - 2026-10-26 · Taylor's annexation agreement for the data center campus is still unconfirmed on the city's notice, which no longer answers. CBS Austin's report of the approval reads as cited.
 - 2026-10-29 · The city's campus page still carries the annexation agreement and its water, setback and noise terms. The earlier city notice has moved off its address.
+- 2026-11-01 · Taylor's annexation agreement for the data center campus still stands as approved on the city's record.
 
 ## Evidence
 

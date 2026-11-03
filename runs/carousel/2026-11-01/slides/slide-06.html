@@ -1,0 +1,71 @@
+<!doctype html>
+<!-- 2026-11-01, frame 6 of 9. Archetype GRID. A spatial scene through txthree.js in a dark TXT.interior room: two chassis sample_trays at one scale, the WoodNext grant as grant_buttons buttons and the NSF award as nsf_total_buttons wells with nsf_obligated_buttons of them filled, all read from figures.json at one $100,000 drawing unit. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<svg id="ov" width="1080" height="1350" style="position:absolute;left:0;top:0;z-index:11" data-decorative></svg>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:920px">NSF has obligated $4.1 million of $24.9 million</h1>
+<p class="dek" data-follow="26" style="width:880px">The $24.9 million is the award's estimated total. Its Autonomous Robotic Metallurgist at Texas A&amp;M is built to design, make, test and learn from new alloys. In front, the WoodNext grant at $100,000 a button. Drawn to&nbsp;illustrate.</p>
+<div class="lab" id="lab-a">WOODNEXT</div>
+<div class="lab" id="lab-b">NSF ARM-MIP</div>
+<script>window.FIG = {"grant_buttons": 20, "nsf_obligated_buttons": 41, "nsf_total_buttons": 249};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-01-foundry.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "A separate federal award", counter: "06 / 09", src: "c1 c20 c21 c22 c25 c26", fit: { min: 66, max: 88, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 34, near: 0.005, far: 60, fog: 0.02 });
+  const M = CH.mats(THREE, K);
+  TXT.interior(R, { w: 7, d: 6, h: 3.2, floor: 'concrete', wall: 0x2c2b2a, window: 'left', ceiling: true, light: 0.2 });
+  const Y = 0.9;
+  const bench = TXT.roundedBox(2.2, 0.04, 1.0, 0.006, M.benchTop); bench.position.set(0, Y - 0.02, -0.15); TXT.add(R, bench);
+  const legs = TXT.roundedBox(2.1, Y - 0.04, 0.9, 0.01, M.steelDark); legs.position.set(0, (Y - 0.04) / 2, -0.15); TXT.add(R, legs); TXT.contact(R, legs);
+  /* THE FIGURES, from figures.json at one drawing unit: the grant's buttons, and the award's wells with its obligated share filled */
+  const nG = Math.round(FIG.grant_buttons), nT = Math.round(FIG.nsf_total_buttons), nO = Math.round(FIG.nsf_obligated_buttons);
+  const TR = { pitch: 0.0165, wr: 0.0062, wd: 0.0034, h: 0.012, margin: 0.011 };
+  const small = K.make('sample_tray', Object.assign({ n: nG, cols: 10 }, TR)); small.position.set(-0.08, Y, 0.115); small.rotation.y = 0.0; TXT.add(R, small); CH.contact(THREE, R, small);
+  const big = K.make('sample_tray', Object.assign({ n: nT, cols: 25 }, TR)); big.position.set(0.04, Y, -0.04); big.rotation.y = 0.0; TXT.add(R, big); CH.contact(THREE, R, big);
+  const put = (tray, k, i) => { const w = tray.userData.wells[k], b = K.make('alloy_button', { d: 0.0116, h: 0.0054, state: (i % 4 === 1) ? 'dark' : 'cool', seed: i + 5 });
+    const v = new THREE.Vector3(w[0], w[1] + 0.0004, w[2]).applyMatrix4(tray.matrixWorld); b.position.copy(v); b.rotation.y = i * 2.3; TXT.add(R, b); };
+  small.updateMatrixWorld(); big.updateMatrixWorld();
+  for (let i = 0; i < nG; i++) put(small, i, i);
+  for (let i = 0; i < nO; i++) put(big, i, i + 40);
+  const from = [-0.03, Y + 0.6, 0.74];
+  TXT.frame(R, { fov: 36, from, look: [0.02, Y + 0.06, -0.1] });
+  CH.warm(R, 0.24);
+  TXT.deckRig(R, CH.rigSpec(W, 0.6, 4096), CH.rigOpts([0, Y, 0], { distance: 1.2, shadowFar: 2.6 }));
+  CH.unacne(R, 0.002);
+  TXT.weather(R, { grime: 0.25, height: 0.15 });
+  TXT.stage(R, [small, big]);
+  /* labels sit on the dark bench in front of each tray, with leaders landing on the tray's near edge */
+  const svg = document.getElementById('ov'), leaders = [];
+  const anchor = (tray, dx) => { const d = tray.userData.dims; return new THREE.Vector3(dx * d[0] / 2, 0.02, d[1] / 2).applyMatrix4(tray.matrixWorld); };
+  [['lab-a', small, 1.0, [40, -16]], ['lab-b', big, 0.3, [70, 34]]].forEach(([id, tray, dx, off]) => {
+    const p = anchor(tray, dx), at = CH.project(THREE, R, [p.x, p.y, p.z]), el = document.getElementById(id);
+    el.style.left = Math.round(Math.max(80, at[0] + off[0])) + 'px'; el.style.top = Math.round(Math.min(1160, at[1] + off[1])) + 'px'; el.style.left = Math.round(Math.min(1000 - el.getBoundingClientRect().width, parseFloat(el.style.left))) + 'px';
+    const b = el.getBoundingClientRect(); CH.leader(svg, [b.left - 8, b.top + b.height / 2], at); leaders.push({ target: id === 'lab-a' ? 'the WoodNext tray' : 'the NSF tray', at, to: at });
+  });
+  window.__txLeaders = leaders;
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0.35, veil: 0.3 });
+  /* no grade bloom: its quarter resolution buffer lays square cells round bright highlights on a dark surface */
+  TXDECK.finish(cx, { bloom: { threshold: 0.72, strength: 0, radius: 8 } });
+  return true;
+})();
+</script>
+</body>
+</html>

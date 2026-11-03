@@ -1,0 +1,75 @@
+{
+ "lens": "reader",
+ "round": 1,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.5,
+   "why": "Frames 2, 3, 7 and 8 strong at 432 px. Frame 5 is a tan cardboard slab in the grey middle with a flat ring for a mark, frame 4's arm is stacked primitives with the TEST station cut off, frame 9's bar is under a quarter of the frame with a dead band above, frame 1's right copper is a flat peach plane and its domes band."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.0,
+   "why": "One deck with a describable spine, one alloy through its states, the blue mark returning. Frame 5 strobes the value track and frame 1's warm right half is the other outlier."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 6.5,
+   "why": "Every numeral traces. Frame 6's kicker 'Two funders, one unit' with frames 7 and 9 lets a feed reader conclude NSF co-funds the foundry, which no claim says and the caption calls a separate award. Frame 5's 'conceived the foundry' rests on truncated quotes."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.5,
+   "why": "What, who pays and who conceived it are clear. No place below Texas A&M, no date, the Texan stake unstated, frame 9's action buried in the dek, the Woods being Aggies dropped."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "The cover earns the swipe and frame 2 pays. The premise arrives on frame 8 after the detour through the federal award, so the turn comes late. Frame 5 could go."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "Clean and honest. Frame 3's spec sheet line, press release phrasing on the foundation, 'Drawn to illustrate.' nine times, 'Two funders, one unit' as jargon, no Texas texture."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "The bench macro and the reliefs are fresh. Money as units in wells at a drawing unit repeats no. 63, and frame 7 is counted bars despite the art plan."
+  }
+ ],
+ "weighted_score": 6.56,
+ "hard_fails": [],
+ "ship": false,
+ "ship_note": "",
+ "one_sentence_fix": "Make the close tell a Texan what to do, change frame 6's kicker so the NSF award reads as a separate platform, and spend a frame on the Texas stake the sources support.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 5,
+   "problem": "A pale tan slab in the grey middle, about 40 visible sheet lines for 100, a flat ring for the mark.",
+   "fix": "Bench height three quarter view on the shadow side, rake only the sheet edges, run the stack off the left edge, a thin pen stroke for the mark."
+  },
+  {
+   "slide": 4,
+   "problem": "A toy arm of boxes and cylinders, the crucible cropped left, the TEST station clipped right.",
+   "fix": "Reframe tighter on the gripper holding a button over the glowing pocket with the grips inside the right third, rebuild the arm links as castings."
+  },
+  {
+   "slide": 9,
+   "problem": "The bar under a quarter of the frame with a dead band of about 380 px above it.",
+   "fix": "Scale the bar about 1.6 times, fracture near centre, grips running off both edges."
+  },
+  {
+   "slide": 1,
+   "problem": "The right copper a flat bright peach plane and terraced dome banding.",
+   "fix": "Lower the copper fill so the right falls dark with one sweep, smooth ripple normals on the domes."
+  }
+ ]
+}
