@@ -256,8 +256,7 @@ type:
   dek: "Video clips will go to automated and human review. Each detected dog will be checked."
   labels: ["unrestrained", "human supervision", "number of dogs present", "owned or a stray"]
 
-verbatim:
-  - c5: "determine any human supervision, verify the number of dogs present and assess whether the dog was owned or a stray"
+verbatim: []
 
 acceptance:
   - "the dog stands at least 60 px tall at 432px inside the four corners"
@@ -442,7 +441,7 @@ type:
   labels: []
 
 verbatim:
-  - c19: "it is not intended to count every unrestrained dog in San Antonio"
+  - c19: "not intended to count every unrestrained dog in San Antonio"
 
 acceptance:
   - "the black clay city plan with its plugs owns at least half of the frame height at 432px"
@@ -559,8 +558,7 @@ type:
   dek: "Field research is expected to run through December. SwRI will then forward Animal Care Services a final report on the study's findings and data."
   labels: ["OCT", "NOV", "DEC", "final report"]
 
-verbatim:
-  - c20: "Field research is expected to take place through December 2026."
+verbatim: []
 
 acceptance:
   - "the brushed steel survey rule spans the full frame width and the block on it owns at least a third of the frame width at 432px"
@@ -614,7 +612,7 @@ type:
   labels: []
 
 verbatim:
-  - c14: "This study gives us another tool to better understand where we are seeing unrestrained dogs"
+  - c14: "another tool to better understand where we are seeing unrestrained dogs"
 
 acceptance:
   - "a dog with four legs, a head and a tail is identifiable at 432 px and owns at least a fifth of the frame height"
