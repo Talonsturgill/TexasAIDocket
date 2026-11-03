@@ -2474,3 +2474,15 @@ center review, the multi sector general permit renewal).
 
 **A browser user agent probe of the boundary items was refused by the auto mode classifier** as bot check
 circumvention, and the run re-measured all 30 boundaries with the project's own agent only.
+
+## 2026-11-02
+
+**www.swri.org answered** the newsroom release on the automated survey of unrestrained dogs, and **www.sa.gov answered**
+the City of San Antonio news release of October 20th and the Animal Care Services statistics page.
+
+**The ACS 2019 Unrestrained Dog Study PDF on www.sa.gov was not read.** The fact checker's fetch of
+`/files/assets/main/v/1/acs/documents/unrestraineddogstudy-fy19.pdf` exceeded the fetcher's size limit, so no 2019 finding
+entered the claims. `scripts/shared/fetch_doc.py` was not tried on it this run, and it is the route a later run should try
+first.
+
+**The Federal Register poll failed at discovery**, and the scouts' sweep was folded in instead.
