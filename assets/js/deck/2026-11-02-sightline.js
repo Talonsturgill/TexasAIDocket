@@ -17,7 +17,7 @@
  *
  * THE BLOCK. One street, built from N.BLOCK's fixed coordinates by every street frame: the road along x centred on
  * z = 0, the north kerb, the parkway, the sidewalk, a chain link fence, a limestone ranch house, a driveway, a live
- * oak and a streetlight. The survey car drives west in the south lane with the phone on its north window, so the
+ * oak and a streetlight. The survey car drives east in the south lane with the phone on its north (left rear) window, so the
  * lens looks north across the road to the parkway. Every frame stands somewhere on this one street.
  *
  * THE KIT MODELS THIS DECK BUILDS, the kit having neither: `street_dog` (one smooth signed distance body meshed by
@@ -87,9 +87,9 @@
   N.coat = function (THREE, key, base, dark, sheenK) {
     N._coats = N._coats || {};
     if (N._coats[key]) return N._coats[key];
-    var map = furTex(THREE, key.length * 97 + 5, base, dark, 9000); map.repeat.set(3, 3);
-    var bump = bumpTex(THREE, key.length * 31 + 7, 9000); bump.repeat.set(3, 3);
-    N._coats[key] = new THREE.MeshPhysicalMaterial({ map: map, bumpMap: bump, bumpScale: 1.4, roughness: 0.88, metalness: 0, sheen: sheenK == null ? 0.55 : sheenK, sheenRoughness: 0.5, sheenColor: new THREE.Color(0xffe2bf) });
+    var map = furTex(THREE, key.length * 97 + 5, base, dark, 9000); map.repeat.set(6, 6);
+    var bump = bumpTex(THREE, key.length * 31 + 7, 9000); bump.repeat.set(7, 7);
+    N._coats[key] = new THREE.MeshPhysicalMaterial({ map: map, bumpMap: bump, bumpScale: 0.7, roughness: 0.88, metalness: 0, sheen: sheenK == null ? 0.55 : sheenK, sheenRoughness: 0.5, sheenColor: new THREE.Color(0xffe2bf) });
     return N._coats[key];
   };
 
@@ -141,15 +141,25 @@
       var P = [];   /* primitives: ['e', c, r] or ['c', a, b, r1, r2] */
       var E = function (c, r) { P.push(["e", c, r]); }, Cn = function (a2, b2, r1, r2) { P.push(["c", a2, b2, r1, r2]); };
       /* the trunk */
-      E([0, 0.40, 0.12], lean ? [0.088, 0.122, 0.19] : [0.1, 0.13, 0.2]);
-      Cn([0, lean ? 0.435 : 0.42, 0.0], [0, 0.44, -0.16], lean ? 0.062 : 0.088, lean ? 0.07 : 0.085);
-      E([0, 0.435, -0.19], lean ? [0.074, 0.088, 0.1] : [0.085, 0.095, 0.11]);
+      E([0, 0.40, 0.12], lean ? [0.086, 0.12, 0.19] : [0.116, 0.142, 0.205]);
+      Cn([0, lean ? 0.44 : 0.415, 0.0], [0, 0.44, -0.16], lean ? 0.058 : 0.1, lean ? 0.068 : 0.092);
+      E([0, 0.435, -0.19], lean ? [0.072, 0.086, 0.1] : [0.094, 0.1, 0.115]);
       /* neck and head */
-      var hy = wary ? 0.455 : 0.64, hz = wary ? 0.43 : 0.38;
+      var hy = wary ? 0.39 : 0.64, hz = wary ? 0.44 : 0.38;
       Cn([0, 0.46, 0.22], [0, hy - 0.025, hz - 0.035], lean ? 0.068 : 0.078, 0.052);
       E([0, hy, hz], [0.056, 0.058, 0.068]);
+      E([0, hy - 0.02, hz + 0.03], [0.05, 0.04, 0.05]);
       var my = wary ? -0.03 : -0.018;
       Cn([0, hy - 0.012, hz + 0.035], [0, hy + my, hz + 0.135], 0.038, 0.022);
+      Cn([0, hy - 0.035, hz + 0.03], [0, hy + my - 0.022, hz + 0.115], 0.026, 0.014);
+      /* ears: thick round cones blended into the skull, pricked on an easy dog and laid back on a wary one */
+      var ears = [];
+      [-1, 1].forEach(function (k) {
+        var base = [k * 0.036, hy + 0.04, hz - 0.015];
+        var tip = wary ? [k * 0.062, hy + 0.055, hz - 0.1] : [k * 0.052, hy + 0.115, hz - 0.03];
+        Cn(base, tip, 0.024, 0.006);
+        ears.push([base, tip, k]);
+      });
       /* forelegs: shoulder to elbow tucked back, a straight forearm, the pastern sloping forward to the paw */
       [-1, 1].forEach(function (k) {
         var fx = k * 0.062, lift = step && k > 0;
@@ -157,7 +167,7 @@
         Cn([fx, 0.42, 0.17], el, 0.05, 0.036);
         Cn(el, wr, 0.03, 0.019);
         Cn(wr, pw, 0.018, 0.02);
-        E(lift ? [fx, 0.13, 0.31] : [fx * 0.95, 0.018, 0.19], [0.024, 0.017, 0.033]);
+        var pc = lift ? [fx, 0.13, 0.31] : [fx * 0.95, 0.018, 0.19]; E(pc, [0.022, 0.016, 0.028]); [-1.5, -0.5, 0.5, 1.5].forEach(function (t) { E([pc[0] + t * 0.0105, pc[1] - 0.002, pc[2] + 0.022 - Math.abs(t) * 0.004], [0.0075, 0.009, 0.01]); });
         /* hind legs: the thigh's muscle, the stifle forward, the gaskin down and back to the hock, then the
          * hock to the paw nearly upright. A wary dog crouches: the stifle bends further. */
         var hx = k * 0.07, cr = wary ? 0.03 : 0;
@@ -166,12 +176,17 @@
         Cn([hx, 0.36 - cr * 0.5, -0.15], st, 0.05, 0.035);
         Cn(st, hk, 0.03, 0.02);
         Cn(hk, hp, 0.019, 0.019);
-        E([hx * 0.95, 0.018, -0.21], [0.023, 0.016, 0.03]);
+        E([hx * 0.95, 0.018, -0.21], [0.021, 0.016, 0.026]); [-1.5, -0.5, 0.5, 1.5].forEach(function (t) { E([hx * 0.95 + t * 0.0100, 0.016, -0.19 - Math.abs(t) * 0.004], [0.0072, 0.009, 0.0095]); });
       });
       /* tail */
-      var T = wary ? [[0, 0.44, -0.28], [0, 0.34, -0.31], [0, 0.24, -0.27], [0, 0.17, -0.22]] : [[0, 0.46, -0.28], [0, 0.55, -0.35], [0, 0.65, -0.36], [0, 0.7, -0.3]];
-      var TR = [0.03, 0.024, 0.016, 0.009];
-      for (var i = 0; i < 3; i++) Cn(T[i], T[i + 1], TR[i], TR[i + 1]);
+      var T = wary ? [[0, 0.43, -0.29], [0, 0.35, -0.315], [0, 0.26, -0.29], [0, 0.19, -0.24], [0, 0.15, -0.19]] : [[0, 0.46, -0.28], [0, 0.54, -0.345], [0, 0.62, -0.365], [0, 0.69, -0.345], [0, 0.73, -0.31]];
+      var TR = [0.03, 0.024, 0.017, 0.011, 0.004];
+      /* one smooth curve through the tail's points, cut into many short cones whose radii taper evenly, so no step shows */
+      var tc = new THREE.CatmullRomCurve3(T.map(function (q) { return new THREE.Vector3(q[0], q[1], q[2]); })), NS = 14;
+      for (var i = 0; i < NS; i++) {
+        var a0 = tc.getPointAt(i / NS), a1 = tc.getPointAt((i + 1) / NS);
+        Cn([a0.x, a0.y, a0.z], [a1.x, a1.y, a1.z], 0.03 - 0.026 * (i / NS), 0.03 - 0.026 * ((i + 1) / NS));
+      }
       var K2 = 0.028;
       var f = function (x, y, z) {
         var d = 1e9;
@@ -180,9 +195,16 @@
           d = j === 0 ? dj : smin(d, dj, K2);
         }
         /* a lean dog's ribs: shallow grooves across the barrel's flanks, never sores or bone */
+        /* the inner cup of each ear, carved from the face side; eye sockets carved where the eyes sit */
+        for (var e = 0; e < ears.length; e++) {
+          var E2 = ears[e], cxp = [E2[0][0] * 0.8 + E2[1][0] * 0.2 + E2[2] * -0.004, E2[0][1] * 0.45 + E2[1][1] * 0.55, E2[0][2] * 0.45 + E2[1][2] * 0.55 + 0.012];
+          var cup = sdE(x, y, z, cxp, [0.011, 0.03, 0.009]);
+          d = Math.max(d, -cup + 0.0005 * 0);
+        }
+        [-1, 1].forEach(function (k) { var so = sdE(x, y, z, [k * 0.034, hy + 0.018, hz + 0.058], [0.013, 0.009, 0.01]); d = Math.max(d, -so); });
         if (lean && z > -0.02 && z < 0.24 && y > 0.3 && y < 0.5 && Math.abs(x) > 0.05) {
           var g = Math.cos((z - 0.02) / 0.034 * Math.PI * 2);
-          d += 0.0011 * Math.max(0, g);
+          d += 0.0006 * Math.max(0, g);
         }
         return d;
       };
@@ -235,19 +257,17 @@
       options: { build: "full", pose: "easy", coat: "tan", shoulder: 0.52, detail: 0.008, seed: 1 },
       note: "A medium street dog at true scale, to no breed, one smooth SDF body. build lean|full, pose wary|easy|step, coat tan|black|brindle|cream, shoulder m, detail mesh cell m.",
       make: function (o) {
-        var coats = { tan: ["#a07a4f", "46,26,12", 0.55], black: ["#1c1918", "4,3,3", 0.18], brindle: ["#6b5038", "24,16,10", 0.4], cream: ["#cdb898", "70,50,30", 0.55] };
+        var coats = { tan: ["#a07a4f", "46,26,12", 0.55], black: ["#1c1918", "4,3,3", 0.18], brown: ["#6a4a30", "22,14,8", 0.42], brindle: ["#6b5038", "24,16,10", 0.4], cream: ["#cdb898", "70,50,30", 0.55] };
         var cc = coats[o.coat] || coats.tan, mat = N.coat(THREE, "dog_" + o.coat, cc[0], cc[1], cc[2]);
         var dark = new THREE.MeshPhysicalMaterial({ color: 0x0b0908, roughness: 0.25, clearcoat: 0.8 });
         var F = N.dogField(o), g = new THREE.Group();
         var geo = K.sdfMesh(F.f, [-0.14, 0, -0.42, 0.14, 0.8, 0.64], o.detail || 0.008, N.dogUV);
         g.add(new THREE.Mesh(geo, mat));
         var hy = F.head[1], hz = F.head[2], wary = o.pose === "wary";
-        var nose = new THREE.Mesh(new THREE.SphereGeometry(0.018, 14, 10), dark); nose.scale.set(1.1, 0.85, 0.8); nose.position.set(0, F.muzzle[1] + 0.006, F.muzzle[2] + 0.012); g.add(nose);
+        var nose = new THREE.Mesh(new THREE.SphereGeometry(0.017, 18, 14), dark); nose.scale.set(1.3, 0.9, 0.85); nose.position.set(0, F.muzzle[1] + 0.006, F.muzzle[2] + 0.016); g.add(nose);
+        var iris = new THREE.MeshPhysicalMaterial({ color: 0x2a1a0e, roughness: 0.15, clearcoat: 1, clearcoatRoughness: 0.05 });
         [-1, 1].forEach(function (k) {
-          var eye = new THREE.Mesh(new THREE.SphereGeometry(0.0105, 12, 10), dark); eye.position.set(k * 0.034, hy + 0.018, hz + 0.052); g.add(eye);
-          var es = new THREE.Shape(); es.moveTo(-0.026, 0); es.quadraticCurveTo(-0.02, 0.048, 0.003, 0.08); es.quadraticCurveTo(0.02, 0.042, 0.026, 0);
-          var ear = new THREE.Mesh(new THREE.ExtrudeGeometry(es, { depth: 0.006, bevelEnabled: true, bevelThickness: 0.004, bevelSize: 0.003, bevelSegments: 2, curveSegments: 8 }), mat);
-          ear.position.set(k * 0.04, hy + 0.035, hz - 0.012); ear.rotation.set(wary ? -1.05 : -0.2, k * 0.35, k * (wary ? 0.5 : 0.28)); g.add(ear);
+          var eye = new THREE.Mesh(new THREE.SphereGeometry(0.0085, 14, 10), iris); eye.scale.set(1.2, 0.75, 0.8); eye.position.set(k * 0.033, hy + 0.018, hz + 0.054); g.add(eye);
         });
         g.scale.setScalar((o.shoulder || 0.52) / 0.52);
         return shade(g);
