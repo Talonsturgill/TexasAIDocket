@@ -140,10 +140,10 @@ CI refuse it, so commits stayed in the owner's identity.
 | aggregates     | PASS   | 7 declaration(s), 8 numeric phrase(s) in the render, all re-derived |
 | assembly       | PASS   | 9 slide(s), 9.22 MB, vector |
 | score          | WARN   | 6.868 at the round cap after 3 round(s), the finished deck ships; 8.0 top rung, shortfall named |
-| labels         | ABSENT | label_report.json not written yet. Run scripts/carousel/label_guard.py <run-dir> |
-| quantifiers    | ABSENT | quantifier_report.json not written yet. Run scripts/carousel/quantifier_check.py <run-dir> |
-| verbatim       | ABSENT | verbatim_report.json not written yet. Run scripts/carousel/verbatim_check.py --date <date> |
-| dossiers       | PASS   | 33,727 chars planned |
+| labels         | PASS   | 58 claim id(s) checked, every label beside one traces to the shape its claim proves |
+| quantifiers    | PASS   | 86 published string(s) read from one list, every universal names its set |
+| verbatim       | PASS   | 6 declared fragment(s) over 9 of 9 dossier(s), every one a literal substring of its own claim's quote |
+| dossiers       | PASS   | 33,507 chars planned |
 | caption        | PASS   | 151 words |
 | craft floor    | PASS   | 9 frame(s), median 896, floor 161 |
 | plan vs render | WARN   | 9 of 59 acceptance item(s) checkable |
