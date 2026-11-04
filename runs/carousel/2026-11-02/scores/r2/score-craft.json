@@ -1,0 +1,32 @@
+{
+ "judge": "craft",
+ "round": 2,
+ "criteria": [
+  {"name": "artwork_craft", "weight": 0.22, "score": 6.0, "why": "Every frame a physical render, deck dark; 1, 9 and 4 strongest. Frame 3 missing its car and phone, labels on plates, grey-middle; frame 5 primitive monitor with blank bars and flat clip; frame 8 a mid-grey slider rule, striated plug, dead lower band; frame 6 grey plugs with rim-deep casts and wedges; frame 2 slab phone on boxes, empty upper screen; the SDF dog a figurine at native size."},
+  {"name": "deck_coherence", "weight": 0.12, "score": 7.0, "why": "One deck: box changes state, one dog, the light holds, no strobe; 6 to 8 read as a separate product sheet, 6 and 7 two grids."},
+  {"name": "claim_integrity", "weight": 0.20, "score": 8.5, "why": "Every fact traces to primary releases, quotes verbatim, numerals traced, the 2019 absence stated; classification rests on a corporate release."},
+  {"name": "story_and_stakes", "weight": 0.16, "score": 7.0, "why": "What, who, where, when and next are clear; the appearance stake drawn and asked; stays general, nothing to act on."},
+  {"name": "sequence_and_momentum", "weight": 0.10, "score": 7.0, "why": "Cover and slide 2 pay, real turn at 6; 3 and 5 overlap; the close lands softly."},
+  {"name": "voice", "weight": 0.10, "score": 7.0, "why": "Clean and careful; leans on release phrasing; frame 9's hook flat."},
+  {"name": "variety", "weight": 0.10, "score": 7.5, "why": "Fresh concept, first animal and first street-level camera opening; lastLight again and a plan-view tile relief."}
+ ],
+ "weighted_score": 7.13,
+ "hard_fails": [],
+ "ranked_defects": [
+  {"slide": 3, "defect": "Missing car and phone; plates; a gold line through the footer band.", "fix": "Frame the roof and phone at the bottom, drop the plates, clip the lines above the footer."},
+  {"slide": 8, "defect": "Mid-grey slider rule, striated plug, shadow artifact, dead lower band.", "fix": "Dark steel rule, caliche plug, fixed cast, larger block."},
+  {"slide": 5, "defect": "Blank grey check bars, flat clip, primitive monitor.", "fix": "Four lit check words, real render on the screen, screen-only light."},
+  {"slide": 6, "defect": "Grey plugs, rim-deep casts, wedge artifact.", "fix": "Pale caliche, taller plugs, longer casts, keyMask falloff."},
+  {"slide": 7, "defect": "Second grid; grey segmented rule; flat black pockets.", "fix": "Lit pocket walls and cast floors; inlaid dark steel rule."},
+  {"slide": 2, "defect": "Slab phone on a box clamp, empty upper screen, no real dog through the window.", "fix": "Model the clamp, fill the screen, add the real dog beyond the glass."},
+  {"slide": 1, "defect": "Figurine dog; seal reads as a letterbox.", "fix": "Coat breakup; curved occluder with a reflection."},
+  {"slide": 9, "defect": "Blob haunch; dead lower concrete.", "fix": "Fur breakup; lower camera to crop the walk."}
+ ],
+ "artwork_weakest_frames": [
+  {"slide": 3, "problem": "Lines converge on nothing; plates; grey middle.", "fix": "Roof rail, rear glass and window_phone in the bottom fifth with a lit lens bead; no plates."},
+  {"slide": 8, "problem": "Slider rule, striated plug, dead clay.", "fix": "Dark blued steel rule under L* 20, caliche plug, enlarge 1.4 times."},
+  {"slide": 5, "problem": "Primitive boxes, wireframe check rows, flat clip.", "fix": "Check words in screen type with gold ticks, screen-only light."},
+  {"slide": 6, "problem": "Grey plugs, rim casts, wedges, no pool falloff.", "fix": "#E4D8C3 plugs, taller with longer casts, keyMask pool."},
+  {"slide": 2, "problem": "Slab phone, empty upper screen, no real dog.", "fix": "Model the clamp, fill the screen, real dog through the window."}
+ ]
+}

@@ -1,0 +1,99 @@
+<!doctype html>
+<!-- 2026-11-03, frame 2 of 9. Archetype DIAGRAM. The weigh station from the top of its light pole: the mainline, the apron, two scale lanes, the scale house, the driverless tractor at the fork and three lit rings where the letter says it now decides. Drawn to illustrate, to no station's design. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:900px;line-height:1.06">Open, which lane, which scale</h1>
+<p class="dek" data-follow="26" style="width:880px">Autonomous trucks have relied on voluntary inspections to bypass weigh stations, the letter says. It says the Aurora Driver can now handle three steps on its&nbsp;own.</p>
+<div class="lab" id="lab-a">station open</div>
+<div class="lab" id="lab-b" style="text-shadow:0 0 3px #050608, 0 0 10px #050608, 0 1px 22px #050608, 0 0 34px rgba(5,6,8,0.9)">available scale lane</div>
+<div class="lab" id="lab-c" style="white-space:normal;width:200px;font-size:23px">scale configuration</div>
+<div class="lab" id="lab-d" style="opacity:0.8">the bypass</div>
+<script>window.FIG = {"scale_steps": 3};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-03-scalelane.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Three calls", counter: "02 / 09", src: "c8 c9", fit: { min: 84, max: 108, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 34, near: 0.3, far: 5000, fog: 0.003 });
+  /* THE STATION. Traffic runs south (+z). The mainline is at x = -34. An exit ramp leaves it far to the north and
+   * runs down onto a concrete apron, where it forks into two scale lanes, A at x = 0 (taken by a truck with a driver)
+   * and B at x = 6.6 (free). The scale house stands west of lane A, the signal over the lanes' south end. */
+  const hw = K.make('highway', { length: 520, lanes: 2, gantry: false, embank: 0 }); hw.position.set(-34, 0, -60); TXT.add(R, hw);
+  const LA = 0, LB = 6.6, ZF = -30;                                  /* the lanes, and the fork's z */
+  const asph = K.mat('sl-ramp', { color: 0x34363a, roughness: 0.85 }), paint = K.mat('sl-line', { color: 0xe6e4dc, roughness: 0.5, emissive: 0x141410, emissiveIntensity: 0.4 });
+  /* the ramp: two painted edge lines diverging from the mainline's right edge toward the fork, and a chevron gore
+   * between them. Each line is a flat bar laid from one point to another. No apron plane: the flood alone lights the
+   * asphalt the station stands on. */
+  const bar = (a, b, w) => { const dx = b[0] - a[0], dz = b[1] - a[1], L = Math.hypot(dx, dz), m = new THREE.Mesh(new THREE.BoxGeometry(w, 0.01, L), paint);
+    m.position.set((a[0] + b[0]) / 2, 0.02, (a[1] + b[1]) / 2); m.rotation.y = Math.atan2(dx, dz); R.scene.add(m); return m; };
+  const E0 = [-26.5, -150], E1 = [-1.8, ZF - 4], F1 = [9.2, ZF - 4];
+  bar([-26.5, -260], [-26.5, 60], 0.3);                /* the mainline's right edge, carrying on south */
+  bar(E0, [E1[0], E1[1] + 8], 0.3); bar([-21.6, -150], [F1[0], F1[1] + 8], 0.3);       /* the ramp's two edges, opening toward the fork */
+  for (let i = 0; i < 7; i++) { const z = -146 + i * 6, x0 = -26.3, x1 = -26.3 + (i + 1) * 0.65; bar([x0, z], [x1 + 0.4, z + 2.4], 0.4); }
+  [LA, LB].forEach((x) => { const sc = K.make('truck_scale', {}); sc.position.set(x, 0, 6); TXT.add(R, sc); });
+  const house = K.make('scale_house', {}); house.rotation.y = 0; house.position.set(14.5, 0, 2); TXT.add(R, house); TXT.contact(R, house);
+  const sig = K.make('scale_signal', { state: 'cross', reach: 6.6 }); sig.position.set(LA - 1.6 - 0.0, 0, 26); TXT.add(R, sig);
+  const flood = K.make('flood_pole', { height: 13 }); flood.position.set(19, 0, -14); TXT.add(R, flood);
+  /* lane A: a conventional tractor and van, a driver's truck, on the scale heading south */
+  /* our tractor at the fork, facing south, turning toward lane B */
+  const truck = K.make('semi_truck', { seed: 4, color: 0xe8e9e6, sensors: 'full', trailerColor: 0xdcdcd6 });
+  truck.rotation.y = 0.16; truck.position.set(LB - 1.8, 0, ZF - 6); TXT.add(R, truck); TXT.contact(R, truck);
+  /* THE THREE STEPS, in travel order, one lit ring per step the letter names, read from figures.json: on the ramp
+   * (station open), at the fork ahead of the cab (available scale lane), at lane B's deck entry (scale configuration) */
+  const ringMat = new THREE.MeshStandardMaterial({ color: 0x111111, emissive: 0xe9efe8, emissiveIntensity: 3.6, roughness: 0.4 });
+  const SPOTS = [[-12.5, -84, 'lab-a'], [LB - 0.4, ZF + 9, 'lab-b'], [LB, -4.0, 'lab-c']].slice(0, Math.round(FIG.scale_steps));
+  const ringMat3 = ringMat.clone(); ringMat3.emissiveIntensity = 1.5;
+  SPOTS.forEach(([x, z], i) => { const r = new THREE.Mesh(new THREE.TorusGeometry(i === 0 ? 3.2 : 2.4, i === 0 ? 0.36 : 0.24, 10, 72), i === 2 ? ringMat3 : ringMat); r.rotation.x = -Math.PI / 2; r.position.set(x, 0.07, z); R.scene.add(r);
+    const pl = new THREE.PointLight(0xeef4ee, i === 0 ? 70 : i === 2 ? 10 : 30, i === 0 ? 14 : 9, 2); pl.position.set(x, 0.6, z); R.scene.add(pl); });
+  TXT.sky(R);
+  TXT.ground(R, { surface: 'asphalt', size: 1200, seed: 21 });
+  const from = [26, 14, 44];
+  const look = CH.aim(THREE, R, TXT, from, [2, 0, -22], 540, 900, 34);
+  TXT.frame(R, { fov: 34, from, look });
+  CH.warm(R, 0.28);
+  TXT.deckRig(R, CH.rigSpec(W, 80, 4096), CH.rigOpts([0, 0, -20], { distance: 110, shadowFar: 240, normalBias: 0.05 }));
+  CH.unacne(R, 0.05);
+  TXT.weather(R, { grime: 0.28, height: 0.7, mottle: 0.08 });
+  CH.lightsOn(THREE, R, K, truck, { beam: 70 });
+  CH.floodOn(THREE, R, flood, [3, 0, -12], { intensity: 1600, distance: 130, angle: 0.7, glow: 0.01 });
+  { const lp = sig.userData.lamp; CH.lampGlow(THREE, R, [LA - 1.6 + lp[0], lp[1], 26], 0x2fe06a, 2.0, 0); }
+  TXT.stage(R, [truck, house], { poolInner: 24, poolOuter: 46, behind: 0.35, depth: 1.2 });
+  /* the labels sit beside their rings, in the dark ground, with a leader to each ring */
+  const svg = CH.svg(); window.__txLeaders = [];
+  const OFF = { 'lab-a': [150, -70], 'lab-b': [-115, -6, null, 'L'], 'lab-c': [0, 0, 826, 'F', 802] };
+  SPOTS.forEach(([x, z, id]) => {
+    const q = CH.project(THREE, R, [x, 0, z]), el = document.getElementById(id), o = OFF[id];
+    const w0 = el.getBoundingClientRect().width; let lx = o[3] === 'F' ? o[4] : o[3] === 'L' ? q[0] + o[0] - w0 : q[0] + o[0]; if (lx + w0 > 1000) lx = 1000 - w0; lx = Math.max(80, lx);
+    el.style.left = Math.round(lx) + 'px'; el.style.top = Math.round(o[2] != null ? o[2] : q[1] + o[1]) + 'px';
+    const b = el.getBoundingClientRect(), left = b.left + b.width / 2 < q[0], ex = left ? b.left + b.width + 8 : b.left - 8, ey = b.top + b.height / 2;
+    let d = `M${ex} ${ey} L${q[0]} ${q[1]}`;
+    if (id === 'lab-c') { const r2 = CH.project(THREE, R, [SPOTS[1][0] + 3.2, 0, SPOTS[1][1] + 1.5]), r3 = CH.project(THREE, R, [x + 2.4, 0, z]);
+      d = `M${b.left + 20} ${b.top + b.height + 6} L${Math.max(r2[0], b.left + 20)} ${r2[1] + 26} L${r3[0]} ${r3[1]}`; q[0] = r3[0]; q[1] = r3[1]; }
+    const p = document.createElementNS('http://www.w3.org/2000/svg', 'path'); p.setAttribute('d', d);
+    p.setAttribute('stroke', '#E6E8EA'); p.setAttribute('stroke-width', '2'); p.setAttribute('fill', 'none'); svg.appendChild(p);
+    window.__txLeaders.push({ target: id, at: q, to: q });
+  });
+  { const q = CH.project(THREE, R, [-30, 0, -40]), el = document.getElementById('lab-d'); el.style.left = '80px'; el.style.top = Math.round(q[1] + 60) + 'px'; const b = el.getBoundingClientRect(); const pth = document.createElementNS('http://www.w3.org/2000/svg', 'path'); pth.setAttribute('d', `M${b.left + 40} ${b.top - 8} L${q[0]} ${q[1]}`); pth.setAttribute('stroke', '#E6E8EA'); pth.setAttribute('stroke-width', '2'); pth.setAttribute('fill', 'none'); svg.appendChild(pth); window.__txLeaders.push({ target: 'the mainline', at: q, to: q }); }
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0.32, veil: 0.46, veilH: 300 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

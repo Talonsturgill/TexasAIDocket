@@ -1,0 +1,249 @@
+{
+ "weighted_score": 6.916,
+ "judges": [
+  6.37,
+  7.13,
+  7.04
+ ],
+ "spread": 0.76,
+ "criteria": {
+  "artwork_craft": {
+   "score": 6.3,
+   "weight": 0.22,
+   "judges": [
+    6.3,
+    6.0,
+    6.6
+   ]
+  },
+  "deck_coherence": {
+   "score": 7.0,
+   "weight": 0.12,
+   "judges": [
+    7.0,
+    7.0,
+    7.5
+   ]
+  },
+  "claim_integrity": {
+   "score": 8.0,
+   "weight": 0.2,
+   "judges": [
+    5.5,
+    8.5,
+    8.0
+   ]
+  },
+  "story_and_stakes": {
+   "score": 6.5,
+   "weight": 0.16,
+   "judges": [
+    6.5,
+    7.0,
+    6.5
+   ]
+  },
+  "sequence_and_momentum": {
+   "score": 7.0,
+   "weight": 0.1,
+   "judges": [
+    7.0,
+    7.5,
+    7.0
+   ]
+  },
+  "voice": {
+   "score": 7.0,
+   "weight": 0.1,
+   "judges": [
+    7.0,
+    7.0,
+    7.0
+   ]
+  },
+  "variety": {
+   "score": 6.5,
+   "weight": 0.1,
+   "judges": [
+    6.0,
+    7.0,
+    6.5
+   ]
+  }
+ },
+ "hard_fails": [
+  "An unverified fact presented as verified, slide 7. The headline 'One route now, one route planned' states that Aurora has exactly one current route. No claim establishes a count. c21 says only that Dallas to Houston is Aurora's route. The run's own claims.json rejected the Fort Worth to El Paso finding as unconfirmed, not refuted, and printed 'One' anyway. Verified claim c5 says autonomous operations along the Laredo corridor have already launched, yet the frame presents that corridor only as 'planned'. The count was made out of an absence."
+ ],
+ "hard_fails_by_judge": [
+  {
+   "judge": 1,
+   "fail": "An unverified fact presented as verified, slide 7. The headline 'One route now, one route planned' states that Aurora has exactly one current route. No claim establishes a count. c21 says only that Dallas to Houston is Aurora's route. The run's own claims.json rejected the Fort Worth to El Paso finding as unconfirmed, not refuted, and printed 'One' anyway. Verified claim c5 says autonomous operations along the Laredo corridor have already launched, yet the frame presents that corridor only as 'planned'. The count was made out of an absence."
+  }
+ ],
+ "ship": false,
+ "threshold": 8.0,
+ "over_threshold": false,
+ "method": "per-criterion median across three judges, then weighted by the rubric",
+ "threshold_dissents": [
+  "judge 2 refused on the threshold, not on a fault, and scored 7.13 against a 8.0 bar. That dissent is carried in the median",
+  "judge 3 refused on the threshold, not on a fault, and scored 7.04 against a 8.0 bar. That dissent is carried in the median"
+ ],
+ "threshold_dissents_by_judge": [
+  {
+   "judge": 2,
+   "score": 7.13,
+   "reason": "judge 2 refused on the threshold, not on a fault, and scored 7.13 against a 8.0 bar. That dissent is carried in the median"
+  },
+  {
+   "judge": 3,
+   "score": 7.04,
+   "reason": "judge 3 refused on the threshold, not on a fault, and scored 7.04 against a 8.0 bar. That dissent is carried in the median"
+  }
+ ],
+ "note": "the judges disagree by 0.76, which is wider than 0.75. The deck is not understood yet and the disagreement is worth more than the median. Read the outlier's reasoning before acting on the number",
+ "contested": [
+  "claim_integrity"
+ ],
+ "artwork_weakest_frames": [
+  {
+   "slide": 8,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The cab is a primitive, plastic fairing with a flat visor slab, lit flat blue-white in a black void. There is no road, shoulder or ground, so a stopped truck has nowhere to be stopped, and the beacon reads yellow rather than amber.",
+     "fix": "Pull the camera back to a low three-quarter view from the shoulder at about 1.6 m so the stopped tractor stands on lit asphalt. Let the beacon's amber throw a pool on the roof and the road, with the empty shoulder where triangles would go in the foreground. Delete the visor slab."
+    },
+    {
+     "judge": 2,
+     "problem": "The macro shot exposes the kit cab: a flat lavender-blue side panel in the mid tones (mean 43.7, the deck's highest), a black-card windshield with tube pillars and a white fairing hotspot. There is no ground, so the frame is an object in a void.",
+     "fix": "Pull the camera back to about 25 m for a rear-quarter view of the whole stopped tractor on a dark shoulder. Make the beacon the only warm source, casting an amber pool on the cab roof and asphalt, and keep the flood off the cab side."
+    },
+    {
+     "judge": 3,
+     "problem": "The camera beside the cab roof gives an unreadable macro: a large blue-lit, visibly faceted fairing at left, a black windshield void with visor struts that reads as an awning, and no road, so neither the truck nor the stop is legible at 432 px",
+     "fix": "Pull the camera back to a three-quarter rear view of the whole tractor stopped on a dark shoulder at about 1.6 m eye height. Keep the amber beacon lit on the cab with its amber spill pooling on the asphalt where hand-set triangles would stand, key from the upper right, and drop the blue fill so the cab is white with one bright edge"
+    }
+   ]
+  },
+  {
+   "slide": 4,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Twenty identical front-on tractors read as icons on black, with a tonal band edge behind the dek at about design y 440 to 500 and a dead lower third.",
+     "fix": "Drop the camera to about 3 m at a 30 degree oblique from the near corner so the two ranks recede with overlap and casts, with the near rank's end cab cropped by the left edge. Extend the seal plane past the horizon so its edge no longer cuts a band behind the dek."
+    },
+    {
+     "judge": 2,
+     "problem": "Twenty identical tractors seen straight on in a thin strip read as a toy lot. A light tonal band crosses behind the dek, and the lower third is empty black.",
+     "fix": "Drop to the storyboard's 6 m eye at a 30 degree oblique, so the two ranks recede to the right with casts visible and the near rank's noses fill the lower third. Kill the horizon band behind the dek."
+    },
+    {
+     "judge": 3,
+     "problem": "The two ranks fill a thin mid-frame band, the bottom 40% is dead black, the eye-level frontal camera flattens twenty tractors into icons, and a pale horizon seam crosses behind the dek",
+     "fix": "Lower the camera to about 3 m and dolly in so the near rank's grilles and lit headlamps fill the lower half and bleed off the bottom edge, with the far rank falling into the dark behind. Let the casts run long to the lower left across the foreground concrete, and push the horizon below the dek so no seam crosses the type"
+    }
+   ]
+  },
+  {
+   "slide": 7,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The relief window's top edge clips the Panhandle into a hard stepped rectangle at the upper left. County borders stair-step, and the Dallas to Houston inlay's cast breaks into slabs.",
+     "fix": "Refit proj.fitExtent so the crop's upper left falls in the darkening wash, not across the Panhandle, or fade the state into the field there. Set LINE height to within 4 of CLAY so borders read as albedo. Pin New Braunfels at the city's gazetteer point."
+    },
+    {
+     "judge": 2,
+     "problem": "County borders are raised with stair-step casts, against the storyboard's own albedo-only acceptance, and the white inlay's cast breaks into black slabs near Dallas (crop r2c2).",
+     "fix": "Move the county lines into the albedo with zero height, and give height only to the bead inlay, the primer studs and the pins, so the two routes are the only relief that casts."
+    },
+    {
+     "judge": 3,
+     "problem": "A dark rectangular cast strip beside the Dallas to Houston inlay overshoots the Houston pin toward the coast and reads as a render artifact next to the frame's focal route",
+     "fix": "Re-seat the inlay so its cast runs the inlay's own length at the shared lower-left offset and stops at the Houston pin, matching the casts of the primer studs and pins"
+    }
+   ]
+  },
+  {
+   "slide": 3,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "It repeats the cover's front-on grille close-up, and the right half is a dead field beyond the boom.",
+     "fix": "Swing the camera about 40 degrees to the boom's pivot side so the gate cabinet and the boom's counterweight fill the right half, with the tractor's grille cropped at the left edge behind the primer stop bar."
+    },
+    {
+     "judge": 2,
+     "problem": "The whole right half is an empty grey gradient (crop r2c2), and the gate is a striped bar plus a yellow bollard with no cabinet or pivot (crop r3c2), so it reads as a kerb. The kit truck's hood and grille show primitive geometry at this range.",
+     "fix": "Swing the camera to a three-quarter view so a modelled guard booth, with a lit window and the boom's pivot cabinet, stands at design x 620 to 1000 and fills the right half. Delete the bollard, and let the headlamps throw their pool onto the primer stop bar."
+    }
+   ]
+  },
+  {
+   "slide": 6,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "A textured mid-grey rectangle with a dead band between the dek and the bar (about design y 500 to 750). The $9M groove sits inside the loss bar, so it reads as part of the loss.",
+     "fix": "Raise the datum to about design y 900 and halve the bar height (BH 260 to 130) so the bar's long cast fills the empty band. Move the $9M mark out of the loss bar onto the steel datum, scribed from the datum's left end at the same px per million."
+    },
+    {
+     "judge": 2,
+     "problem": "This is a textured blue-black rectangle on a mid-grey datum stripe, and it reads as a bar chart. The $3 million billet is a 9 to 10 px sliver at full size and nearly vanishes at 432 px. An empty dark band separates the dek from the bar.",
+     "fix": "Lay the billet and the loss bar on frame 1's diamond-tread scale deck, with its yellow kerb rail as the datum, raked by the key. Give the billet a polished, specular top face so it reads at feed size, and raise the assembly about 120 px to close the empty band."
+    }
+   ]
+  },
+  {
+   "slide": 5,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "The ground steel face is a large mid-grey field across the frame, and it reads as a UI slider rather than a machined rule.",
+     "fix": "Darken the rule's face albedo to blued tool steel. Keep the brightness on the groove bevels and the clamp's lit top only, so the steel lives near black with bright edges."
+    },
+    {
+     "judge": 3,
+     "problem": "The steel rule's faces are mid grey across the full width with an even pool, so the frame lives in the grey middle and reads as a slider rather than a machined rule",
+     "fix": "Narrow the keyMask pool to the six-week span so the sections outside it fall to near black. Darken the steel to blued tool steel with one bright raked edge along each groove, and lower the key elevation so each groove and the primer clamp throw hard visible casts"
+    }
+   ]
+  },
+  {
+   "slide": 2,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "Grey asphalt fills most of the lower half, so the frame sits in the grey middle. The approach pads are blank white slabs, and the house has no canopy.",
+     "fix": "Tighten the stage pool to the fork and the near deck, so asphalt outside it drops near black. Give the two approach pads concrete joints and the house a canopy over its door."
+    }
+   ]
+  },
+  {
+   "slide": 9,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "The far primer kerb is a thin line that stops abruptly in empty dark under the dek, so it reads as a stray rule rather than the end of a 1,000 stall field.",
+     "fix": "Turn the far kerb into a stall-field corner that runs full width and returns down the right side, faintly lit by a second mast so the field visibly ends there."
+    }
+   ]
+  }
+ ],
+ "rounds_derived": 1,
+ "rounds": 1,
+ "rounds_source": "this module's own log of cards it has scored",
+ "rounds_declared": 1,
+ "rounds_note": "3 of 3 judge card(s) in this invocation had already been scored, so this was a re-combination rather than a scoring round and the round count did not advance. Re-run the judges to score again",
+ "rung": 8.0,
+ "craft_floor": "waiting, because a hard fail is repaired first"
+}

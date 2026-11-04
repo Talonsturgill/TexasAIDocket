@@ -1,0 +1,62 @@
+<!doctype html>
+<!-- 2026-11-03, frame 1 of 9. Archetype FULL_BLEED. A driverless tractor and van rolling onto the scale deck of an interstate weigh station at night under one LED flood, the scale signal's cyan lamp lit over the lane, nobody in the seat. Drawn to illustrate, to no station's or maker's design. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:900px">The truck can now tell if the scale is open</h1>
+<p class="dek" data-follow="26" style="width:860px">Aurora says its driverless trucks can now tell whether a weigh station is open and steer to an available scale lane on their own.</p>
+<script>window.FIG = {};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-03-scalelane.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Weigh station", counter: "01 / 09", src: "c9", fit: { min: 84, max: 108, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 30, near: 0.05, far: 3000, fog: 0.005 });
+  const S = CH.STA;
+  /* the scale deck in the lane at x = 0, the tractor on it heading south toward the camera */
+  const scale = K.make('truck_scale', {}); scale.position.set(S.scaleX, 0, S.deckZ); TXT.add(R, scale);
+  const truck = K.make('semi_truck', { seed: 4, color: 0xe8e9e6, sensors: 'full', trailerColor: 0xdcdcd6 });
+  truck.position.set(S.scaleX, 0.32, S.deckZ - 8); TXT.add(R, truck); TXT.contact(R, truck);
+  /* the scale house east of the deck, its lit window facing the lane; the signal over the lane at the deck's far end */
+  const house = K.make('scale_house', {}); house.position.set(-7.6, 0, S.deckZ - 5); TXT.add(R, house); TXT.contact(R, house);
+  const sig = K.make('scale_signal', { state: 'cross', reach: 4.6 }); sig.position.set(S.scaleX - 4.6, 0, S.deckZ + 5); TXT.add(R, sig);
+  const flood = K.make('flood_pole', { height: 12 }); flood.position.set(10, 0, -12); TXT.add(R, flood);
+  TXT.sky(R);
+  TXT.ground(R, { surface: 'concrete', size: 700, seed: 11, joints: true });
+  const from = [6.0, 2.6, 23];
+  const look = CH.aim(THREE, R, TXT, from, [-0.4, 1.8, 0.5], 520, 1000, 32);
+  TXT.frame(R, { fov: 32, from, look });
+  CH.warm(R, 0.26);
+  TXT.deckRig(R, CH.rigSpec(W, 18, 4096), CH.rigOpts([0, 1.5, -3], { distance: 40, shadowFar: 90, normalBias: 0.04 }));
+  CH.unacne(R, 0.04);
+  TXT.weather(R, { grime: 0.28, height: 0.7, mottle: 0.08 });
+  CH.lightsOn(THREE, R, K, truck, { beam: false });
+  CH.floodOn(THREE, R, flood, [0, 0, -2], { intensity: 700, distance: 60, angle: 0.55 });
+  { const lp = sig.userData.lamp; CH.lampGlow(THREE, R, [S.scaleX - 4.6 + lp[0], lp[1], S.deckZ + 5 + 0.25], 0x2fe06a, 0.55, 2); }
+  /* the scale house window's warm light spilling onto its plinth and the deck edge beside it */
+  { const wl = new THREE.PointLight(0xffc98e, 14, 7, 2); house.updateMatrixWorld(true); const wp = new THREE.Vector3(2.9, 1.8, 0).applyMatrix4(house.matrixWorld); wl.position.copy(wp); R.scene.add(wl); }
+  TXT.stage(R, [truck], { poolInner: 8, poolOuter: 15, behind: 0.25, depth: 1.0 });
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0.3, veil: 0.5, veilH: 340 });
+  /* a darken-only wash on the lit apron under the footer, so the site line sits on a dark field */
+  { const g = cx.createRadialGradient(980, 1330, 40, 980, 1330, 560); g.addColorStop(0, 'rgba(5,6,10,0.62)'); g.addColorStop(0.55, 'rgba(5,6,10,0.34)'); g.addColorStop(1, 'rgba(5,6,10,0)'); cx.fillStyle = g; cx.fillRect(400, 900, 680, 450); }
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

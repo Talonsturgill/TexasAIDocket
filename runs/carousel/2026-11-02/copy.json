@@ -1,0 +1,248 @@
+{
+ "date": "2026-11-02",
+ "carousel_no": 66,
+ "document_title": "A phone on a vehicle window will survey San Antonio's loose dogs",
+ "_note": "Slide strings read off the render report's text nodes and each frame's own source line by build_copy.py.",
+ "caption": "How a stray looks is spelled out.\n\nSouthwest Research Institute's release says strays \"appear to be malnourished and skittish\". Dogs that seem healthier and more approachable \"are likely owned by local families and are classified as roaming.\"\n\nIn San Antonio a phone on a vehicle window will record video. Object detection software will find the dogs. Automated and human review will check that each dog was unrestrained. The same review will assess whether it was owned or a stray.\n\nThe project will repeat a 2019 manual survey in the same 32 study areas. It is a sample, not a count of every dog.\n\nAnimal Care Services Director Jon Gary calls the study another tool for seeing where loose dogs turn up. Field research is expected to run through December. The department will get a final report.\n\nWill the report say how often a person and the software disagreed?\n\n#SanAntonio #SAACS #SwRI",
+ "slides": {
+  "S1": {
+   "n": 1,
+   "file": "slide-01.html",
+   "kicker": "San Antonio",
+   "headline": "A phone on a vehicle window will survey San Antonio's loose dogs",
+   "claims": [
+    "c1",
+    "c2",
+    "c3",
+    "c9",
+    "c15"
+   ],
+   "cite": "c1 c2 c3 c9 c15",
+   "body": "Southwest Research Institute and the city's Animal Care Services will repeat a 2019 manual survey with machine vision software. Drawn to illustrate.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "A phone on a vehicle window will survey San Antonio's loose dogs",
+    "Southwest Research Institute and the city's Animal Care Services will repeat a 2019 manual survey with machine vision software. Drawn to illustrate.",
+    "San Antonio",
+    "01 / 09",
+    "c1 c2 c3 c9 c15"
+   ]
+  },
+  "S2": {
+   "n": 2,
+   "file": "slide-02.html",
+   "kicker": "The instrument",
+   "headline": "The camera is a phone",
+   "claims": [
+    "c2",
+    "c3",
+    "c18"
+   ],
+   "cite": "c2 c3 c18",
+   "body": "The release describes \"a cellular phone mounted to a vehicle window with object detection and data analysis software\".",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "The camera is a phone",
+    "The release describes \"a cellular phone mounted to a vehicle window with object detection and data analysis software\".",
+    "The instrument",
+    "02 / 09",
+    "c2 c3 c18"
+   ]
+  },
+  "S3": {
+   "n": 3,
+   "file": "slide-03.html",
+   "kicker": "What the review checks",
+   "headline": "Four checks on each clip",
+   "claims": [
+    "c4",
+    "c5"
+   ],
+   "cite": "c4 c5",
+   "body": "Video clips will go to automated and human review. Each detected dog will be checked.",
+   "labels": [
+    "unrestrained",
+    "human supervision",
+    "number of dogs present",
+    "owned or a stray"
+   ],
+   "strings": [
+    "texasaidocket.com",
+    "Four checks on each clip",
+    "Video clips will go to automated and human review. Each detected dog will be checked.",
+    "unrestrained",
+    "human supervision",
+    "number of dogs present",
+    "owned or a stray",
+    "What the review checks",
+    "03 / 09",
+    "c4 c5"
+   ]
+  },
+  "S4": {
+   "n": 4,
+   "file": "slide-04.html",
+   "kicker": "The call",
+   "headline": "Two labels for a loose dog",
+   "claims": [
+    "c6",
+    "c7"
+   ],
+   "cite": "c6 c7",
+   "body": "The release says strays \"appear to be malnourished and skittish\". Dogs that seem healthier and more approachable \"are likely owned by local families and are classified as roaming.\" Drawn to illustrate.",
+   "labels": [
+    "stray",
+    "roaming"
+   ],
+   "strings": [
+    "texasaidocket.com",
+    "Two labels for a loose dog",
+    "The release says strays \"appear to be malnourished and skittish\". Dogs that seem healthier and more approachable \"are likely owned by local families and are classified as roaming.\" Drawn to illustrate.",
+    "stray",
+    "roaming",
+    "The call",
+    "04 / 09",
+    "c6 c7"
+   ]
+  },
+  "S5": {
+   "n": 5,
+   "file": "slide-05.html",
+   "kicker": "Human review",
+   "headline": "A person reviews the clips too",
+   "claims": [
+    "c4",
+    "c5"
+   ],
+   "cite": "c4 c5",
+   "body": "The release says automated and human review of the video clips \"will verify that the detected animals were unrestrained.\"",
+   "labels": [
+    "unrestrained",
+    "human supervision",
+    "dogs present",
+    "owned or a stray"
+   ],
+   "strings": [
+    "texasaidocket.com",
+    "A person reviews the clips too",
+    "The release says automated and human review of the video clips \"will verify that the detected animals were unrestrained.\"",
+    "unrestrained",
+    "human supervision",
+    "dogs present",
+    "owned or a stray",
+    "Human review",
+    "05 / 09",
+    "c4 c5"
+   ]
+  },
+  "S6": {
+   "n": 6,
+   "file": "slide-06.html",
+   "kicker": "The sample",
+   "headline": "32 study areas, not the whole city",
+   "claims": [
+    "c8",
+    "c12",
+    "c17",
+    "c19"
+   ],
+   "cite": "c8 c12 c17 c19",
+   "body": "The city says the project is not intended to count every unrestrained dog in San Antonio. SwRI says the study takes a sampling approach rather than surveying the whole city.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "32 study areas, not the whole city",
+    "The city says the project is not intended to count every unrestrained dog in San Antonio. SwRI says the study takes a sampling approach rather than surveying the whole city.",
+    "The sample",
+    "06 / 09",
+    "c8 c12 c17 c19"
+   ]
+  },
+  "S7": {
+   "n": 7,
+   "file": "slide-07.html",
+   "kicker": "Seven years apart",
+   "headline": "The same 32 places as 2019",
+   "claims": [
+    "c9",
+    "c10",
+    "c17",
+    "c22"
+   ],
+   "cite": "c9 c10 c17 c22",
+   "body": "The 2019 survey was done by hand. The automated survey will repeat it in the same study areas. The 2019 findings are not shown here.",
+   "labels": [
+    "2019",
+    "2026",
+    "7 years"
+   ],
+   "strings": [
+    "texasaidocket.com",
+    "The same 32 places as 2019",
+    "The 2019 survey was done by hand. The automated survey will repeat it in the same study areas. The 2019 findings are not shown here.",
+    "2019",
+    "2026",
+    "7 years",
+    "Seven years apart",
+    "07 / 09",
+    "c9 c10 c17 c22"
+   ]
+  },
+  "S8": {
+   "n": 8,
+   "file": "slide-08.html",
+   "kicker": "The field window",
+   "headline": "October to December on the street, then a report",
+   "claims": [
+    "c10",
+    "c11",
+    "c20",
+    "c21"
+   ],
+   "cite": "c10 c11 c20 c21",
+   "body": "Field research is expected to run through December. SwRI will then forward Animal Care Services a final report on the study's findings and data.",
+   "labels": [
+    "OCT",
+    "NOV",
+    "DEC",
+    "final report"
+   ],
+   "strings": [
+    "texasaidocket.com",
+    "October to December on the street, then a report",
+    "Field research is expected to run through December. SwRI will then forward Animal Care Services a final report on the study's findings and data.",
+    "OCT",
+    "NOV",
+    "DEC",
+    "final report",
+    "The field window",
+    "08 / 09",
+    "c10 c11 c20 c21"
+   ]
+  },
+  "S9": {
+   "n": 9,
+   "file": "slide-09.html",
+   "kicker": "What comes next",
+   "headline": "The ACS director calls it another tool",
+   "claims": [
+    "c14",
+    "c21",
+    "c15"
+   ],
+   "cite": "c14 c21 c15",
+   "body": "ACS Director Jon Gary says the study gives the city \"another tool to better understand where we are seeing unrestrained dogs\". SwRI will forward the final report to the department.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "The ACS director calls it another tool",
+    "ACS Director Jon Gary says the study gives the city \"another tool to better understand where we are seeing unrestrained dogs\". SwRI will forward the final report to the department.",
+    "What comes next",
+    "09 / 09",
+    "c14 c21 c15"
+   ]
+  }
+ }
+}

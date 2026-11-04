@@ -1,0 +1,128 @@
+{
+ "_spec": {
+  "version": 1,
+  "purpose": "A standalone web edition of the archived visual story.",
+  "law": "Facts resolve to the original verified claim record. A layout rebuild does not reverify reporting.",
+  "written_by": "daily"
+ },
+ "section": "Freight",
+ "dek": {
+  "text": "Aurora says its driverless trucks can now work through a weigh station on their own. The same letter puts its truck build about six weeks behind plan.",
+  "claims": [
+   "c9",
+   "c6",
+   "c12"
+  ]
+ },
+ "introduction": [
+  {
+   "text": "Aurora Innovation's third quarter letter to shareholders, filed with the SEC, says its driverless trucks can now handle a weigh station on their own. [Autonomous trucks have historically relied on voluntary enhanced pre-trip inspections to bypass weigh stations](c8), the letter says. [It says the Aurora Driver can now determine on its own whether a station is open, navigate to an available scale lane and adapt to different scale configurations](c9).",
+   "claims": [
+    "c8",
+    "c9"
+   ]
+  },
+  {
+   "text": "[In November, Aurora says, the Driver will run directly to sites for several driverless customers, including automated navigation through security checkpoints](c6). [It says site-to-site driverless operations will begin for the majority of its customers over the coming months](c7). These are the company's own statements of what it can do and what it plans. The letter offers no outside measure of either.",
+   "claims": [
+    "c6",
+    "c7"
+   ]
+  }
+ ],
+ "sections": [
+  {
+   "heading": "What Aurora says is running",
+   "paragraphs": [
+    {
+     "text": "[Aurora counts 20+ driverless trucks already built and coming into its fleet](c1). [It says the Aurora Driver passed {{number:c2}} commercial driverless miles in September and has kept {{number:c2:1}}% on-time delivery since launch](c2), figures that come from the company itself.",
+     "claims": [
+      "c1",
+      "c2"
+     ]
+    },
+    {
+     "text": "In Texas, [Aurora's September 23rd release describes Dallas to Houston as its own commercial route](c21). The shareholder letter names no Texas weigh station and no Texas customer site, so it does not say where the new scale and site-to-site capabilities will be used first.",
+     "claims": [
+      "c21"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "The factory and the books",
+   "paragraphs": [
+    {
+     "text": "[The letter puts the production ramp about six weeks behind the prior plan](c12). [It says the initial ramp was held back by material availability, component quality and problems found in end-of-line testing](c10). [Aurora now expects to reach {{number:c11}} trucks per week in early December](c11). [It expects to pass the {{number:c15}}-truck milestone by the end of February](c15) and [to end 2027 with more than {{number:c16:1}} driverless trucks in operation](c16).",
+     "claims": [
+      "c12",
+      "c10",
+      "c11",
+      "c15",
+      "c16"
+     ]
+    },
+    {
+     "text": "[Third quarter revenue was {{money:c13}} million](c13). [The operating loss for the quarter was {{money:c14}} million, a figure that includes stock-based compensation](c14). [Aurora expects about {{money:c12}} million of revenue for 2026](c12).",
+     "claims": [
+      "c13",
+      "c14",
+      "c12"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "Plans, not routes",
+   "paragraphs": [
+    {
+     "text": "[Charger Logistics has selected Aurora under an MOU to own and operate {{number:c3}} trucks](c3). [Charger plans to start between Dallas and Laredo, with truck delivery expected in 2027 and 2028](c4). [The letter says that intent reflects current plans and discussions under a non-binding MOU](c19). Dallas to Laredo is therefore a customer's plan, not a route Aurora says it runs today.",
+     "claims": [
+      "c3",
+      "c4",
+      "c19"
+     ]
+    },
+    {
+     "text": "[AUMOVIO has begun design validation of Aurora's third-generation hardware kit and is finalizing the line concept and production flow at its facility in New Braunfels](c17). [Initial line bring-up is on track for later this year, ahead of a planned start of production in the second half of 2027](c18).",
+     "claims": [
+      "c17",
+      "c18"
+     ]
+    },
+    {
+     "text": "[The letter also cites a five-year FMCSA exemption that lets driverless trucks use cab-mounted warning beacons in place of warning devices set out by hand](c20). That federal decision is in the record on its own.",
+     "claims": [
+      "c20"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "What the letter can't establish",
+   "paragraphs": [
+    {
+     "text": "Every capability and every target in this account is Aurora's own claim in a document written for its investors. The letter gives no independent count of the trucks, no safety record for the new weigh station behavior and no list of the customer sites. The filing itself is public on the SEC's EDGAR site, and the record item for it is updated as Aurora reports.",
+     "claims": [
+      "c9",
+      "c6"
+     ]
+    }
+   ]
+  }
+ ],
+ "related": [
+  {
+   "id": "tx-2026-0239",
+   "label": "Aurora's site-to-site runs and its build about six weeks behind plan"
+  },
+  {
+   "id": "tx-2026-0214",
+   "label": "FMCSA lets driverless trucks warn traffic with a cab beacon"
+  },
+  {
+   "id": "tx-2026-0209",
+   "label": "Kodiak and Charger USA on Dallas to Laredo"
+  }
+ ]
+}

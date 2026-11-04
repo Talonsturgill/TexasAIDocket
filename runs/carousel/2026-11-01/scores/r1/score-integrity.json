@@ -1,0 +1,75 @@
+{
+ "lens": "integrity",
+ "round": 1,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.5,
+   "why": "Frames 2, 8, 9 and 3 strong or close. Frame 4's toy arm and cropped TEST station and unlabelled rule, frame 5's tan slab and ribbon mark, frame 1's smooth copper and banded domes and navy band, frame 6 dim and uniform, frame 7 a shallow relief reading as a grille."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "One dark lab and one key, the button and the blue mark carrying through. The navy walled interiors and the black reliefs strobe, and frame 5 sits outside the value arc."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 6.8,
+   "why": "Every figure traces and was counted. Looseness stacks: frame 8's headline drops 'computational' and the attribution, frame 9's 'the bar still gets pulled' asserts a tensile pull no source names, frame 5's co-originator rests on quotes that don't carry it, frame 4 drops c10's attribution, frame 6's kicker leaves the funders' relationship open."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.5,
+   "why": "What and who are clear. No city, no date, the missing opening date never said on a slide, frame 9's actions with no route."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "The cover and frame 2 work, the turn at 4 reads, the close lands the thesis. The premise on frame 8 arrives seventh."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.8,
+   "why": "Clean and on register, but it reads as a careful reader of a release, with near verbatim press copy on frame 4."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "A dark copper lab is new against nos. 60 to 64. Money as a drawing unit in wells repeats no. 63."
+  }
+ ],
+ "weighted_score": 6.81,
+ "hard_fails": [],
+ "ship": false,
+ "ship_note": "",
+ "one_sentence_fix": "Rebuild frame 4 with the full line in frame and an arm holding a button, frame 5 as a dark stack of paper edges, and rewrite frames 8 and 9's headlines so they claim only what the sources say.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 4,
+   "problem": "A toy arm holding nothing, the TEST grips cropped, an unlabelled rule.",
+   "fix": "Pull back and left so the grips sit inside the frame, pose the gripper over the hearth holding the button, cast links."
+  },
+  {
+   "slide": 5,
+   "problem": "A pale tan slab with no paper texture, a flat ribbon mark.",
+   "fix": "Long face on the shadow side, only the sheet edges catch the key, top face under L* 40, a thin stroke on the rim."
+  },
+  {
+   "slide": 1,
+   "problem": "Smooth copper without milled detail, banded buttons, a navy band with a hard horizon.",
+   "fix": "Milled arc roughness, more radial segments, a lower camera into a dark room."
+  },
+  {
+   "slide": 6,
+   "problem": "Dim and uniform, untextured trays.",
+   "fix": "Tighten the pool onto the filled corner and the WoodNext tray, add scuffs and grime."
+  }
+ ]
+}

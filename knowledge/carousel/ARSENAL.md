@@ -16,7 +16,7 @@
 |---|---|
 | engine calls (`TXT.*`) | 30 |
 | world presets | 8 |
-| kit models | 136 in 10 families |
+| kit models | 138 in 10 families |
 | asset libraries | 22 |
 | carousel and shared tools | 78 |
 | record and site tools the routine names | 20 |
@@ -281,7 +281,7 @@ THE KIT: the things Texas is made of, modelled once in 3D at TRUE SCALE.
 | `warehouse` | 156 x 13.4 x 126 | length, depth, height, docks, trucks, color | Tilt wall distribution warehouse: painted concrete panels with reveals and accent band, clerestory glazing, glazed office corner at +x, dock doors with seals along +z, truck court with trailers. |
 | `water_tower` | 18.8 x 41.2 x 21.4 | style, name, star, color, ink, antennas | Texas elevated water tank, 45 m. style "legs" (spheroid on six legs, balcony, riser) or "pedestal" (fluted column and bowl). name paints the town band front and back ("" for none), star adds a lone star. |
 
-### civic (21)
+### civic (23)
 
 `assets/js/kit/civic.js`, the public realm of Texas: the buildings its decisions are made in and the street furniture those decisions pay for.
 
@@ -290,6 +290,7 @@ THE KIT: the things Texas is made of, modelled once in 3D at TRUE SCALE.
 | `bench` | 1.8 x 0.86 x 0.64 | length | Park bench: cast iron ends, five seat slats and three back slats in stained hardwood |
 | `bus_stop` | 5.6 x 3.3 x 2.5 | length, finish | Transit shelter: dark bronze frame, glass back and one end, sloped roof, bench, stop sign pole with a blank panel |
 | `capitol` | 176 x 92.3 x 92 |  | The Texas State Capitol, Austin: Sunset Red granite, 172 m long, the dome to the Goddess at 92 m. |
+| `checkpoint_gate` | 9.43 x 2.86 x 6.0 | boom, reader, lit, beacon, arm | A site security checkpoint: a guard booth on a raised island (steel-clad base with a door, glazing on three sides in mullions, a lit interior, a roof with a drip edge and a rooftop condenser), yellow capped bollards, a barrier operator cabinet with a door ... |
 | `church` | 9.9 x 25.4 x 25.2 | finish | A small town Texas church: gabled nave, pointed lancet windows, a front bell tower with louvred belfry and octagonal spire; finish "frame" (white clapboard), "brick" or "stone" |
 | `city_hall` | 46 x 20.2 x 34.7 | floors | A modern Texas city hall: a limestone office block with deep-set windows and sunshades, a glazed council chamber under a thin cantilevered roof, a plaza with three flags |
 | `city_limit_sign` | 1.52 x 2.26 x 0.06 | w, h, bottom, glow, lit, legend, color, tint, rim | A TxDOT style green city limit sign (60 x 30 in by default, bottom at 1.5 m) on two galvanized U channel posts, at the judges' fix of carousel no. 39: prismatic retroreflective sheeting whose returned light falls off across the face from the lamp side (lit ... |
@@ -308,6 +309,7 @@ THE KIT: the things Texas is made of, modelled once in 3D at TRUE SCALE.
 | `strip_mall` | 66 x 10.9 x 34.4 | units, parking | A Texas strip centre: stucco and stone, a stepped parapet with hipped tower ends, an arcade canopy, aluminium storefronts, blank sign panels, a striped parking row |
 | `traffic_signal` | 12.7 x 10.4 x 1.2 | arm, heads, finish, luminaire, lit | Mast arm signal: the pole stands at the origin (its footprint), arm over +x, heads facing +z; street blade and a ped head on the pole |
 | `warning_panel` | 1.22 x 0.012 x 0.61 | w, d, pitch, color | A detectable warning panel at a kerb ramp, w x d, a polymer plate cast with truncated domes on a square pitch (the smallest dome the ADA standard allows, 23 mm across the base, a flat top a little over half that, 5 mm tall, on a 60 mm pitch), each dome lathed ... |
+| `weigh_house` | 4.85 x 3.85 x 4.65 | lit, canopy | A weigh station scale house about 4.2 by 3.2 m on a raised concrete plinth, corrugated steel clad, a roof with a fascia and drip edge, a wide window on the scale side (+x) lit warm from inside in a mullioned frame with a sill, a framed door with a kick plate ... |
 
 ### interior (23)
 
@@ -414,7 +416,7 @@ Classic scripts expose a global. The engine and the kit are ES modules and are a
 
 **The 2.5D object catalogue** (`TXOBJ.sprite(name)` on the `TXSCENE` bench, canvas only, for the rare frame that is not rendered; a rendered frame takes the kit): `ambulance` 6.7 x 2.7, `battery_container` 12.2 x 2.9, `billboard` 14.6 x 12.0, `camera_pole` 1.2 x 4.5, `capitol` 100.0 x 95.0, `cattle` 2.5 x 1.5, `civic_facade` 30.0 x 20.0, `cooling_tower` 90.0 x 130.0, `dais` 9.0 x 1.3, `data_center` 130.0 x 16.0, `desk` 1.6 x 1.2, `drone` 1.0 x 0.3, `fence_post` 0.2 x 1.4, `filing_box` 0.4 x 0.28, `helicopter` 13.0 x 3.8, `hospital` 60.0 x 30.0, `hospital_bed` 2.2 x 1.3, `house` 16.0 x 6.0, `live_oak` 16.0 x 11.0, `mesquite` 8.0 x 6.0, `office_chair` 0.7 x 1.2, `pallet_boxes` 1.2 x 1.7, `pickup` 5.9 x 1.95, `pine` 7.0 x 26.0, `podium` 0.7 x 1.25, `power_plant` 70.0 x 62.0, `pump_jack` 7.5 x 5.2, `road_sign` 2.0 x 3.0, `school` 60.0 x 8.0, `school_bus` 12.0 x 3.1, `sedan` 4.7 x 1.45, `server_rack` 0.6 x 2.1, `solar_panel` 4.2 x 2.6, `stock_tank` 8.0 x 1.0, `streetlight` 3.0 x 10.0, `strip_mall` 40.0 x 6.0, `student_desk` 0.9 x 0.85, `substation` 22.0 x 12.0, `traffic_signal` 8.0 x 6.5, `transmission_tower` 12.0 x 42.0, `truck_semi` 17.0 x 4.1, `utility_pole` 2.4 x 12.0, `voting_booth` 0.9 x 1.6, `warehouse` 90.0 x 12.0, `water_tower` 12.0 x 38.0, `wind_turbine` 8.0 x 150.0, `windmill` 3.0 x 11.0.
 
-**Earlier deck chassis** (`assets/js/deck/`, read how a `TXDECK.declare` is written, never copy a world): `2026-09-16-lamp.js`, `2026-09-17-nightdraft.js`, `2026-09-18-minutebook.js`, `2026-09-19-firstlight.js`, `2026-09-20-waterworks.js`, `2026-09-21-oakcliff.js`, `2026-09-23-gensetyard.js`, `2026-09-24-droneline.js`, `2026-09-26-fortyfive.js`, `2026-09-27-nightrent.js`, `2026-09-28-watchtower.js`, `2026-09-29-mccloud.js`, `2026-09-30-firstreader.js`, `2026-10-01-plates.js`, `2026-10-02-vials.js`, `2026-10-03-norther.js`, `2026-10-04-noonbell.js`, `2026-10-05-wards.js`, `2026-10-06-prairie.js`, `2026-10-07-portalpha.js`, `2026-10-08-nexus.js`, `2026-10-09-chart.js`, `2026-10-10-lastlawn.js`, `2026-10-11-feedyard.js`, `2026-10-12-crossing.js`, `2026-10-15-transcript.js`, `2026-10-16-curb.js`, `2026-10-16-studio-proof.js`, `2026-10-17-section.js`, `2026-10-18-brush.js`, `2026-10-20-suite.js`, `2026-10-21-cell.js`, `2026-10-22-stair.js`, `2026-10-23-ledger.js`, `2026-10-24-apron.js`, `2026-10-25-returnplate.js`, `2026-10-26-tether.js`, `2026-10-29-caprock.js`, `2026-10-30-balance.js`, `2026-10-31-roadpaint.js`, `proof-port-art-direction.js`.
+**Earlier deck chassis** (`assets/js/deck/`, read how a `TXDECK.declare` is written, never copy a world): `2026-09-16-lamp.js`, `2026-09-17-nightdraft.js`, `2026-09-18-minutebook.js`, `2026-09-19-firstlight.js`, `2026-09-20-waterworks.js`, `2026-09-21-oakcliff.js`, `2026-09-23-gensetyard.js`, `2026-09-24-droneline.js`, `2026-09-26-fortyfive.js`, `2026-09-27-nightrent.js`, `2026-09-28-watchtower.js`, `2026-09-29-mccloud.js`, `2026-09-30-firstreader.js`, `2026-10-01-plates.js`, `2026-10-02-vials.js`, `2026-10-03-norther.js`, `2026-10-04-noonbell.js`, `2026-10-05-wards.js`, `2026-10-06-prairie.js`, `2026-10-07-portalpha.js`, `2026-10-08-nexus.js`, `2026-10-09-chart.js`, `2026-10-10-lastlawn.js`, `2026-10-11-feedyard.js`, `2026-10-12-crossing.js`, `2026-10-15-transcript.js`, `2026-10-16-curb.js`, `2026-10-16-studio-proof.js`, `2026-10-17-section.js`, `2026-10-18-brush.js`, `2026-10-20-suite.js`, `2026-10-21-cell.js`, `2026-10-22-stair.js`, `2026-10-23-ledger.js`, `2026-10-24-apron.js`, `2026-10-25-returnplate.js`, `2026-10-26-tether.js`, `2026-10-29-caprock.js`, `2026-10-30-balance.js`, `2026-10-31-roadpaint.js`, `2026-11-01-foundry.js`, `2026-11-02-sightline.js`, `2026-11-03-scalelane.js`, `proof-port-art-direction.js`.
 
 **Geodata** (`assets/geo/`):
 

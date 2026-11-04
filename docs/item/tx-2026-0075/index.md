@@ -12,7 +12,7 @@ The Pflugerville City Council approved on second reading on August 11th, 2026 an
 - Comment closes: 2026-11-03
 - Take part: https://legistar1.granicus.com/Pflugerville/attachments/1d648f39-3bbb-4159-a4a7-a3c19b80bfcd.pdf
 
-- Last checked: 2026-10-29
+- Last checked: 2026-11-01
 
 ## Dates
 
@@ -53,6 +53,8 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-29 · Pflugerville's charter election, with its section on the city's use of AI, is still set for the November ballot.
 - 2026-10-30 · The city's legislative record still carries the charter election with its section on the city's use of AI. The ordinance files bar automated readers.
 - 2026-10-31 · Pflugerville's charter election, with its section on how the city uses AI, is still on the ballot. The ordinance files themselves refuse automated readers.
+- 2026-11-01 · Pflugerville's charter election, with its section on city technology, is still set for Tuesday on the city's own record.
+- 2026-11-03 · Pflugerville's charter election, including the section on city technology, goes to voters today. The city's agenda host still refuses this project, so the order itself is unconfirmed.
 
 ## Evidence
 

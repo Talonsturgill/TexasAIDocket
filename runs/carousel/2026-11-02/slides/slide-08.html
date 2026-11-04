@@ -1,0 +1,70 @@
+<!doctype html>
+<!-- 2026-11-02, frame 8 of 9. Archetype DIAGRAM. A TXBENCH material relief in plan under the deck's declared key: a brushed steel survey rule set in black clay, cropped at both edges with a groove at every month, a sawn caliche block standing over field_months graduations, and a small separate caliche plug off the graduations for the final report. A bar and never a dial. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:900px">October to December on the street, then a report</h1>
+<p class="dek" data-follow="24" style="width:900px">Field research is expected to run through December. SwRI will then forward Animal Care Services a final report on the study's findings and&nbsp;data.</p>
+<div class="lab" id="m0">OCT</div>
+<div class="lab" id="m1">NOV</div>
+<div class="lab" id="m2">DEC</div>
+<div class="lab" id="rep">final report</div>
+<script>window.FIG = {"field_months": 3};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-02-sightline.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script src="@@ASSETS@@/js/txbench.js"></script>
+<script>
+window.renderReady = (async () => {
+  const cx = await CH.bootFlat({ kicker: "The field window", counter: "08 / 09", src: "c10 c11 c20 c21", fit: { min: 72, max: 96, maxLines: 2 } });
+  TX.reseed(20261108);
+  /* THE FIGURE, from figures.json: the block spans one graduation per field month; the rule runs past both edges, so no whole year shows */
+  const months = Math.round(FIG.field_months), MW = 220, OCT = 180;
+  const RY = 650, RH = 300, END = OCT + months * MW, BX0 = OCT + 6, BX1 = END - 6, BY0 = RY + 40, BY1 = RY + RH - 40;
+  /* past the last field month the steel carries no graduation: one separating groove, then a plain plate the report sits on */
+  const PLATE = END + 16, PX0 = PLATE + 34, PX1 = PX0 + 116, PY0 = RY + 92, PY1 = RY + 208;
+  const M = { CLAY: 0, STEEL: 1, CALICHE: 2 };
+  function sample(X, Y) {
+    if (X >= BX0 && X <= BX1 && Y >= BY0 && Y <= BY1) { const e = Math.min(X - BX0, BX1 - X, Y - BY0, BY1 - Y), ch = Math.min(1, e / 7); return [8 + 80 * ch + 0.04 * Math.sin((X + Y * 0.12) * 2.2) * ch + 0.3 * TX.fbm2(X * 0.06, Y * 0.06, 2) * ch, M.CALICHE]; }
+    if (X >= PX0 && X <= PX1 && Y >= PY0 && Y <= PY1) { const e = Math.min(X - PX0, PX1 - X, Y - PY0, PY1 - Y), ch = Math.min(1, e / 6); return [8 + 60 * ch + 0.3 * TX.fbm2(X * 0.06, Y * 0.06, 2) * ch, M.CALICHE]; }
+    if (Y >= RY && Y <= RY + RH) {
+      const bev = Math.min(1, Math.min(Y - RY, RY + RH - Y) / 6);
+      const t = (((X - OCT) % MW) + MW) % MW, groove = X < END + 4 ? (t < 4 || t > MW - 4) : Math.abs(X - PLATE) < 4;
+      return [groove ? 0.8 : 8 * bev, M.STEEL];
+    }
+    return [0.5 * TX.fbm2(X * 0.1, Y * 0.1, 3), M.CLAY];
+  }
+  const cache = new Map(), key = (X, Y) => (X * 4 | 0) + ',' + (Y * 4 | 0);
+  const S = (X, Y) => { const kk = key(X, Y); let v = cache.get(kk); if (!v) { v = sample(X, Y); cache.set(kk, v); } return v; };
+  const albedo = (X, Y, m) => {
+    if (m === M.CALICHE) { const a = 1 + 0.08 * TX.simplex2(X * 0.25, Y * 0.25) + 0.05 * TX.simplex2(X * 0.02, Y * 0.6); return [0.84 * a, 0.78 * a, 0.66 * a]; }
+    if (m === M.STEEL) { const b = 1 + 0.1 * Math.sin(X * 2.1 + 0.8 * TX.simplex2(X * 0.04, Y * 1.1)); return [0.11 * b, 0.12 * b, 0.14 * b]; }
+    const a = 1 + 0.4 * TX.simplex2(X * 0.6, Y * 0.6); return [0.045 * a, 0.038 * a, 0.03 * a];
+  };
+  const pool = (X, Y) => { const d = Math.hypot((X - 580) / 620, (Y - 800) / 340), t = Math.max(0, Math.min(1, (d - 0.38) / 0.8)); return 1 - 0.95 * t * t * (3 - 2 * t); };
+  cx.fillStyle = '#09080c'; cx.fillRect(0, 0, 2160, 2700);
+  const rep = TXBENCH.relief(cx, { x: 0, y: 520, w: 1080, h: 830, scale: 2, height: (X, Y) => S(X, Y)[0], material: (X, Y) => S(X, Y)[1], keyMask: pool, albedo,
+    spec: { [M.CALICHE]: [0.06, 8], [M.CLAY]: [0.08, 12], [M.STEEL]: [0.7, 40] }, keyColor: [1, 0.88, 0.74], ambColor: [0.55, 0.62, 0.8],
+    ambient: 0.06, diffuse: 2.4, ao: 1.0, shadow: 0.92, softness: 6, castLength: 150 });
+  { const g = cx.createLinearGradient(0, 1040, 0, 1270); for (let k = 0; k <= 8; k++) { const t = k / 8, e = 1 - t * t * (3 - 2 * t); g.addColorStop(t, 'rgba(9,8,12,' + e.toFixed(4) + ')'); } cx.fillStyle = g; cx.fillRect(0, 1040, 2160, 230); }
+  const put = (id, x, y) => { const el = document.getElementById(id); el.style.left = x + 'px'; el.style.top = y + 'px'; };
+  ['m0', 'm1', 'm2'].slice(0, months).forEach((id, i) => { const w = document.getElementById(id).getBoundingClientRect().width; put(id, OCT + i * MW + MW / 2 - w / 2, RY + RH + 26); });
+  { const w = document.getElementById('rep').getBoundingClientRect().width; put('rep', Math.min(998 - w, (PX0 + PX1) / 2 - w / 2), RY - 50); }
+  cx.setTransform(2, 0, 0, 2, 0, 0);
+  CH.post(cx, { a: 0, veil: 0.36 });
+  window.__relief = rep;
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

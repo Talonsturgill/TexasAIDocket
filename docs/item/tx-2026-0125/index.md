@@ -49,6 +49,8 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-29 · Frontera's permanent queue closure is still unconfirmed on the center's documentation site, which bars automated readers.
 - 2026-10-30 · Frontera's permanent queue closure remains unconfirmed, since the center's documentation site still bars automated readers.
 - 2026-10-31 · Frontera's closure date could not be checked against the center's own documentation today, which stays off limits to automated readers.
+- 2026-11-01 · Frontera's closure stays unconfirmed on the center's own documentation, which this project keeps off limits.
+- 2026-11-03 · Frontera's permanent closure is unconfirmed again on the center's own documentation, which stays off limits to this project.
 
 ## Evidence
 

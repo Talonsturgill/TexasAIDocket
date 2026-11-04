@@ -1,0 +1,65 @@
+<!doctype html>
+<!-- 2026-11-03, frame 3 of 9. Archetype CLOSE_CROP. A customer site's guard gate at night from beyond the boom: the striped boom down across the lane in the foreground, the booth lit on its island, and the driverless tractor's lit grille and sensor pod at the primer stop bar, cropped by the right and bottom edges. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:900px">Next, through the security gate</h1>
+<p class="dek" data-follow="26" style="width:860px">Aurora says that in November its trucks will drive directly to sites for several customers, through security checkpoints.</p>
+<script>window.FIG = {};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-03-scalelane.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "November", counter: "03 / 09", src: "c6", fit: { min: 84, max: 108, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 38, near: 0.05, far: 3000, fog: 0.0015 });
+  /* November's gate: the booth on its island, the boom down across the lane on +x, the card reader before it, the primer
+   * stop bar across the lane. The tractor has come in from the south (+z) and stands at the bar, nose north. */
+  const gate = K.make('guard_gate', { boom: 0, reader: 'lit', stopBar: true }); gate.position.x = 1.7; TXT.add(R, gate); TXT.contact(R, gate);
+  const truck = K.make('semi_truck', { seed: 4, color: 0xe8e9e6, sensors: 'full', trailerColor: 0xdcdcd6 });
+  truck.rotation.y = Math.PI; truck.updateMatrixWorld(true);
+  { const bb = new THREE.Box3().setFromObject(truck); truck.position.set(3.2, 0, 4.6 - bb.min.z); } TXT.add(R, truck); TXT.contact(R, truck);
+  const fence = K.make('chain_link_fence', { length: 40, height: 2.4, color: 'galvanized' }); fence.rotation.y = Math.PI / 2; fence.position.set(-3.2, 0, -16); TXT.add(R, fence);
+  const flood = K.make('flood_pole', { height: 10 }); flood.position.set(-4.5, 0, -6); TXT.add(R, flood);
+  TXT.sky(R);
+  TXT.ground(R, { surface: 'asphalt', size: 2400, seed: 13 });
+  const from = [5.2, 1.5, -6.2];
+  const look = CH.aim(THREE, R, TXT, from, [2.0, 1.4, 2.4], 600, 920, 38);
+  TXT.frame(R, { fov: 38, from, look });
+  CH.warm(R, 0.24);
+  TXT.deckRig(R, CH.rigSpec(W, 16, 4096), CH.rigOpts([2, 0.5, 0], { distance: 40, shadowFar: 90, normalBias: 0.04 }));
+  CH.unacne(R, 0.04);
+  TXT.weather(R, { grime: 0.26, height: 0.7, mottle: 0.06 });
+  CH.lightsOn(THREE, R, K, truck, { beam: 60 });
+  CH.floodOn(THREE, R, flood, [2.5, 0, 1], { intensity: 500, distance: 40, angle: 0.6, glow: 1.4 });
+  /* the stop bar's primer read under this flood: a frame-local copy of the paint a value darker, no glow */
+  gate.traverse((m) => { if (m.isMesh && m.material && m.material.name !== 'x' && m.material.color && Math.abs(m.material.color.getHex() - 0x8c5a3c) < 2) { m.material = m.material.clone(); m.material.color.setHex(0x7a4416); m.material.emissiveIntensity = 0; m.position.z += 1.0; m.scale.x = 1.6; } });
+  { const cabM = new THREE.MeshStandardMaterial({ color: 0x6d7378, roughness: 0.5, metalness: 0.5 }), dark = new THREE.MeshStandardMaterial({ color: 0x1a1c1e, roughness: 0.6 });
+    const cab = TXT.roundedBox(0.55, 1.15, 0.5, 0.04, cabM); cab.position.set(2.95, 0.18 + 0.575, -2.2); R.scene.add(cab);
+    const hub = new THREE.Mesh(new THREE.CylinderGeometry(0.09, 0.09, 0.1, 20), dark); hub.rotation.x = Math.PI / 2; hub.position.set(2.95, 1.12, -2.6); R.scene.add(hub);
+    const cw = TXT.roundedBox(0.9, 0.22, 0.24, 0.03, dark); cw.position.set(2.3, 1.12, -2.2); R.scene.add(cw);
+    const lamp = new THREE.Mesh(new THREE.SphereGeometry(0.055, 20, 12), new THREE.MeshStandardMaterial({ color: 0x3a2008, emissive: 0xff9a1a, emissiveIntensity: 5 })); lamp.position.set(2.95, 1.39, -2.2); R.scene.add(lamp);
+    const lp = new THREE.PointLight(0xffa040, 4, 5, 2); lp.position.set(2.95, 1.8, -2.4); R.scene.add(lp); TXT.contact(R, cab); }
+  TXT.stage(R, [gate, truck], { poolInner: 7, poolOuter: 15, behind: 0.3, depth: 1.0 });
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0.3, veil: 0.5, veilH: 150 });
+  { const g = cx.createRadialGradient(960, 1320, 30, 960, 1320, 460); g.addColorStop(0, 'rgba(5,6,10,0.7)'); g.addColorStop(0.6, 'rgba(5,6,10,0.35)'); g.addColorStop(1, 'rgba(5,6,10,0)'); cx.fillStyle = g; cx.fillRect(500, 960, 580, 390); }
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

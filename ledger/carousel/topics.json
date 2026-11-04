@@ -2226,6 +2226,103 @@
     "surveillance technology",
     "Galveston County"
    ]
+  },
+  {
+   "date": "2026-11-01",
+   "carousel_no": 65,
+   "docket_item": "tx-2026-0229",
+   "related_items": [],
+   "instrument": "Texas A&M Engineering news of October 22nd and September 4th, Texas A&M Stories of October 26th, and the NSF Award API record for award 2534344, all fetched November 1st, 2026.",
+   "topic": "A $2 million WoodNext Foundation grant will help Texas A&M build the Aggie AI Foundry, where computer controlled arms are to mix, melt and test new alloys, because the university says existing self driving labs can't handle alloys at up to 3,000 degrees Celsius. A separate NSF award has obligated $4.1 million of an estimated $24.9 million for the open access Autonomous Robotic Metallurgist, running September 1st, 2026 to August 31st, 2032.",
+   "angle": "An alloy followed through its states in a dark lab: a button glowing in a water cooled copper hearth among cooled ones, heaps of metal powder, a tray of buttons for the grant, the line of crucible, hearth and grips, a button on a stack of offprints, the funders' trays at a common unit, a rack of bars for the award's months, the etched section of a button, and the pulled bar broken in half.",
+   "angle_note": "Every frame is drawn to illustrate. Each button, bar and sheet is a unit counted by compute.py. No person is drawn.",
+   "entities": [
+    "Texas A&M University",
+    "Texas A&M Engineering Experiment Station",
+    "WoodNext Foundation",
+    "National Science Foundation",
+    "Roku"
+   ],
+   "places": [],
+   "what_was_refused": "any opening date or construction timeline for the foundry (no source gives one), any claim that the foundry runs today, and the goal of a week or less stated as a result.",
+   "keywords": [
+    "Texas A&M",
+    "Aggie AI Foundry",
+    "self driving lab",
+    "alloys",
+    "NSF",
+    "materials science",
+    "PhaseForge",
+    "WoodNext Foundation"
+   ]
+  },
+  {
+   "date": "2026-11-02",
+   "carousel_no": 66,
+   "docket_item": "tx-2026-0236",
+   "related_items": [],
+   "instrument": "The Southwest Research Institute press release on the automated survey, the City of San Antonio news release of October 20th and the Animal Care Services statistics page, all fetched November 2nd, 2026.",
+   "topic": "Southwest Research Institute and San Antonio Animal Care Services will repeat the city's 2019 manual survey of unrestrained dogs in the same 32 study areas, using a phone mounted on a vehicle window with object detection software, with automated and human review of the clips. Field research is expected to run through December 2026, then SwRI forwards a final report to the department. The city says the sample is not meant to count every unrestrained dog.",
+   "angle": "A tan dog on a west side street at night, seen through the survey car's window inside a gold detection box, then on the phone's screen, inside labelled corners, split as stray and roaming, on a reviewer's screen beside unticked checks, then caliche plugs on a clay city plan for the 32 areas, the 2019 mould beside the 2026 cast with a 7 year rule, a field block over October to December with the report past it, and the dog watching the survey car leave.",
+   "angle_note": "Every frame is drawn to illustrate, to no breed. No 2019 finding is drawn and no person is drawn.",
+   "entities": [
+    "Southwest Research Institute",
+    "City of San Antonio",
+    "San Antonio Animal Care Services",
+    "Jon Gary",
+    "Mike Koets"
+   ],
+   "places": [
+    "San Antonio"
+   ],
+   "what_was_refused": "any 2019 finding (the study PDF was not fetched), any statement that the survey is already running, and any accuracy figure for the stray or roaming call (no source gives one).",
+   "keywords": [
+    "San Antonio",
+    "Animal Care Services",
+    "SwRI",
+    "loose dogs",
+    "unrestrained dogs",
+    "object detection",
+    "machine vision",
+    "survey"
+   ]
+  },
+  {
+   "date": "2026-11-03",
+   "carousel_no": 67,
+   "docket_item": "tx-2026-0239",
+   "related_items": [
+    "tx-2026-0214",
+    "tx-2026-0209"
+   ],
+   "instrument": "Aurora Innovation's third quarter 2026 shareholder letter on SEC EDGAR, dated October 28th, and Aurora's own release on the Dallas to Houston route, both fetched November 3rd, 2026.",
+   "topic": "Aurora's third quarter 2026 shareholder letter says its driverless trucks can now tell whether a weigh station is open, steer to an available scale lane and adapt to scale configurations, and that in November they will drive directly to customer sites through security checkpoints. It says more than 20 driverless trucks are built, the ramp is behind its prior plan, revenue was $3 million against a $257 million operating loss, FMCSA granted a cab beacon exemption, and Aurora expects more than 200 trucks by the end of February and more than 1,000 at the end of 2027. Charger Logistics plans to start between Dallas and Laredo under a non-binding MOU.",
+   "angle": "A white tractor on a floodlit weigh station scale at night, the calls as lit rings on the apron, the nose at a November gate's primer stop bar, the built tractors in ranks, the slip as a steel rule and a primer stop, revenue and loss as a billet and a bar on a shared scale, the corridor as a clay relief with a white inlay and primer studs, the cab beacon, and a yard of white stalls running into primer paint.",
+   "angle_note": "No Texas weigh station or customer is named, because the letter names none. Dallas to Laredo is drawn as Charger's plan in primer, never as an Aurora route. Every frame is drawn to illustrate.",
+   "entities": [
+    "Aurora Innovation",
+    "Charger Logistics",
+    "AUMOVIO",
+    "FMCSA"
+   ],
+   "places": [
+    "Dallas",
+    "Houston",
+    "Laredo",
+    "New Braunfels"
+   ],
+   "what_was_refused": "any named Texas weigh station or customer site, any statement that the Dallas to Laredo route runs today, and any figure for trucks per week beyond the letter's expected 20 in early December.",
+   "keywords": [
+    "Aurora",
+    "driverless trucks",
+    "autonomous trucking",
+    "weigh station",
+    "FMCSA",
+    "Dallas",
+    "Houston",
+    "Laredo",
+    "shareholder letter"
+   ]
   }
  ]
 }

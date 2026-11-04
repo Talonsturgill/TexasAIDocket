@@ -1,0 +1,75 @@
+<!doctype html>
+<!-- 2026-11-02, frame 1 of 9. Archetype FULL_BLEED. The lens view: the camera at the phone on the survey car's north window, looking across the road at a tan street dog mid step on the parkway, the window's rubber seal and door glass cropping the left and bottom edges, a gold box of four corners around the dog. Drawn to illustrate, to no breed. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:900px">A phone on a vehicle window will survey San&nbsp;Antonio's loose dogs</h1>
+<p class="dek" data-follow="26" style="width:860px">Southwest Research Institute and the city's Animal Care Services will repeat a 2019 manual survey with machine vision software. Drawn to&nbsp;illustrate.</p>
+<script>window.FIG = {"review_checks": 4};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-02-sightline.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "San Antonio", counter: "01 / 09", src: "c1 c2 c3 c9 c15", fit: { min: 64, max: 92, maxLines: 3 } });
+  const R = CH.stage(TXT, gl, W, { fov: 30, near: 0.03, far: 3000, fog: 0.012 });
+  const B = CH.BLOCK;
+  const st = CH.street(K, TXT, R, { road: true, parkway: true, fence: true, yard: true, house: true, oak: true, light: true });
+  /* the dog: tan, full, mid step on the parkway, 5.7 m from the lens, walking east along the kerb, its near side to the camera */
+  const dog = K.make('street_dog', { build: 'full', pose: 'step', coat: 'tan', seed: 66 });
+  dog.rotation.y = -0.95; dog.position.set(0.5, 0.2, -4.95); TXT.add(R, dog); TXT.contact(R, dog, { grit: false });
+  /* the window: black rubber seal along the opening's lower and rear edges, and the top of the lowered door glass, a hand's breadth from the lens */
+  const rub = new THREE.MeshStandardMaterial({ color: 0x0b0b0c, roughness: 0.72 });
+  const glassM = new THREE.MeshPhysicalMaterial({ color: 0x1a2026, roughness: 0.06, metalness: 0.1, transmission: 0, transparent: true, opacity: 0.55, clearcoat: 1 });
+  const L0 = [0, B.lensY, B.lensZ];
+  TXT.sky(R);
+  TXT.ground(R, { surface: 'asphalt', size: 600, seed: 21 });
+  const look = CH.aim(THREE, R, TXT, L0, [0.55, 0.35, -4.95], 600, 1080, 30);
+  TXT.frame(R, { fov: 30, from: L0, look });
+  /* THE WINDOW, placed in the camera's own frame half a metre ahead: the rubber seal down the left tenth of the
+   * frame and along the bottom eighth, the lowered door glass's top edge just above the bottom seal */
+  {
+    const cam = R.camera; cam.updateMatrixWorld(true);
+    const fw = new THREE.Vector3(); cam.getWorldDirection(fw);
+    const rt = new THREE.Vector3().setFromMatrixColumn(cam.matrixWorld, 0), up = new THREE.Vector3().setFromMatrixColumn(cam.matrixWorld, 1);
+    const d = 0.5, hh = d * Math.tan(30 * Math.PI / 360), hw = hh * CH.W / CH.H;
+    const at = (u, v) => cam.position.clone().addScaledVector(fw, d).addScaledVector(rt, u * hw).addScaledVector(up, v * hh);
+    const q = cam.quaternion;
+    /* the seal is a rounded rubber channel, its lip catching the key; the glass's top edge a polished bevel that takes the seam */
+    const lip = new THREE.MeshPhysicalMaterial({ color: 0x1a1a1c, roughness: 0.35, clearcoat: 0.5, clearcoatRoughness: 0.3 });
+    const sL = TXT.roundedBox(hw * 0.2, hh * 2.4, 0.03, 0.012, rub); sL.position.copy(at(-1.0, 0)); sL.quaternion.copy(q); R.scene.add(sL);
+    const sLl = TXT.roundedBox(hw * 0.03, hh * 2.4, 0.034, 0.006, lip); sLl.position.copy(at(-0.9, 0)); sLl.quaternion.copy(q); R.scene.add(sLl);
+    const sB = TXT.roundedBox(hw * 2.4, hh * 0.24, 0.03, 0.012, rub); sB.position.copy(at(0, -1.0)); sB.quaternion.copy(q); R.scene.add(sB);
+    const pn = TXT.roundedBox(hw * 2.4, hh * 0.05, 0.006, 0.002, glassM); pn.position.copy(at(0, -0.85)); pn.quaternion.copy(q); R.scene.add(pn);
+    const edge = new THREE.Mesh(new THREE.BoxGeometry(hw * 2.4, hh * 0.008, 0.002), new THREE.MeshPhysicalMaterial({ color: 0xbfc6cc, roughness: 0.05, metalness: 0.6, emissive: 0x3a2a1c, emissiveIntensity: 0.6 }));
+    edge.position.copy(at(0, -0.822)); edge.quaternion.copy(q); R.scene.add(edge);
+  }
+  CH.warm(R, 0.3);
+  TXT.deckRig(R, CH.rigSpec(W, 10, 4096), CH.rigOpts([0.5, 0.3, -5], { distance: 30, shadowFar: 70 }));
+  CH.unacne(R, 0.01);
+  TXT.weather(R, { grime: 0.4, height: 0.5 });
+  TXT.stage(R, [dog], { poolInner: 2.2, poolOuter: 6.5 });
+  /* THE BOX, around the dog alone, one corner per review check, the count read from figures.json */
+  const rect = CH.rectOf(THREE, R, dog, 6);
+  CH.box(rect, Math.round(FIG.review_checks), { arm: 104, width: 9.5 });
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0.32, veil: 0.4, veilH: 300 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

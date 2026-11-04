@@ -1,0 +1,123 @@
+{
+ "_note": "Every value is extracted from a claim quote by compute.py, or computed here from values that were.",
+ "trucks_built": {
+  "value": 20,
+  "from": [
+   "c1"
+  ],
+  "basis": "the '20+' driverless trucks already built"
+ },
+ "driverless_miles": {
+  "value": 500000,
+  "from": [
+   "c2"
+  ],
+  "basis": "commercial driverless miles passed in September"
+ },
+ "on_time_pct": {
+  "value": 100,
+  "from": [
+   "c2"
+  ],
+  "basis": "on-time delivery since launch, in percent"
+ },
+ "charger_trucks": {
+  "value": 500,
+  "from": [
+   "c3",
+   "c19"
+  ],
+  "basis": "trucks under Charger's non-binding MOU"
+ },
+ "delivery_first_year": {
+  "value": 2027,
+  "from": [
+   "c4"
+  ],
+  "basis": "first year of Charger's expected truck delivery"
+ },
+ "delivery_last_year": {
+  "value": 2028,
+  "from": [
+   "c4"
+  ],
+  "basis": "second year of Charger's expected truck delivery"
+ },
+ "weekly_rate": {
+  "value": 20,
+  "from": [
+   "c11"
+  ],
+  "basis": "targeted trucks per week in early December"
+ },
+ "weeks_behind": {
+  "value": 6,
+  "from": [
+   "c12"
+  ],
+  "basis": "'about six weeks behind', the word read as a number"
+ },
+ "revenue_2026": {
+  "value": 9,
+  "from": [
+   "c12"
+  ],
+  "basis": "expected 2026 revenue, millions of dollars, approximately"
+ },
+ "q3_revenue": {
+  "value": 3,
+  "from": [
+   "c13"
+  ],
+  "basis": "third quarter revenue, millions of dollars"
+ },
+ "q3_operating_loss": {
+  "value": 257,
+  "from": [
+   "c14"
+  ],
+  "basis": "third quarter operating loss including stock-based compensation, millions of dollars"
+ },
+ "milestone_trucks": {
+  "value": 200,
+  "from": [
+   "c15"
+  ],
+  "basis": "the truck milestone expected by the end of February"
+ },
+ "trucks_end_2027": {
+  "value": 1000,
+  "from": [
+   "c16"
+  ],
+  "basis": "driverless trucks in operation Aurora expects to exceed at the end of 2027"
+ },
+ "hardware_start_year": {
+  "value": 2027,
+  "from": [
+   "c18"
+  ],
+  "basis": "planned start of production, second half of 2027"
+ },
+ "exemption_years": {
+  "value": 5,
+  "from": [
+   "c20"
+  ],
+  "basis": "the FMCSA exemption's term in years, the word read as a number"
+ },
+ "scale_steps": {
+  "value": 3,
+  "from": [
+   "c9"
+  ],
+  "basis": "computed: the weigh station steps the letter names (station open, scale lane, scale configuration)"
+ },
+ "ramp_causes": {
+  "value": 3,
+  "from": [
+   "c10"
+  ],
+  "basis": "computed: the three constraints the letter names on the ramp"
+ }
+}
