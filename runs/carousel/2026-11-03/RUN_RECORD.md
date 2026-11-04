@@ -158,6 +158,15 @@ today's slides would draw the new truck, which is the point of the lift for tomo
 #457, ready, carrying #455 and #456. CI's `gates` job is red on the same `gridwatch_pagecheck` self-test step as `main`,
 and the PR carries one comment saying so. It does not merge.
 
+## The email
+
+Built by `gmail_draft.py` and passed by `email_check.py`. The draft was created with the payload as `htmlBody` (draft
+r-7028663521936842017) and read back with `get_draft`. **The read-back shows all nine slide thumbnails removed.** The
+connector now drops every `<img>` that is not an inline attachment, so the draft carries the post copy, the first
+comment, the PDF and contact sheet links, and no slide images. Queued as `gmail-connector-strips-linked-thumbnails`.
+After scoring, fig_inject and a font rule for the hook's plus sign re-rendered frames 1 and 9 from changed sources. The
+art review was bound again at a seventh reading, and the gate table's `score` row reads STALE for that reason.
+
 ## Gate status
 
 <!-- gate-status:begin -->
