@@ -40,6 +40,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-31 · Leander's decision to stop paying for plate reader cameras is still unconfirmed, since the city's own page answers no reader.
 - 2026-11-01 · Leander's end to its plate reader payments stays unconfirmed, with the city's page still answering no request from this project.
 - 2026-11-02 · Leander's end to Flock funding is unconfirmed today, because the city's notice turns away every reader.
+- 2026-11-03 · Leander's end to plate reader funding is still unconfirmed. The city's notice refuses every reader.
 
 ## Evidence
 

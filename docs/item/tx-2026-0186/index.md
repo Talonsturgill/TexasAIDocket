@@ -54,6 +54,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-31 · No FAA decision on Zipline's round the clock deliveries could be confirmed today. The agency's environmental notice answers no reader.
 - 2026-11-01 · No FAA decision on Zipline's round the clock deliveries can be confirmed today. The agency's page answers no request from this project.
 - 2026-11-02 · Zipline's environmental assessment for five Texas metros is unconfirmed today, because the FAA's pages refused the request.
+- 2026-11-03 · Zipline's environmental assessment for five Texas metros is unconfirmed again. The FAA's page and the draft refuse every reader.
 
 ## Evidence
 

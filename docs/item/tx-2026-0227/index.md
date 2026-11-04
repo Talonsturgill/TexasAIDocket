@@ -25,6 +25,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-25 · Checked and unchanged. The decision still stands as decided.
 - 2026-10-29 · UTEP and El Paso Water's test of a NASA backed flood mapping model still reads as described.
 - 2026-11-01 · The UTEP and El Paso Water flood mapping test is unconfirmed today. The university's site refuses this project.
+- 2026-11-03 · The UTEP and El Paso Water flood mapping test is unconfirmed today. The university's site did not answer a secure request.
 
 ## Evidence
 

@@ -46,6 +46,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-24 · Carson County's phased abatement agreement with Fermi America for Project Matador still stands as the court approved it.
 - 2026-10-29 · Carson County's phased abatement with Fermi America still stands on the county's record. The station's report is unconfirmed.
 - 2026-11-01 · Carson County's phased abatement with Fermi America stays unconfirmed today. The station's report still refuses this project.
+- 2026-11-03 · Carson County's phased abatement with Fermi America is unconfirmed again. The station that reported it still refuses this project.
 
 ## Evidence
 

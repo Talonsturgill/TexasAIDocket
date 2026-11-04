@@ -54,6 +54,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-30 · The city's legislative record still carries the charter election with its section on the city's use of AI. The ordinance files bar automated readers.
 - 2026-10-31 · Pflugerville's charter election, with its section on how the city uses AI, is still on the ballot. The ordinance files themselves refuse automated readers.
 - 2026-11-01 · Pflugerville's charter election, with its section on city technology, is still set for Tuesday on the city's own record.
+- 2026-11-03 · Pflugerville's charter election, including the section on city technology, goes to voters today. The city's agenda host still refuses this project, so the order itself is unconfirmed.
 
 ## Evidence
 

@@ -4186,6 +4186,73 @@
     "hex": "#09080C",
     "note": "The night street and the reliefs' black clay."
    }
+  },
+  {
+   "date": "2026-11-03",
+   "carousel_no": 67,
+   "written_from": "deck_coherence's median L* per frame at 432 px off the final renders, layout_check's accent share, by update_ledgers.py.",
+   "register": "SPATIAL SCENES in one staged floodlit weigh station and truck yard at night (frames 1 to 4, 8 and 9) with three TXBENCH material reliefs (5 to 7). Chassis assets/js/deck/2026-11-03-scalelane.js: truck_scale, scale_house, scale_signal, flood_pole, guard_gate, cab_beacon and yard_stalls, with the kit's semi_truck and highway, and primer rust as the one accent for what the letter expects and has not happened.",
+   "structural_laws": [
+    "LIGHT DESATURATES AN ACCENT. A primer albedo at the accent hex rendered ten to twenty Lab units off it under a cool flood, so the stop bar and the kerbs needed a warmer, more yellow albedo than the target to land within twelve.",
+    "A LABEL ON A RELIEF IS STRUCK BY ITS GROOVES. Map labels crossed county grooves and route lines until each sat on dark Gulf or plain ground with a leader to its place.",
+    "A RELIEF CAST NEEDS HEIGHT, NOT LENGTH. A long cast length over a low land plate stayed under the cast floor until the land itself stood proud and the county lines were cut into it.",
+    "A YARD OF STALLS READS AS ONE PAINTED PLATE until the paint sits a value below the cabs and the asphalt is sealed near black.",
+    "MOVING A RELIEF MOVES ITS RECT. The quarter's bar was raised and the dossier rect left behind measured empty bed under the detail floor until the rect was moved with it."
+   ],
+   "techniques": [
+    "a white tractor on a steel scale deck between yellow kerb rails, the scale house window lit beside it and a green signal over the lane",
+    "the station from its flood pole, three lit rings on the apron at the three calls the letter names, each with a leader",
+    "the tractor's nose at a guard gate boom with a single primer stop bar across the lane",
+    "twenty tractors in two ranks facing the camera across a sealed yard",
+    "a steel rule with a witness line, six machined week grooves and a primer clamp, three shims behind it",
+    "a polished billet and a mill scale bar on one datum at one scale, a primer groove at the expected 2026 revenue",
+    "a clay relief of Texas counties with a bead white inlay for Dallas to Houston and a row of primer studs for Charger's planned Dallas to Laredo",
+    "an amber cab beacon lit on a stopped tractor's roof at night",
+    "the yard from its light mast, 20 white stalls with tractors, primer kerbs closing the first 200 and the end of 1,000"
+   ],
+   "value": {
+    "per_frame_median_L": [
+     0.8,
+     10.9,
+     7.3,
+     4.0,
+     3.0,
+     5.5,
+     2.4,
+     3.8,
+     8.3
+    ],
+    "deck_median_L": 4.0,
+    "max_adjacent_delta": 10.1,
+    "mean_adjacent_delta": 3.69,
+    "note": "Measured by deck_coherence's median_lstar at 432 px off the final renders. A staged night station and dark reliefs."
+   },
+   "accent": {
+    "hex": "#8C5A3C",
+    "name": "primer rust, what the letter expects and has not happened",
+    "frames_above_floor": [
+     3,
+     5,
+     8,
+     9
+    ],
+    "share": [
+     0.0,
+     0.0,
+     0.0115,
+     0.0,
+     0.004,
+     0.0,
+     0.0004,
+     0.008,
+     0.0026
+    ],
+    "note": "November's stop bar on 3, the primer stop on 5, the expected 2026 revenue groove on 6, Charger's planned studs and New Braunfels on 7, the 200 and 1,000 stalls and kerbs on 9."
+   },
+   "ground": {
+    "hex": "#08090C",
+    "note": "The night yard's sealed asphalt and the reliefs' black bed."
+   }
   }
  ]
 }
