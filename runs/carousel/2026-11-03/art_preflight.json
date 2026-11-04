@@ -6,7 +6,7 @@
     9
   ],
   "inputs": {
-    "slides/slide-01.html": "fe5cb6cc8c6c14b5de8f3b4f818d1197ed22c8187a611e1d3a8c49dda170baeb",
+    "slides/slide-01.html": "a84bdb4a4f7d624a6cbe9a73a8391f19911bc86b23476f7aff407ab312b2c4cf",
     "render/slide-01.png": "fb009592d7acc83fcb6ff97d8170a098387c525c04c12fcacf57e99ea7f46a49",
     "assets/js/deck/2026-11-03-scalelane.js": "05309d6fa8c12276564ca81b52e7268b0463f765112c0aeeb1fdfed0d576c32c",
     "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
@@ -20,8 +20,8 @@
     "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
     "slides/slide-02.html": "fcea4383f480bcd229035861fdbd1471dd7deb0d0e2766b2ec47961cfcfd7065",
     "render/slide-02.png": "a544f0c2cc9100a54a9f53262e15dea21e3458ba186aa2a68646cdd7523c7eb6",
-    "slides/slide-09.html": "63c0db59d5dfc67ed08e746d13b698b267a75def31079fc7745748ec1c84514e",
-    "render/slide-09.png": "1cd730784f36009c90c3fcc0e62c8acc42650ae5fd9bbed47e575c78a3dbe405"
+    "slides/slide-09.html": "74c21b8e8ac388aa28d0a80455218c9b92f657c0891b016d881024c7ba7fd07c",
+    "render/slide-09.png": "7bfca396d48c817489490e5931014901a6b51f3d2338822a25a51ad3606cf8e9"
   },
   "value_measurements": [
     {
@@ -46,7 +46,7 @@
   "review": {
     "decision": "accept",
     "inputs": {
-      "slides/slide-01.html": "fe5cb6cc8c6c14b5de8f3b4f818d1197ed22c8187a611e1d3a8c49dda170baeb",
+      "slides/slide-01.html": "a84bdb4a4f7d624a6cbe9a73a8391f19911bc86b23476f7aff407ab312b2c4cf",
       "render/slide-01.png": "fb009592d7acc83fcb6ff97d8170a098387c525c04c12fcacf57e99ea7f46a49",
       "assets/js/deck/2026-11-03-scalelane.js": "05309d6fa8c12276564ca81b52e7268b0463f765112c0aeeb1fdfed0d576c32c",
       "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
@@ -60,22 +60,22 @@
       "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
       "slides/slide-02.html": "fcea4383f480bcd229035861fdbd1471dd7deb0d0e2766b2ec47961cfcfd7065",
       "render/slide-02.png": "a544f0c2cc9100a54a9f53262e15dea21e3458ba186aa2a68646cdd7523c7eb6",
-      "slides/slide-09.html": "63c0db59d5dfc67ed08e746d13b698b267a75def31079fc7745748ec1c84514e",
-      "render/slide-09.png": "1cd730784f36009c90c3fcc0e62c8acc42650ae5fd9bbed47e575c78a3dbe405"
+      "slides/slide-09.html": "74c21b8e8ac388aa28d0a80455218c9b92f657c0891b016d881024c7ba7fd07c",
+      "render/slide-09.png": "7bfca396d48c817489490e5931014901a6b51f3d2338822a25a51ad3606cf8e9"
     },
     "frames": [
       {
         "slide": 1,
         "role": "cover",
         "subject": "The white kit tractor and 53 ft van, with its headlamps lit, on the diamond-tread steel scale deck between two yellow kerb rails. A corrugated scale house sits at left with its window toward the truck, and a green signal hangs on a mast arm against the black sky.",
-        "visual_consequence": "Even without the headline this reads as a weigh station at night, with a driverless-looking truck (roof sensor bar, side pods and lidar puck) rolling onto the scale under a green go signal. The rails converge from the bottom edge onto the cab. The flood rakes the cab's right side and the house corner, and the tractor sits on the deck with dark contact under its tyres and bumper. The deck has no hotspot, the apron under the footer is darkened without going muddy, and the signal glow stays tight to the lens.",
+        "visual_consequence": "Even without the headline this reads as a weigh station at night, with a driverless-looking truck (roof sensor bar, side pods and lidar puck) rolling onto the scale under a green go signal. The rails converge from the bottom edge onto the cab. The flood rakes the cab's right side and the house corner, and the tractor sits on the deck with dark contact under its tyres and bumper. The deck has no hotspot, the apron under the footer is darkened without going muddy, and the signal glow stays tight to the lens. The source change to window.FIG left the rendered image byte-identical (the same PNG digest as the accepted reading).",
         "weakness": "Minor surface faults only. The van's upper rear corner has a dark vertical smear about 30 design px tall at design x about 907, y 820 to 850, which reads as a shadow-map artefact rather than a seam. The house's two window panes are flat pale grey, with no interior, mullion depth or glow. The tractor's cast to the lower left is mostly lost in the dark under the van, so the contact shadow carries the seating alone.",
         "repair": "none required",
         "encoding_reads": true,
         "dominant_subject_finished": true,
         "feed_legible": true,
         "inputs": {
-          "slides/slide-01.html": "fe5cb6cc8c6c14b5de8f3b4f818d1197ed22c8187a611e1d3a8c49dda170baeb",
+          "slides/slide-01.html": "a84bdb4a4f7d624a6cbe9a73a8391f19911bc86b23476f7aff407ab312b2c4cf",
           "render/slide-01.png": "fb009592d7acc83fcb6ff97d8170a098387c525c04c12fcacf57e99ea7f46a49",
           "assets/js/deck/2026-11-03-scalelane.js": "05309d6fa8c12276564ca81b52e7268b0463f765112c0aeeb1fdfed0d576c32c",
           "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
@@ -118,8 +118,8 @@
         "slide": 9,
         "role": "close",
         "subject": "Twenty white kit tractors in two ranks of ten in white stalls. The far rank shows sleeper backs and the near rank faces the camera with headlamps lit. Rows of primer stalls run away from them across the dark yard, with a thick primer kerb closing the first 200 and a far primer kerb marking the end of the 1,000.",
-        "visual_consequence": "A countable block of twenty real tractors sits at the front of a primer field that runs far back into the dark, with two primer kerbs marking 200 and 1,000. The distance between what stands and what is expected reads as distance on the ground. White stalls hold trucks and primer stalls are empty. The 200 label now sits in clear dark above its kerb. The near rank sits in the pool with casts to the lower left and contact under the bumpers, and the hook's plus signs hold at full and feed size.",
-        "weakness": "The far kerb is a little heavier, but at native size it is still a thin primer band about 4 design px high, with a faint top edge. It runs directly under the dek and stops abruptly in empty dark at design x about 557. At 432 px it still reads closer to a rule than to the end of a stall field. The 800-stall span between the two kerbs is a near-black band crossed by a faint grid. The '20+ built' label now sits right under the 200 kerb, and the near primer stall strokes still pass behind the lower parts of '2', '+' and 'b', though the glyphs stay readable. Every far-rank sleeper back is a plain light-grey box face.",
+        "visual_consequence": "A countable block of twenty real tractors sits at the front of a primer field that runs far back into the dark, with two primer kerbs marking 200 and 1,000. The distance between what stands and what is expected reads as distance on the ground. White stalls hold trucks and primer stalls are empty. The 200 label sits in clear dark above its kerb. The near rank sits in the pool with casts to the lower left and contact under the bumpers. Both '+' signs in the hook are now solid, flat Manrope plus glyphs in the hook's light grey. They have no stroke outline, bevel or grey inner line, sit on the numeral midline with even spacing, and read cleanly at 432 px. The art below the hook is unchanged from the accepted reading.",
+        "weakness": "The two plus signs are a geometric sans glyph inside a high-contrast serif hook. They are heavier and squarer than the serif's own strokes, so at native size they read as a deliberate typographic swap, but they don't break the line. The far kerb is still a thin primer band about 4 design px high, with a faint top edge. It runs directly under the dek and stops abruptly in empty dark at design x about 557. At 432 px it still reads closer to a rule than to the end of a stall field. The 800-stall span between the two kerbs is a near-black band crossed by a faint grid. The '20+ built' label sits right under the 200 kerb, and the near primer stall strokes pass behind the lower parts of '2', '+' and 'b', though the glyphs stay readable. Every far-rank sleeper back is a plain light-grey box face.",
         "repair": "none required",
         "encoding_reads": true,
         "dominant_subject_finished": true,
@@ -135,8 +135,8 @@
           "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
           "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
           "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
-          "slides/slide-09.html": "63c0db59d5dfc67ed08e746d13b698b267a75def31079fc7745748ec1c84514e",
-          "render/slide-09.png": "1cd730784f36009c90c3fcc0e62c8acc42650ae5fd9bbed47e575c78a3dbe405"
+          "slides/slide-09.html": "74c21b8e8ac388aa28d0a80455218c9b92f657c0891b016d881024c7ba7fd07c",
+          "render/slide-09.png": "7bfca396d48c817489490e5931014901a6b51f3d2338822a25a51ad3606cf8e9"
         }
       }
     ]
@@ -149,7 +149,7 @@
   },
   "frame_inputs": {
     "1": {
-      "slides/slide-01.html": "fe5cb6cc8c6c14b5de8f3b4f818d1197ed22c8187a611e1d3a8c49dda170baeb",
+      "slides/slide-01.html": "a84bdb4a4f7d624a6cbe9a73a8391f19911bc86b23476f7aff407ab312b2c4cf",
       "render/slide-01.png": "fb009592d7acc83fcb6ff97d8170a098387c525c04c12fcacf57e99ea7f46a49",
       "assets/js/deck/2026-11-03-scalelane.js": "05309d6fa8c12276564ca81b52e7268b0463f765112c0aeeb1fdfed0d576c32c",
       "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
@@ -187,18 +187,18 @@
       "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
       "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
       "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
-      "slides/slide-09.html": "63c0db59d5dfc67ed08e746d13b698b267a75def31079fc7745748ec1c84514e",
-      "render/slide-09.png": "1cd730784f36009c90c3fcc0e62c8acc42650ae5fd9bbed47e575c78a3dbe405"
+      "slides/slide-09.html": "74c21b8e8ac388aa28d0a80455218c9b92f657c0891b016d881024c7ba7fd07c",
+      "render/slide-09.png": "7bfca396d48c817489490e5931014901a6b51f3d2338822a25a51ad3606cf8e9"
     }
   },
   "needs_review": [],
   "shipped_inputs": {
-    "slides/slide-01.html": "fe5cb6cc8c6c14b5de8f3b4f818d1197ed22c8187a611e1d3a8c49dda170baeb",
+    "slides/slide-01.html": "a84bdb4a4f7d624a6cbe9a73a8391f19911bc86b23476f7aff407ab312b2c4cf",
     "slide-01.webp": "9388b6832495e3813ff684a6ce70531e6ca4883a598ae7ad6246e1a6d09b5f04",
     "slides/slide-02.html": "fcea4383f480bcd229035861fdbd1471dd7deb0d0e2766b2ec47961cfcfd7065",
     "slide-02.webp": "9bb4ace2d55510265f7481658df5ce89119494b7072aeee4e5ea999ff319213e",
-    "slides/slide-09.html": "63c0db59d5dfc67ed08e746d13b698b267a75def31079fc7745748ec1c84514e",
-    "slide-09.webp": "12047c02315f5a5af6e594f84102867b4964acac1fdafb2bbe9cf45b7832b3f6"
+    "slides/slide-09.html": "74c21b8e8ac388aa28d0a80455218c9b92f657c0891b016d881024c7ba7fd07c",
+    "slide-09.webp": "d7ac7b80e09bbf86024952621c3e180777b64f849b8f4312ddc6d58946b3f11d"
   },
   "encodings": [
     {
@@ -215,9 +215,9 @@
     },
     {
       "to": "slide-09.webp",
-      "to_sha256": "12047c02315f5a5af6e594f84102867b4964acac1fdafb2bbe9cf45b7832b3f6",
-      "from_sha256": "1cd730784f36009c90c3fcc0e62c8acc42650ae5fd9bbed47e575c78a3dbe405",
-      "psnr_db": 40.098
+      "to_sha256": "d7ac7b80e09bbf86024952621c3e180777b64f849b8f4312ddc6d58946b3f11d",
+      "from_sha256": "7bfca396d48c817489490e5931014901a6b51f3d2338822a25a51ad3606cf8e9",
+      "psnr_db": 41.274
     }
   ]
 }
