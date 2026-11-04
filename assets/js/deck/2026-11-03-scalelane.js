@@ -78,7 +78,7 @@
       glass: K.finish.glass(0x1d2a33),
       lamp: K.mat("sl-lamp", { color: 0x0b0d10, emissive: 0xf2f6ff, emissiveIntensity: 9 }),
       go: K.mat("sl-go", { color: 0x041a0a, emissive: 0x1fd15a, emissiveIntensity: 4.5 }),
-      rust: K.mat("sl-rust", { color: 0x8c5a3c, roughness: 0.62, metalness: 0.05, emissive: 0x3a1c0e, emissiveIntensity: 0.35 }),
+      rust: K.mat("sl-rust", { color: 0x8c5a3c, roughness: 0.7, metalness: 0.0, emissive: 0x2a1408, emissiveIntensity: 0.25 }),
       amber: K.mat("sl-amber", { color: 0x3a2008, emissive: 0xffa43a, emissiveIntensity: 6, roughness: 0.25 }),
       dim: K.mat("sl-dim", { color: 0x15181b, emissive: 0x2a2f33, emissiveIntensity: 0.4, roughness: 0.3 }),
       warm: K.mat("sl-warm", { color: 0x111111, emissive: 0xffd9a8, emissiveIntensity: 3.0 })
@@ -226,14 +226,14 @@
         var cab = K.box(0.36, 1.05, 0.4, M.yellow, 1.25, 0.18, -2.2, 0.03); G.add(cab);
         var arm = new THREE.Group(); arm.position.set(1.25, 1.12, -2.2); arm.rotation.z = (o.boom || 0) * Math.PI / 2.1; G.add(arm);
         var segs = 12, len = 6.4;
-        for (var s = 0; s < segs; s++) { var seg = TXT.roundedBox(len / segs, 0.11, 0.09, 0.02, s % 2 ? M.red : M.white); seg.position.set(0.15 + (s + 0.5) * len / segs, 0, 0); arm.add(seg); }
+        for (var s = 0; s < segs; s++) { var seg = TXT.roundedBox(len / segs, 0.11, 0.09, 0.02, s % 2 ? M.steelDark : M.white); seg.position.set(0.15 + (s + 0.5) * len / segs, 0, 0); arm.add(seg); }
         /* the card reader pedestal before the gate, at a cab's window height, its screen in the accent */
         var ped = new THREE.Group(); ped.position.set(1.25, 0.18, 1.3); G.add(ped);
         ped.add(K.cyl(0.07, 0.07, 1.8, M.steelDark, 0, 0, 0, 12));
         var hd = TXT.roundedBox(0.34, 0.46, 0.22, 0.04, M.black); hd.position.set(0.05, 2.0, 0); hd.rotation.y = 0.5; ped.add(hd);
         var scr = new THREE.Mesh(new THREE.PlaneGeometry(0.22, 0.16), o.reader === "lit" ? M.go : M.dim); scr.position.set(0.12, 2.06, 0.1); scr.rotation.y = 0.5 + Math.PI / 2 - Math.PI / 2; ped.add(scr);
         /* the stop bar across the lane before the gate, in primer: November's gate is a plan, not yet true */
-        if (o.stopBar) { var sb = K.box(4.0, 0.012, 0.6, M.rust, 4.5, 0.0, 3.4); G.add(sb); }
+        if (o.stopBar) { var sb = TXT.roundedBox(4.0, 0.025, 0.9, 0.01, M.rust); sb.position.set(4.5, 0.0125, 3.3); sb.receiveShadow = true; G.add(sb); }
         G.userData.reader = [1.37, 2.24, 1.4];
         return shade(G);
       }
