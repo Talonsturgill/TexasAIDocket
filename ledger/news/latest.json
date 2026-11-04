@@ -1,8 +1,8 @@
 {
   "_spec": 2,
-  "checked_at": "2026-11-04T07:40:04Z",
+  "checked_at": "2026-11-04T20:30:02Z",
   "provider": "Publisher RSS and Atom",
-  "response_sha256": "34553276f2cc6162794d2b0215ce565606a02d863a458f892f2b8da611202eaa",
+  "response_sha256": "76f8b18722e88e8da6631b030bf3cebf3b76e8c8dd9cc5bb0ff7bf186e63bff4",
   "articles": [
     {
       "title": "Aurora Biennial 2026 Brings 18 Days of Tech-Driven Public Art to Dallas-Fort Worth",
@@ -26,6 +26,13 @@
       "feed": "https://dallasinnovates.com/feed/"
     },
     {
+      "title": "SMU-Led Texoma Semiconductor Tech Hub Gets Nearly $29M for Chip Infrastructure, Talent",
+      "url": "https://dallasinnovates.com/smu-led-texoma-semiconductor-tech-hub-gets-nearly-29m-for-chip-infrastructure-talent/",
+      "first_seen_at": "2026-11-04T13:17:43Z",
+      "summary": "A regional semiconductor hub led by Southern Methodist University will use nearly $29 million in funding to help bulk up the region’s chip industry. The new funding for the Texoma Semiconductor Tech Hub will go toward developing semiconductor infrastructure, strengthening the semiconductor workforce and commercializing chip technology. …",
+      "feed": "https://dallasinnovates.com/feed/"
+    },
+    {
       "title": "Sabey DC to pilot HVO fuel as diesel replacement at its data center in Austin, Texas",
       "url": "https://www.datacenterdynamics.com/en/news/sabey-dc-to-pilot-hvo-fuel-as-diesel-replacement-at-its-data-center-in-austin-texas/",
       "first_seen_at": "2026-10-30T15:38:59Z",
@@ -41,162 +48,20 @@
     }
   ],
   "selected": {
-    "title": "San Antonio leaders will now have to OK every new data center",
-    "url": "https://www.tpr.org/government-politics/2026-10-29/san-antonio-leaders-will-now-have-to-ok-every-new-data-center",
-    "first_seen_at": "2026-10-30T00:03:12Z",
-    "summary": "Every data center developer that wants to build in San Antonio will have to get permission from City Council before it can begin construction.",
-    "feed": "https://www.tpr.org/index.rss",
-    "publisher": "Texas Public Radio",
+    "title": "Aurora Biennial 2026 Brings 18 Days of Tech-Driven Public Art to Dallas-Fort Worth",
+    "url": "https://dallasinnovates.com/aurora-biennial-2026-brings-18-days-of-tech-driven-public-art-to-dallas-fort-worth/",
+    "first_seen_at": "2026-11-03T22:03:07Z",
+    "summary": "Get ready for the multisensory, tech-driven art experience Aurora Biennial 2026 , which has expanded to 18 days across Dallas-Fort Worth. The event will culminate Nov. 21 with an outdoor experiential art exhibition displayed across Dallas City Hall, the J. Erik Jonsson Central Library and the AT&T Discovery District. …",
+    "feed": "https://dallasinnovates.com/feed/",
+    "publisher": "Dallas Innovates",
     "coverage": 1,
-    "score": 0.025081,
-    "priority": 4
+    "score": 0.522912,
+    "priority": 1
   },
-  "expires_at": "2026-11-06T00:03:12Z",
+  "expires_at": "2026-11-10T22:03:07Z",
   "rotation_version": 1,
   "carousel_version": 1,
   "editions": [
-    {
-      "starts_at": "2026-11-04T07:23:00Z",
-      "selected": {
-        "title": "San Antonio leaders will now have to OK every new data center",
-        "url": "https://www.tpr.org/government-politics/2026-10-29/san-antonio-leaders-will-now-have-to-ok-every-new-data-center",
-        "first_seen_at": "2026-10-30T00:03:12Z",
-        "summary": "Every data center developer that wants to build in San Antonio will have to get permission from City Council before it can begin construction.",
-        "feed": "https://www.tpr.org/index.rss",
-        "publisher": "Texas Public Radio",
-        "coverage": 1,
-        "score": 0.025081,
-        "priority": 4
-      },
-      "stories": [
-        {
-          "title": "San Antonio leaders will now have to OK every new data center",
-          "url": "https://www.tpr.org/government-politics/2026-10-29/san-antonio-leaders-will-now-have-to-ok-every-new-data-center",
-          "first_seen_at": "2026-10-30T00:03:12Z",
-          "summary": "Every data center developer that wants to build in San Antonio will have to get permission from City Council before it can begin construction.",
-          "feed": "https://www.tpr.org/index.rss",
-          "publisher": "Texas Public Radio",
-          "coverage": 1,
-          "score": 0.025081,
-          "priority": 4
-        },
-        {
-          "title": "Mark Cuban’s Radical Investments Leads $4M Seed Round for Dallas-Based SpendRule",
-          "url": "https://dallasinnovates.com/mark-cubans-radical-investments-leads-4m-seed-round-for-dallas-based-spendrule/",
-          "first_seen_at": "2026-11-03T21:34:30Z",
-          "summary": "Dallas entrepreneur Mark Cuban’s Radical Investments led a $4 million seed round for Dallas-based SpendRule. The startup’s AI-powered platform matches health care systems’ contracts and invoices. Zeal Capital Partners, based in Washington, D.C., also participated in the round. This round brings total funding to $6 million since its founding in 2025. …",
-          "feed": "https://dallasinnovates.com/feed/",
-          "publisher": "Dallas Innovates",
-          "coverage": 1,
-          "score": 0.747149,
-          "priority": 0
-        },
-        {
-          "title": "Aurora Biennial 2026 Brings 18 Days of Tech-Driven Public Art to Dallas-Fort Worth",
-          "url": "https://dallasinnovates.com/aurora-biennial-2026-brings-18-days-of-tech-driven-public-art-to-dallas-fort-worth/",
-          "first_seen_at": "2026-11-03T22:03:07Z",
-          "summary": "Get ready for the multisensory, tech-driven art experience Aurora Biennial 2026 , which has expanded to 18 days across Dallas-Fort Worth. The event will culminate Nov. 21 with an outdoor experiential art exhibition displayed across Dallas City Hall, the J. Erik Jonsson Central Library and the AT&T Discovery District. …",
-          "feed": "https://dallasinnovates.com/feed/",
-          "publisher": "Dallas Innovates",
-          "coverage": 1,
-          "score": 0.757512,
-          "priority": 1
-        },
-        {
-          "title": "Dallas-Based GDT Opens AI Lab Where Businesses Can Test Projects Before Buying Equipment",
-          "url": "https://dallasinnovates.com/dallas-based-gdt-opens-ai-lab-where-businesses-can-test-projects-before-buying-equipment/",
-          "first_seen_at": "2026-10-29T15:38:21Z",
-          "summary": "Dallas-based IT services provider GDT debuted a supercomputer-level AI lab that lets businesses test technology before adopting it. Attendees at the lab’s open house, held at the company’s Dallas headquarters Oct. 22, could watch AI demonstrations and ask GDT executives about AI trends. …",
-          "feed": "https://dallasinnovates.com/feed/",
-          "publisher": "Dallas Innovates",
-          "coverage": 1,
-          "score": 0.01967,
-          "priority": 3
-        },
-        {
-          "title": "Sabey DC to pilot HVO fuel as diesel replacement at its data center in Austin, Texas",
-          "url": "https://www.datacenterdynamics.com/en/news/sabey-dc-to-pilot-hvo-fuel-as-diesel-replacement-at-its-data-center-in-austin-texas/",
-          "first_seen_at": "2026-10-30T15:38:59Z",
-          "summary": "If successful, the company plans to expand to additional sites",
-          "feed": "https://www.datacenterdynamics.com/en/rss/",
-          "publisher": "Data Center Dynamics",
-          "coverage": 1,
-          "score": 0.039352,
-          "priority": 4
-        }
-      ]
-    },
-    {
-      "starts_at": "2026-11-04T13:23:00Z",
-      "selected": {
-        "title": "Mark Cuban’s Radical Investments Leads $4M Seed Round for Dallas-Based SpendRule",
-        "url": "https://dallasinnovates.com/mark-cubans-radical-investments-leads-4m-seed-round-for-dallas-based-spendrule/",
-        "first_seen_at": "2026-11-03T21:34:30Z",
-        "summary": "Dallas entrepreneur Mark Cuban’s Radical Investments led a $4 million seed round for Dallas-based SpendRule. The startup’s AI-powered platform matches health care systems’ contracts and invoices. Zeal Capital Partners, based in Washington, D.C., also participated in the round. This round brings total funding to $6 million since its founding in 2025. …",
-        "feed": "https://dallasinnovates.com/feed/",
-        "publisher": "Dallas Innovates",
-        "coverage": 1,
-        "score": 0.633457,
-        "priority": 0
-      },
-      "stories": [
-        {
-          "title": "Mark Cuban’s Radical Investments Leads $4M Seed Round for Dallas-Based SpendRule",
-          "url": "https://dallasinnovates.com/mark-cubans-radical-investments-leads-4m-seed-round-for-dallas-based-spendrule/",
-          "first_seen_at": "2026-11-03T21:34:30Z",
-          "summary": "Dallas entrepreneur Mark Cuban’s Radical Investments led a $4 million seed round for Dallas-based SpendRule. The startup’s AI-powered platform matches health care systems’ contracts and invoices. Zeal Capital Partners, based in Washington, D.C., also participated in the round. This round brings total funding to $6 million since its founding in 2025. …",
-          "feed": "https://dallasinnovates.com/feed/",
-          "publisher": "Dallas Innovates",
-          "coverage": 1,
-          "score": 0.633457,
-          "priority": 0
-        },
-        {
-          "title": "Aurora Biennial 2026 Brings 18 Days of Tech-Driven Public Art to Dallas-Fort Worth",
-          "url": "https://dallasinnovates.com/aurora-biennial-2026-brings-18-days-of-tech-driven-public-art-to-dallas-fort-worth/",
-          "first_seen_at": "2026-11-03T22:03:07Z",
-          "summary": "Get ready for the multisensory, tech-driven art experience Aurora Biennial 2026 , which has expanded to 18 days across Dallas-Fort Worth. The event will culminate Nov. 21 with an outdoor experiential art exhibition displayed across Dallas City Hall, the J. Erik Jonsson Central Library and the AT&T Discovery District. …",
-          "feed": "https://dallasinnovates.com/feed/",
-          "publisher": "Dallas Innovates",
-          "coverage": 1,
-          "score": 0.642243,
-          "priority": 1
-        },
-        {
-          "title": "Dallas-Based GDT Opens AI Lab Where Businesses Can Test Projects Before Buying Equipment",
-          "url": "https://dallasinnovates.com/dallas-based-gdt-opens-ai-lab-where-businesses-can-test-projects-before-buying-equipment/",
-          "first_seen_at": "2026-10-29T15:38:21Z",
-          "summary": "Dallas-based IT services provider GDT debuted a supercomputer-level AI lab that lets businesses test technology before adopting it. Attendees at the lab’s open house, held at the company’s Dallas headquarters Oct. 22, could watch AI demonstrations and ask GDT executives about AI trends. …",
-          "feed": "https://dallasinnovates.com/feed/",
-          "publisher": "Dallas Innovates",
-          "coverage": 1,
-          "score": 0.016677,
-          "priority": 3
-        },
-        {
-          "title": "Sabey DC to pilot HVO fuel as diesel replacement at its data center in Austin, Texas",
-          "url": "https://www.datacenterdynamics.com/en/news/sabey-dc-to-pilot-hvo-fuel-as-diesel-replacement-at-its-data-center-in-austin-texas/",
-          "first_seen_at": "2026-10-30T15:38:59Z",
-          "summary": "If successful, the company plans to expand to additional sites",
-          "feed": "https://www.datacenterdynamics.com/en/rss/",
-          "publisher": "Data Center Dynamics",
-          "coverage": 1,
-          "score": 0.033364,
-          "priority": 4
-        },
-        {
-          "title": "San Antonio leaders will now have to OK every new data center",
-          "url": "https://www.tpr.org/government-politics/2026-10-29/san-antonio-leaders-will-now-have-to-ok-every-new-data-center",
-          "first_seen_at": "2026-10-30T00:03:12Z",
-          "summary": "Every data center developer that wants to build in San Antonio will have to get permission from City Council before it can begin construction.",
-          "feed": "https://www.tpr.org/index.rss",
-          "publisher": "Texas Public Radio",
-          "coverage": 1,
-          "score": 0.021264,
-          "priority": 4
-        }
-      ]
-    },
     {
       "starts_at": "2026-11-04T19:23:00Z",
       "selected": {
@@ -207,7 +72,7 @@
         "feed": "https://dallasinnovates.com/feed/",
         "publisher": "Dallas Innovates",
         "coverage": 1,
-        "score": 0.54006,
+        "score": 0.522912,
         "priority": 1
       },
       "stories": [
@@ -219,7 +84,7 @@
           "feed": "https://dallasinnovates.com/feed/",
           "publisher": "Dallas Innovates",
           "coverage": 1,
-          "score": 0.54006,
+          "score": 0.522912,
           "priority": 1
         },
         {
@@ -230,8 +95,19 @@
           "feed": "https://dallasinnovates.com/feed/",
           "publisher": "Dallas Innovates",
           "coverage": 1,
-          "score": 0.532672,
+          "score": 0.515759,
           "priority": 0
+        },
+        {
+          "title": "SMU-Led Texoma Semiconductor Tech Hub Gets Nearly $29M for Chip Infrastructure, Talent",
+          "url": "https://dallasinnovates.com/smu-led-texoma-semiconductor-tech-hub-gets-nearly-29m-for-chip-infrastructure-talent/",
+          "first_seen_at": "2026-11-04T13:17:43Z",
+          "summary": "A regional semiconductor hub led by Southern Methodist University will use nearly $29 million in funding to help bulk up the region’s chip industry. The new funding for the Texoma Semiconductor Tech Hub will go toward developing semiconductor infrastructure, strengthening the semiconductor workforce and commercializing chip technology. …",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.812129,
+          "priority": 1
         },
         {
           "title": "Dallas-Based GDT Opens AI Lab Where Businesses Can Test Projects Before Buying Equipment",
@@ -241,7 +117,7 @@
           "feed": "https://dallasinnovates.com/feed/",
           "publisher": "Dallas Innovates",
           "coverage": 1,
-          "score": 0.014024,
+          "score": 0.013578,
           "priority": 3
         },
         {
@@ -252,7 +128,7 @@
           "feed": "https://www.datacenterdynamics.com/en/rss/",
           "publisher": "Data Center Dynamics",
           "coverage": 1,
-          "score": 0.028056,
+          "score": 0.027165,
           "priority": 4
         },
         {
@@ -263,7 +139,7 @@
           "feed": "https://www.tpr.org/index.rss",
           "publisher": "Texas Public Radio",
           "coverage": 1,
-          "score": 0.017881,
+          "score": 0.017313,
           "priority": 4
         }
       ]
@@ -271,27 +147,27 @@
     {
       "starts_at": "2026-11-05T01:23:00Z",
       "selected": {
-        "title": "Sabey DC to pilot HVO fuel as diesel replacement at its data center in Austin, Texas",
-        "url": "https://www.datacenterdynamics.com/en/news/sabey-dc-to-pilot-hvo-fuel-as-diesel-replacement-at-its-data-center-in-austin-texas/",
-        "first_seen_at": "2026-10-30T15:38:59Z",
-        "summary": "If successful, the company plans to expand to additional sites",
-        "feed": "https://www.datacenterdynamics.com/en/rss/",
-        "publisher": "Data Center Dynamics",
+        "title": "SMU-Led Texoma Semiconductor Tech Hub Gets Nearly $29M for Chip Infrastructure, Talent",
+        "url": "https://dallasinnovates.com/smu-led-texoma-semiconductor-tech-hub-gets-nearly-29m-for-chip-infrastructure-talent/",
+        "first_seen_at": "2026-11-04T13:17:43Z",
+        "summary": "A regional semiconductor hub led by Southern Methodist University will use nearly $29 million in funding to help bulk up the region’s chip industry. The new funding for the Texoma Semiconductor Tech Hub will go toward developing semiconductor infrastructure, strengthening the semiconductor workforce and commercializing chip technology. …",
+        "feed": "https://dallasinnovates.com/feed/",
+        "publisher": "Dallas Innovates",
         "coverage": 1,
-        "score": 0.023592,
-        "priority": 4
+        "score": 0.705311,
+        "priority": 1
       },
       "stories": [
         {
-          "title": "Sabey DC to pilot HVO fuel as diesel replacement at its data center in Austin, Texas",
-          "url": "https://www.datacenterdynamics.com/en/news/sabey-dc-to-pilot-hvo-fuel-as-diesel-replacement-at-its-data-center-in-austin-texas/",
-          "first_seen_at": "2026-10-30T15:38:59Z",
-          "summary": "If successful, the company plans to expand to additional sites",
-          "feed": "https://www.datacenterdynamics.com/en/rss/",
-          "publisher": "Data Center Dynamics",
+          "title": "SMU-Led Texoma Semiconductor Tech Hub Gets Nearly $29M for Chip Infrastructure, Talent",
+          "url": "https://dallasinnovates.com/smu-led-texoma-semiconductor-tech-hub-gets-nearly-29m-for-chip-infrastructure-talent/",
+          "first_seen_at": "2026-11-04T13:17:43Z",
+          "summary": "A regional semiconductor hub led by Southern Methodist University will use nearly $29 million in funding to help bulk up the region’s chip industry. The new funding for the Texoma Semiconductor Tech Hub will go toward developing semiconductor infrastructure, strengthening the semiconductor workforce and commercializing chip technology. …",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
           "coverage": 1,
-          "score": 0.023592,
-          "priority": 4
+          "score": 0.705311,
+          "priority": 1
         },
         {
           "title": "Mark Cuban’s Radical Investments Leads $4M Seed Round for Dallas-Based SpendRule",
@@ -327,6 +203,17 @@
           "priority": 3
         },
         {
+          "title": "Sabey DC to pilot HVO fuel as diesel replacement at its data center in Austin, Texas",
+          "url": "https://www.datacenterdynamics.com/en/news/sabey-dc-to-pilot-hvo-fuel-as-diesel-replacement-at-its-data-center-in-austin-texas/",
+          "first_seen_at": "2026-10-30T15:38:59Z",
+          "summary": "If successful, the company plans to expand to additional sites",
+          "feed": "https://www.datacenterdynamics.com/en/rss/",
+          "publisher": "Data Center Dynamics",
+          "coverage": 1,
+          "score": 0.023592,
+          "priority": 4
+        },
+        {
           "title": "San Antonio leaders will now have to OK every new data center",
           "url": "https://www.tpr.org/government-politics/2026-10-29/san-antonio-leaders-will-now-have-to-ok-every-new-data-center",
           "first_seen_at": "2026-10-30T00:03:12Z",
@@ -338,19 +225,173 @@
           "priority": 4
         }
       ]
+    },
+    {
+      "starts_at": "2026-11-05T07:23:00Z",
+      "selected": {
+        "title": "Sabey DC to pilot HVO fuel as diesel replacement at its data center in Austin, Texas",
+        "url": "https://www.datacenterdynamics.com/en/news/sabey-dc-to-pilot-hvo-fuel-as-diesel-replacement-at-its-data-center-in-austin-texas/",
+        "first_seen_at": "2026-10-30T15:38:59Z",
+        "summary": "If successful, the company plans to expand to additional sites",
+        "feed": "https://www.datacenterdynamics.com/en/rss/",
+        "publisher": "Data Center Dynamics",
+        "coverage": 1,
+        "score": 0.019838,
+        "priority": 4
+      },
+      "stories": [
+        {
+          "title": "Sabey DC to pilot HVO fuel as diesel replacement at its data center in Austin, Texas",
+          "url": "https://www.datacenterdynamics.com/en/news/sabey-dc-to-pilot-hvo-fuel-as-diesel-replacement-at-its-data-center-in-austin-texas/",
+          "first_seen_at": "2026-10-30T15:38:59Z",
+          "summary": "If successful, the company plans to expand to additional sites",
+          "feed": "https://www.datacenterdynamics.com/en/rss/",
+          "publisher": "Data Center Dynamics",
+          "coverage": 1,
+          "score": 0.019838,
+          "priority": 4
+        },
+        {
+          "title": "Mark Cuban’s Radical Investments Leads $4M Seed Round for Dallas-Based SpendRule",
+          "url": "https://dallasinnovates.com/mark-cubans-radical-investments-leads-4m-seed-round-for-dallas-based-spendrule/",
+          "first_seen_at": "2026-11-03T21:34:30Z",
+          "summary": "Dallas entrepreneur Mark Cuban’s Radical Investments led a $4 million seed round for Dallas-based SpendRule. The startup’s AI-powered platform matches health care systems’ contracts and invoices. Zeal Capital Partners, based in Washington, D.C., also participated in the round. This round brings total funding to $6 million since its founding in 2025. …",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.376656,
+          "priority": 0
+        },
+        {
+          "title": "SMU-Led Texoma Semiconductor Tech Hub Gets Nearly $29M for Chip Infrastructure, Talent",
+          "url": "https://dallasinnovates.com/smu-led-texoma-semiconductor-tech-hub-gets-nearly-29m-for-chip-infrastructure-talent/",
+          "first_seen_at": "2026-11-04T13:17:43Z",
+          "summary": "A regional semiconductor hub led by Southern Methodist University will use nearly $29 million in funding to help bulk up the region’s chip industry. The new funding for the Texoma Semiconductor Tech Hub will go toward developing semiconductor infrastructure, strengthening the semiconductor workforce and commercializing chip technology. …",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.593093,
+          "priority": 1
+        },
+        {
+          "title": "Aurora Biennial 2026 Brings 18 Days of Tech-Driven Public Art to Dallas-Fort Worth",
+          "url": "https://dallasinnovates.com/aurora-biennial-2026-brings-18-days-of-tech-driven-public-art-to-dallas-fort-worth/",
+          "first_seen_at": "2026-11-03T22:03:07Z",
+          "summary": "Get ready for the multisensory, tech-driven art experience Aurora Biennial 2026 , which has expanded to 18 days across Dallas-Fort Worth. The event will culminate Nov. 21 with an outdoor experiential art exhibition displayed across Dallas City Hall, the J. Erik Jonsson Central Library and the AT&T Discovery District. …",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.38188,
+          "priority": 1
+        },
+        {
+          "title": "Dallas-Based GDT Opens AI Lab Where Businesses Can Test Projects Before Buying Equipment",
+          "url": "https://dallasinnovates.com/dallas-based-gdt-opens-ai-lab-where-businesses-can-test-projects-before-buying-equipment/",
+          "first_seen_at": "2026-10-29T15:38:21Z",
+          "summary": "Dallas-based IT services provider GDT debuted a supercomputer-level AI lab that lets businesses test technology before adopting it. Attendees at the lab’s open house, held at the company’s Dallas headquarters Oct. 22, could watch AI demonstrations and ask GDT executives about AI trends. …",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.009916,
+          "priority": 3
+        },
+        {
+          "title": "San Antonio leaders will now have to OK every new data center",
+          "url": "https://www.tpr.org/government-politics/2026-10-29/san-antonio-leaders-will-now-have-to-ok-every-new-data-center",
+          "first_seen_at": "2026-10-30T00:03:12Z",
+          "summary": "Every data center developer that wants to build in San Antonio will have to get permission from City Council before it can begin construction.",
+          "feed": "https://www.tpr.org/index.rss",
+          "publisher": "Texas Public Radio",
+          "coverage": 1,
+          "score": 0.012644,
+          "priority": 4
+        }
+      ]
+    },
+    {
+      "starts_at": "2026-11-05T13:23:00Z",
+      "selected": {
+        "title": "Dallas-Based GDT Opens AI Lab Where Businesses Can Test Projects Before Buying Equipment",
+        "url": "https://dallasinnovates.com/dallas-based-gdt-opens-ai-lab-where-businesses-can-test-projects-before-buying-equipment/",
+        "first_seen_at": "2026-10-29T15:38:21Z",
+        "summary": "Dallas-based IT services provider GDT debuted a supercomputer-level AI lab that lets businesses test technology before adopting it. Attendees at the lab’s open house, held at the company’s Dallas headquarters Oct. 22, could watch AI demonstrations and ask GDT executives about AI trends. …",
+        "feed": "https://dallasinnovates.com/feed/",
+        "publisher": "Dallas Innovates",
+        "coverage": 1,
+        "score": 0.008338,
+        "priority": 3
+      },
+      "stories": [
+        {
+          "title": "Dallas-Based GDT Opens AI Lab Where Businesses Can Test Projects Before Buying Equipment",
+          "url": "https://dallasinnovates.com/dallas-based-gdt-opens-ai-lab-where-businesses-can-test-projects-before-buying-equipment/",
+          "first_seen_at": "2026-10-29T15:38:21Z",
+          "summary": "Dallas-based IT services provider GDT debuted a supercomputer-level AI lab that lets businesses test technology before adopting it. Attendees at the lab’s open house, held at the company’s Dallas headquarters Oct. 22, could watch AI demonstrations and ask GDT executives about AI trends. …",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.008338,
+          "priority": 3
+        },
+        {
+          "title": "Mark Cuban’s Radical Investments Leads $4M Seed Round for Dallas-Based SpendRule",
+          "url": "https://dallasinnovates.com/mark-cubans-radical-investments-leads-4m-seed-round-for-dallas-based-spendrule/",
+          "first_seen_at": "2026-11-03T21:34:30Z",
+          "summary": "Dallas entrepreneur Mark Cuban’s Radical Investments led a $4 million seed round for Dallas-based SpendRule. The startup’s AI-powered platform matches health care systems’ contracts and invoices. Zeal Capital Partners, based in Washington, D.C., also participated in the round. This round brings total funding to $6 million since its founding in 2025. …",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.316729,
+          "priority": 0
+        },
+        {
+          "title": "SMU-Led Texoma Semiconductor Tech Hub Gets Nearly $29M for Chip Infrastructure, Talent",
+          "url": "https://dallasinnovates.com/smu-led-texoma-semiconductor-tech-hub-gets-nearly-29m-for-chip-infrastructure-talent/",
+          "first_seen_at": "2026-11-04T13:17:43Z",
+          "summary": "A regional semiconductor hub led by Southern Methodist University will use nearly $29 million in funding to help bulk up the region’s chip industry. The new funding for the Texoma Semiconductor Tech Hub will go toward developing semiconductor infrastructure, strengthening the semiconductor workforce and commercializing chip technology. …",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.49873,
+          "priority": 1
+        },
+        {
+          "title": "Aurora Biennial 2026 Brings 18 Days of Tech-Driven Public Art to Dallas-Fort Worth",
+          "url": "https://dallasinnovates.com/aurora-biennial-2026-brings-18-days-of-tech-driven-public-art-to-dallas-fort-worth/",
+          "first_seen_at": "2026-11-03T22:03:07Z",
+          "summary": "Get ready for the multisensory, tech-driven art experience Aurora Biennial 2026 , which has expanded to 18 days across Dallas-Fort Worth. The event will culminate Nov. 21 with an outdoor experiential art exhibition displayed across Dallas City Hall, the J. Erik Jonsson Central Library and the AT&T Discovery District. …",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.321122,
+          "priority": 1
+        },
+        {
+          "title": "Sabey DC to pilot HVO fuel as diesel replacement at its data center in Austin, Texas",
+          "url": "https://www.datacenterdynamics.com/en/news/sabey-dc-to-pilot-hvo-fuel-as-diesel-replacement-at-its-data-center-in-austin-texas/",
+          "first_seen_at": "2026-10-30T15:38:59Z",
+          "summary": "If successful, the company plans to expand to additional sites",
+          "feed": "https://www.datacenterdynamics.com/en/rss/",
+          "publisher": "Data Center Dynamics",
+          "coverage": 1,
+          "score": 0.016682,
+          "priority": 4
+        },
+        {
+          "title": "San Antonio leaders will now have to OK every new data center",
+          "url": "https://www.tpr.org/government-politics/2026-10-29/san-antonio-leaders-will-now-have-to-ok-every-new-data-center",
+          "first_seen_at": "2026-10-30T00:03:12Z",
+          "summary": "Every data center developer that wants to build in San Antonio will have to get permission from City Council before it can begin construction.",
+          "feed": "https://www.tpr.org/index.rss",
+          "publisher": "Texas Public Radio",
+          "coverage": 1,
+          "score": 0.010632,
+          "priority": 4
+        }
+      ]
     }
   ],
   "history": [
-    {
-      "url": "https://www.datacenterdynamics.com/en/news/soluna-and-applied-digital-to-build-50mw-data-center-in-texas/",
-      "title": "Soluna and Applied Digital to build 50MW data center in Texas",
-      "shown_at": "2026-10-28T13:23:00Z"
-    },
-    {
-      "url": "https://www.tpr.org/bioscience-medicine/2026-10-25/can-language-patterns-reveal-mild-brain-injuries-in-veterans-san-antonio-researchers-launch-ai-powered-study",
-      "title": "Can language patterns reveal mild brain injuries in veterans? San Antonio researchers launch AI-powered study.",
-      "shown_at": "2026-10-28T19:23:00Z"
-    },
     {
       "url": "https://dallasinnovates.com/dallas-based-disruptive-raises-10b-flagship-fund/",
       "title": "Dallas-Based Disruptive Raises $10B Flagship Fund",
@@ -480,6 +521,16 @@
       "url": "https://www.tpr.org/government-politics/2026-10-29/san-antonio-leaders-will-now-have-to-ok-every-new-data-center",
       "title": "San Antonio leaders will now have to OK every new data center",
       "shown_at": "2026-11-04T07:23:00Z"
+    },
+    {
+      "url": "https://dallasinnovates.com/mark-cubans-radical-investments-leads-4m-seed-round-for-dallas-based-spendrule/",
+      "title": "Mark Cuban’s Radical Investments Leads $4M Seed Round for Dallas-Based SpendRule",
+      "shown_at": "2026-11-04T13:23:00Z"
+    },
+    {
+      "url": "https://dallasinnovates.com/aurora-biennial-2026-brings-18-days-of-tech-driven-public-art-to-dallas-fort-worth/",
+      "title": "Aurora Biennial 2026 Brings 18 Days of Tech-Driven Public Art to Dallas-Fort Worth",
+      "shown_at": "2026-11-04T19:23:00Z"
     }
   ],
   "feeds": [
@@ -487,19 +538,19 @@
       "url": "https://dallasinnovates.com/feed/",
       "status": "ok",
       "items": 20,
-      "sha256": "486e1aae85203bea9d5e53165dc9413b00b3dc4809752fe9f34ffc481f0f1c66"
+      "sha256": "ff3b0034b008e62dac2280e30a07ad2009d42457513adb0b9b9dc130cb05db23"
     },
     {
       "url": "https://feeds.texastribune.org/feeds/main/",
       "status": "ok",
       "items": 20,
-      "sha256": "cfbd0505fd2b14e4a684d349e4ae65e221cd13416599c87af4391ce9429556b4"
+      "sha256": "e88a85d468387b06d44a5e90b72b4ef9f495ad83fa579c46045ca402ee5bb1fb"
     },
     {
       "url": "https://www.datacenterdynamics.com/en/rss/",
       "status": "ok",
       "items": 20,
-      "sha256": "fb2f9d3a009c46124f1b620dba1b3cf3e4405b5745ca5cf2540273e1d76ecfee"
+      "sha256": "24e157cf312f9aaaaf30233c3616311f200874f3ad9e1b65833eeaa0f7c1a35b"
     },
     {
       "url": "https://news.mit.edu/rss/topic/artificial-intelligence2",
@@ -510,12 +561,14 @@
     {
       "url": "https://openai.com/news/rss.xml",
       "status": "ok",
-      "items": 1354,
-      "sha256": "ee8f7d08c22def3556f34491c0b43a471c6cf3bd8ffe76d312f3044eb25d80ec"
+      "items": 1356,
+      "sha256": "d59b0dad5fbdf0984a8491afc2435c90cfca757e22bf5145dfbe2cf2e2d942e1"
     },
     {
       "url": "https://blogs.nvidia.com/feed/",
-      "status": "not_modified"
+      "status": "ok",
+      "items": 18,
+      "sha256": "2cfc8ca943cf1b33c7f84296f71e6924430ceefe5048492985433c317a1c590e"
     },
     {
       "url": "https://blog.google/technology/ai/rss/",
@@ -527,104 +580,103 @@
       "url": "https://siliconangle.com/feed/",
       "status": "ok",
       "items": 30,
-      "sha256": "fcef94778673fa5d8e3f6150ca367207c86513e5f8d25f6d597b9f5604ce7cc0"
+      "sha256": "a3c0c3f7b75cabeb2031836ffc3d067755f348f513520a57cb53b7063cadcf61"
     },
     {
       "url": "https://www.artificialintelligence-news.com/feed/",
-      "status": "unavailable",
-      "retry_at": "2026-11-05T07:40:03Z",
-      "reason": "not well-formed (invalid token): line 1, column 119"
+      "status": "backoff",
+      "retry_at": "2026-11-05T07:40:03Z"
     },
     {
       "url": "https://www.geekwire.com/tag/artificial-intelligence/feed/",
       "status": "ok",
       "items": 35,
-      "sha256": "ce3b73892ec574a30f2aff677886b5157361e68f16ba05ca289d520a1ac38a60"
+      "sha256": "19d637daec09886d895c09c729f08b0186c4bd256a5d9d3602e45e5a8691322c"
     },
     {
       "url": "https://www.techspot.com/backend.xml",
       "status": "ok",
       "items": 30,
-      "sha256": "dd067c9e02fc36acf0e0e906dfdff18a55e7db33ad3118159babcabea6185df3"
+      "sha256": "dd5a710694bed5d8c004390ef7a5573c550d47171e391efe67e387c012c17bb4"
     },
     {
       "url": "https://www.sciencedaily.com/rss/computers_math/artificial_intelligence.xml",
       "status": "ok",
       "items": 60,
-      "sha256": "7c37b16b3ac93025bd470d634bebabbaba6a41176086e97c4f66772c39752d13"
+      "sha256": "93d86e75ef9db1513d040b2a4f27fe11822177fb3c0c0de6af0da1f74bbb8cb1"
     },
     {
       "url": "https://www.tpr.org/index.rss",
       "status": "ok",
       "items": 5,
-      "sha256": "b1b7fafe1afd45760c5ae7d19adbac97b6ecbd9ca3d846ecccbff53f0411d538"
+      "sha256": "b151227c96a352b9a0149ac1bc3bf168ecc354a8be09833d2581b138ac2201f5"
     },
     {
       "url": "https://www.texasobserver.org/feed/",
       "status": "ok",
       "items": 10,
-      "sha256": "72545d763d3499cf5f923f2da42bc7e1c1d0db5972debf9b12778b020a4979b0"
+      "sha256": "a5d68d5e20208c61cbcf7c82d85aa2bb40441ceb7c4726a3b90c61de70dac8aa"
     }
   ],
   "feed_state": {
     "https://dallasinnovates.com/feed/": {
-      "ok_at": "2026-11-04T07:40:03Z",
+      "ok_at": "2026-11-04T20:30:00Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "486e1aae85203bea9d5e53165dc9413b00b3dc4809752fe9f34ffc481f0f1c66",
-      "etag": "\"a95e45326bf2be73d6bd7859c9f113e1\"",
-      "last_modified": "Tue, 03 Nov 2026 23:22:46 GMT"
+      "sha256": "ff3b0034b008e62dac2280e30a07ad2009d42457513adb0b9b9dc130cb05db23",
+      "etag": "\"54b1f6024f44d6cabb887adba5ee9444\"",
+      "last_modified": "Wed, 04 Nov 2026 15:50:14 GMT"
     },
     "https://feeds.texastribune.org/feeds/main/": {
-      "ok_at": "2026-11-04T07:40:03Z",
+      "ok_at": "2026-11-04T20:30:00Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "cfbd0505fd2b14e4a684d349e4ae65e221cd13416599c87af4391ce9429556b4",
-      "etag": "\"6aeaca6d-a228\"",
-      "last_modified": "Wed, 04 Nov 2026 06:02:21 GMT"
+      "sha256": "e88a85d468387b06d44a5e90b72b4ef9f495ad83fa579c46045ca402ee5bb1fb",
+      "etag": "\"6aeb9295-9fae\"",
+      "last_modified": "Wed, 04 Nov 2026 20:16:21 GMT"
     },
     "https://www.datacenterdynamics.com/en/rss/": {
-      "ok_at": "2026-11-04T07:40:03Z",
+      "ok_at": "2026-11-04T20:30:00Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "fb2f9d3a009c46124f1b620dba1b3cf3e4405b5745ca5cf2540273e1d76ecfee",
-      "last_modified": "Tue, 03 Nov 2026 22:17:57 GMT"
+      "sha256": "24e157cf312f9aaaaf30233c3616311f200874f3ad9e1b65833eeaa0f7c1a35b",
+      "last_modified": "Wed, 04 Nov 2026 20:29:07 GMT"
     },
     "https://news.mit.edu/rss/topic/artificial-intelligence2": {
-      "ok_at": "2026-11-04T07:40:03Z",
+      "ok_at": "2026-11-04T20:30:00Z",
       "failures": 0,
       "parser_version": 2,
       "sha256": "4ca76419df0e8e6adb5b7a4ef3a58068ce16241a141a0a823e2d0b57ff4b6f1d",
-      "etag": "\"1793777911\"",
-      "last_modified": "Wed, 04 Nov 2026 07:38:31 GMT"
+      "etag": "\"1793823034\"",
+      "last_modified": "Wed, 04 Nov 2026 20:10:34 GMT"
     },
     "https://openai.com/news/rss.xml": {
-      "ok_at": "2026-11-04T07:40:03Z",
+      "ok_at": "2026-11-04T20:30:00Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "ee8f7d08c22def3556f34491c0b43a471c6cf3bd8ffe76d312f3044eb25d80ec"
+      "sha256": "d59b0dad5fbdf0984a8491afc2435c90cfca757e22bf5145dfbe2cf2e2d942e1"
     },
     "https://blogs.nvidia.com/feed/": {
-      "etag": "\"a2aa115131836b4b7412119d5a9c909d-gzip\"",
-      "last_modified": "Tue, 03 Nov 2026 18:19:46 GMT",
+      "ok_at": "2026-11-04T20:30:00Z",
       "failures": 0,
-      "ok_at": "2026-11-04T07:40:03Z",
-      "sha256": "6ae69e8b318da03d4b626ec425d17191eda299ba87ab70926e769cabf25db3a0",
-      "parser_version": 2
+      "parser_version": 2,
+      "sha256": "2cfc8ca943cf1b33c7f84296f71e6924430ceefe5048492985433c317a1c590e",
+      "etag": "\"d6aa0f52e510e8048316b3d38a95fec4-gzip\"",
+      "last_modified": "Wed, 04 Nov 2026 18:44:30 GMT"
     },
     "https://blog.google/technology/ai/rss/": {
-      "ok_at": "2026-11-04T07:40:03Z",
+      "ok_at": "2026-11-04T20:30:00Z",
       "failures": 0,
       "parser_version": 2,
       "sha256": "59f04a0b42ee4100eac013426361e6a95c5d42ba5834a3d9ff11c325fa935b0c"
     },
     "https://siliconangle.com/feed/": {
-      "ok_at": "2026-11-04T07:40:03Z",
+      "ok_at": "2026-11-04T20:30:00Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "fcef94778673fa5d8e3f6150ca367207c86513e5f8d25f6d597b9f5604ce7cc0",
-      "etag": "\"546e70dbad5b8d1a807cf7f085f0bfeb\"",
-      "last_modified": "Wed, 04 Nov 2026 04:01:32 GMT"
+      "sha256": "a3c0c3f7b75cabeb2031836ffc3d067755f348f513520a57cb53b7063cadcf61",
+      "etag": "\"db226ace3c2fe319c58850e87fa49e3f\"",
+      "last_modified": "Wed, 04 Nov 2026 20:22:54 GMT"
     },
     "https://www.artificialintelligence-news.com/feed/": {
       "etag": "\"cd8cbe1fef0e10c2eef0af3ac2847598\"",
@@ -636,40 +688,40 @@
       "parser_version": 2
     },
     "https://www.geekwire.com/tag/artificial-intelligence/feed/": {
-      "ok_at": "2026-11-04T07:40:03Z",
+      "ok_at": "2026-11-04T20:30:00Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "ce3b73892ec574a30f2aff677886b5157361e68f16ba05ca289d520a1ac38a60",
-      "etag": "W/\"5f5c395ea1b4d5888d92271586e46b29\"",
-      "last_modified": "Wed, 04 Nov 2026 02:13:48 GMT"
+      "sha256": "19d637daec09886d895c09c729f08b0186c4bd256a5d9d3602e45e5a8691322c",
+      "etag": "W/\"8cab70569a1e98fa3baa72bbbe298a8c\"",
+      "last_modified": "Wed, 04 Nov 2026 19:42:09 GMT"
     },
     "https://www.techspot.com/backend.xml": {
-      "ok_at": "2026-11-04T07:40:03Z",
+      "ok_at": "2026-11-04T20:30:00Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "dd067c9e02fc36acf0e0e906dfdff18a55e7db33ad3118159babcabea6185df3",
-      "etag": "W/\"11522834a9f9c7b03b46fdf520d8a995\""
+      "sha256": "dd5a710694bed5d8c004390ef7a5573c550d47171e391efe67e387c012c17bb4",
+      "etag": "W/\"5dbd89e37057aff9516fb059293200cf\""
     },
     "https://www.sciencedaily.com/rss/computers_math/artificial_intelligence.xml": {
-      "ok_at": "2026-11-04T07:40:03Z",
+      "ok_at": "2026-11-04T20:30:00Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "7c37b16b3ac93025bd470d634bebabbaba6a41176086e97c4f66772c39752d13",
-      "last_modified": "Wed, 04 Nov 2026 04:49:52 GMT"
+      "sha256": "93d86e75ef9db1513d040b2a4f27fe11822177fb3c0c0de6af0da1f74bbb8cb1",
+      "last_modified": "Wed, 04 Nov 2026 13:59:03 GMT"
     },
     "https://www.tpr.org/index.rss": {
-      "ok_at": "2026-11-04T07:40:03Z",
+      "ok_at": "2026-11-04T20:30:00Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "b1b7fafe1afd45760c5ae7d19adbac97b6ecbd9ca3d846ecccbff53f0411d538"
+      "sha256": "b151227c96a352b9a0149ac1bc3bf168ecc354a8be09833d2581b138ac2201f5"
     },
     "https://www.texasobserver.org/feed/": {
-      "ok_at": "2026-11-04T07:40:03Z",
+      "ok_at": "2026-11-04T20:30:00Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "72545d763d3499cf5f923f2da42bc7e1c1d0db5972debf9b12778b020a4979b0",
-      "etag": "W/\"8a84761d6484e2d499105c63ec43c6a6\"",
-      "last_modified": "Wed, 04 Nov 2026 05:42:12 GMT"
+      "sha256": "a5d68d5e20208c61cbcf7c82d85aa2bb40441ceb7c4726a3b90c61de70dac8aa",
+      "etag": "W/\"fa6f7edac9c7165b92e9cbad56389697\"",
+      "last_modified": "Wed, 04 Nov 2026 20:17:14 GMT"
     }
   }
 }
