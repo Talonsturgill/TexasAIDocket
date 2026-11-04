@@ -131,6 +131,33 @@ the one that counts.
 - **An audition frame is frozen from the moment its review binds.** Every later repair to 2 or 9 cost a fresh reading,
   six in all, so the judges' last notes on 2 and 9 went unanswered.
 
+## The weekly machine pass
+
+`machine_due.py` found the pass due, because the queue's playwright item had bitten three runs. One
+`carousel-upgrade-engineer` worked from `out/2026-11-03/week_digest.md`, where artwork_craft was the lowest criterion on
+four of six decks and "largest object unmodelled" and "primitive model where a kit model belongs" were named on six of
+six. It made two changes. The run re-ran every verify command it returned: `node --check`, `arsenal.py --check`, both
+`examples/kit/build.py` proofs through the carousel engine, and `examples/kit/sizes.py` (138 of 138). All exit 0.
+
+- **The kit `semi_truck` holds a close crop** (`assets/js/kit/vehicles.js`). It now has pressed windscreen posts with
+  gaskets in place of round tubes, coated side glass, a door with hinges, a lock and grab handles, a sleeper baggage door,
+  ribbed steps, and a bumper with a step, tow hooks and an air dam. The judges named the old one as primitive in every
+  round of no. 67.
+- **New kit models `checkpoint_gate` and `weigh_house`** (`assets/js/kit/civic.js`), built to the judges' named fix. The
+  cabinet has a door seam, louvres, a bolted base plate and a caged amber lens. The house has a framed door, a hung
+  canopy and railed steps. The queue item for this deck's chassis models is shipped in part. `yard_stalls`,
+  `flood_pole`, `truck_scale`, `scale_signal` and `cab_beacon` stay in the chassis.
+- **Escalated for a maintainer:** `tests/article_edition.mjs` can't import playwright as an ES module (nos. 60, 62 and
+  67). `tests/` is human lane, so the fix is written up in `UPGRADE_BACKLOG.md`.
+
+No. 67's shipped frames are unaffected, because they were rendered and bound before the kit changed. Re-rendering
+today's slides would draw the new truck, which is the point of the lift for tomorrow's deck.
+
+## Pull request
+
+#457, ready, carrying #455 and #456. CI's `gates` job is red on the same `gridwatch_pagecheck` self-test step as `main`,
+and the PR carries one comment saying so. It does not merge.
+
 ## Gate status
 
 <!-- gate-status:begin -->
