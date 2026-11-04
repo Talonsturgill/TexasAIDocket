@@ -2486,3 +2486,15 @@ entered the claims. `scripts/shared/fetch_doc.py` was not tried on it this run, 
 first.
 
 **The Federal Register poll failed at discovery**, and the scouts' sweep was folded in instead.
+
+## 2026-11-03
+
+**www.sec.gov answered** Aurora Innovation's third quarter 2026 shareholder letter on EDGAR, and **ir.aurora.tech answered**
+Aurora's own Dallas to Houston release. **www.sa.gov answered** the City of San Antonio pages behind tx-2026-0238, with
+Texas Public Radio as the secondary report.
+
+**Re-verification confirmed nothing this run.** Of 71 URLs behind 215 claims, 7 answered 304, 17 sent a body, 10 did not
+answer and 37 were refused by the crawl boundary and never requested. **www.utsouthwestern.edu and www.utep.edu did not
+answer their robots.txt** (URLError, 9 and 8 claims), so the boundary read both as refusing. The 403s came mostly from
+**www.faa.gov** (16 claims), **www.wilcotx.gov** (6, a CivicPlus newsflash), **www.globenewswire.com** (4) and
+**www.brownsvilletx.gov** (3). None was routed around.
