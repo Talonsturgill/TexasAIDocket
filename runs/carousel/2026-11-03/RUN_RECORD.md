@@ -141,9 +141,9 @@ the one that counts.
 | qa             | WARN   | 0 fail(s), 6 warn(s) |
 | aggregates     | PASS   | 9 declaration(s), 12 numeric phrase(s) in the render, all re-derived |
 | assembly       | PASS   | 9 slide(s), 7.78 MB, vector |
-| score          | WARN   | 7.11 at the round cap after 3 round(s), the finished deck ships; 8.0 top rung, shortfall named |
+| score          | STALE  | score.json predates the newest render, so it describes a deck that no longer exists. Re-run it |
 | labels         | PASS   | 44 claim id(s) checked, every label beside one traces to the shape its claim proves |
-| quantifiers    | PASS   | 96 published string(s) read from one list, every universal names its set |
+| quantifiers    | PASS   | 93 published string(s) read from one list, every universal names its set |
 | verbatim       | WARN   | no dossier declares a `verbatim:` block, so no on-frame string was held to a quote |
 | dossiers       | PASS   | 35,535 chars planned |
 | caption        | PASS   | 122 words |
