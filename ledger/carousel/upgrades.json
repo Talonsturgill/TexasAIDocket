@@ -3744,4 +3744,44 @@
  ],
  "not_done": "No frontier scan; the time went to the proofs. Relief-plate-reads-as-a-tray (repeat 2) got no change: no. 64's frames 3 and 8 cast 0.473 and 0.348, far over print_ban's floor, and were still charged as an embossed chart and a vent grille, so cast is no longer the residual cause and a check for an evenly lit plate would be a guess. The audition rebind (repeat 5) is still the owner's rule. build-copy-keeps-hook-markup and gutter_rule (one deck each) are carried"
 }
+,
+"2026-11-03 weekly": {
+ "date": "2026-11-03",
+ "run": "weekly machine pass, read with carousel no. 67",
+ "actor": "upgrade",
+ "upgrades": [
+  {
+   "id": "2026-11-03 weekly #1",
+   "what": "The kit semi_truck holds a close crop: the windscreen's centre post and A pillars are flat pressed posts on the screen's slope with rubber gaskets top and bottom of each pane (they were round bars), the side and bunk glass take the windscreen's coated glass with a vent wing post, the cab door is a closed outline with hinges, a keyed lock and two chrome grab handles, the sleeper carries a baggage door with a paddle latch and a drip rail, the steps are ribbed alloy treads on a hanger with riser lips, the air cleaner has clamp bands and a rain cap, and the bumper has a centre step, tow hooks, an air dam and an emblem over the grille",
+   "why": "Digest themes 'primitive or low-poly model where a kit model belongs' and 'largest object unmodelled', 6 runs of 6 and 15 rounds each, both naming 2026-11-03 r1, r2 and r3. No. 67's judges named the kit truck in every round: frame 3 'the kit truck's hood and grille show primitive geometry at this range', frame 8 'a flat lavender-blue side panel in the mid tones (mean 43.7, the deck's highest), a black-card windshield with tube pillars'. Six of no. 67's nine frames call semi_truck, and no. 60's deck and no. 41's did too",
+   "files": [
+    "assets/js/kit/vehicles.js",
+    "knowledge/carousel/ARSENAL.md"
+   ],
+   "verification": "Close proofs of seed 4 with no. 67's own options (color 0xe8e9e6, sensors full, bobtail) in lastLight and goldenHour, and seed 1 head on, rendered before and after through the carousel engine's render.py with no page errors and read at full size: the side slab now breaks at the door outline, the grab handles and the baggage door, the posts read as pressed members, the steps as treads. A chrome hood crown strip was tried and removed because it read as a scratch. examples/kit/build.py --family vehicles --names semi_truck --world lastLight --surface asphalt renders 2 of 2 clean; examples/kit/sizes.py exits 0, 138 of 138 models declare the size they build, centred (semi_truck 3.04 x 4.11 x 21.54 against its declared 2.9 x 4.1 x 21.9, inside tolerance); arsenal.py --check ok. The kit family files are not in art_preflight's hash set (only files a slide names directly), so no. 67's bound review is untouched",
+   "revert": "git revert <commit of this change>, then python3 scripts/carousel/arsenal.py",
+   "how_i_would_know_this_was_wrong": "A deck that calls semi_truck at close range is still charged for tube pillars, a flat side slab or a black-card windscreen; or the new parts are charged as stuck-on (grab handles floating off the cab, the baggage door outline reading as a decal); or a re-render of an older deck that used semi_truck shows a part through another part. The side glass still prints dark against a dark ground, and a judge naming that again means the next step is a cab interior behind a transmissive screen"
+  },
+  {
+   "id": "2026-11-03 weekly #2",
+   "what": "Kit checkpoint_gate and weigh_house in assets/js/kit/civic.js, built at no. 67's judges' named fix: the barrier operator cabinet with a door seam, a louvre panel, a hasp and a bolted base plate, a caged amber lens in place of the pale sphere, a bolted pivot hub with a counterweight, a striped arm with a rubber skirt and a rest post, a guard booth whose lit room shows through a glazing sheen, capped banded bollards and a hooded card reader; and a scale house with a framed door (lit light, kick plate, lever) under a canopy hung on tie rods, steps with a pipe rail, a mullioned lit window, corner trims, a drip edge, a rooftop unit and a wall air conditioner. New names, so no. 67's chassis still installs its own guard_gate and scale_house and its frames re-render as shipped",
+   "why": "The same two themes (6 runs, 15 rounds each). No. 67's round 3 craft card, frame 3: 'the gate cabinet is an unweathered rounded box with a pale emissive sphere on top and a plain disc hub', fix 'model the cabinet with a door seam, a louvre panel and a bolted base plate ... replace the sphere with a caged amber lens'; round 1 frame 2 'the house has no canopy'; pixel round 2 'the scale house with no door or canopy'. Queue weigh-station-models-built-in-chassis",
+   "files": [
+    "assets/js/kit/civic.js",
+    "knowledge/carousel/ARSENAL.md"
+   ],
+   "verification": "examples/kit/build.py --family civic --names checkpoint_gate,weigh_house --world lastLight --surface asphalt, rendered through the carousel engine's render.py, 3 of 3 with no page errors, plus close proofs of the cabinet in goldenHour and the house from two sides, read at full size. The first proof found both lit rooms black, because K.finish.glass is opaque and wrapped the lit box; the glazing is now a transparent sheen over the lit plane and the second proof shows the rooms lit. The lens first read pale and now reads amber at a lower emissive. examples/kit/sizes.py first failed weigh_house (declared 5.6 by 5.2, built 4.85 by 4.65), the declared sizes were set to the measured ones, and it now exits 0 with 138 of 138; arsenal.py --check ok",
+   "revert": "git revert <commit of this change>, then python3 scripts/carousel/arsenal.py",
+   "how_i_would_know_this_was_wrong": "A deck that calls checkpoint_gate or weigh_house is still charged for a box cabinet, a pale lens, a plain hub or a house with no door or canopy; the lit windows are charged as flat cream panels (the lit plane carries no interior yet, which is the next step if so); or a run builds a gate or a scale house in its chassis again because ARSENAL did not lead it here"
+  }
+ ],
+ "proposals_out_of_lane": [
+  {
+   "what": "tests/article_edition.mjs falls back to createRequire on the global module root when ESM can't resolve playwright (queue article-browser-test-cannot-import-global-playwright, repeat 2: nos. 60, 62 and 67 each hit ERR_MODULE_NOT_FOUND)",
+   "owner": "human",
+   "why": "tests/ falls under ownership.yaml's default rule and is human lane; UPGRADE_BACKLOG 2026-11-03 item 3"
+  }
+ ],
+ "not_done": "No frontier scan; the time went to the proofs. Dead or empty region (5 runs, 10 rounds), no contact or grime (5 runs, 9 rounds), object in a void (5 runs, 9 rounds) and type on the art (5 runs, 8 rounds) name a different frame on each deck, so no one model or check answers them. No. 67's yard_stalls and flood_pole stay in its chassis, one deck. No gate was added or changed, so no GATE_LESSONS entry is owed"
+}
 }
