@@ -46,7 +46,7 @@ the dark sky. A wash only darkens. The tractor runs with its headlamps on in eve
 
 ## Palette
 
-steel #5C6167, concrete #8E8B85, asphalt #18181A, bead white #E8E6DF, rust #8C5A3C
+steel #5C6167, concrete #8E8B85, asphalt #18181A, bead_white #E8E6DF, rust #8C5A3C
 
 Interstate concrete and asphalt at night under a 5000K flood, galvanized steel, a white tractor and van, the yellow
 of scale kerb rails, the blued steel of a weighbeam. The accent is rust #8C5A3C, read as red oxide primer, and it
