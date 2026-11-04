@@ -77,7 +77,7 @@
       galv: K.finish.galvanized(),
       glass: K.finish.glass(0x1d2a33),
       lamp: K.mat("sl-lamp", { color: 0x0b0d10, emissive: 0xf2f6ff, emissiveIntensity: 9 }),
-      go: K.mat("sl-go", { color: 0x07120b, emissive: 0x62e08e, emissiveIntensity: 7 }),
+      go: K.mat("sl-go", { color: 0x041a0a, emissive: 0x1fd15a, emissiveIntensity: 4.5 }),
       rust: K.mat("sl-rust", { color: 0x8c5a3c, roughness: 0.62, metalness: 0.05, emissive: 0x3a1c0e, emissiveIntensity: 0.35 }),
       amber: K.mat("sl-amber", { color: 0x3a2008, emissive: 0xffa43a, emissiveIntensity: 6, roughness: 0.25 }),
       dim: K.mat("sl-dim", { color: 0x15181b, emissive: 0x2a2f33, emissiveIntensity: 0.4, roughness: 0.3 }),
