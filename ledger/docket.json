@@ -1,7 +1,7 @@
 {
  "_spec": {
   "version": 2,
-  "generated": "2026-11-02",
+  "generated": "2026-11-03",
   "gates": [
    "banned words",
    "claims",
@@ -42879,6 +42879,285 @@
     {
      "date": "2026-11-02",
      "note": "Admitted on the city's release and SwRI's. Field research is expected to run through December 2026, and the final report has not been published."
+    }
+   ]
+  },
+  {
+   "title": "San Antonio council requires its own approval for every new data center",
+   "summary": "San Antonio City Council passed a new process for considering data centers on October 29th, 2026, and Mayor Gina Ortiz Jones said it ensures the council can review each data center application. Texas Public Radio reports the vote was 9 to 2 and that approved data centers may go only in commercial or industrial zones. The mayor said her own provisions on transparency, public health and property values were left out of the resolution and will serve as her office's standards for each application.",
+   "topic": "data-centers",
+   "decider": {
+    "name": "San Antonio City Council",
+    "type": "city"
+   },
+   "geography": {
+    "statewide": false,
+    "counties": [
+     "Bexar",
+     "Comal",
+     "Medina"
+    ],
+    "on_ercot": true,
+    "metro": "San Antonio-New Braunfels, TX"
+   },
+   "status": "decided",
+   "key_dates": [
+    {
+     "date": "2026-10-29",
+     "kind": "decided",
+     "note": "The council vote and the Mayor's statement"
+    }
+   ],
+   "public_access": {
+    "room": "contact_only",
+    "how": "Each new data center application now comes before City Council case by case, and residents can reach their council member or the Mayor's office before a vote.",
+    "url": "https://www.sa.gov/Directory/News-Releases/Mayor%E2%80%99s-Statement-on-Council-Decision-on-Data-Centers",
+    "closes": null
+   },
+   "confidence": "high",
+   "notes_for_editor": "Admitted on the City of San Antonio's own release of October 29th. The vote count and zoning detail rest on Texas Public Radio.",
+   "claims": [
+    {
+     "text": "San Antonio Mayor Gina Ortiz Jones issued a statement on October 29th, 2026 after City Council passed a new process for considering data centers in the city.",
+     "verbatim_quote": "Mayor Gina Ortiz Jones released the following statement on City Council passing a new process for data center consideration in San Antonio.",
+     "source_url": "https://www.sa.gov/Directory/News-Releases/Mayor%E2%80%99s-Statement-on-Council-Decision-on-Data-Centers",
+     "source_title": "Mayor’s Statement on Council Decision on Data Centers",
+     "source_type": "primary_official",
+     "fetched": "2026-11-03",
+     "id": "tx-2026-0238-c1"
+    },
+    {
+     "text": "Mayor Jones said the council action ensures City Council can review each data center application, which she called an important safeguard given how quickly the industry is changing.",
+     "verbatim_quote": "Today, we took a step forward to ensure City Council has the opportunity to review each data center application, and that is an important safeguard given how quickly this industry is changing.",
+     "source_url": "https://www.sa.gov/Directory/News-Releases/Mayor%E2%80%99s-Statement-on-Council-Decision-on-Data-Centers",
+     "source_title": "Mayor’s Statement on Council Decision on Data Centers",
+     "source_type": "primary_official",
+     "fetched": "2026-11-03",
+     "id": "tx-2026-0238-c2"
+    },
+    {
+     "text": "Mayor Jones said her own provisions on transparency, public health and property values were left out of the council resolution and will serve as her office's standards when each application is reviewed.",
+     "verbatim_quote": "While my provisions focused on increasing transparency, protecting public health, and protecting property values were not included in today’s resolution, they will serve as my office’s standards when each data center application is reviewed.",
+     "source_url": "https://www.sa.gov/Directory/News-Releases/Mayor%E2%80%99s-Statement-on-Council-Decision-on-Data-Centers",
+     "source_title": "Mayor’s Statement on Council Decision on Data Centers",
+     "source_type": "primary_official",
+     "fetched": "2026-11-03",
+     "id": "tx-2026-0238-c3"
+    },
+    {
+     "text": "Texas Public Radio reported that San Antonio council members approved the new data center policy in a 9-2 vote on Thursday.",
+     "verbatim_quote": "Council members approved the new policy in a 9-2 vote on Thursday.",
+     "source_url": "https://www.tpr.org/government-politics/2026-10-29/san-antonio-leaders-will-now-have-to-ok-every-new-data-center",
+     "source_title": "San Antonio leaders will now have to OK every new data center",
+     "source_type": "journalism",
+     "fetched": "2026-11-03",
+     "id": "tx-2026-0238-c4"
+    },
+    {
+     "text": "Texas Public Radio reported that the new rules allow approved data centers only in commercial or industrial zones.",
+     "verbatim_quote": "The new rules will only allow the approved data centers in commercial or industrial zones.",
+     "source_url": "https://www.tpr.org/government-politics/2026-10-29/san-antonio-leaders-will-now-have-to-ok-every-new-data-center",
+     "source_title": "San Antonio leaders will now have to OK every new data center",
+     "source_type": "journalism",
+     "fetched": "2026-11-03",
+     "id": "tx-2026-0238-c5"
+    },
+    {
+     "text": "Texas Public Radio reported that council members Misty Spears of District 9 and Marc Whyte of District 10 voted against the policy.",
+     "verbatim_quote": "Council members Misty Spears (D9) and Marc Whyte (D10) both voted no.",
+     "source_url": "https://www.tpr.org/government-politics/2026-10-29/san-antonio-leaders-will-now-have-to-ok-every-new-data-center",
+     "source_title": "San Antonio leaders will now have to OK every new data center",
+     "source_type": "journalism",
+     "fetched": "2026-11-03",
+     "id": "tx-2026-0238-c6"
+    }
+   ],
+   "id": "tx-2026-0238",
+   "last_verified": "2026-11-03",
+   "history": [
+    {
+     "date": "2026-11-03",
+     "note": "The city's own statement now confirms the council passed a new process for reviewing each data center application."
+    }
+   ]
+  },
+  {
+   "id": "tx-2026-0239",
+   "title": "Aurora tells shareholders its driverless trucks will run straight to customer sites in November, with its truck build about six weeks behind plan",
+   "summary": "Aurora Innovation filed its third quarter letter with the SEC on October 28th, 2026. It says the Aurora Driver will run directly to sites for several driverless customers in November. The letter says that includes automated navigation through security checkpoints. It says the system can now determine on its own whether a weigh station is open and navigate to an available scale lane. The same letter says its production ramp is about six weeks behind its prior plan. Material availability, component quality and problems found in end-of-line testing held it back. Aurora says Charger Logistics plans to start its trucks between Dallas and Laredo under a non-binding MOU, with delivery expected in 2027 and 2028. Its hardware partner AUMOVIO is preparing a production line in New Braunfels.",
+   "topic": "state-policy",
+   "decider": {
+    "name": "Aurora Innovation",
+    "type": "company"
+   },
+   "geography": {
+    "statewide": false,
+    "counties": [
+     "Dallas",
+     "Harris",
+     "Webb",
+     "Comal"
+    ],
+    "on_ercot": null
+   },
+   "status": "pending",
+   "key_dates": [
+    {
+     "date": "2026-10-28",
+     "kind": "filed",
+     "note": "Date on the shareholder letter filed with the SEC"
+    }
+   ],
+   "public_access": {
+    "room": "contact_only",
+    "how": "There is no public process. The letter is a company filing, and questions about routes and operations go to Aurora.",
+    "url": "https://www.sec.gov/Archives/edgar/data/0001828108/000182810826000092/aurora26q3shareholderlet.htm",
+    "closes": null
+   },
+   "confidence": "high",
+   "notes_for_editor": "A company account filed with the SEC. Dallas to Houston is Aurora's own named Texas route (its September 23rd release). Dallas to Laredo is Charger's plan, not a route Aurora runs today. New Braunfels is AUMOVIO's facility.",
+   "claims": [
+    {
+     "text": "Aurora says that in November the Aurora Driver will run directly to sites for several driverless customers, including automated navigation through security checkpoints.",
+     "verbatim_quote": "In November, the Aurora Driver will be operating directly to sites for several driverless customers, including automated navigation through security checkpoints.",
+     "source_url": "https://www.sec.gov/Archives/edgar/data/0001828108/000182810826000092/aurora26q3shareholderlet.htm",
+     "source_title": "Aurora Innovation, Third Quarter 2026 Shareholder Letter (Exhibit 99.1)",
+     "source_type": "primary_corporate",
+     "fetched": "2026-11-03",
+     "id": "tx-2026-0239-c1"
+    },
+    {
+     "text": "Aurora says the Aurora Driver can now determine on its own whether a weigh station is open, navigate to an available scale lane and adapt to different scale configurations.",
+     "verbatim_quote": "With our weigh station traversal capability, the Aurora Driver can now autonomously determine if a station is open, navigate to an available scale lane, and adapt to different scale configurations.",
+     "source_url": "https://www.sec.gov/Archives/edgar/data/0001828108/000182810826000092/aurora26q3shareholderlet.htm",
+     "source_title": "Aurora Innovation, Third Quarter 2026 Shareholder Letter (Exhibit 99.1)",
+     "source_type": "primary_corporate",
+     "fetched": "2026-11-03",
+     "id": "tx-2026-0239-c2"
+    },
+    {
+     "text": "The letter says autonomous trucks have historically relied on voluntary enhanced pre-trip inspections to bypass weigh stations.",
+     "verbatim_quote": "Historically, autonomous trucks have relied on voluntary enhanced pre-trip inspections (EPTI) to bypass weigh stations.",
+     "source_url": "https://www.sec.gov/Archives/edgar/data/0001828108/000182810826000092/aurora26q3shareholderlet.htm",
+     "source_title": "Aurora Innovation, Third Quarter 2026 Shareholder Letter (Exhibit 99.1)",
+     "source_type": "primary_corporate",
+     "fetched": "2026-11-03",
+     "id": "tx-2026-0239-c3"
+    },
+    {
+     "text": "Aurora says its production ramp is about six weeks behind its prior plan and it now expects 2026 revenue of approximately $9 million.",
+     "verbatim_quote": "Reflecting a production ramp about six weeks behind our prior plan, we now expect 2026 revenue of approximately $9 million",
+     "source_url": "https://www.sec.gov/Archives/edgar/data/0001828108/000182810826000092/aurora26q3shareholderlet.htm",
+     "source_title": "Aurora Innovation, Third Quarter 2026 Shareholder Letter (Exhibit 99.1)",
+     "source_type": "primary_corporate",
+     "fetched": "2026-11-03",
+     "id": "tx-2026-0239-c4"
+    },
+    {
+     "text": "Aurora says its initial production ramp over the past month was held back by material availability, component quality and problems found in end-of-line testing.",
+     "verbatim_quote": "While our initial ramp volume over the past month was constrained by material availability, component quality, and issues identified during end-of-line testing, our team moved quickly to address these pre-production bottlenecks.",
+     "source_url": "https://www.sec.gov/Archives/edgar/data/0001828108/000182810826000092/aurora26q3shareholderlet.htm",
+     "source_title": "Aurora Innovation, Third Quarter 2026 Shareholder Letter (Exhibit 99.1)",
+     "source_type": "primary_corporate",
+     "fetched": "2026-11-03",
+     "id": "tx-2026-0239-c5"
+    },
+    {
+     "text": "Aurora says it now expects to reach its targeted production rate of 20 trucks per week in early December.",
+     "verbatim_quote": "we now expect to achieve our targeted production rate of 20 trucks per week in early December.",
+     "source_url": "https://www.sec.gov/Archives/edgar/data/0001828108/000182810826000092/aurora26q3shareholderlet.htm",
+     "source_title": "Aurora Innovation, Third Quarter 2026 Shareholder Letter (Exhibit 99.1)",
+     "source_type": "primary_corporate",
+     "fetched": "2026-11-03",
+     "id": "tx-2026-0239-c6"
+    },
+    {
+     "text": "Aurora says 20+ driverless trucks are already built and coming into its fleet, and that production is accelerating.",
+     "verbatim_quote": "We have 20+ driverless trucks already built and coming into the fleet, and production is accelerating.",
+     "source_url": "https://www.sec.gov/Archives/edgar/data/0001828108/000182810826000092/aurora26q3shareholderlet.htm",
+     "source_title": "Aurora Innovation, Third Quarter 2026 Shareholder Letter (Exhibit 99.1)",
+     "source_type": "primary_corporate",
+     "fetched": "2026-11-03",
+     "id": "tx-2026-0239-c7"
+    },
+    {
+     "text": "Aurora reported third quarter 2026 revenue of $3 million from driverless and vehicle operator-supervised commercial loads.",
+     "verbatim_quote": "Third quarter 2026 revenue totaled $3 million across driverless and vehicle operator-supervised commercial loads.",
+     "source_url": "https://www.sec.gov/Archives/edgar/data/0001828108/000182810826000092/aurora26q3shareholderlet.htm",
+     "source_title": "Aurora Innovation, Third Quarter 2026 Shareholder Letter (Exhibit 99.1)",
+     "source_type": "primary_corporate",
+     "fetched": "2026-11-03",
+     "id": "tx-2026-0239-c8"
+    },
+    {
+     "text": "Aurora reported a third quarter operating loss of $257 million, a figure that includes stock-based compensation.",
+     "verbatim_quote": "Third quarter operating loss, including stock-based compensation (SBC), totaled $257 million.",
+     "source_url": "https://www.sec.gov/Archives/edgar/data/0001828108/000182810826000092/aurora26q3shareholderlet.htm",
+     "source_title": "Aurora Innovation, Third Quarter 2026 Shareholder Letter (Exhibit 99.1)",
+     "source_type": "primary_corporate",
+     "fetched": "2026-11-03",
+     "id": "tx-2026-0239-c9"
+    },
+    {
+     "text": "Aurora says Charger expects truck delivery in 2027 and 2028 and plans to start between Dallas and Laredo, which the letter calls one of Charger's busiest freight routes in the Sun Belt.",
+     "verbatim_quote": "With truck delivery expected in 2027 and 2028, Charger plans to use the Aurora Driver to add capacity on its network and drive higher utilization, starting between Dallas and Laredo, one of its busiest freight routes in the Sun Belt.",
+     "source_url": "https://www.sec.gov/Archives/edgar/data/0001828108/000182810826000092/aurora26q3shareholderlet.htm",
+     "source_title": "Aurora Innovation, Third Quarter 2026 Shareholder Letter (Exhibit 99.1)",
+     "source_type": "primary_corporate",
+     "fetched": "2026-11-03",
+     "id": "tx-2026-0239-c10"
+    },
+    {
+     "text": "The letter says Charger Logistics' intent to own and operate 500 trucks reflects current plans and discussions under a non-binding MOU.",
+     "verbatim_quote": "Statements in this investor letter about Charger Logistics’ intent to own and operate 500 Aurora Driver-powered trucks reflect current plans and discussions, as reflected in the non-binding MOU",
+     "source_url": "https://www.sec.gov/Archives/edgar/data/0001828108/000182810826000092/aurora26q3shareholderlet.htm",
+     "source_title": "Aurora Innovation, Third Quarter 2026 Shareholder Letter (Exhibit 99.1)",
+     "source_type": "primary_corporate",
+     "fetched": "2026-11-03",
+     "id": "tx-2026-0239-c11"
+    },
+    {
+     "text": "Aurora says AUMOVIO has begun design validation of Aurora's third-generation commercial hardware kit and is finalizing the line concept and production flow at its dedicated facility in New Braunfels, Texas.",
+     "verbatim_quote": "AUMOVIO has initiated design validation for our third-generation commercial hardware kit, while finalizing the line concept and production flow at its dedicated facility in New Braunfels, Texas.",
+     "source_url": "https://www.sec.gov/Archives/edgar/data/0001828108/000182810826000092/aurora26q3shareholderlet.htm",
+     "source_title": "Aurora Innovation, Third Quarter 2026 Shareholder Letter (Exhibit 99.1)",
+     "source_type": "primary_corporate",
+     "fetched": "2026-11-03",
+     "id": "tx-2026-0239-c12"
+    },
+    {
+     "text": "Aurora says initial line bring-up remains on track for later this year, ahead of a planned start of production in the second half of 2027.",
+     "verbatim_quote": "Initial line bring-up remains on track for later this year ahead of planned start of production in the second half of 2027.",
+     "source_url": "https://www.sec.gov/Archives/edgar/data/0001828108/000182810826000092/aurora26q3shareholderlet.htm",
+     "source_title": "Aurora Innovation, Third Quarter 2026 Shareholder Letter (Exhibit 99.1)",
+     "source_type": "primary_corporate",
+     "fetched": "2026-11-03",
+     "id": "tx-2026-0239-c13"
+    },
+    {
+     "text": "In a September 23rd, 2026 release Aurora described a Dallas-to-Houston commercial route of its own and said it was offering driverless passenger rides on a segment of it.",
+     "verbatim_quote": "Company offers industry-first driverless passenger rides on a segment of its Dallas-to-Houston commercial route",
+     "source_url": "https://ir.aurora.tech/news-events/press-releases/detail/152/aurora-outlines-2030-vision-to-scale-to-30000-driverless-trucks-at-analyst-and-investor-day",
+     "source_title": "Aurora Outlines 2030 Vision to Scale to 30,000 Driverless Trucks at Analyst and Investor Day",
+     "source_type": "primary_corporate",
+     "fetched": "2026-11-03",
+     "id": "tx-2026-0239-c14"
+    },
+    {
+     "text": "Aurora says it remains on track to end 2027 with more than 1,000 driverless trucks in operation.",
+     "verbatim_quote": "we remain on track to exit 2027 with more than 1,000 driverless trucks in operation.",
+     "source_url": "https://www.sec.gov/Archives/edgar/data/0001828108/000182810826000092/aurora26q3shareholderlet.htm",
+     "source_title": "Aurora Innovation, Third Quarter 2026 Shareholder Letter (Exhibit 99.1)",
+     "source_type": "primary_corporate",
+     "fetched": "2026-11-03",
+     "id": "tx-2026-0239-c15"
+    }
+   ],
+   "last_verified": "2026-11-03",
+   "history": [
+    {
+     "date": "2026-11-03",
+     "note": "Aurora's letter puts site-to-site driverless runs in November and its truck build about six weeks behind plan."
     }
    ]
   }
