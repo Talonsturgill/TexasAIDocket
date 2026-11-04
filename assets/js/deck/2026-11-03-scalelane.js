@@ -5,8 +5,8 @@
  *
  * THE VISUAL ARGUMENT. Scale lane. The deck is built where the machine makes a call a driver used to make: a
  * weigh station on an interstate at night, one LED flood over the scale deck, the tractor with nobody in its seat.
- * The machine's own decisions are drawn in one cold cyan; everything the letter measures about the company is drawn
- * in steel and concrete at one scale.
+ * What exists is lit and drawn in its own material, steel, concrete, a white tractor. What the letter says will
+ * happen and has not is laid in primer rust. The company's own figures are drawn in steel at one scale.
  *
  * THE WORLD. floodlit, a STAGED world: a black sky, one cold flood high on one side, the subject in its pool and
  * the interstate behind it gone dark. It is what a weigh station and a guard gate are at night.
@@ -23,8 +23,10 @@
  * maker's design, in the kit's conventions (metres, y up, origin on the ground, front on +z) so Phase 17 can queue
  * the lift.
  *
- * THE ACCENT is comal_lit, #8FE0F0, and it means ONE thing: a decision the Aurora Driver makes on its own. The
- * scale signal's lamp, the gate's reader, the lane the truck takes.
+ * THE ACCENT is rust, #8C5A3C, read as red oxide primer, the colour of steel before it is finished, and it means ONE
+ * thing: something Aurora's letter says WILL happen and has not. The stop bar at November's gate, the expected
+ * production stop on the rule, Charger's planned chord on the map, the 200 and the 1,000 stalls. It never touches a
+ * truck that exists or a figure the letter reports. Lit and in its own material means it exists; rust means planned.
  *
  * WHAT THIS FILE IS NOT. There is no drawFrame. It hands a frame the world, the station, the models and the way
  * type is seated. Every count a frame draws is read from figures.json in that frame's own code. The chassis types
@@ -40,7 +42,7 @@
     sky: "floodlit",
     ground: "#08090C",
     material: "#C9CDD2",
-    accent: "#8FE0F0",
+    accent: "#8C5A3C",
     grade: {
       exposure: 0, saturation: 1.0, contrast: 1.08, filmic: true,
       lift: [0.002, 0.003, 0.006], gain: [1.0, 1.0, 1.0], vignette: 0.22,
@@ -52,7 +54,7 @@
 
   var N = {};
   N.W = 1080; N.H = 1350; N.SEED = 20261103; N.INK = "#ECEEF0";
-  N.CYAN = "#8FE0F0";   /* comal_lit, brand.yaml's token: a decision the Aurora Driver makes on its own, and nothing else */
+  N.RUST = "#8C5A3C";   /* brand.yaml's rust, read as primer: what the letter says will happen and has not, and nothing else */
   /* THE STATION, in metres. The interstate runs along z (north is -z). The weigh station's ramp leaves the right
    * lane to the east, the scale lane runs north at x = 0 over the scale deck, the bypass lane runs beside it at
    * x = 5, and the scale house stands west of the deck. */
@@ -75,9 +77,11 @@
       galv: K.finish.galvanized(),
       glass: K.finish.glass(0x1d2a33),
       lamp: K.mat("sl-lamp", { color: 0x0b0d10, emissive: 0xf2f6ff, emissiveIntensity: 9 }),
-      cyan: K.mat("sl-cyan", { color: 0x0b1416, emissive: 0x8fe0f0, emissiveIntensity: 7 }),
+      go: K.mat("sl-go", { color: 0x07120b, emissive: 0x62e08e, emissiveIntensity: 7 }),
+      rust: K.mat("sl-rust", { color: 0x8c5a3c, roughness: 0.62, metalness: 0.05, emissive: 0x3a1c0e, emissiveIntensity: 0.35 }),
+      amber: K.mat("sl-amber", { color: 0x3a2008, emissive: 0xffa43a, emissiveIntensity: 6, roughness: 0.25 }),
       dim: K.mat("sl-dim", { color: 0x15181b, emissive: 0x2a2f33, emissiveIntensity: 0.4, roughness: 0.3 }),
-      warm: K.mat("sl-warm", { color: 0x111111, emissive: 0xffd9a8, emissiveIntensity: 2.2 })
+      warm: K.mat("sl-warm", { color: 0x111111, emissive: 0xffd9a8, emissiveIntensity: 3.0 })
     };
 
     /* A TRUCK SCALE: a weigh station's in-ground scale, about 21.3 m long and 3.4 m wide, in three steel deck
@@ -133,8 +137,10 @@
         var roof = K.box(4.6, 0.18, 3.6, M.steelDark, 0, 3.3, 0, 0.03); G.add(roof);
         /* the window on +x (the scale side): glass, a lit interior plane behind it, a frame */
         var win = K.box(0.05, 1.1, 2.4, M.black, 2.12, 1.7, 0); G.add(win);
-        var glow = K.box(0.02, 1.0, 2.3, o.lit === false ? M.dim : M.warm, 2.11, 1.75, 0); G.add(glow);
-        var gl = K.box(0.03, 1.0, 2.3, M.glass, 2.14, 1.75, 0); G.add(gl);
+        var glow = K.box(0.02, 1.0, 2.3, o.lit === false ? M.dim : M.warm, 2.15, 1.75, 0); G.add(glow);
+        /* the lit window reads as light, not as dark glass: the warm plane sits at the glazing line, a faint reflective
+         * sheet in front of it carries the flood's highlight without hiding the room */
+        var gl = new THREE.Mesh(new THREE.PlaneGeometry(2.3, 1.0), K.mat("sl-sheen", { color: 0x0a0c0e, metalness: 0.9, roughness: 0.08, transparent: true, opacity: 0.18 })); gl.rotation.y = Math.PI / 2; gl.position.set(2.165, 2.25, 0); G.add(gl);
         [-1.2, 0, 1.2].forEach(function (z) { G.add(K.box(0.06, 1.14, 0.06, M.steelDark, 2.15, 1.68, z)); });
         G.add(K.box(0.06, 0.06, 2.46, M.steelDark, 2.15, 2.8, 0)); G.add(K.box(0.06, 0.06, 2.46, M.steelDark, 2.15, 1.68, 0));
         /* the door and steps on +z */
@@ -147,13 +153,13 @@
     });
 
     /* A SCALE SIGNAL: the lamp head on a cantilever over the lane, the light that tells a truck to cross the scale
-     * or keep to the bypass. Two lamps in a hooded head; `state` lights the cyan lamp (the scale is open to this
+     * or keep to the bypass. Two lamps in a hooded head; `state` lights the pale go lamp (the scale is open to this
      * truck), the red lamp, or neither. No words: the meaning is the lamp. Anchored at the pole's foot. */
     K.define("scale_signal", {
       size: [6.4, 6.6, 0.6],
       anchor: "base",
       options: { state: "cross", reach: 5.2 },
-      note: "A cantilevered signal head over a weigh station lane: a hooded cyan lamp and a red lamp.",
+      note: "A cantilevered signal head over a weigh station lane: a hooded go lamp and a red lamp.",
       make: function (o) {
         var G = new THREE.Group(), reach = o.reach || 5.2, h = 6.0;
         G.add(K.cyl(0.11, 0.13, h, M.galv, 0, 0, 0, 16));
@@ -162,12 +168,14 @@
         K.bar([0, h - 1.4, 0], [reach * 0.55, h - 0.3, 0], 0.04, M.galv, 8, G);
         var head = new THREE.Group(); head.position.set(reach, h - 0.95, 0); G.add(head);
         head.add(TXT.roundedBox(0.46, 1.0, 0.36, 0.05, M.black));
-        [[0.22, o.state === "stop" ? M.red : M.dim, "red"], [-0.22, o.state === "cross" ? M.cyan : M.dim, "cyan"]].forEach(function (L) {
-          var lens = new THREE.Mesh(new THREE.CylinderGeometry(0.15, 0.15, 0.04, 24), L[1]); lens.rotation.x = Math.PI / 2; lens.position.set(0, L[0], 0.19); head.add(lens);
-          var hood = new THREE.Mesh(new THREE.CylinderGeometry(0.18, 0.18, 0.22, 24, 1, true, -Math.PI / 2, Math.PI), M.black); hood.rotation.x = Math.PI / 2; hood.rotation.y = Math.PI; hood.position.set(0, L[0] + 0.02, 0.3); head.add(hood);
-          if (L[2] === "red" && o.state === "stop") { var rl = new THREE.Mesh(new THREE.CylinderGeometry(0.15, 0.15, 0.04, 24), K.mat("sl-redlit", { color: 0x220303, emissive: 0xff2a1e, emissiveIntensity: 7 })); rl.rotation.x = Math.PI / 2; rl.position.set(0, L[0], 0.2); head.add(rl); }
+        /* lamps on both faces, so the head shows its aspect to the lane it governs and to the scale house behind it */
+        [1, -1].forEach(function (f) {
+          [[0.22, o.state === "stop" ? K.mat("sl-redlit", { color: 0x220303, emissive: 0xff2a1e, emissiveIntensity: 7 }) : M.dim], [-0.22, o.state === "cross" ? M.go : M.dim]].forEach(function (L) {
+            var lens = new THREE.Mesh(new THREE.CylinderGeometry(0.15, 0.15, 0.04, 24), L[1]); lens.rotation.x = Math.PI / 2; lens.position.set(0, L[0], f * 0.19); head.add(lens);
+            var visor = K.box(0.36, 0.025, 0.2, M.black, 0, L[0] + 0.17, f * 0.29); head.add(visor);
+          });
         });
-        G.userData.lamp = [reach, h - 0.95 - 0.22, 0.2];
+        G.userData.lamp = [reach, h - 0.95 - 0.22, 0];
         return shade(G);
       }
     });
@@ -187,9 +195,10 @@
         var nh = o.heads || 2;
         for (var i = 0; i < nh; i++) {
           var hx = nh === 1 ? 0 : -0.7 + 1.4 * i / (nh - 1), hd = new THREE.Group(); hd.position.set(hx, h - 0.1, 0.1); hd.rotation.x = 0.55; G.add(hd);
-          hd.add(TXT.roundedBox(0.56, 0.12, 0.42, 0.02, M.steelDark));
-          var face = new THREE.Mesh(new THREE.PlaneGeometry(0.48, 0.34), M.lamp); face.rotation.x = Math.PI / 2; face.position.set(0, -0.065, 0); hd.add(face);
-          for (var f = 0; f < 6; f++) hd.add(K.box(0.5, 0.05, 0.012, M.steelDark, 0, 0.06, -0.18 + f * 0.072));
+          hd.add(TXT.roundedBox(0.72, 0.14, 0.56, 0.02, M.steelDark));
+          var face = new THREE.Mesh(new THREE.PlaneGeometry(0.64, 0.48), M.lamp); face.rotation.x = Math.PI / 2; face.position.set(0, -0.075, 0); hd.add(face);
+          for (var f = 0; f < 7; f++) hd.add(K.box(0.66, 0.06, 0.014, M.steelDark, 0, 0.07, -0.24 + f * 0.08));
+          (G.userData.heads = G.userData.heads || []).push([hx, h - 0.2, 0.1]);
         }
         return shade(G);
       }
@@ -201,7 +210,7 @@
      * arriving truck; the lane runs along z on +x of the booth. */
     K.define("guard_gate", {
       size: [9.6, 3.3, 3.0],
-      options: { boom: 0, reader: "cyan" },
+      options: { boom: 0, reader: "lit", stopBar: true },
       note: "A guard booth on an island, a striped boom arm on its cabinet, and a lit card reader pedestal.",
       make: function (o) {
         var G = new THREE.Group();
@@ -222,9 +231,53 @@
         var ped = new THREE.Group(); ped.position.set(1.25, 0.18, 1.3); G.add(ped);
         ped.add(K.cyl(0.07, 0.07, 1.8, M.steelDark, 0, 0, 0, 12));
         var hd = TXT.roundedBox(0.34, 0.46, 0.22, 0.04, M.black); hd.position.set(0.05, 2.0, 0); hd.rotation.y = 0.5; ped.add(hd);
-        var scr = new THREE.Mesh(new THREE.PlaneGeometry(0.22, 0.16), o.reader === "cyan" ? M.cyan : M.dim); scr.position.set(0.12, 2.06, 0.1); scr.rotation.y = 0.5 + Math.PI / 2 - Math.PI / 2; ped.add(scr);
+        var scr = new THREE.Mesh(new THREE.PlaneGeometry(0.22, 0.16), o.reader === "lit" ? M.go : M.dim); scr.position.set(0.12, 2.06, 0.1); scr.rotation.y = 0.5 + Math.PI / 2 - Math.PI / 2; ped.add(scr);
+        /* the stop bar across the lane before the gate, in primer: November's gate is a plan, not yet true */
+        if (o.stopBar) { var sb = K.box(4.0, 0.012, 0.6, M.rust, 4.5, 0.0, 3.4); G.add(sb); }
         G.userData.reader = [1.37, 2.24, 1.4];
         return shade(G);
+      }
+    });
+
+    /* A CAB BEACON: an amber warning beacon on a magnetic base, about 0.16 m across and 0.13 m tall, the kind a stopped
+     * driverless truck shows in place of triangles set out on the shoulder. Lit or dark. */
+    K.define("cab_beacon", {
+      size: [0.19, 0.17, 0.19],
+      options: { lit: true },
+      note: "An amber dome warning beacon on a magnetic base, lit or dark.",
+      make: function (o) {
+        var G = new THREE.Group();
+        G.add(K.cyl(0.095, 0.095, 0.035, M.black, 0, 0, 0, 28));
+        G.add(K.cyl(0.08, 0.085, 0.03, M.steelDark, 0, 0.035, 0, 28));
+        var dome = new THREE.Mesh(new THREE.SphereGeometry(0.075, 28, 16, 0, Math.PI * 2, 0, Math.PI / 2), o.lit === false ? M.dim : M.amber); dome.position.y = 0.065; dome.scale.y = 1.3; G.add(dome);
+        var cage = new THREE.Mesh(new THREE.TorusGeometry(0.077, 0.004, 6, 28), M.black); cage.rotation.x = Math.PI / 2; cage.position.y = 0.1; G.add(cage);
+        return shade(G);
+      }
+    });
+
+    /* PAINTED STALLS: a yard's parking stripes, `rows` rows of `cols` stalls at `pitch` metres, each stall bounded by
+     * side stripes `stripe` m wide and `len` m long and closed by a head line across its far end, thermoplastic 4 mm
+     * proud. Stalls in the near corner block `block` [cols, rows] are bead white (trucks that exist); every other stall
+     * is primer (trucks the letter says will exist). Rows run toward -z from the origin, columns toward +x. Instanced,
+     * so a thousand stalls cost two draw calls per colour. */
+    K.define("yard_stalls", {
+      size: [60, 0.004, 30], anchor: "base",
+      options: { rows: 20, cols: 50, pitch: 4.4, len: 14, aisle: 10, block: [10, 2], stripe: 0.3 },
+      note: "Instanced yard stalls with side stripes and head lines, a near corner block in bead white and the rest in primer.",
+      make: function (o) {
+        var G = new THREE.Group(), sw = o.stripe || 0.3, side = new THREE.BoxGeometry(sw, 0.004, o.len), head = new THREE.BoxGeometry(o.pitch, 0.004, sw);
+        var W = { s: [], h: [] }, P = { s: [], h: [] }, bc = o.block[0], br = o.block[1];
+        for (var r = 0; r < o.rows; r++) for (var c = 0; c < o.cols; c++) {
+          var white = r < br && c < bc, L = white ? W : P, z = -(r * (o.len + o.aisle) + o.len / 2), x = c * o.pitch;
+          L.s.push([x, 0.002, z, 0, 1]); L.h.push([x + o.pitch / 2, 0.002, z - o.len / 2, 0, 1]);
+          if (c === o.cols - 1 || (white && c === bc - 1)) L.s.push([x + o.pitch, 0.002, z, 0, 1]);
+        }
+        var paintW = K.mat("sl-bead", { color: 0xe8e6df, roughness: 0.45, emissive: 0x15140f, emissiveIntensity: 0.4 });
+        var paintP = K.mat("sl-rustpaint", { color: 0x9a6243, roughness: 0.5, emissive: 0x5a2c16, emissiveIntensity: 0.9 });
+        [[W, paintW], [P, paintP]].forEach(function (q) { if (q[0].s.length) K.instances(side, q[1], q[0].s, G); if (q[0].h.length) K.instances(head, q[1], q[0].h, G); });
+        G.userData.keepOrigin = true;
+        G.userData.stall = function (c, r) { return [c * o.pitch + o.pitch / 2, 0, -(r * (o.len + o.aisle) + o.len / 2)]; };
+        return G;
       }
     });
   };
@@ -247,7 +300,8 @@
   };
   N.rigSpec = function (W, size, map) {
     var rim = Object.assign({}, W.rig.rim, { i: (W.rig.rim.i || 0.8) * 0.6 });
-    return Object.assign({}, W.rig, { rim: rim, key: Object.assign({}, W.rig.key, { shadowSize: size || 14, mapSize: map || 2048 }) });
+    /* the flood is a 5000K LED, near neutral: the preset's faint lavender is warmed a step so white paint reads white */
+    return Object.assign({}, W.rig, { rim: rim, key: Object.assign({}, W.rig.key, { color: 0xfbf7f0, shadowSize: size || 14, mapSize: map || 2048 }) });
   };
   N.rigOpts = function (target, o) { o = o || {}; return { target: target, distance: o.distance || 40, shadowFar: o.shadowFar || 120, normalBias: o.normalBias == null ? 0.02 : o.normalBias }; };
   N.unacne = function (R, nb) { R.scene.traverse(function (l) { if (l.isDirectionalLight && l.castShadow) { l.shadow.normalBias = nb == null ? 0.04 : nb; l.shadow.bias = -0.0004; } }); return R; };
@@ -268,7 +322,7 @@
       ".dek { position:absolute; left:82px; width:820px; font-size:31px; font-weight:600; line-height:1.38; color:" + dek + "; z-index:10; }",
       '.tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace; font-size:24px; letter-spacing:0.07em; line-height:1.5; color:' + ink + '; white-space:nowrap; z-index:20; }',
       '.lab { position:absolute; font-family:"JetBrains Mono", monospace; font-size:26px; font-weight:500; letter-spacing:0.06em; line-height:1.3; color:' + ink + '; white-space:nowrap; z-index:12; }',
-      ".lab.cy { color:" + N.CYAN + "; }",
+      ".lab.ru { color:#C99474; }",
       ".hook, .dek, .lab, .kick, .count, .src { font-feature-settings:\"calt\" 0; }",
       ".hook, .dek, .kick, .count, .lab { text-shadow:0 0 2px " + halo + ", 0 1px 14px " + halo2 + "; }",
       ".tx-site, .src { text-shadow:0 0 2px " + halo + ", 0 1px 4px " + halo2 + "; }"
@@ -344,6 +398,18 @@
       sp.target.position.copy(c).add(fwd.clone().multiplyScalar(14)).setY(0); R.scene.add(sp); R.scene.add(sp.target);
     }
     return out;
+  };
+  /* THE FLOOD, ON: a glow at each head of a flood_pole and one spot from its height onto a target, so the pool the
+   * staged world makes has a source a reader can see. The pole must not be rotated. */
+  N.floodOn = function (THREE, R, pole, target, o) {
+    o = o || {}; pole.updateMatrixWorld(true);
+    var heads = (pole.userData.heads || []).map(function (h) { return new THREE.Vector3(h[0], h[1], h[2]).applyMatrix4(pole.matrixWorld); });
+    heads.forEach(function (p) { N.lampGlow(THREE, R, [p.x, p.y - 0.15, p.z], 0xf2f5ff, o.glow || 2.2, 0); });
+    if (!heads.length) return null;
+    var c = heads[0].clone(); if (heads.length > 1) c.add(heads[heads.length - 1]).multiplyScalar(0.5);
+    var sp = new THREE.SpotLight(0xeef2ff, o.intensity || 900, o.distance || 90, o.angle || 0.6, 0.55, 1.6);
+    sp.position.copy(c); sp.target.position.set(target[0], target[1], target[2]); R.scene.add(sp); R.scene.add(sp.target);
+    return sp;
   };
   /* THE DARK BAND THE TYPE STANDS IN. Light type on the dark field, and the band only ever DARKENS. */
   N.shade = function (cx, o) {
