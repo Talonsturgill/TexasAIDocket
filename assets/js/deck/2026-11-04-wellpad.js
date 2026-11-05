@@ -59,7 +59,7 @@
   N.installKit = function (K, THREE, TXT) {
     if (K.registry && K.registry.release_page) return;
     function shade(o) { o.traverse(function (c) { if (c.isMesh) { c.castShadow = c.receiveShadow = true; } }); return o; }
-    var GOLD = K.mat("wp-gold", { color: 0xc9894f, metalness: 0.75, roughness: 0.32, emissive: 0x3a1c08, emissiveIntensity: 0.35 });
+    var GOLD = K.mat("wp-gold2", { color: 0xb07656, metalness: 0.1, roughness: 0.6, emissive: 0xe0956a, emissiveIntensity: 0.12 });   /* painted accent plate, lit and casting, held near the accent by its own glow */
     N.goldMat = GOLD;
     var STEEL = K.mat("wp-steel", { color: 0x8b8f93, metalness: 0.8, roughness: 0.38 });
     var DARK = K.mat("wp-dark", { color: 0x16171a, roughness: 0.7, metalness: 0.2 });
@@ -98,6 +98,7 @@
         var clip = TXT.roundedBox(0.05, 0.012, 0.022, 0.003, K.mat("wp-clip", { color: 0x111214, metalness: 0.6, roughness: 0.35 })); clip.position.set(-0.03, 0.007, d / 2 - 0.008); G.add(clip);
         [-1, 1].forEach(function (s) { var a = new THREE.Mesh(new THREE.TorusGeometry(0.012, 0.0012, 6, 16, Math.PI), STEEL); a.position.set(-0.03 + s * 0.016, 0.014, d / 2 - 0.002); a.rotation.y = Math.PI / 2; G.add(a); });
         G.userData.brackets = pick.length;
+        G.userData.bracketAt = pick.map(function (i) { var m = marks[Math.min(i, marks.length - 1)]; return [-w / 2 + (66 / 864) * w, 0.002, -d / 2 + ((m[0] + m[1]) / 2 / 1116) * d]; });
         return shade(G);
       }
     });
@@ -169,20 +170,23 @@
      * running up to a sheave on the roof. Origin at the board's foot, the board's face on +z. */
     K.define("gauge_board", {
       size: [0.3, 6, 0.1],
-      options: { height: 5.6, level: 0.5 },
+      options: { height: 5.6, level: 0.5, w: 0.25 },
       note: "A stock tank float gauge board with a scale, a track, a sliding target and a cable over a roof sheave.",
       make: function (o) {
-        var G = new THREE.Group(), Hb = +o.height || 5.6, lv = Math.max(0, Math.min(1, o.level == null ? 0.5 : +o.level));
+        var G = new THREE.Group(), Hb = +o.height || 5.6, lv = Math.max(0, Math.min(1, o.level == null ? 0.5 : +o.level)), Wb = +o.w || 0.25;
         var c = document.createElement("canvas"); c.width = 64; c.height = 1024; var x = c.getContext("2d");
-        x.fillStyle = "#d8d3c6"; x.fillRect(0, 0, 64, 1024);
-        x.fillStyle = "#1c1d1f"; for (var k = 0; k <= 50; k++) { var yy = 1024 - k * (1024 / 50); x.fillRect(k % 5 ? 40 : 14, yy - 2, 64, k % 5 ? 3 : 5); }
+        x.fillStyle = "#b9bcbd"; x.fillRect(0, 0, 64, 1024);
+        x.fillStyle = "#141516"; for (var k = 0; k <= 10; k++) { var yy = Math.min(1018, Math.max(6, 1024 - k * 102.4)); var big = k % 5 === 0; x.fillRect(big ? 0 : 22, yy - (big ? 6 : 4), 64, big ? 12 : 8); }
         var tex = new THREE.CanvasTexture(c); tex.colorSpace = THREE.SRGBColorSpace;
-        var board = K.box(0.25, Hb, 0.025, K.mat("wp-board", { color: 0xffffff, map: tex, roughness: 0.7 }), 0, 0, 0, 0.004, G);
-        var track = K.box(0.03, Hb, 0.04, STEEL, 0.15, 0, 0.0, 0.004, G);
+        var board = K.box(Wb, Hb, 0.025, K.mat("wp-board2", { color: 0x9a9fa2, metalness: 0.55, roughness: 0.45 }), 0, 0, 0, 0.004, G);
+        var TAB = K.mat("wp-tab", { color: 0x131416, metalness: 0.4, roughness: 0.6 });
+        for (var q = 0; q <= 10; q++) { var big = q % 5 === 0, tw = big ? Wb * 0.95 : Wb * 0.55; K.box(tw, big ? 0.07 : 0.045, 0.02, TAB, -Wb / 2 + tw / 2, 0.02 + q * (Hb - 0.1) / 10, 0.022, 0.003, G); }
+        var stop = K.box(Wb + 0.1, 0.05, 0.08, STEEL, 0, -0.05, 0.03, 0.006, G);
+        var track = K.box(0.03, Hb, 0.04, STEEL, Wb / 2 + 0.03, 0, 0.0, 0.004, G);
         var ty = 0.05 + lv * (Hb - 0.1);
-        var target = TXT.roundedBox(0.36, 0.14, 0.06, 0.01, GOLD); target.position.set(0.05, ty, 0.04); G.add(target);
-        var cable = new THREE.Mesh(new THREE.CylinderGeometry(0.004, 0.004, Hb - ty + 0.3, 6), STEEL); cable.position.set(0.15, ty + (Hb - ty + 0.3) / 2, 0.03); G.add(cable);
-        var sheave = new THREE.Mesh(new THREE.TorusGeometry(0.07, 0.015, 8, 20), STEEL); sheave.position.set(0.15, Hb + 0.3, 0.0); sheave.rotation.y = Math.PI / 2; G.add(sheave);
+        var target = TXT.roundedBox(Wb + 0.42, 0.34, 0.07, 0.012, GOLD); target.position.set(0.05, ty, 0.045); G.add(target);
+        var cable = new THREE.Mesh(new THREE.CylinderGeometry(0.008, 0.008, Hb - ty + 0.3, 6), STEEL); cable.position.set(Wb / 2 + 0.03, ty + (Hb - ty + 0.3) / 2, 0.03); G.add(cable);
+        var sheave = new THREE.Mesh(new THREE.TorusGeometry(0.07, 0.015, 8, 20), STEEL); sheave.position.set(Wb / 2 + 0.03, Hb + 0.3, 0.0); sheave.rotation.y = Math.PI / 2; G.add(sheave);
         G.userData.targetY = ty; G.userData.level = lv;
         return shade(G);
       }
@@ -269,6 +273,7 @@
       '.tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace; font-size:24px; letter-spacing:0.07em; line-height:1.5; color:' + ink + '; white-space:nowrap; z-index:20; }',
       '.lab { position:absolute; font-family:"JetBrains Mono", monospace; font-size:26px; font-weight:500; letter-spacing:0.06em; line-height:1.3; color:' + ink + '; white-space:nowrap; z-index:12; }',
       ".lab.ru { color:#C99474; }",
+      ".lab.gold { color:#E0956A; }",
       ".hook, .dek, .lab, .kick, .count, .src { font-feature-settings:\"calt\" 0; }",
       ".hook, .dek, .kick, .count, .lab { text-shadow:0 0 2px " + halo + ", 0 1px 14px " + halo2 + "; }",
       ".tx-site, .src { text-shadow:0 0 2px " + halo + ", 0 1px 4px " + halo2 + "; }"

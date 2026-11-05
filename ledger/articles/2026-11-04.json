@@ -1,0 +1,104 @@
+{
+ "_spec": {
+  "version": 1,
+  "purpose": "A standalone web edition of the archived visual story.",
+  "law": "Facts resolve to the original verified claim record. A layout rebuild does not reverify reporting.",
+  "written_by": "daily"
+ },
+ "section": "Oil and gas",
+ "dek": {
+  "text": "Permian Resources told investors it now runs an AI system that watches its artificial lift and feeds its subsurface data to language models. The release prints no result for either tool.",
+  "claims": [
+   "c1",
+   "c2"
+  ]
+ },
+ "introduction": [
+  {
+   "text": "[Permian Resources issued its third quarter results release on {{date:c4}}](c4), and two sentences in it describe artificial intelligence at work in its oil fields. [The Production Operations team has deployed an AI-powered artificial lift monitoring system to increase runtime and optimize well performance](c1), the release says. [The company also says it is integrating its own technical and subsurface data with large language models to evaluate wellbore placement and optimize drilling parameters](c2).",
+   "claims": [
+    "c4",
+    "c1",
+    "c2"
+   ]
+  },
+  {
+   "text": "Artificial lift is the pump jack and the equipment around it that brings oil up a well once the reservoir's own pressure no longer does. [The release frames both tools as part of a broader statement that technology continues to positively impact its operations](c3). It gives no runtime figure, no count of monitored wells and no measured outcome for either tool.",
+   "claims": [
+    "c3",
+    "c1"
+   ]
+  }
+ ],
+ "sections": [
+  {
+   "heading": "What the quarter shows",
+   "paragraphs": [
+    {
+     "text": "[Total production averaged {{number:c6}} barrels of oil equivalent per day, a {{number:c6:1}}% rise over the prior quarter](c6). [Average daily crude oil production was {{number:c7}} barrels](c7). [Cash capital spending for the quarter was {{money:c9}} million](c9). The release ties none of the production rise to either AI tool.",
+     "claims": [
+      "c6",
+      "c7",
+      "c9"
+     ]
+    },
+    {
+     "text": "[It credits power and compression projects with lower costs and record runtimes](c18), and [its drilling team drilled the fastest well in company history during the quarter, averaging over {{number:c8}} feet per day](c8). Those are the operating results the release does attribute, and neither is attributed to AI.",
+     "claims": [
+      "c18",
+      "c8"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "Where in Texas",
+   "paragraphs": [
+    {
+     "text": "[The company describes a position of approximately {{number:c10}} net acres in West Texas and Southeast New Mexico](c10), [concentrated in the core of the Delaware Basin](c11). [Its 2025 annual report put about {{number:c15}}% of its net leasehold acreage in Texas and the remaining {{number:c15:1}}% in New Mexico](c15).",
+     "claims": [
+      "c10",
+      "c11",
+      "c15"
+     ]
+    },
+    {
+     "text": "[The same report names drilling, completion and water connection activity in Reeves County, Texas](c17), the one Texas county the filings tie to future field work. Neither the release nor the annual report says which wells the lift monitor watches or whether any of them are in Texas.",
+     "claims": [
+      "c17"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "What the regulator said in May",
+   "paragraphs": [
+    {
+     "text": "[In May the Texas Tribune reported that the Railroad Commission, the state's oil and gas regulator, said in a statement that it was not aware of any use of AI by oil and gas companies](c27). [The same article reported experts and analysts saying AI is reshaping how oil companies handle produced water in the Permian](c28). Permian Resources has now put two uses in a filing with the SEC. The Commission's statement is the last public position from it that this record has found.",
+     "claims": [
+      "c27",
+      "c28"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "What the release can't establish",
+   "paragraphs": [
+    {
+     "text": "Both AI statements are the company's own claims in a document written for investors. [Its cautionary note lists technological advancement, including artificial intelligence and machine learning, among the factors in its outlook](c5), which says the company treats the technology as an uncertainty as well as a tool. Who checks what the lift monitor finds, and whether it raised runtime at all, is not answered by anything the company has published.",
+     "claims": [
+      "c5",
+      "c1"
+     ]
+    }
+   ]
+  }
+ ],
+ "related": [
+  {
+   "id": "tx-2026-0240",
+   "label": "Permian Resources and the AI system watching its artificial lift"
+  }
+ ]
+}
