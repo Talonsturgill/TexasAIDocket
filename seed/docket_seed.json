@@ -18424,5 +18424,209 @@
     "note": "Aurora's letter puts site-to-site driverless runs in November and its truck build about six weeks behind plan."
    }
   ]
+ },
+ {
+  "id": "tx-2026-0240",
+  "title": "Permian Resources tells investors it now runs an AI system that watches its artificial lift, the pumps that lift oil from its wells",
+  "summary": "Permian Resources filed its third quarter results with the SEC on November 4th, 2026. The Midland producer says its production operations team has deployed an AI-powered artificial lift monitoring system to raise runtime and well performance. It says it is also feeding its own subsurface data into large language models to guide where wellbores go and how wells are drilled. The release gives no measured result for either tool. It reports 457,528 barrels of oil equivalent a day for the quarter, and its annual report puts about 67% of its leasehold acreage in Texas, with drilling work tied to Reeves County. The same release lists AI and machine learning among the factors in its cautionary note. In May the Railroad Commission told the Texas Tribune it was not aware of any use of AI by oil and gas companies. ExxonMobil separately says it plans to automate more than half of its unconventional drilling fleet by the end of 2028, a plan its post describes as automation rather than AI.",
+  "topic": "land-water-and-permitting",
+  "decider": {
+   "name": "Permian Resources",
+   "type": "company"
+  },
+  "geography": {
+   "statewide": false,
+   "counties": [
+    "Reeves"
+   ],
+   "on_ercot": null
+  },
+  "status": "decided",
+  "key_dates": [
+   {
+    "date": "2026-11-04",
+    "kind": "filed",
+    "note": "Third quarter results filed with the SEC as an exhibit to Form 8-K"
+   }
+  ],
+  "public_access": {
+   "room": "contact_only",
+   "how": "There is no public process. The release is a company filing, and questions about the monitoring system go to Permian Resources. Well and production records for Texas leases are public at the Railroad Commission.",
+   "url": "https://www.sec.gov/Archives/edgar/data/1658566/000165856626000122/ex991prq32026earningsrelea.htm",
+   "closes": null
+  },
+  "confidence": "high",
+  "notes_for_editor": "A company account filed with the SEC. The release names no county. Reeves County is the one Texas county the company's 2025 annual report names, for drilling, completion and water connection work. The ExxonMobil plan is context and is not placed in Texas by its source.",
+  "claims": [
+   {
+    "text": "Permian Resources says its Production Operations team has deployed an AI-powered artificial lift monitoring system meant to raise runtime and optimize well performance.",
+    "verbatim_quote": "The Production Operations team has deployed an AI-powered artificial lift monitoring system to increase runtime and optimize well performance.",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/1658566/000165856626000122/ex991prq32026earningsrelea.htm",
+    "source_title": "Permian Resources, Third Quarter 2026 Results (Form 8-K, Exhibit 99.1)",
+    "source_type": "primary_corporate",
+    "fetched": "2026-11-05",
+    "id": "tx-2026-0240-c1"
+   },
+   {
+    "text": "The company says it is feeding its own technical and subsurface data into large language models to guide development strategy, wellbore placement and drilling parameters in real time.",
+    "verbatim_quote": "The Company is integrating its proprietary technical and subsurface data with large language models to improve development strategy, evaluate wellbore placement and optimize drilling parameters in real-time.",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/1658566/000165856626000122/ex991prq32026earningsrelea.htm",
+    "source_title": "Permian Resources, Third Quarter 2026 Results (Form 8-K, Exhibit 99.1)",
+    "source_type": "primary_corporate",
+    "fetched": "2026-11-05",
+    "id": "tx-2026-0240-c2"
+   },
+   {
+    "text": "The release frames these tools as part of a broader claim that technology is improving the company's operations.",
+    "verbatim_quote": "Additionally, technology continues to positively impact our operations.",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/1658566/000165856626000122/ex991prq32026earningsrelea.htm",
+    "source_title": "Permian Resources, Third Quarter 2026 Results (Form 8-K, Exhibit 99.1)",
+    "source_type": "primary_corporate",
+    "fetched": "2026-11-05",
+    "id": "tx-2026-0240-c3"
+   },
+   {
+    "text": "Permian Resources issued its third quarter 2026 results release on November 4th, 2026.",
+    "verbatim_quote": "November 4, 2026 (BUSINESS WIRE)",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/1658566/000165856626000122/ex991prq32026earningsrelea.htm",
+    "source_title": "Permian Resources, Third Quarter 2026 Results (Form 8-K, Exhibit 99.1)",
+    "source_type": "primary_corporate",
+    "fetched": "2026-11-05",
+    "id": "tx-2026-0240-c4"
+   },
+   {
+    "text": "The same release names technological advancement, including artificial intelligence and machine learning, among the factors in its cautionary note on forward-looking statements.",
+    "verbatim_quote": "technological advancement, including artificial intelligence, machine learning and its application in our industry",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/1658566/000165856626000122/ex991prq32026earningsrelea.htm",
+    "source_title": "Permian Resources, Third Quarter 2026 Results (Form 8-K, Exhibit 99.1)",
+    "source_type": "primary_corporate",
+    "fetched": "2026-11-05",
+    "id": "tx-2026-0240-c5"
+   },
+   {
+    "text": "Permian Resources reported total third quarter production of 457,528 barrels of oil equivalent per day, up 22% from the prior quarter.",
+    "verbatim_quote": "Total production was 457,528 barrels of oil equivalent per day (“Boe/d”), a 22% increase compared to the prior quarter.",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/1658566/000165856626000122/ex991prq32026earningsrelea.htm",
+    "source_title": "Permian Resources, Third Quarter 2026 Results (Form 8-K, Exhibit 99.1)",
+    "source_type": "primary_corporate",
+    "fetched": "2026-11-05",
+    "id": "tx-2026-0240-c6"
+   },
+   {
+    "text": "Its average daily crude oil production in the third quarter was 208,029 barrels.",
+    "verbatim_quote": "During the third quarter, average daily crude oil production was 208,029 barrels of oil per day",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/1658566/000165856626000122/ex991prq32026earningsrelea.htm",
+    "source_title": "Permian Resources, Third Quarter 2026 Results (Form 8-K, Exhibit 99.1)",
+    "source_type": "primary_corporate",
+    "fetched": "2026-11-05",
+    "id": "tx-2026-0240-c7"
+   },
+   {
+    "text": "Permian Resources describes a position of about 560,000 net acres across West Texas and Southeast New Mexico.",
+    "verbatim_quote": "Through its position of approximately 560,000 net acres in West Texas and Southeast New Mexico, Permian Resources is the second largest Permian Basin pure-play E&P.",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/1658566/000165856626000122/ex991prq32026earningsrelea.htm",
+    "source_title": "Permian Resources, Third Quarter 2026 Results (Form 8-K, Exhibit 99.1)",
+    "source_type": "primary_corporate",
+    "fetched": "2026-11-05",
+    "id": "tx-2026-0240-c8"
+   },
+   {
+    "text": "The company says its assets are concentrated in the core of the Delaware Basin within the Permian.",
+    "verbatim_quote": "The Company’s assets are located in the Permian Basin, with a concentration in the core of the Delaware Basin.",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/1658566/000165856626000122/ex991prq32026earningsrelea.htm",
+    "source_title": "Permian Resources, Third Quarter 2026 Results (Form 8-K, Exhibit 99.1)",
+    "source_type": "primary_corporate",
+    "fetched": "2026-11-05",
+    "id": "tx-2026-0240-c9"
+   },
+   {
+    "text": "In its 2025 annual report Permian Resources said about 67% of its net leasehold acreage was in Texas and 33% in New Mexico.",
+    "verbatim_quote": "Approximately 67% of our net leasehold acreage is located in Texas and the remaining 33% is located in New Mexico.",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/1658566/000165856626000035/pr-20251231.htm",
+    "source_title": "Permian Resources, Form 10-K for 2025",
+    "source_type": "primary_official",
+    "fetched": "2026-11-05",
+    "id": "tx-2026-0240-c10"
+   },
+   {
+    "text": "The annual report ties a development obligation to the company's future drilling, completion and water connection work in Reeves County, Texas.",
+    "verbatim_quote": "drilling, completion and water connection activity in Reeves County, Texas",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/1658566/000165856626000035/pr-20251231.htm",
+    "source_title": "Permian Resources, Form 10-K for 2025",
+    "source_type": "primary_official",
+    "fetched": "2026-11-05",
+    "id": "tx-2026-0240-c11"
+   },
+   {
+    "text": "The release credits power and compression projects with lower costs and record runtimes.",
+    "verbatim_quote": "compression projects, which delivered lower costs and record runtimes",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/1658566/000165856626000122/ex991prq32026earningsrelea.htm",
+    "source_title": "Permian Resources, Third Quarter 2026 Results (Form 8-K, Exhibit 99.1)",
+    "source_type": "primary_corporate",
+    "fetched": "2026-11-05",
+    "id": "tx-2026-0240-c12"
+   },
+   {
+    "text": "ExxonMobil says its automated drilling technology could eliminate about one-third of high-consequence drilling incidents.",
+    "verbatim_quote": "We believe this technology has the potential to eliminate roughly one-third of high-consequence drilling incidents.",
+    "source_url": "https://corporate.exxonmobil.com/locations/united-states/permian-basin/newsroom/2026/technology-and-people-driving-the-next-generation-of-drilling-in-the-permian",
+    "source_title": "ExxonMobil, Technology and people driving the next generation of drilling in the Permian",
+    "source_type": "primary_corporate",
+    "fetched": "2026-11-05",
+    "id": "tx-2026-0240-c13"
+   },
+   {
+    "text": "ExxonMobil says it plans to automate more than half of its unconventional drilling fleet by the end of 2028.",
+    "verbatim_quote": "with plans to automate more than half of our unconventional drilling fleet by year-end 2028",
+    "source_url": "https://corporate.exxonmobil.com/locations/united-states/permian-basin/newsroom/2026/technology-and-people-driving-the-next-generation-of-drilling-in-the-permian",
+    "source_title": "ExxonMobil, Technology and people driving the next generation of drilling in the Permian",
+    "source_type": "primary_corporate",
+    "fetched": "2026-11-05",
+    "id": "tx-2026-0240-c14"
+   },
+   {
+    "text": "ExxonMobil says handling heavy drill pipe has long required workers on the rig floor.",
+    "verbatim_quote": "Activities such as handling heavy drill pipe have historically required workers on the rig floor",
+    "source_url": "https://corporate.exxonmobil.com/locations/united-states/permian-basin/newsroom/2026/technology-and-people-driving-the-next-generation-of-drilling-in-the-permian",
+    "source_title": "ExxonMobil, Technology and people driving the next generation of drilling in the Permian",
+    "source_type": "primary_corporate",
+    "fetched": "2026-11-05",
+    "id": "tx-2026-0240-c15"
+   },
+   {
+    "text": "ExxonMobil says it expects staffing on automated rigs to stay at similar levels.",
+    "verbatim_quote": "We expect to maintain similar staffing levels on automated rigs",
+    "source_url": "https://corporate.exxonmobil.com/locations/united-states/permian-basin/newsroom/2026/technology-and-people-driving-the-next-generation-of-drilling-in-the-permian",
+    "source_title": "ExxonMobil, Technology and people driving the next generation of drilling in the Permian",
+    "source_type": "primary_corporate",
+    "fetched": "2026-11-05",
+    "id": "tx-2026-0240-c16"
+   },
+   {
+    "text": "ExxonMobil says automated rigs are one of more than 50 technologies it is deploying across its Permian operations.",
+    "verbatim_quote": "Automated rigs are just one of more than 50 technologies being deployed across ExxonMobil's Permian operations",
+    "source_url": "https://corporate.exxonmobil.com/locations/united-states/permian-basin/newsroom/2026/technology-and-people-driving-the-next-generation-of-drilling-in-the-permian",
+    "source_title": "ExxonMobil, Technology and people driving the next generation of drilling in the Permian",
+    "source_type": "primary_corporate",
+    "fetched": "2026-11-05",
+    "id": "tx-2026-0240-c17"
+   },
+   {
+    "text": "The Texas Tribune reported in May that the Railroad Commission, the state's oil and gas regulator, said in a statement it was not aware of any oil and gas company using AI.",
+    "verbatim_quote": "The Texas Railroad Commission, which regulates the state’s oil and gas, said in a statement that it is not aware of any use of AI by oil and gas companies.",
+    "source_url": "https://www.texastribune.org/2026/05/21/texas-oil-companies-use-ai-for-wastewater/",
+    "source_title": "The Texas Tribune, In the Permian Basin, AI takes on big oil's dirty water problem",
+    "source_type": "journalism",
+    "fetched": "2026-11-05",
+    "id": "tx-2026-0240-c18"
+   }
+  ],
+  "last_verified": "2026-11-05",
+  "history": [
+   {
+    "date": "2026-11-05",
+    "note": "Admitted on the company's SEC filing of November 4th. The release names no measured result for the monitoring system."
+   }
+  ]
  }
 ]
