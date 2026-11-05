@@ -1,0 +1,54 @@
+<!doctype html>
+<!-- 2026-11-01, frame 3 of 9. Archetype GRID. A spatial scene through txthree.js in a dark TXT.interior room: the chassis sample_tray holding grant_buttons alloy_buttons from figures.json, one button a drawing unit of $100,000, seen oblique on the bench. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:900px">$2 million, in&nbsp;buttons</h1>
+<p class="dek" data-follow="26" style="width:880px">The WoodNext Foundation manages the philanthropy of Roku's founder, Anthony Wood, and his wife Susan. The grant comes through a donor advised fund. Each button is an equal share of the grant, 20 in all. Drawn to&nbsp;illustrate.</p>
+<script>window.FIG = {"grant_buttons": 20};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-01-foundry.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const BOOT = { kicker: "Who is paying", counter: "03 / 09", src: "c1 c2 c4 c5 c6", fit: { min: 80, max: 104, maxLines: 2 } };
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, BOOT);
+  const R = CH.stage(TXT, gl, W, { fov: 32, near: 0.004, far: 60, fog: 0.02 });
+  const M = CH.mats(THREE, K);
+  TXT.interior(R, { w: 7, d: 6, h: 3.2, floor: 'concrete', wall: 0x121314, window: 'left', ceiling: true, light: 0.1 });
+  const Y = 0.9;
+  const bench = TXT.roundedBox(2.0, 0.04, 1.2, 0.006, M.benchTop); bench.position.set(0, Y - 0.02, 0.05); TXT.add(R, bench);
+  const legs = TXT.roundedBox(1.9, Y - 0.04, 1.1, 0.01, M.steelDark); legs.position.set(0, (Y - 0.04) / 2, 0.05); TXT.add(R, legs); TXT.contact(R, legs);
+  /* THE FIGURE, from figures.json: one button per $100,000 drawing unit, ten to a row */
+  const n = Math.round(FIG.grant_buttons);
+  const tray = K.make('sample_tray', { n, cols: 10, pitch: 0.034, wr: 0.0135, wd: 0.005, h: 0.016, margin: 0.018 }); tray.position.set(0, Y, 0); tray.rotation.y = 0.55; tray.traverse((o) => { if (o.isMesh && o.material && o.material.color && !o.material.isMeshBasicMaterial) { o.material = o.material.clone(); o.material.color.multiplyScalar(1.5); } }); TXT.add(R, tray); CH.contact(THREE, R, tray); tray.updateMatrixWorld(true);
+  tray.userData.wells.forEach((w, i) => { const b = K.make('alloy_button', { d: 0.025, h: 0.0115, state: i % 4 === 1 ? 'dark' : 'cool', seed: i + 11 }); b.position.copy(new THREE.Vector3(w[0], w[1] + 0.0004, w[2]).applyMatrix4(tray.matrixWorld)); b.rotation.y = i * 2.1; TXT.add(R, b); });
+  const from = [-0.04, Y + 0.27, 0.4];
+  TXT.frame(R, { fov: 44, from, look: [0.0, Y + 0.035, -0.08] });
+  CH.warm(R, 0.24);
+  TXT.deckRig(R, CH.rigSpec(W, 1.0, 4096), CH.rigOpts([0, Y, 0], { distance: 1.2, shadowFar: 2.6 }));
+  CH.unacne(R, 0.002);
+  TXT.weather(R, { grime: 0.25, height: 0.15 });
+  TXT.stage(R, [tray]);
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0.35, veil: 0.3 });
+  /* no grade bloom: its quarter resolution buffer lays square cells round bright highlights on a dark surface */
+  TXDECK.finish(cx, { bloom: { threshold: 0.72, strength: 0, radius: 8 } });
+  return true;
+})();
+</script>
+</body>
+</html>

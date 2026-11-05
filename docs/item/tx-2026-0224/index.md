@@ -11,7 +11,7 @@ Rice University announced on October 13th, 2026 a universitywide AI initiative. 
 - Public access: Write to the decider
 - Take part: https://news.rice.edu/news/2026/rice-launches-transformational-ai-initiative-faculty-hiring-new-programs-and-facilities
 
-- Last checked: 2026-10-29
+- Last checked: 2026-11-05
 
 ## Dates
 
@@ -25,6 +25,9 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-23 · Rice's release still sets out 40 more AI faculty hires toward 75 this decade and lab space at The Arc. It still names no budget and no date for the remaining hires.
 - 2026-10-26 · Rice's own release still sets out a universitywide AI initiative with 40 more AI faculty toward 75 this decade. It also names a Master of Artificial Intelligence program and lab space at The Arc. It still names no budget.
 - 2026-10-29 · Rice's plan for more AI faculty and lab space at The Arc still reads as announced.
+- 2026-11-01 · Rice's plan for more AI faculty and lab space is unconfirmed today. The university's news site refused the request.
+- 2026-11-02 · The faculty count, the Master of Artificial Intelligence program and the AI Foundry at the Arc all still read as Rice published them.
+- 2026-11-05 · Rice's plan for more AI faculty and lab space at The Arc still stands as announced.
 
 ## Evidence
 

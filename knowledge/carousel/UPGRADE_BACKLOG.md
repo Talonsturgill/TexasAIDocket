@@ -6555,3 +6555,57 @@ the pool, and a check for an evenly lit plate would be a guess. The audition reb
 the owner's rule. "Type sitting on or fighting the art" (4 runs, 7 rounds) and "render artifact"
 (4 runs, 7 rounds) carry as before (2026-10-12 item 4, 2026-10-26). build-copy-keeps-hook-markup is
 one deck. No frontier scan this week, because the time went to the proofs.
+
+## 2026-11-03, the sixteenth weekly machine pass. Two kit lifts, one proposal, carried items
+
+Read with carousel no. 67 (the weigh station deck). The digest counted six shipped runs from October
+29th to November 3rd. `artwork_craft` was lowest on four of them. The two model themes named every run
+again: "largest object unmodelled" (6 runs, 15 rounds) and "primitive or low-poly model where a kit
+model belongs" (6 runs, 15 rounds), each in all three of no. 67's rounds. Due on one repeat offender,
+article-browser-test-cannot-import-global-playwright, which is out of this lane (item 3).
+
+### 1. KIT: THE SEMI TRUCK HOLDS A CLOSE CROP (done, this pass's vehicles.js upgrade commit)
+
+No. 67's judges named the kit `semi_truck` in every round. Frame 3, "the kit truck's hood and grille
+show primitive geometry at this range". Frame 8, "a flat lavender-blue side panel in the mid tones
+... a black-card windshield with tube pillars". The pass of October 5th had already given it a
+two-piece screen, a recessed grille and a hood flare, and the macro still found the slab. Close
+proofs at the deck's own seed and options showed why. The centre post and A pillars were round bars
+laid on the glass, the cab and sleeper side was one painted slab with two seams, the side glass was
+the dark side-window glass, the steps were floating chrome plates and the air cleaner a bare tube. Now
+the posts are flat pressed members on the screen's slope with rubber gaskets, the side glass is the
+windscreen's coated glass with a vent wing post, the door is a closed outline with hinges, a keyed
+handle and two grab handles, the sleeper carries a baggage door with a latch and a drip rail, the
+steps are ribbed treads on a hanger, the air cleaner has clamp bands and a rain cap, and the bumper
+has a centre step, tow hooks and an air dam. A chrome crown strip down the hood was tried and read as
+a scratch, so it was taken out. The side glass still prints dark when it faces a dark ground, because
+a reflection of nothing is nothing, and an interior seen through the glass needs a transmissive
+material that this pass did not try.
+
+### 2. KIT: THE CHECKPOINT AND THE SCALE HOUSE IN `civic.js` (done, this pass's civic.js upgrade commit)
+
+Frame 3's round 3 card: "the gate cabinet is an unweathered rounded box with a pale emissive sphere on
+top and a plain disc hub", with the fix "model the cabinet with a door seam, a louvre panel and a
+bolted base plate ... replace the sphere with a caged amber lens". Frame 2, "the house has no canopy",
+and pixel round 2, "the scale house with no door or canopy". `checkpoint_gate` and `weigh_house` are
+built at those fixes, under new names so no. 67 re-renders as shipped. The first proof found both
+lit rooms invisible, because `K.finish.glass` is opaque and wrapped the lit box. Glazing over a lit
+room is now a faint transparent sheen over the lit plane, which is written in the file where the next
+builder will meet it.
+
+### 3. PROPOSALS, with their counts
+
+- **For a maintainer (human): `tests/article_edition.mjs` falls back to `createRequire` on the
+  global module root.** Queue article-browser-test-cannot-import-global-playwright, repeat 2. Nos. 60,
+  62 and 67 each hit `ERR_MODULE_NOT_FOUND`, because ESM does not resolve the container's global
+  playwright. Two runs cleared it with a `node_modules` link, and today's opened the page with a
+  CommonJS script instead. `tests/` falls under `ownership.yaml`'s default rule, so it is `human`.
+
+### Carried, with this week's counts
+
+"Dead or empty region" (5 runs, 10 rounds), "no contact, dirt or grime" (5 runs, 9 rounds), "object in
+a void" (5 runs, 9 rounds) and "type sitting on or fighting the art" (5 runs, 8 rounds) are composition
+and staging themes. Each names a different frame on each deck, so no one model or check answers them,
+and the id pass (2026-10-12 item 4) is still the proposal for the type theme. No. 67's yard_stalls and
+flood_pole stay in its chassis, one deck. No frontier scan this week, because the time went to the
+proofs.

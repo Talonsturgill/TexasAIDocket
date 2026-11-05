@@ -1,0 +1,130 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "bands": [
+        0.3445,
+        0.666,
+        0.7996
+      ],
+      "band_ratio": 1.3059
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "bands": [
+        0.3445,
+        0.3929,
+        0.7335
+      ],
+      "band_ratio": 1.463
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky",
+        "busy art under text (bg edge density 0.06) beneath 'unrestrained' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility",
+        "busy art under text (bg edge density 0.10) beneath 'human supervision' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
+      ],
+      "bands": [
+        0.2794,
+        0.6534,
+        0.8842
+      ],
+      "band_ratio": 1.43
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "bands": [
+        0.3761,
+        0.6933,
+        0.7868
+      ],
+      "band_ratio": 1.2561
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot stands inside something built",
+        "tiny-text: 'unrestrained' (font-size 23px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'human supervision' (font-size 23px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'dogs present' (font-size 23px < 24px mobile floor (mark data-decorative if intentional))",
+        "tiny-text: 'owned or a stray' (font-size 23px < 24px mobile floor (mark data-decorative if intentional))"
+      ],
+      "bands": [
+        0.2836,
+        0.3256,
+        0.454
+      ],
+      "band_ratio": 1.2649
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [
+        "console error: TXBENCH: RELIEF {\"height_range\":99.95987809273615,\"materials\":3,\"cast_fraction\":0.5246571729957806,\"area\":0.5851851851851851,\"render_ms\":10706.699999999255}"
+      ],
+      "bands": [
+        0.229,
+        0.6303,
+        0.8585
+      ],
+      "band_ratio": 1.466
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [
+        "console error: TXBENCH: RELIEF {\"height_range\":82.87354869804193,\"materials\":5,\"cast_fraction\":0.6275259370816599,\"area\":0.6148148148148148,\"render_ms\":11065.5}"
+      ],
+      "bands": [
+        0.2479,
+        0.687,
+        0.8419
+      ],
+      "band_ratio": 1.3948
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [
+        "console error: TXBENCH: RELIEF {\"height_range\":88.7164961536205,\"materials\":3,\"cast_fraction\":0.39240573404730034,\"area\":0.6148148148148148,\"render_ms\":11924.200000001118}"
+      ],
+      "bands": [
+        0.3004,
+        0.6345,
+        0.8824
+      ],
+      "band_ratio": 1.427
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "bands": [
+        0.2668,
+        0.2059,
+        0.682
+      ],
+      "band_ratio": 1.7118
+    }
+  ],
+  "fails": 0,
+  "warns": 15,
+  "verdict": "WARN"
+}

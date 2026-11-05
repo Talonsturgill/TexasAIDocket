@@ -1,0 +1,82 @@
+<!doctype html>
+<!-- 2026-11-01, frame 8 of 9. Archetype CLOSE_CROP. A TXBENCH material relief under the chassis light: a deep etched section of the alloy button in a bakelite mount, dendrite trunks with right angle branches standing proud of the etched floor, the bluebonnet mark across the rim. The dendrites are drawn to illustrate and are not a micrograph of any Texas A&M alloy. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:900px">No computational tool can predict it, Arróyave says</h1>
+<p class="dek" data-follow="26" style="width:880px">Arróyave says no computational tool anywhere in the world can predict how an alloy is going to behave. His NSF backed PhaseForge applies machine learning to CALPHAD to say whether a material can exist at all. Drawn to&nbsp;illustrate.</p>
+<script>window.FIG = {};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-01-foundry.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script src="@@ASSETS@@/js/txbench.js"></script>
+<script>
+window.renderReady = (async () => {
+  const cx = await CH.bootFlat({ kicker: "Inside the button", counter: "08 / 09", src: "c17 c29 c30 c32 c33", fit: { min: 72, max: 96, maxLines: 2 } });
+  TX.reseed(20261101);
+  const R0 = TX.rng(20261101);
+  /* THE SECTION: a polished disc inside a bakelite mount, its centre below the frame so the rim arcs across */
+  const CX = 560, CY = 1500, RS = 900, RM = 980;
+  /* the dendrites are drawn once into an offscreen height canvas, trunks and right angle arms, so the relief samples it */
+  const HW = 1080, HH = 800, OY = 550, hc = document.createElement('canvas'); hc.width = HW; hc.height = HH; const h2 = hc.getContext('2d');
+  h2.fillStyle = '#000'; h2.fillRect(0, 0, HW, HH); h2.lineCap = 'round';
+  for (let gi = 0; gi < 9; gi++) {
+    const gx = 60 + R0() * 960, gy = 40 + R0() * 520, a0 = R0() * Math.PI;
+    for (let tdir = 0; tdir < 4; tdir++) {
+      const a = a0 + tdir * Math.PI / 2, len = 160 + R0() * 220;
+      const ex = gx + Math.cos(a) * len, ey = gy + Math.sin(a) * len;
+      h2.strokeStyle = '#fff'; h2.lineWidth = 9; h2.beginPath(); h2.moveTo(gx, gy); h2.lineTo(ex, ey); h2.stroke();
+      for (let s = 16; s < len - 10; s += 14 + R0() * 6) {
+        const bx = gx + Math.cos(a) * s, by = gy + Math.sin(a) * s, bl = (1 - s / len) * (50 + R0() * 40);
+        for (const sg of [-1, 1]) { const ba = a + sg * Math.PI / 2; h2.lineWidth = 5; h2.strokeStyle = '#d0d0d0';
+          h2.beginPath(); h2.moveTo(bx, by); h2.lineTo(bx + Math.cos(ba) * bl, by + Math.sin(ba) * bl); h2.stroke(); }
+      }
+    }
+  }
+  h2.filter = 'blur(1.6px)'; h2.drawImage(hc, 0, 0); h2.filter = 'none';
+  /* the etch fades the dendrites out before the footer band, so no arm runs under the source line */
+  { const g = h2.createLinearGradient(0, 590, 0, 660); g.addColorStop(0, 'rgba(0,0,0,0)'); g.addColorStop(1, 'rgba(0,0,0,1)'); h2.fillStyle = g; h2.fillRect(0, 590, HW, HH - 590); }
+  const hd = h2.getImageData(0, 0, HW, HH).data;
+  const hAt = (X, Y) => { const i = Math.max(0, Math.min(HW - 1, X | 0)), j = Math.max(0, Math.min(HH - 1, (Y - OY) | 0)); return hd[(j * HW + i) * 4] / 255; };
+  const M = { MOUNT: 0, FLOOR: 1, DEND: 2, MARK: 3 };
+  function sample(X, Y) {
+    const d = Math.hypot(X - CX, Y - CY);
+    if (d > RS) { const bev = d < RM ? 0 : 0; return [d < RS + 10 ? 6 - (d - RS) * 0.4 : 2 + 0.6 * TX.simplex2(X * 0.4, Y * 0.4), (d < RS + 100 && Math.abs(Math.atan2(Y - CY, X - CX) + 1.82) < 0.3) ? M.MARK : M.MOUNT]; }
+    const v = hAt(X, Y), e = 0.6 * TX.simplex2(X * 0.9, Y * 0.9);
+    return v > 0.18 ? [5 + 9 * v + e * 0.15, M.DEND] : [e, M.FLOOR];
+  }
+  const cache = new Map(), key = (X, Y) => (X * 4 | 0) + ',' + (Y * 4 | 0);
+  const S = (X, Y) => { const k = key(X, Y); let v = cache.get(k); if (!v) { v = sample(X, Y); cache.set(k, v); } return v; };
+  const albedo = (X, Y, m) => {
+    if (m === M.MOUNT) { const a = 1 + 0.3 * TX.simplex2(X * 0.3, Y * 0.3); return [0.03 * a, 0.022 * a, 0.018 * a]; }
+    if (m === M.MARK) return [0.55, 0.8, 2.7];
+    if (m === M.FLOOR) { const a = 1 + 0.15 * TX.simplex2(X * 0.25, Y * 0.25); return [0.3 * a, 0.3 * a, 0.31 * a]; }
+    return [0.45, 0.45, 0.47];
+  };
+  const pool = (X, Y) => { const d = Math.hypot((X - 540) / 620, (Y - 960) / 500), t = Math.max(0, Math.min(1, (d - 0.3) / 0.85)); return 1 - 0.94 * t * t * (3 - 2 * t); };
+  cx.fillStyle = '#08080b'; cx.fillRect(0, 0, 2160, 2700);
+  const rep = TXBENCH.relief(cx, { x: 0, y: 550, w: 1080, h: 800, scale: 2, height: (X, Y) => S(X, Y)[0], material: (X, Y) => S(X, Y)[1], keyMask: pool, albedo,
+    spec: { [M.DEND]: [0.9, 50], [M.FLOOR]: [0.6, 30] }, keyColor: [1, 0.9, 0.78], ambColor: [0.5, 0.58, 0.78],
+    ambient: 0.05, diffuse: 2.5, ao: 1.0, shadow: 0.9, softness: 3, castLength: 120 });
+  /* the relief's top edge fades into the ground under the dek, so no seam runs across the frame */
+  { const g = cx.createLinearGradient(0, 1100, 0, 1180); g.addColorStop(0, 'rgba(8,8,11,1)'); g.addColorStop(1, 'rgba(8,8,11,0)'); cx.fillStyle = g; cx.fillRect(0, 1100, 2160, 80); }
+  /* the footer band sits on quiet: the etch fades to the ground under the source line */
+  { const g = cx.createLinearGradient(0, 2330, 0, 2480); g.addColorStop(0, 'rgba(8,8,11,0)'); g.addColorStop(1, 'rgba(8,8,11,0.85)'); cx.fillStyle = g; cx.fillRect(0, 2330, 2160, 370); }
+  cx.setTransform(2, 0, 0, 2, 0, 0);
+  CH.post(cx, { a: 0.42, pad: 80, fade: 200, veil: 0.32 });
+  window.__relief = rep;
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

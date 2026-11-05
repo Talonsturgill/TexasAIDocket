@@ -1,0 +1,224 @@
+{
+  "version": 2,
+  "selected": [
+    1,
+    6,
+    9
+  ],
+  "inputs": {
+    "slides/slide-01.html": "665e84d544c94b9a0aac0f8db2c995e5267b953b53d6d6c31d69a3a8c3bb97db",
+    "render/slide-01.png": "d8cab921dd075315aa76fb8d3e7b69bbb19f812fcb2c3a678eaecbb9b0febd3d",
+    "assets/js/deck/2026-11-01-foundry.js": "81fffb3a6a142ffd4672da6fbe6cab12b3e3cf586d544d4f4394691d66ce426c",
+    "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+    "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+    "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+    "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+    "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+    "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+    "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+    "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+    "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+    "slides/slide-06.html": "db87b774a51730a7d69b05873fd5eabb5f0133e8750e67a0334ad175e8899245",
+    "render/slide-06.png": "cab975034bf494d50a8a28ea7c03958911a238340ce93f7d9c509565255126c8",
+    "slides/slide-09.html": "b254e45b09fb044471d43038e16a0229afc31bbfac11935d5c18bc06d313a6a6",
+    "render/slide-09.png": "44dc7fcc6d4b12250ab5738479f9ea94f6cdd5e4cb620902bd79128f4c6ca171",
+    "assets/js/txbench.js": "6aee9f0f657aa8723a635683cb6482a2a0ad31aabcd5a633e3cb3a4d34f1f638"
+  },
+  "value_measurements": [
+    {
+      "frame": "slide-01.png",
+      "median_L": 7.9,
+      "mid": 0.194,
+      "dark": 0.657
+    },
+    {
+      "frame": "slide-06.png",
+      "median_L": 7.4,
+      "mid": 0.037,
+      "dark": 0.892
+    },
+    {
+      "frame": "slide-09.png",
+      "median_L": 3.0,
+      "mid": 0.1,
+      "dark": 0.848
+    }
+  ],
+  "review": {
+    "decision": "accept",
+    "inputs": {
+      "slides/slide-01.html": "665e84d544c94b9a0aac0f8db2c995e5267b953b53d6d6c31d69a3a8c3bb97db",
+      "render/slide-01.png": "d8cab921dd075315aa76fb8d3e7b69bbb19f812fcb2c3a678eaecbb9b0febd3d",
+      "assets/js/deck/2026-11-01-foundry.js": "81fffb3a6a142ffd4672da6fbe6cab12b3e3cf586d544d4f4394691d66ce426c",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+      "slides/slide-06.html": "db87b774a51730a7d69b05873fd5eabb5f0133e8750e67a0334ad175e8899245",
+      "render/slide-06.png": "cab975034bf494d50a8a28ea7c03958911a238340ce93f7d9c509565255126c8",
+      "slides/slide-09.html": "b254e45b09fb044471d43038e16a0229afc31bbfac11935d5c18bc06d313a6a6",
+      "render/slide-09.png": "44dc7fcc6d4b12250ab5738479f9ea94f6cdd5e4cb620902bd79128f4c6ca171",
+      "assets/js/txbench.js": "6aee9f0f657aa8723a635683cb6482a2a0ad31aabcd5a633e3cb3a4d34f1f638"
+    },
+    "frames": [
+      {
+        "slide": 1,
+        "role": "cover",
+        "subject": "a water cooled copper hearth seen at a low macro angle, with four rows of five pockets running away into a dark room. One arc melted alloy button glows gold to red in the middle pocket of the second row from the front. Cooled silver grey domes sit in the other pockets, and the near row and its outer pockets are cropped by the frame edges",
+        "visual_consequence": "one hot button among cold ones on real copper. Its glow lights the copper around its pocket, and the far rows shrink into the dark. Without the headline a reader sees metal being made by heat, one melt at a time, on physical equipment and not on a screen. At 432 px the glow is the brightest point and the copper reads as metal",
+        "weakness": "Accepted on these exact source and render hashes. Minor shortfalls that do not fail the audition: the lower right copper face is a smooth tan specular gradient without the planned milled arcs, and a straight, slightly sloped value step at design y about 605 where the navy room meets the near black far bench reads as scene geometry.",
+        "repair": "none required",
+        "encoding_reads": true,
+        "dominant_subject_finished": true,
+        "feed_legible": true,
+        "inputs": {
+          "slides/slide-01.html": "665e84d544c94b9a0aac0f8db2c995e5267b953b53d6d6c31d69a3a8c3bb97db",
+          "render/slide-01.png": "d8cab921dd075315aa76fb8d3e7b69bbb19f812fcb2c3a678eaecbb9b0febd3d",
+          "assets/js/deck/2026-11-01-foundry.js": "81fffb3a6a142ffd4672da6fbe6cab12b3e3cf586d544d4f4394691d66ce426c",
+          "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+          "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+          "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+          "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+          "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+          "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+          "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+          "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+          "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de"
+        }
+      },
+      {
+        "slide": 6,
+        "role": "evidence",
+        "subject": "two dark anodised sample trays on a dark bench at one scale, the long NSF tray of 249 wells with its front row and the first 16 wells of the second filled (41), the short WoodNext tray of 20 buttons in front, leaders marking NSF ARM-MIP and WOODNEXT",
+        "visual_consequence": "the same button at one unit counts both sums. The front tray is small and full, the back tray long and mostly empty with only its near band filled. At 432 px the filled band and the empty field separate clearly.",
+        "weakness": "Text change verified at native size and in the proof; the dek sets four clean lines and ends well above the tray. Minor art shortfalls not failing the hardest frame: uniform tray tops without scuffs, a hard rectangular end to the short tray's cast, a near featureless band of bench under the dek.",
+        "repair": "none required",
+        "encoding_reads": true,
+        "dominant_subject_finished": true,
+        "feed_legible": true,
+        "inputs": {
+          "assets/js/deck/2026-11-01-foundry.js": "81fffb3a6a142ffd4672da6fbe6cab12b3e3cf586d544d4f4394691d66ce426c",
+          "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+          "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+          "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+          "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+          "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+          "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+          "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+          "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+          "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+          "slides/slide-06.html": "db87b774a51730a7d69b05873fd5eabb5f0133e8750e67a0334ad175e8899245",
+          "render/slide-06.png": "cab975034bf494d50a8a28ea7c03958911a238340ce93f7d9c509565255126c8"
+        }
+      },
+      {
+        "slide": 9,
+        "role": "close",
+        "subject": "a flat ground steel tensile bar pulled to fracture on scuffed black phenolic along a slight diagonal, necked ends and rough fracture faces at a jagged gap, serrated grips running off the frame edges, a blue paint band on the left grip",
+        "visual_consequence": "a specimen broken on purpose. Without the headline a reader sees the metal was physically pulled until it failed, the test the deck's argument ends on. At 432 px the two halves, the gap and the blue mark read immediately.",
+        "weakness": "Text change verified at native size. Minor shortfalls not failing the close: the gauge's ground finish renders as fine wavy cross streaks, the jaw bite reads as a regular dot grid, the shallow relief reads as a thin plate.",
+        "repair": "none required",
+        "encoding_reads": true,
+        "dominant_subject_finished": true,
+        "feed_legible": true,
+        "inputs": {
+          "assets/js/deck/2026-11-01-foundry.js": "81fffb3a6a142ffd4672da6fbe6cab12b3e3cf586d544d4f4394691d66ce426c",
+          "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+          "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+          "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+          "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+          "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+          "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+          "slides/slide-09.html": "b254e45b09fb044471d43038e16a0229afc31bbfac11935d5c18bc06d313a6a6",
+          "render/slide-09.png": "44dc7fcc6d4b12250ab5738479f9ea94f6cdd5e4cb620902bd79128f4c6ca171",
+          "assets/js/txbench.js": "6aee9f0f657aa8723a635683cb6482a2a0ad31aabcd5a633e3cb3a4d34f1f638"
+        }
+      }
+    ]
+  },
+  "plan": {
+    "hardest_frame": 6,
+    "visual_argument": "One alloy at true bench scale in each physical state it passes through, glowing button, cooled button, cut section, pulled bar, because the computer narrows the mixes and can't say how the metal behaves. The money is counted in the same buttons at one drawing unit, 20 for the WoodNext grant beside a 249 well tray with 41 filled for the NSF award.",
+    "build_risk": "Frame 6 puts 249 round wells and 41 domed buttons in one tray beside the 20 button tray at one scale. Round things in rows read as dials or a vent grille (no. 63, no. 64), so it is an oblique txthree camera where each button catches a highlight and casts into the next well, on a bevelled scuffed tray in a pool that falls to black. Built from chassis models sample_tray and alloy_button.",
+    "distinct_from_recent": "No. 64 laid road paint as plan reliefs on asphalt, no. 63 stood brass weights and a balance on a dais, no. 62 stood tower sections and survey stakes in a field. This deck is bench scale macro inside a dark lab, copper and arc melted alloy, with one object followed through its states, and its two reliefs are a powder field and a dendrite etch rather than counted bars."
+  },
+  "frame_inputs": {
+    "1": {
+      "slides/slide-01.html": "665e84d544c94b9a0aac0f8db2c995e5267b953b53d6d6c31d69a3a8c3bb97db",
+      "render/slide-01.png": "d8cab921dd075315aa76fb8d3e7b69bbb19f812fcb2c3a678eaecbb9b0febd3d",
+      "assets/js/deck/2026-11-01-foundry.js": "81fffb3a6a142ffd4672da6fbe6cab12b3e3cf586d544d4f4394691d66ce426c",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de"
+    },
+    "6": {
+      "assets/js/deck/2026-11-01-foundry.js": "81fffb3a6a142ffd4672da6fbe6cab12b3e3cf586d544d4f4394691d66ce426c",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+      "slides/slide-06.html": "db87b774a51730a7d69b05873fd5eabb5f0133e8750e67a0334ad175e8899245",
+      "render/slide-06.png": "cab975034bf494d50a8a28ea7c03958911a238340ce93f7d9c509565255126c8"
+    },
+    "9": {
+      "assets/js/deck/2026-11-01-foundry.js": "81fffb3a6a142ffd4672da6fbe6cab12b3e3cf586d544d4f4394691d66ce426c",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+      "slides/slide-09.html": "b254e45b09fb044471d43038e16a0229afc31bbfac11935d5c18bc06d313a6a6",
+      "render/slide-09.png": "44dc7fcc6d4b12250ab5738479f9ea94f6cdd5e4cb620902bd79128f4c6ca171",
+      "assets/js/txbench.js": "6aee9f0f657aa8723a635683cb6482a2a0ad31aabcd5a633e3cb3a4d34f1f638"
+    }
+  },
+  "needs_review": [
+    6,
+    9
+  ],
+  "shipped_inputs": {
+    "slides/slide-01.html": "665e84d544c94b9a0aac0f8db2c995e5267b953b53d6d6c31d69a3a8c3bb97db",
+    "slide-01.webp": "e678b4c37f28348655e3c947e6a0f7a481646afdc0f3075c3ea79b64da2f4ef3",
+    "slides/slide-06.html": "db87b774a51730a7d69b05873fd5eabb5f0133e8750e67a0334ad175e8899245",
+    "slide-06.webp": "6c0bbb0ddd67ff6e50e69996632771b8db5a948820c2472d5d1d3a53b163abf1",
+    "slides/slide-09.html": "b254e45b09fb044471d43038e16a0229afc31bbfac11935d5c18bc06d313a6a6",
+    "slide-09.webp": "9d0e9c6c248e1bf4cc3639798bb7b04daa9b42fcca485f345adb7a60f9f3978b"
+  },
+  "encodings": [
+    {
+      "to": "slide-01.webp",
+      "to_sha256": "e678b4c37f28348655e3c947e6a0f7a481646afdc0f3075c3ea79b64da2f4ef3",
+      "from_sha256": "d8cab921dd075315aa76fb8d3e7b69bbb19f812fcb2c3a678eaecbb9b0febd3d",
+      "psnr_db": 41.986
+    },
+    {
+      "to": "slide-06.webp",
+      "to_sha256": "6c0bbb0ddd67ff6e50e69996632771b8db5a948820c2472d5d1d3a53b163abf1",
+      "from_sha256": "cab975034bf494d50a8a28ea7c03958911a238340ce93f7d9c509565255126c8",
+      "psnr_db": 999.0
+    },
+    {
+      "to": "slide-09.webp",
+      "to_sha256": "9d0e9c6c248e1bf4cc3639798bb7b04daa9b42fcca485f345adb7a60f9f3978b",
+      "from_sha256": "44dc7fcc6d4b12250ab5738479f9ea94f6cdd5e4cb620902bd79128f4c6ca171",
+      "psnr_db": 40.101
+    }
+  ]
+}

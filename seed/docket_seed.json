@@ -17737,5 +17737,896 @@
    }
   ],
   "last_verified": "2026-10-31"
+ },
+ {
+  "title": "San Antonio counts loose dogs in 32 study areas with phone cameras and object detection software",
+  "summary": "San Antonio Animal Care Services is working with Southwest Research Institute on an automated survey of unrestrained dogs. A cell phone mounted on a vehicle window and paired with object detection and data analysis software will record the street. Automated and human review of the clips will verify whether each detected dog was unrestrained. The same review will determine any human supervision, verify how many dogs were present and assess whether the dog was owned or a stray. The release describes strays as appearing malnourished and skittish. It says healthier and more approachable dogs are likely owned and are classified as roaming. The survey will repeat the city's 2019 count in the same 32 study areas, and field research is expected to run through December 2026. The city says the project is not intended to count every unrestrained dog in San Antonio. SwRI will forward the department a final report with its findings and data.",
+  "topic": "research-and-science",
+  "decider": {
+   "name": "City of San Antonio Animal Care Services",
+   "type": "city"
+  },
+  "geography": {
+   "statewide": false,
+   "counties": [
+    "Bexar",
+    "Comal",
+    "Medina"
+   ],
+   "on_ercot": true,
+   "metro": "San Antonio-New Braunfels, TX"
+  },
+  "status": "decided",
+  "key_dates": [
+   {
+    "date": "2026-10-20",
+    "kind": "effective",
+    "note": "The city and SwRI announce the survey"
+   }
+  ],
+  "public_access": {
+   "room": "contact_only",
+   "how": "No hearing or comment window is posted. Animal Care Services runs the study with SwRI, and the final report goes to the department.",
+   "url": "https://www.sa.gov/Directory/News-Releases/Southwest-Research-Institute-Leads-Citys-Roaming-Dog-Study",
+   "closes": null
+  },
+  "confidence": "high",
+  "notes_for_editor": "Admitted on the city's own release and SwRI's. The 2019 study's findings sit in an ACS PDF too large for the fetcher this run.",
+  "claims": [
+   {
+    "text": "Southwest Research Institute is working with the City of San Antonio on an automated survey of unrestrained dogs.",
+    "verbatim_quote": "Southwest Research Institute (SwRI) is working with the city of San Antonio to conduct an automated survey",
+    "source_url": "https://www.swri.org/newsroom/press-releases/swri-applies-automation-count-unrestrained-dogs-san-antonio",
+    "source_title": "Southwest Research Institute, SwRI applies automation to count unrestrained dogs in San Antonio",
+    "source_type": "primary_corporate",
+    "fetched": "2026-11-02",
+    "id": "tx-2026-0236-c1"
+   },
+   {
+    "text": "The program pairs machine vision software with cell phone cameras.",
+    "verbatim_quote": "The program is using machine vision software paired with cell phone cameras",
+    "source_url": "https://www.swri.org/newsroom/press-releases/swri-applies-automation-count-unrestrained-dogs-san-antonio",
+    "source_title": "Southwest Research Institute, SwRI applies automation to count unrestrained dogs in San Antonio",
+    "source_type": "primary_corporate",
+    "fetched": "2026-11-02",
+    "id": "tx-2026-0236-c2"
+   },
+   {
+    "text": "The SwRI tools put a cell phone on a vehicle window and pair it with object detection and data analysis software.",
+    "verbatim_quote": "a cellular phone mounted to a vehicle window with object detection and data analysis software",
+    "source_url": "https://www.swri.org/newsroom/press-releases/swri-applies-automation-count-unrestrained-dogs-san-antonio",
+    "source_title": "Southwest Research Institute, SwRI applies automation to count unrestrained dogs in San Antonio",
+    "source_type": "primary_corporate",
+    "fetched": "2026-11-02",
+    "id": "tx-2026-0236-c3"
+   },
+   {
+    "text": "Automated review and human review of the video clips check that each detected animal was unrestrained.",
+    "verbatim_quote": "Automated and human review of the video clips will verify that the detected animals were unrestrained",
+    "source_url": "https://www.swri.org/newsroom/press-releases/swri-applies-automation-count-unrestrained-dogs-san-antonio",
+    "source_title": "Southwest Research Institute, SwRI applies automation to count unrestrained dogs in San Antonio",
+    "source_type": "primary_corporate",
+    "fetched": "2026-11-02",
+    "id": "tx-2026-0236-c4"
+   },
+   {
+    "text": "The same review records any human supervision, how many dogs were present and whether each dog was owned or a stray.",
+    "verbatim_quote": "determine any human supervision, verify the number of dogs present and assess whether the dog was owned or a stray",
+    "source_url": "https://www.swri.org/newsroom/press-releases/swri-applies-automation-count-unrestrained-dogs-san-antonio",
+    "source_title": "Southwest Research Institute, SwRI applies automation to count unrestrained dogs in San Antonio",
+    "source_type": "primary_corporate",
+    "fetched": "2026-11-02",
+    "id": "tx-2026-0236-c5"
+   },
+   {
+    "text": "In the release, strays look malnourished and skittish. Dogs that look healthier and more approachable count as something else.",
+    "verbatim_quote": "Strays appear to be malnourished and skittish, while dogs that seem healthier and more approachable",
+    "source_url": "https://www.swri.org/newsroom/press-releases/swri-applies-automation-count-unrestrained-dogs-san-antonio",
+    "source_title": "Southwest Research Institute, SwRI applies automation to count unrestrained dogs in San Antonio",
+    "source_type": "primary_corporate",
+    "fetched": "2026-11-02",
+    "id": "tx-2026-0236-c6"
+   },
+   {
+    "text": "The healthier and more approachable dogs are probably owned by local families and get classified as roaming.",
+    "verbatim_quote": "are likely owned by local families and are classified as roaming.",
+    "source_url": "https://www.swri.org/newsroom/press-releases/swri-applies-automation-count-unrestrained-dogs-san-antonio",
+    "source_title": "Southwest Research Institute, SwRI applies automation to count unrestrained dogs in San Antonio",
+    "source_type": "primary_corporate",
+    "fetched": "2026-11-02",
+    "id": "tx-2026-0236-c7"
+   },
+   {
+    "text": "The automated project repeats a manual survey from 2019.",
+    "verbatim_quote": "The automated project will recreate a manual survey conducted in 2019",
+    "source_url": "https://www.swri.org/newsroom/press-releases/swri-applies-automation-count-unrestrained-dogs-san-antonio",
+    "source_title": "Southwest Research Institute, SwRI applies automation to count unrestrained dogs in San Antonio",
+    "source_type": "primary_corporate",
+    "fetched": "2026-11-02",
+    "id": "tx-2026-0236-c8"
+   },
+   {
+    "text": "SwRI plans to run its research between October and December of 2026.",
+    "verbatim_quote": "After conducting research between October and December of 2026",
+    "source_url": "https://www.swri.org/newsroom/press-releases/swri-applies-automation-count-unrestrained-dogs-san-antonio",
+    "source_title": "Southwest Research Institute, SwRI applies automation to count unrestrained dogs in San Antonio",
+    "source_type": "primary_corporate",
+    "fetched": "2026-11-02",
+    "id": "tx-2026-0236-c9"
+   },
+   {
+    "text": "SwRI will then put together a final report with summary data and videos of the dogs it observed.",
+    "verbatim_quote": "SwRI will compile a final report with summary data and videos of observed dogs",
+    "source_url": "https://www.swri.org/newsroom/press-releases/swri-applies-automation-count-unrestrained-dogs-san-antonio",
+    "source_title": "Southwest Research Institute, SwRI applies automation to count unrestrained dogs in San Antonio",
+    "source_type": "primary_corporate",
+    "fetched": "2026-11-02",
+    "id": "tx-2026-0236-c10"
+   },
+   {
+    "text": "Mike Koets of SwRI said the study samples the city instead of surveying all of it.",
+    "verbatim_quote": "This study takes a sampling approach, so we are not surveying the entire city",
+    "source_url": "https://www.swri.org/newsroom/press-releases/swri-applies-automation-count-unrestrained-dogs-san-antonio",
+    "source_title": "Southwest Research Institute, SwRI applies automation to count unrestrained dogs in San Antonio",
+    "source_type": "primary_corporate",
+    "fetched": "2026-11-02",
+    "id": "tx-2026-0236-c11"
+   },
+   {
+    "text": "ACS Director Jon Gary said the study gives the city another tool for seeing where unrestrained dogs turn up.",
+    "verbatim_quote": "This study gives us another tool to better understand where we are seeing unrestrained dogs",
+    "source_url": "https://www.swri.org/newsroom/press-releases/swri-applies-automation-count-unrestrained-dogs-san-antonio",
+    "source_title": "Southwest Research Institute, SwRI applies automation to count unrestrained dogs in San Antonio",
+    "source_type": "primary_corporate",
+    "fetched": "2026-11-02",
+    "id": "tx-2026-0236-c12"
+   },
+   {
+    "text": "San Antonio Animal Care Services says it is working with researchers at Southwest Research Institute on the study.",
+    "verbatim_quote": "San Antonio Animal Care Services (SAACS) is collaborating with researchers at the",
+    "source_url": "https://www.sa.gov/Directory/News-Releases/Southwest-Research-Institute-Leads-Citys-Roaming-Dog-Study",
+    "source_title": "City of San Antonio, Southwest Research Institute Leads City's Roaming Dog Study",
+    "source_type": "primary_official",
+    "fetched": "2026-11-02",
+    "id": "tx-2026-0236-c13"
+   },
+   {
+    "text": "The City of San Antonio published its own release on the roaming dog study on October 20th, 2026.",
+    "verbatim_quote": "Published on October 20, 2026",
+    "source_url": "https://www.sa.gov/Directory/News-Releases/Southwest-Research-Institute-Leads-Citys-Roaming-Dog-Study",
+    "source_title": "City of San Antonio, Southwest Research Institute Leads City's Roaming Dog Study",
+    "source_type": "primary_official",
+    "fetched": "2026-11-02",
+    "id": "tx-2026-0236-c14"
+   },
+   {
+    "text": "The city says SwRI researchers will survey the same 32 study areas the city used in its 2019 effort.",
+    "verbatim_quote": "SwRI researchers will survey the same 32 study areas as in the City's 2019 effort",
+    "source_url": "https://www.sa.gov/Directory/News-Releases/Southwest-Research-Institute-Leads-Citys-Roaming-Dog-Study",
+    "source_title": "City of San Antonio, Southwest Research Institute Leads City's Roaming Dog Study",
+    "source_type": "primary_official",
+    "fetched": "2026-11-02",
+    "id": "tx-2026-0236-c15"
+   },
+   {
+    "text": "In the city's account, the survey uses smartphone cameras and automated technology.",
+    "verbatim_quote": "using smartphone cameras and automated technology",
+    "source_url": "https://www.sa.gov/Directory/News-Releases/Southwest-Research-Institute-Leads-Citys-Roaming-Dog-Study",
+    "source_title": "City of San Antonio, Southwest Research Institute Leads City's Roaming Dog Study",
+    "source_type": "primary_official",
+    "fetched": "2026-11-02",
+    "id": "tx-2026-0236-c16"
+   },
+   {
+    "text": "The city says the study works from a sample and is not meant to count every unrestrained dog in San Antonio.",
+    "verbatim_quote": "Because the project uses a sampling methodology, it is not intended to count every unrestrained dog in San Antonio",
+    "source_url": "https://www.sa.gov/Directory/News-Releases/Southwest-Research-Institute-Leads-Citys-Roaming-Dog-Study",
+    "source_title": "City of San Antonio, Southwest Research Institute Leads City's Roaming Dog Study",
+    "source_type": "primary_official",
+    "fetched": "2026-11-02",
+    "id": "tx-2026-0236-c17"
+   },
+   {
+    "text": "The city expects field research to run through December 2026.",
+    "verbatim_quote": "Field research is expected to take place through December 2026.",
+    "source_url": "https://www.sa.gov/Directory/News-Releases/Southwest-Research-Institute-Leads-Citys-Roaming-Dog-Study",
+    "source_title": "City of San Antonio, Southwest Research Institute Leads City's Roaming Dog Study",
+    "source_type": "primary_official",
+    "fetched": "2026-11-02",
+    "id": "tx-2026-0236-c18"
+   },
+   {
+    "text": "After the analysis, SwRI will send Animal Care Services a final report on what the study found and the data it collected.",
+    "verbatim_quote": "SwRI will forward a final report to SAACS summarizing the study findings and data collected.",
+    "source_url": "https://www.sa.gov/Directory/News-Releases/Southwest-Research-Institute-Leads-Citys-Roaming-Dog-Study",
+    "source_title": "City of San Antonio, Southwest Research Institute Leads City's Roaming Dog Study",
+    "source_type": "primary_official",
+    "fetched": "2026-11-02",
+    "id": "tx-2026-0236-c19"
+   },
+   {
+    "text": "The Animal Care Services statistics page links to a 2019 Unrestrained Dog Study.",
+    "verbatim_quote": "2019 Unrestrained Dog Study",
+    "source_url": "https://www.sa.gov/Directory/Departments/ACS/About/Statistics",
+    "source_title": "City of San Antonio Animal Care Services, Statistics",
+    "source_type": "primary_official",
+    "fetched": "2026-11-02",
+    "id": "tx-2026-0236-c20"
+   },
+   {
+    "text": "The 2020 Census places part of the city of San Antonio in Bexar County.",
+    "verbatim_quote": "TX|48|029|Bexar County|65000|02411774|San Antonio city",
+    "source_url": "https://www2.census.gov/geo/docs/reference/codes2020/place_by_cou/st48_tx_place_by_county2020.txt",
+    "source_title": "U.S. Census Bureau, 2020 Census place by county relationship file for Texas",
+    "source_type": "primary_official",
+    "fetched": "2026-11-02",
+    "id": "tx-2026-0236-c21"
+   },
+   {
+    "text": "The 2020 Census places part of the city of San Antonio in Comal County.",
+    "verbatim_quote": "TX|48|091|Comal County|65000|02411774|San Antonio city",
+    "source_url": "https://www2.census.gov/geo/docs/reference/codes2020/place_by_cou/st48_tx_place_by_county2020.txt",
+    "source_title": "U.S. Census Bureau, 2020 Census place by county relationship file for Texas",
+    "source_type": "primary_official",
+    "fetched": "2026-11-02",
+    "id": "tx-2026-0236-c22"
+   },
+   {
+    "text": "The 2020 Census places part of the city of San Antonio in Medina County.",
+    "verbatim_quote": "TX|48|325|Medina County|65000|02411774|San Antonio city",
+    "source_url": "https://www2.census.gov/geo/docs/reference/codes2020/place_by_cou/st48_tx_place_by_county2020.txt",
+    "source_title": "U.S. Census Bureau, 2020 Census place by county relationship file for Texas",
+    "source_type": "primary_official",
+    "fetched": "2026-11-02",
+    "id": "tx-2026-0236-c23"
+   }
+  ],
+  "id": "tx-2026-0236",
+  "last_verified": "2026-11-02",
+  "history": [
+   {
+    "date": "2026-11-02",
+    "note": "Admitted on the city's release and SwRI's. Field research is expected to run through December 2026, and the final report has not been published."
+   }
+  ]
+ },
+ {
+  "title": "Pflugerville puts high risk city technology before the council and bars facial recognition without a public vote",
+  "summary": "Pflugerville City Council unanimously approved a Secure, Accountable, Fair and Explainable technology policy at its October 27th meeting, Community Impact reports. The policy sorts city technology into low, moderate or high risk by intended use and potential impact, and the draft resolution posted before the vote requires the council to approve a high risk system affirmatively and in public before the city acquires or deploys it. The draft bars facial recognition and other biometric identification unless public council action separately authorizes it, and says artificial intelligence may assist city work but may not replace accountable city judgment. It commits the city to the Texas Responsible Artificial Intelligence Governance Act. News reports describe a resident commission that the posted draft does not contain. The policy follows the city's decision to end its contract with Flock Safety.",
+  "topic": "surveillance-and-policing",
+  "decider": {
+   "name": "Pflugerville City Council",
+   "type": "city"
+  },
+  "geography": {
+   "statewide": false,
+   "counties": [
+    "Travis",
+    "Williamson"
+   ],
+   "on_ercot": true,
+   "metro": "Austin-Round Rock-San Marcos, TX"
+  },
+  "status": "decided",
+  "key_dates": [
+   {
+    "date": "2026-10-27",
+    "kind": "decided",
+    "note": "The council approves the policy, as Community Impact reports"
+   }
+  ],
+  "public_access": {
+   "room": "contact_only",
+   "how": "The policy is adopted. A future high risk system comes back to the council for a public vote, which is where residents can speak to it.",
+   "url": "https://pflugerville.legistar.com/View.ashx?M=F&ID=15777183&GUID=BDF3F916-A57A-4195-93D8-4FF40465F237",
+   "closes": null
+  },
+  "confidence": "medium",
+  "notes_for_editor": "The adopted text was not reached. The vote and date rest on Community Impact. The terms rest on the city's posted draft.",
+  "claims": [
+   {
+    "text": "Pflugerville City Council unanimously approved the SAFE Technology policy at its October 27th meeting.",
+    "verbatim_quote": "unanimously approved the Secure, Accountable, Fair and Explainable, or SAFE, Technology policy at its Oct. 27 meeting",
+    "source_url": "https://communityimpact.com/pflugerville-hutto/government/pflugerville-adopts-new-policy-for-ai-surveillance-technology-and-data-privacy/",
+    "source_title": "Community Impact, Pflugerville adopts new policy for AI surveillance technology and data privacy",
+    "source_type": "journalism",
+    "fetched": "2026-11-02",
+    "id": "tx-2026-0237-c1"
+   },
+   {
+    "text": "The policy sorts city technology into low, moderate or high risk by intended use and potential impact.",
+    "verbatim_quote": "The policy classifies city technology as low, moderate or high risk based on its intended use and potential impact",
+    "source_url": "https://communityimpact.com/pflugerville-hutto/government/pflugerville-adopts-new-policy-for-ai-surveillance-technology-and-data-privacy/",
+    "source_title": "Community Impact, Pflugerville adopts new policy for AI surveillance technology and data privacy",
+    "source_type": "journalism",
+    "fetched": "2026-11-02",
+    "id": "tx-2026-0237-c2"
+   },
+   {
+    "text": "The policy follows the city's decision to end its contract with Flock Safety.",
+    "verbatim_quote": "The policy comes after the city decided to end its contract with Flock Safety",
+    "source_url": "https://communityimpact.com/pflugerville-hutto/government/pflugerville-adopts-new-policy-for-ai-surveillance-technology-and-data-privacy/",
+    "source_title": "Community Impact, Pflugerville adopts new policy for AI surveillance technology and data privacy",
+    "source_type": "journalism",
+    "fetched": "2026-11-02",
+    "id": "tx-2026-0237-c3"
+   },
+   {
+    "text": "Community Impact reports that a resident commission appointed by the council will review proposed technology and make recommendations.",
+    "verbatim_quote": "A City Council-appointed resident commission will review proposed technology and provide recommendations",
+    "source_url": "https://communityimpact.com/pflugerville-hutto/government/pflugerville-adopts-new-policy-for-ai-surveillance-technology-and-data-privacy/",
+    "source_title": "Community Impact, Pflugerville adopts new policy for AI surveillance technology and data privacy",
+    "source_type": "journalism",
+    "fetched": "2026-11-02",
+    "id": "tx-2026-0237-c4"
+   },
+   {
+    "text": "The draft posted on Pflugerville's Legistar is a resolution adopting standards for Secure, Accountable, Fair, and Explainable technology use.",
+    "verbatim_quote": "A RESOLUTION OF THE CITY OF PFLUGERVILLE, TEXAS, ADOPTING STANDARDS FOR SECURE, ACCOUNTABLE, FAIR, AND EXPLAINABLE (SAFE) TECHNOLOGY USE",
+    "source_url": "https://pflugerville.legistar.com/View.ashx?M=F&ID=15777183&GUID=BDF3F916-A57A-4195-93D8-4FF40465F237",
+    "source_title": "City of Pflugerville, draft resolution adopting SAFE technology standards",
+    "source_type": "primary_official",
+    "fetched": "2026-11-02",
+    "id": "tx-2026-0237-c5"
+   },
+   {
+    "text": "The draft resolution requires City Council approval for high risk systems.",
+    "verbatim_quote": "require City Council approval for High-Risk Systems as provided by this Resolution.",
+    "source_url": "https://pflugerville.legistar.com/View.ashx?M=F&ID=15777183&GUID=BDF3F916-A57A-4195-93D8-4FF40465F237",
+    "source_title": "City of Pflugerville, draft resolution adopting SAFE technology standards",
+    "source_type": "primary_official",
+    "fetched": "2026-11-02",
+    "id": "tx-2026-0237-c6"
+   },
+   {
+    "text": "Before the city acquires or deploys a high risk system, the draft requires the council to approve it affirmatively and in public.",
+    "verbatim_quote": "the City Council must affirmatively approve the system in public.",
+    "source_url": "https://pflugerville.legistar.com/View.ashx?M=F&ID=15777183&GUID=BDF3F916-A57A-4195-93D8-4FF40465F237",
+    "source_title": "City of Pflugerville, draft resolution adopting SAFE technology standards",
+    "source_type": "primary_official",
+    "fetched": "2026-11-02",
+    "id": "tx-2026-0237-c7"
+   },
+   {
+    "text": "The draft resolution bars facial recognition and other biometric identification unless public Council action separately authorizes it.",
+    "verbatim_quote": "Unless separately authorized by public Council action following City Attorney review and an opportunity for public comment, the City shall not use or benefit from",
+    "source_url": "https://pflugerville.legistar.com/View.ashx?M=F&ID=15777183&GUID=BDF3F916-A57A-4195-93D8-4FF40465F237",
+    "source_title": "City of Pflugerville, draft resolution adopting SAFE technology standards",
+    "source_type": "primary_official",
+    "fetched": "2026-11-02",
+    "id": "tx-2026-0237-c8"
+   },
+   {
+    "text": "In the draft, artificial intelligence may assist city work but may not replace accountable human judgment by the city.",
+    "verbatim_quote": "Artificial intelligence and automated systems may assist City work but may not replace accountable City judgment.",
+    "source_url": "https://pflugerville.legistar.com/View.ashx?M=F&ID=15777183&GUID=BDF3F916-A57A-4195-93D8-4FF40465F237",
+    "source_title": "City of Pflugerville, draft resolution adopting SAFE technology standards",
+    "source_type": "primary_official",
+    "fetched": "2026-11-02",
+    "id": "tx-2026-0237-c9"
+   },
+   {
+    "text": "The draft resolution commits the city to comply with the Texas Responsible Artificial Intelligence Governance Act.",
+    "verbatim_quote": "including the Texas Responsible Artificial Intelligence Governance Act",
+    "source_url": "https://pflugerville.legistar.com/View.ashx?M=F&ID=15777183&GUID=BDF3F916-A57A-4195-93D8-4FF40465F237",
+    "source_title": "City of Pflugerville, draft resolution adopting SAFE technology standards",
+    "source_type": "primary_official",
+    "fetched": "2026-11-02",
+    "id": "tx-2026-0237-c10"
+   },
+   {
+    "text": "The 2020 Census places part of the city of Pflugerville in Travis County.",
+    "verbatim_quote": "TX|48|453|Travis County|57176|02411411|Pflugerville city",
+    "source_url": "https://www2.census.gov/geo/docs/reference/codes2020/place_by_cou/st48_tx_place_by_county2020.txt",
+    "source_title": "U.S. Census Bureau, 2020 Census place by county relationship file for Texas",
+    "source_type": "primary_official",
+    "fetched": "2026-11-02",
+    "id": "tx-2026-0237-c11"
+   },
+   {
+    "text": "The 2020 Census places part of the city of Pflugerville in Williamson County.",
+    "verbatim_quote": "TX|48|491|Williamson County|57176|02411411|Pflugerville city",
+    "source_url": "https://www2.census.gov/geo/docs/reference/codes2020/place_by_cou/st48_tx_place_by_county2020.txt",
+    "source_title": "U.S. Census Bureau, 2020 Census place by county relationship file for Texas",
+    "source_type": "primary_official",
+    "fetched": "2026-11-02",
+    "id": "tx-2026-0237-c12"
+   }
+  ],
+  "id": "tx-2026-0237",
+  "last_verified": "2026-11-02",
+  "history": [
+   {
+    "date": "2026-11-02",
+    "note": "Admitted on the city's posted draft resolution. The vote and its date rest on Community Impact, and the adopted text has not been reached."
+   }
+  ]
+ },
+ {
+  "title": "San Antonio council requires its own approval for every new data center",
+  "summary": "San Antonio City Council passed a new process for considering data centers on October 29th, 2026. Mayor Gina Ortiz Jones said it ensures the council can review each data center application. Texas Public Radio reports the vote was 9 to 2 and that approved data centers may go only in commercial or industrial zones. The mayor said her own provisions on transparency, public health and property values were left out of the resolution and will serve as her office's standards for each application.",
+  "topic": "data-centers",
+  "decider": {
+   "name": "San Antonio City Council",
+   "type": "city"
+  },
+  "geography": {
+   "statewide": false,
+   "counties": [
+    "Bexar",
+    "Comal",
+    "Medina"
+   ],
+   "on_ercot": true,
+   "metro": "San Antonio-New Braunfels, TX"
+  },
+  "status": "decided",
+  "key_dates": [
+   {
+    "date": "2026-10-29",
+    "kind": "decided",
+    "note": "The council vote and the Mayor's statement"
+   }
+  ],
+  "public_access": {
+   "room": "contact_only",
+   "how": "Each new data center application now comes before City Council case by case, and residents can reach their council member or the Mayor's office before a vote.",
+   "url": "https://www.sa.gov/Directory/News-Releases/Mayor%E2%80%99s-Statement-on-Council-Decision-on-Data-Centers",
+   "closes": null
+  },
+  "confidence": "high",
+  "notes_for_editor": "Admitted on the City of San Antonio's own release of October 29th. The vote count and zoning detail rest on Texas Public Radio.",
+  "claims": [
+   {
+    "text": "San Antonio Mayor Gina Ortiz Jones issued a statement on October 29th, 2026 after City Council passed a new process for considering data centers in the city.",
+    "verbatim_quote": "Mayor Gina Ortiz Jones released the following statement on City Council passing a new process for data center consideration in San Antonio.",
+    "source_url": "https://www.sa.gov/Directory/News-Releases/Mayor%E2%80%99s-Statement-on-Council-Decision-on-Data-Centers",
+    "source_title": "Mayor’s Statement on Council Decision on Data Centers",
+    "source_type": "primary_official",
+    "fetched": "2026-11-03",
+    "id": "tx-2026-0238-c1"
+   },
+   {
+    "text": "Mayor Jones said the council action ensures City Council can review each data center application, which she called an important safeguard given how quickly the industry is changing.",
+    "verbatim_quote": "Today, we took a step forward to ensure City Council has the opportunity to review each data center application, and that is an important safeguard given how quickly this industry is changing.",
+    "source_url": "https://www.sa.gov/Directory/News-Releases/Mayor%E2%80%99s-Statement-on-Council-Decision-on-Data-Centers",
+    "source_title": "Mayor’s Statement on Council Decision on Data Centers",
+    "source_type": "primary_official",
+    "fetched": "2026-11-03",
+    "id": "tx-2026-0238-c2"
+   },
+   {
+    "text": "Mayor Jones said her own provisions on transparency, public health and property values were left out of the council resolution. She said they will serve as her office's standards when each application is reviewed.",
+    "verbatim_quote": "While my provisions focused on increasing transparency, protecting public health, and protecting property values were not included in today’s resolution, they will serve as my office’s standards when each data center application is reviewed.",
+    "source_url": "https://www.sa.gov/Directory/News-Releases/Mayor%E2%80%99s-Statement-on-Council-Decision-on-Data-Centers",
+    "source_title": "Mayor’s Statement on Council Decision on Data Centers",
+    "source_type": "primary_official",
+    "fetched": "2026-11-03",
+    "id": "tx-2026-0238-c3"
+   },
+   {
+    "text": "Texas Public Radio reported that San Antonio council members approved the new data center policy in a 9 to 2 vote on Thursday.",
+    "verbatim_quote": "Council members approved the new policy in a 9-2 vote on Thursday.",
+    "source_url": "https://www.tpr.org/government-politics/2026-10-29/san-antonio-leaders-will-now-have-to-ok-every-new-data-center",
+    "source_title": "San Antonio leaders will now have to OK every new data center",
+    "source_type": "journalism",
+    "fetched": "2026-11-03",
+    "id": "tx-2026-0238-c4"
+   },
+   {
+    "text": "Texas Public Radio reported that the new rules allow approved data centers only in commercial or industrial zones.",
+    "verbatim_quote": "The new rules will only allow the approved data centers in commercial or industrial zones.",
+    "source_url": "https://www.tpr.org/government-politics/2026-10-29/san-antonio-leaders-will-now-have-to-ok-every-new-data-center",
+    "source_title": "San Antonio leaders will now have to OK every new data center",
+    "source_type": "journalism",
+    "fetched": "2026-11-03",
+    "id": "tx-2026-0238-c5"
+   },
+   {
+    "text": "Texas Public Radio reported that council members Misty Spears of District 9 and Marc Whyte of District 10 voted against the policy.",
+    "verbatim_quote": "Council members Misty Spears (D9) and Marc Whyte (D10) both voted no.",
+    "source_url": "https://www.tpr.org/government-politics/2026-10-29/san-antonio-leaders-will-now-have-to-ok-every-new-data-center",
+    "source_title": "San Antonio leaders will now have to OK every new data center",
+    "source_type": "journalism",
+    "fetched": "2026-11-03",
+    "id": "tx-2026-0238-c6"
+   }
+  ],
+  "id": "tx-2026-0238",
+  "last_verified": "2026-11-03",
+  "history": [
+   {
+    "date": "2026-11-02",
+    "note": "Held for the city's own record of the vote."
+   },
+   {
+    "date": "2026-11-03",
+    "note": "The city's own statement now confirms the council passed a new process for reviewing each data center application."
+   }
+  ]
+ },
+ {
+  "id": "tx-2026-0239",
+  "title": "Aurora tells shareholders its driverless trucks will run straight to customer sites in November, with its truck build about six weeks behind plan",
+  "summary": "Aurora Innovation filed its third quarter letter with the SEC on October 28th, 2026. It says the Aurora Driver will run directly to sites for several driverless customers in November. The letter says that includes automated navigation through security checkpoints. It says the system can now determine on its own whether a weigh station is open and navigate to an available scale lane. The same letter says its production ramp is about six weeks behind its prior plan. Material availability, component quality and problems found in end-of-line testing held it back. Aurora says Charger Logistics plans to start its trucks between Dallas and Laredo under a non-binding MOU, with delivery expected in 2027 and 2028. Its hardware partner AUMOVIO is preparing a production line in New Braunfels.",
+  "topic": "state-policy",
+  "decider": {
+   "name": "Aurora Innovation",
+   "type": "company"
+  },
+  "geography": {
+   "statewide": false,
+   "counties": [
+    "Dallas",
+    "Harris",
+    "Webb",
+    "Comal"
+   ],
+   "on_ercot": null
+  },
+  "status": "pending",
+  "key_dates": [
+   {
+    "date": "2026-10-28",
+    "kind": "filed",
+    "note": "Date on the shareholder letter filed with the SEC"
+   }
+  ],
+  "public_access": {
+   "room": "contact_only",
+   "how": "There is no public process. The letter is a company filing, and questions about routes and operations go to Aurora.",
+   "url": "https://www.sec.gov/Archives/edgar/data/0001828108/000182810826000092/aurora26q3shareholderlet.htm",
+   "closes": null
+  },
+  "confidence": "high",
+  "notes_for_editor": "A company account filed with the SEC. Dallas to Houston is Aurora's own named Texas route (its September 23rd release). Dallas to Laredo is Charger's plan, not a route Aurora runs today. New Braunfels is AUMOVIO's facility.",
+  "claims": [
+   {
+    "text": "Aurora says that in November the Aurora Driver will run directly to sites for several driverless customers, including automated navigation through security checkpoints.",
+    "verbatim_quote": "In November, the Aurora Driver will be operating directly to sites for several driverless customers, including automated navigation through security checkpoints.",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/0001828108/000182810826000092/aurora26q3shareholderlet.htm",
+    "source_title": "Aurora Innovation, Third Quarter 2026 Shareholder Letter (Exhibit 99.1)",
+    "source_type": "primary_corporate",
+    "fetched": "2026-11-03",
+    "id": "tx-2026-0239-c1"
+   },
+   {
+    "text": "Aurora says the Aurora Driver can now determine on its own whether a weigh station is open, navigate to an available scale lane and adapt to different scale configurations.",
+    "verbatim_quote": "With our weigh station traversal capability, the Aurora Driver can now autonomously determine if a station is open, navigate to an available scale lane, and adapt to different scale configurations.",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/0001828108/000182810826000092/aurora26q3shareholderlet.htm",
+    "source_title": "Aurora Innovation, Third Quarter 2026 Shareholder Letter (Exhibit 99.1)",
+    "source_type": "primary_corporate",
+    "fetched": "2026-11-03",
+    "id": "tx-2026-0239-c2"
+   },
+   {
+    "text": "The letter says autonomous trucks have historically relied on voluntary enhanced pre-trip inspections to bypass weigh stations.",
+    "verbatim_quote": "Historically, autonomous trucks have relied on voluntary enhanced pre-trip inspections (EPTI) to bypass weigh stations.",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/0001828108/000182810826000092/aurora26q3shareholderlet.htm",
+    "source_title": "Aurora Innovation, Third Quarter 2026 Shareholder Letter (Exhibit 99.1)",
+    "source_type": "primary_corporate",
+    "fetched": "2026-11-03",
+    "id": "tx-2026-0239-c3"
+   },
+   {
+    "text": "Aurora says its production ramp is about six weeks behind its prior plan and it now expects 2026 revenue of approximately $9 million.",
+    "verbatim_quote": "Reflecting a production ramp about six weeks behind our prior plan, we now expect 2026 revenue of approximately $9 million",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/0001828108/000182810826000092/aurora26q3shareholderlet.htm",
+    "source_title": "Aurora Innovation, Third Quarter 2026 Shareholder Letter (Exhibit 99.1)",
+    "source_type": "primary_corporate",
+    "fetched": "2026-11-03",
+    "id": "tx-2026-0239-c4"
+   },
+   {
+    "text": "Aurora says its initial production ramp over the past month was held back by material availability, component quality and problems found in end-of-line testing.",
+    "verbatim_quote": "While our initial ramp volume over the past month was constrained by material availability, component quality, and issues identified during end-of-line testing, our team moved quickly to address these pre-production bottlenecks.",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/0001828108/000182810826000092/aurora26q3shareholderlet.htm",
+    "source_title": "Aurora Innovation, Third Quarter 2026 Shareholder Letter (Exhibit 99.1)",
+    "source_type": "primary_corporate",
+    "fetched": "2026-11-03",
+    "id": "tx-2026-0239-c5"
+   },
+   {
+    "text": "Aurora says it now expects to reach its targeted production rate of 20 trucks per week in early December.",
+    "verbatim_quote": "we now expect to achieve our targeted production rate of 20 trucks per week in early December.",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/0001828108/000182810826000092/aurora26q3shareholderlet.htm",
+    "source_title": "Aurora Innovation, Third Quarter 2026 Shareholder Letter (Exhibit 99.1)",
+    "source_type": "primary_corporate",
+    "fetched": "2026-11-03",
+    "id": "tx-2026-0239-c6"
+   },
+   {
+    "text": "Aurora says 20+ driverless trucks are already built and coming into its fleet, and that production is accelerating.",
+    "verbatim_quote": "We have 20+ driverless trucks already built and coming into the fleet, and production is accelerating.",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/0001828108/000182810826000092/aurora26q3shareholderlet.htm",
+    "source_title": "Aurora Innovation, Third Quarter 2026 Shareholder Letter (Exhibit 99.1)",
+    "source_type": "primary_corporate",
+    "fetched": "2026-11-03",
+    "id": "tx-2026-0239-c7"
+   },
+   {
+    "text": "Aurora reported third quarter 2026 revenue of $3 million from driverless and vehicle operator-supervised commercial loads.",
+    "verbatim_quote": "Third quarter 2026 revenue totaled $3 million across driverless and vehicle operator-supervised commercial loads.",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/0001828108/000182810826000092/aurora26q3shareholderlet.htm",
+    "source_title": "Aurora Innovation, Third Quarter 2026 Shareholder Letter (Exhibit 99.1)",
+    "source_type": "primary_corporate",
+    "fetched": "2026-11-03",
+    "id": "tx-2026-0239-c8"
+   },
+   {
+    "text": "Aurora reported a third quarter operating loss of $257 million, a figure that includes stock-based compensation.",
+    "verbatim_quote": "Third quarter operating loss, including stock-based compensation (SBC), totaled $257 million.",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/0001828108/000182810826000092/aurora26q3shareholderlet.htm",
+    "source_title": "Aurora Innovation, Third Quarter 2026 Shareholder Letter (Exhibit 99.1)",
+    "source_type": "primary_corporate",
+    "fetched": "2026-11-03",
+    "id": "tx-2026-0239-c9"
+   },
+   {
+    "text": "Aurora says Charger expects truck delivery in 2027 and 2028 and plans to start between Dallas and Laredo. The letter calls that one of Charger's busiest freight routes in the Sun Belt.",
+    "verbatim_quote": "With truck delivery expected in 2027 and 2028, Charger plans to use the Aurora Driver to add capacity on its network and drive higher utilization, starting between Dallas and Laredo, one of its busiest freight routes in the Sun Belt.",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/0001828108/000182810826000092/aurora26q3shareholderlet.htm",
+    "source_title": "Aurora Innovation, Third Quarter 2026 Shareholder Letter (Exhibit 99.1)",
+    "source_type": "primary_corporate",
+    "fetched": "2026-11-03",
+    "id": "tx-2026-0239-c10"
+   },
+   {
+    "text": "The letter says Charger Logistics' intent to own and operate 500 trucks reflects current plans and discussions under a non-binding MOU.",
+    "verbatim_quote": "Statements in this investor letter about Charger Logistics’ intent to own and operate 500 Aurora Driver-powered trucks reflect current plans and discussions, as reflected in the non-binding MOU",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/0001828108/000182810826000092/aurora26q3shareholderlet.htm",
+    "source_title": "Aurora Innovation, Third Quarter 2026 Shareholder Letter (Exhibit 99.1)",
+    "source_type": "primary_corporate",
+    "fetched": "2026-11-03",
+    "id": "tx-2026-0239-c11"
+   },
+   {
+    "text": "Aurora says AUMOVIO has begun design validation of Aurora's third-generation commercial hardware kit and is finalizing the line concept and production flow at its dedicated facility in New Braunfels, Texas.",
+    "verbatim_quote": "AUMOVIO has initiated design validation for our third-generation commercial hardware kit, while finalizing the line concept and production flow at its dedicated facility in New Braunfels, Texas.",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/0001828108/000182810826000092/aurora26q3shareholderlet.htm",
+    "source_title": "Aurora Innovation, Third Quarter 2026 Shareholder Letter (Exhibit 99.1)",
+    "source_type": "primary_corporate",
+    "fetched": "2026-11-03",
+    "id": "tx-2026-0239-c12"
+   },
+   {
+    "text": "Aurora says initial line bring-up remains on track for later this year, ahead of a planned start of production in the second half of 2027.",
+    "verbatim_quote": "Initial line bring-up remains on track for later this year ahead of planned start of production in the second half of 2027.",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/0001828108/000182810826000092/aurora26q3shareholderlet.htm",
+    "source_title": "Aurora Innovation, Third Quarter 2026 Shareholder Letter (Exhibit 99.1)",
+    "source_type": "primary_corporate",
+    "fetched": "2026-11-03",
+    "id": "tx-2026-0239-c13"
+   },
+   {
+    "text": "In a September 23rd, 2026 release Aurora described a Dallas-to-Houston commercial route of its own and said it was offering driverless passenger rides on a segment of it.",
+    "verbatim_quote": "Company offers industry-first driverless passenger rides on a segment of its Dallas-to-Houston commercial route",
+    "source_url": "https://ir.aurora.tech/news-events/press-releases/detail/152/aurora-outlines-2030-vision-to-scale-to-30000-driverless-trucks-at-analyst-and-investor-day",
+    "source_title": "Aurora Outlines 2030 Vision to Scale to 30,000 Driverless Trucks at Analyst and Investor Day",
+    "source_type": "primary_corporate",
+    "fetched": "2026-11-03",
+    "id": "tx-2026-0239-c14"
+   },
+   {
+    "text": "Aurora says it remains on track to end 2027 with more than 1,000 driverless trucks in operation.",
+    "verbatim_quote": "we remain on track to exit 2027 with more than 1,000 driverless trucks in operation.",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/0001828108/000182810826000092/aurora26q3shareholderlet.htm",
+    "source_title": "Aurora Innovation, Third Quarter 2026 Shareholder Letter (Exhibit 99.1)",
+    "source_type": "primary_corporate",
+    "fetched": "2026-11-03",
+    "id": "tx-2026-0239-c15"
+   }
+  ],
+  "last_verified": "2026-11-03",
+  "history": [
+   {
+    "date": "2026-11-03",
+    "note": "Aurora's letter puts site-to-site driverless runs in November and its truck build about six weeks behind plan."
+   }
+  ]
+ },
+ {
+  "id": "tx-2026-0240",
+  "title": "Permian Resources tells investors it now runs an AI system that watches its artificial lift",
+  "summary": "Permian Resources filed its third quarter results with the SEC on November 4th, 2026. The company says its production operations team has deployed an AI-powered artificial lift monitoring system to raise runtime and well performance. It says it is also feeding its own subsurface data into large language models to guide where wellbores go and how wells are drilled. The release gives no measured result for either tool. It reports 457,528 barrels of oil equivalent a day for the quarter. Its annual report puts about 67% of its leasehold acreage in Texas, with drilling work tied to Reeves County. The same release lists AI and machine learning among the factors in its cautionary note. In May the Railroad Commission told the Texas Tribune it was not aware of any use of AI by oil and gas companies. ExxonMobil separately says it plans to automate more than half of its unconventional drilling fleet by the end of 2028, a plan its post describes as automation rather than AI.",
+  "topic": "land-water-and-permitting",
+  "decider": {
+   "name": "Permian Resources",
+   "type": "company"
+  },
+  "geography": {
+   "statewide": false,
+   "counties": [
+    "Reeves"
+   ],
+   "on_ercot": null
+  },
+  "status": "decided",
+  "key_dates": [
+   {
+    "date": "2026-11-04",
+    "kind": "filed",
+    "note": "Third quarter results filed with the SEC as an exhibit to Form 8-K"
+   }
+  ],
+  "public_access": {
+   "room": "contact_only",
+   "how": "There is no public process. The release is a company filing, and questions about the monitoring system go to Permian Resources. Well and production records for Texas leases are public at the Railroad Commission.",
+   "url": "https://www.sec.gov/Archives/edgar/data/1658566/000165856626000122/ex991prq32026earningsrelea.htm",
+   "closes": null
+  },
+  "confidence": "high",
+  "notes_for_editor": "A company account filed with the SEC. The release names no county. Reeves County is the one Texas county the company's 2025 annual report names, for drilling, completion and water connection work. The ExxonMobil plan is context and is not placed in Texas by its source.",
+  "claims": [
+   {
+    "text": "Permian Resources says its Production Operations team has deployed an AI-powered artificial lift monitoring system meant to raise runtime and optimize well performance.",
+    "verbatim_quote": "The Production Operations team has deployed an AI-powered artificial lift monitoring system to increase runtime and optimize well performance.",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/1658566/000165856626000122/ex991prq32026earningsrelea.htm",
+    "source_title": "Permian Resources, Third Quarter 2026 Results (Form 8-K, Exhibit 99.1)",
+    "source_type": "primary_corporate",
+    "fetched": "2026-11-05",
+    "id": "tx-2026-0240-c1"
+   },
+   {
+    "text": "The company says it is feeding its own technical and subsurface data into large language models to guide development strategy, wellbore placement and drilling parameters in real time.",
+    "verbatim_quote": "The Company is integrating its proprietary technical and subsurface data with large language models to improve development strategy, evaluate wellbore placement and optimize drilling parameters in real-time.",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/1658566/000165856626000122/ex991prq32026earningsrelea.htm",
+    "source_title": "Permian Resources, Third Quarter 2026 Results (Form 8-K, Exhibit 99.1)",
+    "source_type": "primary_corporate",
+    "fetched": "2026-11-05",
+    "id": "tx-2026-0240-c2"
+   },
+   {
+    "text": "The release frames these tools as part of a broader claim that technology is improving the company's operations.",
+    "verbatim_quote": "Additionally, technology continues to positively impact our operations.",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/1658566/000165856626000122/ex991prq32026earningsrelea.htm",
+    "source_title": "Permian Resources, Third Quarter 2026 Results (Form 8-K, Exhibit 99.1)",
+    "source_type": "primary_corporate",
+    "fetched": "2026-11-05",
+    "id": "tx-2026-0240-c3"
+   },
+   {
+    "text": "Permian Resources issued its third quarter 2026 results release on November 4th, 2026.",
+    "verbatim_quote": "November 4, 2026 (BUSINESS WIRE)",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/1658566/000165856626000122/ex991prq32026earningsrelea.htm",
+    "source_title": "Permian Resources, Third Quarter 2026 Results (Form 8-K, Exhibit 99.1)",
+    "source_type": "primary_corporate",
+    "fetched": "2026-11-05",
+    "id": "tx-2026-0240-c4"
+   },
+   {
+    "text": "The same release names technological advancement, including artificial intelligence and machine learning, among the factors in its cautionary note on forward-looking statements.",
+    "verbatim_quote": "technological advancement, including artificial intelligence, machine learning and its application in our industry",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/1658566/000165856626000122/ex991prq32026earningsrelea.htm",
+    "source_title": "Permian Resources, Third Quarter 2026 Results (Form 8-K, Exhibit 99.1)",
+    "source_type": "primary_corporate",
+    "fetched": "2026-11-05",
+    "id": "tx-2026-0240-c5"
+   },
+   {
+    "text": "Permian Resources reported total third quarter production of 457,528 barrels of oil equivalent per day, up 22% from the prior quarter.",
+    "verbatim_quote": "Total production was 457,528 barrels of oil equivalent per day (“Boe/d”), a 22% increase compared to the prior quarter.",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/1658566/000165856626000122/ex991prq32026earningsrelea.htm",
+    "source_title": "Permian Resources, Third Quarter 2026 Results (Form 8-K, Exhibit 99.1)",
+    "source_type": "primary_corporate",
+    "fetched": "2026-11-05",
+    "id": "tx-2026-0240-c6"
+   },
+   {
+    "text": "Its average daily crude oil production in the third quarter was 208,029 barrels.",
+    "verbatim_quote": "During the third quarter, average daily crude oil production was 208,029 barrels of oil per day",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/1658566/000165856626000122/ex991prq32026earningsrelea.htm",
+    "source_title": "Permian Resources, Third Quarter 2026 Results (Form 8-K, Exhibit 99.1)",
+    "source_type": "primary_corporate",
+    "fetched": "2026-11-05",
+    "id": "tx-2026-0240-c7"
+   },
+   {
+    "text": "Permian Resources describes a position of about 560,000 net acres across West Texas and Southeast New Mexico.",
+    "verbatim_quote": "Through its position of approximately 560,000 net acres in West Texas and Southeast New Mexico, Permian Resources is the second largest Permian Basin pure-play E&P.",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/1658566/000165856626000122/ex991prq32026earningsrelea.htm",
+    "source_title": "Permian Resources, Third Quarter 2026 Results (Form 8-K, Exhibit 99.1)",
+    "source_type": "primary_corporate",
+    "fetched": "2026-11-05",
+    "id": "tx-2026-0240-c8"
+   },
+   {
+    "text": "The company says its assets are concentrated in the core of the Delaware Basin within the Permian.",
+    "verbatim_quote": "The Company’s assets are located in the Permian Basin, with a concentration in the core of the Delaware Basin.",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/1658566/000165856626000122/ex991prq32026earningsrelea.htm",
+    "source_title": "Permian Resources, Third Quarter 2026 Results (Form 8-K, Exhibit 99.1)",
+    "source_type": "primary_corporate",
+    "fetched": "2026-11-05",
+    "id": "tx-2026-0240-c9"
+   },
+   {
+    "text": "In its 2025 annual report Permian Resources said about 67% of its net leasehold acreage was in Texas and 33% in New Mexico.",
+    "verbatim_quote": "Approximately 67% of our net leasehold acreage is located in Texas and the remaining 33% is located in New Mexico.",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/1658566/000165856626000035/pr-20251231.htm",
+    "source_title": "Permian Resources, Form 10-K for 2025",
+    "source_type": "primary_official",
+    "fetched": "2026-11-05",
+    "id": "tx-2026-0240-c10"
+   },
+   {
+    "text": "The annual report ties a development obligation to the company's future drilling, completion and water connection work in Reeves County, Texas.",
+    "verbatim_quote": "drilling, completion and water connection activity in Reeves County, Texas",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/1658566/000165856626000035/pr-20251231.htm",
+    "source_title": "Permian Resources, Form 10-K for 2025",
+    "source_type": "primary_official",
+    "fetched": "2026-11-05",
+    "id": "tx-2026-0240-c11"
+   },
+   {
+    "text": "The release credits power and compression projects with lower costs and record runtimes.",
+    "verbatim_quote": "compression projects, which delivered lower costs and record runtimes",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/1658566/000165856626000122/ex991prq32026earningsrelea.htm",
+    "source_title": "Permian Resources, Third Quarter 2026 Results (Form 8-K, Exhibit 99.1)",
+    "source_type": "primary_corporate",
+    "fetched": "2026-11-05",
+    "id": "tx-2026-0240-c12"
+   },
+   {
+    "text": "ExxonMobil says its automated drilling technology could eliminate about one-third of high-consequence drilling incidents.",
+    "verbatim_quote": "We believe this technology has the potential to eliminate roughly one-third of high-consequence drilling incidents.",
+    "source_url": "https://corporate.exxonmobil.com/locations/united-states/permian-basin/newsroom/2026/technology-and-people-driving-the-next-generation-of-drilling-in-the-permian",
+    "source_title": "ExxonMobil, Technology and people driving the next generation of drilling in the Permian",
+    "source_type": "primary_corporate",
+    "fetched": "2026-11-05",
+    "id": "tx-2026-0240-c13"
+   },
+   {
+    "text": "ExxonMobil says it plans to automate more than half of its unconventional drilling fleet by the end of 2028.",
+    "verbatim_quote": "with plans to automate more than half of our unconventional drilling fleet by year-end 2028",
+    "source_url": "https://corporate.exxonmobil.com/locations/united-states/permian-basin/newsroom/2026/technology-and-people-driving-the-next-generation-of-drilling-in-the-permian",
+    "source_title": "ExxonMobil, Technology and people driving the next generation of drilling in the Permian",
+    "source_type": "primary_corporate",
+    "fetched": "2026-11-05",
+    "id": "tx-2026-0240-c14"
+   },
+   {
+    "text": "ExxonMobil says handling heavy drill pipe has long required workers on the rig floor.",
+    "verbatim_quote": "Activities such as handling heavy drill pipe have historically required workers on the rig floor",
+    "source_url": "https://corporate.exxonmobil.com/locations/united-states/permian-basin/newsroom/2026/technology-and-people-driving-the-next-generation-of-drilling-in-the-permian",
+    "source_title": "ExxonMobil, Technology and people driving the next generation of drilling in the Permian",
+    "source_type": "primary_corporate",
+    "fetched": "2026-11-05",
+    "id": "tx-2026-0240-c15"
+   },
+   {
+    "text": "ExxonMobil says it expects staffing on automated rigs to stay at similar levels.",
+    "verbatim_quote": "We expect to maintain similar staffing levels on automated rigs",
+    "source_url": "https://corporate.exxonmobil.com/locations/united-states/permian-basin/newsroom/2026/technology-and-people-driving-the-next-generation-of-drilling-in-the-permian",
+    "source_title": "ExxonMobil, Technology and people driving the next generation of drilling in the Permian",
+    "source_type": "primary_corporate",
+    "fetched": "2026-11-05",
+    "id": "tx-2026-0240-c16"
+   },
+   {
+    "text": "ExxonMobil says automated rigs are one of more than 50 technologies it is deploying across its Permian operations.",
+    "verbatim_quote": "Automated rigs are just one of more than 50 technologies being deployed across ExxonMobil's Permian operations",
+    "source_url": "https://corporate.exxonmobil.com/locations/united-states/permian-basin/newsroom/2026/technology-and-people-driving-the-next-generation-of-drilling-in-the-permian",
+    "source_title": "ExxonMobil, Technology and people driving the next generation of drilling in the Permian",
+    "source_type": "primary_corporate",
+    "fetched": "2026-11-05",
+    "id": "tx-2026-0240-c17"
+   },
+   {
+    "text": "The Texas Tribune reported in May that the Railroad Commission, the state's oil and gas regulator, said in a statement it was not aware of any oil and gas company using AI.",
+    "verbatim_quote": "The Texas Railroad Commission, which regulates the state’s oil and gas, said in a statement that it is not aware of any use of AI by oil and gas companies.",
+    "source_url": "https://www.texastribune.org/2026/05/21/texas-oil-companies-use-ai-for-wastewater/",
+    "source_title": "The Texas Tribune, In the Permian Basin, AI takes on big oil's dirty water problem",
+    "source_type": "journalism",
+    "fetched": "2026-11-05",
+    "id": "tx-2026-0240-c18"
+   }
+  ],
+  "last_verified": "2026-11-05",
+  "history": [
+   {
+    "date": "2026-11-05",
+    "note": "Admitted on the company's SEC filing of November 4th. The release names no measured result for the monitoring system."
+   }
+  ]
  }
 ]

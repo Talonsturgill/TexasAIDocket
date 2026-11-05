@@ -1,0 +1,72 @@
+<!doctype html>
+<!-- 2026-11-02, frame 4 of 9. Archetype OBJECT_AND_CAPTION. The lens view again, closer in: two street dogs on one parkway in one pool, a black lean dog with its head low and tail tucked, a tan fuller dog stepping toward the car, each in its own gold box, the release's two labels under them. Drawn to illustrate, to no breed. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:900px">Two labels for a loose dog</h1>
+<p class="dek" data-follow="24" style="width:900px">The release says strays "appear to be malnourished and skittish". Dogs that seem healthier and more approachable "are likely owned by local families and are classified as roaming." Drawn to&nbsp;illustrate.</p>
+<div class="lab" id="labA">stray</div>
+<div class="lab" id="labB">roaming</div>
+<script>window.FIG = {"classes": 2};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-02-sightline.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "The call", counter: "04 / 09", src: "c6 c7", fit: { min: 70, max: 96, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 34, near: 0.05, far: 3000, fog: 0.014 });
+  const B = CH.BLOCK;
+  CH.street(K, TXT, R, { road: true, parkway: true, fence: true, yard: true, house: true, oak: true });
+  /* THE TWO LABELS, one dog model per class, the count read from figures.json: index 0 lean and wary, index 1 full and stepping */
+  const states = [
+    { build: 'lean', pose: 'wary', coat: 'brown', at: [-0.62, -5.3], ry: -1.2 },
+    { build: 'full', pose: 'step', coat: 'tan', at: [0.68, -4.9], ry: -0.6 }
+  ].slice(0, Math.round(FIG.classes));
+  const dogs = states.map((s, i) => {
+    const d = K.make('street_dog', { build: s.build, pose: s.pose, coat: s.coat, seed: 11 + i * 55 });
+    d.rotation.y = s.ry; d.position.set(s.at[0], 0.2, s.at[1]); TXT.add(R, d); TXT.contact(R, d, { grit: false }); return d;
+  });
+  TXT.sky(R);
+  TXT.ground(R, { surface: 'asphalt', size: 600, seed: 24 });
+  const L0 = [0.15, B.lensY, B.lensZ];
+  const look = CH.aim(THREE, R, TXT, L0, [0, 0.32, -5.15], 540, 1010, 34);
+  TXT.frame(R, { fov: 34, from: L0, look });
+  CH.warm(R, 0.32);
+  TXT.deckRig(R, CH.rigSpec(W, 10, 4096), CH.rigOpts([0, 0.3, -5.1], { distance: 30, shadowFar: 70 }));
+  CH.unacne(R, 0.01);
+  /* a low warm fill from the car's side, so the lean dog's hindquarters and tucked tail separate from the dark kerb */
+  { const fl = new THREE.PointLight(0xffc89a, 2.2, 9, 2); fl.position.set(-0.4, 0.55, -2.6); R.scene.add(fl); }
+  TXT.weather(R, { grime: 0.4, height: 0.5 });
+  TXT.stage(R, dogs, { poolInner: 2.6, poolOuter: 7 });
+  /* one box per dog, four corners each, and the label under each box */
+  ['labA', 'labB'].slice(0, dogs.length).forEach((id, i) => {
+    const r = CH.rectOf(THREE, R, dogs[i], 16);
+    CH.box(r, 4, { arm: 52, width: 5.5 });
+    const el = document.getElementById(id);
+    el.style.left = Math.round(r[0] + r[2] / 2 - el.getBoundingClientRect().width / 2) + "px";
+    el.dataset.ry = r[1] + r[3];
+  });
+  /* both labels on one line, under the lower of the two boxes */
+  const labY = Math.max(...['labA', 'labB'].map((id) => +document.getElementById(id).dataset.ry || 0)) + 18;
+  ['labA', 'labB'].forEach((id) => { document.getElementById(id).style.top = Math.round(labY) + "px"; });
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0.34, veil: 0.4, veilH: 280 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

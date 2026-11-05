@@ -4054,6 +4054,271 @@
     "hex": "#0A090D",
     "note": "The lastLight world's dark sky and the flat frames' dark field."
    }
+  },
+  {
+   "date": "2026-11-01",
+   "carousel_no": 65,
+   "written_from": "deck_coherence's median L* per frame at 432 px off the final renders, layout_check's accent share, by update_ledgers.py.",
+   "register": "SPATIAL SCENES in a dark TXT.interior lab, staged, with four TXBENCH material reliefs. Chassis assets/js/deck/2026-11-01-foundry.js: copper_hearth, alloy_button, sample_tray, tensile_bar, crucible, robot_arm, offprint_stack and steel_rule, true metal copper with its own studio reflection, and bluebonnet as the one accent for the same alloy.",
+   "structural_laws": [
+    "A RASTERISED METAL REFLECTS ONLY ITS ENVIRONMENT. Copper with a grind painted into its colour read as walnut until it was metalness 1 with the grind in its roughness and a softbox on the camera's mirror ray.",
+    "A PRACTICAL LIGHT A FEW CENTIMETRES FROM A DOME SATURATES IT. The hot button's point light clipped its neighbours' facing sides into hard stepped edges until it was cut to a quarter.",
+    "A SHADOW CAMERA'S NEAR PLANE AT ITS TARGET CLIPS WHAT STANDS ABOVE IT. A rig distance of half a metre put the near plane at the bench and broke every dome's shadow into blocks.",
+    "THE GRADE'S BLOOM SAMPLES A QUARTER RESOLUTION BUFFER. On a dark macro it laid square cells round every bright dome edge, so a macro frame passes bloom strength zero.",
+    "A SECOND BOX BUTTED ON A BLOCK IS A SEAM. The hearth was made one deep block with its pockets offset back rather than a block and an extension."
+   ],
+   "techniques": [
+    "a low macro over a water cooled copper hearth, one button glowing among nineteen cooled ones",
+    "five powder heaps as a raking material relief, graphite, copper, nickel, titanium and brass",
+    "a sample tray of twenty buttons, one per $100,000 of the grant",
+    "the line of crucible, hearth and grips with a six axis arm, labelled mix, melt and test",
+    "one button on a stack of a hundred offprints, the accent band on its flank",
+    "two trays at one unit, twenty buttons for WoodNext and forty one of two hundred forty nine for NSF",
+    "a rack relief of seventy two tensile bars in rows of twelve, one a month",
+    "an etched section of a button with dendrites standing proud, the accent across the mount",
+    "a pulled flat tensile bar broken in two as an orthographic relief, the accent on its grip"
+   ],
+   "value": {
+    "per_frame_median_L": [
+     8.3,
+     3.0,
+     7.3,
+     9.1,
+     8.9,
+     7.5,
+     2.8,
+     8.7,
+     3.3
+    ],
+    "deck_median_L": 7.5,
+    "max_adjacent_delta": 5.9,
+    "mean_adjacent_delta": 3.62,
+    "note": "Measured by deck_coherence's median_lstar at 432 px off the final renders. A staged dark lab."
+   },
+   "accent": {
+    "hex": "#4E5FA8",
+    "name": "bluebonnet, the same alloy",
+    "frames_above_floor": [
+     5,
+     8,
+     9
+    ],
+    "share": [
+     0.0,
+     0.0,
+     0.0,
+     0.0003,
+     0.0035,
+     0.0,
+     0.0,
+     0.0025,
+     0.0072
+    ],
+    "note": "The band on the button over the papers, the mark across the section's mount and the paint on the broken bar's grip."
+   },
+   "ground": {
+    "hex": "#08080B",
+    "note": "The dark lab and the reliefs' black phenolic."
+   }
+  },
+  {
+   "date": "2026-11-02",
+   "carousel_no": 66,
+   "written_from": "deck_coherence's median L* per frame at 432 px off the final renders, layout_check's accent share, by update_ledgers.py.",
+   "register": "SPATIAL SCENES on one staged lastLight west side block at night, with three TXBENCH material reliefs. Chassis assets/js/deck/2026-11-02-sightline.js: street_dog (an SDF body with fur normals in lean and full builds) and window_phone, the kit crossover, chain link, ranch house and yards, and dusk gold as the one accent for the machine's detection.",
+   "structural_laws": [
+    "A CAMERA-SPACE OCCLUDER BUILT FOR ONE FOV IS WRONG AT ANOTHER. The window seal was placed with the old fov after the frame's fov changed and its bevel ran through the type column until it was placed with the real one.",
+    "A SCREEN IN A RENDER IS A SECOND RENDER. The phone's and the monitor's screens took a render target of the lens view; the frame's own detection box had to be sized to that target's aspect or it fell off the screen.",
+    "A LINE IN FRONT OF THE SUBJECT STRIKES IT. Sight lines from a lens to a box crossed the dog until the dog was drawn last over them, and then they were cut altogether.",
+    "A FRONTAL KEY FLATTENS A BODY SEEN FROM BEHIND. The close's dog read as felt until the frontal key was cut to a third and a low side key from camera left raked the flank.",
+    "A LOW CAMERA SHOWS A DARK WORLD AS A PLATE. At 0.35 m the close's rect fell under the detail floor; at 0.62 m the lit walk in the pool carried it."
+   ],
+   "techniques": [
+    "the cover from inside the car, the window seal and sill in camera space, the dog boxed in four gold corners",
+    "the phone clamped on the lowered glass, its screen a render target of the lens view with the box inside",
+    "the dog inside four labelled corners, the dog drawn over the marks",
+    "two street_dog builds side by side, lean and wary against full and stepping, each boxed",
+    "a reviewer's monitor lit only from its screen, the clip beside four unticked rings set as type",
+    "32 caliche plugs on a clay city plan with diagonal arterials as a material relief",
+    "the 2019 mould and the 2026 cast as two 4 by 8 blocks with a 7 division steel rule between, set in one dark bed",
+    "a caliche block over three month graduations on a dark steel rule, the report plug on a plain plate past December",
+    "the dog at its own height watching the survey car's tail lamps down a dark street"
+   ],
+   "value": {
+    "per_frame_median_L": [
+     4.4,
+     3.3,
+     6.9,
+     5.8,
+     4.4,
+     3.7,
+     3.7,
+     3.5,
+     2.1
+    ],
+    "deck_median_L": 3.7,
+    "max_adjacent_delta": 3.6,
+    "mean_adjacent_delta": 1.19,
+    "note": "Measured by deck_coherence's median_lstar at 432 px off the final renders. A staged night street and dark reliefs; the planned arc was rewritten to the measured one after the render."
+   },
+   "accent": {
+    "hex": "#E0956A",
+    "name": "dusk gold, the machine's detection",
+    "frames_above_floor": [
+     1,
+     3,
+     4
+    ],
+    "share": [
+     0.0069,
+     0.0003,
+     0.0047,
+     0.0037,
+     0.0001,
+     0.0,
+     0.0,
+     0.0,
+     0.001
+    ],
+    "note": "The box around the dog on 1, 3 and 4, small on the screens of 2 and 5, the chamfers of the 2026 plugs on 7."
+   },
+   "ground": {
+    "hex": "#09080C",
+    "note": "The night street and the reliefs' black clay."
+   }
+  },
+  {
+   "date": "2026-11-03",
+   "carousel_no": 67,
+   "written_from": "deck_coherence's median L* per frame at 432 px off the final renders, layout_check's accent share, by update_ledgers.py.",
+   "register": "SPATIAL SCENES in one staged floodlit weigh station and truck yard at night (frames 1 to 4, 8 and 9) with three TXBENCH material reliefs (5 to 7). Chassis assets/js/deck/2026-11-03-scalelane.js: truck_scale, scale_house, scale_signal, flood_pole, guard_gate, cab_beacon and yard_stalls, with the kit's semi_truck and highway, and primer rust as the one accent for what the letter expects and has not happened.",
+   "structural_laws": [
+    "LIGHT DESATURATES AN ACCENT. A primer albedo at the accent hex rendered ten to twenty Lab units off it under a cool flood, so the stop bar and the kerbs needed a warmer, more yellow albedo than the target to land within twelve.",
+    "A LABEL ON A RELIEF IS STRUCK BY ITS GROOVES. Map labels crossed county grooves and route lines until each sat on dark Gulf or plain ground with a leader to its place.",
+    "A RELIEF CAST NEEDS HEIGHT, NOT LENGTH. A long cast length over a low land plate stayed under the cast floor until the land itself stood proud and the county lines were cut into it.",
+    "A YARD OF STALLS READS AS ONE PAINTED PLATE until the paint sits a value below the cabs and the asphalt is sealed near black.",
+    "MOVING A RELIEF MOVES ITS RECT. The quarter's bar was raised and the dossier rect left behind measured empty bed under the detail floor until the rect was moved with it."
+   ],
+   "techniques": [
+    "a white tractor on a steel scale deck between yellow kerb rails, the scale house window lit beside it and a green signal over the lane",
+    "the station from its flood pole, three lit rings on the apron at the three calls the letter names, each with a leader",
+    "the tractor's nose at a guard gate boom with a single primer stop bar across the lane",
+    "twenty tractors in two ranks facing the camera across a sealed yard",
+    "a steel rule with a witness line, six machined week grooves and a primer clamp, three shims behind it",
+    "a polished billet and a mill scale bar on one datum at one scale, a primer groove at the expected 2026 revenue",
+    "a clay relief of Texas counties with a bead white inlay for Dallas to Houston and a row of primer studs for Charger's planned Dallas to Laredo",
+    "an amber cab beacon lit on a stopped tractor's roof at night",
+    "the yard from its light mast, 20 white stalls with tractors, primer kerbs closing the first 200 and the end of 1,000"
+   ],
+   "value": {
+    "per_frame_median_L": [
+     0.8,
+     10.9,
+     7.3,
+     4.0,
+     3.0,
+     5.5,
+     2.4,
+     3.8,
+     8.3
+    ],
+    "deck_median_L": 4.0,
+    "max_adjacent_delta": 10.1,
+    "mean_adjacent_delta": 3.69,
+    "note": "Measured by deck_coherence's median_lstar at 432 px off the final renders. A staged night station and dark reliefs."
+   },
+   "accent": {
+    "hex": "#8C5A3C",
+    "name": "primer rust, what the letter expects and has not happened",
+    "frames_above_floor": [
+     3,
+     5,
+     8,
+     9
+    ],
+    "share": [
+     0.0,
+     0.0,
+     0.0115,
+     0.0,
+     0.004,
+     0.0,
+     0.0004,
+     0.008,
+     0.0026
+    ],
+    "note": "November's stop bar on 3, the primer stop on 5, the expected 2026 revenue groove on 6, Charger's planned studs and New Braunfels on 7, the 200 and 1,000 stalls and kerbs on 9."
+   },
+   "ground": {
+    "hex": "#08090C",
+    "note": "The night yard's sealed asphalt and the reliefs' black bed."
+   }
+  },
+  {
+   "date": "2026-11-04",
+   "carousel_no": 68,
+   "written_from": "deck_coherence's median L* per frame at 432 px off the final renders, layout_check's accent share, by update_ledgers.py.",
+   "register": "SPATIAL SCENES on one staged Permian well pad at last light (frames 1, 3, 4, 6, 7 and 9) with three TXBENCH material reliefs (2, 5 and 8). Chassis assets/js/deck/2026-11-04-wellpad.js: release_page, strata_block, gauge_board and gauge_tape kit models with the kit's pump_jack, oil_tank, person, ranch_gate and cattle_guard, and dusk_gold as the one accent for a figure the release or record prints.",
+   "structural_laws": [
+    "THE KIT BAKES BY MATERIAL. A pump jack's polished rod and a tank's gauge board are merged into one mesh per material, so geometry parameters find nothing. Locate a part by its material's box, and fold kit vertices to a point to hide one.",
+    "A GRAZING EDGE ON A PAINTED CYLINDER FLARES WHITE. A standard material's specular at a low sun turned the tank's silhouette into a white stripe that envMapIntensity did not touch. A physical material with specular intensity near 0.1 kept it green.",
+    "A LIT ACCENT PLATE OVEREXPOSES. An emissive target at the accent hex rendered pale peach under a work light, so the albedo sits darker and less saturated than the target colour to land within twelve Lab of it.",
+    "A RELIEF'S TOP EDGE IS A HARD LINE UNDER THE DEK. A relief starting at a fixed y drew a visible edge through the dek's last line until a darken-only feather of 170 px faded it into the type field.",
+    "A THIN SUBJECT CAN'T SHARE A FULL-WIDTH HOOK. A rod and its bridle crossed the hook and dek wherever the camera put them until the type column narrowed to the left and the subject took the right half."
+   ],
+   "techniques": [
+    "a pump jack side on against the last light seam, its crank raked by a work light, on a dirt pad with long casts",
+    "a release page on dark steel with two graphite brackets on its margin and a binder clip",
+    "the carrier bar, two bridle cables and the chrome polished rod seen from beyond the well, the horsehead above",
+    "a cutaway block of banded ground under the jack, the well string dropping to a pale lateral with three leaders",
+    "two sucker rods on a tread plate at 100 to 122, the longer one tagged in brass",
+    "a stock tank battery with a float gauge board whose target sits at the crude share",
+    "two pipe racks of 67 and 33 box ends facing the low sun",
+    "a steel tape of 167 daily graduations from a brass plumb bob to a brass clip",
+    "a worker outside a closed lease gate, the jack working beyond it"
+   ],
+   "value": {
+    "per_frame_median_L": [
+     9.8,
+     4.7,
+     5.8,
+     5.7,
+     4.3,
+     9.7,
+     1.6,
+     4.3,
+     9.5
+    ],
+    "deck_median_L": 5.7,
+    "max_adjacent_delta": 8.1,
+    "mean_adjacent_delta": 3.64,
+    "note": "Measured by deck_coherence's median_lstar at 432 px off the final renders. A staged pad at last light and dark reliefs."
+   },
+   "accent": {
+    "hex": "#E0956A",
+    "name": "dusk_gold, a figure the release or record prints",
+    "frames_above_floor": [
+     5,
+     6,
+     8
+    ],
+    "share": [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0023,
+     0.0021,
+     0.0,
+     0.0021,
+     0.0
+    ],
+    "note": "The 22% tag on 5, the crude share target on 6, the plumb bob and clip at May 21st and November 4th on 8, and the leasehold labels on 7 in type."
+   },
+   "ground": {
+    "hex": "#08090C",
+    "note": "The pad at last light and the reliefs' black bed."
+   }
   }
  ]
 }

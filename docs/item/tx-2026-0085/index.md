@@ -11,7 +11,7 @@ The National Science Foundation obligated a cooperative agreement to William Mar
 - Public access: Write to the decider
 - Take part: https://www.nsf.gov/awardsearch/showAward?AWD_ID=2607553
 
-- Last checked: 2026-10-29
+- Last checked: 2026-11-04
 
 ## Dates
 
@@ -46,6 +46,8 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-21 · Checked and unchanged. The decision still stands as decided.
 - 2026-10-24 · The NSF cooperative agreement for Rice's self driving semiconductor laboratory is still in force.
 - 2026-10-29 · Rice's NSF cooperative agreement for a self driving semiconductor laboratory still stands.
+- 2026-11-01 · Rice's cooperative agreement with the foundation still stands as awarded.
+- 2026-11-04 · Checked and unchanged. The decision still stands as decided.
 
 ## Evidence
 

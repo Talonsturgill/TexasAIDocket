@@ -1,0 +1,91 @@
+<!doctype html>
+<!-- 2026-11-04, frame 5 of 9. Archetype DIAGRAM. A material relief in plan: two sucker rods lying on an oil-dark diamond tread deck plate, the third quarter's rod drawn longer than the prior quarter's by the quarter's rise in output at one scale, couplings and wrench flats in height, a brass tag on the longer rod. Drawn to illustrate, to no well's rod string. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:900px">Output rose 22 percent in a quarter</h1>
+<p class="dek" data-follow="26" style="width:860px">Total production averaged 457,528 barrels of oil equivalent a day. The release ties none of that rise to either AI tool.</p>
+<div class="lab" id="lab-prior">prior quarter</div>
+<div class="lab gold" id="lab-q3">third quarter, up 22%</div>
+<script>window.FIG = {"qoq_pct": 22};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/txbench.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-04-wellpad.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = (async () => {
+  const cx = await CH.bootFlat({ kicker: "The quarter", counter: "05 / 09", src: "c6", fit: { min: 80, max: 104, maxLines: 2 } });
+  TX.reseed(20261104);
+  /* THE FIGURE, from figures.json: the third quarter's rod is L2 px, and the prior quarter's is L2 over one plus
+   * qoq_pct percent, at the same scale. The rods are drawing units; no rod length of any well is claimed. */
+  const L2 = 900, L1 = L2 / (1 + FIG.qoq_pct / 100), XL = 90;
+  const Y1 = 790, Y2 = 950, RB = 32, RC = 40;                 /* the two rods' centrelines, body and coupling radius */
+  const M = { PLATE: 0, ROD: 1, COUP: 2, BRASS: 3, OIL: 4 };
+  function rod(X, Y, yc, L) {
+    const dy = Math.abs(Y - yc), x = X - XL;
+    if (x < 0 || x > L) return null;
+    /* couplings at both ends, the rod's own ends on the rule's ticks, thread relief rings, wrench flats inboard, the round body between */
+    const inC = (x >= 0 && x <= 92) || (x >= L - 92 && x <= L);
+    if (inC) { if (dy < RC) { const e = Math.min(x, L - x, 6) / 6, ring = ((x % 92) % 18) < 3 ? -3 : 0, flat = dy > RC * 0.62 ? 0.82 : 1; return [(46 * Math.sqrt(1 - (dy / RC) ** 2) * flat + ring) * Math.min(1, e + 0.4) + 2, M.COUP]; } return null; }
+    const inW = (x > 100 && x < 152) || (x > L - 152 && x < L - 100);
+    if (inW) { if (dy < RB + 3) return [RB + 4 - (dy > RB ? (dy - RB) * 3 : 0), M.ROD]; return null; }
+    if (dy < RB) return [RB * 1.4 * Math.sqrt(1 - (dy / RB) ** 2) + 3, M.ROD];
+    return null;
+  }
+  function sample(X, Y) {
+    const a = rod(X, Y, Y1, L1); if (a) return a;
+    const b = rod(X, Y, Y2, L2); if (b) return b;
+    /* the brass tag wired to the longer rod's far coupling */
+    const tx = XL + L2 - 104, ty = Y2 - RC - 54;
+    if (X > tx && X < tx + 96 && Y > ty && Y < ty + 52) { const e = Math.min(X - tx, tx + 96 - X, Y - ty, ty + 52 - Y); return [10 * Math.min(1, e / 4) + 2, M.BRASS]; }
+    if (Math.abs(X - (tx + 48)) < 2 && Y >= ty + 52 && Y < Y2 - RC + 6) return [6, M.COUP];   /* the tag's wire to the coupling */
+    /* oil stains on the plate under the rods, flat */
+    const st = TX.fbm2(X * 0.006, Y * 0.006, 3), u = ((X + Y) / 30) % 1, v = ((X - Y) / 30) % 1, dd = Math.abs(((u + 1) % 1) - 0.5) + Math.abs(((v + 1) % 1) - 0.5);
+    return [dd < 0.2 ? 1.6 * (1 - dd / 0.2) : 0, st > 0.5 ? M.OIL : M.PLATE];
+  }
+  const cache = new Map(), key = (X, Y) => (X * 4 | 0) + ',' + (Y * 4 | 0);
+  const S = (X, Y) => { const k = key(X, Y); let v = cache.get(k); if (!v) { v = sample(X, Y); cache.set(k, v); } return v; };
+  const albedo = (X, Y, m) => {
+    if (m === M.ROD) { const b = 1 + 0.04 * TX.fbm2(X * 0.2, Y * 0.5, 2); return [0.16 * b, 0.165 * b, 0.18 * b]; }
+    if (m === M.COUP) return [0.3, 0.31, 0.33];
+    if (m === M.BRASS) return [0.95, 0.42, 0.2];
+    /* the plate: diamond tread in the albedo, never in height, under a low key */
+    const u = ((X + Y) / 30) % 1, v = ((X - Y) / 30) % 1, d = Math.abs(((u + 1) % 1) - 0.5) + Math.abs(((v + 1) % 1) - 0.5) < 0.2 ? 1.9 : 1;
+    const g = 1 + 0.25 * TX.fbm2(X * 0.05, Y * 0.05, 3);
+    if (m === M.OIL) return [0.028 * g, 0.026 * g, 0.024 * g];
+    return [0.045 * d * g, 0.043 * d * g, 0.042 * d * g];
+  };
+  const pool = (X, Y) => { const d = Math.hypot((X - 560) / 600, (Y - 870) / 300), t = Math.max(0, Math.min(1, (d - 0.4) / 0.7)); return 1 - 0.92 * t * t * (3 - 2 * t); };
+  cx.fillStyle = '#08090c'; cx.fillRect(0, 0, 2160, 2700);
+  const rep = TXBENCH.relief(cx, { x: 0, y: 0, w: 1080, h: 1350, scale: 2, height: (X, Y) => S(X, Y)[0], material: (X, Y) => S(X, Y)[1], keyMask: pool, albedo,
+    spec: { [M.PLATE]: [0.25, 18], [M.ROD]: [0.9, 60], [M.COUP]: [1.0, 80], [M.BRASS]: [0.9, 40], [M.OIL]: [1.1, 120] }, keyColor: [1.0, 0.8, 0.58], ambColor: [0.5, 0.56, 0.78],
+    ambient: 0.07, diffuse: 2.8, ao: 1.0, shadow: 0.94, softness: 6, castLength: 230 });
+  /* the brass tag's painted face in the deck's accent, laid on the relief's lit tag so it reads as itself */
+  { const tx = XL + L2 - 104, ty = Y2 - RC - 54; cx.save(); cx.setTransform(2, 0, 0, 2, 0, 0); cx.fillStyle = 'rgba(4,4,6,0.6)'; cx.filter = 'blur(3px)'; cx.fillRect(tx + 12, ty + 12, 88, 44); cx.filter = 'none'; cx.fillStyle = '#E0956A'; cx.fillRect(tx + 4, ty + 4, 88, 44); cx.strokeStyle = 'rgba(40,22,10,0.8)'; cx.lineWidth = 1.5; cx.strokeRect(tx + 4, ty + 4, 88, 44); cx.fillStyle = 'rgba(255,226,196,0.75)'; cx.fillRect(tx + 5, ty + 5, 86, 2); cx.fillRect(tx + 5, ty + 5, 2, 42); cx.strokeStyle = 'rgba(60,32,14,0.6)'; cx.strokeRect(tx + 11, ty + 11, 74, 30); cx.fillStyle = '#20140c'; cx.beginPath(); cx.arc(tx + 48, ty + 44, 3.5, 0, Math.PI * 2); cx.fill(); cx.restore(); }
+  const put = (id, x, y) => { const el = document.getElementById(id); el.style.left = Math.round(x) + 'px'; el.style.top = Math.round(y) + 'px'; return el; };
+  put('lab-prior', XL, Y1 - 112);
+  put('lab-q3', XL, Y2 + 74);
+  /* a dimension rule over each rod, end to end, so the two lengths read as lengths */
+  { const svg = CH.svg(), mk = (d) => { const p = document.createElementNS('http://www.w3.org/2000/svg', 'path'); p.setAttribute('d', d); p.setAttribute('stroke', '#E6E3DC'); p.setAttribute('stroke-width', '2'); p.setAttribute('fill', 'none'); svg.appendChild(p); };
+    const y1 = Y1 - 62, y2 = Y2 + 64;
+    mk(`M${XL} ${y1} L${XL + L1} ${y1} M${XL} ${y1 - 9} L${XL} ${y1 + 9} M${XL + L1} ${y1 - 9} L${XL + L1} ${y1 + 9}`);
+    mk(`M${XL} ${y2} L${XL + L2} ${y2} M${XL} ${y2 - 9} L${XL} ${y2 + 9} M${XL + L2} ${y2 - 9} L${XL + L2} ${y2 + 9}`);
+    window.__txLeaders = [{ target: 'the prior quarter rod end', at: [XL + L1, y1], to: [XL + L1, y1] }, { target: 'the third quarter rod end', at: [XL + L2, y2], to: [XL + L2, y2] }]; }
+  cx.setTransform(2, 0, 0, 2, 0, 0);
+  CH.post(cx, { a: 0, veil: 0.4 });
+  window.__relief = rep;
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

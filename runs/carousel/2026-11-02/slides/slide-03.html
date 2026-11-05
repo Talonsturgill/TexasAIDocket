@@ -1,0 +1,93 @@
+<!doctype html>
+<!-- 2026-11-02, frame 3 of 9. Archetype DIAGRAM. From above and behind the survey car's rear quarter: the chassis window_phone on the lowered rear glass, and review_checks thin gold sight lines running from its lens across the road to the corners of a gold box standing around the tan dog on the parkway, each corner labelled with one check. Drawn to illustrate, to no breed and no maker's design. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:720px">Four checks on each clip</h1>
+<p class="dek" data-follow="26" style="width:880px">Video clips will go to automated and human review. Each detected dog will be&nbsp;checked.</p>
+<div class="lab" id="q0">unrestrained</div>
+<div class="lab" id="q1" style="text-align:right">human<br>supervision</div>
+<div class="lab" id="q2" style="text-align:right">number of<br>dogs present</div>
+<div class="lab" id="q3">owned or a stray</div>
+<script>window.FIG = {"review_checks": 4};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-02-sightline.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "What the review checks", counter: "03 / 09", src: "c4 c5", fit: { min: 76, max: 100, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 21, near: 0.05, far: 3000, fog: 0.012 });
+  const B = CH.BLOCK;
+  CH.street(K, TXT, R, { road: true, parkway: true, fence: true, yard: true, light: true });
+  const car = K.make('crossover', { seed: 5, color: 0x4d5257, metallic: 0.55 });
+  car.rotation.y = Math.PI / 2; car.position.set(0, 0.06, B.car[1]); TXT.add(R, car); TXT.contact(R, car, { vehicle: true });
+  const wx = -0.55, sideZ = B.car[1] - 1.02;
+  const ph = K.make('window_phone', {}); ph.rotation.y = Math.PI; ph.position.set(wx + 0.1, 1.18, sideZ); TXT.add(R, ph);
+  ph.updateMatrixWorld(true);
+  const lens = new THREE.Vector3(...ph.userData.lens).applyMatrix4(ph.matrixWorld);
+  const dog = K.make('street_dog', { build: 'full', pose: 'step', coat: 'tan', seed: 66 });
+  dog.rotation.y = -0.95; dog.position.set(0.8, 0.2, -4.95); TXT.add(R, dog); TXT.contact(R, dog, { grit: false });
+  /* THE BOX, standing upright around the dog and square to the lens, and one sight line per corner, the count read from figures.json */
+  const nC = Math.round(FIG.review_checks);
+  const gold = new THREE.MeshBasicMaterial({ color: 0xe0956a, toneMapped: false, fog: false });
+  const ctr = new THREE.Vector3(0.8, 0.72, -4.95), toLens = lens.clone().sub(ctr).setY(0).normalize();
+  const side = new THREE.Vector3(-toLens.z, 0, toLens.x), hwB = 0.46, hhB = 0.4;
+  const corners = [[-1, 1], [1, 1], [1, -1], [-1, -1]].slice(0, nC).map(([a, b]) => ctr.clone().addScaledVector(side, a * hwB).add(new THREE.Vector3(0, b * hhB, 0)));
+  const rod = (p, q, r) => { const d = q.clone().sub(p), m = new THREE.Mesh(new THREE.CylinderGeometry(r, r, d.length(), 8), gold); m.position.copy(p).addScaledVector(d, 0.5); m.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), d.normalize()); m.userData.noShadow = true; m.castShadow = false; R.scene.add(m); return m; };
+  corners.forEach((c, i) => {
+    const a = corners[(i + 1) % 4], b = corners[(i + 3) % 4];
+    rod(c, c.clone().lerp(a, 0.26), 0.024); rod(c, c.clone().lerp(b, 0.26), 0.024);
+  });
+  /* the lens itself, lit: a small warm bead where the four lines meet, so the convergence point reads as the phone */
+  { const bead = new THREE.Mesh(new THREE.SphereGeometry(0.03, 16, 12), new THREE.MeshBasicMaterial({ color: 0xffd9b8, toneMapped: false, fog: false })); bead.position.copy(lens); R.scene.add(bead);
+    const g = new THREE.Sprite(new THREE.SpriteMaterial({ map: CH.glowTex(THREE), color: 0xe0956a, transparent: true, opacity: 0.9, depthWrite: false, fog: false })); g.scale.set(0.5, 0.5, 1); g.position.copy(lens); R.scene.add(g); }
+  TXT.sky(R);
+  TXT.ground(R, { surface: 'asphalt', size: 600, seed: 33 });
+  const from = [-3.4, 3.9, 6.6];
+  const look = CH.aim(THREE, R, TXT, from, [0.8, 0.62, -4.95], 557, 975, 21);
+  /* a warm work light over the car's roof so the roof rail, the rear glass and the phone on it read as the rods' origin */
+  { const k = new THREE.PointLight(0xffd6ae, 7, 5, 2); k.position.set(wx + 0.4, 2.5, sideZ + 0.6); R.scene.add(k); const k2 = new THREE.PointLight(0xffc89a, 2.5, 3, 2); k2.position.set(wx + 0.3, 1.6, sideZ - 0.5); R.scene.add(k2); }
+  TXT.frame(R, { fov: 21, from, look });
+  CH.warm(R, 0.3);
+  TXT.deckRig(R, CH.rigSpec(W, 14, 4096), CH.rigOpts([0.5, 0.4, -2], { distance: 30, shadowFar: 70 }));
+  CH.unacne(R, 0.01);
+  TXT.weather(R, { grime: 0.4, height: 0.5 });
+  TXT.stage(R, [dog, car], { poolInner: 3.2, poolOuter: 8, behind: 0.35, depth: 0.9 });
+  /* each check's label beside its own corner */
+  /* the side each label goes on is decided on the screen: a corner left of the box's centre takes its label to the left */
+  const qs = corners.map((c) => CH.project(THREE, R, [c.x, c.y, c.z])), mx = qs.reduce((a, q) => a + q[0], 0) / qs.length, my = qs.reduce((a, q) => a + q[1], 0) / qs.length;
+  qs.forEach((q, i) => {
+    const el = document.getElementById('q' + i), w = el.getBoundingClientRect().width, left = q[0] < mx, up = q[1] < my;
+    el.style.left = Math.round(Math.max(84, Math.min(996 - w, left ? q[0] - 48 - w : q[0] + 30))) + 'px'; const hh = el.getBoundingClientRect().height; el.style.top = Math.round(q[1] - hh - 4) + 'px';
+  });
+  /* the dog drawn over the sight lines: the lines run to the box, never across the animal they are about */
+  { const top = dog.clone(true); top.traverse((o) => { if (o.isMesh) { o.material = o.material.clone(); o.material.depthTest = false; o.renderOrder = 999; o.castShadow = false; o.receiveShadow = true; } }); R.scene.add(top); }
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0.34, veil: 0.18, veilH: 200 });
+  /* a feathered dark reserve under each label, darken only, so the kerb's edges don't run through the glyphs */
+  ['q0', 'q1', 'q2', 'q3'].forEach((id) => {
+    const r = document.getElementById(id).getBoundingClientRect(), off = 4000;
+    cx.save(); cx.shadowColor = 'rgba(6,5,10,0.45)'; cx.shadowBlur = 34; cx.shadowOffsetX = off * 2;
+    cx.fillStyle = '#000'; cx.fillRect(r.left - 12 - off, r.top - 4, r.width + 24, r.height + 8); cx.restore();
+  });
+  /* a feathered dark reserve under the footer line, darken only, so a sill or kerb edge never strikes the site line */
+  { const off = 4000; cx.save(); cx.shadowColor = 'rgba(6,5,10,0.78)'; cx.shadowBlur = 34; cx.shadowOffsetX = off * 2; cx.fillStyle = '#000'; cx.fillRect(40 - off, 1228, 1000, 46); cx.restore(); }
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

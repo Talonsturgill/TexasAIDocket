@@ -3543,7 +3543,11 @@ figcaption {{ font-size:var(--s-1); color:var(--ink-mute); margin-top:.5rem;
    values are real text: selectable, readable by a screen reader, visible to the numeral gate,
    and never distorted by a stretched viewBox. Hover and keyboard focus both raise a group,
    because a chart nobody can interrogate is a screenshot with extra steps. */
-.qchart {{ margin:0; padding:0; }}
+/* ITS OWN SCROLL BOX ON A PHONE. The series grows a month at a time and every month keeps its
+   month label, so at ten months a 320px screen ran the row 42px past its edge and the page
+   scrolled sideways. The months are not cut and the type is not shrunk under its floor: the
+   figure scrolls inside itself, the way a wide table does here, and the page stays put. */
+.qchart {{ margin:0; padding:0; overflow-x:auto; overscroll-behavior-x:contain; }}
 .qgroups {{ list-style:none; margin:0; padding:0; max-width:none;
   display:grid; grid-auto-flow:column; grid-auto-columns:1fr; gap:clamp(.2rem,1.4vw,1rem);
   align-items:end; height:clamp(7rem,20vw,10rem); }}

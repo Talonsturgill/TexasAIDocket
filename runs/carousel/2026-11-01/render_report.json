@@ -1,0 +1,2092 @@
+{
+  "canvas": {
+    "width": 1080,
+    "height": 1350,
+    "scale": 2.0,
+    "px": [
+      2160,
+      2700
+    ]
+  },
+  "text_window": 320,
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "png": "slide-01.png",
+      "console_errors": [
+        "TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot stands inside something built"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 232, 223)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The metal still has to be melted",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 203,
+          "font_px": 103.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(236, 232, 223)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              137,
+              897,
+              127
+            ],
+            [
+              80,
+              238,
+              421,
+              127
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Texas A&M plans the Aggie AI Foundry, where computer controlled arms will mix, melt and test new alloys. A $2 million WoodNext Foundation grant will help build it. Drawn to illustrate.",
+          "x": 82,
+          "y": 379,
+          "w": 860,
+          "h": 171,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              379,
+              809,
+              42
+            ],
+            [
+              82,
+              422,
+              752,
+              42
+            ],
+            [
+              82,
+              464,
+              805,
+              42
+            ],
+            [
+              82,
+              507,
+              279,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Texas A&M",
+          "x": 80,
+          "y": 80,
+          "w": 149,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              149,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "01 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c1 c2 c5 c7 c8",
+          "x": 80,
+          "y": 1234,
+          "w": 225,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              225,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 30020,
+      "ok": true,
+      "load_ms": 415,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 45.4,
+          "variance": 2119.7
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-02.html",
+      "png": "slide-02.png",
+      "console_errors": [
+        "TXBENCH: RELIEF {\"height_range\":160.76512644875808,\"materials\":6,\"cast_fraction\":0.5001233591186123,\"area\":0.5851851851851851,\"render_ms\":25200.29999999702}"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 232, 223)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Roughly a trillion ways to mix them",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 195,
+          "font_px": 99.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(236, 232, 223)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              137,
+              732,
+              122
+            ],
+            [
+              80,
+              235,
+              720,
+              122
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Several dozen elements give AI roughly a trillion possible mixes, the university says. Existing self driving labs focus on materials that are relatively easy to make. Drawn to illustrate.",
+          "x": 82,
+          "y": 371,
+          "w": 860,
+          "h": 171,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              371,
+              828,
+              42
+            ],
+            [
+              82,
+              414,
+              838,
+              42
+            ],
+            [
+              82,
+              457,
+              655,
+              42
+            ],
+            [
+              82,
+              499,
+              279,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Before there is an alloy",
+          "x": 80,
+          "y": 80,
+          "w": 397,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              397,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "02 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c11 c18",
+          "x": 80,
+          "y": 1234,
+          "w": 113,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              113,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 32614,
+      "ok": true,
+      "load_ms": 352,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 22.1,
+          "variance": 1356.1
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-03.html",
+      "png": "slide-03.png",
+      "console_errors": [
+        "TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot stands inside something built"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 232, 223)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "$2 million, in buttons",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 203,
+          "font_px": 103.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(236, 232, 223)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              137,
+              470,
+              127
+            ],
+            [
+              80,
+              238,
+              435,
+              127
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The WoodNext Foundation manages the philanthropy of Roku's founder, Anthony Wood, and his wife Susan. The grant comes through a donor advised fund. Each button is an equal share of the grant, 20 in all. Drawn to illustrate.",
+          "x": 82,
+          "y": 379,
+          "w": 880,
+          "h": 171,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              379,
+              822,
+              42
+            ],
+            [
+              82,
+              422,
+              808,
+              42
+            ],
+            [
+              82,
+              464,
+              849,
+              42
+            ],
+            [
+              82,
+              507,
+              816,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Who is paying",
+          "x": 80,
+          "y": 80,
+          "w": 215,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              215,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "03 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c1 c2 c4 c5 c6",
+          "x": 80,
+          "y": 1234,
+          "w": 225,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              225,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 28295,
+      "ok": true,
+      "load_ms": 534,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 26.7,
+          "variance": 406.3
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-04.html",
+      "png": "slide-04.png",
+      "console_errors": [
+        "TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot stands inside something built"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 232, 223)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Mix, melt and test, on one line",
+          "x": 80,
+          "y": 150,
+          "w": 790,
+          "h": 195,
+          "font_px": 99.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(236, 232, 223)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              137,
+              760,
+              122
+            ],
+            [
+              80,
+              235,
+              451,
+              122
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Robotics will mix, melt and test the materials with computer controlled arms along an assembly line that takes samples, the university says. It says existing self driving labs can't handle alloys at up to 3,000 degrees Celsius. Drawn to illustrate.",
+          "x": 82,
+          "y": 371,
+          "w": 880,
+          "h": 214,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              371,
+              880,
+              42
+            ],
+            [
+              82,
+              414,
+              867,
+              42
+            ],
+            [
+              82,
+              457,
+              827,
+              42
+            ],
+            [
+              82,
+              499,
+              757,
+              42
+            ],
+            [
+              82,
+              542,
+              179,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "MIX",
+          "x": 80,
+          "y": 850,
+          "w": 51,
+          "h": 34,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 232, 223)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              849,
+              51,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "MELT",
+          "x": 407,
+          "y": 1145,
+          "w": 69,
+          "h": 34,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 232, 223)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              407,
+              1144,
+              69,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "TEST",
+          "x": 931,
+          "y": 999,
+          "w": 69,
+          "h": 34,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 232, 223)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              931,
+              998,
+              69,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The line",
+          "x": 80,
+          "y": 80,
+          "w": 132,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              132,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "04 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c8 c10 c11",
+          "x": 80,
+          "y": 1234,
+          "w": 161,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              161,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [
+        {
+          "kind": "svg",
+          "x": 49.6,
+          "y": 889.8,
+          "w": 56.2,
+          "h": 55.5,
+          "by": "line",
+          "color": "rgb(7, 7, 12)",
+          "decorative": true,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 49.6,
+          "y": 889.8,
+          "w": 56.2,
+          "h": 55.5,
+          "by": "line",
+          "color": "rgb(236, 232, 223)",
+          "decorative": true,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 436.9,
+          "y": 994.6,
+          "w": 5,
+          "h": 144.4,
+          "by": "line",
+          "color": "rgb(7, 7, 12)",
+          "decorative": true,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 436.9,
+          "y": 994.6,
+          "w": 4.5,
+          "h": 144.4,
+          "by": "line",
+          "color": "rgb(236, 232, 223)",
+          "decorative": true,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 965.4,
+          "y": 919.4,
+          "w": 17.9,
+          "h": 73.6,
+          "by": "line",
+          "color": "rgb(7, 7, 12)",
+          "decorative": true,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 965.4,
+          "y": 919.4,
+          "w": 17.9,
+          "h": 73.6,
+          "by": "line",
+          "color": "rgb(236, 232, 223)",
+          "decorative": true,
+          "skip": []
+        }
+      ],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 25112,
+      "ok": true,
+      "load_ms": 443,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 31.2,
+          "variance": 587.7
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-05.html",
+      "png": "slide-05.png",
+      "console_errors": [
+        "TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot stands inside something built"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 232, 223)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Two researchers, more than 100 papers",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 185,
+          "font_px": 94.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(236, 232, 223)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              138,
+              678,
+              116
+            ],
+            [
+              80,
+              231,
+              877,
+              116
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Ibrahim Karaman, who heads the department, and Raymundo Arr\u00f3yave conceived the foundry. They have published more than 100 papers together. The university calls it the first lab of its kind in academia. Drawn to illustrate.",
+          "x": 82,
+          "y": 361,
+          "w": 880,
+          "h": 214,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              361,
+              731,
+              42
+            ],
+            [
+              82,
+              404,
+              792,
+              42
+            ],
+            [
+              82,
+              447,
+              830,
+              42
+            ],
+            [
+              82,
+              490,
+              611,
+              42
+            ],
+            [
+              82,
+              532,
+              279,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Who conceived it",
+          "x": 80,
+          "y": 80,
+          "w": 265,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              265,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "05 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c12 c13 c14 c15 c16",
+          "x": 80,
+          "y": 1234,
+          "w": 306,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              306,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 38095,
+      "ok": true,
+      "load_ms": 357,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 43.3,
+          "variance": 1360.5
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-06.html",
+      "png": "slide-06.png",
+      "console_errors": [
+        "TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot stands inside something built"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 232, 223)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "NSF has obligated $4.1 million of $24.9 million",
+          "x": 80,
+          "y": 150,
+          "w": 920,
+          "h": 172,
+          "font_px": 87.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(236, 232, 223)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              138,
+              836,
+              108
+            ],
+            [
+              80,
+              224,
+              869,
+              108
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The $24.9 million is the award's estimated total. Its Autonomous Robotic Metallurgist at Texas A&M is built to design, make, test and learn from new alloys. In front, the WoodNext grant at $100,000 a button. Drawn to illustrate.",
+          "x": 82,
+          "y": 348,
+          "w": 880,
+          "h": 171,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              348,
+              741,
+              42
+            ],
+            [
+              82,
+              390,
+              841,
+              42
+            ],
+            [
+              82,
+              433,
+              836,
+              42
+            ],
+            [
+              82,
+              476,
+              849,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "WOODNEXT",
+          "x": 595,
+          "y": 1074,
+          "w": 137,
+          "h": 34,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 232, 223)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              595,
+              1073,
+              137,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "NSF ARM-MIP",
+          "x": 811,
+          "y": 969,
+          "w": 189,
+          "h": 34,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 232, 223)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              811,
+              968,
+              189,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "A separate federal award",
+          "x": 80,
+          "y": 80,
+          "w": 397,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              397,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "06 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c1 c20 c21 c22 c25 c26",
+          "x": 80,
+          "y": 1234,
+          "w": 354,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              354,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [
+        {
+          "kind": "svg",
+          "x": 554.6,
+          "y": 1089.9,
+          "w": 32.4,
+          "h": 5,
+          "by": "line",
+          "color": "rgb(7, 7, 12)",
+          "decorative": true,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 554.6,
+          "y": 1089.9,
+          "w": 32.4,
+          "h": 2,
+          "by": "line",
+          "color": "rgb(236, 232, 223)",
+          "decorative": true,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 756,
+          "y": 935.4,
+          "w": 47,
+          "h": 50.5,
+          "by": "line",
+          "color": "rgb(7, 7, 12)",
+          "decorative": true,
+          "skip": []
+        },
+        {
+          "kind": "svg",
+          "x": 756,
+          "y": 935.4,
+          "w": 47,
+          "h": 50.5,
+          "by": "line",
+          "color": "rgb(236, 232, 223)",
+          "decorative": true,
+          "skip": []
+        }
+      ],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 28006,
+      "ok": true,
+      "load_ms": 353,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 25.4,
+          "variance": 132
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-07.html",
+      "png": "slide-07.png",
+      "console_errors": [
+        "TXBENCH: RELIEF {\"height_range\":10.228230996657032,\"materials\":3,\"cast_fraction\":0.25163203017832647,\"area\":1,\"render_ms\":23732.900000002235}"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 232, 223)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Six years, one bar a month",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 195,
+          "font_px": 99.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(236, 232, 223)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              137,
+              803,
+              122
+            ],
+            [
+              80,
+              235,
+              274,
+              122
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The NSF award runs from September 1st to August 31st, 2032. The platform is open access, and its intended users include researchers at non-R1 and EPSCoR institutions. One bar is one month. Drawn to illustrate.",
+          "x": 82,
+          "y": 371,
+          "w": 860,
+          "h": 171,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              371,
+              809,
+              42
+            ],
+            [
+              82,
+              414,
+              842,
+              42
+            ],
+            [
+              82,
+              457,
+              814,
+              42
+            ],
+            [
+              82,
+              499,
+              606,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "2026",
+          "x": 50,
+          "y": 669,
+          "w": 69,
+          "h": 34,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 232, 223)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              50,
+              668,
+              69,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "2032",
+          "x": 50,
+          "y": 1135,
+          "w": 69,
+          "h": 34,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 232, 223)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              50,
+              1134,
+              69,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The federal clock",
+          "x": 80,
+          "y": 80,
+          "w": 282,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              282,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "07 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c21 c23 c27 c28",
+          "x": 80,
+          "y": 1234,
+          "w": 241,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              241,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 30294,
+      "ok": true,
+      "load_ms": 269,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 15.8,
+          "variance": 462.7
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-08.html",
+      "png": "slide-08.png",
+      "console_errors": [
+        "TXBENCH: RELIEF {\"height_range\":14.6885430302174,\"materials\":4,\"cast_fraction\":0.5469638310185185,\"area\":0.5925925925925926,\"render_ms\":12535.60000000149}"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 232, 223)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "No computational tool can predict it, Arr\u00f3yave says",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 153,
+          "font_px": 78,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(236, 232, 223)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              140,
+              856,
+              96
+            ],
+            [
+              80,
+              216,
+              782,
+              96
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Arr\u00f3yave says no computational tool anywhere in the world can predict how an alloy is going to behave. His NSF backed PhaseForge applies machine learning to CALPHAD to say whether a material can exist at all. Drawn to illustrate.",
+          "x": 82,
+          "y": 329,
+          "w": 880,
+          "h": 171,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              329,
+              865,
+              42
+            ],
+            [
+              82,
+              372,
+              865,
+              42
+            ],
+            [
+              82,
+              414,
+              828,
+              42
+            ],
+            [
+              82,
+              457,
+              787,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Inside the button",
+          "x": 80,
+          "y": 80,
+          "w": 282,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              282,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "08 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c17 c29 c30 c32 c33",
+          "x": 80,
+          "y": 1234,
+          "w": 306,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              306,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 18053,
+      "ok": true,
+      "load_ms": 223,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 28.6,
+          "variance": 1409.1
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-09.html",
+      "png": "slide-09.png",
+      "console_errors": [
+        "TXBENCH: RELIEF {\"height_range\":22.684223445338915,\"materials\":5,\"cast_fraction\":0.2398485939643347,\"area\":1,\"render_ms\":27330.20000000298}"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 232, 223)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "So the metal still gets tested",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 203,
+          "font_px": 103.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(236, 232, 223)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              137,
+              721,
+              127
+            ],
+            [
+              80,
+              238,
+              458,
+              127
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Texas A&M's goal is alloys in a week or less instead of months, a target and not a result. PhaseForge is free online and anyone can contribute to it. The NSF platform is open access. Drawn to illustrate.",
+          "x": 82,
+          "y": 379,
+          "w": 880,
+          "h": 171,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              379,
+              770,
+              42
+            ],
+            [
+              82,
+              422,
+              866,
+              42
+            ],
+            [
+              82,
+              464,
+              839,
+              42
+            ],
+            [
+              82,
+              507,
+              398,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "What a reader can do",
+          "x": 80,
+          "y": 80,
+          "w": 331,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              331,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "09 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c8 c9 c21 c23 c31",
+          "x": 80,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 33236,
+      "ok": true,
+      "load_ms": 257,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 20,
+          "variance": 776
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    }
+  ]
+}
