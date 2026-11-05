@@ -9,7 +9,7 @@ On September 21st, 2026 the Governor directed the Texas Commission on Environmen
 - Public access: Write to the decider
 - Take part: https://www.texastribune.org/2026/09/21/texas-data-center-moratorium-water-energy/
 
-- Last checked: 2026-11-01
+- Last checked: 2026-11-04
 
 ## Dates
 
@@ -38,6 +38,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-26 · The environmental agency answered the Governor on October 19th. Its letter says applications subject to the directive are paused and that it met with the water board, the utility commission and ERCOT to align their directives.
 - 2026-10-29 · The environmental agency told the Governor on October 19th that it has paused every permit for infrastructure directly supporting data centers.
 - 2026-11-01 · TCEQ has shut its electronic permit filing portal so that staff read every application tied to data centers before anything is authorized. The agency expects the change to the portal to be finished in mid November.
+- 2026-11-04 · Checked and unchanged. The decision still stands as decided.
 
 ## Evidence
 

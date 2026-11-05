@@ -12,7 +12,7 @@ On August 11th, 2026 the League City City Council approved Ordinance No. 2026-27
 - Comment closes: 2026-11-03
 - Take part: https://leaguecity.legistar.com/MeetingDetail.aspx?LEGID=2222&GID=84&G=2D7DD9CC-BD32-4A4F-B8D5-83638663C82D
 
-- Last checked: 2026-11-02
+- Last checked: 2026-11-05
 
 ## Dates
 
@@ -56,6 +56,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-01 · League City's council records still show the special election set for Tuesday, and the October resolution on removing the cameras still reads as passed.
 - 2026-11-02 · League City's council record still orders Tuesday's special election on the fixed plate reader cameras, a day before voters decide it.
 - 2026-11-03 · Voters in League City decide Proposition A today. The council record that ordered the election did not show the quoted wording this time, so nothing about it is confirmed today.
+- 2026-11-05 · The council's order calling the November 3rd vote on plate reader cameras still reads as passed. The county has not yet posted a canvass of the result.
 
 ## Evidence
 

@@ -2498,3 +2498,16 @@ answer and 37 were refused by the crawl boundary and never requested. **www.utso
 answer their robots.txt** (URLError, 9 and 8 claims), so the boundary read both as refusing. The 403s came mostly from
 **www.faa.gov** (16 claims), **www.wilcotx.gov** (6, a CivicPlus newsflash), **www.globenewswire.com** (4) and
 **www.brownsvilletx.gov** (3). None was routed around.
+
+## 2026-11-04
+
+**www.sec.gov answered** Permian Resources' third quarter 2026 results release (Exhibit 99.1 to its November 4th
+8-K) and its 2025 Form 10-K, both read through `fetch_doc.py`. **www.texastribune.org answered** the May 21st produced
+water article. **corporate.exxonmobil.com answered** its Permian drilling automation post, which was verified and left
+out of the deck. **www.rrc.texas.gov answered** `/general-counsel/` and `/general-counsel/open-meetings/`, which carry
+the next open meeting date. **`/about-us/commissioners/open-meetings/` and `/about-us/open-meetings/` returned 404**,
+so the open meetings list lives under General Counsel, not About Us.
+
+**www.utep.edu and www.utsouthwestern.edu failed TLS and robots.txt again** (URLError, as on 2026-11-03), which held
+items past the staleness band until alternate primary sources were used. www.utep.edu is recorded on tx-2026-0227 as
+`blocks_every_client`, checked 2026-11-05. None was routed around.

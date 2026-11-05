@@ -11,7 +11,7 @@ The National Science Foundation made an award to the University of Texas at Aust
 - Public access: Write to the decider
 - Take part: https://api.nsf.gov/services/v1/awards/2535276.json?printFields=abstractText
 
-- Last checked: 2026-11-01
+- Last checked: 2026-11-04
 
 ## Dates
 
@@ -46,6 +46,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-24 · The NSF award to UT Austin for learning robot safety rules from demonstrated safe behavior is still active.
 - 2026-10-29 · The NSF award to UT Austin for robot safety learned from demonstrated behavior still stands on the foundation's record.
 - 2026-11-01 · UT Austin's award to replace hand written robot safety rules still stands as granted.
+- 2026-11-04 · Checked and unchanged. The decision still stands as decided.
 
 ## Evidence
 

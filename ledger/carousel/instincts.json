@@ -222,7 +222,8 @@
         "2026-10-30",
         "2026-10-31",
         "2026-11-01",
-        "2026-11-03"
+        "2026-11-03",
+        "2026-11-05"
       ],
       "contradicted": []
     },
@@ -649,7 +650,8 @@
         "2026-10-29",
         "2026-10-31",
         "2026-11-01",
-        "2026-11-03"
+        "2026-11-03",
+        "2026-11-05"
       ],
       "contradicted": []
     },
@@ -747,7 +749,8 @@
         "2026-10-17",
         "2026-10-25",
         "2026-10-26",
-        "2026-11-03"
+        "2026-11-03",
+        "2026-11-05"
       ],
       "contradicted": []
     },
@@ -869,7 +872,8 @@
         "2026-10-20",
         "2026-10-24",
         "2026-10-26",
-        "2026-11-03"
+        "2026-11-03",
+        "2026-11-05"
       ],
       "contradicted": []
     },
@@ -1718,6 +1722,14 @@
       "learned": "2026-11-03",
       "instinct": "Pick a count frame's camera so every counted unit stands whole and separable at 432 px before choosing it for drama, and say in the dossier why the judges' oblique was not taken.",
       "evidence": "No. 67 frame 4: three oblique cameras hid five or six of the 20 tractors or merged them under layout_check's GRID count, so the frontal view shipped and all three judges charged it as a toy lot in every round.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "find-kit-parts-by-material",
+      "learned": "2026-11-05",
+      "instinct": "Find a part of a baked kit model by its material's bounding box, never by geometry parameters, because the bake merges every mesh of one material and a parameter lookup silently finds nothing.",
+      "evidence": "2026-11-04 no. 68, frames 3 and 4 looked for the polished rod by its cylinder radius, found nothing, and placed the camera and the well string on a hand-typed fallback about 0.9 m off the real rod",
       "confirmed": [],
       "contradicted": []
     }

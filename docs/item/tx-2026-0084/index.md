@@ -11,7 +11,7 @@ Amazon announced a new manufacturing facility in Austin that will produce the ro
 - Public access: Write to the decider
 - Take part: https://press.aboutamazon.com/2026/8/amazon-announces-new-manufacturing-facility-in-austin-texas
 
-- Last checked: 2026-11-01
+- Last checked: 2026-11-05
 
 ## Dates
 
@@ -47,6 +47,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-26 · The Governor's release on Amazon's Austin robotics factory is still unconfirmed. The office's site bars automated readers.
 - 2026-10-29 · Austin's account of Amazon's robotics factory, with no incentives requested, still reads as cited. The Governor's announcement is unconfirmed.
 - 2026-11-01 · Amazon's choice of Austin for its warehouse robotics factory still stands as announced.
+- 2026-11-05 · Amazon's Austin robotics factory still stands as announced.
 
 ## Evidence
 

@@ -36,6 +36,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-24 · The grid operator's questionnaire to conditionally classified large loads still carries its notarized attestation requirement.
 - 2026-10-29 · ERCOT's questionnaire to every conditionally classified large load, notarized attestation included, still stands as sent.
 - 2026-11-01 · ERCOT's notarised questionnaire for every conditionally classified large load reads as published in its own user guide.
+- 2026-11-05 · The ERCOT figures in the record are unconfirmed today. ERCOT's pages did not answer.
 
 ## Evidence
 

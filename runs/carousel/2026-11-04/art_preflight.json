@@ -18,8 +18,8 @@
     "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
     "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
     "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
-    "slides/slide-06.html": "9c80185ad367d82c5501fcbed6473ece36e88052f57712cfc0277e2df312302e",
-    "render/slide-06.png": "3f24fe6d544e1a2aa5f8b98bb647d6e0eb2170ab6b84d68800e8e498e71fa632",
+    "slides/slide-06.html": "ea8883dbc900d2498aff66f3a5699ceb4622f3149f273d35c02e11e5c10f05fd",
+    "render/slide-06.png": "42e667824c8bb53fb7a6f14cb4d7482310a892e2ed5e9061a59ae899c918778f",
     "slides/slide-09.html": "0876226df4795e716ac06188feb516dac195bb07935fe94947bd4334974f359c",
     "render/slide-09.png": "15770bb0c218d516a68bd246bf102fb6a18c1b12265f7927b959fc4001b8cbb9"
   },
@@ -32,9 +32,9 @@
     },
     {
       "frame": "slide-06.png",
-      "median_L": 8.8,
-      "mid": 0.162,
-      "dark": 0.587
+      "median_L": 9.1,
+      "mid": 0.165,
+      "dark": 0.581
     },
     {
       "frame": "slide-09.png",
@@ -58,8 +58,8 @@
       "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
       "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
       "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
-      "slides/slide-06.html": "9c80185ad367d82c5501fcbed6473ece36e88052f57712cfc0277e2df312302e",
-      "render/slide-06.png": "3f24fe6d544e1a2aa5f8b98bb647d6e0eb2170ab6b84d68800e8e498e71fa632",
+      "slides/slide-06.html": "ea8883dbc900d2498aff66f3a5699ceb4622f3149f273d35c02e11e5c10f05fd",
+      "render/slide-06.png": "42e667824c8bb53fb7a6f14cb4d7482310a892e2ed5e9061a59ae899c918778f",
       "slides/slide-09.html": "0876226df4795e716ac06188feb516dac195bb07935fe94947bd4334974f359c",
       "render/slide-09.png": "15770bb0c218d516a68bd246bf102fb6a18c1b12265f7927b959fc4001b8cbb9"
     },
@@ -93,9 +93,9 @@
         "slide": 6,
         "role": "evidence",
         "subject": "Two matte dark green stock tanks seated in a containment wall, joined by a walkway that the tanks and a stair carry. A pale float gauge board with ten tick marks runs the full shell height of the near tank, and an orange target rides the board just under its midpoint.",
-        "visual_consequence": "Without reading 45.5 a reader sees a gauge on a tank with its target a little below half. The board runs from roof to foot, and the target's centre sits at about 0.47 of its height, just under the middle tick. The new dek says the same thing in words, so headline, dek and image agree.",
-        "weakness": "Polish only. The 45.5% label is now light ink on the near tank's dark shell, crisp and tied to the target, legible at 432 px, and the accent sits on the target plate alone. The label's leading 4 sits right against a vertical weld seam. The dek reflows to three lines and clears the vent pipe and rail. The bound polish notes still stand: a hard value step at some weld seams, even shell lighting without a warm highlight beside the target, no visible cast from the target, and a dark wall face for the lower third.",
-        "repair": "None required before the remaining frames. Optional polish: nudge the label about 12 design px right so its first glyph clears the weld seam, keeping the gap to the target.",
+        "visual_consequence": "With no number printed, the gauge carries the share by itself. The target sits at about 0.47 of the board's height, so a reader sees a tank gauged a little under half, and the hook says exactly that.",
+        "weakness": "Polish only. The scene, lighting and materials are identical to the bound readings. The target is the only accent and reads at 432 px. Without a label, under rather than at half rests on about one tick-width at feed size, and the dek's 'that share' has a loose referent. The bound notes stand: a hard value step at some weld seams, even shell lighting, no visible cast from the target, a dark wall face for the lower third.",
+        "repair": "None required before the remaining frames. Optional polish: make the middle tick visibly longer so a reader sees at a glance that the target sits just under half.",
         "encoding_reads": true,
         "dominant_subject_finished": true,
         "feed_legible": true,
@@ -110,8 +110,8 @@
           "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
           "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
           "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
-          "slides/slide-06.html": "9c80185ad367d82c5501fcbed6473ece36e88052f57712cfc0277e2df312302e",
-          "render/slide-06.png": "3f24fe6d544e1a2aa5f8b98bb647d6e0eb2170ab6b84d68800e8e498e71fa632"
+          "slides/slide-06.html": "ea8883dbc900d2498aff66f3a5699ceb4622f3149f273d35c02e11e5c10f05fd",
+          "render/slide-06.png": "42e667824c8bb53fb7a6f14cb4d7482310a892e2ed5e9061a59ae899c918778f"
         }
       },
       {
@@ -173,8 +173,8 @@
       "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
       "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
       "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
-      "slides/slide-06.html": "9c80185ad367d82c5501fcbed6473ece36e88052f57712cfc0277e2df312302e",
-      "render/slide-06.png": "3f24fe6d544e1a2aa5f8b98bb647d6e0eb2170ab6b84d68800e8e498e71fa632"
+      "slides/slide-06.html": "ea8883dbc900d2498aff66f3a5699ceb4622f3149f273d35c02e11e5c10f05fd",
+      "render/slide-06.png": "42e667824c8bb53fb7a6f14cb4d7482310a892e2ed5e9061a59ae899c918778f"
     },
     "9": {
       "assets/js/deck/2026-11-04-wellpad.js": "3e2f075a80e12d6b8dc9036c334496529d91efbc25de59abae6d9f4f63615b6d",
@@ -195,8 +195,8 @@
   "shipped_inputs": {
     "slides/slide-01.html": "34cdc1f330657adce9a86b903a8dc0542504145402149aac26fd8b644048c1a5",
     "slide-01.webp": "3b8d1debfc6669f9cc02eb2515daaf49b42f3e66ea0c9d469086b5208999d0e8",
-    "slides/slide-06.html": "9c80185ad367d82c5501fcbed6473ece36e88052f57712cfc0277e2df312302e",
-    "slide-06.webp": "e9d2652be4796c877f7efb1b9a4d19a84ea6747e974bab236c653a008b8e26a7",
+    "slides/slide-06.html": "ea8883dbc900d2498aff66f3a5699ceb4622f3149f273d35c02e11e5c10f05fd",
+    "slide-06.webp": "bf4acc2410d4125574138980928aa76bf2e1f784f226ee85e32888f224734ae1",
     "slides/slide-09.html": "0876226df4795e716ac06188feb516dac195bb07935fe94947bd4334974f359c",
     "slide-09.webp": "fc136f240465b66a28971d3fa52a881c49ccdb201cc1fb01f8c7a4f6417c0170"
   },
@@ -209,9 +209,9 @@
     },
     {
       "to": "slide-06.webp",
-      "to_sha256": "e9d2652be4796c877f7efb1b9a4d19a84ea6747e974bab236c653a008b8e26a7",
-      "from_sha256": "3f24fe6d544e1a2aa5f8b98bb647d6e0eb2170ab6b84d68800e8e498e71fa632",
-      "psnr_db": 42.759
+      "to_sha256": "bf4acc2410d4125574138980928aa76bf2e1f784f226ee85e32888f224734ae1",
+      "from_sha256": "42e667824c8bb53fb7a6f14cb4d7482310a892e2ed5e9061a59ae899c918778f",
+      "psnr_db": 43.192
     },
     {
       "to": "slide-09.webp",

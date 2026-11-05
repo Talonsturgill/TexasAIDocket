@@ -12,7 +12,7 @@ Volvo Autonomous Solutions and Waabi announced on October 5th the start of auton
 - Public access: Write to the decider
 - Take part: https://www.txdmv.gov/about-us/txdmv-board-meetings
 
-- Last checked: 2026-11-01
+- Last checked: 2026-11-04
 
 ## Dates
 
@@ -30,6 +30,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-24 · Volvo and Waabi still haul freight between Dallas and Houston with an observer in the driver's seat.
 - 2026-10-29 · Volvo and Waabi still haul freight between Dallas and Houston with an observer in the driver's seat.
 - 2026-11-01 · Volvo and Waabi's customer hauls between Dallas and Houston still run with an observer in the cab.
+- 2026-11-04 · Checked and unchanged. The decision still stands as decided.
 
 ## Evidence
 

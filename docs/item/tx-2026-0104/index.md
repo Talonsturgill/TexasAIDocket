@@ -11,7 +11,7 @@ The National Science Foundation made award 2535195 to the University of Texas at
 - Public access: Write to the decider
 - Take part: https://www.nsf.gov/awardsearch/show-award?AWD_ID=2535195
 
-- Last checked: 2026-11-01
+- Last checked: 2026-11-04
 
 ## Dates
 
@@ -49,6 +49,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-24 · The NSF funded human and robot co-adaptation center at UT Austin is still active.
 - 2026-10-29 · The NSF center at UT Austin for human and robot co-adaptation still stands on the foundation's record.
 - 2026-11-01 · The human and robot co-adaptation center is still funded as announced.
+- 2026-11-04 · Checked and unchanged. The decision still stands as decided.
 
 ## Evidence
 
