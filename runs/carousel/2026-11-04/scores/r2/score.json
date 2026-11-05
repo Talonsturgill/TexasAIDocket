@@ -1,0 +1,254 @@
+{
+ "weighted_score": 6.6,
+ "judges": [
+  6.426,
+  6.6,
+  6.51
+ ],
+ "spread": 0.174,
+ "criteria": {
+  "artwork_craft": {
+   "score": 6.0,
+   "weight": 0.22,
+   "judges": [
+    6.0,
+    6.0,
+    6.2
+   ]
+  },
+  "deck_coherence": {
+   "score": 7.0,
+   "weight": 0.12,
+   "judges": [
+    6.8,
+    7.0,
+    7.0
+   ]
+  },
+  "claim_integrity": {
+   "score": 7.0,
+   "weight": 0.2,
+   "judges": [
+    6.0,
+    7.0,
+    7.0
+   ]
+  },
+  "story_and_stakes": {
+   "score": 6.5,
+   "weight": 0.16,
+   "judges": [
+    6.5,
+    6.5,
+    6.0
+   ]
+  },
+  "sequence_and_momentum": {
+   "score": 6.5,
+   "weight": 0.1,
+   "judges": [
+    7.0,
+    6.5,
+    6.5
+   ]
+  },
+  "voice": {
+   "score": 7.0,
+   "weight": 0.1,
+   "judges": [
+    7.0,
+    7.0,
+    7.0
+   ]
+  },
+  "variety": {
+   "score": 6.5,
+   "weight": 0.1,
+   "judges": [
+    6.5,
+    6.5,
+    6.0
+   ]
+  }
+ },
+ "hard_fails": [
+  "An unverified fact presented as verified. The slide 1 headline 'The pump jack has a new watcher' (cite c1 c4) names the equipment the AI watches as a pump jack; c1 says only 'AI-powered artificial lift monitoring system' and no claim names a lift type. The same unsourced gloss appears in the web edition introduction ('Artificial lift is the pump jack and the equipment around it', no claim id) and in record tx-2026-0240's title ('the pumps that lift oil from its wells'). Repair: name what the source names on the cover, drop or source the web edition's definition, correct the record title, and mark the jack as drawn to illustrate."
+ ],
+ "hard_fails_by_judge": [
+  {
+   "judge": 1,
+   "fail": "An unverified fact presented as verified. The slide 1 headline 'The pump jack has a new watcher' (cite c1 c4) names the equipment the AI watches as a pump jack; c1 says only 'AI-powered artificial lift monitoring system' and no claim names a lift type. The same unsourced gloss appears in the web edition introduction ('Artificial lift is the pump jack and the equipment around it', no claim id) and in record tx-2026-0240's title ('the pumps that lift oil from its wells'). Repair: name what the source names on the cover, drop or source the web edition's definition, correct the record title, and mark the jack as drawn to illustrate."
+  }
+ ],
+ "ship": false,
+ "threshold": 8.0,
+ "over_threshold": false,
+ "method": "per-criterion median across three judges, then weighted by the rubric",
+ "threshold_dissents": [
+  "judge 2 refused on the threshold, not on a fault, and scored 6.6 against a 8.0 bar. That dissent is carried in the median",
+  "judge 3 refused on the threshold, not on a fault, and scored 6.51 against a 8.0 bar. That dissent is carried in the median"
+ ],
+ "threshold_dissents_by_judge": [
+  {
+   "judge": 2,
+   "score": 6.6,
+   "reason": "judge 2 refused on the threshold, not on a fault, and scored 6.6 against a 8.0 bar. That dissent is carried in the median"
+  },
+  {
+   "judge": 3,
+   "score": 6.51,
+   "reason": "judge 3 refused on the threshold, not on a fault, and scored 6.51 against a 8.0 bar. That dissent is carried in the median"
+  }
+ ],
+ "artwork_weakest_frames": [
+  {
+   "slide": 7,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Flat white rings; the Texas rack overhangs its stand; timber overshoot.",
+     "fix": "Camera 0.5 m lower and yawed 20 degrees, worn tool-joint steel, timbers and stands trimmed to the rack width."
+    },
+    {
+     "judge": 2,
+     "problem": "White rings read as coins; bodies smear; labels float; a blob behind.",
+     "fix": "Chamfered box ends with recessed bores in worn steel, key raked from the left at about 6 degrees; remove the blob."
+    },
+    {
+     "judge": 3,
+     "problem": "Flat white rings in a grid; floating label; timber overshoot.",
+     "fix": "Three-quarter view, worn steel joints with a key-side rim, label over its rack."
+    }
+   ]
+  },
+  {
+   "slide": 5,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Square rods, flat tag, empty band.",
+     "fix": "Round bars and couplings with flats, lit brass tag on wire, rods scaled up and raised about 150 px at the same ratio."
+    },
+    {
+     "judge": 2,
+     "problem": "Square rods; flat tag; empty top 40 percent.",
+     "fix": "Round rod profile with round couplings and flats; move the pair up into the middle band."
+    },
+    {
+     "judge": 3,
+     "problem": "Flat bars; tread behind the headline; flat tag.",
+     "fix": "Round rods with cylindrical couplings, tread only in the lower 55 percent pool, lit brass tag with a cast."
+    }
+   ]
+  },
+  {
+   "slide": 1,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Cover jack near pure black.",
+     "fix": "Warm rim key behind the jack at 10 to 15 degrees, kept off the ground; work light up and camera left."
+    },
+    {
+     "judge": 2,
+     "problem": "Jack near-pure black apart from the crank.",
+     "fix": "Widen the work light to rake the beam web and horsehead face."
+    },
+    {
+     "judge": 3,
+     "problem": "Cover jack a dark silhouette without an edge.",
+     "fix": "Key behind toward the seam for a rim, raise the work light on crank and counterweights."
+    }
+   ]
+  },
+  {
+   "slide": 2,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Flat grey card, no curl, block clip.",
+     "fix": "A real curl casting on the steel, a wire clip, a tighter pool."
+    },
+    {
+     "judge": 2,
+     "problem": "A shadow wedge with no visible caster; no curl; clip a black rectangle.",
+     "fix": "Raise the far corner so the wedge is visibly cast by the curl; seat the page with a thin contact shadow."
+    },
+    {
+     "judge": 3,
+     "problem": "Generic grey ruled sheet in the grey middle.",
+     "fix": "Rake to near white on black steel, enlarge to bleed right, caliche dust and a tailgate edge."
+    }
+   ]
+  },
+  {
+   "slide": 4,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Corrugated bump.",
+     "fix": "Noise-driven bedding and fracture on strata_block."
+    },
+    {
+     "judge": 2,
+     "problem": "Sine corrugation; counterweight clips white.",
+     "fix": "Noise bedding on strata_block; lower the counterweight albedo."
+    },
+    {
+     "judge": 3,
+     "problem": "Corrugated bands; small jack without rim; block in a void.",
+     "fix": "Noise bedding, lower closer camera, seam-side rim along the beam."
+    }
+   ]
+  },
+  {
+   "slide": 3,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "About 60 percent below the dek empty; subject crammed right.",
+     "fix": "Orbit about 25 degrees left and lower the look-up so the horsehead and bridle fill the upper left behind the type and the rod sits in the centre third."
+    },
+    {
+     "judge": 2,
+     "problem": "Flat-shaded primitives, untextured wellhead, subject unidentifiable, left half empty.",
+     "fix": "Camera to 0.6 m and in until the rod and stuffing box fill the right two thirds; galvanized tee and valve with cavity grime."
+    }
+   ]
+  },
+  {
+   "slide": 6,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "Flat mid-tone tank wall; dot weathering reads as mould.",
+     "fix": "Hard side key so each shell rolls to black; vertical rust streaks from the seams."
+    }
+   ]
+  },
+  {
+   "slide": 8,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Flat orange bob and clip; dark tape.",
+     "fix": "Brass PBR bob and clip with a highlight; brighter tape edge."
+    }
+   ]
+  }
+ ],
+ "rounds_derived": 2,
+ "rounds": 2,
+ "rounds_source": "this module's own log of cards it has scored",
+ "rounds_declared": 2,
+ "rung": 7.7,
+ "craft_floor": "waiting, because a hard fail is repaired first"
+}

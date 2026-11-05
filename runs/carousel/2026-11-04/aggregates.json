@@ -1,0 +1,59 @@
+{
+ "date": "2026-11-04",
+ "_note": "Every count, span, ratio and duration the deck states, with the claim it was quoted from or the figures.json key compute.py computed.",
+ "aggregates": [
+  {
+   "phrase": "457,528 barrels",
+   "slide": "slide-05.html",
+   "kind": "count",
+   "value": 457528,
+   "quoted_from": "c6",
+   "quote": "Total production was 457,528 barrels of oil equivalent per day (“Boe/d”), a 22% increase compared to the prior quarter.",
+   "note": "quoted"
+  },
+  {
+   "phrase": "457,528 barrels",
+   "slide": "caption.txt",
+   "kind": "count",
+   "value": 457528,
+   "quoted_from": "c6",
+   "quote": "Total production was 457,528 barrels of oil equivalent per day (“Boe/d”), a 22% increase compared to the prior quarter.",
+   "note": "quoted"
+  },
+  {
+   "phrase": "167 days",
+   "slide": "slide-08.html",
+   "kind": "span",
+   "value": 167,
+   "from_date": "2026-05-21",
+   "to_date": "2026-11-04",
+   "computed_by": "compute.py figures.json days_since_rrc",
+   "from": [
+    "c27",
+    "c4"
+   ],
+   "note": "from the Tribune's May 21st report (its URL date) to the release dated November 4th"
+  },
+  {
+   "phrase": "208,029 barrels",
+   "slide": "slide-06.html",
+   "kind": "count",
+   "value": 208029,
+   "quoted_from": "c7",
+   "quote": "During the third quarter, average daily crude oil production was 208,029 barrels of oil per day",
+   "note": "quoted"
+  },
+  {
+   "phrase": "two official records",
+   "slide": "first_comment.txt",
+   "kind": "count",
+   "value": 2,
+   "computed_by": "sources_block.py, the distinct documents behind the printed claim ids",
+   "from": [
+    "c15",
+    "c29"
+   ],
+   "note": "the 2025 Form 10-K and the Railroad Commission's open meetings page"
+  }
+ ]
+}

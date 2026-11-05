@@ -1,0 +1,84 @@
+{
+ "lens": "integrity",
+ "round": 3,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.3,
+   "why": "Dark register met, 9 a real staged scene, data art true to scale (5 at 1.22, 7 at 67 and 33, 6 at about 0.46, 8 about 24 weekly marks). Uneven: 7 coin pictograms and lit scrub blobs, 5 square bars and a flat tag, 3 empty left and a tangle, 2 a flat grey slab, 4 corrugated bands and a small jack, 1 and 9 unrimmed silhouettes."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.0,
+   "why": "One world and ground, a consistent relief sub-family, one accent meaning, the jack as spine. Stroke motif unreadable and the sky hue strobes in the middle."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.0,
+   "why": "Every numeral traces and was rechecked; absences agree with the record; ExxonMobil stays off every surface. Looser: slide 8's headline drops the attribution and the set (the dek restores both); the November 17th meeting is set as a lever though the record says there is no public process and 'next' infers past c29's quote; copy.json's caption was stale; the first comment lists c27 but not c28; 'a second feeds' makes the tool the actor."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.5,
+   "why": "What and who are clear and the deck is honest about the wells. Where stays at the state level. The regulator tension is good but not concrete, and the meeting is not tied to the subject."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Cover earns the swipe, 2 pays, 8 turns, the close asks cleanly. 6 cuttable; 5's rise unexplained."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "Specific and on register, honest without doom, house rules hold. The opener 'AI for runtime.' is flat and 'A second feeds' is awkward."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "Oilfield subject and palette new against the last four decks, no topic overlap. lastLight again; the ranch gate close repeats nos. 62 and 54; the cover opens on one machine at dusk."
+  }
+ ],
+ "weighted_score": 6.77,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Name Reeves County on the leasehold frame and say plainly on frame 9 that no public process exists, rather than borrowing the RRC meeting as a lever.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 7,
+   "problem": "Coin pictograms in a straight-on grid; lit scrub behind.",
+   "fix": "Camera about 25 degrees off axis at 1.0 m, worn steel joints, delete the scrub."
+  },
+  {
+   "slide": 5,
+   "problem": "Square bars; flat tag; a two-bar chart.",
+   "fix": "Semicircular height profile, round couplings with flats, lit brass tag on a wire with a cast."
+  },
+  {
+   "slide": 3,
+   "problem": "Dead left half; a tangle with no single read of the rod.",
+   "fix": "Rod and stuffing box right of centre filling the lower two thirds, rimmed from behind, ladder out of the near plane."
+  },
+  {
+   "slide": 2,
+   "problem": "A flat grey slab with stamped bars.",
+   "fix": "Raise the curl and clip, a fibre bump, a lower key for long casts, near-white paper on black steel."
+  },
+  {
+   "slide": 4,
+   "problem": "Periodic corrugated stripes; a small jack.",
+   "fix": "Noise bedding; camera in so the jack stands at least 200 px."
+  },
+  {
+   "slide": 1,
+   "problem": "Unlit silhouette, no rim.",
+   "fix": "Key about 15 degrees toward camera or a rim behind the beam."
+  }
+ ]
+}

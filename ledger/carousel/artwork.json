@@ -4253,6 +4253,72 @@
     "hex": "#08090C",
     "note": "The night yard's sealed asphalt and the reliefs' black bed."
    }
+  },
+  {
+   "date": "2026-11-04",
+   "carousel_no": 68,
+   "written_from": "deck_coherence's median L* per frame at 432 px off the final renders, layout_check's accent share, by update_ledgers.py.",
+   "register": "SPATIAL SCENES on one staged Permian well pad at last light (frames 1, 3, 4, 6, 7 and 9) with three TXBENCH material reliefs (2, 5 and 8). Chassis assets/js/deck/2026-11-04-wellpad.js: release_page, strata_block, gauge_board and gauge_tape kit models with the kit's pump_jack, oil_tank, person, ranch_gate and cattle_guard, and dusk_gold as the one accent for a figure the release or record prints.",
+   "structural_laws": [
+    "THE KIT BAKES BY MATERIAL. A pump jack's polished rod and a tank's gauge board are merged into one mesh per material, so geometry parameters find nothing. Locate a part by its material's box, and fold kit vertices to a point to hide one.",
+    "A GRAZING EDGE ON A PAINTED CYLINDER FLARES WHITE. A standard material's specular at a low sun turned the tank's silhouette into a white stripe that envMapIntensity did not touch. A physical material with specular intensity near 0.1 kept it green.",
+    "A LIT ACCENT PLATE OVEREXPOSES. An emissive target at the accent hex rendered pale peach under a work light, so the albedo sits darker and less saturated than the target colour to land within twelve Lab of it.",
+    "A RELIEF'S TOP EDGE IS A HARD LINE UNDER THE DEK. A relief starting at a fixed y drew a visible edge through the dek's last line until a darken-only feather of 170 px faded it into the type field.",
+    "A THIN SUBJECT CAN'T SHARE A FULL-WIDTH HOOK. A rod and its bridle crossed the hook and dek wherever the camera put them until the type column narrowed to the left and the subject took the right half."
+   ],
+   "techniques": [
+    "a pump jack side on against the last light seam, its crank raked by a work light, on a dirt pad with long casts",
+    "a release page on dark steel with two graphite brackets on its margin and a binder clip",
+    "the carrier bar, two bridle cables and the chrome polished rod seen from beyond the well, the horsehead above",
+    "a cutaway block of banded ground under the jack, the well string dropping to a pale lateral with three leaders",
+    "two sucker rods on a tread plate at 100 to 122, the longer one tagged in brass",
+    "a stock tank battery with a float gauge board whose target sits at the crude share",
+    "two pipe racks of 67 and 33 box ends facing the low sun",
+    "a steel tape of 167 daily graduations from a brass plumb bob to a brass clip",
+    "a worker outside a closed lease gate, the jack working beyond it"
+   ],
+   "value": {
+    "per_frame_median_L": [
+     9.8,
+     4.7,
+     5.8,
+     5.7,
+     4.3,
+     9.7,
+     1.6,
+     4.3,
+     9.5
+    ],
+    "deck_median_L": 5.7,
+    "max_adjacent_delta": 8.1,
+    "mean_adjacent_delta": 3.64,
+    "note": "Measured by deck_coherence's median_lstar at 432 px off the final renders. A staged pad at last light and dark reliefs."
+   },
+   "accent": {
+    "hex": "#E0956A",
+    "name": "dusk_gold, a figure the release or record prints",
+    "frames_above_floor": [
+     5,
+     6,
+     8
+    ],
+    "share": [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0023,
+     0.0021,
+     0.0,
+     0.0021,
+     0.0
+    ],
+    "note": "The 22% tag on 5, the crude share target on 6, the plumb bob and clip at May 21st and November 4th on 8, and the leasehold labels on 7 in type."
+   },
+   "ground": {
+    "hex": "#08090C",
+    "note": "The pad at last light and the reliefs' black bed."
+   }
   }
  ]
 }

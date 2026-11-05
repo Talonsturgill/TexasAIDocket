@@ -1,0 +1,84 @@
+{
+ "lens": "craft",
+ "round": 1,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.2,
+   "why": "Four frames strong and four lean on defaults. 01 a bold silhouette with casts but the beam, horsehead and post near pure black. 09 true scale with person, gate and pool, the worker stiff and cut at the shins. 06 tanks fill the frame and the target encodes 45.5% without the number, shells evenly lit. 08 the tape reads as a span, plate noisy, brass flat. Weak: 07 flat white ring joints, pipe bodies smear, timber overshoots. 03 about 60% empty dark, dim navy jack, plain box carrier bar. 05 rectangular rods in two tones and a flat floating tag. 02 mid-grey page with bar text, no visible curl. 04 corrugated cut face in mid tones, jack small."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.0,
+   "why": "One dusk pad world, dark register, dusk_gold for printed figures, the camera walking from the jack to the gate. The stroke motif can't be read, sky hue splits cold on 03, 04, 07 and warm on 01, 06, 09, reliefs light from different sides, 07 outside the material vocabulary."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.0,
+   "why": "Every numeral traces. 45.5% computes from c6 and c7, 167 days counts. c27 rests on the Tribune. The caption hook drops 'power' from c18. No fabrication."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.8,
+   "why": "Who, what, where and the regulator are named. Nothing tells a Texan what to do next; 09 closes on a rhetorical question."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Cover earns the swipe, 02 pays, 03 sets up the compression credit, 08 turns. 06 and partly 05 are context that doesn't advance the AI argument."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.3,
+   "why": "On register and specific. The caption's meta line about the deck describes art not story; 08's headline reads clipped."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "Distinct from nos. 65 to 67, first oilfield world. The scenes plus reliefs mix and dark staged register are familiar house moves."
+  }
+ ],
+ "weighted_score": 7.07,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Rebuild 07, 03 and 05 as lit, rounded physical forms that own the frame.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 7,
+   "problem": "Tool joints are flat unshaded white rings; pipe bodies smear; the top Texas row floats; timber overshoots.",
+   "fix": "Bevelled box ends with bore and rim specular, every row seated on a timber cut to stack width, camera about 25 degrees off axis so the bodies run into depth."
+  },
+  {
+   "slide": 3,
+   "problem": "About 60% of the frame is empty near-black; dim navy jack under a cool fill; plain box carrier bar.",
+   "fix": "Camera about 1.5 m left and closer so rod, carrier bar and stuffing box fill the centre right; warm west rim on the rod; bevelled bolted carrier bar."
+  },
+  {
+   "slide": 5,
+   "problem": "Rectangular rods in two flat tones; flat tag floating clear of the rod.",
+   "fix": "Cylindrical height profile for bodies and couplings; hang the tag from the coupling so it overlaps and casts."
+  },
+  {
+   "slide": 2,
+   "problem": "Even mid-grey page with bar text; curl not visible; the bracketed paragraphs get no more light.",
+   "fix": "Narrow the key to a near-white pool on the two bracketed paragraphs; lift the curl to cast."
+  },
+  {
+   "slide": 4,
+   "problem": "Uniform horizontal bump reads as corrugated sheet; the lateral isn't the brightest thing.",
+   "fix": "Noise-bedded strata, red bed a stop darker, the lateral the one bright specular edge."
+  },
+  {
+   "slide": 1,
+   "problem": "Apart from the crank the jack is near pure black.",
+   "fix": "Widen the work light and raise the rim so the beam web and horsehead catch a bright edge."
+  }
+ ]
+}

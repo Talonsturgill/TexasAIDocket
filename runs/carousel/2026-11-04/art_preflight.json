@@ -1,0 +1,223 @@
+{
+  "version": 2,
+  "selected": [
+    1,
+    6,
+    9
+  ],
+  "inputs": {
+    "slides/slide-01.html": "34cdc1f330657adce9a86b903a8dc0542504145402149aac26fd8b644048c1a5",
+    "render/slide-01.png": "a3c70a5baa66f5860eb1f90e00224e173c8b6c367667f06895452c76703c16e4",
+    "assets/js/deck/2026-11-04-wellpad.js": "3e2f075a80e12d6b8dc9036c334496529d91efbc25de59abae6d9f4f63615b6d",
+    "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+    "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+    "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+    "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+    "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+    "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+    "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+    "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+    "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+    "slides/slide-06.html": "9c80185ad367d82c5501fcbed6473ece36e88052f57712cfc0277e2df312302e",
+    "render/slide-06.png": "3f24fe6d544e1a2aa5f8b98bb647d6e0eb2170ab6b84d68800e8e498e71fa632",
+    "slides/slide-09.html": "0876226df4795e716ac06188feb516dac195bb07935fe94947bd4334974f359c",
+    "render/slide-09.png": "15770bb0c218d516a68bd246bf102fb6a18c1b12265f7927b959fc4001b8cbb9"
+  },
+  "value_measurements": [
+    {
+      "frame": "slide-01.png",
+      "median_L": 8.3,
+      "mid": 0.202,
+      "dark": 0.623
+    },
+    {
+      "frame": "slide-06.png",
+      "median_L": 8.8,
+      "mid": 0.162,
+      "dark": 0.587
+    },
+    {
+      "frame": "slide-09.png",
+      "median_L": 8.6,
+      "mid": 0.098,
+      "dark": 0.612
+    }
+  ],
+  "review": {
+    "decision": "accept",
+    "inputs": {
+      "slides/slide-01.html": "34cdc1f330657adce9a86b903a8dc0542504145402149aac26fd8b644048c1a5",
+      "render/slide-01.png": "a3c70a5baa66f5860eb1f90e00224e173c8b6c367667f06895452c76703c16e4",
+      "assets/js/deck/2026-11-04-wellpad.js": "3e2f075a80e12d6b8dc9036c334496529d91efbc25de59abae6d9f4f63615b6d",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+      "slides/slide-06.html": "9c80185ad367d82c5501fcbed6473ece36e88052f57712cfc0277e2df312302e",
+      "render/slide-06.png": "3f24fe6d544e1a2aa5f8b98bb647d6e0eb2170ab6b84d68800e8e498e71fa632",
+      "slides/slide-09.html": "0876226df4795e716ac06188feb516dac195bb07935fe94947bd4334974f359c",
+      "render/slide-09.png": "15770bb0c218d516a68bd246bf102fb6a18c1b12265f7927b959fc4001b8cbb9"
+    },
+    "frames": [
+      {
+        "slide": 1,
+        "role": "cover",
+        "subject": "The kit pump jack seen side-on against a last-light horizon. Its walking beam, horsehead and A-frame Samson post are silhouetted, the crank arm catches the work light, and it stands on a skid on a dirt pad whose long cast shadows run toward the camera.",
+        "visual_consequence": "Without the headline a reader sees one working oil well at dusk, alone in the frame. A beam pump is itself a form of artificial lift, so the image still matches the new hook, and the dek's added sentence keeps the image from claiming the lift type the source never named.",
+        "weakness": "Polish only. The scene is identical to the bound reading. The four-line dek clears the jack with sky between the type and the horsehead, and at 432 px the hook, dek and silhouette all read. Apart from the crank arm, the jack is close to pure black with thin blue rim slivers, so its paint and the chrome polished rod barely show.",
+        "repair": "None required before the remaining frames. Optional polish, as bound: widen the work light so it rakes the walking beam's web and the horsehead face as well as the crank.",
+        "encoding_reads": true,
+        "dominant_subject_finished": true,
+        "feed_legible": true,
+        "inputs": {
+          "slides/slide-01.html": "34cdc1f330657adce9a86b903a8dc0542504145402149aac26fd8b644048c1a5",
+          "render/slide-01.png": "a3c70a5baa66f5860eb1f90e00224e173c8b6c367667f06895452c76703c16e4",
+          "assets/js/deck/2026-11-04-wellpad.js": "3e2f075a80e12d6b8dc9036c334496529d91efbc25de59abae6d9f4f63615b6d",
+          "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+          "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+          "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+          "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+          "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+          "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+          "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+          "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+          "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de"
+        }
+      },
+      {
+        "slide": 6,
+        "role": "evidence",
+        "subject": "Two matte dark green stock tanks seated in a containment wall, joined by a walkway that the tanks and a stair carry. A pale float gauge board with ten tick marks runs the full shell height of the near tank, and an orange target rides the board just under its midpoint.",
+        "visual_consequence": "Without reading 45.5 a reader sees a gauge on a tank with its target a little below half. The board runs from roof to foot, and the target's centre sits at about 0.47 of its height, just under the middle tick. The new dek says the same thing in words, so headline, dek and image agree.",
+        "weakness": "Polish only. The 45.5% label is now light ink on the near tank's dark shell, crisp and tied to the target, legible at 432 px, and the accent sits on the target plate alone. The label's leading 4 sits right against a vertical weld seam. The dek reflows to three lines and clears the vent pipe and rail. The bound polish notes still stand: a hard value step at some weld seams, even shell lighting without a warm highlight beside the target, no visible cast from the target, and a dark wall face for the lower third.",
+        "repair": "None required before the remaining frames. Optional polish: nudge the label about 12 design px right so its first glyph clears the weld seam, keeping the gap to the target.",
+        "encoding_reads": true,
+        "dominant_subject_finished": true,
+        "feed_legible": true,
+        "inputs": {
+          "assets/js/deck/2026-11-04-wellpad.js": "3e2f075a80e12d6b8dc9036c334496529d91efbc25de59abae6d9f4f63615b6d",
+          "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+          "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+          "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+          "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+          "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+          "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+          "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+          "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+          "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+          "slides/slide-06.html": "9c80185ad367d82c5501fcbed6473ece36e88052f57712cfc0277e2df312302e",
+          "render/slide-06.png": "3f24fe6d544e1a2aa5f8b98bb647d6e0eb2170ab6b84d68800e8e498e71fa632"
+        }
+      },
+      {
+        "slide": 9,
+        "role": "close",
+        "subject": "A worker in a hard hat and hi-vis vest, seen from behind with hands on hips, stands at a closed ranch gate in warm-lit grass. Beyond the gate the pump jack works on the far side of the caliche lease road.",
+        "visual_consequence": "Without the headline a reader sees a person on the outside of a closed gate looking at the machine. That is the deck's open question about who checks what the watcher finds, made literal. The new dek gives that question a dated next step.",
+        "weakness": "The warm rim light lands mainly on the ground rather than the walking beam and horsehead, which keep only a thin cool sliver, so the panel's unlit-silhouette charge still stands. The brighter grass seats the worker but raises the ground behind the claim ids, which stay legible. The worker is still cut at the shins and the cattle guard is below the frame edge.",
+        "repair": "Not an audition blocker. Re-aim the warm light behind the jack nearly opposite the camera at 10 to 20 degrees elevation, kept off the ground, so it grazes the horsehead face and the beam's upper edge.",
+        "encoding_reads": true,
+        "dominant_subject_finished": true,
+        "feed_legible": true,
+        "inputs": {
+          "assets/js/deck/2026-11-04-wellpad.js": "3e2f075a80e12d6b8dc9036c334496529d91efbc25de59abae6d9f4f63615b6d",
+          "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+          "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+          "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+          "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+          "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+          "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+          "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+          "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+          "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+          "slides/slide-09.html": "0876226df4795e716ac06188feb516dac195bb07935fe94947bd4334974f359c",
+          "render/slide-09.png": "15770bb0c218d516a68bd246bf102fb6a18c1b12265f7927b959fc4001b8cbb9"
+        }
+      }
+    ]
+  },
+  "plan": {
+    "hardest_frame": 6,
+    "visual_argument": "A Permian tank battery's own float gauge board, its target set at the computed crude share of the company's output, so a reader sees that a little under half of every barrel of oil equivalent was crude without reading the number.",
+    "build_risk": "The share is a level on a thin board on a large tank, so the board, its scale and its target have to read at 432 px against dark tank paint, over a containment wall, with the tank in the pool and the type kept off the tank tops. The first evidence frame (one hour of the fastest well as a pipe column, then as a notched rule) failed the art review twice: a hairline at true scale, then a circular encoding of hours in a day. It was dropped for this frame and for the sucker rod ratio on frame 5.",
+    "distinct_from_recent": "No. 67 was a floodlit weigh station with a white tractor and steel reliefs; this is lastLight on a caliche pad with a kit pump jack and a vertical column. No. 66 was San Antonio streets and a phone camera with primitive screens; nothing here is a screen. No. 65 was a foundry robot arm in primitives with dogbone tiles; the only machine here is the kit's true linkage pump jack and the one relief is two cast iron masses with no plate edge."
+  },
+  "frame_inputs": {
+    "1": {
+      "slides/slide-01.html": "34cdc1f330657adce9a86b903a8dc0542504145402149aac26fd8b644048c1a5",
+      "render/slide-01.png": "a3c70a5baa66f5860eb1f90e00224e173c8b6c367667f06895452c76703c16e4",
+      "assets/js/deck/2026-11-04-wellpad.js": "3e2f075a80e12d6b8dc9036c334496529d91efbc25de59abae6d9f4f63615b6d",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de"
+    },
+    "6": {
+      "assets/js/deck/2026-11-04-wellpad.js": "3e2f075a80e12d6b8dc9036c334496529d91efbc25de59abae6d9f4f63615b6d",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+      "slides/slide-06.html": "9c80185ad367d82c5501fcbed6473ece36e88052f57712cfc0277e2df312302e",
+      "render/slide-06.png": "3f24fe6d544e1a2aa5f8b98bb647d6e0eb2170ab6b84d68800e8e498e71fa632"
+    },
+    "9": {
+      "assets/js/deck/2026-11-04-wellpad.js": "3e2f075a80e12d6b8dc9036c334496529d91efbc25de59abae6d9f4f63615b6d",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+      "slides/slide-09.html": "0876226df4795e716ac06188feb516dac195bb07935fe94947bd4334974f359c",
+      "render/slide-09.png": "15770bb0c218d516a68bd246bf102fb6a18c1b12265f7927b959fc4001b8cbb9"
+    }
+  },
+  "needs_review": [],
+  "shipped_inputs": {
+    "slides/slide-01.html": "34cdc1f330657adce9a86b903a8dc0542504145402149aac26fd8b644048c1a5",
+    "slide-01.webp": "3b8d1debfc6669f9cc02eb2515daaf49b42f3e66ea0c9d469086b5208999d0e8",
+    "slides/slide-06.html": "9c80185ad367d82c5501fcbed6473ece36e88052f57712cfc0277e2df312302e",
+    "slide-06.webp": "e9d2652be4796c877f7efb1b9a4d19a84ea6747e974bab236c653a008b8e26a7",
+    "slides/slide-09.html": "0876226df4795e716ac06188feb516dac195bb07935fe94947bd4334974f359c",
+    "slide-09.webp": "fc136f240465b66a28971d3fa52a881c49ccdb201cc1fb01f8c7a4f6417c0170"
+  },
+  "encodings": [
+    {
+      "to": "slide-01.webp",
+      "to_sha256": "3b8d1debfc6669f9cc02eb2515daaf49b42f3e66ea0c9d469086b5208999d0e8",
+      "from_sha256": "a3c70a5baa66f5860eb1f90e00224e173c8b6c367667f06895452c76703c16e4",
+      "psnr_db": 42.119
+    },
+    {
+      "to": "slide-06.webp",
+      "to_sha256": "e9d2652be4796c877f7efb1b9a4d19a84ea6747e974bab236c653a008b8e26a7",
+      "from_sha256": "3f24fe6d544e1a2aa5f8b98bb647d6e0eb2170ab6b84d68800e8e498e71fa632",
+      "psnr_db": 42.759
+    },
+    {
+      "to": "slide-09.webp",
+      "to_sha256": "fc136f240465b66a28971d3fa52a881c49ccdb201cc1fb01f8c7a4f6417c0170",
+      "from_sha256": "15770bb0c218d516a68bd246bf102fb6a18c1b12265f7927b959fc4001b8cbb9",
+      "psnr_db": 41.332
+    }
+  ]
+}

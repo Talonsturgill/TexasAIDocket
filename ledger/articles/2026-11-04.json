@@ -7,7 +7,7 @@
  },
  "section": "Oil and gas",
  "dek": {
-  "text": "Permian Resources told investors it now runs an AI system that watches its artificial lift and feeds its subsurface data to language models. The release prints no result for either tool.",
+  "text": "Permian Resources told investors it now runs an AI system that watches its artificial lift and feeds its subsurface data to language models. The release prints no measured result for either tool.",
   "claims": [
    "c1",
    "c2"
@@ -35,7 +35,7 @@
    "heading": "What the quarter shows",
    "paragraphs": [
     {
-     "text": "[Total production averaged {{number:c6}} barrels of oil equivalent per day, a {{number:c6:1}}% rise over the prior quarter](c6). [Average daily crude oil production was {{number:c7}} barrels](c7). [Cash capital spending for the quarter was {{money:c9}} million](c9). The release ties none of the production rise to either AI tool.",
+     "text": "[Total production averaged {{number:c6}} barrels of oil equivalent per day, a {{number:c6:1}} rise over the prior quarter](c6). [Average daily crude oil production was {{number:c7}} barrels](c7). [Cash capital spending for the quarter was {{money:c9}} million](c9). The release ties none of the production rise to either AI tool.",
      "claims": [
       "c6",
       "c7",
@@ -43,7 +43,7 @@
      ]
     },
     {
-     "text": "[It credits power and compression projects with lower costs and record runtimes](c18), and [its drilling team drilled the fastest well in company history during the quarter, averaging over {{number:c8}} feet per day](c8). Those are the operating results the release does attribute, and neither is attributed to AI.",
+     "text": "[It credits power and compression projects with lower costs and record runtimes](c18). [Its drilling team drilled the fastest well in company history during the quarter, averaging over {{number:c8}} feet per day](c8). Those are the operating results the release does attribute, and neither is attributed to AI.",
      "claims": [
       "c18",
       "c8"
@@ -55,7 +55,7 @@
    "heading": "Where in Texas",
    "paragraphs": [
     {
-     "text": "[The company describes a position of approximately {{number:c10}} net acres in West Texas and Southeast New Mexico](c10), [concentrated in the core of the Delaware Basin](c11). [Its 2025 annual report put about {{number:c15}}% of its net leasehold acreage in Texas and the remaining {{number:c15:1}}% in New Mexico](c15).",
+     "text": "[The company describes a position of approximately {{number:c10}} net acres in West Texas and Southeast New Mexico](c10), [concentrated in the core of the Delaware Basin](c11). [Its 2025 annual report put about {{number:c15}} of its net leasehold acreage in Texas and the remaining {{number:c15:1}} in New Mexico](c15).",
      "claims": [
       "c10",
       "c11",
@@ -74,7 +74,7 @@
    "heading": "What the regulator said in May",
    "paragraphs": [
     {
-     "text": "[In May the Texas Tribune reported that the Railroad Commission, the state's oil and gas regulator, said in a statement that it was not aware of any use of AI by oil and gas companies](c27). [The same article reported experts and analysts saying AI is reshaping how oil companies handle produced water in the Permian](c28). Permian Resources has now put two uses in a filing with the SEC. The Commission's statement is the last public position from it that this record has found.",
+     "text": "[In May the Texas Tribune reported a statement from the Railroad Commission, the state's oil and gas regulator](c27). [The Commission said it was not aware of any use of AI by oil and gas companies](c27). [The same article reported experts and analysts saying AI is reshaping how oil companies handle produced water in the Permian](c28). Permian Resources has now put two uses in a filing with the SEC. The Commission's statement is the last public position from it that this record has found.",
      "claims": [
       "c27",
       "c28"
@@ -86,7 +86,7 @@
    "heading": "What the release can't establish",
    "paragraphs": [
     {
-     "text": "Both AI statements are the company's own claims in a document written for investors. [Its cautionary note lists technological advancement, including artificial intelligence and machine learning, among the factors in its outlook](c5), which says the company treats the technology as an uncertainty as well as a tool. Who checks what the lift monitor finds, and whether it raised runtime at all, is not answered by anything the company has published.",
+     "text": "Both AI statements are the company's own claims in a document written for investors. [Its cautionary note lists technological advancement, including artificial intelligence and machine learning, among the factors in its outlook](c5). The company treats the technology as an uncertainty as well as a tool. Who checks what the lift monitor finds, and whether it raised runtime at all, is not answered by anything the company has published.",
      "claims": [
       "c5",
       "c1"

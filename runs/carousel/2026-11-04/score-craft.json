@@ -1,0 +1,90 @@
+{
+ "lens": "craft",
+ "round": 3,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.2,
+   "why": "Every frame a real render on a dark field, encodings honest and measured. The jack is a black silhouette on 1, 4 and 9 with a plastic crank. 3 primitive cylinders, a dead left half, the footer on the column. 7 flat white rings, flat stands, a moire object behind, empty bottom. Accent props are flat painted shapes on 5, 6 and 8. 6 a mid-tone olive frame with cropped base. 4 corrugated ribbing and long leaders. 2 a mid-grey page with a flat curl shadow. 9 strongest. Below the 7 descriptor, well above the 4."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 6.8,
+   "why": "One world, register and accent, the jack recurring. Stroke motif unreadable, sky splits, 6 the one mid-tone frame. The camera move is real."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.0,
+   "why": "Every numeral traces and was re-derived. Loose: slide 8's hook drops 'by oil and gas companies' (the dek restores it) and rests on the Tribune; the caption's 'quoted experts' and 'Permian operators' are looser than c28; copy.json's caption was stale. No hard fail."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.5,
+   "why": "What and who are clear and slide 3 turns well. No Texas county; the meeting is a date with no stated link to this item."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Cover earns the swipe, 2 pays, 3 and 8 turn, the close lands. 6 cuttable."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.2,
+   "why": "Specific, oilfield literate, unboosterish. 6's headline is flat; the drawn-to-illustrate disclaimers read as hedging."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "First oilfield subject in the window. lastLight again, scenes plus reliefs as in no. 67, the shut ranch gate close as in nos. 54 and 62."
+  }
+ ],
+ "weighted_score": 6.89,
+ "hard_fails": [],
+ "ship": true,
+ "ship_note": "Round 3 is max_rounds, so the deck ships at the cap under the 7.7 rung with the shortfall named. No hard fail found.",
+ "one_sentence_fix": "Re-aim the chassis key so a warm grazing light rakes the recurring jack on 1, 3, 4 and 9, and give every figure prop a lit material.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 7,
+   "problem": "Flat white rings read as a dot chart; flat stands; a moire object; empty bottom.",
+   "fix": "Bevelled tool joints with worn faces and a key rim; camera to about 1.0 m pushed in; delete the background object."
+  },
+  {
+   "slide": 3,
+   "problem": "Untextured primitives, dead left half, footer on the column.",
+   "fix": "Camera about 0.6 m right and lower; a hard work light on the rod; grime on the tee and flanges; keep the column off the footer."
+  },
+  {
+   "slide": 1,
+   "problem": "Cover jack near-pure black; only the plastic crank lit.",
+   "fix": "A warm back rim at 10 to 20 degrees opposite the camera; worn paint on the crank."
+  },
+  {
+   "slide": 6,
+   "problem": "Mid-tone olive frame, flat plank and target, cropped base.",
+   "fix": "Darker tank albedo with one raking edge; camera up so the wall and contact enter; a lit enamel float casting on the board."
+  },
+  {
+   "slide": 5,
+   "problem": "Stepped two-tone rods, square couplings, flat tag, dead band.",
+   "fix": "Round height field with a specular; round couplings with flats; raised brass tag with a cast; rods up about 150 px."
+  },
+  {
+   "slide": 2,
+   "problem": "Mid-grey page, flat curl shadow, box clip.",
+   "fix": "Raking pool to near white at the edge; a curl with real height; a wire clip."
+  },
+  {
+   "slide": 4,
+   "problem": "Corrugated ribbing; small black jack; long leaders.",
+   "fix": "Noise bedding; camera in about 30 percent; shorter leaders."
+  }
+ ]
+}
