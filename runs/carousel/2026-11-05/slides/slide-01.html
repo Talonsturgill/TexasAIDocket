@@ -1,0 +1,57 @@
+<!doctype html>
+<!-- 2026-11-05, frame 1 of 9. Archetype FULL_BLEED. A spatial scene through txthree.js in a dark TXT.interior bay whose back wall carries the chassis dock_door: twenty kit machine_pads (pads_2027 from figures.json, one per 50,000 pieces a month of the 2027 target) receding to the open door at last light, the near pad in the stripe of door light taped in gold, red oxide kit structural_frame columns, a kit utility_pole outside against the seam. The bay has no light of its own. Drawn to illustrate, to no company's site. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:900px">Built for light, waiting on power</h1>
+<p class="dek" data-follow="26" style="width:860px">Applied Optoelectronics, a Sugar Land maker of data center optics, says its 2027 expansion plan in the United States will take longer. It cites a longer than expected wait for electrical power, among other construction issues. The bay is drawn to illustrate.</p>
+<script>window.FIG = {"pads_2027": 20};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-05-dockdoor.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "The 2027 US plan", counter: "01 / 09", src: "c1 c7", fit: { min: 84, max: 108, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 40, near: 0.05, far: 3000, fog: 0.0015, exposure: 0.85 });
+  /* THE FIGURE: the whole floor is pads_2027 pads, one per 50,000 pieces a month of the 2027 target. One pad of the
+   * middle column, in the stripe of door light, is the one gold pad on the cover. */
+  const NEAR = FIG.pads_2027 - 8;
+  const room = TXT.interior(R, CH.bayRoom());
+  const B = CH.bay(THREE, R, TXT, K, { room, pads: FIG.pads_2027, isGold: (i) => i === NEAR, joists: false });
+  TXT.sky(R);
+  /* outside the door: a utility pole on the apron, standing against the seam */
+  const yaw = B.G.rotation.y;
+  { const pole = K.make('utility_pole', { transformer: true, guy: false, height: 10.7 }); pole.position.fromArray(B.toWorld([0.9, 0, -B.D / 2 - 15])); pole.rotation.y = yaw; TXT.add(R, pole); TXT.contact(R, pole); }
+  const near = B.pads[NEAR];
+  /* a capped conduit stub at the near pad's corner, the power that has not arrived (it reappears at the transformer on frame 7) */
+  { const st = K.make('conduit_stub', {}); st.position.fromArray(B.toWorld([near.position.x + 1.25, 0, near.position.z + 0.7])); st.rotation.y = yaw; TXT.add(R, st); TXT.contact(R, st); }
+  const from = B.toWorld([-0.6, 1.35, near.position.z + 9.8]);
+  /* the door's centre placed under the type, at x 560 y 790, so the type sits on the dark roof */
+  const look = CH.aim(THREE, R, TXT, from, B.toWorld([0.3, 2.3, -B.D / 2]), 560, 790, 40);
+  TXT.frame(R, { fov: 40, from, look });
+  CH.KEY_SCALE = 0.32; CH.doorSpill(THREE, R, B, { at: 18, i: 70 });
+  TXT.deckRig(R, CH.rigSpec(W, 64, 4096), CH.rigOpts(B.toWorld([0, 0, 0]), { distance: 90, shadowFar: 200, normalBias: 0.03 }));
+  CH.unacne(R, 0.03); CH.bayFill(R);
+  TXT.weather(R, { grime: 0.22, height: 0.9, mottle: 0.12 });
+  const cx = CH.develop(await TXT.snapshot(R, { stage: false }), gl);
+  CH.post(cx, { a: 0.5, veil: 0.45, veilH: 300 });
+  CH.footWash(cx);
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

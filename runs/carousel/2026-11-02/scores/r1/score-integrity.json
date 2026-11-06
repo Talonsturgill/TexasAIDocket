@@ -1,0 +1,31 @@
+{
+ "judge": "integrity",
+ "round": 1,
+ "criteria": [
+  {"name": "artwork_craft", "weight": 0.22, "score": 6.5, "why": "Frames 1, 4 and 9 are real staged renders; the dog reads as smooth clay. Frame 5 a primitive monitor with a flat UI mock on a lifted wall, frame 3 no visible car or phone, frame 8 an empty clay band above one slab, frames 6 and 7 two 8x4 grids back to back. The reliefs meet the physical bar."},
+  {"name": "deck_coherence", "weight": 0.12, "score": 7.0, "why": "One key, one register, one accent meaning detection, one dog. 6 and 7 read as the same grid twice; 5 sits slightly outside."},
+  {"name": "claim_integrity", "weight": 0.20, "score": 5.5, "why": "Every numeral traces and quotes are verbatim, the 2019 finding is refused, sources primary. Against: the release's future tense flattened into present fact (cover, S3, S7, S9, caption); S3's kicker and lens lines give the checks to software; S5 asserts a machine-first order and ticks future verification; S8 turns a window into a duration; 'car' narrows 'vehicle'; web dek 'A person reviews every clip' and 'a few seconds from a passing car'; docket history 'Field research is under way' unsourced and key_dates 'effective' for an announcement."},
+  {"name": "story_and_stakes", "weight": 0.16, "score": 6.5, "why": "What, who, where, when named; the appearance label is the strongest idea, nothing says what it is used for and there is no reader action."},
+  {"name": "sequence_and_momentum", "weight": 0.10, "score": 6.0, "why": "S3 and S5, S6 and S7, S8 and S9 are near duplicates."},
+  {"name": "voice", "weight": 0.10, "score": 6.5, "why": "Plain and on register; flat lines on S2, S9 and the caption opener; S5's dek is the release sentence as house prose."},
+  {"name": "variety", "weight": 0.10, "score": 7.0, "why": "New topic; familiar staged lastLight world, caliche reliefs, type in the top 40 percent on all nine frames."}
+ ],
+ "weighted_score": 6.36,
+ "hard_fails": [],
+ "ranked_defects": [
+  {"slide": 3, "defect": "Kicker and lens lines attribute the four checks to software.", "fix": "Kicker 'What the review checks'; labels on the box corners only, no sight lines from the lens."},
+  {"slide": 5, "defect": "'Then a person checks the call' asserts an order; ticked rows show a future verification.", "fix": "Hook 'A person reviews the clip too'; rows unticked."},
+  {"slide": 1, "defect": "'is surveying' presents deployment as under way; 'car' narrows 'vehicle'.", "fix": "Hook 'A phone on a vehicle window will survey San Antonio's loose dogs'; title to match."},
+  {"slide": 8, "defect": "'Three months on the street' turns a window into a duration.", "fix": "Hook 'October to December on the street, then a report'."},
+  {"slide": 0, "defect": "Web dek universal and unsourced clause; docket history 'under way'; key_dates 'effective'.", "fix": "Dek 'Automated and human review will check the clips'; delete the few-seconds clause; history 'expected to run through December 2026' (c20); key_dates kind announced."},
+  {"slide": 9, "defect": "Hook states a future delivery in the present and repeats S8.", "fix": "Rebuild S9 on c14 alone."},
+  {"slide": 0, "defect": "Caption paragraph 3 present tense where the release says 'will'.", "fix": "Put it in the future tense."}
+ ],
+ "artwork_weakest_frames": [
+  {"slide": 5, "problem": "Primitive monitor, flat UI mock, lifted wall, named person absent.", "fix": "Reviewer's dark shoulder and forearm silhouette lit by the screen, wall to true black."},
+  {"slide": 8, "problem": "Empty clay band above a low slab.", "fix": "Rule at about half height, block a third of the width or more, crop the dead band."},
+  {"slide": 3, "problem": "No readable car or phone; labels on dark plates.", "fix": "Car roof rail and window phone in the bottom right quarter, lens the convergence point."},
+  {"slide": 7, "problem": "A second 8x4 grid straight after slide 6.", "fix": "Low oblique raking view across mould and cast."},
+  {"slide": 2, "problem": "Phone on a stalk pedestal, not clamped to glass.", "fix": "Model the clamp jaws gripping the lowered glass edge."}
+ ]
+}

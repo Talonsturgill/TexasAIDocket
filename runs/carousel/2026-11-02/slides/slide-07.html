@@ -1,0 +1,91 @@
+<!doctype html>
+<!-- 2026-11-02, frame 7 of 9. Archetype FIGURE_SCALE. A TXBENCH material relief in plan under the deck's declared key: a black clay mould of 32 empty square pockets for the 2019 survey, a brushed steel rule inlaid across the middle cut into years_between equal divisions, and 32 sawn caliche plugs in the same arrangement for 2026, their chamfers in dusk gold. No 2019 finding is drawn. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:900px">The same 32 places as&nbsp;2019</h1>
+<p class="dek" data-follow="24" style="width:900px">The 2019 survey was done by hand. The automated survey will repeat it in the same study areas. The 2019 findings are not shown&nbsp;here.</p>
+<div class="lab" id="lab-a">2019</div>
+<div class="lab" id="lab-b">2026</div>
+<div class="lab" id="lab-c">7 years</div>
+<script>window.FIG = {"study_areas": 32, "years_between": 7};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-02-sightline.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script src="@@ASSETS@@/js/txbench.js"></script>
+<script>
+window.renderReady = (async () => {
+  const cx = await CH.bootFlat({ kicker: "Seven years apart", counter: "07 / 09", src: "c9 c10 c17 c22", fit: { min: 72, max: 96, maxLines: 2 } });
+  TX.reseed(20261107);
+  /* THE FIGURES, from figures.json: the same count of places twice, and the rule cut into one division per year between */
+  const n = Math.round(FIG.study_areas), yrs = Math.round(FIG.years_between), COLS = 4, ROWS = Math.ceil(n / COLS);
+  /* the two surveys stand side by side, 2019 on the left and 2026 on the right, and the rule runs down between them */
+  const P = 66, G = 12, W = COLS * P + (COLS - 1) * G, HB = ROWS * P + (ROWS - 1) * G;
+  const Y0 = 584, XA = 120, XB = 1080 - 120 - W, RW = 70, RX0 = 540 - RW / 2, RX1 = 540 + RW / 2, YR0 = Y0, YR1 = Y0 + HB;
+  const M = { CLAY: 0, CALICHE: 1, STEEL: 2, GOLD: 3, BED: 4 };
+  function cell(X, Y, x0) {
+    const col = Math.floor((X - x0) / (P + G)), row = Math.floor((Y - Y0) / (P + G));
+    if (col < 0 || col >= COLS || row < 0 || row >= ROWS || row * COLS + col >= n) return null;
+    const dx = X - (x0 + col * (P + G)), dy = Y - (Y0 + row * (P + G));
+    if (dx < 0 || dx > P || dy < 0 || dy > P) return null;
+    return Math.min(dx, P - dx, dy, P - dy);
+  }
+  function sample(X, Y) {
+    const clay = 0.3 * TX.fbm2(X * 0.16, Y * 0.16, 3);
+    /* the bed: one dark steel plate both surveys and the rule are set into, so the frame is one object */
+    const inBed = X >= XA - 24 && X <= XB + W + 24 && Y >= Y0 - 24 && Y <= Y0 + HB + 24;
+    const bedE = inBed ? Math.min(X - (XA - 24), XB + W + 24 - X, Y - (Y0 - 24), Y0 + HB + 24 - Y) : 0, bed = inBed ? 6 * Math.min(1, bedE / 4) : 0;
+    /* the 2019 mould: pockets cut 12 px into the clay, empty, a little dust settled in each floor */
+    const em = cell(X, Y, XA);
+    if (em != null) return [bed - 22 * Math.min(1, em / 3) + 0.4 * TX.fbm2(X * 0.2, Y * 0.2, 2), M.CLAY];
+    /* the rule: a brushed steel bar 3 px proud with yrs + 1 cut ticks, one division per year */
+    if (Y >= YR0 && Y <= YR1 && X >= RX0 && X <= RX1) {
+      const step = (YR1 - YR0) / yrs, t = (Y - YR0) % step, tick = (t < 3 || (YR1 - Y) < 3);
+      /* inlaid: flush with the clay, a cut groove round its edge */
+      const e = Math.min(Y - YR0, YR1 - Y, X - RX0, RX1 - X);
+      return [bed + (e < 2.5 ? -2.5 : (tick ? -0.6 : 0.4)), M.STEEL];
+    }
+    /* the 2026 cast: plugs 26 px proud with a gold chamfer band */
+    const ec = cell(X, Y, XB);
+    if (ec != null) { const ch = Math.min(1, ec / 5); const kk = Math.floor((X - XB) / (P + G)) * 7 + Math.floor((Y - Y0) / (P + G)) * 3; const saw = 0.6 * TX.fbm2(X * 0.05 + kk, Y * 0.05 - kk, 3); return [bed + 60 * ch + saw * ch, ec < 4 ? M.GOLD : M.CALICHE]; }
+    if (inBed) return [bed + 0.2 * TX.fbm2(X * 0.3, Y * 0.3, 2), M.BED];
+    return [clay, M.CLAY];
+  }
+  const cache = new Map(), key = (X, Y) => (X * 4 | 0) + ',' + (Y * 4 | 0);
+  const S = (X, Y) => { const kk = key(X, Y); let v = cache.get(kk); if (!v) { v = sample(X, Y); cache.set(kk, v); } return v; };
+  const albedo = (X, Y, m) => {
+    if (m === M.CALICHE) { const a = 1 + 0.06 * TX.fbm2(X * 0.05, Y * 0.05, 2) + 0.0; return [0.9 * a, 0.85 * a, 0.75 * a]; }
+    if (m === M.GOLD) return [0.78, 0.42, 0.25];
+    if (m === M.BED) { const b = 1 + 0.08 * TX.fbm2(X * 0.04, Y * 0.04, 2); return [0.085 * b, 0.085 * b, 0.095 * b]; }
+    if (m === M.STEEL) { const b = 1 + 0.12 * Math.sin(X * 2.3 + 0.7 * TX.simplex2(X * 0.05, Y * 0.9)); return [0.34 * b, 0.35 * b, 0.37 * b]; }
+    const a = 1 + 0.4 * TX.simplex2(X * 0.6, Y * 0.6); return [0.045 * a, 0.038 * a, 0.03 * a];
+  };
+  const pool = (X, Y) => { const d = Math.hypot((X - 540) / 620, (Y - 870) / 430), t = Math.max(0, Math.min(1, (d - 0.42) / 0.8)); return 1 - 0.95 * t * t * (3 - 2 * t); };
+  cx.fillStyle = '#09080c'; cx.fillRect(0, 0, 2160, 2700);
+  const rep = TXBENCH.relief(cx, { x: 0, y: 520, w: 1080, h: 830, scale: 2, height: (X, Y) => S(X, Y)[0], material: (X, Y) => S(X, Y)[1], keyMask: pool, albedo,
+    spec: { [M.CALICHE]: [0.06, 8], [M.CLAY]: [0.08, 12], [M.STEEL]: [0.7, 40], [M.GOLD]: [0.5, 30], [M.BED]: [0.25, 24] }, keyColor: [1, 0.88, 0.74], ambColor: [0.55, 0.62, 0.8],
+    ambient: 0.06, diffuse: 2.4, ao: 1.0, shadow: 0.92, softness: 6, castLength: 150 });
+  /* ONE veil: the relief's top edge dissolves into the field under the dek, opaque at the edge, clear by the first row */
+  { const g = cx.createLinearGradient(0, 1040, 0, 1270); for (let k = 0; k <= 8; k++) { const t = k / 8, e = 1 - t * t * (3 - 2 * t); g.addColorStop(t, 'rgba(9,8,12,' + e.toFixed(4) + ')'); } cx.fillStyle = g; cx.fillRect(0, 1040, 2160, 230); }
+  const put = (id, x, y) => { const el = document.getElementById(id); el.style.left = x + 'px'; el.style.top = y + 'px'; };
+  put('lab-a', XA, Y0 - 66);
+  put('lab-b', XB + W - document.getElementById('lab-b').getBoundingClientRect().width, Y0 - 66);
+  put('lab-c', 540 - document.getElementById('lab-c').getBoundingClientRect().width / 2, Y0 - 66);
+  cx.setTransform(2, 0, 0, 2, 0, 0);
+  CH.post(cx, { a: 0, veil: 0.36 });
+  window.__relief = rep;
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

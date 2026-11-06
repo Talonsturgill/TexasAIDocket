@@ -1,0 +1,93 @@
+{
+ "lens": "craft",
+ "judge": "craft",
+ "round": 3,
+ "carousel_no": 67,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.5,
+   "why": "Every frame is rendered and none is printed. The cover is the best frame and passes the showstopper test apart from the flat window panes on the scale house. Slide 08 is bold too. Four frames still lean on defaults. (1) Slide 04 puts twenty tractors in a band about 19 percent of the frame tall, front-on in two flat rows, and leaves the bottom third empty black; at 432 px each truck is roughly 25 px tall and the frame reads as a toy lot, and the storyboard planned ranks that recede to the right. (2) On slide 03 the new gate cabinet is an unweathered rounded box, the amber lamp is a pale yellow emissive sphere resting on its top and the hub is a plain disc (crop slide-03-r3c2); the sky behind the cab is lifted grey. (3) Slide 08's repair made the light champagne gold, the white cab and van read bronze against the cold flood of 01 to 04 and 09, an orange spill lights the trailer nose, and the beacon reads as a pale cap that gives off no glow. (4) On slide 06 the loss bar is one uniformly textured dark rectangle across about 80 percent of the width, with a dead band between the dek and the labels. The reliefs on 05 and 07 are real: slide 05 has height range 70, 5 materials and cast fraction 0.38, slide 07 height range 114 and 6 materials. Slide 05's steel face is a large mid grey block. Slide 07's county borders stair-step at native size. Strong-to-competent work with more than one frame on a default, between the 4 and 7 descriptors, nearer 7."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.0,
+   "why": "Clearly one deck: one night world of concrete, steel and asphalt under a flood, and the rust primer accent means one thing on 03, 05, 06, 07 and 09. The camera move works, and the return of the yard from the mast on 09 is the best continuity device. The motif evolution is declared but seen only through the primer accent. The declared value arc doesn't show: canvas means run 34.4, 38.0, 35.8, 24.6, 24.7, 25.8, 15.8, 45.8, 32.4. Slide 08's gold key breaks the declared cold flood. That is the 7 descriptor exactly."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.0,
+   "why": "Every slide numeral traces to a claim or a computation, twenty of twenty-one claims cite the EDGAR letter and c21 Aurora's own release. Charger stays in future tense, Fort Worth to El Paso was correctly rejected, and the slide 7 dek discloses the cartography. One lead is unresolved: c5 quotes Charger's president on having already launched autonomous operations along the Laredo corridor, while the deck draws Dallas to Laredo purely in the 'has not happened' primer; c4 does support the 500-truck plan as future, so this is a phrasing question. 'the security gate' on 03 is looser than c6's 'security checkpoints', and the dek fixes it."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.0,
+   "why": "A Texan learns what happened, who is involved and where, and the money and the slip keep it honest. The stake for a Texan on the interstate is implied and never stated. No Texas weigh station and no deadline, and the only thing a reader can act on is the EDGAR pointer and the caption's question."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "The cover earns the swipe and 02 pays off at once. The turn at 05 is where understanding changes, and 06 lands hard on it. The close on 09 lands. Slide 08's beacon arrives after the Texas map and could move to follow 03 without loss."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Clean and on register with no banned words, colons, semicolons, dashes or first person, and real Texas specificity. The decks lean on attribution on most frames, so stretches read like a summary of a shareholder letter, and 'Routes drawn straight between places.' is a methodology note set as a sentence."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "The concept is fresh against nos. 64, 65 and 66, with one accent with one meaning. The familiar move is the kit semi_truck (no. 41), and the same front-facing kit grille appears on 01, 02, 03, 04 and 09."
+  }
+ ],
+ "weighted_score": 7.14,
+ "hard_fails": [],
+ "ship": true,
+ "named_defects": [
+  "slide 4: twenty front-on tractors in a band about 19 percent of the frame tall, bottom third empty black, reads as a toy lot",
+  "slide 4: a lighter horizon band behind the dek lines",
+  "slide 3: gate cabinet a plain rounded box, the amber lamp a pale sphere on top, the hub a plain disc",
+  "slide 3: sky behind the cab lifted grey",
+  "slide 8: warm white key renders the white tractor champagne gold, orange spill on the trailer nose, beacon a pale cap with no glow",
+  "slide 6: loss bar a uniform textured rectangle with no raked gradient, dead band between dek and labels, billet a 12 px sliver",
+  "slide 7: county borders stair-step, inlay cast runs past the Houston pin as a slab",
+  "slide 2: 'scale configuration' at 23 px, leader across the scale house roof",
+  "slide 9: the 1,000 kerb reads as a thin rule under the dek",
+  "slide 5: steel face a large mid grey block, week spans read as panels"
+ ],
+ "one_sentence_fix": "Rebuild slide 4 the way its own storyboard planned it, both ranks receding diagonally to the right from a large near tractor cropped by the left edge, with the flood's pool over the empty bottom third.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 4,
+   "problem": "Twenty front-on tractors fill a band about 19 percent of the frame tall with the bottom third empty black, and a lighter horizon band sits behind the dek.",
+   "fix": "Rotate the yard about 35 degrees so the ranks recede to the right, drop the camera to about a 4 m eye so the near-left tractor is large and cut by the left edge, push the stage pool over the bottom third, and move the far yard edge out of frame."
+  },
+  {
+   "slide": 8,
+   "problem": "The repaired key renders the white tractor champagne gold, an orange spill sits on the trailer nose, and the beacon reads as a pale unlit cap.",
+   "fix": "Set every directional light back to the chassis's declared flood colour, remove the amber fill on the trailer nose, and make the beacon dome emissive amber with a small short-range point light inside it."
+  },
+  {
+   "slide": 3,
+   "problem": "The gate cabinet is an unweathered rounded box with a pale emissive sphere on top and a plain disc hub, and the lifted grey sky leaves the right half in the mid tones.",
+   "fix": "Model the cabinet with a door seam, a louvre panel and a bolted base plate seated by TXT.contact and grimed by TXT.weather, replace the sphere with a caged amber lens, and tighten the stage pool so the sky falls to black."
+  },
+  {
+   "slide": 6,
+   "problem": "The loss bar is a uniform textured dark rectangle with no raked light along its length, and the band between the dek and the labels is dead.",
+   "fix": "Raise the billet and the bar to the same greater height to fill design y about 600 to 1050, and rake the key along the bar's top bevel so a specular falloff runs down its length."
+  },
+  {
+   "slide": 7,
+   "problem": "The county borders stair-step at native size, and the inlay's cast continues past the Houston pin as a detached slab.",
+   "fix": "Rasterise the county albedo at twice resolution and blur it a pixel before height extraction, and clip the inlay's height field at the Houston pin radius."
+  }
+ ]
+}

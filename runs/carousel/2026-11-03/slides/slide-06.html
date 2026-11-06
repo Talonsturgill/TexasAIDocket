@@ -1,0 +1,82 @@
+<!doctype html>
+<!-- 2026-11-03, frame 6 of 9. Archetype DIAGRAM. TXBENCH material relief: a blackened mill scale bar for the third quarter operating loss lying on a steel datum across the frame, and at its end on the same datum a polished billet for the quarter's revenue, both at one scale, a hairline groove for the expected 2026 revenue. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:900px">$3 million in revenue, a $257 million operating loss</h1>
+<p class="dek" data-follow="26" style="width:880px">Third quarter revenue and operating loss at one scale. The loss includes stock-based compensation. Aurora expects about $9 million of revenue for&nbsp;2026.</p>
+<div class="lab" id="lab-a">revenue $3 million</div>
+<div class="lab" id="lab-b">operating loss $257 million</div>
+<div class="lab ru" id="lab-c">2026 revenue expected, about $9 million</div>
+<script>window.FIG = {"revenue_2026": 9, "q3_revenue": 3, "q3_operating_loss": 257};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-03-scalelane.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script src="@@ASSETS@@/js/txbench.js"></script>
+<script>
+window.renderReady = (async () => {
+  const cx = await CH.bootFlat({ kicker: "The quarter", counter: "06 / 09", src: "c13 c14 c12", fit: { min: 72, max: 96, maxLines: 2 } });
+  TX.reseed(20261106);
+  /* ONE SCALE, from figures.json: the loss bar's length in px per million dollars, and the billet and the groove at
+   * the same scale. The bar starts at the datum's left end and runs right. */
+  const X0 = 82, GAP = 30, LOSS = FIG.q3_operating_loss, PX = (918 - GAP) / (LOSS + FIG.q3_revenue);
+  const LB = LOSS * PX, LR = FIG.q3_revenue * PX, L9 = FIG.revenue_2026 * PX;
+  const YD = 1060, BH = 260, Y0 = YD - BH;          /* the datum line, the bars' height, the bars' top */
+  const M = { BED: 0, DATUM: 1, SCALE: 2, BILLET: 3, GROOVE: 4 };
+  function sample(X, Y) {
+    const grain = 0.2 * TX.fbm2(X * 0.4, Y * 0.4, 2);
+    /* the datum: a ground steel strip under both bars, the full width, 3 px proud */
+    if (Y >= YD && Y <= YD + 34) { const e = Math.min(Y - YD, YD + 34 - Y); if (X >= X0 && X <= X0 + L9 && ((Y >= YD + 15 && Y <= YD + 19) || ((Math.abs(X - X0) < 1.6 || Math.abs(X - X0 - L9) < 1.6) && Y >= YD + 5 && Y <= YD + 29))) return [3 * Math.min(1, e / 2) - 2, M.GROOVE]; return [3 * Math.min(1, e / 2) + grain * 0.2, M.DATUM]; }
+    /* the billet: revenue, polished, at the datum's left end, standing 30 px proud with a chamfer */
+    if (X >= X0 && X <= X0 + LR && Y >= Y0 && Y < YD) { const e = Math.min(X - X0, X0 + LR - X, Y - Y0, YD - Y); return [30 * Math.min(1, e / 1.5 + 0.35), M.BILLET]; }
+    /* the loss bar: mill scale, beside the billet on the same datum, a few px gap, 26 px proud, chamfered, scale flaking */
+    const bx0 = X0 + LR + GAP;
+    if (X >= bx0 && X <= bx0 + LB && Y >= Y0 && Y < YD) {
+      const e = Math.min(X - bx0, bx0 + LB - X, Y - Y0, YD - Y), flake = 0.5 * Math.max(0, TX.fbm2(X * 0.14, Y * 0.24, 3));
+      /* the expected 2026 revenue: a hairline groove cut across the bar at that length from the datum's left end */
+      const gd = 99, g = 0;
+      const seam = 0;
+      return [26 * Math.min(1, e / 4) + flake * 1.6 + seam + g, gd < 3 ? M.GROOVE : M.SCALE];
+    }
+    return [grain, M.BED];
+  }
+  const cache = new Map(), key = (X, Y) => (X * 4 | 0) + ',' + (Y * 4 | 0);
+  const S = (X, Y) => { const k = key(X, Y); let v = cache.get(k); if (!v) { v = sample(X, Y); cache.set(k, v); } return v; };
+  const albedo = (X, Y, m) => {
+    if (m === M.BILLET) { const b = 1 + 0.04 * Math.sin(Y * 1.7); return [0.72 * b, 0.74 * b, 0.76 * b]; }
+    if (m === M.GROOVE) return [0.5, 0.21, 0.09];
+    if (m === M.SCALE) { const b = 1 + 0.32 * TX.fbm2(X * 0.05, Y * 0.08, 3) + 0.14 * TX.fbm2(X * 0.3, Y * 0.3, 2); return [0.026 * b, 0.032 * b, 0.05 * b]; }
+    if (m === M.DATUM) { const b = 1 + 0.12 * Math.sin(X * 1.9 + 0.7 * TX.simplex2(X * 0.05, Y * 0.9)); return [0.36 * b, 0.37 * b, 0.39 * b]; }
+    const a = 1 + 0.35 * TX.fbm2(X * 0.08, Y * 0.08, 3); return [0.018 * a, 0.018 * a, 0.021 * a];
+  };
+  /* the pool lands on the billet and the datum's left end and falls off along the bar */
+  const pool = (X, Y) => { const d = Math.hypot((X - 260) / 700, (Y - 960) / 380), t = Math.max(0, Math.min(1, (d - 0.3) / 0.85)); return 1 - 0.9 * t * t * (3 - 2 * t); };
+  cx.fillStyle = '#08090c'; cx.fillRect(0, 0, 2160, 2700);
+  const rep = TXBENCH.relief(cx, { x: 0, y: 600, w: 1080, h: 750, scale: 2, height: (X, Y) => S(X, Y)[0], material: (X, Y) => S(X, Y)[1], keyMask: pool, albedo,
+    spec: { [M.BED]: [0.05, 8], [M.DATUM]: [0.7, 40], [M.SCALE]: [0.8, 34], [M.BILLET]: [1.0, 70], [M.GROOVE]: [0.12, 10] }, keyColor: [0.94, 0.96, 1.0], ambColor: [0.5, 0.58, 0.75],
+    ambient: 0.05, diffuse: 2.5, ao: 1.0, shadow: 0.92, softness: 5, castLength: 140 });
+  { const g = cx.createLinearGradient(0, 1200, 0, 1500); for (let k = 0; k <= 8; k++) { const t = k / 8, e = 1 - t * t * (3 - 2 * t); g.addColorStop(t, 'rgba(8,9,12,' + e.toFixed(4) + ')'); } cx.fillStyle = g; cx.fillRect(0, 1200, 2160, 300); }
+  const put = (id, x, y) => { const el = document.getElementById(id); el.style.left = Math.round(x) + 'px'; el.style.top = Math.round(y) + 'px'; return el; };
+  put('lab-a', X0, Y0 - 98);
+  put('lab-b', 1000 - document.getElementById('lab-b').getBoundingClientRect().width, Y0 - 50);
+  const GX = X0 + L9; put('lab-c', GX - 8, YD + 56);
+  { const svg = CH.svg(), p = document.createElementNS('http://www.w3.org/2000/svg', 'path'); p.setAttribute('d', `M${GX} ${YD + 52} L${GX} ${YD + 4}`); p.setAttribute('fill', 'none');
+    const p2 = document.createElementNS('http://www.w3.org/2000/svg', 'path'); p2.setAttribute('d', `M${X0 + LR / 2} ${Y0 - 62} L${X0 + LR / 2} ${Y0 - 6}`); p2.setAttribute('stroke', '#E6E8EA'); p2.setAttribute('stroke-width', '2'); p2.setAttribute('fill', 'none'); svg.appendChild(p2); p.setAttribute('stroke', '#C99474'); p.setAttribute('stroke-width', '2'); svg.appendChild(p); window.__txLeaders = [{ target: 'the $9 million groove', at: [GX, YD], to: [GX, YD + 4] }, { target: 'the billet', at: [X0 + LR / 2, Y0 - 6], to: [X0 + LR / 2, Y0 - 6] }]; }
+  cx.setTransform(2, 0, 0, 2, 0, 0);
+  CH.post(cx, { a: 0, veil: 0.36 });
+  window.__relief = rep;
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

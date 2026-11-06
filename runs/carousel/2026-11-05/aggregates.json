@@ -1,0 +1,94 @@
+{
+ "date": "2026-11-05",
+ "_note": "Every count, span, ratio and duration the deck states, with the claim it was quoted from or the figures.json key compute.py computed.",
+ "aggregates": [
+  {
+   "phrase": "two Houston buildings",
+   "slide": "slide-04.html",
+   "kind": "count",
+   "value": 2,
+   "quoted_from": "c11",
+   "quote": "On August 31, 2026, the Company entered into two separate lease agreements with Hightower Phase II Owner, LLC (\"Hightower II\"), an affiliate of Hightower, for two industrial buildings to be constructed at 17331 Chimney Rock Road (\"Building 4\" ) and 17433 Chimney Rock Road (\"Building 5\" ), Houston, Texas 77053, consisting of approximately 356,186 and 737,621 rentable square feet, respectively.",
+   "note": "quoted: two separate lease agreements for two industrial buildings to be constructed"
+  },
+  {
+   "phrase": "Four stated floor areas",
+   "slide": "slide-04.html",
+   "kind": "count",
+   "value": 4,
+   "computed_by": "compute.py figures.json tx_total_sqft (four stated areas)",
+   "from": [
+    "c8",
+    "c10",
+    "c11"
+   ],
+   "note": "counted: the Gillingham Lane lease (c8), the Kirby property (c10) and the two Chimney Rock buildings (c11), the four properties whose square feet the quarterly report states"
+  },
+  {
+   "phrase": "500,000 pieces",
+   "slide": "slide-05.html",
+   "kind": "count",
+   "value": 500000,
+   "quoted_from": "c3",
+   "quote": "we now expect by the end of 2026 that we will have sufficient manufacturing equipment installed to produce over 500,000 pieces of 800G and 1.6 Tb products per month",
+   "note": "quoted"
+  },
+  {
+   "phrase": "500,000 pieces",
+   "slide": "caption.txt",
+   "kind": "count",
+   "value": 500000,
+   "quoted_from": "c3",
+   "quote": "we now expect by the end of 2026 that we will have sufficient manufacturing equipment installed to produce over 500,000 pieces of 800G and 1.6 Tb products per month",
+   "note": "quoted"
+  },
+  {
+   "phrase": "16 months",
+   "slide": "slide-06.html",
+   "kind": "duration",
+   "value": 16,
+   "quoted_from": "c12",
+   "quote": "Substantial completion is anticipated approximately 16 months following the date of the leases.",
+   "note": "quoted"
+  },
+  {
+   "phrase": "two Chimney Rock Road buildings",
+   "slide": "slide-06.html",
+   "kind": "count",
+   "value": 2,
+   "quoted_from": "c11",
+   "quote": "On August 31, 2026, the Company entered into two separate lease agreements with Hightower Phase II Owner, LLC (\"Hightower II\"), an affiliate of Hightower, for two industrial buildings to be constructed at 17331 Chimney Rock Road (\"Building 4\" ) and 17433 Chimney Rock Road (\"Building 5\" ), Houston, Texas 77053, consisting of approximately 356,186 and 737,621 rentable square feet, respectively.",
+   "note": "quoted: two industrial buildings to be constructed at 17331 and 17433 Chimney Rock Road"
+  },
+  {
+   "phrase": "1 million pieces",
+   "slide": "slide-09.html",
+   "kind": "count",
+   "value": 1,
+   "quoted_from": "c4",
+   "quote": "we expect to grow our manufacturing capacity to over 1 million pieces of 800G and 1.6 Tb transceivers per month by the end of 2027.",
+   "note": "quoted: over 1 million pieces of 800G and 1.6 Tb transceivers per month; the source writes the number as 1 million"
+  },
+  {
+   "phrase": "two official records",
+   "slide": "first_comment.txt",
+   "kind": "count",
+   "value": 2,
+   "computed_by": "sources_block.py, counting the documents the deck cites by source_type",
+   "from": [
+    "c7",
+    "c10"
+   ],
+   "note": "counted: the Form 10-Q (c7 c8 c9 c11 c12 c17 c19) and its EDGAR R25 rendering of Note 18 (c10 c16), the two primary_official documents; the 8-K exhibit is the first party account"
+  },
+  {
+   "phrase": "three other Houston buildings",
+   "slide": "slide-04.html",
+   "kind": "count",
+   "value": 3,
+   "quoted_from": "c15",
+   "quote": "pursuant to which the Company will lease three industrial buildings, located at 6000 McHard Road, Houston, Texas 77053 (\"Building 1\" ), 6100 McHard Road, Houston, Texas 77053 (\"Building 2\" ) and 17255 Chimney Rock Road, Houston, Texas 77053 (\"Building 3\" ).",
+   "note": "quoted: will lease three industrial buildings"
+  }
+ ]
+}

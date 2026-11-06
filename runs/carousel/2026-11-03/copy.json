@@ -1,0 +1,242 @@
+{
+ "date": "2026-11-03",
+ "carousel_no": 67,
+ "document_title": "Aurora's driverless trucks at the scale, and the letter's own numbers",
+ "_note": "Slide strings read off the render report's text nodes and each frame's own source line by build_copy.py.",
+ "caption": "Aurora told its shareholders about weigh stations.\n\nAutonomous trucks have relied on voluntary inspections to bypass them, the October 28th letter says. It says the Aurora Driver can now tell whether a station is open, steer to an available scale lane and adapt to different scale configurations.\n\nThe letter puts the production ramp about six weeks behind its prior plan. Third quarter revenue was $3 million against a $257 million operating loss, stock-based compensation included.\n\nAurora names Dallas to Houston as its own route. Charger Logistics plans to start between Dallas and Laredo under a non-binding MOU, the letter says.\n\nThe letter is on the SEC's EDGAR site. Has a Texas scale house weighed a driverless Aurora truck yet?\n\n#AuroraInnovation #Houston #Laredo",
+ "slides": {
+  "S1": {
+   "n": 1,
+   "file": "slide-01.html",
+   "kicker": "Weigh station",
+   "headline": "The truck can now tell if the scale is open",
+   "claims": [
+    "c9"
+   ],
+   "cite": "c9",
+   "body": "Aurora says its driverless trucks can now tell whether a weigh station is open and steer to an available scale lane on their own.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "The truck can now tell if the scale is open",
+    "Aurora says its driverless trucks can now tell whether a weigh station is open and steer to an available scale lane on their own.",
+    "Weigh station",
+    "01 / 09",
+    "c9"
+   ]
+  },
+  "S2": {
+   "n": 2,
+   "file": "slide-02.html",
+   "kicker": "Three calls",
+   "headline": "Open, which lane, which scale",
+   "claims": [
+    "c8",
+    "c9"
+   ],
+   "cite": "c8 c9",
+   "body": "Autonomous trucks have relied on voluntary inspections to bypass weigh stations, the letter says. It says the Aurora Driver can now handle three steps on its own.",
+   "labels": [
+    "station open",
+    "available scale lane",
+    "scale configuration",
+    "the bypass"
+   ],
+   "strings": [
+    "texasaidocket.com",
+    "Open, which lane, which scale",
+    "Autonomous trucks have relied on voluntary inspections to bypass weigh stations, the letter says. It says the Aurora Driver can now handle three steps on its own.",
+    "station open",
+    "available scale lane",
+    "scale configuration",
+    "the bypass",
+    "Three calls",
+    "02 / 09",
+    "c8 c9"
+   ]
+  },
+  "S3": {
+   "n": 3,
+   "file": "slide-03.html",
+   "kicker": "November",
+   "headline": "Next, through the security gate",
+   "claims": [
+    "c6"
+   ],
+   "cite": "c6",
+   "body": "Aurora says that in November its trucks will drive directly to sites for several customers, through security checkpoints.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "Next, through the security gate",
+    "Aurora says that in November its trucks will drive directly to sites for several customers, through security checkpoints.",
+    "November",
+    "03 / 09",
+    "c6"
+   ]
+  },
+  "S4": {
+   "n": 4,
+   "file": "slide-04.html",
+   "kicker": "Built so far",
+   "headline": "20+ driverless trucks are built",
+   "claims": [
+    "c1",
+    "c2"
+   ],
+   "cite": "c1 c2",
+   "body": "The letter says production is accelerating. The Aurora Driver passed 500,000 commercial driverless miles in September with 100% on-time delivery since launch, by Aurora's own count.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "20+ driverless trucks are built",
+    "The letter says production is accelerating. The Aurora Driver passed 500,000 commercial driverless miles in September with 100% on-time delivery since launch, by Aurora's own count.",
+    "Built so far",
+    "04 / 09",
+    "c1 c2"
+   ]
+  },
+  "S5": {
+   "n": 5,
+   "file": "slide-05.html",
+   "kicker": "The ramp",
+   "headline": "About six weeks behind its own plan",
+   "claims": [
+    "c12",
+    "c10",
+    "c11"
+   ],
+   "cite": "c12 c10 c11",
+   "body": "Material availability, component quality and problems found in end-of-line testing held the ramp back, the letter says. Aurora now expects 20 trucks a week in early December.",
+   "labels": [
+    "prior plan",
+    "about six weeks",
+    "material, components, testing"
+   ],
+   "strings": [
+    "texasaidocket.com",
+    "About six weeks behind its own plan",
+    "Material availability, component quality and problems found in end-of-line testing held the ramp back, the letter says. Aurora now expects 20 trucks a week in early December.",
+    "prior plan",
+    "about six weeks",
+    "material, components, testing",
+    "The ramp",
+    "05 / 09",
+    "c12 c10 c11"
+   ]
+  },
+  "S6": {
+   "n": 6,
+   "file": "slide-06.html",
+   "kicker": "The quarter",
+   "headline": "$3 million in revenue, a $257 million operating loss",
+   "claims": [
+    "c13",
+    "c14",
+    "c12"
+   ],
+   "cite": "c13 c14 c12",
+   "body": "Third quarter revenue and operating loss at one scale. The loss includes stock-based compensation. Aurora expects about $9 million of revenue for 2026.",
+   "labels": [
+    "revenue $3 million",
+    "operating loss $257 million",
+    "2026 revenue expected, about $9 million"
+   ],
+   "strings": [
+    "texasaidocket.com",
+    "$3 million in revenue, a $257 million operating loss",
+    "Third quarter revenue and operating loss at one scale. The loss includes stock-based compensation. Aurora expects about $9 million of revenue for 2026.",
+    "revenue $3 million",
+    "operating loss $257 million",
+    "2026 revenue expected, about $9 million",
+    "The quarter",
+    "06 / 09",
+    "c13 c14 c12"
+   ]
+  },
+  "S7": {
+   "n": 7,
+   "file": "slide-07.html",
+   "kicker": "Texas",
+   "headline": "Aurora's own route, and a customer's plan",
+   "claims": [
+    "c21",
+    "c4",
+    "c19",
+    "c3",
+    "c17",
+    "c18"
+   ],
+   "cite": "c21 c4 c19 c3 c17 c18",
+   "body": "Dallas to Houston is Aurora's own route. Charger Logistics plans to start between Dallas and Laredo under a non-binding MOU for 500 trucks, with delivery expected in 2027 and 2028. Routes drawn straight between places. New Braunfels is marked at Comal County's center.",
+   "labels": [
+    "Dallas",
+    "Houston",
+    "Laredo",
+    "New Braunfels, AUMOVIO line"
+   ],
+   "strings": [
+    "texasaidocket.com",
+    "Aurora's own route, and a customer's plan",
+    "Dallas to Houston is Aurora's own route. Charger Logistics plans to start between Dallas and Laredo under a non-binding MOU for 500 trucks, with delivery expected in 2027 and 2028. Routes drawn straight between places. New Braunfels is marked at Comal County's center.",
+    "non-binding",
+    "Dallas",
+    "Houston",
+    "Laredo",
+    "New Braunfels, AUMOVIO line",
+    "Texas",
+    "07 / 09",
+    "c21 c4 c19 c3 c17 c18"
+   ]
+  },
+  "S8": {
+   "n": 8,
+   "file": "slide-08.html",
+   "kicker": "Stopped",
+   "headline": "When it stops, a light on the cab",
+   "claims": [
+    "c20"
+   ],
+   "cite": "c20",
+   "body": "The letter says FMCSA granted a five-year exemption letting driverless trucks use cab-mounted warning beacons in place of warning devices set out by hand.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "When it stops, a light on the cab",
+    "The letter says FMCSA granted a five-year exemption letting driverless trucks use cab-mounted warning beacons in place of warning devices set out by hand.",
+    "Stopped",
+    "08 / 09",
+    "c20"
+   ]
+  },
+  "S9": {
+   "n": 9,
+   "file": "slide-09.html",
+   "kicker": "What it expects",
+   "headline": "From 20+ built to 1,000+ expected",
+   "claims": [
+    "c15",
+    "c16",
+    "c1"
+   ],
+   "cite": "c15 c16 c1",
+   "body": "Aurora expects more than 200 trucks by the end of February and more than 1,000 in operation at the end of 2027. Each primer stall is one expected truck. The filing is on the SEC's EDGAR site, dated October 28th.",
+   "labels": [
+    "20+ built",
+    "more than 200 by end of February, expected",
+    "more than 1,000 by end of 2027, expected"
+   ],
+   "strings": [
+    "texasaidocket.com",
+    "From 20+ built to 1,000+ expected",
+    "Aurora expects more than 200 trucks by the end of February and more than 1,000 in operation at the end of 2027. Each primer stall is one expected truck. The filing is on the SEC's EDGAR site, dated October 28th.",
+    "20+ built",
+    "more than 200 by end of February, expected",
+    "more than 1,000 by end of 2027, expected",
+    "What it expects",
+    "09 / 09",
+    "c15 c16 c1"
+   ]
+  }
+ }
+}

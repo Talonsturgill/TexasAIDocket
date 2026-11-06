@@ -1,0 +1,78 @@
+{
+ "_note": "Scores, weighted score, hard fails and fixes as the judge returned them; each why is abridged by the run from the judge's report.",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.2,
+   "why": "1, 5, 9, 2 and 4 clear the bar; 6's rail on A-frame legs and kit worker, 7's white yard, 8's floating chain, 3's bright trailers fall short."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 6.8,
+   "why": "One world and key with a real motif; 3 and 8 outside the palette; 4 a plan board."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 6.5,
+   "why": "Numerals trace; the cover's Sugar Land kicker places the wait in Sugar Land; 'Four properties' doesn't name its set; 'Half the floor' is a ratio of two lower bounds on different measures; 'month of work' loosens c12; 'Where the parts go' goes past c6; 'two official records' counts the 10-Q twice."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.5,
+   "why": "Who, what and where; no county, utility or deadline."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 6.8,
+   "why": "Cover sets the wait, 2 pays, turn at 7 lands, 9 lands; 8 movable, 3 and 4 long on property."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.8,
+   "why": "Clean, reads as filing summary, 'drawn to illustrate' on six."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.0,
+   "why": "Fresh story in a familiar kit (56, 59, 62, 68)."
+  }
+ ],
+ "weighted_score": 6.48,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Change the cover kicker to the release's own scope, rename 'Four properties' to the set it is, then rebuild frame 6 around the stakes.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 6,
+   "problem": "Kit worker dominant; string line a thick rail on A-frame legs; horizon band.",
+   "fix": "Shrink the worker to the far stake, eye at 0.5 m by the near lath, hairline cord."
+  },
+  {
+   "slide": 8,
+   "problem": "Modules float in a chain; grey lower half.",
+   "fix": "Seat modules in ports, crop to one switch, drop the rest to black."
+  },
+  {
+   "slide": 7,
+   "problem": "White yard, no jamb, plastic worker.",
+   "fix": "Dark jamb over the left third, darken the apron."
+  },
+  {
+   "slide": 3,
+   "problem": "Trailer doors brightest, navy cast.",
+   "fix": "Highlight on the clerestory, trailer doors down two stops, warm the wall."
+  },
+  {
+   "slide": 2,
+   "problem": "Mid-brown field, fingers cropped, no tape corner.",
+   "fix": "Pull back, fingers on the tape corner, floor to black outside the light."
+  }
+ ]
+}

@@ -1,0 +1,80 @@
+{
+ "lens": "craft",
+ "round": 1,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.3,
+   "why": "Every frame is a real render with 0 machine QA fails. The relief half is strong (slide 2's powder cones, slide 8's dendrite etch, slide 7's dogbones). The spatial half falls back on primitives: slide 4's arm is stacked cylinders with its tool pointing away from the hearth, slide 5's stack is a flat tan slab with a rubber band mark and no visible contact, slide 6 reads as a perforated grille at feed size, slide 1's domes carry terraced bands and its copper is brightest on the right under a left key. A hard wall and bench seam shows on slides 1, 3, 5 and 6. Slide 9's bar takes about a quarter of the frame and does not bleed."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.0,
+   "why": "One chassis and a real spine: the button recurs on 1, 3, 4, 5 and 6, its section is 8, the dogbone recurs on 4, 7 and 9, and the bluebonnet mark carries the alloy across 4, 5, 8 and 9. The interior frames and the black relief frames read as two stocks."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.0,
+   "why": "Every slide numeral checked traces to figures.json or a claim, the goal and the first of its kind claim are attributed, and the sources are first party. Slide 8's 'His NSF backed PhaseForge' is slightly more possessive than c29's 'led by'."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.5,
+   "why": "What, who, how much and what a reader can do are all there. No county, no deadline, and the Texan stake stays general."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "The cover earns the swipe, slide 2 pays at once, the turn on 8 lands into 9. Slide 5 could move without loss."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Clean and on register. The repeated 'Drawn to illustrate.' and slide 6's institutional cadence read flat."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Diverges in technique and palette from nos. 62 to 64, but the counting move repeats no. 63's wells with a drawing unit weight and no. 64's counted relief units."
+  }
+ ],
+ "weighted_score": 7.18,
+ "hard_fails": [],
+ "ship": false,
+ "ship_note": "",
+ "one_sentence_fix": "Rebuild slide 4 as a close crop where the gripper's jaws close on a glowing button over the hearth pocket, slide 5 as a dark side macro of the sheet edges with a real contact, and fade the interior back wall into the bench so the seam leaves slides 1, 3, 5 and 6.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 4,
+   "problem": "Primitive arm with its tool pointing up, a plain box hearth, the TEST station a cropped black cube, a mid tone room.",
+   "fix": "A 0.3 m close crop on the gripper jaws closing on the glowing button above the hearth pocket, the arm body cropped out, the room falling to black."
+  },
+  {
+   "slide": 5,
+   "problem": "Flat untextured tan slab in mid tones, a rubber band mark, no contact shadow, a hard wall seam.",
+   "fix": "Turn the stack so only the sheet edge face catches the key, drop the top face to dark, add a contact, paint the mark as a narrow pen stroke."
+  },
+  {
+   "slide": 6,
+   "problem": "The 249 well tray reads as a vent grille at feed size, low contrast, stops short of the right edge, dead dark bands.",
+   "fix": "Push in and lower so the long tray runs off the right and bottom edges, pool on the 41 button corner with a rim light on the near bevel."
+  },
+  {
+   "slide": 1,
+   "problem": "Terraced domes, copper brightest on the right against the left key, three flat bands across the top.",
+   "fix": "Rippled dome normals, the milled arc roughness on the copper, the sweep on the left of the block, a lower camera."
+  },
+  {
+   "slide": 9,
+   "problem": "The bar is about a quarter of the frame height, a flat cutout, an empty field above it, no bleed.",
+   "fix": "Scale the bar about 1.4 times so the right grip runs off the right edge, raise the necks and fracture lips."
+  }
+ ]
+}

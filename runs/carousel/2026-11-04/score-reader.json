@@ -1,0 +1,79 @@
+{
+ "lens": "reader",
+ "round": 3,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.0,
+   "why": "Value register right on every frame. Several frames lean on defaults: 3 primitive wellhead and ladder, carrier bar and bridle don't read, left 55 percent empty; 7 flat white rings, stack overhang, blobs behind; 5 reads as a bar chart with a flat tag; 1 a flat silhouette with a pale crank; 9's worker low-poly under the cite; 4 flat bands. 6 and 8 strongest."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 6.8,
+   "why": "One lastLight deck, reliefs alternating with scenes, accent on figures, value steady, camera walk works. Crank motif unreadable, sky splits."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.5,
+   "why": "Every numeral traces and was checked; core claims on the SEC exhibit, the 10-K and the RRC page; absences scoped to the release or neither filing; illustrations disclosed. The regulator claim rests on the Tribune with the dek attributing it. copy.json's caption was stale against caption.txt."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.0,
+   "why": "What and who are clear; where stops at the Permian and a leasehold share; the stake is not concrete; the meeting has no agenda link or comment route."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "The hook is jargon for most of the feed; 2 pays; 3 turns; the middle sags with 6 cuttable; 8 lands; the close is soft."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Clean and on register. Statistic headlines on 5 and 6; the caption opener is cryptic at feed speed."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.0,
+   "why": "Fresh subject; the quarterly-filing absence structure, lastLight and the scene-relief alternation repeat recent decks."
+  }
+ ],
+ "weighted_score": 6.75,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Cut slide 6 for a place and an action: Reeves County from c17 and the meeting's time and a comment route.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 3,
+   "problem": "Primitive wellhead and a ladder as the most legible object; bar, bridle and rod highlight don't read; empty left.",
+   "fix": "Camera about 1 m left and closer so the rod and bar run full height through the centre right with one rim; crop the ladder out."
+  },
+  {
+   "slide": 7,
+   "problem": "Flat white rings, stack overhang, untextured stands, blobs behind.",
+   "fix": "Bevelled tool-joint lips in dark worn steel, stacks centred on racks, background props deleted."
+  },
+  {
+   "slide": 5,
+   "problem": "A bar chart of two flat rods; a flat tag.",
+   "fix": "Round profile with a specular streak; lit brass tag wired to the coupling."
+  },
+  {
+   "slide": 1,
+   "problem": "Silhouette without rim; the pale crank is the brightest shape.",
+   "fix": "Narrow rim key behind the jack; crank exposure below the beam's."
+  },
+  {
+   "slide": 9,
+   "problem": "Low-poly worker under the cite.",
+   "fix": "Move the worker into the gate opening, backlit, lower its contrast."
+  }
+ ]
+}

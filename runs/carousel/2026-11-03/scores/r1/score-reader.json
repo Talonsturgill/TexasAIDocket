@@ -1,0 +1,89 @@
+{
+ "judge": "reader",
+ "carousel_no": 67,
+ "round": 1,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.6,
+   "why": "Every frame is rendered on a dark field with one light from the upper right, and the casts agree. S2's truck, S4 and S9's front ranks, and S5's stop and S6's billet all cast lower left. S1 is a real cover: a white tractor with lit headlamps on a tread-plate deck between yellow kerb rails, with a green signal and a scale house in the pool. S2 shows the mechanism at feed size, three lit rings in travel order on a station seen from a high oblique. In S6 the $3 million billet sits beside the $257 million slab. I measured about 14 px against 1290 px on the 1600 px render, roughly 1 to 92 where the true ratio is 1 to 86, so the gap reads before the figure does. Several frames fall short of the 10. S8 is an ambiguous macro: a blue-cast, visibly faceted fairing over a black windshield void hung on struts, which reads as an awning rather than a truck stopped on a shoulder. In S4 the ranks fill one band and roughly the bottom 40% (y about 1450 to 1830 of 2000) is dead black. Its flat frontal camera also turns twenty tractors into a toy lot, and a pale horizon seam runs behind the dek at y about 640. S5's steel faces sit in the grey middle across the full width and read as panels or a UI slider before they read as a rule. S7 has a dark rectangular cast strip beside the Dallas to Houston inlay that runs past the Houston pin toward the coast. The kit tractor is boxy wherever it comes close (S1, S3). That is more than the single weak frame the 7 descriptor allows."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "This is clearly one deck. It keeps one floodlit night world and one key direction. The rust primer accent keeps ONE stated meaning, 'what the letter says will happen and has not', every place it appears: the S3 stop bar, the S5 clamp stop, the S6 $9 million groove, the S7 Dallas to Laredo studs and New Braunfels pin, and the S9 stalls. A reader can feel that without being told, and S9 finally says it outright. Three continuity devices actually work. The tractor recurs on S1, S2, S3, S4, S8 and S9. The same yard is seen twice, from its corner on S4 and from the mast on S9. The scale motif turns into the rule, the bar and the stalls. The change to orthographic reliefs on S5 to S7 is a declared cut (VALUE CUT frame 5) at the argument's turn. S8 sits outside the deck: a blue-cast macro whose material and colour temperature match no other frame. I did not see deck_coherence.py output, so this score assumes the script did not refuse the deck."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.0,
+   "why": "Every slide figure traces. S4: 20+ (c1), 500,000 and 100% (c2). S5: 20 a week (c11). S6: $3 million (c13), $257 million (c14), about $9 million for 2026 (c12). S7: 500 trucks (c3/c19), 2027 and 2028 (c4). S9: 200 (c15), 1,000 and 2027 (c16), October 28th (filing date). The caption figures trace to the same claims. Everything comes from the EDGAR exhibit or Aurora's own IR release, and the deck attributes repeatedly: 'the letter says', 'by Aurora's own count', 'non-binding MOU', 'expected'. It keeps Dallas to Laredo as Charger's plan, which is how the fact check left it. A few lines are looser than their source. S2 drops 'historically' and 'enhanced pre-trip' from c8. S3's 'straight through the gate' is a little stronger than c6's 'automated navigation through security checkpoints'. The S4 headline '20+ driverless trucks are built' is the company's count set as flat fact. S9 states 'Each primer stall is one expected truck', and at feed size no reader can check that a 1,000-stall field is there, because the field fades out after a few hundred visible bays. The integrity judge should confirm the stall count in the S9 source. S7 cites c17 and c18 while its body says nothing that comes from them."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.5,
+   "why": "A Texan learns what happened: Aurora's October 28th letter says its trucks can now handle a weigh station on their own and will drive into customer sites in November, that its build is about six weeks late, and that it lost $257 million on $3 million of revenue. They also learn where, from the S7 map: Dallas to Houston, Dallas to Laredo, New Braunfels. 'Who decided' is a company and, on S8, FMCSA. No Texas body appears anywhere in nine frames. Texas weigh stations are run by the state, yet no slide says who in Texas inspects a driverless truck or whether that changes. The record item's own public_access reads 'There is no public process', and the deck gives the reader nothing to do except read the filing (S9). The cover names no Texas place, so a Texan does not see Texas until frame 7. 'New Braunfels, AUMOVIO line' on S7 is never explained, so a reader cannot tell what AUMOVIO is or why it matters to them. The stake, a driverless truck at the scale house next to you on I-45, is left implicit. That is a topic close to a story rather than the 10, which names the body and the deadline."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "The cover earns a swipe on a clear, readable claim, and S2 pays at once by laying out the three calls on one station. The deck turns where its understanding changes, at S5 ('About six weeks behind its own plan'), and S6 then puts the money on one scale. The close, 'From 20+ built to 1,000+ expected', lands as a measured distance and points to the filing. S8, the beacon, comes after the money and the map. It is an operations fact that belongs with S1 to S3 and could move without loss. S3 and S4 could also trade places. 'The truck' on the cover is vague until the dek names Aurora."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "The copy is clean and on register. I found no colons, dashes, banned words or first person. It is honest about costs without doom ('$3 million in revenue, a $257 million operating loss', 'by Aurora's own count'). Some lines are flat or insider. S7 ends on 'Routes drawn straight between places.' S9's 'Each primer stall is one expected truck' expects a feed reader to know that primer means the rust paint. The caption narrates the deck in 'The deck rides one tractor onto the scale, then weighs the letter's numbers.', which is the move the October 23rd caption critic refused. The regional detail is thin. Weigh stations, I-45 and I-35 never appear as places a Texan drives, and the caption's closing question is the only line written from the roadside."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "This diverges from the last four decks: no. 63's brass balance, no. 64's road paint, no. 65's alloy lab and no. 66's dog survey. The caption opening ('Aurora told its shareholders about weigh stations.') is not in opening_moves_recent. The subject and the device are familiar, though. Carousel no. 41 on October 3rd, 31 days ago and just outside the 30-day window, was a driverless 'tractor and 53 ft dry van ... carried through' Dallas to Houston for Kodiak. No. 52 on October 16th carried 'a white robotaxi through the deck'. No. 47 and no. 59 used the same cold-flood night world. A reader who follows the account will recognise a white driverless truck at night on Dallas to Houston."
+  }
+ ],
+ "weighted_score": 7.04,
+ "weighted_score_working": "6.6x0.22=1.452, 7.5x0.12=0.900, 8.0x0.20=1.600, 6.5x0.16=1.040, 7.0x0.10=0.700, 7.0x0.10=0.700, 6.5x0.10=0.650. Sum 7.042",
+ "hard_fails": [],
+ "hard_fail_notes": "I found none. Every slide and caption numeral traces to c1 to c21 or the filing date. Both sources in first_comment.txt are in claims.json with retrieved 2026-11-03. The topic is outside the 30-day window: the nearest similar deck is no. 41 on 2026-10-03 (Kodiak, tx-2026-0198), 31 days ago, with a different docket item. I saw no placeholder or unfinished frame, and the caption has no colon, semicolon, dash, banned word or year on an own-year date. I was not given the machine QA render report or the caption_check and bespoke_check outputs, so those three hard fails are unchecked by this judge rather than cleared.",
+ "ship": false,
+ "one_sentence_fix": "Fetch a primary Texas DPS or TxDOT page on who runs Texas weigh stations and how driverless trucks are inspected, then use it to name on the cover and the close the Texas body that decides whether a driverless Aurora truck gets weighed on I-45, so the deck ends on a Texas decider a reader can reach rather than a company's forecast.",
+ "named_defects": [
+  "S8: the cab macro is ambiguous at feed size (blue-cast faceted fairing, black windshield void on struts reading as an awning) and shows no stopped truck or shoulder, so 'When it stops' is not pictured",
+  "S4: roughly the bottom 40% of the frame is dead black, the flat frontal camera makes a toy lot, and a pale horizon seam runs behind the dek at y about 640",
+  "S5: the steel faces sit in the grey middle across the whole frame width and the rule reads as panels or a slider",
+  "S7: a dark rectangular cast strip beside the Dallas to Houston inlay runs past the Houston pin; 'AUMOVIO line' is never explained; c17 and c18 are cited with no visible content from them",
+  "S9: 'Each primer stall is one expected truck' cannot be checked at feed size and 'primer' is jargon; the integrity judge should confirm the 1,000-stall count in source",
+  "Story: no Texas decider and no reader action anywhere in nine frames, and the cover carries no Texas place",
+  "Caption: 'The deck rides one tractor onto the scale, then weighs the letter's numbers.' narrates the deck",
+  "Sequence: S8 sits after the money and the map and could move to sit with S1 to S3",
+  "Variety: a white driverless tractor and van on Dallas to Houston at night repeats no. 41 (31 days ago) and no. 52's carried-vehicle device"
+ ],
+ "artwork_weakest_frames": [
+  {
+   "slide": 8,
+   "problem": "The camera beside the cab roof gives an unreadable macro: a large blue-lit, visibly faceted fairing at left, a black windshield void with visor struts that reads as an awning, and no road, so neither the truck nor the stop is legible at 432 px",
+   "fix": "Pull the camera back to a three-quarter rear view of the whole tractor stopped on a dark shoulder at about 1.6 m eye height. Keep the amber beacon lit on the cab with its amber spill pooling on the asphalt where hand-set triangles would stand, key from the upper right, and drop the blue fill so the cab is white with one bright edge"
+  },
+  {
+   "slide": 4,
+   "problem": "The two ranks fill a thin mid-frame band, the bottom 40% is dead black, the eye-level frontal camera flattens twenty tractors into icons, and a pale horizon seam crosses behind the dek",
+   "fix": "Lower the camera to about 3 m and dolly in so the near rank's grilles and lit headlamps fill the lower half and bleed off the bottom edge, with the far rank falling into the dark behind. Let the casts run long to the lower left across the foreground concrete, and push the horizon below the dek so no seam crosses the type"
+  },
+  {
+   "slide": 5,
+   "problem": "The steel rule's faces are mid grey across the full width with an even pool, so the frame lives in the grey middle and reads as a slider rather than a machined rule",
+   "fix": "Narrow the keyMask pool to the six-week span so the sections outside it fall to near black. Darken the steel to blued tool steel with one bright raked edge along each groove, and lower the key elevation so each groove and the primer clamp throw hard visible casts"
+  },
+  {
+   "slide": 7,
+   "problem": "A dark rectangular cast strip beside the Dallas to Houston inlay overshoots the Houston pin toward the coast and reads as a render artifact next to the frame's focal route",
+   "fix": "Re-seat the inlay so its cast runs the inlay's own length at the shared lower-left offset and stops at the Houston pin, matching the casts of the primer studs and pins"
+  }
+ ],
+ "lens": "reader"
+}

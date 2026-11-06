@@ -1,0 +1,110 @@
+<!doctype html>
+<!-- 2026-11-02, frame 2 of 9. Archetype CLOSE_CROP. The instrument, from inside the survey car: the chassis window_phone clamped over the lowered rear glass, its screen toward the cabin carrying the lens's own view rendered live from a second scene (the tan dog on the parkway inside a gold box), the real street dark beyond the window opening. Drawn to illustrate, to no breed and no maker's design. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:900px">The camera is a&nbsp;phone</h1>
+<p class="dek" data-follow="26" style="width:880px">The release describes "a cellular phone mounted to a vehicle window with object detection and data analysis software".</p>
+<script>window.FIG = {"review_checks": 4};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-02-sightline.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "The instrument", counter: "02 / 09", src: "c2 c3 c18", fit: { min: 80, max: 110, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 40, near: 0.01, far: 3000, fog: 0.012 });
+  const B = CH.BLOCK;
+  CH.street(K, TXT, R, { road: true, parkway: true, fence: true, yard: true, oak: true });
+  /* the survey car heading east in the south lane, the reader inside it on the rear seat */
+  const car = K.make('crossover', { seed: 5, color: 0x4d5257, metallic: 0.55 });
+  car.rotation.y = Math.PI / 2; car.position.set(0, 0.06, B.car[1]); TXT.add(R, car); TXT.contact(R, car, { vehicle: true });
+  car.updateMatrixWorld(true);
+  const wx = -0.55, sideZ = B.car[1] - 1.02;
+  car.traverse((o) => {
+    if (!o.isMesh || !o.material || !o.material.transparent) return;
+    const c = new THREE.Box3().setFromObject(o).getCenter(new THREE.Vector3());
+    if (c.z < B.car[1] - 0.6 && c.x < 0.2 && c.x > -1.4 && c.y > 1.0) o.visible = false;
+  });
+  const pane = TXT.roundedBox(0.78, 0.36, 0.005, 0.03, new THREE.MeshPhysicalMaterial({ color: 0x1b2228, roughness: 0.04, metalness: 0.1, transparent: true, opacity: 0.45, clearcoat: 1 }));
+  pane.position.set(wx, 1.0, sideZ); R.scene.add(pane);
+  /* the glass's polished top edge, and the door's inner trim and sill below it, so the window reads as a window */
+  const bevel = new THREE.Mesh(new THREE.BoxGeometry(0.78, 0.006, 0.007), new THREE.MeshPhysicalMaterial({ color: 0xc9d0d6, roughness: 0.05, metalness: 0.7, emissive: 0x3a2a1c, emissiveIntensity: 0.5 }));
+  bevel.position.set(wx, 1.182, sideZ); R.scene.add(bevel);
+  const trimM = new THREE.MeshPhysicalMaterial({ color: 0x1d1e21, roughness: 0.55, clearcoat: 0.3 });
+  const trim = TXT.roundedBox(1.2, 0.5, 0.06, 0.02, trimM); trim.position.set(wx, 0.72, sideZ + 0.06); R.scene.add(trim);
+  const sill = TXT.roundedBox(1.2, 0.035, 0.11, 0.012, new THREE.MeshPhysicalMaterial({ color: 0x2a2b2f, roughness: 0.35, clearcoat: 0.6 })); sill.position.set(wx, 0.98, sideZ + 0.05); R.scene.add(sill);
+  const ph = K.make('window_phone', {}); ph.rotation.y = Math.PI; ph.position.set(wx + 0.1, 1.18, sideZ); TXT.add(R, ph);
+  /* the handset sits straight in its jaws on the clamp over the glass edge: no stem, no ball, so it reads as clamped to the window */
+  const DROP = 0.045;
+  ph.traverse((c) => { if (!c.isMesh || c.parent !== ph) return; const gp = c.geometry && c.geometry.parameters;
+    if ((c.geometry.type === 'CylinderGeometry' && gp.height === 0.05) || c.geometry.type === 'SphereGeometry') c.visible = false;
+    else if (c.position.y > 0.055) c.position.y -= DROP; });
+  /* the dog out on the parkway, the subject the lens is on */
+  const dog = K.make('street_dog', { build: 'full', pose: 'easy', coat: 'tan', seed: 66 }); dog.rotation.y = 0.5; dog.position.set(0.9, 0.2, -5.1); TXT.add(R, dog); TXT.contact(R, dog, { grit: false });
+  /* THE SCREEN: the lens's own view, rendered from a second scene into a texture on the phone's face, the box drawn in it, one corner per check */
+  const S2 = new THREE.Scene(); S2.background = new THREE.Color(0x0a0d18);
+  const k2 = new THREE.DirectionalLight(0xffc69a, 3.2); k2.position.set(-6, 3, -4); S2.add(k2); S2.add(new THREE.HemisphereLight(0x1a2236, 0x3a3128, 0.9));
+  const pl2 = new THREE.PointLight(0xffd2a6, 6, 6, 2); pl2.position.set(0.4, 2.2, -4.2); S2.add(pl2);
+  const d2 = K.make('street_dog', { build: 'full', pose: 'step', coat: 'tan', seed: 66 }); d2.rotation.y = -0.95; d2.position.set(0.5, 0, -4.95); S2.add(d2);
+  [[20, 1.4, 0x4a4228, -4.96], [20, 1.5, 0x55534e, -6.3], [20, 6, 0x1c1c1f, -1.2]].forEach(([w, d, c, z]) => { const m = new THREE.Mesh(new THREE.PlaneGeometry(w, d), new THREE.MeshStandardMaterial({ color: c, roughness: 0.92 })); m.rotation.x = -Math.PI / 2; m.position.set(0, 0.001, z); S2.add(m); });
+  const f2 = K.make('chain_link_fence', { length: 20, height: 1.22, color: 'galvanized' }); f2.position.set(0, 0, -8.2); S2.add(f2);
+  const cam2 = new THREE.PerspectiveCamera(24, 0.49, 0.05, 200); cam2.position.set(0, 0.95, 0.66); cam2.lookAt(0.48, 0.42, -4.95);
+  const nC = Math.round(FIG.review_checks), gM = new THREE.MeshBasicMaterial({ color: 0xe0956a });
+  { const c = new THREE.Vector3(0.48, 0.44, -4.9), hw = 0.5, hh = 0.4, L = 0.16, t = 0.035;
+    [[-1, 1], [1, 1], [1, -1], [-1, -1]].slice(0, nC).forEach(([a, b]) => {
+      const h = new THREE.Mesh(new THREE.BoxGeometry(L, t, t), gM); h.position.set(c.x + a * (hw - L / 2), c.y + b * hh, c.z); S2.add(h);
+      const v = new THREE.Mesh(new THREE.BoxGeometry(t, L, t), gM); v.position.set(c.x + a * hw, c.y + b * (hh - L / 2), c.z); S2.add(v);
+    }); }
+  const rt = new THREE.WebGLRenderTarget(490, 1000, { samples: 4 }); rt.texture.colorSpace = THREE.SRGBColorSpace;
+  R.renderer.setRenderTarget(rt); R.renderer.render(S2, cam2); R.renderer.setRenderTarget(null);
+  /* the phone's face: its screen plane faces the cabin (local -z) */
+  const scr = new THREE.Mesh(new THREE.PlaneGeometry(0.0715 - 0.006, 0.1467 - 0.008), new THREE.MeshBasicMaterial({ map: rt.texture, toneMapped: true }));
+  scr.rotation.y = Math.PI; scr.position.set(0, 0.062 + 0.1467 / 2 - 0.02 - DROP, 0.022 - 0.0083 / 2 - 0.0006); ph.add(scr);
+  const glow = new THREE.PointLight(0x9fb4d8, 0.5, 0.6, 2); glow.position.set(wx + 0.1, 1.3, sideZ + 0.12); R.scene.add(glow);
+  TXT.sky(R);
+  TXT.ground(R, { surface: 'asphalt', size: 600, seed: 12 });
+  const from = [wx - 0.02, 1.33, sideZ + 0.52];
+  const look = CH.aim(THREE, R, TXT, from, [wx + 0.1, 1.27, sideZ - 0.02], 560, 900, 40);
+  TXT.frame(R, { fov: 40, from, look });
+  /* THE CABIN, placed in the camera's own frame a few centimetres ahead: the door's B pillar trim down the right edge,
+   * the window's front frame down the left, the headliner across the top, each with a lip that takes the seam */
+  {
+    const cam = R.camera; cam.updateMatrixWorld(true);
+    const fw = new THREE.Vector3(); cam.getWorldDirection(fw);
+    const rtv = new THREE.Vector3().setFromMatrixColumn(cam.matrixWorld, 0), upv = new THREE.Vector3().setFromMatrixColumn(cam.matrixWorld, 1);
+    const d = 0.12, hh = d * Math.tan(40 * Math.PI / 360), hw = hh * CH.W / CH.H, q = cam.quaternion;
+    const at = (u, v) => cam.position.clone().addScaledVector(fw, d).addScaledVector(rtv, u * hw).addScaledVector(upv, v * hh);
+    const pil = new THREE.MeshPhysicalMaterial({ color: 0x141518, roughness: 0.6, clearcoat: 0.25 });
+    const lipM = new THREE.MeshPhysicalMaterial({ color: 0x24252a, roughness: 0.75, clearcoat: 0 });
+    const band = (u0, u1, v0, v1, m) => { const b = TXT.roundedBox((u1 - u0) * hw, (v1 - v0) * hh, 0.006, 0.002, m); b.position.copy(at((u0 + u1) / 2, (v0 + v1) / 2)); b.quaternion.copy(q); R.scene.add(b); };
+    band(-1.1, -0.9, -1.1, 1.1, pil); band(-0.92, -0.885, -1.1, 1.1, lipM);
+    band(0.9, 1.1, -1.1, 1.1, pil); band(0.885, 0.92, -1.1, 1.1, lipM);
+  }
+  CH.warm(R, 0.3);
+  TXT.deckRig(R, CH.rigSpec(W, 10, 4096), CH.rigOpts([0, 0.5, -3], { distance: 30, shadowFar: 70 }));
+  CH.unacne(R, 0.01);
+  TXT.weather(R, { grime: 0.35, height: 0.5 });
+  TXT.stage(R, [dog], { poolInner: 2.2, poolOuter: 6.5 });
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0.36, veil: 0.5, veilH: 360 });
+  /* a feathered dark reserve under the footer line, darken only, so a sill or kerb edge never strikes the site line */
+  { const off = 4000; cx.save(); cx.shadowColor = 'rgba(6,5,10,0.92)'; cx.shadowBlur = 34; cx.shadowOffsetX = off * 2; cx.fillStyle = '#000'; cx.fillRect(40 - off, 1228, 1000, 46); cx.restore(); }
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

@@ -9,7 +9,7 @@ A revision request pending at the Electric Reliability Council of Texas concerns
 - Public access: Public meeting
 - Take part: https://www.ercot.com/mktrules/issues/NOGRR289
 
-- Last checked: 2026-10-29
+- Last checked: 2026-11-04
 
 ## Dates
 
@@ -41,6 +41,8 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-21 · Checked and unchanged. Still pending, with no dated movement.
 - 2026-10-24 · The grid operator's proposed year of grace for data center cooling equipment on ride-through rules still reads as proposed.
 - 2026-10-29 · ERCOT's proposed grace period for data center cooling equipment under the ride-through rules is still pending.
+- 2026-11-01 · ERCOT's proposed grace period for data center cooling equipment is still under consideration.
+- 2026-11-04 · Checked and unchanged. Still pending, with no dated movement.
 
 ## Evidence
 

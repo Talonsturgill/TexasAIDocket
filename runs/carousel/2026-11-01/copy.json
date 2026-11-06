@@ -1,0 +1,237 @@
+{
+ "date": "2026-11-01",
+ "carousel_no": 65,
+ "document_title": "Texas A&M plans an AI foundry for new alloys",
+ "_note": "Slide strings read off the render report's text nodes and each frame's own source line by build_copy.py.",
+ "caption": "Why does an AI lab melt metal?\n\nSeveral dozen elements make roughly a trillion possible mixes. That sounds like a job for software. Raymundo Arróyave of Texas A&M says no computational tool anywhere can predict how an alloy will behave.\n\nA $2 million WoodNext Foundation grant will help build the Aggie AI Foundry. Computer controlled arms on an assembly line are to mix, melt and test new alloys. The university says existing self driving labs can't handle alloys at up to 3,000 degrees Celsius. Months of work cut to a week or less is the goal, not a result.\n\nA separate NSF award has obligated $4.1 million of an estimated $24.9 million. It funds the open access Autonomous Robotic Metallurgist at Texas A&M.\n\nThe award record names researchers at non-R1 and EPSCoR institutions among its intended users. Who outside Texas A&M makes the first alloy there?\n\n#TexasAM #AggieAIFoundry #NSF",
+ "slides": {
+  "S1": {
+   "n": 1,
+   "file": "slide-01.html",
+   "kicker": "Texas A&M",
+   "headline": "The metal still has to be melted",
+   "claims": [
+    "c1",
+    "c2",
+    "c5",
+    "c7",
+    "c8"
+   ],
+   "cite": "c1 c2 c5 c7 c8",
+   "body": "Texas A&M plans the Aggie AI Foundry, where computer controlled arms will mix, melt and test new alloys. A $2 million WoodNext Foundation grant will help build it. Drawn to illustrate.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "The metal still has to be melted",
+    "Texas A&M plans the Aggie AI Foundry, where computer controlled arms will mix, melt and test new alloys. A $2 million WoodNext Foundation grant will help build it. Drawn to illustrate.",
+    "Texas A&M",
+    "01 / 09",
+    "c1 c2 c5 c7 c8"
+   ]
+  },
+  "S2": {
+   "n": 2,
+   "file": "slide-02.html",
+   "kicker": "Before there is an alloy",
+   "headline": "Roughly a trillion ways to mix them",
+   "claims": [
+    "c11",
+    "c18"
+   ],
+   "cite": "c11 c18",
+   "body": "Several dozen elements give AI roughly a trillion possible mixes, the university says. Existing self driving labs focus on materials that are relatively easy to make. Drawn to illustrate.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "Roughly a trillion ways to mix them",
+    "Several dozen elements give AI roughly a trillion possible mixes, the university says. Existing self driving labs focus on materials that are relatively easy to make. Drawn to illustrate.",
+    "Before there is an alloy",
+    "02 / 09",
+    "c11 c18"
+   ]
+  },
+  "S3": {
+   "n": 3,
+   "file": "slide-03.html",
+   "kicker": "Who is paying",
+   "headline": "$2 million, in buttons",
+   "claims": [
+    "c1",
+    "c2",
+    "c4",
+    "c5",
+    "c6"
+   ],
+   "cite": "c1 c2 c4 c5 c6",
+   "body": "The WoodNext Foundation manages the philanthropy of Roku's founder, Anthony Wood, and his wife Susan. The grant comes through a donor advised fund. Each button is an equal share of the grant, 20 in all. Drawn to illustrate.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "$2 million, in buttons",
+    "The WoodNext Foundation manages the philanthropy of Roku's founder, Anthony Wood, and his wife Susan. The grant comes through a donor advised fund. Each button is an equal share of the grant, 20 in all. Drawn to illustrate.",
+    "Who is paying",
+    "03 / 09",
+    "c1 c2 c4 c5 c6"
+   ]
+  },
+  "S4": {
+   "n": 4,
+   "file": "slide-04.html",
+   "kicker": "The line",
+   "headline": "Mix, melt and test, on one line",
+   "claims": [
+    "c8",
+    "c10",
+    "c11"
+   ],
+   "cite": "c8 c10 c11",
+   "body": "Robotics will mix, melt and test the materials with computer controlled arms along an assembly line that takes samples, the university says. It says existing self driving labs can't handle alloys at up to 3,000 degrees Celsius. Drawn to illustrate.",
+   "labels": [
+    "MIX",
+    "MELT",
+    "TEST"
+   ],
+   "strings": [
+    "texasaidocket.com",
+    "Mix, melt and test, on one line",
+    "Robotics will mix, melt and test the materials with computer controlled arms along an assembly line that takes samples, the university says. It says existing self driving labs can't handle alloys at up to 3,000 degrees Celsius. Drawn to illustrate.",
+    "MIX",
+    "MELT",
+    "TEST",
+    "The line",
+    "04 / 09",
+    "c8 c10 c11"
+   ]
+  },
+  "S5": {
+   "n": 5,
+   "file": "slide-05.html",
+   "kicker": "Who conceived it",
+   "headline": "Two researchers, more than 100 papers",
+   "claims": [
+    "c12",
+    "c13",
+    "c14",
+    "c15",
+    "c16"
+   ],
+   "cite": "c12 c13 c14 c15 c16",
+   "body": "Ibrahim Karaman, who heads the department, and Raymundo Arróyave conceived the foundry. They have published more than 100 papers together. The university calls it the first lab of its kind in academia. Drawn to illustrate.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "Two researchers, more than 100 papers",
+    "Ibrahim Karaman, who heads the department, and Raymundo Arróyave conceived the foundry. They have published more than 100 papers together. The university calls it the first lab of its kind in academia. Drawn to illustrate.",
+    "Who conceived it",
+    "05 / 09",
+    "c12 c13 c14 c15 c16"
+   ]
+  },
+  "S6": {
+   "n": 6,
+   "file": "slide-06.html",
+   "kicker": "A separate federal award",
+   "headline": "NSF has obligated $4.1 million of $24.9 million",
+   "claims": [
+    "c1",
+    "c20",
+    "c21",
+    "c22",
+    "c25",
+    "c26"
+   ],
+   "cite": "c1 c20 c21 c22 c25 c26",
+   "body": "The $24.9 million is the award's estimated total. Its Autonomous Robotic Metallurgist at Texas A&M is built to design, make, test and learn from new alloys. In front, the WoodNext grant at $100,000 a button. Drawn to illustrate.",
+   "labels": [
+    "WOODNEXT",
+    "NSF ARM-MIP"
+   ],
+   "strings": [
+    "texasaidocket.com",
+    "NSF has obligated $4.1 million of $24.9 million",
+    "The $24.9 million is the award's estimated total. Its Autonomous Robotic Metallurgist at Texas A&M is built to design, make, test and learn from new alloys. In front, the WoodNext grant at $100,000 a button. Drawn to illustrate.",
+    "WOODNEXT",
+    "NSF ARM-MIP",
+    "A separate federal award",
+    "06 / 09",
+    "c1 c20 c21 c22 c25 c26"
+   ]
+  },
+  "S7": {
+   "n": 7,
+   "file": "slide-07.html",
+   "kicker": "The federal clock",
+   "headline": "Six years, one bar a month",
+   "claims": [
+    "c21",
+    "c23",
+    "c27",
+    "c28"
+   ],
+   "cite": "c21 c23 c27 c28",
+   "body": "The NSF award runs from September 1st to August 31st, 2032. The platform is open access, and its intended users include researchers at non-R1 and EPSCoR institutions. One bar is one month. Drawn to illustrate.",
+   "labels": [
+    "2026",
+    "2032"
+   ],
+   "strings": [
+    "texasaidocket.com",
+    "Six years, one bar a month",
+    "The NSF award runs from September 1st to August 31st, 2032. The platform is open access, and its intended users include researchers at non-R1 and EPSCoR institutions. One bar is one month. Drawn to illustrate.",
+    "2026",
+    "2032",
+    "The federal clock",
+    "07 / 09",
+    "c21 c23 c27 c28"
+   ]
+  },
+  "S8": {
+   "n": 8,
+   "file": "slide-08.html",
+   "kicker": "Inside the button",
+   "headline": "No computational tool can predict it, Arróyave says",
+   "claims": [
+    "c17",
+    "c29",
+    "c30",
+    "c32",
+    "c33"
+   ],
+   "cite": "c17 c29 c30 c32 c33",
+   "body": "Arróyave says no computational tool anywhere in the world can predict how an alloy is going to behave. His NSF backed PhaseForge applies machine learning to CALPHAD to say whether a material can exist at all. Drawn to illustrate.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "No computational tool can predict it, Arróyave says",
+    "Arróyave says no computational tool anywhere in the world can predict how an alloy is going to behave. His NSF backed PhaseForge applies machine learning to CALPHAD to say whether a material can exist at all. Drawn to illustrate.",
+    "Inside the button",
+    "08 / 09",
+    "c17 c29 c30 c32 c33"
+   ]
+  },
+  "S9": {
+   "n": 9,
+   "file": "slide-09.html",
+   "kicker": "What a reader can do",
+   "headline": "So the metal still gets tested",
+   "claims": [
+    "c8",
+    "c9",
+    "c21",
+    "c23",
+    "c31"
+   ],
+   "cite": "c8 c9 c21 c23 c31",
+   "body": "Texas A&M's goal is alloys in a week or less instead of months, a target and not a result. PhaseForge is free online and anyone can contribute to it. The NSF platform is open access. Drawn to illustrate.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "So the metal still gets tested",
+    "Texas A&M's goal is alloys in a week or less instead of months, a target and not a result. PhaseForge is free online and anyone can contribute to it. The NSF platform is open access. Drawn to illustrate.",
+    "What a reader can do",
+    "09 / 09",
+    "c8 c9 c21 c23 c31"
+   ]
+  }
+ }
+}

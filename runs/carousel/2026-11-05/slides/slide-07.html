@@ -1,0 +1,66 @@
+<!doctype html>
+<!-- 2026-11-05, frame 7 of 9. Archetype FIGURE_SCALE. A spatial scene through txthree.js from inside the dark TXT.interior bay through the chassis dock_door at last light: a kit padmount_transformer on the apron with three chassis conduit_stubs capped and empty beside it, a kit person beside it for scale, a kit utility_pole beyond against the seam. Drawn to illustrate, to no site or utility. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:900px">The wait, in its own words</h1>
+<p class="dek" data-follow="26" style="width:860px">The chief financial officer, in the November 5th results release. The transformer is drawn to illustrate and stands for no named site or utility.</p>
+<p class="dek quote" id="quote" style="width:880px">"We expect our 2027 capacity expansion plan in the US to take longer to complete due to longer than expected time to obtain necessary electrical power among other construction related issues."</p>
+<script>window.FIG = {};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-05-dockdoor.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "The reason given", counter: "07 / 09", src: "c1", fit: { min: 80, max: 100, maxLines: 1 } });
+  /* the quotation sits under the hook and the attribution under the quotation */
+  { const h = document.getElementById('hook'), q = document.getElementById('quote'), d = document.querySelector('.dek[data-follow]');
+    q.style.fontFamily = '"Fraunces", serif'; q.style.fontSize = '36px'; q.style.lineHeight = '1.28'; q.style.fontWeight = '500'; q.style.color = '#EEEAE3';
+    q.style.top = (h.offsetTop + h.getBoundingClientRect().height + 26) + 'px'; d.removeAttribute('data-follow');
+    d.style.top = (q.offsetTop + q.getBoundingClientRect().height + 22) + 'px'; }
+  const R = CH.stage(TXT, gl, W, { fov: 36, near: 0.05, far: 3000, fog: 0.0015, exposure: 1.05 });
+  const room = TXT.interior(R, CH.bayRoom());
+  const B = CH.bay(THREE, R, TXT, K, { room, pads: 20, gold: 0, joists: false });
+  TXT.sky(R);
+  const yaw = B.G.rotation.y;
+  const tx = K.make('padmount_transformer', { xcolor: 0x2f4a3a, fins: true });
+  const T = [1.6, 0, -B.D / 2 - 7.5]; tx.position.fromArray(B.toWorld(T)); tx.rotation.y = yaw + 0.95; TXT.add(R, tx); TXT.contact(R, tx);
+  /* the three capped stubs stand in front of the pad's left corner, between the worker and the tank, where the key rakes them */
+  [[-1.85, 1.55], [-1.4, 1.62], [-0.95, 1.55]].forEach((o, i) => { const st = K.make('conduit_stub', { seed: i + 1 }); st.position.fromArray(B.toWorld([T[0] + o[0], 0, T[2] + o[1]])); st.rotation.y = yaw; TXT.add(R, st); TXT.contact(R, st); });
+  const who = K.make('person', { seed: 21, role: 'worker', pose: 'look_up', hat: 'hard' });
+  who.position.fromArray(B.toWorld([T[0] - 2.2, 0, T[2] + 0.9])); who.rotation.y = yaw + 0.3; TXT.add(R, who); TXT.contact(R, who);
+  { const pole = K.make('utility_pole', { transformer: true, guy: false, height: 10.7 }); pole.position.fromArray(B.toWorld([7.5, 0, -B.D / 2 - 85])); pole.rotation.y = yaw; TXT.add(R, pole); TXT.contact(R, pole); }
+  /* crushed rock round the pad and dry grass past the apron, the ground a pad site actually has */
+  { const c = B.toWorld(T); TXT.scatter(R, { kind: 'rock', count: 7000, area: [c[0] - 9, c[2] - 9, c[0] + 9, c[2] + 9], avoid: [[c[0] - 1.9, c[2] - 1.9, c[0] + 1.9, c[2] + 1.9]], seed: 11, scale: [0.012, 0.035] });
+    TXT.scatter(R, { kind: 'grass', count: 1400, area: [c[0] - 40, c[2] - 50, c[0] + 40, c[2] + 6], avoid: [[c[0] - 9, c[2] - 9, c[0] + 9, c[2] + 9]], seed: 12, scale: [0.6, 1.0] }); }
+  const from = B.toWorld([-1.1, 1.6, -B.D / 2 + 1.4]);
+  const look = CH.aim(THREE, R, TXT, from, B.toWorld([T[0] - 0.8, 0.9, T[2]]), 600, 1000, 36);
+  TXT.frame(R, { fov: 36, from, look });
+  CH.KEY_SCALE = 0.5;
+  TXT.deckRig(R, CH.rigSpec(W, 60, 4096), CH.rigOpts(B.toWorld([0, 0, -B.D / 2 - 6]), { distance: 90, shadowFar: 200, normalBias: 0.03 }));
+  CH.unacne(R, 0.03); CH.bayFill(R, 0.5);
+  /* the person and the transformer's face toward the camera take the bay's open door light: a soft fill from the door's inner side */
+  { const f = new THREE.SpotLight(0xffc9a0, 35, 26, 0.75, 0.8, 1.5); f.position.fromArray(B.toWorld([-0.5, 2.2, -B.D / 2 - 1.0])); f.target.position.fromArray(B.toWorld([T[0] - 1.2, 1.0, T[2]])); R.scene.add(f); R.scene.add(f.target); }
+  TXT.weather(R, { grime: 0.55, height: 1.2, mottle: 0.5 });
+  const cx = CH.develop(await TXT.snapshot(R, { stage: false }), gl);
+  CH.post(cx, { a: 0.5, veil: 0.45, veilH: 300 });
+  CH.footWash(cx, { a: 0.85, r: 520 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

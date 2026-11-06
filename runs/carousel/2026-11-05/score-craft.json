@@ -1,0 +1,78 @@
+{
+ "_note": "Scores, weighted score, hard fails and fixes as the judge returned them; each why is abridged by the run from the judge's report.",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.3,
+   "why": "1 and 5 pass most of the stage test; 1's door lacks sky and pole; 8 a garland on a grey wall; 6 water ground, flat horizon, flat pennants; 7 cartoon worker and white yard; 3 cold with bright trailer doors; 2 mid-brown, knife read, cropped."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 6.8,
+   "why": "The motif works and the warm key holds on 1, 5, 6, 9; 3 and 8 strobe; 4 a board."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.3,
+   "why": "Every numeral traces and frame 4 measures in proportion; 'two Houston buildings on Chimney Rock Road' while c15's third is also there; 'also leases' implies a separate site; 5 corrected only by 9."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.8,
+   "why": "Who, where and what; the stake stays general."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Cover earns it, 2 pays, 7 turns, 9 lands; 8 loosens the turn."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Clean and careful; 'drawn to illustrate' repeats."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "Interior and palette diverge from 66 to 68; lastLight and kit worker familiar."
+  }
+ ],
+ "weighted_score": 7.1,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Bring frames 3 and 8 into the deck's register: a dark field with one warm raking pool on one seated subject.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 8,
+   "problem": "Garland of modules on a grey rack wall.",
+   "fix": "One column of seated modules down a dark aisle under one raking key."
+  },
+  {
+   "slide": 6,
+   "problem": "Water ground, flat horizon band, flat pennants.",
+   "fix": "Graded clay, fog the horizon, tie strips to the stakes."
+  },
+  {
+   "slide": 3,
+   "problem": "Cold navy facade, bright trailer doors.",
+   "fix": "Warm key on the lit end as one pool, darken the trailer doors."
+  },
+  {
+   "slide": 7,
+   "problem": "Worker face draws the eye, white yard, no jamb.",
+   "fix": "Backlit worker silhouette, yard down, black jamb."
+  },
+  {
+   "slide": 2,
+   "problem": "Mid-brown field, knife read, fingers cropped.",
+   "fix": "Pull back, whole module and tape corner in frame, floor to black."
+  }
+ ]
+}

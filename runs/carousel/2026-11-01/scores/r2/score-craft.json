@@ -1,0 +1,80 @@
+{
+ "lens": "craft",
+ "round": 2,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.6,
+   "why": "Slides 8, 9 and 2 meet the bold descriptor and slide 3 is a good spatial frame. Slide 4's arm is still primitives with no button visible in the gripper, a paper cup crucible and cube grips. Slide 5 is a flat tan block in the grey middle with a rubber band mark. Slide 7's bars read as embossed glyphs on a framed plate. Slide 1's buttons show terraced rings and its lower right copper is a pale plane brightening against the left key. Slide 8's paint arc ends in a hard clip. A navy wall band sits behind the type on 1, 3, 5 and 6."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "Clearly one deck with one vocabulary and a changing motif that could be described unprompted. The navy wall band alternates with the black reliefs, and slide 1's copper brightens against the declared key."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.5,
+   "why": "Every numeral traces, the drawn counts follow figures.json, the goal is labelled a target and the universals are attributed. Slide 9's present tense hook brushes the rule that no surface implies the foundry runs."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.0,
+   "why": "What, who and what a reader can do are there. Where stays general, no date for the grant or the build is on any frame, the stake is general."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "The cover earns the swipe, slide 2 pays, the turn at 4 lands, 8 sets up the close. Slide 5 could move."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Clean and on register, leaning on attribution scaffolding, little regional texture."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 8.0,
+   "why": "The first macro metal bench deck in the run. The counted unit grid is the house habit."
+  }
+ ],
+ "weighted_score": 7.42,
+ "hard_fails": [],
+ "ship": false,
+ "ship_note": "",
+ "one_sentence_fix": "Rebuild slide 4 with a modelled six axis casting whose gripper visibly closes on a lit button over the hearth's glow, with finished stations.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 4,
+   "problem": "A toy arm of cylinders and boxes, no button visible in the gripper, a paper cup crucible, cube grips.",
+   "fix": "A modelled six axis arm, the camera closer and lower so the gripper with a lit button sits over the glow, the crucible fully in frame."
+  },
+  {
+   "slide": 5,
+   "problem": "A flat tan block in the grey middle, a rubber band mark, a navy wall horizon behind it.",
+   "fix": "Top face into shadow, raked sheet edges, a pen stroke mark, a lower eye so the wall leaves the frame."
+  },
+  {
+   "slide": 7,
+   "problem": "Embossed letter I glyphs on a framed plate, shallow height, mid grey rows, labels outside the safe zone.",
+   "fix": "Loose dogbones on the phenolic at twice the height with slight rotations, the plate edge cropped, labels inside the margin."
+  },
+  {
+   "slide": 1,
+   "problem": "Terraced button rings, a pale lower right plane brightening against the key, a hard horizon step.",
+   "fix": "Smoother button geometry with ripples in the normal map, the copper's sweep to the left."
+  },
+  {
+   "slide": 8,
+   "problem": "The paint arc floats outside the rim and ends in a hard clip, dendrites under the footer.",
+   "fix": "Mask the mark to the mount's bevel ring with a brushed taper, fade the key mask below the footer."
+  }
+ ]
+}

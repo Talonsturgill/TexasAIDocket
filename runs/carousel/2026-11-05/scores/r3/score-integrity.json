@@ -1,0 +1,78 @@
+{
+ "_note": "Scores, weighted score, hard fails and fixes as the judge returned them; each why is abridged by the run from the judge's report.",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.3,
+   "why": "1, 2 and 4 strong, 4 measured right; 7's primitive worker and white yard, 6's thick rod and board flags over a mid sky, 3's cold box and bright trailer doors, 9's pale pasted worker."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.0,
+   "why": "One world and a motif that changes state; 3 and 8 outside it."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 6.0,
+   "why": "Numerals trace; the document title drops c1's 'in the US'; 'Half the floor' draws two lower bounds on different bases as one US floor, disclosed only on 9; 'Laser chips' universal where c19 says 'our'; labels drop 'approximately'; 'two official records' counts the 10-Q twice."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.5,
+   "why": "What, who and where; no county, utility, site or deadline."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 6.8,
+   "why": "Cover earns it, 2 pays, 7 turns; 8 out of order; 3 and 4 slow the middle."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.8,
+   "why": "Specific hooks; 'drawn to illustrate' boilerplate."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "Third earnings deck; reuses no. 68's world and worker."
+  }
+ ],
+ "weighted_score": 6.48,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Put 'in the US' back into the document title and rewrite frame 5's hook so the pads are the company-wide target rather than the US bay's floor.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 7,
+   "problem": "Primitive worker, white yard, no jamb, stubs read as bollards.",
+   "fix": "Dark jamb across the left third; drop or silhouette the worker; low flush stubs."
+  },
+  {
+   "slide": 6,
+   "problem": "Thick rod and board pennants read as a barrier; mid sky with a horizon band.",
+   "fix": "3 mm cord, fluttering strips, eye at 0.6 m, fog the band."
+  },
+  {
+   "slide": 3,
+   "problem": "Cold box, white trailer doors, painted stripe clerestory.",
+   "fix": "Darken the trailer doors, warm the walls, real lit glazing."
+  },
+  {
+   "slide": 9,
+   "problem": "Overlit pale worker; truss behind the hook.",
+   "fix": "Door-side rim only; truss to black."
+  },
+  {
+   "slide": 8,
+   "problem": "Grey rack faces, tabs as a string of keys, fibre shadows.",
+   "fix": "Crop to one switch, steel to near black, fibre into a tray."
+  }
+ ]
+}

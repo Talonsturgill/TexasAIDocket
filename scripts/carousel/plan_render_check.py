@@ -709,7 +709,12 @@ def palette_map(storyboard: str) -> dict:
         if " " not in name:
             out[name] = hexv.upper()
     for span in palette_sections(storyboard):
-        for pat in (PALETTE_ROW, PALETTE_PLAIN, PALETTE_COLUMNS):
+        # THE SIXTH SHAPE, 2026-11-03: one comma separated line of `name #HEX` pairs under the
+        # palette heading, which nos. 66 and 67 both wrote and which read as ZERO tokens, so the
+        # calibration below went red on two decks whose palettes were declared plainly. Read with
+        # the prose pattern, scoped to the palette section like the other loose shapes, and last,
+        # so a table or a line of its own keeps its value.
+        for pat in (PALETTE_ROW, PALETTE_PLAIN, PALETTE_COLUMNS, PALETTE_PROSE):
             for name, hexv in pat.findall(span):
                 name = name.strip().lower()
                 if " " not in name and name not in ("token", "hex", "colour", "color"):

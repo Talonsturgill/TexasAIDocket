@@ -220,7 +220,10 @@
         "2026-10-25",
         "2026-10-29",
         "2026-10-30",
-        "2026-10-31"
+        "2026-10-31",
+        "2026-11-01",
+        "2026-11-03",
+        "2026-11-05"
       ],
       "contradicted": []
     },
@@ -645,7 +648,10 @@
         "2026-10-25",
         "2026-10-26",
         "2026-10-29",
-        "2026-10-31"
+        "2026-10-31",
+        "2026-11-01",
+        "2026-11-03",
+        "2026-11-05"
       ],
       "contradicted": []
     },
@@ -742,7 +748,9 @@
         "2026-10-09",
         "2026-10-17",
         "2026-10-25",
-        "2026-10-26"
+        "2026-10-26",
+        "2026-11-03",
+        "2026-11-05"
       ],
       "contradicted": []
     },
@@ -863,7 +871,9 @@
         "2026-10-15",
         "2026-10-20",
         "2026-10-24",
-        "2026-10-26"
+        "2026-10-26",
+        "2026-11-03",
+        "2026-11-05"
       ],
       "contradicted": []
     },
@@ -1672,6 +1682,70 @@
       "learned": "2026-10-31",
       "instinct": "When two fetched sources state the same promise differently, put both on the surface with their attributions rather than dropping the one that complicates the frame.",
       "evidence": "No. 64 frame 8: round 1's repair dropped Houston Public Media's 'down within 72 hours' (c46) beside the Tribune's 'start bagging 72 hours after' (c33); the round 2 integrity judge charged the silent drop, and round 3 credited the disclosure.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "isolate-the-render-pass-before-another-review",
+      "learned": "2026-11-01",
+      "instinct": "Isolate a native size artifact named twice with a diagnostic render before changing anything, because a guessed cause costs a full review to disprove.",
+      "evidence": "no. 65's cover took sixteen art director readings; three guessed causes (shadow map size, the bump, the shadow receiver) were disproved one review each before diagnostic renders found the practical light, the shadow camera planes and the grade's bloom",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "occluder-reads-the-camera",
+      "learned": "2026-11-03",
+      "instinct": "Place every camera space occluder from the camera's own fov, never a typed one, because a later fov change moves the frame and not the occluder.",
+      "evidence": "No. 66 frame 1, the window seal kept fov 26 after the frame moved to 30 and its bevel crossed the type column for a pixel round.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "release-tense-before-panel",
+      "learned": "2026-11-03",
+      "instinct": "Before the first panel, read every sentence against its claim's tense and actor, because a release's will becomes present fact and a joint review becomes the software's in paraphrase.",
+      "evidence": "No. 66 round 1, the integrity judge scored claim integrity 5.5 on flattened tense, car for vehicle and checks given to software; the same judge's next round scored 8.0 after the copy was fixed.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "audition-frames-freeze-at-binding",
+      "learned": "2026-11-03",
+      "instinct": "Settle every string, label and markup choice on the cover, the evidence frame and the close before the art director's first reading, because every later edit to those three frames costs a fresh reading.",
+      "evidence": "No. 67 took seven audition readings: the third accepted, then pixel and flow repairs, a label halo for panel_ready, a text-stroke span the shipped check refused and a FIG line reorder each re-opened frames 1, 2 or 9.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "a-count-frame-shows-every-unit-whole",
+      "learned": "2026-11-03",
+      "instinct": "Pick a count frame's camera so every counted unit stands whole and separable at 432 px before choosing it for drama, and say in the dossier why the judges' oblique was not taken.",
+      "evidence": "No. 67 frame 4: three oblique cameras hid five or six of the 20 tractors or merged them under layout_check's GRID count, so the frontal view shipped and all three judges charged it as a toy lot in every round.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "find-kit-parts-by-material",
+      "learned": "2026-11-05",
+      "instinct": "Find a part of a baked kit model by its material's bounding box, never by geometry parameters, because the bake merges every mesh of one material and a parameter lookup silently finds nothing.",
+      "evidence": "2026-11-04 no. 68, frames 3 and 4 looked for the polished rod by its cylinder radius, found nothing, and placed the camera and the well string on a hand-typed fallback about 0.9 m off the real rod",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "door-light-made-by-the-opening",
+      "learned": "2026-11-05",
+      "instinct": "Light a room lit only through one opening from a source outside, and let the wall cast.",
+      "evidence": "no. 69 frame 5: two readings by the art director called the inside spill an overhead spotlight; a low source 8 m outside with the back wall casting gave a trapezoid from the sill, accepted on the next reading",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "stated-area-is-the-outer-edge",
+      "learned": "2026-11-05",
+      "instinct": "Draw a square of stated area with its outer edge on the stated side, every lip inside it.",
+      "evidence": "no. 69 frame 4: a formwork lip added outside the stated side on the two pits only drew 356,186 square feet larger than 388,133; the order was right in the code and wrong on the page until the lip moved inside",
       "confirmed": [],
       "contradicted": []
     }

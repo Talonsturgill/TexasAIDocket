@@ -11,7 +11,7 @@ The National Science Foundation announced on September 1st, 2026 that it is esta
 - Public access: Write to the decider
 - Take part: https://www.nsf.gov/cise/updates/nsf-establishes-operations-center-national-artificial
 
-- Last checked: 2026-10-29
+- Last checked: 2026-11-04
 
 ## Dates
 
@@ -39,6 +39,8 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-21 · Checked and unchanged. The decision still stands as decided.
 - 2026-10-24 · UT Austin's supercomputing center still holds its operating role in the national AI research resource.
 - 2026-10-29 · UT Austin's supercomputing center still holds its operating role for the national AI research resource.
+- 2026-11-01 · TACC still sits under the foundation's operating arrangement as announced.
+- 2026-11-04 · Checked and unchanged. The decision still stands as decided.
 
 ## Evidence
 

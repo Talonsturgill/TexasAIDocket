@@ -1,0 +1,93 @@
+{
+ "judge": "integrity",
+ "carousel_no": 67,
+ "round": 1,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.3,
+   "why": "Every frame is rendered and the register is dark: art_preflight measures median L* of 0.8, 9.4 and 7.3 on frames 1, 2 and 9. Frame 1 is the best: the tractor on a diamond-tread deck with converging yellow rails, a green signal and contact shadows. Frame 9's yard from the mast is the second best. Four frames charge the score. On 8 the cab is a primitive, plastic-looking fairing in a black void, with a flat visor slab, a yellow rather than amber dome and no road or shoulder. Frame 6 is a textured mid-grey rectangle, with a dead band between the dek and the bar at about design y 500 to 750. On 4, twenty identical front-on tractors sit as icons on black, with a visible tonal step behind the dek at about design y 440 to 500 and an empty lower third. On 7 the Panhandle is clipped into a hard rectangle at the upper left, and the county borders stair-step. The flow critic says the same kit grille faces the camera on frames 1, 2, 3, 4 and 9 (flow_craft cross_frame a). This is not a 7 deck with one weak frame. Four frames fall to defaults or primitives."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.0,
+   "why": "There is one floodlit night world and one white tractor. Rust primer means one thing, what the letter says will happen and hasn't, on frames 3, 5, 7 and 9, and it reads that way: the stop bar, the clamp stop, the studs and the stalls. Yard 4 seen again from the mast on 9 is a real continuity device. Against that, the greyer reliefs on 5 and 6 sit beside dark spatial frames, and flow_craft cross_frame e says the declared value arc doesn't show. The two map and bar reliefs feel slightly outside the world."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 5.5,
+   "why": "Most of the work is exemplary. 26 of 27 claims are primary, 20 come from the SEC filing, compute.py regexes every figure out of a quote, and the numeral, label, quantifier, verbatim and aggregate reports are all empty. Every drawn count I checked follows FIG: 20 tractors on slide 4, 6 week grooves and 3 shims on 5, the loss bar at 257/(257+3) of 888 px beside a 10.2 px billet on 6, 500 studs on 7, and 1,000 stalls in 20 rows of 50 with a kerb after 4 rows on 9. The fault is slide 7's headline 'One route now, one route planned'. It is a count of Aurora's current routes, and no claim supports a count. c21 says only that Dallas to Houston is 'its' route. claims.json's own rejected list records a finding that Aurora runs Fort Worth to El Paso, which was dropped as unconfirmed, not refuted. The deck turned that absence into 'one'. c5, a verified claim in the same file, quotes Charger's president that autonomous operations 'along the Laredo corridor' have already launched, and the web edition links tx-2026-0209 'Kodiak and Charger USA on Dallas to Laredo'. So the corridor the slide calls simply 'planned' already carries driverless freight, and nothing on the frame says so. Lesser faults follow. On slide 6 the $9M groove for annual 2026 revenue is cut into the quarterly LOSS bar, at bx0+L9, from the bar's own start, not 'from the datum's left end' as the code comment says. A reader can take it as $9M of the loss. On slide 7 the New Braunfels punch sits at Comal County's centroid, not the city, and nothing on the slide says so. It lands on Charger's stud line. The web edition dek ('puts its truck build six weeks late') and the record label tx-2026-0239 ('six week production slip') both drop the source's 'about'. figures.json gives hardware_start_year the basis 'second half of this year', but the value is 2027, so the basis is wrong."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.5,
+   "why": "A Texan learns what Aurora told investors: weigh stations, gate entry in November, the late ramp, $3M of revenue against a $257M loss. They also learn where: Dallas to Houston, Laredo, New Braunfels. The deciders are a company and FMCSA. No Texas body, deadline or action is named beyond the caption's question 'Has a Texas scale house weighed a driverless Aurora truck yet?' DPS, the Texas enforcement end of a weigh station, is never mentioned. 'AUMOVIO line' on 7 goes unexplained, so a reader can't tell it builds Aurora's hardware kit."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "The cover earns the swipe. Frame 2 pays at once with the three steps. The declared turn at frame 5 ('the letter measures') lands, and 9 closes on built against expected with the filing named. Frame 8 (the beacon) is a federal side-note that could move or be cut without loss, and frame 3 repeats frame 1's grille close."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "The copy is clean and on register. It attributes carefully ('by Aurora's own count', 'the letter says'), keeps the tense honest ('expected' on every forward figure), and I found no banned words, colons or dashes. 'Scale house' is good regional vocabulary. One flat line: the caption's 'The deck rides one tractor onto the scale, then weighs the letter's numbers.' describes the product instead of the story."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.0,
+   "why": "No topic repeats inside the window. The nearest is Kodiak no. 41 on October 3rd, 31 days out. Still, it is the second driverless truck deck in a month. It uses the same kit semi_truck and 53 ft van as no. 41, Dallas to Houston as a lane again, and the floodlit night world that nos. 47, 55 and 59 also used. The three material reliefs are the house move. The scale-lane lens and the primer accent are fresh."
+  }
+ ],
+ "weighted_score": 6.37,
+ "hard_fails": [
+  "An unverified fact presented as verified, slide 7. The headline 'One route now, one route planned' states that Aurora has exactly one current route. No claim establishes a count. c21 says only that Dallas to Houston is Aurora's route. The run's own claims.json rejected the Fort Worth to El Paso finding as unconfirmed, not refuted, and printed 'One' anyway. Verified claim c5 says autonomous operations along the Laredo corridor have already launched, yet the frame presents that corridor only as 'planned'. The count was made out of an absence."
+ ],
+ "ship": false,
+ "one_sentence_fix": "Rewrite slide 7's headline as something the claims support, such as 'Aurora's own route, and a customer's plan', and either cite c5 or drop the word 'now', so the frame never counts Aurora's routes from what the fact check failed to find.",
+ "named_defects": [
+  "Slide 7: the 'One route now' count traces to no claim and is in tension with c5 and the rejected Fort Worth to El Paso finding (hard fail)",
+  "Slide 6: the $9M annual revenue groove is cut into the quarterly loss bar, measured from the bar's start, not the datum's start as the source comment says. It reads as part of the loss",
+  "Slide 7: the New Braunfels punch is at Comal County's centroid, not the city, with no note on the frame",
+  "Slide 9: 'Each primer stall is one expected truck' invites a count the camera can't show. About 14 of 50 columns are visible, so the 200 enclosure looks like a few dozen stalls, and the 800 between the kerbs is a near-black band",
+  "Web edition dek and record label tx-2026-0239 drop 'about' from 'about six weeks'",
+  "figures.json hardware_start_year basis says 'second half of this year' for a value of 2027",
+  "Slide 2: 'scale configuration' label at 23 px, under the 24 px mobile floor (machine_qa WARN)",
+  "Gate reports live at out/2026-11-03/*.json, not out/2026-11-03/render/ as the brief listed. All four are clean"
+ ],
+ "artwork_weakest_frames": [
+  {
+   "slide": 8,
+   "problem": "The cab is a primitive, plastic fairing with a flat visor slab, lit flat blue-white in a black void. There is no road, shoulder or ground, so a stopped truck has nowhere to be stopped, and the beacon reads yellow rather than amber.",
+   "fix": "Pull the camera back to a low three-quarter view from the shoulder at about 1.6 m so the stopped tractor stands on lit asphalt. Let the beacon's amber throw a pool on the roof and the road, with the empty shoulder where triangles would go in the foreground. Delete the visor slab."
+  },
+  {
+   "slide": 6,
+   "problem": "A textured mid-grey rectangle with a dead band between the dek and the bar (about design y 500 to 750). The $9M groove sits inside the loss bar, so it reads as part of the loss.",
+   "fix": "Raise the datum to about design y 900 and halve the bar height (BH 260 to 130) so the bar's long cast fills the empty band. Move the $9M mark out of the loss bar onto the steel datum, scribed from the datum's left end at the same px per million."
+  },
+  {
+   "slide": 4,
+   "problem": "Twenty identical front-on tractors read as icons on black, with a tonal band edge behind the dek at about design y 440 to 500 and a dead lower third.",
+   "fix": "Drop the camera to about 3 m at a 30 degree oblique from the near corner so the two ranks recede with overlap and casts, with the near rank's end cab cropped by the left edge. Extend the seal plane past the horizon so its edge no longer cuts a band behind the dek."
+  },
+  {
+   "slide": 7,
+   "problem": "The relief window's top edge clips the Panhandle into a hard stepped rectangle at the upper left. County borders stair-step, and the Dallas to Houston inlay's cast breaks into slabs.",
+   "fix": "Refit proj.fitExtent so the crop's upper left falls in the darkening wash, not across the Panhandle, or fade the state into the field there. Set LINE height to within 4 of CLAY so borders read as albedo. Pin New Braunfels at the city's gazetteer point."
+  },
+  {
+   "slide": 3,
+   "problem": "It repeats the cover's front-on grille close-up, and the right half is a dead field beyond the boom.",
+   "fix": "Swing the camera about 40 degrees to the boom's pivot side so the gate cabinet and the boom's counterweight fill the right half, with the tractor's grille cropped at the left edge behind the primer stop bar."
+  }
+ ],
+ "lens": "integrity"
+}

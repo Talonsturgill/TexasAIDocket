@@ -1,0 +1,2179 @@
+{
+  "canvas": {
+    "width": 1080,
+    "height": 1350,
+    "scale": 2.0,
+    "px": [
+      2160,
+      2700
+    ]
+  },
+  "text_window": 320,
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "png": "slide-01.png",
+      "console_errors": [
+        "TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 232, 223)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "A phone on a vehicle window will survey San Antonio's loose dogs",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 250,
+          "font_px": 85,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(236, 232, 223)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              139,
+              699,
+              105
+            ],
+            [
+              80,
+              222,
+              662,
+              105
+            ],
+            [
+              80,
+              306,
+              855,
+              105
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Southwest Research Institute and the city's Animal Care Services will repeat a 2019 manual survey with machine vision software. Drawn to illustrate.",
+          "x": 82,
+          "y": 426,
+          "w": 860,
+          "h": 128,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              426,
+              827,
+              42
+            ],
+            [
+              82,
+              469,
+              812,
+              42
+            ],
+            [
+              82,
+              511,
+              519,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "San Antonio",
+          "x": 80,
+          "y": 80,
+          "w": 182,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              182,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "01 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c1 c2 c3 c9 c15",
+          "x": 80,
+          "y": 1234,
+          "w": 241,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              241,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 32258,
+      "ok": true,
+      "load_ms": 290,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 21.7,
+          "variance": 469.5
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-02.html",
+      "png": "slide-02.png",
+      "console_errors": [
+        "TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 232, 223)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The camera is a phone",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 215,
+          "font_px": 109.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(236, 232, 223)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              136,
+              625,
+              135
+            ],
+            [
+              80,
+              243,
+              352,
+              135
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The release describes \"a cellular phone mounted to a vehicle window with object detection and data analysis software\".",
+          "x": 82,
+          "y": 391,
+          "w": 880,
+          "h": 128,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              391,
+              778,
+              42
+            ],
+            [
+              82,
+              433,
+              811,
+              42
+            ],
+            [
+              82,
+              476,
+              148,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The instrument",
+          "x": 80,
+          "y": 80,
+          "w": 232,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              232,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "02 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c2 c3 c18",
+          "x": 80,
+          "y": 1234,
+          "w": 145,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              145,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 27676,
+      "ok": true,
+      "load_ms": 265,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 18.2,
+          "variance": 580.9
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-03.html",
+      "png": "slide-03.png",
+      "console_errors": [
+        "TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 232, 223)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Four checks on each clip",
+          "x": 80,
+          "y": 150,
+          "w": 720,
+          "h": 195,
+          "font_px": 99.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(236, 232, 223)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              137,
+              615,
+              122
+            ],
+            [
+              80,
+              235,
+              354,
+              122
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Video clips will go to automated and human review. Each detected dog will be checked.",
+          "x": 82,
+          "y": 371,
+          "w": 880,
+          "h": 86,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              371,
+              822,
+              42
+            ],
+            [
+              82,
+              414,
+              438,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "unrestrained",
+          "x": 718,
+          "y": 793,
+          "w": 206,
+          "h": 34,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 232, 223)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              718,
+              792,
+              206,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "human supervision",
+          "x": 187,
+          "y": 767,
+          "w": 189,
+          "h": 68,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 232, 223)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              290,
+              766,
+              86,
+              35
+            ],
+            [
+              187,
+              800,
+              189,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "number of dogs present",
+          "x": 171,
+          "y": 992,
+          "w": 206,
+          "h": 68,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 232, 223)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              222,
+              991,
+              154,
+              35
+            ],
+            [
+              171,
+              1025,
+              206,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "owned or a stray",
+          "x": 716,
+          "y": 1016,
+          "w": 275,
+          "h": 34,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 232, 223)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              716,
+              1015,
+              275,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "What the review checks",
+          "x": 80,
+          "y": 80,
+          "w": 364,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              364,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "03 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c4 c5",
+          "x": 80,
+          "y": 1234,
+          "w": 80,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              80,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 21723,
+      "ok": true,
+      "load_ms": 298,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 31,
+          "variance": 896.4
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-04.html",
+      "png": "slide-04.png",
+      "console_errors": [
+        "TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 232, 223)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Two labels for a loose dog",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 187,
+          "font_px": 95.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(236, 232, 223)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              138,
+              826,
+              117
+            ],
+            [
+              80,
+              232,
+              148,
+              117
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The release says strays \"appear to be malnourished and skittish\". Dogs that seem healthier and more approachable \"are likely owned by local families and are classified as roaming.\" Drawn to illustrate.",
+          "x": 82,
+          "y": 361,
+          "w": 900,
+          "h": 171,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              361,
+              818,
+              42
+            ],
+            [
+              82,
+              404,
+              856,
+              42
+            ],
+            [
+              82,
+              447,
+              793,
+              42
+            ],
+            [
+              82,
+              489,
+              429,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "stray",
+          "x": 262,
+          "y": 1145,
+          "w": 86,
+          "h": 34,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 232, 223)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              262,
+              1144,
+              86,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "roaming",
+          "x": 763,
+          "y": 1145,
+          "w": 120,
+          "h": 34,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 232, 223)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              763,
+              1144,
+              120,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The call",
+          "x": 80,
+          "y": 80,
+          "w": 132,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              132,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "04 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c6 c7",
+          "x": 80,
+          "y": 1234,
+          "w": 80,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              80,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 36237,
+      "ok": true,
+      "load_ms": 232,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 25.7,
+          "variance": 509.2
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-05.html",
+      "png": "slide-05.png",
+      "console_errors": [
+        "TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot stands inside something built"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [
+        {
+          "kind": "tiny-text",
+          "text": "unrestrained",
+          "detail": "font-size 23px < 24px mobile floor (mark data-decorative if intentional)"
+        },
+        {
+          "kind": "tiny-text",
+          "text": "human supervision",
+          "detail": "font-size 23px < 24px mobile floor (mark data-decorative if intentional)"
+        },
+        {
+          "kind": "tiny-text",
+          "text": "dogs present",
+          "detail": "font-size 23px < 24px mobile floor (mark data-decorative if intentional)"
+        },
+        {
+          "kind": "tiny-text",
+          "text": "owned or a stray",
+          "detail": "font-size 23px < 24px mobile floor (mark data-decorative if intentional)"
+        }
+      ],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 232, 223)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "A person reviews the clips too",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 195,
+          "font_px": 99.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(236, 232, 223)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              137,
+              842,
+              122
+            ],
+            [
+              80,
+              235,
+              337,
+              122
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The release says automated and human review of the video clips \"will verify that the detected animals were unrestrained.\"",
+          "x": 82,
+          "y": 371,
+          "w": 880,
+          "h": 128,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              371,
+              867,
+              42
+            ],
+            [
+              82,
+              414,
+              616,
+              42
+            ],
+            [
+              82,
+              457,
+              293,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "unrestrained",
+          "x": 648,
+          "y": 710,
+          "w": 182,
+          "h": 30,
+          "font_px": 23,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 232, 223)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              648,
+              709,
+              182,
+              30
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "human supervision",
+          "x": 648,
+          "y": 787,
+          "w": 258,
+          "h": 30,
+          "font_px": 23,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 232, 223)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              648,
+              786,
+              258,
+              30
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "dogs present",
+          "x": 648,
+          "y": 864,
+          "w": 182,
+          "h": 30,
+          "font_px": 23,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 232, 223)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              648,
+              863,
+              182,
+              30
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "owned or a stray",
+          "x": 648,
+          "y": 940,
+          "w": 243,
+          "h": 30,
+          "font_px": 23,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 232, 223)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              648,
+              939,
+              243,
+              30
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Human review",
+          "x": 80,
+          "y": 80,
+          "w": 199,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              199,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "05 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c4 c5",
+          "x": 80,
+          "y": 1234,
+          "w": 80,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              80,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 14433,
+      "ok": true,
+      "load_ms": 226,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 27,
+          "variance": 938.7
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-06.html",
+      "png": "slide-06.png",
+      "console_errors": [
+        "TXBENCH: RELIEF {\"height_range\":99.95987809273615,\"materials\":3,\"cast_fraction\":0.5246571729957806,\"area\":0.5851851851851851,\"render_ms\":10706.699999999255}"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 232, 223)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "32 study areas, not the whole city",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 187,
+          "font_px": 95.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(236, 232, 223)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              138,
+              876,
+              117
+            ],
+            [
+              80,
+              232,
+              395,
+              117
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The city says the project is not intended to count every unrestrained dog in San Antonio. SwRI says the study takes a sampling approach rather than surveying the whole city.",
+          "x": 82,
+          "y": 361,
+          "w": 900,
+          "h": 128,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              361,
+              806,
+              42
+            ],
+            [
+              82,
+              404,
+              894,
+              42
+            ],
+            [
+              82,
+              447,
+              825,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The sample",
+          "x": 80,
+          "y": 80,
+          "w": 166,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              166,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "06 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c8 c12 c17 c19",
+          "x": 80,
+          "y": 1234,
+          "w": 225,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              225,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 14508,
+      "ok": true,
+      "load_ms": 183,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 22.5,
+          "variance": 1166.9
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-07.html",
+      "png": "slide-07.png",
+      "console_errors": [
+        "TXBENCH: RELIEF {\"height_range\":82.87354869804193,\"materials\":5,\"cast_fraction\":0.6275259370816599,\"area\":0.6148148148148148,\"render_ms\":11065.5}"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 232, 223)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The same 32 places as 2019",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 187,
+          "font_px": 95.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(236, 232, 223)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              138,
+              761,
+              117
+            ],
+            [
+              80,
+              232,
+              310,
+              117
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The 2019 survey was done by hand. The automated survey will repeat it in the same study areas. The 2019 findings are not shown here.",
+          "x": 82,
+          "y": 361,
+          "w": 900,
+          "h": 128,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              361,
+              850,
+              42
+            ],
+            [
+              82,
+              404,
+              864,
+              42
+            ],
+            [
+              82,
+              447,
+              237,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "2019",
+          "x": 120,
+          "y": 518,
+          "w": 69,
+          "h": 34,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 232, 223)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              120,
+              517,
+              69,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "2026",
+          "x": 891,
+          "y": 518,
+          "w": 69,
+          "h": 34,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 232, 223)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              891,
+              517,
+              69,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "7 years",
+          "x": 480,
+          "y": 518,
+          "w": 120,
+          "h": 34,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 232, 223)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              480,
+              517,
+              120,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Seven years apart",
+          "x": 80,
+          "y": 80,
+          "w": 282,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              282,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "07 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c9 c10 c17 c22",
+          "x": 80,
+          "y": 1234,
+          "w": 225,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              225,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 14788,
+      "ok": true,
+      "load_ms": 198,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 25.4,
+          "variance": 1467.4
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-08.html",
+      "png": "slide-08.png",
+      "console_errors": [
+        "TXBENCH: RELIEF {\"height_range\":88.7164961536205,\"materials\":3,\"cast_fraction\":0.39240573404730034,\"area\":0.6148148148148148,\"render_ms\":11924.200000001118}"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 232, 223)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "October to December on the street, then a report",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 169,
+          "font_px": 86,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(236, 232, 223)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              139,
+              865,
+              106
+            ],
+            [
+              80,
+              223,
+              822,
+              106
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Field research is expected to run through December. SwRI will then forward Animal Care Services a final report on the study's findings and data.",
+          "x": 82,
+          "y": 343,
+          "w": 900,
+          "h": 128,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              343,
+              847,
+              42
+            ],
+            [
+              82,
+              385,
+              857,
+              42
+            ],
+            [
+              82,
+              428,
+              377,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "OCT",
+          "x": 264,
+          "y": 976,
+          "w": 51,
+          "h": 34,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 232, 223)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              264,
+              975,
+              51,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "NOV",
+          "x": 484,
+          "y": 976,
+          "w": 51,
+          "h": 34,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 232, 223)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              484,
+              975,
+              51,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "DEC",
+          "x": 704,
+          "y": 976,
+          "w": 51,
+          "h": 34,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 232, 223)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              704,
+              975,
+              51,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "final report",
+          "x": 791,
+          "y": 600,
+          "w": 206,
+          "h": 34,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 232, 223)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              791,
+              599,
+              206,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The field window",
+          "x": 80,
+          "y": 80,
+          "w": 265,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              265,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "08 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c10 c11 c20 c21",
+          "x": 80,
+          "y": 1234,
+          "w": 241,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              241,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 15538,
+      "ok": true,
+      "load_ms": 168,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 24.2,
+          "variance": 1130.5
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-09.html",
+      "png": "slide-09.png",
+      "console_errors": [
+        "TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(236, 232, 223)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The ACS director calls it another tool",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 187,
+          "font_px": 95.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(236, 232, 223)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              138,
+              877,
+              117
+            ],
+            [
+              80,
+              232,
+              550,
+              117
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "ACS Director Jon Gary says the study gives the city \"another tool to better understand where we are seeing unrestrained dogs\". SwRI will forward the final report to the department.",
+          "x": 82,
+          "y": 363,
+          "w": 880,
+          "h": 171,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              363,
+              748,
+              42
+            ],
+            [
+              82,
+              406,
+              817,
+              42
+            ],
+            [
+              82,
+              449,
+              805,
+              42
+            ],
+            [
+              82,
+              491,
+              242,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "What comes next",
+          "x": 80,
+          "y": 80,
+          "w": 248,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              248,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "09 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c14 c21 c15",
+          "x": 80,
+          "y": 1234,
+          "w": 177,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(214, 208, 196)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              177,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 23060,
+      "ok": true,
+      "load_ms": 282,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 18.7,
+          "variance": 618.8
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    }
+  ]
+}

@@ -1,0 +1,76 @@
+<!doctype html>
+<!-- 2026-11-04, frame 4 of 9. Archetype DIAGRAM. A cutaway block of ground standing on the dark basin floor like a model, banded rock on its cut face, the pump jack at crank 120 on its caliche top, a steel rod string running straight down the face and a pale steel lateral curving off it to horizontal, three leaders on the lateral. Drawn to illustrate; the bands are not to scale and name no formation. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:900px">Language models, aimed at the wellbore</h1>
+<p class="dek" data-follow="26" style="width:880px">The release says the company is combining its subsurface data with large language models. The bands are drawn to illustrate and are not to scale.</p>
+<div class="lab" id="lab-0">development strategy</div>
+<div class="lab" id="lab-1">wellbore placement</div>
+<div class="lab" id="lab-2">drilling parameters</div>
+<script>window.FIG = {"llm_uses": 3};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-04-wellpad.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "The second tool", counter: "04 / 09", src: "c2", fit: { min: 72, max: 96, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 30, near: 0.1, far: 4000, fog: 0.004 });
+  const BW = 32, BH = 13, BD = 14;
+  const block = K.make('strata_block', { w: BW, h: BH, d: BD, seed: 5 }); TXT.add(R, block); TXT.contact(R, block);
+  const jack = K.make('pump_jack', { seed: CH.JACK.seed, crank: 120, color: CH.JACK.color, head: CH.JACK.head, guard: false });
+  jack.position.set(-9, BH, 1.5); TXT.add(R, jack);
+  jack.updateMatrixWorld(true);
+  /* the kit bakes by material, so the polished rod is the chrome mesh, and the well string drops from directly under it */
+  let rodBox = null; jack.traverse(o => { if (o.isMesh && o.material && o.material.metalness === 1) rodBox = new THREE.Box3().setFromObject(o); });
+  const rp = new THREE.Vector3(); if (rodBox) rp.set((rodBox.min.x + rodBox.max.x) / 2, 0, (rodBox.min.z + rodBox.max.z) / 2); else rp.set(-4.6, 0, 1.5);
+  /* the rod string straight down the cut face, and the lateral leaving it: the wells are drawn on the face, as a cutaway draws them */
+  const zf = BD / 2 + 0.06, wx = rp.x, steel = K.mat('wp-rodstring', { color: 0x9ea3a8, metalness: 0.85, roughness: 0.3 }), pale = K.mat('wp-lateral', { color: 0xd8d4cb, metalness: 0.6, roughness: 0.35 });
+  const rod = TXT.tube([[wx, BH, zf], [wx, 6.2, zf]], 0.11, steel); TXT.add(R, rod);
+  const yk = 6.2, rr = 3.2, pts = [[wx + 0.0, BH - 0.2, zf]];
+  for (let i = 0; i <= 12; i++) { const a = i / 12 * Math.PI / 2; pts.push([wx + rr - rr * Math.cos(a), yk - rr * Math.sin(a), zf]); }
+  pts.push([BW / 2 + 0.4, yk - rr, zf]);
+  const lat = TXT.tube([[wx, BH - 0.2, zf], [wx, yk, zf]].concat(pts.slice(2)), 0.16, pale); TXT.add(R, lat);
+  TXT.sky(R);
+  TXT.ground(R, { surface: 'dirt', size: 1600, seed: 65, bumpScale: 0.12 });
+  const from = [5, 19, 74];
+  const look = CH.aim(THREE, R, TXT, from, [0, 6.5, 0], 540, 1015, 30);
+  TXT.frame(R, { fov: 30, from, look });
+  TXT.scatter(R, { kind: 'scrub', count: 1000, area: [-300, -300, 300, 0], avoid: [[-24, -12, 24, 12]], seed: 67, scale: [0.5, 1.1] });
+  CH.warm(R, 0.55);
+  TXT.deckRig(R, CH.rigSpec(W, 40, 4096), CH.rigOpts([0, 6, 0], { distance: 80, shadowFar: 200, normalBias: 0.04 }));
+  CH.unacne(R, 0.04);
+  TXT.weather(R, { grime: 0.3, height: 1.2, mottle: 0.12, skip: [block] });
+  TXT.stage(R, [block, jack], { poolInner: 18, poolOuter: 30 });
+  /* THREE USES: figures.json's llm_uses leaders, at the turn, the landing and the toe of the lateral */
+  const N = Math.round(FIG.llm_uses), stops = [[wx + rr * 0.5, yk - rr * 0.866 + 0.16, zf], [wx + rr + 4, yk - rr + 0.16, zf], [BW / 2 - 5, yk - rr + 0.16, zf]].slice(0, N);
+  const svg = CH.svg(), mk = (d) => { const p = document.createElementNS('http://www.w3.org/2000/svg', 'path'); p.setAttribute('d', d); p.setAttribute('stroke', '#E6E3DC'); p.setAttribute('stroke-width', '2'); p.setAttribute('fill', 'none'); svg.appendChild(p); };
+  const leaders = [];
+  stops.forEach((p, k) => { const q = CH.project(THREE, R, p); const el = document.getElementById('lab-' + k); const w = el.getBoundingClientRect().width;
+    const lx = 1000 - w, ty = 540 + k * 50;
+    el.style.left = Math.round(lx) + 'px'; el.style.top = Math.round(ty) + 'px';
+    const right = q[0] > lx, ax = right ? lx + w + 12 : lx - 12, ay = ty + 17;
+    if (right) mk('M' + ax + ' ' + ay + ' L' + Math.max(ax + 14, q[0]) + ' ' + ay + ' L' + q[0] + ' ' + (q[1] - 12));
+    else mk('M' + ax + ' ' + ay + ' L' + (q[0] + 14) + ' ' + ay + ' L' + q[0] + ' ' + (q[1] - 12)); leaders.push({ target: 'the lateral, ' + el.textContent, at: [q[0], q[1] - 12], to: [q[0], q[1] - 12] }); });
+  window.__txLeaders = leaders;
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0.3, veil: 0.6, veilH: 260 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

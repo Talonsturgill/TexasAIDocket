@@ -1,0 +1,79 @@
+{
+ "lens": "reader",
+ "round": 1,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.3,
+   "why": "Every frame rendered, dark register, no screen. 1, 6 and 8 hold up. 3 has the left 60 percent empty black, a plain box carrier bar and a small wellhead. 1 and 9 show an unlit navy jack with no rim. 9's kit worker sits under the cite. 7's pipe ends read as flat white donuts. 2 is a stock document still life. 4 reads as a slab with arbitrary leaders."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.0,
+   "why": "One oilfield at dusk, one jack recurring, accent only on printed figures, value dark throughout. The stroke motif can't be seen and the sky splits cold and warm. The camera move carries the deck."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.5,
+   "why": "Every numeral traces, 45.5 and 167 computed and checked. The RRC line rests on the Tribune. The deck omits that the same article (c28) reported AI in produced water handling in May. The caption hook and #ReevesCounty are looser than their sources."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.0,
+   "why": "A Texan learns the two tools, the runtime credit to compression, no result printed and the regulator's May statement. No deadline, proceeding, rule or step. The close points at the RRC without saying whether it has a rule, docket or meeting. Frames 6 and 7 are company profile."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "Cover earns a look and 2 pays. 5, 6 and 7 run three company figures in a row; 6 is cuttable. 8 lands but its hook dangles until the dek. The close asks rather than lands."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Oilfield register in places, no house rule broken. The caption's meta sentence and the document-recital deks on 4 and 6 are flat. Texas specificity beyond Reeves County and the RRC is thin."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.0,
+   "why": "Fresh topic. The instrument repeats, the third quarterly results deck in eleven days and the second in a row. lastLight again. One unit per count reliefs repeat nos. 54, 62 and 64. Palette and subject are new."
+  }
+ ],
+ "weighted_score": 6.64,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Replace frame 6 with a fetched, primary answer to the close's own question, what the Railroad Commission requires of AI in production operations and when it next meets or takes comment.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 3,
+   "problem": "About 60 percent of the frame is dead black; the carrier bar is a plain box; the wellhead is small.",
+   "fix": "Move the camera left and closer so the rod and stuffing box rise up the centre left under the type, with a work light raking the wellhead from camera left."
+  },
+  {
+   "slide": 9,
+   "problem": "The jack is an unlit navy silhouette; the kit worker sits under the cite.",
+   "fix": "A back key at the seam so the beam, horsehead and post catch a rim; move the worker right of the gate post, clear of the cite."
+  },
+  {
+   "slide": 7,
+   "problem": "100 pipe ends read as flat white rings at 432 px; the racks sit under a dead band.",
+   "fix": "Darker joint albedo, bevelled boxes with deep bores raked from the side, camera lower so the racks rise."
+  },
+  {
+   "slide": 2,
+   "problem": "Stock document on a desk, greeked bars.",
+   "fix": "Re-shoot the page at a low raking view across the steel with a long cast from the curled corner."
+  },
+  {
+   "slide": 4,
+   "problem": "The block reads as a slab in a void; leaders end at arbitrary points.",
+   "fix": "Bleed the block with a lit caliche top to the horizon; land the leaders on the kickoff, heel and toe."
+  }
+ ]
+}

@@ -1,0 +1,90 @@
+<!doctype html>
+<!-- 2026-11-04, frame 2 of 9. Archetype DOCUMENT. A material relief in plan: a printed release page lying on the oiled steel of a pickup tailgate, ruled grey lines for its paragraphs and two passages bracketed in pencil, its far corner curled, a binder clip on its near edge, a pencil beside it. The page carries no type; the two sentences are named in DOM labels. Drawn to illustrate, to no company's document. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:900px">Two AI tools, one earnings release</h1>
+<p class="dek" data-follow="26" style="width:880px">One monitors its artificial lift. The other feeds its subsurface data into large language models to evaluate wellbore placement and optimize drilling parameters.</p>
+<div class="lab" id="lab-a">artificial lift<br>monitoring</div>
+<div class="lab" id="lab-b">large language<br>models</div>
+<script>window.FIG = {"ai_tools": 2};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/txbench.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-04-wellpad.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = (async () => {
+  const cx = await CH.bootFlat({ kicker: "The release", counter: "02 / 09", src: "c1 c2 c4", fit: { min: 76, max: 100, maxLines: 2 } });
+  TX.reseed(20261104);
+  /* TWO TOOLS: figures.json's ai_tools pencil brackets on the page's left margin, one per AI tool the release names */
+  const NB = Math.round(FIG.ai_tools);
+  const PX = 340, PY = 545, PW = 570, PH = 640, ROT = -0.07;              /* the page, turned a little on the steel */
+  const cs = Math.cos(ROT), sn = Math.sin(ROT), pcx = PX + PW / 2, pcy = PY + PH / 2;
+  const toPage = (X, Y) => { const dx = X - pcx, dy = Y - pcy; return [dx * cs + dy * sn + PW / 2, -dx * sn + dy * cs + PH / 2]; };
+  const toWorld = (u, v) => { const dx = u - PW / 2, dy = v - PH / 2; return [pcx + dx * cs - dy * sn, pcy + dx * sn + dy * cs]; };
+  /* the paragraphs: rows of ruled lines; two of them get a bracket */
+  const paras = []; { let y = 120; const r = TX.rng(31); while (y < PH - 60) { const n = 3 + Math.floor(r() * 3); paras.push([y, y + n * 22 - 10, n, r]); y += n * 22 + 26; } }
+  const pick = NB === 2 ? [2, 4] : NB === 1 ? [3] : [];
+  const M = { STEEL: 0, PAPER: 1, INK: 2, GRAPHITE: 3, CLIP: 4, WOOD: 5, LEAD: 6 };
+  function onPage(u, v) {
+    if (u < 0 || u > PW || v < 0 || v > PH) return null;
+    const t = Math.max(0, (u / PW) + (1 - v / PH) - 1.6) / 0.4, curl = 40 * t * t;           /* far right corner lifts */
+    let m = M.PAPER;
+    if (v > 40 && v < 62 && u > 60 && u < 330) m = M.INK;                                       /* the masthead block */
+    for (let i = 0; i < paras.length; i++) { const [a, b, n] = paras[i]; if (v >= a && v <= b) { const k = Math.floor((v - a) / 22), w = k === n - 1 ? 0.55 : 0.92; if ((v - a) % 22 < 5 && u > 70 && u < 70 + (PW - 120) * w) m = M.INK; } }
+    pick.forEach(i => { const p = paras[Math.min(i, paras.length - 1)]; if (((Math.abs(u - 44) < 3 && v > p[0] - 8 && v < p[1] + 8) || ((Math.abs(v - (p[0] - 8)) < 3 || Math.abs(v - (p[1] + 8)) < 3) && u > 41 && u < 60))) m = M.GRAPHITE; });
+    return [14 + curl, m];
+  }
+  function sample(X, Y) {
+    /* the binder clip on the page's near edge, proud steel */
+    const [u, v] = toPage(X, Y);
+    if (u > 180 && u < 300 && v > PH - 34 && v < PH + 22) { const e = Math.min(u - 180, 300 - u, v - PH + 34, PH + 22 - v); return [22 + 4 * Math.min(1, e / 3), M.CLIP]; }
+    const p = onPage(u, v); if (p) return p;
+    /* a pencil lying left of the page */
+    const qx = X - 960, qy = Y - 760, along = qx * 0.2 + qy * 0.98, across = qx * 0.98 - qy * 0.2;
+    if (along > -150 && along < 170 && Math.abs(across) < 11) { const hgt = 16 * Math.sqrt(1 - (across / 11) ** 2) + 2; return [hgt, along > 135 ? M.LEAD : M.WOOD]; }
+    return [0.5 * TX.fbm2(X * 0.03, Y * 0.03, 3), M.STEEL];
+  }
+  const cache = new Map(), key = (X, Y) => (X * 4 | 0) + ',' + (Y * 4 | 0);
+  const S = (X, Y) => { const k = key(X, Y); let v = cache.get(k); if (!v) { v = sample(X, Y); cache.set(k, v); } return v; };
+  const albedo = (X, Y, m) => {
+    if (m === M.PAPER) { const g = 1 - 0.04 * TX.fbm2(X * 0.1, Y * 0.1, 2); return [0.92 * g, 0.88 * g, 0.8 * g]; }
+    if (m === M.INK) return [0.22, 0.22, 0.24];
+    if (m === M.GRAPHITE) return [0.06, 0.06, 0.07];
+    if (m === M.CLIP) return [0.03, 0.03, 0.035];
+    if (m === M.WOOD) return [0.36, 0.3, 0.22];
+    if (m === M.LEAD) return [0.1, 0.1, 0.1];
+    const g = 1 + 0.4 * TX.fbm2(X * 0.02, Y * 0.02, 4), sc = 1 + 0.1 * Math.sin(X * 0.9 + 3 * TX.simplex2(X * 0.01, Y * 0.2));
+    return [0.04 * g * sc, 0.04 * g * sc, 0.045 * g * sc];
+  };
+  const pool = (X, Y) => { const d = Math.hypot((X - 650) / 600, (Y - 860) / 560), t = Math.max(0, Math.min(1, (d - 0.42) / 0.7)); return 1 - 0.92 * t * t * (3 - 2 * t); };
+  cx.fillStyle = '#08090c'; cx.fillRect(0, 0, 2160, 2700);
+  const rep = TXBENCH.relief(cx, { x: 0, y: 470, w: 1080, h: 880, scale: 2, height: (X, Y) => S(X, Y)[0], material: (X, Y) => S(X, Y)[1], keyMask: pool, albedo,
+    spec: { [M.STEEL]: [0.5, 30], [M.PAPER]: [0.05, 6], [M.INK]: [0.05, 6], [M.GRAPHITE]: [0.4, 30], [M.CLIP]: [0.9, 60], [M.WOOD]: [0.15, 10], [M.LEAD]: [0.5, 30] }, keyColor: [1.0, 0.82, 0.62], ambColor: [0.5, 0.56, 0.78],
+    ambient: 0.14, diffuse: 2.9, ao: 1.0, shadow: 0.92, softness: 8, castLength: 300 });
+  /* the relief's top edge feathers into the type field over 170 px, darken only, so no edge crosses a line of the dek */
+  { cx.save(); cx.setTransform(2, 0, 0, 2, 0, 0); const g = cx.createLinearGradient(0, 470, 0, 640); g.addColorStop(0, 'rgba(8,9,12,1)'); g.addColorStop(1, 'rgba(8,9,12,0)'); cx.fillStyle = g; cx.fillRect(0, 468, 1080, 172); cx.restore(); }
+  /* labels left of the page, a short leader to each bracket */
+  const put = (id, x, y) => { const el = document.getElementById(id); el.style.left = Math.round(x) + 'px'; el.style.top = Math.round(y) + 'px'; return el; };
+  const svg = CH.svg(), mk = (d) => { const p = document.createElementNS('http://www.w3.org/2000/svg', 'path'); p.setAttribute('d', d); p.setAttribute('stroke', '#E6E3DC'); p.setAttribute('stroke-width', '2'); p.setAttribute('fill', 'none'); svg.appendChild(p); };
+  const leaders = [];
+  ['lab-a', 'lab-b'].slice(0, pick.length).forEach((id, k) => { const p = paras[Math.min(pick[k], paras.length - 1)]; const at = toWorld(40, (p[0] + p[1]) / 2); const el = document.getElementById(id); const h = el.getBoundingClientRect().height; put(id, 80, at[1] - h / 2); mk('M' + (80 + el.getBoundingClientRect().width + 14) + ' ' + at[1] + ' L' + (at[0] - 8) + ' ' + at[1]); leaders.push({ target: 'bracket ' + (k + 1), at: [at[0] - 8, at[1]], to: [at[0] - 8, at[1]] }); });
+  window.__txLeaders = leaders;
+  cx.setTransform(2, 0, 0, 2, 0, 0);
+  CH.post(cx, { a: 0, veil: 0.4 });
+  window.__relief = rep;
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+{
+ "_note": "Scores, weighted score, hard fails and fixes as the judge returned them; each why is abridged by the run from the judge's report.",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.4,
+   "why": "Cover and 5 work; 2 credible but mid-grey field; 3 featureless trailers; 6, 7 and 9 make a kit person the subject; 8 generic hall; 4 qualifies as physical."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 6.8,
+   "why": "1, 5, 9 a real motif; 3, 4 and 8 off-world; 6 and 7 tan skies."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.5,
+   "why": "Primary; quote verbatim; 9 discloses the US share unknown; framing still steers toward a Texas building waiting (cover kicker, 6 to 7 adjacency); 5 lays the global target on one bay; 'month of work' loose; 3's stated area can't be seen."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.5,
+   "why": "Clear what and who; no site, utility or next step."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "Cover earns it; 2 context; 3 and 4 both floor area; 8 after the turn; 9 restates the cover."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "On register; filing attribution; the caption's first line buries the news."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.0,
+   "why": "Staged lastLight again, same accent, twenty-unit grid, kit worker close."
+  }
+ ],
+ "weighted_score": 6.71,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Lead the caption with the news and rebuild frame 9 around something to watch.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 3,
+   "problem": "Box trailers on a flat blue wall, no focal.",
+   "fix": "Low camera at one lit dock door with one detailed trailer."
+  },
+  {
+   "slide": 9,
+   "problem": "Overlit kit worker pulls the eye; truss behind the hook.",
+   "fix": "Remove or rim-light the worker at the far end."
+  },
+  {
+   "slide": 6,
+   "problem": "Mannequin over a hard horizon band; stakes uncountable.",
+   "fix": "Swing along the row so all sixteen separate; worker small at the far end; dark sky."
+  },
+  {
+   "slide": 7,
+   "problem": "Blown yard, no jamb.",
+   "fix": "Jamb across the left third, yard exposure down."
+  },
+  {
+   "slide": 8,
+   "problem": "Generic grey hall.",
+   "fix": "Macro along one row of pull tabs under one raking light."
+  }
+ ]
+}

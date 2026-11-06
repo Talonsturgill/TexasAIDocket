@@ -1,0 +1,144 @@
+{
+ "_note": "Every value is extracted from a claim quote by compute.py, or computed here from values that were.",
+ "cap_now": {
+  "value": 330000,
+  "from": [
+   "c2"
+  ],
+  "basis": "total manufacturing equipment capacity, units per month, approaching; all products and sites; copy only, never on the pad scale"
+ },
+ "cap_2026": {
+  "value": 500000,
+  "from": [
+   "c3"
+  ],
+  "basis": "pieces of 800G and 1.6 Tb products per month the company expects equipment for by the end of 2026, over"
+ },
+ "cap_2027": {
+  "value": 1000000,
+  "from": [
+   "c4"
+  ],
+  "basis": "pieces of 800G and 1.6 Tb transceivers per month the company expects capacity for by the end of 2027, over"
+ },
+ "pad_unit": {
+  "value": 50000,
+  "from": [],
+  "basis": "drawing unit, a choice: one taped machine pad per 50,000 pieces a month; never printed"
+ },
+ "pads_2026": {
+  "value": 10,
+  "from": [
+   "c3"
+  ],
+  "basis": "computed: cap_2026 over pad_unit"
+ },
+ "pads_2027": {
+  "value": 20,
+  "from": [
+   "c4"
+  ],
+  "basis": "computed: cap_2027 over pad_unit"
+ },
+ "gill_sqft": {
+  "value": 209665,
+  "from": [
+   "c8"
+  ],
+  "basis": "square feet leased at 1111 Gillingham Lane, Sugar Land"
+ },
+ "kirby_sqft": {
+  "value": 388133,
+  "from": [
+   "c10"
+  ],
+  "basis": "square feet of the Kirby property, Pearland"
+ },
+ "cr4_sqft": {
+  "value": 356186,
+  "from": [
+   "c11"
+  ],
+  "basis": "rentable square feet, 17331 Chimney Rock Road, to be constructed"
+ },
+ "cr5_sqft": {
+  "value": 737621,
+  "from": [
+   "c11"
+  ],
+  "basis": "rentable square feet, 17433 Chimney Rock Road, to be constructed"
+ },
+ "tx_total_sqft": {
+  "value": 1691605,
+  "from": [
+   "c8",
+   "c10",
+   "c11"
+  ],
+  "basis": "computed: the four properties' stated square feet summed"
+ },
+ "to_build_sqft": {
+  "value": 1093807,
+  "from": [
+   "c11"
+  ],
+  "basis": "computed: the two Chimney Rock buildings summed"
+ },
+ "side_m": {
+  "value": {
+   "gill": 139.57,
+   "kirby": 189.89,
+   "cr4": 181.91,
+   "cr5": 261.78
+  },
+  "from": [
+   "c8",
+   "c10",
+   "c11"
+  ],
+  "basis": "computed: side in metres of a square of each stated area, two decimals"
+ },
+ "gill_len_m": {
+  "value": 197.38,
+  "from": [
+   "c8"
+  ],
+  "basis": "computed: kit warehouse length for the stated area at a 2 to 1 plan, a drawing choice"
+ },
+ "gill_dep_m": {
+  "value": 98.69,
+  "from": [
+   "c8"
+  ],
+  "basis": "computed: kit warehouse depth for the stated area at a 2 to 1 plan, a drawing choice"
+ },
+ "months_to_done": {
+  "value": 16,
+  "from": [
+   "c12"
+  ],
+  "basis": "months after the August 31st leases to anticipated substantial completion, approximately"
+ },
+ "months_elapsed": {
+  "value": 2,
+  "from": [
+   "c11"
+  ],
+  "basis": "computed: whole months from August 31st, 2026 to the run date"
+ },
+ "stake_pitch_m": {
+  "value": 16.36,
+  "from": [
+   "c11",
+   "c12"
+  ],
+  "basis": "computed: side of the larger lease's square over months_to_done"
+ },
+ "lease_term_months": {
+  "value": 126,
+  "from": [
+   "c14"
+  ],
+  "basis": "Gillingham Lane lease term, months"
+ }
+}

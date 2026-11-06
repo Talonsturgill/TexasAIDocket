@@ -1,0 +1,68 @@
+<!doctype html>
+<!-- 2026-11-03, frame 8 of 9. Archetype OBJECT_AND_CAPTION. The roof corner of the white driverless tractor stopped on a dark shoulder at night, its sensor pod and roof sensor bar, and a small amber beacon lit on a magnetic base on the cab roof. No triangles on the road. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:900px">When it stops, a light on the cab</h1>
+<p class="dek" data-follow="26" style="width:880px">The letter says FMCSA granted a five-year exemption letting driverless trucks use cab-mounted warning beacons in place of warning devices set out by&nbsp;hand.</p>
+
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-03-scalelane.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Stopped", counter: "08 / 09", src: "c20", fit: { min: 80, max: 104, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 30, near: 0.02, far: 3000, fog: 0.004, exposure: 0.8 });
+  /* the highway, and the tractor stopped on its right shoulder, heading south */
+  const hw = K.make('highway', { length: 400, lanes: 2, gantry: false, embank: 0.4 }); hw.position.set(-12, 0, 0); TXT.add(R, hw);
+  const truck = K.make('semi_truck', { seed: 4, color: 0xe8e9e6, sensors: 'full', trailerColor: 0xdcdcd6 });
+  truck.position.set(0, 0, 0); TXT.add(R, truck); TXT.contact(R, truck);
+  /* find the cab roof just behind the windshield header by casting down onto the tractor */
+  truck.updateMatrixWorld(true);
+  const bb = new THREE.Box3().setFromObject(truck), zf = bb.max.z;
+  const ray = new THREE.Raycaster(new THREE.Vector3(-0.85, 8, zf - 2.9), new THREE.Vector3(0, -1, 0));
+  const hit = ray.intersectObject(truck, true)[0], ry = hit ? hit.point.y : 3.0;
+  const bea = K.make('cab_beacon', { lit: true }); bea.scale.setScalar(3.0); bea.position.set(-0.85, ry, zf - 2.9); R.scene.add(bea);
+  CH.lampGlow(THREE, R, [-0.85, ry + 0.13, zf - 2.9], 0xe8902a, 0.5, 0); bea.position.y -= 0.025; TXT.contact(R, bea); bea.traverse((m) => { if (m.isMesh && m.material && m.material.emissiveIntensity > 1) { m.material = m.material.clone(); m.material.emissive.setHex(0xff9a1a); m.material.emissiveIntensity *= 0.45; } });
+  { const pl = new THREE.PointLight(0xffa43a, 1.6, 1.6, 2); pl.position.set(-0.85, ry + 0.3, zf - 2.9); R.scene.add(pl);
+    /* the beacon's amber reaching the cab roof and the shoulder beside the cab */
+    const sp = new THREE.PointLight(0xff9a2a, 14, 14, 1.6); sp.position.set(-1.4, ry + 0.6, zf - 2.9); R.scene.add(sp); }
+  TXT.sky(R);
+  TXT.ground(R, { surface: 'asphalt', size: 900, seed: 41 });
+  const from = [-6.6, 2.3, zf + 7.6];
+  const look = CH.aim(THREE, R, TXT, from, [-0.6, ry * 0.55, zf - 3.2], 560, 930, 30);
+  TXT.frame(R, { fov: 30, from, look });
+  CH.warm(R, 0.12);
+  if (R._bounce) { R._bounce.color.setHex(0x1a1a1c); R._bounce.groundColor.setHex(0x222222); R._bounce.intensity = 0.25; }
+  TXT.deckRig(R, CH.rigSpec(W, 8, 4096), CH.rigOpts([-0.5, ry, zf - 3], { distance: 30, shadowFar: 70, normalBias: 0.03 }));
+  CH.unacne(R, 0.03);
+  TXT.weather(R, { grime: 0.24, height: 0.7, mottle: 0.06 });
+  CH.lightsOn(THREE, R, K, truck, { beam: 40 });
+  TXT.stage(R, [truck], { poolInner: 6, poolOuter: 14, behind: 0.3, depth: 1.0 });
+  /* the cab's shadow side in cold night light, not blue: the sky's image light cut, the frontal fill a neutral grey */
+  R.scene.environmentIntensity = (R.scene.environmentIntensity == null ? 1 : R.scene.environmentIntensity) * 0.35;
+  R.scene.traverse((l) => { if (l.isHemisphereLight) { l.color.setHex(0x2a2a2c); l.groundColor.setHex(0x1c1c1c); } if (l.isDirectionalLight) l.color.setHex(0xfff2e4); });
+  R.scene.environmentIntensity *= 0.4;
+  { const gp = new THREE.PointLight(0xff9a2a, 10, 12, 1.6); gp.position.set(-2.6, 0.9, zf - 1.0); R.scene.add(gp); }
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0.32, veil: 0.5, veilH: 420 });
+  { const g = cx.createLinearGradient(0, 960, 0, 1350); for (let k = 0; k <= 10; k++) { const t = k / 10, e = t * t * (3 - 2 * t); g.addColorStop(t, 'rgba(5,6,10,' + (0.82 * e).toFixed(4) + ')'); } cx.fillStyle = g; cx.fillRect(0, 960, 1080, 390); }
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

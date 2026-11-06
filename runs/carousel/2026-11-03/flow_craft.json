@@ -1,0 +1,111 @@
+{
+ "predicted_artwork_score": 6.6,
+ "showstopper_frame": 1,
+ "weakest_frames": [
+  {
+   "slide": 3,
+   "score": 6.0,
+   "cause": "c",
+   "problem": "dead right half, the boom reads as a kerb with no pivot or cabinet",
+   "fix": "gate moved so its cabinet post and the boom's pivot side stand in the right half",
+   "repaired": true
+  },
+  {
+   "slide": 4,
+   "score": 6.0,
+   "cause": "d",
+   "problem": "tonal step at y 625, fourteen of twenty visible, identical front-on units",
+   "fix": "raised front oblique at a wider stall pitch, sealed yard enlarged past the frame, flood pole moved out of frame",
+   "repaired": "partly: the near rank's right end units are still cropped by the frame edge"
+  },
+  {
+   "slide": 8,
+   "score": 6.3,
+   "cause": "b",
+   "problem": "primitive trailer slab and a flat blue cab side, reads as a fairing",
+   "fix": "camera forward and down below the roof line, beacon larger, sky image light cut to neutral",
+   "repaired": "partly: the trailer front still shows at the left"
+  },
+  {
+   "slide": 6,
+   "score": 6.4,
+   "cause": "c",
+   "problem": "mid grey textured rectangle and an empty lower third",
+   "fix": "blue-black mill scale albedo with a brighter top bevel, bar dropped 100 px",
+   "repaired": true
+  },
+  {
+   "slide": 2,
+   "score": 6.5,
+   "cause": "b",
+   "problem": "scale house with no window or door, label crossing its wall, pole without a luminaire",
+   "fix": "house turned so its lit window, door and canopy face the camera, label moved right of the house on two lines",
+   "repaired": "partly: the pole luminaire is unchanged"
+  },
+  {
+   "slide": 5,
+   "score": 6.8,
+   "cause": "e",
+   "problem": "rule lit evenly across the frame",
+   "fix": "key pool centred on the six week span",
+   "repaired": "partly: narrowed to the span plus the stop, because a pool that left the primer stop dark took the accent off the frame"
+  },
+  {
+   "slide": 9,
+   "score": 6.9,
+   "cause": "d",
+   "problem": "the far primer line ran through the 1,000 label",
+   "fix": "label set below the far kerb",
+   "repaired": true
+  },
+  {
+   "slide": 7,
+   "score": 7.0,
+   "cause": "d",
+   "problem": "stair-step county borders, the inlay cast breaking into slabs",
+   "fix": "not repaired; lowering the relief would take the frame under print_ban's cast floor",
+   "repaired": false
+  }
+ ],
+ "cross_frame": [
+  {
+   "cause": "a",
+   "slides": [
+    1,
+    2,
+    3,
+    4,
+    9
+   ],
+   "problem": "the same kit tractor grille faces the camera on five frames"
+  },
+  {
+   "cause": "e",
+   "slides": [
+    2,
+    5,
+    6,
+    8
+   ],
+   "problem": "greyer frames alternate with dark ones, the declared value arc is not visible"
+  },
+  {
+   "cause": "c",
+   "slides": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+   ],
+   "problem": "every subject lives below y 540; no subject crosses into the type's half"
+  }
+ ],
+ "not_done": [
+  "the recomposition of slides 3 and 8 with the type moved off the top band, and the reorder that would move the beacon frame to position 3, were not attempted: each changes counters, kickers and the type layout on six frames and would need a full new review round"
+ ]
+}

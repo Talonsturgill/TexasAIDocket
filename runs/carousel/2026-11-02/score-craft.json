@@ -1,0 +1,30 @@
+{
+ "judge": "craft",
+ "round": 3,
+ "criteria": [
+  {"name": "artwork_craft", "weight": 0.22, "score": 6.4, "why": "1, 4 and 9 come close to the showstopper test, with toy-like paws and coat at native size. 5 a primitive monitor on an unbuilt wall with a banded clip and 23px rows; 6 reads as an embossed tile grid with no visible long cast and corner chips; 8 a textured rectangle on a bar with a dead lower third; 3 a small dog in a grey-middle band with labels on plates; 2 a slab phone from the screen side; 7 a chart card on a bordered slab."},
+  {"name": "deck_coherence", "weight": 0.12, "score": 7.0, "why": "One world, one key, the box changes state, the dog a spine, the cut at 6 declared; frame 5's cold room and 6 to 8's clay sit outside the palette, 6 and 7 two grids, frame 3's declared sight lines gone."},
+  {"name": "claim_integrity", "weight": 0.20, "score": 8.0, "why": "Every claim id resolves to a primary release, quotes verbatim, numerals traced, the 2019 finding refused aloud; slide 3's 'on each clip' a shade looser than c4 and c5."},
+  {"name": "story_and_stakes", "weight": 0.16, "score": 6.8, "why": "Who, where, how and when named; the appearance stake on 4 never says what the label does; no next step or venue."},
+  {"name": "sequence_and_momentum", "weight": 0.10, "score": 7.0, "why": "Cover earns the swipe, 2 pays, turns at 4 and 6; 6 and 7 restate, 8 and 9 both end on the final report."},
+  {"name": "voice", "weight": 0.10, "score": 6.8, "why": "House rules held; leans on 'The release says'; no place texture in the type; flat hook on 9; the caption's closing question the best line."},
+  {"name": "variety", "weight": 0.10, "score": 7.3, "why": "Fresh subject and a new POV opening; the lastLight register and a caliche relief run again."}
+ ],
+ "weighted_score": 7.046,
+ "hard_fails": [],
+ "ranked_defects": [
+  {"slide": 5, "defect": "Primitive monitor on a blank wall, banded clip, cropped keyboard, 23px rows.", "fix": "Wall to black, monitor turned 30 degrees, the real slide 1 render on the screen, rows at 24px or more."},
+  {"slide": 6, "defect": "Embossed tile grid, no visible long cast, corner chip artifacts.", "fix": "Triple plug height, key at about 12 degrees, irregular street plan."},
+  {"slide": 3, "defect": "Labels and footer on plates; small dog; grey-middle band.", "fix": "Camera in until the dog is a third of the frame height; labels on darkness."},
+  {"slide": 2, "defect": "Slab phone from the screen side, no lens discs, blocky clamp.", "fix": "Three-quarter rear view with the lens island and a modelled jaw."},
+  {"slide": 8, "defect": "Flat block on a bar, empty lower third.", "fix": "Rule at mid frame, block half the frame height."},
+  {"slide": 7, "defect": "Bordered chart card back to back with 6.", "fix": "Bleed the slab off both edges; fold 6 in."}
+ ],
+ "artwork_weakest_frames": [
+  {"slide": 5, "problem": "UI mock on an unbuilt wall.", "fix": "Screen-only light, monitor turned, real render on the screen."},
+  {"slide": 6, "problem": "Embossed calendar, no cast, chips.", "fix": "Triple plug height, low key."},
+  {"slide": 3, "problem": "Small dog, mid-tone band, plates.", "fix": "Closer camera, background to near black, no plates."},
+  {"slide": 2, "problem": "Boxy phone slab, no lens discs.", "fix": "Three-quarter rear angle."},
+  {"slide": 8, "problem": "Flat block, empty lower third.", "fix": "Crop in, let casts run."}
+ ]
+}

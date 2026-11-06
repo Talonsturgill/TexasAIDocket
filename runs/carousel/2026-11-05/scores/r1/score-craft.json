@@ -1,0 +1,83 @@
+{
+ "_note": "Scores, weighted score, hard fails and fixes as the judge returned them; each why is abridged by the run from the judge's report.",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 5.8,
+   "why": "Two frames pass the showstopper test (1, 5); 9 bold with a mannequin worker; 2, 3, 6, 7 and 8 fall back on defaults; 4's relief measured but its shadows alias."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 6.3,
+   "why": "Two devices work; 3 and 8 are cold worlds; value strobes, with 6, 7, 8 mid tone in a row."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.0,
+   "why": "Every numeral traces; 'four properties' omits c15; Gillingham kicker over 'made only in Sugar Land'; Fort Bend from c13 missing from the first comment, whose 'two official records' counts the 10-Q twice."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.8,
+   "why": "What, where and the clock are clear; no slide names Applied Optoelectronics; nothing to act on."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "Cover earns the swipe; 2 delays; 8 after the turn; 9 restates."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "Clean house style, reads as a filings summary; 'drawn to illustrate' on seven of nine."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "New topic; moves familiar from nos. 56, 59, 62 and 68."
+  }
+ ],
+ "weighted_score": 6.47,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Rebuild slides 2, 7 and 8 inside the cover's world: module across a gold tape corner with fingers in frame, transformer through the planned dark jamb, modules seated in port cages under one warm key.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 2,
+   "problem": "Flat mid-tone gradient, knife read, fingers cropped, no tape corner.",
+   "fix": "Fingers and tape corner inside the frame at lower centre on dark epoxy in the door stripe."
+  },
+  {
+   "slide": 8,
+   "problem": "Cold blue-grey hall; modules hung as a chain across the rack faces.",
+   "fix": "Seat modules in port cages on one switch, kill the blue fill, one warm key."
+  },
+  {
+   "slide": 7,
+   "problem": "Halo hard hat, blown yard, no jamb, decal gravel.",
+   "fix": "Dark jamb across the left third, cut or silhouette the figure, lower apron exposure."
+  },
+  {
+   "slide": 6,
+   "problem": "Ripple ground reads as water, flat horizon band, rigid V flagging.",
+   "fix": "Graded clay with ruts, stage into a dark sky, limp ribbons."
+  },
+  {
+   "slide": 3,
+   "problem": "Blue night palette, trailer doors brightest, stripe clerestory, unlit court.",
+   "fix": "Warm raking key, trailer doors to wall value, emissive panes, lit court pool."
+  },
+  {
+   "slide": 4,
+   "problem": "Aliased long diagonal shadows become a black band.",
+   "fix": "Higher resolution shadow with softening, raise key elevation."
+  }
+ ]
+}
