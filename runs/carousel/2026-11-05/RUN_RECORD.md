@@ -183,9 +183,9 @@ Not changed: the sequence (8 after 7) and the "drawn to illustrate" refrain the 
 | aggregates     | PASS   | 8 declaration(s), 9 numeric phrase(s) in the render, all re-derived |
 | assembly       | PASS   | 9 slide(s), 7.36 MB, vector |
 | score          | STALE  | score.json predates the newest render, so it describes a deck that no longer exists. Re-run it |
-| labels         | ABSENT | label_report.json not written yet. Run scripts/carousel/label_guard.py <run-dir> |
-| quantifiers    | ABSENT | quantifier_report.json not written yet. Run scripts/carousel/quantifier_check.py <run-dir> |
-| verbatim       | ABSENT | verbatim_report.json not written yet. Run scripts/carousel/verbatim_check.py --date <date> |
+| labels         | PASS   | 42 claim id(s) checked, every label beside one traces to the shape its claim proves |
+| quantifiers    | PASS   | 74 published string(s) read from one list, every universal names its set |
+| verbatim       | WARN   | no dossier declares a `verbatim:` block, so no on-frame string was held to a quote |
 | dossiers       | PASS   | 36,295 chars planned |
 | caption        | PASS   | 153 words |
 | craft floor    | PASS   | 9 frame(s), median 1105, floor 199 |
