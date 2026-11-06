@@ -1,7 +1,7 @@
 {
   "_spec": {
     "version": 2,
-    "generated": "2026-11-04",
+    "generated": "2026-11-06",
     "note": "One day per record, per reservoir, so every roll up is recomputable. Out of state reservoirs and flood control dams with no conservation pool are excluded, and both exclusions are named in each record."
   },
   "readings": [
@@ -52721,6 +52721,619 @@
       },
       "source": "twdb recent-conditions",
       "storage_af": 22705326.0,
+      "verified": true
+    },
+    {
+      "_spec": 1,
+      "capacity_af": 31531332.0,
+      "date": "2026-11-05",
+      "excluded_no_conservation_pool": [
+        "Addicks",
+        "Barker"
+      ],
+      "excluded_out_of_state": [
+        "ElephantButte"
+      ],
+      "metros": {
+        "abilene": {
+          "capacity_af": 945568.0,
+          "percent_full": 40.64,
+          "reservoirs": 4,
+          "storage_af": 384277.0
+        },
+        "amarillo": {
+          "capacity_af": 500000.0,
+          "percent_full": 46.02,
+          "reservoirs": 1,
+          "storage_af": 230078.0
+        },
+        "austin": {
+          "capacity_af": 2232539.0,
+          "percent_full": 94.4,
+          "reservoirs": 4,
+          "storage_af": 2107452.0
+        },
+        "beaumont_port_arthur": {
+          "capacity_af": 2926263.0,
+          "percent_full": 61.41,
+          "reservoirs": 2,
+          "storage_af": 1796934.0
+        },
+        "brownsville": {
+          "capacity_af": 3375775.0,
+          "percent_full": 36.77,
+          "reservoirs": 2,
+          "storage_af": 1241231.0
+        },
+        "corpus_christi": {
+          "capacity_af": 1077857.0,
+          "percent_full": 43.77,
+          "reservoirs": 3,
+          "storage_af": 471765.0
+        },
+        "dallas": {
+          "capacity_af": 3841548.0,
+          "percent_full": 85.25,
+          "reservoirs": 7,
+          "storage_af": 3274970.0
+        },
+        "fort_worth": {
+          "capacity_af": 2451597.0,
+          "percent_full": 79.58,
+          "reservoirs": 7,
+          "storage_af": 1951083.0
+        },
+        "houston": {
+          "capacity_af": 2153399.0,
+          "percent_full": 91.31,
+          "reservoirs": 3,
+          "storage_af": 1966177.0
+        },
+        "laredo": {
+          "capacity_af": 1813408.0,
+          "percent_full": 50.6,
+          "reservoirs": 1,
+          "storage_af": 917626.0
+        },
+        "lubbock": {
+          "capacity_af": 596207.0,
+          "percent_full": 50.46,
+          "reservoirs": 2,
+          "storage_af": 300865.0
+        },
+        "midland_odessa": {
+          "capacity_af": 1271543.0,
+          "percent_full": 24.84,
+          "reservoirs": 3,
+          "storage_af": 315863.0
+        },
+        "nacogdoches": {
+          "capacity_af": 39522.0,
+          "percent_full": 82.6,
+          "reservoirs": 1,
+          "storage_af": 32644.0
+        },
+        "san_angelo": {
+          "capacity_af": 862151.0,
+          "percent_full": 29.42,
+          "reservoirs": 4,
+          "storage_af": 253619.0
+        },
+        "temple_killeen": {
+          "capacity_af": 432631.0,
+          "percent_full": 95.92,
+          "reservoirs": 1,
+          "storage_af": 414983.0
+        },
+        "texarkana": {
+          "capacity_af": 122593.0,
+          "percent_full": 100.0,
+          "reservoirs": 1,
+          "storage_af": 122593.0
+        },
+        "tyler": {
+          "capacity_af": 72073.0,
+          "percent_full": 82.5,
+          "reservoirs": 1,
+          "storage_af": 59460.0
+        },
+        "waco": {
+          "capacity_af": 188891.0,
+          "percent_full": 86.28,
+          "reservoirs": 1,
+          "storage_af": 162967.0
+        },
+        "wichita_falls": {
+          "capacity_af": 562011.0,
+          "percent_full": 74.0,
+          "reservoirs": 3,
+          "storage_af": 415897.0
+        }
+      },
+      "note": "",
+      "percent_full": 71.87,
+      "percent_full_max_disagreement": 0.049,
+      "reservoir_count": 119,
+      "reservoirs": {
+        "Abilene": {
+          "capacity_af": 7900.0,
+          "storage_af": 521.0
+        },
+        "AlanHenry": {
+          "capacity_af": 96207.0,
+          "storage_af": 70787.0
+        },
+        "Amistad": {
+          "capacity_af": 1813408.0,
+          "storage_af": 917626.0
+        },
+        "AmonGCarter": {
+          "capacity_af": 19266.0,
+          "storage_af": 15432.0
+        },
+        "Aquilla": {
+          "capacity_af": 43243.0,
+          "storage_af": 34398.0
+        },
+        "Arlington": {
+          "capacity_af": 40157.0,
+          "storage_af": 31692.0
+        },
+        "Arrowhead": {
+          "capacity_af": 230359.0,
+          "storage_af": 161784.0
+        },
+        "Athens": {
+          "capacity_af": 29503.0,
+          "storage_af": 28537.0
+        },
+        "Austin": {
+          "capacity_af": 23972.0,
+          "storage_af": 23205.0
+        },
+        "BASteinhagen": {
+          "capacity_af": 69186.0,
+          "storage_af": 67562.0
+        },
+        "Bardwell": {
+          "capacity_af": 43856.0,
+          "storage_af": 36864.0
+        },
+        "Belton": {
+          "capacity_af": 432631.0,
+          "storage_af": 414983.0
+        },
+        "Benbrook": {
+          "capacity_af": 85648.0,
+          "storage_af": 63678.0
+        },
+        "BobSandlin": {
+          "capacity_af": 192417.0,
+          "storage_af": 166879.0
+        },
+        "BoisDArc": {
+          "capacity_af": 367609.0,
+          "storage_af": 318854.0
+        },
+        "Bonham": {
+          "capacity_af": 11027.0,
+          "storage_af": 8253.0
+        },
+        "BradyCreek": {
+          "capacity_af": 28808.0,
+          "storage_af": 24079.0
+        },
+        "Bridgeport": {
+          "capacity_af": 372183.0,
+          "storage_af": 265678.0
+        },
+        "Brownwood": {
+          "capacity_af": 130868.0,
+          "storage_af": 116528.0
+        },
+        "Buchanan": {
+          "capacity_af": 866694.0,
+          "storage_af": 830159.0
+        },
+        "Caddo": {
+          "capacity_af": 29898.0,
+          "storage_af": 15034.0
+        },
+        "Canyon": {
+          "capacity_af": 378781.0,
+          "storage_af": 364544.0
+        },
+        "CedarCreek": {
+          "capacity_af": 644686.0,
+          "storage_af": 458981.0
+        },
+        "ChampionCreek": {
+          "capacity_af": 41580.0,
+          "storage_af": 18807.0
+        },
+        "Cherokee": {
+          "capacity_af": 40094.0,
+          "storage_af": 30658.0
+        },
+        "ChokeCanyon": {
+          "capacity_af": 662820.0,
+          "storage_af": 138748.0
+        },
+        "Cisco": {
+          "capacity_af": 29003.0,
+          "storage_af": 12218.0
+        },
+        "Coleman": {
+          "capacity_af": 38075.0,
+          "storage_af": 29447.0
+        },
+        "ColetoCreek": {
+          "capacity_af": 31040.0,
+          "storage_af": 23351.0
+        },
+        "ColoradoCity": {
+          "capacity_af": 30758.0,
+          "storage_af": 16352.0
+        },
+        "ComancheCreek": {
+          "capacity_af": 151250.0,
+          "storage_af": 151250.0
+        },
+        "Conroe": {
+          "capacity_af": 417577.0,
+          "storage_af": 385108.0
+        },
+        "CorpusChristi": {
+          "capacity_af": 256062.0,
+          "storage_af": 202004.0
+        },
+        "Crook": {
+          "capacity_af": 9195.0,
+          "storage_af": 7538.0
+        },
+        "CypressSprings": {
+          "capacity_af": 66756.0,
+          "storage_af": 58406.0
+        },
+        "EVSpence": {
+          "capacity_af": 517272.0,
+          "storage_af": 48760.0
+        },
+        "EagleMountain": {
+          "capacity_af": 185087.0,
+          "storage_af": 132934.0
+        },
+        "Falcon": {
+          "capacity_af": 1562367.0,
+          "storage_af": 323605.0
+        },
+        "Fork": {
+          "capacity_af": 606088.0,
+          "storage_af": 478535.0
+        },
+        "FortPhantomHill": {
+          "capacity_af": 70030.0,
+          "storage_af": 46655.0
+        },
+        "Georgetown": {
+          "capacity_af": 38005.0,
+          "storage_af": 29927.0
+        },
+        "GibbonsCreek": {
+          "capacity_af": 25721.0,
+          "storage_af": 21925.0
+        },
+        "Graham": {
+          "capacity_af": 45288.0,
+          "storage_af": 29640.0
+        },
+        "Granbury": {
+          "capacity_af": 132949.0,
+          "storage_af": 117633.0
+        },
+        "Granger": {
+          "capacity_af": 51822.0,
+          "storage_af": 51494.0
+        },
+        "Grapevine": {
+          "capacity_af": 163064.0,
+          "storage_af": 147442.0
+        },
+        "Greenbelt": {
+          "capacity_af": 59968.0,
+          "storage_af": 2573.0
+        },
+        "Halbert": {
+          "capacity_af": 6033.0,
+          "storage_af": 4490.0
+        },
+        "HordsCreek": {
+          "capacity_af": 8109.0,
+          "storage_af": 3630.0
+        },
+        "Houston": {
+          "capacity_af": 132318.0,
+          "storage_af": 132318.0
+        },
+        "HoustonCounty": {
+          "capacity_af": 17113.0,
+          "storage_af": 16194.0
+        },
+        "HubbardCreek": {
+          "capacity_af": 313298.0,
+          "storage_af": 111555.0
+        },
+        "HubertHMoss": {
+          "capacity_af": 24058.0,
+          "storage_af": 23810.0
+        },
+        "Inks": {
+          "capacity_af": 13729.0,
+          "storage_af": 12998.0
+        },
+        "JBThomas": {
+          "capacity_af": 199931.0,
+          "storage_af": 41557.0
+        },
+        "Jacksonville": {
+          "capacity_af": 25670.0,
+          "storage_af": 24582.0
+        },
+        "JimChapman": {
+          "capacity_af": 258723.0,
+          "storage_af": 161427.0
+        },
+        "JoePool": {
+          "capacity_af": 149629.0,
+          "storage_af": 135439.0
+        },
+        "Kemp": {
+          "capacity_af": 245307.0,
+          "storage_af": 185008.0
+        },
+        "Kickapoo": {
+          "capacity_af": 86345.0,
+          "storage_af": 69105.0
+        },
+        "Lake O' the Pines": {
+          "capacity_af": 241363.0,
+          "storage_af": 197186.0
+        },
+        "Lavon": {
+          "capacity_af": 409757.0,
+          "storage_af": 320576.0
+        },
+        "Leon": {
+          "capacity_af": 27762.0,
+          "storage_af": 20652.0
+        },
+        "Lewisville": {
+          "capacity_af": 563228.0,
+          "storage_af": 459362.0
+        },
+        "Limestone": {
+          "capacity_af": 203780.0,
+          "storage_af": 166043.0
+        },
+        "Livingston": {
+          "capacity_af": 1603504.0,
+          "storage_af": 1448751.0
+        },
+        "LostCreek": {
+          "capacity_af": 11950.0,
+          "storage_af": 10407.0
+        },
+        "LyndonBJohnson": {
+          "capacity_af": 112778.0,
+          "storage_af": 111173.0
+        },
+        "Mackenzie": {
+          "capacity_af": 46450.0,
+          "storage_af": 5015.0
+        },
+        "MarbleFalls": {
+          "capacity_af": 7597.0,
+          "storage_af": 7505.0
+        },
+        "Martin": {
+          "capacity_af": 75726.0,
+          "storage_af": 56944.0
+        },
+        "Medina": {
+          "capacity_af": 254823.0,
+          "storage_af": 68284.0
+        },
+        "Meredith": {
+          "capacity_af": 500000.0,
+          "storage_af": 230078.0
+        },
+        "MillersCreek": {
+          "capacity_af": 26768.0,
+          "storage_af": 16650.0
+        },
+        "MineralWells": {
+          "capacity_af": 5273.0,
+          "storage_af": 4450.0
+        },
+        "Monticello": {
+          "capacity_af": 34740.0,
+          "storage_af": 24699.0
+        },
+        "MountainCreek": {
+          "capacity_af": 22850.0,
+          "storage_af": 22850.0
+        },
+        "Murvaul": {
+          "capacity_af": 38285.0,
+          "storage_af": 33530.0
+        },
+        "Nacogdoches": {
+          "capacity_af": 39522.0,
+          "storage_af": 32644.0
+        },
+        "Nasworthy": {
+          "capacity_af": 9615.0,
+          "storage_af": 8269.0
+        },
+        "NavarroMills": {
+          "capacity_af": 49827.0,
+          "storage_af": 39187.0
+        },
+        "NewTerrellCity": {
+          "capacity_af": 8583.0,
+          "storage_af": 2008.0
+        },
+        "Nocona": {
+          "capacity_af": 21444.0,
+          "storage_af": 15683.0
+        },
+        "NorthForkBuffaloCreek": {
+          "capacity_af": 15400.0,
+          "storage_af": 11940.0
+        },
+        "OCFisher": {
+          "capacity_af": 115742.0,
+          "storage_af": 12135.0
+        },
+        "OHIvie": {
+          "capacity_af": 554340.0,
+          "storage_af": 225546.0
+        },
+        "OakCreek": {
+          "capacity_af": 39210.0,
+          "storage_af": 5374.0
+        },
+        "Palestine": {
+          "capacity_af": 367303.0,
+          "storage_af": 318410.0
+        },
+        "PaloDuro": {
+          "capacity_af": 61066.0,
+          "storage_af": 223.0
+        },
+        "PaloPinto": {
+          "capacity_af": 26766.0,
+          "storage_af": 19430.0
+        },
+        "PatCleburne": {
+          "capacity_af": 26008.0,
+          "storage_af": 22502.0
+        },
+        "PatMayse": {
+          "capacity_af": 113683.0,
+          "storage_af": 100480.0
+        },
+        "PossumKingdom": {
+          "capacity_af": 538139.0,
+          "storage_af": 494454.0
+        },
+        "Proctor": {
+          "capacity_af": 54762.0,
+          "storage_af": 30857.0
+        },
+        "RayHubbard": {
+          "capacity_af": 439559.0,
+          "storage_af": 363242.0
+        },
+        "RayRoberts": {
+          "capacity_af": 788167.0,
+          "storage_af": 735685.0
+        },
+        "RedBluff": {
+          "capacity_af": 145165.0,
+          "storage_af": 64885.0
+        },
+        "RichlandChambers": {
+          "capacity_af": 1099417.0,
+          "storage_af": 980952.0
+        },
+        "SamRayburn": {
+          "capacity_af": 2857077.0,
+          "storage_af": 1729372.0
+        },
+        "Somerville": {
+          "capacity_af": 150293.0,
+          "storage_af": 129402.0
+        },
+        "Stamford": {
+          "capacity_af": 51570.0,
+          "storage_af": 37768.0
+        },
+        "StillhouseHollow": {
+          "capacity_af": 229796.0,
+          "storage_af": 220561.0
+        },
+        "Striker": {
+          "capacity_af": 16878.0,
+          "storage_af": 12388.0
+        },
+        "SulphurSprings": {
+          "capacity_af": 17747.0,
+          "storage_af": 14683.0
+        },
+        "Sweetwater": {
+          "capacity_af": 12267.0,
+          "storage_af": 2013.0
+        },
+        "Tawakoni": {
+          "capacity_af": 871685.0,
+          "storage_af": 770128.0
+        },
+        "Texana": {
+          "capacity_af": 158975.0,
+          "storage_af": 131013.0
+        },
+        "Texoma": {
+          "capacity_af": 1243801.0,
+          "storage_af": 1243801.0
+        },
+        "ToledoBend": {
+          "capacity_af": 2236450.0,
+          "storage_af": 1887590.0
+        },
+        "Travis": {
+          "capacity_af": 1098044.0,
+          "storage_af": 1026805.0
+        },
+        "TwinButtes": {
+          "capacity_af": 182454.0,
+          "storage_af": 7669.0
+        },
+        "Tyler": {
+          "capacity_af": 72073.0,
+          "storage_af": 59460.0
+        },
+        "Waco": {
+          "capacity_af": 188891.0,
+          "storage_af": 162967.0
+        },
+        "Waxahachie": {
+          "capacity_af": 11060.0,
+          "storage_af": 8173.0
+        },
+        "Weatherford": {
+          "capacity_af": 17812.0,
+          "storage_af": 10356.0
+        },
+        "WhiteRiver": {
+          "capacity_af": 31846.0,
+          "storage_af": 8979.0
+        },
+        "Whitney": {
+          "capacity_af": 564808.0,
+          "storage_af": 506459.0
+        },
+        "Worth": {
+          "capacity_af": 24419.0,
+          "storage_af": 17168.0
+        },
+        "WrightPatman": {
+          "capacity_af": 122593.0,
+          "storage_af": 122593.0
+        }
+      },
+      "source": "twdb recent-conditions",
+      "storage_af": 22660590.0,
       "verified": true
     }
   ]
