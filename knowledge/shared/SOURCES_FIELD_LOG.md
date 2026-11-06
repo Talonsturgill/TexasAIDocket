@@ -2511,3 +2511,22 @@ so the open meetings list lives under General Counsel, not About Us.
 **www.utep.edu and www.utsouthwestern.edu failed TLS and robots.txt again** (URLError, as on 2026-11-03), which held
 items past the staleness band until alternate primary sources were used. www.utep.edu is recorded on tx-2026-0227 as
 `blocks_every_client`, checked 2026-11-05. None was routed around.
+
+## 2026-11-05
+
+**www.angelinacounty.net's robots.txt no longer refuses this project's path** for tx-2026-0044's cited pages, measured
+2026-11-05 by `reverify.robots_refuses`. www.kltv.com and lufkindailynews.com still refuse. The item's claim-source
+declaration was not refreshed, so the county's own page can be read on the next re-verification.
+
+**www.click2houston.com's robots.txt has a new SHA256** (707af1f6...) and still refuses this project. **www.sec.gov
+answered** Applied Optoelectronics' November 5th Exhibit 99.1 and its 10-Q through `fetch_doc.py`, and
+**data.sec.gov answered** the company's submissions index. **investors.ao-inc.com answered 404** to `/node/16916` and
+`/node/16601`, both of which search results listed as press releases. **agendalink.fortbendcountytx.gov answered** a
+2016 signed abatement amendment PDF with a text layer. **www.kut.org's robots.txt refuses this project** on a
+`/energy-environment/` article, so tx-2026-0028's KUT claim stays unconfirmed through that host.
+
+**Every boundary declared on the worklist held**: the ten `blocks_every_client` hosts answered 403 to the project's
+agent on robots.txt and on the cited page (www.wilcotx.gov, www.wichitafallstx.gov, www.keranews.org,
+www.brazoscountytx.gov, www.dhs.gov, www.brownsvilletx.gov, www.mylubbock.us, www.leandertx.gov,
+www.globenewswire.com, www.faa.gov), and www.uta.edu, news.unt.edu, engineering.unt.edu and www.utep.edu did not
+answer robots.txt (URLError). Nothing was routed around.
