@@ -44465,6 +44465,183 @@
      "note": "Admitted on the company's SEC filing of November 4th. The release names no measured result for the monitoring system."
     }
    ]
+  },
+  {
+   "id": "tx-2026-0241",
+   "title": "A Sugar Land maker of AI data center optics says its United States expansion is waiting on electrical power",
+   "summary": "Applied Optoelectronics filed its third quarter results with the SEC on November 5th, 2026. The company makes optical transceivers for AI data centers, and Sugar Land is its one manufacturing site in Texas and the only place it makes its laser chips. Its chief financial officer says total equipment capacity is approaching 330,000 units a month. The same officer says the 2027 expansion plan in the United States will take longer to finish, because obtaining the electrical power it needs is taking longer than expected. The company still expects equipment for over 500,000 of its 800G and 1.6 Tb products a month by the end of 2026, and over 1 million transceivers a month by the end of 2027. Its quarterly report lists new space at Gillingham Lane in Sugar Land, a property it bought in Pearland and two buildings still to be built on Chimney Rock Road in Houston. Neither filing says which building is waiting on power or which utility serves it.",
+   "topic": "data-centers",
+   "decider": {
+    "name": "Applied Optoelectronics",
+    "type": "company"
+   },
+   "geography": {
+    "statewide": false,
+    "counties": [
+     "Fort Bend"
+    ],
+    "on_ercot": null
+   },
+   "status": "decided",
+   "key_dates": [
+    {
+     "date": "2026-11-05",
+     "kind": "filed",
+     "note": "Third quarter results filed with the SEC as an exhibit to Form 8-K, with the quarterly report on Form 10-Q the same day"
+    }
+   ],
+   "public_access": {
+    "room": "contact_only",
+    "how": "There is no public process. The release and the quarterly report are company filings at the SEC, and questions about the expansion go to Applied Optoelectronics.",
+    "url": "https://www.sec.gov/Archives/edgar/data/0001158114/000168316826008351/aaoi_ex9901.htm",
+    "closes": null
+   },
+   "confidence": "high",
+   "notes_for_editor": "A company account filed with the SEC. Fort Bend County comes from the county's own tax abatement agreement with the company for its Sugar Land headquarters on Jess Pirtle Boulevard. The Pearland and Chimney Rock Road sites are not placed in a county by any source read, so no county is named for them.",
+   "claims": [
+    {
+     "text": "The company's chief financial officer says its 2027 capacity expansion plan in the United States will take longer to complete, because obtaining the electrical power it needs is taking longer than expected, among other construction issues.",
+     "verbatim_quote": "We expect our 2027 capacity expansion plan in the US to take longer to complete due to longer than expected time to obtain necessary electrical power among other construction related issues.",
+     "source_url": "https://www.sec.gov/Archives/edgar/data/0001158114/000168316826008351/aaoi_ex9901.htm",
+     "source_title": "Applied Optoelectronics, Third Quarter 2026 Results (Form 8-K, Exhibit 99.1)",
+     "source_type": "primary_corporate",
+     "fetched": "2026-11-05",
+     "id": "tx-2026-0241-c1"
+    },
+    {
+     "text": "The company says its total manufacturing equipment capacity is approaching 330,000 units a month.",
+     "verbatim_quote": "We currently have a total manufacturing equipment capacity approaching 330,000 units per month.",
+     "source_url": "https://www.sec.gov/Archives/edgar/data/0001158114/000168316826008351/aaoi_ex9901.htm",
+     "source_title": "Applied Optoelectronics, Third Quarter 2026 Results (Form 8-K, Exhibit 99.1)",
+     "source_type": "primary_corporate",
+     "fetched": "2026-11-05",
+     "id": "tx-2026-0241-c2"
+    },
+    {
+     "text": "The company expects to have enough equipment installed by the end of 2026 to produce over 500,000 of its 800G and 1.6 Tb products a month.",
+     "verbatim_quote": "we now expect by the end of 2026 that we will have sufficient manufacturing equipment installed to produce over 500,000 pieces of 800G and 1.6 Tb products per month",
+     "source_url": "https://www.sec.gov/Archives/edgar/data/0001158114/000168316826008351/aaoi_ex9901.htm",
+     "source_title": "Applied Optoelectronics, Third Quarter 2026 Results (Form 8-K, Exhibit 99.1)",
+     "source_type": "primary_corporate",
+     "fetched": "2026-11-05",
+     "id": "tx-2026-0241-c3"
+    },
+    {
+     "text": "The company expects its capacity to grow to over 1 million 800G and 1.6 Tb transceivers a month by the end of 2027.",
+     "verbatim_quote": "we expect to grow our manufacturing capacity to over 1 million pieces of 800G and 1.6 Tb transceivers per month by the end of 2027.",
+     "source_url": "https://www.sec.gov/Archives/edgar/data/0001158114/000168316826008351/aaoi_ex9901.htm",
+     "source_title": "Applied Optoelectronics, Third Quarter 2026 Results (Form 8-K, Exhibit 99.1)",
+     "source_type": "primary_corporate",
+     "fetched": "2026-11-05",
+     "id": "tx-2026-0241-c4"
+    },
+    {
+     "text": "The chief executive says the company is scaling manufacturing of its 800G and 1.6T products to meet demand for AI-related optical technologies.",
+     "verbatim_quote": "We have made meaningful progress in scaling our manufacturing capabilities, particularly for our 800G and 1.6T products, to address demand for AI-related optical technologies that we believe is accelerating.",
+     "source_url": "https://www.sec.gov/Archives/edgar/data/0001158114/000168316826008351/aaoi_ex9901.htm",
+     "source_title": "Applied Optoelectronics, Third Quarter 2026 Results (Form 8-K, Exhibit 99.1)",
+     "source_type": "primary_corporate",
+     "fetched": "2026-11-05",
+     "id": "tx-2026-0241-c5"
+    },
+    {
+     "text": "The company says it recently signed a multi-year agreement with a Tier 1 hyperscale data center customer.",
+     "verbatim_quote": "We have recently secured a multi-year strategic agreement with a Tier 1 hyperscale datacenter customer",
+     "source_url": "https://www.sec.gov/Archives/edgar/data/0001158114/000168316826008351/aaoi_ex9901.htm",
+     "source_title": "Applied Optoelectronics, Third Quarter 2026 Results (Form 8-K, Exhibit 99.1)",
+     "source_type": "primary_corporate",
+     "fetched": "2026-11-05",
+     "id": "tx-2026-0241-c6"
+    },
+    {
+     "text": "The company has three manufacturing sites, and Sugar Land is the one in Texas.",
+     "verbatim_quote": "We have three manufacturing sites: Sugar Land, Texas, Ningbo, China and Taipei, Taiwan.",
+     "source_url": "https://www.sec.gov/Archives/edgar/data/1158114/000143774926035282/aaoi20260930_10q.htm",
+     "source_title": "Applied Optoelectronics, Quarterly Report on Form 10-Q for the quarter ended September 30, 2026",
+     "source_type": "primary_corporate",
+     "fetched": "2026-11-05",
+     "id": "tx-2026-0241-c7"
+    },
+    {
+     "text": "The company makes its laser chips only at its Sugar Land facility.",
+     "verbatim_quote": "We manufacture our laser chips only within our Sugar Land facility, where our laser design team is located.",
+     "source_url": "https://www.sec.gov/Archives/edgar/data/1158114/000143774926035282/aaoi20260930_10q.htm",
+     "source_title": "Applied Optoelectronics, Quarterly Report on Form 10-Q for the quarter ended September 30, 2026",
+     "source_type": "primary_corporate",
+     "fetched": "2026-11-05",
+     "id": "tx-2026-0241-c8"
+    },
+    {
+     "text": "At its Sugar Land headquarters the company mainly makes lasers and laser components and some of its data center transceivers.",
+     "verbatim_quote": "In the U.S., at its corporate headquarters and manufacturing facilities in Sugar Land, Texas, the Company primarily manufactures lasers and laser components as well as certain of its data center transceivers",
+     "source_url": "https://www.sec.gov/Archives/edgar/data/1158114/000143774926035282/aaoi20260930_10q.htm",
+     "source_title": "Applied Optoelectronics, Quarterly Report on Form 10-Q for the quarter ended September 30, 2026",
+     "source_type": "primary_corporate",
+     "fetched": "2026-11-05",
+     "id": "tx-2026-0241-c9"
+    },
+    {
+     "text": "The company leases about 209,665 square feet at 1111 Gillingham Lane in Sugar Land.",
+     "verbatim_quote": "the Company leases approximately 209,665 square feet of space located at 1111 Gillingham Lane, Sugar Land, Texas 77478.",
+     "source_url": "https://www.sec.gov/Archives/edgar/data/1158114/000143774926035282/aaoi20260930_10q.htm",
+     "source_title": "Applied Optoelectronics, Quarterly Report on Form 10-Q for the quarter ended September 30, 2026",
+     "source_type": "primary_corporate",
+     "fetched": "2026-11-05",
+     "id": "tx-2026-0241-c10"
+    },
+    {
+     "text": "The Gillingham Lane space is used mainly for manufacturing.",
+     "verbatim_quote": "The leased premises is used by the Company primarily for manufacturing and related operations.",
+     "source_url": "https://www.sec.gov/Archives/edgar/data/1158114/000143774926035282/aaoi20260930_10q.htm",
+     "source_title": "Applied Optoelectronics, Quarterly Report on Form 10-Q for the quarter ended September 30, 2026",
+     "source_type": "primary_corporate",
+     "fetched": "2026-11-05",
+     "id": "tx-2026-0241-c11"
+    },
+    {
+     "text": "The company bought property at 14621 Kirby Drive and 11555 North Spectrum Boulevard in Pearland, about 388,133 square feet in all.",
+     "verbatim_quote": "located at 14621 Kirby Drive and 11555 North Spectrum Boulevard, Pearland, Texas, consisting of approximately 388,133 square feet in the aggregate",
+     "source_url": "https://www.sec.gov/Archives/edgar/data/1158114/000143774926035282/aaoi20260930_10q.htm",
+     "source_title": "Applied Optoelectronics, Quarterly Report on Form 10-Q for the quarter ended September 30, 2026",
+     "source_type": "primary_corporate",
+     "fetched": "2026-11-05",
+     "id": "tx-2026-0241-c12"
+    },
+    {
+     "text": "Two more leased buildings on Chimney Rock Road in Houston are about 356,186 and 737,621 rentable square feet and are still to be built.",
+     "verbatim_quote": "for two industrial buildings to be constructed at 17331 Chimney Rock Road (\"Building 4\" ) and 17433 Chimney Rock Road (\"Building 5\" ), Houston, Texas 77053, consisting of approximately 356,186 and 737,621 rentable square feet, respectively.",
+     "source_url": "https://www.sec.gov/Archives/edgar/data/1158114/000143774926035282/aaoi20260930_10q.htm",
+     "source_title": "Applied Optoelectronics, Quarterly Report on Form 10-Q for the quarter ended September 30, 2026",
+     "source_type": "primary_corporate",
+     "fetched": "2026-11-05",
+     "id": "tx-2026-0241-c13"
+    },
+    {
+     "text": "Substantial completion of the Chimney Rock buildings is expected about 16 months after the leases were signed on August 31st, 2026.",
+     "verbatim_quote": "Substantial completion is anticipated approximately 16 months following the date of the leases.",
+     "source_url": "https://www.sec.gov/Archives/edgar/data/1158114/000143774926035282/aaoi20260930_10q.htm",
+     "source_title": "Applied Optoelectronics, Quarterly Report on Form 10-Q for the quarter ended September 30, 2026",
+     "source_type": "primary_corporate",
+     "fetched": "2026-11-05",
+     "id": "tx-2026-0241-c14"
+    },
+    {
+     "text": "Fort Bend County's tax abatement agreement with the company places its Sugar Land reinvestment zone in Fort Bend County.",
+     "verbatim_quote": "The City of Sugar Land Reinvestment Zone No. 2014-02 is an area located in Fort Bend County, Texas",
+     "source_url": "https://agendalink.fortbendcountytx.gov/mindocs/2016/CCTR/20160209_2788/minutes/2695%5F21A%20signed%20amendment%2Epdf",
+     "source_title": "Tax Abatement Agreement between Fort Bend County and Applied Optoelectronics, Inc.",
+     "source_type": "primary_official",
+     "fetched": "2026-11-05",
+     "id": "tx-2026-0241-c15"
+    }
+   ],
+   "last_verified": "2026-11-05",
+   "history": [
+    {
+     "date": "2026-11-05",
+     "note": "Admitted on the company's SEC filings of November 5th. Neither filing names the site that is waiting on power."
+    }
+   ]
   }
  ]
 }
