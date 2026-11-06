@@ -1732,6 +1732,22 @@
       "evidence": "2026-11-04 no. 68, frames 3 and 4 looked for the polished rod by its cylinder radius, found nothing, and placed the camera and the well string on a hand-typed fallback about 0.9 m off the real rod",
       "confirmed": [],
       "contradicted": []
+    },
+    {
+      "id": "door-light-made-by-the-opening",
+      "learned": "2026-11-05",
+      "instinct": "Light a room lit only through one opening from a source outside, and let the wall cast.",
+      "evidence": "no. 69 frame 5: two readings by the art director called the inside spill an overhead spotlight; a low source 8 m outside with the back wall casting gave a trapezoid from the sill, accepted on the next reading",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "stated-area-is-the-outer-edge",
+      "learned": "2026-11-05",
+      "instinct": "Draw a square of stated area with its outer edge on the stated side, every lip inside it.",
+      "evidence": "no. 69 frame 4: a formwork lip added outside the stated side on the two pits only drew 356,186 square feet larger than 388,133; the order was right in the code and wrong on the page until the lip moved inside",
+      "confirmed": [],
+      "contradicted": []
     }
   ]
 }

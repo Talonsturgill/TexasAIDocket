@@ -224,3 +224,26 @@ What the judges still charge, the work for the next deck in this register:
 - The sequence puts the customer after the reason, and "drawn to illustrate" repeats on six frames.
 - The integrity judge's last fix was not made, because past the cap only a hard fail may be repaired: put "in the US"
   back into the document title, and stop frame 5 from drawing the company's whole target as one US floor.
+
+## Retro
+
+**Prompt audit (interim, read before the email).** 1,767 tool calls were measured, and 71 had a permission decision
+time over a second. The longest was 16.9 s, on an Agent spawn, and nearly all of the 71 are Agent spawns of 4 to 17 s.
+The no-stall hook was armed at 05:03:01 UTC and judged the session unattended (CLAUDE_CODE_SESSION_ATTENDED=0, and the
+host's own value was 0). It refused nothing, and no dialog waited. This is the known `prompt-audit-counts-agent-latency`
+reading, now repeat 5 in the machine queue, and not a human answering anything.
+
+**Two instincts added** (each starts at 0.50, untested): `door-light-made-by-the-opening` and
+`stated-area-is-the-outer-edge`.
+
+**Machine queue: eight new items and one repeat bumped.** `dockdoor-models-built-in-chassis` (lift dock_door,
+osfp_module, survey_stake and conduit_stub), `kit-trailers-unreachable`, `drawn-area-not-measured`,
+`sum-refused-by-both-gates`, `ground-residual-fails-macro`, `coplanar-slab-under-raised-face`, `stage-horizon-band`,
+`art-review-reversed-on-same-pixels`. `machine_due` says the weekly pass is not due: the last pass was November 3rd,
+two days ago. The arsenal was rebuilt, and `--check` is ok.
+
+**Studio clock.** `record_done` was never stamped at the end of the record phase, so the timing report can't compute.
+It was not backdated.
+
+**Main is still red** on `gridwatch_pagecheck` exit 3, the cron lane's queue collector, so PR 459 waits for CI green
+on its head like no. 455 to no. 458.
