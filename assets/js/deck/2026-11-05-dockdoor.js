@@ -198,9 +198,22 @@
    * wear the accent tape, or the pads `isGold(i, col, row)` names. The low key through the door lights a stripe
    * down the middle column (col 2), so a lit pad is chosen by where it stands. The red oxide columns stand between the rows. */
   N.BAY = { Wd: 30, D: 46, Hh: 9.6 };
+  N.KEY_SCALE = 1;
   /* the room's options, so a frame lays the bay's floor and walls with its own TXT.interior call and hands the
    * room to CH.bay: an epoxy floor with no saw joints, dark tilt wall, a ceiling, no window (the door is the window) */
-  N.bayRoom = function (o) { o = o || {}; return { w: N.BAY.Wd, d: N.BAY.D, h: N.BAY.Hh, floor: "concrete", joints: false, wall: 0x2b2926, window: null, ceiling: true, light: o.light == null ? 0.16 : o.light }; };
+  N.bayRoom = function (o) { o = o || {}; return { w: N.BAY.Wd, d: N.BAY.D, h: N.BAY.Hh, floor: "concrete", joints: false, wall: 0x2b2926, window: null, ceiling: true, light: o.light == null ? 0.24 : o.light }; };
+  N.tapeGold = function (THREE) { return N._tg || (N._tg = new THREE.MeshStandardMaterial({ color: 0xd2682a, emissive: 0xd06a28, emissiveIntensity: 0.5, roughness: 0.92, metalness: 0.0 })); };
+  N.tapeGrey = function (THREE) { return N._tq || (N._tq = new THREE.MeshStandardMaterial({ color: 0x5a5c5a, emissive: 0x2e302e, emissiveIntensity: 0.3, roughness: 0.5, metalness: 0.02 })); };
+  /* THE DOOR'S SPILL: the sky through the opening lays a warm wedge on the floor from any viewpoint, a wide soft spot at
+   * the door head aimed down the bay's axis, casting, in the seam's hue. It stands for the sky light the opening admits,
+   * so it only ever sits AT the door. */
+  N.doorSpill = function (THREE, R, B, o) {
+    o = o || {};
+    var sp = new THREE.SpotLight(0xffb57c, o.i || 160, o.reach || 48, o.angle || 0.42, 0.75, 1.6);
+    sp.position.fromArray(B.toWorld([0, 4.2, -B.D / 2 - 1.2])); sp.target.position.fromArray(B.toWorld([0, 0, -B.D / 2 + (o.at || 16)]));
+    sp.castShadow = true; sp.shadow.mapSize.set(2048, 2048); sp.shadow.bias = -0.0004; sp.shadow.normalBias = 0.02;
+    R.scene.add(sp); R.scene.add(sp.target); return sp;
+  };
   N.bayYaw = function (THREE, TXT) {
     var s = TXT.sunDir(); return Math.atan2(-s.x, -s.z);
   };
@@ -221,19 +234,32 @@
     wall(dw, Hh - dh, dx, dh + (Hh - dh) / 2);
     var door = K.make("dock_door", { w: dw, h: dh }); door.position.set(dx, 0, -D / 2 + t / 2); G.add(door);
     /* the roof steel and columns, red oxide primer */
-    var frame = K.make("structural_frame", { cols: 4, rows: 6, bay: 8.4, height: Hh - 0.2, girts: [], bracing: false, primer: 0x8c4630 });
-    frame.position.set(0, 0, 1.2); G.add(frame);
+    /* two lines of columns at x = -7.5 and +7.5, just outside the pad grid, so no column ever stands between a lens on the
+     * bay's axis and a pad; joistBays 0 on a frame whose roof sits behind the type */
+    var frame = K.make("structural_frame", { cols: 2, rows: 4, bay: 15, height: Hh - 0.2, girts: [], bracing: false, primer: 0x8c4630, joistBays: o.joists === false ? 0 : null });
+    frame.position.set(0, 0, 0.6); G.add(frame);
     /* the pads: rows of five, the first `gold` from the door gold, the rest grey */
     var n = o.pads || 0, gold = o.gold || 0, pads = [];
-    var cols = 5, px = 5.4, pz = 6.6, z0 = -D / 2 + 6.2;
+    /* the pad grid: kit machine_pads at 0.62 scale, a 2.0 by 2.2 m bench bay, five to a row at 3.0 m by 3.4 m, so all
+     * twenty sit whole inside one lens; the middle column (col 2, x = 0) lies in the door's stripe */
+    var cols = 5, px = 3.0, pz = 3.4, z0 = -D / 2 + 8.0, PS = 0.62;
     for (var i = 0; i < n; i++) {
       var c = i % cols, rr = Math.floor(i / cols), isGold = o.isGold ? !!o.isGold(i, c, rr) : i < gold;
       var pad = K.make("machine_pad", { tape: isGold ? N.GOLD : (o.greyLit ? N.GREY_LIT : N.GREY_TAPE), tapeLit: isGold ? o.tapeLit !== false : !!o.greyLit, cordTop: Hh - 0.4 });
-      pad.position.set((c - (cols - 1) / 2) * px, 0, z0 + rr * pz); pad.userData.gold = isGold; G.add(pad); pads.push(pad);
+      pad.scale.setScalar(PS); pad.position.set((c - (cols - 1) / 2) * px, 0, z0 + rr * pz); pad.userData.gold = isGold; G.add(pad); pads.push(pad);
+      /* the tape as a lit material with a little glow of its own: it brightens in the door light and still counts outside it */
+      pad.children.slice().forEach(function (m) { if (m.isMesh && Math.abs(m.position.y - 0.005) < 0.0005) pad.remove(m); });
+      /* floor tape about 0.11 m wide in the world, the width a layout crew lays, so the outline holds at feed size */
+      (function (pad, mat) {
+        var bw = 3.2, bd = 3.6, tw = 0.11 / PS, th = 0.006 / PS;
+        [[bw, tw, 0, -bd / 2 + tw / 2], [bw, tw, 0, bd / 2 - tw / 2], [tw, bd - 2 * tw, -bw / 2 + tw / 2, 0], [tw, bd - 2 * tw, bw / 2 - tw / 2, 0]].forEach(function (t) {
+          var m = TXT.roundedBox(t[0], th, t[1], th * 0.45, mat); m.position.set(t[2], th / 2 + 0.003, t[3]); m.receiveShadow = true; m.userData.txWear = false; pad.add(m);
+        });
+      })(pad, isGold ? N.tapeGold(THREE) : N.tapeGrey(THREE));
       if (o.cords === false) pad.children.slice().forEach(function (m) { if (m.position.y > 1.5) pad.remove(m); });
     }
     /* the epoxy: the room's floor made glossy dark slate so the door's light lies on it as a sheen */
-    R.scene.traverse(function (m) { if (m.isMesh && m.geometry && m.geometry.type === "PlaneGeometry" && m.material && m.material.map && m.geometry.parameters.width >= Wd * 2) { m.material = m.material.clone(); m.material.color.set(0x5a5d60); m.material.roughness = 0.64; m.material.metalness = 0.05; m.material.needsUpdate = true; } });
+    R.scene.traverse(function (m) { if (m.isMesh && m.geometry && m.geometry.type === "PlaneGeometry" && m.material && m.material.map && m.geometry.parameters.width >= Wd * 2) { m.material = m.material.clone(); m.material.color.set(0x55585b); m.material.roughness = 0.52; m.material.metalness = 0.05; m.material.bumpMap = null; m.material.normalMap = null; m.material.bumpScale = 0; m.material.needsUpdate = true; } });
     G.updateMatrixWorld(true);
     return { G: G, room: room, pads: pads, door: door, frame: frame, D: D, Wd: Wd, Hh: Hh,
       toWorld: function (p) { return new THREE.Vector3(p[0], p[1], p[2]).applyMatrix4(G.matrixWorld).toArray(); } };
@@ -271,7 +297,8 @@
   N.rigSpec = function (W, size, map) {
     var rim = Object.assign({}, W.rig.rim, { i: (W.rig.rim.i || 0.8) * 0.6 });
     /* the flood is a 5000K LED, near neutral: the preset's faint lavender is warmed a step so white paint reads white */
-    return Object.assign({}, W.rig, { rim: rim, key: Object.assign({}, W.rig.key, { color: 0xfbf7f0, shadowSize: size || 14, mapSize: map || 2048 }) });
+    /* the key is the seam's warm light, and held a step down so a floor it grazes never clips to white */
+    return Object.assign({}, W.rig, { rim: rim, key: Object.assign({}, W.rig.key, { color: 0xffc596, i: (W.rig.key.i || 3) * (N.KEY_SCALE || 1), shadowSize: size || 14, mapSize: map || 2048 }) });
   };
   N.rigOpts = function (target, o) { o = o || {}; return { target: target, distance: o.distance || 40, shadowFar: o.shadowFar || 120, normalBias: o.normalBias == null ? 0.02 : o.normalBias }; };
   N.unacne = function (R, nb) { R.scene.traverse(function (l) { if (l.isDirectionalLight && l.castShadow) { l.shadow.normalBias = nb == null ? 0.04 : nb; l.shadow.bias = -0.0004; } }); return R; };
