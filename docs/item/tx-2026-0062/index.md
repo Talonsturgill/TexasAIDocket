@@ -54,6 +54,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-29 · Fort Worth's moratorium and grid filing rules still read as reported. The public radio account is unconfirmed.
 - 2026-11-01 · Fort Worth's moratorium and grid filing rules stay unconfirmed today. The public radio account answers no request from this project.
 - 2026-11-02 · Fort Worth's first steps toward a pause on new data center applications still read as the council took them, with the final vote still ahead.
+- 2026-11-05 · Fort Worth's moratorium vote has no fresh confirmation on the public radio account, which still refuses every reader. The final vote is still ahead.
 
 ## Evidence
 

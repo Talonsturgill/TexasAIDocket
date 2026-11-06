@@ -1,0 +1,229 @@
+{
+ "weighted_score": 6.44,
+ "judges": [
+  6.35,
+  6.47,
+  6.75
+ ],
+ "spread": 0.4,
+ "criteria": {
+  "artwork_craft": {
+   "score": 6.0,
+   "weight": 0.22,
+   "judges": [
+    6.0,
+    5.8,
+    6.5
+   ]
+  },
+  "deck_coherence": {
+   "score": 6.5,
+   "weight": 0.12,
+   "judges": [
+    7.0,
+    6.3,
+    6.5
+   ]
+  },
+  "claim_integrity": {
+   "score": 7.0,
+   "weight": 0.2,
+   "judges": [
+    6.0,
+    7.0,
+    8.0
+   ]
+  },
+  "story_and_stakes": {
+   "score": 6.5,
+   "weight": 0.16,
+   "judges": [
+    6.5,
+    6.8,
+    6.5
+   ]
+  },
+  "sequence_and_momentum": {
+   "score": 6.5,
+   "weight": 0.1,
+   "judges": [
+    6.5,
+    6.5,
+    6.5
+   ]
+  },
+  "voice": {
+   "score": 6.5,
+   "weight": 0.1,
+   "judges": [
+    7.0,
+    6.5,
+    6.5
+   ]
+  },
+  "variety": {
+   "score": 6.0,
+   "weight": 0.1,
+   "judges": [
+    6.0,
+    6.5,
+    6.0
+   ]
+  }
+ },
+ "hard_fails": [],
+ "hard_fails_by_judge": [],
+ "ship": false,
+ "threshold": 8.0,
+ "over_threshold": false,
+ "method": "per-criterion median across three judges, then weighted by the rubric",
+ "threshold_dissents": [
+  "judge 1 refused on the threshold, not on a fault, and scored 6.35 against a 8.0 bar. That dissent is carried in the median",
+  "judge 2 refused on the threshold, not on a fault, and scored 6.47 against a 8.0 bar. That dissent is carried in the median",
+  "judge 3 refused on the threshold, not on a fault, and scored 6.75 against a 8.0 bar. That dissent is carried in the median"
+ ],
+ "threshold_dissents_by_judge": [
+  {
+   "judge": 1,
+   "score": 6.35,
+   "reason": "judge 1 refused on the threshold, not on a fault, and scored 6.35 against a 8.0 bar. That dissent is carried in the median"
+  },
+  {
+   "judge": 2,
+   "score": 6.47,
+   "reason": "judge 2 refused on the threshold, not on a fault, and scored 6.47 against a 8.0 bar. That dissent is carried in the median"
+  },
+  {
+   "judge": 3,
+   "score": 6.75,
+   "reason": "judge 3 refused on the threshold, not on a fault, and scored 6.75 against a 8.0 bar. That dissent is carried in the median"
+  }
+ ],
+ "contested": [
+  "claim_integrity"
+ ],
+ "artwork_weakest_frames": [
+  {
+   "slide": 2,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Reads as a knife; fingers cropped; no tape corner; mid brown floor.",
+     "fix": "Connector end with fingers toward the lens in frame, across a visible tape corner, floor to near black outside the pool."
+    },
+    {
+     "judge": 2,
+     "problem": "Flat mid-tone gradient, knife read, fingers cropped, no tape corner.",
+     "fix": "Fingers and tape corner inside the frame at lower centre on dark epoxy in the door stripe."
+    },
+    {
+     "judge": 3,
+     "problem": "Mid-tone brown field, fingers cropped, no tape corner.",
+     "fix": "Near-black epoxy lit by a raking door key; pull back so fingers and corner sit in frame."
+    }
+   ]
+  },
+  {
+   "slide": 6,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Flat pale horizon band, brown haze, mannequin worker, thin stake row.",
+     "fix": "Camera at 0.5 m by the near flagged stake, remove the horizon plane, worker as silhouette."
+    },
+    {
+     "judge": 2,
+     "problem": "Ripple ground reads as water, flat horizon band, rigid V flagging.",
+     "fix": "Graded clay with ruts, stage into a dark sky, limp ribbons."
+    },
+    {
+     "judge": 3,
+     "problem": "Hairline stakes, horizon band.",
+     "fix": "Eye at 0.6 m, double stake and flag width, fog the band into the sky."
+    }
+   ]
+  },
+  {
+   "slide": 8,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Modules float in a line across the rack faces; flat grey mid band.",
+     "fix": "Seat the modules in one switch's port row, crop to that switch, one raking aisle light."
+    },
+    {
+     "judge": 2,
+     "problem": "Cold blue-grey hall; modules hung as a chain across the rack faces.",
+     "fix": "Seat modules in port cages on one switch, kill the blue fill, one warm key."
+    },
+    {
+     "judge": 3,
+     "problem": "Cold blue stock hall, no warm key.",
+     "fix": "One warm low key at the aisle end, crop to one port row."
+    }
+   ]
+  },
+  {
+   "slide": 3,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Box trailers brightest; navy wall; dead court.",
+     "fix": "Remove or silhouette the trailers, warm the key, a pool on the court."
+    },
+    {
+     "judge": 2,
+     "problem": "Blue night palette, trailer doors brightest, stripe clerestory, unlit court.",
+     "fix": "Warm raking key, trailer doors to wall value, emissive panes, lit court pool."
+    },
+    {
+     "judge": 3,
+     "problem": "Cold cast, trailer doors brightest.",
+     "fix": "Warm key, one bright edge on the clerestory, trailer doors down two stops."
+    }
+   ]
+  },
+  {
+   "slide": 7,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Blown white yard, no jamb, mannequin lit flat.",
+     "fix": "Black jamb along the left 15 percent, pull the apron exposure, worker in partial silhouette."
+    },
+    {
+     "judge": 2,
+     "problem": "Halo hard hat, blown yard, no jamb, decal gravel.",
+     "fix": "Dark jamb across the left third, cut or silhouette the figure, lower apron exposure."
+    },
+    {
+     "judge": 3,
+     "problem": "Mannequin and white yard where the jamb should be.",
+     "fix": "Dark jamb across the left third; backlit near-silhouette figure."
+    }
+   ]
+  },
+  {
+   "slide": 4,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "Aliased long diagonal shadows become a black band.",
+     "fix": "Higher resolution shadow with softening, raise key elevation."
+    }
+   ]
+  }
+ ],
+ "rounds_derived": 1,
+ "rounds": 1,
+ "rounds_source": "this module's own log of cards it has scored",
+ "rung": 8.0,
+ "work_order": "no judge found a hard fail, and the median 6.44 is under this round's rung of 8.0. KEEP EDITING: fix the judges' named defects, re-render and re-score. At the round cap the finished deck ships whatever it scored. Start with the frames the judges charge the art for, in this order, slides 2, 6, 8, 3, 7, 4 (`artwork_weakest_frames`), one concrete change each",
+ "craft_floor": "pending, because a deck under its rung is sent back by the work order first"
+}

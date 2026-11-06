@@ -49,6 +49,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-01 · The Killeen commission's vote against the data center permit is unconfirmed today. The city's page and the station's report both refuse this project.
 - 2026-11-02 · The Killeen data center permit denial is unconfirmed today. The city's agenda would not load and the news report refuses this project.
 - 2026-11-03 · The Killeen permit denial is unconfirmed again. The station account refuses this project, and the agenda file offers no readable text.
+- 2026-11-05 · Nothing new confirms or reverses the Killeen commission's vote against the permit. The station's account is still closed to this project.
 
 ## Evidence
 

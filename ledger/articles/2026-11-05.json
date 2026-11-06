@@ -1,0 +1,95 @@
+{
+ "_spec": {
+  "version": 1,
+  "purpose": "A standalone web edition of the archived visual story.",
+  "law": "Facts resolve to the original verified claim record. A layout rebuild does not reverify reporting.",
+  "written_by": "daily"
+ },
+ "section": "Manufacturing",
+ "dek": {
+  "text": "Applied Optoelectronics, a Sugar Land laser chip maker, says its {{number:c1}} expansion in the United States will take longer because getting power is taking longer than expected.",
+  "claims": [
+   "c1",
+   "c19"
+  ]
+ },
+ "introduction": [
+  {
+   "text": "[Applied Optoelectronics told investors in its third quarter results release that its {{number:c1}} capacity expansion plan in the United States will take longer to complete](c1). [The reason its chief financial officer gave is a longer than expected time to obtain necessary electrical power, among other construction related issues](c1).",
+   "claims": [
+    "c1"
+   ]
+  },
+  {
+   "text": "[The company makes fiber-optic networking products for four end markets, first among them internet and AI data centers](c17). [Its quarterly report says it makes its laser chips only within its Sugar Land facility, where its laser design team is located](c19). [It names three manufacturing sites, in Sugar Land, Ningbo and Taipei](c18).",
+   "claims": [
+    "c17",
+    "c19",
+    "c18"
+   ]
+  }
+ ],
+ "sections": [
+  {
+   "heading": "What the company expects to build",
+   "paragraphs": [
+    {
+     "text": "[The chief financial officer says total manufacturing equipment capacity is approaching {{number:c2}} units a month](c2). [The company now expects enough equipment installed by the end of {{number:c3}} to produce over {{number:c3:1}} pieces of {{number:c3:2}}G and {{number:c3:3}} Tb products a month](c3). [By the end of {{number:c4:3}} it expects capacity for over {{number:c4}} million pieces of those transceivers a month](c4). The first figure counts equipment across every product. The other two count only those transceivers, so the three don't form one series.",
+     "claims": [
+      "c2",
+      "c3",
+      "c4"
+     ]
+    },
+    {
+     "text": "[The chief executive says the company believes demand for AI-related optical technologies is accelerating](c5). [The chief executive also says the company recently secured a multi-year strategic agreement with a Tier {{number:c6}} hyperscale data center customer](c6). The release does not name the customer.",
+     "claims": [
+      "c5",
+      "c6"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "The buildings around Houston",
+   "paragraphs": [
+    {
+     "text": "[The company leases approximately {{number:c8}} square feet on Gillingham Lane in Sugar Land](c8). [The quarterly report says that space is used primarily for manufacturing and related operations](c9), [on a lease of {{number:c14}} months](c14). [The company also owns its Kirby property in Pearland, about {{number:c10:2}} square feet across two addresses](c10). [That purchase closed on {{date:c16}}](c16).",
+     "claims": [
+      "c8",
+      "c9",
+      "c14",
+      "c10",
+      "c16"
+     ]
+    },
+    {
+     "text": "[On {{date:c11}} the company leased two industrial buildings still to be constructed on Chimney Rock Road in Houston](c11). [They are approximately {{number:c11:7}} and {{number:c11:8}} rentable square feet](c11). [The quarterly report anticipates substantial completion about {{number:c12}} months after the date of those leases](c12). [It also says the company will lease three other industrial buildings on McHard Road and Chimney Rock Road](c15).",
+     "claims": [
+      "c11",
+      "c12",
+      "c15"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "What the filings don't say",
+   "paragraphs": [
+    {
+     "text": "[The release gives the wait for electrical power as one reason the {{number:c1}} plan will take longer](c1). It does not say which building or site is waiting, which utility serves it, or how much longer the plan will take. The quarterly report's completion estimate for the Chimney Rock buildings is the only schedule either document prints, and neither document ties the wait for power to those buildings.",
+     "claims": [
+      "c1",
+      "c12"
+     ]
+    }
+   ]
+  }
+ ],
+ "related": [
+  {
+   "id": "tx-2026-0241",
+   "label": "Applied Optoelectronics and the Sugar Land laser chip plant"
+  }
+ ]
+}

@@ -38,6 +38,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-01 · The oil producer's stake in its AI vendor stays unconfirmed. The release's host still answers no request from this project.
 - 2026-11-02 · Battalion Oil's investment in Collide is unconfirmed today. The release's host refuses every reader.
 - 2026-11-03 · Battalion Oil's investment in Collide remains unconfirmed. The release's host refuses every reader.
+- 2026-11-05 · Battalion Oil's stake in Collide has no fresh confirmation. The release's host is still closed to every reader.
 
 ## Evidence
 

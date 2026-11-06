@@ -46,6 +46,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-29 · The Supreme Court of Texas has not yet ruled on the AI deposition transcript. The court's docket page bars automated readers.
 - 2026-11-01 · The Supreme Court of Texas still has no ruling on record that this project can read. The docket page refuses automated readers.
 - 2026-11-03 · No ruling from the Supreme Court of Texas on the AI deposition transcript is confirmed today. The court's search site still refuses this project.
+- 2026-11-05 · No ruling on the AI deposition transcript is confirmed. The court's case search still refuses this project.
 
 ## Evidence
 

@@ -53,6 +53,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-31 · The end of Guadalupe County's Flock contract is not confirmed today. The county's minutes and both newsroom accounts still refuse automated readers.
 - 2026-11-01 · Guadalupe County's end to its Flock contract stays unconfirmed. Its minutes and both news accounts still refuse this project.
 - 2026-11-03 · Guadalupe County's vote to end its Flock contract remains unconfirmed. Its minutes and both news accounts stay closed to this project.
+- 2026-11-05 · Guadalupe County ending its Flock contract still rests on the earlier reading. The minutes and both news accounts remain closed to this project.
 
 ## Evidence
 

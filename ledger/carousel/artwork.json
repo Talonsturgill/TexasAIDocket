@@ -4319,6 +4319,72 @@
     "hex": "#08090C",
     "note": "The pad at last light and the reliefs' black bed."
    }
+  },
+  {
+   "date": "2026-11-05",
+   "carousel_no": 69,
+   "written_from": "deck_coherence's median L* per frame at 432 px off the final renders, layout_check's accent share, by update_ledgers.py.",
+   "register": "SPATIAL SCENES in one dark bay lit only through its dock door at last light (frames 1, 2, 5, 8 and 9), exteriors at last light (3, 6 and 7) and one TXBENCH material relief (4). Chassis assets/js/deck/2026-11-05-dockdoor.js: dock_door, osfp_module, survey_stake and conduit_stub kit models with the kit's machine_pad, structural_frame, warehouse, padmount_transformer, utility_pole, server_row and person, and dusk_gold floor tape as the one accent for a stated capacity target.",
+   "structural_laws": [
+    "A FORMWORK LIP OUTSIDE A STATED SIDE REORDERS THE SQUARES. A lip added outside the stated side on the cut pads only drew the 356,186 square bigger than the 388,133 one, so every outer edge is now the stated side.",
+    "TWO SURFACES AT ONE DEPTH BAND LIKE ACNE. A slab added under a raised pad face at the face's own height drew banded triangles a reviewer took for shadow acne.",
+    "A ROOFLESS CUTAWAY NEEDS THE DOOR TO MAKE ITS LIGHT. Lighting the floor with a spot inside the bay read as an overhead lamp; a low source outside cut by the casting back wall made a hard trapezoid from the sill.",
+    "A CONTACT DISC AT MACRO SCALE IS A FACETED PLATE. TXT.contact and a levelling plate under an object a few centimetres long read as a low-poly disc.",
+    "A MATTE GROUND UNDER AN APRON Z-FIGHTS. TXT.ground laid under a kit apron drew white patches where the two planes met."
+   ],
+   "techniques": [
+    "a dark bay down a wedge of dock door light, one pad taped gold in the stripe",
+    "an OSFP class module on the epoxy in a soft pool of the door's spill",
+    "a tilt wall plant at its stated floor area at last light with a warm clerestory band",
+    "a material relief of four squares of stated area, two raised steel slabs and two cut clay pads",
+    "a plan oblique of twenty pads, ten gold and ten grey, under a hard trapezoid of door light",
+    "sixteen survey laths on a string line at last light, two flagged, a worker at the near end",
+    "a padmount transformer with three capped conduit stubs beyond the open door",
+    "a cold aisle with a top of rack switch, pale pull tabs and a warm strip fixture",
+    "the bay from the dock leveller with every pad gold and a worker in the door light"
+   ],
+   "value": {
+    "per_frame_median_L": [
+     0.8,
+     17.9,
+     6.3,
+     7.6,
+     0.9,
+     22.6,
+     12.0,
+     13.4,
+     3.7
+    ],
+    "deck_median_L": 7.6,
+    "max_adjacent_delta": 21.7,
+    "mean_adjacent_delta": 10.01,
+    "note": "Measured by deck_coherence's median_lstar at 432 px off the final renders. A dark bay and staged exteriors."
+   },
+   "accent": {
+    "hex": "#9A5028",
+    "name": "dusk_gold floor tape as rendered, a stated capacity target",
+    "frames_above_floor": [
+     5,
+     6,
+     9
+    ],
+    "share": [
+     0.0007,
+     0.0,
+     0.0004,
+     0.0,
+     0.0034,
+     0.0038,
+     0.0001,
+     0.0,
+     0.012
+    ],
+    "note": "The gold pad on 1, the gold rows on 5, the string line and flags on 6, and every pad on 9."
+   },
+   "ground": {
+    "hex": "#0A0A0C",
+    "note": "The bay's black and the dark epoxy."
+   }
   }
  ]
 }

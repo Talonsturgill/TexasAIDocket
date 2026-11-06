@@ -51,6 +51,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-31 · The facial capture test on pedestrians leaving at the Progreso bridge is still unconfirmed. The department's page answers no reader.
 - 2026-11-01 · The facial capture test at the Progreso bridge stays unconfirmed. The department's page still answers no request from this project.
 - 2026-11-02 · The Science and Technology Directorate's account of the face capture test at the Progreso International Bridge still stands, opt out lane for citizens included.
+- 2026-11-05 · The face capture test at the Progreso bridge has no fresh confirmation. The directorate's pages are closed to every reader this check.
 
 ## Evidence
 

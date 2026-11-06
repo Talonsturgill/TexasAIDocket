@@ -51,6 +51,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-31 · Frontera's closure date could not be checked against the center's own documentation today, which stays off limits to automated readers.
 - 2026-11-01 · Frontera's closure stays unconfirmed on the center's own documentation, which this project keeps off limits.
 - 2026-11-03 · Frontera's permanent closure is unconfirmed again on the center's own documentation, which stays off limits to this project.
+- 2026-11-05 · Frontera's closure still rests on the earlier reading. The center's documentation stays off limits to this project.
 
 ## Evidence
 

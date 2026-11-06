@@ -1,0 +1,78 @@
+{
+ "_note": "Scores, weighted score, hard fails and fixes as the judge returned them; each why is abridged by the run from the judge's report.",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.5,
+   "why": "1, 5, 9 strong; 2 mid brown with cropped fingers; 3 cold; 8 stock; 7 mannequin and white yard; 6 hairline stakes and horizon band; 4 legible."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 6.5,
+   "why": "Tape motif works; world strobes; 3 and 8 outside the last light world."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.0,
+   "why": "Numerals trace and sources are primary; caption's Fort Bend rests on c13 and is missing from the first comment; 'Half the floor' turns two figures into shares of one floor."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.5,
+   "why": "A story, not a topic, but the company is never named on a slide; no watch point."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "Cover earns the swipe; 2 doesn't advance; 7's turn spent by the cover; 8 movable; 9 restates."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "Careful filing summary; 'drawn to illustrate' on eight of nine; caption narrates the deck."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.0,
+   "why": "Third earnings release in a row; taped pads repeat 56 and 59."
+  }
+ ],
+ "weighted_score": 6.75,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Name Applied Optoelectronics on the cover and open the caption on the power delay, then rebuild frame 9 around something a reader can watch for.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 8,
+   "problem": "Cold blue stock hall, no warm key.",
+   "fix": "One warm low key at the aisle end, crop to one port row."
+  },
+  {
+   "slide": 2,
+   "problem": "Mid-tone brown field, fingers cropped, no tape corner.",
+   "fix": "Near-black epoxy lit by a raking door key; pull back so fingers and corner sit in frame."
+  },
+  {
+   "slide": 3,
+   "problem": "Cold cast, trailer doors brightest.",
+   "fix": "Warm key, one bright edge on the clerestory, trailer doors down two stops."
+  },
+  {
+   "slide": 7,
+   "problem": "Mannequin and white yard where the jamb should be.",
+   "fix": "Dark jamb across the left third; backlit near-silhouette figure."
+  },
+  {
+   "slide": 6,
+   "problem": "Hairline stakes, horizon band.",
+   "fix": "Eye at 0.6 m, double stake and flag width, fog the band into the sky."
+  }
+ ]
+}

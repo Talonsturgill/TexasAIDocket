@@ -53,6 +53,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-31 · Lubbock County's disclosure resolution on industrial development is not confirmed today, because the one station that reported it refuses automated readers.
 - 2026-11-01 · Lubbock County's disclosure resolution stays unconfirmed, since the station that reported it still refuses this project.
 - 2026-11-03 · Lubbock County's disclosure resolution on large loads remains unconfirmed, because the reporting station still refuses this project.
+- 2026-11-05 · Lubbock County's large load disclosure resolution goes unconfirmed for another check. The station that covered the vote still refuses this project.
 
 ## Evidence
 

@@ -1,0 +1,78 @@
+{
+ "_note": "Scores, weighted score, hard fails and fixes as the judge returned them; each why is abridged by the run from the judge's report.",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.3,
+   "why": "Cover and 5 pass the stage test, 4 has height and casts; 3 cold with flat glowing doors, 9's overexposed worker and cords in mid-air, 8 grey midtone, 2 brown midtone with fingers cropped."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 6.5,
+   "why": "Gold tape spine and camera move; 3 and 8 outside; value strobes across 6, 7, 8."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.5,
+   "why": "Every numeral traces, quote verbatim; 5 sets company-wide targets in an implied US bay, corrected only on 9; 'two official records' looser than the sources."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.5,
+   "why": "What, who and where; no utility, county or decision point."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 6.4,
+   "why": "Cover's dek tells the whole story; 4 is the real turn; 7 repeats the cover; 8 cuttable; 9 restates."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.8,
+   "why": "Clean with real place names; reads as filing summary."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.3,
+   "why": "Diverges from 66 to 68; lastLight and the vest figure familiar."
+  }
+ ],
+ "weighted_score": 6.76,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Send the scout for the record naming who supplies the power and any ERCOT or PUC filing, so the deck can tell a Texan whose grid the wait sits on.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 3,
+   "problem": "Cold exterior, primitive trailers, plant unsizeable, dead court.",
+   "fix": "Pull back so the whole wall fits with one truck and person, warm rake, doors down."
+  },
+  {
+   "slide": 9,
+   "problem": "Overexposed kit worker; cords in mid-air; about fourteen pads.",
+   "fix": "Raise the camera for all twenty pads; cut or silhouette the worker."
+  },
+  {
+   "slide": 8,
+   "problem": "Grey midtone rack wall, stock look.",
+   "fix": "Crop to one rack face under one raking light."
+  },
+  {
+   "slide": 2,
+   "problem": "Brown midtone field, fingers cropped, no tape corner.",
+   "fix": "Darken outside a tight pool, fingers and tape corner in frame."
+  },
+  {
+   "slide": 7,
+   "problem": "Near-white yard, missing jamb, plastic worker.",
+   "fix": "Dark jamb on the left edge, yard exposure down."
+  }
+ ]
+}

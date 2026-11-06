@@ -44,6 +44,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-31 · UNT's listing of an undergraduate AI degree stays unconfirmed. The engineering college's site did not answer for its crawling rules today, so it was left unread.
 - 2026-11-01 · UNT's undergraduate AI degree listing stays unconfirmed, with the engineering college's site still refusing this project.
 - 2026-11-03 · UNT's listing for an undergraduate AI degree remains unconfirmed, with the engineering college's site still refusing this project.
+- 2026-11-05 · UNT's undergraduate AI degree listing goes unconfirmed for another check. The engineering college's site would not serve this project.
 
 ## Evidence
 

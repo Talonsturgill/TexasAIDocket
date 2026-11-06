@@ -40,6 +40,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-31 · UT Arlington's switch from business analytics to AI degrees stays unconfirmed. The university's site did not answer for its crawling rules today.
 - 2026-11-01 · UT Arlington's move from business analytics to AI degrees stays unconfirmed. The university's site still refuses this project.
 - 2026-11-03 · UT Arlington's switch from business analytics to AI degrees stays unconfirmed. The university's site still refuses this project.
+- 2026-11-05 · UT Arlington's move from business analytics to AI degrees has no fresh reading. The university's site would not serve this project.
 
 ## Evidence
 
