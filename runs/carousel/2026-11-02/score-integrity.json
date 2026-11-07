@@ -1,0 +1,29 @@
+{
+ "judge": "integrity",
+ "round": 3,
+ "criteria": [
+  {"name": "artwork_craft", "weight": 0.22, "score": 6.7, "why": "Every frame rendered and dark; 1, 4 and 9 hold one lit subject in a pool but the SDF dog has club paws. Frame 5 a banded clip on a primitive monitor in the grey middle; frame 3 labels and footer on smudge plates and a foreleg out of its box; 6 to 8 three reliefs of squares; 8 a slab with a dead lower third; 7's pockets flat black at feed size."},
+  {"name": "deck_coherence", "weight": 0.12, "score": 7.5, "why": "One world, one key, the box motif changes state, one dog, no strobe; the declared cut at 6 is a real seam."},
+  {"name": "claim_integrity", "weight": 0.20, "score": 8.0, "why": "Every numeral traces and quotes on 2, 4 and 9 match. Charged: slide 5 closes the c4 quote with the stop inside the marks though the source sentence continues; the docket summary's 'That last call rests on appearance' and slide 4's kicker imply the release's description is the review's rule; the announcement filed as key_dates 'effective' with status 'decided'; the cover reads citywide until slide 6 scopes it."},
+  {"name": "story_and_stakes", "weight": 0.16, "score": 6.5, "why": "What, who, where and when are clear; no area named, nothing decided or by whom, why loose dogs are a city problem unstated, nothing to do; the 2019 baseline absent."},
+  {"name": "sequence_and_momentum", "weight": 0.10, "score": 6.5, "why": "Concrete cover and slide 2; the turn at 4 not followed; 5 repeats 3, 6 and 7 repeat; the close a borrowed quote."},
+  {"name": "voice", "weight": 0.10, "score": 7.0, "why": "Clean, every house rule held, a sharp closing question; flat mechanism lines; no regional texture."},
+  {"name": "variety", "weight": 0.10, "score": 6.5, "why": "New topic and animal subject; a lastLight street with a car, a caliche relief and grids of squares echo recent decks."}
+ ],
+ "weighted_score": 7.01,
+ "hard_fails": [],
+ "ranked_defects": [
+  {"slide": 5, "defect": "The quote's stop sits inside the marks though the source sentence continues.", "fix": "Put the stop outside the closing mark."},
+  {"slide": 7, "defect": "No 2019 finding carried.", "fix": "Fetch the 2019 ACS study PDF through fetch_doc.py and claim its headline count."},
+  {"slide": 5, "defect": "Duplicates frame 3's checks; flattest render.", "fix": "Cut it or rebuild it around c11's videos."},
+  {"slide": 9, "defect": "The close names no action.", "fix": "Name how a resident reaches ACS from a fetched page."},
+  {"slide": 4, "defect": "Kicker and docket summary imply the release's description is the review's rule.", "fix": "Kicker 'How the release describes them'; summary 'The release describes strays as appearing malnourished and skittish'."},
+  {"slide": 1, "defect": "Reads citywide until slide 6.", "fix": "'will sample San Antonio's loose dogs'."}
+ ],
+ "artwork_weakest_frames": [
+  {"slide": 5, "problem": "Banded clip on a primitive monitor, grey middle.", "fix": "Map the frame 1 render target onto the screen; screen-only light."},
+  {"slide": 8, "problem": "Slab in a void, dead lower third.", "fix": "Low raking oblique, rule in the lower third."},
+  {"slide": 3, "problem": "Labels on smudge plates; foreleg out of the box.", "fix": "Labels in the dark field; widen the bottom corners."},
+  {"slide": 7, "problem": "Flat black pockets; repeats 6's plan view.", "fix": "Key at about 12 degrees; oblique camera."}
+ ]
+}

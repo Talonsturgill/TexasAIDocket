@@ -1,0 +1,30 @@
+{
+ "judge": "integrity",
+ "round": 2,
+ "criteria": [
+  {"name": "artwork_craft", "weight": 0.22, "score": 6.8, "why": "Every frame rendered dark, measured reliefs, strong cover and good slide 2. Slide 3 labels on plates with no visible phone, slide 5 promises a person and draws none, 6 and 7 two grids back to back, 9 small dog over dead concrete, the dog toy-like at full size."},
+  {"name": "deck_coherence", "weight": 0.12, "score": 7.5, "why": "Clearly one deck: one street, one key, one dog, the box changing state; the declared cut to reliefs at 6 and slide 5's interior sit slightly outside."},
+  {"name": "claim_integrity", "weight": 0.20, "score": 8.0, "why": "Every numeral traces, sources primary, quotes verbatim. Looser spots: slide 5 is c4 verbatim without quotation marks; slide 9's quote gains a full stop inside the marks and the hook gives the city a line from SwRI's release; slide 3 puts a per-clip check on each dog; the web edition goes past c12, c19 and c3 and asserts an unrecorded absence; the future tense on 1 when field work has probably begun."},
+  {"name": "story_and_stakes", "weight": 0.16, "score": 6.0, "why": "What and where are clear; who decided, why it matters and what a reader can do are missing; the caption's sharpest question is on no frame."},
+  {"name": "sequence_and_momentum", "weight": 0.10, "score": 6.5, "why": "Cover, slide 2 and the turn at 4 work; 5 restates 3, 6 and 7 repeat, 9 echoes 8."},
+  {"name": "voice", "weight": 0.10, "score": 7.0, "why": "Clean and on house rules; slide 5 a pasted release sentence, slide 9 the city's framing, little San Antonio texture."},
+  {"name": "variety", "weight": 0.10, "score": 7.0, "why": "No topic repeat, a live animal hero; no. 64 was also a lastLight night street about city cameras, and the one-unit-per-object grid relief is the house habit."}
+ ],
+ "weighted_score": 7.006,
+ "hard_fails": [],
+ "ranked_defects": [
+  {"slide": 5, "defect": "c4 verbatim without quotation marks; repeats slide 3.", "fix": "Quote it with 'the release says', or cut the slide."},
+  {"slide": 9, "defect": "Full stop inside the quote marks beyond c14's span; hook gives the city a line from SwRI's release.", "fix": "End the quote at 'dogs' with the stop outside; attribute to ACS's director."},
+  {"slide": 0, "defect": "Web edition overreaches c12, c19 and c3 and asserts an unrecorded absence.", "fix": "Use the city's sentence, 'paired with' for the software, drop the absence sentence."},
+  {"slide": 3, "defect": "'for each detected dog' puts a per-clip check on each dog; labels on plates.", "fix": "Headline 'Four checks on each clip'."},
+  {"slide": 7, "defect": "Empty 2019 pockets against full 2026 plugs can read as a result difference.", "fix": "Draw both as equal plugs differing only in material."},
+  {"slide": 1, "defect": "Future tense though field work has probably begun.", "fix": "'is set to survey through December'."}
+ ],
+ "artwork_weakest_frames": [
+  {"slide": 5, "problem": "Headline promises a person, none drawn; mid-tone room.", "fix": "Reviewer's shoulder and hand lit by the screen."},
+  {"slide": 7, "problem": "Second grid after 6; pockets vs plugs read as a result difference.", "fix": "Recast 2019 as darker hand-dressed plugs at the same height."},
+  {"slide": 3, "problem": "Plates, lines off the bottom with no phone.", "fix": "Raise the camera so the lens is in frame."},
+  {"slide": 9, "problem": "Small dog over dead concrete.", "fix": "Camera to 0.5 m at about 3 m."},
+  {"slide": 8, "problem": "Block reads as a flat card; plain report plug.", "fix": "Lower key; report as a bound sheaf."}
+ ]
+}

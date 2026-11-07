@@ -1,0 +1,54 @@
+<!doctype html>
+<!-- 2026-11-04, frame 1 of 9. Archetype FULL_BLEED. A Permian pump jack at last light, its walking beam and horsehead rimmed against the warm seam, the pad lit in a pool of caliche, a pipe rail fence post close at the left. Drawn to illustrate, to no operator's pad or maker's design. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:900px">The artificial lift has a new watcher</h1>
+<p class="dek" data-follow="26" style="width:860px">Permian Resources told investors on November 4th that its production team has deployed an AI-powered artificial lift monitoring system. The pump jack is drawn to illustrate.</p>
+<script>window.FIG = {};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-04-wellpad.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Permian Basin", counter: "01 / 09", src: "c1 c4", fit: { min: 84, max: 108, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 34, near: 0.05, far: 4000, fog: 0.004 });
+  /* the jack, crank at 0, turned so its side profile faces the camera three quarters */
+  const jack = K.make('pump_jack', { seed: CH.JACK.seed, crank: 0, color: CH.JACK.color, head: CH.JACK.head, guard: false });
+  jack.rotation.y = 2.28; TXT.add(R, jack); TXT.contact(R, jack);
+  TXT.sky(R);
+  TXT.ground(R, { surface: 'dirt', size: 1200, seed: 17, bumpScale: 0.18 });
+  const from = [21.4, 1.0, -10.8];
+  const look = CH.aim(THREE, R, TXT, from, [0, 3.4, 0], 505, 880, 34);
+  TXT.frame(R, { fov: 34, from, look });
+  TXT.scatter(R, { kind: 'scrub', count: 1400, area: [-260, -200, 40, 160], avoid: [[-12, -10, 16, 10], [8, -24, 40, -2]], seed: 9, scale: [0.5, 1.1] });
+  CH.warm(R, 0.62);
+  TXT.deckRig(R, CH.rigSpec(W, 60, 4096), CH.rigOpts([0, 2, 0], { distance: 80, shadowFar: 200, normalBias: 0.04 }));
+  CH.unacne(R, 0.04);
+  TXT.weather(R, { grime: 0.32, height: 1.1, mottle: 0.14 });
+  /* a work light on the pickup behind the camera puts a low pool on the crank side, so the crank arms and counterweights read */
+  { const sp = new THREE.SpotLight(0xffd9b0, 38, 40, 0.3, 0.7, 1.6); sp.position.set(from[0] - 9, 1.2, from[2] + 9); sp.target.position.set(-3, 1.4, 0); R.scene.add(sp); R.scene.add(sp.target); }
+  TXT.stage(R, [jack], { poolInner: 6, poolOuter: 12 });
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0.28, veil: 0.5, veilH: 320 });
+  /* a darken-only wash on the ground under the footer, so the site line sits on a dark field and no rail strikes it */
+  { const g = cx.createRadialGradient(860, 1300, 30, 860, 1300, 470); g.addColorStop(0, 'rgba(5,6,10,0.78)'); g.addColorStop(0.5, 'rgba(5,6,10,0.48)'); g.addColorStop(1, 'rgba(5,6,10,0)'); cx.fillStyle = g; cx.fillRect(0, 0, 1080, 1350); }
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

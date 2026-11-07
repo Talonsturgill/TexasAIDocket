@@ -1,0 +1,16 @@
+{
+ "verdict": "REVISE",
+ "artwork_craft_estimate": 6.5,
+ "weakest_frames": [
+  {"slide": 5, "cause": "flat lifted mid tone wall around a primitive monitor, the one grey middle frame", "fix": "light the room only from the screen, wall to true black, spill models a keyboard and the desk edge", "done": "deck key and sky fill scaled to 0.12, environment 0.04, wall near black, modelled keyboard added"},
+  {"slide": 9, "cause": "hero least modelled at its range, dead lower concrete, low poly grass", "fix": "pull the camera back to about 6.5 m at a low eye height so the dog stands on the horizon against the tail lamps", "done": "camera 6.5 m back at 0.62 m, fov 28, side key from camera left, frontal key halved, wider pool"},
+  {"slide": 3, "cause": "car roof an unmodelled slab with no visible phone at the convergence point", "fix": "make the window_phone lens the visible convergence point", "done": "the phone sits below the roofline from this camera, so a lit warm bead and glow mark the lens where the four lines meet, with a work light on the roof"}
+ ],
+ "causes": {"one_shot_over_three": [1, 2, 4, 5], "largest_object_least_modelled": [3, 5, 8, 9], "dead_region_or_small_hero": [8, 9, 6], "render_artifact": [6, 9, 3, 2], "no_tonal_arc": false},
+ "not_done": [
+  "slide 9 hook still echoes slide 8; a new hook on c14 would need a fresh fact check pass, left for the panel",
+  "slides 6 and 7 still read as two grids of squares back to back",
+  "type sits in the top 40 percent on all nine frames; no inversion this run",
+  "slide 4 camera not dropped to 0.6 m; the art director accepted the frame at its sixth reading"
+ ]
+}

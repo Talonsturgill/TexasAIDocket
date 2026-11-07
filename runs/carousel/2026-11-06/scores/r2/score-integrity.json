@@ -1,0 +1,77 @@
+{
+ "_note": "Scores, weighted score, hard fails and fixes as the integrity judge returned them, round 2; each why abridged by the run.",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.0,
+   "why": "Grade holds and the deck stays dark; 5 the best frame and 9 a real subject; 4's mannequin and hidden stand base, the cover's boxes and void, 7's grey strata and dot rig, 8's flat stripes, 2's stub."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "One world, one key, one accent; motif evolves; 7 sits outside."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 6.5,
+   "why": "Every numeral traces; frame 3 maps a share of injuries onto a share of floor area; slide 1 drops c7's modal; caption hook and cover headline are universals without their set; AJOT republication not visible in the first comment; c3 not listed; 'drawn to illustrate' absent on 2 and 6."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.5,
+   "why": "What, who and where clear; no body or deadline; jobs rest on c9."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Cover and 2 pay; 6 turns; 4 and 5 both on c26; 7 could move; flat close."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "On register; wire-copy cadence."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 5.0,
+   "why": "Lateral, racks and gate repeat no. 68; ten of twenty repeats no. 69; floodlit world repeats nos. 59 and 67."
+  }
+ ],
+ "weighted_score": 6.46,
+ "hard_fails": [],
+ "ship": false,
+ "artwork_weakest_frames": [
+  {
+   "slide": 4,
+   "problem": "White mannequin before a cabin; stand crammed right, base hidden.",
+   "fix": "Stand rising from lit slips at centre, the person at its base outside the gate."
+  },
+  {
+   "slide": 7,
+   "problem": "Grey noise strata; thin lateral; dot rig.",
+   "fix": "Near-black strata with one raked caliche layer, a raised string, a rig pin with height."
+  },
+  {
+   "slide": 1,
+   "problem": "Rounded blocks; blurred shaft; orbs for a mast.",
+   "fix": "Pipe with a tool joint and specular line, die pads, loom, a lit lattice."
+  },
+  {
+   "slide": 8,
+   "problem": "Flat stripes; flat bands; no casts.",
+   "fix": "Lower key elevation, raised band edges, box ends on the left."
+  },
+  {
+   "slide": 2,
+   "problem": "A stub in mid-air.",
+   "fix": "The full stand rising out of the top edge."
+  }
+ ]
+}

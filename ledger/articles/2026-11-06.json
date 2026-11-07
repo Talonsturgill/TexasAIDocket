@@ -1,0 +1,103 @@
+{
+ "_spec": {
+  "version": 1,
+  "purpose": "A standalone web edition of the archived visual story.",
+  "law": "Facts resolve to the original verified claim record. A layout rebuild does not reverify reporting.",
+  "written_by": "daily"
+ },
+ "section": "Energy",
+ "dek": {
+  "text": "ExxonMobil says three of its Permian drilling rigs now run with robotic pipe handling. It plans automated rigs on about half its Permian fleet by {{number:c5:1}}.",
+  "claims": [
+   "c1",
+   "c5"
+  ]
+ },
+ "introduction": [
+  {
+   "text": "[ExxonMobil chief executive Darren Woods told investors on the company's third quarter earnings call that it has three automated drilling rigs in operation in the Permian](c1). [He said the company expects to expand them to about {{number:c4}}% of its Permian fleet next year](c4) [and to approximately half by {{number:c5:1}}](c5).",
+   "claims": [
+    "c1",
+    "c4",
+    "c5"
+   ]
+  },
+  {
+   "text": "[The company says mechanical arms and robotic systems can now do much of the heavy drill pipe handling](c7). [That work once put workers on the rig floor close to moving machinery](c7). [Bart Cahir, its senior vice president of unconventionals, told Reuters that about a third of significant injuries in well drilling happen on the rig floor](c24).",
+   "claims": [
+    "c7",
+    "c24"
+   ]
+  }
+ ],
+ "sections": [
+  {
+   "heading": "What the machines do",
+   "paragraphs": [
+    {
+     "text": "[Reuters reported that robotic arms now position columns of drill pipe over two stories tall and connect them to a drill string, work that crews would usually help with](c26). [It put the steel pipes at roughly 2,000 pounds](c19). [On one automated rig in Midland a gate with a Red Zone sign surrounds the drilling floor](c28).",
+     "claims": [
+      "c26",
+      "c19",
+      "c28"
+     ]
+    },
+    {
+     "text": "[Reuters described a contractor in rural west Texas running the robotic machinery from a small office on the rig with controls on a screen](c18). [Employees on the rig work with ExxonMobil's central operations team in Houston to set the robot's precise movements](c25).",
+     "claims": [
+      "c18",
+      "c25"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "How fast the plan is moving",
+   "paragraphs": [
+    {
+     "text": "[In August Reuters reported that ExxonMobil operated more than {{number:c16}} drilling rigs in the Permian](c16), [two of them automated](c17). [Its first automated rig came from the drilling contractor Helmerich & Payne](c21). [That rig drilled two miles horizontally in a little over six days](c22), [the third fastest drilling time in the company's history](c23).",
+     "claims": [
+      "c16",
+      "c17",
+      "c21",
+      "c22",
+      "c23"
+     ]
+    },
+    {
+     "text": "[On {{date:c29}} Helmerich & Payne said it expects to deploy seven more of its FlexRobotics systems for ExxonMobil over the next {{number:c29}} months, for nine in operation](c29). [The ExxonMobil newsroom puts the goal as automating more than half of its unconventional Permian rigs by year end {{number:c6}}](c6). [It calls automated rigs one of more than {{number:c12}} technologies it is deploying in the Permian](c12).",
+     "claims": [
+      "c29",
+      "c6",
+      "c12"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "What the company has not shown",
+   "paragraphs": [
+    {
+     "text": "[Woods said the rigs are significantly improving safety and delivering some of the strongest drilling performance in the fleet, and gave no figure for either](c3). [The company says it believes automation could eliminate roughly one-third of high-consequence drilling incidents](c8). That is a stated potential. The call and the newsroom post print no incident count from the automated rigs.",
+     "claims": [
+      "c3",
+      "c8"
+     ]
+    },
+    {
+     "text": "[ExxonMobil expects to keep similar staffing levels on automated rigs](c9). The call and the newsroom post don't say how many people work on an automated rig today or how the work on the floor is divided now. The plan for {{number:c5:1}} is a company expectation and not a measured result.",
+     "claims": [
+      "c9",
+      "c5"
+     ]
+    }
+   ]
+  }
+ ],
+ "related": [
+  {
+   "id": "tx-2026-0242",
+   "label": "ExxonMobil's automated drilling rigs in the Permian"
+  }
+ ]
+}

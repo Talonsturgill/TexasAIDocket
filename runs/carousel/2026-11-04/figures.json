@@ -1,0 +1,153 @@
+{
+ "_note": "Every value is extracted from a claim quote by compute.py, or computed here from values that were.",
+ "boe_per_day": {
+  "value": 457528,
+  "from": [
+   "c6"
+  ],
+  "basis": "third quarter total production, barrels of oil equivalent per day"
+ },
+ "qoq_pct": {
+  "value": 22,
+  "from": [
+   "c6"
+  ],
+  "basis": "increase on the prior quarter, percent"
+ },
+ "oil_per_day": {
+  "value": 208029,
+  "from": [
+   "c7"
+  ],
+  "basis": "third quarter average daily crude oil, barrels"
+ },
+ "oil_share_pct": {
+  "value": 45.5,
+  "from": [
+   "c6",
+   "c7"
+  ],
+  "basis": "computed: crude oil barrels over total barrels of oil equivalent, percent, rounded to one decimal"
+ },
+ "fastest_ft_per_day": {
+  "value": 2700,
+  "from": [
+   "c8"
+  ],
+  "basis": "the company's fastest well, over this many feet a day"
+ },
+ "hours_per_day": {
+  "value": 24,
+  "from": [
+   "c8"
+  ],
+  "basis": "computed: the hours in the day c8's feet per day is spread over, the divisor of fastest_ft_per_hour"
+ },
+ "fastest_ft_per_hour": {
+  "value": 112.5,
+  "from": [
+   "c8"
+  ],
+  "basis": "computed: the 2,700 feet a day over 24 hours, rounded to one decimal"
+ },
+ "capex_musd": {
+  "value": 518,
+  "from": [
+   "c9"
+  ],
+  "basis": "third quarter cash capital expenditures, millions of dollars"
+ },
+ "net_acres": {
+  "value": 560000,
+  "from": [
+   "c10"
+  ],
+  "basis": "approximately this many net acres, West Texas and Southeast New Mexico"
+ },
+ "oil_target_2026": {
+  "value": 202.5,
+  "from": [
+   "c12"
+  ],
+  "basis": "2026 oil production target, MBbls/d, midpoint"
+ },
+ "oil_4q_over": {
+  "value": 210,
+  "from": [
+   "c13"
+  ],
+  "basis": "expected fourth quarter oil production, over this many MBbls/d"
+ },
+ "texas_lease_pct": {
+  "value": 67,
+  "from": [
+   "c15"
+  ],
+  "basis": "share of net leasehold acreage in Texas at year end 2025"
+ },
+ "nm_lease_pct": {
+  "value": 33,
+  "from": [
+   "c15"
+  ],
+  "basis": "share of net leasehold acreage in New Mexico at year end 2025"
+ },
+ "lease_acres_2025": {
+  "value": 480000,
+  "from": [
+   "c16"
+  ],
+  "basis": "net leasehold acres at December 31st, 2025"
+ },
+ "ai_tools": {
+  "value": 2,
+  "from": [
+   "c1",
+   "c2"
+  ],
+  "basis": "computed: the AI tools the release names (the artificial lift monitor and the language models)"
+ },
+ "llm_uses": {
+  "value": 3,
+  "from": [
+   "c2"
+  ],
+  "basis": "computed: the uses the release names for the language models"
+ },
+ "days_since_rrc": {
+  "value": 167,
+  "from": [
+   "c27",
+   "c4"
+  ],
+  "basis": "computed: days from the Tribune's May 21st, 2026 report to the November 4th, 2026 release"
+ },
+ "xom_technologies": {
+  "value": 50,
+  "from": [
+   "c25"
+  ],
+  "basis": "more than this many technologies ExxonMobil is deploying in the Permian"
+ },
+ "xom_automate_year": {
+  "value": 2028,
+  "from": [
+   "c20"
+  ],
+  "basis": "the year end by which ExxonMobil plans to automate more than half its unconventional fleet"
+ },
+ "xom_target_mboe": {
+  "value": 2.5,
+  "from": [
+   "c26"
+  ],
+  "basis": "ExxonMobil's Permian target, million oil-equivalent barrels a day"
+ },
+ "xom_target_year": {
+  "value": 2030,
+  "from": [
+   "c26"
+  ],
+  "basis": "the year of ExxonMobil's Permian target"
+ }
+}

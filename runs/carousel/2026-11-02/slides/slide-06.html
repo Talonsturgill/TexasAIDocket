@@ -1,0 +1,81 @@
+<!doctype html>
+<!-- 2026-11-02, frame 6 of 9. Archetype GRID. A TXBENCH material relief in plan under the deck's declared key: a black clay city plan of grooved streets and low lots running off three edges, and 32 sawn caliche plugs pressed up out of it in 4 rows of 8, one per study area, counted and not placed. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:900px">32 study areas, not the whole city</h1>
+<p class="dek" data-follow="24" style="width:900px">The city says the project is not intended to count every unrestrained dog in San Antonio. SwRI says the study takes a sampling approach rather than surveying the whole&nbsp;city.</p>
+<script>window.FIG = {"study_areas": 32};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-02-sightline.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script src="@@ASSETS@@/js/txbench.js"></script>
+<script>
+window.renderReady = (async () => {
+  const cx = await CH.bootFlat({ kicker: "The sample", counter: "06 / 09", src: "c8 c12 c17 c19", fit: { min: 72, max: 96, maxLines: 2 } });
+  TX.reseed(20261106);
+  /* THE FIGURE, from figures.json: one plug per study area, laid by code in rows of COLS */
+  const n = Math.round(FIG.study_areas), COLS = 8, ROWS = Math.ceil(n / COLS);
+  const P = 84, G = 30, X0 = (1080 - (COLS * P + (COLS - 1) * G)) / 2, Y0 = 690;
+  const M = { CLAY: 0, CALICHE: 1, GROOVE: 2 };
+  /* the city plan under everything: streets every 52 px, a block of lots between them, all in black clay */
+  const SP = 52;
+  function city(X, Y) {
+    /* the street grid bends and drifts block to block, an arterial cuts across on a diagonal, and the lots vary */
+    const wx = X, wy = Y;
+    const sx = ((wx + 13) % SP + SP) % SP, sy = ((wy + 7) % (SP * 1.35) + SP * 1.35) % (SP * 1.35);
+    const art = false;
+    const bx = Math.floor((wx + 13) / SP), by = Math.floor((wy + 7) / (SP * 1.35));
+    const artX = ((bx % 4) + 4) % 4 === 0 && sx < 16, artY = ((by % 3) + 3) % 3 === 0 && sy < 16;
+    /* two diagonal arterials cut across the grid, as the old roads do across San Antonio's blocks */
+    const diag = Math.abs((X - 540) * 0.55 + (Y - 900)) < 8 || Math.abs((X - 160) * -0.85 + (Y - 760)) < 7;
+    const onStreet = sx < 6 || sy < 6 || artX || artY || diag || art;
+    if (onStreet) return [-3 + 0.4 * TX.simplex2(X * 0.4, Y * 0.4), M.GROOVE];
+    const lx = Math.floor((sx - 7) / 22), ly = Math.floor((sy - 7) / 22);
+    const lot = 1.6 + 0.8 * TX.simplex2(Math.floor((X + 13) / SP) * 3.1 + lx, Math.floor((Y + 7) / SP) * 2.7 + ly);
+    return [lot + 0.35 * TX.fbm2(X * 0.12, Y * 0.12, 3), M.CLAY];
+  }
+  function sample(X, Y) {
+    const col = Math.floor((X - X0) / (P + G)), row = Math.floor((Y - Y0) / (P + G));
+    if (col >= 0 && col < COLS && row >= 0 && row < ROWS && row * COLS + col < n) {
+      const bx = X0 + col * (P + G), by = Y0 + row * (P + G), dx = X - bx, dy = Y - by;
+      if (dx >= 0 && dx <= P && dy >= 0 && dy <= P) {
+        const edge = Math.min(dx, P - dx, dy, P - dy), ch = Math.min(1, edge / 5);
+        /* the plug's top carries the city it was cut from, faintly, and the saw marks run straight across it */
+        const k = col * 7 + row * 13, top = 0.7 * TX.fbm2(X * 0.05 + k, Y * 0.05 - k, 3) + (((k * 37) % 5) === 0 && dx < 14 && dy < 14 ? -6 * (1 - Math.min(dx, dy) / 14) : 0);
+        return [96 * ch + top * ch, M.CALICHE];
+      }
+    }
+    return city(X, Y);
+  }
+  const cache = new Map(), key = (X, Y) => (X * 4 | 0) + ',' + (Y * 4 | 0);
+  const S = (X, Y) => { const kk = key(X, Y); let v = cache.get(kk); if (!v) { v = sample(X, Y); cache.set(kk, v); } return v; };
+  const albedo = (X, Y, m) => {
+    if (m === M.CALICHE) { const a = 1 + 0.1 * TX.fbm2(X * 0.06, Y * 0.06, 3); return [0.88 * a, 0.82 * a, 0.7 * a]; }
+    if (m === M.GROOVE) { return [0.03, 0.026, 0.022]; }
+    const a = 1 + 0.3 * TX.simplex2(X * 0.6, Y * 0.6); return [0.12 * a, 0.1 * a, 0.08 * a];
+  };
+  const pool = (X, Y) => { const d = Math.hypot((X - 540) / 620, (Y - 920) / 330), t = Math.max(0, Math.min(1, (d - 0.3) / 0.8)); return 1 - 0.95 * t * t * (3 - 2 * t); };
+  cx.fillStyle = '#09080c'; cx.fillRect(0, 0, 2160, 2700);
+  const rep = TXBENCH.relief(cx, { x: 0, y: 560, w: 1080, h: 790, scale: 2, height: (X, Y) => S(X, Y)[0], material: (X, Y) => S(X, Y)[1], keyMask: pool, albedo,
+    spec: { [M.CALICHE]: [0.06, 8], [M.CLAY]: [0.08, 12] }, keyColor: [1, 0.88, 0.74], ambColor: [0.55, 0.62, 0.8],
+    ambient: 0.08, diffuse: 2.4, ao: 1.0, shadow: 0.95, softness: 4, castLength: 420 });
+  { const g = cx.createLinearGradient(0, 1120, 0, 1260); g.addColorStop(0, 'rgba(9,8,12,1)'); g.addColorStop(1, 'rgba(9,8,12,0)'); cx.fillStyle = g; cx.fillRect(0, 1120, 2160, 140); }
+  cx.setTransform(2, 0, 0, 2, 0, 0);
+  CH.post(cx, { a: 0.4, pad: 80, fade: 220, veil: 0.36 });
+  window.__relief = rep;
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

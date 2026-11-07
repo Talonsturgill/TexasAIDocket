@@ -1,0 +1,77 @@
+<!doctype html>
+<!-- 2026-11-06, frame 3 of 9. Archetype DIAGRAM. A TXBENCH material relief of the rig floor plate in plan, nine steel panels, the injury_tiles of them diamond tread in the flood's pool, the rest bar grating in the dark. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:900px">About a third of significant injuries happen here</h1>
+<p class="dek" data-follow="26" style="width:860px">The rig floor holds that share across the history of well drilling, ExxonMobil's Bart Cahir told Reuters. The nine plates stand for all of those injuries, and the lit three for the floor's share.</p>
+<div class="lab" id="lab-third">on the floor</div>
+<div class="lab" id="lab-rest">elsewhere</div>
+
+<script>window.FIG = {"injury_tiles": 3};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txbench.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-06-rigfloor.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+/* the bench's materials: 1 mill scale steel, 2 worn bright steel, 3 ember paint, 4 rust streaked beam, 5 rock */
+const ALB = { 0: [0.012, 0.013, 0.016], 1: [0.062, 0.066, 0.072], 2: [0.30, 0.31, 0.32], 3: [0.58, 0.15, 0.085], 4: [0.15, 0.085, 0.052], 5: [0.011, 0.0105, 0.010], 6: [0.019, 0.017, 0.015] };
+const SPEC = { 1: [0.55, 28], 2: [0.95, 70], 3: [0.12, 8], 4: [0.25, 16], 5: [0.06, 6], 6: [0.06, 6] };
+/* a leader on the plate: a cream hairline from a label to what it names, ending in a dot */
+function lead(cx, a, b) { cx.save(); cx.strokeStyle = 'rgba(240,236,228,0.92)'; cx.fillStyle = cx.strokeStyle; cx.lineWidth = 2;
+  cx.beginPath(); cx.moveTo(a[0], a[1]); cx.lineTo(b[0], b[1]); cx.stroke(); cx.beginPath(); cx.arc(b[0], b[1], 5, 0, 7); cx.fill(); cx.restore(); }
+function feather(cx, y) { const g = cx.createLinearGradient(0, y - 4, 0, y + 70); g.addColorStop(0, 'rgba(5,6,10,0.96)'); g.addColorStop(1, 'rgba(5,6,10,0)'); cx.fillStyle = g; cx.fillRect(0, y - 4, 1080, 74); }
+function plate(id) { const el = document.getElementById(id); if (el) { el.style.background = 'rgba(6,7,11,0.86)'; el.style.padding = '4px 10px'; } return el; }
+function grain(X, Y, s) { return 0.82 + 0.36 * (0.5 + 0.5 * TX.fbm2(X / s, Y / s, 3)); }
+window.renderReady = (async () => {
+  const cx = await CH.bootFlat({ kicker: "The floor", counter: "03 / 09", src: "c24", fit: { min: 80, max: 104, maxLines: 2 } });
+  cx.scale(2, 2); TX.reseed(20261106);
+  /* THE FIGURE: the plate is injury_floor_tiles panels, three by three; the injury_tiles of them in the right hand
+   * column are diamond tread plate inside the flood's pool. The rest are bar grating left in the dark. */
+  const Y0 = 560, PW = 1080 / 3, PH = (1350 - Y0) / 3, SEAM = 7;
+  const tread = new Set(); for (let r = 0; r < 3 && tread.size < FIG.injury_tiles; r++) tread.add('2,' + r);
+  function cell(X, Y) { const c = Math.floor(X / PW), r = Math.floor((Y - Y0) / PH); return [c, r, X - c * PW, Y - Y0 - r * PH]; }
+  function surf(X, Y) {
+    if (Y < Y0) return [0, 0];
+    const [c, r, u, v] = cell(X, Y);
+    if (u < SEAM || v < SEAM || u > PW - SEAM || v > PH - SEAM) return [0.4, 1];   /* the seam between panels: frame steel, low */
+    if (tread.has(c + ',' + r)) {
+      /* diamond tread: a plate at 2 px with raised lozenges on a 34 px lattice, alternating 60 degrees */
+      const g = 34, i = Math.floor(u / g), j = Math.floor(v / g), lu = u - i * g - g / 2, lv = v - j * g - g / 2;
+      const a = (i + j) % 2 ? 0.52 : -0.52, ca = Math.cos(a), sa = Math.sin(a);
+      const p = lu * ca + lv * sa, q = -lu * sa + lv * ca, d = (p * p) / 150 + (q * q) / 9;
+      return d < 1 ? [2 + 4.2 * Math.sqrt(1 - d), 2] : [2, 1];
+    }
+    /* bar grating: bearing bars every 18 px, 4 px thick, 7 px tall, cross rods every 64 px at 4 px, the void between at 0 */
+    const bu = u % 18, bv = v % 64;
+    if (bu < 4) return [7 - Math.abs(bu - 2) * 0.6, 1];
+    if (bv < 3.5) return [4.2, 1];
+    return [0, 0];
+  }
+  const height = (X, Y) => surf(X, Y)[0], material = (X, Y) => surf(X, Y)[1];
+  const albedo = (X, Y, m) => { const a = ALB[m] || ALB[0], g = grain(X, Y, 23); return [a[0] * g, a[1] * g, a[2] * g]; };
+  /* the flood's pool on the right hand column, soft at its edge */
+  const keyMask = (X, Y) => { const d = Math.max(0, (2 * PW - 40) - X) / 120; return Math.max(0.07, Math.min(1, 1 - d)); };
+  TXBENCH.relief(cx, { x: 0, y: Y0, w: 1080, h: 1350 - Y0, scale: 2, height, material, albedo, spec: SPEC, keyMask,
+    ambient: 0.16, diffuse: 1.0, ao: 0.9, shadow: 0.9, softness: 5, castLength: 60, dither: true });
+  const tx = 2 * PW + PW / 2, ty = Y0 + PH / 2, gx = PW / 2, gy = Y0 + PH * 1.5;
+  CH.typeDark(cx); CH.footWash(cx, { a: 0.45, x: 560, r: 380 }); feather(cx, Y0);
+  plate('lab-third'); plate('lab-rest');
+  CH.pinLabel('lab-third', [2 * PW + 40, Y0 + 40], [0, 0]); CH.pinLabel('lab-rest', [90, Y0 + 40], [0, 0]);
+  lead(cx, [2 * PW + 70, Y0 + 92], [tx, ty]); lead(cx, [120, Y0 + 92], [gx, gy]);
+  window.__txLeaders = [{ target: 'a tread plate panel', at: [2 * PW + 70, Y0 + 92], to: [tx, ty] }, { target: 'a grating panel', at: [120, Y0 + 92], to: [gx, gy] }];
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

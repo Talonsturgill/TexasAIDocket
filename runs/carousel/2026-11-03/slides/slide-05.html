@@ -1,0 +1,89 @@
+<!doctype html>
+<!-- 2026-11-03, frame 5 of 9. Archetype CLOSE_CROP. TXBENCH material relief: a ground steel rule across the frame cut with week grooves, a scribed blued witness line for the prior plan, a primer clamp stop six week graduations past it, three steel shims in the slot behind the stop. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:900px">About six weeks behind its own plan</h1>
+<p class="dek" data-follow="26" style="width:880px">Material availability, component quality and problems found in end-of-line testing held the ramp back, the letter says. Aurora now expects 20 trucks a week in early&nbsp;December.</p>
+<div class="lab" id="lab-a">prior plan</div>
+<div class="lab" id="lab-b">about six weeks</div>
+<div class="lab" id="lab-c">material, components, testing</div>
+<script>window.FIG = {"weeks_behind": 6, "ramp_causes": 3};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-03-scalelane.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script src="@@ASSETS@@/js/txbench.js"></script>
+<script>
+window.renderReady = (async () => {
+  const cx = await CH.bootFlat({ kicker: "The ramp", counter: "05 / 09", src: "c12 c10 c11", fit: { min: 72, max: 100, maxLines: 2 } });
+  TX.reseed(20261105);
+  /* THE FIGURES, from figures.json: the stop stands weeks_behind graduations past the witness line, and ramp_causes
+   * shims lie in the slot behind it. One week is PITCH px on the rule. */
+  const WK = Math.round(FIG.weeks_behind), NC = Math.round(FIG.ramp_causes), PITCH = 118;
+  const XW = 150, XS = XW + WK * PITCH;                       /* the witness line and the stop's face */
+  const YR0 = 760, YR1 = 1080, YC = (YR0 + YR1) / 2;          /* the rule's band */
+  const SW = 76, SH0 = YR0 - 70, SH1 = YR1 + 70;              /* the stop, a clamp proud of the rule */
+  const M = { BED: 0, STEEL: 1, BLUE: 2, PRIMER: 3, SHIM: 4 };
+  function sample(X, Y) {
+    const grain = 0.11 * TX.fbm2(X * 0.4, Y * 0.4, 2);
+    /* the stop: a primer clamp straddling the rule, 50 px proud, chamfered, a hex screw head on its top */
+    if (X >= XS && X <= XS + SW && Y >= SH0 && Y <= SH1) {
+      const e = Math.min(X - XS, XS + SW - X, Y - SH0, SH1 - Y), dx = X - (XS + SW / 2), dy = Y - (SH0 + 34);
+      const hex = Math.max(Math.abs(dx) * 0.866 + Math.abs(dy) * 0.5, Math.abs(dy)) < 13 ? 6 : 0;
+      return [50 * Math.min(1, e / 4) + hex, hex ? M.STEEL : M.PRIMER];
+    }
+    /* the shims: three thin steel plates lying in the rule's slot just past the stop */
+    for (let i = 0; i < NC; i++) { const x0 = XS + SW + 14 + i * 34; if (X >= x0 && X <= x0 + 24 && Y >= YR0 + 30 && Y <= YR1 - 30) { const e = Math.min(X - x0, x0 + 24 - X, Y - YR0 - 30, YR1 - 30 - Y); return [22 + 4 * Math.min(1, e / 2), M.SHIM]; } }
+    if (Y >= YR0 && Y <= YR1) {
+      const e = Math.min(Y - YR0, YR1 - Y);
+      /* the witness line: a blued scribed line across the rule */
+      if (Math.abs(X - XW) < 9) return [16 + 4 - Math.abs(X - XW) * 0.4, M.BLUE];
+      /* week grooves across the full rule, each 6 px deep; a shallower day tick between */
+      const t = ((X - XW) % PITCH + PITCH) % PITCH, inSpan = X > XW && X < XS, wk = t < (inSpan ? 3 : 2) || t > PITCH - (inSpan ? 3 : 2), day = Math.abs((t % (PITCH / 7)) - 0) < 1.2 && Y > YR1 - 48;
+      return [16 * Math.min(1, e / 2.5) + (wk ? (inSpan ? -16 : -4) : day ? -2.5 : 0) + 0.12 * TX.fbm2(X * 0.03, Y * 0.6, 2), M.STEEL];
+    }
+    return [grain, M.BED];
+  }
+  const cache = new Map(), key = (X, Y) => (X * 4 | 0) + ',' + (Y * 4 | 0);
+  const S = (X, Y) => { const k = key(X, Y); let v = cache.get(k); if (!v) { v = sample(X, Y); cache.set(k, v); } return v; };
+  const albedo = (X, Y, m) => {
+    if (m === M.PRIMER) { const b = 1 + 0.08 * TX.fbm2(X * 0.2, Y * 0.2, 2); return [0.36 * b, 0.16 * b, 0.07 * b]; }
+    if (m === M.BLUE) return [0.62, 0.7, 0.9];
+    if (m === M.SHIM) return [0.42, 0.43, 0.45];
+    if (m === M.STEEL) { const b = 1 + 0.02 * Math.sin(Y * 3.1 + 0.8 * TX.simplex2(X * 0.9, Y * 0.02)) + 0.015 * Math.sin(Y * 0.9); return [0.13 * b, 0.14 * b, 0.17 * b]; }
+    const a = 1 + 0.35 * TX.fbm2(X * 0.08, Y * 0.08, 3); return [0.02 * a, 0.02 * a, 0.023 * a];
+  };
+  const pool = (X, Y) => { const d = Math.hypot((X - (XW + XS) / 2 - 60) / 440, (Y - YC) / 340), t = Math.max(0, Math.min(1, (d - 0.3) / 0.75)); return 1 - 0.94 * t * t * (3 - 2 * t); };
+  cx.fillStyle = '#08090c'; cx.fillRect(0, 0, 2160, 2700);
+  const rep = TXBENCH.relief(cx, { x: 0, y: 600, w: 1080, h: 750, scale: 2, height: (X, Y) => S(X, Y)[0], material: (X, Y) => S(X, Y)[1], keyMask: pool, albedo,
+    spec: { [M.BED]: [0.05, 8], [M.STEEL]: [0.8, 46], [M.BLUE]: [0.5, 30], [M.PRIMER]: [0.12, 10], [M.SHIM]: [0.7, 40] }, keyColor: [0.94, 0.96, 1.0], ambColor: [0.5, 0.58, 0.75],
+    ambient: 0.05, diffuse: 2.5, ao: 1.0, shadow: 0.9, softness: 12, castLength: 150 });
+  { const g = cx.createLinearGradient(0, 1200, 0, 1500); for (let k = 0; k <= 8; k++) { const t = k / 8, e = 1 - t * t * (3 - 2 * t); g.addColorStop(t, 'rgba(8,9,12,' + e.toFixed(4) + ')'); } cx.fillStyle = g; cx.fillRect(0, 1200, 2160, 300); }
+  const put = (id, x, y) => { const el = document.getElementById(id); el.style.left = Math.round(x) + 'px'; el.style.top = Math.round(y) + 'px'; return el; };
+  put('lab-a', 80, YR0 - 130);
+  /* a dimension line from the witness line to the stop under 'about six weeks', and a leader from 'prior plan' down to the witness line */
+  { const svg = CH.svg(), mk = (d) => { const p = document.createElementNS('http://www.w3.org/2000/svg', 'path'); p.setAttribute('d', d); p.setAttribute('stroke', '#E6E8EA'); p.setAttribute('stroke-width', '2'); p.setAttribute('fill', 'none'); svg.appendChild(p); }, yd = YR0 - 76;
+    mk(`M${XW} ${yd} L${XS} ${yd} M${XW} ${yd - 12} L${XW} ${yd + 12} M${XS} ${yd - 12} L${XS} ${yd + 12}`);
+    mk(`M${XW} ${yd + 14} L${XW} ${YR0 - 8}`);
+    const xs = XS + SW + 14 + (NC - 1) * 17 + 12; mk(`M${xs} ${SH1 + 24} L${xs} ${YR1 - 26}`);
+    window.__txLeaders = [{ target: 'the witness line', at: [XW, YR0 - 8], to: [XW, YR0 - 8] }, { target: 'the shims', at: [xs, YR1 - 26], to: [xs, YR1 - 26] }]; }
+  put('lab-b', (XW + XS) / 2 - document.getElementById('lab-b').getBoundingClientRect().width / 2, YR0 - 130);
+  put('lab-c', 1000 - document.getElementById('lab-c').getBoundingClientRect().width, SH1 + 30);
+  cx.setTransform(2, 0, 0, 2, 0, 0);
+  CH.post(cx, { a: 0, veil: 0.36 });
+  window.__relief = rep;
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

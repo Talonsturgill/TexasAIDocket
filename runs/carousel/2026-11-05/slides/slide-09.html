@@ -1,0 +1,62 @@
+<!doctype html>
+<!-- 2026-11-05, frame 9 of 9. Archetype FULL_BLEED. A spatial scene through txthree.js in the dark TXT.interior bay of frame 1, the reverse angle from the chassis dock_door threshold looking back in: all pads_2027 kit machine_pads taped in gold (figures.json), the door light lying in a long wedge across them, a kit person at the threshold, red oxide kit structural_frame columns receding into black. Drawn to illustrate, to no company's site. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:900px">A 2027 target, a wait for power</h1>
+<p class="dek" data-follow="26" style="width:860px">The same November 5th release expects capacity for over 1 million pieces of 800G and 1.6 Tb transceivers a month by the end of 2027. It says obtaining electrical power is taking longer than expected. It doesn't say how much of that capacity is in the United States.</p>
+<script>window.FIG = {"pads_2027": 20};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-05-dockdoor.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "What comes next", counter: "09 / 09", src: "c4 c1", fit: { min: 80, max: 100, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 44, near: 0.05, far: 600, fog: 0.004 });
+  /* THE FIGURE: every one of the pads_2027 pads is gold, the whole floor of the 2027 target, still empty */
+  const room = TXT.interior(R, CH.bayRoom());
+  const B = CH.bay(THREE, R, TXT, K, { room, pads: FIG.pads_2027, gold: FIG.pads_2027 });
+  /* the drop cords stay, except over the pads beside the worker, so no cord hangs through him */
+  B.pads.forEach((pd) => { if (Math.hypot(pd.position.x - 1.1, pd.position.z - (-B.D / 2 + 8.6)) < 3.2) pd.children.slice().forEach((m) => { if (m.position.y > 1.5) pd.remove(m); }); });
+  const yaw = B.G.rotation.y;
+  /* a worker at the threshold, three quarters away, in the door light */
+  const who = K.make('person', { seed: 7, role: 'worker', pose: 'stand', hat: 'hard' });
+  who.position.fromArray(B.toWorld([1.1, 0, -B.D / 2 + 8.6])); who.rotation.y = yaw + 2.7;
+  /* the worker's clothes held under the door light's clip: hi-vis stays the brightest cloth, nothing on him burns out */
+  who.traverse((m) => { if (m.isMesh && m.material && m.material.color) { m.material = m.material.clone(); m.material.color.multiplyScalar(0.55); if (m.material.emissive) m.material.emissive.multiplyScalar(0.4); } });
+  TXT.add(R, who); TXT.contact(R, who);
+  { const st = K.make('conduit_stub', {}); st.position.fromArray(B.toWorld([-1.6, 0, -B.D / 2 + 2.2])); st.rotation.y = yaw; TXT.add(R, st); TXT.contact(R, st); }
+  /* from the dock leveller, standing, looking down the floor: the near gold pads fill the bottom and the far bay sits
+   * small and dark behind the type */
+  const from = B.toWorld([-1.0, 3.4, -B.D / 2 + 0.9]);
+  const look = CH.aim(THREE, R, TXT, from, B.toWorld([0.2, 0.0, -B.D / 2 + 13]), 540, 885, 44);
+  TXT.frame(R, { fov: 44, from, look });
+  CH.KEY_SCALE = 0.55; CH.doorSpill(THREE, R, B, { at: 14, i: 900 });
+  TXT.deckRig(R, CH.rigSpec(W, 64, 4096), CH.rigOpts(B.toWorld([0, 0, 0]), { distance: 90, shadowFar: 200, normalBias: 0.03 }));
+  CH.unacne(R, 0.03); CH.bayFill(R);
+  /* the epoxy worn where pallet jacks turned and boots crossed: wear in the floor's own albedo, not a grid */
+  TXT.weather(R, { grime: 0.45, height: 0.9, mottle: 0.32 });
+  const cx = CH.develop(await TXT.snapshot(R, { stage: false }), gl);
+  CH.post(cx, { a: 0.5, veil: 0.45, veilH: 300 });
+  CH.footWash(cx);
+  /* the roof steel at the head of the frame goes to the dark under the kicker and counter, darken only */
+  { const g = cx.createLinearGradient(0, 0, 0, 200); g.addColorStop(0, 'rgba(5,6,10,0.82)'); g.addColorStop(0.6, 'rgba(5,6,10,0.5)'); g.addColorStop(1, 'rgba(5,6,10,0)'); cx.fillStyle = g; cx.fillRect(0, 0, 1080, 200); }
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

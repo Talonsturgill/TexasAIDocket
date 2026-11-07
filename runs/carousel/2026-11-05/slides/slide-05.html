@@ -1,0 +1,80 @@
+<!doctype html>
+<!-- 2026-11-05, frame 5 of 9. Archetype DIAGRAM. A spatial scene through txthree.js in the dark TXT.interior bay of frame 1, seen from a mezzanine on a long lens toward the chassis dock_door: pads_2027 kit machine_pads, the pads_2026 nearest the door taped in gold (one pad per 50,000 pieces a month, figures.json), the rest in grey, red oxide kit structural_frame columns between the rows, the sky through the door. Drawn to illustrate, to no company's site. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:900px">Half the floor<br>by year end</h1>
+<p class="dek" data-follow="26" style="width:860px">The company expects equipment for over 500,000 pieces of 800G and 1.6 Tb products a month by the end of 2026, and capacity for over 1 million by the end of 2027. Each pad is one equal share.</p>
+<script>window.FIG = {"pads_2026": 10, "pads_2027": 20};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-05-dockdoor.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "The target", counter: "05 / 09", src: "c3 c4", fit: { min: 80, max: 100, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 46, near: 0.1, far: 3000, fog: 0.0012, exposure: 0.85 });
+  /* THE FIGURE: pads_2027 pads on the floor, the pads_2026 nearest the door gold. One pad, one equal share. */
+  /* a plan oblique over the bay with its roof left off, so the whole floor is the subject */
+  const room = TXT.interior(R, Object.assign(CH.bayRoom(), { ceiling: false }));
+  const B = CH.bay(THREE, R, TXT, K, { room, pads: FIG.pads_2027, gold: FIG.pads_2026, cords: false, joists: false });
+  TXT.sky(R);
+  const yaw = B.G.rotation.y;
+  { const pole = K.make('utility_pole', { transformer: true, guy: false, height: 10.7 }); pole.position.fromArray(B.toWorld([0.9, 0, -B.D / 2 - 15])); pole.rotation.y = yaw; TXT.add(R, pole); TXT.contact(R, pole); }
+
+  /* from a mezzanine at the bay's near end, high enough that every pad shows: the grid's middle placed under the type */
+  /* in this cutaway the grid is set nearer the door, so the door and the floor it lights are one picture */
+  B.pads.forEach((p) => { p.position.z -= 4.6; });
+  const mid = (B.pads[0].position.z + B.pads[FIG.pads_2027 - 1].position.z) / 2;
+  /* the last light seen through the open door: the seam's own colour filling the opening, a hard edged warm rectangle at
+   * the far end of the floor so the door reads as a door from above */
+  { const seam = new THREE.Mesh(new THREE.PlaneGeometry(4.3, 4.6), new THREE.MeshBasicMaterial({ color: 0xf2a874, fog: false }));
+    seam.position.set(0, 2.3, -B.D / 2 - 0.45); B.G.add(seam); }
+  /* a little tighter and the grid a little lower, so the door and its sill sit whole between the dek and the first gold row */
+  const from = B.toWorld([0.0, 36.0, mid + 12.0]);
+  const look = CH.aim(THREE, R, TXT, from, B.toWorld([0, 0, mid]), 540, 948, 46);
+  TXT.frame(R, { fov: 46, from, look });
+  /* the grey tape lifted to the tilt wall's value in this frame, so every uncounted pad separates from the floor */
+  /* cool and a step darker than before, so an uncounted pad stays grey even inside the door's wedge of warm light */
+  const greyUp = new THREE.MeshStandardMaterial({ color: 0x5e6366, emissive: 0x3e4447, emissiveIntensity: 0.55, roughness: 0.9 });
+  B.pads.forEach((p) => { if (!p.userData.gold) p.traverse((m) => { if (m.isMesh && m.material && m.material === CH.tapeGrey(THREE)) m.material = greyUp; }); });
+  /* the cutaway lit as a model: the back wall stops casting so the low key rakes the whole floor, and every pad is a
+   * 0.06 m epoxy slab, so its door side lights and it casts toward the lens */
+  /* the back wall casts: the only light on this floor is what comes through the door opening */
+  const slabM = new THREE.MeshStandardMaterial({ color: 0x4a4e52, roughness: 0.34, metalness: 0.05 });
+  B.pads.forEach((p) => { p.children.forEach((c) => { c.position.y += 0.1; }); /* the slab's top sits a hair under the raised pad face, so the two never fight for the same depth */
+    const sl = TXT.roundedBox(3.2, 0.092, 3.6, 0.03, slabM); sl.position.set(0, 0.046, 0); sl.castShadow = true; sl.receiveShadow = true; p.add(sl); });
+  CH.KEY_SCALE = 0.6;
+  /* the door's spill, wide and strong, laid down the bay over the whole grid: the warm wedge of the cover, seen from above */
+  /* the door light made by the opening itself: a low warm source well outside, aimed in through the door, so the wall
+   * cuts it to a hard edged trapezoid that starts at the sill between the jambs and widens across the gold rows */
+  { const sp = CH.doorSpill(THREE, R, B, { at: 9, i: 5200, angle: 0.55, reach: 90 }); sp.position.fromArray(B.toWorld([0, 3.1, -B.D / 2 - 8])); sp.penumbra = 0.35;
+    sp.shadow.mapSize.set(4096, 4096); sp.shadow.bias = -0.0009; sp.shadow.normalBias = 0.05; }
+  TXT.deckRig(R, CH.rigSpec(W, 64, 4096), CH.rigOpts(B.toWorld([0, 0, 0]), { distance: 90, shadowFar: 200, normalBias: 0.03 }));
+  CH.unacne(R, 0.03); CH.bayFill(R);
+  TXT.weather(R, { grime: 0.22, height: 0.9, mottle: 0.12 });
+  const cx = CH.develop(await TXT.snapshot(R, { stage: false }), gl);
+  /* labels: the gold half and the whole floor, pinned to the nearest gold pad's corner and the near grey row */
+  /* labels beside the middle column, which the lens holds: the last gold row and the near grey row */
+  CH.post(cx, { a: 0.5, veil: 0.45, veilH: 300 });
+  CH.footWash(cx);
+  /* the cutaway's wall tops behind the type go to the dark, darken only */
+  { const g = cx.createLinearGradient(0, 0, 0, 610); g.addColorStop(0, 'rgba(5,6,10,0.88)'); g.addColorStop(0.82, 'rgba(5,6,10,0.8)'); g.addColorStop(1, 'rgba(5,6,10,0)'); cx.fillStyle = g; cx.fillRect(0, 0, 1080, 610); }
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

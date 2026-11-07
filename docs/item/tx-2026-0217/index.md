@@ -11,7 +11,7 @@ Researchers at the University of Texas MD Anderson Cancer Center and collaborati
 - Public access: Write to the decider
 - Take part: https://www.mdanderson.org/newsroom/research-newsroom/ai-tool-reveals-what-attracts-immune-cells-to-tumors-and-what-keeps-them-away.h00-159859290.html
 
-- Last checked: 2026-10-29
+- Last checked: 2026-11-04
 
 ## Dates
 
@@ -26,6 +26,8 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-23 · MD Anderson's release still treats the mucin barrier as an idea to test in the lab. No use in patient care is reported.
 - 2026-10-26 · MD Anderson's account still frames mucin as a barrier to test in the lab rather than a treatment. Nothing about patient care has been added.
 - 2026-10-29 · MD Anderson's model of where T cells gather in tumor tissue still reads as published.
+- 2026-11-01 · MD Anderson's model that reads where T cells gather still reads as published.
+- 2026-11-04 · Checked and unchanged. The decision still stands as decided.
 
 ## Evidence
 

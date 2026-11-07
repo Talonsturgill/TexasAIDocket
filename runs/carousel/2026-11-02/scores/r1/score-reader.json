@@ -1,0 +1,29 @@
+{
+ "judge": "reader",
+ "deck": "carousel no. 66, 2026-11-02, round 1",
+ "criteria": [
+  {"name": "artwork_craft", "weight": 0.22, "score": 6.3, "why": "Slide 1 stops the thumb and slide 4's two dogs make the stray/roaming call visible. Slide 5 is a primitive monitor with blank grey bars, slide 9's dog shows its SDF clay body with empty concrete below, slide 2's phone reads as a kiosk on a stem, slide 3's dog is about 1/12 of the frame, slide 8 is a featureless slab, and 6 and 7 read as two tile grids back to back."},
+  {"name": "deck_coherence", "weight": 0.12, "score": 7.0, "why": "One dark register and three working continuity devices, but the reliefs 6 to 8 are a second world and slide 5 a third."},
+  {"name": "claim_integrity", "weight": 0.20, "score": 6.5, "why": "Every source primary and every numeral traced. Slide 5's hook 'Then a person checks the call' adds a sequence c4 does not state and contradicts the web edition; slide 3's kicker gives the checks to software; the web edition dek 'A person reviews every clip' overstates c4."},
+  {"name": "story_and_stakes", "weight": 0.16, "score": 6.3, "why": "Who, what, where are clear. Who decided, why the city wants the count and what a reader can do are missing; the stake on slide 4 is not built on."},
+  {"name": "sequence_and_momentum", "weight": 0.10, "score": 6.0, "why": "Slide 2 repeats the cover, 5 repeats 3, 6 and 7 are two 32-tile grids, 9 echoes 8, and the close lands flat."},
+  {"name": "voice", "weight": 0.10, "score": 6.8, "why": "Clean and on register, house rules held, but much is the release paraphrased, no regional specificity, and the caption opener is flat."},
+  {"name": "variety", "weight": 0.10, "score": 6.8, "why": "New topic and subject; familiar moves: the lastLight staged world again, a caliche relief, countable grids of square units, a night street with a car."}
+ ],
+ "weighted_score": 6.49,
+ "hard_fails": [],
+ "ranked_defects": [
+  {"slide": 5, "defect": "Hook adds a sequence and a human ruling c4 does not state.", "fix": "Change the hook to 'Software and a person both review each clip' and keep c4 verbatim in the dek."},
+  {"slide": 9, "defect": "Administrative close that echoes slide 8.", "fix": "Put the open question on slide 9 from c6, c7 and c21."},
+  {"slide": 7, "defect": "Slides 6 and 7 are two 32-tile grids in a row saying the same sample fact.", "fix": "Fold the 2019 mould and 2026 plugs into one frame."},
+  {"slide": 3, "defect": "Kicker 'What the software does' gives all four checks to software.", "fix": "Change the kicker to 'What each clip is checked for'."},
+  {"slide": 2, "defect": "Repeats the cover and the phone reads as a kiosk on a stem.", "fix": "Reframe the phone tight in a modelled door and glass edge."}
+ ],
+ "artwork_weakest_frames": [
+  {"slide": 5, "problem": "Primitive monitor, blank grey check bars, flat clip, subject under half the frame.", "fix": "Push in so the screen fills two thirds of the frame and set the four check labels as DOM type on the lit rows."},
+  {"slide": 9, "problem": "SDF body reads as a clay toy, bottom 35 percent empty concrete.", "fix": "Turn the dog fully away and drop the camera to ground level for a rim-lit silhouette against the tail lamps."},
+  {"slide": 2, "problem": "Phone on a pedestal stem, no legible door, glass edge or clamp.", "fix": "Model the rear door frame and lowered glass edge filling the lower half with the clamp gripping the glass."},
+  {"slide": 8, "problem": "Featureless grey slab, plain cube report plug.", "fix": "Rake the key low, cut three month courses into the block, make the plug a bound sheet stack."},
+  {"slide": 3, "problem": "Dog about 1/12 of the frame, convergence point an unmodelled slab.", "fix": "Tighten the fov to about 20 so the box and dog fill a third of the frame."}
+ ]
+}

@@ -1,0 +1,2048 @@
+{
+  "canvas": {
+    "width": 1080,
+    "height": 1350,
+    "scale": 2.0,
+    "px": [
+      2160,
+      2700
+    ]
+  },
+  "text_window": 320,
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "png": "slide-01.png",
+      "console_errors": [
+        "TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(238, 234, 227)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The artificial lift has a new watcher",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 211,
+          "font_px": 107.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(238, 234, 227)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              136,
+              875,
+              132
+            ],
+            [
+              80,
+              241,
+              627,
+              132
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Permian Resources told investors on November 4th that its production team has deployed an AI-powered artificial lift monitoring system. The pump jack is drawn to illustrate.",
+          "x": 82,
+          "y": 387,
+          "w": 860,
+          "h": 171,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(210, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              387,
+              821,
+              42
+            ],
+            [
+              82,
+              429,
+              840,
+              42
+            ],
+            [
+              82,
+              472,
+              717,
+              42
+            ],
+            [
+              82,
+              515,
+              142,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Permian Basin",
+          "x": 80,
+          "y": 80,
+          "w": 215,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(210, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              215,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "01 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(210, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c1 c4",
+          "x": 80,
+          "y": 1234,
+          "w": 80,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(210, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              80,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 10610,
+      "ok": true,
+      "load_ms": 307,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 33.7,
+          "variance": 921.6
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-02.html",
+      "png": "slide-02.png",
+      "console_errors": [
+        "TXBENCH: RELIEF {\"height_range\":54.238687883322626,\"materials\":7,\"cast_fraction\":0.3360182554713805,\"area\":0.6518518518518519,\"render_ms\":13787.900000000373}"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(238, 234, 227)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Two AI tools, one earnings release",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 195,
+          "font_px": 99.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(238, 234, 227)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              137,
+              697,
+              122
+            ],
+            [
+              80,
+              235,
+              667,
+              122
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "One monitors its artificial lift. The other feeds its subsurface data into large language models to evaluate wellbore placement and optimize drilling parameters.",
+          "x": 82,
+          "y": 371,
+          "w": 880,
+          "h": 128,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(210, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              371,
+              712,
+              42
+            ],
+            [
+              82,
+              414,
+              814,
+              42
+            ],
+            [
+              82,
+              457,
+              779,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "artificial lift monitoring",
+          "x": 80,
+          "y": 970,
+          "w": 257,
+          "h": 68,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(238, 234, 227)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              969,
+              257,
+              35
+            ],
+            [
+              80,
+              1003,
+              172,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "large language models",
+          "x": 80,
+          "y": 1084,
+          "w": 240,
+          "h": 68,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(238, 234, 227)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1083,
+              240,
+              35
+            ],
+            [
+              80,
+              1117,
+              103,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The release",
+          "x": 80,
+          "y": 80,
+          "w": 182,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(210, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              182,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "02 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(210, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c1 c2 c4",
+          "x": 80,
+          "y": 1234,
+          "w": 129,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(210, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              129,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 17272,
+      "ok": true,
+      "load_ms": 155,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 39.1,
+          "variance": 2481.5
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-03.html",
+      "png": "slide-03.png",
+      "console_errors": [
+        "TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(238, 234, 227)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Its stated goal is more runtime",
+          "x": 80,
+          "y": 150,
+          "w": 560,
+          "h": 161,
+          "font_px": 82,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(238, 234, 227)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              139,
+              533,
+              101
+            ],
+            [
+              80,
+              219,
+              469,
+              101
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The release says the monitor is there to increase runtime and optimize well performance. It credits record runtimes to power and compression projects.",
+          "x": 82,
+          "y": 337,
+          "w": 540,
+          "h": 214,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(210, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              337,
+              456,
+              42
+            ],
+            [
+              82,
+              379,
+              437,
+              42
+            ],
+            [
+              82,
+              422,
+              537,
+              42
+            ],
+            [
+              82,
+              465,
+              433,
+              42
+            ],
+            [
+              82,
+              508,
+              331,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The stroke",
+          "x": 80,
+          "y": 80,
+          "w": 166,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(210, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              166,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "03 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(210, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c1 c18",
+          "x": 80,
+          "y": 1234,
+          "w": 96,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(210, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              96,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 10885,
+      "ok": true,
+      "load_ms": 214,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 27.9,
+          "variance": 1099.2
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-04.html",
+      "png": "slide-04.png",
+      "console_errors": [
+        "TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(238, 234, 227)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Language models, aimed at the wellbore",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 187,
+          "font_px": 95.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(238, 234, 227)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              138,
+              714,
+              117
+            ],
+            [
+              80,
+              232,
+              835,
+              117
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The release says the company is combining its subsurface data with large language models. The bands are drawn to illustrate and are not to scale.",
+          "x": 82,
+          "y": 363,
+          "w": 880,
+          "h": 128,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(210, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              363,
+              853,
+              42
+            ],
+            [
+              82,
+              406,
+              835,
+              42
+            ],
+            [
+              82,
+              449,
+              436,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "development strategy",
+          "x": 656,
+          "y": 540,
+          "w": 343,
+          "h": 34,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(238, 234, 227)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              656,
+              539,
+              343,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "wellbore placement",
+          "x": 690,
+          "y": 590,
+          "w": 309,
+          "h": 34,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(238, 234, 227)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              690,
+              589,
+              309,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "drilling parameters",
+          "x": 673,
+          "y": 640,
+          "w": 326,
+          "h": 34,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(238, 234, 227)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              673,
+              639,
+              326,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The second tool",
+          "x": 80,
+          "y": 80,
+          "w": 248,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(210, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              248,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "04 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(210, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c2",
+          "x": 80,
+          "y": 1234,
+          "w": 32,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(210, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              32,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 11490,
+      "ok": true,
+      "load_ms": 217,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 26.6,
+          "variance": 967.5
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-05.html",
+      "png": "slide-05.png",
+      "console_errors": [
+        "TXBENCH: RELIEF {\"height_range\":47.99909973144531,\"materials\":5,\"cast_fraction\":0.13141598079561043,\"area\":1,\"render_ms\":18185.400000000373}"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(238, 234, 227)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Output rose 22 percent in a quarter",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 203,
+          "font_px": 103.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(238, 234, 227)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              137,
+              649,
+              127
+            ],
+            [
+              80,
+              238,
+              834,
+              127
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Total production averaged 457,528 barrels of oil equivalent a day. The release ties none of that rise to either AI tool.",
+          "x": 82,
+          "y": 379,
+          "w": 860,
+          "h": 86,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(210, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              379,
+              859,
+              42
+            ],
+            [
+              82,
+              422,
+              813,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "prior quarter",
+          "x": 90,
+          "y": 678,
+          "w": 223,
+          "h": 34,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(238, 234, 227)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              90,
+              677,
+              223,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "third quarter, up 22%",
+          "x": 90,
+          "y": 1024,
+          "w": 360,
+          "h": 34,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(224, 149, 106)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              90,
+              1023,
+              360,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The quarter",
+          "x": 80,
+          "y": 80,
+          "w": 182,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(210, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              182,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "05 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(210, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c6",
+          "x": 80,
+          "y": 1234,
+          "w": 32,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(210, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              32,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 21585,
+      "ok": true,
+      "load_ms": 175,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 18,
+          "variance": 200.3
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-06.html",
+      "png": "slide-06.png",
+      "console_errors": [
+        "TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(238, 234, 227)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Crude is a little under half of its output",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 188,
+          "font_px": 96,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(238, 234, 227)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              138,
+              838,
+              118
+            ],
+            [
+              80,
+              232,
+              635,
+              118
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Crude oil averaged 208,029 barrels a day in the third quarter. The gauge's target sits at that share of everything the company produced.",
+          "x": 82,
+          "y": 364,
+          "w": 860,
+          "h": 128,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(210, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              364,
+              765,
+              42
+            ],
+            [
+              82,
+              407,
+              859,
+              42
+            ],
+            [
+              82,
+              450,
+              349,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The output",
+          "x": 80,
+          "y": 80,
+          "w": 166,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(210, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              166,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "06 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(210, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c6 c7",
+          "x": 80,
+          "y": 1234,
+          "w": 80,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(210, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              80,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 19077,
+      "ok": true,
+      "load_ms": 310,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 31.2,
+          "variance": 725.2
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-07.html",
+      "png": "slide-07.png",
+      "console_errors": [
+        "TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(238, 234, 227)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "About 67 percent of its leasehold was in Texas",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 181,
+          "font_px": 92.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(238, 234, 227)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              138,
+              854,
+              114
+            ],
+            [
+              80,
+              229,
+              845,
+              114
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Its 2025 annual report put about 67% of its net leasehold in Texas and 33% in New Mexico. Neither the release nor the annual report says which wells the monitor watches.",
+          "x": 82,
+          "y": 357,
+          "w": 880,
+          "h": 128,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(210, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              357,
+              866,
+              42
+            ],
+            [
+              82,
+              400,
+              842,
+              42
+            ],
+            [
+              82,
+              443,
+              769,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Texas 67%",
+          "x": 147,
+          "y": 605,
+          "w": 154,
+          "h": 34,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(224, 149, 106)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              147,
+              604,
+              154,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "New Mexico 33%",
+          "x": 717,
+          "y": 725,
+          "w": 240,
+          "h": 34,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(224, 149, 106)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              717,
+              724,
+              240,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "one joint, one percent",
+          "x": 621,
+          "y": 671,
+          "w": 378,
+          "h": 34,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(238, 234, 227)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              621,
+              670,
+              378,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The leasehold",
+          "x": 80,
+          "y": 80,
+          "w": 215,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(210, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              215,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "07 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(210, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c15 c1",
+          "x": 80,
+          "y": 1234,
+          "w": 96,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(210, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              96,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 10655,
+      "ok": true,
+      "load_ms": 217,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 18.9,
+          "variance": 1488.3
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-08.html",
+      "png": "slide-08.png",
+      "console_errors": [
+        "TXBENCH: RELIEF {\"height_range\":32,\"materials\":5,\"cast_fraction\":0.46263073442760944,\"area\":0.6518518518518519,\"render_ms\":11543.900000000373}"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(238, 234, 227)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The regulator was not aware of any AI use",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 187,
+          "font_px": 95.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(238, 234, 227)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              138,
+              857,
+              117
+            ],
+            [
+              80,
+              232,
+              749,
+              117
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "On May 21st the Texas Tribune reported the Railroad Commission said it was not aware of any use of AI by oil and gas companies. The release came 167 days later.",
+          "x": 82,
+          "y": 363,
+          "w": 880,
+          "h": 128,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(210, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              363,
+              762,
+              42
+            ],
+            [
+              82,
+              406,
+              866,
+              42
+            ],
+            [
+              82,
+              449,
+              707,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "May 21st",
+          "x": 90,
+          "y": 1186,
+          "w": 137,
+          "h": 34,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(224, 149, 106)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              90,
+              1185,
+              137,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "November 4th",
+          "x": 786,
+          "y": 632,
+          "w": 206,
+          "h": 34,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(224, 149, 106)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              786,
+              631,
+              206,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The regulator",
+          "x": 80,
+          "y": 80,
+          "w": 215,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(210, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              215,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "08 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(210, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c27 c4",
+          "x": 80,
+          "y": 1234,
+          "w": 96,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(210, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              96,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 15205,
+      "ok": true,
+      "load_ms": 143,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 16.3,
+          "variance": 267.6
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-09.html",
+      "png": "slide-09.png",
+      "console_errors": [
+        "TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(238, 234, 227)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Who checks what the watcher finds?",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 195,
+          "font_px": 99.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(238, 234, 227)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              137,
+              861,
+              122
+            ],
+            [
+              80,
+              235,
+              603,
+              122
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The release names two AI tools and prints no measured result for either. The Railroad Commission's next open meeting is November 17th.",
+          "x": 82,
+          "y": 371,
+          "w": 880,
+          "h": 128,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(210, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              371,
+              808,
+              42
+            ],
+            [
+              82,
+              414,
+              791,
+              42
+            ],
+            [
+              82,
+              457,
+              388,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The lease road",
+          "x": 80,
+          "y": 80,
+          "w": 232,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(210, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              232,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "09 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(210, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c1 c2 c29",
+          "x": 80,
+          "y": 1234,
+          "w": 145,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(210, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              145,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 16204,
+      "ok": true,
+      "load_ms": 193,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 31.2,
+          "variance": 801.6
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    }
+  ]
+}

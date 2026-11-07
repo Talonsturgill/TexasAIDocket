@@ -1,0 +1,75 @@
+{
+ "lens": "integrity",
+ "round": 2,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.8,
+   "why": "Slides 1, 2, 8 and 6 strong. Slide 5 is a flat tan stack with an unlit blue smear for a mark, slide 4's arm is still boxes and cylinders near the dek, slide 7's panel edge runs through the footer, slide 9 leaves dead black above the bar, slide 1's copper is a smooth gradient with a hard seam."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "One bench, one dark register, one key, one motif with the bluebonnet mark recurring. The navy interiors alternate with the black reliefs."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.8,
+   "why": "Every numeral traced, all sources primary, goals labelled, universals attributed, the co-funding implication removed. Looser than source: slide 6 places the platform at TEES where c21 says at Texas A&M; slide 9's 'gets tested' rests on claims not on that frame; the c17 quote is truncated at a comma; the caption's closing question presupposes no alloy yet; slide 7's pool can read as elapsed months."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.8,
+   "why": "What and who are clear and the lack of a deadline is honest. No place below Texas A&M, slide 9's actions have no route, the stake stays general."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.3,
+   "why": "A real hook, frame 2 pays, the turn on 4, a close that echoes the cover. Slides 6 and 7 detour and 7 could go."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Clean and measured with no house rule breaks, little Texas texture."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "A fresh topic and subject. Money counted in wells repeats no. 63 in the same staged dark world."
+  }
+ ],
+ "weighted_score": 7.17,
+ "hard_fails": [],
+ "ship": false,
+ "ship_note": "",
+ "one_sentence_fix": "Make slide 9 live up to its kicker with a place and a route from the fetched pages, and cite c8 or c22 on it so 'the metal still gets tested' rests on a claim.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 5,
+   "problem": "An unlit blue smear for the mark, a tan stack on a featureless floor.",
+   "fix": "A thin paint pen stroke that takes the key's specular, sheet edges facing the window with a dark cast running right."
+  },
+  {
+   "slide": 4,
+   "problem": "A toy arm of boxes and cylinders within about 30 px of the dek.",
+   "fix": "Drop the camera or arm so the gripper sits at hearth height, tapered cast links."
+  },
+  {
+   "slide": 7,
+   "problem": "The panel edge runs through the footer, the pool reads as months elapsed.",
+   "fix": "End the panel above the footer band, centre the pool."
+  },
+  {
+   "slide": 9,
+   "problem": "About 250 px of dead black above the bar, the break low.",
+   "fix": "Raise and scale the bar about 1.2 times so the break sits under the dek."
+  }
+ ]
+}

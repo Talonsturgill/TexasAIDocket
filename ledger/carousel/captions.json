@@ -19,12 +19,12 @@
   "recent_lists_note": "These three lists are the exclusions handed to the caption room and they were hand-kept. On 2026-08-20 the fourth panel found structures_recent reading [\"ledger\", \"pivot\", \"question and answer\"] when the last three shipped structures were [\"ledger\", \"two columns\", \"question and answer\"], so it dropped a structure that IS off the table and held one that is not. Wrong in both directions from one hand edit. They are now recomputed from entries and are ordered OLDEST FIRST, matching the entries list, and scripts/carousel/caption_check.py should derive them rather than read them. That is an upgrade-lane change and it is written into this run's proposals."
  },
  "opening_moves_recent": [
-  "the place",
+  "the correction",
+  "the plain question",
   "the quiet decision",
-  "the before and after",
+  "the who",
   "the two things",
-  "the object",
-  "the number that is wrong"
+  "the place"
  ],
  "entries": [
   {
@@ -1168,15 +1168,129 @@
    ],
    "critic_note": "Opens by correcting what nonbinding suggests, sets the ballot's word against the council's own record in two columns, and closes on the certification date nobody has named.",
    "move_note": "Opens on what a nonbinding no would still reach, then the ballot and the hours, then the October 13th resolution and the mayor's words, and closes asking when the count will be certified."
+  },
+  {
+   "date": "2026-11-01",
+   "carousel_no": 65,
+   "opening_move": "the plain question",
+   "structure": "Pivot",
+   "closing_move": "point at the record, plainly, without a call to action",
+   "first_line": "Why does an AI lab melt metal?",
+   "words": 155,
+   "commas": 2,
+   "commas_per_100w": 1.29,
+   "chars": 889,
+   "hashtags": [
+    "#TexasAM",
+    "#AggieAIFoundry",
+    "#NSF"
+   ],
+   "critic_note": "Opens on the question a reader would ask of an AI lab with a furnace, pivots from the software claim to the physical line, and closes on the award record's named users.",
+   "move_note": "Opens asking why an AI lab melts metal, gives the trillion mixes and Arróyave's limit, then the grant, the line and the goal stated as a goal, then the separate NSF award, and closes asking who outside Texas A&M makes the first alloy."
+  },
+  {
+   "date": "2026-11-02",
+   "carousel_no": 66,
+   "opening_move": "the quiet decision",
+   "structure": "Ladder",
+   "closing_move": "name what happens next and when",
+   "first_line": "How a stray looks is spelled out.",
+   "words": 151,
+   "commas": 1,
+   "commas_per_100w": 0.66,
+   "chars": 890,
+   "hashtags": [
+    "#SanAntonio",
+    "#SAACS",
+    "#SwRI"
+   ],
+   "critic_note": "Opens on the release's own definition of a stray, climbs through the instrument, the review, the sample and the timeline, and closes on the question the report could answer.",
+   "move_note": "Opens on how a stray looks, quotes the release's two labels, then the phone, the software and the review in the release's tense, the 2019 repeat in 32 areas as a sample, the director's line and the December window, and closes asking whether the report will say how often a person and the software disagreed."
+  },
+  {
+   "date": "2026-11-03",
+   "carousel_no": 67,
+   "opening_move": "the who",
+   "structure": "Ledger",
+   "closing_move": "ask the one question the decision leaves open",
+   "first_line": "Aurora told its shareholders about weigh stations.",
+   "words": 122,
+   "commas": 4,
+   "commas_per_100w": 3.28,
+   "chars": 773,
+   "hashtags": [
+    "#AuroraInnovation",
+    "#Houston",
+    "#Laredo"
+   ],
+   "critic_note": "Opens on who was told, then keeps the letter's ledger in its own tense, the three calls, the slip, the quarter and the two routes, and closes on whether a Texas scale house has weighed one yet.",
+   "move_note": "Opens on Aurora telling its shareholders about weigh stations, lists the letter's claims as a ledger attributed to it, keeps Dallas to Laredo as Charger's plan under a non-binding MOU, and closes asking the one question the letter leaves open."
+  },
+  {
+   "date": "2026-11-04",
+   "carousel_no": 68,
+   "opening_move": "the two things",
+   "structure": "Two columns",
+   "closing_move": "name what is still not public, and how big that is",
+   "first_line": "AI for runtime. The record runtimes went to power and compression.",
+   "words": 145,
+   "commas": 0,
+   "commas_per_100w": 0.0,
+   "chars": 886,
+   "hashtags": [
+    "#DelawareBasin",
+    "#PermianBasin",
+    "#RailroadCommission"
+   ],
+   "critic_note": "Opens on the two things the release credits, AI for runtime and compression for the record runtimes, keeps each claim attributed, and closes on how much of the runtime is the monitor's.",
+   "move_note": "Puts the AI claim beside the operating credit the release actually gives, carries the leasehold and the regulator's May statement as dated facts, and closes naming what the release leaves unmeasured."
+  },
+  {
+   "date": "2026-11-05",
+   "carousel_no": 69,
+   "opening_move": "the place",
+   "structure": "Pivot",
+   "closing_move": "ask the one question the decision leaves open",
+   "first_line": "The laser chips are made only in Sugar Land.",
+   "words": 153,
+   "commas": 5,
+   "commas_per_100w": 3.27,
+   "chars": 893,
+   "hashtags": [
+    "#SugarLand",
+    "#Houston",
+    "#AppliedOptoelectronics"
+   ],
+   "critic_note": "Opens on the place the chips are made, carries the 2026 and 2027 targets as the company's own expectations, and closes on the question the release leaves open, which site the power is for.",
+   "move_note": "Pivots from where the company makes its chips to what it says is late, keeps the power wait attributed, and says what the release does not, which building waits and how much of the 2027 capacity is in the United States."
+  },
+  {
+   "date": "2026-11-06",
+   "carousel_no": 70,
+   "opening_move": "the before and after",
+   "structure": "Ladder",
+   "closing_move": "name what is still not public",
+   "first_line": "Floor hands helped move the pipe. On three ExxonMobil rigs in the Permian, an arm does.",
+   "words": 130,
+   "commas": 2,
+   "commas_per_100w": 1.54,
+   "chars": 789,
+   "hashtags": [
+    "#PermianBasin",
+    "#MidlandTexas",
+    "#ExxonMobil"
+   ],
+   "critic_note": "Opens on the floor hands and the arm that replaced their pipe handling, climbs from three rigs to the 2028 plan as the company's expectations, and closes on the safety result the company has not published.",
+   "move_note": "A ladder from the arm on one rig to the fleet plan, every figure attributed to ExxonMobil or Reuters, and a close naming what is still not public, a measured safety result."
   }
  ],
  "structures_recent": [
-  "Clock",
-  "Zoom in",
-  "Ledger"
+  "Ledger",
+  "Two columns",
+  "Pivot"
  ],
  "closing_moves_recent": [
-  "name what is still not public, and how big that is"
+  "ask the one question the decision leaves open"
  ],
  "_derived_note": "opening_moves_recent, structures_recent and closing_moves_recent are DERIVED by out/<date>/update_ledgers.py every run, by ledger_check.windows() and ledger_check's own slice of the entries before the newest date. They were hand-maintained until 2026-09-10 and had drifted, which mis-briefed the caption room on that run: the list said Ledger was excluded when it was not, and never mentioned Two columns or the close no. 19 actually shipped."
 }

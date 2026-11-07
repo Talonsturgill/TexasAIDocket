@@ -1,0 +1,77 @@
+{
+ "_note": "Scores, weighted score, hard fails and fixes as the reader judge returned them, round 3 (the cap); each why abridged by the run.",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.6,
+   "why": "Dark staged register lands; 1, 2 and 6 read in one glance; five frames held down: 3's lit third barely brighter, 8 blinds, 4 a mannequin, 5 repeats the cover at feed size, 9's split a diagonal stripe."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.3,
+   "why": "One deck, one night, one key; ember band changes state; the reliefs sit outside, 7 furthest."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.0,
+   "why": "Every numeral traces; c24 and c8 apart; c5 and c6 apart; on-site detail via AJOT; c3 not listed in the first comment; slide 2 has no 'drawn to illustrate'."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.8,
+   "why": "What, who and where; safety concrete; jobs as the company's word; the 'no figure' line only in the caption."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "Cover and 2 pay, 6 turns; 5 cuttable; 7 interrupts; flat close."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.6,
+   "why": "Caption opener a Texan's; slides read like a wire summary with encoding notes."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 5.5,
+   "why": "Racks, lateral and worker at a gate repeat no. 68; ten of twenty repeats no. 69; floodlit repeats no. 67."
+  }
+ ],
+ "weighted_score": 6.876,
+ "hard_fails": [],
+ "ship": true,
+ "artwork_weakest_frames": [
+  {
+   "slide": 3,
+   "problem": "No subject at 432 px; the lit three barely brighter.",
+   "fix": "A real pool 25 L* above the grating, low rake so the dark panels cast and recede."
+  },
+  {
+   "slide": 8,
+   "problem": "Blinds; no pipe ends.",
+   "fix": "Pull back so all twenty box ends are lit as round ends with the bands on them; both beams cast."
+  },
+  {
+   "slide": 4,
+   "problem": "Front-lit mannequin before a doghouse.",
+   "fix": "Turn the figure three-quarters away, rim-lit from the flood, a contact shadow."
+  },
+  {
+   "slide": 5,
+   "problem": "Repeats the cover at feed size.",
+   "fix": "A low three-quarter from the rotary, slips, box mouth and arm in one diagonal."
+  },
+  {
+   "slide": 9,
+   "problem": "The split reads as a stripe; plain pipe and posts.",
+   "fix": "Drop onto the rack's axis so the box ends face the lens as two blocks of ten."
+  }
+ ]
+}

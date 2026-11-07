@@ -1,0 +1,93 @@
+{
+ "lens": "integrity",
+ "judge": "integrity",
+ "round": 3,
+ "carousel_no": 67,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.4,
+   "why": "Every frame is rendered on a dark field, and slides 1, 7, 8 and 9 have real subjects. Slide 9's code draws 1,000 stalls, 50 columns by 20 rows, with the 20 tractors and a primer kerb at the 200 mark. Slide 7 is a true txbench relief (6 materials, height range 114). The other frames fall well short of the 10 descriptor. Slide 6 is a slab in a void: a blackened rectangle about 880 px wide on a mid-grey datum strip, with an empty field from y 680 to 1050. Slide 5 reads as grey panels or a UI slider rather than machined steel, and most of it sits in the grey middle. On slide 4 the twenty tractors fill a thin band about a quarter of the frame tall. The bottom third is empty black, no warehouse is drawn, and a hard tonal seam crosses behind dek line 3 at about y 700. On slide 3 the gate cabinet is a plain box with a pale yellow ball for its amber lamp, one white boom segment renders grey, and the cab's sleeper is a flat grey slab. Slide 8's kit truck fills the frame, but the whole model is cast gold and mid-tone, the dome reads beige rather than lit amber, and there is no ground world around it. The same kit grille faces the camera on frames 1, 2, 3, 4 and 9, and the model has toy proportions. Slide 2's scale house and approach pads are flat primitives. The flow critic predicted 6.6 and it lands in the mid sixes."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.0,
+   "why": "Clearly one deck: one floodlit night world, one primer accent with a stated meaning, mono labels and a scale motif from the deck (1, 2) to the rule (5), the plate (6) and the stalls (9). Slide 9 returns to the yard of slide 4. Three things weaken it. Frames 5 and 6 are greyer than their neighbours, so the declared value arc does not read. Slide 8's gold cast sits outside the cold flood every other spatial frame uses. Slide 5's primer stop also breaks the deck's own law, because the stop marks a present fact, that the ramp IS about six weeks behind."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 6.8,
+   "why": "Every numeral traces. numeral_report shows 20 examined with 0 problems, and each figure in figures.json matches a regex over a claim quote in compute.py. Slide 6's lengths are computed at one scale, and the $9M bracket uses the same scale. Every claim is first party and every quote matches tx-2026-0239. Several small loosenings shift what a reader takes away. (1) Slide 1's 'scale is open' and slide 2's 'which scale' compress c9. (2) Slide 3's dek drops c6's 'including' and 'driverless customers'. (3) Slide 5's 'expects 20 trucks a week' drops c11's 'targeted production rate'. (4) The bigger omission is c5, verified and never printed: Charger's president says 'Since launching autonomous operations along the Laredo corridor'. Slide 7's 'a customer's plan' and the web edition's 'not a route Aurora says it runs today' are literally supported by c4's future tense, but a reader comes away believing nothing autonomous runs Dallas to Laredo, and the deck neither scopes nor rejects c5. (5) Slide 8 cites the FMCSA exemption through Aurora's letter when the federal decision is in the record as tx-2026-0214. Taken one at a time, none of these is a hard fail."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.8,
+   "why": "It is clear what happened, who said it and where. There is no public body, no decision and no deadline, and the docket's public_access is contact_only. The only next step offered is the EDGAR pointer, and the caption closes on a rhetorical question. Weigh stations are the hook, yet the deck never names the Texas agency that runs them."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.2,
+   "why": "The cover earns the swipe, slide 2 pays at once, and the declared turn at slide 5 is real. The close returns to the yard. Slide 8 is cuttable or misplaced after the Texas map, and duplicates slide 3's capability beat."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Clean, on register and carefully attributed, with no boosterism or doom. It reads more like a careful analyst than a Texan, 'the letter says' recurs on 2, 4, 5 and 8, and the caption's opener is flat."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "The floodlit steel and concrete palette and the weigh-station concept differ from nos. 63 to 66. The opening move is familiar, a vehicle with its lamps lit at night on the cover (nos. 64, 66), and autonomous vehicles are the fourth such beat in the window."
+  }
+ ],
+ "weighted_score": 6.82,
+ "hard_fails": [],
+ "ship": true,
+ "named_defects": [
+  "c5 is verified in claims.json and absent from every surface; slide 7's 'a customer's plan' and the web edition's 'not a route Aurora says it runs today' leave a reader believing no autonomous operation runs Dallas to Laredo",
+  "Slide 1 hook says 'scale' where c9 says 'station'",
+  "Slide 2 'which scale' and 'Three calls' over-read c9",
+  "Slide 3 dek drops c6's 'including'",
+  "Slide 5 dek drops c11's 'targeted production rate'",
+  "Slide 8 cites the FMCSA exemption only through Aurora's letter, while tx-2026-0214 carries the federal record",
+  "Slide 7 encodes all 500 MOU trucks as studs along the Dallas to Laredo chord, past c4",
+  "The singular 'Aurora's own route' rests on an absence",
+  "Slide 5's primer stop marks a current fact rather than a future one",
+  "tx-2026-0239 is filed under topic 'state-policy'"
+ ],
+ "one_sentence_fix": "Rebuild slides 6 and 4 around a subject that fills the frame, and settle c5 on the map frame.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 6,
+   "problem": "A slab in a void: a near-uniform dark textured rectangle on a mid-grey datum strip, a 10 px billet, and an empty field from y 680 to 1050.",
+   "fix": "Rake the key so the bar's top bevel and front face read as two values, drop the albedo flake, and bring the datum down to near black."
+  },
+  {
+   "slide": 4,
+   "problem": "The twenty tractors occupy a band about 25 percent of the frame tall with an empty lower third and a tonal seam behind dek line 3.",
+   "fix": "Lower the camera to about 3 m and move it closer so the near rank fills y 800 to 1250, with the casts running lower left into the foreground, and extend the ground plane past the frame top."
+  },
+  {
+   "slide": 5,
+   "problem": "The steel rule reads as flat grey panels and most of the frame sits in L* 30 to 70.",
+   "fix": "Narrow the key pool to a raking strip across the groove tops, darken the steel outside the pool to near black, and give the clamp screw a real specular."
+  },
+  {
+   "slide": 3,
+   "problem": "The gate cabinet is a plain box with a pale yellow ball for its lamp, one white boom segment renders grey, and the sleeper fairing is a flat slab.",
+   "fix": "Model the cabinet with a door seam, a vent and a recessed amber lens, make the boom's white segments one bead-white material, and crop the cab lower."
+  },
+  {
+   "slide": 8,
+   "problem": "The kit truck is cast in one gold mid-tone, the beacon dome reads beige, and there is no shoulder or ground.",
+   "fix": "Return the key to the deck's cold white, make the beacon the only warm light, and add the dark shoulder and edge line under the wheels."
+  }
+ ]
+}

@@ -1,0 +1,84 @@
+{
+ "lens": "integrity",
+ "round": 1,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.0,
+   "why": "All nine rendered and dark, no plates, no screen. 6 and 9 stand in their world. 3 crammed right with 60% dead navy and bare cylinders. 7 flat rings read as an icon chart. 5 rods read as barbells with a flat tag. 2 a generic document icon in the grey middle. 1, 4 and 9 jack a silhouette with no rim. 4 flat stripes with a small jack."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.0,
+   "why": "One lastLight world and palette, accent held to 5 to 8, value steady. The recurring jack and the camera walk work; the crank motif can't be read and the sky splits."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 6.5,
+   "why": "Every numeral traces. Three framing problems: the deck never says the filings don't place the tools in Texas while #ReevesCounty and slide 8 imply RRC-regulated wells; the title and caption say 'no result' though c3 is an unmeasured claim of a result, only slide 9 keeps 'measured'; slide 5's rods are drawn as the monitored lift's rods, drawing the link the dek disclaims. Smaller: caption drops 'power', c28 omitted, slide 7 cites c16 and prints nothing from it."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.0,
+   "why": "What and who are clear. Where is soft, no frame places the tools. No public body acting, no deadline, no next step; the close poses oversight without naming any RRC role or proceeding."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "Cover earns the swipe, 2 pays, 3 and 8 turn. 6 has no bearing on the AI argument and 5 is a weak setup."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Plain, on register, house rules hold. Slide 6's hook is a press-release line and the caption's meta sentence describes the product."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 5.5,
+   "why": "First oil and gas deck in the window. The instrument repeats (third quarterly filing in twelve days), the absence spine repeats nos. 46, 47 and 49, the dark machine opener and one unit per count reliefs repeat."
+  }
+ ],
+ "weighted_score": 6.32,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Cut frame 6 for the caveat that neither filing places the monitored wells in Texas, and make the title and caption say 'no measured result' as slide 9 does.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 3,
+   "problem": "Subject jammed right, left 60% dead navy, bare cylinders.",
+   "fix": "Camera left and in, rod and bar on the centre-right vertical, key behind-left for a rim, a pool on the caliche across the lower left."
+  },
+  {
+   "slide": 7,
+   "problem": "Flat white rings read as coins; flat red stands; timber lines.",
+   "fix": "Three-quarter view so the bodies recede, stagger the ends, I-beam stands with contact."
+  },
+  {
+   "slide": 5,
+   "problem": "Rods read as barbells; flat tag floating.",
+   "fix": "Round bodies with a specular line, couplings slightly wider with flats, tag wired to the coupling as lit brass casting onto the plate."
+  },
+  {
+   "slide": 1,
+   "problem": "Cover jack a silhouette with no bright edge.",
+   "fix": "Key behind-left so the beam top and horsehead curve carry one rim; a low work light on the post and skid."
+  },
+  {
+   "slide": 2,
+   "problem": "Generic document icon in the grey middle, no curl, clip a black box.",
+   "fix": "Lower rake so tooth and curl cast onto the steel; let the steel outside the pool fall to black."
+  },
+  {
+   "slide": 4,
+   "problem": "Flat stripes; small jack.",
+   "fix": "Bedding variation and grain; camera closer and lower so the jack stands a quarter of the frame."
+  }
+ ]
+}

@@ -3539,13 +3539,21 @@ figcaption {{ font-size:var(--s-1); color:var(--ink-mute); margin-top:.5rem;
   text-transform:uppercase; color:var(--ink-mute); margin:1.8rem 0 .5rem; font-weight:500; }}
 .gridnote {{ margin-top:var(--band); }}
 
+/* MINMAX(0,1FR), NOT 1FR. A bare 1fr column is minmax(auto,1fr), so it refuses to shrink below
+   its own content, and on November 7th, 2026 the tenth month pushed the row to 330px inside a
+   320px phone, October cut off the edge and the page scrolling sideways. A zero floor lets the
+   months share the row; the values are upright at that width and measured whole at 320px. */
 /* THE SERIES, AS AN INSTRUMENT RATHER THAN A PICTURE. Built from HTML boxes and not SVG so the
    values are real text: selectable, readable by a screen reader, visible to the numeral gate,
    and never distorted by a stretched viewBox. Hover and keyboard focus both raise a group,
    because a chart nobody can interrogate is a screenshot with extra steps. */
-.qchart {{ margin:0; padding:0; }}
+/* ITS OWN SCROLL BOX ON A PHONE. The series grows a month at a time and every month keeps its
+   month label, so at ten months a 320px screen ran the row 42px past its edge and the page
+   scrolled sideways. The months are not cut and the type is not shrunk under its floor: the
+   figure scrolls inside itself, the way a wide table does here, and the page stays put. */
+.qchart {{ margin:0; padding:0; overflow-x:auto; overscroll-behavior-x:contain; }}
 .qgroups {{ list-style:none; margin:0; padding:0; max-width:none;
-  display:grid; grid-auto-flow:column; grid-auto-columns:1fr; gap:clamp(.2rem,1.4vw,1rem);
+  display:grid; grid-auto-flow:column; grid-auto-columns:minmax(0,1fr); gap:clamp(.2rem,1.4vw,1rem);
   align-items:end; height:clamp(7rem,20vw,10rem); }}
 .qgrp {{ display:flex; flex-direction:column; align-items:center; justify-content:flex-end;
   height:100%; gap:.35rem; border-radius:2px; padding:.2rem .1rem;

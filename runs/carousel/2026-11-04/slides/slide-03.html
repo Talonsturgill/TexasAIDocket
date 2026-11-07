@@ -1,0 +1,69 @@
+<!doctype html>
+<!-- 2026-11-04, frame 3 of 9. Archetype CLOSE_CROP. The pump jack's chrome polished rod, carrier bar and bridle cables rising out of the wellhead and stuffing box at crank 80, seen from close and low, cropped by the top and right edges, the warm seam low behind. Drawn to illustrate, to no operator's well. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:560px">Its stated goal is more runtime</h1>
+<p class="dek" data-follow="26" style="width:540px">The release says the monitor is there to increase runtime and optimize well performance. It credits record runtimes to power and compression projects.</p>
+<script>window.FIG = {};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-04-wellpad.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "The stroke", counter: "03 / 09", src: "c1 c18", fit: { min: 76, max: 100, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 30, near: 0.02, far: 4000, fog: 0.004 });
+  const jack = K.make('pump_jack', { seed: CH.JACK.seed, crank: 70, color: CH.JACK.color, head: CH.JACK.head, guard: false });
+  jack.rotation.y = 1.72; TXT.add(R, jack); TXT.contact(R, jack);
+  jack.updateMatrixWorld(true);
+  /* the well: the kit puts the polished rod at x 4.4 in the jack's own frame */
+  let rodMesh = null; jack.traverse(o => { if (o.isMesh && o.geometry && o.geometry.parameters && Math.abs((o.geometry.parameters.radiusTop || 0) - 0.019) < 0.002) rodMesh = o; });
+  const well = new THREE.Vector3(); if (rodMesh) { rodMesh.getWorldPosition(well); well.y = 0; } else well.set(4.4, 0, 0).applyMatrix4(jack.matrixWorld);
+  TXT.sky(R);
+  TXT.ground(R, { surface: 'dirt', size: 1400, seed: 61, bumpScale: 0.18 });
+  /* the kit bakes by material, so the polished rod is the chrome mesh: its box gives the well and the carrier bar, which rides 0.4 m under the rod's top */
+  let rodBox = null; jack.traverse(o => { if (o.isMesh && o.material && o.material.metalness === 1) rodBox = new THREE.Box3().setFromObject(o); });
+  if (rodBox) { well.set((rodBox.min.x + rodBox.max.x) / 2, 0, (rodBox.min.z + rodBox.max.z) / 2); }
+  const carrierY = rodBox ? rodBox.max.y - 0.45 : 2.6;
+  /* the kit's red valve handwheel is repainted the wellhead's grey: no red on this frame */
+  jack.traverse(o => { if (o.isMesh && o.material && o.material.color && Math.abs(o.material.color.getHex() - 0xc03a2b) < 0x040404) { o.material = o.material.clone(); o.material.color.setHex(0x4a4d50); } });
+  /* three quarters from beyond the well, so the bar shows its length, the bridle rises to the horsehead and the rod drops to the stuffing box, all at the frame's right edge clear of the type */
+  const side = [Math.sin(1.72), 0, Math.cos(1.72)], out = [Math.cos(1.72), 0, -Math.sin(1.72)];
+  const from = [well.x + side[0] * -2.2 + out[0] * 7.0, 1.5, well.z + side[2] * -2.2 + out[2] * 7.0];
+  const look = CH.aim(THREE, R, TXT, from, [well.x, 1.6, well.z], 770, 925, 34);
+  TXT.frame(R, { fov: 34, from, look, near: 0.02 });
+  TXT.scatter(R, { kind: 'grass', count: 2200, area: [-120, -120, 60, 80], avoid: [[-10, -10, 12, 8]], seed: 63, scale: [0.6, 1.0] });
+  CH.warm(R, 0.55);
+  TXT.deckRig(R, CH.rigSpec(W, 10, 4096), CH.rigOpts([well.x, 2, well.z], { distance: 30, shadowFar: 60, normalBias: 0.02 }));
+  CH.unacne(R, 0.02);
+  /* a pumper's flashlight from camera right puts one long highlight on the chrome rod */
+  { const sp = new THREE.SpotLight(0xfff0dc, 90, 8, 0.6, 0.7, 1.5); sp.position.set(from[0] + 0.8, carrierY, from[2] + 0.8); sp.target.position.set(well.x, carrierY - 0.6, well.z); R.scene.add(sp); R.scene.add(sp.target); }
+  TXT.weather(R, { grime: 0.7, height: 1.6, mottle: 0.5 });
+  /* a pumper's work light on the caliche left of the wellhead, so the lower left is lit ground and the rod catches a rim */
+  { const sp = new THREE.SpotLight(0xffd3a0, 160, 26, 0.75, 0.8, 1.4); sp.position.set(from[0] - side[0] * 3, 3.2, from[2] - side[2] * 3); sp.target.position.set(well.x + side[0] * 2.5, 0, well.z + side[2] * 2.5); R.scene.add(sp); R.scene.add(sp.target); }
+  { const rl = new THREE.DirectionalLight(0xffc690, 2.6); rl.position.set(well.x - out[0] * 30, 16, well.z - out[2] * 30); rl.target.position.set(well.x, 2, well.z); R.scene.add(rl); R.scene.add(rl.target); }
+  TXT.stage(R, [jack], { poolInner: 4, poolOuter: 9, behind: 0.3, depth: 1.0 });
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0.3, veil: 0.5, veilH: 320 });
+  /* darken-only seats under the site line and the counter, so the rod and the right cable fall below the type's value */
+  { const g = cx.createLinearGradient(0, 2380, 0, 2620); g.addColorStop(0, 'rgba(6,6,10,0)'); g.addColorStop(0.45, 'rgba(6,6,10,0.72)'); g.addColorStop(1, 'rgba(6,6,10,0.72)'); cx.fillStyle = g; cx.fillRect(1300, 2380, 860, 320); }
+  { const g = cx.createLinearGradient(0, 120, 0, 400); g.addColorStop(0, 'rgba(6,6,10,0.7)'); g.addColorStop(1, 'rgba(6,6,10,0)'); cx.fillStyle = g; cx.fillRect(1500, 0, 660, 400); }
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

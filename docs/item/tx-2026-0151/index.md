@@ -11,7 +11,7 @@ The authors include radiologists at the University of Texas MD Anderson Cancer C
 - Public access: Write to the decider
 - Take part: https://pubmed.ncbi.nlm.nih.gov/42716711/
 
-- Last checked: 2026-10-31
+- Last checked: 2026-11-03
 
 ## Dates
 
@@ -38,6 +38,8 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-29 · The MD Anderson and UTMB MRI model study is still unconfirmed on the federal literature index, which bars automated readers.
 - 2026-10-30 · The MD Anderson and UTMB study of the MRI model remains unconfirmed on the federal literature index, which still bars automated readers.
 - 2026-10-31 · The study's abstract on PubMed still reports the weaker score on patients outside the training cohort and still advises treating radiomics as exploratory.
+- 2026-11-03 · Checked and unchanged. The decision still stands as decided.
+- 2026-11-06 · The MD Anderson and UT Medical Branch MRI model result is unconfirmed today. PubMed served a cookie check in place of the abstract.
 
 ## Evidence
 

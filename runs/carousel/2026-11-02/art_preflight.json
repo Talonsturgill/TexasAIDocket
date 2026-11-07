@@ -1,0 +1,224 @@
+{
+  "version": 2,
+  "selected": [
+    1,
+    4,
+    9
+  ],
+  "inputs": {
+    "slides/slide-01.html": "2e3e74aedabd124e367280e9edb5583238c4a145098094535d136b3c9c07ceec",
+    "render/slide-01.png": "91ca7e781640e9f31a81d600302d3daa0d181fe8b25da8f989a6a3fea41bdca4",
+    "assets/js/deck/2026-11-02-sightline.js": "3ec0306c268f484eb6c613f056a444eb23373a62f64ee4cab64ad9ece66b7a14",
+    "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+    "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+    "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+    "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+    "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+    "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+    "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+    "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+    "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+    "slides/slide-04.html": "33c3ac6b66f712769c1b0c68299b35835d739da2981da6068c4f674307769962",
+    "render/slide-04.png": "f2137f872443e5145cb9c10fd81e83f06ba008a9d4dcd5d441361d076db87c6c",
+    "slides/slide-09.html": "3823f180430a3e350b2c27a7df430214e9781a4bafa688722faf2b67979c5f7d",
+    "render/slide-09.png": "0998d1613683017fc1e3387b77324868b9367a47f4e473925e76a39cbf6184d4"
+  },
+  "value_measurements": [
+    {
+      "frame": "slide-01.png",
+      "median_L": 4.2,
+      "mid": 0.044,
+      "dark": 0.813
+    },
+    {
+      "frame": "slide-04.png",
+      "median_L": 5.1,
+      "mid": 0.082,
+      "dark": 0.742
+    },
+    {
+      "frame": "slide-09.png",
+      "median_L": 1.8,
+      "mid": 0.118,
+      "dark": 0.776
+    }
+  ],
+  "review": {
+    "decision": "accept",
+    "reviewer": "carousel-art-director, ninth reading (frame 9; frame 1 kept from the eighth, frame 4 from the seventh)",
+    "inputs": {
+      "slides/slide-01.html": "2e3e74aedabd124e367280e9edb5583238c4a145098094535d136b3c9c07ceec",
+      "render/slide-01.png": "91ca7e781640e9f31a81d600302d3daa0d181fe8b25da8f989a6a3fea41bdca4",
+      "assets/js/deck/2026-11-02-sightline.js": "3ec0306c268f484eb6c613f056a444eb23373a62f64ee4cab64ad9ece66b7a14",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+      "slides/slide-04.html": "33c3ac6b66f712769c1b0c68299b35835d739da2981da6068c4f674307769962",
+      "render/slide-04.png": "f2137f872443e5145cb9c10fd81e83f06ba008a9d4dcd5d441361d076db87c6c",
+      "slides/slide-09.html": "3823f180430a3e350b2c27a7df430214e9781a4bafa688722faf2b67979c5f7d",
+      "render/slide-09.png": "0998d1613683017fc1e3387b77324868b9367a47f4e473925e76a39cbf6184d4"
+    },
+    "frames": [
+      {
+        "slide": 1,
+        "role": "cover",
+        "subject": "A tan street_dog mid trot on a straw parkway, warm in the pool against a dark navy chain link fence and a dim limestone house, inside four heavy coral corner marks. A dark A-pillar with a polished bevel runs up the far left edge, and a door sill crosses the bottom under the footer.",
+        "visual_consequence": "Without the headline it reads as a loose dog on a night street, seen from inside a car through a detection box, the survey's premise. Bold: median L 4.2, dark 0.813, the dog the brightest form.",
+        "weakness": "Only the type changed: the hook sets on three more even lines in the release's tense, clear of the pillar, and the dek ends well above the box. The art is pixel identical to the seventh reading. The raised forepaw is a smooth club and the footer sits on a slightly lighter sill band.",
+        "repair": "none required",
+        "encoding_reads": true,
+        "dominant_subject_finished": true,
+        "feed_legible": true,
+        "inputs": {
+          "slides/slide-01.html": "2e3e74aedabd124e367280e9edb5583238c4a145098094535d136b3c9c07ceec",
+          "render/slide-01.png": "91ca7e781640e9f31a81d600302d3daa0d181fe8b25da8f989a6a3fea41bdca4",
+          "assets/js/deck/2026-11-02-sightline.js": "3ec0306c268f484eb6c613f056a444eb23373a62f64ee4cab64ad9ece66b7a14",
+          "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+          "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+          "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+          "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+          "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+          "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+          "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+          "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+          "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de"
+        }
+      },
+      {
+        "slide": 4,
+        "role": "evidence",
+        "subject": "Two street_dog bodies on one parkway in front of the chain link fence, each fully inside its own coral box. On the left a warm filled mid brown lean dog, head below its withers, ears laid back, ribs showing. On the right a tan dog with a deeper chest, head up, ears pricked, tail raised, stepping forward.",
+        "visual_consequence": "Without the labels the two states read as carriage and build, so the release's call by appearance is drawn. The two closed boxes read as two separate detections. Bold: median L 5.1, dark 0.742.",
+        "weakness": "Unchanged from the sixth reading. The stray's tucked tail is a dark curve between its hind legs, its laid back ear a flat dark wedge, the tan dog's nose pad large and glossy, and the kerb and road bands under the labels flat noisy slabs.",
+        "repair": "none required",
+        "encoding_reads": true,
+        "dominant_subject_finished": true,
+        "feed_legible": true,
+        "inputs": {
+          "assets/js/deck/2026-11-02-sightline.js": "3ec0306c268f484eb6c613f056a444eb23373a62f64ee4cab64ad9ece66b7a14",
+          "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+          "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+          "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+          "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+          "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+          "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+          "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+          "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+          "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+          "slides/slide-04.html": "33c3ac6b66f712769c1b0c68299b35835d739da2981da6068c4f674307769962",
+          "render/slide-04.png": "f2137f872443e5145cb9c10fd81e83f06ba008a9d4dcd5d441361d076db87c6c"
+        }
+      },
+      {
+        "slide": 9,
+        "role": "close",
+        "subject": "The tan street_dog, about a quarter of the frame height, seen from behind and to its left on a broom finished walk in a warm pool, head turned toward a crossover far down the dark street whose body and two red tail lamps show at the right. A chain link fence recedes on the left and straw grass sits on the right.",
+        "visual_consequence": "Without the headline it reads as the dog still on its street watching the survey car leave in the dark. The hook gives the line to the director whose quote the dek carries. Bold: the darkest sky of the three and one lit subject in a pool.",
+        "weakness": "Only the type changed: the hook sets on two lines inside the margin and the quote closes at 'dogs' with the stop outside. The art is pixel identical to the eighth reading. The haunch terminator is firm but soft, the fence mesh shows faint dotted aliasing at native size, and the paws are smooth.",
+        "repair": "none required",
+        "encoding_reads": true,
+        "dominant_subject_finished": true,
+        "feed_legible": true,
+        "inputs": {
+          "assets/js/deck/2026-11-02-sightline.js": "3ec0306c268f484eb6c613f056a444eb23373a62f64ee4cab64ad9ece66b7a14",
+          "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+          "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+          "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+          "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+          "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+          "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+          "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+          "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+          "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+          "slides/slide-09.html": "3823f180430a3e350b2c27a7df430214e9781a4bafa688722faf2b67979c5f7d",
+          "render/slide-09.png": "0998d1613683017fc1e3387b77324868b9367a47f4e473925e76a39cbf6184d4"
+        }
+      }
+    ]
+  },
+  "plan": {
+    "hardest_frame": 4,
+    "visual_argument": "At the distance a car window camera works from, the two labels the release names are one kind of animal a few postures apart, a lean dog with its head low and tail tucked beside a fuller dog with its head up, each boxed in gold, so the reader sees that the call is made by appearance.",
+    "build_risk": "The kit has no dog. The chassis builds street_dog as one signed distance body meshed by K.sdfMesh with angulated hocks, fur normals and sheen; a tube built prototype read as a toy at 3 m, the SDF build read as a lean street dog at 5 m. Two dogs at about a fifth of the frame height must read as fur and anatomy and differ in build and pose without caricature. Fallback after one failed repair: move both to 8 m and let rim light and posture carry the two states.",
+    "distinct_from_recent": "No. 65 was a lastLight foundry interior with a primitive robot arm; this is an exterior residential street with an animal, a car and a phone, and one dark room. No. 64 was road paint at dusk, a surface study in plan; here asphalt is only ground and the reliefs are caliche on black clay. No. 63 was a brass balance in a case on a dais; there is no dais, case, brass or round object here."
+  },
+  "frame_inputs": {
+    "1": {
+      "slides/slide-01.html": "2e3e74aedabd124e367280e9edb5583238c4a145098094535d136b3c9c07ceec",
+      "render/slide-01.png": "91ca7e781640e9f31a81d600302d3daa0d181fe8b25da8f989a6a3fea41bdca4",
+      "assets/js/deck/2026-11-02-sightline.js": "3ec0306c268f484eb6c613f056a444eb23373a62f64ee4cab64ad9ece66b7a14",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de"
+    },
+    "4": {
+      "assets/js/deck/2026-11-02-sightline.js": "3ec0306c268f484eb6c613f056a444eb23373a62f64ee4cab64ad9ece66b7a14",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+      "slides/slide-04.html": "33c3ac6b66f712769c1b0c68299b35835d739da2981da6068c4f674307769962",
+      "render/slide-04.png": "f2137f872443e5145cb9c10fd81e83f06ba008a9d4dcd5d441361d076db87c6c"
+    },
+    "9": {
+      "assets/js/deck/2026-11-02-sightline.js": "3ec0306c268f484eb6c613f056a444eb23373a62f64ee4cab64ad9ece66b7a14",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+      "slides/slide-09.html": "3823f180430a3e350b2c27a7df430214e9781a4bafa688722faf2b67979c5f7d",
+      "render/slide-09.png": "0998d1613683017fc1e3387b77324868b9367a47f4e473925e76a39cbf6184d4"
+    }
+  },
+  "needs_review": [],
+  "shipped_inputs": {
+    "slides/slide-01.html": "2e3e74aedabd124e367280e9edb5583238c4a145098094535d136b3c9c07ceec",
+    "slide-01.webp": "dca25ea041b9abfc33cd5f481fc2378701e29df84241f881143c93d2556e50af",
+    "slides/slide-04.html": "33c3ac6b66f712769c1b0c68299b35835d739da2981da6068c4f674307769962",
+    "slide-04.webp": "4006b1cbef90335b77e3afb1b898f3db40312096f0db7ee3258c6763d5900b58",
+    "slides/slide-09.html": "3823f180430a3e350b2c27a7df430214e9781a4bafa688722faf2b67979c5f7d",
+    "slide-09.webp": "392779cc655b4291ca145e708d547bfb2a37f9e88e3083843d06ff833bb097d9"
+  },
+  "encodings": [
+    {
+      "to": "slide-01.webp",
+      "to_sha256": "dca25ea041b9abfc33cd5f481fc2378701e29df84241f881143c93d2556e50af",
+      "from_sha256": "91ca7e781640e9f31a81d600302d3daa0d181fe8b25da8f989a6a3fea41bdca4",
+      "psnr_db": 40.075
+    },
+    {
+      "to": "slide-04.webp",
+      "to_sha256": "4006b1cbef90335b77e3afb1b898f3db40312096f0db7ee3258c6763d5900b58",
+      "from_sha256": "f2137f872443e5145cb9c10fd81e83f06ba008a9d4dcd5d441361d076db87c6c",
+      "psnr_db": 40.78
+    },
+    {
+      "to": "slide-09.webp",
+      "to_sha256": "392779cc655b4291ca145e708d547bfb2a37f9e88e3083843d06ff833bb097d9",
+      "from_sha256": "0998d1613683017fc1e3387b77324868b9367a47f4e473925e76a39cbf6184d4",
+      "psnr_db": 40.377
+    }
+  ]
+}

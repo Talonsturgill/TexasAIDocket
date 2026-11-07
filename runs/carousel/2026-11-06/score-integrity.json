@@ -1,0 +1,82 @@
+{
+ "_note": "Scores, weighted score, hard fails and fixes as the integrity judge returned them, round 3 (the cap); each why abridged by the run.",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.2,
+   "why": "Dark register on most frames; kit primitives and grey middles: the cover's blocks, 3's mid-grey tread, 4's mannequin at another depth, 5's flat band, 7's noise strata, 8 a bar chart, 9's dead band."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.2,
+   "why": "One world; the motif changes state; the reliefs strobe from world to diagram three times."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.0,
+   "why": "Every numeral traces; the cover drops c7's modal; slide 4 joins c19's pipes and c26's columns with 'that pipe'; slide 3's picture labels six floor plates 'elsewhere'; c3 not listed in the first comment."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.8,
+   "why": "Clear what, who, when; safety concrete; nothing to act on."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 6.8,
+   "why": "Cover, 2, 3 pay; 6 turns; 5 repeats; 7 a tangent; the close never returns to safety."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.8,
+   "why": "Good opener; attribution-heavy deks with encoding disclaimers."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 5.0,
+   "why": "Lateral, racks and gate repeat no. 68 in the same basin; floodlit repeats no. 67."
+  }
+ ],
+ "weighted_score": 6.58,
+ "hard_fails": [],
+ "ship": true,
+ "artwork_weakest_frames": [
+  {
+   "slide": 7,
+   "problem": "Grey noise strata; dot rig; thin string.",
+   "fix": "Near-black strata, a low rake so only the groove and string catch an edge, a lit mast silhouette."
+  },
+  {
+   "slide": 8,
+   "problem": "A bar chart; weak casts; flat bands.",
+   "fix": "Higher relief, a 15 degree key, box ends at the left with raised rings."
+  },
+  {
+   "slide": 4,
+   "problem": "Mannequin at a different depth from the stands.",
+   "fix": "The person at the stand's base by the slips, side-lit, the cabin deleted."
+  },
+  {
+   "slide": 3,
+   "problem": "Six floor plates labelled 'elsewhere'.",
+   "fix": "Draw the six as a different surface off the floor, the pool only on the tread."
+  },
+  {
+   "slide": 9,
+   "problem": "Rack in the bottom quarter; dead band.",
+   "fix": "Lower and push the camera so the ten banded joints fill the middle third."
+  },
+  {
+   "slide": 1,
+   "problem": "Rounded blocks; blurred column.",
+   "fix": "Die pads, loom, grime, a mill-scale pipe with a hardband ring."
+  }
+ ]
+}

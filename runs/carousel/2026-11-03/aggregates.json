@@ -1,0 +1,112 @@
+{
+ "date": "2026-11-03",
+ "_note": "Every count, span and duration the deck states, with the claim it was quoted from or the figures.json key compute.py computed.",
+ "aggregates": [
+  {
+   "phrase": "three steps",
+   "slide": "slide-02.html",
+   "kind": "count",
+   "value": 3,
+   "computed_by": "compute.py figures.json scale_steps",
+   "from": [
+    "c9"
+   ],
+   "note": "the three steps c9 names: determine if a station is open, navigate to an available scale lane, adapt to different scale configurations"
+  },
+  {
+   "phrase": "Three calls",
+   "slide": "slide-02.html",
+   "kind": "count",
+   "value": 3,
+   "computed_by": "compute.py figures.json scale_steps",
+   "from": [
+    "c9"
+   ],
+   "note": "the same three steps, as the kicker"
+  },
+  {
+   "phrase": "500,000 commercial driverless miles",
+   "slide": "slide-04.html",
+   "kind": "count",
+   "value": 500000,
+   "quoted_from": "c2",
+   "quote": "in September the Aurora Driver surpassed 500,000 commercial driverless miles, maintaining 100% on-time delivery, since launch.",
+   "note": "quoted"
+  },
+  {
+   "phrase": "six weeks",
+   "slide": "slide-05.html",
+   "kind": "duration",
+   "value": 6,
+   "quoted_from": "c12",
+   "quote": "Reflecting a production ramp about six weeks behind our prior plan, we now expect 2026 revenue of approximately $9 million",
+   "note": "quoted"
+  },
+  {
+   "phrase": "20 trucks",
+   "slide": "slide-05.html",
+   "kind": "count",
+   "value": 20,
+   "quoted_from": "c11",
+   "quote": "we now expect to achieve our targeted production rate of 20 trucks per week in early December.",
+   "note": "quoted"
+  },
+  {
+   "phrase": "257 million operating loss",
+   "slide": "slide-06.html",
+   "kind": "count",
+   "value": 257,
+   "quoted_from": "c14",
+   "quote": "Third quarter operating loss, including stock-based compensation (SBC), totaled $257 million.",
+   "note": "quoted"
+  },
+  {
+   "phrase": "500 trucks",
+   "slide": "slide-07.html",
+   "kind": "count",
+   "value": 500,
+   "quoted_from": "c3",
+   "quote": "Charger Logistics has selected Aurora to scale their autonomous fleet with an MOU to own and operate 500 trucks through our DaaS business model",
+   "note": "quoted"
+  },
+  {
+   "phrase": "200 trucks",
+   "slide": "slide-09.html",
+   "kind": "count",
+   "value": 200,
+   "quoted_from": "c15",
+   "quote": "We anticipate exceeding the 200-truck milestone by the end of February.",
+   "note": "quoted"
+  },
+  {
+   "phrase": "six weeks",
+   "slide": "caption.txt",
+   "kind": "duration",
+   "value": 6,
+   "quoted_from": "c12",
+   "quote": "Reflecting a production ramp about six weeks behind our prior plan, we now expect 2026 revenue of approximately $9 million",
+   "note": "quoted"
+  },
+  {
+   "phrase": "257 million operating loss",
+   "slide": "caption.txt",
+   "kind": "count",
+   "value": 257,
+   "quoted_from": "c14",
+   "quote": "Third quarter operating loss, including stock-based compensation (SBC), totaled $257 million.",
+   "note": "quoted"
+  },
+  {
+   "phrase": "two first party accounts",
+   "slide": "first_comment.txt",
+   "kind": "count",
+   "value": 2,
+   "computed_by": "sources_block.py, the distinct documents behind the printed claim ids",
+   "from": [
+    "c1",
+    "c21"
+   ],
+   "note": "the shareholder letter and the September 23rd release"
+  }
+ ]
+}

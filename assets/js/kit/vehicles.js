@@ -710,7 +710,7 @@ export function install(K, THREE, TXT) {
   K.define('semi_truck', {
     size: [2.9, 4.1, 21.9],
     options: { seed: 1, color: null, trailer: true, trailerColor: 0xeeeeea, lettering: null, sensors: null, podColor: 0xe9ebed, visor: true },
-    note: 'Class 8 sleeper tractor (long hood, chrome stacks and tanks) with a 53 ft dry van; trailer:false for bobtail. sensors: "pods" (mirror sensor pods in place of the mirrors), "roof" (a roof sensor bar with a spinning lidar), "full" (both, plus bumper radar) fits an autonomous retrofit. visor:false drops the exterior sun visor. Two-piece windscreen that carries the sky, a recessed grille with a chrome surround and twin round lamps in chrome bezels, so it holds a close crop. Origin at the centre of the coupled footprint.',
+    note: 'Class 8 sleeper tractor (long hood, chrome stacks and tanks) with a 53 ft dry van; trailer:false for bobtail. sensors: "pods" (mirror sensor pods in place of the mirrors), "roof" (a roof sensor bar with a spinning lidar), "full" (both, plus bumper radar) fits an autonomous retrofit. visor:false drops the exterior sun visor. Two-piece windscreen in flat pressed posts and rubber gaskets that carries the sky, coated side glass, a door outline with hinges, a keyed handle and grab handles, a sleeper baggage door, ribbed steps, a bumper step with tow hooks, a recessed grille with a chrome surround and twin round lamps in chrome bezels, so it holds a close crop. Origin at the centre of the coupled footprint.',
     make(o, r) {
       const G = new THREE.Group(), T = new THREE.Group();
       const P = o.color != null ? paint(o.color, 1) : paint(pick(r, [0xf0f0ec, 0x0f1012, 0x7c1416, 0x1b2f4f, 0x5c6066, 0x2e5a3a, 0xb4b8bc]), 1);
@@ -754,9 +754,24 @@ export function install(K, THREE, TXT) {
       }
       // the outer surface runs (z, y) = (-1.9, 2.3) to (-2.28, 3.02); its outward normal is (0.885, 0.467)
       const onScreen = (x, u, off) => [x, 2.3 + 0.72 * u + 0.467 * off, -1.9 + 0.02 - 0.38 * u + 0.885 * off];
-      bar(onScreen(0, -0.02, 0.012), onScreen(0, 1.0, 0.012), 0.04, P, T, 12);                        // centre post
+      /* THE PILLARS ARE PRESSED POSTS, NOT TUBES (weekly pass 2026-11-03). No. 67's judges, frame 8 in
+       * every round: "a black-card windshield with tube pillars". The centre post and both A pillars
+       * were round bars laid on the glass, which no cab has and which catch light as a pipe would.
+       * Each is now a flat-faced bevelled post set along the screen's own slope, and each pane sits in
+       * a black rubber gasket top and bottom, so the screen reads as glazing set into a cab. */
+      const screenTilt = Math.atan2(-0.38, 0.72), screenLen = Math.hypot(0.72, 0.38);
+      const screenPost = (x, w, d, off, mat, u0, u1) => {
+        const a = onScreen(x, u0 != null ? u0 : -0.02, off), b = onScreen(x, u1 != null ? u1 : 1.0, off);
+        const pst = RB(w, screenLen * ((u1 != null ? u1 : 1.0) - (u0 != null ? u0 : -0.02)), d, Math.min(w, d) * 0.35, mat);
+        pst.position.set(x, (a[1] + b[1]) / 2, (a[2] + b[2]) / 2); pst.rotation.x = screenTilt; T.add(pst); return pst;
+      };
+      screenPost(0, 0.07, 0.035, 0.014, P);                                                                 // centre post
+      for (const s of [1, -1]) for (const u of [0.0, 1.0]) {
+        const gk = RB(paneW + 0.03, 0.032, 0.02, 0.008, M.trim());
+        const q = onScreen(s * (paneW / 2 + 0.035), u, 0.02); gk.position.set(q[0], q[1], q[2]); gk.rotation.x = screenTilt; T.add(gk);
+      }
       for (const s of [1, -1]) {
-        bar(onScreen(s * hw - s * 0.06, 0.0, 0.016), onScreen(s * hw - s * 0.06, 1.0, 0.016), 0.03, P, T, 10);   // A pillar edge
+        screenPost(s * hw - s * 0.06, 0.09, 0.05, 0.02, P, 0.0, 1.0);                                       // A pillar
         bar(onScreen(s * 0.95, 0.07, 0.022), onScreen(s * 0.25, 0.13, 0.022), 0.009, M.trim(), T, 6);      // wiper blade
         bar(onScreen(s * 0.97, 0.03, 0.03), onScreen(s * 0.6, 0.1, 0.03), 0.012, M.trim(), T, 6);           // wiper arm
       }
@@ -766,11 +781,22 @@ export function install(K, THREE, TXT) {
         for (const s of [1, -1]) { const br = RB(0.04, 0.12, 0.3, 0.01, P); br.position.set(s * (hw - 0.12), vz[1] + 0.02, vz[2] + 0.04); T.add(br); }
       }
       for (const s of [1, -1]) {
-        sideWindow(T, [[-2.0, 2.3], [-2.3, 2.92], [-2.95, 2.92], [-2.95, 2.3]], s * hw, s);
-        sideWindow(T, [[-3.9, 2.55], [-3.55, 2.55], [-3.55, 2.75], [-3.9, 2.75]], s * hw, s);   // sleeper bunk window
+        /* the side glass takes the windscreen's coated glass, so it carries the sky or the yard's lamps
+         * instead of printing as a black card (no. 67 frame 8), with a vent wing post at the front */
+        const coated = (pts) => { T.add(sidePane(grow(pts, 0.025), s * hw + s * 0.004, 0.012, M.trim())); T.add(sidePane(pts, s * hw + s * 0.011, 0.008, wsGlass, 0.003)); };
+        coated([[-2.0, 2.3], [-2.3, 2.92], [-2.95, 2.92], [-2.95, 2.3]]);
+        coated([[-3.9, 2.55], [-3.55, 2.55], [-3.55, 2.75], [-3.9, 2.75]]);                     // sleeper bunk window
+        box(0.02, 0.6, 0.03, M.trim(), s * (hw + 0.016), 2.3, -2.3, 0.006, T);                           // vent wing post
         // side fairings under the cab and the steps
         box(0.06, 0.7, 2.2, P, s * (hw - 0.02), 0.5, -3.55, 0.03, T);
-        for (const y of [0.55, 0.85]) box(0.3, 0.04, 0.5, M.chrome(), s * (hw - 0.1), y, -2.2, 0.01, T);
+        /* THE STEPS (weekly pass 2026-11-03): two treads were two floating chrome plates. Now each is an
+         * alloy tread with raised ribs on a dark riser box hung from the cab, the way a Class 8 step is. */
+        box(0.04, 0.55, 0.52, M.frame(), s * (hw - 0.27), 0.45, -2.2, 0.01, T);                            // step hanger
+        for (const y of [0.55, 0.85]) {
+          box(0.3, 0.04, 0.5, M.alloy(), s * (hw - 0.1), y, -2.2, 0.01, T);
+          for (let i = 0; i < 5; i++) box(0.26, 0.012, 0.018, M.alloy(), s * (hw - 0.1), y + 0.04, -2.4 + i * 0.1, 0.004, T);
+          box(0.3, 0.12, 0.02, M.frame(), s * (hw - 0.1), y - 0.12, -1.96, 0.005, T);                       // riser lip
+        }
         // chrome fuel tank
         const tk = new THREE.Mesh(new THREE.CylinderGeometry(0.33, 0.33, 1.25, 36), M.chrome()); tk.rotation.x = Math.PI / 2; tk.position.set(s * (hw - 0.25), 0.72, -2.9); T.add(tk);
         for (const z of [-2.5, -3.3]) { const st = new THREE.Mesh(new THREE.TorusGeometry(0.335, 0.012, 6, 36), M.frame()); st.position.set(s * (hw - 0.25), 0.72, z); T.add(st); }
@@ -779,13 +805,37 @@ export function install(K, THREE, TXT) {
         const shield = new THREE.Mesh(new THREE.CylinderGeometry(0.115, 0.115, 1.0, 24), K.mat('v-shield', { color: 0x9da2a6, metalness: 0.9, roughness: 0.4 })); shield.position.set(s * (hw - 0.12), 2.2, -4.88); T.add(shield);
         // air cleaner canister beside the cowl
         const ac = new THREE.Mesh(new THREE.CylinderGeometry(0.2, 0.2, 0.8, 28), M.chrome()); ac.position.set(s * 1.12, 1.9, -1.75); T.add(ac);
+        // its clamp bands and domed rain cap, so the canister reads as a filter housing and not a black tube
+        for (const y of [1.62, 2.18]) { const cb = new THREE.Mesh(new THREE.TorusGeometry(0.205, 0.014, 6, 32), M.frame()); cb.rotation.x = Math.PI / 2; cb.position.set(s * 1.12, y, -1.75); T.add(cb); }
+        const cap = new THREE.Mesh(new THREE.SphereGeometry(0.21, 28, 10, 0, Math.PI * 2, 0, Math.PI / 2), M.chrome()); cap.scale.y = 0.35; cap.position.set(s * 1.12, 2.3, -1.75); T.add(cap);
         // mud flaps
         box(0.6, 0.62, 0.02, M.trim(), s * 0.93, 0.12, d2 - 0.75, 0, T);
         // fenders over the drive tandem (quarter fenders)
         box(0.66, 0.03, 0.6, M.chrome(), s * 0.93, 1.1, d1 + 0.45, 0.01, T);
       }
       seam(T, hw, -1.98, 1.2, -1.98, 2.3); seam(T, hw, -3.1, 1.2, -3.1, 2.9);
+      /* THE DOOR AND THE SLEEPER SIDE (weekly pass 2026-11-03). No. 67's frame 8, every round: "a flat
+       * lavender-blue side panel in the mid tones", the deck's brightest mid tone, because the cab and
+       * sleeper side was one painted slab with two vertical seams. A cab door is a closed outline with
+       * a keyed handle, hung on hinges and flanked by chrome grab handles at the door's front pillar and the
+       * sleeper edge; a sleeper carries a baggage door low on its side. Each breaks the slab where a real one
+       * does and catches the key on its own edge. */
+      seam(T, hw, -1.98, 1.22, -3.1, 1.22); seam(T, hw, -2.32, 2.99, -3.1, 2.99); seam(T, hw, -1.98, 2.3, -2.32, 2.99);
       handle(T, hw, 1.9, -2.9, M.chrome());
+      for (const s of [1, -1]) {
+        const lk = new THREE.Mesh(new THREE.CylinderGeometry(0.014, 0.014, 0.02, 16), M.chrome()); lk.rotation.z = Math.PI / 2; lk.position.set(s * (hw + 0.012), 1.84, -2.98); T.add(lk);
+        for (const y of [1.45, 2.55]) box(0.03, 0.14, 0.05, M.chrome(), s * (hw + 0.01), y, -1.99, 0.008, T);   // hinges
+        for (const [gz, y0, y1] of [[-2.06, 1.5, 2.25], [-3.2, 1.35, 2.55]]) {                             // grab handles
+          bar([s * (hw + 0.07), y0, gz], [s * (hw + 0.07), y1, gz], 0.016, M.chrome(), T, 10);
+          for (const y of [y0, y1]) bar([s * hw, y, gz], [s * (hw + 0.075), y, gz], 0.012, M.chrome(), T, 8);
+        }
+        // the sleeper baggage door: its outline, a recessed paddle latch and a drip rail over it
+        seam(T, hw, -3.45, 1.3, -4.45, 1.3); seam(T, hw, -3.45, 2.1, -4.45, 2.1);
+        seam(T, hw, -3.45, 1.3, -3.45, 2.1); seam(T, hw, -4.45, 1.3, -4.45, 2.1);
+        box(0.012, 0.06, 0.16, M.well(), s * (hw + 0.003), 1.82, -4.25, 0.004, T);
+        box(0.018, 0.03, 0.12, M.chrome(), s * (hw + 0.008), 1.84, -4.25, 0.006, T);
+        box(0.025, 0.02, 1.05, M.trim(), s * (hw + 0.01), 2.14, -3.95, 0.006, T);
+      }
       const SENS = o.sensors === 'full' ? { pods: 1, roof: 1, radar: 1 } : o.sensors === 'pods' ? { pods: 1 } : o.sensors === 'roof' ? { roof: 1 } : {};
       if (!SENS.pods) mirror(T, hw, 2.3, -1.95, M.chrome(), true);
       if (o.sensors) autonomyKit(T, SENS, hw, o.podColor);
@@ -805,6 +855,13 @@ export function install(K, THREE, TXT) {
       for (let i = 0; i < nbar; i++) box(0.016, gy - 2 * gt + 0.01, 0.05, M.chrome(), -inner / 2 + inner * (i + 0.5) / nbar, gyc - (gy - 2 * gt + 0.01) / 2, 0.035, 0.004, T);
       box(gx - 2 * gt, 0.03, 0.06, M.chrome(), 0, gyc - 0.015, 0.05, 0.008, T);                               // the crossbar
       const fb = RB(2.4, 0.42, 0.3, 0.08, M.chrome()); fb.position.set(0, 0.72, 0.05); T.add(fb);
+      /* the bumper is not a bar of chrome (no. 67 frame 3, "the hood and grille show primitive geometry"):
+       * a pressed centre step, two tow hooks under it, a rubber air dam along its foot and an emblem
+       * over the grille. A chrome crown strip down the hood was tried and read as a scratch, so it is not here */
+      box(0.9, 0.035, 0.16, M.trim(), 0, 0.93, 0.15, 0.01, T);
+      for (const s of [1, -1]) { const hk = new THREE.Mesh(new THREE.TorusGeometry(0.06, 0.018, 8, 20, Math.PI * 1.2), M.frame()); hk.rotation.y = Math.PI / 2; hk.rotation.z = -Math.PI * 0.6; hk.position.set(s * 0.62, 0.48, 0.16); T.add(hk); }
+      box(2.2, 0.07, 0.06, M.trim(), 0, 0.44, 0.08, 0.02, T);
+      { const em = RB(0.22, 0.07, 0.03, 0.02, M.chrome()); em.position.set(0, 1.95, 0.0); T.add(em); }
       for (const s of [1, -1]) {
         const bz = RB(0.33, 0.2, 0.06, 0.035, M.chrome()); bz.position.set(s * 0.78, 1.52, 0.02); T.add(bz);
         box(0.29, 0.16, 0.01, M.well(), s * 0.78, 1.44, 0.05, 0, T);

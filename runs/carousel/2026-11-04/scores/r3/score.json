@@ -1,0 +1,232 @@
+{
+ "weighted_score": 6.89,
+ "judges": [
+  6.77,
+  6.89,
+  6.75
+ ],
+ "spread": 0.14,
+ "criteria": {
+  "artwork_craft": {
+   "score": 6.2,
+   "weight": 0.22,
+   "judges": [
+    6.3,
+    6.2,
+    6.0
+   ]
+  },
+  "deck_coherence": {
+   "score": 6.8,
+   "weight": 0.12,
+   "judges": [
+    7.0,
+    6.8,
+    6.8
+   ]
+  },
+  "claim_integrity": {
+   "score": 8.0,
+   "weight": 0.2,
+   "judges": [
+    7.0,
+    8.0,
+    8.5
+   ]
+  },
+  "story_and_stakes": {
+   "score": 6.5,
+   "weight": 0.16,
+   "judges": [
+    6.5,
+    6.5,
+    6.0
+   ]
+  },
+  "sequence_and_momentum": {
+   "score": 7.0,
+   "weight": 0.1,
+   "judges": [
+    7.0,
+    7.0,
+    6.5
+   ]
+  },
+  "voice": {
+   "score": 7.2,
+   "weight": 0.1,
+   "judges": [
+    7.5,
+    7.2,
+    7.0
+   ]
+  },
+  "variety": {
+   "score": 6.5,
+   "weight": 0.1,
+   "judges": [
+    6.5,
+    6.5,
+    6.0
+   ]
+  }
+ },
+ "hard_fails": [],
+ "hard_fails_by_judge": [],
+ "ship": true,
+ "threshold": 8.0,
+ "over_threshold": false,
+ "method": "per-criterion median across three judges, then weighted by the rubric",
+ "contested": [
+  "claim_integrity"
+ ],
+ "artwork_weakest_frames": [
+  {
+   "slide": 3,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Dead left half; a tangle with no single read of the rod.",
+     "fix": "Rod and stuffing box right of centre filling the lower two thirds, rimmed from behind, ladder out of the near plane."
+    },
+    {
+     "judge": 2,
+     "problem": "Untextured primitives, dead left half, footer on the column.",
+     "fix": "Camera about 0.6 m right and lower; a hard work light on the rod; grime on the tee and flanges; keep the column off the footer."
+    },
+    {
+     "judge": 3,
+     "problem": "Primitive wellhead and a ladder as the most legible object; bar, bridle and rod highlight don't read; empty left.",
+     "fix": "Camera about 1 m left and closer so the rod and bar run full height through the centre right with one rim; crop the ladder out."
+    }
+   ]
+  },
+  {
+   "slide": 7,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Coin pictograms in a straight-on grid; lit scrub behind.",
+     "fix": "Camera about 25 degrees off axis at 1.0 m, worn steel joints, delete the scrub."
+    },
+    {
+     "judge": 2,
+     "problem": "Flat white rings read as a dot chart; flat stands; a moire object; empty bottom.",
+     "fix": "Bevelled tool joints with worn faces and a key rim; camera to about 1.0 m pushed in; delete the background object."
+    },
+    {
+     "judge": 3,
+     "problem": "Flat white rings, stack overhang, untextured stands, blobs behind.",
+     "fix": "Bevelled tool-joint lips in dark worn steel, stacks centred on racks, background props deleted."
+    }
+   ]
+  },
+  {
+   "slide": 5,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Square bars; flat tag; a two-bar chart.",
+     "fix": "Semicircular height profile, round couplings with flats, lit brass tag on a wire with a cast."
+    },
+    {
+     "judge": 2,
+     "problem": "Stepped two-tone rods, square couplings, flat tag, dead band.",
+     "fix": "Round height field with a specular; round couplings with flats; raised brass tag with a cast; rods up about 150 px."
+    },
+    {
+     "judge": 3,
+     "problem": "A bar chart of two flat rods; a flat tag.",
+     "fix": "Round profile with a specular streak; lit brass tag wired to the coupling."
+    }
+   ]
+  },
+  {
+   "slide": 1,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Unlit silhouette, no rim.",
+     "fix": "Key about 15 degrees toward camera or a rim behind the beam."
+    },
+    {
+     "judge": 2,
+     "problem": "Cover jack near-pure black; only the plastic crank lit.",
+     "fix": "A warm back rim at 10 to 20 degrees opposite the camera; worn paint on the crank."
+    },
+    {
+     "judge": 3,
+     "problem": "Silhouette without rim; the pale crank is the brightest shape.",
+     "fix": "Narrow rim key behind the jack; crank exposure below the beam's."
+    }
+   ]
+  },
+  {
+   "slide": 2,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "A flat grey slab with stamped bars.",
+     "fix": "Raise the curl and clip, a fibre bump, a lower key for long casts, near-white paper on black steel."
+    },
+    {
+     "judge": 2,
+     "problem": "Mid-grey page, flat curl shadow, box clip.",
+     "fix": "Raking pool to near white at the edge; a curl with real height; a wire clip."
+    }
+   ]
+  },
+  {
+   "slide": 4,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Periodic corrugated stripes; a small jack.",
+     "fix": "Noise bedding; camera in so the jack stands at least 200 px."
+    },
+    {
+     "judge": 2,
+     "problem": "Corrugated ribbing; small black jack; long leaders.",
+     "fix": "Noise bedding; camera in about 30 percent; shorter leaders."
+    }
+   ]
+  },
+  {
+   "slide": 6,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "Mid-tone olive frame, flat plank and target, cropped base.",
+     "fix": "Darker tank albedo with one raking edge; camera up so the wall and contact enter; a lit enamel float casting on the board."
+    }
+   ]
+  },
+  {
+   "slide": 9,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 3,
+     "problem": "Low-poly worker under the cite.",
+     "fix": "Move the worker into the gate opening, backlit, lower its contrast."
+    }
+   ]
+  }
+ ],
+ "rounds_derived": 3,
+ "rounds": 3,
+ "rounds_source": "this module's own log of cards it has scored",
+ "rounds_declared": 3,
+ "at_cap": true,
+ "rung": null,
+ "shortfall": "at the round cap the finished deck ships at 6.89, 1.11 under the 8.0 top rung. Name that in the email and the run record",
+ "craft_floor": "capped",
+ "craft_note": "at the round cap the craft floor stands down. The art median 6.2 is under 8.5 and the deck ships as it is. Name it in the run record"
+}

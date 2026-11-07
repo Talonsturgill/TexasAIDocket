@@ -1,0 +1,1990 @@
+{
+  "canvas": {
+    "width": 1080,
+    "height": 1350,
+    "scale": 2.0,
+    "px": [
+      2160,
+      2700
+    ]
+  },
+  "text_window": 320,
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "png": "slide-01.png",
+      "console_errors": [
+        "TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(238, 234, 227)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Built for light, waiting on power",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 211,
+          "font_px": 107.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(238, 234, 227)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              136,
+              617,
+              132
+            ],
+            [
+              80,
+              241,
+              754,
+              132
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Applied Optoelectronics, a Sugar Land maker of data center optics, says its 2027 expansion plan in the United States will take longer. It cites a longer than expected wait for electrical power, among other construction issues. The bay is drawn to illustrate.",
+          "x": 82,
+          "y": 387,
+          "w": 860,
+          "h": 214,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(210, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              387,
+              771,
+              42
+            ],
+            [
+              82,
+              429,
+              826,
+              42
+            ],
+            [
+              82,
+              472,
+              854,
+              42
+            ],
+            [
+              82,
+              515,
+              859,
+              42
+            ],
+            [
+              82,
+              558,
+              366,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The 2027 US plan",
+          "x": 80,
+          "y": 80,
+          "w": 265,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(210, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              265,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "01 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(210, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c1 c7",
+          "x": 80,
+          "y": 1234,
+          "w": 80,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(210, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              80,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 10637,
+      "ok": true,
+      "load_ms": 248,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 24.7,
+          "variance": 2585
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-02.html",
+      "png": "slide-02.png",
+      "console_errors": [
+        "TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot shows its room"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(238, 234, 227)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "It makes optics for AI data centers",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 211,
+          "font_px": 107.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(238, 234, 227)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              136,
+              812,
+              132
+            ],
+            [
+              80,
+              241,
+              662,
+              132
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The company makes optical transceivers for internet and AI data centers. Its chief executive says the company believes demand for AI-related optical technologies is accelerating. The module is drawn to illustrate.",
+          "x": 82,
+          "y": 387,
+          "w": 860,
+          "h": 171,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(210, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              387,
+              835,
+              42
+            ],
+            [
+              82,
+              429,
+              778,
+              42
+            ],
+            [
+              82,
+              472,
+              790,
+              42
+            ],
+            [
+              82,
+              515,
+              687,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The part",
+          "x": 80,
+          "y": 80,
+          "w": 132,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(210, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              132,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "02 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(210, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c5 c7 c17",
+          "x": 80,
+          "y": 1234,
+          "w": 145,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(210, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              145,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 16060,
+      "ok": true,
+      "load_ms": 175,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 44,
+          "variance": 593
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-03.html",
+      "png": "slide-03.png",
+      "console_errors": [
+        "TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(238, 234, 227)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Laser chips, made only in Sugar Land",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 195,
+          "font_px": 99.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(238, 234, 227)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              137,
+              730,
+              122
+            ],
+            [
+              80,
+              235,
+              767,
+              122
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The quarterly report puts the laser design team there too. The company also leases about 209,665 square feet on Gillingham Lane in Sugar Land, used mainly for manufacturing. The plant is drawn to its stated floor area, not its shape.",
+          "x": 82,
+          "y": 371,
+          "w": 860,
+          "h": 214,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(210, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              371,
+              846,
+              42
+            ],
+            [
+              82,
+              414,
+              810,
+              42
+            ],
+            [
+              82,
+              457,
+              680,
+              42
+            ],
+            [
+              82,
+              499,
+              844,
+              42
+            ],
+            [
+              82,
+              542,
+              200,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Sugar Land",
+          "x": 80,
+          "y": 80,
+          "w": 166,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(210, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              166,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "03 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(210, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c19 c8 c9",
+          "x": 80,
+          "y": 1234,
+          "w": 145,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(210, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              145,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 8639,
+      "ok": true,
+      "load_ms": 159,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 29.2,
+          "variance": 1105
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-04.html",
+      "png": "slide-04.png",
+      "console_errors": [
+        "TXBENCH: RELIEF {\"height_range\":39.75643832551083,\"materials\":6,\"cast_fraction\":0.20495010288065843,\"area\":1,\"render_ms\":13931.5}"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(238, 234, 227)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The largest of the four is not built yet",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 195,
+          "font_px": 99.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(238, 234, 227)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              137,
+              898,
+              122
+            ],
+            [
+              80,
+              235,
+              562,
+              122
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The company has leased two Houston buildings on Chimney Rock Road that are still to be built. Each property is drawn as a square of its stated floor area. It will also lease three other Houston buildings.",
+          "x": 82,
+          "y": 371,
+          "w": 860,
+          "h": 171,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(210, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              371,
+              743,
+              42
+            ],
+            [
+              82,
+              414,
+              852,
+              42
+            ],
+            [
+              82,
+              457,
+              786,
+              42
+            ],
+            [
+              82,
+              499,
+              538,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Sugar Land leased 209,665 sq ft",
+          "x": 84,
+          "y": 744,
+          "w": 223,
+          "h": 101,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(238, 234, 227)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              84,
+              743,
+              172,
+              35
+            ],
+            [
+              84,
+              777,
+              103,
+              35
+            ],
+            [
+              84,
+              811,
+              223,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Pearland owned 388,133 sq ft",
+          "x": 562,
+          "y": 596,
+          "w": 223,
+          "h": 101,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(238, 234, 227)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              562,
+              595,
+              137,
+              35
+            ],
+            [
+              562,
+              629,
+              86,
+              35
+            ],
+            [
+              562,
+              663,
+              223,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Chimney Rock to be built 356,186 sq ft",
+          "x": 84,
+          "y": 1099,
+          "w": 223,
+          "h": 101,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(238, 234, 227)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              84,
+              1098,
+              206,
+              35
+            ],
+            [
+              84,
+              1132,
+              189,
+              35
+            ],
+            [
+              84,
+              1166,
+              223,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Chimney Rock to be built 737,621 sq ft",
+          "x": 612,
+          "y": 910,
+          "w": 223,
+          "h": 101,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(238, 234, 227)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              612,
+              909,
+              206,
+              35
+            ],
+            [
+              612,
+              943,
+              189,
+              35
+            ],
+            [
+              612,
+              977,
+              223,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Four stated floor areas",
+          "x": 80,
+          "y": 80,
+          "w": 381,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(210, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              381,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "04 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(210, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c8 c10 c11 c16 c15",
+          "x": 80,
+          "y": 1234,
+          "w": 289,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(210, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              289,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 17241,
+      "ok": true,
+      "load_ms": 183,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 26.6,
+          "variance": 273.9
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-05.html",
+      "png": "slide-05.png",
+      "console_errors": [
+        "TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its room"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(238, 234, 227)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Half the floor by year end",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 195,
+          "font_px": 99.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(238, 234, 227)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              137,
+              542,
+              122
+            ],
+            [
+              80,
+              235,
+              461,
+              122
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The company expects equipment for over 500,000 pieces of 800G and 1.6 Tb products a month by the end of 2026, and capacity for over 1 million by the end of 2027. Each pad is one equal share.",
+          "x": 82,
+          "y": 371,
+          "w": 860,
+          "h": 171,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(210, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              371,
+              846,
+              42
+            ],
+            [
+              82,
+              414,
+              824,
+              42
+            ],
+            [
+              82,
+              457,
+              854,
+              42
+            ],
+            [
+              82,
+              499,
+              274,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The target",
+          "x": 80,
+          "y": 80,
+          "w": 166,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(210, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              166,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "05 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(210, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c3 c4",
+          "x": 80,
+          "y": 1234,
+          "w": 80,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(210, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              80,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 9933,
+      "ok": true,
+      "load_ms": 153,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 12.7,
+          "variance": 678.8
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-06.html",
+      "png": "slide-06.png",
+      "console_errors": [
+        "TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(238, 234, 227)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "One stake for each month to completion",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 195,
+          "font_px": 99.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(238, 234, 227)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              137,
+              750,
+              122
+            ],
+            [
+              80,
+              235,
+              848,
+              122
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The company entered into leases for the two Chimney Rock Road buildings on August 31st. The quarterly report anticipates substantial completion about 16 months later. The site is drawn to illustrate.",
+          "x": 82,
+          "y": 371,
+          "w": 860,
+          "h": 171,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(210, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              371,
+              792,
+              42
+            ],
+            [
+              82,
+              414,
+              833,
+              42
+            ],
+            [
+              82,
+              457,
+              849,
+              42
+            ],
+            [
+              82,
+              499,
+              432,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Chimney Rock Road",
+          "x": 80,
+          "y": 80,
+          "w": 282,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(210, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              282,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "06 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(210, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c11 c12",
+          "x": 80,
+          "y": 1234,
+          "w": 113,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(210, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              113,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 10639,
+      "ok": true,
+      "load_ms": 169,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 55.5,
+          "variance": 1660.9
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-07.html",
+      "png": "slide-07.png",
+      "console_errors": [
+        "TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(238, 234, 227)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The wait, in its own words",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 78,
+          "font_px": 80,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(238, 234, 227)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              140,
+              839,
+              98
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The chief financial officer, in the November 5th results release. The transformer is drawn to illustrate and stands for no named site or utility.",
+          "x": 82,
+          "y": 460,
+          "w": 860,
+          "h": 128,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(210, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              460,
+              794,
+              42
+            ],
+            [
+              82,
+              503,
+              838,
+              42
+            ],
+            [
+              82,
+              546,
+              391,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "\"We expect our 2027 capacity expansion plan in the US to take longer to complete due to longer than expected time to obtain necessary electrical power among other construction related issues.\"",
+          "x": 82,
+          "y": 254,
+          "w": 880,
+          "h": 184,
+          "font_px": 36,
+          "weight": "500",
+          "family": "Fraunces",
+          "color": "rgb(238, 234, 227)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              255,
+              853,
+              44
+            ],
+            [
+              82,
+              301,
+              803,
+              44
+            ],
+            [
+              82,
+              348,
+              839,
+              44
+            ],
+            [
+              82,
+              394,
+              690,
+              44
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The reason given",
+          "x": 80,
+          "y": 80,
+          "w": 265,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(210, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              265,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "07 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(210, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c1",
+          "x": 80,
+          "y": 1234,
+          "w": 32,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(210, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              32,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 11682,
+      "ok": true,
+      "load_ms": 164,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 43.8,
+          "variance": 2097.3
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-08.html",
+      "png": "slide-08.png",
+      "console_errors": [
+        "TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot shows its room"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(238, 234, 227)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "A hyperscale customer the release doesn't name",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 170,
+          "font_px": 86.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(238, 234, 227)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              138,
+              807,
+              107
+            ],
+            [
+              80,
+              223,
+              861,
+              107
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The chief executive says the company recently secured a multi-year strategic agreement with a Tier 1 hyperscale data center customer. The hall is drawn to illustrate.",
+          "x": 82,
+          "y": 346,
+          "w": 860,
+          "h": 128,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(210, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              346,
+              840,
+              42
+            ],
+            [
+              82,
+              388,
+              809,
+              42
+            ],
+            [
+              82,
+              431,
+              760,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The customer",
+          "x": 80,
+          "y": 80,
+          "w": 199,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(210, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              199,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "08 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(210, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c6",
+          "x": 80,
+          "y": 1234,
+          "w": 32,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(210, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              32,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 17318,
+      "ok": true,
+      "load_ms": 162,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 41.2,
+          "variance": 2369.3
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-09.html",
+      "png": "slide-09.png",
+      "console_errors": [
+        "TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot shows its room"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(238, 234, 227)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "A 2027 target, a wait for power",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 195,
+          "font_px": 99.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(238, 234, 227)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              137,
+              851,
+              122
+            ],
+            [
+              80,
+              235,
+              396,
+              122
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The same November 5th release expects capacity for over 1 million pieces of 800G and 1.6 Tb transceivers a month by the end of 2027. It says obtaining electrical power is taking longer than expected. It doesn't say how much of that capacity is in the United States.",
+          "x": 82,
+          "y": 371,
+          "w": 860,
+          "h": 214,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(210, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              371,
+              849,
+              42
+            ],
+            [
+              82,
+              414,
+              855,
+              42
+            ],
+            [
+              82,
+              457,
+              858,
+              42
+            ],
+            [
+              82,
+              499,
+              790,
+              42
+            ],
+            [
+              82,
+              542,
+              466,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "What comes next",
+          "x": 80,
+          "y": 80,
+          "w": 248,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(210, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              248,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "09 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(210, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c4 c1",
+          "x": 80,
+          "y": 1234,
+          "w": 80,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(210, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              80,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 14177,
+      "ok": true,
+      "load_ms": 162,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 19,
+          "variance": 833.2
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    }
+  ]
+}

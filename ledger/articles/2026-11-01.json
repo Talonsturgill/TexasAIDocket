@@ -1,0 +1,128 @@
+{
+ "_spec": {
+  "version": 1,
+  "purpose": "A standalone web edition of the archived visual story.",
+  "law": "Facts resolve to the original verified claim record. A layout rebuild does not reverify reporting.",
+  "written_by": "daily"
+ },
+ "section": "Universities",
+ "dek": {
+  "text": "Texas A&M plans an automated lab where robots mix, melt and test new alloys. A separate NSF platform is funded for six years and open to outside researchers.",
+  "claims": [
+   "c2",
+   "c8",
+   "c21",
+   "c27",
+   "c28"
+  ]
+ },
+ "introduction": [
+  {
+   "text": "[A {{money:c1}} grant is going to Texas A&M's Department of Materials Science and Engineering](c1). [It comes from the WoodNext Foundation and will help researchers build a campus facility](c2) [meant to use robotics and artificial intelligence to speed up the development of new alloys](c3). [The foundation's support will create what the university calls the Aggie AI Foundry](c5).",
+   "claims": [
+    "c1",
+    "c2",
+    "c3",
+    "c5"
+   ]
+  },
+  {
+   "text": "[Robots are to mix, melt and test the materials with computer controlled arms along an assembly line that takes samples](c8). [The university says existing self driving labs can't handle new metal alloys at temperatures up to {{number:c10}} degrees Celsius](c10). [Those labs focus on materials that are relatively easy to make](c11).",
+   "claims": [
+    "c8",
+    "c10",
+    "c11"
+   ]
+  }
+ ],
+ "sections": [
+  {
+   "heading": "Why software alone does not settle it",
+   "paragraphs": [
+    {
+     "text": "[Several dozen elements from the periodic table give AI roughly a trillion possible ways to mix them](c18). [Raymundo Arróyave says no computational tool anywhere in the world can predict how an alloy is going to behave](c17). That is the reason the plan ends in a furnace and a test rather than in a prediction.",
+     "claims": [
+      "c18",
+      "c17"
+     ]
+    },
+    {
+     "text": "[Arróyave leads PhaseForge](c29), [free open software paid for by a National Science Foundation award that uses machine learning](c30). [It applies machine learning to CALPHAD, a method that is decades old](c32), [and tells researchers whether a material they want to build can exist at all](c33). [It is distributed free online and anyone may contribute to it](c31).",
+     "claims": [
+      "c29",
+      "c30",
+      "c32",
+      "c33",
+      "c31"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "Who conceived it and who is paying",
+   "paragraphs": [
+    {
+     "text": "[Ibrahim Karaman, who heads the department](c14), [is one of the two researchers who conceived the foundry](c13). [Arróyave is the other](c15). [The two have published more than {{number:c16}} papers together](c16). [The university calls the foundry the first lab of its kind in academia, and that claim is its own](c12).",
+     "claims": [
+      "c14",
+      "c13",
+      "c15",
+      "c16",
+      "c12"
+     ]
+    },
+    {
+     "text": "[The WoodNext Foundation manages the philanthropy of the founder and chief executive of Roku](c4), [Anthony Wood, and his wife Susan](c5). [The money flows through a donor advised fund program called the WoodNext TAMU Fund](c6).",
+     "claims": [
+      "c4",
+      "c5",
+      "c6"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "A separate federal platform",
+   "paragraphs": [
+    {
+     "text": "[The National Science Foundation has a platform of its own at Texas A&M, the Autonomous Robotic Metallurgist](c20). [Its award record names the Texas A&M Engineering Experiment Station as recipient](c24) [and lists {{number:c25}} dollars obligated](c25) [of an estimated total of {{number:c26}} dollars](c26). [The award runs from {{date:c27}}](c27) [to {{date:c28}}](c28).",
+     "claims": [
+      "c20",
+      "c24",
+      "c25",
+      "c26",
+      "c27",
+      "c28"
+     ]
+    },
+    {
+     "text": "[NSF describes the platform as an open access facility](c21), [built to design, make, test and learn from new alloys](c22). [Its intended users include researchers at non-R1 and EPSCoR institutions](c23).",
+     "claims": [
+      "c21",
+      "c22",
+      "c23"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "What is a goal and what is a result",
+   "paragraphs": [
+    {
+     "text": "[Texas A&M says the automated process will cut alloy development from months to a week or less, which is a stated goal and not a measured result](c9). Neither of the university's two releases on the foundry gives an opening date or a construction timeline. The NSF award record gives its own dates, and those belong to the federal platform rather than to the WoodNext facility.",
+     "claims": [
+      "c9",
+      "c27",
+      "c28"
+     ]
+    }
+   ]
+  }
+ ],
+ "related": [
+  {
+   "id": "tx-2026-0229",
+   "label": "The Aggie AI Foundry in the record"
+  }
+ ]
+}

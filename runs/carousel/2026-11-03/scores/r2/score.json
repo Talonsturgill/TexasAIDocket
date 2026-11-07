@@ -1,0 +1,222 @@
+{
+ "weighted_score": 7.156,
+ "judges": [
+  7.11,
+  7.15,
+  7.14
+ ],
+ "spread": 0.04,
+ "criteria": {
+  "artwork_craft": {
+   "score": 6.9,
+   "weight": 0.22,
+   "judges": [
+    6.9,
+    6.5,
+    7.0
+   ]
+  },
+  "deck_coherence": {
+   "score": 7.5,
+   "weight": 0.12,
+   "judges": [
+    7.5,
+    7.5,
+    8.0
+   ]
+  },
+  "claim_integrity": {
+   "score": 8.0,
+   "weight": 0.2,
+   "judges": [
+    7.5,
+    8.0,
+    8.0
+   ]
+  },
+  "story_and_stakes": {
+   "score": 6.8,
+   "weight": 0.16,
+   "judges": [
+    6.8,
+    7.0,
+    6.5
+   ]
+  },
+  "sequence_and_momentum": {
+   "score": 7.0,
+   "weight": 0.1,
+   "judges": [
+    7.3,
+    7.0,
+    7.0
+   ]
+  },
+  "voice": {
+   "score": 7.0,
+   "weight": 0.1,
+   "judges": [
+    7.2,
+    7.0,
+    6.5
+   ]
+  },
+  "variety": {
+   "score": 6.5,
+   "weight": 0.1,
+   "judges": [
+    6.5,
+    7.0,
+    6.5
+   ]
+  }
+ },
+ "hard_fails": [],
+ "hard_fails_by_judge": [],
+ "ship": false,
+ "threshold": 8.0,
+ "over_threshold": false,
+ "method": "per-criterion median across three judges, then weighted by the rubric",
+ "threshold_dissents": [
+  "judge 1 refused on the threshold, not on a fault, and scored 7.11 against a 8.0 bar. That dissent is carried in the median",
+  "judge 2 refused on the threshold, not on a fault, and scored 7.15 against a 8.0 bar. That dissent is carried in the median",
+  "judge 3 refused on the threshold, not on a fault, and scored 7.14 against a 8.0 bar. That dissent is carried in the median"
+ ],
+ "threshold_dissents_by_judge": [
+  {
+   "judge": 1,
+   "score": 7.11,
+   "reason": "judge 1 refused on the threshold, not on a fault, and scored 7.11 against a 8.0 bar. That dissent is carried in the median"
+  },
+  {
+   "judge": 2,
+   "score": 7.15,
+   "reason": "judge 2 refused on the threshold, not on a fault, and scored 7.15 against a 8.0 bar. That dissent is carried in the median"
+  },
+  {
+   "judge": 3,
+   "score": 7.14,
+   "reason": "judge 3 refused on the threshold, not on a fault, and scored 7.14 against a 8.0 bar. That dissent is carried in the median"
+  }
+ ],
+ "artwork_weakest_frames": [
+  {
+   "slide": 4,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "A frontal grid of identical bobtails floats in black. The near rank's two end units are cropped to slivers (18 whole at 432 px), and the lower 40 percent of the frame is empty dark.",
+     "fix": "Pull the camera back from z 56 to about z 64 and lower the look target so both end tractors of the near rank sit whole inside the frame. Let the ranks drop about 120 px so their pool, casts and stall stripes fill the empty lower third."
+    },
+    {
+     "judge": 2,
+     "problem": "Twenty front-on bobtails in a thin band read as icons. The lower quarter is a dark dead zone, and the horizon tonal step sits behind dek lines 2 and 3.",
+     "fix": "Keep the frontal azimuth that shows all 20, but dolly the camera in about 35 percent and tilt down so the near rank's bumpers land at design y about 1150 and fill the lower half. Lower the far ground's fog so the horizon step falls below the dek's last line."
+    },
+    {
+     "judge": 3,
+     "problem": "Twenty tractors sit as a small icon array across the middle band.",
+     "fix": "Keep the frontal view that shows all 20, narrow the fov and drop the camera slightly so the near rank fills the lower third."
+    }
+   ]
+  },
+  {
+   "slide": 8,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "A blue-violet fill on the trailer slab and cab side breaks the neutral grade. The primitive trailer front fills the left third, there is no ground, and the beacon is dim.",
+     "fix": "Move the camera forward and right so the trailer leaves frame and the cab corner and beacon own it. Set the fill to the deck's neutral flood, and bring the shoulder under the front wheel into the pool."
+    },
+    {
+     "judge": 2,
+     "problem": "A lavender-blue key on the cab and trailer lights the camera-left flank. The trailer front is a flat primitive slab across the left third, and the beacon dome is dimmer than the headlamp.",
+     "fix": "Neutralise the sky IBL tint and swing the camera to the cab's right front quarter so the declared key rakes the hood and right flank, and raise the beacon's emissive until the dome is the brightest form in the frame."
+    },
+    {
+     "judge": 3,
+     "problem": "Kit tractor under a blue-violet cast reads as a toy. The beacon is a dull yellow dome with little spill, and with no ground or empty lane the frame doesn't show a stopped truck.",
+     "fix": "Make the cab_beacon strongly emissive with an amber point light that rakes the roof, hood and a strip of asphalt. Lower the camera so the dark shoulder and an empty lane appear in the bottom third. Neutralise the violet fill."
+    }
+   ]
+  },
+  {
+   "slide": 6,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The loss bar is a flat dark rectangle with a seam that splits it in two. The copper $9M tick sits in the 30 unit gap and reads as the loss bar's start, not as a length, and the lower third is empty.",
+     "fix": "Cut a primer bracket into the datum running from the billet's left edge (X0) to X0 + L9 with end ticks, so the $9 million reads as a length three times the billet's, and delete the mid-height seam on the loss bar."
+    },
+    {
+     "judge": 2,
+     "problem": "The loss bar is a flat pebbled navy rectangle with a stray mid-height hairline. The billet is a 14 px sliver, an empty band runs from y 700 to 1000, and the $9M tick's zero is off frame because the datum bleeds left.",
+     "fix": "Shorten the datum so its left end and the billet sit in frame at design x about 80, with the $9M tick scribed from that visible end, delete the leftover hairline, and show the bar's lit top face and long cast."
+    },
+    {
+     "judge": 3,
+     "problem": "The loss bar is a mid-grey textured slab with no bright edge, and the $9 million mark on the datum vanishes at feed size.",
+     "fix": "Lower the bar's albedo toward blued black and give its top bevel a raking key highlight. Raise the $9 million scribe into a primer stud with height and a cast on the datum."
+    }
+   ]
+  },
+  {
+   "slide": 3,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The right half is dead apart from one bollard. The boom reads as a kerb with no pivot or cabinet.",
+     "fix": "Add the boom's pivot housing and gate cabinet as a slide-local mesh at the boom's right end in the right third, lit by the headlamps."
+    },
+    {
+     "judge": 2,
+     "problem": "The right half is dark asphalt with a lone yellow bollard, and the boom shows no pivot or cabinet.",
+     "fix": "Stand the guard_gate's pivot cabinet on the lit concrete pad at the right edge, with the boom springing from it."
+    },
+    {
+     "judge": 3,
+     "problem": "The right half of the middle band is empty dark. The boom and yellow bollard float with no checkpoint structure.",
+     "fix": "In slide-03's own camera, yaw right and pull back so the boom's pivot cabinet and its pool of light fill the right third."
+    }
+   ]
+  },
+  {
+   "slide": 5,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "The rule reads as six flat mid-grey tiles under a bracket. The grooves have no visible depth and the face sits in the grey middle.",
+     "fix": "Cut the week grooves three times deeper and half as wide, and drop the key elevation so each groove's left wall goes black and its right lip takes a specular line while the face itself falls dark."
+    },
+    {
+     "judge": 3,
+     "problem": "At feed size the rule reads as a row of flat grey wall panels.",
+     "fix": "Narrow the rule, cut the six grooves deeper with lit upper edges, and drop the concrete above the rule darker."
+    }
+   ]
+  },
+  {
+   "slide": 9,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The far kerb is a thin band that stops abruptly in empty dark, and the 800 stalls between the kerbs read as a near-black band.",
+     "fix": "Raise the camera on the mast and turn the look toward the yard's centre column so the whole far kerb sits inside the frame (requires a fresh audition review)."
+    }
+   ]
+  }
+ ],
+ "rounds_derived": 2,
+ "rounds": 2,
+ "rounds_source": "this module's own log of cards it has scored",
+ "rounds_declared": 2,
+ "rung": 7.7,
+ "work_order": "no judge found a hard fail, and the median 7.156 is under this round's rung of 7.7. KEEP EDITING: fix the judges' named defects, re-render and re-score. At the round cap the finished deck ships whatever it scored. Start with the frames the judges charge the art for, in this order, slides 4, 8, 6, 3, 5, 9 (`artwork_weakest_frames`), one concrete change each",
+ "craft_floor": "pending, because a deck under its rung is sent back by the work order first"
+}

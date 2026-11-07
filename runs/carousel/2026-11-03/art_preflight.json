@@ -1,0 +1,223 @@
+{
+  "version": 2,
+  "selected": [
+    1,
+    2,
+    9
+  ],
+  "inputs": {
+    "slides/slide-01.html": "a84bdb4a4f7d624a6cbe9a73a8391f19911bc86b23476f7aff407ab312b2c4cf",
+    "render/slide-01.png": "fb009592d7acc83fcb6ff97d8170a098387c525c04c12fcacf57e99ea7f46a49",
+    "assets/js/deck/2026-11-03-scalelane.js": "05309d6fa8c12276564ca81b52e7268b0463f765112c0aeeb1fdfed0d576c32c",
+    "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+    "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+    "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+    "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+    "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+    "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+    "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+    "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+    "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+    "slides/slide-02.html": "fcea4383f480bcd229035861fdbd1471dd7deb0d0e2766b2ec47961cfcfd7065",
+    "render/slide-02.png": "a544f0c2cc9100a54a9f53262e15dea21e3458ba186aa2a68646cdd7523c7eb6",
+    "slides/slide-09.html": "74c21b8e8ac388aa28d0a80455218c9b92f657c0891b016d881024c7ba7fd07c",
+    "render/slide-09.png": "7bfca396d48c817489490e5931014901a6b51f3d2338822a25a51ad3606cf8e9"
+  },
+  "value_measurements": [
+    {
+      "frame": "slide-01.png",
+      "median_L": 0.8,
+      "mid": 0.143,
+      "dark": 0.638
+    },
+    {
+      "frame": "slide-02.png",
+      "median_L": 9.4,
+      "mid": 0.145,
+      "dark": 0.581
+    },
+    {
+      "frame": "slide-09.png",
+      "median_L": 7.3,
+      "mid": 0.088,
+      "dark": 0.669
+    }
+  ],
+  "review": {
+    "decision": "accept",
+    "inputs": {
+      "slides/slide-01.html": "a84bdb4a4f7d624a6cbe9a73a8391f19911bc86b23476f7aff407ab312b2c4cf",
+      "render/slide-01.png": "fb009592d7acc83fcb6ff97d8170a098387c525c04c12fcacf57e99ea7f46a49",
+      "assets/js/deck/2026-11-03-scalelane.js": "05309d6fa8c12276564ca81b52e7268b0463f765112c0aeeb1fdfed0d576c32c",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+      "slides/slide-02.html": "fcea4383f480bcd229035861fdbd1471dd7deb0d0e2766b2ec47961cfcfd7065",
+      "render/slide-02.png": "a544f0c2cc9100a54a9f53262e15dea21e3458ba186aa2a68646cdd7523c7eb6",
+      "slides/slide-09.html": "74c21b8e8ac388aa28d0a80455218c9b92f657c0891b016d881024c7ba7fd07c",
+      "render/slide-09.png": "7bfca396d48c817489490e5931014901a6b51f3d2338822a25a51ad3606cf8e9"
+    },
+    "frames": [
+      {
+        "slide": 1,
+        "role": "cover",
+        "subject": "The white kit tractor and 53 ft van, with its headlamps lit, on the diamond-tread steel scale deck between two yellow kerb rails. A corrugated scale house sits at left with its window toward the truck, and a green signal hangs on a mast arm against the black sky.",
+        "visual_consequence": "Even without the headline this reads as a weigh station at night, with a driverless-looking truck (roof sensor bar, side pods and lidar puck) rolling onto the scale under a green go signal. The rails converge from the bottom edge onto the cab. The flood rakes the cab's right side and the house corner, and the tractor sits on the deck with dark contact under its tyres and bumper. The deck has no hotspot, the apron under the footer is darkened without going muddy, and the signal glow stays tight to the lens. The source change to window.FIG left the rendered image byte-identical (the same PNG digest as the accepted reading).",
+        "weakness": "Minor surface faults only. The van's upper rear corner has a dark vertical smear about 30 design px tall at design x about 907, y 820 to 850, which reads as a shadow-map artefact rather than a seam. The house's two window panes are flat pale grey, with no interior, mullion depth or glow. The tractor's cast to the lower left is mostly lost in the dark under the van, so the contact shadow carries the seating alone.",
+        "repair": "none required",
+        "encoding_reads": true,
+        "dominant_subject_finished": true,
+        "feed_legible": true,
+        "inputs": {
+          "slides/slide-01.html": "a84bdb4a4f7d624a6cbe9a73a8391f19911bc86b23476f7aff407ab312b2c4cf",
+          "render/slide-01.png": "fb009592d7acc83fcb6ff97d8170a098387c525c04c12fcacf57e99ea7f46a49",
+          "assets/js/deck/2026-11-03-scalelane.js": "05309d6fa8c12276564ca81b52e7268b0463f765112c0aeeb1fdfed0d576c32c",
+          "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+          "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+          "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+          "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+          "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+          "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+          "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+          "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+          "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de"
+        }
+      },
+      {
+        "slide": 2,
+        "role": "evidence",
+        "subject": "A high oblique of the station. The kit tractor and van with headlamps lit comes down the ramp toward the camera. Two diamond-tread scale decks with four yellow rails run off the lower left, and the corrugated scale house sits right of the near deck. Three emissive rings lie in travel order on the ramp, and the barriered mainline runs across the upper left, with the flood pole at right.",
+        "visual_consequence": "The three rings make three places on one station: 'station open' behind the truck, 'available scale lane' ahead of it at the fork and 'scale configuration' at the entry of the right-hand deck. The far mainline labelled 'the bypass' stays visible as the road not taken. Each ring carries exactly one leader. The 'scale configuration' leader drops at design x about 820, clear of ring 2's footprint, and then runs to ring 3's right rim. No scene line crosses a label glyph. The new halo on 'available scale lane' is a tight, soft dark shadow offset slightly down and right of each glyph. It forms no box, band or smudge on the lit asphalt and lifts the label without reading as a patch. At 432 px the label reads as clean white mono, a little crisper than before.",
+        "weakness": "The diagonal run of the 'scale configuration' leader crosses the house's black roof and front face and passes within a few px of the small lamp over the door (design about 645, 1030). At 432 px that run can read as pointing at the house rather than at ring 3, whose right rim is partly swallowed by the glow against the house's left wall. Next to the plain 'station open' and 'scale configuration' labels, the 'available scale lane' halo gives that one label a faint embossed edge at native size. Secondary faults are unchanged and do not block. The left ramp edge line stops in open asphalt at design about (472, 868), so no gore or fork reads. The two approach pads at the decks' far ends are blank, near-white flat slabs. The house door is an unframed flat black rectangle under a plain black roof slab with no canopy.",
+        "repair": "none required",
+        "encoding_reads": true,
+        "dominant_subject_finished": true,
+        "feed_legible": true,
+        "inputs": {
+          "assets/js/deck/2026-11-03-scalelane.js": "05309d6fa8c12276564ca81b52e7268b0463f765112c0aeeb1fdfed0d576c32c",
+          "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+          "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+          "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+          "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+          "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+          "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+          "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+          "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+          "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+          "slides/slide-02.html": "fcea4383f480bcd229035861fdbd1471dd7deb0d0e2766b2ec47961cfcfd7065",
+          "render/slide-02.png": "a544f0c2cc9100a54a9f53262e15dea21e3458ba186aa2a68646cdd7523c7eb6"
+        }
+      },
+      {
+        "slide": 9,
+        "role": "close",
+        "subject": "Twenty white kit tractors in two ranks of ten in white stalls. The far rank shows sleeper backs and the near rank faces the camera with headlamps lit. Rows of primer stalls run away from them across the dark yard, with a thick primer kerb closing the first 200 and a far primer kerb marking the end of the 1,000.",
+        "visual_consequence": "A countable block of twenty real tractors sits at the front of a primer field that runs far back into the dark, with two primer kerbs marking 200 and 1,000. The distance between what stands and what is expected reads as distance on the ground. White stalls hold trucks and primer stalls are empty. The 200 label sits in clear dark above its kerb. The near rank sits in the pool with casts to the lower left and contact under the bumpers. Both '+' signs in the hook are now solid, flat Manrope plus glyphs in the hook's light grey. They have no stroke outline, bevel or grey inner line, sit on the numeral midline with even spacing, and read cleanly at 432 px. The art below the hook is unchanged from the accepted reading.",
+        "weakness": "The two plus signs are a geometric sans glyph inside a high-contrast serif hook. They are heavier and squarer than the serif's own strokes, so at native size they read as a deliberate typographic swap, but they don't break the line. The far kerb is still a thin primer band about 4 design px high, with a faint top edge. It runs directly under the dek and stops abruptly in empty dark at design x about 557. At 432 px it still reads closer to a rule than to the end of a stall field. The 800-stall span between the two kerbs is a near-black band crossed by a faint grid. The '20+ built' label sits right under the 200 kerb, and the near primer stall strokes pass behind the lower parts of '2', '+' and 'b', though the glyphs stay readable. Every far-rank sleeper back is a plain light-grey box face.",
+        "repair": "none required",
+        "encoding_reads": true,
+        "dominant_subject_finished": true,
+        "feed_legible": true,
+        "inputs": {
+          "assets/js/deck/2026-11-03-scalelane.js": "05309d6fa8c12276564ca81b52e7268b0463f765112c0aeeb1fdfed0d576c32c",
+          "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+          "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+          "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+          "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+          "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+          "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+          "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+          "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+          "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+          "slides/slide-09.html": "74c21b8e8ac388aa28d0a80455218c9b92f657c0891b016d881024c7ba7fd07c",
+          "render/slide-09.png": "7bfca396d48c817489490e5931014901a6b51f3d2338822a25a51ad3606cf8e9"
+        }
+      }
+    ]
+  },
+  "plan": {
+    "hardest_frame": 2,
+    "visual_argument": "One floodlit weigh station at night where a driverless tractor makes the scale house call itself, and the same company's own letter measured at one scale beside it. Anything Aurora says will happen but has not is laid in rust, so a reader can tell what exists from what is planned without the caption.",
+    "build_risk": "Frame 2 needs every chassis model at once (truck_scale, scale_house, scale_signal, flood_pole) seen from a high oblique that keeps the horizon in frame, with three decision marks registered to projected positions. The models can read as slabs from 20 m and a pale concrete apron can push the frame into the mid tones. The kit semi_truck carries the eye, the apron stays inside a tight pool and everything outside it is asphalt.",
+    "distinct_from_recent": "No. 66 was a lastLight night street with an SDF dog and a plug grid relief read as a calendar; this is floodlit, concrete and steel, with no unit grid in plan. No. 65 was a dark lab interior with a primitive robot arm and a navy wall band; the only interior here is the kit cab, looking out. No. 64 was road paint reliefs in a mid tone brown; here asphalt sits near black and the only reliefs are a rule, two lengths and a map. No. 41 (October 3rd) shot the kit truck under a stormFront sky; this is night under one flood."
+  },
+  "frame_inputs": {
+    "1": {
+      "slides/slide-01.html": "a84bdb4a4f7d624a6cbe9a73a8391f19911bc86b23476f7aff407ab312b2c4cf",
+      "render/slide-01.png": "fb009592d7acc83fcb6ff97d8170a098387c525c04c12fcacf57e99ea7f46a49",
+      "assets/js/deck/2026-11-03-scalelane.js": "05309d6fa8c12276564ca81b52e7268b0463f765112c0aeeb1fdfed0d576c32c",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de"
+    },
+    "2": {
+      "assets/js/deck/2026-11-03-scalelane.js": "05309d6fa8c12276564ca81b52e7268b0463f765112c0aeeb1fdfed0d576c32c",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+      "slides/slide-02.html": "fcea4383f480bcd229035861fdbd1471dd7deb0d0e2766b2ec47961cfcfd7065",
+      "render/slide-02.png": "a544f0c2cc9100a54a9f53262e15dea21e3458ba186aa2a68646cdd7523c7eb6"
+    },
+    "9": {
+      "assets/js/deck/2026-11-03-scalelane.js": "05309d6fa8c12276564ca81b52e7268b0463f765112c0aeeb1fdfed0d576c32c",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+      "slides/slide-09.html": "74c21b8e8ac388aa28d0a80455218c9b92f657c0891b016d881024c7ba7fd07c",
+      "render/slide-09.png": "7bfca396d48c817489490e5931014901a6b51f3d2338822a25a51ad3606cf8e9"
+    }
+  },
+  "needs_review": [],
+  "shipped_inputs": {
+    "slides/slide-01.html": "a84bdb4a4f7d624a6cbe9a73a8391f19911bc86b23476f7aff407ab312b2c4cf",
+    "slide-01.webp": "9388b6832495e3813ff684a6ce70531e6ca4883a598ae7ad6246e1a6d09b5f04",
+    "slides/slide-02.html": "fcea4383f480bcd229035861fdbd1471dd7deb0d0e2766b2ec47961cfcfd7065",
+    "slide-02.webp": "9bb4ace2d55510265f7481658df5ce89119494b7072aeee4e5ea999ff319213e",
+    "slides/slide-09.html": "74c21b8e8ac388aa28d0a80455218c9b92f657c0891b016d881024c7ba7fd07c",
+    "slide-09.webp": "d7ac7b80e09bbf86024952621c3e180777b64f849b8f4312ddc6d58946b3f11d"
+  },
+  "encodings": [
+    {
+      "to": "slide-01.webp",
+      "to_sha256": "9388b6832495e3813ff684a6ce70531e6ca4883a598ae7ad6246e1a6d09b5f04",
+      "from_sha256": "fb009592d7acc83fcb6ff97d8170a098387c525c04c12fcacf57e99ea7f46a49",
+      "psnr_db": 42.54
+    },
+    {
+      "to": "slide-02.webp",
+      "to_sha256": "9bb4ace2d55510265f7481658df5ce89119494b7072aeee4e5ea999ff319213e",
+      "from_sha256": "a544f0c2cc9100a54a9f53262e15dea21e3458ba186aa2a68646cdd7523c7eb6",
+      "psnr_db": 40.829
+    },
+    {
+      "to": "slide-09.webp",
+      "to_sha256": "d7ac7b80e09bbf86024952621c3e180777b64f849b8f4312ddc6d58946b3f11d",
+      "from_sha256": "7bfca396d48c817489490e5931014901a6b51f3d2338822a25a51ad3606cf8e9",
+      "psnr_db": 41.274
+    }
+  ]
+}

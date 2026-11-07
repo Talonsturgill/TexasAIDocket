@@ -1,0 +1,74 @@
+<!doctype html>
+<!-- 2026-11-03, frame 4 of 9. Archetype GRID. Twenty driverless tractors, no trailers, in two ranks of ten in white stalls on a yard at night, headlamps on, from the yard's edge at 6 m. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+<style>@font-face { font-family: "HookPlus"; src: url("@@ASSETS@@/fonts/Manrope-Var.ttf"); font-weight: 200 800; unicode-range: U+002B; } #hook { font-family: "HookPlus", "Fraunces", serif !important; }</style>
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:900px">20+ driverless trucks are built</h1>
+<p class="dek" data-follow="26" style="width:880px">The letter says production is accelerating. The Aurora Driver passed 500,000 commercial driverless miles in September with 100% on-time delivery since launch, by Aurora's own&nbsp;count.</p>
+<script>window.FIG = {"trucks_built": 20};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-03-scalelane.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Built so far", counter: "04 / 09", src: "c1 c2", fit: { min: 60, max: 92, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 43, near: 0.3, far: 5000, fog: 0.004 });
+  /* THE YARD. One stall per truck, from figures.json: trucks_end_2027 stalls in all, COLS a row; the trucks_built
+   * stalls nearest the corner, a block of BC by BR, are white with a tractor in each, the rest primer. The
+   * milestone_trucks stalls fill the first rows, inside the pool. */
+  const built = Math.round(FIG.trucks_built);
+  const COLS = 14, PITCH = 4.8, LEN = 12, AISLE = 7, ROWS = 3, BC = 10, BR = Math.ceil(built / BC);
+  /* only the white block's stalls and the yard around it: the built trucks, nothing expected */
+  const stalls = K.make('yard_stalls', { rows: BR, cols: BC, pitch: PITCH, len: LEN, aisle: AISLE, block: [BC, BR], stripe: 0.32 });
+  /* the yard is freshly sealed asphalt, near black, so the lit cabs stand apart from the ground between them */
+  { const c = document.createElement('canvas'); c.width = c.height = 512; const x = c.getContext('2d'), im = x.createImageData(512, 512), dd = im.data;
+    /* sealed asphalt: aggregate grain and broad patching, near black, so the yard's ground carries material and not a gradient */
+    for (let j = 0; j < 512; j++) for (let i = 0; i < 512; i++) { const v = 46 + 34 * TX.fbm2(i * 0.03, j * 0.03, 3) + 40 * (TX.simplex2(i * 0.9, j * 0.9) * 0.5 + 0.5) - 20; const k = (j * 512 + i) * 4; dd[k] = dd[k + 1] = dd[k + 2] = Math.max(0, Math.min(255, v)); dd[k + 3] = 255; }
+    x.putImageData(im, 0, 0); const tx = new THREE.CanvasTexture(c); tx.colorSpace = THREE.SRGBColorSpace; tx.wrapS = tx.wrapT = THREE.RepeatWrapping; tx.repeat.set(60, 45); tx.anisotropy = 16;
+    const sealMat = K.mat('sl-seal4', { color: 0x2a2a2c, roughness: 0.95 }); sealMat.map = tx; sealMat.needsUpdate = true;
+    const seal = new THREE.Mesh(new THREE.PlaneGeometry(320, 240), sealMat); seal.rotation.x = -Math.PI / 2; seal.position.set(BC * PITCH * 0.5, 0.004, -LEN); seal.receiveShadow = true; R.scene.add(seal); }
+  R.scene.add(stalls);
+  /* aged thermoplastic at night: the stall paint sits a value below the cabs so the twenty read as twenty, not as one painted block */
+  stalls.traverse((m) => { if (m.isMesh && m.material && m.material.color) { m.material = m.material.clone(); m.material.color.setHex(0x3c3b38); m.material.emissiveIntensity = 0; } });
+  const tractors = [];
+  for (let i = 0; i < built; i++) {
+    const c = i % BC, r = Math.floor(i / BC), p = stalls.userData.stall(c, r);
+    /* the near row noses out toward the aisle in front, the second row noses out toward the aisle behind it */
+    const t = K.make('semi_truck', { seed: 4 + (i % 3), color: 0xe8e9e6, sensors: 'full', trailer: false });
+    t.rotation.y = 0; t.position.set(p[0], 0, p[2] + 1.2); TXT.add(R, t); TXT.contact(R, t); tractors.push(t);
+  }
+  const flood = K.make('flood_pole', { height: 16, heads: 2 }); flood.position.set(-8, 0, 6); TXT.add(R, flood);
+  TXT.sky(R);
+  TXT.ground(R, { surface: 'asphalt', size: 2400, seed: 31 });
+    const from = [BC * PITCH * 0.5, 28, 60];
+  const look = CH.aim(THREE, R, TXT, from, [BC * PITCH * 0.5, 0.5, -LEN * 1.0], 540, 850, 43);
+  TXT.frame(R, { fov: 43, from, look });
+  CH.warm(R, 0.26);
+  TXT.deckRig(R, CH.rigSpec(W, 70, 4096), CH.rigOpts([BC * PITCH * 0.5, 0, -12], { distance: 110, shadowFar: 240, normalBias: 0.08 }));
+  CH.unacne(R, 0.08);
+  TXT.weather(R, { grime: 0.26, height: 0.7, mottle: 0.06 });
+  tractors.forEach((t, i) => CH.lightsOn(THREE, R, K, t, { beam: false, glow: 0.7 }));
+  CH.floodOn(THREE, R, flood, [BC * PITCH * 0.5, 0, -10], { intensity: 1800, distance: 140, angle: 0.55 });
+  TXT.stage(R, tractors, { poolInner: 34, poolOuter: 90, behind: 0.9, depth: 1.8 });
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0.32, veil: 0.4, veilH: 260 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

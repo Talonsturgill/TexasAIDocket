@@ -1,0 +1,71 @@
+<!doctype html>
+<!-- 2026-11-04, frame 9 of 9. Archetype FULL_BLEED. The pump jack at crank 320 in its pool beyond a closed galvanized ranch gate on the lease road, a worker beside the gate lit from the camera side, a cattle guard in the foreground, a thin seam on the horizon. Drawn to illustrate, to no operator's lease. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:900px">Who checks what the watcher finds?</h1>
+<p class="dek" data-follow="26" style="width:880px">The release names two AI tools and prints no measured result for either. The Railroad Commission's next open meeting is November 17th.</p>
+<script>window.FIG = {};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-04-wellpad.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "The lease road", counter: "09 / 09", src: "c1 c2 c29", fit: { min: 76, max: 100, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 36, near: 0.05, far: 4000, fog: 0.004 });
+  /* the jack at crank 320, one step short of closing the revolution the cover opened */
+  const jack = K.make('pump_jack', { seed: CH.JACK.seed, crank: 320, color: CH.JACK.color, head: CH.JACK.head });
+  jack.rotation.y = 1.72; TXT.add(R, jack); TXT.contact(R, jack);
+  /* the lease road runs from the camera through the gate toward the pad; the gate is closed across it */
+  const A = 2.55, fx = Math.sin(A), fz = Math.cos(A);               /* the direction from the pad toward the camera */
+  const G = [fx * 19, 0, fz * 19];
+  const road = K.make('caliche_road', { length: 70, width: 5.5, seed: 4 }); road.rotation.y = A; road.position.set(G[0] + fx * 6, 0, G[2] + fz * 6); TXT.add(R, road);
+  const gate = K.make('ranch_gate', { seed: 3, finish: 'galvanized', fence: true }); gate.rotation.y = A; gate.position.set(G[0], 0, G[2]); TXT.add(R, gate); TXT.contact(R, gate);
+  const guard = K.make('cattle_guard', { seed: 2, wings: true }); guard.rotation.y = A; guard.position.set(G[0] + fx * 4.2, 0, G[2] + fz * 4.2); TXT.add(R, guard);
+  const rx = -fz, rz = fx;                                         /* screen right, seen from the camera */
+  const man = K.make('person', { seed: 21, role: 'worker', pose: 'hands_on_hips', hat: 'hard', vest: true });
+  const CAM = [G[0] + fx * 10.5 + rx * 1.2, G[2] + fz * 10.5 + rz * 1.2], vl = Math.hypot(CAM[0], CAM[1]), vx = -CAM[0] / vl, vz = -CAM[1] / vl;
+  man.position.set(CAM[0] + vx * 9.6 + rx * 1.85, 0, CAM[1] + vz * 9.6 + rz * 1.85); man.rotation.y = Math.atan2(-man.position.x, -man.position.z); TXT.add(R, man); TXT.contact(R, man);
+  TXT.sky(R);
+  TXT.ground(R, { surface: 'caliche', size: 1400, seed: 29, bumpScale: 0.2 });
+  const from = [G[0] + fx * 10.5 + rx * 1.2, 1.35, G[2] + fz * 10.5 + rz * 1.2];
+  const look = CH.aim(THREE, R, TXT, from, [0, 3.4, 0], 620, 915, 36);
+  TXT.frame(R, { fov: 36, from, look });
+  TXT.scatter(R, { kind: 'scrub', count: 1500, area: [-300, -220, 60, 220], avoid: [[-12, -10, 14, 10], [-6, -40, 44, 8]], seed: 31, scale: [0.5, 1.1] });
+  CH.warm(R, 0.5);
+  TXT.deckRig(R, CH.rigSpec(W, 30, 4096), CH.rigOpts([4, 2, -3], { distance: 60, shadowFar: 140, normalBias: 0.04 }));
+  CH.unacne(R, 0.04);
+  /* a work light on the pickup behind the camera lights the worker from the camera's side, so the figure models */
+  { const sp = new THREE.SpotLight(0xffe2bf, 90, 30, 0.28, 0.6, 1.6); sp.position.set(from[0] + rx * 1.5, 2.2, from[2] + rz * 1.5); sp.target.position.copy(man.position).setY(1.1); R.scene.add(sp); R.scene.add(sp.target); }
+  /* worn hi-vis: knock the vest's saturation and glow down so it sits below the jack's rim in value */
+  man.traverse(o => { if (o.isMesh && o.material && o.material.color) { const c = o.material.color, hsl = {}; c.getHSL(hsl); if (hsl.s > 0.6 && hsl.l > 0.35) { o.material = o.material.clone(); o.material.color.setHSL(hsl.h, 0.42, 0.3); if (o.material.emissive) o.material.emissive.setRGB(0, 0, 0); } } });
+  TXT.weather(R, { grime: 0.3, height: 1.0, mottle: 0.12 });
+  /* a warm rim from behind the jack, off the seam, so the walking beam's top and the horsehead's curve carry one bright edge */
+  { jack.updateMatrixWorld(true); const c = new THREE.Box3().setFromObject(jack).getCenter(new THREE.Vector3()); const away = c.clone().sub(new THREE.Vector3(from[0], c.y, from[2])).normalize();
+    const rl = new THREE.DirectionalLight(0xffc690, 3.2); rl.position.set(c.x + away.x * 30, c.y + 14, c.z + away.z * 30); rl.target.position.copy(c); R.scene.add(rl); R.scene.add(rl.target); }
+  TXT.stage(R, [jack], { poolInner: 6, poolOuter: 12 });
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0.3, veil: 0.5, veilH: 320 });
+  /* a darken-only wash on the ground under the footer, so the site line sits on a dark field and no rail strikes it */
+  { const g = cx.createRadialGradient(860, 1300, 30, 860, 1300, 470); g.addColorStop(0, 'rgba(5,6,10,0.78)'); g.addColorStop(0.5, 'rgba(5,6,10,0.48)'); g.addColorStop(1, 'rgba(5,6,10,0)'); cx.fillStyle = g; cx.fillRect(0, 0, 1080, 1350); }
+  /* a darken-only wash on the foreground grass under the claim ids, so they sit on dark ground */
+  { const g = cx.createRadialGradient(240, 2540, 30, 240, 2540, 520); g.addColorStop(0, 'rgba(5,6,10,0.7)'); g.addColorStop(0.6, 'rgba(5,6,10,0.4)'); g.addColorStop(1, 'rgba(5,6,10,0)'); cx.fillStyle = g; cx.fillRect(0, 2000, 900, 700); }
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>
