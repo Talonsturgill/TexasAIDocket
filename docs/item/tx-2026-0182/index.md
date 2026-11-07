@@ -9,7 +9,7 @@ On September 21st, 2026 the Governor directed the Texas Commission on Environmen
 - Public access: Write to the decider
 - Take part: https://www.texastribune.org/2026/09/21/texas-data-center-moratorium-water-energy/
 
-- Last checked: 2026-11-04
+- Last checked: 2026-10-29
 
 ## Dates
 
@@ -37,8 +37,6 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-24 · The Governor's direction to the environmental agency to issue no data center permits until the grid audit is done still stands.
 - 2026-10-26 · The environmental agency answered the Governor on October 19th. Its letter says applications subject to the directive are paused and that it met with the water board, the utility commission and ERCOT to align their directives.
 - 2026-10-29 · The environmental agency told the Governor on October 19th that it has paused every permit for infrastructure directly supporting data centers.
-- 2026-11-01 · TCEQ has shut its electronic permit filing portal so that staff read every application tied to data centers before anything is authorized. The agency expects the change to the portal to be finished in mid November.
-- 2026-11-04 · Checked and unchanged. The decision still stands as decided.
 
 ## Evidence
 
@@ -91,22 +89,4 @@ Source (primary_official): https://www.tceq.texas.gov/downloads/response/tceq-re
 > TCEQ has paused the issuance of all permits related to the construction or development of infrastructure directly supporting data centers.
 
 Source (primary_official): https://www.tceq.texas.gov/downloads/response/tceq-response-gov-abbott-dc-directive.pdf
-
-### TCEQ says it shut its electronic filing portal so that staff review every application related to data centers, under the Governor's directive.
-
-> The Texas Commission on Environmental Quality’s electronic filing portal, the State of Texas Environmental Electronic Reporting System (STEERS), has been temporarily shut down to ensure all applications related to data centers are reviewed by TCEQ staff
-
-Source (primary_official): https://www.tceq.texas.gov/permitting/stormwater
-
-### TCEQ says it is changing the portal so staff can review applications before an authorization is issued, and expects that work to finish in mid November.
-
-> TCEQ is working to modify STEERS functionality to allow staff to review applications before an authorization is issued. TCEQ anticipates that this work will be completed in mid-November.
-
-Source (primary_official): https://www.tceq.texas.gov/permitting/stormwater
-
-### While the portal is down, TCEQ has extended the renewal deadline for its industrial stormwater general permit to December 28th, 2026.
-
-> The deadline is extended until Monday, Dec. 28, 2026.
-
-Source (primary_official): https://www.tceq.texas.gov/permitting/stormwater
 

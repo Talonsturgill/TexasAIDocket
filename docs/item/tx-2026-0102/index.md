@@ -11,7 +11,7 @@ UT Southwestern Medical Center built a process that reads and grades the post en
 - Public access: Closed
 - Take part: https://www.utsouthwestern.edu/research/scientific-report/articles/ai-innovations-in-medical-education.html
 
-- Last checked: 2026-11-05
+- Last checked: 2026-10-29
 
 ## Dates
 
@@ -43,9 +43,6 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-21 · Checked and unchanged. The decision still stands as decided.
 - 2026-10-24 · UT Southwestern still says AI does most of the grading on its medical students' clinical exam notes.
 - 2026-10-29 · UT Southwestern's account of AI grading most clinical exam notes still reads as published.
-- 2026-11-01 · UT Southwestern's use of AI to grade clinical exam notes is unconfirmed today. Its site refuses this project.
-- 2026-11-03 · UT Southwestern's account of AI grading clinical exam notes is unconfirmed today. The university's site did not answer a secure request.
-- 2026-11-05 · The UT Southwestern laboratory that built the grading process still lists its case study on AI assessment of students' post-encounter notes. The medical school's own announcement would not serve today.
 
 ## Evidence
 
@@ -62,10 +59,4 @@ Source (primary_official): https://www.utsouthwestern.edu/research/scientific-re
 > The process of manually reviewing and grading these notes is labor-intensive, time-consuming, and prone to inconsistency
 
 Source (primary_official): https://www.utsouthwestern.edu/research/scientific-report/articles/ai-innovations-in-medical-education.html
-
-### The UT Southwestern laboratory behind the grading process lists its NEJM AI case study, which introduces rubric guided AI assessment of the notes students write after a clinical encounter.
-
-> Introduces rubric-guided AI assessment of medical students’ post-encounter notes.
-
-Source (primary_official): https://labs.utsouthwestern.edu/jamieson-lab/publications
 

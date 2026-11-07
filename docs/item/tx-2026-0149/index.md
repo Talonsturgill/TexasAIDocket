@@ -11,7 +11,7 @@ The National Science Foundation obligated an award to the Texas A&M Engineering 
 - Public access: Write to the decider
 - Take part: https://api.nsf.gov/services/v1/awards.json?id=2640086&printFields=id,title,abstractText,awardeeName,awardeeCity,date,startDate,expDate,fundsObligatedAmt,piFirstName,piLastName,perfCity,perfStateCode
 
-- Last checked: 2026-11-04
+- Last checked: 2026-10-29
 
 ## Dates
 
@@ -38,8 +38,6 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-21 · Checked and unchanged. The decision still stands as decided.
 - 2026-10-24 · The NSF award for AI digital twins of small water systems at the Texas A&M engineering station is still active.
 - 2026-10-29 · The NSF award for AI digital twins of small water systems at the Texas A&M engineering station still stands.
-- 2026-11-01 · The Texas A&M engineering station's AI digital twin award still stands.
-- 2026-11-04 · Checked and unchanged. The decision still stands as decided.
 
 ## Evidence
 

@@ -18805,5 +18805,327 @@
     "note": "Admitted on the company's SEC filings of November 5th. Neither filing names the site that is waiting on power."
    }
   ]
+ },
+ {
+  "id": "tx-2026-0242",
+  "title": "ExxonMobil says three of its Permian rigs now drill with robotic pipe handling, and about half its Permian fleet will by 2028",
+  "summary": "On its third quarter earnings call on October 30th, 2026, ExxonMobil chief executive Darren Woods said the company has three automated drilling rigs in operation in the Permian and is the only operator there using them. He said the company expects automated rigs on about 25% of its Permian fleet next year and approximately half by 2028. The company's own account says mechanical arms and robotic systems now do much of the heavy drill pipe handling that once put workers on the rig floor beside moving machinery, and that it expects similar staffing levels on automated rigs. Reuters reported in August that the company runs more than 30 drilling rigs in the Permian and placed one automated rig in Midland, where a gate around the drilling floor marks it a restricted area. Helmerich & Payne said on October 7th, 2026 that it expects to deploy seven additional FlexRobotics systems for ExxonMobil over the next 12 months, bringing the total operating to nine. The company calls the safety benefit a potential and gives no measured injury figure. None of the sources describes these rigs as artificial intelligence. They describe automation and robotics.",
+  "topic": "land-water-and-permitting",
+  "decider": {
+   "name": "ExxonMobil",
+   "type": "company"
+  },
+  "geography": {
+   "statewide": false,
+   "counties": [
+    "Midland"
+   ],
+   "on_ercot": null
+  },
+  "status": "decided",
+  "confidence": "high",
+  "key_dates": [
+   {
+    "date": "2026-10-07",
+    "kind": "decided",
+    "note": "Helmerich & Payne announces seven more FlexRobotics systems for ExxonMobil over 12 months"
+   },
+   {
+    "date": "2026-10-26",
+    "kind": "decided",
+    "note": "ExxonMobil newsroom post on automated drilling in the Permian"
+   },
+   {
+    "date": "2026-10-30",
+    "kind": "decided",
+    "note": "Third quarter earnings call, three automated rigs in operation"
+   }
+  ],
+  "public_access": {
+   "room": "contact_only",
+   "how": "There is no public process. The plan is a company statement, and questions about it go to ExxonMobil.",
+   "url": "https://corporate.exxonmobil.com/locations/united-states/permian-basin/newsroom/2026/technology-and-people-driving-the-next-generation-of-drilling-in-the-permian",
+   "closes": null
+  },
+  "notes_for_editor": "Company statements and one Reuters account. No source names a county. Reuters places an automated rig in Midland, Texas, and the record reads that city at its county grain as Midland County, the city's own county. The transcript, newsroom post and H&P release never say artificial intelligence about the rigs, so the item says automation and robotics. The H&P count of FlexRobotics systems and the call's count of automated rigs are different measures at different dates and are not reconciled.",
+  "claims": [
+   {
+    "text": "ExxonMobil chief executive Darren Woods said on the company's third-quarter earnings call that it has three automated drilling rigs in operation in the Permian today.",
+    "verbatim_quote": "In the Permian, we’re the only operator currently using automated drilling rigs. We have three in operation today.",
+    "source_url": "https://d1io3yog0oux5.cloudfront.net/_846a550cf4695dce9fa5578132c6e6a1/exxonmobil/db/2288/22725/webcast_transcript/Transcript_-_ExxonMobil_3Q_2026_Earnings_Call.pdf",
+    "source_title": "ExxonMobil Third-Quarter 2026 Earnings Call Transcript",
+    "source_type": "primary_corporate",
+    "fetched": "2026-11-06",
+    "id": "tx-2026-0242-c1"
+   },
+   {
+    "text": "Woods said ExxonMobil is the only operator in the Permian currently using automated drilling rigs. That is the company's own claim about its competitors, not an independent finding.",
+    "verbatim_quote": "In the Permian, we’re the only operator currently using automated drilling rigs.",
+    "source_url": "https://d1io3yog0oux5.cloudfront.net/_846a550cf4695dce9fa5578132c6e6a1/exxonmobil/db/2288/22725/webcast_transcript/Transcript_-_ExxonMobil_3Q_2026_Earnings_Call.pdf",
+    "source_title": "ExxonMobil Third-Quarter 2026 Earnings Call Transcript",
+    "source_type": "primary_corporate",
+    "fetched": "2026-11-06",
+    "id": "tx-2026-0242-c2"
+   },
+   {
+    "text": "Woods said the automated rigs are significantly improving safety and delivering some of the strongest drilling performance in ExxonMobil's fleet. He gave no figure for either on the call.",
+    "verbatim_quote": "In addition to significantly improving safety, they are delivering some of the  strongest drilling performance in our fleet.",
+    "source_url": "https://d1io3yog0oux5.cloudfront.net/_846a550cf4695dce9fa5578132c6e6a1/exxonmobil/db/2288/22725/webcast_transcript/Transcript_-_ExxonMobil_3Q_2026_Earnings_Call.pdf",
+    "source_title": "ExxonMobil Third-Quarter 2026 Earnings Call Transcript",
+    "source_type": "primary_corporate",
+    "fetched": "2026-11-06",
+    "id": "tx-2026-0242-c3"
+   },
+   {
+    "text": "Woods said ExxonMobil expects to expand automated rigs to about 25% of its Permian fleet next year.",
+    "verbatim_quote": "We expect to expand their use to about 25% of our Permian fleet next year",
+    "source_url": "https://d1io3yog0oux5.cloudfront.net/_846a550cf4695dce9fa5578132c6e6a1/exxonmobil/db/2288/22725/webcast_transcript/Transcript_-_ExxonMobil_3Q_2026_Earnings_Call.pdf",
+    "source_title": "ExxonMobil Third-Quarter 2026 Earnings Call Transcript",
+    "source_type": "primary_corporate",
+    "fetched": "2026-11-06",
+    "id": "tx-2026-0242-c4"
+   },
+   {
+    "text": "Woods said ExxonMobil expects automated rigs to make up approximately half of its Permian fleet by 2028.",
+    "verbatim_quote": "about 25% of our Permian fleet next year and approximately half by 2028 — helping us continue to grow U.S. production safely and at a lower cost.",
+    "source_url": "https://d1io3yog0oux5.cloudfront.net/_846a550cf4695dce9fa5578132c6e6a1/exxonmobil/db/2288/22725/webcast_transcript/Transcript_-_ExxonMobil_3Q_2026_Earnings_Call.pdf",
+    "source_title": "ExxonMobil Third-Quarter 2026 Earnings Call Transcript",
+    "source_type": "primary_corporate",
+    "fetched": "2026-11-06",
+    "id": "tx-2026-0242-c5"
+   },
+   {
+    "text": "ExxonMobil's newsroom says the company plans to automate more than half of its unconventional drilling rigs in the Permian by year-end 2028.",
+    "verbatim_quote": "ExxonMobil is scaling deployment across the Permian, with plans to automate more than half of its unconventional drilling rigs by year-end 2028.",
+    "source_url": "https://corporate.exxonmobil.com/locations/united-states/permian-basin/newsroom/2026/technology-and-people-driving-the-next-generation-of-drilling-in-the-permian",
+    "source_title": "Technology and people driving the next generation of drilling in the Permian",
+    "source_type": "primary_corporate",
+    "fetched": "2026-11-06",
+    "id": "tx-2026-0242-c6"
+   },
+   {
+    "text": "ExxonMobil says mechanical arms and robotic systems can now do much of the heavy drill pipe handling that once required workers on the rig floor to stand close to moving machinery.",
+    "verbatim_quote": "Activities such as handling heavy drill pipe have historically required workers on the rig floor to operate close to heavy equipment and moving machinery. Now, mechanical arms and robotic systems can perform much of that work",
+    "source_url": "https://corporate.exxonmobil.com/locations/united-states/permian-basin/newsroom/2026/technology-and-people-driving-the-next-generation-of-drilling-in-the-permian",
+    "source_title": "Technology and people driving the next generation of drilling in the Permian",
+    "source_type": "primary_corporate",
+    "fetched": "2026-11-06",
+    "id": "tx-2026-0242-c7"
+   },
+   {
+    "text": "ExxonMobil says it believes automated rigs have the potential to eliminate roughly one-third of high-consequence drilling incidents. This is a stated potential, not a measured result.",
+    "verbatim_quote": "We believe this technology has the potential to eliminate roughly one-third of high-consequence drilling incidents.",
+    "source_url": "https://corporate.exxonmobil.com/locations/united-states/permian-basin/newsroom/2026/technology-and-people-driving-the-next-generation-of-drilling-in-the-permian",
+    "source_title": "Technology and people driving the next generation of drilling in the Permian",
+    "source_type": "primary_corporate",
+    "fetched": "2026-11-06",
+    "id": "tx-2026-0242-c8"
+   },
+   {
+    "text": "ExxonMobil expects to keep similar staffing levels on automated rigs and calls the technology a force multiplier, not a replacement for workers.",
+    "verbatim_quote": "We expect to maintain similar staffing levels on automated rigs, and we view the technology as a force multiplier, not a replacement.",
+    "source_url": "https://corporate.exxonmobil.com/locations/united-states/permian-basin/newsroom/2026/technology-and-people-driving-the-next-generation-of-drilling-in-the-permian",
+    "source_title": "Technology and people driving the next generation of drilling in the Permian",
+    "source_type": "primary_corporate",
+    "fetched": "2026-11-06",
+    "id": "tx-2026-0242-c9"
+   },
+   {
+    "text": "ExxonMobil says it has contracted outside drilling operators to modernize its Permian drilling fleet with advanced robotic systems.",
+    "verbatim_quote": "We’ve contracted industry-leading drilling operators to help modernize our drilling fleet with advanced robotic systems",
+    "source_url": "https://corporate.exxonmobil.com/locations/united-states/permian-basin/newsroom/2026/technology-and-people-driving-the-next-generation-of-drilling-in-the-permian",
+    "source_title": "Technology and people driving the next generation of drilling in the Permian",
+    "source_type": "primary_corporate",
+    "fetched": "2026-11-06",
+    "id": "tx-2026-0242-c10"
+   },
+   {
+    "text": "ExxonMobil points to recent demonstrations of H&P's FlexRobotics technology as a view of what the future of drilling can look like.",
+    "verbatim_quote": "Recent demonstrations of H&P's FlexRobotics ® technology highlight what the future of drilling can look like",
+    "source_url": "https://corporate.exxonmobil.com/locations/united-states/permian-basin/newsroom/2026/technology-and-people-driving-the-next-generation-of-drilling-in-the-permian",
+    "source_title": "Technology and people driving the next generation of drilling in the Permian",
+    "source_type": "primary_corporate",
+    "fetched": "2026-11-06",
+    "id": "tx-2026-0242-c11"
+   },
+   {
+    "text": "ExxonMobil says automated rigs are one of more than 50 technologies it is deploying across its Permian operations.",
+    "verbatim_quote": "Automated rigs are just one of more than 50 technologies being deployed across ExxonMobil's Permian operations",
+    "source_url": "https://corporate.exxonmobil.com/locations/united-states/permian-basin/newsroom/2026/technology-and-people-driving-the-next-generation-of-drilling-in-the-permian",
+    "source_title": "Technology and people driving the next generation of drilling in the Permian",
+    "source_type": "primary_corporate",
+    "fetched": "2026-11-06",
+    "id": "tx-2026-0242-c12"
+   },
+   {
+    "text": "ExxonMobil's stated goal is to raise its Permian production to approximately 2.5 million oil-equivalent barrels per day by 2030.",
+    "verbatim_quote": "our goal of increasing Permian production to approximately 2.5 million oil-equivalent barrels per day by 2030",
+    "source_url": "https://corporate.exxonmobil.com/locations/united-states/permian-basin/newsroom/2026/technology-and-people-driving-the-next-generation-of-drilling-in-the-permian",
+    "source_title": "Technology and people driving the next generation of drilling in the Permian",
+    "source_type": "primary_corporate",
+    "fetched": "2026-11-06",
+    "id": "tx-2026-0242-c13"
+   },
+   {
+    "text": "ExxonMobil describes its Permian operations as spanning West Texas and Southeast New Mexico.",
+    "verbatim_quote": "We operate in the United States' largest oil-producing region, spanning West Texas and Southeast New Mexico.",
+    "source_url": "https://corporate.exxonmobil.com/locations/united-states/permian-basin",
+    "source_title": "Permian Basin operations",
+    "source_type": "primary_corporate",
+    "fetched": "2026-11-06",
+    "id": "tx-2026-0242-c14"
+   },
+   {
+    "text": "In West Texas, ExxonMobil says it currently operates in the Greater Midland and Trans-Pecos areas.",
+    "verbatim_quote": "We have the largest contiguous acreage position in West Texas. We currently operate in the Greater Midland and Trans-Pecos areas.",
+    "source_url": "https://corporate.exxonmobil.com/locations/united-states/permian-basin",
+    "source_title": "Permian Basin operations",
+    "source_type": "primary_corporate",
+    "fetched": "2026-11-06",
+    "id": "tx-2026-0242-c15"
+   },
+   {
+    "text": "Reuters reported in August that ExxonMobil operates more than 30 drilling rigs in the Permian Basin.",
+    "verbatim_quote": "operates more than 30 drilling rigs in the Permian Basin, two of which are automated rigs with robotic equipment.",
+    "source_url": "https://www.ajot.com/news/exxon-turns-to-automated-drilling-in-the-permian-in-push-for-higher-oil-output",
+    "source_title": "Exxon turns to automated drilling in the Permian in push for higher oil output",
+    "source_type": "journalism",
+    "fetched": "2026-11-06",
+    "id": "tx-2026-0242-c16"
+   },
+   {
+    "text": "At the time of that August report, two of those Permian rigs were automated rigs with robotic equipment.",
+    "verbatim_quote": "two of which are automated rigs with robotic equipment",
+    "source_url": "https://www.ajot.com/news/exxon-turns-to-automated-drilling-in-the-permian-in-push-for-higher-oil-output",
+    "source_title": "Exxon turns to automated drilling in the Permian in push for higher oil output",
+    "source_type": "journalism",
+    "fetched": "2026-11-06",
+    "id": "tx-2026-0242-c17"
+   },
+   {
+    "text": "Reuters described an ExxonMobil contractor in rural west Texas sitting in a small office on a drilling rig and operating robotic machinery with controls on a screen.",
+    "verbatim_quote": "In rural west Texas where oil rigs and pump jacks dot the sparse flat landscape, an ExxonMobil contractor sits in a small office on a drilling rig, using controls on a screen to operate robotic machinery",
+    "source_url": "https://www.ajot.com/news/exxon-turns-to-automated-drilling-in-the-permian-in-push-for-higher-oil-output",
+    "source_title": "Exxon turns to automated drilling in the Permian in push for higher oil output",
+    "source_type": "journalism",
+    "fetched": "2026-11-06",
+    "id": "tx-2026-0242-c18"
+   },
+   {
+    "text": "Reuters reported that the robotic machinery moves tall steel pipes weighing roughly 2,000 pounds.",
+    "verbatim_quote": "move tall steel pipes weighing roughly 2,000 pounds.",
+    "source_url": "https://www.ajot.com/news/exxon-turns-to-automated-drilling-in-the-permian-in-push-for-higher-oil-output",
+    "source_title": "Exxon turns to automated drilling in the Permian in push for higher oil output",
+    "source_type": "journalism",
+    "fetched": "2026-11-06",
+    "id": "tx-2026-0242-c19"
+   },
+   {
+    "text": "Reuters reported that the rig floor is the most common location for accidents on a drilling rig.",
+    "verbatim_quote": "This work would usually require human overseers standing on the rig floor, the most common location for accidents on a rig.",
+    "source_url": "https://www.ajot.com/news/exxon-turns-to-automated-drilling-in-the-permian-in-push-for-higher-oil-output",
+    "source_title": "Exxon turns to automated drilling in the Permian in push for higher oil output",
+    "source_type": "journalism",
+    "fetched": "2026-11-06",
+    "id": "tx-2026-0242-c20"
+   },
+   {
+    "text": "Reuters reported that ExxonMobil installed its first automated rig, supplied by drilling contractor Helmerich & Payne, the year before its August report.",
+    "verbatim_quote": "The company installed its first automated rig, supplied by drilling contractor Helmerich & Payne, last year.",
+    "source_url": "https://www.ajot.com/news/exxon-turns-to-automated-drilling-in-the-permian-in-push-for-higher-oil-output",
+    "source_title": "Exxon turns to automated drilling in the Permian in push for higher oil output",
+    "source_type": "journalism",
+    "fetched": "2026-11-06",
+    "id": "tx-2026-0242-c21"
+   },
+   {
+    "text": "Reuters reported that this first automated rig drilled two miles horizontally underground in a little over six days.",
+    "verbatim_quote": "It drilled two miles horizontally underground in a little over six days",
+    "source_url": "https://www.ajot.com/news/exxon-turns-to-automated-drilling-in-the-permian-in-push-for-higher-oil-output",
+    "source_title": "Exxon turns to automated drilling in the Permian in push for higher oil output",
+    "source_type": "journalism",
+    "fetched": "2026-11-06",
+    "id": "tx-2026-0242-c22"
+   },
+   {
+    "text": "Reuters reported that the run was the third fastest drilling time in ExxonMobil's history.",
+    "verbatim_quote": "in a little over six days, the third fastest time in Exxon's history.",
+    "source_url": "https://www.ajot.com/news/exxon-turns-to-automated-drilling-in-the-permian-in-push-for-higher-oil-output",
+    "source_title": "Exxon turns to automated drilling in the Permian in push for higher oil output",
+    "source_type": "journalism",
+    "fetched": "2026-11-06",
+    "id": "tx-2026-0242-c23"
+   },
+   {
+    "text": "Bart Cahir, ExxonMobil's senior vice president of unconventionals, told Reuters that about a third of significant injuries in well drilling happen on the rig floor.",
+    "verbatim_quote": "In the history of well drilling activity, about a third of significant injuries that occur happen on the rig floor",
+    "source_url": "https://www.ajot.com/news/exxon-turns-to-automated-drilling-in-the-permian-in-push-for-higher-oil-output",
+    "source_title": "Exxon turns to automated drilling in the Permian in push for higher oil output",
+    "source_type": "journalism",
+    "fetched": "2026-11-06",
+    "id": "tx-2026-0242-c24"
+   },
+   {
+    "text": "Reuters reported that employees on the rig work with ExxonMobil's central operations team in Houston to set the precise movements of the robotic system.",
+    "verbatim_quote": "Employees on the rig communicate with Exxon's central operations team in Houston to determine the precise movements the robotic system should make.",
+    "source_url": "https://www.ajot.com/news/exxon-turns-to-automated-drilling-in-the-permian-in-push-for-higher-oil-output",
+    "source_title": "Exxon turns to automated drilling in the Permian in push for higher oil output",
+    "source_type": "journalism",
+    "fetched": "2026-11-06",
+    "id": "tx-2026-0242-c25"
+   },
+   {
+    "text": "Reuters reported that robotic arms now position columns of drill pipe over two stories tall and connect them to a drill string. Workers would usually help move that pipe.",
+    "verbatim_quote": "Where workers would usually help move columns of drill pipe over two stories tall, robotic arms now position the pipes and connect them to a drill string.",
+    "source_url": "https://www.ajot.com/news/exxon-turns-to-automated-drilling-in-the-permian-in-push-for-higher-oil-output",
+    "source_title": "Exxon turns to automated drilling in the Permian in push for higher oil output",
+    "source_type": "journalism",
+    "fetched": "2026-11-06",
+    "id": "tx-2026-0242-c26"
+   },
+   {
+    "text": "A Reuters photo caption identifies an automated drilling rig operated by ExxonMobil in Midland, Texas.",
+    "verbatim_quote": "An automated oil drilling rig operated by ExxonMobil in Midland, Texas, August 17, 2026. REUTERS/Sheila Dang",
+    "source_url": "https://www.ajot.com/news/exxon-turns-to-automated-drilling-in-the-permian-in-push-for-higher-oil-output",
+    "source_title": "Exxon turns to automated drilling in the Permian in push for higher oil output",
+    "source_type": "journalism",
+    "fetched": "2026-11-06",
+    "id": "tx-2026-0242-c27"
+   },
+   {
+    "text": "Reuters reported that a gate with a Red Zone sign surrounds the drilling floor on one of ExxonMobil's automated rigs in Midland.",
+    "verbatim_quote": "On one of Exxon's automated rigs in Midland, a gate surrounds the drilling floor with a sign reading \"Red Zone: Restricted Area.\"",
+    "source_url": "https://www.ajot.com/news/exxon-turns-to-automated-drilling-in-the-permian-in-push-for-higher-oil-output",
+    "source_title": "Exxon turns to automated drilling in the Permian in push for higher oil output",
+    "source_type": "journalism",
+    "fetched": "2026-11-06",
+    "id": "tx-2026-0242-c28"
+   },
+   {
+    "text": "Helmerich & Payne said on October 7th, 2026 that it expects to deploy seven additional FlexRobotics systems for ExxonMobil over the next 12 months, bringing the total operating to nine.",
+    "verbatim_quote": "H&P expects to deploy seven additional FlexRobotics® systems for ExxonMobil over the next 12 months, bringing the total number of systems operating to nine.",
+    "source_url": "https://s25.q4cdn.com/694655835/files/doc_news/HP--ExxonMobil-Expand-Deployment-of-FlexRobotics-Technology-2026.pdf",
+    "source_title": "H&P & ExxonMobil Expand Deployment of FlexRobotics Technology (news release)",
+    "source_type": "primary_corporate",
+    "fetched": "2026-11-06",
+    "id": "tx-2026-0242-c29"
+   },
+   {
+    "text": "ExxonMobil's Bart Cahir said in the H&P release that expanding FlexRobotics builds on what the company learned from its initial deployments and shows it using automation to improve drilling performance.",
+    "verbatim_quote": "Expanding the use of FlexRobotics® builds on what we’ve learned from our initial deployments and is another example of how we’re using automation to improve drilling performance.",
+    "source_url": "https://s25.q4cdn.com/694655835/files/doc_news/HP--ExxonMobil-Expand-Deployment-of-FlexRobotics-Technology-2026.pdf",
+    "source_title": "H&P & ExxonMobil Expand Deployment of FlexRobotics Technology (news release)",
+    "source_type": "primary_corporate",
+    "fetched": "2026-11-06",
+    "id": "tx-2026-0242-c30"
+   }
+  ],
+  "last_verified": "2026-11-06",
+  "history": [
+   {
+    "date": "2026-11-06",
+    "note": "Admitted on ExxonMobil's October 30th earnings call, its own post on automated drilling, the H&P release of October 7th and the Reuters account from Midland."
+   }
+  ]
  }
 ]

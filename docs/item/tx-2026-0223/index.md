@@ -11,7 +11,7 @@ Texas A&M Engineering reported on October 19th, 2026 that researchers trained fo
 - Public access: Write to the decider
 - Take part: https://news.engineering.tamu.edu/news/2026/10/19/ai-models-can-get-brain-rot-too/
 
-- Last checked: 2026-11-05
+- Last checked: 2026-10-29
 
 ## Dates
 
@@ -25,8 +25,6 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-22 · The paper behind the release now carries the record's figures. It dates its Twitter dataset to 2023, where the release says 2010, so the summary gives both. It adds the dose results and the repair test, and names UT Austin and Purdue beside Texas A&M.
 - 2026-10-25 · The A&M release and the paper both still read as cited. The conference acceptance stands, and larger closed models remain untested.
 - 2026-10-29 · The Texas A&M finding that junk social media training makes models skip reasoning steps still reads as published.
-- 2026-11-01 · The Texas A&M finding that junk social media posts degrade language model reasoning still reads as published.
-- 2026-11-05 · The Texas A&M finding on models trained on junk posts still reads as the university reported it.
 
 ## Evidence
 

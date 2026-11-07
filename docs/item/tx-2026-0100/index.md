@@ -11,7 +11,7 @@ The University of Texas at Austin published a new Core Curriculum on August 13th
 - Public access: Closed
 - Take part: https://news.utexas.edu/2026/08/13/new-core-curriculum-refocuses-undergraduate-education-at-ut-austin/
 
-- Last checked: 2026-11-04
+- Last checked: 2026-10-29
 
 ## Dates
 
@@ -45,8 +45,6 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-21 · Checked and unchanged. The decision still stands as decided.
 - 2026-10-24 · UT Austin's core curriculum still carries the computer science and AI course every undergraduate takes.
 - 2026-10-29 · UT Austin's computer science and AI course still sits in the core every undergraduate takes.
-- 2026-11-01 · UT Austin's core course in computer science and AI still applies to every undergraduate.
-- 2026-11-04 · Checked and unchanged. The decision still stands as decided.
 
 ## Evidence
 

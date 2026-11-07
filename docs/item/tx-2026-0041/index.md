@@ -49,9 +49,6 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-29 · The Wichita Falls permit for the Airport Drive data center is still unconfirmed. The station's report bars automated readers.
 - 2026-10-30 · The Airport Drive data center permit in Wichita Falls remains unconfirmed. The station's report still bars automated readers.
 - 2026-10-31 · The DataNovaX permit on Airport Drive is still unconfirmed. Wichita Falls' own site answers no reader and the station's report refuses automated ones.
-- 2026-11-01 · The DataNovaX permit in Wichita Falls stays unconfirmed. The city's site refuses this project and so does the station's report.
-- 2026-11-03 · The DataNovaX permit in Wichita Falls remains unconfirmed, with the city site and the station both still refusing this project.
-- 2026-11-05 · No fresh confirmation of the DataNovaX permit in Wichita Falls. The city's page refuses every reader and the station refuses this project.
 
 ## Evidence
 

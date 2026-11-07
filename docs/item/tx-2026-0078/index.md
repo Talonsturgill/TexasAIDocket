@@ -9,7 +9,7 @@ The Texas House Committee on State Affairs met on August 19th, 2026 on two inter
 - Public access: Write to the decider
 - Take part: https://capitol.texas.gov/Committees/MeetingsByCmte.aspx?Leg=89&Chamber=H&CmteCode=C450
 
-- Last checked: 2026-11-05
+- Last checked: 2026-10-29
 
 ## Dates
 
@@ -43,8 +43,6 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-23 · House State Affairs still lists the August 19th sitting and the two September sittings after it, with no later meeting and no interim report posted. The charge wording stays unconfirmed.
 - 2026-10-26 · The committee page for House State Affairs reads as cited. The charge wording on the Legislature's interim pages is still unconfirmed, since that host bars automated readers.
 - 2026-10-29 · House State Affairs' interim hearing on data centers and the 765 kV lines has produced no published report. The library's record is unconfirmed.
-- 2026-11-01 · House State Affairs' interim hearing on data centers and the 765 kV plan still reads as held, with no committee report yet.
-- 2026-11-05 · House State Affairs has posted no report since its interim hearing on data centers and the 765 kV lines.
 
 ## Evidence
 

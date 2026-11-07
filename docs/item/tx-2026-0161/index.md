@@ -40,9 +40,6 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-29 · UT Arlington's AI tutor and its work with Fort Worth police are still unconfirmed. The university's site did not answer.
 - 2026-10-30 · UT Arlington's AI tutor and its police work remain unconfirmed. The university's site would not serve its crawling rules today, so the release was left unread.
 - 2026-10-31 · UT Arlington's federally funded AI tutor and its work with Fort Worth police stay unconfirmed. The university's site did not answer for its crawling rules today.
-- 2026-11-01 · UT Arlington's federally funded AI tutor stays unconfirmed today. The university's site still refuses this project.
-- 2026-11-03 · UT Arlington's federally funded AI tutor remains unconfirmed. The university's site still refuses this project.
-- 2026-11-05 · UT Arlington's federally funded AI tutor goes unconfirmed for another check. The university's site would not serve this project.
 
 ## Evidence
 
