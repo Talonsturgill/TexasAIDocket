@@ -12610,6 +12610,36 @@
       "tmax_f": 79,
       "tmin_f": 60,
       "verified": true
+    },
+    {
+      "_spec": 2,
+      "date": "2026-11-02",
+      "prcp_in": 0.0,
+      "source": "ncei daily-summaries",
+      "station": "USW00003927",
+      "tmax_f": 85,
+      "tmin_f": 65,
+      "verified": true
+    },
+    {
+      "_spec": 2,
+      "date": "2026-11-03",
+      "prcp_in": 0.02,
+      "source": "ncei daily-summaries",
+      "station": "USW00003927",
+      "tmax_f": 77,
+      "tmin_f": 60,
+      "verified": true
+    },
+    {
+      "_spec": 2,
+      "date": "2026-11-04",
+      "prcp_in": 0.0,
+      "source": "ncei daily-summaries",
+      "station": "USW00003927",
+      "tmax_f": 76,
+      "tmin_f": 52,
+      "verified": true
     }
   ]
 }
