@@ -35,7 +35,7 @@
     grade: {
       exposure: 0, saturation: 1.0, contrast: 1.08, filmic: true,
       lift: [0.002, 0.002, 0.004], gain: [1.0, 1.0, 1.0], vignette: 0.22,
-      bloom: { threshold: 0.84, strength: 0.16, radius: 8 },
+      bloom: { threshold: 0.93, strength: 0.08, radius: 6 },
       grain: { amount: 0.016, size: 2, seed: 20261106 },
       aberration: 0, dither: true, sharpen: 0.12
     }
@@ -52,8 +52,8 @@
     if (K.registry && K.registry.drill_pipe) return;
     var PIPE = K.mat("rf-pipe", { color: 0x3a3d41, metalness: 0.8, roughness: 0.38 });           /* mill scale, oiled */
     var JOINT = K.mat("rf-joint", { color: 0x8a8c8e, metalness: 0.9, roughness: 0.3 });           /* worn bright tool joint */
-    var BAND = K.mat("rf-band", { color: 0x6f6a62, metalness: 0.85, roughness: 0.55 });           /* hardbanding */
-    var ARM = K.mat("rf-arm", { color: 0xb7b9b4, metalness: 0.12, roughness: 0.42 });             /* off white industrial paint */
+    var BAND = K.mat("rf-band", { color: 0x4a4744, metalness: 0.9, roughness: 0.5 });           /* hardbanding */
+    var ARM = K.mat("rf-arm", { color: 0x8f918d, metalness: 0.12, roughness: 0.42 });             /* off white industrial paint */
     var ARMDK = K.mat("rf-armdk", { color: 0x2a2c30, metalness: 0.35, roughness: 0.5 });          /* motor housings, joints */
     var GRIP = K.mat("rf-grip", { color: 0x8a8d91, metalness: 0.82, roughness: 0.32 });
     var MAST = K.mat("rf-mast", { color: 0xa39c8c, metalness: 0.4, roughness: 0.58 });            /* faded cream mast paint */
@@ -74,21 +74,28 @@
      * `length` is the joint's length in metres; `lying: true` lays it along +z with its pin at z = 0. */
     K.define("drill_pipe", {
       size: [0.17, 9.4, 0.17],
-      options: { length: 9.4, lying: false, band: null, seed: 1 },
-      note: "One joint of 5 in drill pipe with 6 5/8 in tool joints, upsets and a hardband ring; band 'pin' or 'box' paints an ember ring on that tool joint; drawn to illustrate.",
+      options: { length: 9.4, lying: false, band: null, bandH: 0.07, hardband: true, seed: 1 },
+      note: "One joint of 5 in drill pipe: a threaded pin below its shoulder, 6 5/8 in tool joints, upsets into the body, a counterbored box at the top; band 'pin' or 'box' paints a raised ember ring bandH tall on that tool joint; drawn to illustrate.",
       make: function (o) {
-        var L = o.length || 9.4, rb = 0.0635, rj = 0.084;
-        var prof = [[0, 0], [0.058, 0], [0.066, 0.02], [rj, 0.05], [rj, 0.30], [0.074, 0.33], [rb + 0.004, 0.46], [rb, 0.52],
-          [rb, L - 0.62], [rb + 0.004, L - 0.56], [0.074, L - 0.47], [rj, L - 0.44], [rj, L - 0.004], [0.06, L], [0, L]];
-        var G = new THREE.Group(), body = lathe(prof, PIPE, 36); G.add(body);
-        /* the tool joints as their own brighter sleeves over the profile, so they catch the light like worn steel */
-        var tjB = K.cyl(rj + 0.002, rj + 0.002, 0.40, JOINT, 0, L - 0.42, 0, 36); G.add(tjB);
-        var tjP = K.cyl(rj + 0.002, rj + 0.002, 0.24, JOINT, 0, 0.05, 0, 36); G.add(tjP);
-        var hb = K.cyl(rj + 0.005, rj + 0.005, 0.07, BAND, 0, L - 0.30, 0, 36); G.add(hb);
-        var sh = K.cyl(rj - 0.006, rj + 0.002, 0.012, BAND, 0, L - 0.43, 0, 36); G.add(sh);
-        /* the deck's one accent: a painted ember ring on the tool joint the machine handles */
-        if (o.band) { var EMB = K.mat("rf-ember", { color: 0x8f4a36, metalness: 0.1, roughness: 0.72 });
-          var by = o.band === "box" ? L - 0.36 : 0.08; G.add(K.cyl(rj + 0.004, rj + 0.004, 0.16, EMB, 0, by, 0, 36)); }
+        var L = o.length || 9.4, rb = 0.0635, rj = 0.084, TH = 0.11;
+        /* the body and both tool joints as one lathe profile, from the pin shoulder at y = TH to the box face at L */
+        var prof = [[0.064, TH], [rj, TH], [rj, TH + 0.25], [0.076, TH + 0.29], [rb + 0.004, TH + 0.42], [rb, TH + 0.48],
+          [rb, L - 0.62], [rb + 0.004, L - 0.56], [0.074, L - 0.47], [rj, L - 0.44], [rj, L - 0.006], [rj - 0.004, L], [0.071, L], [0.069, L - 0.07], [0.055, L - 0.075]];
+        var G = new THREE.Group(); G.add(lathe(prof, PIPE, 40));
+        /* the pin: a tapered thread below the shoulder, its crests catching the light at a 10 mm pitch */
+        var thr = [[0, 0], [0.046, 0]], n = Math.floor(TH / 0.01);
+        for (var t = 0; t < n; t++) { var y0 = t * 0.01, r0 = 0.048 + (0.062 - 0.048) * (y0 / TH); thr.push([r0, y0 + 0.002], [r0 + 0.004, y0 + 0.005], [r0, y0 + 0.008]); }
+        thr.push([0.062, TH], [0, TH]); G.add(lathe(thr, JOINT, 32));
+        /* worn bright sleeves on both tool joints, a hardband ring on the box */
+        G.add(K.cyl(rj + 0.0015, rj + 0.0015, 0.24, JOINT, 0, TH + 0.005, 0, 40));
+        G.add(K.cyl(rj + 0.0015, rj + 0.0015, 0.40, JOINT, 0, L - 0.42, 0, 40));
+        if (o.hardband) G.add(K.cyl(rj + 0.004, rj + 0.004, 0.05, BAND, 0, L - 0.30, 0, 40));
+        /* the counterbore's dark mouth, so the box reads as a box from above */
+        var mouth = new THREE.Mesh(new THREE.CircleGeometry(0.055, 28), K.mat("rf-bore", { color: 0x050506, roughness: 1 })); mouth.rotation.x = -Math.PI / 2; mouth.position.y = L - 0.07; G.add(mouth);
+        /* the deck's one accent: a raised ember paint ring on the tool joint the machine handles */
+        if (o.band) { var EMB = K.mat("rf-ember", { color: 0x9a4a34, metalness: 0.0, roughness: 0.92, envMapIntensity: 0.15 });
+          var bh = o.bandH || 0.07, by = o.band === "box" ? L - 0.40 + (0.36 - bh) / 2 : TH + 0.06;
+          G.add(K.cyl(rj + 0.006, rj + 0.006, bh, EMB, 0, by, 0, 40)); }
         if (o.lying) { var H = new THREE.Group(); G.rotation.x = Math.PI / 2; G.position.y = rj; H.add(G); H.userData.keepOrigin = true; return H; }
         G.userData.keepOrigin = true; return G;
       }
@@ -126,46 +133,55 @@
         T.add(K.cyl(0.33, 0.35, 0.34, ARM, 0, 0, 0, 40));
         T.add(K.cyl(0.2, 0.2, 0.08, ARMDK, 0, 0.34, 0, 32));
         var shoulderH = 0.62;
-        var sh = new THREE.Mesh(new THREE.CylinderGeometry(0.23, 0.23, 0.5, 40), ARM); sh.rotation.z = Math.PI / 2; sh.position.set(0, shoulderH, 0); T.add(sh);
-        var shCap = new THREE.Mesh(new THREE.CylinderGeometry(0.17, 0.17, 0.56, 32), ARMDK); shCap.rotation.z = Math.PI / 2; shCap.position.set(0, shoulderH, 0); T.add(shCap);
+        var sh = new THREE.Mesh(new THREE.CylinderGeometry(0.23, 0.23, 0.5, 64), ARM); sh.rotation.z = Math.PI / 2; sh.position.set(0, shoulderH, 0); T.add(sh);
+        var shCap = new THREE.Mesh(new THREE.CylinderGeometry(0.17, 0.17, 0.56, 64), ARMDK); shCap.rotation.z = Math.PI / 2; shCap.position.set(0, shoulderH, 0); T.add(shCap);
         T.add(K.box(0.42, 0.34, 0.46, ARM, 0, 0.3, -0.02, 0.06));
         /* motor on the turret's back */
-        var mot = new THREE.Mesh(new THREE.CylinderGeometry(0.1, 0.1, 0.34, 24), ARMDK); mot.rotation.x = Math.PI / 2; mot.position.set(0.18, 0.5, -0.3); T.add(mot);
+        var mot = new THREE.Mesh(new THREE.CylinderGeometry(0.1, 0.1, 0.34, 48), ARMDK); mot.rotation.x = Math.PI / 2; mot.position.set(0.18, 0.5, -0.3); T.add(mot);
         /* axis 2: the upper arm */
         var U = new THREE.Group(); U.position.set(0, shoulderH, 0); U.rotation.x = -(o.shoulder || 0) * D; T.add(U);
         var upL = 1.25;
         U.add(K.box(0.3, upL, 0.24, ARM, 0, 0, 0, 0.07));
         U.add(K.box(0.32, 0.5, 0.05, ARMDK, 0, 0.32, -0.14, 0.01));   /* the cable cover */
-        var el = new THREE.Mesh(new THREE.CylinderGeometry(0.17, 0.17, 0.4, 36), ARM); el.rotation.z = Math.PI / 2; el.position.set(0, upL, 0); U.add(el);
-        var elc = new THREE.Mesh(new THREE.CylinderGeometry(0.12, 0.12, 0.44, 28), ARMDK); elc.rotation.z = Math.PI / 2; elc.position.set(0, upL, 0); U.add(elc);
+        var el = new THREE.Mesh(new THREE.CylinderGeometry(0.17, 0.17, 0.4, 64), ARM); el.rotation.z = Math.PI / 2; el.position.set(0, upL, 0); U.add(el);
+        var elc = new THREE.Mesh(new THREE.CylinderGeometry(0.12, 0.12, 0.44, 64), ARMDK); elc.rotation.z = Math.PI / 2; elc.position.set(0, upL, 0); U.add(elc);
         /* axis 3: the forearm, pointing forward (+z) at elbow 0 */
         var F = new THREE.Group(); F.position.set(0, upL, 0); F.rotation.x = -(o.elbow || 0) * D; U.add(F);
         var foL = 1.15;
         var fa = TXT.roundedBox(0.22, 0.24, foL, 0.06, ARM); fa.position.set(0, 0.02, foL / 2 - 0.05); F.add(fa);
-        var fm = new THREE.Mesh(new THREE.CylinderGeometry(0.11, 0.11, 0.36, 24), ARMDK); fm.rotation.x = Math.PI / 2; fm.position.set(0, 0.06, -0.22); F.add(fm);
+        var fm = new THREE.Mesh(new THREE.CylinderGeometry(0.11, 0.11, 0.36, 48), ARMDK); fm.rotation.x = Math.PI / 2; fm.position.set(0, 0.06, -0.22); F.add(fm);
         F.add(K.box(0.24, 0.05, 0.6, ARMDK, 0, 0.13, 0.32, 0.01));
         /* axes 4 to 6: the wrist and the gripper */
         var Wr = new THREE.Group(); Wr.position.set(0, 0.02, foL); Wr.rotation.x = -(o.wrist || 0) * D; F.add(Wr);
-        var wr = new THREE.Mesh(new THREE.CylinderGeometry(0.1, 0.12, 0.2, 28), ARMDK); wr.rotation.x = Math.PI / 2; wr.position.z = 0.06; Wr.add(wr);
-        var fl = new THREE.Mesh(new THREE.CylinderGeometry(0.13, 0.13, 0.04, 28), GRIP); fl.rotation.x = Math.PI / 2; fl.position.z = 0.18; Wr.add(fl);
+        var wr = new THREE.Mesh(new THREE.CylinderGeometry(0.1, 0.12, 0.2, 56), ARMDK); wr.rotation.x = Math.PI / 2; wr.position.z = 0.06; Wr.add(wr);
+        var fl = new THREE.Mesh(new THREE.CylinderGeometry(0.13, 0.13, 0.04, 48), GRIP); fl.rotation.x = Math.PI / 2; fl.position.z = 0.18; Wr.add(fl);
         /* the gripper head: a cast body with a hydraulic cylinder on top, and two curved clamp jaws that close around
          * the pipe, each lined with three ridged die inserts, the pipe's centre at (0, 0, 0.5) in the wrist's frame */
         var body = TXT.roundedBox(0.36, 0.22, 0.24, 0.035, GRIP); body.position.z = 0.3; Wr.add(body);
-        var cylB = new THREE.Mesh(new THREE.CylinderGeometry(0.055, 0.055, 0.34, 20), ARMDK); cylB.rotation.z = Math.PI / 2; cylB.position.set(0, 0.15, 0.3); Wr.add(cylB);
-        var rod = new THREE.Mesh(new THREE.CylinderGeometry(0.022, 0.022, 0.46, 12), JOINT); rod.rotation.z = Math.PI / 2; rod.position.set(0, 0.15, 0.3); Wr.add(rod);
+        var cylB = new THREE.Mesh(new THREE.CylinderGeometry(0.055, 0.055, 0.34, 48), ARMDK); cylB.rotation.z = Math.PI / 2; cylB.position.set(0, 0.15, 0.3); Wr.add(cylB);
+        var rod = new THREE.Mesh(new THREE.CylinderGeometry(0.022, 0.022, 0.46, 32), JOINT); rod.rotation.z = Math.PI / 2; rod.position.set(0, 0.15, 0.3); Wr.add(rod);
+        /* bolt rings on the gripper body's two flanks, eight cap screws round each */
+        [-1, 1].forEach(function (sx) { for (var bk = 0; bk < 8; bk++) { var ang = bk / 8 * Math.PI * 2, cs = new THREE.Mesh(new THREE.CylinderGeometry(0.008, 0.008, 0.012, 10), JOINT);
+          cs.rotation.z = Math.PI / 2; cs.position.set(sx * 0.184, Math.cos(ang) * 0.065, 0.3 + Math.sin(ang) * 0.065); Wr.add(cs); } });
         for (var bo = 0; bo < 6; bo++) { var bt = K.cyl(0.011, 0.011, 0.012, JOINT, -0.15 + bo * 0.06, 0.11, 0.42, 6); bt.rotation.x = Math.PI / 2; Wr.add(bt); }
         var gr = o.gripR || 0.085, DIE = K.mat("rf-die", { color: 0x3b3d40, metalness: 0.92, roughness: 0.28 });
         [-1, 1].forEach(function (s2) {
-          /* a jaw: a curved shell around half the pipe, thick at the hinge, with an arm back to the body */
-          /* theta is measured from +z toward +x, so a jaw centred on +x sits at PI/2 and one on -x at 3PI/2 */
-          var tc = s2 > 0 ? Math.PI / 2 : Math.PI * 1.5;
-          var shell = new THREE.Mesh(new THREE.CylinderGeometry(gr + 0.05, gr + 0.05, 0.34, 28, 1, false, tc - 1.0, 2.0), GRIP);
-          shell.position.set(0, 0, 0.5); Wr.add(shell);
-          var inner = new THREE.Mesh(new THREE.CylinderGeometry(gr + 0.008, gr + 0.008, 0.3, 28, 1, true, tc - 0.85, 1.7), DIE);
-          inner.material.side = THREE.DoubleSide; inner.position.set(0, 0, 0.5); Wr.add(inner);
-          var link = TXT.roundedBox(0.07, 0.3, 0.22, 0.02, GRIP); link.position.set(s2 * (gr + 0.06), 0, 0.4); Wr.add(link);
-          [-0.1, 0.1].forEach(function (yy) { var hb = new THREE.Mesh(new THREE.CylinderGeometry(0.018, 0.018, 0.03, 10), JOINT); hb.rotation.z = Math.PI / 2; hb.position.set(s2 * (gr + 0.1), yy, 0.5); Wr.add(hb); });
-          var pin = new THREE.Mesh(new THREE.CylinderGeometry(0.022, 0.022, 0.34, 12), JOINT); pin.position.set(s2 * (gr + 0.06), 0, 0.31); Wr.add(pin);
+          /* a jaw: a thick curved casting lathed round the pipe over 150 degrees, so the two jaws meet at a seam on the
+           * front and back, each lined with dark die inserts at its lips and bolted through its back */
+          var pc = s2 > 0 ? Math.PI / 2 : Math.PI * 1.5, span = 2.6, r0 = gr + 0.012, r1 = gr + 0.058;
+          var jaw = new THREE.Mesh(new THREE.LatheGeometry([new THREE.Vector2(r0, -0.16), new THREE.Vector2(r1, -0.16), new THREE.Vector2(r1 + 0.008, -0.12),
+            new THREE.Vector2(r1 + 0.008, 0.12), new THREE.Vector2(r1, 0.16), new THREE.Vector2(r0, 0.16), new THREE.Vector2(r0, -0.16)], 40, pc - span / 2, span), GRIP);
+          jaw.material.side = THREE.DoubleSide; jaw.position.set(0, 0, 0.5); Wr.add(jaw);
+          [pc - span / 2 + 0.06, pc + span / 2 - 0.06].forEach(function (ph) {
+            var ins = K.box(0.012, 0.28, 0.03, DIE, 0, -0.14, 0, 0.002); ins.position.set(Math.sin(ph) * (gr + 0.006), 0, 0.5 + Math.cos(ph) * (gr + 0.006)); ins.rotation.y = ph; Wr.add(ins);
+            for (var tt = 0; tt < 7; tt++) { var tooth = K.box(0.024, 0.012, 0.05, JOINT, 0, 0, 0, 0.002); tooth.position.set(Math.sin(ph) * (gr + 0.03), -0.135 + tt * 0.045, 0.5 + Math.cos(ph) * (gr + 0.03)); tooth.rotation.y = ph; Wr.add(tooth); }
+          });
+          [-0.08, 0.08].forEach(function (yy) { var hb = new THREE.Mesh(new THREE.CylinderGeometry(0.016, 0.016, 0.03, 32), JOINT); hb.rotation.z = Math.PI / 2; hb.position.set(s2 * (r1 + 0.02), yy, 0.5); Wr.add(hb); });
+          var link = TXT.roundedBox(0.07, 0.26, 0.2, 0.02, GRIP); link.position.set(s2 * (gr + 0.09), 0, 0.37); Wr.add(link);
+          /* the link plate's bolt pattern, three by two socket heads on its outer face, and a bolt ring round its pivot */
+          for (var lb = 0; lb < 6; lb++) { var sb = new THREE.Mesh(new THREE.CylinderGeometry(0.009, 0.009, 0.012, 12), JOINT); sb.rotation.z = Math.PI / 2;
+            sb.position.set(s2 * (gr + 0.126), -0.08 + (lb % 3) * 0.08, 0.32 + Math.floor(lb / 3) * 0.1); Wr.add(sb); }
+          var pin = new THREE.Mesh(new THREE.CylinderGeometry(0.022, 0.022, 0.3, 32), JOINT); pin.position.set(s2 * (gr + 0.09), 0, 0.3); Wr.add(pin);
         });
         /* cable dress: a loom from the turret over the elbow to the wrist, clipped, so the arm reads as a working machine */
         var CABLE = K.mat("rf-cable", { color: 0x15161a, roughness: 0.7 });
@@ -248,10 +264,22 @@
         G.add(K.box(w, 0.14, d, DECK, 0, H - 0.04, 0, 0.02));
         for (var g = -w / 2 + 0.15; g < w / 2; g += 0.3) G.add(K.box(0.035, 0.02, d - 0.2, JOINT, g, H + 0.1, 0, 0));
         for (var g2 = -d / 2 + 0.6; g2 < d / 2; g2 += 1.2) G.add(K.box(w - 0.2, 0.024, 0.05, BAND, 0, H + 0.1, g2, 0));
-        /* rotary table and master bushing, slips */
-        G.add(K.cyl(0.95, 0.95, 0.22, DECK, 0, H + 0.1, 0, 48));
-        G.add(K.cyl(0.62, 0.62, 0.05, JOINT, 0, H + 0.32, 0, 40));
-        for (var sl = 0; sl < 3; sl++) { var sa = sl / 3 * Math.PI * 2; var slp = K.box(0.22, 0.34, 0.14, GRIP, Math.cos(sa) * 0.17, H + 0.33, Math.sin(sa) * 0.17, 0.02); slp.rotation.y = -sa; G.add(slp); }
+        /* rotary table: a dark steel table with a bright worn rim, a square master bushing, and three slip segments
+         * wrapped round the well, each a curved wedge with grooved die faces and a handle */
+        G.add(K.cyl(0.98, 1.0, 0.24, DECK, 0, H + 0.08, 0, 56));
+        G.add(K.cyl(0.97, 1.0, 0.05, JOINT, 0, H + 0.31, 0, 72));
+        G.add(K.box(0.86, 0.06, 0.86, GRIP, 0, H + 0.33, 0, 0.02));
+        var RIM = K.mat("rf-rim", { color: 0xb3b5b7, metalness: 0.55, roughness: 0.34 });
+        G.add(K.cyl(0.62, 0.64, 0.035, RIM, 0, H + 0.39, 0, 72));
+        for (var sl = 0; sl < 3; sl++) {
+          var a0 = sl / 3 * Math.PI * 2 + 0.26, len = Math.PI * 2 / 3 - 0.52;
+          var seg = new THREE.Mesh(new THREE.CylinderGeometry(0.17, 0.22, 0.34, 24, 1, false, a0, len), GRIP); seg.position.y = H + 0.6; G.add(seg);
+          for (var gv = 0; gv < 6; gv++) { var gr2 = 0.172 + (0.22 - 0.172) * (1 - (gv + 0.5) / 6);
+            var groove = new THREE.Mesh(new THREE.CylinderGeometry(gr2 + 0.003, gr2 + 0.003, 0.012, 24, 1, true, a0 + 0.02, len - 0.04), K.mat("rf-groove", { color: 0x1d1e20, metalness: 0.6, roughness: 0.6 }));
+            groove.material.side = THREE.DoubleSide; groove.position.y = H + 0.46 + gv * 0.05; G.add(groove); }
+          var am = a0 + len / 2, hx = Math.sin(am), hz = Math.cos(am);
+          G.add(K.bar([hx * 0.19, H + 0.77, hz * 0.19], [hx * 0.27, H + 0.86, hz * 0.27], 0.012, JOINT, 24));
+        }
         G.add(K.cyl(0.12, 0.12, 0.06, DECK, 2.1, H + 0.1, 1.3, 20));   /* mousehole */
         /* handrails on three sides */
         function rail(a, b) { G.add(K.bar([a[0], H + 1.07, a[1]], [b[0], H + 1.07, b[1]], 0.025, RAIL, 8)); G.add(K.bar([a[0], H + 0.55, a[1]], [b[0], H + 0.55, b[1]], 0.02, RAIL, 8)); }
@@ -332,21 +360,34 @@
     cx.save(); cx.setTransform(1, 0, 0, 1, 0, 0); cx.drawImage(c, 0, 0); cx.restore();
   };
 
+  /* a DOM label set beside a point in design px, so a leader's `at` and the label share one coordinate */
+  N.pinLabel = function (id, at, off) { var el = document.getElementById(id); if (!el) return; el.style.left = Math.round(at[0] + (off ? off[0] : 0)) + "px"; el.style.top = Math.round(at[1] + (off ? off[1] : 0)) + "px"; return el; };
+
+  /* a far lamp placed through the camera: the world point `dist` metres along the ray through screen (sx, sy) */
+  N.lampAt = function (THREE, R, sx, sy, dist, size) {
+    R.camera.updateMatrixWorld(true);
+    var v = new THREE.Vector3(sx / N.W * 2 - 1, 1 - sy / N.H * 2, 0.5).unproject(R.camera).sub(R.camera.position).normalize().multiplyScalar(dist).add(R.camera.position);
+    return N.lampGlow(THREE, R, [v.x, v.y, v.z], 0xeef2ff, size || 0.9, 0);
+  };
+
   /* THE ARM REACHES WHAT IT HOLDS. Pose a pipe_robot so its gripper's centre lands on a world point with the jaws
    * vertical (a pipe standing in the derrick): yaw toward the target, then a coarse to fine search over shoulder and
    * elbow, the wrist set to keep the gripper level. Returns the miss in metres, which a frame can assert on. */
-  N.reach = function (THREE, rob, target) {
-    var D = Math.PI / 180, P = rob.userData.parts, inv = new THREE.Matrix4();
+  N.reach = function (THREE, rob, target, o) {
+    o = o || {};
+    var D = Math.PI / 180, P = rob.userData.parts, inv = new THREE.Matrix4(), T = new THREE.Vector3(target[0], target[1], target[2]);
     rob.updateMatrixWorld(true); inv.copy(rob.matrixWorld).invert();
-    var t = new THREE.Vector3(target[0], target[1], target[2]).applyMatrix4(inv);
+    var t = T.clone().applyMatrix4(inv);
     P.turret.rotation.y = Math.atan2(t.x, t.z);
-    var best = [0, 0, 1e9];
+    var best = [0, 0, 1e9, 1e9], ev = new THREE.Vector3();
+    /* `low` asks for the pose that keeps the elbow lowest among those that land, so the arm reaches in level */
     function err(sh, el) { P.upper.rotation.x = -sh * D; P.forearm.rotation.x = -el * D; P.wrist.rotation.x = (sh + el) * D;
-      rob.updateMatrixWorld(true); return rob.userData.gripAt().distanceTo(new THREE.Vector3(target[0], target[1], target[2])); }
-    for (var sh = -60; sh <= 80; sh += 4) for (var el = -90; el <= 70; el += 4) { var e = err(sh, el); if (e < best[2]) best = [sh, el, e]; }
+      rob.updateMatrixWorld(true); var e = rob.userData.gripAt().distanceTo(T);
+      P.forearm.getWorldPosition(ev); return [e, e + (o.low ? Math.max(0, ev.y - T.y) * 0.02 : 0)]; }
+    for (var sh = -60; sh <= 120; sh += 4) for (var el = -150; el <= 70; el += 4) { var e = err(sh, el); if (e[1] < best[3]) best = [sh, el, e[0], e[1]]; }
     for (var step = 2; step > 0.05; step /= 2) { var b0 = best.slice();
-      for (var a = -2; a <= 2; a++) for (var b = -2; b <= 2; b++) { var e2 = err(b0[0] + a * step, b0[1] + b * step); if (e2 < best[2]) best = [b0[0] + a * step, b0[1] + b * step, e2]; } }
-    err(best[0], best[1]); return best[2];
+      for (var a = -2; a <= 2; a++) for (var b = -2; b <= 2; b++) { var e2 = err(b0[0] + a * step, b0[1] + b * step); if (e2[1] < best[3]) best = [b0[0] + a * step, b0[1] + b * step, e2[0], e2[1]]; } }
+    return err(best[0], best[1])[0];
   };
 
   /* ---- frame helpers, carried from the 2026-11-04 chassis ---------------------------------- */
@@ -391,7 +432,7 @@
       '.tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace; font-size:24px; letter-spacing:0.07em; line-height:1.5; color:' + ink + '; white-space:nowrap; z-index:20; }',
       '.lab { position:absolute; font-family:"JetBrains Mono", monospace; font-size:26px; font-weight:500; letter-spacing:0.06em; line-height:1.3; color:' + ink + '; white-space:nowrap; z-index:12; }',
       ".lab.ru { color:#C99474; }",
-      ".lab.gold { color:#E0956A; }",
+      ".lab.gold { color:#D08A6F; }",
       ".hook, .dek, .lab, .kick, .count, .src { font-feature-settings:\"calt\" 0; }",
       ".hook, .dek, .kick, .count, .lab { text-shadow:0 0 2px " + halo + ", 0 1px 14px " + halo2 + "; }",
       ".tx-site, .src { text-shadow:0 0 2px " + halo + ", 0 1px 4px " + halo2 + "; }"

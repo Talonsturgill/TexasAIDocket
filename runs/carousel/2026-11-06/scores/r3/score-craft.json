@@ -1,0 +1,82 @@
+{
+ "_note": "Scores, weighted score, hard fails and fixes as the craft judge returned them, round 3 (the cap); each why abridged by the run.",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 5.8,
+   "why": "True blacks and light type; 2 and 9 closest to the showstopper; the cover a rounded box lit frontally; 5 repeats it; 4 a mannequin before a doghouse; 6's lime vest and starfield window; 7 one-material noise with a dead bottom; 8 blinds; 3 credible with a dead band."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.3,
+   "why": "One night world, dark track, ember spine; 6's wood and vest and 7's strata sit outside."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.0,
+   "why": "Every numeral and drawn count traces; c24 and c8 apart; AJOT republication; the cover's 'now do' firmer than c7."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.8,
+   "why": "A corporate plan told clearly; no body, county or deadline."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Cover earns it, 2 pays, 6 turns; 5 a reshoot of 1; 7 a detour."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Trade words, no boosterism; wire-copy cadence; a flat hook on 6."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 5.5,
+   "why": "Racks, lateral and worker at a gate repeat no. 68; floodlit repeats nos. 67 and 59."
+  }
+ ],
+ "weighted_score": 6.79,
+ "hard_fails": [],
+ "ship": true,
+ "artwork_weakest_frames": [
+  {
+   "slide": 8,
+   "problem": "Blinds; beams invisible; no pool.",
+   "fix": "A raking oblique with lit crowns and casts, a pool on the banded five."
+  },
+  {
+   "slide": 1,
+   "problem": "A rounded box lit head-on; no jaws; blurred column.",
+   "fix": "Jaws with die pads, the key at azimuth -60 elevation 26, grime, a sharp tool joint above."
+  },
+  {
+   "slide": 7,
+   "problem": "One-material noise; dead bottom; dot rig.",
+   "fix": "Three strata materials, a pool along the lateral, crop the empty bottom."
+  },
+  {
+   "slide": 6,
+   "problem": "Starfield window; lime vest; one console.",
+   "fix": "The floodlit floor through the glass; the vest in sun-worn safety yellow."
+  },
+  {
+   "slide": 4,
+   "problem": "Front-lit mannequin; stands fused.",
+   "fix": "Key from the upper left, behind the gate rail, stands spaced."
+  },
+  {
+   "slide": 5,
+   "problem": "Duplicates the cover; flat band; prism slips.",
+   "fix": "A low three-quarter at the rotary; remove the band's emissive term."
+  }
+ ]
+}

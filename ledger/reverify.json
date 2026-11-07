@@ -1,7 +1,7 @@
 {
   "_spec": {
     "version": 1,
-    "generated": "2026-11-05",
+    "generated": "2026-11-06",
     "note": "One row per source url. ETag and Last-Modified drive the next conditional request, hash short circuits the text comparison, and proven records which claim quotes have been located here, which is what tells a real change apart from a page this check cannot read."
   },
   "sources": {
@@ -446,8 +446,8 @@
     },
     "https://communityimpact.com/austin/san-marcos-buda-kyle/government/2026/06/23/hays-county-passes-resolution-pausing-consideration-of-high-water-use-developments-data-centers/": {
       "etag": null,
-      "last_modified": "Fri, 06 Nov 2026 05:09:01 GMT",
-      "hash": "6ac7c06a5b6774055ad2483efd1e4a68cfa252babf9ef663d08b51d8972f5168",
+      "last_modified": "Sat, 07 Nov 2026 05:08:58 GMT",
+      "hash": "53c1ea2c50552a0dc40cebbff4c887998b933b5dc51dbfbf279471cb958a0383",
       "proven": [
         "tx-2026-0028-c1"
       ]
@@ -487,8 +487,8 @@
     },
     "https://communityimpact.com/keller-roanoke-northeast-fort-worth/government/fort-worth-city-council-approves-steps-to-start-moratorium-process-on-data-centers/": {
       "etag": null,
-      "last_modified": "Fri, 06 Nov 2026 05:09:01 GMT",
-      "hash": "8d7b763b84a9eea2097536b8384284b8daf8dcbfdb3f9fed2da874ce2894b327",
+      "last_modified": "Sat, 07 Nov 2026 05:08:58 GMT",
+      "hash": "b07b10cbe7fc909d1f252311230f9c112ea99a263cf532f6e933fecb633a0a2a",
       "proven": [
         "tx-2026-0062-c1"
       ]
@@ -503,8 +503,8 @@
     },
     "https://communityimpact.com/san-marcos-buda-kyle/government/hays-county-commissioners-reallocate-funds-away-from-potential-axon-ai-contract/": {
       "etag": null,
-      "last_modified": "Fri, 06 Nov 2026 05:09:01 GMT",
-      "hash": "7325e8401865bafb607662643ee2b1eae483cbc734a4cdc5da5f832a0eed5129",
+      "last_modified": "Sat, 07 Nov 2026 05:08:59 GMT",
+      "hash": "c91b25470ffd890a2a43f80a4509a0def51848319b1f41ecfd1cd168018d2c8d",
       "proven": [
         "tx-2026-0168-c8",
         "tx-2026-0168-c9"
@@ -622,8 +622,8 @@
     },
     "https://dronexl.co/2026/10/09/zipline-austin-round-rock-drone-delivery-launch/": {
       "etag": null,
-      "last_modified": "Fri, 06 Nov 2026 05:09:02 GMT",
-      "hash": "be837cc4d8c661ed6029f3a455a2379169aee977f183c5f9ba301d1b1b57c1bf",
+      "last_modified": "Sat, 07 Nov 2026 05:08:59 GMT",
+      "hash": "c0ba922800fc0f560a4309e554a255d6afa622c9ee1f4c5c8d444954a667729e",
       "proven": [
         "tx-2026-0186-c18",
         "tx-2026-0232-c13"
@@ -1080,6 +1080,14 @@
         "tx-2026-0107-c10",
         "tx-2026-0107-c11",
         "tx-2026-0107-c9"
+      ]
+    },
+    "https://ir.aurora.tech/news-events/press-releases/detail/152/aurora-outlines-2030-vision-to-scale-to-30000-driverless-trucks-at-analyst-and-investor-day": {
+      "etag": null,
+      "last_modified": null,
+      "hash": "3ad0232287c2c5d146cd49b7f02534e5118c4f5cca67c2768cd4cf0016fc2945",
+      "proven": [
+        "tx-2026-0239-c14"
       ]
     },
     "https://kodiak.ai/news/autonomy-readiness-96-driverless-long-haul-launch": {
@@ -1546,7 +1554,7 @@
     "https://pubmed.ncbi.nlm.nih.gov/42714442/": {
       "etag": null,
       "last_modified": null,
-      "hash": "bdf49c8e90df18946fc0f0959b3622a052506e67bcabf07756611b4a114adf5c",
+      "hash": "972b1f5617a2d2630003dc4f975b570580b211fe1b9555bb67a3c9d21270b5b0",
       "proven": [
         "tx-2026-0147-c1",
         "tx-2026-0147-c2",
@@ -1561,7 +1569,7 @@
     "https://pubmed.ncbi.nlm.nih.gov/42716711/": {
       "etag": null,
       "last_modified": null,
-      "hash": "b4222bb5c92c0b3f8b92bf31e85ab914c97a392665da76122cccb083f6818c21",
+      "hash": "70df3bbc5936ff2f6847db2b950ab16f88998a8800effe81bc9b29c202de33cc",
       "proven": [
         "tx-2026-0148-c1",
         "tx-2026-0148-c2",
@@ -1865,8 +1873,8 @@
     },
     "https://texasscorecard.com/local/killeen-planning-zoning-votes-data-center-down/": {
       "etag": null,
-      "last_modified": "Thu, 05 Nov 2026 05:19:43 GMT",
-      "hash": "b7dcbd8c84a8af2700909f6b02ca672e35da1329ca2b7a1d6ecbffc94885e84b",
+      "last_modified": "Fri, 06 Nov 2026 13:51:16 GMT",
+      "hash": "333a57d36ef0c05e5c34bc07e6e4d65b137424682654858eebc63bb789a6224c",
       "proven": [
         "tx-2026-0032-c2",
         "tx-2026-0032-c3",
@@ -2206,7 +2214,7 @@
     "https://webapi.legistar.com/v1/pflugerville/matters/18184/histories": {
       "etag": null,
       "last_modified": null,
-      "hash": "756254671af07843004149d8ab5bbfdc5cf1ff5835c810ae92ddceb111f3a48b",
+      "hash": "af50caac6eea0f650fcd8a248a0caf5a3fa7c4b1da5a1a09c1437635e57f289c",
       "proven": [
         "tx-2026-0235-c2",
         "tx-2026-0235-c3",
@@ -2265,9 +2273,9 @@
       ]
     },
     "https://www.aect.net/southwest-power-pool-spp": {
-      "etag": "W/\"6b0400edfda4a5fba1948e29afeed031\"",
+      "etag": "W/\"fa93305c472e5d03a8f1086ad27600dc--gzip\"",
       "last_modified": null,
-      "hash": "72ca71ad6b7e64f9e9bb285f2d881c58aa8efbe64003968c1a5289433533c60f",
+      "hash": "ebf0ed42264c7141da724ceab4da309d2fb855c816d87ae6acc1a0240c3938db",
       "proven": [
         "tx-2026-0046-c6",
         "tx-2026-0047-c7"
@@ -2619,7 +2627,7 @@
     },
     "https://www.govably.com/": {
       "etag": "\"e46f85710d81358d97874a8d9f229306dd4a545c14bd256e3ae15dcb339d8d80\"",
-      "last_modified": "Fri, 23 Oct 2026 20:10:02 GMT",
+      "last_modified": "Fri, 06 Nov 2026 21:45:33 GMT",
       "hash": "016861289abfb4ab50bd80b317b1afdfb1625717921abdc74926ee377c27427b",
       "proven": [
         "tx-2026-0169-c5"
@@ -3085,6 +3093,16 @@
         "tx-2026-0220-c4"
       ]
     },
+    "https://www.sa.gov/Directory/News-Releases/Mayor%E2%80%99s-Statement-on-Council-Decision-on-Data-Centers": {
+      "etag": null,
+      "last_modified": null,
+      "hash": "906a4506fca2b778eb32574a22223aa02dbf02418cb787068d3b79f7cf8f92b1",
+      "proven": [
+        "tx-2026-0238-c1",
+        "tx-2026-0238-c2",
+        "tx-2026-0238-c3"
+      ]
+    },
     "https://www.sanangelo.gov/803/Data-Center-Information": {
       "etag": null,
       "last_modified": "Thu, 05 Nov 2026 05:21:40 GMT",
@@ -3119,6 +3137,27 @@
       "hash": "6d3d8dbd6bd6a1b918df50ffb8b96b3b843c03f5491e5367bb8d0fd2fdee2296",
       "proven": [
         "tx-2026-0061-c3"
+      ]
+    },
+    "https://www.sec.gov/Archives/edgar/data/0001828108/000182810826000092/aurora26q3shareholderlet.htm": {
+      "etag": null,
+      "last_modified": "Wed, 28 Oct 2026 20:20:55 GMT",
+      "hash": "45b62cb6b37fba0a7099cce4b07dd10b4902236698cb044ac55c64d4ffd342e8",
+      "proven": [
+        "tx-2026-0239-c1",
+        "tx-2026-0239-c10",
+        "tx-2026-0239-c11",
+        "tx-2026-0239-c12",
+        "tx-2026-0239-c13",
+        "tx-2026-0239-c15",
+        "tx-2026-0239-c2",
+        "tx-2026-0239-c3",
+        "tx-2026-0239-c4",
+        "tx-2026-0239-c5",
+        "tx-2026-0239-c6",
+        "tx-2026-0239-c7",
+        "tx-2026-0239-c8",
+        "tx-2026-0239-c9"
       ]
     },
     "https://www.sec.gov/Archives/edgar/data/2071778/000207177826000051/frmi-20260630.htm": {
@@ -3479,6 +3518,16 @@
         "tx-2026-0216-c14"
       ]
     },
+    "https://www.tpr.org/government-politics/2026-10-29/san-antonio-leaders-will-now-have-to-ok-every-new-data-center": {
+      "etag": null,
+      "last_modified": null,
+      "hash": "2be7be6825c5d15afe966b6360cb6cbeabbbca65f6ec160de485cbafc671ff5e",
+      "proven": [
+        "tx-2026-0238-c4",
+        "tx-2026-0238-c5",
+        "tx-2026-0238-c6"
+      ]
+    },
     "https://www.tpr.org/news/2026-05-13/waymo-recalls-almost-3-800-robotaxis-after-flooding-incident-in-san-antonio": {
       "etag": null,
       "last_modified": null,
@@ -3493,7 +3542,7 @@
     "https://www.tpr.org/news/2026-09-23/lubbock-takes-first-step-toward-data-center-moratorium-questions-remain-with-approaching-legislative-session": {
       "etag": null,
       "last_modified": null,
-      "hash": "2824be40b096cab6ed3f78639adc693cf4e17f2f5d51e8e1250089d71d99f269",
+      "hash": "cb4c04d0e571ff2b82c46cbaf9697cebe4f2749570a63f576cbe6bccb65f6308",
       "proven": [
         "tx-2026-0138-c4",
         "tx-2026-0138-c5",

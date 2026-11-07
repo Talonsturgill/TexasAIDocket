@@ -1,0 +1,87 @@
+{
+ "_note": "Scores, weighted score, hard fails and fixes as the integrity judge returned them, round 1; each why abridged by the run.",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 5.5,
+   "why": "Bold register met; models primitive and the audition's polish repairs not carried out: cover boxes, 5's flat band and prism slips, 6 stock office art, 3's plates textured not lit, 8 stripes, 2 a stub and blank band, 4 a mannequin before a shed. 7 is the best measured frame."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.0,
+   "why": "One deck, one world, two working devices; reliefs flatter; 6's warm desk off vocabulary; band tan on 9."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.0,
+   "why": "Every numeral traces; c9's 'on automated rigs' dropped on 9 and in the caption; c7's 'can perform' printed as 'now do'; c26's 'would usually help' turned to 'used to'; c3 quoted in the caption but not listed in the first comment; 3's plates are not lit."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.5,
+   "why": "What, who and roughly where; nothing actionable; the accountability turn lives only in the caption."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "Cover earns it, 2 and 3 pay; 5 nearly repeats 1; 7 a detour."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.8,
+   "why": "Good Texan lines; 'Reuters reported' on six frames and 'drawn to illustrate' on three."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 5.0,
+   "why": "Racks, lateral section and worker at a gate repeat no. 68; ten of twenty repeats no. 69; floodlit world repeats nos. 67 and 59."
+  }
+ ],
+ "weighted_score": 6.32,
+ "hard_fails": [],
+ "ship": false,
+ "artwork_weakest_frames": [
+  {
+   "slide": 6,
+   "problem": "Stock office art and a starfield window, no contractor.",
+   "fix": "A rig control display of the floor camera, the lit floor in the window, the contractor's shoulder and vest."
+  },
+  {
+   "slide": 1,
+   "problem": "Rounded boxes sitting on the pipe; no die pads, loom or grime.",
+   "fix": "Jaws wrapping the joint with die pads and hairline shadows, a loom, grime."
+  },
+  {
+   "slide": 3,
+   "problem": "Tread plates textured, not lit; grating a flat stripe; 'the rest' outside the safe zone.",
+   "fix": "A keyMask pool so the three tread plates are clearly brighter; move 'the rest' inside the margin."
+  },
+  {
+   "slide": 8,
+   "problem": "Stripes; the lowest joints under the footer.",
+   "fix": "All 20 joints and both beams above the footer; stronger casts."
+  },
+  {
+   "slide": 5,
+   "problem": "Flat card band; prism slips.",
+   "fix": "The cover's paint; slip dies that cast."
+  },
+  {
+   "slide": 2,
+   "problem": "A floating stub; blank sign band.",
+   "fix": "The full stand out of the top edge; letter the band."
+  },
+  {
+   "slide": 4,
+   "problem": "Mannequin before a shed, stand base hidden.",
+   "fix": "The worker beside the stand's base in one pool."
+  }
+ ]
+}

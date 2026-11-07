@@ -1,0 +1,77 @@
+{
+ "_note": "Scores, weighted score, hard fails and fixes as the reader judge returned them, round 2; each why abridged by the run.",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.0,
+   "why": "Rendered dark field with true blacks; several frames lean on primitives or read as texture: cover boxes, a factory-cell arm on 2, 3's swatch, 4's mannequin, 8's blinds, 9's small rack and dead middle; 6 and 7 best."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "One deck; the ember band does real work; 7's grey block and 8's stripes sit outside."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.0,
+   "why": "Every numeral traces; drawing units disclosed; slide 2 headline drops 'one rig'; slide 1 'now do'; slide 9 headline states staffing as the plan's; c3 not listed in the first comment."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.5,
+   "why": "What, who and roughly where; safety concrete; the 'no figure' line lives only in the caption."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "Cover and 2 pay; 2 and 3 repeat; 1, 4 and 5 repeat; 6 turns; 7 a detour; the close states the plan."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "Good caption opener and close; slide bodies read as a compliance memo."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 5.0,
+   "why": "Second Permian oil deck in three days; racks, lateral and worker at a gate repeat no. 68; ten of twenty repeats no. 69."
+  }
+ ],
+ "weighted_score": 6.66,
+ "hard_fails": [],
+ "ship": false,
+ "artwork_weakest_frames": [
+  {
+   "slide": 8,
+   "problem": "Forty dim stripes; joints not separable.",
+   "fix": "A three-quarter rake, the rack inside the frame on its beams, no extra dark rows."
+  },
+  {
+   "slide": 9,
+   "problem": "The rack fills a quarter; dead middle; derrick dominant; footer on a beam.",
+   "fix": "Lower eye, dolly in so the rack crosses the lower 55%; crop the mast."
+  },
+  {
+   "slide": 3,
+   "problem": "The lit third barely brighter at thumb.",
+   "fix": "A hard keyMask pool two stops above the grating, deep seams."
+  },
+  {
+   "slide": 2,
+   "problem": "A generic factory robot; a flat sign.",
+   "fix": "The chassis pipe_robot on the stand; a bolted plate that casts."
+  },
+  {
+   "slide": 4,
+   "problem": "A front-lit mannequin with a glowing hat.",
+   "fix": "Key from the flood side, stand him on the grating beside the stands with a shadow."
+  }
+ ]
+}

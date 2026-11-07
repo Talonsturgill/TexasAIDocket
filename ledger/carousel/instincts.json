@@ -1527,7 +1527,9 @@
         "2026-10-20",
         "2026-10-21"
       ],
-      "contradicted": []
+      "contradicted": [
+        "2026-11-06"
+      ]
     },
     {
       "id": "interior-back-wall-is-thick",
@@ -1746,6 +1748,14 @@
       "learned": "2026-11-05",
       "instinct": "Draw a square of stated area with its outer edge on the stated side, every lip inside it.",
       "evidence": "no. 69 frame 4: a formwork lip added outside the stated side on the two pits only drew 356,186 square feet larger than 388,133; the order was right in the code and wrong on the page until the lip moved inside",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "crop-to-the-part-built-well",
+      "learned": "2026-11-06",
+      "instinct": "When a chassis machine fails the audition twice, crop to the one part the chassis builds well and let the rest fall to black, rather than standing back or changing the representation.",
+      "evidence": "No. 70 frame 5 failed six readings: standing the camera back exposed the rig floor's slips as white primitives and a TXBENCH half section read as boxes twice, while a tight crop on the turned pin threads and the banded tool joint was accepted.",
       "confirmed": [],
       "contradicted": []
     }

@@ -2530,3 +2530,14 @@ agent on robots.txt and on the cited page (www.wilcotx.gov, www.wichitafallstx.g
 www.brazoscountytx.gov, www.dhs.gov, www.brownsvilletx.gov, www.mylubbock.us, www.leandertx.gov,
 www.globenewswire.com, www.faa.gov), and www.uta.edu, news.unt.edu, engineering.unt.edu and www.utep.edu did not
 answer robots.txt (URLError). Nothing was routed around.
+
+## 2026-11-06
+
+**corporate.exxonmobil.com answered** its October 26th Permian drilling post and its Permian operations page, and
+**d1io3yog0oux5.cloudfront.net answered** ExxonMobil's third quarter earnings call transcript PDF with a text layer,
+both through `fetch_doc.py`. **www.ajot.com answered** its republication of Reuters' August 24th report on Exxon's
+automated drilling. **The Helmerich & Payne October 7th release answered** through its investor site.
+**pubmed.ncbi.nlm.nih.gov served a cookie wall** to the project's client in place of an abstract, and
+**eutils.ncbi.nlm.nih.gov's robots.txt disallows** this project's path, so a scouted biomedical item was left out rather
+than read another way. **docs.tacc.utexas.edu answered** a public systems registry page. Every boundary declared on the
+worklist was re-measured on November 6th and held. Nothing was routed around.

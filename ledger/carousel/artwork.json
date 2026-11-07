@@ -4385,6 +4385,72 @@
     "hex": "#0A0A0C",
     "note": "The bay's black and the dark epoxy."
    }
+  },
+  {
+   "date": "2026-11-06",
+   "carousel_no": 70,
+   "written_from": "deck_coherence's median L* per frame at 432 px off the final renders, layout_check's accent share, by update_ledgers.py.",
+   "register": "SPATIAL SCENES on a rig floor at night under a cold mast flood in the floodlit world (frames 1, 2, 4, 5 and 9), one built cabin interior (6) and three TXBENCH material reliefs (3 floor plate, 7 geologic section, 8 pipe rack). Chassis assets/js/deck/2026-11-06-rigfloor.js: drill_pipe, pipe_stand, pipe_robot, rig_mast, rig_floor and red_zone_gate models with the kit's person, desk, monitor and office_chair, and dusk_ember paint bands as the one accent for pipe work handed to a machine.",
+   "structural_laws": [
+    "A CAMERA BEHIND THE WRIST HIDES THE JAWS. From the side the arm reaches from, the wrist housing covers the gripper, so the jaws read only along the arm's axis or from three quarters.",
+    "A BAND SCALED TO MEET AN ACCENT FLOOR BECOMES A BLOCK. Stretching an ember band four times its height to pass a coverage line drew a flat orange slab a critic took for a placeholder.",
+    "A FOOT WASH OVER THE ACCENT KILLS IT. The bottom darkening wash dropped the ember bands on frames 4 and 9 below the accent floor, so a band near the footer needs its own hex or a moved wash.",
+    "A FLAT PANE IS A DEAD WINDOW. A window drawn as one emissive plane read as a projector screen until it carried mullions, a sill and a night view.",
+    "A HANGING PIN OVER AN EMPTY BOX DRAWS NO CONNECTION. The pin has to touch the box for the frame to show the act its headline names."
+   ],
+   "techniques": [
+    "a gripper's jaw closed on a vertical drill pipe at arm's length, an ember band on the pin",
+    "a Red Zone pipe gate across the foreground with the arm and slips in the pool beyond",
+    "a material relief of nine floor plate panels, three diamond tread in the lit pool",
+    "racked stands over 2 stories beside a worker in a hard hat outside the gate",
+    "a three quarter macro of a pin seated in the box in the slips, the arm in from the right",
+    "a dark cabin of three screens and two joystick consoles, a night window on the floor",
+    "an earth section relief with two miles of lateral against a rig pin",
+    "a pipe rack relief of twenty joints, five banded in ember with a bracket",
+    "a rack of twenty joints on the pipe deck, ten banded, the lit rig floor beyond"
+   ],
+   "value": {
+    "per_frame_median_L": [
+     0.9,
+     2.3,
+     3.3,
+     3.7,
+     1.1,
+     1.5,
+     7.7,
+     4.8,
+     2.8
+    ],
+    "deck_median_L": 2.8,
+    "max_adjacent_delta": 6.2,
+    "mean_adjacent_delta": 2.11,
+    "note": "Measured by deck_coherence's median_lstar at 432 px off the final renders. A staged night world, a dark room and dark reliefs."
+   },
+   "accent": {
+    "hex": "#B4664F",
+    "name": "dusk_ember paint band, pipe work handed to a machine",
+    "frames_above_floor": [
+     1,
+     5,
+     8
+    ],
+    "share": [
+     0.0056,
+     0.0014,
+     0.0,
+     0.0,
+     0.0169,
+     0.0008,
+     0.0,
+     0.003,
+     0.0
+    ],
+    "note": "One band on the gripped pin on 1, 2, 4 and 5, five of twenty on 8, ten of twenty on 9."
+   },
+   "ground": {
+    "hex": "#08060F",
+    "note": "The night sky and the dark deck."
+   }
   }
  ]
 }

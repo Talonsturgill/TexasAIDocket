@@ -1,0 +1,227 @@
+{
+  "version": 2,
+  "selected": [
+    1,
+    5,
+    9
+  ],
+  "inputs": {
+    "slides/slide-01.html": "fb7a9426df1202e365203543a40c96a24c5a240a5c192bf8b9a3a197e8a3b06c",
+    "render/slide-01.png": "2da1fe80a5f32f5f581f85c53b766dad95ddc9d6a31667473b67b4e20d0a1d3b",
+    "assets/js/deck/2026-11-06-rigfloor.js": "e7b041acbbbb673b337ce67accd8429a7cf1fdac80e8ff9ba8840e1c79b80155",
+    "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+    "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+    "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+    "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+    "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+    "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+    "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+    "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+    "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+    "slides/slide-05.html": "155e1a6b8f0e21b418203f2e0e31fee80dc98ff5e20aa9354d070c91e6bbf765",
+    "render/slide-05.png": "59da2453e65eceda8823939d1b1449910492cd52229f6c48996a48bdc76508f8",
+    "slides/slide-09.html": "326201f9417a94c224b6d1c335f771c84c0629456bbcd7c2963c16167c4ce21b",
+    "render/slide-09.png": "83593af75727798ee27a5e3ccf232ca9f1dffa85a24ff5a1086efc2707e8eb5b"
+  },
+  "value_measurements": [
+    {
+      "frame": "slide-01.png",
+      "median_L": 0.9,
+      "mid": 0.07,
+      "dark": 0.773
+    },
+    {
+      "frame": "slide-05.png",
+      "median_L": 1.1,
+      "mid": 0.096,
+      "dark": 0.805
+    },
+    {
+      "frame": "slide-09.png",
+      "median_L": 2.3,
+      "mid": 0.092,
+      "dark": 0.741
+    }
+  ],
+  "review": {
+    "decision": "accept",
+    "inputs": {
+      "slides/slide-01.html": "fb7a9426df1202e365203543a40c96a24c5a240a5c192bf8b9a3a197e8a3b06c",
+      "render/slide-01.png": "2da1fe80a5f32f5f581f85c53b766dad95ddc9d6a31667473b67b4e20d0a1d3b",
+      "assets/js/deck/2026-11-06-rigfloor.js": "e7b041acbbbb673b337ce67accd8429a7cf1fdac80e8ff9ba8840e1c79b80155",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+      "slides/slide-05.html": "155e1a6b8f0e21b418203f2e0e31fee80dc98ff5e20aa9354d070c91e6bbf765",
+      "render/slide-05.png": "59da2453e65eceda8823939d1b1449910492cd52229f6c48996a48bdc76508f8",
+      "slides/slide-09.html": "326201f9417a94c224b6d1c335f771c84c0629456bbcd7c2963c16167c4ce21b",
+      "render/slide-09.png": "83593af75727798ee27a5e3ccf232ca9f1dffa85a24ff5a1086efc2707e8eb5b"
+    },
+    "frames": [
+      {
+        "slide": 1,
+        "role": "cover",
+        "subject": "An off white robot wrist casting with a raised bolt-ring plate and a rounded joint housing, closed on a vertical drill pipe. Under it hangs a dark tool joint with an ember band and turned pin threads. The upper arm leaves the frame at upper right, with two soft mast lamps in the black above.",
+        "visual_consequence": "A machine's gripper, not a hand, holds the pipe at the pin. The ember band marks that joint as machine-handled before any figure arrives.",
+        "weakness": "At 100 percent the castings are clean, smooth rounded blocks. None of the planned die pads, cable loom or weather grime is visible. The pipe above the gripper is a soft blurred column with no tool joint detail. The band carries one smeared reflection streak but rolls off correctly at both silhouettes.",
+        "repair": "none required for the audition. In the pixel pass, add the planned cable loom along the wrist and visible die pads at the jaw line.",
+        "encoding_reads": true,
+        "dominant_subject_finished": true,
+        "feed_legible": true,
+        "inputs": {
+          "slides/slide-01.html": "fb7a9426df1202e365203543a40c96a24c5a240a5c192bf8b9a3a197e8a3b06c",
+          "render/slide-01.png": "2da1fe80a5f32f5f581f85c53b766dad95ddc9d6a31667473b67b4e20d0a1d3b",
+          "assets/js/deck/2026-11-06-rigfloor.js": "e7b041acbbbb673b337ce67accd8429a7cf1fdac80e8ff9ba8840e1c79b80155",
+          "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+          "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+          "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+          "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+          "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+          "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+          "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+          "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+          "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de"
+        },
+        "read": "eighth reading, accept, these exact bytes"
+      },
+      {
+        "slide": 5,
+        "role": "evidence",
+        "subject": "A bright steel pin tool joint coming down from under the dark gripper casting, with a saturated ember band across its middle. Its turned pin threads, with specular rings on each crest, seat into the counterbored mouth of a grey box held in a slip wedge at the rotary. Two bare slip handle rods angle up on either side.",
+        "visual_consequence": "Threaded steel entering the box of a held joint, directly under a machine's casting with no hand in the frame. The band carries the motif from the cover, so the connection reads as made by the arm without the headline.",
+        "weakness": "The band brightens steadily from its left edge to its right edge with no falloff at the silhouette. The slips are a plain grey trapezoid prism with two untextured rods and no visible cast at the rotary, and the joint steel has no wear.",
+        "repair": "In the pixel pass, cut the band's emissive base or use the cover's exact paint so it darkens at both silhouettes, and give the slip handles a cast onto the wedge.",
+        "encoding_reads": true,
+        "dominant_subject_finished": true,
+        "feed_legible": true,
+        "inputs": {
+          "assets/js/deck/2026-11-06-rigfloor.js": "e7b041acbbbb673b337ce67accd8429a7cf1fdac80e8ff9ba8840e1c79b80155",
+          "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+          "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+          "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+          "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+          "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+          "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+          "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+          "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+          "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+          "slides/slide-05.html": "155e1a6b8f0e21b418203f2e0e31fee80dc98ff5e20aa9354d070c91e6bbf765",
+          "render/slide-05.png": "59da2453e65eceda8823939d1b1449910492cd52229f6c48996a48bdc76508f8"
+        },
+        "read": "eighth reading, accept, these exact bytes"
+      },
+      {
+        "slide": 9,
+        "role": "close",
+        "subject": "A rack of twenty drill pipe joints running from the lower left into the dark, the ten nearest the lens carrying ember bands behind their box ends. Beyond, in its own pool, stands a lit rig substructure with a small parked arm under the lattice mast.",
+        "visual_consequence": "Without the headline, a reader sees half of one rack of pipe marked with the same ember band the cover and connection frames used for machine handled pipe, set against the rig it feeds.",
+        "weakness": "The count holds, ten banded and ten bare. The band reads browner and less saturated in the near pool than the ember on frame 5. The pipe bodies are a uniform smooth blue grey with no mill scale, the rack beam a plain box, the far substructure plain posts with a cube doghouse. Polish items for the panel.",
+        "repair": "none required",
+        "encoding_reads": true,
+        "dominant_subject_finished": true,
+        "feed_legible": true,
+        "inputs": {
+          "assets/js/deck/2026-11-06-rigfloor.js": "e7b041acbbbb673b337ce67accd8429a7cf1fdac80e8ff9ba8840e1c79b80155",
+          "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+          "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+          "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+          "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+          "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+          "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+          "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+          "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+          "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+          "slides/slide-09.html": "326201f9417a94c224b6d1c335f771c84c0629456bbcd7c2963c16167c4ce21b",
+          "render/slide-09.png": "83593af75727798ee27a5e3ccf232ca9f1dffa85a24ff5a1086efc2707e8eb5b"
+        },
+        "read": "ninth reading, finished, these exact bytes"
+      }
+    ],
+    "_note": "Per-frame entries carried from the reviewer's own readings of these exact bytes: frames 1 and 5 from the eighth reading (accept), frame 9 from the ninth (finished, repair none). The ninth reading revised frames 1 and 5 after a dek wording change and heavier grime on 1; those two frames were restored byte for byte to the versions the eighth reading accepted. At ship, fig_inject.py rewrote slide-09.html's FIG line into canonical key order with the same figures and values, the render confirmed byte-identical, and frame 9's html digest rebound by the run. Prose abridged by the run."
+  },
+  "plan": {
+    "hardest_frame": 5,
+    "visual_argument": "The floor where people stood: a robotic arm holds the pipe a floor hand used to steady, and one rack of drill pipe carries the company's stated share of its fleet, five of twenty joints banded for next year and ten for 2028.",
+    "build_risk": "Frame 5 holds an articulated arm, a hanging joint, the joint in the slips and the rotary in one close view, all chassis models the kit lacks. The risk is stacked boxes and grey steel. Mitigation: castings with bolt rings and a cable loom, worn bright tool joints, die pads, a crop that leaves the plain upper casting out of frame; fallback is a tighter crop on gripper, pin and box.",
+    "distinct_from_recent": "No. 69 was a dark bay lit through a dock door at last light, wide interiors of taped floor pads. No. 68 was a last light Permian well pad with a pump jack, tank battery and gauge boards. No. 67 was a floodlit weigh station and truck yard with wide spatial scenes. This deck stands on a rig floor two stories up at night under a cold flood, at arm's length and macro distance on steel machinery, with three material reliefs of floor plate, a pipe rack and a geologic section, and its accent is dusk_ember rather than dusk_gold."
+  },
+  "frame_inputs": {
+    "1": {
+      "slides/slide-01.html": "fb7a9426df1202e365203543a40c96a24c5a240a5c192bf8b9a3a197e8a3b06c",
+      "render/slide-01.png": "2da1fe80a5f32f5f581f85c53b766dad95ddc9d6a31667473b67b4e20d0a1d3b",
+      "assets/js/deck/2026-11-06-rigfloor.js": "e7b041acbbbb673b337ce67accd8429a7cf1fdac80e8ff9ba8840e1c79b80155",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de"
+    },
+    "5": {
+      "assets/js/deck/2026-11-06-rigfloor.js": "e7b041acbbbb673b337ce67accd8429a7cf1fdac80e8ff9ba8840e1c79b80155",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+      "slides/slide-05.html": "155e1a6b8f0e21b418203f2e0e31fee80dc98ff5e20aa9354d070c91e6bbf765",
+      "render/slide-05.png": "59da2453e65eceda8823939d1b1449910492cd52229f6c48996a48bdc76508f8"
+    },
+    "9": {
+      "assets/js/deck/2026-11-06-rigfloor.js": "e7b041acbbbb673b337ce67accd8429a7cf1fdac80e8ff9ba8840e1c79b80155",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+      "slides/slide-09.html": "326201f9417a94c224b6d1c335f771c84c0629456bbcd7c2963c16167c4ce21b",
+      "render/slide-09.png": "83593af75727798ee27a5e3ccf232ca9f1dffa85a24ff5a1086efc2707e8eb5b"
+    }
+  },
+  "needs_review": [],
+  "shipped_inputs": {
+    "slides/slide-01.html": "fb7a9426df1202e365203543a40c96a24c5a240a5c192bf8b9a3a197e8a3b06c",
+    "slide-01.webp": "44361c8b7094bb5b30d83c549c2a1920cb5d1b6b72fd1cac3156cd8244523766",
+    "slides/slide-05.html": "155e1a6b8f0e21b418203f2e0e31fee80dc98ff5e20aa9354d070c91e6bbf765",
+    "slide-05.webp": "8ed5c98f1089a631e01efebc1ed653d631e9824e537e39ed5212a440c53daa80",
+    "slides/slide-09.html": "326201f9417a94c224b6d1c335f771c84c0629456bbcd7c2963c16167c4ce21b",
+    "slide-09.webp": "ecddfb75d0cf54cfc0ff505d1d717b528b9d350fa1a6c86004f2a338c7586ea0"
+  },
+  "encodings": [
+    {
+      "to": "slide-01.webp",
+      "to_sha256": "44361c8b7094bb5b30d83c549c2a1920cb5d1b6b72fd1cac3156cd8244523766",
+      "from_sha256": "2da1fe80a5f32f5f581f85c53b766dad95ddc9d6a31667473b67b4e20d0a1d3b",
+      "psnr_db": 43.99
+    },
+    {
+      "to": "slide-05.webp",
+      "to_sha256": "8ed5c98f1089a631e01efebc1ed653d631e9824e537e39ed5212a440c53daa80",
+      "from_sha256": "59da2453e65eceda8823939d1b1449910492cd52229f6c48996a48bdc76508f8",
+      "psnr_db": 43.983
+    },
+    {
+      "to": "slide-09.webp",
+      "to_sha256": "ecddfb75d0cf54cfc0ff505d1d717b528b9d350fa1a6c86004f2a338c7586ea0",
+      "from_sha256": "83593af75727798ee27a5e3ccf232ca9f1dffa85a24ff5a1086efc2707e8eb5b",
+      "psnr_db": 42.438
+    }
+  ]
+}

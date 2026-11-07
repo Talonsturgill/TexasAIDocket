@@ -11,7 +11,7 @@ Texas State University published on August 24th, 2026 that its project on artifi
 - Public access: Write to the decider
 - Take part: https://news.txst.edu/research-and-innovation/2026/txst-team-develops-accurate-road-condition-evaluation.html
 
-- Last checked: 2026-10-29
+- Last checked: 2026-11-04
 
 ## Dates
 
@@ -38,6 +38,8 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-21 · Checked and unchanged. The decision still stands as decided.
 - 2026-10-24 · Texas State's AI pavement inspection method is still moving toward statewide highway use.
 - 2026-10-29 · Texas State's AI pavement inspection method is still described as moving toward statewide highway use.
+- 2026-11-01 · Texas State's AI pavement inspection method is still moving toward statewide use.
+- 2026-11-04 · Checked and unchanged. The decision still stands as decided.
 
 ## Evidence
 

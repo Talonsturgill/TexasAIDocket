@@ -1,0 +1,87 @@
+{
+ "_note": "Scores, weighted score, hard fails and fixes as the craft judge returned them, round 1; each why abridged by the run.",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 5.5,
+   "why": "Bold register met; six or seven frames lean on a primitive model, a dead zone or an artifact: the cover's rounded boxes, 2's stub with a blank sign, 4's cut worker and shed, 5's flat band, 6's stock dashboards, 7's dot rig, 8's blinds, 9's toy rig."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 6.5,
+   "why": "One world, one key, no strobe; motif and camera devices work; the reliefs read as different stock; the band drifts to tan on 9."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.8,
+   "why": "Every numeral traces; 'now do much' firms c7; the caption quotes c3 while the first comment lists c1 c4 c5; frame 8's whole of 20 is not visible."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.0,
+   "why": "Who, when and where clear; a third of injuries is the stake; nothing to act on."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Hooks and pays; 4 and 5 make nearly one point; 7 a tangent."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.8,
+   "why": "Good opener; 'Reuters reported' on five deks and 'drawn to illustrate' on three."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 5.0,
+   "why": "7's lateral, the racks on 8 and 9 and the worker by a gate repeat no. 68; ten of twenty for half repeats no. 69; the floodlit world repeats no. 67."
+  }
+ ],
+ "weighted_score": 6.55,
+ "hard_fails": [],
+ "ship": false,
+ "artwork_weakest_frames": [
+  {
+   "slide": 1,
+   "problem": "Clean rounded boxes, no die pads or loom, the pipe above a light column.",
+   "fix": "Jaw castings wrapping the joint with die inserts, a cable loom and grime, a mill scale pipe above with a specular line, tighter crop."
+  },
+  {
+   "slide": 4,
+   "problem": "Worker cut at the shins, stand base hidden, an unplanned shed.",
+   "fix": "Lower and pull back so the worker stands whole beside the stand's base; delete the shed."
+  },
+  {
+   "slide": 8,
+   "problem": "Blinds at 432 px; the rack runs off the bottom.",
+   "fix": "All 20 joints and both beams between dek and footer, rotated a little, each casting a crescent."
+  },
+  {
+   "slide": 6,
+   "problem": "Stock dashboards, speckled window, no operator.",
+   "fix": "A floor camera view on the screens, the lit floor and arm through the window, the operator's shoulder."
+  },
+  {
+   "slide": 7,
+   "problem": "The rig is a dot; strata uniform noise; hard seam.",
+   "fix": "A mast silhouette at scale, three or four distinct bands, feathered top edge."
+  },
+  {
+   "slide": 2,
+   "problem": "A stub over the slips, blank sign band, stray diagonal rail.",
+   "fix": "A three-joint stand rising out of the top, remove the diagonal, letter or drop the band."
+  },
+  {
+   "slide": 9,
+   "problem": "Toy rig, dead band, tan bands.",
+   "fix": "Closer camera on the rig floor; frame 5's ember paint on the bands."
+  }
+ ]
+}

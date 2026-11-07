@@ -35,6 +35,11 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-29 · The Houston producer's stake in the AI vendor and its Ward County commitment are still unconfirmed. The release page refuses every reader.
 - 2026-10-30 · The producer's stake in the AI vendor and its Ward County commitment remain unconfirmed, since the release page still refuses every reader.
 - 2026-10-31 · The oil producer's stake in its AI vendor and the Ward County commitment stay unconfirmed. The release's host answers no reader.
+- 2026-11-01 · The oil producer's stake in its AI vendor stays unconfirmed. The release's host still answers no request from this project.
+- 2026-11-02 · Battalion Oil's investment in Collide is unconfirmed today. The release's host refuses every reader.
+- 2026-11-03 · Battalion Oil's investment in Collide remains unconfirmed. The release's host refuses every reader.
+- 2026-11-05 · Battalion Oil's stake in Collide has no fresh confirmation. The release's host is still closed to every reader.
+- 2026-11-06 · Battalion Oil's stake in Collide and its Ward County commitment are unconfirmed today. The host of the release still turns away every reader.
 
 ## Evidence
 

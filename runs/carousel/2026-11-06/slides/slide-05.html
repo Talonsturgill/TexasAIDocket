@@ -1,0 +1,67 @@
+<!doctype html>
+<!-- 2026-11-06, frame 5 of 9. Archetype CLOSE_CROP. A spatial scene through txthree.js at the well on the chassis rig_floor in the floodlit world: the chassis pipe_robot's gripper lowering a chassis drill_pipe's banded pin over the box of the joint held in the rotary's slips. Drawn to illustrate, to no maker's or operator's design. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:900px">The arm makes the connection</h1>
+<p class="dek" data-follow="26" style="width:860px">Where workers used to help move the pipe, robotic arms now position columns of drill pipe and connect them to a drill string, Reuters reported. ExxonMobil says it contracted drilling operators to modernize its fleet with robotic systems.</p>
+<script>window.FIG = {"joint_m": 9.4};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-06-rigfloor.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "The connection", counter: "05 / 09", src: "c26 c10", fit: { min: 80, max: 104, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 30, near: 0.05, far: 3000, exposure: 1.12 });
+  TXT.ground(R, { surface: 'caliche', size: 700 });
+  const floor = K.make('rig_floor', { ramp: true }); TXT.add(R, floor); TXT.contact(R, floor);
+  const fy = floor.userData.floorY;
+  const mast = K.make('rig_mast', {}); mast.position.set(0, fy - 0.12, 0); TXT.add(R, mast);
+  /* THE FIGURE: two joints of joint_m metres. The one in the slips stands with its box 0.75 m proud of the floor, so
+   * its pin is a whole joint below; the one in the gripper hangs with its banded pin 0.12 m over that box. */
+  const low = K.make('drill_pipe', { length: FIG.joint_m }); low.position.set(0, fy + 0.75 - FIG.joint_m, 0); TXT.add(R, low);
+  const up = K.make('drill_pipe', { length: FIG.joint_m, band: 'pin' }); up.position.set(0, fy + 0.71, 0); TXT.add(R, up);
+  const rob = K.make('pipe_robot', { pedestal: 0.2 }); rob.position.set(1.55, fy, 1.75); TXT.add(R, rob); TXT.contact(R, rob);
+  const miss = CH.reach(THREE, rob, [0, fy + 1.185, 0]);
+  if (miss > 0.03) throw new Error('the gripper misses the pipe by ' + miss.toFixed(3) + ' m');
+  /* low and close at the well, the box and the hanging pin in the middle of the frame, the slips below */
+  const from = [-2.94, fy + 1.0, -0.6];
+  const look = CH.aim(THREE, R, TXT, from, [0, fy + 0.84, 0], 520, 1000, 18);
+  TXT.frame(R, { fov: 18, from, look });
+  TXT.sky(R);
+  TXT.deckRig(R, CH.rigSpec(W, 8, 4096), CH.rigOpts([0, fy + 1, 0], { distance: 30, shadowFar: 80, normalBias: 0.06 }));
+  CH.unacne(R, 0.04);
+  /* the arm's off white casting lit from the camera side, as on the cover */
+  CH.flood(THREE, R, [-3.2, fy + 3.2, -1.6], [0.1, fy + 1.2, 0.1], { i: 600, angle: 0.28, penumbra: 0.8 });
+  CH.flood(THREE, R, [-2.6, fy + 9.5, 2.6], [0, fy + 0.8, 0], { i: 1300, angle: 0.5, penumbra: 0.9 });
+  CH.flood(THREE, R, [2.6, fy + 12, 2.6], [0, fy, 0], { i: 500, angle: 0.6 });
+  CH.flood(THREE, R, [-2.2, fy + 5.5, 2.6], [0, fy + 0.2, 0], { i: 1300, angle: 0.3 });
+  /* the cover's own band paint: diffuse over an emissive base, so it keeps its round shading */
+  R.scene.traverse((m) => { if (m.isMesh && m.material && m.material.color && m.material.color.getHex() === 0x9a4a34) m.material = new THREE.MeshLambertMaterial({ color: 0x170c09, emissive: 0x8c4432 }); });
+  /* the floods' own shadows soft and clear of acne on the round joint: a wider normal bias and a softer map */
+  R.scene.traverse((l) => { if (l.isSpotLight && l.castShadow) { l.shadow.mapSize.set(4096, 4096); l.shadow.normalBias = 0.08; l.shadow.radius = 6; } });
+  TXT.stage(R, rob);
+  TXT.weather(R, { grime: 0.3, height: 1.2, mottle: 0.14 });
+  const cx = CH.develop(await TXT.snapshot(R, { stage: false }), gl);
+  CH.post(cx, { a: 0.42, veil: 0.4, veilH: 280 });
+  CH.footWash(cx, { a: 0.92, r: 500 });
+  CH.typeDark(cx, { pad: 40, fade: 70, a: 0.97 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

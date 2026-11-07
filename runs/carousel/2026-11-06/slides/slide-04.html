@@ -1,0 +1,71 @@
+<!doctype html>
+<!-- 2026-11-06, frame 4 of 9. Archetype FIGURE_SCALE. A spatial scene through txthree.js on the chassis rig_floor in the floodlit world: a chassis pipe_stand of stand_m metres rising from the slips past the lit rig_mast, the pipe_robot at its foot, a kit person in a vest and hard hat outside the chassis red_zone_gate for scale. Drawn to illustrate, to no maker's or operator's design. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:640px">Over two stories of pipe, moved by an arm</h1>
+<p class="dek" data-follow="26" style="width:600px">The steel pipes weigh roughly 2,000 pounds, Reuters reported. Workers would usually help move that pipe. The worker is drawn to illustrate.</p>
+<script>window.FIG = {"joint_m": 9.4, "stand_m": 28.2};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-06-rigfloor.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "The stand", counter: "04 / 09", src: "c26 c19", fit: { min: 76, max: 96, maxLines: 3 } });
+  const R = CH.stage(TXT, gl, W, { fov: 44, near: 0.1, far: 3000, exposure: 1.25 });
+  TXT.ground(R, { surface: 'caliche', size: 700 });
+  const floor = K.make('rig_floor', { ramp: true }); TXT.add(R, floor); TXT.contact(R, floor);
+  const fy = floor.userData.floorY;
+  const mast = K.make('rig_mast', {}); mast.position.set(0, fy - 0.12, 0); TXT.add(R, mast);
+  /* THE FIGURE: a row of racked stands on the setback, each stand_m tall in joints of joint_m, standing on the floor and
+   * leaning a little toward the racking board, the way a crew sets back pipe; the nearest stand carries the band */
+  const n = 7;
+  for (let i = 0; i < n - 1; i++) {
+    const st = K.make('pipe_stand', { joints: Math.round(FIG.stand_m / FIG.joint_m), length: FIG.joint_m, seed: 40 + i });
+    st.position.set(-3.6 + i * 0.05, fy + 0.02, -2.6 + i * 0.36); st.rotation.z = -0.03; TXT.add(R, st);
+  }
+  /* the seventh stand in the arm's grip, lifted off the setback, its banded pin hanging a hand's width above the floor */
+  const lift = K.make('pipe_stand', { joints: Math.round(FIG.stand_m / FIG.joint_m), length: FIG.joint_m, band: 'pin', seed: 46 });
+  lift.position.set(-2.6, fy + 1.0, 0.3); TXT.add(R, lift);
+  const rob = K.make('pipe_robot', { pedestal: 0.8 }); rob.position.set(-0.4, fy, 0.9); TXT.add(R, rob); TXT.contact(R, rob);
+  if (CH.reach(THREE, rob, [-2.6, fy + 1.62, 0.3], { low: true }) > 0.04) throw new Error('the gripper misses the stand');
+  const gate = K.make('red_zone_gate', { w: 2.0 }); gate.position.set(-2.9, fy, 1.55); gate.rotation.y = 0.45; TXT.add(R, gate); TXT.contact(R, gate);
+  const man = K.make('person', { role: 'worker', pose: 'look_up', vest: true, hat: 'hard', hatColor: 0xe0b628, seed: 7 }); man.position.set(-3.3, fy, 1.9); man.rotation.y = 0.75; TXT.add(R, man); TXT.contact(R, man);
+  const from = [0.9, fy + 1.15, 6.4];
+  const look = CH.aim(THREE, R, TXT, from, [-3.0, fy + 4.2, -0.8], 820, 540, 44);
+  TXT.frame(R, { fov: 44, from, look });
+  TXT.sky(R);
+  TXT.deckRig(R, CH.rigSpec(W, 14, 4096), CH.rigOpts([0, fy + 1, 0], { distance: 34, shadowFar: 90, normalBias: 0.02 }));
+  CH.unacne(R, 0.02);
+  CH.flood(THREE, R, [-0.2, fy + 7.5, 3.8], [-3.0, fy + 5.0, -0.8], { i: 3400, angle: 0.42 });
+  CH.flood(THREE, R, [1.5, fy + 4.0, 4.0], [-2.0, fy + 1.0, 0.5], { i: 900, angle: 0.4 });
+  CH.flood(THREE, R, [-0.5, fy + 2.4, 6.0], [-3.6, fy + 1.1, 2.3], { i: 170, angle: 0.35 });
+  /* the deck's accent held on its own hex in this frame: the band's paint lit from within a step, so the cold flood does not wash it pale */
+  R.scene.traverse((m) => { if (m.isMesh && m.material && m.material.color && m.material.color.getHex() === 0x9a4a34) { m.material = new THREE.MeshBasicMaterial({ color: 0xb4664f, toneMapped: false, fog: false }); m.scale.y = 2.4; m.scale.x = m.scale.z = 1.03; } });
+  /* the driller's cabin beside the setback held a step darker in this frame, so the flood on the stands does not blow it out */
+  floor.traverse((m) => { if (m.isMesh && m.material && m.material.color && m.material.color.getHex() === 0x8e9294) { m.material = m.material.clone(); m.material.color.setHex(0x4a4e50); } });
+  TXT.stage(R, [man].concat(R.scene.children.filter((c) => c.userData && c.userData.kit === 'pipe_stand')));
+  TXT.weather(R, { grime: 0.3, height: 1.2, mottle: 0.14 });
+  const cx = CH.develop(await TXT.snapshot(R, { stage: false }), gl);
+  CH.post(cx, { a: 0.42, veil: 0.4, veilH: 280 });
+  CH.footWash(cx, { a: 0.94, r: 520 });
+  CH.typeDark(cx, { x1: 760, xf: 240, a: 0.96, pad: 40 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>
