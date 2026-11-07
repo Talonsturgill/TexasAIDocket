@@ -186,3 +186,12 @@ tool reads it rather than back-dating any file.
 - /sources/: the page family built and `site_fresh_check` matched it byte for byte. Its primary-share figures NOT LOOKED AT this run.
 - /topic/: tx-2026-0242 is carried on `land-water-and-permitting`, the only topic page that lists it. Whether that beat fits a rig automation item NOT LOOKED AT further.
 - /place/: Midland has `county-midland` and `metro-midland`, and the county page lists tx-2026-0242.
+
+## Email
+
+Gmail draft `r-6921334019873720908` created from `gmail_payload.json` with the body passed as `htmlBody`, and read back
+with `get_draft`: subject, recipient, gate table, degraded list, post copy, first comment and notes are all present. **The
+nine slide thumbnails are not.** The connector removes any `img` whose source is not an inline `cid:` attachment, so the
+`raw.githubusercontent.com` thumbnails became an empty paragraph. The links to `carousel.pdf` and `contact_sheet.png` on
+the run branch survive. This is the connector's documented behaviour and the payload builder links images by URL, so
+every draft built this way loses them. Queued for the builder to attach a contact image inline.
