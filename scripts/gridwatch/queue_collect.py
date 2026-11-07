@@ -123,18 +123,54 @@ def report_url(year: int, month: int) -> tuple[str, str] | None:
 
     Returns (url, published_date) or None. The publication day moves, so the window is walked.
     """
-    name = f"ERCOT-Monthly-Operational-Overview-{calendar.month_name[month]}-{year}.pdf"
     pub_y, pub_m = (year + 1, 1) if month == 12 else (year, month + 1)
     for day in SCAN_DAYS:
-        url = f"{BASE}/{pub_y}/{pub_m:02d}/{day:02d}/{name}"
-        req = urllib.request.Request(url, headers={"User-Agent": UA}, method="HEAD")
-        try:
-            with urllib.request.urlopen(req, timeout=20) as r:
-                if r.status == 200:
-                    return url, f"{pub_y}-{pub_m:02d}-{day:02d}"
-        except (urllib.error.HTTPError, urllib.error.URLError, TimeoutError):
-            continue
+        for name in report_names(year, month):
+            url = f"{BASE}/{pub_y}/{pub_m:02d}/{day:02d}/{name}"
+            req = urllib.request.Request(url, headers={"User-Agent": UA}, method="HEAD")
+            try:
+                with urllib.request.urlopen(req, timeout=20) as r:
+                    if r.status == 200:
+                        return url, f"{pub_y}-{pub_m:02d}-{day:02d}"
+            except (urllib.error.HTTPError, urllib.error.URLError, TimeoutError):
+                continue
     return None
+
+
+def report_names(year: int, month: int) -> list[str]:
+    """Every filename ERCOT has used for one month's report, the usual one first.
+
+    THE NAME IS NOT STABLE. Every report through August carried its year. September's landed on
+    October 16th as `ERCOT-Monthly-Operational-Overview-September.pdf`, with no year, and the
+    collector asked only for the dated name, so it wrote "not published yet" every day for three
+    weeks while the report sat on ERCOT's server. The grid watch page check went to STOPPED on
+    November 1st. The yearless name is safe to ask for because the dated directory it sits in
+    already pins the year, and `collect` refuses a report whose own month does not match.
+    """
+    mon = calendar.month_name[month]
+    return [f"ERCOT-Monthly-Operational-Overview-{mon}-{year}.pdf",
+            f"ERCOT-Monthly-Operational-Overview-{mon}.pdf"]
+
+
+def months_owed(rows: list[dict], year: int, month: int, depth: int = 3) -> list[tuple[int, int]]:
+    """The report months to read, oldest first: last month, and any month before it missed.
+
+    The collector used to read last month only. A report it missed for any reason, a renamed
+    file or a day ERCOT published late, was skipped for good the moment the calendar turned,
+    because nothing ever asked for that month again. This walks back from last month to the
+    newest verified reading, at most `depth` months, so one missed month is caught up the next
+    day rather than never.
+    """
+    verified = {r.get("month") for r in rows if r.get("verified")}
+    out = []
+    y, m = year, month
+    for _ in range(depth):
+        key = f"{y}-{m:02d}"
+        if key in verified:
+            break
+        out.append((y, m))
+        y, m = (y - 1, 12) if m == 1 else (y, m - 1)
+    return list(reversed(out))
 
 
 def fetch(url: str) -> bytes:
@@ -172,9 +208,17 @@ def collect(year: int, month: int, path: Path = LEDGER) -> int:
             rec = {"month": key, "verified": False, "source_url": url, "published": published,
                    "note": f"fetch failed: {exc}"}
         else:
-            RAW.mkdir(parents=True, exist_ok=True)
-            (RAW / f"{key}-moo.pdf.gz").write_bytes(gzip.compress(pdf))
             rec = {"month": key, "source_url": url, "published": published, **parse(pdf)}
+            want = f"{calendar.month_name[month]} {year}"
+            if rec.get("verified") and rec.get("reported_for") != want:
+                # A yearless filename could in principle answer for the wrong year. The report's
+                # own sentence names its month, so a mismatch is refused, never appended.
+                rec = {"month": key, "verified": False, "source_url": url,
+                       "published": published,
+                       "note": f"report reads for {rec.get('reported_for')}, not {want}"}
+            else:
+                RAW.mkdir(parents=True, exist_ok=True)
+                (RAW / f"{key}-moo.pdf.gz").write_bytes(gzip.compress(pdf))
 
     # A FAILED READ CARRIES NO NUMBER FORWARD. Same law as the daily series: the record says
     # plainly that this month is unverified rather than repeating last month's figure, because
@@ -243,6 +287,21 @@ def self_test() -> int:
     absurd = parse(Fake.build(FIXTURE.replace("9,456 MW that", "999,456 MW that")))
     check("an out-of-envelope figure is refused", absurd.get("verified") is False, str(absurd))
 
+    names = report_names(2026, 9)
+    check("the dated name is asked for first",
+          names[0] == "ERCOT-Monthly-Operational-Overview-September-2026.pdf", str(names))
+    check("the yearless name September shipped under is asked for too",
+          "ERCOT-Monthly-Operational-Overview-September.pdf" in names, str(names))
+
+    rows = [{"month": "2026-08", "verified": True}, {"month": "2026-09", "verified": False}]
+    check("a missed month is owed beside last month",
+          months_owed(rows, 2026, 10) == [(2026, 9), (2026, 10)], str(months_owed(rows, 2026, 10)))
+    check("nothing is owed once last month verified",
+          months_owed(rows + [{"month": "2026-10", "verified": True}], 2026, 10) == [])
+    check("the walk crosses a year boundary",
+          months_owed([{"month": "2025-11", "verified": True}], 2026, 1) == [(2025, 12), (2026, 1)])
+    check("the walk is bounded", len(months_owed([], 2026, 10)) == 3)
+
     print("\nqueue_collect self-test " + ("clean" if not failures else f"{failures} FAILED"))
     return 1 if failures else 0
 
@@ -260,11 +319,11 @@ def main() -> int:
         return 1
     if a.month:
         y, m = (int(x) for x in a.month.split("-"))
-    else:
-        first = _dt.date.today().replace(day=1)
-        prev = first - _dt.timedelta(days=1)
-        y, m = prev.year, prev.month
-    return collect(y, m)
+        return collect(y, m)
+    first = _dt.date.today().replace(day=1)
+    prev = first - _dt.timedelta(days=1)
+    codes = [collect(y, m) for y, m in months_owed(held(), prev.year, prev.month)]
+    return max(codes, default=0)
 
 
 if __name__ == "__main__":
