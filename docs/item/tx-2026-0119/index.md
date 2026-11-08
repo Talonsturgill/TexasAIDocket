@@ -9,7 +9,7 @@ VISION is the Texas A&M University System's shared AI computing platform. The Ju
 - Public access: Write to the decider
 - Take part: https://vision.tamus.edu/testing/
 
-- Last checked: 2026-11-04
+- Last checked: 2026-11-07
 
 ## Dates
 
@@ -40,6 +40,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-29 · The Texas A&M System's shared AI supercomputer still holds its place on the world list as cited.
 - 2026-11-01 · The A&M System's shared AI supercomputer still holds its place on the world list.
 - 2026-11-04 · Checked and unchanged. The decision still stands as decided.
+- 2026-11-07 · The A&M System's shared AI supercomputer still holds its place on the world list as read.
 
 ## Evidence
 

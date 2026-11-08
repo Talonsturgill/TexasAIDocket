@@ -10,7 +10,7 @@ The Department of Energy published a request for information on September 9th, 2
 - Comment closes: 2026-10-09
 - Take part: https://www.federalregister.gov/documents/2026/09/09/2026-18370/securing-the-united-states-bulk-power-system
 
-- Last checked: 2026-11-04
+- Last checked: 2026-11-07
 
 ## Dates
 
@@ -49,6 +49,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-29 · The comment window closed on October 9th.
 - 2026-11-01 · The energy department's comment window on grid security closed on October 9th, and the notice reads as cited.
 - 2026-11-04 · The comment window closed on October 9th.
+- 2026-11-07 · The comment window closed on October 9th.
 
 ## Evidence
 

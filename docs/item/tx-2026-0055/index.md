@@ -57,6 +57,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-03 · Conroe's vote that kept the Flock contract off the ballot remains unconfirmed. Both station accounts stay closed to this project.
 - 2026-11-05 · The Conroe vote that kept Flock off the ballot still rests on the earlier reading. Both station reports remain closed to this project.
 - 2026-11-06 · Conroe's council vote that kept Flock off the ballot is unconfirmed today. Both station reports stay closed to this project.
+- 2026-11-07 · Conroe's council vote that kept Flock off the ballot rests on what was read earlier. Neither station report opens to this project.
 
 ## Evidence
 

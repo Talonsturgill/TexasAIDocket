@@ -16,7 +16,7 @@ The University of Texas Research, Engineering, and Application Laboratory for He
 - Public access: Write to the decider
 - Take part: https://www.utsystem.edu/sites/ut-real-health-ai
 
-- Last checked: 2026-11-04
+- Last checked: 2026-11-07
 
 ## Dates
 
@@ -35,6 +35,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-29 · UT REAL Health AI's pilot projects in UT System hospitals and medical schools still stand as funded.
 - 2026-11-01 · The pilot projects UT REAL Health AI funded still stand on the laboratory's own page. The page no longer gives the symposium's Austin dates, which have passed.
 - 2026-11-04 · Checked and unchanged. The decision still stands as decided.
+- 2026-11-07 · UT REAL Health AI's pilot projects stand as funded.
 
 ## Evidence
 

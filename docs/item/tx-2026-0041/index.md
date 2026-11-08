@@ -53,6 +53,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-03 · The DataNovaX permit in Wichita Falls remains unconfirmed, with the city site and the station both still refusing this project.
 - 2026-11-05 · No fresh confirmation of the DataNovaX permit in Wichita Falls. The city's page refuses every reader and the station refuses this project.
 - 2026-11-06 · The DataNovaX permit vote in Wichita Falls goes another day without a fresh reading. Both the city's page and the station's report stay shut.
+- 2026-11-07 · Wichita Falls' permit vote for DataNovaX has no newer confirmation on November 7th. The city's page and the station's report both stay shut.
 
 ## Evidence
 

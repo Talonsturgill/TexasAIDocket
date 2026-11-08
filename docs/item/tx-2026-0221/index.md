@@ -11,7 +11,7 @@ The University of Texas at Austin says a team led by assistant professor of phys
 - Public access: Write to the decider
 - Take part: https://news.utexas.edu/2026/10/16/in-brief-ut-led-fusion-research-team-wins-google-org-ai-award/
 
-- Last checked: 2026-11-04
+- Last checked: 2026-11-07
 
 ## Dates
 
@@ -27,6 +27,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-29 · Google.org's award to the UT Austin fusion surrogate model team still stands.
 - 2026-11-01 · The Google.org award for UT Austin's fusion surrogate models still stands.
 - 2026-11-04 · Checked and unchanged. The decision still stands as decided.
+- 2026-11-07 · The Google.org award for fusion surrogate models at UT Austin still stands.
 
 ## Evidence
 

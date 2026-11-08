@@ -35,6 +35,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-29 · Xcel answered with a count of cameras rather than AI fire detections. That answer still reads as filed.
 - 2026-11-01 · Xcel's answer counting cameras rather than detections still reads as filed.
 - 2026-11-04 · Checked and unchanged. The decision still stands as decided.
+- 2026-11-07 · Xcel's commitment to report AI camera fire detections still reads as filed in its resiliency docket. The annual report that counted cameras could not be read again.
 
 ## Evidence
 

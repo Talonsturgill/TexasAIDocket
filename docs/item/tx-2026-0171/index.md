@@ -42,6 +42,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-03 · The Governor's order to enforce the water use survey against data centers remains unconfirmed, because the office's site still refuses this project.
 - 2026-11-05 · The Governor's order on the water use survey has no fresh confirmation. The office's site stays off limits to this project.
 - 2026-11-06 · The Governor's order to enforce the water use survey against data centers is unconfirmed today. The office's site stays off limits.
+- 2026-11-07 · The Governor's order to enforce the water use survey against data centers is not confirmed anew. The office's site remains off limits.
 
 ## Evidence
 

@@ -1,6 +1,6 @@
 # Governor directs the environmental agency to issue no data center permits until the grid audit is done
 
-On September 21st, 2026 the Governor directed the Texas Commission on Environmental Quality to suspend action on all permits sought by data center projects. In the Governor's own words the agency will issue no permits sought by data center projects until they complete the grid and water board audits. The letter goes wider than one agency. It states that no other state agency is to move forward with regulatory approvals related to data centers until that information is acquired. The agency must report to the Office of the Governor on its compliance by October 19th, 2026.
+On September 21st, 2026 the Governor directed the Texas Commission on Environmental Quality to suspend action on all permits sought by data center projects. In the Governor's own words the agency will issue no permits sought by data center projects until they complete the grid and water board audits. The letter goes wider than one agency. It states that no other state agency is to move forward with regulatory approvals related to data centers until that information is acquired. The agency must report to the Office of the Governor on its compliance by October 19th, 2026. The agency answered on October 19th. Its letter says it has paused issuing permits for infrastructure directly supporting data centers and has paused each pending application the directive reaches. It also says it met with the water board, the utility commission and ERCOT to align their directives.
 
 - Topic: land-water-and-permitting
 - Decided by: Office of the Texas Governor (governor)
@@ -9,7 +9,7 @@ On September 21st, 2026 the Governor directed the Texas Commission on Environmen
 - Public access: Write to the decider
 - Take part: https://www.texastribune.org/2026/09/21/texas-data-center-moratorium-water-energy/
 
-- Last checked: 2026-11-04
+- Last checked: 2026-11-07
 
 ## Dates
 
@@ -39,6 +39,8 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-29 · The environmental agency told the Governor on October 19th that it has paused every permit for infrastructure directly supporting data centers.
 - 2026-11-01 · TCEQ has shut its electronic permit filing portal so that staff read every application tied to data centers before anything is authorized. The agency expects the change to the portal to be finished in mid November.
 - 2026-11-04 · Checked and unchanged. The decision still stands as decided.
+- 2026-11-07 · The Governor's directive pausing data center permits at the environmental agency still stands as written.
+- 2026-11-07 · The agency's October 19th answer to the Governor is now on the record. It says permits for infrastructure directly supporting data centers are paused, and so is each pending application the directive covers.
 
 ## Evidence
 
@@ -109,4 +111,22 @@ Source (primary_official): https://www.tceq.texas.gov/permitting/stormwater
 > The deadline is extended until Monday, Dec. 28, 2026.
 
 Source (primary_official): https://www.tceq.texas.gov/permitting/stormwater
+
+### In its October 19th letter the agency told the Governor it has paused issuing permits related to building infrastructure that directly supports data centers.
+
+> TCEQ has paused the issuance of all permits related to the construction or
+
+Source (primary_official): https://www.tceq.texas.gov/downloads/response/tceq-response-gov-abbott-dc-directive.pdf
+
+### Pending permit applications subject to the directive have been paused.
+
+> If a permit application is subject to the directive, TCEQ has paused that permit application in accordance with your directive.
+
+Source (primary_official): https://www.tceq.texas.gov/downloads/response/tceq-response-gov-abbott-dc-directive.pdf
+
+### The agency says it met with the water board, the utility commission and ERCOT to align the directives.
+
+> TCEQ has met with the Texas Water Development Board (TWDB), the Public Utility Commission of Texas (PUCT), and the Electric Reliability Council of Texas (ERCOT) to ensure that all agency directives are aligned.
+
+Source (primary_official): https://www.tceq.texas.gov/downloads/response/tceq-response-gov-abbott-dc-directive.pdf
 

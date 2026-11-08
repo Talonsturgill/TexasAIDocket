@@ -11,7 +11,7 @@ The National Science Foundation funds a UT San Antonio project led by Nishant Vi
 - Public access: Write to the decider
 - Take part: https://news.utsa.edu/2026/09/keeping-the-code-safe-how-ut-san-antonio-students-are-learning-to-build-a-safer-ai/
 
-- Last checked: 2026-11-04
+- Last checked: 2026-11-07
 
 ## Dates
 
@@ -29,6 +29,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-29 · UTSA's free platform for finding security flaws in AI written code still reads as the university described it.
 - 2026-11-01 · UT San Antonio's free training platform still reads as offered.
 - 2026-11-04 · Checked and unchanged. The decision still stands as decided.
+- 2026-11-07 · UT San Antonio's free security training platform still reads as launched.
 
 ## Evidence
 

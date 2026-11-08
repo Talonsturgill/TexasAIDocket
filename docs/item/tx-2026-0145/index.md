@@ -10,7 +10,7 @@ The National Telecommunications and Information Administration submitted its Int
 - Comment closes: 2026-11-09
 - Take part: https://www.federalregister.gov/documents/2026/09/09/2026-18303/agency-information-collection-activities-submission-to-the-office-of-management-and-budget-omb-for
 
-- Last checked: 2026-11-06
+- Last checked: 2026-11-07
 
 ## Dates
 
@@ -43,6 +43,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-04 · The comment window is still open, closing November 9th.
 - 2026-11-05 · The comment window is still open, closing November 9th.
 - 2026-11-06 · The NTIA's question on whether its household internet survey should measure AI use is still open for comment, closing November 9th.
+- 2026-11-07 · The comment window is still open, closing November 9th.
 
 ## Evidence
 

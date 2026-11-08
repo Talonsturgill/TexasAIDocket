@@ -57,6 +57,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-03 · Williamson County's abatement for Compal is still unconfirmed. The county's notice refuses every reader this week too.
 - 2026-11-05 · Compal's abatement from Williamson County has no fresh confirmation. The county's own notice is still closed to every reader.
 - 2026-11-06 · Williamson County's abatement for Compal stands on the earlier reading. The county's notice still turns away every reader.
+- 2026-11-07 · Williamson County's abatement for Compal holds as last read, with no newer confirmation. The county's notice is still closed to every reader.
 
 ## Evidence
 

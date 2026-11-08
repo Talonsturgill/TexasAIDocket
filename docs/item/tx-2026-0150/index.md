@@ -41,6 +41,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-31 · The review's abstract was read again on PubMed and still carries every quoted line, the call for a dedicated pediatric AI infrastructure among them.
 - 2026-11-03 · Checked and unchanged. The decision still stands as decided.
 - 2026-11-06 · The radiologists' published imaging result is unconfirmed today. PubMed served a cookie check in place of the abstract, so the quoted text could not be read.
+- 2026-11-07 · The pediatric imaging AI result is unconfirmed on November 7th, because the article's index page offered a cookie check rather than its abstract.
 
 ## Evidence
 

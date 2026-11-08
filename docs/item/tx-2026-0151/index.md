@@ -40,6 +40,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-31 · The study's abstract on PubMed still reports the weaker score on patients outside the training cohort and still advises treating radiomics as exploratory.
 - 2026-11-03 · Checked and unchanged. The decision still stands as decided.
 - 2026-11-06 · The MD Anderson and UT Medical Branch MRI model result is unconfirmed today. PubMed served a cookie check in place of the abstract.
+- 2026-11-07 · The MD Anderson and UT Medical Branch MRI model result is unconfirmed again, the article's index page showing a cookie check rather than its abstract.
 
 ## Evidence
 

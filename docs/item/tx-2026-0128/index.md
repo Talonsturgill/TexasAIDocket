@@ -45,6 +45,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-03 · Brownsville's moratorium process is still unconfirmed. The city's notice refuses every reader.
 - 2026-11-05 · Brownsville's moratorium process has no fresh confirmation. The city's notice is still closed to every reader.
 - 2026-11-06 · Where Brownsville's moratorium stands goes unconfirmed again. The city's notice still turns away every reader.
+- 2026-11-07 · Brownsville's moratorium is still unconfirmed as to where it stands. The city's notice turns away every reader.
 
 ## Evidence
 

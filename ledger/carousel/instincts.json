@@ -223,7 +223,8 @@
         "2026-10-31",
         "2026-11-01",
         "2026-11-03",
-        "2026-11-05"
+        "2026-11-05",
+        "2026-11-07"
       ],
       "contradicted": []
     },
@@ -436,7 +437,8 @@
         "2026-09-26",
         "2026-09-29",
         "2026-10-02",
-        "2026-10-22"
+        "2026-10-22",
+        "2026-11-07"
       ],
       "contradicted": []
     },
@@ -750,7 +752,8 @@
         "2026-10-25",
         "2026-10-26",
         "2026-11-03",
-        "2026-11-05"
+        "2026-11-05",
+        "2026-11-07"
       ],
       "contradicted": []
     },
@@ -1756,6 +1759,14 @@
       "learned": "2026-11-06",
       "instinct": "When a chassis machine fails the audition twice, crop to the one part the chassis builds well and let the rest fall to black, rather than standing back or changing the representation.",
       "evidence": "No. 70 frame 5 failed six readings: standing the camera back exposed the rig floor's slips as white primitives and a TXBENCH half section read as boxes twice, while a tight crop on the turned pin threads and the banded tool joint was accepted.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "named-claudebot-block-is-whole-host",
+      "learned": "2026-11-07",
+      "instinct": "Read a source host's robots.txt for a group naming ClaudeBot before taking a single claim from it, because the project's fetcher matches its own agent to the wildcard group and passes a host the project has already ruled off limits.",
+      "evidence": "This run built its record update and deck spine on www.govtech.com, which names ClaudeBot with Disallow / and was refused on October 26th and 30th; the round 1 integrity judge caught it and every claim was withdrawn.",
       "confirmed": [],
       "contradicted": []
     }

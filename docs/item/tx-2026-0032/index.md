@@ -51,6 +51,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-03 · The Killeen permit denial is unconfirmed again. The station account refuses this project, and the agenda file offers no readable text.
 - 2026-11-05 · Nothing new confirms or reverses the Killeen commission's vote against the permit. The station's account is still closed to this project.
 - 2026-11-06 · The Killeen commission's vote against the permit is neither confirmed nor reversed today. The station that reported it still refuses this project.
+- 2026-11-07 · Killeen's commission vote against the permit stands as first reported and is not confirmed afresh. The station's report stays closed to this project.
 
 ## Evidence
 

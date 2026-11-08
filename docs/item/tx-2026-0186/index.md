@@ -57,6 +57,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-03 · Zipline's environmental assessment for five Texas metros is unconfirmed again. The FAA's page and the draft refuse every reader.
 - 2026-11-05 · Zipline's environmental assessment for the Texas metros has no fresh reading. The FAA's page and the draft are closed to every reader.
 - 2026-11-06 · Zipline's draft environmental assessment for the Texas metros has no fresh reading. The FAA's page and the draft still turn away every reader.
+- 2026-11-07 · Zipline's draft environmental assessment for five Texas metros has no newer reading, and the agency's final decision is not on the record. Its page and the draft still turn away every reader.
 
 ## Evidence
 

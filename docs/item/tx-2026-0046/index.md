@@ -49,6 +49,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-03 · Carson County's phased abatement with Fermi America is unconfirmed again. The station that reported it still refuses this project.
 - 2026-11-05 · Carson County's phased abatement with Fermi America has no fresh confirmation from the station that reported the vote, which still refuses this project.
 - 2026-11-06 · Fermi America's phased abatement in Carson County has no new confirmation. The station that reported the vote still refuses this project.
+- 2026-11-07 · Carson County's phased abatement for Fermi America stands as reported and is not confirmed anew. The station's account still refuses this project.
 
 ## Evidence
 

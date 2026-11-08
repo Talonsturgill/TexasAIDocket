@@ -56,6 +56,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-02 · Fort Worth's first steps toward a pause on new data center applications still read as the council took them, with the final vote still ahead.
 - 2026-11-05 · Fort Worth's moratorium vote has no fresh confirmation on the public radio account, which still refuses every reader. The final vote is still ahead.
 - 2026-11-06 · Fort Worth's moratorium vote goes unconfirmed again on the public radio account, which still turns away every reader. The final vote remains ahead.
+- 2026-11-07 · Fort Worth's moratorium is still on the road to a final vote. The public radio account behind it can't be read again today.
 
 ## Evidence
 

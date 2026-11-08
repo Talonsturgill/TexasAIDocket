@@ -11,7 +11,7 @@ The Public Utility Commission of Texas approved a net metering arrangement in Do
 - Public access: Write to the decider
 - Take part: https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=59220&ItemMatch=Equal&DocumentType=ALL&SortOrder=Ascending
 
-- Last checked: 2026-11-04
+- Last checked: 2026-11-07
 
 ## Dates
 
@@ -51,6 +51,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-29 · The commission's conditions telling the Armstrong County data center to shed its whole load still stand.
 - 2026-11-01 · The commission's order telling the Armstrong County data center to shed load still reads as issued.
 - 2026-11-04 · Checked and unchanged. The decision still stands as decided.
+- 2026-11-07 · The commission's order on the Armstrong County data center's load still stands as written.
 
 ## Evidence
 

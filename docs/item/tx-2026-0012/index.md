@@ -8,7 +8,7 @@ Chapter 552 of the Business and Commerce Code supersedes and preempts any local 
 - Status: decided
 - Public access: Closed
 
-- Last checked: 2026-11-04
+- Last checked: 2026-11-07
 
 ## Dates
 
@@ -45,6 +45,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-29 · TRAIGA's preemption of city and county AI rules still stands in the code as enacted.
 - 2026-11-01 · TRAIGA's preemption of city and county AI rules still stands as enacted.
 - 2026-11-04 · Checked and unchanged. The decision still stands as decided.
+- 2026-11-07 · TRAIGA's preemption of city and county AI rules still reads as quoted.
 
 ## Evidence
 

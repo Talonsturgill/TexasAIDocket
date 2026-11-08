@@ -55,6 +55,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-03 · Lubbock County's disclosure resolution on large loads remains unconfirmed, because the reporting station still refuses this project.
 - 2026-11-05 · Lubbock County's large load disclosure resolution goes unconfirmed for another check. The station that covered the vote still refuses this project.
 - 2026-11-06 · Lubbock County's disclosure resolution on large loads is unconfirmed again today. The station that covered it keeps its site closed.
+- 2026-11-07 · Lubbock County's resolution asking large loads to disclose their use goes unconfirmed for another day. The station that covered it remains closed.
 
 ## Evidence
 
