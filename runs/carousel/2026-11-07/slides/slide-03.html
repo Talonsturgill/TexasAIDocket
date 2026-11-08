@@ -1,0 +1,76 @@
+<!doctype html>
+<!-- 2026-11-07, frame 3 of 9. Archetype CLOSE_CROP. A spatial scene through txthree.js in a TXT.interior code compliance office lit by the deck's key through a left window: a kit person seated at a kit desk seen over the shoulder, the parcel's still with its bluebonnet flag box on a kit monitor, and three chassis letter_trays at the elbow, one per choice staff have: empty, a notice with the accent band, a manila case folder. Drawn to illustrate; no real office or screen is depicted. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:900px">A person reviews the flag</h1>
+<p class="dek" data-follow="26" style="width:820px">Human review is required before enforcement, the city maintains. Its own briefing says a human stays in the loop.</p>
+<div class="lab" id="t0">reviewed</div>
+<div class="lab" id="t1">courtesy notice</div>
+<div class="lab" id="t2">case opened</div>
+<script>window.FIG = {"trays": 3};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-07-curbside.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Review", counter: "03 / 09", src: "c58 c13 c53 c52", fit: { min: 70, max: 92, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 42, near: 0.05, far: 200, exposure: 1.0 });
+  TXT.interior(R, { w: 6, d: 5, h: 3, floor: 'concrete', wall: 0x6a645c, window: 'left', light: 0.35 });
+  const desk = K.make('desk', { pedestal: 'right', seed: 3 }); desk.position.set(0.2, 0, -0.9); TXT.add(R, desk); TXT.contact(R, desk);
+  const top = 0.76;
+  const mon = K.make('monitor', { inches: 27, screen: 'off', seed: 2 }); mon.position.set(-0.05, top, -1.12); TXT.add(R, mon);
+  const mon2 = K.make('monitor', { inches: 24, screen: 'doc', seed: 5 }); mon2.rotation.y = -0.35; mon2.position.set(0.62, top, -1.02); TXT.add(R, mon2);
+  /* the still on the left screen: the parcel at the curb with the software's box round the pile */
+  const sc = document.createElement('canvas'); sc.width = 640; sc.height = 360; const g = sc.getContext('2d');
+  const sky = g.createLinearGradient(0, 0, 0, 200); sky.addColorStop(0, '#0b0d14'); sky.addColorStop(1, '#1d2232'); g.fillStyle = sky; g.fillRect(0, 0, 640, 360);
+  g.fillStyle = '#3a2a22'; g.beginPath(); g.moveTo(40, 150); g.lineTo(320, 70); g.lineTo(600, 150); g.closePath(); g.fill();
+  g.fillStyle = '#7a4c34'; g.fillRect(70, 150, 500, 110); g.fillStyle = '#1a1c22'; g.fillRect(120, 180, 70, 50); g.fillRect(360, 180, 90, 50); g.fillStyle = '#9a8a70'; g.fillRect(470, 175, 90, 85);
+  g.fillStyle = '#3a3a2a'; g.fillRect(0, 260, 640, 40); g.fillStyle = '#58585a'; g.fillRect(0, 300, 640, 60);
+  g.strokeStyle = '#3a2c20'; g.lineWidth = 3; for (let i = 0; i < 26; i++) { g.beginPath(); g.moveTo(170 + i * 6, 290 - (i % 5) * 4); g.lineTo(240 + i * 5, 262 + (i % 3) * 8); g.stroke(); }
+  g.strokeStyle = '#7f8fd6'; g.lineWidth = 5; g.strokeRect(150, 240, 260, 64);
+  const tex = new THREE.CanvasTexture(sc); tex.colorSpace = THREE.SRGBColorSpace;
+  const screen = new THREE.Mesh(new THREE.PlaneGeometry(0.58, 0.33), new THREE.MeshStandardMaterial({ color: 0x000000, emissive: 0xffffff, emissiveMap: tex, emissiveIntensity: 1.25, roughness: 0.3 }));
+  mon.updateMatrixWorld(true); { const mb = new THREE.Box3().setFromObject(mon); screen.position.set((mb.min.x + mb.max.x) / 2, mb.min.y + (mb.max.y - mb.min.y) * 0.6, mb.max.z + 0.002); screen.position.x += 0.058; screen.position.y += 0.02; screen.scale.setScalar(0.86); } R.scene.add(screen);
+  /* THE FIGURE: one tray per choice staff have after review, at the analyst's right elbow */
+  const holds = [null, 'notice', 'folder'];
+  const trays = []; for (let i = 0; i < FIG.trays; i++) { const t = K.make('letter_tray', { holds: holds[i] }); trays.push(t); t.rotation.y = -0.08; t.position.set(0.22 + i * 0.29, top, -0.74); TXT.add(R, t); }
+  const chair = K.make('office_chair', { style: 'mesh', seed: 4 }); chair.rotation.y = Math.PI; chair.position.set(0.05, 0, -0.1); TXT.add(R, chair);
+  const man = K.make('person', { role: 'official', pose: 'sit_read', hat: 'none', seed: 23 }); man.rotation.y = Math.PI; man.position.set(0.05, 0, -0.2); TXT.add(R, man);
+  const from = [1.4, 1.62, 1.2];
+  const look = CH.aim(THREE, R, TXT, from, [0.3, top + 0.15, -0.7], 520, 860, 42);
+  TXT.frame(R, { fov: 42, from, look });
+  TXT.deckRig(R, CH.rigSpec(W, 8, 4096), CH.rigOpts([0.2, 1, -0.9], { distance: 20, shadowFar: 40, normalBias: 0.015 }));
+  CH.unacne(R, 0.015);
+  /* a warm desk lamp over the trays, the room's one practical besides the screens */
+  CH.lamp(THREE, R, [0.95, top + 0.55, -0.45], { color: 0xffc890, i: 1.6, reach: 2.2, shadow: true });
+  TXT.stage(R, [man, desk]);
+  TXT.weather(R, { grime: 0.1, height: 0.3, mottle: 0.08 });
+  const tAt = trays.map((t) => CH.project(THREE, R, [t.position.x, top + 0.02, t.position.z + 0.2]));
+  const cx = CH.develop(await TXT.snapshot(R, { stage: false }), gl);
+  CH.post(cx, { a: 0.3, veil: 0.3, veilH: 220 });
+  CH.footWash(cx);
+  CH.typeDark(cx, { a: 0.78 });
+  const tPos = [[Math.max(84, tAt[0][0] - 70), tAt[0][1] + 34], [Math.max(tAt[0][0] + 140, tAt[1][0] - 150), 1140], [Math.min(tAt[2][0] - 40, 790), tAt[2][1] + 142]];
+  const tl = [];
+  tPos.forEach((q, i) => { const y = Math.min(q[1], 1180); CH.pinLabel('t' + i, [q[0], y], [0, 0]); const a = [q[0] + 40, y - 6], b = [tAt[i][0], tAt[i][1] - 6]; CH.lead(cx, a, b, 'rgba(228,216,195,0.9)'); tl.push({ target: 'tray ' + (i + 1) + ' lip', at: a, to: b }); });
+  window.__txLeaders = tl;
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

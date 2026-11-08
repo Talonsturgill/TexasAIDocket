@@ -1,0 +1,76 @@
+<!doctype html>
+<!-- 2026-11-07, frame 1 of 9. Archetype CLOSE_CROP. A spatial scene through txthree.js in the lastLight world: the chassis camera_pod bolted to the chassis body_flank's top rail on a brush truck, over its shoulder, its lens aimed across a kit road at a kit ranch_house with the chassis brush_pile on the parkway. Drawn to illustrate, to no maker's or city's design. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:640px">The brush truck carries a camera</h1>
+<p class="dek" data-follow="26" style="width:440px">Dallas put AI cameras from City Detect on its sanitation brush and bulk trash trucks. They face sideways and capture images from the public right of way. The camera and truck are drawn to illustrate.</p>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-07-curbside.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Dallas", counter: "01 / 09", src: "c1 c57 c49 c5", fit: { min: 70, max: 92, maxLines: 3 } });
+  const R = CH.stage(TXT, gl, W, { fov: 58, near: 0.03, far: 3000, exposure: 1.0 });
+  TXT.ground(R, { surface: 'grass', size: 600, color: 0x3a3f2c });
+  /* the street runs along x; the parcel is across it to the north, the truck on the near lane */
+  const road = K.make('road', { lanes: 2, sidewalk: true, parkway: true, length: 80 }); road.position.set(0, 0, -6); TXT.add(R, road);
+  const house = K.make('ranch_house', { material: 'brick', color: 0x8c5a3c, garage: 'right', chimney: true, seed: 7 }); house.position.set(-2, 0, -34); TXT.add(R, house); TXT.contact(R, house);
+  const yard = K.make('yard', { size: [34, 15], dryness: 0.7 }); yard.position.set(-2, 0, -20.2); TXT.add(R, yard);
+  const oak = K.make('live_oak', { height: 9, spread: 13, seed: 2 }); oak.position.set(13, 0, -32); TXT.add(R, oak); TXT.contact(R, oak);
+  const pile = K.make('brush_pile', { l: 3.2, w: 1.2, h: 1.1, seed: 5 }); pile.position.set(-1.5, 0.15, -11.2); TXT.add(R, pile); TXT.contact(R, pile);
+  const mbox = K.make('mailbox', { style: 'brick', brick: 0x8c5a3c, seed: 7 }); mbox.position.set(-6.4, 0.15, -11.0); TXT.add(R, mbox); TXT.contact(R, mbox);
+  /* the houses on the truck's own side of the street, behind the camera's view of the pod, porch lamps on */
+  [[6, 3], [-20, 12]].forEach((h) => { const b = K.make('ranch_house', { material: 'brick', color: 0x7c5040, garage: 'left', seed: h[1] }); b.rotation.y = Math.PI; b.position.set(h[0], 0, 24); TXT.add(R, b); });
+  const sl = K.make('streetlight', {}); sl.rotation.y = Math.PI; sl.position.set(-9, 0, 9.2); TXT.add(R, sl);
+  /* the truck: its body flank faces the parcel (north), the camera pod on its top rail looking north */
+  const flank = K.make('body_flank', { length: 4.6, wheels: true }); flank.rotation.y = Math.PI; flank.position.set(1.6, 0, 1.2); TXT.add(R, flank); TXT.contact(R, flank);
+  /* the open body behind that side: its far wall, its floor and the load of limbs it has collected */
+  const far = K.make('body_flank', { length: 4.6, wheels: false }); far.position.set(1.6, 0, 3.45); TXT.add(R, far);
+  const bed = K.box(4.6, 0.06, 2.3, K.mat('cs-bed', { color: 0x2a2724, metalness: 0.5, roughness: 0.7 }), 1.6, 1.08, 2.32, 0.01); TXT.add(R, bed);
+  const load = K.make('brush_pile', { l: 4.0, w: 1.9, h: 1.2, limbs: 40, seed: 9 }); load.scale.set(0.85, 0.9, 0.5); load.position.set(1.75, 1.12, 2.36); TXT.add(R, load);
+  const pod = K.make('camera_pod', {}); pod.rotation.y = Math.PI; pod.position.set(0.55, 2.74, 1.1); TXT.add(R, pod);
+  /* over the pod's shoulder: the lens low right, the parcel across the road on the left */
+  /* outboard at a standing eye, so the body recedes along the street with its ribs, tape and wheels, the pod on its top rail */
+  const from = [-1.9, 1.85, -2.2];
+  const look = CH.aim(THREE, R, TXT, from, [0.55, 2.95, 1.1], 810, 600, 19);
+  TXT.frame(R, { fov: 19, from, look });
+  
+  TXT.sky(R);
+  TXT.deckRig(R, CH.rigSpec(W, 40, 4096), CH.rigOpts([-3, 1, -12], { distance: 60, shadowFar: 140, normalBias: 0.02 }));
+  CH.unacne(R, 0.02);
+  /* the streetlight across the street, out of frame on the parcel's side, throws its pool onto the truck's body and the camera's face */
+  const sl2 = K.make('streetlight', {}); sl2.position.set(-3.5, 0, -10.6); TXT.add(R, sl2);
+  CH.spot(THREE, R, [-3.5, 8.6, -7.6], [0.7, 2.75, 1.1], { color: 0xffd2a0, i: 300, reach: 30, angle: 0.13, penumbra: 0.75 });
+  /* a grazing light along the flank face, so each stake rib throws its shadow down the body */
+  CH.spot(THREE, R, [-7.0, 2.0, 0.75], [3.0, 1.9, 1.15], { color: 0xffc890, i: 160, reach: 16, angle: 0.25, penumbra: 0.5 });
+  /* a low wash along the flank's tape and wheel so the body still reads in the dark */
+  CH.spot(THREE, R, [-4.5, 0.9, -5.0], [1.6, 0.7, 1.2], { color: 0xffc890, i: 40, reach: 14, angle: 0.3, penumbra: 0.9 });
+  /* the porch lamp, a warm practical on the house front */
+  CH.lampGlow(THREE, R, [4.5, 2.3, 17.8], 0xffc890, 0.45, 0); CH.lampGlow(THREE, R, [-21.5, 2.3, 17.8], 0xffc890, 0.45, 0);
+  CH.lampGlow(THREE, R, [-9, 8.6, 6.4], 0xffd9a8, 0.9, 0);
+  TXT.stage(R, pod, { depth: 1.2 });
+  TXT.weather(R, { grime: 0.75, height: 1.4, mottle: 0.24 });
+  const cx = CH.develop(await TXT.snapshot(R, { stage: false }), gl);
+  CH.post(cx, { a: 0.35, veil: 0.35, veilH: 260 });
+  CH.footWash(cx);
+  CH.typeDark(cx, { x1: 700, xf: 240, a: 0.8 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

@@ -23,7 +23,7 @@
    ]
   },
   {
-   "text": "[A city memo dated {{date:c45}}](c45) [says the cameras scanned {{number:c46}} properties](c46). [It counts {{number:c47}} citations at {{number:c47:1}} properties](c47). A flagged image is a possible problem, not a violation, and the steps between the two decide who gets a visit.",
+   "text": "[A city memo dated {{date:c45}}](c45) [says the cameras scanned {{number:c46}} properties](c46). [It counts {{number:c47}} citations at {{number:c47:1}} properties](c47).",
    "claims": [
     "c45",
     "c46",
@@ -36,7 +36,7 @@
    "heading": "How a flag becomes a citation",
    "paragraphs": [
     {
-     "text": "[The software assigns blight scores that help Code Compliance decide which properties to review first](c51). [The memo says the citations came after camera detections were reviewed and confirmed by code officers](c50), [and that a citation is issued only after a code officer inspects the property in person and notifies the owner](c47).",
+     "text": "[The software assigns blight scores that help Code Compliance decide which properties to review first](c51). [The memo says the citations came after camera detections were reviewed and confirmed by code officers](c50). [It says a citation is issued only after a code officer inspects the property in person and notifies the owner](c47).",
      "claims": [
       "c51",
       "c50",
@@ -44,7 +44,7 @@
      ]
     },
     {
-     "text": "[The city's December briefing said the system is neither a staff replacement nor automated ticketing](c12) [and that a person stays in the loop](c13). [It said faces and license plates are blurred](c6).",
+     "text": "[The city's briefing to its Finance Committee said the system is neither a staff replacement nor automated ticketing](c12) [and that a person stays in the loop](c13). [It said faces and license plates are blurred](c6).",
      "claims": [
       "c12",
       "c13",
@@ -63,10 +63,6 @@
       "c54",
       "c52"
      ]
-    },
-    {
-     "text": "Those counts measure different things, and they are not a step by step tally from detection to citation.",
-     "claims": []
     },
     {
      "text": "[By the city manager's memo, {{number:c55}} of the citations were issued in Council Districts {{number:c55:2}}, {{number:c55:3}} and {{number:c55:4}} in southern Dallas](c55). [Council member Chad West has raised concerns that the technology could put a disproportionate financial burden on neighborhoods with fewer resources](c59).",

@@ -1,0 +1,77 @@
+{
+ "_note": "Craft lens, round 3, carousel no. 71, returned by carousel-scorer and saved in shape. ",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.5,
+   "why": "2, 6, 3 and 4 hold a dark field and a pool. 7 is a beige floor meeting black at a hard horizon with fans 1.55 to 1 on screen against 2.17 and an aliased shadow; 8's mid-tone wood and a leader through a glyph; 5's limb across the leg; 9's riser notch and oversized board; 1's grey body."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "One key and both devices work; 7 sits outside the dark register."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.5,
+   "why": "No hard fail; every numeral traces; slide 3's three trays as one reviewer's choices is a loose inference."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.0,
+   "why": "Who decides and where land; no deadline or next date."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Follows the human loop; 7 does not land the share; 4 and 9 overlap."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Clean and local; 'at frame 6's scale' and the illustration disclosure read as machinery."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "A clear change from nos. 69 and 70."
+  }
+ ],
+ "weighted_score": 7.1,
+ "hard_fails": [],
+ "ship": true,
+ "artwork_weakest_frames": [
+  {
+   "slide": 7,
+   "problem": "A void floor, slab-like fans not proportional to 39 to 18, an aliased shadow.",
+   "fix": "Proportional stride, a tight pool so the asphalt falls to black, labels above their fans."
+  },
+  {
+   "slide": 8,
+   "problem": "Mid-tone wood, flat folders, a leader through a glyph, cylinder stubs.",
+   "fix": "Labels on one baseline, narrow the key, remove the stubs."
+  },
+  {
+   "slide": 5,
+   "problem": "Mannequin officer and a limb across his leg.",
+   "fix": "Drop the limb, turn his head to the pile, move the tires into the key."
+  },
+  {
+   "slide": 9,
+   "problem": "Riser notch and an oversized board.",
+   "fix": "Fill the notch and scale the notice to letter size in both hands."
+  },
+  {
+   "slide": 1,
+   "problem": "Grey body fills the bottom 45 percent.",
+   "fix": "Pull the key onto the rail edge so the panels fall to near black."
+  }
+ ]
+}

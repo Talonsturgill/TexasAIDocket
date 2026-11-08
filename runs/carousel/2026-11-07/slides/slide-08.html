@@ -1,0 +1,67 @@
+<!doctype html>
+<!-- 2026-11-07, frame 8 of 9. Archetype DIAGRAM. A spatial scene through txthree.js in a TXT.interior council committee room lit by the deck's key through a left window: the kit hearing_dais cropped to its middle seats with blank plates and microphones, four chassis plan_folders on its ledge with blank date tabs, one per plan staff outlined, a kit person seated at one microphone. Drawn to illustrate; no real chamber or member is depicted. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:900px">The council funds it a year at a time</h1>
+<p class="dek" data-follow="26" style="width:840px">The city's December briefing set the terms. A three-year contract subject to annual City Council appropriations, $852,000 a year, and an exit on 10 days' written notice. Chad West withdrew a move to cut the funding once the city manager's office agreed to brief the council.</p>
+<div class="lab" id="f0">yearly cost</div>
+<div class="lab" id="f1">annual appropriation</div>
+<div class="lab" id="f2">10 days' notice</div>
+<script>window.FIG = {"terms": 3};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-07-curbside.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "The money", counter: "08 / 09", src: "c9 c10 c11 c56", fit: { min: 76, max: 100, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 44, near: 0.05, far: 300, exposure: 1.0 });
+  TXT.interior(R, { w: 14, d: 10, h: 4.5, floor: 'concrete', wall: 0x3a352f, window: 'left', light: 0.35 });
+  const dais = K.make('hearing_dais', { seats: 5, curve: 0, mics: false, plates: false, seed: 3 }); dais.position.set(0, 0, -2.5); TXT.add(R, dais); TXT.contact(R, dais);
+  dais.updateMatrixWorld(true); const bb = new THREE.Box3().setFromObject(dais);
+  const seal = K.make('seal_plaque', { finish: 'bronze' }); seal.position.set(0, 2.6, -4.85); TXT.add(R, seal);
+  /* THE FIGURE: one folder per plan staff outlined, on the front ledge, each date tab left blank */
+  /* the front ledge's top, found by a ray straight down onto the dais just behind its front face */
+  function topAt(x, z) { const rc = new THREE.Raycaster(new THREE.Vector3(x, 4, z), new THREE.Vector3(0, -1, 0)); const hit = rc.intersectObject(dais, true)[0]; return hit ? hit.point.y : 1.05; }
+  let ledgeZ = bb.max.z - 0.12, ledgeY = topAt(0, ledgeZ); for (let dz = 0.04; dz < 0.5 && ledgeY > 1.4; dz += 0.04) { ledgeZ = bb.max.z - 0.12 - dz; ledgeY = topAt(0, ledgeZ); }
+  const folders = [];
+  for (let i = 0; i < FIG.terms; i++) { const f = K.make('plan_folder', { seed: i + 1 }); f.rotation.y = (i - 1) * 0.05 + Math.PI; const fx = 0.1 + (i - 1) * 0.34; f.position.set(fx, topAt(fx, ledgeZ) + 0.002, ledgeZ); TXT.add(R, f); folders.push(f); }
+  const from = [0.25, ledgeY + 1.0, ledgeZ + 1.55];
+  const look = CH.aim(THREE, R, TXT, from, [0.1, ledgeY, ledgeZ], 540, 1010, 44);
+  TXT.frame(R, { fov: 44, from, look });
+  TXT.deckRig(R, CH.rigSpec(W, 12, 4096), CH.rigOpts([0, 1, -2.5], { distance: 25, shadowFar: 50, normalBias: 0.015 }));
+  CH.unacne(R, 0.015);
+  /* the window key raking the ledge and the panelled front from the left, so the grain and the folders' edges catch */
+  CH.spot(THREE, R, [-6.5, 2.6, 0.8], [0.2, ledgeY - 0.3, ledgeZ], { color: 0xffd2a0, i: 130, reach: 16, angle: 0.36, penumbra: 0.6 });
+  TXT.stage(R, dais);
+  TXT.weather(R, { grime: 0.16, height: 0.3, mottle: 0.12 });
+  const at = folders.map((f) => CH.project(THREE, R, [f.position.x, ledgeY + 0.01, ledgeZ + 0.12]));
+  const backs = folders.map((f) => CH.project(THREE, R, [f.position.x, ledgeY + 0.01, ledgeZ - 0.2]));
+  const cx = CH.develop(await TXT.snapshot(R, { stage: false }), gl);
+  CH.post(cx, { a: 0.3, veil: 0.3, veilH: 200 });
+  CH.footWash(cx, { a: 0.5 });
+  CH.typeDark(cx, { a: 0.8 });
+  const leaders = [];
+  const LW = [176, 316, 246];   /* the three labels' set widths at the chassis label size */
+  const base = Math.min(...backs.map((b) => b[1])) - 70;
+  at.forEach((q, i) => { const lx = Math.max(84, Math.min(1000 - LW[i], q[0] - LW[i] / 2)), ly = base; CH.pinLabel('f' + i, [lx, ly], [0, 0]); const a = [lx + LW[i] / 2, ly + 38], b = [q[0], q[1] - 24]; CH.lead(cx, a, b); leaders.push({ target: 'folder ' + (i + 1) + ' on the ledge', at: a, to: b }); });
+  window.__txLeaders = leaders;
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

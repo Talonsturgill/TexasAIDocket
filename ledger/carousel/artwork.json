@@ -4451,6 +4451,72 @@
     "hex": "#08060F",
     "note": "The night sky and the dark deck."
    }
+  },
+  {
+   "date": "2026-11-07",
+   "carousel_no": 71,
+   "written_from": "deck_coherence's median L* per frame at 432 px off the final renders, layout_check's accent share, by update_ledgers.py.",
+   "register": "SPATIAL SCENES on one residential Dallas street at night in the lastLight world (frames 1, 2, 4, 5, 6, 7 and 9) and two built interiors (3, the code office, and 8, the committee dais). Chassis assets/js/deck/2026-11-07-curbside.js: camera_pod, body_flank, brush_pile, tire, paper_column, letter_tray, notice, clipboard and plan_folder models with the kit's ranch_house, person, desk, monitor, mailbox and hearing_dais, and bluebonnet bands as the one accent for the city's flag and paper.",
+   "structural_laws": [
+    "A WARM KEY DESATURATES A COOL ACCENT. Under the lastLight key a bluebonnet band rendered near L* 30 and fell under the accent floor until it carried its own emissive.",
+    "A KIT PERSON SEATED FROM BEHIND READS AS A SILHOUETTE. The over the shoulder analyst read only where a screen or lamp put light on the cheek.",
+    "ONE SCALE MEANS ONE THING. Reusing frame 6's column at a different unit on frame 7 broke the deck's measured scale for all three judges, so the citations were drawn as cards at frame 6's own card.",
+    "A LABEL ON PALE PRESSBOARD DIES. Light mono type over a lit folder face fell to about 2 to 1 and moved onto the dark wood above.",
+    "A FOOT WASH OVER A CURB EDGE STILL STRIKES THE SOURCE LINE. The curb's lit edge ran through the claim ids until that corner was darkened on its own."
+   ],
+   "techniques": [
+    "a finned camera pod bolted to a white brush truck rail with cut limbs in the bed",
+    "the parcel's still with a bluebonnet flag box round the pile and eight condition labels on the road",
+    "an over the shoulder analyst at a desk with the still on screen and three labelled trays",
+    "a brick mailbox pillar with a courtesy notice standing in its mouth",
+    "a code officer at a curb pile and tires holding a clipboard with a bluebonnet cover",
+    "a 10,000 card column beside the officer and the 57 card sheaf in his hand",
+    "the 57 citation cards fanned on the asphalt, 39 and the rest either side of a painted lane line",
+    "three blank pressboard folders on a committee dais ledge for the contract's three terms",
+    "a resident at the porch under a lit lantern holding a notice with its bluebonnet band"
+   ],
+   "value": {
+    "per_frame_median_L": [
+     8.3,
+     5.0,
+     6.6,
+     8.9,
+     6.2,
+     4.7,
+     8.9,
+     9.7,
+     10.5
+    ],
+    "deck_median_L": 8.3,
+    "max_adjacent_delta": 4.2,
+    "mean_adjacent_delta": 2.15,
+    "note": "Measured by deck_coherence's median_lstar at 432 px off the final renders. A staged night street and two dark rooms."
+   },
+   "accent": {
+    "hex": "#4E5FA8",
+    "name": "bluebonnet, the city's flag and paper",
+    "frames_above_floor": [
+     2,
+     4,
+     6
+    ],
+    "share": [
+     0.0,
+     0.005,
+     0.0014,
+     0.0022,
+     0.0007,
+     0.0026,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "note": "The flag box on 2, the notice band on 3, 4 and 9, the sheaf cover on 5 and 6."
+   },
+   "ground": {
+    "hex": "#05060A",
+    "note": "The night sky and the dark street."
+   }
   }
  ]
 }

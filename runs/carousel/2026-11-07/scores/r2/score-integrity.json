@@ -1,0 +1,22 @@
+{
+ "_note": "Integrity lens, round 2, carousel no. 71, returned by carousel-scorer and saved in shape.",
+ "criteria": [
+  {"name": "artwork_craft", "weight": 0.22, "score": 6.5, "why": "Dark staged scenes with real casts, 4 and 2 strong. Frame 6's sheaf is drawn at 1.45 times the card scale and held face-on, contradicting 'at the same scale'; 7 is a sliver in dark field; 8 three plain boxes with a label outside the safe zone; mannequin kit people; 9's riser notch and banding."},
+  {"name": "deck_coherence", "weight": 0.12, "score": 7.5, "why": "One parcel, one key, one accent meaning one thing, a dark register, two working continuity devices. Frame 7 silently changes frame 6's unit; frame 8's interior sits outside."},
+  {"name": "claim_integrity", "weight": 0.20, "score": 5.0, "why": "Every numeral traces and quotes match. Stretches: the caption prints the city's process unattributed and widened from c50; 10,000 credited to Dallas Express too; 'at the same scale' false by the code; slide 9 drops the second half of c54; slide 3 attributes the general rule to the memo; 'About 10,000' adds a hedge; slide 8 presents pre-vote briefing terms in the present tense; stale rejected entries."},
+  {"name": "story_and_stakes", "weight": 0.16, "score": 6.0, "why": "What, where, who decides and who objected land. Nothing current or actionable; the October 19th briefing has passed and the deck is silent on it; 'Next' gives no next step."},
+  {"name": "sequence_and_momentum", "weight": 0.10, "score": 7.0, "why": "Reads well in order, 2 pays, the turn at 6 to 7 lands; 8 could move and the close lands softly."},
+  {"name": "voice", "weight": 0.10, "score": 7.0, "why": "Clean and specific with a working caption opener; a few flat lines."},
+  {"name": "variety", "weight": 0.10, "score": 5.5, "why": "Same docket item, memo and briefing as no. 31 on September 21st, outside the window, with no development no. 31 lacked."}
+ ],
+ "weighted_score": 6.24,
+ "hard_fails": ["The caption prints the city's own description of its review process as plain fact, without attribution, and widens c50 from the 57 citations to the camera detections in general."],
+ "ship": false,
+ "artwork_weakest_frames": [
+  {"slide": 6, "problem": "The sheaf is drawn at 1.45 times the card scale and face-on, so 'at the same scale' is false and its thickness can't be seen.", "fix": "Set the clipboard scale to 1 and turn the sheaf edge-on beside the column's lowest lit bundle."},
+  {"slide": 8, "problem": "Three plain boxes, no dais detail at feed size, a label outside the safe zone.", "fix": "Bring the camera down and in so the dais front and the folders fill the bottom two thirds, and pin the right label inside the margin."},
+  {"slide": 7, "problem": "A sliver of column in dark field; the band change doesn't own the frame.", "fix": "Move closer at fov 28 so the column fills a third of the width with the divider at frame centre."},
+  {"slide": 9, "problem": "A mannequin resident with an oversized board, the riser notch and banding.", "fix": "Letter-size notice at reading distance, close the notch, raise porch shadow resolution."},
+  {"slide": 5, "problem": "Front-on officer with a shell vest and a small clipboard, the pile and tires dark.", "fix": "Rotate him three quarters with the key raking the face and move the pile and tires into the pool."}
+ ]
+}

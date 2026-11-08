@@ -1,0 +1,106 @@
+{
+ "date": "2026-11-07",
+ "_note": "Every count, span, ratio and duration the deck states, with the claim it was quoted from or the code that counted it.",
+ "aggregates": [
+  {
+   "phrase": "3,700 property owners",
+   "slide": "slide-04.html",
+   "kind": "count",
+   "value": 3700,
+   "quoted_from": "c53",
+   "quote": "approximately 3,700 property owners"
+  },
+  {
+   "phrase": "57 citations",
+   "slide": "slide-05.html",
+   "kind": "count",
+   "value": 57,
+   "quoted_from": "c47",
+   "quote": "57 citations have also been handed out at 34 properties"
+  },
+  {
+   "phrase": "34 properties",
+   "slide": "slide-05.html",
+   "kind": "count",
+   "value": 34,
+   "quoted_from": "c47",
+   "quote": "57 citations have also been handed out at 34 properties"
+  },
+  {
+   "phrase": "10,000 properties",
+   "slide": "slide-06.html",
+   "kind": "count",
+   "value": 10000,
+   "quoted_from": "c46",
+   "quote": "the cameras have scanned 10,000 properties"
+  },
+  {
+   "phrase": "57 citations",
+   "slide": "slide-06.html",
+   "kind": "count",
+   "value": 57,
+   "quoted_from": "c47",
+   "quote": "57 citations have also been handed out at 34 properties"
+  },
+  {
+   "phrase": "39 of the 57",
+   "slide": "slide-07.html",
+   "kind": "ratio",
+   "value": 39,
+   "quoted_from": "c55",
+   "quote": "39 citations, or 68%"
+  },
+  {
+   "phrase": "10 days",
+   "slide": "slide-08.html",
+   "kind": "duration",
+   "value": 10,
+   "quoted_from": "c11",
+   "quote": "with 10 days’ written notice"
+  },
+  {
+   "phrase": "3,700 courtesy notices",
+   "slide": "caption.txt",
+   "kind": "count",
+   "value": 3700,
+   "quoted_from": "c53",
+   "quote": "approximately 3,700 property owners what it calls “courtesy notices”"
+  },
+  {
+   "phrase": "57 citations",
+   "slide": "caption.txt",
+   "kind": "count",
+   "value": 57,
+   "quoted_from": "c47",
+   "quote": "57 citations have also been handed out at 34 properties"
+  },
+  {
+   "phrase": "10,000 properties",
+   "slide": "caption.txt",
+   "kind": "count",
+   "value": 10000,
+   "quoted_from": "c46",
+   "quote": "the cameras have scanned 10,000 properties"
+  },
+  {
+   "phrase": "39 of the 57",
+   "slide": "caption.txt",
+   "kind": "ratio",
+   "value": 39,
+   "quoted_from": "c55",
+   "quote": "39 citations, or 68%"
+  },
+  {
+   "phrase": "two news reports",
+   "slide": "first_comment.txt",
+   "kind": "count",
+   "value": 2,
+   "computed_by": "sources_block.py, the distinct news documents behind the printed claim ids: FOX 4 (c46) and Dallas Express (c50)",
+   "from": [
+    "c46",
+    "c50"
+   ],
+   "note": "computed"
+  }
+ ]
+}

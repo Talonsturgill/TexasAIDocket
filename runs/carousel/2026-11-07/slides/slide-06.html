@@ -1,0 +1,62 @@
+<!doctype html>
+<!-- 2026-11-07, frame 6 of 9. Archetype FIGURE_SCALE. A spatial scene through txthree.js in the lastLight world: the chassis paper_column of photographed_floor sheets at 0.1 mm a sheet, on the sidewalk in front of the parcel, beside a kit person as the code officer holding the chassis clipboard with the citations sheaf at the same scale. Drawn to illustrate; a sheet is a drawing unit and no paper exists. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:920px">10,000 properties scanned</h1>
+<p class="dek" data-follow="26" style="width:500px">One card here for each property, the memo's count as FOX 4 reported it. The 57 citations are the sheaf in his hand.</p>
+<script>window.FIG = {"properties_scanned": 10000, "citations": 57};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-07-curbside.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "The count", counter: "06 / 09", src: "c46 c47", fit: { min: 64, max: 88, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 30, near: 0.05, far: 3000, exposure: 1.0 });
+  TXT.ground(R, { surface: 'grass', size: 600, color: 0x3a3f2c });
+  const road = K.make('road', { lanes: 2, sidewalk: true, parkway: 1.2, length: 80 }); road.position.set(0, 0, -6); TXT.add(R, road);
+  const house = K.make('ranch_house', { material: 'brick', color: 0x8c5a3c, garage: 'right', chimney: true, seed: 7 }); house.position.set(-3, 0, -30); TXT.add(R, house); TXT.contact(R, house);
+  const yard = K.make('yard', { size: [34, 10], dryness: 0.7 }); yard.position.set(-3, 0, -18.2); TXT.add(R, yard);
+  /* THE FIGURE: photographed_floor sheets at 0.1 mm in bundles of 500, standing on the far sidewalk (top at 0.19 m) */
+  const col = K.make('paper_column', { sheets: FIG.properties_scanned, bundle: 250, open: true, seed: 7 });
+  col.rotation.y = -0.15; col.position.set(0.15, 0.19, -12.3); TXT.add(R, col); TXT.contact(R, col);
+  /* the officer, three quarters to the camera, his face up toward the column's top; the citations clipboard in his right hand */
+  const man = K.make('person', { role: 'official', pose: 'read', vest: true, hat: 'none', seed: 31 });
+  CH.vest(man); man.rotation.y = 0.95; man.position.set(-0.45, 0.19, -11.95); TXT.add(R, man); TXT.contact(R, man);
+  /* THE 57: a thin white sheaf under its bluebonnet cover, held at chest height in the key, its paper edge to the light */
+  const clip = K.make('clipboard', { sheets: FIG.citations, board: false });
+  const hold = new THREE.Group(); hold.rotation.y = 0.95; hold.position.set(-0.25, 1.1, -11.82);
+  clip.rotation.set(1.2, 0, 0.1); clip.scale.setScalar(1.45); hold.add(clip); TXT.add(R, hold);
+  const from = [2.5, 0.81, -6.68];
+  const look = CH.aim(THREE, R, TXT, from, [-0.1, 1.0, -12.35], 540, 975, 30);
+  TXT.frame(R, { fov: 30, from, look });
+  TXT.sky(R);
+  TXT.deckRig(R, CH.rigSpec(W, 16, 4096), CH.rigOpts([0, 1, -12], { distance: 40, shadowFar: 90, normalBias: 0.02 }));
+  CH.unacne(R, 0.04);
+  /* the street light raking the column's lit face low from the left, so each bundle edge casts on the next */
+  CH.spot(THREE, R, [-2.5, 2.2, -8.5], [0.25, 1.0, -12.3], { color: 0xffd2a0, i: 110, reach: 16, angle: 0.35, penumbra: 0.6 }).castShadow = false;
+  TXT.stage(R, [col, man]);
+  TXT.weather(R, { grime: 0.25, height: 0.3, mottle: 0.1 });
+  const cx = CH.develop(await TXT.snapshot(R, { stage: false }), gl);
+  CH.post(cx, { a: 0.3, veil: 0.35, veilH: 240 });
+  CH.footWash(cx);
+  CH.typeDark(cx, { x1: 640, xf: 220, a: 0.8 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

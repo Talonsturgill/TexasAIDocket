@@ -1,0 +1,69 @@
+{
+ "_note": "Integrity lens, round 3, carousel no. 71, returned by carousel-scorer and saved in shape. Its hard fail was repaired before ship.",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.5,
+   "why": "Strong 1, 4 and 6 holding scale; 7's cards read as planks with fans 1.71 to 1 against 2.17; 8's blank folders and a leader through a label; mannequin officers."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "One parcel, one key, one motif changing state; 7 an abstract close-up; 8 a declared cut."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 6.0,
+   "why": "Numerals trace and the round 2 attribution repairs hold. The 'In September' month is unsourced (hard fail); 7's 'at frame 6's scale' is false by the code; the caption drops 'approximately'; frame 1's brush trucks come from the December plan."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.5,
+   "why": "What, who and where land; no date or next step and the October 19th briefing goes unmentioned."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Reads in order with the turn at 6; 4 and 9 overlap."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "Clean and on register; a bare 'December' and procedural attribution lines."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "New setting; familiar staged world; same item as no. 31, outside the window."
+  }
+ ],
+ "weighted_score": 6.72,
+ "hard_fails": [
+  "Slide 8's dek and the caption dated Chad West's withdrawal 'In September', and no claim supplies the month (c56 says only 'previously'). Repaired before ship: the month is struck from both surfaces."
+ ],
+ "ship": false,
+ "artwork_weakest_frames": [
+  {
+   "slide": 7,
+   "problem": "Two flat planks, fans not proportional, 0.8 mm cards against the dek's claimed scale.",
+   "fix": "Frame 6's card thickness, a vertical step per card, proportional spacing, labels beside their fans."
+  },
+  {
+   "slide": 8,
+   "problem": "Three identical blank folders and a leader through a label.",
+   "fix": "A seated eye, each folder in its own state, labels on one baseline."
+  },
+  {
+   "slide": 6,
+   "problem": "A mannequin officer in a box vest competing with the column.",
+   "fix": "A three quarter back view looking up, a fitted vest, the sheaf in the key light."
+  }
+ ]
+}

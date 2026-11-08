@@ -1,0 +1,79 @@
+{
+ "_note": "Reader lens, round 3, carousel no. 71, returned by carousel-scorer and saved in shape. Its hard fail was repaired before ship.",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.3,
+   "why": "Bold register; 4, 6 and 2 pass; 7's planks and curb band, 8's blank boards, mannequin figures, 1's grey rail band."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "Two working continuity devices and one light; 7's mid-tone floor sits outside."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 5.8,
+   "why": "Counts trace. The 'In September' month is unsourced (hard fail); the caption drops 'approximately' and counts notices for owners; slide 3's trays infer the reviewer's choices."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.5,
+   "why": "Useful to a notice holder; no next date, the October briefing unmentioned, nothing newer than September."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 6.8,
+   "why": "The cover describes rather than hooks; 3 to 5 at one tempo; a soft close."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.8,
+   "why": "Specific and local; attribution chains read as a sourcing ledger."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 5.5,
+   "why": "Same lastLight staging and close-hardware opener as recent decks; same item as no. 31."
+  }
+ ],
+ "weighted_score": 6.396,
+ "hard_fails": [
+  "Slide 8's dek and the caption dated Chad West's withdrawal 'In September', and no claim supplies the month (c56 says only 'previously'). Repaired before ship: the month is struck from both surfaces."
+ ],
+ "ship": false,
+ "artwork_weakest_frames": [
+  {
+   "slide": 7,
+   "problem": "Two flat slabs and a grey curb band.",
+   "fix": "Card-height camera with stepped edges raked by the light, curb cropped out."
+  },
+  {
+   "slide": 8,
+   "problem": "Three blank boards carry no information.",
+   "fix": "One contract binder with three year tabs and a termination slip."
+  },
+  {
+   "slide": 9,
+   "problem": "A mannequin with a placard notice.",
+   "fix": "Crop to hands and the notice under the lamp."
+  },
+  {
+   "slide": 5,
+   "problem": "A primitive officer at two thirds height.",
+   "fix": "Over the shoulder onto the clipboard and pile."
+  },
+  {
+   "slide": 1,
+   "problem": "A flat grey rail band.",
+   "fix": "Push in so the pod fills a third and the rail is a thin lit edge."
+  }
+ ]
+}

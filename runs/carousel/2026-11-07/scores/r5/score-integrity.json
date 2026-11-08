@@ -1,0 +1,72 @@
+{
+ "_note": "Integrity lens, round 5 (past the cap), carousel no. 71, saved in shape. Delivered files checked against the renders by eye: thumbs, contact sheet and all nine PDF pages carry the current copy.",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.5,
+   "why": "1, 2 and 4 finished, 6 holds its scale. 7's slabs at 1.55 to 1 on a beige band; mannequin officer on 5 and 6; stock folders on 8; 9's oversized notice and riser notch."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.0,
+   "why": "One world, one parcel, two working devices; 7's canvas mean 54.0 against 22.8 to 35.7 jumps the value track."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 6.5,
+   "why": "Every numeral traces. Slide 2's headline and the title adopt the city's 'concern, not a violation' framing while FOX 4 reports the memo's 3,700 violations; slide 3's headline is the city's self-description unattributed; slide 8's December without its year."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.5,
+   "why": "What, who and where land; the stake is general and the story stops at September."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Clear order, frame 2 pays, the turn at 7 lands late; 3 and 5 overlap."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Clean with a strong caption opener; flat lines and thin regional texture."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 5.5,
+   "why": "Same item as no. 31 with no development since September; familiar staged world; a fresh paper counter."
+  }
+ ],
+ "weighted_score": 6.56,
+ "hard_fails": [],
+ "ship": true,
+ "artwork_weakest_frames": [
+  {
+   "slide": 7,
+   "problem": "Flat slabs at 1.55 to 1, a beige band, the deck's brightest canvas.",
+   "fix": "Low raking key, one fixed offset per card, a dark curb and lawn."
+  },
+  {
+   "slide": 6,
+   "problem": "Mannequin officer looking down.",
+   "fix": "A draped vest, the eyeline up at the column, a cool rim."
+  },
+  {
+   "slide": 8,
+   "problem": "Stock folders with no thickness or shadow.",
+   "fix": "Tighter crop, pressboard thickness raked by the window key."
+  },
+  {
+   "slide": 9,
+   "problem": "Oversized notice and riser notch.",
+   "fix": "Letter-size notice in both hands, close the notch."
+  }
+ ]
+}

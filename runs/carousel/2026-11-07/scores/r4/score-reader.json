@@ -1,0 +1,62 @@
+{
+ "_note": "Reader lens, round 4 (past the cap, hard fails only), carousel no. 71, saved in shape. ",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.5,
+   "why": "Dark staged register; 1, 2 and 4 strong; 7 two planks; kit figures; 8 blank props with a crossing leader; 3's head clipped."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "One parcel, one key, both devices working; 7 outside."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.5,
+   "why": "Every numeral traces and the repairs hold; 'the city says' on slide 4; review then notice order; December without its year."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.5,
+   "why": "The mechanism lands; no deadline; no word on whether the briefing happened; no. 31's story again."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "The caption hook beats the cover; 3 and 5 overlap; a reassuring close."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Clean and local; wire-style attribution."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.0,
+   "why": "Same item and facts as no. 31; slide 2 echoes no. 66."
+  }
+ ],
+ "weighted_score": 6.82,
+ "hard_fails": [],
+ "ship": true,
+ "artwork_weakest_frames": [
+  {
+   "slide": 7,
+   "problem": "Two white planks, no card countable, the curb the brightest object.",
+   "fix": "Single-layer grids with a shadow gap per card, a 45 degree overhead camera."
+  },
+  {
+   "slide": 6,
+   "problem": "A torso-sized clipboard and a floating vest.",
+   "fix": "Letter-size clipboard, a conformed vest."
+  }
+ ]
+}

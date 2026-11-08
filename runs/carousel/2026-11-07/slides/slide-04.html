@@ -1,0 +1,55 @@
+<!doctype html>
+<!-- 2026-11-07, frame 4 of 9. Archetype OBJECT_AND_CAPTION. A spatial scene through txthree.js in the lastLight world: the kit mailbox of the parcel at its curb, a chassis notice envelope standing in its mouth with the accent band, the kit ranch_house a dim roofline behind. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:620px">Some get a courtesy notice</h1>
+<p class="dek" data-follow="26" style="width:560px">About 3,700 property owners got one after the cameras flagged a possible violation, the city says.</p>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-07-curbside.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "The notice", counter: "04 / 09", src: "c53", fit: { min: 70, max: 92, maxLines: 3 } });
+  const R = CH.stage(TXT, gl, W, { fov: 30, near: 0.05, far: 3000, exposure: 1.0 });
+  TXT.ground(R, { surface: 'grass', size: 600, color: 0x3a3f2c });
+  const road = K.make('road', { lanes: 2, sidewalk: true, parkway: 1.2, length: 80 }); road.position.set(0, 0, -6); TXT.add(R, road);
+  const house = K.make('ranch_house', { material: 'brick', color: 0x8c5a3c, garage: 'right', chimney: true, seed: 7 }); house.position.set(-4, 0, -26); TXT.add(R, house);
+  const yard = K.make('yard', { size: [34, 7], dryness: 0.7 }); yard.position.set(-4, 0, -16.4); TXT.add(R, yard);
+  const mbox = K.make('mailbox', { style: 'brick', brick: 0x8c5a3c, seed: 7 }); mbox.position.set(0, 0, -11.7); TXT.add(R, mbox); TXT.contact(R, mbox);
+  mbox.updateMatrixWorld(true); const bb = new THREE.Box3().setFromObject(mbox);
+  /* the notice envelope standing two thirds out of the box's mouth, toward the street (+z) */
+  const env = K.make('notice', { kind: 'envelope', standing: true });
+  env.rotation.set(-0.3, 0.1, 0); env.position.set(0.0, 0.84, bb.max.z + 0.01); TXT.add(R, env);
+  const from = [2.2, 1.05, -7.9];
+  const look = CH.aim(THREE, R, TXT, from, [0, bb.max.y - 0.55, -11.7], 760, 800, 34);
+  TXT.frame(R, { fov: 34, from, look });
+  TXT.sky(R);
+  TXT.deckRig(R, CH.rigSpec(W, 10, 4096), CH.rigOpts([0, 1, -11], { distance: 30, shadowFar: 70, normalBias: 0.02 }));
+  CH.unacne(R, 0.02);
+  CH.spot(THREE, R, [3.5, 7.5, -5.5], [0, 1.0, -11.0], { color: 0xffd2a0, i: 120, reach: 25, angle: 0.35, penumbra: 0.7 });
+  TXT.stage(R, mbox);
+  TXT.weather(R, { grime: 0.35, height: 0.6, mottle: 0.12 });
+  const cx = CH.develop(await TXT.snapshot(R, { stage: false }), gl);
+  CH.post(cx, { a: 0.3, veil: 0.35, veilH: 240 });
+  CH.footWash(cx, { a: 0.85, r: 560 });
+  CH.typeDark(cx, { x1: 660, xf: 220, a: 0.8 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

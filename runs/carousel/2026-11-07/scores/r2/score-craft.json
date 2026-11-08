@@ -1,0 +1,23 @@
+{
+ "_note": "Craft lens, round 2, carousel no. 71, returned by carousel-scorer and saved in shape.",
+ "criteria": [
+  {"name": "artwork_craft", "weight": 0.22, "score": 6.5, "why": "Frame 6 the best frame, 4 and 2 work. The officer's shell vest and mannequin pose on 5 and 6, tires buried on 5, frame 7 a thin column in a void with jagged top and weak band change, frame 8's flat folders with a label outside the safe zone crossed by the mic, frame 9's notch, seam, placard notice and mid-tone wall, frame 1's pod a sixth of the frame over a pale flank."},
+  {"name": "deck_coherence", "weight": 0.12, "score": 7.5, "why": "One key, one register, one palette, the camera move and the bluebonnet motif both work. The measured scale changes meaning between 6 and 7; the interiors sit slightly outside."},
+  {"name": "claim_integrity", "weight": 0.20, "score": 7.0, "why": "Every numeral traces. The memo counts rest on FOX 4 and Dallas Express. Hygiene: c59 missing from the first comment, retrieval stamps said November 7th against a November 8th re-source, a stale rejected entry, stale dossier lines."},
+  {"name": "story_and_stakes", "weight": 0.16, "score": 7.0, "why": "Names the body, the vendor, the districts, the money and West's withdrawn cut. No date for the next appropriation or briefing; the close ends general."},
+  {"name": "sequence_and_momentum", "weight": 0.10, "score": 7.5, "why": "The process reads in order, 2 pays at once, the turn at 6 lands. 3 and 5 overlap and the cover headline is descriptive."},
+  {"name": "voice", "weight": 0.10, "score": 7.5, "why": "Plain and specific with a strong caption opener; some deks flat."},
+  {"name": "variety", "weight": 0.10, "score": 7.5, "why": "A fresh setting and subject after nos. 68 to 70; the measured counter stack under staged lastLight is familiar."}
+ ],
+ "weighted_score": 7.10,
+ "hard_fails": [],
+ "ship": false,
+ "artwork_weakest_frames": [
+  {"slide": 7, "problem": "A thin column in the right fifth with an empty left two thirds, a jagged top, a weak band change, and a scale that means something different from frame 6.", "fix": "Macro the officer's 57-card sheaf edge-on at 0.2 mm with the divider proud after card 39, the column soft behind."},
+  {"slide": 8, "problem": "Three flat beige rectangles; the '10 days' notice' label outside the safe zone with the mic through it.", "fix": "Model folder thickness and a paper edge, drop the camera so they fill the bottom third, move the label inside x 80 to 1000 clear of the stem."},
+  {"slide": 5, "problem": "Shell vest, mannequin pose, tires lost under the brush.", "fix": "Conform the vest or swap it, angle him to the pile, pull the brush back so both tires show."},
+  {"slide": 9, "problem": "Placard notice, mannequin resident, riser notch, brick seam, mid-tone wall.", "fix": "Letter-size notice in both hands, close the notch and seam, narrow the key onto the figure."},
+  {"slide": 1, "problem": "The pod a sixth of the frame over a pale flank with no street.", "fix": "Lower the eye so the pod fills a third against the dark street, rake the key only across the top rail."},
+  {"slide": 6, "problem": "The sheaf faces the camera so its same-scale thickness does not read; shell vest.", "fix": "Rotate the clipboard edge-on beside the column's bundle edges."}
+ ]
+}
