@@ -34248,8 +34248,8 @@
     }
    ],
    "public_access": {
-    "room": "open_meeting",
-    "how": "The program comes back to a Dallas City Council committee on October 19th, 2026 for a briefing by the city manager. Council committee meetings are posted and open, and the December 2025 Finance Committee presentation that set the program's terms is published on the city's own site.",
+    "room": "contact_only",
+    "how": "The committee asked for no further briefing and the city set no timeline for its next steps. A courtesy notice from the program opens no enforcement case and sets no formal deadline, and the city says notices will carry a QR code to its Housing and Community Empowerment resource page with contacts for questions. The December 2025 Finance Committee presentation that set the program's terms is published on the city's own site.",
     "url": "https://dallascityhall.com/government/citymanager/Documents/Council%20Materials/A.%20Sanitation%20and%20Code.pdf",
     "closes": null
    },
@@ -34461,10 +34461,289 @@
      "source_type": "journalism",
      "fetched": "2026-10-21",
      "id": "tx-2026-0179-c23"
+    },
+    {
+     "id": "tx-2026-0179-c24",
+     "text": "The briefing describes City Detect's system as its own computer vision models paired with rugged cameras mounted on existing city fleets.",
+     "verbatim_quote": "City Detect combines  proprietary computer-vision  models with ruggedized  cameras mounted on  existing city fleets.",
+     "source_url": "https://dallascityhall.com/government/citymanager/Documents/Council%20Materials/A.%20Sanitation%20and%20Code.pdf",
+     "source_title": "Update on the Use of AI-Powered Camera Technology, Finance Committee briefing (15 pages)",
+     "source_type": "primary_official",
+     "fetched": "2026-11-07"
+    },
+    {
+     "id": "tx-2026-0179-c25",
+     "text": "The briefing describes the hardware as 2 cameras mounted on 1 city vehicle.",
+     "verbatim_quote": "2 cameras mounted on 1 city vehicle",
+     "source_url": "https://dallascityhall.com/government/citymanager/Documents/Council%20Materials/A.%20Sanitation%20and%20Code.pdf",
+     "source_title": "Update on the Use of AI-Powered Camera Technology, Finance Committee briefing (15 pages)",
+     "source_type": "primary_official",
+     "fetched": "2026-11-07"
+    },
+    {
+     "id": "tx-2026-0179-c26",
+     "text": "The cameras take photos while the vehicle drives at 25 to 35 MPH, according to the briefing.",
+     "verbatim_quote": "Take photos as it drives (25-35 MPH)",
+     "source_url": "https://dallascityhall.com/government/citymanager/Documents/Council%20Materials/A.%20Sanitation%20and%20Code.pdf",
+     "source_title": "Update on the Use of AI-Powered Camera Technology, Finance Committee briefing (15 pages)",
+     "source_type": "primary_official",
+     "fetched": "2026-11-07"
+    },
+    {
+     "id": "tx-2026-0179-c27",
+     "text": "The cameras face sideways from the vehicle and capture images from the public right of way.",
+     "verbatim_quote": "Side-facing cameras attached to vehicle  • Captures images from the public right -of-way",
+     "source_url": "https://dallascityhall.com/government/citymanager/Documents/Council%20Materials/A.%20Sanitation%20and%20Code.pdf",
+     "source_title": "Update on the Use of AI-Powered Camera Technology, Finance Committee briefing (15 pages)",
+     "source_type": "primary_official",
+     "fetched": "2026-11-07"
+    },
+    {
+     "id": "tx-2026-0179-c28",
+     "text": "The briefing says faces and license plates are blurred for privacy.",
+     "verbatim_quote": "Blurred faces and license plates for privacy.",
+     "source_url": "https://dallascityhall.com/government/citymanager/Documents/Council%20Materials/A.%20Sanitation%20and%20Code.pdf",
+     "source_title": "Update on the Use of AI-Powered Camera Technology, Finance Committee briefing (15 pages)",
+     "source_type": "primary_official",
+     "fetched": "2026-11-07"
+    },
+    {
+     "id": "tx-2026-0179-c29",
+     "text": "The cameras have a fixed focal length and can't zoom, the briefing says.",
+     "verbatim_quote": "They have a fixed focal length, which means they do not support  any zoom capability",
+     "source_url": "https://dallascityhall.com/government/citymanager/Documents/Council%20Materials/A.%20Sanitation%20and%20Code.pdf",
+     "source_title": "Update on the Use of AI-Powered Camera Technology, Finance Committee briefing (15 pages)",
+     "source_type": "primary_official",
+     "fetched": "2026-11-07"
+    },
+    {
+     "id": "tx-2026-0179-c30",
+     "text": "The briefing lists the property conditions the software detects as bulk trash participation, collapsing structures, trash, tires, illegal dumping, graffiti, boarded windows or doors and high grass.",
+     "verbatim_quote": "Detection of property conditions • Bulk trash participation • Collapsing structures • Trash • Tires • Illegal dumping  • Graffiti • Boarded  windows/doors • High Grass",
+     "source_url": "https://dallascityhall.com/government/citymanager/Documents/Council%20Materials/A.%20Sanitation%20and%20Code.pdf",
+     "source_title": "Update on the Use of AI-Powered Camera Technology, Finance Committee briefing (15 pages)",
+     "source_type": "primary_official",
+     "fetched": "2026-11-07"
+    },
+    {
+     "id": "tx-2026-0179-c31",
+     "text": "The briefing describes a three-year contract for an estimated $2,556,000, subject to annual City Council appropriations.",
+     "verbatim_quote": "This is a three-year contract for an estimated amount of $2,556,000,  subject to annual City Council appropriations.",
+     "source_url": "https://dallascityhall.com/government/citymanager/Documents/Council%20Materials/A.%20Sanitation%20and%20Code.pdf",
+     "source_title": "Update on the Use of AI-Powered Camera Technology, Finance Committee briefing (15 pages)",
+     "source_type": "primary_official",
+     "fetched": "2026-11-07"
+    },
+    {
+     "id": "tx-2026-0179-c32",
+     "text": "The city may terminate the contract at any time with 10 days' written notice and without penalty.",
+     "verbatim_quote": "The City may terminate the contract with 10 days’ written notice at any  time, without penalty.",
+     "source_url": "https://dallascityhall.com/government/citymanager/Documents/Council%20Materials/A.%20Sanitation%20and%20Code.pdf",
+     "source_title": "Update on the Use of AI-Powered Camera Technology, Finance Committee briefing (15 pages)",
+     "source_type": "primary_official",
+     "fetched": "2026-11-07"
+    },
+    {
+     "id": "tx-2026-0179-c33",
+     "text": "The Dallas Morning News reported that the cameras photographed more than 20,000 code concerns in four months.",
+     "verbatim_quote": "In just four months, the cameras have photographed more than 20,000 code concerns.",
+     "source_url": "https://www.govtech.com/artificial-intelligence/ai-flagged-20-000-code-violations-in-dallas-only-57-were-cited",
+     "source_title": "AI Flagged 20,000 Code Violations in Dallas, Only 57 Were Cited (María Ramos Pacheco, William Tong)",
+     "source_type": "journalism",
+     "fetched": "2026-11-07"
+    },
+    {
+     "id": "tx-2026-0179-c34",
+     "text": "The Dallas Morning News reported 57 citations at 34 properties, primarily in the southern parts of Dallas.",
+     "verbatim_quote": "That resulted in 57 citations at 34 properties — primarily in the southern parts of Dallas.",
+     "source_url": "https://www.govtech.com/artificial-intelligence/ai-flagged-20-000-code-violations-in-dallas-only-57-were-cited",
+     "source_title": "AI Flagged 20,000 Code Violations in Dallas, Only 57 Were Cited (María Ramos Pacheco, William Tong)",
+     "source_type": "journalism",
+     "fetched": "2026-11-07"
+    },
+    {
+     "id": "tx-2026-0179-c35",
+     "text": "Properties in east and southeast Oak Cliff drew the most citations, with 24, the Dallas Morning News reported.",
+     "verbatim_quote": "Properties in east and southeast Oak Cliff had the most citations with 24.",
+     "source_url": "https://www.govtech.com/artificial-intelligence/ai-flagged-20-000-code-violations-in-dallas-only-57-were-cited",
+     "source_title": "AI Flagged 20,000 Code Violations in Dallas, Only 57 Were Cited (María Ramos Pacheco, William Tong)",
+     "source_type": "journalism",
+     "fetched": "2026-11-07"
+    },
+    {
+     "id": "tx-2026-0179-c36",
+     "text": "A Dallas Morning News analysis of city data placed about 13,800 of the 20,000 images in southern Dallas, a majority of the photographed concerns.",
+     "verbatim_quote": "Properties in southern Dallas also made up a majority of the photographed concerns, at about 13,800 of the 20,000 images, according to a Dallas Morning News analysis of city data.",
+     "source_url": "https://www.govtech.com/artificial-intelligence/ai-flagged-20-000-code-violations-in-dallas-only-57-were-cited",
+     "source_title": "AI Flagged 20,000 Code Violations in Dallas, Only 57 Were Cited (María Ramos Pacheco, William Tong)",
+     "source_type": "journalism",
+     "fetched": "2026-11-07"
+    },
+    {
+     "id": "tx-2026-0179-c37",
+     "text": "The rest of the city outside southern Dallas collected about 7,300 code concerns, and more than 4% of those observations led to courtesy notices.",
+     "verbatim_quote": "In the rest of the city, which collected about 7,300 code concerns, more than 4% of observations resulted in courtesy notices.",
+     "source_url": "https://www.govtech.com/artificial-intelligence/ai-flagged-20-000-code-violations-in-dallas-only-57-were-cited",
+     "source_title": "AI Flagged 20,000 Code Violations in Dallas, Only 57 Were Cited (María Ramos Pacheco, William Tong)",
+     "source_type": "journalism",
+     "fetched": "2026-11-07"
+    },
+    {
+     "id": "tx-2026-0179-c38",
+     "text": "The city sent about 520 courtesy notices for potential code violations between June and August. The Dallas Morning News notes that a courtesy notice is not a citation or a fine.",
+     "verbatim_quote": "The city sent out about 520 courtesy notices to residents for potential code violations between June and August. A courtesy notice is not a citation or fine.",
+     "source_url": "https://www.govtech.com/artificial-intelligence/ai-flagged-20-000-code-violations-in-dallas-only-57-were-cited",
+     "source_title": "AI Flagged 20,000 Code Violations in Dallas, Only 57 Were Cited (María Ramos Pacheco, William Tong)",
+     "source_type": "journalism",
+     "fetched": "2026-11-07"
+    },
+    {
+     "id": "tx-2026-0179-c39",
+     "text": "The process the Dallas Morning News described starts with a camera on a bulky trash truck taking a still image along its route.",
+     "verbatim_quote": "The camera on a bulky trash truck captures a still image during its route",
+     "source_url": "https://www.govtech.com/artificial-intelligence/ai-flagged-20-000-code-violations-in-dallas-only-57-were-cited",
+     "source_title": "AI Flagged 20,000 Code Violations in Dallas, Only 57 Were Cited (María Ramos Pacheco, William Tong)",
+     "source_type": "journalism",
+     "fetched": "2026-11-07"
+    },
+    {
+     "id": "tx-2026-0179-c40",
+     "text": "AI software then flags a potential concern in the image.",
+     "verbatim_quote": "AI-powered software flags a potential concern",
+     "source_url": "https://www.govtech.com/artificial-intelligence/ai-flagged-20-000-code-violations-in-dallas-only-57-were-cited",
+     "source_title": "AI Flagged 20,000 Code Violations in Dallas, Only 57 Were Cited (María Ramos Pacheco, William Tong)",
+     "source_type": "journalism",
+     "fetched": "2026-11-07"
+    },
+    {
+     "id": "tx-2026-0179-c41",
+     "text": "A code compliance analyst reviews the flagged observation.",
+     "verbatim_quote": "A code compliance analyst reviews the observation",
+     "source_url": "https://www.govtech.com/artificial-intelligence/ai-flagged-20-000-code-violations-in-dallas-only-57-were-cited",
+     "source_title": "AI Flagged 20,000 Code Violations in Dallas, Only 57 Were Cited (María Ramos Pacheco, William Tong)",
+     "source_type": "journalism",
+     "fetched": "2026-11-07"
+    },
+    {
+     "id": "tx-2026-0179-c42",
+     "text": "City workers then choose between taking no action, sending a courtesy notice and opening a case.",
+     "verbatim_quote": "City workers decide whether to take no action, send a courtesy notice or open a case",
+     "source_url": "https://www.govtech.com/artificial-intelligence/ai-flagged-20-000-code-violations-in-dallas-only-57-were-cited",
+     "source_title": "AI Flagged 20,000 Code Violations in Dallas, Only 57 Were Cited (María Ramos Pacheco, William Tong)",
+     "source_type": "journalism",
+     "fetched": "2026-11-07"
+    },
+    {
+     "id": "tx-2026-0179-c43",
+     "text": "Next a code officer goes to the property and inspects it in person.",
+     "verbatim_quote": "A code officer inspects the property in person",
+     "source_url": "https://www.govtech.com/artificial-intelligence/ai-flagged-20-000-code-violations-in-dallas-only-57-were-cited",
+     "source_title": "AI Flagged 20,000 Code Violations in Dallas, Only 57 Were Cited (María Ramos Pacheco, William Tong)",
+     "source_type": "journalism",
+     "fetched": "2026-11-07"
+    },
+    {
+     "id": "tx-2026-0179-c44",
+     "text": "A citation can be issued only once an actual violation has been confirmed.",
+     "verbatim_quote": "A citation may be issued only after an actual violation is confirmed",
+     "source_url": "https://www.govtech.com/artificial-intelligence/ai-flagged-20-000-code-violations-in-dallas-only-57-were-cited",
+     "source_title": "AI Flagged 20,000 Code Violations in Dallas, Only 57 Were Cited (María Ramos Pacheco, William Tong)",
+     "source_type": "journalism",
+     "fetched": "2026-11-07"
+    },
+    {
+     "id": "tx-2026-0179-c45",
+     "text": "Oak Cliff council member Chad West questioned whether the technology could unintentionally target southern Dallas residents who face citations for conditions they can't afford to repair.",
+     "verbatim_quote": "Dallas City Council member Chad West, who represents Oak Cliff, is questioning whether the technology could unintentionally target southern Dallas residents who may face citations for conditions such as peeling paint but cannot afford repairs.",
+     "source_url": "https://www.govtech.com/artificial-intelligence/ai-flagged-20-000-code-violations-in-dallas-only-57-were-cited",
+     "source_title": "AI Flagged 20,000 Code Violations in Dallas, Only 57 Were Cited (María Ramos Pacheco, William Tong)",
+     "source_type": "journalism",
+     "fetched": "2026-11-07"
+    },
+    {
+     "id": "tx-2026-0179-c46",
+     "text": "West said he had planned to propose eliminating the program's roughly $852,000 annual budget allocation. He instead asked city staff to brief the council on who can access the images, how long they are stored and whether the system could disproportionately affect lower income neighborhoods.",
+     "verbatim_quote": "West said he planned to propose eliminating the program's roughly $852,000 annual budget allocation but instead requested city staff brief council members on who can access the images, how long they are stored and whether the system could disproportionately affect lower-income neighborhoods.",
+     "source_url": "https://www.govtech.com/artificial-intelligence/ai-flagged-20-000-code-violations-in-dallas-only-57-were-cited",
+     "source_title": "AI Flagged 20,000 Code Violations in Dallas, Only 57 Were Cited (María Ramos Pacheco, William Tong)",
+     "source_type": "journalism",
+     "fetched": "2026-11-07"
+    },
+    {
+     "id": "tx-2026-0179-c47",
+     "text": "The Dallas Morning News reported that the City Council approved a three-year, $2.56 million contract to install cameras on 50 brush and bulky-waste collection trucks.",
+     "verbatim_quote": "Last year, the Dallas City Council approved a three-year, $2.56 million contract to install cameras on 50 brush and bulky-waste collection trucks and use AI software to analyze images.",
+     "source_url": "https://www.govtech.com/artificial-intelligence/ai-flagged-20-000-code-violations-in-dallas-only-57-were-cited",
+     "source_title": "AI Flagged 20,000 Code Violations in Dallas, Only 57 Were Cited (María Ramos Pacheco, William Tong)",
+     "source_type": "journalism",
+     "fetched": "2026-11-07"
+    },
+    {
+     "id": "tx-2026-0179-c48",
+     "text": "Dallas had not completed a comprehensive evaluation or a return on investment analysis of the program, the Dallas Morning News reported in September.",
+     "verbatim_quote": "Dallas has not completed a comprehensive evaluation or return-on-investment analysis.",
+     "source_url": "https://www.govtech.com/artificial-intelligence/ai-flagged-20-000-code-violations-in-dallas-only-57-were-cited",
+     "source_title": "AI Flagged 20,000 Code Violations in Dallas, Only 57 Were Cited (María Ramos Pacheco, William Tong)",
+     "source_type": "journalism",
+     "fetched": "2026-11-07"
+    },
+    {
+     "id": "tx-2026-0179-c49",
+     "text": "The city says a courtesy notice opens no enforcement case and sets no formal deadline for a fix.",
+     "verbatim_quote": "The city says a courtesy notice does not open an enforcement case or set a formal deadline to fix the issue.",
+     "source_url": "https://www.govtech.com/artificial-intelligence/dallas-revises-resident-notices-from-trash-truck-ai-cameras",
+     "source_title": "Dallas Revises Resident Notices From Trash Truck AI Cameras (María Ramos Pacheco)",
+     "source_type": "journalism",
+     "fetched": "2026-11-07"
+    },
+    {
+     "id": "tx-2026-0179-c50",
+     "text": "City Detect's chief executive told the committee the company had expanded its blurring to cover a person's full image.",
+     "verbatim_quote": "City Detect CEO Gavin Baum-Blake told the committee that the company had expanded its blurring technology to cover a person’s full image.",
+     "source_url": "https://www.govtech.com/artificial-intelligence/dallas-revises-resident-notices-from-trash-truck-ai-cameras",
+     "source_title": "Dallas Revises Resident Notices From Trash Truck AI Cameras (María Ramos Pacheco)",
+     "source_type": "journalism",
+     "fetched": "2026-11-07"
+    },
+    {
+     "id": "tx-2026-0179-c51",
+     "text": "Code Compliance Director Chris Christian said the cameras run along existing sanitation routes across the city and are not meant to target communities by income or demographics.",
+     "verbatim_quote": "Code Compliance Director Chris Christian said the cameras operate along existing sanitation routes throughout the city and are not intended to target communities based on income or demographics.",
+     "source_url": "https://www.govtech.com/artificial-intelligence/dallas-revises-resident-notices-from-trash-truck-ai-cameras",
+     "source_title": "Dallas Revises Resident Notices From Trash Truck AI Cameras (María Ramos Pacheco)",
+     "source_type": "journalism",
+     "fetched": "2026-11-07"
+    },
+    {
+     "id": "tx-2026-0179-c52",
+     "text": "City staff outlined plans to improve detection accuracy, connect the system to city databases, develop performance measures and report on safeguards and outcomes.",
+     "verbatim_quote": "During the presentation, city staff explained how the system works and outlined plans to improve detection accuracy, connect it with city databases, develop performance measures and report on safeguards and outcomes.",
+     "source_url": "https://www.govtech.com/artificial-intelligence/dallas-revises-resident-notices-from-trash-truck-ai-cameras",
+     "source_title": "Dallas Revises Resident Notices From Trash Truck AI Cameras (María Ramos Pacheco)",
+     "source_type": "journalism",
+     "fetched": "2026-11-07"
+    },
+    {
+     "id": "tx-2026-0179-c53",
+     "text": "The city set no timeline for those steps and the committee asked for no further briefing.",
+     "verbatim_quote": "The city gave no timeline for the steps, and the committee didn’t request another briefing.",
+     "source_url": "https://www.govtech.com/artificial-intelligence/dallas-revises-resident-notices-from-trash-truck-ai-cameras",
+     "source_title": "Dallas Revises Resident Notices From Trash Truck AI Cameras (María Ramos Pacheco)",
+     "source_type": "journalism",
+     "fetched": "2026-11-07"
+    },
+    {
+     "id": "tx-2026-0179-c54",
+     "text": "Courtesy notices will carry a QR code linking residents to the city's Housing and Community Empowerment resource page, with more contacts for questions.",
+     "verbatim_quote": "The notices will also have a QR code linking residents to the city’s Housing and Community Empowerment resource page and provide additional contacts for residents with questions.",
+     "source_url": "https://www.govtech.com/artificial-intelligence/dallas-revises-resident-notices-from-trash-truck-ai-cameras",
+     "source_title": "Dallas Revises Resident Notices From Trash Truck AI Cameras (María Ramos Pacheco)",
+     "source_type": "journalism",
+     "fetched": "2026-11-07"
     }
    ],
    "id": "tx-2026-0179",
-   "last_verified": "2026-11-05",
+   "last_verified": "2026-11-07",
    "history": [
     {
      "date": "2026-09-21",
@@ -34543,6 +34822,10 @@
      "date": "2026-11-05",
      "note": "Dallas's brush truck camera citations still stand as the city reported them.",
      "checked": true
+    },
+    {
+     "date": "2026-11-07",
+     "note": "The committee briefing has taken place. Staff described softer courtesy notices with a link to the city's housing resource page and blurring widened to a person's whole image, and the committee asked for no further briefing. The September count of more than 20,000 photographed concerns and 57 citations at 34 properties is now on the record from the newspaper's own analysis."
     }
    ]
   },
