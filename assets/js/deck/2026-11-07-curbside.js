@@ -70,7 +70,7 @@
     var SPECK = canvasTex(256, 256, function (g, w, h, rr) { g.fillStyle = "#b8bbbe"; g.fillRect(0, 0, w, h);
       for (var i = 0; i < 26000; i++) { var v = 160 + Math.floor(rr() * 70); g.fillStyle = "rgba(" + v + "," + v + "," + (v + 3) + ",0.45)"; g.fillRect(rr() * w, rr() * h, 1, 1); } }, 6);
     var FILM = canvasTex(256, 256, function (g, w, h, rr) { var gr = g.createLinearGradient(0, 0, 0, h); gr.addColorStop(0, "#e6e3dc"); gr.addColorStop(0.6, "#d4d0c6"); gr.addColorStop(1, "#a9a396"); g.fillStyle = gr; g.fillRect(0, 0, w, h);
-      for (var i = 0; i < 140; i++) { var x = rr() * w, y0 = rr() * h * 0.5, len = 20 + rr() * h * 0.6; g.fillStyle = "rgba(80,70,54," + (0.1 + rr() * 0.2) + ")"; g.fillRect(x, y0, 1 + rr() * 3, len); }
+      g.filter = "blur(2px)"; for (var i = 0; i < 60; i++) { var x = rr() * w, y0 = rr() * h * 0.5, len = 30 + rr() * h * 0.5; g.fillStyle = "rgba(80,70,54," + (0.05 + rr() * 0.08) + ")"; g.fillRect(x, y0, 2 + rr() * 4, len); } g.filter = "none";
       for (var j = 0; j < 2600; j++) { g.fillStyle = "rgba(70,62,50," + (rr() * 0.08) + ")"; g.fillRect(rr() * w, h * (0.4 + 0.6 * rr()), 2, 2); } }, 1);
     var ALU = K.mat("cs-alu", { color: 0xd2d5d8, metalness: 0.85, roughness: 0.4, map: SPECK });   /* bead blasted cast aluminium */
     var ALUS = K.mat("cs-alus", { color: 0xa9adb1, metalness: 0.88, roughness: 0.36 });               /* the same casting, small parts, no map */
@@ -102,7 +102,7 @@
     var SHEETM = K.mat("cs-sheet", { color: 0xeee8da, roughness: 0.85, side: THREE.DoubleSide });
     var KRAFT = K.mat("cs-kraft", { color: 0xa8875c, roughness: 0.9 });
     var CLAY = K.mat("cs-clay", { color: 0x3a2e26, roughness: 0.9 });
-    var PRESS = K.mat("cs-press", { color: 0x6b5a44, roughness: 0.85 });
+    var PRESS = K.mat("cs-press", { color: 0xbfb3a0, roughness: 0.82 });
     var MANILA = K.mat("cs-manila", { color: 0xc9b07c, roughness: 0.86 });
     /* THE ACCENT HOLDS ITS HEX. A warm low key shifts a blue albedo toward grey, so the accent carries most of its
      * colour as emission at the deck hex and stays within the layout gate's 12 Lab window in any pool. */
@@ -285,7 +285,7 @@
           sh.rotation.order = "YXZ"; sh.rotation.set(-Math.PI / 2 + 0.55 + r() * 0.45, fan + Math.PI, 0);
           sh.position.set(Math.sin(fan) * 0.05, topY + 0.002 + s2 * 0.0035, Math.cos(fan) * 0.02 - 0.01); sh.castShadow = true; sh.receiveShadow = true; G.add(sh);
         }
-        if (o.divider) K.box(Wd + 0.03, 0.0015, Dp + 0.035, PRESS, 0.01, o.divider * N.SHEET, 0.012, 0.0005, G);
+        if (o.divider) K.box(Wd + 0.14, 0.014, Dp + 0.12, K.mat("cs-card", { color: 0xe4dac6, roughness: 0.55 }), 0.05, o.divider * N.SHEET - 0.007, 0.04, 0.002, G);
         G.userData.top = topY;
         return G;
       }

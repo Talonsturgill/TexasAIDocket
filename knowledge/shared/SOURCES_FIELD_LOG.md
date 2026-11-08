@@ -2541,3 +2541,20 @@ automated drilling. **The Helmerich & Payne October 7th release answered** throu
 **eutils.ncbi.nlm.nih.gov's robots.txt disallows** this project's path, so a scouted biomedical item was left out rather
 than read another way. **docs.tacc.utexas.edu answered** a public systems registry page. Every boundary declared on the
 worklist was re-measured on November 6th and held. Nothing was routed around.
+
+## 2026-11-07
+
+**A boundary re-measurement requested two pages that robots.txt disallows to this project, and it is disclosed here
+rather than left in a log.** The worklist's `blocks_every_client` check for tx-2026-0041 and tx-2026-0138 asked
+www.newschannel6now.com and www.fox34.com for the cited page itself, one request each, without first reading robots.txt.
+`reverify.py` refuses both paths on robots grounds and so does the crawl boundary. Nothing from either response was read
+into the record or the deck, and both boundary notes still describe the hosts as refusing. The re-measure for that
+boundary class should read robots.txt before it asks for the page.
+
+**dallascityhall.com answered** the Finance Committee briefing of December 9th, 2025 on AI-powered camera technology, a
+PDF with a text layer, through `fetch_doc.py`. **www.govtech.com answered** its republications of the Dallas Morning
+News reports of September 17th and October 20th. **www.fox4news.com answered** its September report on the October 19th
+briefing. **www.nbcdfw.com and www.dallasnews.com stay off limits** to this project and nothing was requested from
+either, so the Dallas Morning News reporting is read through GovTech. **stories.tamu.edu answered** the November 6th
+CrisisSense-LLM release, and **www.tceq.texas.gov answered** the October 19th letter to the Governor through
+`fetch_doc.py`. Every other boundary declared on the worklist was re-measured on November 7th and held.
