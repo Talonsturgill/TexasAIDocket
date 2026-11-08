@@ -218,10 +218,10 @@ def gap_bar(f: dict) -> str:
 
 
 def anchor_bar(f: dict) -> str:
-    """What 410 GW is, next to the biggest thing the grid has ever done.
+    """Compare the requested load with the record peak stated in this month's report.
 
-    A gigawatt figure means nothing on its own. Against the state's own record peak it means
-    something immediately, and both numbers are measured rather than framed.
+    The source describes a record for the named month, not an all-time record. Keep that
+    scope visible even when a later report's monthly peak is lower than the previous one.
     """
     L, R = f.get("latest"), f.get("requested")
     if not (L and R and L.get("peak_record_mw")):
@@ -234,7 +234,7 @@ def anchor_bar(f: dict) -> str:
     <div class="qbar"><div class="qfill" style="width:100%"></div></div>
   </div>
   <div class="qrow">
-    <div class="qlab"><span class="qk">Record peak, all of Texas</span>
+    <div class="qlab"><span class="qk">Record peak reported for {month_label(L['month'])}</span>
       <span class="qv num">{gw(peak)} GW</span></div>
     <div class="qbar"><div class="qfill" style="width:{peak / R['mw'] * 100.0:.1f}%"></div></div>
   </div>
@@ -397,7 +397,7 @@ def panel(data: dict) -> str:
   <h3>For scale</h3>
   {anchor_bar(f)}
   <p class="qnote">The queue is <span class="num">{times(L['requested_vs_peak_times'])}</span>
-  times the most power Texas has ever used at once.</p>
+  times the record peak reported for {month_label(L['month'])}.</p>
 
   <h3>Where it stands</h3>
   {stages(f)}
@@ -458,6 +458,27 @@ def self_test() -> int:
 
     stray = lint(html, f)
     check("every numeral traces to a computation", not stray, ", ".join(stray[:8]))
+
+    # A monthly record is not an all-time record. A lower September value must remain
+    # explicitly scoped to September, without changing the source figure or its arithmetic.
+    monthly = {"records": [{"month": "2026-09", "verified": True,
+                           "approved_to_energize_mw": 9456,
+                           "observed_operational_mw": 4132,
+                           "month_peak_record_mw": 86647,
+                           "source_url": "https://example.test/september.pdf"}],
+               "requested": data["requested"]}
+    mf = figures(monthly)
+    mh = panel(monthly)
+    check("the peak label names the report month",
+          "Record peak reported for September 2026" in mh)
+    check("the comparison names the same monthly record",
+          "times the record peak reported for September 2026." in mh)
+    check("a monthly peak is never described as an all-time record",
+          "ever used" not in mh and "Record peak, all of Texas" not in mh)
+    check("monthly scope does not change the source figure or ratio",
+          mf["latest"]["peak_record_mw"] == 86647
+          and mf["latest"]["requested_vs_peak_times"] == mf["requested"]["mw"] / 86647)
+    check("the month label and peak remain numeral-authorised", not lint(mh, mf))
 
     # THE GATE MUST BE ABLE TO GO RED. A checker that cannot fail proves nothing.
     planted = html.replace("</section>", "<p>An untraceable 8675309 figure.</p></section>")

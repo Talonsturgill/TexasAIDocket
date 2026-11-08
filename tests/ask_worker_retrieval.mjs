@@ -40,9 +40,12 @@ const head = (t) => console.log("\n" + t);
 
 // Built now from the record, never read from a file somebody last touched months ago. Same
 // reason ask_eval.mjs shells out for its cases: one implementation of what the pack is.
-const PACK = JSON.parse(execFileSync(PYTHON,
+const { pack: PACK, settled: SETTLED } = JSON.parse(execFileSync(PYTHON,
   ["-c", "import sys,json; sys.path.insert(0,'scripts/site'); import ask_pack; " +
-         "p=ask_pack.build(); json.dump(p, sys.stdout)"],
+         "p=ask_pack.build(); " +
+         "settled=[it['id'] for it in ask_pack.dk.load(ask_pack.LEDGER) " +
+         "if ask_pack.dk.window_state(it,p['generated']) != 'open']; " +
+         "json.dump(dict(pack=p,settled=settled), sys.stdout)"],
   { encoding: "utf-8", maxBuffer: 64 << 20 }));
 const GOLD = JSON.parse(execFileSync(PYTHON, ["scripts/site/ask_eval.py"],
   { encoding: "utf-8", maxBuffer: 32 << 20 }));
@@ -80,13 +83,45 @@ const cutTx = items.filter((it) => familyOf(it.id) === "tx").map((it) => it.id);
 ok("every decision comes out of the cut exactly once, whichever field carries it",
   JSON.stringify([...cutTx].sort()) === JSON.stringify(ITEMS_RAW.map((i) => i.id).sort()),
   `${cutTx.length} decisions cut, ${ITEMS_RAW.length} in the record`);
-ok("and the ones the core kept are in the record's own order",
-  JSON.stringify(splitRecord(PACK).coreItems.filter((it) => familyOf(it.id) === "tx")
-    .map((it) => it.id))
-  === JSON.stringify(ITEMS_RAW.map((i) => i.id).filter((id) => {
-    const carried = PACK.pack_carried || 0;
-    return !ITEMS_RAW.slice(0, carried).some((r) => r.id === id);
-  })));
+// The budget moves the oldest SETTLED bodies, not an unfiltered ledger prefix. An
+// old open window stays in the core. Resolve eligibility with the builder's canonical
+// window rule at this pack's date, then check both sides against that independent order.
+function partitionInOrder(pack, order, settled) {
+  const moved = settled.slice(0, pack.pack_carried || 0);
+  const movedSet = new Set(moved);
+  const txIds = (text) => splitPack(text).items.filter((it) => familyOf(it.id) === "tx")
+    .map((it) => it.id);
+  return JSON.stringify(txIds(pack.pack))
+      === JSON.stringify(order.filter((id) => !movedSet.has(id)))
+    && JSON.stringify(txIds(pack.facility_pack)) === JSON.stringify(moved);
+}
+ok("both body fields keep record order and move only the oldest settled decisions",
+  partitionInOrder(PACK, ITEMS_RAW.map((it) => it.id), SETTLED));
+
+// Freeze the case that the live record eventually crossed. The second decision has an
+// open window, so moving two bodies means moving the first and THIRD, never the first two.
+const orderFixture = ["tx-2099-0001", "tx-2099-0002", "tx-2099-0003", "tx-2099-0004"];
+const settledFixture = [orderFixture[0], orderFixture[2], orderFixture[3]];
+const bodyField = (ids) => "Fixture.\n\nTHE DECISIONS.\n\n"
+  + ids.map((id) => `[[${id}]] Fixture body.`).join("\n\n");
+const partitionFixture = {
+  pack: bodyField([orderFixture[1], orderFixture[3]]),
+  facility_pack: bodyField([orderFixture[0], orderFixture[2]]), pack_carried: 2,
+};
+const validFixture = (changes = {}) => partitionInOrder(
+  { ...partitionFixture, ...changes }, orderFixture, settledFixture);
+ok("an old open window survives a noncontiguous carried prefix", validFixture());
+ok("the order contract rejects reversed core bodies",
+  !validFixture({ pack: bodyField([orderFixture[3], orderFixture[1]]) }));
+ok("the order contract rejects reversed carried bodies",
+  !validFixture({ facility_pack: bodyField([orderFixture[2], orderFixture[0]]) }));
+ok("the order contract rejects carrying an open window instead of a settled body",
+  !validFixture({ pack: bodyField(orderFixture.slice(2)),
+    facility_pack: bodyField(orderFixture.slice(0, 2)) }));
+ok("the order contract rejects a missing body",
+  !validFixture({ pack: bodyField([orderFixture[1]]) }));
+ok("the order contract rejects a duplicated body",
+  !validFixture({ pack: bodyField([orderFixture[1], orderFixture[3], orderFixture[3]]) }));
 // THE FAMILIES THE BUILDER DECLARED ARE THE FAMILIES THE CUT PRODUCES, which is the assertion
 // that catches a family silently losing its blocks. familyOf is the worker's own, so the two
 // sides cannot drift into disagreeing about what a family is.

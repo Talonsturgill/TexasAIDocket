@@ -1,0 +1,79 @@
+{
+ "lens": "reader",
+ "round": 2,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.2,
+   "why": "Dark field and disciplined accent. 9 the best image, 6 and 8 hold. 7 flat white rings read as a dot chart, Texas label floats, timber overshoots. 5 flat rectangular rods, tread behind the headline, flat tag. 2 generic grey sheet. 1, 3 and 4 dark jack without rim; 4 corrugated bands. Crank motif can't be seen."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.0,
+   "why": "One dusk, one material vocabulary, accent on figure frames, camera walk and recurring jack work. Crank motif and sky hue unapplied; 2 and 5 sit slightly outside."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.0,
+   "why": "Every numeral checked and traced, ratios and counts right. Looser: the cover equates the lift monitor with a pump jack, the caption drops c28's 'experts and analysts said', the first comment leaks a raw source-type label."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.0,
+   "why": "Who and what are clear; where is only the Permian and an acreage share; the stake is never stated; the November 17th meeting is a date, not a lever; ends on a question."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "Cover and 2 work, turns at 3 and 8. The middle sags: 4's disclaimer, three figures in a row, 6 cuttable, 8's headline dangles."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "On register and honest. Flat lines: the caption's LLM sentence, 4's not-to-scale disclaimer, a template construction on 2."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.0,
+   "why": "Fresh topic; the third quarterly investor document in twelve days, the absence spine, lastLight and a last-light machine opener repeat."
+  }
+ ],
+ "weighted_score": 6.51,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Cut frame 6 for the reader's stake, place Reeves County, and say what the public can do at the November 17th meeting.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 7,
+   "problem": "Flat white rings in a grid; floating label; timber overshoot.",
+   "fix": "Three-quarter view, worn steel joints with a key-side rim, label over its rack."
+  },
+  {
+   "slide": 5,
+   "problem": "Flat bars; tread behind the headline; flat tag.",
+   "fix": "Round rods with cylindrical couplings, tread only in the lower 55 percent pool, lit brass tag with a cast."
+  },
+  {
+   "slide": 2,
+   "problem": "Generic grey ruled sheet in the grey middle.",
+   "fix": "Rake to near white on black steel, enlarge to bleed right, caliche dust and a tailgate edge."
+  },
+  {
+   "slide": 4,
+   "problem": "Corrugated bands; small jack without rim; block in a void.",
+   "fix": "Noise bedding, lower closer camera, seam-side rim along the beam."
+  },
+  {
+   "slide": 1,
+   "problem": "Cover jack a dark silhouette without an edge.",
+   "fix": "Key behind toward the seam for a rim, raise the work light on crank and counterweights."
+  }
+ ]
+}

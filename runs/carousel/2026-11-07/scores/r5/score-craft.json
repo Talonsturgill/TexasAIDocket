@@ -1,0 +1,82 @@
+{
+ "_note": "Craft lens, round 5 (past the cap), carousel no. 71, saved in shape.",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.0,
+   "why": "One staged world; 6 nearly a showstopper and 2 convincing. 7 two flat slabs with aliasing, a white bar and dots on asphalt; 1 a fifth-frame pod over a grey panel; mannequins on 3, 5, 6 and 9; 4's purple mid haze; 9's riser notch; 8's flat folders."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "One light, one grade, both devices working; 7 outside and 4 lifts."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.5,
+   "why": "Every numeral traces; the caption drops 'approximately'; 7's fans read 1.5 against 2.17."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.5,
+   "why": "What, who and where land with a usable close; no dated appropriation."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "2 pays and the turn at 6 lands; 4 could merge; the cover is literal."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Plain and on register; boilerplate disclosure and a repeated point on 3."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Fresh palette and subject; slides 1 to 3 echo no. 66."
+  }
+ ],
+ "weighted_score": 7.07,
+ "hard_fails": [],
+ "ship": true,
+ "artwork_weakest_frames": [
+  {
+   "slide": 7,
+   "problem": "Flat slabs, aliased shadow, a white bar, dots on asphalt.",
+   "fix": "A 0.3 m eye with a grazing key, the bar removed, dots on the fans."
+  },
+  {
+   "slide": 1,
+   "problem": "A small pod over a dead grey panel.",
+   "fix": "Behind the pod's shoulder with the parcel beyond the lens."
+  },
+  {
+   "slide": 5,
+   "problem": "Mannequin officer, tires barely read.",
+   "fix": "Camera right and lower so the pile and tires sit lit."
+  },
+  {
+   "slide": 4,
+   "problem": "Purple-grey haze on the house.",
+   "fix": "Cut the fill so the house falls to near black."
+  },
+  {
+   "slide": 9,
+   "problem": "Riser notch, oversized notice.",
+   "fix": "Close the notch, letter-size notice."
+  },
+  {
+   "slide": 8,
+   "problem": "Flat folder planes.",
+   "fix": "A grazing key for thickness and contact."
+  }
+ ]
+}

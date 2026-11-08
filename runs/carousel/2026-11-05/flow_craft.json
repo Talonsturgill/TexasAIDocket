@@ -1,0 +1,43 @@
+{
+ "verdict": "revise",
+ "predicted_artwork_score": 6.3,
+ "showstopper_frame": 1,
+ "weakest_frames": [
+  {
+   "slide": 2,
+   "score": 5.5,
+   "cause": "d",
+   "fix": "lay the module on the bay floor beside the gold tape corner, delete the disc",
+   "done": "disc removed, floor pool and grain added; tape corner not landed"
+  },
+  {
+   "slide": 3,
+   "score": 5.5,
+   "cause": "b",
+   "fix": "delete the cool fill, one continuous warm clerestory strip",
+   "done": "warm band added; plant reflects less sky"
+  },
+  {
+   "slide": 6,
+   "score": 6.0,
+   "cause": "d",
+   "fix": "remove the horizon strip, stage the stakes",
+   "done": "grass removed, ground extended; strip remains"
+  },
+  {
+   "slide": 7,
+   "score": 6.0,
+   "cause": "d",
+   "fix": "move the pole off the type",
+   "done": "pole 85 m out, clear"
+  },
+  {
+   "slide": 4,
+   "score": 6.5,
+   "cause": "b",
+   "fix": "graded clay heightfield in the cut pads",
+   "done": "done"
+  }
+ ],
+ "sequence_note": "move 8 after 2; not done (would renumber the audition's evidence frame)"
+}

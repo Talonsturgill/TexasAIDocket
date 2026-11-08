@@ -1,0 +1,227 @@
+{
+  "version": 2,
+  "selected": [
+    1,
+    6,
+    9
+  ],
+  "inputs": {
+    "slides/slide-01.html": "e9476d005bd853b84a5aaee9f4cf6301c96b062f9cff0e9b47078eb83373549c",
+    "render/slide-01.png": "c08b3c1045a78948a64403866a59d5a635fbdbae7e27c993d0384dd9b991ed2c",
+    "assets/js/deck/2026-11-07-curbside.js": "7512bb4055bf8942c38c18d238d65564a418461021b154c7b26870a7bdd8a761",
+    "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+    "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+    "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+    "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+    "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+    "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+    "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+    "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+    "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+    "slides/slide-06.html": "661f0ac145c40a95554b62c3836b415ebe21992d809cf5058b24effcebe2ffee",
+    "render/slide-06.png": "71557d54e0f27d216ebf1fbd19ce22e37a69e51efb2b46533552394c562059e6",
+    "slides/slide-09.html": "a49e190d33daca50acf4ee782f314ce4f0aee5b5f8f439cde835a9656af3b839",
+    "render/slide-09.png": "f97884db35b4eafb489eb455a2e6159ed224a135cd7623c193b43dd87e98b5c3"
+  },
+  "value_measurements": [
+    {
+      "frame": "slide-01.png",
+      "median_L": 2.6,
+      "mid": 0.299,
+      "dark": 0.545
+    },
+    {
+      "frame": "slide-06.png",
+      "median_L": 4.4,
+      "mid": 0.08,
+      "dark": 0.824
+    },
+    {
+      "frame": "slide-09.png",
+      "median_L": 10.0,
+      "mid": 0.158,
+      "dark": 0.627
+    }
+  ],
+  "review": {
+    "decision": "accept",
+    "inputs": {
+      "slides/slide-01.html": "e9476d005bd853b84a5aaee9f4cf6301c96b062f9cff0e9b47078eb83373549c",
+      "render/slide-01.png": "c08b3c1045a78948a64403866a59d5a635fbdbae7e27c993d0384dd9b991ed2c",
+      "assets/js/deck/2026-11-07-curbside.js": "7512bb4055bf8942c38c18d238d65564a418461021b154c7b26870a7bdd8a761",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+      "slides/slide-06.html": "661f0ac145c40a95554b62c3836b415ebe21992d809cf5058b24effcebe2ffee",
+      "render/slide-06.png": "71557d54e0f27d216ebf1fbd19ce22e37a69e51efb2b46533552394c562059e6",
+      "slides/slide-09.html": "a49e190d33daca50acf4ee782f314ce4f0aee5b5f8f439cde835a9656af3b839",
+      "render/slide-09.png": "f97884db35b4eafb489eb455a2e6159ed224a135cd7623c193b43dd87e98b5c3"
+    },
+    "frames": [
+      {
+        "slide": 1,
+        "role": "cover",
+        "subject": "A large aluminium camera pod in the upper right third, clear of the dek, with eight top fins, a dark lens ring, corner bolts, side slots, a riveted plate and a thin hood plate, on a dark bracket on the lit white top rail of a truck body, white steel panels between stake ribs below with red and white conspicuity tape directly under the pod.",
+        "visual_consequence": "At 432 px the camera reads at once, about 120 px tall, lens toward the reader against a black sky; the tape on ribbed white steel makes the body a working vehicle, so the frame says 'a camera mounted on a city truck'.",
+        "weakness": "No new defect. Digests identical to the previous acceptance; only the art plan's wording changed. The dek agrees with the 'brush truck' hook and the claim line opens with c1. Minor: a visible tape thickness edge and a thin hood on one standoff, both correct at this size.",
+        "repair": "none required",
+        "encoding_reads": true,
+        "dominant_subject_finished": true,
+        "feed_legible": true,
+        "inputs": {
+          "slides/slide-01.html": "e9476d005bd853b84a5aaee9f4cf6301c96b062f9cff0e9b47078eb83373549c",
+          "render/slide-01.png": "c08b3c1045a78948a64403866a59d5a635fbdbae7e27c993d0384dd9b991ed2c",
+          "assets/js/deck/2026-11-07-curbside.js": "7512bb4055bf8942c38c18d238d65564a418461021b154c7b26870a7bdd8a761",
+          "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+          "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+          "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+          "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+          "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+          "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+          "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+          "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+          "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de"
+        }
+      },
+      {
+        "slide": 6,
+        "role": "evidence",
+        "subject": "A paper column right of centre of about 40 misregistered bundles with kraft bands over a near-black stepped flank, a fanned broken top against the sky, its base on the walk with contact; the kit officer in a hi-vis vest to its left holds a face-on board with a bluebonnet band; a dark brick ranch house behind.",
+        "visual_consequence": "At 432 px a tall stack of separate paper bundles, clearly taller than the man beside it, stands next to one document in his hands, so 'a huge count against a handful' reads without the headline.",
+        "weakness": "No new defect. Digests identical to the last acceptance. The revised plan, the dek and the drawing now agree. Not blocking: no card-edge striation, a rigid shell vest, the officer looking down.",
+        "repair": "none required",
+        "encoding_reads": true,
+        "dominant_subject_finished": true,
+        "feed_legible": true,
+        "inputs": {
+          "assets/js/deck/2026-11-07-curbside.js": "7512bb4055bf8942c38c18d238d65564a418461021b154c7b26870a7bdd8a761",
+          "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+          "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+          "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+          "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+          "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+          "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+          "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+          "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+          "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+          "slides/slide-06.html": "661f0ac145c40a95554b62c3836b415ebe21992d809cf5058b24effcebe2ffee",
+          "render/slide-06.png": "71557d54e0f27d216ebf1fbd19ce22e37a69e51efb2b46533552394c562059e6"
+        }
+      },
+      {
+        "slide": 9,
+        "role": "close",
+        "subject": "A kit resident in an orange shirt and jeans, three quarters on, reading a large notice with a bluebonnet band before a lit lantern, a dark blue door and a warm-raked brick wall, a clear concrete walk between lawn beds.",
+        "visual_consequence": "At 432 px a reader sees a person at her own door reading a notice in the deck's blue band, and the hook 'A notice asks for no action yet' fits someone reading rather than acting.",
+        "weakness": "No new defect. Digests identical to the last reading. Left for the pixel pass: a black notch at the step riser, streak banding, a brick seam, an oversized board and a mannequin resident. None hides the subject at feed size.",
+        "repair": "Close the black notch at the step riser in the pixel pass.",
+        "encoding_reads": true,
+        "dominant_subject_finished": true,
+        "feed_legible": true,
+        "inputs": {
+          "assets/js/deck/2026-11-07-curbside.js": "7512bb4055bf8942c38c18d238d65564a418461021b154c7b26870a7bdd8a761",
+          "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+          "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+          "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+          "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+          "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+          "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+          "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+          "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+          "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+          "slides/slide-09.html": "a49e190d33daca50acf4ee782f314ce4f0aee5b5f8f439cde835a9656af3b839",
+          "render/slide-09.png": "f97884db35b4eafb489eb455a2e6159ed224a135cd7623c193b43dd87e98b5c3"
+        }
+      }
+    ]
+  },
+  "plan": {
+    "hardest_frame": 6,
+    "visual_argument": "One parcel and the paper a camera hands to people. At one paper scale, one card of 0.2 mm per property scanned, the city memo's 10,000 properties stand as a column of cards taller than the code officer beside it, and the 57 citations are the sheaf in his hands. On the next frame the 57 citation cards lie fanned on the street at the same 0.2 mm card, 39 left of a painted lane line for the citations the city manager's memo places in Council Districts 4, 8 and 7 and the rest to its right. Re-sourced on November 8th from the September 8th memo as FOX 4 and Dallas Express reported it.",
+    "build_risk": "A new paper_column model whose natural failure is a white pillar or a rounded box at feed size, beside a kit person at face scale who can read as a mannequin. Built as 40 misregistered bundles with kraft bands and a broken top bundle, raked by the low lastLight key, the person three quarters on and lit from the camera's side.",
+    "distinct_from_recent": "No. 70 was a rig floor at night under a cold flood with a robot gripper as its hero. No. 69 was a dark dock bay lit through its door. No. 68 was a Permian well pad at last light with rods and coins as counters. This is a residential Dallas street, a code office and a council room, with paper at true thickness as the counter and a person in every frame after the camera."
+  },
+  "frame_inputs": {
+    "1": {
+      "slides/slide-01.html": "e9476d005bd853b84a5aaee9f4cf6301c96b062f9cff0e9b47078eb83373549c",
+      "render/slide-01.png": "c08b3c1045a78948a64403866a59d5a635fbdbae7e27c993d0384dd9b991ed2c",
+      "assets/js/deck/2026-11-07-curbside.js": "7512bb4055bf8942c38c18d238d65564a418461021b154c7b26870a7bdd8a761",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de"
+    },
+    "6": {
+      "assets/js/deck/2026-11-07-curbside.js": "7512bb4055bf8942c38c18d238d65564a418461021b154c7b26870a7bdd8a761",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+      "slides/slide-06.html": "661f0ac145c40a95554b62c3836b415ebe21992d809cf5058b24effcebe2ffee",
+      "render/slide-06.png": "71557d54e0f27d216ebf1fbd19ce22e37a69e51efb2b46533552394c562059e6"
+    },
+    "9": {
+      "assets/js/deck/2026-11-07-curbside.js": "7512bb4055bf8942c38c18d238d65564a418461021b154c7b26870a7bdd8a761",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+      "slides/slide-09.html": "a49e190d33daca50acf4ee782f314ce4f0aee5b5f8f439cde835a9656af3b839",
+      "render/slide-09.png": "f97884db35b4eafb489eb455a2e6159ed224a135cd7623c193b43dd87e98b5c3"
+    }
+  },
+  "needs_review": [
+    1,
+    6,
+    9
+  ],
+  "shipped_inputs": {
+    "slides/slide-01.html": "e9476d005bd853b84a5aaee9f4cf6301c96b062f9cff0e9b47078eb83373549c",
+    "slide-01.webp": "5d42713721572e07129d514d5d5bae41f73e898ce864e2ba2be670d5857ab725",
+    "slides/slide-06.html": "661f0ac145c40a95554b62c3836b415ebe21992d809cf5058b24effcebe2ffee",
+    "slide-06.webp": "79ab9fa15e39e018ae4f1528dc124048c74b3e38b5dd4a3f1ad2ab04b6c2937d",
+    "slides/slide-09.html": "a49e190d33daca50acf4ee782f314ce4f0aee5b5f8f439cde835a9656af3b839",
+    "slide-09.webp": "65c21524185a41d717aa42bccd0896e116bec61d441e8775c88c57df7d0fffb6"
+  },
+  "encodings": [
+    {
+      "to": "slide-01.webp",
+      "to_sha256": "5d42713721572e07129d514d5d5bae41f73e898ce864e2ba2be670d5857ab725",
+      "from_sha256": "c08b3c1045a78948a64403866a59d5a635fbdbae7e27c993d0384dd9b991ed2c",
+      "psnr_db": 43.674
+    },
+    {
+      "to": "slide-06.webp",
+      "to_sha256": "79ab9fa15e39e018ae4f1528dc124048c74b3e38b5dd4a3f1ad2ab04b6c2937d",
+      "from_sha256": "71557d54e0f27d216ebf1fbd19ce22e37a69e51efb2b46533552394c562059e6",
+      "psnr_db": 41.236
+    },
+    {
+      "to": "slide-09.webp",
+      "to_sha256": "65c21524185a41d717aa42bccd0896e116bec61d441e8775c88c57df7d0fffb6",
+      "from_sha256": "f97884db35b4eafb489eb455a2e6159ed224a135cd7623c193b43dd87e98b5c3",
+      "psnr_db": 40.488
+    }
+  ]
+}

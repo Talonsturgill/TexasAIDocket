@@ -2167,7 +2167,30 @@ def block_ids(pack: dict) -> list:
 DECISIONS_MARK = "THE DECISIONS."
 
 
+def _unquoted_voice(text: str, items: list[dict]) -> str:
+    """Remove source quotations without mistaking their inner quotes for delimiters.
+
+    Match the complete rendered verbatim field first. A generic quote-pair regex alone
+    exposes the middle of a source's nested quotation, and an odd inner quote can instead
+    hide the next claim. Exact ledger text supplies the boundary without changing the source.
+    """
+    import re
+
+    spans = {
+        f', quoted as "{quote}"'
+        for item in items for claim in item.get("claims") or []
+        if (quote := (claim.get("verbatim_quote") or "").strip())
+        and (claim.get("text") or "").strip()
+    }
+    for span in sorted(spans, key=len, reverse=True):
+        text = text.replace(span, ', quoted as ""')
+    # Ordinary quoted prose keeps its existing exemption, but never crosses a line.
+    return re.sub(r'"[^"\n]*"', '""', text)
+
+
 def self_test() -> int:
+    import re
+
     ok = [True]
 
     def check(label, cond, detail=""):
@@ -2232,15 +2255,34 @@ def self_test() -> int:
           not missing, str(missing[:3]))
 
     print("the house voice, because the model writes what it reads")
+    nested = 'The sign reads "Red Zone: Restricted Area."'
+    sample_items = [{"claims": [{"text": "The source describes a sign",
+                                  "verbatim_quote": nested}]}]
+    sample = f'The source describes a sign, quoted as "{nested}".'
+    check("nested verbatim quotes keep their source punctuation exemption",
+          ":" not in _unquoted_voice(sample, sample_items))
+    check("the old quote-pair matcher exposes the nested source colon",
+          ":" in re.sub(r'"[^"]*"', '""', sample))
+    check("a changed nested quotation does not inherit the exact-source exemption",
+          ":" in _unquoted_voice(sample.replace("Red Zone", "Changed Zone"), sample_items))
+    for punctuation in (":", ";", "—", "–", "“", "’"):
+        planted = sample + f" Editorial{punctuation} text."
+        check(f"source exemption leaves adjacent editorial {punctuation!r} visible",
+              punctuation in _unquoted_voice(planted, sample_items))
+    check("unmatched quotes cannot hide another line's editorial colon",
+          ":" in _unquoted_voice('An unmatched "quote\nEditorial: text "again".', []))
+    odd_items = [{"claims": [{"text": "A source", "verbatim_quote": 'An unmatched "mark'}]}]
+    check("an odd source quote cannot hide adjacent editorial punctuation",
+          ":" in _unquoted_voice('A source, quoted as "An unmatched "mark". '
+                                    'Editorial: text "again".', odd_items))
     # A colon inside a quoted source is the source's and is left alone, so the check runs on
     # the pack with quoted spans removed. Clock times and ratios are numbers, not punctuation.
     #
     # THE INDEX IS CHECKED WITH IT. It is a separate field and it is a third of what the model
     # reads on every question, so leaving it out of these checks would mean two thirds of the
     # prompt keeping the house voice and one third teaching the model out of it.
-    import re  # noqa: E402
     voiced = text + "\n\n" + p["index"]
-    unquoted = re.sub(r'"[^"]*"', '""', voiced)
+    unquoted = _unquoted_voice(voiced, items)
     unquoted = re.sub(r"\d{1,2}:\d{2}", "", unquoted)
     check("no colons outside a quoted source", ":" not in unquoted,
           repr(unquoted[max(0, unquoted.find(":") - 60):unquoted.find(":") + 20])

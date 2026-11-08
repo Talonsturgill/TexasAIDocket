@@ -1,0 +1,71 @@
+<!doctype html>
+<!-- 2026-11-06, frame 2 of 9. Archetype FULL_BLEED. A spatial scene through txthree.js on the chassis rig_floor in the floodlit world: the chassis red_zone_gate across the foreground, the chassis pipe_robot holding a banded drill_pipe over the slips beyond it, the lit rig_mast behind. Drawn to illustrate, to no maker's or operator's design. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:900px">A Red Zone gate rings a drilling floor</h1>
+<p class="dek" data-follow="26" style="width:860px">The sign on one ExxonMobil automated rig in Midland reads "Red Zone: Restricted Area." The rig floor is the most common place for accidents on a rig, Reuters reported.</p>
+<div class="lab" id="lab-sign">Red Zone</div>
+<div class="lab" id="lab-band">Restricted Area</div>
+
+<script>window.FIG = {"joint_m": 9.4};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-06-rigfloor.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "The Red Zone", counter: "02 / 09", src: "c28 c27 c20", fit: { min: 80, max: 104, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 38, near: 0.05, far: 3000, exposure: 1.2 });
+  TXT.ground(R, { surface: 'caliche', size: 700 });
+  const floor = K.make('rig_floor', { ramp: true }); TXT.add(R, floor); TXT.contact(R, floor);
+  const fy = floor.userData.floorY;
+  const mast = K.make('rig_mast', {}); mast.position.set(0, fy - 0.12, 0); TXT.add(R, mast);
+  /* the joint in the slips and the joint the arm holds over it, as on the cover, seen now from outside the gate */
+  const low = K.make('drill_pipe', { length: FIG.joint_m }); low.position.set(0, fy + 0.75 - FIG.joint_m, 0); TXT.add(R, low);
+  const up = K.make('drill_pipe', { length: FIG.joint_m, band: 'pin' }); up.position.set(0, fy + 1.02, 0); TXT.add(R, up);
+  const rob = K.make('pipe_robot', { pedestal: 0.45 }); rob.position.set(1.7, fy, -1.3); TXT.add(R, rob); TXT.contact(R, rob);
+  if (CH.reach(THREE, rob, [0, fy + 1.46, 0]) > 0.03) throw new Error('the gripper misses the pipe');
+  /* the gate across the camera's side of the well, its top rail at chest height across the frame */
+  const gate = K.make('red_zone_gate', { w: 2.4 }); gate.position.set(-0.6, fy, 3.6); TXT.add(R, gate); TXT.contact(R, gate);
+  [-2.6, 1.9].forEach((x) => { const f = K.make('red_zone_gate', { w: 1.8 }); f.position.set(x, fy, 3.6); TXT.add(R, f); });
+  const from = [-1.1, fy + 1.5, 6.8];
+  const look = CH.aim(THREE, R, TXT, from, [0, fy + 1.0, 0], 560, 820, 40);
+  TXT.frame(R, { fov: 40, from, look });
+  TXT.sky(R);
+  TXT.deckRig(R, CH.rigSpec(W, 14, 4096), CH.rigOpts([0, fy + 1, 0], { distance: 34, shadowFar: 90, normalBias: 0.02 }));
+  CH.unacne(R, 0.02);
+  CH.flood(THREE, R, [-2.6, fy + 9.5, 2.6], [0, fy + 0.8, 0], { i: 1400, angle: 0.4 });
+  CH.flood(THREE, R, [-3.5, fy + 4.5, 6.5], [-0.6, fy + 0.9, 3.6], { i: 500, angle: 0.5 });
+  /* the deck's accent held on its own hex in this frame: the band's paint lit from within a step, so the cold flood does not wash it pale */
+  R.scene.traverse((m) => { if (m.isMesh && m.material && m.material.color && m.material.color.getHex() === 0x9a4a34) { m.material = new THREE.MeshBasicMaterial({ color: 0xb4664f, toneMapped: false, fog: false }); m.scale.y = 2.4; m.scale.x = m.scale.z = 1.03; } });
+  R.scene.traverse((m) => { if (m.isMesh && m.material && m.material.color && m.material.color.getHex() === 0x9a2a24) { m.material = m.material.clone(); m.material.color.setHex(0x4a1410); m.material.roughness = 0.8; } });
+  TXT.stage(R, rob);
+  /* the plate's white band left off in this frame, so both lines of the sign's words sit on the red */
+  R.scene.traverse((m) => { if (m.isMesh && m.material && m.material.color && m.material.color.getHex() === 0xd9d6cf) m.visible = false; });
+  const sa = gate.userData.signAt(), sq = CH.project(THREE, R, [sa.x, sa.y - 0.11, sa.z]);
+  const sl = CH.pinLabel('lab-sign', sq, [0, 0]); if (sl) sl.style.transform = 'translate(-50%, -50%)';
+  const bq = CH.project(THREE, R, [sa.x, sa.y - 0.22, sa.z]); const bl = CH.pinLabel('lab-band', bq, [0, 0]); if (bl) bl.style.transform = 'translate(-50%, -50%)';
+  TXT.weather(R, { grime: 0.3, height: 1.2, mottle: 0.14 });
+  const cx = CH.develop(await TXT.snapshot(R, { stage: false }), gl);
+  CH.post(cx, { a: 0.42, veil: 0.4, veilH: 280 });
+  CH.footWash(cx, { a: 0.94, r: 520 });
+  CH.typeDark(cx);
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

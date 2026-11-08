@@ -1,0 +1,223 @@
+{
+ "weighted_score": 6.838,
+ "judges": [
+  6.58,
+  6.79,
+  6.876
+ ],
+ "spread": 0.296,
+ "criteria": {
+  "artwork_craft": {
+   "score": 6.2,
+   "weight": 0.22,
+   "judges": [
+    6.2,
+    5.8,
+    6.6
+   ]
+  },
+  "deck_coherence": {
+   "score": 7.3,
+   "weight": 0.12,
+   "judges": [
+    7.2,
+    7.3,
+    7.3
+   ]
+  },
+  "claim_integrity": {
+   "score": 8.0,
+   "weight": 0.2,
+   "judges": [
+    7.0,
+    8.0,
+    8.0
+   ]
+  },
+  "story_and_stakes": {
+   "score": 6.8,
+   "weight": 0.16,
+   "judges": [
+    6.8,
+    6.8,
+    6.8
+   ]
+  },
+  "sequence_and_momentum": {
+   "score": 6.8,
+   "weight": 0.1,
+   "judges": [
+    6.8,
+    7.0,
+    6.5
+   ]
+  },
+  "voice": {
+   "score": 6.8,
+   "weight": 0.1,
+   "judges": [
+    6.8,
+    7.0,
+    6.6
+   ]
+  },
+  "variety": {
+   "score": 5.5,
+   "weight": 0.1,
+   "judges": [
+    5.0,
+    5.5,
+    5.5
+   ]
+  }
+ },
+ "hard_fails": [],
+ "hard_fails_by_judge": [],
+ "ship": true,
+ "threshold": 8.0,
+ "over_threshold": false,
+ "method": "per-criterion median across three judges, then weighted by the rubric",
+ "artwork_weakest_frames": [
+  {
+   "slide": 8,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "A bar chart; weak casts; flat bands.",
+     "fix": "Higher relief, a 15 degree key, box ends at the left with raised rings."
+    },
+    {
+     "judge": 2,
+     "problem": "Blinds; beams invisible; no pool.",
+     "fix": "A raking oblique with lit crowns and casts, a pool on the banded five."
+    },
+    {
+     "judge": 3,
+     "problem": "Blinds; no pipe ends.",
+     "fix": "Pull back so all twenty box ends are lit as round ends with the bands on them; both beams cast."
+    }
+   ]
+  },
+  {
+   "slide": 4,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Mannequin at a different depth from the stands.",
+     "fix": "The person at the stand's base by the slips, side-lit, the cabin deleted."
+    },
+    {
+     "judge": 2,
+     "problem": "Front-lit mannequin; stands fused.",
+     "fix": "Key from the upper left, behind the gate rail, stands spaced."
+    },
+    {
+     "judge": 3,
+     "problem": "Front-lit mannequin before a doghouse.",
+     "fix": "Turn the figure three-quarters away, rim-lit from the flood, a contact shadow."
+    }
+   ]
+  },
+  {
+   "slide": 3,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Six floor plates labelled 'elsewhere'.",
+     "fix": "Draw the six as a different surface off the floor, the pool only on the tread."
+    },
+    {
+     "judge": 3,
+     "problem": "No subject at 432 px; the lit three barely brighter.",
+     "fix": "A real pool 25 L* above the grating, low rake so the dark panels cast and recede."
+    }
+   ]
+  },
+  {
+   "slide": 7,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Grey noise strata; dot rig; thin string.",
+     "fix": "Near-black strata, a low rake so only the groove and string catch an edge, a lit mast silhouette."
+    },
+    {
+     "judge": 2,
+     "problem": "One-material noise; dead bottom; dot rig.",
+     "fix": "Three strata materials, a pool along the lateral, crop the empty bottom."
+    }
+   ]
+  },
+  {
+   "slide": 1,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Rounded blocks; blurred column.",
+     "fix": "Die pads, loom, grime, a mill-scale pipe with a hardband ring."
+    },
+    {
+     "judge": 2,
+     "problem": "A rounded box lit head-on; no jaws; blurred column.",
+     "fix": "Jaws with die pads, the key at azimuth -60 elevation 26, grime, a sharp tool joint above."
+    }
+   ]
+  },
+  {
+   "slide": 5,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "Duplicates the cover; flat band; prism slips.",
+     "fix": "A low three-quarter at the rotary; remove the band's emissive term."
+    },
+    {
+     "judge": 3,
+     "problem": "Repeats the cover at feed size.",
+     "fix": "A low three-quarter from the rotary, slips, box mouth and arm in one diagonal."
+    }
+   ]
+  },
+  {
+   "slide": 9,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Rack in the bottom quarter; dead band.",
+     "fix": "Lower and push the camera so the ten banded joints fill the middle third."
+    },
+    {
+     "judge": 3,
+     "problem": "The split reads as a stripe; plain pipe and posts.",
+     "fix": "Drop onto the rack's axis so the box ends face the lens as two blocks of ten."
+    }
+   ]
+  },
+  {
+   "slide": 6,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "Starfield window; lime vest; one console.",
+     "fix": "The floodlit floor through the glass; the vest in sun-worn safety yellow."
+    }
+   ]
+  }
+ ],
+ "rounds_derived": 3,
+ "rounds": 3,
+ "rounds_source": "this module's own log of cards it has scored",
+ "at_cap": true,
+ "rung": null,
+ "shortfall": "at the round cap the finished deck ships at 6.838, 1.162 under the 8.0 top rung. Name that in the email and the run record",
+ "craft_floor": "capped",
+ "craft_note": "at the round cap the craft floor stands down. The art median 6.2 is under 8.5 and the deck ships as it is. Name it in the run record"
+}

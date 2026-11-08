@@ -1,0 +1,72 @@
+<!doctype html>
+<!-- 2026-11-07, frame 7 of 9. Archetype CLOSE_CROP. A spatial scene through txthree.js in the lastLight world: the 57 citation cards fanned on the asphalt, 39 left of a painted lane line for Districts 4, 8 and 7 and the rest to its right. Drawn to illustrate; a card is a drawing unit for one citation. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:560px">Most citations were in southern Dallas</h1>
+<p class="dek" data-follow="26" style="width:460px">39 of the 57 were in Council Districts 4, 8 and 7, the city manager's memo says. One card here for each citation.</p>
+<div class="lab" id="lab-card">Districts 4, 8 and 7</div>
+<div class="lab" id="lab-rest">the rest of Dallas</div>
+<script>window.FIG = {"citations": 57, "south_citations": 39};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-07-curbside.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Where", counter: "07 / 09", src: "c55 c47", fit: { min: 70, max: 92, maxLines: 3 } });
+  const R = CH.stage(TXT, gl, W, { fov: 34, near: 0.05, far: 3000, exposure: 1.0 });
+  TXT.ground(R, { surface: 'grass', size: 600, color: 0x3a3f2c });
+  const road = K.make('road', { lanes: 2, sidewalk: true, parkway: 1.2, length: 80 }); road.position.set(0, 0, -6); TXT.add(R, road);
+  /* THE FIGURE: the 57 citation cards of frame 6's sheaf, fanned on the sidewalk at one card per citation, the 39 the
+     city manager's memo places in Districts 4, 8 and 7 left of a painted line, the rest right of it */
+  road.updateMatrixWorld(true);
+  function topAt(x, z) { const rc = new THREE.Raycaster(new THREE.Vector3(x, 3, z), new THREE.Vector3(0, -1, 0)); const hit = rc.intersectObject(road, true)[0]; return hit ? hit.point.y : 0; }
+  const Y0 = topAt(0, -9.4) + 0.002;
+  const CARD = K.mat('cs-card57', { color: 0xeee8da, roughness: 0.82 });
+  const cards = [];
+  function fan(n, x0, seed) { let r = seed; const rnd = () => { r = (r * 9301 + 49297) % 233280; return r / 233280; };
+    for (let i = 0; i < n; i++) { const c = K.box(0.216, 0.0008, 0.279, CARD, x0 + i * 0.019, Y0 + i * 0.0009, -9.4 + i * 0.006 + (rnd() - 0.5) * 0.006, 0.002); c.rotation.y = (rnd() - 0.5) * 0.05; TXT.add(R, c); cards.push(c); } }
+  const nSouth = FIG.south_citations, nRest = FIG.citations - FIG.south_citations;
+  fan(nSouth, -0.9, 7);
+  const lineX = -0.9 + nSouth * 0.019 + 0.26;
+  const stripe = K.box(0.05, 0.0015, 1.4, K.mat('cs-stripe', { color: 0xd9c47a, roughness: 0.55 }), lineX, Y0 - 0.0015, -9.4, 0.002); TXT.add(R, stripe);
+  fan(nRest, lineX + 0.1, 3);
+  const midX = (-0.9 + lineX + 0.1 + nRest * 0.019 + 0.216) / 2;
+  const from = [midX, 1.15, -7.55];
+  const look = CH.aim(THREE, R, TXT, from, [midX, Y0, -9.3], 580, 960, 58);
+  TXT.frame(R, { fov: 58, from, look });
+  TXT.sky(R);
+  TXT.deckRig(R, CH.rigSpec(W, 6, 4096), CH.rigOpts([midX, 0.0, -9.4], { distance: 20, shadowFar: 50, normalBias: 0.01 }));
+  CH.unacne(R, 0.01);
+  CH.spot(THREE, R, [midX - 2.4, 1.5, -8.6], [midX, 0.0, -9.4], { color: 0xffd2a0, i: 70, reach: 8, angle: 0.4, penumbra: 0.7 });
+  TXT.stage(R, cards);
+  TXT.weather(R, { grime: 0.25, height: 0.2, mottle: 0.1 });
+  const aS = CH.project(THREE, R, [-0.9 + nSouth * 0.0095 + 0.1, Y0 + 0.03, -9.4 - 0.14]);
+  const aR = CH.project(THREE, R, [lineX + 0.1 + nRest * 0.0095 + 0.1, Y0 + 0.03, -9.4 - 0.14]);
+  const cx = CH.develop(await TXT.snapshot(R, { stage: false }), gl);
+  CH.post(cx, { a: 0.3, veil: 0.3, veilH: 220 });
+  CH.footWash(cx);
+  CH.typeDark(cx, { a: 0.8 });
+  const lS = [600, 470], lR = [600, 540];
+  CH.pinLabel('lab-card', lS, [0, 0]); CH.pinLabel('lab-rest', lR, [0, 0]);
+  CH.lead(cx, [lS[0] - 8, lS[1] + 17], [aS[0], aS[1] - 6]); CH.lead(cx, [lR[0] + 150, lR[1] + 36], [aR[0], aR[1] - 6]);
+  window.__txLeaders = [{ target: 'the fan of 39 citation cards', at: [lS[0] - 8, lS[1] + 17], to: [aS[0], aS[1] - 6] }, { target: 'the fan of the other citation cards', at: [lR[0] + 150, lR[1] + 36], to: [aR[0], aR[1] - 6] }];
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

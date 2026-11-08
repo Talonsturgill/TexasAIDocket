@@ -1,0 +1,23 @@
+{
+ "_note": "Craft lens, round 1, carousel no. 71, returned by carousel-scorer and saved in shape.",
+ "criteria": [
+  {"name": "artwork_craft", "weight": 0.22, "score": 6.0, "why": "Every frame rendered, light type on dark, one low key held throughout, lit subjects bold. Four frames (3, 5, 6, 9) put a primitive kit person at the focal point with box vests and a placard notice. Slide 9's named repairs (grass on the walk, riser notch, brick seam) not applied. Slide 7 is a 12 percent column in a void though its divider sits at 0.70 against 0.69. Slide 1's pod is an eighth of the frame over a mid-grey flank. Slide 6's sheaf is face on with no thickness. Slides 2 and 4 competent."},
+  {"name": "deck_coherence", "weight": 0.12, "score": 8.0, "why": "One staged lastLight world, one key, one palette, one accent that changes state on 2, 3, 4, 5, 6 and 9, the same parcel on 2, 4, 5, 6 and 9. Slide 1's mid-grey flank is the lightest field and slide 7 drops the house world slide 6 set up."},
+  {"name": "claim_integrity", "weight": 0.20, "score": 7.5, "why": "Every numeral traces, slide 2's conditions verbatim from c8, rejected items respected. The count, share, plans and no timeline line rest on GovTech's republication while the city's October briefing was not fetched; the caption joins c10's yearly cost to c9's appropriations clause; the first comment's id lists omit c9, c10, c29 and c40; slide 6's sheaf does not show 57 sheets at scale."},
+  {"name": "story_and_stakes", "weight": 0.16, "score": 7.5, "why": "What happened, who decides and where are clear, with a concrete resident next step on 9. The civic action names no appropriation date, meeting or deadline."},
+  {"name": "sequence_and_momentum", "weight": 0.10, "score": 7.5, "why": "Cover sets the hardware, 2 pays at once, 3 to 5 walk the steps, the turn at 6. The close lands softly after 8, and 4 could fold into 3."},
+  {"name": "voice", "weight": 0.10, "score": 7.5, "why": "Specific and on register with the house rules held. Two machine-flat lines: 'The sheet is a drawing unit.' and 'southern Dallas, below the card'."},
+  {"name": "variety", "weight": 0.10, "score": 7.0, "why": "A residential Dallas street, office and council room diverge from nos. 67 to 70. No. 66 opened on a vehicle camera's detection box, the move slide 2 repeats, and the staged world and kit person are familiar."}
+ ],
+ "weighted_score": 7.18,
+ "hard_fails": [],
+ "ship": false,
+ "artwork_weakest_frames": [
+  {"slide": 5, "problem": "A stiff front-on mannequin with a box vest, tires hidden, the clipboard face on with no 57-sheet thickness.", "fix": "Reframe at 0.9 m eye and fov 28 to a waist-down crop with one hand holding the clipboard edge-on beside the cut limbs and both tires lit on the parkway."},
+  {"slide": 9, "problem": "Mannequin resident with an oversized board, grass through the walk, a riser notch, a brick seam, a lamp that reads cool.", "fix": "Exclude the walk, step and porch from the grass, close the notch, fix the seam, and frame the notice in both hands at chest height under a warm lamp pool with the face turned down."},
+  {"slide": 7, "problem": "A 12 percent column in a void, the house world gone, the two band colours barely separate at 432 px.", "fix": "Camera to about 1.6 m at fov 24 so the column is about 30 percent of the width, keep the curb and dark house behind it, push the lower band darker against pale kraft with the card catching the key."},
+  {"slide": 1, "problem": "The pod is an eighth of the frame over a mid-grey flank, with no house across the street and no limbs in the bed.", "fix": "Eye about 0.8 m from the pod so it fills about 45 percent of the width, drop the rail to the bottom fifth in shadow, stage the parcel's house in a lit pool beyond."},
+  {"slide": 3, "problem": "Cartoon ear and stub hand on the analyst, and a flat vector house on the monitor.", "fix": "Put the slide 2 render on the monitor and turn the analyst to a dark rimmed shoulder and head silhouette."},
+  {"slide": 6, "problem": "Box vest with a flat orange side and a face-on sheaf with no thickness.", "fix": "Turn the sheaf edge-on at 5.7 mm beside the column at one bundle's height and conform the vest or drop the officer to a rim-lit silhouette."}
+ ]
+}

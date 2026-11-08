@@ -1,0 +1,64 @@
+{
+ "_note": "Integrity lens, round 4 (past the cap, hard fails only), carousel no. 71, saved in shape. Its hard fail was a stale package artifact, repaired by rebuilding the contact sheet and thumbs.",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.5,
+   "why": "Five frames work; 07 in the grey middle; mannequin figures; 08 primitive folders."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "Clearly one deck with both devices working; 07 outside."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.0,
+   "why": "The round 3 repair holds on renders and copy; four looser phrasings (slide 1 plan wording, slide 3 trays, caption drops 'approximately', slide 4 'the city says')."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.5,
+   "why": "Clear what, where and who; no peg, date or next decision."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Easy order with a real turn at 6; a descriptive cover."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "Clean but heavily attributive."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "Same docket item and memo as no. 31, outside the window."
+  }
+ ],
+ "weighted_score": 6.77,
+ "hard_fails": [
+  "The repair reached the renders but not final/contact_sheet.png or the 432 px thumbs, which still showed 'In September' and 'at frame 6's scale'; and no fresh visual review of changed slides 7 and 8 was on file. Repaired: the contact sheet and every thumb rebuilt from the current renders, and slides 7 and 8 sent to a pixel critic."
+ ],
+ "ship": false,
+ "artwork_weakest_frames": [
+  {
+   "slide": 7,
+   "problem": "Flat white slabs with no true black.",
+   "fix": "A low raking camera along the fan, the asphalt falling to black."
+  },
+  {
+   "slide": 9,
+   "problem": "Mannequin resident with a board and a riser notch.",
+   "fix": "Crop to hands and a letter-size notice under the lamp, close the notch."
+  }
+ ]
+}

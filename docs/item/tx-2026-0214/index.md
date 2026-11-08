@@ -9,7 +9,7 @@ The Federal Motor Carrier Safety Administration granted Aurora and other carrier
 - Public access: Write to the decider
 - Take part: https://www.regulations.gov/docket/FMCSA-2026-0958
 
-- Last checked: 2026-10-29
+- Last checked: 2026-11-07
 
 ## Dates
 
@@ -27,6 +27,9 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-21 · Checked and unchanged. The decision still stands as decided.
 - 2026-10-24 · Federal trucking regulators' permission for a cab beacon in place of warning triangles on driverless trucks still stands.
 - 2026-10-29 · The federal waiver letting driverless trucks use a cab beacon instead of warning triangles still stands.
+- 2026-11-01 · The federal rule letting driverless trucks warn traffic with a cab beacon still stands.
+- 2026-11-04 · Checked and unchanged. The decision still stands as decided.
+- 2026-11-07 · The federal rule letting driverless trucks warn traffic with a cab beacon still stands.
 
 ## Evidence
 

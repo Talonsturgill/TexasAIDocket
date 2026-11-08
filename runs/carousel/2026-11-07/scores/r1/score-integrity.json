@@ -1,0 +1,22 @@
+{
+ "_note": "Integrity lens, round 1, carousel no. 71, returned by carousel-scorer and saved in shape. Its hard fail was verified against govtech.com's robots.txt on November 8th and the deck was re-sourced.",
+ "criteria": [
+  {"name": "artwork_craft", "weight": 0.22, "score": 6.5, "why": "Rendered staged scenes with dark fields. Slide 6's face-on sheaf does not draw the 57 against the column; slide 9 keeps its review's defects; slide 8 is grey middle; slide 7 half empty with a slab edge; kit people read as mannequins."},
+  {"name": "deck_coherence", "weight": 0.12, "score": 7.5, "why": "One world, one key, one parcel, the bluebonnet motif works, the column carries 6 into 7. Slide 8's room sits outside the street vocabulary."},
+  {"name": "claim_integrity", "weight": 0.20, "score": 6.0, "why": "Numerals trace, but 30 of 44 claims came from www.govtech.com, which names ClaudeBot Disallow / and which the project refused on October 26th and 30th. Slide 6 draws a 57 of 20,000 comparison; the frame order invites a funnel; slide 2's 'here bulk trash participation' infers past the source; 'The still' presents a render as the camera's image; the first comment omits ids the caption uses."},
+  {"name": "story_and_stakes", "weight": 0.16, "score": 7.0, "why": "What, where, who spoke and the money land. The committee is unnamed, no budget date, the close is small."},
+  {"name": "sequence_and_momentum", "weight": 0.10, "score": 7.0, "why": "The cover earns the swipe, 2 pays, the turn at 6. Slide 4 is movable and the close lands softly."},
+  {"name": "voice", "weight": 0.10, "score": 7.0, "why": "Clean and specific. 'The sheet is a drawing unit.' and the caption's meta line read flat."},
+  {"name": "variety", "weight": 0.10, "score": 7.0, "why": "A residential street, office and council room diverge from nos. 67 to 70; the staged world, a stacked counter and camera surveillance a week after no. 64 are familiar."}
+ ],
+ "weighted_score": 6.75,
+ "hard_fails": [{"fail": "Every Dallas Morning News fact was fetched from www.govtech.com, a host whose robots.txt names ClaudeBot with Disallow / and which this project refused on October 26th and 30th.", "evidence": "SOURCES_FIELD_LOG.md 2026-10-26 and 2026-10-30; topics.json no. 63; claims c14 to c42 and c44."}],
+ "ship": false,
+ "artwork_weakest_frames": [
+  {"slide": 6, "problem": "The 57 sheaf is a face-on board with no thickness and the officer looks down in a shell vest.", "fix": "Turn the clipboard edge-on so the sheaf reads as a sliver beside one bundle at the column's base, and pitch his head up."},
+  {"slide": 9, "problem": "Grass through the walk, a riser notch, a brick seam and an oversized board on a mannequin resident.", "fix": "Exclude the walk from the grass, close the notch, and scale the notice to letter size held in both hands."},
+  {"slide": 8, "problem": "Flat grey slabs on mid-tone wood, the tabs indistinct, the chairs unlit.", "fix": "Narrow the key to a raking slit across the ledge and drop the dais front to near black."},
+  {"slide": 7, "problem": "A narrow column with a half empty frame and slab edge seams at the bottom.", "fix": "Dolly in so the column fills the right third and extend the ground so no slab edge shows."},
+  {"slide": 5, "problem": "A front-lit mannequin officer in a shell vest and a pile with little contact.", "fix": "Turn him three quarters away with a rim on his back and seat the pile and tires in the key's pool."}
+ ]
+}

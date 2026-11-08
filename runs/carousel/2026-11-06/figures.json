@@ -1,0 +1,191 @@
+{
+ "_note": "Every value is extracted from a claim quote by compute.py, or computed here from values that were.",
+ "rigs_now": {
+  "value": 3,
+  "from": [
+   "c1"
+  ],
+  "basis": "automated rigs in operation, October 30th, 2026 call"
+ },
+ "share_next_pct": {
+  "value": 25,
+  "from": [
+   "c4"
+  ],
+  "basis": "about this percent of the Permian fleet next year"
+ },
+ "share_2028": {
+  "value": 0.5,
+  "from": [
+   "c5"
+  ],
+  "basis": "approximately half of the Permian fleet by 2028, as a fraction"
+ },
+ "year_half": {
+  "value": 2028,
+  "from": [
+   "c5"
+  ],
+  "basis": "the year of approximately half"
+ },
+ "fleet_aug_floor": {
+  "value": 30,
+  "from": [
+   "c16"
+  ],
+  "basis": "more than this many Permian rigs, Reuters, August; a floor, never a count"
+ },
+ "auto_aug": {
+  "value": 2,
+  "from": [
+   "c17"
+  ],
+  "basis": "automated rigs at the time of the August report"
+ },
+ "pipe_lb": {
+  "value": 2000,
+  "from": [
+   "c19"
+  ],
+  "basis": "roughly this many pounds per tall steel pipe"
+ },
+ "pipe_kg": {
+  "value": 910,
+  "from": [
+   "c19"
+  ],
+  "basis": "computed, pounds to kg, nearest 10 kg; drawing mass only, never printed"
+ },
+ "lateral_miles": {
+  "value": 2,
+  "from": [
+   "c22"
+  ],
+  "basis": "miles drilled horizontally by the first automated rig"
+ },
+ "lateral_m": {
+  "value": 3219,
+  "from": [
+   "c22"
+  ],
+  "basis": "computed, miles to metres; drawing only, never printed"
+ },
+ "days_floor": {
+  "value": 6,
+  "from": [
+   "c22"
+  ],
+  "basis": "a little over this many days"
+ },
+ "rank_fastest": {
+  "value": 3,
+  "from": [
+   "c23"
+  ],
+  "basis": "the third fastest time in Exxon's history"
+ },
+ "injury_share": {
+  "value": 0.3333,
+  "from": [
+   "c24"
+  ],
+  "basis": "about a third of significant injuries happen on the rig floor"
+ },
+ "incident_potential": {
+  "value": 0.3333,
+  "from": [
+   "c8"
+  ],
+  "basis": "stated POTENTIAL, roughly one-third of high-consequence incidents; never a result"
+ },
+ "hp_added": {
+  "value": 7,
+  "from": [
+   "c29"
+  ],
+  "basis": "additional FlexRobotics systems over the next 12 months"
+ },
+ "hp_total": {
+  "value": 9,
+  "from": [
+   "c29"
+  ],
+  "basis": "FlexRobotics systems operating for ExxonMobil after the expansion"
+ },
+ "hp_before": {
+  "value": 2,
+  "from": [
+   "c29"
+  ],
+  "basis": "computed, total less additional"
+ },
+ "hp_months": {
+  "value": 12,
+  "from": [
+   "c29"
+  ],
+  "basis": "the window for the seven"
+ },
+ "technologies_floor": {
+  "value": 50,
+  "from": [
+   "c12"
+  ],
+  "basis": "more than this many technologies in the Permian"
+ },
+ "goal_mboe": {
+  "value": 2.5,
+  "from": [
+   "c13"
+  ],
+  "basis": "approximately this many million oil-equivalent barrels a day"
+ },
+ "goal_year": {
+  "value": 2030,
+  "from": [
+   "c13"
+  ],
+  "basis": "the year of the production goal"
+ },
+ "rack_unit": {
+  "value": 20,
+  "from": [],
+  "basis": "drawing unit, a choice: one rack of 20 joints stands for the Permian fleet; never printed"
+ },
+ "rack_next": {
+  "value": 5,
+  "from": [
+   "c4"
+  ],
+  "basis": "computed: share_next_pct of rack_unit, nearest joint"
+ },
+ "rack_2028": {
+  "value": 10,
+  "from": [
+   "c5"
+  ],
+  "basis": "computed: share_2028 of rack_unit"
+ },
+ "joint_m": {
+  "value": 9.4,
+  "from": [],
+  "basis": "drawing choice, Range 2 joint length in metres; never printed"
+ },
+ "stand_m": {
+  "value": 28.2,
+  "from": [],
+  "basis": "computed: a triple stand of joint_m joints; drawing only"
+ },
+ "injury_floor_tiles": {
+  "value": 9,
+  "from": [],
+  "basis": "drawing choice: the floor as nine plates; never printed"
+ },
+ "injury_tiles": {
+  "value": 3,
+  "from": [
+   "c24"
+  ],
+  "basis": "computed: injury_share of the nine plates"
+ }
+}

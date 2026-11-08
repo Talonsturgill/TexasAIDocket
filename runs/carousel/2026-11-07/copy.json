@@ -1,0 +1,239 @@
+{
+ "date": "2026-11-07",
+ "carousel_no": 71,
+ "document_title": "Dallas AI cameras on brush trucks flag concerns, not violations",
+ "_note": "Slide strings read off the render report's text nodes and each frame's own source line by build_copy.py.",
+ "caption": "3,700 courtesy notices. 57 citations. Not the same thing.\n\nCameras on Dallas sanitation trucks scanned 10,000 properties, the city's September 8th memo says, as FOX 4 reported. The memo says code officers reviewed and confirmed the detections behind the 57 citations, and that a citation comes only after an officer inspects the property and notifies the owner, Dallas Express and FOX 4 reported.\n\n39 of the 57 citations were in Council Districts 4, 8 and 7 in southern Dallas, by the city manager's memo. Council member Chad West withdrew a move to cut the funding once the city manager's office agreed to brief the council.\n\nThe city's December 2025 briefing describes a three-year contract at $852,000 a year, subject to annual City Council appropriations. What should the council see before it funds another year?\n\n#DallasCityCouncil #SouthernDallas #CodeCompliance",
+ "slides": {
+  "S1": {
+   "n": 1,
+   "file": "slide-01.html",
+   "kicker": "Dallas",
+   "headline": "The brush truck carries a camera",
+   "claims": [
+    "c1",
+    "c57",
+    "c49",
+    "c5"
+   ],
+   "cite": "c1 c57 c49 c5",
+   "body": "Dallas put AI cameras from City Detect on its sanitation brush and bulk trash trucks. They face sideways and capture images from the public right of way. The camera and truck are drawn to illustrate.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "The brush truck carries a camera",
+    "Dallas put AI cameras from City Detect on its sanitation brush and bulk trash trucks. They face sideways and capture images from the public right of way. The camera and truck are drawn to illustrate.",
+    "Dallas",
+    "01 / 09",
+    "c1 c57 c49 c5"
+   ]
+  },
+  "S2": {
+   "n": 2,
+   "file": "slide-02.html",
+   "kicker": "The flag",
+   "headline": "It flags a concern, not a violation",
+   "claims": [
+    "c8",
+    "c51",
+    "c6"
+   ],
+   "cite": "c8 c51 c6",
+   "body": "Software marks possible conditions from the city's list. A blight score helps staff decide which properties to review first. Faces and license plates are blurred.",
+   "labels": [
+    "Bulk trash participation",
+    "Collapsing structures",
+    "Trash",
+    "Tires",
+    "Illegal dumping",
+    "Graffiti",
+    "Boarded windows/doors",
+    "High Grass"
+   ],
+   "strings": [
+    "texasaidocket.com",
+    "It flags a concern, not a violation",
+    "Software marks possible conditions from the city's list. A blight score helps staff decide which properties to review first. Faces and license plates are blurred.",
+    "Bulk trash participation",
+    "Collapsing structures",
+    "Trash",
+    "Tires",
+    "Illegal dumping",
+    "Graffiti",
+    "Boarded windows/doors",
+    "High Grass",
+    "The flag",
+    "02 / 09",
+    "c8 c51 c6"
+   ]
+  },
+  "S3": {
+   "n": 3,
+   "file": "slide-03.html",
+   "kicker": "Review",
+   "headline": "A person reviews the flag",
+   "claims": [
+    "c58",
+    "c13",
+    "c53",
+    "c52"
+   ],
+   "cite": "c58 c13 c53 c52",
+   "body": "Human review is required before enforcement, the city maintains. Its own briefing says a human stays in the loop.",
+   "labels": [
+    "reviewed",
+    "courtesy notice",
+    "case opened"
+   ],
+   "strings": [
+    "texasaidocket.com",
+    "A person reviews the flag",
+    "Human review is required before enforcement, the city maintains. Its own briefing says a human stays in the loop.",
+    "reviewed",
+    "courtesy notice",
+    "case opened",
+    "Review",
+    "03 / 09",
+    "c58 c13 c53 c52"
+   ]
+  },
+  "S4": {
+   "n": 4,
+   "file": "slide-04.html",
+   "kicker": "The notice",
+   "headline": "Some get a courtesy notice",
+   "claims": [
+    "c53"
+   ],
+   "cite": "c53",
+   "body": "About 3,700 property owners got one after the cameras flagged a possible violation, the city says.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "Some get a courtesy notice",
+    "About 3,700 property owners got one after the cameras flagged a possible violation, the city says.",
+    "The notice",
+    "04 / 09",
+    "c53"
+   ]
+  },
+  "S5": {
+   "n": 5,
+   "file": "slide-05.html",
+   "kicker": "Inspection",
+   "headline": "An officer inspects in person",
+   "claims": [
+    "c47",
+    "c50"
+   ],
+   "cite": "c47 c50",
+   "body": "The memo says a citation comes only after a code officer inspects the property and notifies the owner, and counts 57 citations at 34 properties.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "An officer inspects in person",
+    "The memo says a citation comes only after a code officer inspects the property and notifies the owner, and counts 57 citations at 34 properties.",
+    "Inspection",
+    "05 / 09",
+    "c47 c50"
+   ]
+  },
+  "S6": {
+   "n": 6,
+   "file": "slide-06.html",
+   "kicker": "The count",
+   "headline": "10,000 properties scanned",
+   "claims": [
+    "c46",
+    "c47"
+   ],
+   "cite": "c46 c47",
+   "body": "One card here for each property, the memo's count as FOX 4 reported it. The 57 citations are the sheaf in his hand.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "10,000 properties scanned",
+    "One card here for each property, the memo's count as FOX 4 reported it. The 57 citations are the sheaf in his hand.",
+    "The count",
+    "06 / 09",
+    "c46 c47"
+   ]
+  },
+  "S7": {
+   "n": 7,
+   "file": "slide-07.html",
+   "kicker": "Where",
+   "headline": "Most citations were in southern Dallas",
+   "claims": [
+    "c55",
+    "c47"
+   ],
+   "cite": "c55 c47",
+   "body": "39 of the 57 were in Council Districts 4, 8 and 7, the city manager's memo says. One card here for each citation.",
+   "labels": [
+    "Districts 4, 8 and 7",
+    "the rest of Dallas"
+   ],
+   "strings": [
+    "texasaidocket.com",
+    "Most citations were in southern Dallas",
+    "39 of the 57 were in Council Districts 4, 8 and 7, the city manager's memo says. One card here for each citation.",
+    "Districts 4, 8 and 7",
+    "the rest of Dallas",
+    "Where",
+    "07 / 09",
+    "c55 c47"
+   ]
+  },
+  "S8": {
+   "n": 8,
+   "file": "slide-08.html",
+   "kicker": "The money",
+   "headline": "The council funds it a year at a time",
+   "claims": [
+    "c9",
+    "c10",
+    "c11",
+    "c56"
+   ],
+   "cite": "c9 c10 c11 c56",
+   "body": "The city's December briefing set the terms. A three-year contract subject to annual City Council appropriations, $852,000 a year, and an exit on 10 days' written notice. Chad West withdrew a move to cut the funding once the city manager's office agreed to brief the council.",
+   "labels": [
+    "yearly cost",
+    "annual appropriation",
+    "10 days' notice"
+   ],
+   "strings": [
+    "texasaidocket.com",
+    "The council funds it a year at a time",
+    "The city's December briefing set the terms. A three-year contract subject to annual City Council appropriations, $852,000 a year, and an exit on 10 days' written notice. Chad West withdrew a move to cut the funding once the city manager's office agreed to brief the council.",
+    "yearly cost",
+    "annual appropriation",
+    "10 days' notice",
+    "The money",
+    "08 / 09",
+    "c9 c10 c11 c56"
+   ]
+  },
+  "S9": {
+   "n": 9,
+   "file": "slide-09.html",
+   "kicker": "Next",
+   "headline": "A notice asks for no action yet",
+   "claims": [
+    "c54"
+   ],
+   "cite": "c54",
+   "body": "City officials say a courtesy notice is not a citation and requires no action. The notice warns that continued violations could bring a citation or other enforcement.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "A notice asks for no action yet",
+    "City officials say a courtesy notice is not a citation and requires no action. The notice warns that continued violations could bring a citation or other enforcement.",
+    "Next",
+    "09 / 09",
+    "c54"
+   ]
+  }
+ }
+}

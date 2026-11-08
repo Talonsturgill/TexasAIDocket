@@ -1,0 +1,75 @@
+<!doctype html>
+<!-- 2026-11-05, frame 6 of 9. Archetype SPLIT_HORIZON. A spatial scene through txthree.js in the lastLight world: months_to_done chassis survey_stakes from figures.json in a row along a gold string line on graded black clay, one per month the company's quarterly report anticipates to substantial completion, the months_elapsed nearest stakes flagged, a kit person at the near end. Drawn to illustrate, to no site; the row is a count, not a survey of the lease's edge. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:900px">One stake for each month to completion</h1>
+<p class="dek" data-follow="26" style="width:860px">The company entered into leases for the two Chimney Rock Road buildings on August 31st. The quarterly report anticipates substantial completion about 16 months later. The site is drawn to illustrate.</p>
+<script>window.FIG = {"months_to_done": 16, "months_elapsed": 2};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-05-dockdoor.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Chimney Rock Road", counter: "06 / 09", src: "c11 c12", fit: { min: 80, max: 100, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 32, near: 0.05, far: 3000, fog: 0.0022 });
+  /* THE FIGURE: months_to_done stakes in a counted row a pace apart, the first months_elapsed flagged */
+  const PITCH = 2.4;
+  const s = TXT.sunDir(), yawS = Math.atan2(s.x, s.z), dir = [Math.sin(yawS + 0.42), 0, Math.cos(yawS + 0.42)];
+  const A = [dir[0] * 2.0 - dir[2] * 0.8, 0, dir[2] * 2.0 + dir[0] * 0.8];
+  const nails = [], stakes = [];
+  for (let i = 0; i < FIG.months_to_done; i++) {
+    const p = [A[0] + dir[0] * PITCH * i, 0, A[2] + dir[2] * PITCH * i];
+    const st = K.make('survey_stake', { flag: i < FIG.months_elapsed, lean: 0.06, seed: i + 3 });
+    /* the flagging in the accent's family, so the months already gone carry the deck's one colour */
+    st.traverse((m) => { if (m.isMesh && m.material && m.material.color && m.material.color.getHex() === 0xe2571e) { m.material = m.material.clone(); m.material.color.set(0xc4602c); m.material.emissive = new THREE.Color(0x9a4a22); m.material.emissiveIntensity = 0.8; m.scale.multiplyScalar(1.0); m.userData.flag = true; } });
+    /* the flagging sized to read at feed scale: the tapes and the knot scaled about the stake's top */
+    st.traverse((m) => { if (m.userData.flag) m.visible = false; });
+    /* a pennant of flagging tape on each flagged stake, big enough to count at feed scale */
+    if (i < FIG.months_elapsed) { const pen = new THREE.Mesh(new THREE.PlaneGeometry(0.13, 0.3, 1, 4), new THREE.MeshStandardMaterial({ color: 0x8a4422, emissive: 0x5a2a12, emissiveIntensity: 0.35, roughness: 0.9, side: THREE.DoubleSide }));
+      pen.geometry.translate(0.065 + 0.02, -0.15, 0); pen.position.set(0, 0.6, 0.008); pen.rotation.y = -1.1; pen.castShadow = true; st.add(pen); }
+    st.position.fromArray(p); st.rotation.y = yawS + 1.2; TXT.add(R, st); TXT.contact(R, st, { dirt: true }); stakes.push(st);
+    nails.push([p[0], st.userData.nailY, p[2]]);
+  }
+  const line = TXT.tube(nails, 0.016, new THREE.MeshStandardMaterial({ color: 0xa0532a, emissive: 0x8a4420, emissiveIntensity: 0.7, roughness: 0.8 }));
+  TXT.add(R, line);
+  const who = K.make('person', { seed: 12, role: 'worker', pose: 'stand', hat: 'hard' });
+  /* the worker at the near end of the line, just past the second flagged stake, on the far side of the string */
+  who.position.set(A[0] - dir[2] * 0.75 + dir[0] * 13.5, 0, A[2] + dir[0] * 0.75 + dir[2] * 13.5); who.rotation.y = yawS + 2.6; TXT.add(R, who);
+  TXT.sky(R);
+  TXT.ground(R, { surface: 'dirt', size: 7000, seed: 23, color: 0x221d1a, tile: 3 });
+  /* stood back far enough that all of the stakes are inside the frame, the first one well in from the right edge */
+  const from = [A[0] - dir[0] * 5.2 + dir[2] * 1.9, 0.8, A[2] - dir[2] * 5.2 - dir[0] * 1.9];
+  const look = CH.aim(THREE, R, TXT, from, [A[0], 0.45, A[2]], 830, 900, 32);
+  TXT.frame(R, { fov: 32, from, look });
+  /* no grass field: its far edge drew a flat strip along the horizon; the clay runs out under the fog into the seam */
+  TXT.deckRig(R, CH.rigSpec(W, 60, 4096), CH.rigOpts([A[0] + dir[0] * 18, 0, A[2] + dir[2] * 18], { distance: 120, shadowFar: 300, normalBias: 0.01 }));
+  CH.unacne(R, 0.02);
+  TXT.weather(R, { grime: 0.25, height: 0.3, mottle: 0.14 });
+  /* a low warm fill from the camera side, so the near laths read as pale wood and the worker's front takes light */
+  { const f = new THREE.SpotLight(0xffd2a8, 60, 30, 0.5, 0.8, 1.5); f.position.set(from[0], 2.4, from[2]); f.target.position.set(A[0] + dir[0] * 3, 0.5, A[2] + dir[2] * 3); R.scene.add(f); R.scene.add(f.target); }
+  TXT.stage(R, [who].concat(stakes));
+  window.__stakes = stakes.map((st) => CH.project(THREE, R, [st.position.x, 0.62, st.position.z]).map((v) => Math.round(v)));
+  window.__who = CH.project(THREE, R, [who.position.x, 1.0, who.position.z]).map((v) => Math.round(v));
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0.45, veil: 0.45, veilH: 300 });
+  CH.footWash(cx);
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,91 @@
+{
+ "lens": "integrity",
+ "round": 2,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.0,
+   "why": "Real renders and reliefs on a dark field, none at the showstopper descriptor. 1 jack near pure black. 3 left 60 percent empty, subject jammed right. 7 white rings, rack overhangs its stand, timber overshoot. 5 square rods, flat tag, empty band. 2 flat card, no curl, block clip. 8 flat orange bob and clip, dark tape. 4 corrugated bump. Strong: 6 and 9."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 6.8,
+   "why": "One world and palette, accent on figure frames, value steady, camera move works. Crank motif and sky hue unapplied; the plan-view reliefs cut out of the spatial world."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 6.0,
+   "why": "Numerals exemplary and checked against the art. The noun the deck is built on does not trace: c1 says artificial lift monitoring and no claim names the lift type, yet the cover says pump jack, the web edition defines artificial lift as the pump jack without a claim id, and the record title glosses it as pumps. Slide 7 puts a 2025 share in the present tense; the caption drops c28's attribution and adds 'already'; slide 9 sets the meeting against the question with no claim tying them."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.5,
+   "why": "What and who are clear by frame 2. Where is weak, no Texas county. The meeting is a standing meeting with no agenda item tied to this. The regulator contrast is the real stake and is stated well."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Cover earns the swipe, 2 pays, turns at 3 and 8, the close an open question. 6 cuttable."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Specific and on register. 6's headline a spreadsheet sentence, 8's a fragment, the caption closer lacks an antecedent, the first comment printed a raw enum."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "First oil and gas topic in the window. lastLight again; the shut ranch gate close repeats nos. 54 and 62; dark plan-view reliefs echo no. 67."
+  }
+ ],
+ "weighted_score": 6.426,
+ "hard_fails": [
+  "An unverified fact presented as verified. The slide 1 headline 'The pump jack has a new watcher' (cite c1 c4) names the equipment the AI watches as a pump jack; c1 says only 'AI-powered artificial lift monitoring system' and no claim names a lift type. The same unsourced gloss appears in the web edition introduction ('Artificial lift is the pump jack and the equipment around it', no claim id) and in record tx-2026-0240's title ('the pumps that lift oil from its wells'). Repair: name what the source names on the cover, drop or source the web edition's definition, correct the record title, and mark the jack as drawn to illustrate."
+ ],
+ "ship": false,
+ "one_sentence_fix": "Rebuild the deck on the noun the filing uses, artificial lift, with the jack marked as drawn to illustrate, then give the jack on 1, 4 and 9 a real rim key.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 3,
+   "problem": "About 60 percent below the dek empty; subject crammed right.",
+   "fix": "Orbit about 25 degrees left and lower the look-up so the horsehead and bridle fill the upper left behind the type and the rod sits in the centre third."
+  },
+  {
+   "slide": 7,
+   "problem": "Flat white rings; the Texas rack overhangs its stand; timber overshoot.",
+   "fix": "Camera 0.5 m lower and yawed 20 degrees, worn tool-joint steel, timbers and stands trimmed to the rack width."
+  },
+  {
+   "slide": 1,
+   "problem": "Cover jack near pure black.",
+   "fix": "Warm rim key behind the jack at 10 to 15 degrees, kept off the ground; work light up and camera left."
+  },
+  {
+   "slide": 5,
+   "problem": "Square rods, flat tag, empty band.",
+   "fix": "Round bars and couplings with flats, lit brass tag on wire, rods scaled up and raised about 150 px at the same ratio."
+  },
+  {
+   "slide": 2,
+   "problem": "Flat grey card, no curl, block clip.",
+   "fix": "A real curl casting on the steel, a wire clip, a tighter pool."
+  },
+  {
+   "slide": 8,
+   "problem": "Flat orange bob and clip; dark tape.",
+   "fix": "Brass PBR bob and clip with a highlight; brighter tape edge."
+  },
+  {
+   "slide": 4,
+   "problem": "Corrugated bump.",
+   "fix": "Noise-driven bedding and fracture on strata_block."
+  }
+ ]
+}

@@ -1,0 +1,155 @@
+{
+ "cameras_plan": {
+  "value": 100,
+  "from": [
+   "c1"
+  ],
+  "basis": "AI-enabled cameras the December 2025 briefing planned"
+ },
+ "cams_per_vehicle": {
+  "value": 2,
+  "from": [
+   "c3"
+  ],
+  "basis": "cameras mounted on one city vehicle"
+ },
+ "mph_lo": {
+  "value": 25,
+  "from": [
+   "c4"
+  ],
+  "basis": "lower speed at which the cameras photograph"
+ },
+ "mph_hi": {
+  "value": 35,
+  "from": [
+   "c4"
+  ],
+  "basis": "upper speed at which the cameras photograph"
+ },
+ "speed_ms": {
+  "value": 15.6,
+  "from": [
+   "c4"
+  ],
+  "basis": "computed, the upper speed in m/s for the drawn motion blur; never printed"
+ },
+ "contract_total": {
+  "value": 2556000,
+  "from": [
+   "c9"
+  ],
+  "basis": "estimated three-year contract, dollars"
+ },
+ "contract_years": {
+  "value": 3,
+  "from": [
+   "c9"
+  ],
+  "basis": "contract term in years"
+ },
+ "per_year": {
+  "value": 852000,
+  "from": [
+   "c10"
+  ],
+  "basis": "contract cost per year, dollars"
+ },
+ "notice_days": {
+  "value": 10,
+  "from": [
+   "c11"
+  ],
+  "basis": "days of written notice to terminate"
+ },
+ "conditions": {
+  "value": 8,
+  "from": [
+   "c8"
+  ],
+  "basis": "property conditions the briefing lists, counted from its list"
+ },
+ "properties_scanned": {
+  "value": 10000,
+  "from": [
+   "c46"
+  ],
+  "basis": "properties the cameras scanned, per the September 8th memo"
+ },
+ "memo_violations": {
+  "value": 3700,
+  "from": [
+   "c46"
+  ],
+  "basis": "violations that resulted in notices, per the memo as FOX 4 reported it"
+ },
+ "citations": {
+  "value": 57,
+  "from": [
+   "c47",
+   "c50"
+  ],
+  "basis": "citations issued, per the memo"
+ },
+ "properties": {
+  "value": 34,
+  "from": [
+   "c47",
+   "c50"
+  ],
+  "basis": "properties the citations went to"
+ },
+ "notices": {
+  "value": 3700,
+  "from": [
+   "c53"
+  ],
+  "basis": "property owners sent courtesy notices, approximately"
+ },
+ "cases": {
+  "value": 300,
+  "from": [
+   "c52"
+  ],
+  "basis": "cases opened for in-person inspection, about"
+ },
+ "south_citations": {
+  "value": 39,
+  "from": [
+   "c55"
+  ],
+  "basis": "citations in Council Districts 4, 8 and 7"
+ },
+ "south_pct": {
+  "value": 68,
+  "from": [
+   "c55"
+  ],
+  "basis": "the memo's share of citations in those districts, re-derived from 39 of 57"
+ },
+ "districts": {
+  "value": 3,
+  "from": [
+   "c55"
+  ],
+  "basis": "southern Dallas council districts named, counted"
+ },
+ "terms": {
+  "value": 3,
+  "from": [
+   "c9",
+   "c10",
+   "c11"
+  ],
+  "basis": "contract terms drawn on frame 8, counted by the assert"
+ },
+ "trays": {
+  "value": 3,
+  "from": [
+   "c52",
+   "c53"
+  ],
+  "basis": "trays on frame 3: reviewed, courtesy notice, case opened"
+ },
+ "_note": "Every value is extracted from a claim quote by compute.py, or computed here from values that were."
+}

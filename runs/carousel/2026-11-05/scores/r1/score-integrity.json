@@ -1,0 +1,78 @@
+{
+ "_note": "Scores, weighted score, hard fails and fixes as the judge returned them; each why is abridged by the run from the judge's report.",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.0,
+   "why": "1, 5 and 9 strong; 6, 8, 3, 7 and 2 lean on primitive models or dead zones; 4 reads as a chart."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.0,
+   "why": "Bay returns on 1, 5, 9 and the tape motif changes state; 3 and 8 sit outside the palette."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 6.0,
+   "why": "Every numeral traces, but the deck tapes the 1 million target (not placed in the US by any claim) onto the delayed US bay and asks whether 2027 holds; slide 3 kicker places the chip fab at Gillingham Lane; 'four properties' omits c15's three buildings; 'still unnamed' beyond c6; caption's Fort Bend rests on c13 missing from the first comment; 'It moves data as light' traces to no claim; slide 1 cites c4 unused."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.5,
+   "why": "What, who and where are clear; no body, utility, site or step for the reader."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "Cover earns the swipe; 7 repeats the cover; 8 after the reason; 3 and 4 both spend a beat on property."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Clean and on register; attribution chains and the 'drawn to illustrate' refrain."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.0,
+   "why": "Third straight SEC results deck; taped bays, transformer and stakes repeat nos. 56, 59 and 62."
+  }
+ ],
+ "weighted_score": 6.35,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Either quote the release line tying the 1 million 2027 target to the delayed US expansion, or stop taping that target onto the unpowered US bay and stop asking whether 2027 still holds.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 6,
+   "problem": "Flat pale horizon band, brown haze, mannequin worker, thin stake row.",
+   "fix": "Camera at 0.5 m by the near flagged stake, remove the horizon plane, worker as silhouette."
+  },
+  {
+   "slide": 8,
+   "problem": "Modules float in a line across the rack faces; flat grey mid band.",
+   "fix": "Seat the modules in one switch's port row, crop to that switch, one raking aisle light."
+  },
+  {
+   "slide": 3,
+   "problem": "Box trailers brightest; navy wall; dead court.",
+   "fix": "Remove or silhouette the trailers, warm the key, a pool on the court."
+  },
+  {
+   "slide": 7,
+   "problem": "Blown white yard, no jamb, mannequin lit flat.",
+   "fix": "Black jamb along the left 15 percent, pull the apron exposure, worker in partial silhouette."
+  },
+  {
+   "slide": 2,
+   "problem": "Reads as a knife; fingers cropped; no tape corner; mid brown floor.",
+   "fix": "Connector end with fingers toward the lens in frame, across a visible tape corner, floor to near black outside the pool."
+  }
+ ]
+}

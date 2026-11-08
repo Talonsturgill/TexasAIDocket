@@ -1,0 +1,22 @@
+{
+ "_note": "Reader lens, round 1, carousel no. 71, returned by carousel-scorer and saved verbatim in shape.",
+ "criteria": [
+  {"name": "artwork_craft", "weight": 0.22, "score": 6.5, "why": "One dark staged world with contact shadows. Slides 2 and 4 strong. Cover reads as a pod over a barricade in a void; kit people read as mannequins on 3, 5, 6 and 9; slide 7's column is a sliver with a hazy dead zone though the divider is accurate at about 70 percent; slide 8's folders are flat slabs on mid-tone wood."},
+  {"name": "deck_coherence", "weight": 0.12, "score": 7.5, "why": "One parcel, one low warm key, the bluebonnet motif changes state across 2, 3, 4, 5, 6 and 9, the camera move reads. Slide 1 has no world and slide 8's warm wood breaks the run."},
+  {"name": "claim_integrity", "weight": 0.20, "score": 7.5, "why": "Every numeral traces. Slides 8 and 9 rest on GovTech's republication where a primary committee document likely exists; the first comment omits c10, c29 and c40 though their documents are listed; slide 9's future tense was not re-verified as of November 7th."},
+  {"name": "story_and_stakes", "weight": 0.16, "score": 6.5, "why": "The process and the 20,000 against 57 contrast land and slide 9 gives a resident something usable. The money and the missing evaluation are caption only, no deciding body is named, no date for the next funding vote, no route to weigh in."},
+  {"name": "sequence_and_momentum", "weight": 0.10, "score": 6.5, "why": "Slide 2 pays at once and 3 to 5 move in order. The cover headline is a label without tension, the column waits until 6, slide 4 could fold into 3, and the close is a soft service note after 8."},
+  {"name": "voice", "weight": 0.10, "score": 6.5, "why": "Clean and attributed with real local nouns. Scaffolding lines: 'The sheet is a drawing unit.', 'The camera and truck are drawn to illustrate.', 'southern Dallas, below the card', and the caption's 'The deck follows one house from truck to porch.'"},
+  {"name": "variety", "weight": 0.10, "score": 5.5, "why": "Same docket item as no. 31 on September 21st, outside the 30 day window. No. 66 five days ago used a vehicle camera, detection box and reviewer screen. The staged lastLight world is shared. Fresh: the paper column as one measured scale."}
+ ],
+ "weighted_score": 6.72,
+ "hard_fails": [],
+ "ship": false,
+ "artwork_weakest_frames": [
+  {"slide": 1, "problem": "A camera pod in a black void over a flat panel with tape; the truck reads as a barricade and the planned house across the street is absent.", "fix": "Pull the camera back and down to about 1.6 m behind and left of the pod so the truck side, the curb and the lit brick house across the street share the frame."},
+  {"slide": 7, "problem": "The column is a sliver about 12 percent of the frame width with a hazy dead zone at lower left and no scale figure.", "fix": "Bring the camera to about 1.5 m and yaw so the column takes a third of the width, stand slide 6's officer at its base for scale, keep the divider at 69 percent."},
+  {"slide": 6, "problem": "The officer reads as a mannequin and the column stands only about 7 percent taller than him on screen.", "fix": "Turn him three quarters away with a rim on his back, fit the vest, and drop the eye to 0.6 m so the column rises over him into the sky."},
+  {"slide": 8, "problem": "The four folders are flat slabs on mid-tone wood and the blank date tabs are invisible at 432 px.", "fix": "Model a raised empty lit date tab on each folder and cut the room fill so the wood falls to near black."},
+  {"slide": 9, "problem": "The notice is held flat like a placard and the resident reads as a mannequin.", "fix": "Pose her reading the notice at a downward angle under the lamp, face in profile, the lamp lighting the sheet."}
+ ]
+}

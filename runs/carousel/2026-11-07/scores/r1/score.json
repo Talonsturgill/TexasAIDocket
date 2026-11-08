@@ -1,0 +1,242 @@
+{
+ "weighted_score": 7.05,
+ "judges": [
+  6.75,
+  7.18,
+  6.72
+ ],
+ "spread": 0.46,
+ "criteria": {
+  "artwork_craft": {
+   "score": 6.5,
+   "weight": 0.22,
+   "judges": [
+    6.5,
+    6.0,
+    6.5
+   ]
+  },
+  "deck_coherence": {
+   "score": 7.5,
+   "weight": 0.12,
+   "judges": [
+    7.5,
+    8.0,
+    7.5
+   ]
+  },
+  "claim_integrity": {
+   "score": 7.5,
+   "weight": 0.2,
+   "judges": [
+    6.0,
+    7.5,
+    7.5
+   ]
+  },
+  "story_and_stakes": {
+   "score": 7.0,
+   "weight": 0.16,
+   "judges": [
+    7.0,
+    7.5,
+    6.5
+   ]
+  },
+  "sequence_and_momentum": {
+   "score": 7.0,
+   "weight": 0.1,
+   "judges": [
+    7.0,
+    7.5,
+    6.5
+   ]
+  },
+  "voice": {
+   "score": 7.0,
+   "weight": 0.1,
+   "judges": [
+    7.0,
+    7.5,
+    6.5
+   ]
+  },
+  "variety": {
+   "score": 7.0,
+   "weight": 0.1,
+   "judges": [
+    7.0,
+    7.0,
+    5.5
+   ]
+  }
+ },
+ "hard_fails": [
+  {
+   "fail": "Every Dallas Morning News fact was fetched from www.govtech.com, a host whose robots.txt names ClaudeBot with Disallow / and which this project refused on October 26th and 30th.",
+   "evidence": "SOURCES_FIELD_LOG.md 2026-10-26 and 2026-10-30; topics.json no. 63; claims c14 to c42 and c44."
+  }
+ ],
+ "hard_fails_by_judge": [
+  {
+   "judge": 1,
+   "fail": {
+    "fail": "Every Dallas Morning News fact was fetched from www.govtech.com, a host whose robots.txt names ClaudeBot with Disallow / and which this project refused on October 26th and 30th.",
+    "evidence": "SOURCES_FIELD_LOG.md 2026-10-26 and 2026-10-30; topics.json no. 63; claims c14 to c42 and c44."
+   }
+  }
+ ],
+ "ship": false,
+ "threshold": 8.0,
+ "over_threshold": false,
+ "method": "per-criterion median across three judges, then weighted by the rubric",
+ "threshold_dissents": [
+  "judge 2 refused on the threshold, not on a fault, and scored 7.18 against a 8.0 bar. That dissent is carried in the median",
+  "judge 3 refused on the threshold, not on a fault, and scored 6.72 against a 8.0 bar. That dissent is carried in the median"
+ ],
+ "threshold_dissents_by_judge": [
+  {
+   "judge": 2,
+   "score": 7.18,
+   "reason": "judge 2 refused on the threshold, not on a fault, and scored 7.18 against a 8.0 bar. That dissent is carried in the median"
+  },
+  {
+   "judge": 3,
+   "score": 6.72,
+   "reason": "judge 3 refused on the threshold, not on a fault, and scored 6.72 against a 8.0 bar. That dissent is carried in the median"
+  }
+ ],
+ "contested": [
+  "claim_integrity",
+  "variety"
+ ],
+ "artwork_weakest_frames": [
+  {
+   "slide": 6,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The 57 sheaf is a face-on board with no thickness and the officer looks down in a shell vest.",
+     "fix": "Turn the clipboard edge-on so the sheaf reads as a sliver beside one bundle at the column's base, and pitch his head up."
+    },
+    {
+     "judge": 2,
+     "problem": "Box vest with a flat orange side and a face-on sheaf with no thickness.",
+     "fix": "Turn the sheaf edge-on at 5.7 mm beside the column at one bundle's height and conform the vest or drop the officer to a rim-lit silhouette."
+    },
+    {
+     "judge": 3,
+     "problem": "The officer reads as a mannequin and the column stands only about 7 percent taller than him on screen.",
+     "fix": "Turn him three quarters away with a rim on his back, fit the vest, and drop the eye to 0.6 m so the column rises over him into the sky."
+    }
+   ]
+  },
+  {
+   "slide": 7,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "A narrow column with a half empty frame and slab edge seams at the bottom.",
+     "fix": "Dolly in so the column fills the right third and extend the ground so no slab edge shows."
+    },
+    {
+     "judge": 2,
+     "problem": "A 12 percent column in a void, the house world gone, the two band colours barely separate at 432 px.",
+     "fix": "Camera to about 1.6 m at fov 24 so the column is about 30 percent of the width, keep the curb and dark house behind it, push the lower band darker against pale kraft with the card catching the key."
+    },
+    {
+     "judge": 3,
+     "problem": "The column is a sliver about 12 percent of the frame width with a hazy dead zone at lower left and no scale figure.",
+     "fix": "Bring the camera to about 1.5 m and yaw so the column takes a third of the width, stand slide 6's officer at its base for scale, keep the divider at 69 percent."
+    }
+   ]
+  },
+  {
+   "slide": 9,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Grass through the walk, a riser notch, a brick seam and an oversized board on a mannequin resident.",
+     "fix": "Exclude the walk from the grass, close the notch, and scale the notice to letter size held in both hands."
+    },
+    {
+     "judge": 2,
+     "problem": "Mannequin resident with an oversized board, grass through the walk, a riser notch, a brick seam, a lamp that reads cool.",
+     "fix": "Exclude the walk, step and porch from the grass, close the notch, fix the seam, and frame the notice in both hands at chest height under a warm lamp pool with the face turned down."
+    },
+    {
+     "judge": 3,
+     "problem": "The notice is held flat like a placard and the resident reads as a mannequin.",
+     "fix": "Pose her reading the notice at a downward angle under the lamp, face in profile, the lamp lighting the sheet."
+    }
+   ]
+  },
+  {
+   "slide": 1,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "The pod is an eighth of the frame over a mid-grey flank, with no house across the street and no limbs in the bed.",
+     "fix": "Eye about 0.8 m from the pod so it fills about 45 percent of the width, drop the rail to the bottom fifth in shadow, stage the parcel's house in a lit pool beyond."
+    },
+    {
+     "judge": 3,
+     "problem": "A camera pod in a black void over a flat panel with tape; the truck reads as a barricade and the planned house across the street is absent.",
+     "fix": "Pull the camera back and down to about 1.6 m behind and left of the pod so the truck side, the curb and the lit brick house across the street share the frame."
+    }
+   ]
+  },
+  {
+   "slide": 5,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "A front-lit mannequin officer in a shell vest and a pile with little contact.",
+     "fix": "Turn him three quarters away with a rim on his back and seat the pile and tires in the key's pool."
+    },
+    {
+     "judge": 2,
+     "problem": "A stiff front-on mannequin with a box vest, tires hidden, the clipboard face on with no 57-sheet thickness.",
+     "fix": "Reframe at 0.9 m eye and fov 28 to a waist-down crop with one hand holding the clipboard edge-on beside the cut limbs and both tires lit on the parkway."
+    }
+   ]
+  },
+  {
+   "slide": 8,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Flat grey slabs on mid-tone wood, the tabs indistinct, the chairs unlit.",
+     "fix": "Narrow the key to a raking slit across the ledge and drop the dais front to near black."
+    },
+    {
+     "judge": 3,
+     "problem": "The four folders are flat slabs on mid-tone wood and the blank date tabs are invisible at 432 px.",
+     "fix": "Model a raised empty lit date tab on each folder and cut the room fill so the wood falls to near black."
+    }
+   ]
+  },
+  {
+   "slide": 3,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "Cartoon ear and stub hand on the analyst, and a flat vector house on the monitor.",
+     "fix": "Put the slide 2 render on the monitor and turn the analyst to a dark rimmed shoulder and head silhouette."
+    }
+   ]
+  }
+ ],
+ "rounds_derived": 1,
+ "rounds": 1,
+ "rounds_source": "this module's own log of cards it has scored",
+ "rung": 8.0,
+ "craft_floor": "waiting, because a hard fail is repaired first"
+}

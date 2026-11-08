@@ -44,6 +44,11 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-18 · The court's submission schedule and the Courthouse News account still place the argument on October 6th. The court's own case page bars automated readers, so its docket entries are unconfirmed.
 - 2026-10-24 · The Supreme Court of Texas has heard the argument on the AI made deposition transcript, and the case still awaits its opinion.
 - 2026-10-29 · The Supreme Court of Texas has not yet ruled on the AI deposition transcript. The court's docket page bars automated readers.
+- 2026-11-01 · The Supreme Court of Texas still has no ruling on record that this project can read. The docket page refuses automated readers.
+- 2026-11-03 · No ruling from the Supreme Court of Texas on the AI deposition transcript is confirmed today. The court's search site still refuses this project.
+- 2026-11-05 · No ruling on the AI deposition transcript is confirmed. The court's case search still refuses this project.
+- 2026-11-06 · No ruling on the AI made deposition transcript can be confirmed today. The court's case search still refuses this project.
+- 2026-11-07 · No ruling on the AI made deposition transcript is confirmed on November 7th. The court's case search keeps refusing this project.
 
 ## Evidence
 

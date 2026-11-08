@@ -1,0 +1,225 @@
+{
+  "version": 2,
+  "selected": [
+    1,
+    5,
+    9
+  ],
+  "inputs": {
+    "slides/slide-01.html": "7d2fb6f73138a9f8de2c01890dfe6722cf5edb6cf8d1ad3110ff92b8bbc44617",
+    "render/slide-01.png": "76269130e1d582684b42da12b9cce7173ecd9b85421e1d59b7241156d6ed178d",
+    "assets/js/deck/2026-11-05-dockdoor.js": "101bb2cdc484713b6a311ec760440aaaf3dde6148a609c1a9dee812dfed9cff1",
+    "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+    "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+    "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+    "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+    "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+    "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+    "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+    "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+    "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+    "slides/slide-05.html": "248f8116a57cfdc1b6458a2ff921523134795b0d8d295921c1c415d9b654596e",
+    "render/slide-05.png": "ff64d625d1ce46b5591e77194f1f47bd4ae30538c18994cbb1577bd0123ec0e8",
+    "slides/slide-09.html": "e2ae9232b0858f58da346148016277bb5ee3d30e07f5c796a63eb3073fb0c61d",
+    "render/slide-09.png": "ccaf64249c596663f08fe74c8365a208f3eba19960d55e78ae8155251bc00540"
+  },
+  "value_measurements": [
+    {
+      "frame": "slide-01.png",
+      "median_L": 0.8,
+      "mid": 0.114,
+      "dark": 0.761
+    },
+    {
+      "frame": "slide-05.png",
+      "median_L": 0.9,
+      "mid": 0.075,
+      "dark": 0.851
+    },
+    {
+      "frame": "slide-09.png",
+      "median_L": 3.3,
+      "mid": 0.056,
+      "dark": 0.864
+    }
+  ],
+  "review": {
+    "decision": "accept",
+    "inputs": {
+      "slides/slide-01.html": "7d2fb6f73138a9f8de2c01890dfe6722cf5edb6cf8d1ad3110ff92b8bbc44617",
+      "render/slide-01.png": "76269130e1d582684b42da12b9cce7173ecd9b85421e1d59b7241156d6ed178d",
+      "assets/js/deck/2026-11-05-dockdoor.js": "101bb2cdc484713b6a311ec760440aaaf3dde6148a609c1a9dee812dfed9cff1",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+      "slides/slide-05.html": "248f8116a57cfdc1b6458a2ff921523134795b0d8d295921c1c415d9b654596e",
+      "render/slide-05.png": "ff64d625d1ce46b5591e77194f1f47bd4ae30538c18994cbb1577bd0123ec0e8",
+      "slides/slide-09.html": "e2ae9232b0858f58da346148016277bb5ee3d30e07f5c796a63eb3073fb0c61d",
+      "render/slide-09.png": "ccaf64249c596663f08fe74c8365a208f3eba19960d55e78ae8155251bc00540"
+    },
+    "frames": [
+      {
+        "slide": 1,
+        "role": "cover",
+        "subject": "A floor-height view down a dark bay toward a lit dock door, its warm spill crossing a glossy epoxy floor over pads that recede in rows, each with levelling plates and a visible slab edge. One pad in the spill is taped rust-gold, with the nearest untaped pad and a capped conduit stub in the foreground.",
+        "visual_consequence": "Without the headline the image reads as a building fitted out for machines whose only light comes in through its door, and at 432 px the bright doorway, the light wedge and the single gold-taped pad all read. The new kicker 'THE 2027 US PLAN' matches c1's '2027 capacity expansion plan in the US' and no longer ties the power wait to a city; the dek's 'Sugar Land maker' describes the company and is backed by c7.",
+        "weakness": "Nothing blocking. The doorway shows a flat warm-beige gradient rather than sky and no utility pole stands silhouetted in it, which the dossier's acceptance list asked for. The red oxide columns barely show and the drop cords inside the door end in mid-air; the kicker is clean mono type well clear of the hook and the art is the same as at the earlier acceptance.",
+        "repair": "None required. Optional: put sky and a pole silhouette in the door opening, and lift the columns' rim light.",
+        "encoding_reads": true,
+        "dominant_subject_finished": true,
+        "feed_legible": true,
+        "inputs": {
+          "slides/slide-01.html": "7d2fb6f73138a9f8de2c01890dfe6722cf5edb6cf8d1ad3110ff92b8bbc44617",
+          "render/slide-01.png": "76269130e1d582684b42da12b9cce7173ecd9b85421e1d59b7241156d6ed178d",
+          "assets/js/deck/2026-11-05-dockdoor.js": "101bb2cdc484713b6a311ec760440aaaf3dde6148a609c1a9dee812dfed9cff1",
+          "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+          "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+          "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+          "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+          "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+          "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+          "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+          "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+          "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de"
+        }
+      },
+      {
+        "slide": 5,
+        "role": "evidence",
+        "subject": "A high plan oblique down the unroofed bay toward the open dock door, its warm spill fanning across twenty slab pads in four rows of five. The ten pads nearest the door are taped gold or rust and the ten nearest the camera are taped grey.",
+        "visual_consequence": "Half the floor is warm and half is grey, split at one row line, and the warm half is nearest the door. At 432 px a reader can count two warm rows against two grey rows without the dek.",
+        "weakness": "Nothing blocking and nothing changed since the accepted reading. Outside the spill the pads read as tape outlines with no slab edge, the grey tape inside the spill is warm tan close to the gold, and the open door shows a flat beige apron rather than sky.",
+        "repair": "None required. Optional: desaturate the grey tape inside the spill toward the epoxy's slate.",
+        "encoding_reads": true,
+        "dominant_subject_finished": true,
+        "feed_legible": true,
+        "inputs": {
+          "assets/js/deck/2026-11-05-dockdoor.js": "101bb2cdc484713b6a311ec760440aaaf3dde6148a609c1a9dee812dfed9cff1",
+          "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+          "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+          "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+          "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+          "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+          "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+          "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+          "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+          "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+          "slides/slide-05.html": "248f8116a57cfdc1b6458a2ff921523134795b0d8d295921c1c415d9b654596e",
+          "render/slide-05.png": "ff64d625d1ce46b5591e77194f1f47bd4ae30538c18994cbb1577bd0123ec0e8"
+        }
+      },
+      {
+        "slide": 9,
+        "role": "close",
+        "subject": "A raised view from the dock leveller back into the bay where every pad is taped in lit gold-orange on dark tiled epoxy. A kit worker in a hard hat and hi-vis vest stands at left with a long shadow, red oxide columns and a roof truss receding into black.",
+        "visual_consequence": "Every pad is gold, against half on frame 5 and one on the cover, and the floor still holds no machines. At 432 px the all-gold grid, the worker and the shadow read at once.",
+        "weakness": "Nothing that hurts reading and nothing changed since the accepted reading. The worker's skin and trousers share one cream tone and the vest is near-flat bright yellow; the drop cords end in mid-air, and about fourteen pads are in frame so it reads as an all-gold floor rather than a count of twenty.",
+        "repair": "None required. Optional: separate the worker's trouser and skin values.",
+        "encoding_reads": true,
+        "dominant_subject_finished": true,
+        "feed_legible": true,
+        "inputs": {
+          "assets/js/deck/2026-11-05-dockdoor.js": "101bb2cdc484713b6a311ec760440aaaf3dde6148a609c1a9dee812dfed9cff1",
+          "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+          "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+          "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+          "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+          "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+          "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+          "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+          "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+          "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+          "slides/slide-09.html": "e2ae9232b0858f58da346148016277bb5ee3d30e07f5c796a63eb3073fb0c61d",
+          "render/slide-09.png": "ccaf64249c596663f08fe74c8365a208f3eba19960d55e78ae8155251bc00540"
+        }
+      }
+    ]
+  },
+  "plan": {
+    "hardest_frame": 5,
+    "visual_argument": "A new manufacturing bay taped out for machines and lit only through its dock door, because power is what it waits for; the company's own targets are taped on that floor at one scale, half the floor gold for the end of 2026 and all of it for the end of 2027.",
+    "build_risk": "A count painted on a dark floor dims outside the pool and can read as a pictogram grid: twenty kit machine_pads must read as ten gold and ten grey from a mezzanine on a long lens, staged as one subject, inside a TXT.interior bay whose back wall is replaced by a chassis dock_door opening onto the lastLight sky.",
+    "distinct_from_recent": "No. 66 stood outside a city block at dusk; this deck is mostly inside an unpowered building lit only through its door. No. 67 was a floodlit weigh station around a kit structure under artificial light; here there is no artificial light at all, because the missing power is the subject. No. 68 was a caliche well pad around one industrial object; this is Gulf Coast epoxy, tilt wall and red oxide steel, and its measure is a taped floor and a staked lease edge."
+  },
+  "frame_inputs": {
+    "1": {
+      "slides/slide-01.html": "7d2fb6f73138a9f8de2c01890dfe6722cf5edb6cf8d1ad3110ff92b8bbc44617",
+      "render/slide-01.png": "76269130e1d582684b42da12b9cce7173ecd9b85421e1d59b7241156d6ed178d",
+      "assets/js/deck/2026-11-05-dockdoor.js": "101bb2cdc484713b6a311ec760440aaaf3dde6148a609c1a9dee812dfed9cff1",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de"
+    },
+    "5": {
+      "assets/js/deck/2026-11-05-dockdoor.js": "101bb2cdc484713b6a311ec760440aaaf3dde6148a609c1a9dee812dfed9cff1",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+      "slides/slide-05.html": "248f8116a57cfdc1b6458a2ff921523134795b0d8d295921c1c415d9b654596e",
+      "render/slide-05.png": "ff64d625d1ce46b5591e77194f1f47bd4ae30538c18994cbb1577bd0123ec0e8"
+    },
+    "9": {
+      "assets/js/deck/2026-11-05-dockdoor.js": "101bb2cdc484713b6a311ec760440aaaf3dde6148a609c1a9dee812dfed9cff1",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+      "slides/slide-09.html": "e2ae9232b0858f58da346148016277bb5ee3d30e07f5c796a63eb3073fb0c61d",
+      "render/slide-09.png": "ccaf64249c596663f08fe74c8365a208f3eba19960d55e78ae8155251bc00540"
+    }
+  },
+  "needs_review": [
+    1
+  ],
+  "shipped_inputs": {
+    "slides/slide-01.html": "7d2fb6f73138a9f8de2c01890dfe6722cf5edb6cf8d1ad3110ff92b8bbc44617",
+    "slide-01.webp": "6b23b86c75d88c2516c22535ea8c08410da2d3f0dd90e9216cbb28d55316f0fe",
+    "slides/slide-05.html": "248f8116a57cfdc1b6458a2ff921523134795b0d8d295921c1c415d9b654596e",
+    "slide-05.webp": "65e94736c73113234f6f7a9056d7abff54256eea965321b1f829e651ee0157e3",
+    "slides/slide-09.html": "e2ae9232b0858f58da346148016277bb5ee3d30e07f5c796a63eb3073fb0c61d",
+    "slide-09.webp": "388ea1089ebe8450573e6e3960b99bd57b4d455609ec7bb2e3a4909c179f89dd"
+  },
+  "encodings": [
+    {
+      "to": "slide-01.webp",
+      "to_sha256": "6b23b86c75d88c2516c22535ea8c08410da2d3f0dd90e9216cbb28d55316f0fe",
+      "from_sha256": "76269130e1d582684b42da12b9cce7173ecd9b85421e1d59b7241156d6ed178d",
+      "psnr_db": 42.877
+    },
+    {
+      "to": "slide-05.webp",
+      "to_sha256": "65e94736c73113234f6f7a9056d7abff54256eea965321b1f829e651ee0157e3",
+      "from_sha256": "ff64d625d1ce46b5591e77194f1f47bd4ae30538c18994cbb1577bd0123ec0e8",
+      "psnr_db": 41.957
+    },
+    {
+      "to": "slide-09.webp",
+      "to_sha256": "388ea1089ebe8450573e6e3960b99bd57b4d455609ec7bb2e3a4909c179f89dd",
+      "from_sha256": "ccaf64249c596663f08fe74c8365a208f3eba19960d55e78ae8155251bc00540",
+      "psnr_db": 40.52
+    }
+  ]
+}

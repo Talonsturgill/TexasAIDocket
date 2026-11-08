@@ -213,7 +213,7 @@ _CAL_JS = """
     // A LINK SHARED INTO THE MONTH STILL LANDS THERE. Somebody who was handed
     // /record/#cal-2026-06 gets June, not August, and the back button keeps working.
     function fromHash() {
-      var m = (location.hash || '').match(/^#cal-(\d{4}-\d{2})$/);
+      var m = (location.hash || '').match(/^#cal-(\\d{4}-\\d{2})$/);
       return m ? m[1] : null;
     }
     window.addEventListener('hashchange', function () {

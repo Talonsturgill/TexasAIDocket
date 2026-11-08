@@ -2456,3 +2456,105 @@ repointed there from their eutils urls and stamped.
 
 **www.texastribune.org and www.kedt.org answered** (the Tribune's article of October 30th, Houston Public Media's report
 republished by KEDT on October 14th). **hpcwire.com disallows ClaudeBot**, as a scout reported, and nothing from it was used.
+
+## 2026-11-01
+
+**www.ercot.com named the September 2026 Monthly Operational Overview without a year.** It was published October 16th
+at `/files/docs/2026/10/16/ERCOT-Monthly-Operational-Overview-September.pdf`, while every earlier month's file carried
+`-2026` in its name. `scripts/gridwatch/queue_collect.py` builds the name with the year, so every daily queue reading
+since October 16th recorded the month as not yet published, and on November 1st the two month slack ran out and
+`gridwatch_pagecheck` began exiting 3. The collector is gridwatch lane and this run changed nothing in it.
+
+**news.engineering.tamu.edu, stories.tamu.edu and api.nsf.gov answered** (the Aggie AI Foundry release of October 22nd,
+the Stories piece of October 26th, the PhaseForge release of September 4th and the NSF award record 2534344 as JSON).
+The NSF record's `perfCity` gives College Station, which no claim of this run carries.
+
+**www.tceq.texas.gov answered** the stormwater permitting page behind tx-2026-0182's new claims (STEERS closed for data
+center review, the multi sector general permit renewal).
+
+**A browser user agent probe of the boundary items was refused by the auto mode classifier** as bot check
+circumvention, and the run re-measured all 30 boundaries with the project's own agent only.
+
+## 2026-11-02
+
+**www.swri.org answered** the newsroom release on the automated survey of unrestrained dogs, and **www.sa.gov answered**
+the City of San Antonio news release of October 20th and the Animal Care Services statistics page.
+
+**The ACS 2019 Unrestrained Dog Study PDF on www.sa.gov was not read.** The fact checker's fetch of
+`/files/assets/main/v/1/acs/documents/unrestraineddogstudy-fy19.pdf` exceeded the fetcher's size limit, so no 2019 finding
+entered the claims. `scripts/shared/fetch_doc.py` was not tried on it this run, and it is the route a later run should try
+first.
+
+**The Federal Register poll failed at discovery**, and the scouts' sweep was folded in instead.
+
+## 2026-11-03
+
+**www.sec.gov answered** Aurora Innovation's third quarter 2026 shareholder letter on EDGAR, and **ir.aurora.tech answered**
+Aurora's own Dallas to Houston release. **www.sa.gov answered** the City of San Antonio pages behind tx-2026-0238, with
+Texas Public Radio as the secondary report.
+
+**Re-verification confirmed nothing this run.** Of 71 URLs behind 215 claims, 7 answered 304, 17 sent a body, 10 did not
+answer and 37 were refused by the crawl boundary and never requested. **www.utsouthwestern.edu and www.utep.edu did not
+answer their robots.txt** (URLError, 9 and 8 claims), so the boundary read both as refusing. The 403s came mostly from
+**www.faa.gov** (16 claims), **www.wilcotx.gov** (6, a CivicPlus newsflash), **www.globenewswire.com** (4) and
+**www.brownsvilletx.gov** (3). None was routed around.
+
+## 2026-11-04
+
+**www.sec.gov answered** Permian Resources' third quarter 2026 results release (Exhibit 99.1 to its November 4th
+8-K) and its 2025 Form 10-K, both read through `fetch_doc.py`. **www.texastribune.org answered** the May 21st produced
+water article. **corporate.exxonmobil.com answered** its Permian drilling automation post, which was verified and left
+out of the deck. **www.rrc.texas.gov answered** `/general-counsel/` and `/general-counsel/open-meetings/`, which carry
+the next open meeting date. **`/about-us/commissioners/open-meetings/` and `/about-us/open-meetings/` returned 404**,
+so the open meetings list lives under General Counsel, not About Us.
+
+**www.utep.edu and www.utsouthwestern.edu failed TLS and robots.txt again** (URLError, as on 2026-11-03), which held
+items past the staleness band until alternate primary sources were used. www.utep.edu is recorded on tx-2026-0227 as
+`blocks_every_client`, checked 2026-11-05. None was routed around.
+
+## 2026-11-05
+
+**www.angelinacounty.net's robots.txt no longer refuses this project's path** for tx-2026-0044's cited pages, measured
+2026-11-05 by `reverify.robots_refuses`. www.kltv.com and lufkindailynews.com still refuse. The item's claim-source
+declaration was not refreshed, so the county's own page can be read on the next re-verification.
+
+**www.click2houston.com's robots.txt has a new SHA256** (707af1f6...) and still refuses this project. **www.sec.gov
+answered** Applied Optoelectronics' November 5th Exhibit 99.1 and its 10-Q through `fetch_doc.py`, and
+**data.sec.gov answered** the company's submissions index. **investors.ao-inc.com answered 404** to `/node/16916` and
+`/node/16601`, both of which search results listed as press releases. **agendalink.fortbendcountytx.gov answered** a
+2016 signed abatement amendment PDF with a text layer. **www.kut.org's robots.txt refuses this project** on a
+`/energy-environment/` article, so tx-2026-0028's KUT claim stays unconfirmed through that host.
+
+**Every boundary declared on the worklist held**: the ten `blocks_every_client` hosts answered 403 to the project's
+agent on robots.txt and on the cited page (www.wilcotx.gov, www.wichitafallstx.gov, www.keranews.org,
+www.brazoscountytx.gov, www.dhs.gov, www.brownsvilletx.gov, www.mylubbock.us, www.leandertx.gov,
+www.globenewswire.com, www.faa.gov), and www.uta.edu, news.unt.edu, engineering.unt.edu and www.utep.edu did not
+answer robots.txt (URLError). Nothing was routed around.
+
+## 2026-11-06
+
+**corporate.exxonmobil.com answered** its October 26th Permian drilling post and its Permian operations page, and
+**d1io3yog0oux5.cloudfront.net answered** ExxonMobil's third quarter earnings call transcript PDF with a text layer,
+both through `fetch_doc.py`. **www.ajot.com answered** its republication of Reuters' August 24th report on Exxon's
+automated drilling. **The Helmerich & Payne October 7th release answered** through its investor site.
+**pubmed.ncbi.nlm.nih.gov served a cookie wall** to the project's client in place of an abstract, and
+**eutils.ncbi.nlm.nih.gov's robots.txt disallows** this project's path, so a scouted biomedical item was left out rather
+than read another way. **docs.tacc.utexas.edu answered** a public systems registry page. Every boundary declared on the
+worklist was re-measured on November 6th and held. Nothing was routed around.
+
+## 2026-11-07
+
+**A boundary re-measurement requested two pages that robots.txt disallows to this project, and it is disclosed here
+rather than left in a log.** The worklist's `blocks_every_client` check for tx-2026-0041 and tx-2026-0138 asked
+www.newschannel6now.com and www.fox34.com for the cited page itself, one request each, without first reading robots.txt.
+`reverify.py` refuses both paths on robots grounds and so does the crawl boundary. Nothing from either response was read
+into the record or the deck, and both boundary notes still describe the hosts as refusing. The re-measure for that
+boundary class should read robots.txt before it asks for the page.
+
+**dallascityhall.com answered** the Finance Committee briefing of December 9th, 2025 on AI-powered camera technology, a
+PDF with a text layer, through `fetch_doc.py`. **www.govtech.com answered** its republications of the Dallas Morning
+News reports of September 17th and October 20th. **www.fox4news.com answered** its September report on the October 19th
+briefing. **www.nbcdfw.com and www.dallasnews.com stay off limits** to this project and nothing was requested from
+either, so the Dallas Morning News reporting is read through GovTech. **stories.tamu.edu answered** the November 6th
+CrisisSense-LLM release, and **www.tceq.texas.gov answered** the October 19th letter to the Governor through
+`fetch_doc.py`. Every other boundary declared on the worklist was re-measured on November 7th and held.

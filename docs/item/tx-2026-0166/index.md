@@ -42,6 +42,11 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-29 · The three campus fetal movement trial is still unconfirmed on the federal trials registry, which bars automated readers.
 - 2026-10-30 · The fetal movement trial at three campuses remains unconfirmed on the federal trials registry, which still bars automated readers.
 - 2026-10-31 · The trial of a phone microphone that counts fetal movement is still unconfirmed on the federal trials registry, which refuses automated readers.
+- 2026-11-01 · The phone microphone trial for counting fetal movement stays unconfirmed. The federal trials registry still refuses this project.
+- 2026-11-03 · The phone microphone trial for counting fetal movement remains unconfirmed. The federal trials registry still refuses this project.
+- 2026-11-05 · The phone microphone trial for fetal movement has no fresh reading. The federal trials registry still refuses this project.
+- 2026-11-06 · The three campus trial of a phone microphone for fetal movement is unconfirmed today. The federal trials registry still refuses this project.
+- 2026-11-07 · The three campus trial of a phone microphone for fetal movement has no newer reading. The federal trials registry keeps refusing this project.
 
 ## Evidence
 

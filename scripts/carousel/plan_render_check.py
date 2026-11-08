@@ -709,7 +709,12 @@ def palette_map(storyboard: str) -> dict:
         if " " not in name:
             out[name] = hexv.upper()
     for span in palette_sections(storyboard):
-        for pat in (PALETTE_ROW, PALETTE_PLAIN, PALETTE_COLUMNS):
+        # THE SIXTH SHAPE, 2026-11-03: one comma separated line of `name #HEX` pairs under the
+        # palette heading, which nos. 66 and 67 both wrote and which read as ZERO tokens, so the
+        # calibration below went red on two decks whose palettes were declared plainly. Read with
+        # the prose pattern, scoped to the palette section like the other loose shapes, and last,
+        # so a table or a line of its own keeps its value.
+        for pat in (PALETTE_ROW, PALETTE_PLAIN, PALETTE_COLUMNS, PALETTE_PROSE):
             for name, hexv in pat.findall(span):
                 name = name.strip().lower()
                 if " " not in name and name not in ("token", "hex", "colour", "color"):
@@ -820,6 +825,75 @@ def section(body: str, key: str) -> str:
 _ACC_BLOCK = re.compile(r"^acceptance:[^\S\n]*\n((?:(?:  - |    +)\S.*\n)+)", re.M)
 
 
+def _flow_acceptance_items(text: str) -> list[str]:
+    """Read a flow sequence of prose scalars without requiring PyYAML.
+
+    November 5th uses inline lists. Splitting on commas would split quoted assertions,
+    and treating every apostrophe as a quote would swallow plain possessives. Quotes
+    therefore open only at the start of a scalar. This is not a general YAML parser.
+    """
+    items: list[str] = []
+    token = ""
+    quote = ""
+    i = 0
+    while i < len(text):
+        ch = text[i]
+        if quote:
+            token += ch
+            if ch == "\\" and quote == '"' and i + 1 < len(text):
+                i += 1
+                token += text[i]
+            elif ch == quote:
+                if quote == "'" and i + 1 < len(text) and text[i + 1] == "'":
+                    i += 1
+                    token += text[i]
+                else:
+                    quote = ""
+        elif ch in "\"'" and not token.strip():
+            quote = ch
+            token += ch
+        elif ch == "#" and (not token or token[-1].isspace()):
+            end = text.find("\n", i)
+            i = len(text) if end < 0 else end
+            token += " "
+        elif ch in ",]":
+            value = re.sub(r"[ \t]*\n[ \t]*", " ", token.strip())
+            if value.startswith("'") and value.endswith("'"):
+                value = value[1:-1].replace("''", "'")
+            elif value.startswith('"') and value.endswith('"'):
+                try:
+                    value = json.loads(value)
+                except ValueError:
+                    value = value[1:-1]
+            if value.strip():
+                items.append(value.strip())
+            token = ""
+            if ch == "]":
+                return items
+        else:
+            token += ch
+        i += 1
+    return []  # An unterminated flow list is not a complete acceptance declaration.
+
+
+def _text_acceptance_items(body: str) -> list[str]:
+    flow = re.search(r"^acceptance:[ \t]*\[", body, re.M)
+    if flow:
+        # Stop before the next root field even if this declaration is malformed.
+        tail = re.split(r"\n(?=[A-Za-z_][\w-]*:)", body[flow.end():], maxsplit=1)[0]
+        return _flow_acceptance_items(tail)
+    m = _ACC_BLOCK.search(body)
+    if not m:
+        return []
+    items: list[str] = []
+    for ln in m.group(1).splitlines():
+        if ln.strip().startswith("- "):
+            items.append(ln.strip()[2:].strip())
+        elif items:
+            items[-1] += " " + ln.strip()
+    return [re.sub(r'^"|"$', "", it).strip() for it in items if it.strip()]
+
+
 def acceptance_items(body: str) -> list:
     """Every acceptance item in one dossier, INCLUDING the ones that wrap.
 
@@ -853,16 +927,7 @@ def acceptance_items(body: str) -> list:
             return [str(x).strip() for x in doc["acceptance"] if str(x).strip()]
     except Exception:
         pass                                            # fall through to the text route
-    m = _ACC_BLOCK.search(body)
-    if not m:
-        return []
-    items: list[str] = []
-    for ln in m.group(1).splitlines():
-        if ln.strip().startswith("- "):
-            items.append(ln.strip()[2:].strip())
-        elif items:
-            items[-1] += " " + ln.strip()
-    return [re.sub(r'^"|"$', "", it).strip() for it in items if it.strip()]
+    return _text_acceptance_items(body)
 
 
 def rendered_text(report: dict, n: int) -> str:
@@ -1540,6 +1605,35 @@ acceptance:
         ok("an item PAST the wrap is enforced, not just parsed",
            any("appears nowhere" in x for x in f), str(f))
 
+        # Inline YAML must preserve quoted commas, brackets and possessives, including
+        # single-quote escaping used by November 5th's fourth frame.
+        FLOW = r"""acceptance: [the frame's median L* is 30 or lower,
+  'the largest square''s side, including its rim, is visible',
+  "the frame reads 'One office' and \"two, three]\"", # not another item
+  'the phrase "flag red" appears nowhere',]
+risks: [not an acceptance item]
+"""
+        import yaml
+        from unittest.mock import patch
+        expected = yaml.safe_load(FLOW)["acceptance"]
+        ok("flow fallback preserves quoted commas, brackets, escapes and apostrophes",
+           _text_acceptance_items(FLOW) == expected, str(_text_acceptance_items(FLOW)))
+        ok("an empty flow list does not consume the next field",
+           _text_acceptance_items("acceptance: []\nrisks: [not an item]\n") == [])
+        ok("an unclosed flow list does not consume the next field",
+           _text_acceptance_items("acceptance: [unfinished\nrisks: [not an item]\n") == [])
+        with patch.dict(sys.modules, {"yaml": None}):
+            ok("missing PyYAML uses the flow fallback",
+               acceptance_items(FLOW) == expected, str(acceptance_items(FLOW)))
+            ok("missing PyYAML retains every wrapped block item",
+               acceptance_items(body5) == items, str(acceptance_items(body5)))
+            flow_sb = "```yaml\nslide: 5\n" + FLOW + "```\n"
+            f, w, s = check(flow_sb, dd, R3)
+            ok("a forbidden assertion in a flow list is enforced without PyYAML",
+               any("appears nowhere" in x for x in f), str(f))
+        ok("a malformed unrelated field still permits reading flow acceptance",
+           acceptance_items("broken: [\n" + FLOW) == expected)
+
         # BOTH ROUTES READ THE SAME LIST, on the real shipped storyboards rather than on a
         # fixture. GATE_LESSONS 50: the synthetic half proves the logic, and only the half that
         # goes and reads the real artifact would have gone red on the day this broke. If PyYAML
@@ -1549,15 +1643,10 @@ acceptance:
         for bp in boards:
             for n, body in parse_dossiers(bp.read_text(encoding="utf-8")).items():
                 swept += 1
-                m = _ACC_BLOCK.search(body)
-                fb: list = []
-                for ln in (m.group(1).splitlines() if m else []):
-                    if ln.strip().startswith("- "):
-                        fb.append(ln.strip()[2:].strip())
-                    elif fb:
-                        fb[-1] += " " + ln.strip()
-                fb = [re.sub(r'^"|"$', "", it).strip() for it in fb if it.strip()]
-                if len(fb) != len(acceptance_items(body)):
+                fb = _text_acceptance_items(body)
+                if (len(fb) != len(acceptance_items(body))
+                        or (re.search(r"^acceptance:[ \t]*\[", body, re.M)
+                            and fb != acceptance_items(body))):
                     drift.append(f"{bp.parent.name} slide {n}: "
                                  f"yaml {len(acceptance_items(body))} vs text {len(fb)}")
         ok(f"the yaml route and the text fallback agree over {swept} shipped dossier(s)",

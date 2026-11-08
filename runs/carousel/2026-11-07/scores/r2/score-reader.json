@@ -1,0 +1,22 @@
+{
+ "_note": "Reader lens, round 2, carousel no. 71, returned by carousel-scorer and saved in shape.",
+ "criteria": [
+  {"name": "artwork_craft", "weight": 0.22, "score": 6.2, "why": "01 and 04 pass the bold test, 02 competent in the mid tones. The kit officer reads as a mannequin with a floating vest on 05 and 06, 07 is a column in a void with most of the frame dead, 08's blank cards explain nothing, 03's analyst is a hair blob at the edge."},
+  {"name": "deck_coherence", "weight": 0.12, "score": 6.8, "why": "One dusk, one parcel, one key, the bluebonnet motif works, the value track stays dark. 08 sits outside, 07 has no world, and 06 and 07 show the same tower at units 175 times apart."},
+  {"name": "claim_integrity", "weight": 0.20, "score": 6.8, "why": "Every numeral traces. Slides 03, 05, 06 and 07 say 'the memo says' without the news attribution; S3 widens c50 to every detection; S8 and the caption leave the briefing reading as still ahead; the 07 column invites a 68 percent of scans reading; c59 missing from the first comment."},
+  {"name": "story_and_stakes", "weight": 0.16, "score": 6.2, "why": "A notice is not a citation, a citation needs an inspection, most of the 57 landed in Districts 4, 8 and 7. Missing: who approved the contract and when, the next appropriation date, the briefing's outcome and any route to act."},
+  {"name": "sequence_and_momentum", "weight": 0.10, "score": 6.5, "why": "A clean process walk. The cover hook is soft and the caption's strongest line is not on frame 1; 03 and 05 overlap; 08 stalls; 09 closes on reassurance."},
+  {"name": "voice", "weight": 0.10, "score": 7.0, "why": "Clean and Dallas-specific. 'the memo says' repeats and the cover dek spends space on the illustration disclosure."},
+  {"name": "variety", "weight": 0.10, "score": 6.0, "why": "New palette and human-chain structure, familiar staged world and stacked units, and the same docket item as no. 31 on September 21st, outside the window."}
+ ],
+ "weighted_score": 6.48,
+ "hard_fails": [],
+ "ship": false,
+ "artwork_weakest_frames": [
+  {"slide": 7, "problem": "A column in a void that looks like 06's tower at a different unit, breaking 'at the same scale'.", "fix": "Keep 06's scale: split the 57-card sheaf into piles of 39 and 18 on the curb at macro, eye 0.3 m."},
+  {"slide": 8, "problem": "Three blank cards on mid-tone wood carry the labels and none of the terms.", "fix": "One lit object that carries the term in a tight window-key pool, the room near black."},
+  {"slide": 6, "problem": "The mannequin officer front-lit beside the column.", "fix": "Turn him three quarters away with a rim-lit silhouette facing the column's top."},
+  {"slide": 5, "problem": "A doll-like face is the first thing the eye lands on; the pile cut off.", "fix": "Reframe close on the hands and the clipboard over the lit pile, cropped at the chest."},
+  {"slide": 3, "problem": "The analyst's head a hair blob at the left edge, monitors primitive.", "fix": "Keep only a shoulder silhouette and move the camera in so the trays fill the lower half."}
+ ]
+}

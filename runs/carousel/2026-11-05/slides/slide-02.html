@@ -1,0 +1,72 @@
+<!doctype html>
+<!-- 2026-11-05, frame 2 of 9. Archetype CLOSE_CROP. A spatial scene through txthree.js in the dark TXT.interior bay of frame 1, at macro: the chassis osfp_module, an OSFP class optical transceiver 0.108 m long with a finned black lid, a pull tab and gold edge fingers, lying across the gold tape corner of the frame 1 gold pad, raked by the door light. Drawn to illustrate, to no maker's design. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:900px">It makes optics for AI data centers</h1>
+<p class="dek" data-follow="26" style="width:860px">The company makes optical transceivers for internet and AI data centers. Its chief executive says the company believes demand for AI-related optical technologies is accelerating. The module is drawn to illustrate.</p>
+<script>window.FIG = {};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-05-dockdoor.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "The part", counter: "02 / 09", src: "c5 c7 c17", fit: { min: 84, max: 108, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 30, near: 0.01, far: 200, fog: 0.004, exposure: 1.15 });
+  const room = TXT.interior(R, CH.bayRoom());
+  const B = CH.bay(THREE, R, TXT, K, { room, pads: 20, isGold: (i) => i === 12, joists: false });
+  const yaw = B.G.rotation.y, pad = B.pads[12];
+  /* the module across the pad's near left tape corner, its optical end toward the door */
+  const m = K.make('osfp_module', {});
+  /* the module just inside the pad's near left corner, so the gold tape's two strips run past it at the frame's edges */
+  const at = [pad.position.x - 0.8, 0.0055, pad.position.z + 0.9];
+  m.position.fromArray(B.toWorld(at)); m.rotation.y = yaw + Math.PI - 0.62; TXT.add(R, m);
+  /* the whole module in frame: the camera stands off its host end, so the gold fingers are nearest the lens, the finned
+   * lid runs away down its length and the pull tab lies on the tape at the far end */
+  m.updateMatrixWorld(true);
+  const ctr = m.localToWorld(new THREE.Vector3(0, 0.006, 0.004)), host = m.localToWorld(new THREE.Vector3(0, 0.006, -0.06));
+  const ax = new THREE.Vector3().subVectors(host, ctr).setY(0).normalize(), side = new THREE.Vector3(-ax.z, 0, ax.x);
+  /* nothing small of the bay's stands between the lens and the module: the pad's levelling studs near it are lifted out */
+  { const bx = new THREE.Box3(), c = new THREE.Vector3(), mine = new Set(); m.traverse((o) => mine.add(o));
+    R.scene.traverse((o) => { if (!o.isMesh || mine.has(o)) return; bx.setFromObject(o); const sz = bx.getSize(new THREE.Vector3()); bx.getCenter(c);
+      if (Math.max(sz.x, sz.y, sz.z) < 0.6 && Math.hypot(c.x - ctr.x, c.z - ctr.z) < 0.45) o.visible = false; }); }
+  const from = [ctr.x + ax.x * 0.245 + side.x * 0.12, 0.16, ctr.z + ax.z * 0.245 + side.z * 0.12];
+  const look = CH.aim(THREE, R, TXT, from, [ctr.x, ctr.y, ctr.z], 520, 905, 30);
+  TXT.frame(R, { fov: 30, from, look });
+  /* the key's shadow box fitted to the module, so its fins cast at this scale */
+  CH.KEY_SCALE = 0.9; CH.doorSpill(THREE, R, B, { at: 18, i: 260 });
+  TXT.deckRig(R, CH.rigSpec(W, 0.5, 4096), CH.rigOpts(B.toWorld(at), { distance: 3, shadowFar: 6, normalBias: 0.0004 }));
+  R.scene.traverse((l) => { if (l.isDirectionalLight && l.castShadow) { l.shadow.camera.near = 0.05; l.shadow.bias = -0.00005; l.shadow.camera.updateProjectionMatrix(); } });
+  CH.bayFill(R);
+  /* at this scale the surface under the module shows its own grit and trowel marks: a fine concrete grain laid as a
+   * decal on whatever the module rests on, found by a ray straight down beside it */
+  { const mine = new Set(); m.traverse((o) => mine.add(o)); const hits = new THREE.Raycaster(new THREE.Vector3(ctr.x + 0.05, 2, ctr.z + 0.05), new THREE.Vector3(0, -1, 0)).intersectObjects(R.scene.children, true).filter((h) => !mine.has(h.object) && h.object.visible && h.object.isMesh);
+    const y0 = hits.length ? hits[0].point.y : 0;
+    const t = K.tex('concrete', { color: '#4a4c4e' }).clone(); t.wrapS = t.wrapT = THREE.RepeatWrapping; t.repeat.set(6, 6); t.needsUpdate = true;
+    const dec = new THREE.Mesh(new THREE.PlaneGeometry(1.4, 1.4), new THREE.MeshStandardMaterial({ map: t, bumpMap: t, bumpScale: 0.8, roughness: 0.6, polygonOffset: true, polygonOffsetFactor: -2, polygonOffsetUnits: -2 }));
+    dec.rotation.x = -Math.PI / 2; dec.position.set(ctr.x, y0 + 0.0002, ctr.z); dec.receiveShadow = true; R.scene.add(dec); }
+  /* the door's spill reaching this corner of the pad: a soft warm pool on the epoxy round the module, so it lies on a floor */
+  { const pl = new THREE.SpotLight(0xffc596, 2.2, 1.6, 0.75, 1.0, 1.6); pl.position.set(ctr.x + 0.12, 0.55, ctr.z - 0.1); pl.target.position.set(ctr.x, 0, ctr.z); pl.castShadow = true; pl.shadow.mapSize.set(2048, 2048); pl.shadow.bias = -0.0002; pl.shadow.camera.near = 0.05; R.scene.add(pl); R.scene.add(pl.target); }
+  TXT.weather(R, { grime: 0.4, height: 0.05, mottle: 0.45 });
+  const cx = CH.develop(await TXT.snapshot(R, { stage: false }), gl);
+  CH.post(cx, { a: 0.5, veil: 0.45, veilH: 300 });
+  CH.footWash(cx);
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

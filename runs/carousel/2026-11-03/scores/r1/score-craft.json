@@ -1,0 +1,113 @@
+{
+ "judge": "craft",
+ "carousel_no": 67,
+ "round": 1,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.0,
+   "why": "Every frame is rendered and dark, and the type sits light on real dark field with no plates. That keeps the deck clear of the 4 descriptor. It does not reach the 7 descriptor, which allows one weak frame, because four frames lean on a default, a primitive model or a dead zone. Slide 1 is the best frame, about 7.5. The tractor owns the right centre, the yellow kerb rails converge on the cab, and the flood rakes the cab's right side. Even there the house panes are flat grey, and the tractor's cast is lost under the van, as the audition review also noted. Slide 3: crop r2c2 is an empty grey gradient covering the whole right half. The 'gate' is a striped bar plus a yellow bollard on a concrete pad (crop r3c2), with no cabinet or pivot, so the boom reads as a kerb. flow_craft.json marks this 'repaired: true' and the pixels say it was not. Slide 8 blows the kit cab up to macro. The flat lavender-blue side panel sits in the mid tones (render mean 43.7, the deck's highest, variance 5289). The windshield is a black card with tube A-pillars, and there is no ground or world under the cab. Slide 6 is a textured blue-black rectangle on a mid-grey datum stripe. The billet is a 9 to 10 design px sliver (crop r2c1), and an empty band runs between the dek and the bar. At 432 px (thumb) it reads as a bar chart with a texture, not a physical object. Slide 4: twenty identical front-on tractors in a strip, read as a toy lot. A light horizontal tonal band crosses behind the dek, the step flow_craft named and left unrepaired. The lower third (display y 1500 to 1830) is empty black. Slide 2: the grey asphalt fills most of the lower half, and the approach pads are blank white slabs. Slide 5: the steel rule's face is a large mid-grey field that reads close to a UI slider, though the hex-screw clamp and its cast are good. Slide 7 is legible but contradicts its own acceptance ('county lines albedo only'). The borders are raised with stair-step casts, and the white inlay's cast breaks into black slabs (crop r2c2). Slide 9 works conceptually, but the far primer kerb is a thin line that stops in empty dark under the dek and reads as a rule. The same low-detail kit tractor carries six frames, and at close range (3, 8) its primitive geometry shows."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.0,
+   "why": "This is clearly one deck. It keeps one floodlit night world, and the key stays upper right throughout: casts fall lower left on 1, 3, 5 and 6. One accent carries ONE meaning, rust primer for 'the letter says it will happen'. It appears on the stop bar (3), clamp (5), the $9 million groove (6), the Charger studs and New Braunfels punch (7) and the stall field (9), and it is the strongest continuity device in the deck. The declared cut from scene to relief at frame 5 is the argument's turn, and it was named in the storyboard. Two things hold it at 7. The declared value arc is not visible: greyer frames 2, 5 and 8 alternate with near-black ones, as flow_craft's cross_frame also found. And the 'scale motif evolution' is a claim in the storyboard more than something a reader sees. The rule, bar and stalls do not visibly descend from the scale deck of frames 1 and 2."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.5,
+   "why": "I checked every slide string against claims.json. All 21 story A claims are primary: the SEC EDGAR Q3 letter, plus Aurora's own September 23rd release for c21. The copy keeps the source's tense and hedges: 'the letter says', 'by Aurora's own count', 'non-binding MOU', 'expected'. The $9 million on slide 6 traces to c12, whose quote contains it. Charger's route is never drawn as Aurora's. Two leads, neither a hard fail. First, slide 6's billet-to-bar ratio reads about 92:1 by my eye (billet about 9.5 design px against a bar about 871 px). The acceptance is 257:3 = 85.7 within 3 percent, and a 1 px billet error moves this by about 5 percent, so the integrity judge should take a real measurement. Second, the New Braunfels punch sits on the Charger stud line, so a reader can conflate the AUMOVIO line with Charger's plan."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.0,
+   "why": "What happened and who said it are clear: Aurora's October 28th letter. Where is named: Dallas to Houston, Dallas to Laredo, New Braunfels. The FMCSA exemption names a deciding body. The stake for a Texan stays general. Nothing tells a reader what they can do, and the close's only call is the caption's question. The November checkpoint date is the one deadline."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "The cover earns the swipe, and frame 2 pays at once with the three steps placed on one station. The turn at 5 ('About six weeks behind its own plan') is where understanding changes, and 9 closes on 20 built against 1,000 expected. Slide 8, the beacon, returns to the truck after the relief run and could move without loss. flow_craft itself considered moving it to position 3."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "The copy is clean and on register, and it observes the house rules. I found no colons, dashes or banned words in the slide strings or the caption. 'The deck rides one tractor onto the scale, then weighs the letter's numbers' is a good line. It reads more like careful wire copy than a Texan who knows trucking, though. 'the letter says' recurs on most frames, and the only Texas specificity is place names."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "The weigh station subject and the rust-means-planned device are fresh. Several moves are familiar. A white vehicle hero under a floodlit night world was done on no. 52 (robotaxi, nightSodium) and no. 50 (floodlit crossing), and the kit truck appeared on no. 41. A machined steel rule with bars as a delay or quantity relief was no. 53's move. art_plan.json argues the deck is distinct from 64 to 66, and that is plausible for those three, so it rates as a fresh concept with one familiar move."
+  }
+ ],
+ "weighted_score": 7.13,
+ "weighted_arithmetic": "6.0*0.22 + 7.0*0.12 + 8.5*0.20 + 7.0*0.16 + 7.5*0.10 + 7.0*0.10 + 7.0*0.10 = 1.32 + 0.84 + 1.70 + 1.12 + 0.75 + 0.70 + 0.70 = 7.13",
+ "hard_fails": [],
+ "ship": false,
+ "ship_note": "No hard fail found. ship is false only because 7.13 is under the round 1 rung of 8.0, so this is a threshold dissent and not a fault.",
+ "named_defects": [
+  "Slide 3: right half is a dead grey gradient (crop r2c2). The gate has no cabinet or pivot, so the boom reads as a kerb. flow_craft.json records this as repaired, and it is not.",
+  "Slide 8: the kit cab at macro shows primitive geometry, a flat lavender mid-tone side panel, a black-card windshield and no ground.",
+  "Slide 6: reads as a textured bar chart. The billet is a sliver at 432 px, an empty band sits between the dek and the bar, and the datum is a mid-grey stripe.",
+  "Slide 4: frontal, identical toy-lot lineup, a tonal band behind the dek and an empty lower third.",
+  "Slide 2: mid-grey asphalt fills the lower half, with blank white approach pads. The 'scale configuration' label is 23 px, under the 24 px floor (machine_qa warn).",
+  "Slide 5: the rule face is a big mid-grey field and reads as a slider.",
+  "Slide 7: county borders are raised with stair-step casts, against the storyboard's own 'albedo only' acceptance, and the inlay's cast breaks into slabs.",
+  "Slide 9: the far primer kerb ends abruptly under the dek and reads as a rule. Far-rank sleeper backs are plain grey boxes.",
+  "Cross frame: the same low-detail kit tractor grille faces the camera on 1, 2, 3, 4 and 9, plus the cab on 8. The declared value arc is not visible."
+ ],
+ "gate_leads": [
+  "out/2026-11-03/art_preflight.json shows review.decision 'accept' while needs_review is [2]. Either slide 2's review is stale or the manifest is inconsistent.",
+  "Slide 6 acceptance 'bar/billet = 257/3 within 3 percent': my reading is about 92:1. The integrity judge should take a real measurement."
+ ],
+ "one_sentence_fix": "Recompose slides 3 and 8 so they stop magnifying the low-detail kit tractor into dead zones: 3 as a three-quarter view with a built, lit guard booth and the boom's pivot filling the empty right half, and 8 pulled back to the whole stopped tractor on a dark shoulder with the amber beacon as the only warm light spilling onto the cab roof and asphalt.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 3,
+   "problem": "The whole right half is an empty grey gradient (crop r2c2), and the gate is a striped bar plus a yellow bollard with no cabinet or pivot (crop r3c2), so it reads as a kerb. The kit truck's hood and grille show primitive geometry at this range.",
+   "fix": "Swing the camera to a three-quarter view so a modelled guard booth, with a lit window and the boom's pivot cabinet, stands at design x 620 to 1000 and fills the right half. Delete the bollard, and let the headlamps throw their pool onto the primer stop bar."
+  },
+  {
+   "slide": 8,
+   "problem": "The macro shot exposes the kit cab: a flat lavender-blue side panel in the mid tones (mean 43.7, the deck's highest), a black-card windshield with tube pillars and a white fairing hotspot. There is no ground, so the frame is an object in a void.",
+   "fix": "Pull the camera back to about 25 m for a rear-quarter view of the whole stopped tractor on a dark shoulder. Make the beacon the only warm source, casting an amber pool on the cab roof and asphalt, and keep the flood off the cab side."
+  },
+  {
+   "slide": 6,
+   "problem": "This is a textured blue-black rectangle on a mid-grey datum stripe, and it reads as a bar chart. The $3 million billet is a 9 to 10 px sliver at full size and nearly vanishes at 432 px. An empty dark band separates the dek from the bar.",
+   "fix": "Lay the billet and the loss bar on frame 1's diamond-tread scale deck, with its yellow kerb rail as the datum, raked by the key. Give the billet a polished, specular top face so it reads at feed size, and raise the assembly about 120 px to close the empty band."
+  },
+  {
+   "slide": 4,
+   "problem": "Twenty identical tractors seen straight on in a thin strip read as a toy lot. A light tonal band crosses behind the dek, and the lower third is empty black.",
+   "fix": "Drop to the storyboard's 6 m eye at a 30 degree oblique, so the two ranks recede to the right with casts visible and the near rank's noses fill the lower third. Kill the horizon band behind the dek."
+  },
+  {
+   "slide": 2,
+   "problem": "Grey asphalt fills most of the lower half, so the frame sits in the grey middle. The approach pads are blank white slabs, and the house has no canopy.",
+   "fix": "Tighten the stage pool to the fork and the near deck, so asphalt outside it drops near black. Give the two approach pads concrete joints and the house a canopy over its door."
+  },
+  {
+   "slide": 5,
+   "problem": "The ground steel face is a large mid-grey field across the frame, and it reads as a UI slider rather than a machined rule.",
+   "fix": "Darken the rule's face albedo to blued tool steel. Keep the brightness on the groove bevels and the clamp's lit top only, so the steel lives near black with bright edges."
+  },
+  {
+   "slide": 7,
+   "problem": "County borders are raised with stair-step casts, against the storyboard's own albedo-only acceptance, and the white inlay's cast breaks into black slabs near Dallas (crop r2c2).",
+   "fix": "Move the county lines into the albedo with zero height, and give height only to the bead inlay, the primer studs and the pins, so the two routes are the only relief that casts."
+  },
+  {
+   "slide": 9,
+   "problem": "The far primer kerb is a thin line that stops abruptly in empty dark under the dek, so it reads as a stray rule rather than the end of a 1,000 stall field.",
+   "fix": "Turn the far kerb into a stall-field corner that runs full width and returns down the right side, faintly lit by a second mast so the field visibly ends there."
+  }
+ ],
+ "lens": "craft"
+}

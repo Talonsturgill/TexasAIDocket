@@ -1,0 +1,89 @@
+{
+ "lens": "craft",
+ "round": 2,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.0,
+   "why": "Every frame a physical render on a dark field, encodings measure correctly, machine_qa clean. Subjects rarely lit as forms. 1 best but beam, horsehead and post pure black. 3 flat-shaded primitives and untextured wellhead, hard to name at feed size. 7 white rings read as coins, labels float, a blob behind. 2 a shadow wedge with no visible caster, no curl, clip a black rectangle. 4 sine corrugation, counterweight clips white. 5 square rods, flat tag, empty top tread. 6 mid-tone tanks with dot weathering. 9 most complete, ids over the legs. Between 4 and 7, closer to 7."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.0,
+   "why": "One type system, one dusk, dark fields, accent on figure frames, the camera move works. Crank motif and sky hue fail; reliefs disagree on light; 6's olive wall sits slightly outside."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.0,
+   "why": "Every numeral traces. Looser: the pump-jack image asserts rod lift where c1 says only artificial lift; the regulator line rests on the Tribune; the first comment printed a raw source-type token."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.5,
+   "why": "Who, what and a next date are present. Where stops at a leasehold share though c17 names Reeves County. The stake stays abstract and nothing ties the meeting to this item."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "Cover and 2 work; turns at 3 and 8. 6 cuttable, 5 half cuttable. The close asks the right question."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Clean and on register with specific vocabulary. Frame copy is mostly flat recitation; 8's hook truncates."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "Topic new to the window. lastLight again; the lone machine at last light opener and the closed ranch gate echo no. 62."
+  }
+ ],
+ "weighted_score": 6.6,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Light the subjects rather than the sky, with a low raking work light in the chassis rig and real material response on the kit models.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 7,
+   "problem": "White rings read as coins; bodies smear; labels float; a blob behind.",
+   "fix": "Chamfered box ends with recessed bores in worn steel, key raked from the left at about 6 degrees; remove the blob."
+  },
+  {
+   "slide": 3,
+   "problem": "Flat-shaded primitives, untextured wellhead, subject unidentifiable, left half empty.",
+   "fix": "Camera to 0.6 m and in until the rod and stuffing box fill the right two thirds; galvanized tee and valve with cavity grime."
+  },
+  {
+   "slide": 2,
+   "problem": "A shadow wedge with no visible caster; no curl; clip a black rectangle.",
+   "fix": "Raise the far corner so the wedge is visibly cast by the curl; seat the page with a thin contact shadow."
+  },
+  {
+   "slide": 5,
+   "problem": "Square rods; flat tag; empty top 40 percent.",
+   "fix": "Round rod profile with round couplings and flats; move the pair up into the middle band."
+  },
+  {
+   "slide": 4,
+   "problem": "Sine corrugation; counterweight clips white.",
+   "fix": "Noise bedding on strata_block; lower the counterweight albedo."
+  },
+  {
+   "slide": 6,
+   "problem": "Flat mid-tone tank wall; dot weathering reads as mould.",
+   "fix": "Hard side key so each shell rolls to black; vertical rust streaks from the seams."
+  },
+  {
+   "slide": 1,
+   "problem": "Jack near-pure black apart from the crank.",
+   "fix": "Widen the work light to rake the beam web and horsehead face."
+  }
+ ]
+}

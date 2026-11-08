@@ -1,0 +1,72 @@
+{
+ "_note": "Reader lens, round 5 (past the cap), carousel no. 71, saved in shape.",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.5,
+   "why": "Right value register; 1, 2, 4 and 9 solid; 7 two flat aliased slabs; 8 blank folders; mannequin officer with a thick clipboard; the cover a generic box on a white wall. Slide 6's column holds 1.15 against 1.14."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "One street, one parcel, one accent changing state; 7 and 8 sit outside the world."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.5,
+   "why": "Every numeral traces with careful attribution; slide 6 mixes citation and property units; the briefing West secured reads as still pending."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.5,
+   "why": "The mechanism, scale, place and cost land with a useful close; no dated next decision and no why now."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Clean process order and a paying frame 2; the cover does not earn the swipe; 4 and 9 overlap."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "On register and Texas-specific; caption attribution stacks; slide 8's December lacks its year."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.0,
+   "why": "Legal topic but no. 31's spine retold with no new dated fact; familiar hardware cover."
+  }
+ ],
+ "weighted_score": 6.87,
+ "hard_fails": [],
+ "ship": true,
+ "artwork_weakest_frames": [
+  {
+   "slide": 7,
+   "problem": "Two flat aliased slabs; no card countable.",
+   "fix": "Fan with visible offsets under a grazing key from a 0.3 m eye."
+  },
+  {
+   "slide": 8,
+   "problem": "Blank folders carry no money, year or deadline.",
+   "fix": "Three paper stacks, one per contract year, the first lit."
+  },
+  {
+   "slide": 6,
+   "problem": "Mannequin officer, thick clipboard.",
+   "fix": "Fit the vest, thin the sheaf to 11 mm, turn him away."
+  },
+  {
+   "slide": 1,
+   "problem": "A generic box on a white wall.",
+   "fix": "Pull back so cut limbs and a lit house across the street show."
+  }
+ ]
+}

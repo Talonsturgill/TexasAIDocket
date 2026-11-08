@@ -2230,5 +2230,170 @@ export function install(K, THREE, TXT) {
     },
   });
 
+  /* ============================ the checkpoint and the scale house ============================
+   * WEEKLY PASS 2026-11-03. Carousel no. 67 built a guard gate and a scale house in its chassis
+   * (assets/js/deck/2026-11-03-scalelane.js) because the kit had neither, and its judges charged
+   * both in every round: frame 3 "the gate cabinet is an unweathered rounded box with a pale
+   * emissive sphere on top and a plain disc hub", with the fix "model the cabinet with a door seam,
+   * a louvre panel and a bolted base plate ... replace the sphere with a caged amber lens"; frame 2
+   * "the house has no canopy", and pixel round 2 "the scale house with no door or canopy". These
+   * are those two models built at the judges' fix, under NEW names, so no. 67's chassis still
+   * installs its own and its frames re-render as shipped. */
+  const CK = {
+    clad: () => K.mat('ck-clad', { color: 0xffffff, roughness: 0.5, metalness: 0.3, map: K.tex('corrugated', { color: '#b9bdbc' }) }),
+    booth: () => mat('ck-booth', { color: 0x8f969c, roughness: 0.45, metalness: 0.4 }),
+    dark: () => mat('ck-dark', { color: 0x2d3135, roughness: 0.55, metalness: 0.6 }),
+    black: () => mat('ck-black', { color: 0x131417, roughness: 0.6 }),
+    rubber: () => mat('ck-rubber', { color: 0x1a1b1d, roughness: 0.8 }),
+    yellow: () => mat('ck-yellow', { color: 0xd3a11e, roughness: 0.55, metalness: 0.1 }),
+    white: () => mat('ck-white', { color: 0xe4e5e2, roughness: 0.4 }),
+    red: () => mat('ck-red', { color: 0xa82a20, roughness: 0.4 }),
+    warm: (on) => on ? mat('ck-warm', { color: 0x111111, emissive: 0xffd9a8, emissiveIntensity: 1.7 }) : mat('ck-warmoff', { color: 0x1a1c1e, roughness: 0.6 }),
+    amber: (on) => mat('ck-amber' + (on ? 'on' : ''), { color: 0x6a3a0a, roughness: 0.2, emissive: 0xff8a1e, emissiveIntensity: on ? 2.4 : 0.15 }),
+    go: (on) => mat('ck-go' + (on ? 'on' : ''), { color: 0x041a0a, emissive: 0x1fd15a, emissiveIntensity: on ? 4.5 : 0.1 }),
+    lamp: () => mat('ck-lamp', { color: 0x0b0d10, emissive: 0xf2f6ff, emissiveIntensity: 6 }),
+  };
+  const ckBox = (G, w, h, d, m, x, y0, z, r) => K.box(w, h, d, m, x, y0, z, r, G);
+  /* GLAZING OVER A LIT ROOM IS A SHEEN, NOT A GLASS BOX. The first proof of both models wrapped the
+   * lit room in K.finish.glass, which is opaque, so the room never showed and the booth read as a
+   * black box. A faint reflective sheet over the lit plane carries the highlight and lets the light out. */
+  const sheen = () => mat('ck-sheen', { color: 0x0a0c0e, metalness: 0.9, roughness: 0.08, transparent: true, opacity: 0.2, depthWrite: false });
+  function glazing(G, w, h, x, y, z, rotY) { const g = new THREE.Mesh(new THREE.PlaneGeometry(w, h), sheen()); g.position.set(x, y, z); g.rotation.y = rotY || 0; g.castShadow = false; G.add(g); }
+  // a seam: a dark groove standing a hair proud of a face, from a to b, on a face whose normal is axis n
+  const ckSeam = (G, a, b, w) => K.bar(a, b, w || 0.004, CK.black(), 4, G);
+  /* a bolted base plate with four nuts, seated on y0 */
+  function basePlate(G, w, d, x, y0, z) {
+    ckBox(G, w, 0.02, d, CK.dark(), x, y0, z, 0.004);
+    for (const sx of [-1, 1]) for (const sz of [-1, 1]) K.cyl(0.018, 0.018, 0.025, CK.dark(), x + sx * (w / 2 - 0.05), y0 + 0.02, z + sz * (d / 2 - 0.05), 6, G);
+  }
+  /* a caged amber lens: a short dome on a black collar inside four wire bars and a top ring */
+  function cagedLens(G, x, y0, z, r, on) {
+    K.cyl(r * 1.1, r * 1.15, r * 0.5, CK.black(), x, y0, z, 20, G);
+    const dome = new THREE.Mesh(new THREE.CylinderGeometry(r * 0.85, r, r * 1.3, 20), CK.amber(on)); dome.position.set(x, y0 + r * 0.5 + r * 0.65, z); G.add(dome);
+    const top = new THREE.Mesh(new THREE.SphereGeometry(r * 0.85, 20, 8, 0, PI * 2, 0, PI / 2), CK.amber(on)); top.scale.y = 0.4; top.position.set(x, y0 + r * 1.8, z); G.add(top);
+    for (let i = 0; i < 4; i++) { const a = i * PI / 2 + PI / 4, cx = Math.cos(a) * r * 1.08, cz = Math.sin(a) * r * 1.08; K.bar([x + cx, y0 + r * 0.5, z + cz], [x + cx * 0.8, y0 + r * 2.1, z + cz * 0.8], r * 0.05, CK.black(), 4, G); }
+    const ring = new THREE.Mesh(new THREE.TorusGeometry(r * 0.88, r * 0.05, 4, 20), CK.black()); ring.rotation.x = PI / 2; ring.position.set(x, y0 + r * 2.1, z); G.add(ring);
+  }
+
+  K.define('checkpoint_gate', {
+    size: [9.43, 2.86, 6.0],
+    options: { boom: 0, reader: 'lit', lit: true, beacon: true, arm: 6.4 },
+    note: 'A site security checkpoint: a guard booth on a raised island (steel-clad base with a door, glazing on three sides in mullions, a lit interior, a roof with a drip edge and a rooftop condenser), yellow capped bollards, a barrier operator cabinet with a door seam, louvre panel, padlock hasp and bolted base plate, a caged amber lens on top, a bolted pivot hub with a counterweight, a striped boom arm with a rest post at its tip, and a card reader pedestal with a hooded lit screen at cab window height. boom 0 is down, 1 is up; reader "lit" or "dark"; lit lights the booth; beacon:false drops the lens. Front (+z) faces the arriving truck; the lane runs along z on +x of the booth. Origin at the footprint centre, as K.make centres it.',
+    make(o) {
+      const G = new THREE.Group();
+      const isl = ckBox(G, 2.9, 0.18, 6.0, K.finish.concrete(), 0, 0, 0, 0.04); K.uvBox(isl.geometry, 3);
+      ckBox(G, 0.06, 0.03, 6.0, CK.yellow(), 1.45, 0.16, 0, 0.01);                                    // painted nosing on the lane side
+      for (const z of [-2.75, 2.75]) {
+        K.cyl(0.11, 0.11, 1.0, CK.yellow(), 1.15, 0.18, z, 20, G);
+        const cap = new THREE.Mesh(new THREE.SphereGeometry(0.11, 20, 8, 0, PI * 2, 0, PI / 2), CK.yellow()); cap.position.set(1.15, 1.18, z); G.add(cap);
+        for (const y of [0.85, 0.95]) K.cyl(0.113, 0.113, 0.04, CK.white(), 1.15, y, z, 20, G);   // reflective bands
+      }
+      /* the booth: a 2.0 x 1.7 m steel base, glazing above in mullions, a lit room, a door on -z */
+      const bx = -0.2, by = 0.18, BW = 2.0, BD = 1.7, base = 0.95, glz = 1.2;
+      ckBox(G, BW, base, BD, CK.booth(), bx, by, 0, 0.02);
+      ckBox(G, BW - 0.06, glz, BD - 0.06, CK.warm(o.lit !== false), bx, by + base, 0);
+      glazing(G, BW - 0.06, glz, bx, by + base + glz / 2, BD / 2 - 0.025);
+      glazing(G, BW - 0.06, glz, bx, by + base + glz / 2, -BD / 2 + 0.025, PI);
+      glazing(G, BD - 0.06, glz, bx + BW / 2 - 0.025, by + base + glz / 2, 0, PI / 2);
+      for (const sx of [-1, 1]) for (const sz of [-1, 1]) ckBox(G, 0.07, glz, 0.07, CK.dark(), bx + sx * (BW / 2 - 0.035), by + base, sz * (BD / 2 - 0.035));
+      for (const sz of [-1, 1]) ckBox(G, 0.05, glz, 0.05, CK.dark(), bx, by + base, sz * (BD / 2 - 0.02));           // mid mullions
+      ckBox(G, 0.05, glz, 0.05, CK.dark(), bx + BW / 2 - 0.02, by + base, 0);
+      ckBox(G, BW + 0.02, 0.06, BD + 0.02, CK.dark(), bx, by + base - 0.03, 0, 0.01);                                  // sill
+      ckBox(G, BW + 0.4, 0.16, BD + 0.4, CK.dark(), bx, by + base + glz, 0, 0.02);                                     // roof
+      ckBox(G, BW + 0.44, 0.05, BD + 0.44, CK.black(), bx, by + base + glz + 0.16, 0, 0.01);                          // drip edge
+      ckBox(G, 0.7, 0.32, 0.55, CK.booth(), bx - 0.3, by + base + glz + 0.21, 0, 0.02);                               // rooftop condenser
+      for (let i = 0; i < 6; i++) ckBox(G, 0.6, 0.01, 0.02, CK.black(), bx - 0.3, by + base + glz + 0.27 + i * 0.04, 0.285);
+      // the door, on the lane side's back face: outline, a kick plate, a lever handle
+      const dz = -BD / 2 - 0.004, dx = bx + 0.45;
+      for (const [a, b] of [[[dx - 0.4, by + 0.02, dz], [dx - 0.4, by + 2.0, dz]], [[dx + 0.4, by + 0.02, dz], [dx + 0.4, by + 2.0, dz]]]) ckSeam(G, a, b);
+      ckBox(G, 0.76, 0.22, 0.012, CK.dark(), dx, by + 0.04, dz - 0.004, 0.003);
+      ckBox(G, 0.14, 0.025, 0.04, CK.dark(), dx - 0.28, by + 1.0, dz - 0.02, 0.008);
+      ckBox(G, 0.3, 0.16, 0.12, CK.lamp(), bx, by + base + glz - 0.2, BD / 2 + 0.08);                                  // wall pack facing the lane head-on
+      /* the barrier operator: cabinet, base plate, louvres, door seam, hasp, lens; then hub and arm */
+      const cx = 1.15, cz = -2.1, cw = 0.42, cd = 0.46, chh = 1.05;
+      basePlate(G, cw + 0.16, cd + 0.16, cx, 0.18, cz);
+      ckBox(G, cw, chh, cd, CK.yellow(), cx, 0.2, cz, 0.012);
+      ckBox(G, cw + 0.04, 0.03, cd + 0.04, CK.yellow(), cx, 0.2 + chh, cz, 0.008);                                       // lid lip
+      const face = cz + cd / 2 + 0.002;
+      ckSeam(G, [cx - cw / 2 + 0.04, 0.26, face], [cx - cw / 2 + 0.04, 0.2 + chh - 0.06, face]);
+      ckSeam(G, [cx + cw / 2 - 0.04, 0.26, face], [cx + cw / 2 - 0.04, 0.2 + chh - 0.06, face]);
+      ckSeam(G, [cx - cw / 2 + 0.04, 0.26, face], [cx + cw / 2 - 0.04, 0.26, face]);
+      ckSeam(G, [cx - cw / 2 + 0.04, 0.2 + chh - 0.06, face], [cx + cw / 2 - 0.04, 0.2 + chh - 0.06, face]);
+      for (let i = 0; i < 6; i++) { const l = ckBox(G, cw - 0.16, 0.014, 0.02, CK.dark(), cx, 0.38 + i * 0.045, face + 0.006); l.rotation.x = -0.5; }
+      ckBox(G, 0.03, 0.08, 0.025, CK.dark(), cx + cw / 2 - 0.08, 0.7, face + 0.01, 0.004);                                // hasp
+      if (o.beacon !== false) cagedLens(G, cx, 0.2 + chh + 0.03, cz, 0.065, o.lit !== false);
+      // the pivot: a bolted hub on the lane face of the cabinet, a counterweight behind
+      const arm = new THREE.Group(); arm.position.set(cx + cw / 2 + 0.06, 0.95, cz); arm.rotation.z = (o.boom || 0) * PI / 2.1; G.add(arm);
+      const hub = new THREE.Mesh(new THREE.CylinderGeometry(0.13, 0.13, 0.08, 28), CK.dark()); hub.rotation.x = PI / 2; arm.add(hub);
+      for (let i = 0; i < 6; i++) { const a = i * PI / 3, nut = new THREE.Mesh(new THREE.CylinderGeometry(0.015, 0.015, 0.03, 6), CK.black()); nut.rotation.x = PI / 2; nut.position.set(Math.cos(a) * 0.09, Math.sin(a) * 0.09, 0.05); arm.add(nut); }
+      const cap2 = new THREE.Mesh(new THREE.CylinderGeometry(0.045, 0.045, 0.04, 16), CK.black()); cap2.rotation.x = PI / 2; cap2.position.z = 0.07; arm.add(cap2);
+      ckBox(arm, 0.5, 0.2, 0.12, CK.dark(), -0.4, -0.1, 0, 0.02);                                                        // counterweight
+      const len = o.arm || 6.4, segs = Math.max(4, Math.round(len / 0.55));
+      for (let i = 0; i < segs; i++) { const seg = TXT.roundedBox(len / segs, 0.11, 0.09, 0.02, i % 2 ? CK.red() : CK.white()); seg.position.set(0.15 + (i + 0.5) * len / segs, 0, 0); arm.add(seg); }
+      ckBox(arm, len, 0.02, 0.1, CK.rubber(), 0.15 + len / 2, -0.07, 0);                                                  // rubber skirt under the arm
+      // the rest post at the arm's tip, a fork it drops into
+      const tipX = cx + cw / 2 + 0.06 + 0.15 + len;
+      if (!o.boom) {
+        K.cyl(0.05, 0.05, 0.85, CK.yellow(), tipX - 0.1, 0, cz, 12, G); basePlate(G, 0.22, 0.22, tipX - 0.1, 0, cz);
+        for (const sz of [-1, 1]) ckBox(G, 0.04, 0.14, 0.02, CK.dark(), tipX - 0.1, 0.85, cz + sz * 0.06);
+      }
+      /* the card reader pedestal before the gate, at a cab's window height, with a hood over its screen */
+      const px = 1.15, pz = 1.5;
+      basePlate(G, 0.3, 0.3, px, 0.18, pz);
+      K.cyl(0.06, 0.06, 1.85, CK.dark(), px, 0.2, pz, 16, G);
+      const head = new THREE.Group(); head.position.set(px + 0.05, 2.0, pz); head.rotation.y = PI / 2 - 0.35; G.add(head);
+      head.add(TXT.roundedBox(0.36, 0.48, 0.2, 0.03, CK.black()));
+      const scr = new THREE.Mesh(new THREE.PlaneGeometry(0.22, 0.16), CK.go(o.reader === 'lit')); scr.position.set(0, 0.07, 0.101); head.add(scr);
+      const hood = TXT.roundedBox(0.36, 0.02, 0.12, 0.006, CK.black()); hood.position.set(0, 0.24, 0.12); hood.rotation.x = 0.2; head.add(hood);
+      for (let i = 0; i < 3; i++) for (let j = 0; j < 4; j++) { const k = TXT.roundedBox(0.04, 0.03, 0.012, 0.004, CK.dark()); k.position.set(-0.06 + i * 0.06, -0.1 - j * 0.04, 0.104); head.add(k); }
+      G.userData.reader = [px + 0.05, 2.07, pz];
+      G.userData.lens = [cx, 0.2 + chh + 0.15, cz];
+      return G;
+    },
+  });
+
+  K.define('weigh_house', {
+    size: [4.85, 3.85, 4.65],
+    options: { lit: true, canopy: true },
+    note: 'A weigh station scale house about 4.2 by 3.2 m on a raised concrete plinth, corrugated steel clad, a roof with a fascia and drip edge, a wide window on the scale side (+x) lit warm from inside in a mullioned frame with a sill, a framed door with a kick plate and lever on +z under a steel canopy hung on two tie rods, concrete steps with a pipe handrail, a wall pack lamp under the canopy and a wall air conditioner on -x. lit:false darkens the room; canopy:false drops it.',
+    make(o) {
+      const G = new THREE.Group(), on = o.lit !== false;
+      const plinth = ckBox(G, 4.4, 0.6, 3.4, K.finish.concrete(), 0, 0, 0, 0.03); K.uvBox(plinth.geometry, 3);
+      const body = ckBox(G, 4.2, 2.7, 3.2, CK.clad(), 0, 0.6, 0, 0.03); K.uvBox(body.geometry, 1);
+      for (const sx of [-1, 1]) for (const sz of [-1, 1]) ckBox(G, 0.08, 2.7, 0.08, CK.dark(), sx * 2.1, 0.6, sz * 1.6, 0.01);   // corner trims
+      ckBox(G, 4.6, 0.2, 3.6, CK.dark(), 0, 3.3, 0, 0.02);                                                                  // roof slab
+      ckBox(G, 4.66, 0.08, 3.66, CK.black(), 0, 3.26, 0, 0.01);                                                             // drip edge
+      ckBox(G, 0.9, 0.35, 0.7, CK.booth(), -1.0, 3.5, -0.4, 0.02);                                                          // rooftop unit
+      // the scale side window: glass, the lit room behind it, mullions, a head and a sill
+      ckBox(G, 0.02, 1.1, 2.4, CK.warm(on), 2.105, 1.65, 0);
+      glazing(G, 2.4, 1.1, 2.125, 2.2, 0, PI / 2);
+      for (const z of [-1.2, -0.4, 0.4, 1.2]) ckBox(G, 0.07, 1.14, 0.06, CK.dark(), 2.15, 1.63, z);
+      ckBox(G, 0.07, 0.07, 2.5, CK.dark(), 2.15, 2.75, 0); ckBox(G, 0.16, 0.06, 2.56, CK.dark(), 2.18, 1.6, 0, 0.01);
+      // the door on +z: frame, slab, kick plate, lever, and a small wired glass light in it
+      const dx = -1.1, fz = 1.6;
+      ckBox(G, 1.06, 2.15, 0.06, CK.dark(), dx, 0.6, fz + 0.02);
+      ckBox(G, 0.9, 2.05, 0.05, CK.booth(), dx, 0.6, fz + 0.05, 0.006);
+      ckBox(G, 0.86, 0.25, 0.012, CK.dark(), dx, 0.63, fz + 0.08, 0.003);
+      ckBox(G, 0.14, 0.025, 0.04, CK.dark(), dx + 0.3, 1.6, fz + 0.1, 0.008);
+      ckBox(G, 0.3, 0.45, 0.012, CK.warm(on), dx, 1.95, fz + 0.08);
+      if (o.canopy !== false) {
+        ckBox(G, 1.8, 0.1, 1.2, CK.dark(), dx, 2.95, fz + 0.6, 0.015);                                                    // canopy deck
+        ckBox(G, 1.84, 0.05, 1.24, CK.black(), dx, 3.05, fz + 0.6, 0.01);
+        for (const sx of [-1, 1]) K.bar([dx + sx * 0.8, 3.25, fz + 0.02], [dx + sx * 0.8, 3.02, fz + 1.12], 0.015, CK.dark(), 6, G);   // tie rods from the wall
+        ckBox(G, 0.32, 0.12, 0.2, CK.lamp(), dx, 2.83, fz + 0.2);                                                       // wall pack under it
+      }
+      // the steps and a pipe handrail on the open side
+      for (let s = 0; s < 3; s++) { const st = ckBox(G, 1.2, 0.2 * (s + 1), 0.32, K.finish.concrete(), dx, 0, fz + 0.16 + (3 - s) * 0.3, 0.01); K.uvBox(st.geometry, 3); }
+      const hx = dx + 0.62;
+      K.bar([hx, 0.95, fz + 1.2], [hx, 1.55, fz + 0.15], 0.022, K.finish.galvanized(), 8, G);
+      for (const [z, y] of [[fz + 1.2, 0.0], [fz + 0.15, 0.6]]) K.bar([hx, y, z], [hx, y + 0.95, z], 0.022, K.finish.galvanized(), 8, G);
+      // a wall air conditioner on -x
+      ckBox(G, 0.4, 0.5, 0.7, CK.booth(), -2.3, 1.6, 0.6, 0.02);
+      for (let i = 0; i < 7; i++) ckBox(G, 0.012, 0.4, 0.02, CK.black(), -2.51, 1.65, 0.33 + i * 0.09);
+      G.userData.door = [dx, 0.6, fz + 0.1];
+      return G;
+    },
+  });
+
   K.define = coreDefine;
 }

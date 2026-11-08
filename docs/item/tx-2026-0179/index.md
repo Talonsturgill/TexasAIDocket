@@ -11,7 +11,7 @@ The City of Dallas put AI enabled cameras on its sanitation brush trucks to phot
 - Public access: Public meeting
 - Take part: https://dallascityhall.com/government/citymanager/Documents/Council%20Materials/A.%20Sanitation%20and%20Code.pdf
 
-- Last checked: 2026-10-29
+- Last checked: 2026-11-05
 
 ## Dates
 
@@ -38,6 +38,8 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-21 · At the October 19th committee briefing the city reported 50 cameras, 2,928 courtesy notices and 101 formal enforcement actions since mid April. It said it will soften the notice's wording, and a council member called for an audit of the images.
 - 2026-10-24 · Dallas still issues code citations from the AI cameras on its brush trucks, as the city's own records describe.
 - 2026-10-29 · Dallas's first citations from the brush truck AI cameras still read as the city reported them. The station's account is unconfirmed.
+- 2026-11-01 · Dallas still reports code citations issued from the AI cameras on its brush trucks.
+- 2026-11-05 · Dallas's brush truck camera citations still stand as the city reported them.
 
 ## Evidence
 
@@ -180,4 +182,40 @@ Source (journalism): https://www.govtech.com/artificial-intelligence/dallas-revi
 > A council member called for an audit of images to verify that privacy protections are working.
 
 Source (journalism): https://www.govtech.com/artificial-intelligence/dallas-revises-resident-notices-from-trash-truck-ai-cameras
+
+### The paper reports the software generates blight scores that help Code Compliance decide which properties to review first.
+
+> The system uses artificial intelligence to identify potential code violations and generate “blight scores” that help Code Compliance prioritize properties for review. City records show the cameras have identified potential violations at thousands of addresses since becoming operational.
+
+Source (journalism): https://dallasexpress.com/city/dallas-issues-first-citations-from-ai-code-enforcement-cameras-on-sanitation-trucks/
+
+### The paper reports the city sent courtesy notices to approximately 3,700 property owners after potential violations were detected.
+
+> The city also sent approximately 3,700 property owners what it calls “courtesy notices” after potential violations were detected.
+
+Source (journalism): https://dallasexpress.com/city/dallas-issues-first-citations-from-ai-code-enforcement-cameras-on-sanitation-trucks/
+
+### The paper reports Code Compliance opened about 300 cases where officials believe an in-person inspection should occur soon.
+
+> In addition to the citations, Dallas Code Compliance said it has opened about 300 cases involving properties where officials believe an in-person inspection should occur soon.
+
+Source (journalism): https://dallasexpress.com/city/dallas-issues-first-citations-from-ai-code-enforcement-cameras-on-sanitation-trucks/
+
+### The paper reports city officials' position that the notices are not citations or formal warnings and require no action, while warning of possible enforcement.
+
+> City officials say the notices are not citations or formal warnings and do not require action from property owners. However, the notices tell residents that continued violations could result in a formal notice, citation, or other enforcement action.
+
+Source (journalism): https://dallasexpress.com/city/dallas-issues-first-citations-from-ai-code-enforcement-cameras-on-sanitation-trucks/
+
+### The paper reports the city manager's memo puts 39 of the citations, 68 percent, in Council Districts 4, 8 and 7 in southern Dallas.
+
+> According to the city manager’s memo, 39 citations, or 68%, were issued in City Council Districts 4, 8 and 7 in Southern Dallas.
+
+Source (journalism): https://dallasexpress.com/city/dallas-issues-first-citations-from-ai-code-enforcement-cameras-on-sanitation-trucks/
+
+### The paper reports Chad West withdrew a proposal to remove the program's funding after the city manager's office agreed to brief the council.
+
+> West previously proposed removing funding for the program but withdrew the request after the city manager’s office agreed to brief City Council members.
+
+Source (journalism): https://dallasexpress.com/city/dallas-issues-first-citations-from-ai-code-enforcement-cameras-on-sanitation-trucks/
 

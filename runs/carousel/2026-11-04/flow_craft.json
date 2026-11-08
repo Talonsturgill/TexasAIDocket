@@ -1,0 +1,115 @@
+{
+ "verdict": "revise",
+ "source": "carousel-flow-critic, single whole-deck pass, 2026-11-05",
+ "the_turn": "Slide 8, the regulator's May statement 167 days before the filing. With c18 placed, a second turn at 3.",
+ "must_fix_applied": [
+  {
+   "slides": [
+    3,
+    6
+   ],
+   "problem": "c18, the release crediting record runtimes to power and compression projects, opened the caption and appeared on no slide; slide 6 repeated 457,528",
+   "applied": "c18 became the second sentence of slide 3's dek (the critic's named fallback); slide 6's dek dropped the repeat"
+  },
+  {
+   "slides": [
+    3
+   ],
+   "problem": "subject unidentifiable at 432 px, no wellhead",
+   "applied": "camera pulled back and lowered so the stuffing box, valve and flowline seat in the lower third under the rod and carrier bar"
+  },
+  {
+   "slides": [
+    7
+   ],
+   "problem": "racks small under a dead band, timber lines past the ends, joints blown white",
+   "applied": "camera lower and closer with every end in frame, duller joint steel, far timber and stands removed"
+  }
+ ],
+ "not_applied": [
+  {
+   "slides": [
+    1,
+    4,
+    9
+   ],
+   "problem": "the stroke motif (crank advancing a frame at a time) can't be read",
+   "why": "1 and 9 are bound audition frames and a pose change on them reopens the audition; carried to the machine queue"
+  },
+  {
+   "slides": [
+    1,
+    4,
+    9
+   ],
+   "problem": "the jack never catches a rim, a dark subject on a dark field",
+   "why": "a chassis rig change re-binds every frame; carried to the machine queue"
+  },
+  {
+   "slides": [
+    3,
+    4,
+    7
+   ],
+   "problem": "cold navy sky on three frames against warm umber on 1, 6 and 9",
+   "why": "chassis-level sky hue; carried to the machine queue"
+  },
+  {
+   "slides": [
+    5,
+    6,
+    8
+   ],
+   "problem": "accent props are flat painted shapes rather than lit brass",
+   "why": "layout_check measures the accent within 12 Lab and a lit brass falls outside it; the lit target on 6 needed albedo tuning to pass. Carried to the machine queue"
+  }
+ ],
+ "craft": {
+  "predicted_artwork_score": 6.3,
+  "weakest_frames": [
+   {
+    "slide": 3,
+    "score": 5.5,
+    "fix": "recompose so stuffing box, tee and rod seat in the lower third",
+    "status": "applied"
+   },
+   {
+    "slide": 7,
+    "score": 5.5,
+    "fix": "camera low and in, worn joints, stagger",
+    "status": "camera applied, joint stagger not"
+   },
+   {
+    "slide": 5,
+    "score": 6.0,
+    "fix": "round rod profile, round couplings with flats, tag tied on",
+    "status": "not applied this pass (round 2 had already rebuilt couplings and tag)"
+   },
+   {
+    "slide": 2,
+    "score": 6.0,
+    "fix": "raking pool to near white, ruled lines thinner",
+    "status": "applied"
+   },
+   {
+    "slide": 4,
+    "score": 6.5,
+    "fix": "noise bedding, end the vertical tube at the kickoff",
+    "status": "tube applied, bedding is the chassis strata_block and not"
+   },
+   {
+    "slide": 6,
+    "score": 7.0,
+    "fix": "lit float marker",
+    "status": "already lit standard material"
+   },
+   {
+    "slide": 8,
+    "score": 7.0,
+    "fix": "brighter steel tape",
+    "status": "not applied"
+   }
+  ],
+  "showstopper_frame": 9
+ }
+}

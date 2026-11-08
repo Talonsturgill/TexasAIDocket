@@ -1,0 +1,114 @@
+{
+ "date": "2026-11-06",
+ "_note": "Every count, span, ratio and duration the deck states, with the claim it was quoted from.",
+ "aggregates": [
+  {
+   "phrase": "two stories",
+   "slide": "slide-04.html",
+   "kind": "count",
+   "value": 2,
+   "quoted_from": "c26",
+   "quote": "Where workers would usually help move columns of drill pipe over two stories tall, robotic arms now position the pipes and connect them to a drill string.",
+   "note": "quoted: columns of drill pipe over two stories tall"
+  },
+  {
+   "phrase": "2,000 pounds",
+   "slide": "slide-04.html",
+   "kind": "count",
+   "value": 2000,
+   "quoted_from": "c19",
+   "quote": "move tall steel pipes weighing roughly 2,000 pounds.",
+   "note": "quoted: tall steel pipes weighing roughly 2,000 pounds"
+  },
+  {
+   "phrase": "six days",
+   "slide": "slide-07.html",
+   "kind": "duration",
+   "value": 6,
+   "quoted_from": "c22",
+   "quote": "It drilled two miles horizontally underground in a little over six days",
+   "note": "quoted: in a little over six days"
+  },
+  {
+   "phrase": "Two miles sideways",
+   "slide": "slide-07.html",
+   "kind": "count",
+   "value": 2,
+   "quoted_from": "c22",
+   "quote": "It drilled two miles horizontally underground in a little over six days",
+   "note": "quoted: drilled two miles horizontally underground"
+  },
+  {
+   "phrase": "two miles",
+   "slide": "slide-07.html",
+   "kind": "count",
+   "value": 2,
+   "quoted_from": "c22",
+   "quote": "It drilled two miles horizontally underground in a little over six days",
+   "note": "quoted: drilled two miles horizontally underground"
+  },
+  {
+   "phrase": "three ExxonMobil rigs",
+   "slide": "caption.txt",
+   "kind": "count",
+   "value": 3,
+   "quoted_from": "c1",
+   "quote": "In the Permian, we\u2019re the only operator currently using automated drilling rigs. We have three in operation today.",
+   "note": "quoted: We have three in operation today"
+  },
+  {
+   "phrase": "two stories",
+   "slide": "caption.txt",
+   "kind": "count",
+   "value": 2,
+   "quoted_from": "c26",
+   "quote": "Where workers would usually help move columns of drill pipe over two stories tall, robotic arms now position the pipes and connect them to a drill string.",
+   "note": "quoted: columns of drill pipe over two stories tall"
+  },
+  {
+   "phrase": "2,000 pounds",
+   "slide": "caption.txt",
+   "kind": "count",
+   "value": 2000,
+   "quoted_from": "c19",
+   "quote": "move tall steel pipes weighing roughly 2,000 pounds.",
+   "note": "quoted: tall steel pipes weighing roughly 2,000 pounds"
+  },
+  {
+   "phrase": "three automated drilling rigs",
+   "slide": "document_title",
+   "kind": "count",
+   "value": 3,
+   "quoted_from": "c1",
+   "quote": "In the Permian, we\u2019re the only operator currently using automated drilling rigs. We have three in operation today.",
+   "note": "quoted: We have three in operation today"
+  },
+  {
+   "phrase": "two first party accounts",
+   "slide": "first_comment.txt",
+   "kind": "count",
+   "value": 2,
+   "computed_by": "sources_block.py, counting the primary documents whose claims the deck prints",
+   "from": [
+    "c1",
+    "c4",
+    "c5",
+    "c7",
+    "c9",
+    "c10"
+   ],
+   "note": "counted: the earnings call transcript (c1, c4, c5) and the newsroom post (c7, c9, c10), the two first party documents behind printed claim ids"
+  },
+  {
+   "phrase": "nine plates",
+   "slide": "slide-03.html",
+   "kind": "count",
+   "value": 9,
+   "computed_by": "compute.py figures.json injury_floor_tiles",
+   "from": [
+    "c24"
+   ],
+   "note": "the drawing unit: nine plates stand for all significant injuries, so the lit three carry c24's about a third"
+  }
+ ]
+}

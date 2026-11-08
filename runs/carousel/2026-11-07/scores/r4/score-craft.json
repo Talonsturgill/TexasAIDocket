@@ -1,0 +1,62 @@
+{
+ "_note": "Craft lens, round 4 (past the cap, hard fails only), carousel no. 71, saved in shape. Noted the contact sheet was stale; re-assembled.",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.5,
+   "why": "04, 06 and 02 strong; 07 two flat slabs with leader dots on bare asphalt and aliasing; 08 blank folders with a leader through a label; mannequin figures on 05, 06 and 09; 09's riser notch; 01's pod a sixth of the frame."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "One world, one key, both devices working; 07 outside; 08 an undeclared second interior shift."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.5,
+   "why": "Every numeral traces and the round 3 repair holds; slide 3's trays loose; the December briefing printed without its year."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.0,
+   "why": "Mechanism, scale and funding land; no next date."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Clear order; the scale arrives late and 07's image blunts the turn."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "Plain and local; 03's dek repeats itself."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "New ground in setting; familiar hardware cover and staged world."
+  }
+ ],
+ "weighted_score": 7.1,
+ "hard_fails": [],
+ "ship": true,
+ "artwork_weakest_frames": [
+  {
+   "slide": 7,
+   "problem": "Flat slabs on a mid-brown road, dots on bare asphalt, no sky, aliasing.",
+   "fix": "A three quarter overhead so each card steps, the curb cropped, the road falling to black."
+  },
+  {
+   "slide": 8,
+   "problem": "Blank folders, a leader through a label, warm wood mid tones.",
+   "fix": "A single pool on the folders and labels stacked above their own folders."
+  }
+ ]
+}

@@ -1,0 +1,82 @@
+{
+ "_note": "Scores, weighted score, hard fails and fixes as the craft judge returned them, round 2; each why abridged by the run.",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.3,
+   "why": "Bold register and true blacks; several frames lean on kit primitives: 4's glowing mannequin, 7's noise strata and dot rig, 8's blinds, the cover's boxes, 9's dead band; 6 best lit; 2 reads well; 5 bold with a sticker band."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "One world, one key, one grade; both devices work; the reliefs sit slightly outside; band colour drifts."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.5,
+   "why": "Every numeral traces; c8 and c24 apart; slide 6 'set' looser than c25; slide 2 headline generalises one rig; c3 quoted but not listed."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.0,
+   "why": "Who, where and what named; safety and jobs stakes concrete; no body or action."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Cover earns it, 2 pays, 6 turns; 2 and 3 and 4 and 5 pair up; 7 a side road."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Permian vocabulary; disclaimers read as housekeeping."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Fresh subject and accent; floodlit world and oilfield setting familiar."
+  }
+ ],
+ "weighted_score": 7.006,
+ "hard_fails": [],
+ "ship": false,
+ "artwork_weakest_frames": [
+  {
+   "slide": 4,
+   "problem": "Glowing mannequin is the brightest object; feet cut; plain doghouse.",
+   "fix": "A rim-lit silhouette on grating with a contact shadow; crop the doghouse."
+  },
+  {
+   "slide": 7,
+   "problem": "Uniform noise strata, no pool, dot rig.",
+   "fix": "Distinct raked strata bands, only the lateral groove lit."
+  },
+  {
+   "slide": 8,
+   "problem": "Blinds, faint beams, flat bands.",
+   "fix": "Grazing light so each joint casts, lit rusted beams, raised bands."
+  },
+  {
+   "slide": 1,
+   "problem": "Stacked rounded boxes, no jaws, blurred shaft.",
+   "fix": "Jaw halves with die pads on a sharp lit pipe, loom and grime."
+  },
+  {
+   "slide": 9,
+   "problem": "Dead dirt band, primitive substructure, mast competes, footer on the beam.",
+   "fix": "Lower and push in so the rack fills the bottom half; crop the mast."
+  },
+  {
+   "slide": 3,
+   "problem": "The lit third reads as texture, not light.",
+   "fix": "One grating, three panels lit by the pool."
+  }
+ ]
+}

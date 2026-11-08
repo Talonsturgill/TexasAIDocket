@@ -1,0 +1,83 @@
+{
+ "_note": "Scores, weighted score, hard fails and fixes as the judge returned them; each why is abridged by the run from the judge's report.",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 5.8,
+   "why": "1, 5, 9 work; 4 measured right but reads as an infographic; 2 object on a gradient; 3 cold with bright trailer doors; 6 plastic person, mid sky, sawhorse flags; 7 blown yard; 9 flat-lit worker."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 6.3,
+   "why": "Motif works; 3 and 8 outside the world; 6 and 7 mid skies."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.0,
+   "why": "Primary sources throughout; quote verbatim; arithmetic right; 'makes optical transceivers for AI data centers' joins c17 and c7; absence lines hold only if the release is silent."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.8,
+   "why": "What, who and where; stake general, honestly."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Cover earns it, 2 pays, 4 to 6 builds, 7 cuts; 8 drains the turn; 9 lands."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.8,
+   "why": "Clean; procedural bodies; 'drawn to illustrate' repeats."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "Taped pads, stakes and transformer repeat 56, 59 and 62."
+  }
+ ],
+ "weighted_score": 6.75,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Re-stage 3, 6 and 7 inside the deck's world with the jamb, door light, near-black sky and rim-lit figures, and put frame 2's module on the gold tape corner on near-black epoxy.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 7,
+   "problem": "Blown yard, decal pebbles, plastic avatar, no jamb.",
+   "fix": "Camera inside the door with a black jamb in the left quarter, yard under L* 60, worker as silhouette."
+  },
+  {
+   "slide": 3,
+   "problem": "Cold navy wall, bright trailer doors, dead court.",
+   "fix": "Re-key on the seam, warm clerestory brightest, trailer doors dark, warm court pool."
+  },
+  {
+   "slide": 2,
+   "problem": "Mid-brown gradient, fingers cropped, no tape corner.",
+   "fix": "Pull back, fingers over the tape corner, epoxy to near black outside the stripe."
+  },
+  {
+   "slide": 6,
+   "problem": "Mid sky with horizon band, plastic worker, sawhorse flags.",
+   "fix": "Dark sky over a thin seam, flagging from two laths, rim-lit worker."
+  },
+  {
+   "slide": 9,
+   "problem": "Flat cream worker; column behind the hook.",
+   "fix": "Rim the worker from the door side; shift the camera 0.5 m right."
+  },
+  {
+   "slide": 8,
+   "problem": "Modules on a rail across the faces; grey lower half.",
+   "fix": "Seat tabs in ports, drop the ambient."
+  }
+ ]
+}

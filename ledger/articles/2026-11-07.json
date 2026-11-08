@@ -1,0 +1,97 @@
+{
+ "_spec": {
+  "version": 1,
+  "purpose": "A standalone web edition of the archived visual story.",
+  "law": "Facts resolve to the original verified claim record. A layout rebuild does not reverify reporting.",
+  "written_by": "daily"
+ },
+ "section": "Local government",
+ "dek": {
+  "text": "Cameras on Dallas sanitation trucks scanned {{number:c46}} properties. A city memo counts {{number:c47}} citations, issued only after an in-person inspection.",
+  "claims": [
+   "c46",
+   "c47"
+  ]
+ },
+ "introduction": [
+  {
+   "text": "[Dallas put cameras made by City Detect on its bulk trash trucks](c57), [and they scan homes and buildings for potential code violations](c49). [The city's own briefing to its Finance Committee says the cameras face sideways and capture images from the public right of way](c5).",
+   "claims": [
+    "c57",
+    "c49",
+    "c5"
+   ]
+  },
+  {
+   "text": "[A city memo dated {{date:c45}}](c45) [says the cameras scanned {{number:c46}} properties](c46). [It counts {{number:c47}} citations at {{number:c47:1}} properties](c47).",
+   "claims": [
+    "c45",
+    "c46",
+    "c47"
+   ]
+  }
+ ],
+ "sections": [
+  {
+   "heading": "How a flag becomes a citation",
+   "paragraphs": [
+    {
+     "text": "[The software assigns blight scores that help Code Compliance decide which properties to review first](c51). [The memo says the citations came after camera detections were reviewed and confirmed by code officers](c50). [It says a citation is issued only after a code officer inspects the property in person and notifies the owner](c47).",
+     "claims": [
+      "c51",
+      "c50",
+      "c47"
+     ]
+    },
+    {
+     "text": "[The city's briefing to its Finance Committee said the system is neither a staff replacement nor automated ticketing](c12) [and that a person stays in the loop](c13). [It said faces and license plates are blurred](c6).",
+     "claims": [
+      "c12",
+      "c13",
+      "c6"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "Notices, cases and citations",
+   "paragraphs": [
+    {
+     "text": "[The city sent courtesy notices to approximately {{number:c53}} property owners after potential violations were detected](c53). [City officials say the notices are not citations or formal warnings and require no action, though they warn that a continuing violation could bring enforcement](c54). [Code Compliance also opened about {{number:c52}} cases where officials believe an in-person inspection should come soon](c52).",
+     "claims": [
+      "c53",
+      "c54",
+      "c52"
+     ]
+    },
+    {
+     "text": "[By the city manager's memo, {{number:c55}} of the citations were issued in Council Districts {{number:c55:2}} {{number:c55:3}} and {{number:c55:4}} in southern Dallas](c55). [Council member Chad West has raised concerns that the technology could put a disproportionate financial burden on neighborhoods with fewer resources](c59).",
+     "claims": [
+      "c55",
+      "c59"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "The money",
+   "paragraphs": [
+    {
+     "text": "[The three-year contract is estimated at {{money:c9}}, subject to annual City Council appropriations](c9). [It costs {{money:c10}} a year](c10), [and the city may end it on {{number:c11}} days' written notice](c11). [West proposed removing the program's funding and withdrew the request after the city manager's office agreed to brief the council](c56).",
+     "claims": [
+      "c9",
+      "c10",
+      "c11",
+      "c56"
+     ]
+    }
+   ]
+  }
+ ],
+ "related": [
+  {
+   "id": "tx-2026-0179",
+   "label": "Dallas AI cameras on its brush trucks"
+  }
+ ]
+}

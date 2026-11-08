@@ -1,0 +1,86 @@
+<!doctype html>
+<!-- 2026-11-04, frame 7 of 9. Archetype OBJECT_AND_CAPTION. Two racks of drill pipe at last light, box ends toward the camera and raked by the low sun, one joint for each percentage point of the company's net leasehold at the end of 2025: the Texas rack twice the New Mexico rack, rows of ten on timber strips, a label over each rack. Drawn to illustrate; the joints stand for shares, not for any pipe the company owns. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:900px">About 67 percent of its leasehold was in Texas</h1>
+<p class="dek" data-follow="26" style="width:880px">Its 2025 annual report put about 67% of its net leasehold in Texas and 33% in New Mexico. Neither the release nor the annual report says which wells the monitor watches.</p>
+<div class="lab gold" id="lab-tx">Texas 67%</div>
+<div class="lab gold" id="lab-nm">New Mexico 33%</div>
+<div class="lab" id="lab-unit">one joint, one percent</div>
+<script>window.FIG = {"texas_lease_pct": 67, "nm_lease_pct": 33};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-04-wellpad.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "The leasehold", counter: "07 / 09", src: "c15 c1", fit: { min: 76, max: 100, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 34, near: 0.05, far: 4000, fog: 0.004 });
+  /* ONE JOINT A PERCENT: the racks hold figures.json's texas_lease_pct and nm_lease_pct joints, in rows of ten */
+  const NTX = Math.round(FIG.texas_lease_pct), NNM = Math.round(FIG.nm_lease_pct), ROW = 10, PITCH = 0.2, LAYER = 0.2, LEN = 9.45;
+  const body = K.mat('wp-mill2', { color: 0x3a4048, metalness: 0.8, roughness: 0.4 });
+  const tj = K.mat('wp-tj2', { color: 0x575c61, metalness: 0.85, roughness: 0.48 });
+  const bore = K.mat('wp-bore', { color: 0x050506, roughness: 0.9 });
+  const wood = K.mat('wp-wood', { color: 0x5a4632, roughness: 0.85 });
+  const beam = K.mat('wp-beam', { color: 0x6a2f1c, metalness: 0.4, roughness: 0.6 });
+  const racks = new THREE.Group();
+  function rack(n, x0) {
+    const g = new THREE.Group(), list = [], ends = [], bores = [];
+    const layers = Math.ceil(n / ROW);
+    for (let i = 0; i < n; i++) {
+      const L = Math.floor(i / ROW), c = i % ROW, x = x0 + c * PITCH + (L % 2 ? PITCH / 2 : 0) * 0, y = 0.62 + L * LAYER + 0.084;
+      list.push([x, y, -LEN / 2]); ends.push([x, y, 0.215]); bores.push([x, y, 0.432]);
+    }
+    const cb = new THREE.CylinderGeometry(0.0635, 0.0635, LEN - 0.4, 16); cb.rotateX(Math.PI / 2);
+    const ce = new THREE.CylinderGeometry(0.084, 0.084, 0.43, 24); ce.rotateX(Math.PI / 2);
+    const cbore = new THREE.CircleGeometry(0.05, 20);
+    const put = (geo, mat, pts) => { const im = new THREE.InstancedMesh(geo, mat, pts.length); const m = new THREE.Matrix4(); pts.forEach((p, k) => { m.makeTranslation(p[0], p[1], p[2]); im.setMatrixAt(k, m); }); im.castShadow = im.receiveShadow = true; g.add(im); };
+    put(cb, body, list.map(p => [p[0], p[1], p[2] - 0.2])); put(ce, tj, ends); put(cbore, bore, bores);
+    /* timber strips between layers, and two rack stands of red oxide I-beam under the bottom layer */
+    for (let L = 0; L <= layers; L++) [-1.2].forEach(z => { const s = K.box(ROW * PITCH + 0.2, 0.03, 0.1, wood, x0 + (ROW - 1) * PITCH / 2, 0.62 + L * LAYER - 0.03 + (L ? 0.0 : 0), z, 0.005, g); });
+    [-1.2].forEach(z => { K.box(ROW * PITCH + 0.5, 0.2, 0.16, beam, x0 + (ROW - 1) * PITCH / 2, 0.42, z, 0.01, g); [-1, 1].forEach(s => K.box(0.14, 0.42, 0.14, beam, x0 + (ROW - 1) * PITCH / 2 + s * (ROW * PITCH / 2 + 0.1), 0, z, 0.01, g)); });
+    return { g, top: 0.62 + layers * LAYER + 0.1, cx: x0 + (ROW - 1) * PITCH / 2 };
+  }
+  const T = rack(NTX, -2.45), Nm = rack(NNM, 0.55);
+  racks.add(T.g, Nm.g);
+  /* a brass tag wired to the end of each rack's bottom left joint */
+  /* the box ends face the low sun, so the key rakes them */
+  const sd = TXT.sunDir(); const yaw = Math.atan2(sd.x, sd.z); racks.rotation.y = yaw; TXT.add(R, racks); TXT.contact(R, racks);
+  TXT.sky(R);
+  TXT.ground(R, { surface: 'dirt', size: 1400, seed: 53, bumpScale: 0.18 });
+  const fx = Math.sin(yaw), fz = Math.cos(yaw), from = [fx * 11.2 + fz * 0.5, 1.05, fz * 11.2 - fx * 0.5];
+  racks.updateMatrixWorld(true);
+  const mid = new THREE.Vector3(0.0, 1.15, 0.3).applyMatrix4(racks.matrixWorld);
+  const look = CH.aim(THREE, R, TXT, from, [mid.x, mid.y, mid.z], 540, 860, 34);
+  TXT.frame(R, { fov: 34, from, look });
+  TXT.scatter(R, { kind: 'scrub', count: 300, area: [-200, -200, 200, 200], avoid: [[-14, -14, 14, 14]], seed: 55, scale: [0.5, 1.1] });
+  CH.warm(R, 0.45);
+  TXT.deckRig(R, CH.rigSpec(W, 14, 4096), CH.rigOpts([mid.x, 1, mid.z], { distance: 40, shadowFar: 90, normalBias: 0.03 }));
+  CH.unacne(R, 0.03);
+  TXT.weather(R, { grime: 0.3, height: 0.8, mottle: 0.12 });
+  TXT.stage(R, [racks], { poolInner: 5, poolOuter: 11 });
+  const pin = (id, lx, ly, dx, dy) => { const p = new THREE.Vector3(lx, ly, 0.44).applyMatrix4(racks.matrixWorld); const q = CH.project(THREE, R, [p.x, p.y, p.z]); const el = document.getElementById(id); el.style.left = Math.round(q[0] + dx - el.getBoundingClientRect().width / 2) + 'px'; el.style.top = Math.round(q[1] + dy) + 'px'; };
+  pin('lab-tx', T.cx, T.top, 0, -58);
+  pin('lab-nm', Nm.cx, Nm.top, 0, -58);
+  { const q = CH.project(THREE, R, [new THREE.Vector3(Nm.cx, Nm.top, 0.44).applyMatrix4(racks.matrixWorld)].map(v => [v.x, v.y, v.z])[0]); const el = document.getElementById('lab-unit'); el.style.left = Math.round(Math.min(1000 - el.getBoundingClientRect().width, q[0] - el.getBoundingClientRect().width / 2)) + 'px'; el.style.top = Math.round(q[1] - 112) + 'px'; }
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0.3, veil: 0.5, veilH: 320 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

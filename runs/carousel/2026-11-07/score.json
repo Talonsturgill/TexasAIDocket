@@ -1,0 +1,205 @@
+{
+ "weighted_score": 6.87,
+ "judges": [
+  6.56,
+  7.07,
+  6.87
+ ],
+ "spread": 0.51,
+ "criteria": {
+  "artwork_craft": {
+   "score": 6.5,
+   "weight": 0.22,
+   "judges": [
+    6.5,
+    6.0,
+    6.5
+   ]
+  },
+  "deck_coherence": {
+   "score": 7.5,
+   "weight": 0.12,
+   "judges": [
+    7.0,
+    7.5,
+    7.5
+   ]
+  },
+  "claim_integrity": {
+   "score": 7.5,
+   "weight": 0.2,
+   "judges": [
+    6.5,
+    7.5,
+    7.5
+   ]
+  },
+  "story_and_stakes": {
+   "score": 6.5,
+   "weight": 0.16,
+   "judges": [
+    6.5,
+    7.5,
+    6.5
+   ]
+  },
+  "sequence_and_momentum": {
+   "score": 7.0,
+   "weight": 0.1,
+   "judges": [
+    7.0,
+    7.5,
+    7.0
+   ]
+  },
+  "voice": {
+   "score": 7.0,
+   "weight": 0.1,
+   "judges": [
+    7.0,
+    7.0,
+    7.0
+   ]
+  },
+  "variety": {
+   "score": 6.0,
+   "weight": 0.1,
+   "judges": [
+    5.5,
+    7.0,
+    6.0
+   ]
+  }
+ },
+ "hard_fails": [],
+ "hard_fails_by_judge": [],
+ "ship": true,
+ "threshold": 8.0,
+ "over_threshold": false,
+ "method": "per-criterion median across three judges, then weighted by the rubric",
+ "contested": [
+  "variety"
+ ],
+ "artwork_weakest_frames": [
+  {
+   "slide": 7,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Flat slabs at 1.55 to 1, a beige band, the deck's brightest canvas.",
+     "fix": "Low raking key, one fixed offset per card, a dark curb and lawn."
+    },
+    {
+     "judge": 2,
+     "problem": "Flat slabs, aliased shadow, a white bar, dots on asphalt.",
+     "fix": "A 0.3 m eye with a grazing key, the bar removed, dots on the fans."
+    },
+    {
+     "judge": 3,
+     "problem": "Two flat aliased slabs; no card countable.",
+     "fix": "Fan with visible offsets under a grazing key from a 0.3 m eye."
+    }
+   ]
+  },
+  {
+   "slide": 8,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Stock folders with no thickness or shadow.",
+     "fix": "Tighter crop, pressboard thickness raked by the window key."
+    },
+    {
+     "judge": 2,
+     "problem": "Flat folder planes.",
+     "fix": "A grazing key for thickness and contact."
+    },
+    {
+     "judge": 3,
+     "problem": "Blank folders carry no money, year or deadline.",
+     "fix": "Three paper stacks, one per contract year, the first lit."
+    }
+   ]
+  },
+  {
+   "slide": 1,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "A small pod over a dead grey panel.",
+     "fix": "Behind the pod's shoulder with the parcel beyond the lens."
+    },
+    {
+     "judge": 3,
+     "problem": "A generic box on a white wall.",
+     "fix": "Pull back so cut limbs and a lit house across the street show."
+    }
+   ]
+  },
+  {
+   "slide": 6,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Mannequin officer looking down.",
+     "fix": "A draped vest, the eyeline up at the column, a cool rim."
+    },
+    {
+     "judge": 3,
+     "problem": "Mannequin officer, thick clipboard.",
+     "fix": "Fit the vest, thin the sheaf to 11 mm, turn him away."
+    }
+   ]
+  },
+  {
+   "slide": 9,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Oversized notice and riser notch.",
+     "fix": "Letter-size notice in both hands, close the notch."
+    },
+    {
+     "judge": 2,
+     "problem": "Riser notch, oversized notice.",
+     "fix": "Close the notch, letter-size notice."
+    }
+   ]
+  },
+  {
+   "slide": 5,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "Mannequin officer, tires barely read.",
+     "fix": "Camera right and lower so the pile and tires sit lit."
+    }
+   ]
+  },
+  {
+   "slide": 4,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "Purple-grey haze on the house.",
+     "fix": "Cut the fill so the house falls to near black."
+    }
+   ]
+  }
+ ],
+ "rounds_derived": 5,
+ "rounds": 5,
+ "rounds_source": "this module's own log of cards it has scored",
+ "at_cap": true,
+ "rung": null,
+ "shortfall": "at the round cap the finished deck ships at 6.87, 1.13 under the 8.0 top rung. Name that in the email and the run record",
+ "craft_floor": "capped",
+ "craft_note": "at the round cap the craft floor stands down. The art median 6.5 is under 8.5 and the deck ships as it is. Name it in the run record"
+}

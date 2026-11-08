@@ -1,0 +1,79 @@
+<!doctype html>
+<!-- 2026-11-06, frame 7 of 9. Archetype SPLIT_HORIZON. A TXBENCH material relief of the earth in section, the lateral bore drawn lateral_m long at one scale with a rig pin of stand_m plus its floor, a drawn break across the vertical. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:900px">Two miles sideways in a little over six days</h1>
+<p class="dek" data-follow="26" style="width:860px">Helmerich &amp; Payne supplied ExxonMobil's first automated rig. Its run was the third fastest drilling time in the company's history, Reuters reported. The depth is not in the record and is drawn to illustrate.</p>
+<div class="lab" id="lab-two">two miles</div>
+<div class="lab" id="lab-rig">a rig, drawn to illustrate</div>
+
+<script>window.FIG = {"lateral_m": 3219, "stand_m": 28.2};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txbench.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-06-rigfloor.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+/* the bench's materials: 1 mill scale steel, 2 worn bright steel, 3 ember paint, 4 rust streaked beam, 5 rock */
+const ALB = { 0: [0.012, 0.013, 0.016], 1: [0.062, 0.066, 0.072], 2: [0.30, 0.31, 0.32], 3: [0.58, 0.15, 0.085], 4: [0.15, 0.085, 0.052], 5: [0.011, 0.0105, 0.010], 6: [0.019, 0.017, 0.015] };
+const SPEC = { 1: [0.55, 28], 2: [0.95, 70], 3: [0.12, 8], 4: [0.25, 16], 5: [0.06, 6], 6: [0.06, 6] };
+/* a leader on the plate: a cream hairline from a label to what it names, ending in a dot */
+function lead(cx, a, b) { cx.save(); cx.strokeStyle = 'rgba(240,236,228,0.92)'; cx.fillStyle = cx.strokeStyle; cx.lineWidth = 2;
+  cx.beginPath(); cx.moveTo(a[0], a[1]); cx.lineTo(b[0], b[1]); cx.stroke(); cx.beginPath(); cx.arc(b[0], b[1], 5, 0, 7); cx.fill(); cx.restore(); }
+function feather(cx, y) { const g = cx.createLinearGradient(0, y - 4, 0, y + 70); g.addColorStop(0, 'rgba(5,6,10,0.96)'); g.addColorStop(1, 'rgba(5,6,10,0)'); cx.fillStyle = g; cx.fillRect(0, y - 4, 1080, 74); }
+function plate(id) { const el = document.getElementById(id); if (el) { el.style.background = 'rgba(6,7,11,0.86)'; el.style.padding = '4px 10px'; } return el; }
+function grain(X, Y, s) { return 0.82 + 0.36 * (0.5 + 0.5 * TX.fbm2(X / s, Y / s, 3)); }
+window.renderReady = (async () => {
+  const cx = await CH.bootFlat({ kicker: "The first rig", counter: "07 / 09", src: "c21 c22 c23", fit: { min: 80, max: 104, maxLines: 2 } });
+  cx.scale(2, 2); TX.reseed(20261106);
+  /* THE FIGURE: the lateral is lateral_m metres drawn at one scale across the section, and the rig beside it is a
+   * stand of stand_m at the same scale plus the floor, so the rig is a pin and the lateral the width of the frame. */
+  const SURF = 640, X0 = 120, LAT_PX = 860, PXM = LAT_PX / FIG.lateral_m;
+  const rigPx = Math.max(6, (FIG.stand_m + 8) * PXM), KICK = 900, RAD = 120;
+  function surf(X, Y) {
+    if (Y < SURF - rigPx - 4) return [0, 0];
+    if (Y < SURF) { /* the rig, a raised pin standing on the surface */ return Math.abs(X - X0) < 3 && Y > SURF - rigPx ? [10, 2] : [0, 0]; }
+    /* strata: bands of rock at two heights and two albedos, gently warped, with a drawn break below the kick off */
+    const band = Math.floor((Y - SURF + 22 * TX.fbm2(X / 300, 0.5, 2)) / 46), base = 3 + (band % 3) * 0.8 + 0.6 * TX.fbm2(X / 40, Y / 40, 2);
+    let h = base, m = band % 2 ? 5 : 6;
+    /* the bore: down from the rig, a curve to horizontal at KICK, then the lateral */
+    let dist;
+    if (Y < KICK - RAD) dist = Math.abs(X - X0);
+    else if (X < X0 + RAD) { const cxr = X0 + RAD, cyr = KICK - RAD; dist = Math.abs(Math.hypot(X - cxr, Y - cyr) - RAD); }
+    else dist = X <= X0 + LAT_PX ? Math.abs(Y - KICK) : 1e9;
+    if (Y >= KICK - RAD && X >= X0 + RAD && X > X0 + LAT_PX) dist = 1e9;
+    if (dist < 13) { h = dist < 7 ? 2 + 5 * Math.sqrt(1 - (dist * dist) / 49) : 0.2; m = dist < 7 ? 2 : 1; }
+    /* the drawn break in the vertical: two parallel cuts across the section above the kick off */
+    /* the drawn break, short and only across the vertical bore: two parallel cuts that say the depth is not to scale */
+    if (Math.abs(X - X0) < 46) { const bk = 760 + 0.35 * (X - X0); if (Math.abs(Y - bk) < 2 || Math.abs(Y - bk - 12) < 2) { h = 0; m = 0; } }
+    return [h, m];
+  }
+  const height = (X, Y) => surf(X, Y)[0], material = (X, Y) => surf(X, Y)[1];
+  const albedo = (X, Y, m) => { const a = ALB[m] || ALB[0], g = grain(X, Y, 31); return [a[0] * g, a[1] * g, a[2] * g]; };
+  TXBENCH.relief(cx, { x: 0, y: SURF - rigPx - 10, w: 1080, h: 1350 - SURF + rigPx + 10, scale: 2, height, material, albedo, spec: SPEC,
+    ambient: 0.2, diffuse: 1.0, ao: 0.8, shadow: 0.85, softness: 6, castLength: 40, dither: true });
+  CH.typeDark(cx); CH.footWash(cx);
+  /* a dimension bracket the length of the lateral, ticks at each end, the label centred under it */
+  const DY = KICK + 46, XA = X0 + RAD, XB = X0 + LAT_PX;
+  cx.save(); cx.strokeStyle = 'rgba(240,236,228,0.92)'; cx.lineWidth = 2; cx.beginPath();
+  cx.moveTo(XA, DY - 12); cx.lineTo(XA, DY + 12); cx.moveTo(XA, DY); cx.lineTo(XB, DY); cx.moveTo(XB, DY - 12); cx.lineTo(XB, DY + 12); cx.stroke(); cx.restore();
+  plate('lab-two'); plate('lab-rig');
+  const two = CH.pinLabel('lab-two', [(XA + XB) / 2, DY + 12], [0, 0]); if (two) two.style.transform = 'translateX(-50%)';
+  CH.pinLabel('lab-rig', [X0 + 40, SURF - rigPx - 70], [0, 0]);
+  lead(cx, [X0 + 40, SURF - rigPx - 30], [X0, SURF - rigPx - 2]);
+  window.__txLeaders = [{ target: 'the lateral', at: [(XA + XB) / 2, DY], to: [(XA + XB) / 2, KICK] }, { target: 'the rig', at: [X0 + 40, SURF - rigPx - 30], to: [X0, SURF - rigPx] }];
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

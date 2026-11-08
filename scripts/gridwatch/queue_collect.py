@@ -28,6 +28,7 @@ import argparse
 import calendar
 import datetime as _dt
 import gzip
+import hashlib
 import json
 import re
 import sys
@@ -123,18 +124,54 @@ def report_url(year: int, month: int) -> tuple[str, str] | None:
 
     Returns (url, published_date) or None. The publication day moves, so the window is walked.
     """
-    name = f"ERCOT-Monthly-Operational-Overview-{calendar.month_name[month]}-{year}.pdf"
     pub_y, pub_m = (year + 1, 1) if month == 12 else (year, month + 1)
     for day in SCAN_DAYS:
-        url = f"{BASE}/{pub_y}/{pub_m:02d}/{day:02d}/{name}"
-        req = urllib.request.Request(url, headers={"User-Agent": UA}, method="HEAD")
-        try:
-            with urllib.request.urlopen(req, timeout=20) as r:
-                if r.status == 200:
-                    return url, f"{pub_y}-{pub_m:02d}-{day:02d}"
-        except (urllib.error.HTTPError, urllib.error.URLError, TimeoutError):
-            continue
+        for name in report_names(year, month):
+            url = f"{BASE}/{pub_y}/{pub_m:02d}/{day:02d}/{name}"
+            req = urllib.request.Request(url, headers={"User-Agent": UA}, method="HEAD")
+            try:
+                with urllib.request.urlopen(req, timeout=20) as r:
+                    if r.status == 200:
+                        return url, f"{pub_y}-{pub_m:02d}-{day:02d}"
+            except (urllib.error.HTTPError, urllib.error.URLError, TimeoutError):
+                continue
     return None
+
+
+def report_names(year: int, month: int) -> list[str]:
+    """Every filename ERCOT has used for one month's report, the usual one first.
+
+    THE NAME IS NOT STABLE. Every report through August carried its year. September's landed on
+    October 16th as `ERCOT-Monthly-Operational-Overview-September.pdf`, with no year, and the
+    collector asked only for the dated name, so it wrote "not published yet" every day for three
+    weeks while the report sat on ERCOT's server. The grid watch page check went to STOPPED on
+    November 1st. The yearless name is safe to ask for because the dated directory it sits in
+    already pins the year, and `collect` refuses a report whose own month does not match.
+    """
+    mon = calendar.month_name[month]
+    return [f"ERCOT-Monthly-Operational-Overview-{mon}-{year}.pdf",
+            f"ERCOT-Monthly-Operational-Overview-{mon}.pdf"]
+
+
+def months_owed(rows: list[dict], year: int, month: int, depth: int = 3) -> list[tuple[int, int]]:
+    """The report months to read, oldest first: last month, and any month before it missed.
+
+    The collector used to read last month only. A report it missed for any reason, a renamed
+    file or a day ERCOT published late, was skipped for good the moment the calendar turned,
+    because nothing ever asked for that month again. This walks back from last month to the
+    newest verified reading, at most `depth` months, so one missed month is caught up the next
+    day rather than never.
+    """
+    verified = {r.get("month") for r in rows if r.get("verified")}
+    out = []
+    y, m = year, month
+    for _ in range(depth):
+        key = f"{y}-{m:02d}"
+        if key in verified:
+            break
+        out.append((y, m))
+        y, m = (y - 1, 12) if m == 1 else (y, m - 1)
+    return list(reversed(out))
 
 
 def fetch(url: str) -> bytes:
@@ -151,6 +188,34 @@ def held(path: Path = LEDGER) -> list[dict]:
         if line.strip():
             out.append(json.loads(line))
     return out
+
+
+def archive_pdf(key: str, pdf: bytes) -> Path:
+    """Keep the first snapshot and store changed responses under their content digest."""
+    RAW.mkdir(parents=True, exist_ok=True)
+    original = RAW / f"{key}-moo.pdf.gz"
+
+    def same(path: Path) -> bool:
+        try:
+            return gzip.decompress(path.read_bytes()) == pdf
+        except (OSError, EOFError, zlib.error):
+            return False
+
+    target = original
+    if original.exists():
+        if same(original):
+            return original
+        target = RAW / f"{key}-moo-{hashlib.sha256(pdf).hexdigest()}.pdf.gz"
+    try:
+        # Exclusive creation preserves archives even if two collectors race.
+        with target.open("xb") as fh:
+            fh.write(gzip.compress(pdf, mtime=0))
+    except FileExistsError:
+        if not same(target):
+            if target == original:
+                return archive_pdf(key, pdf)
+            raise ValueError(f"archive digest collision or corrupt snapshot: {target}")
+    return target
 
 
 def collect(year: int, month: int, path: Path = LEDGER) -> int:
@@ -172,9 +237,17 @@ def collect(year: int, month: int, path: Path = LEDGER) -> int:
             rec = {"month": key, "verified": False, "source_url": url, "published": published,
                    "note": f"fetch failed: {exc}"}
         else:
-            RAW.mkdir(parents=True, exist_ok=True)
-            (RAW / f"{key}-moo.pdf.gz").write_bytes(gzip.compress(pdf))
+            # Preserve the fetched evidence before parsing, including rejected responses.
+            archived = archive_pdf(key, pdf)
             rec = {"month": key, "source_url": url, "published": published, **parse(pdf)}
+            want = f"{calendar.month_name[month]} {year}"
+            if rec.get("verified") and rec.get("reported_for") != want:
+                # A yearless filename could in principle answer for the wrong year. The report's
+                # own sentence names its month, so a mismatch is refused, never appended.
+                rec = {"month": key, "verified": False, "source_url": url,
+                       "published": published,
+                       "note": f"report reads for {rec.get('reported_for')}, not {want}"}
+            rec["raw_file"] = archived.name
 
     # A FAILED READ CARRIES NO NUMBER FORWARD. Same law as the daily series: the record says
     # plainly that this month is unverified rather than repeating last month's figure, because
@@ -243,6 +316,64 @@ def self_test() -> int:
     absurd = parse(Fake.build(FIXTURE.replace("9,456 MW that", "999,456 MW that")))
     check("an out-of-envelope figure is refused", absurd.get("verified") is False, str(absurd))
 
+    names = report_names(2026, 9)
+    check("the dated name is asked for first",
+          names[0] == "ERCOT-Monthly-Operational-Overview-September-2026.pdf", str(names))
+    check("the yearless name September shipped under is asked for too",
+          "ERCOT-Monthly-Operational-Overview-September.pdf" in names, str(names))
+
+    rows = [{"month": "2026-08", "verified": True}, {"month": "2026-09", "verified": False}]
+    check("a missed month is owed beside last month",
+          months_owed(rows, 2026, 10) == [(2026, 9), (2026, 10)], str(months_owed(rows, 2026, 10)))
+    check("nothing is owed once last month verified",
+          months_owed(rows + [{"month": "2026-10", "verified": True}], 2026, 10) == [])
+    check("the walk crosses a year boundary",
+          months_owed([{"month": "2025-11", "verified": True}], 2026, 1) == [(2025, 12), (2026, 1)])
+    check("the walk is bounded", len(months_owed([], 2026, 10)) == 3)
+
+    # Exercise the collector, not only its parser, without a network request or ledger write.
+    import tempfile
+    from unittest.mock import patch
+
+    scratch = REPO_ROOT / "out" / "queue-self-test" / "tmp"
+    scratch.mkdir(parents=True, exist_ok=True)
+    with tempfile.TemporaryDirectory(dir=scratch) as tmp:
+        root = Path(tmp)
+        raw = root / "raw"
+        path = root / "queue.jsonl"
+        bad_pdf = Fake.build("No matching sentence")
+        good_pdf = Fake.build(FIXTURE)
+        with patch(__name__ + ".RAW", raw), \
+             patch(__name__ + ".report_url", return_value=("https://example.test/report.pdf", "2026-08-16")), \
+             patch(__name__ + ".fetch", return_value=bad_pdf) as mocked_fetch:
+            check("a failed parse appends an unverified reading", collect(2026, 7, path) == 2)
+            original = raw / "2026-07-moo.pdf.gz"
+            # Model a historical archive written with the old timestamped gzip encoding.
+            original.write_bytes(gzip.compress(bad_pdf, mtime=123456789))
+            prior = original.read_bytes()
+            check("the rejected response is archived", gzip.decompress(prior) == bad_pdf)
+            check("same bytes reuse the original archive", archive_pdf("2026-07", bad_pdf) == original
+                  and original.read_bytes() == prior)
+            mocked_fetch.return_value = good_pdf
+            check("a corrected report verifies", collect(2026, 7, path) == 0)
+            current = held(path)[-1]
+            snapshot = raw / current["raw_file"]
+            check("corrected bytes leave the first archive untouched", original.read_bytes() == prior)
+            check("the verified reading identifies its corrected snapshot", snapshot != original
+                  and gzip.decompress(snapshot.read_bytes()) == good_pdf)
+            stable = snapshot.read_bytes()
+            check("corrected snapshot is idempotent", archive_pdf("2026-07", good_pdf) == snapshot
+                  and snapshot.read_bytes() == stable)
+            count = len(held(path))
+            mocked_fetch.reset_mock()
+            check("an already verified month does not fetch or append", collect(2026, 7, path) == 0
+                  and len(held(path)) == count and not mocked_fetch.called)
+            check("a report for the wrong month is refused", collect(2026, 9, path) == 2)
+            wrong = held(path)[-1]
+            check("wrong month carries no figures", wrong["verified"] is False
+                  and "observed_operational_mw" not in wrong and "not September 2026" in wrong["note"])
+            check("wrong month evidence remains available", gzip.decompress((raw / wrong["raw_file"]).read_bytes()) == good_pdf)
+
     print("\nqueue_collect self-test " + ("clean" if not failures else f"{failures} FAILED"))
     return 1 if failures else 0
 
@@ -260,11 +391,11 @@ def main() -> int:
         return 1
     if a.month:
         y, m = (int(x) for x in a.month.split("-"))
-    else:
-        first = _dt.date.today().replace(day=1)
-        prev = first - _dt.timedelta(days=1)
-        y, m = prev.year, prev.month
-    return collect(y, m)
+        return collect(y, m)
+    first = _dt.date.today().replace(day=1)
+    prev = first - _dt.timedelta(days=1)
+    codes = [collect(y, m) for y, m in months_owed(held(), prev.year, prev.month)]
+    return max(codes, default=0)
 
 
 if __name__ == "__main__":

@@ -1,0 +1,88 @@
+<!doctype html>
+<!-- 2026-11-06, frame 6 of 9. Archetype FULL_BLEED. A spatial scene through txthree.js inside a TXT.interior cabin: a kit person seated at a kit desk under three kit monitors, the window behind glowing with the floor's cold floods. Drawn to illustrate, to no maker's or operator's design. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:900px">The controls are on a screen</h1>
+<p class="dek" data-follow="26" style="width:860px">A contractor runs the robotic machinery from a small office on the rig, Reuters reported. Employees on the rig set the robot's precise moves with ExxonMobil's central operations team in Houston.</p>
+<script>window.FIG = {};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-06-rigfloor.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "The cabin", counter: "06 / 09", src: "c18 c25", fit: { min: 80, max: 104, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 54, near: 0.05, far: 200, exposure: 1.15 });
+  /* the small office on the rig: a dark steel room whose back window glows with the floor's cold floods */
+  const room = TXT.interior(R, { w: 3.2, d: 2.8, h: 2.5, floor: 'concrete', wall: 0x2a2c2e, window: 'back', windowW: 1.6, windowH: 0.7, windowColor: 0xffffff, windowI: 0.55, ceiling: true, light: 0.12 });
+  /* the pane shows the rig floor at night: dark sky, the mast's floods as points, the lit floor and the arm in silhouette */
+  { const cv = document.createElement('canvas'); cv.width = 640; cv.height = 280; const g = cv.getContext('2d');
+    const sk = g.createLinearGradient(0, 0, 0, 280); sk.addColorStop(0, '#020308'); sk.addColorStop(0.62, '#0c1324'); sk.addColorStop(1, '#141c30'); g.fillStyle = sk; g.fillRect(0, 0, 640, 280);
+    /* dust and rain spotting on the glass, so the night pane carries material rather than a smooth wash */
+    for (let i = 0; i < 5200; i++) { const x = (Math.sin(i * 12.9898) * 43758.5453 % 1 + 1) % 1 * 640, y = (Math.sin(i * 78.233) * 12345.678 % 1 + 1) % 1 * 280, a = 0.18 + 0.32 * ((i * 7) % 5) / 4; g.fillStyle = 'rgba(160,175,210,' + a + ')'; g.fillRect(x, y, 1 + (i % 3), 1 + (i % 2)); }
+    const fl = g.createLinearGradient(0, 190, 0, 280); fl.addColorStop(0, '#5a6c92'); fl.addColorStop(1, '#1a2236'); g.fillStyle = fl; g.fillRect(0, 196, 640, 84);
+    g.strokeStyle = '#03040a'; g.lineWidth = 7; g.beginPath(); g.moveTo(250, 198); g.lineTo(300, 0); g.moveTo(420, 198); g.lineTo(370, 0); g.stroke();
+    g.lineWidth = 3; for (let y = 30; y < 196; y += 34) { const k = y / 198, a = 250 + 50 * (1 - k), b = 420 - 50 * (1 - k); g.beginPath(); g.moveTo(a, y); g.lineTo(b, y + 34); g.moveTo(b, y); g.lineTo(a, y + 34); g.stroke(); }
+    g.fillStyle = '#03040a'; g.fillRect(470, 150, 26, 48); g.lineWidth = 12; g.beginPath(); g.moveTo(483, 156); g.lineTo(520, 104); g.lineTo(568, 140); g.stroke();
+    [[288, 52], [382, 52], [276, 120], [394, 120]].forEach(([x, y]) => { const r = g.createRadialGradient(x, y, 0, x, y, 22); r.addColorStop(0, 'rgba(240,244,255,1)'); r.addColorStop(0.25, 'rgba(200,214,255,0.6)'); r.addColorStop(1, 'rgba(120,140,200,0)'); g.fillStyle = r; g.fillRect(x - 22, y - 22, 44, 44); });
+    const tex = new THREE.CanvasTexture(cv); tex.colorSpace = THREE.SRGBColorSpace;
+    room.traverse((m) => { if (m.isMesh && m.geometry && m.geometry.type === 'PlaneGeometry' && m.material && m.material.isMeshBasicMaterial) { m.material.map = tex; m.material.color.setRGB(0.55, 0.55, 0.55); m.material.needsUpdate = true;
+      const MUL = new THREE.MeshStandardMaterial({ color: 0x15171a, roughness: 0.6, metalness: 0.4 }), z = m.position.z + 0.02, wx = m.position.x, wy = m.position.y;
+      [[1.68, 0.05, wx, wy + 0.375], [1.68, 0.05, wx, wy - 0.375], [0.05, 0.8, wx - 0.84, wy], [0.05, 0.8, wx + 0.84, wy], [0.035, 0.75, wx - 0.27, wy], [0.035, 0.75, wx + 0.27, wy]].forEach(([w, h, x, y]) => { const b = TXT.roundedBox(w, h, 0.04, 0.008, MUL); b.position.set(x, y, z); room.add(b); });
+      const sill = TXT.roundedBox(1.8, 0.04, 0.16, 0.01, MUL); sill.position.set(wx, wy - 0.41, z + 0.06); room.add(sill); } }); }
+  const desk = K.make('desk', { w: 1.9, pedestal: 'none' }); desk.position.set(0.1, 0, -0.85); TXT.add(R, desk); TXT.contact(R, desk);
+  const dh = desk.userData.size ? desk.userData.size[1] : 0.76;
+  [-0.62, 0.05, 0.72].forEach((x, i) => { const m = K.make('monitor', { inches: 24, screen: 'dash', seed: 3 + i }); m.position.set(x, dh, -1.05); m.rotation.y = -x * 0.35; TXT.add(R, m); });
+  const chair = K.make('office_chair', { style: 'exec' }); chair.position.set(-0.05, 0, 0.12); chair.rotation.y = Math.PI; chair.visible = false; TXT.add(R, chair);
+  /* the contractor at the controls, over the shoulder at the lower left */
+  const op = K.make('person', { role: 'worker', pose: 'sit_read', vest: true, hat: 'cap', seed: 11 }); op.position.set(-0.05, 0, 0.1); op.rotation.y = Math.PI; TXT.add(R, op);
+  /* the operator's joystick consoles at the desk edge, one each side of the chair */
+  const CON = new THREE.MeshStandardMaterial({ color: 0x1c1d20, roughness: 0.5, metalness: 0.3 }), KNOB = new THREE.MeshStandardMaterial({ color: 0x2a2b2e, roughness: 0.35, metalness: 0.2 });
+  [-0.75, 0.45].forEach((x) => { const c = TXT.roundedBox(0.3, 0.07, 0.22, 0.02, CON); c.position.set(x, dh + 0.035, -0.45); TXT.add(R, c);
+    const st = new THREE.Mesh(new THREE.CylinderGeometry(0.012, 0.016, 0.12, 24), KNOB); st.position.set(x, dh + 0.13, -0.46); TXT.add(R, st);
+    const kb = new THREE.Mesh(new THREE.SphereGeometry(0.03, 24, 16), KNOB); kb.position.set(x, dh + 0.2, -0.46); TXT.add(R, kb);
+    const led = new THREE.Mesh(new THREE.BoxGeometry(0.03, 0.006, 0.01), new THREE.MeshBasicMaterial({ color: 0xffb070 })); led.position.set(x + 0.09, dh + 0.072, -0.36); TXT.add(R, led); });
+  /* the screens carry the floor camera: the arm and the stand in their pool, no lettering */
+  { const cv = document.createElement('canvas'); cv.width = 480; cv.height = 270; const g = cv.getContext('2d');
+    g.fillStyle = '#05070c'; g.fillRect(0, 0, 480, 270); const pool = g.createRadialGradient(230, 210, 10, 230, 210, 190); pool.addColorStop(0, 'rgba(150,165,190,0.9)'); pool.addColorStop(1, 'rgba(20,24,34,0)'); g.fillStyle = pool; g.fillRect(0, 0, 480, 270);
+    g.fillStyle = '#c9cbc6'; g.beginPath(); g.ellipse(392, 248, 44, 16, 0, 0, 7); g.fill(); g.fillRect(372, 196, 40, 52); g.beginPath(); g.arc(392, 190, 22, 0, 7); g.fill();
+    g.strokeStyle = '#c9cbc6'; g.lineCap = 'round'; g.lineWidth = 22; g.beginPath(); g.moveTo(392, 190); g.lineTo(350, 96); g.stroke(); g.lineWidth = 16; g.beginPath(); g.moveTo(350, 96); g.lineTo(262, 132); g.stroke();
+    g.fillStyle = '#9fa3a8'; g.beginPath(); g.arc(350, 96, 13, 0, 7); g.fill(); g.fillStyle = '#c9cbc6'; g.fillRect(246, 120, 22, 30);
+    g.fillStyle = '#7d8189'; g.fillRect(228, 0, 18, 270); g.fillStyle = '#b4664f'; g.fillRect(224, 150, 26, 14);
+    const camTex = new THREE.CanvasTexture(cv); camTex.colorSpace = THREE.SRGBColorSpace;
+    let swapped = 0; R.scene.traverse((o) => { if (o.userData && o.userData.kit === 'monitor') o.traverse((m) => { if (m.isMesh && m.material && m.material.emissiveMap) { m.material = m.material.clone(); m.material.emissiveMap = camTex; m.material.needsUpdate = true; swapped++; } }); }); console.log('screens swapped ' + swapped); }
+  /* the screens are the room's warm source, the window the cold one */
+  [-0.62, 0.05, 0.72].forEach((x) => { const pl = new THREE.PointLight(0xffd2a0, 0.7, 2.4, 2); pl.position.set(x, dh + 0.04, -0.5); R.scene.add(pl); });
+  const from = [1.05, 1.38, 1.45];
+  const look = CH.aim(THREE, R, TXT, from, [0.05, dh + 0.25, -0.9], 580, 940, 50);
+  TXT.frame(R, { fov: 50, from, look });
+  const fy = 0;
+  TXT.deckRig(R, CH.rigSpec(W, 6, 2048), CH.rigOpts([0, 1, 0], { distance: 20, shadowFar: 40, normalBias: 0.02 }));
+  CH.unacne(R, 0.02);
+  R.scene.traverse((l) => { if (l.isLight && !l.castShadow && !l.isAmbientLight && !l.isHemisphereLight && !l.isPointLight) l.intensity *= 0.25; });
+  TXT.weather(R, { grime: 0.3, height: 0.8, mottle: 0.22 });
+  const cx = CH.develop(await TXT.snapshot(R, { stage: false }), gl);
+  CH.post(cx, { a: 0.42, veil: 0.4, veilH: 280 });
+  CH.footWash(cx);
+  /* the desk's edge falls to black under the footer line */
+  { const g = cx.createLinearGradient(0, 1190, 0, 1350); g.addColorStop(0, 'rgba(5,6,10,0)'); g.addColorStop(0.4, 'rgba(5,6,10,0.72)'); g.addColorStop(1, 'rgba(5,6,10,0.8)'); cx.fillStyle = g; cx.fillRect(0, 1190, 1080, 160); }
+  CH.typeDark(cx);
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

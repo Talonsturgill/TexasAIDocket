@@ -1,0 +1,204 @@
+{
+ "weighted_score": 6.832,
+ "judges": [
+  6.48,
+  7.1,
+  6.76
+ ],
+ "spread": 0.62,
+ "criteria": {
+  "artwork_craft": {
+   "score": 6.3,
+   "weight": 0.22,
+   "judges": [
+    6.3,
+    6.3,
+    6.3
+   ]
+  },
+  "deck_coherence": {
+   "score": 6.8,
+   "weight": 0.12,
+   "judges": [
+    7.0,
+    6.8,
+    6.5
+   ]
+  },
+  "claim_integrity": {
+   "score": 7.5,
+   "weight": 0.2,
+   "judges": [
+    6.0,
+    8.3,
+    7.5
+   ]
+  },
+  "story_and_stakes": {
+   "score": 6.5,
+   "weight": 0.16,
+   "judges": [
+    6.5,
+    6.8,
+    6.5
+   ]
+  },
+  "sequence_and_momentum": {
+   "score": 6.8,
+   "weight": 0.1,
+   "judges": [
+    6.8,
+    7.0,
+    6.4
+   ]
+  },
+  "voice": {
+   "score": 6.8,
+   "weight": 0.1,
+   "judges": [
+    6.8,
+    7.0,
+    6.8
+   ]
+  },
+  "variety": {
+   "score": 7.3,
+   "weight": 0.1,
+   "judges": [
+    6.5,
+    7.5,
+    7.3
+   ]
+  }
+ },
+ "hard_fails": [],
+ "hard_fails_by_judge": [],
+ "ship": true,
+ "threshold": 8.0,
+ "over_threshold": false,
+ "method": "per-criterion median across three judges, then weighted by the rubric",
+ "contested": [
+  "claim_integrity"
+ ],
+ "artwork_weakest_frames": [
+  {
+   "slide": 3,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Cold box, white trailer doors, painted stripe clerestory.",
+     "fix": "Darken the trailer doors, warm the walls, real lit glazing."
+    },
+    {
+     "judge": 2,
+     "problem": "Cold navy facade, bright trailer doors.",
+     "fix": "Warm key on the lit end as one pool, darken the trailer doors."
+    },
+    {
+     "judge": 3,
+     "problem": "Cold exterior, primitive trailers, plant unsizeable, dead court.",
+     "fix": "Pull back so the whole wall fits with one truck and person, warm rake, doors down."
+    }
+   ]
+  },
+  {
+   "slide": 7,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Primitive worker, white yard, no jamb, stubs read as bollards.",
+     "fix": "Dark jamb across the left third; drop or silhouette the worker; low flush stubs."
+    },
+    {
+     "judge": 2,
+     "problem": "Worker face draws the eye, white yard, no jamb.",
+     "fix": "Backlit worker silhouette, yard down, black jamb."
+    },
+    {
+     "judge": 3,
+     "problem": "Near-white yard, missing jamb, plastic worker.",
+     "fix": "Dark jamb on the left edge, yard exposure down."
+    }
+   ]
+  },
+  {
+   "slide": 8,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Grey rack faces, tabs as a string of keys, fibre shadows.",
+     "fix": "Crop to one switch, steel to near black, fibre into a tray."
+    },
+    {
+     "judge": 2,
+     "problem": "Garland of modules on a grey rack wall.",
+     "fix": "One column of seated modules down a dark aisle under one raking key."
+    },
+    {
+     "judge": 3,
+     "problem": "Grey midtone rack wall, stock look.",
+     "fix": "Crop to one rack face under one raking light."
+    }
+   ]
+  },
+  {
+   "slide": 6,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Thick rod and board pennants read as a barrier; mid sky with a horizon band.",
+     "fix": "3 mm cord, fluttering strips, eye at 0.6 m, fog the band."
+    },
+    {
+     "judge": 2,
+     "problem": "Water ground, flat horizon band, flat pennants.",
+     "fix": "Graded clay, fog the horizon, tie strips to the stakes."
+    }
+   ]
+  },
+  {
+   "slide": 9,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Overlit pale worker; truss behind the hook.",
+     "fix": "Door-side rim only; truss to black."
+    },
+    {
+     "judge": 3,
+     "problem": "Overexposed kit worker; cords in mid-air; about fourteen pads.",
+     "fix": "Raise the camera for all twenty pads; cut or silhouette the worker."
+    }
+   ]
+  },
+  {
+   "slide": 2,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "Mid-brown field, knife read, fingers cropped.",
+     "fix": "Pull back, whole module and tape corner in frame, floor to black."
+    },
+    {
+     "judge": 3,
+     "problem": "Brown midtone field, fingers cropped, no tape corner.",
+     "fix": "Darken outside a tight pool, fingers and tape corner in frame."
+    }
+   ]
+  }
+ ],
+ "rounds_derived": 3,
+ "rounds": 3,
+ "rounds_source": "this module's own log of cards it has scored",
+ "at_cap": true,
+ "rung": null,
+ "shortfall": "at the round cap the finished deck ships at 6.832, 1.168 under the 8.0 top rung. Name that in the email and the run record",
+ "craft_floor": "capped",
+ "craft_note": "at the round cap the craft floor stands down. The art median 6.3 is under 8.5 and the deck ships as it is. Name it in the run record"
+}

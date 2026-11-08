@@ -1,0 +1,77 @@
+{
+ "_note": "Scores, weighted score, hard fails and fixes as the reader judge returned them, round 1; each why abridged by the run.",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.3,
+   "why": "Right register; 2, 5 and 9 give one readable subject; 1, 4, 6 and 8 fall back on defaults or primitives; 3's lit third and the rest are both mid grey at 432 px; 2's sign reads as a button."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "One floodlit night world, casts run right, no strobe; camera move and ember band both work; the reliefs are a flatter idiom and the band drifts to tan on 9."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.5,
+   "why": "Every numeral traces; no AI; c8 kept apart from c24. Frame 3's 'the rest' on floor plates can read as the rest also on the floor; frame 1's 'now do much' firms c7's 'can perform much'."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.0,
+   "why": "Who, when and where; no public body or deadline; the staffing question arrives only as the company's word, and the caption's question is the best stake."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "1 to 3 pay; 1, 4 and 5 all say an arm handles the pipe; 7 is an aside; the turn at 6 is soft; the close lands on the company's staffing line."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "The caption opener sounds like the rig; disclaimer lines on six frames and 'Reuters reported' on five."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 5.5,
+   "why": "No. 68 had pipe racks, a lateral cutaway and a worker by a gate; no. 69 drew ten of twenty for half; the floodlit world repeats no. 67."
+  }
+ ],
+ "weighted_score": 6.756,
+ "hard_fails": [],
+ "ship": false,
+ "artwork_weakest_frames": [
+  {
+   "slide": 1,
+   "problem": "Gripper reads as stacked white boxes; no jaws visible; the pipe above is a blurred column.",
+   "fix": "Turn the camera about 30 degrees so the die-padded jaws wrap the tool joint in profile, run the pipe sharp out of the top, add the cable loom."
+  },
+  {
+   "slide": 3,
+   "problem": "Nine plates read as a flat pattern, both columns mid grey at thumb, and 'the rest' sits on floor plates.",
+   "fix": "Make the lit third the only bright object and say the rest happen elsewhere."
+  },
+  {
+   "slide": 6,
+   "problem": "A stock control room with invented charts and an empty chair.",
+   "fix": "An over-the-shoulder contractor and one camera view of the floor on the screens."
+  },
+  {
+   "slide": 4,
+   "problem": "Mannequin worker cut by the footer; shed, gate, stand and arm split the focus.",
+   "fix": "Remove the shed, stand the worker full height at the base of the stand, crop the arm out."
+  },
+  {
+   "slide": 8,
+   "problem": "The rack in plan reads as blinds; joints run off the bottom.",
+   "fix": "Fit all 20 joints above the footer and show their round ends."
+  }
+ ]
+}

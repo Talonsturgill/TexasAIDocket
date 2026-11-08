@@ -45,6 +45,11 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-21 · Checked and unchanged. Still pending, with no dated movement.
 - 2026-10-24 · Young County's agenda still shows the Project Saltworks abatement application received and the developer funded escrow for consultants ratified.
 - 2026-10-29 · Young County's Project Saltworks abatement application is still pending before the court, with the developer funded escrow in place.
+- 2026-11-01 · Young County's receipt of the Project Saltworks abatement application is unconfirmed today. Its only published account refuses this project.
+- 2026-11-03 · Young County's receipt of the Project Saltworks application is unconfirmed again. The weekly paper's site still refuses this project.
+- 2026-11-05 · Young County taking in the Project Saltworks application still lacks a fresh reading. The county weekly keeps its site closed to this project.
+- 2026-11-06 · Project Saltworks' abatement application before Young County has no new confirmation. The county weekly still keeps this project out.
+- 2026-11-07 · Young County has not been confirmed to act on Project Saltworks' abatement application since the last reading. The county weekly still keeps this project out.
 
 ## Evidence
 

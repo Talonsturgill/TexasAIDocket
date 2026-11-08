@@ -1,0 +1,67 @@
+<!doctype html>
+<!-- 2026-11-05, frame 8 of 9. Archetype CLOSE_CROP. A spatial scene through txthree.js in a dark TXT.interior data hall: the kit server_row seen close along a cold aisle, chassis osfp_modules seated in a row at the top of the nearest racks with their pull tabs out, one fixture down the aisle. Drawn to illustrate, to no company's hall. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:900px">A hyperscale customer the release doesn't name</h1>
+<p class="dek" data-follow="26" style="width:860px">The chief executive says the company recently secured a multi-year strategic agreement with a Tier 1 hyperscale data center customer. The hall is drawn to illustrate.</p>
+<script>window.FIG = {};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-05-dockdoor.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "The customer", counter: "08 / 09", src: "c6", fit: { min: 80, max: 100, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 30, near: 0.02, far: 200, fog: 0.012, exposure: 1.25 });
+  const room = TXT.interior(R, { w: 12, d: 22, h: 4.4, floor: 'concrete', joints: false, wall: 0x1c1d20, window: null, ceiling: true, light: 0.05 });
+  room.traverse((m) => { if (m.isMesh) m.castShadow = true; });
+  const rows = [];
+  for (let k = 0; k < 3; k++) { const r = K.make('server_row', { racks: 7, containment: false, tray: true, floor: false }); r.position.set(-1.6, 0, 6 - k * 4.4); r.rotation.y = Math.PI / 2; TXT.add(R, r); TXT.contact(R, r); rows.push(r); }
+  /* modules seated in a top of rack switch on each of the nearest racks, pull tabs into the aisle */
+  const row = rows[0]; row.updateMatrixWorld(true);
+  const bb = new THREE.Box3().setFromObject(row), fx = bb.max.x + 0.004;
+  for (let rck = 0; rck < 3; rck++) for (let j = 0; j < 12; j++) {
+    const m = K.make('osfp_module', { seed: j });
+    m.traverse((c) => { if (c.isMesh && c.material && c.material.color && c.material.color.getHex() === 0x141516) { c.material = c.material.clone(); c.material.color.set(0xe8e4d8); c.material.roughness = 0.55; } });
+    m.position.set(fx - 0.05, 1.86, bb.max.z - 0.33 - rck * 0.6 - j * 0.041 + 0.22); m.rotation.y = Math.PI / 2; m.rotation.x = Math.PI / 2; m.scale.setScalar(0.92); TXT.add(R, m);
+  }
+  /* stood back across the aisle so the nearest rack and its switch own the frame and the row recedes behind it */
+  /* a yellow riser of the kit's row, cut by the frame's top in mid air, is lifted out: nothing stops in the air here */
+  rows.forEach((r) => r.traverse((m) => { if (m.isMesh && m.material && m.material.color) { const c = m.material.color; if (c.r > 0.55 && c.g > 0.4 && c.b < 0.25) m.visible = false; } }));
+  /* the kit's patch fibres end in mid air above the switch faces, so they come out: the modules' pale tabs carry the read */
+  rows.forEach((r) => r.traverse((m) => { if (m.isMesh && m.geometry && m.geometry.type === 'TubeGeometry') m.visible = false; }));
+  const from = [fx + 1.35, 1.72, bb.max.z + 0.35];
+  const look = CH.aim(THREE, R, TXT, from, [fx, 1.8, bb.max.z - 0.7], 620, 960, 30);
+  TXT.frame(R, { fov: 30, from, look });
+  CH.KEY_SCALE = 0.4;
+  TXT.deckRig(R, CH.rigSpec(W, 7, 4096), CH.rigOpts([fx, 1.2, bb.max.z - 2], { distance: 12, shadowFar: 30, normalBias: 0.01 }));
+  CH.unacne(R, 0.02); CH.bayFill(R, 0.08);
+  /* one fixture down the aisle, the hall's only source */
+  { const p = new THREE.PointLight(0xffd8b0, 120, 18, 1.5); p.position.set(fx + 0.8, 3.9, bb.max.z - 2.2); p.castShadow = false; R.scene.add(p);
+    /* a strip fixture over the cold aisle: a warm pool on the nearest switch face and the floor in front of it */
+    const sp = new THREE.SpotLight(0xfff0dc, 260, 9, 0.42, 0.7, 1.5); sp.position.set(fx + 0.85, 3.7, bb.max.z - 0.8); sp.target.position.set(fx, 1.6, bb.max.z - 0.9); sp.castShadow = true; sp.shadow.mapSize.set(4096, 4096); sp.shadow.bias = -0.0003; sp.shadow.radius = 6; R.scene.add(sp); R.scene.add(sp.target); CH.lampGlow(THREE, R, [fx + 0.8, 4.15, bb.max.z - 2.2], 0xffe2c0, 0.4, 0); }
+  TXT.weather(R, { grime: 0.08, height: 0.3, mottle: 0.08 });
+  const cx = CH.develop(await TXT.snapshot(R, { stage: false }), gl);
+  CH.post(cx, { a: 0.5, veil: 0.45, veilH: 300 });
+  CH.footWash(cx);
+  /* the tray and the rack heads behind the type go to the dark, darken only */
+  { const g = cx.createLinearGradient(0, 0, 0, 610); g.addColorStop(0, 'rgba(5,6,10,0.9)'); g.addColorStop(0.82, 'rgba(5,6,10,0.88)'); g.addColorStop(1, 'rgba(5,6,10,0)'); cx.fillStyle = g; cx.fillRect(0, 0, 1080, 610); }
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

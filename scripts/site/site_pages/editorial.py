@@ -1008,7 +1008,7 @@ def latest_video() -> str:
     if(st&&vs.length){var n=vs.length;
       st.querySelector('.n').textContent=(n<10?'0':'')+n;}
     if(!vs.length)return;
-    var v=vs[0], abs=function(u){return /^https?:\/\//.test(u)?u:base+u};
+    var v=vs[0], abs=function(u){return /^https?:\\/\\//.test(u)?u:base+u};
     var el=document.getElementById('hv');
     /* The thumb and the rendition when the publish step made them, the masters when it did
        not. This block is one frame and one film beside a paragraph, so it never needs the
