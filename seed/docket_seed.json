@@ -19127,5 +19127,111 @@
     "note": "Admitted on ExxonMobil's October 30th earnings call, its own post on automated drilling, the H&P release of October 7th and the Reuters account from Midland."
    }
   ]
+ },
+ {
+  "title": "Texas A&M builds a language model that sorts disaster posts for emergency managers, and it has not yet been used in a live disaster",
+  "summary": "Texas A&M University reported on November 6th, 2026 that researchers in its Zachry Department of Civil and Environmental Engineering are developing an AI tool to help emergency managers sort the information that floods in during a hurricane or another crisis. The tool is a large language model. It sorts crisis posts into disaster, weather and humanitarian information, then labels each post by event type, informativeness and the kind of humanitarian information it carries. The team tested it on a benchmark of human annotated social media posts from several disaster events. The university says the system is still under development and has not been deployed during an active disaster. The team next plans an AI agent emergency professionals can talk to. The release gives no accuracy figure and names no emergency agency testing the tool. The National Science Foundation is listed as the funder.",
+  "topic": "research-and-science",
+  "decider": {
+   "name": "Texas A&M University",
+   "type": "state-agency"
+  },
+  "geography": {
+   "statewide": false,
+   "counties": [
+    "Brazos"
+   ],
+   "on_ercot": true,
+   "metro": "College Station-Bryan, TX"
+  },
+  "status": "decided",
+  "confidence": "high",
+  "key_dates": [
+   {
+    "date": "2026-11-06",
+    "kind": "filed",
+    "note": "Texas A&M reports the tool's development"
+   }
+  ],
+  "public_access": {
+   "room": "contact_only",
+   "how": "The work is described on the university's news page, which names a media contact. A research result is not a public proceeding and has no window for comment.",
+   "url": "https://stories.tamu.edu/news/2026/11/06/researchers-develop-ai-tool-to-improve-crisis-communication/",
+   "closes": null
+  },
+  "claims": [
+   {
+    "text": "Texas A&M researchers are building an AI tool to help emergency managers sort the information that floods in during crises such as hurricanes.",
+    "verbatim_quote": "Texas A&M researchers are developing an AI-based tool to help emergency managers quickly sort through the flood of information that emerges during crises such as hurricanes.",
+    "source_url": "https://stories.tamu.edu/news/2026/11/06/researchers-develop-ai-tool-to-improve-crisis-communication/",
+    "source_title": "Texas A&M Stories, Researchers develop AI tool to improve crisis communication",
+    "source_type": "primary_official",
+    "fetched": "2026-11-07",
+    "id": "tx-2026-0243-c1"
+   },
+   {
+    "text": "The work is led in the Zachry Department of Civil and Environmental Engineering and uses a large language model to filter crisis information.",
+    "verbatim_quote": "the work uses a large language model to filter the information that emerges during crises such as hurricanes",
+    "source_url": "https://stories.tamu.edu/news/2026/11/06/researchers-develop-ai-tool-to-improve-crisis-communication/",
+    "source_title": "Texas A&M Stories, Researchers develop AI tool to improve crisis communication",
+    "source_type": "primary_official",
+    "fetched": "2026-11-07",
+    "id": "tx-2026-0243-c2"
+   },
+   {
+    "text": "The model sorts crisis posts into disaster, weather and humanitarian information.",
+    "verbatim_quote": "The model was designed to categorize crisis-related information into three areas: disaster-related, weather-related, and humanitarian information.",
+    "source_url": "https://stories.tamu.edu/news/2026/11/06/researchers-develop-ai-tool-to-improve-crisis-communication/",
+    "source_title": "Texas A&M Stories, Researchers develop AI tool to improve crisis communication",
+    "source_type": "primary_official",
+    "fetched": "2026-11-07",
+    "id": "tx-2026-0243-c3"
+   },
+   {
+    "text": "It was tested on a benchmark of human annotated social media posts from several disaster events.",
+    "verbatim_quote": "researchers used a benchmark of human-annotated social media posts from multiple disaster events",
+    "source_url": "https://stories.tamu.edu/news/2026/11/06/researchers-develop-ai-tool-to-improve-crisis-communication/",
+    "source_title": "Texas A&M Stories, Researchers develop AI tool to improve crisis communication",
+    "source_type": "primary_official",
+    "fetched": "2026-11-07",
+    "id": "tx-2026-0243-c4"
+   },
+   {
+    "text": "The system has not been used in a live disaster.",
+    "verbatim_quote": "The system is under development and has not been deployed during an active disaster.",
+    "source_url": "https://stories.tamu.edu/news/2026/11/06/researchers-develop-ai-tool-to-improve-crisis-communication/",
+    "source_title": "Texas A&M Stories, Researchers develop AI tool to improve crisis communication",
+    "source_type": "primary_official",
+    "fetched": "2026-11-07",
+    "id": "tx-2026-0243-c5"
+   },
+   {
+    "text": "The team says it plans an AI agent emergency professionals can talk to.",
+    "verbatim_quote": "The team plans to build an AI agent that emergency professionals can talk to when disaster strikes",
+    "source_url": "https://stories.tamu.edu/news/2026/11/06/researchers-develop-ai-tool-to-improve-crisis-communication/",
+    "source_title": "Texas A&M Stories, Researchers develop AI tool to improve crisis communication",
+    "source_type": "primary_official",
+    "fetched": "2026-11-07",
+    "id": "tx-2026-0243-c6"
+   },
+   {
+    "text": "The National Science Foundation is listed as the funder.",
+    "verbatim_quote": "Funders National Science Foundation",
+    "source_url": "https://stories.tamu.edu/news/2026/11/06/researchers-develop-ai-tool-to-improve-crisis-communication/",
+    "source_title": "Texas A&M Stories, Researchers develop AI tool to improve crisis communication",
+    "source_type": "primary_official",
+    "fetched": "2026-11-07",
+    "id": "tx-2026-0243-c7"
+   }
+  ],
+  "notes_for_editor": "Admitted on the university's own release. The release reports no accuracy score and names no agency using the tool, so neither is stated. The paper it cites was not read.",
+  "history": [
+   {
+    "date": "2026-11-07",
+    "note": "Admitted on the university's own account. The release gives no accuracy figure, and no emergency agency is named as testing the tool."
+   }
+  ],
+  "last_verified": "2026-11-07",
+  "id": "tx-2026-0243"
  }
 ]
