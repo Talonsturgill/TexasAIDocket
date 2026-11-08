@@ -70,8 +70,8 @@
     var SPECK = canvasTex(256, 256, function (g, w, h, rr) { g.fillStyle = "#b8bbbe"; g.fillRect(0, 0, w, h);
       for (var i = 0; i < 26000; i++) { var v = 160 + Math.floor(rr() * 70); g.fillStyle = "rgba(" + v + "," + v + "," + (v + 3) + ",0.45)"; g.fillRect(rr() * w, rr() * h, 1, 1); } }, 6);
     var FILM = canvasTex(256, 256, function (g, w, h, rr) { var gr = g.createLinearGradient(0, 0, 0, h); gr.addColorStop(0, "#e6e3dc"); gr.addColorStop(0.6, "#d4d0c6"); gr.addColorStop(1, "#a9a396"); g.fillStyle = gr; g.fillRect(0, 0, w, h);
-      g.filter = "blur(2px)"; for (var i = 0; i < 60; i++) { var x = rr() * w, y0 = rr() * h * 0.5, len = 30 + rr() * h * 0.5; g.fillStyle = "rgba(80,70,54," + (0.05 + rr() * 0.08) + ")"; g.fillRect(x, y0, 2 + rr() * 4, len); } g.filter = "none";
-      for (var j = 0; j < 2600; j++) { g.fillStyle = "rgba(70,62,50," + (rr() * 0.08) + ")"; g.fillRect(rr() * w, h * (0.4 + 0.6 * rr()), 2, 2); } }, 1);
+      g.filter = "blur(1px)"; for (var i = 0; i < 150; i++) { var x = rr() * w, y0 = rr() * h * 0.5, len = 30 + rr() * h * 0.5; g.fillStyle = "rgba(80,70,54," + (0.1 + rr() * 0.22) + ")"; g.fillRect(x, y0, 2 + rr() * 4, len); } g.filter = "none";
+      for (var j = 0; j < 9000; j++) { g.fillStyle = "rgba(70,62,50," + (rr() * 0.2) + ")"; g.fillRect(rr() * w, h * (0.4 + 0.6 * rr()), 2, 2); } }, 3);
     var ALU = K.mat("cs-alu", { color: 0xd2d5d8, metalness: 0.85, roughness: 0.4, map: SPECK });   /* bead blasted cast aluminium */
     var ALUS = K.mat("cs-alus", { color: 0xa9adb1, metalness: 0.88, roughness: 0.36 });               /* the same casting, small parts, no map */
     var ALUDK = K.mat("cs-aludk", { color: 0x3a3c40, metalness: 0.6, roughness: 0.5 });          /* anodised hood, dark */
