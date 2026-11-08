@@ -7,102 +7,86 @@
  },
  "section": "Local government",
  "dek": {
-  "text": "Dallas cameras on sanitation trucks photographed more than {{number:c14}} code concerns in four months. The Dallas Morning News reported {{number:c15}} citations.",
+  "text": "Cameras on Dallas sanitation trucks scanned {{number:c46}} properties. A city memo counts {{number:c47}} citations, issued only after an in-person inspection.",
   "claims": [
-   "c14",
-   "c15"
+   "c46",
+   "c47"
   ]
  },
  "introduction": [
   {
-   "text": "[Dallas began using {{number:c30}} AI-powered cameras on bulky sanitation trucks in mid-April](c30). [The cameras face sideways and capture images from the public right of way](c5). [Software looks for property conditions such as bulk trash, tires, illegal dumping and graffiti](c8).",
+   "text": "[Dallas put cameras made by City Detect on its bulk trash trucks](c57), [and they scan homes and buildings for potential code violations](c49). [The city's own briefing to its Finance Committee says the cameras face sideways and capture images from the public right of way](c5).",
    "claims": [
-    "c30",
-    "c5",
-    "c8"
+    "c57",
+    "c49",
+    "c5"
    ]
   },
   {
-   "text": "[In four months the cameras photographed more than {{number:c14}} code concerns, the Dallas Morning News reported](c14). [That resulted in {{number:c15}} citations at {{number:c15:1}} properties, primarily in southern Dallas](c15). A flagged image is a concern, not a violation, and the steps between the two decide who gets a visit.",
+   "text": "[A city memo dated {{date:c45}}](c45) [says the cameras scanned {{number:c46}} properties](c46). [It counts {{number:c47}} citations at {{number:c47:1}} properties](c47). A flagged image is a possible problem, not a violation, and the steps between the two decide who gets a visit.",
    "claims": [
-    "c14",
-    "c15"
+    "c45",
+    "c46",
+    "c47"
    ]
   }
  ],
  "sections": [
   {
-   "heading": "How a flag becomes a visit",
+   "heading": "How a flag becomes a citation",
    "paragraphs": [
     {
-     "text": "[The process the paper described starts with a still image taken along a truck's route](c20). [Software flags a potential concern](c21) [and a code compliance analyst reviews it](c22). [City workers then choose between taking no action, sending a courtesy notice and opening a case](c23). [A code officer inspects the property in person](c24), [and a citation can be issued only after an actual violation is confirmed](c25).",
+     "text": "[The software assigns blight scores that help Code Compliance decide which properties to review first](c51). [The memo says the citations came after camera detections were reviewed and confirmed by code officers](c50), [and that a citation is issued only after a code officer inspects the property in person and notifies the owner](c47).",
      "claims": [
-      "c20",
-      "c21",
-      "c22",
-      "c23",
-      "c24",
-      "c25"
+      "c51",
+      "c50",
+      "c47"
      ]
     },
     {
-     "text": "[The city's briefing to its Finance Committee said the system is neither a staff replacement nor automated ticketing](c12) [and that a person stays in the loop](c13). [It said faces and license plates are blurred](c6). [City Detect's chief executive later told a council committee that the company had expanded its blurring to cover a person's full image](c39).",
+     "text": "[The city's December briefing said the system is neither a staff replacement nor automated ticketing](c12) [and that a person stays in the loop](c13). [It said faces and license plates are blurred](c6).",
      "claims": [
       "c12",
       "c13",
-      "c6",
-      "c39"
+      "c6"
      ]
     }
    ]
   },
   {
-   "heading": "Where the cameras looked",
+   "heading": "Notices, cases and citations",
    "paragraphs": [
     {
-     "text": "[A Dallas Morning News analysis of city data placed about {{number:c17}} of the {{number:c17:1}} images in southern Dallas](c17). [Properties in east and southeast Oak Cliff drew the most citations, with {{number:c16}}](c16).",
+     "text": "[The city sent courtesy notices to approximately {{number:c53}} property owners after potential violations were detected](c53). [City officials say the notices are not citations or formal warnings and require no action, though they warn that a continuing violation could bring enforcement](c54). [Code Compliance also opened about {{number:c52}} cases where officials believe an in-person inspection should come soon](c52).",
      "claims": [
-      "c17",
-      "c16"
+      "c53",
+      "c54",
+      "c52"
      ]
     },
     {
-     "text": "[Council member Chad West, who represents Oak Cliff, questioned whether the technology could unintentionally target southern Dallas residents who face citations for conditions they can't afford to repair](c26). [Code Compliance Director Chris Christian said the cameras run along existing sanitation routes across the city and are not meant to target communities by income or demographics](c40).",
+     "text": "Those counts measure different things, and none of them is a step by step tally from detection to citation.",
+     "claims": []
+    },
+    {
+     "text": "[By the city manager's memo, {{number:c55}} of the citations were issued in Council Districts {{number:c55:2}}, {{number:c55:3}} and {{number:c55:4}} in southern Dallas](c55). [Council member Chad West has raised concerns that the technology could put a disproportionate financial burden on neighborhoods with fewer resources](c59).",
      "claims": [
-      "c26",
-      "c40"
+      "c55",
+      "c59"
      ]
     }
    ]
   },
   {
-   "heading": "What changed and what is still unmeasured",
+   "heading": "The money",
    "paragraphs": [
     {
-     "text": "[The city sent about {{number:c19}} courtesy notices between June and August, and a courtesy notice is not a citation or a fine](c19). [The city says a courtesy notice opens no enforcement case and sets no formal deadline](c35). [Courtesy notices will carry a QR code to the city's Housing and Community Empowerment resource page](c44), [and the code department plans to soften their wording](c34).",
+     "text": "[The three-year contract is estimated at {{money:c9}}, subject to annual City Council appropriations](c9). [It costs {{money:c10}} a year](c10), [and the city may end it on {{number:c11}} days' written notice](c11). [West proposed removing the program's funding and withdrew the request after the city manager's office agreed to brief the council](c56).",
      "claims": [
-      "c19",
-      "c35",
-      "c44",
-      "c34"
-     ]
-    },
-    {
-     "text": "[Figures reported in October count {{number:c31}} observations reviewed, {{number:c31:1}} courtesy notices sent and {{number:c31:2}} field inspections](c31). [Those figures measure different parts of the program and are not a step by step count of cases from detection to enforcement](c33).",
-     "claims": [
-      "c31",
-      "c33"
-     ]
-    },
-    {
-     "text": "[The contract costs {{money:c10}} a year](c10), [subject to annual City Council appropriations](c9), [and the city may end it on {{number:c11}} days' written notice](c11). [In September the paper reported that Dallas had not completed a comprehensive evaluation or a return on investment analysis](c29). [Staff told the committee they plan to improve detection accuracy, connect the system to city databases, develop performance measures and report on safeguards and outcomes](c41). [The city gave no timeline for those steps](c42).",
-     "claims": [
-      "c10",
       "c9",
+      "c10",
       "c11",
-      "c29",
-      "c41",
-      "c42"
+      "c56"
      ]
     }
    ]

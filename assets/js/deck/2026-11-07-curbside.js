@@ -55,7 +55,7 @@
   var N = {};
   N.W = 1080; N.H = 1350; N.SEED = 20261107; N.INK = "#EEEAE3";
   N.ACCENT = 0x4E5FA8;       /* brand.yaml's bluebonnet: what the software flagged, carried on paper by a person */
-  N.SHEET = 0.0001;          /* one letter sheet, 0.1 mm, the deck's one paper scale (a drawing unit) */
+  N.SHEET = 0.0002;          /* one card, 0.2 mm, the deck's one paper scale (a drawing unit): one property on frame 6 */
   N.LETTER = [0.2159, 0.2794];
   function lcg(seed) { var s = seed >>> 0 || 1; return function () { s = (s * 1664525 + 1013904223) >>> 0; return s / 4294967296; }; }
   N.lcg = lcg;
