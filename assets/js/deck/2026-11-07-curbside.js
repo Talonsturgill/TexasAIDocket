@@ -104,7 +104,9 @@
     var CLAY = K.mat("cs-clay", { color: 0x3a2e26, roughness: 0.9 });
     var PRESS = K.mat("cs-press", { color: 0x6b5a44, roughness: 0.85 });
     var MANILA = K.mat("cs-manila", { color: 0xc9b07c, roughness: 0.86 });
-    var ACC = K.mat("cs-accent", { color: 0x4E5FA8, roughness: 0.6, emissive: 0x4E5FA8, emissiveIntensity: 0.06 });
+    /* THE ACCENT HOLDS ITS HEX. A warm low key shifts a blue albedo toward grey, so the accent carries most of its
+     * colour as emission at the deck hex and stays within the layout gate's 12 Lab window in any pool. */
+    var ACC = K.mat("cs-accent", { color: 0x101830, roughness: 0.7, emissive: 0x4E5FA8, emissiveIntensity: 1.0 });
     var MESH = K.mat("cs-mesh", { color: 0x141518, metalness: 0.6, roughness: 0.45 });
     var BOARD = K.mat("cs-board", { color: 0x7a5a3a, roughness: 0.8 });
     var INK = K.mat("cs-ink", { color: 0x2a2a2e, roughness: 0.7 });
@@ -165,10 +167,11 @@
       note: "A section of a sanitation brush truck's dump body side on its frame rail: sheet steel with stake ribs every 0.6 m, top and rub rails, an amber marker, optional rear duals; face toward +z; drawn to illustrate.",
       make: function (o) {
         var G = new THREE.Group(), L = o.length || 4.2, fl = 1.1, top = 2.7, H = top - fl;
-        K.uvBox(K.box(L, H, 0.04, WHITE, 0, fl, 0, 0.01, G).geometry, 1.6);
-        for (var x = -L / 2 + 0.3; x <= L / 2 - 0.25; x += 0.6) K.box(0.07, H - 0.06, 0.07, WHITE, x, fl + 0.02, 0.05, 0.014, G);
-        K.box(L + 0.06, 0.09, 0.12, WHITE, 0, top - 0.02, 0.03, 0.02, G);
-        K.box(L + 0.06, 0.12, 0.13, WHITE, 0, fl - 0.04, 0.035, 0.02, G);
+        K.uvBox(K.box(L, H, 0.04, WHITE, 0, fl, 0, 0.01, G).geometry, 0.8);
+        var POST = K.mat("cs-post", { color: 0xd9d6ce, metalness: 0.15, roughness: 0.5 });
+        for (var x = -L / 2 + 0.3; x <= L / 2 - 0.25; x += 0.6) K.box(0.07, H - 0.06, 0.07, POST, x, fl + 0.02, 0.05, 0.014, G);
+        K.box(L + 0.06, 0.09, 0.12, POST, 0, top - 0.02, 0.03, 0.02, G);
+        K.box(L + 0.06, 0.12, 0.13, POST, 0, fl - 0.04, 0.035, 0.02, G);
         K.box(L, 0.22, 0.32, FRAME, 0, fl - 0.34, -0.12, 0.02, G);
         /* panel seams: the body side is two sheets, a horizontal lap seam at mid height */
         K.box(L, 0.012, 0.008, FRAME, 0, fl + H * 0.48, 0.022, 0.002, G);
@@ -296,9 +299,9 @@
       make: function (o) {
         var G = new THREE.Group();
         K.box(0.26, 0.004, 0.35, MESH, 0, 0, 0, 0.001, G);
-        K.box(0.004, 0.07, 0.35, MESH, -0.128, 0, 0, 0.001, G); K.box(0.004, 0.07, 0.35, MESH, 0.128, 0, 0, 0.001, G);
-        K.box(0.26, 0.07, 0.004, MESH, 0, 0, -0.173, 0.001, G); K.box(0.26, 0.035, 0.004, MESH, 0, 0, 0.173, 0.001, G);
-        for (var i = 0; i < 9; i++) K.box(0.002, 0.066, 0.33, MESH, -0.112 + i * 0.028, 0.004, 0, 0, G);
+        K.box(0.004, 0.05, 0.35, MESH, -0.128, 0, 0, 0.001, G); K.box(0.004, 0.05, 0.35, MESH, 0.128, 0, 0, 0.001, G);
+        K.box(0.26, 0.05, 0.004, MESH, 0, 0, -0.173, 0.001, G); K.box(0.26, 0.02, 0.004, MESH, 0, 0, 0.173, 0.001, G);
+        for (var i = 0; i < 9; i++) K.box(0.002, 0.003, 0.33, MESH, -0.112 + i * 0.028, 0.004, 0, 0, G);   /* the floor wires, low, so what the tray holds shows */
         if (o.holds === "notice") { G.add(K.make("notice", { kind: "envelope" })); G.children[G.children.length - 1].position.y = 0.006; }
         if (o.holds === "folder") { K.box(0.24, 0.004, 0.31, MANILA, 0, 0.006, 0, 0.0008, G); K.box(0.08, 0.004, 0.02, MANILA, -0.06, 0.006, -0.162, 0.0008, G);
           K.box(0.23, 0.006, 0.3, PAPER, 0.004, 0.009, 0.002, 0.0008, G); K.box(0.24, 0.002, 0.31, MANILA, 0, 0.015, 0, 0.0006, G); }
@@ -318,11 +321,11 @@
         var G = new THREE.Group(), T = new THREE.Group();
         if (o.kind === "envelope") {
           K.box(0.241, 0.002, 0.105, PAPER, 0, 0, 0, 0.0006, T);
-          K.box(0.012, 0.0004, 0.105, ACC, -0.1, 0.002, 0, 0, T);
-          K.box(0.08, 0.0004, 0.03, INK, 0.03, 0.002, 0.01, 0, T);
+          K.box(0.241, 0.0004, 0.06, ACC, 0, 0.002, -0.0225, 0, T);
+          K.box(0.08, 0.0004, 0.02, INK, 0.03, 0.002, 0.03, 0, T);
         } else {
           K.box(N.LETTER[0], 0.0006, N.LETTER[1], PAPER, 0, 0, 0, 0, T);
-          K.box(N.LETTER[0], 0.0004, 0.022, ACC, 0, 0.0006, -N.LETTER[1] / 2 + 0.011, 0, T);
+          K.box(N.LETTER[0], 0.0004, 0.05, ACC, 0, 0.0006, -N.LETTER[1] / 2 + 0.025, 0, T);
           for (var l = 0; l < 9; l++) K.box(0.15 - (l % 3) * 0.02, 0.0003, 0.0035, INK, -0.02 - (l % 3) * 0.01, 0.0006, -0.07 + l * 0.016, 0, T);
           var qx = 0.06, qz = 0.095; K.box(0.034, 0.0004, 0.034, PAPER2, qx, 0.0007, qz, 0, T);
           [[-1, -1], [1, -1], [-1, 1]].forEach(function (f) { K.box(0.009, 0.0004, 0.009, ACC, qx + f[0] * 0.011, 0.0009, qz + f[1] * 0.011, 0, T); });
@@ -345,7 +348,7 @@
         K.box(N.LETTER[0] - 0.002, th, N.LETTER[1], SHEETM, 0, b0, 0.012, 0.0004, G);
         if (b0) K.box(N.LETTER[0], 0.0008, N.LETTER[1], ACC, 0, b0 + th, 0.012, 0.0003, G);
         else { K.box(N.LETTER[0], 0.0006, N.LETTER[1], PAPER2, 0, b0 + th, 0.012, 0, G);
-          K.box(N.LETTER[0], 0.0006, 0.034, ACC, 0, b0 + th + 0.0003, 0.012 - N.LETTER[1] / 2 + 0.017, 0, G);
+          K.box(N.LETTER[0], 0.0006, 0.06, ACC, 0, b0 + th + 0.0003, 0.012 - N.LETTER[1] / 2 + 0.03, 0, G);
           for (var ln = 0; ln < 8; ln++) K.box(0.15 - (ln % 3) * 0.02, 0.0003, 0.004, INK, -0.02, b0 + th + 0.0006, -0.06 + ln * 0.018, 0, G); }
         if (b0) K.box(0.11, 0.014, 0.035, BOLT, 0, b0 + th, -0.14, 0.004, G); else K.box(0.012, 0.004, 0.03, BOLT, -0.08, b0 + th, -0.13, 0.001, G);
         G.userData.sheaf = th;
