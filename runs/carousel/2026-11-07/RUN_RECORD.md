@@ -136,4 +136,14 @@ round, none a hard fail:
 
 ## Email
 
-Written at Phase 19.
+Gmail draft `r-3513130238736810259` to docket@alaskaaihq.com, built from `gmail_payload.json` with the body passed as
+`htmlBody` and read back with `get_draft` (label DRAFT, snippet opens on the headline). Nothing was sent. The payload
+links point at the run branch, because the run did not merge.
+
+## Merge
+
+**Not merged.** PR no. 462 head `f994438` drew six checks. `gates` failed on `gridwatch_pagecheck --self-test`: "the newest
+verified queue month is 2026-08, which is 3 months back". That is the stale large load queue ledger described at the top,
+the gridwatch lane's file and off limits to this run, the same red that holds no. 460. It is not run-caused, so there is
+nothing for this run to fix. The other five checks were still in progress when this was written, and one red check already
+rules out a merge. The chain unblocks when the owner merges no. 461.
