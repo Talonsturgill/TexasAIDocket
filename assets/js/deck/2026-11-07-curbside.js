@@ -69,9 +69,9 @@
       var t = new THREE.CanvasTexture(c); t.wrapS = t.wrapT = THREE.RepeatWrapping; t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 8; t.repeat.set(rep, rep); return t; }
     var SPECK = canvasTex(256, 256, function (g, w, h, rr) { g.fillStyle = "#b8bbbe"; g.fillRect(0, 0, w, h);
       for (var i = 0; i < 26000; i++) { var v = 160 + Math.floor(rr() * 70); g.fillStyle = "rgba(" + v + "," + v + "," + (v + 3) + ",0.45)"; g.fillRect(rr() * w, rr() * h, 1, 1); } }, 6);
-    var FILM = canvasTex(256, 256, function (g, w, h, rr) { var gr = g.createLinearGradient(0, 0, 0, h); gr.addColorStop(0, "#e6e3dc"); gr.addColorStop(0.6, "#d4d0c6"); gr.addColorStop(1, "#a9a396"); g.fillStyle = gr; g.fillRect(0, 0, w, h);
-      g.filter = "blur(1px)"; for (var i = 0; i < 150; i++) { var x = rr() * w, y0 = rr() * h * 0.5, len = 30 + rr() * h * 0.5; g.fillStyle = "rgba(80,70,54," + (0.1 + rr() * 0.22) + ")"; g.fillRect(x, y0, 2 + rr() * 4, len); } g.filter = "none";
-      for (var j = 0; j < 9000; j++) { g.fillStyle = "rgba(70,62,50," + (rr() * 0.2) + ")"; g.fillRect(rr() * w, h * (0.4 + 0.6 * rr()), 2, 2); } }, 3);
+    var FILM = canvasTex(512, 512, function (g, w, h, rr) { var gr = g.createLinearGradient(0, 0, 0, h); gr.addColorStop(0, "#ebe9e3"); gr.addColorStop(0.7, "#dedbd3"); gr.addColorStop(1, "#c9c4b8"); g.fillStyle = gr; g.fillRect(0, 0, w, h);
+      for (var j = 0; j < 60000; j++) { var v = rr(); g.fillStyle = v < 0.5 ? "rgba(90,84,72," + (0.03 + rr() * 0.07) + ")" : "rgba(255,255,250," + (0.03 + rr() * 0.06) + ")"; g.fillRect(rr() * w, rr() * h, 1, 1); }
+      g.filter = "blur(0.6px)"; for (var i = 0; i < 90; i++) { var x = rr() * w, y0 = h * (0.68 + rr() * 0.2), len = 12 + rr() * h * 0.14; g.fillStyle = "rgba(96,86,70," + (0.08 + rr() * 0.1) + ")"; g.fillRect(x, y0, 1 + rr() * 1.5, len); } g.filter = "none"; }, 2);
     var ALU = K.mat("cs-alu", { color: 0xd2d5d8, metalness: 0.85, roughness: 0.4, map: SPECK });   /* bead blasted cast aluminium */
     var ALUS = K.mat("cs-alus", { color: 0xa9adb1, metalness: 0.88, roughness: 0.36 });               /* the same casting, small parts, no map */
     var ALUDK = K.mat("cs-aludk", { color: 0x3a3c40, metalness: 0.6, roughness: 0.5 });          /* anodised hood, dark */
@@ -179,6 +179,11 @@
         for (var tx = -L / 2 + 0.05; tx < L / 2 - 0.3; tx += 0.6) {
           K.box(0.3, 0.05, 0.005, K.mat("cs-tapeR", { color: 0xb02020, roughness: 0.35, emissive: 0x300808, emissiveIntensity: 0.4 }), tx + 0.15, fl - 0.02, 0.1, 0, G);
           K.box(0.3, 0.05, 0.005, K.mat("cs-tapeW", { color: 0xe8e8e2, roughness: 0.3, emissive: 0x303030, emissiveIntensity: 0.4 }), tx + 0.45, fl - 0.02, 0.1, 0, G);
+        }
+        /* the same tape run along the top of the body, under the rail, where a camera on the rail sits over it */
+        for (var ux = -L / 2; ux < L / 2 - 0.3; ux += 0.6) {
+          K.box(0.3, 0.05, 0.005, K.mat("cs-tapeR", { color: 0xb02020, roughness: 0.35, emissive: 0x300808, emissiveIntensity: 0.4 }), ux + 0.15, top - 0.16, 0.03, 0, G);
+          K.box(0.3, 0.05, 0.005, K.mat("cs-tapeW", { color: 0xe8e8e2, roughness: 0.3, emissive: 0x303030, emissiveIntensity: 0.4 }), ux + 0.45, top - 0.16, 0.03, 0, G);
         }
         var mk = K.box(0.1, 0.05, 0.03, AMBER, -L / 2 + 0.55, fl + 0.35, 0.1, 0.01, G);
         K.box(0.5, 0.04, 0.24, MESH, -L / 2 + 0.5, 0.55, 0.12, 0.01, G);
