@@ -2,7 +2,8 @@
  *
  * The rooms decisions are made in: a commissioners court dais, the lectern the public speaks
  * from, the rows it sits in, the office the paperwork lives in, and the server row the paperwork
- * is about, the laboratory bench (fly_vial, vial_tray), the clinical cart (workstation_cart), and
+ * is about, the laboratory bench (fly_vial, vial_tray, microcentrifuge_tube, microcentrifuge_rack,
+ * petri_dish), the clinical cart (workstation_cart), and
  * the deposition room (pro_camcorder, bound_transcript), and the patient record (patient_wristband,
  * index_card_drawer).
  * Interior frames stand in a room built by TXT.interior; these models furnish it.
@@ -2111,6 +2112,308 @@ export function install(K, THREE, TXT) {
         w.position.set(-(c - 1) * p / 2 + i * p, 0.0122, -(r - 1) * p / 2 + j * p); g.add(w);
       }
       g.userData.well = (i, j) => [-(c - 1) * p / 2 + i * p, 0.006, -(r - 1) * p / 2 + j * p];
+      return g;
+    },
+  });
+
+  /* ==== THE CULTURE BENCH, lifted 2026-11-08 by the weekly machine pass at the judges' named fixes ====
+   * No. 72 built `microtube`, `tube_rack` and `petri_plate` in its chassis (assets/js/deck/2026-11-08-plate.js)
+   * because the kit had none, and the panel charged them on frames 7 and 8 in every round. The tubes were
+   * "opaque flat-grey tubes with no translucency or rim glow", "grey cylinders with cone tips under a flat black
+   * rail", "a floating rack"; the fix every judge named was "milky translucent tubes backlit", "a solid slate rack
+   * with TXT.contact", "fully framed" so the count reads. The dishes were "a stack of pancakes or coins with ghost
+   * glass walls", "six dishes hover with dark gaps"; the fix was "one clear polystyrene wall per dish with a single
+   * lit rim", "clear polystyrene base and lid with visible wall thickness", "dishes stacked touching", "agar recessed
+   * inside", "darker amber agar", "matte colonies on the open plate". These are new NAMES on purpose: no. 72's
+   * installKit returns early only on `protein_pair` and defines the chassis names itself, so a lift under those
+   * names would throw "defined twice" under the deck that is still in review. */
+
+  /* MILKY POLYPROPYLENE: translucent, and MORE opaque toward grazing view, where the light path through the wall is
+   * longest, so a tube reads milky at its edges and lets the dark behind it through its face. The opposite of the
+   * vial glass, whose face vanishes and whose edge draws. */
+  const PPM = new Map();
+  function milkyPP(color) {
+    const c = color == null ? 0xf1eee6 : color;
+    if (PPM.has(c)) return PPM.get(c);
+    const m = new THREE.MeshPhysicalMaterial({ color: c, roughness: 0.36, metalness: 0, transparent: true, opacity: 0.6,
+      envMapIntensity: 1.1, clearcoat: 0.35, clearcoatRoughness: 0.3, emissive: c, emissiveIntensity: 0.025, depthWrite: false });
+    m.onBeforeCompile = (sh) => {
+      sh.fragmentShader = sh.fragmentShader.replace('#include <opaque_fragment>',
+        'float txPP = pow(1.0 - clamp(abs(dot(normalize(normal), normalize(vViewPosition))), 0.0, 1.0), 1.6);\n' +
+        'outgoingLight = outgoingLight * (1.0 + 0.9 * txPP);\n' +
+        'diffuseColor.a = mix(diffuseColor.a, 0.94, txPP);\n#include <opaque_fragment>');
+    };
+    m.customProgramCacheKey = () => 'kit-milky-pp';
+    PPM.set(c, m);
+    return m;
+  }
+  const lath = (pts, seg) => new THREE.LatheGeometry(pts.map((p) => new THREE.Vector2(p[0], p[1])), seg || 40);
+
+  /* the 1.5 mL tube's outer and inner profiles, tip at y 0, rim lip at the top (10.8 mm across, 40.6 mm with cap) */
+  const MT = { RB: 0.0052, RL: 0.0059, TOP: 0.0372, CONE: 0.0185, WALL: 0.0007, CAP_H: 0.0034 };
+  const MT_OUT = [[0.0003, 0], [0.0011, 0.0005], [0.0044, MT.CONE], [0.0050, 0.0215], [MT.RB, 0.0225], [MT.RB, MT.TOP - 0.0012],
+    [MT.RL, MT.TOP - 0.0008], [MT.RL, MT.TOP], [MT.RB - MT.WALL, MT.TOP], [MT.RB - MT.WALL, 0.0225],
+    [0.0044 - MT.WALL, 0.0215 - 0.0004], [0.0037 - MT.WALL, MT.CONE - 0.0004], [0.0006, 0.0012], [0.0001, 0.0012]];
+  // inner radius at height y, and the height a volume reaches, integrated from the profile (never a typed table)
+  function mtInnerR(y) {
+    const P = [[0.0001, 0.0012], [0.0037 - MT.WALL, MT.CONE - 0.0004], [0.0044 - MT.WALL, 0.0211], [MT.RB - MT.WALL, 0.0225], [MT.RB - MT.WALL, MT.TOP]];
+    if (y <= P[0][1]) return 0;
+    for (let i = 1; i < P.length; i++) if (y <= P[i][1]) { const t = (y - P[i - 1][1]) / (P[i][1] - P[i - 1][1]); return P[i - 1][0] + t * (P[i][0] - P[i - 1][0]); }
+    return P[P.length - 1][0];
+  }
+  function mtHeightFor(mL) {
+    const target = Math.max(0, +mL || 0) * 1e-6;   // millilitres to cubic metres
+    let v = 0, y = 0.0012; const dy = 0.00005;
+    while (v < target && y < MT.TOP - 0.0015) { const r = mtInnerR(y + dy / 2); v += Math.PI * r * r * dy; y += dy; }
+    return y;
+  }
+  /* every part of one tube, by material key, in the tube's own frame (the hinge at -z, the thumb tab at +z) */
+  function tubeParts(o) {
+    const P = { pp: [], frost: [], liquid: [] };
+    P.pp.push(new THREE.Mesh(lath(MT_OUT, 36)));
+    // moulded graduation ticks at the volumes the profile computes, short raised arcs on the -x side
+    for (const v of [0.1, 0.5, 1.0]) {
+      const y = mtHeightFor(v), r = y > 0.0225 ? MT.RB : mtInnerR(y) + MT.WALL;
+      const t = new THREE.Mesh(new THREE.CylinderGeometry(r + 0.00012, r + 0.00012, 0.00028, 10, 1, true, Math.PI * 1.25, v === 1.0 ? 0.6 : 0.36));
+      t.position.y = y; P.pp.push(t);
+    }
+    // the frosted writing patch on the front, and the frosted dimple on the cap's top
+    const fp = new THREE.Mesh(new THREE.CylinderGeometry(MT.RB + 0.00006, MT.RB + 0.00006, 0.0082, 16, 1, true, -0.46, 0.92));
+    fp.position.y = 0.0296; P.frost.push(fp);
+    // the snap cap: a skirt over the lip, a top with a raised rim, and its plug inside the mouth
+    const cap = new THREE.Group();
+    const cp = new THREE.Mesh(lath([[0.0001, MT.CAP_H], [0.0049, MT.CAP_H], [0.0055, MT.CAP_H + 0.0003], [0.0062, MT.CAP_H + 0.0001], [0.0063, MT.CAP_H - 0.0004],
+      [0.0063, -0.0006], [0.0061, -0.0009], [MT.RL + 0.0001, -0.0009], [MT.RL + 0.0001, 0.0003], [0.0042, 0.0005], [0.0042, -0.0035], [0.0001, -0.0035]], 36));
+    cap.add(cp);
+    const tab = new THREE.Mesh(TXT.roundedBox(0.0052, 0.0009, 0.0034, 0.0004));   // geometry when no material is given tab.position.set(0, 0.0005, 0.0071); cap.add(tab);
+    const dim = new THREE.Mesh(new THREE.CircleGeometry(0.0043, 28)); dim.rotation.x = -Math.PI / 2; dim.position.y = MT.CAP_H + 0.00002;
+    // the hinge strap: a bent flat band from the rim's back to the cap's back
+    const strap = new THREE.Mesh(new THREE.TorusGeometry(0.0021, 0.00045, 6, 14, Math.PI)); strap.scale.set(1, 1, 2.2);
+    strap.rotation.y = Math.PI / 2; strap.position.set(0, -0.0002, -0.0066);
+    const hinge = new THREE.Group(); hinge.position.set(0, MT.TOP, -0.0066);
+    cap.add(dim); cap.position.set(0, 0, 0.0066); hinge.add(cap);
+    if (o.open) hinge.rotation.x = -2.2;
+    const parts = [[cp, 'pp'], [tab, 'pp'], [dim, 'frost']];
+    hinge.updateMatrixWorld(true);
+    // bake each cap part to the tube's frame through the hinge, so K.merge (which reads a mesh's own matrix) sees it
+    for (const [m, k] of parts) { const w = new THREE.Mesh(m.geometry); m.matrixWorld.decompose(w.position, w.quaternion, w.scale); P[k].push(w); }
+    strap.position.add(new THREE.Vector3(0, MT.TOP, 0)); P.pp.push(strap);
+    // liquid to the fill line, a lathe of the inner profile, its top a shallow meniscus
+    const f = +o.fill || 0;
+    if (f > 0) {
+      const yt = mtHeightFor(f), pts = [];
+      for (let i = 0; i <= 16; i++) { const y = 0.0012 + (yt - 0.0012) * i / 16; pts.push([Math.max(0.00005, mtInnerR(y) - 0.00008), y]); }
+      pts.push([0.00005, yt - 0.0004]);
+      P.liquid.push(new THREE.Mesh(lath(pts.map((p, i) => i === 0 ? [0.00005, p[1]] : p), 28)));
+    }
+    return P;
+  }
+  function tubeMats(o) {
+    return { pp: milkyPP(o.color), frost: mat('mt-frost', { color: 0xe9e6df, roughness: 0.95, transparent: true, opacity: 0.42, depthWrite: false }),   // frosted, not painted: an opaque patch read as a grey block in the first proof
+      liquid: mat('mt-liquid', { color: o.liquidColor != null ? o.liquidColor : 0xd8c9a6, roughness: 0.12, transparent: true, opacity: 0.55, depthWrite: false }, true) };
+  }
+
+  K.define('microcentrifuge_tube', {
+    size: [0.013, 0.041, 0.018],
+    options: { color: null, fill: 0, liquidColor: null, open: false },
+    note: 'A 1.5 mL snap cap microcentrifuge tube at true size (10.8 mm across, 40.6 mm tall closed) in milky polypropylene that goes more opaque toward its edges, so it reads translucent against a dark field and milky at the rim: a conical foot, a lip, moulded graduation ticks at 0.1, 0.5 and 1.0 mL computed from the profile, a frosted writing patch on +z, a snap cap with a raised top, a frosted dimple and a thumb tab, on a hinge strap at -z. fill mL of liquid (liquidColor), open swings the cap back on its hinge. color tints the plastic. Base at the tip.',
+    make(o) {
+      const g = new THREE.Group(), P = tubeParts(o), M = tubeMats(o);
+      for (const k of Object.keys(P)) if (P[k].length) { const m = K.merge(P[k], M[k]); m.castShadow = k === 'frost'; m.receiveShadow = true; m.renderOrder = k === 'liquid' ? 1 : 2; g.add(m); }
+      g.userData.mouth = { x: 0, y: MT.TOP, z: 0 };
+      return g;
+    },
+  });
+
+  /* A MICROCENTRIFUGE RACK as a lab moulds one: a solid slate body whose walls run to the bench (no legs, nothing
+   * floating), a top deck with a chamfered hole per well, grip slots in both ends, an index tick per column on the
+   * front margin and per row on the left, and `count` tubes seated from the front row back, left to right, every
+   * one standing on the rack's floor with the upper half of its body and its cap above the deck. Tubes are
+   * instanced, four draw calls whatever the count. */
+  K.define('microcentrifuge_rack', {
+    size: [0.223, 0.043, 0.082],
+    options: { cols: 16, rows: 5, count: null, pitch: 0.0128, color: 0x2b3037, tube: null, fill: 0, liquidColor: null, jitter: 0.22 },
+    note: 'A solid moulded microcentrifuge rack, cols x rows wells at pitch metres (default 16 x 5 at 12.8 mm), its walls to the bench, chamfered holes in a top deck at 22 mm, grip slots in both ends, an index tick per column and per row; count tubes (default all) seated from the front row (+z) back, left to right, instanced. tube tints the plastic, fill mL and liquidColor fill every tube, jitter radians turns each cap\'s hinge a little. userData.well(i, j) gives the deck point of column i, row j (row 0 at the back); userData.count is the number seated. Front +z.',
+    make(o) {
+      const g = new THREE.Group(), rng = K.rng(+o.seed || 1);
+      const cols = Math.max(1, +o.cols || 16), rows = Math.max(1, +o.rows || 5), p = +o.pitch || 0.0128, MRG = 0.009;
+      const W = cols * p + 2 * MRG, D = rows * p + 2 * MRG, DECK = 0.022, FLOOR = 0.0025, HOLE = 0.0058;
+      const body = mat('mr-body', { color: o.color != null ? o.color : 0x2b3037, roughness: 0.58, clearcoat: 0.15, clearcoatRoughness: 0.6 }, true);
+      const shade = mat('mr-slot', { color: new THREE.Color(o.color != null ? o.color : 0x2b3037).multiplyScalar(0.32).getHex(), roughness: 0.8 });
+      const wx = (i) => -W / 2 + MRG + (i + 0.5) * p, wz = (j) => -D / 2 + MRG + (j + 0.5) * p;
+      // the walls, a hollow rounded shell down to the bench, and the floor the tips stand on
+      const T = 0.0016;
+      const shell = new THREE.Shape(); const rr = 0.003;
+      const rrect = (s, w, d, r) => { s.moveTo(-w / 2 + r, -d / 2); s.lineTo(w / 2 - r, -d / 2); s.quadraticCurveTo(w / 2, -d / 2, w / 2, -d / 2 + r); s.lineTo(w / 2, d / 2 - r);
+        s.quadraticCurveTo(w / 2, d / 2, w / 2 - r, d / 2); s.lineTo(-w / 2 + r, d / 2); s.quadraticCurveTo(-w / 2, d / 2, -w / 2, d / 2 - r); s.lineTo(-w / 2, -d / 2 + r); s.quadraticCurveTo(-w / 2, -d / 2, -w / 2 + r, -d / 2); };
+      rrect(shell, W, D, rr); const inner = new THREE.Path(); { const s = inner, w = W - 2 * T, d = D - 2 * T, r = rr * 0.5;
+        s.moveTo(-w / 2 + r, -d / 2); s.quadraticCurveTo(-w / 2, -d / 2, -w / 2, -d / 2 + r); s.lineTo(-w / 2, d / 2 - r); s.quadraticCurveTo(-w / 2, d / 2, -w / 2 + r, d / 2);
+        s.lineTo(w / 2 - r, d / 2); s.quadraticCurveTo(w / 2, d / 2, w / 2, d / 2 - r); s.lineTo(w / 2, -d / 2 + r); s.quadraticCurveTo(w / 2, -d / 2, w / 2 - r, -d / 2); s.lineTo(-w / 2 + r, -d / 2); }
+      shell.holes.push(inner);
+      const wallG = new THREE.ExtrudeGeometry(shell, { depth: DECK - 0.0018, bevelEnabled: false, curveSegments: 4 }); wallG.rotateX(-Math.PI / 2);
+      const walls = new THREE.Mesh(wallG, body); g.add(walls);
+      const fl = new THREE.Mesh(new THREE.BoxGeometry(W - 2 * T, FLOOR, D - 2 * T), body); fl.position.y = FLOOR / 2; g.add(fl);
+      // the deck: the outline with a hole per well, chamfered on the top edge
+      const deckS = new THREE.Shape(); rrect(deckS, W, D, rr);
+      for (let i = 0; i < cols; i++) for (let j = 0; j < rows; j++) { const h = new THREE.Path(); h.absarc(wx(i), -wz(j), HOLE, 0, Math.PI * 2, true); deckS.holes.push(h); }
+      const deckG = new THREE.ExtrudeGeometry(deckS, { depth: 0.0012, bevelEnabled: true, bevelThickness: 0.0003, bevelSize: 0.0004, bevelSegments: 2, curveSegments: 14 });
+      deckG.rotateX(-Math.PI / 2); const deck = new THREE.Mesh(deckG, body); deck.position.y = DECK - 0.0015; g.add(deck);
+      // grip slots in both ends, a dark recess read by its value, and the index ticks, raised on the deck margins
+      for (const s of [1, -1]) { const sl = TXT.roundedBox(0.0008, 0.007, D * 0.42, 0.0003, shade); sl.position.set(s * (W / 2 - 0.0003), DECK * 0.55, 0); g.add(sl); }
+      const ticks = [];
+      for (let i = 0; i < cols; i++) { const t = new THREE.Mesh(new THREE.BoxGeometry(0.0007, 0.00035, (i + 1) % 5 === 0 ? 0.0034 : 0.0018)); t.position.set(wx(i), DECK + 0.0001, D / 2 - MRG * 0.45); ticks.push(t); }
+      for (let j = 0; j < rows; j++) { const t = new THREE.Mesh(new THREE.BoxGeometry(0.0018, 0.00035, 0.0007)); t.position.set(-W / 2 + MRG * 0.45, DECK + 0.0001, wz(j)); ticks.push(t); }
+      g.add(K.merge(ticks, mat('mr-tick', { color: new THREE.Color(o.color != null ? o.color : 0x2b3037).multiplyScalar(1.7).getHex(), roughness: 0.5 })));
+      g.traverse((m) => { if (m.isMesh) { m.castShadow = true; m.receiveShadow = true; } });
+      // the tubes, front row first, each standing on the floor, instanced by material
+      const n = o.count == null ? cols * rows : Math.max(0, Math.min(cols * rows, +o.count));
+      const P = tubeParts({ fill: o.fill }), M = tubeMats({ color: o.tube, liquidColor: o.liquidColor });
+      const mats = []; let k = 0;
+      for (let j = rows - 1; j >= 0 && k < n; j--) for (let i = 0; i < cols && k < n; i++, k++) {
+        const yaw = (rng() - 0.5) * 2 * (+o.jitter || 0);
+        mats.push(new THREE.Matrix4().compose(new THREE.Vector3(wx(i), FLOOR, wz(j)), new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(0, 1, 0), yaw), new THREE.Vector3(1, 1, 1)));
+      }
+      if (mats.length) for (const key of Object.keys(P)) if (P[key].length) {
+        const merged = K.merge(P[key], M[key]);
+        const im = new THREE.InstancedMesh(merged.geometry, M[key], mats.length);
+        mats.forEach((m, q) => im.setMatrixAt(q, m)); im.instanceMatrix.needsUpdate = true;
+        // translucent plastic casts no solid shadow: the second proof drew a dark sliver inside every tube from its
+        // neighbours' casts. The rack's own cast and TXT.contact seat the rack; each tube stands in its hole
+        im.castShadow = false; im.receiveShadow = true; im.frustumCulled = false; im.renderOrder = key === 'liquid' ? 1 : 2; g.add(im);
+      }
+      g.userData.count = mats.length;
+      g.userData.well = (i, j) => [wx(i), DECK, wz(j)];
+      return g;
+    },
+  });
+
+  /* A 90 MM PETRI DISH in clear polystyrene, built upright and turned over when stored inverted, as a lab stores
+   * it: a base 87 mm across with a foot ring under its floor, a lid 90 mm across whose skirt drops over the base's
+   * rim, each wall 0.8 mm thick in the vial glass that reads by its edge, so a wall draws ONE lit rim and never a
+   * ghost; amber agar 4 mm deep recessed inside the base, climbing the wall in a meniscus; matte cream colonies
+   * as low domes that never overlap; a marker scrawl on the base. `stack` dishes stand TOUCHING, each lid on the
+   * foot ring of the dish below. `open` lays one dish upright with its colonies up and its lid face down beside it
+   * at `lidAt`. */
+  /* DISH GLASS: the vial glass's edge term, sharper and lower, so a flat lid seen at a low camera stays clear and
+   * only a wall seen edge on draws its rim. The first proof (out/2026-11-08/tmp/upgrade/replay) lathed the dish in
+   * the vial glass and every flat face went milky white with radial wedges, because a lathe averages the normal at
+   * each corner across the whole face. So the dish is built from parts whose normals are exact. */
+  let DISH_GLASS = null;
+  function dishGlass() {
+    if (DISH_GLASS) return DISH_GLASS;
+    const m = new THREE.MeshPhysicalMaterial({ color: 0xf4f7f9, roughness: 0.05, metalness: 0, transparent: true, opacity: 0.05, envMapIntensity: 1.2,
+      clearcoat: 1, clearcoatRoughness: 0.04, side: THREE.DoubleSide, depthWrite: false });
+    m.onBeforeCompile = (sh) => {
+      sh.fragmentShader = sh.fragmentShader.replace('#include <opaque_fragment>',
+        'float txFr = pow(1.0 - clamp(abs(dot(normalize(normal), normalize(vViewPosition))), 0.0, 1.0), 5.0);\n' +
+        'outgoingLight = outgoingLight * (1.0 + 1.3 * txFr) + vec3(0.02) * txFr;\n' +
+        'diffuseColor.a = mix(diffuseColor.a, 0.6, txFr);\n#include <opaque_fragment>');
+    };
+    m.customProgramCacheKey = () => 'kit-dish-glass-fresnel';
+    DISH_GLASS = m;
+    return m;
+  }
+  /* a cup of wall thickness T: outer and inner walls, a flat rim ring at the open end and the floor's two faces at
+   * the closed end, every normal exact. `up` true opens it upward (a base), false downward (a lid). */
+  function glassCup(R, h, T, y0, up, material, parent, seg) {
+    const S = seg || 96, yc = up ? y0 : y0 + h, yo = up ? y0 + h : y0, sgn = up ? 1 : -1;
+    const add = (geo, y, rx) => { const m = new THREE.Mesh(geo, material); m.position.y = y; if (rx != null) m.rotation.x = rx; m.renderOrder = 3; parent.add(m); return m; };
+    add(new THREE.CylinderGeometry(R, R, h, S, 1, true), y0 + h / 2);
+    add(new THREE.CylinderGeometry(R - T, R - T, h - T, S, 1, true), up ? y0 + T + (h - T) / 2 : y0 + (h - T) / 2);
+    add(new THREE.RingGeometry(R - T, R, S), yo, -sgn * Math.PI / 2);
+    add(new THREE.CircleGeometry(R, S), yc, sgn * Math.PI / 2);
+    add(new THREE.CircleGeometry(R - T, S), yc + sgn * T, -sgn * Math.PI / 2);
+  }
+  function paintScrawl(x, W, H, r) {
+    x.clearRect(0, 0, W, H); x.strokeStyle = 'rgba(18,20,30,0.85)'; x.lineCap = 'round'; x.lineJoin = 'round';
+    for (let line = 0; line < 2; line++) {
+      x.lineWidth = 3 + r() * 1.5; x.beginPath(); let px = W * (0.28 + r() * 0.06), py = H * (0.42 + line * 0.16);
+      x.moveTo(px, py);
+      const n = line ? 5 : 9;
+      for (let i = 0; i < n; i++) { const w = W * (0.035 + r() * 0.03); x.bezierCurveTo(px + w * 0.3, py - H * (0.03 + r() * 0.05), px + w * 0.7, py + H * (0.01 + r() * 0.04), px + w, py + (r() - 0.5) * H * 0.02); px += w; }
+      x.stroke();
+    }
+  }
+  K.define('petri_dish', {
+    size: [0.09, 0.016, 0.09],
+    options: { stack: 1, inverted: true, open: false, lidAt: [0.098, 0, -0.03], colonies: 60, agar: 0x6a3c14, colony: 0xe9dfc8, marker: true, seal: false },
+    note: 'A 90 x 15 mm polystyrene Petri dish at true size, base 87 mm with a foot ring, lid 90 mm over it, walls 0.8 mm in edge-lit clear plastic so each wall reads as one lit rim, amber agar (agar hex) 4 mm deep recessed in the base with a meniscus, matte cream colonies (colony hex, colonies count) that never overlap, a marker scrawl on the base (marker), parafilm round the join (seal). inverted stores it agar side up as a lab does; stack n dishes touching, pitch userData.pitch. open: one dish upright, colonies up, lid face down at lidAt [x, 0, z]. Origin at the dish centre on the bench; userData.attach.top is the stack top, attach.lid the lid when open.',
+    make(o) {
+      const g = new THREE.Group(), rng = K.rng((+o.seed || 1) * 31 + 7);
+      const T = 0.0008, FR = 0.0005, RB = 0.0435, BH = 0.0138, RL = 0.045, LH = 0.0088, AD = 0.004;
+      const yL = FR + BH + 0.0004, HT = yL + T, rin = RB - T;
+      const glass = dishGlass();
+      const agarM = mat('pd-agar', { color: o.agar != null ? o.agar : 0x6a3c14, roughness: 0.45, specularIntensity: 0.4,
+        emissive: o.agar != null ? o.agar : 0x6a3c14, emissiveIntensity: 0.05 }, true);   // no sheen: it paled the agar to cream at a low camera
+      // a colony is a little translucent: the emissive term keeps its shadowed side cream, where the first proof under a
+      // back key drew every colony as a dark hole in the agar
+      const colM = mat('pd-colony', { color: 0xffffff, roughness: 0.6, emissive: o.colony != null ? o.colony : 0xe9dfc8, emissiveIntensity: 0.16 });
+      const sealM = mat('pd-seal', { color: 0xf1efe6, roughness: 0.42, transparent: true, opacity: 0.5, depthWrite: false });
+      // the colony template: a low dome with a shoulder and a slight raised centre
+      const colG = lath([[0, 0.42], [0.35, 0.4], [0.7, 0.3], [0.92, 0.14], [1, 0]].reverse().map((q) => [q[0], q[1]]), 18);
+      const colonyField = (n, seed) => {
+        const rr = K.rng(seed), placed = [];
+        for (let t = 0; t < n * 30 && placed.length < n; t++) {
+          const big = rr() < 0.12, r = big ? 0.0018 + rr() * 0.0012 : 0.0005 + Math.pow(rr(), 1.7) * 0.0013;
+          const d = Math.sqrt(rr()) * (rin - 0.0025 - r), a = rr() * Math.PI * 2, x = Math.cos(a) * d, z = Math.sin(a) * d;
+          if (placed.every((q) => Math.hypot(q[0] - x, q[1] - z) > q[2] + r + 0.0003)) placed.push([x, z, r]);
+        }
+        return placed;
+      };
+      const oneDish = (seed, withLid) => {
+        const D = new THREE.Group();
+        if (FR > 0) { const ring = new THREE.Mesh(new THREE.CylinderGeometry(0.0405, 0.0405, FR, 96, 1, true), glass); ring.position.y = FR / 2; ring.renderOrder = 3; D.add(ring); }
+        glassCup(RB, BH, T, FR, true, glass, D);
+        // the agar, its surface flat to within 3 mm of the wall and then climbing it. Built in parts with exact
+        // normals for the reason the glass is: a lathed agar drew radial wedges on its flat faces in the proof
+        const y0 = FR + T, ra = rin - 0.00005, MEN = 0.0011, men = [];
+        for (let i = 0; i <= 8; i++) { const s2 = i / 8; men.push([ra - 0.003 * (1 - s2), y0 + AD + MEN * Math.pow(s2, 2.4)]); }
+        const agp = (geo, y, rx) => { const m = new THREE.Mesh(geo, agarM); m.position.y = y; if (rx != null) m.rotation.x = rx; m.receiveShadow = true; m.castShadow = true; D.add(m); };
+        agp(new THREE.CircleGeometry(ra, 96), y0 + 0.00002, Math.PI / 2);
+        agp(new THREE.CylinderGeometry(ra, ra, AD + MEN, 96, 1, true), y0 + (AD + MEN) / 2);
+        agp(new THREE.CircleGeometry(ra - 0.003, 96), y0 + AD, -Math.PI / 2);
+        agp(lath(men.slice().reverse(), 96), 0);
+        // the colonies on the agar's surface, instanced, each its own cream
+        const cf = colonyField(+o.colonies || 0, seed);
+        if (cf.length) {
+          const im = new THREE.InstancedMesh(colG, colM, cf.length), base0 = new THREE.Color(o.colony != null ? o.colony : 0xe9dfc8), q = new THREE.Quaternion();
+          cf.forEach(([x, z, r], i) => {
+            const h = r * (0.32 + rng() * 0.18);
+            im.setMatrixAt(i, new THREE.Matrix4().compose(new THREE.Vector3(x, y0 + AD - 0.00005, z), q, new THREE.Vector3(r, h / 0.42, r)));
+            const k = 0.9 + rng() * 0.14; im.setColorAt(i, base0.clone().multiplyScalar(k));
+          });
+          im.instanceMatrix.needsUpdate = true; im.castShadow = true; im.receiveShadow = true; D.add(im);
+        }
+        // the marker on the base's underside, readable when the dish is turned over
+        if (o.marker) {
+          const tx = ltex('pd-scrawl', paintScrawl, { seed: seed % 7 }, [256, 256]);
+          // a short label near the rim, where a lab writes it, never across the middle
+          const mk = new THREE.Mesh(new THREE.PlaneGeometry(0.03, 0.03), mat('pd-mark', { color: 0xffffff, map: tx, transparent: true, roughness: 0.6, depthWrite: false }));
+          const ma = rng() * Math.PI * 2; mk.rotation.set(Math.PI / 2, 0, ma); mk.position.set(Math.cos(ma) * 0.022, FR - 0.00004, Math.sin(ma) * 0.022); mk.renderOrder = 4; D.add(mk);
+        }
+        if (withLid) {
+          glassCup(RL, LH, T, yL + T - LH, false, glass, D);
+          if (o.seal) { const s = new THREE.Mesh(new THREE.CylinderGeometry(RL + 0.0003, RL + 0.0003, 0.007, 72, 1, true), sealM); s.position.y = yL + T - LH + 0.0022; s.renderOrder = 4; D.add(s); }
+        }
+        return D;
+      };
+      const seed0 = (+o.seed || 1) * 97;
+      if (o.open) {
+        g.add(oneDish(seed0, false));
+        const lid = new THREE.Group(); glassCup(RL, LH, T, 0, false, glass, lid);
+        const la = o.lidAt || [0.098, 0, -0.03]; lid.position.set(+la[0] || 0, 0, +la[2] || 0); g.add(lid);
+        g.userData.attach = { top: [0, HT - T, 0], lid: [lid.position.x, LH, lid.position.z] };
+      } else {
+        const n = Math.max(1, Math.round(+o.stack || 1));
+        for (let s = 0; s < n; s++) {
+          const D = oneDish(seed0 + s * 13, true);
+          if (o.inverted !== false) { D.rotation.x = Math.PI; D.position.y = HT * (s + 1); } else D.position.y = HT * s;
+          g.add(D);   // no yaw: a turned cylinder's bounding box is 1.41 times the dish (Box3 is axis aligned), and the marker's angle is seeded already
+        }
+        g.userData.attach = { top: [0, HT * n, 0] };
+      }
+      g.userData.pitch = HT;
+      g.traverse((m) => { if (m.isMesh && m.material === glass) { m.castShadow = true; m.receiveShadow = false; } });   // the walls' faint cast seats the stack
       return g;
     },
   });
