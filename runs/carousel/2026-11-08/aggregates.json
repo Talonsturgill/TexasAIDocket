@@ -65,6 +65,18 @@
    "value": 85,
    "quoted_from": "c30",
    "quote": "we identified at least one interacting partner for 85 uncharacterized proteins"
+  },
+  {
+   "phrase": "three official records",
+   "slide": "first_comment.txt",
+   "kind": "count",
+   "value": 3,
+   "computed_by": "scripts/carousel/sources_block.py --build counts the distinct source documents the deck's claim ids resolve to in claims.json (the paper's full text, the paper's abstract record and the university release)",
+   "from_claims": [
+    "c2",
+    "c3",
+    "c4"
+   ]
   }
  ]
 }
