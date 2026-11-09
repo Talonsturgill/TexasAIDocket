@@ -6609,3 +6609,65 @@ and staging themes. Each names a different frame on each deck, so no one model o
 and the id pass (2026-10-12 item 4) is still the proposal for the type theme. No. 67's yard_stalls and
 flood_pole stay in its chassis, one deck. No frontier scan this week, because the time went to the
 proofs.
+
+## 2026-11-08, the seventeenth weekly machine pass. Two kit changes, two proposals, carried items
+
+Read with carousel no. 72 (the protein plate deck, still in review). The digest counted six shipped
+runs from November 2nd to November 7th. `artwork_craft` was lowest on four of them. The top theme,
+"primitive or low-poly model where a kit model belongs", was named on all six runs over 19 rounds, and
+in every round of four of them. Due on two repeat offenders: kit-person-mannequin-vest (repeat 3,
+item 2) and prompt-audit-counts-agent-latency, which is out of this lane (item 3).
+
+### 1. KIT: THE CULTURE BENCH IN `interior.js` (done, d8df7c4b)
+
+No. 72 built `microtube`, `tube_rack` and `petri_plate` in its chassis, and the panel charged frames 7
+and 8 in every round. Frame 7, "grey cylinders with cone tips under a flat black rail", "a floating
+rack", fixed as "milky translucent tubes backlit" and "a solid slate rack with TXT.contact". Frame 8, "a
+stack of pancakes or coins with ghost glass walls", "six dishes hover with dark gaps", fixed as "one clear
+polystyrene wall per dish with a single lit rim", "dishes stacked touching" and "darker amber agar".
+`microcentrifuge_tube`, `microcentrifuge_rack` and `petri_dish` are built at those fixes, under new names
+so no. 72's chassis still installs its own. The proof was a replay of no. 72's own frames 7 and 8 with the
+kit models swapped in, and it failed three times before it held. A lathed dish in the vial glass went
+milky white with radial wedges on every flat face, because a lathe averages the normal at a corner across
+the whole face. The agar did the same, and the colonies went black under a back key. So the dish, its rim
+and its agar are built from cylinders, rings and discs with exact normals, the dish glass has its own
+sharper edge term, and a colony carries a small emissive term. Translucent tubes cast no solid shadow,
+because their neighbours' casts drew a dark sliver inside every tube. Under no. 72's own hard key the
+dish tops still read pale, which is that frame's light and not the model.
+
+### 2. KIT: THE HI-VIS VEST IS WORN, NOT STOOD IN (done, 72302521)
+
+Every panel round of nos. 69, 70 and 71 named the kit person a mannequin, and no. 71's named the vest "a
+rigid shell standing off the torso" and "a box vest with a flat orange side". Close proofs of three
+seeds showed why. Each vest ring had grown as a whole ring to clear the shirt's widest point, so the
+sides stood straight off the chest and flared off the hips, the top edge was square, and an emissive
+term of 0.12 flattened the shading. Each ring now starts at the torso, a V neck is cut in its front,
+drape folds are laid in, and each vertex is pushed out of the shirt's torso field to a fabric clearance.
+The bands ride the vest's own surface. The shirt's chest pocket flaps are no longer built under a vest,
+where the tighter fit showed them as two dark slots. A jagged edge where the sleeve meets the vest's side
+was there before this change and is still there. The face, hands and hair at a near crop are the other
+half of the mannequin charge and stay open, at repeat 5 on kit-person-reads-as-mannequin-within-two-metres.
+
+### 3. PROPOSALS, with their counts
+
+- **For a daily run or a maintainer: `scripts/shared/prompt_audit.py` stops counting an Agent or
+  SendMessage dispatch as a wait on a human.** Queue prompt-audit-counts-agent-latency, now repeat 7
+  (nos. 58, 63, 64, 66 and 71). The 2026-11-07 run opened a second line for it rather than raising the
+  first, and this pass folded the two. Each interim audit reported dozens to hundreds of calls as
+  waiting while the no-stall hook judged the session unattended and refused nothing. The file is daily
+  lane, so the run that meets it next may fix it under its own stamp.
+- **For a daily run and a maintainer: fetch_doc refuses a host whose robots.txt names ClaudeBot with
+  a whole-host disallow.** Queue fetch-doc-robots-ignores-claudebot-group, now repeat 1 after folding
+  fetch-doc-passes-named-claudebot-host into it. No. 71 lost 30 claims to a round 1 hard fail on
+  www.govtech.com, the host no. 63's record work met on October 30th. `fetch_doc.py`,
+  `crawl_boundary` and `reverify.py` are daily lane, and adding govtech.com and dallasobserver.com to
+  `SOURCES_REGISTRY.md` is human.
+
+### Carried, with this week's counts
+
+"Largest object unmodelled" (5 runs, 12 rounds), "object in a void" (5 runs, 11 rounds), "no contact,
+dirt or grime" (5 runs, 10 rounds), "dead or empty region" (5 runs, 8 rounds) and "type sitting on the
+art" (5 runs, 6 rounds) name a different frame on each deck, so no one model or check answers them.
+Eleven repeat offenders are carried with today's escalation, each with the reason it is not this
+lane's or not one model. One frontier search, for the published dimensions of a 1.5 mL tube and a 90 mm
+dish. No gate was added or changed, so no GATE_LESSONS entry is owed.

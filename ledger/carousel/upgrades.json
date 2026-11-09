@@ -3784,4 +3784,48 @@
  ],
  "not_done": "No frontier scan; the time went to the proofs. Dead or empty region (5 runs, 10 rounds), no contact or grime (5 runs, 9 rounds), object in a void (5 runs, 9 rounds) and type on the art (5 runs, 8 rounds) name a different frame on each deck, so no one model or check answers them. No. 67's yard_stalls and flood_pole stay in its chassis, one deck. No gate was added or changed, so no GATE_LESSONS entry is owed"
 }
+,
+"2026-11-08 weekly": {
+ "date": "2026-11-08",
+ "run": "weekly machine pass, read with carousel no. 72 (in review)",
+ "actor": "upgrade",
+ "upgrades": [
+  {
+   "id": "2026-11-08 weekly #1",
+   "what": "Kit lab glassware in assets/js/kit/interior.js: microcentrifuge_tube (1.5 mL snap cap tube at true size in milky polypropylene that goes more opaque toward its edges, graduation ticks computed from the profile, a frosted patch, a snap cap with a thumb tab on a hinge strap, optional fill and open cap), microcentrifuge_rack (a solid moulded rack walled to the bench, chamfered holes, grip slots, index ticks, tubes instanced from the front row back, userData.well and count) and petri_dish (90 x 15 mm, base and lid built from exact-normal cylinders, rings and discs in an edge-lit dish glass, amber agar recessed with a meniscus, matte domed colonies that never overlap, a marker label, optional parafilm, stored inverted and stacked touching, or open with its lid beside)",
+   "why": "Digest theme 'primitive or low-poly model where a kit model belongs', 6 runs of 6 and 19 rounds, the top theme; artwork_craft lowest on 4 runs of 6. No. 72's panel charged its chassis microtube, tube_rack and petri_plate on frames 7 and 8 in every round (r1 to r4, all three judges): 'grey cylinders with cone tips under a flat black rail', 'a floating rack', 'a stack of pancakes or coins with ghost glass walls', 'six dishes hover with dark gaps'; the named fixes were milky backlit tubes, a solid rack seated with contact, one clear wall per dish with a lit rim, dishes touching, darker amber agar",
+   "files": [
+    "assets/js/kit/interior.js",
+    "knowledge/carousel/ARSENAL.md"
+   ],
+   "verification": "node --check assets/js/kit/interior.js exit 0. Scratch replays of no. 72's own slide-07.html and slide-08.html with only the model names swapped (and the deck's chassis material overrides removed), rendered through .claude/skills/carousel-engine/render.py, exit 0, errors 0, read at full size. Three proofs FAILED and were fixed before the commit: radial wedges and milky flat faces on a lathed dish and agar (averaged corner normals feeding the edge term), black colonies under a back key, a dark sliver in every tube from neighbours' solid casts. Macro pages from examples/kit/build.py's own page() (out/2026-11-08/tmp/upgrade/kitproof/proof.py, no 1.6 m camera floor, a 4 mm margin), 5 pages exit 0. examples/kit/sizes.py exit 0, 141 of 141 declare the size they build, centred (it first measured petri_dish at 0.13 m from a seeded yaw, removed). arsenal.py exit 0, --check exit 0, --self-test exit 0. Scratch dies with the container",
+   "revert": "git revert d8df7c4b, then python3 scripts/carousel/arsenal.py",
+   "how_i_would_know_this_was_wrong": "A deck that calls microcentrifuge_rack or petri_dish is still charged for opaque or grey tubes, a floating rack, ghost or double dish walls, gaps in a stack or pale pancake discs; a tube rack frame shows sorting artifacts between translucent tubes; or a run builds tubes or dishes in its chassis again"
+  },
+  {
+   "id": "2026-11-08 weekly #2",
+   "what": "The kit person's hi-vis vest is fitted per vertex: rings start at the torso, a V neck is cut in the front, drape folds are laid in, each vertex is pushed out of the shirt's torso field to a fabric clearance (no whole-ring growth), the reflective bands take the vest's own push plus a band's thickness, the hivis emissive drops from 0.12 to 0.04, and the shirt's chest pocket flaps are not built under a vest",
+   "why": "Queue kit-person-mannequin-vest, repeat 3 (nos. 68 to 71), one of the two repeat offenders that made this pass due early, and the same top theme: no. 71 r1 'a stiff front-on mannequin with a box vest', 'Box vest with a flat orange side ... conform the vest', no. 70 r1 to r3 the worker as a front-lit mannequin",
+   "files": [
+    "assets/js/kit/people.js"
+   ],
+   "verification": "node --check assets/js/kit/people.js exit 0. Close proofs of three workers (seeds 3, 8 female, 14 hands_on_hips) from examples/kit/build.py's page() rendered before and after through render.py, exit 0, errors 0, read at full size (out/2026-11-08/tmp/upgrade/vest): before, a straight-sided shell with a square top that flared off the hips and shaded flat; after, a V neck, the vest on the chest and waist, folds, shading. One proof found the shirt's chest pocket flaps through the tighter vest and they were removed under it. examples/kit/sizes.py exit 0 with person inside its envelope. arsenal.py --check exit 0",
+   "revert": "git revert 72302521",
+   "how_i_would_know_this_was_wrong": "A deck with a kit worker is still charged for a box or shell vest standing off the torso; the vest is charged as clinging or painted on; the shirt shows through the vest at the hips or chest; or the reflective bands are charged as cutting into the vest"
+  }
+ ],
+ "proposals_out_of_lane": [
+  {
+   "what": "scripts/shared/prompt_audit.py stops counting Agent and SendMessage dispatch latency as a wait on a human",
+   "owner": "daily",
+   "why": "Queue prompt-audit-counts-agent-latency, repeat 7 after folding the 2026-11-07 duplicate line into it (nos. 58, 63, 64, 66, 71)"
+  },
+  {
+   "what": "fetch_doc, crawl_boundary and reverify refuse a host whose robots.txt names ClaudeBot with a whole-host disallow; govtech.com and dallasobserver.com enter SOURCES_REGISTRY.md",
+   "owner": "daily and human",
+   "why": "Queue fetch-doc-robots-ignores-claudebot-group, repeat 1 after folding fetch-doc-passes-named-claudebot-host; no. 71 lost 30 claims to a round 1 integrity hard fail on www.govtech.com"
+  }
+ ],
+ "not_done": "Largest object unmodelled (5 runs, 12 rounds), object in a void (5 runs, 11 rounds), no contact or grime (5 runs, 10 rounds), dead or empty region (5 runs, 8 rounds) and type on the art (5 runs, 6 rounds) name a different frame on each deck. The kit person's face, hands and hair at a near crop stay open at repeat 5. No gate was added or changed, so no GATE_LESSONS entry is owed"
+}
 }
