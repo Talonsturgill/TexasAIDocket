@@ -54,9 +54,10 @@
     2: [2.3, 1.62, 0.66],      /* brass, bright enough that a flat top under a 14 degree key still reads as brass */
     3: [0.045, 0.034, 0.024],   /* blackened bronze */
     4: [0.20, 0.21, 0.22],      /* bead blasted steel */
-    5: [0.006, 0.006, 0.008]    /* groove floor */
+    5: [0.006, 0.006, 0.008],   /* groove floor */
+    6: [3.4, 2.5, 1.1]          /* a brass bevel catching the key */
   };
-  N.SPEC = { 0: [0.25, 30], 1: [0.4, 14], 2: [0.55, 9], 3: [0.4, 8], 4: [0.2, 6], 5: [0.05, 4] };
+  N.SPEC = { 0: [0.25, 30], 1: [0.4, 14], 2: [0.55, 9], 3: [0.4, 8], 4: [0.2, 6], 5: [0.05, 4], 6: [0.6, 8] };
   /* tool marks in the albedo, never in the height: a fine stepover running across the plate */
   N.tooth = function (X, Y) { return 0.86 + 0.28 * (0.5 + 0.5 * TX.fbm2(X / 60, Y / 2.2, 2)); };
   N.albedo = function (X, Y, m) { var a = N.ALB[m] || N.ALB[0], k = (m === 1 || m === 0) ? N.tooth(X, Y) : 1; return [a[0] * k, a[1] * k, a[2] * k]; };
@@ -75,7 +76,7 @@
     var ANOD = K.mat("pl-anod", { color: 0x121316, roughness: 0.38, metalness: 0.65 });
     var SATIN = K.mat("pl-satin", { color: 0x3a3e44, roughness: 0.42, metalness: 0.85 });
     var SLATE = K.mat("pl-slate", { color: 0x4a5058, roughness: 0.6, metalness: 0.0 });
-    var PP = new THREE.MeshPhysicalMaterial({ color: 0xe8e3d8, roughness: 0.32, metalness: 0, transmission: 0.55, thickness: 0.002, ior: 1.49 });
+    var PP = new THREE.MeshPhysicalMaterial({ color: 0xdfe3e6, roughness: 0.3, metalness: 0, transparent: true, opacity: 0.8 });   /* milky polypropylene, cool white */
     var PS = new THREE.MeshPhysicalMaterial({ color: 0xe8ecef, roughness: 0.08, metalness: 0, transparent: true, opacity: 0.32, clearcoat: 1, clearcoatRoughness: 0.05, depthWrite: false });   /* clear polystyrene: transmission banded the lathed lids into wedges */
     var AGAR = new THREE.MeshPhysicalMaterial({ color: 0xb98a4c, roughness: 0.35, metalness: 0, sheen: 0.4, sheenColor: 0xe0a060 });
     var COLONY = K.mat("pl-colony", { color: 0xe4d8c3, roughness: 0.55 });
@@ -103,7 +104,7 @@
     }
     /* each residue as three overlapping atom spheres, one instanced mesh per chain */
     function atoms(pts, mat, seed) {
-      var g = new THREE.SphereGeometry(0.26, 20, 14), im = new THREE.InstancedMesh(g, mat, pts.length * 3), M = new THREE.Matrix4(), q = new THREE.Quaternion(), rnd = K.rng(seed), c = 0;
+      var g = new THREE.SphereGeometry(0.26, 36, 26), im = new THREE.InstancedMesh(g, mat, pts.length * 3), M = new THREE.Matrix4(), q = new THREE.Quaternion(), rnd = K.rng(seed), c = 0;
       pts.forEach(function (p) { for (var s = 0; s < 3; s++) { var o = new THREE.Vector3(rnd() - 0.5, rnd() - 0.5, rnd() - 0.5).multiplyScalar(0.34), sc = 0.8 + rnd() * 0.5;
         M.compose(p.clone().add(o), q, new THREE.Vector3(sc, sc, sc)); im.setMatrixAt(c, M);
         var k = 0.9 + rnd() * 0.16; im.setColorAt(c++, new THREE.Color(k, k, k)); } });
@@ -130,6 +131,11 @@
         [gA, gB].forEach(function (g) { g.updateMatrixWorld(true); var bb = new THREE.Box3().setFromObject(g); g.position.y = base - bb.min.y - 0.001; });
         G.add(gA); G.add(gB);
         if (o.stand) G.add(K.box(0.24, 0.012, 0.13, ANOD, 0, 0, 0, 0.002));
+        /* the weight of the model where it rests: a soft dark core under the chains on whatever they stand on */
+        var sc = document.createElement("canvas"); sc.width = sc.height = 128; var sg = sc.getContext("2d"), rg = sg.createRadialGradient(64, 64, 4, 64, 64, 62);
+        rg.addColorStop(0, "rgba(0,0,0,0.92)"); rg.addColorStop(0.5, "rgba(0,0,0,0.55)"); rg.addColorStop(1, "rgba(0,0,0,0)"); sg.fillStyle = rg; sg.fillRect(0, 0, 128, 128);
+        var dec = new THREE.Mesh(new THREE.PlaneGeometry(0.2, 0.12), new THREE.MeshBasicMaterial({ map: new THREE.CanvasTexture(sc), transparent: true, depthWrite: false }));
+        dec.rotation.x = -Math.PI / 2; dec.position.y = base + 0.0006; dec.renderOrder = 2; G.add(dec);
         G.userData.chains = [gA, gB]; G.userData.keepOrigin = true; return G;
       }
     });
@@ -189,7 +195,7 @@
      * a last row of `last`, `t` thick, the cells milled into its top as a texture. Origin under its centre. */
     K.define("pair_block", {
       size: [0.027, 0.006, 0.027],
-      options: { cols: 54, rows: 53, last: 33, cell: 0.0005, t: 0.006 },
+      options: { cols: 54, rows: 53, last: 33, cell: 0.0005, t: 0.006, major: 0 },
       note: "A brass block milled with one cell per likely pair, laid out as near square as whole cells allow; drawn to illustrate.",
       make: function (o) {
         var G = new THREE.Group(), c = o.cell, W = o.cols * c, D = (o.rows + 1) * c;
@@ -199,17 +205,25 @@
         g.fillStyle = "#b0b0b0"; g.fillRect(0, 0, 512, 512);
         for (var i = 0; i < 2600; i++) { var yy = rr() * 512, a = 0.06 + rr() * 0.12; g.fillStyle = rr() < 0.5 ? "rgba(255,255,255," + a + ")" : "rgba(0,0,0," + a + ")"; g.fillRect(0, yy, 512, 0.6 + rr()); }
         var tex = new THREE.CanvasTexture(cv); tex.anisotropy = 8; tex.wrapS = tex.wrapT = THREE.RepeatWrapping; tex.repeat.set(1, 10);
-        var mat = BRASS;   /* a plain lapped top; the brushed texture aliased into streaks at every camera tried */
-        var body = K.box(W, o.t, o.rows * c, mat, 0, 0, -c / 2, 0.0004); G.add(body);
-        var tail = K.box(o.last * c, o.t, c, mat, -W / 2 + o.last * c / 2, 0, (o.rows * c) / 2, 0.0003); G.add(tail);
+        var mat = K.mat("pl-brass-lap", { color: 0xc9a35a, metalness: 0.7, roughness: 0.34 });   /* a lapped top; a brushed texture aliased into streaks at every camera tried */
+        /* ONE SOLID: the block's outline, full rows and the short last row together, extruded once with one bevel, so
+         * the stepped corner where the last row ends is a cut in a single machined part and not two boxes butted */
+        var D0 = -c / 2 - o.rows * c / 2, D1 = D0 + o.rows * c, sh = new THREE.Shape();
+        sh.moveTo(-W / 2, D0); sh.lineTo(W / 2, D0); sh.lineTo(W / 2, D1); sh.lineTo(-W / 2 + o.last * c, D1);
+        sh.lineTo(-W / 2 + o.last * c, D1 + c); sh.lineTo(-W / 2, D1 + c); sh.lineTo(-W / 2, D0);
+        var bv = Math.min(0.0006, o.t / 8), geo = new THREE.ExtrudeGeometry(sh, { depth: o.t - 2 * bv, bevelEnabled: true, bevelThickness: bv, bevelSize: bv, bevelSegments: 2 });
+        geo.rotateX(Math.PI / 2); geo.translate(0, o.t - bv, 0);
+        var solid = new THREE.Mesh(geo, mat); G.add(solid);
         /* THE CELLS AS CUTS: one groove between every column and every row, real geometry so no texture aliases them
-         * into a false coarse count. A groove is 0.07 mm wide in blackened bronze, sunk into the top face. */
+         * into a false coarse count. A groove is 0.07 mm wide in blackened bronze, sunk into the top face. With `major`,
+         * every major-th groove is cut four times as wide, an index of whole blocks of cells that reads at feed size
+         * where the single cells can't, the same ruling every hundred cells the plate carries on frame 3. */
         var gw = 0.00007, gt = o.t + 0.00002, ins = 0.0006, z0 = -c / 2 - o.rows * c / 2, z1 = z0 + o.rows * c;
         var cuts = [];
         for (var i = 1; i < o.cols; i++) { var x = -W / 2 + i * c, za = z0 + ins, zb = (i < o.last ? z1 + c : z1) - ins, len = zb - za;
-          var m1 = new THREE.Mesh(new THREE.BoxGeometry(gw, 0.00006, len), BRONZE); m1.position.set(x, gt - 0.00003, za + len / 2); cuts.push(m1); }
+          var w1 = o.major && i % o.major === 0 ? gw * 4 : gw, m1 = new THREE.Mesh(new THREE.BoxGeometry(w1, 0.00006, len), BRONZE); m1.position.set(x, gt - 0.00003, za + len / 2); cuts.push(m1); }
         for (var j = 1; j <= o.rows; j++) { var zz = z0 + j * c, xa = -W / 2 + ins, xb = W / 2 - ins;
-          var m2 = new THREE.Mesh(new THREE.BoxGeometry(xb - xa, 0.00006, gw), BRONZE); m2.position.set((xa + xb) / 2, gt - 0.00003, zz); cuts.push(m2); }
+          var w2 = o.major && j % o.major === 0 ? gw * 4 : gw, m2 = new THREE.Mesh(new THREE.BoxGeometry(xb - xa, 0.00006, w2), BRONZE); m2.position.set((xa + xb) / 2, gt - 0.00003, zz); cuts.push(m2); }
         G.add(K.merge(cuts, BRONZE));
         G.traverse(function (m) { if (m.isMesh) { m.castShadow = m.receiveShadow = true; } });
         G.userData.size = [W, o.t, D]; return G;
@@ -328,6 +342,41 @@
       }
     });
     return tex;
+  };
+
+  /* THE ROOM GOES WARM AND DARK: the studio environment and the preset's cool rim lit the bone chain navy and the bench
+   * lavender, against a warm window. A frame calls this after the rig and before the snapshot. */
+  N.darkRoom = function (R, o) {
+    o = o || {};
+    R.scene.environmentIntensity = o.env == null ? 0.06 : o.env;
+    R.scene.traverse(function (l) {
+      if (!l.isLight) return;
+      if (l.isHemisphereLight || l.isAmbientLight) l.intensity *= 0.25;
+      else if (l.isDirectionalLight && !l.castShadow) { l.color.setHex(0xffc89a); l.intensity *= 0.35; }
+    });
+    return R;
+  };
+  /* THE WINDOW SLOT: a tall warm pane on the window wall, placed where the camera's ray through screen point (sx, sy)
+   * meets that wall, so the last light stands directly behind the subject; a warm light at it rims what is in front. */
+  N.slot = function (THREE, R, sx, sy, o) {
+    o = o || {};
+    R.camera.updateMatrixWorld(true);
+    var d = new THREE.Vector3(sx / N.W * 2 - 1, 1 - sy / N.H * 2, 0.5).unproject(R.camera).sub(R.camera.position).normalize();
+    var wx = o.wallX == null ? -2.98 : o.wallX, k = (wx - R.camera.position.x) / d.x, p = R.camera.position.clone().add(d.multiplyScalar(k));
+    var cv = document.createElement("canvas"); cv.width = 64; cv.height = 256; var g = cv.getContext("2d");
+    var gr = g.createLinearGradient(0, 0, 0, 256); gr.addColorStop(0, "#1a1410"); gr.addColorStop(0.55, "#8a4e2a"); gr.addColorStop(0.85, "#f0a464"); gr.addColorStop(1, "#ffd29a");
+    g.fillStyle = gr; g.fillRect(0, 0, 64, 256);
+    var tex = new THREE.CanvasTexture(cv); tex.colorSpace = THREE.SRGBColorSpace;
+    var pane = new THREE.Mesh(new THREE.PlaneGeometry(o.w || 0.16, o.h || 0.7), new THREE.MeshBasicMaterial({ map: tex, toneMapped: true, fog: false }));
+    pane.userData.txWear = false;
+    pane.material.color.multiplyScalar(o.i || 1.6);
+    pane.position.set(wx + 0.01, p.y + (o.lift || 0.12), p.z); pane.rotation.y = Math.PI / 2; R.scene.add(pane);
+    var MUL = new THREE.MeshStandardMaterial({ color: 0x0c0d0f, roughness: 0.6, metalness: 0.4 });
+    [[0.02, (o.h || 0.7) + 0.04, 0, -((o.w || 0.16) / 2)], [0.02, (o.h || 0.7) + 0.04, 0, (o.w || 0.16) / 2], [0.02, 0.02, (o.h || 0.7) / 2, 0], [0.02, 0.02, -(o.h || 0.7) / 2, 0]].forEach(function (b, i) {
+      var m = new THREE.Mesh(new THREE.BoxGeometry(0.03, i < 2 ? b[1] : 0.03, i < 2 ? 0.025 : (o.w || 0.16) + 0.04), MUL);
+      m.position.set(wx + 0.02, pane.position.y + b[2], p.z + b[3]); R.scene.add(m); });
+    var pl = new THREE.PointLight(o.color || 0xffb27a, o.light == null ? 1.4 : o.light, 3, 2); pl.position.set(wx + 0.25, pane.position.y - 0.1, p.z); R.scene.add(pl);
+    return pane;
   };
   N.bench = function (TXT, R, K, o) {
     o = o || {};
