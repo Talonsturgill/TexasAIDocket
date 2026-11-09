@@ -62,6 +62,24 @@ fail, shipped as they are:
 - Several judges asked for the cutoff (5) before the find (4); the order was not changed past the cap.
 - "Drawn to illustrate" on seven of nine deks reads as boilerplate.
 
+## Retro
+
+- **Instincts.** Confirmed `a-paraphrase-can-outrun-its-quote`, `check-the-cover-noun-against-the-release` and
+  `the-plan-is-not-the-product`. Added `read-the-release-against-the-paper` and
+  `a-type-wash-past-the-dek-greys-the-subject`.
+- **Weekly machine pass (due, last pass November 3rd).** Commit d8df7c4b lifts lab glassware into
+  `assets/js/kit/interior.js` (`microcentrifuge_tube`, `microcentrifuge_rack`, `petri_dish`) at the judges' named fix, the
+  week's top theme, a primitive where a kit model belongs, named on 6 of 6 runs over 19 rounds. Commit 72302521 fits the
+  kit worker's hi-vis vest to the body (queue repeat 3); the face and hands stay open at repeat 5. Queue, backlog and
+  `upgrades.json` in dab1f3ba, `machine_pass.json` in ed288636. Escalated, both outside the upgrade lane:
+  `prompt_audit.py` counting agent spawn latency as human waits (repeat 7), and `fetch_doc` passing hosts whose robots.txt
+  names ClaudeBot for the whole site. The verify commands were rerun here: `node --check` on both kit files, `arsenal.py
+  --check`, `machine_due.py --self-test` and `ownership_check --actor upgrade` all exit 0, and `machine_due.py` reports
+  not due.
+- **Prompt audit (interim).** 1,993 calls measured, 83 counted as waiting. The top of the list is Agent spawns at 4 to
+  18 s and the slowest Bash call is about 1.1 s, the escalated latency count. No call has the shape of a human answering a
+  dialog. The no-stall hook was armed at 05:03:36 UTC, judged the session unattended and refused nothing.
+
 ## Discoverability signoff
 - og card: `og/tx-2026-0244.png` opened as an image. The headline wraps after whole words in four lines and ends "of human..." on a whole word.
 - /questions/: twelve section questions read as a reader ("Who decides", "How the public can take part", "Where a comment window is open" and so on). Per-question answers NOT LOOKED AT this run.
