@@ -11,7 +11,7 @@ The Texas Comptroller now lists application J0022 among current agreements under
 - Public access: Write to the decider
 - Take part: https://comptroller.texas.gov/economy/development/prop-tax/jeti/application-details.php?id=J0022
 
-- Last checked: 2026-11-05
+- Last checked: 2026-11-08
 
 ## Dates
 
@@ -50,6 +50,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-29 · The executed JETI agreement for the Energy Forge One plant is still posted by the comptroller.
 - 2026-11-01 · Pecos-Barstow-Toyah ISD's executed JETI agreement for Energy Forge One is still posted as signed.
 - 2026-11-05 · The executed Energy Forge One JETI agreement is still posted as the district signed it.
+- 2026-11-08 · The signed Energy Forge One agreement with Pecos-Barstow-Toyah ISD is still posted.
 
 ## Evidence
 

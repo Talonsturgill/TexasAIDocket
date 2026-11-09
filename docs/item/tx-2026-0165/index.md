@@ -44,6 +44,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-05 · The gift behind UNT's college of artificial intelligence has no fresh reading. The university's news site would not serve this project.
 - 2026-11-06 · The gift that named UNT's college of artificial intelligence still rests on the earlier reading. The news site did not serve this project.
 - 2026-11-07 · The gift that named UNT's college of artificial intelligence holds as first read. The news site still does not serve this project.
+- 2026-11-08 · The gift behind UNT's college of artificial intelligence holds as first read. The university's news site did not serve this project.
 
 ## Evidence
 

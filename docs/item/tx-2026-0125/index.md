@@ -54,6 +54,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-05 · Frontera's closure still rests on the earlier reading. The center's documentation stays off limits to this project.
 - 2026-11-06 · Frontera's permanent queue closure stands on the earlier reading. The center's documentation remains off limits under the sources registry.
 - 2026-11-07 · Frontera's queues stay closed on the record as read before. The center's own documentation is off limits under the sources registry.
+- 2026-11-08 · Frontera's queues remain closed on the earlier reading. The center's own documentation sits outside what this project may read.
 
 ## Evidence
 

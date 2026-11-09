@@ -1,0 +1,74 @@
+<!doctype html>
+<!-- 2026-11-08, frame 7 of 9. Archetype GRID. A spatial scene through txthree.js inside a TXT.interior lab: a slate rack of 85 milky microtubes in aligned rows on the black bench, backlit by the window. One tube per protein that got its first probable partner, drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:900px">85 little-known proteins got a predicted partner</h1>
+<p class="dek" data-follow="26" style="width:860px">The screen found at least one predicted partner for each of 85 uncharacterized proteins. One tube stands for each, drawn to illustrate.</p>
+<script>window.FIG = {"orphans": 85};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-08-plate.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "New partners", counter: "07 / 09", src: "c30", fit: { min: 80, max: 104, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 22, near: 0.02, far: 60, exposure: 1.0 });
+  /* the lab, the window on the far wall so no frame edge crosses the type; the light behind the rack is the slot */
+  const room = TXT.interior(R, Object.assign(CH.roomOpts({ windowI: 0.1 }), { window: 'right' }));
+  CH.bench(TXT, R, K, { x: -2.55, rotY: Math.PI / 2 });
+  const top = CH.BENCH_H;
+  /* a dark slate tile on the epoxy under the stand, the only plastic on the bench */
+  /* THE FIGURE: the rack holds orphans tubes, one per protein that got its first probable partner. The tube and the
+   * rack are drawn to illustrate. */
+  const rack = K.make('tube_rack', { cols: 17, rows: 5, count: FIG.orphans });
+  if (rack.userData.count !== FIG.orphans) throw new Error('the rack holds ' + rack.userData.count + ' tubes, not ' + FIG.orphans);
+  rack.position.set(-2.62, top, 0.0); rack.rotation.y = Math.PI / 2 + 0.12; TXT.add(R, rack); TXT.contact(R, rack);
+  /* backlit milky polypropylene: each tube glows at its walls where the slot's light passes through, with a darker
+   * core, instead of the flat grey a front key gives an opaque white */
+  { const MILK = new THREE.MeshPhysicalMaterial({ color: 0xdfe4ea, roughness: 0.32, transparent: true, opacity: 0.86, sheen: 1, sheenColor: 0xf2e2cc, sheenRoughness: 0.4, emissive: 0x141a20, emissiveIntensity: 0.5 });   /* a cool milky white, so the tubes never take the brass accent */
+    rack.traverse(m => { if (m.isMesh && m.material && m.material.transparent && m.material.opacity >= 0.79 && m.material.opacity <= 0.81) m.material = MILK; });
+    /* the deck plate in a near black slate: lit, the kit's slate went to a peach slab the colour of the brass accent */
+    const DARK = new THREE.MeshStandardMaterial({ color: 0x15171a, roughness: 0.55 });
+    rack.traverse(m => { if (m.isMesh && m.material && !m.material.transparent && m.geometry.type === 'BoxGeometry') m.material = DARK; }); }
+  const mat = TXT.mat.plastic(0x141519, { roughness: 0.5 });
+  const subject = rack;
+  const from = [-1.84, top + 0.17, 0.1];   /* back far enough that the whole rack of 85 sits inside the frame, low enough that the caps read as caps */
+  const look = CH.aim(THREE, R, TXT, from, [-2.62, top + 0.025, 0.0], 540, 800, 24);
+  TXT.frame(R, { fov: 24, from, look });
+  TXT.deckRig(R, CH.rigSpec(W, 2, 2048), CH.rigOpts([-2.62, top, 0], { distance: 6, shadowFar: 14, normalBias: 0.01 }));
+  CH.unacne(R, 0.01);
+  /* the window's last light rims both chains from behind and to the left, the brass catching it hardest */
+  { const rim = new THREE.PointLight(0xffb27a, 1.6, 3, 2); rim.position.set(-2.95, top + 0.3, 0.05); R.scene.add(rim);
+  }
+  CH.darkRoom(R);
+  /* the bench epoxy satin, so no hot pool on the empty floor outshines the rack */
+  R.scene.traverse(m => { if (m.isMesh && m.material && m.material.color && m.material.color.getHex() === 0x0d0e10) { m.material = m.material.clone(); m.material.roughness = 0.85; m.material.envMapIntensity = 0.2; } });
+  { const key = new THREE.PointLight(0xe8ecf2, 0.8, 3, 2);   /* a neutral key, so polypropylene and polystyrene read as clear plastic and not as the deck's brass */ key.position.set(-2.3, top + 0.38, 0.5); R.scene.add(key); }
+  CH.slot(THREE, R, 540, 760, { h: 0.6, w: 0.14, i: 1.3, lift: 0.0, light: 0.3, color: 0xff7a3a });
+  /* a warm light low behind the rack, so the far wall of every tube catches a rim */
+  { const back = new THREE.PointLight(0xff8a40, 0.6, 1.2, 2);   /* a deep orange, so the glow on the wall stays clear of the pale brass accent */ back.position.set(-2.82, top + 0.07, 0.0); R.scene.add(back); }
+  TXT.weather(R, { grime: 0.3, height: 0.5, mottle: 0.6 });   /* a worked bench: wipe marks and grime on the epoxy in front of the rack */
+  TXT.stage(R, subject);
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0.4, veil: 0.4, veilH: 260 });
+  CH.footWash(cx);
+  CH.typeDark(cx, { fade: 120 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

@@ -50,6 +50,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-05 · Young County taking in the Project Saltworks application still lacks a fresh reading. The county weekly keeps its site closed to this project.
 - 2026-11-06 · Project Saltworks' abatement application before Young County has no new confirmation. The county weekly still keeps this project out.
 - 2026-11-07 · Young County has not been confirmed to act on Project Saltworks' abatement application since the last reading. The county weekly still keeps this project out.
+- 2026-11-08 · Young County's handling of the Project Saltworks abatement application has no fresh confirmation. The county weekly still refuses this project.
 
 ## Evidence
 

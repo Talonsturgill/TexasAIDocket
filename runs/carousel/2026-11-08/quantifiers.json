@@ -1,0 +1,28 @@
+{
+ "quantifiers": [
+  {
+   "phrase": "all of them",
+   "about": "the pairs the screen was run on",
+   "figures_key": "pairs",
+   "from_items": [
+    "tx-2026-0244"
+   ],
+   "set": [
+    "every pairing of the 1123 curated proteins, the 630,003 pairs the paper says it screened (c3), computed in figures.json as 1123 x 1122 / 2"
+   ],
+   "why": "The universal is over the screen's own input set, not over the proteome. The paper's sentence is 'By screening 630,003 protein pairs' (c3), and figures.json asserts 630,003 equals every pairing of the curated 1123 (c2). The frame says the screen read every pair of that list, which is what the paper states it did."
+  },
+  {
+   "phrase": "every pair among them",
+   "about": "the pairs the screen was run on",
+   "figures_key": "pairs",
+   "from_items": [
+    "tx-2026-0244"
+   ],
+   "set": [
+    "every pairing of the 1123 curated proteins, the 630,003 pairs the paper says it screened (c3), computed in figures.json as 1123 x 1122 / 2"
+   ],
+   "why": "The web edition's form of slide 3's universal over the same set: the screen's own input, not the proteome."
+  }
+ ]
+}

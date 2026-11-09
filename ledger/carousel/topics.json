@@ -2454,6 +2454,40 @@
     "Dallas City Council",
     "Council Districts 4, 8 and 7"
    ]
+  },
+  {
+   "date": "2026-11-08",
+   "carousel_no": 72,
+   "docket_item": "tx-2026-0244",
+   "related_items": [],
+   "instrument": "Texas A&M AgriLife Today's release of November 5th, 2026 on the mitochondrial interaction screen and the paper's Europe PMC record and full text (PMC13601606), fetched November 8th, 2026.",
+   "topic": "Texas A&M scientists in College Station recast Google DeepMind's AlphaFold-Multimer as a yes or no test for protein interactions and screened every pairing of a curated list of 1123 mitochondrial proteins, 630,003 pairs. At a mean ipTM cutoff of 0.5, which the authors say gives 67% recall at a false discovery rate of about 15% on their test set, the screen kept 2,895 likely interactions, 57% of them in none of the databases checked, and gave 85 uncharacterized proteins their first probable partners. Years of lab work confirmed several in yeast and human cells and mapped copper's route to cytochrome c oxidase. The predictions are free online as MitoMatch.",
+   "angle": "A teaching model of a pair of protein chains on a lab bench at last light, then the half matrix of every pair milled into a black plate, the 2,895 likely pairs as a brass tile among tiles of the same area, a hundred bosses above the 0.5 step with fifteen in steel, the brass block of every likely pair split new and known, a rack of 85 tubes, a stack of amber yeast plates with a plate open, and the cover's bench again with the brass block of the list set down beside the model.",
+   "angle_note": "Every frame is drawn to illustrate. The models are teaching models, not structures from the paper. A tile's area is computed from the counts. The hundred bosses are a drawing unit for the stated false discovery rate. No count of confirmed pairs is drawn, because the release gives none.",
+   "entities": [
+    "Texas A&M AgriLife Research",
+    "Texas A&M University",
+    "Department of Biochemistry and Biophysics",
+    "Google DeepMind",
+    "AlphaFold-Multimer",
+    "MitoMatch",
+    "Texas A&M High Performance Research Computing",
+    "The Welch Foundation"
+   ],
+   "places": [
+    "College Station"
+   ],
+   "what_was_refused": "any count of lab-confirmed pairs, any binding strength, any treatment claim, and any figure not in the release or the paper's own text.",
+   "keywords": [
+    "Texas A&M",
+    "College Station",
+    "AlphaFold-Multimer",
+    "mitochondria",
+    "protein interactions",
+    "MitoMatch",
+    "AI in research",
+    "ipTM"
+   ]
   }
  ]
 }

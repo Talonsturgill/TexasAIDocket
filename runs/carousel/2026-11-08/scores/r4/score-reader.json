@@ -1,0 +1,65 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.6
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.5
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.5
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 6.8
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.8
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.5
+  }
+ ],
+ "weighted_score": 7.1,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Open slide 2's dek with c1's 'the energy centers of the cell' and the c22 disease line, and move the cutoff frame ahead of the find.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 8,
+   "problem": "Stacked peach pancakes with no wall or lid, dimple colonies, peach mid tones.",
+   "fix": "Clear base with a lid ring and lit rim, a lower oblique camera, darker amber agar, the open plate alone in the key pool."
+  },
+  {
+   "slide": 7,
+   "problem": "Opaque flat grey tubes with blocky caps, a thin wire rack, an empty orange-brown floor.",
+   "fix": "Transmissive milky tubes with the window behind, side-on snap caps, lower crop removing the floor band."
+  },
+  {
+   "slide": 5,
+   "problem": "The 0.5 step is a thin striped band under the footer and the block reads as a flat waffle chart.",
+   "fix": "The step wall in the middle third under the block as a bright lit face, the grooved field above the footer."
+  },
+  {
+   "slide": 6,
+   "problem": "Face on with no readable height, and a grey-brown mid field for the bronze.",
+   "fix": "A lower key for a bright bevel and a cast to the right, the known share to blackened bronze."
+  }
+ ]
+}

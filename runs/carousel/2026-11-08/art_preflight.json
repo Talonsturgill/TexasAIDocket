@@ -1,0 +1,224 @@
+{
+  "version": 2,
+  "selected": [
+    1,
+    4,
+    9
+  ],
+  "inputs": {
+    "slides/slide-01.html": "3e359b3d8cadebe05c2f3fd4df0ee9a5a172e1558f1a139249d4f33731167ce0",
+    "render/slide-01.png": "921023d4948d1f6dce214fb775098b3bee169bc5092018c6dac7356be23dd3c3",
+    "assets/js/deck/2026-11-08-plate.js": "f9d23d1b42820f107a2b01d7cf0ac5e03f0adef3029345fa660f4d0d44552e6b",
+    "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+    "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+    "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+    "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+    "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+    "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+    "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+    "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+    "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+    "slides/slide-04.html": "75cfd9dfd38471215e57e6b13946e1a75f24368185483089827cd93f78a14036",
+    "render/slide-04.png": "9e6fe5c357d215e1ddb0b17640810a3983efd309347af7d2318971ec203d9013",
+    "assets/js/txbench.js": "6aee9f0f657aa8723a635683cb6482a2a0ad31aabcd5a633e3cb3a4d34f1f638",
+    "slides/slide-09.html": "05cf20ad212f4303dd09d2d2b199543b593e1e1cff66b30653f0f1ccaee1cfd1",
+    "render/slide-09.png": "711963dc0d23428dfc4ef11d08ebaa596c9e99cac708e32a0f419648d80d212a"
+  },
+  "value_measurements": [
+    {
+      "frame": "slide-01.png",
+      "median_L": 7.2,
+      "mid": 0.181,
+      "dark": 0.634
+    },
+    {
+      "frame": "slide-04.png",
+      "median_L": 4.0,
+      "mid": 0.019,
+      "dark": 0.778
+    },
+    {
+      "frame": "slide-09.png",
+      "median_L": 4.6,
+      "mid": 0.139,
+      "dark": 0.691
+    }
+  ],
+  "review": {
+    "decision": "accept",
+    "inputs": {
+      "slides/slide-01.html": "3e359b3d8cadebe05c2f3fd4df0ee9a5a172e1558f1a139249d4f33731167ce0",
+      "render/slide-01.png": "921023d4948d1f6dce214fb775098b3bee169bc5092018c6dac7356be23dd3c3",
+      "assets/js/deck/2026-11-08-plate.js": "f9d23d1b42820f107a2b01d7cf0ac5e03f0adef3029345fa660f4d0d44552e6b",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+      "slides/slide-04.html": "75cfd9dfd38471215e57e6b13946e1a75f24368185483089827cd93f78a14036",
+      "render/slide-04.png": "9e6fe5c357d215e1ddb0b17640810a3983efd309347af7d2318971ec203d9013",
+      "assets/js/txbench.js": "6aee9f0f657aa8723a635683cb6482a2a0ad31aabcd5a633e3cb3a4d34f1f638",
+      "slides/slide-09.html": "05cf20ad212f4303dd09d2d2b199543b593e1e1cff66b30653f0f1ccaee1cfd1",
+      "render/slide-09.png": "711963dc0d23428dfc4ef11d08ebaa596c9e99cac708e32a0f419648d80d212a"
+    },
+    "frames": [
+      {
+        "slide": 1,
+        "role": "cover",
+        "subject": "A space-filling teaching model of two protein chains seated together on a dark plinth on the lab bench, bone resin on the left and brass on the right, the brass running off the right edge. Under the headline 'An AI was asked which proteins pair up', it gives a reader the question the deck asks as one object: two separate bodies that fit together. The pair covers about 40 percent of the frame at 432 px.",
+        "visual_consequence": "Two distinct chains in two materials, matte pale resin and specular brass, press into each other along one seam. They read as a pair at feed size without the headline. The brass is the deck's only warm metal and arrives here as the second partner.",
+        "weakness": "The cool grey slab is gone; the stand top under the brass chain is dark warm brown and the footer band falls to black. Residuals: a cool grey sliver about 50 by 60 native px at the far right edge behind the lowest brass spheres (r3c2 x 1030 to 1080, y 380 to 440); soft contact under the bone chain; the light behind the model is a broad warm wash rather than a seam, and the topmost bone spheres fall to cool grey. None breaks the subject at native size.",
+        "repair": "None required for the audition. In a polish pass, narrow the stage pool at the far right so the grey sliver goes to the stand's brown.",
+        "encoding_reads": true,
+        "dominant_subject_finished": true,
+        "feed_legible": true,
+        "inputs": {
+          "slides/slide-01.html": "3e359b3d8cadebe05c2f3fd4df0ee9a5a172e1558f1a139249d4f33731167ce0",
+          "render/slide-01.png": "921023d4948d1f6dce214fb775098b3bee169bc5092018c6dac7356be23dd3c3",
+          "assets/js/deck/2026-11-08-plate.js": "f9d23d1b42820f107a2b01d7cf0ac5e03f0adef3029345fa660f4d0d44552e6b",
+          "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+          "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+          "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+          "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+          "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+          "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+          "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+          "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+          "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de"
+        }
+      },
+      {
+        "slide": 4,
+        "role": "evidence",
+        "subject": "A black anodised plate from straight above: a right-triangle terrace cut by V grooves into square satin-aluminium tiles of one size, about 21 on each leg, one brass tile standing proud and casting down and right across two neighbours.",
+        "visual_consequence": "One warm raised square among about two hundred identical dark ones, the same size as every other tile: the share reads as tiny and countable, lit from the upper left, as milled metal rather than a floor.",
+        "weakness": "Minor: the tile tops are a nearly even mid-dark grey with faint tool marks, and the hypotenuse carries only a thin lit line.",
+        "repair": "None required.",
+        "encoding_reads": true,
+        "dominant_subject_finished": true,
+        "feed_legible": true,
+        "inputs": {
+          "assets/js/deck/2026-11-08-plate.js": "f9d23d1b42820f107a2b01d7cf0ac5e03f0adef3029345fa660f4d0d44552e6b",
+          "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+          "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+          "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+          "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+          "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+          "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+          "slides/slide-04.html": "75cfd9dfd38471215e57e6b13946e1a75f24368185483089827cd93f78a14036",
+          "render/slide-04.png": "9e6fe5c357d215e1ddb0b17640810a3983efd309347af7d2318971ec203d9013",
+          "assets/js/txbench.js": "6aee9f0f657aa8723a635683cb6482a2a0ad31aabcd5a633e3cb3a4d34f1f638"
+        }
+      },
+      {
+        "slide": 9,
+        "role": "close",
+        "subject": "The cover's space-filling protein model on its black plinth, and a thick polished-brass block with a milled cell grid standing clear of the plinth in the lower right, with a lit face and a contact shadow on the bench.",
+        "visual_consequence": "The question from the cover again, with a solid brass object set down beside it: brass carries the likely pairs as on the cover and frame 4, so the block reads as the result put down where anyone can reach it.",
+        "weakness": "Minor: the far bench edge runs into a near-blown cream plane upper right that competes a little with the block; a few faceted seams where bone spheres interpenetrate.",
+        "repair": "None required.",
+        "encoding_reads": true,
+        "dominant_subject_finished": true,
+        "feed_legible": true,
+        "inputs": {
+          "assets/js/deck/2026-11-08-plate.js": "f9d23d1b42820f107a2b01d7cf0ac5e03f0adef3029345fa660f4d0d44552e6b",
+          "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+          "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+          "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+          "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+          "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+          "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+          "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+          "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+          "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+          "slides/slide-09.html": "05cf20ad212f4303dd09d2d2b199543b593e1e1cff66b30653f0f1ccaee1cfd1",
+          "render/slide-09.png": "711963dc0d23428dfc4ef11d08ebaa596c9e99cac708e32a0f419648d80d212a"
+        }
+      }
+    ]
+  },
+  "plan": {
+    "hardest_frame": 4,
+    "visual_argument": "All 2,895 likely pairs, gathered at the triangle's own cell scale, are one brass tile among dark tiles of the same size on the plate that holds every pair once.",
+    "build_risk": "A sub-pixel cell scale on a full-bleed TXBENCH plate, where the tiling grooves must read as tiles rather than a calendar or floor, and one brass tile must read and cast at 432 px without being enlarged.",
+    "distinct_from_recent": "No. 69 was a dark dock bay at last light with spatial scenes, no. 70 a floodlit rig floor with pipe reliefs, no. 71 a Dallas street at night. This deck is one lab interior and a black machined plate in plan, with brass as its only accent and no vehicle, street, yard or person."
+  },
+  "frame_inputs": {
+    "1": {
+      "slides/slide-01.html": "3e359b3d8cadebe05c2f3fd4df0ee9a5a172e1558f1a139249d4f33731167ce0",
+      "render/slide-01.png": "921023d4948d1f6dce214fb775098b3bee169bc5092018c6dac7356be23dd3c3",
+      "assets/js/deck/2026-11-08-plate.js": "f9d23d1b42820f107a2b01d7cf0ac5e03f0adef3029345fa660f4d0d44552e6b",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de"
+    },
+    "4": {
+      "assets/js/deck/2026-11-08-plate.js": "f9d23d1b42820f107a2b01d7cf0ac5e03f0adef3029345fa660f4d0d44552e6b",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+      "slides/slide-04.html": "75cfd9dfd38471215e57e6b13946e1a75f24368185483089827cd93f78a14036",
+      "render/slide-04.png": "9e6fe5c357d215e1ddb0b17640810a3983efd309347af7d2318971ec203d9013",
+      "assets/js/txbench.js": "6aee9f0f657aa8723a635683cb6482a2a0ad31aabcd5a633e3cb3a4d34f1f638"
+    },
+    "9": {
+      "assets/js/deck/2026-11-08-plate.js": "f9d23d1b42820f107a2b01d7cf0ac5e03f0adef3029345fa660f4d0d44552e6b",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+      "slides/slide-09.html": "05cf20ad212f4303dd09d2d2b199543b593e1e1cff66b30653f0f1ccaee1cfd1",
+      "render/slide-09.png": "711963dc0d23428dfc4ef11d08ebaa596c9e99cac708e32a0f419648d80d212a"
+    }
+  },
+  "needs_review": [
+    4,
+    9
+  ],
+  "shipped_inputs": {
+    "slides/slide-01.html": "3e359b3d8cadebe05c2f3fd4df0ee9a5a172e1558f1a139249d4f33731167ce0",
+    "slide-01.webp": "e7df748cb7972723e3b5d6e3d1a751ec3bb2c203bcf41939c81e1257ff2a40d4",
+    "slides/slide-04.html": "75cfd9dfd38471215e57e6b13946e1a75f24368185483089827cd93f78a14036",
+    "slide-04.webp": "c8e57561b7eac851d013b804cce54adb5427f81f1414b6d1b792933a153ad73d",
+    "slides/slide-09.html": "05cf20ad212f4303dd09d2d2b199543b593e1e1cff66b30653f0f1ccaee1cfd1",
+    "slide-09.webp": "f61e0e92869a9e16a30e2cf36f08ea1961d3f814f175fe82c9192bf7b481f7d5"
+  },
+  "encodings": [
+    {
+      "to": "slide-01.webp",
+      "to_sha256": "e7df748cb7972723e3b5d6e3d1a751ec3bb2c203bcf41939c81e1257ff2a40d4",
+      "from_sha256": "921023d4948d1f6dce214fb775098b3bee169bc5092018c6dac7356be23dd3c3",
+      "psnr_db": 41.881
+    },
+    {
+      "to": "slide-04.webp",
+      "to_sha256": "c8e57561b7eac851d013b804cce54adb5427f81f1414b6d1b792933a153ad73d",
+      "from_sha256": "9e6fe5c357d215e1ddb0b17640810a3983efd309347af7d2318971ec203d9013",
+      "psnr_db": 42.926
+    },
+    {
+      "to": "slide-09.webp",
+      "to_sha256": "f61e0e92869a9e16a30e2cf36f08ea1961d3f814f175fe82c9192bf7b481f7d5",
+      "from_sha256": "711963dc0d23428dfc4ef11d08ebaa596c9e99cac708e32a0f419648d80d212a",
+      "psnr_db": 41.803
+    }
+  ]
+}

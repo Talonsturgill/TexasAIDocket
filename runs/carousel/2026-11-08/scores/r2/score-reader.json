@@ -1,0 +1,70 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.8
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.0
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.0
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.0
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 6.5
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.5
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.8
+  }
+ ],
+ "weighted_score": 6.88,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Fetch MitoMatch's address from the paper's data availability statement into claims.json and print it on slide 9, and lead the cover on the stake instead of the method.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 8,
+   "problem": "Flat stacked discs with ghosted rims and blob colonies.",
+   "fix": "Real polystyrene walls and lids, three plates, low backlit camera, tight on the open plate."
+  },
+  {
+   "slide": 7,
+   "problem": "The brightest pool sits on empty floor below the rack, the tubes are flat grey, the lower third is dead.",
+   "fix": "Move the pool onto the rack, milky backlit tubes, crop so the rack fills the lower half."
+  },
+  {
+   "slide": 3,
+   "problem": "A dark triangle in a void with an unexplained raised band and no declared grid scale.",
+   "fix": "Label the band or remove it, rake the key so the hypotenuse reads bright, bleed the plate off right and bottom."
+  },
+  {
+   "slide": 9,
+   "problem": "About 230 px of empty black between headline and dek, and the brass block is small in the corner.",
+   "fix": "Close the gap, enlarge the block as the focal in the light pool."
+  },
+  {
+   "slide": 2,
+   "problem": "The right chain is near silhouette and the slit of light does not read; a horizontal glare replaces it.",
+   "fix": "Window slit behind the gap and a low camera-side fill on the bronze chain."
+  }
+ ]
+}

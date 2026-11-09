@@ -11,7 +11,7 @@ UT Southwestern Medical Center reported on October 20th, 2026 a study published 
 - Public access: Write to the decider
 - Take part: https://www.utsouthwestern.edu/newsroom/articles/year-2026/oct-ai-enabled-triage-tools-human-biases.html
 
-- Last checked: 2026-11-05
+- Last checked: 2026-11-08
 
 ## Dates
 
@@ -27,6 +27,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-01 · UT Southwestern's finding on AI triage models is unconfirmed today, since its site refuses this project.
 - 2026-11-03 · UT Southwestern's finding on AI triage models is unconfirmed today. The university's site did not answer a secure request.
 - 2026-11-05 · The study's own preprint still carries its findings, including that psychiatric history and frequent emergency visits moved triage the most. UT Southwestern's announcement would not serve today.
+- 2026-11-08 · The UT Southwestern preprint on AI triage still carries its findings as first posted.
 
 ## Evidence
 

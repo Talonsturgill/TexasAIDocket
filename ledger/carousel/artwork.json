@@ -4517,6 +4517,75 @@
     "hex": "#05060A",
     "note": "The night sky and the dark street."
    }
+  },
+  {
+   "date": "2026-11-08",
+   "carousel_no": 72,
+   "written_from": "deck_coherence's median L* per frame at 432 px off the final renders, layout_check's accent share, by update_ledgers.py.",
+   "register": "A MIX. Spatial scenes in one dark lab at last light (frames 1, 2, 7, 8 and 9, TXT.interior with the window on the far wall and a warm slot behind the subject) and material reliefs on a black anodised plate (frames 3 to 6, TXBENCH). Chassis assets/js/deck/2026-11-08-plate.js: protein_pair, lab_bench, half_matrix_plate, pair_block, microtube, tube_rack, petri_plate and culture_flask, with brass as the one accent for a likely pair.",
+   "structural_laws": [
+    "A TYPE WASH THAT FADES PAST THE DEK GREYS THE SUBJECT'S TOP. Four readings blamed the light and the stage fog for grey chain tops until both washes were made to end at the dek.",
+    "A WINDOW ON THE CAMERA'S WALL DRAWS A SILL ACROSS THE TYPE. Putting the window on the far wall and the light in a slot behind the subject removed every hard edge behind the headline.",
+    "A CELL UNDER A PIXEL ALIASES INTO STRIPES. One protein's band on the plate was drawn at a stated 12 px width, not one true cell.",
+    "TXT.CONTACT ON A SMALL TILE SPREADS A BLACK FIELD. On the close it blacked out the whole foreground until it went back to standing on the bench.",
+    "A KIT TAPE BAND READS AS A GREY STICKER ON A DISH. The stored plates ship without it."
+   ],
+   "techniques": [
+    "a space-filling teaching model of two protein chains in bone resin and brass on a black plinth",
+    "the same two chains apart with the window's slot of light between them",
+    "the half matrix of every pair milled into a black plate, one protein's row and column raised",
+    "the same terrace ruled into tiles of equal area, one raised in polished brass",
+    "a hundred bosses above a milled step at 0.5, eighty five brass and fifteen bead blasted steel",
+    "the brass block of every likely pair, the new share bright and the known share in bronze",
+    "a rack of 85 milky microtubes backlit at the bench",
+    "a tower of inverted yeast plates in amber agar with one plate open on its colonies",
+    "the cover's bench again with the brass block of the list set down beside the model"
+   ],
+   "value": {
+    "per_frame_median_L": [
+     7.9,
+     4.6,
+     5.0,
+     5.0,
+     5.9,
+     6.3,
+     13.9,
+     2.4,
+     5.3
+    ],
+    "deck_median_L": 5.3,
+    "max_adjacent_delta": 11.5,
+    "mean_adjacent_delta": 3.38,
+    "note": "Measured by deck_coherence's median_lstar at 432 px off the final renders. A dark lab and a black plate."
+   },
+   "accent": {
+    "hex": "#C9B393",
+    "name": "brass, a likely pair",
+    "frames_above_floor": [
+     1,
+     5,
+     6,
+     7,
+     8,
+     9
+    ],
+    "share": [
+     0.0471,
+     0.0006,
+     0.0,
+     0.0,
+     0.0287,
+     0.0465,
+     0.0042,
+     0.0201,
+     0.0453
+    ],
+    "note": "The brass chain on 1 and 9, the brass tile on 4, the brass bosses on 5, the new share on 6, the block on 9."
+   },
+   "ground": {
+    "hex": "#0D0E10",
+    "note": "The black epoxy bench and the anodised plate."
+   }
   }
  ]
 }

@@ -41,6 +41,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-05 · Battalion Oil's stake in Collide has no fresh confirmation. The release's host is still closed to every reader.
 - 2026-11-06 · Battalion Oil's stake in Collide and its Ward County commitment are unconfirmed today. The host of the release still turns away every reader.
 - 2026-11-07 · Battalion Oil's stake in Collide and its Ward County commitment go unconfirmed for another day. The release's host still turns away every reader.
+- 2026-11-08 · Battalion Oil's stake in Collide and its Ward County commitment go unconfirmed again while the release's host turns every reader away.
 
 ## Evidence
 

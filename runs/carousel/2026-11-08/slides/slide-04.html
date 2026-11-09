@@ -1,0 +1,71 @@
+<!doctype html>
+<!-- 2026-11-08, frame 4 of 9. Archetype GRID. A TXBENCH material relief of the anodised plate in plan: the half matrix milled as a satin terrace, one cell per pair, ruled into square tiles that each hold the area of every likely pair, one tile standing in brass. Tiles and the brass tile's place are drawing units; no tile is a real MitoMatch position. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:820px">All 2,895 likely pairs fit in one tile</h1>
+<p class="dek" data-follow="26" style="width:620px">The screen kept 2,895 of 630,003 pairs as likely, the paper's 0.46%. Each tile on this plate holds the area of all 2,895. One is raised in brass.</p>
+<div class="lab" id="lab-field">630,003 pairs screened</div>
+<div class="lab brass" id="lab-tile">2,895 likely</div>
+
+<script>window.FIG = {"leg_cells": 1122, "tile_side_cells": 53.805};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txbench.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-08-plate.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+/* a cream hairline from a label to what it names, ending in a dot */
+function lead(cx, a, b) { cx.save(); cx.strokeStyle = 'rgba(237,230,214,0.9)'; cx.fillStyle = cx.strokeStyle; cx.lineWidth = 2;
+  cx.beginPath(); cx.moveTo(a[0], a[1]); cx.lineTo(b[0], b[1]); cx.stroke(); cx.beginPath(); cx.arc(b[0], b[1], 5, 0, 7); cx.fill(); cx.restore(); }
+window.renderReady = (async () => {
+  const cx = await CH.bootFlat({ kicker: "The find", counter: "04 / 09", src: "c3 c4 c9", fit: { min: 80, max: 100, maxLines: 2 } });
+  cx.scale(2, 2); TX.reseed(20261108);
+  /* THE FIGURE: the half matrix holds leg_cells cells on each leg, one per protein against each other one, so its
+   * area is every pair. A tile's side is tile_side_cells cells, so one tile holds the area of every likely pair. */
+  const RX = 1020, RY = 1170, L = 930, S = L / FIG.leg_cells, T = FIG.tile_side_cells * S, G = 3.2;
+  const BI = 2, BJ = 2;                                  /* the brass tile, three in from the right angle on both legs */
+  function inTri(X, Y) { const i = Math.floor((RX - X) / S), j = Math.floor((RY - Y) / S); return i >= 0 && j >= 0 && i + j <= FIG.leg_cells - 1; }
+  function surf(X, Y) {
+    if (!inTri(X, Y)) return [0, 0];
+    const dx = RX - X, dy = RY - Y, ti = Math.floor(dx / T), tj = Math.floor(dy / T), u = dx - ti * T, v = dy - tj * T;
+    const e = Math.min(u, v, T - u, T - v);              /* distance to the tile's own edge */
+    if (ti === BI && tj === BJ) { return [e < 2.4 ? 34 + e * 4.2 : 44, e < 2.4 && (u > T / 2 || v > T / 2) ? 6 : 2]; }   /* the key side bevel lit as polished brass */   /* a flat plateau with a narrow chamfer, lit on its key edges */
+    if (e < G) return [16 + 10 * (e / G), e < 1 ? 5 : 1];   /* a V groove, one wall lit and one shadowed */
+    return [26, 1];
+  }
+  const height = (X, Y) => surf(X, Y)[0], material = (X, Y) => surf(X, Y)[1];
+  /* polished brass: a flat top under a 14 degree key gives no specular toward a camera overhead, so the top carries the
+   * reflection of the key in its albedo, a bright warm sweep on the diagonal from the key's corner fading to a deeper
+   * brass at the far corner */
+  const tx0 = RX - (BI + 1) * T, ty0 = RY - (BJ + 1) * T;
+  const albedo = (X, Y, m) => {
+    if (m !== 2) return CH.albedo(X, Y, m);
+    const u = (X - tx0) / T, v = (Y - ty0) / T, d = (u + v) / 2, k = 0.5 + 1.2 * Math.exp(-Math.pow((d - 0.34) / 0.14, 2)) + 0.2 * (1 - d);
+    return [2.7 * k, 1.55 * k, 0.3 * k];
+  };
+  TXBENCH.relief(cx, CH.reliefOpts({ x: 0, y: 0, w: 1080, h: 1350, height, material, albedo, castLength: 220 }));
+  /* the brass tile's centre and the field's, for the leaders */
+  const bx = RX - (BI + 0.5) * T, by = RY - (BJ + 0.5) * T;
+  CH.typeDark(cx, { a: 0.55 });
+  CH.footWash(cx, { a: 0.5 });
+  CH.pinLabel('lab-tile', [bx - 420, RY + 14]);
+  lead(cx, [bx - 214, RY + 30], [bx, by + T / 2 - 5]);   /* the dot sits on the brass tile's lower edge */
+  const hx = 470, hy = RY - (L - (RX - hx));
+  CH.pinLabel('lab-field', [90, hy - 96]);
+  lead(cx, [330, hy - 62], [hx - 6, hy + 8]);
+  window.__txLeaders = [{ target: 'the brass tile', at: [bx, by + T / 2 - 5], to: [bx, by + T / 2 - 5] }, { target: 'the edge of the field of every pair', at: [hx - 2, hy + 4], to: [hx - 2, hy + 4] }];
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

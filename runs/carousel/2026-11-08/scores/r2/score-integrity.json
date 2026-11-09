@@ -1,0 +1,67 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.8
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 6.0
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.5
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.5
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.5
+  }
+ ],
+ "weighted_score": 6.74,
+ "hard_fails": [
+  "The web edition states in the house voice 'Google DeepMind created it and released it in {{number:c6}}' (renders 2022), resting only on the Texas A&M AgriLife release; DeepMind's own preprint (October 2021) and AlphaFold v2.1.0 release (November 2021) appear to date it to 2021. Round 1 charged this claim; it was removed from slide 2 but left in the article."
+ ],
+ "ship": false,
+ "one_sentence_fix": "Delete 'and released it in {{number:c6}}' from the web edition or attribute it, and add MitoMatch's URL as a verified claim so the close says where the list is.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 7,
+   "problem": "Primitive grey tubes under an open frame rack, a hot floor pool in front that contradicts the backlit key, and no readable contact.",
+   "fix": "Milky translucent tubes, a solid slate rack with TXT.contact, and no foreground floor hotspot."
+  },
+  {
+   "slide": 8,
+   "problem": "Flat copper discs with no dish walls, and ghost-lid halos around each disc.",
+   "fix": "Clear polystyrene dishes with visible walls and lids, agar recessed inside, no halo pass, lower camera."
+  },
+  {
+   "slide": 6,
+   "problem": "The block reads as a flat lit chart under a centred hotspot with no relief at 432 px.",
+   "fix": "Rake the key low so the block's top edge and seam step throw a visible cast and lit wall, deepen the grooves."
+  },
+  {
+   "slide": 9,
+   "problem": "A dead band between headline and dek, and the brass block is small beside an oversized plinth.",
+   "fix": "Close the gap, pull in so the block is about a quarter of the frame width, crop the plinth's left edge."
+  }
+ ]
+}

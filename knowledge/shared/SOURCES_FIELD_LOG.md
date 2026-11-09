@@ -2558,3 +2558,15 @@ briefing. **www.nbcdfw.com and www.dallasnews.com stay off limits** to this proj
 either, so the Dallas Morning News reporting is read through GovTech. **stories.tamu.edu answered** the November 6th
 CrisisSense-LLM release, and **www.tceq.texas.gov answered** the October 19th letter to the Governor through
 `fetch_doc.py`. Every other boundary declared on the worklist was re-measured on November 7th and held.
+
+## 2026-11-08
+
+**pubmed.ncbi.nlm.nih.gov answered 203 with a challenge page** of a few hundred bytes to `curl` and to the project's agent
+(article 42714442), so the reverify diff reported eight quotes as gone. **NCBI's E-utilities efetch**
+(eutils.ncbi.nlm.nih.gov, `db=pubmed&rettype=abstract&retmode=text`) returned the same abstract with every quote intact,
+which is how tx-2026-0150 and tx-2026-0151 were confirmed. **interchange.puc.texas.gov filing counts move daily** (59315
+at 5864, 59029 at 533), so a "N filing(s)." quote goes missing whenever a filing lands, and that is growth, not a
+correction. **agrilifetoday.tamu.edu answered** the November 5th mitochondria release and **www.ebi.ac.uk answered** the
+paper's Europe PMC record and full text XML. **The release overstated the paper twice**: it dates AlphaFold-Multimer to
+2022 and says 85 proteins got "first probable partners", where the paper says "at least one interacting partner" and
+recapitulates two partners already reported. A deck resting on both reads the paper's sentence first.

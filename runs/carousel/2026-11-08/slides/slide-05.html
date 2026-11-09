@@ -1,0 +1,64 @@
+<!doctype html>
+<!-- 2026-11-08, frame 5 of 9. Archetype DIAGRAM. A TXBENCH material relief: a milled step across the plate for the 0.5 cutoff, the grooved field below it, and above it a block of a hundred square bosses at one height, most brass and the rest steel. The hundred is a drawing unit. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:820px">The line sits at 0.5</h1>
+<p class="dek" data-follow="26" style="width:860px">A pair counts when its mean ipTM score reaches 0.5. On the authors' test set that gives 67% recall at a false discovery rate of about 15%. Of a hundred calls drawn above the line, the 15 in steel are the false share.</p>
+<div class="lab" id="lab-below">below 0.5</div>
+<div class="lab" id="lab-above">0.5 and above</div>
+<div class="lab brass" id="lab-prec">85% precision</div>
+<script>window.FIG = {"boss_brass": 85};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txbench.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-08-plate.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+function lead(cx, a, b) { cx.save(); cx.strokeStyle = 'rgba(237,230,214,0.9)'; cx.fillStyle = cx.strokeStyle; cx.lineWidth = 2;
+  cx.beginPath(); cx.moveTo(a[0], a[1]); cx.lineTo(b[0], b[1]); cx.stroke(); cx.beginPath(); cx.arc(b[0], b[1], 5, 0, 7); cx.fill(); cx.restore(); }
+window.renderReady = (async () => {
+  const cx = await CH.bootFlat({ kicker: "The cutoff", counter: "05 / 09", src: "c8 c10 c11", fit: { min: 80, max: 100, maxLines: 2 } });
+  cx.scale(2, 2); TX.reseed(20261108);
+  /* THE FIGURE: a hundred calls stand above the step, boss_brass of them brass and boss_steel steel, the steel share
+   * equal to the stated false discovery rate. The hundred is a drawing unit; no boss is a real prediction. */
+  const STEP = (X, Y) => (Y - 1112) - (X - 60) * 0.1;   /* the step runs under the boss block, so the hundred stand on the upper level */    /* the step wall, rising from lower left to upper right */
+  const P = 54, B = 40, X0 = 470, Y0 = 560;              /* boss pitch and side, the block's top left corner: the block spans half the frame */
+  function surf(X, Y) {
+    const up = STEP(X, Y) < 0;
+    if (!up) { const gv = (X + Y * 0.3) % 32; return gv < 3 ? [2, 5] : gv < 5 ? [4, 1] : [6, 1]; }   /* grooves 32 px apart, wide enough to hold at feed size */
+    if (STEP(X, Y) > -7) return [24 - (STEP(X, Y) + 7) * 0.4, 7];   /* the step's top edge, a satin chamfer that catches the key */
+    const u = X - X0, v = Y - Y0, ci = Math.floor(u / P), rj = Math.floor(v / P);
+    if (ci >= 0 && ci < 10 && rj >= 0 && rj < 10) {
+      const lu = u - ci * P, lv = v - rj * P;
+      if (lu < B && lv < B) { const k = rj * 10 + ci; return [50, k < FIG.boss_brass ? 2 : 4]; }
+    }
+    return [24, 0];   /* the upper level in the deck's black anodise, run to the top of the frame so no seam meets the type field */
+  }
+  const height = (X, Y) => surf(X, Y)[0], material = (X, Y) => surf(X, Y)[1];
+  /* bead-blasted steel for the false share, cool and lighter than the plate, so the fifteen read as wrong calls in a
+   * second metal and not as empty slots; and the chamfer in bright satin aluminium */
+  const albedo = (X, Y, m) => { if (m === 2) { const d = ((X - X0) + (Y - Y0)) / (20 * P), k = 0.5 + 0.9 * Math.exp(-Math.pow((d - 0.3) / 0.2, 2)); return [2.6 * k, 1.55 * k, 0.4 * k]; }   /* polished brass with the key's sweep, as on frame 4's tile */
+    return m === 4 ? [0.30, 0.33, 0.37] : m === 7 ? [0.42, 0.44, 0.48] : CH.albedo(X, Y, m); };
+  TXBENCH.relief(cx, CH.reliefOpts({ x: 0, y: 0, w: 1080, h: 1350, height, material, albedo, spec: Object.assign({}, CH.SPEC, { 2: [0.9, 6], 4: [0.7, 8], 7: [0.6, 18] }), castLength: 90 }));
+  CH.typeDark(cx, { a: 0.55 });
+  CH.footWash(cx, { a: 0.5 });
+  CH.pinLabel('lab-below', [120, 1150]);
+  CH.pinLabel('lab-above', [X0, Y0 - 50]);
+  CH.pinLabel('lab-prec', [120, 640]);
+  lead(cx, [330, 676], [X0 + 20, Y0 + 20]);
+  window.__txLeaders = [{ target: 'a brass boss', at: [X0 + 20, Y0 + 20], to: [X0 + 20, Y0 + 20] }];
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

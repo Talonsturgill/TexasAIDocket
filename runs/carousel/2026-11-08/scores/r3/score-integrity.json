@@ -1,0 +1,72 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 7.0
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 5.5
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.5
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.5
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.0
+  }
+ ],
+ "weighted_score": 6.63,
+ "hard_fails": [
+  "Slide 7's headline '85 proteins got a first probable partner' and its dek, repeated in the web edition, rest on the release (c15). The paper says only 'at least one interacting partner for 85 uncharacterized proteins' and in the same paragraph recapitulates interactions already reported for TCAIM and C16ORF91, so 'first' is false for at least two of the 85."
+ ],
+ "ship": false,
+ "one_sentence_fix": "Replace 'first probable partner(s)' on slide 7 and in the article with the paper's own words, a new claim quoting 'at least one interacting partner for 85 uncharacterized proteins'.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 8,
+   "problem": "Stacked flat coasters with no walls or lids and flat agar.",
+   "fix": "Clear base and lid with a visible wall and meniscus, backlit rims, the tower off the bottom edge."
+  },
+  {
+   "slide": 7,
+   "problem": "Untextured grey tubes, no rack contact, an orange-brown haze in the lower 40%.",
+   "fix": "Milky backlit tubes, TXT.contact under the rack, floor bounce near black, lower camera."
+  },
+  {
+   "slide": 9,
+   "problem": "A dead band between headline and dek, and a small dim brass block.",
+   "fix": "Close the type block, push in so the block sits larger in the foreground pool."
+  },
+  {
+   "slide": 2,
+   "problem": "The bronze chain sinks into the wall and the slit reads weakly.",
+   "fix": "Brighter window behind the gap and a camera-side fill."
+  },
+  {
+   "slide": 6,
+   "problem": "A flat two-tone rectangle with shallow grooves and little cast.",
+   "fix": "A lower key so the edge and notch throw a long cast, a lit seam."
+  }
+ ]
+}

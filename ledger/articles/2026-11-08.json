@@ -1,0 +1,117 @@
+{
+ "_spec": {
+  "version": 1,
+  "purpose": "A standalone web edition of the archived visual story.",
+  "law": "Facts resolve to the original verified claim record. A layout rebuild does not reverify reporting.",
+  "written_by": "daily"
+ },
+ "section": "Research",
+ "dek": {
+  "text": "Texas A&M scientists ran an AI structure tool across every pairing of {{number:c2}} curated mitochondrial proteins and kept {{number:c4:1}} likely partners out of {{number:c4}}.",
+  "claims": [
+   "c2",
+   "c4"
+  ]
+ },
+ "introduction": [
+  {
+   "text": "[About {{number:c1}} proteins sit inside human mitochondria, the energy centers of the cell](c1), [and mutations in nearly {{number:c22}}% of them have been linked to human disease](c22).",
+   "claims": [
+    "c1",
+    "c22"
+   ]
+  },
+  {
+   "text": "[The team works in Texas A&M's Department of Biochemistry and Biophysics in College Station](c28). [It turned AlphaFold-Multimer, a tool built to predict the shapes of protein complexes, into a classifier for protein interactions](c7). [It screened {{number:c3}} protein pairs and kept {{number:c3:1}} as likely interactions](c3).",
+   "claims": [
+    "c28",
+    "c7",
+    "c3"
+   ]
+  }
+ ],
+ "sections": [
+  {
+   "heading": "How a pair makes the list",
+   "paragraphs": [
+    {
+     "text": "[AlphaFold-Multimer is a neural network trained to predict the structures of complexes made of more than one protein chain](c5). [Google DeepMind created it, the release says](c6). [For this screen the authors built a curated list of {{number:c2}} proteins](c2) and asked the tool about every pair among them.",
+     "claims": [
+      "c5",
+      "c6",
+      "c2"
+     ]
+    },
+    {
+     "text": "[A pair counts as likely when its mean ipTM score reaches {{number:c8}}](c8). [The authors say that cutoff gives {{number:c8:1}}% recall at a false discovery rate of about {{number:c8:2}}% on their test set](c8). [At that cutoff the screen predicts {{number:c9:1}} interactions involving {{number:c9:3}} proteins](c9). [The paper also states {{number:c11}}% precision for direct interactions](c11).",
+     "claims": [
+      "c8",
+      "c9",
+      "c11"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "What the list turned up",
+   "paragraphs": [
+    {
+     "text": "[More than half of the likely interactions had never been reported before](c13). [Checked against existing interaction databases, {{number:c14}}% were in none of them](c14). [The screen found at least one predicted partner for {{number:c30}} uncharacterized proteins](c30).",
+     "claims": [
+      "c13",
+      "c14",
+      "c30"
+     ]
+    },
+    {
+     "text": "[The team ran the same analysis on {{number:c16}} diverse eukaryotes and found interactions among the human hits that held across evolution](c16). [Lab work guided by the predictions pointed to interactions that form the coenzyme Q metabolon](c17) [and mapped the pathway that delivers copper to cytochrome c oxidase](c18).",
+     "claims": [
+      "c16",
+      "c17",
+      "c18"
+     ]
+    },
+    {
+     "text": "[About two years of laboratory experiments confirmed several of the predicted partnerships in yeast and human cells](c19). [The team posted the predictions as a free resource called MitoMatch](c20), [which is made up of the predicted interactions](c21) [and is online at mitomatch.web.app](c29).",
+     "claims": [
+      "c19",
+      "c20",
+      "c21",
+      "c29"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "What the screen can't say",
+   "paragraphs": [
+    {
+     "text": "[The release does not say how many predicted pairs were tested in the lab, only that several were confirmed](c19). [The paper says the method can't give the binding affinity of an interacting pair](c24). [It adds that many predicted interactions may occur only inside a larger complex rather than as true two protein pairs](c25).",
+     "claims": [
+      "c19",
+      "c24",
+      "c25"
+     ]
+    },
+    {
+     "text": "[The release cautions that cures for diseases linked to mitochondria may still be far off](c23). [The computing came from Texas A&M High Performance Research Computing](c26), [which the release names among the study's supporters with The Welch Foundation](c27).",
+     "claims": [
+      "c23",
+      "c26",
+      "c27"
+     ]
+    }
+   ]
+  }
+ ],
+ "related": [
+  {
+   "id": "tx-2026-0244",
+   "label": "The record entry for the Texas A&M mitochondrial interaction screen"
+  },
+  {
+   "id": "tx-2026-0223",
+   "label": "Texas A&M researchers on language models trained on junk posts"
+  }
+ ]
+}

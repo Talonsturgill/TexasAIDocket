@@ -1,0 +1,77 @@
+<!doctype html>
+<!-- 2026-11-08, frame 3 of 9. Archetype DIAGRAM. A TXBENCH material relief of the anodised plate in plan: the half matrix milled as a satin terrace, one cell per pair, with one protein's row and column raised as a band that the low key finds by its cast. The protein is a drawing choice. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:820px">Every pair, once</h1>
+<p class="dek" data-follow="26" style="width:660px">The team built a curated list of 1123 proteins. Every possible pairing comes to 630,003 pairs, and the screen read all of them. The plate is drawn to illustrate.</p>
+<div class="lab" id="lab-legs">1123 proteins</div>
+<div class="lab" id="lab-field">630,003 pairs</div>
+<script>window.FIG = {"leg_cells": 1122};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txbench.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-08-plate.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+function lead(cx, a, b) { cx.save(); cx.strokeStyle = 'rgba(237,230,214,0.9)'; cx.fillStyle = cx.strokeStyle; cx.lineWidth = 2;
+  cx.beginPath(); cx.moveTo(a[0], a[1]); cx.lineTo(b[0], b[1]); cx.stroke(); cx.beginPath(); cx.arc(b[0], b[1], 5, 0, 7); cx.fill(); cx.restore(); }
+window.renderReady = (async () => {
+  const cx = await CH.bootFlat({ kicker: "The screen", counter: "03 / 09", src: "c2 c3 c4", fit: { min: 80, max: 100, maxLines: 2 } });
+  cx.scale(2, 2); TX.reseed(20261108);
+  /* THE FIGURE: the half matrix holds leg_cells cells on each leg, one per protein against each other one. One
+   * protein's own pairs form an L, its column up from the base to the hypotenuse and its row back to the right edge,
+   * index lines mark every hundred proteins on both axes,
+   * leg_cells cells in all; it is raised so the light finds a band one cell wide by its cast. The protein is a drawing
+   * choice, not one named in the paper. */
+  const RX = 1030, RY = 1150, L = 780, S = L / FIG.leg_cells, K = 360;   /* the apex sits below the dek */
+  function cell(X, Y) { return [Math.floor((RX - X) / S), Math.floor((RY - Y) / S)]; }
+  function surf(X, Y) {
+    const [i, j] = cell(X, Y);
+    if (i < 0 || j < 0 || i + j > FIG.leg_cells - 1) return [0, 0];
+    /* the band is one protein's pairs, drawn 12 px wide: a true cell is under a pixel at this scale and aliased into
+     * stripes. Its key-side wall is chamfered bright. */
+    const bx = RX - (K + 0.5) * S, by = RY - (FIG.leg_cells - 0.5 - K) * S, BW = 6;
+    const inCol = Math.abs(X - bx) < BW && Y >= by - BW, inRow = Math.abs(Y - by) < BW && X >= bx - BW;
+    if (inCol || inRow) { const d = Math.min(inCol ? BW - Math.abs(X - bx) : 99, inRow ? BW - Math.abs(Y - by) : 99); return [d < 1.5 ? 44 + d * 4 : 50, 7]; }
+    const di = (RX - X) / S, dj = (RY - Y) / S;
+    /* the hypotenuse is a saw edge chamfered in bright satin, the brightest line on the plate */
+    const eh = (FIG.leg_cells - (di + dj)) * S / Math.SQRT2;
+    if (eh < 5) return [16 + eh * 4, 7];
+    /* graduations every hundred proteins on both legs, so the tiles first appear on frame 4 */
+    const ei = Math.abs(di - 100 * Math.round(di / 100)) * S, ej = Math.abs(dj - 100 * Math.round(dj / 100)) * S;
+    const e = Math.min(di > 50 ? ei : 99, dj > 50 ? ej : 99), G = 3.6;
+    if (e < G) return [24 + 12 * (e / G), e < 1 ? 5 : 1];
+    return [36, 1];   /* a taller terrace, so it casts onto the bare plate as a measured relief */
+  }
+  /* the terrace is bead blasted: a fine grain in its albedo, never in the height */
+  const hash = (x, y) => { const s = Math.sin(x * 127.1 + y * 311.7) * 43758.5453; return s - Math.floor(s); };
+  const sweep = (X, Y) => { const g = hash(Math.floor(X * 2), Math.floor(Y * 2)); return 0.8 + 0.4 * g; };
+  const albedo = (X, Y, m) => { if (m === 7) return [0.30, 0.32, 0.35]; const a = CH.ALB[m] || CH.ALB[0], k = m === 1 ? sweep(X, Y) : CH.tooth(X, Y); return [a[0] * k, a[1] * k, a[2] * k]; };
+  const height = (X, Y) => surf(X, Y)[0], material = (X, Y) => surf(X, Y)[1];
+  TXBENCH.relief(cx, CH.reliefOpts({ albedo, spec: Object.assign({}, CH.SPEC, { 7: [0.6, 16] }), x: 0, y: 0, w: 1080, h: 1350, height, material, castLength: 260 }));   /* the band stands lower now, so a long cast lays a strip beside it and not a patch over the field */
+  CH.typeDark(cx, { a: 0.55 });
+  CH.footWash(cx, { a: 0.5 });
+  const hx = RX - K * S, hy = RY - (FIG.leg_cells - 1 - K) * S;
+  CH.pinLabel('lab-legs', [RX - L / 2 - 90, RY + 26]);
+  CH.pinLabel('lab-field', [90, 860]);
+  /* the field's leader ends just inside the hypotenuse, the edge of every pair, and the legs carry a bracket */
+  const fx = 552, fy = RY - (fx - (RX - L)) + 12;
+  lead(cx, [330, 896], [fx, fy]);
+  cx.save(); cx.strokeStyle = 'rgba(237,230,214,0.75)'; cx.lineWidth = 2; cx.beginPath();
+  cx.moveTo(RX - L, RY + 8); cx.lineTo(RX - L, RY + 18); cx.lineTo(RX, RY + 18); cx.lineTo(RX, RY + 8); cx.stroke(); cx.restore();
+  window.__txLeaders = [{ target: 'the edge of the triangle of every pair', at: [fx, fy], to: [fx, fy] }];
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

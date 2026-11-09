@@ -11,7 +11,7 @@ The authors include radiologists at the University of Texas MD Anderson Cancer C
 - Public access: Write to the decider
 - Take part: https://pubmed.ncbi.nlm.nih.gov/42716711/
 
-- Last checked: 2026-11-03
+- Last checked: 2026-11-08
 
 ## Dates
 
@@ -41,6 +41,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-03 · Checked and unchanged. The decision still stands as decided.
 - 2026-11-06 · The MD Anderson and UT Medical Branch MRI model result is unconfirmed today. PubMed served a cookie check in place of the abstract.
 - 2026-11-07 · The MD Anderson and UT Medical Branch MRI model result is unconfirmed again, the article's index page showing a cookie check rather than its abstract.
+- 2026-11-08 · The MD Anderson and UT Medical Branch study still reports that its MRI model scored lower on patients from outside the data it was built on.
 
 ## Evidence
 

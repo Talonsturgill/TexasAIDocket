@@ -19233,5 +19233,152 @@
   ],
   "last_verified": "2026-11-07",
   "id": "tx-2026-0243"
+ },
+ {
+  "title": "Texas A&M scientists use AlphaFold to screen every pairing of human mitochondrial proteins and publish the likely partners free",
+  "summary": "Texas A&M AgriLife Research reported on November 5th, 2026 that scientists in the Texas A&M Department of Biochemistry and Biophysics used an AI tool to look for which human mitochondrial proteins work together. The tool is AlphaFold-Multimer, which Google DeepMind built to predict the shapes proteins form together. The team ran it on every possible pairing of about 1,100 mitochondrial proteins. Out of 630,003 possible pairs it catalogued 2,895 likely interactions, and the release says more than half had never been reported before. It also gave 85 previously uncharacterized proteins their first probable partners. About two years of lab work followed and confirmed several predicted partnerships in yeast and human cells. The predictions are posted free as MitoMatch. The paper appeared in Nature Communications. The release says cures for mitochondria linked diseases may still be far into the future.",
+  "topic": "research-and-science",
+  "decider": {
+   "name": "Texas A&M AgriLife Research",
+   "type": "state-agency"
+  },
+  "geography": {
+   "statewide": false,
+   "counties": [
+    "Brazos"
+   ],
+   "on_ercot": true,
+   "metro": "College Station-Bryan, TX"
+  },
+  "status": "decided",
+  "confidence": "high",
+  "key_dates": [
+   {
+    "date": "2026-08-25",
+    "kind": "filed",
+    "note": "The paper is published online in Nature Communications"
+   },
+   {
+    "date": "2026-11-05",
+    "kind": "filed",
+    "note": "Texas A&M AgriLife reports the screen and its predictions"
+   }
+  ],
+  "public_access": {
+   "room": "contact_only",
+   "how": "The work is described on AgriLife Today, which names a media relations contact, and the paper is open to read. The predictions are posted free as MitoMatch. A research result is not a public proceeding and has no window for comment.",
+   "url": "https://agrilifetoday.tamu.edu/2026/11/05/artificial-intelligence-points-researchers-toward-new-disease-targets-hidden-in-mitochondria/",
+   "closes": null
+  },
+  "claims": [
+   {
+    "text": "Texas A&M AgriLife scientists used an AI tool to screen every possible pairing of about 1,100 human mitochondrial proteins for likely interactions.",
+    "verbatim_quote": "the team used an AI tool to screen every possible pairing of about 1,100 human mitochondrial proteins",
+    "source_url": "https://agrilifetoday.tamu.edu/2026/11/05/artificial-intelligence-points-researchers-toward-new-disease-targets-hidden-in-mitochondria/",
+    "source_title": "AgriLife Today, Artificial intelligence points researchers toward new disease targets hidden in mitochondria",
+    "source_type": "primary_official",
+    "fetched": "2026-11-08",
+    "id": "tx-2026-0244-c1"
+   },
+   {
+    "text": "Out of 630,003 possible protein pairs, the team catalogued 2,895 likely interactions.",
+    "verbatim_quote": "Out of the 630,003 possible protein pairs, the team cataloged 2,895 likely interactions.",
+    "source_url": "https://agrilifetoday.tamu.edu/2026/11/05/artificial-intelligence-points-researchers-toward-new-disease-targets-hidden-in-mitochondria/",
+    "source_title": "AgriLife Today, Artificial intelligence points researchers toward new disease targets hidden in mitochondria",
+    "source_type": "primary_official",
+    "fetched": "2026-11-08",
+    "id": "tx-2026-0244-c2"
+   },
+   {
+    "text": "More than half of the likely interactions had never been reported before.",
+    "verbatim_quote": "More than half of them had never been reported before.",
+    "source_url": "https://agrilifetoday.tamu.edu/2026/11/05/artificial-intelligence-points-researchers-toward-new-disease-targets-hidden-in-mitochondria/",
+    "source_title": "AgriLife Today, Artificial intelligence points researchers toward new disease targets hidden in mitochondria",
+    "source_type": "primary_official",
+    "fetched": "2026-11-08",
+    "id": "tx-2026-0244-c3"
+   },
+   {
+    "text": "The screen gave 85 previously uncharacterized proteins their first probable partners.",
+    "verbatim_quote": "the study also gave 85 previously uncharacterized proteins their first probable partners",
+    "source_url": "https://agrilifetoday.tamu.edu/2026/11/05/artificial-intelligence-points-researchers-toward-new-disease-targets-hidden-in-mitochondria/",
+    "source_title": "AgriLife Today, Artificial intelligence points researchers toward new disease targets hidden in mitochondria",
+    "source_type": "primary_official",
+    "fetched": "2026-11-08",
+    "id": "tx-2026-0244-c4"
+   },
+   {
+    "text": "The AI tool is AlphaFold-Multimer, which Google DeepMind created to predict the three dimensional shapes proteins form together.",
+    "verbatim_quote": "Google DeepMind created and unveiled AFM in 2022 to predict the three-dimensional shapes that proteins form together.",
+    "source_url": "https://agrilifetoday.tamu.edu/2026/11/05/artificial-intelligence-points-researchers-toward-new-disease-targets-hidden-in-mitochondria/",
+    "source_title": "AgriLife Today, Artificial intelligence points researchers toward new disease targets hidden in mitochondria",
+    "source_type": "primary_official",
+    "fetched": "2026-11-08",
+    "id": "tx-2026-0244-c5"
+   },
+   {
+    "text": "About two years of lab experiments confirmed several of the predicted partnerships in yeast and human cells.",
+    "verbatim_quote": "About two years of laboratory experiments followed, confirming several of the predicted partnerships in yeast and human cells.",
+    "source_url": "https://agrilifetoday.tamu.edu/2026/11/05/artificial-intelligence-points-researchers-toward-new-disease-targets-hidden-in-mitochondria/",
+    "source_title": "AgriLife Today, Artificial intelligence points researchers toward new disease targets hidden in mitochondria",
+    "source_type": "primary_official",
+    "fetched": "2026-11-08",
+    "id": "tx-2026-0244-c6"
+   },
+   {
+    "text": "The team made its predictions available free online as MitoMatch.",
+    "verbatim_quote": "The team made its predictions available as a free online resource, MitoMatch",
+    "source_url": "https://agrilifetoday.tamu.edu/2026/11/05/artificial-intelligence-points-researchers-toward-new-disease-targets-hidden-in-mitochondria/",
+    "source_title": "AgriLife Today, Artificial intelligence points researchers toward new disease targets hidden in mitochondria",
+    "source_type": "primary_official",
+    "fetched": "2026-11-08",
+    "id": "tx-2026-0244-c7"
+   },
+   {
+    "text": "The release says mutations in nearly 30 percent of mitochondrial proteins have been linked to human diseases.",
+    "verbatim_quote": "mutations in nearly 30% of mitochondrial proteins have been linked to human diseases",
+    "source_url": "https://agrilifetoday.tamu.edu/2026/11/05/artificial-intelligence-points-researchers-toward-new-disease-targets-hidden-in-mitochondria/",
+    "source_title": "AgriLife Today, Artificial intelligence points researchers toward new disease targets hidden in mitochondria",
+    "source_type": "primary_official",
+    "fetched": "2026-11-08",
+    "id": "tx-2026-0244-c8"
+   },
+   {
+    "text": "The release says cures for mitochondria linked diseases may still be far into the future.",
+    "verbatim_quote": "Cures for mitochondria-linked diseases may still be far into the future",
+    "source_url": "https://agrilifetoday.tamu.edu/2026/11/05/artificial-intelligence-points-researchers-toward-new-disease-targets-hidden-in-mitochondria/",
+    "source_title": "AgriLife Today, Artificial intelligence points researchers toward new disease targets hidden in mitochondria",
+    "source_type": "primary_official",
+    "fetched": "2026-11-08",
+    "id": "tx-2026-0244-c9"
+   },
+   {
+    "text": "The paper's abstract says the team repurposed AlphaFold Multimer as a classification model to predict the interactions of the whole human mitochondrial proteome.",
+    "verbatim_quote": "we repurpose the protein structure prediction algorithm AlphaFold Multimer (AFM) as a classification model to predict protein-protein interactions of the entire human mitochondrial proteome",
+    "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI:10.1038/s41467-026-77112-z&format=json&resultType=core",
+    "source_title": "Europe PMC record, The predicted interactome of the human mitochondrial proteome, Nature Communications",
+    "source_type": "primary_official",
+    "fetched": "2026-11-08",
+    "id": "tx-2026-0244-c10"
+   },
+   {
+    "text": "The paper's lead and senior authors are in Texas A&M's Department of Biochemistry and Biophysics in College Station.",
+    "verbatim_quote": "Department of Biochemistry and Biophysics, Texas A&M University, College Station, TX, USA.",
+    "source_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI:10.1038/s41467-026-77112-z&format=json&resultType=core",
+    "source_title": "Europe PMC record, The predicted interactome of the human mitochondrial proteome, Nature Communications",
+    "source_type": "primary_official",
+    "fetched": "2026-11-08",
+    "id": "tx-2026-0244-c11"
+   }
+  ],
+  "notes_for_editor": "Admitted on the university's own release and the paper's record in Europe PMC. The release says several predictions were confirmed in the lab and gives no count of how many were tested, so no hit rate is stated.",
+  "history": [
+   {
+    "date": "2026-11-08",
+    "note": "Admitted on AgriLife's own release and the paper's published abstract. The release counts the likely interactions and says only that several were confirmed in the lab."
+   }
+  ],
+  "last_verified": "2026-11-08",
+  "id": "tx-2026-0244"
  }
 ]
