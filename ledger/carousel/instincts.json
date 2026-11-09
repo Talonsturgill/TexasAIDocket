@@ -224,7 +224,8 @@
         "2026-11-01",
         "2026-11-03",
         "2026-11-05",
-        "2026-11-07"
+        "2026-11-07",
+        "2026-11-08"
       ],
       "contradicted": []
     },
@@ -753,7 +754,8 @@
         "2026-10-26",
         "2026-11-03",
         "2026-11-05",
-        "2026-11-07"
+        "2026-11-07",
+        "2026-11-08"
       ],
       "contradicted": []
     },
@@ -1452,7 +1454,9 @@
       "learned": "2026-10-12",
       "instinct": "Check every everyday noun on the cover and in the title against the release before the panel, because a noun the source never uses asserts a fact the deck can't trace.",
       "evidence": "no. 50: 'on the post' asserted a mounting the release never describes; the integrity judge charged it on the cover, title, slide 3 and slide 9, and the storyboard had admitted it",
-      "confirmed": [],
+      "confirmed": [
+        "2026-11-08"
+      ],
       "contradicted": []
     },
     {
@@ -1767,6 +1771,22 @@
       "learned": "2026-11-07",
       "instinct": "Read a source host's robots.txt for a group naming ClaudeBot before taking a single claim from it, because the project's fetcher matches its own agent to the wildcard group and passes a host the project has already ruled off limits.",
       "evidence": "This run built its record update and deck spine on www.govtech.com, which names ClaudeBot with Disallow / and was refused on October 26th and 30th; the round 1 integrity judge caught it and every claim was withdrawn.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "read-the-release-against-the-paper",
+      "learned": "2026-11-08",
+      "instinct": "Check every release characterization against the paper's own sentence before it reaches a frame.",
+      "evidence": "no. 72: two hard fails in two rounds, each a release word the paper did not support (c6's year, c15's 'first')",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "a-type-wash-past-the-dek-greys-the-subject",
+      "learned": "2026-11-08",
+      "instinct": "End every type wash at the dek before blaming the light for a grey subject top.",
+      "evidence": "no. 72 frame 9: four readings and three relights before the washes were found",
       "confirmed": [],
       "contradicted": []
     }
