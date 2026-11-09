@@ -103,8 +103,8 @@ Written at Phase 18.
 | render         | PASS   | 9 slide(s) |
 | qa             | WARN   | 0 fail(s), 4 warn(s) |
 | aggregates     | PASS   | 9 declaration(s), 14 numeric phrase(s) in the render, all re-derived |
-| assembly       | STALE  | final/assemble_report.json predates the newest render, so it describes a deck that no longer exists. Re-run it |
-| score          | STALE  | score.json predates the newest render, so it describes a deck that no longer exists. Re-run it |
+| assembly       | PASS   | 9 slide(s), 6.49 MB, vector |
+| score          | WARN   | 7.266 at the round cap after 4 round(s), the finished deck ships; 8.0 top rung, shortfall named |
 | labels         | PASS   | 54 claim id(s) checked, every label beside one traces to the shape its claim proves |
 | quantifiers    | PASS   | 64 published string(s) read from one list, every universal names its set |
 | verbatim       | WARN   | no dossier declares a `verbatim:` block, so no on-frame string was held to a quote |
