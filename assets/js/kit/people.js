@@ -409,7 +409,8 @@ export function install(K, THREE, TXT) {
     if (kind === 'denim') return K.mat('p-denim', Object.assign({ color: 0xffffff, roughness: 0.9, map: clothTex('denim', color, 0, 0), sheen: 0.35, sheenColor: 0x8899bb, sheenRoughness: 0.7 }, ns(0.5)), true);
     if (kind === 'plaid') return K.mat('p-plaid', Object.assign({ color: 0xffffff, roughness: 0.88, map: clothTex('plaid', color, extra.b, extra.c), sheen: 0.3, sheenColor: 0xffffff, sheenRoughness: 0.8 }, ns(0.45)), true);
     if (kind === 'suit') return K.mat('p-suit', Object.assign({ color, roughness: 0.6, sheen: 0.5, sheenColor: 0x9a9a9a, sheenRoughness: 0.5 }, ns(0.22)), true);
-    if (kind === 'hivis') return K.mat('p-hivis', Object.assign({ color, roughness: 0.7, emissive: color, emissiveIntensity: 0.12 }, ns(0.3)));
+    // fluorescent, so a little emissive, never enough to flatten the form (0.12 read as one flat tone, 2026-11-08)
+    if (kind === 'hivis') return K.mat('p-hivis', Object.assign({ color, roughness: 0.72, emissive: color, emissiveIntensity: 0.04 }, ns(0.45)));
     return K.mat('p-cloth', Object.assign({ color, roughness: extra.rough || 0.86, sheen: 0.4, sheenColor: 0xffffff, sheenRoughness: 0.75 }, ns(0.45)), true);
   }
 
@@ -1401,7 +1402,10 @@ export function install(K, THREE, TXT) {
       const pl = [];
       for (let yf = 0.835; yf >= hemY + 0.004; yf -= 0.02) pl.push({ p: [0, Yl(yf), frontZ(yf) - 0.001 * k], rx: 0.017 * k, ry: 0.0022 * k });
       if (pl.length > 2 && shirtKind !== 'polo') body.add(new THREE.Mesh(loft(pl, { seg: 8, per: 1, n: 4, ref: [1, 0, 0], capStart: 'flat', capEnd: 'flat' }), shirtM));
-      if (shirtKind === 'plaid' || shirtKind === 'work') for (const s of [1, -1]) {   // chest pockets with flaps
+      // chest pockets with flaps, never under a vest: the conformed vest of 2026-11-08 sits 5 mm off the shirt and
+      // the flaps, which stand proud of it, came through as two dark slots on the chest (they did under the shell too)
+      const underVest = o.vest === true || (o.vest === 'auto' || o.vest == null) && role === 'worker';
+      if ((shirtKind === 'plaid' || shirtKind === 'work') && !underVest) for (const s of [1, -1]) {
         const pk = TXT.roundedBox(0.075 * k, 0.014 * k, 0.008 * k, 0.003 * k, shirtM);
         pk.position.set(s * 0.085 * k, Yl(0.755), frontZ(0.755) + 0.0005 * k); body.add(pk);
       }
@@ -1457,25 +1461,38 @@ export function install(K, THREE, TXT) {
       // fringe on every untucked worker (nos. 54 to 57). Each ring now walks its own superellipse
       // against the shirt's torso field (never the sleeves, which a vest leaves outside its armholes)
       // and grows until every point clears it, capped so a leaning pose the vest does not follow
-      // can't balloon it.
-      const vestExtra = (yf, m) => {
-        let extra = m;
-        for (let it = 0; it < 6; it++) {
-          const R = ringAt(yf, extra);
-          let worst = 1e9;
-          for (let j = 0; j < 32; j++) {
-            const th = (j / 32) * Math.PI * 2, c = Math.cos(th), sn = Math.sin(th);
-            const cx = Math.sign(c) * Math.pow(Math.abs(c), 2 / 2.2), cy = Math.sign(sn) * Math.pow(Math.abs(sn), 2 / 2.2);
-            worst = Math.min(worst, torsoF(R.p[0] + R.rx * cx, R.p[1], R.p[2] + (cy >= 0 ? R.ry : R.ryn) * cy));
-          }
-          if (worst >= m * 0.75) break;
-          extra = Math.min(m + 0.03 * k, extra + (m - worst));
+      // can't balloon it. SUPERSEDED 2026-11-08 by the per-vertex push below, which keeps the clearance
+      // and drops the whole-ring growth that stood the vest off the chest.
+      // THE VEST IS WORN, NOT STOOD IN (weekly pass 2026-11-08). The rings above, grown as whole rings to clear
+      // the widest point of the shirt, made a straight-sided shell that stood off the chest and flared off the
+      // hips like a skirt; the emissive term flattened it to one tone. Every panel round of nos. 69, 70 and 71
+      // named it ("a rigid shell standing off the torso", "a box vest with a flat orange side", "conform the
+      // vest"). So each ring starts at the torso, a V neck is cut in its front, soft drape folds are laid in,
+      // and then EACH VERTEX is pushed out of the shirt's torso field to a fabric's clearance, so it follows the
+      // body and the shirt where the shirt is and never a ring's widest point. The bands take the same folds and
+      // the vest's own push and then lift a band's thickness, so they lie on it and never cut into it.
+      const yTop = Yl(0.8), vD = 0.075 * k, vW = 0.085 * k, vFold = 0.0022 * k;
+      const conform = (geo, m, vneck, lift) => {
+        geo.computeVertexNormals();
+        const Pp = geo.attributes.position, Nn = geo.attributes.normal;
+        for (let i = 0; i < Pp.count; i++) {
+          let x = Pp.getX(i), y = Pp.getY(i), z = Pp.getZ(i);
+          if (Math.abs(Nn.getY(i)) > 0.9) continue;                       // the flat cap inside the body
+          let nx = Nn.getX(i), nz = Nn.getZ(i); const nl = Math.hypot(nx, nz) || 1; nx /= nl; nz /= nl;
+          if (vneck && z > 0) { const t = Math.max(0, 1 - Math.abs(x) / vW); y = Math.min(y, yTop - vD * t); }
+          const th = Math.atan2(x, z), u = (y - Yl(0.585)) / (yTop - Yl(0.585));
+          const f = vFold * (0.6 * Math.sin(th * 9 + ph[0] + y * 14 / k) + 0.4 * Math.sin(y * 60 / k + th * 3 + ph[1])) * (0.5 + 0.5 * (1 - u));
+          x += nx * f; z += nz * f;
+          for (let it = 0; it < 8; it++) { const d = torsoF(x, y, z); if (d >= m) break; const push = m - d + 0.0004 * k; x += nx * push; z += nz * push; }
+          if (lift) { x += nx * lift; z += nz * lift; }   // a band rides the vest's own surface, a band's thickness out
+          Pp.setXYZ(i, x, y, z);
         }
-        return extra;
+        Pp.needsUpdate = true; geo.computeVertexNormals();
+        return geo;
       };
-      const vr = [0.585, 0.62, 0.66, 0.7, 0.74, 0.775, 0.8].map((yf) => ringAt(yf, vestExtra(yf, 0.013 * k)));
-      body.add(new THREE.Mesh(loft(vr, { seg: 32, per: 3, n: 2.2, capStart: 'flat' }), hv));
-      for (const yf of [0.635, 0.695]) body.add(new THREE.Mesh(loft([ringAt(yf - 0.01, vestExtra(yf - 0.01, 0.013 * k) + 0.003 * k), ringAt(yf + 0.01, vestExtra(yf + 0.01, 0.013 * k) + 0.003 * k)], { seg: 32, per: 2, n: 2.2 }), refl));
+      const vr = [0.585, 0.62, 0.66, 0.7, 0.74, 0.775, 0.8].map((yf) => ringAt(yf, 0.002 * k));
+      body.add(new THREE.Mesh(conform(loft(vr, { seg: 48, per: 3, n: 2.2, capStart: 'flat' }), 0.005 * k, true), hv));
+      for (const yf of [0.635, 0.695]) body.add(new THREE.Mesh(conform(loft([ringAt(yf - 0.01, 0.002 * k), ringAt(yf + 0.01, 0.002 * k)], { seg: 48, per: 2, n: 2.2 }), 0.005 * k, false, 0.0025 * k), refl));
       // shoulder straps laid over the shirt's own shoulder: each point pushed out of the field
       const settle = (p, m) => { for (let i = 0; i < 12; i++) { const d = shirtF(p[0], p[1], p[2]); if (d > m) break; p[1] += (m - d) + 0.001; } return p; };
       for (const s of [1, -1]) {
