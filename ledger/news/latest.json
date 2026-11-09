@@ -1,8 +1,8 @@
 {
   "_spec": 2,
-  "checked_at": "2026-11-09T08:15:17Z",
+  "checked_at": "2026-11-09T23:04:10Z",
   "provider": "Publisher RSS and Atom",
-  "response_sha256": "0512a87751cbe35edef6a26fa418db308712576abfb48d1415f9c5c280a4db2e",
+  "response_sha256": "28bcbae0257a024e65e439fdd1ed8bab753d802ded0b74bcba0ae121087836bb",
   "articles": [
     {
       "title": "Armor Taps Tech Veteran as CEO to Scale While Founder Focuses on Innovation",
@@ -55,206 +55,20 @@
     }
   ],
   "selected": {
-    "title": "Armor Taps Tech Veteran as CEO to Scale While Founder Focuses on Innovation",
-    "url": "https://dallasinnovates.com/armor-taps-tech-veteran-as-ceo-to-scale-while-founder-focuses-on-innovation/",
-    "first_seen_at": "2026-11-05T17:48:28Z",
-    "summary": "Plano-based cybersecurity and compliance services company Armor Defense brought aboard a new CEO with a longtime connection to founder Chris Drake. Nicholas Lee, former CEO of Dallas-based Fujitsu Intelligence, takes over day-to-day leadership as Drake shifts from CEO to chief innovation officer and remains on Armor’s board of directors. …",
+    "title": "Mark Cuban’s Radical Investments Leads $4M Seed Round for Dallas-Based SpendRule",
+    "url": "https://dallasinnovates.com/mark-cubans-radical-investments-leads-4m-seed-round-for-dallas-based-spendrule/",
+    "first_seen_at": "2026-11-03T21:34:30Z",
+    "summary": "Dallas entrepreneur Mark Cuban’s Radical Investments led a $4 million seed round for Dallas-based SpendRule. The startup’s AI-powered platform matches health care systems’ contracts and invoices. Zeal Capital Partners, based in Washington, D.C., also participated in the round. This round brings total funding to $6 million since its founding in 2025. …",
     "feed": "https://dallasinnovates.com/feed/",
     "publisher": "Dallas Innovates",
     "coverage": 1,
-    "score": 0.082358,
-    "priority": 4
+    "score": 0.014965,
+    "priority": 3
   },
-  "expires_at": "2026-11-12T17:48:28Z",
+  "expires_at": "2026-11-10T21:34:30Z",
   "rotation_version": 1,
   "carousel_version": 1,
   "editions": [
-    {
-      "starts_at": "2026-11-09T07:23:00Z",
-      "selected": {
-        "title": "Armor Taps Tech Veteran as CEO to Scale While Founder Focuses on Innovation",
-        "url": "https://dallasinnovates.com/armor-taps-tech-veteran-as-ceo-to-scale-while-founder-focuses-on-innovation/",
-        "first_seen_at": "2026-11-05T17:48:28Z",
-        "summary": "Plano-based cybersecurity and compliance services company Armor Defense brought aboard a new CEO with a longtime connection to founder Chris Drake. Nicholas Lee, former CEO of Dallas-based Fujitsu Intelligence, takes over day-to-day leadership as Drake shifts from CEO to chief innovation officer and remains on Armor’s board of directors. …",
-        "feed": "https://dallasinnovates.com/feed/",
-        "publisher": "Dallas Innovates",
-        "coverage": 1,
-        "score": 0.082358,
-        "priority": 4
-      },
-      "stories": [
-        {
-          "title": "Armor Taps Tech Veteran as CEO to Scale While Founder Focuses on Innovation",
-          "url": "https://dallasinnovates.com/armor-taps-tech-veteran-as-ceo-to-scale-while-founder-focuses-on-innovation/",
-          "first_seen_at": "2026-11-05T17:48:28Z",
-          "summary": "Plano-based cybersecurity and compliance services company Armor Defense brought aboard a new CEO with a longtime connection to founder Chris Drake. Nicholas Lee, former CEO of Dallas-based Fujitsu Intelligence, takes over day-to-day leadership as Drake shifts from CEO to chief innovation officer and remains on Armor’s board of directors. …",
-          "feed": "https://dallasinnovates.com/feed/",
-          "publisher": "Dallas Innovates",
-          "coverage": 1,
-          "score": 0.082358,
-          "priority": 4
-        },
-        {
-          "title": "Data center heists are getting bolder, and the latest one hit Nvidia for $11.4 million",
-          "url": "https://www.techspot.com/news/114482-thieves-steal-114-million-nvidia-equipment-ai-hardware.html",
-          "first_seen_at": "2026-11-07T17:08:00Z",
-          "summary": "According to the Bay Area News Group, police suspect that sophisticated thieves stole $11.4 million worth of Nvidia equipment that was supposed to ship from Oakland to Fort Worth, Texas. No arrests have been announced so far. Read Entire Article",
-          "feed": "https://www.techspot.com/backend.xml",
-          "publisher": "TechSpot",
-          "coverage": 1,
-          "score": 0.323075,
-          "priority": 1
-        },
-        {
-          "title": "Microsoft design change delays Iren's data center delivery in Texas",
-          "url": "https://www.datacenterdynamics.com/en/news/microsoft-design-change-delays-irens-data-center-delivery-in-texas/",
-          "first_seen_at": "2026-11-06T11:31:00Z",
-          "summary": "$4bn ARR now targeting online date in January",
-          "feed": "https://www.datacenterdynamics.com/en/rss/",
-          "publisher": "Data Center Dynamics",
-          "coverage": 1,
-          "score": 0.137349,
-          "priority": 1
-        },
-        {
-          "title": "Mark Cuban’s Radical Investments Leads $4M Seed Round for Dallas-Based SpendRule",
-          "url": "https://dallasinnovates.com/mark-cubans-radical-investments-leads-4m-seed-round-for-dallas-based-spendrule/",
-          "first_seen_at": "2026-11-03T21:34:30Z",
-          "summary": "Dallas entrepreneur Mark Cuban’s Radical Investments led a $4 million seed round for Dallas-based SpendRule. The startup’s AI-powered platform matches health care systems’ contracts and invoices. Zeal Capital Partners, based in Washington, D.C., also participated in the round. This round brings total funding to $6 million since its founding in 2025. …",
-          "feed": "https://dallasinnovates.com/feed/",
-          "publisher": "Dallas Innovates",
-          "coverage": 1,
-          "score": 0.022956,
-          "priority": 3
-        },
-        {
-          "title": "Gina Hinojosa won the governor’s race. What happens to Texas data centers now?",
-          "url": "https://feeds.texastribune.org/link/16799/17515484/data-center-texas-pause-gina-hinojosa-governor-policies",
-          "first_seen_at": "2026-11-04T20:41:34Z",
-          "summary": "The governor-elect has called for a data center moratorium to last until the Texas Legislature meets in January to pass “real protections so Texans can have a seat at the table.”",
-          "feed": "https://feeds.texastribune.org/feeds/main/",
-          "publisher": "The Texas Tribune",
-          "coverage": 1,
-          "score": 0.044757,
-          "priority": 4
-        },
-        {
-          "title": "SMU-Led Texoma Semiconductor Tech Hub Gets Nearly $29M for Chip Infrastructure, Talent",
-          "url": "https://dallasinnovates.com/smu-led-texoma-semiconductor-tech-hub-gets-nearly-29m-for-chip-infrastructure-talent/",
-          "first_seen_at": "2026-11-04T13:17:43Z",
-          "summary": "A regional semiconductor hub led by Southern Methodist University will use nearly $29 million in funding to help bulk up the region’s chip industry. The new funding for the Texoma Semiconductor Tech Hub will go toward developing semiconductor infrastructure, strengthening the semiconductor workforce and commercializing chip technology. …",
-          "feed": "https://dallasinnovates.com/feed/",
-          "publisher": "Dallas Innovates",
-          "coverage": 1,
-          "score": 0.036147,
-          "priority": 4
-        },
-        {
-          "title": "Aurora Biennial 2026 Brings 18 Days of Tech-Driven Public Art to Dallas-Fort Worth",
-          "url": "https://dallasinnovates.com/aurora-biennial-2026-brings-18-days-of-tech-driven-public-art-to-dallas-fort-worth/",
-          "first_seen_at": "2026-11-03T22:03:07Z",
-          "summary": "Get ready for the multisensory, tech-driven art experience Aurora Biennial 2026 , which has expanded to 18 days across Dallas-Fort Worth. The event will culminate Nov. 21 with an outdoor experiential art exhibition displayed across Dallas City Hall, the J. Erik Jonsson Central Library and the AT&T Discovery District. …",
-          "feed": "https://dallasinnovates.com/feed/",
-          "publisher": "Dallas Innovates",
-          "coverage": 1,
-          "score": 0.023274,
-          "priority": 4
-        }
-      ]
-    },
-    {
-      "starts_at": "2026-11-09T13:23:00Z",
-      "selected": {
-        "title": "Data center heists are getting bolder, and the latest one hit Nvidia for $11.4 million",
-        "url": "https://www.techspot.com/news/114482-thieves-steal-114-million-nvidia-equipment-ai-hardware.html",
-        "first_seen_at": "2026-11-07T17:08:00Z",
-        "summary": "According to the Bay Area News Group, police suspect that sophisticated thieves stole $11.4 million worth of Nvidia equipment that was supposed to ship from Oakland to Fort Worth, Texas. No arrests have been announced so far. Read Entire Article",
-        "feed": "https://www.techspot.com/backend.xml",
-        "publisher": "TechSpot",
-        "coverage": 1,
-        "score": 0.278597,
-        "priority": 1
-      },
-      "stories": [
-        {
-          "title": "Data center heists are getting bolder, and the latest one hit Nvidia for $11.4 million",
-          "url": "https://www.techspot.com/news/114482-thieves-steal-114-million-nvidia-equipment-ai-hardware.html",
-          "first_seen_at": "2026-11-07T17:08:00Z",
-          "summary": "According to the Bay Area News Group, police suspect that sophisticated thieves stole $11.4 million worth of Nvidia equipment that was supposed to ship from Oakland to Fort Worth, Texas. No arrests have been announced so far. Read Entire Article",
-          "feed": "https://www.techspot.com/backend.xml",
-          "publisher": "TechSpot",
-          "coverage": 1,
-          "score": 0.278597,
-          "priority": 1
-        },
-        {
-          "title": "Mark Cuban’s Radical Investments Leads $4M Seed Round for Dallas-Based SpendRule",
-          "url": "https://dallasinnovates.com/mark-cubans-radical-investments-leads-4m-seed-round-for-dallas-based-spendrule/",
-          "first_seen_at": "2026-11-03T21:34:30Z",
-          "summary": "Dallas entrepreneur Mark Cuban’s Radical Investments led a $4 million seed round for Dallas-based SpendRule. The startup’s AI-powered platform matches health care systems’ contracts and invoices. Zeal Capital Partners, based in Washington, D.C., also participated in the round. This round brings total funding to $6 million since its founding in 2025. …",
-          "feed": "https://dallasinnovates.com/feed/",
-          "publisher": "Dallas Innovates",
-          "coverage": 1,
-          "score": 0.019796,
-          "priority": 3
-        },
-        {
-          "title": "Microsoft design change delays Iren's data center delivery in Texas",
-          "url": "https://www.datacenterdynamics.com/en/news/microsoft-design-change-delays-irens-data-center-delivery-in-texas/",
-          "first_seen_at": "2026-11-06T11:31:00Z",
-          "summary": "$4bn ARR now targeting online date in January",
-          "feed": "https://www.datacenterdynamics.com/en/rss/",
-          "publisher": "Data Center Dynamics",
-          "coverage": 1,
-          "score": 0.11844,
-          "priority": 4
-        },
-        {
-          "title": "Armor Taps Tech Veteran as CEO to Scale While Founder Focuses on Innovation",
-          "url": "https://dallasinnovates.com/armor-taps-tech-veteran-as-ceo-to-scale-while-founder-focuses-on-innovation/",
-          "first_seen_at": "2026-11-05T17:48:28Z",
-          "summary": "Plano-based cybersecurity and compliance services company Armor Defense brought aboard a new CEO with a longtime connection to founder Chris Drake. Nicholas Lee, former CEO of Dallas-based Fujitsu Intelligence, takes over day-to-day leadership as Drake shifts from CEO to chief innovation officer and remains on Armor’s board of directors. …",
-          "feed": "https://dallasinnovates.com/feed/",
-          "publisher": "Dallas Innovates",
-          "coverage": 1,
-          "score": 0.071019,
-          "priority": 4
-        },
-        {
-          "title": "Gina Hinojosa won the governor’s race. What happens to Texas data centers now?",
-          "url": "https://feeds.texastribune.org/link/16799/17515484/data-center-texas-pause-gina-hinojosa-governor-policies",
-          "first_seen_at": "2026-11-04T20:41:34Z",
-          "summary": "The governor-elect has called for a data center moratorium to last until the Texas Legislature meets in January to pass “real protections so Texans can have a seat at the table.”",
-          "feed": "https://feeds.texastribune.org/feeds/main/",
-          "publisher": "The Texas Tribune",
-          "coverage": 1,
-          "score": 0.038595,
-          "priority": 4
-        },
-        {
-          "title": "SMU-Led Texoma Semiconductor Tech Hub Gets Nearly $29M for Chip Infrastructure, Talent",
-          "url": "https://dallasinnovates.com/smu-led-texoma-semiconductor-tech-hub-gets-nearly-29m-for-chip-infrastructure-talent/",
-          "first_seen_at": "2026-11-04T13:17:43Z",
-          "summary": "A regional semiconductor hub led by Southern Methodist University will use nearly $29 million in funding to help bulk up the region’s chip industry. The new funding for the Texoma Semiconductor Tech Hub will go toward developing semiconductor infrastructure, strengthening the semiconductor workforce and commercializing chip technology. …",
-          "feed": "https://dallasinnovates.com/feed/",
-          "publisher": "Dallas Innovates",
-          "coverage": 1,
-          "score": 0.031171,
-          "priority": 4
-        },
-        {
-          "title": "Aurora Biennial 2026 Brings 18 Days of Tech-Driven Public Art to Dallas-Fort Worth",
-          "url": "https://dallasinnovates.com/aurora-biennial-2026-brings-18-days-of-tech-driven-public-art-to-dallas-fort-worth/",
-          "first_seen_at": "2026-11-03T22:03:07Z",
-          "summary": "Get ready for the multisensory, tech-driven art experience Aurora Biennial 2026 , which has expanded to 18 days across Dallas-Fort Worth. The event will culminate Nov. 21 with an outdoor experiential art exhibition displayed across Dallas City Hall, the J. Erik Jonsson Central Library and the AT&T Discovery District. …",
-          "feed": "https://dallasinnovates.com/feed/",
-          "publisher": "Dallas Innovates",
-          "coverage": 1,
-          "score": 0.02007,
-          "priority": 4
-        }
-      ]
-    },
     {
       "starts_at": "2026-11-09T19:23:00Z",
       "selected": {
@@ -265,7 +79,7 @@
         "feed": "https://dallasinnovates.com/feed/",
         "publisher": "Dallas Innovates",
         "coverage": 1,
-        "score": 0.016646,
+        "score": 0.014965,
         "priority": 3
       },
       "stories": [
@@ -277,7 +91,7 @@
           "feed": "https://dallasinnovates.com/feed/",
           "publisher": "Dallas Innovates",
           "coverage": 1,
-          "score": 0.016646,
+          "score": 0.014965,
           "priority": 3
         },
         {
@@ -288,7 +102,7 @@
           "feed": "https://www.techspot.com/backend.xml",
           "publisher": "TechSpot",
           "coverage": 1,
-          "score": 0.234271,
+          "score": 0.210612,
           "priority": 1
         },
         {
@@ -299,7 +113,7 @@
           "feed": "https://www.datacenterdynamics.com/en/rss/",
           "publisher": "Data Center Dynamics",
           "coverage": 1,
-          "score": 0.099595,
+          "score": 0.089537,
           "priority": 4
         },
         {
@@ -310,7 +124,7 @@
           "feed": "https://dallasinnovates.com/feed/",
           "publisher": "Dallas Innovates",
           "coverage": 1,
-          "score": 0.05972,
+          "score": 0.053689,
           "priority": 4
         },
         {
@@ -321,7 +135,7 @@
           "feed": "https://feeds.texastribune.org/feeds/main/",
           "publisher": "The Texas Tribune",
           "coverage": 1,
-          "score": 0.032454,
+          "score": 0.029177,
           "priority": 4
         },
         {
@@ -332,7 +146,7 @@
           "feed": "https://dallasinnovates.com/feed/",
           "publisher": "Dallas Innovates",
           "coverage": 1,
-          "score": 0.026211,
+          "score": 0.023564,
           "priority": 4
         },
         {
@@ -343,7 +157,7 @@
           "feed": "https://dallasinnovates.com/feed/",
           "publisher": "Dallas Innovates",
           "coverage": 1,
-          "score": 0.016877,
+          "score": 0.015173,
           "priority": 4
         }
       ]
@@ -440,19 +254,195 @@
           "priority": 4
         }
       ]
+    },
+    {
+      "starts_at": "2026-11-10T07:23:00Z",
+      "selected": {
+        "title": "SMU-Led Texoma Semiconductor Tech Hub Gets Nearly $29M for Chip Infrastructure, Talent",
+        "url": "https://dallasinnovates.com/smu-led-texoma-semiconductor-tech-hub-gets-nearly-29m-for-chip-infrastructure-talent/",
+        "first_seen_at": "2026-11-04T13:17:43Z",
+        "summary": "A regional semiconductor hub led by Southern Methodist University will use nearly $29 million in funding to help bulk up the region’s chip industry. The new funding for the Texoma Semiconductor Tech Hub will go toward developing semiconductor infrastructure, strengthening the semiconductor workforce and commercializing chip technology. …",
+        "feed": "https://dallasinnovates.com/feed/",
+        "publisher": "Dallas Innovates",
+        "coverage": 1,
+        "score": 0.018534,
+        "priority": 4
+      },
+      "stories": [
+        {
+          "title": "SMU-Led Texoma Semiconductor Tech Hub Gets Nearly $29M for Chip Infrastructure, Talent",
+          "url": "https://dallasinnovates.com/smu-led-texoma-semiconductor-tech-hub-gets-nearly-29m-for-chip-infrastructure-talent/",
+          "first_seen_at": "2026-11-04T13:17:43Z",
+          "summary": "A regional semiconductor hub led by Southern Methodist University will use nearly $29 million in funding to help bulk up the region’s chip industry. The new funding for the Texoma Semiconductor Tech Hub will go toward developing semiconductor infrastructure, strengthening the semiconductor workforce and commercializing chip technology. …",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.018534,
+          "priority": 4
+        },
+        {
+          "title": "Data center heists are getting bolder, and the latest one hit Nvidia for $11.4 million",
+          "url": "https://www.techspot.com/news/114482-thieves-steal-114-million-nvidia-equipment-ai-hardware.html",
+          "first_seen_at": "2026-11-07T17:08:00Z",
+          "summary": "According to the Bay Area News Group, police suspect that sophisticated thieves stole $11.4 million worth of Nvidia equipment that was supposed to ship from Oakland to Fort Worth, Texas. No arrests have been announced so far. Read Entire Article",
+          "feed": "https://www.techspot.com/backend.xml",
+          "publisher": "TechSpot",
+          "coverage": 1,
+          "score": 0.165655,
+          "priority": 1
+        },
+        {
+          "title": "Mark Cuban’s Radical Investments Leads $4M Seed Round for Dallas-Based SpendRule",
+          "url": "https://dallasinnovates.com/mark-cubans-radical-investments-leads-4m-seed-round-for-dallas-based-spendrule/",
+          "first_seen_at": "2026-11-03T21:34:30Z",
+          "summary": "Dallas entrepreneur Mark Cuban’s Radical Investments led a $4 million seed round for Dallas-based SpendRule. The startup’s AI-powered platform matches health care systems’ contracts and invoices. Zeal Capital Partners, based in Washington, D.C., also participated in the round. This round brings total funding to $6 million since its founding in 2025. …",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.011771,
+          "priority": 3
+        },
+        {
+          "title": "Microsoft design change delays Iren's data center delivery in Texas",
+          "url": "https://www.datacenterdynamics.com/en/news/microsoft-design-change-delays-irens-data-center-delivery-in-texas/",
+          "first_seen_at": "2026-11-06T11:31:00Z",
+          "summary": "$4bn ARR now targeting online date in January",
+          "feed": "https://www.datacenterdynamics.com/en/rss/",
+          "publisher": "Data Center Dynamics",
+          "coverage": 1,
+          "score": 0.070425,
+          "priority": 4
+        },
+        {
+          "title": "Armor Taps Tech Veteran as CEO to Scale While Founder Focuses on Innovation",
+          "url": "https://dallasinnovates.com/armor-taps-tech-veteran-as-ceo-to-scale-while-founder-focuses-on-innovation/",
+          "first_seen_at": "2026-11-05T17:48:28Z",
+          "summary": "Plano-based cybersecurity and compliance services company Armor Defense brought aboard a new CEO with a longtime connection to founder Chris Drake. Nicholas Lee, former CEO of Dallas-based Fujitsu Intelligence, takes over day-to-day leadership as Drake shifts from CEO to chief innovation officer and remains on Armor’s board of directors. …",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.042228,
+          "priority": 4
+        },
+        {
+          "title": "Gina Hinojosa won the governor’s race. What happens to Texas data centers now?",
+          "url": "https://feeds.texastribune.org/link/16799/17515484/data-center-texas-pause-gina-hinojosa-governor-policies",
+          "first_seen_at": "2026-11-04T20:41:34Z",
+          "summary": "The governor-elect has called for a data center moratorium to last until the Texas Legislature meets in January to pass “real protections so Texans can have a seat at the table.”",
+          "feed": "https://feeds.texastribune.org/feeds/main/",
+          "publisher": "The Texas Tribune",
+          "coverage": 1,
+          "score": 0.022949,
+          "priority": 4
+        },
+        {
+          "title": "Aurora Biennial 2026 Brings 18 Days of Tech-Driven Public Art to Dallas-Fort Worth",
+          "url": "https://dallasinnovates.com/aurora-biennial-2026-brings-18-days-of-tech-driven-public-art-to-dallas-fort-worth/",
+          "first_seen_at": "2026-11-03T22:03:07Z",
+          "summary": "Get ready for the multisensory, tech-driven art experience Aurora Biennial 2026 , which has expanded to 18 days across Dallas-Fort Worth. The event will culminate Nov. 21 with an outdoor experiential art exhibition displayed across Dallas City Hall, the J. Erik Jonsson Central Library and the AT&T Discovery District. …",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.011934,
+          "priority": 4
+        }
+      ]
+    },
+    {
+      "starts_at": "2026-11-10T13:23:00Z",
+      "selected": {
+        "title": "Microsoft design change delays Iren's data center delivery in Texas",
+        "url": "https://www.datacenterdynamics.com/en/news/microsoft-design-change-delays-irens-data-center-delivery-in-texas/",
+        "first_seen_at": "2026-11-06T11:31:00Z",
+        "summary": "$4bn ARR now targeting online date in January",
+        "feed": "https://www.datacenterdynamics.com/en/rss/",
+        "publisher": "Data Center Dynamics",
+        "coverage": 1,
+        "score": 0.05922,
+        "priority": 4
+      },
+      "stories": [
+        {
+          "title": "Microsoft design change delays Iren's data center delivery in Texas",
+          "url": "https://www.datacenterdynamics.com/en/news/microsoft-design-change-delays-irens-data-center-delivery-in-texas/",
+          "first_seen_at": "2026-11-06T11:31:00Z",
+          "summary": "$4bn ARR now targeting online date in January",
+          "feed": "https://www.datacenterdynamics.com/en/rss/",
+          "publisher": "Data Center Dynamics",
+          "coverage": 1,
+          "score": 0.05922,
+          "priority": 4
+        },
+        {
+          "title": "Data center heists are getting bolder, and the latest one hit Nvidia for $11.4 million",
+          "url": "https://www.techspot.com/news/114482-thieves-steal-114-million-nvidia-equipment-ai-hardware.html",
+          "first_seen_at": "2026-11-07T17:08:00Z",
+          "summary": "According to the Bay Area News Group, police suspect that sophisticated thieves stole $11.4 million worth of Nvidia equipment that was supposed to ship from Oakland to Fort Worth, Texas. No arrests have been announced so far. Read Entire Article",
+          "feed": "https://www.techspot.com/backend.xml",
+          "publisher": "TechSpot",
+          "coverage": 1,
+          "score": 0.139298,
+          "priority": 1
+        },
+        {
+          "title": "Mark Cuban’s Radical Investments Leads $4M Seed Round for Dallas-Based SpendRule",
+          "url": "https://dallasinnovates.com/mark-cubans-radical-investments-leads-4m-seed-round-for-dallas-based-spendrule/",
+          "first_seen_at": "2026-11-03T21:34:30Z",
+          "summary": "Dallas entrepreneur Mark Cuban’s Radical Investments led a $4 million seed round for Dallas-based SpendRule. The startup’s AI-powered platform matches health care systems’ contracts and invoices. Zeal Capital Partners, based in Washington, D.C., also participated in the round. This round brings total funding to $6 million since its founding in 2025. …",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.009898,
+          "priority": 3
+        },
+        {
+          "title": "Armor Taps Tech Veteran as CEO to Scale While Founder Focuses on Innovation",
+          "url": "https://dallasinnovates.com/armor-taps-tech-veteran-as-ceo-to-scale-while-founder-focuses-on-innovation/",
+          "first_seen_at": "2026-11-05T17:48:28Z",
+          "summary": "Plano-based cybersecurity and compliance services company Armor Defense brought aboard a new CEO with a longtime connection to founder Chris Drake. Nicholas Lee, former CEO of Dallas-based Fujitsu Intelligence, takes over day-to-day leadership as Drake shifts from CEO to chief innovation officer and remains on Armor’s board of directors. …",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.03551,
+          "priority": 4
+        },
+        {
+          "title": "Gina Hinojosa won the governor’s race. What happens to Texas data centers now?",
+          "url": "https://feeds.texastribune.org/link/16799/17515484/data-center-texas-pause-gina-hinojosa-governor-policies",
+          "first_seen_at": "2026-11-04T20:41:34Z",
+          "summary": "The governor-elect has called for a data center moratorium to last until the Texas Legislature meets in January to pass “real protections so Texans can have a seat at the table.”",
+          "feed": "https://feeds.texastribune.org/feeds/main/",
+          "publisher": "The Texas Tribune",
+          "coverage": 1,
+          "score": 0.019298,
+          "priority": 4
+        },
+        {
+          "title": "SMU-Led Texoma Semiconductor Tech Hub Gets Nearly $29M for Chip Infrastructure, Talent",
+          "url": "https://dallasinnovates.com/smu-led-texoma-semiconductor-tech-hub-gets-nearly-29m-for-chip-infrastructure-talent/",
+          "first_seen_at": "2026-11-04T13:17:43Z",
+          "summary": "A regional semiconductor hub led by Southern Methodist University will use nearly $29 million in funding to help bulk up the region’s chip industry. The new funding for the Texoma Semiconductor Tech Hub will go toward developing semiconductor infrastructure, strengthening the semiconductor workforce and commercializing chip technology. …",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.015585,
+          "priority": 4
+        },
+        {
+          "title": "Aurora Biennial 2026 Brings 18 Days of Tech-Driven Public Art to Dallas-Fort Worth",
+          "url": "https://dallasinnovates.com/aurora-biennial-2026-brings-18-days-of-tech-driven-public-art-to-dallas-fort-worth/",
+          "first_seen_at": "2026-11-03T22:03:07Z",
+          "summary": "Get ready for the multisensory, tech-driven art experience Aurora Biennial 2026 , which has expanded to 18 days across Dallas-Fort Worth. The event will culminate Nov. 21 with an outdoor experiential art exhibition displayed across Dallas City Hall, the J. Erik Jonsson Central Library and the AT&T Discovery District. …",
+          "feed": "https://dallasinnovates.com/feed/",
+          "publisher": "Dallas Innovates",
+          "coverage": 1,
+          "score": 0.010035,
+          "priority": 4
+        }
+      ]
     }
   ],
   "history": [
-    {
-      "url": "https://dallasinnovates.com/archer-aviation-unveils-air-taxi-networks-in-dallas-fort-worth-houston-and-austin/",
-      "title": "Archer Aviation Unveils Air Taxi Networks in Dallas-Fort Worth, Houston and Austin",
-      "shown_at": "2026-11-02T13:23:00Z"
-    },
-    {
-      "url": "https://dallasinnovates.com/dallas-based-disruptive-raises-10b-flagship-fund/",
-      "title": "Dallas-Based Disruptive Raises $10B Flagship Fund",
-      "shown_at": "2026-11-02T19:23:00Z"
-    },
     {
       "url": "https://dallasinnovates.com/dallas-based-gdt-opens-ai-lab-where-businesses-can-test-projects-before-buying-equipment/",
       "title": "Dallas-Based GDT Opens AI Lab Where Businesses Can Test Projects Before Buying Equipment",
@@ -582,6 +572,16 @@
       "url": "https://dallasinnovates.com/armor-taps-tech-veteran-as-ceo-to-scale-while-founder-focuses-on-innovation/",
       "title": "Armor Taps Tech Veteran as CEO to Scale While Founder Focuses on Innovation",
       "shown_at": "2026-11-09T07:23:00Z"
+    },
+    {
+      "url": "https://www.techspot.com/news/114482-thieves-steal-114-million-nvidia-equipment-ai-hardware.html",
+      "title": "Data center heists are getting bolder, and the latest one hit Nvidia for $11.4 million",
+      "shown_at": "2026-11-09T13:23:00Z"
+    },
+    {
+      "url": "https://dallasinnovates.com/mark-cubans-radical-investments-leads-4m-seed-round-for-dallas-based-spendrule/",
+      "title": "Mark Cuban’s Radical Investments Leads $4M Seed Round for Dallas-Based SpendRule",
+      "shown_at": "2026-11-09T19:23:00Z"
     }
   ],
   "feeds": [
@@ -593,31 +593,31 @@
       "url": "https://feeds.texastribune.org/feeds/main/",
       "status": "ok",
       "items": 20,
-      "sha256": "ff01aa7c624f834cf52dc6948cf39c51b54af5f5f5bb6a3d2156fd1e79f128ce"
+      "sha256": "4d213363d2c268f58f56bf52ba0704196a074b6e59d15d51b994f5d5a86027ce"
     },
     {
       "url": "https://www.datacenterdynamics.com/en/rss/",
-      "status": "ok",
-      "items": 20,
-      "sha256": "afda343724d4492645e57027a90163034f01e8b0c367b42d95d3113b60a95f01"
+      "status": "unavailable",
+      "retry_at": "2026-11-10T05:04:07Z",
+      "reason": "feed disallowed by source robots policy"
     },
     {
       "url": "https://news.mit.edu/rss/topic/artificial-intelligence2",
       "status": "ok",
       "items": 50,
-      "sha256": "d4f2e2f79dfca4e3aa84a01bf54ba3ab98b2aabc0de1f602fd71c449e83b8edd"
+      "sha256": "cdfa6ca6f9f901c47eb81899c7e26e34d492a1d5531e91c48177e3fa17a6bb32"
     },
     {
       "url": "https://openai.com/news/rss.xml",
       "status": "ok",
-      "items": 1368,
-      "sha256": "52fc73fd5befcfedb50a651be15671e6e9d4d94f7ae313de110b09acb9eede7a"
+      "items": 1372,
+      "sha256": "2f5c424d7df88aedfea0290f2f09608e970ee11cae6973e84b3e83867a271066"
     },
     {
       "url": "https://blogs.nvidia.com/feed/",
       "status": "ok",
       "items": 18,
-      "sha256": "fdd1d08b1d3f0978c69dd851ffdc100a0ac9e8352409414dce613f32e792148d"
+      "sha256": "16c8e4eef7d1f6d4804db6dfd5d17d00a61aab678dc07c8da7ab5e45cf625e43"
     },
     {
       "url": "https://blog.google/technology/ai/rss/",
@@ -629,40 +629,43 @@
       "url": "https://siliconangle.com/feed/",
       "status": "ok",
       "items": 30,
-      "sha256": "e097451d4358f2ac61b7339118f90605a578367a7aa781df05439980a79adf76"
+      "sha256": "ede49971c5a5c8aaa5c03ae8db709ee55a70fefb7f1f44d3f3c625fe7081acc1"
     },
     {
       "url": "https://www.artificialintelligence-news.com/feed/",
-      "status": "backoff",
-      "retry_at": "2026-11-09T18:26:28Z"
+      "status": "unavailable",
+      "retry_at": "2026-11-10T23:04:07Z",
+      "reason": "syntax error: line 1, column 0"
     },
     {
       "url": "https://www.geekwire.com/tag/artificial-intelligence/feed/",
       "status": "ok",
       "items": 35,
-      "sha256": "c47e244b782eb4fc987e9c4215cca7b058dfe73a28a11d8ddea69f1d49aa9284"
+      "sha256": "9cadd623cd046b840408b13520c24236aa45309ad68ebac76a6c491417b7edb6"
     },
     {
       "url": "https://www.techspot.com/backend.xml",
       "status": "ok",
       "items": 30,
-      "sha256": "a9e04dbbdbaa87fca042a27097e9bf328c63ba7283ee70b4ff0a8fa4448b5b79"
+      "sha256": "57869615a388ff9f4b308d330d1e0b125529036c632de7697120f570692e0efb"
     },
     {
       "url": "https://www.sciencedaily.com/rss/computers_math/artificial_intelligence.xml",
       "status": "ok",
       "items": 60,
-      "sha256": "762647d49f6590571ed0afd14991b1c9a80a83a640d530a0a5ebad543d56cfc4"
+      "sha256": "0c13818059307cacb5c03f906dfc91028a91f3cda7667adb58be27b2b447d4c9"
     },
     {
       "url": "https://www.tpr.org/index.rss",
       "status": "ok",
       "items": 5,
-      "sha256": "fda59b28f66a4d1bd8811fa9a35884d2e88a8456eaed95dc4bcdc0f536f221b0"
+      "sha256": "684f102f781e516bc6ae5b04c6df7f12025d454ce89712484888232d1c88bd27"
     },
     {
       "url": "https://www.texasobserver.org/feed/",
-      "status": "not_modified"
+      "status": "ok",
+      "items": 10,
+      "sha256": "511fb2bba8d07208f63cb65fccf19caaa0f036686ca3c33ff59c62107ddbf786"
     }
   ],
   "feed_state": {
@@ -670,105 +673,106 @@
       "etag": "\"92f4a9bb4a0c1faeb20edfa8bbfcafde\"",
       "last_modified": "Sat, 07 Nov 2026 16:56:59 GMT",
       "failures": 0,
-      "ok_at": "2026-11-09T08:15:15Z",
+      "ok_at": "2026-11-09T23:04:07Z",
       "sha256": "aa6cf05b02f504bf3069e888d811c9998ee0f8f210cd39ddeb19b0756df0d9bf",
       "parser_version": 2
     },
     "https://feeds.texastribune.org/feeds/main/": {
-      "ok_at": "2026-11-09T08:15:15Z",
+      "ok_at": "2026-11-09T23:04:07Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "ff01aa7c624f834cf52dc6948cf39c51b54af5f5f5bb6a3d2156fd1e79f128ce",
-      "etag": "\"6af16ae4-b50e\"",
-      "last_modified": "Mon, 09 Nov 2026 06:40:36 GMT"
+      "sha256": "4d213363d2c268f58f56bf52ba0704196a074b6e59d15d51b994f5d5a86027ce",
+      "etag": "\"6af24e71-af81\"",
+      "last_modified": "Mon, 09 Nov 2026 22:51:29 GMT"
     },
     "https://www.datacenterdynamics.com/en/rss/": {
+      "last_modified": "Sun, 08 Nov 2026 23:12:23 GMT",
+      "failures": 1,
       "ok_at": "2026-11-09T08:15:15Z",
-      "failures": 0,
-      "parser_version": 2,
       "sha256": "afda343724d4492645e57027a90163034f01e8b0c367b42d95d3113b60a95f01",
-      "last_modified": "Sun, 08 Nov 2026 23:12:23 GMT"
+      "parser_version": 2,
+      "retry_at": "2026-11-10T05:04:07Z"
     },
     "https://news.mit.edu/rss/topic/artificial-intelligence2": {
-      "ok_at": "2026-11-09T08:15:15Z",
+      "ok_at": "2026-11-09T23:04:07Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "d4f2e2f79dfca4e3aa84a01bf54ba3ab98b2aabc0de1f602fd71c449e83b8edd",
-      "etag": "\"1794210682\"",
-      "last_modified": "Mon, 09 Nov 2026 07:51:22 GMT"
+      "sha256": "cdfa6ca6f9f901c47eb81899c7e26e34d492a1d5531e91c48177e3fa17a6bb32",
+      "etag": "\"1794263867\"",
+      "last_modified": "Mon, 09 Nov 2026 22:37:47 GMT"
     },
     "https://openai.com/news/rss.xml": {
-      "ok_at": "2026-11-09T08:15:15Z",
+      "ok_at": "2026-11-09T23:04:07Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "52fc73fd5befcfedb50a651be15671e6e9d4d94f7ae313de110b09acb9eede7a"
+      "sha256": "2f5c424d7df88aedfea0290f2f09608e970ee11cae6973e84b3e83867a271066"
     },
     "https://blogs.nvidia.com/feed/": {
-      "ok_at": "2026-11-09T08:15:15Z",
+      "ok_at": "2026-11-09T23:04:07Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "fdd1d08b1d3f0978c69dd851ffdc100a0ac9e8352409414dce613f32e792148d",
-      "etag": "\"e6a054ee42fe9371cafaae7caf38b037-gzip\"",
-      "last_modified": "Mon, 09 Nov 2026 08:00:53 GMT"
+      "sha256": "16c8e4eef7d1f6d4804db6dfd5d17d00a61aab678dc07c8da7ab5e45cf625e43",
+      "etag": "\"7142a437db71f76e659517f0ecc27a74-gzip\"",
+      "last_modified": "Mon, 09 Nov 2026 21:58:34 GMT"
     },
     "https://blog.google/technology/ai/rss/": {
-      "ok_at": "2026-11-09T08:15:15Z",
+      "ok_at": "2026-11-09T23:04:07Z",
       "failures": 0,
       "parser_version": 2,
       "sha256": "a34823670eb325f336c8dc5c46393003de27057d19c9a9f0f4ad1bd7073a54c2"
     },
     "https://siliconangle.com/feed/": {
-      "ok_at": "2026-11-09T08:15:15Z",
+      "ok_at": "2026-11-09T23:04:07Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "e097451d4358f2ac61b7339118f90605a578367a7aa781df05439980a79adf76",
-      "etag": "\"8e42fd1ff4e58015a41f012b871ce961\"",
-      "last_modified": "Sun, 08 Nov 2026 23:54:38 GMT"
+      "sha256": "ede49971c5a5c8aaa5c03ae8db709ee55a70fefb7f1f44d3f3c625fe7081acc1",
+      "etag": "\"10a96b6ebdd12b9c451b7895930720c6\"",
+      "last_modified": "Mon, 09 Nov 2026 22:05:08 GMT"
     },
     "https://www.artificialintelligence-news.com/feed/": {
       "etag": "\"cd8cbe1fef0e10c2eef0af3ac2847598\"",
       "last_modified": "Thu, 24 Sep 2026 16:09:03 GMT",
-      "retry_at": "2026-11-09T18:26:28Z",
+      "retry_at": "2026-11-10T23:04:07Z",
       "failures": 8,
       "ok_at": "2026-09-25T06:15:30Z",
       "sha256": "5bc540c61a29cba5c140f729db0c656d52d41094c41b3832c30ed97cb3880e10",
       "parser_version": 2
     },
     "https://www.geekwire.com/tag/artificial-intelligence/feed/": {
-      "ok_at": "2026-11-09T08:15:15Z",
+      "ok_at": "2026-11-09T23:04:07Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "c47e244b782eb4fc987e9c4215cca7b058dfe73a28a11d8ddea69f1d49aa9284",
-      "etag": "W/\"80c1a981824e003afbd77520b352801b\"",
-      "last_modified": "Mon, 09 Nov 2026 08:00:00 GMT"
+      "sha256": "9cadd623cd046b840408b13520c24236aa45309ad68ebac76a6c491417b7edb6",
+      "etag": "W/\"9cb2bd6fafcc8f8999bb2b6e7f3f7dfc\"",
+      "last_modified": "Mon, 09 Nov 2026 22:32:40 GMT"
     },
     "https://www.techspot.com/backend.xml": {
-      "ok_at": "2026-11-09T08:15:15Z",
+      "ok_at": "2026-11-09T23:04:07Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "a9e04dbbdbaa87fca042a27097e9bf328c63ba7283ee70b4ff0a8fa4448b5b79",
-      "etag": "W/\"ce0d14d981039541c9cedaa91e012e8e\""
+      "sha256": "57869615a388ff9f4b308d330d1e0b125529036c632de7697120f570692e0efb",
+      "etag": "W/\"e7bad308b511c144ea53648c09f85530\""
     },
     "https://www.sciencedaily.com/rss/computers_math/artificial_intelligence.xml": {
-      "ok_at": "2026-11-09T08:15:15Z",
+      "ok_at": "2026-11-09T23:04:07Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "762647d49f6590571ed0afd14991b1c9a80a83a640d530a0a5ebad543d56cfc4",
-      "last_modified": "Mon, 09 Nov 2026 02:04:06 GMT"
+      "sha256": "0c13818059307cacb5c03f906dfc91028a91f3cda7667adb58be27b2b447d4c9",
+      "last_modified": "Mon, 09 Nov 2026 12:03:24 GMT"
     },
     "https://www.tpr.org/index.rss": {
-      "ok_at": "2026-11-09T08:15:15Z",
+      "ok_at": "2026-11-09T23:04:07Z",
       "failures": 0,
       "parser_version": 2,
-      "sha256": "fda59b28f66a4d1bd8811fa9a35884d2e88a8456eaed95dc4bcdc0f536f221b0"
+      "sha256": "684f102f781e516bc6ae5b04c6df7f12025d454ce89712484888232d1c88bd27"
     },
     "https://www.texasobserver.org/feed/": {
-      "etag": "\"738b14affa7464c872ce860e1c322eef\"",
-      "last_modified": "Sun, 08 Nov 2026 21:51:32 GMT",
+      "ok_at": "2026-11-09T23:04:07Z",
       "failures": 0,
-      "ok_at": "2026-11-09T08:15:15Z",
-      "sha256": "1d618bcc7cbaa3143d49534497ac4a1efa89baafdfe43d0195118892bb9a8239",
-      "parser_version": 2
+      "parser_version": 2,
+      "sha256": "511fb2bba8d07208f63cb65fccf19caaa0f036686ca3c33ff59c62107ddbf786",
+      "etag": "W/\"e140c2f60266898fab9734f1d7ca6e1b\"",
+      "last_modified": "Mon, 09 Nov 2026 18:09:05 GMT"
     }
   }
 }
