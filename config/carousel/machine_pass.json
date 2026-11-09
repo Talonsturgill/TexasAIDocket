@@ -1,48 +1,55 @@
 {
- "last_pass": "2026-11-03",
+ "last_pass": "2026-11-08",
  "themes": [
   {
-   "theme": "primitive or low-poly model where a kit model belongs (no. 67's kit semi_truck at close range on frames 3 and 8, the guard gate cabinet, the scale house)",
+   "theme": "primitive or low-poly model where a kit model belongs (no. 72's chassis microtube, tube_rack and petri_plate on frames 7 and 8, every round)",
    "runs": 6,
-   "rounds": 15,
+   "rounds": 19,
    "action": "fixed",
-   "what": "assets/js/kit/vehicles.js: semi_truck gets pressed posts and gaskets, coated side glass, a door outline with hinges, lock and grab handles, a sleeper baggage door, ribbed steps, an air cleaner cap and a bumper step. assets/js/kit/civic.js: checkpoint_gate and weigh_house at the judges' named fix, new names."
+   "what": "assets/js/kit/interior.js: microcentrifuge_tube, microcentrifuge_rack and petri_dish at the judges' named fix, new names (d8df7c4b), replayed on no. 72's own frames 7 and 8."
+  },
+  {
+   "theme": "kit person mannequin and hi-vis vest (queue kit-person-mannequin-vest, repeat 3, nos. 68 to 71)",
+   "runs": 3,
+   "rounds": null,
+   "action": "fixed in part",
+   "what": "assets/js/kit/people.js: the vest fitted per vertex with a V neck, folds and bands on its surface, emissive 0.12 to 0.04, no pocket flaps under it (72302521). Face, hands and hair at a near crop stay open at repeat 5."
+  },
+  {
+   "theme": "prompt audit counts agent latency as a human wait (queue, repeat 7 after folding a duplicate; nos. 58, 63, 64, 66, 71)",
+   "runs": 5,
+   "rounds": null,
+   "action": "escalated",
+   "what": "scripts/shared/prompt_audit.py is daily lane; UPGRADE_BACKLOG 2026-11-08 item 3."
   },
   {
    "theme": "largest object unmodelled",
-   "runs": 6,
-   "rounds": 15,
-   "action": "fixed in part",
-   "what": "The same lifts answer no. 67's largest objects on frames 2, 3 and 8 (the house, the gate, the cab side); its yard_stalls and flood_pole stay in the chassis, one deck."
-  },
-  {
-   "theme": "article browser test can't import the global playwright (queue, repeat 2; nos. 60, 62 and 67)",
-   "runs": 3,
-   "rounds": null,
-   "action": "escalated",
-   "what": "tests/article_edition.mjs is human lane; the createRequire fallback is UPGRADE_BACKLOG 2026-11-03 item 3."
-  },
-  {
-   "theme": "dead or empty region",
    "runs": 5,
-   "rounds": 10,
+   "rounds": 12,
    "action": "deferred",
-   "what": "A different frame on each deck; composition, not a model or a check."
+   "what": "A different frame on each deck; no. 72's lift answers its frames 7 and 8."
+  },
+  {
+   "theme": "object in a void, no sky, camera at the ground",
+   "runs": 5,
+   "rounds": 11,
+   "action": "deferred",
+   "what": "Staging, a different frame on each deck."
   },
   {
    "theme": "no contact, dirt or grime where things meet the ground",
    "runs": 5,
-   "rounds": 9,
+   "rounds": 10,
    "action": "deferred",
-   "what": "TXT.contact and TXT.weather exist; the frames that missed them are the decks' own."
+   "what": "TXT.contact and TXT.weather exist; the new rack stands walled to the bench."
   },
   {
-   "theme": "type sitting on or fighting the art",
+   "theme": "dead or empty region",
    "runs": 5,
    "rounds": 8,
    "action": "deferred",
-   "what": "Still the id pass (UPGRADE_BACKLOG 2026-10-12 item 4)."
+   "what": "Composition, not a model or a check."
   }
  ],
- "note": "Written by the weekly machine pass (prompts/daily_routine.md Phase 17) when it ships. Read by scripts/carousel/machine_due.py. Run and round counts are from scripts/carousel/week_digest.py --date 2026-11-03, six shipped runs, except the playwright theme (the queue's own evidence, nos. 60, 62 and 67); rounds not counted for it."
+ "note": "Written by the weekly machine pass (prompts/daily_routine.md Phase 17) when it ships. Read by scripts/carousel/machine_due.py. Run and round counts are from scripts/carousel/week_digest.py --date 2026-11-08, six shipped runs, except the two queue themes, whose run counts are the queue's own evidence; rounds not counted for them."
 }
