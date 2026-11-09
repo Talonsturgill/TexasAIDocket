@@ -1,8 +1,8 @@
 {
  "_spec": 1,
- "read": "2026-11-08",
+ "read": "2026-11-09",
  "source": "https://comptroller.texas.gov/taxes/data-centers/data-center-lists.php",
- "digest": "993dfbebcb1f8d9c",
+ "digest": "ba3d7a7f90a42d4b",
  "facilities": [
   {
    "name": "NADC",
@@ -1848,7 +1848,7 @@
     "EdgeConnex MCN Austin Property 5, LLC"
    ],
    "occupants": [
-    "EdgeConnex MCN Austin Operations 5, LLC"
+    "Microsoft Corporation"
    ],
    "operators": [
     "EdgeConnex MCN Austin Operations 5, LLC"
@@ -2369,6 +2369,32 @@
    ]
   },
   {
+   "name": "Journey Data Center",
+   "effective": "2026-10-21",
+   "owners": [
+    "Google, LLC"
+   ],
+   "occupants": [
+    "Design, LLC"
+   ],
+   "operators": [
+    "Google, LLC"
+   ]
+  },
+  {
+   "name": "Ranger Data Center",
+   "effective": "2026-10-21",
+   "owners": [
+    "Google, LLC"
+   ],
+   "occupants": [
+    "Design, LLC"
+   ],
+   "operators": [
+    "Google, LLC"
+   ]
+  },
+  {
    "name": "AUS01-04, 05, 06 Data Center",
    "effective": "2026-10-27",
    "owners": [
@@ -2392,6 +2418,19 @@
    ],
    "operators": [
     "Soluna MB Kati 2 OPCO, LLC"
+   ]
+  },
+  {
+   "name": "Innomatrix Downing AIDC 1 LLC",
+   "effective": "2026-10-30",
+   "owners": [
+    "Innomatrix Downing AIDC I LLC"
+   ],
+   "occupants": [
+    "Downing Cloud LLC"
+   ],
+   "operators": [
+    "Downing Operations LLC"
    ]
   }
  ]
