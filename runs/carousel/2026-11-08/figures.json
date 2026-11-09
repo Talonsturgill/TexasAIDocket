@@ -1,0 +1,205 @@
+{
+ "_note": "Every value is extracted from a claim quote by compute.py, or computed here from values that were.",
+ "proteins_release": {
+  "value": 1100,
+  "from": [
+   "c1"
+  ],
+  "basis": "about this many proteins exist within mitochondria, the release"
+ },
+ "proteins_curated": {
+  "value": 1123,
+  "from": [
+   "c2"
+  ],
+  "basis": "the curated list the screen ran on"
+ },
+ "pairs": {
+  "value": 630003,
+  "from": [
+   "c4",
+   "c3"
+  ],
+  "basis": "possible protein pairs screened"
+ },
+ "likely": {
+  "value": 2895,
+  "from": [
+   "c4",
+   "c9",
+   "c3"
+  ],
+  "basis": "likely interactions catalogued, mean ipTM over the cutoff"
+ },
+ "proteins_involved": {
+  "value": 1004,
+  "from": [
+   "c9"
+  ],
+  "basis": "proteins with at least one likely partner"
+ },
+ "proteins_without": {
+  "value": 119,
+  "from": [
+   "c2",
+   "c9"
+  ],
+  "basis": "curated proteins with no likely partner, computed"
+ },
+ "share_pct": {
+  "value": 0.46,
+  "from": [
+   "c4",
+   "c9"
+  ],
+  "basis": "likely as a percent of pairs, two decimals half up, equals the paper's 0.46%"
+ },
+ "one_in": {
+  "value": 218,
+  "from": [
+   "c4"
+  ],
+  "basis": "pairs per likely interaction, nearest whole pair"
+ },
+ "not_likely": {
+  "value": 627108,
+  "from": [
+   "c4"
+  ],
+  "basis": "pairs under the cutoff, computed"
+ },
+ "iptm_cutoff": {
+  "value": 0.5,
+  "from": [
+   "c8"
+  ],
+  "basis": "mean ipTM cutoff"
+ },
+ "recall_pct": {
+  "value": 67,
+  "from": [
+   "c8"
+  ],
+  "basis": "recall at the cutoff on the authors' test set"
+ },
+ "fdr_pct": {
+  "value": 15,
+  "from": [
+   "c8",
+   "c10"
+  ],
+  "basis": "false discovery rate at the cutoff, about"
+ },
+ "precision_pct": {
+  "value": 85,
+  "from": [
+   "c11"
+  ],
+  "basis": "precision the authors state"
+ },
+ "tp_at90_pct": {
+  "value": 40,
+  "from": [
+   "c12"
+  ],
+  "basis": "share of true positives recovered at 90% precision, approximate"
+ },
+ "at_precision_pct": {
+  "value": 90,
+  "from": [
+   "c12"
+  ],
+  "basis": "the precision level for tp_at90_pct"
+ },
+ "new_pct": {
+  "value": 57,
+  "from": [
+   "c14"
+  ],
+  "basis": "share of predictions in no existing database"
+ },
+ "orphans": {
+  "value": 85,
+  "from": [
+   "c30"
+  ],
+  "basis": "uncharacterized proteins given at least one predicted partner"
+ },
+ "eukaryotes": {
+  "value": 11,
+  "from": [
+   "c16"
+  ],
+  "basis": "other eukaryotes screened"
+ },
+ "disease_pct": {
+  "value": 30,
+  "from": [
+   "c22"
+  ],
+  "basis": "nearly this percent of mitochondrial proteins carry disease-linked mutations"
+ },
+ "leg_cells": {
+  "value": 1122,
+  "from": [
+   "c2"
+  ],
+  "basis": "cells along each leg of the half matrix, one protein against each other one"
+ },
+ "tile_side_cells": {
+  "value": 53.805,
+  "from": [
+   "c4"
+  ],
+  "basis": "side of a square tile whose area is every likely pair, drawing only"
+ },
+ "block_cols": {
+  "value": 54,
+  "from": [
+   "c4"
+  ],
+  "basis": "columns of the brass block, drawing only"
+ },
+ "block_full_rows": {
+  "value": 53,
+  "from": [
+   "c4"
+  ],
+  "basis": "full rows of the brass block, drawing only"
+ },
+ "block_last_row": {
+  "value": 33,
+  "from": [
+   "c4"
+  ],
+  "basis": "cells in the block's last row, drawing only"
+ },
+ "new_cells": {
+  "value": 1650,
+  "from": [
+   "c4",
+   "c14"
+  ],
+  "basis": "cells of the block drawn as new, from the rounded share, drawing only and never printed"
+ },
+ "boss_total": {
+  "value": 100,
+  "from": [],
+  "basis": "the hundred calls drawn above the step, a drawing unit"
+ },
+ "boss_brass": {
+  "value": 85,
+  "from": [
+   "c11"
+  ],
+  "basis": "calls of a hundred drawn in brass, by the stated precision"
+ },
+ "boss_steel": {
+  "value": 15,
+  "from": [
+   "c11",
+   "c10"
+  ],
+  "basis": "calls of a hundred drawn in steel, equal to the stated false discovery rate"
+ }
+}

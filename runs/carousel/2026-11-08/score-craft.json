@@ -1,0 +1,65 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.8
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.0
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.0
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.0
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.5
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.5
+  }
+ ],
+ "weighted_score": 7.256,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Rebuild slides 7 and 8 as real lab objects: translucent microtubes catching the window, petri dishes with modelled walls, lids and agar depth, a low oblique camera, TXT.contact under the rack and stack.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 8,
+   "problem": "The plate tower reads as pancakes or coins: floating amber discs, halo walls, copper-orange taking the frame.",
+   "fix": "Clear base and lid with real wall height, stacked touching, a low oblique camera, the grade back to brass and black."
+  },
+  {
+   "slide": 7,
+   "problem": "Flat grey tubes with no translucency, a hovering rack over a flat orange gradient, no contact.",
+   "fix": "Transmissive tubes lit from behind, the rack seated with TXT.contact, the warm pool tightened to a seam."
+  },
+  {
+   "slide": 5,
+   "problem": "Dead left 40 percent, the step a sliver in the footer band, flat bosses, the leader on one boss.",
+   "fix": "The step diagonal through the middle third with a lit face, the block on its upper level at 60 percent of the width, a bracket over the brass share."
+  },
+  {
+   "slide": 6,
+   "problem": "The cell grid reads as flat texture with little height or cast; the seam is a value change.",
+   "fix": "A lower key for a bright bevel and a clear cast, a milled seam groove."
+  }
+ ]
+}

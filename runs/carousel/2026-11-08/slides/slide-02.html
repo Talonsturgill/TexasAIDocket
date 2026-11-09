@@ -1,0 +1,71 @@
+<!doctype html>
+<!-- 2026-11-08, frame 2 of 9. Archetype OBJECT_AND_CAPTION. A spatial scene through txthree.js inside a TXT.interior lab: the two chains of the teaching model standing apart, bone and blackened bronze, the window's last light passing through the gap between them. Drawn to illustrate, never a real structure. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:900px">Do these two meet?</h1>
+<p class="dek" data-follow="26" style="width:860px">Google DeepMind built AlphaFold-Multimer to predict how protein chains fit together. The team used it as a yes or no test on each pair. Mutations in nearly 30% of mitochondrial proteins are tied to disease. The models are drawn to illustrate.</p>
+<script>window.FIG = {};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-08-plate.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "The tool", counter: "02 / 09", src: "c5 c6 c7 c22", fit: { min: 80, max: 104, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 30, near: 0.02, far: 60, exposure: 1.0 });
+  /* the lab, with the window on the far wall, so no window frame runs a hard edge behind the type; the light behind
+   * the gap is the slot */
+  const room = TXT.interior(R, Object.assign(CH.roomOpts({ windowI: 0.1 }), { window: 'right' }));
+  CH.bench(TXT, R, K, { x: -2.55, rotY: Math.PI / 2 });
+  const top = CH.BENCH_H;
+  /* a dark slate tile on the epoxy under the stand, the only plastic on the bench */
+  const tile = TXT.roundedBox(0.34, 0.006, 0.22, 0.002, TXT.mat.plastic(0x141519, { roughness: 0.5 }));
+  tile.position.set(-2.52, top + 0.003, 0.0); TXT.add(R, tile);
+  const pair = K.make('protein_pair', { state: 'apart', gap: 0.075, matA: 'bone', matB: 'bronze', unit: 0.03 });
+  pair.position.set(-2.52, top + 0.006, 0.0); pair.rotation.y = Math.PI / 2; TXT.add(R, pair); TXT.contact(R, pair);
+  /* the bone resin a shade cooler here: lit from the warm side it sat on the brass accent's own tan, and this frame
+   * carries no brass */
+  pair.userData.chains[0].traverse(m => { if (m.isMesh && m.material && m.material.color) { m.material = m.material.clone(); m.material.color.multiply(new THREE.Color(0xd6dde8)); } });
+  /* a little above the plinth, so its top and both contacts show under the chains */
+  const from = [-1.86, top + 0.13, 0.0];
+  const look = CH.aim(THREE, R, TXT, from, [-2.52, top + 0.07, 0.0], 540, 900, 28);   /* the plinth ends above the footer, so no band crosses it */
+  TXT.frame(R, { fov: 28, from, look });
+  TXT.deckRig(R, CH.rigSpec(W, 2, 2048), CH.rigOpts([-2.52, top, 0], { distance: 6, shadowFar: 14, normalBias: 0.01 }));
+  CH.unacne(R, 0.01);
+  /* the window's last light rims both chains from behind and to the left, the brass catching it hardest */
+  { const rim = new THREE.PointLight(0xff6a28, 0.8, 3, 2); rim.position.set(-2.95, top + 0.25, 0.0); R.scene.add(rim);
+    const fill = new THREE.PointLight(0xc4ccdc, 0.3, 3, 2); fill.position.set(-1.7, top + 0.3, 0.6); R.scene.add(fill);
+    /* the bronze chain's own rim from the window side, so its spheres read as spheres and not a black mass */
+    const rimB = new THREE.PointLight(0xff7a3a, 0.9, 1.5, 2); rimB.position.set(-2.75, top + 0.18, -0.16); R.scene.add(rimB); }
+  CH.darkRoom(R);
+  /* the wall behind the gap darker still: the room's warmed fill lit it the brass accent's tan */
+  R.scene.traverse(l => { if (l.isDirectionalLight && l.castShadow) { l.intensity *= 0.6; l.color.multiply(new THREE.Color(0xffc090)); } if (l.isDirectionalLight && !l.castShadow) l.intensity *= 0.4; if (l.isHemisphereLight || l.isAmbientLight) l.intensity *= 0.5; });
+  { const key = new THREE.PointLight(0xffb48a, 0.22, 3, 2); key.position.set(-2.3, top + 0.38, 0.5); R.scene.add(key); }   /* a touch under the cover's, so the lit resin stays below the deck's pale brass accent */
+  /* the slot stands directly behind the gap, a narrow pane, so the one bright thing is the light passing between them */
+  { const pane = CH.slot(THREE, R, 540, 900, { h: 0.5, w: 0.06, i: 2.0, lift: 0.0, light: 0.35, color: 0xff7a3a });
+    pane.material.color.multiply(new THREE.Color(0xff9a5a)); }   /* a deep amber pane, so its streak on the plinth stays off the pale brass accent */   /* a weak lamp: a strong one lit the whole back wall a mid tone */
+  TXT.weather(R, { grime: 0.1, height: 0.5, mottle: 0.15 });
+  TXT.stage(R, pair);
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0.4, veil: 0.4, veilH: 260 });
+  CH.footWash(cx);
+  CH.typeDark(cx, { fade: 120 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

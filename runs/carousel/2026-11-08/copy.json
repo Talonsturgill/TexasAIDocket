@@ -1,0 +1,229 @@
+{
+ "date": "2026-11-08",
+ "carousel_no": 72,
+ "document_title": "Texas A&M screened 630,003 protein pairs with AlphaFold-Multimer",
+ "_note": "Slide strings read off the render report's text nodes and each frame's own source line by build_copy.py.",
+ "caption": "Which of 630,003 protein pairs inside mitochondria actually meet?\n\nTexas A&M scientists in College Station recast Google DeepMind's AlphaFold-Multimer as a yes or no test on pairs of mitochondrial proteins. Texas A&M High Performance Research Computing supplied the computing. The screen kept 2,895 of 630,003 pairs as likely, the paper's 0.46%. 57% of the 2,895 were in none of the databases checked. Lab work guided by the predictions defines copper's route to cytochrome c oxidase.\n\nMutations in nearly 30% of mitochondrial proteins are tied to human disease. The method can't say how tightly a pair binds. The release says cures may still be far off.\n\nAll 2,895 predictions are free online as MitoMatch, at mitomatch.web.app. The set carries an apparent false discovery rate of 15%. Which pairs are the false ones?\n\n#CollegeStation #TAMU #AlphaFold",
+ "slides": {
+  "S1": {
+   "n": 1,
+   "file": "slide-01.html",
+   "kicker": "Texas A&M, College Station",
+   "headline": "An AI was asked which proteins pair up",
+   "claims": [
+    "c5",
+    "c7",
+    "c28"
+   ],
+   "cite": "c5 c7 c28",
+   "body": "Texas A&M scientists in College Station recast AlphaFold-Multimer as a yes or no test for which mitochondrial proteins interact. The model is drawn to illustrate, not a structure from the paper.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "An AI was asked which proteins pair up",
+    "Texas A&M scientists in College Station recast AlphaFold-Multimer as a yes or no test for which mitochondrial proteins interact. The model is drawn to illustrate, not a structure from the paper.",
+    "Texas A&M, College Station",
+    "01 / 09",
+    "c5 c7 c28"
+   ]
+  },
+  "S2": {
+   "n": 2,
+   "file": "slide-02.html",
+   "kicker": "The tool",
+   "headline": "Do these two meet?",
+   "claims": [
+    "c5",
+    "c6",
+    "c7",
+    "c22"
+   ],
+   "cite": "c5 c6 c7 c22",
+   "body": "Google DeepMind built AlphaFold-Multimer to predict how protein chains fit together. The team used it as a yes or no test on each pair. Mutations in nearly 30% of mitochondrial proteins are tied to disease. The models are drawn to illustrate.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "Do these two meet?",
+    "Google DeepMind built AlphaFold-Multimer to predict how protein chains fit together. The team used it as a yes or no test on each pair. Mutations in nearly 30% of mitochondrial proteins are tied to disease. The models are drawn to illustrate.",
+    "The tool",
+    "02 / 09",
+    "c5 c6 c7 c22"
+   ]
+  },
+  "S3": {
+   "n": 3,
+   "file": "slide-03.html",
+   "kicker": "The screen",
+   "headline": "Every pair, once",
+   "claims": [
+    "c2",
+    "c3",
+    "c4"
+   ],
+   "cite": "c2 c3 c4",
+   "body": "The team built a curated list of 1123 proteins. Every possible pairing comes to 630,003 pairs, and the screen read all of them. The plate is drawn to illustrate.",
+   "labels": [
+    "1123 proteins",
+    "630,003 pairs"
+   ],
+   "strings": [
+    "texasaidocket.com",
+    "Every pair, once",
+    "The team built a curated list of 1123 proteins. Every possible pairing comes to 630,003 pairs, and the screen read all of them. The plate is drawn to illustrate.",
+    "1123 proteins",
+    "630,003 pairs",
+    "The screen",
+    "03 / 09",
+    "c2 c3 c4"
+   ]
+  },
+  "S4": {
+   "n": 4,
+   "file": "slide-04.html",
+   "kicker": "The find",
+   "headline": "All 2,895 likely pairs fit in one tile",
+   "claims": [
+    "c3",
+    "c4",
+    "c9"
+   ],
+   "cite": "c3 c4 c9",
+   "body": "The screen kept 2,895 of 630,003 pairs as likely, the paper's 0.46%. Each tile on this plate holds the area of all 2,895. One is raised in brass.",
+   "labels": [
+    "630,003 pairs screened",
+    "2,895 likely"
+   ],
+   "strings": [
+    "texasaidocket.com",
+    "All 2,895 likely pairs fit in one tile",
+    "The screen kept 2,895 of 630,003 pairs as likely, the paper's 0.46%. Each tile on this plate holds the area of all 2,895. One is raised in brass.",
+    "630,003 pairs screened",
+    "2,895 likely",
+    "The find",
+    "04 / 09",
+    "c3 c4 c9"
+   ]
+  },
+  "S5": {
+   "n": 5,
+   "file": "slide-05.html",
+   "kicker": "The cutoff",
+   "headline": "The line sits at 0.5",
+   "claims": [
+    "c8",
+    "c10",
+    "c11"
+   ],
+   "cite": "c8 c10 c11",
+   "body": "A pair counts when its mean ipTM score reaches 0.5. On the authors' test set that gives 67% recall at a false discovery rate of about 15%. Of a hundred calls drawn above the line, the 15 in steel are the false share.",
+   "labels": [
+    "below 0.5",
+    "0.5 and above",
+    "85% precision"
+   ],
+   "strings": [
+    "texasaidocket.com",
+    "The line sits at 0.5",
+    "A pair counts when its mean ipTM score reaches 0.5. On the authors' test set that gives 67% recall at a false discovery rate of about 15%. Of a hundred calls drawn above the line, the 15 in steel are the false share.",
+    "below 0.5",
+    "0.5 and above",
+    "85% precision",
+    "The cutoff",
+    "05 / 09",
+    "c8 c10 c11"
+   ]
+  },
+  "S6": {
+   "n": 6,
+   "file": "slide-06.html",
+   "kicker": "What was new",
+   "headline": "Most of them had never been reported",
+   "claims": [
+    "c13",
+    "c14",
+    "c24"
+   ],
+   "cite": "c13 c14 c24",
+   "body": "57% of the predicted interactions were in none of the databases checked. Every cell stands at one height, because the method can't say how tightly a pair binds.",
+   "labels": [
+    "new, 57%",
+    "already known"
+   ],
+   "strings": [
+    "texasaidocket.com",
+    "Most of them had never been reported",
+    "57% of the predicted interactions were in none of the databases checked. Every cell stands at one height, because the method can't say how tightly a pair binds.",
+    "new, 57%",
+    "already known",
+    "What was new",
+    "06 / 09",
+    "c13 c14 c24"
+   ]
+  },
+  "S7": {
+   "n": 7,
+   "file": "slide-07.html",
+   "kicker": "New partners",
+   "headline": "85 little-known proteins got a predicted partner",
+   "claims": [
+    "c30"
+   ],
+   "cite": "c30",
+   "body": "The screen found at least one predicted partner for each of 85 uncharacterized proteins. One tube stands for each, drawn to illustrate.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "85 little-known proteins got a predicted partner",
+    "The screen found at least one predicted partner for each of 85 uncharacterized proteins. One tube stands for each, drawn to illustrate.",
+    "New partners",
+    "07 / 09",
+    "c30"
+   ]
+  },
+  "S8": {
+   "n": 8,
+   "file": "slide-08.html",
+   "kicker": "At the bench",
+   "headline": "Several pairs held up at the bench",
+   "claims": [
+    "c19",
+    "c18"
+   ],
+   "cite": "c19 c18",
+   "body": "About two years of lab work confirmed several predicted partnerships in yeast and human cells. The work also mapped the route copper takes inside mitochondria to cytochrome c oxidase. The plates are drawn to illustrate.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "Several pairs held up at the bench",
+    "About two years of lab work confirmed several predicted partnerships in yeast and human cells. The work also mapped the route copper takes inside mitochondria to cytochrome c oxidase. The plates are drawn to illustrate.",
+    "At the bench",
+    "08 / 09",
+    "c19 c18"
+   ]
+  },
+  "S9": {
+   "n": 9,
+   "file": "slide-09.html",
+   "kicker": "MitoMatch",
+   "headline": "The list is free to use",
+   "claims": [
+    "c4",
+    "c20",
+    "c21",
+    "c23",
+    "c29"
+   ],
+   "cite": "c4 c20 c21 c23 c29",
+   "body": "The team posted all 2,895 predictions as MitoMatch, free at mitomatch.web.app. The release says cures for diseases linked to mitochondria may still be far off. The block and model are drawn to illustrate.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "The list is free to use",
+    "The team posted all 2,895 predictions as MitoMatch, free at mitomatch.web.app. The release says cures for diseases linked to mitochondria may still be far off. The block and model are drawn to illustrate.",
+    "MitoMatch",
+    "09 / 09",
+    "c4 c20 c21 c23 c29"
+   ]
+  }
+ }
+}

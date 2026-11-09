@@ -1,0 +1,75 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.8
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.3
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.0
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.5
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.5
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.5
+  }
+ ],
+ "weighted_score": 7.27,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Rebuild frames 7 and 8 as backlit translucent objects: milky tubes with a rack filling two thirds of the frame, and glass dishes whose rims glow with no ghost lid geometry.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 7,
+   "problem": "Opaque grey tubes in a thin rack filling a band of about 20% of the frame, an empty orange floor, the deck's lowest band ratio.",
+   "fix": "Eye at tube height, push in so the rack fills about half the frame, milky backlit tubes, the floor to black."
+  },
+  {
+   "slide": 8,
+   "problem": "Solid peach discs that read as pancakes, ghost wall ellipses offset like a double exposure, dark rims.",
+   "fix": "Clear glass walls with amber agar inset, no separate ghost lids, the window directly behind so the rims glow."
+  },
+  {
+   "slide": 6,
+   "problem": "An orthographic waffle with no height, a large flat taupe known share, grooves that mesh at 432 px.",
+   "fix": "A low raking three-quarter view and the known share near black."
+  },
+  {
+   "slide": 3,
+   "problem": "A dark triangle with a thin grey hypotenuse and an unexplained band, nearly duplicating frame 4.",
+   "fix": "Label or remove the band, and rake so the hypotenuse is a bright saw edge."
+  },
+  {
+   "slide": 5,
+   "problem": "The 0.5 step is a faint tilted edge at the bottom, and the leader lands on one boss.",
+   "fix": "A bright lit wall under the bottom row, and a bracket over the 85."
+  },
+  {
+   "slide": 9,
+   "problem": "A near-white floor wedge upper right and about 210 px of dead space between hook and dek.",
+   "fix": "Narrow the pool so the far bench falls dark, move the dek up."
+  }
+ ]
+}

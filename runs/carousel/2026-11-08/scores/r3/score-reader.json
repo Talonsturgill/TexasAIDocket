@@ -1,0 +1,70 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.5
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.5
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.5
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.5
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.0
+  }
+ ],
+ "weighted_score": 7.12,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Lead the cover dek with the human stake (c22) instead of burying it mid-dek on slide 2, and fold the repeated 'drawn to illustrate' sentences into one line on the cover.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 8,
+   "problem": "The plate tower reads as a stack of pancakes with faint halo walls and floating discs.",
+   "fix": "Clear polystyrene base and lid with a lit wall and rim, dishes stacked touching, camera at about 0.12 m."
+  },
+  {
+   "slide": 7,
+   "problem": "Opaque grey tubes that read as bullets, a floating rack, an empty orange gradient floor in the lower 40%.",
+   "fix": "Translucent backlit tubes, the rack seated with TXT.contact, a tighter crop so the rack fills the bottom half."
+  },
+  {
+   "slide": 6,
+   "problem": "A flat waffle raster with almost no visible height and a fine grid that buzzes at feed size.",
+   "fix": "A lower rake so the walls show a lit and a shadowed edge, two heights for the halves, darker bronze."
+  },
+  {
+   "slide": 5,
+   "problem": "The 0.5 step is a disconnected striped strip and the precision leader points at one boss.",
+   "fix": "Stand the block on the upper level behind a lit step wall, and re-aim the leader to a bracket over the 85."
+  },
+  {
+   "slide": 3,
+   "problem": "Coarse tiles against slide 4's, a straight hypotenuse, an unlabelled L rail.",
+   "fix": "Share slide 4's pitch, a stepped lit hypotenuse, label or remove the band."
+  }
+ ]
+}

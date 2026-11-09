@@ -1,0 +1,70 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.0
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.0
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 6.5
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.5
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.5
+  }
+ ],
+ "weighted_score": 6.55,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Source every third-party history fact to that party's own primary record: fix or drop S2's unattributed 'released AlphaFold-Multimer in 2022', and name the 1123-protein set in the web edition dek.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 8,
+   "problem": "The petri tower reads as a stack of pancakes or coins with ghost glass walls, and colonies like bubbles.",
+   "fix": "Clear polystyrene dishes with a visible wall, three dishes, an oblique camera, matte colonies on the open plate in a warm pool."
+  },
+  {
+   "slide": 7,
+   "problem": "Untextured grey tubes on a rack of two black bars that bleeds off both edges, so the 85 can't be seen.",
+   "fix": "Pull back until all 85 tubes sit inside about 75% of the width, with milky translucent tubes backlit."
+  },
+  {
+   "slide": 5,
+   "problem": "A flat waffle chart: flat cream boss tops with no metal response, and a striped corner step not connected to the block.",
+   "fix": "Seat the block on the upper level with the lit step wall directly under it, rake the key low, specular brass and bead-blasted steel."
+  },
+  {
+   "slide": 3,
+   "problem": "It already shows frame 4's tile grid, pre-empting the reveal, and the upper left 40% is dead.",
+   "fix": "Only the fine cell texture and graduations every hundred cells on frame 3, so the tiles first appear on frame 4."
+  },
+  {
+   "slide": 2,
+   "problem": "A black footer plate cuts across the plinth; slide 6 has a hard plate edge through the dek.",
+   "fix": "Remove both plates: end the plinth above the footer by moving the camera, and on 6 let the dark field come from the light falloff."
+  }
+ ]
+}

@@ -1,0 +1,75 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.5
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.5
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7
+  }
+ ],
+ "weighted_score": 7.2,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Rebuild the bench frames as real lit objects: translucent backlit tubes in contact with the bench on 7, a touching dish stack with visible walls on 8, milled cell height under a low rake on 6.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 7,
+   "problem": "Opaque grey tubes, the hottest region is the empty floor pool below the rack, no contact, a dead lower third.",
+   "fix": "Translucent milky tubes, the pool on the rack, lower camera so the rack's feet sit on the bench with TXT.contact."
+  },
+  {
+   "slide": 6,
+   "problem": "Reads as a flat 2D waffle chart with no bevel or height, and an unlit 15 px notch.",
+   "fix": "Raise the cell height, lower the key, widen the seam into a groove, a lit notch at least 40 px deep."
+  },
+  {
+   "slide": 8,
+   "problem": "Six dishes hover with dark gaps and ghost walls; salmon agar fills the stack with mid tone.",
+   "fix": "Seat the dishes in contact with visible walls and lids, delete the ghost outlines, darker amber agar, backlit rims."
+  },
+  {
+   "slide": 3,
+   "problem": "Grey tiles on black with no bright edge, an unexplained band, a grid that pre-empts frame 4.",
+   "fix": "Bare milled terrace, a near-white hypotenuse line, label or remove the band."
+  },
+  {
+   "slide": 5,
+   "problem": "The 0.5 step reads as blinds along the bottom, unrelated to the boss block; the leader points at one tile.",
+   "fix": "One lit milled wall directly under the block, a plain dark lower level, the leader on the brass share's edge."
+  },
+  {
+   "slide": 2,
+   "problem": "The bone chain rendered brown, and a hard black band splits the plinth from the surface under the footer.",
+   "fix": "Restore bone resin, extend the plinth to the bottom edge."
+  }
+ ]
+}

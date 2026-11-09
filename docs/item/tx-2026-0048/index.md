@@ -1,6 +1,6 @@
 # League City City Council ordered a November 3rd special election on whether police may keep using automated license plate reader cameras
 
-On August 11th, 2026 the League City City Council approved Ordinance No. 2026-27 on first and final reading. The ordinance orders a special election on November 3rd, 2026. It asks voters about the police department's continued use of automated license plate reader cameras at fixed locations on public roadways. The wording the city published opens by telling voters the result is a nonbinding statement of preference, so the council keeps the decision either way. Mayor Long sponsored the item and asked for approval on first and final reading. Council member Chadwell moved it, seconded by Council member Cones. Reporting in the Houston region identifies the cameras as Flock cameras. On October 13th the council voted to remove the fixed cameras if a majority rejects them, with every member on the roll for it. The same night it created a Citizen Data Privacy Committee to oversee the system.
+On August 11th, 2026 the League City City Council approved Ordinance No. 2026-27 on first and final reading. The ordinance orders a special election on November 3rd, 2026. It asks voters about the police department's continued use of automated license plate reader cameras at fixed locations on public roadways. The wording the city published opens by telling voters the result is a nonbinding statement of preference, so the council keeps the decision either way. Mayor Long sponsored the item and asked for approval on first and final reading. Council member Chadwell moved it, seconded by Council member Cones. Reporting in the Houston region identifies the cameras as Flock cameras. On October 13th the council voted to remove the fixed cameras if a majority rejects them, with every member on the roll for it. The same night it created a Citizen Data Privacy Committee to oversee the system. Voters rejected the cameras on November 3rd, by the city's unofficial count. The city says removal follows the official canvass at the council's November 17th meeting, and the mayor asked staff to cover the fixed cameras in the meantime.
 
 - Topic: surveillance-and-policing
 - Decided by: League City City Council (city)
@@ -9,10 +9,10 @@ On August 11th, 2026 the League City City Council approved Ordinance No. 2026-27
   - Houston-Pasadena-The Woodlands, TX
 - Status: decided
 - Public access: Public meeting
-- Comment closes: 2026-11-03
+- Comment closes: 2026-11-17
 - Take part: https://leaguecity.legistar.com/MeetingDetail.aspx?LEGID=2222&GID=84&G=2D7DD9CC-BD32-4A4F-B8D5-83638663C82D
 
-- Last checked: 2026-11-05
+- Last checked: 2026-11-08
 
 ## Dates
 
@@ -57,6 +57,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-02 · League City's council record still orders Tuesday's special election on the fixed plate reader cameras, a day before voters decide it.
 - 2026-11-03 · Voters in League City decide Proposition A today. The council record that ordered the election did not show the quoted wording this time, so nothing about it is confirmed today.
 - 2026-11-05 · The council's order calling the November 3rd vote on plate reader cameras still reads as passed. The county has not yet posted a canvass of the result.
+- 2026-11-08 · Voters said no to the fixed plate reader cameras, by the city's unofficial count. The council canvasses the result on November 17th, and the mayor has asked for the cameras to be covered until then.
 
 ## Evidence
 
@@ -121,4 +122,28 @@ Source (primary_official): https://www2.census.gov/geo/docs/reference/codes2020/
 > TX|48|201|Harris County|41980|02411642|League City city
 
 Source (primary_official): https://www2.census.gov/geo/docs/reference/codes2020/place_by_cou/st48_tx_place_by_county2020.txt
+
+### The city's unofficial results say voters rejected keeping the fixed plate reader cameras.
+
+> Voters rejected the continued use of automated license plate reader cameras at fixed locations on public roadways
+
+Source (primary_official): https://www.leaguecitytx.gov/m/newsflash/Home/Detail/6466
+
+### The city's statement ties removal of the cameras to the official canvass at the council's November 17th meeting.
+
+> The resolution calls for the removal of the cameras within 72 hours of the official canvassing of election results at the Council's November 17 meeting.
+
+Source (primary_official): https://www.leaguecitytx.gov/m/newsflash/Home/Detail/6467
+
+### The mayor asked staff to cover the fixed cameras right away, ahead of the canvass.
+
+> However, League City Mayor Nick Long has asked City staff to immediately cover or bag any of the City' s ALPR cameras at fixed locations along public roadways.
+
+Source (primary_official): https://www.leaguecitytx.gov/m/newsflash/Home/Detail/6467
+
+### The city dates the resolution setting out the removal steps to the council's October 27th meeting.
+
+> The City of League City will be following the guidelines of a resolution approved by City Council at their October 27 th meeting
+
+Source (primary_official): https://www.leaguecitytx.gov/m/newsflash/Home/Detail/6467
 

@@ -1,0 +1,66 @@
+<!doctype html>
+<!-- 2026-11-08, frame 6 of 9. Archetype CLOSE_CROP. A TXBENCH material relief: the brass block of every likely pair, one cell per pair, split into bright brass for the share no database checked held and blackened bronze for the known share, every cell at one height. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:820px">Most of them had never been reported</h1>
+<p class="dek" data-follow="26" style="width:860px">57% of the predicted interactions were in none of the databases checked. Every cell stands at one height, because the method can't say how tightly a pair binds.</p>
+<div class="lab brass" id="lab-new">new, 57%</div>
+<div class="lab" id="lab-known">already known</div>
+<script>window.FIG = {"block_cols": 54, "block_full_rows": 53, "block_last_row": 33, "new_cells": 1650};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txbench.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-08-plate.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+function lead(cx, a, b) { cx.save(); cx.strokeStyle = 'rgba(237,230,214,0.9)'; cx.fillStyle = cx.strokeStyle; cx.lineWidth = 2;
+  cx.beginPath(); cx.moveTo(a[0], a[1]); cx.lineTo(b[0], b[1]); cx.stroke(); cx.beginPath(); cx.arc(b[0], b[1], 5, 0, 7); cx.fill(); cx.restore(); }
+window.renderReady = (async () => {
+  const cx = await CH.bootFlat({ kicker: "What was new", counter: "06 / 09", src: "c13 c14 c24", fit: { min: 80, max: 100, maxLines: 2 } });
+  cx.scale(2, 2); TX.reseed(20261108);
+  /* THE FIGURE: the block is block_cols columns by block_full_rows rows and a last row of block_last_row cells, one per
+   * likely pair. The first new_cells cells in reading order are bright brass, the share no database checked held, and
+   * the rest blackened bronze. Every cell stands at one height. The order is a drawing choice, not a ranking. */
+  /* 11.5 px cells, so the block spans most of the frame, set right of centre with the labels in the left margin */
+  const C = 12.2, W = FIG.block_cols * C, X0 = 1080 - W - 40, Y0 = 540;
+  function surf(X, Y) {
+    const u = X - X0, v = Y - Y0, ci = Math.floor(u / C), rj = Math.floor(v / C);
+    const inBody = ci >= 0 && ci < FIG.block_cols && rj >= 0 && rj < FIG.block_full_rows;
+    const inTail = rj === FIG.block_full_rows && ci >= 0 && ci < FIG.block_last_row;
+    if (!inBody && !inTail) return [0, 0];
+    const lu = u - ci * C, lv = v - rj * C, k = rj * FIG.block_cols + ci;
+    const groove = lu < 1.1 || lv < 1.1;
+    const m = k < FIG.new_cells ? 2 : 3;
+    return groove ? [72, 5] : [90, m];   /* deep grooves, so each cell shows a lit and a shadowed wall */   /* a tall block, so its cast is measured on the plate */
+  }
+  const height = (X, Y) => surf(X, Y)[0], material = (X, Y) => surf(X, Y)[1];
+  /* the block as metal: a broad raked sheen across the brass from the key's corner, the bronze a warm blackened metal,
+   * and a pool of the key on the anodise round the block so its cast reads as a darker wedge on a lit plate */
+  const albedo = (X, Y, m) => {
+    const u = (X - X0) / W, v = (Y - Y0) / W, d = (u + v) / 2;
+    if (m === 2) { const k = 0.55 + 0.9 * Math.exp(-Math.pow((d - 0.3) / 0.18, 2)); return [2.5 * k, 1.6 * k, 0.45 * k]; }
+    if (m === 3) { const k = 0.7 + 0.5 * Math.exp(-Math.pow((d - 0.3) / 0.25, 2)); return [0.34 * k, 0.24 * k, 0.15 * k]; }
+    if (m === 0) { const r = Math.hypot(X - (X0 + W * 0.6), Y - (Y0 + W * 0.7)) / 520, k = 1 + 2.5 * Math.exp(-r * r); const a0 = CH.ALB[0]; return [a0[0] * k, a0[1] * k, a0[2] * k]; }
+    return CH.albedo(X, Y, m);
+  };
+  TXBENCH.relief(cx, CH.reliefOpts({ x: 0, y: 0, w: 1080, h: 1350, height, material, albedo, spec: Object.assign({}, CH.SPEC, { 2: [0.9, 6], 3: [0.5, 8] }), castLength: 360 }));
+  CH.typeDark(cx, { a: 0.55, fade: 260 });   /* a long fade, so no seam crosses the dek */
+  CH.footWash(cx, { a: 0.5 });
+  CH.pinLabel('lab-new', [120, Y0 + 8 * C]);
+  CH.pinLabel('lab-known', [120, Y0 + 42 * C]);
+  window.__txLeaders = [];
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

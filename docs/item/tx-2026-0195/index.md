@@ -11,7 +11,7 @@ Researchers at Texas Children's Hospital's Duncan Neurological Research Institut
 - Public access: Write to the decider
 - Take part: https://www.texome.org/
 
-- Last checked: 2026-11-05
+- Last checked: 2026-11-08
 
 ## Dates
 
@@ -33,6 +33,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-10-30 · The hospital's release moved to a new address and still reads as published, naming BRSK1 as the likely diagnosis the AI tool first flagged.
 - 2026-11-02 · The Texome account of AI-MARRVEL flagging a rare BRSK1 change for a child still reads as published.
 - 2026-11-05 · The Texas Children's and Baylor finding on the rare disorder still reads as published.
+- 2026-11-08 · The Texas Children's and Baylor report of a likely genetic cause found after an AI flag still reads as published.
 
 ## Evidence
 

@@ -1,0 +1,93 @@
+<!doctype html>
+<!-- 2026-11-08, frame 8 of 9. Archetype FULL_BLEED. A spatial scene through txthree.js inside a TXT.interior lab: a tower of inverted yeast plates with amber agar and cream colonies, two more plates and a culture flask on the black bench, backlit by the window. Drawn to illustrate, with no count of confirmed pairs. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:900px">Several pairs held up at the bench</h1>
+<p class="dek" data-follow="26" style="width:860px">About two years of lab work confirmed several predicted partnerships in yeast and human cells. The work also mapped the route copper takes inside mitochondria to cytochrome c oxidase. The plates are drawn to illustrate.</p>
+<script>window.FIG = {};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-08-plate.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "At the bench", counter: "08 / 09", src: "c19 c18", fit: { min: 80, max: 104, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 30, near: 0.02, far: 60, exposure: 1.0 });
+  /* the lab, the window on the far wall so no frame edge crosses the type */
+  const room = TXT.interior(R, Object.assign(CH.roomOpts({ windowI: 0.1 }), { window: 'right' }));
+  CH.bench(TXT, R, K, { x: -2.55, rotY: Math.PI / 2 });
+  const top = CH.BENCH_H;
+  /* a dark slate tile on the epoxy under the stand, the only plastic on the bench */
+  /* the bench where the predictions were checked: a tower of inverted yeast plates, two more beside it and one open,
+   * all drawn to illustrate, with no count of confirmed pairs. No tape: its band read as a grey sticker on every dish. */
+  const tower = K.make('petri_plate', { stack: 6, colonies: 70, seed: 3, tape: false });
+  tower.position.set(-2.6, top, 0.03); TXT.add(R, tower); TXT.contact(R, tower);
+  const p1 = K.make('petri_plate', { stack: 1, colonies: 90, seed: 7, tape: false }); p1.position.set(-2.72, top, -0.06); TXT.add(R, p1); TXT.contact(R, p1);
+  const p2 = K.make('petri_plate', { stack: 2, colonies: 50, seed: 11, tape: false }); p2.position.set(-2.62, top, 0.16); TXT.add(R, p2); TXT.contact(R, p2);
+  /* ONE PLATE OPEN, lid set beside it: amber agar face up with cream yeast colonies, the only way a colony can be seen,
+   * since on a stored plate they grow on the agar's underside. Built here, a base, a translucent agar disc and colonies
+   * as low domes on its surface. */
+  const open = new THREE.Group();
+  { const PSo = new THREE.MeshPhysicalMaterial({ color: 0xe8ecef, roughness: 0.08, transparent: true, opacity: 0.3, clearcoat: 1, depthWrite: false });
+    const AG = new THREE.MeshPhysicalMaterial({ color: 0x7a3010, roughness: 0.5, transparent: true, opacity: 0.9, emissive: 0x2a0c04, emissiveIntensity: 0.25 });   /* a deep red amber gel, lit from behind, never the brass accent; matte so no facet catches */
+    const CO = new THREE.MeshPhysicalMaterial({ color: 0xf0dcb0, roughness: 0.3, clearcoat: 0.8, emissive: 0x3a2a10, emissiveIntensity: 0.35 });   /* cream and glossy */
+    const prof = [[0, 0], [0.0442, 0], [0.0446, 0.0006], [0.0446, 0.0135], [0.0438, 0.0135], [0.0438, 0.001], [0, 0.001]].map(q => new THREE.Vector2(q[0], q[1]));
+    open.add(new THREE.Mesh(new THREE.LatheGeometry(prof, 64), PSo));
+    const ag = new THREE.Mesh(new THREE.CylinderGeometry(0.0436, 0.0436, 0.006, 64), AG); ag.position.y = 0.004; open.add(ag);
+    const dome = new THREE.SphereGeometry(1, 14, 8, 0, Math.PI * 2, 0, Math.PI / 2), rr = TXT.rng(41);
+    for (let i = 0; i < 46; i++) { const r = Math.sqrt(rr()) * 0.039, a = rr() * 6.283, sz = 0.0012 + rr() * 0.0026;
+      const m = new THREE.Mesh(dome, CO); m.scale.set(sz, sz * 0.55, sz); m.position.set(Math.cos(a) * r, 0.007, Math.sin(a) * r); open.add(m); }
+    const lid = new THREE.Mesh(new THREE.LatheGeometry([[0, 0], [0.0458, 0], [0.0462, 0.0008], [0.0462, 0.0095], [0.0452, 0.0095], [0.0452, 0.0012], [0, 0.0012]].map(q => new THREE.Vector2(q[0], q[1])), 64), PSo);
+    lid.position.set(0.1, 0, -0.035); open.add(lid);
+    open.traverse(m => { if (m.isMesh) { m.castShadow = true; m.receiveShadow = true; } }); }
+  /* the stored plates take the open plate's amber agar, and their polystyrene goes clearer, so the stack reads as
+   * dishes of agar and not as white discs */
+  { const AGs = open.children[1].material, PSs = new THREE.MeshPhysicalMaterial({ color: 0xe8ecef, roughness: 0.15, transparent: true, opacity: 0.08, depthWrite: false });
+    [tower, p1, p2].forEach(g => g.traverse(m => { if (!m.isMesh || !m.material) return;
+      if (m.material.color && m.material.color.getHex() === 0xb98a4c) m.material = AGs;
+      else if (m.material.transparent && m.material.opacity < 0.4) m.material = PSs; })); }
+  const mat = TXT.mat.plastic(0x141519, { roughness: 0.5 });
+  const subject = [tower, open];
+  const from = [-2.2, top + 0.16, 0.155];
+  const look = CH.aim(THREE, R, TXT, from, [-2.58, top + 0.045, 0.03], 470, 960, 30);
+  TXT.frame(R, { fov: 30, from, look });
+  /* the open plate goes where the ray through screen point (790, 1090) meets the bench, in front of the tower at the lower right */
+  { R.camera.updateMatrixWorld(true);
+    const ray = new THREE.Vector3(790 / 1080 * 2 - 1, 1 - 1090 / 1350 * 2, 0.5).unproject(R.camera).sub(R.camera.position).normalize();
+    const k = (top - R.camera.position.y) / ray.y; open.position.set(R.camera.position.x + ray.x * k, top, R.camera.position.z + ray.z * k);
+    TXT.add(R, open); TXT.contact(R, open); }
+  TXT.deckRig(R, CH.rigSpec(W, 2, 2048), CH.rigOpts([-2.6, top, 0], { distance: 6, shadowFar: 14, normalBias: 0.01 }));
+  CH.unacne(R, 0.01);
+  /* the window's last light rims both chains from behind and to the left, the brass catching it hardest */
+  { const rim = new THREE.PointLight(0xffb27a, 1.6, 3, 2); rim.position.set(-2.95, top + 0.3, 0.05); R.scene.add(rim);
+  }
+  CH.darkRoom(R);
+  { const key = new THREE.PointLight(0xe8ecf2, 0.3, 3, 2);   /* a neutral key, so polypropylene and polystyrene read as clear plastic and not as the deck's brass */ key.position.set(-2.3, top + 0.38, 0.5); R.scene.add(key); }
+  CH.slot(THREE, R, 470, 760, { h: 0.6, w: 0.14, i: 1.3, lift: 0.0, light: 0.6, color: 0xff8a4a });
+  /* a warm lamp over the open plate, so its agar glows amber and the colonies stand in a pool */
+  { const pool = new THREE.SpotLight(0xffd8a8, 1.6, 1.2, 0.35, 0.7, 2); pool.position.set(open.position.x - 0.05, top + 0.4, open.position.z + 0.05); pool.target.position.copy(open.position); R.scene.add(pool); R.scene.add(pool.target); }
+  TXT.weather(R, { grime: 0.1, height: 0.5, mottle: 0.15 });
+  TXT.stage(R, subject);
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0.4, veil: 0.4, veilH: 260 });
+  CH.footWash(cx);
+  CH.typeDark(cx, { fade: 120 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

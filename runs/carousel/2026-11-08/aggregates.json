@@ -1,0 +1,70 @@
+{
+ "date": "2026-11-08",
+ "_note": "Every count, span, ratio and duration the deck states, with the claim it was quoted from or the code that counted it.",
+ "aggregates": [
+  {
+   "phrase": "630,003 pairs",
+   "slide": "slide-03.html",
+   "kind": "count",
+   "value": 630003,
+   "quoted_from": "c3",
+   "quote": "By screening 630,003 protein pairs, we create a compendium of 2,895 previously known and newly observed interactions"
+  },
+  {
+   "phrase": "2,895 of 630,003",
+   "slide": "slide-04.html",
+   "kind": "ratio",
+   "value": 2895,
+   "quoted_from": "c4",
+   "quote": "Out of the 630,003 possible protein pairs, the team cataloged 2,895 likely interactions."
+  },
+  {
+   "phrase": "two years",
+   "slide": "slide-08.html",
+   "kind": "duration",
+   "value": 2,
+   "quoted_from": "c19",
+   "quote": "About two years of laboratory experiments followed, confirming several of the predicted partnerships in yeast and human cells"
+  },
+  {
+   "phrase": "2,895 predictions",
+   "slide": "slide-09.html",
+   "kind": "count",
+   "value": 2895,
+   "quoted_from": "c4",
+   "quote": "Out of the 630,003 possible protein pairs, the team cataloged 2,895 likely interactions."
+  },
+  {
+   "phrase": "2,895 likely pairs",
+   "slide": "slide-04.html",
+   "kind": "count",
+   "value": 2895,
+   "quoted_from": "c4",
+   "quote": "Out of the 630,003 possible protein pairs, the team cataloged 2,895 likely interactions."
+  },
+  {
+   "phrase": "630,003 protein pairs",
+   "slide": "document_title",
+   "kind": "count",
+   "value": 630003,
+   "quoted_from": "c3",
+   "quote": "By screening 630,003 protein pairs"
+  },
+  {
+   "phrase": "85 little-known proteins",
+   "slide": "slide-07.html",
+   "kind": "count",
+   "value": 85,
+   "quoted_from": "c30",
+   "quote": "we identified at least one interacting partner for 85 uncharacterized proteins"
+  },
+  {
+   "phrase": "85 uncharacterized proteins",
+   "slide": "slide-07.html",
+   "kind": "count",
+   "value": 85,
+   "quoted_from": "c30",
+   "quote": "we identified at least one interacting partner for 85 uncharacterized proteins"
+  }
+ ]
+}

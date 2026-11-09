@@ -11,7 +11,7 @@ Angelina County Commissioners Court voted unanimously on July 14th, 2026 to adop
 - Public access: Public meeting
 - Take part: https://www.angelinacounty.net/comcourt/
 
-- Last checked: 2026-11-05
+- Last checked: 2026-11-08
 
 ## Dates
 
@@ -53,6 +53,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-01 · Angelina County's request for data center authority stays as adopted on the county's record. Both news accounts still refuse this project.
 - 2026-11-03 · Angelina County's resolution asking for data center authority stays unconfirmed. Both news accounts still refuse this project.
 - 2026-11-05 · Angelina County's resolution asking the Legislature for authority over data centers still stands as adopted.
+- 2026-11-08 · Angelina County's resolution asking lawmakers for authority over data centers still stands as the court adopted it.
 
 ## Evidence
 

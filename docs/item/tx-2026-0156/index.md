@@ -9,7 +9,7 @@ ERCOT published the user guide for the Verification RFI on September 11th, 2026,
 - Public access: Write to the decider
 - Take part: https://www.ercot.com/files/docs/2026/09/11/Verification-RFI-User-Guide-v1.1.pdf
 
-- Last checked: 2026-11-05
+- Last checked: 2026-11-08
 
 ## Dates
 
@@ -38,6 +38,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-01 · ERCOT's notarised questionnaire for every conditionally classified large load reads as published in its own user guide.
 - 2026-11-05 · The ERCOT figures in the record are unconfirmed today. ERCOT's pages did not answer.
 - 2026-11-05 · Checked and unchanged. The decision still stands as decided.
+- 2026-11-08 · The questionnaire answers are in and read. ERCOT told the commission on November 5th that answers from 257 developers were reviewed and that most will get a second, shorter round of questions.
 
 ## Evidence
 
@@ -90,4 +91,28 @@ Source (primary_official): https://www.ercot.com/files/docs/2026/09/11/Verificat
 > All information submitted will be treated as confidential to the extent permitted by law.
 
 Source (primary_official): https://www.ercot.com/files/docs/2026/09/11/Verification-RFI-User-Guide-v1.1.pdf
+
+### ERCOT told the commission on November 5th that its teams and outside counsel have read the first round answers from 257 developers.
+
+> Several groups within ERCOT, as well as outside legal counsel, have reviewed the responses from 257 developers, approximately 5,140 questions.
+
+Source (primary_official): https://www.ercot.com/files/docs/2026/11/05/ERCOT-Verification-RFI-Update.pdf
+
+### ERCOT says it expects to send a second round of questions to most of those developers.
+
+> ERCOT expects to send RFIs to 80% of the developers.
+
+Source (primary_official): https://www.ercot.com/files/docs/2026/11/05/ERCOT-Verification-RFI-Update.pdf
+
+### Among the problems ERCOT says keep recurring in the answers is a developer unable to show it controls the site.
+
+> Inability to demonstrate site control
+
+Source (primary_official): https://www.ercot.com/files/docs/2026/11/05/ERCOT-Verification-RFI-Update.pdf
+
+### ERCOT says it must finish the review this month to report to the commission on December 10th.
+
+> ERCOT must complete its review this month to file a report with the PUCT on December 10, 2026.
+
+Source (primary_official): https://www.ercot.com/files/docs/2026/11/05/ERCOT-Verification-RFI-Update.pdf
 

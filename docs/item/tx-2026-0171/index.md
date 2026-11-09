@@ -9,7 +9,7 @@ The Office of the Governor issued a directive to the Texas Water Development Boa
 - Public access: Write to the decider
 - Take part: https://gov.texas.gov/news/post/governor-abbott-directs-twdb-to-penalize-data-center-reporting-failures
 
-- Last checked: 2026-09-29
+- Last checked: 2026-11-08
 
 ## Dates
 
@@ -43,6 +43,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-05 · The Governor's order on the water use survey has no fresh confirmation. The office's site stays off limits to this project.
 - 2026-11-06 · The Governor's order to enforce the water use survey against data centers is unconfirmed today. The office's site stays off limits.
 - 2026-11-07 · The Governor's order to enforce the water use survey against data centers is not confirmed anew. The office's site remains off limits.
+- 2026-11-08 · The Governor's directive telling the water board to enforce its use survey against data centers still reads as issued.
 
 ## Evidence
 

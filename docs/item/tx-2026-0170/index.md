@@ -50,6 +50,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-05 · Hays County's policy on AI in surveillance is still pending as far as the record can confirm. The agenda archive refuses every reader.
 - 2026-11-06 · Hays County's policy on AI in surveillance remains pending as far as the record can confirm. The agenda archive still refuses this project.
 - 2026-11-07 · Hays County's policy on AI in surveillance is still pending so far as the record can confirm. The agenda archive keeps refusing this project.
+- 2026-11-08 · Where Hays County's AI surveillance policy stands can't be confirmed again. Its agenda archive and county site both stay closed to this project.
 
 ## Evidence
 

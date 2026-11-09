@@ -1,0 +1,21 @@
+Which of 630,003 protein pairs meet?
+
+Biochemists at Texas A&M in College Station ran every pairing of 1123 human mitochondrial proteins through Google DeepMind's AlphaFold-Multimer. Each pair got a yes or no. The computing was Texas A&M's own.
+
+Asked. Do these two meet?
+Answered. 2,895 likely interactions, the paper's 0.46%. More than half had never been reported.
+
+Asked. How often is a yes wrong?
+Answered. A false discovery rate of about 15% on the authors' test set.
+
+Asked. How tightly does each pair bind?
+Answered. The method can't say.
+
+Asked. Does it hold up in cells?
+Answered. Several pairings held up in yeast and human cells after about two years of lab work.
+
+The deck runs from a plate of every pair to the lab bench.
+
+All 2,895 predictions are free online as MitoMatch. The release says cures for mitochondria-linked diseases may still be far off. Which pair on that list earns a lab's next two years?
+
+#TexasAM #Mitochondria #AlphaFold

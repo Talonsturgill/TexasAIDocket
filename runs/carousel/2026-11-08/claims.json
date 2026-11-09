@@ -1,0 +1,355 @@
+{
+ "claims": [
+  {
+   "id": "c1",
+   "text": "Roughly 1,100 proteins are known to sit inside human mitochondria, the energy centers of the cell, according to the Texas A&M AgriLife release.",
+   "quote": "about 1,100 proteins exist within mitochondria",
+   "url": "https://agrilifetoday.tamu.edu/2026/11/05/artificial-intelligence-points-researchers-toward-new-disease-targets-hidden-in-mitochondria/",
+   "source_type": "primary_official",
+   "retrieved": "2026-11-08",
+   "confidence": "high",
+   "document": "AgriLife Today, Artificial intelligence points researchers toward new disease targets hidden in mitochondria"
+  },
+  {
+   "id": "c2",
+   "text": "For the screen itself the authors built a curated list of 1123 proteins.",
+   "quote": "generated a curated list of 1123 proteins",
+   "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13601606/fullTextXML",
+   "source_type": "primary_official",
+   "retrieved": "2026-11-08",
+   "confidence": "high",
+   "document": "Nature Communications, The predicted interactome of the human mitochondrial proteome (full text via Europe PMC)"
+  },
+  {
+   "id": "c3",
+   "text": "The team screened 630,003 protein pairs and assembled a compendium of 2,895 interactions, some already known and some new.",
+   "quote": "By screening 630,003 protein pairs, we create a compendium of 2,895 previously known and newly observed interactions",
+   "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI:10.1038/s41467-026-77112-z&format=json&resultType=core",
+   "source_type": "primary_official",
+   "retrieved": "2026-11-08",
+   "confidence": "high",
+   "document": "Nature Communications, The predicted interactome of the human mitochondrial proteome (abstract via Europe PMC)"
+  },
+  {
+   "id": "c4",
+   "text": "Of the 630,003 possible pairings, the screen flagged 2,895 as likely interactions.",
+   "quote": "Out of the 630,003 possible protein pairs, the team cataloged 2,895 likely interactions.",
+   "url": "https://agrilifetoday.tamu.edu/2026/11/05/artificial-intelligence-points-researchers-toward-new-disease-targets-hidden-in-mitochondria/",
+   "source_type": "primary_official",
+   "retrieved": "2026-11-08",
+   "confidence": "high",
+   "document": "AgriLife Today, Artificial intelligence points researchers toward new disease targets hidden in mitochondria"
+  },
+  {
+   "id": "c5",
+   "text": "AlphaFold-Multimer is a neural network trained to predict the structures of protein complexes made of more than one protein chain.",
+   "quote": "AlphaFold-Multimer (AFM) is a neural network model trained to predict the structures of multimeric protein complexes",
+   "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13601606/fullTextXML",
+   "source_type": "primary_official",
+   "retrieved": "2026-11-08",
+   "confidence": "high",
+   "document": "Nature Communications, The predicted interactome of the human mitochondrial proteome (full text via Europe PMC)"
+  },
+  {
+   "id": "c6",
+   "text": "Google DeepMind created AlphaFold-Multimer, according to the Texas A&M AgriLife release.",
+   "quote": "Google DeepMind created and unveiled AFM",
+   "url": "https://agrilifetoday.tamu.edu/2026/11/05/artificial-intelligence-points-researchers-toward-new-disease-targets-hidden-in-mitochondria/",
+   "source_type": "primary_official",
+   "retrieved": "2026-11-08",
+   "confidence": "medium",
+   "note": "Narrowed on 2026-11-08 after panel round 2: the release's 'unveiled AFM in 2022' is a third-party date the release is not authoritative on, and DeepMind's own record appears to date the tool to 2021, so the year is not carried.",
+   "document": "AgriLife Today, Artificial intelligence points researchers toward new disease targets hidden in mitochondria"
+  },
+  {
+   "id": "c7",
+   "text": "The Texas A&M team turned a structure prediction tool into a classifier for protein interactions across the mitochondrial proteome.",
+   "quote": "we repurpose the protein structure prediction algorithm AlphaFold Multimer (AFM) as a classification model to predict protein-protein interactions",
+   "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI:10.1038/s41467-026-77112-z&format=json&resultType=core",
+   "source_type": "primary_official",
+   "retrieved": "2026-11-08",
+   "confidence": "high",
+   "document": "Nature Communications, The predicted interactome of the human mitochondrial proteome (abstract via Europe PMC)"
+  },
+  {
+   "id": "c8",
+   "text": "The authors picked a mean ipTM score of 0.5 as the line between interacting and non-interacting pairs. On their test set that cutoff gives 67% recall at a false discovery rate of about 15%.",
+   "quote": "we decided to use 0.5 as a cutoff to separate interacting from non-interacting pairs, which gives 67% recall at a false discovery rate of about 15%",
+   "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13601606/fullTextXML",
+   "source_type": "primary_official",
+   "retrieved": "2026-11-08",
+   "confidence": "high",
+   "document": "Nature Communications, The predicted interactome of the human mitochondrial proteome (full text via Europe PMC)"
+  },
+  {
+   "id": "c9",
+   "text": "At the 0.5 mean ipTM cutoff, the screen predicts 2895 interactions involving 1004 proteins.",
+   "quote": "Based on our cutoff of 0.5 mean ipTM score, we predict 2895 interactions (0.46%) involving 1004 proteins",
+   "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13601606/fullTextXML",
+   "source_type": "primary_official",
+   "retrieved": "2026-11-08",
+   "confidence": "high",
+   "document": "Nature Communications, The predicted interactome of the human mitochondrial proteome (full text via Europe PMC)"
+  },
+  {
+   "id": "c10",
+   "text": "The paper says the full set of predictions carries an apparent false discovery rate of 15%.",
+   "quote": "at an apparent FDR of 15%",
+   "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13601606/fullTextXML",
+   "source_type": "primary_official",
+   "retrieved": "2026-11-08",
+   "confidence": "high",
+   "document": "Nature Communications, The predicted interactome of the human mitochondrial proteome (full text via Europe PMC)"
+  },
+  {
+   "id": "c11",
+   "text": "The authors say AFM can predict direct protein interactions in the mitochondrial proteome with 85% precision.",
+   "quote": "protein-protein interactions in the mitochondrial proteome with 85% precision",
+   "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13601606/fullTextXML",
+   "source_type": "primary_official",
+   "retrieved": "2026-11-08",
+   "confidence": "medium",
+   "document": "Nature Communications, The predicted interactome of the human mitochondrial proteome (full text via Europe PMC)"
+  },
+  {
+   "id": "c12",
+   "text": "On a precision-recall benchmark, using the mean ipTM score as the classifier recovered ~40% of all true positives at 90% precision.",
+   "quote": "~40% of all true positives at 90% precision",
+   "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13601606/fullTextXML",
+   "source_type": "primary_official",
+   "retrieved": "2026-11-08",
+   "confidence": "high",
+   "document": "Nature Communications, The predicted interactome of the human mitochondrial proteome (full text via Europe PMC)"
+  },
+  {
+   "id": "c13",
+   "text": "More than half of the likely interactions had never been reported before, the release says.",
+   "quote": "More than half of them had never been reported before.",
+   "url": "https://agrilifetoday.tamu.edu/2026/11/05/artificial-intelligence-points-researchers-toward-new-disease-targets-hidden-in-mitochondria/",
+   "source_type": "primary_official",
+   "retrieved": "2026-11-08",
+   "confidence": "high",
+   "document": "AgriLife Today, Artificial intelligence points researchers toward new disease targets hidden in mitochondria"
+  },
+  {
+   "id": "c14",
+   "text": "Checked against existing interaction databases, 57% of the predicted interactions were missing from all of them, so the paper counts them as previously unreported.",
+   "quote": "the remaining 57% were not present in these databases and thus represent previously unreported interactions",
+   "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13601606/fullTextXML",
+   "source_type": "primary_official",
+   "retrieved": "2026-11-08",
+   "confidence": "high",
+   "document": "Nature Communications, The predicted interactome of the human mitochondrial proteome (full text via Europe PMC)"
+  },
+  {
+   "id": "c15",
+   "text": "The predictions gave 85 previously uncharacterized proteins their first probable interaction partners.",
+   "quote": "gave 85 previously uncharacterized proteins their first probable partners",
+   "url": "https://agrilifetoday.tamu.edu/2026/11/05/artificial-intelligence-points-researchers-toward-new-disease-targets-hidden-in-mitochondria/",
+   "source_type": "primary_official",
+   "retrieved": "2026-11-08",
+   "confidence": "high",
+   "document": "AgriLife Today, Artificial intelligence points researchers toward new disease targets hidden in mitochondria"
+  },
+  {
+   "id": "c16",
+   "text": "The team ran the same AFM analysis on 11 diverse eukaryotes and found interactions among the human hits that are conserved through evolution.",
+   "quote": "Extending the AFM-based analysis to 11 diverse eukaryotes identifies evolutionarily conserved interactions among human hits",
+   "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI:10.1038/s41467-026-77112-z&format=json&resultType=core",
+   "source_type": "primary_official",
+   "retrieved": "2026-11-08",
+   "confidence": "high",
+   "document": "Nature Communications, The predicted interactome of the human mitochondrial proteome (abstract via Europe PMC)"
+  },
+  {
+   "id": "c17",
+   "text": "Lab work guided by the predictions points to protein interactions that make up the coenzyme Q metabolon.",
+   "quote": "nominate protein interactions that form the coenzyme Q metabolon",
+   "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI:10.1038/s41467-026-77112-z&format=json&resultType=core",
+   "source_type": "primary_official",
+   "retrieved": "2026-11-08",
+   "confidence": "high",
+   "document": "Nature Communications, The predicted interactome of the human mitochondrial proteome (abstract via Europe PMC)"
+  },
+  {
+   "id": "c18",
+   "text": "The same experiments map the pathway that delivers copper inside mitochondria to cytochrome c oxidase.",
+   "quote": "metabolon and define the mitochondrial copper delivery pathway to cytochrome c oxidase",
+   "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI:10.1038/s41467-026-77112-z&format=json&resultType=core",
+   "source_type": "primary_official",
+   "retrieved": "2026-11-08",
+   "confidence": "high",
+   "document": "Nature Communications, The predicted interactome of the human mitochondrial proteome (abstract via Europe PMC)"
+  },
+  {
+   "id": "c19",
+   "text": "Roughly two years of lab experiments confirmed several of the predicted partnerships in yeast and human cells.",
+   "quote": "About two years of laboratory experiments followed, confirming several of the predicted partnerships in yeast and human cells",
+   "url": "https://agrilifetoday.tamu.edu/2026/11/05/artificial-intelligence-points-researchers-toward-new-disease-targets-hidden-in-mitochondria/",
+   "source_type": "primary_official",
+   "retrieved": "2026-11-08",
+   "confidence": "high",
+   "document": "AgriLife Today, Artificial intelligence points researchers toward new disease targets hidden in mitochondria"
+  },
+  {
+   "id": "c20",
+   "text": "The team has posted its predictions online for free use under the name MitoMatch.",
+   "quote": "made its predictions available as a free online resource, MitoMatch",
+   "url": "https://agrilifetoday.tamu.edu/2026/11/05/artificial-intelligence-points-researchers-toward-new-disease-targets-hidden-in-mitochondria/",
+   "source_type": "primary_official",
+   "retrieved": "2026-11-08",
+   "confidence": "high",
+   "document": "AgriLife Today, Artificial intelligence points researchers toward new disease targets hidden in mitochondria"
+  },
+  {
+   "id": "c21",
+   "text": "MitoMatch is made up of the 2895 predicted interactions.",
+   "quote": "These 2895 interactions constitute MitoMatch",
+   "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13601606/fullTextXML",
+   "source_type": "primary_official",
+   "retrieved": "2026-11-08",
+   "confidence": "high",
+   "document": "Nature Communications, The predicted interactome of the human mitochondrial proteome (full text via Europe PMC)"
+  },
+  {
+   "id": "c22",
+   "text": "Mutations in nearly 30% of mitochondrial proteins have been tied to human disease.",
+   "quote": "mutations in nearly 30% of mitochondrial proteins have been linked to human diseases",
+   "url": "https://agrilifetoday.tamu.edu/2026/11/05/artificial-intelligence-points-researchers-toward-new-disease-targets-hidden-in-mitochondria/",
+   "source_type": "primary_official",
+   "retrieved": "2026-11-08",
+   "confidence": "high",
+   "document": "AgriLife Today, Artificial intelligence points researchers toward new disease targets hidden in mitochondria"
+  },
+  {
+   "id": "c23",
+   "text": "The release cautions that cures for diseases linked to mitochondria may still be a long way off.",
+   "quote": "Cures for mitochondria-linked diseases may still be far into the future",
+   "url": "https://agrilifetoday.tamu.edu/2026/11/05/artificial-intelligence-points-researchers-toward-new-disease-targets-hidden-in-mitochondria/",
+   "source_type": "primary_official",
+   "retrieved": "2026-11-08",
+   "confidence": "high",
+   "document": "AgriLife Today, Artificial intelligence points researchers toward new disease targets hidden in mitochondria"
+  },
+  {
+   "id": "c24",
+   "text": "The paper states a limitation of the approach. It can't give the binding affinity of an interacting pair.",
+   "quote": "a limitation of this approach is that it cannot provide binding affinities of the interaction pair",
+   "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13601606/fullTextXML",
+   "source_type": "primary_official",
+   "retrieved": "2026-11-08",
+   "confidence": "high",
+   "document": "Nature Communications, The predicted interactome of the human mitochondrial proteome (full text via Europe PMC)"
+  },
+  {
+   "id": "c25",
+   "text": "The authors note that many predicted interactions may happen inside a larger complex and may not exist as true two-protein pairs.",
+   "quote": "in the context of a larger complex and may not exist as true heterodimers",
+   "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13601606/fullTextXML",
+   "source_type": "primary_official",
+   "retrieved": "2026-11-08",
+   "confidence": "high",
+   "document": "Nature Communications, The predicted interactome of the human mitochondrial proteome (full text via Europe PMC)"
+  },
+  {
+   "id": "c26",
+   "text": "The computing behind the work came from Texas A&M High Performance Research Computing.",
+   "quote": "advanced computing resources provided by the Texas A&M High Performance Research Computing",
+   "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13601606/fullTextXML",
+   "source_type": "primary_official",
+   "retrieved": "2026-11-08",
+   "confidence": "high",
+   "document": "Nature Communications, The predicted interactome of the human mitochondrial proteome (full text via Europe PMC)"
+  },
+  {
+   "id": "c27",
+   "text": "The release names Texas A&M High Performance Research Computing and The Welch Foundation among the study's supporters.",
+   "quote": "Texas A&M High Performance Research Computing and The Welch Foundation",
+   "url": "https://agrilifetoday.tamu.edu/2026/11/05/artificial-intelligence-points-researchers-toward-new-disease-targets-hidden-in-mitochondria/",
+   "source_type": "primary_official",
+   "retrieved": "2026-11-08",
+   "confidence": "high",
+   "document": "AgriLife Today, Artificial intelligence points researchers toward new disease targets hidden in mitochondria"
+  },
+  {
+   "id": "c28",
+   "text": "The Texas A&M authors are in the Department of Biochemistry and Biophysics at Texas A&M University in College Station.",
+   "quote": "Department of Biochemistry and Biophysics, Texas A&M University, College Station, TX, USA",
+   "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI:10.1038/s41467-026-77112-z&format=json&resultType=core",
+   "source_type": "primary_official",
+   "retrieved": "2026-11-08",
+   "confidence": "high",
+   "document": "Nature Communications, The predicted interactome of the human mitochondrial proteome (abstract via Europe PMC)"
+  },
+  {
+   "id": "c29",
+   "text": "MitoMatch is online at mitomatch.web.app.",
+   "quote": "Our dataset, which we have named MitoMatch ( mitomatch.web.app ), consists of 2895",
+   "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13601606/fullTextXML",
+   "source_type": "primary_official",
+   "retrieved": "2026-11-08",
+   "confidence": "high",
+   "document": "Nature Communications, The predicted interactome of the human mitochondrial proteome (full text via Europe PMC)"
+  },
+  {
+   "id": "c30",
+   "text": "The screen found at least one interacting partner for 85 uncharacterized proteins.",
+   "quote": "we identified at least one interacting partner for 85 uncharacterized proteins",
+   "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13601606/fullTextXML",
+   "source_type": "primary_official",
+   "retrieved": "2026-11-08",
+   "confidence": "high",
+   "document": "Nature Communications, The predicted interactome of the human mitochondrial proteome (full text via Europe PMC)"
+  }
+ ],
+ "rejected": [
+  {
+   "finding": "the paper's publication date (2026-08-25)",
+   "reason": "Europe PMC gives electronicPublicationDate 2026-08-25 as a field, not a quotable sentence. The release of November 5th came after the paper."
+  },
+  {
+   "finding": "GPU hours used",
+   "reason": "Neither source gives a GPU hour figure. The paper names the FASTER cluster at TAMU-HPRC with no count."
+  },
+  {
+   "finding": "number of protein pairs tested experimentally",
+   "reason": "The paper gives no count of pairs tested in the lab. The release says only several."
+  },
+  {
+   "finding": "a false negative rate or a third of true interactions missed",
+   "reason": "No false negative rate is stated. A third missed would be computed from 67% recall, so it is rejected."
+  },
+  {
+   "finding": "'this approach cannot define direct binary interactions' as an AFM limitation",
+   "reason": "The sentence is about crosslinking mass spectrometry, not AFM."
+  },
+  {
+   "finding": "transient interactions as an AFM limitation",
+   "reason": "The sentence describes the interactions, not a limitation of the screen."
+  },
+  {
+   "finding": "85% of orphan mitochondrial proteins given a partner",
+   "reason": "Contradicts the count of 85 uncharacterized proteins in the abstract, results and release. Only the count is claimed."
+  },
+  {
+   "finding": "benchmark set sizes",
+   "reason": "Set sizes were not checked as verbatim strings."
+  },
+  {
+   "finding": "the release's mention of 11 eukaryotes or the coenzyme Q metabolon",
+   "reason": "The release mentions neither. c16 to c18 rest on the paper's abstract."
+  },
+  {
+   "finding": "who built AlphaFold-Multimer, sourced to the paper",
+   "reason": "The paper names no builder. c6 rests on the release."
+  },
+  {
+   "finding": "europepmc.org article page",
+   "reason": "Answered 403. Paper claims use the ebi.ac.uk REST endpoints."
+  },
+  {
+   "finding": "Washington University School of Medicine role",
+   "reason": "The release names the collaborator but not its part in the experiments."
+  }
+ ]
+}

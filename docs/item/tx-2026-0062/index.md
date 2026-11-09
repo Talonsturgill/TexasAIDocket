@@ -11,7 +11,7 @@ The Fort Worth City Council took three data center votes on August 11th, 2026. M
 - Public access: Public meeting
 - Take part: https://www.keranews.org/news/2026-08-12/data-center-moratorium-takes-first-steps-after-fort-worth-city-councils-unanimous-vote
 
-- Last checked: 2026-11-02
+- Last checked: 2026-11-08
 
 ## Dates
 
@@ -57,6 +57,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-05 · Fort Worth's moratorium vote has no fresh confirmation on the public radio account, which still refuses every reader. The final vote is still ahead.
 - 2026-11-06 · Fort Worth's moratorium vote goes unconfirmed again on the public radio account, which still turns away every reader. The final vote remains ahead.
 - 2026-11-07 · Fort Worth's moratorium is still on the road to a final vote. The public radio account behind it can't be read again today.
+- 2026-11-08 · Fort Worth's temporary data center moratorium and its grid filing requirements still read as the council adopted them.
 
 ## Evidence
 

@@ -1,0 +1,65 @@
+{
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 7.3
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.0
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.5
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.5
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.0
+  }
+ ],
+ "weighted_score": 7.26,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Change slide 7's kicker 'NEW PARTNERS' to match the paper, which says at least two of those 85 partners were already reported, and hold every kicker to its claim's quote.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 6,
+   "problem": "The cell slab reads as a flat printed grid with no cell wall or edge casting a visible shadow; the lower half sits in the grey middle.",
+   "fix": "A raking 25 to 30 degree view with a low side key so the slab shows its thickness and each wall a short shadow."
+  },
+  {
+   "slide": 8,
+   "problem": "Hovering plates with dark gaps and ghosted rims, a primitive model with no contact.",
+   "fix": "Real lidded dishes in contact in a short stack, the open plate the lit hero in the foreground."
+  },
+  {
+   "slide": 3,
+   "problem": "A large expanse of uniform dark grey cells, nothing catching a bright edge.",
+   "fix": "Push in so the hypotenuse runs off the right edge, one raking key on the walls and border."
+  },
+  {
+   "slide": 7,
+   "problem": "A small rack in the lower middle band, flat grey tubes, the light reading as backdrop.",
+   "fix": "Lower and push in so the rack runs off both edges, translucent tubes catching the copper key."
+  }
+ ]
+}
