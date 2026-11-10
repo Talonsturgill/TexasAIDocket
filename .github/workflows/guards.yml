@@ -100,6 +100,12 @@ jobs:
         # shipped green locally and failed here on the first push.
         run: python -m pip install --quiet --no-deps --requirement requirements-ci.txt
 
+      # Offline transport and real local-Git CAS tests. No credentials or provider writes.
+      - name: Daily social delivery regression tests
+        run: |
+          python3 scripts/upload_post_rest_test.py
+          python3 scripts/upload_post_state_test.py
+
       - name: Ownership self-test (prove the gate can go red)
         run: python3 scripts/shared/ownership_check.py --self-test
 

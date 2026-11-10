@@ -1,5 +1,18 @@
 # Texas AI Docket
 
+## Daily social delivery update (owner, November 10th, 2026)
+
+For the daily routine, read the DAILY SOCIAL DELIVERY section in `prompts/daily_routine.md`.
+It authorizes direct Upload-Post publishing of the finished edition to the bound brand accounts,
+without an editorial approval link. It supersedes older social-posting bans and statements that
+the email gates posting, including older phase documents. Preserve all existing release, rights,
+quality, merge, archive and Gmail draft checks. Never send email. No credentials or permissions
+are created by this update; missing authorized secure REST access is a reported social blocker.
+Only the three daily media-upload endpoints are writable. Do not use comment, DM, account
+management, feedback, edit or deletion endpoints. Other routines and unrelated external
+communications retain their existing restrictions.
+
+
 
 ## Physical render routes, effective October 17th, 2026
 
@@ -153,8 +166,7 @@ Routine runs SHIP AUTONOMOUSLY. When a run's quality gates pass, the run branch 
 `main` **without a human-review gate**. Every successful run MUST: commit its artifacts and
 ledger updates to the run branch, push it, open a PR that is **ready (NOT a draft)**, and
 **MERGE it to `main` in the same run**. The email's image URLs point at `main`, so the merge
-lands before the email. The email is the only human touchpoint and it gates the POST, not the
-merge. Failed runs commit evidence to their branch and do NOT merge.
+lands before the email. The email remains a delivery copy; the daily social delivery update governs posting. Failed runs commit evidence to their branch and do NOT merge.
 
 **A DECK UNDER THE BAR IS NEVER A FAILED RUN (owner, 2026-09-24).** *"The deck should always
 ship."* The rubric's ladder, the sibling product's gate, steps the bar down by round and ships the
@@ -256,7 +268,7 @@ same thing with less excuse.
 
 Three things still stop and ask, in any session:
 - work that would rewrite already-published history on `main`
-- anything that SENDS rather than drafts (these routines never send)
+- anything that sends email or external communications outside the daily social delivery update
 - deleting or overwriting shipped run artifacts under `runs/`
 
 ## Ownership (THE LAW — this repo runs several automations at once)

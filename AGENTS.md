@@ -49,7 +49,8 @@ alter the external routine, cadence, permissions, or connector setup unless Talo
 The daily actor updates and re-verifies the public record first, selects one supported story,
 builds and critiques the carousel, opens a PR, performs its narrowly scoped upgrade phase, waits
 for exact-head guards, merges only when the routine contract permits it, and creates a Gmail
-draft. It never sends the email or publishes the LinkedIn post. Grid and water collectors remain
+draft. It never sends the email. Daily social publication follows the November 10th update in
+CLAUDE.md and prompts/daily_routine.md. Grid and water collectors remain
 separate cron actors so an editorial failure cannot erase instrument history.
 
 ## Working rules
@@ -64,7 +65,8 @@ separate cron actors so an editorial failure cannot erase instrument history.
   it is itself the active actor.
 - Obey the strict source boundary in `CLAUDE.md`. Never work around robots rules or retain personal
   data that a collector is required to discard.
-- Draft external communications only. Never send them.
+- Draft external communications only, except the owner's specifically authorized daily social
+  publication under CLAUDE.md. Never send email.
 - Never call a skipped check green. A checker self-test proves the gate can fail; the actual gate
   proves the current product passes. Run both when changing that surface.
 - Use a temporary output below `out/<date>/tmp/` for manual experiments. Do not use generated
