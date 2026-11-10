@@ -1,0 +1,1974 @@
+{
+  "canvas": {
+    "width": 1080,
+    "height": 1350,
+    "scale": 2.0,
+    "px": [
+      2160,
+      2700
+    ]
+  },
+  "text_window": 320,
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "png": "slide-01.png",
+      "console_errors": [
+        "TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot shows its room"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(237, 230, 214)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "64 nodes on Frontera. 8 on Vista.",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 200,
+          "font_px": 102,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(237, 230, 214)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              136,
+              509,
+              126
+            ],
+            [
+              80,
+              236,
+              844,
+              126
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Jose Rizo-Rey's lab at UT Southwestern Medical Center typically ran a simulation on 64 CPU nodes of TACC's Frontera. He says eight GPU nodes of Vista gave \"almost the same speed.\" One tray per node, drawn to illustrate.",
+          "x": 82,
+          "y": 376,
+          "w": 860,
+          "h": 171,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(210, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              376,
+              809,
+              42
+            ],
+            [
+              82,
+              419,
+              770,
+              42
+            ],
+            [
+              82,
+              461,
+              821,
+              42
+            ],
+            [
+              82,
+              504,
+              816,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "TACC, Austin",
+          "x": 80,
+          "y": 80,
+          "w": 199,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(210, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              199,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "01 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(210, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c7 c8 c9 c28",
+          "x": 80,
+          "y": 1234,
+          "w": 193,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(210, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              193,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 28637,
+      "ok": true,
+      "load_ms": 343,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 21.2,
+          "variance": 585.3
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-02.html",
+      "png": "slide-02.png",
+      "console_errors": [
+        "TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot shows its room"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(237, 230, 214)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "More than eight million jobs",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 203,
+          "font_px": 103.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(237, 230, 214)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              137,
+              673,
+              127
+            ],
+            [
+              80,
+              238,
+              495,
+              127
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "For most of its service life Frontera was the fastest academic supercomputer in the United States. TACC's executive director calls its more than seven years of production the longest run on any TACC system. Each node held two Intel Xeon processors.",
+          "x": 82,
+          "y": 379,
+          "w": 860,
+          "h": 214,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(210, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              379,
+              739,
+              42
+            ],
+            [
+              82,
+              422,
+              798,
+              42
+            ],
+            [
+              82,
+              464,
+              762,
+              42
+            ],
+            [
+              82,
+              507,
+              791,
+              42
+            ],
+            [
+              82,
+              550,
+              543,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Frontera, retired in October",
+          "x": 80,
+          "y": 80,
+          "w": 464,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(210, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              464,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "02 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(210, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c1 c2 c3 c24 c29 c30",
+          "x": 80,
+          "y": 1234,
+          "w": 322,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(210, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              322,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 21279,
+      "ok": true,
+      "load_ms": 221,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 31.3,
+          "variance": 1155.8
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-03.html",
+      "png": "slide-03.png",
+      "console_errors": [
+        "TXBENCH: RELIEF {\"height_range\":48.099998474121094,\"materials\":5,\"cast_fraction\":0.1199389574759945,\"area\":1,\"render_ms\":5859.200000000012}"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(237, 230, 214)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "64 CPU nodes against 8 GPU nodes",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 195,
+          "font_px": 99.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(237, 230, 214)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              137,
+              588,
+              122
+            ],
+            [
+              80,
+              235,
+              845,
+              122
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "On 64 Frontera nodes the 5.3 million atom simulation typically ran at 43 nanoseconds a day. Rizo-Rey says eight Vista GPU nodes gave \"almost the same speed.\" His account, not a benchmark. One tray per node.",
+          "x": 82,
+          "y": 371,
+          "w": 880,
+          "h": 171,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(210, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              371,
+              773,
+              42
+            ],
+            [
+              82,
+              414,
+              848,
+              42
+            ],
+            [
+              82,
+              457,
+              756,
+              42
+            ],
+            [
+              82,
+              499,
+              669,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "64 CPU nodes, Frontera",
+          "x": 154,
+          "y": 1010,
+          "w": 378,
+          "h": 34,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(237, 230, 214)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              154,
+              1009,
+              378,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "8 GPU nodes, Vista",
+          "x": 626,
+          "y": 1178,
+          "w": 309,
+          "h": 34,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(143, 224, 240)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              626,
+              1177,
+              309,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The count",
+          "x": 80,
+          "y": 80,
+          "w": 149,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(210, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              149,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "03 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(210, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c8 c9",
+          "x": 80,
+          "y": 1234,
+          "w": 80,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(210, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              80,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 9814,
+      "ok": true,
+      "load_ms": 233,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 36.5,
+          "variance": 579
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-04.html",
+      "png": "slide-04.png",
+      "console_errors": [
+        "TXBENCH: RELIEF {\"height_range\":49.73213195800781,\"materials\":5,\"cast_fraction\":0.17336042524005488,\"area\":1,\"render_ms\":7792.39999999851}"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(237, 230, 214)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "A vesicle, a bilayer, four SNARE complexes",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 174,
+          "font_px": 89,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(237, 230, 214)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              138,
+              849,
+              110
+            ],
+            [
+              80,
+              225,
+              689,
+              110
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Rizo-Rey's simulations contain a vesicle, a flat bilayer and four SNARE protein complexes. The SNAREs let vesicles fuse with their target membranes. His research focuses on synaptic transmission. Drawn to illustrate.",
+          "x": 82,
+          "y": 350,
+          "w": 880,
+          "h": 171,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(210, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              350,
+              841,
+              42
+            ],
+            [
+              82,
+              393,
+              814,
+              42
+            ],
+            [
+              82,
+              436,
+              861,
+              42
+            ],
+            [
+              82,
+              479,
+              620,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "vesicle",
+          "x": 850,
+          "y": 803,
+          "w": 120,
+          "h": 34,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(237, 230, 214)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              850,
+              802,
+              120,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "flat bilayer",
+          "x": 90,
+          "y": 1188,
+          "w": 206,
+          "h": 34,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(237, 230, 214)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              90,
+              1187,
+              206,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "SNARE complexes",
+          "x": 714,
+          "y": 916,
+          "w": 257,
+          "h": 34,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(237, 230, 214)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              714,
+              915,
+              257,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "In the simulation",
+          "x": 80,
+          "y": 80,
+          "w": 282,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(210, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              282,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "04 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(210, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c11 c12 c15",
+          "x": 80,
+          "y": 1234,
+          "w": 177,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(210, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              177,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 11872,
+      "ok": true,
+      "load_ms": 147,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 29.4,
+          "variance": 421.7
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-05.html",
+      "png": "slide-05.png",
+      "console_errors": [
+        "TXBENCH: RELIEF {\"height_range\":62.165164947509766,\"materials\":5,\"cast_fraction\":0.17436454046639233,\"area\":1,\"render_ms\":9007.199999999255}"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(237, 230, 214)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "SNAREs act as a local detergent",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 195,
+          "font_px": 99.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(237, 230, 214)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              137,
+              875,
+              122
+            ],
+            [
+              80,
+              235,
+              399,
+              122
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Rizo-Rey calls it the local detergent model of membrane fusion. In it the SNAREs catalyze mixing of the hydrophobic interiors of the two membranes. Drawn to illustrate, not a frame from the simulation.",
+          "x": 82,
+          "y": 371,
+          "w": 880,
+          "h": 171,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(210, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              371,
+              819,
+              42
+            ],
+            [
+              82,
+              414,
+              865,
+              42
+            ],
+            [
+              82,
+              457,
+              836,
+              42
+            ],
+            [
+              82,
+              499,
+              390,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The local detergent model",
+          "x": 80,
+          "y": 80,
+          "w": 414,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(210, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              414,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "05 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(210, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c13 c14 c34",
+          "x": 80,
+          "y": 1234,
+          "w": 177,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(210, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              177,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 12571,
+      "ok": true,
+      "load_ms": 144,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 31.1,
+          "variance": 505.9
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-06.html",
+      "png": "slide-06.png",
+      "console_errors": [
+        "TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot shows its room"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(237, 230, 214)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The speed took a lot of tuning",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 203,
+          "font_px": 103.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(237, 230, 214)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              137,
+              838,
+              127
+            ],
+            [
+              80,
+              238,
+              381,
+              127
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Rizo-Rey says reaching it on Vista \"required a lot of optimizations with GROMACS, with the help of people here at TACC.\" GROMACS is free and open source software for molecular dynamics.",
+          "x": 82,
+          "y": 379,
+          "w": 860,
+          "h": 171,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(210, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              379,
+              745,
+              42
+            ],
+            [
+              82,
+              422,
+              788,
+              42
+            ],
+            [
+              82,
+              464,
+              725,
+              42
+            ],
+            [
+              82,
+              507,
+              490,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "The work behind it",
+          "x": 80,
+          "y": 80,
+          "w": 298,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(210, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              298,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "06 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(210, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c10 c33",
+          "x": 80,
+          "y": 1234,
+          "w": 113,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(210, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              113,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 19675,
+      "ok": true,
+      "load_ms": 203,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 27.9,
+          "variance": 1609.1
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-07.html",
+      "png": "slide-07.png",
+      "console_errors": [
+        "TXBENCH: RELIEF {\"height_range\":300,\"materials\":5,\"cast_fraction\":0.13986351165980795,\"area\":1,\"render_ms\":10591.200000000012}"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(237, 230, 214)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Rizo-Rey's 8 nodes, in Vista's 860",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 195,
+          "font_px": 99.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(237, 230, 214)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              137,
+              882,
+              122
+            ],
+            [
+              80,
+              235,
+              454,
+              122
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Vista has 860 compute nodes. TACC says the NVIDIA GH200 Grace Hopper Superchip is the processor for the majority. It pairs a Grace CPU with a Hopper GPU. One cell per node. His eight nodes are raised.",
+          "x": 82,
+          "y": 371,
+          "w": 880,
+          "h": 171,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(210, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              371,
+              877,
+              42
+            ],
+            [
+              82,
+              414,
+              871,
+              42
+            ],
+            [
+              82,
+              457,
+              872,
+              42
+            ],
+            [
+              82,
+              499,
+              336,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "860 compute nodes",
+          "x": 23,
+          "y": 1147,
+          "w": 292,
+          "h": 34,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(237, 230, 214)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              23,
+              1146,
+              292,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "his 8 nodes",
+          "x": 543,
+          "y": 1147,
+          "w": 189,
+          "h": 34,
+          "font_px": 26,
+          "weight": "500",
+          "family": "JetBrains Mono",
+          "color": "rgb(143, 224, 240)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              543,
+              1146,
+              189,
+              35
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Vista, UT Austin",
+          "x": 80,
+          "y": 80,
+          "w": 265,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(210, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              265,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "07 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(210, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c9 c25 c26 c28",
+          "x": 80,
+          "y": 1234,
+          "w": 225,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(210, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              225,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 13949,
+      "ok": true,
+      "load_ms": 146,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 29,
+          "variance": 438.9
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-08.html",
+      "png": "slide-08.png",
+      "console_errors": [
+        "TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot shows its room"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(237, 230, 214)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Horizon is in early operations",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 203,
+          "font_px": 103.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(237, 230, 214)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              137,
+              774,
+              127
+            ],
+            [
+              80,
+              238,
+              459,
+              127
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Frontera's successor is in its first phase. TACC's executive director says its power infrastructure is complete and an exabyte-capacity storage system is in place. Initial deployment of its AI-focused hardware is underway.",
+          "x": 82,
+          "y": 379,
+          "w": 860,
+          "h": 171,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(210, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              379,
+              849,
+              42
+            ],
+            [
+              82,
+              422,
+              829,
+              42
+            ],
+            [
+              82,
+              464,
+              740,
+              42
+            ],
+            [
+              82,
+              507,
+              759,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Next at TACC",
+          "x": 80,
+          "y": 80,
+          "w": 199,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(210, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              199,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "08 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(210, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c4 c5 c6 c24",
+          "x": 80,
+          "y": 1234,
+          "w": 193,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(210, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              193,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 19314,
+      "ok": true,
+      "load_ms": 231,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 26.8,
+          "variance": 1287.2
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    },
+    {
+      "file": "slide-09.html",
+      "png": "slide-09.png",
+      "console_errors": [
+        "TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot shows its room"
+      ],
+      "page_errors": [],
+      "overflow_warnings": [],
+      "fonts_missing": [],
+      "text_nodes": [
+        {
+          "text": "texasaidocket.com",
+          "x": 727,
+          "y": 1234,
+          "w": 273,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(237, 230, 214)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              727,
+              1236,
+              273,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "Frontera is dark. The work moved.",
+          "x": 80,
+          "y": 150,
+          "w": 900,
+          "h": 203,
+          "font_px": 103.5,
+          "weight": "700",
+          "family": "Fraunces",
+          "color": "rgb(237, 230, 214)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              137,
+              710,
+              127
+            ],
+            [
+              80,
+              238,
+              732,
+              127
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "More than 130,000 U.S. researchers have used TACC's systems since 2001. For one of them, eight Vista GPU nodes gave \"almost the same speed\" as 64 on Frontera. An early Horizon user says it enters full production soon.",
+          "x": 82,
+          "y": 379,
+          "w": 880,
+          "h": 171,
+          "font_px": 31,
+          "weight": "600",
+          "family": "Manrope",
+          "color": "rgb(210, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              82,
+              379,
+              792,
+              42
+            ],
+            [
+              82,
+              422,
+              871,
+              42
+            ],
+            [
+              82,
+              464,
+              840,
+              42
+            ],
+            [
+              82,
+              507,
+              702,
+              42
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "After Frontera",
+          "x": 80,
+          "y": 80,
+          "w": 232,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(210, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              82,
+              232,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "09 / 09",
+          "x": 884,
+          "y": 80,
+          "w": 116,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(210, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              884,
+              82,
+              116,
+              31
+            ]
+          ],
+          "anc": []
+        },
+        {
+          "text": "c1 c8 c9 c21 c22 c23",
+          "x": 80,
+          "y": 1234,
+          "w": 322,
+          "h": 36,
+          "font_px": 24,
+          "weight": "400",
+          "family": "JetBrains Mono",
+          "color": "rgb(210, 214, 218)",
+          "decorative": false,
+          "overlap_ok": false,
+          "lines": [
+            [
+              80,
+              1236,
+              322,
+              31
+            ]
+          ],
+          "anc": []
+        }
+      ],
+      "body_overflow": false,
+      "canvas_text": [],
+      "svg_plates": [],
+      "rules": [],
+      "encodings": [],
+      "contacts": [],
+      "nondeterminism": [],
+      "render_ms": 27363,
+      "ok": true,
+      "load_ms": 199,
+      "canvases": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1350,
+          "bw": 2160,
+          "bh": 2700,
+          "area_frac": 1,
+          "backing_ratio": 2,
+          "sample_ok": true,
+          "mean": 22.1,
+          "variance": 1202.7
+        }
+      ],
+      "breather": false,
+      "leaders": [],
+      "native_crops": {
+        "ok": true,
+        "dir": "crops",
+        "tiles": 6
+      }
+    }
+  ]
+}

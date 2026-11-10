@@ -1,0 +1,61 @@
+<!doctype html>
+<!-- 2026-11-10, frame 9 of 9. Archetype CLOSE_CROP. A spatial scene through txthree.js inside a TXT.interior machine hall: the cover's hall reversed: the black tower of eight Vista trays from close behind its right shoulder, its cyan strips stacked, and Frontera's eight steel towers beyond it left dark. One tray per node, drawn to illustrate, never TACC's room. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:900px">Frontera is dark.<br>The work moved.</h1>
+<p class="dek" data-follow="26" style="width:880px">More than 130,000 U.S. researchers have used TACC's systems since 2001. For one of them, eight Vista GPU nodes gave "almost the same speed" as 64 on Frontera. An early Horizon user says it enters full production soon.</p>
+<script>window.FIG = {"cpu_nodes": 64, "gpu_nodes": 8};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-10-tray.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE); CH.KEY_SCALE = 1.3;
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "After Frontera", counter: "09 / 09", src: "c1 c8 c9 c21 c22 c23", fit: { min: 80, max: 104, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 34, near: 0.05, far: 80 });
+  TXT.interior(R, CH.roomOpts({}));
+  CH.floor(TXT, R, K, { cols: 16, rows: 18 });
+  const Y = CH.FLOOR_H;
+  /* THE FIGURE: cpu_nodes trays in towers of gpu_nodes, so the steel towers number cpu_nodes / gpu_nodes, and one black
+   * tower holds gpu_nodes trays. One tray per node. */
+  const per = FIG.gpu_nodes, towers = FIG.cpu_nodes / FIG.gpu_nodes, all = [];
+  for (let i = 0; i < towers; i++) {
+    const t = K.make('tray_tower', { kind: 'cpu', count: per });
+    t.position.set(-1.9 + (i % 4) * 0.78, Y, -1.25 - Math.floor(i / 4) * 1.15); t.rotation.y = 0.0; TXT.add(R, t);
+    /* Frontera retired: its trays go dark, so only their lips take the flood */
+    t.traverse(m => { if (m.isMesh && m.material && m.material.color) { m.material = m.material.clone(); m.material.color.multiplyScalar(0.28); } }); TXT.contact(R, t, { y: Y, opacity: 0.85 }); all.push(t);
+  }
+  const g = K.make('tray_tower', { kind: 'gpu', count: per, lit: true });
+  g.position.set(0.85, Y, -0.05); g.rotation.y = 0.0; TXT.add(R, g); TXT.contact(R, g, { y: Y, opacity: 0.9 }); all.push(g);
+  const from = [1.55, Y + 0.62, 2.75];
+  TXT.frame(R, { fov: 40, from, look: [-0.55, Y + 0.78, -1.6] });
+  TXT.deckRig(R, CH.rigSpec(W, 9, 2048), CH.rigOpts([-1.2, Y, -1.2], { distance: 14, shadowFar: 34, normalBias: 0.01 }));
+  CH.unacne(R, 0.01);
+  CH.darkHall(R);
+  /* the flood on the declared key's bearing, aimed at the tower's foot, so the floor round it is lit and the tower stands dark against it */
+  CH.flood(THREE, R, [0.1, Y + 2.6, 1.3], [0.9, Y, 0.15], { i: 160, reach: 8, angle: 0.4, penumbra: 0.75 });
+  TXT.weather(R, { grime: 0.1, height: 0.4, mottle: 0.15 });
+  TXT.stage(R, g);
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0.35, veil: 0.35, veilH: 240 });
+  CH.footWash(cx, { x: 860, r: 260, a: 0.95 });
+  CH.typeDark(cx, { fade: 120, a: 0.7 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

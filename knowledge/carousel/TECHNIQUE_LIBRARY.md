@@ -164,6 +164,19 @@ the panel or the art director in at least two readings, and every cure is the on
   the measured pieces standing proud enough to cast, a groove cut with one lit and one shadowed
   wall. `print_ban` fails a relief whose casts fall under its measured floor, and its message says
   the same. (queue relief-plate-reads-as-a-tray)
+- *Fails when a count of identical units is seen in plan, and the cast is not the cure.* No. 73's
+  two count reliefs, 64 steel and 8 black tray fronts on frame 3 and 860 cells with eight raised on
+  frame 7, read as a keyboard, a chart or a waffle to all three judges in all three rounds at cast
+  fractions well above `print_ban`'s floor, and tripling the raised cells' height did not move it.
+  The planner chose the plan because the doctrine said "parallel projection for any quantity". The
+  census in `knowledge/carousel/audits/2026-11-10-plan-relief-census.json` (a word match, so a lower
+  bound) counts plan reliefs since October 17th charged as a chart-like object at 22 of 53, against
+  21 of 136 spatial frames. The judges' cure, on both frames: "a raking three quarter camera with one
+  flood pooling on the eight", the way the same deck's frame 9 counted its towers and was praised.
+  Keep the projection parallel and turn the camera: an axonometric `txthree` frame with an
+  `OrthographicCamera` (`N.ortho` in `assets/js/deck/2026-09-23-gensetyard.js`), or units in one row
+  at one depth facing a perspective camera. Keep the plan relief for things flat in life. (queue
+  relief-plate-reads-as-a-tray, repeat 3)
 - *Fails when a county is a card on a table.* No. 62 frame 2 was the top ranked defect in all four
   rounds. Height noise cast camouflage blotches under a 10 degree key, tiled albedo read as a
   mosaic, and a tight crop cut off the casts that fell east. Grain goes in the albedo only, the

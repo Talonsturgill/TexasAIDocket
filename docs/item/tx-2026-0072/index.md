@@ -9,7 +9,7 @@ Governor Greg Abbott issued a directive on August 3rd, 2026. It tells the Public
 - Public access: Public meeting
 - Take part: https://gov.texas.gov/uploads/files/press/Thomas_Gleeson_Pablo_Vegas_Data_Centers_Directive_Letter_to_PUCT_ERCOT_August_2026_.pdf
 
-- Last checked: 2026-11-08
+- Last checked: 2026-11-10
 
 ## Dates
 
@@ -60,6 +60,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-01 · The Governor's order to audit every data center in the interconnection queue still stands, and the commission and ERCOT pages tied to it read as cited.
 - 2026-11-05 · The audit of every data center in the interconnection queue is still under way, and the commission's filings in its project read as cited.
 - 2026-11-08 · The audit has a date now. ERCOT told the commission on November 5th that it must finish verifying the queue this month to file its report on December 10th.
+- 2026-11-10 · ERCOT gave the commission a first look at the community impact questionnaire on November 5th. Every large load answered it, and cooling was the question projects most often could not answer because their designs are unsettled.
 
 ## Evidence
 
@@ -208,4 +209,28 @@ Source (primary_official): https://interchange.puc.texas.gov/Documents/59142_52_
 > ERCOT must complete its review this month to file a report with the PUCT on December 10, 2026.
 
 Source (primary_official): https://www.ercot.com/files/docs/2026/11/05/ERCOT-Verification-RFI-Update.pdf
+
+### ERCOT sent the data center state and community impact questionnaire to 465 loads.
+
+> ERCOT issued the Data Center State and Community Impact Request for Information (RFI) to 465 loads.
+
+Source (primary_official): https://www.ercot.com/files/docs/2026/11/05/Community-Impact-RFI-PUC-Update.pdf
+
+### All 245 large loads of 75 MW or more answered the questionnaire.
+
+> All 245 Large Loads (75 MW or greater) responded to the RFI.
+
+Source (primary_official): https://www.ercot.com/files/docs/2026/11/05/Community-Impact-RFI-PUC-Update.pdf
+
+### Cooling drew the largest share of unanswered questions, because many projects had not settled their final cooling design.
+
+> The largest fraction of not answered questions were related to cooling, where respondents indicated that many projects had not determined their final cooling configuration.
+
+Source (primary_official): https://www.ercot.com/files/docs/2026/11/05/Community-Impact-RFI-PUC-Update.pdf
+
+### ERCOT is aiming to publish its final report on December 10th, 2026.
+
+> ERCOT is targeting a published final report on December 10, 2026.
+
+Source (primary_official): https://www.ercot.com/files/docs/2026/11/05/Community-Impact-RFI-PUC-Update.pdf
 

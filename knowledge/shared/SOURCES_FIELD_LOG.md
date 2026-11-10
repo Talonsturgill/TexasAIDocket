@@ -2570,3 +2570,17 @@ correction. **agrilifetoday.tamu.edu answered** the November 5th mitochondria re
 paper's Europe PMC record and full text XML. **The release overstated the paper twice**: it dates AlphaFold-Multimer to
 2022 and says 85 proteins got "first probable partners", where the paper says "at least one interacting partner" and
 recapitulates two partners already reported. A deck resting on both reads the paper's sentence first.
+
+## 2026-11-10
+
+**www.hpcwire.com's off-the-wire reprints answered and carried this deck**, TACC's October 29th symposium account in full
+and TACC's 2023 Vista announcement, 2024 Vista production release and 2020 Frontera expansion release, because
+**tacc.utexas.edu and every subdomain stay off limits** to this project and nothing was requested from them. HPCwire's
+dated news paths answered 403 to the project's agent, so read the off-the-wire path. **www.utsouthwestern.edu could not
+be read** (the robots.txt request failed with a URLError) and nothing was requested past it, so UT Southwestern's city is
+unsourced and the deck leaves the lab unplaced. **eutils.ncbi.nlm.nih.gov disallowed** the search path this run asked
+for in its robots.txt, so the lab's papers were not read through it. **www.gromacs.org answered** its home page and
+**top500.org answered** the Frontera system entry. **One quote in the reprint names the model only in a speaker's own
+words** ("This is what we call the local detergent model of membrane fusion"), so a slide that names the model attributes
+it to the speaker rather than to the account's own sentence. **www.ercot.com answered** the November 5th Community
+Impact RFI update to the PUC through `fetch_doc.py`.

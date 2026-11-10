@@ -1,0 +1,79 @@
+{
+ "lens": "integrity",
+ "round": 2,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.8,
+   "why": "1 and 9 pass most of the showstopper test; 4 and 6 solid. 7 reads as a keyboard plate in a void; 3 a straight-on chart, carrier against the dek; 2's board reads as placeholder fill; 5's neck renders as a gap in the outer leaflet; 8's lit floor a broad mid-grey band."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "One hall, one key, one metal set, one cyan meaning; the tray motif changes state as declared. Reliefs charcoal against navy hall; frame 8's empty background frames contradict frame 9's full dark Frontera towers."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.0,
+   "why": "Every numeral traces; the speed quoted and never drawn. Looser: frame 4 'four SNAREs' against 'four SNARE protein complexes'; frame 9 headline 'The work moved.' unscoped; '860 compute nodes' present tense from a production-era release; frame 8 draws Horizon in Frontera's hall while the record's no. 17 entry places Horizon in a new Round Rock data center; frame 5's headline states the model as fact. No hard fail."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.5,
+   "why": "What, who and roughly where; stake general and a question; no deadline, route or place for Horizon."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "Cover earns the swipe, 2 pays, 9 closes the loop; 3 and 9 repeat the comparison; 4 and 5 a detour."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Clean with no house rule breaks; hedges repeat into compliance language; Texas specificity stops at Austin; the closing question generic."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "First TACC deck since no. 17; server towers despite the storyboard's own note; cold flood night interior repeats no. 70; black plate count reliefs echo no. 72."
+  }
+ ],
+ "weighted_score": 6.84,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Cut frame 3 and spend the slot on Horizon's own fetched place and status rather than drawing it into Frontera's hall.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 7,
+   "problem": "Flat framed rectangle in a void; the eight a thin strip; dead lower quarter.",
+   "fix": "Bleed the field off three edges; lower the rake so only the eight cast long."
+  },
+  {
+   "slide": 3,
+   "problem": "Straight-on plan, carrier tight under the dek.",
+   "fix": "Drop the carrier 120 px, bleed it off the bottom, rake lower."
+  },
+  {
+   "slide": 2,
+   "problem": "Board a mid-grey field of white rectangles reads as placeholder.",
+   "fix": "Near-black graphite with fine copper traces, populated DIMM slots."
+  },
+  {
+   "slide": 5,
+   "problem": "Neck renders as a dark gap breaking the outer leaflet.",
+   "fix": "Continuous hourglass head rows, no carrier showing between them."
+  },
+  {
+   "slide": 8,
+   "problem": "Broad mid-grey pool; empty background frames contradict frame 9.",
+   "fix": "Tighten the flood; remove or darken the background frames."
+  }
+ ]
+}

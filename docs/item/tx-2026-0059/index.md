@@ -12,7 +12,7 @@ The Tarrant Regional Water District publishes a standing page on data center raw
 - Public access: Public meeting
 - Take part: https://www.trwd.com/resource/data-center-water-request/
 
-- Last checked: 2026-11-07
+- Last checked: 2026-11-10
 
 ## Dates
 
@@ -51,6 +51,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-01 · Tarrant Regional Water District still says it has signed no water supply contract for a data center.
 - 2026-11-04 · Checked and unchanged. The decision still stands as decided.
 - 2026-11-07 · Tarrant Regional Water District still says it holds no water contract for a data center.
+- 2026-11-10 · Tarrant Regional Water District still says it has signed no water supply contract for a data center.
 
 ## Evidence
 

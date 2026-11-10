@@ -55,6 +55,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-06 · Frontera's permanent queue closure stands on the earlier reading. The center's documentation remains off limits under the sources registry.
 - 2026-11-07 · Frontera's queues stay closed on the record as read before. The center's own documentation is off limits under the sources registry.
 - 2026-11-08 · Frontera's queues remain closed on the earlier reading. The center's own documentation sits outside what this project may read.
+- 2026-11-10 · The center's own account of its September symposium says Frontera was retired in October after more than eight million jobs. Its successor Horizon has begun early operations.
 
 ## Evidence
 
@@ -113,4 +114,10 @@ Source (primary_official): https://docs.tacc.utexas.edu/basics/conduct/
 > Failure to follow these guidelines will result in degraded access to TACC resources or administrative action to protect system stability.
 
 Source (primary_official): https://docs.tacc.utexas.edu/basics/conduct/
+
+### TACC says Frontera was retired in October 2026 after more than eight million jobs.
+
+> Frontera was retired in October 2026, having surpassed eight million jobs.
+
+Source (primary_official): https://www.hpcwire.com/off-the-wire/texas-researchers-converge-at-tacc-for-record-setting-symposium/
 

@@ -1,0 +1,85 @@
+<!doctype html>
+<!-- 2026-11-10, frame 4 of 9. Archetype DIAGRAM. A TXBENCH material relief of a membrane section in the deck's metals: a flat bilayer across the lower third and a vesicle's bilayer arching over it, steel head beads outside, a graphite core inside, four copper coiled bundles standing in the cleft between them. Drawn to illustrate, never the lab's structure or a frame of its simulation. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:900px">A vesicle, a bilayer, four SNARE complexes</h1>
+<p class="dek" data-follow="26" style="width:880px">Rizo-Rey's simulations contain a vesicle, a flat bilayer and four SNARE protein complexes. The SNAREs let vesicles fuse with their target membranes. His research focuses on synaptic transmission. Drawn to illustrate.</p>
+<div class="lab" id="lab-ves">vesicle</div>
+<div class="lab" id="lab-flat">flat bilayer</div>
+<div class="lab" id="lab-snare">SNARE complexes</div>
+<script>window.FIG = {"snares": 4};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txbench.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-10-tray.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+function lead(cx, a, b) { cx.save(); cx.strokeStyle = 'rgba(237,230,214,0.9)'; cx.fillStyle = cx.strokeStyle; cx.lineWidth = 2;
+  cx.beginPath(); cx.moveTo(a[0], a[1]); cx.lineTo(b[0], b[1]); cx.stroke(); cx.beginPath(); cx.arc(b[0], b[1], 5, 0, 7); cx.fill(); cx.restore(); }
+window.renderReady = (async () => {
+  const cx = await CH.bootFlat({ kicker: "In the simulation", counter: "04 / 09", src: "c11 c12 c15", fit: { min: 80, max: 100, maxLines: 2 } });
+  cx.scale(2, 2); TX.reseed(20261110);
+  /* THE SECTION. A bilayer is two leaflets of lipids, heads out and tails in. Heads are steel beads, the tail core is
+   * graphite with fine tail ridges running across the membrane, so the beam from the upper left catches them. */
+  const HEAD_R = 9.5, PITCH = 20.5, THICK = 128;                 /* drawing units, not to scale */
+  const FY = 1100;                                               /* the flat bilayer's mid plane */
+  const VC = [420, 20], VR = 790;                               /* the vesicle's mid surface, a circle */
+  /* THE FIGURE: snares bundles, spaced along the cleft where the two membranes come closest */
+  const N = FIG.snares, BX = []; for (let i = 0; i < N; i++) BX.push(300 + i * 118);
+  function membrane(d, s) {   /* d = signed distance from the mid surface (outward +), s = arc length along it */
+    const a = Math.abs(d);
+    if (a > THICK / 2 + HEAD_R) return null;
+    const hc = THICK / 2 - HEAD_R * 0.2;                         /* head row centre line */
+    if (a > hc - HEAD_R * 1.1) {                                 /* the head row: packed domes */
+      const k = Math.round(s / PITCH), ds = s - k * PITCH, dr = a - hc, r2 = ds * ds + dr * dr;
+      if (r2 < HEAD_R * HEAD_R) return [16 + Math.sqrt(HEAD_R * HEAD_R - r2) * 1.4, 1];
+      return [3, 5];
+    }
+    const ridge = 0.5 + 0.5 * Math.cos((s / PITCH) * Math.PI * 2);  /* two tails per head, a fine ridge each */
+    return [5 + 1.2 * ridge, 6];
+  }
+  function bundle(X, Y) {   /* a coiled pair of helices standing in the cleft, copper */
+    for (const bx of BX) {
+      const yTop = VC[1] + Math.sqrt(Math.max(0, VR * VR - (bx - VC[0]) * (bx - VC[0]))) + THICK / 2 - 10, yBot = FY - THICK / 2 + 10;
+      if (Y < yTop || Y > yBot) continue;
+      const u = X - bx; if (Math.abs(u) > 22) continue;
+      const tw = Math.sin((Y - yTop) * 0.16) * 10, w1 = Math.abs(u - tw), w2 = Math.abs(u + tw);
+      const w = Math.min(w1, w2); if (w > 10.5) continue;
+      return [34 + Math.sqrt(110 - Math.min(110, w * w)) * 1.5, 2];
+    }
+    return null;
+  }
+  function surf(X, Y) {
+    const b = bundle(X, Y); if (b) return b;
+    const dv = Math.hypot(X - VC[0], Y - VC[1]) - VR, sv = Math.atan2(Y - VC[1], X - VC[0]) * VR;
+    const mv = membrane(dv, sv); if (mv) return mv;
+    const mf = membrane(Y - FY, X); if (mf) return mf;
+    return [0, 0];
+  }
+  const height = (X, Y) => surf(X, Y)[0], material = (X, Y) => surf(X, Y)[1];
+  TXBENCH.relief(cx, CH.reliefOpts({ x: 0, y: 0, w: 1080, h: 1350, height, material, castLength: 200 }));
+  CH.typeDark(cx, { a: 0.55 });
+  CH.footWash(cx, { a: 0.5 });
+  /* labels and leaders land on the parts' own coordinates */
+  const vAt = [930, VC[1] + Math.sqrt(VR * VR - (930 - VC[0]) ** 2) + THICK / 2 - 4];
+  CH.pinLabel('lab-ves', [850, vAt[1] + 120]); lead(cx, [910, vAt[1] + 116], vAt);
+  const fAt = [150, FY + THICK / 2 - 4];
+  CH.pinLabel('lab-flat', [90, 1188]); lead(cx, [150, 1186], fAt);
+  const sx = BX[N - 1], sAt = [sx, FY - THICK / 2 - 30];
+  CH.pinLabel('lab-snare', [sx + 60, FY - THICK / 2 - 120]); lead(cx, [sx + 70, FY - THICK / 2 - 84], sAt);
+  window.__txLeaders = [{ target: 'the vesicle outer leaflet, its lower edge', at: vAt, to: vAt }, { target: 'the flat bilayer lower leaflet', at: fAt, to: fAt }, { target: 'the last SNARE bundle', at: sAt, to: sAt }];
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

@@ -6671,3 +6671,76 @@ art" (5 runs, 6 rounds) name a different frame on each deck, so no one model or 
 Eleven repeat offenders are carried with today's escalation, each with the reason it is not this
 lane's or not one model. One frontier search, for the published dimensions of a 1.5 mL tube and a 90 mm
 dish. No gate was added or changed, so no GATE_LESSONS entry is owed.
+
+## 2026-11-10, the eighteenth weekly machine pass. One kit lift, one doctrine fix, one gate fix, four proposals, carried items
+
+Read with carousel no. 73 (the tray deck, panel round 3). The digest counted six shipped runs from
+November 4th to November 10th. `artwork_craft` was lowest on three of them and has the lowest week
+mean. The top theme, "primitive or low-poly model where a kit model belongs", was named on all six runs
+over 17 rounds. Due on three repeat offenders: relief-plate-reads-as-a-tray (repeat 3, item 2),
+audition-rebind-after-every-panel-repair (repeat 7, carried) and prompt-audit-counts-agent-latency
+(repeat 8, out of this lane, item 4).
+
+### 1. KIT: THE DATA HALL'S SMALL THINGS IN `industry.js` (done, 12bb6eaf)
+
+No. 73 built its tray tower in its chassis as an open four post cage. Round 2's craft judge asked for
+"solid side panels" on a "skeletal rod frame", round 3's integrity judge charged "bare wireframe racks"
+and asked to "crop in on the half filled tower with lit chamfers", and round 1's reader asked for "the
+deck's own rack, half populated, a few trays sliding in, empty slots dark". `node_rack` is an enclosure:
+satin powder coated side panels framed by proud chamfered stiles, a top cap and plinth with chamfers,
+a near black back so an empty slot reads as a dark slot, rails punched at the pitch, `fill` and `pull`.
+`node_tray` carries the compute tray the round 2 craft judge called the best render in the deck, and
+`access_floor` the raised floor. New names, so no. 73's chassis still installs its own. Replayed on no.
+73's frames 6 and 8 with only the model swapped, in `out/2026-11-10/tmp/machine/replay/`: the emptied
+racks read as racks. `equipment_crate` was not lifted: its charge was the wrong object for the story
+(a nightstand, warm wood outside the vocabulary), not a missing model.
+
+### 2. DOCTRINE: PARALLEL IS NOT PLAN (done, 03f80d8b)
+
+No. 73's count reliefs, frames 3 and 7, were charged as a keyboard, a chart or a waffle in every round
+at casts far above `print_ban`'s floor, and the planner's stated reason for the plan was the doctrine's
+"parallel projection for any quantity". A one time census
+(`knowledge/carousel/audits/2026-11-10-plan-relief-census.py`) counts plan reliefs since October 17th
+charged as a chart-like object at 22 of 53 against 21 of 136 spatial frames. It is a word match and a
+lower bound. Within reliefs a regular grid is charged at 12 of 26 against 10 of 27, too close to fail a
+plan on, so this is doctrine and not a gate. ILLUSTRATION_SYSTEM rule 4 and TECHNIQUE_LIBRARY now say
+a quantity stays parallel and turns the camera to a raking three quarter.
+
+### 3. GATE: `panel_ready` HOLDS A FRAME TO ITS BYTES (done, b28c1a34)
+
+No. 73 reverted its chassis to the reviewed bytes and `check_renders_current` still called every frame
+stale on file times, so the run restored the file's time by hand. The check now witnesses the digests
+a frame was found current against and accepts a time-stale frame only when its PNG and every source
+match them byte for byte. Six self-test cases, three of them red. Replayed on no. 73's nine frames.
+
+### 4. PROPOSALS, with their counts
+
+- **For a maintainer: `prompts/daily_routine.md`, THE ARTWORK CARRIES THE DATA bullet, says "parallel
+  projection for any quantity and perspective only for scenes".** Item 2's census is the evidence (22 of
+  53 plan reliefs charged chart-like, against 21 of 136 spatial frames). Proposed wording: "parallel
+  projection for any quantity, seen from a raking three quarter and never straight down, and
+  perspective only for scenes". ILLUSTRATION_SYSTEM now says this and the routine wins where they differ.
+- **For a maintainer: a GATE_LESSONS entry for item 3** (human lane). Proposed heading: "A file time was
+  read as an edit, and the run learned to set file times". What to check instead: the bytes a frame
+  was rendered from, which `panel_ready_witness.json` now records.
+- **For a maintainer: `assets/js/txthree.js` `TXT.contact` under a spot.** Queue
+  contact-decal-pale-under-spot (no. 73 frames 6 and 8, round 2's craft judge read the decal as a pale
+  hard-edged rectangle, and the run removed it). The contact plane should take the receiving
+  surface's lighting under a spot, or skip a surface a shadow-casting spot already lights. It feeds the
+  week's second theme, "no contact, dirt or grime where things meet the ground" (6 runs, 13 rounds),
+  because a run that meets the artifact drops the contact.
+- **For a daily run or a maintainer: `scripts/shared/prompt_audit.py` stops counting an Agent or
+  SendMessage dispatch as a wait on a human.** Queue prompt-audit-counts-agent-latency, now repeat 8
+  (nos. 58, 63, 64, 66, 71 and 73: 37 of 1,400 calls on no. 73, the hook armed and refusing nothing).
+  Daily lane, so the run that meets it may fix it under its own stamp.
+
+### Carried, with this week's counts
+
+audition-rebind-after-every-panel-repair, repeat 7: no. 73 left frames 3 and 9 unrepaired through three
+rounds rather than pay a fresh art director reading per round. That is the owner's rule that a changed
+frame receives a new visual review, working as written, and the type-only re-reading still needs
+`render.py` (.claude/skills) and the studio brief (human). "No contact" (6 runs, 13 rounds), "largest
+object unmodelled" (5 runs, 10 rounds), "object in a void" (5 runs, 10 rounds), "type on the art" (5 runs,
+7 rounds) and "dead or empty region" (5 runs, 6 rounds) name a different frame on each deck.
+judge-dark-field-vs-silhouette-gate (repeat 0) would change what `layout_check`'s silhouette measures,
+and a first sighting is not enough to move a gate. No frontier search: the brief for this pass names none.

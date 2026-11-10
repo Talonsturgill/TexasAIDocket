@@ -1,0 +1,73 @@
+{
+ "lens": "reader",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 7.2,
+   "why": "The cover is the best frame, with true blacks and a clear focal rack at 432 px; 6 and 9 carry the staged rack well; reliefs 3, 4, 5, 7 measured. Frame 8 crate reads as a nightstand, frame 2 tray walls never show and is top-loaded, frame 3 shot straight on reads as a flat chart, frame 5 reuses frame 4's camera."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.8,
+   "why": "One deck on the contact sheet: near-black field, same type, Frontera steel/copper vs Vista cyan colour code, the tray motif changes state 1 to 3 to 6 to 7 to 9. Frames 4 and 5 sit outside the hardware world; frame 8's warm wood comes from nowhere."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.3,
+   "why": "Every numeral checked traces to a claim; the Vista comparison is hedged on every surface; molecules labelled drawn to illustrate. Spine rests on HPCwire reprints of TACC releases since tacc.utexas.edu was excluded. No hard fail."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.5,
+   "why": "Clear what happened, but no decision or decider, no date for Horizon's full production, UT Southwestern unplaced, the stake implied rather than stated; caption ends on an abstract question."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Cover earns the swipe; frame 2 detours to retirement; 64 vs 8 repeats on 1, 3, 7, 9; real turn on 6 well placed; 5 could merge into 4; close summarises."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Clean, exact, on register with good lines; careful to stiffness, hedge repeated three times, process narration line in caption, Texas detail stops at institution names."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "New subject and molecular relief vocabulary; opening register familiar; ledgers not counted line by line."
+  }
+ ],
+ "weighted_score": 7.37,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Give the reader a concrete stake and next step: replace frame 8's ambiguous crate and the abstract closing question with a sourced fact about Horizon, and make frame 2 pay the cover's 64 versus 8 contrast at once.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 8,
+   "problem": "Wooden crate reads as a nightstand at feed size; warm wood outside the steel and cyan vocabulary; cables trail into a dead lower left.",
+   "fix": "Model Horizon as the deck's own rack, half populated, a few trays sliding in, empty slots dark."
+  },
+  {
+   "slide": 2,
+   "problem": "Copper sinks fill the width, no tray wall shows, lower third dead.",
+   "fix": "Pull the camera back and lower it so one full tray with walls and both sinks sits in the pool, shadow into the bottom third."
+  },
+  {
+   "slide": 3,
+   "problem": "64-tray wall straight on reads as a flat chart; carrier tight under the dek.",
+   "fix": "Rake the view and drop the carrier 120 px so tray depth and casts show."
+  },
+  {
+   "slide": 5,
+   "problem": "Reuses frame 4's vesicle and bilayer from nearly the same camera.",
+   "fix": "Crop tight on the fusion site so joined interiors and four SNAREs fill a third to half the frame."
+  }
+ ]
+}

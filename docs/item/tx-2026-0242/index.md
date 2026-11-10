@@ -11,7 +11,7 @@ ExxonMobil chief executive Darren Woods spoke on the company's third quarter ear
 - Public access: Write to the decider
 - Take part: https://corporate.exxonmobil.com/locations/united-states/permian-basin/newsroom/2026/technology-and-people-driving-the-next-generation-of-drilling-in-the-permian
 
-- Last checked: 2026-11-06
+- Last checked: 2026-11-10
 
 ## Dates
 
@@ -24,6 +24,7 @@ ExxonMobil chief executive Darren Woods spoke on the company's third quarter ear
 One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
 
 - 2026-11-06 · Admitted on ExxonMobil's October 30th earnings call, its own post on automated drilling, the H&P release of October 7th and the Reuters account from Midland.
+- 2026-11-10 · ExxonMobil's earnings call transcript and the FlexRobotics release both still carry the passages on its automated Permian rigs.
 
 ## Evidence
 

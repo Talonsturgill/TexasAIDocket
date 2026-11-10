@@ -1,0 +1,192 @@
+{
+ "weighted_score": 6.97,
+ "judges": [
+  6.77,
+  6.99,
+  7.0
+ ],
+ "spread": 0.23,
+ "criteria": {
+  "artwork_craft": {
+   "score": 6.8,
+   "weight": 0.22,
+   "judges": [
+    6.8,
+    6.7,
+    7.0
+   ]
+  },
+  "deck_coherence": {
+   "score": 7.2,
+   "weight": 0.12,
+   "judges": [
+    7.0,
+    7.2,
+    7.5
+   ]
+  },
+  "claim_integrity": {
+   "score": 7.8,
+   "weight": 0.2,
+   "judges": [
+    6.8,
+    7.8,
+    8.0
+   ]
+  },
+  "story_and_stakes": {
+   "score": 6.5,
+   "weight": 0.16,
+   "judges": [
+    6.5,
+    6.5,
+    6.0
+   ]
+  },
+  "sequence_and_momentum": {
+   "score": 6.5,
+   "weight": 0.1,
+   "judges": [
+    6.5,
+    6.8,
+    6.5
+   ]
+  },
+  "voice": {
+   "score": 6.8,
+   "weight": 0.1,
+   "judges": [
+    7.0,
+    6.8,
+    6.5
+   ]
+  },
+  "variety": {
+   "score": 6.8,
+   "weight": 0.1,
+   "judges": [
+    6.8,
+    6.8,
+    6.5
+   ]
+  }
+ },
+ "hard_fails": [],
+ "hard_fails_by_judge": [],
+ "ship": true,
+ "threshold": 8.0,
+ "over_threshold": false,
+ "method": "per-criterion median across three judges, then weighted by the rubric",
+ "artwork_weakest_frames": [
+  {
+   "slide": 7,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Uniform dark-grey field bleeding off both edges, the eight tiny, label outside the safe zone.",
+     "fix": "Pull the field inside the frame with a lit border, darker, raking key; label inside the margin."
+    },
+    {
+     "judge": 2,
+     "problem": "Even mid-grey waffle, no pool; label outside the safe zone at x 23.",
+     "fix": "Low raking three quarter, one pool on the eight, field to black at the edges, label inside the margin."
+    },
+    {
+     "judge": 3,
+     "problem": "Even mid grey field; label 23 px from the edge.",
+     "fix": "Side light falling to near black; label inside the margin."
+    }
+   ]
+  },
+  {
+   "slide": 3,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Straight-on plan reads as a keyboard; carrier tight under the dek.",
+     "fix": "Tilt off plan 15 to 20 degrees; drop the carrier 60 px."
+    },
+    {
+     "judge": 2,
+     "problem": "Straight-on plan reads as a chart; carrier 25 px under the dek; lightest ground.",
+     "fix": "Raking three quarter, lowered 120 px, darker ground."
+    },
+    {
+     "judge": 3,
+     "problem": "Straight-on plate under the dek reads as a chart.",
+     "fix": "Low three quarter view under a raking key; plate pushed down."
+    }
+   ]
+  },
+  {
+   "slide": 5,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "Even dark-grey tail fields; neck reads as two caps with a gap.",
+     "fix": "Continuous hourglass neck; low key so the rim and bundles carry the highlight."
+    },
+    {
+     "judge": 3,
+     "problem": "The neck reads as two bead bands with a gap and four springs.",
+     "fix": "A continuous bridge of tails in a second material, warm side key, centred."
+    }
+   ]
+  },
+  {
+   "slide": 8,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Bare wireframe racks on a mid-grey pool.",
+     "fix": "Crop in on the half filled tower with lit chamfers; tight pool."
+    },
+    {
+     "judge": 2,
+     "problem": "Tube racks primitive; pool on empty floor, subject in half shade.",
+     "fix": "Centre the pool on the tower and the sliding tray; darken the open floor."
+    }
+   ]
+  },
+  {
+   "slide": 6,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "Small tower in empty floor, near twin of 9; pulled tray small.",
+     "fix": "High three quarter close on the pulled tray."
+    },
+    {
+     "judge": 3,
+     "problem": "One rack in a mostly empty frame says nothing about tuning.",
+     "fix": "Push in; pull one tray half out with a cable to it."
+    }
+   ]
+  },
+  {
+   "slide": 9,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Two lowest cyan bars duller teal.",
+     "fix": "One emissive value on all eight bars."
+    }
+   ]
+  }
+ ],
+ "rounds_derived": 3,
+ "rounds": 3,
+ "rounds_source": "this module's own log of cards it has scored",
+ "rounds_declared": 3,
+ "at_cap": true,
+ "rung": null,
+ "shortfall": "at the round cap the finished deck ships at 6.97, 1.03 under the 8.0 top rung. Name that in the email and the run record",
+ "craft_floor": "capped",
+ "craft_note": "at the round cap the craft floor stands down. The art median 6.8 is under 8.5 and the deck ships as it is. Name it in the run record"
+}

@@ -11,7 +11,7 @@ The National Science Foundation established the NSF National Artificial Intellig
 - Public access: Write to the decider
 - Take part: https://www.nsf.gov/cise/updates/nsf-establishes-operations-center-national-artificial
 
-- Last checked: 2026-11-07
+- Last checked: 2026-11-10
 
 ## Dates
 
@@ -43,6 +43,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-01 · The national AI research resource still runs under the foundation's standing arrangement.
 - 2026-11-04 · Checked and unchanged. The decision still stands as decided.
 - 2026-11-07 · The national AI research resource remains in standing operations under the foundation.
+- 2026-11-10 · The national AI research resource is still in standing operations with Texas partners named as cited.
 
 ## Evidence
 

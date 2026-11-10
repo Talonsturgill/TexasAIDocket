@@ -33,6 +33,7 @@ scored, not that it is unshippable. Fix the frame and run it again.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import re
 import sys
@@ -227,6 +228,14 @@ def check_report_complete(base: Path, report: dict) -> list[str]:
 DECK_ASSET = re.compile(r"@@ASSETS@@/(js/deck/[^\"'?#\s)]+)")
 
 
+# THE WITNESS OF BYTES A FRAME WAS RENDERED FROM (weekly machine pass, 2026-11-10). See below.
+RENDER_WITNESS = "panel_ready_witness.json"
+
+
+def _sha(p: Path) -> str:
+    return hashlib.sha256(p.read_bytes()).hexdigest()
+
+
 def check_renders_current(base: Path, assets: Path | None = None) -> list[str]:
     """EVERY FRAME WAS RENDERED AFTER ITS LAST EDIT (Codex, PR 369).
 
@@ -242,11 +251,30 @@ def check_renders_current(base: Path, assets: Path | None = None) -> list[str]:
     never writes it, and a merge that moves it lands after the panel. `render.py` records no hash, so
     file times are the evidence, with `load_machine_qa`'s one second of slack. A frame with no PNG
     is `qa.py`'s "png missing", which `load_machine_qa` already stops on.
+
+    A FILE TIME IS NOT THE BYTES, AND A REVERT PROVED IT (queue panel-ready-staleness-reads-mtime,
+    2026-11-10). No. 73 edited its chassis and put the reviewed bytes back. Every frame was now
+    "older than its last edit" though not one byte it was rendered from had changed, and the run
+    restored the file's time by hand to get past this check. A run taught to set file times to pass
+    a gate has been taught to defeat it. So whenever this check finds a frame CURRENT by its times,
+    it records the digests of that PNG, of every source it loads and of the render report in
+    `out/<date>/panel_ready_witness.json`. A frame the times call stale is still current when its PNG
+    and every source hash to exactly the witnessed bytes (and the report too, when it is the report
+    that is older). That passes nothing this check had not already passed with those same bytes: a
+    changed byte, a missing witness or a re-rendered PNG all stay stale.
     """
     assets = Path(assets or (REPO_ROOT / "assets"))
     rdir = base / "render"
     rp = rdir / "render_report.json"
     reported = rp.stat().st_mtime if rp.exists() else None
+    wp = base / RENDER_WITNESS
+    try:
+        seen = json.loads(wp.read_text(encoding="utf-8")) if wp.exists() else {}
+        seen = seen.get("frames", {}) if isinstance(seen, dict) else {}
+    except (OSError, ValueError):
+        seen = {}
+    rsha = _sha(rp) if rp.exists() else None
+    witnessed = {}
     out = []
     for src in sorted((base / "slides").glob("slide-*.html")):
         png = rdir / (src.stem + ".png")
@@ -265,13 +293,36 @@ def check_renders_current(base: Path, assets: Path | None = None) -> list[str]:
         n = re.search(r"slide-0*(\d+)", src.name)
         again = (f"Render it with render.py --only {n.group(1) if n else '?'}, run qa.py, then this "
                  f"again")
-        if png.stat().st_mtime + 1.0 < edited:
+        now = {"png": _sha(png), "report": rsha,
+               "sources": {(q.name if q == src else f"assets/{q.relative_to(assets)}"): _sha(q)
+                           for _, q in stamped}}
+        old_png = png.stat().st_mtime + 1.0 < edited
+        old_rep = reported is not None and reported + 1.0 < edited
+        if not (old_png or old_rep):
+            witnessed[src.name] = now
+            continue
+        w = seen.get(src.name) if isinstance(seen.get(src.name), dict) else {}
+        same = (w.get("png") == now["png"] and w.get("sources") == now["sources"]
+                and (not old_rep or w.get("report") == now["report"]))
+        if same:
+            witnessed[src.name] = w        # the very bytes this check passed before, so still current
+            continue
+        if old_png:
             out.append(f"render/{png.name} predates the last edit to {shown}, so the panel would "
                        f"score, and assemble.py would ship, {src.name} as it was before that edit. "
                        f"{again}")
-        elif reported is not None and reported + 1.0 < edited:
+        else:
             out.append(f"render/render_report.json predates the last edit to {shown}, so its record "
                        f"of {src.name} describes the frame before that edit. {again}")
+    if witnessed:
+        try:
+            tmp = wp.with_suffix(".tmp")
+            tmp.write_text(json.dumps({"note": "panel_ready.check_renders_current: the bytes each frame "
+                                       "was found current against", "frames": witnessed}, indent=1),
+                           encoding="utf-8")
+            tmp.replace(wp)
+        except OSError:
+            pass
     return out
 
 
@@ -1604,6 +1655,9 @@ def self_test() -> int:
             _os.utime(path, (t, t))
 
         _edit = _png.stat().st_mtime + 30
+        # a repair changes BYTES: since 2026-11-10 a file time moved over the very bytes a frame was
+        # found current against is not an edit (RENDER_WITNESS), so the fixture edits the frame
+        _src.write_text(_html.replace("</body>", "<!-- a repair -->\n</body>"), encoding="utf-8")
         _at(_src, _edit)
         ok("a slide edited after its PNG stops the panel, and names the frame and the edit",
            _run() == 1 and any("predates the last edit to slide-01.html" in p and "--only 1" in p
@@ -1634,6 +1688,43 @@ def self_test() -> int:
         _qa_at(10)
         ok("...and the frame rendered again, report and QA after it, is ready", _run() == 0,
            str(check_renders_current(_q, _assets)) + str(load_machine_qa(_q, _rep)[1]))
+        # THE WITNESS (2026-11-10, queue panel-ready-staleness-reads-mtime). No. 73 put its chassis
+        # back to the reviewed bytes and the file time alone kept calling every frame stale.
+        _wit = _q / RENDER_WITNESS
+        ok("a frame found current leaves a witness of the bytes it was found current against",
+           _wit.exists() and "slide-01.html" in json.loads(_wit.read_text(encoding="utf-8"))["frames"],
+           str(_wit.exists()))
+        _deck_bytes = _deck.read_bytes()
+        _deck.write_bytes(_deck_bytes)
+        _at(_deck, _png.stat().st_mtime + 30)
+        ok("a chassis rewritten with the very bytes the frame was rendered from is not an edit",
+           check_renders_current(_q, _assets) == [] and _run() == 0, str(check_renders_current(_q, _assets)))
+        _deck.write_text("window.DECK = 2;", encoding="utf-8")
+        _at(_deck, _png.stat().st_mtime + 40)
+        ok("...a chassis whose bytes changed still stops the panel, witness or none",
+           _run() == 1 and any("assets/js/deck/2026-09-24-test.js" in p for p in check_renders_current(_q, _assets)),
+           str(check_renders_current(_q, _assets)))
+        _deck.write_bytes(_deck_bytes)
+        _at(_deck, _png.stat().st_mtime + 50)
+        ok("...and put back byte for byte, the witnessed frame is current again",
+           check_renders_current(_q, _assets) == [], str(check_renders_current(_q, _assets)))
+        _wit.unlink()
+        ok("...but with no witness the file time is all there is, and the frame stays stale",
+           any("predates the last edit" in p for p in check_renders_current(_q, _assets)),
+           str(check_renders_current(_q, _assets)))
+        _pngb = _png.read_bytes()
+        _at(_deck, _png.stat().st_mtime - 30)
+        check_renders_current(_q, _assets)                      # current by time, so witnessed afresh
+        _png.write_bytes(_pngb + b"\0")
+        _at(_png, _deck.stat().st_mtime + 5)
+        _at(_deck, _png.stat().st_mtime + 30)
+        ok("...and a PNG that is not the witnessed PNG stays stale even when its sources match",
+           any("predates the last edit" in p for p in check_renders_current(_q, _assets)),
+           str(check_renders_current(_q, _assets)))
+        _png.write_bytes(_pngb)
+        _at(_png, _deck.stat().st_mtime + 5)
+        _at(_rpt, _png.stat().st_mtime)
+        _qa_at(10)
         _src.write_text(_html, encoding="utf-8")
         _deck.unlink()
         _at(_src, _png.stat().st_mtime - 30)

@@ -1,0 +1,73 @@
+{
+ "lens": "integrity",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 7.0,
+   "why": "1, 6 and 9 meet most of the 10 descriptor; counts on 1, 3 and 7 follow their declared scale. Held down by 2 (no tray, grey-green mid-tone floor, dead lower zone), 3 and 7 flat plates reading as a keyboard or chart, 7's raised cells tiny with faint casts, 5's joined core a rectangular box, duller teal lower strips on 9."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 8.0,
+   "why": "One floodlit hall, one cold key, one palette, cyan only for a Vista node; the tray motif changes state; 9 is the cover's reverse angle. Frame 2's grey-green floor sits slightly outside."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.0,
+   "why": "Every numeral traces; c9 scoped honestly. Looser phrasings: slide 5 'the researchers call it the local detergent model of membrane fusion' goes past c13's quote; slide 2 'each node held two Intel Xeon processors' rests on c30 and doesn't cite c29; kicker 'TACC, Austin' and 'Vista, UT Austin' lean on c28's forecast; 'Frontera is dark' goes past retired. aggregates.json omits 130,000, 5.3 million and the caption's 64. No hard fail."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.5,
+   "why": "What, who and roughly where; no decision, deadline or body deciding Horizon time; rhetorical closing question; stake general."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Cover earns the swipe; 6 is a real turn; 9 closes the loop; 3 restates the cover; 2 delays the payoff."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Clean, restrained, honest; house rules hold; little regional texture; the caption's production note line is flat."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "Floodlit world repeats nos. 70 and 59; one unit per thing count repeats 69, 71, 72; 72 was also a university biology computation story on molecular reliefs; Frontera and Horizon were no. 17's subject outside the window."
+  }
+ ],
+ "weighted_score": 6.99,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Cut slide 3's restatement and end on something a Texan can act on rather than a rhetorical question, and bind slide 5's 'local detergent model of membrane fusion' to a quote that contains those words or cut the naming.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 2,
+   "problem": "No tray visible; grey-green mid-tone floor fills the bottom 40 percent.",
+   "fix": "Lower and closer so the tray walls and lip run off the edges; pull fog out of the floor."
+  },
+  {
+   "slide": 3,
+   "problem": "Flat top-down plate reads as a keyboard; casts short and even.",
+   "fix": "Rake the key low so trays throw long casts; carrier bleeds; eight cyan trays in a tighter pool."
+  },
+  {
+   "slide": 7,
+   "problem": "Uniform mid-grey field; eight raised cells tiny; casts barely darker.",
+   "fix": "Lower key elevation for long casts; field albedo near black; bleed the field."
+  },
+  {
+   "slide": 5,
+   "problem": "Joined core a hard-edged rectangle reads as a plug.",
+   "fix": "A curved hourglass stalk with a continuous core."
+  }
+ ]
+}

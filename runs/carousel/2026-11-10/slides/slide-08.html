@@ -1,0 +1,76 @@
+<!doctype html>
+<!-- 2026-11-10, frame 8 of 9. Archetype SPLIT_HORIZON. A spatial scene through txthree.js inside the TXT.interior machine hall: Horizon's bay, a raised floor with a row of tiles lifted open to the dark plenum, black power whips rising from it, running to two tower frames in the flood pool, the near one holding three unlit black trays and a fourth sliding in, every slot above empty. Drawn to illustrate, never TACC's room. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:900px">Horizon is in early operations</h1>
+<p class="dek" data-follow="26" style="width:860px">Frontera's successor is in its first phase. TACC's executive director says its power infrastructure is complete and an exabyte-capacity storage system is in place. Initial deployment of its AI-focused hardware is underway.</p>
+<script>window.FIG = {};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-10-tray.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE); CH.KEY_SCALE = 1.4;
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Next at TACC", counter: "08 / 09", src: "c4 c5 c6 c24", fit: { min: 80, max: 104, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 34, near: 0.05, far: 80 });
+  TXT.interior(R, CH.roomOpts({}));
+  const C = 14, Rw = 12, row = 7, lift = []; for (let c = 2; c < 12; c++) lift.push(row * C + c);
+  const perf = []; for (let c = 1; c < 13; c++) { perf.push((row - 1) * C + c); perf.push((row + 1) * C + c); perf.push((row + 2) * C + c); }
+  const fl = CH.floor(TXT, R, K, { cols: C, rows: Rw, lift, perf });
+  const Y = CH.FLOOR_H;
+  /* power whips: flexible conduit rising out of the open row and curling back down, one per lifted tile pair */
+  const WHIP = new THREE.MeshStandardMaterial({ color: 0x0b0c0e, roughness: 0.55, metalness: 0.2 });
+  const BAND = new THREE.MeshStandardMaterial({ color: 0x8a8f96, roughness: 0.4, metalness: 0.9 });
+  const whips = [];
+  for (let c = 2; c < 12; c += 1) {
+    const p = fl.userData.tileAt(c, row), x = p[0] + 0.1, z = p[2] - 0.08;
+    const tx = 0.55 + (x - 0.55) * 0.12, tz = -0.3;
+    const pts = [[x, 0.06, z], [x + 0.02, Y - 0.05, z + 0.02], [x + 0.04, Y + 0.05, z + 0.12], [(x + tx) / 2, Y + 0.03, (z + tz) / 2 + 0.25], [tx, Y + 0.04, tz + 0.1], [tx + 0.05, Y + 0.12, tz]];
+    const w = TXT.tube(pts, 0.022, WHIP, {}); TXT.add(R, w); whips.push(w);
+    const cap = new THREE.Mesh(new THREE.CylinderGeometry(0.03, 0.03, 0.06, 16), BAND); cap.position.set(tx + 0.05, Y + 0.12, tz); TXT.add(R, cap);
+  }
+  /* round 2: Horizon is the deck's own object at an earlier state, not a crate. One tower frame stands by the open row and
+   * holds three unlit black trays at the bottom and a fourth sliding in on its rails, every slot above
+   * dark and empty. No tray is lit, because cyan means a Vista node and nothing else. Drawn to illustrate, never TACC's room. */
+  function partTower(keep, slide) {
+    const t = K.make('tray_tower', { kind: 'gpu', count: 8, lit: false });
+    const trays = t.children.filter(m => m.isGroup); trays.forEach((g, i) => { if (i >= keep + (slide ? 1 : 0)) t.remove(g); else if (slide && i === keep) g.position.z = 0.36; });
+    t.traverse(m => { if (m.isMesh) { m.castShadow = true; m.receiveShadow = true; } });
+    return t;
+  }
+  const tower = partTower(3, true); tower.position.set(0.55, Y, 0.0); tower.rotation.y = -0.3; TXT.add(R, tower);
+  /* the rest of the bay: a row of empty frames further back, waiting, caught by the flood's spill */
+  for (let i = 0; i < 4; i++) { const e = partTower(0, false); e.position.set(-1.9 + i * 0.95, Y, -1.9); e.rotation.y = -0.3; TXT.add(R, e); }
+  const from = [-1.5, Y + 1.85, 3.1];
+  const look = CH.aim(THREE, R, TXT, from, [0.55, Y + 0.0, 0.1], 610, 1150, 40);
+  TXT.frame(R, { fov: 40, from, look });
+  TXT.deckRig(R, CH.rigSpec(W, 9, 2048), CH.rigOpts([0, Y, 0], { distance: 14, shadowFar: 34, normalBias: 0.01 }));
+  CH.unacne(R, 0.01);
+  CH.darkHall(R, { amb: 0.15, fill: 0.12, env: 0.05 });
+  CH.flood(THREE, R, [-0.85, Y + 2.6, 0.9], [0.6, Y, 0.15], { i: 170, reach: 8, angle: 0.4, penumbra: 0.6 });
+  CH.flood(THREE, R, [-0.6, Y + 2.8, -0.2], [0.2, Y, -1.7], { i: 170, reach: 9, angle: 0.6, penumbra: 0.8 });
+  TXT.weather(R, { grime: 0.12, height: 0.4, mottle: 0.15 });
+  TXT.stage(R, tower);
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0.35, veil: 0.3, veilH: 220 });
+  CH.footWash(cx, { a: 0.6 });
+  CH.typeDark(cx, { fade: 120, a: 0.75 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

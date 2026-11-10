@@ -19380,5 +19380,156 @@
   ],
   "last_verified": "2026-11-08",
   "id": "tx-2026-0244"
+ },
+ {
+  "title": "TACC retires Frontera after more than eight million jobs, and a UT Southwestern simulation that needed 64 of its CPU nodes runs nearly as fast on eight Vista GPU nodes",
+  "summary": "The Texas Advanced Computing Center at The University of Texas at Austin published its account on October 29th, 2026 of the symposium it held for Texas researchers in September. It says Frontera was retired in October 2026 after more than eight million jobs and over seven years of production, the longest run of any system at the center. For most of its life Frontera was the fastest academic supercomputer in the United States. Its successor Horizon has entered its first phase of early operations. Horizon's power infrastructure is complete, its exabyte capacity storage is in place and the first of its AI focused hardware is being installed. Jose Rizo-Rey of UT Southwestern Medical Center in Dallas told the symposium his lab typically ran a 5.3 million atom simulation of membrane fusion on 64 CPU nodes of Frontera. It ran at 43 nanoseconds a day. On the center's Vista system he got almost the same speed with eight GPU nodes, after many optimizations of the GROMACS code made with the center's staff. The comparison is one lab's own account in the center's release and not a published benchmark.",
+  "topic": "research-and-science",
+  "decider": {
+   "name": "Texas Advanced Computing Center, The University of Texas at Austin",
+   "type": "state-agency"
+  },
+  "geography": {
+   "statewide": false,
+   "counties": [
+    "Travis",
+    "Dallas"
+   ],
+   "on_ercot": true
+  },
+  "status": "decided",
+  "confidence": "high",
+  "key_dates": [
+   {
+    "date": "2026-10-29",
+    "kind": "filed",
+    "note": "The center publishes its account of the symposium and of Frontera's retirement"
+   }
+  ],
+  "public_access": {
+   "room": "contact_only",
+   "how": "The account is the center's own release, carried in full by HPCwire with the center's writer named as its source. A research computing result is not a public proceeding and has no window for comment.",
+   "url": "https://www.hpcwire.com/off-the-wire/texas-researchers-converge-at-tacc-for-record-setting-symposium/",
+   "closes": null
+  },
+  "claims": [
+   {
+    "text": "TACC says Frontera was retired in October 2026 after more than eight million jobs.",
+    "verbatim_quote": "Frontera was retired in October 2026, having surpassed eight million jobs.",
+    "source_url": "https://www.hpcwire.com/off-the-wire/texas-researchers-converge-at-tacc-for-record-setting-symposium/",
+    "source_title": "HPCwire, Texas Researchers Converge at TACC for Record-Setting Symposium (the Texas Advanced Computing Center's release)",
+    "source_type": "primary_official",
+    "fetched": "2026-11-10",
+    "id": "tx-2026-0245-c1"
+   },
+   {
+    "text": "TACC's director says Frontera had over seven years of production life, the longest run on any TACC system.",
+    "verbatim_quote": "Frontera had over seven years of production life, which is the longest run on any TACC system",
+    "source_url": "https://www.hpcwire.com/off-the-wire/texas-researchers-converge-at-tacc-for-record-setting-symposium/",
+    "source_title": "HPCwire, Texas Researchers Converge at TACC for Record-Setting Symposium (the Texas Advanced Computing Center's release)",
+    "source_type": "primary_official",
+    "fetched": "2026-11-10",
+    "id": "tx-2026-0245-c2"
+   },
+   {
+    "text": "For most of its service life Frontera was the fastest academic supercomputer in the United States.",
+    "verbatim_quote": "For most of its service life, TACC’s Frontera supercomputer was the fastest academic supercomputer in the United States",
+    "source_url": "https://www.hpcwire.com/off-the-wire/texas-researchers-converge-at-tacc-for-record-setting-symposium/",
+    "source_title": "HPCwire, Texas Researchers Converge at TACC for Record-Setting Symposium (the Texas Advanced Computing Center's release)",
+    "source_type": "primary_official",
+    "fetched": "2026-11-10",
+    "id": "tx-2026-0245-c3"
+   },
+   {
+    "text": "Horizon, Frontera's successor and the centerpiece of the NSF Leadership-Class Computing Facility, has entered its first phase of early operations.",
+    "verbatim_quote": "Horizon, the centerpiece system of NSF LCCF has entered its first phase of early operations.",
+    "source_url": "https://www.hpcwire.com/off-the-wire/texas-researchers-converge-at-tacc-for-record-setting-symposium/",
+    "source_title": "HPCwire, Texas Researchers Converge at TACC for Record-Setting Symposium (the Texas Advanced Computing Center's release)",
+    "source_type": "primary_official",
+    "fetched": "2026-11-10",
+    "id": "tx-2026-0245-c4"
+   },
+   {
+    "text": "Horizon's power infrastructure is complete, an exabyte capacity storage system is in place, and the first deployment of its AI focused hardware is under way.",
+    "verbatim_quote": "the power infrastructure is complete, an exabyte-capacity storage system is in place, and the initial deployment of Horizon’s AI-focused hardware is underway.",
+    "source_url": "https://www.hpcwire.com/off-the-wire/texas-researchers-converge-at-tacc-for-record-setting-symposium/",
+    "source_title": "HPCwire, Texas Researchers Converge at TACC for Record-Setting Symposium (the Texas Advanced Computing Center's release)",
+    "source_type": "primary_official",
+    "fetched": "2026-11-10",
+    "id": "tx-2026-0245-c5"
+   },
+   {
+    "text": "Jose Rizo-Rey of UT Southwestern Medical Center says his lab typically ran a 5.3 million atom simulation on 64 CPU nodes of Frontera. It ran at 43 nanoseconds a day.",
+    "verbatim_quote": "Typically, we’d run a simulation of a 5.3 million-atom system on 64 CPU nodes of Frontera for 43 nanoseconds per day,",
+    "source_url": "https://www.hpcwire.com/off-the-wire/texas-researchers-converge-at-tacc-for-record-setting-symposium/",
+    "source_title": "HPCwire, Texas Researchers Converge at TACC for Record-Setting Symposium (the Texas Advanced Computing Center's release)",
+    "source_type": "primary_official",
+    "fetched": "2026-11-10",
+    "id": "tx-2026-0245-c6"
+   },
+   {
+    "text": "On TACC's Vista system, with eight GPU nodes, he got almost the same speed.",
+    "verbatim_quote": "But now with TACC’s Vista system, using just eight GPU nodes, I got almost the same speed.",
+    "source_url": "https://www.hpcwire.com/off-the-wire/texas-researchers-converge-at-tacc-for-record-setting-symposium/",
+    "source_title": "HPCwire, Texas Researchers Converge at TACC for Record-Setting Symposium (the Texas Advanced Computing Center's release)",
+    "source_type": "primary_official",
+    "fetched": "2026-11-10",
+    "id": "tx-2026-0245-c7"
+   },
+   {
+    "text": "The speed on Vista took many optimizations of the GROMACS code, made with TACC staff.",
+    "verbatim_quote": "That required a lot of optimizations with GROMACS, with the help of people here at TACC.",
+    "source_url": "https://www.hpcwire.com/off-the-wire/texas-researchers-converge-at-tacc-for-record-setting-symposium/",
+    "source_title": "HPCwire, Texas Researchers Converge at TACC for Record-Setting Symposium (the Texas Advanced Computing Center's release)",
+    "source_type": "primary_official",
+    "fetched": "2026-11-10",
+    "id": "tx-2026-0245-c8"
+   },
+   {
+    "text": "The simulations hold a vesicle, a flat bilayer and four SNARE protein complexes, the proteins that let vesicles fuse with their target membranes.",
+    "verbatim_quote": "He has been running simulations with a vesicle, flat bilayer, and four SNARE protein complexes, which allow vesicles to fuse with their target membranes.",
+    "source_url": "https://www.hpcwire.com/off-the-wire/texas-researchers-converge-at-tacc-for-record-setting-symposium/",
+    "source_title": "HPCwire, Texas Researchers Converge at TACC for Record-Setting Symposium (the Texas Advanced Computing Center's release)",
+    "source_type": "primary_official",
+    "fetched": "2026-11-10",
+    "id": "tx-2026-0245-c9"
+   },
+   {
+    "text": "The lab's simulations point to SNAREs acting as a local detergent that mixes the oily interiors of the two membranes.",
+    "verbatim_quote": "The key concept uncovered by simulation and analysis is the SNAREs act as a local detergent that catalyzes the mixing of hydrophobic interiors of the two membranes.",
+    "source_url": "https://www.hpcwire.com/off-the-wire/texas-researchers-converge-at-tacc-for-record-setting-symposium/",
+    "source_title": "HPCwire, Texas Researchers Converge at TACC for Record-Setting Symposium (the Texas Advanced Computing Center's release)",
+    "source_type": "primary_official",
+    "fetched": "2026-11-10",
+    "id": "tx-2026-0245-c10"
+   },
+   {
+    "text": "More than 200 scientists, researchers and students from 30 universities, high schools and industry gathered at TACC for the symposium in September.",
+    "verbatim_quote": "More than 200 scientists, researchers, and students from 30 universities, high schools, and industry around the state gathered at the Texas Advanced Computing Center",
+    "source_url": "https://www.hpcwire.com/off-the-wire/texas-researchers-converge-at-tacc-for-record-setting-symposium/",
+    "source_title": "HPCwire, Texas Researchers Converge at TACC for Record-Setting Symposium (the Texas Advanced Computing Center's release)",
+    "source_type": "primary_official",
+    "fetched": "2026-11-10",
+    "id": "tx-2026-0245-c11"
+   },
+   {
+    "text": "Rizo-Rey's research is synaptic transmission, the signalling between neurons that depends on membrane fusion.",
+    "verbatim_quote": "His research focuses on understanding synaptic transmission, which is regulated by neurons that form compartments along their membranes through fusion.",
+    "source_url": "https://www.hpcwire.com/off-the-wire/texas-researchers-converge-at-tacc-for-record-setting-symposium/",
+    "source_title": "HPCwire, Texas Researchers Converge at TACC for Record-Setting Symposium (the Texas Advanced Computing Center's release)",
+    "source_type": "primary_official",
+    "fetched": "2026-11-10",
+    "id": "tx-2026-0245-c12"
+   }
+  ],
+  "notes_for_editor": "Admitted on the center's own release as HPCwire carries it, because tacc.utexas.edu disallows this project's crawler. The Vista figure is Rizo-Rey's spoken comparison, almost the same speed, and is stated as his account rather than as a measured benchmark.",
+  "history": [
+   {
+    "date": "2026-11-10",
+    "note": "Admitted on the center's own account of its September symposium. Frontera's retirement and the Vista comparison are both stated in the center's words."
+   }
+  ],
+  "last_verified": "2026-11-10",
+  "id": "tx-2026-0245"
  }
 ]

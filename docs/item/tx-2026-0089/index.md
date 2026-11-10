@@ -9,7 +9,7 @@ The Speaker's interim charges give a charge to the House Committee on Delivery o
 - Public access: Public meeting
 - Take part: https://house.texas.gov/committees/committee/233
 
-- Last checked: 2026-11-07
+- Last checked: 2026-11-10
 
 ## Dates
 
@@ -46,6 +46,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-01 · The House government efficiency committee's study charge still stands, with no report yet.
 - 2026-11-04 · Checked and unchanged. Still pending, with no dated movement.
 - 2026-11-07 · The House efficiency committee's study charge still stands, with no report posted.
+- 2026-11-10 · The House government efficiency committee's charge to study state use of AI is still open.
 
 ## Evidence
 

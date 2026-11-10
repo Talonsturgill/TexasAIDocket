@@ -3828,4 +3828,72 @@
  ],
  "not_done": "Largest object unmodelled (5 runs, 12 rounds), object in a void (5 runs, 11 rounds), no contact or grime (5 runs, 10 rounds), dead or empty region (5 runs, 8 rounds) and type on the art (5 runs, 6 rounds) name a different frame on each deck. The kit person's face, hands and hair at a near crop stay open at repeat 5. No gate was added or changed, so no GATE_LESSONS entry is owed"
 }
+,
+"2026-11-10 weekly": {
+ "date": "2026-11-10",
+ "run": "weekly machine pass, read with carousel no. 73 (panel round 3)",
+ "actor": "upgrade",
+ "upgrades": [
+  {
+   "id": "2026-11-10 weekly #1",
+   "what": "Kit data hall models in assets/js/kit/industry.js: node_tray (one 1U compute tray, cpu brushed stainless with an open board, copper sinks, memory and fans, or gpu black anodise with a light bar), node_rack (a counted stack of node_tray in a powder coated ENCLOSURE: solid side panels framed by proud chamfered stiles, top cap and plinth with chamfers, a near black back so an empty slot reads dark, rails punched at the pitch, fill and pull options, userData.slots) and access_floor (raised floor tiles on pedestals over a plenum, liftable and perforated tiles, userData.tileAt)",
+   "why": "Digest theme 'primitive or low-poly model where a kit model belongs', 6 runs of 6 and 17 rounds, the top theme; artwork_craft lowest week mean (6.47). Queue tray-models-built-in-chassis. No. 73's chassis tray_tower was an open four post cage: round 2 craft 'skeletal rod frame ... solid side panels', round 3 integrity 'bare wireframe racks ... crop in on the half filled tower with lit chamfers', round 1 reader 'the deck's own rack, half populated, a few trays sliding in, empty slots dark'",
+   "files": [
+    "assets/js/kit/industry.js",
+    "knowledge/carousel/ARSENAL.md"
+   ],
+   "verification": "node --check exit 0. Proof pages from examples/kit/build.py's page() (lineup of tray open, tray gpu, rack full, rack gpu fill 3 pull 0.3, rack empty; two rack heroes; floor with rack) rendered through .claude/skills/carousel-engine/render.py, exit 0, errors 0, read at full size (out/2026-11-10/tmp/machine/proof). Replays of no. 73's own slide-06.html and slide-08.html with only tray_tower swapped for node_rack, exit 0, errors 0, read at full size (out/2026-11-10/tmp/machine/replay): the emptied racks read as enclosures with dark slots and lit stiles where the shipped frames show cages. One proof found the pulled tray's slide standing proud and it was shortened before the commit. examples/kit/sizes.py exit 0, 144 of 144 declare the size they build, centred. arsenal.py --check exit 0. print_ban.py --assets exit 0",
+   "revert": "git revert 12bb6eaf",
+   "how_i_would_know_this_was_wrong": "A deck that calls node_rack is charged by a judge as a black box, a cabinet with no trays or a wireframe, or its side panels read as flat black planes with no lit edge; or sizes.py fails node_rack at a seed; or a deck needing a data hall still builds its own rack in its chassis"
+  },
+  {
+   "id": "2026-11-10 weekly #2",
+   "what": "Doctrine: parallel is not plan. ILLUSTRATION_SYSTEM rule 4 and THE RENDER line, and a new TECHNIQUE_LIBRARY material relief failure, say a counted quantity keeps a parallel projection and turns the camera to a raking three quarter (an OrthographicCamera, gensetyard's N.ortho) or stands in one row at one depth, and a plan relief is for things flat in life. A one time census script and its output under knowledge/carousel/audits/",
+   "why": "Queue relief-plate-reads-as-a-tray, repeat 3. No. 73 frames 3 and 7 (64 and 8 tray fronts; 860 cells with eight raised) were charged as a keyboard, a chart or a waffle by all three judges in all three rounds at casts far above print_ban's floor; the planner's why_this_technique cited 'a parallel projection keeps every tray exactly the same size', which is ILLUSTRATION_SYSTEM's 'parallel projection for any quantity'. The judges' cure was 'a raking three quarter camera with one flood pooling on the eight'. Census, computed: plan reliefs since October 17th charged chart-like 22 of 53, spatial frames 21 of 136",
+   "files": [
+    "knowledge/carousel/ILLUSTRATION_SYSTEM.md",
+    "knowledge/carousel/TECHNIQUE_LIBRARY.md",
+    "knowledge/carousel/audits/2026-11-10-plan-relief-census.py",
+    "knowledge/carousel/audits/2026-11-10-plan-relief-census.json"
+   ],
+   "verification": "python3 knowledge/carousel/audits/2026-11-10-plan-relief-census.py exit 0 and prints the three tallies the doctrine quotes. Not a gate: within reliefs a regular grid is charged 12 of 26 against 10 of 27, too close to fail a plan on, so no check can go red on it honestly and none was added",
+   "revert": "git revert 03f80d8b",
+   "how_i_would_know_this_was_wrong": "The next count frames shot axonometric are charged as charts or diagrams at the same rate as the plan reliefs were, or charged for no world; or planners keep choosing a plan relief for a count because the routine's sentence still wins"
+  },
+  {
+   "id": "2026-11-10 weekly #3",
+   "what": "panel_ready.check_renders_current records the digests (PNG, every source it loads, render report) each frame was found current against in out/<date>/panel_ready_witness.json, and accepts a frame its file times call stale only when the PNG and every source match those digests byte for byte (and the report, when the report is the older file)",
+   "why": "Queue panel-ready-staleness-reads-mtime, first sighting and bitten today: no. 73 reverted its chassis to the reviewed bytes and the check called every frame stale on file times, so the run restored the file's time by hand. A run taught to set file times to pass a gate has been taught to defeat it",
+   "files": [
+    "scripts/carousel/panel_ready.py"
+   ],
+   "verification": "python3 scripts/carousel/panel_ready.py --self-test exit 0, six new cases: a witness is written; the same bytes rewritten is not an edit; a changed byte stays red; reverted byte for byte is current; no witness stays red; a different PNG with matching sources stays red. The old edit fixture touched a file time only and now changes bytes. Replayed on no. 73's own nine frames and chassis in a scratch copy: a chassis edit is 9 stale on the old code and 9 on the new; the revert to the reviewed bytes is 9 stale on the old and 0 on the new",
+   "revert": "git revert b28c1a34",
+   "how_i_would_know_this_was_wrong": "A panel scores or assemble ships a frame whose source differs from the bytes its PNG was rendered from; or panel_ready_witness.json trips a tool that globs out/<date>/; or a run still sets file times by hand"
+  }
+ ],
+ "proposals_out_of_lane": [
+  {
+   "what": "prompts/daily_routine.md THE ARTWORK CARRIES THE DATA: 'parallel projection for any quantity, seen from a raking three quarter and never straight down, and perspective only for scenes'",
+   "owner": "human",
+   "why": "The routine wins over ILLUSTRATION_SYSTEM; census 22 of 53 plan reliefs charged chart-like against 21 of 136 spatial frames; UPGRADE_BACKLOG 2026-11-10 item 4"
+  },
+  {
+   "what": "GATE_LESSONS entry for the panel_ready witness: a file time was read as an edit, and the run learned to set file times",
+   "owner": "human",
+   "why": "knowledge/shared/GATE_LESSONS.md is human lane; a changed gate belongs there; UPGRADE_BACKLOG 2026-11-10 item 4"
+  },
+  {
+   "what": "TXT.contact under a spot draws a pale hard-edged plane; take the receiving surface's lighting or skip a surface a shadow-casting spot lights",
+   "owner": "human",
+   "why": "assets/js/txthree.js is human; queue contact-decal-pale-under-spot; feeds the 'no contact' theme (6 runs, 13 rounds)"
+  },
+  {
+   "what": "prompt_audit.py stops counting Agent and SendMessage dispatch latency as a human wait",
+   "owner": "daily",
+   "why": "Queue prompt-audit-counts-agent-latency, repeat 8 (no. 73: 37 of 1,400 calls, hook armed, nothing refused); scripts/shared is daily lane"
+  }
+ ],
+ "not_done": "No frontier scan; machine_weekly.md names none. audition-rebind-after-every-panel-repair (repeat 7) carried as the owner's rule. No contact (6 runs, 13 rounds), largest object unmodelled (5, 10), object in a void (5, 10), type on the art (5, 7) and dead or empty region (5, 6) name a different frame on each deck. judge-dark-field-vs-silhouette-gate (first sighting) would move what layout_check measures and waits for a second. A GATE_LESSONS entry is owed for change #3 and is proposed, since that file is human lane"
+}
 }

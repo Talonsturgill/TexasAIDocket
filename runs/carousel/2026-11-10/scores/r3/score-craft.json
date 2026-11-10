@@ -1,0 +1,79 @@
+{
+ "lens": "craft",
+ "round": 3,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.7,
+   "why": "9 the best, 2 and 1 strong. 3 a straight-on plan reading as an infographic, carrier about 25 px under the dek, lightest ground in the deck; 7 an even mid-grey waffle with the eight only 18 percent of the width and its label outside the safe zone; 4 and 5 well modelled but even dark-grey tail fields, 5's neck two caps with a gap; 8's tube racks primitive and its pool on empty floor; 6 a small tower in empty floor, near twin of 9. Type light on dark everywhere, nothing plated."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.2,
+   "why": "One accent, one meaning; measured count recurring; value track never strobes; casts consistent. Two grades (charcoal reliefs, navy hall); copper with two meanings; 6 and 9 near twins."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.8,
+   "why": "Every numeral traces; the speed held as his account; two Xeons a step removed; HPCwire reposts where the original is robots excluded. Nothing inferred past its source."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.5,
+   "why": "What, who and where; no decision, deadline or concrete stake; the lab unplaced."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 6.8,
+   "why": "Cover earns the swipe; 6 and 9 land; 3 restates 1; the quote on 1, 3 and 9; 4 and 5 a detour."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.8,
+   "why": "Clean, no house rule breaks; clerical rather than Texan; disclaimers recur; slide 8 reads as release copy."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.8,
+   "why": "Accent, hall and tray kit new; repeats no. 72's mix, raised-cell grid and molecular register."
+  }
+ ],
+ "weighted_score": 6.99,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Shoot the count frames 3 and 7 the way frame 9 is shot, a raking three quarter camera with one flood pooling on the eight.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 7,
+   "problem": "Even mid-grey waffle, no pool; label outside the safe zone at x 23.",
+   "fix": "Low raking three quarter, one pool on the eight, field to black at the edges, label inside the margin."
+  },
+  {
+   "slide": 3,
+   "problem": "Straight-on plan reads as a chart; carrier 25 px under the dek; lightest ground.",
+   "fix": "Raking three quarter, lowered 120 px, darker ground."
+  },
+  {
+   "slide": 5,
+   "problem": "Even dark-grey tail fields; neck reads as two caps with a gap.",
+   "fix": "Continuous hourglass neck; low key so the rim and bundles carry the highlight."
+  },
+  {
+   "slide": 8,
+   "problem": "Tube racks primitive; pool on empty floor, subject in half shade.",
+   "fix": "Centre the pool on the tower and the sliding tray; darken the open floor."
+  },
+  {
+   "slide": 6,
+   "problem": "Small tower in empty floor, near twin of 9; pulled tray small.",
+   "fix": "High three quarter close on the pulled tray."
+  }
+ ]
+}

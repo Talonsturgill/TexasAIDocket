@@ -11,7 +11,7 @@ The City of San Antonio's Department of Development Services presented two propo
 - Public access: Public meeting
 - Take part: https://www.sa.gov/Directory/Departments/DSD/Boards-Commissions/Public-Input
 
-- Last checked: 2026-11-07
+- Last checked: 2026-11-10
 
 ## Dates
 
@@ -33,6 +33,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-01 · San Antonio's two data center zoning proposals still have no final vote on the city's record.
 - 2026-11-04 · Checked and unchanged. Still pending, with no dated movement.
 - 2026-11-07 · The San Antonio zoning proposals' hearing date has passed, and the item stands as last read.
+- 2026-11-10 · San Antonio's two data center zoning proposals have no council vote posted beyond the record's last step.
 
 ## Evidence
 

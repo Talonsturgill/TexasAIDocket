@@ -1,0 +1,340 @@
+{
+ "claims": [
+  {
+   "id": "c1",
+   "text": "Frontera was retired in October 2026 after it had run more than eight million jobs.",
+   "quote": "Frontera was retired in October 2026, having surpassed eight million jobs.",
+   "url": "https://www.hpcwire.com/off-the-wire/texas-researchers-converge-at-tacc-for-record-setting-symposium/",
+   "source_type": "primary_official",
+   "retrieved": "2026-11-10",
+   "confidence": "high"
+  },
+  {
+   "id": "c2",
+   "text": "Stanzione said Frontera had more than seven years of production life, which he called the longest run on any TACC system.",
+   "quote": "Frontera had over seven years of production life, which is the longest run on any TACC system,",
+   "url": "https://www.hpcwire.com/off-the-wire/texas-researchers-converge-at-tacc-for-record-setting-symposium/",
+   "source_type": "primary_official",
+   "retrieved": "2026-11-10",
+   "confidence": "high"
+  },
+  {
+   "id": "c3",
+   "text": "For most of its service life Frontera was the fastest academic supercomputer in the United States.",
+   "quote": "For most of its service life, TACC’s Frontera supercomputer was the fastest academic supercomputer in the United States,",
+   "url": "https://www.hpcwire.com/off-the-wire/texas-researchers-converge-at-tacc-for-record-setting-symposium/",
+   "source_type": "primary_official",
+   "retrieved": "2026-11-10",
+   "confidence": "high"
+  },
+  {
+   "id": "c4",
+   "text": "Horizon, the centerpiece system of NSF LCCF and the successor to Frontera, has entered its first phase of early operations.",
+   "quote": "As TACC retires Frontera, its successor, Horizon, the centerpiece system of NSF LCCF has entered its first phase of early operations",
+   "url": "https://www.hpcwire.com/off-the-wire/texas-researchers-converge-at-tacc-for-record-setting-symposium/",
+   "source_type": "primary_official",
+   "retrieved": "2026-11-10",
+   "confidence": "high"
+  },
+  {
+   "id": "c5",
+   "text": "Stanzione announced that Horizon's power infrastructure is complete and that an exabyte-capacity storage system is in place.",
+   "quote": "Stanzione announced that the power infrastructure is complete, an exabyte-capacity storage system is in place,",
+   "url": "https://www.hpcwire.com/off-the-wire/texas-researchers-converge-at-tacc-for-record-setting-symposium/",
+   "source_type": "primary_official",
+   "retrieved": "2026-11-10",
+   "confidence": "high"
+  },
+  {
+   "id": "c6",
+   "text": "The initial deployment of Horizon's AI-focused hardware is underway.",
+   "quote": "and the initial deployment of Horizon’s AI-focused hardware is underway.",
+   "url": "https://www.hpcwire.com/off-the-wire/texas-researchers-converge-at-tacc-for-record-setting-symposium/",
+   "source_type": "primary_official",
+   "retrieved": "2026-11-10",
+   "confidence": "high"
+  },
+  {
+   "id": "c7",
+   "text": "Jose Rizo-Rey works at UT Southwestern Medical Center.",
+   "quote": "Chess fascinates Jose Rizo-Rey of UT Southwestern Medical Center",
+   "url": "https://www.hpcwire.com/off-the-wire/texas-researchers-converge-at-tacc-for-record-setting-symposium/",
+   "source_type": "primary_official",
+   "retrieved": "2026-11-10",
+   "confidence": "high"
+  },
+  {
+   "id": "c8",
+   "text": "Rizo-Rey said his group typically ran a simulation of a 5.3 million-atom system on 64 CPU nodes of Frontera at 43 nanoseconds per day.",
+   "quote": "Typically, we’d run a simulation of a 5.3 million-atom system on 64 CPU nodes of Frontera for 43 nanoseconds per day,",
+   "url": "https://www.hpcwire.com/off-the-wire/texas-researchers-converge-at-tacc-for-record-setting-symposium/",
+   "source_type": "primary_official",
+   "retrieved": "2026-11-10",
+   "confidence": "high"
+  },
+  {
+   "id": "c9",
+   "text": "In his own spoken account Rizo-Rey said eight GPU nodes on TACC's Vista system gave him almost the same speed. The comparison is his account and not a measured benchmark.",
+   "quote": "But now with TACC’s Vista system, using just eight GPU nodes, I got almost the same speed.",
+   "url": "https://www.hpcwire.com/off-the-wire/texas-researchers-converge-at-tacc-for-record-setting-symposium/",
+   "source_type": "primary_official",
+   "retrieved": "2026-11-10",
+   "confidence": "high"
+  },
+  {
+   "id": "c10",
+   "text": "Rizo-Rey said reaching that speed on Vista took a lot of GROMACS optimization with help from TACC staff.",
+   "quote": "That required a lot of optimizations with GROMACS, with the help of people here at TACC.",
+   "url": "https://www.hpcwire.com/off-the-wire/texas-researchers-converge-at-tacc-for-record-setting-symposium/",
+   "source_type": "primary_official",
+   "retrieved": "2026-11-10",
+   "confidence": "high"
+  },
+  {
+   "id": "c11",
+   "text": "Rizo-Rey's simulations contain a vesicle, a flat bilayer and four SNARE protein complexes.",
+   "quote": "He has been running simulations with a vesicle, flat bilayer, and four SNARE protein complexes",
+   "url": "https://www.hpcwire.com/off-the-wire/texas-researchers-converge-at-tacc-for-record-setting-symposium/",
+   "source_type": "primary_official",
+   "retrieved": "2026-11-10",
+   "confidence": "high"
+  },
+  {
+   "id": "c12",
+   "text": "SNARE protein complexes allow vesicles to fuse with their target membranes.",
+   "quote": "four SNARE protein complexes, which allow vesicles to fuse with their target membranes.",
+   "url": "https://www.hpcwire.com/off-the-wire/texas-researchers-converge-at-tacc-for-record-setting-symposium/",
+   "source_type": "primary_official",
+   "retrieved": "2026-11-10",
+   "confidence": "high"
+  },
+  {
+   "id": "c13",
+   "text": "The key concept uncovered by simulation and analysis is that the SNAREs act as a local detergent.",
+   "quote": "The key concept uncovered by simulation and analysis is the SNAREs act as a local detergent",
+   "url": "https://www.hpcwire.com/off-the-wire/texas-researchers-converge-at-tacc-for-record-setting-symposium/",
+   "source_type": "primary_official",
+   "retrieved": "2026-11-10",
+   "confidence": "high"
+  },
+  {
+   "id": "c14",
+   "text": "In that model the SNAREs catalyze the mixing of the hydrophobic interiors of the two membranes.",
+   "quote": "catalyzes the mixing of hydrophobic interiors of the two membranes",
+   "url": "https://www.hpcwire.com/off-the-wire/texas-researchers-converge-at-tacc-for-record-setting-symposium/",
+   "source_type": "primary_official",
+   "retrieved": "2026-11-10",
+   "confidence": "high"
+  },
+  {
+   "id": "c15",
+   "text": "Rizo-Rey's research focuses on understanding synaptic transmission.",
+   "quote": "His research focuses on understanding synaptic transmission",
+   "url": "https://www.hpcwire.com/off-the-wire/texas-researchers-converge-at-tacc-for-record-setting-symposium/",
+   "source_type": "primary_official",
+   "retrieved": "2026-11-10",
+   "confidence": "high"
+  },
+  {
+   "id": "c16",
+   "text": "Rizo-Rey determines three dimensional structures at atomic resolution.",
+   "quote": "Rizo-Rey solves three dimensional structures at atomic resolution",
+   "url": "https://www.hpcwire.com/off-the-wire/texas-researchers-converge-at-tacc-for-record-setting-symposium/",
+   "source_type": "primary_official",
+   "retrieved": "2026-11-10",
+   "confidence": "high"
+  },
+  {
+   "id": "c17",
+   "text": "His structural work draws on data from NMR spectroscopy, electron microscopy and X-ray crystallography.",
+   "quote": "using data from NMR spectroscopy, electron microscopy, and X-ray crystallography.",
+   "url": "https://www.hpcwire.com/off-the-wire/texas-researchers-converge-at-tacc-for-record-setting-symposium/",
+   "source_type": "primary_official",
+   "retrieved": "2026-11-10",
+   "confidence": "high"
+  },
+  {
+   "id": "c18",
+   "text": "More than 200 scientists, researchers and students from 30 universities, high schools and industry around the state gathered at TACC for the symposium.",
+   "quote": "More than 200 scientists, researchers, and students from 30 universities, high schools, and industry around the state",
+   "url": "https://www.hpcwire.com/off-the-wire/texas-researchers-converge-at-tacc-for-record-setting-symposium/",
+   "source_type": "primary_official",
+   "retrieved": "2026-11-10",
+   "confidence": "high"
+  },
+  {
+   "id": "c19",
+   "text": "The September symposium drew a record turnout.",
+   "quote": "in September, a record turnout.",
+   "url": "https://www.hpcwire.com/off-the-wire/texas-researchers-converge-at-tacc-for-record-setting-symposium/",
+   "source_type": "primary_official",
+   "retrieved": "2026-11-10",
+   "confidence": "high"
+  },
+  {
+   "id": "c20",
+   "text": "Stefan Henneking, an invited speaker, is with the Oden Institute for Computational Engineering and Sciences.",
+   "quote": "Invited speaker Stefan Henneking of the Oden Institute for Computational Engineering and Sciences",
+   "url": "https://www.hpcwire.com/off-the-wire/texas-researchers-converge-at-tacc-for-record-setting-symposium/",
+   "source_type": "primary_official",
+   "retrieved": "2026-11-10",
+   "confidence": "high"
+  },
+  {
+   "id": "c21",
+   "text": "Henneking said his team got early access to Horizon thanks to TACC.",
+   "quote": "Thanks to TACC, we got early access to Horizon, where both our MFEM-based wave propagation solver",
+   "url": "https://www.hpcwire.com/off-the-wire/texas-researchers-converge-at-tacc-for-record-setting-symposium/",
+   "source_type": "primary_official",
+   "retrieved": "2026-11-10",
+   "confidence": "high"
+  },
+  {
+   "id": "c22",
+   "text": "Henneking described Horizon as entering full production soon.",
+   "quote": "With Horizon entering full production soon, it’s going to be an exciting time for academic research",
+   "url": "https://www.hpcwire.com/off-the-wire/texas-researchers-converge-at-tacc-for-record-setting-symposium/",
+   "source_type": "primary_official",
+   "retrieved": "2026-11-10",
+   "confidence": "high"
+  },
+  {
+   "id": "c23",
+   "text": "Since 2001 more than 130,000 U.S. researchers have used TACC's systems.",
+   "quote": "since 2001, more than 130,000 U.S. researchers have used the center’s systems,",
+   "url": "https://www.hpcwire.com/off-the-wire/texas-researchers-converge-at-tacc-for-record-setting-symposium/",
+   "source_type": "primary_official",
+   "retrieved": "2026-11-10",
+   "confidence": "high"
+  },
+  {
+   "id": "c24",
+   "text": "TACC Executive Director Dan Stanzione said in his state-of-the-center address that TACC turned 25 in June.",
+   "quote": "TACC turned 25 in June of this year,",
+   "url": "https://www.hpcwire.com/off-the-wire/texas-researchers-converge-at-tacc-for-record-setting-symposium/",
+   "source_type": "primary_official",
+   "retrieved": "2026-11-10",
+   "confidence": "high"
+  },
+  {
+   "id": "c25",
+   "text": "TACC said the NVIDIA GH200 Grace Hopper Superchip is the processor for the majority of Vista's 860 compute nodes.",
+   "quote": "The NVIDIA GH200 Grace Hopper Superchip is the processor for a the majority of Vista’s 860 compute nodes.",
+   "url": "https://www.hpcwire.com/off-the-wire/taccs-vista-ai-focused-supercomputer-in-production-for-open-science-community/",
+   "source_type": "primary_official",
+   "retrieved": "2026-11-10",
+   "confidence": "high"
+  },
+  {
+   "id": "c26",
+   "text": "The GH200 pairs an NVIDIA Grace CPU with an NVIDIA Hopper architecture GPU.",
+   "quote": "It combines the NVIDIA Grace CPU with an NVIDIA Hopper architecture-based GPU",
+   "url": "https://www.hpcwire.com/off-the-wire/taccs-vista-ai-focused-supercomputer-in-production-for-open-science-community/",
+   "source_type": "primary_official",
+   "retrieved": "2026-11-10",
+   "confidence": "high"
+  },
+  {
+   "id": "c27",
+   "text": "Vista's other nodes use the NVIDIA Grace CPU Superchip, which TACC describes as two Grace CPUs in a single module.",
+   "quote": "The NVIDIA Grace CPU Superchip, which contains two Grace CPUs in a single module,",
+   "url": "https://www.hpcwire.com/off-the-wire/taccs-vista-ai-focused-supercomputer-in-production-for-open-science-community/",
+   "source_type": "primary_official",
+   "retrieved": "2026-11-10",
+   "confidence": "medium"
+  },
+  {
+   "id": "c28",
+   "text": "TACC said Vista would arrive at the Texas Advanced Computing Center at The University of Texas at Austin in early 2024.",
+   "quote": "is arriving at the Texas Advanced Computing Center (TACC) at The University of Texas at Austin in early 2024",
+   "url": "https://www.hpcwire.com/off-the-wire/tacc-announces-vista-a-new-ai-centric-supercomputing-system-for-advanced-research/",
+   "source_type": "primary_official",
+   "retrieved": "2026-11-10",
+   "confidence": "medium"
+  },
+  {
+   "id": "c29",
+   "text": "A TACC release on Frontera's expansion put Frontera's existing compute nodes at 8,008.",
+   "quote": "the same configuration as Frontera’s existing 8,008 compute nodes",
+   "url": "https://www.hpcwire.com/off-the-wire/frontera-expansion-to-support-urgent-computing-for-covid-19-hurricane-research/",
+   "source_type": "primary_official",
+   "retrieved": "2026-11-10",
+   "confidence": "high"
+  },
+  {
+   "id": "c30",
+   "text": "Each node in Frontera's expansion holds two Intel Xeon Platinum 8280 processors and 192GB of DDR-4 memory, which TACC called the same configuration as the existing compute nodes.",
+   "quote": "Each node contains two Intel Xeon Platinum 8280 (“Cascade Lake”) processors and 192GB of DDR-4 memory",
+   "url": "https://www.hpcwire.com/off-the-wire/frontera-expansion-to-support-urgent-computing-for-covid-19-hurricane-research/",
+   "source_type": "primary_official",
+   "retrieved": "2026-11-10",
+   "confidence": "high"
+  },
+  {
+   "id": "c31",
+   "text": "An expansion added 396 Dell R640 server nodes to Frontera, housed in 11 racks.",
+   "quote": "The expansion adds 396 Dell R640 server nodes, housed in 11 racks",
+   "url": "https://www.hpcwire.com/off-the-wire/frontera-expansion-to-support-urgent-computing-for-covid-19-hurricane-research/",
+   "source_type": "primary_official",
+   "retrieved": "2026-11-10",
+   "confidence": "high"
+  },
+  {
+   "id": "c32",
+   "text": "TOP500 lists Frontera's processor as Xeon Platinum 8280 28C 2.7GHz.",
+   "quote": "Xeon Platinum 8280 28C 2.7GHz",
+   "url": "https://www.top500.org/system/179607/",
+   "source_type": "data",
+   "retrieved": "2026-11-10",
+   "confidence": "high"
+  },
+  {
+   "id": "c33",
+   "text": "The GROMACS project's own site describes it as free and open-source software for high-performance molecular dynamics.",
+   "quote": "A free and open-source software suite for high-performance molecular dynamics and output analysis.",
+   "url": "https://www.gromacs.org/",
+   "source_type": "primary_corporate",
+   "retrieved": "2026-11-10",
+   "confidence": "high"
+  },
+  {
+   "id": "c34",
+   "text": "Rizo-Rey said the concept is what his lab calls the local detergent model of membrane fusion.",
+   "quote": "This is what we call the local detergent model of membrane fusion",
+   "url": "https://www.hpcwire.com/off-the-wire/texas-researchers-converge-at-tacc-for-record-setting-symposium/",
+   "source_type": "primary_official",
+   "retrieved": "2026-11-10",
+   "confidence": "high"
+  }
+ ],
+ "rejected": [
+  {
+   "finding": "How many GPU nodes Vista has",
+   "reason": "Neither fetched TACC release prints a GH200 node count. 860 is all compute nodes, and the 2023 announcement says a little more than half. Any count would be derived."
+  },
+  {
+   "finding": "One Vista GPU node is one GH200 superchip",
+   "reason": "No fetched page states one superchip per node."
+  },
+  {
+   "finding": "Frontera CPU node has 56 cores",
+   "reason": "No fetched page prints 56. It would be a product of two processors and 28C."
+  },
+  {
+   "finding": "Frontera total cores 448,448",
+   "reason": "Only a bare table cell, under the four word quote minimum."
+  },
+  {
+   "finding": "Frontera node count at retirement",
+   "reason": "No page states it. 8,008 plus 396 would be arithmetic, and no page confirms the expansion stayed in service."
+  },
+  {
+   "finding": "Frontera and Vista sit on the J.J. Pickle Research Campus",
+   "reason": "No fetched page names the campus. tacc.utexas.edu is excluded by robots."
+  },
+  {
+   "finding": "Supporting hardware pages that failed to load",
+   "reason": "news.utexas.edu 2019 Frontera pages returned 404, HPCwire dated article paths returned 403, the NSF link served a generic index."
+  }
+ ]
+}

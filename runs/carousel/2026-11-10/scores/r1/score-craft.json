@@ -1,0 +1,83 @@
+{
+ "lens": "craft",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.3,
+   "why": "No frame fully passes the showstopper test at 432 px. 9 about 7.5, 1 about 7 (lower floor evenly lit, no pool, no long cast), 4 the best relief. Frame 2 has no tray and floats over teal-grey fog with a dead lower zone. Frame 8 crate right face crushed black, plywood banding, lifted row one leaning slab, whips flat. Frame 7 raised cells read as a dotted line and their cast as a smear. Frame 5 join is a rectangular plug. Frame 6 pool left of the tower and base into the footer band. Frame 3 reads as a keyboard, carrier touches the dek. Type light on dark everywhere with no plates is a strength."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "Clearly one deck; the tray motif changes state across 1, 3, 6, 7, 9; cyan means only a Vista node. Held below 8 by two grades (charcoal reliefs, navy hall), frame 2 outside both with teal-grey fog, 6 and 9 near twins."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.5,
+   "why": "Every numeral traces to a claim; rejected findings honoured; drawn to illustrate stated; c9 kept at its source's strength. Deduction for TACC facts via HPCwire reprints; 'Frontera is dark' a little looser than 'retired'."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.5,
+   "why": "What, who and where clear; the stake stays general and nothing is actionable; UT Southwestern unplaced."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Cover earns the swipe, the turn to what the machine computed is real, the close lands. Frame 3 restates the cover and 'almost the same speed' is said on 1, 3 and 9."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Clean and measured with good lines; frame 8's last sentence reads as a press release; little regional specificity; repeated quote."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "New accent and machine hall, but the structure repeats no. 72: dark interior plus relief mix, a molecular model as the thing computed, a counting relief with raised cells, a count-led opening."
+  }
+ ],
+ "weighted_score": 7.08,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Rebuild 2, 8, 7 and 5 as staged scenes with their subject in the pool: 2 as a whole steel tray on the dark tile, 8 with a lit plenum and a bounce-filled crate, 7 with cells big enough to read, 5 with a continuous neck.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 2,
+   "problem": "No tray in frame; fin stacks and DIMM slabs float over teal-grey fog; bottom third dead.",
+   "fix": "Pull back and up so the tray walls, pan and lip enclose both sinks; seat it on the dark tile in the pool."
+  },
+  {
+   "slide": 8,
+   "problem": "Crate shadow face crushed black, plywood banding, one leaning slab, flat whips; reads as a nightstand.",
+   "fix": "Open a lifted row with a lit plenum edge and whips rising toward the crate; fill the right face to L* 8 to 12; fine grain."
+  },
+  {
+   "slide": 7,
+   "problem": "Eight raised cells read as a dotted line; cast reads as a smear.",
+   "fix": "Raise the eight cells three times higher with lit chamfers and crisp short casts; darken the field."
+  },
+  {
+   "slide": 5,
+   "problem": "Join is a rectangular plug; bundles shrink against frame 4.",
+   "fix": "A continuous hourglass neck; keep the bundles at frame 4's height."
+  },
+  {
+   "slide": 6,
+   "problem": "Pool left of the tower; rails read as a ladder; base runs into the footer band.",
+   "fix": "Centre the pool under the tower; base above y 900."
+  },
+  {
+   "slide": 3,
+   "problem": "Carrier touches the dek; grid reads as a keyboard.",
+   "fix": "Drop the carrier 40 px and darken it."
+  }
+ ]
+}

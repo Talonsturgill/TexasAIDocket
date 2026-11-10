@@ -1,0 +1,115 @@
+{
+ "_spec": {
+  "version": 1,
+  "purpose": "A standalone web edition of the archived visual story.",
+  "law": "Facts resolve to the original verified claim record. A layout rebuild does not reverify reporting.",
+  "written_by": "daily"
+ },
+ "section": "Research",
+ "dek": {
+  "text": "TACC retired Frontera in October. A UT Southwestern lab says a simulation that ran on {{number:c8:1}} Frontera CPU nodes got almost the same speed on eight Vista GPU nodes.",
+  "claims": [
+   "c1",
+   "c8",
+   "c9"
+  ]
+ },
+ "introduction": [
+  {
+   "text": "[The Texas Advanced Computing Center at UT Austin retired Frontera in October 2026, after the machine had run more than eight million jobs](c1). [The center says that for most of its service life Frontera was the fastest academic supercomputer in the United States](c3). [Its executive director said its run of more than seven years was the longest of any TACC system](c2).",
+   "claims": [
+    "c1",
+    "c3",
+    "c2"
+   ]
+  },
+  {
+   "text": "[The center gave that account in its report on a September symposium for Texas researchers](c18), [which drew a record turnout](c19). [One of the speakers was Jose Rizo-Rey of UT Southwestern Medical Center](c7). His description of moving a large simulation onto newer hardware is the clearest measure the account offers of what the change means for a working lab.",
+   "claims": [
+    "c18",
+    "c19",
+    "c7"
+   ]
+  }
+ ],
+ "sections": [
+  {
+   "heading": "Sixty four nodes, then eight",
+   "paragraphs": [
+    {
+     "text": "[Rizo-Rey said his group typically ran a {{number:c8}} million atom simulation on {{number:c8:1}} CPU nodes of Frontera at {{number:c8:2}} nanoseconds of simulated time per day](c8). [On TACC's Vista system, he said, eight GPU nodes gave him almost the same speed](c9).",
+     "claims": [
+      "c8",
+      "c9"
+     ]
+    },
+    {
+     "text": "[He said getting there took a lot of optimization of GROMACS, with help from TACC staff](c10). [GROMACS describes itself as free and open source software for high performance molecular dynamics](c33). The comparison is his own spoken account in the center's release. It is not a published benchmark, and the release gives no simulated time per day for Vista.",
+     "claims": [
+      "c10",
+      "c33",
+      "c9"
+     ]
+    },
+    {
+     "text": "[TACC has said the NVIDIA GH200 Grace Hopper Superchip is the processor for the majority of Vista's {{number:c25:0}} compute nodes](c25). [The chip pairs a Grace CPU with a Hopper GPU](c26). [Each Frontera node, by TACC's description of its expansion, held two Intel Xeon Platinum 8280 processors](c30).",
+     "claims": [
+      "c25",
+      "c26",
+      "c30"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "What the simulation holds",
+   "paragraphs": [
+    {
+     "text": "[Rizo-Rey studies synaptic transmission](c15). [His simulations contain a vesicle, a flat bilayer and four SNARE protein complexes](c11), [the proteins that let vesicles fuse with their target membranes](c12).",
+     "claims": [
+      "c15",
+      "c11",
+      "c12"
+     ]
+    },
+    {
+     "text": "[The key concept the simulations and analysis point to is that the SNAREs act as a local detergent](c13). [In that model they catalyze the mixing of the hydrophobic interiors of the two membranes](c14). The account does not say whether that finding has been published in a journal, and it gives no figures for how the simulated fusion compares with experiments.",
+     "claims": [
+      "c13",
+      "c14"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "What comes after Frontera",
+   "paragraphs": [
+    {
+     "text": "[Frontera's successor, Horizon, the centerpiece of the NSF Leadership-Class Computing Facility, has entered its first phase of early operations](c4). [The center's executive director said its power infrastructure is complete and an exabyte capacity storage system is in place](c5). [The initial deployment of its AI focused hardware is under way](c6).",
+     "claims": [
+      "c4",
+      "c5",
+      "c6"
+     ]
+    },
+    {
+     "text": "[A researcher from the Oden Institute who had early access said Horizon is entering full production soon](c22). The account gives no date for full production and no figure for how many of Vista's or Horizon's nodes researchers can expect to use. [More than {{number:c23:1}} U.S. researchers have used TACC's systems since {{number:c23}}](c23).",
+     "claims": [
+      "c22",
+      "c23"
+     ]
+    }
+   ]
+  }
+ ],
+ "related": [
+  {
+   "id": "tx-2026-0245",
+   "label": "TACC retires Frontera and the Vista comparison"
+  },
+  {
+   "id": "tx-2026-0125",
+   "label": "Frontera's queues close"
+  }
+ ]
+}

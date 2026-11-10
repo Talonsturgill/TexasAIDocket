@@ -1,0 +1,125 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot shows its room"
+      ],
+      "bands": [
+        0.2752,
+        0.7605,
+        0.4706
+      ],
+      "band_ratio": 0.9399
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot shows its room"
+      ],
+      "bands": [
+        0.2794,
+        0.4517,
+        0.5386
+      ],
+      "band_ratio": 1.257
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [
+        "console error: TXBENCH: RELIEF {\"height_range\":48.099998474121094,\"materials\":5,\"cast_fraction\":0.1199389574759945,\"area\":1,\"render_ms\":5859.200000000012}"
+      ],
+      "bands": [
+        0.2731,
+        0.6807,
+        0.5184
+      ],
+      "band_ratio": 1.0537
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [
+        "console error: TXBENCH: RELIEF {\"height_range\":49.73213195800781,\"materials\":5,\"cast_fraction\":0.17336042524005488,\"area\":1,\"render_ms\":7792.39999999851}"
+      ],
+      "bands": [
+        0.271,
+        0.4916,
+        0.5147
+      ],
+      "band_ratio": 1.1975
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [
+        "console error: TXBENCH: RELIEF {\"height_range\":62.165164947509766,\"materials\":5,\"cast_fraction\":0.17436454046639233,\"area\":1,\"render_ms\":9007.199999999255}"
+      ],
+      "bands": [
+        0.3424,
+        0.3782,
+        0.7279
+      ],
+      "band_ratio": 1.4736
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot shows its room"
+      ],
+      "bands": [
+        0.2731,
+        0.2122,
+        0.5993
+      ],
+      "band_ratio": 1.6095
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [
+        "console error: TXBENCH: RELIEF {\"height_range\":300,\"materials\":5,\"cast_fraction\":0.13986351165980795,\"area\":1,\"render_ms\":10591.200000000012}",
+        "outside safe zone: '860 compute nodes' at 23,1147 292x34 (margin 80px)"
+      ],
+      "bands": [
+        0.3151,
+        0.687,
+        0.693
+      ],
+      "band_ratio": 1.214
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot shows its room"
+      ],
+      "bands": [
+        0.25,
+        0.3046,
+        0.829
+      ],
+      "band_ratio": 1.7346
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot shows its room"
+      ],
+      "bands": [
+        0.2626,
+        0.4433,
+        0.7188
+      ],
+      "band_ratio": 1.479
+    }
+  ],
+  "fails": 0,
+  "warns": 10,
+  "verdict": "WARN"
+}

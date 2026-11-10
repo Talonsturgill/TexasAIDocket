@@ -11,7 +11,7 @@ JAMA Network Open published a quality improvement study on September 3rd, 2026. 
 - Public access: Write to the decider
 - Take part: https://pmc.ncbi.nlm.nih.gov/articles/PMC13543018/
 
-- Last checked: 2026-11-07
+- Last checked: 2026-11-10
 
 ## Dates
 
@@ -42,6 +42,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-01 · The study where case managers beat Houston Methodist's discharge AI still reads as published.
 - 2026-11-04 · The JAMA Network Open paper still reports case managers out-estimating the discharge AI nearer the day a patient goes home. Its authors still caution against reading the strong admission-day correlation as accuracy.
 - 2026-11-07 · The finding that case managers beat the discharge AI on the last day still reads as published.
+- 2026-11-10 · The paper's open access copy still carries every passage the record quotes, and nothing in it has been corrected.
 
 ## Evidence
 

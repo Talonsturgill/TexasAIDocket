@@ -1,0 +1,68 @@
+<!doctype html>
+<!-- 2026-11-10, frame 2 of 9. Archetype CLOSE_CROP. A spatial scene through txthree.js inside the TXT.interior machine hall: one Frontera tray with its lid off on a raised floor tile, two copper heat sinks of thin fins, memory rows either side and a fan wall at the back. Drawn to illustrate, not a real Frontera node. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:900px">More than eight million jobs</h1>
+<p class="dek" data-follow="26" style="width:860px">For most of its service life Frontera was the fastest academic supercomputer in the United States. TACC's executive director calls its more than seven years of production the longest run on any TACC system. Each node held two Intel Xeon processors.</p>
+<script>window.FIG = {"xeons_per_node": 2};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-10-tray.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE); CH.KEY_SCALE = 1.4;
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Frontera, retired in October", counter: "02 / 09", src: "c1 c2 c3 c24 c29 c30", fit: { min: 80, max: 104, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 38, near: 0.02, far: 60 });
+  TXT.interior(R, CH.roomOpts({}));
+  CH.floor(TXT, R, K, { cols: 14, rows: 12 });
+  const Y = CH.FLOOR_H;
+  /* THE FIGURE: one copper heat sink per processor, xeons_per_node of them in the open tray */
+  const tray = K.make('compute_tray', { kind: 'cpu', open: true, sinks: FIG.xeons_per_node, fins: 13 });
+  tray.position.set(0, Y, 0); tray.rotation.y = 1.36; TXT.add(R, tray); TXT.contact(R, tray, { y: Y, opacity: 0.8 });
+  /* the next tray of the same node row, closed, beyond it on the floor */
+  const t2 = K.make('compute_tray', { kind: 'cpu' }); t2.position.set(-0.75, Y, -0.55); t2.rotation.y = 1.25; TXT.add(R, t2); TXT.contact(R, t2, { y: Y, opacity: 0.8 });
+  /* round 2: the camera stands back and high so the whole tray, its steel walls, rolled lip and bezel, sits in the pool
+   * below the dek, with the closed tray behind it; the board inside goes graphite, never the green fog it read as */
+  const from = [0.55, Y + 1.45, 1.75];
+  const look = CH.aim(THREE, R, TXT, from, [0.0, Y + 0.03, 0.02], 610, 915, 27);
+  TXT.frame(R, { fov: 27, from, look });
+  /* the board as a board: graphite with fine traces, capacitor rows, VRM blocks and the pale outline of each socket, in the
+   * albedo, so the pan between the sinks carries the subject's own detail rather than a flat plate */
+  { const c = document.createElement('canvas'); c.width = c.height = 512; const g = c.getContext('2d'), rr = TX.rng(20261110);
+    g.fillStyle = '#121417'; g.fillRect(0, 0, 512, 512);   /* round 3: near black graphite so the copper stacks are the only bright mass */
+    for (let i = 0; i < 260; i++) { const x = rr() * 512, y = rr() * 512, v = 46 + (rr() * 26 | 0); g.strokeStyle = 'rgba(' + (v + 26) + ',' + (v + 6) + ',' + (v - 10) + ',0.5)';   /* fine copper traces */ g.lineWidth = 0.8 + rr() * 1.2; g.beginPath(); g.moveTo(x, y); const h = rr() < 0.5; g.lineTo(h ? x + 20 + rr() * 90 : x, h ? y : y + 20 + rr() * 90); g.stroke(); }
+    for (let i = 0; i < 90; i++) { const v = 44 + (rr() * 30 | 0); g.fillStyle = 'rgb(' + v + ',' + v + ',' + (v + 6) + ')'; g.fillRect(rr() * 512, rr() * 512, 3 + rr() * 6, 3 + rr() * 6); }
+    for (let i = 0; i < 18; i++) { g.fillStyle = '#0b0c0e'; g.fillRect(rr() * 480, rr() * 480, 14 + rr() * 22, 10 + rr() * 16); }
+    const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 8;
+    tray.traverse(m => { if (m.isMesh && m.material && m.material.color && m.material.color.getHex() === 0x1b2420) { m.material = m.material.clone(); m.material.color.setHex(0xffffff); m.material.map = t; m.material.needsUpdate = true; } }); }
+  tray.traverse(m => { if (m.isMesh && m.material && m.material.metalness > 0.9 && m.geometry.parameters && m.geometry.parameters.height !== undefined && m.geometry.parameters.height < 0.01) { m.material = m.material.clone(); m.material.roughness = 0.62; m.material.color.setHex(0x3a3e44); } });
+  TXT.deckRig(R, CH.rigSpec(W, 3, 2048), CH.rigOpts([0, Y, 0], { distance: 6, shadowFar: 14, normalBias: 0.004 }));
+  CH.unacne(R, 0.008);
+  CH.darkHall(R, { env: 0.03, fill: 0.12 });
+  /* the flood itself, hung on the declared key's bearing (upper left) and aimed down into the open tray */
+  CH.flood(THREE, R, [-1.0, Y + 2.1, 0.7], [0, Y, 0.0], { i: 95, reach: 6, angle: 0.24, penumbra: 0.55 });
+  TXT.weather(R, { grime: 0.08, height: 0.1, mottle: 0.12 });
+  TXT.stage(R, tray);
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0.35, veil: 0.3, veilH: 220 });
+  CH.footWash(cx, { a: 0.6 });
+  CH.typeDark(cx, { fade: 200, a: 0.92 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

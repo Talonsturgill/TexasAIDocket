@@ -225,7 +225,8 @@
         "2026-11-03",
         "2026-11-05",
         "2026-11-07",
-        "2026-11-08"
+        "2026-11-08",
+        "2026-11-10"
       ],
       "contradicted": []
     },
@@ -654,7 +655,8 @@
         "2026-10-31",
         "2026-11-01",
         "2026-11-03",
-        "2026-11-05"
+        "2026-11-05",
+        "2026-11-10"
       ],
       "contradicted": []
     },
@@ -1723,7 +1725,9 @@
       "learned": "2026-11-03",
       "instinct": "Settle every string, label and markup choice on the cover, the evidence frame and the close before the art director's first reading, because every later edit to those three frames costs a fresh reading.",
       "evidence": "No. 67 took seven audition readings: the third accepted, then pixel and flow repairs, a label halo for panel_ready, a text-stroke span the shipped check refused and a FIG line reorder each re-opened frames 1, 2 or 9.",
-      "confirmed": [],
+      "confirmed": [
+        "2026-11-10"
+      ],
       "contradicted": []
     },
     {
@@ -1787,6 +1791,22 @@
       "learned": "2026-11-08",
       "instinct": "End every type wash at the dek before blaming the light for a grey subject top.",
       "evidence": "no. 72 frame 9: four readings and three relights before the washes were found",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "a-plan-relief-count-reads-as-a-chart",
+      "learned": "2026-11-10",
+      "instinct": "Stage a deck's count frame as a lit object seen at three quarter view, because a straight-on height field of units reads as a chart at feed size however tall its raised units stand.",
+      "evidence": "no. 73 frames 3 and 7, 64 and 8 tray fronts and 860 cells with eight raised, read as a keyboard, chart or waffle to all three judges in all three panel rounds; doubling the raised cells' height and sharpening their casts did not move a score",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "read-the-speakers-words-before-naming",
+      "learned": "2026-11-10",
+      "instinct": "Name a model, a program or a finding only in the words a quoted speaker used for it, because an account's own summary sentence carries the idea without the name.",
+      "evidence": "no. 73 slide 5 said the researchers call it the local detergent model, which c13's quote never said; Rizo-Rey's own quote one line below it did, and binding it as c34 cleared the integrity judge's charge",
       "confirmed": [],
       "contradicted": []
     }
