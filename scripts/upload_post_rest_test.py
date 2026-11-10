@@ -50,10 +50,41 @@ class RestTests(unittest.TestCase):
             m = manifest('linkedin', 'video' if kind == 'video' else 'document', repo=repo.split('/')[1])
             _, fields, _, _ = rest.build(m)
             self.assertEqual(fields['user'], user)
-            self.assertEqual(fields['target_linkedin_page_id'], org)
+            self.assertEqual(fields['target_linkedin_page_id'], 'urn:li:organization:' + org)
             self.assertEqual(fields['visibility'], 'PUBLIC')
             m['user'] = 'other'
             with self.assertRaises(ValueError): rest.build(m)
+
+    def test_bound_linkedin_numeric_and_urn_normalize(self):
+        for selector in ('78748279', 'urn:li:organization:78748279'):
+            for repo, kind in [('TexasAIDispatch', 'video'), ('TexasAIDocket', 'document')]:
+                m = manifest('linkedin', kind, repo=repo)
+                m['options']['target_linkedin_page_id'] = selector
+                self.assertEqual(rest.build(m)[1]['target_linkedin_page_id'], 'urn:li:organization:78748279')
+        m['options']['target_linkedin_page_id'] = 'urn:li:organization:117084989'
+        with self.assertRaises(ValueError): rest.build(m)
+
+    def test_read_only_pins_and_email_redaction(self):
+        for route in ('linkedin-pin', 'facebook-pin'):
+            code, response = rest.read(route, {'profile_username': 'default'},
+                                      send=lambda path: (200, {'user_email': 'private', 'selected_page_id': 'bound'}))
+            self.assertEqual(response, {'selected_page_id': 'bound'})
+            with self.assertRaises(ValueError): rest.read(route, {'profile_username': 'other'})
+        response = {'history': [{'user_email': 'private', 'post_caption': 'copy', 'request_id': 'r1'}]}
+        self.assertEqual(rest.redact(response)['history'][0], {'post_caption': 'copy', 'request_id': 'r1'})
+        self.assertIn('user_email', response['history'][0])
+
+    def test_unexpected_credentials_and_signed_urls_redacted(self):
+        data = {'request_id': 'r1', 'job_id': 'j1', 'privacy_level': 'PUBLIC_TO_EVERYONE',
+                'result': {'access_token': 'secret', 'Authorization': 'secret',
+                           'refresh_token': 'secret', 'api_key': 'secret',
+                           'url': 'https://storage.example/file?X-Amz-Signature=secret'},
+                'post_url': 'https://facebook.com/story.php?story_fbid=123&id=456'}
+        clean = rest.redact(data)
+        self.assertNotIn('secret', json.dumps(clean))
+        self.assertEqual(clean['post_url'], data['post_url'])
+        self.assertEqual(clean['request_id'], 'r1')
+        self.assertEqual(clean['privacy_level'], 'PUBLIC_TO_EVERYONE')
 
     def test_wrong_organization_refused(self):
         m = manifest('linkedin'); m['options']['target_linkedin_page_id'] = '117084989'

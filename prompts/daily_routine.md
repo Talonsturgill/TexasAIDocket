@@ -25,9 +25,13 @@ routine runtime. Use `read facebook-pages --query profile=<bound-user>` and
 `read linkedin-pages --query profile=<bound-user>` to verify the exact connected accounts.
 The IDs above are bindings, not hints. Never use the first profile/page returned, the personal
 LinkedIn profile, or the other state's accounts. Send `target_linkedin_page_id` for every
-LinkedIn upload and the verified brand `facebook_page_id` for every Facebook upload. Verify any
-pinned Facebook Page belongs to this brand too: the provider's pinned Page overrides the supplied
-page ID. A missing or mismatched account blocks that destination, not normal production and email
+LinkedIn upload and the verified brand `facebook_page_id` for every Facebook upload. The helper
+normalizes the exact bound LinkedIn numeric ID or full URN to `urn:li:organization:<bound-id>`,
+matching the Pages API returned `id`. It rejects any other organization. Verify both current pins
+with `read facebook-pin --query profile_username=<bound-user>` and
+`read linkedin-pin --query profile_username=<bound-user>`. A non-null `selected_page_id` must
+match the bound brand Page: either provider's pinned Page overrides its supplied upload selector.
+A null pin is allowed because the helper supplies the explicit bound Page. Never change a pin. A missing or mismatched account blocks that destination, not normal production and email
 delivery. Report the exact mismatch.
 
 The publisher is the official REST API at https://api.upload-post.com/api, documented at

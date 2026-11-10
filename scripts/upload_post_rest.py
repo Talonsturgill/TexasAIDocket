@@ -16,11 +16,13 @@ import re
 import subprocess
 import sys
 from datetime import datetime, timezone
-from urllib.parse import urlencode
+from urllib.parse import urlencode, urlsplit, urlunsplit, parse_qsl
 
 BASE = 'https://api.upload-post.com/api'
 ROUTES = {
     'users': ('/uploadposts/users', set()),
+    'facebook-pin': ('/uploadposts/users/facebook-page', {'profile_username'}),
+    'linkedin-pin': ('/uploadposts/users/linkedin-page', {'profile_username'}),
     'facebook-pages': ('/uploadposts/facebook/pages', {'profile'}),
     'linkedin-pages': ('/uploadposts/linkedin/pages', {'profile'}),
     'tiktok-settings': ('/uploadposts/tiktok/settings', {'profile'}),
@@ -120,7 +122,10 @@ def build(manifest):
         options[key] = value
 
     if platform == 'linkedin':
-        fixed('target_linkedin_page_id', organization)
+        urn = 'urn:li:organization:' + organization
+        require(options.get('target_linkedin_page_id', urn) in {organization, urn},
+                'LinkedIn organization does not match repository')
+        options['target_linkedin_page_id'] = urn
         fixed('visibility', 'PUBLIC')
     else:
         require('target_linkedin_page_id' not in options and 'visibility' not in options,
@@ -182,6 +187,25 @@ def transport(path, fields=None, media=(), media_field=None):
     return code, response
 
 
+def redact(value):
+    """Keep reconciliation metadata, omit unnecessary account email addresses."""
+    sensitive = {'user_email', 'access_token', 'refresh_token', 'api_key', 'token',
+                 'authorization', 'client_secret', 'password', 'secret', 'session_cookie',
+                 'session_token', 'id_token', 'cookie', 'set-cookie'}
+    if isinstance(value, dict):
+        return {key: redact(item) for key, item in value.items() if key.lower() not in sensitive}
+    if isinstance(value, list):
+        return [redact(item) for item in value]
+    if isinstance(value, str) and value.startswith(('https://', 'http://')):
+        parsed = urlsplit(value)
+        query = parse_qsl(parsed.query, keep_blank_values=True)
+        secret_query = sensitive | {'sig', 'signature', 'x-amz-signature', 'x-amz-credential',
+                                    'x-amz-security-token', 'x-goog-signature', 'x-goog-credential'}
+        if any(key.lower() in secret_query for key, _ in query):
+            return urlunsplit((parsed.scheme, parsed.hostname or '', parsed.path, 'REDACTED', ''))
+    return value
+
+
 def read(route, query, send=transport):
     path, allowed = ROUTES[route]
     require(query.keys() <= allowed, 'unsupported read query')
@@ -190,6 +214,8 @@ def read(route, query, send=transport):
     if route == 'history':
         require(query.get('limit', '10') in {'10', '20', '50', '100'}, 'history limit must be 10, 20, 50 or 100')
         require(str(query.get('page', '1')).isdigit() and int(query.get('page', '1')) >= 1, 'history page must be positive')
+    if route in {'facebook-pin', 'linkedin-pin'}:
+        require(query.get('profile_username') in {'alaska_ai', 'default'}, 'bound profile required')
     if route == 'tiktok-settings':
         require(bool(query.get('profile')), 'TikTok profile required')
     if route == 'media':
@@ -198,7 +224,8 @@ def read(route, query, send=transport):
             require(query.get('page_urn') in {'117084989', '78748279'}, 'bound LinkedIn organization required')
     if query:
         path += '?' + urlencode(query)
-    return send(path)
+    status, response = send(path)
+    return status, redact(response)
 
 
 def sync_directory(path):
@@ -236,7 +263,7 @@ def upload(manifest, receipt_dir, dry_run=False, send=transport):
         raise ValueError('delivery already attempted; reconcile existing receipt/history, never resubmit') from None
     try:
         code, response = send(path, fields, media, ENDPOINTS[manifest['media_type']][1])
-        info.update(http_status=code, response=response)
+        info.update(http_status=code, response=redact(response))
         # A 2xx response is not proof of an actual published post.
         info['state'] = 'ACCEPTED' if 200 <= code < 300 else 'UNKNOWN'
         if isinstance(response, dict):
