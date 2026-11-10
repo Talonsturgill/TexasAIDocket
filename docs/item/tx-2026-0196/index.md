@@ -11,7 +11,7 @@ The Fifteenth Court of Appeals affirmed a Business Court ruling in Harris County
 - Public access: Closed
 - Take part: https://storage.courtlistener.com/pdf/2026/09/15/createai_holdings_inc._fka_tusimple_holdings_inc._v._bot_auto_tx_inc..pdf
 
-- Last checked: 2026-11-07
+- Last checked: 2026-11-10
 
 ## Dates
 
@@ -33,6 +33,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-01 · The appeals court's ruling leaving Bot Auto free to build driverless trucks still stands.
 - 2026-11-04 · Checked and unchanged. The decision still stands as decided.
 - 2026-11-07 · The appeals court's order leaving Bot Auto free to keep building still stands.
+- 2026-11-10 · Bot Auto is still free to build driverless trucks while the trade secrets suit against it continues.
 
 ## Evidence
 

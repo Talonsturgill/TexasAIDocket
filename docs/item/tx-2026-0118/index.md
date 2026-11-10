@@ -10,7 +10,7 @@ The Commodity Futures Trading Commission published a request for comment on Augu
 - Comment closes: 2026-10-20
 - Take part: https://www.govinfo.gov/content/pkg/FR-2026-08-21/html/2026-17163.htm
 
-- Last checked: 2026-11-07
+- Last checked: 2026-11-10
 
 ## Dates
 
@@ -46,6 +46,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-01 · The comment window on derivatives tied to data center capacity closed on October 20th, and the notice reads as cited.
 - 2026-11-04 · The comment window closed on October 20th.
 - 2026-11-07 · The comment window closed on October 20th.
+- 2026-11-10 · The commodities regulator's inquiry into compute derivatives is still open as described.
 
 ## Evidence
 

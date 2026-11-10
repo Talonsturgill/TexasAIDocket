@@ -11,7 +11,7 @@ Saronic Technologies broke ground on September 30th on Port Alpha. It is a shipy
 - Public access: Write to the decider
 - Take part: https://www.cameroncountytx.gov/commissioners-court-agendas/
 
-- Last checked: 2026-11-07
+- Last checked: 2026-11-10
 
 ## Dates
 
@@ -31,6 +31,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-01 · Saronic's Port Alpha yard in Brownsville still reads as under construction.
 - 2026-11-04 · Checked and unchanged. The decision still stands as decided.
 - 2026-11-07 · Saronic's Port Alpha shipyard in Brownsville stands as announced.
+- 2026-11-10 · Saronic's Port Alpha shipyard at the Port of Brownsville still reads as begun.
 
 ## Evidence
 
