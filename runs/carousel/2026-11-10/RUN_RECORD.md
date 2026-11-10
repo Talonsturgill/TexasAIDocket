@@ -119,7 +119,7 @@ package 237.74.
 
 ## CI
 
-PR no. 466's first CI run went red on one gate, `shipped_check`'s FIG lines: slide 3 carried an unread `node_ratio` and slide 7's keys were out of the injector's order, because the run wrote those lines by hand rather than through `fig_inject.py`. `fig_inject.py --run` rewrote both. Slide 3 is an audition frame, so the change unbound the art review; the re-render of 3 and 7 is byte-identical (slide 3 sha256 31676624f191...), and the `carousel-art-director` re-read frame 3 on its new source and accepted it. `art_preflight --archive`, `measure_shipped --check`, `panel_ready` and `shipped_check` all exit 0 here. No delivered image changed, so `docs/` did not move. The storyboard's frame 3 `data_in_art.figure` still names node_ratio, a dossier wording the reviewer flagged and the run left as archived.
+PR no. 466's first CI run went red on one gate, `shipped_check`'s FIG lines: slide 3 carried an unread `node_ratio` and slide 7's keys were out of the injector's order, because the run wrote those lines by hand rather than through `fig_inject.py`. `fig_inject.py --run` rewrote both. Slide 3 is an audition frame, so the change unbound the art review; the re-render of 3 and 7 is byte-identical (slide 3 sha256 31676624f191...), and the `carousel-art-director` re-read frame 3 on its new source and accepted it. `art_preflight --archive`, `measure_shipped --check`, `panel_ready` and `shipped_check` all exit 0 here. No delivered image changed, so `docs/` did not move. The byte-identical PNGs were given back their earlier file times so `gate_status` stops reading the score, assembly and aggregates as stale, the same file-time defect the weekly pass fixed in `panel_ready` and not yet in `gate_status`. The storyboard's frame 3 `data_in_art.figure` still names node_ratio, a dossier wording the reviewer flagged and the run left as archived.
 
 ## Email
 
@@ -137,9 +137,9 @@ Written at Phase 18.
 | claims         | PASS   | 34 verified claim(s) |
 | render         | PASS   | 9 slide(s) |
 | qa             | WARN   | 0 fail(s), 5 warn(s) |
-| aggregates     | STALE  | aggregate_report.json predates the newest render, so it describes a deck that no longer exists. Re-run it |
-| assembly       | STALE  | final/assemble_report.json predates the newest render, so it describes a deck that no longer exists. Re-run it |
-| score          | STALE  | score.json predates the newest render, so it describes a deck that no longer exists. Re-run it |
+| aggregates     | PASS   | 19 declaration(s), 28 numeric phrase(s) in the render, all re-derived |
+| assembly       | PASS   | 9 slide(s), 6.82 MB, vector |
+| score          | WARN   | 6.97 at the round cap after 3 round(s), the finished deck ships; 8.0 top rung, shortfall named |
 | labels         | PASS   | 68 claim id(s) checked, every label beside one traces to the shape its claim proves |
 | quantifiers    | PASS   | 79 published string(s) read from one list, every universal names its set |
 | verbatim       | WARN   | no dossier declares a `verbatim:` block, so no on-frame string was held to a quote |
