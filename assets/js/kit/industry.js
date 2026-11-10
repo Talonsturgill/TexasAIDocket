@@ -964,6 +964,8 @@ export function install(K, THREE, TXT) {
   installShop(K, THREE, TXT);
   // AFTER the wrapper too: the frame publishes its column grid in its own coordinates.
   installSite(K, THREE, TXT, { bake, darkSteel, galv, concrete });
+  // AFTER the wrapper too: node_rack keeps its origin under the rack body when a tray is pulled.
+  installHall(K, THREE, TXT, { ctex, std, hole, rubber, tbox, cbox, cyl });
 }
 
 /* The site scale models live below, sharing the helpers above through `H`. */
@@ -2462,6 +2464,191 @@ function installSite(K, THREE, TXT, H) {
       out.userData.keepOrigin = true;
       out.userData.columns = { x0: X0, z0: Z0, bay: B, cols: nc, rows: nr, depth: COL.d, strong: sx ? 'x' : 'z' };
       return out;
+    },
+  });
+}
+
+
+/* THE DATA HALL'S SMALL THINGS (lifted 2026-11-10 from carousel no. 73's chassis, assets/js/deck/2026-11-10-tray.js,
+ * by the weekly machine pass). The kit had a 42U `server_rack` and a hall, and nothing between: no single node a
+ * frame can count, no frame that holds a counted stack, no floor the stack stands on. No. 73 built all three in its
+ * chassis, and its open frame (four posts, rails, nothing else) was charged by two judges in round 2 as a skeletal rod
+ * frame ("solid side panels") and in round 3 as "bare wireframe racks" ("crop in on the half filled tower with lit
+ * chamfers"); the reader asked for "the deck's own rack, half populated, a few trays sliding in, empty slots dark".
+ * So `node_rack` is an ENCLOSURE, never a cage: solid side panels with proud chamfered stiles that catch the key, a
+ * top cap and plinth with lit chamfers, a dark back so an empty slot reads as a dark slot, and front rails punched
+ * at the slot pitch. An emptied rack (fill 0) still reads as a rack. New names on purpose: the chassis keeps its own
+ * `compute_tray`, `tray_tower` and `raised_floor`, so no. 73's reviewed frames render exactly as they shipped. */
+function installHall(K, THREE, TXT, H) {
+  const { ctex, std, hole, rubber, tbox, cbox, cyl } = H;
+  const T = { w: 0.44, h: 0.044, d: 0.70, pitch: 0.089 };   // one 1U node tray, stacked at a 2U pitch
+  const steel = () => std('hallSteel', { color: 0xb4b9be, roughness: 0.34, metalness: 1.0 });
+  const steelD = () => std('hallSteelD', { color: 0x5c6168, roughness: 0.45, metalness: 0.9 });
+  const anod = () => std('hallAnod', { color: 0x111317, roughness: 0.4, metalness: 0.7 });
+  const board = () => std('hallBoard', { color: 0x1b2420, roughness: 0.7, metalness: 0.1 });
+  const copper = () => std('hallCopper', { color: 0xc98a5a, roughness: 0.42, metalness: 0.85 });
+  const fanM = () => std('hallFan', { color: 0x0c0d0f, roughness: 0.6, metalness: 0 });
+  const dimm = () => std('hallDimm', { color: 0x2a2d32, roughness: 0.5, metalness: 0.3 });
+  // SATIN POWDER COAT, not bare metal: a metalness near 1 reflects a staged world's black sky and renders the
+  // whole enclosure black but for one glint, which is how no. 73's posts read as lines. A low metalness takes the
+  // key diffusely, so a side panel is a lit plane and its chamfered stile is the brightest edge on it.
+  const coat = (c) => std('hallCoat' + c.toString(16), { color: c, roughness: 0.46, metalness: 0.25 });
+  const perf = (dark) => {
+    const key = dark ? 'hallPerfD' : 'hallPerf';
+    if (!perf[key]) perf[key] = new THREE.MeshStandardMaterial({ roughness: dark ? 0.45 : 0.4, metalness: dark ? 0.6 : 0.9,
+      map: ctex(key, 256, 32, (g) => { g.fillStyle = dark ? '#1a1c20' : '#c4c8cc'; g.fillRect(0, 0, 256, 32); g.fillStyle = '#050506';
+        for (let y = 5; y < 30; y += 6) for (let x = 4 + ((y / 6) % 2) * 3; x < 252; x += 6) { g.beginPath(); g.arc(x, y, 1.6, 0, 7); g.fill(); } }, false, true) });
+    return perf[key];
+  };
+  const shadowAll = (G) => G.traverse((m) => { if (m.isMesh) { m.castShadow = true; m.receiveShadow = true; } });
+
+  /* NODE TRAY: one compute node, drawn to illustrate and never to size. kind 'cpu' is brushed stainless; open shows
+   * the board, `sinks` copper heat sinks of `fins` fins, memory either side of each socket and a fan wall. kind 'gpu'
+   * is black anodise with a light bar along the bezel, unlit and outside the tone curve so it renders its own colour
+   * (lit:false turns it dark; `glow` sets the colour). Origin on the ground under the tray, front on +z. Carried from
+   * no. 73's compute_tray, the frame its craft judge called the best render in the deck. */
+  K.define('node_tray', {
+    size: [0.44, 0.05, 0.73],
+    options: { kind: 'cpu', open: false, lit: true, sinks: 2, fins: 13, glow: 0x8FE0F0 },
+    note: 'One 1U compute node tray, drawn to illustrate: rounded stainless (cpu) or black anodised (gpu) body, perforated bezel with two handles; open shows copper heat sinks, memory and a fan wall; gpu carries a light bar (glow). Stack them in node_rack.',
+    make(o) {
+      const G = new THREE.Group(), gpu = o.kind === 'gpu', BODY = gpu ? anod() : steel();
+      if (!o.open) {
+        const body = TXT.roundedBox(T.w, T.h, T.d - 0.02, 0.004, BODY); body.position.set(0, T.h / 2, -0.01); G.add(body);
+        cbox(T.w - 0.03, 0.0015, 0.004, gpu ? fanM() : steelD(), 0, T.h + 0.0002, 0.08, G);          // the lid seam
+      } else {
+        const floor = TXT.roundedBox(T.w, 0.004, T.d - 0.02, 0.0015, BODY); floor.position.set(0, 0.002, -0.01); G.add(floor);
+        for (const s of [-1, 1]) {
+          const wall = TXT.roundedBox(0.003, T.h, T.d - 0.02, 0.001, BODY); wall.position.set(s * (T.w / 2 - 0.0015), T.h / 2, -0.01); G.add(wall);
+          const lip = TXT.roundedBox(0.012, 0.003, T.d - 0.02, 0.001, BODY); lip.position.set(s * (T.w / 2 - 0.006), T.h, -0.01); G.add(lip);
+        }
+        cbox(T.w - 0.02, 0.002, T.d - 0.12, board(), 0, 0.006, 0, G);
+        const n = o.sinks || 2, nf = Math.max(2, o.fins || 13);
+        for (let k = 0; k < n; k++) {
+          const cx = (k - (n - 1) / 2) * 0.15, cz = 0.04;
+          const base = TXT.roundedBox(0.09, 0.008, 0.09, 0.002, copper()); base.position.set(cx, 0.011, cz); G.add(base);
+          for (let f = 0; f < nf; f++) cbox(0.0012, 0.026, 0.088, copper(), cx - 0.042 + f * (0.084 / (nf - 1)), 0.028, cz, G);
+          for (const s of [-1, 1]) for (let m = 0; m < 3; m++) cbox(0.0035, 0.03, 0.13, dimm(), cx + s * (0.058 + m * 0.009), 0.022, cz, G);
+        }
+        for (let q = 0; q < 6; q++) {
+          const fan = TXT.roundedBox(0.04, 0.038, 0.028, 0.003, fanM()); fan.position.set(-0.17 + q * 0.068, 0.022, -0.24); G.add(fan);
+          const hub = new THREE.Mesh(new THREE.CylinderGeometry(0.008, 0.008, 0.03, 16), steelD()); hub.rotation.x = Math.PI / 2; hub.position.set(-0.17 + q * 0.068, 0.022, -0.24); G.add(hub);
+        }
+      }
+      cbox(T.w, T.h, 0.012, perf(gpu), 0, T.h / 2, T.d / 2 - 0.006, G);                                 // the bezel
+      for (const s of [-1, 1]) { const h = TXT.roundedBox(0.012, T.h * 0.7, 0.026, 0.004, gpu ? steelD() : steel()); h.position.set(s * (T.w / 2 - 0.02), T.h / 2, T.d / 2 + 0.012); G.add(h); }
+      const off = std('hallDot', { color: 0x0a0b0d, roughness: 0.6 });
+      if (gpu) {
+        const key = 'glow' + (o.glow >>> 0).toString(16);
+        if (o.lit && !perf[key]) { perf[key] = new THREE.MeshBasicMaterial({ color: o.glow, toneMapped: false }); perf[key].userData = { txWear: false }; }
+        const bar = o.lit ? perf[key] : off;
+        cbox(T.w - 0.08, 0.014, 0.004, bar, 0, 0.012, T.d / 2 + 0.001, G);   // a light bar a third of the bezel tall, so it reads at feed size
+        cbox(0.008, 0.004, 0.003, bar, T.w / 2 - 0.05, T.h - 0.01, T.d / 2 + 0.001, G);
+      } else {
+        cbox(0.006, 0.004, 0.003, off, T.w / 2 - 0.05, T.h - 0.01, T.d / 2 + 0.001, G);
+      }
+      shadowAll(G);
+      G.userData.tray = { w: T.w, h: T.h, d: T.d };
+      return G;
+    },
+  });
+
+  /* NODE RACK: an ENCLOSURE holding `slots` node trays at the 2U pitch, filled from the bottom by `fill` (null is
+   * full, 0 is empty), so a half populated rack reads as one with dark slots waiting. Solid side panels framed by
+   * proud chamfered stiles, a top cap and a plinth with chamfered edges and levelling feet, a near black back and
+   * front rails punched at the pitch. `pull` (metres) draws the topmost tray out toward +z on telescoping slides,
+   * and with a pull the origin stays under the rack body (userData.keepOrigin) so a frame's placement does not move
+   * when the drawer does. userData.slots publishes the stack, in the rack's own coordinates. */
+  K.define('node_rack', {
+    size: [0.54, 0.83, 0.79],
+    options: { kind: 'cpu', slots: 8, fill: null, lit: true, pull: 0, openTop: false, coat: 0x353a41 },
+    note: 'A counted stack of node_tray in a powder coated enclosure: solid side panels with lit chamfered stiles, top cap, plinth on feet, a dark back so an empty slot reads dark, rails punched at the pitch. fill sets how many slots hold a tray (null all, 0 none); pull slides the top tray out.',
+    make(o) {
+      const G = new THREE.Group(), n = Math.max(1, o.slots | 0), fill = o.fill == null ? n : Math.max(0, Math.min(n, o.fill | 0));
+      const CL = 0.012, PT = 0.014, IW = T.w + 2 * CL, W = IW + 2 * PT, D = T.d + 0.06, PLINTH = 0.07, Y0 = PLINTH + 0.012;
+      const HS = n * T.pitch + 0.02, CAP = 0.024, H = Y0 + HS + CAP, COAT = coat(o.coat), DARK = coat(0x16181b);
+      // feet and plinth: a chamfered plinth on four levelling feet, its toe kick recessed and dark
+      for (const sx of [-1, 1]) for (const sz of [-1, 1]) cyl(0.016, 0.02, 0.022, rubber(), sx * (W / 2 - 0.04), 0, sz * (D / 2 - 0.05), 14, G);
+      tbox(W - 0.02, PLINTH - 0.022, D - 0.04, DARK, 0, 0.022, 0, G, 0, 0.006);
+      tbox(W, 0.014, D, COAT, 0, PLINTH - 0.002, 0, G, 0, 0.005);
+      // side panels, each framed by proud stiles and rails whose chamfers are the brightest edge on the rack
+      for (const s of [-1, 1]) {
+        const x = s * (IW / 2 + PT / 2);
+        tbox(PT, HS, D - 0.03, COAT, x, Y0, 0, G, 0, 0.004);
+        for (const z of [-1, 1]) tbox(PT + 0.006, HS, 0.03, COAT, x + s * 0.003, Y0, z * (D / 2 - 0.015), G, 0, 0.008);
+        for (const y of [Y0, Y0 + HS - 0.026]) tbox(PT + 0.006, 0.026, D - 0.06, COAT, x + s * 0.003, y, 0, G, 0, 0.008);
+        // the slide each slot's tray rides on, an angle along the inner face
+        for (let i = 0; i < n; i++) tbox(0.008, 0.01, T.d - 0.04, std('hallSlide', { color: 0x4a4f56, roughness: 0.4, metalness: 0.85 }), s * (T.w / 2 + 0.006), Y0 + 0.01 + i * T.pitch - 0.002, 0, G);
+      }
+      // the back: near black, so a slot with no tray reads as a dark slot rather than as a gap in a cage
+      tbox(IW, HS, 0.01, hole(), 0, Y0, -D / 2 + 0.012, G);
+      tbox(W, CAP, D, COAT, 0, Y0 + HS, 0, G, 0, 0.008);                               // the top cap
+      tbox(W - 0.06, 0.004, D - 0.08, DARK, 0, Y0 + HS + CAP, 0, G, 0, 0.0015);          // its recessed top panel
+      // front mounting rails, punched at the tray pitch
+      const rail = (() => {
+        if (!perf.rail) perf.rail = new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.42, metalness: 0.5,
+          map: ctex('hallRail', 16, 64, (g, w, h) => { g.fillStyle = '#3a3e45'; g.fillRect(0, 0, w, h); g.fillStyle = '#060607';
+            for (let k = 0; k < 3; k++) g.fillRect(5, 6 + k * 20, 6, 6); }) });
+        return perf.rail;
+      })();
+      for (const s of [-1, 1]) {
+        const r = new THREE.Mesh(new THREE.BoxGeometry(0.016, HS, 0.006), rail);
+        const uv = r.geometry.attributes.uv; for (let i = 0; i < uv.count; i++) uv.setY(i, uv.getY(i) * HS / T.pitch);
+        r.material.map.wrapT = THREE.RepeatWrapping; r.position.set(s * (IW / 2 - 0.008), Y0 + HS / 2, D / 2 - 0.02); G.add(r);
+      }
+      // the trays, bottom up; the topmost populated one may be pulled out on telescoping slides
+      const front = D / 2 - 0.028 - T.d / 2;
+      for (let i = 0; i < fill; i++) {
+        const top = i === fill - 1, pull = top ? Math.max(0, +o.pull || 0) : 0;
+        const t = K.make('node_tray', { kind: o.kind, lit: o.lit, open: top && o.openTop, seed: i + 1 });
+        t.position.set(0, Y0 + 0.012 + i * T.pitch, front + pull); G.add(t);
+        if (pull) for (const s of [-1, 1]) tbox(0.006, 0.008, pull + 0.08, steel(), s * (T.w / 2 + 0.006), Y0 + 0.012 + i * T.pitch + 0.01, D / 2 - 0.08 + pull / 2, G, 0, 0.002);
+      }
+      shadowAll(G);
+      G.userData.slots = { n, fill, y0: Y0 + 0.012, pitch: T.pitch, front, tray: { w: T.w, h: T.h, d: T.d } };
+      G.userData.topY = H;
+      if (o.pull > 0 && fill > 0) G.userData.keepOrigin = true;
+      return G;
+    },
+  });
+
+  /* ACCESS FLOOR: a data hall raised floor, cols x rows tiles of `tile` metres with tops at `height` on pedestals
+   * over a dark plenum. `lift` lists tile indices (row * cols + col) taken up to open the plenum, `perf` lists
+   * perforated supply tiles. The laminate carries a fine speckle, scuffs and a darker grime rim in the albedo.
+   * Origin under the floor's centre (keepOrigin); userData.tileAt(c, r) gives a tile's centre on the walking surface.
+   * Carried from no. 73's raised_floor. */
+  K.define('access_floor', {
+    size: [8.4, 0.45, 7.2],
+    options: { cols: 14, rows: 12, tile: 0.6, height: 0.45, lift: [], perf: [] },
+    note: 'A data hall raised floor: graphite laminate tiles with steel edges on pedestals over a dark plenum; lift opens tiles, perf makes supply tiles; userData.tileAt(c, r).',
+    make(o) {
+      const G = new THREE.Group(), S = o.tile, C = o.cols, Rw = o.rows, Hf = o.height, lift = {}, perfd = {};
+      (o.lift || []).forEach((i) => { lift[i] = 1; }); (o.perf || []).forEach((i) => { perfd[i] = 1; });
+      const LAM = std('hallLam', { color: 0xffffff, roughness: 0.62, metalness: 0.05, map: ctex('hallLam', 256, 256, (lg) => {
+        const lr = K.rng(733); lg.fillStyle = '#2a2d33'; lg.fillRect(0, 0, 256, 256);
+        for (let q = 0; q < 2600; q++) { const v = 30 + (lr() * 34 | 0); lg.fillStyle = 'rgba(' + v + ',' + (v + 3) + ',' + (v + 8) + ',0.55)'; lg.fillRect(lr() * 256, lr() * 256, 1 + lr() * 2, 1 + lr() * 2); }
+        for (let q = 0; q < 14; q++) { lg.strokeStyle = 'rgba(10,11,13,' + (0.25 + lr() * 0.35) + ')'; lg.lineWidth = 0.6 + lr() * 1.4; lg.beginPath(); const sx = lr() * 256, sy = lr() * 256; lg.moveTo(sx, sy); lg.lineTo(sx + (lr() - 0.5) * 120, sy + (lr() - 0.5) * 40); lg.stroke(); }
+        const rim = lg.createRadialGradient(128, 128, 90, 128, 128, 182); rim.addColorStop(0, 'rgba(0,0,0,0)'); rim.addColorStop(1, 'rgba(0,0,0,0.45)'); lg.fillStyle = rim; lg.fillRect(0, 0, 256, 256);
+      }, false, true) });
+      const PERFT = std('hallPerfTile', { color: 0xffffff, roughness: 0.55, metalness: 0.3, map: ctex('hallPerfTile', 128, 128, (g) => {
+        g.fillStyle = '#2a2d32'; g.fillRect(0, 0, 128, 128); g.fillStyle = '#060607';
+        for (let y = 6; y < 124; y += 8) for (let x = 6; x < 124; x += 8) { g.beginPath(); g.arc(x, y, 2.2, 0, 7); g.fill(); } }, false, true) });
+      const EDGE = std('hallEdge', { color: 0x6a6f76, roughness: 0.4, metalness: 0.9 });
+      const PLEN = std('hallPlen', { color: 0x08090b, roughness: 0.9, metalness: 0 });
+      const geo = TXT.roundedBox(S - 0.004, 0.03, S - 0.004, 0.003, LAM).geometry, egeo = new THREE.BoxGeometry(S, 0.006, S);
+      const solid = [], holed = [];
+      for (let r = 0; r < Rw; r++) for (let c = 0; c < C; c++) { const i = r * C + c; if (lift[i]) continue; (perfd[i] ? holed : solid).push([(c - (C - 1) / 2) * S, (r - (Rw - 1) / 2) * S]); }
+      const inst = (list, mat, g, y) => { if (!list.length) return; const im = new THREE.InstancedMesh(g, mat, list.length), M = new THREE.Matrix4();
+        list.forEach((p, k) => { M.makeTranslation(p[0], y, p[1]); im.setMatrixAt(k, M); }); im.castShadow = true; im.receiveShadow = true; G.add(im); };
+      inst(solid, LAM, geo, Hf - 0.015); inst(holed, PERFT, geo, Hf - 0.015); inst(solid.concat(holed), EDGE, egeo, Hf - 0.033);
+      const pl = cbox(C * S, 0.02, Rw * S, PLEN, 0, 0.01, 0, G); pl.receiveShadow = true;
+      const ped = [];
+      for (let rr = 0; rr <= Rw; rr++) for (let cc = 0; cc <= C; cc++) ped.push([(cc - C / 2) * S, (rr - Rw / 2) * S]);
+      const pim = new THREE.InstancedMesh(new THREE.CylinderGeometry(0.012, 0.012, Hf - 0.04, 10), EDGE, ped.length), MM = new THREE.Matrix4();
+      ped.forEach((p, k) => { MM.makeTranslation(p[0], (Hf - 0.04) / 2, p[1]); pim.setMatrixAt(k, MM); }); pim.castShadow = true; G.add(pim);
+      G.userData.tileAt = (c, r) => [(c - (C - 1) / 2) * S, Hf, (r - (Rw - 1) / 2) * S];
+      G.userData.keepOrigin = true;
+      return G;
     },
   });
 }
