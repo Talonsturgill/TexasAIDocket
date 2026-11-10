@@ -1,0 +1,74 @@
+{
+ "lens": "integrity",
+ "round": 3,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.8,
+   "why": "Dark-field renders with light type and no plates; 2, 4 and 5 strongest. 3 a straight-on plan close under the dek; 7 a uniform dark-grey field bleeding off both edges so the 860 can't be counted, label outside the safe zone; 8's racks bare wireframe primitives on a mid-grey pool; 9's two lowest bars duller teal."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.0,
+   "why": "One hall, one cold flood, the tray motif changing state and a cyan accent for Vista. 4 and 5 in a charcoal bench register; 7 outside both; 6 and 9 near twins."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 6.8,
+   "why": "Every numeral traces; the comparison carried as one lab's account. Looser: frame 9's 'Frontera is dark. The work moved.' an unbounded headline on one anecdote; frame 2's two Xeons per node and the caption's opener give no set; frame 2 states TACC's superlative as fact; frame 7's bleeding field can't be checked against 'one cell per node'; '860' present tense from a 2024 release. HPCwire reprints acceptable, not ideal. No hard fail."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.5,
+   "why": "What, who and where; no decision, body or deadline; stake a general closing question; 4 and 5 never return to it."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "Cover earns a swipe; 2 steps back; 3 restates the cover; the turn at 6 lands; 4 and 5 could fold; the close overclaims."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Clean, sober, honest hedging; thin regional specificity; frame 8 reads as release copy."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.8,
+   "why": "Fresh subject and motif; cold night flood as no. 70, one unit per thing counted relief, numeral comparison cover."
+  }
+ ],
+ "weighted_score": 6.77,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Bound frame 9's closing headline to what the claims say.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 7,
+   "problem": "Uniform dark-grey field bleeding off both edges, the eight tiny, label outside the safe zone.",
+   "fix": "Pull the field inside the frame with a lit border, darker, raking key; label inside the margin."
+  },
+  {
+   "slide": 8,
+   "problem": "Bare wireframe racks on a mid-grey pool.",
+   "fix": "Crop in on the half filled tower with lit chamfers; tight pool."
+  },
+  {
+   "slide": 3,
+   "problem": "Straight-on plan reads as a keyboard; carrier tight under the dek.",
+   "fix": "Tilt off plan 15 to 20 degrees; drop the carrier 60 px."
+  },
+  {
+   "slide": 9,
+   "problem": "Two lowest cyan bars duller teal.",
+   "fix": "One emissive value on all eight bars."
+  }
+ ]
+}

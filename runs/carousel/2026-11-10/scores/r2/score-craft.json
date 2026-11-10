@@ -1,0 +1,79 @@
+{
+ "lens": "craft",
+ "round": 2,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.7,
+   "why": "Slide 2 is the best render in the deck; 4 a convincing relief; 1 and 9 stage the cyan tower in a pool against dark racks. Weak: 7 a straight-on flat grid in the grey middle with the eight a sliver at feed size; 3 straight on, carrier under the dek, lifted charcoal field; 8 a pale mid-grey floor with a hard-edged lighter rectangle on it, rod-cage racks, cables under the footer; 6 the same floor rectangle, skeletal rod frame; 5 subject in the lower 45 percent, necks and SNAREs small."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.0,
+   "why": "One hall world, one cyan meaning, a measured motif and the tower changing state across 6, 8 and 9. Two grades (3 and 7 lifted charcoal against navy black), copper with two meanings, no bridge from 5 to 6."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.5,
+   "why": "Every numeral checked has a claim; hedges hold. Sources are HPCwire reprints of TACC releases; the cover's background rack total not verified at this resolution. No hard fail."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.5,
+   "why": "What, who and where; no decision, body or action; the stake only in the caption's closing question; Horizon without a date."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 6.8,
+   "why": "Cover earns the swipe; 2 steps back; 3 restates the cover; the turn at 6 lands; the close lands though its dek restates the count."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Clean, careful attribution; slide 8's deks lean on release phrasing; Texas specificity stops at institution names; no house rule breaks."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "Repeats no. 72's dark room plus relief mix, molecular model and raised-row grid; the data hall and cyan node motif are new."
+  }
+ ],
+ "weighted_score": 6.88,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Rebuild 3 and 7 as physical objects in the hall's own world, lit by the same flood with a three quarter camera.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 7,
+   "problem": "Straight-on flat grid in the grey middle; the eight a sliver at 432 px.",
+   "fix": "High three quarter view, one flood pooled on the eight, far rows to black."
+  },
+  {
+   "slide": 3,
+   "problem": "Straight-on carrier jammed under the dek on a lifted charcoal field.",
+   "fix": "Drop the carrier 120 px, navy black field, turn the camera 20 to 30 degrees."
+  },
+  {
+   "slide": 8,
+   "problem": "Pale mid-grey floor, a hard-edged lighter rectangle on it, rod-cage racks, cables under the footer.",
+   "fix": "Remove the floor rectangle, pull the flood tight, end the cables before the footer."
+  },
+  {
+   "slide": 6,
+   "problem": "The same hard-edged floor rectangle; skeletal rod frame.",
+   "fix": "Delete the floor artifact; solid side panels."
+  },
+  {
+   "slide": 5,
+   "problem": "Subject in the lower 45 percent; necks and SNAREs small.",
+   "fix": "Push in 1.4x on the neck; crop the arc off the top and sides."
+  }
+ ]
+}

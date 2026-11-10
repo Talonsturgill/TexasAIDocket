@@ -1,0 +1,74 @@
+{
+ "lens": "reader",
+ "round": 3,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 7.0,
+   "why": "1 and 9 strong at feed size; 8 legible as being built; 2 works. 3 a straight-on plate under the dek reads as a chart; 5's neck reads as two bead bands with a gap; 7 an even mid grey field with its label near the edge; 6 one lone rack in a mostly empty frame."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "One cyan meaning, copper recurring, dark values throughout, the rack room recurring and 1 and 9 closing the loop; 4 and 5 and the plates 3 and 7 sit in other material worlds."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.0,
+   "why": "Every numeral traced; the comparison honest to c9; two Xeons one step removed; HPCwire reprints; 'Frontera is dark' a shade looser than retired. No fabrication."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.0,
+   "why": "A real story about one lab with a named who, but the stake for a Texan is never concrete, nothing to do, no date for Horizon, a rhetorical closing question."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "Cover earns a swipe; 2 goes back to history; 3 restates the cover; 4 and 5 a science detour; the turn at 6; 9 lands but restates the count."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "Clean and on the house rules; institutional; the caption opens on a spec-sheet hook; hedges fill body lines; little regional texture."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "Topic and palette fresh; count-led opening and drawing-unit counts familiar; follows no. 72's protein science deck."
+  }
+ ],
+ "weighted_score": 7.0,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Replace frame 3 with a sourced frame on what follows for a Texas reader and end the caption on that fact.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 5,
+   "problem": "The neck reads as two bead bands with a gap and four springs.",
+   "fix": "A continuous bridge of tails in a second material, warm side key, centred."
+  },
+  {
+   "slide": 3,
+   "problem": "Straight-on plate under the dek reads as a chart.",
+   "fix": "Low three quarter view under a raking key; plate pushed down."
+  },
+  {
+   "slide": 7,
+   "problem": "Even mid grey field; label 23 px from the edge.",
+   "fix": "Side light falling to near black; label inside the margin."
+  },
+  {
+   "slide": 6,
+   "problem": "One rack in a mostly empty frame says nothing about tuning.",
+   "fix": "Push in; pull one tray half out with a cable to it."
+  }
+ ]
+}

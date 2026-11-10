@@ -1,0 +1,79 @@
+{
+ "lens": "reader",
+ "round": 2,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.8,
+   "why": "1, 6 and 9 come close to the showstopper test; frame 2's open tray holds at feed size. 7 reads as a flat chart with a lit row; 4 and 5 sit in the charcoal mid band and 5's neck needs its dek; 3 a straight-on plate tight under the dek; on 8 the pale floor takes more of the frame than the thin wire frame. The bench frames don't stand in a lit world the way the hall frames do."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.3,
+   "why": "One deck; cyan always a Vista node; one tray per node; frame 8's unlit trays a decision. 4 and 5 sit outside with a different grade and no tray; 6 and 9 near twins."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.5,
+   "why": "Every numeral checked traces to a quoted claim; the comparison hedged every time; two Xeons per node is one cited inference; HPCwire reposts of TACC releases with the reason stated. No hard fail."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 5.5,
+   "why": "What happened is clear, but no decider, no reason it touches a county, bill or institution, no step to take; closing question rhetorical; 4 and 5 teach biology a feed reader can't act on; the lab is unplaced."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "Crisp cover ratio though 'nodes' is jargon; 3 and 9 restate it; the turn on 6 lands; 4 and 5 a detour; the close lands."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "Clean and honest; the caption's first line spends the feed real estate on hardware jargon; little Texas specificity; slide 5 and 7 read like a release."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 7.5,
+   "why": "Topic not in the window; palette and server hall fresh; count ratio cover and single scale unit relief familiar from 69 and 72."
+  }
+ ],
+ "weighted_score": 7.0,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Lead the cover and first caption line with the plain result, and replace 4 and 5 with a sourced frame on how Texas researchers get time and help on Vista and Horizon.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 7,
+   "problem": "Straight-on 860 grey cells read as a flat chart; the eight don't read as height.",
+   "fix": "Low three quarter under a hard key so the eight throw long shadows; field tops toward black."
+  },
+  {
+   "slide": 5,
+   "problem": "Neck ambiguous at feed size; charcoal mid band; SNAREs tiny.",
+   "fix": "Crop in on the neck so membranes and SNAREs fill a third; warm side light; near black ground."
+  },
+  {
+   "slide": 4,
+   "problem": "Same charcoal relief, SNAREs small; labels do the explaining.",
+   "fix": "Raking side light, SNARE coils cast onto the bilayer, darker core stripes."
+  },
+  {
+   "slide": 3,
+   "problem": "Straight-on plate tight under the dek reads as a diagram.",
+   "fix": "Carrier 120 px clear of the dek, 30 degree three quarter view."
+  },
+  {
+   "slide": 8,
+   "problem": "Pale lit floor takes more of the frame than the wire frame.",
+   "fix": "Tighten the pool to the frame and its tray, let the floor fall to black, push in."
+  }
+ ]
+}
