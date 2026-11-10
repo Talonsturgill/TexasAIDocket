@@ -17,6 +17,7 @@ This checker refuses any break in that chain and self-tests the ways it can fail
 from __future__ import annotations
 
 import argparse
+import copy
 import re
 import sys
 from pathlib import Path
@@ -138,6 +139,74 @@ def pages_problems(doc: dict) -> list[str]:
                           for step in (deploy.get("steps") or []))
     if not pinned_checkout:
         out.append("the deploy job does not package the exact SHA the verify job checked")
+    # A pinned checkout is not an upload, and a successful API request is not proof
+    # that readers receive these bytes. Check the real steps, not mentions in comments.
+    steps = deploy.get("steps") or []
+    uploads = [(i, step) for i, step in enumerate(steps)
+               if step.get("uses", "").startswith("actions/upload-pages-artifact@")]
+    releases = [(i, step) for i, step in enumerate(steps)
+                if step.get("uses", "").startswith("actions/deploy-pages@")]
+    if len(uploads) != 1 or (uploads[0][1].get("with") or {}).get("path") != "docs":
+        out.append("Pages must upload exactly one artifact from docs")
+    if deploy.get("continue-on-error", False) is not False:
+        out.append("Pages deployment job must fail closed")
+    if len(releases) != 1:
+        out.append("Pages must use exactly one deployment, not retries that restart syncing")
+
+    preflight = "python3 scripts/site/pages_release_check.py --site docs"
+    archive = preflight + ' --archive "$RUNNER_TEMP/artifact.tar"'
+    live = preflight + " --url https://texasaidocket.com --wait-seconds 300"
+
+    def required_step(command: str) -> list[int]:
+        # Require a standalone command, not an echo, comment, self-test, or || true.
+        return [i for i, step in enumerate(steps)
+                if str(step.get("run") or "").strip() == command]
+
+    before, after = required_step(preflight), required_step(live)
+    packaged = required_step(archive)
+    if len(before) != 1:
+        out.append("Pages lacks its standalone artifact preflight invocation")
+    if len(after) != 1:
+        out.append("Pages lacks its standalone live byte proof invocation")
+    if len(packaged) != 1:
+        out.append("Pages lacks its standalone uploaded archive proof invocation")
+    required = uploads + releases + [(i, steps[i]) for i in before + packaged + after]
+    for _i, step in required:
+        if step.get("continue-on-error", False) is not False:
+            out.append("Pages upload, deployment and release proofs must fail closed")
+        if step.get("if") not in (None, "success()", "${{ success() }}"):
+            out.append("Pages upload, deployment and release proofs must not be skipped or run after failure")
+        if step.get("working-directory") not in (None, "."):
+            out.append("Pages release proofs must run from the repository root")
+    if (deploy.get("defaults") or {}).get("run", {}).get("working-directory") not in (None, "."):
+        out.append("Pages release proofs must run from the repository root")
+    if len(uploads) == len(releases) == len(before) == len(packaged) == len(after) == 1:
+        if not before[0] < uploads[0][0] < packaged[0] < releases[0][0] < after[0]:
+            out.append("Pages must preflight, upload, check the archive, deploy, then prove the live bytes in that order")
+    if len(releases) == 1:
+        release = releases[0][1]
+        if release.get("uses") != "actions/deploy-pages@v4":
+            out.append("Pages must use the reviewed deploy-pages@v4 action")
+        if len(uploads) == 1:
+            uploaded_name = (uploads[0][1].get("with") or {}).get("name", "github-pages")
+            deployed_name = (release.get("with") or {}).get("artifact_name", "github-pages")
+            if uploaded_name != deployed_name:
+                out.append("Pages must deploy the same artifact name that was uploaded")
+        if release.get("id") != "deployment":
+            out.append("the single Pages deployment must expose its deployment output")
+        try:
+            timeout = int(str((release.get("with") or {}).get("timeout")))
+        except ValueError:
+            timeout = 0
+        if not 1800000 <= timeout <= 3600000:
+            out.append("Pages deployment timeout must be bounded between 30 and 60 minutes")
+        budget = deploy.get("timeout-minutes")
+        # Five minutes for live propagation plus five for checkout, preflight and upload.
+        if not isinstance(budget, int) or isinstance(budget, bool) or not timeout / 60000 + 10 <= budget <= 90:
+            out.append("Pages job budget must cover deployment plus ten minutes, bounded at 90 minutes")
+        step_budget = release.get("timeout-minutes")
+        if step_budget is not None and (not isinstance(step_budget, int) or step_budget * 60000 <= timeout):
+            out.append("Pages deployment step budget can cut off its polling timeout")
     return out
 
 
@@ -257,11 +326,17 @@ def self_test() -> int:
                             "echo deploy=true"},
                     {"env": {"GUARDS_WAIT_SECONDS": "4500", "GUARDS_POLL_SECONDS": "60", "GUARDS_API_RETRIES": "4"},
                      "run": GOOD_WAIT}]},
-            "deploy": {"needs": "verify",
+            "deploy": {"needs": "verify", "timeout-minutes": 40,
                        "if": "needs.verify.outputs.deploy == 'true'",
                        "steps": [{"uses": "actions/checkout@v4",
                                   "with": {"ref": "${{ needs.verify.outputs.sha }}"}},
-                                 {"run": "true"}]}}}
+                                 {"run": "python3 scripts/site/pages_release_check.py --site docs"},
+                                 {"uses": "actions/upload-pages-artifact@v3", "with": {"path": "docs"}},
+                                 {"run": 'python3 scripts/site/pages_release_check.py --site docs --archive "$RUNNER_TEMP/artifact.tar"'},
+                                 {"uses": "actions/deploy-pages@v4", "id": "deployment",
+                                  "with": {"timeout": 1800000}},
+                                 {"run": "python3 scripts/site/pages_release_check.py --site docs"
+                                         " --url https://texasaidocket.com --wait-seconds 300"}]}}}
     good_writer = {
         "permissions": {"actions": "write"},
         "jobs": {"write": {"steps": [
@@ -351,6 +426,57 @@ def self_test() -> int:
     check("a deploy that re-reads a moving main branch is caught",
           any("exact SHA" in p for p in pages_problems(moving_deploy)),
           str(pages_problems(moving_deploy)))
+
+    def broken_deploy(label, mutate, expected):
+        doc = copy.deepcopy(good_pages)
+        mutate(doc["jobs"]["deploy"])
+        problems = pages_problems(doc)
+        check(label, any(expected in p for p in problems), str(problems))
+
+    broken_deploy("a soft-failing deployment job is caught",
+                  lambda d: d.update({"continue-on-error": True}), "job must fail closed")
+    broken_deploy("a mismatched artifact name is caught",
+                  lambda d: d["steps"][2]["with"].update(name="other-site"), "same artifact name")
+    broken_deploy("a wrong upload directory is caught",
+                  lambda d: d["steps"][2]["with"].update(path="missing-directory"), "from docs")
+    broken_deploy("removing every upload and deployment is caught",
+                  lambda d: d.update(steps=d["steps"][:2]), "exactly one deployment")
+    broken_deploy("a deployment retry that restarts syncing is caught",
+                  lambda d: d["steps"].append(copy.deepcopy(d["steps"][4])), "exactly one deployment")
+    for index in (1, 2, 3, 4, 5):
+        broken_deploy(f"release step {index} cannot hide failure",
+                      lambda d, i=index: d["steps"][i].update({"continue-on-error": True}), "fail closed")
+        broken_deploy(f"release step {index} cannot be conditionally skipped",
+                      lambda d, i=index: d["steps"][i].update({"if": "false"}), "must not be skipped")
+    for value in (None, 600000, 3600001, "invalid"):
+        broken_deploy(f"invalid deployment timeout {value!r} is caught",
+                      lambda d, v=value: d["steps"][4]["with"].update(timeout=v), "bounded between")
+    for value in (None, 30, 39, 1000):
+        broken_deploy(f"insufficient or unbounded job budget {value!r} is caught",
+                      lambda d, v=value: d.update({"timeout-minutes": v}), "job budget")
+    broken_deploy("a premature step timeout is caught",
+                  lambda d: d["steps"][4].update({"timeout-minutes": 10}), "step budget")
+    broken_deploy("live proof before deployment is caught",
+                  lambda d: d["steps"].insert(4, d["steps"].pop(5)), "in that order")
+    broken_deploy("preflight after upload is caught",
+                  lambda d: d["steps"].insert(2, d["steps"].pop(1)), "in that order")
+    for prefix, suffix in (("# ", ""), ("echo ", ""), ("", " --self-test"), ("", " || true")):
+        broken_deploy(f"a preflight mention {prefix!r}/{suffix!r} is not execution",
+                      lambda d, p=prefix, s=suffix: d["steps"][1].update(
+                          run=p + d["steps"][1]["run"] + s), "artifact preflight")
+    broken_deploy("live proof against a different site is caught",
+                  lambda d: d["steps"][5].update(run=d["steps"][5]["run"].replace(
+                      "https://texasaidocket.com", "https://example.com")), "live byte proof")
+    broken_deploy("a changed working directory is caught",
+                  lambda d: d.update(defaults={"run": {"working-directory": "elsewhere"}}), "repository root")
+
+    broken_deploy("missing uploaded archive validation is caught",
+                  lambda d: d["steps"].pop(3), "uploaded archive proof")
+    broken_deploy("archive validation before upload is caught",
+                  lambda d: d["steps"].insert(2, d["steps"].pop(3)), "in that order")
+    broken_deploy("archive validation of a different file is caught",
+                  lambda d: d["steps"][3].update(run=d["steps"][3]["run"].replace(
+                      "artifact.tar", "other.tar")), "uploaded archive proof")
 
     no_permission = {**good_writer, "permissions": {}}
     check("a writer unable to dispatch guards is caught",

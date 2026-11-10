@@ -202,6 +202,12 @@ jobs:
       - name: Every main writer reaches Pages through full guards
         run: python3 scripts/shared/release_shape.py
 
+      - name: Pages artifact and live release checker self-test
+        run: python3 scripts/site/pages_release_check.py --self-test
+
+      - name: Pages artifact input contract
+        run: python3 scripts/site/pages_release_check.py --site docs
+
       - name: Pages waits for a pending guard result and refuses a failed one
         run: python3 scripts/shared/pages_guards_wait_test.py
 

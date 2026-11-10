@@ -11,9 +11,9 @@ name: pages
 #    without a rebuild, and publishing either would put a claim on the internet that the record
 #    does not support. Refusing to deploy is the correct failure.
 #
-# 2. THE DEPLOY RETRIES. GitHub's Pages API returns transient 5xx often enough that a single
-#    attempt loses a day's publish for no reason, and an unattended pipeline has nobody to
-#    press the button again.
+# 2. THE DEPLOY GETS ONE BOUNDED SYNC WINDOW. The old ten-minute timeout cancelled
+#    deployment; both immediate retries then reused that cancelled deployment ID.
+#    Wait up to thirty minutes once, fail closed, and verify the actual hosted bytes.
 #
 # 3. IT DOES NOT DEPEND ON WHO PUSHED, and it used to. `push` was the only real trigger, and a
 #    push made with GITHUB_TOKEN does not start a workflow. That is deliberate on GitHub's part,
@@ -216,6 +216,7 @@ jobs:
     needs: verify
     if: needs.verify.outputs.deploy == 'true'
     runs-on: ubuntu-latest
+    timeout-minutes: 40
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -231,24 +232,23 @@ jobs:
         # holds pages:write, which is the permission this needs.
         with:
           enablement: true
+      - name: Check the Pages input contract
+        run: python3 scripts/site/pages_release_check.py --site docs
       - uses: actions/upload-pages-artifact@v3
         with:
           path: docs
 
-      - name: Deploy, with backoff
+      - name: Check the exact uploaded archive
+        run: python3 scripts/site/pages_release_check.py --site docs --archive "$RUNNER_TEMP/artifact.tar"
+
+      - name: Deploy the verified artifact
         id: deployment
         uses: actions/deploy-pages@v4
-        continue-on-error: true
+        with:
+          timeout: 1800000
 
-      - name: Retry once
-        if: steps.deployment.outcome == 'failure'
-        id: retry1
-        uses: actions/deploy-pages@v4
-        continue-on-error: true
-
-      - name: Retry twice
-        if: steps.retry1.outcome == 'failure'
-        uses: actions/deploy-pages@v4
+      - name: Verify the live release
+        run: python3 scripts/site/pages_release_check.py --site docs --url https://texasaidocket.com --wait-seconds 300
 
       # TELL THE INDEX WHAT CHANGED, once the deploy has actually landed.
       #
