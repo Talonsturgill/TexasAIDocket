@@ -215,6 +215,17 @@ class StateTests(unittest.TestCase):
             self.assertFalse(state.valid_remote(url, REPO))
         with self.assertRaises(state.StateBlocked): state.GitState(self.work, REPO)
 
+    def test_github_case_variant_is_same_exact_repository(self):
+        lower_url = 'https://github.com/' + REPO.lower()
+        self.assertTrue(state.valid_remote(lower_url, REPO))
+        self.assertTrue(state.valid_remote('https://github.com/' + REPO.upper() + '.git', REPO))
+        self.assertFalse(state.valid_remote(lower_url + '-other', REPO))
+        self.assertFalse(state.valid_remote(lower_url + '/extra', REPO))
+        self.assertFalse(state.valid_remote('https://token@github.com/' + REPO.lower(), REPO))
+        git(self.work, 'remote', 'set-url', 'origin', lower_url)
+        actual = state.GitState(self.work, REPO)
+        self.assertEqual(actual.repository, REPO)
+
     def test_pushurl_and_multiple_origin_urls_are_blocked(self):
         git(self.work, 'remote', 'set-url', 'origin', 'https://github.com/' + REPO)
         git(self.work, 'config', 'remote.origin.pushurl', 'https://github.com/' + REPO)

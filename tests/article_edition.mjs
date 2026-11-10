@@ -129,7 +129,7 @@ try {
     await page.locator('#contactclose').click();
     await context.close();
   }
-  const noScript = await browser.newContext({javaScriptEnabled:false,viewport:{width:390,height:844}});
+  const noScript = await browser.newContext({javaScriptEnabled:false,viewport:{width:390,height:844},reducedMotion:'reduce'});
   const page = await noScript.newPage();
   await page.goto(base + path);
   check(await page.locator('.edition-story').isVisible(), 'the article is readable without JavaScript');

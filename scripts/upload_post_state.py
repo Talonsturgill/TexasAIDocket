@@ -48,15 +48,16 @@ def require(condition, message):
 
 def valid_remote(url, repository):
     """Only exact recognized repository addresses; never infer from a suffix."""
+    repository = repository.lower()  # GitHub owner/repository names are case-insensitive.
     expected = repository + '.git'
     if url.startswith('git@github.com:'):
-        path = url[len('git@github.com:'):]
+        path = url[len('git@github.com:'):].lower()
         return path in {repository, expected}
     parsed = urlsplit(url)
     return (parsed.scheme == 'https' and parsed.hostname == 'github.com'
             and parsed.port is None and parsed.username is None and parsed.password is None
             and not parsed.query and not parsed.fragment
-            and parsed.path in {'/' + repository, '/' + expected})
+            and parsed.path.lower() in {'/' + repository, '/' + expected})
 
 
 def validate_result(result):
