@@ -109,17 +109,17 @@ package 237.74.
   frames. b28c1a34 makes `panel_ready` accept a frame whose file times say stale only when its PNG, sources and render
   report match the bytes it last passed. Records in 10b0ba12. The run reran every verify command: `node --check`,
   `arsenal.py --check`, `print_ban.py --assets`, `panel_ready.py --self-test`, the census, `upgrades.json` parsing and
-  `machine_due.py` (not due) all exit as stated; `examples/kit/sizes.py` @@SIZES@@. Proposals outside the lane:
+  `machine_due.py` (not due) all exit as stated; `examples/kit/sizes.py` exits 0 at 144 of 144 models. Proposals outside the lane:
   the routine's "parallel projection for any quantity" sentence (human), a GATE_LESSONS entry for the panel_ready change
   (human), `TXT.contact` under a spot (engine, human), and `prompt_audit.py`'s agent latency count (daily lane, not
   fixed this run).
 - **Ledger check.** `ledger_check --date` refused today's topic prose for spelled counts the figures don't name; the
   counts are now numerals.
-- **Prompt audit.** @@AUDIT@@
+- **Prompt audit.** 1,585 calls measured, 63 counted as waiting. The top of the list is SendMessage and Agent dispatches at 3 to 25 s, the queued agent latency count (repeat 8), and no call has the shape of a human answering a dialog. The no-stall hook was armed at 05:03:41 UTC, judged the session unattended (the host's CLAUDE_CODE_SESSION_ATTENDED was 0) and refused nothing.
 
 ## Email
 
-Written at Phase 19. The payload is built before the merge so CI's `email_check --all` reads it.
+The payload is built by `gmail_draft.py` before the merge so CI's `email_check --all` reads it, and `email_check` exits 0 for this run and for all. It first refused the sources block as stale: the block still listed c16 to c20, c27, c31 and c32, which no frame or caption prints after the panel repairs, and missed c34. The block was rebuilt to the ids the deck prints, and TOP500's line went with c32. The Gmail draft itself is created after the merge.
 
 ## Merge
 
