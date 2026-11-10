@@ -19,12 +19,12 @@
   "recent_lists_note": "These three lists are the exclusions handed to the caption room and they were hand-kept. On 2026-08-20 the fourth panel found structures_recent reading [\"ledger\", \"pivot\", \"question and answer\"] when the last three shipped structures were [\"ledger\", \"two columns\", \"question and answer\"], so it dropped a structure that IS off the table and held one that is not. Wrong in both directions from one hand edit. They are now recomputed from entries and are ordered OLDEST FIRST, matching the entries list, and scripts/carousel/caption_check.py should derive them rather than read them. That is an upgrade-lane change and it is written into this run's proposals."
  },
  "opening_moves_recent": [
-  "the quiet decision",
   "the who",
   "the two things",
   "the place",
   "the before and after",
-  "the number that is wrong"
+  "the number that is wrong",
+  "the plain question"
  ],
  "entries": [
   {
@@ -1320,15 +1320,34 @@
    ],
    "critic_note": "Opens on the copper route the lab work mapped, then zooms out to the screen that pointed at it, the 2,895 of 630,003, the new share and the limits, and closes on the free list and the false discovery rate it carries.",
    "move_note": "From one finding to the whole screen to the list anyone can use, attributed to the paper and the release."
+  },
+  {
+   "date": "2026-11-10",
+   "carousel_no": 73,
+   "opening_move": "the object",
+   "structure": "Pivot",
+   "closing_move": "ask the one question the decision leaves open",
+   "first_line": "A Frontera node held two Xeons.",
+   "words": 140,
+   "commas": 4,
+   "commas_per_100w": 2.86,
+   "chars": 808,
+   "hashtags": [
+    "#TACC",
+    "#UTSouthwestern",
+    "#UTAustin"
+   ],
+   "critic_note": "A won over B. B's Question and answer joined Frontera's retirement to Rizo-Rey's Vista move, and the dates contradict it. A won with one rewrite that removed Dallas, an unsupported Austin line and a strawman, restored c8's typically, and turns on c10 quoted word for word.",
+   "move_note": "The object is a Frontera node with two Xeons, and the past tense carries the retirement. The Pivot sets up the hardware reading by putting the facts in order and turns on c10's own words about GROMACS and TACC's people."
   }
  ],
  "structures_recent": [
-  "Pivot",
   "Ladder",
-  "Ledger"
+  "Ledger",
+  "Zoom out"
  ],
  "closing_moves_recent": [
-  "ask the one question the decision leaves open"
+  "point at the record, plainly"
  ],
  "_derived_note": "opening_moves_recent, structures_recent and closing_moves_recent are DERIVED by out/<date>/update_ledgers.py every run, by ledger_check.windows() and ledger_check's own slice of the entries before the newest date. They were hand-maintained until 2026-09-10 and had drifted, which mis-briefed the caption room on that run: the list said Ledger was excluded when it was not, and never mentioned Two columns or the close no. 19 actually shipped."
 }

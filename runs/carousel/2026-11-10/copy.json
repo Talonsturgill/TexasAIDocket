@@ -1,0 +1,231 @@
+{
+ "date": "2026-11-10",
+ "carousel_no": 73,
+ "document_title": "64 Frontera CPU nodes, 8 Vista GPU nodes, almost the same speed by one lab's account",
+ "_note": "Slide strings read off the render report's text nodes and each frame's own source line by build_copy.py.",
+ "caption": "A Frontera node held two Xeons.\n\nJose Rizo-Rey's lab at UT Southwestern Medical Center typically ran a 5.3 million atom simulation at 43 nanoseconds per day on 64 of those nodes. Frontera was retired in October after more than eight million jobs.\n\nOn Vista at UT Austin, eight GPU nodes gave Rizo-Rey \"almost the same speed.\" Most Vista nodes run NVIDIA's GH200, a Grace CPU paired with a Hopper GPU.\n\nHis account names software and people. He says the speed \"required a lot of optimizations with GROMACS, with the help of people here at TACC.\" One lab's account, not a benchmark.\n\nFrontera's successor Horizon is in its first phase of early operations. Its power infrastructure is complete and its AI hardware is going in. Who will tune the code for the labs that run on it?\n\n#TACC #UTSouthwestern #UTAustin",
+ "slides": {
+  "S1": {
+   "n": 1,
+   "file": "slide-01.html",
+   "kicker": "TACC, Austin",
+   "headline": "64 nodes on Frontera. 8 on Vista.",
+   "claims": [
+    "c7",
+    "c8",
+    "c9",
+    "c28"
+   ],
+   "cite": "c7 c8 c9 c28",
+   "body": "Jose Rizo-Rey's lab at UT Southwestern Medical Center typically ran a simulation on 64 CPU nodes of TACC's Frontera. He says eight GPU nodes of Vista gave \"almost the same speed.\" One tray per node, drawn to illustrate.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "64 nodes on Frontera. 8 on Vista.",
+    "Jose Rizo-Rey's lab at UT Southwestern Medical Center typically ran a simulation on 64 CPU nodes of TACC's Frontera. He says eight GPU nodes of Vista gave \"almost the same speed.\" One tray per node, drawn to illustrate.",
+    "TACC, Austin",
+    "01 / 09",
+    "c7 c8 c9 c28"
+   ]
+  },
+  "S2": {
+   "n": 2,
+   "file": "slide-02.html",
+   "kicker": "Frontera, retired in October",
+   "headline": "More than eight million jobs",
+   "claims": [
+    "c1",
+    "c2",
+    "c3",
+    "c24",
+    "c29",
+    "c30"
+   ],
+   "cite": "c1 c2 c3 c24 c29 c30",
+   "body": "For most of its service life Frontera was the fastest academic supercomputer in the United States. TACC's executive director calls its more than seven years of production the longest run on any TACC system. Each node held two Intel Xeon processors.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "More than eight million jobs",
+    "For most of its service life Frontera was the fastest academic supercomputer in the United States. TACC's executive director calls its more than seven years of production the longest run on any TACC system. Each node held two Intel Xeon processors.",
+    "Frontera, retired in October",
+    "02 / 09",
+    "c1 c2 c3 c24 c29 c30"
+   ]
+  },
+  "S3": {
+   "n": 3,
+   "file": "slide-03.html",
+   "kicker": "The count",
+   "headline": "64 CPU nodes against 8 GPU nodes",
+   "claims": [
+    "c8",
+    "c9"
+   ],
+   "cite": "c8 c9",
+   "body": "On 64 Frontera nodes the 5.3 million atom simulation typically ran at 43 nanoseconds a day. Rizo-Rey says eight Vista GPU nodes gave \"almost the same speed.\" His account, not a benchmark. One tray per node.",
+   "labels": [
+    "64 CPU nodes, Frontera",
+    "8 GPU nodes, Vista"
+   ],
+   "strings": [
+    "texasaidocket.com",
+    "64 CPU nodes against 8 GPU nodes",
+    "On 64 Frontera nodes the 5.3 million atom simulation typically ran at 43 nanoseconds a day. Rizo-Rey says eight Vista GPU nodes gave \"almost the same speed.\" His account, not a benchmark. One tray per node.",
+    "64 CPU nodes, Frontera",
+    "8 GPU nodes, Vista",
+    "The count",
+    "03 / 09",
+    "c8 c9"
+   ]
+  },
+  "S4": {
+   "n": 4,
+   "file": "slide-04.html",
+   "kicker": "In the simulation",
+   "headline": "A vesicle, a bilayer, four SNARE complexes",
+   "claims": [
+    "c11",
+    "c12",
+    "c15"
+   ],
+   "cite": "c11 c12 c15",
+   "body": "Rizo-Rey's simulations contain a vesicle, a flat bilayer and four SNARE protein complexes. The SNAREs let vesicles fuse with their target membranes. His research focuses on synaptic transmission. Drawn to illustrate.",
+   "labels": [
+    "vesicle",
+    "flat bilayer",
+    "SNARE complexes"
+   ],
+   "strings": [
+    "texasaidocket.com",
+    "A vesicle, a bilayer, four SNARE complexes",
+    "Rizo-Rey's simulations contain a vesicle, a flat bilayer and four SNARE protein complexes. The SNAREs let vesicles fuse with their target membranes. His research focuses on synaptic transmission. Drawn to illustrate.",
+    "vesicle",
+    "flat bilayer",
+    "SNARE complexes",
+    "In the simulation",
+    "04 / 09",
+    "c11 c12 c15"
+   ]
+  },
+  "S5": {
+   "n": 5,
+   "file": "slide-05.html",
+   "kicker": "The local detergent model",
+   "headline": "SNAREs act as a local detergent",
+   "claims": [
+    "c13",
+    "c14",
+    "c34"
+   ],
+   "cite": "c13 c14 c34",
+   "body": "Rizo-Rey calls it the local detergent model of membrane fusion. In it the SNAREs catalyze mixing of the hydrophobic interiors of the two membranes. Drawn to illustrate, not a frame from the simulation.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "SNAREs act as a local detergent",
+    "Rizo-Rey calls it the local detergent model of membrane fusion. In it the SNAREs catalyze mixing of the hydrophobic interiors of the two membranes. Drawn to illustrate, not a frame from the simulation.",
+    "The local detergent model",
+    "05 / 09",
+    "c13 c14 c34"
+   ]
+  },
+  "S6": {
+   "n": 6,
+   "file": "slide-06.html",
+   "kicker": "The work behind it",
+   "headline": "The speed took a lot of tuning",
+   "claims": [
+    "c10",
+    "c33"
+   ],
+   "cite": "c10 c33",
+   "body": "Rizo-Rey says reaching it on Vista \"required a lot of optimizations with GROMACS, with the help of people here at TACC.\" GROMACS is free and open source software for molecular dynamics.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "The speed took a lot of tuning",
+    "Rizo-Rey says reaching it on Vista \"required a lot of optimizations with GROMACS, with the help of people here at TACC.\" GROMACS is free and open source software for molecular dynamics.",
+    "The work behind it",
+    "06 / 09",
+    "c10 c33"
+   ]
+  },
+  "S7": {
+   "n": 7,
+   "file": "slide-07.html",
+   "kicker": "Vista, UT Austin",
+   "headline": "Rizo-Rey's 8 nodes, in Vista's 860",
+   "claims": [
+    "c9",
+    "c25",
+    "c26",
+    "c28"
+   ],
+   "cite": "c9 c25 c26 c28",
+   "body": "Vista has 860 compute nodes. TACC says the NVIDIA GH200 Grace Hopper Superchip is the processor for the majority. It pairs a Grace CPU with a Hopper GPU. One cell per node. His eight nodes are raised.",
+   "labels": [
+    "860 compute nodes",
+    "his 8 nodes"
+   ],
+   "strings": [
+    "texasaidocket.com",
+    "Rizo-Rey's 8 nodes, in Vista's 860",
+    "Vista has 860 compute nodes. TACC says the NVIDIA GH200 Grace Hopper Superchip is the processor for the majority. It pairs a Grace CPU with a Hopper GPU. One cell per node. His eight nodes are raised.",
+    "860 compute nodes",
+    "his 8 nodes",
+    "Vista, UT Austin",
+    "07 / 09",
+    "c9 c25 c26 c28"
+   ]
+  },
+  "S8": {
+   "n": 8,
+   "file": "slide-08.html",
+   "kicker": "Next at TACC",
+   "headline": "Horizon is in early operations",
+   "claims": [
+    "c4",
+    "c5",
+    "c6",
+    "c24"
+   ],
+   "cite": "c4 c5 c6 c24",
+   "body": "Frontera's successor is in its first phase. TACC's executive director says its power infrastructure is complete and an exabyte-capacity storage system is in place. Initial deployment of its AI-focused hardware is underway.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "Horizon is in early operations",
+    "Frontera's successor is in its first phase. TACC's executive director says its power infrastructure is complete and an exabyte-capacity storage system is in place. Initial deployment of its AI-focused hardware is underway.",
+    "Next at TACC",
+    "08 / 09",
+    "c4 c5 c6 c24"
+   ]
+  },
+  "S9": {
+   "n": 9,
+   "file": "slide-09.html",
+   "kicker": "After Frontera",
+   "headline": "Frontera is dark. The work moved.",
+   "claims": [
+    "c1",
+    "c8",
+    "c9",
+    "c21",
+    "c22",
+    "c23"
+   ],
+   "cite": "c1 c8 c9 c21 c22 c23",
+   "body": "More than 130,000 U.S. researchers have used TACC's systems since 2001. For one of them, eight Vista GPU nodes gave \"almost the same speed\" as 64 on Frontera. An early Horizon user says it enters full production soon.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "Frontera is dark. The work moved.",
+    "More than 130,000 U.S. researchers have used TACC's systems since 2001. For one of them, eight Vista GPU nodes gave \"almost the same speed\" as 64 on Frontera. An early Horizon user says it enters full production soon.",
+    "After Frontera",
+    "09 / 09",
+    "c1 c8 c9 c21 c22 c23"
+   ]
+  }
+ }
+}

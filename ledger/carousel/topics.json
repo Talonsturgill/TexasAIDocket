@@ -2488,6 +2488,47 @@
     "AI in research",
     "ipTM"
    ]
+  },
+  {
+   "date": "2026-11-10",
+   "carousel_no": 73,
+   "docket_item": "tx-2026-0245",
+   "related_items": [
+    "tx-2026-0125"
+   ],
+   "instrument": "The Texas Advanced Computing Center's October 29th, 2026 account of its September symposium for Texas researchers, carried in full by HPCwire, with TACC's 2023 and 2024 Vista releases and its 2020 Frontera expansion release as carried by HPCwire, the TOP500 Frontera entry and the GROMACS home page, fetched November 10th, 2026.",
+   "topic": "TACC retired Frontera in October 2026 after more than eight million jobs and over seven years of production. A UT Southwestern Medical Center lab that typically ran a 5.3 million atom membrane fusion simulation on 64 Frontera CPU nodes at 43 nanoseconds a day says eight GPU nodes of TACC's Vista gave almost the same speed, after a lot of GROMACS tuning with TACC staff. Horizon, the successor, is in early operations.",
+   "angle": "One machined tray per node: 64 brushed steel trays in eight open towers against one tower of eight black trays with cyan light bars in a dark machine hall, the open Frontera node's two copper heat sinks, the count in plan, the membrane fusion system as a metal section relief before and after the SNAREs mix the cores, the pulled Vista tray, eight cells raised among Vista's 860, Horizon as the same tower half filled with unlit trays on an opened floor, and Frontera dark beyond the lit eight.",
+   "angle_note": "One tray per node, drawn to illustrate, never TACC's room. No speed is drawn anywhere: Vista's speed is Rizo-Rey's spoken almost the same speed. The molecules are drawn to illustrate, never the lab's structure. No Vista GPU node count and no Frontera node count at retirement are stated.",
+   "entities": [
+    "Texas Advanced Computing Center",
+    "The University of Texas at Austin",
+    "UT Southwestern Medical Center",
+    "Frontera",
+    "Vista",
+    "Horizon",
+    "NSF Leadership-Class Computing Facility",
+    "GROMACS",
+    "NVIDIA GH200",
+    "Oden Institute"
+   ],
+   "places": [
+    "Austin"
+   ],
+   "what_was_refused": "any Vista speed figure, any Vista GPU node count, Frontera's node count at retirement, one superchip per node, the J.J. Pickle Research Campus, and UT Southwestern's city, which no fetched source states.",
+   "keywords": [
+    "TACC",
+    "Frontera",
+    "Vista",
+    "Horizon",
+    "supercomputer",
+    "GPU nodes",
+    "UT Southwestern",
+    "membrane fusion",
+    "SNARE",
+    "GROMACS",
+    "research computing"
+   ]
   }
  ]
 }

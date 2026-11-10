@@ -1,0 +1,63 @@
+<!doctype html>
+<!-- 2026-11-10, frame 7 of 9. Archetype DIAGRAM. A TXBENCH material relief in plan: a field of 860 low graphite cells, 43 columns by 20 rows, one cell per Vista compute node, with eight cells raised in black anodise with cyan strips for his eight GPU nodes. Drawn to illustrate, no cell is a real node position. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:900px">Rizo-Rey's 8 nodes, in Vista's 860</h1>
+<p class="dek" data-follow="26" style="width:880px">Vista has 860 compute nodes. TACC says the NVIDIA GH200 Grace Hopper Superchip is the processor for the majority. It pairs a Grace CPU with a Hopper GPU. One cell per node. His eight nodes are raised.</p>
+<div class="lab" id="lab-all">860 compute nodes</div>
+<div class="lab cyan" id="lab-his">his 8 nodes</div>
+<script>window.FIG = {"vista_nodes": 860, "gpu_nodes": 8};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txbench.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-10-tray.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+function lead(cx, a, b, col) { cx.save(); cx.strokeStyle = col || 'rgba(237,230,214,0.9)'; cx.fillStyle = cx.strokeStyle; cx.lineWidth = 2;
+  cx.beginPath(); cx.moveTo(a[0], a[1]); cx.lineTo(b[0], b[1]); cx.stroke(); cx.beginPath(); cx.arc(b[0], b[1], 5, 0, 7); cx.fill(); cx.restore(); }
+window.renderReady = (async () => {
+  const cx = await CH.bootFlat({ kicker: "Vista, UT Austin", counter: "07 / 09", src: "c9 c25 c26 c28", fit: { min: 80, max: 100, maxLines: 2 } });
+  cx.scale(2, 2); TX.reseed(20261110);
+  /* THE FIGURE: vista_nodes cells in rows of 43, so 860 makes exactly 20 rows, and gpu_nodes of them stand raised in
+   * black anodise, side by side in one short row below the middle. One cell per node; no cell is a real position. */
+  const COLS = 43, ROWS = Math.ceil(FIG.vista_nodes / COLS), P = 1080 / COLS, CELL = P - 5;   /* round 3: the field bleeds off both sides */
+  const X0 = 2.5, Y0 = 598, RAISE_R = 13, RAISE_C0 = 16;
+  function surf(X, Y) {
+    const c = Math.floor((X - X0) / P), r = Math.floor((Y - Y0) / P);
+    if (c < 0 || c >= COLS || r < 0 || r >= ROWS || r * COLS + c >= FIG.vista_nodes) return [0, 0];
+    const u = X - X0 - c * P, v = Y - Y0 - r * P; if (u > CELL || v > CELL) return [0, 5];
+    const e = Math.min(u, v, CELL - u, CELL - v), raised = r === RAISE_R && c >= RAISE_C0 && c < RAISE_C0 + FIG.gpu_nodes;
+    if (raised) { const h = e < 3.5 ? 250 + 14 * e : 300; return [h, e < 3.5 ? 1 : 4]; }   /* round 2: twice as tall, a wider lit steel chamfer */
+    return [e < 1.5 ? 8 + 4 * e : 14, 6];
+  }
+  const height = (X, Y) => surf(X, Y)[0], material = (X, Y) => surf(X, Y)[1];
+  /* a pool of the flood centred on the raised eight; the rest of the field falls toward black */
+  const PX = X0 + (RAISE_C0 + FIG.gpu_nodes / 2) * P, PY = Y0 + RAISE_R * P;
+  const albedo = (X, Y, m) => { const a = CH.albedo(X, Y, m); if (m !== 6) return a; const d = Math.hypot(X - PX, Y - PY), k = 0.95 + 1.0 * Math.exp(-(d * d) / (2 * 300 * 300)); return [a[0] * k, a[1] * k, a[2] * k]; };
+  TXBENCH.relief(cx, CH.reliefOpts({ x: 0, y: 0, w: 1080, h: 1350, height, material, albedo, castLength: 300, softness: 3 }));
+  /* THE LED ITSELF: a strip that emits is not shaded by the key, so its lit face is laid on in comal_lit with a soft bloom */
+  function led(x, y, w, h) { cx.save(); cx.shadowColor = 'rgba(143,224,240,0.9)'; cx.shadowBlur = 16; cx.fillStyle = '#8FE0F0'; cx.fillRect(x, y, w, h); cx.restore(); }
+  for (let k = 0; k < FIG.gpu_nodes; k++) led(X0 + (RAISE_C0 + k) * P + 2.5, Y0 + RAISE_R * P + 2.5, CELL - 5, CELL - 5);
+  CH.typeDark(cx, { a: 0.5 });
+  CH.footWash(cx, { a: 0.5 });
+  /* labels sit under the field, leaders land on the field's edge and on the raised eight */
+  const FW = COLS * P - (P - CELL), FB = Y0 + ROWS * P - (P - CELL);
+  const allAt = [X0 + 120, FB - 4], hisAt = [X0 + (RAISE_C0 + FIG.gpu_nodes / 2) * P - 2, Y0 + RAISE_R * P + CELL + 2];
+  CH.pinLabel('lab-all', [X0 + 20, FB + 52]); lead(cx, [X0 + 120, FB + 50], allAt);
+  CH.pinLabel('lab-his', [hisAt[0] + 40, FB + 52]); lead(cx, [hisAt[0] + 60, FB + 50], hisAt, 'rgba(159,230,242,0.95)');
+  window.__txLeaders = [{ target: 'the field of every Vista node', at: allAt, to: allAt }, { target: 'the eight raised cells', at: hisAt, to: hisAt }];
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

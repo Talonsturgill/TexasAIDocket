@@ -1,0 +1,123 @@
+{
+ "_note": "Every value is extracted from a claim quote by compute.py, or computed here from values that were.",
+ "cpu_nodes": {
+  "value": 64,
+  "from": [
+   "c8"
+  ],
+  "basis": "Frontera CPU nodes the 5.3 million atom simulation ran on"
+ },
+ "gpu_nodes": {
+  "value": 8,
+  "from": [
+   "c9"
+  ],
+  "basis": "Vista GPU nodes that gave almost the same speed, Rizo-Rey's account"
+ },
+ "node_ratio": {
+  "value": 8,
+  "from": [
+   "c8",
+   "c9"
+  ],
+  "basis": "cpu_nodes over gpu_nodes, a ratio of node counts, never of speed"
+ },
+ "atoms_million": {
+  "value": 5.3,
+  "from": [
+   "c8"
+  ],
+  "basis": "million atoms in the simulated system"
+ },
+ "ns_per_day": {
+  "value": 43,
+  "from": [
+   "c8"
+  ],
+  "basis": "simulated nanoseconds per day on 64 Frontera CPU nodes"
+ },
+ "jobs_million": {
+  "value": 8,
+  "from": [
+   "c1"
+  ],
+  "basis": "million jobs Frontera surpassed before retirement"
+ },
+ "years": {
+  "value": 7,
+  "from": [
+   "c2"
+  ],
+  "basis": "years of production life, over"
+ },
+ "snares": {
+  "value": 4,
+  "from": [
+   "c11"
+  ],
+  "basis": "SNARE protein complexes in the simulation"
+ },
+ "researchers": {
+  "value": 130000,
+  "from": [
+   "c23"
+  ],
+  "basis": "U.S. researchers who have used TACC systems since 2001, more than"
+ },
+ "attendees": {
+  "value": 200,
+  "from": [
+   "c18"
+  ],
+  "basis": "symposium attendees, more than"
+ },
+ "universities": {
+  "value": 30,
+  "from": [
+   "c18"
+  ],
+  "basis": "universities and other organizations at the symposium"
+ },
+ "tacc_years": {
+  "value": 25,
+  "from": [
+   "c24"
+  ],
+  "basis": "TACC's age in June 2026"
+ },
+ "vista_nodes": {
+  "value": 860,
+  "from": [
+   "c25"
+  ],
+  "basis": "all Vista compute nodes; GH200 is the processor for the majority"
+ },
+ "frontera_nodes_2020": {
+  "value": 8008,
+  "from": [
+   "c29"
+  ],
+  "basis": "Frontera's compute nodes before the 2020 expansion"
+ },
+ "expansion_nodes": {
+  "value": 396,
+  "from": [
+   "c31"
+  ],
+  "basis": "nodes the expansion added"
+ },
+ "expansion_racks": {
+  "value": 11,
+  "from": [
+   "c31"
+  ],
+  "basis": "racks the expansion nodes were housed in"
+ },
+ "xeons_per_node": {
+  "value": 2,
+  "from": [
+   "c30"
+  ],
+  "basis": "Intel Xeon Platinum 8280 processors per Frontera node"
+ }
+}

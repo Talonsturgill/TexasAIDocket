@@ -4586,6 +4586,72 @@
     "hex": "#0D0E10",
     "note": "The black epoxy bench and the anodised plate."
    }
+  },
+  {
+   "date": "2026-11-10",
+   "carousel_no": 73,
+   "written_from": "deck_coherence's median L* per frame at 432 px off the final renders, layout_check's accent share, by update_ledgers.py.",
+   "register": "A MIX. Spatial scenes in one windowless machine hall under a cold flood in the floodlit world (frames 1, 2, 6, 8 and 9, TXT.interior with no ceiling, the flood high on the upper left) and TXBENCH material reliefs in steel, graphite, black anodise and copper (3, 4, 5 and 7). Chassis assets/js/deck/2026-11-10-tray.js: compute_tray (cpu stainless with an open state, gpu black anodise with a cyan light bar), tray_tower, raised_floor and equipment_crate (built, cut from frame 8 in panel round 2), with comal_lit cyan as the one accent for a Vista GPU node.",
+   "structural_laws": [
+    "A THIN LIGHT BAR VANISHES AT FEED SIZE. A 5 mm strip read at full size and measured nothing at the 216 px accent thumb; a bar a third of the bezel tall, unlit and outside the tone curve, carries the hue.",
+    "A BLACK SUBJECT ON A DARK FLOOR BREAKS INTO DUST. The silhouette gate reads the subject against the median outside its rect, so a black tower only counts once a flood lights the floor round it.",
+    "A RAISED FLOOR'S FRONT EDGE STRIKES THE SITE LINE. Extend the floor past the camera rather than wash the edge out.",
+    "THE PRESET'S COLD FILL TINTS A FLOOR PERIWINKLE. Cut the non-shadow fill and the floor reads graphite.",
+    "EMITTED LIGHT ON A RELIEF IS LAID ON AFTER THE WASHES. Under the footer wash and vignette the far LEDs dimmed to teal."
+   ],
+   "techniques": [
+    "eight open towers of eight steel trays against one black tower of eight with cyan light bars, high three quarter",
+    "one Frontera tray open on the floor, two copper heat sinks of thin fins, macro",
+    "64 steel tray fronts and eight black ones in plan on a graphite carrier",
+    "a membrane section in metal: steel heads, graphite core, four copper SNARE bundles",
+    "the same section with the outer head rows curled round a fusion neck and the cores run through it",
+    "the black tower with its top tray pulled out on its rails",
+    "860 graphite cells with eight raised and cyan topped",
+    "an empty tower frame in the pool, three unlit trays at its foot and a fourth sliding in, whips running to it from the open row",
+    "the cover's hall from tray height, Frontera's towers dark beyond the lit eight"
+   ],
+   "value": {
+    "per_frame_median_L": [
+     4.4,
+     9.2,
+     10.3,
+     8.9,
+     8.3,
+     2.8,
+     7.2,
+     3.6,
+     2.6
+    ],
+    "deck_median_L": 7.2,
+    "max_adjacent_delta": 5.5,
+    "mean_adjacent_delta": 2.8,
+    "note": "Measured by deck_coherence's median_lstar at 432 px off the final renders."
+   },
+   "accent": {
+    "hex": "#8FE0F0",
+    "name": "comal_lit, a Vista GPU node",
+    "frames_above_floor": [
+     3,
+     6,
+     9
+    ],
+    "share": [
+     0.0004,
+     0.0,
+     0.0035,
+     0.0,
+     0.0,
+     0.0038,
+     0.0008,
+     0.0,
+     0.0077
+    ],
+    "note": "The black tower's bars on 1, 6 and 9, the light bars on 3's black row, the eight raised cells on 7."
+   },
+   "ground": {
+    "hex": "#1A1C20",
+    "note": "The graphite raised floor and the relief carrier."
+   }
   }
  ]
 }

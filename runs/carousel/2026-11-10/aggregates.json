@@ -1,0 +1,206 @@
+{
+ "date": "2026-11-10",
+ "_note": "Every count, span, ratio and duration the deck states, with the claim it was quoted from.",
+ "aggregates": [
+  {
+   "phrase": "64 nodes",
+   "slide": "slide-01.html",
+   "kind": "count",
+   "value": 64,
+   "quoted_from": "c8",
+   "quote": "Typically, we’d run a simulation of a 5.3 million-atom system on 64 CPU nodes of Frontera for 43 nanoseconds per day,"
+  },
+  {
+   "phrase": "64 CPU nodes",
+   "slide": "slide-01.html",
+   "kind": "count",
+   "value": 64,
+   "quoted_from": "c8",
+   "quote": "Typically, we’d run a simulation of a 5.3 million-atom system on 64 CPU nodes of Frontera for 43 nanoseconds per day,"
+  },
+  {
+   "phrase": "eight GPU nodes",
+   "slide": "slide-01.html",
+   "kind": "count",
+   "value": 8,
+   "quoted_from": "c9",
+   "quote": "But now with TACC’s Vista system, using just eight GPU nodes, I got almost the same speed."
+  },
+  {
+   "phrase": "eight million jobs",
+   "slide": "slide-02.html",
+   "kind": "count",
+   "value": 8,
+   "quoted_from": "c1",
+   "quote": "Frontera was retired in October 2026, having surpassed eight million jobs."
+  },
+  {
+   "phrase": "two Intel Xeon processors",
+   "slide": "slide-02.html",
+   "kind": "count",
+   "value": 2,
+   "quoted_from": "c30",
+   "quote": "Each node contains two Intel Xeon Platinum 8280 (“Cascade Lake”) processors and 192GB of DDR-4 memory"
+  },
+  {
+   "phrase": "64 CPU nodes",
+   "slide": "slide-03.html",
+   "kind": "count",
+   "value": 64,
+   "quoted_from": "c8",
+   "quote": "Typically, we’d run a simulation of a 5.3 million-atom system on 64 CPU nodes of Frontera for 43 nanoseconds per day,"
+  },
+  {
+   "phrase": "8 GPU nodes",
+   "slide": "slide-03.html",
+   "kind": "count",
+   "value": 8,
+   "quoted_from": "c9",
+   "quote": "But now with TACC’s Vista system, using just eight GPU nodes, I got almost the same speed."
+  },
+  {
+   "phrase": "64 Frontera nodes",
+   "slide": "slide-03.html",
+   "kind": "count",
+   "value": 64,
+   "quoted_from": "c8",
+   "quote": "Typically, we’d run a simulation of a 5.3 million-atom system on 64 CPU nodes of Frontera for 43 nanoseconds per day,"
+  },
+  {
+   "phrase": "43 nanoseconds",
+   "slide": "slide-03.html",
+   "kind": "count",
+   "value": 43,
+   "quoted_from": "c8",
+   "quote": "Typically, we’d run a simulation of a 5.3 million-atom system on 64 CPU nodes of Frontera for 43 nanoseconds per day,"
+  },
+  {
+   "phrase": "eight Vista GPU nodes",
+   "slide": "slide-03.html",
+   "kind": "count",
+   "value": 8,
+   "quoted_from": "c9",
+   "quote": "But now with TACC’s Vista system, using just eight GPU nodes, I got almost the same speed."
+  },
+  {
+   "phrase": "four SNARE complexes",
+   "slide": "slide-04.html",
+   "kind": "count",
+   "value": 4,
+   "quoted_from": "c11",
+   "quote": "He has been running simulations with a vesicle, flat bilayer, and four SNARE protein complexes"
+  },
+  {
+   "phrase": "four SNARE protein complexes",
+   "slide": "slide-04.html",
+   "kind": "count",
+   "value": 4,
+   "quoted_from": "c11",
+   "quote": "He has been running simulations with a vesicle, flat bilayer, and four SNARE protein complexes"
+  },
+  {
+   "phrase": "two membranes",
+   "slide": "slide-05.html",
+   "kind": "count",
+   "value": 2,
+   "quoted_from": "c14",
+   "quote": "catalyzes the mixing of hydrophobic interiors of the two membranes"
+  },
+  {
+   "phrase": "8 nodes",
+   "slide": "slide-07.html",
+   "kind": "count",
+   "value": 8,
+   "quoted_from": "c9",
+   "quote": "But now with TACC’s Vista system, using just eight GPU nodes, I got almost the same speed."
+  },
+  {
+   "phrase": "860 compute nodes",
+   "slide": "slide-07.html",
+   "kind": "count",
+   "value": 860,
+   "quoted_from": "c25",
+   "quote": "The NVIDIA GH200 Grace Hopper Superchip is the processor for a the majority of Vista’s 860 compute nodes."
+  },
+  {
+   "phrase": "eight Vista GPU nodes",
+   "slide": "slide-09.html",
+   "kind": "count",
+   "value": 8,
+   "quoted_from": "c9",
+   "quote": "But now with TACC’s Vista system, using just eight GPU nodes, I got almost the same speed."
+  },
+  {
+   "phrase": "two Xeons",
+   "slide": "caption.txt",
+   "kind": "count",
+   "value": 2,
+   "quoted_from": "c30",
+   "quote": "Each node contains two Intel Xeon Platinum 8280 (“Cascade Lake”) processors and 192GB of DDR-4 memory"
+  },
+  {
+   "phrase": "43 nanoseconds",
+   "slide": "caption.txt",
+   "kind": "count",
+   "value": 43,
+   "quoted_from": "c8",
+   "quote": "Typically, we’d run a simulation of a 5.3 million-atom system on 64 CPU nodes of Frontera for 43 nanoseconds per day,"
+  },
+  {
+   "phrase": "eight million jobs",
+   "slide": "caption.txt",
+   "kind": "count",
+   "value": 8,
+   "quoted_from": "c1",
+   "quote": "Frontera was retired in October 2026, having surpassed eight million jobs."
+  },
+  {
+   "phrase": "eight GPU nodes",
+   "slide": "caption.txt",
+   "kind": "count",
+   "value": 8,
+   "quoted_from": "c9",
+   "quote": "But now with TACC’s Vista system, using just eight GPU nodes, I got almost the same speed."
+  },
+  {
+   "phrase": "64 Frontera CPU nodes",
+   "slide": "document_title",
+   "kind": "count",
+   "value": 64,
+   "quoted_from": "c8",
+   "quote": "Typically, we’d run a simulation of a 5.3 million-atom system on 64 CPU nodes of Frontera for 43 nanoseconds per day,"
+  },
+  {
+   "phrase": "8 Vista GPU nodes",
+   "slide": "document_title",
+   "kind": "count",
+   "value": 8,
+   "quoted_from": "c9",
+   "quote": "But now with TACC’s Vista system, using just eight GPU nodes, I got almost the same speed."
+  },
+  {
+   "phrase": "seven years",
+   "slide": "slide-02.html",
+   "kind": "duration",
+   "value": 7,
+   "quoted_from": "c2",
+   "quote": "Frontera had over seven years of production life, which is the longest run on any TACC system,"
+  },
+  {
+   "phrase": "eight nodes",
+   "slide": "slide-07.html",
+   "kind": "count",
+   "value": 8,
+   "quoted_from": "c9",
+   "quote": "But now with TACC’s Vista system, using just eight GPU nodes, I got almost the same speed."
+  },
+  {
+   "phrase": "8 nodes",
+   "slide": "slide-07.html",
+   "kind": "count",
+   "value": 8,
+   "quoted_from": "c9",
+   "quote": "But now with TACC’s Vista system, using just eight GPU nodes, I got almost the same speed."
+  }
+ ]
+}

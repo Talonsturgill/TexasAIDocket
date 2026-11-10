@@ -1,0 +1,57 @@
+<!doctype html>
+<!-- 2026-11-10, frame 6 of 9. Archetype OBJECT_AND_CAPTION. A spatial scene through txthree.js inside the TXT.interior machine hall: the black tower of eight Vista trays with its top tray pulled half out on two steel slide rails, its cyan strip lit. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:900px">The speed took a lot of tuning</h1>
+<p class="dek" data-follow="26" style="width:860px">Rizo-Rey says reaching it on Vista "required a lot of optimizations with GROMACS, with the help of people here at TACC." GROMACS is free and open source software for molecular dynamics.</p>
+<script>window.FIG = {"gpu_nodes": 8};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-10-tray.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE); CH.KEY_SCALE = 1.4;
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "The work behind it", counter: "06 / 09", src: "c10 c33", fit: { min: 80, max: 104, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 32, near: 0.05, far: 60 });
+  TXT.interior(R, CH.roomOpts({}));
+  CH.floor(TXT, R, K, { cols: 14, rows: 12 });
+  const Y = CH.FLOOR_H;
+  /* THE FIGURE: the tower holds gpu_nodes black trays, its top one pulled out on its rails */
+  const g = K.make('tray_tower', { kind: 'gpu', count: FIG.gpu_nodes, lit: true, pull: 0.3 });
+  g.position.set(0, Y, 0); g.rotation.y = 0.5; TXT.add(R, g);   /* round 3: no contact decal, its plane read as a pale hard-edged rectangle on the floor; the floods' own shadows seat it */
+  const from = [0.95, Y + 1.1, 3.0];
+  /* round 2: the tower's foot sits above the footer band, and the first flood lands under it rather than to its left */
+  const look = CH.aim(THREE, R, TXT, from, [0.0, Y, 0.0], 600, 1110, 36);
+  TXT.frame(R, { fov: 36, from, look });
+  TXT.deckRig(R, CH.rigSpec(W, 5, 2048), CH.rigOpts([0, Y, 0], { distance: 10, shadowFar: 24, normalBias: 0.01 }));
+  CH.unacne(R, 0.01);
+  CH.darkHall(R);
+  /* the flood on the declared key's bearing, aimed at the tower's foot, so the floor round it is lit and the tower stands dark against it */
+  CH.flood(THREE, R, [-1.20, Y + 2.7, 0.80], [0.35, Y, 0.35], { i: 160, reach: 8, angle: 0.55, penumbra: 0.75 });
+  /* and the same flood's spill on the floor behind the tower, so the tower stands as one shape against a lit floor */
+  CH.flood(THREE, R, [-1.2, Y + 2.8, -0.2], [0.35, Y, -0.85], { i: 240, reach: 8, angle: 0.55, penumbra: 0.8 });
+  TXT.weather(R, { grime: 0.08, height: 0.3, mottle: 0.12 });
+  TXT.stage(R, g);
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.post(cx, { a: 0.35, veil: 0.3, veilH: 220 });
+  CH.footWash(cx, { x: 860, r: 560, a: 0.9 });
+  CH.typeDark(cx, { fade: 120, a: 0.75 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>
