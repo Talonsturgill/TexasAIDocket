@@ -660,7 +660,13 @@ screen texture and a fallback do not qualify.
    `txthree.js` or renders through `txbench.js`; neither importing a module nor drawing a flat
    rectangle suffices. Every counted frame needs its affirmative render measurement.
 4. **The figure drives geometry.** A count drives marks and a ratio drives lengths at one scale.
-   Use parallel projection for measurements and perspective only for spatial scenes.
+   Use parallel projection for measurements and perspective only for spatial scenes. **Parallel
+   is not plan.** A count of identical units seen straight down reads as a chart, a keyboard or a
+   waffle, so a counted quantity is shot AXONOMETRIC: a parallel camera at a raking three quarter
+   (`txthree` with an `OrthographicCamera`, as `assets/js/deck/2026-09-23-gensetyard.js` `N.ortho`
+   does), every unit one size and each showing a lit top, a front and a cast. A plan relief is for
+   a subject that is flat in life: a sheet, a map, a section. TECHNIQUE_LIBRARY, material relief,
+   carries the census (2026-11-10).
 5. **One finish.** `txpost.js` grades the render. It never substitutes texture for the subject.
 6. **Text stays DOM.** Leave quiet space for vector text and check it at feed size.
 
@@ -1020,7 +1026,8 @@ there too.
 Verified in this container on 2026-09-23: WebGL2 through SwiftShader, a PBR steel solid with fog
 and a soft shadow rendered cleanly in 5.8 seconds. Rules: `setup` sets pixel ratio before size,
 so the 2x store is filled; never `Math.random`, use `TX.rng(seed)`; text stays DOM; perspective
-for scenes and parallel projection for any quantity; fog in the sky's own hue.
+for scenes and parallel projection for any quantity, seen from a raking three quarter and never
+straight down (rule 4 above); fog in the sky's own hue.
 
 **The reserve rule survives the print.** Type never sits on busy surface. The render keeps the
 type's zone quiet by construction: sky above a horizon, a dark ceiling, a floor falling off away
