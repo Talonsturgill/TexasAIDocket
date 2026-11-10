@@ -47544,7 +47544,7 @@
   },
   {
    "title": "TACC retires Frontera after more than eight million jobs, and a UT Southwestern simulation that needed 64 of its CPU nodes runs nearly as fast on eight Vista GPU nodes",
-   "summary": "The Texas Advanced Computing Center at The University of Texas at Austin published its account on October 29th, 2026 of the symposium it held for Texas researchers in September. It says Frontera was retired in October 2026 after more than eight million jobs and over seven years of production, the longest run of any system at the center. For most of its life Frontera was the fastest academic supercomputer in the United States. Its successor Horizon has entered its first phase of early operations. Horizon's power infrastructure is complete, its exabyte capacity storage is in place and the first of its AI focused hardware is being installed. Jose Rizo-Rey of UT Southwestern Medical Center in Dallas told the symposium his lab typically ran a 5.3 million atom simulation of membrane fusion on 64 CPU nodes of Frontera at 43 nanoseconds a day. On the center's Vista system he got almost the same speed with eight GPU nodes, after many optimizations of the GROMACS code made with the center's staff. The comparison is one lab's own account in the center's release and not a published benchmark.",
+   "summary": "The Texas Advanced Computing Center at The University of Texas at Austin published its account on October 29th, 2026 of the symposium it held for Texas researchers in September. It says Frontera was retired in October 2026 after more than eight million jobs and over seven years of production, the longest run of any system at the center. For most of its life Frontera was the fastest academic supercomputer in the United States. Its successor Horizon has entered its first phase of early operations. Horizon's power infrastructure is complete, its exabyte capacity storage is in place and the first of its AI focused hardware is being installed. Jose Rizo-Rey of UT Southwestern Medical Center told the symposium his lab typically ran a 5.3 million atom simulation of membrane fusion on 64 CPU nodes of Frontera at 43 nanoseconds a day. On the center's Vista system he got almost the same speed with eight GPU nodes, after many optimizations of the GROMACS code made with the center's staff. The comparison is one lab's own account in the center's release and not a published benchmark.",
    "topic": "research-and-science",
    "decider": {
     "name": "Texas Advanced Computing Center, The University of Texas at Austin",
@@ -47553,8 +47553,7 @@
    "geography": {
     "statewide": false,
     "counties": [
-     "Travis",
-     "Dallas"
+     "Travis"
     ],
     "on_ercot": true
    },
