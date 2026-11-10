@@ -7,8 +7,10 @@ It authorizes direct Upload-Post publishing of the finished edition to the bound
 without an editorial approval link. It supersedes older social-posting bans and statements that
 the email gates posting, including older phase documents. Preserve all existing release, rights,
 quality, merge, archive and Gmail draft checks. Never send email. No credentials or permissions
-are created by this update; a missing authorized routine connector is a reported social blocker.
-Other routines and unrelated external communications retain their existing restrictions.
+are created by this update; missing authorized secure REST access is a reported social blocker.
+Only the three daily media-upload endpoints are writable. Do not use comment, DM, account
+management, feedback, edit or deletion endpoints. Other routines and unrelated external
+communications retain their existing restrictions.
 
 
 
