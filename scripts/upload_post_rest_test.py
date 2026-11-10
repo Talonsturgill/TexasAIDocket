@@ -20,13 +20,12 @@ SECOND_SHA = rest.file_hash(SECOND)
 
 
 def manifest(platform='facebook', kind='video', placement='feed', repo='TexasAIDispatch'):
-    alaska = repo.startswith('alaska')
     return {'repository': 'Talonsturgill/' + repo, 'edition_id': '2026-11-10',
-            'user': 'alaska_ai' if alaska else 'default', 'platform': platform,
+            'user': 'default', 'platform': platform,
             'placement': placement, 'segment_index': 0, 'media_type': kind,
             'media': [{'path': str(MEDIA), 'sha256': SHA}],
             'title': 'Released daily edition',
-            'options': {'facebook_page_id': '2003130316607965' if alaska else '113073681274871'} if platform == 'facebook' else {}}
+            'options': {'facebook_page_id': '113073681274871'} if platform == 'facebook' else {}}
 
 
 class MemoryState:
@@ -68,6 +67,12 @@ class RestTests(unittest.TestCase):
         m = manifest(); m['options'] = {}
         with self.assertRaises(ValueError): rest.build(m)
 
+    def test_only_texas_repositories_are_bound(self):
+        self.assertEqual(set(rest.BRANDS), {'Talonsturgill/TexasAIDocket',
+                                           'Talonsturgill/TexasAIDispatch'})
+        with self.assertRaises(ValueError):
+            rest.build(manifest(repo='other-brand'))
+
     def test_all_brand_bindings(self):
         for repo, (user, org, kind) in rest.BRANDS.items():
             m = manifest('linkedin', 'video' if kind == 'video' else 'document', repo=repo.split('/')[1])
@@ -86,6 +91,12 @@ class RestTests(unittest.TestCase):
                 self.assertEqual(rest.build(m)[1]['target_linkedin_page_id'], 'urn:li:organization:78748279')
         m['options']['target_linkedin_page_id'] = 'urn:li:organization:117084989'
         with self.assertRaises(ValueError): rest.build(m)
+
+    def test_media_read_rejects_other_organization(self):
+        with self.assertRaises(ValueError):
+            rest.read('media', {'user': 'default', 'platform': 'linkedin',
+                                'page_urn': '117084989'},
+                      send=lambda *args: self.fail('network'))
 
     def test_read_only_pins_and_email_redaction(self):
         for route in ('linkedin-pin', 'facebook-pin'):

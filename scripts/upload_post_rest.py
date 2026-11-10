@@ -33,8 +33,6 @@ ROUTES = {
     'media': ('/uploadposts/media', {'user', 'platform', 'page_urn', 'limit', 'cursor'}),
 }
 BRANDS = {
-    'Talonsturgill/alaska-ai-weekly': ('alaska_ai', '117084989', 'video'),
-    'Talonsturgill/alaskaaicarousels': ('alaska_ai', '117084989', 'carousel'),
     'Talonsturgill/TexasAIDispatch': ('default', '78748279', 'video'),
     'Talonsturgill/TexasAIDocket': ('default', '78748279', 'carousel'),
 }
@@ -133,7 +131,7 @@ def build(manifest):
         require('target_linkedin_page_id' not in options and 'visibility' not in options,
                 'LinkedIn options on another platform')
     if platform == 'facebook':
-        expected_page = '2003130316607965' if user == 'alaska_ai' else '113073681274871'
+        expected_page = '113073681274871'
         require(str(options.get('facebook_page_id', '')) == expected_page, 'verified bound Facebook Page ID required')
         fixed('facebook_media_type', 'STORIES' if placement == 'story' else ('VIDEO' if kind == 'video' else 'POSTS'))
         if kind == 'video':
@@ -217,13 +215,13 @@ def read(route, query, send=transport):
         require(query.get('limit', '10') in {'10', '20', '50', '100'}, 'history limit must be 10, 20, 50 or 100')
         require(str(query.get('page', '1')).isdigit() and int(query.get('page', '1')) >= 1, 'history page must be positive')
     if route in {'facebook-pin', 'linkedin-pin'}:
-        require(query.get('profile_username') in {'alaska_ai', 'default'}, 'bound profile required')
+        require(query.get('profile_username') == 'default', 'bound profile required')
     if route == 'tiktok-settings':
         require(bool(query.get('profile')), 'TikTok profile required')
     if route == 'media':
         require(bool(query.get('user')) and bool(query.get('platform')), 'media user and platform required')
         if query['platform'] == 'linkedin':
-            require(query.get('page_urn') in {'117084989', '78748279'}, 'bound LinkedIn organization required')
+            require(query.get('page_urn') == '78748279', 'bound LinkedIn organization required')
     if query:
         path += '?' + urlencode(query)
     status, response = send(path)

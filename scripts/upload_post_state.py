@@ -18,8 +18,7 @@ from uuid import uuid4
 REF = 'refs/heads/claude/social-delivery-state-v1'
 FILE = 'state.json'
 SCHEMA = 'upload-post-social-state/1'
-REPOSITORIES = {'Talonsturgill/alaska-ai-weekly', 'Talonsturgill/alaskaaicarousels',
-                'Talonsturgill/TexasAIDispatch', 'Talonsturgill/TexasAIDocket'}
+REPOSITORIES = {'Talonsturgill/TexasAIDispatch', 'Talonsturgill/TexasAIDocket'}
 IDENTITY_KEYS = {'repository', 'edition_id', 'user', 'platform', 'placement', 'segment_index'}
 RESULT_KEYS = {'state', 'request_id', 'job_id', 'http_status', 'platform_post_id',
                'post_url', 'error_code', 'failure_stage'}
@@ -123,7 +122,7 @@ class GitState:
         require(isinstance(identity['edition_id'], str) and len(identity['edition_id']) <= 200
                 and re.fullmatch(r'\d{4}-\d{2}-\d{2}(?:-[a-z0-9]+(?:-[a-z0-9]+)*)?', identity['edition_id']),
                 'invalid edition identity')
-        require(identity['user'] == ('alaska_ai' if '/alaska' in self.repository else 'default'),
+        require(identity['user'] == 'default',
                 'delivery profile mismatch')
         require(identity['platform'] in {'facebook', 'instagram', 'linkedin', 'tiktok', 'youtube'}, 'invalid delivery platform')
         require(identity['placement'] in {'feed', 'story'}, 'invalid delivery placement')

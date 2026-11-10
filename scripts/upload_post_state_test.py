@@ -10,7 +10,7 @@ import unittest
 from unittest.mock import patch
 import upload_post_state as state
 
-REPO = 'Talonsturgill/TexasAIDispatch'
+REPO = 'Talonsturgill/TexasAIDocket'
 
 
 def identity(index=0):
@@ -234,8 +234,16 @@ class StateTests(unittest.TestCase):
         git(self.work, 'config', '--add', 'remote.origin.url', 'https://github.com/' + REPO)
         with self.assertRaises(state.StateBlocked): state.GitState(self.work, REPO)
 
+    def test_only_texas_repositories_are_bound(self):
+        self.assertEqual(state.REPOSITORIES, {'Talonsturgill/TexasAIDocket',
+                                              'Talonsturgill/TexasAIDispatch'})
+        with self.assertRaises(state.StateBlocked):
+            LocalState(self.work, 'Talonsturgill/other-brand')
+        bad = identity(); bad['user'] = 'other-profile'
+        with self.assertRaises(state.StateBlocked): self.a.claim(bad, 'a' * 64)
+
     def test_identity_and_receipt_secrets_rejected(self):
-        bad = identity(); bad['repository'] = 'Talonsturgill/alaska-ai-weekly'
+        bad = identity(); bad['repository'] = 'Talonsturgill/other-brand'
         with self.assertRaises(state.StateBlocked): self.a.claim(bad, 'a' * 64)
         for edition in ('private user note', 'person@example.com', '2026-11-10/path'):
             bad = identity(); bad['edition_id'] = edition
