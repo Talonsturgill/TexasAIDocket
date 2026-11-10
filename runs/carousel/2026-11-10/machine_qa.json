@@ -30,7 +30,7 @@
       "file": "slide-03.html",
       "fails": [],
       "warns": [
-        "console error: TXBENCH: RELIEF {\"height_range\":48.099998474121094,\"materials\":5,\"cast_fraction\":0.1199389574759945,\"area\":1,\"render_ms\":7539.5}"
+        "console error: TXBENCH: RELIEF {\"height_range\":48.099998474121094,\"materials\":5,\"cast_fraction\":0.1199389574759945,\"area\":1,\"render_ms\":5859.200000000012}"
       ],
       "bands": [
         0.2731,
@@ -82,7 +82,7 @@
       "file": "slide-07.html",
       "fails": [],
       "warns": [
-        "console error: TXBENCH: RELIEF {\"height_range\":300,\"materials\":5,\"cast_fraction\":0.13986351165980795,\"area\":1,\"render_ms\":10327.89999999851}",
+        "console error: TXBENCH: RELIEF {\"height_range\":300,\"materials\":5,\"cast_fraction\":0.13986351165980795,\"area\":1,\"render_ms\":10591.200000000012}",
         "outside safe zone: '860 compute nodes' at 23,1147 292x34 (margin 80px)"
       ],
       "bands": [

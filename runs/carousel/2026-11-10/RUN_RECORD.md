@@ -117,6 +117,10 @@ package 237.74.
   counts are now numerals.
 - **Prompt audit.** 1,585 calls measured, 63 counted as waiting. The top of the list is SendMessage and Agent dispatches at 3 to 25 s, the queued agent latency count (repeat 8), and no call has the shape of a human answering a dialog. The no-stall hook was armed at 05:03:41 UTC, judged the session unattended (the host's CLAUDE_CODE_SESSION_ATTENDED was 0) and refused nothing.
 
+## CI
+
+PR no. 466's first CI run went red on one gate, `shipped_check`'s FIG lines: slide 3 carried an unread `node_ratio` and slide 7's keys were out of the injector's order, because the run wrote those lines by hand rather than through `fig_inject.py`. `fig_inject.py --run` rewrote both. Slide 3 is an audition frame, so the change unbound the art review; the re-render of 3 and 7 is byte-identical (slide 3 sha256 31676624f191...), and the `carousel-art-director` re-read frame 3 on its new source and accepted it. `art_preflight --archive`, `measure_shipped --check`, `panel_ready` and `shipped_check` all exit 0 here. No delivered image changed, so `docs/` did not move. The storyboard's frame 3 `data_in_art.figure` still names node_ratio, a dossier wording the reviewer flagged and the run left as archived.
+
 ## Email
 
 The payload is built by `gmail_draft.py` before the merge so CI's `email_check --all` reads it, and `email_check` exits 0 for this run and for all. It first refused the sources block as stale: the block still listed c16 to c20, c27, c31 and c32, which no frame or caption prints after the panel repairs, and missed c34. The block was rebuilt to the ids the deck prints, and TOP500's line went with c32. The Gmail draft itself is created after the merge.
@@ -133,9 +137,9 @@ Written at Phase 18.
 | claims         | PASS   | 34 verified claim(s) |
 | render         | PASS   | 9 slide(s) |
 | qa             | WARN   | 0 fail(s), 5 warn(s) |
-| aggregates     | PASS   | 19 declaration(s), 28 numeric phrase(s) in the render, all re-derived |
-| assembly       | PASS   | 9 slide(s), 6.82 MB, vector |
-| score          | WARN   | 6.97 at the round cap after 3 round(s), the finished deck ships; 8.0 top rung, shortfall named |
+| aggregates     | STALE  | aggregate_report.json predates the newest render, so it describes a deck that no longer exists. Re-run it |
+| assembly       | STALE  | final/assemble_report.json predates the newest render, so it describes a deck that no longer exists. Re-run it |
+| score          | STALE  | score.json predates the newest render, so it describes a deck that no longer exists. Re-run it |
 | labels         | PASS   | 68 claim id(s) checked, every label beside one traces to the shape its claim proves |
 | quantifiers    | PASS   | 79 published string(s) read from one list, every universal names its set |
 | verbatim       | WARN   | no dossier declares a `verbatim:` block, so no on-frame string was held to a quote |

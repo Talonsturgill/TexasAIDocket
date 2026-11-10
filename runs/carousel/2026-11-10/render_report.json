@@ -420,7 +420,7 @@
       "file": "slide-03.html",
       "png": "slide-03.png",
       "console_errors": [
-        "TXBENCH: RELIEF {\"height_range\":48.099998474121094,\"materials\":5,\"cast_fraction\":0.1199389574759945,\"area\":1,\"render_ms\":7539.5}"
+        "TXBENCH: RELIEF {\"height_range\":48.099998474121094,\"materials\":5,\"cast_fraction\":0.1199389574759945,\"area\":1,\"render_ms\":5859.200000000012}"
       ],
       "page_errors": [],
       "overflow_warnings": [],
@@ -634,9 +634,9 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 12269,
+      "render_ms": 9814,
       "ok": true,
-      "load_ms": 206,
+      "load_ms": 233,
       "canvases": [
         {
           "x": 0,
@@ -1330,7 +1330,7 @@
       "file": "slide-07.html",
       "png": "slide-07.png",
       "console_errors": [
-        "TXBENCH: RELIEF {\"height_range\":300,\"materials\":5,\"cast_fraction\":0.13986351165980795,\"area\":1,\"render_ms\":10327.89999999851}"
+        "TXBENCH: RELIEF {\"height_range\":300,\"materials\":5,\"cast_fraction\":0.13986351165980795,\"area\":1,\"render_ms\":10591.200000000012}"
       ],
       "page_errors": [],
       "overflow_warnings": [],
@@ -1544,9 +1544,9 @@
       "encodings": [],
       "contacts": [],
       "nondeterminism": [],
-      "render_ms": 14189,
+      "render_ms": 13949,
       "ok": true,
-      "load_ms": 155,
+      "load_ms": 146,
       "canvases": [
         {
           "x": 0,
