@@ -5,6 +5,7 @@ Authentication is injected by Claude cloud Network secrets for api.upload-post.c
 No credential argument, environment lookup, Authorization header, redirect or retry.
 The director still owns release gates, account verification, the edition lease,
 provider-history reconciliation and verification of each actual published post.
+Social ownership uses a separate durable Git intent, never the production lease.
 Official contract: https://docs.upload-post.com/api/upload-video (2026-11-10).
 """
 import argparse
@@ -16,6 +17,7 @@ import re
 import subprocess
 import sys
 from datetime import datetime, timezone
+from upload_post_state import GitState
 from urllib.parse import urlencode, urlsplit, urlunsplit, parse_qsl
 
 BASE = 'https://api.upload-post.com/api'
@@ -242,29 +244,75 @@ def write_json(stream, value):
     os.fsync(stream.fileno())
 
 
-def upload(manifest, receipt_dir, dry_run=False, send=transport):
+def save_local_receipt(receipt, info):
+    temp = receipt.with_suffix('.response.tmp')
+    with temp.open('x', encoding='utf-8') as stream:
+        write_json(stream, info)
+    os.replace(temp, receipt)
+    sync_directory(receipt.parent)
+
+
+def compact_receipt(info):
+    """Public minimal recovery data; never persist raw provider content to Git."""
+    result = {'state': info['state']}
+    if 'http_status' in info:
+        result['http_status'] = info['http_status']
+    for key in ('request_id', 'job_id'):
+        value = info.get(key)
+        if isinstance(value, str) and re.fullmatch(r'[A-Za-z0-9_.:-]{1,256}', value):
+            result[key] = value
+    # Each request has exactly one bound platform. A synchronous provider result
+    # may put its public identifiers directly or under a platform/results object.
+    def visit(value):
+        if isinstance(value, dict):
+            for key, item in value.items():
+                if key == 'platform_post_id' and isinstance(item, str) and re.fullmatch(r'[A-Za-z0-9_.:-]{1,256}', item):
+                    result.setdefault(key, item)
+                elif key == 'post_url' and isinstance(item, str):
+                    url = urlsplit(item)
+                    host = (url.hostname or '').lower()
+                    allowed = ('facebook.com', 'instagram.com', 'linkedin.com', 'tiktok.com', 'youtube.com', 'youtu.be')
+                    if (url.scheme == 'https' and not url.username and not url.password and
+                            any(host == domain or host.endswith('.' + domain) for domain in allowed)
+                            and redact(item) == item):
+                        result.setdefault(key, item)
+                elif isinstance(item, (dict, list)):
+                    visit(item)
+        elif isinstance(value, list):
+            for item in value:
+                visit(item)
+    visit(info.get('response'))
+    return result
+
+
+def upload(manifest, receipt_dir, dry_run=False, send=transport, state_store=None):
     path, fields, media, identity = build(manifest)
     receipt = Path(receipt_dir) / ('upload-post-' + digest(identity) + '.json')
-    info = {'identity': identity, 'fingerprint': digest(manifest), 'endpoint': path,
+    fingerprint = digest({'identity': identity, 'media_sha256': [m['sha256'] for m in media],
+                          'media_type': manifest['media_type'], 'fields': fields})
+    info = {'identity': identity, 'fingerprint': fingerprint, 'endpoint': path,
             'receipt': str(receipt), 'state': 'UNKNOWN',
             'started_at': datetime.now(timezone.utc).isoformat()}
     if dry_run:
         return {**info, 'state': 'DRY_RUN', 'fields': fields, 'media': media}
     require(receipt.parent.is_dir(), 'existing edition scratch directory required')
-    # O_EXCL is the local duplicate/concurrency guard. A crash before/after POST
-    # leaves UNKNOWN or an empty file, and both block resubmission. Cross-host
-    # ownership and recovery after lost scratch still require the director's lease
-    # and provider history. There is no claim of server-side exactly-once semantics.
+    # Local receipts from older runs still block automatic re-submission. The
+    # remote intent is created first so a rejected CAS cannot leave a misleading
+    # local network-attempt marker; no POST is possible without that durable claim.
+    require(not receipt.exists() and not receipt.is_symlink(),
+            'delivery already attempted; reconcile existing receipt/history, never resubmit')
+    store = state_store or GitState(Path(__file__).resolve().parents[1], manifest['repository'])
+    claim = store.claim(identity, fingerprint)
+    info['social_claim'] = claim
+    # A crash or local-write failure here leaves the remote UNKNOWN intent intact.
+    # Another container must reconcile it, never take over or repeat the POST.
+    with receipt.open('x', encoding='utf-8') as stream:
+        write_json(stream, info)
+    sync_directory(receipt.parent)
     try:
-        with receipt.open('x', encoding='utf-8') as stream:
-            write_json(stream, info)
-        sync_directory(receipt.parent)
-    except FileExistsError:
-        raise ValueError('delivery already attempted; reconcile existing receipt/history, never resubmit') from None
-    try:
+        build(manifest)  # Verify bytes again after remote claim latency.
         code, response = send(path, fields, media, ENDPOINTS[manifest['media_type']][1])
         info.update(http_status=code, response=redact(response))
-        # A 2xx response is not proof of an actual published post.
         info['state'] = 'ACCEPTED' if 200 <= code < 300 else 'UNKNOWN'
         if isinstance(response, dict):
             for key in ('request_id', 'job_id'):
@@ -272,12 +320,18 @@ def upload(manifest, receipt_dir, dry_run=False, send=transport):
                     info[key] = response[key]
     except (RuntimeError, OSError, ValueError, subprocess.TimeoutExpired) as error:
         info['error'] = type(error).__name__ + ': transport outcome uncertain; reconcile before retry'
-    # Atomic replacement keeps the pre-send UNKNOWN record if saving fails.
-    temp = receipt.with_suffix('.response.tmp')
-    with temp.open('x', encoding='utf-8') as stream:
-        write_json(stream, info)
-    os.replace(temp, receipt)
-    sync_directory(receipt.parent)
+    # Retain the returned request ID before any slower Git metadata operation.
+    info['remote_receipt_saved'] = False
+    save_local_receipt(receipt, info)
+    # Remote response persistence may retry only metadata CAS, never the POST.
+    # If it fails, retain local evidence and the durable remote UNKNOWN intent.
+    try:
+        store.save_result(claim, compact_receipt(info))
+        info['remote_receipt_saved'] = True
+    except (RuntimeError, OSError, ValueError, subprocess.TimeoutExpired):
+        info['remote_receipt_saved'] = False
+        info['durability_error'] = 'Remote receipt uncertain; preserve local response and reconcile original request. Never resubmit.'
+    save_local_receipt(receipt, info)
     return info
 
 
@@ -291,8 +345,18 @@ def main():
     post.add_argument('--manifest', required=True)
     post.add_argument('--receipt-dir', required=True)
     post.add_argument('--dry-run', action='store_true')
+    state = sub.add_parser('state')
+    state.add_argument('--repository', required=True, choices=BRANDS)
+    state.add_argument('--edition-id')
+    state.add_argument('--initialize', action='store_true', help='Verify/create only the separate empty social state branch; never publish')
     args = parser.parse_args()
     try:
+        if args.command == 'state':
+            store = GitState(Path(__file__).resolve().parents[1], args.repository)
+            if args.initialize:
+                store.initialize()
+            print(canonical(store.records(args.edition_id)))
+            return 0
         if args.command == 'read':
             pairs = [item.split('=', 1) for item in args.query]
             require(all(len(item) == 2 for item in pairs), 'query must be KEY=VALUE')

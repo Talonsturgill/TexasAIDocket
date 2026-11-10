@@ -42,6 +42,14 @@ accepts an API key, and sends no Authorization header, including no dummy header
 replace the proxy's injected credential. Do not put a key in an environment variable or argument.
 Call the read-only preflight successfully from the actual routine runtime before declaring
 access ready; a browser login or a desktop-only connection does not prove routine access.
+Before production, also run `python3 scripts/upload_post_rest.py state --repository Talonsturgill/TexasAIDocket --initialize`.
+This validates or creates the empty, separate `refs/heads/claude/social-delivery-state-v1` branch
+through verified exact-origin Git access and verifies its readback. It stores only the helper's
+minimal `state.json` delivery map, not production artifacts. Use the existing authorized Git
+access; do not install credentials or work around a denied Git operation. A failed initialization
+blocks social writes, not the original production/email path. This social state branch never
+writes to main, the production branch, or shipped artifacts, and adds no GitHub Actions publisher.
+
 Read-only Upload-Post MCP tools may supplement account/history inspection. Do not call MCP
 upload tools: their host requires per-post confirmation. Do not bypass an MCP confirmation.
 
@@ -105,7 +113,7 @@ headers, signed upload URLs or credentials in a manifest. Only use documented RE
 
 Run `python3 scripts/upload_post_rest.py upload --manifest <manifest.json> --receipt-dir <edition-scratch-directory> --dry-run`
 to inspect the request, then omit `--dry-run` to publish AFTER the release gates, live account
-verification, existing edition lock and history reconciliation below. The helper restricts writes
+verification, separate social ownership and history reconciliation below. The helper restricts writes
 to the upload endpoints and one platform/placement at a time. It is a transport, not a substitute
 for those production and duplicate checks. Use the same receipt directory on every resume.
 Exit 0 is a dry-run/read success. Every real upload exits 3, including an accepted request:
@@ -139,11 +147,17 @@ an image upload that would silently land in the feed for a Story.
 
 A daily trigger can be re-fired. Treat each (repository, edition ID, profile, platform,
 placement, segment index) as one logical delivery; include the ordered media hashes and final
-copy hash in its fingerprint. Reuse the existing run/edition lock; never post concurrently from
-two sessions for one edition. If exclusive ownership cannot be established, skip social writes
-and report a lock blocker. Do not change or bypass an existing production lease.
+copy hash in its fingerprint. Social delivery uses the separate Git compare-and-swap (CAS)
+state branch above, not the production lease. Do not reacquire or reopen a shipped production
+edition merely to post. Existing production ownership remains unchanged for production actions.
+Before any POST, the helper atomically claims the logical delivery as UNKNOWN on the remote
+state branch, then verifies readback of its unique owner. If exclusive social ownership cannot
+be established, skip social writes and report the exact blocker. No claim expires or transfers.
+Any existing remote claim, including UNKNOWN, permits reconciliation only, never another POST.
 
-Before EVERY upload, reconcile that logical delivery against this run's existing receipt and
+Before EVERY upload, run `python3 scripts/upload_post_rest.py state --repository Talonsturgill/TexasAIDocket --edition-id <edition-id>`
+to read the durable entries, even if local scratch is absent. Reconcile that logical delivery
+against this remote state, any local receipt and
 `read history --query page=<n> --query limit=100` (paginate through the edition's delivery
 window), plus `read media --query user=<bound-user> --query platform=<platform>` where needed.
 For LinkedIn media also pass `--query page_urn=<bound-organization-id>`; its default can resolve
@@ -159,12 +173,20 @@ request ID. Save request IDs immediately in the existing scratch run state and u
 existing Gmail draft with a compact delivery receipt as each destination resolves; preserve its
 entire original body and attachment/link content. Do not add a second email or list old mail.
 
-The helper writes UNKNOWN intent durably before making the network request and retains the
-provider response and request ID immediately. Its receipt filename binds the logical destination,
-not the caption/media fingerprint: changing copy cannot make a second attempt safe. Any existing
-receipt blocks another upload. Do not delete or rename it to retry; reconcile the original request.
-Keep this receipt and its returned IDs in the existing durable run handoff and Gmail draft so a
-fresh container cannot forget an accepted upload. Local receipts alone are not durable dedupe.
+The remote claim binds the logical destination, not the caption/media fingerprint: changing
+copy cannot make a second attempt safe. The helper persists returned request IDs and minimal
+public references with metadata-only CAS updates. Retrying a metadata update never resubmits
+the POST. Preserve the full provider response in the local receipt as supplemental evidence.
+Any existing receipt blocks another upload too. Do not delete or rename local receipts or remote
+claims to retry. Local receipts alone are not durable dedupe. The separate remote state survives
+a lost container. Read the original request's status and history instead of creating a new claim.
+
+A cross-container re-fire may publish an unclaimed missing destination only after normal history
+reconciliation and all released-edition gates. An already-claimed ambiguous destination stays
+blocked, even if its owner disappeared. No expiration, takeover or forced retry is authorized.
+Read/init commands exit 0 on success; upload exits 3 after submission because reconciliation is
+still required, never because publication was proved. Errors exit 2. Inspect the saved state and
+provider result, not the exit code alone, before assigning a final social status.
 
 The REST API does not document a universal idempotency-key parameter. Do not invent
 one or claim exactly-once delivery from a local filename. A timeout, dropped response, lost
@@ -197,7 +219,7 @@ Perform this reconciliation even on an ALREADY_SHIPPED re-fire, after preserving
 required maintenance. Resume pending social work with the same edition and request IDs.
 Do not use a post-merge social receipt as a reason to reopen production, rerun quality panels,
 alter the archive or create another merge. Provider history plus the updated, read-back original
-Gmail draft is the post-merge delivery record. No social outage may remove or prevent the
+Gmail draft and the separate remote social state are the post-merge delivery record. No social outage may remove or prevent the
 original Gmail draft.
 
 

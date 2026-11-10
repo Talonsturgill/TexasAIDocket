@@ -29,7 +29,30 @@ def manifest(platform='facebook', kind='video', placement='feed', repo='TexasAID
             'options': {'facebook_page_id': '2003130316607965' if alaska else '113073681274871'} if platform == 'facebook' else {}}
 
 
+class MemoryState:
+    def __init__(self):
+        self.entries = {}
+        self.results = {}
+
+    def claim(self, identity, fingerprint):
+        key = rest.digest(identity)
+        if key in self.entries:
+            raise ValueError('existing durable intent')
+        claim = {'key': key, 'owner': 'unique-owner', 'fingerprint': fingerprint}
+        self.entries[key] = claim
+        return claim
+
+    def save_result(self, claim, receipt):
+        self.results[claim['key']] = receipt
+
+
 class RestTests(unittest.TestCase):
+    def setUp(self):
+        self.remote = MemoryState()
+        mock = patch.object(rest, 'GitState', return_value=self.remote)
+        mock.start()
+        self.addCleanup(mock.stop)
+
     def test_facebook_full_video_is_explicit(self):
         path, fields, _, _ = rest.build(manifest())
         self.assertEqual(path, '/upload')
@@ -214,6 +237,62 @@ class RestTests(unittest.TestCase):
             rest.read(route, query, send=lambda path: (200, {'path': path}))
         for route, query in [('tiktok-settings', {'user': 'default'}), ('media', {'user': 'default', 'platform': 'linkedin'}), ('status', {}), ('history', {'limit': '1'})]:
             with self.assertRaises(ValueError): rest.read(route, query, send=lambda *a: self.fail('network'))
+
+    def test_remote_claim_exists_before_post(self):
+        with tempfile.TemporaryDirectory() as d:
+            def send(*args):
+                self.assertEqual(len(self.remote.entries), 1)
+                return 200, {'request_id': 'r1'}
+            result = rest.upload(manifest(), d, send=send)
+            self.assertTrue(result['remote_receipt_saved'])
+            self.assertEqual(next(iter(self.remote.results.values()))['request_id'], 'r1')
+
+    def test_remote_claim_failure_never_posts(self):
+        with tempfile.TemporaryDirectory() as d:
+            with patch.object(self.remote, 'claim', side_effect=RuntimeError('uncertain push')):
+                with self.assertRaises(RuntimeError):
+                    rest.upload(manifest(), d, send=lambda *a: self.fail('POST after failed claim'))
+            self.assertEqual(list(Path(d).glob('*.json')), [])
+
+    def test_fresh_container_existing_remote_claim_blocks(self):
+        with tempfile.TemporaryDirectory() as first, tempfile.TemporaryDirectory() as second:
+            rest.upload(manifest(), first, send=lambda *a: (200, {'request_id': 'r1'}))
+            with self.assertRaises(ValueError):
+                rest.upload(manifest(), second, send=lambda *a: self.fail('duplicate POST'))
+
+    def test_remote_receipt_failure_keeps_local_id_without_post_retry(self):
+        calls = []
+        with tempfile.TemporaryDirectory() as d:
+            def send(*args):
+                calls.append(args)
+                return 200, {'request_id': 'r1', 'user_email': 'private'}
+            with patch.object(self.remote, 'save_result', side_effect=RuntimeError('uncertain push')):
+                result = rest.upload(manifest(), d, send=send)
+            self.assertEqual(len(calls), 1)
+            self.assertFalse(result['remote_receipt_saved'])
+            self.assertEqual(result['request_id'], 'r1')
+            self.assertEqual(json.loads(Path(result['receipt']).read_text())['request_id'], 'r1')
+
+    def test_request_id_is_local_before_remote_receipt_write(self):
+        with tempfile.TemporaryDirectory() as d:
+            def save(claim, compact):
+                local = json.loads(next(Path(d).glob('*.json')).read_text())
+                self.assertEqual(local['request_id'], 'r1')
+                self.assertFalse(local['remote_receipt_saved'])
+                raise RuntimeError('interrupted metadata write')
+            with patch.object(self.remote, 'save_result', side_effect=save):
+                result = rest.upload(manifest(), d, send=lambda *a: (200, {'request_id': 'r1'}))
+            self.assertEqual(result['request_id'], 'r1')
+
+    def test_remote_receipt_contains_no_caption_paths_or_raw_errors(self):
+        info = {'state': 'ACCEPTED', 'http_status': 200, 'request_id': 'r1',
+                'receipt': '/private/local.json', 'response': {'caption': 'PRIVATE COPY',
+                'error': 'PRIVATE ERROR', 'user_email': 'PRIVATE EMAIL', 'results': {
+                'facebook': {'platform_post_id': '123_456', 'post_url': 'https://facebook.com/123_456'}}}}
+        result = rest.compact_receipt(info)
+        self.assertEqual(result, {'state': 'ACCEPTED', 'http_status': 200, 'request_id': 'r1',
+                                 'platform_post_id': '123_456', 'post_url': 'https://facebook.com/123_456'})
+        self.assertNotIn('PRIVATE', json.dumps(result))
 
     def test_transport_no_auth_no_redirect_no_retry_and_literal_caption(self):
         completed = subprocess.CompletedProcess([], 0, '{"request_id":"r1"}\n200', '')
