@@ -96,8 +96,9 @@
         if (o.mud) { var mud = TXT.roundedBox(w * 1.04, o.mud * sc, t * 1.15, 0.001 * sc, CLAY); mud.position.y = foot + o.mud * sc / 2 - 0.02 * sc; G.add(mud); var mt = tip.clone(); mt.material = CLAY; mt.scale.set(1.05, 1, 1.15); G.add(mt); }
         if (o.flag !== "none") {
           var fm = o.flag === "old" ? FLAGOLD : FLAG, n = o.tails || 2;
-          var knot = TXT.roundedBox(w * 1.25, 0.03 * sc, t * 2.2, 0.004 * sc, fm); knot.position.y = h - 0.09 * sc; G.add(knot);
-          for (var k = 0; k < n; k++) { var r = ribbon(0.55 * sc, 0.03 * sc, o.flag === "old" ? 0.02 : 0.12 * sc, (o.seed || 1) * 1.7 + k * 2.1, fm); r.position.set((k - 0.5) * 0.012 * sc, h - 0.09 * sc - 0.27 * sc, t + 0.002); r.rotation.y = 0.3 + k * 0.5; G.add(r); }
+          /* an old flag has lost its knot to the weather and hangs limp, so no collar reads on a pulled stake */
+          if (o.flag !== "old") { var knot = TXT.roundedBox(w * 1.25, 0.03 * sc, t * 2.2, 0.004 * sc, fm); knot.position.y = h - 0.09 * sc; G.add(knot); }
+          for (var k = 0; k < n; k++) { var r = ribbon(0.55 * sc, 0.03 * sc, o.flag === "old" ? 0.09 * sc : 0.12 * sc, (o.seed || 1) * 1.7 + k * 2.1, fm); r.position.set((k - 0.5) * 0.012 * sc, h - 0.09 * sc - 0.27 * sc, t + 0.002); r.rotation.y = 0.3 + k * 0.5; G.add(r); }
         }
         if (o.lying) { G.rotation.z = -Math.PI / 2; G.rotation.y = 0; G.position.y = t / 2 + 0.001; var outer = new THREE.Group(); outer.add(G); G.rotation.x = Math.PI / 2; outer.traverse(function (m) { if (m.isMesh) { m.castShadow = true; m.receiveShadow = true; } }); return outer; }
         G.position.y = -0.15 * sc; if (o.lean) G.rotation.z = o.lean;
