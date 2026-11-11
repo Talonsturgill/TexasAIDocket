@@ -1,0 +1,24 @@
+name: Social feedback reader
+on:
+  pull_request:
+    paths:
+      - 'scripts/read_social_feedback*.py'
+      - 'prompts/**'
+      - '.github/workflows/social-feedback-reader.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/read_social_feedback*.py'
+      - 'prompts/**'
+      - '.github/workflows/social-feedback-reader.yml'
+permissions:
+  contents: read
+jobs:
+  offline-contract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python3 scripts/read_social_feedback_test.py
