@@ -656,7 +656,8 @@
         "2026-11-01",
         "2026-11-03",
         "2026-11-05",
-        "2026-11-10"
+        "2026-11-10",
+        "2026-11-11"
       ],
       "contradicted": []
     },
@@ -705,7 +706,9 @@
       "learned": "2026-08-28",
       "instinct": "A relationship between two sourced figures is a third fact needing its own claim, because asserting the arithmetic holds is a tautology that certifies nothing.",
       "evidence": "Deck no. 10 printed '260 MW load + 265.5 MW generation' guarded by an assertion that the components equalled the quoted total. Every gate passed. The order's recital adds the two LOADS, so the 265.5 was a load and the frame called it generation. A judge caught it by asking which claim said so.",
-      "confirmed": [],
+      "confirmed": [
+        "2026-11-11"
+      ],
       "contradicted": []
     },
     {
@@ -1807,6 +1810,14 @@
       "learned": "2026-11-10",
       "instinct": "Name a model, a program or a finding only in the words a quoted speaker used for it, because an account's own summary sentence carries the idea without the name.",
       "evidence": "no. 73 slide 5 said the researchers call it the local detergent model, which c13's quote never said; Rizo-Rey's own quote one line below it did, and binding it as c34 cleared the integrity judge's charge",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "a-low-key-cast-runs-away-from-an-eye-level-camera",
+      "learned": "2026-11-11",
+      "instinct": "A key at a few degrees of elevation throws casts long and away from a camera at eye height, so they foreshorten to slivers. When the casts carry the frame, raise the camera or turn the key across the view.",
+      "evidence": "no. 74 frame 1, posts' shadows at key elevation 7 from a 1.5 m eye read as faint streaks to the pixel critic, the art director and two judges across four readings",
       "confirmed": [],
       "contradicted": []
     }
