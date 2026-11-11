@@ -9034,6 +9034,15 @@
     "source_type": "primary_corporate",
     "fetched": "2026-09-17",
     "id": "tx-2026-0164-c3"
+   },
+   {
+    "text": "Kodiak's third quarter release says Atlas's customer-owned fleet reached 37 unsupervised autonomous trucks by quarter end.",
+    "verbatim_quote": "Delivered the first two Kodiak-powered Western Star trucks to Atlas Energy Solutions, bringing Atlas's fleet of customer-owned unsupervised autonomous trucks to 37 by quarter-end.",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/1853138/000162828026071058/exhibit991_financialresults.htm",
+    "source_title": "Kodiak AI, Inc., Form 8-K Exhibit 99.1, third quarter 2026 results",
+    "source_type": "primary_corporate",
+    "fetched": "2026-11-11",
+    "id": "tx-2026-0164-c4"
    }
   ],
   "id": "tx-2026-0164",
@@ -9042,6 +9051,10 @@
    {
     "date": "2026-09-17",
     "note": "Staged for the record. The company's own release puts driverless trucks at work in the Permian with nobody in the cab, and names no Texas county for them, so where in the state this happens is still unestablished."
+   },
+   {
+    "date": "2026-11-11",
+    "note": "Still held. Kodiak's third quarter filing puts the Atlas fleet at 37 unsupervised trucks, and Atlas's own annual report places its Texas loadout only on the Texas side of the state line at the conveyor's midpoint, so no county is established."
    }
   ]
  },
@@ -19531,5 +19544,201 @@
   ],
   "last_verified": "2026-11-10",
   "id": "tx-2026-0245"
+ },
+ {
+  "title": "SpaceX asks Starbase for a tax abatement on a $24 billion gas-fired power plant and super-compute facility beside Brownsville, with a hearing December 9th",
+  "summary": "The City of Starbase gave notice that its City Commission will consider a property tax abatement agreement and a related economic development agreement with Space Exploration Technologies Corp. at its meeting on December 9th, 2026. SpaceX proposes to build, own and operate a gas-fired power plant and super-compute facility. The notice puts the capital investment for the initial phases at approximately $24 billion and says the project may grow in later phases. The site is an approximately 444-acre tract in Cameron County, just east of Brownsville between Boca Chica Boulevard and the Port of Brownsville, now inside Starbase's city limits. The Texas Tribune reports Brownsville commissioners voted unanimously in August to take the land out of the city at SpaceX's request, in exchange for up to $220 million for water and wastewater projects, and that Starbase later annexed it. The Tribune reported on November 10th that Brownsville's 90-day moratorium on data center applications had taken effect the week before, and the site sits outside it. The Tribune reports the gas plant could power the data center without a connection to the state grid. SpaceX did not answer the Tribune's questions.",
+  "topic": "data-centers",
+  "decider": {
+   "name": "City Commission of the City of Starbase",
+   "type": "city"
+  },
+  "geography": {
+   "statewide": false,
+   "counties": [
+    "Cameron"
+   ],
+   "on_ercot": true,
+   "metro": "Brownsville-Harlingen, TX"
+  },
+  "status": "pending",
+  "confidence": "high",
+  "key_dates": [
+   {
+    "date": "2026-12-09",
+    "kind": "hearing",
+    "note": "Starbase City Commission considers the Chapter 312 tax abatement and Chapter 380 agreement with SpaceX, 7 p.m."
+   }
+  ],
+  "public_access": {
+   "room": "open_meeting",
+   "how": "The Starbase City Commission meets in public session on Wednesday, December 9th, 2026 at 7 p.m. at 48491 State Highway 4 in Starbase. The city's notice invites interested persons to attend and be heard on the proposed agreements. The notice is posted on the city's own site.",
+   "url": "https://cdn.prod.website-files.com/67fcab04e05680343de9ea4e/6aee00848f7bbe0cdee604da_6aee005cf2854ef8fc7713ed_Public_Hearing_Notice_Tax_Abatement_Dec9_2026.pdf",
+   "closes": "2026-12-09"
+  },
+  "notes_for_editor": "Admitted on the city's own Chapter 312 notice. The de-annexation, the $220 million and the moratorium are the Tribune's reporting and are labelled as journalism. Whether the site connects to ERCOT is not established, the Tribune says the plant could keep it off the grid.",
+  "claims": [
+   {
+    "text": "Starbase's notice says what SpaceX proposes to build.",
+    "verbatim_quote": "SpaceX proposes to construct, own, and operate a gas-fired power plant and super-compute facility.",
+    "source_url": "https://cdn.prod.website-files.com/67fcab04e05680343de9ea4e/6aee00848f7bbe0cdee604da_6aee005cf2854ef8fc7713ed_Public_Hearing_Notice_Tax_Abatement_Dec9_2026.pdf",
+    "source_title": "City of Starbase, Notice of Public Hearing, tax abatement agreement with SpaceX, December 9th, 2026",
+    "source_type": "primary_official",
+    "fetched": "2026-11-11",
+    "id": "tx-2026-0246-c1"
+   },
+   {
+    "text": "The notice gives the estimated capital investment for the project's initial phases.",
+    "verbatim_quote": "Estimated capital investment for initial phases of the project is approximately $24 billion, which may be constructed over multiple phases and include future expansions.",
+    "source_url": "https://cdn.prod.website-files.com/67fcab04e05680343de9ea4e/6aee00848f7bbe0cdee604da_6aee005cf2854ef8fc7713ed_Public_Hearing_Notice_Tax_Abatement_Dec9_2026.pdf",
+    "source_title": "City of Starbase, Notice of Public Hearing, tax abatement agreement with SpaceX, December 9th, 2026",
+    "source_type": "primary_official",
+    "fetched": "2026-11-11",
+    "id": "tx-2026-0246-c2"
+   },
+   {
+    "text": "The notice says where the site is and how large it is.",
+    "verbatim_quote": "The proposed project site is located within the corporate limits of the City of Starbase, in Cameron County, Texas, and consists of an approximately 444-acre tract just east of the City of Brownsville, between Boca Chica Blvd and the Port of Brownsville,",
+    "source_url": "https://cdn.prod.website-files.com/67fcab04e05680343de9ea4e/6aee00848f7bbe0cdee604da_6aee005cf2854ef8fc7713ed_Public_Hearing_Notice_Tax_Abatement_Dec9_2026.pdf",
+    "source_title": "City of Starbase, Notice of Public Hearing, tax abatement agreement with SpaceX, December 9th, 2026",
+    "source_type": "primary_official",
+    "fetched": "2026-11-11",
+    "id": "tx-2026-0246-c3"
+   },
+   {
+    "text": "The notice says when and where the commission will take the agreements up.",
+    "verbatim_quote": "will convene in public session at its regularly scheduled meeting on Wednesday, December 9, 2026 at 7:00 p.m. at 48491 State Highway 4, Starbase, Texas 78521,",
+    "source_url": "https://cdn.prod.website-files.com/67fcab04e05680343de9ea4e/6aee00848f7bbe0cdee604da_6aee005cf2854ef8fc7713ed_Public_Hearing_Notice_Tax_Abatement_Dec9_2026.pdf",
+    "source_title": "City of Starbase, Notice of Public Hearing, tax abatement agreement with SpaceX, December 9th, 2026",
+    "source_type": "primary_official",
+    "fetched": "2026-11-11",
+    "id": "tx-2026-0246-c4"
+   },
+   {
+    "text": "The notice names the two agreements the commission will consider.",
+    "verbatim_quote": "the City Commission will consider approval of a property tax abatement agreement under Chapter 312 of the Texas Tax Code, and a related economic development agreement under Chapter 380 of the Texas Local Government Code,",
+    "source_url": "https://cdn.prod.website-files.com/67fcab04e05680343de9ea4e/6aee00848f7bbe0cdee604da_6aee005cf2854ef8fc7713ed_Public_Hearing_Notice_Tax_Abatement_Dec9_2026.pdf",
+    "source_title": "City of Starbase, Notice of Public Hearing, tax abatement agreement with SpaceX, December 9th, 2026",
+    "source_type": "primary_official",
+    "fetched": "2026-11-11",
+    "id": "tx-2026-0246-c5"
+   },
+   {
+    "text": "The notice names the applicant.",
+    "verbatim_quote": "Space Exploration Technologies Corp., a Texas corporation (“SpaceX”).",
+    "source_url": "https://cdn.prod.website-files.com/67fcab04e05680343de9ea4e/6aee00848f7bbe0cdee604da_6aee005cf2854ef8fc7713ed_Public_Hearing_Notice_Tax_Abatement_Dec9_2026.pdf",
+    "source_title": "City of Starbase, Notice of Public Hearing, tax abatement agreement with SpaceX, December 9th, 2026",
+    "source_type": "primary_official",
+    "fetched": "2026-11-11",
+    "id": "tx-2026-0246-c6"
+   },
+   {
+    "text": "The notice invites the public to speak.",
+    "verbatim_quote": "Interested persons are invited to attend the meeting and to be heard on the proposed agreements.",
+    "source_url": "https://cdn.prod.website-files.com/67fcab04e05680343de9ea4e/6aee00848f7bbe0cdee604da_6aee005cf2854ef8fc7713ed_Public_Hearing_Notice_Tax_Abatement_Dec9_2026.pdf",
+    "source_title": "City of Starbase, Notice of Public Hearing, tax abatement agreement with SpaceX, December 9th, 2026",
+    "source_type": "primary_official",
+    "fetched": "2026-11-11",
+    "id": "tx-2026-0246-c7"
+   },
+   {
+    "text": "The notice names the reinvestment zone the project would sit in.",
+    "verbatim_quote": "The project would be constructed in the Cameron County Enterprise Zone,",
+    "source_url": "https://cdn.prod.website-files.com/67fcab04e05680343de9ea4e/6aee00848f7bbe0cdee604da_6aee005cf2854ef8fc7713ed_Public_Hearing_Notice_Tax_Abatement_Dec9_2026.pdf",
+    "source_title": "City of Starbase, Notice of Public Hearing, tax abatement agreement with SpaceX, December 9th, 2026",
+    "source_type": "primary_official",
+    "fetched": "2026-11-11",
+    "id": "tx-2026-0246-c8"
+   },
+   {
+    "text": "The Tribune reports the land was taken out of Brownsville earlier this year at SpaceX's request, which keeps the project clear of Brownsville's moratorium.",
+    "verbatim_quote": "SpaceX is planning to build a $24 billion data center and power plant just outside of Brownsville on property that the city had just de-annexed earlier this year at the company’s request, circumventing Brownsville’s data center moratorium that went into effect last week.",
+    "source_url": "https://www.texastribune.org/2026/11/10/texas-spacex-data-center-power-plant/",
+    "source_title": "The Texas Tribune, SpaceX plans $24 billion data center and power plant near Brownsville",
+    "source_type": "journalism",
+    "fetched": "2026-11-11",
+    "id": "tx-2026-0246-c9"
+   },
+   {
+    "text": "The Tribune reports Starbase later annexed the land.",
+    "verbatim_quote": "the city of Starbase, which later annexed land where the project will be built into their city limits,",
+    "source_url": "https://www.texastribune.org/2026/11/10/texas-spacex-data-center-power-plant/",
+    "source_title": "The Texas Tribune, SpaceX plans $24 billion data center and power plant near Brownsville",
+    "source_type": "journalism",
+    "fetched": "2026-11-11",
+    "id": "tx-2026-0246-c10"
+   },
+   {
+    "text": "The Tribune reports the gas plant could keep the data center off the state grid.",
+    "verbatim_quote": "The gas-fired power plant that SpaceX plans to build could provide power to its data center to avoid connecting to the state’s power grid.",
+    "source_url": "https://www.texastribune.org/2026/11/10/texas-spacex-data-center-power-plant/",
+    "source_title": "The Texas Tribune, SpaceX plans $24 billion data center and power plant near Brownsville",
+    "source_type": "journalism",
+    "fetched": "2026-11-11",
+    "id": "tx-2026-0246-c11"
+   },
+   {
+    "text": "The Tribune reports SpaceX did not answer its questions.",
+    "verbatim_quote": "SpaceX did not respond to questions regarding the project.",
+    "source_url": "https://www.texastribune.org/2026/11/10/texas-spacex-data-center-power-plant/",
+    "source_title": "The Texas Tribune, SpaceX plans $24 billion data center and power plant near Brownsville",
+    "source_type": "journalism",
+    "fetched": "2026-11-11",
+    "id": "tx-2026-0246-c12"
+   },
+   {
+    "text": "The Tribune reports Brownsville's moratorium is in effect and what it covers.",
+    "verbatim_quote": "Brownsville approved its own 90-day moratorium which went into effect last week, temporarily hitting pause on data center applications within the city and its extraterritorial jurisdiction.",
+    "source_url": "https://www.texastribune.org/2026/11/10/texas-spacex-data-center-power-plant/",
+    "source_title": "The Texas Tribune, SpaceX plans $24 billion data center and power plant near Brownsville",
+    "source_type": "journalism",
+    "fetched": "2026-11-11",
+    "id": "tx-2026-0246-c13"
+   },
+   {
+    "text": "The Tribune reports Brownsville commissioners voted unanimously to de-annex the land.",
+    "verbatim_quote": "Brownsville city commissioners unanimously voted to de-annex the land, which is located near the Port of Brownsville.",
+    "source_url": "https://www.texastribune.org/2026/08/31/spacex-brownsville-deannex-land-water-projects/",
+    "source_title": "The Texas Tribune, SpaceX to fund up to $220M in Brownsville water projects in exchange for land",
+    "source_type": "journalism",
+    "fetched": "2026-11-11",
+    "id": "tx-2026-0246-c14"
+   },
+   {
+    "text": "The Tribune reports what SpaceX agreed to give the city in exchange.",
+    "verbatim_quote": "In exchange, SpaceX agreed to give the city up to $220 million for water and wastewater projects.",
+    "source_url": "https://www.texastribune.org/2026/08/31/spacex-brownsville-deannex-land-water-projects/",
+    "source_title": "The Texas Tribune, SpaceX to fund up to $220M in Brownsville water projects in exchange for land",
+    "source_type": "journalism",
+    "fetched": "2026-11-11",
+    "id": "tx-2026-0246-c15"
+   },
+   {
+    "text": "The Tribune reports SpaceX set a same-day deadline on the offer.",
+    "verbatim_quote": "If commissioners didn’t approve the deal that very day, McCorkle said the deal would be off the table.",
+    "source_url": "https://www.texastribune.org/2026/08/31/spacex-brownsville-deannex-land-water-projects/",
+    "source_title": "The Texas Tribune, SpaceX to fund up to $220M in Brownsville water projects in exchange for land",
+    "source_type": "journalism",
+    "fetched": "2026-11-11",
+    "id": "tx-2026-0246-c16"
+   },
+   {
+    "text": "The Tribune reports Brownsville stands by the de-annexation.",
+    "verbatim_quote": "The city of Brownsville said it stood by its decision to de-annex the property, which was based on “information and circumstances presented at the time,” the city said in a statement.",
+    "source_url": "https://www.texastribune.org/2026/11/10/texas-spacex-data-center-power-plant/",
+    "source_title": "The Texas Tribune, SpaceX plans $24 billion data center and power plant near Brownsville",
+    "source_type": "journalism",
+    "fetched": "2026-11-11",
+    "id": "tx-2026-0246-c17"
+   }
+  ],
+  "id": "tx-2026-0246",
+  "last_verified": "2026-11-11",
+  "history": [
+   {
+    "date": "2026-11-11",
+    "note": "Admitted on Starbase's own notice of the December 9th hearing. The city will consider the abatement and the economic development agreement with SpaceX at that meeting, and the public may speak."
+   }
+  ]
  }
 ]
