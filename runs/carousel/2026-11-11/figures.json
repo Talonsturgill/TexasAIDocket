@@ -1,0 +1,89 @@
+{
+ "_note": "Every value is extracted from a claim quote by compute.py, or computed here from values that were.",
+ "capex_billion": {
+  "value": 24,
+  "from": [
+   "c2"
+  ],
+  "basis": "estimated capital investment for initial phases, billions of dollars, approximately"
+ },
+ "acres": {
+  "value": 444,
+  "from": [
+   "c3"
+  ],
+  "basis": "acres in the tract, approximately"
+ },
+ "water_million": {
+  "value": 220,
+  "from": [
+   "c15"
+  ],
+  "basis": "millions of dollars SpaceX agreed to give for water and wastewater projects, up to"
+ },
+ "moratorium_days": {
+  "value": 90,
+  "from": [
+   "c13"
+  ],
+  "basis": "days in Brownsville's moratorium, per the Tribune"
+ },
+ "hearing_day": {
+  "value": 9,
+  "from": [
+   "c4"
+  ],
+  "basis": "day of December 2026 the Starbase City Commission meets"
+ },
+ "hearing_year": {
+  "value": 2026,
+  "from": [
+   "c4"
+  ],
+  "basis": "year of the hearing"
+ },
+ "ch312": {
+  "value": 312,
+  "from": [
+   "c5"
+  ],
+  "basis": "Texas Tax Code chapter for the abatement"
+ },
+ "ch380": {
+  "value": 380,
+  "from": [
+   "c5"
+  ],
+  "basis": "Local Government Code chapter for the economic development agreement"
+ },
+ "days_to_hearing": {
+  "value": 28,
+  "from": [
+   "c4"
+  ],
+  "basis": "days from this edition's date, November 11th 2026, to the hearing"
+ },
+ "water_share_pct": {
+  "value": 0.9,
+  "from": [
+   "c15",
+   "c2"
+  ],
+  "basis": "the water ceiling as a percent of the capex estimate, one decimal"
+ },
+ "capex_per_water": {
+  "value": 109,
+  "from": [
+   "c2",
+   "c15"
+  ],
+  "basis": "capex estimate over the water ceiling, floored"
+ },
+ "side_m": {
+  "value": 1340,
+  "from": [
+   "c3"
+  ],
+  "basis": "side in metres of a square holding the tract's area, a drawing scale only"
+ }
+}

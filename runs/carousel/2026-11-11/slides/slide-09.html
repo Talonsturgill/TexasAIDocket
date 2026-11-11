@@ -1,0 +1,65 @@
+<!doctype html>
+<!-- 2026-11-11, frame 9 of 9. Archetype FULL_BLEED. A spatial scene through txthree.js in the lastLight world after the seam: the cover's green city limit sign from the lane behind it, the two lane road running east with raised pavement markers counted from figures.json. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:900px">Starbase hears the tax break December 9th</h1>
+<p class="dek" data-follow="26" style="width:860px">7 p.m., 48491 State Highway 4. The notice invites interested persons to attend and be heard on the proposed agreements.</p>
+<script>window.FIG = {"days_to_hearing": 28};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-11-cityline.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Starbase, Cameron County", counter: "09 / 09", src: "c4 c7", fit: { min: 80, max: 104, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 42, near: 0.05, far: 3000, exposure: 0.75 });
+  /* the road runs along -z (east, away from the camera); the sign stands on its right shoulder */
+  const road = K.make('road', { length: 600, lanes: 2, sidewalk: false, parkway: false });
+  road.rotation.y = Math.PI / 2; road.position.set(0, 0, -250); TXT.add(R, road);
+  /* the curb goes to the dark of a county road at night, so the sign face stays the brightest thing */
+  road.traverse((m) => { if (m.isMesh && m.material && m.material.color) { const c = m.material.color; if (c.r + c.g + c.b > 1.6 && m.geometry && m.geometry.parameters === undefined) { m.material = m.material.clone(); m.material.color.multiplyScalar(0.28); } } });
+  const sign = K.make('city_limit_sign', { seed: 11, color: 0x36a072, tint: 0x3fa07a, glow: 0.36, lit: 0.6, rim: 0.6, legend: 'city_limit' });
+  sign.position.set(4.6, 0, -6.5); sign.rotation.y = -0.18;
+  /* galvanized posts: the kit's tall unmapped parts take a grey metal, so the warm key reads as a highlight, not cream paint */
+  sign.traverse((m) => { if (!m.isMesh || !m.material || m.material.map) return; m.geometry.computeBoundingBox(); const bb = m.geometry.boundingBox, s = new THREE.Vector3(); m.getWorldScale(s); if ((bb.max.y - bb.min.y) * s.y < 1.0) return; m.material = m.material.clone(); m.material.color.setHex(0x8e9398); m.material.metalness = 0.65; m.material.roughness = 0.42; });
+  TXT.add(R, sign); TXT.contact(R, sign, { opacity: 0.8 });
+  /* THE FIGURE: days_to_hearing markers along the edge line, 3.6 m apart, one per day to the hearing */
+  const marks = new THREE.Group();
+  for (let i = 0; i < FIG.days_to_hearing; i++) { const m = K.make('pavement_marker', { color: 0xe0a030, faces: 1 }); m.position.set(3.45, 0.064, -10.2 - i * 3.6); m.scale.setScalar(2.4); m.rotation.y = 0; marks.add(m); }
+  TXT.add(R, marks);
+  const FROM = [2.6, 2.2, -1.2];
+  const LOOK = CH.aim(THREE, R, TXT, FROM, [4.6, 1.88, -6.5], 900, 760, 42);
+  TXT.frame(R, { fov: 42, from: FROM, look: LOOK });
+  /* each reflector returns the headlamp's light: a small glow on its lens, so the count reads at feed size */
+  const RET = new THREE.MeshBasicMaterial({ color: 0xffb648, toneMapped: false }); RET.userData = { txWear: false };
+  for (let i = 0; i < FIG.days_to_hearing; i++) { const q = new THREE.Mesh(new THREE.PlaneGeometry(0.19, 0.034), RET); q.position.set(3.45, 0.1, -10.2 - i * 3.6 + 0.135); q.rotation.x = -0.35; TXT.add(R, q); }
+  TXT.sky(R);
+  TXT.ground(R, { surface: 'dirt', color: 0x2e2820, size: 3000, seed: 11 });
+  TXT.scatter(R, { kind: 'grass', count: 1800, area: [-60, -200, 60, 2], avoid: [[-4.5, -400, 4.5, 4], [3.4, -7.7, 5.8, -5.3]], seed: 9, scale: [0.7, 1.2] });
+  TXT.deckRig(R, CH.rigSpec(W, 10, 2048), CH.rigOpts([2, 0, -10], { distance: 40, shadowFar: 120, normalBias: 0.02 }));
+  CH.pool(THREE, TXT, R, [3.2, 0, -10], { radius: 9, i: 1.6, color: 0xc8a070 });
+  /* the sign's own spill on the gravel shoulder, so both feet and their contact read */
+  CH.pool(THREE, TXT, R, [4.6, 0, -6.3], { radius: 1.6, i: 2.4, color: 0x9fc8b0, normalBias: 0.004 });
+  TXT.weather(R, { grime: 0.25, height: 0.6, mottle: 0.2 });
+  TXT.stage(R, [sign, marks]);
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.dress(cx, { foot: 0.6 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

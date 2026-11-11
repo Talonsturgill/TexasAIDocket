@@ -1482,13 +1482,20 @@ export function install(K, THREE, TXT) {
     b.bar(M.paint(0xd6b02a, 0.5), [xc - w / 2, yb + 1.07, zc + d / 2 + 1.55], [xc + w / 2, yb + 1.07, zc + d / 2 + 1.55], 0.025, 6);
   }
   /* a stack: a steel cylinder, a top lip, a CEMS platform with handrail and a caged ladder */
-  function stack(b, x, z, R, H, color, platY) {
+  function stack(b, x, z, R, H, color, platY, mats) {
+    // mats (optional) { shell, band, bands }: a shell material in place of the flat paint, a band
+    // material for the lip and ring stiffeners, and the stiffener heights. power_plant passes none.
     const mat = M.paint(color, 0.5), rail = M.paint(0xd6b02a, 0.5);
+    const shell = (mats && mats.shell) || mat, band = (mats && mats.band) || mat;
     b.geo(M.concrete(), new THREE.CylinderGeometry(R + 0.8, R + 0.9, 0.6, 32), V3(x, 0.1, z));
-    b.geo(mat, new THREE.CylinderGeometry(R, R * 1.04, H, 40, 1, true), V3(x, 0.4 + H / 2, z));
-    b.geo(mat, new THREE.CylinderGeometry(R + 0.12, R + 0.12, 0.5, 40, 1, true), V3(x, 0.4 + H - 0.25, z));
+    b.geo(shell, new THREE.CylinderGeometry(R, R * 1.04, H, 40, 1, true), V3(x, 0.4 + H / 2, z));
+    b.geo(band, new THREE.CylinderGeometry(R + 0.12, R + 0.12, 0.5, 40, 1, true), V3(x, 0.4 + H - 0.25, z));
     b.geo(M.paint(0x2a2826, 0.9), new THREE.CircleGeometry(R, 32).rotateX(-Math.PI / 2), V3(x, 0.4 + H - 0.4, z));
-    [H * 0.35, H * 0.7].forEach((yy) => b.geo(mat, new THREE.CylinderGeometry(R + 0.06, R + 0.06, 0.2, 40, 1, true), V3(x, yy, z)));
+    // A RING SITS ON THE SHELL'S LOCAL RADIUS. The shell tapers from R * 1.04 at its foot to R at
+    // its mouth, so a ring at R + 0.06 was buried in the shell below about two thirds of its height
+    // and rendered as broken dashes (no. 74's replay, 2026-11-11).
+    const rAt = (yy) => R * (1.04 - 0.04 * Math.min(1, Math.max(0, (yy - 0.4) / H)));
+    ((mats && mats.bands) || [H * 0.35, H * 0.7]).forEach((yy) => { const rr = rAt(yy) + 0.06; b.geo(band, new THREE.CylinderGeometry(rr, rr, 0.2, 40, 1, true), V3(x, yy, z)); });
     (Array.isArray(platY) ? platY : [platY]).forEach((py) => {
       b.geo(M.galv(0), new THREE.RingGeometry(R, R + 1.3, 40, 1).rotateX(-Math.PI / 2), V3(x, py, z));
       b.geo(M.galv(0), new THREE.RingGeometry(R, R + 1.3, 40, 1).rotateX(Math.PI / 2), V3(x, py - 0.02, z));
@@ -1502,9 +1509,14 @@ export function install(K, THREE, TXT) {
     for (let yy = 2.8; yy < H; yy += 0.3) b.bar(M.galv(0), [lx, yy, z - 0.22], [lx, yy, z + 0.22], 0.012, 5);
     for (let yy = 4.5; yy < H; yy += 1.2) b.geo(M.galv(0), tpl('cage', () => new THREE.TorusGeometry(0.38, 0.015, 4, 16, Math.PI)), V3(lx, yy, z), new THREE.Quaternion().setFromAxisAngle(V3(1, 0, 0), Math.PI / 2).premultiply(new THREE.Quaternion().setFromAxisAngle(Y, Math.PI / 2)));
   }
-  function finFan(b, x, z, n) {
-    const st = M.galv(0), body = M.paint(0x9a9d9b, 0.5);
+  function finFan(b, x, z, n, o) {
+    // o (optional) { body, coil }: the peaker passes a darker body and a finned coil face; power_plant passes none
+    const st = M.galv(0), body = (o && o.body) || M.paint(0x9a9d9b, 0.5);
     b.box(body, 3.2 * n, 1.2, 3.2, x, 3.2, z);
+    if (o && o.coil) [-1, 1].forEach((s) => {
+      b.box(o.coil, 3.2 * n - 0.2, 0.9, 0.02, x, 3.35, z + s * 1.61);
+      for (let k = 0; k < 6; k++) b.box(body, 3.2 * n - 0.2, 0.03, 0.05, x, 2.95 + k * 0.16, z + s * 1.63);
+    });
     for (let i = 0; i < n; i++) {
       const fx = x - 1.6 * n + 1.6 + i * 3.2;
       b.geo(body, new THREE.CylinderGeometry(1.35, 1.35, 0.6, 28, 1, true), V3(fx, 4.7, z));
@@ -1518,41 +1530,221 @@ export function install(K, THREE, TXT) {
   }
 
   /* ======================================================================== gas peaker */
-  function peakerUnit(b, z0, r) {
-    const beige = 0xd3d4cf, grey = 0x8f9496;
+  /* REBUILT 2026-11-11 BY THE WEEKLY MACHINE PASS, AT THE JUDGES' NAMED FIX. Carousel no. 74's
+   * frame 6 was charged by every judge in all three panel rounds, at 1.3 km, 440 m and 230 m:
+   * "pale primitive boxes", "small pale flat-lit unit", "a pale boxy peaker", and round 3's craft
+   * fix asked for the unit "with surface detail". The deck multiplied every colour by 0.45 and the
+   * unit still read as cream card, so the albedo was not the whole defect. Every face was ONE flat
+   * paint (packages, filter house and exhaust train all within a few levels of each other), the
+   * panel seams were 4 mm deep, and the stack was a plain tube in the same beige. A reader needs
+   * value structure and marks to read a machine; without them a lit face is a lit card.
+   *
+   * What this builds instead, the dimensions, options and footprint unchanged:
+   *   - THREE VALUES, not one. The packages in the kit's own steel paint (K.finish.steelPaint's
+   *     grey), the filter house in M.galv's lighter galvanized, the exhaust train in this model's
+   *     own darker structural grey, so the unit reads as parts under any pool.
+   *   - THE WEATHERED SKIN (wxSkin, the atlas modular_gas_genset and power_transformer carry): dust
+   *     banked up the base, run-off from every drip edge, a grime line and streaks under each
+   *     door hood, louvre bank and filter hood and under every stiffener of the exhaust train,
+   *     rust at the panel joints, a sun chalked roof sooted round the vent fans, and a roughness
+   *     map from the same strokes. One frame per component, so a mark lands where it would in life.
+   *   - PROUD PANEL JOINTS, hat channels standing 70 mm off the packages, so the panelling casts a
+   *     line a reader can count at feed size; a base skirt in dark steel; doors with a reveal,
+   *     hood and handle; intake louvre banks on the generator package.
+   *   - THE STACK heat tinted up its length and sooted at the mouth (stackMat), banded by dark ring
+   *     stiffeners every few metres, a breeching flange where the outlet duct meets it.
+   *   - PIPING: the fuel gas line and a lube line on pipe stands from the skid to the package.
+   * OPTIONS paint (hex, null = the kit's steel paint) for a deck whose plant is painted another
+   * colour; units; transformer. Nothing on it is a brand or any one plant. */
+  const GPK_PAINT = 0x8d9196;       // K.finish.steelPaint's default, the kit's own painted steel
+  const GPK_FILTER = 0x74797c;      // M.galvDark's weathered galvanized. M.galv's lighter 0x9da2a4
+                                    // was tried first and its end face sat at 220 of 255 under no.
+                                    // 74 frame 6's pool, the largest pale card in the frame
+  const GPK_EXH = 0x6f7273;         // the exhaust train's own structural grey (its legs, before)
+  function gpkSkin(part, col, variant, fw, fh, fd, side, end, roof, metal) {
+    return wxSkin('gpk|' + part + '|' + col.toString(16) + '|' + variant, {
+      seed: 7400 + variant * 131 + part.length * 17, color: col, dust: 0xc2ab86, fw, fh, fd, metal,
+      side, end, roof });
+  }
+  /* One skinned component in its own builder: build, map the skin by the component's box frame f
+   * (wxUV), and move every mesh into g. */
+  function gpkSkinned(g, skin, f, fill) {
+    const b = new Bld(), tmp = new THREE.Group();
+    fill(b); b.build(tmp);
+    tmp.children.slice().forEach((m) => {
+      if (m.material === skin) { wxUV(m.geometry, f); m.geometry.computeBoundingBox(); m.geometry.computeBoundingSphere(); }
+      g.add(m);
+    });
+  }
+  /* an acoustic package: skinned body, drip edge, proud hat channel joints, doors, louvres, fans */
+  function gpkPackage(g, x0, x1, z, w, h, col, variant, o) {
+    const L = x1 - x0, xc = (x0 + x1) / 2, yb = 0.3, fh = h + 0.12;
+    const n = Math.round(L / 1.2), pitch = L / n, seams = [];
+    for (let i = 1; i < n; i++) seams.push(i * pitch);
+    const fx = (dx) => dx + L / 2;
+    const louvreH = 1.6;
+    const sources = (o.doors || []).map((dx) => ({ x: fx(dx), y: 2.45, w: 1.2 }))
+      .concat((o.louvres || []).map((dx) => ({ x: fx(dx), y: 0.9 + louvreH, w: 1.8 })));
+    const skin = gpkSkin('pkg' + Math.round(L * 10), col, variant, L, fh, w,
+      { dustH: 0.75, sources, seams },
+      { dustH: 0.6, sources: o.endLouvre ? [{ x: w / 2, y: h - 0.8, w: w - 1.2 }] : [], seams: [w / 2] },
+      { soot: (o.fans || []).map((dx) => ({ x: fx(dx), z: w / 2, r: 1.1 })) }, 0.2);
+    const f = { x0, x1, y0: yb, y1: yb + fh, z0: z - w / 2, z1: z + w / 2 };
+    const dark = kmat('gpk-dark', { color: 0x1b1d1f, roughness: 0.8, metalness: 0.2 });
+    const reveal = kmat('gpk-reveal|' + col.toString(16), { color: new THREE.Color(col).multiplyScalar(0.4).getHex(), roughness: 0.8, metalness: 0.1 });
+    const skirt = kmat('gpk-skirt', { color: 0x3c3f42, roughness: 0.66, metalness: 0.5 });
+    const louvre = kmat('gpk-louvre', { color: 0x5d6064, roughness: 0.64, metalness: 0.35 });
+    gpkSkinned(g, skin, f, (b) => {
+      b.geo(skin, rbox(L, h, w, 0.04), V3(xc, yb + h / 2, z));
+      b.box(skin, L + 0.24, 0.12, w + 0.24, xc, yb + h + 0.06, z);                                   // roof drip edge
+      seams.forEach((sx) => [-1, 1].forEach((s) => {                                                  // hat channel joints
+        b.box(skin, 0.1, h - 0.1, 0.05, x0 + sx, yb + h / 2, z + s * (w / 2 + 0.025));
+        b.box(skin, 0.05, h - 0.1, 0.07, x0 + sx, yb + h / 2, z + s * (w / 2 + 0.035));
+      }));
+      [-1, 1].forEach((e) => b.box(skin, 0.05, h - 0.1, 0.1, xc + e * (L / 2 + 0.035), yb + h / 2, z));   // end joint
+      [-1, 1].forEach((s) => b.box(skirt, L + 0.1, 0.22, 0.08, xc, yb + 0.11, z + s * (w / 2 + 0.04)));   // base skirt
+      [-1, 1].forEach((e) => b.box(skirt, 0.08, 0.22, w + 0.1, xc + e * (L / 2 + 0.04), yb + 0.11, z));
+      (o.doors || []).forEach((dx) => {
+        const zf = z + w / 2;
+        b.box(reveal, 1.12, 2.2, 0.02, xc + dx, yb + 1.1, zf + 0.012);                               // reveal
+        b.box(skin, 1.0, 2.1, 0.05, xc + dx, yb + 1.08, zf + 0.04);                                  // leaf
+        b.box(M.alu(), 0.14, 0.035, 0.05, xc + dx + 0.36, yb + 1.08, zf + 0.09);                      // handle
+        b.box(skin, 1.3, 0.06, 0.32, xc + dx, yb + 2.3, zf + 0.16);                                   // rain hood
+        [-1, 1].forEach((e) => b.box(dark, 0.03, 0.12, 0.05, xc + dx + e * 0.47, yb + 0.5 + (e + 1) * 0.6, zf + 0.07)); // hinge knuckles
+      });
+      (o.louvres || []).forEach((dx) => [-1, 1].forEach((s) => {
+        const zf = z + s * w / 2;
+        b.box(dark, 1.8, louvreH, 0.02, xc + dx, yb + 0.6 + louvreH / 2, zf + s * 0.012);
+        louvres(b, louvre, xc + dx, yb + 0.6, zf - s * 0.08, 1.7, louvreH, s, 0.16);
+        b.box(skin, 1.95, 0.08, 0.1, xc + dx, yb + 0.6 + louvreH + 0.04, zf + s * 0.05);               // frame head
+        b.box(skin, 1.95, 0.08, 0.14, xc + dx, yb + 0.56, zf + s * 0.07);                              // sill
+      }));
+      if (o.endLouvre) {                                                                              // ventilation intake on the outboard end
+        const e = o.endLouvre, xf = xc + e * L / 2, lw = w - 1.2, lh = h - 1.6;
+        b.box(dark, 0.02, lh, lw, xf + e * 0.012, yb + 0.8 + lh / 2, z);
+        const nS = Math.floor(lh / 0.16), q = new THREE.Quaternion().setFromAxisAngle(V3(0, 0, 1), -e * 0.6);
+        // the slats bury their ends in the jambs: a slat end left in the open caught the key as a row of white dashes
+        for (let k = 0; k < nS; k++) b.geo(louvre, tpl('slat', () => new THREE.BoxGeometry(1, 1, 1)), V3(xf + e * 0.04, yb + 0.8 + (k + 0.5) * lh / nS, z), q, V3(0.32, 0.02, lw + 0.06));
+        b.box(skin, 0.1, 0.08, lw + 0.15, xf + e * 0.05, yb + 0.8 + lh + 0.04, z);
+        b.box(skin, 0.14, 0.08, lw + 0.15, xf + e * 0.07, yb + 0.76, z);
+        [-1, 1].forEach((c) => b.box(skin, 0.4, lh + 0.1, 0.1, xf + e * 0.04, yb + 0.8 + lh / 2, z + c * (lw / 2 + 0.05)));   // jambs
+      }
+      (o.fans || []).forEach((dx) => {
+        b.geo(louvre, new THREE.CylinderGeometry(0.62, 0.68, 0.9, 24, 1, true), V3(xc + dx, yb + h + 0.57, z));
+        b.geo(dark, new THREE.CircleGeometry(0.6, 24).rotateX(-Math.PI / 2), V3(xc + dx, yb + h + 0.9, z));
+        for (let k = 0; k < 4; k++) b.box(louvre, 1.2, 0.03, 0.04, xc + dx, yb + h + 1.0, z, k * Math.PI / 4);   // grille
+        b.geo(skirt, new THREE.CylinderGeometry(0.14, 0.14, 0.12, 12), V3(xc + dx, yb + h + 1.0, z));
+      });
+    });
+  }
+  /* inlet filter house on columns: skinned body and weather hoods, dark media under each hood */
+  function gpkFilterHouse(g, xc, zc, w, d, h, yb, variant) {
+    const rowsN = Math.max(4, Math.round(h / 0.95)), rows = [];
+    for (let k = 0; k < rowsN; k++) rows.push((k + 0.8) * h / rowsN);
+    const skin = gpkSkin('filter', GPK_FILTER, variant, w, h, d,
+      { dustH: 0.2, sources: rows.map((y) => ({ x: w / 2, y: y - 0.32, w: w - 0.3 })), seams: [w / 3, 2 * w / 3] },
+      { dustH: 0.2, sources: rows.map((y) => ({ x: d / 2, y: y - 0.32, w: d - 0.3 })), seams: [d / 2] }, { soot: [] }, 0.4);
+    const f = { x0: xc - w / 2, x1: xc + w / 2, y0: yb, y1: yb + h, z0: zc - d / 2, z1: zc + d / 2 };
+    const media = kmat('gpk-media', { color: 0x2f3234, roughness: 0.9, metalness: 0.1 });
+    const st = kmat('gpk-steel', { color: 0x55595b, roughness: 0.6, metalness: 0.45 });
+    const rail = M.paint(0xd6b02a, 0.5);
+    gpkSkinned(g, skin, f, (b) => {
+      b.geo(skin, rbox(w, h, d, 0.03), V3(xc, yb + h / 2, zc));
+      b.box(skin, w + 0.2, 0.12, d + 0.2, xc, yb + h + 0.06, zc);
+      [-1, 1].forEach((s) => rows.forEach((y) => {
+        const q = new THREE.Quaternion().setFromAxisAngle(V3(1, 0, 0), s * 0.55);
+        b.geo(skin, tpl('hood', () => new THREE.BoxGeometry(1, 1, 1)), V3(xc, yb + y, zc + s * (d / 2 + 0.3)), q, V3(w - 0.2, 0.04, 0.75));
+        [-1, 1].forEach((e) => b.box(skin, 0.04, 0.55, 0.6, xc + e * (w / 2 - 0.12), yb + y - 0.25, zc + s * (d / 2 + 0.3)));
+        b.box(media, w - 0.3, h / rowsN - 0.25, 0.02, xc, yb + y - h / rowsN * 0.45, zc + s * (d / 2 + 0.01));
+      }));
+      // the end faces filter too, so the face a camera down the train sees is hooded, not a card
+      [-1, 1].forEach((e) => rows.forEach((y) => {
+        const q = new THREE.Quaternion().setFromAxisAngle(V3(0, 0, 1), -e * 0.55);
+        b.geo(skin, tpl('hood', () => new THREE.BoxGeometry(1, 1, 1)), V3(xc + e * (w / 2 + 0.3), yb + y, zc), q, V3(0.75, 0.04, d - 0.2));
+        [-1, 1].forEach((c) => b.box(skin, 0.6, 0.55, 0.04, xc + e * (w / 2 + 0.3), yb + y - 0.25, zc + c * (d / 2 - 0.12)));
+        b.box(media, 0.02, h / rowsN - 0.25, d - 0.3, xc + e * (w / 2 + 0.01), yb + y - h / rowsN * 0.45, zc);
+      }));
+      [[-1, -1], [1, -1], [-1, 1], [1, 1]].forEach(([a, c]) => {
+        b.beam(st, [xc + a * (w / 2 - 0.3), 0.3, zc + c * (d / 2 - 0.3)], [xc + a * (w / 2 - 0.3), yb, zc + c * (d / 2 - 0.3)], 0.35, 0.35);
+        pier(b, xc + a * (w / 2 - 0.3), zc + c * (d / 2 - 0.3), 0.4, 0.3);
+      });
+      [-1, 1].forEach((c) => b.beam(st, [xc - w / 2 + 0.3, yb * 0.5, zc + c * (d / 2 - 0.3)], [xc + w / 2 - 0.3, yb * 0.5, zc + c * (d / 2 - 0.3)], 0.25, 0.25));
+      [-1, 1].forEach((c) => b.beam(st, [xc - w / 2 + 0.3, 0.6, zc + c * (d / 2 - 0.3)], [xc + w / 2 - 0.3, yb - 0.3, zc + c * (d / 2 - 0.3)], 0.16, 0.16));   // X brace
+      b.box(M.galv(0), w, 0.05, 1.2, xc, yb - 0.02, zc + d / 2 + 1.0);
+      for (let x = xc - w / 2; x <= xc + w / 2 + 0.01; x += 1.5) b.bar(rail, [x, yb, zc + d / 2 + 1.55], [x, yb + 1.07, zc + d / 2 + 1.55], 0.022, 6);
+      b.bar(rail, [xc - w / 2, yb + 1.07, zc + d / 2 + 1.55], [xc + w / 2, yb + 1.07, zc + d / 2 + 1.55], 0.025, 6);
+    });
+  }
+  /* the exhaust train as ONE skinned frame: transition, SCR and CO housing, outlet duct */
+  function gpkExhaust(g, z0, variant) {
+    const X0 = 9, X1 = 26.7, Y0 = 1.2, Y1 = 8.95, D = 6.2;
+    const ys = [2.2, 5, 7.8];
+    const skin = gpkSkin('exh', GPK_EXH, variant, X1 - X0, Y1 - Y0, D,
+      { dustH: 0.5, sources: ys.map((y) => ({ x: 18 - X0, y: y - Y0, w: 10 })).concat([{ x: 11 - X0, y: 6.8 - 0.4, w: 4 }]),
+        seams: [13.5, 15, 16.5, 18, 19.5, 21, 22.5].map((x) => x - X0) },
+      { dustH: 0.4, sources: [], seams: [] }, { soot: [{ x: 26.5 - X0, z: D / 2, r: 2.4 }] }, 0.3);
+    const f = { x0: X0, x1: X1, y0: Y0, y1: Y1, z0: z0 - D / 2, z1: z0 + D / 2 };
+    const leg = kmat('gpk-steel', { color: 0x55595b, roughness: 0.6, metalness: 0.45 });
+    gpkSkinned(g, skin, f, (b) => {
+      b.box(skin, 4, 6.8, 5.2, 11, Y0 + 3.4, z0);
+      b.box(skin, 10, 7.6, 6, 18, Y0 + 3.8, z0);
+      b.box(skin, 10.3, 0.15, 6.3, 18, Y0 + 7.6 + 0.07, z0);                                          // roof edge
+      for (let x = 13.5; x <= 22.5; x += 1.5) [-1, 1].forEach((s) => b.box(skin, 0.16, 7.6, 0.16, x, Y0 + 3.8, z0 + s * 3.08));   // stiffeners
+      ys.forEach((y) => [-1, 1].forEach((s) => b.box(skin, 10.1, 0.2, 0.2, 18, Y0 + y, z0 + s * 3.1)));
+      b.box(skin, 4, 5, 4.4, 24.5, Y0 + 2.5, z0);
+      [22.5, 26.5].forEach((x) => b.box(skin, 0.2, 5.2, 4.6, x, Y0 + 2.5, z0));                       // duct flanges
+      // the end faces are stiffened too: a camera down the train sees the transition's end, not a card
+      [-2, -1, 0, 1, 2].forEach((k) => b.box(skin, 0.16, 6.8, 0.16, X0 - 0.08, Y0 + 3.4, z0 + k * 1.2));
+      [1.6, 3.4, 5.2].forEach((y) => b.box(skin, 0.2, 0.2, 5.4, X0 - 0.1, Y0 + y, z0));
+      [-1, 0, 1].forEach((k) => b.box(skin, 0.16, 7.6, 0.16, 13 - 0.08, Y0 + 3.8, z0 + k * 2.4));
+      for (let x = 13.5; x <= 22.5; x += 3) [-1, 1].forEach((s) => b.beam(leg, [x, 0.3, z0 + s * 2.8], [x, Y0, z0 + s * 2.8], 0.3, 0.3));
+    });
+  }
+  function peakerUnit(g, b, z0, o, variant) {
+    const col = o.paint != null ? o.paint : GPK_PAINT;
     b.box(M.concrete(), 44, 0.3, 14, 1, 0, z0);
-    enclosure(b, -17, -7.5, z0, 4.2, 4.4, beige, { doors: [-2], fans: [1.5] });               // generator
-    enclosure(b, -7.5, 6, z0, 4.8, 5.4, beige, { doors: [-3, 3], fans: [-2, 2.5] });          // turbine package
-    filterHouse(b, -6.5, z0, 7.4, 6.4, 5.6, 8.6, beige);
-    // inlet plenum duct down to the package and the silencer
-    b.box(M.paint(beige, 0.5), 2.8, 2.9, 3.2, -6.5, 5.7 + 1.45, z0);
-    // exhaust: diffuser transition, SCR and CO catalyst housing, tempering air fans, stack
-    const g = M.paint(grey, 0.5);
-    b.geo(g, new THREE.CylinderGeometry(1.6, 1.2, 3, 24), V3(7.5, 3.2, z0), new THREE.Quaternion().setFromAxisAngle(V3(0, 0, 1), Math.PI / 2));
-    b.box(g, 4, 6.8, 5.2, 11, 1.2 + 3.4, z0);
-    b.box(g, 10, 7.6, 6, 18, 1.2 + 3.8, z0);
-    for (let x = 13.5; x <= 22.5; x += 1.5) [-1, 1].forEach((s) => b.box(g, 0.14, 7.6, 0.14, x, 1.2 + 3.8, z0 + s * 3.07));       // stiffeners
-    [2.2, 5, 7.8].forEach((y) => [-1, 1].forEach((s) => b.box(g, 10, 0.18, 0.18, 18, 1.2 + y, z0 + s * 3.1)));
-    for (let x = 13.5; x <= 22.5; x += 3) [-1, 1].forEach((s) => b.beam(M.paint(0x6f7273, 0.5), [x, 0.3, z0 + s * 2.8], [x, 1.2, z0 + s * 2.8], 0.3, 0.3));
-    b.box(M.galv(0), 10, 0.05, 1.2, 18, 1.2 + 7.6 + 0.02, z0 + 3.6);
+    gpkPackage(g, -17, -7.5, z0, 4.2, 4.4, col, variant, { doors: [-2], fans: [1.5], louvres: [-3.6, 3.2], endLouvre: -1 });   // generator
+    gpkPackage(g, -7.5, 6, z0, 4.8, 5.4, col, variant, { doors: [-3, 3], fans: [-2, 2.5] });                     // turbine package
+    gpkFilterHouse(g, -6.5, z0, 7.4, 6.4, 5.6, 8.6, variant);
+    // inlet plenum duct down to the package, ribbed
+    const plen = M.galvDark(), angle = kmat('gpk-steel', { color: 0x55595b, roughness: 0.6, metalness: 0.45 });
+    b.box(plen, 2.8, 2.9, 3.2, -6.5, 5.7 + 1.45, z0);
+    [6.3, 7.1, 7.9].forEach((y) => b.box(angle, 2.95, 0.12, 3.35, -6.5, y, z0));
+    [[-1, -1], [1, -1], [-1, 1], [1, 1]].forEach(([a, c]) => b.box(angle, 0.12, 2.9, 0.12, -6.5 + a * 1.42, 5.7 + 1.45, z0 + c * 1.62));
+    // exhaust: the diffuser with its flanges, then the skinned train and the stack
+    const g2 = M.paint(GPK_EXH, 0.5);
+    b.geo(g2, new THREE.CylinderGeometry(1.6, 1.2, 3, 24), V3(7.5, 3.2, z0), new THREE.Quaternion().setFromAxisAngle(V3(0, 0, 1), Math.PI / 2));
+    [6.05, 8.95].forEach((x, i) => b.geo(g2, new THREE.CylinderGeometry(1.3 + i * 0.4, 1.3 + i * 0.4, 0.14, 24), V3(x, 3.2, z0), new THREE.Quaternion().setFromAxisAngle(V3(0, 0, 1), Math.PI / 2)));
+    gpkExhaust(g, z0, variant);
+    b.box(M.galv(0), 10, 0.05, 1.2, 18, 1.2 + 7.6 + 0.17, z0 + 3.6);
     [0, 1].forEach((k) => { b.geo(M.paint(0x3d6e8a, 0.5), new THREE.CylinderGeometry(0.8, 0.8, 1.0, 24), V3(12 + k * 3, 1.3, z0 + 4.6), new THREE.Quaternion().setFromAxisAngle(V3(1, 0, 0), Math.PI / 2));
       b.box(M.paint(0x3d6e8a, 0.5), 0.9, 0.8, 1.0, 12 + k * 3 + 1.1, 1.0, z0 + 4.6); });
-    b.box(g, 4, 5, 4.4, 24.5, 1.2 + 2.5, z0);
-    stack(b, 27.5, z0, 1.9, 30, 0x8d9090, [19]);
-    // fin fan lube cooler, fuel gas skid, pipes
-    finFan(b, -12, z0 + 6.2, 2);
+    const band = kmat('gpk-band', { color: 0x3f3a36, roughness: 0.7, metalness: 0.5 });
+    const H = 30, bands = [];
+    for (let y = 4; y < H - 1; y += 3.5) bands.push(0.4 + y);
+    stack(b, 27.5, z0, 1.9, H, 0x8d9090, [19], { shell: stackMat(), band, bands });
+    b.geo(band, new THREE.CylinderGeometry(2.25, 2.25, 0.3, 32), V3(27.5, 1.2 + 4.9, z0));          // breeching flange
+    // fin fan lube cooler, fuel gas skid, pipes on stands
+    finFan(b, -12, z0 + 6.2, 2, { body: kmat('gpk-steel', { color: 0x55595b, roughness: 0.6, metalness: 0.45 }),
+                                 coil: kmat('gpk-media', { color: 0x2f3234, roughness: 0.9, metalness: 0.1 }) });
     b.box(M.concrete(), 5, 0.3, 3, 2, 0, z0 + 7);
-    b.box(M.paint(0xd4b73a, 0.5), 4.5, 0.2, 2.5, 2, 0.3, z0 + 7);
-    pipe(b, [[0.2, 0.6, z0 + 7], [0.2, 1.4, z0 + 7], [0.2, 1.4, z0 + 2.6], [0.2, 4.2, z0 + 2.6]], 0.14, M.paint(0xd4b73a, 0.5));
-    [[1.5, 1.2], [3.5, 1.0]].forEach(([x, h]) => b.geo(M.paint(0xd4b73a, 0.5), new THREE.CylinderGeometry(0.35, 0.35, h, 16), V3(x, 0.5 + h / 2, z0 + 7)));
+    const gas = M.paint(0xd4b73a, 0.5), lube = M.paint(0x4d5a4a, 0.55);
+    b.box(gas, 4.5, 0.2, 2.5, 2, 0.3, z0 + 7);
+    pipe(b, [[0.2, 0.6, z0 + 7], [0.2, 1.4, z0 + 7], [0.2, 1.4, z0 + 2.6], [0.2, 4.2, z0 + 2.6]], 0.14, gas);
+    pipe(b, [[-9.5, 0.9, z0 + 4.9], [-9.5, 1.1, z0 + 2.6], [-9.5, 2.4, z0 + 2.6]], 0.08, lube);
+    pipe(b, [[-10.5, 3.2, z0 + 4.6], [-10.5, 1.1, z0 + 4.6], [-2, 1.1, z0 + 4.6], [-2, 1.1, z0 + 2.6]], 0.07, lube);
+    [-8, -5, -2.4].forEach((x) => { b.box(M.galv(0), 0.12, 1.0, 0.12, x, 0.8, z0 + 4.6); b.box(M.galv(0), 0.12, 0.08, 0.6, x, 1.0, z0 + 4.6); });
+    [1.2, 0.2].forEach((x) => b.box(M.galv(0), 0.6, 0.08, 0.12, x, 1.25, z0 + 4.8));
+    [[1.5, 1.2], [3.5, 1.0]].forEach(([x, hh]) => b.geo(gas, new THREE.CylinderGeometry(0.35, 0.35, hh, 16), V3(x, 0.5 + hh / 2, z0 + 7)));
   }
   K.define('gas_peaker', {
     size: [51.7, 30.7, 19.7],
-    options: { units: 1, transformer: true },
-    note: 'OPTIONS units 1 | 2; transformer adds the generator step up. A simple cycle aeroderivative unit (LM6000 class): generator and turbine acoustic enclosures, elevated inlet filter house with weather hoods, exhaust diffuser, SCR and CO catalyst housing with tempering air fans, 30 m stack with CEMS platform and caged ladder, lube oil fin fan, fuel gas skid, step up transformer.',
+    options: { units: 1, transformer: true, paint: null },
+    note: 'OPTIONS units 1 | 2; transformer adds the generator step up; paint hex for the packages (null = the kit steel paint grey). A simple cycle aeroderivative unit (LM6000 class), WEATHERED in three values: generator and turbine acoustic packages in painted steel with proud hat channel joints, doors with hoods, intake louvres and roof vent fans; an elevated galvanized inlet filter house with weather hoods over dark media; the exhaust diffuser, SCR and CO catalyst housing and outlet duct in a darker grey with stiffeners and tempering air fans; a heat tinted 30 m stack banded by ring stiffeners, sooted at the mouth, with CEMS platform and caged ladder; lube oil fin fan, fuel gas skid and lube lines on stands; step up transformer. Dust up every base, streaks under every hood and stiffener (wxSkin). Lit by a pool it holds its values; a deck need not darken it.',
     make(o, r) {
       const g = new THREE.Group(), b = new Bld(), n = +o.units === 2 ? 2 : 1;
-      for (let i = 0; i < n; i++) peakerUnit(b, (i - (n - 1) / 2) * 20, r);
+      const v0 = (((o.seed | 0) % 3) + 3) % 3;
+      for (let i = 0; i < n; i++) peakerUnit(g, b, (i - (n - 1) / 2) * 20, o, (v0 + i) % 3);
       if (o.transformer !== false) powerTransformer(b, -14, (n - 1) * 10 + 10.5, 0.55, { color: 0x8f9594 });
       b.build(g);
       return g;

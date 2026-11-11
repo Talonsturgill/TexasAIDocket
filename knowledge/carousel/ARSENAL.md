@@ -16,7 +16,7 @@
 |---|---|
 | engine calls (`TXT.*`) | 30 |
 | world presets | 8 |
-| kit models | 144 in 10 families |
+| kit models | 145 in 10 families |
 | asset libraries | 22 |
 | carousel and shared tools | 78 |
 | record and site tools the routine names | 20 |
@@ -241,7 +241,7 @@ THE KIT: the things Texas is made of, modelled once in 3D at TRUE SCALE.
 | model | size w x h x d (m) | options | note |
 |---|---|---|---|
 | `battery_storage` | 88 x 14.8 x 44.1 | rows, cols, gsu | OPTIONS rows of containers; cols containers per row, paired with a PCS skid between each pair; gsu adds the main step up transformer and a dead end. |
-| `gas_peaker` | 51.7 x 30.7 x 19.7 | units, transformer | OPTIONS units 1 \| 2; transformer adds the generator step up. |
+| `gas_peaker` | 51.7 x 30.7 x 19.7 | units, transformer, paint | OPTIONS units 1 \| 2; transformer adds the generator step up; paint hex for the packages (null = the kit steel paint grey). |
 | `genset_block` | 22.47 x 4.24 x 7.2 | units, lod, gap | One group of modular gas generators on a shared pad with the step-up transformer they share at the +x end, units 4 or 5 (the record says groups of four or five). |
 | `h_frame` | 9.2 x 21.1 x 1.8 | material, height, voltage | OPTIONS material wood \| steel (weathering steel tubes); height m above ground; voltage 69 \| 138. |
 | `modular_gas_genset` | 6.82 x 4.09 x 2.48 | color, lod, stack, gas | Modular natural gas generator in a sound attenuated enclosure on a steel skid, the kind installed in groups of four or five on one step-up transformer: radiator louvres at +x, intake louvres down both sides, personnel doors on +z, a roof silencer with straps ... |
@@ -365,7 +365,7 @@ THE KIT: the things Texas is made of, modelled once in 3D at TRUE SCALE.
 | `stock_tank` | 3.7 x 0.8 x 3.5 | d, h, water, inlet | Round galvanized stock tank (10 ft x 2 ft default): vertical corrugated sidewall with spangle and water line staining, rolled pipe rim, crimped bottom chime, murky water with an algae line, and a float valve on an inlet pipe over the rim. water is the fill ... |
 | `windmill` | 4.2 x 11.8 x 4.3 | tower, wheel, yaw, platform, ladder, pipe | Aermotor style water pumping windmill: four post galvanized angle lattice tower with girts and rod cross bracing on concrete footings, wooden platform, side ladder, pump rod down the centre to a pump stand with a discharge pipe, a geared head with its domed ... |
 
-### landscape (13)
+### landscape (14)
 
 `assets/js/kit/landscape.js`, THE PLACE AROUND A SUBJECT.
 
@@ -380,6 +380,7 @@ THE KIT: the things Texas is made of, modelled once in 3D at TRUE SCALE.
 | `grain_elevator` | 70.7 x 61.2 x 26.7 | bins, rows, height, diameter, headhouse, steelBins, shed | A concrete slip form country elevator as on the Panhandle horizon: a double row of cylindrical bins with their interstices, a tall headhouse over the leg with small framed windows, a corrugated gallery along the bin tops, a caged ladder, a truck driveway shed ... |
 | `highway` | 34.7 x 9.5 x 80 | length, lanes, surface, gantry, overpass, embank, ground | A divided highway along z: two carriageways of 3.66 m lanes, 3 m outside and 1.2 m inside shoulders with rumble strips, white edge and 3 m / 9 m skip lines, yellow inside edge lines, an F-shape concrete median barrier, grassed side slopes. gantry adds an ... |
 | `hill_country_terrain` | 800 x 60 x 800 | size, relief, ledges, trees, season, segments, ground, rim, near, budget, rocks | Central Texas Hill Country: rolling stair-stepped limestone hills, thin broken limestone ledges along the contours with talus below, Ashe juniper brakes and live oak mottes (the kit's own trees.js models, three levels of detail), grass by slope and hollow ... |
+| `lath_stake` | 0.15 x 1.24 x 0.12 | flag, tails, flagGlow, mud, driven, lean, lying, scale | OPTIONS flag hex \| none; tails 1 to 3; flagGlow 0..1 (emissive, when the flagging carries a deck accent); mud m of clay on the foot; driven m below grade; lean radians; lying on its face; scale; seed. |
 | `mesa` | 1187.9 x 94.1 x 994.1 | kind, width, height, cap, rock, aerial, scrub | A caprock mesa (or kind:"butte") with a vertical cap ledge, a soft slope under it and a gullied talus apron that meets the ground. |
 | `pasture` | 24 x 0.9 x 24 | width, depth, height, density, flowers, season, drift | A block of tall mixed prairie grass (bunchgrass tufts with seed stalks), dense and instanced, thinning at its edges so it melts into TXT.ground. flowers: none, bluebonnet, paintbrush or mixed, in drifts; season: spring, summer or fall. |
 | `reservoir_shore` | 300 x 6 x 260 | width, water, land, bluff, drawdown, ramp, ground | A reservoir shore: land at -z rising to a low bluff and sinking back into TXT.ground, a pale drawdown band of cracked mud and rock (the bathtub ring of a Texas lake in drought), and a wide reflective water plane toward +z with waves. ramp adds a grooved ... |
@@ -422,7 +423,7 @@ Classic scripts expose a global. The engine and the kit are ES modules and are a
 
 **The 2.5D object catalogue** (`TXOBJ.sprite(name)` on the `TXSCENE` bench, canvas only, for the rare frame that is not rendered; a rendered frame takes the kit): `ambulance` 6.7 x 2.7, `battery_container` 12.2 x 2.9, `billboard` 14.6 x 12.0, `camera_pole` 1.2 x 4.5, `capitol` 100.0 x 95.0, `cattle` 2.5 x 1.5, `civic_facade` 30.0 x 20.0, `cooling_tower` 90.0 x 130.0, `dais` 9.0 x 1.3, `data_center` 130.0 x 16.0, `desk` 1.6 x 1.2, `drone` 1.0 x 0.3, `fence_post` 0.2 x 1.4, `filing_box` 0.4 x 0.28, `helicopter` 13.0 x 3.8, `hospital` 60.0 x 30.0, `hospital_bed` 2.2 x 1.3, `house` 16.0 x 6.0, `live_oak` 16.0 x 11.0, `mesquite` 8.0 x 6.0, `office_chair` 0.7 x 1.2, `pallet_boxes` 1.2 x 1.7, `pickup` 5.9 x 1.95, `pine` 7.0 x 26.0, `podium` 0.7 x 1.25, `power_plant` 70.0 x 62.0, `pump_jack` 7.5 x 5.2, `road_sign` 2.0 x 3.0, `school` 60.0 x 8.0, `school_bus` 12.0 x 3.1, `sedan` 4.7 x 1.45, `server_rack` 0.6 x 2.1, `solar_panel` 4.2 x 2.6, `stock_tank` 8.0 x 1.0, `streetlight` 3.0 x 10.0, `strip_mall` 40.0 x 6.0, `student_desk` 0.9 x 0.85, `substation` 22.0 x 12.0, `traffic_signal` 8.0 x 6.5, `transmission_tower` 12.0 x 42.0, `truck_semi` 17.0 x 4.1, `utility_pole` 2.4 x 12.0, `voting_booth` 0.9 x 1.6, `warehouse` 90.0 x 12.0, `water_tower` 12.0 x 38.0, `wind_turbine` 8.0 x 150.0, `windmill` 3.0 x 11.0.
 
-**Earlier deck chassis** (`assets/js/deck/`, read how a `TXDECK.declare` is written, never copy a world): `2026-09-16-lamp.js`, `2026-09-17-nightdraft.js`, `2026-09-18-minutebook.js`, `2026-09-19-firstlight.js`, `2026-09-20-waterworks.js`, `2026-09-21-oakcliff.js`, `2026-09-23-gensetyard.js`, `2026-09-24-droneline.js`, `2026-09-26-fortyfive.js`, `2026-09-27-nightrent.js`, `2026-09-28-watchtower.js`, `2026-09-29-mccloud.js`, `2026-09-30-firstreader.js`, `2026-10-01-plates.js`, `2026-10-02-vials.js`, `2026-10-03-norther.js`, `2026-10-04-noonbell.js`, `2026-10-05-wards.js`, `2026-10-06-prairie.js`, `2026-10-07-portalpha.js`, `2026-10-08-nexus.js`, `2026-10-09-chart.js`, `2026-10-10-lastlawn.js`, `2026-10-11-feedyard.js`, `2026-10-12-crossing.js`, `2026-10-15-transcript.js`, `2026-10-16-curb.js`, `2026-10-16-studio-proof.js`, `2026-10-17-section.js`, `2026-10-18-brush.js`, `2026-10-20-suite.js`, `2026-10-21-cell.js`, `2026-10-22-stair.js`, `2026-10-23-ledger.js`, `2026-10-24-apron.js`, `2026-10-25-returnplate.js`, `2026-10-26-tether.js`, `2026-10-29-caprock.js`, `2026-10-30-balance.js`, `2026-10-31-roadpaint.js`, `2026-11-01-foundry.js`, `2026-11-02-sightline.js`, `2026-11-03-scalelane.js`, `2026-11-04-wellpad.js`, `2026-11-05-dockdoor.js`, `2026-11-06-rigfloor.js`, `2026-11-07-curbside.js`, `2026-11-08-plate.js`, `2026-11-10-tray.js`, `proof-port-art-direction.js`.
+**Earlier deck chassis** (`assets/js/deck/`, read how a `TXDECK.declare` is written, never copy a world): `2026-09-16-lamp.js`, `2026-09-17-nightdraft.js`, `2026-09-18-minutebook.js`, `2026-09-19-firstlight.js`, `2026-09-20-waterworks.js`, `2026-09-21-oakcliff.js`, `2026-09-23-gensetyard.js`, `2026-09-24-droneline.js`, `2026-09-26-fortyfive.js`, `2026-09-27-nightrent.js`, `2026-09-28-watchtower.js`, `2026-09-29-mccloud.js`, `2026-09-30-firstreader.js`, `2026-10-01-plates.js`, `2026-10-02-vials.js`, `2026-10-03-norther.js`, `2026-10-04-noonbell.js`, `2026-10-05-wards.js`, `2026-10-06-prairie.js`, `2026-10-07-portalpha.js`, `2026-10-08-nexus.js`, `2026-10-09-chart.js`, `2026-10-10-lastlawn.js`, `2026-10-11-feedyard.js`, `2026-10-12-crossing.js`, `2026-10-15-transcript.js`, `2026-10-16-curb.js`, `2026-10-16-studio-proof.js`, `2026-10-17-section.js`, `2026-10-18-brush.js`, `2026-10-20-suite.js`, `2026-10-21-cell.js`, `2026-10-22-stair.js`, `2026-10-23-ledger.js`, `2026-10-24-apron.js`, `2026-10-25-returnplate.js`, `2026-10-26-tether.js`, `2026-10-29-caprock.js`, `2026-10-30-balance.js`, `2026-10-31-roadpaint.js`, `2026-11-01-foundry.js`, `2026-11-02-sightline.js`, `2026-11-03-scalelane.js`, `2026-11-04-wellpad.js`, `2026-11-05-dockdoor.js`, `2026-11-06-rigfloor.js`, `2026-11-07-curbside.js`, `2026-11-08-plate.js`, `2026-11-10-tray.js`, `2026-11-11-cityline.js`, `proof-port-art-direction.js`.
 
 **Geodata** (`assets/geo/`):
 
@@ -572,7 +573,7 @@ Run every gate by EXIT CODE, never by reading the last line. **Wired** says what
 | Subagents (Task/Agent tool) | the fixed fan-out in NON-NEGOTIABLES 11; agents are leaf workers | nonnegotiables, 2, 6, artwork, 10, 12, 14b, 15, 17 |
 | WebSearch | scouts and the craft refresh | 1 |
 | WebFetch / HTTP fetch | primary sources; robots.txt re-checked per host | nonnegotiables, context, 3, 6, 16, 17 |
-| Gmail connector | create_draft with htmlBody, then get_draft; DRAFT ONLY | 16, 17, 19, success |
+| Gmail connector | create_draft with htmlBody, then get_draft; DRAFT ONLY | daily, 16, 17, 19, success |
 | Supabase connector | the scanner's daily ceiling query, read only | 7 |
 | GitHub (git, PR, checks) | push via scripts/shared/push.sh, PR ready, merge on green head SHA | role, 0, 16, 17, 18 |
 | Headless browser (render.py) | Chromium via the carousel-engine skill | costs, 10.5, 11, 12, 14b, 15 |

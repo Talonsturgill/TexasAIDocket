@@ -1,0 +1,16 @@
+{"lens":"craft","round":3,"criteria":[
+{"name":"artwork_craft","weight":0.22,"score":6.6,"why":"3 is the deck's best image and passes the showstopper test at 432 px; 8 has a real pool on the lectern; 5 is the strongest land frame though its horizon is ruled and the seam lights are missing. 6 pale flat-lit boxes on a ruled horizon against black, its line entering lower right against 5's camera; 2 a flat diagram with a black channel band; 4 a primitive slab on tiled crust; 7 a band of dead wall and box chairs; 1 and 9 sign faces flat-lit with no town name."},
+{"name":"deck_coherence","weight":0.12,"score":7.5,"why":"One accent meaning, the sign bookend as spine, the value cut at 7 lands. The 5 to 6 camera move fails, 2 sits outside the deck, 4's mid-brown ground is one value bump."},
+{"name":"claim_integrity","weight":0.2,"score":8.0,"why":"Every numeral traces and the core rests on the primary notice. Slide 3 states the $220 million without Tribune attribution, the vote rests on journalism, and 'doesn't reach it' steps past 'circumventing'."},
+{"name":"story_and_stakes","weight":0.16,"score":8.5,"why":"What happened, who decides, where, and when and how to act are all delivered; the abatement's worth is absent because the notice doesn't say it."},
+{"name":"sequence_and_momentum","weight":0.1,"score":7.5,"why":"The cover earns the swipe, 2 pays, 3 to 6 build, 7 turns. 8 steps back out of the forward motion and would sit better before 7."},
+{"name":"voice","weight":0.1,"score":7.5,"why":"Specific and on register with regional nouns. Slide 3's last sentence is clunky."},
+{"name":"variety","weight":0.1,"score":8.0,"why":"Subject, palette and accent diverge from nos. 71 to 73; the house chassis is the familiar move."}],
+"weighted_score":7.612,"hard_fails":[],"ship":true,
+"one_sentence_fix":"Rebuild frame 6 as the payoff, from frame 5's side of the line at about fov 12, with the unit filling a third of the frame in its own pool against a graded dusk sky and with surface detail.",
+"artwork_weakest_frames":[
+{"slide":6,"problem":"small pale flat-lit unit on a ruled horizon against black, the line entering lower right","fix":"mirror the camera so the line enters lower left, fov about 12, a key pool on its left flank, sky haze falling to dark"},
+{"slide":2,"problem":"a 2D diagram at feed size with a black channel band and a dashed road","fix":"eye about 250 m at a lower oblique, the near corner in a lit pool with grass and a modelled shoulder, riprap with a specular water edge"},
+{"slide":4,"problem":"untextured slab, low-poly clods, tiled crust, mid-tone ground","fix":"chamfered grained lath with limp flagging at its head, camera about 0.4 m, pool tight on the foot"},
+{"slide":7,"problem":"dead wall between dek and dais, box chairs, no window","fix":"raise and tilt down so rows and dais fill from y 900, a left-wall window as a cool rim"},
+{"slide":9,"problem":"sticker-flat face with no town name, reflectors in a lane","fix":"STARBASE above CITY LIMIT, retroreflective falloff, reflectors on the centre line"}]}

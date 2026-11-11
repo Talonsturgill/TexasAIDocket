@@ -2584,3 +2584,13 @@ for in its robots.txt, so the lab's papers were not read through it. **www.groma
 words** ("This is what we call the local detergent model of membrane fusion"), so a slide that names the model attributes
 it to the speaker rather than to the account's own sentence. **www.ercot.com answered** the November 5th Community
 Impact RFI update to the PUC through `fetch_doc.py`.
+
+## 2026-11-11 (carousel no. 74)
+
+**starbase.texas.gov answered** the City of Starbase's notice of a December 9th public hearing, served as a PDF from the
+city's website-files CDN, read through `fetch_doc.py`. **www.brownsvilletx.gov answered 403** for the city's own newsflash
+on its data center moratorium, so the moratorium rests on the Texas Tribune and the first comment says the page refused
+the fetch. **www.texastribune.org answered** both stories, November 10th and August 31st. **pubmed.ncbi.nlm.nih.gov
+answered with a cookie wall** on article pages and **eutils.ncbi.nlm.nih.gov disallowed** its search path in robots.txt,
+so two items citing PubMed records stayed unconfirmed this run. **www.sec.gov answered** a filing index and an 8-K to the
+project's descriptive User-Agent.

@@ -1,54 +1,47 @@
 {
- "last_pass": "2026-11-10",
+ "last_pass": "2026-11-11",
  "themes": [
   {
-   "theme": "primitive or low-poly model where a kit model belongs (no. 73's chassis tray_tower charged as a skeletal rod frame and bare wireframe racks; queue tray-models-built-in-chassis)",
+   "theme": "primitive or low-poly model where a kit model belongs (no. 74 frame 6's kit gas_peaker charged as pale primitive boxes by every judge in all three rounds; queue kit-gas-peaker-reads-as-pale-boxes)",
    "runs": 6,
    "rounds": 17,
    "action": "fixed",
-   "what": "assets/js/kit/industry.js: node_tray, node_rack as an enclosure with solid side panels, lit chamfered stiles, a dark back and fill and pull, access_floor (12bb6eaf), replayed on no. 73's own frames 6 and 8."
+   "what": "assets/js/kit/power.js: gas_peaker rebuilt in three values on the weathered skin with panel joints, louvres, hooded filter ends, stiffened exhaust ends and a heat tinted banded stack; replayed on no. 74's own frame 6. ILLUSTRATION_SYSTEM: never multiply a pale model's colours down."
   },
   {
-   "theme": "relief plate reads as a tray, chart or keyboard (queue relief-plate-reads-as-a-tray, repeat 3; no. 73 frames 3 and 7 in every round)",
-   "runs": 4,
-   "rounds": null,
-   "action": "fixed in part",
-   "what": "Doctrine: parallel is not plan, a count is shot axonometric (03f80d8b), with a computed census (22 of 53 plan reliefs charged chart-like against 21 of 136 spatial frames). The routine's own sentence is human, UPGRADE_BACKLOG 2026-11-10 item 4."
-  },
-  {
-   "theme": "panel_ready staleness read file times, not bytes (queue panel-ready-staleness-reads-mtime, bitten on no. 73)",
-   "runs": 1,
-   "rounds": null,
-   "action": "fixed",
-   "what": "scripts/carousel/panel_ready.py witnesses the bytes each frame was found current against (b28c1a34)."
-  },
-  {
-   "theme": "audition rebind after every panel repair (queue, repeat 7)",
-   "runs": 8,
-   "rounds": null,
-   "action": "escalated",
-   "what": "The owner's rule that a changed frame receives a new visual review; the type-only re-reading needs render.py (.claude/skills) and the studio brief (human)."
-  },
-  {
-   "theme": "prompt audit counts agent latency as a human wait (queue, repeat 8)",
+   "theme": "primitive or low-poly model where a kit model belongs (survey stake built in six chassis; no. 74 frame 4's lath charged in every round; queue survey-lath-primitive-at-close-range)",
    "runs": 6,
-   "rounds": null,
+   "rounds": 17,
+   "action": "fixed",
+   "what": "assets/js/kit/landscape.js: lath_stake, grained rough sawn pine, cut point, split head, tied limp cloth flagging, clay foot; replayed on no. 74's own frame 4."
+  },
+  {
+   "theme": "horizon band or seam (queue stage-horizon-band, repeat 1)",
+   "runs": 3,
+   "rounds": 6,
    "action": "escalated",
-   "what": "scripts/shared/prompt_audit.py is daily lane; UPGRADE_BACKLOG 2026-11-10 item 4."
+   "what": "Engine (assets/js/txthree.js, human), cause not established; UPGRADE_BACKLOG 2026-11-11 item 3."
+  },
+  {
+   "theme": "aggregate_check can't declare a measure or a percent (queue items from nos. 62, 68 and 74)",
+   "runs": 3,
+   "rounds": null,
+   "action": "deferred",
+   "what": "In lane, but widening the detector needs a binding date, three fixtures and a GATE_LESSONS entry (human); first for the next pass."
   },
   {
    "theme": "no contact, dirt or grime where things meet the ground",
    "runs": 6,
-   "rounds": 13,
-   "action": "escalated in part",
-   "what": "No. 73 dropped TXT.contact under a spot because it drew a pale plane; engine fix proposed (queue contact-decal-pale-under-spot, UPGRADE_BACKLOG 2026-11-10 item 4). Otherwise a different frame on each deck."
+   "rounds": 11,
+   "action": "deferred",
+   "what": "A different frame on each deck."
   },
   {
    "theme": "largest object unmodelled",
    "runs": 5,
    "rounds": 10,
    "action": "deferred",
-   "what": "A different frame on each deck; today's lift answers no. 73's racks."
+   "what": "A different frame on each deck; today's two lifts answer no. 74's plant and lath."
   },
   {
    "theme": "object in a void, no sky, camera at the ground",
@@ -58,12 +51,12 @@
    "what": "Staging, a different frame on each deck."
   },
   {
-   "theme": "type sitting on or fighting the art",
-   "runs": 5,
-   "rounds": 7,
-   "action": "deferred",
-   "what": "Composition, a different frame on each deck."
+   "theme": "repeat offenders (fourteen open items at repeat 2 or more)",
+   "runs": null,
+   "rounds": null,
+   "action": "escalated",
+   "what": "Each carried with today's dated reason in MACHINE_QUEUE.md; none is this lane's or one model."
   }
  ],
- "note": "Written by the weekly machine pass (prompts/daily_routine.md Phase 17) when it ships. Read by scripts/carousel/machine_due.py. Run and round counts are from scripts/carousel/week_digest.py --date 2026-11-10, six shipped runs, except the queue themes, whose run counts are the queue's own evidence (the relief theme counts the distinct decks its queue line names: nos. 59, 60, 64 and 73); rounds not counted for them."
+ "note": "Written by the weekly machine pass (prompts/daily_routine.md Phase 17) when it ships. Read by scripts/carousel/machine_due.py. Run and round counts are from scripts/carousel/week_digest.py --date 2026-11-11, six shipped runs, except the aggregate_check theme, whose run count is the distinct decks its three queue lines name; rounds not counted for it."
 }

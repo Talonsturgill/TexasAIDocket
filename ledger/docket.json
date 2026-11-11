@@ -1,7 +1,7 @@
 {
  "_spec": {
   "version": 2,
-  "generated": "2026-11-10",
+  "generated": "2026-11-11",
   "gates": [
    "banned words",
    "claims",
@@ -927,7 +927,7 @@
      "fetched": "2026-11-08"
     }
    ],
-   "last_verified": "2026-11-08",
+   "last_verified": "2026-11-11",
    "confidence": "high",
    "notes_for_editor": "The 765 kV designation and the 22 county list are taken verbatim from the commission's own case style, not computed. Note for numeral_lint, 765 kV and the docket number are identifiers inside a quoted official title, not measurements this project derived. The Interchange web view renders only the first page of filing rows while reporting the full count on its index line, so the item count is quoted from that line and never counted from the table. The calendar feed's description field never carries a docket number for any entry, so its absence there is not evidence a matter has been dropped. Read the agenda PDF the entry links. This docket is included on the AI beat because 765 kV backbone capacity is the physical answer to large load growth, but the record fetched does NOT state that any particular data center drives this line, and the docket must not be described as a data center project without that link being established.",
    "history": [
@@ -1068,6 +1068,11 @@
     {
      "date": "2026-11-08",
      "note": "Oncor's 765 kV line across the Panhandle and West Texas still stands approved, and filings keep arriving. The commission's docket now lists 5864 of them."
+    },
+    {
+     "date": "2026-11-11",
+     "note": "Oncor's 765 kV line across the Panhandle and West Texas stands approved. The commission's docket still lists 5864 filings, the same count as at the last check.",
+     "checked": true
     }
    ]
   },
@@ -2425,7 +2430,7 @@
      "fetched": "2026-09-02"
     }
    ],
-   "last_verified": "2026-11-08",
+   "last_verified": "2026-11-11",
    "confidence": "high",
    "notes_for_editor": "Included because it is actionable and time limited, which is the highest value class of item for readers. The Texas relevance is real but INDIRECT and the item should say so plainly: this is a national rulemaking, not a Texas proceeding. The regulations_dot_gov_info comment_url came back null from the API, so the Federal Register document page is given as the participation URL instead of a direct regulations.gov deep link.",
    "history": [
@@ -2572,6 +2577,11 @@
     {
      "date": "2026-11-08",
      "note": "The NRC has not yet published its next step on modernizing reactor licensing and siting. The comment window closed on August 31st.",
+     "checked": true
+    },
+    {
+     "date": "2026-11-11",
+     "note": "The federal comment window on the NRC's reactor licensing and siting rewrite closed on August 31st, and the proposed rule is still the text on file.",
      "checked": true
     }
    ]
@@ -2935,7 +2945,7 @@
      "fetched": "2026-10-29"
     }
    ],
-   "last_verified": "2026-11-10",
+   "last_verified": "2026-11-11",
    "confidence": "high",
    "notes_for_editor": "This is an infrastructure item rather than a decision, and the docket may prefer to use the feed as a collector and not publish it as an item. Keeping it has one strong argument: it tells a reader where the calendar actually lives, which is the single most useful thing this docket can hand someone who wants to participate. Its dates are the spine of the recurring collector.",
    "history": [
@@ -3152,6 +3162,11 @@
     {
      "date": "2026-11-10",
      "note": "The commission's live calendar feed still answers and still lists open meetings into next year.",
+     "checked": true
+    },
+    {
+     "date": "2026-11-11",
+     "note": "The commission's calendar feed is still live and still carries open meetings well into next year.",
      "checked": true
     }
    ]
@@ -5073,7 +5088,7 @@
     }
    ],
    "id": "tx-2026-0033",
-   "last_verified": "2026-11-08",
+   "last_verified": "2026-11-11",
    "history": [
     {
      "date": "2026-08-19",
@@ -5203,6 +5218,11 @@
     {
      "date": "2026-11-08",
      "note": "El Paso's framework still requires a special permit before a hyperscale data center can be built in the city.",
+     "checked": true
+    },
+    {
+     "date": "2026-11-11",
+     "note": "El Paso's framework still requires a Special Permit before a hyperscale data center can build in the city.",
      "checked": true
     }
    ]
@@ -9215,7 +9235,7 @@
     }
    ],
    "id": "tx-2026-0050",
-   "last_verified": "2026-11-08",
+   "last_verified": "2026-11-11",
    "history": [
     {
      "date": "2026-08-19",
@@ -9345,6 +9365,11 @@
     {
      "date": "2026-11-08",
      "note": "Corpus Christi's direction to draft a zoning ban on data centers still reads as the council gave it.",
+     "checked": true
+    },
+    {
+     "date": "2026-11-11",
+     "note": "Corpus Christi's council direction still stands, and staff are still the ones writing the zoning amendment it asked for.",
      "checked": true
     }
    ]
@@ -10045,7 +10070,7 @@
     }
    ],
    "id": "tx-2026-0054",
-   "last_verified": "2026-11-08",
+   "last_verified": "2026-11-11",
    "history": [
     {
      "date": "2026-08-19",
@@ -10175,6 +10200,11 @@
     {
      "date": "2026-11-08",
      "note": "AI consulting services remain on the HGACBuy catalog under the same contract.",
+     "checked": true
+    },
+    {
+     "date": "2026-11-11",
+     "note": "AI consulting is still listed on the HGACBuy catalog, open to the member governments that buy through it.",
      "checked": true
     }
    ]
@@ -10511,7 +10541,7 @@
     }
    ],
    "id": "tx-2026-0056",
-   "last_verified": "2026-11-08",
+   "last_verified": "2026-11-11",
    "history": [
     {
      "date": "2026-08-19",
@@ -10649,6 +10679,11 @@
      "date": "2026-11-08",
      "note": "The water board's refusal to give data centers a demand category of their own still stands.",
      "checked": true
+    },
+    {
+     "date": "2026-11-11",
+     "note": "The water board's denial stands. Data centers still have no demand category of their own in the state water plan.",
+     "checked": true
     }
    ]
   },
@@ -10709,7 +10744,7 @@
     }
    ],
    "id": "tx-2026-0057",
-   "last_verified": "2026-11-08",
+   "last_verified": "2026-11-11",
    "history": [
     {
      "date": "2026-08-19",
@@ -10850,6 +10885,10 @@
      "date": "2026-11-08",
      "note": "TCEQ's page still shows the Carson County meeting on Fermi's air permits as canceled, with no new date set.",
      "checked": true
+    },
+    {
+     "date": "2026-11-11",
+     "note": "TCEQ's calendar of public meetings no longer lists the Carson County meeting on Fermi's air permits at all, neither the cancellation nor a new date. The commission's own notice of the cancellation is still posted."
     }
    ]
   },
@@ -11973,7 +12012,7 @@
     }
    ],
    "id": "tx-2026-0063",
-   "last_verified": "2026-11-08",
+   "last_verified": "2026-11-11",
    "history": [
     {
      "date": "2026-08-19",
@@ -12103,6 +12142,11 @@
     {
      "date": "2026-11-08",
      "note": "All four data center air permit applications remain on TCEQ's pending list with their notices published.",
+     "checked": true
+    },
+    {
+     "date": "2026-11-11",
+     "note": "The data center air permit applications are still posted on TCEQ's pending list with their public notices.",
      "checked": true
     }
    ]
@@ -12456,7 +12500,7 @@
     }
    ],
    "id": "tx-2026-0065",
-   "last_verified": "2026-11-08",
+   "last_verified": "2026-11-11",
    "history": [
     {
      "date": "2026-08-19",
@@ -12586,6 +12630,11 @@
      "date": "2026-11-08",
      "note": "San Angelo's ordinance capping how much water a data center may use for cooling remains on the books.",
      "checked": true
+    },
+    {
+     "date": "2026-11-11",
+     "note": "San Angelo's ordinance still caps how much makeup water a data center's cooling loop may draw each year.",
+     "checked": true
     }
    ]
   },
@@ -12705,7 +12754,7 @@
     }
    ],
    "id": "tx-2026-0066",
-   "last_verified": "2026-11-08",
+   "last_verified": "2026-11-11",
    "history": [
     {
      "date": "2026-08-19",
@@ -12835,6 +12884,11 @@
      "date": "2026-11-08",
      "note": "In San Angelo a data center still needs a conditional use permit under the zoning code.",
      "checked": true
+    },
+    {
+     "date": "2026-11-11",
+     "note": "San Angelo's zoning code still lists a data center as a conditional use and nothing more.",
+     "checked": true
     }
    ]
   },
@@ -12935,7 +12989,7 @@
     }
    ],
    "id": "tx-2026-0067",
-   "last_verified": "2026-11-08",
+   "last_verified": "2026-11-11",
    "history": [
     {
      "date": "2026-08-19",
@@ -13064,6 +13118,11 @@
     {
      "date": "2026-11-08",
      "note": "San Angelo's reporting rules for coolant sent to the city sewer remain in force.",
+     "checked": true
+    },
+    {
+     "date": "2026-11-11",
+     "note": "The city's reporting rule for coolant sent to its sewer is still on the books as adopted.",
      "checked": true
     }
    ]
@@ -13395,7 +13454,7 @@
     }
    ],
    "id": "tx-2026-0069",
-   "last_verified": "2026-11-08",
+   "last_verified": "2026-11-11",
    "history": [
     {
      "date": "2026-08-19",
@@ -13525,6 +13584,11 @@
     {
      "date": "2026-11-08",
      "note": "The signed Energy Forge One agreement with Pecos-Barstow-Toyah ISD is still posted.",
+     "checked": true
+    },
+    {
+     "date": "2026-11-11",
+     "note": "The executed JETI agreement between the school district and Energy Forge One is still posted where the district put it.",
      "checked": true
     }
    ]
@@ -15237,7 +15301,7 @@
      "fetched": "2026-11-08"
     }
    ],
-   "last_verified": "2026-11-08",
+   "last_verified": "2026-11-11",
    "confidence": "high",
    "notes_for_editor": "The 765 kV designation and the county list come from the commission's own agenda entry, not computed. This is the companion application to Docket 59315, and the record does not state that any particular data center drives either line.",
    "history": [
@@ -15370,6 +15434,11 @@
     {
      "date": "2026-11-08",
      "note": "Oncor's second West Texas line still stands approved, and the commission's docket keeps growing. It now lists 533 filings."
+    },
+    {
+     "date": "2026-11-11",
+     "note": "Oncor's second West Texas line stands approved, and the commission's docket still lists 533 filings.",
+     "checked": true
     }
    ]
   },
@@ -18747,7 +18816,7 @@
     }
    ],
    "id": "tx-2026-0099",
-   "last_verified": "2026-11-08",
+   "last_verified": "2026-11-11",
    "history": [
     {
      "date": "2026-08-26",
@@ -18881,6 +18950,11 @@
     {
      "date": "2026-11-08",
      "note": "The Army funded antenna array center at Rice still names AI as one of its disciplines.",
+     "checked": true
+    },
+    {
+     "date": "2026-11-11",
+     "note": "The Army's award to Rice's antenna array center still stands, with AI still one of the disciplines it names.",
      "checked": true
     }
    ]
@@ -25573,7 +25647,7 @@
    ],
    "notes_for_editor": "The Energy Department's own award document was not located this run, so the award number is not claimed. Rice's page carries the agency name and the partner list. CORRECTED 2026-09-05, at the third scoring round. The title read 'magnets that avoid imported rare earths' and the summary closed 'while cutting dependence on foreign mineral supply', and NOT ONE of this item's four evidence quotes says either. The one quote about the goal reads 'find entirely new materials while simultaneously balancing these supply constraint concerns', which is what the title and the summary now say. The same reading was struck from the deck's slide 6 at round 1 and from the two carousel ledgers at round 2, and this is where it originated. RE-APPLIED after the upgrade lane reverted this file with a git checkout, having read a same length string edit as a stray whitespace reformat. A scorer reading the PUBLISHED item found that its evidence block says every fact above rests on one of these and that not one of the four quotes contained the word magnet or magnetic, so a reader checking only that page could verify the funder, the term, the figure and the coalition and find nothing establishing the subject. Two quotes already verified in this run's claims file were added, one naming the magnetic materials Rice's group chooses between and one naming the target the work is set against.",
    "id": "tx-2026-0124",
-   "last_verified": "2026-11-08",
+   "last_verified": "2026-11-11",
    "history": [
     {
      "date": "2026-09-05",
@@ -25686,6 +25760,11 @@
     {
      "date": "2026-11-08",
      "note": "The Houston led team hunting magnet materials with AI still holds its Energy Department award.",
+     "checked": true
+    },
+    {
+     "date": "2026-11-11",
+     "note": "The federal award to the Houston led magnet materials team still stands as announced.",
      "checked": true
     }
    ]
@@ -26275,7 +26354,7 @@
     "on_ercot": true,
     "metro": "Brownsville-Harlingen, TX"
    },
-   "status": "pending",
+   "status": "decided",
    "confidence": "high",
    "key_dates": [
     {
@@ -26286,7 +26365,7 @@
    ],
    "public_access": {
     "room": "open_meeting",
-    "how": "The Brownsville City Commission meets in open session, posts its own account of each meeting and publishes the video. A resident can watch the item and can speak at a commission meeting. A moratorium ordinance would come back to the commission through further public proceedings before it took effect.",
+    "how": "The Brownsville City Commission meets in open session, posts its own account of each meeting and publishes the video. A resident can watch the item and can speak at a commission meeting. The Texas Tribune reports the moratorium is now in effect, and any extension would come back to the commission.",
     "url": "https://www.brownsvilletx.gov/m/newsflash/home/detail/3425"
    },
    "claims": [
@@ -26325,6 +26404,15 @@
      "source_type": "primary_official",
      "fetched": "2026-09-07",
      "id": "tx-2026-0128-c4"
+    },
+    {
+     "text": "The Texas Tribune reports the moratorium was approved and is in effect, and names what it pauses.",
+     "verbatim_quote": "Brownsville approved its own 90-day moratorium which went into effect last week, temporarily hitting pause on data center applications within the city and its extraterritorial jurisdiction.",
+     "source_url": "https://www.texastribune.org/2026/11/10/texas-spacex-data-center-power-plant/",
+     "source_title": "The Texas Tribune, SpaceX plans $24 billion data center and power plant near Brownsville",
+     "source_type": "journalism",
+     "fetched": "2026-11-11",
+     "id": "tx-2026-0128-c5"
     }
    ],
    "id": "tx-2026-0128",
@@ -26453,6 +26541,10 @@
      "date": "2026-11-08",
      "note": "Brownsville's temporary data center moratorium remains unconfirmed as to its standing. The city's notice still turns away every reader.",
      "checked": true
+    },
+    {
+     "date": "2026-11-11",
+     "note": "The Texas Tribune reported on November 10th that Brownsville approved the moratorium and that it took effect the week before. It pauses data center applications in the city and its extraterritorial jurisdiction. The city's own posting of the vote is not confirmed."
     }
    ],
    "unreachable": {
@@ -29422,7 +29514,7 @@
    "confidence": "high",
    "notes_for_editor": "A different collection from the American Time Use Survey window the record already carries at tx-2026-0016, which closed September 8th.",
    "id": "tx-2026-0145",
-   "last_verified": "2026-11-08",
+   "last_verified": "2026-11-11",
    "history": [
     {
      "date": "2026-09-11",
@@ -29541,6 +29633,11 @@
     {
      "date": "2026-11-08",
      "note": "The survey office's question about measuring AI use in the household internet survey is still open to comment, closing November 9th.",
+     "checked": true
+    },
+    {
+     "date": "2026-11-11",
+     "note": "The federal survey office's comment window on measuring household AI use closed on November 9th.",
      "checked": true
     }
    ]
@@ -29677,7 +29774,7 @@
    "confidence": "high",
    "notes_for_editor": "The attachment heads itself Text of Proposed New and its url sits in the June meeting folder, and the item itself records that changes were recommended since first reading. It is the ONE attachment the second reading and final adoption item publishes, which is what this record says and all it says. The rule as filed with the Texas Register was not fetched, so nothing here claims the artificial intelligence language survived into the filed rule. The item prints both an August 31st committee heading and a September 4th date line and never joins either to either body.",
    "id": "tx-2026-0142",
-   "last_verified": "2026-11-08",
+   "last_verified": "2026-11-11",
    "history": [
     {
      "date": "2026-09-11",
@@ -29776,6 +29873,11 @@
      "date": "2026-11-08",
      "note": "The money course's final adoption stands, and its published text still names AI tools.",
      "checked": true
+    },
+    {
+     "date": "2026-11-11",
+     "note": "The money course the board adopted still carries its published text naming AI tools.",
+     "checked": true
     }
    ]
   },
@@ -29814,7 +29916,7 @@
     "closes": null
    },
    "id": "tx-2026-0147",
-   "last_verified": "2026-11-08",
+   "last_verified": "2026-11-11",
    "confidence": "high",
    "notes_for_editor": "El Paso County from the city. The council's own agenda is the source and no vote has happened, so the status is pending rather than decided.\n\ntx-2026-0147-c3's quote proved the date and time while the claim also asserted the agenda was final, which a code review caught on 2026-09-12. The page states it, under Agenda status, so the quote now carries both fields. They are adjacent cells in the meeting detail table and the single space between them is the fetcher's rather than the page's, which is the same disclosure c12, c13 and c25 carry.\n\n2026-10-03. The minutes were published between September 30th and October 3rd. The title and summary no longer say the amendment text is unpublished, c7 now quotes the link to the minutes, and c8 to c13 quote the minutes themselves.",
    "history": [
@@ -29919,6 +30021,11 @@
     {
      "date": "2026-11-08",
      "note": "El Paso's order moving Flock cameras off city property, and its bar on new contracts without a vote, still stand.",
+     "checked": true
+    },
+    {
+     "date": "2026-11-11",
+     "note": "El Paso's order still keeps Flock plate reader cameras off city property and still bars new contracts without another council vote.",
      "checked": true
     }
    ],
@@ -31060,7 +31167,7 @@
     }
    ],
    "id": "tx-2026-0156",
-   "last_verified": "2026-11-08",
+   "last_verified": "2026-11-11",
    "history": [
     {
      "date": "2026-09-14",
@@ -31153,6 +31260,11 @@
     {
      "date": "2026-11-08",
      "note": "The questionnaire answers are in and read. ERCOT told the commission on November 5th that answers from 257 developers were reviewed and that most will get a second, shorter round of questions."
+    },
+    {
+     "date": "2026-11-11",
+     "note": "The grid operator's questionnaire to conditionally classified large loads still stands, notarized attestation and all.",
+     "checked": true
     }
    ]
   },
@@ -31252,7 +31364,7 @@
     }
    ],
    "id": "tx-2026-0157",
-   "last_verified": "2026-11-08",
+   "last_verified": "2026-11-11",
    "history": [
     {
      "date": "2026-09-14",
@@ -31341,12 +31453,17 @@
      "date": "2026-11-08",
      "note": "The developer's account to shareholders of what the Batch Zero list did to its Texas projects still reads as filed.",
      "checked": true
+    },
+    {
+     "date": "2026-11-11",
+     "note": "The developer's account to its shareholders of what the Batch Zero list did to its Texas projects is still the one on file.",
+     "checked": true
     }
    ]
   },
   {
    "title": "ERCOT tells its board that AI training loads can fatigue grid generators and drafts a limit on how fast their power draw may swing",
-   "summary": "The Electric Reliability Council of Texas put a list of emerging Large Load risks in front of its own Board of Directors at the September 14th and 15th, 2026 meeting. The presentation names three risks and a mitigation for each, and the three sit at three different stages. Ride through requirements are already in force. The model quality rule cleared the board on September 15th and now waits on the Public Utility Commission of Texas. The third rule has not been written yet. The grid operator states that Large Loads tied to data center AI training processes can swing their power draw fast enough to perturb synchronous generator shafts. It says that swing can cause equipment fatigue or damage. Its draft rule would hold a Large Load's power variation to 10 MW per 5 seconds. The same page states that the dynamic models the grid operator uses to study these loads have proven inaccurate, and that Texas A&M University is building better ones. The presentation itself was for information only and the board was asked to take no action on it.",
+   "summary": "The Electric Reliability Council of Texas put a list of emerging Large Load risks in front of its own Board of Directors at the September 14th and 15th, 2026 meeting. The presentation names three risks and a mitigation for each, and the three sit at three different stages. Ride through requirements are already in force. The model quality rule cleared the board on September 15th and the Public Utility Commission of Texas approved it on November 5th. The third rule has not been written yet. The grid operator states that Large Loads tied to data center AI training processes can swing their power draw fast enough to perturb synchronous generator shafts. It says that swing can cause equipment fatigue or damage. Its draft rule would hold a Large Load's power variation to 10 MW per 5 seconds. The same page states that the dynamic models the grid operator uses to study these loads have proven inaccurate, and that Texas A&M University is building better ones. The presentation itself was for information only and the board was asked to take no action on it.",
    "topic": "power-and-the-grid",
    "decider": {
     "name": "Electric Reliability Council of Texas",
@@ -31360,6 +31477,11 @@
    },
    "status": "pending",
    "key_dates": [
+    {
+     "date": "2026-11-05",
+     "kind": "passed",
+     "note": "Public Utility Commission of Texas approved PGRR144"
+    },
     {
      "date": "2026-09-15",
      "kind": "passed",
@@ -31378,7 +31500,7 @@
    ],
    "public_access": {
     "room": "contact_only",
-    "how": "The board meeting the presentation was made to is open to the public and it has now been held. The revision request the presentation names, PGRR144, keeps a public page on the grid operator's market rules site. That page lists every vote taken on it and what body takes it next, which is now the Public Utility Commission of Texas. The draft rule on power variation has no number and no filing date yet. Nothing on it can be commented on until it is submitted, so there is no window a reader can act in today.",
+    "how": "The board meeting the presentation was made to is open to the public and it has now been held. The revision request the presentation names, PGRR144, keeps a public page on the grid operator's market rules site. That page lists every vote taken on it, and the last is the Public Utility Commission of Texas approving it on November 5th. The draft rule on power variation has no number and no filing date yet. Nothing on it can be commented on until it is submitted, so there is no window a reader can act in today.",
     "url": "https://www.ercot.com/mktrules/issues/PGRR144",
     "closes": null
    },
@@ -31486,11 +31608,11 @@
     },
     {
      "text": "That page carries the revision request's own status and the date it was posted.",
-     "verbatim_quote": "Status: Pending Date Posted: Feb 18, 2026 Sponsor: ERCOT Urgent: No",
+     "verbatim_quote": "Status: Approved Date Posted: Feb 18, 2026 Sponsor: ERCOT Urgent: No",
      "source_url": "https://www.ercot.com/mktrules/issues/PGRR144",
      "source_title": "ERCOT Market Rules, PGRR144",
      "source_type": "primary_official",
-     "fetched": "2026-09-15",
+     "fetched": "2026-11-11",
      "id": "tx-2026-0159-c12"
     },
     {
@@ -31519,10 +31641,19 @@
      "source_type": "primary_official",
      "fetched": "2026-09-18",
      "id": "tx-2026-0159-c15"
+    },
+    {
+     "text": "The revision request's own page records the commission's vote approving it.",
+     "verbatim_quote": "11/05/2026 PUCT Approved",
+     "source_url": "https://www.ercot.com/mktrules/issues/PGRR144",
+     "source_title": "ERCOT Market Rules, PGRR144",
+     "source_type": "primary_official",
+     "fetched": "2026-11-11",
+     "id": "tx-2026-0159-c16"
     }
    ],
    "id": "tx-2026-0159",
-   "last_verified": "2026-11-08",
+   "last_verified": "2026-11-11",
    "history": [
     {
      "date": "2026-09-15",
@@ -31610,6 +31741,10 @@
      "date": "2026-11-08",
      "note": "ERCOT's proposed limit on how fast AI training loads may swing remains a draft in front of its board.",
      "checked": true
+    },
+    {
+     "date": "2026-11-11",
+     "note": "The Public Utility Commission of Texas approved PGRR144 on November 5th, the last vote on its page. The model quality rule no longer waits on any body."
     }
    ]
   },
@@ -37220,10 +37355,15 @@
      "date": "2026-11-10",
      "note": "The Justice Department's proposed judgment against the Frisco apartment manager is still out for comment as described.",
      "checked": true
+    },
+    {
+     "date": "2026-11-11",
+     "note": "The Justice Department is still taking comment on the Frisco rent software judgment, and the window still closes November 17th.",
+     "checked": true
     }
    ],
    "id": "tx-2026-0189",
-   "last_verified": "2026-11-10"
+   "last_verified": "2026-11-11"
   },
   {
    "title": "College Station City Council votes 4 to 2 to keep its Flock plate reader cameras on state and city roads",
@@ -37513,6 +37653,11 @@
      "date": "2026-11-08",
      "note": "The commission's wildfire plan blueprint still lists cameras as suggested rather than required.",
      "checked": true
+    },
+    {
+     "date": "2026-11-11",
+     "note": "The commission's wildfire plan blueprint still lists cameras as a suggestion rather than a requirement.",
+     "checked": true
     }
    ],
    "claims": [
@@ -37671,7 +37816,7 @@
     }
    ],
    "id": "tx-2026-0191",
-   "last_verified": "2026-11-08"
+   "last_verified": "2026-11-11"
   },
   {
    "title": "Asked for AI camera fire detections, Xcel counted cameras",
@@ -37780,6 +37925,11 @@
      "date": "2026-11-08",
      "note": "Xcel's resiliency filing still promises to report what its AI cameras detect, and its annual report still counts the cameras instead.",
      "checked": true
+    },
+    {
+     "date": "2026-11-11",
+     "note": "Xcel's answer still counts its cameras rather than reporting what they detected.",
+     "checked": true
     }
    ],
    "claims": [
@@ -37875,7 +38025,7 @@
     }
    ],
    "id": "tx-2026-0192",
-   "last_verified": "2026-11-08"
+   "last_verified": "2026-11-11"
   },
   {
    "title": "Judges back El Paso Electric's gas plant for Meta only if other customers don't pay",
@@ -38681,7 +38831,7 @@
      "fetched": "2026-10-02"
     }
    ],
-   "last_verified": "2026-11-08",
+   "last_verified": "2026-11-11",
    "confidence": "high",
    "notes_for_editor": "Sourced to Texas Children's own release of the study and to the Texome Project's site. The journal article at doi.org/10.1016/j.ajhg.2026.09.005 rendered no text to the fetcher. A follow up should watch for the hospital or Baylor stating whether AI-MARRVEL is used in clinical diagnosis rather than research.",
    "history": [
@@ -38746,6 +38896,11 @@
     {
      "date": "2026-11-08",
      "note": "The Texas Children's and Baylor report of a likely genetic cause found after an AI flag still reads as published.",
+     "checked": true
+    },
+    {
+     "date": "2026-11-11",
+     "note": "The Texas Children's and Baylor finding still stands as published, with the AI tool credited for the flag.",
      "checked": true
     }
    ]
@@ -40364,7 +40519,7 @@
    ],
    "notes_for_editor": "Admitted on ERCOT's own board materials. Related to tx-2026-0072, the Governor's directive this pause answers.",
    "id": "tx-2026-0202",
-   "last_verified": "2026-11-08",
+   "last_verified": "2026-11-11",
    "history": [
     {
      "date": "2026-10-05",
@@ -40418,6 +40573,11 @@
     {
      "date": "2026-11-08",
      "note": "ERCOT's pause on energizing new large data centers and crypto mines still holds while the audit runs.",
+     "checked": true
+    },
+    {
+     "date": "2026-11-11",
+     "note": "ERCOT's pause on energizing new large data centers and crypto mines still holds while its audit runs.",
      "checked": true
     }
    ]
@@ -42452,6 +42612,11 @@
      "date": "2026-11-08",
      "note": "Rice's announced plan to hire AI faculty and build for the work in Houston still stands as published.",
      "checked": true
+    },
+    {
+     "date": "2026-11-11",
+     "note": "Rice's faculty hiring plan for AI and its planned research building in the Ion district still stand as announced.",
+     "checked": true
     }
    ],
    "claims": [
@@ -42502,7 +42667,7 @@
     }
    ],
    "id": "tx-2026-0215",
-   "last_verified": "2026-11-08"
+   "last_verified": "2026-11-11"
   },
   {
    "title": "Waymo opens its San Antonio robotaxis to anyone with the app, the airport included, while its flood recall remedy is still listed as under development",
@@ -44160,10 +44325,15 @@
      "date": "2026-11-08",
      "note": "The Texas A&M finding that junk social media posts degrade a model's reasoning still reads as the university reported it.",
      "checked": true
+    },
+    {
+     "date": "2026-11-11",
+     "note": "The Texas A&M finding that junk posts dull a model's reasoning still stands as published.",
+     "checked": true
     }
    ],
    "id": "tx-2026-0223",
-   "last_verified": "2026-11-08"
+   "last_verified": "2026-11-11"
   },
   {
    "title": "Rice University sets out to hire 40 more AI faculty, for 75 this decade, and to take lab space at The Arc in Houston's Ion District",
@@ -44291,10 +44461,15 @@
      "date": "2026-11-08",
      "note": "Rice's plan for more AI faculty and lab space at The Arc still reads as announced.",
      "checked": true
+    },
+    {
+     "date": "2026-11-11",
+     "note": "Rice's plan for more AI faculty and lab space at The Arc still stands as announced.",
+     "checked": true
     }
    ],
    "id": "tx-2026-0224",
-   "last_verified": "2026-11-08"
+   "last_verified": "2026-11-11"
   },
   {
    "title": "Lockheed Martin brings Hadrian's 24 machine automated machining cell into its Grand Prairie missile parts plant",
@@ -45843,7 +46018,7 @@
     }
    ],
    "id": "tx-2026-0234",
-   "last_verified": "2026-11-08",
+   "last_verified": "2026-11-11",
    "history": [
     {
      "date": "2026-10-30",
@@ -45866,6 +46041,11 @@
     {
      "date": "2026-11-08",
      "note": "Plano's approval of up to $390,000 for ChatGPT Enterprise and the Darwin AI platform still reads as passed.",
+     "checked": true
+    },
+    {
+     "date": "2026-11-11",
+     "note": "Plano's purchase of ChatGPT Enterprise and the Darwin AI platform still stands as the council approved it.",
      "checked": true
     }
    ]
@@ -46232,7 +46412,7 @@
     }
    ],
    "id": "tx-2026-0236",
-   "last_verified": "2026-11-08",
+   "last_verified": "2026-11-11",
    "history": [
     {
      "date": "2026-11-02",
@@ -46246,6 +46426,11 @@
     {
      "date": "2026-11-08",
      "note": "San Antonio's loose dog count, phone cameras and object detection across its study areas, still stands as the city planned it.",
+     "checked": true
+    },
+    {
+     "date": "2026-11-11",
+     "note": "San Antonio's loose dog count with phone cameras is still underway on the city's stated plan.",
      "checked": true
     }
    ]
@@ -46745,7 +46930,7 @@
      "id": "tx-2026-0240-c18"
     }
    ],
-   "last_verified": "2026-11-08",
+   "last_verified": "2026-11-11",
    "history": [
     {
      "date": "2026-11-05",
@@ -46754,6 +46939,11 @@
     {
      "date": "2026-11-08",
      "note": "Permian Resources still tells investors that an AI system watches its artificial lift.",
+     "checked": true
+    },
+    {
+     "date": "2026-11-11",
+     "note": "Permian Resources' account of its AI lift monitoring still stands, and it still reports no measured result.",
      "checked": true
     }
    ]
@@ -46945,7 +47135,7 @@
      "id": "tx-2026-0241-c17"
     }
    ],
-   "last_verified": "2026-11-08",
+   "last_verified": "2026-11-11",
    "history": [
     {
      "date": "2026-11-05",
@@ -46954,6 +47144,11 @@
     {
      "date": "2026-11-08",
      "note": "Applied Optoelectronics' filings still say the expansion waits on electrical power, and still name no site.",
+     "checked": true
+    },
+    {
+     "date": "2026-11-11",
+     "note": "The Sugar Land optics maker still says its United States expansion waits on electrical power.",
      "checked": true
     }
    ]
@@ -47537,9 +47732,14 @@
     {
      "date": "2026-11-08",
      "note": "Admitted on AgriLife's own release and the paper's published abstract. The release counts the likely interactions and says only that several were confirmed in the lab."
+    },
+    {
+     "date": "2026-11-11",
+     "note": "The Texas A&M screen of mitochondrial protein pairs is still published and still free to search online.",
+     "checked": true
     }
    ],
-   "last_verified": "2026-11-08",
+   "last_verified": "2026-11-11",
    "id": "tx-2026-0244"
   },
   {
@@ -47691,6 +47891,202 @@
    ],
    "last_verified": "2026-11-10",
    "id": "tx-2026-0245"
+  },
+  {
+   "title": "SpaceX asks Starbase for a tax abatement on a $24 billion gas-fired power plant and super-compute facility beside Brownsville, with a hearing December 9th",
+   "summary": "The City of Starbase gave notice that its City Commission will meet on December 9th, 2026. It will consider a property tax abatement agreement and a related economic development agreement with Space Exploration Technologies Corp. SpaceX proposes to build, own and operate a gas-fired power plant and super-compute facility. The notice puts the capital investment for the initial phases at approximately $24 billion and says the project may grow in later phases. The site is an approximately 444-acre tract in Cameron County, just east of Brownsville between Boca Chica Boulevard and the Port of Brownsville, now inside Starbase's city limits. The Texas Tribune reports Brownsville commissioners voted unanimously in August to take the land out of the city at SpaceX's request. In exchange SpaceX agreed to give up to $220 million for water and wastewater projects, and Starbase later annexed the land. The Tribune reported on November 10th that Brownsville's 90-day moratorium on data center applications had taken effect the week before, and the site sits outside it. The Tribune reports the gas plant could power the data center without a connection to the state grid. SpaceX did not answer the Tribune's questions.",
+   "topic": "data-centers",
+   "decider": {
+    "name": "City Commission of the City of Starbase",
+    "type": "city"
+   },
+   "geography": {
+    "statewide": false,
+    "counties": [
+     "Cameron"
+    ],
+    "on_ercot": true,
+    "metro": "Brownsville-Harlingen, TX"
+   },
+   "status": "pending",
+   "confidence": "high",
+   "key_dates": [
+    {
+     "date": "2026-12-09",
+     "kind": "hearing",
+     "note": "Starbase City Commission considers the Chapter 312 tax abatement and Chapter 380 agreement with SpaceX, 7 p.m."
+    }
+   ],
+   "public_access": {
+    "room": "open_meeting",
+    "how": "The Starbase City Commission meets in public session on Wednesday, December 9th, 2026 at 7 p.m. at 48491 State Highway 4 in Starbase. The city's notice invites interested persons to attend and be heard on the proposed agreements. The notice is posted on the city's own site.",
+    "url": "https://cdn.prod.website-files.com/67fcab04e05680343de9ea4e/6aee00848f7bbe0cdee604da_6aee005cf2854ef8fc7713ed_Public_Hearing_Notice_Tax_Abatement_Dec9_2026.pdf",
+    "closes": "2026-12-09"
+   },
+   "notes_for_editor": "Admitted on the city's own Chapter 312 notice. The de-annexation, the $220 million and the moratorium are the Tribune's reporting and are labelled as journalism. Whether the site connects to ERCOT is not established, the Tribune says the plant could keep it off the grid.",
+   "claims": [
+    {
+     "text": "Starbase's notice says what SpaceX proposes to build.",
+     "verbatim_quote": "SpaceX proposes to construct, own, and operate a gas-fired power plant and super-compute facility.",
+     "source_url": "https://cdn.prod.website-files.com/67fcab04e05680343de9ea4e/6aee00848f7bbe0cdee604da_6aee005cf2854ef8fc7713ed_Public_Hearing_Notice_Tax_Abatement_Dec9_2026.pdf",
+     "source_title": "City of Starbase, Notice of Public Hearing, tax abatement agreement with SpaceX, December 9th, 2026",
+     "source_type": "primary_official",
+     "fetched": "2026-11-11",
+     "id": "tx-2026-0246-c1"
+    },
+    {
+     "text": "The notice gives the estimated capital investment for the project's initial phases.",
+     "verbatim_quote": "Estimated capital investment for initial phases of the project is approximately $24 billion, which may be constructed over multiple phases and include future expansions.",
+     "source_url": "https://cdn.prod.website-files.com/67fcab04e05680343de9ea4e/6aee00848f7bbe0cdee604da_6aee005cf2854ef8fc7713ed_Public_Hearing_Notice_Tax_Abatement_Dec9_2026.pdf",
+     "source_title": "City of Starbase, Notice of Public Hearing, tax abatement agreement with SpaceX, December 9th, 2026",
+     "source_type": "primary_official",
+     "fetched": "2026-11-11",
+     "id": "tx-2026-0246-c2"
+    },
+    {
+     "text": "The notice says where the site is and how large it is.",
+     "verbatim_quote": "The proposed project site is located within the corporate limits of the City of Starbase, in Cameron County, Texas, and consists of an approximately 444-acre tract just east of the City of Brownsville, between Boca Chica Blvd and the Port of Brownsville,",
+     "source_url": "https://cdn.prod.website-files.com/67fcab04e05680343de9ea4e/6aee00848f7bbe0cdee604da_6aee005cf2854ef8fc7713ed_Public_Hearing_Notice_Tax_Abatement_Dec9_2026.pdf",
+     "source_title": "City of Starbase, Notice of Public Hearing, tax abatement agreement with SpaceX, December 9th, 2026",
+     "source_type": "primary_official",
+     "fetched": "2026-11-11",
+     "id": "tx-2026-0246-c3"
+    },
+    {
+     "text": "The notice says when and where the commission will take the agreements up.",
+     "verbatim_quote": "will convene in public session at its regularly scheduled meeting on Wednesday, December 9, 2026 at 7:00 p.m. at 48491 State Highway 4, Starbase, Texas 78521,",
+     "source_url": "https://cdn.prod.website-files.com/67fcab04e05680343de9ea4e/6aee00848f7bbe0cdee604da_6aee005cf2854ef8fc7713ed_Public_Hearing_Notice_Tax_Abatement_Dec9_2026.pdf",
+     "source_title": "City of Starbase, Notice of Public Hearing, tax abatement agreement with SpaceX, December 9th, 2026",
+     "source_type": "primary_official",
+     "fetched": "2026-11-11",
+     "id": "tx-2026-0246-c4"
+    },
+    {
+     "text": "The notice names the two agreements the commission will consider.",
+     "verbatim_quote": "the City Commission will consider approval of a property tax abatement agreement under Chapter 312 of the Texas Tax Code, and a related economic development agreement under Chapter 380 of the Texas Local Government Code,",
+     "source_url": "https://cdn.prod.website-files.com/67fcab04e05680343de9ea4e/6aee00848f7bbe0cdee604da_6aee005cf2854ef8fc7713ed_Public_Hearing_Notice_Tax_Abatement_Dec9_2026.pdf",
+     "source_title": "City of Starbase, Notice of Public Hearing, tax abatement agreement with SpaceX, December 9th, 2026",
+     "source_type": "primary_official",
+     "fetched": "2026-11-11",
+     "id": "tx-2026-0246-c5"
+    },
+    {
+     "text": "The notice names the applicant.",
+     "verbatim_quote": "Space Exploration Technologies Corp., a Texas corporation (“SpaceX”).",
+     "source_url": "https://cdn.prod.website-files.com/67fcab04e05680343de9ea4e/6aee00848f7bbe0cdee604da_6aee005cf2854ef8fc7713ed_Public_Hearing_Notice_Tax_Abatement_Dec9_2026.pdf",
+     "source_title": "City of Starbase, Notice of Public Hearing, tax abatement agreement with SpaceX, December 9th, 2026",
+     "source_type": "primary_official",
+     "fetched": "2026-11-11",
+     "id": "tx-2026-0246-c6"
+    },
+    {
+     "text": "The notice invites the public to speak.",
+     "verbatim_quote": "Interested persons are invited to attend the meeting and to be heard on the proposed agreements.",
+     "source_url": "https://cdn.prod.website-files.com/67fcab04e05680343de9ea4e/6aee00848f7bbe0cdee604da_6aee005cf2854ef8fc7713ed_Public_Hearing_Notice_Tax_Abatement_Dec9_2026.pdf",
+     "source_title": "City of Starbase, Notice of Public Hearing, tax abatement agreement with SpaceX, December 9th, 2026",
+     "source_type": "primary_official",
+     "fetched": "2026-11-11",
+     "id": "tx-2026-0246-c7"
+    },
+    {
+     "text": "The notice names the reinvestment zone the project would sit in.",
+     "verbatim_quote": "The project would be constructed in the Cameron County Enterprise Zone,",
+     "source_url": "https://cdn.prod.website-files.com/67fcab04e05680343de9ea4e/6aee00848f7bbe0cdee604da_6aee005cf2854ef8fc7713ed_Public_Hearing_Notice_Tax_Abatement_Dec9_2026.pdf",
+     "source_title": "City of Starbase, Notice of Public Hearing, tax abatement agreement with SpaceX, December 9th, 2026",
+     "source_type": "primary_official",
+     "fetched": "2026-11-11",
+     "id": "tx-2026-0246-c8"
+    },
+    {
+     "text": "The Tribune reports the land was taken out of Brownsville earlier this year at SpaceX's request, which keeps the project clear of Brownsville's moratorium.",
+     "verbatim_quote": "SpaceX is planning to build a $24 billion data center and power plant just outside of Brownsville on property that the city had just de-annexed earlier this year at the company’s request, circumventing Brownsville’s data center moratorium that went into effect last week.",
+     "source_url": "https://www.texastribune.org/2026/11/10/texas-spacex-data-center-power-plant/",
+     "source_title": "The Texas Tribune, SpaceX plans $24 billion data center and power plant near Brownsville",
+     "source_type": "journalism",
+     "fetched": "2026-11-11",
+     "id": "tx-2026-0246-c9"
+    },
+    {
+     "text": "The Tribune reports Starbase later annexed the land.",
+     "verbatim_quote": "the city of Starbase, which later annexed land where the project will be built into their city limits,",
+     "source_url": "https://www.texastribune.org/2026/11/10/texas-spacex-data-center-power-plant/",
+     "source_title": "The Texas Tribune, SpaceX plans $24 billion data center and power plant near Brownsville",
+     "source_type": "journalism",
+     "fetched": "2026-11-11",
+     "id": "tx-2026-0246-c10"
+    },
+    {
+     "text": "The Tribune reports the gas plant could keep the data center off the state grid.",
+     "verbatim_quote": "The gas-fired power plant that SpaceX plans to build could provide power to its data center to avoid connecting to the state’s power grid.",
+     "source_url": "https://www.texastribune.org/2026/11/10/texas-spacex-data-center-power-plant/",
+     "source_title": "The Texas Tribune, SpaceX plans $24 billion data center and power plant near Brownsville",
+     "source_type": "journalism",
+     "fetched": "2026-11-11",
+     "id": "tx-2026-0246-c11"
+    },
+    {
+     "text": "The Tribune reports SpaceX did not answer its questions.",
+     "verbatim_quote": "SpaceX did not respond to questions regarding the project.",
+     "source_url": "https://www.texastribune.org/2026/11/10/texas-spacex-data-center-power-plant/",
+     "source_title": "The Texas Tribune, SpaceX plans $24 billion data center and power plant near Brownsville",
+     "source_type": "journalism",
+     "fetched": "2026-11-11",
+     "id": "tx-2026-0246-c12"
+    },
+    {
+     "text": "The Tribune reports Brownsville's moratorium is in effect and what it covers.",
+     "verbatim_quote": "Brownsville approved its own 90-day moratorium which went into effect last week, temporarily hitting pause on data center applications within the city and its extraterritorial jurisdiction.",
+     "source_url": "https://www.texastribune.org/2026/11/10/texas-spacex-data-center-power-plant/",
+     "source_title": "The Texas Tribune, SpaceX plans $24 billion data center and power plant near Brownsville",
+     "source_type": "journalism",
+     "fetched": "2026-11-11",
+     "id": "tx-2026-0246-c13"
+    },
+    {
+     "text": "The Tribune reports Brownsville commissioners voted unanimously to de-annex the land.",
+     "verbatim_quote": "Brownsville city commissioners unanimously voted to de-annex the land, which is located near the Port of Brownsville.",
+     "source_url": "https://www.texastribune.org/2026/08/31/spacex-brownsville-deannex-land-water-projects/",
+     "source_title": "The Texas Tribune, SpaceX to fund up to $220M in Brownsville water projects in exchange for land",
+     "source_type": "journalism",
+     "fetched": "2026-11-11",
+     "id": "tx-2026-0246-c14"
+    },
+    {
+     "text": "The Tribune reports what SpaceX agreed to give the city in exchange.",
+     "verbatim_quote": "In exchange, SpaceX agreed to give the city up to $220 million for water and wastewater projects.",
+     "source_url": "https://www.texastribune.org/2026/08/31/spacex-brownsville-deannex-land-water-projects/",
+     "source_title": "The Texas Tribune, SpaceX to fund up to $220M in Brownsville water projects in exchange for land",
+     "source_type": "journalism",
+     "fetched": "2026-11-11",
+     "id": "tx-2026-0246-c15"
+    },
+    {
+     "text": "The Tribune reports SpaceX set a same-day deadline on the offer.",
+     "verbatim_quote": "If commissioners didn’t approve the deal that very day, McCorkle said the deal would be off the table.",
+     "source_url": "https://www.texastribune.org/2026/08/31/spacex-brownsville-deannex-land-water-projects/",
+     "source_title": "The Texas Tribune, SpaceX to fund up to $220M in Brownsville water projects in exchange for land",
+     "source_type": "journalism",
+     "fetched": "2026-11-11",
+     "id": "tx-2026-0246-c16"
+    },
+    {
+     "text": "The Tribune reports Brownsville stands by the de-annexation.",
+     "verbatim_quote": "The city of Brownsville said it stood by its decision to de-annex the property, which was based on “information and circumstances presented at the time,” the city said in a statement.",
+     "source_url": "https://www.texastribune.org/2026/11/10/texas-spacex-data-center-power-plant/",
+     "source_title": "The Texas Tribune, SpaceX plans $24 billion data center and power plant near Brownsville",
+     "source_type": "journalism",
+     "fetched": "2026-11-11",
+     "id": "tx-2026-0246-c17"
+    }
+   ],
+   "id": "tx-2026-0246",
+   "last_verified": "2026-11-11",
+   "history": [
+    {
+     "date": "2026-11-11",
+     "note": "Admitted on Starbase's own notice of the December 9th hearing. The city will consider the abatement and the economic development agreement with SpaceX at that meeting, and the public may speak."
+    }
+   ]
   }
  ]
 }

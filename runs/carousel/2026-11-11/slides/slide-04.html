@@ -1,0 +1,59 @@
+<!doctype html>
+<!-- 2026-11-11, frame 4 of 9. Archetype CLOSE_CROP. A spatial scene through txthree.js in the lastLight world: a weathered survey lath lying on cracked salt crust beside the hole it was pulled from, its foot dark with clay and its old flagging limp. Drawn to illustrate; the line moved by vote, not by survey. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:900px">&quot;Why are we rushing this?&quot;</h1>
+<p class="dek" data-follow="26" style="width:860px">A Brownsville resident asked it at the Saturday meeting, the Tribune reported on August 31st. SpaceX&#39;s Sheila McCorkle told commissioners the offer would be off the table unless approved that day. They voted unanimously to de-annex.</p>
+<script>window.FIG = {};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-11-cityline.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Starbase, Cameron County", counter: "04 / 09", src: "c14 c16 c20 c21", fit: { min: 80, max: 104, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 44, near: 0.02, far: 2000 });
+  /* the old stake lies across the frame, its foot beside the hole; the new one stands behind it */
+  const old = K.make('survey_lath', { lying: true, flag: 'old', mud: 0.7, seed: 3 });
+  old.rotation.y = 0.18; old.position.set(-0.3, 0, -0.02); TXT.add(R, old); TXT.contact(R, old, { opacity: 0.7 });
+  const hole = new THREE.Mesh(new THREE.CylinderGeometry(0.03, 0.022, 0.05, 20), new THREE.MeshStandardMaterial({ color: 0x050403, roughness: 1 }));
+  hole.position.set(0.32, -0.02, -0.12); TXT.add(R, hole);
+  const pit = new THREE.Mesh(new THREE.CircleGeometry(0.05, 24), new THREE.MeshStandardMaterial({ color: 0x050403, roughness: 1, polygonOffset: true, polygonOffsetFactor: -4, polygonOffsetUnits: -4 }));
+  pit.rotation.x = -Math.PI / 2; pit.scale.set(1.4, 1, 1); pit.position.set(0.32, 0.0026, -0.12); TXT.add(R, pit);
+  /* a ragged lip of wet clay and the crumbs the stake threw out of the hole */
+  const CLAY = new THREE.MeshStandardMaterial({ color: 0x2a2018, roughness: 0.9 });
+  for (let k = 0; k < 14; k++) { const a = k / 14 * Math.PI * 2, r = 0.034 + 0.008 * Math.sin(k * 2.7); const m = new THREE.Mesh(new THREE.DodecahedronGeometry(0.007 + 0.004 * ((k * 7) % 3), 0), CLAY); m.position.set(0.32 + Math.cos(a) * r, 0.003, -0.12 + Math.sin(a) * r); m.rotation.set(k, k * 2, 0); TXT.add(R, m); }
+  for (let k = 0; k < 22; k++) { const a = k * 2.39, r = 0.05 + 0.006 * k; const m = new THREE.Mesh(new THREE.DodecahedronGeometry(0.003 + 0.002 * (k % 3), 0), CLAY); m.position.set(0.32 + Math.cos(a) * r, 0.002, -0.12 + Math.sin(a) * r); TXT.add(R, m); }
+  const FROM = [-0.14, 0.3, 0.46];
+  const LOOK = CH.aim(THREE, R, TXT, FROM, [0.12, 0.02, -0.08], 470, 1010, 44);
+  TXT.frame(R, { fov: 44, from: FROM, look: LOOK });
+  TXT.sky(R);
+  TXT.ground(R, { surface: 'caliche', color: 0x6a6254, size: 600, seed: 21 });
+  CH.tidalFlat(THREE, TXT, R, { size: 80, tile: 0.7, y: 0.0015, veins: 0.22, mottle: 0.6 });
+  CH.pool(THREE, TXT, R, [0.15, 0, -0.08], { radius: 0.9, i: 9.0, normalBias: 0.004 });
+  TXT.scatter(R, { kind: 'rock', count: 900, area: [-3, -6, 3, 1.2], avoid: [[-1.0, -0.3, 0.8, 0.3]], seed: 2, scale: [0.0015, 0.004] });
+  TXT.scatter(R, { kind: 'grass', count: 300, area: [-12, -30, 12, -4], seed: 6, scale: [0.4, 0.7] });
+  TXT.deckRig(R, CH.rigSpec(W, 4, 2048), CH.rigOpts([0, 0, 0], { distance: 12, shadowFar: 30, normalBias: 0.005 }));
+  TXT.weather(R, { grime: 0.3, height: 0.3, mottle: 0.25 });
+  TXT.stage(R, old);
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.dress(cx, { foot: 0.6 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

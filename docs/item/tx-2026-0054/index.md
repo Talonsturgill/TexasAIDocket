@@ -11,7 +11,7 @@ HGACBuy is the cooperative purchasing program run by the Houston-Galveston Area 
 - Public access: Write to the decider
 - Take part: https://www.hgacbuy.org/products-and-services/view-contract?contractid=3147
 
-- Last checked: 2026-11-08
+- Last checked: 2026-11-11
 
 ## Dates
 
@@ -48,6 +48,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-01 · AI consulting is still on the HGACBuy catalog under the contract the regional council awarded.
 - 2026-11-05 · AI consulting is still on the HGACBuy catalog under the same contract.
 - 2026-11-08 · AI consulting services remain on the HGACBuy catalog under the same contract.
+- 2026-11-11 · AI consulting is still listed on the HGACBuy catalog, open to the member governments that buy through it.
 
 ## Evidence
 

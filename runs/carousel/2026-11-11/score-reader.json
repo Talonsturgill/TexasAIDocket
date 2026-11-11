@@ -1,0 +1,15 @@
+{"lens":"reader","round":3,"criteria":[
+{"name":"artwork_craft","weight":0.22,"score":6.6,"why":"1, 3, 5 and 9 pass the feed test and 7 and 8 are dark around one lamp. 6 pale primitive boxes on the horizon with no pool or contact, about a tenth of the frame; 4 an untextured plank by low-poly clods; 2 a ribbon on a noise texture with a flat black channel. 7's chairs appear to face the camera."},
+{"name":"deck_coherence","weight":0.12,"score":7.5,"why":"One staged dark world, one accent meaning, the sign bookend and the 5 to 6 line both work, no value strobe, the cut at 7 lands. 3's blocks sit outside the line motif and 2's aerial reads in another register."},
+{"name":"claim_integrity","weight":0.2,"score":8.0,"why":"Every numeral traces and the quote matches c21. The de-annexation and the $220M deal rest only on the Tribune, and slide 3's 'a payment' is firmer than c15's 'agreed to give up to'."},
+{"name":"story_and_stakes","weight":0.16,"score":8.5,"why":"What happened, who decides, where, the decision, the deadline and the action are all delivered. The abatement's size and term are not stated, nor that the notice omits them; Chapter 380 is unglossed."},
+{"name":"sequence_and_momentum","weight":0.1,"score":7.5,"why":"The cover earns the swipe, 2 pays, 5 turns, 9 lands. 4 jumps back, 8 delays the call to action, 3's ratio explains itself."},
+{"name":"voice","weight":0.1,"score":7.5,"why":"Plain local lines and honest balance on 8. Several fact-checker lines: 3's last sentence, 5's source dating, 6's 'Drawn to illustrate.', 7's code-section jargon."},
+{"name":"variety","weight":0.1,"score":5.5,"why":"No topic repeat, but no. 62's abatement with its own power, stakes and a parcel to area, no. 69's stakes as a day count, no. 61's city limit sign and dais close and no. 63's dais all recur in lastLight."}],
+"weighted_score":7.362,"hard_fails":[],"ship":true,
+"one_sentence_fix":"Rebuild slide 6 so the plant fills a third of the frame in its own pool, and slide 4 as a grained pine lath with a cut point and tied flagging cropped tight on the foot and the hole.",
+"artwork_weakest_frames":[
+{"slide":6,"problem":"pale primitive boxes about a tenth of the frame, no pool or contact","fix":"about 120 m at eye 1.6 m, fov 18, side-lit with the key, contact under the skids, the line ending at its fence"},
+{"slide":4,"problem":"untextured slab by low-poly clods, empty crust above","fix":"pine grain, sharpened point, wet clay foot, tied flagging, eye 0.5 m so the foot and hole fill the lower two thirds"},
+{"slide":2,"problem":"ribbon on a noise texture, flat black channel, nothing of known size","fix":"riprap and water with the seam reflected, the near corner and shoulder in a pool, a tractor-trailer for scale"},
+{"slide":7,"problem":"the chairs appear to face the camera","fix":"rotate the rows 180 degrees so the backs face the camera"}]}

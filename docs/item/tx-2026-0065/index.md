@@ -11,7 +11,7 @@ San Angelo passed Ordinance 2026-078, which adds Section 11.02.043 to the city w
 - Public access: Public meeting
 - Take part: https://www.sanangelo.gov/803/Data-Center-Information
 
-- Last checked: 2026-11-08
+- Last checked: 2026-11-11
 
 ## Dates
 
@@ -50,6 +50,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-01 · San Angelo's ordinance capping data center cooling water reads as adopted in the city's own posted text.
 - 2026-11-05 · San Angelo's ordinance capping data center cooling water still reads as adopted.
 - 2026-11-08 · San Angelo's ordinance capping how much water a data center may use for cooling remains on the books.
+- 2026-11-11 · San Angelo's ordinance still caps how much makeup water a data center's cooling loop may draw each year.
 
 ## Evidence
 

@@ -11,7 +11,7 @@ The El Paso City Council took up two items filed by members of the council at it
 - Public access: Write to the decider
 - Take part: https://elpasotexas.legistar.com/MeetingDetail.aspx?ID=1438138&GUID=311EC2E9-C010-4038-B718-400EE54FD9C2&Options=info|&Search=
 
-- Last checked: 2026-11-08
+- Last checked: 2026-11-11
 
 ## Dates
 
@@ -43,6 +43,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-01 · El Paso's order taking Flock cameras off city property reads as passed in the council's own minutes.
 - 2026-11-05 · El Paso's order taking Flock cameras off city property still stands.
 - 2026-11-08 · El Paso's order moving Flock cameras off city property, and its bar on new contracts without a vote, still stand.
+- 2026-11-11 · El Paso's order still keeps Flock plate reader cameras off city property and still bars new contracts without another council vote.
 
 ## Evidence
 

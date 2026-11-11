@@ -19,12 +19,12 @@
   "recent_lists_note": "These three lists are the exclusions handed to the caption room and they were hand-kept. On 2026-08-20 the fourth panel found structures_recent reading [\"ledger\", \"pivot\", \"question and answer\"] when the last three shipped structures were [\"ledger\", \"two columns\", \"question and answer\"], so it dropped a structure that IS off the table and held one that is not. Wrong in both directions from one hand edit. They are now recomputed from entries and are ordered OLDEST FIRST, matching the entries list, and scripts/carousel/caption_check.py should derive them rather than read them. That is an upgrade-lane change and it is written into this run's proposals."
  },
  "opening_moves_recent": [
-  "the who",
   "the two things",
   "the place",
   "the before and after",
   "the number that is wrong",
-  "the plain question"
+  "the plain question",
+  "the object"
  ],
  "entries": [
   {
@@ -1339,15 +1339,34 @@
    ],
    "critic_note": "A won over B. B's Question and answer joined Frontera's retirement to Rizo-Rey's Vista move, and the dates contradict it. A won with one rewrite that removed Dallas, an unsupported Austin line and a strawman, restored c8's typically, and turns on c10 quoted word for word.",
    "move_note": "The object is a Frontera node with two Xeons, and the past tense carries the retirement. The Pivot sets up the hardware reading by putting the facts in order and turns on c10's own words about GROMACS and TACC's people."
+  },
+  {
+   "date": "2026-11-11",
+   "carousel_no": 74,
+   "opening_move": "the quiet decision",
+   "structure": "Ladder",
+   "closing_move": "name what happens next and when",
+   "first_line": "The line moved on a Saturday.",
+   "words": 142,
+   "commas": 3,
+   "commas_per_100w": 2.11,
+   "chars": 884,
+   "hashtags": [
+    "#CameronCounty",
+    "#Brownsville",
+    "#Starbase"
+   ],
+   "critic_note": "B won over A. A's close asked whether the commission votes the night it hears the public, which is the one-question-the-decision-leaves-open substance that shipped on November 10th, refiled under another name. B's close puts the date inside the question, the form CAPTION_CRAFT gives next-and-when. B shipped with one edit, the Tribune named in full at its first mention.",
+   "move_note": "The quiet decision is the land leaving Brownsville's limits at a six hour weekend meeting on an offer good that day only. The Ladder steps from that vote to Starbase's annexation, the moratorium the tract sits outside, and the abatement Starbase now hears, and stops on the date."
   }
  ],
  "structures_recent": [
-  "Ladder",
   "Ledger",
-  "Zoom out"
+  "Zoom out",
+  "Pivot"
  ],
  "closing_moves_recent": [
-  "point at the record, plainly"
+  "ask the one question the decision leaves open"
  ],
  "_derived_note": "opening_moves_recent, structures_recent and closing_moves_recent are DERIVED by out/<date>/update_ledgers.py every run, by ledger_check.windows() and ledger_check's own slice of the entries before the newest date. They were hand-maintained until 2026-09-10 and had drifted, which mis-briefed the caption room on that run: the list said Ledger was excluded when it was not, and never mentioned Two columns or the close no. 19 actually shipped."
 }

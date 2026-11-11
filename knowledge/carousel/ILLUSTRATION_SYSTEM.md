@@ -1330,6 +1330,17 @@ which is the finding the judges made in words and the number that says the gate 
   sits in. Never a patch the shape of a word. When the wash at a held alpha still can't seat the
   footer, the cure is the art under it (the pool, the camera, where the ground falls to black),
   never a heavier patch. (2026-10-15)
+- **A pale kit model darkened by multiplying its colours.** No. 74's frame 6 multiplied every
+  material of the kit `gas_peaker` by 0.45 to stop its faces clipping, and every judge in all three
+  rounds still charged "pale primitive boxes". Replayed on 2026-11-11 through the frame's own code,
+  the filter house's end face measured 212 of 255 as shipped, and 197 under the same multiply on a
+  first rebuild that changed only the paint and the weathered skin: a frontal pool puts any face turned to it near white whatever its albedo, and a
+  flat face near white is a card. What moved it was the model's own value structure, read on the
+  faces the camera sees (hooded filter ends, a louvre bank, stiffeners, a weathered skin, a heat
+  tinted stack), which took the same face to 85 of 255 with grain. The weekly pass rebuilt
+  `gas_peaker` that way (`assets/js/kit/power.js`). A model that reads pale is cured in the model or
+  by a pool that rakes across the faces rather than fronting them. Never multiply its colours down.
+  (2026-11-11)
 - **The model's own defaults, which it reaches for when design direction runs out** (2026-09-23).
   Anthropic's prompting guide for the model the routine now runs on lists five: a cream or
   off-white ground, italic accent words in headlines, numbered "01, 02, 03" section labels,

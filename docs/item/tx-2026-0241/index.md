@@ -11,7 +11,7 @@ Applied Optoelectronics filed its third quarter results with the SEC on November
 - Public access: Write to the decider
 - Take part: https://www.sec.gov/Archives/edgar/data/0001158114/000168316826008351/aaoi_ex9901.htm
 
-- Last checked: 2026-11-08
+- Last checked: 2026-11-11
 
 ## Dates
 
@@ -23,6 +23,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 
 - 2026-11-05 · Admitted on the company's SEC filings of November 5th. Neither filing names the site that is waiting on power.
 - 2026-11-08 · Applied Optoelectronics' filings still say the expansion waits on electrical power, and still name no site.
+- 2026-11-11 · The Sugar Land optics maker still says its United States expansion waits on electrical power.
 
 ## Evidence
 

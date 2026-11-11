@@ -1,0 +1,227 @@
+{
+  "version": 2,
+  "selected": [
+    1,
+    3,
+    9
+  ],
+  "inputs": {
+    "slides/slide-01.html": "fe8dcdd069ca021bbd05108715e0018519f6a40670965ceee4fd57c45049f8c4",
+    "render/slide-01.png": "c5ad5dc929fd1be859a3c301039e91718a7fd92037c6fae1ce77fab4fe72c069",
+    "assets/js/deck/2026-11-11-cityline.js": "1e273b93b394545e0c9102e55b1aeaac960814ee2fc5f234b4e0877fea688ccf",
+    "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+    "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+    "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+    "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+    "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+    "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+    "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+    "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+    "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+    "slides/slide-03.html": "b2f0faa9ee7ec3c54027e447c77aeee76dc20f888c32f6c317aad057ee1f9ad2",
+    "render/slide-03.png": "6559af54dc187d1a9d5029a9984bc257a4bd4cd563e5015c08ab8a0d18f3bc0c",
+    "slides/slide-09.html": "6bc75deecca0091379e56f8bc7c9b30cd3f52dd31e35fd7a19bfa67f493c2dc2",
+    "render/slide-09.png": "17cbe97d20e792fc01194868230bf82c30a8f137e7f7ef6bc41185df13655122"
+  },
+  "value_measurements": [
+    {
+      "frame": "slide-01.png",
+      "median_L": 2.1,
+      "mid": 0.082,
+      "dark": 0.863
+    },
+    {
+      "frame": "slide-03.png",
+      "median_L": 5.8,
+      "mid": 0.118,
+      "dark": 0.803
+    },
+    {
+      "frame": "slide-09.png",
+      "median_L": 0.9,
+      "mid": 0.083,
+      "dark": 0.851
+    }
+  ],
+  "review": {
+    "decision": "accept",
+    "inputs": {
+      "slides/slide-01.html": "fe8dcdd069ca021bbd05108715e0018519f6a40670965ceee4fd57c45049f8c4",
+      "render/slide-01.png": "c5ad5dc929fd1be859a3c301039e91718a7fd92037c6fae1ce77fab4fe72c069",
+      "assets/js/deck/2026-11-11-cityline.js": "1e273b93b394545e0c9102e55b1aeaac960814ee2fc5f234b4e0877fea688ccf",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+      "slides/slide-03.html": "b2f0faa9ee7ec3c54027e447c77aeee76dc20f888c32f6c317aad057ee1f9ad2",
+      "render/slide-03.png": "6559af54dc187d1a9d5029a9984bc257a4bd4cd563e5015c08ab8a0d18f3bc0c",
+      "slides/slide-09.html": "6bc75deecca0091379e56f8bc7c9b30cd3f52dd31e35fd7a19bfa67f493c2dc2",
+      "render/slide-09.png": "17cbe97d20e792fc01194868230bf82c30a8f137e7f7ef6bc41185df13655122"
+    },
+    "frames": [
+      {
+        "slide": 1,
+        "role": "cover",
+        "subject": "a green CITY LIMIT sign on two galvanized posts, close and low on a dark pebbled shoulder among saltgrass tufts, the last warm seam glowing low on the left behind it, under a near-black sky",
+        "visual_consequence": "Before the headline is read, the frame shows the edge of a town as a physical object: one sign on empty dark flats with nothing built beyond it. That sets up the line that moved.",
+        "weakness": "Copy change checked at native size. The new fifth dek line ends left of the sign's face and the fourth line's descenders clear its top edge by about 55 design px, so no glyph crosses the sign. Face, legend, border, bolts, posts and composition match the accepted frame. Minor: plain square posts, a dim pool, faint casts, none visible at feed size.",
+        "repair": "none required",
+        "encoding_reads": true,
+        "dominant_subject_finished": true,
+        "feed_legible": true,
+        "inputs": {
+          "slides/slide-01.html": "fe8dcdd069ca021bbd05108715e0018519f6a40670965ceee4fd57c45049f8c4",
+          "render/slide-01.png": "c5ad5dc929fd1be859a3c301039e91718a7fd92037c6fae1ce77fab4fe72c069",
+          "assets/js/deck/2026-11-11-cityline.js": "1e273b93b394545e0c9102e55b1aeaac960814ee2fc5f234b4e0877fea688ccf",
+          "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+          "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+          "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+          "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+          "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+          "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+          "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+          "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+          "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de"
+        }
+      },
+      {
+        "slide": 3,
+        "role": "evidence",
+        "subject": "a stack of precast concrete cubes, six by six by three with one more begun on top, and one identical cube standing alone in front, on a dark tidal flat under a low key from the left",
+        "visual_consequence": "Without the headline, the reader sees one block against a mass of more than a hundred identical ones. The estimate is many times the ceiling, and the ratio can be counted.",
+        "weakness": "The dek sets in five lines with no lone word, nothing crosses the stack or either label, and a dark band of sky separates the begun block from the type, about 25 design px. The art is unchanged and finished: grain, dimples, joints on the shadowed face, loops, contacts and long casts intact.",
+        "repair": "none required",
+        "encoding_reads": true,
+        "dominant_subject_finished": true,
+        "feed_legible": true,
+        "inputs": {
+          "assets/js/deck/2026-11-11-cityline.js": "1e273b93b394545e0c9102e55b1aeaac960814ee2fc5f234b4e0877fea688ccf",
+          "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+          "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+          "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+          "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+          "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+          "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+          "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+          "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+          "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+          "slides/slide-03.html": "b2f0faa9ee7ec3c54027e447c77aeee76dc20f888c32f6c317aad057ee1f9ad2",
+          "render/slide-03.png": "6559af54dc187d1a9d5029a9984bc257a4bd4cd563e5015c08ab8a0d18f3bc0c"
+        }
+      },
+      {
+        "slide": 9,
+        "role": "close",
+        "subject": "the same green CITY LIMIT sign at night, cropped by the right edge and the brightest thing in the frame, beside a two lane road running to a vanishing point with amber raised reflectors stepping along the edge line",
+        "visual_consequence": "Without the headline, the reader sees the cover's sign again after dark, with the road leading on past it, the way forward marked one reflector at a time toward the meeting.",
+        "weakness": "The marker row is fixed and more than 12 reflectors are distinct. The cool spill at the post feet does not show as lit gravel, so the feet and their contact don't read at native size, and faint dark marks cross the near lane. Both are invisible at feed size, where the posts run out of the bottom as planned.",
+        "repair": "none required. Optional: raise the shoulder spill so the gravel under both feet reads at native size.",
+        "encoding_reads": true,
+        "dominant_subject_finished": true,
+        "feed_legible": true,
+        "inputs": {
+          "assets/js/deck/2026-11-11-cityline.js": "1e273b93b394545e0c9102e55b1aeaac960814ee2fc5f234b4e0877fea688ccf",
+          "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+          "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+          "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+          "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+          "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+          "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+          "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+          "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+          "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+          "slides/slide-09.html": "6bc75deecca0091379e56f8bc7c9b30cd3f52dd31e35fd7a19bfa67f493c2dc2",
+          "render/slide-09.png": "17cbe97d20e792fc01194868230bf82c30a8f137e7f7ef6bc41185df13655122"
+        }
+      }
+    ]
+  },
+  "plan": {
+    "hardest_frame": 3,
+    "visual_argument": "A city limit is a line a Texan can see, the green sign and the survey stakes that mark it. The deck carries that line through the story: the land moved across it for up to $220 million in water projects, Brownsville's pause stops at it, and the public's way back in is a hearing room on December 9th.",
+    "build_risk": "109 identical 2 m precast blocks stacked six by six by three with one begun on top, beside one lone block, where every block must read as precast concrete with its joints and chamfers at 432 px, the shadowed face must keep its joints rather than going black, and the lone block must hold the brightest pool.",
+    "distinct_from_recent": "No. 71 was a residential Dallas street at night with kit people and bluebonnet, no. 72 a dark lab with brass, no. 73 a windowless machine hall with cyan. This deck is all coastal flats at last light east of Brownsville and one hearing room, with a city limit sign, survey lath and flagging and a stack of precast blocks, no server, no rack, no person, and the green of a city limit sign as its accent."
+  },
+  "frame_inputs": {
+    "1": {
+      "slides/slide-01.html": "fe8dcdd069ca021bbd05108715e0018519f6a40670965ceee4fd57c45049f8c4",
+      "render/slide-01.png": "c5ad5dc929fd1be859a3c301039e91718a7fd92037c6fae1ce77fab4fe72c069",
+      "assets/js/deck/2026-11-11-cityline.js": "1e273b93b394545e0c9102e55b1aeaac960814ee2fc5f234b4e0877fea688ccf",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de"
+    },
+    "3": {
+      "assets/js/deck/2026-11-11-cityline.js": "1e273b93b394545e0c9102e55b1aeaac960814ee2fc5f234b4e0877fea688ccf",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+      "slides/slide-03.html": "b2f0faa9ee7ec3c54027e447c77aeee76dc20f888c32f6c317aad057ee1f9ad2",
+      "render/slide-03.png": "6559af54dc187d1a9d5029a9984bc257a4bd4cd563e5015c08ab8a0d18f3bc0c"
+    },
+    "9": {
+      "assets/js/deck/2026-11-11-cityline.js": "1e273b93b394545e0c9102e55b1aeaac960814ee2fc5f234b4e0877fea688ccf",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+      "slides/slide-09.html": "6bc75deecca0091379e56f8bc7c9b30cd3f52dd31e35fd7a19bfa67f493c2dc2",
+      "render/slide-09.png": "17cbe97d20e792fc01194868230bf82c30a8f137e7f7ef6bc41185df13655122"
+    }
+  },
+  "needs_review": [
+    1,
+    3,
+    9
+  ],
+  "shipped_inputs": {
+    "slides/slide-01.html": "fe8dcdd069ca021bbd05108715e0018519f6a40670965ceee4fd57c45049f8c4",
+    "slide-01.webp": "9a40ec6fab9586aef524c2a44972b779621f078333c92e61ac57d341c413b45c",
+    "slides/slide-03.html": "b2f0faa9ee7ec3c54027e447c77aeee76dc20f888c32f6c317aad057ee1f9ad2",
+    "slide-03.webp": "0ebf43a3c6afb646be199445daa7524e0a9cb9d1defa74ff0a5a9bf3d0c212ea",
+    "slides/slide-09.html": "6bc75deecca0091379e56f8bc7c9b30cd3f52dd31e35fd7a19bfa67f493c2dc2",
+    "slide-09.webp": "c7f9014fa12788c7e85e5d9f9413896f45637e178969486bb0a5d0fa1f5811ca"
+  },
+  "encodings": [
+    {
+      "to": "slide-01.webp",
+      "to_sha256": "9a40ec6fab9586aef524c2a44972b779621f078333c92e61ac57d341c413b45c",
+      "from_sha256": "c5ad5dc929fd1be859a3c301039e91718a7fd92037c6fae1ce77fab4fe72c069",
+      "psnr_db": 42.843
+    },
+    {
+      "to": "slide-03.webp",
+      "to_sha256": "0ebf43a3c6afb646be199445daa7524e0a9cb9d1defa74ff0a5a9bf3d0c212ea",
+      "from_sha256": "6559af54dc187d1a9d5029a9984bc257a4bd4cd563e5015c08ab8a0d18f3bc0c",
+      "psnr_db": 40.303
+    },
+    {
+      "to": "slide-09.webp",
+      "to_sha256": "c7f9014fa12788c7e85e5d9f9413896f45637e178969486bb0a5d0fa1f5811ca",
+      "from_sha256": "17cbe97d20e792fc01194868230bf82c30a8f137e7f7ef6bc41185df13655122",
+      "psnr_db": 41.71
+    }
+  ]
+}

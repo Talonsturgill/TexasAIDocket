@@ -1,0 +1,16 @@
+{"lens":"craft","round":2,"criteria":[
+{"name":"artwork_craft","weight":0.22,"score":6.0,"why":"1, 3, 7 (28 chairs counted) and 9 hold up. 6 cream boxes with blown faces in a void and the stake line two faint threads; 2 a vector trapezoid on a noise plane cut by a hard black band; 4 a flat-shaded plank with a sleeve for flagging on mid-tone crust; 5 bare black sticks on a purple-grey band with no sodium lights. 8's mic tip touches the dek."},
+{"name":"deck_coherence","weight":0.12,"score":6.8,"why":"One dark staged register, one key, one accent, the sign bookend and the room pair work. The lath changes object across 4, 5 and 6 and the line nearly vanishes on 6, so the camera move from 5 to 6 doesn't happen; 2 sits outside the stock."},
+{"name":"claim_integrity","weight":0.20,"score":8.0,"why":"Every numeral traces and the counted figures are built to their values, with disclaimers on 2, 3 and 6. The moratorium and the $220M deal rest on the Tribune, and slide 3's dek states the $220M without in-slide attribution."},
+{"name":"story_and_stakes","weight":0.16,"score":8.5,"why":"Body, decision, place, date, time and action named, the back story concrete. The abatement's size is never given."},
+{"name":"sequence_and_momentum","weight":0.10,"score":7.5,"why":"The cover earns the swipe, 2 and 3 pay, 7 turns, 9 closes. 8 could move or be cut; 4 flashes back without marking it."},
+{"name":"voice","weight":0.10,"score":7.5,"why":"Specific and plain. 8's dek is a flat list and 6's hook is generic."},
+{"name":"variety","weight":0.10,"score":7.0,"why":"Fresh subject. lastLight and the kit hearing_dais repeat no. 71; a flagged stringline appeared on nos. 69 and 70."}],
+"weighted_score":7.296,"hard_fails":[],"ship":false,
+"one_sentence_fix":"Carry one survey lath model through 4, 5 and 6, render 6's stake line leading to a plant with real materials in its own pool, and rake the frame 2 aerial so grass, crust and riprap throw shadows.",
+"artwork_weakest_frames":[
+{"slide":6,"problem":"untextured cream boxes in a void, the stake line two faint threads","fix":"eye about 1.6 m beside the line so 5's stakes step to the unit's base, painted steel and galvanized materials, a lit gravel pad with contact"},
+{"slide":2,"problem":"vector trapezoid on a noise plane, hard black channel band, no grass, riprap or lit shoulder","fix":"raking key at 4 to 5 degrees, saltgrass and crust ridges throwing shadows across the square, riprap rocks at the water, pool on the near corner"},
+{"slide":4,"problem":"flat-shaded plank with a sleeve for flagging, low-poly clods, mid-tone crust","fix":"a true 1x2 pine stake with end grain, wet clay foot and limp torn ribbon, pool tight to the foot and hole"},
+{"slide":5,"problem":"bare black sticks, purple-grey band, no sodium lights","fix":"lit pine lath, sodium lights on the left seam, cut the cold fill"},
+{"slide":8,"problem":"mic tip touches the dek, a dais mic pole behind the last lines","fix":"lower the target so the mic head sits under the dek, crop the dais mics, model the raked desk"}]}

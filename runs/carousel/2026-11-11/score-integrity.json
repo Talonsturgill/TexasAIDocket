@@ -1,0 +1,15 @@
+{"lens":"integrity","round":3,"criteria":[
+{"name":"artwork_craft","weight":0.22,"score":6.5,"why":"3 is the best frame with 109 counted and 7 has 28 counted; 1 and 9 hold as a bookend. 4 a flat plank with low-poly clods and no visible flagging on mid-tone crust; 2 a flat ribbon outline with a black band; 6 a pale primitive a fifth of the frame on the horizon; 8 reuses 7's kit for Brownsville's copy."},
+{"name":"deck_coherence","weight":0.12,"score":7.5,"why":"One world, one key, one accent meaning, the 5 to 6 line and the 1 to 9 sign carry, the declared cut at 7. 4's lighter crust breaks the dark run and 8 repeats 7's room for the other city's story."},
+{"name":"claim_integrity","weight":0.2,"score":6.5,"why":"Every numeral traces and every quote matches. The spine rests on the Tribune with no Brownsville or Starbase ordinance sought; slides 1 and 3 state Tribune reporting unattributed; slide 3's 'a payment' is looser than the run's own ceiling rule; slide 4 drops SpaceX's stated reason (c20) and c12 appears nowhere; slide 2's road and channel along two edges imply a placement the notice doesn't state."},
+{"name":"story_and_stakes","weight":0.16,"score":8.5,"why":"Body, decision, county, date, hour, address and invitation are on the frames. The stake is general and no abatement size is given because no claim carries one."},
+{"name":"sequence_and_momentum","weight":0.1,"score":7.5,"why":"The cover earns the swipe, 2 pays, 7 turns, 9 closes. 8 steps back between the hearing and the close and its storyboard job no longer matches its copy."},
+{"name":"voice","weight":0.1,"score":7.5,"why":"Specific and Texan, no house-rule breaks. 2's dek opens on a fragment, 3's last sentence is machine-made, 8 compresses the protest's grounds."},
+{"name":"variety","weight":0.1,"score":6.5,"why":"New setting, but no. 62's abatement in lastLight with stakes and a parcel to area, no. 61's city limit sign and dais, and no. 69's stakes recur."}],
+"weighted_score":7.14,"hard_fails":[],"ship":true,
+"one_sentence_fix":"Seek Brownsville's de-annexation ordinance and Starbase's annexation ordinance, put c20 and c12 on slide 4 beside the resident's question, and say 'one a ceiling' on slide 3.",
+"artwork_weakest_frames":[
+{"slide":4,"problem":"flat plank, low-poly clods, no visible flagging, mid-tone crust","fix":"crop to about 0.5 m on the foot and hole, chamfered grained pine with limp tied flagging, a tight pool"},
+{"slide":2,"problem":"flat ribbon outline with a black band, nothing of known size, road and channel imply placement","fix":"a lit stake-and-string perimeter casting right, a semi at the near corner, the channel pulled off the far edge"},
+{"slide":6,"problem":"pale primitive a fifth of the frame on the horizon against black","fix":"tighten so the plant spans a third of the width, a hard rim from the left, the line still leading to it"},
+{"slide":8,"problem":"a generic lectern reusing 7's kit for Brownsville's copy","fix":"a Brownsville object in the deck's vocabulary in a single-lamp pool"}]}

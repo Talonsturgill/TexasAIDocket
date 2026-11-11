@@ -1,0 +1,120 @@
+{
+ "_spec": {
+  "version": 1,
+  "purpose": "A standalone web edition of the archived visual story.",
+  "law": "Facts resolve to the original verified claim record. A layout rebuild does not reverify reporting.",
+  "written_by": "daily"
+ },
+ "section": "Power and land",
+ "dek": {
+  "text": "Brownsville let SpaceX's land go in August. Starbase now hears a tax abatement for a gas-fired power plant and super-compute facility there on December 9th.",
+  "claims": [
+   "c14",
+   "c10",
+   "c1",
+   "c4"
+  ]
+ },
+ "introduction": [
+  {
+   "text": "[The City of Starbase has given notice that its City Commission will meet in public session on {{date:c4}} at 48491 State Highway 4](c4). [The commission will consider a property tax abatement under Chapter {{number:c5}} of the Texas Tax Code. It will also consider a related economic development agreement under Chapter {{number:c5:1}} of the Local Government Code](c5). [The applicant and property owner is Space Exploration Technologies Corp.](c6)",
+   "claims": [
+    "c4",
+    "c5",
+    "c6"
+   ]
+  },
+  {
+   "text": "[The notice describes a gas-fired power plant and super-compute facility that SpaceX proposes to construct, own and operate](c1). [It estimates capital investment for the initial phases at approximately {{money:c2}}, built in multiple phases with possible future expansions](c2). [The public is invited to attend and be heard](c7).",
+   "claims": [
+    "c1",
+    "c2",
+    "c7"
+   ]
+  }
+ ],
+ "sections": [
+  {
+   "heading": "The land changed cities first",
+   "paragraphs": [
+    {
+     "text": "[The notice places the site inside Starbase's corporate limits, on an approximately {{number:c3}} acre tract just east of Brownsville between Boca Chica Blvd and the Port of Brownsville](c3). [It says the project would sit in the Cameron County Enterprise Zone, which it treats as a reinvestment zone for the abatement](c8).",
+     "claims": [
+      "c3",
+      "c8"
+     ]
+    },
+    {
+     "text": "[The Texas Tribune reported on {{date:c14}} that Brownsville commissioners voted unanimously at a weekend special meeting to de-annex the land](c14). [SpaceX agreed in exchange to give Brownsville up to {{money:c15}} for water and wastewater projects, the Tribune reported](c15). [Sheila McCorkle, a SpaceX vice president, told commissioners the company sought de-annexation because the city provided no services to the area](c20). [She said the deal would be off the table unless it was approved that day](c16). [Starbase later annexed the land](c10).",
+     "claims": [
+      "c14",
+      "c15",
+      "c20",
+      "c16",
+      "c10"
+     ]
+    },
+    {
+     "text": "[A Brownsville resident, Uriel Gavito, asked at the meeting why the city was rushing and why it was meeting on a Saturday](c21). [Brownsville said in a statement that it stood by the decision, based on the information and circumstances presented at the time](c17).",
+     "claims": [
+      "c21",
+      "c17"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "A pause the tract sits outside",
+   "paragraphs": [
+    {
+     "text": "[The Tribune reported on {{date:c13}} that Brownsville's {{number:c13}} day moratorium on data center applications in the city and its extraterritorial jurisdiction had taken effect the week before](c13). [Its account says the SpaceX project circumvents that moratorium](c9). The notice itself does not mention the moratorium, and Brownsville's own page on it refused an automated fetch, so this account rests on the Tribune.",
+     "claims": [
+      "c13",
+      "c9"
+     ]
+    },
+    {
+     "text": "[The Tribune reports the planned gas-fired plant could power the data center so that it avoids connecting to the state grid](c11). [It also reports that Governor Greg Abbott directed grid operators in August to pause data center connection requests until the data centers could be audited](c18). [Some data centers could still go ahead by supplying their own electricity, the Tribune reports](c19). Whether this site will connect to ERCOT is not established by any document in this record.",
+     "claims": [
+      "c11",
+      "c18",
+      "c19"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "What the December hearing decides, and what is still missing",
+   "paragraphs": [
+    {
+     "text": "[The commission meets to consider the agreements](c5). Nothing has been approved. No plat, site plan, turbine count, water demand or building design appears in the notice. [SpaceX did not answer the Tribune's questions about the project](c12).",
+     "claims": [
+      "c5",
+      "c12"
+     ]
+    },
+    {
+     "text": "[The South Texas Environmental Justice Network announced a protest and argued the facilities would pollute the air, use up water and raise residents' energy bills](c22). [A Brownsville teacher, Janie Melendez, told the Tribune many people in the community need jobs and that SpaceX has contributed to those jobs](c23).",
+     "claims": [
+      "c22",
+      "c23"
+     ]
+    }
+   ]
+  }
+ ],
+ "related": [
+  {
+   "id": "tx-2026-0246",
+   "label": "SpaceX asks Starbase for a tax abatement"
+  },
+  {
+   "id": "tx-2026-0128",
+   "label": "Brownsville's data center moratorium"
+  },
+  {
+   "id": "tx-2026-0071",
+   "label": "SpaceX's Terafab plant in Grimes County"
+  }
+ ]
+}
