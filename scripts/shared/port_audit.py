@@ -68,6 +68,12 @@ RESIDUE = re.compile(
 # Files that are ALLOWED to name Alaska, because naming it is their job: the port plan, the
 # tools that read it, and the documents that record where this machine came from.
 RESIDUE_ALLOW = {
+    # Shared feedback reader: sibling identifiers are exact source-origin security bindings,
+    # not Texas editorial inputs. Its synthetic rejection tests must name wrong generators.
+    # Keep the canonical reader byte-identical across all four sources; exempt exact paths
+    # only, so adjacent scripts and all ledgers still fail on unintended Alaska residue.
+    "scripts/read_social_feedback.py",
+    "scripts/read_social_feedback_test.py",
     "PORT_MANIFEST.tsv",
     "scripts/shared/gen_port_manifest.py",
     "scripts/shared/port_audit.py",
@@ -825,6 +831,15 @@ def self_test() -> int:
         expect("residue catches a stray Alaska name", check_residue(root), "FAIL")
         (root / "scripts" / "a.py").write_text("# built for Houston\n", encoding="utf-8")
         expect("residue passes clean Texas source", check_residue(root), "PASS")
+
+        # Shared reader bindings and negative fixtures are intentional sibling references.
+        for name in ("read_social_feedback.py", "read_social_feedback_test.py"):
+            (root / "scripts" / name).write_text("# alaska_carousel binding\n", encoding="utf-8")
+        expect("residue permits exact shared feedback paths", check_residue(root), "PASS")
+        (root / "scripts" / "feedback_neighbor.py").write_text("# alaska_carousel\n", encoding="utf-8")
+        expect("feedback exemption does not cover neighboring scripts", check_residue(root), "FAIL")
+        for name in ("read_social_feedback.py", "read_social_feedback_test.py", "feedback_neighbor.py"):
+            (root / "scripts" / name).unlink()
 
         # wiring: an unreferenced script must be caught, and a referenced one must pass
         expect("wiring catches an orphan script", check_wiring(root), "FAIL")
