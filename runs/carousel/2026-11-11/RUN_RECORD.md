@@ -91,11 +91,16 @@ the time the art finished.
 
 ## Retro
 
-Written at Phase 17.
+- **Instincts.** Confirmed `sum-of-sourced-facts-is-a-new-fact` (round 1's hard fail joined c3's 444 acres to the Tribune's de-annexation) and `read-the-repair-at-feed-scale`. Added `a-low-key-cast-runs-away-from-an-eye-level-camera`.
+- **Queue.** Nine new items and seven repeats raised, committed under the `upgrade` stamp in d6c3c23d: emitter sprites invisible in the snapshot, stage fog swallowing basic emitters, the kit gas peaker as pale boxes, the sign sheeting's glow, long-lens ground streaks, the render report truncating long deks, ship_images' second pass rewriting og.jpg, no declaration route for a drawn-scale figure, and the lath as a primitive at close range.
+- **Field log.** starbase.texas.gov answered the notice PDF, brownsvilletx.gov returned 403, PubMed answered with a cookie wall and E-utilities is robots-refused, SEC answered.
+- **Weekly machine pass (due on ten repeat offenders, last pass November 10th).** Two changes in cad2a738. The kit `gas_peaker` was rebuilt at the judges' named fix (three values, weathering, panel seams, louvres, a heat-tinted banded stack); on no. 74's own frame 6 camera the filter face went from flat near white to grained mid tone. No. 74's frames were rendered before the change and are unchanged. A new kit `lath_stake` (pine grain, cut point, limp tied flagging) answers six chassis that built their own. Fourteen queue items were escalated with reasons and two marked shipped. One proposal for a maintainer: the staged exterior's horizon band, in the engine (`txthree.js`, human lane). Deferred: widening `aggregate_check` to a number before a unit. The run reran every verify command: both modules import, `sizes.py` 145 of 145, `arsenal.py --check`, `print_ban.py --assets`, `lesson_refs.py`, `machine_due.py --self-test`, `art_preflight`, `panel_ready` and `shipped_check` all exit 0.
+- **Out of the run's reach.** `ARSENAL.md` regenerated at wake was committed at a9b71c01 under the `upgrade` stamp before Phase 17, and regenerated again by the weekly pass.
+- **Prompt audit (interim).** 1,308 calls measured, 40 counted as waiting, all Agent and SendMessage dispatches at 3 to 23 s. No call has the shape of a human answering a dialog. The no-stall hook was armed at 05:03:35 UTC, judged the session unattended (CLAUDE_CODE_SESSION_ATTENDED=0) and refused nothing.
 
 ## CI
 
-Written after CI reports on the pull request.
+PR no. 467's first run went red on `gates`, at `house_style_check`: 14 sentences over the 30 word backstop in the new web edition, six claims' paraphrase text, tx-2026-0246's summary and tx-2026-0128's history note. The run's local check had passed only because its exit code was read through a pipe. Every sentence was split at its source, the site rebuilt, and `house_style_check` exits 0.
 
 ## Email
 
