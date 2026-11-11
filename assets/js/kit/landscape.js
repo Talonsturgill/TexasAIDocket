@@ -2693,4 +2693,148 @@ export function install(K, THREE, TXT) {
       return g;
     },
   });
+
+  /* ==================================================================== survey lath stake */
+  /* LIFTED 2026-11-11 BY THE WEEKLY MACHINE PASS, AT THE JUDGES' NAMED FIX. Six chassis built a
+   * survey stake of their own (2026-10-06 prairie, 10-11 feedyard, 10-26 tether, 10-29 caprock,
+   * 11-05 dockdoor, 11-11 cityline), and the panels charged it the same way each time: "rigid
+   * plank flags" in every round of no. 62, and on no. 74's frame 4, every judge in all three
+   * rounds, "an untextured plank with a cream collar for flagging", "a flat-shaded ruler", "an
+   * untextured slab". Round 3's fixes named what to build: "a chamfered grained lath with limp
+   * flagging at its head" and "a grained pine lath with a cut point and tied flagging". So:
+   *   - A STANDARD FOUR FOOT LATH, 1-1/2 by 3/8 inch, rough sawn pine with eased edges. The grain
+   *     is painted in the albedo and the bump (long streaks that wander, earlywood and latewood,
+   *     a seeded knot, faint kerf marks across), mapped in metres so it reads at any crop. Tooth
+   *     goes in the albedo and the bump, never the geometry (TECHNIQUE_LIBRARY).
+   *   - A CUT POINT: both edges tapered to a blunt tip, the cut faces in pale fresh end grain, and
+   *     a split checked into the head.
+   *   - TIED FLAGGING THAT HANGS: a thin wrap with a knot on the face, then tails built as cloth,
+   *     falling under their own weight close to the lath, twisting and crinkling, the ends cut on a
+   *     slant. Matte plastic tape, so a lamp does not turn it into a card.
+   *   - MUD on the foot when driven, a ragged dark line where the ground took it.
+   * The name is new on purpose: four chassis define `survey_stake` behind a guard on another
+   * model, and cityline returns from its whole installKit when `survey_lath` exists, so either
+   * name in the kit would break a shipped deck's re-render.
+   * ORIGIN at the foot of the lath on the ground (anchor 'base'), front +z, driven `driven` metres
+   * below y = 0. OPTIONS flag (hex | 'none'), tails 1 to 3, flagGlow (emissive 0..1, for a deck
+   * whose accent is the flagging), mud 0..0.4 (m of clay up the foot), driven (m), lean
+   * (radians about z), lying (on its face on the ground), scale, seed. userData.head is the
+   * tie point in model metres. */
+  const LATH_H = 1.2192, LATH_W = 0.0381, LATH_T = 0.0095;     // 48 x 1-1/2 x 3/8 inch
+  const LATH_TEX = new Map();
+  function lathTex(kind) {
+    if (LATH_TEX.has(kind)) return LATH_TEX.get(kind);
+    const N = 512, c = document.createElement('canvas'); c.width = c.height = N;
+    const x = c.getContext('2d'), r = K.rng(9161);   // the same strokes in both maps
+    const C = kind === 'color';
+    x.fillStyle = C ? '#b89a6e' : '#808080'; x.fillRect(0, 0, N, N);
+    // broad bands of earlywood and latewood running the length
+    for (let i = 0; i < 46; i++) {
+      const u = r() * N, w = 2 + r() * 14, a = 0.05 + r() * 0.12, dark = r() < 0.55;
+      x.fillStyle = C ? (dark ? 'rgba(96,66,38,' + a + ')' : 'rgba(236,214,170,' + a + ')') : (dark ? 'rgba(40,40,40,' + a + ')' : 'rgba(200,200,200,' + a + ')');
+      x.fillRect(u, 0, w, N);
+    }
+    // fine grain lines that wander along the length
+    for (let i = 0; i < 260; i++) {
+      let u = r() * N; const ph = r() * 6.28, amp = 1 + r() * 4, a = 0.08 + r() * 0.22;
+      x.strokeStyle = C ? 'rgba(78,52,30,' + a + ')' : 'rgba(30,30,30,' + a + ')'; x.lineWidth = 0.6 + r() * 1.3;
+      x.beginPath(); x.moveTo(u, 0);
+      for (let v = 0; v <= N; v += 16) x.lineTo(u + Math.sin(v / 90 + ph) * amp, v);
+      x.stroke();
+    }
+    // two knots, the grain swirling round each
+    for (let k = 0; k < 2; k++) {
+      const cx = r() * N, cy = r() * N, rx = 4 + r() * 7, ry = rx * (1.8 + r());
+      for (let ring = 4; ring >= 0; ring--) {
+        x.strokeStyle = C ? 'rgba(70,44,24,' + (0.25 + 0.1 * ring) + ')' : 'rgba(20,20,20,0.4)'; x.lineWidth = 1.2;
+        x.beginPath(); x.ellipse(cx, cy, rx + ring * 3, ry + ring * 6, 0, 0, 6.283); x.stroke();
+      }
+      x.fillStyle = C ? 'rgba(62,38,20,0.85)' : 'rgba(10,10,10,0.8)'; x.beginPath(); x.ellipse(cx, cy, rx, ry, 0, 0, 6.283); x.fill();
+    }
+    // rough sawn: faint kerf marks across the face, and a weathered grey cast
+    for (let v = 0; v < N; v += 5 + r() * 4) { x.fillStyle = C ? 'rgba(60,44,30,' + (0.03 + r() * 0.05) + ')' : 'rgba(60,60,60,0.12)'; x.fillRect(0, v, N, 1); }
+    if (C) { x.fillStyle = 'rgba(120,116,108,0.14)'; x.fillRect(0, 0, N, N); }
+    const t = new THREE.CanvasTexture(c);
+    t.wrapS = t.wrapT = THREE.RepeatWrapping; t.anisotropy = 8; t.userData.metres = 0.6;
+    if (C) t.colorSpace = THREE.SRGBColorSpace;
+    LATH_TEX.set(kind, t);
+    return t;
+  }
+  /* a tail of flagging tape hanging from (0,0,0): falls along -y close to the lath, drifts off the
+   * face, twists along its length and crinkles, the end cut on a slant */
+  function flagTail(len, wid, seed, mat) {
+    const rows = 28, g = new THREE.PlaneGeometry(wid, len, 2, rows), p = g.attributes.position, rr = K.rng(seed);
+    // a tail laid flat on the face read as a sleeve (proof, 2026-11-11): it leaves the knot outward, twists a
+    // turn or so and swings off the lath before it hangs
+    const drift = 0.05 + rr() * 0.07, side = (rr() < 0.5 ? -1 : 1) * (0.04 + rr() * 0.07), twist = (rr() < 0.5 ? -1 : 1) * (2.2 + rr() * 2.6), ph = rr() * 6.28, slant = (rr() - 0.5) * wid * 1.4;
+    for (let i = 0; i < p.count; i++) {
+      const u = p.getX(i) / wid, y0 = p.getY(i), t = (len / 2 - y0) / len;         // t 0 at the knot, 1 at the end
+      const th = twist * t + Math.sin(t * 7 + ph) * 0.35;                          // twist and flutter
+      const crinkle = Math.sin(t * 61 + ph * 3) * 0.0025 + Math.sin(t * 23 + ph) * 0.002;
+      let y = -t * len; if (t > 0.97) y -= slant * u;                               // the cut end
+      const cx = side * Math.sin(t * Math.PI * 0.6) + Math.sin(t * 3.1 + ph) * 0.012, cz = 0.006 + drift * Math.sin(Math.min(1, t * 1.6) * Math.PI * 0.5) + crinkle;
+      p.setXYZ(i, cx + Math.cos(th) * u * wid, y, cz + Math.sin(th) * u * wid);
+    }
+    g.computeVertexNormals();
+    return new THREE.Mesh(g, mat);
+  }
+  K.define('lath_stake', {
+    size: [0.15, 1.24, 0.12],
+    anchor: 'base',
+    options: { flag: 0xe8553a, tails: 2, flagGlow: 0, mud: 0.18, driven: 0.15, lean: 0, lying: false, scale: 1 },
+    note: 'OPTIONS flag hex | none; tails 1 to 3; flagGlow 0..1 (emissive, when the flagging carries a deck accent); mud m of clay on the foot; driven m below grade; lean radians; lying on its face; scale; seed. A standard four foot survey lath (1-1/2 by 3/8 inch) in rough sawn pine with eased edges: grain, earlywood bands, a knot and kerf marks in the albedo and bump, a cut point of pale end grain, a split head, flagging tied at the head with a wrap and knot and limp cloth tails that hang, twist and crinkle, clay on the driven foot. Origin at the foot on the ground. userData.head.',
+    make(o, r) {
+      const s = o.scale || 1, H = LATH_H * s, W = LATH_W * s, T = LATH_T * s, foot = 0.1 * s;
+      const col = lathTex('color'), bump = lathTex('bump');
+      const pine = M('lath-pine', { color: 0xffffff, map: col, bumpMap: bump, bumpScale: 1.2, roughness: 0.88 });
+      const endg = M('lath-end', { color: 0xd9c296, roughness: 0.92, bumpMap: bump, bumpScale: 0.6 });
+      const clay = M('lath-clay', { color: 0x3a2e22, roughness: 0.97 });
+      const wetPine = M('lath-wet', { color: 0x6b5a46, map: col, bumpMap: bump, bumpScale: 1.0, roughness: 0.8 });
+      const inner = new THREE.Group(), off = r() * 0.5;
+      const uv = (geo) => { K.uvBox(geo, 0.6); const a = geo.attributes.uv; for (let i = 0; i < a.count; i++) a.setX(i, a.getX(i) + off); return geo; };
+      const mudH = Math.min(0.4, Math.max(0, o.mud || 0)) * s;
+      const shaftY0 = foot, cleanY0 = Math.max(foot, mudH);
+      // the shaft: a mud stained length then the clean length, eased edges
+      if (cleanY0 > foot + 0.001) { const m = TXT.roundedBox(W, cleanY0 - foot, T, 0.0012 * s, wetPine); uv(m.geometry); m.position.y = foot + (cleanY0 - foot) / 2; inner.add(m); }
+      const top = H - 0.004 * s;
+      const shaft = TXT.roundedBox(W, top - cleanY0, T, 0.0012 * s, pine); uv(shaft.geometry); shaft.position.y = cleanY0 + (top - cleanY0) / 2; inner.add(shaft);
+      // the split head: a check down the face and the two halves very slightly apart
+      [-1, 1].forEach((e) => { const h = TXT.roundedBox(W / 2 - 0.0008 * s, 0.004 * s, T, 0.0008 * s, endg); h.position.set(e * (W / 4 + 0.0004 * s), H - 0.002 * s, 0); inner.add(h); });
+      const check = new THREE.Mesh(new THREE.BoxGeometry(0.0012 * s, 0.07 * s, T * 1.02), clay); check.position.set(W * 0.08, H - 0.035 * s, 0); inner.add(check);
+      // the cut point: both edges tapered, cut faces in fresh end grain
+      const sh = new THREE.Shape(); sh.moveTo(-W / 2, 0); sh.lineTo(W / 2, 0); sh.lineTo(0.004 * s, -foot); sh.lineTo(-0.004 * s, -foot); sh.lineTo(-W / 2, 0);
+      const tg = new THREE.ExtrudeGeometry(sh, { depth: T, bevelEnabled: false });
+      const tip = new THREE.Mesh(tg, [mudH > 0 ? wetPine : pine, mudH > 0 ? clay : endg]); uv(tg); tip.position.set(0, foot, -T / 2); inner.add(tip);
+      if (mudH > 0) {   // clay caked on the foot, its top edge ragged where the ground let go
+        const n = 9;   // overlapping cakes: abutting ones read as a row of bars
+        for (let i = 0; i < n; i++) { const hh = Math.max(0.01 * s, mudH - foot) * (0.7 + r() * 0.3), bw = W / n * 2.2;
+          const c = TXT.roundedBox(Math.min(bw, W), hh, T * (1.08 + 0.02 * (i % 3)), 0.0008 * s, clay); c.position.set(Math.max(-W / 2 + bw / 2, Math.min(W / 2 - bw / 2, -W / 2 + (i + 0.5) * W / n)), foot + hh / 2, 0); inner.add(c); }   // from the shoulder of the point up: below it a box buried the point (replay of no. 74 frame 4)
+      }
+      // the flagging, tied near the head
+      const headY = H - 0.11 * s;
+      if (o.flag !== 'none' && o.flag !== null && o.flag !== false) {
+        const fc = typeof o.flag === 'number' ? o.flag : 0xe8553a, glow = Math.max(0, Math.min(1, +o.flagGlow || 0));
+        const tape = M('lath-flag', { color: fc, roughness: 0.58, metalness: 0, side: THREE.DoubleSide, emissive: glow ? fc : 0x000000, emissiveIntensity: glow });
+        const wrap = TXT.roundedBox(W + 0.0016 * s, 0.026 * s, T + 0.0016 * s, 0.0008 * s, tape); wrap.position.y = headY; inner.add(wrap);
+        const knot = new THREE.Mesh(new THREE.SphereGeometry(0.008 * s, 10, 8), tape); knot.scale.set(1.4, 0.9, 0.7); knot.position.set(W * 0.15, headY - 0.004 * s, T / 2 + 0.004 * s); inner.add(knot);
+        const n = Math.max(1, Math.min(3, Math.round(o.tails || 2)));
+        for (let k = 0; k < n; k++) {
+          const len = (0.4 + r() * 0.25) * s, tail = flagTail(len, 0.03 * s, (o.seed || 1) * 31 + k * 7, tape);
+          tail.scale.setScalar(1); tail.position.set(W * 0.15 + (k - (n - 1) / 2) * 0.008 * s, headY - 0.008 * s, T / 2 + 0.002 * s);
+          tail.rotation.y = (k - (n - 1) / 2) * 0.5 + (r() - 0.5) * 0.4;
+          if (o.lying) tail.scale.z = 0.12;   // a lath on the ground: its tails lie on the ground beside it, not arched into the air
+          inner.add(tail);
+        }
+      }
+      inner.traverse((m) => { if (m.isMesh) { m.castShadow = true; m.receiveShadow = true; } });
+      const g = new THREE.Group();
+      if (o.lying) {
+        inner.rotation.set(-Math.PI / 2, 0, -Math.PI / 2); inner.position.y = T / 2 + 0.001 * s; g.add(inner);
+      } else {
+        inner.position.y = -(o.driven != null ? o.driven : 0.15) * s; if (o.lean) inner.rotation.z = o.lean; g.add(inner);
+      }
+      g.userData.head = [0, headY + inner.position.y, 0];
+      return g;
+    },
+  });
 }

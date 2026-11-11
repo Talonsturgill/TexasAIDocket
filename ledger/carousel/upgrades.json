@@ -3896,4 +3896,50 @@
  ],
  "not_done": "No frontier scan; machine_weekly.md names none. audition-rebind-after-every-panel-repair (repeat 7) carried as the owner's rule. No contact (6 runs, 13 rounds), largest object unmodelled (5, 10), object in a void (5, 10), type on the art (5, 7) and dead or empty region (5, 6) name a different frame on each deck. judge-dark-field-vs-silhouette-gate (first sighting) would move what layout_check measures and waits for a second. A GATE_LESSONS entry is owed for change #3 and is proposed, since that file is human lane"
 }
+,
+"2026-11-11 weekly": {
+ "date": "2026-11-11",
+ "run": "weekly machine pass, read with carousel no. 74 (the city line, shipped at the round cap, 7.462)",
+ "actor": "upgrade",
+ "upgrades": [
+  {
+   "id": "2026-11-11 weekly #1",
+   "what": "Kit gas_peaker rebuilt in assets/js/kit/power.js at the judges' named fix: three values instead of one flat beige (packages in the kit's steel paint, a weathered galvanized filter house, a darker exhaust train), the wxSkin weathering atlas (dust up every base, streaks under every hood, louvre and stiffener, rust at the joints, a sooted roof, a roughness map from the same strokes) mapped per component, proud hat channel panel joints, doors with reveals, hoods and knuckles, intake louvre banks on the generator's side and outboard end, hooded filter ends, stiffened exhaust ends, a heat tinted stack (stackMat) banded by ring stiffeners, lube lines on stands and a fin fan with a coil face. Options and footprint unchanged, a new paint option. stack() takes optional materials and now seats its rings on the shell's own taper (they were buried below two thirds of the height, power_plant included); finFan takes an optional body and coil. One 'What still fails' line in ILLUSTRATION_SYSTEM: never multiply a pale model's colours down",
+   "why": "Queue kit-gas-peaker-reads-as-pale-boxes: no. 74 frame 6 charged by every judge in all three rounds ('pale primitive boxes', 'small pale flat-lit unit', 'a pale boxy peaker'; round 3 craft 'with surface detail'). It answers the digest's top theme, 'primitive or low-poly model where a kit model belongs', 6 runs of 6 and 17 rounds (2026-11-11 r2,3 among them), and artwork_craft is one of the two lowest week means (6.53)",
+   "files": [
+    "assets/js/kit/power.js",
+    "knowledge/carousel/ARSENAL.md",
+    "knowledge/carousel/ILLUSTRATION_SYSTEM.md"
+   ],
+   "verification": "node module parse exit 0. examples/kit/build.py --family power --names gas_peaker --world lastLight --surface dirt rendered through .claude/skills/carousel-engine/render.py before and after, exit 0, errors 0, read at full size (out/2026-11-11/tmp/machine/before, after). Replay of no. 74's own runs/carousel/2026-11-11/slides/slide-06.html through the engine, as shipped and with the deck's 0.45 colour multiply removed, exit 0, errors 0, read at full size (out/2026-11-11/tmp/machine/replay): the filter house end face measured 212 of 255 (sd 14.6) shipped and 85 (sd 38.0) rebuilt, the generator end 162 to 91, and three defects the proof showed were fixed before logging (stack rings rendered as dashes inside the taper, slat ends as white dashes, a flat pale fin fan). examples/kit/sizes.py exit 0, 145 of 145 declare the size they build, centred. scripts/carousel/arsenal.py --check exit 0",
+   "revert": "the upgrade commit that carries assets/js/kit/power.js for 2026-11-11 (the showrunner commits it)",
+   "how_i_would_know_this_was_wrong": "A deck that calls gas_peaker is still charged as pale or primitive boxes at a crop where the unit fills a third of the frame, or its weathering is charged as noise, smear or camouflage; or a deck again multiplies its colours down; or power_plant's stack rings are charged as stray bands; or sizes.py fails gas_peaker or power_plant at a seed"
+  },
+  {
+   "id": "2026-11-11 weekly #2",
+   "what": "Kit lath_stake in assets/js/kit/landscape.js: a standard four foot survey lath (1-1/2 by 3/8 inch) in rough sawn pine with eased edges, grain, earlywood bands, a knot and kerf marks in albedo and bump, a cut point of pale end grain, a split head, flagging tied at the head with a wrap and a knot and limp cloth tails that leave the knot, twist and crinkle with slant cut ends, clay on the driven foot, standing (driven, lean) or lying with its tails on the ground; flag hex or none, flagGlow for a deck whose accent is the flagging; anchor base, userData.head",
+   "why": "Six chassis built their own survey stake or lath (2026-10-06 prairie, 10-11 feedyard, 10-26 tether, 10-29 caprock, 11-05 dockdoor, 11-11 cityline). Queue survey-lath-primitive-at-close-range: no. 74 frame 4 charged by every judge in all three rounds ('an untextured plank with a cream collar', 'a flat-shaded ruler', 'untextured slab'); round 3 fixes 'a chamfered grained lath with limp flagging at its head' and 'a grained pine lath with a cut point and tied flagging'. Queue tower-section-...: 'rigid plank flags' in every round of no. 62. Same top theme as #1",
+   "files": [
+    "assets/js/kit/landscape.js",
+    "knowledge/carousel/ARSENAL.md"
+   ],
+   "verification": "node module parse exit 0. examples/kit/build.py --family landscape --names lath_stake rendered through render.py exit 0, and three close proofs from build.page() (standing orange two tails, standing green three tails at 0.3 of the framing distance, lying without mud) exit 0, errors 0, read at full size (out/2026-11-11/tmp/machine/lath, lathclose); the proofs found tails lying flat on the face like a sleeve, clay cakes reading as bars and tails arched in the air on a lying lath, each fixed before logging. Replay of no. 74's slide-04.html with only survey_lath swapped for lath_stake, exit 0 (out/2026-11-11/tmp/machine/replay4); the replay found the clay burying the cut point in a box, fixed. examples/kit/sizes.py exit 0, 145 of 145. arsenal.py --check exit 0",
+   "revert": "the upgrade commit that carries assets/js/kit/landscape.js for 2026-11-11 (the showrunner commits it)",
+   "how_i_would_know_this_was_wrong": "A deck that calls lath_stake is charged for a plank, a ruler, a collar or rigid flags, or its tails are charged as ribbons of paper or a sleeve; or a deck needing a stake still builds one in its chassis; or sizes.py fails lath_stake at a seed"
+  }
+ ],
+ "proposals_out_of_lane": [
+  {
+   "what": "Find and fade the horizon band a staged lastLight exterior draws (TXT.stage or TXT.sky)",
+   "owner": "human",
+   "why": "Digest theme 'horizon band or seam', 3 runs and 6 rounds (2026-11-05 r1,2,3; 11-08 r1; 11-11 r1,3); queue stage-horizon-band at repeat 1 (no. 69 frame 6 every round; no. 74 frames 5 and 6 rounds 2 and 3). assets/js/txthree.js is human; UPGRADE_BACKLOG 2026-11-11 item 3"
+  }
+ ],
+ "not_done": {
+  "aggregate_check measure and percent shapes": "Three queue items name one missing detector shape (numeral-trace-matches-digits no. 62, computed-percent-cannot-be-declared no. 68, drawn-scale-figure-has-no-declaration-route no. 74), each at repeat 0. In lane, but widening the detector makes every shipped deck after the change hold new declarations and CI reads every shipped run, so it needs a binding date, fixtures for all three shapes and a GATE_LESSONS entry (human). Too large beside a live run; first for the next pass",
+  "kit person near detail": "Carried at repeat 5; no deck this week drew a near person",
+  "themes that name a different frame on each deck": "No contact (6 runs, 11 rounds), largest object unmodelled (5, 10), object in a void (5, 10), type on the art (5, 7), dead or empty region (5, 6)",
+  "gate changes": "None, so no self-test or GATE_LESSONS entry is owed"
+ }
+}
 }

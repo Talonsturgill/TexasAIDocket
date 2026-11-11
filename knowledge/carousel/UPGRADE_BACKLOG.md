@@ -6744,3 +6744,67 @@ object unmodelled" (5 runs, 10 rounds), "object in a void" (5 runs, 10 rounds), 
 7 rounds) and "dead or empty region" (5 runs, 6 rounds) name a different frame on each deck.
 judge-dark-field-vs-silhouette-gate (repeat 0) would change what `layout_check`'s silhouette measures,
 and a first sighting is not enough to move a gate. No frontier search: the brief for this pass names none.
+
+## 2026-11-11, the nineteenth weekly machine pass. Two kit lifts, one proposal, carried items
+
+Read with carousel no. 74 (the city line, shipped at the round cap at 7.462). The digest counted six
+shipped runs from November 5th to November 11th. `artwork_craft` and `variety` hold the two lowest week
+means (6.53 and 6.52). The top theme, "primitive or low-poly model where a kit model belongs", was named
+on all six runs over 17 rounds, two of them no. 74's. Due a day after the last pass on eleven repeat
+offenders, three of them raised by no. 74's own retro. Both changes are kit models, the artwork first.
+
+### 1. KIT: `gas_peaker` REBUILT IN `power.js` (done, this pass's upgrade commit)
+
+No. 74's frame 6 was charged by every judge in all three rounds as "pale primitive boxes" and round 3's
+craft judge asked for the unit "with surface detail". The deck had already multiplied every material by
+0.45 and the faces still sat near white, so the albedo was not the whole defect. The replay of the
+frame's own code says why: under a frontal pool any face turned to the key reads near white, and a flat
+face near white is a card. The model now carries three values, the weathered skin on every package,
+filter house and exhaust face, proud panel joints, hooded filter ends, louvre banks, stiffened exhaust
+ends and a heat tinted banded stack. The filter house end went from 212 of 255 flat to 85 with grain on
+the frame's own camera. One side fix travels with it: `stack()` seated its ring stiffeners at a radius
+the shell's taper buried below two thirds of its height, so they printed as dashes, `power_plant`
+included. ILLUSTRATION_SYSTEM's "What still fails" now says never to multiply a pale model's colours down.
+
+### 2. KIT: `lath_stake` IN `landscape.js` (done, this pass's upgrade commit)
+
+Six chassis built their own survey stake or lath (October 6th, 11th, 26th and 29th, November 5th and
+11th), and no. 62's and no. 74's panels charged it in every round: "rigid plank flags", "an untextured
+plank with a cream collar", "a flat-shaded ruler". The kit lath is rough sawn pine with grain in the
+albedo and bump, a cut point of pale end grain, a split head, flagging tied with a wrap and a knot and
+tails that hang, twist and crinkle, and clay on a driven foot. A new name, because four chassis define
+`survey_stake` behind another model's guard and cityline returns from its whole installKit on
+`survey_lath`, so either name in the kit would break a shipped deck's re-render.
+
+### 3. PROPOSAL, for a maintainer
+
+- **`assets/js/txthree.js`: the horizon band on a staged exterior.** Digest theme "horizon band or seam",
+  3 runs and 6 rounds (2026-11-05 r1, r2, r3; 2026-11-08 r1; 2026-11-11 r1, r3). Queue stage-horizon-band
+  at repeat 1: no. 69 frame 6 in every panel round, where removing the grass and extending the ground to
+  7,000 m did not move it, and no. 74 frames 5 and 6 in rounds 2 and 3. The cause is not established. A
+  maintainer should render one staged `lastLight` exterior with the stage fog, the dome and the ground's
+  horizon fade each switched off in turn and find which layer draws the line, then fade that layer into
+  the fog. Not this lane, and not to be guessed at from a deck.
+
+### Deferred in lane, first for the next pass
+
+**`aggregate_check` measure and percent shapes.** Three queue items name one gap, each at repeat 0:
+numeral-trace-matches-digits-as-substrings (no. 62, "10 MW"), computed-percent-cannot-be-declared
+(no. 68, a computed 45.5 percent lost from its frame) and drawn-scale-figure-has-no-declaration-route
+(no. 74, "1,340 m a side" reworded to reach the count shape). The detector can't see a number before a
+unit or a percent, so the declaration that numeral_trace asks for is refused. The fix widens what the gate
+detects, and CI holds every shipped run to it, so it needs a binding date like shipped_check's
+CONSTRUCTION_SINCE, a fixture for each shape that goes red without the change, and a GATE_LESSONS entry,
+which is human lane. That is more than a pass beside a live run should take on.
+
+### Carried
+
+The eleven repeat offenders and the three items yesterday's pass escalated are carried with today's date
+and reason in the queue: the kit person's near and full length detail (no deck drew a near person this
+week), the article test and article_check items (human and daily lane), the detail floor (a relative floor
+would loosen it), standing water (engine), qa's glyph run (.claude), the GRID count, the accent drift and
+accent presence (the id pass), the relief tray (no relief on no. 74), the audition rebind (the owner's
+rule) and prompt_audit (daily lane). The themes that name a different frame on each deck stay deferred:
+no contact (6 runs, 11 rounds), largest object unmodelled (5, 10), object in a void (5, 10), type on the
+art (5, 7), dead or empty region (5, 6). No gate was added or changed, so no GATE_LESSONS entry is owed.
+No frontier scan: the brief for this pass names none.
