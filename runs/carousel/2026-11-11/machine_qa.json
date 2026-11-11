@@ -17,14 +17,15 @@
       "file": "slide-02.html",
       "fails": [],
       "warns": [
-        "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+        "console error: TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky",
+        "art touching glyphs (2% of the ring around '1,340 metres a side', spanning 59%) -- pixel critic verify the label is not crossed"
       ],
       "bands": [
         0.2836,
         0.1786,
-        0.8456
+        0.8438
       ],
-      "band_ratio": 1.8603
+      "band_ratio": 1.859
     },
     {
       "file": "slide-03.html",
@@ -119,6 +120,6 @@
     }
   ],
   "fails": 0,
-  "warns": 9,
+  "warns": 10,
   "verdict": "WARN"
 }

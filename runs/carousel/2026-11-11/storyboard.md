@@ -158,7 +158,7 @@ art:
 type:
   hook: "About 444 acres, east of Brownsville"
   dek: "Between Boca Chica Blvd and the Port of Brownsville, now inside Starbase's limits, in Cameron County. The square holds the tract's area at true scale. The notice gives its area, not its shape."
-  labels: ["Boca Chica Blvd", "Port of Brownsville", "1,340 m a side"]
+  labels: ["Boca Chica Blvd", "Port of Brownsville", "1,340 metres a side"]
 verbatim: []
 acceptance: [the green square shows all four sides and spans at least 60 percent of the frame width, the road runs along the near side and water along the far side, the horizon shows in the top third, no
     label crosses the square's edge, the tidal flats ground and the green ribbon square are drawn and the frame fails if either is missing, the tidal flats with the green square own at least half of the

@@ -7,7 +7,7 @@ At its September 1st, 2026 meeting the Brownsville City Commission considered st
 - Where: Cameron
 - Statistical areas:
   - Brownsville-Harlingen, TX
-- Status: pending
+- Status: decided
 - Public access: Public meeting
 - Take part: https://www.brownsvilletx.gov/m/newsflash/home/detail/3425
 
@@ -47,6 +47,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-06 · Where Brownsville's moratorium stands goes unconfirmed again. The city's notice still turns away every reader.
 - 2026-11-07 · Brownsville's moratorium is still unconfirmed as to where it stands. The city's notice turns away every reader.
 - 2026-11-08 · Brownsville's temporary data center moratorium remains unconfirmed as to its standing. The city's notice still turns away every reader.
+- 2026-11-11 · The Texas Tribune reported on November 10th that Brownsville approved the moratorium and that it took effect the week before, pausing data center applications in the city and its extraterritorial jurisdiction. The city's own posting of the vote is not confirmed.
 
 ## Evidence
 
@@ -75,4 +76,10 @@ Source (primary_official): https://www.brownsvilletx.gov/m/newsflash/home/detail
 > Under state law, an initial moratorium could remain in effect for up to 90 days and could later be extended for another 90 days after additional required proceedings.
 
 Source (primary_official): https://www.brownsvilletx.gov/m/newsflash/home/detail/3425
+
+### The Texas Tribune reports the moratorium was approved and is in effect, and names what it pauses.
+
+> Brownsville approved its own 90-day moratorium which went into effect last week, temporarily hitting pause on data center applications within the city and its extraterritorial jurisdiction.
+
+Source (journalism): https://www.texastribune.org/2026/11/10/texas-spacex-data-center-power-plant/
 

@@ -9,7 +9,7 @@ The Texas Water Development Board took up a petition for rulemaking on July 23rd
 - Public access: Public meeting
 - Take part: https://www.twdb.texas.gov/board/2026/07/board/index.asp
 
-- Last checked: 2026-11-08
+- Last checked: 2026-11-11
 
 ## Dates
 
@@ -49,6 +49,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-01 · The water board's denial of a separate demand category for data centers still stands on the board's own record.
 - 2026-11-05 · The water board's denial of a separate data center demand category still stands.
 - 2026-11-08 · The water board's refusal to give data centers a demand category of their own still stands.
+- 2026-11-11 · The water board's denial stands. Data centers still have no demand category of their own in the state water plan.
 
 ## Evidence
 

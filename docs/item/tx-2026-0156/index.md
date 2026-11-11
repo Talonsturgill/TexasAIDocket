@@ -9,7 +9,7 @@ ERCOT published the user guide for the Verification RFI on September 11th, 2026,
 - Public access: Write to the decider
 - Take part: https://www.ercot.com/files/docs/2026/09/11/Verification-RFI-User-Guide-v1.1.pdf
 
-- Last checked: 2026-11-08
+- Last checked: 2026-11-11
 
 ## Dates
 
@@ -39,6 +39,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-05 · The ERCOT figures in the record are unconfirmed today. ERCOT's pages did not answer.
 - 2026-11-05 · Checked and unchanged. The decision still stands as decided.
 - 2026-11-08 · The questionnaire answers are in and read. ERCOT told the commission on November 5th that answers from 257 developers were reviewed and that most will get a second, shorter round of questions.
+- 2026-11-11 · The grid operator's questionnaire to conditionally classified large loads still stands, notarized attestation and all.
 
 ## Evidence
 

@@ -90,6 +90,16 @@
     "c14"
    ],
    "note": "one claim id per Tribune story counted, c9 from the November 10th story and c14 from the de-annexation story"
+  },
+  {
+   "phrase": "1,340 metres",
+   "slide": "slide-02.html",
+   "kind": "count",
+   "value": 1340,
+   "computed_from": [
+    "c3"
+   ],
+   "computed_by": "out/2026-11-11/compute.py, side_m, the square root of c3's approximately 444 acres in square metres at 4,046.86 square metres an acre, rounded to the metre, a drawing scale for the square and never the tract's dimension"
   }
  ]
 }
