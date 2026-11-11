@@ -1141,7 +1141,11 @@ Say in writing why this story and not the others.
 
 ### Optional weekly presentation feedback
 
-Before assigning the director/planner, run
+Before assigning the director/planner, if the private repository is not already attached,
+use Claude's built-in `add_repo` for exactly `talonsturgill/social-content-feedback` with
+read-only session access through the existing GitHub connection. This grants no new account
+permissions and installs no credentials. If attachment is unsupported or denied, continue
+without an action; do not seek another identity or workaround. After successful attachment, run
 `python3 scripts/read_social_feedback.py --generator texas_carousel --repo-dir .`.
 Use only its sanitized output, never the private brief or fetched repository. `[]`, denied
 access, malformed/expired advice or a timeout means continue normally without an experiment.
