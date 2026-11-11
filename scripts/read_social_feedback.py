@@ -27,7 +27,10 @@ def remote_repo(remote):
  for prefix in ('https://github.com/','git@github.com:','ssh://git@github.com/'):
   if remote.startswith(prefix):
    repo=remote[len(prefix):].removesuffix('.git')
-   if repo in {r for r,_ in TARGETS.values()}: return repo
+   # GitHub owner/repository names are case-insensitive; return the bound canonical ID.
+   if repo.isascii():
+    for canonical,_ in TARGETS.values():
+     if repo.lower()==canonical.lower(): return canonical
  return None
 
 def validate(b,g,today):

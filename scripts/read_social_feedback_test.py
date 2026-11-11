@@ -100,6 +100,29 @@ class ReaderTests(unittest.TestCase):
         self.assertEqual(run.call_args.kwargs['env']['GIT_TERMINAL_PROMPT'], '0')
         self.assertTrue(run.call_args.kwargs['capture_output'])
 
+    def test_origin_case_canonicalization(self):
+        for canonical, _ in r.TARGETS.values():
+            for prefix in ('https://github.com/', 'git@github.com:', 'ssh://git@github.com/'):
+                for spelling in (canonical, canonical.lower(), canonical.upper(), canonical.swapcase()):
+                    for suffix in ('', '.git'):
+                        with self.subTest(origin=prefix + spelling + suffix):
+                            self.assertEqual(r.remote_repo(prefix + spelling + suffix), canonical)
+
+    def test_origin_rejects_url_tricks(self):
+        base = 'https://github.com/talonsturgill/texasaidocket'
+        for origin in (base + '/extra', base + '.git/extra', base + '?x=1', base + '#main',
+                       base + '/', base + '-other',
+                       'https://github.com@evil.example/talonsturgill/texasaidocket',
+                       'https://evil.example@github.com/talonsturgill/texasaidocket',
+                       'https://github.com.evil.example/talonsturgill/texasaidocket',
+                       'http://github.com/talonsturgill/texasaidocket',
+                       'https://github.com/talonsturgill%2ftexasaidocket'):
+            with self.subTest(origin=origin): self.assertIsNone(r.remote_repo(origin))
+
+    def test_brief_repository_still_exact(self):
+        b = self.brief(); b['repository'] = b['repository'].lower()
+        with self.assertRaises(ValueError): r.validate(b, 'texas_carousel', TODAY)
+
     def test_fail_open_and_redacted_errors(self):
         for error in [OSError('SYNTHETIC_PRIVATE_DETAIL'), ValueError('SYNTHETIC_PRIVATE_DETAIL'),
                       subprocess.TimeoutExpired('SYNTHETIC_PRIVATE_DETAIL', 1)]:
