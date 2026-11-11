@@ -572,7 +572,7 @@ Run every gate by EXIT CODE, never by reading the last line. **Wired** says what
 | Subagents (Task/Agent tool) | the fixed fan-out in NON-NEGOTIABLES 11; agents are leaf workers | nonnegotiables, 2, 6, artwork, 10, 12, 14b, 15, 17 |
 | WebSearch | scouts and the craft refresh | 1 |
 | WebFetch / HTTP fetch | primary sources; robots.txt re-checked per host | nonnegotiables, context, 3, 6, 16, 17 |
-| Gmail connector | create_draft with htmlBody, then get_draft; DRAFT ONLY | 16, 17, 19, success |
+| Gmail connector | create_draft with htmlBody, then get_draft; DRAFT ONLY | daily, 16, 17, 19, success |
 | Supabase connector | the scanner's daily ceiling query, read only | 7 |
 | GitHub (git, PR, checks) | push via scripts/shared/push.sh, PR ready, merge on green head SHA | role, 0, 16, 17, 18 |
 | Headless browser (render.py) | Chromium via the carousel-engine skill | costs, 10.5, 11, 12, 14b, 15 |
