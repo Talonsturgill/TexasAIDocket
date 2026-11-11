@@ -68,7 +68,7 @@ jobs:
     # The guards wait below is bounded at 75 minutes, and the rebuild checks after it take minutes.
     timeout-minutes: 100
     outputs:
-      deploy: ${{ steps.target.outputs.deploy }}
+      deploy: ${{ steps.guarded.outputs.deploy }}
       sha: ${{ steps.target.outputs.sha }}
     steps:
       # PINNED TO main, and that is required rather than tidy. A scheduled recovery or a dispatch
@@ -106,12 +106,16 @@ jobs:
       # and nothing that clears it without a rerun. So it now waits, and only for a result that has not
       # arrived yet: queued, in progress, or no `guards` check registered for the commit. The wait is
       # bounded and its timeout refuses. A finished guard that did not succeed (failure, cancelled,
-      # timed out, skipped or any other conclusion) refuses on the first read, with no waiting. A GitHub
-      # API error is a separate case and is never read as pending. A server error or a lost connection is
+      # timed out, skipped or any other conclusion) refuses on the first read, with no waiting.
+      # Scheduled recovery skips that already-reported guard failure without deploying or raising
+      # another release failure every two hours. Explicit dispatch still fails. If main advances
+      # during the wait, this obsolete run skips and leaves release to the newer guards.
+      # A GitHub API error is a separate case and is never read as pending. A server error or a lost connection is
       # retried a few times in a row, and a 4xx (a 403, a rate limit, a 401, a 404, a 422), an unrecognized
       # error or a response that is not a known status all refuse at once. The deploy job still packages
       # this exact SHA, and the checks after this step are untouched.
       - name: Full guards passed for this exact main commit
+        id: guarded
         if: steps.target.outputs.deploy == 'true'
         env:
           GH_TOKEN: ${{ github.token }}
@@ -120,11 +124,13 @@ jobs:
           GUARDS_API_RETRIES: "4"
         run: |
           SHA=$(git rev-parse HEAD)
+          echo "deploy=false" >> "$GITHUB_OUTPUT"
           started=$SECONDS
           transient=0
           err=$(mktemp)
           while true; do
-            if row=$(gh api \
+            if current=$(gh api "repos/${GITHUB_REPOSITORY}/git/ref/heads/main" --jq '.object.sha' 2>"$err") \
+                && row=$(gh api \
                 "repos/${GITHUB_REPOSITORY}/commits/${SHA}/check-runs?check_name=guards&filter=latest&per_page=1" \
                 --jq '[(.check_runs[0].status // ""), (.check_runs[0].conclusion // "")] | @tsv' 2>"$err"); then
               transient=0
@@ -148,6 +154,14 @@ jobs:
               echo "::error::main ${SHA} could not read the guards result: GitHub API error ${code:-unrecognized}: $(head -c 200 "$err" | tr '\n' ' '); refusing to deploy"
               exit 1
             fi
+            if ! [[ "$current" =~ ^[0-9a-f]{40}$ ]]; then
+              echo "::error::invalid current main SHA; refusing to deploy"
+              exit 1
+            fi
+            if [ "$current" != "$SHA" ]; then
+              echo "::notice::main advanced from ${SHA} to ${current}; newer guards own the release"
+              exit 0
+            fi
             # The query always prints a status, a tab and a conclusion, even for no check run at all. A read
             # without that tab is an invalid response, and an empty read is never pending.
             case "$row" in
@@ -162,10 +176,16 @@ jobs:
               *) echo "::error::main ${SHA} could not read the guards result: unexpected status '${status}'; refusing to deploy"; exit 1 ;;
             esac
             if [ -n "$conclusion" ] && [ "$conclusion" != "success" ]; then
+              if [ "${GITHUB_EVENT_NAME:-}" = "schedule" ] && [ "$status" = "completed" ] \
+                 && [[ "$conclusion" =~ ^(failure|cancelled|timed_out|action_required|skipped|neutral|stale)$ ]]; then
+                echo "::notice::main ${SHA} guards finished ${conclusion}; scheduled recovery has nothing releasable, refusing to deploy"
+                exit 0
+              fi
               echo "::error::main ${SHA} guards finished ${conclusion}; refusing to deploy"
               exit 1
             fi
-            if [ "$conclusion" = "success" ]; then
+            if [ "$status" = "completed" ] && [ "$conclusion" = "success" ]; then
+              echo "deploy=true" >> "$GITHUB_OUTPUT"
               break
             fi
             if [ $((SECONDS - started)) -ge "${GUARDS_WAIT_SECONDS}" ]; then
@@ -177,20 +197,20 @@ jobs:
           done
 
       - uses: actions/setup-python@v5
-        if: steps.target.outputs.deploy == 'true'
+        if: steps.guarded.outputs.deploy == 'true'
         with:
           python-version: "3.11"
           cache: pip
           cache-dependency-path: requirements.txt
-      - if: steps.target.outputs.deploy == 'true'
+      - if: steps.guarded.outputs.deploy == 'true'
         run: python -m pip install --quiet --no-deps --requirement requirements.txt
 
       - name: The record passes its own gates
-        if: steps.target.outputs.deploy == 'true'
+        if: steps.guarded.outputs.deploy == 'true'
         run: python3 scripts/site/docket_build.py --validate
 
       - name: The copy about to be published keeps the house rules
-        if: steps.target.outputs.deploy == 'true'
+        if: steps.guarded.outputs.deploy == 'true'
         run: |
           # guards.yml runs this on every branch, and it was missing HERE, which is the one
           # place it actually gates a publish. A house-rule violation caught on a branch is a
@@ -200,7 +220,7 @@ jobs:
           python3 scripts/site/house_style_check.py
 
       - name: The published site is exactly what the ledgers produce
-        if: steps.target.outputs.deploy == 'true'
+        if: steps.guarded.outputs.deploy == 'true'
         run: |
           # No --today. The check rebuilds using the date the committed site was BUILT with,
           # read from its own docket.json, because the question is "does docs/ say anything

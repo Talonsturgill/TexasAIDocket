@@ -81,7 +81,7 @@ def pages_problems(doc: dict) -> list[str]:
         out.append("pages verify does not check out main by name")
 
     outputs = verify.get("outputs") or {}
-    if outputs.get("deploy") != "${{ steps.target.outputs.deploy }}":
+    if outputs.get("deploy") != "${{ steps.guarded.outputs.deploy }}":
         out.append("pages verify does not expose the stale-dispatch decision to deploy")
     if outputs.get("sha") != "${{ steps.target.outputs.sha }}":
         out.append("pages verify does not expose the exact checked SHA to deploy")
@@ -245,7 +245,7 @@ def self_test() -> int:
         "jobs": {
             "verify": {
                 "timeout-minutes": 100,
-                "outputs": {"deploy": "${{ steps.target.outputs.deploy }}",
+                "outputs": {"deploy": "${{ steps.guarded.outputs.deploy }}",
                             "sha": "${{ steps.target.outputs.sha }}"},
                 "steps": [
                     {"uses": "actions/checkout@v4", "with": {"ref": "main"}},

@@ -84,7 +84,18 @@ class Harness:
         self.queue.write_text(json.dumps(responses))
         gh = self.bin / "gh"
         gh.write_text(f"""#!/usr/bin/env python3
-import json, sys, time
+import json, os, sys, time
+if "/git/ref/heads/main" in " ".join(sys.argv):
+    current = os.environ.get("TEST_MAIN_SHA", {head!r})
+    from pathlib import Path
+    count_file = Path({str(self.root / "main_calls")!r})
+    count = int(count_file.read_text()) if count_file.exists() else 0
+    count_file.write_text(str(count + 1))
+    if count:
+        current = os.environ.get("TEST_MAIN_SHA_AFTER_FIRST", current)
+    if current == "error":
+        sys.stderr.write("gh: HTTP 403 Forbidden"); sys.exit(1)
+    print(current); sys.exit(0)
 if {response_delay!r}:
     time.sleep({response_delay!r})
 log = open({str(self.calls)!r}, "a"); log.write(" ".join(sys.argv[1:]) + "\\n"); log.close()
@@ -120,6 +131,54 @@ class WaitStep(unittest.TestCase):
         h = Harness(text if text is not None else step(pages_doc(), WAIT_STEP)["run"])
         self.addCleanup(h.close)
         return h
+
+    def test_scheduled_known_failures_skip_without_authorizing_a_deploy(self):
+        for conclusion in ("failure", "cancelled", "timed_out", "skipped"):
+            h = self.harness(); h.install([("completed", conclusion)])
+            done, calls = h.run(GITHUB_EVENT_NAME="schedule")
+            self.assertEqual((done.returncode, calls), (0, 1))
+            self.assertEqual(h.output.read_text().strip(), "deploy=false")
+            self.assertIn("nothing releasable", done.stdout)
+
+    def test_obsolete_wait_skips_without_deploying(self):
+        h = self.harness(); h.install([("completed", "success")])
+        done, calls = h.run(TEST_MAIN_SHA="a" * 40)
+        self.assertEqual((done.returncode, calls), (0, 1))
+        self.assertEqual(h.output.read_text().strip(), "deploy=false")
+
+    def test_main_advancing_during_pending_wait_stops_old_release(self):
+        h = self.harness(); h.install([("in_progress", ""), ("completed", "success")])
+        done, calls = h.run(TEST_MAIN_SHA_AFTER_FIRST="b" * 40)
+        self.assertEqual((done.returncode, calls), (0, 2))
+        self.assertEqual(h.output.read_text().strip(), "deploy=false")
+        self.assertIn("main advanced", done.stdout)
+
+    def test_schedule_does_not_hide_unknown_conclusions(self):
+        h = self.harness(); h.install([("completed", "garbage")])
+        done, _ = h.run(GITHUB_EVENT_NAME="schedule")
+        self.assertEqual(done.returncode, 1)
+
+    def test_unreadable_or_invalid_main_is_not_a_skip_or_success(self):
+        for current in ("error", "", "garbage"):
+            h = self.harness(); h.install([("completed", "success")])
+            done, calls = h.run(TEST_MAIN_SHA=current)
+            self.assertEqual((done.returncode, calls), (1, 0 if current == "error" else 1))
+            self.assertNotIn("deploy=true", h.output.read_text())
+
+    def test_only_completed_success_enables_deployment(self):
+        h = self.harness(); h.install([("in_progress", "success"), ("completed", "success")])
+        done, calls = h.run()
+        self.assertEqual((done.returncode, calls), (0, 2))
+        self.assertTrue(h.output.read_text().endswith("deploy=true\n"))
+
+    def test_all_following_gates_and_job_use_the_guard_decision(self):
+        doc = pages_doc()
+        self.assertEqual(doc["jobs"]["verify"]["outputs"]["deploy"], "${{ steps.guarded.outputs.deploy }}")
+        steps = doc["jobs"]["verify"]["steps"]
+        guard = step(doc, WAIT_STEP)
+        self.assertEqual(guard["id"], "guarded")
+        for following in steps[steps.index(guard) + 1:]:
+            self.assertEqual(following["if"], "steps.guarded.outputs.deploy == 'true'")
 
     def test_pending_then_success_waits_and_proceeds(self):
         for label, sequence in (("in progress", [("in_progress", ""), ("in_progress", ""), ("completed", "success")]),
@@ -280,7 +339,7 @@ class WaitStep(unittest.TestCase):
         with self.assertRaises(subprocess.TimeoutExpired):
             subprocess.run(["bash", "-e", str(h.script)], capture_output=True, text=True, timeout=3,
                            env={**os.environ, "PATH": str(h.bin) + os.pathsep + os.environ["PATH"],
-                                "GITHUB_REPOSITORY": "o/r", "GUARDS_WAIT_SECONDS": "1", "GUARDS_POLL_SECONDS": "0.2"})
+                                "GITHUB_REPOSITORY": "o/r", "GITHUB_OUTPUT": str(h.output), "GUARDS_WAIT_SECONDS": "1", "GUARDS_POLL_SECONDS": "0.2"})
         # 3 A loop that waits on a finished failure would sit out the whole bound before refusing.
         patient = real.replace('if [ -n "$conclusion" ] && [ "$conclusion" != "success" ]; then', 'if false; then')
         self.assertNotEqual(patient, real)
