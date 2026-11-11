@@ -1,0 +1,78 @@
+<!doctype html>
+<!-- 2026-11-11, frame 2 of 9. Archetype DIAGRAM. A spatial scene through txthree.js in the lastLight world: the tidal flats east of Brownsville from 700 m up, a square of the tract's area laid as a green ribbon at true scale between the road and the ship channel bank. The square is the tract's area, not its shape. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:900px">About 444 acres, east of Brownsville</h1>
+<p class="dek" data-follow="26" style="width:860px">Between Boca Chica Blvd and the Port of Brownsville, now inside Starbase&#39;s limits, in Cameron County. The square holds the tract&#39;s area at true scale. The notice gives its area, not its shape.</p>
+<div class="lab" id="lab1" style="left:600px;top:1100px">Boca Chica Blvd</div>
+<div class="lab" id="lab2" style="left:200px;top:640px">Port of Brownsville</div>
+<div class="lab" id="lab3" style="left:800px;top:900px">1,340 m a side</div>
+<script>window.FIG = {"side_m": 1340};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-11-cityline.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Starbase, Cameron County", counter: "02 / 09", src: "c3 c10", fit: { min: 80, max: 104, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 50, near: 5, far: 20000 });
+  /* THE FIGURE: side_m, the side of a square holding the tract's area, laid on the ground at true scale */
+  const S = FIG.side_m, RW = 22, sq = new THREE.Group();
+  const GREEN = new THREE.MeshBasicMaterial({ color: 0x4fc79a, toneMapped: false }); GREEN.userData = { txWear: false };
+  [[0, -S / 2, S + RW, RW], [0, S / 2, S + RW, RW], [-S / 2, 0, RW, S], [S / 2, 0, RW, S]].forEach(([x, z, w, d]) => {
+    const m = new THREE.Mesh(new THREE.BoxGeometry(w, 1.2, d), GREEN); m.position.set(x, 1.6, z); sq.add(m); });
+  TXT.add(R, sq);
+  /* the road along the near side and the channel bank along the far side, both longer than the square */
+  const road = K.make('road', { length: 5200, lanes: 4, sidewalk: false, parkway: false }); road.position.set(0, 1.0, S / 2 + 70); road.scale.set(1, 1, 2.2); TXT.add(R, road);
+  const bank = K.make('riprap_bank', { length: 5200, top: 1.5, toe: -3, run: 8 }); bank.position.set(0, 1.0, -S / 2 - 220); bank.rotation.y = Math.PI; bank.scale.set(1, 1, 3); TXT.add(R, bank);
+  const water = new THREE.Mesh(new THREE.PlaneGeometry(9000, 520), new THREE.MeshStandardMaterial({ color: 0x14242c, roughness: 0.22, metalness: 0.5, envMapIntensity: 1.6 }));
+  water.rotation.x = -Math.PI / 2; water.position.set(0, 3.0, -S / 2 - 520); water.userData = { txWear: false }; TXT.add(R, water);
+  /* the far sodium seam laid on the water as broken reflected streaks */
+  const REF = new THREE.MeshBasicMaterial({ color: 0xc98a4a, toneMapped: false, transparent: true, opacity: 0.55 }); REF.userData = { txWear: false };
+  for (let k = 0; k < 0; k++) { const s = new THREE.Mesh(new THREE.PlaneGeometry(10, 120 + (k % 4) * 50), REF); s.rotation.x = -Math.PI / 2; s.position.set(-4200 + k * 140 + (k % 3) * 20, 3.3, -S / 2 - 520 - (k % 5) * 30); TXT.add(R, s); }
+  /* the riprap edge of the channel, pale stone in a band along the water's near bank */
+  const rip = new THREE.Mesh(new THREE.PlaneGeometry(9000, 40), new THREE.MeshStandardMaterial({ color: 0xb0a898, roughness: 0.95 }));
+  rip.rotation.x = -Math.PI / 2; rip.position.set(0, 3.2, -S / 2 - 245); TXT.add(R, rip);
+  /* Boca Chica Blvd: a four lane asphalt band with a pale shoulder line and a broken centre line */
+  const ASP = new THREE.MeshStandardMaterial({ color: 0x5a5650, roughness: 0.9 });
+  const rd = new THREE.Mesh(new THREE.PlaneGeometry(9000, 60), ASP); rd.rotation.x = -Math.PI / 2; rd.position.set(0, 2.0, S / 2 + 90); TXT.add(R, rd);
+  const LINE = new THREE.MeshBasicMaterial({ color: 0xd8d0b8, toneMapped: false }); LINE.userData = { txWear: false };
+  [S / 2 + 61, S / 2 + 119].forEach((z) => { const e = new THREE.Mesh(new THREE.PlaneGeometry(9000, 3), LINE); e.rotation.x = -Math.PI / 2; e.position.set(0, 2.2, z); TXT.add(R, e); });
+  for (let x = -4400; x < 4400; x += 60) { const c = new THREE.Mesh(new THREE.PlaneGeometry(26, 2.4), LINE); c.rotation.x = -Math.PI / 2; c.position.set(x, 2.2, S / 2 + 90); TXT.add(R, c); }
+  /* the far sodium seam over Brownsville, west along the far bank */
+  const SOD = new THREE.MeshBasicMaterial({ color: 0xffb060, toneMapped: false, fog: false }); SOD.userData = { txWear: false };
+  for (let k = 0; k < 90; k++) { const l = new THREE.Mesh(new THREE.SphereGeometry(7, 8, 6), SOD); l.position.set(-4200 + k * 70 + (k % 5) * 13, 12, -S / 2 - 2600 - (k % 9) * 90); TXT.add(R, l); }
+  const FROM = [0, 1018, S / 2 + 1820];
+  const LOOK = CH.aim(THREE, R, TXT, FROM, [0, 0, 0], 540, 950, 50);
+  TXT.frame(R, { fov: 50, from: FROM, look: LOOK });
+  TXT.sky(R);
+  TXT.ground(R, { surface: 'dirt', color: 0x5a5042, size: 16000, seed: 11 });
+  CH.tidalFlat(THREE, TXT, R, { size: 9000, tile: 160, y: 0.05, veins: 0.12, mottle: 1.0 });
+  CH.pool(THREE, TXT, R, [-S / 4, 0, S / 4], { radius: 900, i: 4.4 });
+    TXT.deckRig(R, CH.rigSpec(W, 2200, 4096), CH.rigOpts([0, 0, 0], { distance: 3000, shadowFar: 7000, normalBias: 0.05 }));
+  TXT.weather(R, { grime: 0.2, height: 2, mottle: 0.2 });
+  TXT.stage(R, sq);
+  CH.pin(THREE, R, 'lab1', [-S / 2 + 200, 0, S / 2 + 125], 10, 10);
+  CH.pin(THREE, R, 'lab2', [-S / 2 + 80, 0, -S / 2 - 900], -40, -30);
+  CH.pin(THREE, R, 'lab3', [S / 2, 0, -S / 2], -270, 14);
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.dress(cx, { foot: 0.6 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

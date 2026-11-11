@@ -1,0 +1,14 @@
+{"lens":"reader","round":1,"criteria":[
+{"name":"artwork_craft","weight":0.22,"score":7.0,"why":"3, 9 and 7 meet the bold standard and 5 reads at feed size on a mid band. 6 a pale boxy peaker a fifth of the frame wide on streaked ground; 2 a flat outline on a uniform plane with a channel band that reads as no object; 4 a flat-shaded ruler in the bottom fifth; 1's sign evenly front-lit with casts hard to find."},
+{"name":"deck_coherence","weight":0.12,"score":7.5,"why":"One lastLight world, dark throughout, the green with one meaning, the sign bookend and the line motif working, the declared value cut at 7. 2 sits outside the deck and 6's ground breaks the stock."},
+{"name":"claim_integrity","weight":0.2,"score":7.0,"why":"Every numeral traced and quotes match. The cover joins c3's site to c9 and c14's de-annexed land; the de-annexation half rests on the Tribune; the 109 juxtaposition invites a reading the sources don't make, though labelled."},
+{"name":"story_and_stakes","weight":0.16,"score":8.5,"why":"Body, county, decision and deadline named, with the way to be heard. The Saturday vote has no month, and the abatement's size or term is not addressed."},
+{"name":"sequence_and_momentum","weight":0.1,"score":7.0,"why":"The cover earns the swipe, 2 pays, 7 turns to action. 8 carries Brownsville's voices over Starbase's lectern and 9 repeats 7's logistics."},
+{"name":"voice","weight":0.1,"score":7.5,"why":"Texan openers, honest on costs. 7's last sentence is redundant, 5 dates by the newspaper, 'the Tribune reports' recurs."},
+{"name":"variety","weight":0.1,"score":6.5,"why":"No topic repeat. No. 61 drew a city limit sign and staked pad and no. 62 survey stakes, a parcel drawn to area and a night close within 16 days; lastLight again."}],
+"weighted_score":7.3,"hard_fails":[],"ship":false,
+"one_sentence_fix":"Keep 444 acres with the notice's project site rather than the de-annexed land, give the Saturday vote its month, and say whether the notice states the abatement's size.",
+"artwork_weakest_frames":[
+{"slide":6,"problem":"pale stacked boxes a fifth of the frame wide on streaked ground","fix":"pull in until the peaker fills a third of the width, side-light from the left with a long cast right, slide 5's ground and scatter"},
+{"slide":2,"problem":"a flat outline on a uniform plane, the channel reads as no object","fix":"eye about 250 m with the horizon in the top fifth, pool the near corner, saltgrass casts, dark water with a lit riprap bank"},
+{"slide":4,"problem":"a flat-shaded ruler in the bottom fifth under empty crust","fix":"camera about 0.5 m, lath diagonal through the middle third, grain, wet clay foot, limp ribbon, key raking the hole's lip"}]}

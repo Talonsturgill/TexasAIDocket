@@ -1,0 +1,16 @@
+{"lens":"craft","round":1,"criteria":[
+{"name":"artwork_craft","weight":0.22,"score":6.0,"why":"Four frames strong (03 precast blocks, 08 lectern, 09 night sign, 07 room). 06 reads as flat cream boxes against black with streaked ground; 02 a green outline on a noise plane with a hatched channel and nothing measuring 1,340 m; 04 an untextured plank under a fifth of the frame in grey-middle crust; 05 lavender mid-value flats with no sodium lights. 01's sign is small with no long cast. 07 a light leak between chairs."},
+{"name":"deck_coherence","weight":0.12,"score":7.5,"why":"One deck: dark sky field, light type, one low left key, green means the line; bookend and line motif work. Value strobes on 02, 04, 05, 06 lifted ground planes; 05 lavender; 04 outside the deck's material finish."},
+{"name":"claim_integrity","weight":0.20,"score":7.0,"why":"Every numeral traces. The cover's 'let about 444 acres go' joins c9 and c3, and the caption's 'doesn't reach it' glosses 'circumventing'. Not hard fails."},
+{"name":"story_and_stakes","weight":0.16,"score":8.5,"why":"County, both bodies, the decision, date, time, address and what a reader can do. No route for someone who can't attend."},
+{"name":"sequence_and_momentum","weight":0.10,"score":7.0,"why":"Cover earns the swipe, 02 and 03 pay, 04 turns. 08 sits after the hearing frame and reads out of order; 07 and 09 both carry the date and address."},
+{"name":"voice","weight":0.10,"score":7.5,"why":"Specific and on register. 07's 'Both are up for consideration.' repeats; 'Drawn to illustrate.' reads as boilerplate."},
+{"name":"variety","weight":0.10,"score":7.5,"why":"Subjects and palette diverge from nos. 71 to 73; the staged dark chassis and kit heroes are familiar."}],
+"weighted_score":7.18,"hard_fails":[],"ship":false,
+"one_sentence_fix":"Restage 06, 02 and 04 so one subject fills a third to two thirds of the frame in a pool with the ground falling to black beyond it.",
+"artwork_weakest_frames":[
+{"slide":6,"problem":"flat cream boxes on a hard horizon against black, ground smeared by the fov 6 lens","fix":"widen to about fov 18 from about 400 m, rim the stack, warm seam sky behind, kill the streaks"},
+{"slide":2,"problem":"a rug on a noise plane, hatched channel, two-line road, nothing measures 1,340 m","fix":"riprap as rock geometry with a moored ship at true length, a scale object on the road, pool the near corner"},
+{"slide":4,"problem":"untextured plank under a fifth of the frame in grey-middle crust","fix":"camera 0.3 m off the foot so lath and hole fill the lower two thirds, grain, cloth flagging, crust to black beyond 2 m"},
+{"slide":5,"problem":"lavender mid-value flats, no sodium lights on the seam","fix":"pool the nearest five stakes, flats to black past 30 m, warm sodium points on the left seam"},
+{"slide":7,"problem":"light leak between chairs, rows cropped so 28 can't be counted","fix":"raise and pull back so all 28 sit uncropped, clamp the floor spill"}]}

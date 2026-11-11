@@ -1,0 +1,17 @@
+{"lens":"integrity","round":1,"criteria":[
+{"name":"artwork_craft","weight":0.22,"score":7.0,"why":"3, 5 and 9 strong. 6 a small pale kit object in a void with streaked ground; 2 a rhombus on a carpet with a slashed channel band; 4 a plastic strap on a repeating decal; 7's 28 can't be counted."},
+{"name":"deck_coherence","weight":0.12,"score":8.0,"why":"One world, one key, one accent meaning, the declared cut at 7, three continuity devices working. 2's top-down look sits slightly outside."},
+{"name":"claim_integrity","weight":0.20,"score":5.5,"why":"Numerals all trace and attributions are labelled, but the cover hook and document title give c3's 444-acre project tract to Brownsville's de-annexation, which no claim sizes."},
+{"name":"story_and_stakes","weight":0.16,"score":8.0,"why":"Body, instruments, place, date and hour named and the right to be heard quoted. The Saturday vote is undated and attending is the only route named."},
+{"name":"sequence_and_momentum","weight":0.10,"score":7.5,"why":"The cover earns the swipe, 2 pays, 4 turns, 7 turns to action, 9 closes. 8 is a grab bag and 6 could move."},
+{"name":"voice","weight":0.10,"score":7.5,"why":"Reads as someone who knows the Valley. 7 ends on a redundant filler line."},
+{"name":"variety","weight":0.10,"score":6.5,"why":"No topic repeat, but nos. 61 and 62 used a city limit sign, survey stakes and a parcel drawn to area within two weeks."}],
+"weighted_score":7.03,
+"hard_fails":[{"fail":"an unverified fact presented as verified","where":"slide 1 hook 'Brownsville let about 444 acres go.' and document_title.txt","evidence":"No claim states the area Brownsville de-annexed. 444 is c3's description of Starbase's project site; c9, c14 and c16 give no acreage."}],
+"ship":false,
+"one_sentence_fix":"Rewrite the cover hook and document title so the 444 acres belong to Starbase's notice and the de-annexation carries no acreage.",
+"artwork_weakest_frames":[
+{"slide":6,"problem":"small pale kit object in a black void, streaked ground","fix":"about 150 m at fov 12 so the unit fills half the width, proper ground, the seam behind the stack"},
+{"slide":2,"problem":"rhombus on a carpet, slashed channel band","fix":"saltgrass and crust with a lit near-corner pool, riprap with lit stone and dark water reflecting the seam"},
+{"slide":7,"problem":"28 can't be verified, chairs cropped and dais chairs add to the count","fix":"pull back and up so 28 sit inside the frame, dais chairs in shadow"},
+{"slide":4,"problem":"plastic strap on a repeating crack decal","fix":"end grain, split edges, frayed ribbon, a second noise scale, contact grime"}]}

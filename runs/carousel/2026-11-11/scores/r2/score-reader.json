@@ -1,0 +1,16 @@
+{"lens":"reader","round":2,"criteria":[
+{"name":"artwork_craft","weight":0.22,"score":6.5,"why":"3, 7 (28 chairs counted, the strongest image), 9 and 5 hold up at feed size. 6 cream boxes floating on black with the stake line nearly invisible; 2 a trapezoid on a noise plane with a flat black channel band; 4 a plain plank with a box for flagging; 8's mic stands rise behind the last dek lines; 1's sign front-lit and names no town."},
+{"name":"deck_coherence","weight":0.12,"score":7.5,"why":"One dark world, casts right, one accent meaning, the bookend and the room pair work, no value strobe. 5 to 6 reads as a cut because the stakes barely register; 3's concrete is a one-off material."},
+{"name":"claim_integrity","weight":0.20,"score":8.0,"why":"Every numeral traces and medium-confidence claims are attributed on the slide. The de-annexation rests on the Tribune, and slide 3's 109 times invites a reading the planned line about different kinds of money would have defused."},
+{"name":"story_and_stakes","weight":0.16,"score":8.5,"why":"What happened, who decides, what, where and when to act are all delivered. The protest's grounds (c22) are dropped and the abatement's size is not addressed."},
+{"name":"sequence_and_momentum","weight":0.10,"score":7.5,"why":"The cover earns the swipe, 2 pays, 4 turns. 7 calls to action, 8 steps back and 9 repeats 7's logistics."},
+{"name":"voice","weight":0.10,"score":7.5,"why":"Plain lines work and the jobs side gets a fair hearing. 2's two sentences are clerical, 5 dates by the newspaper, 'Drawn to illustrate.' repeats."},
+{"name":"variety","weight":0.10,"score":7.0,"why":"New concept against the last four decks. No. 61's nameless city limit sign, survey stakes on 62 and 69, and 62's abatement on behind-the-meter power are familiar within the window."}],
+"weighted_score":7.49,"hard_fails":[],"ship":false,
+"one_sentence_fix":"Rebuild frame 6 so slide 5's stake line runs large in the foreground to a side-lit plant in its own pool with a pickup for scale, and give frame 2's square real ground.",
+"artwork_weakest_frames":[
+{"slide":6,"problem":"flat-lit cream boxes floating on black, the stake line nearly invisible","fix":"camera about 1.2 m with the three nearest flagged stakes large at lower left, the plant side-lit with a cast right, a pickup for scale"},
+{"slide":2,"problem":"trapezoid on a noise plane, flat black channel, no relief or pool","fix":"crowned road with a lit shoulder, riprap bank in relief, saltgrass casting short shadows, pool on the near corner"},
+{"slide":8,"problem":"the mics rise behind the last two dek lines","fix":"lower the camera or move the lectern so both mic heads sit below the dek, the rim on the mic head"},
+{"slide":1,"problem":"front-lit, flat face, no town name","fix":"swing to the far side so the seam rims the sign with long casts right"},
+{"slide":4,"problem":"plain extruded plank with a box for flagging, low-poly clods","fix":"pointed clay-dark foot, weathered grain, limp tied ribbon, crumbled crust at the lip"}]}

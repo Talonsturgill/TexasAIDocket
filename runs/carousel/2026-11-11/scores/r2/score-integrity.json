@@ -1,0 +1,16 @@
+{"lens":"integrity","round":2,"criteria":[
+{"name":"artwork_craft","weight":0.22,"score":6.5,"why":"1, 3, 7 (28 counted) and 9 pass at feed size. 6 primitive cream boxes with no pool, contact or cast and the stake line missing; 2 a flat outline with an unmodelled black channel; 4 a flat slab with a white clip for flagging; 5 black stakes, an unseated stringline, repeated sprites, no seam lights; 8's gooseneck crosses 'questions'."},
+{"name":"deck_coherence","weight":0.12,"score":7.5,"why":"One world, one key, one accent, three named devices with a describable spine. 2 sits outside the vocabulary and 6 breaks the 5 to 6 camera move."},
+{"name":"claim_integrity","weight":0.20,"score":7.0,"why":"Every numeral traces and round 1's join is repaired. Legs rest on the Tribune where primaries exist, 'stops at the line' leans on 'circumventing', the 109 invites a cheap-deal reading, and frame 6's cite line carries c12 and c19 unused."},
+{"name":"story_and_stakes","weight":0.16,"score":8.0,"why":"What, who, where, what and when are delivered. The tax break carries no size or term and no frame says the notice gives none."},
+{"name":"sequence_and_momentum","weight":0.10,"score":7.0,"why":"The cover earns the swipe and 2 pays. The chronology zig-zags at 4, 8 steps back after the hearing, 9 restates 7."},
+{"name":"voice","weight":0.10,"score":7.5,"why":"Plain and specific with a Texan register. Attribution repeats across 5 and 6 and 9's dek is a bare address line. House rules hold."},
+{"name":"variety","weight":0.10,"score":6.5,"why":"No topic repeat. No. 61's city limit sign, stakes on 62 and 69, and 62's abatement beside its own power recur; lastLight again."}],
+"weighted_score":7.11,"hard_fails":[],"ship":false,
+"one_sentence_fix":"Rebuild 6 as frame 5's flagged line of 20 or more stakes running to a plant seated in its own pool, and 2 as a square of flagged lath and stringline on a modelled flat with a real road and riprap edge.",
+"artwork_weakest_frames":[
+{"slide":6,"problem":"cream boxes on the horizon with no pool, contact or cast, the stake line missing","fix":"20 or more stakes from the lower left converging on the unit, a ground pool with contact and a long cast, galvanized and painted steel"},
+{"slide":2,"problem":"flat outline, unmodelled black channel, nothing of known size","fix":"the square as flagged lath and stringline on a modelled flat, the kit road and riprap casting, a truck for scale"},
+{"slide":5,"problem":"black stakes, plastic flagging, unseated stringline, repeated sprites, no seam lights","fix":"weathered pine with cloth flagging, stringline on each stake top, sodium lights on the left seam"},
+{"slide":4,"problem":"flat slab with a white clip for flagging","fix":"pine grain, wet clay foot, split end, limp cloth flagging draped with its own shadow"},
+{"slide":8,"problem":"gooseneck crosses 'questions', a rod behind the last two dek lines","fix":"camera down so the mic head sits 60 px under the dek, the dais mic out of the type column"}]}

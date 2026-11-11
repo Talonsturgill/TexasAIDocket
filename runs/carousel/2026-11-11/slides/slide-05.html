@@ -1,0 +1,62 @@
+<!doctype html>
+<!-- 2026-11-11, frame 5 of 9. Archetype SPLIT_HORIZON. A spatial scene through txthree.js in the lastLight world: a line of flagged survey lath, counted from figures.json, runs from the lower left to the horizon on a stringline, every cast falling right across it onto the tract, Brownsville's lights strung along the far seam. One stake per day of the pause. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:900px">Brownsville&#39;s pause stops at the line</h1>
+<p class="dek" data-follow="26" style="width:860px">Brownsville&#39;s 90-day moratorium on data center applications took effect the week before the Tribune&#39;s November 10th story. The Tribune says the project in Starbase circumvents it.</p>
+<div class="lab" id="lab1" style="left:700px;top:1120px">one stake per day<br>of the pause</div>
+<script>window.FIG = {"moratorium_days": 90};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-11-cityline.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Starbase, Cameron County", counter: "05 / 09", src: "c9 c10 c13", fit: { min: 80, max: 104, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 34, near: 0.05, far: 6000 });
+  /* forward is chosen so the declared key falls from the frame's left and every cast runs right */
+  const F_ = new THREE.Vector3(-0.375, 0, -0.927).normalize(), RT = new THREE.Vector3(0.927, 0, -0.375);
+  /* THE FIGURE: moratorium_days stakes, 4 m apart, one per day of Brownsville's pause */
+  const line = new THREE.Group(), N = FIG.moratorium_days, pts = [];
+  for (let i = 0; i < N; i++) {
+    const p = RT.clone().multiplyScalar(-0.45).add(F_.clone().multiplyScalar(4.5 + i * 4));
+    const s = K.make('survey_lath', { flag: 'green', mud: 0.1, seed: i + 1, scale: 1.3 }); s.position.copy(p); s.rotation.y = -0.4 + ((i % 3) - 1) * 0.08; line.add(s);
+    pts.push([p.x, 1.25, p.z]);
+  }
+  TXT.add(R, line);
+  
+  /* Brownsville's sodium lamps sit on the horizon directly behind the dek at this camera, so none are drawn */
+  const SOD = new THREE.MeshBasicMaterial({ color: 0xffb060, toneMapped: false, fog: false }); SOD.userData = { txWear: false };
+  for (let k = 0; k < 0; k++) { const q = RT.clone().multiplyScalar(-24 - k * 2.6).add(F_.clone().multiplyScalar(620 + (k % 7) * 25)); const l = new THREE.Mesh(new THREE.SphereGeometry(5.5, 8, 6), SOD); l.position.set(q.x, 10, q.z); TXT.add(R, l); }
+  const FROM = [0, 2.2, 0];
+  const LOOK = CH.aim(THREE, R, TXT, FROM, [F_.x * 400, 2.2, F_.z * 400], 560, 560, 34);
+  TXT.frame(R, { fov: 34, from: FROM, look: LOOK });
+  TXT.sky(R);
+  TXT.ground(R, { surface: 'dirt', color: 0x5e5446, size: 9000, seed: 13 });
+  CH.tidalFlat(THREE, TXT, R, { size: 3000, tile: 45, y: 0.004, veins: 0.25 });
+    CH.pool(THREE, TXT, R, [F_.x * 7 + RT.x * 1.2, 0, F_.z * 7 + RT.z * 1.2], { radius: 5, i: 10.0, normalBias: 0.004 });
+  TXT.scatter(R, { kind: 'grass', count: 2600, area: [-60, -260, 60, 4], avoid: [[-1.6, -1000, 1.6, 2], [-3, -6, 3, 3]], seed: 12, scale: [0.5, 0.9] });
+  TXT.deckRig(R, CH.rigSpec(W, 30, 4096), CH.rigOpts([F_.x * 15, 0, F_.z * 15], { distance: 60, shadowFar: 160, normalBias: 0.02 }));
+  TXT.weather(R, { grime: 0.3, height: 0.4, mottle: 0.2 });
+  TXT.stage(R, line);
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.dress(cx, { foot: 0.6 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

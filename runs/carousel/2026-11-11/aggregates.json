@@ -1,0 +1,95 @@
+{
+ "date": "2026-11-11",
+ "_note": "Every count, span, ratio and duration the deck states, with the claim it was quoted from or the code that computed it.",
+ "aggregates": [
+  {
+   "phrase": "444 acres",
+   "slide": "slide-01.html",
+   "kind": "count",
+   "value": 444,
+   "quoted_from": "c3",
+   "quote": "approximately 444-acre tract"
+  },
+  {
+   "phrase": "444 acres",
+   "slide": "slide-02.html",
+   "kind": "count",
+   "value": 444,
+   "quoted_from": "c3",
+   "quote": "approximately 444-acre tract"
+  },
+  {
+   "phrase": "444 acres",
+   "slide": "caption.txt",
+   "kind": "count",
+   "value": 444,
+   "quoted_from": "c3",
+   "quote": "approximately 444-acre tract"
+  },
+  {
+   "phrase": "109 times",
+   "slide": "slide-03.html",
+   "kind": "count",
+   "value": 109,
+   "computed_from": [
+    "c2",
+    "c15"
+   ],
+   "computed_by": "out/2026-11-11/compute.py, capex_per_water, the c2 estimate in billions times 1,000 over the c15 ceiling in millions, floored, and re-derived inside the frame's own script, which builds one block per unit"
+  },
+  {
+   "phrase": "109 blocks",
+   "slide": "slide-03.html",
+   "kind": "count",
+   "value": 109,
+   "computed_from": [
+    "c2",
+    "c15"
+   ],
+   "computed_by": "out/2026-11-11/compute.py, capex_per_water, the c2 estimate in billions times 1,000 over the c15 ceiling in millions, floored, and re-derived inside the frame's own script, which builds one block per unit"
+  },
+  {
+   "phrase": "28 days",
+   "slide": "slide-07.html",
+   "kind": "duration",
+   "value": 28,
+   "computed_from": [
+    "c4"
+   ],
+   "computed_by": "out/2026-11-11/compute.py, days_to_hearing, the calendar days from this edition's date, November 11th 2026, to the c4 meeting date, December 9th 2026",
+   "from_date": "2026-11-11",
+   "to_date": "2026-12-09"
+  },
+  {
+   "phrase": "28 days",
+   "slide": "caption.txt",
+   "kind": "duration",
+   "value": 28,
+   "computed_from": [
+    "c4"
+   ],
+   "computed_by": "out/2026-11-11/compute.py, days_to_hearing, the calendar days from this edition's date, November 11th 2026, to the c4 meeting date, December 9th 2026",
+   "from_date": "2026-11-11",
+   "to_date": "2026-12-09"
+  },
+  {
+   "phrase": "six hours",
+   "slide": "caption.txt",
+   "kind": "duration",
+   "value": 6,
+   "quoted_from": "c14",
+   "quote": "a special meeting over the weekend that lasted six hours"
+  },
+  {
+   "phrase": "two news reports",
+   "slide": "first_comment.txt",
+   "kind": "count",
+   "value": 2,
+   "from_claims": [
+    "c9",
+    "c14"
+   ],
+   "note": "one claim id per Tribune story counted, c9 from the November 10th story and c14 from the de-annexation story"
+  }
+ ]
+}

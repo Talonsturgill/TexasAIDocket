@@ -1,0 +1,65 @@
+<!doctype html>
+<!-- 2026-11-11, frame 3 of 9. Archetype FIGURE_SCALE. A spatial scene through txthree.js in the lastLight world: a stack of precast blocks counted from figures.json beside one lone block in the pool, on the tidal flat. One block stands for the up to $220 million water ceiling, drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:900px">About $24 billion, and up to $220 million</h1>
+<p class="dek" data-follow="26" style="width:860px">The notice estimates approximately $24 billion for the first phases. SpaceX agreed to give Brownsville up to $220 million for water and wastewater. The estimate is about 109 times that ceiling. One is an estimate and one a payment, so this is scale and not a price.</p>
+<div class="lab" id="lab1" style="left:640px;top:1060px">one block, up to $220 million</div>
+<div class="lab" id="lab2" style="left:700px;top:606px">109 blocks,<br>about $24 billion</div>
+<script>window.FIG = {"capex_per_water": 109};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-11-cityline.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Starbase, Cameron County", counter: "03 / 09", src: "c2 c15", fit: { min: 80, max: 104, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 22, near: 1, far: 4000 });
+  /* THE FIGURE: capex_per_water blocks in the stack, six by six by three and the remainder begun on top, and one block
+   * alone for the water ceiling. One block per $220 million, drawn to illustrate. */
+  const S = 2.0, G = 0.04, P = S + G, N = FIG.capex_per_water, per = 6, layer = per * per;
+  const stack = new THREE.Group();
+  for (let i = 0; i < N; i++) {
+    const L = Math.floor(i / layer), r = i % layer, cxi = r % per, czi = Math.floor(r / per);
+    const b = K.make('unit_block', { seed: i + 1 });
+    b.position.set((cxi - (per - 1) / 2) * P, L * S, (czi - (per - 1) / 2) * P); stack.add(b);
+  }
+  stack.position.set(-2, 0, -4); TXT.add(R, stack); TXT.contact(R, stack, { opacity: 0.85 });
+  const lone = K.make('unit_block', { seed: 999 }); lone.position.set(11.0, 0, 9.0); lone.rotation.y = 0.12; TXT.add(R, lone); TXT.contact(R, lone, { opacity: 0.85 });
+  const FROM = [56, 15, 50];
+  const LOOK = CH.aim(THREE, R, TXT, FROM, [1.5, 2.2, -2], 520, 905, 22);
+  TXT.frame(R, { fov: 22, from: FROM, look: LOOK });
+  CH.pin(THREE, R, 'lab1', [11.0, 0, 10.0], -230, 30);
+  TXT.sky(R);
+  TXT.ground(R, { surface: 'dirt', color: 0x3e352b, size: 3000, seed: 11 });
+  TXT.scatter(R, { kind: 'grass', count: 1600, area: [-60, -60, 60, 40], avoid: [[-10, -12, 6, 4], [8, 6, 14, 12]], seed: 5, scale: [0.6, 1.1] });
+  TXT.deckRig(R, CH.rigSpec(W, 40, 4096), CH.rigOpts([2, 0, 0], { distance: 90, shadowFar: 220, normalBias: 0.03 }));
+  CH.warm(R, 0.4);
+  /* sky bounce from the dark east: a cool fill with no shadow, so the far faces keep their joints */
+  const fill = new THREE.DirectionalLight(0x8fa4c8, 0.55); fill.position.set(60, 30, -20); R.scene.add(fill);
+  /* the key's own pool on the lone block, on the declared bearing */
+  const sd = TXT.sunDir();
+  CH.flood(THREE, R, [11.0 + sd.x * 40, 1 + sd.y * 40 + 6, 9.0 + sd.z * 40], [11.0, 1, 9.0], { color: 0xffd2a0, i: 4000, reach: 80, angle: 0.07, penumbra: 0.6 });
+  TXT.weather(R, { grime: 0.55, height: 0.8, mottle: 0.25 });
+  TXT.stage(R, [stack, lone]);
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.dress(cx, { foot: 0.6 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

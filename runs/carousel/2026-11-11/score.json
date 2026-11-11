@@ -1,0 +1,196 @@
+{
+ "weighted_score": 7.462,
+ "judges": [
+  7.14,
+  7.612,
+  7.362
+ ],
+ "spread": 0.472,
+ "criteria": {
+  "artwork_craft": {
+   "score": 6.6,
+   "weight": 0.22,
+   "judges": [
+    6.5,
+    6.6,
+    6.6
+   ]
+  },
+  "deck_coherence": {
+   "score": 7.5,
+   "weight": 0.12,
+   "judges": [
+    7.5,
+    7.5,
+    7.5
+   ]
+  },
+  "claim_integrity": {
+   "score": 8.0,
+   "weight": 0.2,
+   "judges": [
+    6.5,
+    8.0,
+    8.0
+   ]
+  },
+  "story_and_stakes": {
+   "score": 8.5,
+   "weight": 0.16,
+   "judges": [
+    8.5,
+    8.5,
+    8.5
+   ]
+  },
+  "sequence_and_momentum": {
+   "score": 7.5,
+   "weight": 0.1,
+   "judges": [
+    7.5,
+    7.5,
+    7.5
+   ]
+  },
+  "voice": {
+   "score": 7.5,
+   "weight": 0.1,
+   "judges": [
+    7.5,
+    7.5,
+    7.5
+   ]
+  },
+  "variety": {
+   "score": 6.5,
+   "weight": 0.1,
+   "judges": [
+    6.5,
+    8.0,
+    5.5
+   ]
+  }
+ },
+ "hard_fails": [],
+ "hard_fails_by_judge": [],
+ "ship": true,
+ "threshold": 8.0,
+ "over_threshold": false,
+ "method": "per-criterion median across three judges, then weighted by the rubric",
+ "contested": [
+  "claim_integrity",
+  "variety"
+ ],
+ "artwork_weakest_frames": [
+  {
+   "slide": 4,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "flat plank, low-poly clods, no visible flagging, mid-tone crust",
+     "fix": "crop to about 0.5 m on the foot and hole, chamfered grained pine with limp tied flagging, a tight pool"
+    },
+    {
+     "judge": 2,
+     "problem": "untextured slab, low-poly clods, tiled crust, mid-tone ground",
+     "fix": "chamfered grained lath with limp flagging at its head, camera about 0.4 m, pool tight on the foot"
+    },
+    {
+     "judge": 3,
+     "problem": "untextured slab by low-poly clods, empty crust above",
+     "fix": "pine grain, sharpened point, wet clay foot, tied flagging, eye 0.5 m so the foot and hole fill the lower two thirds"
+    }
+   ]
+  },
+  {
+   "slide": 6,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "pale primitive a fifth of the frame on the horizon against black",
+     "fix": "tighten so the plant spans a third of the width, a hard rim from the left, the line still leading to it"
+    },
+    {
+     "judge": 2,
+     "problem": "small pale flat-lit unit on a ruled horizon against black, the line entering lower right",
+     "fix": "mirror the camera so the line enters lower left, fov about 12, a key pool on its left flank, sky haze falling to dark"
+    },
+    {
+     "judge": 3,
+     "problem": "pale primitive boxes about a tenth of the frame, no pool or contact",
+     "fix": "about 120 m at eye 1.6 m, fov 18, side-lit with the key, contact under the skids, the line ending at its fence"
+    }
+   ]
+  },
+  {
+   "slide": 2,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "flat ribbon outline with a black band, nothing of known size, road and channel imply placement",
+     "fix": "a lit stake-and-string perimeter casting right, a semi at the near corner, the channel pulled off the far edge"
+    },
+    {
+     "judge": 2,
+     "problem": "a 2D diagram at feed size with a black channel band and a dashed road",
+     "fix": "eye about 250 m at a lower oblique, the near corner in a lit pool with grass and a modelled shoulder, riprap with a specular water edge"
+    },
+    {
+     "judge": 3,
+     "problem": "ribbon on a noise texture, flat black channel, nothing of known size",
+     "fix": "riprap and water with the seam reflected, the near corner and shoulder in a pool, a tractor-trailer for scale"
+    }
+   ]
+  },
+  {
+   "slide": 7,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "dead wall between dek and dais, box chairs, no window",
+     "fix": "raise and tilt down so rows and dais fill from y 900, a left-wall window as a cool rim"
+    },
+    {
+     "judge": 3,
+     "problem": "the chairs appear to face the camera",
+     "fix": "rotate the rows 180 degrees so the backs face the camera"
+    }
+   ]
+  },
+  {
+   "slide": 8,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "a generic lectern reusing 7's kit for Brownsville's copy",
+     "fix": "a Brownsville object in the deck's vocabulary in a single-lamp pool"
+    }
+   ]
+  },
+  {
+   "slide": 9,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "sticker-flat face with no town name, reflectors in a lane",
+     "fix": "STARBASE above CITY LIMIT, retroreflective falloff, reflectors on the centre line"
+    }
+   ]
+  }
+ ],
+ "rounds_derived": 3,
+ "rounds": 3,
+ "rounds_source": "this module's own log of cards it has scored",
+ "rounds_declared": 3,
+ "at_cap": true,
+ "rung": null,
+ "shortfall": "at the round cap the finished deck ships at 7.462, 0.538 under the 8.0 top rung. Name that in the email and the run record",
+ "craft_floor": "capped",
+ "craft_note": "at the round cap the craft floor stands down. The art median 6.6 is under 8.5 and the deck ships as it is. Name it in the run record"
+}

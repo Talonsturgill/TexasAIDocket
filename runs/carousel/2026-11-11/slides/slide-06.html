@@ -1,0 +1,60 @@
+<!doctype html>
+<!-- 2026-11-11, frame 6 of 9. Archetype OBJECT_AND_CAPTION. A spatial scene through txthree.js in the lastLight world: the flagged line runs away from the camera across the flats to a gas-fired generating unit standing at its far end, side_m metres out, in its own pool. No grid line is drawn either way. Drawn to illustrate, with no design in the record. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:900px">It could make its own power</h1>
+<p class="dek" data-follow="26" style="width:860px">The Tribune reports the gas-fired plant could power the facility without connecting to the state grid. It says the Governor had grid operators pause data center connection requests in August, pending audits. Drawn to illustrate.</p>
+<script>window.FIG = {"side_m": 1340};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-11-cityline.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Starbase, Cameron County", counter: "06 / 09", src: "c1 c11 c18", fit: { min: 80, max: 104, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 30, near: 0.1, far: 9000 });
+  /* the key rakes from behind the camera's left; THE FIGURE: the line runs side_m metres to the unit at its far end */
+  const F_ = new THREE.Vector3(0.4, 0, -0.92).normalize(), RT = new THREE.Vector3(0.92, 0, 0.4).normalize();
+  const D = FIG.side_m;
+  const unit = K.make('gas_peaker', { units: 1, transformer: false, seed: 74 });
+  unit.position.copy(F_.clone().multiplyScalar(D).add(RT.clone().multiplyScalar(14))); unit.rotation.y = 0.75;
+  /* galvanized grey, so the low key models the faces instead of clipping them white */
+  unit.traverse((m) => { if (!m.isMesh) return; const ms = Array.isArray(m.material) ? m.material : [m.material]; m.material = ms.map((x) => { const y = x.clone(); if (y.color) y.color.multiplyScalar(0.45); if (y.emissive) y.emissive.multiplyScalar(0.3); return y; }); if (m.material.length === 1) m.material = m.material[0]; });
+  TXT.add(R, unit); TXT.contact(R, unit, { opacity: 0.85 });
+  const line = new THREE.Group(), pts = [];
+  for (let d = 95; d < D - 60; d += (d > 1080 ? 9 : 20)) { const p = F_.clone().multiplyScalar(d).add(RT.clone().multiplyScalar(-4 + 10 * d / D)); const st = K.make('survey_lath', { flag: 'green', mud: 0.1, seed: d, scale: 1.4 }); st.position.copy(p); st.rotation.y = 0.3 + (d % 60) / 60; line.add(st); pts.push([p.x, 1.45, p.z]); }
+  TXT.add(R, line);
+  /* recomposed about 230 m from the unit, so the line's last stakes lead to it and it fills a third of the width */
+  const FROM = [F_.x * 1120 + RT.x * 3.0, 1.5, F_.z * 1120 + RT.z * 3.0];
+  const LOOK = CH.aim(THREE, R, TXT, FROM, [unit.position.x, 8, unit.position.z], 640, 820, 30);
+  TXT.frame(R, { fov: 30, from: FROM, look: LOOK });
+  TXT.sky(R);
+  TXT.ground(R, { surface: 'dirt', color: 0x8a7e68, size: 12000, seed: 17 });
+  CH.tidalFlat(THREE, TXT, R, { size: 6000, tile: 50, y: 0.01, veins: 0.3, mottle: 1.1 });
+  CH.pool(THREE, TXT, R, [unit.position.x, 0, unit.position.z], { radius: 70, i: 1.3 });
+  CH.pool(THREE, TXT, R, [F_.x * 240, 0, F_.z * 240], { radius: 150, i: 8.0 });
+  TXT.scatter(R, { kind: 'grass', count: 9000, area: [-150, -1500, 900, -50], seed: 18, scale: [0.5, 0.9] });
+  TXT.deckRig(R, CH.rigSpec(W, 300, 4096), CH.rigOpts([unit.position.x * 0.6, 0, unit.position.z * 0.6], { distance: 900, shadowFar: 2200, normalBias: 0.05 }));
+  TXT.weather(R, { grime: 0.35, height: 3, mottle: 0.2 });
+  TXT.stage(R, [unit, line]);
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.dress(cx, { foot: 0.6 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>
