@@ -1,0 +1,16 @@
+{"lens":"integrity","round":2,"criteria":[
+{"name":"artwork_craft","weight":0.22,"score":6.8,"why":"1, 2 and 4 strong; slide 2 counts exact (126, 108, 81); slide 5 month ticks placed correctly. Slide 8 worst: slumped figure behind a seat back, wheel far right untouched, no road or seam. Slide 5 grey mid-tone ruler, brown groove. Slide 3 dim rows, muddy near third, leaders across cars. Slide 6 blue-grey cars, generic skyline. 7 and 9 mannequin people."},
+{"name":"deck_coherence","weight":0.12,"score":7.8,"why":"Lot motif across 1, 2, 3, 4, 6, 9; the stripe means one thing; key casts right throughout; value dark. Frame 8 breaks the material vocabulary; frame 6 cold blue."},
+{"name":"claim_integrity","weight":0.20,"score":7.8,"why":"Every numeral traces, computations check, rejected findings honoured. Slide 8 headline in present tense from October 5th and 8th statements; slide 9's list-linked sentence rests on c43's link title; slide 6 omits the department's c52 answer on public information; first comment's Kodiak line lacks c68; slide 3's cite line omits c13 and c16."},
+{"name":"story_and_stakes","weight":0.16,"score":7.3,"why":"Body, law (hashtag only), date, terms, Dallas ask and answer, threshold, concrete action. No pending decision; never says what the 17 companies run or where."},
+{"name":"sequence_and_momentum","weight":0.10,"score":7.3,"why":"Cover earns the swipe, 2 pays, turn at 5, close on an action. 4 repeats 3; 8 a detour whose Permian line undercuts its headline."},
+{"name":"voice","weight":0.10,"score":7.2,"why":"Clean, plain, house rules held, even-handed; reads like a careful report; flat hooks on 4 and 9."},
+{"name":"variety","weight":0.10,"score":6.3,"why":"Fourth AV deck in 30 days; frame 8 echoes no. 67; no. 52 already drew a white robotaxi on a dark lot in lastLight; cover opens on a big number again."}],
+"weighted_score":7.24,"hard_fails":[],"ship":false,
+"one_sentence_fix":"Rebuild slide 8 so the figure sits behind the wheel with the road through the windshield, and rewrite its headline in attribution.",
+"artwork_weakest_frames":[
+{"slide":8,"problem":"Slumped figure behind a seat back, wheel far right untouched, hands at the bottom edge, no road through the windshield.","fix":"Passenger-seat camera at seated eye, driver's seat and wheel together in the left half, hands on the rim, windshield open to the road and seam on the right."},
+{"slide":5,"problem":"Flat grey mid-tone slab with no bright edge, brown groove, a diagram at 432 px.","fix":"Rake the key along the graduations for a hot specular line on the bevel and stop block top, mat to true black, groove to lit dusk_gold enamel."},
+{"slide":3,"problem":"Column mostly in shadow, muddy near third, leaders cross the cars.","fix":"Square the camera to the column, light its near half, labels at the end of their rows with leaders under 60 px."},
+{"slide":6,"problem":"Cold blue-grey cars, full rows instead of tail rows, generic skyline.","fix":"Warm key on the near flanks, frame the tail rows with single cars and empty bays."},
+{"slide":9,"problem":"Mannequin figure from behind, faint mesh cast.","fix":"Crop the figure to shoulders and cap at the left edge, harden the fence's cast."}]}

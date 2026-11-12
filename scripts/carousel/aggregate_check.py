@@ -675,12 +675,73 @@ def check(report: dict, declared: dict, claims: dict, caption: str = "",
 
     # A declaration for something no slide says is a leftover from an earlier draft, and a
     # leftover is how a stale number gets reused next run.
+    #
+    # A BARE FIGURE THE FRAME PRINTS IS NOT A LEFTOVER (weekly pass 2026-11-12). `numeral_trace`
+    # authorises a numeral no claim carries when aggregates.json declares it, and this loop refused
+    # every such declaration because "no slide says it" really meant "no SHAPE found it". No. 74
+    # rewrote "1,340 m a side" as "1,340 metres" and no. 75 rewrote its dek as "That 74 percent
+    # leaves 825 vehicles" to reach the count shape, so two gates disagreed and the copy paid. So a
+    # declaration whose exact phrase a published surface prints, as whole tokens, is judged like any
+    # detected one: its route is re-derived, and its value must be the number the phrase prints. A
+    # phrase no surface prints is still a leftover, exactly as before.
     seen = {f["phrase"].strip().lower() for f in found}
+    printed = printed_lines(report, caption, title, comment)
     for key, d in decls.items():
-        if key not in seen:
+        if key in seen:
+            continue
+        where = bare_printed(d.get("phrase", ""), printed)
+        if where is None:
             problems.append(f"aggregates.json declares \"{d.get('phrase')}\" and no slide says "
                             f"it. Remove it rather than leaving it to be reused")
+            continue
+        okv, why = bare_value(d)
+        if okv:
+            okv, why = rederive(d, claims)
+        if not okv:
+            problems.append(f"{where}: \"{d.get('phrase')}\" does not re-derive. {why}")
     return problems
+
+
+def printed_lines(report: dict, caption: str = "", title: str = "", comment: str = "") -> list:
+    """(surface, line) for every string a reader sees: each frame's text nodes, decorative ones
+    included because a reader does not know a node was marked, then the caption, title and first
+    comment, line by line."""
+    out = []
+    for i, slide in enumerate((report or {}).get("slides") or []):
+        name = slide.get("slide") or slide.get("file") or f"slide {i + 1}"
+        out += [(name, str(n.get("text") or "")) for n in slide.get("text_nodes") or []]
+    out += [("caption.txt", ln) for ln in (caption or "").splitlines()]
+    out += [("document_title", title)] if title else []
+    out += [("first_comment.txt", ln) for ln in (comment or "").splitlines()]
+    return [(w, t) for w, t in out if t.strip()]
+
+
+def bare_printed(phrase: str, printed: list) -> str | None:
+    """The surface printing `phrase` as WHOLE TOKENS, or None. Whole means no letter, digit,
+    separator or decimal point runs on at either end, so "825" is not printed by "1,825" or by
+    "825.5", and a phrase carrying no number is never a figure at all."""
+    phrase = (phrase or "").strip()
+    if not phrase or not re.search(rf"\b{NUM}\b", phrase, re.I):
+        return None
+    body = r"\s+".join(re.escape(w) for w in phrase.split())
+    rx = re.compile(rf"(?<![\w.,]){body}(?![\w]|[.,]\d)", re.I)
+    for where, text in printed:
+        if rx.search(text.replace("’", "'")):
+            return where
+    return None
+
+
+def bare_value(decl: dict) -> tuple[bool, str]:
+    """A bare declaration's value is the number its phrase prints. No shape found it, so nothing
+    else ties the declaration to the frame, and this is that tie."""
+    stated = decl.get("value")
+    toks = [to_int(m.group(0)) for m in re.finditer(rf"\b{NUM}\b", decl.get("phrase") or "", re.I)]
+    toks = [t for t in toks if t is not None]
+    if not isinstance(stated, (int, float)) or stated not in toks:
+        return False, (f"the phrase prints {toks[0] if len(toks) == 1 else toks} and the "
+                       f"declaration's value is {stated!r}. A declared figure is the number the "
+                       f"frame prints")
+    return True, ""
 
 
 def receipt(found: list, declared: dict, problems: list) -> dict:
@@ -1030,6 +1091,45 @@ def self_test() -> int:
 
     ok("an empty deck is clean rather than an error",
        not check({"slides": []}, {"aggregates": []}, claims))
+
+    # A BARE FIGURE THE FRAME PRINTS, DECLARED (weekly pass 2026-11-12). Nos. 74 and 75 replayed:
+    # numeral_trace asked for a declaration of "1,340 m" and of "74 percent" and "825", and this
+    # gate refused each as a leftover because no SHAPE found it, so both runs rewrote the copy into
+    # the count shape ("74 percent leaves", "1,340 metres") to be allowed to declare it. A phrase
+    # the frame prints is not a leftover. It is judged like any other declaration, and its value
+    # has to be the number the phrase prints.
+    _cbx = "out/2026-11-12/compute.py, share_top2, c13 plus c16 over c19"
+    bare_r = {"slides": [{"slide": "slide-02", "text_nodes": [
+        {"text": "Waymo and Tesla hold 74 percent. That leaves 825 to the other companies."}]},
+        {"slide": "slide-03", "text_nodes": [{"text": "The flat runs 1,340 m a side"}]}]}
+    bare_d = {"aggregates": [
+        {"phrase": "74 percent", "kind": "measure", "value": 74, "computed_by": _cbx},
+        {"phrase": "825", "kind": "count", "value": 825, "computed_by": _cbx},
+        {"phrase": "1,340 m", "kind": "measure", "value": 1340, "computed_by": _cbx}]}
+    ok("a bare figure the frame prints, declared and re-derived, passes (nos. 74 and 75)",
+       not check(bare_r, bare_d, claims), str(check(bare_r, bare_d, claims))[:240])
+
+    def bare(text, **over):
+        d = dict(bare_d["aggregates"][0]); d.update(over)
+        for k, v in list(d.items()):
+            if v is None:
+                d.pop(k)
+        return check({"slides": [{"slide": "slide-02", "text_nodes": [{"text": text}]}]},
+                     {"aggregates": [d]}, claims)
+    ok("caught: a bare declaration whose phrase no frame prints is still a leftover",
+       any("no slide says it" in p for p in bare("Waymo and Tesla hold most of the list.")))
+    ok("caught: a bare declaration whose value is not the number its phrase prints",
+       any("prints 74" in p for p in bare("Waymo and Tesla hold 74 percent.", value=75)))
+    ok("caught: a bare phrase found only INSIDE a larger number is not printed",
+       any("no slide says it" in p for p in bare("They hold 174 percent of it.")))
+    ok("caught: a bare phrase found only before a decimal is not printed",
+       any("no slide says it" in p for p in bare("They hold 74.5 percent of it.")))
+    ok("caught: a bare declaration with no route still does not re-derive",
+       any("does not re-derive" in p for p in bare("Waymo and Tesla hold 74 percent.",
+                                                  computed_by=None)))
+    ok("caught: a bare declaration whose phrase carries no number at all",
+       any("no slide says it" in p for p in bare("Waymo and Tesla hold most of it.",
+                                                  phrase="most of it", value=1)))
 
     # THE QUOTED ROUTE (2026-08-18). Run No.2's own figures, verbatim: c2 says "the launch of
     # two Future 2 schools" and the slide printed "Two schools". Before this the only way to

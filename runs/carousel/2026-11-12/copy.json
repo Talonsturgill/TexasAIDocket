@@ -1,0 +1,240 @@
+{
+ "date": "2026-11-12",
+ "carousel_no": 75,
+ "document_title": "Two names hold 74 percent of the 3,164 automated vehicles on the TxDMV report",
+ "_note": "Slide strings read off the render report's text nodes and each frame's own source line by build_copy.py.",
+ "caption": "Waymo lists 1,259. International Transport Eng lists 7.\n\nBoth sit on one report from the Texas Department of Motor Vehicles, data as of October 29th. It counts 3,164 automated vehicles from 17 companies. Waymo and Tesla Robotaxi hold 74 percent of them.\n\nSince May 28th a company running automated vehicles commercially in Texas needs a state authorization. It carries no fee and never expires.\n\nThe City of Dallas asked the department to require crash history. The department answered that the Transportation Code doesn't allow it.\n\nA concern that an automated vehicle could cause serious bodily injury or death can go to the department's Enforcement Division. Below that standard it calls administrative enforcement unlikely.\n\nEach car in the lot on the slides stands for ten listed vehicles.\n\nShould lawmakers let the department require crash history?\n\n#TxDMV #SB2807 #CityOfDallas",
+ "slides": {
+  "S1": {
+   "n": 1,
+   "file": "slide-01.html",
+   "kicker": "Texas, statewide",
+   "headline": "3,164 automated vehicles, 17 names",
+   "claims": [
+    "c18",
+    "c19",
+    "c20",
+    "c26"
+   ],
+   "cite": "c18 c19 c20 c26",
+   "body": "Since May 28th, a company running automated vehicles commercially in Texas needs a state authorization. A Texas Department of Motor Vehicles report with data as of October 29th lists 17 companies.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "3,164 automated vehicles, 17 names",
+    "Since May 28th, a company running automated vehicles commercially in Texas needs a state authorization. A Texas Department of Motor Vehicles report with data as of October 29th lists 17 companies.",
+    "Texas, statewide",
+    "01 / 09",
+    "c18 c19 c20 c26"
+   ]
+  },
+  "S2": {
+   "n": 2,
+   "file": "slide-02.html",
+   "kicker": "Texas, statewide",
+   "headline": "Two names hold 74 percent",
+   "claims": [
+    "c13",
+    "c16",
+    "c18",
+    "c19"
+   ],
+   "cite": "c13 c16 c18 c19",
+   "body": "Waymo lists 1,259 vehicles and Tesla Robotaxi 1,080. That 74 percent leaves 825 vehicles to the other 15 companies. One car here stands for ten listed vehicles.",
+   "labels": [
+    "WAYMO 1,259",
+    "TESLA ROBOTAXI 1,080",
+    "15 OTHERS 825"
+   ],
+   "strings": [
+    "texasaidocket.com",
+    "Two names hold 74 percent",
+    "Waymo lists 1,259 vehicles and Tesla Robotaxi 1,080. That 74 percent leaves 825 vehicles to the other 15 companies. One car here stands for ten listed vehicles.",
+    "WAYMO 1,259",
+    "TESLA ROBOTAXI 1,080",
+    "15 OTHERS 825",
+    "Texas, statewide",
+    "02 / 09",
+    "c13 c16 c18 c19"
+   ]
+  },
+  "S3": {
+   "n": 3,
+   "file": "slide-03.html",
+   "kicker": "Texas, statewide",
+   "headline": "Fifteen companies share 825",
+   "claims": [
+    "c2",
+    "c1",
+    "c7",
+    "c15",
+    "c6",
+    "c19",
+    "c13",
+    "c16"
+   ],
+   "cite": "c2 c1 c7 c15 c6 c19 c13 c16",
+   "body": "Avride lists 344. Then 14 companies list fewer than 100 vehicles each, down to International Transport Eng at 7. One car stands for ten listed vehicles, and a white bar marks where each company ends.",
+   "labels": [
+    "AVRIDE 344",
+    "AURORA 91",
+    "KODIAK 36",
+    "WAABI 13",
+    "INTERNATIONAL TRANSPORT ENG 7"
+   ],
+   "strings": [
+    "texasaidocket.com",
+    "Fifteen companies share 825",
+    "Avride lists 344. Then 14 companies list fewer than 100 vehicles each, down to International Transport Eng at 7. One car stands for ten listed vehicles, and a white bar marks where each company ends.",
+    "AVRIDE 344",
+    "AURORA 91",
+    "KODIAK 36",
+    "WAABI 13",
+    "INTERNATIONAL TRANSPORT ENG 7",
+    "Texas, statewide",
+    "03 / 09",
+    "c2 c1 c7 c15 c6 c19 c13 c16"
+   ]
+  },
+  "S4": {
+   "n": 4,
+   "file": "slide-04.html",
+   "kicker": "Texas, statewide",
+   "headline": "The smallest entry lists 7",
+   "claims": [
+    "c6",
+    "c3",
+    "c15",
+    "c9",
+    "c11"
+   ],
+   "cite": "c6 c3 c15 c9 c11",
+   "body": "International Transport Eng lists 7 vehicles. On the lot it is one car, alone in a row built for ten. Bot Auto and Waabi list 13 each, MOIA and PlusAI 12 each.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "The smallest entry lists 7",
+    "International Transport Eng lists 7 vehicles. On the lot it is one car, alone in a row built for ten. Bot Auto and Waabi list 13 each, MOIA and PlusAI 12 each.",
+    "Texas, statewide",
+    "04 / 09",
+    "c6 c3 c15 c9 c11"
+   ]
+  },
+  "S5": {
+   "n": 5,
+   "file": "slide-05.html",
+   "kicker": "Texas, statewide",
+   "headline": "No fee, and no expiry",
+   "claims": [
+    "c26",
+    "c20",
+    "c32",
+    "c33"
+   ],
+   "cite": "c26 c20 c32 c33",
+   "body": "Commercial operation has needed an authorization since May 28th, 154 days before the report's data date. It carries no fee and stays valid until the department revokes it.",
+   "labels": [
+    "MAY 28TH",
+    "OCTOBER 29TH"
+   ],
+   "strings": [
+    "texasaidocket.com",
+    "No fee, and no expiry",
+    "Commercial operation has needed an authorization since May 28th, 154 days before the report's data date. It carries no fee and stays valid until the department revokes it.",
+    "MAY 28TH",
+    "OCTOBER 29TH",
+    "Texas, statewide",
+    "05 / 09",
+    "c26 c20 c32 c33"
+   ]
+  },
+  "S6": {
+   "n": 6,
+   "file": "slide-06.html",
+   "kicker": "Dallas",
+   "headline": "Dallas asked for crash history",
+   "claims": [
+    "c50",
+    "c51"
+   ],
+   "cite": "c50 c51",
+   "body": "In comments on the rules, the City of Dallas asked the department to require crash history and to make information about approved operators public. The department answered that sections 545.453 and 545.456 of the Transportation Code don't allow it to require crash history.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "Dallas asked for crash history",
+    "In comments on the rules, the City of Dallas asked the department to require crash history and to make information about approved operators public. The department answered that sections 545.453 and 545.456 of the Transportation Code don't allow it to require crash history.",
+    "Dallas",
+    "06 / 09",
+    "c50 c51"
+   ]
+  },
+  "S7": {
+   "n": 7,
+   "file": "slide-07.html",
+   "kicker": "Texas, statewide",
+   "headline": "The line is serious bodily injury",
+   "claims": [
+    "c38",
+    "c37",
+    "c44"
+   ],
+   "cite": "c38 c37 c44",
+   "body": "The department treats an operation as endangering the public when it has caused serious bodily injury or is likely to. It calls administrative enforcement unlikely below that standard. Traffic laws apply to these vehicles as to any other.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "The line is serious bodily injury",
+    "The department treats an operation as endangering the public when it has caused serious bodily injury or is likely to. It calls administrative enforcement unlikely below that standard. Traffic laws apply to these vehicles as to any other.",
+    "Texas, statewide",
+    "07 / 09",
+    "c38 c37 c44"
+   ]
+  },
+  "S8": {
+   "n": 8,
+   "file": "slide-08.html",
+   "kicker": "Dallas, Houston, Laredo",
+   "headline": "Two releases say a person sits up front",
+   "claims": [
+    "c62",
+    "c63",
+    "c64",
+    "c65",
+    "c68"
+   ],
+   "cite": "c62 c63 c64 c65 c68",
+   "body": "Volvo says its autonomous hauls with Waabi between Dallas and Houston currently run with an observer in the driver's seat. Kodiak and Charger say they run between Dallas and Laredo with a safety driver behind the wheel. Kodiak says its Permian Basin trucks have run with no one in the cab since December 2024.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "Two releases say a person sits up front",
+    "Volvo says its autonomous hauls with Waabi between Dallas and Houston currently run with an observer in the driver's seat. Kodiak and Charger say they run between Dallas and Laredo with a safety driver behind the wheel. Kodiak says its Permian Basin trucks have run with no one in the cab since December 2024.",
+    "Dallas, Houston, Laredo",
+    "08 / 09",
+    "c62 c63 c64 c65 c68"
+   ]
+  },
+  "S9": {
+   "n": 9,
+   "file": "slide-09.html",
+   "kicker": "Texas, statewide",
+   "headline": "Where a concern goes",
+   "claims": [
+    "c36",
+    "c43"
+   ],
+   "cite": "c36 c43",
+   "body": "A concern that an automated vehicle could cause serious bodily injury or death can go to the department's Enforcement Division at txmccs.txdmv.gov/truckstop. The department's program page links an authorizations report.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "Where a concern goes",
+    "A concern that an automated vehicle could cause serious bodily injury or death can go to the department's Enforcement Division at txmccs.txdmv.gov/truckstop. The department's program page links an authorizations report.",
+    "Texas, statewide",
+    "09 / 09",
+    "c36 c43"
+   ]
+  }
+ }
+}

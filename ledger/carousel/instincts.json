@@ -226,7 +226,8 @@
         "2026-11-05",
         "2026-11-07",
         "2026-11-08",
-        "2026-11-10"
+        "2026-11-10",
+        "2026-11-12"
       ],
       "contradicted": []
     },
@@ -657,7 +658,8 @@
         "2026-11-03",
         "2026-11-05",
         "2026-11-10",
-        "2026-11-11"
+        "2026-11-11",
+        "2026-11-12"
       ],
       "contradicted": []
     },
@@ -760,7 +762,8 @@
         "2026-11-03",
         "2026-11-05",
         "2026-11-07",
-        "2026-11-08"
+        "2026-11-08",
+        "2026-11-12"
       ],
       "contradicted": []
     },
@@ -1818,6 +1821,22 @@
       "learned": "2026-11-11",
       "instinct": "A key at a few degrees of elevation throws casts long and away from a camera at eye height, so they foreshorten to slivers. When the casts carry the frame, raise the camera or turn the key across the view.",
       "evidence": "no. 74 frame 1, posts' shadows at key elevation 7 from a 1.5 m eye read as faint streaks to the pixel critic, the art director and two judges across four readings",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "kit-sit-read-bakes-a-bowed-head",
+      "learned": "2026-11-12",
+      "instinct": "Never cast a kit person in sit_read for a figure meant to be watching the road, because the pose bakes a bowed head into its geometry and every judge reads it as asleep.",
+      "evidence": "No. 75 frame 8, an observer in a truck cab named slumped or asleep by every pixel critic, the flow critic and all nine panel cards across three rounds; leaning the figure back hid it behind the seat and a behind-the-seat camera lost it entirely.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "computed-figures-need-a-detectable-phrase",
+      "learned": "2026-11-12",
+      "instinct": "Set every computed figure on a slide as a number followed by a plural noun, so aggregate_check detects it and its declaration also clears numeral_trace.",
+      "evidence": "No. 75, 74 percent, 825 and the 100 threshold were bare figures; numeral_trace needed declarations aggregate_check then refused as stale, until the copy read 74 percent leaves, 825 vehicles and 100 vehicles.",
       "confirmed": [],
       "contradicted": []
     }

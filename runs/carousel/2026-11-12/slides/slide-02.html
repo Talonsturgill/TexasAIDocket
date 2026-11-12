@@ -1,0 +1,66 @@
+<!doctype html>
+<!-- 2026-11-12, frame 2 of 9. Archetype GRID. A spatial scene through txthree.js in the lastLight world: the whole roster parked at one stand-in car per ten listed vehicles, in rows of ten bays, through a long lens. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:900px">Two names hold 74&nbsp;percent</h1>
+<p class="dek" data-follow="22" style="width:880px">Waymo lists 1,259 vehicles and Tesla Robotaxi 1,080. That 74 percent leaves 825 vehicles to the other 15 companies. One car here stands for ten listed vehicles.</p>
+<div class="lab" id="lab1">WAYMO 1,259</div>
+<div class="lab" id="lab2">TESLA ROBOTAXI 1,080</div>
+<div class="lab" id="lab3">15 OTHERS 825</div>
+<script>window.FIG = {"units": {"Waymo": 126, "Tesla Robotaxi": 108, "Avride": 34, "Aurora": 9, "Gatik": 6, "Zoox": 6, "Nuro": 5, "Atlas Energy Solutions": 4, "Kodiak": 4, "Torc": 3, "Stack": 3, "May Mobility": 2, "Bot Auto": 1, "Waabi": 1, "MOIA": 1, "PlusAI": 1, "International Transport Eng": 1}, "u_top2": 234};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-12-roster.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Texas, statewide", counter: "02 / 09", src: "c13 c16 c18 c19", fit: { min: 76, max: 100, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 38, near: 1, far: 6000 });
+  /* THE FIGURE: the first two columns hold u_top2 cars and the third u_rest, asserted before anything is drawn */
+  const top2 = FIG.units[Object.keys(FIG.units)[0]] + FIG.units[Object.keys(FIG.units)[1]];
+  if (top2 !== FIG.u_top2) throw new Error('top two columns do not hold u_top2');
+  const lot = K.make('fleet_lot', { stripeTrim: 6, order: Object.keys(FIG.units), units: FIG.units });
+  const plan = lot.userData.plan;
+  TXT.add(R, lot);
+  lot.updateMatrixWorld(true);
+  const bb = new THREE.Box3().setFromObject(lot), bc = new THREE.Vector3(); bb.getCenter(bc);
+  const ox = bc.x - (plan.minX + plan.maxX) / 2, oz = bc.z - (plan.minZ + plan.maxZ) / 2;
+  const toW = (x, y, z) => [x + ox, y, z + oz];
+  const C0 = toW((plan.minX + plan.maxX) / 2, 0, (plan.minZ + plan.maxZ) / 2), cx0 = C0[0], cz0 = C0[2];
+  const FROM = [cx0, 78, cz0 + 188];
+  const LOOK = CH.aim(THREE, R, TXT, FROM, [cx0, 0, cz0], 540, 840, 38);
+  TXT.frame(R, { fov: 38, from: FROM, look: LOOK });
+  TXT.sky(R);
+  TXT.ground(R, { surface: 'asphalt', color: 0x1a1b20, size: 3000, seed: 12 });
+  TXT.deckRig(R, CH.rigSpec(W, 220, 4096), CH.rigOpts([cx0, 0, cz0], { distance: 260, shadowFar: 600, normalBias: 0.03 }));
+  CH.warm(R, 0.35);
+  /* the key's pool on the whole lot, so the asphalt, the stall bars and each car's cast read at feed size */
+  CH.pool(THREE, TXT, R, [cx0, 0, cz0], { radius: 78, i: 2.4, color: 0xffc890 });
+  const p1 = CH.project(THREE, R, toW(plan.rows.find(r => r.col === 0).x0 + 13.75, 0, plan.maxZ + 3));
+  const p2 = CH.project(THREE, R, toW(plan.rows.find(r => r.col === 1).x0 + 13.75, 0, plan.maxZ + 3));
+  const p3 = CH.project(THREE, R, toW(plan.rows.find(r => r.col === 2).x0 + 13.75, 0, plan.maxZ + 3));
+  const place = (id, p, dy) => { const el = document.getElementById(id), w = el.getBoundingClientRect().width; CH.pinLabel(id, [Math.max(80, Math.min(1000 - w, p[0] - w / 2)), p[1] + dy]); };
+  const by = Math.min(1150, Math.max(p1[1], p2[1], p3[1]) + 14); p1[1] = p2[1] = p3[1] = by; place('lab1', p1, 0); place('lab2', p2, 0); place('lab3', [p3[0] + 46, p3[1]], 0);
+  TXT.weather(R, { grime: 0.4, height: 0.6, mottle: 0.25 });
+  TXT.stage(R, lot);
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.dress(cx, { foot: 0.6 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

@@ -3942,4 +3942,55 @@
   "gate changes": "None, so no self-test or GATE_LESSONS entry is owed"
  }
 }
+,
+"2026-11-12 weekly": {
+ "date": "2026-11-12",
+ "run": "weekly machine pass, read with carousel no. 75 (the roster, shipped at the round cap, 7.426), due early on kit-person-reads-as-mannequin-within-two-metres (repeat 6) and relief-plate-reads-as-a-tray (repeat 4)",
+ "actor": "upgrade",
+ "upgrades": [
+  {
+   "id": "2026-11-12 weekly #1",
+   "what": "Kit person: pose sit_drive (upright with a slight recline, the head level, knees above the hips, both hands closed on a rim by two bone reach), a headPitch option every pose honours (from level, so 0 is a level gaze in sit_read too), and a hands option that closes either hand on a named point in any pose, reporting how far it fell short. With sit_drive or hands the model keeps its origin and publishes userData.attach hip, seat (measured off the trousers), eye and hands. semi_cab_interior publishes attach.rim, its own ten and two. All opt in",
+   "why": "No. 75 frame 8 was the top ranked artwork defect in rounds 1 and 3 ('Mannequin with bowed head, wheel in front of nobody'), read slumped or asleep by every pixel critic, the flow critic and all nine panel cards, and the round 3 craft judge's last fix was 'Rebuild slide 8 with the person's hands on the rim'. sit_read baked a 0.42 rad head pitch, so three recompositions could not raise the head. Queue kit-person-no-upright-seated-pose (new) and kit-person-reads-as-mannequin-within-two-metres (repeat 6); digest theme 'primitive or low-poly model where a kit model belongs', 6 runs of 6 and 17 rounds",
+   "files": [
+    "assets/js/kit/people.js",
+    "assets/js/kit/vehicles.js",
+    "knowledge/carousel/ARSENAL.md"
+   ],
+   "verification": "node --check on both modules exit 0. runs/carousel/2026-11-12/slides/slide-08.html re-rendered from its shipped source through .claude/skills/carousel-engine/render.py with the change in place: pixel identical to out/2026-11-12/render/slide-08.png (max channel difference 0), so the default path did not move. The same frame with pose sit_drive and hands from A.rim (out/2026-11-12/tmp/machine/replay8): exit 0, errors 0, read at full size and cropped at native size; upright, head level, both hands closed on the rim, attach.hands short 0 and 0, seat measured 0.429 m against the cab's 0.43. examples/kit/build.py --family people --names person rendered, plus hero pages for sit_drive and sit_read with headPitch 0 (out/2026-11-12/tmp/machine/kitproof), read at full size. examples/kit/sizes.py exit 0, 145 of 145",
+   "revert": "the upgrade commit that carries assets/js/kit/people.js for 2026-11-12 (the showrunner commits it)",
+   "how_i_would_know_this_was_wrong": "A deck that calls sit_drive is charged for hands that float off or pass through a rim, a twisted or broken wrist, or a head that still reads bowed; or a deck's default kit person renders differently from before 2026-11-12; or sizes.py fails person or semi_cab_interior"
+  },
+  {
+   "id": "2026-11-12 weekly #2",
+   "what": "aggregate_check judges a declaration whose exact phrase a published surface prints as whole tokens, though no shape detects it: its route is re-derived and its value must be the number the phrase prints. A phrase no surface prints stays a leftover. numeral_trace's untraced message names the route instead of saying the declaration is refused",
+   "why": "Two runs in a row rewrote copy to fit the detector: no. 74's '1,340 m a side' became '1,340 metres' and no. 75's dek became 'That 74 percent leaves 825 vehicles', because numeral_trace demands a declaration for a computed figure no claim carries and aggregate_check refused any declaration its shapes had not found. Queue aggregate-and-numeral-trace-disagree-on-bare-figures (no. 75), drawn-scale-figure-has-no-declaration-route (no. 74), computed-percent-cannot-be-declared (no. 68): 3 runs",
+   "files": [
+    "scripts/carousel/aggregate_check.py",
+    "scripts/carousel/numeral_trace.py"
+   ],
+   "verification": "aggregate_check --self-test exit 0 with seven new cases: the replay of nos. 74 and 75 passes, and it FAILED on the code before this change; a phrase no frame prints, one found only inside a larger number, one found only before a decimal, one carrying no number, one with no route and one whose value differs from the printed number are each red. numeral_trace --self-test exit 0. Replayed against every shipped run under runs/carousel through surfaces(): 36 problems on the old code, 32 on the new, no run newly red; the one changed message (2026-09-17, 'two doctors' declared at 52) is a sharper finding on an older deck. aggregate_check --date 2026-11-12 on a copy of today's run: clean, 25 figures",
+   "revert": "the upgrade commit that carries scripts/carousel/aggregate_check.py for 2026-11-12 (the showrunner commits it)",
+   "how_i_would_know_this_was_wrong": "A run declares a bare phrase that matches an unrelated string on another surface and passes a figure the frame did not mean, or a published figure ships wrong under a computed_by declaration whose value matched the print; or shipped_check's aggregates gate turns red on a deck that was green"
+  }
+ ],
+ "proposals_out_of_lane": [
+  {
+   "what": "A GATE_LESSONS entry for the two gates with two vocabularies (numeral_trace asked for a declaration aggregate_check refused)",
+   "owner": "human",
+   "why": "knowledge/shared/GATE_LESSONS.md is human lane; the brief says a gate change belongs there. UPGRADE_BACKLOG 2026-11-12 item 3"
+  },
+  {
+   "what": "Find whether a relief's stair-stepped cast follows the height field or the shadow map",
+   "owner": "human",
+   "why": "assets/js/txbench.js is human; relief-plate-reads-as-a-tray at repeat 4, no. 75 frame 5 in all three rounds; digest render artifact, 4 runs and 7 rounds. UPGRADE_BACKLOG 2026-11-12 item 4"
+  }
+ ],
+ "not_done": {
+  "kit person near detail": "Deferred, not refused: the neck reads lighter than the jaw and a ring shows at a bare wrist (measured on the replay), both default geometry, and today's frames 7 and 9 render the kit person. First artwork item for the next pass",
+  "fleet lot and crossover paint": "One deck each, repeat 0",
+  "themes that name a different frame on each deck": "Object in a void (6 runs, 11 rounds), no contact (6, 10), largest object unmodelled (5, 12), type on the art (5, 7)",
+  "gate changes": "aggregate_check changed with seven self-test cases that go red; its GATE_LESSONS entry is a proposal because that file is human lane"
+ }
+}
 }

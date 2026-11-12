@@ -1,0 +1,61 @@
+<!doctype html>
+<!-- 2026-11-12, frame 6 of 9. Archetype SPLIT_HORIZON. A spatial scene through txthree.js in the lastLight world: the tail of the parked roster in the foreground pool and Dallas as a hazed silhouette on the seam beyond. Drawn to illustrate; no real building is depicted. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:900px">Dallas asked for crash history</h1>
+<p class="dek" data-follow="34" style="width:840px">In comments on the rules, the City of Dallas asked the department to require crash history and to make information about approved operators public. The department answered that sections 545.453 and 545.456 of the Transportation Code don't allow it to require crash history.</p>
+<script>window.FIG = {"under_100": 14, "units": {"Waymo": 126, "Tesla Robotaxi": 108, "Avride": 34, "Aurora": 9, "Gatik": 6, "Zoox": 6, "Nuro": 5, "Atlas Energy Solutions": 4, "Kodiak": 4, "Torc": 3, "Stack": 3, "May Mobility": 2, "Bot Auto": 1, "Waabi": 1, "MOIA": 1, "PlusAI": 1, "International Transport Eng": 1}};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-12-roster.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Dallas", counter: "06 / 09", src: "c50 c51", fit: { min: 80, max: 104, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 16, near: 1, far: 30000 });
+  /* THE FIGURE: the lot holds under_100 companies with fewer than ten cars each; the foreground is their packed tail */
+  const ks = Object.keys(FIG.units), small = ks.filter(k => FIG.units[k] < 10).length;
+  if (small !== FIG.under_100) throw new Error('companies under ten cars do not match under_100');
+  const lot = K.make('fleet_lot', { order: Object.keys(FIG.units), units: FIG.units });
+  const plan = lot.userData.plan;
+  TXT.add(R, lot);
+  lot.updateMatrixWorld(true);
+  const bb = new THREE.Box3().setFromObject(lot), bc = new THREE.Vector3(); bb.getCenter(bc);
+  const ox = bc.x - (plan.minX + plan.maxX) / 2, oz = bc.z - (plan.minZ + plan.maxZ) / 2;
+  const toW = (x, y, z) => [x + ox, y, z + oz];
+  const r3 = plan.rows.filter(r => r.col === 2), last = r3[r3.length - 1];
+  const sd = TXT.sunDir(), h = new THREE.Vector3(sd.x, 0, sd.z).normalize();
+  const tail = toW(last.x0 + 13.75, 0, last.z + 4);
+  const FROM = [tail[0] - h.x * 34, 3, tail[2] - h.z * 34];
+  const sky = K.make('city_skyline', { city: 'dallas', dusk: true, lit: 0.12 });
+  sky.position.set(tail[0] + h.x * 6500, -78, tail[2] + h.z * 6500); sky.rotation.y = Math.atan2(-h.x, -h.z); sky.scale.setScalar(0.55); TXT.add(R, sky);   /* the skyline held under the dek, on the haze line */
+  const LOOK = CH.aim(THREE, R, TXT, FROM, [tail[0] + h.x * 400, 2, tail[2] + h.z * 400], 540, 735, 16);
+  TXT.frame(R, { fov: 16, from: FROM, look: LOOK });
+  TXT.sky(R);
+  TXT.ground(R, { surface: 'asphalt', color: 0x1a1b20, size: 30000, seed: 12 });
+  CH.KEY_SCALE = 0.35;
+  TXT.deckRig(R, CH.rigSpec(W, 90, 4096), CH.rigOpts(tail, { distance: 160, shadowFar: 400, normalBias: 0.03 }));
+  CH.warm(R, 0.9);   /* warmer bounce, so the limestone paint holds under the dusk sky rather than turning blue */
+  TXT.weather(R, { grime: 0.4, height: 0.5, mottle: 0.25 });
+  TXT.stage(R, lot);
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.dress(cx, { foot: 0.92 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

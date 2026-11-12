@@ -1,0 +1,55 @@
+<!doctype html>
+<!-- 2026-11-12, frame 7 of 9. Archetype FIGURE_SCALE. A spatial scene through txthree.js in the lastLight world: a stand-in car stopped behind a stop bar at a lot exit, a person walking past its nose on a worn crosswalk. Drawn to illustrate; nothing touches. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:900px">The line is serious bodily injury</h1>
+<p class="dek" data-follow="22" style="width:820px">The department treats an operation as endangering the public when it has caused serious bodily injury or is likely to. It calls administrative enforcement unlikely below that standard. Traffic laws apply to these vehicles as to any other.</p>
+<script>window.FIG = {};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-12-roster.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Texas, statewide", counter: "07 / 09", src: "c38 c37 c44", fit: { min: 80, max: 104, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 34, near: 0.1, far: 6000 });
+  /* a two lane street along x; the crosswalk at x 0 with its bars along z; the stand-in car heading +x, stopped behind the bar */
+  const road = K.make('road', { length: 60, lanes: 2, sidewalk: true }); TXT.add(R, road);
+  road.updateMatrixWorld(true); const RY = new THREE.Box3().setFromObject(road).max.y;   /* the road's own surface height */
+  const cw = K.make('crosswalk', { n: 8, wear: 'worn', l: 7.2 }); cw.position.set(0, RY + 0.004, 0); TXT.add(R, cw);
+  const bar = K.make('pavement_bar', { w: 0.45, l: 3.6, wear: 'worn' }); bar.position.set(-3.2, RY + 0.004, -1.8); TXT.add(R, bar);
+  const car = K.make('crossover', { color: CH.PAINT, metallic: false, sensors: true, seed: 75 }); car.rotation.y = Math.PI / 2; car.position.set(-6.1, RY, -1.8); TXT.add(R, car); CH.finishGlass(THREE, car); TXT.contact(R, car, { opacity: 0.9 });
+  const ss = K.make('stop_sign', {}); ss.position.set(-4.2, RY, -6.9); TXT.add(R, ss); TXT.contact(R, ss, { opacity: 0.7 });
+  const person = K.make('person', { role: 'resident', pose: 'walk', seed: 12, shirt: 0x2b3440, trousers: 0x3a342c, hat: 'none' });
+  person.position.set(0.4, RY, -0.6); person.rotation.y = -Math.PI / 2 + 0.5; TXT.add(R, person); TXT.contact(R, person, { opacity: 0.85 });
+  const FROM = [3.9, 1.1, 7.2];
+  const LOOK = CH.aim(THREE, R, TXT, FROM, [-2.4, 0.7, -1.2], 540, 1000, 34);
+  TXT.frame(R, { fov: 34, from: FROM, look: LOOK });
+  TXT.sky(R);
+  TXT.ground(R, { surface: 'asphalt', color: 0x1a1b20, size: 3000, seed: 12 });
+  TXT.deckRig(R, CH.rigSpec(W, 30, 4096), CH.rigOpts([-2, 0, -1], { distance: 50, shadowFar: 120, normalBias: 0.02 }));
+  CH.warm(R, 0.35);
+  const fl = new THREE.SpotLight(0xffe2c0, 50, 20, 0.35, 0.7, 2); fl.position.set(FROM[0] - 1, 4, FROM[2] - 2); fl.target.position.set(0.6, 1.0, -0.4); R.scene.add(fl); R.scene.add(fl.target);
+  TXT.weather(R, { grime: 0.45, height: 0.5, mottle: 0.25 });
+  TXT.stage(R, [car, person, cw]);
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.dress(cx, { foot: 0.6 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

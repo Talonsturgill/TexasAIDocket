@@ -1,0 +1,16 @@
+{"lens":"craft","round":2,"criteria":[
+{"name":"artwork_craft","weight":0.22,"score":6.3,"why":"Slide 2 a real showstopper idea, counts match, casts right, dark. Slide 1 near car owns the lower half but toy-like kit crossover. Slide 8 broken: person slumped, wheel empty across the cab, no road or seam, pale slab, stray rod. Slide 5 grey-middle frame, stair-stepped cast, muddy groove, aliased graduations. Slide 3 cluttered leaders, dividers as flecks, near rows unlit. Slide 6 blue-violet cars, block skyline, stray sphere, empty asphalt. Kit people on 7 and 9 read as mannequins."},
+{"name":"deck_coherence","weight":0.12,"score":7.5,"why":"One lot through the deck, one key, the stripe recurs, devices work, value stays dark. Frame 5 a grey slab, frame 8 shares no material or light, frame 6's blue cars."},
+{"name":"claim_integrity","weight":0.2,"score":8.5,"why":"Every numeral traces; primary sources; rejected list honoured. Slide 8's Permian line looser than c68's customer-owned trucks; slide 4's dek not what the picture shows."},
+{"name":"story_and_stakes","weight":0.16,"score":8.5,"why":"What the list is and who keeps it, the rule, concentration, Dallas's refused ask, the exact route for a concern and the threshold; caption puts the stake to lawmakers."},
+{"name":"sequence_and_momentum","weight":0.1,"score":8,"why":"Cover earns the swipe, 2 pays, turns at 5 and 6, close actionable; 4 largely repeats 3."},
+{"name":"voice","weight":0.1,"score":7.5,"why":"Clean and on register, regional specificity; slide 1 dek and slide 6 opener flat."},
+{"name":"variety","weight":0.1,"score":6.5,"why":"Fresh census-as-lot concept; steel rule with graduations repeats 66 to 68; person outside a fence repeats 68; crossover at a stop bar repeats 64's cover; dusk_gold and staged lastLight recently used."}],
+"weighted_score":7.55,"hard_fails":[],"ship":false,
+"one_sentence_fix":"Rebuild frame 8 with the person upright behind the wheel, hands on the rim, windshield showing the road and seam.",
+"artwork_weakest_frames":[
+{"slide":8,"problem":"Person slumped in the near seat, wheel empty across the cab, black windshield, pale slab, stray rod, headliner edges cross the dek.","fix":"Passenger-seat camera, person upright behind the wheel, hands on the rim, windshield open to road and seam, delete slab and rod."},
+{"slide":5,"problem":"Mid-grey slab, stair-stepped cast, muddy groove, graduations alias, dead band between hook and dek.","fix":"Dark stainless on a near-black mat, grazing key, taller stop block, smoother shadow, groove albedo within 12 Lab of the accent, close the hook to dek gap."},
+{"slide":3,"problem":"Leaders cross lit cars, ITE label collides, dividers flecks, near rows unlit.","fix":"Labels on dark asphalt beside each run without leaders, pool on the near rows, full-width divider bars."},
+{"slide":6,"problem":"Blue-violet cars, block skyline with a stray sphere, empty bottom 40 percent.","fix":"Cut the cool fill, remove the sphere, tilt down so tail rows fill the lower half."},
+{"slide":4,"problem":"Lone car in front of a full row, empty bays a sliver, comb shadow from the left edge.","fix":"Lower the camera into the ITE row so nine empty bays lead to the one car, remove the off-frame caster."}]}

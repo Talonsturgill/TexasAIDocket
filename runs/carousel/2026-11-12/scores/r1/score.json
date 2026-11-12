@@ -1,0 +1,225 @@
+{
+ "weighted_score": 7.25,
+ "judges": [
+  7.0,
+  7.28,
+  7.2
+ ],
+ "spread": 0.28,
+ "criteria": {
+  "artwork_craft": {
+   "score": 6.2,
+   "weight": 0.22,
+   "judges": [
+    7.0,
+    5.9,
+    6.2
+   ]
+  },
+  "deck_coherence": {
+   "score": 7.8,
+   "weight": 0.12,
+   "judges": [
+    8.0,
+    7.5,
+    7.8
+   ]
+  },
+  "claim_integrity": {
+   "score": 8.5,
+   "weight": 0.2,
+   "judges": [
+    6.5,
+    8.5,
+    8.5
+   ]
+  },
+  "story_and_stakes": {
+   "score": 7.5,
+   "weight": 0.16,
+   "judges": [
+    7.5,
+    8.0,
+    7.5
+   ]
+  },
+  "sequence_and_momentum": {
+   "score": 7.5,
+   "weight": 0.1,
+   "judges": [
+    7.5,
+    7.5,
+    7.0
+   ]
+  },
+  "voice": {
+   "score": 7.0,
+   "weight": 0.1,
+   "judges": [
+    7.0,
+    7.0,
+    7.0
+   ]
+  },
+  "variety": {
+   "score": 6.0,
+   "weight": 0.1,
+   "judges": [
+    5.5,
+    6.5,
+    6.0
+   ]
+  }
+ },
+ "hard_fails": [],
+ "hard_fails_by_judge": [],
+ "ship": false,
+ "threshold": 8.0,
+ "over_threshold": false,
+ "method": "per-criterion median across three judges, then weighted by the rubric",
+ "threshold_dissents": [
+  "judge 1 refused on the threshold, not on a fault, and scored 7.0 against a 8.0 bar. That dissent is carried in the median",
+  "judge 2 refused on the threshold, not on a fault, and scored 7.28 against a 8.0 bar. That dissent is carried in the median",
+  "judge 3 refused on the threshold, not on a fault, and scored 7.2 against a 8.0 bar. That dissent is carried in the median"
+ ],
+ "threshold_dissents_by_judge": [
+  {
+   "judge": 1,
+   "score": 7.0,
+   "reason": "judge 1 refused on the threshold, not on a fault, and scored 7.0 against a 8.0 bar. That dissent is carried in the median"
+  },
+  {
+   "judge": 2,
+   "score": 7.28,
+   "reason": "judge 2 refused on the threshold, not on a fault, and scored 7.28 against a 8.0 bar. That dissent is carried in the median"
+  },
+  {
+   "judge": 3,
+   "score": 7.2,
+   "reason": "judge 3 refused on the threshold, not on a fault, and scored 7.2 against a 8.0 bar. That dissent is carried in the median"
+  }
+ ],
+ "contested": [
+  "claim_integrity"
+ ],
+ "artwork_weakest_frames": [
+  {
+   "slide": 8,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Wheel alone at frame right with nobody behind it, mannequin figure slumped at left, flat grey windshield; reads as a passenger beside an empty wheel.",
+     "fix": "Camera in the passenger seat looking across so the driver sits directly behind the wheel, hands on the rim, windshield open to the road and seam."
+    },
+    {
+     "judge": 2,
+     "problem": "Mannequin with bowed head, wheel in front of nobody, black windshield, grey dash slab, stray vertical line, cab edges behind the type.",
+     "fix": "Passenger-seat three-quarter with the rim in front of the figure, windshield as the light source with road and seam, dash in shadow, delete the stray line."
+    },
+    {
+     "judge": 3,
+     "problem": "Figure beside the wheel, head slumped like a sleeping mannequin, no windshield or road, reads as a grey cab wall.",
+     "fix": "Camera from the passenger seat looking forward-left so the wheel sits in front of the figure's chest, head up, windshield open to the lit road and seam."
+    }
+   ]
+  },
+  {
+   "slide": 3,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Bottom third near-black soft-focus car bodies; leaders end on rows too dark to confirm.",
+     "fix": "Raise and tilt the camera so the third column's rows fill the lower 60 percent with Avride's lit rows nearest; pin labels to each run's white divider."
+    },
+    {
+     "judge": 2,
+     "problem": "Dead band under the dek, unlit near-black bottom fifth, leaders up to 700 px, dividers as stray slabs.",
+     "fix": "Lower the camera target so far rows start under the dek, crop or light the near rows, labels within 60 px of their runs, dividers as lit end lines."
+    },
+    {
+     "judge": 3,
+     "problem": "Third column a dim mass at thumb size, blurred black foreground, leaders on unlit cars, rank order unreadable.",
+     "fix": "Rake the low sun down the third column's rows, drop the defocused foreground rows, frame from Avride's lit nearest row to the single cars."
+    }
+   ]
+  },
+  {
+   "slide": 5,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Relief in one grey mid band; no raking light, no bright edge.",
+     "fix": "Drop the key to a low grazing angle so groove walls catch highlights and the stop block throws a long cast; keep the mat near black."
+    },
+    {
+     "judge": 2,
+     "problem": "Plate one mid-grey band, gold groove a flat bar, stair-stepped cast.",
+     "fix": "Smooth the cast, rake the key lower so bevel and groove walls catch a bright edge, cut the gold as a recessed channel."
+    },
+    {
+     "judge": 3,
+     "problem": "Relief reads as a large grey plate with faint graduations, the no-end run is a short stub.",
+     "fix": "Crop so the stop block sits at the left third and the gold groove at the centre, half the frame of graduations running off the right edge, deeper grooves catching the key."
+    }
+   ]
+  },
+  {
+   "slide": 6,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "Packed navy lot instead of tail rows, flat cutout skyline with a stray sphere, casts toward camera, empty bottom third.",
+     "fix": "Foreground the last tail rows from FIG.units in limestone under the -55 key, skyline seated in haze, remove the sphere."
+    },
+    {
+     "judge": 3,
+     "problem": "Skyline a row of tiny boxes on a ruled line, foreground packed full rows rather than tail rows.",
+     "fix": "Foreground the lot's last rows from FIG.units (single cars, empty bays, stops casting right); a larger hazed skyline sitting into the seam."
+    }
+   ]
+  },
+  {
+   "slide": 4,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 3,
+     "problem": "Lone car directly in front of packed rows, empty bays a featureless dark foreground, brown mid-tone haze band.",
+     "fix": "Lower camera to wheel-stop height, light the stops so each casts long toward the car, push packed rows back and darker, remove the stray peach stripe."
+    }
+   ]
+  },
+  {
+   "slide": 7,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Car and pedestrian small and far apart in a dark field; figure flat-lit; stop bar doesn't read.",
+     "fix": "Lower the camera to the crosswalk and push in so nose, stop bar and figure share the middle third."
+    }
+   ]
+  },
+  {
+   "slide": 1,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "Hero is matte clay with cube sensors under near-frontal light, no bright edge, no seam.",
+     "fix": "Swing the key to azimuth -55 elevation 10 so the flank rakes, clearcoat, warm seam low left."
+    }
+   ]
+  }
+ ],
+ "rounds_derived": 1,
+ "rounds": 1,
+ "rounds_source": "this module's own log of cards it has scored",
+ "rung": 8.0,
+ "work_order": "no judge found a hard fail, and the median 7.25 is under this round's rung of 8.0. KEEP EDITING: fix the judges' named defects, re-render and re-score. At the round cap the finished deck ships whatever it scored. Start with the frames the judges charge the art for, in this order, slides 8, 3, 5, 6, 4, 7, 1 (`artwork_weakest_frames`), one concrete change each",
+ "craft_floor": "pending, because a deck under its rung is sent back by the work order first"
+}

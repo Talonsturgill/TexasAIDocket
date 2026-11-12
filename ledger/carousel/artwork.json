@@ -4719,6 +4719,72 @@
     "hex": "#3E352B",
     "note": "The tidal clay umber of the flats."
    }
+  },
+  {
+   "date": "2026-11-12",
+   "carousel_no": 75,
+   "written_from": "deck_coherence's median L* per frame at 432 px off the final renders, layout_check's accent share, by update_ledgers.py.",
+   "register": "A MIX. Spatial scenes in the staged lastLight world on one parked lot at last light (1 to 4, 6, 7 and 9), the kit semi_cab_interior (8) and a TXBENCH material relief of a stainless rule on a rubber mat (5). Chassis assets/js/deck/2026-11-12-roster.js: fleet_lot (the roster parked at one stand-in kit crossover per ten listed vehicles, instanced from one baked model per material, rows of ten bays, stall bars, wheel stops, white company dividers and a dusk_gold stripe) and wheel_stop (precast curb stop), with a glass environment that carries the warm seam.",
+   "structural_laws": [
+    "K.MAKE RE-CENTRES A MODEL THROUGH AN INNER GROUP. A plan's local coordinates don't survive TXT.add, so a frame takes the offset from the world bounding box, never from localToWorld on the outer group.",
+    "A LOT LAID ONE COMPANY TO A ROW MAKES THE SMALL COMPANIES THE LONGEST COLUMN. The fifteen are packed in rank order so a column's depth is its share.",
+    "COATED GLASS UNDER A DARK SKY READS AS A FLAT SLAB. The glass takes its own environment with a warm horizon band.",
+    "A CAMERA LOOKING TOWARD PLUS Z FLIPS THE PLAN LEFT FOR RIGHT. Frame 9 placed its person by unprojecting a screen point onto the ground rather than by world coordinates.",
+    "A TRANSPARENT FENCE MESH DRAWS OVER A FIGURE IN FRONT OF IT. The mesh is alpha tested with depth on."
+   ],
+   "techniques": [
+    "the first stand-in at its front quarter from 3.8 m with rows of identical sensor-topped cars receding behind",
+    "the whole lot through a long lens from 230 m, three columns from one front baseline, a gold stripe, a pool on the asphalt",
+    "the third column from in front, labels in a column on the left with elbow leaders to each company's run",
+    "the last row at eye level, one car beside open bays with wheel stops casting",
+    "a stainless rule relief, a stop block at May 28th, one graduation a day to a gold groove, grooves off the edge",
+    "the tail of the lot through a 16 degree lens with Dallas hazed on the seam",
+    "a stand-in stopped behind a stop bar and a person past its nose on a worn crosswalk",
+    "a person in a sleeper cab's driver's seat from the passenger side, cap, the wheel",
+    "a person outside a chain link fence at the lot's tail, the last car and the long columns beyond"
+   ],
+   "value": {
+    "per_frame_median_L": [
+     5.1,
+     1.4,
+     1.4,
+     5.9,
+     4.4,
+     14.4,
+     3.4,
+     8.1,
+     7.9
+    ],
+    "deck_median_L": 5.1,
+    "max_adjacent_delta": 11.0,
+    "mean_adjacent_delta": 4.45,
+    "note": "Measured by deck_coherence's median_lstar at 432 px off the final renders."
+   },
+   "accent": {
+    "hex": "#E0956A",
+    "name": "dusk_gold as rendered, where the two largest names end",
+    "frames_above_floor": [
+     2,
+     4,
+     9
+    ],
+    "share": [
+     0.0,
+     0.0026,
+     0.0,
+     0.0022,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0067
+    ],
+    "note": "The stripe on 2, 3 and 9, the report date groove on 5."
+   },
+   "ground": {
+    "hex": "#16171B",
+    "note": "Asphalt blue black."
+   }
   }
  ]
 }

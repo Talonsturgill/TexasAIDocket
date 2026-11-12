@@ -1,0 +1,79 @@
+<!doctype html>
+<!-- 2026-11-12, frame 3 of 9. Archetype DIAGRAM. A spatial scene through txthree.js in the lastLight world: the third column of the parked roster from over the stripe, each company a run of stand-in cars between white dividers, labelled. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:900px">Fifteen companies share 825</h1>
+<p class="dek" data-follow="22" style="width:880px">Avride lists 344. Then 14 companies list fewer than 100 vehicles each, down to International Transport Eng at 7. One car stands for ten listed vehicles, and a white bar marks where each company ends.</p>
+<div class="lab" id="l1">AVRIDE 344</div>
+<div class="lab" id="l2">AURORA 91</div>
+<div class="lab" id="l3">KODIAK 36</div>
+<div class="lab" id="l4">WAABI 13</div>
+<div class="lab" id="l5">INTERNATIONAL TRANSPORT ENG 7</div>
+<script>window.FIG = {"units": {"Waymo": 126, "Tesla Robotaxi": 108, "Avride": 34, "Aurora": 9, "Gatik": 6, "Zoox": 6, "Nuro": 5, "Atlas Energy Solutions": 4, "Kodiak": 4, "Torc": 3, "Stack": 3, "May Mobility": 2, "Bot Auto": 1, "Waabi": 1, "MOIA": 1, "PlusAI": 1, "International Transport Eng": 1}, "u_rest": 81};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-12-roster.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Texas, statewide", counter: "03 / 09", src: "c2 c1 c7 c15 c6 c19 c13 c16", fit: { min: 80, max: 104, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 40, near: 0.5, far: 6000 });
+  /* THE FIGURE: the third column holds u_rest cars, asserted, in rank order with a divider at each company's end */
+  const rest = Object.keys(FIG.units).slice(2).reduce((a, k) => a + FIG.units[k], 0);
+  if (rest !== FIG.u_rest) throw new Error('the third column does not hold u_rest');
+  const lot = K.make('fleet_lot', { order: Object.keys(FIG.units), units: FIG.units });
+  const plan = lot.userData.plan;
+  TXT.add(R, lot);
+  lot.updateMatrixWorld(true);
+  const bb = new THREE.Box3().setFromObject(lot), bc = new THREE.Vector3(); bb.getCenter(bc);
+  const ox = bc.x - (plan.minX + plan.maxX) / 2, oz = bc.z - (plan.minZ + plan.maxZ) / 2;
+  const toW = (x, y, z) => [x + ox, y, z + oz];
+  const r3 = plan.rows.filter(r => r.col === 2), x0 = r3[0].x0, colW = 27.5;
+  const mid = toW(x0 + colW / 2, 0, (r3[0].z + r3[r3.length - 1].z) / 2);
+  /* THE CAMERA LOOKS DOWN THE COLUMN from in front of Avride's rows, low, so the rows stack into one block that fills the lower
+   * frame in rank order: Avride nearest and largest, International Transport Eng at the far end. */
+  const FROM = toW(x0 + colW / 2 + 3, 13, r3[0].z + 30);
+  const LOOK = CH.aim(THREE, R, TXT, FROM, mid, 770, 860, 40);
+  TXT.frame(R, { fov: 40, from: FROM, look: LOOK });
+  /* each label at the height of its own company's run, a straight leader to the run's first car and a dot on it */
+  const runAt = (name) => { const ps = plan.bays.filter(b => b.company === name && b.car).map(b => CH.project(THREE, R, toW(b.x, 1.2, b.z))); const vis = ps.filter(p => p[0] > 340 && p[0] < 1060 && p[1] > 560 && p[1] < 1200); const pool = vis.length ? vis : ps; pool.sort((u, v) => u[0] - v[0]); return pool[0]; };
+  const ks = Object.keys(FIG.units), want = [['l1', ks[2]], ['l2', ks[3]], ['l3', 'Kodiak'], ['l4', 'Waabi'], ['l5', ks[ks.length - 1]]];
+  const pts = want.map(([id, nm]) => ({ id, p: runAt(nm) })).sort((u, v) => u.p[1] - v.p[1]);
+  let yPrev = 600; const svg = CH.svg(); CH.LEADERS = [];
+  pts.forEach((o) => { const y = Math.max(yPrev + 44, Math.min(1170, o.p[1] - 17)); yPrev = y; const lx = 80; CH.pinLabel(o.id, [80, y]);
+    const el = document.getElementById(o.id), w = el.getBoundingClientRect().width;
+    const ln = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+    ln.setAttribute('x1', lx + w + 10); ln.setAttribute('y1', y + 17); ln.setAttribute('x2', o.p[0] - 8); ln.setAttribute('y2', o.p[1]);
+    ln.setAttribute('stroke', '#D9D6CC'); ln.setAttribute('stroke-width', '1.5'); ln.setAttribute('stroke-opacity', '0.8'); svg.appendChild(ln);
+    const dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle'); dot.setAttribute('cx', o.p[0] - 4); dot.setAttribute('cy', o.p[1]); dot.setAttribute('r', 4); dot.setAttribute('fill', '#EDEAE2'); svg.appendChild(dot); });
+  TXT.sky(R);
+  TXT.ground(R, { surface: 'asphalt', color: 0x1a1b20, size: 3000, seed: 12 });
+  TXT.deckRig(R, CH.rigSpec(W, 90, 4096), CH.rigOpts(toW(x0 + colW / 2, 0, (r3[0].z + r3[r3.length - 1].z) / 2), { distance: 160, shadowFar: 400, normalBias: 0.03 }));
+  CH.warm(R, 0.35);
+  /* the key's pool along the third column, so each company's run reads lit against the dark lot */
+  CH.pool(THREE, TXT, R, toW(x0 + colW / 2, 0, r3[0].z - 2), { radius: 40, i: 2.6, color: 0xffc890 });   /* on Avride's rows, the run the dek leads with */
+  TXT.weather(R, { grime: 0.4, height: 0.5, mottle: 0.25 });
+  TXT.stage(R, lot);
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.dress(cx, { foot: 0.9 });
+  /* darken only, under the label column, so no car edge strikes a label */
+  { const g = cx.createLinearGradient(0, 0, 640, 0); g.addColorStop(0, 'rgba(4,5,8,0.8)'); g.addColorStop(0.78, 'rgba(4,5,8,0.8)'); g.addColorStop(1, 'rgba(4,5,8,0)'); cx.fillStyle = g; cx.fillRect(0, 560, 640, 700); }
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

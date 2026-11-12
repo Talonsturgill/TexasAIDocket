@@ -1,0 +1,79 @@
+<!doctype html>
+<!-- 2026-11-12, frame 5 of 9. Archetype DIAGRAM. A material relief through txbench.js under the deck light: a stainless rule on a black rubber mat, a stop block at May 28th, one graduation per day to a dusk_gold groove at October 29th, and grooves running on off the right edge with no end stop. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:900px">No fee, and no expiry</h1>
+<p class="dek" data-follow="22" style="width:880px">Commercial operation has needed an authorization since May 28th, 154 days before the report's data date. It carries no fee and stays valid until the department revokes it.</p>
+<div class="lab" id="la">MAY 28TH</div>
+<div class="lab" id="lb">OCTOBER 29TH</div>
+<script>window.FIG = {"days_enforceable": 154};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/txbench.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-12-roster.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = (async () => {
+  await document.fonts.ready;
+  CH.start({ kicker: "Texas, statewide", counter: "05 / 09", src: "c26 c20 c32 c33", fit: { min: 80, max: 104, maxLines: 2 } });
+  const c = document.getElementById('art'), cx = c.getContext('2d'); cx.scale(2, 2);
+  /* THE FIGURE: one graduation per day, FIG.days_enforceable of them from the stop block to the gold groove, then on past
+   * the right edge with no end stop. 5.2 px a day. Month starts are counted from May 28th in code, never typed. */
+  const N = FIG.days_enforceable, PX = 5.2, X0 = 118, TOP = 650, BOT = 910, H0 = 70;
+  const start = new Date(Date.UTC(2026, 4, 28));
+  const monthDays = []; for (let d = 0; d * PX + X0 < 1090; d++) { const t = new Date(start.getTime() + d * 864e5); if (t.getUTCDate() === 1) monthDays.push(d); }
+  const weekDays = d => d % 7 === 0;
+  function geo(X, Y) {
+    /* the rubber mat: ribs every 18 px across the whole frame, 0 to 1.2 px */
+    const rib = (0.5 + 0.5 * Math.cos((Y / 22) * Math.PI * 2)) * Math.min(1, Math.max(0, (Y - 930) / 60));   /* the mat's ribs only below the bar, never behind the type */
+    if (Y < TOP || Y > BOT) return [rib, 1];
+    /* the plate: a 70 px slab with a 6 px bevel on its long edges */
+    const e = Math.min(Y - TOP, BOT - Y), bevel = Math.min(1, e / 6);
+    let h = H0 * bevel, m = e < 7 ? 4 : 2;   /* the bevel is bright steel, so the plate's edges catch the key */
+    /* the stop block at day 0: raised 16 px, 36 px wide, chamfered */
+    if (X > X0 - 44 && X < X0 - 8 && Y > TOP + 10 && Y < BOT - 10) { const ee = Math.min(X - (X0 - 44), (X0 - 8) - X, Y - TOP - 10, BOT - 10 - Y); return [H0 + 150 * Math.min(1, ee / 3), 4]; }
+    if (X < X0 - 50) return [h, 2];
+    const d = Math.round((X - X0) / PX), dx = Math.abs(X - (X0 + d * PX));
+    if (Math.abs(X - (X0 + N * PX)) < 22 && Y > TOP + 4 && Y < BOT - 4) {
+      /* the report date: a dusk_gold enamel ridge, its left face turned to the key so the gold reads at feed size */
+      const dx2 = Math.abs(X - (X0 + N * PX)); return dx2 < 15 ? [H0 - 16, 3] : [H0, 2];   /* a recessed channel, one wall lit by the key and one in shade */
+    }
+    if (d >= 0 && dx < 1.25) {
+      const isMonth = monthDays.includes(d), len = isMonth ? 300 : weekDays(d) ? 190 : 96;
+      if (Y < TOP + 14 + len) {
+        if (d === N) return [H0 + 0.5, 3];               /* the groove filled with dusk_gold enamel, near flush */
+        return [H0 - (isMonth ? 14 : weekDays(d) ? 10 : 2), 2];
+      }
+    }
+    return [h, m];
+  }
+  const G = new Map();
+  const height = (X, Y) => geo(X, Y)[0], material = (X, Y) => geo(X, Y)[1];
+  const albedo = (X, Y, m) => {
+    if (m === 1) { const n = 0.012 * (0.5 + 0.5 * TX.fbm2(X / 9, Y / 9, 3)); return [0.010 + n, 0.010 + n, 0.012 + n]; }
+    if (m === 3) return [1.0, 0.5, 0.26];
+    if (m === 4) { const n = 0.03 * (0.5 + 0.5 * TX.fbm2(X / 3, Y / 40, 2)); return [0.30 + n, 0.31 + n, 0.32 + n]; }
+    const brush = 0.05 * (0.5 + 0.5 * TX.fbm2(X / 140, Y / 1.4, 3)), blot = 0.03 * (0.5 + 0.5 * TX.fbm2(X / 60, Y / 60, 3));
+    return [0.30 + brush - blot, 0.31 + brush - blot, 0.32 + brush - blot];
+  };
+  TXBENCH.relief(cx, { x: 0, y: 0, w: 1080, h: 1350, scale: 2, height, material, albedo,
+    spec: { 1: [0.06, 12], 2: [0.75, 70], 3: [0.04, 10], 4: [0.6, 55] },
+    ambient: 0.16, diffuse: 0.95, ao: 0.9, shadow: 0.88, softness: 18, castLength: 700, dither: true });
+  CH.pinLabel('la', [80, TOP - 48]); CH.pinLabel('lb', [Math.min(1000 - 230, X0 + N * PX - 112), TOP - 48]);
+  /* the deck's dressing with a tighter foot, so the gold that marks where the two largest names end isn't darkened under it */
+  CH.post(cx, { a: 0.3, veil: 0.16, veilH: 150 }); CH.footWash(cx, { a: 0.6, r: 250, x: 880 }); CH.typeDark(cx, { fade: 120, a: 0.6 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>
