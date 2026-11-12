@@ -11767,7 +11767,7 @@
   },
   {
    "title": "Fort Worth City Council unanimously began a 90 day data center moratorium and adopted grid filing requirements over one dissent",
-   "summary": "The Fort Worth City Council took three data center votes on August 11th, 2026. Members unanimously approved the first steps toward a 90 day moratorium on accepting, processing and approving new data center applications inside the city. Two further items passed over a single dissent. One creates a Data Center and Infrastructure Commission. The other amends the city code so applicants must document their filings for connection to the Texas grid. The pause is not in force yet. Under the city timeline it takes effect on February 16th after public hearings and further votes, and zoning applications filed before then stay outside it.",
+   "summary": "The Fort Worth City Council took three data center votes on August 11th, 2026. Members unanimously approved the first steps toward a 90 day moratorium on accepting, processing and approving new data center applications inside the city. Two further items passed over a single dissent. One creates a Data Center and Infrastructure Commission. The other amends the city code so applicants must document their filings for connection to the Texas grid. The pause is not in force yet. Under the city timeline it takes effect on February 16th after public hearings and further votes, and zoning applications filed before then stay outside it. The city scheduled the first public hearing for its November 10th meeting and says the soonest the council can enact the pause is February 2027, by a supermajority. The commission made 19 recommendations, five of them on water.",
    "topic": "land-water-and-permitting",
    "decider": {
     "name": "Fort Worth City Council",
@@ -11789,6 +11789,11 @@
      "note": "council votes on the moratorium process, the commission and the code amendment"
     },
     {
+     "date": "2026-11-10",
+     "kind": "hearing",
+     "note": "first public hearing in the moratorium process, at the council's 6 p.m. meeting"
+    },
+    {
      "date": "2027-02-16",
      "kind": "effective",
      "note": "date the 90 day pause would take effect if adopted after public hearings"
@@ -11796,8 +11801,8 @@
    ],
    "public_access": {
     "room": "open_meeting",
-    "how": "The moratorium requires further public hearings and votes before adoption, so residents can speak at the scheduled Fort Worth City Council hearings ahead of the second reading. The newly created commission adds a second public body to address.",
-    "url": "https://www.keranews.org/news/2026-08-12/data-center-moratorium-takes-first-steps-after-fort-worth-city-councils-unanimous-vote",
+    "how": "The moratorium needs further notices, hearings and readings before a vote, so residents can speak at the remaining Fort Worth City Council hearings ahead of the second reading. The city's own data center page carries the timeline and the commission's final report.",
+    "url": "https://www.fortworthtexas.gov/government/top-govt-topics/data-centers",
     "closes": null
    },
    "claims": [
@@ -11818,10 +11823,55 @@
      "source_type": "journalism",
      "fetched": "2026-08-14",
      "id": "tx-2026-0062-c2"
+    },
+    {
+     "text": "The city's first public hearing on the proposed 90 day moratorium was scheduled for the council's 6 p.m. meeting on November 10th.",
+     "verbatim_quote": "The City's first public hearing in the legal process for a proposed 90-day moratorium on new data center development was scheduled for the Council's 6 p.m. meeting Nov. 10.",
+     "source_url": "https://www.fortworthtexas.gov/government/top-govt-topics/data-centers",
+     "source_title": "City of Fort Worth, Data Centers",
+     "source_type": "primary_official",
+     "id": "tx-2026-0062-c3",
+     "fetched": "2026-11-12"
+    },
+    {
+     "text": "The city says the soonest the council can enact a moratorium is February 2027.",
+     "verbatim_quote": "The soonest Council will be able to enact a moratorium is February 2027.",
+     "source_url": "https://www.fortworthtexas.gov/government/top-govt-topics/data-centers",
+     "source_title": "City of Fort Worth, Data Centers",
+     "source_type": "primary_official",
+     "id": "tx-2026-0062-c4",
+     "fetched": "2026-11-12"
+    },
+    {
+     "text": "Adoption requires a supermajority of the council.",
+     "verbatim_quote": "This action will require a supermajority of the Council to approve and begin the initial 90-day term of the moratorium.",
+     "source_url": "https://www.fortworthtexas.gov/government/top-govt-topics/data-centers",
+     "source_title": "City of Fort Worth, Data Centers",
+     "source_type": "primary_official",
+     "id": "tx-2026-0062-c5",
+     "fetched": "2026-11-12"
+    },
+    {
+     "text": "The city's Data Center and Infrastructure Commission made 19 recommendations, five of them on water.",
+     "verbatim_quote": "There are 19 recommendations: two on electricity, five on water, eight on land use and neighborhoods, and four on economic impacts.",
+     "source_url": "https://www.fortworthtexas.gov/government/top-govt-topics/data-centers",
+     "source_title": "City of Fort Worth, Data Centers",
+     "source_type": "primary_official",
+     "id": "tx-2026-0062-c6",
+     "fetched": "2026-11-12"
+    },
+    {
+     "text": "If adopted, the city may not impose another data center moratorium for two years.",
+     "verbatim_quote": "Should the moratorium be adopted, the City may not impose another moratorium on data center development for two years.",
+     "source_url": "https://www.fortworthtexas.gov/government/top-govt-topics/data-centers",
+     "source_title": "City of Fort Worth, Data Centers",
+     "source_type": "primary_official",
+     "id": "tx-2026-0062-c7",
+     "fetched": "2026-11-12"
     }
    ],
    "id": "tx-2026-0062",
-   "last_verified": "2026-11-08",
+   "last_verified": "2026-11-12",
    "history": [
     {
      "date": "2026-08-19",
@@ -11993,6 +12043,10 @@
      "date": "2026-11-08",
      "note": "Fort Worth's temporary data center moratorium and its grid filing requirements still read as the council adopted them.",
      "checked": true
+    },
+    {
+     "date": "2026-11-12",
+     "note": "The city scheduled its first public hearing on the moratorium for the November 10th council meeting. Adoption needs a supermajority and can come no sooner than February 2027."
     }
    ],
    "unreachable": {
@@ -37008,7 +37062,7 @@
   },
   {
    "title": "Texas requires a state authorization to run driverless vehicles commercially, with no fee, no expiry and no crash history asked",
-   "summary": "The Texas Department of Motor Vehicles now requires any company running automated vehicles commercially on Texas roads to hold an authorization, under Senate Bill 2807. The requirement became enforceable on May 28th, 2026, after the department's rules took effect on February 27th, 2026. An applicant acknowledges a written statement about the vehicle and certifies that it gave the Department of Public Safety a plan for how first responders should deal with the vehicle. There is no fee, and an authorization does not expire until the department revokes it. The department treats an operation as endangering the public when it has resulted, or is likely to result, in serious bodily injury. Below that standard it says administrative enforcement action is unlikely. The City of Dallas asked the department to require crash history and to make approved operators public. The department answered that the statute does not allow it to require crash history.",
+   "summary": "The Texas Department of Motor Vehicles now requires any company running automated vehicles commercially on Texas roads to hold an authorization, under Senate Bill 2807. The requirement became enforceable on May 28th, 2026, after the department's rules took effect on February 27th, 2026. An applicant acknowledges a written statement about the vehicle and certifies that it gave the Department of Public Safety a plan for how first responders should deal with the vehicle. There is no fee, and an authorization does not expire until the department revokes it. The department treats an operation as endangering the public when it has resulted, or is likely to result, in serious bodily injury. Below that standard it says administrative enforcement action is unlikely. The City of Dallas asked the department to require crash history and to make approved operators public. The department answered that the statute does not allow it to require crash history. The department's company and vehicle summary report, with data as of October 29th, 2026, lists 17 authorized companies and 3,164 automated vehicles. Waymo holds 1,259 of them and Tesla Robotaxi 1,080.",
    "topic": "state-policy",
    "decider": {
     "name": "Texas Department of Motor Vehicles",
@@ -37121,9 +37175,54 @@
      "source_type": "primary_official",
      "fetched": "2026-09-26",
      "id": "tx-2026-0188-c9"
+    },
+    {
+     "text": "The department's company and vehicle summary report carries data as of October 29th, 2026.",
+     "verbatim_quote": "Data as of: 10/29/2026",
+     "source_url": "https://www.txdmv.gov/sites/default/files/body-files/AV_Program_Report_10292026.pdf",
+     "source_title": "Texas Department of Motor Vehicles, Automated Motor Vehicle Authorization Program, Company and Vehicle Summary Report",
+     "source_type": "primary_official",
+     "id": "tx-2026-0188-c10",
+     "fetched": "2026-11-12"
+    },
+    {
+     "text": "The report lists 17 companies authorized to run automated motor vehicles.",
+     "verbatim_quote": "Total Companies: 17",
+     "source_url": "https://www.txdmv.gov/sites/default/files/body-files/AV_Program_Report_10292026.pdf",
+     "source_title": "Texas Department of Motor Vehicles, Automated Motor Vehicle Authorization Program, Company and Vehicle Summary Report",
+     "source_type": "primary_official",
+     "id": "tx-2026-0188-c11",
+     "fetched": "2026-11-12"
+    },
+    {
+     "text": "The report counts 3,164 automated motor vehicles across those companies.",
+     "verbatim_quote": "Total Automated Vehicles: 3,164",
+     "source_url": "https://www.txdmv.gov/sites/default/files/body-files/AV_Program_Report_10292026.pdf",
+     "source_title": "Texas Department of Motor Vehicles, Automated Motor Vehicle Authorization Program, Company and Vehicle Summary Report",
+     "source_type": "primary_official",
+     "id": "tx-2026-0188-c12",
+     "fetched": "2026-11-12"
+    },
+    {
+     "text": "Waymo holds the largest count on the report, at 1,259 vehicles.",
+     "verbatim_quote": "Waymo LLC dba Waymo LLC 1,259",
+     "source_url": "https://www.txdmv.gov/sites/default/files/body-files/AV_Program_Report_10292026.pdf",
+     "source_title": "Texas Department of Motor Vehicles, Automated Motor Vehicle Authorization Program, Company and Vehicle Summary Report",
+     "source_type": "primary_official",
+     "id": "tx-2026-0188-c13",
+     "fetched": "2026-11-12"
+    },
+    {
+     "text": "Tesla Robotaxi holds 1,080 vehicles on the report.",
+     "verbatim_quote": "Tesla Robotaxi, LLC dba Tesla Robotaxi, LLC 1,080",
+     "source_url": "https://www.txdmv.gov/sites/default/files/body-files/AV_Program_Report_10292026.pdf",
+     "source_title": "Texas Department of Motor Vehicles, Automated Motor Vehicle Authorization Program, Company and Vehicle Summary Report",
+     "source_type": "primary_official",
+     "id": "tx-2026-0188-c14",
+     "fetched": "2026-11-12"
     }
    ],
-   "notes_for_editor": "Admitted as statewide because the authorization governs every commercial automated vehicle on Texas roads. The department's authorization list is checkable by law enforcement at the credentialing site and was not read here.",
+   "notes_for_editor": "Admitted as statewide because the authorization governs every commercial automated vehicle on Texas roads. The department's company and vehicle summary report, with data as of October 29th, 2026, is now read and cited.",
    "history": [
     {
      "date": "2026-09-26",
@@ -37198,10 +37297,14 @@
      "date": "2026-11-10",
      "note": "The state authorization required to run driverless vehicles commercially still reads as cited.",
      "checked": true
+    },
+    {
+     "date": "2026-11-12",
+     "note": "The department now publishes who holds an authorization. Its report with data as of October 29th lists 17 companies and 3,164 automated vehicles, led by Waymo and Tesla Robotaxi."
     }
    ],
    "id": "tx-2026-0188",
-   "last_verified": "2026-11-10"
+   "last_verified": "2026-11-12"
   },
   {
    "title": "Justice Department takes comment on a judgment barring a Frisco apartment manager from rent software fed by rivals' data",
