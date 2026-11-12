@@ -90,16 +90,16 @@
     g.fillStyle = gr; g.fillRect(0, 0, 1024, 512);
     var t = new THREE.CanvasTexture(c); t.mapping = THREE.EquirectangularReflectionMapping; t.colorSpace = THREE.SRGBColorSpace; N._genv = t; return t;
   };
-  /* THE GOLD LANE IS WORN PAINT (art director, review 5): a wear map lets the asphalt show through so it reads as paint on
-   * the ground, and a self light outside the tone curve holds its one hue on every frame it crosses, the deck's accent. */
+  /* THE GOLD LANE IS WORN PAINT (art director, reviews 5 and 6): the hue lives in its albedo, it takes the key and every cast
+   * that crosses it, a wear map lets the asphalt through in broken lanes, and a faint self light keeps the accent's hue in shade. */
   N.stripeMat = function (THREE) {
     if (N._smat) return N._smat;
     var c = document.createElement("canvas"); c.width = 64; c.height = 512; var g = c.getContext("2d"), img = g.createImageData(64, 512), d = img.data;
     for (var y = 0; y < 512; y++) for (var x = 0; x < 64; x++) {
-      var n = 0.5 + 0.5 * TX.fbm2(x / 9, y / 9, 4), f = 0.5 + 0.5 * TX.fbm2(x / 2, y / 2, 2), k = n > 0.74 ? 0.55 : 0.94 + 0.06 * f;
+      var n = 0.5 + 0.5 * TX.fbm2(x / 14, y / 30, 4), f = 0.5 + 0.5 * TX.fbm2(x / 3, y / 3, 2), k = n > 0.7 ? 0.5 : 0.93 + 0.07 * f;
       var i = (y * 64 + x) * 4; d[i] = 255 * k; d[i + 1] = 255 * k; d[i + 2] = 255 * k; d[i + 3] = 255; }
-    g.putImageData(img, 0, 0); var t = new THREE.CanvasTexture(c); t.wrapS = t.wrapT = THREE.RepeatWrapping; t.repeat.set(1, 40); t.colorSpace = THREE.SRGBColorSpace;
-    N._smat = new THREE.MeshBasicMaterial({ color: N.GOLD, map: t, toneMapped: false, fog: false });
+    g.putImageData(img, 0, 0); var t = new THREE.CanvasTexture(c); t.wrapS = t.wrapT = THREE.RepeatWrapping; t.repeat.set(1, 14); t.colorSpace = THREE.SRGBColorSpace;
+    N._smat = new THREE.MeshStandardMaterial({ color: N.GOLD, map: t, roughness: 0.82, metalness: 0, emissive: N.GOLD, emissiveMap: t, emissiveIntensity: 0.95, toneMapped: false, fog: false });
     N._smat.userData = { txWear: false }; return N._smat;
   };
   N.isGlass = function (m) { return m && m.clearcoat >= 0.9 && m.roughness < 0.1 && m.metalness < 0.5; };
@@ -173,7 +173,7 @@
      * drawn as full kit models (seated with TXT.contact by the frame), the rest instanced. stalls/stops: bars and stops. */
     K.define("fleet_lot", {
       size: [91, 0.6, 160],
-      options: { order: null, units: null, near: [], stalls: true, stops: true, paint: N.PAINT, stripe: true, omit: [], dividers: true },
+      options: { order: null, units: null, near: [], stalls: true, stops: true, paint: N.PAINT, stripe: true, omit: [], dividers: true, stripeW: 1.8, stripeTrim: 0 },
       note: "The roster parked at one stand-in crossover per drawn unit, rows of ten bays in three columns, stall bars, wheel stops and a dusk_gold stripe after the second column. userData.plan carries every bay.",
       make: function (o) {
         var G = new THREE.Group(), plan = N.lotPlan(o.order, o.units), B = N.BAY; G.userData.plan = plan; G.userData.nearModels = [];
@@ -201,7 +201,7 @@
           instance(st, stops, G);
         }
         if (o.dividers && plan.dividers.length) {
-          var dv = bake(K.make("pavement_bar", { w: 0.6, l: B.d, wear: "fresh", color: 0xF2EFE8 })), dl = [];
+          var dv = bake(K.make("pavement_bar", { w: 0.9, l: B.d + 1.6, wear: "fresh", color: 0xF2EFE8 })), dl = [];
           /* fresh white paint with a faint self light, so a company's end reads white under a dusk sky rather than sky blue */
           var dvm = new THREE.MeshStandardMaterial({ color: 0xF2EFE8, roughness: 0.7, metalness: 0, emissive: 0xE8E4DA, emissiveIntensity: 0.55 });
           dv.forEach(function (pt) { pt.mat = dvm; });
@@ -209,10 +209,10 @@
           instance(dv, dl, G);
         }
         if (o.stripe) {
-          var len = plan.maxZ - plan.minZ, sb = K.make("pavement_bar", { w: 1.8, l: len, wear: "worn", color: N.GOLD });
-          sb.position.set(plan.stripeX, 0, (plan.maxZ + plan.minZ) / 2); G.add(sb); G.userData.stripe = sb;
+          var len = plan.maxZ - plan.minZ - (o.stripeTrim || 0), sb = K.make("pavement_bar", { w: o.stripeW || 1.8, l: len, wear: "worn", color: N.GOLD });
+          sb.position.set(plan.stripeX, 0, (plan.maxZ + plan.minZ - (o.stripeTrim || 0)) / 2); G.add(sb); G.userData.stripe = sb;
           /* the gold paint holds one hue in every light, so the deck's one accent reads as one colour on every frame it crosses */
-          sb.traverse(function (m) { if (m.isMesh) { m.material = N.stripeMat(THREE); m.castShadow = false; } });
+          sb.traverse(function (m) { if (m.isMesh) { m.material = N.stripeMat(THREE); m.castShadow = false; m.receiveShadow = true; } });
         }
         return G;
       }

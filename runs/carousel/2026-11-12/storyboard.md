@@ -165,7 +165,7 @@ art:
   value_structure: Lightest is the lit flanks of the cars. Darkest is the sky and the field beyond the lot. Frame median L* planned at 8.
 type:
   hook: "Two names hold 74 percent"
-  dek: "Waymo lists 1,259 vehicles and Tesla Robotaxi 1,080. The other 15 companies share 825. One car here stands for ten listed vehicles, rounded, and never fewer than one."
+  dek: "Waymo lists 1,259 vehicles and Tesla Robotaxi 1,080. That 74 percent leaves 825 vehicles to the other 15 companies. One car here stands for ten listed vehicles."
   labels: ["WAYMO 1,259", "TESLA ROBOTAXI 1,080", "15 OTHERS 825"]
 verbatim: []
 acceptance:
@@ -213,7 +213,7 @@ art:
   value_structure: Lightest is the cars' lit flanks and the stall bars. Darkest is the empty asphalt and the sky. Frame median L* planned at 9.
 type:
   hook: "Fifteen companies share 825"
-  dek: "Avride lists 344. Then 14 companies list fewer than 100 each, down to International Transport Eng at 7. One car stands for ten listed vehicles, and a white bar marks where each company ends."
+  dek: "Avride lists 344. Then 14 companies list fewer than 100 vehicles each, down to International Transport Eng at 7. One car stands for ten listed vehicles, and a white bar marks where each company ends."
   labels: ["AVRIDE 344", "AURORA 91", "KODIAK 36", "WAABI 13", "INTERNATIONAL TRANSPORT ENG 7"]
 verbatim: []
 acceptance:
@@ -232,10 +232,10 @@ risks:
 slide: 4
 layout: CLOSE_CROP
 primary_image:
-  subject: the last row of the lot, International Transport Eng's one stand-in car close on the left, and nine open bays running away right with a wheel stop in each casting long
-  rect: [0, 700, 760, 600]
-  bleeds: [left]
-accent: none
+  subject: the last row of the lot seen from its empty end, nine open bays with a wheel stop in each leading back to International Transport Eng's one stand-in car in profile, the rest of the roster parked dark behind it against the last light
+  rect: [180, 640, 900, 640]
+  bleeds: [right]
+accent: '#E0956A'
 data_in_art: {figure: u_international_transport_eng, drives: 'parked car count in the near row, against a bay count of ten'}
 job: Put the reader in the tail, where a company lists fewer than ten.
 claims: [c6, c3, c15, c9, c11]
@@ -247,10 +247,10 @@ numerals:
 - {value_from: c11}
 depth:
   eye: 1.5
-  horizon: 520
+  horizon: 840
   cues: [LINEAR_PERSPECTIVE, RELATIVE_SIZE, CAST_SHADOW, OCCLUSION, TEXTURE_GRADIENT]
   subject_at: {X: 0, Z: 0}
-composition: {structure: 'The near car owns the lower left; the row of empty bays recedes to the right along the stall bars, and the next single car rows sit behind in the dark.', bands: 'Top third, the type on the dark sky. Middle third, the far single cars and the run of wheel stops. Bottom third, the near car''s lit flank, wheel and sensor edge cropped by the frame, and the first open bays beside it with worn stall bars and concrete stops casting long.', focal: the near car''s lit flank and the first empty bay beside it}
+composition: {structure: 'The camera stands at the empty end of the row. The open bays and their stops lead back to the one car in profile, and the rest of the roster sits dark behind it on the seam.', bands: 'Top third, the type on the dark sky. Middle third, the warm seam falling to the horizon. Bottom third, the lone car''s lit flank and wheels on the asphalt, the roster''s rooflines behind it, and the open bays with concrete stops in the foreground.', focal: the lone car''s lit flank against the dark rows behind it}
 art:
   technique: physically based render of a full kit crossover and the chassis wheel_stop and stall bars at eye level in the lastLight world
   why_this_technique: a company that lists fewer than ten is one car in a row built for ten, and eye level makes the empty bays the subject
@@ -258,13 +258,13 @@ art:
   value_structure: Lightest is the near car's flank and the lit edges of the stops. Darkest is the asphalt in shadow and the sky. Frame median L* planned at 10.
 type:
   hook: "The smallest entry lists 7"
-  dek: "International Transport Eng lists 7 vehicles. It draws as the lot's last car, alone in a row built for ten. Bot Auto and Waabi list 13 each, MOIA and PlusAI 12 each."
+  dek: "International Transport Eng lists 7 vehicles. On the lot it is one car, alone in a row built for ten. Bot Auto and Waabi list 13 each, MOIA and PlusAI 12 each."
   labels: []
 verbatim: []
 acceptance:
-- exactly one car stands in the near row and nine empty bays follow it
-- every wheel stop in the near row casts to the right
-- the near car is cropped by the left and bottom edges
+- exactly one car stands in its row and the open bays between it and the camera carry a wheel stop each
+- the lone car's wheels sit on the asphalt with a contact shadow under each
+- the lone car reads in full profile, lit from the camera side, against darker rows behind it
 - the sky shows above the horizon and the render report says SKY IN FRAME
 - no numeral on this slide is absent from claims.json
 - one full kit crossover is present as a model in limestone paint, never a box
@@ -403,8 +403,9 @@ primary_image:
   bleeds: []
 accent: none
 job: Bring the honest counter-image, that on two freight lanes a person still sits up front, kept apart from the list.
-claims: [c62, c63, c64, c65]
-numerals: []
+claims: [c62, c63, c64, c65, c68]
+numerals:
+- {value_from: c68}
 depth:
   eye: 1.9
   horizon: 640
@@ -418,7 +419,7 @@ art:
   value_structure: Lightest is the seam through the windshield and the lit side of the person. Darkest is the headliner and the floor. Frame median L* planned at 12.
 type:
   hook: "On two freight lanes, a person sits up front"
-  dek: "Volvo says its autonomous hauls with Waabi between Dallas and Houston currently run with an observer in the driver's seat. Kodiak and Charger say they run between Dallas and Laredo with a safety driver behind the wheel."
+  dek: "Volvo says its autonomous hauls with Waabi between Dallas and Houston currently run with an observer in the driver's seat. Kodiak and Charger say they run between Dallas and Laredo with a safety driver behind the wheel. Kodiak says its Permian Basin trucks have run with no one in the cab since December 2024."
   labels: []
 verbatim: []
 acceptance:
@@ -460,7 +461,7 @@ art:
   value_structure: Lightest is the seam and the near cars' flanks. Darkest is the sky and the fence's shadow side. Frame median L* planned at 10.
 type:
   hook: "Where a concern goes"
-  dek: "A concern that an automated vehicle could cause serious bodily injury or death can go to the department's Enforcement Division at txmccs.txdmv.gov/truckstop. The program page links an authorizations report dated October 29th."
+  dek: "A concern that an automated vehicle could cause serious bodily injury or death can go to the department's Enforcement Division at txmccs.txdmv.gov/truckstop. The list itself is linked from the department's program page."
   labels: []
 verbatim: []
 acceptance:

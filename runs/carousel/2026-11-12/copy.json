@@ -40,7 +40,7 @@
     "c19"
    ],
    "cite": "c13 c16 c18 c19",
-   "body": "Waymo lists 1,259 vehicles and Tesla Robotaxi 1,080. The other 15 companies share 825. One car here stands for ten listed vehicles, rounded, and never fewer than one.",
+   "body": "Waymo lists 1,259 vehicles and Tesla Robotaxi 1,080. That 74 percent leaves 825 vehicles to the other 15 companies. One car here stands for ten listed vehicles.",
    "labels": [
     "WAYMO 1,259",
     "TESLA ROBOTAXI 1,080",
@@ -49,7 +49,7 @@
    "strings": [
     "texasaidocket.com",
     "Two names hold 74 percent",
-    "Waymo lists 1,259 vehicles and Tesla Robotaxi 1,080. The other 15 companies share 825. One car here stands for ten listed vehicles, rounded, and never fewer than one.",
+    "Waymo lists 1,259 vehicles and Tesla Robotaxi 1,080. That 74 percent leaves 825 vehicles to the other 15 companies. One car here stands for ten listed vehicles.",
     "WAYMO 1,259",
     "TESLA ROBOTAXI 1,080",
     "15 OTHERS 825",
@@ -72,7 +72,7 @@
     "c19"
    ],
    "cite": "c2 c1 c7 c15 c6 c19",
-   "body": "Avride lists 344. Then 14 companies list fewer than 100 each, down to International Transport Eng at 7. One car stands for ten listed vehicles, and a white bar marks where each company ends.",
+   "body": "Avride lists 344. Then 14 companies list fewer than 100 vehicles each, down to International Transport Eng at 7. One car stands for ten listed vehicles, and a white bar marks where each company ends.",
    "labels": [
     "AVRIDE 344",
     "AURORA 91",
@@ -83,7 +83,7 @@
    "strings": [
     "texasaidocket.com",
     "Fifteen companies share 825",
-    "Avride lists 344. Then 14 companies list fewer than 100 each, down to International Transport Eng at 7. One car stands for ten listed vehicles, and a white bar marks where each company ends.",
+    "Avride lists 344. Then 14 companies list fewer than 100 vehicles each, down to International Transport Eng at 7. One car stands for ten listed vehicles, and a white bar marks where each company ends.",
     "AVRIDE 344",
     "AURORA 91",
     "KODIAK 36",
@@ -107,12 +107,12 @@
     "c11"
    ],
    "cite": "c6 c3 c15 c9 c11",
-   "body": "International Transport Eng lists 7 vehicles. It draws as the lot's last car, alone in a row built for ten. Bot Auto and Waabi list 13 each, MOIA and PlusAI 12 each.",
+   "body": "International Transport Eng lists 7 vehicles. On the lot it is one car, alone in a row built for ten. Bot Auto and Waabi list 13 each, MOIA and PlusAI 12 each.",
    "labels": [],
    "strings": [
     "texasaidocket.com",
     "The smallest entry lists 7",
-    "International Transport Eng lists 7 vehicles. It draws as the lot's last car, alone in a row built for ten. Bot Auto and Waabi list 13 each, MOIA and PlusAI 12 each.",
+    "International Transport Eng lists 7 vehicles. On the lot it is one car, alone in a row built for ten. Bot Auto and Waabi list 13 each, MOIA and PlusAI 12 each.",
     "Texas, statewide",
     "04 / 09",
     "c6 c3 c15 c9 c11"
@@ -198,18 +198,19 @@
     "c62",
     "c63",
     "c64",
-    "c65"
+    "c65",
+    "c68"
    ],
-   "cite": "c62 c63 c64 c65",
-   "body": "Volvo says its autonomous hauls with Waabi between Dallas and Houston currently run with an observer in the driver's seat. Kodiak and Charger say they run between Dallas and Laredo with a safety driver behind the wheel.",
+   "cite": "c62 c63 c64 c65 c68",
+   "body": "Volvo says its autonomous hauls with Waabi between Dallas and Houston currently run with an observer in the driver's seat. Kodiak and Charger say they run between Dallas and Laredo with a safety driver behind the wheel. Kodiak says its Permian Basin trucks have run with no one in the cab since December 2024.",
    "labels": [],
    "strings": [
     "texasaidocket.com",
     "On two freight lanes, a person sits up front",
-    "Volvo says its autonomous hauls with Waabi between Dallas and Houston currently run with an observer in the driver's seat. Kodiak and Charger say they run between Dallas and Laredo with a safety driver behind the wheel.",
+    "Volvo says its autonomous hauls with Waabi between Dallas and Houston currently run with an observer in the driver's seat. Kodiak and Charger say they run between Dallas and Laredo with a safety driver behind the wheel. Kodiak says its Permian Basin trucks have run with no one in the cab since December 2024.",
     "Dallas, Houston, Laredo",
     "08 / 09",
-    "c62 c63 c64 c65"
+    "c62 c63 c64 c65 c68"
    ]
   },
   "S9": {
@@ -222,12 +223,12 @@
     "c43"
    ],
    "cite": "c36 c43",
-   "body": "A concern that an automated vehicle could cause serious bodily injury or death can go to the department's Enforcement Division at txmccs.txdmv.gov/truckstop. The program page links an authorizations report dated October 29th.",
+   "body": "A concern that an automated vehicle could cause serious bodily injury or death can go to the department's Enforcement Division at txmccs.txdmv.gov/truckstop. The list itself is linked from the department's program page.",
    "labels": [],
    "strings": [
     "texasaidocket.com",
     "Where a concern goes",
-    "A concern that an automated vehicle could cause serious bodily injury or death can go to the department's Enforcement Division at txmccs.txdmv.gov/truckstop. The program page links an authorizations report dated October 29th.",
+    "A concern that an automated vehicle could cause serious bodily injury or death can go to the department's Enforcement Division at txmccs.txdmv.gov/truckstop. The list itself is linked from the department's program page.",
     "Texas, statewide",
     "09 / 09",
     "c36 c43"

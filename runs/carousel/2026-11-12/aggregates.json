@@ -142,6 +142,59 @@
    "value": 1259,
    "quoted_from": "c16",
    "quote": "Waymo LLC dba Waymo LLC 1,259"
+  },
+  {
+   "phrase": "74 percent leaves",
+   "slide": "slide-02.html",
+   "kind": "count",
+   "value": 74,
+   "computed_from": [
+    "c16",
+    "c13",
+    "c19"
+   ],
+   "computed_by": "out/2026-11-12/compute.py, top2_share_pct, Waymo's 1,259 in c16 plus Tesla Robotaxi's 1,080 in c13 over the 3,164 in c19, times 100, rounded half up",
+   "note": "computed"
+  },
+  {
+   "phrase": "825 vehicles",
+   "slide": "slide-02.html",
+   "kind": "count",
+   "value": 825,
+   "computed_from": [
+    "c19",
+    "c16",
+    "c13"
+   ],
+   "computed_by": "out/2026-11-12/compute.py, rest, the 3,164 in c19 minus Waymo's 1,259 in c16 and Tesla Robotaxi's 1,080 in c13, asserted equal to the sum of the other fifteen report rows",
+   "note": "computed"
+  },
+  {
+   "phrase": "100 vehicles",
+   "slide": "slide-03.html",
+   "kind": "count",
+   "value": 100,
+   "computed_from": [
+    "c1",
+    "c2",
+    "c3",
+    "c4",
+    "c5",
+    "c6",
+    "c7",
+    "c8",
+    "c9",
+    "c10",
+    "c11",
+    "c12",
+    "c13",
+    "c14",
+    "c15",
+    "c16",
+    "c17"
+   ],
+   "computed_by": "out/2026-11-12/compute.py, under_100, the bound below which 14 of the report rows c1 to c17 fall",
+   "note": "computed"
   }
  ]
 }

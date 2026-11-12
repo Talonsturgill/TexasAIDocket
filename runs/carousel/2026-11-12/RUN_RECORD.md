@@ -29,4 +29,58 @@ Focus: close-range surface realism on spatial scenes. No. 74's judges named "pal
 
 ## Selection, and what shipped
 
-WRITTEN AT PHASE 15.
+**Story.** tx-2026-0188, the TxDMV's Company and Vehicle Summary Report for Senate Bill 2807 authorizations, data as of
+October 29th. `dedupe_check.py` exited 0 against the last 30 days (no. 59's Waymo airport curb and no. 66's Aurora letter
+were the nearest, and neither shares the roster). The deck carries one visual argument, the whole roster parked at one
+stand-in car per ten listed vehicles (`compute.py`, rounded half up and never fewer than one), and follows it from the
+cover's front row to the census from above, the fifteen-company column, its last car, the rule's no-fee plate, Dallas's
+request, the department's line, the freight cab and the fence at the tail.
+
+**Art.** One chassis, `assets/js/deck/2026-11-12-roster.js`, declares the `roster` world (lastLight, key at azimuth -55
+and elevation 10, one grade, accent dusk_gold #E0956A). It carries two kit models built for this deck, `wheel_stop` and
+`fleet_lot` (the packed three-column lot from FIG.units, instanced crossovers, stall bars, wheel stops, white company
+dividers and the gold lane). Eight frames are spatial txthree scenes and frame 5 is a TXBENCH material relief.
+
+**Audition.** Cover, frame 2 (hardest) and close were reviewed by the art director before the remaining six. Frame 9 was
+sent back twice, first for the gold lane filling the foreground as a slab, then for the lane reading as self-lit tape.
+The chassis repair made the lane lit, shadow-receiving worn paint with its hue in the albedo and a self light that holds
+the accent in shade, and the third review accepted all three, bound to the current source, chassis and images
+(`art_preflight.py` exit 0).
+
+**Pixel passes.** Two rounds, five critics then three. Round 1 drove the near-car scale on 1 and 4, the census framing on 2,
+the label column and visible dividers on 3, a full-height relief plate on 5, a darker ground and a seated skyline on 6,
+the road markings on 7 and the camera off the lane on 9. Round 2 drove the leaders and the column on 3 (the camera now
+looks down the column so the rows stack in rank order), the stripe tip and label on 2, ribs kept off the type field on 5.
+
+**Flow pass.** One flow critic. Its craft block named 8, 5, 3, 6 and 4 weakest. Repairs made: frame 4 recomposed from
+the empty end of the row looking back to the one car with the roster behind it (it also cleared panel_ready's ground
+check); frame 5's stop block raised to 150 px relief and the weekly graduations cut deeper than the daily ones; frame 3's
+pool moved onto Avride's rows. **Not made, and why.** Frame 8's bowed head: the kit person's only seated pose
+(`sit_read`) bakes a 0.42 rad head pitch into its geometry, so no pivot can be raised from a frame, and leaning the whole
+figure back hides it behind the seat from this camera. That is an engine defect, carried to the backlog in Phase 17.
+The flow critic's reorder (frame 8 after frame 5) would renumber four frames and void the accepted audition bindings on
+the close, so it was not taken this run.
+
+## Gate status
+
+<!-- gate-status:begin -->
+| gate | status | detail |
+|---|---|---|
+| claims         | PASS   | 68 verified claim(s) |
+| render         | PASS   | 9 slide(s) |
+| qa             | WARN   | 0 fail(s), 3 warn(s) |
+| aggregates     | FAIL   | 4 problem(s) |
+| assembly       | PASS   | 9 slide(s), 8.16 MB, vector |
+| score          | ABSENT | score.json not written yet |
+| labels         | ABSENT | label_report.json not written yet. Run scripts/carousel/label_guard.py <run-dir> |
+| quantifiers    | ABSENT | quantifier_report.json not written yet. Run scripts/carousel/quantifier_check.py <run-dir> |
+| verbatim       | ABSENT | verbatim_report.json not written yet. Run scripts/carousel/verbatim_check.py --date <date> |
+| dossiers       | PASS   | 32,099 chars planned |
+| caption        | PASS   | 139 words |
+| craft floor    | PASS   | 9 frame(s), median 806, floor 145 |
+| plan vs render | WARN   | 0 of 65 acceptance item(s) checkable |
+| texan          | WARN   | places Dallas, Houston, Laredo / body yes / deadline yes / next step NO |
+| absences       | WARN   | 4 of 6 scoped to a named document, 2 unscoped |
+| numerals       | PASS   | 29 numeral(s) over 9 frame(s), every one reachable |
+| completion     | ABSENT | not scored yet |
+<!-- gate-status:end -->
