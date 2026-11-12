@@ -191,7 +191,7 @@ primary_image:
 accent: '#E0956A'
 data_in_art: {figure: u_rest, drives: 'the parked car count across the third column''s rows'}
 job: Name the fifteen and show how little most of them hold.
-claims: [c2, c1, c7, c15, c6, c19]
+claims: [c2, c1, c7, c15, c6, c19, c13, c16]
 numerals:
 - {computed_by: 'compute.py:rest'}
 - {computed_by: 'compute.py:under_100'}
@@ -399,7 +399,7 @@ slide: 8
 layout: CLOSE_CROP
 primary_image:
   subject: inside a Class 8 sleeper cab at last light, a person seated in the driver's seat seen from the passenger side, cropped at the chin, hands low near the wheel, the road and the seam through the windshield
-  rect: [380, 640, 660, 690]
+  rect: [370, 690, 690, 650]
   bleeds: []
 accent: none
 job: Bring the honest counter-image, that on two freight lanes a person still sits up front, kept apart from the list.
@@ -418,7 +418,7 @@ art:
   palette: cab charcoal vinyl, gauge glow, the warm seam through glass
   value_structure: Lightest is the seam through the windshield and the lit side of the person. Darkest is the headliner and the floor. Frame median L* planned at 12.
 type:
-  hook: "On two freight lanes, a person sits up front"
+  hook: "Two releases say a person sits up front"
   dek: "Volvo says its autonomous hauls with Waabi between Dallas and Houston currently run with an observer in the driver's seat. Kodiak and Charger say they run between Dallas and Laredo with a safety driver behind the wheel. Kodiak says its Permian Basin trucks have run with no one in the cab since December 2024."
   labels: []
 verbatim: []
@@ -461,7 +461,7 @@ art:
   value_structure: Lightest is the seam and the near cars' flanks. Darkest is the sky and the fence's shadow side. Frame median L* planned at 10.
 type:
   hook: "Where a concern goes"
-  dek: "A concern that an automated vehicle could cause serious bodily injury or death can go to the department's Enforcement Division at txmccs.txdmv.gov/truckstop. The list itself is linked from the department's program page."
+  dek: "A concern that an automated vehicle could cause serious bodily injury or death can go to the department's Enforcement Division at txmccs.txdmv.gov/truckstop. The department's program page links an authorizations report."
   labels: []
 verbatim: []
 acceptance:

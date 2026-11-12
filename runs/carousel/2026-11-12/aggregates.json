@@ -125,17 +125,6 @@
    "quote": "Transport Eng 7"
   },
   {
-   "phrase": "two freight lanes",
-   "slide": "slide-08.html",
-   "kind": "count",
-   "value": 2,
-   "computed_from": [
-    "c63",
-    "c65"
-   ],
-   "computed_by": "counted from the claims, the Dallas to Houston corridor in c63 and the Dallas to Laredo lane in c65"
-  },
-  {
    "phrase": "1,259 vehicles",
    "slide": "slide-02.html",
    "kind": "count",
@@ -195,6 +184,17 @@
    ],
    "computed_by": "out/2026-11-12/compute.py, under_100, the bound below which 14 of the report rows c1 to c17 fall",
    "note": "computed"
+  },
+  {
+   "phrase": "Two releases",
+   "slide": "slide-08.html",
+   "kind": "count",
+   "value": 2,
+   "computed_from": [
+    "c62",
+    "c64"
+   ],
+   "computed_by": "counted: the Volvo Group release (c62) and the Kodiak AI release (c64), the two company releases the slide quotes"
   }
  ]
 }
