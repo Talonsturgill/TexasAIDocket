@@ -1,0 +1,15 @@
+{"lens":"integrity","round":3,"criteria":[
+{"name":"artwork_craft","weight":0.22,"score":6.8,"why":"Six frames pass the bold test or come close; frame 2 the showstopper with counts 126, 108, 81 matching. Frame 5 a flat mid-grey slab with stair-stepped cast and banded dead bottom. Frame 8 wheel half a frame right of the figure, hand on the cushion, no windshield or road, grey door panel. Frame 6 floating block skyline with a sphere, blue-grey cars, empty bottom. Matte clay paint; frame 2's outer blocks cropped by the edges."},
+{"name":"deck_coherence","weight":0.12,"score":7.5,"why":"One deck: the lot recurs, the stripe carries one meaning, key and dark field hold, three devices working, value cut honest. 5 and 8 sit outside the dark register; 6's paint breaks the limestone."},
+{"name":"claim_integrity","weight":0.2,"score":8.0,"why":"Every figure re-derived and every numeral traces; primary sources; every rejected finding honoured. Looser phrasings: slide 8's its Permian Basin trucks vs c68's customer-owned trucks; slide 1 and caption juxtapose the requirement with the count; the Dallas exchange undated though from the September 18th, 2025 adoption."},
+{"name":"story_and_stakes","weight":0.16,"score":7.5,"why":"Who is on the list, the cost and term, Dallas refused, where enforcement starts, where to send a concern. SB 2807 and the Legislature unnamed on slides; no deadline; the Dallas exchange undated."},
+{"name":"sequence_and_momentum","weight":0.1,"score":7.5,"why":"Cover earns the swipe, 2 pays, turn at 5 lands. 3 and 4 both end on ITE at 7; 7 and 9 restate the injury standard."},
+{"name":"voice","weight":0.1,"score":7.3,"why":"Clean and on register with some well-turned lines; report-speak lists on nearly every slide; no regional texture beyond kickers."},
+{"name":"variety","weight":0.1,"score":6.0,"why":"Fourth AV deck in 30 days (52, 59, 67); white sensor-topped stand-ins on a dark lot again; shares companies and the Dallas to Laredo lane; lastLight; opens on a count."}],
+"weighted_score":7.28,"hard_fails":[],"ship":true,
+"one_sentence_fix":"Rebuild frame 8 with hands on the rim and the road visible, rebuild frame 5 as a lit rule on a near-black mat, and change slide 8's its Permian Basin trucks to customer-owned trucks.",
+"artwork_weakest_frames":[
+{"slide":8,"problem":"Wheel half a frame right of the figure, hand on the cushion, no windshield or road, grey door panel.","fix":"Passenger-seat camera at 1.9 m looking forward-left, wheel in front of the figure, hands on the rim, windshield open to road and seam."},
+{"slide":5,"problem":"Flat mid-grey slab, stair-stepped cast, banded dead bottom.","fix":"Low raking oblique so the rule fills the lower two thirds, key on the stop face and groove walls only, higher shadow resolution."},
+{"slide":6,"problem":"Floating block skyline with a sphere, blue-grey cars, empty bottom third.","fix":"Sink the skyline into the haze, delete the sphere, limestone paint, lower the camera to the tail rows."},
+{"slide":3,"problem":"ITE leader a stub on its own 7; other leaders end on dim cars.","fix":"Run each leader to its company's divider and light the far single car."}]}

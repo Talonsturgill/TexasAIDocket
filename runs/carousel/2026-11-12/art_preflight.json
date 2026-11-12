@@ -1,0 +1,225 @@
+{
+  "version": 2,
+  "selected": [
+    1,
+    2,
+    9
+  ],
+  "inputs": {
+    "slides/slide-01.html": "25933889a389ef04a1dd2a8b665ad2a73ada4378a8bf940e871562a3bc1b2e74",
+    "render/slide-01.png": "994beccda6ec935ef3cc54ba388ed200292f34a38ede7695712df7700d869155",
+    "assets/js/deck/2026-11-12-roster.js": "f7f2525220dc06c417d05cf3c406e1c9b6cc43f3eeac8be800e0c1dffe4a3d21",
+    "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+    "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+    "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+    "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+    "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+    "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+    "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+    "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+    "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+    "slides/slide-02.html": "a612d80023bb3bfdbf3585333fa5f1a222710b4fe6537fd764aa70e7c84be31c",
+    "render/slide-02.png": "2713d5113d473f7eb9962a15e9ae9e62c651a657eba96d35747ff4b6d0227492",
+    "slides/slide-09.html": "7bdbe9da89ad2f2b9fbda9629e21c0eb3b108fed0095c583441fd35fd4f61950",
+    "render/slide-09.png": "ea49745d50c86b1ecc403f8c63a9f298de0836e444449ecdffba41c2e7b2c6cc"
+  },
+  "value_measurements": [
+    {
+      "frame": "slide-01.png",
+      "median_L": 2.5,
+      "mid": 0.206,
+      "dark": 0.607
+    },
+    {
+      "frame": "slide-02.png",
+      "median_L": 1.2,
+      "mid": 0.069,
+      "dark": 0.859
+    },
+    {
+      "frame": "slide-09.png",
+      "median_L": 6.1,
+      "mid": 0.145,
+      "dark": 0.662
+    }
+  ],
+  "review": {
+    "decision": "accept",
+    "inputs": {
+      "slides/slide-01.html": "25933889a389ef04a1dd2a8b665ad2a73ada4378a8bf940e871562a3bc1b2e74",
+      "render/slide-01.png": "994beccda6ec935ef3cc54ba388ed200292f34a38ede7695712df7700d869155",
+      "assets/js/deck/2026-11-12-roster.js": "f7f2525220dc06c417d05cf3c406e1c9b6cc43f3eeac8be800e0c1dffe4a3d21",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+      "slides/slide-02.html": "a612d80023bb3bfdbf3585333fa5f1a222710b4fe6537fd764aa70e7c84be31c",
+      "render/slide-02.png": "2713d5113d473f7eb9962a15e9ae9e62c651a657eba96d35747ff4b6d0227492",
+      "slides/slide-09.html": "7bdbe9da89ad2f2b9fbda9629e21c0eb3b108fed0095c583441fd35fd4f61950",
+      "render/slide-09.png": "ea49745d50c86b1ecc403f8c63a9f298de0836e444449ecdffba41c2e7b2c6cc"
+    },
+    "frames": [
+      {
+        "slide": 1,
+        "role": "cover",
+        "subject": "The near sensor-topped crossover stand-in, seen from its front quarter at eye height. Its row of noses and an instanced lot run back to a dark horizon on striped asphalt.",
+        "visual_consequence": "Without the headline, the frame reads as one identical robotaxi model repeated by the hundreds, all the way to the horizon. It shows scale and sameness before any numeral is read, which sets up the 3,164 vehicles and 17 names.",
+        "weakness": "The paint reads as matte clay more than weathered metallic. The 6 of c26 sits on the dark rubber of the near front tire, still legible.",
+        "repair": "Optional polish. Nudge the near car about 20 design px further up or left so c26 clears the tire, and add a little clearcoat to the paint.",
+        "encoding_reads": true,
+        "dominant_subject_finished": true,
+        "feed_legible": true,
+        "inputs": {
+          "slides/slide-01.html": "25933889a389ef04a1dd2a8b665ad2a73ada4378a8bf940e871562a3bc1b2e74",
+          "render/slide-01.png": "994beccda6ec935ef3cc54ba388ed200292f34a38ede7695712df7700d869155",
+          "assets/js/deck/2026-11-12-roster.js": "f7f2525220dc06c417d05cf3c406e1c9b6cc43f3eeac8be800e0c1dffe4a3d21",
+          "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+          "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+          "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+          "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+          "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+          "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+          "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+          "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+          "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de"
+        }
+      },
+      {
+        "slide": 2,
+        "role": "evidence",
+        "subject": "A long-lens view of a dark lot at last light, three columns of instanced sensor-topped crossovers in double rows of ten bays, a copper stripe after the second column, column labels under the nearest rows.",
+        "visual_consequence": "Two long blocks of cars on the left clearly outweigh the third block on the right, which opens on one car alone in an empty row of bays. The dek's counts match the bay counts and sit clear of the art.",
+        "weakness": "The third column's double rows run off the right edge, and the divider slabs read as stray white flecks at feed size.",
+        "repair": "None required for this audition. Optional, pull the third column about 60 design px left.",
+        "encoding_reads": true,
+        "dominant_subject_finished": true,
+        "feed_legible": true,
+        "inputs": {
+          "assets/js/deck/2026-11-12-roster.js": "f7f2525220dc06c417d05cf3c406e1c9b6cc43f3eeac8be800e0c1dffe4a3d21",
+          "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+          "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+          "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+          "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+          "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+          "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+          "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+          "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+          "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+          "slides/slide-02.html": "a612d80023bb3bfdbf3585333fa5f1a222710b4fe6537fd764aa70e7c84be31c",
+          "render/slide-02.png": "2713d5113d473f7eb9962a15e9ae9e62c651a657eba96d35747ff4b6d0227492"
+        }
+      },
+      {
+        "slide": 9,
+        "role": "close",
+        "subject": "A lone figure in a cap, short grey hair, pale short-sleeved shirt and khaki trousers, seen from behind at a galvanized chain-link fence; beyond the mesh the tail rows of sensor-topped crossovers on dark asphalt, a copper band across the open bays, a warm horizon under a near-black sky.",
+        "visual_consequence": "A member of the public outside the fleet lot looking in through a barrier, cars close enough to see and out of reach, which sets up the close's point that a concern goes to the regulator.",
+        "weakness": "No defect that makes the close wrong. The dek's new last line sits clear on the dark field. Carried over, a soft grey head at native size, blocky far sensor stacks, a faint mesh cast.",
+        "repair": "None required.",
+        "encoding_reads": true,
+        "dominant_subject_finished": true,
+        "feed_legible": true,
+        "inputs": {
+          "assets/js/deck/2026-11-12-roster.js": "f7f2525220dc06c417d05cf3c406e1c9b6cc43f3eeac8be800e0c1dffe4a3d21",
+          "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+          "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+          "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+          "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+          "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+          "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+          "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+          "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+          "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+          "slides/slide-09.html": "7bdbe9da89ad2f2b9fbda9629e21c0eb3b108fed0095c583441fd35fd4f61950",
+          "render/slide-09.png": "ea49745d50c86b1ecc403f8c63a9f298de0836e444449ecdffba41c2e7b2c6cc"
+        }
+      }
+    ]
+  },
+  "plan": {
+    "hardest_frame": 2,
+    "visual_argument": "The state's list parked at one stand-in car per ten listed vehicles in rows of ten bays, so two names fill two long columns and fourteen companies never fill a single row, seen before any numeral is read",
+    "build_risk": "315 kit crossovers instanced from one baked model per material with stall bars, wheel stops and a stripe, staged as one subject through a long lens that keeps the horizon; single cars at the far end of the third column must still read at 432 px",
+    "distinct_from_recent": "No. 74 was survey lath, a tidal flat and a dark hearing room around one lamp. No. 73 was compute trays in a windowless hall and plan reliefs. No. 72 was a dark lab and plate reliefs. This deck is a parked fleet on asphalt at last light, a count drawn as cars rather than as trays, blocks or plates."
+  },
+  "frame_inputs": {
+    "1": {
+      "slides/slide-01.html": "25933889a389ef04a1dd2a8b665ad2a73ada4378a8bf940e871562a3bc1b2e74",
+      "render/slide-01.png": "994beccda6ec935ef3cc54ba388ed200292f34a38ede7695712df7700d869155",
+      "assets/js/deck/2026-11-12-roster.js": "f7f2525220dc06c417d05cf3c406e1c9b6cc43f3eeac8be800e0c1dffe4a3d21",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de"
+    },
+    "2": {
+      "assets/js/deck/2026-11-12-roster.js": "f7f2525220dc06c417d05cf3c406e1c9b6cc43f3eeac8be800e0c1dffe4a3d21",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+      "slides/slide-02.html": "a612d80023bb3bfdbf3585333fa5f1a222710b4fe6537fd764aa70e7c84be31c",
+      "render/slide-02.png": "2713d5113d473f7eb9962a15e9ae9e62c651a657eba96d35747ff4b6d0227492"
+    },
+    "9": {
+      "assets/js/deck/2026-11-12-roster.js": "f7f2525220dc06c417d05cf3c406e1c9b6cc43f3eeac8be800e0c1dffe4a3d21",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+      "slides/slide-09.html": "7bdbe9da89ad2f2b9fbda9629e21c0eb3b108fed0095c583441fd35fd4f61950",
+      "render/slide-09.png": "ea49745d50c86b1ecc403f8c63a9f298de0836e444449ecdffba41c2e7b2c6cc"
+    }
+  },
+  "needs_review": [
+    9
+  ],
+  "shipped_inputs": {
+    "slides/slide-01.html": "25933889a389ef04a1dd2a8b665ad2a73ada4378a8bf940e871562a3bc1b2e74",
+    "slide-01.webp": "48c7b0144dbd8da0a5bfbfe016b845a1aaeabf9f6c9052a2623e39c43bdf2ea5",
+    "slides/slide-02.html": "a612d80023bb3bfdbf3585333fa5f1a222710b4fe6537fd764aa70e7c84be31c",
+    "slide-02.webp": "28645039a2fe87617f44f164a76085a25645c9e0db6eb3268855b600ff302ee3",
+    "slides/slide-09.html": "7bdbe9da89ad2f2b9fbda9629e21c0eb3b108fed0095c583441fd35fd4f61950",
+    "slide-09.png": "ea49745d50c86b1ecc403f8c63a9f298de0836e444449ecdffba41c2e7b2c6cc"
+  },
+  "encodings": [
+    {
+      "to": "slide-01.webp",
+      "to_sha256": "48c7b0144dbd8da0a5bfbfe016b845a1aaeabf9f6c9052a2623e39c43bdf2ea5",
+      "from_sha256": "994beccda6ec935ef3cc54ba388ed200292f34a38ede7695712df7700d869155",
+      "psnr_db": 41.05
+    },
+    {
+      "to": "slide-02.webp",
+      "to_sha256": "28645039a2fe87617f44f164a76085a25645c9e0db6eb3268855b600ff302ee3",
+      "from_sha256": "2713d5113d473f7eb9962a15e9ae9e62c651a657eba96d35747ff4b6d0227492",
+      "psnr_db": 40.733
+    },
+    {
+      "to": "slide-09.png",
+      "to_sha256": "ea49745d50c86b1ecc403f8c63a9f298de0836e444449ecdffba41c2e7b2c6cc",
+      "from_sha256": "ea49745d50c86b1ecc403f8c63a9f298de0836e444449ecdffba41c2e7b2c6cc",
+      "psnr_db": 999.0
+    }
+  ]
+}

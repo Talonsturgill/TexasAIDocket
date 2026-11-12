@@ -1,6 +1,6 @@
 # Texas requires a state authorization to run driverless vehicles commercially, with no fee, no expiry and no crash history asked
 
-The Texas Department of Motor Vehicles now requires any company running automated vehicles commercially on Texas roads to hold an authorization, under Senate Bill 2807. The requirement became enforceable on May 28th, 2026, after the department's rules took effect on February 27th, 2026. An applicant acknowledges a written statement about the vehicle and certifies that it gave the Department of Public Safety a plan for how first responders should deal with the vehicle. There is no fee, and an authorization does not expire until the department revokes it. The department treats an operation as endangering the public when it has resulted, or is likely to result, in serious bodily injury. Below that standard it says administrative enforcement action is unlikely. The City of Dallas asked the department to require crash history and to make approved operators public. The department answered that the statute does not allow it to require crash history.
+The Texas Department of Motor Vehicles now requires any company running automated vehicles commercially on Texas roads to hold an authorization, under Senate Bill 2807. The requirement became enforceable on May 28th, 2026, after the department's rules took effect on February 27th, 2026. An applicant acknowledges a written statement about the vehicle and certifies that it gave the Department of Public Safety a plan for how first responders should deal with the vehicle. There is no fee, and an authorization does not expire until the department revokes it. The department treats an operation as endangering the public when it has resulted, or is likely to result, in serious bodily injury. Below that standard it says administrative enforcement action is unlikely. The City of Dallas asked the department to require crash history and to make approved operators public. The department answered that the statute does not allow it to require crash history. The department's company and vehicle summary report, with data as of October 29th, 2026, lists 17 authorized companies and 3,164 automated vehicles. Waymo holds 1,259 of them and Tesla Robotaxi 1,080.
 
 - Topic: state-policy
 - Decided by: Texas Department of Motor Vehicles (state-agency)
@@ -9,7 +9,7 @@ The Texas Department of Motor Vehicles now requires any company running automate
 - Public access: Write to the decider
 - Take part: https://txmccs.txdmv.gov/truckstop
 
-- Last checked: 2026-11-10
+- Last checked: 2026-11-12
 
 ## Dates
 
@@ -35,6 +35,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-04 · Checked and unchanged. The decision still stands as decided.
 - 2026-11-07 · The state authorization for commercial driverless vehicles stands in law as quoted.
 - 2026-11-10 · The state authorization required to run driverless vehicles commercially still reads as cited.
+- 2026-11-12 · The department now publishes who holds an authorization. Its report with data as of October 29th lists 17 companies and 3,164 automated vehicles, led by Waymo and Tesla Robotaxi.
 
 ## Evidence
 
@@ -93,4 +94,34 @@ Source (primary_official): https://www.txdmv.gov/sites/default/files/body-files/
 > The 89th Texas Legislature passed Senate Bill 2807 (89R) in 2025 creating a required authorization for the commercial operation of automated vehicles on Texas roads.
 
 Source (primary_official): https://www.txdmv.gov/AVprogram
+
+### The department's company and vehicle summary report carries data as of October 29th, 2026.
+
+> Data as of: 10/29/2026
+
+Source (primary_official): https://www.txdmv.gov/sites/default/files/body-files/AV_Program_Report_10292026.pdf
+
+### The report lists 17 companies authorized to run automated motor vehicles.
+
+> Total Companies: 17
+
+Source (primary_official): https://www.txdmv.gov/sites/default/files/body-files/AV_Program_Report_10292026.pdf
+
+### The report counts 3,164 automated motor vehicles across those companies.
+
+> Total Automated Vehicles: 3,164
+
+Source (primary_official): https://www.txdmv.gov/sites/default/files/body-files/AV_Program_Report_10292026.pdf
+
+### Waymo holds the largest count on the report, at 1,259 vehicles.
+
+> Waymo LLC dba Waymo LLC 1,259
+
+Source (primary_official): https://www.txdmv.gov/sites/default/files/body-files/AV_Program_Report_10292026.pdf
+
+### Tesla Robotaxi holds 1,080 vehicles on the report.
+
+> Tesla Robotaxi, LLC dba Tesla Robotaxi, LLC 1,080
+
+Source (primary_official): https://www.txdmv.gov/sites/default/files/body-files/AV_Program_Report_10292026.pdf
 

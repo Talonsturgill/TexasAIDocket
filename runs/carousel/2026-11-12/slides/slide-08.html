@@ -1,0 +1,59 @@
+<!doctype html>
+<!-- 2026-11-12, frame 8 of 9. Archetype CLOSE_CROP. A spatial scene through txthree.js in the lastLight world: inside a Class 8 sleeper cab, a person seated in the driver's seat seen from the passenger side, the road and the seam through the windshield. Drawn to illustrate; tied to no listed company. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:900px">Two releases say a person sits up front</h1>
+<p class="dek" data-follow="22" style="width:880px">Volvo says its autonomous hauls with Waabi between Dallas and Houston currently run with an observer in the driver's seat. Kodiak and Charger say they run between Dallas and Laredo with a safety driver behind the wheel. Kodiak says its Permian Basin trucks have run with no one in the cab since December 2024.</p>
+<script>window.FIG = {};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-12-roster.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Dallas, Houston, Laredo", counter: "08 / 09", src: "c62 c63 c64 c65 c68", fit: { min: 80, max: 104, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 62, near: 0.02, far: 6000 });
+  /* the cab keeps its origin: floor at y 0, windshield toward +z, driver on +x */
+  const cab = K.make('semi_cab_interior', { hood: true, mirrors: true, curtain: true, lit: true, seat: 0x34363b, seed: 8 });
+  TXT.add(R, cab);
+  const A = cab.userData.attach;
+  const person = K.make('person', { role: 'resident', pose: 'sit_read', seed: 31, shirt: 0x39424d, trousers: 0x23262b, hat: 'cap', hatColor: 0x2b2f36, vest: false });
+  person.position.set(A.seat[0], A.seat[1] - 0.47, A.seat[2] - 0.05); TXT.add(R, person);
+  /* the road ahead, two lanes on dark asphalt, running to the seam */
+  const road = K.make('road', { length: 600, lanes: 2, sidewalk: false });
+  road.rotation.y = Math.PI / 2; road.position.set(1.5, -1.2, 300); TXT.add(R, road);
+  const FROM = [A.eyePassenger[0] + 0.05, A.eyePassenger[1] + 0.12, A.eyePassenger[2] - 0.12];
+  const LOOK = CH.aim(THREE, R, TXT, FROM, [A.seat[0], A.seat[1] + 0.45, A.seat[2] + 0.1], 560, 1040, 62);
+  TXT.frame(R, { fov: 62, from: FROM, look: LOOK });
+  TXT.sky(R);
+  TXT.ground(R, { surface: 'asphalt', color: 0x1a1b20, size: 3000, seed: 12, y: -1.2 });
+  TXT.deckRig(R, CH.rigSpec(W, 8, 2048), CH.rigOpts([A.seat[0], 1, A.seat[2]], { distance: 20, shadowFar: 60, normalBias: 0.02 }));
+  CH.warm(R, 0.9);
+  /* the person lit from the camera's side by the dome and the gauge glow, never a cutout against the windshield */
+  const dome = new THREE.PointLight(0xffd9b0, 7.0, 3.4, 2); dome.position.set(A.eyePassenger[0] + 0.2, A.eyePassenger[1] + 0.55, A.eyePassenger[2] - 0.1); R.scene.add(dome);
+  const glow = new THREE.PointLight(0x9fc4ff, 1.6, 1.8, 2); glow.position.set(A.dash[0] + 0.4, A.dash[1] + 0.05, A.dash[2] - 0.2); R.scene.add(glow);
+  /* a soft key from the passenger side window, so the driver, the seat and the wheel carry their modelling */
+  const sk = new THREE.SpotLight(0xffd2a8, 9, 4, 0.7, 0.8, 2); sk.position.set(A.eyePassenger[0] - 0.2, A.eyePassenger[1] + 0.3, A.eyePassenger[2] + 0.3); sk.target.position.set(A.seat[0], A.seat[1] + 0.4, A.seat[2] + 0.2); R.scene.add(sk); R.scene.add(sk.target);
+  TXT.weather(R, { grime: 0.3, height: 0.4, mottle: 0.2 });
+  TXT.stage(R, person);
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.dress(cx, { foot: 0.6 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

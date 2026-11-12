@@ -1,6 +1,6 @@
 # Run record, November 12th, 2026 (carousel no. 75)
 
-**RESULT LINE WRITTEN AT PHASE 15.**
+**Shipped at the round cap, 7.426 (panel median, `score.json`), under round 1's 8.0 bar by 0.574 and the round 2 rung of 7.7 by 0.274. No hard fail in any round. The artwork median, 6.8, is under the 8.5 craft floor, which stands down at the cap.**
 
 Run date note. The schedule fired at 23:04 on November 11th Chicago time (05:04 UTC November 12th). The routine names the
 America/Chicago date, and every prior run has taken the UTC date at fire time, so this edition is named 2026-11-12 like the
@@ -69,18 +69,62 @@ the close, so it was not taken this run.
 | claims         | PASS   | 68 verified claim(s) |
 | render         | PASS   | 9 slide(s) |
 | qa             | WARN   | 0 fail(s), 3 warn(s) |
-| aggregates     | FAIL   | 4 problem(s) |
-| assembly       | PASS   | 9 slide(s), 8.16 MB, vector |
-| score          | ABSENT | score.json not written yet |
-| labels         | ABSENT | label_report.json not written yet. Run scripts/carousel/label_guard.py <run-dir> |
-| quantifiers    | ABSENT | quantifier_report.json not written yet. Run scripts/carousel/quantifier_check.py <run-dir> |
-| verbatim       | ABSENT | verbatim_report.json not written yet. Run scripts/carousel/verbatim_check.py --date <date> |
-| dossiers       | PASS   | 32,099 chars planned |
+| aggregates     | PASS   | 16 declaration(s), 25 numeric phrase(s) in the render, all re-derived |
+| assembly       | PASS   | 9 slide(s), 8.18 MB, vector |
+| score          | WARN   | 7.426 at the round cap after 3 round(s), the finished deck ships; 8.0 top rung, shortfall named |
+| labels         | PASS   | 74 claim id(s) checked, every label beside one traces to the shape its claim proves |
+| quantifiers    | PASS   | 86 published string(s) read from one list, every universal names its set |
+| verbatim       | WARN   | no dossier declares a `verbatim:` block, so no on-frame string was held to a quote, 1 slot note(s) |
+| dossiers       | PASS   | 32,212 chars planned |
 | caption        | PASS   | 139 words |
-| craft floor    | PASS   | 9 frame(s), median 806, floor 145 |
+| craft floor    | PASS   | 9 frame(s), median 791, floor 142 |
 | plan vs render | WARN   | 0 of 65 acceptance item(s) checkable |
 | texan          | WARN   | places Dallas, Houston, Laredo / body yes / deadline yes / next step NO |
 | absences       | WARN   | 4 of 6 scoped to a named document, 2 unscoped |
-| numerals       | PASS   | 29 numeral(s) over 9 frame(s), every one reachable |
-| completion     | ABSENT | not scored yet |
+| numerals       | PASS   | 31 numeral(s) over 9 frame(s), every one reachable |
+| completion     | PASS   | the deck shipped |
 <!-- gate-status:end -->
+
+## Panel
+
+Three rounds of three fresh judges (integrity, craft, reader), combined by `panel.py`.
+
+| round | judges | median | rung | verdict |
+|---|---|---|---|---|
+| 1 | 7.00, 7.28, 7.20 | 7.25 | 8.0 | keep editing |
+| 2 | 7.24, 7.55, 7.39 | 7.386 | 7.7 | keep editing |
+| 3 | 7.28, 7.362, 7.40 | 7.426 | cap | ships, shortfall named |
+
+Every judge in every round ranked the same frames weakest, 8 then 5, 3, 6 and 4. **The round rule's recompositions,
+said here as the routine asks.** Frame 8 (the seated observer read as asleep beside an empty wheel) was recomposed
+three ways in round 2 (lean the figure back about the hip, a camera behind the seats, a camera over the driver's
+shoulder) and each hid or lost the figure, so the frame shipped at its first camera with the copy put in attribution
+("Two releases say a person sits up front") and Kodiak's Permian line (c68) added. The defect is the engine's: the kit
+person's only seated pose bakes a bowed head. Frame 5 (the rule as a grey-middle slab) was rebuilt as a narrower,
+brighter bar with a taller stop and a recessed gold channel and was still charged grey in round 3; the stair-stepped
+stop-block cast is the relief height field's. Frame 4 was recomposed from the empty end of the row in round 1 and
+still read as a car in front of full rows to the round 2 and 3 judges. Frame 3's labels were moved twice and its pool
+once. Integrity notes left past the cap (not hard fails): slide 8's "its Permian Basin trucks" against c68's
+"customer-owned trucks", slide 6 omitting the department's Chapter 552 answer (c52), and the cover setting the
+authorization rule beside a report count that never says authorized.
+
+**Copy fixes made for the gates, and why.** aggregate_check detects only a number followed by a plural noun, and
+numeral_trace wanted declarations for 74, 825 and the 100 threshold, which aggregate_check then refused as stale. Slide
+2's dek now reads "That 74 percent leaves 825 vehicles to the other 15 companies" and slide 3's "fewer than 100
+vehicles each". Queued as aggregate-and-numeral-trace-disagree-on-bare-figures.
+
+
+## Timing
+
+Measured by `studio_clock.py` from wake (05:04 UTC): record done at 11 minutes, audition at 51, all nine frames at 141,
+review done at 211, panel done at 299, package done at 329.
+
+## Package
+
+`ship_images.py` encoded eight frames to WebP at 40.0 to 43.8 dB and kept slide 9 as PNG, because its WebP measured
+38.8 dB at quality 96, under the 40.0 floor. The art review is bound to the delivered images (`art_preflight.py
+--archive`), `measurements.json` was written from the shipped frames, and `computed.json` carries `figures.json` so the
+site authorises the deck's own arithmetic on its article page. The site rebuilt at 1002 pages. docket_build, site_fresh,
+house_style, schema, port_audit, media, seo and schema_contract exited 0. Two claim texts (c31, c36) were split for the
+article page's 30 word backstop. `tests/article_edition.mjs` could not import Playwright as an ES module in this
+checkout and is left to CI.

@@ -1,0 +1,73 @@
+<!doctype html>
+<!-- 2026-11-12, frame 9 of 9. Archetype FULL_BLEED. A spatial scene through txthree.js in the lastLight world: the whole parked roster from its tail end, seen through a chain link fence past a person standing at it. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:900px">Where a concern goes</h1>
+<p class="dek" data-follow="22" style="width:890px">A concern that an automated vehicle could cause serious bodily injury or death can go to the department's Enforcement Division at txmccs.txdmv.gov/truckstop. The department's program page links an authorizations report.</p>
+<script>window.FIG = {"units_total": 315, "units": {"Waymo": 126, "Tesla Robotaxi": 108, "Avride": 34, "Aurora": 9, "Gatik": 6, "Zoox": 6, "Nuro": 5, "Atlas Energy Solutions": 4, "Kodiak": 4, "Torc": 3, "Stack": 3, "May Mobility": 2, "Bot Auto": 1, "Waabi": 1, "MOIA": 1, "PlusAI": 1, "International Transport Eng": 1}};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-12-roster.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Texas, statewide", counter: "09 / 09", src: "c36 c43", fit: { min: 80, max: 108, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 30, near: 0.1, far: 6000 });
+  /* THE FIGURE: the whole lot again, every company's units, the sum asserted against units_total; seen from the tail */
+  const total = Object.values(FIG.units).reduce((a, b) => a + b, 0);
+  if (total !== FIG.units_total) throw new Error('units do not sum to units_total');
+  const lot = K.make('fleet_lot', { stripeW: 1.0, order: Object.keys(FIG.units), units: FIG.units });
+  const plan = lot.userData.plan;
+  TXT.add(R, lot);
+  lot.updateMatrixWorld(true);
+  const bb = new THREE.Box3().setFromObject(lot), bc = new THREE.Vector3(); bb.getCenter(bc);
+  const ox = bc.x - (plan.minX + plan.maxX) / 2, oz = bc.z - (plan.minZ + plan.maxZ) / 2;
+  const toW = (x, y, z) => [x + ox, y, z + oz];
+  /* at the tail of the fifteen: the third column's last row holds one car at the stripe end and nine open bays
+   * (screen left, the camera looking toward +z), and Tesla Robotaxi's long column runs beside it on the right */
+  const sx = plan.stripeX, r3 = plan.rows.filter(r => r.col === 2), last = r3[r3.length - 1];
+  const tz = last.z - N_D(), fz = tz - 7;
+  function N_D() { return 2.75 + 1.2; }
+  const fence = K.make('chain_link_fence', { length: 70, height: 1.83, color: 'galvanized' });
+  const fp = toW(sx + 15, 0, fz); fence.position.set(fp[0], 0, fp[2]); TXT.add(R, fence);
+  /* the mesh is cut out by alpha test with depth on, so it never draws over a figure standing in front of it */
+  fence.traverse(m => { if (m.isMesh && m.material) { const ms = Array.isArray(m.material) ? m.material : [m.material]; ms.forEach(q => { if (q.transparent) { q.transparent = false; q.alphaTest = 0.5; q.depthWrite = true; q.depthTest = true; q.needsUpdate = true; } }); } });
+  const person = K.make('person', { role: 'resident', pose: 'stand', seed: 44, build: 'male', shirt: 0x5A5E6B, trousers: 0x4a443a, hat: 'cap', hatColor: 0x2a2e36 });
+  const pp = toW(sx + 7.0, 0, fz - 2.0); person.position.set(pp[0], 0, pp[2]); person.rotation.y = 0.5; TXT.add(R, person); TXT.contact(R, person, { opacity: 0.85 });
+  const FROM = toW(sx + 3.2, 1.45, fz - 7.5);
+  const C0 = toW((plan.minX + plan.maxX) / 2, 0, (plan.minZ + plan.maxZ) / 2);
+  const LOOK = CH.aim(THREE, R, TXT, FROM, toW(sx + 1.5, 0.9, last.z), 600, 900, 30);
+  TXT.frame(R, { fov: 30, from: FROM, look: LOOK });
+  /* the person stands where the camera sees them: on the ground along the ray through screen (330, 1330), on the near side of the fence */
+  { R.camera.updateMatrixWorld(true); const v = new THREE.Vector3(330 / 1080 * 2 - 1, 1 - 1330 / 1350 * 2, 0.5).unproject(R.camera).sub(R.camera.position).normalize();
+    const t = (0 - R.camera.position.y) / v.y, gp = R.camera.position.clone().addScaledVector(v, t); person.position.set(gp.x, 0, gp.z); pp[0] = gp.x; pp[2] = gp.z; fence.position.z = gp.z + 1.2; TXT.contact(R, fence, { opacity: 0.7 }); }
+  TXT.sky(R);
+  TXT.ground(R, { surface: 'asphalt', color: 0x1a1b20, size: 3000, seed: 12 });
+  TXT.deckRig(R, CH.rigSpec(W, 120, 4096), CH.rigOpts(C0, { distance: 220, shadowFar: 500, normalBias: 0.03 }));
+  CH.warm(R, 0.35);
+  /* the person is lit from the camera side so the figure keeps a face to the reader, never a cutout against the seam */
+  const fl = new THREE.SpotLight(0xffe2c0, 160, 16, 0.45, 0.7, 2); fl.position.set(FROM[0] - 1.0, 3.0, FROM[2] - 1.0); fl.target.position.set(pp[0], 1.2, pp[2]); R.scene.add(fl); R.scene.add(fl.target);
+  TXT.weather(R, { grime: 0.4, height: 0.5, mottle: 0.25 });
+  TXT.stage(R, lot);
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  /* the deck's dressing with a tighter foot, so the gold that marks where the two largest names end isn't darkened under it */
+  CH.post(cx, { a: 0.3, veil: 0.16, veilH: 150 }); CH.footWash(cx, { a: 0.6, r: 250, x: 880 }); CH.typeDark(cx, { fade: 120, a: 0.6 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

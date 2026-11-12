@@ -1,0 +1,15 @@
+{"lens":"reader","round":3,"criteria":[
+{"name":"artwork_craft","weight":0.22,"score":6.8,"why":"Lot frames are the strength: slide 1 reads as one car at 432 px, slide 2's census bold with counts checked, slide 9 holds. Slide 5 a flat mid-grey slab with a stair-stepped cast, dead bottom mat, brown groove. Slide 8 hunched mannequin, wheel unoccupied, reads as an empty driver's seat. Slide 3 leaders fan and cross, ITE leader ends on nothing, muddy lower half. Slide 4 lone car on the stripe in front of full rows."},
+{"name":"deck_coherence","weight":0.12,"score":7.5,"why":"One lastLight world, dark register, lot motif evolves, camera move real, stripe recurs. Slide 5 the one grey slab; slide 8 apart in palette. No strobing."},
+{"name":"claim_integrity","weight":0.2,"score":8.5,"why":"Every numeral traces and rechecks; primary sources; slide 8 framed as two releases say, never tied to roster rows; slide 9 bridges through c43. Slide 6 omits c52's public-access answer; caption's never expires looser than slide 5."},
+{"name":"story_and_stakes","weight":0.16,"score":7.5,"why":"What happened, who decided, Dallas refused, a concrete action. Caption question has no addressee on any slide (Legislature, SB 2807 only a hashtag); slide 9's second sentence gives the reader nothing to do."},
+{"name":"sequence_and_momentum","weight":0.1,"score":7.5,"why":"Cover earns the swipe, 2 pays, turn at 5 and 6, close on an action. 3 and 4 overlap; one car per ten said three times."},
+{"name":"voice","weight":0.1,"score":7.0,"why":"Plain, careful, on register, regional ground. Some flat bureaucratic lines: slide 9's last sentence, the truncated company name three times, slide 7's dek."},
+{"name":"variety","weight":0.1,"score":6.5,"why":"New subject; technique of identical units in ranks repeats 73 and 74; lastLight with dusk_gold; fourth AV deck in 27 days; caption opens on a paired contrast."}],
+"weighted_score":7.4,"hard_fails":[],"ship":true,
+"one_sentence_fix":"Give the deck's question an addressee: replace slide 9's second sentence with the lever and name SB 2807 beside the department's answer on slide 6.",
+"artwork_weakest_frames":[
+{"slide":8,"problem":"Hunched mannequin in the foreground, wheel unoccupied at right, reads as an empty driver's seat; mid-grey door panel.","fix":"Camera behind the passenger headrest looking forward-left so hands rest on the rim, crop above the jaw, key confined to the side glass."},
+{"slide":5,"problem":"Flat mid-grey slab, stair-stepped cast, dead bottom mat with a jagged diagonal, brown groove.","fix":"Low raking key so only bevel and graduation walls catch light, smoother shadow, crop the mat, groove to the true accent."},
+{"slide":3,"problem":"Leaders fan and cross, ITE leader ends on nothing, end bars barely read over a muddy lot.","fix":"Pin each label at the end of its run without leaders, lift the camera so rows read as stepped rows, wider brighter end bars."},
+{"slide":4,"problem":"Lone car on the stripe in front of full rows; empty bays faint.","fix":"Camera down the car's own row at 1.5 m so nine lit stops lead to the car, stripe out from under it."}]}

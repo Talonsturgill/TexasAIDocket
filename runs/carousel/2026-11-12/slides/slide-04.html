@@ -1,0 +1,66 @@
+<!doctype html>
+<!-- 2026-11-12, frame 4 of 9. Archetype CLOSE_CROP. A spatial scene through txthree.js in the lastLight world: the last row of the parked roster, one stand-in car close on the left and nine open bays with wheel stops running away right. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:900px">The smallest entry lists 7</h1>
+<p class="dek" data-follow="22" style="width:880px">International Transport Eng lists 7 vehicles. On the lot it is one car, alone in a row built for ten. Bot Auto and Waabi list 13 each, MOIA and PlusAI 12 each.</p>
+<script>window.FIG = {"u_international_transport_eng": 1, "units": {"Waymo": 126, "Tesla Robotaxi": 108, "Avride": 34, "Aurora": 9, "Gatik": 6, "Zoox": 6, "Nuro": 5, "Atlas Energy Solutions": 4, "Kodiak": 4, "Torc": 3, "Stack": 3, "May Mobility": 2, "Bot Auto": 1, "Waabi": 1, "MOIA": 1, "PlusAI": 1, "International Transport Eng": 1}};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-12-roster.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Texas, statewide", counter: "04 / 09", src: "c6 c3 c15 c9 c11", fit: { min: 80, max: 104, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 30, near: 0.1, far: 6000 });
+  /* THE FIGURE: the last row holds u_international_transport_eng car(s) and the rest of its ten bays open */
+  const ks = Object.keys(FIG.units);
+  if (FIG.units[ks[ks.length - 1]] !== FIG.u_international_transport_eng) throw new Error('the last company is not International Transport Eng');
+  const planOnly = CH.lotPlan(ks, FIG.units);
+  const r3 = planOnly.rows.filter(r => r.col === 2), last = r3[r3.length - 1];
+  const idx = planOnly.bays.findIndex(b => b.col === 2 && b.row === last.row && b.car);
+  const lot = K.make('fleet_lot', { order: Object.keys(FIG.units), units: FIG.units, near: [idx] });
+  const plan = lot.userData.plan;
+  TXT.add(R, lot);
+  lot.updateMatrixWorld(true);
+  const bb = new THREE.Box3().setFromObject(lot), bc = new THREE.Vector3(); bb.getCenter(bc);
+  const ox = bc.x - (plan.minX + plan.maxX) / 2, oz = bc.z - (plan.minZ + plan.maxZ) / 2;
+  const toW = (x, y, z) => [x + ox, y, z + oz];
+  const car = toW(last.x0 + 1.375, 0.8, last.z);
+  lot.userData.nearModels.forEach(m => TXT.contact(R, m, { opacity: 0.9 }));
+  /* THE CAMERA STANDS AT THE EMPTY END OF THE ROW and looks back along its nine open bays to the one car, with the rest of the
+   * roster parked dark behind it, so the frame shows a row built for ten holding one */
+  const FROM = toW(last.x0 + 24, 3.4, last.z + 2.6);
+  const LOOK = CH.aim(THREE, R, TXT, FROM, car, 470, 930, 30);
+  TXT.frame(R, { fov: 30, from: FROM, look: LOOK });
+  TXT.sky(R);
+  TXT.ground(R, { surface: 'asphalt', color: 0x1a1b20, size: 3000, seed: 12 });
+  TXT.deckRig(R, CH.rigSpec(W, 50, 4096), CH.rigOpts(toW(last.x0 + 12, 0, last.z), { distance: 80, shadowFar: 220, normalBias: 0.02 }));
+  CH.warm(R, 0.35);
+  /* the key's pool across the open bays, so the stops cast and the bays read as bays */
+  CH.pool(THREE, TXT, R, toW(last.x0 + 10, 0, last.z), { radius: 11, i: 2.8, color: 0xffc890 });
+  /* a camera side fill on the lone car, so the row's one car keeps its paint against the last light behind it */
+  { const fl = new THREE.SpotLight(0xffe2c0, 260, 40, 0.22, 0.7, 2); fl.position.set(FROM[0] - 2, 3.2, FROM[2] + 3); fl.target.position.set(car[0], 0.8, car[2]); R.scene.add(fl); R.scene.add(fl.target); }
+  TXT.weather(R, { grime: 0.5, height: 0.5, mottle: 0.3 });
+  TXT.stage(R, lot);
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.dress(cx, { foot: 0.9 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>
