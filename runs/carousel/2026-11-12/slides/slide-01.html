@@ -1,0 +1,60 @@
+<!doctype html>
+<!-- 2026-11-12, frame 1 of 9. Archetype FULL_BLEED. A spatial scene through txthree.js in the lastLight world: the first stand-in car of the parked roster, close at its front quarter, the lot behind it. Drawn to illustrate; no maker's likeness. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:920px">3,164 automated vehicles, 17 names</h1>
+<p class="dek" data-follow="22" style="width:880px">Since May 28th, a company running automated vehicles commercially in Texas needs a state authorization. A Texas Department of Motor Vehicles report with data as of October 29th lists 17 companies.</p>
+<script>window.FIG = {"units_total": 315, "units": {"Waymo": 126, "Tesla Robotaxi": 108, "Avride": 34, "Aurora": 9, "Gatik": 6, "Zoox": 6, "Nuro": 5, "Atlas Energy Solutions": 4, "Kodiak": 4, "Torc": 3, "Stack": 3, "May Mobility": 2, "Bot Auto": 1, "Waabi": 1, "MOIA": 1, "PlusAI": 1, "International Transport Eng": 1}};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-12-roster.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Texas, statewide", counter: "01 / 09", src: "c18 c19 c20 c26", fit: { min: 80, max: 108, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 32, near: 0.1, far: 6000 });
+  /* THE FIGURE: every company's units parked, one stand-in per ten listed vehicles; the first four of Waymo's front row
+   * are full models, the rest instanced. The sum is asserted against units_total. */
+  const total = Object.values(FIG.units).reduce((a, b) => a + b, 0);
+  if (total !== FIG.units_total) throw new Error('units do not sum to units_total');
+  const lot = K.make('fleet_lot', { order: Object.keys(FIG.units), units: FIG.units, near: [0, 1, 2, 3] });
+  const plan = lot.userData.plan;
+  TXT.add(R, lot);
+  lot.updateMatrixWorld(true);
+  const bb = new THREE.Box3().setFromObject(lot), bc = new THREE.Vector3(); bb.getCenter(bc);
+  const ox = bc.x - (plan.minX + plan.maxX) / 2, oz = bc.z - (plan.minZ + plan.maxZ) / 2;
+  const toW = (x, y, z) => [x + ox, y, z + oz];
+  const b0 = plan.bays[0], car = toW(b0.x, 0.8, b0.z + 0.2);
+  lot.userData.nearModels.forEach(m => TXT.contact(R, m, { opacity: 0.9 }));
+  const FROM = [car[0] - 6.4, 2.9, car[2] + 9.2];
+  const LOOK = CH.aim(THREE, R, TXT, FROM, car, 330, 1020, 32);
+  TXT.frame(R, { fov: 32, from: FROM, look: LOOK });
+  TXT.sky(R);
+  TXT.ground(R, { surface: 'asphalt', color: 0x1a1b20, size: 3000, seed: 12 });
+  TXT.deckRig(R, CH.rigSpec(W, 110, 4096), CH.rigOpts([car[0] + 20, 0, car[2] - 40], { distance: 160, shadowFar: 400, normalBias: 0.02 }));
+  CH.warm(R, 0.35);
+  /* the key's pool on the near cars, so the asphalt, the bays and each cast read under the hero */
+  CH.pool(THREE, TXT, R, [car[0] + 6, 0, car[2] - 4], { radius: 16, i: 2.6, color: 0xffc890 });
+  TXT.weather(R, { grime: 0.45, height: 0.5, mottle: 0.25 });
+  TXT.stage(R, lot);
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.dress(cx, { foot: 0.6 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

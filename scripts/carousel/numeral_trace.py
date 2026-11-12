@@ -284,10 +284,10 @@ def check(copy: dict, report: dict, claims: dict, aggregates: dict | None = None
                         f"that figure in its quote, its text, its document title or its url. "
                         f"The frame cites {', '.join(cited) or 'nothing'}. Fetch the span that "
                         f"states it and make it a claim, which is what the record does for every "
-                        f"other figure. Declaring it in aggregates.json clears THIS gate and "
-                        f"only clears aggregate_check when that gate's own detector already "
-                        f"found the phrase on a frame, so a bare figure declared there is "
-                        f"refused there while passing here. Make it a claim")
+                        f"other figure. A figure the deck COMPUTED is declared in "
+                        f"aggregates.json under the exact phrase the frame prints, with "
+                        f"computed_by, and aggregate_check then re-derives it and holds its "
+                        f"value to the number printed (since 2026-11-12)")
     return problems, {"examined": examined, "frames": len(report.get("slides") or []),
                       "matched": len(blocks)}
 

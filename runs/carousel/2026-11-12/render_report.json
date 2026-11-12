@@ -1,0 +1,2096 @@
+{
+ "canvas": {
+  "width": 1080,
+  "height": 1350,
+  "scale": 2.0,
+  "px": [
+   2160,
+   2700
+  ]
+ },
+ "text_window": 320,
+ "slides": [
+  {
+   "file": "slide-01.html",
+   "png": "slide-01.png",
+   "console_errors": [
+    "TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+   ],
+   "page_errors": [],
+   "overflow_warnings": [],
+   "fonts_missing": [],
+   "text_nodes": [
+    {
+     "text": "texasaidocket.com",
+     "x": 727,
+     "y": 1234,
+     "w": 273,
+     "h": 36,
+     "font_px": 24,
+     "weight": "400",
+     "family": "JetBrains Mono",
+     "color": "rgb(237, 230, 214)",
+     "decorative": false,
+     "overlap_ok": false,
+     "lines": [
+      [
+       727,
+       1236,
+       273,
+       31
+      ]
+     ],
+     "anc": []
+    },
+    {
+     "text": "3,164 automated vehicles, 17 names",
+     "x": 80,
+     "y": 150,
+     "w": 920,
+     "h": 211,
+     "font_px": 107.5,
+     "weight": "700",
+     "family": "Fraunces",
+     "color": "rgb(237, 230, 214)",
+     "decorative": false,
+     "overlap_ok": false,
+     "lines": [
+      [
+       80,
+       136,
+       746,
+       132
+      ],
+      [
+       80,
+       241,
+       795,
+       132
+      ]
+     ],
+     "anc": []
+    },
+    {
+     "text": "Since May 28th, a company running automated vehicles commercially in Texas needs a state authorization. A Texas Department of Motor Vehicles report with data as of October 29th lists 17 companies.",
+     "x": 82,
+     "y": 383,
+     "w": 880,
+     "h": 171,
+     "font_px": 31,
+     "weight": "600",
+     "family": "Manrope",
+     "color": "rgb(210, 214, 218)",
+     "decorative": false,
+     "overlap_ok": false,
+     "lines": [
+      [
+       82,
+       383,
+       817,
+       42
+      ],
+      [
+       82,
+       425,
+       860,
+       42
+      ],
+      [
+       82,
+       468,
+       760,
+       42
+      ],
+      [
+       82,
+       511,
+       479,
+       42
+      ]
+     ],
+     "anc": []
+    },
+    {
+     "text": "Texas, statewide",
+     "x": 80,
+     "y": 80,
+     "w": 265,
+     "h": 36,
+     "font_px": 24,
+     "weight": "400",
+     "family": "JetBrains Mono",
+     "color": "rgb(210, 214, 218)",
+     "decorative": false,
+     "overlap_ok": false,
+     "lines": [
+      [
+       80,
+       82,
+       265,
+       31
+      ]
+     ],
+     "anc": []
+    },
+    {
+     "text": "01 / 09",
+     "x": 884,
+     "y": 80,
+     "w": 116,
+     "h": 36,
+     "font_px": 24,
+     "weight": "400",
+     "family": "JetBrains Mono",
+     "color": "rgb(210, 214, 218)",
+     "decorative": false,
+     "overlap_ok": false,
+     "lines": [
+      [
+       884,
+       82,
+       116,
+       31
+      ]
+     ],
+     "anc": []
+    },
+    {
+     "text": "c18 c19 c20 c26",
+     "x": 80,
+     "y": 1234,
+     "w": 241,
+     "h": 36,
+     "font_px": 24,
+     "weight": "400",
+     "family": "JetBrains Mono",
+     "color": "rgb(210, 214, 218)",
+     "decorative": false,
+     "overlap_ok": false,
+     "lines": [
+      [
+       80,
+       1236,
+       241,
+       31
+      ]
+     ],
+     "anc": []
+    }
+   ],
+   "body_overflow": false,
+   "canvas_text": [],
+   "svg_plates": [],
+   "rules": [],
+   "encodings": [],
+   "contacts": [],
+   "nondeterminism": [],
+   "render_ms": 63153,
+   "ok": true,
+   "load_ms": 224,
+   "canvases": [
+    {
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1350,
+     "bw": 2160,
+     "bh": 2700,
+     "area_frac": 1,
+     "backing_ratio": 2,
+     "sample_ok": true,
+     "mean": 38.9,
+     "variance": 3091.6
+    }
+   ],
+   "breather": false,
+   "leaders": [],
+   "native_crops": {
+    "ok": true,
+    "dir": "crops",
+    "tiles": 6
+   }
+  },
+  {
+   "file": "slide-02.html",
+   "png": "slide-02.png",
+   "console_errors": [
+    "TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+   ],
+   "page_errors": [],
+   "overflow_warnings": [],
+   "fonts_missing": [],
+   "text_nodes": [
+    {
+     "text": "texasaidocket.com",
+     "x": 727,
+     "y": 1234,
+     "w": 273,
+     "h": 36,
+     "font_px": 24,
+     "weight": "400",
+     "family": "JetBrains Mono",
+     "color": "rgb(237, 230, 214)",
+     "decorative": false,
+     "overlap_ok": false,
+     "lines": [
+      [
+       727,
+       1236,
+       273,
+       31
+      ]
+     ],
+     "anc": []
+    },
+    {
+     "text": "Two names hold 74 percent",
+     "x": 80,
+     "y": 150,
+     "w": 900,
+     "h": 195,
+     "font_px": 99.5,
+     "weight": "700",
+     "family": "Fraunces",
+     "color": "rgb(237, 230, 214)",
+     "decorative": false,
+     "overlap_ok": false,
+     "lines": [
+      [
+       80,
+       137,
+       660,
+       122
+      ],
+      [
+       80,
+       235,
+       434,
+       122
+      ]
+     ],
+     "anc": []
+    },
+    {
+     "text": "Waymo lists 1,259 vehicles and Tesla Robotaxi 1,080. That 74 percent leaves 825 vehicles to the other 15 companies. One car here stands for ten listed vehicles.",
+     "x": 82,
+     "y": 367,
+     "w": 880,
+     "h": 128,
+     "font_px": 31,
+     "weight": "600",
+     "family": "Manrope",
+     "color": "rgb(210, 214, 218)",
+     "decorative": false,
+     "overlap_ok": false,
+     "lines": [
+      [
+       82,
+       367,
+       841,
+       42
+      ],
+      [
+       82,
+       410,
+       843,
+       42
+      ],
+      [
+       82,
+       453,
+       625,
+       42
+      ]
+     ],
+     "anc": []
+    },
+    {
+     "text": "WAYMO 1,259",
+     "x": 80,
+     "y": 1150,
+     "w": 189,
+     "h": 34,
+     "font_px": 26,
+     "weight": "500",
+     "family": "JetBrains Mono",
+     "color": "rgb(237, 230, 214)",
+     "decorative": false,
+     "overlap_ok": false,
+     "lines": [
+      [
+       80,
+       1149,
+       189,
+       35
+      ]
+     ],
+     "anc": []
+    },
+    {
+     "text": "TESLA ROBOTAXI 1,080",
+     "x": 368,
+     "y": 1150,
+     "w": 343,
+     "h": 34,
+     "font_px": 26,
+     "weight": "500",
+     "family": "JetBrains Mono",
+     "color": "rgb(237, 230, 214)",
+     "decorative": false,
+     "overlap_ok": false,
+     "lines": [
+      [
+       368,
+       1149,
+       343,
+       35
+      ]
+     ],
+     "anc": []
+    },
+    {
+     "text": "15 OTHERS 825",
+     "x": 776,
+     "y": 1150,
+     "w": 223,
+     "h": 34,
+     "font_px": 26,
+     "weight": "500",
+     "family": "JetBrains Mono",
+     "color": "rgb(237, 230, 214)",
+     "decorative": false,
+     "overlap_ok": false,
+     "lines": [
+      [
+       776,
+       1149,
+       223,
+       35
+      ]
+     ],
+     "anc": []
+    },
+    {
+     "text": "Texas, statewide",
+     "x": 80,
+     "y": 80,
+     "w": 265,
+     "h": 36,
+     "font_px": 24,
+     "weight": "400",
+     "family": "JetBrains Mono",
+     "color": "rgb(210, 214, 218)",
+     "decorative": false,
+     "overlap_ok": false,
+     "lines": [
+      [
+       80,
+       82,
+       265,
+       31
+      ]
+     ],
+     "anc": []
+    },
+    {
+     "text": "02 / 09",
+     "x": 884,
+     "y": 80,
+     "w": 116,
+     "h": 36,
+     "font_px": 24,
+     "weight": "400",
+     "family": "JetBrains Mono",
+     "color": "rgb(210, 214, 218)",
+     "decorative": false,
+     "overlap_ok": false,
+     "lines": [
+      [
+       884,
+       82,
+       116,
+       31
+      ]
+     ],
+     "anc": []
+    },
+    {
+     "text": "c13 c16 c18 c19",
+     "x": 80,
+     "y": 1234,
+     "w": 241,
+     "h": 36,
+     "font_px": 24,
+     "weight": "400",
+     "family": "JetBrains Mono",
+     "color": "rgb(210, 214, 218)",
+     "decorative": false,
+     "overlap_ok": false,
+     "lines": [
+      [
+       80,
+       1236,
+       241,
+       31
+      ]
+     ],
+     "anc": []
+    }
+   ],
+   "body_overflow": false,
+   "canvas_text": [],
+   "svg_plates": [],
+   "rules": [],
+   "encodings": [],
+   "contacts": [],
+   "nondeterminism": [],
+   "render_ms": 65366,
+   "ok": true,
+   "load_ms": 251,
+   "canvases": [
+    {
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1350,
+     "bw": 2160,
+     "bh": 2700,
+     "area_frac": 1,
+     "backing_ratio": 2,
+     "sample_ok": true,
+     "mean": 13.5,
+     "variance": 791
+    }
+   ],
+   "breather": false,
+   "leaders": [],
+   "native_crops": {
+    "ok": true,
+    "dir": "crops",
+    "tiles": 6
+   }
+  },
+  {
+   "file": "slide-03.html",
+   "png": "slide-03.png",
+   "console_errors": [
+    "TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+   ],
+   "page_errors": [],
+   "overflow_warnings": [],
+   "fonts_missing": [],
+   "text_nodes": [
+    {
+     "text": "texasaidocket.com",
+     "x": 727,
+     "y": 1234,
+     "w": 273,
+     "h": 36,
+     "font_px": 24,
+     "weight": "400",
+     "family": "JetBrains Mono",
+     "color": "rgb(237, 230, 214)",
+     "decorative": false,
+     "overlap_ok": false,
+     "lines": [
+      [
+       727,
+       1236,
+       273,
+       31
+      ]
+     ],
+     "anc": []
+    },
+    {
+     "text": "Fifteen companies share 825",
+     "x": 80,
+     "y": 150,
+     "w": 900,
+     "h": 203,
+     "font_px": 103.5,
+     "weight": "700",
+     "family": "Fraunces",
+     "color": "rgb(237, 230, 214)",
+     "decorative": false,
+     "overlap_ok": false,
+     "lines": [
+      [
+       80,
+       137,
+       774,
+       127
+      ],
+      [
+       80,
+       238,
+       429,
+       127
+      ]
+     ],
+     "anc": []
+    },
+    {
+     "text": "Avride lists 344. Then 14 companies list fewer than 100 vehicles each, down to International Transport Eng at 7. One car stands for ten listed vehicles, and a white bar marks where each company ends.",
+     "x": 82,
+     "y": 375,
+     "w": 880,
+     "h": 171,
+     "font_px": 31,
+     "weight": "600",
+     "family": "Manrope",
+     "color": "rgb(210, 214, 218)",
+     "decorative": false,
+     "overlap_ok": false,
+     "lines": [
+      [
+       82,
+       375,
+       795,
+       42
+      ],
+      [
+       82,
+       418,
+       879,
+       42
+      ],
+      [
+       82,
+       460,
+       810,
+       42
+      ],
+      [
+       82,
+       503,
+       400,
+       42
+      ]
+     ],
+     "anc": []
+    },
+    {
+     "text": "AVRIDE 344",
+     "x": 80,
+     "y": 872,
+     "w": 172,
+     "h": 34,
+     "font_px": 26,
+     "weight": "500",
+     "family": "JetBrains Mono",
+     "color": "rgb(237, 230, 214)",
+     "decorative": false,
+     "overlap_ok": false,
+     "lines": [
+      [
+       80,
+       871,
+       172,
+       35
+      ]
+     ],
+     "anc": []
+    },
+    {
+     "text": "AURORA 91",
+     "x": 80,
+     "y": 824,
+     "w": 154,
+     "h": 34,
+     "font_px": 26,
+     "weight": "500",
+     "family": "JetBrains Mono",
+     "color": "rgb(237, 230, 214)",
+     "decorative": false,
+     "overlap_ok": false,
+     "lines": [
+      [
+       80,
+       823,
+       154,
+       35
+      ]
+     ],
+     "anc": []
+    },
+    {
+     "text": "KODIAK 36",
+     "x": 80,
+     "y": 780,
+     "w": 154,
+     "h": 34,
+     "font_px": 26,
+     "weight": "500",
+     "family": "JetBrains Mono",
+     "color": "rgb(237, 230, 214)",
+     "decorative": false,
+     "overlap_ok": false,
+     "lines": [
+      [
+       80,
+       779,
+       154,
+       35
+      ]
+     ],
+     "anc": []
+    },
+    {
+     "text": "WAABI 13",
+     "x": 80,
+     "y": 736,
+     "w": 137,
+     "h": 34,
+     "font_px": 26,
+     "weight": "500",
+     "family": "JetBrains Mono",
+     "color": "rgb(237, 230, 214)",
+     "decorative": false,
+     "overlap_ok": false,
+     "lines": [
+      [
+       80,
+       735,
+       137,
+       35
+      ]
+     ],
+     "anc": []
+    },
+    {
+     "text": "INTERNATIONAL TRANSPORT ENG 7",
+     "x": 80,
+     "y": 692,
+     "w": 498,
+     "h": 34,
+     "font_px": 26,
+     "weight": "500",
+     "family": "JetBrains Mono",
+     "color": "rgb(237, 230, 214)",
+     "decorative": false,
+     "overlap_ok": false,
+     "lines": [
+      [
+       80,
+       691,
+       498,
+       35
+      ]
+     ],
+     "anc": []
+    },
+    {
+     "text": "Texas, statewide",
+     "x": 80,
+     "y": 80,
+     "w": 265,
+     "h": 36,
+     "font_px": 24,
+     "weight": "400",
+     "family": "JetBrains Mono",
+     "color": "rgb(210, 214, 218)",
+     "decorative": false,
+     "overlap_ok": false,
+     "lines": [
+      [
+       80,
+       82,
+       265,
+       31
+      ]
+     ],
+     "anc": []
+    },
+    {
+     "text": "03 / 09",
+     "x": 884,
+     "y": 80,
+     "w": 116,
+     "h": 36,
+     "font_px": 24,
+     "weight": "400",
+     "family": "JetBrains Mono",
+     "color": "rgb(210, 214, 218)",
+     "decorative": false,
+     "overlap_ok": false,
+     "lines": [
+      [
+       884,
+       82,
+       116,
+       31
+      ]
+     ],
+     "anc": []
+    },
+    {
+     "text": "c2 c1 c7 c15 c6 c19 c13 c16",
+     "x": 80,
+     "y": 1234,
+     "w": 434,
+     "h": 36,
+     "font_px": 24,
+     "weight": "400",
+     "family": "JetBrains Mono",
+     "color": "rgb(210, 214, 218)",
+     "decorative": false,
+     "overlap_ok": false,
+     "lines": [
+      [
+       80,
+       1236,
+       434,
+       31
+      ]
+     ],
+     "anc": []
+    }
+   ],
+   "body_overflow": false,
+   "canvas_text": [],
+   "svg_plates": [],
+   "rules": [
+    {
+     "kind": "svg",
+     "x": 574.5,
+     "y": 709,
+     "w": 14.7,
+     "h": 1.5,
+     "by": "line",
+     "color": "rgb(217, 214, 204)",
+     "decorative": false,
+     "skip": []
+    },
+    {
+     "kind": "svg",
+     "x": 227.7,
+     "y": 746,
+     "w": 701,
+     "h": 7,
+     "by": "line",
+     "color": "rgb(217, 214, 204)",
+     "decorative": false,
+     "skip": []
+    },
+    {
+     "kind": "svg",
+     "x": 244.9,
+     "y": 757.5,
+     "w": 506.3,
+     "h": 39.5,
+     "by": "line",
+     "color": "rgb(217, 214, 204)",
+     "decorative": false,
+     "skip": []
+    },
+    {
+     "kind": "svg",
+     "x": 244.9,
+     "y": 817.7,
+     "w": 184.8,
+     "h": 23.3,
+     "by": "line",
+     "color": "rgb(217, 214, 204)",
+     "decorative": false,
+     "skip": []
+    },
+    {
+     "kind": "svg",
+     "x": 262.1,
+     "y": 888.9,
+     "w": 72.6,
+     "h": 1.5,
+     "by": "line",
+     "color": "rgb(217, 214, 204)",
+     "decorative": false,
+     "skip": []
+    }
+   ],
+   "encodings": [],
+   "contacts": [],
+   "nondeterminism": [],
+   "render_ms": 49310,
+   "ok": true,
+   "load_ms": 238,
+   "canvases": [
+    {
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1350,
+     "bw": 2160,
+     "bh": 2700,
+     "area_frac": 1,
+     "backing_ratio": 2,
+     "sample_ok": true,
+     "mean": 13,
+     "variance": 660.4
+    }
+   ],
+   "breather": false,
+   "leaders": [],
+   "native_crops": {
+    "ok": true,
+    "dir": "crops",
+    "tiles": 6
+   }
+  },
+  {
+   "file": "slide-04.html",
+   "png": "slide-04.png",
+   "console_errors": [
+    "TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+   ],
+   "page_errors": [],
+   "overflow_warnings": [],
+   "fonts_missing": [],
+   "text_nodes": [
+    {
+     "text": "texasaidocket.com",
+     "x": 727,
+     "y": 1234,
+     "w": 273,
+     "h": 36,
+     "font_px": 24,
+     "weight": "400",
+     "family": "JetBrains Mono",
+     "color": "rgb(237, 230, 214)",
+     "decorative": false,
+     "overlap_ok": false,
+     "lines": [
+      [
+       727,
+       1236,
+       273,
+       31
+      ]
+     ],
+     "anc": []
+    },
+    {
+     "text": "The smallest entry lists 7",
+     "x": 80,
+     "y": 150,
+     "w": 900,
+     "h": 203,
+     "font_px": 103.5,
+     "weight": "700",
+     "family": "Fraunces",
+     "color": "rgb(237, 230, 214)",
+     "decorative": false,
+     "overlap_ok": false,
+     "lines": [
+      [
+       80,
+       137,
+       786,
+       127
+      ],
+      [
+       80,
+       238,
+       240,
+       127
+      ]
+     ],
+     "anc": []
+    },
+    {
+     "text": "International Transport Eng lists 7 vehicles. On the lot it is one car, alone in a row built for ten. Bot Auto and Waabi list 13 each, MOIA and PlusAI 12 each.",
+     "x": 82,
+     "y": 375,
+     "w": 880,
+     "h": 128,
+     "font_px": 31,
+     "weight": "600",
+     "family": "Manrope",
+     "color": "rgb(210, 214, 218)",
+     "decorative": false,
+     "overlap_ok": false,
+     "lines": [
+      [
+       82,
+       375,
+       844,
+       42
+      ],
+      [
+       82,
+       418,
+       854,
+       42
+      ],
+      [
+       82,
+       460,
+       487,
+       42
+      ]
+     ],
+     "anc": []
+    },
+    {
+     "text": "Texas, statewide",
+     "x": 80,
+     "y": 80,
+     "w": 265,
+     "h": 36,
+     "font_px": 24,
+     "weight": "400",
+     "family": "JetBrains Mono",
+     "color": "rgb(210, 214, 218)",
+     "decorative": false,
+     "overlap_ok": false,
+     "lines": [
+      [
+       80,
+       82,
+       265,
+       31
+      ]
+     ],
+     "anc": []
+    },
+    {
+     "text": "04 / 09",
+     "x": 884,
+     "y": 80,
+     "w": 116,
+     "h": 36,
+     "font_px": 24,
+     "weight": "400",
+     "family": "JetBrains Mono",
+     "color": "rgb(210, 214, 218)",
+     "decorative": false,
+     "overlap_ok": false,
+     "lines": [
+      [
+       884,
+       82,
+       116,
+       31
+      ]
+     ],
+     "anc": []
+    },
+    {
+     "text": "c6 c3 c15 c9 c11",
+     "x": 80,
+     "y": 1234,
+     "w": 257,
+     "h": 36,
+     "font_px": 24,
+     "weight": "400",
+     "family": "JetBrains Mono",
+     "color": "rgb(210, 214, 218)",
+     "decorative": false,
+     "overlap_ok": false,
+     "lines": [
+      [
+       80,
+       1236,
+       257,
+       31
+      ]
+     ],
+     "anc": []
+    }
+   ],
+   "body_overflow": false,
+   "canvas_text": [],
+   "svg_plates": [],
+   "rules": [],
+   "encodings": [],
+   "contacts": [],
+   "nondeterminism": [],
+   "render_ms": 45306,
+   "ok": true,
+   "load_ms": 268,
+   "canvases": [
+    {
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1350,
+     "bw": 2160,
+     "bh": 2700,
+     "area_frac": 1,
+     "backing_ratio": 2,
+     "sample_ok": true,
+     "mean": 26.8,
+     "variance": 617.7
+    }
+   ],
+   "breather": false,
+   "leaders": [],
+   "native_crops": {
+    "ok": true,
+    "dir": "crops",
+    "tiles": 6
+   }
+  },
+  {
+   "file": "slide-05.html",
+   "png": "slide-05.png",
+   "console_errors": [
+    "TXBENCH: RELIEF {\"height_range\":220,\"materials\":4,\"cast_fraction\":0.11837071330589849,\"area\":1,\"render_ms\":19677.900000002235}"
+   ],
+   "page_errors": [],
+   "overflow_warnings": [],
+   "fonts_missing": [],
+   "text_nodes": [
+    {
+     "text": "texasaidocket.com",
+     "x": 727,
+     "y": 1234,
+     "w": 273,
+     "h": 36,
+     "font_px": 24,
+     "weight": "400",
+     "family": "JetBrains Mono",
+     "color": "rgb(237, 230, 214)",
+     "decorative": false,
+     "overlap_ok": false,
+     "lines": [
+      [
+       727,
+       1236,
+       273,
+       31
+      ]
+     ],
+     "anc": []
+    },
+    {
+     "text": "No fee, and no expiry",
+     "x": 80,
+     "y": 150,
+     "w": 900,
+     "h": 101,
+     "font_px": 103.5,
+     "weight": "700",
+     "family": "Fraunces",
+     "color": "rgb(237, 230, 214)",
+     "decorative": false,
+     "overlap_ok": false,
+     "lines": [
+      [
+       80,
+       137,
+       876,
+       127
+      ]
+     ],
+     "anc": []
+    },
+    {
+     "text": "Commercial operation has needed an authorization since May 28th, 154 days before the report's data date. It carries no fee and stays valid until the department revokes it.",
+     "x": 82,
+     "y": 375,
+     "w": 880,
+     "h": 128,
+     "font_px": 31,
+     "weight": "600",
+     "family": "Manrope",
+     "color": "rgb(210, 214, 218)",
+     "decorative": false,
+     "overlap_ok": false,
+     "lines": [
+      [
+       82,
+       375,
+       841,
+       42
+      ],
+      [
+       82,
+       418,
+       848,
+       42
+      ],
+      [
+       82,
+       460,
+       785,
+       42
+      ]
+     ],
+     "anc": []
+    },
+    {
+     "text": "MAY 28TH",
+     "x": 80,
+     "y": 602,
+     "w": 137,
+     "h": 34,
+     "font_px": 26,
+     "weight": "500",
+     "family": "JetBrains Mono",
+     "color": "rgb(237, 230, 214)",
+     "decorative": false,
+     "overlap_ok": false,
+     "lines": [
+      [
+       80,
+       601,
+       137,
+       35
+      ]
+     ],
+     "anc": []
+    },
+    {
+     "text": "OCTOBER 29TH",
+     "x": 770,
+     "y": 602,
+     "w": 206,
+     "h": 34,
+     "font_px": 26,
+     "weight": "500",
+     "family": "JetBrains Mono",
+     "color": "rgb(237, 230, 214)",
+     "decorative": false,
+     "overlap_ok": false,
+     "lines": [
+      [
+       770,
+       601,
+       206,
+       35
+      ]
+     ],
+     "anc": []
+    },
+    {
+     "text": "Texas, statewide",
+     "x": 80,
+     "y": 80,
+     "w": 265,
+     "h": 36,
+     "font_px": 24,
+     "weight": "400",
+     "family": "JetBrains Mono",
+     "color": "rgb(210, 214, 218)",
+     "decorative": false,
+     "overlap_ok": false,
+     "lines": [
+      [
+       80,
+       82,
+       265,
+       31
+      ]
+     ],
+     "anc": []
+    },
+    {
+     "text": "05 / 09",
+     "x": 884,
+     "y": 80,
+     "w": 116,
+     "h": 36,
+     "font_px": 24,
+     "weight": "400",
+     "family": "JetBrains Mono",
+     "color": "rgb(210, 214, 218)",
+     "decorative": false,
+     "overlap_ok": false,
+     "lines": [
+      [
+       884,
+       82,
+       116,
+       31
+      ]
+     ],
+     "anc": []
+    },
+    {
+     "text": "c26 c20 c32 c33",
+     "x": 80,
+     "y": 1234,
+     "w": 241,
+     "h": 36,
+     "font_px": 24,
+     "weight": "400",
+     "family": "JetBrains Mono",
+     "color": "rgb(210, 214, 218)",
+     "decorative": false,
+     "overlap_ok": false,
+     "lines": [
+      [
+       80,
+       1236,
+       241,
+       31
+      ]
+     ],
+     "anc": []
+    }
+   ],
+   "body_overflow": false,
+   "canvas_text": [],
+   "svg_plates": [],
+   "rules": [],
+   "encodings": [],
+   "contacts": [],
+   "nondeterminism": [],
+   "render_ms": 24209,
+   "ok": true,
+   "load_ms": 230,
+   "canvases": [
+    {
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1350,
+     "bw": 2160,
+     "bh": 2700,
+     "area_frac": 1,
+     "backing_ratio": 2,
+     "sample_ok": true,
+     "mean": 25.9,
+     "variance": 706.2
+    }
+   ],
+   "breather": false,
+   "leaders": [],
+   "native_crops": {
+    "ok": true,
+    "dir": "crops",
+    "tiles": 6
+   }
+  },
+  {
+   "file": "slide-06.html",
+   "png": "slide-06.png",
+   "console_errors": [
+    "TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+   ],
+   "page_errors": [],
+   "overflow_warnings": [],
+   "fonts_missing": [],
+   "text_nodes": [
+    {
+     "text": "texasaidocket.com",
+     "x": 727,
+     "y": 1234,
+     "w": 273,
+     "h": 36,
+     "font_px": 24,
+     "weight": "400",
+     "family": "JetBrains Mono",
+     "color": "rgb(237, 230, 214)",
+     "decorative": false,
+     "overlap_ok": false,
+     "lines": [
+      [
+       727,
+       1236,
+       273,
+       31
+      ]
+     ],
+     "anc": []
+    },
+    {
+     "text": "Dallas asked for crash history",
+     "x": 80,
+     "y": 150,
+     "w": 900,
+     "h": 203,
+     "font_px": 103.5,
+     "weight": "700",
+     "family": "Fraunces",
+     "color": "rgb(237, 230, 214)",
+     "decorative": false,
+     "overlap_ok": false,
+     "lines": [
+      [
+       80,
+       137,
+       681,
+       127
+      ],
+      [
+       80,
+       238,
+       553,
+       127
+      ]
+     ],
+     "anc": []
+    },
+    {
+     "text": "In comments on the rules, the City of Dallas asked the department to require crash history and to make information about approved operators public. The department answered that sections 545.453 and 545.456 of the Transportation Code don't allow it to require crash history.",
+     "x": 82,
+     "y": 387,
+     "w": 840,
+     "h": 257,
+     "font_px": 31,
+     "weight": "600",
+     "family": "Manrope",
+     "color": "rgb(210, 214, 218)",
+     "decorative": false,
+     "overlap_ok": false,
+     "lines": [
+      [
+       82,
+       387,
+       788,
+       42
+      ],
+      [
+       82,
+       430,
+       709,
+       42
+      ],
+      [
+       82,
+       472,
+       730,
+       42
+      ],
+      [
+       82,
+       515,
+       716,
+       42
+      ],
+      [
+       82,
+       558,
+       757,
+       42
+      ],
+      [
+       82,
+       601,
+       311,
+       42
+      ]
+     ],
+     "anc": []
+    },
+    {
+     "text": "Dallas",
+     "x": 80,
+     "y": 80,
+     "w": 99,
+     "h": 36,
+     "font_px": 24,
+     "weight": "400",
+     "family": "JetBrains Mono",
+     "color": "rgb(210, 214, 218)",
+     "decorative": false,
+     "overlap_ok": false,
+     "lines": [
+      [
+       80,
+       82,
+       99,
+       31
+      ]
+     ],
+     "anc": []
+    },
+    {
+     "text": "06 / 09",
+     "x": 884,
+     "y": 80,
+     "w": 116,
+     "h": 36,
+     "font_px": 24,
+     "weight": "400",
+     "family": "JetBrains Mono",
+     "color": "rgb(210, 214, 218)",
+     "decorative": false,
+     "overlap_ok": false,
+     "lines": [
+      [
+       884,
+       82,
+       116,
+       31
+      ]
+     ],
+     "anc": []
+    },
+    {
+     "text": "c50 c51",
+     "x": 80,
+     "y": 1234,
+     "w": 113,
+     "h": 36,
+     "font_px": 24,
+     "weight": "400",
+     "family": "JetBrains Mono",
+     "color": "rgb(210, 214, 218)",
+     "decorative": false,
+     "overlap_ok": false,
+     "lines": [
+      [
+       80,
+       1236,
+       113,
+       31
+      ]
+     ],
+     "anc": []
+    }
+   ],
+   "body_overflow": false,
+   "canvas_text": [],
+   "svg_plates": [],
+   "rules": [],
+   "encodings": [],
+   "contacts": [],
+   "nondeterminism": [],
+   "render_ms": 40001,
+   "ok": true,
+   "load_ms": 189,
+   "canvases": [
+    {
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1350,
+     "bw": 2160,
+     "bh": 2700,
+     "area_frac": 1,
+     "backing_ratio": 2,
+     "sample_ok": true,
+     "mean": 39.7,
+     "variance": 886
+    }
+   ],
+   "breather": false,
+   "leaders": [],
+   "native_crops": {
+    "ok": true,
+    "dir": "crops",
+    "tiles": 6
+   }
+  },
+  {
+   "file": "slide-07.html",
+   "png": "slide-07.png",
+   "console_errors": [
+    "TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+   ],
+   "page_errors": [],
+   "overflow_warnings": [],
+   "fonts_missing": [],
+   "text_nodes": [
+    {
+     "text": "texasaidocket.com",
+     "x": 727,
+     "y": 1234,
+     "w": 273,
+     "h": 36,
+     "font_px": 24,
+     "weight": "400",
+     "family": "JetBrains Mono",
+     "color": "rgb(237, 230, 214)",
+     "decorative": false,
+     "overlap_ok": false,
+     "lines": [
+      [
+       727,
+       1236,
+       273,
+       31
+      ]
+     ],
+     "anc": []
+    },
+    {
+     "text": "The line is serious bodily injury",
+     "x": 80,
+     "y": 150,
+     "w": 900,
+     "h": 203,
+     "font_px": 103.5,
+     "weight": "700",
+     "family": "Fraunces",
+     "color": "rgb(237, 230, 214)",
+     "decorative": false,
+     "overlap_ok": false,
+     "lines": [
+      [
+       80,
+       137,
+       755,
+       127
+      ],
+      [
+       80,
+       238,
+       539,
+       127
+      ]
+     ],
+     "anc": []
+    },
+    {
+     "text": "The department treats an operation as endangering the public when it has caused serious bodily injury or is likely to. It calls administrative enforcement unlikely below that standard. Traffic laws apply to these vehicles as to any other.",
+     "x": 82,
+     "y": 375,
+     "w": 820,
+     "h": 214,
+     "font_px": 31,
+     "weight": "600",
+     "family": "Manrope",
+     "color": "rgb(210, 214, 218)",
+     "decorative": false,
+     "overlap_ok": false,
+     "lines": [
+      [
+       82,
+       375,
+       820,
+       42
+      ],
+      [
+       82,
+       418,
+       749,
+       42
+      ],
+      [
+       82,
+       460,
+       761,
+       42
+      ],
+      [
+       82,
+       503,
+       694,
+       42
+      ],
+      [
+       82,
+       546,
+       354,
+       42
+      ]
+     ],
+     "anc": []
+    },
+    {
+     "text": "Texas, statewide",
+     "x": 80,
+     "y": 80,
+     "w": 265,
+     "h": 36,
+     "font_px": 24,
+     "weight": "400",
+     "family": "JetBrains Mono",
+     "color": "rgb(210, 214, 218)",
+     "decorative": false,
+     "overlap_ok": false,
+     "lines": [
+      [
+       80,
+       82,
+       265,
+       31
+      ]
+     ],
+     "anc": []
+    },
+    {
+     "text": "07 / 09",
+     "x": 884,
+     "y": 80,
+     "w": 116,
+     "h": 36,
+     "font_px": 24,
+     "weight": "400",
+     "family": "JetBrains Mono",
+     "color": "rgb(210, 214, 218)",
+     "decorative": false,
+     "overlap_ok": false,
+     "lines": [
+      [
+       884,
+       82,
+       116,
+       31
+      ]
+     ],
+     "anc": []
+    },
+    {
+     "text": "c38 c37 c44",
+     "x": 80,
+     "y": 1234,
+     "w": 177,
+     "h": 36,
+     "font_px": 24,
+     "weight": "400",
+     "family": "JetBrains Mono",
+     "color": "rgb(210, 214, 218)",
+     "decorative": false,
+     "overlap_ok": false,
+     "lines": [
+      [
+       80,
+       1236,
+       177,
+       31
+      ]
+     ],
+     "anc": []
+    }
+   ],
+   "body_overflow": false,
+   "canvas_text": [],
+   "svg_plates": [],
+   "rules": [],
+   "encodings": [],
+   "contacts": [],
+   "nondeterminism": [],
+   "render_ms": 18167,
+   "ok": true,
+   "load_ms": 232,
+   "canvases": [
+    {
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1350,
+     "bw": 2160,
+     "bh": 2700,
+     "area_frac": 1,
+     "backing_ratio": 2,
+     "sample_ok": true,
+     "mean": 17.9,
+     "variance": 709.3
+    }
+   ],
+   "breather": false,
+   "leaders": [],
+   "native_crops": {
+    "ok": true,
+    "dir": "crops",
+    "tiles": 6
+   }
+  },
+  {
+   "file": "slide-08.html",
+   "png": "slide-08.png",
+   "console_errors": [
+    "TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+   ],
+   "page_errors": [],
+   "overflow_warnings": [],
+   "fonts_missing": [],
+   "text_nodes": [
+    {
+     "text": "texasaidocket.com",
+     "x": 727,
+     "y": 1234,
+     "w": 273,
+     "h": 36,
+     "font_px": 24,
+     "weight": "400",
+     "family": "JetBrains Mono",
+     "color": "rgb(237, 230, 214)",
+     "decorative": false,
+     "overlap_ok": false,
+     "lines": [
+      [
+       727,
+       1236,
+       273,
+       31
+      ]
+     ],
+     "anc": []
+    },
+    {
+     "text": "Two releases say a person sits up front",
+     "x": 80,
+     "y": 150,
+     "w": 900,
+     "h": 203,
+     "font_px": 103.5,
+     "weight": "700",
+     "family": "Fraunces",
+     "color": "rgb(237, 230, 214)",
+     "decorative": false,
+     "overlap_ok": false,
+     "lines": [
+      [
+       80,
+       137,
+       767,
+       127
+      ],
+      [
+       80,
+       238,
+       817,
+       127
+      ]
+     ],
+     "anc": []
+    },
+    {
+     "text": "Volvo says its autonomous hauls with Waabi between Dallas and Houston currently run with an observer in the driver's seat. Kodiak and Charger say they run between Dallas and Laredo with a safety driver behind the wheel. Kodiak says its Permian Basin trucks have run with no one in the cab since December 2024.",
+     "x": 82,
+     "y": 375,
+     "w": 880,
+     "h": 257,
+     "font_px": 31,
+     "weight": "600",
+     "family": "Manrope",
+     "color": "rgb(210, 214, 218)",
+     "decorative": false,
+     "overlap_ok": false,
+     "lines": [
+      [
+       82,
+       375,
+       877,
+       42
+      ],
+      [
+       82,
+       418,
+       842,
+       42
+      ],
+      [
+       82,
+       460,
+       847,
+       42
+      ],
+      [
+       82,
+       503,
+       879,
+       42
+      ],
+      [
+       82,
+       546,
+       856,
+       42
+      ],
+      [
+       82,
+       589,
+       241,
+       42
+      ]
+     ],
+     "anc": []
+    },
+    {
+     "text": "Dallas, Houston, Laredo",
+     "x": 80,
+     "y": 80,
+     "w": 381,
+     "h": 36,
+     "font_px": 24,
+     "weight": "400",
+     "family": "JetBrains Mono",
+     "color": "rgb(210, 214, 218)",
+     "decorative": false,
+     "overlap_ok": false,
+     "lines": [
+      [
+       80,
+       82,
+       381,
+       31
+      ]
+     ],
+     "anc": []
+    },
+    {
+     "text": "08 / 09",
+     "x": 884,
+     "y": 80,
+     "w": 116,
+     "h": 36,
+     "font_px": 24,
+     "weight": "400",
+     "family": "JetBrains Mono",
+     "color": "rgb(210, 214, 218)",
+     "decorative": false,
+     "overlap_ok": false,
+     "lines": [
+      [
+       884,
+       82,
+       116,
+       31
+      ]
+     ],
+     "anc": []
+    },
+    {
+     "text": "c62 c63 c64 c65 c68",
+     "x": 80,
+     "y": 1234,
+     "w": 306,
+     "h": 36,
+     "font_px": 24,
+     "weight": "400",
+     "family": "JetBrains Mono",
+     "color": "rgb(210, 214, 218)",
+     "decorative": false,
+     "overlap_ok": false,
+     "lines": [
+      [
+       80,
+       1236,
+       306,
+       31
+      ]
+     ],
+     "anc": []
+    }
+   ],
+   "body_overflow": false,
+   "canvas_text": [],
+   "svg_plates": [],
+   "rules": [],
+   "encodings": [],
+   "contacts": [],
+   "nondeterminism": [],
+   "render_ms": 22235,
+   "ok": true,
+   "load_ms": 196,
+   "canvases": [
+    {
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1350,
+     "bw": 2160,
+     "bh": 2700,
+     "area_frac": 1,
+     "backing_ratio": 2,
+     "sample_ok": true,
+     "mean": 31,
+     "variance": 852.6
+    }
+   ],
+   "breather": false,
+   "leaders": [],
+   "native_crops": {
+    "ok": true,
+    "dir": "crops",
+    "tiles": 6
+   }
+  },
+  {
+   "file": "slide-09.html",
+   "png": "slide-09.png",
+   "console_errors": [
+    "TXT: SKY IN FRAME [r1]. A verdict, not a defect: this snapshot shows its sky"
+   ],
+   "page_errors": [],
+   "overflow_warnings": [],
+   "fonts_missing": [],
+   "text_nodes": [
+    {
+     "text": "texasaidocket.com",
+     "x": 727,
+     "y": 1234,
+     "w": 273,
+     "h": 36,
+     "font_px": 24,
+     "weight": "400",
+     "family": "JetBrains Mono",
+     "color": "rgb(237, 230, 214)",
+     "decorative": false,
+     "overlap_ok": false,
+     "lines": [
+      [
+       727,
+       1236,
+       273,
+       31
+      ]
+     ],
+     "anc": []
+    },
+    {
+     "text": "Where a concern goes",
+     "x": 80,
+     "y": 150,
+     "w": 900,
+     "h": 211,
+     "font_px": 107.5,
+     "weight": "700",
+     "family": "Fraunces",
+     "color": "rgb(237, 230, 214)",
+     "decorative": false,
+     "overlap_ok": false,
+     "lines": [
+      [
+       80,
+       136,
+       748,
+       132
+      ],
+      [
+       80,
+       241,
+       203,
+       132
+      ]
+     ],
+     "anc": []
+    },
+    {
+     "text": "A concern that an automated vehicle could cause serious bodily injury or death can go to the department's Enforcement Division at txmccs.txdmv.gov/truckstop. The department's program page links an authorizations report.",
+     "x": 82,
+     "y": 383,
+     "w": 890,
+     "h": 171,
+     "font_px": 31,
+     "weight": "600",
+     "family": "Manrope",
+     "color": "rgb(210, 214, 218)",
+     "decorative": false,
+     "overlap_ok": false,
+     "lines": [
+      [
+       82,
+       383,
+       841,
+       42
+      ],
+      [
+       82,
+       425,
+       712,
+       42
+      ],
+      [
+       82,
+       468,
+       856,
+       42
+      ],
+      [
+       82,
+       511,
+       857,
+       42
+      ]
+     ],
+     "anc": []
+    },
+    {
+     "text": "Texas, statewide",
+     "x": 80,
+     "y": 80,
+     "w": 265,
+     "h": 36,
+     "font_px": 24,
+     "weight": "400",
+     "family": "JetBrains Mono",
+     "color": "rgb(210, 214, 218)",
+     "decorative": false,
+     "overlap_ok": false,
+     "lines": [
+      [
+       80,
+       82,
+       265,
+       31
+      ]
+     ],
+     "anc": []
+    },
+    {
+     "text": "09 / 09",
+     "x": 884,
+     "y": 80,
+     "w": 116,
+     "h": 36,
+     "font_px": 24,
+     "weight": "400",
+     "family": "JetBrains Mono",
+     "color": "rgb(210, 214, 218)",
+     "decorative": false,
+     "overlap_ok": false,
+     "lines": [
+      [
+       884,
+       82,
+       116,
+       31
+      ]
+     ],
+     "anc": []
+    },
+    {
+     "text": "c36 c43",
+     "x": 80,
+     "y": 1234,
+     "w": 113,
+     "h": 36,
+     "font_px": 24,
+     "weight": "400",
+     "family": "JetBrains Mono",
+     "color": "rgb(210, 214, 218)",
+     "decorative": false,
+     "overlap_ok": false,
+     "lines": [
+      [
+       80,
+       1236,
+       113,
+       31
+      ]
+     ],
+     "anc": []
+    }
+   ],
+   "body_overflow": false,
+   "canvas_text": [],
+   "svg_plates": [],
+   "rules": [],
+   "encodings": [],
+   "contacts": [],
+   "nondeterminism": [],
+   "render_ms": 35005,
+   "ok": true,
+   "load_ms": 183,
+   "canvases": [
+    {
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1350,
+     "bw": 2160,
+     "bh": 2700,
+     "area_frac": 1,
+     "backing_ratio": 2,
+     "sample_ok": true,
+     "mean": 32,
+     "variance": 1386.8
+    }
+   ],
+   "breather": false,
+   "leaders": [],
+   "native_crops": {
+    "ok": true,
+    "dir": "crops",
+    "tiles": 6
+   }
+  }
+ ]
+}

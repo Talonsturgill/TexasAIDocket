@@ -1,0 +1,153 @@
+{
+ "_spec": {
+  "version": 1,
+  "purpose": "A standalone web edition of the archived visual story.",
+  "law": "Facts resolve to the original verified claim record. A layout rebuild does not reverify reporting.",
+  "written_by": "daily"
+ },
+ "section": "Driverless vehicles",
+ "dek": {
+  "text": "The state's first report on driverless authorizations lists 17 companies. Two of them, Waymo and Tesla Robotaxi, account for most of the vehicles.",
+  "claims": [
+   "c18",
+   "c16",
+   "c13"
+  ]
+ },
+ "introduction": [
+  {
+   "text": "[Since {{date:c26}}, every company operating automated vehicles commercially on Texas roads must hold an active authorization from the Texas Department of Motor Vehicles](c26). [The requirement comes from Senate Bill {{number:c22:1}}, passed by the Legislature in {{number:c22:2}}](c22). [The department defines commercial activity as carrying property or passengers for a commercial enterprise without a human driver](c27).",
+   "claims": [
+    "c26",
+    "c22",
+    "c27"
+   ]
+  },
+  {
+   "text": "[The department's Company and Vehicle Summary Report carries data as of {{date:c20}}](c20). [It lists {{number:c18}} companies](c18) [and counts {{number:c19}} automated vehicles](c19). [Its source is the department's motor carrier credentialing system](c21), [where each holder keeps its own list of active vehicles, adding and deleting them against its authorization](c35).",
+   "claims": [
+    "c20",
+    "c18",
+    "c19",
+    "c21",
+    "c35"
+   ]
+  }
+ ],
+ "sections": [
+  {
+   "heading": "Two names, then a long tail",
+   "paragraphs": [
+    {
+     "text": "[Waymo lists {{number:c16}} vehicles](c16) [and Tesla Robotaxi {{number:c13}}](c13). [Avride is third with {{number:c2}}](c2), [then Aurora with {{number:c1}}](c1).",
+     "claims": [
+      "c16",
+      "c13",
+      "c2",
+      "c1"
+     ]
+    },
+    {
+     "text": "Below them the counts fall quickly. [Gatik lists {{number:c5}}](c5), [Zoox {{number:c17:1}}](c17) [and Nuro {{number:c10}}](c10). [Kodiak lists {{number:c7}}](c7), [Bot Auto {{number:c3}}](c3), [Waabi {{number:c15}}](c15), [MOIA {{number:c9}}](c9) [and PlusAI {{number:c11}}](c11). [International Transport Eng, the smallest entry, lists {{number:c6}}](c6).",
+     "claims": [
+      "c5",
+      "c17",
+      "c10",
+      "c7",
+      "c3",
+      "c15",
+      "c9",
+      "c11",
+      "c6"
+     ]
+    },
+    {
+     "text": "[The report also lists Atlas Energy Solutions, through Fountainhead Logistics, with {{number:c4}}](c4). The report gives counts by company and names no routes, cities or vehicle types, so it doesn't say where any of these vehicles run.",
+     "claims": [
+      "c4"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "What the authorization asks",
+   "paragraphs": [
+    {
+     "text": "[The online application asks for basic contact information](c29), [and the applicant acknowledges a written statement about the vehicle](c30). [The applicant must also certify that the Department of Public Safety has a copy of its plan for emergency services. The plan covers how firefighters, police, ambulance crews and other emergency services should deal with the vehicle](c31).",
+     "claims": [
+      "c29",
+      "c30",
+      "c31"
+     ]
+    },
+    {
+     "text": "[There is no fee](c32). [An authorization doesn't expire and stays valid until the department revokes it](c33). [A holder must report a material change, including adding a vehicle, within {{number:c34}} days](c34).",
+     "claims": [
+      "c32",
+      "c33",
+      "c34"
+     ]
+    },
+    {
+     "text": "[In comments on the rules, the City of Dallas asked the department to require crash history and to make information about approved operators publicly accessible](c50). [The department answered that sections 545.453 and 545.456 of the Transportation Code don't allow it to require crash history](c51). [It said whether it publishes information about holders depends on confidentiality rules in Government Code Chapter 552](c52). [The City of Austin asked for a sticker or placard on each permitted vehicle](c60), and the department declined it as outside the scope of its rulemaking.",
+     "claims": [
+      "c50",
+      "c51",
+      "c52",
+      "c60"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "Where enforcement starts",
+   "paragraphs": [
+    {
+     "text": "[The department treats an operation as endangering the public when it has caused serious bodily injury or is likely to](c38). [It says it is unlikely to take administrative enforcement action below that standard](c37). [Before acting, it notifies the holder and gives it a set period to fix the problem](c39). [On the road, the Department of Public Safety and local police enforce traffic law](c24), [and automated vehicles answer to the same traffic laws as any other vehicle](c44).",
+     "claims": [
+      "c38",
+      "c37",
+      "c39",
+      "c24",
+      "c44"
+     ]
+    },
+    {
+     "text": "[A concern that an automated vehicle could cause serious bodily injury or death can be sent to the department's Enforcement Division](c36). [Law enforcement officials can check a vehicle's or an operator's authorization status on the same system](c42). No fetched source says whether a member of the public can look one up.",
+     "claims": [
+      "c36",
+      "c42"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "Who still sits up front",
+   "paragraphs": [
+    {
+     "text": "[Volvo says its autonomous hauls with Waabi between Dallas and Houston run with an observer in the driver's seat](c62). [Kodiak AI and Charger USA say their trucks between Dallas and Laredo run with a safety driver behind the wheel](c64). [The two companies say they intend to go driverless once Kodiak completes its safety case](c66). [Kodiak also says its trucks in the Permian Basin have run in commercial service with no one in the cab since December 2024](c68). The Volvo and Kodiak releases don't say how these runs relate to the state's report, and the report doesn't say how many of its listed vehicles run with nobody aboard.",
+     "claims": [
+      "c62",
+      "c64",
+      "c66",
+      "c68"
+     ]
+    }
+   ]
+  }
+ ],
+ "related": [
+  {
+   "id": "tx-2026-0188",
+   "label": "The state authorization for commercial driverless vehicles"
+  },
+  {
+   "id": "tx-2026-0206",
+   "label": "Volvo and Waabi on the Dallas to Houston lane"
+  },
+  {
+   "id": "tx-2026-0209",
+   "label": "Kodiak and Charger on the Dallas to Laredo lane"
+  }
+ ]
+}

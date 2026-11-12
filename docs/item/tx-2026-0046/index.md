@@ -11,7 +11,7 @@ Carson County Commissioners Court approved a tax abatement agreement with Fermi 
 - Public access: Public meeting
 - Take part: https://www.newschannel10.com/2025/10/28/carson-county-approves-tax-abatement-fermi-america-development/
 
-- Last checked: 2026-11-08
+- Last checked: 2026-11-12
 
 ## Dates
 
@@ -51,6 +51,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-06 · Fermi America's phased abatement in Carson County has no new confirmation. The station that reported the vote still refuses this project.
 - 2026-11-07 · Carson County's phased abatement for Fermi America stands as reported and is not confirmed anew. The station's account still refuses this project.
 - 2026-11-08 · Carson County's phased abatement with Fermi America for the Project Matador site still reads as approved.
+- 2026-11-12 · The posted agreement for the Fermi America project still sets out the phased abatement the commissioners court approved.
 
 ## Evidence
 

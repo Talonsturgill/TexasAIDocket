@@ -1,61 +1,40 @@
 {
- "last_pass": "2026-11-11",
+ "last_pass": "2026-11-12",
  "themes": [
   {
-   "theme": "primitive or low-poly model where a kit model belongs (no. 74 frame 6's kit gas_peaker charged as pale primitive boxes by every judge in all three rounds; queue kit-gas-peaker-reads-as-pale-boxes)",
+   "theme": "primitive or low-poly model where a kit model belongs (no. 75 frame 8's seated observer read slumped or asleep by every judge in rounds 1 to 3; queue kit-person-no-upright-seated-pose, kit-person-reads-as-mannequin-within-two-metres at repeat 6)",
    "runs": 6,
    "rounds": 17,
    "action": "fixed",
-   "what": "assets/js/kit/power.js: gas_peaker rebuilt in three values on the weathered skin with panel joints, louvres, hooded filter ends, stiffened exhaust ends and a heat tinted banded stack; replayed on no. 74's own frame 6. ILLUSTRATION_SYSTEM: never multiply a pale model's colours down."
+   "what": "assets/js/kit/people.js: pose sit_drive, a headPitch option every pose honours and a hands option that closes a hand on a named point; assets/js/kit/vehicles.js: semi_cab_interior attach.rim. Opt in, no. 75 frame 8 re-renders pixel identical; replayed with sit_drive and hands on the rim."
   },
   {
-   "theme": "primitive or low-poly model where a kit model belongs (survey stake built in six chassis; no. 74 frame 4's lath charged in every round; queue survey-lath-primitive-at-close-range)",
-   "runs": 6,
-   "rounds": 17,
-   "action": "fixed",
-   "what": "assets/js/kit/landscape.js: lath_stake, grained rough sawn pine, cut point, split head, tied limp cloth flagging, clay foot; replayed on no. 74's own frame 4."
-  },
-  {
-   "theme": "horizon band or seam (queue stage-horizon-band, repeat 1)",
-   "runs": 3,
-   "rounds": 6,
-   "action": "escalated",
-   "what": "Engine (assets/js/txthree.js, human), cause not established; UPGRADE_BACKLOG 2026-11-11 item 3."
-  },
-  {
-   "theme": "aggregate_check can't declare a measure or a percent (queue items from nos. 62, 68 and 74)",
+   "theme": "aggregate_check refuses a declaration numeral_trace asks for (queue aggregate-and-numeral-trace-disagree-on-bare-figures, drawn-scale-figure-has-no-declaration-route, computed-percent-cannot-be-declared; nos. 68, 74 and 75)",
    "runs": 3,
    "rounds": null,
-   "action": "deferred",
-   "what": "In lane, but widening the detector needs a binding date, three fixtures and a GATE_LESSONS entry (human); first for the next pass."
+   "action": "fixed",
+   "what": "scripts/carousel/aggregate_check.py judges a declaration whose exact phrase a surface prints: route re-derived, value held to the printed number; seven self-test cases; no shipped run newly red. numeral_trace's message names the route."
   },
   {
-   "theme": "no contact, dirt or grime where things meet the ground",
+   "theme": "kit person near detail, face hands and hair (queue kit-person-reads-as-mannequin-within-two-metres, repeat 6)",
+   "runs": null,
+   "rounds": null,
+   "action": "deferred",
+   "what": "Default geometry, and today's frames 7 and 9 render the kit person; two cues measured on the replay (the neck lighter than the jaw, a ring at a bare wrist). First artwork item for the next pass."
+  },
+  {
+   "theme": "relief plate reads as a tray, with a stair-stepped cast (queue relief-plate-reads-as-a-tray, repeat 4; digest render artifact 4 runs, 7 rounds)",
+   "runs": 4,
+   "rounds": 7,
+   "action": "escalated",
+   "what": "assets/js/txbench.js, human; UPGRADE_BACKLOG 2026-11-12 item 4."
+  },
+  {
+   "theme": "object in a void, no contact, largest object unmodelled, type on the art",
    "runs": 6,
    "rounds": 11,
    "action": "deferred",
    "what": "A different frame on each deck."
-  },
-  {
-   "theme": "largest object unmodelled",
-   "runs": 5,
-   "rounds": 10,
-   "action": "deferred",
-   "what": "A different frame on each deck; today's two lifts answer no. 74's plant and lath."
-  },
-  {
-   "theme": "object in a void, no sky, camera at the ground",
-   "runs": 5,
-   "rounds": 10,
-   "action": "deferred",
-   "what": "Staging, a different frame on each deck."
-  },
-  {
-   "theme": "repeat offenders (fourteen open items at repeat 2 or more)",
-   "runs": null,
-   "rounds": null,
-   "action": "escalated",
-   "what": "Each carried with today's dated reason in MACHINE_QUEUE.md; none is this lane's or one model."
   }
  ],
  "note": "Written by the weekly machine pass (prompts/daily_routine.md Phase 17) when it ships. Read by scripts/carousel/machine_due.py. Run and round counts are from scripts/carousel/week_digest.py --date 2026-11-11, six shipped runs, except the aggregate_check theme, whose run count is the distinct decks its three queue lines name; rounds not counted for it."

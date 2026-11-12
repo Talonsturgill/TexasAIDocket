@@ -1,0 +1,181 @@
+{
+ "weighted_score": 7.426,
+ "judges": [
+  7.28,
+  7.362,
+  7.4
+ ],
+ "spread": 0.12,
+ "criteria": {
+  "artwork_craft": {
+   "score": 6.8,
+   "weight": 0.22,
+   "judges": [
+    6.8,
+    6.3,
+    6.8
+   ]
+  },
+  "deck_coherence": {
+   "score": 7.5,
+   "weight": 0.12,
+   "judges": [
+    7.5,
+    7.3,
+    7.5
+   ]
+  },
+  "claim_integrity": {
+   "score": 8.5,
+   "weight": 0.2,
+   "judges": [
+    8.0,
+    8.5,
+    8.5
+   ]
+  },
+  "story_and_stakes": {
+   "score": 7.5,
+   "weight": 0.16,
+   "judges": [
+    7.5,
+    7.5,
+    7.5
+   ]
+  },
+  "sequence_and_momentum": {
+   "score": 7.5,
+   "weight": 0.1,
+   "judges": [
+    7.5,
+    7.5,
+    7.5
+   ]
+  },
+  "voice": {
+   "score": 7.3,
+   "weight": 0.1,
+   "judges": [
+    7.3,
+    7.5,
+    7.0
+   ]
+  },
+  "variety": {
+   "score": 6.5,
+   "weight": 0.1,
+   "judges": [
+    6.0,
+    7.0,
+    6.5
+   ]
+  }
+ },
+ "hard_fails": [],
+ "hard_fails_by_judge": [],
+ "ship": true,
+ "threshold": 8.0,
+ "over_threshold": false,
+ "method": "per-criterion median across three judges, then weighted by the rubric",
+ "artwork_weakest_frames": [
+  {
+   "slide": 8,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Wheel half a frame right of the figure, hand on the cushion, no windshield or road, grey door panel.",
+     "fix": "Passenger-seat camera at 1.9 m looking forward-left, wheel in front of the figure, hands on the rim, windshield open to road and seam."
+    },
+    {
+     "judge": 2,
+     "problem": "Wheel at right with no one behind it, person beside it, no windshield road or seam, speckled panel, dek over busy geometry, stray vertical.",
+     "fix": "Passenger-seat camera aimed so the wheel stands in front of the torso with hands on the rim, windshield open, panel and vertical removed, dek on the dark headliner."
+    },
+    {
+     "judge": 3,
+     "problem": "Hunched mannequin in the foreground, wheel unoccupied at right, reads as an empty driver's seat; mid-grey door panel.",
+     "fix": "Camera behind the passenger headrest looking forward-left so hands rest on the rim, crop above the jaw, key confined to the side glass."
+    }
+   ]
+  },
+  {
+   "slide": 5,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Flat mid-grey slab, stair-stepped cast, banded dead bottom.",
+     "fix": "Low raking oblique so the rule fills the lower two thirds, key on the stop face and groove walls only, higher shadow resolution."
+    },
+    {
+     "judge": 2,
+     "problem": "Flat mid-grey slab, stair-stepped cast, no hard start, brown groove, dead banded bottom third.",
+     "fix": "End the plate at a tall stop at the left edge, low raking key, higher shadow resolution, rule on its planned diagonal, true dusk_gold groove."
+    },
+    {
+     "judge": 3,
+     "problem": "Flat mid-grey slab, stair-stepped cast, dead bottom mat with a jagged diagonal, brown groove.",
+     "fix": "Low raking key so only bevel and graduation walls catch light, smoother shadow, crop the mat, groove to the true accent."
+    }
+   ]
+  },
+  {
+   "slide": 3,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "ITE leader a stub on its own 7; other leaders end on dim cars.",
+     "fix": "Run each leader to its company's divider and light the far single car."
+    },
+    {
+     "judge": 2,
+     "problem": "Pool on far rows, near Avride rows murky, leaders cross roofs, 7 collides with its dot, flat divider quads.",
+     "fix": "Pool on the near rows, a label column whose leaders don't cross roofs, dividers as worn thermoplastic bars."
+    },
+    {
+     "judge": 3,
+     "problem": "Leaders fan and cross, ITE leader ends on nothing, end bars barely read over a muddy lot.",
+     "fix": "Pin each label at the end of its run without leaders, lift the camera so rows read as stepped rows, wider brighter end bars."
+    }
+   ]
+  },
+  {
+   "slide": 6,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Floating block skyline with a sphere, blue-grey cars, empty bottom third.",
+     "fix": "Sink the skyline into the haze, delete the sphere, limestone paint, lower the camera to the tail rows."
+    },
+    {
+     "judge": 2,
+     "problem": "Cool blue cars against the key, casts toward camera, block skyline with a sphere, packed lot, empty bottom.",
+     "fix": "Tail rows of single limestone cars under the -55 key casting right, camera lower, one hazed skyline silhouette."
+    }
+   ]
+  },
+  {
+   "slide": 4,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 3,
+     "problem": "Lone car on the stripe in front of full rows; empty bays faint.",
+     "fix": "Camera down the car's own row at 1.5 m so nine lit stops lead to the car, stripe out from under it."
+    }
+   ]
+  }
+ ],
+ "rounds_derived": 3,
+ "rounds": 3,
+ "rounds_source": "this module's own log of cards it has scored",
+ "rounds_declared": 3,
+ "at_cap": true,
+ "rung": null,
+ "shortfall": "at the round cap the finished deck ships at 7.426, 0.574 under the 8.0 top rung. Name that in the email and the run record",
+ "craft_floor": "capped",
+ "craft_note": "at the round cap the craft floor stands down. The art median 6.8 is under 8.5 and the deck ships as it is. Name it in the run record"
+}

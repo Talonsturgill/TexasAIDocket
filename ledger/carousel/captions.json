@@ -19,12 +19,12 @@
   "recent_lists_note": "These three lists are the exclusions handed to the caption room and they were hand-kept. On 2026-08-20 the fourth panel found structures_recent reading [\"ledger\", \"pivot\", \"question and answer\"] when the last three shipped structures were [\"ledger\", \"two columns\", \"question and answer\"], so it dropped a structure that IS off the table and held one that is not. Wrong in both directions from one hand edit. They are now recomputed from entries and are ordered OLDEST FIRST, matching the entries list, and scripts/carousel/caption_check.py should derive them rather than read them. That is an upgrade-lane change and it is written into this run's proposals."
  },
  "opening_moves_recent": [
-  "the two things",
   "the place",
   "the before and after",
   "the number that is wrong",
   "the plain question",
-  "the object"
+  "the object",
+  "the quiet decision"
  ],
  "entries": [
   {
@@ -1358,15 +1358,34 @@
    ],
    "critic_note": "B won over A. A's close asked whether the commission votes the night it hears the public, which is the one-question-the-decision-leaves-open substance that shipped on November 10th, refiled under another name. B's close puts the date inside the question, the form CAPTION_CRAFT gives next-and-when. B shipped with one edit, the Tribune named in full at its first mention.",
    "move_note": "The quiet decision is the land leaving Brownsville's limits at a six hour weekend meeting on an offer good that day only. The Ladder steps from that vote to Starbase's annexation, the moratorium the tract sits outside, and the abatement Starbase now hears, and stops on the date."
+  },
+  {
+   "date": "2026-11-12",
+   "carousel_no": 75,
+   "opening_move": "the two things",
+   "structure": "Ledger",
+   "closing_move": "ask the one question the decision leaves open",
+   "first_line": "Waymo lists 1,259. International Transport Eng lists 7.",
+   "words": 139,
+   "commas": 1,
+   "commas_per_100w": 0.72,
+   "chars": 884,
+   "hashtags": [
+    "#TxDMV",
+    "#SB2807",
+    "#CityOfDallas"
+   ],
+   "critic_note": "Candidate A won after one rewrite. B was refused for repeating no. 34's first line skeleton and nouns and for two editorial verdicts; A's verdict lines, its scaffold sentence, an unattributed legal fact, a c36 overreach and a deck line that narrated itself were cut.",
+   "move_note": "Two rows of one state list, 1,259 against 7, set the concentration before any percentage."
   }
  ],
  "structures_recent": [
-  "Ledger",
   "Zoom out",
-  "Pivot"
+  "Pivot",
+  "Ladder"
  ],
  "closing_moves_recent": [
-  "ask the one question the decision leaves open"
+  "name what happens next and when"
  ],
  "_derived_note": "opening_moves_recent, structures_recent and closing_moves_recent are DERIVED by out/<date>/update_ledgers.py every run, by ledger_check.windows() and ledger_check's own slice of the entries before the newest date. They were hand-maintained until 2026-09-10 and had drifted, which mis-briefed the caption room on that run: the list said Ledger was excluded when it was not, and never mentioned Two columns or the close no. 19 actually shipped."
 }
