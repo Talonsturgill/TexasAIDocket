@@ -122,14 +122,14 @@ type:
   labels: []
 verbatim: []
 acceptance:
-- the near car fills at least a fifth of the frame and reads as one car at 432 px
-- the near car casts to the right onto asphalt and touches the ground
-- at least two further rows of parked cars are visible behind the near car
-- the sky shows above the horizon behind the type and the render report says SKY IN FRAME
-- the dusk_gold stripe is visible somewhere in the lot or the frame carries no gold at all
-- no numeral on this slide is absent from claims.json
-- the kit crossover with sensors is present as a full model in limestone paint, never a box
-- the kit crossover spans at least 400 px of the frame width at 1080 px
+  - the near car fills at least a fifth of the frame and reads as one car at 432 px
+  - the near car casts to the right onto asphalt and touches the ground
+  - at least two further rows of parked cars are visible behind the near car
+  - the sky shows above the horizon behind the type and the render report says SKY IN FRAME
+  - the dusk_gold stripe is visible somewhere in the lot or the frame carries no gold at all
+  - no numeral on this slide is absent from claims.json
+  - the kit crossover with sensors is present as a full model in limestone paint, never a box
+  - the kit crossover spans at least 400 px of the frame width at 1080 px
 risks:
 - the near car swallowing the lot so the count disappears
 - the instanced far rows reading as noise rather than cars
@@ -169,14 +169,14 @@ type:
   labels: ["WAYMO 1,259", "TESLA ROBOTAXI 1,080", "15 OTHERS 825"]
 verbatim: []
 acceptance:
-- three columns of cars are distinct at 432 px with the type covered
-- the third column visibly thins to single cars beside empty bays
-- every car in the frame is built from FIG.units in the frame's own code
-- each of the three labels sits under its own column and inside the frame
-- the sky shows at the top and the render report says SKY IN FRAME
-- no numeral on this slide is absent from claims.json or figures.json
-- the chassis fleet_lot is present with every instanced kit crossover, never boxes
-- the lot spans at least 800 px of the frame width and 300 px of its height
+  - three columns of cars are distinct at 432 px with the type covered
+  - the third column visibly thins to single cars beside empty bays
+  - every car in the frame is built from FIG.units in the frame's own code
+  - each of the three labels sits under its own column and inside the frame
+  - the sky shows at the top and the render report says SKY IN FRAME
+  - no numeral on this slide is absent from claims.json or figures.json
+  - the chassis fleet_lot is present with every instanced kit crossover, never boxes
+  - the lot spans at least 800 px of the frame width and 300 px of its height
 risks:
 - single cars at the far end of the third column becoming specks at feed size
 ```
@@ -217,13 +217,13 @@ type:
   labels: ["AVRIDE 344", "AURORA 91", "KODIAK 36", "WAABI 13", "INTERNATIONAL TRANSPORT ENG 7"]
 verbatim: []
 acceptance:
-- at least six rows of the third column are visible, packed in rank order
-- every company's run of cars matches FIG.units for that company
-- every label sits beside its own company's run within 60 px and inside the frame
-- the white dividers read at 432 px where one company ends and the next begins
-- the stripe is visible at the left
-- no numeral on this slide is absent from claims.json or figures.json
-- the third column of the fleet_lot spans at least 600 px of the frame height at 1080 px
+  - at least six rows of the third column are visible, packed in rank order
+  - every company's run of cars matches FIG.units for that company
+  - every label sits beside its own company's run within 60 px and inside the frame
+  - the white dividers read at 432 px where one company ends and the next begins
+  - the stripe is visible at the left
+  - no numeral on this slide is absent from claims.json or figures.json
+  - the third column of the fleet_lot spans at least 600 px of the frame height at 1080 px
 risks:
 - labels crowding the far rows at feed size
 ```
@@ -262,13 +262,13 @@ type:
   labels: []
 verbatim: []
 acceptance:
-- exactly one car stands in its row and the open bays between it and the camera carry a wheel stop each
-- the lone car's wheels sit on the asphalt with a contact shadow under each
-- the lone car reads in full profile, lit from the camera side, against darker rows behind it
-- the sky shows above the horizon and the render report says SKY IN FRAME
-- no numeral on this slide is absent from claims.json
-- one full kit crossover is present as a model in limestone paint, never a box
-- the kit crossover owns at least a fifth of the frame
+  - exactly one car stands in its row and the open bays between it and the camera carry a wheel stop each
+  - the lone car's wheels sit on the asphalt with a contact shadow under each
+  - the lone car reads in full profile, lit from the camera side, against darker rows behind it
+  - the sky shows above the horizon and the render report says SKY IN FRAME
+  - no numeral on this slide is absent from claims.json
+  - one full kit crossover is present as a model in limestone paint, never a box
+  - the kit crossover owns at least a fifth of the frame
 risks:
 - the empty bays reading as an empty road rather than parking
 ```
@@ -303,13 +303,13 @@ type:
   labels: ["MAY 28TH", "OCTOBER 29TH"]
 verbatim: []
 acceptance:
-- the stop block casts to the lower right across the first graduations
-- the graduations between the stop and the gold groove number FIG.days_enforceable in the frame's code
-- the graduations continue to the right edge with no end stop
-- the relief shows at least two materials and a real height range in the render report
-- no numeral on this slide is absent from claims.json or figures.json
-- the stainless rule plate on the black rubber mat is the relief carrier and covers at least 40 percent of the frame
-- the rule spans the full frame width
+  - the stop block casts to the lower right across the first graduations
+  - the graduations between the stop and the gold groove number FIG.days_enforceable in the frame's code
+  - the graduations continue to the right edge with no end stop
+  - the relief shows at least two materials and a real height range in the render report
+  - no numeral on this slide is absent from claims.json or figures.json
+  - the stainless rule plate on the black rubber mat is the relief carrier and covers at least 40 percent of the frame
+  - the rule spans the full frame width
 risks:
 - day graduations aliasing into grey at feed size
 ```
@@ -344,12 +344,12 @@ type:
   labels: []
 verbatim: []
 acceptance:
-- the horizon sits between y 520 and y 680 and the sky shows above it
-- at least three tail rows with single cars and empty bays sit in the foreground
-- the skyline reads as a silhouette on the seam and never stands on a line
-- no numeral on this slide is absent from claims.json
-- the tail rows span at least the full frame width and 250 px of its height
-- the tail rows of the fleet_lot span at least 1000 px of the frame width at 1080 px
+  - the horizon sits between y 520 and y 680 and the sky shows above it
+  - at least three tail rows with single cars and empty bays sit in the foreground
+  - the skyline reads as a silhouette on the seam and never stands on a line
+  - no numeral on this slide is absent from claims.json
+  - the tail rows span at least the full frame width and 250 px of its height
+  - the tail rows of the fleet_lot span at least 1000 px of the frame width at 1080 px
 risks:
 - the skyline reading as blocks on a ruled line
 ```
@@ -383,13 +383,13 @@ type:
   labels: []
 verbatim: []
 acceptance:
-- the car is stopped behind the bar and nothing touches the person
-- the person is lit from the camera side and reads as a person at 432 px
-- the crosswalk bars catch the key on one edge
-- the sky shows above the horizon and the render report says SKY IN FRAME
-- no numeral on this slide is absent from claims.json
-- the kit crossover spans at least 300 px of the frame width at 1080 px
-- the kit person stands at least 200 px tall at 1080 px
+  - the car is stopped behind the bar and nothing touches the person
+  - the person is lit from the camera side and reads as a person at 432 px
+  - the crosswalk bars catch the key on one edge
+  - the sky shows above the horizon and the render report says SKY IN FRAME
+  - no numeral on this slide is absent from claims.json
+  - the kit crossover spans at least 300 px of the frame width at 1080 px
+  - the kit person stands at least 200 px tall at 1080 px
 risks:
 - the frame reading as an incident or a verdict
 ```
@@ -423,14 +423,14 @@ type:
   labels: []
 verbatim: []
 acceptance:
-- a person sits in the driver's seat and is lit from the camera side
-- the wheel and the person's hands are in frame
-- the road and the seam show through the windshield
-- the render report says ROOM IN FRAME or SKY IN FRAME
-- no roster figure and no dusk_gold appear on this frame
-- the kit semi_cab_interior and the kit person seated in it are present as full models
-- the person and the wheel together own at least a third of the frame
-- the kit semi_cab_interior spans at least 1000 px of the frame width at 1080 px
+  - a person sits in the driver's seat and is lit from the camera side
+  - the wheel and the person's hands are in frame
+  - the road and the seam show through the windshield
+  - the render report says ROOM IN FRAME or SKY IN FRAME
+  - no roster figure and no dusk_gold appear on this frame
+  - the kit semi_cab_interior and the kit person seated in it are present as full models
+  - the person and the wheel together own at least a third of the frame
+  - the kit semi_cab_interior spans at least 1000 px of the frame width at 1080 px
 risks:
 - the seated kit person reading as a mannequin
 ```
@@ -465,13 +465,13 @@ type:
   labels: []
 verbatim: []
 acceptance:
-- the fence is in front of the lot and the person stands on the near side of it
-- the tail rows' empty bays are nearer the camera than the two long columns
-- the person is lit from the camera side and under a fifth of the frame
-- the sky shows above the horizon and the render report says SKY IN FRAME
-- no numeral on this slide is absent from claims.json
-- the chassis fleet_lot is present behind the fence with its instanced cars, never boxes
-- the fleet_lot spans at least 1000 px of the frame width at 1080 px
+  - the fence is in front of the lot and the person stands on the near side of it
+  - the tail rows' empty bays are nearer the camera than the two long columns
+  - the person is lit from the camera side and under a fifth of the frame
+  - the sky shows above the horizon and the render report says SKY IN FRAME
+  - no numeral on this slide is absent from claims.json
+  - the chassis fleet_lot is present behind the fence with its instanced cars, never boxes
+  - the fleet_lot spans at least 1000 px of the frame width at 1080 px
 risks:
 - the fence mesh greying the lot at feed size
 ```
