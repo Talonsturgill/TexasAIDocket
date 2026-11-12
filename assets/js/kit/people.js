@@ -947,8 +947,9 @@ export function install(K, THREE, TXT) {
   K.define('person', {
     size: [0.5, 1.75, 0.3],
     options: { seed: 1, role: 'resident', pose: 'stand', toward: 1, height: null, build: 'auto',
-               hat: 'auto', hatColor: null, shade: false, vest: 'auto', skin: null, shirt: null, trousers: null, detail: 'full' },
-    note: 'Articulated adult 1.60 to 1.90 m by seed, slim to heavy. role resident|worker|official; pose stand|walk|point|hands_on_hips|look_up|read|sit_read (read leans over a desk on +z, head down, forearms forward; sit_read folds the legs so the hips sit at seat height); toward -1|1 for point; hat auto|none|cap|cowboy|hard, hatColor a colour for it; shade true raises a hand to shade the eyes in look_up (never by default); build auto|male|female. The seeded skin palette is held to measured human skin; skin as a colour overrides it. Shirt and trousers are single distance-field garments with folds; hair has volume by style.',
+               hat: 'auto', hatColor: null, shade: false, vest: 'auto', skin: null, shirt: null, trousers: null, detail: 'full',
+               headPitch: null, hands: null },
+    note: 'Articulated adult 1.60 to 1.90 m by seed, slim to heavy. role resident|worker|official; pose stand|walk|point|hands_on_hips|look_up|read|sit_read|sit_drive (read leans over a desk on +z, head down, forearms forward; sit_read folds the legs so the hips sit at seat height); toward -1|1 for point; hat auto|none|cap|cowboy|hard, hatColor a colour for it; shade true raises a hand to shade the eyes in look_up (never by default); build auto|male|female. sit_drive sits upright at the wheel with the head level, eyes on the road, and both hands closed on the rim at ten and two of a nominal wheel ahead of the chest. headPitch, any pose: the pitch of the head from LEVEL in radians, positive looks down, whatever the torso does (0 is a level gaze; sit_read bakes about 0.52 down). hands, any pose: [left, right] grip points in the frame of the person (left is +x), each [x, y, z] or null; a hand closes on that point by two bone reach, and a point out of reach is reached toward. With sit_drive or hands the origin is kept (feet on y 0, hips on z 0, the midline on x 0) and userData.attach publishes hip, seat (the measured underside of the trousers below the hips, where a cushion meets them), eye and hands (each grip, the point reached, and short, metres it fell short). semi_cab_interior publishes attach.rim, its own ten and two, so a driver takes hands: A.rim.map((p) => [p[0] - x, p[1] - y, p[2] - z]) for a person at x, y, z. The seeded skin palette is held to measured human skin; skin as a colour overrides it. Shirt and trousers are single distance-field garments with folds; hair has volume by style.',
     make(o, r) {
       LOW = o.detail === 'low';
       try { return makePerson(o, r); } finally { LOW = false; }
@@ -1050,7 +1051,30 @@ export function install(K, THREE, TXT) {
       for (const s of [1, -1]) arm[s] = pose === 'read' ? { u: n3(s * 0.12, -1, 0.2), f: n3(-s * 0.14, -0.72, 0.7), hand: 'relax' }
         : { u: n3(s * 0.1, -1, 0.3), f: n3(-s * 0.12, -0.5, 1), hand: 'relax' };
       if (pose === 'sit_read') for (const s of [1, -1]) leg[s] = { t: n3(s * 0.06, -0.08, 1), c: n3(s * 0.01, -1, 0.06) };
+    } else if (pose === 'sit_drive') {
+      // A DRIVER, OR AN OBSERVER IN THE DRIVER'S SEAT (weekly pass 2026-11-12). The only seated pose was
+      // sit_read, whose head pitch is baked in, and no. 75's frame 8 put it behind a truck's wheel: every
+      // pixel critic, the flow critic and all nine panel cards in three rounds read a slumped or sleeping
+      // mannequin, and the craft judge's last fix was "the person's hands on the rim". So the trunk sits
+      // up against the seat back with a slight recline, the head is level (its pitch below cancels the
+      // recline), the knees ride a little above the hips with the shins forward to the pedals, and both
+      // hands close on the rim (the grip reach below), at the caller's points or a nominal wheel's.
+      torsoLean = -0.06; headPitch = 0.06;
+      for (const s of [1, -1]) {
+        leg[s] = { t: n3(s * 0.07, 0.04, 1), c: n3(s * 0.02, -0.94, 0.34) };
+        arm[s] = { u: n3(s * 0.1, -0.6, 0.8), f: n3(-s * 0.1, 0.1, 1), hand: 'grip', grip: null };
+      }
     }
+    // A HAND ON A NAMED POINT, any pose (weekly pass 2026-11-12; kit-person-full-length asked for it as a
+    // grip on a chain on no. 54). The point is in the person's own frame, left (+x) first.
+    const gripAt = Array.isArray(o.hands) ? o.hands : null;
+    if (gripAt) for (const [i, s] of [[0, 1], [1, -1]]) {
+      const g = gripAt[i];
+      if (Array.isArray(g) && g.length === 3 && g.every(Number.isFinite)) arm[s] = { u: arm[s].u, f: arm[s].f, hand: 'grip', grip: V3(g[0], g[1], g[2]) };
+    }
+    // THE HEAD'S PITCH, asked for (weekly pass 2026-11-12). Measured from level, so 0 is a level gaze in any
+    // pose: the pivot below turns the head by headPitch + torsoLean, so the lean is taken back out here.
+    if (Number.isFinite(o.headPitch)) headPitch = o.headPitch - torsoLean;
     const ankleH = 0.075 * k;
     for (const s of [1, -1]) {
       const L = leg[s];
@@ -1262,6 +1286,31 @@ export function install(K, THREE, TXT) {
         const dn = d.clone().normalize(), out = V3(s, 0, -0.35).sub(dn.clone().multiplyScalar(V3(s, 0, -0.35).dot(dn))).normalize();
         E.copy(S).addScaledVector(dn, a).addScaledVector(out, hgt);
         Wr = S.clone().addScaledVector(dn, reach);
+      }
+      if (A.hand === 'grip') {       // the hand closes on a point: two bone reach, elbow down and out
+        if (!A.grip) {               // sit_drive with no points: ten and two of a nominal wheel ahead of the chest
+          const hy = leg[1].hip.y, R0 = 0.2 * k, ey = n3(0, 0.87, 0.5);
+          A.grip = V3(0, hy + 0.5 * k, 0.43 * k).add(V3(s * R0 * Math.cos(Math.PI / 6), 0, 0)).addScaledVector(ey, R0 * Math.sin(Math.PI / 6));
+        }
+        // the palm faces in toward the midline and forward, and the rim sits in the curled fingers, so
+        // the wrist stands back from the grip along the forearm and off it toward the back of the hand
+        const hk = k * (fem ? 0.86 : 0.93) * (1 + 0.05 * mass);
+        A.palm = n3(-s, -0.2, 0.7);
+        let wt = A.grip.clone(), Fd0 = A.grip.clone().sub(S).normalize();
+        for (let it = 0; it < 3; it++) {
+          const pn = A.palm.clone().sub(Fd0.clone().multiplyScalar(A.palm.dot(Fd0))).normalize();
+          wt = A.grip.clone().addScaledVector(Fd0, -0.095 * hk + 0.018 * k).addScaledVector(pn, -0.022 * hk);
+          const d = wt.clone().sub(S), len = d.length();
+          const reach = Math.min(len, upperArm + foreArm - 0.001);
+          const a = (upperArm * upperArm - foreArm * foreArm + reach * reach) / (2 * reach);
+          const hgt = Math.sqrt(Math.max(0, upperArm * upperArm - a * a));
+          const dn = d.clone().normalize(), pole = V3(s * 0.55, -1, -0.1);
+          const out = pole.sub(dn.clone().multiplyScalar(pole.dot(dn))).normalize();
+          E.copy(S).addScaledVector(dn, a).addScaledVector(out, hgt);
+          Wr = S.clone().addScaledVector(dn, reach);
+          Fd0 = Wr.clone().sub(E).normalize();
+        }
+        A.short = Math.max(0, wt.distanceTo(S) - (upperArm + foreArm - 0.001)); A.wt = wt;
       }
       S0[s] = S; Ecl[s] = E; Wrl[s] = Wr;
       const nb = leanV(V3(s * 0.045 * k, Yl(0.84), -0.016 * k));
@@ -1546,14 +1595,21 @@ export function install(K, THREE, TXT) {
         const c = loft([{ p: Wr.clone().addScaledVector(Fd, -0.03 * k).toArray(), rx: 0.031 * k, ry: 0.028 * k }, { p: Wr.clone().addScaledVector(Fd, -0.002 * k).toArray(), rx: 0.03 * k, ry: 0.027 * k }], { seg: 14, per: 2, ref: [0, 0, 1], capEnd: 'flat' });
         G.add(new THREE.Mesh(c, K.mat('p-white', { color: 0xf3f1ec, roughness: 0.7 })));
       }
-      const hp = A.hand === 'point' ? 'point' : A.hand === 'hip' ? 'fist' : 'relax';
+      const hp = A.hand === 'point' ? 'point' : A.hand === 'hip' || A.hand === 'grip' ? 'fist' : 'relax';
       const hnd = hand(k * (fem ? 0.86 : 0.93) * (1 + 0.05 * mass), s, skin, hp);
       hnd.quaternion.copy(new THREE.Quaternion().setFromUnitVectors(V3(0, -1, 0), Fd));
       if (A.hand === 'point') hnd.quaternion.multiply(new THREE.Quaternion().setFromAxisAngle(V3(0, 1, 0), -s * Math.PI / 2 + s * 0.2));
       if (A.hand === 'hip') hnd.quaternion.multiply(new THREE.Quaternion().setFromAxisAngle(V3(0, 1, 0), s * 0.3));
       if (A.hand === 'shade') hnd.quaternion.multiply(new THREE.Quaternion().setFromAxisAngle(V3(0, 1, 0), s * Math.PI / 2));
       if (A.hand === 'relax') hnd.quaternion.multiply(new THREE.Quaternion().setFromAxisAngle(V3(0, 1, 0), -s * 0.25));
-      hnd.position.copy(Wr).addScaledVector(Fd, 0.004 * k);
+      if (A.hand === 'grip') {       // turn the closed hand about the forearm until its palm faces the grip's side
+        const cur = V3(-s, 0, 0).applyQuaternion(hnd.quaternion), want = A.palm.clone();
+        cur.sub(Fd.clone().multiplyScalar(cur.dot(Fd))).normalize(); want.sub(Fd.clone().multiplyScalar(want.dot(Fd))).normalize();
+        hnd.quaternion.premultiply(new THREE.Quaternion().setFromAxisAngle(Fd, Math.atan2(cur.clone().cross(want).dot(Fd), cur.dot(want))));
+      }
+      // a closed hand is turned about the forearm, so the root of its palm no longer lines up with the wrist's
+      // section and a ring showed at the wrist at a near crop; it is sunk into the wrist instead
+      hnd.position.copy(Wr).addScaledVector(Fd, A.hand === 'grip' ? -0.014 * k : 0.004 * k);
       G.add(hnd);
     }
 
@@ -1730,6 +1786,26 @@ export function install(K, THREE, TXT) {
     bodyPivot.add(body); bodyPivot.rotation.x = torsoLean; G.add(bodyPivot);
     const M = mergeByMaterial(G);
     M.userData.height = H; M.userData.role = role; M.userData.pose = pose;
+    // COORDINATES FOR A SEATED OR GRIPPING PERSON, published only when asked (weekly pass 2026-11-12). K.make
+    // recentres a model's footprint unless it publishes attach points, and a person's default call must
+    // land where it always has, so only sit_drive and `hands` keep their origin and say where things are.
+    if (pose === 'sit_drive' || gripAt) {
+      const hipC = leg[1].hip.clone().add(leg[-1].hip).multiplyScalar(0.5);
+      let seatY = hipC.y;
+      M.traverse((m) => {
+        if (!m.isMesh || m.material !== trouserM) return;
+        const pa = m.geometry.attributes.position;
+        for (let i = 0; i < pa.count; i++) {
+          if (Math.abs(pa.getX(i)) < hipX && Math.abs(pa.getZ(i) - hipC.z) < 0.06 * k) seatY = Math.min(seatY, pa.getY(i));
+        }
+      });
+      head.updateWorldMatrix(true, false);
+      M.userData.attach = {
+        hip: hipC.toArray(), seat: [0, seatY, hipC.z], eye: head.localToWorld(V3(0, 0, D)).toArray(),
+        hands: [1, -1].map((s) => arm[s].hand === 'grip'
+          ? { grip: arm[s].grip.toArray(), reached: Wrl[s].clone().add(arm[s].grip).sub(arm[s].wt).toArray(), short: +arm[s].short.toFixed(3) } : null),
+      };
+    }
     return M;
   }
   /* ---- a crowd ------------------------------------------------------------------------- */

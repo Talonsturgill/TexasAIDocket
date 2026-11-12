@@ -6808,3 +6808,63 @@ rule) and prompt_audit (daily lane). The themes that name a different frame on e
 no contact (6 runs, 11 rounds), largest object unmodelled (5, 10), object in a void (5, 10), type on the
 art (5, 7), dead or empty region (5, 6). No gate was added or changed, so no GATE_LESSONS entry is owed.
 No frontier scan: the brief for this pass names none.
+
+## 2026-11-12, the twentieth weekly machine pass. One kit change, one gate fix, three proposals, carried items
+
+Due early: kit-person-reads-as-mannequin-within-two-metres reached repeat 6 and relief-plate-reads-as-a-tray
+repeat 4 on carousel no. 75 (shipped at the round cap, 7.426). Read with `out/2026-11-12/week_digest.md`:
+six shipped runs, variety lowest on four, artwork_craft's week mean 6.62. Top theme, "primitive or low-poly
+model where a kit model belongs", 6 runs of 6 and 17 rounds.
+
+### 1. KIT: `sit_drive`, `headPitch` and `hands` ON THE PERSON (done, this pass's upgrade commit)
+
+No. 75's frame 8 was the top ranked artwork defect in rounds 1 and 3 ("Mannequin with bowed head, wheel
+in front of nobody"; "Wheel at right with no one behind it"), and the round 3 craft judge's one sentence fix
+was "Rebuild slide 8 with the person's hands on the rim". The kit had one seated pose, sit_read, whose
+head pitch is baked in, so three recompositions could not raise the head. `assets/js/kit/people.js` now has
+`sit_drive` (upright, a slight recline, the head level, hands on a nominal wheel's ten and two), a `headPitch`
+option measured from level that every pose honours, and a `hands` option that closes either hand on a named
+point by two bone reach in any pose (the grip no. 54 asked for). `semi_cab_interior` publishes `attach.rim`.
+All opt in: no. 75's frame 8 re-rendered from its shipped source with the change is pixel identical to the
+shipped PNG, and `examples/kit/sizes.py` passes 145 of 145.
+
+### 2. GATE: `aggregate_check` JUDGES A PRINTED BARE DECLARATION (done, this pass's upgrade commit)
+
+Two runs in a row rewrote copy to fit the detector: no. 74's "1,340 m a side" became "1,340 metres" and
+no. 75's dek became "That 74 percent leaves 825 vehicles", because numeral_trace demands a declaration for a
+computed figure no claim carries and aggregate_check refused any declaration its shapes had not found. The
+November 11th pass deferred this as a detector widening that needed a binding date. It is not one: the
+detector is unchanged and no shipped deck is newly red (36 problems before, 32 after, across every shipped
+run). A declaration whose exact phrase a surface prints, as whole tokens, is now re-derived like a detected
+one and its value must be the number the phrase prints. Seven self-test cases, three of them red on the old
+code.
+
+### 3. PROPOSAL, for a maintainer: a GATE_LESSONS entry (`knowledge/shared/GATE_LESSONS.md`, human)
+
+The brief says a gate change belongs in GATE_LESSONS. Suggested entry: "Two gates with two vocabularies.
+numeral_trace asked for a declaration that aggregate_check's stale check refused, because 'no slide says it'
+meant 'no shape of mine found it'. Two runs paid in copy (nos. 74 and 75). Check instead: when one gate defers
+to another's file, the second accepts every entry the first can ask for, and a self-test pins the pair."
+
+### 4. PROPOSAL, for a maintainer: the relief's stair-stepped cast (`assets/js/txbench.js`, human)
+
+Queue relief-plate-reads-as-a-tray at repeat 4; digest theme "render artifact (banding, aliasing, facets,
+stripes)", 4 runs and 7 rounds (2026-11-12 r3 among them). No. 75 frame 5's stop block cast read as
+stair-stepped at native size to every judge in all three rounds, and the run record traces it to the relief's
+height field. Since October 31st the cast fraction has not been the residual cause (no. 64 cast 0.473 and
+was still charged). A maintainer should render one relief with a tall stop block at the deck's raking key at
+two height field resolutions and see whether the steps follow the field or the shadow map.
+
+### 5. PROPOSAL, for a maintainer: the neck under the jaw (in lane, deferred to a day no deck renders a person)
+
+Measured on the frame 8 replay at native size: the neck reads a value lighter than the jaw where the face's
+vertex tint meets the neck's plain skin, and a ring shows at a bare wrist where the forearm's flat cap meets
+the palm root. Both are default geometry in `assets/js/kit/people.js`, and today's frames 7 and 9 render the
+kit person, so neither moved today. First artwork item for the next pass, with the face and hair detail.
+
+### Carried
+
+Every other open item is carried as it stands. The themes that name a different frame on each deck stay
+deferred: object in a void (6 runs, 11 rounds), no contact (6, 10), largest object unmodelled (5, 12), type on
+the art (5, 7). The fleet lot no. 75 built (fleet-lot-models-built-in-chassis) and the crossover paint going
+blue under the dusk sky are one deck each, at repeat 0. No frontier scan: the brief for this pass names none.
