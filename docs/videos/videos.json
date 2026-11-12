@@ -2,6 +2,18 @@
   "media_base": "https://raw.githubusercontent.com/Talonsturgill/TexasAIDispatch/main",
   "videos": [
     {
+      "id": "2026-11-11-the-empty-seat",
+      "date": "2026-11-11",
+      "title": "The empty seat",
+      "caption": "Kodiak AI plans to haul IKEA freight on Interstate 45 with nobody in the cab. Its own readiness measure for that launch stood at 99 percent on October 30th.",
+      "video": "/runs/2026-11-11/dispatch.mp4",
+      "poster": "/runs/2026-11-11/poster.png",
+      "video_mobile": "/runs/2026-11-11/dispatch-720.mp4",
+      "poster_thumb": "/runs/2026-11-11/poster-540.jpg",
+      "county": "Harris",
+      "beat": "the-road"
+    },
+    {
       "id": "2026-10-21-who-calls-the-leak",
       "date": "2026-10-21",
       "title": "Who calls the leak",
