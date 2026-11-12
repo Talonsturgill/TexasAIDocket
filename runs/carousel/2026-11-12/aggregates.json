@@ -1,0 +1,147 @@
+{
+ "date": "2026-11-12",
+ "_note": "Every count, span, ratio and duration the deck states, with the claim it was quoted from or the code that computed it.",
+ "aggregates": [
+  {
+   "phrase": "15 companies",
+   "slide": "slide-02.html",
+   "kind": "count",
+   "value": 15,
+   "computed_from": [
+    "c18"
+   ],
+   "computed_by": "out/2026-11-12/compute.py, rest_companies, the 17 companies in c18 minus Waymo in c16 and Tesla Robotaxi in c13"
+  },
+  {
+   "phrase": "15 OTHERS",
+   "slide": "slide-02.html",
+   "kind": "count",
+   "value": 15,
+   "computed_from": [
+    "c18"
+   ],
+   "computed_by": "out/2026-11-12/compute.py, rest_companies, the 17 companies in c18 minus Waymo in c16 and Tesla Robotaxi in c13"
+  },
+  {
+   "phrase": "Fifteen companies",
+   "slide": "slide-03.html",
+   "kind": "count",
+   "value": 15,
+   "computed_from": [
+    "c18"
+   ],
+   "computed_by": "out/2026-11-12/compute.py, rest_companies, the 17 companies in c18 minus Waymo in c16 and Tesla Robotaxi in c13"
+  },
+  {
+   "phrase": "14 companies",
+   "slide": "slide-03.html",
+   "kind": "count",
+   "value": 14,
+   "computed_from": [
+    "c1",
+    "c2",
+    "c3",
+    "c4",
+    "c5",
+    "c6",
+    "c7",
+    "c8",
+    "c9",
+    "c10",
+    "c11",
+    "c12",
+    "c13",
+    "c14",
+    "c15",
+    "c16",
+    "c17"
+   ],
+   "computed_by": "out/2026-11-12/compute.py, under_100, companies listing fewer than 100 vehicles"
+  },
+  {
+   "phrase": "154 days",
+   "slide": "slide-05.html",
+   "kind": "duration",
+   "value": 154,
+   "computed_from": [
+    "c26",
+    "c20"
+   ],
+   "computed_by": "out/2026-11-12/compute.py, days_enforceable, the days from May 28th, 2026 in c26 to October 29th, 2026 in c20",
+   "from_date": "2026-05-28",
+   "to_date": "2026-10-29"
+  },
+  {
+   "phrase": "17 companies",
+   "slide": "slide-01.html",
+   "kind": "count",
+   "value": 17,
+   "quoted_from": "c18",
+   "quote": "Total Companies: 17"
+  },
+  {
+   "phrase": "17 names",
+   "slide": "slide-01.html",
+   "kind": "count",
+   "value": 17,
+   "quoted_from": "c18",
+   "quote": "Total Companies: 17"
+  },
+  {
+   "phrase": "3,164 automated vehicles",
+   "slide": "slide-01.html",
+   "kind": "count",
+   "value": 3164,
+   "quoted_from": "c19",
+   "quote": "Total Automated Vehicles: 3,164"
+  },
+  {
+   "phrase": "ten listed vehicles",
+   "slide": "caption.txt",
+   "kind": "count",
+   "value": 10,
+   "computed_from": [
+    "c19"
+   ],
+   "computed_by": "out/2026-11-12/compute.py, unit, the drawing scale of one stand-in car per ten listed vehicles, a stated rule and not a measurement"
+  },
+  {
+   "phrase": "Two names",
+   "slide": "document_title",
+   "kind": "count",
+   "value": 2,
+   "computed_from": [
+    "c16",
+    "c13"
+   ],
+   "computed_by": "out/2026-11-12/compute.py, top2, the two largest rows, Waymo and Tesla Robotaxi"
+  },
+  {
+   "phrase": "7 vehicles",
+   "slide": "slide-04.html",
+   "kind": "count",
+   "value": 7,
+   "quoted_from": "c6",
+   "quote": "Transport Eng 7"
+  },
+  {
+   "phrase": "two freight lanes",
+   "slide": "slide-08.html",
+   "kind": "count",
+   "value": 2,
+   "computed_from": [
+    "c63",
+    "c65"
+   ],
+   "computed_by": "counted from the claims, the Dallas to Houston corridor in c63 and the Dallas to Laredo lane in c65"
+  },
+  {
+   "phrase": "1,259 vehicles",
+   "slide": "slide-02.html",
+   "kind": "count",
+   "value": 1259,
+   "quoted_from": "c16",
+   "quote": "Waymo LLC dba Waymo LLC 1,259"
+  }
+ ]
+}

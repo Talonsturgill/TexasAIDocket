@@ -1,0 +1,13 @@
+Sources, official records from the Texas Department of Motor Vehicles and company releases, all fetched November 12th.
+Texas Department of Motor Vehicles, Company and Vehicle Summary Report, data as of October 29th. c1 c2 c3 c4 c5 c6 c7 c8 c9 c10 c11 c12 c13 c14 c15 c16 c17 c18 c19 c20
+https://www.txdmv.gov/sites/default/files/body-files/AV_Program_Report_10292026.pdf
+Texas Department of Motor Vehicles, Automated Vehicles Regulatory Program page. c22 c26 c32 c33 c36 c37 c38 c43 c44
+https://www.txdmv.gov/AVprogram
+Texas Department of Motor Vehicles, adoption of 43 TAC Chapter 220, Automated Motor Vehicles, Exhibit A, September 18th, 2025. c50 c51
+https://www.txdmv.gov/sites/default/files/body-files/Chap_220_Final_-_Adopt.pdf
+Volvo Group, Volvo and Waabi kick off customer operations in Texas, starting with Warp, October 5th. c62 c63
+https://www.volvogroup.com/en/news-and-media/news/2026/oct/volvo-and-waabi-kick-off-customer-operations-in-texas--starting-with-warp-tm-.html
+Kodiak AI, Kodiak AI and Charger USA Launch Autonomous Trucking Between Dallas and Laredo, October 8th. c64 c65
+https://kodiak.ai/news/kodiak-charger-usa-autonomous-trucking-dallas-laredo
+The 74 percent share is computed in compute.py from c16, c13 and c19. Each car on the slides stands for ten listed vehicles, rounded half up, never fewer than one.
+The 154 days come from c26 and c20, the 825 from c19, c16 and c13, and the 14 companies under 100 from c1 to c17, all computed in compute.py.
