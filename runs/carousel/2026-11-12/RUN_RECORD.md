@@ -128,3 +128,26 @@ site authorises the deck's own arithmetic on its article page. The site rebuilt 
 house_style, schema, port_audit, media, seo and schema_contract exited 0. Two claim texts (c31, c36) were split for the
 article page's 30 word backstop. `tests/article_edition.mjs` could not import Playwright as an ES module in this
 checkout and is left to CI.
+
+## Retro
+
+**Did the run wait on a human.** `prompt_audit.py` (interim, Phase 17) measured 1547 tool calls and flagged 48 with a
+permission decision of 1.0 to 19.4 seconds, the longest on Agent spawns, every one resolved with nobody answering. The
+no-stall hook was armed at 05:03:59 UTC, judged the session unattended (the host's `CLAUDE_CODE_SESSION_ATTENDED` was 0)
+and refused nothing. Everything after this reading can still prompt.
+
+**Instincts.** Confirmed read-the-repair-at-feed-scale, a-paraphrase-can-outrun-its-quote and the-plan-is-not-the-product.
+Added kit-sit-read-bakes-a-bowed-head and computed-figures-need-a-detectable-phrase.
+
+**Queue.** Raised kit-person-reads-as-mannequin-within-two-metres to repeat 6 and relief-plate-reads-as-a-tray to repeat
+4, and added kit-person-no-upright-seated-pose, fleet-lot-models-built-in-chassis, crossover-paint-turns-blue-under-dusk-sky
+and aggregate-and-numeral-trace-disagree-on-bare-figures. The two raised counts made the weekly pass due today.
+
+**The weekly pass** (one upgrade engineer, `prompts/machine_weekly.md`) shipped two changes under the `upgrade` stamp: a
+`sit_drive` pose with `headPitch` and `hands` options and the cab's rim points (opt in, frame 8 re-renders pixel identical),
+and aggregate_check judging a declared phrase a surface prints. Every verify command it returned was rerun here and
+exited 0. Two proposals for a maintainer are in UPGRADE_BACKLOG (a GATE_LESSONS entry, and the relief height field's
+stair-stepped cast in txbench.js).
+
+**After the pass.** `shipped_check` found the topics ledger's angle narrating spelled counts it could not trace; the
+angle was reworded, and the first comment's sources block was cut to the claim ids the deck prints.
