@@ -49,7 +49,7 @@
   N.W = 1080; N.H = 1350; N.SEED = 20261113; N.INK = "#EDE6D6";
   N.EMBER = 0xB4664F;     /* dusk_ember: left blank, and nothing else */
   N.PAD = { w: 14.5, d: 3.6, h: 0.25 };          /* an equipment pad sized for the kit chiller, 13.3 x 2.5 m */
-  N.BAR = { t: 0.0127, sep: 0.001, face: 0.45, len: 6.0 };   /* one lamination per GW, a drawing scale; figures.json carries the widths */
+  N.BAR = { t: 0.0127, sep: 0.001, face: 1.0, len: 6.0 };   /* one lamination per GW, a drawing scale; figures.json carries the widths */
   N.TRENCH = { w: 1.0, wall: 0.12, h: 0.42 };
 
   /* a seeded canvas texture, so every surface carries tooth in its albedo and never in its height */
@@ -88,21 +88,21 @@
     /* broom finished concrete: fine strokes across the pad in the albedo, blotches of cure and grime */
     var broom = N.canvasTex(THREE, 512, 512, function (g, w, h) {
       g.fillStyle = "#d9d4c9"; g.fillRect(0, 0, w, h); var r = N.rng(7);
-      for (var i = 0; i < 2600; i++) { var y = r() * h, a = 0.015 + r() * 0.03; g.strokeStyle = r() < 0.5 ? "rgba(40,38,34," + a + ")" : "rgba(200,196,186," + a + ")"; g.lineWidth = 0.6 + r(); g.beginPath(); g.moveTo(r() * w, y); g.lineTo(r() * w, y + (r() - 0.5) * 3); g.stroke(); }
-      for (var q = 0; q < 9000; q++) { g.fillStyle = r() < 0.5 ? "rgba(70,66,60,0.35)" : "rgba(235,231,222,0.3)"; g.fillRect(r() * w, r() * h, 1 + r() * 1.5, 1 + r() * 1.5); }
-      for (var j = 0; j < 40; j++) { var gr = g.createRadialGradient(r() * w, r() * h, 2, r() * w, r() * h, 30 + r() * 80); gr.addColorStop(0, "rgba(60,56,50,0.12)"); gr.addColorStop(1, "rgba(60,56,50,0)"); g.fillStyle = gr; g.fillRect(0, 0, w, h); }
+      for (var i = 0; i < 2600; i++) { var y = r() * h, a = 0.035 + r() * 0.05; g.strokeStyle = r() < 0.5 ? "rgba(40,38,34," + a + ")" : "rgba(200,196,186," + a + ")"; g.lineWidth = 0.6 + r(); g.beginPath(); g.moveTo(r() * w, y); g.lineTo(r() * w, y + (r() - 0.5) * 3); g.stroke(); }
+      for (var q = 0; q < 9000; q++) { g.fillStyle = r() < 0.5 ? "rgba(60,56,50,0.6)" : "rgba(240,236,228,0.5)"; g.fillRect(r() * w, r() * h, 1 + r() * 2, 1 + r() * 2); }
+      
     }, [3, 1]);
     var CONC = new THREE.MeshStandardMaterial({ color: 0xc9c4ba, map: broom, roughness: 0.86, metalness: 0 });
     var CONCD = new THREE.MeshStandardMaterial({ color: 0xa29e95, map: broom, roughness: 0.9, metalness: 0 });
-    var EMBER = new THREE.MeshStandardMaterial({ color: N.EMBER, roughness: 0.55, metalness: 0, emissive: N.EMBER, emissiveIntensity: 0.22 });
+    var EMBER = new THREE.MeshStandardMaterial({ color: N.EMBER, roughness: 0.55, metalness: 0, emissive: N.EMBER, emissiveIntensity: 0.55 });
     var GALV = K.finish && K.finish.galvanized ? K.finish.galvanized() : new THREE.MeshStandardMaterial({ color: 0xa6abb0, roughness: 0.42, metalness: 0.9 });
     var PVC = new THREE.MeshStandardMaterial({ color: 0x5b5f63, roughness: 0.6, metalness: 0 });
     var mill = N.canvasTex(THREE, 256, 64, function (g, w, h) {
       g.fillStyle = "#b87350"; g.fillRect(0, 0, w, h); var r = N.rng(11);
       for (var i = 0; i < 500; i++) { g.fillStyle = r() < 0.5 ? "rgba(90,40,20,0.10)" : "rgba(240,190,150,0.10)"; g.fillRect(r() * w, r() * h, 6 + r() * 60, 0.6 + r()); }
     });
-    var COPPER = new THREE.MeshStandardMaterial({ color: 0xd28a5e, map: mill, roughness: 0.34, metalness: 1.0 });
-    var COPPERD = new THREE.MeshStandardMaterial({ color: 0x7a3f24, map: mill, roughness: 0.5, metalness: 0.85 });   /* the oxidised band every tenth bar, so the pack reads in tens */
+    var COPPER = new THREE.MeshStandardMaterial({ color: 0xf0b080, map: mill, roughness: 0.42, metalness: 0.55 });
+    var COPPERD = new THREE.MeshStandardMaterial({ color: 0x1c1410, roughness: 0.7, metalness: 0.2 });   /* the oxidised band every tenth bar, so the pack reads in tens */
     var EPOXY = new THREE.MeshStandardMaterial({ color: 0x6f747a, roughness: 0.5, metalness: 0 });
     var oakTex = N.canvasTex(THREE, 256, 64, function (g, w, h) {
       g.fillStyle = "#5c4630"; g.fillRect(0, 0, w, h); var r = N.rng(13);
@@ -123,7 +123,7 @@
     var CABLEX = new THREE.MeshStandardMaterial({ color: 0x141518, roughness: 0.5, metalness: 0 });
     var gratingTex = N.canvasTex(THREE, 256, 256, function (g, w, h) {
       g.fillStyle = "#1b1c1e"; g.fillRect(0, 0, w, h);
-      for (var x = 0; x < w; x += 16) { g.fillStyle = "#b4b9be"; g.fillRect(x, 0, 6, h); g.fillStyle = "#6c7176"; g.fillRect(x + 5, 0, 1.5, h); }
+      for (var x = 0; x < w; x += 16) { g.fillStyle = "#a9a49a"; g.fillRect(x, 0, 6, h); g.fillStyle = "#5e5a53"; g.fillRect(x + 5, 0, 1.5, h); }
       for (var y = 0; y < h; y += 64) { g.fillStyle = "#8d9297"; g.fillRect(0, y, w, 3); }
     });
     gratingTex.wrapS = gratingTex.wrapT = THREE.RepeatWrapping;
@@ -140,11 +140,14 @@
         var G = new THREE.Group(), w = o.w, d = o.d, h = o.h;
         var slab = TXT.roundedBox(w, h, d, 0.03, CONC); slab.position.set(0, h / 2, 0); G.add(slab);
         if (o.line) {
-          var lw = 0.22, ins = 0.3, yy = h + 0.002;
+          var lw = 0.3, ins = 0.3, yy = h + 0.002;
           [[0, d / 2 - ins, w - 2 * ins, lw], [0, -d / 2 + ins, w - 2 * ins, lw], [w / 2 - ins, 0, lw, d - 2 * ins], [-w / 2 + ins, 0, lw, d - 2 * ins]].forEach(function (e) {
             var s = new THREE.Mesh(new THREE.BoxGeometry(e[2], 0.004, e[3]), EMBER); s.position.set(e[0], yy, e[1]); s.receiveShadow = true; G.add(s);
           });
         }
+        /* saw-cut control joints across the slab every 2.4 m, the cut a pad actually carries */
+        var JOINT = new THREE.MeshStandardMaterial({ color: 0x1a1816, roughness: 0.95 });
+        for (var jx = -w / 2 + 2.4; jx < w / 2 - 1; jx += 2.4) { var jt = new THREE.Mesh(new THREE.BoxGeometry(0.012, 0.003, d - 0.06), JOINT); jt.position.set(jx, h + 0.0012, 0); jt.receiveShadow = true; G.add(jt); }
         var nb = o.bolts, bx0 = -w / 2 + 0.9, bx1 = w / 2 - 0.9;
         for (var i = 0; i < nb; i++) {
           var x = bx0 + (bx1 - bx0) * i / (nb - 1);
@@ -168,20 +171,21 @@
      * oxidised dark so the pack reads in tens; grey epoxy standoff insulators every 1.5 m on two oak dunnage beams. */
     K.define("bus_pack", {
       size: [2.43, 0.73, 6],
-      options: { n: 10, face: 0.45, length: 6, every: 10 },
+      options: { n: 10, face: 1.0, length: 6, every: 10 },
       note: "A pack of n copper bus laminations on edge on epoxy standoffs over oak dunnage; width n x 13.7 mm less one separator; every tenth bar darker.",
       make: function (o) {
         var G = new THREE.Group(), n = Math.max(1, Math.round(o.n)), pitch = N.BAR.t + N.BAR.sep, W = n * pitch - N.BAR.sep, L = o.length, F = o.face;
         var dunH = 0.15, insH = 0.12, y0 = dunH + insH;
-        [-1, 1].forEach(function (s) { var d = TXT.roundedBox(W + 0.5, dunH, 0.15, 0.01, OAK); d.position.set(0, dunH / 2, s * L * 0.33); G.add(d); });
+        [-1, 1].forEach(function (s) { var d = TXT.roundedBox(W + 0.06, dunH, 0.15, 0.01, OAK); d.position.set(0, dunH / 2, s * L * 0.33); G.add(d); });
         var nIns = Math.max(2, Math.round(W / 0.35) + 1);
         [-1, 1].forEach(function (s) { for (var i = 0; i < nIns; i++) { var c = new THREE.Mesh(new THREE.CylinderGeometry(0.035, 0.045, insH, 12), EPOXY); c.position.set(-W / 2 + W * (nIns === 1 ? 0.5 : i / (nIns - 1)), dunH + insH / 2, s * L * 0.33); G.add(c); } });
         var geo = new THREE.BoxGeometry(N.BAR.t, F, L), lit = [], dark = [];
         for (var b = 0; b < n; b++) { var x = -W / 2 + N.BAR.t / 2 + b * pitch; ((b + 1) % o.every === 0 ? dark : lit).push([x, y0 + F / 2, 0, 0, 1]); }
-        function inst(list, mat) { if (!list.length) return; var im = new THREE.InstancedMesh(geo, mat, list.length), m4 = new THREE.Matrix4(); list.forEach(function (e, i) { m4.makeTranslation(e[0], e[1], e[2]); im.setMatrixAt(i, m4); }); G.add(im); }
-        inst(lit, COPPER); inst(dark, COPPERD);
+        /* the kit's bake collapses an InstancedMesh to its first instance, so the bars are separate meshes merged per material */
+        function bars(list, mat) { if (!list.length) return; var ms = list.map(function (e) { var m = new THREE.Mesh(geo, mat); m.position.set(e[0], e[1], e[2]); m.updateMatrix(); return m; }); var mm = K.merge ? K.merge(ms, mat) : null; if (mm) G.add(mm); else ms.forEach(function (m) { G.add(m); }); }
+        bars(lit, COPPER); bars(dark, COPPERD);
         /* a bolted clamp across the pack near each end, tinned, so the pack reads as one assembly */
-        [-1, 1].forEach(function (s) { var cl = TXT.roundedBox(W + 0.04, 0.03, 0.06, 0.006, GALV); cl.position.set(0, y0 + F + 0.015, s * (L / 2 - 0.4)); G.add(cl); var cl2 = cl.clone(); cl2.position.y = y0 - 0.015; G.add(cl2); });
+        [-1, 1].forEach(function (s) { var cl = TXT.roundedBox(W + 0.01, 0.03, 0.06, 0.006, GALV); cl.position.set(0, y0 + F + 0.015, s * (L / 2 - 0.4)); G.add(cl); var cl2 = cl.clone(); cl2.position.y = y0 - 0.015; G.add(cl2); });
         G.userData = { width: W, top: y0 + F, faceZ: L / 2 };
         return shadowAll(G);
       }
@@ -214,8 +218,8 @@
     /* CABLE TRENCH: a precast cable trough on grade along x, curbs and walls in concrete, galvanized bar grating over the
      * first `covered` metres, the open stretch lined in ember epoxy. Origin at the trough's start, centred on its width. */
     K.define("cable_trench", {
-      size: [24, 0.42, 1.24],
-      options: { length: 24, covered: 20, width: 1.0, wall: 0.12, h: 0.42 },
+      size: [24, 0.75, 2.16],
+      options: { length: 24, covered: 20, width: 1.8, wall: 0.18, h: 0.75 },
       note: "A precast cable trough on grade, galvanized grating over the covered length, the open length lined in ember epoxy, starting at x = 0.",
       make: function (o) {
         var G = new THREE.Group(), L = o.length, c = Math.max(0, Math.min(L, o.covered)), w = o.width, t = o.wall, h = o.h;
@@ -229,7 +233,7 @@
         var panel = 1.0, np = Math.round(c / panel);
         for (var i = 0; i < np; i++) {
           var gt = gratingTex.clone(); gt.needsUpdate = true; gt.repeat.set(4, 1);
-          var gm = new THREE.MeshStandardMaterial({ map: gt, roughness: 0.45, metalness: 0.85, color: 0xffffff });
+          var gm = new THREE.MeshStandardMaterial({ map: gt, roughness: 0.7, metalness: 0.4, color: 0xffffff });
           var g = new THREE.Mesh(new THREE.BoxGeometry(panel - 0.01, 0.03, w + 0.02), gm); g.position.set(i * panel + panel / 2, h - 0.015, 0); G.add(g);
         }
         G.userData = { length: L, covered: c };
