@@ -1,0 +1,67 @@
+<!doctype html>
+<!-- 2026-11-13, frame 8 of 9. Archetype OBJECT_AND_CAPTION. A spatial scene through txthree.js in the lastLight world: an official leaning over a plywood plan table inside a bay of the primer frame, one tripod work light. Drawn to illustrate; no real site is depicted. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:900px">ERCOT expects to go back to 80% of developers</h1>
+<p class="dek" data-follow="30" style="width:880px">In a separate check of Batch Zero eligibility, ERCOT reviewed responses from 257 developers and expects to send 80% of them a second round, with a 5 business day deadline. Common issues so far include proving site control and confirming financial security posted.</p>
+<script>window.FIG = {"dev_reviewed": 257};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-13-coolingyard.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "ERCOT, verification", counter: "08 / 09", src: "c24 c25 c26 c29 c31", fit: { min: 76, max: 100, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 46, near: 0.05, far: 9000 });
+  const f = CH.bearing(TXT, -46), side = [-f[1], f[0]];
+  const at = (u, v) => [f[0] * u + side[0] * v, f[1] * u + side[1] * v];
+  const yaw = Math.atan2(f[0], f[1]);
+  const frame = K.make('structural_frame', { cols: 3, rows: 2, bay: 9.1, height: 14, girts: [4.5, 9], bracing: true, primer: 0x9a4a30, seed: 81 });
+  const fq = at(12.5, 4.55); frame.position.set(fq[0], 0, fq[1]); frame.rotation.y = yaw; TXT.add(R, frame); TXT.contact(R, frame);
+  const table = K.make('plan_table', {});
+  const tq = at(8.5, 0.2); table.position.set(tq[0], 0, tq[1]); table.rotation.y = yaw; TXT.add(R, table); TXT.contact(R, table);
+  const docs = K.make('document_stack', { count: 2 }); docs.position.set(tq[0] - side[0] * 0.3, 0.969, tq[1] - side[1] * 0.3); docs.rotation.y = yaw + 0.2; TXT.add(R, docs);
+  /* THE FIGURE: a stack of FIG.dev_reviewed response folders on the table, one per developer ERCOT reviewed, 2 mm each, so the stack stands about half a metre */
+  { const FOLD = [new THREE.MeshStandardMaterial({ color: 0xcfb07a, roughness: 0.85 }), new THREE.MeshStandardMaterial({ color: 0xb99c68, roughness: 0.85 }), new THREE.MeshStandardMaterial({ color: 0xe6e0d2, roughness: 0.9 })];
+    const fg = new THREE.BoxGeometry(0.32, 0.0018, 0.245), rr = CH.rng(257), st = new THREE.Group();
+    for (let i = 0; i < FIG.dev_reviewed; i++) { const m = new THREE.Mesh(fg, FOLD[i % 10 === 9 ? 2 : i % 2]); m.position.set((rr() - 0.5) * 0.012, 0.0009 + i * 0.002, (rr() - 0.5) * 0.01); m.rotation.y = (rr() - 0.5) * 0.04; m.castShadow = m.receiveShadow = true; st.add(m); }
+    if (st.children.length !== FIG.dev_reviewed) throw new Error('folder stack does not match dev_reviewed');
+    const sq = [tq[0] + side[0] * 0.55, tq[1] + side[1] * 0.55]; st.position.set(sq[0], 0.969, sq[1]); st.rotation.y = yaw - 0.1; TXT.add(R, st); }
+  const man = K.make('person', { role: 'official', pose: 'read', seed: 9 });
+  const mq = at(9.25, 0.1); man.position.set(mq[0], 0, mq[1]); man.rotation.y = yaw + Math.PI; TXT.add(R, man); TXT.contact(R, man);
+  const lamp = K.make('work_light', { lit: true });
+  const lq = at(7.4, -1.9); lamp.position.set(lq[0], 0, lq[1]); lamp.rotation.y = yaw + 0.7; TXT.add(R, lamp); TXT.contact(R, lamp);
+  const sp = new THREE.SpotLight(0xfff0d8, 70, 9, 0.75, 0.6, 2); sp.position.set(lq[0], 1.85, lq[1]); sp.target.position.set(tq[0], 0.9, tq[1]); sp.castShadow = true; sp.shadow.mapSize.set(2048, 2048); sp.shadow.normalBias = 0.01; R.scene.add(sp); R.scene.add(sp.target);
+  const FROM = [0, 2.2, 0], TGT = [tq[0], 0, tq[1]], STAGE = [table, man, lamp, frame];
+  const LOOK = CH.aim(THREE, R, TXT, FROM, [tq[0], 0.9, tq[1]], 560, 950, 46);
+  TXT.frame(R, { fov: 46, from: FROM, look: LOOK });
+  TXT.sky(R);
+  TXT.ground(R, { surface: 'caliche', color: 0x5e5446, size: 9000, seed: 53 });
+  TXT.scatter(R, { kind: 'scrub', count: 140, area: [260, 260], avoid: [[-10, -30, 80, 60]], seed: 23 });
+  CH.KEY_SCALE = 0.3;
+  TXT.deckRig(R, CH.rigSpec(W, 20, 4096), CH.rigOpts(TGT, { distance: 40, shadowFar: 90, normalBias: 0.02 }));
+  CH.unacne(R, 0.02);
+  CH.pool(THREE, TXT, R, TGT, { radius: 7, i: 3.4, lift: 5 });
+  TXT.weather(R, { grime: 0.4, height: 0.35, mottle: 0.3 });
+  TXT.stage(R, STAGE);
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.dress(cx, { foot: 0.8 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

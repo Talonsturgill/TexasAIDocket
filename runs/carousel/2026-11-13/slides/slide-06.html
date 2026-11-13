@@ -1,0 +1,62 @@
+<!doctype html>
+<!-- 2026-11-13, frame 6 of 9. Archetype SPLIT_HORIZON. A spatial scene through txthree.js in the lastLight world: the whole yard from above, four empty pads in a row with a worker on the nearest. Drawn to illustrate; no real site is depicted. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:900px">Cooling had the highest N/A rate</h1>
+<p class="dek" data-follow="30" style="width:860px">No category of questions drew N/A answers at a higher rate than cooling. Respondents indicated many projects had not determined their final cooling configuration.</p>
+<script>window.FIG = {};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-13-coolingyard.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "ERCOT, preliminary", counter: "06 / 09", src: "c18", fit: { min: 76, max: 100, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 50, near: 0.1, far: 9000 });
+  const f = CH.bearing(TXT, -40), side = [-f[1], f[0]];
+  const at = (u, v) => [f[0] * u + side[0] * v, f[1] * u + side[1] * v];
+  const yaw = Math.atan2(f[0], f[1]), rot = Math.atan2(f[1], -f[0]) + 0.16;
+  /* four empty pads in a row, long axes toward the frame; a place for a cooling plant, never a number */
+  const pads = [];
+  for (let i = 0; i < 4; i++) { const p = K.make('equipment_pad', { bolts: 6, stubs: 2 }); const q = at(27, -2.4 + i * 4.6); p.position.set(q[0], 0, q[1]); p.rotation.y = rot; TXT.add(R, p); TXT.contact(R, p); pads.push(p); }
+  /* the worker standing on the nearest pad inside its ember line, looking along the empty slab */
+  const w0 = pads[0].position, ax = new THREE.Vector3(1, 0, 0).applyAxisAngle(new THREE.Vector3(0, 1, 0), rot);
+  const worker = K.make('person', { role: 'worker', vest: true, hat: 'hard', pose: 'look_up', seed: 4 });
+  worker.position.set(w0.x + ax.x * 3.2, 0.25, w0.z + ax.z * 3.2); worker.rotation.y = Math.atan2(ax.x, ax.z); TXT.add(R, worker);
+  const FROM = [0, 9, 0];
+  const mid = at(26, 4);
+  const LOOK = CH.aim(THREE, R, TXT, FROM, [mid[0], 0, mid[1]], 540, 870, 50);
+  TXT.frame(R, { fov: 50, from: FROM, look: LOOK });
+  TXT.sky(R);
+  TXT.ground(R, { surface: 'caliche', color: 0x5e5446, size: 9000, seed: 13 });
+  /* scrub on the open caliche around the yard, kept off each pad and the frame's footprint */
+  const keepOff = [...pads].map(o => { const bb = new THREE.Box3().setFromObject(o); return [bb.min.x - 1.5, bb.min.z - 1.5, bb.max.x + 1.5, bb.max.z + 1.5]; });
+  TXT.scatter(R, { kind: 'scrub', count: 420, area: [300, 300], avoid: keepOff, seed: 5 });
+  CH.KEY_SCALE = 0.4;
+  TXT.deckRig(R, CH.rigSpec(W, 80, 4096), CH.rigOpts([mid[0], 0, mid[1]], { distance: 140, shadowFar: 320, normalBias: 0.03 }));
+  CH.unacne(R, 0.03);
+  CH.pool(THREE, TXT, R, [mid[0], 0, mid[1]], { radius: 16, i: 3.6, lift: 40 });
+  CH.pool(THREE, TXT, R, [worker.position.x, 0, worker.position.z], { radius: 3, i: 4, lift: 60 });
+  TXT.weather(R, { grime: 0.45, height: 0.4, mottle: 0.32 });
+  TXT.stage(R, [...pads, worker]);
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.dress(cx, { foot: 0.8 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

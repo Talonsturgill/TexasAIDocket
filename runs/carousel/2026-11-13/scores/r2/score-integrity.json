@@ -1,0 +1,81 @@
+{
+ "lens": "integrity",
+ "round": 2,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.8,
+   "why": "Every frame rendered and dark with real casts; 2, 6, 7 and 9 hold at feed size. Frame 8's small mannequin, mid-tone horizon band and no pool; frame 3's primitive worker and a pack reading as timber cladding; frame 5's grey field and closed brown plate; frame 7's reel blob butting the dek; frame 4's packs a bar chart."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "One world, one key, one grade; the ember line on 1, 6, 7 and 9; a declared camera move and value cut; frame 8 slightly outside the argument."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 6.0,
+   "why": "The round 1 fix verified independently from the tables: cooling first by rate (40.6%) and fourth by count; page 4's printed shares independently put cooling highest for both load types. Every other numeral traces. Charged for the first comment's second-trench sentence, c18's claim text resting on the table parse rather than a quote, and slide 8 citing c27 and c28 unused. The chassis header comment still carries the refuted reading, unpublished."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.8,
+   "why": "What happened, who and the next date are named; the stake is never concrete; the December 17th meeting is unused."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 6.8,
+   "why": "2 pays at once, the turn at 6 is real and 7 extends it; the cover hook is clunky and 3 repeats it; 8 cuttable; the close a date."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.8,
+   "why": "House-clean but bureaucratic; West Texas the only regional texture; the caption's closing question the best line."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 5.5,
+   "why": "No. 60, 19 days ago, used the same questionnaire, lastLight, the December 10th close and a copper bus bar relief; the empty-pad motif and lastLight worker repeat recent decks."
+  }
+ ],
+ "weighted_score": 6.594,
+ "hard_fails": [
+  "The published first comment says 'The second trench stands for the cooling questions alone, grated for the share not answered N/A, from the same tables, c18', and no frame draws a second trench; figures.json still carries trench_cool_covered_m and trench_cool_open_m as frame 6's trench."
+ ],
+ "ship": false,
+ "one_sentence_fix": "Regenerate the first comment's method line from the shipped frames and retire the orphaned trench_cool figures, then spend the craft round on frames 8, 3 and 5.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 8,
+   "problem": "A small mannequin at a sawhorse table under a quarter of the frame, a mid-tone horizon band, a work light that does not pool on the table.",
+   "fix": "Eye 1.1 m dollied to about 4 m so the table and stack fill about 60% of the width, the work light's pool the only bright, the figure back three-quarter."
+  },
+  {
+   "slide": 3,
+   "problem": "A primitive worker lit flat and a pack reading as timber cladding because its long side faces the camera.",
+   "fix": "Rotate the pack so its laminated end face banded in tens faces the camera raked by the low left key; light the worker by rim only."
+  },
+  {
+   "slide": 5,
+   "problem": "A grey mid-tone field and an open stretch reading as a raised closed brown plate.",
+   "fix": "A visibly recessed ember channel with the curb casting into it, the caliche either side near black."
+  },
+  {
+   "slide": 7,
+   "problem": "A black reel silhouette cropped at the top right colliding with the dek.",
+   "fix": "Move the reel left and behind the far slab edge below the horizon, or rim it from the back right."
+  },
+  {
+   "slide": 4,
+   "problem": "Four small packs in a black field read as a bar chart; Houston a sliver.",
+   "fix": "A 0.6 m eye moved in so West fills a third of the width, raking the lamination edges."
+  }
+ ]
+}

@@ -1,0 +1,218 @@
+{
+ "date": "2026-11-13",
+ "carousel_no": 76,
+ "document_title": "All 245 Large Loads answered ERCOT, and cooling questions had the highest N/A rate",
+ "_note": "Slide strings read off the render report's text nodes and each frame's own source line by build_copy.py.",
+ "caption": "Every Large Load answered ERCOT.\n\nThat is all 245 loads of 75 MW or greater. The count comes from a preliminary ERCOT summary for the utility commission's November 5th open meeting. In total 433 of 465 loads responded, covering about 177 GW. West Texas holds 41% of the capacity requested, 73 GW.\n\nWhat went unanswered?\n\nRespondents answered 83% of nearly 67,000 questions. Cooling questions drew N/A answers at the highest rate. Respondents indicated many projects had not determined their final cooling configuration. Projects asking to energize in 2028 or later answered N/A 30% more often than those due sooner.\n\nERCOT is targeting a published final report on December 10th.\n\nWill the December 10th report count how many projects still haven't settled on cooling?\n\n#ERCOT #PUCT #WestTexas",
+ "slides": {
+  "S1": {
+   "n": 1,
+   "file": "slide-01.html",
+   "kicker": "ERCOT, preliminary",
+   "headline": "Answers cover about 177 GW. Cooling, often undecided.",
+   "claims": [
+    "c1",
+    "c2",
+    "c3",
+    "c4",
+    "c18"
+   ],
+   "cite": "c1 c2 c3 c4 c18",
+   "body": "ERCOT sent its data center impact questions to 465 loads. In a preliminary summary to the utility commission on November 5th, cooling questions drew N/A answers at the highest rate.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "Answers cover about 177 GW. Cooling, often undecided.",
+    "ERCOT sent its data center impact questions to 465 loads. In a preliminary summary to the utility commission on November 5th, cooling questions drew N/A answers at the highest rate.",
+    "ERCOT, preliminary",
+    "01 / 09",
+    "c1 c2 c3 c4 c18"
+   ]
+  },
+  "S2": {
+   "n": 2,
+   "file": "slide-02.html",
+   "kicker": "ERCOT, preliminary",
+   "headline": "All 245 Large Loads answered",
+   "claims": [
+    "c7",
+    "c8",
+    "c9"
+   ],
+   "cite": "c7 c8 c9",
+   "body": "Large Loads are 75 MW or greater and hold about 94% of the capacity requested. Among them, 33 projects ask for more than 1 GW each and represent 36% of capacity. One reel stands for one load, drawn to illustrate.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "All 245 Large Loads answered",
+    "Large Loads are 75 MW or greater and hold about 94% of the capacity requested. Among them, 33 projects ask for more than 1 GW each and represent 36% of capacity. One reel stands for one load, drawn to illustrate.",
+    "ERCOT, preliminary",
+    "02 / 09",
+    "c7 c8 c9"
+   ]
+  },
+  "S3": {
+   "n": 3,
+   "file": "slide-03.html",
+   "kicker": "ERCOT, preliminary",
+   "headline": "433 of 465 answered",
+   "claims": [
+    "c4",
+    "c5",
+    "c6"
+   ],
+   "cite": "c4 c5 c6",
+   "body": "The 433 that answered cover about 177 GW, about 97% of the capacity requested. 417 came in on time and 16 late, and 32 Medium Load responses had not arrived. One copper bar stands for one gigawatt, drawn to illustrate.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "433 of 465 answered",
+    "The 433 that answered cover about 177 GW, about 97% of the capacity requested. 417 came in on time and 16 late, and 32 Medium Load responses had not arrived. One copper bar stands for one gigawatt, drawn to illustrate.",
+    "ERCOT, preliminary",
+    "03 / 09",
+    "c4 c5 c6"
+   ]
+  },
+  "S4": {
+   "n": 4,
+   "file": "slide-04.html",
+   "kicker": "ERCOT, preliminary",
+   "headline": "West Texas asked for 73 GW",
+   "claims": [
+    "c10",
+    "c11",
+    "c12",
+    "c13",
+    "c14",
+    "c15",
+    "c16"
+   ],
+   "cite": "c10 c11 c12 c13 c14 c15 c16",
+   "body": "Every ERCOT load zone has requests, and West Texas holds 41% of the capacity. Zone figures cover 429 loads and leave out NOIE zones. A load's actual zone is set at interconnection and may differ.",
+   "labels": [
+    "WEST 73 GW",
+    "SOUTH 49 GW",
+    "NORTH 45 GW",
+    "HOUSTON 10 GW"
+   ],
+   "strings": [
+    "texasaidocket.com",
+    "West Texas asked for 73 GW",
+    "Every ERCOT load zone has requests, and West Texas holds 41% of the capacity. Zone figures cover 429 loads and leave out NOIE zones. A load's actual zone is set at interconnection and may differ.",
+    "WEST 73 GW",
+    "SOUTH 49 GW",
+    "NORTH 45 GW",
+    "HOUSTON 10 GW",
+    "ERCOT, preliminary",
+    "04 / 09",
+    "c10 c11 c12 c13 c14 c15 c16"
+   ]
+  },
+  "S5": {
+   "n": 5,
+   "file": "slide-05.html",
+   "kicker": "ERCOT, preliminary",
+   "headline": "83% of the questions answered",
+   "claims": [
+    "c17",
+    "c19"
+   ],
+   "cite": "c17 c19",
+   "body": "Respondents answered 83% of nearly 67,000 questions. N/A ran about 16% for Large Loads and 19% for Medium Loads. The open stretch is the share left unanswered, drawn to illustrate.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "83% of the questions answered",
+    "Respondents answered 83% of nearly 67,000 questions. N/A ran about 16% for Large Loads and 19% for Medium Loads. The open stretch is the share left unanswered, drawn to illustrate.",
+    "ERCOT, preliminary",
+    "05 / 09",
+    "c17 c19"
+   ]
+  },
+  "S6": {
+   "n": 6,
+   "file": "slide-06.html",
+   "kicker": "ERCOT, preliminary",
+   "headline": "Cooling had the highest N/A rate",
+   "claims": [
+    "c18"
+   ],
+   "cite": "c18",
+   "body": "No category of questions drew N/A answers at a higher rate than cooling. Respondents indicated many projects had not determined their final cooling configuration.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "Cooling had the highest N/A rate",
+    "No category of questions drew N/A answers at a higher rate than cooling. Respondents indicated many projects had not determined their final cooling configuration.",
+    "ERCOT, preliminary",
+    "06 / 09",
+    "c18"
+   ]
+  },
+  "S7": {
+   "n": 7,
+   "file": "slide-07.html",
+   "kicker": "ERCOT, preliminary",
+   "headline": "Later projects said N/A more often",
+   "claims": [
+    "c20"
+   ],
+   "cite": "c20",
+   "body": "Projects asking to energize in 2028 or later answered N/A 30% more often than those due sooner. The longer row of capped stubs stands for them, drawn to illustrate.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "Later projects said N/A more often",
+    "Projects asking to energize in 2028 or later answered N/A 30% more often than those due sooner. The longer row of capped stubs stands for them, drawn to illustrate.",
+    "ERCOT, preliminary",
+    "07 / 09",
+    "c20"
+   ]
+  },
+  "S8": {
+   "n": 8,
+   "file": "slide-08.html",
+   "kicker": "ERCOT, verification",
+   "headline": "ERCOT expects to go back to 80% of developers",
+   "claims": [
+    "c24",
+    "c25",
+    "c26",
+    "c29",
+    "c31"
+   ],
+   "cite": "c24 c25 c26 c29 c31",
+   "body": "In a separate check of Batch Zero eligibility, ERCOT reviewed responses from 257 developers and expects to send 80% of them a second round, with a 5 business day deadline. Common issues so far include proving site control and confirming financial security posted.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "ERCOT expects to go back to 80% of developers",
+    "In a separate check of Batch Zero eligibility, ERCOT reviewed responses from 257 developers and expects to send 80% of them a second round, with a 5 business day deadline. Common issues so far include proving site control and confirming financial security posted.",
+    "ERCOT, verification",
+    "08 / 09",
+    "c24 c25 c26 c29 c31"
+   ]
+  },
+  "S9": {
+   "n": 9,
+   "file": "slide-09.html",
+   "kicker": "ERCOT, preliminary",
+   "headline": "Final report targeted for December 10th",
+   "claims": [
+    "c2",
+    "c23"
+   ],
+   "cite": "c2 c23",
+   "body": "ERCOT says detailed analysis is under way and targets a published final report on December 10th. The RFI figures are marked preliminary and subject to change.",
+   "labels": [],
+   "strings": [
+    "texasaidocket.com",
+    "Final report targeted for December 10th",
+    "ERCOT says detailed analysis is under way and targets a published final report on December 10th. The RFI figures are marked preliminary and subject to change.",
+    "ERCOT, preliminary",
+    "09 / 09",
+    "c2 c23"
+   ]
+  }
+ }
+}

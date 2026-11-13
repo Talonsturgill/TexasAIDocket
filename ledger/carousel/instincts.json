@@ -227,7 +227,8 @@
         "2026-11-07",
         "2026-11-08",
         "2026-11-10",
-        "2026-11-12"
+        "2026-11-12",
+        "2026-11-13"
       ],
       "contradicted": []
     },
@@ -274,7 +275,8 @@
       "evidence": "Rounds 13 and 14 hard failed three times on one sentence. Round 13 failed frame 3 for 'Nothing in their sources says the action binds'. The frame was repaired and round 14 failed the run twice more for the same sentence on frame 6's foot and in the caption. Both round 14 judges' one-sentence fix was this.",
       "confirmed": [
         "2026-10-08",
-        "2026-10-30"
+        "2026-10-30",
+        "2026-11-13"
       ],
       "contradicted": []
     },
@@ -763,7 +765,8 @@
         "2026-11-05",
         "2026-11-07",
         "2026-11-08",
-        "2026-11-12"
+        "2026-11-12",
+        "2026-11-13"
       ],
       "contradicted": []
     },
@@ -1837,6 +1840,22 @@
       "learned": "2026-11-12",
       "instinct": "Set every computed figure on a slide as a number followed by a plural noun, so aggregate_check detects it and its declaration also clears numeral_trace.",
       "evidence": "No. 75, 74 percent, 825 and the 100 threshold were bare figures; numeral_trace needed declarations aggregate_check then refused as stale, until the copy read 74 percent leaves, 825 vehicles and 100 vehicles.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "read-a-ranking-against-its-table",
+      "learned": "2026-11-13",
+      "instinct": "Before a deck ranks one category first, read the source's own table and compute the rank both by count and by rate, because a sentence like largest fraction can mean either and the table decides which.",
+      "evidence": "No. 76 shipped largest share of unanswered questions on its cover, frame 6, caption and title; the round 1 integrity judge computed from ERCOT's page 4 and 5 tables that cooling was first by N/A rate and fourth of five by count, a hard fail repaired in round 2.",
+      "confirmed": [],
+      "contradicted": []
+    },
+    {
+      "id": "a-drawn-share-beside-unscaled-objects-is-a-comparison",
+      "learned": "2026-11-13",
+      "instinct": "Never set a measured share beside unscaled objects the copy names, because the reader compares their areas and the frame asserts a ranking the data does not.",
+      "evidence": "No. 76 frame 6 drew a trench whose open stretch was the whole unanswered share beside four pads the hook named as cooling; the art director read it as cooling's blank larger than the whole, and the trench was removed.",
       "confirmed": [],
       "contradicted": []
     }

@@ -1,0 +1,64 @@
+<!doctype html>
+<!-- 2026-11-13, frame 5 of 9. Archetype CLOSE_CROP. A material relief through txbench.js: a cable trench in plan, concrete curbs, galvanized grating over the answered share of its length, the open stretch lined in ember epoxy, caliche either side. Drawn to illustrate. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:900px">83% of the questions answered</h1>
+<p class="dek" data-follow="30" style="width:860px">Respondents answered 83% of nearly 67,000 questions. N/A ran about 16% for Large Loads and 19% for Medium Loads. The open stretch is the share left unanswered, drawn to illustrate.</p>
+<script>window.FIG = {"answered_pct": 83, "unanswered_pct": 17};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/txbench.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-13-coolingyard.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = (async () => {
+  await document.fonts.ready;
+  CH.start({ kicker: "ERCOT, preliminary", counter: "05 / 09", src: "c17 c19", fit: { min: 76, max: 100, maxLines: 2 } });
+  const c = document.getElementById('art'), cx = c.getContext('2d'); cx.scale(2, 2);
+  /* THE FIGURE: the trench runs on a diagonal from the upper left across the frame and off the lower right edge; the
+   * grating covers FIG.answered_pct percent of its drawn length inside the frame, the open ember channel the rest */
+  const A = [130, 690], B = [930, 1150];                       /* the trench axis, both ends past the frame */
+  const dx = B[0] - A[0], dy = B[1] - A[1], L = Math.hypot(dx, dy), ux = dx / L, uy = dy / L, nx = -uy, ny = ux;
+  const HALF = 92, CURB = 24, COVER = L * FIG.answered_pct / 100;
+  if (Math.abs((L - COVER) / L * 100 - FIG.unanswered_pct) > 0.01) throw new Error('open share does not match unanswered_pct');
+  function geo(X, Y) {
+    const px = X - A[0], py = Y - A[1], s = px * ux + py * uy, t = px * nx + py * ny, at = Math.abs(t);
+    if (s < -CURB || s > L + CURB || at > HALF + CURB) return [0, 0];   /* caliche, the trench ending inside the frame */
+    if (s < 0 || s > L) { const e = Math.min(Math.abs(s < 0 ? s + CURB : s - L - CURB), CURB); return [26 * Math.min(1, e / 4), 1]; }   /* the end curbs */
+    if (at > HALF) { const e = Math.min(at - HALF, HALF + CURB - at); return [26 * Math.min(1, e / 4), 1]; }   /* curb, chamfered */
+    if (s < COVER) {
+      /* grating at curb height: bearing bars along the trench every 14 px, cross rods every 90 px, open between */
+      const bar = ((t + 400) % 14) < 5, rod = ((s + 400) % 90) < 4, frame = Math.abs(s % 300) < 6;
+      return (bar || rod || frame) ? [22, 2] : [-40, 4];
+    }
+    const wall = HALF - at;                                      /* open channel, floor 60 below grade, walls lined */
+    return [wall < 12 ? -40 + 34 * (1 - wall / 12) : -40, 3];   /* a recess with sloped ember walls the low key can reach, to an ember floor */   /* a true recess, steep ember walls to an ember floor */
+  }
+  const height = (X, Y) => geo(X, Y)[0], material = (X, Y) => geo(X, Y)[1];
+  const albedo = (X, Y, m) => {
+    const n = TX.fbm2(X / 7, Y / 7, 3), big = TX.fbm2(X / 90, Y / 90, 2);
+    if (m === 0) { const k = 0.055 + 0.03 * n + 0.025 * big; return [k * 1.05, k * 0.92, k * 0.74]; }
+    if (m === 1) { const k = 0.42 + 0.06 * n; return [k, k * 0.97, k * 0.92]; }
+    if (m === 2) { const k = 0.46 + 0.04 * n; return [k * 0.98, k, k * 1.02]; }
+    if (m === 3) { const k = 1.0 + 0.06 * n; return [1.2 * k, 0.64 * k, 0.46 * k]; }
+    return [0.02, 0.02, 0.022];                                  /* the dark under the grating */
+  };
+  TXBENCH.relief(cx, { x: 0, y: 0, w: 1080, h: 1350, scale: 2, height, material, albedo,
+    spec: { 0: [0.03, 6], 1: [0.08, 10], 2: [0.6, 40], 3: [0.35, 30], 4: [0.0, 4] },
+    ambient: 0.15, diffuse: 1.3, ao: 0.9, shadow: 0.9, softness: 6, castLength: 260, dither: true });
+  CH.post(cx, { a: 0.3, veil: 0.2, veilH: 160 }); CH.footWash(cx, { a: 0.6 }); CH.typeDark(cx, { fade: 120, a: 0.62 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

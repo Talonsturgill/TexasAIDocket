@@ -1,0 +1,63 @@
+<!doctype html>
+<!-- 2026-11-13, frame 1 of 9. Archetype FULL_BLEED. A spatial scene through txthree.js in the lastLight world: four empty equipment pads outlined in ember in front of a data hall's primer steel frame. Drawn to illustrate; no real site is depicted. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:900px">Answers cover about 177&nbsp;GW. Cooling, often undecided.</h1>
+<p class="dek" data-follow="30" style="width:860px">ERCOT sent its data center impact questions to 465 loads. In a preliminary summary to the utility commission on November 5th, cooling questions drew N/A answers at the highest rate.</p>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-13-coolingyard.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "ERCOT, preliminary", counter: "01 / 09", src: "c1 c2 c3 c4 c18", fit: { min: 76, max: 100, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 40, near: 0.1, far: 9000 });
+  /* THE YARD, laid out along the camera's bearing: the camera looks 48 degrees right of the sun, so the seam sits at the
+   * left edge; four empty pads run away from the lens, 6.5 m apart, and the hall's primer frame stands beyond them */
+  const f = CH.bearing(TXT, -48), side = [-f[1], f[0]];
+  const at = (u, v) => [f[0] * u + side[0] * v, f[1] * u + side[1] * v];
+  const yaw = Math.atan2(f[0], f[1]);
+  const pads = [];
+  /* parallel pads side by side, 6.6 m centre to centre across their short side, so the yard reads as four slabs with
+   * caliche between them; the yard's centre sits 24 m out, its long axes turned 0.45 rad off the view */
+  const rot = yaw + Math.PI / 2 + 0.45, perp = [Math.sin(rot), Math.cos(rot)], c0 = at(24, 3);
+  for (let i = 0; i < 4; i++) { const p = K.make('equipment_pad', { bolts: 6, stubs: 2 }); const k = (i - 1.5) * 6.6; p.position.set(c0[0] + perp[0] * k, 0, c0[1] + perp[1] * k); p.rotation.y = rot; TXT.add(R, p); TXT.contact(R, p); pads.push(p); }
+  const frame = K.make('structural_frame', { cols: 8, rows: 2, bay: 9.1, height: 14, girts: [4.5, 9], bracing: true, primer: 0x9a4a30, seed: 76 });
+  const fq = at(46, 2); frame.position.set(fq[0], 0, fq[1]); frame.rotation.y = yaw + 0.12; TXT.add(R, frame); TXT.contact(R, frame);
+  const worker = K.make('person', { role: 'worker', vest: true, hat: 'hard', pose: 'look_up', seed: 4 });
+  const wq = at(15.5, -6.4); worker.position.set(wq[0], 0, wq[1]); worker.rotation.y = yaw + Math.PI * 0.85; TXT.add(R, worker); TXT.contact(R, worker);
+  const FROM = [0, 4.6, 0];
+  const tq = at(24, 3);
+  const LOOK = CH.aim(THREE, R, TXT, FROM, [tq[0], 0.2, tq[1]], 540, 1030, 40);
+  TXT.frame(R, { fov: 40, from: FROM, look: LOOK });
+  TXT.sky(R);
+  TXT.ground(R, { surface: 'caliche', color: 0x5e5446, size: 9000, seed: 13 });
+  TXT.scatter(R, { kind: 'scrub', count: 160, area: [260, 260], avoid: [[-60, -60, 120, 120]], seed: 5 });
+  const mid = at(26, 5);
+  CH.KEY_SCALE = 0.4;
+  TXT.deckRig(R, CH.rigSpec(W, 60, 4096), CH.rigOpts([mid[0], 0, mid[1]], { distance: 120, shadowFar: 300, normalBias: 0.03 }));
+  CH.pool(THREE, TXT, R, [mid[0], 0, mid[1]], { radius: 17, i: 3.2, lift: 40 });
+  CH.unacne(R, 0.03);
+  TXT.weather(R, { grime: 0.35, height: 0.4, mottle: 0.08 });
+  TXT.stage(R, [...pads, frame, worker]);
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.dress(cx, { foot: 0.8 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

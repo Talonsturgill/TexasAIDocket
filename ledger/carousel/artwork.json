@@ -4785,6 +4785,73 @@
     "hex": "#16171B",
     "note": "Asphalt blue black."
    }
+  },
+  {
+   "date": "2026-11-13",
+   "carousel_no": 76,
+   "written_from": "deck_coherence's median L* per frame at 432 px off the final renders, layout_check's accent share, by update_ledgers.py.",
+   "register": "A MIX. Spatial scenes in the staged lastLight world on one cooling yard at last light (1 to 4 and 6 to 9) and a TXBENCH material relief of a grated trench (5). Chassis assets/js/deck/2026-11-13-coolingyard.js: equipment_pad, bus_pack, cable_reel, cable_trench, plan_table and work_light, and a cutGround helper that opens the caliche over a sunk trench.",
+   "structural_laws": [
+    "THE KIT BAKE COLLAPSES AN INSTANCEDMESH TO ITS FIRST INSTANCE. A pack of bars is separate meshes merged per material with K.merge.",
+    "K.MAKE RE-CENTRES A MODEL ON ITS FOOTPRINT. A frame places a model by its centre and takes its run direction from its quaternion.",
+    "A LOW KEY BEHIND THE CAMERA'S SUBJECT LEAVES EVERY CAMERA-FACING FACE DARK. Every frame looks with the key on its left.",
+    "A TRENCH BUILT ON GRADE READS AS A RAISED WALKWAY. It sinks below grade and the ground shader discards over its footprint.",
+    "A PROPORTION DRAWN BESIDE UNSCALED OBJECTS BECOMES A COMPARISON. Frame 6 set a trench for the unanswered share beside four cooling pads and read as cooling larger than the whole, so the pads stand alone as a place.",
+    "A HIGHLY METALLIC COPPER UNDER A DARK SKY READS AS MAHOGANY. The copper is half metallic and the spacer every tenth bar is drawn wider and proud so the tens read at feed size."
+   ],
+   "techniques": [
+    "four empty pads with a primer frame behind at last light",
+    "245 instanced reels with the front block in a pool",
+    "one 177 lamination bus pack beside a worker",
+    "four zone packs at one depth on one dunnage line with labels on one baseline",
+    "a grated trench relief with its open stretch in ember",
+    "the yard from 9 m up, four empty pads in a row in the pool and a worker on the nearest",
+    "one pad at ankle height with two rows of capped stubs, the later row longer by the 2028 N/A figure, and a reel",
+    "an official at a plan table under a work light in a bay",
+    "the yard from beyond a ranch gate, the empty pads in the pool"
+   ],
+   "value": {
+    "per_frame_median_L": [
+     6.9,
+     0.9,
+     1.2,
+     0.9,
+     8.3,
+     10.3,
+     10.0,
+     5.2,
+     7.3
+    ],
+    "deck_median_L": 6.9,
+    "max_adjacent_delta": 7.4,
+    "mean_adjacent_delta": 2.9,
+    "note": "Measured by deck_coherence's median_lstar at 432 px off the final renders."
+   },
+   "accent": {
+    "hex": "#B4664F",
+    "name": "dusk_ember, left blank",
+    "frames_above_floor": [
+     1,
+     6,
+     7
+    ],
+    "share": [
+     0.004,
+     0.0,
+     0.0005,
+     0.0,
+     0.0,
+     0.0091,
+     0.0165,
+     0.0003,
+     0.0015
+    ],
+    "note": "The pad layout lines and conduit caps, the open trench stretch."
+   },
+   "ground": {
+    "hex": "#17150F",
+    "note": "Caliche at last light."
+   }
   }
  ]
 }

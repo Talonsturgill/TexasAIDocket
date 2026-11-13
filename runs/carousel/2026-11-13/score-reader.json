@@ -1,0 +1,74 @@
+{
+ "lens": "reader",
+ "round": 3,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.5,
+   "why": "Every frame a physically lit render on a dark staged field; 1, 6, 7 and 9 strong. Four weak: 5 a grey grating reading as a floor vent with a maroon open stretch; 3's pack a corrugated container wall cropped off the edge beside a mannequin over a dead black band; 4 a front-lit copper bar chart over black; 8 a mannequin with a column and braces through the dek. Frame 2's lit block of 33 doesn't read."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "One world, key low left, the ember motif on 1, 6, 7 and 9, a declared camera move, value dark; 5 the declared cut sits outside with brown ember; 3 and 4 front-lit in a void."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.0,
+   "why": "Every slide and caption numeral traces to a primary ERCOT quote; preliminary carried on every data frame. Frame 6's universal is looser than c18's sentence and rests on the computed rate rank; 'no category' never names its set of five on the slide."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.5,
+   "why": "What, who, where and a date are named; the stake is never stated; water (c36) and the December 17th meeting (c38) verified and unused; N/A and Batch Zero unglossed."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "The cover image earns the swipe; the hook doesn't say answers to what; 3 gives the whole after 2 gave the part; the 5 to 6 turn is real; 8 a detour; the close a date with no action."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "Clean and accurate, a careful wire summary; the respondents-indicated sentence repeats; 'drawn to illustrate' closes four deks; the caption's question lines are its best."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 5.5,
+   "why": "The same RFI no. 60 covered 19 days ago, a copper bus bar again, empty bolted pads, caliche at lastLight; the reel count and trench relief are fresh."
+  }
+ ],
+ "weighted_score": 6.82,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Tell the reader why cooling reaches them (c36's water questions on frame 6) and close on the December 10th report and the December 17th meeting (c38) in place of frame 8's detour.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 5,
+   "problem": "Grey grating on mottled charcoal reads as a floor vent; the open stretch maroon rather than ember.",
+   "fix": "Set the trench in lit caliche raked low from the left, the open stretch at the true ember value, a tighter crop on the grating's end."
+  },
+  {
+   "slide": 3,
+   "problem": "The pack reads as a corrugated container wall cropped off the left edge; a mannequin worker; a dead black band under the dek.",
+   "fix": "Turn the pack three-quarter with the whole end face in frame, raise it into the band, the worker smaller and rim-lit on the shadow side."
+  },
+  {
+   "slide": 8,
+   "problem": "A mannequin behind a table; a column and braces through the dek.",
+   "fix": "Pull the camera right and lower so the column clears the type; the figure in profile over the table under the raking work light."
+  },
+  {
+   "slide": 4,
+   "problem": "Front-lit packs read as a bar chart over a black void with no ground or casts.",
+   "fix": "Camera at dunnage height, the row in the middle third lit from the left with casts across lit caliche."
+  }
+ ]
+}

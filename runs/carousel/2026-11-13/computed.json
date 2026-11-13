@@ -1,0 +1,456 @@
+{
+ "_note": "Every value is extracted from a claim quote by compute.py, or computed here from values that were.",
+ "issued": {
+  "value": 465,
+  "from": [
+   "c3"
+  ],
+  "basis": "loads the RFI was issued to"
+ },
+ "submitted": {
+  "value": 433,
+  "from": [
+   "c4"
+  ],
+  "basis": "loads that submitted"
+ },
+ "submitted_pct": {
+  "value": 93,
+  "from": [
+   "c4"
+  ],
+  "basis": "percent of issued loads that submitted, as ERCOT states it"
+ },
+ "gw_requested": {
+  "value": 177,
+  "from": [
+   "c4"
+  ],
+  "basis": "approximate GW of requested interconnection capacity the submissions cover"
+ },
+ "cap_pct": {
+  "value": 97,
+  "from": [
+   "c4"
+  ],
+  "basis": "approximate percent of requested capacity the submissions cover"
+ },
+ "on_time": {
+  "value": 417,
+  "from": [
+   "c5"
+  ],
+  "basis": "RFIs submitted on time"
+ },
+ "late": {
+  "value": 16,
+  "from": [
+   "c5"
+  ],
+  "basis": "RFIs submitted late"
+ },
+ "not_submitted": {
+  "value": 32,
+  "from": [
+   "c3",
+   "c4",
+   "c6"
+  ],
+  "basis": "issued minus submitted, asserted equal to the Medium Load responses not submitted"
+ },
+ "large_all": {
+  "value": 245,
+  "from": [
+   "c7"
+  ],
+  "basis": "Large Loads, all of which responded"
+ },
+ "large_mw": {
+  "value": 75,
+  "from": [
+   "c7"
+  ],
+  "basis": "the Large Load threshold in MW"
+ },
+ "medium_issued": {
+  "value": 220,
+  "from": [
+   "c3",
+   "c7"
+  ],
+  "basis": "loads issued the RFI that are not Large Loads"
+ },
+ "medium_submitted": {
+  "value": 188,
+  "from": [
+   "c4",
+   "c7"
+  ],
+  "basis": "submitted loads that are not Large Loads"
+ },
+ "large_pct": {
+  "value": 94,
+  "from": [
+   "c8"
+  ],
+  "basis": "approximate percent of requested capacity in Large Loads"
+ },
+ "large_gw": {
+  "value": 166,
+  "from": [
+   "c8"
+  ],
+  "basis": "approximate GW in Large Loads"
+ },
+ "gw_projects": {
+  "value": 33,
+  "from": [
+   "c9"
+  ],
+  "basis": "Large Load projects requesting more than 1 GW"
+ },
+ "gw_projects_pct": {
+  "value": 36,
+  "from": [
+   "c9"
+  ],
+  "basis": "percent of capacity those projects represent"
+ },
+ "west_pct": {
+  "value": 41,
+  "from": [
+   "c10"
+  ],
+  "basis": "West Texas share of capacity"
+ },
+ "west_ll": {
+  "value": 88,
+  "from": [
+   "c11"
+  ],
+  "basis": "West load zone Large Loads in the reviewed dataset"
+ },
+ "west_ml": {
+  "value": 39,
+  "from": [
+   "c11"
+  ],
+  "basis": "West load zone Medium Loads in the reviewed dataset"
+ },
+ "west_gw": {
+  "value": 73,
+  "from": [
+   "c11"
+  ],
+  "basis": "West load zone peak requested capacity, GW"
+ },
+ "west_loads": {
+  "value": 127,
+  "from": [
+   "c11"
+  ],
+  "basis": "West load zone loads, Large plus Medium"
+ },
+ "north_ll": {
+  "value": 69,
+  "from": [
+   "c12"
+  ],
+  "basis": "North load zone Large Loads in the reviewed dataset"
+ },
+ "north_ml": {
+  "value": 85,
+  "from": [
+   "c12"
+  ],
+  "basis": "North load zone Medium Loads in the reviewed dataset"
+ },
+ "north_gw": {
+  "value": 45,
+  "from": [
+   "c12"
+  ],
+  "basis": "North load zone peak requested capacity, GW"
+ },
+ "north_loads": {
+  "value": 154,
+  "from": [
+   "c12"
+  ],
+  "basis": "North load zone loads, Large plus Medium"
+ },
+ "south_ll": {
+  "value": 72,
+  "from": [
+   "c13"
+  ],
+  "basis": "South load zone Large Loads in the reviewed dataset"
+ },
+ "south_ml": {
+  "value": 38,
+  "from": [
+   "c13"
+  ],
+  "basis": "South load zone Medium Loads in the reviewed dataset"
+ },
+ "south_gw": {
+  "value": 49,
+  "from": [
+   "c13"
+  ],
+  "basis": "South load zone peak requested capacity, GW"
+ },
+ "south_loads": {
+  "value": 110,
+  "from": [
+   "c13"
+  ],
+  "basis": "South load zone loads, Large plus Medium"
+ },
+ "houston_ll": {
+  "value": 14,
+  "from": [
+   "c14"
+  ],
+  "basis": "Houston load zone Large Loads in the reviewed dataset"
+ },
+ "houston_ml": {
+  "value": 24,
+  "from": [
+   "c14"
+  ],
+  "basis": "Houston load zone Medium Loads in the reviewed dataset"
+ },
+ "houston_gw": {
+  "value": 10,
+  "from": [
+   "c14"
+  ],
+  "basis": "Houston load zone peak requested capacity, GW"
+ },
+ "houston_loads": {
+  "value": 38,
+  "from": [
+   "c14"
+  ],
+  "basis": "Houston load zone loads, Large plus Medium"
+ },
+ "zones_gw_sum": {
+  "value": 177,
+  "from": [
+   "c11",
+   "c12",
+   "c13",
+   "c14"
+  ],
+  "basis": "sum of the four zones' GW, a drawing check, never printed as a statewide total"
+ },
+ "zones_loads_sum": {
+  "value": 429,
+  "from": [
+   "c11",
+   "c12",
+   "c13",
+   "c14"
+  ],
+  "basis": "sum of the four zones' loads, a drawing check"
+ },
+ "reviewed": {
+  "value": 429,
+  "from": [
+   "c15"
+  ],
+  "basis": "loads in the reviewed dataset behind the zone page"
+ },
+ "answered_pct": {
+  "value": 83,
+  "from": [
+   "c17"
+  ],
+  "basis": "percent of questions answered"
+ },
+ "unanswered_pct": {
+  "value": 17,
+  "from": [
+   "c17"
+  ],
+  "basis": "100 minus the percent answered"
+ },
+ "questions": {
+  "value": 67000,
+  "from": [
+   "c17"
+  ],
+  "basis": "nearly this many RFI questions"
+ },
+ "na_large": {
+  "value": 16,
+  "from": [
+   "c19"
+  ],
+  "basis": "approximate N/A rate among Large Loads, percent"
+ },
+ "na_medium": {
+  "value": 19,
+  "from": [
+   "c19"
+  ],
+  "basis": "approximate N/A rate among Medium Loads, percent"
+ },
+ "na_later_pct": {
+  "value": 30,
+  "from": [
+   "c20"
+  ],
+  "basis": "how much more often 2028 and later projects answered N/A, percent"
+ },
+ "dev_reviewed": {
+  "value": 257,
+  "from": [
+   "c24"
+  ],
+  "basis": "developers whose verification responses were reviewed"
+ },
+ "dev_questions": {
+  "value": 5140,
+  "from": [
+   "c24"
+  ],
+  "basis": "approximate verification questions reviewed"
+ },
+ "second_round_pct": {
+  "value": 80,
+  "from": [
+   "c25"
+  ],
+  "basis": "percent of developers expected to get a second round RFI"
+ },
+ "days_to_report": {
+  "value": 35,
+  "from": [
+   "c1",
+   "c23"
+  ],
+  "basis": "days from the November 5th meeting to the December 10th report"
+ },
+ "days_report_to_meeting": {
+  "value": 7,
+  "from": [
+   "c23",
+   "c38"
+  ],
+  "basis": "days from the December 10th report to the December 17th open meeting"
+ },
+ "days_deadline_to_meeting": {
+  "value": 24,
+  "from": [
+   "c34",
+   "c1"
+  ],
+  "basis": "days from the October 12th deadline to the November 5th meeting"
+ },
+ "bar_m": {
+  "value": 0.0127,
+  "from": [],
+  "basis": "thickness of one copper lamination, metres, a drawing scale for one GW"
+ },
+ "sep_m": {
+  "value": 0.001,
+  "from": [],
+  "basis": "separator between laminations, metres, a drawing scale"
+ },
+ "pack_w_total": {
+  "value": 2.424,
+  "from": [
+   "c4"
+  ],
+  "basis": "face width of the gw_requested pack, metres, drawn and never printed"
+ },
+ "pack_w_west": {
+  "value": 0.999,
+  "from": [
+   "c11"
+  ],
+  "basis": "face width of the West pack, metres, drawn and never printed"
+ },
+ "pack_w_north": {
+  "value": 0.616,
+  "from": [
+   "c12"
+  ],
+  "basis": "face width of the North pack, metres, drawn and never printed"
+ },
+ "pack_w_south": {
+  "value": 0.67,
+  "from": [
+   "c13"
+  ],
+  "basis": "face width of the South pack, metres, drawn and never printed"
+ },
+ "pack_w_houston": {
+  "value": 0.136,
+  "from": [
+   "c14"
+  ],
+  "basis": "face width of the Houston pack, metres, drawn and never printed"
+ },
+ "trench_m": {
+  "value": 24.0,
+  "from": [],
+  "basis": "drawn trench length, metres, a drawing scale"
+ },
+ "trench_covered_m": {
+  "value": 19.92,
+  "from": [
+   "c17"
+  ],
+  "basis": "grated length of the trench, the answered share of its drawn length"
+ },
+ "trench_open_m": {
+  "value": 4.08,
+  "from": [
+   "c17"
+  ],
+  "basis": "open length of the trench, the unanswered share of its drawn length"
+ },
+ "reels_large": {
+  "value": 245,
+  "from": [
+   "c7"
+  ],
+  "basis": "cable reels drawn on frame 2, one per Large Load"
+ },
+ "reels_lit": {
+  "value": 33,
+  "from": [
+   "c9"
+  ],
+  "basis": "reels in the lit front block on frame 2, one per project over 1 GW"
+ },
+ "cooling_rate_rank": {
+  "value": 1,
+  "from": [
+   "c18"
+  ],
+  "basis": "cooling's rank among the five N/A categories by N/A answers per question asked, from the page 4 and 5 tables; never printed"
+ },
+ "cooling_count_rank": {
+  "value": 4,
+  "from": [
+   "c18"
+  ],
+  "basis": "cooling's rank among the five N/A categories by count of N/A answers, from the page 5 table; never printed, and the reason no surface says largest share"
+ },
+ "stubs_early": {
+  "value": 10,
+  "from": [],
+  "basis": "capped conduit stubs in frame 7's row for projects due before 2028, a drawing scale"
+ },
+ "stubs_later": {
+  "value": 13,
+  "from": [
+   "c20"
+  ],
+  "basis": "capped conduit stubs in frame 7's row for projects due in 2028 or later, the early row grown by na_later_pct, rounded half up"
+ }
+}

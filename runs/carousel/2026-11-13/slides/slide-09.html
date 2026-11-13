@@ -1,0 +1,62 @@
+<!doctype html>
+<!-- 2026-11-13, frame 9 of 9. Archetype FULL_BLEED. A spatial scene through txthree.js in the lastLight world: the yard from the caliche road outside a ranch gate, four empty pads in the pool, the primer frame on the seam. Drawn to illustrate; no real site is depicted. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:900px">Final report targeted for December 10th</h1>
+<p class="dek" data-follow="30" style="width:880px">ERCOT says detailed analysis is under way and targets a published final report on December 10th. The RFI figures are marked preliminary and subject to change.</p>
+<script>window.FIG = {};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-13-coolingyard.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "ERCOT, preliminary", counter: "09 / 09", src: "c2 c23", fit: { min: 72, max: 96, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 32, near: 0.1, far: 9000 });
+  const f = CH.bearing(TXT, -52), side = [-f[1], f[0]];
+  const at = (u, v) => [f[0] * u + side[0] * v, f[1] * u + side[1] * v];
+  const yaw = Math.atan2(f[0], f[1]);
+  const rot = yaw + Math.PI / 2 + 0.45, perp = [Math.sin(rot), Math.cos(rot)], c0 = at(36, 4);
+  const pads = [];
+  for (let i = 0; i < 4; i++) { const p = K.make('equipment_pad', { bolts: 6, stubs: 2 }); const k = (i - 1.5) * 5.0; p.position.set(c0[0] + perp[0] * k, 0, c0[1] + perp[1] * k); p.rotation.y = rot; TXT.add(R, p); TXT.contact(R, p); pads.push(p); }
+  const frame = K.make('structural_frame', { cols: 6, rows: 2, bay: 9.1, height: 14, girts: [4.5, 9], bracing: true, primer: 0x9a4a30, seed: 76 });
+  const fq = at(84, -8); frame.position.set(fq[0], 0, fq[1]); frame.rotation.y = yaw + 0.2; TXT.add(R, frame); TXT.contact(R, frame);
+  /* the road from the camera to the gate, and the gate itself shut across it */
+  const road = K.make('caliche_road', { length: 16, centerGrass: false, verge: 1.0 });
+  const rq = at(9, -0.8); road.position.set(rq[0], 0, rq[1]); road.rotation.y = yaw; TXT.add(R, road);
+  const gate = K.make('ranch_gate', { finish: 'galvanized' });
+  const gq = at(26, 1.0); gate.position.set(gq[0], 0, gq[1]); gate.rotation.y = yaw; TXT.add(R, gate); TXT.contact(R, gate);
+  const FROM = [0, 3.4, 0];
+  const LOOK = CH.aim(THREE, R, TXT, FROM, [c0[0], 0.2, c0[1]], 600, 1080, 32);
+  TXT.frame(R, { fov: 32, from: FROM, look: LOOK });
+  TXT.sky(R);
+  TXT.ground(R, { surface: 'caliche', color: 0x4e463b, size: 9000, seed: 21 });
+  TXT.scatter(R, { kind: 'scrub', count: 220, area: [400, 400], avoid: [[-6, -24, 140, 48]], seed: 9 });
+  CH.KEY_SCALE = 0.3;
+  TXT.deckRig(R, CH.rigSpec(W, 70, 4096), CH.rigOpts([c0[0], 0, c0[1]], { distance: 140, shadowFar: 320, normalBias: 0.03 }));
+  CH.unacne(R, 0.03);
+  CH.pool(THREE, TXT, R, [c0[0] - f[0] * 4, 0, c0[1] - f[1] * 4], { radius: 15, i: 3.4, lift: 40 });
+
+  TXT.weather(R, { grime: 0.35, height: 0.4, mottle: 0.08 });
+  TXT.stage(R, [...pads, frame]);
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.dress(cx, { foot: 0.8 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

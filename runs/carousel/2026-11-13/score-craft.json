@@ -1,0 +1,74 @@
+{
+ "lens": "craft",
+ "round": 3,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.2,
+   "why": "Four frames clear the stage test: 6 the best (four ember-lined pads in one pool, a worker inside the near line), 7 (stubs counted 10 and 13), 1 and 2. Four lean on a default: 5 a grey grating reading as a floor vent with a flat brown open stretch; 3 a square-on pack still reading as a slatted crate, cropped, beside a mannequin; 4 a frontal copper bar chart over dead black; 8 a mannequin, a block of paper, a mid-tone horizon band and a girt through a dek line. Type sits over columns on 1 and 9."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.2,
+   "why": "One lastLight world, casts right, the ember motif evolving, a real camera move, value dark across the filmstrip; frames 3 and 4 sit in a black void outside the world and the ember on 5 reads brown."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.5,
+   "why": "Every numeral traces to verbatim primary ERCOT quotes; the drawn scales measure honest. The one loose join: 'highest N/A rate' rests on a rate reading derived from table rows the fact check refused to quote; defensible and disclosed."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.8,
+   "why": "What, who, when, where and next are named; the stake stays general; the December 17th meeting is left out; slide 8 a separate process."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 6.8,
+   "why": "The cover states the finding and 6 is a real turn; 2 and 3 run subset before whole; 8 cuttable; the close a date."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.8,
+   "why": "Clean, on register, a good cover line and a sharp caption question; four deks end on 'drawn to illustrate'; little regional texture."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 5.5,
+   "why": "lastLight again; empty pads, a copper bus bar relief and a fence close all recent; no. 60 was the same RFI at issue; the reel yard is fresh."
+  }
+ ],
+ "weighted_score": 6.726,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Build the measured frames 3, 4 and 5 inside the staged site: a three-quarter uncropped raked copper pack with the seam behind, the four packs at an angle with casts across lit caliche, the trench in perspective in the pool.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 5,
+   "problem": "A grey grating on mottled grey reads as a floor vent; the open stretch a flat brown panel; no true black, no bright edge.",
+   "fix": "Cut the open stretch three times deeper with ember walls under a low rake, or reshoot it in perspective at a 1.5 m eye in the pool."
+  },
+  {
+   "slide": 3,
+   "problem": "A square-on pack reads as a slat crate, cropped so the count is never whole; the worker a mannequin.",
+   "fix": "A three-quarter view pulled back to show the whole end face and length, raked from the low left key; the worker a rim-lit silhouette."
+  },
+  {
+   "slide": 8,
+   "problem": "A mannequin, one block of paper, a mid-tone horizon band and a girt through a dek line.",
+   "fix": "Lower the camera so the girt drops below the dek, light the figure only from the work light, crop to table, paper and lamp pool."
+  },
+  {
+   "slide": 4,
+   "problem": "A frontal orthographic copper bar chart with no seam and a dead black bottom third.",
+   "fix": "Rotate the row about 20 degrees, drop the eye, let the casts run across lit caliche, bring the seam in."
+  }
+ ]
+}

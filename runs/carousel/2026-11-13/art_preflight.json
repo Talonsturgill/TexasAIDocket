@@ -1,0 +1,225 @@
+{
+  "version": 2,
+  "selected": [
+    1,
+    6,
+    9
+  ],
+  "inputs": {
+    "slides/slide-01.html": "e1e9076a104b733398842b8ce03414f7a4a4cde021af91c893100c54019eb3a5",
+    "render/slide-01.png": "76e8036e8fcb3feaef5b47541fb497118ff62678be078e6ba491655faadff7b9",
+    "assets/js/deck/2026-11-13-coolingyard.js": "09e7faaa1599d772da83948adb30a4860b36314407a1bf3983766de0fd896ab7",
+    "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+    "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+    "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+    "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+    "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+    "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+    "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+    "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+    "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+    "slides/slide-06.html": "18bc0d6fd7d495d488f9c008c6bc888ece674169381ede08328d3b8a8dfe3697",
+    "render/slide-06.png": "600e629d225cea14cb1ffebd04159703263eb81a1f0d888446868ad7a293f0f3",
+    "slides/slide-09.html": "b48e0872fc5e37df14d4f8171f35ab9913135c108068a46738bc9499e37d77c8",
+    "render/slide-09.png": "a6d89bc21e15779f772e5b8dad41b72e7ac13a9c4ebe3612ccffa0a7a1ee3139"
+  },
+  "value_measurements": [
+    {
+      "frame": "slide-01.png",
+      "median_L": 6.0,
+      "mid": 0.077,
+      "dark": 0.692
+    },
+    {
+      "frame": "slide-06.png",
+      "median_L": 9.8,
+      "mid": 0.166,
+      "dark": 0.636
+    },
+    {
+      "frame": "slide-09.png",
+      "median_L": 6.4,
+      "mid": 0.063,
+      "dark": 0.697
+    }
+  ],
+  "review": {
+    "decision": "accept",
+    "inputs": {
+      "slides/slide-01.html": "e1e9076a104b733398842b8ce03414f7a4a4cde021af91c893100c54019eb3a5",
+      "render/slide-01.png": "76e8036e8fcb3feaef5b47541fb497118ff62678be078e6ba491655faadff7b9",
+      "assets/js/deck/2026-11-13-coolingyard.js": "09e7faaa1599d772da83948adb30a4860b36314407a1bf3983766de0fd896ab7",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+      "slides/slide-06.html": "18bc0d6fd7d495d488f9c008c6bc888ece674169381ede08328d3b8a8dfe3697",
+      "render/slide-06.png": "600e629d225cea14cb1ffebd04159703263eb81a1f0d888446868ad7a293f0f3",
+      "slides/slide-09.html": "b48e0872fc5e37df14d4f8171f35ab9913135c108068a46738bc9499e37d77c8",
+      "render/slide-09.png": "a6d89bc21e15779f772e5b8dad41b72e7ac13a9c4ebe3612ccffa0a7a1ee3139"
+    },
+    "frames": [
+      {
+        "slide": 1,
+        "role": "cover",
+        "subject": "Four empty weathered concrete equipment pads in the bottom third with ember layout lines, black anchor bolts with nuts and orange-capped conduit stubs; the primer frame's columns and girts stand against a warm seam, its cast shadows raking across the slabs.",
+        "visual_consequence": "Steel is up and the cooling yard is poured, bolted and empty. The pads are a place for an undecided cooling plant, and no quantity is drawn. The dek states the same N/A-rate measure as frame 6. Reads at 432 px.",
+        "weakness": "Nothing blocking. Each ember layout line is one continuous rectangle with square corners. The dek ends above the girts and the footer is clear. On the second and third pads, in the frame's shadow, the lines read pink-mauve rather than ember.",
+        "repair": "none required",
+        "encoding_reads": true,
+        "dominant_subject_finished": true,
+        "feed_legible": true,
+        "inputs": {
+          "slides/slide-01.html": "e1e9076a104b733398842b8ce03414f7a4a4cde021af91c893100c54019eb3a5",
+          "render/slide-01.png": "76e8036e8fcb3feaef5b47541fb497118ff62678be078e6ba491655faadff7b9",
+          "assets/js/deck/2026-11-13-coolingyard.js": "09e7faaa1599d772da83948adb30a4860b36314407a1bf3983766de0fd896ab7",
+          "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+          "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+          "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+          "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+          "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+          "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+          "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+          "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+          "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de"
+        }
+      },
+      {
+        "slide": 6,
+        "role": "evidence",
+        "subject": "Four empty ember-outlined concrete pads in a row across the lower middle of the frame in the pool, a worker in a hard hat and orange vest standing inside the nearest pad's ember line and casting long to the right.",
+        "visual_consequence": "The empty cooling yard from above with one person standing where a plant should be. Nothing is drawn as a quantity, so the image makes no count or rate claim and sits honestly under the hook. Distinct from frames 1 and 9. Reads at 432 px, nearer the middle of the frame.",
+        "weakness": "Nothing blocking. The plain gradient between the dek and the far pad edges is now about 240 px; the outlines are clean rectangles; the slabs keep joints, bolts, capped stubs and contact shadows. An untextured caliche band below the pads falls to black above the footer, read as the pool's falloff; the fourth pad's line turns pink at the crop edge.",
+        "repair": "none required",
+        "encoding_reads": true,
+        "dominant_subject_finished": true,
+        "feed_legible": true,
+        "inputs": {
+          "assets/js/deck/2026-11-13-coolingyard.js": "09e7faaa1599d772da83948adb30a4860b36314407a1bf3983766de0fd896ab7",
+          "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+          "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+          "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+          "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+          "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+          "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+          "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+          "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+          "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+          "slides/slide-06.html": "18bc0d6fd7d495d488f9c008c6bc888ece674169381ede08328d3b8a8dfe3697",
+          "render/slide-06.png": "600e629d225cea14cb1ffebd04159703263eb81a1f0d888446868ad7a293f0f3"
+        }
+      },
+      {
+        "slide": 9,
+        "role": "close",
+        "subject": "The yard from outside the ranch fence at the end of last light: the primer frame a rim-lit silhouette on the seam, four lit empty pads with ember layout lines in the pool behind a pipe gate and barbed wire fence.",
+        "visual_consequence": "The reader stands outside the fence looking at steel that is up and cooling pads still empty, with the report date in the type. No quantity is drawn. Reads at 432 px.",
+        "weakness": "Nothing blocking. The dek clears the top girder and the footer is clear of every post and rail. The gate rails segment the near pads' ember lines.",
+        "repair": "none required",
+        "encoding_reads": true,
+        "dominant_subject_finished": true,
+        "feed_legible": true,
+        "inputs": {
+          "assets/js/deck/2026-11-13-coolingyard.js": "09e7faaa1599d772da83948adb30a4860b36314407a1bf3983766de0fd896ab7",
+          "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+          "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+          "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+          "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+          "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+          "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+          "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+          "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+          "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+          "slides/slide-09.html": "b48e0872fc5e37df14d4f8171f35ab9913135c108068a46738bc9499e37d77c8",
+          "render/slide-09.png": "a6d89bc21e15779f772e5b8dad41b72e7ac13a9c4ebe3612ccffa0a7a1ee3139"
+        }
+      }
+    ]
+  },
+  "plan": {
+    "hardest_frame": 6,
+    "visual_argument": "One West zone site at last light, drawn to illustrate: the primer steel is up, the power is staged as copper bars at one bar per gigawatt and the cable trench is grated for the answered share of its length, while the cooling pads beside the hall sit poured, bolted and empty inside an ember line that means left blank",
+    "build_risk": "Frame 6 stages the primer frame, four empty pads with anchor bolts and a worker on the nearest pad as one subject from 9 m up, so the ember line and the worker must read at 432 px while the lit caliche stays out of the mid tones. It drew a trench beside the pads until the panel showed the pads read as a cooling blank larger than the whole unanswered share, so the pads are a place and never a number.",
+    "distinct_from_recent": "No. 75 was a parked lot of stand-in cars with a gold stripe; this has no vehicles and no stripe, and its count frame is cable reels on caliche. No. 74 was tidal flats, survey laths and precast blocks; this is a graded caliche upland with primer steel and poured pads. No. 73 was compute trays under a flood in a hall; this is outdoors at last light with no electronics. No. 60 was the same questionnaire as a cast iron plate with a bore and plug per facility; here nothing is filled per respondent, the answered share is one continuous grated length and the blank is a poured pad with nothing on it."
+  },
+  "frame_inputs": {
+    "1": {
+      "slides/slide-01.html": "e1e9076a104b733398842b8ce03414f7a4a4cde021af91c893100c54019eb3a5",
+      "render/slide-01.png": "76e8036e8fcb3feaef5b47541fb497118ff62678be078e6ba491655faadff7b9",
+      "assets/js/deck/2026-11-13-coolingyard.js": "09e7faaa1599d772da83948adb30a4860b36314407a1bf3983766de0fd896ab7",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de"
+    },
+    "6": {
+      "assets/js/deck/2026-11-13-coolingyard.js": "09e7faaa1599d772da83948adb30a4860b36314407a1bf3983766de0fd896ab7",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+      "slides/slide-06.html": "18bc0d6fd7d495d488f9c008c6bc888ece674169381ede08328d3b8a8dfe3697",
+      "render/slide-06.png": "600e629d225cea14cb1ffebd04159703263eb81a1f0d888446868ad7a293f0f3"
+    },
+    "9": {
+      "assets/js/deck/2026-11-13-coolingyard.js": "09e7faaa1599d772da83948adb30a4860b36314407a1bf3983766de0fd896ab7",
+      "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
+      "assets/js/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7",
+      "assets/js/txcolor.js": "0da3f0e2bc0fc005bd501806550590ad711be135d5c371012fee6af0048fb01c",
+      "assets/js/txdeck.js": "8cc8c4aecdb329a0e2c31530fe94ed42b5691c638160f318d72f2ca69e4d8380",
+      "assets/js/txkit.js": "f1d05898dd31b3cea5a127fd114e438f6b55ac0c962241a5c79eedcf7866cd64",
+      "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
+      "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
+      "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
+      "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
+      "slides/slide-09.html": "b48e0872fc5e37df14d4f8171f35ab9913135c108068a46738bc9499e37d77c8",
+      "render/slide-09.png": "a6d89bc21e15779f772e5b8dad41b72e7ac13a9c4ebe3612ccffa0a7a1ee3139"
+    }
+  },
+  "needs_review": [
+    6
+  ],
+  "shipped_inputs": {
+    "slides/slide-01.html": "e1e9076a104b733398842b8ce03414f7a4a4cde021af91c893100c54019eb3a5",
+    "slide-01.webp": "6d4f638563ade130dd434b4460a5f138af677aa754ffb2e3db14d3be11002ea8",
+    "slides/slide-06.html": "18bc0d6fd7d495d488f9c008c6bc888ece674169381ede08328d3b8a8dfe3697",
+    "slide-06.webp": "41a4f0525e6f488adde077e6e0bb8a637ba1b4aed4f92331060cec852259a2d3",
+    "slides/slide-09.html": "b48e0872fc5e37df14d4f8171f35ab9913135c108068a46738bc9499e37d77c8",
+    "slide-09.webp": "c438ad64669bc68fb44179daaa9708ab69a46dc6323fd73bf0075955cf3a9dd4"
+  },
+  "encodings": [
+    {
+      "to": "slide-01.webp",
+      "to_sha256": "6d4f638563ade130dd434b4460a5f138af677aa754ffb2e3db14d3be11002ea8",
+      "from_sha256": "76e8036e8fcb3feaef5b47541fb497118ff62678be078e6ba491655faadff7b9",
+      "psnr_db": 41.019
+    },
+    {
+      "to": "slide-06.webp",
+      "to_sha256": "41a4f0525e6f488adde077e6e0bb8a637ba1b4aed4f92331060cec852259a2d3",
+      "from_sha256": "600e629d225cea14cb1ffebd04159703263eb81a1f0d888446868ad7a293f0f3",
+      "psnr_db": 41.498
+    },
+    {
+      "to": "slide-09.webp",
+      "to_sha256": "c438ad64669bc68fb44179daaa9708ab69a46dc6323fd73bf0075955cf3a9dd4",
+      "from_sha256": "a6d89bc21e15779f772e5b8dad41b72e7ac13a9c4ebe3612ccffa0a7a1ee3139",
+      "psnr_db": 40.017
+    }
+  ]
+}

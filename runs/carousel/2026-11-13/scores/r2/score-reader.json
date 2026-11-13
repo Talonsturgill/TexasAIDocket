@@ -1,0 +1,76 @@
+{
+ "lens": "reader",
+ "round": 2,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.6,
+   "why": "Right register, one low left key; 2, 1, 9 hold and 5 is a real relief. Frame 3's pack reads as a brown timber crate beside a mannequin; 4 a brown bar chart; 7's lower half an empty slab and its converging rows can't be compared at thumb size; 8's subject under a fifth of the frame; 6's lit caliche mid fraction 0.166."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 8.0,
+   "why": "One site at last light, one light and grade, the ember line on 1, 6, 7 and 9, a declared camera move and value cut; frame 8 sits slightly outside; 1 and 9 read as bookends."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 6.5,
+   "why": "Every numeral traces. The first comment described a second trench no frame draws and a cooling N/A share the fact check rejected as unquotable. Slide 6's universal is an inference past c18's quote resting on the computed rate rank."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.5,
+   "why": "What, who, where and when are named; the so what is never said; water (c36) and the December 17th meeting (c38) were verified and unused; jargon unexplained."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 6.8,
+   "why": "The cover earns the swipe for a following reader; 2 pays at once; the turn lands at 5 to 7; 3 repeats the cover's 177 GW; 8 is a cuttable detour; the close is a date."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "Clean and within house rules but a careful paraphrase of ERCOT; West Texas the only regional touch; the caption's closing question is good."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.0,
+   "why": "A fresh concept with repeated moves: lastLight caliche, empty bolted pads, a gate close, a copper bus bar, the hi-vis worker; no. 60 covered the same RFI at issue."
+  }
+ ],
+ "weighted_score": 6.68,
+ "hard_fails": [
+  "An unverified fact presented as verified in the published first comment: 'The second trench stands for the cooling questions alone, grated for the share not answered N/A, from the same tables, c18' describes a drawing no frame contains and a cooling N/A share the fact check rejected."
+ ],
+ "ship": false,
+ "one_sentence_fix": "Replace the Batch Zero detour on frame 8 with the stake and the action, water (c36) and the December 17th meeting (c38).",
+ "artwork_weakest_frames": [
+  {
+   "slide": 3,
+   "problem": "The pack reads as a brown timber crate with a flat orange end face; the worker a mannequin.",
+   "fix": "Metallic copper raked by the low key across the striped end face, stripes across the visible end, the worker on the shadow side three-quarter back."
+  },
+  {
+   "slide": 7,
+   "problem": "An empty mid-tone slab in the lower half, a bolt cut at the footer, converging rows that can't be compared at thumb size.",
+   "fix": "A three-quarter view down two parallel rows across the lower two-thirds with the extra stubs past the shorter row; crop the empty slab and the footer bolt."
+  },
+  {
+   "slide": 8,
+   "problem": "Table, figure and stack under a fifth of the frame in a dark bay; the official a mannequin.",
+   "fix": "Push in until the table and stack fill a third to half the width, light the stack as the brightest edge, the figure in profile in shadow."
+  },
+  {
+   "slide": 4,
+   "problem": "Four packs read as wooden cabinets under floating labels, a brown bar chart.",
+   "fix": "Frame 3's copper, a 0.6 m eye raking every lamination edge, labels as tags on the dunnage."
+  }
+ ]
+}
