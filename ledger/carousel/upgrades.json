@@ -3993,4 +3993,47 @@
   "gate changes": "aggregate_check changed with seven self-test cases that go red; its GATE_LESSONS entry is a proposal because that file is human lane"
  }
 }
+,
+"2026-11-13 weekly": {
+ "date": "2026-11-13",
+ "run": "weekly machine pass, read with carousel no. 76 (the cooling yard, under scoring), due early on kmake-recentres-after-make (repeat 2); the last pass was 2026-11-12",
+ "actor": "upgrade",
+ "upgrades": [
+  {
+   "id": "2026-11-13 weekly #1",
+   "what": "deck_chassis refuses a chassis K.define whose own comment or note declares an off centre origin (origin at a start, end, corner, back, top, hook, wall or ceiling point, or 'starting at x = 0') and that sets none of keepOrigin, attach, heightAt or anchor 'base', because K.make re-centres such a model silently. It binds chassis dated after 2026-11-13",
+   "why": "Queue kmake-recentres-after-make reached repeat 2: no. 47 (2026-10-09) frame 4, no. 50 (2026-10-12) frame 3 and no. 76 (2026-11-13) frames 3, 6 and 9, where cable_trench declared 'Origin at the trough's start' and 'starting at x = 0', K.make moved it, and every frame landed off its planned ends until each was placed by centre. The sentence the queue first proposed (K.make centres) already sits in the txkit.js header that ARSENAL.md prints, and the defect recurred with it in place. Digest context: 5 shipped runs, top theme 'primitive or low-poly model where a kit model belongs' 5 runs and 14 rounds",
+   "files": [
+    "scripts/carousel/deck_chassis.py",
+    "knowledge/carousel/MACHINE_QUEUE.md"
+   ],
+   "verification": "deck_chassis --self-test exit 0, 33 cases, nine of them new: no. 76's cable_trench block verbatim (comment, note and userData) in a chassis dated 2026-11-14 is red; the same block with keepOrigin, with userData.attach, with anchor 'base', with a centre declaration, with an 'at its foot' declaration, and dated 2026-11-13 are each clean; a back face origin (2026-10-04 school_clock's words) is red; one model's keepOrigin does not excuse the next model's declaration. With the rule switched off the three red cases fail (out/2026-11-13/tmp/machine/deck_chassis_without_rule.py --self-test exit 1). Replayed on every chassis: 185 K.define blocks, each bounded to its own call, 11 declare an off centre origin, 9 keep it, 2 do not (cable_trench, school_clock). check_deck before and after on all 49 shipped decks since 2026-09-16 and on out/2026-11-13/slides: 0 changed. deck_chassis --slides-dir out/2026-11-13/slides and examples/lamp-deck/slides exit 0; shipped_check --run 2026-11-12 exit 0",
+   "revert": "the upgrade commit that carries scripts/carousel/deck_chassis.py for 2026-11-13 (the showrunner commits it)",
+   "how_i_would_know_this_was_wrong": "A chassis after 2026-11-13 is refused for a declaration that names a vertical point (a lamp's 'top' that sits over its footprint centre, say) and the run sets keepOrigin only to quiet the gate, so frames then mis-place a model whose builder was centred; or a deck lands off a declared origin the rule missed because the words fell outside its vocabulary, which would show the word match is the wrong instrument and K.make recording its offset (txkit.js, human) is the only fix"
+  }
+ ],
+ "proposals_out_of_lane": [
+  {
+   "what": "K.make records the offset it applied (userData.centred = [dx, dz]) so a model's own helpers and a frame can apply it, and K.define accepts anchor 'wall' (back on z 0) that it never re-centres",
+   "owner": "human",
+   "why": "assets/js/txkit.js is human. The undeclared shape of the recentre defect (no. 47's fill added after make, no. 50's leaders from builder coordinates) and the wall hung shape (no. 55 turnover_board, no. 56 machining_centre) are out of the new rule's reach: five decks across the two queue lines. UPGRADE_BACKLOG 2026-11-13 item 2"
+  },
+  {
+   "what": "A GATE_LESSONS entry: a declaration in a comment that the code it describes silently overrides",
+   "owner": "human",
+   "why": "knowledge/shared/GATE_LESSONS.md is human lane; the brief says a gate change belongs there. UPGRADE_BACKLOG 2026-11-13 item 3"
+  },
+  {
+   "what": "Let the weekly pass make a default kit change once the day's deck can no longer re-render (after the final panel round, before the merge), or say in Phase 17 when it may",
+   "owner": "human",
+   "why": "prompts/daily_routine.md is human. The kit person's near detail (queue kit-person-reads-as-mannequin-within-two-metres, repeat 6) has been deferred by two passes in a row because that day's deck rendered the person, and 12 of the last 20 shipped decks render it. UPGRADE_BACKLOG 2026-11-13 item 4"
+  }
+ ],
+ "not_done": {
+  "artwork lift": "The craft card's last shipped round is 2026-11-12 round 3, the card the 2026-11-12 pass lifted from (slide 8, sit_drive). Its next ranked defects are the relief plate (txbench.js, human, UPGRADE_BACKLOG 2026-11-12 item 4) and no. 75's fleet lot and crossover paint (one deck, repeat 0). No. 76's chassis models share their names with the kit lift the queue asks for, and the chassis returns early when the kit has the first of them, so a same name lift today would re-render no. 76 against kit models while it is under scoring",
+  "kit person near detail": "Default geometry on a model today's deck renders; deferred a third time with the proposal above",
+  "art-preflight-binding-misses-kit-families": "Found by reading, queued at repeat 0, not shipped: it has not bitten, and a binding change during a run whose preflight is accepted wants its own date",
+  "frontier scan": "None: prompts/machine_weekly.md names none"
+ }
+}
 }

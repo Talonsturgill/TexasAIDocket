@@ -42,6 +42,9 @@ frames are ONE DECK, which is a property a machine can read off the source:
     no plate     no opaque rect behind display type
     reserve      nothing a TXDECK.lineBoxes call reserved is repositioned after it. The reserve
                  is live geometry, so an element that moves afterwards was never measured
+    origin       a chassis K.define that declares an off centre origin ("origin at the trough's
+                 start") keeps it, because K.make silently re-centres any model that doesn't
+                 (2026-11-13, chassis dated after ORIGIN_SINCE)
 
 EXIT CODES
     0  the nine frames are one deck
@@ -129,6 +132,119 @@ def scripts_of(html: str) -> list[str]:
 # different light, a different ramp, a different grade. The date makes the path unique by
 # construction, which is cheaper than a create-only rule somebody has to remember.
 CHASSIS_NAME_RE = re.compile(r"^(\d{4}-\d{2}-\d{2})-([a-z0-9][a-z0-9_-]*)$")
+
+
+# A DECLARED ORIGIN THAT K.make WILL MOVE (2026-11-13, weekly machine pass).
+#
+# `K.make` in assets/js/txkit.js centres every model's footprint on its origin, by shifting the
+# group's children, unless the spec declares `anchor: 'base'` or the built group carries
+# `userData.keepOrigin`, `userData.attach` or `userData.heightAt`. The shift is silent. A chassis
+# model whose comment or note says "origin at the trough's start" and that sets none of those is
+# built in one coordinate frame and handed to the frames in another, and every frame placed from
+# the declaration lands half the model's length off.
+#
+# It bit three decks before this rule: no. 47 (2026-10-09, a fill added to the precast barrier
+# landed 0.12 m past the cast tick), no. 50 (2026-10-12, leaders from hand coordinates landed off
+# the parts) and no. 76 (2026-11-13, `cable_trench`, declared "Origin at the trough's start" and
+# "starting at x = 0", landed off its planned ends on frames 3, 6 and 9 until each frame placed it
+# by centre). Queue kmake-recentres-after-make, repeat 2. The cure the queue first offered, a
+# sentence in the kit conventions, already existed: the txkit.js header says K.make centres. The
+# defect recurred with the sentence in place, so this reads the contradiction instead.
+#
+# WHAT IT READS. The comment block immediately before each `K.define` and the define's own body.
+# A declared origin is "origin at|on <phrase>" up to the first comma, period or bracket, or
+# "starting at x = 0". The phrase is off centre when it names an END or a POINT: a start, end,
+# corner, edge, back, top, hook, stud, hinge, spine, plate, ceiling, wall, tip, nose, tail, mouth,
+# lip or head. "Origin on the ground", "at its foot", "at its base" and "at the footprint centre"
+# are vertical or centred declarations and pass. Replayed on every chassis on 2026-11-13: eleven
+# K.define blocks declare an off centre origin, nine set keepOrigin, and the two that don't are
+# no. 76's cable_trench and 2026-10-04's school_clock ("Origin at the centre of its BACK").
+#
+# WHAT IT CAN'T SEE, stated so nobody trusts it for more: a model that declares nothing and is
+# still placed from its builder's coordinates (no. 47 and no. 50 were that shape), and a child
+# added after K.make. Those need K.make to record the offset it applied, which is txkit.js and
+# human (UPGRADE_BACKLOG 2026-10-12 item 6, carried with this pass's counts).
+#
+# BOUND BY DATE. It binds a chassis whose name carries a date after ORIGIN_SINCE, because no. 76
+# was finished and under scoring when the rule was written and a gate does not judge the work that
+# produced it. shipped_check re-runs this on every shipped deck, and no earlier chassis is touched.
+ORIGIN_SINCE = "2026-11-13"
+_DEFINE_RE = re.compile(r"""K\.define\s*\(\s*["']([A-Za-z0-9_]+)["']""")
+_ORIGIN_RE = re.compile(r"\borigin\s+(?:is\s+)?(?:at|on)\s+([^.;\n]*)", re.I)
+_START_RE = re.compile(r"\bstart(?:s|ing)?\s+at\s+x\s*=\s*0\b", re.I)
+_OFF_CENTRE_RE = re.compile(
+    r"\b(start|end|corner|edge|back|top|hook|stud|hinge|spine|plate|ceiling|wall|tip|nose|tail|"
+    r"mouth|lip|head)\b", re.I)
+_KEEPS_ORIGIN_RE = re.compile(
+    r"keepOrigin|userData\.attach|\battach\s*[:=]|heightAt|anchor\s*:\s*[\"']base[\"']")
+
+
+def _call_end(src: str, open_at: int) -> int:
+    """The index after the bracket closing the one at open_at, skipping strings and comments."""
+    depth, i, n = 0, open_at, len(src)
+    while i < n:
+        c = src[i]
+        if c in "'\"`":
+            j = i + 1
+            while j < n and src[j] != c:
+                j += 2 if src[j] == "\\" else 1
+            i = j + 1
+            continue
+        if src.startswith("//", i):
+            j = src.find("\n", i)
+            i = n if j < 0 else j + 1
+            continue
+        if src.startswith("/*", i):
+            j = src.find("*/", i + 2)
+            i = n if j < 0 else j + 2
+            continue
+        if c in "([{":
+            depth += 1
+        elif c in ")]}":
+            depth -= 1
+            if depth == 0:
+                return i + 1
+        i += 1
+    return n
+
+
+def origin_problems(src: str, name: str) -> list[str]:
+    """Each chassis K.define that declares an off centre origin K.make will silently move."""
+    out: list[str] = []
+    defs = list(_DEFINE_RE.finditer(src))
+
+    def lead_start(k: int) -> int | None:
+        # A define's own comment is the block that ends with nothing but whitespace before it.
+        # Anything looser hands one model's comment to its neighbour.
+        cend = src.rfind("*/", 0, defs[k].start())
+        if cend < 0 or src[cend + 2:defs[k].start()].strip():
+            return None
+        cstart = src.rfind("/*", 0, cend)
+        return cstart if cstart >= 0 else None
+
+    for i, d in enumerate(defs):
+        ls = lead_start(i)
+        lead = src[ls:d.start()] if ls is not None else ""
+        body = src[d.start():_call_end(src, src.index("(", d.start()))]
+        if _KEEPS_ORIGIN_RE.search(body):
+            continue
+        said = []
+        for text in (lead, body):
+            for o in _ORIGIN_RE.finditer(text):
+                phrase = re.split(r"[,(]", o.group(1))[0].strip()
+                if _OFF_CENTRE_RE.search(phrase):
+                    said.append(f"origin at {phrase}")
+            if _START_RE.search(text):
+                said.append("starting at x = 0")
+        if said:
+            out.append(
+                f"{name}: K.define('{d.group(1)}') declares '{said[0]}', and K.make re-centres the "
+                f"footprint of any model without keepOrigin, attach, heightAt or anchor 'base', so "
+                f"every frame placed from that declaration lands off by the shift K.make applied, "
+                f"half its length for a model built from one end (no. 76's cable_trench, "
+                f"2026-11-13). Set userData.keepOrigin = true in make(), or build it on its "
+                f"footprint centre, say so, and publish the ends as userData.attach")
+    return out
 
 
 def chassis_of(html: str) -> list[str]:
@@ -541,6 +657,11 @@ def check_chassis(path: Path) -> list[str]:
     elif declares > 1:
         problems.append(f"{name}: calls TXDECK.declare {declares}x. One deck, one declaration")
 
+    # The origin rule binds chassis written AFTER it, by the date the chassis name carries.
+    m = CHASSIS_NAME_RE.match(path.stem)
+    if m and m.group(1) > ORIGIN_SINCE:
+        problems.extend(origin_problems(src, name))
+
     lowered = src.lower()
     for bad in TEMPLATE_NAMES:
         if re.search(r"\b" + re.escape(bad) + r"\s*[:=]\s*function|\bfunction\s+" + re.escape(bad) + r"\b",
@@ -773,6 +894,61 @@ def self_test() -> int:
     spatial["slide-03.html"] = _GOOD_SLIDE.replace("<script>TXCAPROCK.mesa(cx, {});",
                                                    "<script>const cx = CH.develop(shot, gl); CH.post(cx, {});")
     case("a 3D frame scaled by develop is not read", spatial, good_ch, None)
+
+    # 6. A DECLARED ORIGIN K.make WILL MOVE, replayed on no. 76's cable_trench (2026-11-13) as it
+    # was committed in assets/js/deck/2026-11-13-coolingyard.js, comment, note and userData verbatim.
+    trench = (
+        '  N.installKit = function (K, THREE, TXT) {\n'
+        '    /* CABLE TRENCH: a precast cable trough on grade along x, curbs and walls in concrete, galvanized bar grating over the\n'
+        '     * first `covered` metres, the open stretch lined in ember epoxy. Origin at the trough\'s start, centred on its width. */\n'
+        '    K.define("cable_trench", {\n'
+        '      size: [24, 0.75, 2.16],\n'
+        '      note: "A precast cable trough on grade, galvanized grating over the covered length, the open length lined in ember epoxy, starting at x = 0.",\n'
+        '      make: function (o) {\n'
+        '        var G = new THREE.Group(), L = o.length, c = o.covered;\n'
+        '        G.userData = { length: L, covered: c };\n'
+        '        return G;\n'
+        '      }\n'
+        '    });\n'
+        '  };\n')
+    def yard(date: str, body: str) -> tuple[dict[str, str], dict[str, str]]:
+        stem = f"{date}-coolingyard"
+        slides = {k: v.replace("2026-09-16-caprock", stem) for k, v in nine.items()}
+        return slides, {f"{stem}.js": _GOOD_CHASSIS.replace("g.TXCAPROCK = C;", body + "  g.TXCAPROCK = C;")}
+    case("no. 76's cable_trench, a start origin with no keepOrigin, fails after the binding date",
+         *yard("2026-11-14", trench), "K.define('cable_trench') declares")
+    case("...and the same block with keepOrigin passes",
+         *yard("2026-11-14", trench.replace("G.userData = { length: L, covered: c };",
+                                            "G.userData = { length: L, covered: c, keepOrigin: true };")),
+         None)
+    case("...and the same block with the ends published as userData.attach passes",
+         *yard("2026-11-14", trench.replace("G.userData = { length: L, covered: c };",
+                                            "G.userData.attach = { start: [0, 0, 0], end: [L, 0, 0] };")),
+         None)
+    case("...and the same block in a chassis dated on or before the binding date is not judged",
+         *yard("2026-11-13", trench), None)
+    case("a centre declaration passes, the trench's text otherwise intact",
+         *yard("2026-11-14", trench.replace("Origin at the trough's start, centred on its width.",
+                                            "Origin on the ground at the trough's centre.")
+               .replace(", starting at x = 0.", ".")), None)
+    case("an origin at the back face, the 2026-10-04 school clock's declaration, fails",
+         *yard("2026-11-14", trench.replace("Origin at the trough's start, centred on its width.",
+                                            "Origin at the centre of its BACK, face toward +z.")
+               .replace(", starting at x = 0.", ".")), "origin at the centre of its BACK")
+    case("an origin at the foot is a vertical declaration and passes",
+         *yard("2026-11-14", trench.replace("Origin at the trough's start, centred on its width.",
+                                            "Origin at its foot on the ground.")
+               .replace(", starting at x = 0.", ".")), None)
+    case("anchor 'base' keeps the origin and passes",
+         *yard("2026-11-14", trench.replace("size: [24, 0.75, 2.16],", "size: [24, 0.75, 2.16], anchor: 'base',")),
+         None)
+    kept_first = trench.replace(
+        '    K.define("cable_trench", {',
+        '    K.define("plan_table", {\n      size: [2.4, 0.95, 0.9],\n      note: "Origin at its top.",\n'
+        '      make: function () { var G = new THREE.Group(); G.userData.keepOrigin = true; return G; }\n    });\n'
+        '    K.define("cable_trench", {')
+    case("one model's keepOrigin does not excuse the next model's declaration",
+         *yard("2026-11-14", kept_first), "K.define('cable_trench') declares")
 
     if fails:
         print(f"deck_chassis --self-test: FAIL, {len(fails)} case(s)", file=sys.stderr)

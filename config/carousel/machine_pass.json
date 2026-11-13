@@ -1,41 +1,27 @@
 {
- "last_pass": "2026-11-12",
+ "last_pass": "2026-11-13",
  "themes": [
   {
-   "theme": "primitive or low-poly model where a kit model belongs (no. 75 frame 8's seated observer read slumped or asleep by every judge in rounds 1 to 3; queue kit-person-no-upright-seated-pose, kit-person-reads-as-mannequin-within-two-metres at repeat 6)",
-   "runs": 6,
-   "rounds": 17,
-   "action": "fixed",
-   "what": "assets/js/kit/people.js: pose sit_drive, a headPitch option every pose honours and a hands option that closes a hand on a named point; assets/js/kit/vehicles.js: semi_cab_interior attach.rim. Opt in, no. 75 frame 8 re-renders pixel identical; replayed with sit_drive and hands on the rim."
-  },
-  {
-   "theme": "aggregate_check refuses a declaration numeral_trace asks for (queue aggregate-and-numeral-trace-disagree-on-bare-figures, drawn-scale-figure-has-no-declaration-route, computed-percent-cannot-be-declared; nos. 68, 74 and 75)",
+   "theme": "K.make re-centres a model its chassis declared off centre (queue kmake-recentres-after-make, repeat 2: nos. 47, 50 and 76)",
    "runs": 3,
    "rounds": null,
    "action": "fixed",
-   "what": "scripts/carousel/aggregate_check.py judges a declaration whose exact phrase a surface prints: route re-derived, value held to the printed number; seven self-test cases; no shipped run newly red. numeral_trace's message names the route."
+   "what": "scripts/carousel/deck_chassis.py refuses a chassis K.define that declares an off centre origin and keeps none of keepOrigin, attach, heightAt or anchor 'base'; binds chassis dated after 2026-11-13; nine self-test cases, no shipped deck changed. The undeclared shape is a txkit.js proposal (UPGRADE_BACKLOG 2026-11-13 item 2)."
   },
   {
-   "theme": "kit person near detail, face hands and hair (queue kit-person-reads-as-mannequin-within-two-metres, repeat 6)",
+   "theme": "primitive or low-poly model where a kit model belongs",
+   "runs": 5,
+   "rounds": 14,
+   "action": "deferred",
+   "what": "The craft card's last shipped round (2026-11-12 r3) is the one the 2026-11-12 pass lifted from; no. 76's chassis models would re-render today's deck if lifted under their names. First artwork item for the next pass."
+  },
+  {
+   "theme": "kit person near detail (queue kit-person-reads-as-mannequin-within-two-metres, repeat 6)",
    "runs": null,
    "rounds": null,
-   "action": "deferred",
-   "what": "Default geometry, and today's frames 7 and 9 render the kit person; two cues measured on the replay (the neck lighter than the jaw, a ring at a bare wrist). First artwork item for the next pass."
-  },
-  {
-   "theme": "relief plate reads as a tray, with a stair-stepped cast (queue relief-plate-reads-as-a-tray, repeat 4; digest render artifact 4 runs, 7 rounds)",
-   "runs": 4,
-   "rounds": 7,
    "action": "escalated",
-   "what": "assets/js/txbench.js, human; UPGRADE_BACKLOG 2026-11-12 item 4."
-  },
-  {
-   "theme": "object in a void, no contact, largest object unmodelled, type on the art",
-   "runs": 6,
-   "rounds": 11,
-   "action": "deferred",
-   "what": "A different frame on each deck."
+   "what": "Default geometry on a model today's deck renders, deferred a second time; when a pass may change a kit default is a prompts/daily_routine.md proposal (UPGRADE_BACKLOG 2026-11-13 item 4)."
   }
  ],
- "note": "Written by the weekly machine pass (prompts/daily_routine.md Phase 17) when it ships. Read by scripts/carousel/machine_due.py. Run and round counts are from scripts/carousel/week_digest.py --date 2026-11-11, six shipped runs, except the aggregate_check theme, whose run count is the distinct decks its three queue lines name; rounds not counted for it."
+ "note": "Written by the weekly machine pass (prompts/daily_routine.md Phase 17) when it ships. Read by scripts/carousel/machine_due.py. The primitive model theme's counts are from scripts/carousel/week_digest.py --date 2026-11-13, five shipped runs. The recentre theme's run count is the distinct decks its queue line names; rounds not counted for it."
 }
