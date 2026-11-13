@@ -11,7 +11,7 @@ Researchers at the University of Texas MD Anderson Cancer Center and collaborati
 - Public access: Write to the decider
 - Take part: https://www.mdanderson.org/newsroom/research-newsroom/ai-tool-reveals-what-attracts-immune-cells-to-tumors-and-what-keeps-them-away.h00-159859290.html
 
-- Last checked: 2026-11-10
+- Last checked: 2026-11-13
 
 ## Dates
 
@@ -30,6 +30,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-04 · Checked and unchanged. The decision still stands as decided.
 - 2026-11-07 · The MD Anderson model of T cell gathering in tumor tissue still reads as published.
 - 2026-11-10 · The MD Anderson model that reads where T cells gather in tumor tissue still reads as published.
+- 2026-11-13 · MD Anderson's model reading where T cells gather in tumor tissue reads as published.
 
 ## Evidence
 

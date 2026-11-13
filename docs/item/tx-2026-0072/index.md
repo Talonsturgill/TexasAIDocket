@@ -9,7 +9,7 @@ Governor Greg Abbott issued a directive on August 3rd, 2026. It tells the Public
 - Public access: Public meeting
 - Take part: https://gov.texas.gov/uploads/files/press/Thomas_Gleeson_Pablo_Vegas_Data_Centers_Directive_Letter_to_PUCT_ERCOT_August_2026_.pdf
 
-- Last checked: 2026-11-10
+- Last checked: 2026-11-13
 
 ## Dates
 
@@ -61,6 +61,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-05 · The audit of every data center in the interconnection queue is still under way, and the commission's filings in its project read as cited.
 - 2026-11-08 · The audit has a date now. ERCOT told the commission on November 5th that it must finish verifying the queue this month to file its report on December 10th.
 - 2026-11-10 · ERCOT gave the commission a first look at the community impact questionnaire on November 5th. Every large load answered it, and cooling was the question projects most often could not answer because their designs are unsettled.
+- 2026-11-13 · ERCOT's November 5th papers to the commission still set December 10th for both reports. All 245 large loads answered the community impact questionnaire, and cooling remains the part projects most often left unanswered.
 
 ## Evidence
 
@@ -222,7 +223,7 @@ Source (primary_official): https://www.ercot.com/files/docs/2026/11/05/Community
 
 Source (primary_official): https://www.ercot.com/files/docs/2026/11/05/Community-Impact-RFI-PUC-Update.pdf
 
-### Cooling drew the largest share of unanswered questions, because many projects had not settled their final cooling design.
+### Cooling questions drew N/A answers at the highest rate of any category, and respondents said many projects had not settled their final cooling design.
 
 > The largest fraction of not answered questions were related to cooling, where respondents indicated that many projects had not determined their final cooling configuration.
 

@@ -11,7 +11,7 @@ Texas A&M University reported on November 6th, 2026 that researchers in its Zach
 - Public access: Write to the decider
 - Take part: https://stories.tamu.edu/news/2026/11/06/researchers-develop-ai-tool-to-improve-crisis-communication/
 
-- Last checked: 2026-11-10
+- Last checked: 2026-11-13
 
 ## Dates
 
@@ -23,6 +23,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 
 - 2026-11-07 · Admitted on the university's own account. The release gives no accuracy figure, and no emergency agency is named as testing the tool.
 - 2026-11-10 · The Texas A&M language model for sorting disaster posts is still described as not yet in use.
+- 2026-11-13 · Texas A&M's own story still says its language model for sorting disaster posts has not been used in a live disaster.
 
 ## Evidence
 

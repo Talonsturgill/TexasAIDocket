@@ -37,7 +37,7 @@
    "heading": "Who answered",
    "paragraphs": [
     {
-     "text": "[{{number:c4}} of {{number:c4:1}} loads submitted the questionnaire, covering about {{number:c4:3}} GW, or {{number:c4:4}} of the interconnection capacity requested](c4). [{{number:c5}} came in on time and {{number:c5:4}} late](c5), [and {{number:c6}} Medium Load responses had not been submitted](c6).",
+     "text": "[{{number:c4}} of {{number:c4:1}} loads submitted the questionnaire. Their answers cover about {{number:c4:3}} GW, {{number:c4:4}} of the interconnection capacity requested](c4). [{{number:c5}} came in on time and {{number:c5:4}} late](c5), [and {{number:c6}} Medium Load responses had not been submitted](c6).",
      "claims": [
       "c4",
       "c5",
@@ -45,7 +45,7 @@
      ]
     },
     {
-     "text": "[All {{number:c7}} Large Loads, those of {{number:c7:1}} MW or greater, responded](c7). [Large Loads represent about {{number:c8}} of the capacity requested](c8). [Among them, {{number:c9}} projects are requesting more than {{number:c9:2}} GW each, and they represent {{number:c9:1}} of capacity](c9).",
+     "text": "[All {{number:c7}} Large Loads responded. Large Loads are those of {{number:c7:1}} MW or greater](c7). [Large Loads represent about {{number:c8}} of the capacity requested](c8). [Among them, {{number:c9}} projects are requesting more than {{number:c9:2}} GW each. They represent {{number:c9:1}} of capacity](c9).",
      "claims": [
       "c7",
       "c8",
@@ -53,7 +53,7 @@
      ]
     },
     {
-     "text": "[Requests span every ERCOT load zone, and West Texas holds the plurality with {{number:c10}} of capacity, {{number:c10:1}} GW](c10). [The zone breakdown counts {{number:c15}} loads, and a load's actual zone is set at interconnection and may differ](c15). [It leaves out the load zones of Non-Opt-In Entities](c16).",
+     "text": "[Requests span every ERCOT load zone. West Texas holds the plurality with {{number:c10}} of capacity, {{number:c10:1}} GW](c10). [The zone breakdown counts {{number:c15}} loads, and a load's actual zone is set at interconnection and may differ](c15). [It leaves out the load zones of Non-Opt-In Entities](c16).",
      "claims": [
       "c10",
       "c15",

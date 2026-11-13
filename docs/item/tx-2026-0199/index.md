@@ -11,7 +11,7 @@ The National Science Foundation made a cooperative agreement with the University
 - Public access: Write to the decider
 - Take part: https://www.nsf.gov/awardsearch/showAward?AWD_ID=2537075
 
-- Last checked: 2026-11-10
+- Last checked: 2026-11-13
 
 ## Dates
 
@@ -35,6 +35,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-04 · Checked and unchanged. The decision still stands as decided.
 - 2026-11-07 · The Sagebrush inference platform award still stands as described.
 - 2026-11-10 · The Sagebrush AI inference platform for researchers is still funded and hosted as cited.
+- 2026-11-13 · Sagebrush, the AI inference platform hosted at UT Austin's supercomputing center, remains funded.
 
 ## Evidence
 

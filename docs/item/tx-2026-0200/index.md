@@ -11,7 +11,7 @@ Emails obtained by The Texas Tribune and ProPublica show Texas Education Agency 
 - Public access: Public meeting
 - Take part: https://fdisd.com/page/board-meetings
 
-- Last checked: 2026-11-10
+- Last checked: 2026-11-13
 
 ## Dates
 
@@ -34,6 +34,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-04 · Checked and unchanged. The decision still stands as decided.
 - 2026-11-07 · The account of state staff helping Alpha School's platform into district pilots still reads as published.
 - 2026-11-10 · The Alpha School pilots in Houston, Aldine and Fort Davis still run as the record describes.
+- 2026-11-13 · The record's account of the Alpha School pilots in Houston, Aldine and Fort Davis holds.
 
 ## Evidence
 

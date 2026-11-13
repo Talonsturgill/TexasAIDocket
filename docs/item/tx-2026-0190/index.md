@@ -11,7 +11,7 @@ The College Station City Council voted 4 to 2 on September 24th, 2026 to approve
 - Public access: Write to the decider
 - Take part: https://blog.cstx.gov/2026/09/24/live-from-city-hall-thursdays-city-council-meeting-sept-24/
 
-- Last checked: 2026-11-10
+- Last checked: 2026-11-13
 
 ## Dates
 
@@ -36,6 +36,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-04 · Checked and unchanged. The decision still stands as decided.
 - 2026-11-07 · College Station's vote to keep its Flock cameras still stands.
 - 2026-11-10 · College Station's Flock cameras are still running on state and city roads after the council's vote.
+- 2026-11-13 · College Station's Flock cameras keep running after the council voted to keep them.
 
 ## Evidence
 

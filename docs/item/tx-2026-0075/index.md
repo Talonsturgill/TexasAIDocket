@@ -7,12 +7,12 @@ The Pflugerville City Council approved on second reading on August 11th, 2026 an
 - Where: Travis, Williamson
 - Statistical areas:
   - Austin-Round Rock-San Marcos, TX
-- Status: open
+- Status: pending
 - Public access: Ballot measure
 - Comment closes: 2026-11-03
 - Take part: https://legistar1.granicus.com/Pflugerville/attachments/1d648f39-3bbb-4159-a4a7-a3c19b80bfcd.pdf
 
-- Last checked: 2026-11-08
+- Last checked: 2026-11-13
 
 ## Dates
 
@@ -57,6 +57,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-03 · Pflugerville's charter election, including the section on city technology, goes to voters today. The city's agenda host still refuses this project, so the order itself is unconfirmed.
 - 2026-11-05 · Pflugerville voted November 3rd on its charter amendments, the AI section among them. The city has not yet posted a canvass.
 - 2026-11-08 · Pflugerville's charter amendments, the section on the city's use of AI among them, went to voters on November 3rd, and the city has not yet posted a canvass.
+- 2026-11-13 · Unofficial returns with every precinct counted show Pflugerville voters passed Proposition B. That charter section requires privacy rules and a public approval process before the city uses facial recognition, surveillance tools or AI. Propositions A, C, H and L failed. The city has not posted its canvass, so the result is not yet official.
 
 ## Evidence
 
@@ -91,4 +92,16 @@ Source (primary_official): https://legistar1.granicus.com/Pflugerville/attachmen
 > Mayor Weiss read the caption of the ordinance. Mr. Metayer moved to approve the ordinance on second reading. Mr. Coffman seconded the motion. All voted in favor. The motion carried.
 
 Source (primary_official): https://webapi.legistar.com/v1/pflugerville/matters/18074/histories
+
+### Unofficial returns with all precincts reporting show Propositions A, C, H and L failed and the rest of the charter amendments passed.
+
+> With all precincts reporting, Props A, C, H and L failed while the rest passed.
+
+Source (journalism): https://communityimpact.com/pflugerville-hutto/election/in-early-voting-pflugerville-voters-support-all-but-4-city-charter-amendments/
+
+### Proposition B is the amendment requiring the council to adopt privacy rules for the city's use of data, facial recognition, surveillance tools and artificial intelligence, with a public approval process before they are used.
+
+> Proposition B: Requires the City Council to adopt rules that protect residents' privacy when the city collects and uses data, facial recognition, surveillance tools and artificial intelligence. It also requires a public approval process before these technologies are used and establishes standards for their responsible use.
+
+Source (journalism): https://communityimpact.com/pflugerville-hutto/election/in-early-voting-pflugerville-voters-support-all-but-4-city-charter-amendments/
 

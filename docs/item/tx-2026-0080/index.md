@@ -11,7 +11,7 @@ The National Science Foundation made an award to Prairie View A and M University
 - Public access: Write to the decider
 - Take part: https://api.nsf.gov/services/v1/awards/2602962.json?printFields=abstractText
 
-- Last checked: 2026-11-10
+- Last checked: 2026-11-13
 
 ## Dates
 
@@ -49,6 +49,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-04 · Checked and unchanged. The decision still stands as decided.
 - 2026-11-07 · Prairie View A&M's grid optimization grant is still listed as awarded.
 - 2026-11-10 · Prairie View A&M's grant for AI that splits up grid optimization is still listed as awarded.
+- 2026-11-13 · Prairie View A&M's award for AI that divides grid optimization across processor cores is still active.
 
 ## Evidence
 

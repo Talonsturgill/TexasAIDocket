@@ -11,7 +11,7 @@ The Texas Advanced Computing Center at The University of Texas at Austin publish
 - Public access: Write to the decider
 - Take part: https://www.hpcwire.com/off-the-wire/texas-researchers-converge-at-tacc-for-record-setting-symposium/
 
-- Last checked: 2026-11-10
+- Last checked: 2026-11-13
 
 ## Dates
 
@@ -22,6 +22,7 @@ The Texas Advanced Computing Center at The University of Texas at Austin publish
 One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
 
 - 2026-11-10 · Admitted on the center's own account of its September symposium. Frontera's retirement and the Vista comparison are both stated in the center's words.
+- 2026-11-13 · Frontera stays retired, and the account of the UT Southwestern lab matching its old speed on a handful of Vista's GPU nodes reads unchanged.
 
 ## Evidence
 

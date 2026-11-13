@@ -9,7 +9,7 @@ Soluna Holdings and Applied Digital agreed on October 21st to form a jointly own
 - Public access: Write to the decider
 - Take part: https://www.solunacomputing.com/news/soluna-applied-digital-chronoscale/
 
-- Last checked: 2026-11-10
+- Last checked: 2026-11-13
 
 ## Dates
 
@@ -24,6 +24,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-04 · Checked and unchanged. Still pending, with no dated movement.
 - 2026-11-07 · The Briscoe Wind Farm data center plan still reads as conditional, as the companies announced it.
 - 2026-11-10 · The Soluna and Applied Digital plan beside the Briscoe Wind Farm still turns on Briscoe County's terms.
+- 2026-11-13 · The Soluna and Applied Digital data center beside the Briscoe Wind Farm still waits on Briscoe County's tax terms.
 
 ## Evidence
 
