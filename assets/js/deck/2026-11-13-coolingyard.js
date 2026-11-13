@@ -157,7 +157,7 @@
         var slab = TXT.roundedBox(w, h, d, 0.03, CONC); slab.position.set(0, h / 2, 0); G.add(slab);
         if (o.line) {
           var lw = 0.3, ins = 0.3, yy = h + 0.002;
-          [[0, d / 2 - ins, w - 2 * ins, lw], [0, -d / 2 + ins, w - 2 * ins, lw], [w / 2 - ins, 0, lw, d - 2 * ins], [-w / 2 + ins, 0, lw, d - 2 * ins]].forEach(function (e) {
+          [[0, d / 2 - ins, w - 2 * ins + lw, lw], [0, -d / 2 + ins, w - 2 * ins + lw, lw], [w / 2 - ins, 0, lw, d - 2 * ins - lw], [-w / 2 + ins, 0, lw, d - 2 * ins - lw]].forEach(function (e) {
             var s = new THREE.Mesh(new THREE.BoxGeometry(e[2], 0.004, e[3]), EMBER); s.position.set(e[0], yy, e[1]); s.receiveShadow = true; G.add(s);
           });
         }
