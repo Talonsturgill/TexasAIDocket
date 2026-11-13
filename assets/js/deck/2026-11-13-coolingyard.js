@@ -75,6 +75,21 @@
     return out;
   };
 
+  /* A HOLE IN THE GROUND: the caliche discards its fragments over a rotated rectangle (centre, unit run direction,
+   * half length and half width, in metres), so a trench sunk below grade shows through it flush at the surface. */
+  N.cutGround = function (THREE, g, c, dir, hl, hw) {
+    var m = g.material, prev = m.onBeforeCompile;
+    m.onBeforeCompile = function (sh, r) {
+      if (prev) prev(sh, r);
+      sh.uniforms.uCut = { value: new THREE.Vector4(c[0], c[1], dir[0], dir[1]) };
+      sh.uniforms.uCutH = { value: new THREE.Vector2(hl, hw) };
+      sh.vertexShader = sh.vertexShader.replace("void main() {", "varying vec3 vTxCut;\nvoid main() {").replace("#include <project_vertex>", "#include <project_vertex>\nvTxCut = (modelMatrix * vec4(transformed, 1.0)).xyz;");
+      sh.fragmentShader = sh.fragmentShader.replace("void main() {", "varying vec3 vTxCut;\nuniform vec4 uCut;\nuniform vec2 uCutH;\nvoid main() {\n  { vec2 d = vTxCut.xz - uCut.xy; float a = dot(d, uCut.zw); float b = dot(d, vec2(-uCut.w, uCut.z)); if (abs(a) < uCutH.x && abs(b) < uCutH.y) discard; }");
+    };
+    m.customProgramCacheKey = function () { return "txcut"; };
+    m.needsUpdate = true;
+  };
+
   /* A CAMERA BEARING FROM THE SUN: the horizontal direction `deg` degrees clockwise (to the right) of the sun's own
    * bearing, so a frame can put the warm seam at its left edge by looking a little right of the sun. */
   N.bearing = function (TXT, deg) {
@@ -87,22 +102,23 @@
     var R0 = N.rng(N.SEED);
     /* broom finished concrete: fine strokes across the pad in the albedo, blotches of cure and grime */
     var broom = N.canvasTex(THREE, 512, 512, function (g, w, h) {
-      g.fillStyle = "#d9d4c9"; g.fillRect(0, 0, w, h); var r = N.rng(7);
-      for (var i = 0; i < 2600; i++) { var y = r() * h, a = 0.035 + r() * 0.05; g.strokeStyle = r() < 0.5 ? "rgba(40,38,34," + a + ")" : "rgba(200,196,186," + a + ")"; g.lineWidth = 0.6 + r(); g.beginPath(); g.moveTo(r() * w, y); g.lineTo(r() * w, y + (r() - 0.5) * 3); g.stroke(); }
-      for (var q = 0; q < 9000; q++) { g.fillStyle = r() < 0.5 ? "rgba(60,56,50,0.6)" : "rgba(240,236,228,0.5)"; g.fillRect(r() * w, r() * h, 1 + r() * 2, 1 + r() * 2); }
+      g.fillStyle = "#cfcdc8"; g.fillRect(0, 0, w, h); var r = N.rng(7);
+      for (var i = 0; i < 2600; i++) { var y = r() * h, a = 0.03 + r() * 0.045; g.strokeStyle = r() < 0.5 ? "rgba(40,38,34," + a + ")" : "rgba(200,196,186," + a + ")"; g.lineWidth = 0.6 + r(); g.beginPath(); g.moveTo(r() * w, y); g.lineTo(r() * w, y + (r() - 0.5) * 3); g.stroke(); }
+      for (var q = 0; q < 9000; q++) { g.fillStyle = r() < 0.5 ? "rgba(70,68,64,0.4)" : "rgba(240,238,232,0.35)"; g.fillRect(r() * w, r() * h, 0.6 + r() * 0.8, 0.6 + r() * 0.8); }
       
     }, [3, 1]);
-    var CONC = new THREE.MeshStandardMaterial({ color: 0xc9c4ba, map: broom, roughness: 0.86, metalness: 0 });
-    var CONCD = new THREE.MeshStandardMaterial({ color: 0xa29e95, map: broom, roughness: 0.9, metalness: 0 });
-    var EMBER = new THREE.MeshStandardMaterial({ color: N.EMBER, roughness: 0.55, metalness: 0, emissive: N.EMBER, emissiveIntensity: 0.55 });
+    var CONC = new THREE.MeshStandardMaterial({ color: 0xbdbcb8, map: broom, roughness: 0.86, metalness: 0 });
+    var CONCD = new THREE.MeshStandardMaterial({ color: 0x9a9995, map: broom, roughness: 0.9, metalness: 0 });
+    var EMBER = new THREE.MeshStandardMaterial({ color: N.EMBER, roughness: 0.55, metalness: 0, emissive: N.EMBER, emissiveIntensity: 0.3 });
     var GALV = K.finish && K.finish.galvanized ? K.finish.galvanized() : new THREE.MeshStandardMaterial({ color: 0xa6abb0, roughness: 0.42, metalness: 0.9 });
     var PVC = new THREE.MeshStandardMaterial({ color: 0x5b5f63, roughness: 0.6, metalness: 0 });
     var mill = N.canvasTex(THREE, 256, 64, function (g, w, h) {
       g.fillStyle = "#b87350"; g.fillRect(0, 0, w, h); var r = N.rng(11);
-      for (var i = 0; i < 500; i++) { g.fillStyle = r() < 0.5 ? "rgba(90,40,20,0.10)" : "rgba(240,190,150,0.10)"; g.fillRect(r() * w, r() * h, 6 + r() * 60, 0.6 + r()); }
-    });
-    var COPPER = new THREE.MeshStandardMaterial({ color: 0xf0b080, map: mill, roughness: 0.42, metalness: 0.55 });
-    var COPPERD = new THREE.MeshStandardMaterial({ color: 0x1c1410, roughness: 0.7, metalness: 0.2 });   /* the oxidised band every tenth bar, so the pack reads in tens */
+      for (var i = 0; i < 500; i++) { g.fillStyle = r() < 0.5 ? "rgba(90,40,20,0.22)" : "rgba(240,190,150,0.2)"; g.fillRect(r() * w, r() * h, 6 + r() * 60, 0.6 + r()); }
+    }, [3, 3]);
+    var COPPER = new THREE.MeshStandardMaterial({ color: 0xc69a68, roughnessMap: mill, roughness: 0.36, metalness: 0.8 });   /* raw copper, its mill streaks in the roughness only */
+    var COPPER2 = new THREE.MeshStandardMaterial({ color: 0xb08458, roughnessMap: mill, roughness: 0.4, metalness: 0.78 });   /* alternate laminations a shade duller, so the end face reads as many thin plates */
+    var COPPERD = new THREE.MeshStandardMaterial({ color: 0x1e130e, roughness: 0.7, metalness: 0.2 });   /* the oxidised band every tenth bar, so the pack reads in tens */
     var EPOXY = new THREE.MeshStandardMaterial({ color: 0x6f747a, roughness: 0.5, metalness: 0 });
     var oakTex = N.canvasTex(THREE, 256, 64, function (g, w, h) {
       g.fillStyle = "#5c4630"; g.fillRect(0, 0, w, h); var r = N.rng(13);
@@ -153,15 +169,15 @@
           var x = bx0 + (bx1 - bx0) * i / (nb - 1);
           [-1, 1].forEach(function (sz) {
             var z = sz * (d / 2 - 0.75);
-            var rod = new THREE.Mesh(new THREE.CylinderGeometry(0.012, 0.012, 0.11, 10), GALV); rod.position.set(x, h + 0.055, z); G.add(rod);
-            var nut = new THREE.Mesh(new THREE.CylinderGeometry(0.024, 0.024, 0.022, 6), GALV); nut.position.set(x, h + 0.03, z); G.add(nut);
-            var wash = new THREE.Mesh(new THREE.CylinderGeometry(0.034, 0.034, 0.005, 16), GALV); wash.position.set(x, h + 0.0045, z); G.add(wash);
+            var rod = new THREE.Mesh(new THREE.CylinderGeometry(0.02, 0.02, 0.2, 12), GALV); rod.position.set(x, h + 0.1, z); G.add(rod);
+            var nut = new THREE.Mesh(new THREE.CylinderGeometry(0.04, 0.04, 0.035, 6), GALV); nut.position.set(x, h + 0.04, z); G.add(nut);
+            var wash = new THREE.Mesh(new THREE.CylinderGeometry(0.055, 0.055, 0.006, 16), GALV); wash.position.set(x, h + 0.0045, z); G.add(wash);
           });
         }
         for (var k = 0; k < o.stubs; k++) {
           var sx = -w / 2 + 2.2 + k * 0.32, sz = d / 2 - 1.4;
-          var pipe = new THREE.Mesh(new THREE.CylinderGeometry(0.055, 0.055, 0.32, 20), PVC); pipe.position.set(sx, h + 0.16, sz); G.add(pipe);
-          if (o.caps) { var cap = new THREE.Mesh(new THREE.CylinderGeometry(0.064, 0.064, 0.06, 20), EMBER); cap.position.set(sx, h + 0.33, sz); G.add(cap); }
+          var pipe = new THREE.Mesh(new THREE.CylinderGeometry(0.045, 0.045, 0.22, 20), PVC); pipe.position.set(sx, h + 0.11, sz); G.add(pipe);
+          if (o.caps) { var cap = new THREE.Mesh(new THREE.CylinderGeometry(0.052, 0.052, 0.05, 20), EMBER); cap.position.set(sx, h + 0.235, sz); G.add(cap); }
         }
         return shadowAll(G);
       }
@@ -179,11 +195,11 @@
         [-1, 1].forEach(function (s) { var d = TXT.roundedBox(W + 0.06, dunH, 0.15, 0.01, OAK); d.position.set(0, dunH / 2, s * L * 0.33); G.add(d); });
         var nIns = Math.max(2, Math.round(W / 0.35) + 1);
         [-1, 1].forEach(function (s) { for (var i = 0; i < nIns; i++) { var c = new THREE.Mesh(new THREE.CylinderGeometry(0.035, 0.045, insH, 12), EPOXY); c.position.set(-W / 2 + W * (nIns === 1 ? 0.5 : i / (nIns - 1)), dunH + insH / 2, s * L * 0.33); G.add(c); } });
-        var geo = new THREE.BoxGeometry(N.BAR.t, F, L), lit = [], dark = [];
-        for (var b = 0; b < n; b++) { var x = -W / 2 + N.BAR.t / 2 + b * pitch; ((b + 1) % o.every === 0 ? dark : lit).push([x, y0 + F / 2, 0, 0, 1]); }
+        var geo = new THREE.BoxGeometry(N.BAR.t, F, L), geoD = new THREE.BoxGeometry(N.BAR.t * 1.5, F, L + 0.002), lit = [], lit2 = [], dark = [];   /* the spacer every tenth bar drawn wider and 3 mm proud, so the tens read as bands at feed size */
+        for (var b = 0; b < n; b++) { var x = -W / 2 + N.BAR.t / 2 + b * pitch; ((b + 1) % o.every === 0 ? dark : (b % 2 ? lit2 : lit)).push([x, y0 + F / 2, 0, 0, 1]); }
         /* the kit's bake collapses an InstancedMesh to its first instance, so the bars are separate meshes merged per material */
-        function bars(list, mat) { if (!list.length) return; var ms = list.map(function (e) { var m = new THREE.Mesh(geo, mat); m.position.set(e[0], e[1], e[2]); m.updateMatrix(); return m; }); var mm = K.merge ? K.merge(ms, mat) : null; if (mm) G.add(mm); else ms.forEach(function (m) { G.add(m); }); }
-        bars(lit, COPPER); bars(dark, COPPERD);
+        function bars(list, mat, gg) { if (!list.length) return; var ms = list.map(function (e) { var m = new THREE.Mesh(gg || geo, mat); m.position.set(e[0], e[1], e[2]); m.updateMatrix(); return m; }); var mm = K.merge ? K.merge(ms, mat) : null; if (mm) G.add(mm); else ms.forEach(function (m) { G.add(m); }); }
+        bars(lit, COPPER); bars(lit2, COPPER2); bars(dark, COPPERD, geoD);
         /* a bolted clamp across the pack near each end, tinned, so the pack reads as one assembly */
         [-1, 1].forEach(function (s) { var cl = TXT.roundedBox(W + 0.01, 0.03, 0.06, 0.006, GALV); cl.position.set(0, y0 + F + 0.015, s * (L / 2 - 0.4)); G.add(cl); var cl2 = cl.clone(); cl2.position.y = y0 - 0.015; G.add(cl2); });
         G.userData = { width: W, top: y0 + F, faceZ: L / 2 };
@@ -224,6 +240,7 @@
       make: function (o) {
         var G = new THREE.Group(), L = o.length, c = Math.max(0, Math.min(L, o.covered)), w = o.width, t = o.wall, h = o.h;
         [-1, 1].forEach(function (s) { var wall = TXT.roundedBox(L, h, t, 0.015, CONCD); wall.position.set(L / 2, h / 2, s * (w / 2 + t / 2)); G.add(wall); });
+        [0, L].forEach(function (ex) { var ew = TXT.roundedBox(t, h, w + 2 * t, 0.01, CONCD); ew.position.set(ex + (ex ? t / 2 : -t / 2), h / 2, 0); G.add(ew); });
         var floorC = new THREE.Mesh(new THREE.BoxGeometry(c, 0.06, w), CONCD); floorC.position.set(c / 2, 0.03, 0); G.add(floorC);
         if (L - c > 0) {
           var floorE = new THREE.Mesh(new THREE.BoxGeometry(L - c, 0.065, w), EMBER); floorE.position.set(c + (L - c) / 2, 0.033, 0); G.add(floorE);
@@ -263,7 +280,7 @@
       note: "A tripod LED work light, two heads on a T bar; emissive faces when lit.",
       make: function (o) {
         var G = new THREE.Group(), BLK = new THREE.MeshStandardMaterial({ color: 0x1a1b1d, roughness: 0.5, metalness: 0.5 });
-        var LED = new THREE.MeshStandardMaterial({ color: 0xfff1d8, emissive: 0xfff1d8, emissiveIntensity: o.lit ? 2.2 : 0 });
+        var LED = new THREE.MeshStandardMaterial({ color: 0xfff1d8, emissive: 0xfff1d8, emissiveIntensity: o.lit ? 7 : 0 });
         var mast = new THREE.Mesh(new THREE.CylinderGeometry(0.018, 0.022, 1.7, 10), BLK); mast.position.set(0, 0.85, 0); G.add(mast);
         for (var k = 0; k < 3; k++) { var a = k * 2 * Math.PI / 3, leg = K.bar([0, 0.6, 0], [Math.cos(a) * 0.45, 0, Math.sin(a) * 0.45], 0.012, BLK); if (leg) G.add(leg); }
         var bar = TXT.roundedBox(0.7, 0.03, 0.03, 0.005, BLK); bar.position.set(0, 1.72, 0); G.add(bar);
@@ -384,7 +401,7 @@
       '.hook { position:absolute; left:80px; top:150px; width:900px; font-family:"Fraunces", serif; font-weight:700; line-height:0.98; color:' + ink + '; font-variation-settings:"opsz" 144; z-index:10; }',
       ".dek { position:absolute; left:82px; width:820px; font-size:31px; font-weight:600; line-height:1.38; color:" + dek + "; z-index:10; }",
       '.tx-site { position:absolute; right:80px; bottom:80px; font-family:"JetBrains Mono", monospace; font-size:24px; letter-spacing:0.07em; line-height:1.5; color:' + ink + '; white-space:nowrap; z-index:20; }',
-      '.lab { position:absolute; font-family:"JetBrains Mono", monospace; font-size:26px; font-weight:500; letter-spacing:0.06em; line-height:1.3; color:' + ink + '; white-space:nowrap; z-index:12; }',
+      '.lab { position:absolute; font-family:"JetBrains Mono", monospace; font-size:34px; font-weight:500; letter-spacing:0.04em; line-height:1.2; text-align:center; color:' + ink + '; white-space:nowrap; z-index:12; }',
       ".lab.cyan { color:#8FE0F0; }",
       ".hook, .dek, .lab, .kick, .count, .src { font-feature-settings:\"calt\" 0; }",
       ".hook, .dek, .kick, .count, .lab { text-shadow:0 0 2px " + halo + ", 0 1px 14px " + halo2 + "; }",
