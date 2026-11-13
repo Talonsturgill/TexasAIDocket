@@ -6868,3 +6868,65 @@ Every other open item is carried as it stands. The themes that name a different 
 deferred: object in a void (6 runs, 11 rounds), no contact (6, 10), largest object unmodelled (5, 12), type on
 the art (5, 7). The fleet lot no. 75 built (fleet-lot-models-built-in-chassis) and the crossover paint going
 blue under the dusk sky are one deck each, at repeat 0. No frontier scan: the brief for this pass names none.
+
+## 2026-11-13, the twenty-first weekly machine pass. One gate, three proposals, carried items
+
+Due early: kmake-recentres-after-make reached repeat 2 on carousel no. 76 (the cooling yard, under scoring
+when this was written). The last pass was the day before. Read with `out/2026-11-13/week_digest.md`: five
+shipped runs, variety lowest on three, artwork_craft's week mean 6.7 and lowest on one. Top theme, "primitive
+or low-poly model where a kit model belongs", 5 runs of 5 and 14 rounds.
+
+### 1. GATE: `deck_chassis` REFUSES A DECLARED ORIGIN THAT K.make WILL MOVE (done, this pass's upgrade commit)
+
+`K.make` centres every model's footprint by shifting its children, unless the spec says `anchor: 'base'` or the
+built group carries `keepOrigin`, `attach` or `heightAt`. No. 76's `cable_trench` said "Origin at the trough's
+start" in its comment and "starting at x = 0" in its note, set none of them, and landed off its planned ends on
+frames 3, 6 and 9 until each frame placed it by centre. The queue's first cure, a sentence in the kit
+conventions, was already in the `txkit.js` header ARSENAL prints. So `scripts/carousel/deck_chassis.py` now reads
+each chassis `K.define` and its own comment, and refuses an off centre declaration (a start, end, corner, back,
+top, hook, wall or ceiling point) that does not keep its origin. It binds chassis dated after 2026-11-13.
+Replayed on 185 chassis K.define blocks: 11 declare an off centre origin and 9 keep it. The two that don't are
+no. 76's cable_trench and 2026-10-04's school_clock. No shipped deck changes (49 compared). Nine self-test cases,
+three red with the rule switched off.
+
+### 2. PROPOSAL, for a maintainer: K.make records its offset (`assets/js/txkit.js`, human)
+
+The rule above reads only what a chassis SAYS. No. 47 added a fill after make() and no. 50 drew leaders from
+the builder's coordinates without declaring anything (kmake-recentres-after-make), and nos. 55 and 56 hung
+models on a wall that K.make pulled off it (kmake-recentres-wall-hung-models, escalated 2026-10-21). Five
+decks across the two lines. Proposed: K.make writes the shift it applied to `userData.centred = [dx, dz]`, and
+K.define accepts `anchor: 'wall'` (back on z 0, never re-centred). Same item as 2026-10-12 item 6, with these
+counts.
+
+### 3. PROPOSAL, for a maintainer: a GATE_LESSONS entry (`knowledge/shared/GATE_LESSONS.md`, human)
+
+Suggested entry: "A declaration the code silently overrides. A chassis model's comment said its origin was the
+trough's start, and K.make re-centred it, so the comment was true of the builder and false of the model every
+frame received. Three decks paid (nos. 47, 50 and 76) and the sentence that K.make centres was in the kit
+header the whole time. Check instead: where code can override a declaration, read the declaration against the
+override, not the doctrine against the reader."
+
+### 4. PROPOSAL, for a maintainer: when the weekly pass may change a kit default (`prompts/daily_routine.md`, human)
+
+The kit person's near detail (kit-person-reads-as-mannequin-within-two-metres, repeat 6) was deferred by the
+2026-11-12 pass and again today for the same reason: the pass runs in Phase 17 while the day's deck can still
+re-render, and that deck rendered the person. By a grep of each shipped deck's slides and chassis for a
+`person` make, 12 of the last 20 decks render it, so "a day no deck renders a person" can take weeks to come
+round. Proposed: Phase 17 says a default changing kit fix waits until the day's last panel round has closed
+and nothing will re-render, then lands before the merge with its own pixel proof on a shipped frame.
+
+### Deferred in lane
+
+- **The artwork lift.** The craft card's last shipped round is 2026-11-12 round 3, the card yesterday's pass
+  lifted from (slide 8, `sit_drive`). Its next ranked defects are the relief plate (`txbench.js`, human,
+  2026-11-12 item 4) and no. 75's fleet lot and crossover paint, one deck each at repeat 0. No. 76's chassis
+  models (cooling-yard-models-built-in-chassis) are lifted under their own names or not at all, and the chassis
+  returns early once the kit has `equipment_pad`, so lifting them today would re-render no. 76 against kit
+  models mid scoring. First artwork candidates for the next pass: those models with the copper fix
+  (copper-reads-as-wood-under-lastlight), and the person's neck and wrist.
+- **art-preflight-binding-misses-kit-families**, queued today at repeat 0. Found by reading, not yet seen to
+  bite.
+
+### Carried
+
+Every other open item is carried as it stands. No frontier scan: the brief for this pass names none.

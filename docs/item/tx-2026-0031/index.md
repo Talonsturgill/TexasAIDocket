@@ -11,7 +11,7 @@ The University of Texas System Board of Regents approved the creation of a Schoo
 - Public access: Public meeting
 - Take part: https://www.utsystem.edu/board-of-regents/meetings
 
-- Last checked: 2026-11-10
+- Last checked: 2026-11-13
 
 ## Dates
 
@@ -51,6 +51,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-04 · Checked and unchanged. The decision still stands as decided.
 - 2026-11-07 · The Regents' approval of a School of Computing at UT Austin still stands as recorded.
 - 2026-11-10 · The UT Austin School of Computing the regents approved is still described as cited.
+- 2026-11-13 · The regents' approval of a UT Austin School of Computing reads as it did.
 
 ## Evidence
 

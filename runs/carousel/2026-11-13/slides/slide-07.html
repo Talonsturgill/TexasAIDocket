@@ -1,0 +1,66 @@
+<!doctype html>
+<!-- 2026-11-13, frame 7 of 9. Archetype CLOSE_CROP. A spatial scene through txthree.js in the lastLight world: one empty equipment pad at ankle height, its anchor bolts and ember capped conduit stubs, a cable reel's capped feeder tail lying across the slab. Drawn to illustrate; no real site is depicted. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:900px">Later projects said N/A more often</h1>
+<p class="dek" data-follow="30" style="width:880px">Projects asking to energize in 2028 or later answered N/A 30% more often than those due sooner. The longer row of capped stubs stands for them, drawn to illustrate.</p>
+<script>window.FIG = {"na_later_pct": 30, "stubs_early": 10, "stubs_later": 13};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-13-coolingyard.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "ERCOT, preliminary", counter: "07 / 09", src: "c20", fit: { min: 76, max: 100, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 38, near: 0.02, far: 9000 });
+  const f = CH.bearing(TXT, -55), side = [-f[1], f[0]];
+  const at = (u, v) => [f[0] * u + side[0] * v, f[1] * u + side[1] * v];
+  const yaw = Math.atan2(f[0], f[1]);
+  /* one pad, its long axis running away from the lens a little to the right, so its bolts march toward the seam */
+  const pad = K.make('equipment_pad', { bolts: 6, stubs: 0 });
+  const pq = at(9.2, 0.2); pad.position.set(pq[0], 0, pq[1]); pad.rotation.y = yaw - Math.PI / 2 - 0.22; TXT.add(R, pad); TXT.contact(R, pad);
+  /* THE FIGURE: two rows of capped conduit stubs down the slab, FIG.stubs_early for the projects due before 2028 and
+   * FIG.stubs_later for those due in 2028 or later, the early row grown by na_later_pct in compute.py, drawn to illustrate */
+  if (FIG.stubs_later !== Math.floor(FIG.stubs_early * (1 + FIG.na_later_pct / 100) + 0.5)) throw new Error('stub rows do not match na_later_pct');
+  { pad.updateMatrixWorld(true); const PVC = new THREE.MeshStandardMaterial({ color: 0x9a9fa3, roughness: 0.55 }), CAPM = new THREE.MeshStandardMaterial({ color: CH.EMBER, emissive: CH.EMBER, emissiveIntensity: 0.3, roughness: 0.6 });
+    const nearSign = new THREE.Vector3(14.5 / 2, 0, 0).applyMatrix4(pad.matrixWorld).length() < new THREE.Vector3(-14.5 / 2, 0, 0).applyMatrix4(pad.matrixWorld).length() ? 1 : -1;   /* both rows start at the far end and run toward the lens, so the later row overshoots nearest the reader */
+    [[FIG.stubs_early, -0.5], [FIG.stubs_later, 0.5]].forEach(([n, z]) => { for (let k = 0; k < n; k++) { const x = nearSign * (-14.5 / 2 + 1.0 + k * 0.8);
+      const pp = new THREE.Vector3(x, 0.25 + 0.11, z).applyMatrix4(pad.matrixWorld), cp = new THREE.Vector3(x, 0.25 + 0.235, z).applyMatrix4(pad.matrixWorld);
+      const pipe = new THREE.Mesh(new THREE.CylinderGeometry(0.05, 0.05, 0.22, 20), PVC); pipe.position.copy(pp); pipe.castShadow = pipe.receiveShadow = true; TXT.add(R, pipe);
+      const cap = new THREE.Mesh(new THREE.CylinderGeometry(0.058, 0.058, 0.05, 20), CAPM); cap.position.copy(cp); cap.castShadow = true; TXT.add(R, cap); } }); }
+  /* the feeder reel beyond the pad's right edge, its capped tail laid across the slab toward the lens */
+  const reel = K.make('cable_reel', { flange: 'steel', tail: 6.5, cap: true });
+  const rq = at(13.5, 3.8); reel.position.set(rq[0], 0, rq[1]); reel.rotation.y = yaw + Math.PI * 0.86; TXT.add(R, reel); TXT.contact(R, reel);
+  const FROM = [0, 1.5, 0];
+  const LOOK = CH.aim(THREE, R, TXT, FROM, [pq[0], 0.1, pq[1]], 520, 770, 38);
+  TXT.frame(R, { fov: 38, from: FROM, look: LOOK });
+  TXT.sky(R);
+  TXT.ground(R, { surface: 'caliche', color: 0x5e5446, size: 9000, seed: 31 });
+  TXT.scatter(R, { kind: 'scrub', count: 120, area: [200, 200], avoid: [[-4, -12, 40, 24]], seed: 11 });
+  CH.KEY_SCALE = 0.45;
+  TXT.deckRig(R, CH.rigSpec(W, 18, 4096), CH.rigOpts([pq[0], 0, pq[1]], { distance: 40, shadowFar: 90, normalBias: 0.02 }));
+  CH.unacne(R, 0.02);
+  CH.pool(THREE, TXT, R, [pq[0], 0, pq[1]], { radius: 6, i: 3.0, lift: 8 });
+  TXT.weather(R, { grime: 0.65, height: 0.3, mottle: 0.25 });
+  TXT.stage(R, [pad, reel]);
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.dress(cx, { foot: 0.8 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

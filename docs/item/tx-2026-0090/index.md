@@ -11,7 +11,7 @@ The National Science Foundation made a cooperative agreement to the Texas A&M En
 - Public access: Closed
 - Take part: https://api.nsf.gov/services/v1/awards/2534344.json
 
-- Last checked: 2026-11-10
+- Last checked: 2026-11-13
 
 ## Dates
 
@@ -54,6 +54,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-04 · Checked and unchanged. The decision still stands as decided.
 - 2026-11-07 · Texas A&M's robot run alloy laboratory is still funded as the award describes.
 - 2026-11-10 · The robot run alloy laboratory at Texas A&M is still funded and still open to outside researchers.
+- 2026-11-13 · Texas A&M's robot run alloy laboratory remains funded and bookable by outside researchers.
 
 ## Evidence
 

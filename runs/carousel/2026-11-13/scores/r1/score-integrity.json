@@ -1,0 +1,81 @@
+{
+ "lens": "integrity",
+ "round": 1,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.0,
+   "why": "One rendered world in lastLight with real casts; 1, 7 and 9 hold. Slide 3's pack reads as a brown slatted crate beside a mannequin; 4 a bar chart of slats in a void; 5 a flat top-down grating on mud with a flat brown open stretch; 8 a mannequin at a sawhorse table in an empty bay; 6 mostly mid-tone caliche with a dead band and a small far frame."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.0,
+   "why": "One site and one light with a declared camera move and the ember line on 1, 6, 7 and 9; slides 3 and 4 sit in a black void and 8 in a bay with no pads."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 4.0,
+   "why": "Every numeral traces, but the cooling claim stretches its source: the page 4 chart is N/A responses as a percent of answers by category, where cooling is the highest rate, and by count cooling ranks fourth of five. Slide 7 sets the cooling sentence under later projects while page 2 ties undecided cooling to pre-2028 Medium Loads. Slide 9 picks the December 17th meeting while the calendar also lists December 11th, and no source links either to the report."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.0,
+   "why": "What, who and the next date are named; no county; no action for a Texan; slide 8 moves to an unexplained separate process; the strongest form of the stake is left out."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "A choppy cover headline; slide 2 pays at once; 6 turns to cooling; 9 closes on dates; slide 8 is a different population and cuttable."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "Clean and careful; reads as a regulatory digest with N/A as a verb, Batch Zero and NOIE unglossed."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 4.5,
+   "why": "No. 60 on October 25th used the same instrument with an answered versus unanswered concept and a copper bus bar relief; empty bolted pads repeat nos. 59 and 69; the close outside a gate repeats nos. 62, 68 and 75. A new event under a different item, so not a topic hard fail."
+  }
+ ],
+ "weighted_score": 5.67,
+ "hard_fails": [
+  "An unverified fact presented as verified and refuted by the run's own fetched source: slide 1's dek, slide 6's headline and dek, the caption and the document title say cooling was the largest share of the unanswered questions. ercot_ci_rfi.txt page 5 prints N/A counts by category, A 404 and 689, B 944 and 1,697, C 916 and 1,853, D cooling 463 and 1,077, E 1,122 and 2,389, so cooling holds about 1,540 of 11,554 N/A answers, fourth of five; page 4 shows cooling first only by rate. ERCOT's sentence is ambiguous and its chart shows it means the rate."
+ ],
+ "ship": false,
+ "one_sentence_fix": "Rebuild the cooling spine on the rate the table shows and strike every largest share, biggest blank and led the unanswered line from the title, cover, frame 6 and caption.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 6,
+   "problem": "Four big cooling pads beside an open trench stretch that stands for the whole unanswered share; mid-tone caliche, a dead band, a small far frame.",
+   "fix": "Show the claim as a rate and tighten the pool so the caliche outside falls to black."
+  },
+  {
+   "slide": 3,
+   "problem": "The pack reads as a brown slatted crate under flat light beside a mannequin.",
+   "fix": "Fully metallic copper at roughness about 0.25 raked by the low left key; the worker a rim-lit silhouette."
+  },
+  {
+   "slide": 8,
+   "problem": "A mannequin at a sawhorse table in an empty bay; the folder stack one block.",
+   "fix": "Crop to the table top under the work light so the stack's edges fill a third of the frame."
+  },
+  {
+   "slide": 4,
+   "problem": "A bar chart of slats on black with no world.",
+   "fix": "A low three-quarter with the packs receding along the dunnage and the primer columns behind in the pool."
+  },
+  {
+   "slide": 5,
+   "problem": "A flat top-down grating on a muddy field; the open stretch flat brown.",
+   "fix": "A grazing key, an ember far wall and darker caliche."
+  }
+ ]
+}

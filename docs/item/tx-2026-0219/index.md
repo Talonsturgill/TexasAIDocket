@@ -11,7 +11,7 @@ The Public Utility Commission of Texas filed an original petition in Travis Coun
 - Public access: Write to the decider
 - Take part: https://www.texaspolicyresearch.com/wp-content/uploads/2026/10/D-1-GN-26-010018.pdf
 
-- Last checked: 2026-11-10
+- Last checked: 2026-11-13
 
 ## Dates
 
@@ -29,6 +29,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-04 · Checked and unchanged. Still pending, with no dated movement.
 - 2026-11-07 · The commission's suit against the Attorney General is still pending, with no ruling found.
 - 2026-11-10 · The commission's suit against the Attorney General over the survey's location fields is still pending.
+- 2026-11-13 · The commission's suit against the Attorney General over the survey's location fields has not been decided.
 
 ## Evidence
 

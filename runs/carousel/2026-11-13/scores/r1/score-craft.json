@@ -1,0 +1,24 @@
+{
+ "lens": "craft",
+ "round": 1,
+ "criteria": [
+  {"name": "artwork_craft", "weight": 0.22, "score": 6.2, "why": "Frame 7 is the best (about 8): ankle-height pad, ember-capped stubs, J bolts casting right, the ember line off two edges. Frames 1 and 2 strong (about 7.5). Four frames fall back on defaults: 3's pack reads as an orange slatted timber crate in a void beside a flat pink mannequin; 4 is the dossier's named risk, a bar chart made of copper, with the bottom 35% empty; 5's relief passes the relief numbers but sits in the grey middle with its ember stretch reading chocolate; 8's mannequin, the work light on the left with no visible pool, a mid-brown dead band, and legs through the footer claim line. Frame 6 (about 6.5) is spread out with a dead band and the most mid-tone ground. On 1 and 9 the dek sits over columns and the eave truss."},
+  {"name": "deck_coherence", "weight": 0.12, "score": 6.8, "why": "One world, the ember motif across 1, 6, 7 and 9, casts matching the key, a value track that never strobes. Frames 3 and 4 leave the site for a black void; frame 5's brown stretch drops the motif where it should pay; frame 2's right-hand flanges read cool against the warm left group."},
+  {"name": "claim_integrity", "weight": 0.20, "score": 8.5, "why": "Every numeral on the slides and in the caption traces to a primary ERCOT or PUC claim; the rejected cooling and water percentages appear nowhere and preliminary is carried on every RFI frame. Small loosenesses: 'Cooling, often undecided' paraphrases 'many projects'; slide 8 drops c24's outside legal counsel; the first comment says 33 reels are lit and no distinct lit block shows."},
+  {"name": "story_and_stakes", "weight": 0.16, "score": 7.0, "why": "What, who, where and what next are named; nothing a Texan can do; the cooling stake is never made concrete and water is never said; frame 8's Batch Zero check pulls focus."},
+  {"name": "sequence_and_momentum", "weight": 0.10, "score": 6.8, "why": "The 5 to 6 turn is real and the close lands on a date; the cover hook is two clipped sentences; frame 2 (the subset) comes before frame 3 (the total); frame 8 could be cut without loss."},
+  {"name": "voice", "weight": 0.10, "score": 6.5, "why": "Clean and on register; the respondents-indicated sentence repeats near word for word on 6, 7 and the caption; slide 8's headline is ambiguous; 'West Texas' is the only regional texture."},
+  {"name": "variety", "weight": 0.10, "score": 5.5, "why": "lastLight and caliche again; the empty taped or bolted pad is now a house move (nos. 56, 57, 59, 61, 69); the close outside the fence repeats nos. 62, 68 and 75; the copper bus bar relief echoes no. 60, which covered the same RFI at issue; not called a repeat because this deck covers the November 5th results under a different item."}
+ ],
+ "weighted_score": 6.88,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Put the capacity frames back in the yard: frames 3 and 4 in metallic raw copper raked by the low left key, on caliche with the primer frame and the warm seam behind, seen low and a quarter turn off axis.",
+ "artwork_weakest_frames": [
+  {"slide": 3, "problem": "The pack reads as an orange slatted timber crate with a flat unlit end face; the worker a flat pink mannequin; no horizon or yard; a dead bottom 30%.", "fix": "Copper at metalness 1.0 and roughness about 0.25, rotated so the key rakes the lamination edges, a 0.6 m three-quarter view, the primer frame and seam 30 m behind on lit caliche."},
+  {"slide": 4, "problem": "A frontal bar chart made of copper; the bottom 35% empty black.", "fix": "Swing the camera 30 degrees off axis at 1.2 m so the packs recede with their long sides raked; bring the dunnage line into the bottom third; show the seam and a pad edge behind."},
+  {"slide": 8, "problem": "Mannequin figure; the work light on the left with no visible pool; a mid-brown dead band; legs through the footer claim line at c27 c28.", "fix": "Move the work light to camera right with a tight hot pool on the stack and hands; crop to 1.0 m on the table; keep every leg above design y 1220."},
+  {"slide": 5, "problem": "Grey middle on a mottled field; the ember stretch reads chocolate.", "fix": "Near-black caliche outside a raking pool, a deep recess with a lit ember far wall and a black near wall, galvanized specular on the bars."},
+  {"slide": 6, "problem": "The showstopper is spread out, a small far frame, a dead band and the most mid-tone ground.", "fix": "Lower the camera to about 6 m with the frame behind the trench's open end at twice its size; narrow the pool so the caliche outside falls to black."}
+ ]
+}

@@ -1,0 +1,60 @@
+<!doctype html>
+<!-- 2026-11-13, frame 2 of 9. Archetype GRID. A spatial scene through txthree.js in the lastLight world: a yard of cable reels on caliche, one per Large Load, the front block one per project over 1 GW. Drawn to illustrate; no real site is depicted. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:900px">All 245 Large Loads answered</h1>
+<p class="dek" data-follow="30" style="width:880px">Large Loads are 75 MW or greater and hold about 94% of the capacity requested. Among them, 33 projects ask for more than 1 GW each and represent 36% of capacity. One reel stands for one load, drawn to illustrate.</p>
+<script>window.FIG = {"reels_large": 245, "reels_lit": 33};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-13-coolingyard.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "ERCOT, preliminary", counter: "02 / 09", src: "c7 c8 c9", fit: { min: 76, max: 100, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 30, near: 0.05, far: 9000 });
+  const f = CH.bearing(TXT, -145), side = [-f[1], f[0]];
+  const at = (u, v) => [f[0] * u + side[0] * v, f[1] * u + side[1] * v];
+  const yaw = Math.atan2(f[0], f[1]);
+  /* THE FIGURE: FIG.reels_large reels, one per Large Load, in rows of 11 at a 2.6 m pitch; the first FIG.reels_lit form the
+   * lit front block, one per project over 1 GW */
+  const proto = K.make('cable_reel', { flange: 'steel' });
+  const PER = 11, PITCH = 2.6, ROWG = 3.0, front = [], back = [];
+  for (let i = 0; i < FIG.reels_large; i++) { const r = Math.floor(i / PER), c = i % PER; const q = at(16 + r * ROWG, (c - (PER - 1) / 2) * PITCH); (i < FIG.reels_lit ? front : back).push([q[0], 0, q[1], yaw, 1]); }
+  if (front.length + back.length !== FIG.reels_large || front.length !== FIG.reels_lit) throw new Error('reel count');
+  const yardF = CH.instanceGroup(THREE, proto, front), yardB = CH.instanceGroup(THREE, proto, back);
+  TXT.add(R, yardF); TXT.add(R, yardB);
+  const FROM = [0, 6, 0], mid = at(19, 0), TGT = [mid[0], 0, mid[1]], STAGE = [yardF];
+  const LOOK = CH.aim(THREE, R, TXT, FROM, [mid[0], 0.8, mid[1]], 540, 1130, 30);
+  TXT.frame(R, { fov: 30, from: FROM, look: LOOK });
+  TXT.sky(R);
+  TXT.ground(R, { surface: 'caliche', color: 0x5e5446, size: 9000, seed: 47 });
+  TXT.scatter(R, { kind: 'scrub', count: 140, area: [260, 260], avoid: [[-10, -30, 80, 60]], seed: 19 });
+  CH.KEY_SCALE = 0.25;
+  TXT.deckRig(R, CH.rigSpec(W, 30, 4096), CH.rigOpts(TGT, { distance: 60, shadowFar: 140, normalBias: 0.02 }));
+  CH.unacne(R, 0.02);
+  CH.pool(THREE, TXT, R, TGT, { radius: 9, i: 3.4, lift: 16 });
+  const fb = at(18.5, 0); CH.pool(THREE, TXT, R, [fb[0], 0, fb[1]], { radius: 14, i: 7, lift: 30 });   /* the front block of 33 in its own pool, the rest of the yard falling dark */
+  TXT.weather(R, { grime: 0.4, height: 0.35, mottle: 0.3 });
+  TXT.stage(R, STAGE);
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.dress(cx, { foot: 0.8 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

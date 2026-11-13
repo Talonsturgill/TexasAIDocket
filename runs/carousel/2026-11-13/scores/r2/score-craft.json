@@ -1,0 +1,79 @@
+{
+ "lens": "craft",
+ "round": 2,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.0,
+   "why": "The value register is right; frame 2 strongest; frame 1's girder shadows good work. At least four frames lean on a default: 3's pack a slatted timber crate in a void beside a low-poly mannequin; 4's packs crates again with a dead bottom quarter though the ratios measure within 2%; 5 a mottled mid-grey field with a dull brown open stretch; 7 a blotchy mid-tone slab and the reel crowding the dek; 8's subject about a fifth of the frame with a haze step; 9 repeats the cover; 6 solid but mid-tone above."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.0,
+   "why": "One last-light world with the ember motif working on 1, 6, 7 and 9 and a legible camera move; frame 5 and frames 3 and 4 step outside it; the seam artifact repeats on 1, 8 and 9."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.3,
+   "why": "Every numeral traces; universals name their set; the c18 rewrite is backed by cooling_rate_rank and no surface says largest share. The first comment described a second trench that frame 6 no longer draws, a false statement in shipped copy to cut before ship."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.0,
+   "why": "What, who, where and next are named; the stake behind undecided cooling is never concrete; the December 17th meeting is unused."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "The cover sets up the finding, 2 pays at once, the turn runs 5 to 7 and lands; 3 logically before 2; 8 a side road; the close lands on a date."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.8,
+   "why": "Clean and on register with a good caption question; four deks end on 'drawn to illustrate', the kicker repeats on eight frames, the cover hook is clipped."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.0,
+   "why": "lastLight caliche again, the empty outlined pad a recurring house move, the copper bus bar used on no. 60, which covered the same RFI notice; the reel yard is fresh."
+  }
+ ],
+ "weighted_score": 6.72,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Re-render the copper packs on 3 and 4 as true metal on their striped end faces with a raking specular edge, and take the mannequin on 3 into rim-lit silhouette.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 3,
+   "problem": "Flat orange slatted crate on legs in a black void, shot from the side; the worker the most visible primitive.",
+   "fix": "Metal copper at roughness about 0.3, a low three-quarter on the striped end face with a hot specular line per lamination, the worker on the shadow side as a rim-lit silhouette."
+  },
+  {
+   "slide": 5,
+   "problem": "Mottled mid-grey caliche field and a flat dull brown open stretch; no bright edge.",
+   "fix": "Near-black caliche, the key raking only the trench, the open stretch in brand ember with its far wall lit."
+  },
+  {
+   "slide": 8,
+   "problem": "Table and figure about 20% of the frame, a mannequin, the work light two black boxes, a haze step at the horizon.",
+   "fix": "Camera in to about 3 m at eye 1.2 m so the table and stack fill the lower half, the figure cropped at the shoulders, the work light's pool the brightest value."
+  },
+  {
+   "slide": 4,
+   "problem": "Exact ratios but crates in a bar chart over a dead dark ground.",
+   "fix": "A 0.5 m eye dollied in with the dunnage off the bottom edge and frame 3's metal copper."
+  },
+  {
+   "slide": 7,
+   "problem": "A blotchy mid-tone slab in the lower 60% and the reel crowding the dek.",
+   "fix": "A lower key so only the caps, bolt threads and casts are lit; the reel cropped by the frame edge."
+  }
+ ]
+}

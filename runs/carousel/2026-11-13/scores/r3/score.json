@@ -1,0 +1,175 @@
+{
+ "weighted_score": 6.928,
+ "judges": [
+  7.216,
+  6.726,
+  6.82
+ ],
+ "spread": 0.49,
+ "criteria": {
+  "artwork_craft": {
+   "score": 6.5,
+   "weight": 0.22,
+   "judges": [
+    6.8,
+    6.2,
+    6.5
+   ]
+  },
+  "deck_coherence": {
+   "score": 7.5,
+   "weight": 0.12,
+   "judges": [
+    7.5,
+    7.2,
+    7.5
+   ]
+  },
+  "claim_integrity": {
+   "score": 8.0,
+   "weight": 0.2,
+   "judges": [
+    8.5,
+    7.5,
+    8.0
+   ]
+  },
+  "story_and_stakes": {
+   "score": 6.8,
+   "weight": 0.16,
+   "judges": [
+    7.0,
+    6.8,
+    6.5
+   ]
+  },
+  "sequence_and_momentum": {
+   "score": 6.8,
+   "weight": 0.1,
+   "judges": [
+    7.0,
+    6.8,
+    6.5
+   ]
+  },
+  "voice": {
+   "score": 6.8,
+   "weight": 0.1,
+   "judges": [
+    7.0,
+    6.8,
+    6.5
+   ]
+  },
+  "variety": {
+   "score": 5.5,
+   "weight": 0.1,
+   "judges": [
+    6.0,
+    5.5,
+    5.5
+   ]
+  }
+ },
+ "hard_fails": [],
+ "hard_fails_by_judge": [],
+ "ship": true,
+ "threshold": 8.0,
+ "over_threshold": false,
+ "method": "per-criterion median across three judges, then weighted by the rubric",
+ "artwork_weakest_frames": [
+  {
+   "slide": 5,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "An orthographic grille on a mid-tone field reads as an HVAC register; the ember stretch muddy brown.",
+     "fix": "A low raking key, caliche grain falling to black outside a pool, the open stretch at true dusk_ember with visible depth."
+    },
+    {
+     "judge": 2,
+     "problem": "A grey grating on mottled grey reads as a floor vent; the open stretch a flat brown panel; no true black, no bright edge.",
+     "fix": "Cut the open stretch three times deeper with ember walls under a low rake, or reshoot it in perspective at a 1.5 m eye in the pool."
+    },
+    {
+     "judge": 3,
+     "problem": "Grey grating on mottled charcoal reads as a floor vent; the open stretch maroon rather than ember.",
+     "fix": "Set the trench in lit caliche raked low from the left, the open stretch at the true ember value, a tighter crop on the grating's end."
+    }
+   ]
+  },
+  {
+   "slide": 3,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "A mannequin beside a broadside pack reading as a wooden fence in a void.",
+     "fix": "A three-quarter view on the end face, the pack and worker seated in the caliche pool with contact shadows, the worker cropped at the knee."
+    },
+    {
+     "judge": 2,
+     "problem": "A square-on pack reads as a slat crate, cropped so the count is never whole; the worker a mannequin.",
+     "fix": "A three-quarter view pulled back to show the whole end face and length, raked from the low left key; the worker a rim-lit silhouette."
+    },
+    {
+     "judge": 3,
+     "problem": "The pack reads as a corrugated container wall cropped off the left edge; a mannequin worker; a dead black band under the dek.",
+     "fix": "Turn the pack three-quarter with the whole end face in frame, raise it into the band, the worker smaller and rim-lit on the shadow side."
+    }
+   ]
+  },
+  {
+   "slide": 8,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "A mannequin at a flat table in an empty bay; the stack a beige block; the lamp's pool on the floor.",
+     "fix": "Lower and closer so the lit stack and table edge own the lower half, the figure cropped at the shoulders, the pool on the paper."
+    },
+    {
+     "judge": 2,
+     "problem": "A mannequin, one block of paper, a mid-tone horizon band and a girt through a dek line.",
+     "fix": "Lower the camera so the girt drops below the dek, light the figure only from the work light, crop to table, paper and lamp pool."
+    },
+    {
+     "judge": 3,
+     "problem": "A mannequin behind a table; a column and braces through the dek.",
+     "fix": "Pull the camera right and lower so the column clears the type; the figure in profile over the table under the raking work light."
+    }
+   ]
+  },
+  {
+   "slide": 4,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Four packs dead-on at one depth on black read as a bar chart.",
+     "fix": "A lower camera and a harder rake from the left, the dunnage and caliche pool running toward the camera, one depth kept."
+    },
+    {
+     "judge": 2,
+     "problem": "A frontal orthographic copper bar chart with no seam and a dead black bottom third.",
+     "fix": "Rotate the row about 20 degrees, drop the eye, let the casts run across lit caliche, bring the seam in."
+    },
+    {
+     "judge": 3,
+     "problem": "Front-lit packs read as a bar chart over a black void with no ground or casts.",
+     "fix": "Camera at dunnage height, the row in the middle third lit from the left with casts across lit caliche."
+    }
+   ]
+  }
+ ],
+ "rounds_derived": 3,
+ "rounds": 3,
+ "rounds_source": "this module's own log of cards it has scored",
+ "rounds_declared": 3,
+ "at_cap": true,
+ "rung": null,
+ "shortfall": "at the round cap the finished deck ships at 6.928, 1.072 under the 8.0 top rung. Name that in the email and the run record",
+ "craft_floor": "capped",
+ "craft_note": "at the round cap the craft floor stands down. The art median 6.5 is under 8.5 and the deck ships as it is. Name it in the run record"
+}

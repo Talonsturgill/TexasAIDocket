@@ -1,0 +1,74 @@
+{
+ "lens": "integrity",
+ "round": 3,
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.8,
+   "why": "Frames 1, 6 and 9 dark, staged and well lit; frame 7 counts 13 against 10; frame 4's widths measure to one scale. Four lean on defaults: 5 an overhead grille on a mid-tone field with a muddy brown open stretch; 3 a mannequin beside a broadside pack reading as a fence in a void; 8 a mannequin at a flat table in an empty bay; 4 a bar chart in copper. Frame 2's lit block of 33 doesn't read."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "One lastLight world, casts right, the ember accent meaning one thing, a camera move through one site, a declared value cut, a dark deck that doesn't strobe; 3 and 4 in a void, 8 its own room."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 8.5,
+   "why": "Every numeral on every surface traced to a quote, claim or compute.py. The repaired cooling claim re-derived by hand: first by rate (0.41) and fourth by count, and page 4's percent rows agree. The first comment describes only drawn things. Looser phrasings: 'answered' for 'responded', 'often undecided' for 'many projects', and 'every load zone' beside four drawn zones, flagged in the dek."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 7.0,
+   "why": "What, who, when, where and the next date are named; the stake stays general; c36 and c38 verified and unused."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "The cover earns the swipe, 2 pays, 6 is a real turn carried by 7; 8 a cuttable detour; 2 and 3 cover close ground."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 7.0,
+   "why": "Clean and on house rules, close to bureaucratic with N/A on five frames; the caption's closing question the best line."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.0,
+   "why": "No. 60, 19 days ago, used the same RFI and a copper bus bar relief; empty bolted pads, caliche and lastLight recur; a follow-up rather than a re-skin."
+  }
+ ],
+ "weighted_score": 7.216,
+ "hard_fails": [],
+ "ship": true,
+ "one_sentence_fix": "Replace frame 8's Batch Zero detour with a frame that gives cooling its Texas stake and a date, c36 and c38, without saying the report is on that agenda.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 5,
+   "problem": "An orthographic grille on a mid-tone field reads as an HVAC register; the ember stretch muddy brown.",
+   "fix": "A low raking key, caliche grain falling to black outside a pool, the open stretch at true dusk_ember with visible depth."
+  },
+  {
+   "slide": 3,
+   "problem": "A mannequin beside a broadside pack reading as a wooden fence in a void.",
+   "fix": "A three-quarter view on the end face, the pack and worker seated in the caliche pool with contact shadows, the worker cropped at the knee."
+  },
+  {
+   "slide": 8,
+   "problem": "A mannequin at a flat table in an empty bay; the stack a beige block; the lamp's pool on the floor.",
+   "fix": "Lower and closer so the lit stack and table edge own the lower half, the figure cropped at the shoulders, the pool on the paper."
+  },
+  {
+   "slide": 4,
+   "problem": "Four packs dead-on at one depth on black read as a bar chart.",
+   "fix": "A lower camera and a harder rake from the left, the dunnage and caliche pool running toward the camera, one depth kept."
+  }
+ ]
+}

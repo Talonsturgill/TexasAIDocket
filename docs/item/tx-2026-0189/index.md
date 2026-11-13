@@ -15,7 +15,7 @@ The Justice Department filed a proposed final judgment on September 4th, 2026 ag
 - Comment closes: 2026-11-17
 - Take part: https://www.federalregister.gov/documents/2026/09/18/2026-19100/united-states-of-america-et-al-v-realpage-inc-et-al-proposed-final-judgment-and-competitive-impact
 
-- Last checked: 2026-11-12
+- Last checked: 2026-11-13
 
 ## Dates
 
@@ -44,6 +44,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-10 · The Justice Department's proposed judgment against the Frisco apartment manager is still out for comment as described.
 - 2026-11-11 · The Justice Department is still taking comment on the Frisco rent software judgment, and the window still closes November 17th.
 - 2026-11-12 · The comment window is still open, closing November 17th.
+- 2026-11-13 · The comment window is still open, closing November 17th.
 
 ## Evidence
 

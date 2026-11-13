@@ -8,7 +8,7 @@ Every state agency and local government that deploys a public facing AI system m
 - Status: pending
 - Public access: Write to the decider
 
-- Last checked: 2026-11-10
+- Last checked: 2026-11-13
 
 ## Dates
 
@@ -47,6 +47,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-04 · Checked and unchanged. Still pending, with no dated movement.
 - 2026-11-07 · The duty to post standardized notice of AI systems still stands in statute as quoted.
 - 2026-11-10 · The requirement that agencies and local governments post a standard notice of their AI systems is still in the statute.
+- 2026-11-13 · State law still tells agencies and local governments to post a standard notice for each AI system they run.
 
 ## Evidence
 

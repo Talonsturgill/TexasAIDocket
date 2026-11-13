@@ -1,0 +1,137 @@
+{
+ "_spec": {
+  "version": 1,
+  "purpose": "A standalone web edition of the archived visual story.",
+  "law": "Facts resolve to the original verified claim record. A layout rebuild does not reverify reporting.",
+  "written_by": "daily"
+ },
+ "section": "Data centers and the grid",
+ "dek": {
+  "text": "Every Large Load answered ERCOT's data center questionnaire. Cooling questions drew N/A answers at the highest rate, and a final report is targeted for December 10th.",
+  "claims": [
+   "c7",
+   "c18",
+   "c23"
+  ]
+ },
+ "introduction": [
+  {
+   "text": "[ERCOT sent its Data Center State and Community Impact request for information to {{number:c3}} loads](c3). [The market notice that opened it is dated {{date:c32}}](c32), [and it set a response deadline of {{date:c34}}](c34). [It warned that a failure to answer any part would be reported to the utility commission and the Office of the Governor](c35).",
+   "claims": [
+    "c3",
+    "c32",
+    "c34",
+    "c35"
+   ]
+  },
+  {
+   "text": "[A preliminary summary prepared for the commission's open meeting of {{date:c1}} reports the first results](c1). [Every data slide in it is marked preliminary and subject to change](c2).",
+   "claims": [
+    "c1",
+    "c2"
+   ]
+  }
+ ],
+ "sections": [
+  {
+   "heading": "Who answered",
+   "paragraphs": [
+    {
+     "text": "[{{number:c4}} of {{number:c4:1}} loads submitted the questionnaire. Their answers cover about {{number:c4:3}} GW, {{number:c4:4}} of the interconnection capacity requested](c4). [{{number:c5}} came in on time and {{number:c5:4}} late](c5), [and {{number:c6}} Medium Load responses had not been submitted](c6).",
+     "claims": [
+      "c4",
+      "c5",
+      "c6"
+     ]
+    },
+    {
+     "text": "[All {{number:c7}} Large Loads responded. Large Loads are those of {{number:c7:1}} MW or greater](c7). [Large Loads represent about {{number:c8}} of the capacity requested](c8). [Among them, {{number:c9}} projects are requesting more than {{number:c9:2}} GW each. They represent {{number:c9:1}} of capacity](c9).",
+     "claims": [
+      "c7",
+      "c8",
+      "c9"
+     ]
+    },
+    {
+     "text": "[Requests span every ERCOT load zone. West Texas holds the plurality with {{number:c10}} of capacity, {{number:c10:1}} GW](c10). [The zone breakdown counts {{number:c15}} loads, and a load's actual zone is set at interconnection and may differ](c15). [It leaves out the load zones of Non-Opt-In Entities](c16).",
+     "claims": [
+      "c10",
+      "c15",
+      "c16"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "What was left blank",
+   "paragraphs": [
+    {
+     "text": "[Respondents answered {{number:c17}} of nearly {{number:c17:1}} questions](c17). [The N/A rate was slightly lower among Large Loads, about {{number:c19}}, than among Medium Loads, about {{number:c19:1}}](c19).",
+     "claims": [
+      "c17",
+      "c19"
+     ]
+    },
+    {
+     "text": "[Cooling questions drew N/A answers at a higher rate than any other kind. Respondents indicated that many projects had not determined their final cooling configuration](c18). [Projects asking to energize in {{number:c20}} or later answered N/A {{number:c20:1}} more often than projects due sooner](c20). The summary doesn't say how much of the requested capacity sits behind an undecided cooling design.",
+     "claims": [
+      "c18",
+      "c20"
+     ]
+    },
+    {
+     "text": "[The Texas Water Development Board's executive administrator authorized ERCOT to ask the questionnaire's Section C questions on the board's behalf](c36). The preliminary summary reports answer rates. It doesn't publish what any project said about water or cooling.",
+     "claims": [
+      "c36"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "A second round on Batch Zero",
+   "paragraphs": [
+    {
+     "text": "[In the separate Batch Zero eligibility verification, groups within ERCOT and outside legal counsel reviewed responses from {{number:c24}} developers](c24). [ERCOT expects to send {{number:c25}} of them a second round of questions](c25), [with a {{number:c26}} business day deadline to explain any deficiencies](c26).",
+     "claims": [
+      "c24",
+      "c25",
+      "c26"
+     ]
+    },
+    {
+     "text": "The review isn't finished. [Common issues so far include proving site control](c29) [and confirming the amount of financial security posted](c31). [ERCOT said it had to complete the review in November to file a report with the commission on {{date:c27}}](c27).",
+     "claims": [
+      "c29",
+      "c31",
+      "c27"
+     ]
+    }
+   ]
+  },
+  {
+   "heading": "What comes next",
+   "paragraphs": [
+    {
+     "text": "[ERCOT says detailed analysis is under way and that it is targeting a published final report on {{date:c23}}](c23). Until the final report is out, the counts here remain preliminary and the cooling answers remain unpublished.",
+     "claims": [
+      "c23"
+     ]
+    }
+   ]
+  }
+ ],
+ "related": [
+  {
+   "id": "tx-2026-0072",
+   "label": "The governor's order to audit every data center in the queue"
+  },
+  {
+   "id": "tx-2026-0143",
+   "label": "ERCOT starts sending the Batch Zero questionnaires"
+  },
+  {
+   "id": "tx-2026-0187",
+   "label": "The commission's SB 6 large load interconnection rule"
+  }
+ ]
+}

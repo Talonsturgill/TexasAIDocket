@@ -1,0 +1,102 @@
+{
+ "date": "2026-11-13",
+ "_note": "Every count, span, ratio and duration the deck states, with the claim it was quoted from or the code that computed it.",
+ "aggregates": [
+  {
+   "phrase": "465 loads",
+   "slide": "slide-01.html",
+   "kind": "count",
+   "quoted_from": "c3",
+   "quote": "to 465 loads",
+   "value": 465
+  },
+  {
+   "phrase": "245 Large Loads",
+   "slide": "slide-02.html",
+   "kind": "count",
+   "quoted_from": "c7",
+   "quote": "All 245 Large Loads",
+   "value": 245
+  },
+  {
+   "phrase": "33 projects",
+   "slide": "slide-02.html",
+   "kind": "count",
+   "quoted_from": "c9",
+   "quote": "33 projects",
+   "value": 33
+  },
+  {
+   "phrase": "433 of 465",
+   "slide": "slide-03.html",
+   "kind": "ratio",
+   "quoted_from": "c4",
+   "quote": "433 of 465",
+   "value": 433
+  },
+  {
+   "phrase": "32 Medium Load responses",
+   "slide": "slide-03.html",
+   "kind": "count",
+   "quoted_from": "c6",
+   "quote": "32 Medium Load responses",
+   "value": 32
+  },
+  {
+   "phrase": "429 loads",
+   "slide": "slide-04.html",
+   "kind": "count",
+   "quoted_from": "c15",
+   "quote": "N = 429 included loads",
+   "value": 429
+  },
+  {
+   "phrase": "67,000 questions",
+   "slide": "slide-05.html",
+   "kind": "count",
+   "quoted_from": "c17",
+   "quote": "nearly 67,000 RFI questions",
+   "value": 67000
+  },
+  {
+   "phrase": "257 developers and expects",
+   "slide": "slide-08.html",
+   "kind": "count",
+   "quoted_from": "c24",
+   "quote": "257 developers",
+   "value": 257
+  },
+  {
+   "phrase": "5 business",
+   "slide": "slide-08.html",
+   "kind": "duration",
+   "quoted_from": "c26",
+   "quote": "5 Business Day deadline",
+   "value": 5
+  },
+  {
+   "phrase": "433 of 465",
+   "slide": "caption.txt",
+   "kind": "ratio",
+   "quoted_from": "c4",
+   "quote": "433 of 465",
+   "value": 433
+  },
+  {
+   "phrase": "245 loads",
+   "slide": "caption.txt",
+   "kind": "count",
+   "quoted_from": "c7",
+   "quote": "All 245 Large Loads",
+   "value": 245
+  },
+  {
+   "phrase": "67,000 questions",
+   "slide": "caption.txt",
+   "kind": "count",
+   "quoted_from": "c17",
+   "quote": "nearly 67,000 RFI questions",
+   "value": 67000
+  }
+ ]
+}

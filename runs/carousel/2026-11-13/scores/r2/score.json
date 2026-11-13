@@ -1,0 +1,210 @@
+{
+ "weighted_score": 6.7,
+ "judges": [
+  6.594,
+  6.72,
+  6.68
+ ],
+ "spread": 0.126,
+ "criteria": {
+  "artwork_craft": {
+   "score": 6.6,
+   "weight": 0.22,
+   "judges": [
+    6.8,
+    6.0,
+    6.6
+   ]
+  },
+  "deck_coherence": {
+   "score": 7.5,
+   "weight": 0.12,
+   "judges": [
+    7.5,
+    7.0,
+    8.0
+   ]
+  },
+  "claim_integrity": {
+   "score": 6.5,
+   "weight": 0.2,
+   "judges": [
+    6.0,
+    7.3,
+    6.5
+   ]
+  },
+  "story_and_stakes": {
+   "score": 6.8,
+   "weight": 0.16,
+   "judges": [
+    6.8,
+    7.0,
+    6.5
+   ]
+  },
+  "sequence_and_momentum": {
+   "score": 6.8,
+   "weight": 0.1,
+   "judges": [
+    6.8,
+    7.0,
+    6.8
+   ]
+  },
+  "voice": {
+   "score": 6.8,
+   "weight": 0.1,
+   "judges": [
+    6.8,
+    6.8,
+    6.5
+   ]
+  },
+  "variety": {
+   "score": 6.0,
+   "weight": 0.1,
+   "judges": [
+    5.5,
+    6.0,
+    6.0
+   ]
+  }
+ },
+ "hard_fails": [
+  "The published first comment says 'The second trench stands for the cooling questions alone, grated for the share not answered N/A, from the same tables, c18', and no frame draws a second trench; figures.json still carries trench_cool_covered_m and trench_cool_open_m as frame 6's trench.",
+  "An unverified fact presented as verified in the published first comment: 'The second trench stands for the cooling questions alone, grated for the share not answered N/A, from the same tables, c18' describes a drawing no frame contains and a cooling N/A share the fact check rejected."
+ ],
+ "hard_fails_by_judge": [
+  {
+   "judge": 1,
+   "fail": "The published first comment says 'The second trench stands for the cooling questions alone, grated for the share not answered N/A, from the same tables, c18', and no frame draws a second trench; figures.json still carries trench_cool_covered_m and trench_cool_open_m as frame 6's trench."
+  },
+  {
+   "judge": 3,
+   "fail": "An unverified fact presented as verified in the published first comment: 'The second trench stands for the cooling questions alone, grated for the share not answered N/A, from the same tables, c18' describes a drawing no frame contains and a cooling N/A share the fact check rejected."
+  }
+ ],
+ "ship": false,
+ "threshold": 8.0,
+ "over_threshold": false,
+ "method": "per-criterion median across three judges, then weighted by the rubric",
+ "threshold_dissents": [
+  "judge 2 refused on the threshold, not on a fault, and scored 6.72 against a 8.0 bar. That dissent is carried in the median"
+ ],
+ "threshold_dissents_by_judge": [
+  {
+   "judge": 2,
+   "score": 6.72,
+   "reason": "judge 2 refused on the threshold, not on a fault, and scored 6.72 against a 8.0 bar. That dissent is carried in the median"
+  }
+ ],
+ "artwork_weakest_frames": [
+  {
+   "slide": 3,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "A primitive worker lit flat and a pack reading as timber cladding because its long side faces the camera.",
+     "fix": "Rotate the pack so its laminated end face banded in tens faces the camera raked by the low left key; light the worker by rim only."
+    },
+    {
+     "judge": 2,
+     "problem": "Flat orange slatted crate on legs in a black void, shot from the side; the worker the most visible primitive.",
+     "fix": "Metal copper at roughness about 0.3, a low three-quarter on the striped end face with a hot specular line per lamination, the worker on the shadow side as a rim-lit silhouette."
+    },
+    {
+     "judge": 3,
+     "problem": "The pack reads as a brown timber crate with a flat orange end face; the worker a mannequin.",
+     "fix": "Metallic copper raked by the low key across the striped end face, stripes across the visible end, the worker on the shadow side three-quarter back."
+    }
+   ]
+  },
+  {
+   "slide": 8,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "A small mannequin at a sawhorse table under a quarter of the frame, a mid-tone horizon band, a work light that does not pool on the table.",
+     "fix": "Eye 1.1 m dollied to about 4 m so the table and stack fill about 60% of the width, the work light's pool the only bright, the figure back three-quarter."
+    },
+    {
+     "judge": 2,
+     "problem": "Table and figure about 20% of the frame, a mannequin, the work light two black boxes, a haze step at the horizon.",
+     "fix": "Camera in to about 3 m at eye 1.2 m so the table and stack fill the lower half, the figure cropped at the shoulders, the work light's pool the brightest value."
+    },
+    {
+     "judge": 3,
+     "problem": "Table, figure and stack under a fifth of the frame in a dark bay; the official a mannequin.",
+     "fix": "Push in until the table and stack fill a third to half the width, light the stack as the brightest edge, the figure in profile in shadow."
+    }
+   ]
+  },
+  {
+   "slide": 7,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "A black reel silhouette cropped at the top right colliding with the dek.",
+     "fix": "Move the reel left and behind the far slab edge below the horizon, or rim it from the back right."
+    },
+    {
+     "judge": 2,
+     "problem": "A blotchy mid-tone slab in the lower 60% and the reel crowding the dek.",
+     "fix": "A lower key so only the caps, bolt threads and casts are lit; the reel cropped by the frame edge."
+    },
+    {
+     "judge": 3,
+     "problem": "An empty mid-tone slab in the lower half, a bolt cut at the footer, converging rows that can't be compared at thumb size.",
+     "fix": "A three-quarter view down two parallel rows across the lower two-thirds with the extra stubs past the shorter row; crop the empty slab and the footer bolt."
+    }
+   ]
+  },
+  {
+   "slide": 4,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Four small packs in a black field read as a bar chart; Houston a sliver.",
+     "fix": "A 0.6 m eye moved in so West fills a third of the width, raking the lamination edges."
+    },
+    {
+     "judge": 2,
+     "problem": "Exact ratios but crates in a bar chart over a dead dark ground.",
+     "fix": "A 0.5 m eye dollied in with the dunnage off the bottom edge and frame 3's metal copper."
+    },
+    {
+     "judge": 3,
+     "problem": "Four packs read as wooden cabinets under floating labels, a brown bar chart.",
+     "fix": "Frame 3's copper, a 0.6 m eye raking every lamination edge, labels as tags on the dunnage."
+    }
+   ]
+  },
+  {
+   "slide": 5,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "A grey mid-tone field and an open stretch reading as a raised closed brown plate.",
+     "fix": "A visibly recessed ember channel with the curb casting into it, the caliche either side near black."
+    },
+    {
+     "judge": 2,
+     "problem": "Mottled mid-grey caliche field and a flat dull brown open stretch; no bright edge.",
+     "fix": "Near-black caliche, the key raking only the trench, the open stretch in brand ember with its far wall lit."
+    }
+   ]
+  }
+ ],
+ "rounds_derived": 2,
+ "rounds": 2,
+ "rounds_source": "this module's own log of cards it has scored",
+ "rounds_declared": 2,
+ "rung": 7.7,
+ "craft_floor": "waiting, because a hard fail is repaired first"
+}

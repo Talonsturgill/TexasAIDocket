@@ -12,7 +12,7 @@ Kodiak AI and Charger USA announced on October 8th that trucks running the Kodia
 - Public access: Write to the decider
 - Take part: https://www.txdmv.gov/about-us/txdmv-board-meetings
 
-- Last checked: 2026-11-10
+- Last checked: 2026-11-13
 
 ## Dates
 
@@ -33,6 +33,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-04 · Checked and unchanged. The decision still stands as decided.
 - 2026-11-07 · Kodiak and Charger's autonomous freight between Dallas and Laredo still reads as begun.
 - 2026-11-10 · Kodiak and Charger USA's autonomous freight between Dallas and Laredo still runs as described.
+- 2026-11-13 · Kodiak and Charger USA's autonomous freight between Dallas and Laredo still runs with a safety driver.
 
 ## Evidence
 

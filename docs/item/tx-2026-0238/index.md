@@ -11,7 +11,7 @@ San Antonio City Council passed a new process for considering data centers on Oc
 - Public access: Write to the decider
 - Take part: https://www.sa.gov/Directory/News-Releases/Mayor%E2%80%99s-Statement-on-Council-Decision-on-Data-Centers
 
-- Last checked: 2026-11-10
+- Last checked: 2026-11-13
 
 ## Dates
 
@@ -24,6 +24,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-03 · The city's own statement now confirms the council passed a new process for reviewing each data center application.
 - 2026-11-06 · San Antonio's rule that every new data center needs the council's own approval still stands as adopted.
 - 2026-11-10 · San Antonio still requires council approval for every new data center.
+- 2026-11-13 · Every new data center in San Antonio still needs the council's own approval.
 
 ## Evidence
 

@@ -1,0 +1,221 @@
+{
+ "weighted_score": 6.594,
+ "judges": [
+  5.67,
+  6.88,
+  6.77
+ ],
+ "spread": 1.21,
+ "criteria": {
+  "artwork_craft": {
+   "score": 6.2,
+   "weight": 0.22,
+   "judges": [
+    6.0,
+    6.2,
+    6.5
+   ]
+  },
+  "deck_coherence": {
+   "score": 7.0,
+   "weight": 0.12,
+   "judges": [
+    7.0,
+    6.8,
+    7.5
+   ]
+  },
+  "claim_integrity": {
+   "score": 7.5,
+   "weight": 0.2,
+   "judges": [
+    4.0,
+    8.5,
+    7.5
+   ]
+  },
+  "story_and_stakes": {
+   "score": 6.5,
+   "weight": 0.16,
+   "judges": [
+    6.0,
+    7.0,
+    6.5
+   ]
+  },
+  "sequence_and_momentum": {
+   "score": 6.5,
+   "weight": 0.1,
+   "judges": [
+    6.5,
+    6.8,
+    6.5
+   ]
+  },
+  "voice": {
+   "score": 6.5,
+   "weight": 0.1,
+   "judges": [
+    6.5,
+    6.5,
+    6.5
+   ]
+  },
+  "variety": {
+   "score": 5.5,
+   "weight": 0.1,
+   "judges": [
+    4.5,
+    5.5,
+    6.0
+   ]
+  }
+ },
+ "hard_fails": [
+  "An unverified fact presented as verified and refuted by the run's own fetched source: slide 1's dek, slide 6's headline and dek, the caption and the document title say cooling was the largest share of the unanswered questions. ercot_ci_rfi.txt page 5 prints N/A counts by category, A 404 and 689, B 944 and 1,697, C 916 and 1,853, D cooling 463 and 1,077, E 1,122 and 2,389, so cooling holds about 1,540 of 11,554 N/A answers, fourth of five; page 4 shows cooling first only by rate. ERCOT's sentence is ambiguous and its chart shows it means the rate."
+ ],
+ "hard_fails_by_judge": [
+  {
+   "judge": 1,
+   "fail": "An unverified fact presented as verified and refuted by the run's own fetched source: slide 1's dek, slide 6's headline and dek, the caption and the document title say cooling was the largest share of the unanswered questions. ercot_ci_rfi.txt page 5 prints N/A counts by category, A 404 and 689, B 944 and 1,697, C 916 and 1,853, D cooling 463 and 1,077, E 1,122 and 2,389, so cooling holds about 1,540 of 11,554 N/A answers, fourth of five; page 4 shows cooling first only by rate. ERCOT's sentence is ambiguous and its chart shows it means the rate."
+  }
+ ],
+ "ship": false,
+ "threshold": 8.0,
+ "over_threshold": false,
+ "method": "per-criterion median across three judges, then weighted by the rubric",
+ "threshold_dissents": [
+  "judge 2 refused on the threshold, not on a fault, and scored 6.88 against a 8.0 bar. That dissent is carried in the median",
+  "judge 3 refused on the threshold, not on a fault, and scored 6.77 against a 8.0 bar. That dissent is carried in the median"
+ ],
+ "threshold_dissents_by_judge": [
+  {
+   "judge": 2,
+   "score": 6.88,
+   "reason": "judge 2 refused on the threshold, not on a fault, and scored 6.88 against a 8.0 bar. That dissent is carried in the median"
+  },
+  {
+   "judge": 3,
+   "score": 6.77,
+   "reason": "judge 3 refused on the threshold, not on a fault, and scored 6.77 against a 8.0 bar. That dissent is carried in the median"
+  }
+ ],
+ "note": "the judges disagree by 1.21, which is wider than 0.75. The deck is not understood yet and the disagreement is worth more than the median. Read the outlier's reasoning before acting on the number",
+ "contested": [
+  "claim_integrity",
+  "variety"
+ ],
+ "artwork_weakest_frames": [
+  {
+   "slide": 3,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "The pack reads as a brown slatted crate under flat light beside a mannequin.",
+     "fix": "Fully metallic copper at roughness about 0.25 raked by the low left key; the worker a rim-lit silhouette."
+    },
+    {
+     "judge": 2,
+     "problem": "The pack reads as an orange slatted timber crate with a flat unlit end face; the worker a flat pink mannequin; no horizon or yard; a dead bottom 30%.",
+     "fix": "Copper at metalness 1.0 and roughness about 0.25, rotated so the key rakes the lamination edges, a 0.6 m three-quarter view, the primer frame and seam 30 m behind on lit caliche."
+    },
+    {
+     "judge": 3,
+     "problem": "The pack reads as a red-brown wooden slatted crate with a flat orange end face in a black void; the worker is a low-poly kit figure.",
+     "fix": "Raw copper with high metalness and low roughness, the low left key raking the lamination edges, seated on caliche in the yard with the frame behind on the seam; light the worker as a rim-lit silhouette."
+    }
+   ]
+  },
+  {
+   "slide": 6,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "Four big cooling pads beside an open trench stretch that stands for the whole unanswered share; mid-tone caliche, a dead band, a small far frame.",
+     "fix": "Show the claim as a rate and tighten the pool so the caliche outside falls to black."
+    },
+    {
+     "judge": 2,
+     "problem": "The showstopper is spread out, a small far frame, a dead band and the most mid-tone ground.",
+     "fix": "Lower the camera to about 6 m with the frame behind the trench's open end at twice its size; narrow the pool so the caliche outside falls to black."
+    },
+    {
+     "judge": 3,
+     "problem": "A dead unlit band between the frame and the pool; the trench sits away from the frame's footing; the lining reads dull salmon.",
+     "fix": "Tighten the fov and drop the camera about 3 m, run the trench along the footing, push the lining toward #B4664F."
+    }
+   ]
+  },
+  {
+   "slide": 4,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "A bar chart of slats on black with no world.",
+     "fix": "A low three-quarter with the packs receding along the dunnage and the primer columns behind in the pool."
+    },
+    {
+     "judge": 2,
+     "problem": "A frontal bar chart made of copper; the bottom 35% empty black.",
+     "fix": "Swing the camera 30 degrees off axis at 1.2 m so the packs recede with their long sides raked; bring the dunnage line into the bottom third; show the seam and a pad edge behind."
+    },
+    {
+     "judge": 3,
+     "problem": "Four packs side-on on black under DOM labels, a bar chart in no world.",
+     "fix": "A three-quarter view 3 m up with the packs on caliche in the yard pool and the frame on the seam behind."
+    }
+   ]
+  },
+  {
+   "slide": 5,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "A flat top-down grating on a muddy field; the open stretch flat brown.",
+     "fix": "A grazing key, an ember far wall and darker caliche."
+    },
+    {
+     "judge": 2,
+     "problem": "Grey middle on a mottled field; the ember stretch reads chocolate.",
+     "fix": "Near-black caliche outside a raking pool, a deep recess with a lit ember far wall and a black near wall, galvanized specular on the bars."
+    },
+    {
+     "judge": 3,
+     "problem": "The relief sits on a mottled mid-grey field and the open stretch reads as a flat brown panel.",
+     "fix": "Drop the field to near-black caliche, cut the open stretch as a deep recess with ember-lit walls, and let the grating's end bar cast a hard shadow into it."
+    }
+   ]
+  },
+  {
+   "slide": 8,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "A mannequin at a sawhorse table in an empty bay; the folder stack one block.",
+     "fix": "Crop to the table top under the work light so the stack's edges fill a third of the frame."
+    },
+    {
+     "judge": 2,
+     "problem": "Mannequin figure; the work light on the left with no visible pool; a mid-brown dead band; legs through the footer claim line at c27 c28.",
+     "fix": "Move the work light to camera right with a tight hot pool on the stack and hands; crop to 1.0 m on the table; keep every leg above design y 1220."
+    },
+    {
+     "judge": 3,
+     "problem": "A small primitive figure at a sawhorse table in a large empty bay; a trestle leg and the tripod run through the source line.",
+     "fix": "Move in so the figure and stack fill a third of the frame at chest height and crop the legs above the footer band."
+    }
+   ]
+  }
+ ],
+ "rounds_derived": 1,
+ "rounds": 1,
+ "rounds_source": "this module's own log of cards it has scored",
+ "rounds_declared": 1,
+ "rung": 8.0,
+ "craft_floor": "waiting, because a hard fail is repaired first"
+}

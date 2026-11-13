@@ -11,7 +11,7 @@ On June 23rd, 2026 the El Paso City Council directed the City Manager to amend t
 - Public access: Public meeting
 - Take part: https://webapi.legistar.com/v1/elpasotexas/Matters/15727
 
-- Last checked: 2026-11-10
+- Last checked: 2026-11-13
 
 ## Dates
 
@@ -51,6 +51,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-04 · Checked and unchanged. The decision still stands as decided.
 - 2026-11-07 · El Paso's legislative agenda still carries its ask to protect residential rates.
 - 2026-11-10 · El Paso's legislative agenda still asks for protection for residential ratepayers from data center costs.
+- 2026-11-13 · El Paso still seeks protection for residential ratepayers from data center costs in its legislative agenda.
 
 ## Evidence
 

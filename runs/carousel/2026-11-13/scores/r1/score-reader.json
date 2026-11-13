@@ -1,0 +1,84 @@
+{
+ "lens": "reader",
+ "criteria": [
+  {
+   "name": "artwork_craft",
+   "weight": 0.22,
+   "score": 6.5,
+   "why": "Staged dark with true blacks; slides 2, 1, 6 and 7 hold at feed size. Slide 3's pack reads as a red-brown slatted crate in a black void beside a low-poly worker; slide 4 is a bar chart of four packs on black with no world; slide 5's relief sits on a mottled mid-grey field and its open stretch reads as a flat brown panel; slide 8 is a small primitive figure at a sawhorse table with a trestle leg through the c27 c28 source line. Four frames lean on a default."
+  },
+  {
+   "name": "deck_coherence",
+   "weight": 0.12,
+   "score": 7.5,
+   "why": "One lastLight key from the left, one material vocabulary, the ember line as left blank across 1, 5, 6, 7 and 9, one site plan. Frames 3 and 4 drop the yard for a black void, and frame 5 lands on a grey field that strobes against its neighbours."
+  },
+  {
+   "name": "claim_integrity",
+   "weight": 0.2,
+   "score": 7.5,
+   "why": "Every numeral traces to a quoted primary ERCOT or PUC claim. Looser phrasings: the cover's 'often undecided' for c18's 'many projects'; 'answered' for c7's 'responded' beside slide 5's 'answered' for questions; slide 9 places the December 17th meeting after the December 10th report with no claim tying them; slide 7 pairs the 2028 finding with an empty cooling pad. None is a fabrication."
+  },
+  {
+   "name": "story_and_stakes",
+   "weight": 0.16,
+   "score": 6.5,
+   "why": "A Texan learns what happened, who, where and what comes next, but never why an undecided cooling configuration is a public question; c36 (the water board's Section C questions) was available and unused."
+  },
+  {
+   "name": "sequence_and_momentum",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "Frame 2 pays at once and the 5 to 6 turn is real; the cover hook is two clipped fragments; frames 2 and 3 run subset before total and 3 repeats the cover's figures; frame 8 is a separate Batch Zero process and cuttable."
+  },
+  {
+   "name": "voice",
+   "weight": 0.1,
+   "score": 6.5,
+   "why": "Clean and within house rules, but the register is ERCOT's: Large Loads, N/A, NOIE zones, RFI and Batch Zero eligibility unexplained; slide 8's headline reads like a misparse; the caption has no line a Texan would say."
+  },
+  {
+   "name": "variety",
+   "weight": 0.1,
+   "score": 6.0,
+   "why": "The construction yard concept is new, but a copper bus bar relief appeared in no. 60 on the same RFI 19 days ago, empty taped pads with anchor bolts were motifs of nos. 59 and 69, and the lastLight world and kit worker are house defaults."
+  }
+ ],
+ "weighted_score": 6.77,
+ "hard_fails": [],
+ "ship": false,
+ "one_sentence_fix": "Replace the Batch Zero detour on frame 8 with the verified link that tells a Texan why the cooling blank matters, c36's water board questions, carried into frame 6's dek and the caption.",
+ "artwork_weakest_frames": [
+  {
+   "slide": 3,
+   "problem": "The pack reads as a red-brown wooden slatted crate with a flat orange end face in a black void; the worker is a low-poly kit figure.",
+   "fix": "Raw copper with high metalness and low roughness, the low left key raking the lamination edges, seated on caliche in the yard with the frame behind on the seam; light the worker as a rim-lit silhouette."
+  },
+  {
+   "slide": 5,
+   "problem": "The relief sits on a mottled mid-grey field and the open stretch reads as a flat brown panel.",
+   "fix": "Drop the field to near-black caliche, cut the open stretch as a deep recess with ember-lit walls, and let the grating's end bar cast a hard shadow into it."
+  },
+  {
+   "slide": 8,
+   "problem": "A small primitive figure at a sawhorse table in a large empty bay; a trestle leg and the tripod run through the source line.",
+   "fix": "Move in so the figure and stack fill a third of the frame at chest height and crop the legs above the footer band."
+  },
+  {
+   "slide": 4,
+   "problem": "Four packs side-on on black under DOM labels, a bar chart in no world.",
+   "fix": "A three-quarter view 3 m up with the packs on caliche in the yard pool and the frame on the seam behind."
+  },
+  {
+   "slide": 6,
+   "problem": "A dead unlit band between the frame and the pool; the trench sits away from the frame's footing; the lining reads dull salmon.",
+   "fix": "Tighten the fov and drop the camera about 3 m, run the trench along the footing, push the lining toward #B4664F."
+  }
+ ],
+ "leads": [
+  "possible topic repeat with no. 60 (same RFI, October 25th), charged under variety as a follow-up on a new event",
+  "a trestle leg runs through the slide 8 source line",
+  "the first comment says 33 reels are lit and no distinct lit block shows on slide 2"
+ ],
+ "round": 1
+}

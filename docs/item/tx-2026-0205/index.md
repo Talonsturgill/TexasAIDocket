@@ -9,7 +9,7 @@ The Texas Department of Transportation launched the first phase of Project Nexus
 - Public access: Write to the decider
 - Take part: https://www.txdot.gov/about/newsroom/statewide/air-taxi-testing-taking-flight-in-texas.html
 
-- Last checked: 2026-11-10
+- Last checked: 2026-11-13
 
 ## Dates
 
@@ -30,6 +30,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-04 · Checked and unchanged. The decision still stands as decided.
 - 2026-11-07 · TxDOT's Project Nexus test of next generation aircraft still reads as started.
 - 2026-11-10 · TxDOT's Project Nexus test of next generation aircraft is still under way.
+- 2026-11-13 · TxDOT's Project Nexus test of next generation aircraft continues.
 
 ## Evidence
 

@@ -1,0 +1,61 @@
+<!doctype html>
+<!-- 2026-11-13, frame 3 of 9. Archetype FIGURE_SCALE. A spatial scene through txthree.js in the lastLight world: one copper bus pack of one lamination per GW on standoff insulators and oak dunnage, a worker beside it for size. Drawn to illustrate; no real site is depicted. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:900px">433 of 465 answered</h1>
+<p class="dek" data-follow="30" style="width:880px">The 433 that answered cover about 177 GW, about 97% of the capacity requested. 417 came in on time and 16 late, and 32 Medium Load responses had not arrived. One copper bar stands for one gigawatt, drawn to illustrate.</p>
+<script>window.FIG = {"gw_requested": 177, "pack_w_total": 2.424};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-13-coolingyard.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "ERCOT, preliminary", counter: "03 / 09", src: "c4 c5 c6", fit: { min: 76, max: 100, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 32, near: 0.05, far: 9000 });
+  const f = CH.bearing(TXT, -145), side = [-f[1], f[0]];
+  const at = (u, v) => [f[0] * u + side[0] * v, f[1] * u + side[1] * v];
+  const yaw = Math.atan2(f[0], f[1]);
+  /* THE FIGURE: FIG.gw_requested laminations, one per GW, the end face toward the lens; width checked against compute.py */
+  const pack = K.make('bus_pack', { n: FIG.gw_requested, length: 4 });
+  if (Math.abs(pack.userData.width - FIG.pack_w_total) > 0.002) throw new Error('pack width does not match pack_w_total');
+  const pq = at(8.6, -1.2); pack.position.set(pq[0], 0, pq[1]); pack.rotation.y = yaw + Math.PI + 0.25; TXT.add(R, pack); TXT.contact(R, pack);
+  const worker = K.make('person', { role: 'worker', vest: true, hat: 'hard', pose: 'stand', seed: 6 });
+  const wq = at(10.6, 2.9); worker.position.set(wq[0], 0, wq[1]); worker.rotation.y = yaw + Math.PI * 0.85; TXT.add(R, worker); TXT.contact(R, worker);
+  const FROM = [0, 0.6, 0], TGT = [pq[0], 0, pq[1]], STAGE = [pack, worker];
+  const LOOK = CH.aim(THREE, R, TXT, FROM, [pq[0], 0.7, pq[1]], 290, 880, 32);
+  TXT.frame(R, { fov: 32, from: FROM, look: LOOK });
+  /* the worker stands where a screen point right of the pack meets the ground, so a camera change never loses him */
+  { R.camera.updateMatrixWorld(true); const ray = new THREE.Vector3(940 / 1080 * 2 - 1, 1 - 1060 / 1350 * 2, 0.5).unproject(R.camera).sub(R.camera.position).normalize();
+    const t = -R.camera.position.y / ray.y; worker.position.set(R.camera.position.x + ray.x * t, 0, R.camera.position.z + ray.z * t); }
+  TXT.sky(R);
+  TXT.ground(R, { surface: 'caliche', color: 0x5e5446, size: 9000, seed: 41 });
+  TXT.scatter(R, { kind: 'scrub', count: 140, area: [260, 260], avoid: [[-10, -30, 80, 60]], seed: 13 });
+  CH.KEY_SCALE = 0.5;
+  TXT.deckRig(R, CH.rigSpec(W, 14, 4096), CH.rigOpts(TGT, { distance: 40, shadowFar: 90, normalBias: 0.02 }));
+  CH.unacne(R, 0.02);
+  CH.pool(THREE, TXT, R, TGT, { radius: 8, i: 4.2, lift: 6 });
+  CH.pool(THREE, TXT, R, [worker.position.x, 0, worker.position.z], { radius: 3.5, i: 4.5, lift: 4 });   /* the pool reaching the worker's boots and the pack's cast */
+  TXT.weather(R, { grime: 0.4, height: 0.35, mottle: 0.3 });
+  TXT.stage(R, STAGE);
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.dress(cx, { foot: 0.8 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

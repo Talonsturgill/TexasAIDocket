@@ -11,7 +11,7 @@ Tesla published its update for the third quarter of 2026 on October 21st. It say
 - Public access: Closed
 - Take part: https://assets-ir.tesla.com/tesla-contents/IR/TSLA-Q3-2026-Update.pdf
 
-- Last checked: 2026-11-10
+- Last checked: 2026-11-13
 
 ## Dates
 
@@ -27,6 +27,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-04 · Checked and unchanged. The decision still stands as decided.
 - 2026-11-07 · Tesla's capacity table still lists the Cybercab and Optimus under its Texas label as read.
 - 2026-11-10 · Tesla's capacity table still lists the Cybercab and the Optimus line in Texas.
+- 2026-11-13 · Tesla's capacity table still places the Cybercab and the Optimus line in Texas.
 
 ## Evidence
 

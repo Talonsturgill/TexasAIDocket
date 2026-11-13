@@ -8,7 +8,7 @@ The Department of Information Resources is required to establish a program letti
 - Status: pending
 - Public access: Write to the decider
 
-- Last checked: 2026-11-10
+- Last checked: 2026-11-13
 
 ## Dates
 
@@ -48,6 +48,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-04 · Checked and unchanged. Still pending, with no dated movement.
 - 2026-11-07 · The AI regulatory sandbox duty on DIR still stands in statute, and no change to it is on the page.
 - 2026-11-10 · The AI regulatory sandbox the information resources department must run is still required and still not shown open.
+- 2026-11-13 · The statute still orders a regulatory sandbox for agency AI, and the technology department's pages still show none running.
 
 ## Evidence
 

@@ -11,7 +11,7 @@ The University of Texas at Austin says two of its researchers received a $643,71
 - Public access: Write to the decider
 - Take part: https://news.utexas.edu/2026/10/23/in-brief-research-award-advances-ai-project-exploring-human-movement-as-language/
 
-- Last checked: 2026-11-10
+- Last checked: 2026-11-13
 
 ## Dates
 
@@ -27,6 +27,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-04 · Checked and unchanged. The decision still stands as decided.
 - 2026-11-07 · The UT Austin dance and engineering award still stands.
 - 2026-11-10 · The UT Austin dance and engineering award still reads as announced.
+- 2026-11-13 · The award to UT Austin's dance and engineering team for a movement model reads as announced.
 
 ## Evidence
 

@@ -1,0 +1,67 @@
+<!doctype html>
+<!-- 2026-11-13, frame 4 of 9. Archetype DIAGRAM. A spatial scene through txthree.js in the lastLight world: four copper bus packs, one lamination per GW, for the West, South, North and Houston load zones, in one row at one depth. Drawn to illustrate; no real site is depicted. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:900px">West Texas asked for 73 GW</h1>
+<p class="dek" data-follow="30" style="width:880px">Every ERCOT load zone has requests, and West Texas holds 41% of the capacity. Zone figures cover 429 loads and leave out NOIE zones. A load's actual zone is set at interconnection and may differ.</p>
+<div class="lab" id="l0">WEST<br>73 GW</div>
+<div class="lab" id="l1">SOUTH<br>49 GW</div>
+<div class="lab" id="l2">NORTH<br>45 GW</div>
+<div class="lab" id="l3">HOUSTON<br>10 GW</div>
+<script>window.FIG = {"west_gw": 73, "north_gw": 45, "south_gw": 49, "houston_gw": 10, "pack_w_west": 0.999, "pack_w_north": 0.616, "pack_w_south": 0.67, "pack_w_houston": 0.136};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-13-coolingyard.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "ERCOT, preliminary", counter: "04 / 09", src: "c10 c11 c12 c13 c14 c15 c16", fit: { min: 76, max: 100, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 32, near: 0.05, far: 9000 });
+  const f = CH.bearing(TXT, -145), side = [-f[1], f[0]];
+  const at = (u, v) => [f[0] * u + side[0] * v, f[1] * u + side[1] * v];
+  const yaw = Math.atan2(f[0], f[1]);
+  /* THE FIGURE: four packs of FIG.west_gw, south_gw, north_gw and houston_gw laminations at one depth, so the four face
+   * widths compare as the four figures do; the gap between packs is a fixed 0.9 m */
+  const Z = [['west', FIG.west_gw, FIG.pack_w_west], ['south', FIG.south_gw, FIG.pack_w_south], ['north', FIG.north_gw, FIG.pack_w_north], ['houston', FIG.houston_gw, FIG.pack_w_houston]];
+  const GAP = 0.5, total = Z.reduce((a, z) => a + z[2], 0) + GAP * 3;
+  const packs = []; let v = -total / 2;
+  Z.forEach(z => { const p = K.make('bus_pack', { n: z[1], length: 0.8 }); if (Math.abs(p.userData.width - z[2]) > 0.002) throw new Error(z[0] + ' width'); const c = v + z[2] / 2; const q = at(11.5, c); p.position.set(q[0], 0, q[1]); p.rotation.y = Math.atan2(-q[0], -q[1]) + Math.PI;   /* each end face square to its own sight line, so no side face widens a pack */ TXT.add(R, p); TXT.contact(R, p); p.userData.zone = z[0]; p.userData.v = c; packs.push(p); v += z[2] + GAP; });
+  /* one continuous oak dunnage line under all four packs, along the row, so the row reads as one assembly */
+  const beams = [], OAKM = new THREE.MeshStandardMaterial({ color: 0x6a5238, roughness: 0.85 });
+  [-0.25, 0.25].forEach(d => { const bm = TXT.roundedBox(total + 0.3, 0.15, 0.15, 0.01, OAKM); const q = at(11.5 + d, 0); bm.position.set(q[0], 0.075, q[1]); bm.rotation.y = yaw + Math.PI; bm.castShadow = bm.receiveShadow = true; TXT.add(R, bm); beams.push(bm); });
+  const FROM = [0, 1.3, 0], mid = at(11.5, 0.1), TGT = [mid[0], 0, mid[1]], STAGE = packs.concat(beams);
+  const LOOK = CH.aim(THREE, R, TXT, FROM, [mid[0], 0.6, mid[1]], 540, 860, 32);
+  TXT.frame(R, { fov: 32, from: FROM, look: LOOK });
+  /* each label under its own pack's face, and a leader record so the label lands on what it names */
+  window.__txLeaders = [];
+  packs.forEach((p, i) => { const q = at(11.5 - 0.4, p.userData.v); const s = CH.project(THREE, R, [q[0], 1.3, q[1]]); const el = document.getElementById('l' + i); el.style.left = Math.round(Math.max(60, Math.min(1080 - 60 - el.offsetWidth, s[0] - el.offsetWidth / 2))) + 'px'; el.style.top = Math.round(s[1] - el.offsetHeight - 14) + 'px'; });
+  TXT.sky(R);
+  TXT.ground(R, { surface: 'caliche', color: 0x5e5446, size: 9000, seed: 43 });
+  TXT.scatter(R, { kind: 'scrub', count: 140, area: [260, 260], avoid: [[-10, -30, 80, 60]], seed: 17 });
+  CH.KEY_SCALE = 0.5;
+  TXT.deckRig(R, CH.rigSpec(W, 12, 4096), CH.rigOpts(TGT, { distance: 40, shadowFar: 90, normalBias: 0.02 }));
+  CH.unacne(R, 0.02);
+  CH.pool(THREE, TXT, R, TGT, { radius: 6, i: 3.2, lift: 6 });
+  TXT.weather(R, { grime: 0.4, height: 0.35, mottle: 0.3 });
+  TXT.stage(R, STAGE);
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.dress(cx, { foot: 0.8 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>
