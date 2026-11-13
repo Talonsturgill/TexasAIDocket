@@ -7,7 +7,7 @@
  },
  "section": "Data centers and the grid",
  "dek": {
-  "text": "Every Large Load answered ERCOT's data center questionnaire. Cooling drew the largest share of the questions left unanswered, and a final report is targeted for December 10th.",
+  "text": "Every Large Load answered ERCOT's data center questionnaire. Cooling questions went unanswered at the highest rate, and a final report is targeted for December 10th.",
   "claims": [
    "c7",
    "c18",
@@ -73,7 +73,7 @@
      ]
     },
     {
-     "text": "[Cooling drew the largest share of the unanswered questions. Respondents indicated that many projects had not determined their final cooling configuration](c18). [Projects asking to energize in {{number:c20}} or later answered N/A {{number:c20:1}} more often than projects due sooner](c20). The summary doesn't say how much of the requested capacity sits behind an undecided cooling design.",
+     "text": "[Cooling questions went unanswered at a higher rate than any other kind. Respondents indicated that many projects had not determined their final cooling configuration](c18). [Projects asking to energize in {{number:c20}} or later answered N/A {{number:c20:1}} more often than projects due sooner](c20). The summary doesn't say how much of the requested capacity sits behind an undecided cooling design.",
      "claims": [
       "c18",
       "c20"
@@ -112,10 +112,9 @@
    "heading": "What comes next",
    "paragraphs": [
     {
-     "text": "[ERCOT says detailed analysis is under way and that it is targeting a published final report on {{date:c23}}](c23). [The commission's calendar lists an open meeting on {{date:c38}}](c38). Until the final report is out, the counts here remain preliminary and the cooling answers remain unpublished.",
+     "text": "[ERCOT says detailed analysis is under way and that it is targeting a published final report on {{date:c23}}](c23). Until the final report is out, the counts here remain preliminary and the cooling answers remain unpublished.",
      "claims": [
-      "c23",
-      "c38"
+      "c23"
      ]
     }
    ]
