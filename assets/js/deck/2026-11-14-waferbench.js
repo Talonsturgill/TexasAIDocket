@@ -70,11 +70,13 @@
         g.strokeStyle = "rgba(" + (r() < 0.5 ? "40,40,40" : "200,200,200") + "," + (0.05 + r() * 0.12) + ")"; g.lineWidth = 0.4 + r() * 0.8;
         g.beginPath(); g.moveTo(x, y); g.lineTo(x + Math.cos(a) * l, y + Math.sin(a) * l * 0.2); g.stroke(); }
     }, [2, 1]);
-    /* THE FILM ON THE FACE: one soft colour sweep across the polish where the grown film's thickness drifts, and a faint haze.
+    /* THE FILM ON THE FACE: one soft colour sweep across the polish where the grown film's thickness drifts.
      * Albedo only, mapped to the wafer's own metres. */
     var sil = N.canvasTex(THREE, 512, 512, function (g, w, h) {
       var gr = g.createLinearGradient(0, 0, w, h); gr.addColorStop(0, "#c3bfd2"); gr.addColorStop(0.55, "#b5b8c6"); gr.addColorStop(1, "#aab3be"); g.fillStyle = gr; g.fillRect(0, 0, w, h);
-      var r = N.rng(31); for (var q = 0; q < 900; q++) { g.fillStyle = "rgba(" + (r() < 0.5 ? "120,115,140" : "215,220,230") + ",0.2)"; g.beginPath(); g.arc(r() * w, r() * h, 3 + r() * 18, 0, Math.PI * 2); g.fill(); }
+      /* the laser scribed ID near the notch: two short rows of dots low on the face, as every production wafer carries */
+      g.fillStyle = "rgba(40,40,52,0.85)"; for (var row = 0; row < 2; row++) for (var q = 0; q < 34; q++) if ((q * 7 + row * 3) % 5 !== 0) { g.beginPath(); g.arc(w * 0.33 + q * w * 0.0101, h * (0.86 + row * 0.022), w * 0.0035, 0, Math.PI * 2); g.fill(); }
+      g.strokeStyle = "rgba(70,72,86,0.55)"; g.lineWidth = w * 0.006; g.beginPath(); g.arc(w / 2, h / 2, w * 0.478, 0, Math.PI * 2); g.stroke();   /* the edge exclusion ring, where the film thins at the bevel */
     });
     sil.repeat.set(5, 5); sil.offset.set(0.5, 0.5); sil.wrapS = sil.wrapT = THREE.ClampToEdgeWrapping;
     N._m = {
