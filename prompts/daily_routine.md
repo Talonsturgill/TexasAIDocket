@@ -1270,7 +1270,8 @@ never a subject to copy. The second is solid
 shaded forms drawing a computed figure, with no screen anywhere, and it is the owner's own worked
 example. Hand each director this section, the doctrine and both examples, and have each pitch its
 WORLD from the table in THE WORLD, with the reason this story wants that light, and `lastLight` is
-the one to argue away from rather than toward. **Every frame still
+the one to argue away from rather than toward. **On a look v2 run the director pitches a TONE and its
+`TXT.V2_WORLD[tone]` instead, and never a staged dark world.** **Every frame still
 carries one drawn SUBJECT at true scale owning at least thirty percent of the frame, in one of the
 LAYOUTS rotated across the deck, and now it is RENDERED rather than printed.**
 
@@ -1539,7 +1540,8 @@ here:**
    direction, the model this routine runs on falls back on a few default styles, and a general
    "avoid a generic look" only swaps one for another. `ILLUSTRATION_SYSTEM.md` names them for
    this brand under "What still fails": a cream or off-white ground, italic accent words in a
-   headline, numbered section labels beside the counter, pill-shaped chips. A frame uses one only
+   headline, numbered section labels beside the counter, pill-shaped chips (except on a look v2 deck,
+where labels ARE accent pills from `TXLOOK.css`). A frame uses one only
    where its dossier argues for it. If the deck reaches for a default that list does not name,
    Phase 17 adds it there.
 8. **Every rendered frame stands in a place, and passes THE SHOWSTOPPER TEST before type.**
@@ -1553,7 +1555,8 @@ here:**
    A material relief instead uses `TXBENCH.relief` with its measured height, materials and casts. Both get `TXT.contact` under every standing thing, `TXT.stage(R, subject)`,
    `TXT.weather` before the snapshot and a manufactured edge through `TXT.roundedBox`. A room in a
    staged deck is dark around one source, its key through the window and its back wall in shadow.
-   Then cover the type and read the frame at 432 px: one subject filling the frame on a dark field,
+   Then cover the type and read the frame at 432 px (on a look v2 deck, THE SHOWSTOPPER TEST, LOOK V2
+   in `ILLUSTRATION_SYSTEM.md` replaces the dark wording here): one subject filling the frame on a dark field,
    true blacks and one bright edge, weight where things touch the ground. A frame that fails that
    is not finished, and no headline makes it one.
 
@@ -1594,7 +1597,8 @@ Spawn `carousel-pixel-critic` agents in parallel, one per one or two slides. The
 visible word and grade against the dossier's own checklist, **and against the primary image law:
 is the subject the dossier named actually there, at the size it declared, readable as one thing
 at 432 px, rendered rather than placed, with no screen on it, AND does it pass THE SHOWSTOPPER
-TEST in `ILLUSTRATION_SYSTEM.md`: one subject filling the frame on a dark field, bold in value with
+TEST in `ILLUSTRATION_SYSTEM.md` (the LOOK V2 version on a v2 deck, where the field is the tone's
+lit colour and never black): one subject filling the frame on a dark field, bold in value with
 true blacks and one bright edge, standing somewhere rather than in a void, with contact and
 weathering where things meet the ground.** Fix what they
 find, re-render ONLY the frames you changed (`render.py --only`), run `qa.py` and
