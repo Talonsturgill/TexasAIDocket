@@ -4,7 +4,7 @@
  * quality it needs to be." The measurements that morning, read from Upload-Post:
  *
  *     TikTok photo carousel, average time watched     Texas Nov 13  3.03 s    Texas Nov 14  2.85 s
- *                                                     Alaska Nov 14 17.65 s
+ *                                                     sibling Nov 14 17.65 s
  *     deck median L* (measure_shipped, Nov 14 deck)   5.5 of 100
  *
  * A viewer gives a Texas deck one slide. The October 4th cure for "faded colors" was to stage every deck in a near black
