@@ -1,0 +1,22 @@
+{
+  "lens": "integrity", "round": 3,
+  "criteria": [
+    {"name": "artwork_craft", "weight": 0.22, "score": 6.5, "why": "Slides 1 and 3 to 5 are real material renders with cast shadows, and the counts match figures.json (19 on slide 6 with no end cap, 12 with both caps, 4 plus a cleaved half). Slides 2, 6 and 9 are flat plates seen face on; slide 9 is mostly a type label, and slide 2 is a square tile with a typed label sitting in a void."},
+    {"name": "deck_coherence", "weight": 0.12, "score": 7.5, "why": "One unit of $1 million per wafer runs from the cover through slides 3 to 6 and on to slide 9's 19 empty sockets, and the register stays dark. Slide 2's terracotta tile and slide 7's copper islands sit outside the wafer and boat vocabulary."},
+    {"name": "claim_integrity", "weight": 0.20, "score": 8.0, "why": "Every numeral traces to c1, c2, c15 to c17, c19 or figures.json, and every quote is from a fetched ttu.edu page. 'A cluster not built yet' is c4's reading of 'will help establish', slide 9 files the dollar-unit wafers as 19 empty IN SERVICE sockets, and the CHIPS Office fact rests on a university page."},
+    {"name": "story_and_stakes", "weight": 0.16, "score": 7.0, "why": "What, who and where are named. There is no deadline, meeting or step a Texan can take."},
+    {"name": "sequence_and_momentum", "weight": 0.10, "score": 6.5, "why": "The cover earns the swipe. Slide 2 is a weak payoff, slides 3 to 5 are a slow ledger that slide 6 sums up, and the close repeats the cover's absence rather than turning."},
+    {"name": "voice", "weight": 0.10, "score": 7.0, "why": "Clean and on house rules, with honest hedges. Slide 7 reads close to the press release, and nothing makes it sound local."},
+    {"name": "variety", "weight": 0.10, "score": 6.0, "why": "No topic repeat in 30 days. The story shape matches no. 65, no. 73 was research computing three days earlier, and the 'one object per $X' device has been the house move since late October."}
+  ],
+  "weighted_score": 7.0,
+  "hard_fails": [],
+  "ship": true,
+  "one_sentence_fix": "Replace the flat slide 2 tile with a physically lit Lubbock scene that carries the wafer boat, and recast slide 9's IN SERVICE row so it does not reuse dollar-unit wafers as hardware slots.",
+  "artwork_weakest_frames": [
+    {"slide": 2, "problem": "A face-on terracotta square on tiles with a typed label, a flat drawing with no subject, scale or light direction.", "fix": "Model the cover's wafer boat on a raised caliche relief of Lubbock County, lit low from one side."},
+    {"slide": 9, "problem": "A brushed-metal label plate filled with type; the 19 dark sockets read as a UI.", "fix": "Show the cover's boat again, empty with 19 unlit slots, under one work light, and drop the typed plate rows."},
+    {"slide": 6, "problem": "A top-down orthographic tray that reads as a chart.", "fix": "Drop the camera to a 30-degree raking angle so the three boats stand as objects with long cast shadows."},
+    {"slide": 8, "problem": "A small die-patterned wafer in a grey haze with no contact shadow.", "fix": "Push the camera in until the wafer runs off the right and bottom edges, seat it on a dark chuck with a hard contact shadow, and give it one bright rim edge."}
+  ]
+}

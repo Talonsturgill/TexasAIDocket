@@ -1,0 +1,125 @@
+{
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot shows its room"
+      ],
+      "bands": [
+        0.2878,
+        0.4265,
+        0.3346
+      ],
+      "band_ratio": 0.9588
+    },
+    {
+      "file": "slide-02.html",
+      "fails": [],
+      "warns": [
+        "console error: TXBENCH: RELIEF {\"height_range\":68.63774871826172,\"materials\":4,\"cast_fraction\":0.5495689756211908,\"area\":0.5851851851851851,\"render_ms\":6677.200000001118}",
+        "busy art under text (bg edge density 0.13) beneath 'Lubbock County' -- canvas/bitmap may be crossing a text line box; pixel critic verify legibility"
+      ],
+      "bands": [
+        0.3214,
+        0.7773,
+        0.9982
+      ],
+      "band_ratio": 1.4008
+    },
+    {
+      "file": "slide-03.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot stands inside something built"
+      ],
+      "bands": [
+        0.3382,
+        0.437,
+        0.5147
+      ],
+      "band_ratio": 1.1864
+    },
+    {
+      "file": "slide-04.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot stands inside something built"
+      ],
+      "bands": [
+        0.3235,
+        0.2185,
+        0.2555
+      ],
+      "band_ratio": 0.9628
+    },
+    {
+      "file": "slide-05.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot stands inside something built"
+      ],
+      "bands": [
+        0.3466,
+        0.2227,
+        0.5735
+      ],
+      "band_ratio": 1.4717
+    },
+    {
+      "file": "slide-06.html",
+      "fails": [],
+      "warns": [
+        "console error: TXBENCH: RELIEF {\"height_range\":26,\"materials\":7,\"cast_fraction\":0.4926506259780908,\"area\":0.5259259259259259,\"render_ms\":13553}"
+      ],
+      "bands": [
+        0.3214,
+        0.4265,
+        0.8585
+      ],
+      "band_ratio": 1.5604
+    },
+    {
+      "file": "slide-07.html",
+      "fails": [],
+      "warns": [
+        "console error: TXBENCH: RELIEF {\"height_range\":228.44344289594713,\"materials\":4,\"cast_fraction\":0.6583808641975308,\"area\":0.5555555555555556,\"render_ms\":9493.599999999627}"
+      ],
+      "bands": [
+        0.292,
+        0.6324,
+        0.8805
+      ],
+      "band_ratio": 1.4334
+    },
+    {
+      "file": "slide-08.html",
+      "fails": [],
+      "warns": [
+        "console error: TXT: ROOM IN FRAME [r1]. A verdict, not a defect: this snapshot stands inside something built"
+      ],
+      "bands": [
+        0.3109,
+        0.3088,
+        0.6581
+      ],
+      "band_ratio": 1.5077
+    },
+    {
+      "file": "slide-09.html",
+      "fails": [],
+      "warns": [
+        "console error: TXBENCH: RELIEF {\"height_range\":89.99631118774414,\"materials\":6,\"cast_fraction\":0.14963452008346376,\"area\":0.5259259259259259,\"render_ms\":5043.0999999996275}"
+      ],
+      "bands": [
+        0.3256,
+        0.3361,
+        0.6489
+      ],
+      "band_ratio": 1.4532
+    }
+  ],
+  "fails": 0,
+  "warns": 10,
+  "verdict": "WARN"
+}

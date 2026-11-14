@@ -11,7 +11,7 @@ Plano's City Council carried a citywide AI purchase on the consent agenda of its
 - Public access: Write to the decider
 - Take part: https://webapi.legistar.com/v1/plano/matters/1967
 
-- Last checked: 2026-11-11
+- Last checked: 2026-11-14
 
 ## Dates
 
@@ -27,6 +27,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-05 · Plano's purchase of ChatGPT Enterprise and the Darwin AI platform still reads as approved.
 - 2026-11-08 · Plano's approval of up to $390,000 for ChatGPT Enterprise and the Darwin AI platform still reads as passed.
 - 2026-11-11 · Plano's purchase of ChatGPT Enterprise and the Darwin AI platform still stands as the council approved it.
+- 2026-11-14 · Plano's ChatGPT Enterprise and Darwin AI purchase still stands as approved on the consent agenda.
 
 ## Evidence
 

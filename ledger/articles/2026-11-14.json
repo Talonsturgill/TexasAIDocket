@@ -1,0 +1,73 @@
+{
+ "_spec": {
+  "version": 1,
+  "purpose": "A standalone web edition of the archived visual story.",
+  "law": "Facts resolve to the original verified claim record. A layout rebuild does not reverify reporting.",
+  "written_by": "daily"
+ },
+ "section": "Chips and research",
+ "dek": {
+  "text": "The state's chip fund is backing a Texas Tech computing cluster in Lubbock with over $19 million. The announcement gives no date for when the cluster will run.",
+  "claims": ["c1", "c3", "c4"]
+ },
+ "introduction": [
+  {
+   "text": "[Texas Tech's college of engineering received another Texas Semiconductor Innovation Fund award worth over {{money:c1}} million](c1). [The university announced it on {{date:c2}}](c2). [The money will help Texas Tech set up a next-generation computing cluster in Lubbock](c3).",
+   "claims": ["c1", "c2", "c3"]
+  },
+  {
+   "text": "[The announcement says the award will help establish the cluster. It gives no install or completion date](c4). A reader of the announcement learns what the money is for and not when the machine will exist.",
+   "claims": ["c4"]
+  }
+ ],
+ "sections": [
+  {
+   "heading": "What the cluster is for",
+   "paragraphs": [
+    {
+     "text": "[The university describes a computing cluster as linked high-performance servers that work as one system on large parallel workloads](c5). [The project will combine artificial intelligence with high-fidelity simulation data and lab results](c6). [The stated goal is faster development of new semiconductor devices and materials](c7).",
+     "claims": ["c5", "c6", "c7"]
+    },
+    {
+     "text": "[The university says conventional semiconductor design leans on physics-based modeling that can be computationally intensive](c12). [Planned research includes AI-driven discovery and modeling of materials](c10), [and using AI to guide the epitaxial growth of ultrawide-bandgap semiconductors](c11).",
+     "claims": ["c12", "c10", "c11"]
+    },
+    {
+     "text": "[Roland Faller, dean of the Whitacre College of Engineering, is on the research team](c9). [He says Texas Tech will be among the first universities with access to the newest generation of Nvidia chips to power the cluster](c8). That is the dean's statement about access, and the announcement names no chip count and no delivery date.",
+     "claims": ["c9", "c8"]
+    }
+   ]
+  },
+  {
+   "heading": "Three awards in one year",
+   "paragraphs": [
+    {
+     "text": "[This is not Texas Tech's first award from the fund. Earlier awards paid for a new clean room and for semiconductors meant for harsh environments](c14). [In January the fund awarded Texas Tech {{money:c15}} million toward the clean room](c15). [The university will match that state money for a clean room project of {{money:c16}} million](c16).",
+     "claims": ["c14", "c15", "c16"]
+    },
+    {
+     "text": "[In May a team at the same college received roughly {{money:c17}} million for wide and ultrawide bandgap semiconductor research](c17). The three figures are not alike. January's is stated as a whole figure, May's is approximate and November's is a floor, so no total can be stated honestly.",
+     "claims": ["c17", "c15", "c1"]
+    }
+   ]
+  },
+  {
+   "heading": "Who runs the fund",
+   "paragraphs": [
+    {
+     "text": "[The fund's grants are administered by the Texas CHIPS Office in the Office of the Governor](c18). [The Texas CHIPS Act, signed in {{number:c19}}, created the fund](c19). [Texas Tech President Lawrence Schovanec thanked Governor Abbott and state leaders for the investment](c13).",
+     "claims": ["c18", "c19", "c13"]
+    },
+    {
+     "text": "The open question as of the announcement is the schedule. Nothing in the three announcements says when the Lubbock cluster will be installed or when its first research will run.",
+     "claims": ["c4"]
+    }
+   ]
+  }
+ ],
+ "related": [
+  {"id": "tx-2026-0247", "label": "The record entry for the November award"},
+  {"id": "tx-2026-0071", "label": "A state grant behind the Terafab semiconductor plant in Grimes County"},
+  {"id": "tx-2026-0138", "label": "Lubbock's moratorium procedure for data centers"}
+ ]
+}

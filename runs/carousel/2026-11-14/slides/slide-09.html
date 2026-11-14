@@ -1,0 +1,70 @@
+<!doctype html>
+<!-- 2026-11-14, frame 9 of 9. Archetype DOCUMENT. A material relief through txbench.js: a blackened brushed steel machine nameplate cropped by every edge, a raised border, domed rivets and three recessed fields. AWARD and CHIPS carry what the November 13th announcement says. IN SERVICE is empty, because the announcement gives no install or completion date. Drawn to illustrate; no real plate exists. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:900px">No install date announced</h1>
+<p class="dek" data-follow="30" style="width:860px">Texas Tech's November 13th announcement says the award will help establish the cluster. It gives no install or completion date. The plate is drawn to illustrate.</p>
+<div class="lab key" id="k1">AWARD</div><div class="lab val" id="v1">over $19 million</div>
+<div class="lab key" id="k2">CHIPS, PER THE DEAN</div><div class="lab val" id="v2">newest generation, Nvidia</div>
+<div class="lab key" id="k3">IN SERVICE</div>
+<style>.lab.key{font-size:26px;letter-spacing:0.16em;color:#C2C8D0;text-align:left}.lab.val{font-size:40px;text-align:left;letter-spacing:0.08em;text-shadow:0 -1px 0 rgba(0,0,0,0.85),0 1px 0 rgba(255,255,255,0.18) !important}</style>
+<script>window.FIG = {"nov_wafers": 19};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/txbench.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-14-waferbench.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = (async () => {
+  await document.fonts.ready;
+  CH.start({ kicker: "Texas Tech, Lubbock", counter: "09 / 09", src: "c4 c1 c2 c8", fit: { min: 80, max: 110, maxLines: 2 } });
+  const c = document.getElementById('art'), cx = c.getContext('2d'); cx.scale(2, 2);
+  TX.reseed(CH.SEED);
+  /* THE PLATE: three recessed fields in a column, each 800 x 150 px with a 10 px chamfer; a 34 px raised border round the
+   * frame; four domed rivets. The AWARD field carries a thin dusk_gold inlay round its lip. IN SERVICE is left empty. */
+  const F = [[140, 720, 800, 128], [140, 900, 800, 128], [140, 1080, 800, 128]];
+  const RIV = [[74, 700], [1006, 700], [74, 1188], [1006, 1188]];
+  function geo(X, Y) {
+    for (const [rx, ry] of RIV) { const d = Math.hypot(X - rx, Y - ry); if (d < 24) return [34 * Math.sqrt(1 - (d / 24) ** 2), 2]; }
+    const e = Math.min(X, 1080 - X, Y - 640, 1350 - Y);
+    if (Y > 640 && e < 34) return [26 * Math.min(1, e / 5), 1];               /* the raised border, chamfered */
+    for (let k = 0; k < F.length; k++) { const [fx, fy, fw, fh] = F[k]; const ex = Math.min(X - fx, fx + fw - X, Y - fy, fy + fh - Y);
+      if (ex > -9 && ex < -1 && k === 0) { const t = Math.min(-1 - ex, ex + 9); return [6 * Math.min(1, t / 2.5), 4]; }   /* the gold inlay round the award field, raised and chamfered */
+      if (ex >= 0) {
+        if (k === 2) { /* FIG.nov_wafers empty wafer pockets in the IN SERVICE recess, one per wafer of the November boat, none filled */
+          const pitch = fw / FIG.nov_wafers, pr = pitch * 0.4, i = Math.floor((X - fx) / pitch), pcx = fx + (i + 0.5) * pitch, pcy = fy + fh / 2, dp = Math.hypot(X - pcx, Y - pcy);
+          if (i >= 0 && i < FIG.nov_wafers && dp < pr) return [-40 - 16 * Math.min(1, (pr - dp) / 3), 6];
+        }
+        return [(k === 2 ? -40 : -12) * Math.min(1, ex / 6), 3]; } }
+    return [0, 0];
+  }
+  const height = (X, Y) => geo(X, Y)[0], material = (X, Y) => geo(X, Y)[1];
+  const albedo = (X, Y, m) => {
+    const streak = TX.fbm2(X / 260, Y / 1.6, 3), n = TX.fbm2(X / 9, Y / 9, 2);
+    if (m === 4) return [1.4, 0.56, 0.27];
+    if (m === 6) return [0.012, 0.012, 0.014];
+    const k = (m === 3 ? 0.014 : m === 2 ? 0.16 : 0.075) + 0.025 * streak + 0.01 * n;
+    return [k * 0.98, k, k * 1.04];
+  };
+  cx.fillStyle = '#0b0b0d'; cx.fillRect(0, 0, 1080, 640);
+  TXBENCH.relief(cx, { x: 0, y: 640, w: 1080, h: 710, scale: 2, height, material, albedo,
+    spec: { 0: [0.55, 34], 1: [0.7, 48], 2: [0.8, 60], 3: [0.2, 12], 4: [0.4, 30], 6: [0.5, 30] },
+    ambient: 0.14, diffuse: 1.2, ao: 0.95, shadow: 0.9, softness: 5, castLength: 220, dither: true });
+  CH.post(cx, { a: 0.35, veil: 0.2, veilH: 140 }); CH.footWash(cx, { a: 0.55 });
+  /* the type in the fields: the key above each field's left lip, the value inside the recess */
+  F.forEach(([fx, fy, fw, fh], k) => { CH.pinLabel('k' + (k + 1), [fx + 4, fy - 40]); const v = document.getElementById('v' + (k + 1)); if (v) CH.pinLabel('v' + (k + 1), [fx + fw / 2 - v.getBoundingClientRect().width / 2, fy + fh / 2 - 22]); });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

@@ -9,7 +9,7 @@ The Electric Reliability Council of Texas put a list of emerging Large Load risk
 - Public access: Write to the decider
 - Take part: https://www.ercot.com/mktrules/issues/PGRR144
 
-- Last checked: 2026-11-11
+- Last checked: 2026-11-14
 
 ## Dates
 
@@ -41,6 +41,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-05 · ERCOT's draft limit on how fast AI training loads can swing is still a draft before its board.
 - 2026-11-08 · ERCOT's proposed limit on how fast AI training loads may swing remains a draft in front of its board.
 - 2026-11-11 · The Public Utility Commission of Texas approved PGRR144 on November 5th, the last vote on its page. The model quality rule no longer waits on any body.
+- 2026-11-14 · ERCOT's board materials on AI training loads and the ramp limit it drafted still read as cited, and no later vote has changed what the record holds.
 
 ## Evidence
 

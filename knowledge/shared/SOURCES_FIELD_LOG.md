@@ -2594,3 +2594,13 @@ the fetch. **www.texastribune.org answered** both stories, November 10th and Aug
 answered with a cookie wall** on article pages and **eutils.ncbi.nlm.nih.gov disallowed** its search path in robots.txt,
 so two items citing PubMed records stayed unconfirmed this run. **www.sec.gov answered** a filing index and an 8-K to the
 project's descriptive User-Agent.
+
+## 2026-11-14 (carousel no. 77)
+
+**www.ttu.edu answered** all three Texas Tech Now announcements (November 13th, January and May), read in full, and every
+claim on tx-2026-0247 quotes them. **gov.texas.gov stayed off limits**, so the fund's administrator rests on the
+university's own restatement and the run record says so. **news.rice.edu answered 406** to the reverify User-Agent.
+**pmc.ncbi.nlm.nih.gov and pubmed.ncbi.nlm.nih.gov served a reCAPTCHA page** to automated fetches, a step past the
+cookie wall logged on November 11th, so items citing them stayed unconfirmed. **The UNT hosts answered again** after
+refusing earlier in the week. **The Angelina County PDF answered** through `fetch_doc.py` after failing earlier in the
+week.

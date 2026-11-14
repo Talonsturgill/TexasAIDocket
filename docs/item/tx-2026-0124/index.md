@@ -11,7 +11,7 @@ Rice University published on September 1st, 2026 that the Advanced Research Proj
 - Public access: Write to the decider
 - Take part: https://news.rice.edu/news/2026/rice-brings-ai-expertise-doe-backed-search-next-generation-magnets
 
-- Last checked: 2026-11-11
+- Last checked: 2026-11-14
 
 ## Dates
 
@@ -45,6 +45,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-05 · The Houston led magnet materials team still holds its Energy Department award.
 - 2026-11-08 · The Houston led team hunting magnet materials with AI still holds its Energy Department award.
 - 2026-11-11 · The federal award to the Houston led magnet materials team still stands as announced.
+- 2026-11-14 · The Energy Department award to the Houston led magnet materials team still stands as Rice announced it.
 
 ## Evidence
 

@@ -19740,5 +19740,218 @@
     "note": "Admitted on Starbase's own notice of the December 9th hearing. The city will consider the abatement and the economic development agreement with SpaceX at that meeting, and the public may speak."
    }
   ]
+ },
+ {
+  "title": "The state's chip fund gives Texas Tech over $19 million for an AI computing cluster in Lubbock that is meant to speed up semiconductor research",
+  "summary": "Texas Tech University said on November 13th, 2026 that its Whitacre College of Engineering received an additional award of over $19 million from the Texas Semiconductor Innovation Fund. The money will help the university establish a next-generation computing cluster in Lubbock. The project will integrate artificial intelligence with high-fidelity simulation data and experimental results. The university says this should shorten development cycles for new semiconductor devices and materials. Planned work includes AI-driven materials discovery and AI-enabled epitaxial growth of ultrawide-bandgap semiconductors. Engineering dean Roland Faller says Texas Tech will be one of the first universities with access to Nvidia's newest generation of chips to power the cluster. The cluster is not built yet and the announcement gives no install date. The fund is run by the Texas CHIPS Office in the Office of the Governor. It gave the same college $12 million in January toward a clean room, which the university will match for a $24 million project. In May it gave roughly $4.5 million for wide and ultrawide bandgap research.",
+  "topic": "research-and-science",
+  "decider": {
+   "name": "Texas CHIPS Office, Office of the Governor (Texas Semiconductor Innovation Fund)",
+   "type": "governor"
+  },
+  "geography": {
+   "statewide": false,
+   "counties": [
+    "Lubbock"
+   ],
+   "on_ercot": true
+  },
+  "status": "decided",
+  "confidence": "high",
+  "key_dates": [
+   {
+    "date": "2026-11-13",
+    "kind": "filed",
+    "note": "Texas Tech announces the fund's award for the computing cluster"
+   }
+  ],
+  "public_access": {
+   "room": "contact_only",
+   "how": "The award is announced in the university's own release. A state research grant is not a public proceeding and has no window for comment.",
+   "url": "https://www.ttu.edu/now/posts/2026/11/texas-tech-receives-19-million-grant-to-further-semiconductor-innovation.php",
+   "closes": null
+  },
+  "claims": [
+   {
+    "text": "Texas Tech's Edward E. Whitacre Jr. College of Engineering received another award from the Texas Semiconductor Innovation Fund worth over $19 million.",
+    "verbatim_quote": "received an additional Texas Semiconductor Innovation Fund (TSIF) award of over $19",
+    "source_url": "https://www.ttu.edu/now/posts/2026/11/texas-tech-receives-19-million-grant-to-further-semiconductor-innovation.php",
+    "source_title": "Texas Tech Now, Texas Tech Receives $19 Million Grant to Further Semiconductor Innovation",
+    "source_type": "primary_official",
+    "fetched": "2026-11-14",
+    "id": "tx-2026-0247-c1"
+   },
+   {
+    "text": "Texas Tech announced the award on November 13th, 2026.",
+    "verbatim_quote": "Texas Tech Receives $19 Million Grant to Further Semiconductor Innovation November 13, 2026",
+    "source_url": "https://www.ttu.edu/now/posts/2026/11/texas-tech-receives-19-million-grant-to-further-semiconductor-innovation.php",
+    "source_title": "Texas Tech Now, Texas Tech Receives $19 Million Grant to Further Semiconductor Innovation",
+    "source_type": "primary_official",
+    "fetched": "2026-11-14",
+    "id": "tx-2026-0247-c2"
+   },
+   {
+    "text": "The money will help Texas Tech set up a next-generation computing cluster in Lubbock.",
+    "verbatim_quote": "The funding of this award will help Texas Tech establish a next-generation computing cluster in Lubbock.",
+    "source_url": "https://www.ttu.edu/now/posts/2026/11/texas-tech-receives-19-million-grant-to-further-semiconductor-innovation.php",
+    "source_title": "Texas Tech Now, Texas Tech Receives $19 Million Grant to Further Semiconductor Innovation",
+    "source_type": "primary_official",
+    "fetched": "2026-11-14",
+    "id": "tx-2026-0247-c3"
+   },
+   {
+    "text": "The cluster is not built yet. The announcement says the award will help establish it and gives no install or completion date.",
+    "verbatim_quote": "will help Texas Tech establish a next-generation computing",
+    "source_url": "https://www.ttu.edu/now/posts/2026/11/texas-tech-receives-19-million-grant-to-further-semiconductor-innovation.php",
+    "source_title": "Texas Tech Now, Texas Tech Receives $19 Million Grant to Further Semiconductor Innovation",
+    "source_type": "primary_official",
+    "fetched": "2026-11-14",
+    "id": "tx-2026-0247-c4"
+   },
+   {
+    "text": "The university describes a computing cluster as linked high-performance servers that work as one system on large parallel workloads.",
+    "verbatim_quote": "designed to function as a single unified system to handle massive, parallel workloads.",
+    "source_url": "https://www.ttu.edu/now/posts/2026/11/texas-tech-receives-19-million-grant-to-further-semiconductor-innovation.php",
+    "source_title": "Texas Tech Now, Texas Tech Receives $19 Million Grant to Further Semiconductor Innovation",
+    "source_type": "primary_official",
+    "fetched": "2026-11-14",
+    "id": "tx-2026-0247-c5"
+   },
+   {
+    "text": "The project will combine artificial intelligence with high-fidelity simulation data and lab results.",
+    "verbatim_quote": "This project will integrate artificial intelligence (AI) with high-fidelity simulation data and experimental results.",
+    "source_url": "https://www.ttu.edu/now/posts/2026/11/texas-tech-receives-19-million-grant-to-further-semiconductor-innovation.php",
+    "source_title": "Texas Tech Now, Texas Tech Receives $19 Million Grant to Further Semiconductor Innovation",
+    "source_type": "primary_official",
+    "fetched": "2026-11-14",
+    "id": "tx-2026-0247-c6"
+   },
+   {
+    "text": "The goal is faster development of new semiconductor devices and materials.",
+    "verbatim_quote": "This should shorten development cycles for next-generation semiconductor devices and materials.",
+    "source_url": "https://www.ttu.edu/now/posts/2026/11/texas-tech-receives-19-million-grant-to-further-semiconductor-innovation.php",
+    "source_title": "Texas Tech Now, Texas Tech Receives $19 Million Grant to Further Semiconductor Innovation",
+    "source_type": "primary_official",
+    "fetched": "2026-11-14",
+    "id": "tx-2026-0247-c7"
+   },
+   {
+    "text": "The engineering dean says Texas Tech will be among the first universities with access to the newest generation of Nvidia chips to power the cluster.",
+    "verbatim_quote": "Texas Tech will be one of the first universities to have access to the newest generation of Nvidia chips to power the cluster.",
+    "source_url": "https://www.ttu.edu/now/posts/2026/11/texas-tech-receives-19-million-grant-to-further-semiconductor-innovation.php",
+    "source_title": "Texas Tech Now, Texas Tech Receives $19 Million Grant to Further Semiconductor Innovation",
+    "source_type": "primary_official",
+    "fetched": "2026-11-14",
+    "id": "tx-2026-0247-c8"
+   },
+   {
+    "text": "Roland Faller, dean of the Whitacre College of Engineering, is on the research team.",
+    "verbatim_quote": "Along with Faller, the research team consists of",
+    "source_url": "https://www.ttu.edu/now/posts/2026/11/texas-tech-receives-19-million-grant-to-further-semiconductor-innovation.php",
+    "source_title": "Texas Tech Now, Texas Tech Receives $19 Million Grant to Further Semiconductor Innovation",
+    "source_type": "primary_official",
+    "fetched": "2026-11-14",
+    "id": "tx-2026-0247-c9"
+   },
+   {
+    "text": "Planned research includes AI-driven discovery and modeling of materials.",
+    "verbatim_quote": "Some of those projects include AI-driven materials discovery and modeling",
+    "source_url": "https://www.ttu.edu/now/posts/2026/11/texas-tech-receives-19-million-grant-to-further-semiconductor-innovation.php",
+    "source_title": "Texas Tech Now, Texas Tech Receives $19 Million Grant to Further Semiconductor Innovation",
+    "source_type": "primary_official",
+    "fetched": "2026-11-14",
+    "id": "tx-2026-0247-c10"
+   },
+   {
+    "text": "Planned research also includes using AI to guide the epitaxial growth of ultrawide-bandgap semiconductors.",
+    "verbatim_quote": "AI-enabled epitaxial growth of ultrawide-bandgap semiconductors",
+    "source_url": "https://www.ttu.edu/now/posts/2026/11/texas-tech-receives-19-million-grant-to-further-semiconductor-innovation.php",
+    "source_title": "Texas Tech Now, Texas Tech Receives $19 Million Grant to Further Semiconductor Innovation",
+    "source_type": "primary_official",
+    "fetched": "2026-11-14",
+    "id": "tx-2026-0247-c11"
+   },
+   {
+    "text": "The university says conventional semiconductor design leans on physics-based modeling that can be computationally intensive.",
+    "verbatim_quote": "Conventional semiconductor design relies heavily on physics-based modeling.",
+    "source_url": "https://www.ttu.edu/now/posts/2026/11/texas-tech-receives-19-million-grant-to-further-semiconductor-innovation.php",
+    "source_title": "Texas Tech Now, Texas Tech Receives $19 Million Grant to Further Semiconductor Innovation",
+    "source_type": "primary_official",
+    "fetched": "2026-11-14",
+    "id": "tx-2026-0247-c12"
+   },
+   {
+    "text": "Texas Tech President Lawrence Schovanec thanked Governor Abbott and state leaders for the investment.",
+    "verbatim_quote": "We are grateful to Governor Abbott and state leaders for this investment in Texas Tech University and the state’s future,",
+    "source_url": "https://www.ttu.edu/now/posts/2026/11/texas-tech-receives-19-million-grant-to-further-semiconductor-innovation.php",
+    "source_title": "Texas Tech Now, Texas Tech Receives $19 Million Grant to Further Semiconductor Innovation",
+    "source_type": "primary_official",
+    "fetched": "2026-11-14",
+    "id": "tx-2026-0247-c13"
+   },
+   {
+    "text": "This is not Texas Tech's first award from the fund. Earlier awards paid for a new clean room and for semiconductors meant for harsh environments.",
+    "verbatim_quote": "Texas Tech previously earned TSIF awards to develop a new clean room and to develop wide/ultrawide bandgap semiconductors for use in harsh environments",
+    "source_url": "https://www.ttu.edu/now/posts/2026/11/texas-tech-receives-19-million-grant-to-further-semiconductor-innovation.php",
+    "source_title": "Texas Tech Now, Texas Tech Receives $19 Million Grant to Further Semiconductor Innovation",
+    "source_type": "primary_official",
+    "fetched": "2026-11-14",
+    "id": "tx-2026-0247-c14"
+   },
+   {
+    "text": "In January the fund awarded Texas Tech $12 million toward a clean room for semiconductor work.",
+    "verbatim_quote": "after receiving a $12 million Texas Semiconductor Innovation Fund (TSIF) grant award",
+    "source_url": "https://www.ttu.edu/now/posts/2026/01/texas-tech-to-build-24-million-clean-room-for-semiconductor-development.php",
+    "source_title": "Texas Tech Now, Texas Tech to Build $24 Million Clean Room for Semiconductor Development",
+    "source_type": "primary_official",
+    "fetched": "2026-11-14",
+    "id": "tx-2026-0247-c15"
+   },
+   {
+    "text": "Texas Tech will match that state money, for a clean room project of $24 million.",
+    "verbatim_quote": "The university will match the state’s funding, bringing the total project award to $24 million",
+    "source_url": "https://www.ttu.edu/now/posts/2026/01/texas-tech-to-build-24-million-clean-room-for-semiconductor-development.php",
+    "source_title": "Texas Tech Now, Texas Tech to Build $24 Million Clean Room for Semiconductor Development",
+    "source_type": "primary_official",
+    "fetched": "2026-11-14",
+    "id": "tx-2026-0247-c16"
+   },
+   {
+    "text": "In May a team at the same college received roughly $4.5 million from the fund for wide and ultrawide bandgap semiconductor research.",
+    "verbatim_quote": "received roughly $4.5 million from the Texas Semiconductor Innovation Fund (TSIF)",
+    "source_url": "https://www.ttu.edu/now/posts/2026/05/texas-tech-receives-4-5-million-grant-to-advance-semiconductor-research.php",
+    "source_title": "Texas Tech Now, Texas Tech Receives $4.5 Million Grant to Advance Semiconductor Research",
+    "source_type": "primary_official",
+    "fetched": "2026-11-14",
+    "id": "tx-2026-0247-c17"
+   },
+   {
+    "text": "The fund's grants are administered by the Texas CHIPS Office in the Office of the Governor.",
+    "verbatim_quote": "TSIF grants are administered by the Texas CHIPS Office, within the Office of the Governor’s",
+    "source_url": "https://www.ttu.edu/now/posts/2026/05/texas-tech-receives-4-5-million-grant-to-advance-semiconductor-research.php",
+    "source_title": "Texas Tech Now, Texas Tech Receives $4.5 Million Grant to Advance Semiconductor Research",
+    "source_type": "primary_official",
+    "fetched": "2026-11-14",
+    "id": "tx-2026-0247-c18"
+   },
+   {
+    "text": "The Texas CHIPS Act, signed in 2023, created the fund.",
+    "verbatim_quote": "Gov. Greg Abbott signed into law the Texas CHIPS Act in 2023, establishing both the TSIF",
+    "source_url": "https://www.ttu.edu/now/posts/2026/05/texas-tech-receives-4-5-million-grant-to-advance-semiconductor-research.php",
+    "source_title": "Texas Tech Now, Texas Tech Receives $4.5 Million Grant to Advance Semiconductor Research",
+    "source_type": "primary_official",
+    "fetched": "2026-11-14",
+    "id": "tx-2026-0247-c19"
+   }
+  ],
+  "notes_for_editor": "Admitted on Texas Tech's own release. The governor's site that lists the award is off limits to this project, so the award is stated in the university's words.",
+  "history": [
+   {
+    "date": "2026-11-14",
+    "note": "Admitted on Texas Tech's announcement of the award. The cluster is funded and not yet built."
+   }
+  ],
+  "last_verified": "2026-11-14",
+  "id": "tx-2026-0247"
  }
 ]

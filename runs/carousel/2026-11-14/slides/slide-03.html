@@ -1,0 +1,55 @@
+<!doctype html>
+<!-- 2026-11-14, frame 3 of 9. Archetype OBJECT_AND_CAPTION. A spatial scene through txthree.js in the floodlit world, inside the dark lab: the January boat, twelve mirror wafers in a clear quartz boat capped at both ends, standing on the black bench. Drawn to illustrate; one wafer stands for $1 million. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:900px">January brought $12 million for a clean room</h1>
+<p class="dek" data-follow="30" style="width:860px">The fund gave Texas Tech $12 million in January toward a clean room for semiconductor work. Twelve wafers, capped at both ends, drawn to illustrate.</p>
+
+<script>window.FIG = {"jan_wafers": 12, "pitch_mm": 16};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-14-waferbench.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Texas Semiconductor Innovation Fund", counter: "03 / 09", src: "c15 c14", fit: { min: 76, max: 100, maxLines: 2 } });
+  const R = CH.stage(TXT, gl, W, { fov: 30, near: 0.01, far: 40 });
+  TXT.interior(R, CH.roomOpts({ w: 3.6, d: 2.8 }));
+  const bench = K.make('lab_bench', { w: 2.4, d: 0.9 }); bench.position.set(0, 0, -0.86); TXT.add(R, bench);
+  const TOP = bench.userData.top, P = FIG.pitch_mm / 1000;
+  /* THE FIGURE: the January boat holds FIG.jan_wafers wafers, capped at both ends because the award is stated as a whole figure */
+  const boat = K.make('wafer_boat', { count: FIG.jan_wafers, pitch: P, ends: 'both' });
+  boat.rotation.y = -Math.PI / 2; boat.position.set(0.04, TOP, -0.86); TXT.add(R, boat); TXT.contact(R, boat);
+  CH.strip(THREE, R, -1.7, 1.7, TOP + 0.3, -2.18, 0.07);
+  const FROM = [-0.36, TOP + 0.5, -0.36];
+  const LOOK = CH.aim(THREE, R, TXT, FROM, [0.04, TOP + 0.06, -0.86], 560, 1040, 36);
+  TXT.frame(R, { fov: 36, from: FROM, look: LOOK });
+  CH.KEY_SCALE = 1.4;
+  TXT.deckRig(R, CH.rigSpec(W, 2.6, 4096), CH.rigOpts([0.04, TOP, -0.86], { distance: 6, shadowFar: 14, normalBias: 0.004 }));
+  CH.pool(THREE, TXT, R, [0.04, TOP, -0.86], { radius: 0.65, i: 16, normalBias: 0.004 });
+  CH.darkRoom(R, { env: 0.2 });
+  CH.labEnv(THREE, R);
+  TXT.weather(R, { grime: 0.08, height: 0.2, mottle: 0.04 });
+  TXT.stage(R, [boat]);
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+  CH.dress(cx, { foot: 0.7 });
+
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

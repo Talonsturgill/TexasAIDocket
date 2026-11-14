@@ -1,0 +1,22 @@
+{
+  "lens": "reader", "round": 3,
+  "criteria": [
+    {"name": "artwork_craft", "weight": 0.22, "score": 7.0, "why": "Slides 1, 3, 4, 5 and 8 are dark, staged wafer-and-boat renders with one bright edge and a subject filling about half the frame, and the 19-wafer boat on slide 1 matches its declared one wafer per $1 million. Slide 2 is a flat textured tile with a mono label and slide 9 is a type panel more than an image, and machine_qa flags busy art under 'Lubbock County'."},
+    {"name": "deck_coherence", "weight": 0.12, "score": 7.5, "why": "The wafer unit carries slides 1, 3, 4, 5 and 6 and returns as 19 empty sockets on slide 9's IN SERVICE row, and the deck stays dark the whole way with no strobing. Slide 2's stucco tile and slide 7's copper-on-slate relief come from a different material vocabulary."},
+    {"name": "claim_integrity", "weight": 0.20, "score": 8.0, "why": "Every numeral (19, 12, 24, 4.5, 2023, 13th, $1 million unit) traces to c1, c15, c16, c17, c19 or figures.json, all from three fetched Texas Tech primary pages, and slide 6 is careful to call 'over' a floor and 'roughly' roughly. 'Not built yet' (c4, slide 1 headline and caption) is inferred from 'will help establish' rather than stated, and 'January' rests on the URL's date path."},
+    {"name": "story_and_stakes", "weight": 0.16, "score": 6.5, "why": "A Lubbock reader learns that the governor's CHIPS office fund put three awards into Texas Tech this year and that the cluster has no date, but the deck names no deadline, meeting or body they could act on. What the cluster means for West Texas beyond the dean's Nvidia line is never stated."},
+    {"name": "sequence_and_momentum", "weight": 0.10, "score": 7.0, "why": "The cover earns the swipe and slide 9 lands the absence. Slides 3 to 6 spend four frames on earlier money before returning to the cluster, slide 6 largely repeats 3 to 5, and the AI content arrives only at slide 7."},
+    {"name": "voice", "weight": 0.10, "score": 7.0, "why": "The voice is clean and on register, and no colons, em dashes or banned words turned up. The bodies read like the press release paraphrased, and nothing shows knowledge of Lubbock or the South Plains."},
+    {"name": "variety", "weight": 0.10, "score": 6.5, "why": "A university compute deck four days after no. 73, and it repeats no. 65's 'university award with no opening date' angle. It uses the same counted-units-as-objects device as nos. 72 to 76, though the wafer-boat material is new."}
+  ],
+  "weighted_score": 7.13,
+  "hard_fails": [],
+  "ship": true,
+  "one_sentence_fix": "Merge slides 3 to 6 into two frames, and use the freed frames to say what the cluster changes for Lubbock and South Plains researchers and who a reader can ask for the install date.",
+  "artwork_weakest_frames": [
+    {"slide": 9, "problem": "A type panel: three labelled slots on a bolted plate with a flat value field, and the cite line crosses the plate.", "fix": "Render the empty 19-slot boat from slide 1 under a single top light with no wafers in it, as the IN SERVICE state."},
+    {"slide": 2, "problem": "A flat stucco tile grid with a mono label reads as a texture swatch and shares no material with the wafer deck.", "fix": "Replace it with a Lubbock County caliche relief carrying a single wafer set at the county seat, lit from the same left key as slide 1."},
+    {"slide": 7, "problem": "The copper-on-slate epitaxy relief is abstract at feed size.", "fix": "Shoot a single wafer in a reactor susceptor at a low angle, with a copper film visibly half grown across it."},
+    {"slide": 6, "problem": "Three thin rows of small studs fill only a narrow band of the frame.", "fix": "Stand the three wafer boats from slides 3, 5 and 1 side by side at shared scale and crop them to fill two thirds of the frame."}
+  ]
+}

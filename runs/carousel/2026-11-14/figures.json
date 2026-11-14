@@ -1,0 +1,106 @@
+{
+ "_note": "Every value is extracted from a claim quote by compute.py, or computed here from values that were.",
+ "nov_floor_m": {
+  "value": 19,
+  "from": [
+   "c1"
+  ],
+  "basis": "the November award's stated floor in millions of dollars, over this amount, never exact"
+ },
+ "jan_award_m": {
+  "value": 12,
+  "from": [
+   "c15"
+  ],
+  "basis": "the January award toward the clean room, millions of dollars"
+ },
+ "room_total_m": {
+  "value": 24,
+  "from": [
+   "c16"
+  ],
+  "basis": "the clean room project total after Texas Tech's match, millions of dollars"
+ },
+ "tech_match_m": {
+  "value": 12,
+  "from": [
+   "c15",
+   "c16"
+  ],
+  "basis": "the clean room total minus the January award, Texas Tech's match"
+ },
+ "may_award_m": {
+  "value": 4.5,
+  "from": [
+   "c17"
+  ],
+  "basis": "the May award, roughly this many millions of dollars, never exact"
+ },
+ "chips_act_year": {
+  "value": 2023,
+  "from": [
+   "c19"
+  ],
+  "basis": "the year the Texas CHIPS Act was signed"
+ },
+ "awards_2026": {
+  "value": 3,
+  "from": [
+   "c15",
+   "c17",
+   "c1"
+  ],
+  "basis": "dated 2026 announcements of awards from the fund to this college in the record"
+ },
+ "usd_m_per_wafer": {
+  "value": 1,
+  "from": [],
+  "basis": "DRAWING UNIT: one wafer stands for this many millions of dollars"
+ },
+ "jan_wafers": {
+  "value": 12,
+  "from": [
+   "c15"
+  ],
+  "basis": "wafers in the January boat at the drawing unit"
+ },
+ "match_wafers": {
+  "value": 12,
+  "from": [
+   "c15",
+   "c16"
+  ],
+  "basis": "wafers in Texas Tech's matching boat at the drawing unit"
+ },
+ "may_whole": {
+  "value": 4,
+  "from": [
+   "c17"
+  ],
+  "basis": "whole wafers in the May boat at the drawing unit"
+ },
+ "may_part": {
+  "value": 0.5,
+  "from": [
+   "c17"
+  ],
+  "basis": "the remainder of roughly 4.5 at the drawing unit, drawn as a cleaved half wafer"
+ },
+ "nov_wafers": {
+  "value": 19,
+  "from": [
+   "c1"
+  ],
+  "basis": "wafers in the November boat at the drawing unit, the floor, with no far end plate"
+ },
+ "pitch_mm": {
+  "value": 16,
+  "from": [],
+  "basis": "DRAWING CHOICE: boat slot pitch in millimetres"
+ },
+ "wafer_mm": {
+  "value": 200,
+  "from": [],
+  "basis": "DRAWING CHOICE: wafer diameter in millimetres"
+ }
+}

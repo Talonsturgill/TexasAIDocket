@@ -55,6 +55,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-06 · Homeland Security's face capture test at the Progreso bridge has no fresh reading. Its pages turned away every reader again.
 - 2026-11-07 · The face capture test at the Progreso bridge has no newer reading. The department's pages still turn away every reader.
 - 2026-11-08 · The face capture test at the Progreso crossing has no newer reading. The department's pages still turn away every reader.
+- 2026-11-14 · The face capture test at the Progreso crossing has no newer reading. The department's pages still turn away every reader.
 
 ## Evidence
 

@@ -1,0 +1,84 @@
+<!doctype html>
+<!-- 2026-11-14, frame 7 of 9. Archetype CLOSE_CROP. A material relief through txbench.js: a crystal growth surface in plan, straight terraces stepping down with lit risers, and on the top terrace separate islands of a new layer that have not joined. Drawn to illustrate; no material is named. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:900px">AI to steer how the crystals grow</h1>
+<p class="dek" data-follow="30" style="width:860px">The project will integrate AI with high-fidelity simulation data and experimental results, which the university says should shorten development cycles. Planned work includes AI-enabled epitaxial growth of ultrawide-bandgap semiconductors. Drawn to illustrate.</p>
+
+<script>window.FIG = {};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/txbench.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-14-waferbench.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = (async () => {
+  await document.fonts.ready;
+  CH.start({ kicker: "Texas Tech, Lubbock", counter: "07 / 09", src: "c6 c7 c11", fit: { min: 76, max: 100, maxLines: 2 } });
+  const c = document.getElementById('art'), cx = c.getContext('2d'); cx.scale(2, 2);
+  TX.reseed(CH.SEED);
+  /* A VICINAL SURFACE IN PLAN: straight terraces stepping down from the upper left, 9 px a step, each riser lit on the key side;
+   * the top terrace carries separate islands of the next layer that have not joined. Drawn to illustrate, no material named. */
+  const Y0 = 600, ux = 0.6, uy = 0.8, STEP = 200, RISE = 38;
+  /* ONE HALF GROWN LAYER: step flow growth out from the riser of the third terrace, one connected sheet with a ragged
+   * front that has covered part of the terrace and not the rest. Along the step s, across it t. */
+  const RAMP = 10;
+  /* step flow sheets on the third and fourth terraces, each growing out from its own riser */
+  function sheet(X, Y, t, k) {
+    const T0 = 120 + (k - 1) * STEP, s = X * uy - (Y - Y0) * ux, f = t - T0;
+    if (f < 0 || f > STEP - 20 || Y < Y0 + 70) return false;
+    const ph = k * 1.7, front = 92 + 40 * Math.sin(s / 74 + ph) + 20 * Math.sin(s / 29 + 2.3 * ph) + 6 * Math.sin(s / 12 + ph);
+    const end = (k === 2 ? 300 : 620) - 0.006 * (f - 70) ** 2 + 15 * Math.sin(t / 26);
+    return f < front && s < end && s > (k === 2 ? -120 : -40) + 0.006 * (f - 70) ** 2;
+  }
+  /* separate islands nucleated ahead of each front, not yet joined to it: lobed, never round rings */
+  const NUC = [];
+  for (const k of [2, 3]) { const T0 = 120 + (k - 1) * STEP; for (let i = 0; i < 9; i++) { const s = -60 + i * (k === 2 ? 40 : 72) + 14 * Math.sin(i * 2.1 + k), f = 150 + 22 * Math.sin(i * 1.3 + k);
+    NUC.push([ux * (T0 + f) + uy * s, Y0 + uy * (T0 + f) - ux * s, 13 + 7 * Math.abs(Math.sin(i * 0.9 + k)), i * 1.7 + k, k]); } }
+  function island(X, Y, t, k) {
+    if (sheet(X, Y, t, k)) return true;
+    for (const [cx0, cy0, r, ph, kk] of NUC) { if (kk !== k) continue; const dx = X - cx0, dy = Y - cy0, d = Math.hypot(dx, dy);
+      if (d < r * 1.4 && d < r * (1 + 0.16 * Math.sin(2 * Math.atan2(dy, dx) + ph) + 0.07 * Math.sin(5 * Math.atan2(dy, dx) + 2 * ph))) return Y > Y0 + 70; }
+    return false;
+  }
+  /* ONE WAFER: the growth surface is the face of a single wafer seen close from above, its rim bevelled, on the black epoxy
+   * bench the rest of the deck stands on. The terraces and the growing layer live only inside its disc. */
+  const WX = 560, WY = 1210, WR = 640;
+  function geo(X, Y) {
+    const dw = Math.hypot(X - WX, Y - WY);
+    if (dw > WR) return [-46 + TX.fbm2(X / 60, Y / 60, 2) * 0.6, 4];
+    if (dw > WR - 14) return [-46 + 46 * Math.sqrt((WR - dw) / 14), 5];
+    return geo0(X, Y);
+  }
+  function geo0(X, Y) {
+    const t = X * ux + (Y - Y0) * uy, k = Math.max(0, Math.floor((t - 120) / STEP) + 1), f = k ? t - (120 + (k - 1) * STEP) : 1e9;
+    let h = -k * RISE + (f < RAMP ? RISE * (1 - f / RAMP) : 0) + TX.fbm2(X / 14, Y / 14, 2) * 0.5;
+    if ((k === 2 || k === 3) && island(X, Y, t, k)) {
+      let e = 1e9; for (const [dx, dy] of [[3, 0], [-3, 0], [0, 3], [0, -3]]) { const t2 = (X + dx) * ux + (Y + dy - Y0) * uy; if (!island(X + dx, Y + dy, t2, k)) e = 2; }
+      return [h + RISE * 0.85 * (e < 3 ? 0.55 : 1), 2];
+    }
+    return [h, k < 1 ? 1 : 0];
+  }
+  cx.fillStyle = '#08080b'; cx.fillRect(0, 0, 1080, Y0);
+  TXBENCH.relief(cx, { x: 0, y: Y0, w: 1080, h: 1350 - Y0, scale: 2, height: (X, Y) => geo(X, Y)[0], material: (X, Y) => geo(X, Y)[1],
+    albedo: (X, Y, m) => { const n = TX.fbm2(X / 40, Y / 40, 3), g = TX.fbm2(X / 4, Y / 4, 2) * 0.01;
+      if (m === 4) { const sc = TX.fbm2(X / 1.5, Y / 90, 2); return [0.03 + 0.008 * sc, 0.029 + 0.008 * sc, 0.034 + 0.008 * sc]; }
+      if (m === 5) return [0.34, 0.35, 0.4];
+      if (m === 2) return [1.05, 0.42, 0.2]; const k = (m === 1 ? 0.16 : 0.13) + 0.012 * n + g * 0.5; return [k * 0.86, k * 0.92, k * 1.14]; },
+    spec: { 0: [0.9, 80], 1: [0.9, 80], 2: [0.35, 24], 4: [0.25, 20], 5: [0.9, 70] }, ambient: 0.2, diffuse: 1.2, ao: 0.95, shadow: 0.6, softness: 4, castLength: 120, dither: true });
+  CH.post(cx, { a: 0.3, veil: 0.2, veilH: 140 }); CH.footWash(cx, { a: 0.55 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

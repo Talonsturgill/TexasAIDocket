@@ -12,7 +12,7 @@ The City of Starbase gave notice that its City Commission will meet on December 
 - Comment closes: 2026-12-09
 - Take part: https://cdn.prod.website-files.com/67fcab04e05680343de9ea4e/6aee00848f7bbe0cdee604da_6aee005cf2854ef8fc7713ed_Public_Hearing_Notice_Tax_Abatement_Dec9_2026.pdf
 
-- Last checked: 2026-11-11
+- Last checked: 2026-11-14
 
 ## Dates
 
@@ -23,6 +23,7 @@ The City of Starbase gave notice that its City Commission will meet on December 
 One dated line per check, oldest first. A line that says nothing changed means somebody looked and it had not.
 
 - 2026-11-11 · Admitted on Starbase's own notice of the December 9th hearing. The city will consider the abatement and the economic development agreement with SpaceX at that meeting, and the public may speak.
+- 2026-11-14 · Starbase's hearing notice for the SpaceX abatement still sets the December 9th meeting, and the public may still speak there.
 
 ## Evidence
 

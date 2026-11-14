@@ -1,0 +1,22 @@
+{
+  "lens": "craft", "round": 3,
+  "criteria": [
+    {"name": "artwork_craft", "weight": 0.22, "score": 6.5, "why": "Frames 1, 3, 5 and 8 pass most of the showstopper test: one wafer subject fills a third to two thirds of the frame on a near black bench with cast shadows. Frames 2, 6, 7 and 9 put their type on a flat black band that ends in a hard horizontal seam above the relief, which the 4 descriptor names as type on plates. Frames 2 and 7 sit in the grey middle and read as embossed drawings, not lit objects."},
+    {"name": "deck_coherence", "weight": 0.12, "score": 7.5, "why": "The one wafer per $1 million scale is a real spine: 12 wafers on frame 3, 12 plus 12 on 4, 4.5 on 5, 12/4.5/19 on 6 and 19 empty sockets on 9. Frames 2 and 7 step outside that object world, and the camera switches between a raking 3D view and a flat plan relief with no declared cut."},
+    {"name": "claim_integrity", "weight": 0.20, "score": 8.0, "why": "Every slide numeral traces to claims c1 to c19, each quoted from a fetched ttu.edu page, and frame 6 calls 19 a floor and draws no total. The governance facts on frame 2 come from a university press release, and 'not built yet' (c4) is inferred from 'will help establish'."},
+    {"name": "story_and_stakes", "weight": 0.16, "score": 7.0, "why": "What, where, who and the missing date are all named. A reader gets no next step or deadline."},
+    {"name": "sequence_and_momentum", "weight": 0.10, "score": 7.5, "why": "The cover's open ended boat earns the swipe, frame 6 is the turn, and the close's empty IN SERVICE recess pays off the 19 wafers. Frame 4 could fold into frame 3."},
+    {"name": "voice", "weight": 0.10, "score": 7.0, "why": "Clean, sourced and on register. 'Drawn to illustrate' closes six of the nine bodies and reads as compliance boilerplate."},
+    {"name": "variety", "weight": 0.10, "score": 8.0, "why": "An interior, floodlit, small object bench deck with no horizon, set apart from nos. 74 to 76, and the wafer as unit of money is a fresh move."}
+  ],
+  "weighted_score": 7.30,
+  "hard_fails": [],
+  "ship": true,
+  "one_sentence_fix": "Remove the flat black type bands and the hard seam under them on frames 2, 6, 7 and 9, and light each relief as a pool that falls off into true black at the top.",
+  "artwork_weakest_frames": [
+    {"slide": 7, "problem": "Flat copper crystal cutouts on mid grey textured slate below a hard black type band; no wafer scale.", "fix": "Rebuild it as a 3D close up of one wafer from the frame 1 bench, with a raised epitaxial island grown on its mirror face, raked by a single side light."},
+    {"slide": 2, "problem": "A stucco textured square in a grid of identical mid brown tiles under a hard seam, with black label type printed on the copper.", "fix": "Lower the surrounding county tiles to near black, raise only the Lubbock tile with a strong side light, and let the vignette carry up into the headline area."},
+    {"slide": 9, "problem": "The plate ends at a hard seam, the footer sits over the lower rivets, and the nineteen empty pockets read as vent holes at 432 px.", "fix": "Crop the plate so its bottom rivets clear the footer, give the pockets a lit rim and visible floor, and fade the plate's top edge into the black field."},
+    {"slide": 6, "problem": "A flat graphic band under a seam; the discs are uniform grey buttons.", "fix": "Tilt the camera about 20 degrees off plan and rake the light low from the left so each disc shows a lit edge and a cast shadow."}
+  ]
+}

@@ -45,6 +45,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-06 · Leander's end to plate reader funding stands on the earlier reading. The city's notice still turns away every reader.
 - 2026-11-07 · Leander's end to plate reader funding holds on the earlier reading. The city's notice turns away every reader.
 - 2026-11-08 · Leander's end to plate reader payments holds on the earlier reading. The city's notice still turns every reader away.
+- 2026-11-14 · Leander's end to plate reader payments stays on the earlier reading. The city's notice still turns every reader away.
 
 ## Evidence
 

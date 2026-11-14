@@ -61,6 +61,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-06 · Brazos County's assignment of the RELLIS abatement to ThisWay stands on the earlier reading. The county's notice still turns away every reader.
 - 2026-11-07 · Brazos County's assignment of the RELLIS abatement to ThisWay holds on the earlier reading. The county's notice still turns away every reader.
 - 2026-11-08 · The RELLIS abatement's assignment to ThisWay rests on the earlier reading, since Brazos County's notice still turns every reader away.
+- 2026-11-14 · The RELLIS abatement's assignment can't be confirmed this time. Brazos County's notice still turns every reader away.
 
 ## Evidence
 

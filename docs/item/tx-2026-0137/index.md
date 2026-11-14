@@ -43,6 +43,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-04 · The JAMA Network Open paper still reports case managers out-estimating the discharge AI nearer the day a patient goes home. Its authors still caution against reading the strong admission-day correlation as accuracy.
 - 2026-11-07 · The finding that case managers beat the discharge AI on the last day still reads as published.
 - 2026-11-10 · The paper's open access copy still carries every passage the record quotes, and nothing in it has been corrected.
+- 2026-11-14 · Whether the discharge paper's open access copy still reads as cited is unconfirmed this time, because the archive answered with a browser challenge instead of the paper.
 
 ## Evidence
 

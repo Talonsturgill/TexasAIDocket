@@ -40,6 +40,7 @@ One dated line per check, oldest first. A line that says nothing changed means s
 - 2026-11-05 · Checked and unchanged. The decision still stands as decided.
 - 2026-11-08 · The questionnaire answers are in and read. ERCOT told the commission on November 5th that answers from 257 developers were reviewed and that most will get a second, shorter round of questions.
 - 2026-11-11 · The grid operator's questionnaire to conditionally classified large loads still stands, notarized attestation and all.
+- 2026-11-14 · The questionnaire to conditionally classified large loads is unconfirmed this time. The grid operator's documents did not answer.
 
 ## Evidence
 

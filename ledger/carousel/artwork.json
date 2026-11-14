@@ -4852,6 +4852,73 @@
     "hex": "#17150F",
     "note": "Caliche at last light."
    }
+  },
+  {
+   "date": "2026-11-14",
+   "carousel_no": 77,
+   "written_from": "deck_coherence's median L* per frame at 432 px off the final renders, layout_check's accent share, by update_ledgers.py.",
+   "register": "A MIX. Spatial scenes in the floodlit world inside a dark lab on one black epoxy bench (1, 3, 4, 5, 8) and TXBENCH material reliefs (2, 6, 7, 9). Chassis assets/js/deck/2026-11-14-waferbench.js: wafer (whole or cleaved, with notch, edge exclusion ring and laser scribe ID), wafer_boat (quartz or carbide, capped or open), lab_bench, and labEnv, a reflection environment of light strips for mirror silicon.",
+   "structural_laws": [
+    "MIRROR SILICON SHOWS ONLY WHAT IT REFLECTS. With nothing bright in the reflected direction a polished wafer renders as a matte dinner plate, so the chassis builds light strips for it to reflect.",
+    "AUTO-AIMED REFLECTION STRIPS UNDER A PARALLEL CAMERA TURN EVERY WAFER WHITE. Every face reflects the same direction, so frames 3 and 4 use the cover's fixed strips.",
+    "A FACE THAT CASTS ON ITSELF READS AS A SCREW HEAD. A domed disc in a relief splits along a hard terminator, so polished discs are flat faces with a rolled rim and a soft radial highlight in the albedo.",
+    "A REPRESENTATION THAT CAN NOT SHOW AN END STATE IS THE WRONG ONE. Frame 6 began as three boats in perspective and became a plan view tray, because only a plan view shows capped, cleaved and open ends at one scale.",
+    "A KIT PERSON AT THIS SCALE READS AS A MANNEQUIN. Two judges in two rounds named it, so frame 8 dropped the figure for the deck's own object.",
+    "THE FIGURE BELONGS IN THE GEOMETRY OF THE CLOSE. Nineteen empty pockets in the IN SERVICE recess carry the November count onto the last frame."
+   ],
+   "techniques": [
+    "nineteen mirror wafers in a quartz boat with no far end plate, close and low on the bench",
+    "Lubbock County raised in a relief of the committed county geometry",
+    "January's twelve from above in a boat capped at both ends",
+    "twelve in quartz beside twelve in carbide through a parallel camera",
+    "May's four and a cleaved half, close at the near end",
+    "a plan view tray of three channels, capped, cleaved and open",
+    "one wafer face with terraces and a step flow layer growing across it",
+    "one wafer cut into a grid of dies lying flat on the bench",
+    "a nameplate with AWARD and CHIPS filled and nineteen empty pockets under IN SERVICE"
+   ],
+   "value": {
+    "per_frame_median_L": [
+     5.4,
+     13.2,
+     5.4,
+     4.1,
+     4.9,
+     8.2,
+     16.2,
+     5.6,
+     9.3
+    ],
+    "deck_median_L": 5.6,
+    "max_adjacent_delta": 10.6,
+    "mean_adjacent_delta": 5.41,
+    "note": "Measured by deck_coherence's median_lstar at 432 px off the final renders."
+   },
+   "accent": {
+    "hex": "#E0956A",
+    "name": "dusk_gold, the November award",
+    "frames_above_floor": [
+     2,
+     7,
+     9
+    ],
+    "share": [
+     0.0,
+     0.076,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0213,
+     0.0,
+     0.0028
+    ],
+    "note": "Lubbock County's raised face, November's disc rims, the growing layer, the AWARD inlay."
+   },
+   "ground": {
+    "hex": "#0B0A0D",
+    "note": "Black epoxy lab bench in a dark room."
+   }
   }
  ]
 }

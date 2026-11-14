@@ -1,0 +1,22 @@
+{
+  "lens": "integrity", "round": 2,
+  "criteria": [
+    {"name": "artwork_craft", "weight": 0.22, "score": 7.0, "why": "The wafer boats on slides 1, 3, 4 and 5 are real material renders, each filling a third to half of the frame on a dark field, with contact shadows and believable quartz, carbide and silicon. Slide 3 is the best frame. Slide 8 puts a generic laptop behind the boat, a default prop, and its wafers fade and clip along the bottom rail. Slide 7's copper islands are flat cut-outs with no scale. Slides 2, 6, 7 and 9 are hard split panels. Slide 9's plate is mostly a frame for type. Slide 6's relief is the strongest measured frame, with 12, 4 plus a half, and 19 discs matching figures.json."},
+    {"name": "deck_coherence", "weight": 0.12, "score": 7.0, "why": "The wafer boat carries the deck as a counting motif with one unit, $1 million per wafer. Slides 2, 7 and 9 leave the boat's vocabulary, and the switch between full-bleed renders and split-band reliefs strobes the layout. The light and the dark grade hold."},
+    {"name": "claim_integrity", "weight": 0.20, "score": 8.0, "why": "Every numeral traces to figures.json and computed.json. Slide 6's 'which is a floor' and 'No total is drawn' are exactly right. Four phrasings run looser than their sources: slide 5 and the caption tie 'meant for harsh environments' to the May award, which c17 does not say (it comes from c14); slide 8 states c5's general definition as a fact about this cluster; the cover's 'not built yet' is inferred from c4's future tense; and the 'Lubbock County' label and #LubbockCounty trace to no claim id. Every source is the recipient's own release."},
+    {"name": "story_and_stakes", "weight": 0.16, "score": 7.0, "why": "What, who funds it, where and the missing date are named, and the absence of a deadline is reported honestly. Nothing tells a Texan what they can do."},
+    {"name": "sequence_and_momentum", "weight": 0.10, "score": 7.5, "why": "The cover earns the swipe and slide 9's empty IN SERVICE slot is a strong close. Slide 2 is context. Slide 4 could fold into 3. Slide 6 is a genuine turn."},
+    {"name": "voice", "weight": 0.10, "score": 7.0, "why": "Clean and on register with good lines. 'Drawn to illustrate' reads as machine boilerplate. 'The cluster is servers working as one system' is flat."},
+    {"name": "variety", "weight": 0.10, "score": 6.5, "why": "A new object and no topic repeat in the 30-day window. The structure is the house move of the week, one physical unit per counted value, and the subject sits next to no. 73's research computing story."}
+  ],
+  "weighted_score": 7.20,
+  "hard_fails": [],
+  "ship": false,
+  "one_sentence_fix": "Rebuild slide 8 so the boat sits in front of a dark rack of linked server sleds, replacing the laptop, and attribute the definition to the university.",
+  "artwork_weakest_frames": [
+    {"slide": 8, "problem": "A generic laptop backdrop, wafers fading and clipping along the bottom rail, a desk instead of a cluster.", "fix": "Remove the laptop and stand the boat in front of one lit rack of server sleds, and fix the wafers' transparency or depth sort so every disc sits solid."},
+    {"slide": 7, "problem": "Flat copper islands with no scale and no readable link to epitaxial growth.", "fix": "Model a single wafer on a susceptor with a raised epitaxial layer stepping up across its face, lit low from one side."},
+    {"slide": 2, "problem": "A copper square on a textured grid under a flat black text band; the mono label sits directly on the art.", "fix": "Run the relief full bleed under the type and raise the Lubbock County block with a cast shadow raking across the grid."},
+    {"slide": 9, "problem": "A form plate; cast fraction 0.136.", "fix": "Light the plate from a low side source so the bolts and the empty IN SERVICE recess throw long shadows."}
+  ]
+}

@@ -1,0 +1,53 @@
+<!doctype html>
+<!-- 2026-11-14, frame 2 of 9. Archetype MAP. A material relief through txbench.js: Lubbock County raised one step above its eight neighbours in South Plains soil, from the committed county geometry through TXGeo. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="width:900px">Lubbock, by way of the governor's office</h1>
+<p class="dek" data-follow="30" style="width:860px">The Texas Semiconductor Innovation Fund is administered by the Texas CHIPS Office in the Office of the Governor. The Texas CHIPS Act created it in 2023. The new cluster is to stand in Lubbock.</p>
+<div class="lab" id="l-lub" style="color:#000000">Lubbock County</div>
+<script>window.FIG = {};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/txbench.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-14-waferbench.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script>
+window.renderReady = (async () => {
+  await document.fonts.ready;
+  CH.start({ kicker: "Texas Tech, Lubbock", counter: "02 / 09", src: "c3 c18 c19", fit: { min: 76, max: 100, maxLines: 2 } });
+  const c = document.getElementById('art'), cx = c.getContext('2d'); cx.scale(2, 2);
+  TX.reseed(CH.SEED);
+  /* THE COUNTIES, from assets/geo through TXGeo: Lubbock raised one step above its eight neighbours, the plain beyond lower */
+  /* PRE-PROJECTED at build time by tmp/tools/preproject.js through the same d3 and TXGeo: Albers, zoom 12.2 on Lubbock's
+   * centroid at (540, 960). The frame draws the literal and makes no network call. */
+  const GEO = {"counties":[{"name":"Hockley","d":"M-119.9,729.6L322.9,740.3L323.3,1177.9L-112.6,1170.0Z"},{"name":"Yoakum","d":"M-500.5,1159.7L-112.6,1170.0L-123.2,1602.2L-518.8,1590.9L-504.2,1288.5Z"},{"name":"Dickens","d":"M1194.0,743.9L1627.9,745.7L1628.5,1186.6L1192.4,1183.1Z"},{"name":"Hale","d":"M329.7,248.7L404.1,250.1L764.3,257.1L757.0,741.8L322.9,740.3Z"},{"name":"Cochran","d":"M-500.5,1159.7L-492.2,976.6L-479.0,721.0L-119.9,729.6L-112.6,1170.0Z"},{"name":"Motley","d":"M1198.9,262.6L1276.3,263.4L1633.6,264.3L1627.9,745.7L1194.0,743.9Z"},{"name":"Lynn","d":"M323.3,1177.9L756.4,1180.2L749.8,1616.8L638.1,1614.2L314.8,1611.0Z"},{"name":"Garza","d":"M756.4,1180.2L1192.4,1183.1L1188.0,1612.8L1073.1,1618.5L749.8,1616.8Z"},{"name":"Lamb","d":"M-107.8,239.8L-33.4,240.7L329.7,248.7L322.9,740.3L-119.9,729.6Z"},{"name":"Lubbock","d":"M322.9,740.3L757.0,741.8L756.4,1180.2L323.3,1177.9Z"},{"name":"Crosby","d":"M757.0,741.8L1194.0,743.9L1192.4,1183.1L756.4,1180.2Z"},{"name":"Kent","d":"M1192.4,1183.1L1628.5,1186.6L1623.0,1624.1L1508.2,1622.5L1227.2,1619.3L1188.0,1612.8Z"},{"name":"Bailey","d":"M-479.0,721.0L-472.5,599.3L-462.3,239.9L-462.0,230.4L-107.8,239.8L-119.9,729.6Z"},{"name":"Floyd","d":"M764.3,257.1L841.7,258.2L1198.9,262.6L1194.0,743.9L757.0,741.8Z"},{"name":"Terry","d":"M-112.6,1170.0L323.3,1177.9L314.8,1611.0L203.0,1609.6L-123.2,1602.2Z"}],"lubBounds":[[322.9608578932084,740.3856783704177],[757.0108205760655,1180.2279061916452]]};
+  const NB = ['Lamb', 'Hale', 'Floyd', 'Hockley', 'Crosby', 'Terry', 'Lynn', 'Garza'];
+  const M = document.createElement('canvas'); M.width = 1080; M.height = 1350; const m = M.getContext('2d');
+  m.fillStyle = '#000'; m.fillRect(0, 0, 1080, 1350);
+  GEO.counties.forEach(f => { m.fillStyle = f.name === 'Lubbock' ? '#ffffff' : NB.includes(f.name) ? '#808080' : '#404040'; m.fill(new Path2D(f.d)); });
+  GEO.counties.forEach(f => { m.strokeStyle = '#000'; m.lineWidth = 6; m.stroke(new Path2D(f.d)); });
+  const px = m.getImageData(0, 0, 1080, 1350).data, at = (X, Y) => px[(Math.min(1349, Math.max(0, Y | 0)) * 1080 + Math.min(1079, Math.max(0, X | 0))) * 4];
+  const lb = GEO.lubBounds;
+  function geo(X, Y) { const v = at(X, Y), f = TX.fbm2(X / 22, Y / 22, 3) * 3; if (v > 200) return [60 + f * 0.25, 2]; if (v > 100) return [22 + f, 1]; if (v > 50) return [6 + f, 0]; return [-8, 3]; }
+  cx.fillStyle = '#08070a'; cx.fillRect(0, 0, 1080, 560);
+  TXBENCH.relief(cx, { x: 0, y: 560, w: 1080, h: 790, scale: 2, height: (X, Y) => geo(X, Y)[0], material: (X, Y) => geo(X, Y)[1],
+    albedo: (X, Y, k) => { const row = 0.02 * Math.sin(X * 0.9) * (0.6 + 0.4 * TX.fbm2(X / 80, Y / 80, 2)), n = TX.fbm2(X / 30, Y / 30, 3) * 0.05 + TX.fbm2(X / 6, Y / 6, 2) * 0.02;
+      if (k === 3) return [0.03, 0.025, 0.025]; if (k === 2) return [1.55 + n * 0.8, 0.64 + n * 0.4, 0.31 + n * 0.2]; const b = k === 2 ? 0.3 : k === 1 ? 0.075 : 0.022; return [b * 1.25 + row + n, b * 0.72 + row * 0.6 + n, b * 0.52 + n]; },
+    spec: { 0: [0.06, 8], 1: [0.08, 10], 2: [0.1, 12], 3: [0.02, 4] }, ambient: 0.12, diffuse: 1.25, ao: 0.9, shadow: 0.9, softness: 5, castLength: 200, dither: true });
+  CH.post(cx, { a: 0.3, veil: 0.2, veilH: 140 }); CH.footWash(cx, { a: 0.55 });
+  const lab = document.getElementById('l-lub'); CH.pinLabel('l-lub', [(lb[0][0] + lb[1][0]) / 2 - lab.getBoundingClientRect().width / 2, (lb[0][1] + lb[1][1]) / 2 - lab.getBoundingClientRect().height / 2]);
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

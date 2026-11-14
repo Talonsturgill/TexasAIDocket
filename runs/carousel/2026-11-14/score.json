@@ -1,0 +1,184 @@
+{
+ "weighted_score": 7.1,
+ "judges": [
+  7.0,
+  7.3,
+  7.13
+ ],
+ "spread": 0.3,
+ "criteria": {
+  "artwork_craft": {
+   "score": 6.5,
+   "weight": 0.22,
+   "judges": [
+    6.5,
+    6.5,
+    7.0
+   ]
+  },
+  "deck_coherence": {
+   "score": 7.5,
+   "weight": 0.12,
+   "judges": [
+    7.5,
+    7.5,
+    7.5
+   ]
+  },
+  "claim_integrity": {
+   "score": 8.0,
+   "weight": 0.2,
+   "judges": [
+    8.0,
+    8.0,
+    8.0
+   ]
+  },
+  "story_and_stakes": {
+   "score": 7.0,
+   "weight": 0.16,
+   "judges": [
+    7.0,
+    7.0,
+    6.5
+   ]
+  },
+  "sequence_and_momentum": {
+   "score": 7.0,
+   "weight": 0.1,
+   "judges": [
+    6.5,
+    7.5,
+    7.0
+   ]
+  },
+  "voice": {
+   "score": 7.0,
+   "weight": 0.1,
+   "judges": [
+    7.0,
+    7.0,
+    7.0
+   ]
+  },
+  "variety": {
+   "score": 6.5,
+   "weight": 0.1,
+   "judges": [
+    6.0,
+    8.0,
+    6.5
+   ]
+  }
+ },
+ "hard_fails": [],
+ "hard_fails_by_judge": [],
+ "ship": true,
+ "threshold": 8.0,
+ "over_threshold": false,
+ "method": "per-criterion median across three judges, then weighted by the rubric",
+ "contested": [
+  "variety"
+ ],
+ "artwork_weakest_frames": [
+  {
+   "slide": 2,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "A face-on terracotta square on tiles with a typed label, a flat drawing with no subject, scale or light direction.",
+     "fix": "Model the cover's wafer boat on a raised caliche relief of Lubbock County, lit low from one side."
+    },
+    {
+     "judge": 2,
+     "problem": "A stucco textured square in a grid of identical mid brown tiles under a hard seam, with black label type printed on the copper.",
+     "fix": "Lower the surrounding county tiles to near black, raise only the Lubbock tile with a strong side light, and let the vignette carry up into the headline area."
+    },
+    {
+     "judge": 3,
+     "problem": "A flat stucco tile grid with a mono label reads as a texture swatch and shares no material with the wafer deck.",
+     "fix": "Replace it with a Lubbock County caliche relief carrying a single wafer set at the county seat, lit from the same left key as slide 1."
+    }
+   ]
+  },
+  {
+   "slide": 9,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "A brushed-metal label plate filled with type; the 19 dark sockets read as a UI.",
+     "fix": "Show the cover's boat again, empty with 19 unlit slots, under one work light, and drop the typed plate rows."
+    },
+    {
+     "judge": 2,
+     "problem": "The plate ends at a hard seam, the footer sits over the lower rivets, and the nineteen empty pockets read as vent holes at 432 px.",
+     "fix": "Crop the plate so its bottom rivets clear the footer, give the pockets a lit rim and visible floor, and fade the plate's top edge into the black field."
+    },
+    {
+     "judge": 3,
+     "problem": "A type panel: three labelled slots on a bolted plate with a flat value field, and the cite line crosses the plate.",
+     "fix": "Render the empty 19-slot boat from slide 1 under a single top light with no wafers in it, as the IN SERVICE state."
+    }
+   ]
+  },
+  {
+   "slide": 6,
+   "named_by": 3,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "A top-down orthographic tray that reads as a chart.",
+     "fix": "Drop the camera to a 30-degree raking angle so the three boats stand as objects with long cast shadows."
+    },
+    {
+     "judge": 2,
+     "problem": "A flat graphic band under a seam; the discs are uniform grey buttons.",
+     "fix": "Tilt the camera about 20 degrees off plan and rake the light low from the left so each disc shows a lit edge and a cast shadow."
+    },
+    {
+     "judge": 3,
+     "problem": "Three thin rows of small studs fill only a narrow band of the frame.",
+     "fix": "Stand the three wafer boats from slides 3, 5 and 1 side by side at shared scale and crop them to fill two thirds of the frame."
+    }
+   ]
+  },
+  {
+   "slide": 7,
+   "named_by": 2,
+   "notes": [
+    {
+     "judge": 2,
+     "problem": "Flat copper crystal cutouts on mid grey textured slate below a hard black type band; no wafer scale.",
+     "fix": "Rebuild it as a 3D close up of one wafer from the frame 1 bench, with a raised epitaxial island grown on its mirror face, raked by a single side light."
+    },
+    {
+     "judge": 3,
+     "problem": "The copper-on-slate epitaxy relief is abstract at feed size.",
+     "fix": "Shoot a single wafer in a reactor susceptor at a low angle, with a copper film visibly half grown across it."
+    }
+   ]
+  },
+  {
+   "slide": 8,
+   "named_by": 1,
+   "notes": [
+    {
+     "judge": 1,
+     "problem": "A small die-patterned wafer in a grey haze with no contact shadow.",
+     "fix": "Push the camera in until the wafer runs off the right and bottom edges, seat it on a dark chuck with a hard contact shadow, and give it one bright rim edge."
+    }
+   ]
+  }
+ ],
+ "rounds_derived": 3,
+ "rounds": 3,
+ "rounds_source": "this module's own log of cards it has scored",
+ "rounds_declared": 3,
+ "at_cap": true,
+ "rung": null,
+ "shortfall": "at the round cap the finished deck ships at 7.1, 0.9 under the 8.0 top rung. Name that in the email and the run record",
+ "craft_floor": "capped",
+ "craft_note": "at the round cap the craft floor stands down. The art median 6.5 is under 8.5 and the deck ships as it is. Name it in the run record"
+}
