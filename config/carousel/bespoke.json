@@ -1,0 +1,20 @@
+{
+  "_doc": "BESPOKE, one artist per slide (owner, 2026-11-14). knowledge/carousel/BESPOKE.md. A run dated on or after bespoke_from builds each slide with its own carousel-slide-artist and its own world, light, camera and type placement. null keeps the routine as it is. The owner sets the date.",
+  "bespoke_from": null,
+  "artists": {
+    "parallel": 9,
+    "max_renders_per_slide": 6,
+    "self_target": 8.5,
+    "critic_ship": 8.0,
+    "rework_rounds": 1,
+    "rebuild_rounds": 1
+  },
+  "distinct": {
+    "max_pair_similarity": 0.86,
+    "max_adjacent_mean": 0.45,
+    "min_type_places": 4,
+    "max_type_same_run": 2,
+    "structure_weight": 0.65,
+    "_calibration": "2026-11-14: the last 14 shipped decks (Oct 31 to Nov 14) measured adjacent mean 0.452 to 0.567 and type in 1 or 2 places with runs of 4 to 9. The first bespoke proof measured adjacent mean 0.377 and max pair 0.773. max_pair_similarity stays a near-copy guard only, since the shared tone keeps colour overlap high on every deck."
+  }
+}

@@ -272,6 +272,22 @@ def main() -> int:
         return 1
 
     m = measure(rd, sb)
+    # BESPOKE (owner, 2026-11-14): the value strobe cap pulls frames into one world. On a bespoke run
+    # the change of world between two frames is the point, so the track is reported and never blocks.
+    try:
+        sys.path.insert(0, str(Path(__file__).resolve().parent))
+        from bespoke_mode import is_bespoke
+        bespoke = is_bespoke(a.date, rd)
+    except Exception:
+        bespoke = False
+    if bespoke:
+        if a.json:
+            m["bespoke"] = True
+            print(json.dumps(m, indent=1))
+        else:
+            report(m)
+            print("deck_coherence: BESPOKE run (knowledge/carousel/BESPOKE.md), reported and not blocking")
+        return 0
     if a.json:
         print(json.dumps(m, indent=1))
         return 0 if m.get("ok") else 1

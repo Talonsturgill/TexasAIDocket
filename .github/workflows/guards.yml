@@ -617,6 +617,13 @@ jobs:
       - name: Deck coherence self-test (a spread is a set, a deck is a sequence)
         run: python3 scripts/carousel/deck_coherence.py --self-test
 
+      # BESPOKE (owner, 2026-11-14): one artist per slide. The difference gate reads the pixels and
+      # the headline's place, and bespoke_mode decides which runs stand the sameness gates down.
+      - name: Bespoke difference gate self-test (nine copies fail, nine pictures pass)
+        run: |
+          python3 scripts/carousel/distinct_check.py --self-test
+          python3 scripts/carousel/bespoke_mode.py --self-test
+
       - name: Figure bearing self-test (the artwork carries the data)
         run: python3 scripts/carousel/figure_bearing.py --self-test
 

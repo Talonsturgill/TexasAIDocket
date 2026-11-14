@@ -380,7 +380,9 @@ export function init(THREE) {
     o = o || {};
     const TXD = (typeof window !== 'undefined') ? window.TXDECK : null;
     if (!TXD || !TXD.deck) throw new Error('TXT.deckRig needs txdeck.js and a TXDECK.declare');
-    const L = TXD.deck().light;
+    // a bespoke deck lets a frame turn its own key with o.light {az, el}: each slide is lit for
+    // its own picture (knowledge/carousel/BESPOKE.md). Any other deck keeps the one declared light.
+    const L = (o.light && TXD.deck().bespoke === true) ? o.light : TXD.deck().light;
     const a = L.az * Math.PI / 180, e = L.el * Math.PI / 180, dist = o.distance || 14;
     // o.target moves where the key AIMS, never which way it points: the key sits at the same
     // direction from the target, so a yard forty metres long keeps its shadows inside the key's
@@ -2369,6 +2371,11 @@ export function init(THREE) {
       Object.keys(TXT.worlds).join(', '));
     return typeof D === 'string' ? Object.assign({}, TXT.worlds[name]) : Object.assign({}, TXT.worlds[name], D);
   }
+  function deckBespoke() {
+    const TXD = (typeof window !== 'undefined') ? window.TXDECK : null;
+    try { return !!(TXD && TXD.deck && TXD.deck().bespoke === true); } catch (e) { return false; }
+  }
+  TXT.deckBespoke = deckBespoke;
   TXT.deckWorld = function () {
     const D = declaredWorld();
     if (!D) throw new Error("TXT.deckWorld: the chassis declares no sky. Add sky:'lastLight' (or another " +
@@ -2382,7 +2389,12 @@ export function init(THREE) {
    * per frame, in any order relative to TXT.frame (the dome follows the camera). Returns the dome. */
   TXT.sky = function (R, W, o) {
     const D = declaredWorld();
-    if (D) {
+    if (D && W && deckBespoke()) {
+      // BESPOKE (owner, 2026-11-14): "I want like bespoke artwork on every single slide". A deck
+      // that declares bespoke:true lets each frame stand in its own world. The deck's spine is its
+      // tone, type and grade, never one sky. config/carousel/bespoke.json, knowledge/carousel/BESPOKE.md
+      W = Object.assign({}, D, typeof W === 'string' ? TXT.worlds[W] : W);
+    } else if (D) {
       if (W && worldKey(Object.assign({}, D, W)) !== worldKey(D))
         throw new Error("TXT.sky: this frame asked for a world the chassis did not declare. One deck, one " +
           "world: call TXT.sky(R) or TXT.sky(R, TXT.deckWorld())");

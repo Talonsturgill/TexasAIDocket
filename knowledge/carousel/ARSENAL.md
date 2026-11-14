@@ -14,15 +14,15 @@
 
 | section | count |
 |---|---|
-| engine calls (`TXT.*`) | 30 |
-| world presets | 8 |
+| engine calls (`TXT.*`) | 31 |
+| world presets | 13 |
 | kit models | 145 in 10 families |
-| asset libraries | 22 |
-| carousel and shared tools | 78 |
+| asset libraries | 23 |
+| carousel and shared tools | 80 |
 | record and site tools the routine names | 20 |
-| agents | 11 |
-| knowledge files | 42 |
-| examples | 10 |
+| agents | 13 |
+| knowledge files | 43 |
+| examples | 12 |
 
 ## BY PHASE, the tools the routine names in each section
 
@@ -43,6 +43,7 @@
 | 9 | `instincts.py`, `layout_check.py`, `studio_clock.py` |
 | artwork | `depth_floor.py`, `dossier_check.py`, `figure_bearing.py`, `layout_check.py`, `print_ban.py`, `value_register.py` |
 | 10 | `caption_check.py` |
+| bespoke | `deck_coherence.py`, `distinct_check.py`, `layout_check.py` |
 | 10.5 | `art_preflight.py`, `critic_brief.py`, `deck_chassis.py`, `depth_floor.py`, `figure_bearing.py`, `print_ban.py`, `qa.py`, `render.py`, `value_register.py` |
 | 11 | `bespoke_check.py`, `deck_chassis.py`, `deck_coherence.py`, `layout_check.py`, `print_ban.py`, `qa.py`, `render.py`, `studio_clock.py`, `value_register.py` |
 | 12 | `aggregate_check.py`, `claims_check.py`, `copy_sync_check.py`, `critic_brief.py`, `layout_check.py`, `qa.py`, `render.py`, `studio_clock.py`, `value_register.py` |
@@ -107,6 +108,7 @@ const shot = await TXT.snapshot(R);
 | `TXT.skyInFrame(camera, R)` | the share of the frame where the sky shows, 0 to 1: a 25 by 25 grid of rays through the image, corners included, each unprojected through the projection the renderer uses, so zoom, a lens offset and roll all count ... |
 | `await TXT.snapshot(R, o)` |  |
 | `TXT.stage(R, subject, o)` | the subject lit where it stands, the ground beside it and the world behind it gone to the dark. o: behind, depth, pool (darkness, or false), poolInner, poolOuter. UNITS: `behind` and `depth` are fractions of the subject's distance from the camera, never metres. The world presets' own `stage` values in txthree.js are the scale. |
+| `TXT.studio(R, { tone, w, d, h, radius, y, floor, wall, top, env, hemi, softbox, accentStrip })` | A seamless sweep, the way a product is shot: a floor that curves up into a back wall with no seam, in the deck's tone colours (TXLOOK.TONES), under a big soft key with a cool rim strip behind and a coloured environment ... |
 | `TXT.sunDir(o)` | the sun: the deck's declared light, as a direction toward the sun |
 | `TXT.tube(points, radius, mat, o)` | Tube along a polyline (array of [x,y,z]), pipes, routes, cables in 3D. |
 | `TXT.unstage(R)` | takes a stage off: the pool out of the scene and the frame's own fog back. |
@@ -125,6 +127,11 @@ const shot = await TXT.snapshot(R);
 | `lastLight` | THE HOUSE REGISTER: the sun just down, a near black sky, one warm seam low on the key's side |
 | `floodlit` | a pad at night under one LED flood: a black sky, a cold key from high on one side |
 | `stormFront` | a West Texas squall line: a bruised sky, one shaft of low sun under it |
+| `v2wonder` | golden hour that pops: a deep cobalt zenith, a peach horizon, a honey key |
+| `v2explainer` | a clear bright morning: cerulean over ice blue, a clean near white key, an indigo fill |
+| `v2win` | a sunny day it worked: a clean sky, a butter key, a teal fill |
+| `v2watch` | dusk worth watching: violet over rose, a coral key, never black |
+| `v2people` | late afternoon with people in it: a warm apricot key, a plum fill, a periwinkle sky |
 
 **Ground surfaces** (`TXT.ground(R, { surface })`): `caliche`, `dirt`, `asphalt`, `concrete`, `grass`, `lawn`.
 
@@ -407,6 +414,7 @@ Classic scripts expose a global. The engine and the kit are ES modules and are a
 | `txhachure.js` | `TX` | slope-and-aspect hachure fields (offline, zero dependencies, deterministic per seed). | hachureField, hachureFromGrid |
 | `txlabel.js` | `TX` | knockout-plate canvas-label helper (no dependencies). | canvasLabel, labelContrast, rectsOverlap |
 | `txlayout.js` | `TXLAYOUT` | the ten layout archetypes, the rotation rules, and the house furniture. | ARCHETYPES, BANDS, check, DEVICES, FURNITURE, mount, reserve, ROTATION |
+| `txlook.js` | `TXLOOK` | LOOK V2 for the daily carousel: the tone tokens, the grade, and the way type is seated. | active, css, footWash, grade, lin, mix, mountCSS, num, palette, reliefLight, rgba, sky2d, TONE_NAMES, toneName, TONES, typeSeat, typeWash |
 | `txobjects.js` | `TXOBJ` | the catalogue of things Texas is made of, drawn at TRUE SCALE in metres. | fence, has, list, registry, sprite, wire |
 | `txpost.js` | `TXPOST` | film-grade post-processing for slide canvases (no deps, CPU). | depthGrade, grade |
 | `txrelief.js` | `TX` | 2.5D relit-heightfield form-shading (offline, ZERO dependencies beyond the committed noise.js). | reliefDome, reliefLightVec, reliefRect, reliefShade |
@@ -423,7 +431,7 @@ Classic scripts expose a global. The engine and the kit are ES modules and are a
 
 **The 2.5D object catalogue** (`TXOBJ.sprite(name)` on the `TXSCENE` bench, canvas only, for the rare frame that is not rendered; a rendered frame takes the kit): `ambulance` 6.7 x 2.7, `battery_container` 12.2 x 2.9, `billboard` 14.6 x 12.0, `camera_pole` 1.2 x 4.5, `capitol` 100.0 x 95.0, `cattle` 2.5 x 1.5, `civic_facade` 30.0 x 20.0, `cooling_tower` 90.0 x 130.0, `dais` 9.0 x 1.3, `data_center` 130.0 x 16.0, `desk` 1.6 x 1.2, `drone` 1.0 x 0.3, `fence_post` 0.2 x 1.4, `filing_box` 0.4 x 0.28, `helicopter` 13.0 x 3.8, `hospital` 60.0 x 30.0, `hospital_bed` 2.2 x 1.3, `house` 16.0 x 6.0, `live_oak` 16.0 x 11.0, `mesquite` 8.0 x 6.0, `office_chair` 0.7 x 1.2, `pallet_boxes` 1.2 x 1.7, `pickup` 5.9 x 1.95, `pine` 7.0 x 26.0, `podium` 0.7 x 1.25, `power_plant` 70.0 x 62.0, `pump_jack` 7.5 x 5.2, `road_sign` 2.0 x 3.0, `school` 60.0 x 8.0, `school_bus` 12.0 x 3.1, `sedan` 4.7 x 1.45, `server_rack` 0.6 x 2.1, `solar_panel` 4.2 x 2.6, `stock_tank` 8.0 x 1.0, `streetlight` 3.0 x 10.0, `strip_mall` 40.0 x 6.0, `student_desk` 0.9 x 0.85, `substation` 22.0 x 12.0, `traffic_signal` 8.0 x 6.5, `transmission_tower` 12.0 x 42.0, `truck_semi` 17.0 x 4.1, `utility_pole` 2.4 x 12.0, `voting_booth` 0.9 x 1.6, `warehouse` 90.0 x 12.0, `water_tower` 12.0 x 38.0, `wind_turbine` 8.0 x 150.0, `windmill` 3.0 x 11.0.
 
-**Earlier deck chassis** (`assets/js/deck/`, read how a `TXDECK.declare` is written, never copy a world): `2026-09-16-lamp.js`, `2026-09-17-nightdraft.js`, `2026-09-18-minutebook.js`, `2026-09-19-firstlight.js`, `2026-09-20-waterworks.js`, `2026-09-21-oakcliff.js`, `2026-09-23-gensetyard.js`, `2026-09-24-droneline.js`, `2026-09-26-fortyfive.js`, `2026-09-27-nightrent.js`, `2026-09-28-watchtower.js`, `2026-09-29-mccloud.js`, `2026-09-30-firstreader.js`, `2026-10-01-plates.js`, `2026-10-02-vials.js`, `2026-10-03-norther.js`, `2026-10-04-noonbell.js`, `2026-10-05-wards.js`, `2026-10-06-prairie.js`, `2026-10-07-portalpha.js`, `2026-10-08-nexus.js`, `2026-10-09-chart.js`, `2026-10-10-lastlawn.js`, `2026-10-11-feedyard.js`, `2026-10-12-crossing.js`, `2026-10-15-transcript.js`, `2026-10-16-curb.js`, `2026-10-16-studio-proof.js`, `2026-10-17-section.js`, `2026-10-18-brush.js`, `2026-10-20-suite.js`, `2026-10-21-cell.js`, `2026-10-22-stair.js`, `2026-10-23-ledger.js`, `2026-10-24-apron.js`, `2026-10-25-returnplate.js`, `2026-10-26-tether.js`, `2026-10-29-caprock.js`, `2026-10-30-balance.js`, `2026-10-31-roadpaint.js`, `2026-11-01-foundry.js`, `2026-11-02-sightline.js`, `2026-11-03-scalelane.js`, `2026-11-04-wellpad.js`, `2026-11-05-dockdoor.js`, `2026-11-06-rigfloor.js`, `2026-11-07-curbside.js`, `2026-11-08-plate.js`, `2026-11-10-tray.js`, `2026-11-11-cityline.js`, `2026-11-12-roster.js`, `2026-11-13-coolingyard.js`, `2026-11-14-waferbench.js`, `proof-port-art-direction.js`.
+**Earlier deck chassis** (`assets/js/deck/`, read how a `TXDECK.declare` is written, never copy a world): `2026-09-16-lamp.js`, `2026-09-17-nightdraft.js`, `2026-09-18-minutebook.js`, `2026-09-19-firstlight.js`, `2026-09-20-waterworks.js`, `2026-09-21-oakcliff.js`, `2026-09-23-gensetyard.js`, `2026-09-24-droneline.js`, `2026-09-26-fortyfive.js`, `2026-09-27-nightrent.js`, `2026-09-28-watchtower.js`, `2026-09-29-mccloud.js`, `2026-09-30-firstreader.js`, `2026-10-01-plates.js`, `2026-10-02-vials.js`, `2026-10-03-norther.js`, `2026-10-04-noonbell.js`, `2026-10-05-wards.js`, `2026-10-06-prairie.js`, `2026-10-07-portalpha.js`, `2026-10-08-nexus.js`, `2026-10-09-chart.js`, `2026-10-10-lastlawn.js`, `2026-10-11-feedyard.js`, `2026-10-12-crossing.js`, `2026-10-15-transcript.js`, `2026-10-16-curb.js`, `2026-10-16-studio-proof.js`, `2026-10-17-section.js`, `2026-10-18-brush.js`, `2026-10-20-suite.js`, `2026-10-21-cell.js`, `2026-10-22-stair.js`, `2026-10-23-ledger.js`, `2026-10-24-apron.js`, `2026-10-25-returnplate.js`, `2026-10-26-tether.js`, `2026-10-29-caprock.js`, `2026-10-30-balance.js`, `2026-10-31-roadpaint.js`, `2026-11-01-foundry.js`, `2026-11-02-sightline.js`, `2026-11-03-scalelane.js`, `2026-11-04-wellpad.js`, `2026-11-05-dockdoor.js`, `2026-11-06-rigfloor.js`, `2026-11-07-curbside.js`, `2026-11-08-plate.js`, `2026-11-10-tray.js`, `2026-11-11-cityline.js`, `2026-11-12-roster.js`, `2026-11-13-coolingyard.js`, `2026-11-14-waferbench-bespoke.js`, `2026-11-14-waferbench-v2.js`, `2026-11-14-waferbench.js`, `proof-port-art-direction.js`.
 
 **Geodata** (`assets/geo/`):
 
@@ -447,6 +455,7 @@ Run every gate by EXIT CODE, never by reading the last line. **Wired** says what
 | `scripts/carousel/arsenal.py` | writes knowledge/carousel/ARSENAL.md, the inventory of everything a run has. | --check --stdout --self-test |  | context, 17 |
 | `scripts/carousel/art_preflight.py` | Bind a three-frame art review to its rendered images and source. | --date --run --write --archive --middle --self-test | CI, shipped | 10.5, 16 |
 | `scripts/carousel/bespoke_check.py` | prove the deck is nine drawings and not one drawing nine times. | --slides-dir --self-test | CI | nonnegotiables, 11 |
+| `scripts/carousel/bespoke_mode.py` | is this a BESPOKE run (owner, 2026-11-14, knowledge/carousel/BESPOKE.md). | --date --dir --self-test | CI self-test |  |
 | `scripts/carousel/bleed_witness.py` | a declared bleed has to be drawn, and the drawing is in the slide's source. | --run-dir --date --run --all --self-test | shipped |  |
 | `scripts/carousel/caption_check.py` | the house rules, enforced on published copy rather than remembered. | --file --text --json --claims --self-test | CI self-test, gate table | nonnegotiables, 10 |
 | `scripts/carousel/claims_check.py` | the contract between the fact-checker and everything downstream. | --date --file --out --self-test --template | CI self-test | 6, 12, 13 |
@@ -457,9 +466,10 @@ Run every gate by EXIT CODE, never by reading the last line. **Wired** says what
 | `scripts/carousel/craft_floor.py` | no frame ships that nobody drew. | --date --render-dir --self-test | CI self-test, gate table, shipped | 12b |
 | `scripts/carousel/critic_brief.py` | Give visual reviewers the craft row, lower-third plan and current native crops. | --run-dir --render-dir --slide --json |  | 10.5, 12 |
 | `scripts/carousel/deck_chassis.py` | prove the deck's nine frames were cut from ONE piece of stock. | --slides-dir --date --self-test --json | CI, shipped | state, 10.5, 11 |
-| `scripts/carousel/deck_coherence.py` | measure whether the nine RENDERED frames read as one deck. | --render-dir --date --storyboard --self-test --json | CI self-test, shipped | 11 |
+| `scripts/carousel/deck_coherence.py` | measure whether the nine RENDERED frames read as one deck. | --render-dir --date --storyboard --self-test --json | CI self-test, shipped | bespoke, 11 |
 | `scripts/carousel/dedupe_check.py` | does this story repeat one the record already told? | --entities --keywords --desc --date --item --beat --places --self-test | CI self-test | 8 |
 | `scripts/carousel/depth_floor.py` | THE FRAME STANDS IN A PLACE. | --date --slides-dir --out-root --plan --self-test | CI, shipped | state, artwork, 10.5 |
+| `scripts/carousel/distinct_check.py` | the bespoke deck's difference gate (owner, 2026-11-14). | --render-dir --run --json --self-test | CI self-test | bespoke |
 | `scripts/carousel/dossier_check.py` | is the deck PLANNED, or is it nine slides of intention? | --date --out --self-test | CI self-test, shipped | context, artwork, 12b |
 | `scripts/carousel/email_check.py` | the run's email is the payload the builder produced, and it is postable. | --run --all --self-test | CI | 19 |
 | `scripts/carousel/fig_inject.py` | each slide carries the computed figures IT reads, and nothing else. | --run --check --self-test | shipped |  |
@@ -469,7 +479,7 @@ Run every gate by EXIT CODE, never by reading the last line. **Wired** says what
 | `scripts/carousel/gmail_draft.py` | build the run's email payload. | --run --n --title --score --threshold --slides --ref --caption-file --comment-file --gates-file --degraded-file --upgrades-file --notes-file --out --self-test | CI self-test | 19 |
 | `scripts/carousel/instincts.py` | the machine's craft memory, where confidence is earned rather than claimed. | --ledger --add --id --instinct --evidence --confirm --contradict --date --top --prune --validate --self-test | CI | 1, 9, 17 |
 | `scripts/carousel/label_guard.py` | Every label a frame prints beside a claim id has to be words that claim says. | --self-test | gate table, shipped |  |
-| `scripts/carousel/layout_check.py` | Is there an IMAGE on this frame, and did the deck turn the page? | --run-dir --date --require --self-test --prose | CI, shipped | 9, artwork, 11, 12, 12b |
+| `scripts/carousel/layout_check.py` | Is there an IMAGE on this frame, and did the deck turn the page? | --run-dir --date --require --self-test --prose | CI, shipped | 9, artwork, bespoke, 11, 12, 12b |
 | `scripts/carousel/ledger_check.py` | the variety ledgers are DERIVED, so they are re-derived and compared. | --date --ledger-dir --self-test --exclusions --derive | shipped |  |
 | `scripts/carousel/locator_trace.py` | where in a document a frame says something is, is itself a claim. | --date --run --all --self-test | shipped |  |
 | `scripts/carousel/machine_due.py` | is the weekly machine pass due today? | --date --self-test | CI self-test | 17 |
@@ -489,7 +499,7 @@ Run every gate by EXIT CODE, never by reading the last line. **Wired** says what
 | `scripts/carousel/sources_block.py` | build the deck's published sources block, and prove it resolves. | --date --run-dir --build --check --self-test | shipped |  |
 | `scripts/carousel/studio_clock.py` | Record real studio checkpoints without resetting the clock across compaction. | --date --checkpoint --report |  | 0, 8, 9, 11, 12, 15, 16 |
 | `scripts/carousel/texan_check.py` | can a Texan tell where this happened and what to do next. | --date --text --self-test | CI self-test, gate table | 12b |
-| `scripts/carousel/value_register.py` | the faded look, measured off the frames, before a critic sees them. | --render-dir --run --probe --date --json --self-test | CI self-test, shipped | state, artwork, 10.5, 11, 12, 14b, 15 |
+| `scripts/carousel/value_register.py` | the faded look, measured off the frames, before a critic sees them. | --render-dir --run --probe --date --look --json --self-test | CI self-test, shipped | state, artwork, 10.5, 11, 12, 14b, 15 |
 | `scripts/carousel/verbatim_check.py` | a fragment set in a verbatim slot is the source's own words. | --date --run --self-test | gate table, shipped |  |
 | `scripts/carousel/week_digest.py` | what the judges kept saying this week, counted, for the weekly machine pass. | --date --days --out --self-test | CI self-test | 17 |
 | `scripts/carousel/word_ban.py` | the words the owner banned never reach a published surface. | --run --text --self-test | CI self-test, shipped | nonnegotiables |
@@ -559,6 +569,8 @@ Run every gate by EXIT CODE, never by reading the last line. **Wired** says what
 | `carousel-pixel-critic` | Read, model sonnet | Forensic reviewer of rendered slides. |
 | `carousel-scorer` | Read | Grades the finished package against config/carousel/scoring_rubric.yaml. |
 | `carousel-scout` | WebSearch, WebFetch, Read, model sonnet | Beat-specific researcher for the daily Texas AI carousel. |
+| `carousel-slide-artist` | Read, Write, Edit, Bash, Glob, Grep, model inherit | The artist for ONE carousel slide on a bespoke run. |
+| `carousel-slide-critic` | Read, Bash, model inherit | Scores ONE finished slide cold against THE SLIDE BAR in knowledge/carousel/BESPOKE.md, from its brief and its rendered PNG only. |
 | `carousel-treatment-director` | Read | One voice in the directors room. |
 | `carousel-upgrade-engineer` | Read, Edit, Write, Bash, Grep, Glob, WebSearch, WebFetch | The weekly machine pass. |
 
@@ -570,7 +582,7 @@ Run every gate by EXIT CODE, never by reading the last line. **Wired** says what
 
 | service | how the routine uses it | sections |
 |---|---|---|
-| Subagents (Task/Agent tool) | the fixed fan-out in NON-NEGOTIABLES 11; agents are leaf workers | nonnegotiables, 2, 6, artwork, 10, 12, 14b, 15, 17 |
+| Subagents (Task/Agent tool) | the fixed fan-out in NON-NEGOTIABLES 11; agents are leaf workers | nonnegotiables, 2, 6, artwork, 10, bespoke, 12, 14b, 15, 17 |
 | WebSearch | scouts and the craft refresh | 1 |
 | WebFetch / HTTP fetch | primary sources; robots.txt re-checked per host | nonnegotiables, context, 3, 6, 9, 16, 17 |
 | Gmail connector | create_draft with htmlBody, then get_draft; DRAFT ONLY | daily, 16, 17, 19, success |
@@ -583,6 +595,7 @@ Run every gate by EXIT CODE, never by reading the last line. **Wired** says what
 
 | file | heading | first sentence |
 |---|---|---|
+| `knowledge/carousel/BESPOKE.md` | BESPOKE, one artist per slide (owner, 2026-11-14) | The owner, verbatim: *"I want every single slide to really be like custom. |
 | `knowledge/carousel/CAPTION_CRAFT.md` | Caption craft, the variety engine for post copy | The caption is the only part of the deck a reader meets before deciding whether to look at the deck. |
 | `knowledge/carousel/CAROUSEL_CRAFT.md` | Carousel craft, the platform science | What is measurable about how a LinkedIn carousel is actually consumed, separated from what is merely believed about it. |
 | `knowledge/carousel/DESIGN_DOCTRINE.md` | Design doctrine, the visual standard | The rules that decide whether a frame is finished. |
@@ -633,12 +646,14 @@ Measurements and plumbing, never a subject or a palette to copy.
 | example | what it is | open |
 |---|---|---|
 | `examples/art-direction-proof/` | Three compositions before nine. The daily routine kept reading main while the staged-world upgrade remained on an unmerged branch. | art_preflight.webp, before-after.webp, slide-01.webp, slide-04.webp, slide-09.webp, figures.json, slides |
+| `examples/bespoke-proof/` | Bespoke proof, Nov 14 2026. The Nov 14 story, copy and figures, drawn by nine slide artists working in parallel on one spine chassis (`assets/js/deck/2026-11-14-waferbench-bespoke.js`). | before_after.webp |
 | `examples/bold-proof/` | Bold proof, 2026-10-04. The owner, on carousel no. 42 beside the sibling's no. 78 of the same morning, quoted in full in `knowledge/carousel/ILLUSTRATION_SYSTEM.md`, THE STAGE: the sibling's art *"just kind of like wows me. | beside-the-sibling.webp, deck-40.webp, deck-41.webp, deck-42.webp |
 | `examples/demo-deck/` |  | slides |
 | `examples/figure-bearing/` | Emit the three frames of the FIGURE BEARING reference. | contact_sheet.webp, slide-01.webp, slide-02.webp, slide-03.webp, build.py, figures.json, slides, storyboard.md |
 | `examples/ground-proof/` | ground-proof, the engine's ground and sun measured on four shipped decks. This is a measurement of the ENGINE, never a subject or a palette to copy. | deck-2026-09-29.webp, deck-2026-09-30.webp, deck-2026-10-02.webp, deck-2026-10-03.webp, full-0929-01.webp, full-1003-08.webp, build.py |
 | `examples/kit/` | Proof pages for THE KIT (assets/js/txkit.js): every model rendered in the engine's world. | cab-proof.webp, proof.webp, build.py |
 | `examples/lamp-deck/` | Emit the nine frames of carousel No. 26R. | contact_sheet.webp, slide-01.webp, slide-05.webp, slide-09.webp, build.py, slides, storyboard.md |
+| `examples/look-v2-proof/` | Look v2 proof. The shipped 2026-11-14 deck (Texas Tech's AI computing cluster award, tx-2026-0247) rebuilt on look v2, explainer tone. |  |
 | `examples/objects/` |  | catalogue-1.jpg, catalogue-2.jpg, figures.jpg, screens.jpg |
 | `examples/studio-proof/` | Material relief renderer study. Three native HTML studies use the frozen figures from Texas no. 52 to exercise `TXBENCH.relief`. | contact_sheet.webp, build.py, slides |
 | `examples/world-proof/` | world-proof, the engine's world measured on carousel no. 32's own model. This is a measurement of the ENGINE, never a subject or a palette to copy. | compare.webp, horizon.webp, into-the-sun.webp, build.py, slides |

@@ -1,0 +1,218 @@
+<!doctype html>
+<!-- BESPOKE PROOF. 2026-11-14, frame 9 of 9, the close. Type built as an object: a free-standing split-flap board in the explainer studio, seen low from its near end. The AWARD row reads over $19 million on cyan flaps (the November award). The IN SERVICE row is a date field of blank flaps, grouped two, two and four, with nothing on them, because the November 13th announcement gives no install or completion date. Drawn to illustrate; no real board exists. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="left:300px; top:644px; width:600px">No install date announced</h1>
+<p class="dek" data-follow="26" style="left:302px; width:556px; font-size:29px">Texas Tech's November 13th announcement says the award will help establish the cluster. It gives no install or completion date. The board is drawn to illustrate.</p>
+<div class="lab flapkey" id="k1">AWARD</div>
+<div class="lab flaps cy" id="v1">over $19 million</div>
+<div class="lab flapkey" id="k2">IN SERVICE</div>
+<style>
+.lab.flaps { position:absolute; left:0; top:0; transform-origin:0 0; background:none; box-shadow:none; border-radius:0; padding:0; text-align:left; font-family:"JetBrains Mono", monospace; font-weight:700; text-shadow:none; color:#f4fbff; z-index:9; }
+.lab.flaps.cy { color:#04212a; }
+.lab.flapkey { position:absolute; left:0; top:0; transform-origin:0 0; font-family:"JetBrains Mono", monospace; font-weight:700; letter-spacing:0.16em; text-align:left; box-shadow:none; z-index:9; }
+</style>
+<script>window.FIG = {"nov_wafers": 19};</script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/txlook.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-14-waferbench-bespoke.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Texas Tech, Lubbock", counter: "09 / 09", src: "c4 c1 c2 c8", fit: { min: 80, max: 98, maxLines: 3 } });
+  const P = CH.P;
+
+  /* THE FIGURE. The AWARD row has exactly as many flaps as its label has characters plus one trailing blank, and the
+   * label must carry FIG.nov_wafers (the award's floor in millions). The IN SERVICE row is a date field of 2 + 2 + 4
+   * blank flaps and carries no character at all. */
+  const AWARD = document.getElementById('v1').textContent;
+  if (AWARD.indexOf('$' + FIG.nov_wafers + ' million') < 0) throw new Error('the AWARD flaps do not carry FIG.nov_wafers: ' + AWARD);
+  const COLS = AWARD.length + 1;
+  const DATE_GROUPS = [2, 2, 4];
+  const DATE_CELLS = []; { let c = 0; DATE_GROUPS.forEach((n, g) => { for (let i = 0; i < n; i++) DATE_CELLS.push(c + i); c += n + 1; }); }
+
+  const R = CH.stage(TXT, gl, W, { fov: 37, near: 0.05, far: 60, fog: 0.0 });
+  TXT.studio(R, Object.assign(CH.studioOpts({ w: 10, d: 5.2 }), { h: 5.5, radius: 0.35, env: 0.95, hemi: 0.5, softbox: 5.2, wall: '#3559d6', floor: '#4b2fb4' }));
+
+  /* ---- materials ---- */
+  const tooth = CH.canvasTex(THREE, 512, 512, (g, w, h) => {
+    g.fillStyle = '#808080'; g.fillRect(0, 0, w, h); const r = CH.rng(909);
+    for (let i = 0; i < 9000; i++) { g.fillStyle = 'rgba(' + (r() < 0.5 ? '60,60,60' : '200,200,200') + ',' + (0.04 + r() * 0.08) + ')'; g.fillRect(r() * w, r() * h, 1 + r() * 2, 1 + r() * 2); }
+  }, [3, 3]);
+  const M = {
+    housing: new THREE.MeshPhysicalMaterial({ color: 0x2f36a6, roughness: 0.42, roughnessMap: tooth, metalness: 0.15, clearcoat: 0.6, clearcoatRoughness: 0.18 }),
+    trim: new THREE.MeshStandardMaterial({ color: 0x9fb8ff, roughness: 0.28, metalness: 0.85 }),
+    well: new THREE.MeshStandardMaterial({ color: 0x141a55, roughness: 0.7, metalness: 0.1 }),
+    wellA: new THREE.MeshStandardMaterial({ color: 0x6a7af2, roughness: 0.6, metalness: 0.1 }),
+    flap: new THREE.MeshPhysicalMaterial({ color: 0x33409a, roughness: 0.34, metalness: 0.05, clearcoat: 0.35, clearcoatRoughness: 0.2 }),
+    flapLo: new THREE.MeshPhysicalMaterial({ color: 0x2c388c, roughness: 0.36, metalness: 0.05, clearcoat: 0.35, clearcoatRoughness: 0.2 }),
+    /* the blank date cards: pale cream, the same value as the award row, with nothing printed on them */
+    blank: new THREE.MeshPhysicalMaterial({ color: 0xf6ead0, roughness: 0.46, metalness: 0.0, clearcoat: 0.3, clearcoatRoughness: 0.3, emissive: 0x2a2010, emissiveIntensity: 0.4 }),
+    blankLo: new THREE.MeshPhysicalMaterial({ color: 0xe8d8b8, roughness: 0.48, metalness: 0.0, clearcoat: 0.3, clearcoatRoughness: 0.3, emissive: 0x241a0c, emissiveIntensity: 0.4 }),
+    edge: new THREE.MeshStandardMaterial({ color: 0xc9b48e, roughness: 0.6, metalness: 0.0 }),
+    tip: new THREE.MeshStandardMaterial({ color: 0xfff6e4, roughness: 0.62, metalness: 0.0, emissive: 0x4a3e28, emissiveIntensity: 0.7 }),
+    cyan: new THREE.MeshPhysicalMaterial({ color: 0x1cbcd6, emissive: 0x06505e, emissiveIntensity: 0.3, roughness: 0.3, metalness: 0.0, clearcoat: 0.5, clearcoatRoughness: 0.15 }),
+    cyanLo: new THREE.MeshPhysicalMaterial({ color: 0x18aac2, emissive: 0x054854, emissiveIntensity: 0.28, roughness: 0.32, metalness: 0.0, clearcoat: 0.5, clearcoatRoughness: 0.15 }),
+    pin: new THREE.MeshStandardMaterial({ color: 0xc8d6ff, roughness: 0.25, metalness: 0.9 }),
+    post: new THREE.MeshStandardMaterial({ color: 0x8ea6f0, roughness: 0.32, metalness: 0.8 }),
+    foot: new THREE.MeshPhysicalMaterial({ color: 0x2b318a, roughness: 0.5, metalness: 0.2, clearcoat: 0.4 })
+  };
+
+  /* ---- THE BOARD, built in its own frame: x along the row, y up, front face toward +z ---- */
+  const PITCH = 0.118, FW = 0.104, FH = 0.19, GAP = 0.0045, FT = 0.009;
+  const MX = 0.1, KEY = 0.085, WELL = 0.226, RGAP = 0.032, TOPM = 0.06, BOTM = 0.05;
+  const BW = 2 * MX + COLS * PITCH, BH = TOPM + 2 * KEY + WELL + (FH * 1.45 + 0.036) + 0.032 + 0.05, BD = 0.2;
+  const board = new THREE.Group();
+  const shell = TXT.roundedBox(BW, BH, BD, 0.035, M.housing); shell.position.set(0, BH / 2, 0); board.add(shell);
+  /* a bright trim band round the face */
+  const FZ = BD / 2;
+  [[BW - 0.03, 0.012, 0, BH - 0.018], [BW - 0.03, 0.012, 0, 0.018]].forEach(([w, h, x, y]) => { const b = TXT.roundedBox(w, h, 0.012, 0.005, M.trim); b.position.set(x, y, FZ + 0.002); board.add(b); });
+  [[-BW / 2 + 0.018], [BW / 2 - 0.018]].forEach(([x]) => { const b = TXT.roundedBox(0.012, BH - 0.03, 0.012, 0.005, M.trim); b.position.set(x, BH / 2, FZ + 0.002); board.add(b); });
+  /* the rows, top row first: each a key strip above a recessed well of flaps. The IN SERVICE row is built at S2 times the
+   * award row's module, so the empty date is the largest thing on the board. */
+  const S2 = 1.45;
+  const RS = [{ pitch: PITCH, fw: FW, fh: FH, well: WELL }, { pitch: PITCH * S2, fw: FW * S2, fh: FH * S2, well: FH * S2 + 0.036 }];
+  const rows = [];
+  { let yTop = BH - TOPM; RS.forEach((q, rI) => { const keyY = yTop - KEY / 2, wellY = yTop - KEY - q.well / 2;
+      rows.push(Object.assign({ keyY, wellY, keyTop: yTop, wellTop: yTop - KEY }, q)); yTop -= KEY + q.well + RGAP; }); }
+  const x0 = -BW / 2 + MX;   /* the left edge of column 0 */
+  const cellX = (r, c) => x0 + (c + 0.5) * r.pitch;
+  function well(r, c0, n, mat) {
+    const w = n * r.pitch + 0.012, cx0 = x0 + c0 * r.pitch + n * r.pitch / 2;
+    const wl = TXT.roundedBox(w, r.well, 0.016, 0.01, mat || M.well); wl.position.set(cx0, r.wellY, FZ + 0.004); board.add(wl);
+    const lipT = TXT.roundedBox(w + 0.014, 0.008, 0.02, 0.003, M.trim); lipT.position.set(cx0, r.wellY + r.well / 2 + 0.004, FZ + 0.008); board.add(lipT);
+    const lipB = lipT.clone(); lipB.position.y = r.wellY - r.well / 2 - 0.004; board.add(lipB);
+  }
+  let flapCount = 0;
+  function module(r, c, hi, lo, flip) {
+    const x = cellX(r, c), zf = FZ + 0.016, fw = r.fw, fh = r.fh, ft = FT * (r.fw / FW);
+    if (flip) {
+      /* one card caught mid-fall on its hinge pin, tipped toward the viewer, blank on both faces and its edge */
+      const pv = new THREE.Group(); pv.position.set(x, r.wellY, zf + 0.014); pv.rotation.x = flip;
+      const fl = TXT.roundedBox(fw * 1.04, fh / 2 - GAP / 2, ft * 1.4, 0.008, M.tip); fl.position.y = fh / 4; pv.add(fl);
+      const ed = TXT.roundedBox(fw - 0.012, 0.004, ft * 1.05, 0.0015, M.edge); ed.position.y = fh / 2 - GAP / 2 - 0.002; pv.add(ed);
+      board.add(pv);
+    }
+    const up = TXT.roundedBox(fw, fh / 2 - GAP / 2, ft, 0.008, hi); up.position.set(x, r.wellY + fh / 4 + GAP / 4, zf); up.rotation.x = -0.035; board.add(up);
+    const dn = TXT.roundedBox(fw, fh / 2 - GAP / 2, ft, 0.008, lo); dn.position.set(x, r.wellY - fh / 4 - GAP / 4, zf + 0.003); dn.rotation.x = 0.03; board.add(dn);
+    [-1, 1].forEach((s) => { const p = new THREE.Mesh(new THREE.CylinderGeometry(0.0048, 0.0048, 0.012, 12), M.pin); p.rotation.z = Math.PI / 2; p.position.set(x + s * (fw / 2 + 0.005), r.wellY, zf); board.add(p); });
+    flapCount++;
+  }
+  /* row 1, the award: one well, COLS cyan modules */
+  well(rows[0], 0, COLS, M.wellA);   /* a light well behind the award, so no dark edge runs against its dark letters */
+  for (let c = 0; c < COLS; c++) module(rows[0], c, M.cyan, M.cyanLo);
+  if (flapCount !== COLS) throw new Error('award flaps ' + flapCount + ' != ' + COLS);
+  /* row 2, in service: one well per date group, every card blank, one caught mid-fall */
+  { let c = 0; DATE_GROUPS.forEach((n) => { well(rows[1], c, n); c += n + 1; }); }
+  if ((DATE_CELLS[DATE_CELLS.length - 1] + 1) * rows[1].pitch > COLS * PITCH + 1e-6) throw new Error('the date field runs past the award row');
+  const FLIP_AT = DATE_CELLS[DATE_GROUPS[0] + DATE_GROUPS[1] + 1];
+  DATE_CELLS.forEach((c) => module(rows[1], c, M.blank, M.blankLo, c === FLIP_AT ? 0.72 : 0));
+  if (flapCount - COLS !== DATE_GROUPS.reduce((a, b) => a + b, 0)) throw new Error('date flaps do not match the date groups');
+  /* a raised slash in each gap between the date groups, so the field reads as a date with nothing in it */
+  { let c = 0; DATE_GROUPS.slice(0, -1).forEach((n) => { c += n; const sl = TXT.roundedBox(0.02, rows[1].well * 0.6, 0.016, 0.008, M.blank); sl.position.set(cellX(rows[1], c), rows[1].wellY, FZ + 0.012); sl.rotation.z = -0.36; board.add(sl); c += 1; }); }
+  /* four domed bolts on the face */
+  [[-1, 1], [1, 1], [-1, -1], [1, -1]].forEach(([sx, sy]) => { const b = new THREE.Mesh(new THREE.SphereGeometry(0.011, 16, 10, 0, Math.PI * 2, 0, Math.PI / 2), M.pin); b.rotation.x = Math.PI / 2; b.position.set(sx * (BW / 2 - 0.045), BH / 2 + sy * (BH / 2 - 0.035), FZ + 0.001); board.add(b); });
+
+  /* ---- the stand: two posts to two feet ---- */
+  const LIFT = 1.28;
+  const stand = new THREE.Group(), feet = [];
+  [-1, 1].forEach((s) => {
+    const x = s * (BW / 2 - 0.12);
+    const post = new THREE.Mesh(new THREE.CylinderGeometry(0.026, 0.03, LIFT + 0.1, 28), M.post); post.position.set(x, (LIFT + 0.1) / 2, -0.02); stand.add(post);
+    const collar = new THREE.Mesh(new THREE.CylinderGeometry(0.04, 0.04, 0.05, 28), M.trim); collar.position.set(x, LIFT - 0.02, -0.02); stand.add(collar);
+    const foot = TXT.roundedBox(0.34, 0.035, 0.42, 0.014, M.foot); foot.position.set(x, 0.0175, -0.02); stand.add(foot);
+    const boss = new THREE.Mesh(new THREE.CylinderGeometry(0.05, 0.06, 0.03, 28), M.trim); boss.position.set(x, 0.05, -0.02); stand.add(boss);
+    /* four hex bolts on each base plate and a flange with two bolts where the post meets the board */
+    [[-1, -1], [1, -1], [-1, 1], [1, 1]].forEach(([bx, bz]) => { const h = new THREE.Mesh(new THREE.CylinderGeometry(0.012, 0.012, 0.012, 6), M.pin); h.position.set(x + bx * 0.125, 0.041, -0.02 + bz * 0.165); stand.add(h); });
+    const fl = TXT.roundedBox(0.12, 0.012, 0.1, 0.004, M.trim); fl.position.set(x, LIFT - 0.006, -0.02); stand.add(fl);
+    [-1, 1].forEach((bx) => { const h = new THREE.Mesh(new THREE.CylinderGeometry(0.008, 0.008, 0.01, 6), M.pin); h.position.set(x + bx * 0.042, LIFT - 0.017, -0.02 + 0.03); stand.add(h); });
+    feet.push(foot);
+  });
+  board.position.y = LIFT;
+  const unit = new THREE.Group(); unit.add(stand); unit.add(board);
+  const YAW = 0.4;
+  unit.rotation.y = YAW; unit.position.set(0.15, 0, -0.5);
+  /* the ground: a polished violet resin floor with a seeded speckle and a clearcoat that takes the studio's sheen */
+  { const spk = CH.canvasTex(THREE, 1024, 1024, (g, w, h) => {
+      g.fillStyle = '#ffffff'; g.fillRect(0, 0, w, h); const r = CH.rng(4413);
+      for (let i = 0; i < 46; i++) { const gr = g.createRadialGradient(r() * w, r() * h, 0, r() * w, r() * h, 60 + r() * 180); gr.addColorStop(0, 'rgba(120,110,170,' + (0.05 + r() * 0.06) + ')'); gr.addColorStop(1, 'rgba(120,110,170,0)'); g.fillStyle = gr; g.fillRect(0, 0, w, h); }
+      for (let i = 0; i < 14000; i++) { g.fillStyle = r() < 0.6 ? 'rgba(70,60,140,' + (0.1 + r() * 0.25) + ')' : 'rgba(255,240,255,' + (0.15 + r() * 0.3) + ')'; g.fillRect(r() * w, r() * h, 1 + r() * 1.6, 1 + r() * 1.6); }
+    }, [5, 3]);
+    /* the resin fades out toward the back so it melts into the sweep with no seam behind the type */
+    const fade = CH.canvasTex(THREE, 16, 256, (g, w, h) => { const gr = g.createLinearGradient(0, 0, 0, h); gr.addColorStop(0, '#000'); gr.addColorStop(0.5, '#000'); gr.addColorStop(0.78, '#fff'); gr.addColorStop(1, '#fff'); g.fillStyle = gr; g.fillRect(0, 0, w, h); });
+    fade.colorSpace = THREE.NoColorSpace;
+    const floor = new THREE.Mesh(new THREE.PlaneGeometry(14, 7.1), new THREE.MeshPhysicalMaterial({ color: 0x4a2cb2, map: spk, alphaMap: fade, transparent: true, depthWrite: false, roughness: 0.5, roughnessMap: tooth, metalness: 0.0, clearcoat: 0.35, clearcoatRoughness: 0.3 }));
+    floor.rotation.x = -Math.PI / 2; floor.position.set(0, 0.0015, -0.05); floor.receiveShadow = false; floor.userData.txGround = true;   /* no cast shadow on the ground: the soft contact patch grounds the sign */
+    if (R.studio && R.studio.sweep) R.studio.sweep.receiveShadow = false; R.scene.add(floor); }
+  TXT.add(R, unit); TXT.contact(R, unit);
+
+  /* ---- camera: low, off the near end, looking up the row ---- */
+  const FROM = [0.25, 1.872, 4.2];   /* the eye at the award row's own height, so that row runs level across the frame */
+  const LOOK = [0.0, 1.032, -0.6];
+  TXT.frame(R, { fov: 37, from: FROM, look: LOOK });
+
+  CH.KEY_SCALE = 0.85;
+  TXT.deckRig(R, CH.rigSpec(W, 4, 4096), Object.assign(CH.rigOpts([0.15, 1.2, -0.5], { distance: 8, shadowFar: 20, normalBias: 0.01 }), { light: { az: -25, el: 70 } }));
+  CH.unacne(R, 0.01);
+  /* a warm pool thrown on the backdrop behind the board, low and to the right, so the cool board stands against warmth */
+  { const glow = new THREE.PointLight(0xffa25e, 7, 6, 2); glow.position.set(0.2, 1.95, -3.4); R.scene.add(glow);
+    const glow2 = new THREE.PointLight(0xff7a8a, 2.2, 5, 2); glow2.position.set(-1.4, 0.6, -3.3); R.scene.add(glow2); }
+  CH.darkRoom(R);
+
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+
+  /* ---- THE TYPE ON THE FLAPS: DOM text set on the board's own plane by a homography from its box to the projected quad ---- */
+  unit.updateMatrixWorld(true);
+  const toScreen = (lx, ly, lz) => { const v = new THREE.Vector3(lx, ly, lz); board.localToWorld(v); return CH.project(THREE, R, [v.x, v.y, v.z]); };
+  function homog(w, h, q) {
+    const src = [[0, 0], [w, 0], [w, h], [0, h]], A = [], b = [];
+    for (let i = 0; i < 4; i++) { const [x, y] = src[i], [X, Y] = q[i];
+      A.push([x, y, 1, 0, 0, 0, -x * X, -y * X]); b.push(X); A.push([0, 0, 0, x, y, 1, -x * Y, -y * Y]); b.push(Y); }
+    for (let i = 0; i < 8; i++) { let m = i; for (let r = i + 1; r < 8; r++) if (Math.abs(A[r][i]) > Math.abs(A[m][i])) m = r;
+      [A[i], A[m]] = [A[m], A[i]]; [b[i], b[m]] = [b[m], b[i]];
+      for (let r = 0; r < 8; r++) if (r !== i) { const f = A[r][i] / A[i][i]; for (let k = i; k < 8; k++) A[r][k] -= f * A[i][k]; b[r] -= f * b[i]; } }
+    const s = b.map((v, i) => v / A[i][i]);
+    return 'matrix3d(' + [s[0], s[3], 0, s[6], s[1], s[4], 0, s[7], 0, 0, 1, 0, s[2], s[5], 0, 1].map((v) => v.toFixed(8)).join(',') + ')';
+  }
+  function setOnPlane(el, lx0, ly0, lx1, ly1, lz, wpx, hpx) {
+    const q = [toScreen(lx0, ly0, lz), toScreen(lx1, ly0, lz), toScreen(lx1, ly1, lz), toScreen(lx0, ly1, lz)];
+    el.style.width = wpx + 'px'; el.style.height = hpx + 'px'; el.style.transform = homog(wpx, hpx, q);
+  }
+  /* the award: one character per flap, centred in its cell */
+  const PL = 100, F = 94,   /* the glyphs' whole em box stays inside the flap faces */ ADV = 0.6 * F, BAND = 0.33, HPX = Math.round(PL * FH * 2 * BAND / PITCH);
+  const v1 = document.getElementById('v1');
+  Object.assign(v1.style, { fontSize: F + 'px', lineHeight: HPX + 'px', letterSpacing: (PL - ADV) + 'px', paddingLeft: ((PL - ADV) / 2) + 'px', whiteSpace: 'pre' });
+  setOnPlane(v1, x0, rows[0].wellY + FH * BAND, x0 + COLS * PITCH, rows[0].wellY - FH * BAND, FZ + 0.0205, COLS * PL, HPX);   /* the glyph band only, inside the flaps' own edges */
+  /* the keys, printed on the housing above each well */
+  [['k1', rows[0]], ['k2', rows[1]]].forEach(([id, r]) => {
+    const el = document.getElementById(id); const kw = 560, kh = 72;
+    Object.assign(el.style, { fontSize: '44px', lineHeight: '56px', padding: '8px 22px', borderRadius: '30px', width: 'auto' });
+    const wpx = Math.ceil(el.getBoundingClientRect().width) + 2;
+    const lw = wpx / kh * (KEY * 0.72);
+    setOnPlane(el, x0 - 0.004, r.keyY + KEY * 0.36, x0 - 0.004 + lw, r.keyY - KEY * 0.36, FZ + 0.004, wpx, kh);
+  });
+  document.getElementById('k2').classList.add('plain');
+
+  CH.follow();
+  CH.seat(cx, { a: 0.1, fade: 140 }); CH.seat(cx, { a: 0.1, fade: 215 });
+  TXLOOK.footWash(cx, { a: 0.36, height: 220 });
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>

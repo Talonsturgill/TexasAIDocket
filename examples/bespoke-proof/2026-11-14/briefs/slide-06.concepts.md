@@ -1,0 +1,13 @@
+# Slide 06 concepts, the turn: three awards, three kinds of number
+
+1. **Three vertical furnace towers.** Three quartz wafer towers of the kind a diffusion furnace loads stand side by side in the explainer studio, seen front on with a long lens: January's twelve wafers sit under a top plate, May's four and a roughly broken half sit under a top plate, and November's nineteen fill the bottom of a cyan tower whose empty slotted rods run on up and out of the top of the frame with no cap. Only this beat has three different endings to three stacks, closed, ragged and open, which is exactly why they cannot be summed.
+
+2. **Three gauges on a metrology bench, macro.** A 30 cm macro of three instruments in a row, a sealed ampoule filled to an etched line, a beaker whose meniscus wobbles between two marks, and a sight glass whose liquid runs off the top of its scale. It says stated, roughly and over through the medium of measurement itself, but it drops the deck's wafer unit and reads as chemistry.
+
+3. **Three survey plots at dusk, aerial.** An orthographic aerial of three plots on Lubbock caliche, one fenced on all four sides, one staked with a loose string line, one with a fence on three sides opening onto the plain. Strong for "a floor", but it talks about land the story never mentions and borrows the place frames' world.
+
+**Pick, concept 1.** It is the only one where the three kinds of number are three different shapes of the same object, read in a second, and the open tower climbing past the frame is the floor made physical.
+
+Neighbours: frame 5 is May alone (roughly) with its type top right, frame 7 is what the cluster is for. This frame drops the boat on a bench that every frame of the last two decks used.
+
+Composition (as built, after the critic's rework): a low three quarter camera from the right, level and shifted so the uprights stay upright, looks across three towers standing straight on a cobalt resin floor before a navy wall with a peach horizon band. January has a heavy lid clamped down on every rod with a knurled locking boss. May's top slot holds a half wafer whose glowing ragged fracture faces the camera, with chips on its base. November's cyan rods climb the right half past the frame, their empty slots fading into a bloom of light, clear of the counter. Each tower is mirrored in the resin's clear coat under its own foot, so November's reflection carries the mass into the bottom right and January's and May's run down behind the type. The headline and dek sit in the lower left quiet over the floor; pills sit above January's and May's lids, and November's pill has a leader to its last filled wafer.

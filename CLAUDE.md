@@ -334,6 +334,22 @@ the ask worker fetches it from a public URL, so the box cannot answer without it
 download closed the bulk-import front door. It did not make the record unreadable, and saying
 otherwise would be the kind of claim this project does not get to make.
 
+## BESPOKE: ONE ARTIST PER SLIDE (AUTHORITATIVE from `config/carousel/bespoke.json` `bespoke_from`, owner, 2026-11-14)
+
+**The owner, verbatim:** *"I want every single slide to really be like custom. I don't want this in just
+some kind of template. I want like bespoke artwork on every single slide ... We can have an agent, you
+know, create masterful artwork on every single slide separately, so that sure, they say they follow the
+same flow like for a post, but you can tell that it's custom artwork."*
+
+For a run dated on or after `bespoke_from` (null until the owner sets it), `knowledge/carousel/BESPOKE.md`
+is the art doctrine and wins over THE ARTWORK IS RENDERED, THE STAGE, THE WORLD and every rule that asks
+for one world, one light, one rig, an archetype rotation or a fixed headline position. The deck shares a
+SPINE (LOOK V2 tone, palette and grade, the type faces, counter, site line, the accent's meaning). Each
+slide is conceived, built, rendered and reworked by its own `carousel-slide-artist`, nine in parallel, and
+scored by its own `carousel-slide-critic`. `scripts/carousel/distinct_check.py` proves the frames differ.
+The daily routine's BESPOKE MODE section has the phase changes. The worked example is
+`examples/bespoke-proof/2026-11-14/`.
+
 ## LOOK V2: VIVID, LIT, ROUND (AUTHORITATIVE, owner, 2026-11-14)
 
 **The owner, verbatim:** *"make it 10x better, the artwork on the carousels is nowhere near the

@@ -186,6 +186,13 @@ criteria:
       how it was drawn? knowledge/carousel/ILLUSTRATION_SYSTEM.md is the standard.
       A DIFFERENT LAYOUT ON EVERY FRAME IS NOT AN ANSWER TO THIS QUESTION and this criterion no
       longer asks for one. It used to, and it is the reason the decks stopped hanging together.
+      ON A BESPOKE DECK (run dated on or after config/carousel/bespoke.json bespoke_from, chassis
+      declares bespoke true) this criterion is THE SLIDE BAR in knowledge/carousel/BESPOKE.md, read
+      frame by frame: could each picture only have been made for its own sentence, is the type
+      composed with the art rather than dropped in one fixed place, is it crafted to the edges, and
+      does it differ from its neighbours in world, camera, scale or medium. Nine frames that are one
+      picture nine times score no higher than 5 on a bespoke deck, however well each is lit. The 10
+      is nine magazine-grade pictures, each commissioned for its own beat.
       THE SHOWSTOPPER TEST (2026-09-24, owner: "every single slide should literally look world
       reknowned", rewritten 2026-10-04 on the owner's word beside the sibling's deck, quoted in
       full in ILLUSTRATION_SYSTEM.md, THE STAGE: the sibling's art is "more like bold" and ours
@@ -209,6 +216,13 @@ criteria:
   - name: deck_coherence
     weight: 0.12
     asks: >
+      ON A BESPOKE DECK (see artwork_craft) this question reads differently and the paragraph
+      below is for every other deck: do the nine read as ONE POST, through the spine (the tone and
+      its palette and grade, the type faces, the counter, the accent's one meaning) and the story's
+      order, while each picture is its own? A change of world, light or camera between frames is
+      the point and is never a coherence fault; the value strobe measurement and the one-light test
+      do not apply. Score down a bespoke deck for a broken spine (a frame in another palette or
+      typeface, an accent meaning two things) or a story that does not run in order.
       Do the nine frames read as ONE DECK, cut from one piece of stock, or as nine pictures that
       arrived in the same envelope? Look at the contact sheet as a FILMSTRIP and answer in the
       reader's order, because a reader swipes and never sees a frame alone.

@@ -1,0 +1,199 @@
+<!doctype html>
+<!-- BESPOKE PROOF. 2026-11-14, frame 2 of 9. THE COUNTY TABLE: Texas laid out as 254 glazed county tiles cut from the
+     committed county geometry (assets/geo through TXGeo), seen from a low aerial south of Austin. A miniature Capitol stands
+     on Travis County and one gold line of light leaps from its dome to Lubbock County, the only county raised, as a glazed
+     glass block carrying a frosted massing model of the planned cluster. The deck's cyan stays with the November award and
+     is not spent here. The type sits low, over the South Texas tiles, so the arc owns the sky. -->
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="@@ASSETS@@/fonts/fonts.css">
+</head>
+<body>
+<canvas id="art" width="2160" height="2700"></canvas>
+<div class="tx-site" id="site">texasaidocket.com</div>
+<h1 class="hook" id="hook" style="left:80px; top:860px; width:900px">Lubbock, by way of the governor's office</h1>
+<p class="dek" data-follow="26" style="left:82px; width:900px">The Texas Semiconductor Innovation Fund is administered by the Texas CHIPS Office in the Office of the Governor. The Texas CHIPS Act created it in 2023. The new cluster is to stand in Lubbock.</p>
+<div class="lab" id="l-lub" style="background:linear-gradient(180deg,#ffe2a6,#ffb978); color:#2a1700;">Lubbock County</div>
+<script>window.FIG = {};</script>
+<script src="@@ASSETS@@/js/d3.v7.min.js"></script>
+<script src="@@ASSETS@@/js/topojson-client.min.js"></script>
+<script src="@@ASSETS@@/js/txgeo.js"></script>
+<script src="@@ASSETS@@/js/noise.js"></script>
+<script src="@@ASSETS@@/js/txtype.js"></script>
+<script src="@@ASSETS@@/js/txcolor.js"></script>
+<script src="@@ASSETS@@/js/txpost.js"></script>
+<script src="@@ASSETS@@/js/txdeck.js"></script>
+<script src="@@ASSETS@@/js/txlook.js"></script>
+<script src="@@ASSETS@@/js/deck/2026-11-14-waferbench-bespoke.js"></script>
+<script src="@@ASSETS@@/js/txlayout.js"></script>
+<script type="module">
+import * as THREE from '@@ASSETS@@/js/three.module.min.js';
+import { init } from '@@ASSETS@@/js/txthree.js';
+import { initKit } from '@@ASSETS@@/js/txkit.js';
+window.renderReady = (async () => {
+  const TXT = init(THREE);
+  const { K, gl, W } = await CH.boot(THREE, TXT, initKit, { kicker: "Texas Tech, Lubbock", counter: "02 / 09", src: "c3 c18 c19", fit: { min: 78, max: 96, maxLines: 2 } });
+
+  /* THE TYPE SITS LOW: the hook and the dek as one block whose foot clears the furniture band (130 px) with room to spare */
+  const hook = document.getElementById('hook'), dek = document.querySelector('.dek');
+  const FOOT = 1186;
+  hook.style.top = '0px'; CH.follow();
+  const blockH = dek.getBoundingClientRect().bottom - hook.getBoundingClientRect().top;
+  hook.style.top = Math.round(FOOT - blockH) + 'px'; CH.follow();
+
+  /* HONESTY: this frame draws no count. The figures object is empty and must stay so. */
+  if (Object.keys(window.FIG).length !== 0) throw new Error('frame 2 draws no figure, but window.FIG carries ' + JSON.stringify(window.FIG));
+
+  /* THE GEOMETRY, from the committed TopoJSON through TXGeo: the canonical Albers fitted to the full state, read in metres */
+  const topo = await (await fetch('@@ASSETS@@/geo/tx-counties.topo.json')).json();
+  const counties = TXGeo.counties(topo), state = TXGeo.outline(topo);
+  if (counties.features.length !== 254) throw new Error('expected the 254 Texas counties, found ' + counties.features.length);
+  const proj = TXGeo.texasProjection(state, [[-500, -500], [500, 500]]);
+  const M_PER = 0.01;   /* 100 projected units to the metre: the state is ten metres across the table */
+  const toW = (ll) => { const p = proj(ll); return [p[0] * M_PER, p[1] * M_PER]; };   /* [x east, z south] */
+  const nameOf = (f) => f.properties.name || f.properties.NAME;
+  const lubF = counties.features.filter(f => nameOf(f) === 'Lubbock'), travF = counties.features.filter(f => nameOf(f) === 'Travis');
+  if (lubF.length !== 1 || travF.length !== 1) throw new Error('Lubbock and Travis must each be one county feature');
+  const LUB = TXGeo.place('Lubbock'), AUS = TXGeo.place('Austin');
+  if (!d3.geoContains(lubF[0], LUB)) throw new Error('the Lubbock point does not fall inside Lubbock County');
+  if (!d3.geoContains(travF[0], AUS)) throw new Error('the Austin point does not fall inside Travis County');
+  const A = toW(AUS), L = toW(LUB);
+
+  const R = CH.stage(TXT, gl, W, { fov: 30, near: 0.05, far: 120, fog: 0.0 });
+  const P = CH.P;
+
+  /* THE TABLE: a seamless sweep, deep indigo under the map so the warm tiles and the gold line both carry */
+  TXT.studio(R, { tone: 'explainer', w: 44, d: 30, h: 16, radius: 5, floor: '#4d55d8', wall: '#4aa2f2', top: P.skyTop, env: 0.55, hemi: 0.3, softbox: 3.2, accentStrip: 0 });
+
+  /* the glaze's tooth: a soft mottle in the albedo, so a tile reads as fired ceramic and never as a flat fill */
+  const tooth = CH.canvasTex(THREE, 512, 512, (g, w, h) => {
+    g.fillStyle = '#f2f2f2'; g.fillRect(0, 0, w, h); const r = CH.rng(7);
+    for (let i = 0; i < 2200; i++) { const x = r() * w, y = r() * h, s = 2 + r() * 22; g.fillStyle = 'rgba(' + (r() < 0.5 ? '255,255,255' : '170,160,175') + ',' + (0.04 + r() * 0.08).toFixed(3) + ')'; g.beginPath(); g.arc(x, y, s, 0, Math.PI * 2); g.fill(); }
+    for (let i = 0; i < 900; i++) { g.fillStyle = 'rgba(120,100,120,' + (0.08 + r() * 0.12).toFixed(3) + ')'; g.fillRect(r() * w, r() * h, 1.2, 1.2); }
+  }, [3, 3]);
+
+  /* the colour of a tile: warm apricot along the line from the capital to the plains, cooling to a dusk rose and violet
+   * the further a county lies from it, and deepest in the far south where the type sits */
+  const segDist = (p) => { const vx = L[0] - A[0], vz = L[1] - A[1], t = Math.max(0, Math.min(1, ((p[0] - A[0]) * vx + (p[1] - A[1]) * vz) / (vx * vx + vz * vz))); return Math.hypot(p[0] - A[0] - vx * t, p[1] - A[1] - vz * t); };
+  const sm = (a, b, x) => { const t = Math.max(0, Math.min(1, (x - a) / (b - a))); return t * t * (3 - 2 * t); };
+  const WARM = ['#ff9a5c', '#ff8b55', '#ffab66', '#f88a5e', '#ffa05a'], rnd = CH.rng(20261114);
+  const tileColor = (c) => {
+    const base = WARM[Math.floor(rnd() * WARM.length)];
+    const far = sm(0.5, 3.4, segDist(c)), south = sm(1.4, 3.6, c[1]);
+    let col = TXLOOK.mix(base, '#e0607e', far * 0.6);
+    col = TXLOOK.mix(col, '#6a4fd0', Math.min(0.9, far * 0.3 + south * 0.75));
+    return col;
+  };
+
+  const TILE_H = 0.05, LUB_H = 0.3, GAP = 0.965;
+  const tiles = new THREE.Group(); tiles.name = 'county-tiles';
+  let lubTop = null;
+  counties.features.forEach((f) => {
+    const g = f.geometry, polys = g.type === 'Polygon' ? [g.coordinates] : g.coordinates, isLub = nameOf(f) === 'Lubbock';
+    const cen = toW(d3.geoCentroid(f));
+    const mat = isLub
+      ? new THREE.MeshPhysicalMaterial({ color: 0x3a31c4, emissive: 0x1a1460, emissiveIntensity: 0.2, roughness: 0.3, clearcoat: 0.6, clearcoatRoughness: 0.12, envMapIntensity: 0.35, ior: 1.5, specularIntensity: 1, sheen: 0.4, sheenColor: new THREE.Color(0x9fd8ff) })
+      : new THREE.MeshPhysicalMaterial({ color: new THREE.Color(tileColor(cen)), roughness: 0.62, clearcoat: 0.12, clearcoatRoughness: 0.35, map: tooth, envMapIntensity: 0.6 });
+    polys.forEach((poly) => {
+      const ring = poly[0].map(toW);
+      let cx0 = 0, cz0 = 0; ring.forEach(p => { cx0 += p[0]; cz0 += p[1]; }); cx0 /= ring.length; cz0 /= ring.length;
+      const sh = new THREE.Shape();
+      const k = isLub ? 0.9 : GAP;   /* the glass block pulls in further, so its deep bevel stays inside its own county */
+      ring.forEach((p, i) => { const x = cx0 + (p[0] - cx0) * k, z = cz0 + (p[1] - cz0) * k; if (i) sh.lineTo(x, -z); else sh.moveTo(x, -z); });
+      const h = isLub ? LUB_H : TILE_H, bt = isLub ? 0.02 : 0.006, bs = isLub ? 0.018 : 0.005;
+      const geo = new THREE.ExtrudeGeometry(sh, { depth: h - 2 * bt, bevelEnabled: true, bevelThickness: bt, bevelSize: bs, bevelSegments: isLub ? 6 : 3, curveSegments: 4 });
+      geo.rotateX(-Math.PI / 2); geo.translate(0, bt, 0);
+      const m = new THREE.Mesh(geo, mat); m.castShadow = true; m.receiveShadow = true; tiles.add(m);
+    });
+    if (isLub) lubTop = [cen[0], LUB_H, cen[1]];
+  });
+  R.scene.add(tiles);
+  /* THE CLUSTER, TO STAND: an architect's massing model on the glass block, a long hall and a shorter one in frosted glass with
+   * lit edges, because the building is planned and not built */
+  const GOLD = 0xffcf7a, GOLD2 = 0xffe6b8;
+  const frost = new THREE.MeshPhysicalMaterial({ color: 0xf4f8ff, roughness: 0.3, transparent: true, opacity: 0.8, clearcoat: 1, clearcoatRoughness: 0.1, depthWrite: false });
+  const massing = new THREE.Group();
+  [[0.24, 0.1, 0.11, 0, -0.035], [0.15, 0.065, 0.08, -0.03, 0.075]].forEach(([w, h, dd, x, z]) => {
+    const b = TXT.roundedBox(w, h, dd, 0.008, frost); b.position.set(x, h / 2, z); massing.add(b);
+    const e = new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.BoxGeometry(w, h, dd)), new THREE.LineBasicMaterial({ color: GOLD2, toneMapped: false, transparent: true, opacity: 0.9 }));
+    e.position.copy(b.position); massing.add(e);
+    for (let r = 1; r <= 3; r++) { const st = new THREE.Mesh(new THREE.BoxGeometry(w * 0.86, 0.0035, 0.002), new THREE.MeshBasicMaterial({ color: GOLD2, toneMapped: false })); st.position.set(x, h * r / 4, z + dd / 2 + 0.0015); massing.add(st); }
+  });
+  massing.position.set(lubTop[0], LUB_H, lubTop[2]); massing.rotation.y = 0.08; R.scene.add(massing);
+  const hallTop = LUB_H + 0.1;
+  /* the landing's light on the block and the counties around it */
+  const warmLamp = new THREE.PointLight(0xffc880, 0.7, 1.2, 2); warmLamp.position.set(lubTop[0], hallTop + 0.1, lubTop[2] + 0.05); R.scene.add(warmLamp);
+
+  /* THE CAPITOL, the kit's Texas State Capitol as a table piece on Travis County, its south front to the camera */
+  const cap = K.make('capitol');
+  const CAP_S = 0.0062; cap.scale.setScalar(CAP_S);
+  cap.position.set(A[0], TILE_H, A[1]); TXT.add(R, cap); TXT.contact(R, cap);
+  const capTop = TILE_H + 92.3 * CAP_S;
+
+  /* THE LINE: one arc from the dome's crown to the heart of Lubbock County, its height a drawing choice, not a quantity */
+  const APEX = 2.1, pts = [];
+  const B = [lubTop[0], hallTop + 0.004, lubTop[2] - 0.035], A0 = [A[0], capTop + 0.01, A[1]];
+  for (let i = 0; i <= 64; i++) { const t = i / 64, e = t; pts.push([A0[0] + (B[0] - A0[0]) * e, A0[1] + (B[1] - A0[1]) * e + APEX * 4 * t * (1 - t), A0[2] + (B[2] - A0[2]) * e]); }
+  /* the line is light, in the warm key's gold: it casts no shadow */
+  const core = TXT.tube(pts, 0.018, new THREE.MeshBasicMaterial({ color: GOLD, toneMapped: false }), { segments: 220, radial: 12 }); core.castShadow = false; core.receiveShadow = false; R.scene.add(core);
+  const halo = TXT.tube(pts, 0.055, new THREE.MeshBasicMaterial({ color: GOLD2, transparent: true, opacity: 0.18, depthWrite: false, toneMapped: false }), { segments: 220, radial: 16 });
+  halo.castShadow = false; R.scene.add(halo);
+  /* where it lands: a bloom on the hall's roof, and two rings on the counties around the block, a ripple a thumb can see */
+  CH.lampGlow(THREE, R, B, GOLD2, 0.3, 0);
+  CH.lampGlow(THREE, R, A0, GOLD2, 0.3, 0);
+  [[0.32, 0.02, 1], [0.46, 0.014, 0.75]].forEach(([r, t, o]) => {
+    /* each ring sits on a darker violet ring a touch wider, so the gold reads on warm tiles as on cool */
+    const under = new THREE.Mesh(new THREE.TorusGeometry(r, t * 2.1, 10, 128), new THREE.MeshBasicMaterial({ color: 0x2a1e78, transparent: true, opacity: 0.5 * o, depthWrite: false, toneMapped: false }));
+    under.rotation.x = -Math.PI / 2; under.position.set(lubTop[0], TILE_H + 0.004, lubTop[2]); under.scale.z = 0.5; R.scene.add(under);
+    const ring = new THREE.Mesh(new THREE.TorusGeometry(r, t, 10, 128), new THREE.MeshBasicMaterial({ color: GOLD, transparent: o < 1, opacity: o, toneMapped: false }));
+    ring.rotation.x = -Math.PI / 2; ring.scale.set(1, 1, 1); ring.position.set(lubTop[0], TILE_H + 0.006, lubTop[2]); ring.castShadow = false; R.scene.add(ring);
+  });
+
+  /* THE CAMERA: low and south of Austin, the capital near, the plains far, Austin placed by CH.aim at a fixed screen point */
+  const FROM = [1.2, 7.2, 15.0];
+  const LOOK = CH.aim(THREE, R, TXT, FROM, [A[0], TILE_H, A[1]], 770, 700, 30);
+  TXT.frame(R, { fov: 30, from: FROM, look: LOOK });
+
+  /* THE KEY, this frame's own: a morning sun from the southwest, low enough that every tile's bevel catches it and the
+   * arc lays its shadow across the Hill Country to the northeast */
+  CH.KEY_SCALE = 1.15;
+  TXT.deckRig(R, CH.rigSpec(W, 8, 4096), { target: [0, 0, -0.5], distance: 30, shadowFar: 70, normalBias: 0.01, light: { az: -40, el: 34 } });
+
+  const cx = CH.develop(await TXT.snapshot(R), gl);
+
+  /* the type's seat, low, in the tone's deep hue; the footer's own wash under it */
+  /* the low band goes quiet: a smooth tint in the tone's deep hue rising from the foot, so the South Texas tile seams
+   * under the dek soften and no seam reads as a rule through a line of type; and a light tint at the head for the kicker */
+  const T = TXLOOK.palette('explainer');
+  /* the morning's source: a soft glow low in the southwest of the sky, on the key's own side, behind the plains */
+  const sun = cx.createRadialGradient(150, 360, 10, 150, 360, 620);
+  sun.addColorStop(0, TXLOOK.rgba(T.key, 0.26)); sun.addColorStop(1, TXLOOK.rgba(T.key, 0));
+  cx.save(); cx.globalCompositeOperation = 'screen'; cx.fillStyle = sun; cx.fillRect(0, 0, 1080, 1350); cx.restore();
+  const lowBand = cx.createLinearGradient(0, 720, 0, 1350);
+  lowBand.addColorStop(0, TXLOOK.rgba(T.low, 0)); lowBand.addColorStop(0.3, TXLOOK.rgba(T.low, 0.34)); lowBand.addColorStop(0.68, TXLOOK.rgba(T.low, 0.66)); lowBand.addColorStop(1, TXLOOK.rgba(T.low, 0.82));
+  cx.fillStyle = lowBand; cx.fillRect(0, 720, 1080, 630);
+  const head = cx.createLinearGradient(0, 0, 0, 280);
+  head.addColorStop(0, TXLOOK.rgba(T.low, 0.5)); head.addColorStop(1, TXLOOK.rgba(T.low, 0));
+  cx.fillStyle = head; cx.fillRect(0, 0, 1080, 280);
+  CH.seat(cx, { a: 0.5, fade: 240 });
+  TXLOOK.footWash(cx, { a: 0.36, height: 200 });
+
+  /* the label tucked tight under the block's front foot */
+  const lab = document.getElementById('l-lub'), lr = lab.getBoundingClientRect();
+  let footY = -1e9, q = CH.project(THREE, R, [lubTop[0], LUB_H, lubTop[2]]);
+  tiles.updateMatrixWorld(true);
+  { const bb = new THREE.Box3(); tiles.children.forEach(m => { if (m.material.color.getHex && m.geometry.boundingBox == null) m.geometry.computeBoundingBox(); });
+    const lubMeshes = tiles.children.filter(m => m.position && m.geometry.boundingBox && m.geometry.boundingBox.max.y > LUB_H - 0.01);
+    lubMeshes.forEach(m => bb.union(m.geometry.boundingBox));
+    footY = CH.project(THREE, R, [lubTop[0], TILE_H, bb.max.z])[1]; }
+  lab.style.left = Math.round(q[0] - lr.width / 2) + 'px'; lab.style.top = Math.round(footY + 10) + 'px';
+  const aq = CH.project(THREE, R, [A[0], capTop, A[1]]);
+  console.log('frame2 austin', JSON.stringify(CH.project(THREE, R, [A[0], TILE_H, A[1]])), 'dome', JSON.stringify(aq), 'lubbock', JSON.stringify(q), 'hookTop', hook.style.top);
+
+  TXDECK.finish(cx);
+  return true;
+})();
+</script>
+</body>
+</html>
