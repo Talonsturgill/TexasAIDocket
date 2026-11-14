@@ -66,7 +66,10 @@ subjects and techniques that make each claim visible. Use `txthree.js` for spati
 **FOR A SPATIAL SCENE, PITCH THE WORLD IT STANDS IN, AND START DARK (2026-10-04, owner, on the sibling's art
 beside ours: "It's more like bold. The Texas one ... it's just more like faded colors").** Name ONE world
 from the table in `ILLUSTRATION_SYSTEM.md`, THE WORLD, the declared light it wants, and why THIS
-story wants that light. The default is `lastLight`, a STAGED world: a near black sky, one subject
+story wants that light. **On a look v2 run (dated on or after `config/carousel/look.json` `v2_from`)
+you pitch a TONE instead (wonder, explainer, win, watch, people, at most two watch in seven), its world
+`TXT.V2_WORLD[tone]`, object frames in `TXT.studio` and reliefs from `TXLOOK.sky2d`, as CLAUDE.md, LOOK
+V2, says, and never a staged dark world. The rest of this paragraph is for runs before v2.** The default is `lastLight`, a STAGED world: a near black sky, one subject
 filling the frame in a pool of light, the world behind it gone dark. `floodlit` is its night
 twin. Every other world (golden hour, blue hour, night under sodium, high noon, overcast, a storm
 front) is a move you argue for in writing, and it still has to pass `value_register.py`, which

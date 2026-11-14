@@ -127,6 +127,12 @@ the owner rejected, and it is a must-fix whatever else is right with it. Frames 
 solid objects with a material, one light, a soft shadow and a contact. Every dossier now declares `layout`, `primary_image` and `accent`.
 Grade them off the thumb:
 
+- **LOOK V2 FIRST (owner, 2026-11-14).** When the deck declares `look: "v2"` (any run dated on or
+  after `config/carousel/look.json` `v2_from`), apply THE SHOWSTOPPER TEST, LOOK V2 in
+  `knowledge/carousel/ILLUSTRATION_SYSTEM.md` instead of the dark test below. A v2 frame wants
+  saturated tone colour in a lit studio or relief, shadows leaning violet or navy, type on the
+  tone's wash and labels as accent pills. Never mark a v2 frame down for not being dark, and do
+  mark it down for a near black field or a grey middle.
 - **THE SHOWSTOPPER TEST (rewritten 2026-10-04), first, with the type covered.** Is it BOLD, the
   way the sibling's decks are: ONE subject filling a third to two thirds of the frame, lit from
   the side its shadows say, in a pool of light on a dark field, true blacks and one bright edge,

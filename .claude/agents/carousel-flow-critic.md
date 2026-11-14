@@ -58,6 +58,12 @@ before naming a texture or lighting defect. Missing or stale crops require a fre
   one accent should appear on three to six frames, small, and nowhere else.
 - **Frames 7 to 9 against 1 to 3.** The close is where every judged deck went thin. If the
   last three frames carry less drawing than the first three, say so by number.
+- **LOOK V2 FIRST (owner, 2026-11-14).** When the deck declares `look: "v2"` (any run dated on or
+  after `config/carousel/look.json` `v2_from`), apply THE SHOWSTOPPER TEST, LOOK V2 in
+  `knowledge/carousel/ILLUSTRATION_SYSTEM.md` instead of the dark test below. A v2 frame wants
+  saturated tone colour in a lit studio or relief, shadows leaning violet or navy, type on the
+  tone's wash and labels as accent pills. Never mark a v2 frame down for not being dark, and do
+  mark it down for a near black field or a grey middle.
 - **Deck craft, the rubric's artwork test (2026-10-03, taken from the sibling product).** Open
   the full renders for this one, not only the thumbs. `artwork_craft` was the lowest criterion,
   or tied for it, on seven of the ten panel-scored decks from September 20th to October 2nd, and

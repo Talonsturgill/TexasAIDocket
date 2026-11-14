@@ -777,7 +777,30 @@ const shot = await TXT.snapshot(R);
    seat dark type is the fade itself: no. 42 lifted the top of every frame by 0.35 and the bottom
    by 0.45 and the owner read the result as faded colours.
 
-### THE SHOWSTOPPER TEST, which every critic and the scorer apply
+### THE SHOWSTOPPER TEST, LOOK V2 (owner, 2026-11-14), for every run dated on or after `config/carousel/look.json` `v2_from`
+
+Every critic, every director and the scorer apply this version to a deck that declares `look: "v2"`,
+and it replaces the dark test below for that deck. Where any prompt, agent file or rubric line asks
+a v2 deck for a dark field, true blacks, light type on black or `lastLight`, this test wins. At 432 px,
+with the type covered:
+
+1. Is there ONE subject, rounded and lit from the side its shadows say, filling at least half the
+   frame, with everything else falling away?
+2. Is it VIVID: saturated colour from the deck's tone, a clear bright and a clear shadow, shadows
+   leaning to the tone's violet or navy, and little in the grey middle? `value_register.py --look v2`
+   measures it: grey mid tones (L* 30 to 70, chroma under 18) at most 0.30 of a probe frame and 0.20
+   of the deck mean, vivid pixels (chroma 30 or more) at least 0.20 and 0.30, near black at most 0.25
+   of any frame and 0.12 of the deck mean.
+3. Does it stand somewhere: the tone's `TXT.studio` sweep under a big soft key, a lit room, or a lit
+   material relief from `TXLOOK.sky2d`, never a black void?
+4. Does everything standing touch the ground, with a soft contact shadow at its base?
+5. Does the type sit on the tone's own deep wash (`TXLOOK.typeWash`) with labels as accent pills
+   (`TXLOOK.css`), and would it hold beside the sibling's deck of the same morning?
+
+A v2 deck whose every frame passes all five is the artwork 10. A near black frame on a v2 deck fails
+point 2. `examples/look-v2-proof/2026-11-14/` is the worked example.
+
+### THE SHOWSTOPPER TEST, which every critic and the scorer apply (runs before look v2)
 
 At 432 px, with the type covered (rewritten 2026-10-04, after the owner set no. 42 beside the
 sibling's no. 78: "the Alaska one ... wows me ... It's more like bold. The Texas one ... it's just
