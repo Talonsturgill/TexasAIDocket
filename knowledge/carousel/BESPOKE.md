@@ -120,7 +120,7 @@ soft spot. 6 is competent and could have run on another story. 4 is a template.
 ## What the worked example measured (2026-11-14)
 
 - Difference: round one adjacent mean 0.377 with the type in 4 places and runs of 3. After one rework,
-  adjacent mean 0.302, max pair 0.643, the type in 6 places, never twice in a row. The last fourteen
+  adjacent mean 0.302, max pair 0.643, the type in 6 places and a longest same-place run of 1. The last fourteen
   shipped decks measured 0.452 to 0.567 with the type in 1 or 2 places.
 - Craft: artists scored themselves 7.3 to 8.3; cold critics scored the same frames 4.8 to 7.6 in round
   one and 5.8 to 7.2 after one rework. Self scores run about 1.5 points high, so the critic stage is
