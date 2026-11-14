@@ -6,7 +6,7 @@
     9
   ],
   "inputs": {
-    "slides/slide-01.html": "651d0c4169088726570fe8a203ba146ff77d4537fb46148018570c525faa339a",
+    "slides/slide-01.html": "3dfd8101f5c747a9e0f4e63fddcc681d6a79dd738c220b14b0ebac4a2ae48f8d",
     "render/slide-01.png": "4493279cb12cb806811c7864aff292f235dc58a8ef4a445d90ce37d86c44e84d",
     "assets/js/deck/2026-11-14-waferbench.js": "74f8a4b601a292f2fef8b5f2e79b9bf450087b56b2a33c6f9d1b8f24a6dcf9bf",
     "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
@@ -18,10 +18,10 @@
     "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
     "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
     "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
-    "slides/slide-06.html": "03e2b80b25b6a3fddc13f9d78783071329d23d8773fa40ba23569964fe7903c5",
+    "slides/slide-06.html": "df7277956c239a6d636f7d92c3c1cdc22e2bfefdea07147e9c68608e267224b8",
     "render/slide-06.png": "7943c52a90804cf06a1bb47d88ac949f6e3a060bc626c77e10064916a03af686",
     "assets/js/txbench.js": "6aee9f0f657aa8723a635683cb6482a2a0ad31aabcd5a633e3cb3a4d34f1f638",
-    "slides/slide-09.html": "7109f27b0013e1931b43cc921c79ee7bce112c55d023353c2551891d99654e47",
+    "slides/slide-09.html": "4b3cbb58dc347299970b7eb617e19d96e06c2898caedfb4aca2ab47b4493c9e8",
     "render/slide-09.png": "e0af0449e80ba29e48c5075b3eb9449d993f3dbd6797c00dcc13384a28af8718"
   },
   "value_measurements": [
@@ -47,7 +47,7 @@
   "review": {
     "decision": "accept",
     "inputs": {
-      "slides/slide-01.html": "651d0c4169088726570fe8a203ba146ff77d4537fb46148018570c525faa339a",
+      "slides/slide-01.html": "3dfd8101f5c747a9e0f4e63fddcc681d6a79dd738c220b14b0ebac4a2ae48f8d",
       "render/slide-01.png": "4493279cb12cb806811c7864aff292f235dc58a8ef4a445d90ce37d86c44e84d",
       "assets/js/deck/2026-11-14-waferbench.js": "74f8a4b601a292f2fef8b5f2e79b9bf450087b56b2a33c6f9d1b8f24a6dcf9bf",
       "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
@@ -59,10 +59,10 @@
       "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
       "assets/js/txthree.js": "731e164ca252500792cc508af0c16c0c06d4c7261e4a89064de2367bf875aac0",
       "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
-      "slides/slide-06.html": "03e2b80b25b6a3fddc13f9d78783071329d23d8773fa40ba23569964fe7903c5",
+      "slides/slide-06.html": "df7277956c239a6d636f7d92c3c1cdc22e2bfefdea07147e9c68608e267224b8",
       "render/slide-06.png": "7943c52a90804cf06a1bb47d88ac949f6e3a060bc626c77e10064916a03af686",
       "assets/js/txbench.js": "6aee9f0f657aa8723a635683cb6482a2a0ad31aabcd5a633e3cb3a4d34f1f638",
-      "slides/slide-09.html": "7109f27b0013e1931b43cc921c79ee7bce112c55d023353c2551891d99654e47",
+      "slides/slide-09.html": "4b3cbb58dc347299970b7eb617e19d96e06c2898caedfb4aca2ab47b4493c9e8",
       "render/slide-09.png": "e0af0449e80ba29e48c5075b3eb9449d993f3dbd6797c00dcc13384a28af8718"
     },
     "frames": [
@@ -71,13 +71,13 @@
         "role": "cover",
         "subject": "Nineteen dark mirror polished wafers standing in a translucent quartz boat on a dark epoxy bench under a warm flood. The near end plate is a U cradle and the rods run out past the right frame edge with no far end wall.",
         "visual_consequence": "A full carrier whose rods continue empty past the last wafer reads at 432 px as open ended, with room for more.",
-        "weakness": "Byte identical to the last accept. Non blocking: the lowest 30 percent of the frame is near black bench with a faint gradient.",
+        "weakness": "The image is byte identical to the one previously reviewed. Non blocking: the lowest 30 percent of the frame is near black bench with a faint gradient.",
         "repair": "None required.",
         "encoding_reads": true,
         "dominant_subject_finished": true,
         "feed_legible": true,
         "inputs": {
-          "slides/slide-01.html": "651d0c4169088726570fe8a203ba146ff77d4537fb46148018570c525faa339a",
+          "slides/slide-01.html": "3dfd8101f5c747a9e0f4e63fddcc681d6a79dd738c220b14b0ebac4a2ae48f8d",
           "render/slide-01.png": "4493279cb12cb806811c7864aff292f235dc58a8ef4a445d90ce37d86c44e84d",
           "assets/js/deck/2026-11-14-waferbench.js": "74f8a4b601a292f2fef8b5f2e79b9bf450087b56b2a33c6f9d1b8f24a6dcf9bf",
           "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
@@ -96,7 +96,7 @@
         "role": "evidence",
         "subject": "A plan view relief of a near black anodised wafer tray with three recessed channels: January twelve discs capped by a far stop, May four discs and a D shaped half, November nineteen gold rimmed discs with no stop running off the right edge.",
         "visual_consequence": "Three lengths and three different ends read without the labels at 432 px.",
-        "weakness": "Byte identical to the last accept. Minor: November's empty run past disc nineteen is short, and the dusk_gold rims read slightly copper.",
+        "weakness": "The image is byte identical to the one previously reviewed. Minor: November's empty run past disc nineteen is short, and the dusk_gold rims read slightly copper.",
         "repair": "None required.",
         "encoding_reads": true,
         "dominant_subject_finished": true,
@@ -109,7 +109,7 @@
           "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
           "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
           "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
-          "slides/slide-06.html": "03e2b80b25b6a3fddc13f9d78783071329d23d8773fa40ba23569964fe7903c5",
+          "slides/slide-06.html": "df7277956c239a6d636f7d92c3c1cdc22e2bfefdea07147e9c68608e267224b8",
           "render/slide-06.png": "7943c52a90804cf06a1bb47d88ac949f6e3a060bc626c77e10064916a03af686",
           "assets/js/txbench.js": "6aee9f0f657aa8723a635683cb6482a2a0ad31aabcd5a633e3cb3a4d34f1f638"
         }
@@ -118,8 +118,8 @@
         "slide": 9,
         "role": "close",
         "subject": "A blackened brushed steel nameplate in relief with four domed corner rivets, a gold frame round AWARD (over $19 million), a CHIPS, PER THE DEAN recess and an IN SERVICE recess whose floor carries a row of nineteen empty circular wafer pockets.",
-        "visual_consequence": "Two filled recesses above one recess holding nineteen empty sockets read at feed size as not yet. The empty count matches November's nineteen discs on frame 6.",
-        "weakness": "Finished. Minor: the first two pockets sit over the recess's shadowed left wall zone, the uniform black pockets can read as vent holes at 432 px until frame 6 is seen, and the right hand rivet shadows end in a hard cut.",
+        "visual_consequence": "Two filled recesses above one recess holding nineteen empty sockets read at feed size as not yet.",
+        "weakness": "The image is byte identical to the one previously reviewed. Minor: the first two pockets sit over the shadowed left wall zone, and the right hand rivet shadows end in a hard cut.",
         "repair": "None required.",
         "encoding_reads": true,
         "dominant_subject_finished": true,
@@ -133,12 +133,12 @@
           "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
           "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
           "assets/js/txbench.js": "6aee9f0f657aa8723a635683cb6482a2a0ad31aabcd5a633e3cb3a4d34f1f638",
-          "slides/slide-09.html": "7109f27b0013e1931b43cc921c79ee7bce112c55d023353c2551891d99654e47",
+          "slides/slide-09.html": "4b3cbb58dc347299970b7eb617e19d96e06c2898caedfb4aca2ab47b4493c9e8",
           "render/slide-09.png": "e0af0449e80ba29e48c5075b3eb9449d993f3dbd6797c00dcc13384a28af8718"
         }
       }
     ],
-    "note": "Frame 9 read fresh: full render and all six native crops. Frames 1 and 6 byte identical to the last accept. Rebuilt from the art director's hand back (agent af4c617d4b8602605), bound to the digests it quoted."
+    "note": "Re-bound after fig_inject pruned each slide's FIG line: all three PNG digests match the previous accepts exactly, only the HTML source digests changed. Rebuilt from the art director's hand back (agent af4c617d4b8602605)."
   },
   "plan": {
     "hardest_frame": 6,
@@ -148,7 +148,7 @@
   },
   "frame_inputs": {
     "1": {
-      "slides/slide-01.html": "651d0c4169088726570fe8a203ba146ff77d4537fb46148018570c525faa339a",
+      "slides/slide-01.html": "3dfd8101f5c747a9e0f4e63fddcc681d6a79dd738c220b14b0ebac4a2ae48f8d",
       "render/slide-01.png": "4493279cb12cb806811c7864aff292f235dc58a8ef4a445d90ce37d86c44e84d",
       "assets/js/deck/2026-11-14-waferbench.js": "74f8a4b601a292f2fef8b5f2e79b9bf450087b56b2a33c6f9d1b8f24a6dcf9bf",
       "assets/js/noise.js": "ae48620fda646edad7262f62e8c7b394d971103327e75d405a113bd4ef4ebeaa",
@@ -169,7 +169,7 @@
       "assets/js/txlayout.js": "a31072fd1ed965a34ad16d80007633a1055fe92897c1c8f6c870a1c33348d04e",
       "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
       "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
-      "slides/slide-06.html": "03e2b80b25b6a3fddc13f9d78783071329d23d8773fa40ba23569964fe7903c5",
+      "slides/slide-06.html": "df7277956c239a6d636f7d92c3c1cdc22e2bfefdea07147e9c68608e267224b8",
       "render/slide-06.png": "7943c52a90804cf06a1bb47d88ac949f6e3a060bc626c77e10064916a03af686",
       "assets/js/txbench.js": "6aee9f0f657aa8723a635683cb6482a2a0ad31aabcd5a633e3cb3a4d34f1f638"
     },
@@ -182,19 +182,21 @@
       "assets/js/txpost.js": "e46fc8aa813b870b7eaba8b152079b8b902081718369e612eac7fdd22cd816f0",
       "assets/js/txtype.js": "b1dfe1eb2e283498b839301766453c3693add52601bb99db0f36412f3f4bc3de",
       "assets/js/txbench.js": "6aee9f0f657aa8723a635683cb6482a2a0ad31aabcd5a633e3cb3a4d34f1f638",
-      "slides/slide-09.html": "7109f27b0013e1931b43cc921c79ee7bce112c55d023353c2551891d99654e47",
+      "slides/slide-09.html": "4b3cbb58dc347299970b7eb617e19d96e06c2898caedfb4aca2ab47b4493c9e8",
       "render/slide-09.png": "e0af0449e80ba29e48c5075b3eb9449d993f3dbd6797c00dcc13384a28af8718"
     }
   },
   "needs_review": [
+    1,
+    6,
     9
   ],
   "shipped_inputs": {
-    "slides/slide-01.html": "651d0c4169088726570fe8a203ba146ff77d4537fb46148018570c525faa339a",
+    "slides/slide-01.html": "3dfd8101f5c747a9e0f4e63fddcc681d6a79dd738c220b14b0ebac4a2ae48f8d",
     "slide-01.webp": "e74504f81807f1c22400eaf282b49ab2f69fd26e42305a681f28005ea66634d5",
-    "slides/slide-06.html": "03e2b80b25b6a3fddc13f9d78783071329d23d8773fa40ba23569964fe7903c5",
+    "slides/slide-06.html": "df7277956c239a6d636f7d92c3c1cdc22e2bfefdea07147e9c68608e267224b8",
     "slide-06.webp": "cb62de945c0268639a4f2b957a460166c9b13646c9467d2e56de701240385789",
-    "slides/slide-09.html": "7109f27b0013e1931b43cc921c79ee7bce112c55d023353c2551891d99654e47",
+    "slides/slide-09.html": "4b3cbb58dc347299970b7eb617e19d96e06c2898caedfb4aca2ab47b4493c9e8",
     "slide-09.webp": "077e5353685d025c3ddd3898cd15affc73915b2bea01afc05c59f86e88946d56"
   },
   "encodings": [
