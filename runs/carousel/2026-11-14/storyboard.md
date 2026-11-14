@@ -117,7 +117,7 @@ acceptance: [the frame's code builds exactly FIG.nov_wafers wafers in the boat a
 risks: [nineteen wafers merging into a comb, clear quartz reading as nothing on the dark field]
 type:
   hook: "Over $19 million for a cluster not built yet"
-  dek: "The state's chip fund is helping Texas Tech set up a computing cluster in Lubbock, the university said on November 13th. One wafer stands for $1 million, drawn to illustrate, and the boat has no far end."
+  dek: "The state's chip fund is helping Texas Tech set up a computing cluster in Lubbock, the university said on November 13th. One wafer stands for $1 million. The boat is drawn to illustrate and has no far end."
   labels: []
 ```
 
@@ -203,8 +203,8 @@ verbatim: []
 acceptance: [the two boats together span at least 900 px of the frame width at 1080 px, the frame's code builds FIG.jan_wafers wafers in the quartz boat and FIG.match_wafers in the carbide boat, the two boats are drawn at one scale and their lengths differ by under 3 percent on the render, the two boat materials are tellable apart at 432 px, each wafer top reads as a separate lit arc at 432 px, the render report says ROOM IN FRAME, no numeral on this slide is absent from claims.json or figures.json]
 risks: [twenty four wafers merging, the two materials reading alike]
 type:
-  hook: "Texas Tech matched it, for a $24 million project"
-  dek: "The university is matching the state's funding, bringing the clean room project to $24 million. The state's twelve wafers in quartz, Texas Tech's twelve in dark carbide, drawn to illustrate."
+  hook: "Texas Tech will match it, for a $24 million project"
+  dek: "The university will match the state's funding, bringing the clean room project to $24 million. The state's twelve wafers sit in a quartz boat and Texas Tech's twelve in a dark carbide boat. Drawn to illustrate."
   labels: ["state", "Texas Tech"]
 ```
 
@@ -264,7 +264,7 @@ acceptance: ['the tray relief fills the frame below the type, at least 650 px ta
 risks: [the tray reading as a chart]
 type:
   hook: "Three awards, three kinds of number"
-  dek: "January was $12 million exactly. May was roughly $4.5 million. November is over $19 million, a floor, so no total is drawn."
+  dek: "January was $12 million exactly. May was roughly $4.5 million. November is over $19 million, which is a floor. No total is drawn."
   labels: ["January, exact", "May, roughly", "November, over"]
 ```
 
@@ -300,7 +300,7 @@ slide: 8
 layout: FIGURE_SCALE
 primary_image:
   subject: a researcher seated at a desk turned three quarters away, an open laptop, and the November boat of nineteen wafers at true size on the desk in the near third
-  rect: [0, 640, 1080, 710]
+  rect: [0, 760, 1080, 590]
   bleeds: [left, bottom, right]
 accent: '#E0956A'
 data_in_art: {figure: nov_wafers, drives: the nineteen wafer boat at true size beside a seated adult}
@@ -319,7 +319,7 @@ acceptance: [the desk boat spans at least 380 px of the frame width, the frame's
 risks: [the kit person reading as a mannequin]
 type:
   hook: "The newest Nvidia chips, the dean says"
-  dek: "The engineering dean, Roland Faller, says Texas Tech will be one of the first universities with access to the newest generation of Nvidia chips to power the cluster, servers working as one system. Drawn to illustrate."
+  dek: "The engineering dean, Roland Faller, says Texas Tech will be one of the first universities with access to the newest generation of Nvidia chips to power the cluster. The cluster is servers working as one system. Drawn to illustrate."
   labels: []
 ```
 
@@ -328,7 +328,7 @@ slide: 9
 layout: DOCUMENT
 primary_image:
   subject: a blackened brushed steel machine nameplate below the type, cropped by three edges, a raised border, four domed rivets and three recessed fields, AWARD and CHIPS filled from the announcement and IN SERVICE empty
-  rect: [0, 560, 1080, 790]
+  rect: [0, 640, 1080, 710]
   bleeds: [left, right, bottom]
 accent: '#E0956A'
 job: Close on the honest limit, a nameplate whose IN SERVICE field is empty, because the announcement gives no install or completion date.
@@ -348,6 +348,6 @@ acceptance: [the brushed steel nameplate relief fills the frame edge to edge and
 risks: [reading as a UI card]
 type:
   hook: "No install date announced"
-  dek: "Texas Tech's November 13th announcement says the award will help establish the cluster. It gives no install or completion date. Over $19 million is a floor. The plate is drawn to illustrate."
-  labels: ["AWARD", "over $19 million", "CHIPS", "newest generation, Nvidia", "IN SERVICE"]
+  dek: "Texas Tech's November 13th announcement says the award will help establish the cluster. It gives no install or completion date. The plate is drawn to illustrate."
+  labels: ["AWARD", "over $19 million", "CHIPS, PER THE DEAN", "newest generation, Nvidia", "IN SERVICE"]
 ```

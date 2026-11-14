@@ -86,8 +86,8 @@
       cleave: new THREE.MeshStandardMaterial({ color: 0x5d5a66, metalness: 0.5, roughness: 0.32 }),
       quartz: new THREE.MeshPhysicalMaterial({ color: 0xd8eef5, metalness: 0, roughness: 0.04, transparent: true, opacity: 0.32, depthWrite: false,
         clearcoat: 1, clearcoatRoughness: 0.03, envMapIntensity: 2.2, specularIntensity: 1, ior: 1.46 }),
-      sic: new THREE.MeshStandardMaterial({ color: 0x2c2c31, metalness: 0.15, roughness: 0.52 }),
-      epoxy: new THREE.MeshPhysicalMaterial({ color: 0x2a282e, map: scr, roughness: 0.3, roughnessMap: scr, metalness: 0, clearcoat: 0.5, clearcoatRoughness: 0.25 }),
+      sic: new THREE.MeshStandardMaterial({ color: 0x34363e, metalness: 0.35, roughness: 0.38 }),
+      epoxy: new THREE.MeshPhysicalMaterial({ color: 0x4a4852, map: scr, roughness: 0.4, roughnessMap: scr, metalness: 0, clearcoat: 0.5, clearcoatRoughness: 0.25 }),
       steel: new THREE.MeshStandardMaterial({ color: 0x3a3c40, metalness: 0.6, roughness: 0.45 }),
       gold: new THREE.MeshBasicMaterial({ color: N.GOLD, toneMapped: false, fog: false })
     };
