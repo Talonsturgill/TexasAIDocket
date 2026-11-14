@@ -242,7 +242,7 @@ slide: 6
 layout: DIAGRAM
 primary_image:
   subject: a black anodised wafer tray in plan with three channels from one common stop, January twelve polished wafers and a quartz end stop, May four wafers and a cleaved half then a stop, November nineteen wafers and no stop with its channel running off the right edge
-  rect: [0, 680, 1080, 560]
+  rect: [0, 690, 1080, 520]
   bleeds: [left, right]
 accent: '#E0956A'
 data_in_art: {figure: nov_wafers, drives: 'three channel disc counts at one pitch, jan_wafers, may_whole plus a cleaved half from may_part, and nov_wafers, from one common stop'}
