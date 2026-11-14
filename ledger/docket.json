@@ -935,9 +935,18 @@
      "source_title": "PUCT Interchange, Docket 59315 filings",
      "source_type": "primary_official",
      "fetched": "2026-11-08"
+    },
+    {
+     "id": "tx-2026-0003-c22",
+     "text": "The commission's docket for the application now lists 5865 filings.",
+     "verbatim_quote": "5865 filing(s).",
+     "source_url": "https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=59315&ItemMatch=Equal&DocumentType=ALL&SortOrder=Ascending",
+     "source_title": "PUCT Interchange, Docket 59315 filings",
+     "source_type": "primary_official",
+     "fetched": "2026-11-14"
     }
    ],
-   "last_verified": "2026-11-11",
+   "last_verified": "2026-11-14",
    "confidence": "high",
    "notes_for_editor": "The 765 kV designation and the 22 county list are taken verbatim from the commission's own case style, not computed. Note for numeral_lint, 765 kV and the docket number are identifiers inside a quoted official title, not measurements this project derived. The Interchange web view renders only the first page of filing rows while reporting the full count on its index line, so the item count is quoted from that line and never counted from the table. The calendar feed's description field never carries a docket number for any entry, so its absence there is not evidence a matter has been dropped. Read the agenda PDF the entry links. This docket is included on the AI beat because 765 kV backbone capacity is the physical answer to large load growth, but the record fetched does NOT state that any particular data center drives this line, and the docket must not be described as a data center project without that link being established.",
    "history": [
@@ -1083,6 +1092,10 @@
      "date": "2026-11-11",
      "note": "Oncor's 765 kV line across the Panhandle and West Texas stands approved. The commission's docket still lists 5864 filings, the same count as at the last check.",
      "checked": true
+    },
+    {
+     "date": "2026-11-14",
+     "note": "Oncor's 765 kV line across the Panhandle and West Texas stands approved. One more filing has reached the commission's docket since the last check, which now lists 5865."
     }
    ]
   },
@@ -2470,7 +2483,7 @@
      "fetched": "2026-09-02"
     }
    ],
-   "last_verified": "2026-11-11",
+   "last_verified": "2026-11-14",
    "confidence": "high",
    "notes_for_editor": "Included because it is actionable and time limited, which is the highest value class of item for readers. The Texas relevance is real but INDIRECT and the item should say so plainly: this is a national rulemaking, not a Texas proceeding. The regulations_dot_gov_info comment_url came back null from the API, so the Federal Register document page is given as the participation URL instead of a direct regulations.gov deep link.",
    "history": [
@@ -2622,6 +2635,11 @@
     {
      "date": "2026-11-11",
      "note": "The federal comment window on the NRC's reactor licensing and siting rewrite closed on August 31st, and the proposed rule is still the text on file.",
+     "checked": true
+    },
+    {
+     "date": "2026-11-14",
+     "note": "The NRC's comment window on its reactor licensing and siting rewrite is still shown closed, and the notice still reads as the record quotes it.",
      "checked": true
     }
    ]
@@ -2990,7 +3008,7 @@
      "fetched": "2026-10-29"
     }
    ],
-   "last_verified": "2026-11-13",
+   "last_verified": "2026-11-14",
    "confidence": "high",
    "notes_for_editor": "This is an infrastructure item rather than a decision, and the docket may prefer to use the feed as a collector and not publish it as an item. Keeping it has one strong argument: it tells a reader where the calendar actually lives, which is the single most useful thing this docket can hand someone who wants to participate. Its dates are the spine of the recurring collector.",
    "history": [
@@ -3217,6 +3235,11 @@
     {
      "date": "2026-11-13",
      "note": "The commission's live calendar feed keeps publishing open meetings far ahead.",
+     "checked": true
+    },
+    {
+     "date": "2026-11-14",
+     "note": "The commission's live calendar still lists open meetings well into the summer of next year. Past dates have dropped off the feed as they passed, which is how the feed works.",
      "checked": true
     }
    ]
@@ -3966,7 +3989,7 @@
     }
    ],
    "id": "tx-2026-0028",
-   "last_verified": "2026-11-08",
+   "last_verified": "2026-11-14",
    "history": [
     {
      "date": "2026-08-19",
@@ -4111,6 +4134,11 @@
     {
      "date": "2026-11-08",
      "note": "Hays County's emergency review period for high water use development still reads as adopted.",
+     "checked": true
+    },
+    {
+     "date": "2026-11-14",
+     "note": "Hays County's emergency review period for high water use development still reads as adopted in the county's own record.",
      "checked": true
     }
    ]
@@ -4393,6 +4421,11 @@
      "date": "2026-11-08",
      "note": "Williamson County's abatement for Compal stands as last read. The county's notice is still closed to every reader.",
      "checked": true
+    },
+    {
+     "date": "2026-11-14",
+     "note": "Williamson County's abatement for Compal stays as last read. The county's notice still refuses every reader.",
+     "checked": true
     }
    ],
    "unreachable": {
@@ -4400,8 +4433,8 @@
      "www.wilcotx.gov"
     ],
     "boundary": "blocks_every_client",
-    "checked": "2026-11-08",
-    "note": "www.wilcotx.gov answered 403 on 2026-10-09 to the project's own agent and to a browser agent, on the newsflash detail page /m/newsflash/Home/Detail/789 and on robots.txt alike. Not routed around. Re-measured 2026-10-15, www.wilcotx.gov answered 403 to the project's agent and 403 to a browser agent. Nothing was routed around. Re-measured 2026-10-20, www.wilcotx.gov answered 403 to the project's agent and 403 to a browser agent. Nothing was routed around. Re-measured 2026-10-25, www.wilcotx.gov answered 403 to the project's agent and 403 to a browser agent. Nothing was routed around. Re-measured 2026-10-31, www.wilcotx.gov answered 403 to the project's agent and 403 to a browser agent. Nothing was routed around. Re-measured 2026-11-01, www.wilcotx.gov answered 403 to the project's agent. A browser agent was not tried this time. Nothing was routed around. Re-measured 2026-11-05, www.wilcotx.gov answered 403 to the project's agent on robots.txt and on the page. Nothing was routed around. Re-measured 2026-11-06, www.wilcotx.gov answered 403 to the project's agent on the page. Nothing was routed around. Re-measured 2026-11-07, www.wilcotx.gov answered 403 to the project's agent on the page. Nothing was routed around. Re-measured 2026-11-08, www.wilcotx.gov answered 403 to the project's agent on the page. Nothing was routed around."
+    "checked": "2026-11-14",
+    "note": "www.wilcotx.gov answered 403 on 2026-10-09 to the project's own agent and to a browser agent, on the newsflash detail page /m/newsflash/Home/Detail/789 and on robots.txt alike. Not routed around. Re-measured 2026-10-15, www.wilcotx.gov answered 403 to the project's agent and 403 to a browser agent. Nothing was routed around. Re-measured 2026-10-20, www.wilcotx.gov answered 403 to the project's agent and 403 to a browser agent. Nothing was routed around. Re-measured 2026-10-25, www.wilcotx.gov answered 403 to the project's agent and 403 to a browser agent. Nothing was routed around. Re-measured 2026-10-31, www.wilcotx.gov answered 403 to the project's agent and 403 to a browser agent. Nothing was routed around. Re-measured 2026-11-01, www.wilcotx.gov answered 403 to the project's agent. A browser agent was not tried this time. Nothing was routed around. Re-measured 2026-11-05, www.wilcotx.gov answered 403 to the project's agent on robots.txt and on the page. Nothing was routed around. Re-measured 2026-11-06, www.wilcotx.gov answered 403 to the project's agent on the page. Nothing was routed around. Re-measured 2026-11-07, www.wilcotx.gov answered 403 to the project's agent on the page. Nothing was routed around. Re-measured 2026-11-08, www.wilcotx.gov answered 403 to the project's agent on the page. Nothing was routed around. Re-measured 2026-11-14, www.wilcotx.gov answered 403 to the project's agent. Nothing was routed around."
    }
   },
   {
@@ -5099,8 +5132,8 @@
      "www.kwtx.com"
     ],
     "boundary": "robots",
-    "checked": "2026-11-07",
-    "note": "www.kwtx.com's robots.txt names ClaudeBot, Claude-Web and anthropic-ai under Disallow: / (measured 2026-11-03, SHA256 992aa1bebe1ed54a25151b7e78d2defe6d59cae04f4af4ac771ae82d0f254b8b). The station's report is the item's front door. The city's agenda packet is a PDF the re-verify check can't read, and the Texas Scorecard account answered. Nothing was routed around. Re-measured 2026-11-05, www.kwtx.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-11-06, www.kwtx.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-11-07, www.kwtx.com's robots.txt still refuses the project's agent. Nothing was routed around."
+    "checked": "2026-11-14",
+    "note": "www.kwtx.com's robots.txt names ClaudeBot, Claude-Web and anthropic-ai under Disallow: / (measured 2026-11-03, SHA256 992aa1bebe1ed54a25151b7e78d2defe6d59cae04f4af4ac771ae82d0f254b8b). The station's report is the item's front door. The city's agenda packet is a PDF the re-verify check can't read, and the Texas Scorecard account answered. Nothing was routed around. Re-measured 2026-11-05, www.kwtx.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-11-06, www.kwtx.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-11-07, www.kwtx.com's robots.txt still refuses the project's agent. Nothing was routed around. Re-measured 2026-11-14, www.kwtx.com still refuses this project in robots.txt. Nothing was routed around."
    }
   },
   {
@@ -5168,7 +5201,7 @@
     }
    ],
    "id": "tx-2026-0033",
-   "last_verified": "2026-11-11",
+   "last_verified": "2026-11-14",
    "history": [
     {
      "date": "2026-08-19",
@@ -5303,6 +5336,11 @@
     {
      "date": "2026-11-11",
      "note": "El Paso's framework still requires a Special Permit before a hyperscale data center can build in the city.",
+     "checked": true
+    },
+    {
+     "date": "2026-11-14",
+     "note": "El Paso's data center framework still stands as adopted, with a Special Permit still required before a hyperscale project builds in the city.",
      "checked": true
     }
    ]
@@ -6011,6 +6049,11 @@
      "date": "2026-11-08",
      "note": "Guadalupe County's end to its Flock contract stands as read before. Neither news account of the vote opens to this project.",
      "checked": true
+    },
+    {
+     "date": "2026-11-14",
+     "note": "Guadalupe County's vote to end its Flock contract stays on the earlier reading. The agenda host and both news accounts still refuse this project.",
+     "checked": true
     }
    ],
    "unreachable": {
@@ -6020,8 +6063,8 @@
      "www.ksat.com"
     ],
     "boundary": "robots",
-    "checked": "2026-11-08",
-    "note": "guadalupe.granicus.com, where the county's agendas page links its minutes, agendas and videos, disallows this project's path in robots.txt, measured 2026-10-04. seguingazette.com and www.ksat.com, the two published accounts of the vote, disallow it too. www.guadalupetx.gov answers and carries no record of the vote. Nothing was routed around. Re-measured 2026-10-08, guadalupe.granicus.com robots.txt still refuses the path; seguingazette.com robots.txt still refuses the path; www.ksat.com robots.txt still refuses the path. Re-measured 2026-10-15, guadalupe.granicus.com robots.txt still refuses this project; seguingazette.com robots.txt still refuses this project; www.ksat.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-10-20, guadalupe.granicus.com robots.txt still refuses this project; seguingazette.com robots.txt still refuses this project; www.ksat.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-10-25, guadalupe.granicus.com robots.txt still refuses this project; seguingazette.com robots.txt still refuses this project; www.ksat.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-10-31, guadalupe.granicus.com robots.txt still refuses this project, and seguingazette.com robots.txt still refuses this project, and www.ksat.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-11-01, guadalupe.granicus.com robots.txt still refuses this project, and seguingazette.com robots.txt still refuses this project, and www.ksat.com robots.txt still refuses this project. A browser agent was not tried this time. Nothing was routed around. Re-measured 2026-11-05, guadalupe.granicus.com robots.txt still refuses this project; seguingazette.com robots.txt still refuses this project; www.ksat.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-11-06, guadalupe.granicus.com robots.txt still refuses this project; seguingazette.com robots.txt still refuses this project; www.ksat.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-11-07, guadalupe.granicus.com's robots.txt still refuses the project's agent; seguingazette.com's robots.txt still refuses the project's agent; www.ksat.com's robots.txt still refuses the project's agent. Nothing was routed around. Re-measured 2026-11-08, seguingazette.com still disallows the path to this project in robots.txt, and www.ksat.com still disallows the path to this project in robots.txt. Nothing was routed around."
+    "checked": "2026-11-14",
+    "note": "guadalupe.granicus.com, where the county's agendas page links its minutes, agendas and videos, disallows this project's path in robots.txt, measured 2026-10-04. seguingazette.com and www.ksat.com, the two published accounts of the vote, disallow it too. www.guadalupetx.gov answers and carries no record of the vote. Nothing was routed around. Re-measured 2026-10-08, guadalupe.granicus.com robots.txt still refuses the path; seguingazette.com robots.txt still refuses the path; www.ksat.com robots.txt still refuses the path. Re-measured 2026-10-15, guadalupe.granicus.com robots.txt still refuses this project; seguingazette.com robots.txt still refuses this project; www.ksat.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-10-20, guadalupe.granicus.com robots.txt still refuses this project; seguingazette.com robots.txt still refuses this project; www.ksat.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-10-25, guadalupe.granicus.com robots.txt still refuses this project; seguingazette.com robots.txt still refuses this project; www.ksat.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-10-31, guadalupe.granicus.com robots.txt still refuses this project, and seguingazette.com robots.txt still refuses this project, and www.ksat.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-11-01, guadalupe.granicus.com robots.txt still refuses this project, and seguingazette.com robots.txt still refuses this project, and www.ksat.com robots.txt still refuses this project. A browser agent was not tried this time. Nothing was routed around. Re-measured 2026-11-05, guadalupe.granicus.com robots.txt still refuses this project; seguingazette.com robots.txt still refuses this project; www.ksat.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-11-06, guadalupe.granicus.com robots.txt still refuses this project; seguingazette.com robots.txt still refuses this project; www.ksat.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-11-07, guadalupe.granicus.com's robots.txt still refuses the project's agent; seguingazette.com's robots.txt still refuses the project's agent; www.ksat.com's robots.txt still refuses the project's agent. Nothing was routed around. Re-measured 2026-11-08, seguingazette.com still disallows the path to this project in robots.txt, and www.ksat.com still disallows the path to this project in robots.txt. Nothing was routed around. Re-measured 2026-11-14, guadalupe.granicus.com still refuses this project in robots.txt; seguingazette.com still refuses this project in robots.txt; www.ksat.com still refuses this project in robots.txt. Nothing was routed around."
    }
   },
   {
@@ -7190,6 +7233,11 @@
      "date": "2026-11-08",
      "note": "Wichita Falls' permit vote for DataNovaX has no fresh confirmation, and the station's report still refuses this project.",
      "checked": true
+    },
+    {
+     "date": "2026-11-14",
+     "note": "The Wichita Falls permit vote for DataNovaX remains unconfirmed. The city site and the station's report both stay closed to this project.",
+     "checked": true
     }
    ],
    "unreachable": {
@@ -7198,8 +7246,8 @@
      "www.newschannel6now.com"
     ],
     "boundary": "blocks_every_client",
-    "checked": "2026-11-08",
-    "note": "Measured 2026-10-08. The item's own front door, www.wichitafallstx.gov/AgendaCenter, answered 403 to the project's agent and to a browser agent, where on 2026-10-05 it answered and held none of the cited quotations. www.newschannel6now.com, the only published account of the vote, still refuses this project in robots.txt. There is no other door the record can use, so nothing was routed around. Re-measured 2026-10-15, www.wichitafallstx.gov answered 403 to the project's agent and 403 to a browser agent; www.newschannel6now.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-10-20, www.wichitafallstx.gov answered 403 to the project's agent and 403 to a browser agent; www.newschannel6now.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-10-25, www.wichitafallstx.gov answered 403 to the project's agent and 403 to a browser agent; www.newschannel6now.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-10-31, www.wichitafallstx.gov answered 403 to the project's agent and 403 to a browser agent, and www.newschannel6now.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-11-01, www.wichitafallstx.gov answered 403 to the project's agent, and www.newschannel6now.com robots.txt still refuses this project. A browser agent was not tried this time. Nothing was routed around. Re-measured 2026-11-05, www.wichitafallstx.gov answered 403 to the project's agent on robots.txt and on the page; www.newschannel6now.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-11-06, www.wichitafallstx.gov answered 403 to the project's agent on the page; www.newschannel6now.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-11-07, www.wichitafallstx.gov answered 403 to the project's agent on the page; www.newschannel6now.com's robots.txt disallows the cited path to the project's agent. Nothing was routed around. Re-measured 2026-11-08, www.newschannel6now.com still disallows the path to this project in robots.txt. Nothing was routed around."
+    "checked": "2026-11-14",
+    "note": "Measured 2026-10-08. The item's own front door, www.wichitafallstx.gov/AgendaCenter, answered 403 to the project's agent and to a browser agent, where on 2026-10-05 it answered and held none of the cited quotations. www.newschannel6now.com, the only published account of the vote, still refuses this project in robots.txt. There is no other door the record can use, so nothing was routed around. Re-measured 2026-10-15, www.wichitafallstx.gov answered 403 to the project's agent and 403 to a browser agent; www.newschannel6now.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-10-20, www.wichitafallstx.gov answered 403 to the project's agent and 403 to a browser agent; www.newschannel6now.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-10-25, www.wichitafallstx.gov answered 403 to the project's agent and 403 to a browser agent; www.newschannel6now.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-10-31, www.wichitafallstx.gov answered 403 to the project's agent and 403 to a browser agent, and www.newschannel6now.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-11-01, www.wichitafallstx.gov answered 403 to the project's agent, and www.newschannel6now.com robots.txt still refuses this project. A browser agent was not tried this time. Nothing was routed around. Re-measured 2026-11-05, www.wichitafallstx.gov answered 403 to the project's agent on robots.txt and on the page; www.newschannel6now.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-11-06, www.wichitafallstx.gov answered 403 to the project's agent on the page; www.newschannel6now.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-11-07, www.wichitafallstx.gov answered 403 to the project's agent on the page; www.newschannel6now.com's robots.txt disallows the cited path to the project's agent. Nothing was routed around. Re-measured 2026-11-08, www.newschannel6now.com still disallows the path to this project in robots.txt. Nothing was routed around. Re-measured 2026-11-14, www.wichitafallstx.gov answered 403 to the project's agent; www.newschannel6now.com still refuses this project in robots.txt. Nothing was routed around."
    }
   },
   {
@@ -7429,6 +7477,11 @@
      "date": "2026-11-08",
      "note": "Young County's handling of the Project Saltworks abatement application has no fresh confirmation. The county weekly still refuses this project.",
      "checked": true
+    },
+    {
+     "date": "2026-11-14",
+     "note": "Young County's handling of the Project Saltworks application has no fresh confirmation. The county weekly still refuses this project.",
+     "checked": true
     }
    ],
    "unreachable": {
@@ -7436,8 +7489,8 @@
      "www.olneyenterprise.com"
     ],
     "boundary": "robots",
-    "checked": "2026-11-08",
-    "note": "www.olneyenterprise.com's robots.txt names ClaudeBot, Claude-User, Claude-SearchBot and anthropic-ai in its disallowed group (measured 2026-11-03, SHA256 fe8def7ff1a5a48d5213c6f26af839d48b7c72606cf36d3bfc8a7d7da2b01449). The Olney Enterprise report is the item's only published account. Nothing was routed around. Re-measured 2026-11-05, www.olneyenterprise.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-11-06, www.olneyenterprise.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-11-07, www.olneyenterprise.com's robots.txt still refuses the project's agent. Nothing was routed around. Re-measured 2026-11-08, www.olneyenterprise.com still disallows the path to this project in robots.txt. Nothing was routed around."
+    "checked": "2026-11-14",
+    "note": "www.olneyenterprise.com's robots.txt names ClaudeBot, Claude-User, Claude-SearchBot and anthropic-ai in its disallowed group (measured 2026-11-03, SHA256 fe8def7ff1a5a48d5213c6f26af839d48b7c72606cf36d3bfc8a7d7da2b01449). The Olney Enterprise report is the item's only published account. Nothing was routed around. Re-measured 2026-11-05, www.olneyenterprise.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-11-06, www.olneyenterprise.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-11-07, www.olneyenterprise.com's robots.txt still refuses the project's agent. Nothing was routed around. Re-measured 2026-11-08, www.olneyenterprise.com still disallows the path to this project in robots.txt. Nothing was routed around. Re-measured 2026-11-14, www.olneyenterprise.com still refuses this project in robots.txt. Nothing was routed around."
    }
   },
   {
@@ -7687,6 +7740,11 @@
      "date": "2026-11-08",
      "note": "Archer County's denial of the Dynamo Ventures abatement holds on the earlier reading, with the one published account still refusing this project.",
      "checked": true
+    },
+    {
+     "date": "2026-11-14",
+     "note": "Archer County's denial of the Dynamo Ventures abatement can't be confirmed again, because the one published account still refuses this project.",
+     "checked": true
     }
    ],
    "unreachable": {
@@ -7694,8 +7752,8 @@
      "www.newschannel6now.com"
     ],
     "boundary": "robots",
-    "checked": "2026-11-08",
-    "note": "www.newschannel6now.com refuses this project's path in robots.txt, measured 2026-10-03 by fetch_doc's live robots check and the crawl boundary, on the item's own front door. Nothing was routed around. Re-measured 2026-10-08, www.newschannel6now.com robots.txt still refuses the path. Re-measured 2026-10-15, www.newschannel6now.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-10-20, www.newschannel6now.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-10-25, www.newschannel6now.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-10-31, www.newschannel6now.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-11-01, www.newschannel6now.com robots.txt still refuses this project. A browser agent was not tried this time. Nothing was routed around. Re-measured 2026-11-05, www.newschannel6now.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-11-06, www.newschannel6now.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-11-07, www.newschannel6now.com's robots.txt still refuses the project's agent. Nothing was routed around. Re-measured 2026-11-08, www.newschannel6now.com still disallows the path to this project in robots.txt. Nothing was routed around."
+    "checked": "2026-11-14",
+    "note": "www.newschannel6now.com refuses this project's path in robots.txt, measured 2026-10-03 by fetch_doc's live robots check and the crawl boundary, on the item's own front door. Nothing was routed around. Re-measured 2026-10-08, www.newschannel6now.com robots.txt still refuses the path. Re-measured 2026-10-15, www.newschannel6now.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-10-20, www.newschannel6now.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-10-25, www.newschannel6now.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-10-31, www.newschannel6now.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-11-01, www.newschannel6now.com robots.txt still refuses this project. A browser agent was not tried this time. Nothing was routed around. Re-measured 2026-11-05, www.newschannel6now.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-11-06, www.newschannel6now.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-11-07, www.newschannel6now.com's robots.txt still refuses the project's agent. Nothing was routed around. Re-measured 2026-11-08, www.newschannel6now.com still disallows the path to this project in robots.txt. Nothing was routed around. Re-measured 2026-11-14, www.newschannel6now.com still refuses this project in robots.txt. Nothing was routed around."
    }
   },
   {
@@ -8203,6 +8261,11 @@
      "date": "2026-11-08",
      "note": "Lubbock County's disclosure resolution for large loads stays unconfirmed for another day while the station's report stays closed to this project.",
      "checked": true
+    },
+    {
+     "date": "2026-11-14",
+     "note": "Lubbock County's disclosure resolution for large loads remains unconfirmed while the station's report stays closed to this project.",
+     "checked": true
     }
    ],
    "unreachable": {
@@ -8210,8 +8273,8 @@
      "www.kcbd.com"
     ],
     "boundary": "robots",
-    "checked": "2026-11-08",
-    "note": "www.kcbd.com refuses this project's path in robots.txt, measured 2026-10-03 by fetch_doc's live robots check and the crawl boundary, on the item's own front door. Nothing was routed around. Re-measured 2026-10-08, www.kcbd.com robots.txt still refuses the path. Re-measured 2026-10-15, www.kcbd.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-10-20, www.kcbd.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-10-25, www.kcbd.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-10-31, www.kcbd.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-11-01, www.kcbd.com robots.txt still refuses this project. A browser agent was not tried this time. Nothing was routed around. Re-measured 2026-11-05, www.kcbd.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-11-06, www.kcbd.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-11-07, www.kcbd.com's robots.txt still refuses the project's agent. Nothing was routed around. Re-measured 2026-11-08, www.kcbd.com still disallows the path to this project in robots.txt. Nothing was routed around."
+    "checked": "2026-11-14",
+    "note": "www.kcbd.com refuses this project's path in robots.txt, measured 2026-10-03 by fetch_doc's live robots check and the crawl boundary, on the item's own front door. Nothing was routed around. Re-measured 2026-10-08, www.kcbd.com robots.txt still refuses the path. Re-measured 2026-10-15, www.kcbd.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-10-20, www.kcbd.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-10-25, www.kcbd.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-10-31, www.kcbd.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-11-01, www.kcbd.com robots.txt still refuses this project. A browser agent was not tried this time. Nothing was routed around. Re-measured 2026-11-05, www.kcbd.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-11-06, www.kcbd.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-11-07, www.kcbd.com's robots.txt still refuses the project's agent. Nothing was routed around. Re-measured 2026-11-08, www.kcbd.com still disallows the path to this project in robots.txt. Nothing was routed around. Re-measured 2026-11-14, www.kcbd.com still refuses this project in robots.txt. Nothing was routed around."
    }
   },
   {
@@ -8471,8 +8534,8 @@
      "www.newschannel10.com"
     ],
     "boundary": "robots",
-    "checked": "2026-11-07",
-    "note": "www.newschannel10.com disallows ClaudeBot in robots.txt, re-measured 2026-10-05. www.sec.gov answered 403 on 2026-09-24. Nothing was routed around. Re-measured 2026-10-08, www.newschannel10.com robots.txt still refuses the path. Re-measured 2026-10-15, www.newschannel10.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-10-20, www.newschannel10.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-10-25, www.newschannel10.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-10-31, www.newschannel10.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-11-01, www.newschannel10.com robots.txt still refuses this project. A browser agent was not tried this time. Nothing was routed around. Re-measured 2026-11-05, www.newschannel10.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-11-06, www.newschannel10.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-11-07, www.newschannel10.com's robots.txt still refuses the project's agent. Nothing was routed around."
+    "checked": "2026-11-14",
+    "note": "www.newschannel10.com disallows ClaudeBot in robots.txt, re-measured 2026-10-05. www.sec.gov answered 403 on 2026-09-24. Nothing was routed around. Re-measured 2026-10-08, www.newschannel10.com robots.txt still refuses the path. Re-measured 2026-10-15, www.newschannel10.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-10-20, www.newschannel10.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-10-25, www.newschannel10.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-10-31, www.newschannel10.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-11-01, www.newschannel10.com robots.txt still refuses this project. A browser agent was not tried this time. Nothing was routed around. Re-measured 2026-11-05, www.newschannel10.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-11-06, www.newschannel10.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-11-07, www.newschannel10.com's robots.txt still refuses the project's agent. Nothing was routed around. Re-measured 2026-11-14, www.newschannel10.com still refuses this project in robots.txt. Nothing was routed around."
    }
   },
   {
@@ -9061,6 +9124,11 @@
     {
      "date": "2026-11-08",
      "note": "Voters said no to the fixed plate reader cameras, by the city's unofficial count. The council canvasses the result on November 17th, and the mayor has asked for the cameras to be covered until then."
+    },
+    {
+     "date": "2026-11-14",
+     "note": "The council agenda items behind the election still read as cited. The city's own page on the result did not answer, so the canvass set for November 17th is unconfirmed.",
+     "checked": true
     }
    ],
    "notes_for_editor": "2026-08-20, three corrections to this item's own prose and none to a fetched fact. The summary gave the mover a first name, Courtney, that no fetched record carries, and dropped the seconder the quote names. It also said the council passed the ordinance twice that evening, once on first reading and once on first and final reading, where the quote establishes one motion on first and final reading and nothing establishes a second. It called the cameras Flock Safety devices where the reporting says Flock cameras and Pflugerville's own item title says Flock Group, Inc. The heavier one was in public_access.how, which read 'The decision itself now goes to registered voters at the November 3rd, 2026 election'. That sat four lines below this item's own sentence saying the council keeps the decision either way, and against the ballot's published first clause, in the field the site prints under how to take part. Root cause: the field was written on 2026-08-14 from the ordinance, which orders an election, and was never revisited when the ballot wording arrived on 2026-08-20 and turned the election into a preference poll. A field that describes access was carrying a claim about effect.\n\n2026-08-20, second pass. The address, the date and the hour had been carried in public_access prose since the 14th with no quote behind them, and the day's deck was printing all three as its largest type. The meeting's own agenda was fetched instead, Legistar event 2222, and it carries the room and the street verbatim in item 1. Going to get it turned up the stronger finding: the agenda is FINAL with 61 titled items and not one names a licence plate reader, Flock or a camera. Until today this item could only say the record did not establish the question WAS on that agenda. It can now say the posted final agenda does not carry it. What that does NOT say, and this item must not: that the council will not reach the question on another date, or that the agenda's own ITEMS ADDED AFTER ELECTRONIC AGENDA COMPLETED placeholder will stay empty.\n\n2026-08-20, third pass. public_access.how still carried 'with a Council Budget and CIP Workshop at 5:00 PM', an hour no claim in this run establishes, in the same field whose note two paragraphs up was written to get unquoted particulars OUT of it. The event fetch returned exactly one League City event between August 20th and August 31st and it is the 6:00 PM council meeting. The workshop and its hour are removed. A correction that names a fault and then leaves an instance of it in the same paragraph is the fault surviving its own repair."
@@ -9365,7 +9433,7 @@
     }
    ],
    "id": "tx-2026-0050",
-   "last_verified": "2026-11-11",
+   "last_verified": "2026-11-14",
    "history": [
     {
      "date": "2026-08-19",
@@ -9500,6 +9568,11 @@
     {
      "date": "2026-11-11",
      "note": "Corpus Christi's council direction still stands, and staff are still the ones writing the zoning amendment it asked for.",
+     "checked": true
+    },
+    {
+     "date": "2026-11-14",
+     "note": "Corpus Christi's direction to staff on data center zoning still stands in the council's own record, unchanged.",
      "checked": true
     }
    ]
@@ -10215,7 +10288,7 @@
     }
    ],
    "id": "tx-2026-0054",
-   "last_verified": "2026-11-11",
+   "last_verified": "2026-11-14",
    "history": [
     {
      "date": "2026-08-19",
@@ -10350,6 +10423,11 @@
     {
      "date": "2026-11-11",
      "note": "AI consulting is still listed on the HGACBuy catalog, open to the member governments that buy through it.",
+     "checked": true
+    },
+    {
+     "date": "2026-11-14",
+     "note": "AI consulting services remain on the HGACBuy catalog under the same contract, available to the local governments that buy through it.",
      "checked": true
     }
    ]
@@ -10602,6 +10680,11 @@
      "date": "2026-11-08",
      "note": "Conroe's council vote that kept Flock off the ballot stands as read before. Both station reports still refuse this project.",
      "checked": true
+    },
+    {
+     "date": "2026-11-14",
+     "note": "Conroe's vote that kept Flock off the ballot remains on the earlier reading. Neither station report opens to this project.",
+     "checked": true
     }
    ],
    "unreachable": {
@@ -10610,8 +10693,8 @@
      "www.click2houston.com"
     ],
     "boundary": "robots",
-    "checked": "2026-11-08",
-    "note": "Claim-source boundary v1.\nCounty page https://www.cityofconroe.org/government/city_council/agendas_minutes/index.php checked 2026-11-08 SHA256 dba660334d55ab75870d1fd56955bd0f9bd65836617dc07280faaa05dfbdf43e contains no cited quotations.\nSource https://www.click2houston.com/news/local/2026/08/14/conroe-city-council-vote-falls-short-of-putting-flock-camera-question-on-november-ballot/ checked 2026-11-08 robots https://www.click2houston.com/robots.txt SHA256 707af1f6faec16d1898999fb9269b4c52e990d5df10c2bc82e67d648b66f02a2 refuses project readers.\nSource https://abc13.com/story/conroe-city-council-indefinitely-tables-2-flock-camera-proposals/19575313/ checked 2026-11-08 robots https://abc13.com/robots.txt SHA256 c3b51bc2223f5b4e6e5bb8d08cf1d2ebe5273aeb6eddd021eda31f4d0a012f5a refuses project readers."
+    "checked": "2026-11-14",
+    "note": "Claim-source boundary v1.\nCounty page https://www.cityofconroe.org/government/city_council/agendas_minutes/index.php checked 2026-11-14 SHA256 dba660334d55ab75870d1fd56955bd0f9bd65836617dc07280faaa05dfbdf43e contains no cited quotations.\nSource https://www.click2houston.com/news/local/2026/08/14/conroe-city-council-vote-falls-short-of-putting-flock-camera-question-on-november-ballot/ checked 2026-11-14 robots https://www.click2houston.com/robots.txt SHA256 707af1f6faec16d1898999fb9269b4c52e990d5df10c2bc82e67d648b66f02a2 refuses project readers.\nSource https://abc13.com/story/conroe-city-council-indefinitely-tables-2-flock-camera-proposals/19575313/ checked 2026-11-14 robots https://abc13.com/robots.txt SHA256 c3b51bc2223f5b4e6e5bb8d08cf1d2ebe5273aeb6eddd021eda31f4d0a012f5a refuses project readers."
    }
   },
   {
@@ -10686,7 +10769,7 @@
     }
    ],
    "id": "tx-2026-0056",
-   "last_verified": "2026-11-11",
+   "last_verified": "2026-11-14",
    "history": [
     {
      "date": "2026-08-19",
@@ -10829,6 +10912,11 @@
      "date": "2026-11-11",
      "note": "The water board's denial stands. Data centers still have no demand category of their own in the state water plan.",
      "checked": true
+    },
+    {
+     "date": "2026-11-14",
+     "note": "The Water Development Board's denial of a separate data center demand category stands, and its order still reads as cited.",
+     "checked": true
     }
    ]
   },
@@ -10889,7 +10977,7 @@
     }
    ],
    "id": "tx-2026-0057",
-   "last_verified": "2026-11-11",
+   "last_verified": "2026-11-14",
    "history": [
     {
      "date": "2026-08-19",
@@ -11034,6 +11122,11 @@
     {
      "date": "2026-11-11",
      "note": "TCEQ's calendar of public meetings no longer lists the Carson County meeting on Fermi's air permits at all, neither the cancellation nor a new date. The commission's own notice of the cancellation is still posted."
+    },
+    {
+     "date": "2026-11-14",
+     "note": "The commission's notice canceling the Carson County meeting on Fermi's air permits is still posted, and its calendar still carries no new date for that meeting.",
+     "checked": true
     }
    ]
   },
@@ -12169,8 +12262,8 @@
      "www.keranews.org"
     ],
     "boundary": "blocks_every_client",
-    "checked": "2026-11-07",
-    "note": "www.keranews.org answered 403 on 2026-10-25 to the project's own agent and to a browser agent, on the story behind tx-2026-0062-c2. The crawl registry names no exclusion for it and its robots.txt does not refuse the path. Not routed around. Community Impact's account behind tx-2026-0062-c1 answered the same day and its quote is still on the page. Re-measured 2026-10-31, www.keranews.org answered 403 to the project's agent and 403 to a browser agent. Nothing was routed around. Re-measured 2026-11-01, www.keranews.org answered 403 to the project's agent. A browser agent was not tried this time. Nothing was routed around. Re-measured 2026-11-05, www.keranews.org answered 403 to the project's agent on robots.txt and on the page. Nothing was routed around. Re-measured 2026-11-06, www.keranews.org answered 403 to the project's agent on the page. Nothing was routed around. Re-measured 2026-11-07, www.keranews.org answered 403 to the project's agent on the page. Nothing was routed around."
+    "checked": "2026-11-14",
+    "note": "www.keranews.org answered 403 on 2026-10-25 to the project's own agent and to a browser agent, on the story behind tx-2026-0062-c2. The crawl registry names no exclusion for it and its robots.txt does not refuse the path. Not routed around. Community Impact's account behind tx-2026-0062-c1 answered the same day and its quote is still on the page. Re-measured 2026-10-31, www.keranews.org answered 403 to the project's agent and 403 to a browser agent. Nothing was routed around. Re-measured 2026-11-01, www.keranews.org answered 403 to the project's agent. A browser agent was not tried this time. Nothing was routed around. Re-measured 2026-11-05, www.keranews.org answered 403 to the project's agent on robots.txt and on the page. Nothing was routed around. Re-measured 2026-11-06, www.keranews.org answered 403 to the project's agent on the page. Nothing was routed around. Re-measured 2026-11-07, www.keranews.org answered 403 to the project's agent on the page. Nothing was routed around. Re-measured 2026-11-14, www.keranews.org answered 403 to the project's agent. Nothing was routed around."
    }
   },
   {
@@ -12231,7 +12324,7 @@
     }
    ],
    "id": "tx-2026-0063",
-   "last_verified": "2026-11-11",
+   "last_verified": "2026-11-14",
    "history": [
     {
      "date": "2026-08-19",
@@ -12366,6 +12459,11 @@
     {
      "date": "2026-11-11",
      "note": "The data center air permit applications are still posted on TCEQ's pending list with their public notices.",
+     "checked": true
+    },
+    {
+     "date": "2026-11-14",
+     "note": "TCEQ's pending permit list still carries the data center air permit applications with their published public notices.",
      "checked": true
     }
    ]
@@ -12724,7 +12822,7 @@
     }
    ],
    "id": "tx-2026-0065",
-   "last_verified": "2026-11-11",
+   "last_verified": "2026-11-14",
    "history": [
     {
      "date": "2026-08-19",
@@ -12859,6 +12957,11 @@
      "date": "2026-11-11",
      "note": "San Angelo's ordinance still caps how much makeup water a data center's cooling loop may draw each year.",
      "checked": true
+    },
+    {
+     "date": "2026-11-14",
+     "note": "San Angelo's cap on data center cooling water is still in the adopted ordinance text.",
+     "checked": true
     }
    ]
   },
@@ -12978,7 +13081,7 @@
     }
    ],
    "id": "tx-2026-0066",
-   "last_verified": "2026-11-11",
+   "last_verified": "2026-11-14",
    "history": [
     {
      "date": "2026-08-19",
@@ -13113,6 +13216,11 @@
      "date": "2026-11-11",
      "note": "San Angelo's zoning code still lists a data center as a conditional use and nothing more.",
      "checked": true
+    },
+    {
+     "date": "2026-11-14",
+     "note": "San Angelo's zoning code still treats a data center as a conditional use only, as the adopted text says.",
+     "checked": true
     }
    ]
   },
@@ -13213,7 +13321,7 @@
     }
    ],
    "id": "tx-2026-0067",
-   "last_verified": "2026-11-11",
+   "last_verified": "2026-11-14",
    "history": [
     {
      "date": "2026-08-19",
@@ -13347,6 +13455,11 @@
     {
      "date": "2026-11-11",
      "note": "The city's reporting rule for coolant sent to its sewer is still on the books as adopted.",
+     "checked": true
+    },
+    {
+     "date": "2026-11-14",
+     "note": "San Angelo's reporting rule for coolant discharged into the city sewer is still in the ordinance as adopted.",
      "checked": true
     }
    ]
@@ -13683,7 +13796,7 @@
     }
    ],
    "id": "tx-2026-0069",
-   "last_verified": "2026-11-11",
+   "last_verified": "2026-11-14",
    "history": [
     {
      "date": "2026-08-19",
@@ -13818,6 +13931,11 @@
     {
      "date": "2026-11-11",
      "note": "The executed JETI agreement between the school district and Energy Forge One is still posted where the district put it.",
+     "checked": true
+    },
+    {
+     "date": "2026-11-14",
+     "note": "The school district's executed JETI agreement for Energy Forge One remains posted, unchanged from the copy the record cites.",
      "checked": true
     }
    ]
@@ -15081,6 +15199,11 @@
      "date": "2026-11-08",
      "note": "The August House committee hearings on data centers and AI in health care hold as first read. The Legislature's library and bill pages stay off limits.",
      "checked": true
+    },
+    {
+     "date": "2026-11-14",
+     "note": "The House committee hearings on data centers and AI in health care hold as first read. The Legislature's pages remain off limits to this project.",
+     "checked": true
     }
    ],
    "unreachable": {
@@ -15088,8 +15211,8 @@
      "lrl.texas.gov"
     ],
     "boundary": "robots",
-    "checked": "2026-11-08",
-    "note": "lrl.texas.gov refuses this project's path in robots.txt, measured 2026-10-03 by fetch_doc's live robots check and the crawl boundary, on the item's own front door. Nothing was routed around. Re-measured 2026-10-08, lrl.texas.gov robots.txt still refuses the path. Re-measured 2026-10-15, lrl.texas.gov is excluded by the sources registry, its robots.txt naming this project's crawler. Nothing was routed around. Re-measured 2026-10-20, lrl.texas.gov is excluded by the sources registry, its robots.txt naming this project's crawler. Nothing was routed around. Re-measured 2026-10-25, lrl.texas.gov is excluded by the sources registry, its robots.txt naming this project's crawler. Nothing was routed around. Re-measured 2026-10-31, lrl.texas.gov robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-11-01, lrl.texas.gov robots.txt still refuses this project. A browser agent was not tried this time. Nothing was routed around. Re-measured 2026-11-05, lrl.texas.gov stays excluded by the sources registry. Nothing was routed around. Re-measured 2026-11-06, lrl.texas.gov robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-11-07, lrl.texas.gov is off limits under the sources registry, so nothing was requested. Nothing was routed around. Re-measured 2026-11-08, lrl.texas.gov is outside the registry's crawl boundary and was not requested, and capitol.texas.gov is outside the registry's crawl boundary and was not requested. Nothing was routed around."
+    "checked": "2026-11-14",
+    "note": "lrl.texas.gov refuses this project's path in robots.txt, measured 2026-10-03 by fetch_doc's live robots check and the crawl boundary, on the item's own front door. Nothing was routed around. Re-measured 2026-10-08, lrl.texas.gov robots.txt still refuses the path. Re-measured 2026-10-15, lrl.texas.gov is excluded by the sources registry, its robots.txt naming this project's crawler. Nothing was routed around. Re-measured 2026-10-20, lrl.texas.gov is excluded by the sources registry, its robots.txt naming this project's crawler. Nothing was routed around. Re-measured 2026-10-25, lrl.texas.gov is excluded by the sources registry, its robots.txt naming this project's crawler. Nothing was routed around. Re-measured 2026-10-31, lrl.texas.gov robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-11-01, lrl.texas.gov robots.txt still refuses this project. A browser agent was not tried this time. Nothing was routed around. Re-measured 2026-11-05, lrl.texas.gov stays excluded by the sources registry. Nothing was routed around. Re-measured 2026-11-06, lrl.texas.gov robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-11-07, lrl.texas.gov is off limits under the sources registry, so nothing was requested. Nothing was routed around. Re-measured 2026-11-08, lrl.texas.gov is outside the registry's crawl boundary and was not requested, and capitol.texas.gov is outside the registry's crawl boundary and was not requested. Nothing was routed around. Re-measured 2026-11-14, lrl.texas.gov still refuses this project in robots.txt. Nothing was routed around."
    }
   },
   {
@@ -15565,9 +15688,18 @@
      "source_title": "PUCT Interchange, Docket 59029 filings",
      "source_type": "primary_official",
      "fetched": "2026-11-08"
+    },
+    {
+     "id": "tx-2026-0076-c20",
+     "text": "The commission's docket for the application now lists 534 filings.",
+     "verbatim_quote": "534 filing(s).",
+     "source_url": "https://interchange.puc.texas.gov/search/filings/?UtilityType=A&ControlNumber=59029&ItemMatch=Equal&DocumentType=ALL&SortOrder=Descending",
+     "source_title": "PUCT Interchange, Docket 59029 filings",
+     "source_type": "primary_official",
+     "fetched": "2026-11-14"
     }
    ],
-   "last_verified": "2026-11-11",
+   "last_verified": "2026-11-14",
    "confidence": "high",
    "notes_for_editor": "The 765 kV designation and the county list come from the commission's own agenda entry, not computed. This is the companion application to Docket 59315, and the record does not state that any particular data center drives either line.",
    "history": [
@@ -15705,6 +15837,10 @@
      "date": "2026-11-11",
      "note": "Oncor's second West Texas line stands approved, and the commission's docket still lists 533 filings.",
      "checked": true
+    },
+    {
+     "date": "2026-11-14",
+     "note": "Oncor's second West Texas line stands approved. The commission's docket gained one filing and now lists 534."
     }
    ]
   },
@@ -18884,6 +19020,11 @@
      "date": "2026-11-08",
      "note": "The training requirement for public employees stands on its first reading. The Legislature's bill pages still refuse this project.",
      "checked": true
+    },
+    {
+     "date": "2026-11-14",
+     "note": "The training requirement for public employees rests on its first reading, because the Legislature's bill pages remain off limits.",
+     "checked": true
     }
    ],
    "unreachable": {
@@ -18891,8 +19032,8 @@
      "capitol.texas.gov"
     ],
     "boundary": "robots",
-    "checked": "2026-11-08",
-    "note": "capitol.texas.gov refuses this project's path in robots.txt, measured 2026-10-03 by fetch_doc's live robots check and the crawl boundary, on the item's own front door. Nothing was routed around. Re-measured 2026-10-08, capitol.texas.gov robots.txt still refuses the path. Re-measured 2026-10-15, capitol.texas.gov is excluded by the sources registry, its robots.txt naming this project's crawler. Nothing was routed around. Re-measured 2026-10-20, capitol.texas.gov is excluded by the sources registry, its robots.txt naming this project's crawler. Nothing was routed around. Re-measured 2026-10-25, capitol.texas.gov is excluded by the sources registry, its robots.txt naming this project's crawler. Nothing was routed around. Re-measured 2026-10-31, capitol.texas.gov robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-11-01, capitol.texas.gov robots.txt still refuses this project. A browser agent was not tried this time. Nothing was routed around. Re-measured 2026-11-05, capitol.texas.gov stays excluded by the sources registry. Nothing was routed around. Re-measured 2026-11-06, capitol.texas.gov robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-11-07, capitol.texas.gov is off limits under the sources registry, so nothing was requested. Nothing was routed around. Re-measured 2026-11-08, capitol.texas.gov is outside the registry's crawl boundary and was not requested. Nothing was routed around."
+    "checked": "2026-11-14",
+    "note": "capitol.texas.gov refuses this project's path in robots.txt, measured 2026-10-03 by fetch_doc's live robots check and the crawl boundary, on the item's own front door. Nothing was routed around. Re-measured 2026-10-08, capitol.texas.gov robots.txt still refuses the path. Re-measured 2026-10-15, capitol.texas.gov is excluded by the sources registry, its robots.txt naming this project's crawler. Nothing was routed around. Re-measured 2026-10-20, capitol.texas.gov is excluded by the sources registry, its robots.txt naming this project's crawler. Nothing was routed around. Re-measured 2026-10-25, capitol.texas.gov is excluded by the sources registry, its robots.txt naming this project's crawler. Nothing was routed around. Re-measured 2026-10-31, capitol.texas.gov robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-11-01, capitol.texas.gov robots.txt still refuses this project. A browser agent was not tried this time. Nothing was routed around. Re-measured 2026-11-05, capitol.texas.gov stays excluded by the sources registry. Nothing was routed around. Re-measured 2026-11-06, capitol.texas.gov robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-11-07, capitol.texas.gov is off limits under the sources registry, so nothing was requested. Nothing was routed around. Re-measured 2026-11-08, capitol.texas.gov is outside the registry's crawl boundary and was not requested. Nothing was routed around. Re-measured 2026-11-14, capitol.texas.gov still refuses this project in robots.txt. Nothing was routed around."
    }
   },
   {
@@ -19147,7 +19288,7 @@
     }
    ],
    "id": "tx-2026-0099",
-   "last_verified": "2026-11-11",
+   "last_verified": "2026-11-14",
    "history": [
     {
      "date": "2026-08-26",
@@ -19286,6 +19427,11 @@
     {
      "date": "2026-11-11",
      "note": "The Army's award to Rice's antenna array center still stands, with AI still one of the disciplines it names.",
+     "checked": true
+    },
+    {
+     "date": "2026-11-14",
+     "note": "The Army's award to Rice's antenna array center still stands as announced, AI still among the disciplines named.",
      "checked": true
     }
    ]
@@ -21038,6 +21184,11 @@
      "date": "2026-11-08",
      "note": "The RELLIS abatement's assignment to ThisWay rests on the earlier reading, since Brazos County's notice still turns every reader away.",
      "checked": true
+    },
+    {
+     "date": "2026-11-14",
+     "note": "The RELLIS abatement's assignment can't be confirmed this time. Brazos County's notice still turns every reader away.",
+     "checked": true
     }
    ],
    "unreachable": {
@@ -21045,8 +21196,8 @@
      "www.brazoscountytx.gov"
     ],
     "boundary": "blocks_every_client",
-    "checked": "2026-11-08",
-    "note": "www.brazoscountytx.gov answered 403 to curl with a browser User-Agent on 2026-09-28, on the item's own front door, as it did on 2026-09-24. www.kbtx.com, which carries the vote, names ClaudeBot under Disallow: / in robots.txt. There is no second door the record can use, so nothing was routed around. Re-measured 2026-10-08, www.brazoscountytx.gov answered 403 to the project's agent and 403 to a browser agent. Re-measured 2026-10-15, www.brazoscountytx.gov answered 403 to the project's agent and 403 to a browser agent. Nothing was routed around. Re-measured 2026-10-20, www.brazoscountytx.gov answered 403 to the project's agent and 403 to a browser agent. Nothing was routed around. Re-measured 2026-10-25, www.brazoscountytx.gov answered 403 to the project's agent and 403 to a browser agent. Nothing was routed around. Re-measured 2026-10-31, www.brazoscountytx.gov answered 403 to the project's agent and 403 to a browser agent. Nothing was routed around. Re-measured 2026-11-01, www.brazoscountytx.gov answered 403 to the project's agent. A browser agent was not tried this time. Nothing was routed around. Re-measured 2026-11-05, www.brazoscountytx.gov answered 403 to the project's agent on robots.txt and on the page. Nothing was routed around. Re-measured 2026-11-06, www.brazoscountytx.gov answered 403 to the project's agent on the page. Nothing was routed around. Re-measured 2026-11-07, www.brazoscountytx.gov answered 403 to the project's agent on the page. Nothing was routed around. Re-measured 2026-11-08, www.brazoscountytx.gov answered 403 to the project's agent on the page, and www.kbtx.com still disallows the path to this project in robots.txt. Nothing was routed around."
+    "checked": "2026-11-14",
+    "note": "www.brazoscountytx.gov answered 403 to curl with a browser User-Agent on 2026-09-28, on the item's own front door, as it did on 2026-09-24. www.kbtx.com, which carries the vote, names ClaudeBot under Disallow: / in robots.txt. There is no second door the record can use, so nothing was routed around. Re-measured 2026-10-08, www.brazoscountytx.gov answered 403 to the project's agent and 403 to a browser agent. Re-measured 2026-10-15, www.brazoscountytx.gov answered 403 to the project's agent and 403 to a browser agent. Nothing was routed around. Re-measured 2026-10-20, www.brazoscountytx.gov answered 403 to the project's agent and 403 to a browser agent. Nothing was routed around. Re-measured 2026-10-25, www.brazoscountytx.gov answered 403 to the project's agent and 403 to a browser agent. Nothing was routed around. Re-measured 2026-10-31, www.brazoscountytx.gov answered 403 to the project's agent and 403 to a browser agent. Nothing was routed around. Re-measured 2026-11-01, www.brazoscountytx.gov answered 403 to the project's agent. A browser agent was not tried this time. Nothing was routed around. Re-measured 2026-11-05, www.brazoscountytx.gov answered 403 to the project's agent on robots.txt and on the page. Nothing was routed around. Re-measured 2026-11-06, www.brazoscountytx.gov answered 403 to the project's agent on the page. Nothing was routed around. Re-measured 2026-11-07, www.brazoscountytx.gov answered 403 to the project's agent on the page. Nothing was routed around. Re-measured 2026-11-08, www.brazoscountytx.gov answered 403 to the project's agent on the page, and www.kbtx.com still disallows the path to this project in robots.txt. Nothing was routed around. Re-measured 2026-11-14, www.brazoscountytx.gov answered 403 to the project's agent. Nothing was routed around."
    }
   },
   {
@@ -23856,6 +24007,11 @@
      "date": "2026-11-08",
      "note": "How the state technology agency is carrying out the four AI laws can't be read again. Its site still refuses this project.",
      "checked": true
+    },
+    {
+     "date": "2026-11-14",
+     "note": "How the state technology agency carries out the four AI laws can't be confirmed again. Its site still refuses this project.",
+     "checked": true
     }
    ],
    "unreachable": {
@@ -23863,8 +24019,8 @@
      "dir.texas.gov"
     ],
     "boundary": "robots",
-    "checked": "2026-11-08",
-    "note": "dir.texas.gov refuses this project's path in robots.txt, measured 2026-10-03 by fetch_doc's live robots check and the crawl boundary, on the item's own front door. Nothing was routed around. Re-measured 2026-10-08, dir.texas.gov robots.txt still refuses the path. Re-measured 2026-10-15, dir.texas.gov robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-10-20, dir.texas.gov robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-10-25, dir.texas.gov robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-10-31, dir.texas.gov robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-11-01, dir.texas.gov robots.txt still refuses this project. A browser agent was not tried this time. Nothing was routed around. Re-measured 2026-11-05, dir.texas.gov robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-11-06, dir.texas.gov robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-11-07, dir.texas.gov's robots.txt still refuses the project's agent. Nothing was routed around. Re-measured 2026-11-08, dir.texas.gov still disallows the path to this project in robots.txt. Nothing was routed around."
+    "checked": "2026-11-14",
+    "note": "dir.texas.gov refuses this project's path in robots.txt, measured 2026-10-03 by fetch_doc's live robots check and the crawl boundary, on the item's own front door. Nothing was routed around. Re-measured 2026-10-08, dir.texas.gov robots.txt still refuses the path. Re-measured 2026-10-15, dir.texas.gov robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-10-20, dir.texas.gov robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-10-25, dir.texas.gov robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-10-31, dir.texas.gov robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-11-01, dir.texas.gov robots.txt still refuses this project. A browser agent was not tried this time. Nothing was routed around. Re-measured 2026-11-05, dir.texas.gov robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-11-06, dir.texas.gov robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-11-07, dir.texas.gov's robots.txt still refuses the project's agent. Nothing was routed around. Re-measured 2026-11-08, dir.texas.gov still disallows the path to this project in robots.txt. Nothing was routed around. Re-measured 2026-11-14, dir.texas.gov still refuses this project in robots.txt. Nothing was routed around."
    }
   },
   {
@@ -25425,6 +25581,11 @@
      "date": "2026-11-08",
      "note": "The face capture test at the Progreso crossing has no newer reading. The department's pages still turn away every reader.",
      "checked": true
+    },
+    {
+     "date": "2026-11-14",
+     "note": "The face capture test at the Progreso crossing has no newer reading. The department's pages still turn away every reader.",
+     "checked": true
     }
    ],
    "unreachable": {
@@ -25432,8 +25593,8 @@
      "www.dhs.gov"
     ],
     "boundary": "blocks_every_client",
-    "checked": "2026-11-08",
-    "note": "www.dhs.gov answered 403 on 2026-09-30 to the project's own agent and to a browser agent, on the page and on robots.txt alike. Nothing was routed around. Re-measured 2026-10-08, www.dhs.gov answered 403 to the project's agent and 403 to a browser agent. Re-measured 2026-10-15, www.dhs.gov answered 403 to the project's agent and 403 to a browser agent. Nothing was routed around. Re-measured 2026-10-20, www.dhs.gov answered 403 to the project's agent and 403 to a browser agent. Nothing was routed around. Re-measured 2026-10-25, www.dhs.gov answered 403 to the project's agent and 403 to a browser agent. Nothing was routed around. Re-measured 2026-10-31, www.dhs.gov answered 403 to the project's agent and 403 to a browser agent. Nothing was routed around. Re-measured 2026-11-01, www.dhs.gov answered 403 to the project's agent. A browser agent was not tried this time. Nothing was routed around. Re-measured 2026-11-05, www.dhs.gov answered 403 to the project's agent on robots.txt and on the page. Nothing was routed around. Re-measured 2026-11-06, www.dhs.gov answered 403 to the project's agent on the page. Nothing was routed around. Re-measured 2026-11-07, www.dhs.gov answered 403 to the project's agent on the page. Nothing was routed around. Re-measured 2026-11-08, www.dhs.gov answered 403 to the project's agent on the page. Nothing was routed around."
+    "checked": "2026-11-14",
+    "note": "www.dhs.gov answered 403 on 2026-09-30 to the project's own agent and to a browser agent, on the page and on robots.txt alike. Nothing was routed around. Re-measured 2026-10-08, www.dhs.gov answered 403 to the project's agent and 403 to a browser agent. Re-measured 2026-10-15, www.dhs.gov answered 403 to the project's agent and 403 to a browser agent. Nothing was routed around. Re-measured 2026-10-20, www.dhs.gov answered 403 to the project's agent and 403 to a browser agent. Nothing was routed around. Re-measured 2026-10-25, www.dhs.gov answered 403 to the project's agent and 403 to a browser agent. Nothing was routed around. Re-measured 2026-10-31, www.dhs.gov answered 403 to the project's agent and 403 to a browser agent. Nothing was routed around. Re-measured 2026-11-01, www.dhs.gov answered 403 to the project's agent. A browser agent was not tried this time. Nothing was routed around. Re-measured 2026-11-05, www.dhs.gov answered 403 to the project's agent on robots.txt and on the page. Nothing was routed around. Re-measured 2026-11-06, www.dhs.gov answered 403 to the project's agent on the page. Nothing was routed around. Re-measured 2026-11-07, www.dhs.gov answered 403 to the project's agent on the page. Nothing was routed around. Re-measured 2026-11-08, www.dhs.gov answered 403 to the project's agent on the page. Nothing was routed around. Re-measured 2026-11-14, www.dhs.gov answered 403 to the project's agent. Nothing was routed around."
    }
   },
   {
@@ -26108,7 +26269,7 @@
    ],
    "notes_for_editor": "The Energy Department's own award document was not located this run, so the award number is not claimed. Rice's page carries the agency name and the partner list. CORRECTED 2026-09-05, at the third scoring round. The title read 'magnets that avoid imported rare earths' and the summary closed 'while cutting dependence on foreign mineral supply', and NOT ONE of this item's four evidence quotes says either. The one quote about the goal reads 'find entirely new materials while simultaneously balancing these supply constraint concerns', which is what the title and the summary now say. The same reading was struck from the deck's slide 6 at round 1 and from the two carousel ledgers at round 2, and this is where it originated. RE-APPLIED after the upgrade lane reverted this file with a git checkout, having read a same length string edit as a stray whitespace reformat. A scorer reading the PUBLISHED item found that its evidence block says every fact above rests on one of these and that not one of the four quotes contained the word magnet or magnetic, so a reader checking only that page could verify the funder, the term, the figure and the coalition and find nothing establishing the subject. Two quotes already verified in this run's claims file were added, one naming the magnetic materials Rice's group chooses between and one naming the target the work is set against.",
    "id": "tx-2026-0124",
-   "last_verified": "2026-11-11",
+   "last_verified": "2026-11-14",
    "history": [
     {
      "date": "2026-09-05",
@@ -26226,6 +26387,11 @@
     {
      "date": "2026-11-11",
      "note": "The federal award to the Houston led magnet materials team still stands as announced.",
+     "checked": true
+    },
+    {
+     "date": "2026-11-14",
+     "note": "The Energy Department award to the Houston led magnet materials team still stands as Rice announced it.",
      "checked": true
     }
    ]
@@ -26505,8 +26671,8 @@
      "search.txcourts.gov"
     ],
     "boundary": "robots",
-    "checked": "2026-11-07",
-    "note": "search.txcourts.gov serves `User-Agent: *` / `Disallow: /`, measured 2026-10-01, and it carries the court's case page and the list of causes set for argument. www.txcourts.gov permits its submission schedules, and as of 2026-10-01 they list no October sitting for 2026. Nothing was routed around. Re-measured 2026-10-08, search.txcourts.gov robots.txt still refuses the path. Re-measured 2026-10-15, search.txcourts.gov robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-10-20, search.txcourts.gov robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-10-25, search.txcourts.gov robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-10-31, search.txcourts.gov robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-11-01, search.txcourts.gov robots.txt still refuses this project. A browser agent was not tried this time. Nothing was routed around. Re-measured 2026-11-05, search.txcourts.gov robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-11-06, search.txcourts.gov robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-11-07, search.txcourts.gov's robots.txt still refuses the project's agent. Nothing was routed around."
+    "checked": "2026-11-14",
+    "note": "search.txcourts.gov serves `User-Agent: *` / `Disallow: /`, measured 2026-10-01, and it carries the court's case page and the list of causes set for argument. www.txcourts.gov permits its submission schedules, and as of 2026-10-01 they list no October sitting for 2026. Nothing was routed around. Re-measured 2026-10-08, search.txcourts.gov robots.txt still refuses the path. Re-measured 2026-10-15, search.txcourts.gov robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-10-20, search.txcourts.gov robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-10-25, search.txcourts.gov robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-10-31, search.txcourts.gov robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-11-01, search.txcourts.gov robots.txt still refuses this project. A browser agent was not tried this time. Nothing was routed around. Re-measured 2026-11-05, search.txcourts.gov robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-11-06, search.txcourts.gov robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-11-07, search.txcourts.gov's robots.txt still refuses the project's agent. Nothing was routed around. Re-measured 2026-11-14, search.txcourts.gov still refuses this project in robots.txt. Nothing was routed around."
    }
   },
   {
@@ -26805,8 +26971,8 @@
      "docs.tacc.utexas.edu"
     ],
     "boundary": "robots",
-    "checked": "2026-11-08",
-    "note": "docs.tacc.utexas.edu refuses this project's path in robots.txt, measured 2026-10-03 by fetch_doc's live robots check and the crawl boundary, on the item's own front door. Nothing was routed around. Re-measured 2026-10-08. docs.tacc.utexas.edu now answers 404 for robots.txt, and tacc.utexas.edu's own robots.txt still names ClaudeBot, so the registry keeps the whole domain off limits and nothing was fetched. Re-measured 2026-10-15, docs.tacc.utexas.edu is excluded by the sources registry, its robots.txt naming this project's crawler. Nothing was routed around. Re-measured 2026-10-20, docs.tacc.utexas.edu is excluded by the sources registry, its robots.txt naming this project's crawler. Nothing was routed around. Re-measured 2026-10-25, docs.tacc.utexas.edu is excluded by the sources registry, its robots.txt naming this project's crawler. Nothing was routed around. Re-measured 2026-10-31, docs.tacc.utexas.edu answers 404 for robots.txt and the registry keeps tacc.utexas.edu off limits, so nothing was fetched. Nothing was routed around. Re-measured 2026-11-01, docs.tacc.utexas.edu robots.txt no longer names this project and the sources registry keeps the host off limits, so nothing was fetched. A browser agent was not tried this time. Nothing was routed around. Re-measured 2026-11-05, docs.tacc.utexas.edu stays excluded by the sources registry. Nothing was routed around. Re-measured 2026-11-06, docs.tacc.utexas.edu is still excluded by the sources registry, so nothing was fetched. Nothing was routed around. Re-measured 2026-11-07, docs.tacc.utexas.edu is off limits under the sources registry, so nothing was requested. Nothing was routed around. Re-measured 2026-11-08, docs.tacc.utexas.edu is outside the registry's crawl boundary and was not requested. Nothing was routed around."
+    "checked": "2026-11-14",
+    "note": "docs.tacc.utexas.edu refuses this project's path in robots.txt, measured 2026-10-03 by fetch_doc's live robots check and the crawl boundary, on the item's own front door. Nothing was routed around. Re-measured 2026-10-08. docs.tacc.utexas.edu now answers 404 for robots.txt, and tacc.utexas.edu's own robots.txt still names ClaudeBot, so the registry keeps the whole domain off limits and nothing was fetched. Re-measured 2026-10-15, docs.tacc.utexas.edu is excluded by the sources registry, its robots.txt naming this project's crawler. Nothing was routed around. Re-measured 2026-10-20, docs.tacc.utexas.edu is excluded by the sources registry, its robots.txt naming this project's crawler. Nothing was routed around. Re-measured 2026-10-25, docs.tacc.utexas.edu is excluded by the sources registry, its robots.txt naming this project's crawler. Nothing was routed around. Re-measured 2026-10-31, docs.tacc.utexas.edu answers 404 for robots.txt and the registry keeps tacc.utexas.edu off limits, so nothing was fetched. Nothing was routed around. Re-measured 2026-11-01, docs.tacc.utexas.edu robots.txt no longer names this project and the sources registry keeps the host off limits, so nothing was fetched. A browser agent was not tried this time. Nothing was routed around. Re-measured 2026-11-05, docs.tacc.utexas.edu stays excluded by the sources registry. Nothing was routed around. Re-measured 2026-11-06, docs.tacc.utexas.edu is still excluded by the sources registry, so nothing was fetched. Nothing was routed around. Re-measured 2026-11-07, docs.tacc.utexas.edu is off limits under the sources registry, so nothing was requested. Nothing was routed around. Re-measured 2026-11-08, docs.tacc.utexas.edu is outside the registry's crawl boundary and was not requested. Nothing was routed around. Re-measured 2026-11-14, docs.tacc.utexas.edu still refuses this project in robots.txt. Nothing was routed around."
    }
   },
   {
@@ -27016,6 +27182,11 @@
     {
      "date": "2026-11-11",
      "note": "The Texas Tribune reported on November 10th that Brownsville approved the moratorium and that it took effect the week before. It pauses data center applications in the city and its extraterritorial jurisdiction. The city's own posting of the vote is not confirmed."
+    },
+    {
+     "date": "2026-11-14",
+     "note": "Brownsville's moratorium stays as the record last held it. The city's own pages still turn every reader away.",
+     "checked": true
     }
    ],
    "unreachable": {
@@ -27023,8 +27194,8 @@
      "www.brownsvilletx.gov"
     ],
     "boundary": "blocks_every_client",
-    "checked": "2026-11-08",
-    "note": "www.brownsvilletx.gov answered 403 on 2026-10-09 to the project's own agent and to a browser agent, on the newsflash detail page /m/newsflash/home/detail/3425 and on robots.txt alike. Not routed around. Re-measured 2026-10-15, www.brownsvilletx.gov answered 403 to the project's agent and 403 to a browser agent. Nothing was routed around. Re-measured 2026-10-20, www.brownsvilletx.gov answered 403 to the project's agent and 403 to a browser agent. Nothing was routed around. Re-measured 2026-10-25, www.brownsvilletx.gov answered 403 to the project's agent and 403 to a browser agent. Nothing was routed around. Re-measured 2026-10-31, www.brownsvilletx.gov answered 403 to the project's agent and 403 to a browser agent. Nothing was routed around. Re-measured 2026-11-01, www.brownsvilletx.gov answered 403 to the project's agent. A browser agent was not tried this time. Nothing was routed around. Re-measured 2026-11-05, www.brownsvilletx.gov answered 403 to the project's agent on robots.txt and on the page. Nothing was routed around. Re-measured 2026-11-06, www.brownsvilletx.gov answered 403 to the project's agent on the page. Nothing was routed around. Re-measured 2026-11-07, www.brownsvilletx.gov answered 403 to the project's agent on the page. Nothing was routed around. Re-measured 2026-11-08, www.brownsvilletx.gov answered 403 to the project's agent on the page. Nothing was routed around."
+    "checked": "2026-11-14",
+    "note": "www.brownsvilletx.gov answered 403 on 2026-10-09 to the project's own agent and to a browser agent, on the newsflash detail page /m/newsflash/home/detail/3425 and on robots.txt alike. Not routed around. Re-measured 2026-10-15, www.brownsvilletx.gov answered 403 to the project's agent and 403 to a browser agent. Nothing was routed around. Re-measured 2026-10-20, www.brownsvilletx.gov answered 403 to the project's agent and 403 to a browser agent. Nothing was routed around. Re-measured 2026-10-25, www.brownsvilletx.gov answered 403 to the project's agent and 403 to a browser agent. Nothing was routed around. Re-measured 2026-10-31, www.brownsvilletx.gov answered 403 to the project's agent and 403 to a browser agent. Nothing was routed around. Re-measured 2026-11-01, www.brownsvilletx.gov answered 403 to the project's agent. A browser agent was not tried this time. Nothing was routed around. Re-measured 2026-11-05, www.brownsvilletx.gov answered 403 to the project's agent on robots.txt and on the page. Nothing was routed around. Re-measured 2026-11-06, www.brownsvilletx.gov answered 403 to the project's agent on the page. Nothing was routed around. Re-measured 2026-11-07, www.brownsvilletx.gov answered 403 to the project's agent on the page. Nothing was routed around. Re-measured 2026-11-08, www.brownsvilletx.gov answered 403 to the project's agent on the page. Nothing was routed around. Re-measured 2026-11-14, www.brownsvilletx.gov answered 403 to the project's agent. Nothing was routed around."
    }
   },
   {
@@ -27621,7 +27792,7 @@
     }
    ],
    "id": "tx-2026-0133",
-   "last_verified": "2026-11-12",
+   "last_verified": "2026-11-14",
    "history": [
     {
      "date": "2026-09-08",
@@ -27762,17 +27933,14 @@
      "date": "2026-11-12",
      "note": "The University of North Texas still lists the undergraduate degree in artificial intelligence.",
      "checked": true
+    },
+    {
+     "date": "2026-11-14",
+     "checked": true,
+     "note": "The university's own engineering pages answer again, and they still list the undergraduate degree in artificial intelligence."
     }
    ],
-   "confidence": "high",
-   "unreachable": {
-    "hosts": [
-     "engineering.unt.edu"
-    ],
-    "boundary": "robots",
-    "checked": "2026-11-08",
-    "note": "engineering.unt.edu did not serve robots.txt on 2026-10-30. The project's agent failed on the site's certificate chain and the routine's WebFetch reader got a 503, so the file is read as refusing and the cited page was not requested. Nothing was routed around. Re-measured 2026-11-01, engineering.unt.edu robots.txt still refuses this project. A browser agent was not tried this time. Nothing was routed around. Re-measured 2026-11-05, engineering.unt.edu robots.txt did not answer (URLError), so it is read as refusing. Nothing was routed around. Re-measured 2026-11-06, engineering.unt.edu did not answer for robots.txt, which is read as refusing. Nothing was routed around. Re-measured 2026-11-07, engineering.unt.edu's robots.txt answered URLError, so it is read as refusing. Nothing was routed around. Re-measured 2026-11-08, engineering.unt.edu did not answer for its robots.txt, which is read as refusing. Nothing was routed around."
-   }
+   "confidence": "high"
   },
   {
    "title": "Federal investigators opened a defect evaluation into a driverless system after crashes in Dallas and Austin",
@@ -28283,6 +28451,11 @@
     {
      "date": "2026-11-10",
      "note": "The paper's open access copy still carries every passage the record quotes, and nothing in it has been corrected."
+    },
+    {
+     "date": "2026-11-14",
+     "note": "Whether the discharge paper's open access copy still reads as cited is unconfirmed this time, because the archive answered with a browser challenge instead of the paper.",
+     "checked": true
     }
    ]
   },
@@ -28508,6 +28681,11 @@
      "date": "2026-11-08",
      "note": "Lubbock's procedure toward a temporary data center moratorium still reads as the city set it out, with no final vote posted.",
      "checked": true
+    },
+    {
+     "date": "2026-11-14",
+     "note": "Lubbock's procedure toward a temporary data center moratorium stays as last read. The city's pages still refuse every reader.",
+     "checked": true
     }
    ],
    "unreachable": {
@@ -28516,8 +28694,8 @@
      "www.fox34.com"
     ],
     "boundary": "blocks_every_client",
-    "checked": "2026-11-07",
-    "note": "www.mylubbock.us answered 403 on 2026-10-25 to the project's own agent and to a browser agent, on the September 8th agenda behind tx-2026-0138-c1 and c2. www.fox34.com's robots.txt disallows the story behind tx-2026-0138-c3 to this project, so it was not requested. Not routed around. Texas Public Radio's account behind c4 to c6 answered the same day and all three quotes are still on the page. Re-measured 2026-10-31, www.mylubbock.us answered 403 to the project's agent and 403 to a browser agent, and www.fox34.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-11-01, www.mylubbock.us answered 403 to the project's agent, and www.fox34.com robots.txt still refuses this project. A browser agent was not tried this time. Nothing was routed around. Re-measured 2026-11-05, www.mylubbock.us answered 403 to the project's agent on robots.txt and on the page; www.fox34.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-11-06, www.mylubbock.us answered 403 to the project's agent on the page; www.fox34.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-11-07, www.mylubbock.us answered 403 to the project's agent on the page; www.fox34.com's robots.txt disallows the cited path to the project's agent. Nothing was routed around."
+    "checked": "2026-11-14",
+    "note": "www.mylubbock.us answered 403 on 2026-10-25 to the project's own agent and to a browser agent, on the September 8th agenda behind tx-2026-0138-c1 and c2. www.fox34.com's robots.txt disallows the story behind tx-2026-0138-c3 to this project, so it was not requested. Not routed around. Texas Public Radio's account behind c4 to c6 answered the same day and all three quotes are still on the page. Re-measured 2026-10-31, www.mylubbock.us answered 403 to the project's agent and 403 to a browser agent, and www.fox34.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-11-01, www.mylubbock.us answered 403 to the project's agent, and www.fox34.com robots.txt still refuses this project. A browser agent was not tried this time. Nothing was routed around. Re-measured 2026-11-05, www.mylubbock.us answered 403 to the project's agent on robots.txt and on the page; www.fox34.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-11-06, www.mylubbock.us answered 403 to the project's agent on the page; www.fox34.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-11-07, www.mylubbock.us answered 403 to the project's agent on the page; www.fox34.com's robots.txt disallows the cited path to the project's agent. Nothing was routed around. Re-measured 2026-11-14, www.mylubbock.us answered 403 to the project's agent; www.fox34.com still refuses this project in robots.txt. Nothing was routed around."
    }
   },
   {
@@ -30045,7 +30223,7 @@
    "confidence": "high",
    "notes_for_editor": "A different collection from the American Time Use Survey window the record already carries at tx-2026-0016, which closed September 8th.",
    "id": "tx-2026-0145",
-   "last_verified": "2026-11-11",
+   "last_verified": "2026-11-14",
    "history": [
     {
      "date": "2026-09-11",
@@ -30169,6 +30347,11 @@
     {
      "date": "2026-11-11",
      "note": "The federal survey office's comment window on measuring household AI use closed on November 9th.",
+     "checked": true
+    },
+    {
+     "date": "2026-11-14",
+     "note": "The survey office's question about counting household AI use is past its comment deadline of November 9th, and the notice still reads as quoted.",
      "checked": true
     }
    ]
@@ -30305,7 +30488,7 @@
    "confidence": "high",
    "notes_for_editor": "The attachment heads itself Text of Proposed New and its url sits in the June meeting folder, and the item itself records that changes were recommended since first reading. It is the ONE attachment the second reading and final adoption item publishes, which is what this record says and all it says. The rule as filed with the Texas Register was not fetched, so nothing here claims the artificial intelligence language survived into the filed rule. The item prints both an August 31st committee heading and a September 4th date line and never joins either to either body.",
    "id": "tx-2026-0142",
-   "last_verified": "2026-11-11",
+   "last_verified": "2026-11-14",
    "history": [
     {
      "date": "2026-09-11",
@@ -30409,6 +30592,11 @@
      "date": "2026-11-11",
      "note": "The money course the board adopted still carries its published text naming AI tools.",
      "checked": true
+    },
+    {
+     "date": "2026-11-14",
+     "note": "The adopted money course text still names AI tools in the passage the record quotes.",
+     "checked": true
     }
    ]
   },
@@ -30447,7 +30635,7 @@
     "closes": null
    },
    "id": "tx-2026-0147",
-   "last_verified": "2026-11-11",
+   "last_verified": "2026-11-14",
    "confidence": "high",
    "notes_for_editor": "El Paso County from the city. The council's own agenda is the source and no vote has happened, so the status is pending rather than decided.\n\ntx-2026-0147-c3's quote proved the date and time while the claim also asserted the agenda was final, which a code review caught on 2026-09-12. The page states it, under Agenda status, so the quote now carries both fields. They are adjacent cells in the meeting detail table and the single space between them is the fetcher's rather than the page's, which is the same disclosure c12, c13 and c25 carry.\n\n2026-10-03. The minutes were published between September 30th and October 3rd. The title and summary no longer say the amendment text is unpublished, c7 now quotes the link to the minutes, and c8 to c13 quote the minutes themselves.",
    "history": [
@@ -30557,6 +30745,11 @@
     {
      "date": "2026-11-11",
      "note": "El Paso's order still keeps Flock plate reader cameras off city property and still bars new contracts without another council vote.",
+     "checked": true
+    },
+    {
+     "date": "2026-11-14",
+     "note": "El Paso's order keeping Flock plate reader cameras off city property stands, and so does the bar on new contracts without further council action.",
      "checked": true
     }
    ],
@@ -31214,6 +31407,11 @@
      "date": "2026-11-08",
      "note": "The expert panel's review still opens on the same finding, that imaging AI has largely been built and tested on adults while children's scans stay underrepresented.",
      "checked": true
+    },
+    {
+     "date": "2026-11-14",
+     "note": "The expert panel's review is unconfirmed this time. The index that carries it answered with a browser challenge rather than the abstract.",
+     "checked": true
     }
    ]
   },
@@ -31414,6 +31612,11 @@
     {
      "date": "2026-11-08",
      "note": "The MD Anderson and UT Medical Branch study still reports that its MRI model scored lower on patients from outside the data it was built on.",
+     "checked": true
+    },
+    {
+     "date": "2026-11-14",
+     "note": "The MRI study's abstract is unconfirmed this time, because the index answered with a browser challenge rather than the record.",
      "checked": true
     }
    ]
@@ -31811,6 +32014,11 @@
      "date": "2026-11-11",
      "note": "The grid operator's questionnaire to conditionally classified large loads still stands, notarized attestation and all.",
      "checked": true
+    },
+    {
+     "date": "2026-11-14",
+     "note": "The questionnaire to conditionally classified large loads is unconfirmed this time. The grid operator's documents did not answer.",
+     "checked": true
     }
    ]
   },
@@ -31910,7 +32118,7 @@
     }
    ],
    "id": "tx-2026-0157",
-   "last_verified": "2026-11-11",
+   "last_verified": "2026-11-14",
    "history": [
     {
      "date": "2026-09-14",
@@ -32003,6 +32211,11 @@
     {
      "date": "2026-11-11",
      "note": "The developer's account to its shareholders of what the Batch Zero list did to its Texas projects is still the one on file.",
+     "checked": true
+    },
+    {
+     "date": "2026-11-14",
+     "note": "The developer's shareholder account of how the Batch Zero list treated its Texas projects is unchanged on file.",
      "checked": true
     }
    ]
@@ -32199,7 +32412,7 @@
     }
    ],
    "id": "tx-2026-0159",
-   "last_verified": "2026-11-11",
+   "last_verified": "2026-11-14",
    "history": [
     {
      "date": "2026-09-15",
@@ -32291,6 +32504,11 @@
     {
      "date": "2026-11-11",
      "note": "The Public Utility Commission of Texas approved PGRR144 on November 5th, the last vote on its page. The model quality rule no longer waits on any body."
+    },
+    {
+     "date": "2026-11-14",
+     "note": "ERCOT's board materials on AI training loads and the ramp limit it drafted still read as cited, and no later vote has changed what the record holds.",
+     "checked": true
     }
    ]
   },
@@ -32660,6 +32878,11 @@
      "date": "2026-11-08",
      "note": "UT Arlington's federally funded AI tutor stands unconfirmed for another day. The university's site did not serve this project.",
      "checked": true
+    },
+    {
+     "date": "2026-11-14",
+     "note": "UT Arlington's federally funded AI tutor remains unconfirmed. The university's site did not answer this project.",
+     "checked": true
     }
    ],
    "unreachable": {
@@ -32667,8 +32890,8 @@
      "www.uta.edu"
     ],
     "boundary": "robots",
-    "checked": "2026-11-08",
-    "note": "www.uta.edu did not serve robots.txt on 2026-10-30. The project's agent failed on the site's certificate chain and the routine's WebFetch reader got a 503, so the file is read as refusing and the cited page was not requested. Nothing was routed around. Re-measured 2026-11-01, www.uta.edu robots.txt still refuses this project. A browser agent was not tried this time. Nothing was routed around. Re-measured 2026-11-05, www.uta.edu robots.txt did not answer (URLError), so it is read as refusing. Nothing was routed around. Re-measured 2026-11-06, www.uta.edu did not answer for robots.txt, which is read as refusing. Nothing was routed around. Re-measured 2026-11-07, www.uta.edu's robots.txt answered URLError, so it is read as refusing. Nothing was routed around. Re-measured 2026-11-08, www.uta.edu did not answer for its robots.txt, which is read as refusing. Nothing was routed around."
+    "checked": "2026-11-14",
+    "note": "www.uta.edu did not serve robots.txt on 2026-10-30. The project's agent failed on the site's certificate chain and the routine's WebFetch reader got a 503, so the file is read as refusing and the cited page was not requested. Nothing was routed around. Re-measured 2026-11-01, www.uta.edu robots.txt still refuses this project. A browser agent was not tried this time. Nothing was routed around. Re-measured 2026-11-05, www.uta.edu robots.txt did not answer (URLError), so it is read as refusing. Nothing was routed around. Re-measured 2026-11-06, www.uta.edu did not answer for robots.txt, which is read as refusing. Nothing was routed around. Re-measured 2026-11-07, www.uta.edu's robots.txt answered URLError, so it is read as refusing. Nothing was routed around. Re-measured 2026-11-08, www.uta.edu did not answer for its robots.txt, which is read as refusing. Nothing was routed around. Re-measured 2026-11-14, www.uta.edu still refuses this project in robots.txt. Nothing was routed around."
    }
   },
   {
@@ -33195,7 +33418,7 @@
     }
    ],
    "id": "tx-2026-0165",
-   "last_verified": "2026-10-24",
+   "last_verified": "2026-11-14",
    "history": [
     {
      "date": "2026-09-17",
@@ -33311,16 +33534,13 @@
      "date": "2026-11-08",
      "note": "The gift behind UNT's college of artificial intelligence holds as first read. The university's news site did not serve this project.",
      "checked": true
+    },
+    {
+     "date": "2026-11-14",
+     "checked": true,
+     "note": "The university's news site answers again, and its account of the gift and the newly named college of artificial intelligence reads as the record quotes it."
     }
-   ],
-   "unreachable": {
-    "hosts": [
-     "news.unt.edu"
-    ],
-    "boundary": "robots",
-    "checked": "2026-11-08",
-    "note": "news.unt.edu did not serve robots.txt on 2026-10-30. The project's agent failed on the site's certificate chain and the routine's WebFetch reader got a 503, so the file is read as refusing and the cited page was not requested. Nothing was routed around. Re-measured 2026-11-01, news.unt.edu robots.txt still refuses this project. A browser agent was not tried this time. Nothing was routed around. Re-measured 2026-11-05, news.unt.edu robots.txt did not answer (URLError), so it is read as refusing. Nothing was routed around. Re-measured 2026-11-06, news.unt.edu did not answer for robots.txt, which is read as refusing. Nothing was routed around. Re-measured 2026-11-07, news.unt.edu's robots.txt answered URLError, so it is read as refusing. Nothing was routed around. Re-measured 2026-11-08, news.unt.edu did not answer for its robots.txt, which is read as refusing. Nothing was routed around."
-   }
+   ]
   },
   {
    "title": "A three campus Texas trial tests whether a phone microphone held to the abdomen can count fetal movement by machine",
@@ -33570,6 +33790,11 @@
      "date": "2026-11-08",
      "note": "The three campus trial of a phone microphone for fetal movement has no fresh reading, because the federal trials registry still refuses this project.",
      "checked": true
+    },
+    {
+     "date": "2026-11-14",
+     "note": "The three campus trial of a phone microphone for fetal movement has no newer reading. The federal trials registry still refuses this project.",
+     "checked": true
     }
    ],
    "unreachable": {
@@ -33577,8 +33802,8 @@
      "clinicaltrials.gov"
     ],
     "boundary": "robots",
-    "checked": "2026-11-08",
-    "note": "clinicaltrials.gov serves the study page as a script shell with no record text, and the record itself is served from /api/v2/, which robots.txt disallows to this project, measured 2026-10-04. Nothing was routed around. Re-measured 2026-10-08, robots.txt still disallows /api/v2/ to this project. Re-measured 2026-10-15, clinicaltrials.gov robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-10-20, clinicaltrials.gov robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-10-25, clinicaltrials.gov robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-10-31, clinicaltrials.gov robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-11-01, clinicaltrials.gov robots.txt still refuses this project. A browser agent was not tried this time. Nothing was routed around. Re-measured 2026-11-05, clinicaltrials.gov robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-11-06, clinicaltrials.gov robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-11-07, clinicaltrials.gov's robots.txt still refuses the project's agent. Nothing was routed around. Re-measured 2026-11-08, clinicaltrials.gov still disallows the path to this project in robots.txt. Nothing was routed around."
+    "checked": "2026-11-14",
+    "note": "clinicaltrials.gov serves the study page as a script shell with no record text, and the record itself is served from /api/v2/, which robots.txt disallows to this project, measured 2026-10-04. Nothing was routed around. Re-measured 2026-10-08, robots.txt still disallows /api/v2/ to this project. Re-measured 2026-10-15, clinicaltrials.gov robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-10-20, clinicaltrials.gov robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-10-25, clinicaltrials.gov robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-10-31, clinicaltrials.gov robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-11-01, clinicaltrials.gov robots.txt still refuses this project. A browser agent was not tried this time. Nothing was routed around. Re-measured 2026-11-05, clinicaltrials.gov robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-11-06, clinicaltrials.gov robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-11-07, clinicaltrials.gov's robots.txt still refuses the project's agent. Nothing was routed around. Re-measured 2026-11-08, clinicaltrials.gov still disallows the path to this project in robots.txt. Nothing was routed around. Re-measured 2026-11-14, clinicaltrials.gov still refuses this project in robots.txt. Nothing was routed around."
    }
   },
   {
@@ -33851,6 +34076,11 @@
      "date": "2026-11-08",
      "note": "The Hays County sheriff's commitment to bring AI report writing back to the court before switching it on still stands on the county's record.",
      "checked": true
+    },
+    {
+     "date": "2026-11-14",
+     "note": "The Hays County sheriff's commitment on AI report writing stays on the earlier reading. The agenda archive and the vendor's page both refuse this project.",
+     "checked": true
     }
    ],
    "last_verified": "2026-11-08",
@@ -33860,8 +34090,8 @@
      "public.destinyhosted.com"
     ],
     "boundary": "robots",
-    "checked": "2026-11-07",
-    "note": "public.destinyhosted.com serves `User-agent: *` / `Disallow: /`, re-measured 2026-09-28, on a single line. www.hayscountytx.gov answered 403 on 2026-09-24 and 200 on 2026-09-28, so whether the county's own copy of this agenda entry can serve as a second door is for the next re-verification. The entry was not routed around. Re-measured 2026-10-08, public.destinyhosted.com robots.txt still refuses the path. Re-measured 2026-10-15, public.destinyhosted.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-10-20, public.destinyhosted.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-10-25, public.destinyhosted.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-10-31, public.destinyhosted.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-11-01, public.destinyhosted.com robots.txt still refuses this project. A browser agent was not tried this time. Nothing was routed around. Re-measured 2026-11-05, public.destinyhosted.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-11-06, public.destinyhosted.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-11-07, public.destinyhosted.com's robots.txt still refuses the project's agent. Nothing was routed around."
+    "checked": "2026-11-14",
+    "note": "public.destinyhosted.com serves `User-agent: *` / `Disallow: /`, re-measured 2026-09-28, on a single line. www.hayscountytx.gov answered 403 on 2026-09-24 and 200 on 2026-09-28, so whether the county's own copy of this agenda entry can serve as a second door is for the next re-verification. The entry was not routed around. Re-measured 2026-10-08, public.destinyhosted.com robots.txt still refuses the path. Re-measured 2026-10-15, public.destinyhosted.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-10-20, public.destinyhosted.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-10-25, public.destinyhosted.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-10-31, public.destinyhosted.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-11-01, public.destinyhosted.com robots.txt still refuses this project. A browser agent was not tried this time. Nothing was routed around. Re-measured 2026-11-05, public.destinyhosted.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-11-06, public.destinyhosted.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-11-07, public.destinyhosted.com's robots.txt still refuses the project's agent. Nothing was routed around. Re-measured 2026-11-14, public.destinyhosted.com still refuses this project in robots.txt. Nothing was routed around."
    }
   },
   {
@@ -34104,8 +34334,8 @@
      "public.destinyhosted.com"
     ],
     "boundary": "robots",
-    "checked": "2026-11-07",
-    "note": "public.destinyhosted.com serves `User-agent: *` / `Disallow: /`, re-measured 2026-09-28, on a single line. www.hayscountytx.gov answered 403 on 2026-09-24 and 200 on 2026-09-28, so whether the county's own copy of this agenda entry can serve as a second door is for the next re-verification. The entry was not routed around. Re-measured 2026-10-08, public.destinyhosted.com robots.txt still refuses the path. Re-measured 2026-10-15, public.destinyhosted.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-10-20, public.destinyhosted.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-10-25, public.destinyhosted.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-10-31, public.destinyhosted.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-11-01, public.destinyhosted.com robots.txt still refuses this project. A browser agent was not tried this time. Nothing was routed around. Re-measured 2026-11-05, public.destinyhosted.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-11-06, public.destinyhosted.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-11-07, public.destinyhosted.com's robots.txt still refuses the project's agent. Nothing was routed around."
+    "checked": "2026-11-14",
+    "note": "public.destinyhosted.com serves `User-agent: *` / `Disallow: /`, re-measured 2026-09-28, on a single line. www.hayscountytx.gov answered 403 on 2026-09-24 and 200 on 2026-09-28, so whether the county's own copy of this agenda entry can serve as a second door is for the next re-verification. The entry was not routed around. Re-measured 2026-10-08, public.destinyhosted.com robots.txt still refuses the path. Re-measured 2026-10-15, public.destinyhosted.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-10-20, public.destinyhosted.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-10-25, public.destinyhosted.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-10-31, public.destinyhosted.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-11-01, public.destinyhosted.com robots.txt still refuses this project. A browser agent was not tried this time. Nothing was routed around. Re-measured 2026-11-05, public.destinyhosted.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-11-06, public.destinyhosted.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-11-07, public.destinyhosted.com's robots.txt still refuses the project's agent. Nothing was routed around. Re-measured 2026-11-14, public.destinyhosted.com still refuses this project in robots.txt. Nothing was routed around."
    }
   },
   {
@@ -34319,6 +34549,11 @@
      "date": "2026-11-08",
      "note": "Where Hays County's AI surveillance policy stands can't be confirmed again. Its agenda archive and county site both stay closed to this project.",
      "checked": true
+    },
+    {
+     "date": "2026-11-14",
+     "note": "Hays County's AI surveillance policy stays unconfirmed. The agenda archive and the county site remain closed to this project.",
+     "checked": true
     }
    ],
    "last_verified": "2026-09-26",
@@ -34328,8 +34563,8 @@
      "public.destinyhosted.com"
     ],
     "boundary": "robots",
-    "checked": "2026-11-08",
-    "note": "public.destinyhosted.com serves `User-agent: *` / `Disallow: /`, re-measured 2026-09-28, on a single line. www.hayscountytx.gov answered 403 on 2026-09-24 and 200 on 2026-09-28, so whether the county's own copy of this agenda entry can serve as a second door is for the next re-verification. The entry was not routed around. Re-measured 2026-10-08, public.destinyhosted.com robots.txt still refuses the path. Re-measured 2026-10-15, public.destinyhosted.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-10-20, public.destinyhosted.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-10-25, public.destinyhosted.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-10-31, public.destinyhosted.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-11-01, public.destinyhosted.com robots.txt still refuses this project. A browser agent was not tried this time. Nothing was routed around. Re-measured 2026-11-05, public.destinyhosted.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-11-06, public.destinyhosted.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-11-07, public.destinyhosted.com's robots.txt still refuses the project's agent. Nothing was routed around. Re-measured 2026-11-08, public.destinyhosted.com still disallows the path to this project in robots.txt, and www.hayscountytx.gov answered 403 to the project's agent on the page. Nothing was routed around."
+    "checked": "2026-11-14",
+    "note": "public.destinyhosted.com serves `User-agent: *` / `Disallow: /`, re-measured 2026-09-28, on a single line. www.hayscountytx.gov answered 403 on 2026-09-24 and 200 on 2026-09-28, so whether the county's own copy of this agenda entry can serve as a second door is for the next re-verification. The entry was not routed around. Re-measured 2026-10-08, public.destinyhosted.com robots.txt still refuses the path. Re-measured 2026-10-15, public.destinyhosted.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-10-20, public.destinyhosted.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-10-25, public.destinyhosted.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-10-31, public.destinyhosted.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-11-01, public.destinyhosted.com robots.txt still refuses this project. A browser agent was not tried this time. Nothing was routed around. Re-measured 2026-11-05, public.destinyhosted.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-11-06, public.destinyhosted.com robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-11-07, public.destinyhosted.com's robots.txt still refuses the project's agent. Nothing was routed around. Re-measured 2026-11-08, public.destinyhosted.com still disallows the path to this project in robots.txt, and www.hayscountytx.gov answered 403 to the project's agent on the page. Nothing was routed around. Re-measured 2026-11-14, public.destinyhosted.com still refuses this project in robots.txt. Nothing was routed around."
    }
   },
   {
@@ -34561,6 +34796,11 @@
      "date": "2026-11-08",
      "note": "The Governor's directive telling the water board to enforce its use survey against data centers still reads as issued.",
      "checked": true
+    },
+    {
+     "date": "2026-11-14",
+     "note": "The Governor's directive to the water board stays as issued on the earlier reading. The Governor's site remains off limits to this project.",
+     "checked": true
     }
    ],
    "unreachable": {
@@ -34568,8 +34808,8 @@
      "gov.texas.gov"
     ],
     "boundary": "robots",
-    "checked": "2026-11-07",
-    "note": "gov.texas.gov refuses this project's path in robots.txt, measured 2026-10-03 by fetch_doc's live robots check and the crawl boundary, on the item's own front door. Nothing was routed around. Re-measured 2026-10-08, gov.texas.gov robots.txt still refuses the path. Re-measured 2026-10-15, gov.texas.gov is excluded by the sources registry, its robots.txt naming this project's crawler. Nothing was routed around. Re-measured 2026-10-20, gov.texas.gov is excluded by the sources registry, its robots.txt naming this project's crawler. Nothing was routed around. Re-measured 2026-10-25, gov.texas.gov is excluded by the sources registry, its robots.txt naming this project's crawler. Nothing was routed around. Re-measured 2026-10-31, gov.texas.gov robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-11-01, gov.texas.gov robots.txt still refuses this project. A browser agent was not tried this time. Nothing was routed around. Re-measured 2026-11-05, gov.texas.gov stays excluded by the sources registry. Nothing was routed around. Re-measured 2026-11-06, gov.texas.gov robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-11-07, gov.texas.gov is off limits under the sources registry, so nothing was requested. Nothing was routed around."
+    "checked": "2026-11-14",
+    "note": "gov.texas.gov refuses this project's path in robots.txt, measured 2026-10-03 by fetch_doc's live robots check and the crawl boundary, on the item's own front door. Nothing was routed around. Re-measured 2026-10-08, gov.texas.gov robots.txt still refuses the path. Re-measured 2026-10-15, gov.texas.gov is excluded by the sources registry, its robots.txt naming this project's crawler. Nothing was routed around. Re-measured 2026-10-20, gov.texas.gov is excluded by the sources registry, its robots.txt naming this project's crawler. Nothing was routed around. Re-measured 2026-10-25, gov.texas.gov is excluded by the sources registry, its robots.txt naming this project's crawler. Nothing was routed around. Re-measured 2026-10-31, gov.texas.gov robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-11-01, gov.texas.gov robots.txt still refuses this project. A browser agent was not tried this time. Nothing was routed around. Re-measured 2026-11-05, gov.texas.gov stays excluded by the sources registry. Nothing was routed around. Re-measured 2026-11-06, gov.texas.gov robots.txt still refuses this project. Nothing was routed around. Re-measured 2026-11-07, gov.texas.gov is off limits under the sources registry, so nothing was requested. Nothing was routed around. Re-measured 2026-11-14, gov.texas.gov still refuses this project in robots.txt. Nothing was routed around."
    }
   },
   {
@@ -34745,6 +34985,11 @@
      "date": "2026-11-08",
      "note": "UT Arlington's shift from business analytics degrees to AI degrees has no newer reading. The university's site did not serve this project.",
      "checked": true
+    },
+    {
+     "date": "2026-11-14",
+     "note": "UT Arlington's move from business analytics degrees to AI degrees has no newer reading, because the university's site did not answer.",
+     "checked": true
     }
    ],
    "unreachable": {
@@ -34752,8 +34997,8 @@
      "www.uta.edu"
     ],
     "boundary": "robots",
-    "checked": "2026-11-08",
-    "note": "www.uta.edu did not serve robots.txt on 2026-10-30. The project's agent failed on the site's certificate chain and the routine's WebFetch reader got a 503, so the file is read as refusing and the cited page was not requested. Nothing was routed around. Re-measured 2026-11-01, www.uta.edu robots.txt still refuses this project. A browser agent was not tried this time. Nothing was routed around. Re-measured 2026-11-05, www.uta.edu robots.txt did not answer (URLError), so it is read as refusing. Nothing was routed around. Re-measured 2026-11-06, www.uta.edu did not answer for robots.txt, which is read as refusing. Nothing was routed around. Re-measured 2026-11-07, www.uta.edu's robots.txt answered URLError, so it is read as refusing. Nothing was routed around. Re-measured 2026-11-08, www.uta.edu did not answer for its robots.txt, which is read as refusing. Nothing was routed around."
+    "checked": "2026-11-14",
+    "note": "www.uta.edu did not serve robots.txt on 2026-10-30. The project's agent failed on the site's certificate chain and the routine's WebFetch reader got a 503, so the file is read as refusing and the cited page was not requested. Nothing was routed around. Re-measured 2026-11-01, www.uta.edu robots.txt still refuses this project. A browser agent was not tried this time. Nothing was routed around. Re-measured 2026-11-05, www.uta.edu robots.txt did not answer (URLError), so it is read as refusing. Nothing was routed around. Re-measured 2026-11-06, www.uta.edu did not answer for robots.txt, which is read as refusing. Nothing was routed around. Re-measured 2026-11-07, www.uta.edu's robots.txt answered URLError, so it is read as refusing. Nothing was routed around. Re-measured 2026-11-08, www.uta.edu did not answer for its robots.txt, which is read as refusing. Nothing was routed around. Re-measured 2026-11-14, www.uta.edu still refuses this project in robots.txt. Nothing was routed around."
    }
   },
   {
@@ -36416,6 +36661,11 @@
      "date": "2026-11-08",
      "note": "Leander's end to plate reader payments holds on the earlier reading. The city's notice still turns every reader away.",
      "checked": true
+    },
+    {
+     "date": "2026-11-14",
+     "note": "Leander's end to plate reader payments stays on the earlier reading. The city's notice still turns every reader away.",
+     "checked": true
     }
    ],
    "unreachable": {
@@ -36423,8 +36673,8 @@
      "www.leandertx.gov"
     ],
     "boundary": "blocks_every_client",
-    "checked": "2026-11-08",
-    "note": "www.leandertx.gov answered 403 on 2026-10-06 to the project's own agent and to a browser agent, on the newsflash detail page /m/newsflash/Home/Detail/1347. Its robots.txt carries no disallow for that path. The page read unchanged at that address on 2026-09-27 and 2026-10-03. Not routed around. Re-measured 2026-10-08, www.leandertx.gov answered 403 to the project's agent and 403 to a browser agent. Re-measured 2026-10-15, www.leandertx.gov answered 403 to the project's agent and 403 to a browser agent. Nothing was routed around. Re-measured 2026-10-20, www.leandertx.gov answered 403 to the project's agent and 403 to a browser agent. Nothing was routed around. Re-measured 2026-10-25, www.leandertx.gov answered 403 to the project's agent and 403 to a browser agent. Nothing was routed around. Re-measured 2026-10-31, www.leandertx.gov answered 403 to the project's agent and 403 to a browser agent. Nothing was routed around. Re-measured 2026-11-01, www.leandertx.gov answered 403 to the project's agent. A browser agent was not tried this time. Nothing was routed around. Re-measured 2026-11-05, www.leandertx.gov answered 403 to the project's agent on robots.txt and on the page. Nothing was routed around. Re-measured 2026-11-06, www.leandertx.gov answered 403 to the project's agent on the page. Nothing was routed around. Re-measured 2026-11-07, www.leandertx.gov answered 403 to the project's agent on the page. Nothing was routed around. Re-measured 2026-11-08, www.leandertx.gov answered 403 to the project's agent on the page. Nothing was routed around."
+    "checked": "2026-11-14",
+    "note": "www.leandertx.gov answered 403 on 2026-10-06 to the project's own agent and to a browser agent, on the newsflash detail page /m/newsflash/Home/Detail/1347. Its robots.txt carries no disallow for that path. The page read unchanged at that address on 2026-09-27 and 2026-10-03. Not routed around. Re-measured 2026-10-08, www.leandertx.gov answered 403 to the project's agent and 403 to a browser agent. Re-measured 2026-10-15, www.leandertx.gov answered 403 to the project's agent and 403 to a browser agent. Nothing was routed around. Re-measured 2026-10-20, www.leandertx.gov answered 403 to the project's agent and 403 to a browser agent. Nothing was routed around. Re-measured 2026-10-25, www.leandertx.gov answered 403 to the project's agent and 403 to a browser agent. Nothing was routed around. Re-measured 2026-10-31, www.leandertx.gov answered 403 to the project's agent and 403 to a browser agent. Nothing was routed around. Re-measured 2026-11-01, www.leandertx.gov answered 403 to the project's agent. A browser agent was not tried this time. Nothing was routed around. Re-measured 2026-11-05, www.leandertx.gov answered 403 to the project's agent on robots.txt and on the page. Nothing was routed around. Re-measured 2026-11-06, www.leandertx.gov answered 403 to the project's agent on the page. Nothing was routed around. Re-measured 2026-11-07, www.leandertx.gov answered 403 to the project's agent on the page. Nothing was routed around. Re-measured 2026-11-08, www.leandertx.gov answered 403 to the project's agent on the page. Nothing was routed around. Re-measured 2026-11-14, www.leandertx.gov answered 403 to the project's agent. Nothing was routed around."
    }
   },
   {
@@ -36600,6 +36850,11 @@
      "date": "2026-11-08",
      "note": "Battalion Oil's stake in Collide and its Ward County commitment go unconfirmed again while the release's host turns every reader away.",
      "checked": true
+    },
+    {
+     "date": "2026-11-14",
+     "note": "Battalion Oil's stake in Collide and its Ward County commitment stay unconfirmed while the release's host keeps refusing every reader.",
+     "checked": true
     }
    ],
    "unreachable": {
@@ -36607,8 +36862,8 @@
      "www.globenewswire.com"
     ],
     "boundary": "blocks_every_client",
-    "checked": "2026-11-08",
-    "note": "www.globenewswire.com answered 403 on 2026-10-16 to the project's own agent and to a browser agent, on the release page and on robots.txt alike. Battalion's own news page and SEC full-text search carry no copy of the release. Nothing was routed around. Re-measured 2026-10-20, www.globenewswire.com answered 403 to the project's agent and 403 to a browser agent. Nothing was routed around. Re-measured 2026-10-25, www.globenewswire.com answered 403 to the project's agent and 403 to a browser agent. Nothing was routed around. Re-measured 2026-10-31, www.globenewswire.com answered 403 to the project's agent and 403 to a browser agent. Nothing was routed around. Re-measured 2026-11-01, www.globenewswire.com answered 403 to the project's agent. A browser agent was not tried this time. Nothing was routed around. Re-measured 2026-11-05, www.globenewswire.com answered 403 to the project's agent on robots.txt and on the page. Nothing was routed around. Re-measured 2026-11-06, www.globenewswire.com answered 403 to the project's agent on the page. Nothing was routed around. Re-measured 2026-11-07, www.globenewswire.com answered 403 to the project's agent on the page. Nothing was routed around. Re-measured 2026-11-08, www.globenewswire.com answered 403 to the project's agent on the page. Nothing was routed around."
+    "checked": "2026-11-14",
+    "note": "www.globenewswire.com answered 403 on 2026-10-16 to the project's own agent and to a browser agent, on the release page and on robots.txt alike. Battalion's own news page and SEC full-text search carry no copy of the release. Nothing was routed around. Re-measured 2026-10-20, www.globenewswire.com answered 403 to the project's agent and 403 to a browser agent. Nothing was routed around. Re-measured 2026-10-25, www.globenewswire.com answered 403 to the project's agent and 403 to a browser agent. Nothing was routed around. Re-measured 2026-10-31, www.globenewswire.com answered 403 to the project's agent and 403 to a browser agent. Nothing was routed around. Re-measured 2026-11-01, www.globenewswire.com answered 403 to the project's agent. A browser agent was not tried this time. Nothing was routed around. Re-measured 2026-11-05, www.globenewswire.com answered 403 to the project's agent on robots.txt and on the page. Nothing was routed around. Re-measured 2026-11-06, www.globenewswire.com answered 403 to the project's agent on the page. Nothing was routed around. Re-measured 2026-11-07, www.globenewswire.com answered 403 to the project's agent on the page. Nothing was routed around. Re-measured 2026-11-08, www.globenewswire.com answered 403 to the project's agent on the page. Nothing was routed around. Re-measured 2026-11-14, www.globenewswire.com answered 403 to the project's agent. Nothing was routed around."
    }
   },
   {
@@ -37253,6 +37508,11 @@
      "date": "2026-11-08",
      "note": "Zipline's draft assessment for round the clock drone delivery over five Texas metros still awaits the agency's final decision. The comment window closed on October 11th.",
      "checked": true
+    },
+    {
+     "date": "2026-11-14",
+     "note": "The agency's decision on Zipline's draft assessment can't be confirmed again. Its pages still turn away every reader.",
+     "checked": true
     }
    ],
    "unreachable": {
@@ -37260,8 +37520,8 @@
      "www.faa.gov"
     ],
     "boundary": "blocks_every_client",
-    "checked": "2026-11-07",
-    "note": "www.faa.gov answered 403 on 2026-10-29 to the project's own agent on all of tx-2026-0186's cited pages, and 403 to the routine's WebFetch reader on the review page. Earlier runs read the page through a browser agent string. The routine no longer presents itself as a browser, so no client it has can read the page. Nothing was routed around. Re-measured 2026-11-01, www.faa.gov answered 403 to the project's agent. A browser agent was not tried this time. Nothing was routed around. Re-measured 2026-11-05, www.faa.gov answered 403 to the project's agent on robots.txt and on the page. Nothing was routed around. Re-measured 2026-11-06, www.faa.gov answered 403 to the project's agent on the page. Nothing was routed around. Re-measured 2026-11-07, www.faa.gov answered 403 to the project's agent on the page. Nothing was routed around."
+    "checked": "2026-11-14",
+    "note": "www.faa.gov answered 403 on 2026-10-29 to the project's own agent on all of tx-2026-0186's cited pages, and 403 to the routine's WebFetch reader on the review page. Earlier runs read the page through a browser agent string. The routine no longer presents itself as a browser, so no client it has can read the page. Nothing was routed around. Re-measured 2026-11-01, www.faa.gov answered 403 to the project's agent. A browser agent was not tried this time. Nothing was routed around. Re-measured 2026-11-05, www.faa.gov answered 403 to the project's agent on robots.txt and on the page. Nothing was routed around. Re-measured 2026-11-06, www.faa.gov answered 403 to the project's agent on the page. Nothing was routed around. Re-measured 2026-11-07, www.faa.gov answered 403 to the project's agent on the page. Nothing was routed around. Re-measured 2026-11-14, www.faa.gov answered 403 to the project's agent. Nothing was routed around."
    }
   },
   {
@@ -38030,10 +38290,15 @@
      "date": "2026-11-13",
      "note": "The comment window is still open, closing November 17th.",
      "checked": true
+    },
+    {
+     "date": "2026-11-14",
+     "note": "The Justice Department is still taking comment on the Frisco judgment. Its window closes November 17th.",
+     "checked": true
     }
    ],
    "id": "tx-2026-0189",
-   "last_verified": "2026-11-13"
+   "last_verified": "2026-11-14"
   },
   {
    "title": "College Station City Council votes 4 to 2 to keep its Flock plate reader cameras on state and city roads",
@@ -38333,6 +38598,11 @@
      "date": "2026-11-11",
      "note": "The commission's wildfire plan blueprint still lists cameras as a suggestion rather than a requirement.",
      "checked": true
+    },
+    {
+     "date": "2026-11-14",
+     "note": "The wildfire plan blueprint still calls cameras a suggestion. Nothing in it makes them a requirement.",
+     "checked": true
     }
    ],
    "claims": [
@@ -38491,7 +38761,7 @@
     }
    ],
    "id": "tx-2026-0191",
-   "last_verified": "2026-11-11"
+   "last_verified": "2026-11-14"
   },
   {
    "title": "Asked for AI camera fire detections, Xcel counted cameras",
@@ -38605,6 +38875,11 @@
      "date": "2026-11-11",
      "note": "Xcel's answer still counts its cameras rather than reporting what they detected.",
      "checked": true
+    },
+    {
+     "date": "2026-11-14",
+     "note": "Xcel's filed answer still counts cameras and still reports no detections.",
+     "checked": true
     }
    ],
    "claims": [
@@ -38700,7 +38975,7 @@
     }
    ],
    "id": "tx-2026-0192",
-   "last_verified": "2026-11-11"
+   "last_verified": "2026-11-14"
   },
   {
    "title": "Judges back El Paso Electric's gas plant for Meta only if other customers don't pay",
@@ -39521,7 +39796,7 @@
      "fetched": "2026-10-02"
     }
    ],
-   "last_verified": "2026-11-11",
+   "last_verified": "2026-11-14",
    "confidence": "high",
    "notes_for_editor": "Sourced to Texas Children's own release of the study and to the Texome Project's site. The journal article at doi.org/10.1016/j.ajhg.2026.09.005 rendered no text to the fetcher. A follow up should watch for the hospital or Baylor stating whether AI-MARRVEL is used in clinical diagnosis rather than research.",
    "history": [
@@ -39591,6 +39866,11 @@
     {
      "date": "2026-11-11",
      "note": "The Texas Children's and Baylor finding still stands as published, with the AI tool credited for the flag.",
+     "checked": true
+    },
+    {
+     "date": "2026-11-14",
+     "note": "The Texas Children's and Baylor paper still names the likely genetic cause and still credits the AI tool with the flag.",
      "checked": true
     }
    ]
@@ -41239,7 +41519,7 @@
    ],
    "notes_for_editor": "Admitted on ERCOT's own board materials. Related to tx-2026-0072, the Governor's directive this pause answers.",
    "id": "tx-2026-0202",
-   "last_verified": "2026-11-11",
+   "last_verified": "2026-11-14",
    "history": [
     {
      "date": "2026-10-05",
@@ -41298,6 +41578,11 @@
     {
      "date": "2026-11-11",
      "note": "ERCOT's pause on energizing new large data centers and crypto mines still holds while its audit runs.",
+     "checked": true
+    },
+    {
+     "date": "2026-11-14",
+     "note": "ERCOT's hold on energizing new large data centers and crypto mines remains in place while the audit continues.",
      "checked": true
     }
    ]
@@ -43392,6 +43677,11 @@
      "date": "2026-11-11",
      "note": "Rice's faculty hiring plan for AI and its planned research building in the Ion district still stand as announced.",
      "checked": true
+    },
+    {
+     "date": "2026-11-14",
+     "note": "Rice's plan to hire AI faculty and build a research building in the Ion district still reads as announced.",
+     "checked": true
     }
    ],
    "claims": [
@@ -43442,7 +43732,7 @@
     }
    ],
    "id": "tx-2026-0215",
-   "last_verified": "2026-11-11"
+   "last_verified": "2026-11-14"
   },
   {
    "title": "Waymo opens its San Antonio robotaxis to anyone with the app, the airport included, while its flood recall remedy is still listed as under development",
@@ -44935,7 +45225,7 @@
    ],
    "notes_for_editor": "The 25 is an estimate with a 95 percent interval of 8.3 to 41.0, and associated is the authors' word. The cameras do record during surgery (c18), so never say they don't see the operation. Turnover falling is the hospital blog's claim and not a study finding (c24). Video and audio retention is the paper's account and the blog says no audio is captured, so attribute either one (c17). The 5417 is the suite's case count over the window, not cases the cameras watched (c5).",
    "id": "tx-2026-0222",
-   "last_verified": "2026-11-10",
+   "last_verified": "2026-11-14",
    "history": [
     {
      "date": "2026-10-20",
@@ -44974,6 +45264,11 @@
     {
      "date": "2026-11-10",
      "note": "Houston Methodist's paper and its own account of the operating room cameras both read as cited, and the claim of association rather than cause is unchanged."
+    },
+    {
+     "date": "2026-11-14",
+     "note": "Houston Methodist's paper on its operating room cameras still carries every passage the record quotes.",
+     "checked": true
     }
    ]
   },
@@ -45165,10 +45460,15 @@
      "date": "2026-11-11",
      "note": "The Texas A&M finding that junk posts dull a model's reasoning still stands as published.",
      "checked": true
+    },
+    {
+     "date": "2026-11-14",
+     "note": "The Texas A&M finding that junk social media posts dull a model's reasoning still reads as published.",
+     "checked": true
     }
    ],
    "id": "tx-2026-0223",
-   "last_verified": "2026-11-11"
+   "last_verified": "2026-11-14"
   },
   {
    "title": "Rice University sets out to hire 40 more AI faculty, for 75 this decade, and to take lab space at The Arc in Houston's Ion District",
@@ -45301,10 +45601,15 @@
      "date": "2026-11-11",
      "note": "Rice's plan for more AI faculty and lab space at The Arc still stands as announced.",
      "checked": true
+    },
+    {
+     "date": "2026-11-14",
+     "note": "Rice's expanded AI hiring plan and its lab space at The Arc still read as announced.",
+     "checked": true
     }
    ],
    "id": "tx-2026-0224",
-   "last_verified": "2026-11-11"
+   "last_verified": "2026-11-14"
   },
   {
    "title": "Lockheed Martin brings Hadrian's 24 machine automated machining cell into its Grand Prairie missile parts plant",
@@ -45770,6 +46075,11 @@
      "date": "2026-11-08",
      "note": "The UTEP and El Paso Water test of a NASA backed flood model is unconfirmed again. The university's site did not serve this project.",
      "checked": true
+    },
+    {
+     "date": "2026-11-14",
+     "note": "The UTEP and El Paso Water flood model test stays unconfirmed. The university's site did not answer.",
+     "checked": true
     }
    ],
    "unreachable": {
@@ -45777,8 +46087,8 @@
      "www.utep.edu"
     ],
     "boundary": "blocks_every_client",
-    "checked": "2026-11-08",
-    "note": "Measured 2026-11-05. www.utep.edu, the item's own front door and the source of every claim, failed the TLS handshake to the project's agent and to curl through the proxy's CA bundle (self-signed certificate in certificate chain), and answered 503 to WebFetch, on the announcement page itself. The crawl registry names no exclusion for it and nothing in robots.txt was read, because the host would not complete a connection. No other published account of the award was found. Nothing was routed around. Re-measured 2026-11-06, www.utep.edu did not answer for robots.txt, which is read as refusing. Nothing was routed around. Re-measured 2026-11-07, www.utep.edu answered URLError to the project's agent on the page. Nothing was routed around. Re-measured 2026-11-08, www.utep.edu did not answer for its robots.txt, which is read as refusing. Nothing was routed around."
+    "checked": "2026-11-14",
+    "note": "Measured 2026-11-05. www.utep.edu, the item's own front door and the source of every claim, failed the TLS handshake to the project's agent and to curl through the proxy's CA bundle (self-signed certificate in certificate chain), and answered 503 to WebFetch, on the announcement page itself. The crawl registry names no exclusion for it and nothing in robots.txt was read, because the host would not complete a connection. No other published account of the award was found. Nothing was routed around. Re-measured 2026-11-06, www.utep.edu did not answer for robots.txt, which is read as refusing. Nothing was routed around. Re-measured 2026-11-07, www.utep.edu answered URLError to the project's agent on the page. Nothing was routed around. Re-measured 2026-11-08, www.utep.edu did not answer for its robots.txt, which is read as refusing. Nothing was routed around. Re-measured 2026-11-14, www.utep.edu still refuses this project in robots.txt. Nothing was routed around."
    }
   },
   {
@@ -46893,7 +47203,7 @@
     }
    ],
    "id": "tx-2026-0234",
-   "last_verified": "2026-11-11",
+   "last_verified": "2026-11-14",
    "history": [
     {
      "date": "2026-10-30",
@@ -46921,6 +47231,11 @@
     {
      "date": "2026-11-11",
      "note": "Plano's purchase of ChatGPT Enterprise and the Darwin AI platform still stands as the council approved it.",
+     "checked": true
+    },
+    {
+     "date": "2026-11-14",
+     "note": "Plano's ChatGPT Enterprise and Darwin AI purchase still stands as approved on the consent agenda.",
      "checked": true
     }
    ]
@@ -47292,7 +47607,7 @@
     }
    ],
    "id": "tx-2026-0236",
-   "last_verified": "2026-11-11",
+   "last_verified": "2026-11-14",
    "history": [
     {
      "date": "2026-11-02",
@@ -47311,6 +47626,11 @@
     {
      "date": "2026-11-11",
      "note": "San Antonio's loose dog count with phone cameras is still underway on the city's stated plan.",
+     "checked": true
+    },
+    {
+     "date": "2026-11-14",
+     "note": "The city's loose dog count with phone cameras and object detection still runs on its published plan.",
      "checked": true
     }
    ]
@@ -47820,7 +48140,7 @@
      "id": "tx-2026-0240-c18"
     }
    ],
-   "last_verified": "2026-11-11",
+   "last_verified": "2026-11-14",
    "history": [
     {
      "date": "2026-11-05",
@@ -47834,6 +48154,11 @@
     {
      "date": "2026-11-11",
      "note": "Permian Resources' account of its AI lift monitoring still stands, and it still reports no measured result.",
+     "checked": true
+    },
+    {
+     "date": "2026-11-14",
+     "note": "Permian Resources still describes AI watching its artificial lift, and still gives no measured result for it.",
      "checked": true
     }
    ]
@@ -48025,7 +48350,7 @@
      "id": "tx-2026-0241-c17"
     }
    ],
-   "last_verified": "2026-11-11",
+   "last_verified": "2026-11-14",
    "history": [
     {
      "date": "2026-11-05",
@@ -48039,6 +48364,11 @@
     {
      "date": "2026-11-11",
      "note": "The Sugar Land optics maker still says its United States expansion waits on electrical power.",
+     "checked": true
+    },
+    {
+     "date": "2026-11-14",
+     "note": "The Sugar Land optics maker still ties its United States expansion to getting enough electrical power.",
      "checked": true
     }
    ]
@@ -48637,9 +48967,14 @@
      "date": "2026-11-11",
      "note": "The Texas A&M screen of mitochondrial protein pairs is still published and still free to search online.",
      "checked": true
+    },
+    {
+     "date": "2026-11-14",
+     "note": "The Texas A&M mitochondrial protein screen remains published and open to search.",
+     "checked": true
     }
    ],
-   "last_verified": "2026-11-11",
+   "last_verified": "2026-11-14",
    "id": "tx-2026-0244"
   },
   {
@@ -48985,11 +49320,16 @@
     }
    ],
    "id": "tx-2026-0246",
-   "last_verified": "2026-11-11",
+   "last_verified": "2026-11-14",
    "history": [
     {
      "date": "2026-11-11",
      "note": "Admitted on Starbase's own notice of the December 9th hearing. The city will consider the abatement and the economic development agreement with SpaceX at that meeting, and the public may speak."
+    },
+    {
+     "date": "2026-11-14",
+     "note": "Starbase's hearing notice for the SpaceX abatement still sets the December 9th meeting, and the public may still speak there.",
+     "checked": true
     }
    ]
   }
