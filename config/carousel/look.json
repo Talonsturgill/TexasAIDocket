@@ -1,0 +1,6 @@
+{
+  "_comment": "LOOK V2 for the daily carousel (owner, 2026-11-14: 'make it 10x better, the artwork on the carousels is nowhere near the quality it needs to be'). Runs dated on or after v2_from declare look:'v2' and a tone in TXDECK.declare and are judged by value_register.py's colour rules, not the dark staged-world rules. Set v2_from to the first run date after this lands on main.",
+  "v2_from": "2026-11-15",
+  "tones": ["wonder", "explainer", "win", "watch", "people"],
+  "watch_max_in_seven": 2
+}

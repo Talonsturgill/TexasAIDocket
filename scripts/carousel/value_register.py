@@ -59,6 +59,24 @@ The shipped-check adapter measures and reports decks dated on or before VALUE_SI
 failing them, because they were drawn under the earlier doctrine. Direct invocations still
 return the measured result, including the historical calibration fixtures.
 
+LOOK V2 (owner, November 14th, 2026: "make it 10x better, the artwork on the carousels is nowhere
+near the quality it needs to be"). The staged dark world this gate pushed every deck into measured,
+on the shipped Nov 14 deck, a median L* of 5.6, 0.62 of its pixels near black and a median chroma
+of 2.2, and TikTok viewers gave it under 3 seconds. Lightness alone was the wrong axis: "faded" was
+never mid tones, it was mid tones WITHOUT colour. The October 4th deck the owner called faded holds
+0.62 of its pixels at L* 30 to 70 with chroma under 18; the look v2 proof of the Nov 14 story holds
+0.04 there and 0.54 of its pixels at chroma 30 or more.
+
+So for a run dated on or after config/carousel/look.json `v2_from` (or `--look v2`) the register is:
+  1. GREY MID: the share of a frame at L* 30 to 70 with C* under GREY_C is at most V2_PROBE_GREY on a
+     probe frame and V2_DECK_GREY on the deck mean. This is the faded look, measured on the right axis.
+  2. VIVID: the share at C* V2_VIVID_C or more is at least V2_PROBE_VIVID on a probe frame and
+     V2_DECK_VIVID on the deck mean. Colour is required, not tolerated.
+  3. NO BLACK ROOM: the share under L* DARK is at most V2_FRAME_DARK on any frame and V2_DECK_DARK on
+     the deck mean. A v2 frame shades toward its tone's violet or navy, never black.
+  4. The light deck cap is unchanged.
+Runs before v2_from keep the rules above exactly.
+
 EXIT CODES: 0 within the register, 1 outside it or nothing to measure.
 """
 from __future__ import annotations
@@ -85,14 +103,57 @@ PROBE_MID = 0.50              # the most of one probe frame that may sit in the 
 DECK_MID = 0.35               # the most of a deck, on the mean of its frames
 VALUE_SINCE = "2026-10-07"    # last shipped deck before the staged-world upgrade reached main
 
+# LOOK V2 (2026-11-14), calibrated on the Oct 4 faded deck (grey mid 0.62), the Nov 13 and 14 dark decks
+# (near black 0.72 and 0.62, vivid 0.04 and 0.02) and the look v2 proof of Nov 14 (grey mid 0.04 mean,
+# 0.14 worst frame; vivid 0.54 mean, 0.28 lowest; near black 0.04 mean, 0.08 worst)
+GREY_C = 18.0                 # chroma under which a mid tone is grey
+V2_VIVID_C = 30.0             # chroma at or over which a pixel is vivid
+V2_PROBE_GREY = 0.30
+V2_DECK_GREY = 0.20
+V2_PROBE_VIVID = 0.20
+V2_DECK_VIVID = 0.30
+V2_FRAME_DARK = 0.25
+V2_DECK_DARK = 0.12
+LOOK_CONFIG = REPO_ROOT / "config" / "carousel" / "look.json"
+
+
+def v2_from(path: Path = LOOK_CONFIG) -> str | None:
+    try:
+        return json.loads(path.read_text(encoding="utf-8")).get("v2_from") or None
+    except (OSError, ValueError):
+        return None
+
+
+def is_v2(date: str | None, look: str | None = None) -> bool:
+    """A look v2 run: named so by `--look`, or dated on or after look.json's v2_from."""
+    if look:
+        return look == "v2"
+    start = v2_from()
+    return bool(date and start and date >= start)
+
+
+def lab_lc(rgb):
+    """CIE L* and C*ab of an sRGB array, D65."""
+    s = np.asarray(rgb, float) / 255.0
+    s = np.where(s <= 0.04045, s / 12.92, ((s + 0.055) / 1.055) ** 2.4)
+    m = np.array([[0.4124, 0.3576, 0.1805], [0.2126, 0.7152, 0.0722], [0.0193, 0.1192, 0.9505]])
+    xyz = s @ m.T / np.array([0.95047, 1.0, 1.08883])
+    f = np.where(xyz > 0.008856, np.cbrt(xyz), 7.787 * xyz + 16 / 116)
+    return 116 * f[..., 1] - 16, np.hypot(500 * (f[..., 0] - f[..., 1]), 200 * (f[..., 1] - f[..., 2]))
+
 
 def frame_stats(path: Path) -> dict:
     rgb = np.asarray(Image.open(path).convert("RGB").resize(ms.AT, Image.BOX), float)
     lum = ms.lstar(rgb)
+    _, chroma = lab_lc(rgb)
+    mid = (lum >= MID_LO) & (lum <= MID_HI)
     return {"frame": path.name,
             "median_L": round(float(np.median(lum)), 1),
-            "mid": round(float(((lum >= MID_LO) & (lum <= MID_HI)).mean()), 3),
-            "dark": round(float((lum < DARK).mean()), 3)}
+            "mid": round(float(mid.mean()), 3),
+            "dark": round(float((lum < DARK).mean()), 3),
+            "grey_mid": round(float((mid & (chroma < GREY_C)).mean()), 3),
+            "vivid": round(float((chroma >= V2_VIVID_C).mean()), 3),
+            "median_C": round(float(np.median(chroma)), 1)}
 
 
 def render_frames(render_dir: Path) -> list[Path]:
@@ -120,12 +181,51 @@ def light_window(art_path: Path = ARTWORK, before: str | None = None) -> tuple[i
     return len(light), light
 
 
-def judge(rows: list[dict], probe: bool, date: str | None, art_path: Path = ARTWORK) -> list[str]:
+def judge_v2(rows: list[dict], probe: bool) -> list[str]:
+    """LOOK V2: grey mid tones, the vivid floor and the black room. Messages that concern the faded
+    look say "mid tones" so shipped_check's filter keeps reading them."""
+    out = []
+    for r in rows:
+        if "grey_mid" not in r:
+            continue
+        if probe and r["grey_mid"] > V2_PROBE_GREY:
+            out.append(f"LOOK V2: {r['frame']}: {r['grey_mid']:.3f} of the frame is grey mid tones (L* 30 to 70, "
+                       f"chroma under {GREY_C:g}), over {V2_PROBE_GREY}. That is the faded look. Push the tone's "
+                       f"colour into the sweep, the key and the materials; never grade it darker")
+        if probe and r["vivid"] < V2_PROBE_VIVID:
+            out.append(f"LOOK V2: {r['frame']}: only {r['vivid']:.3f} of the frame is vivid (chroma {V2_VIVID_C:g} or "
+                       f"more), under {V2_PROBE_VIVID}. Stand it in TXT.studio in the deck's tone, give the subject "
+                       f"a saturated material and spend the accent")
+        if r["dark"] > V2_FRAME_DARK:
+            out.append(f"LOOK V2: {r['frame']}: {r['dark']:.3f} of the frame is near black (L* under {DARK:g}), over "
+                       f"{V2_FRAME_DARK}. A look v2 frame shades to its tone's violet or navy, never a black room: "
+                       f"drop TXT.stage and the dark room, use TXT.studio and TXLOOK.typeWash")
+    if not probe and rows and all("grey_mid" in r for r in rows):
+        g = float(np.mean([r["grey_mid"] for r in rows]))
+        v = float(np.mean([r["vivid"] for r in rows]))
+        d = float(np.mean([r["dark"] for r in rows]))
+        if g > V2_DECK_GREY:
+            out.append(f"LOOK V2: the deck holds {g:.3f} of its pixels in grey mid tones on the mean, over "
+                       f"{V2_DECK_GREY}. The Oct 4 deck the owner called faded holds 0.62")
+        if v < V2_DECK_VIVID:
+            out.append(f"LOOK V2: the deck holds {v:.3f} vivid pixels on the mean, under {V2_DECK_VIVID}. The look v2 "
+                       f"proof of Nov 14 holds 0.54")
+        if d > V2_DECK_DARK:
+            out.append(f"LOOK V2: the deck holds {d:.3f} near black pixels on the mean, over {V2_DECK_DARK}. The "
+                       f"shipped Nov 14 deck held 0.62 and viewers gave it under three seconds")
+    return out
+
+
+def judge(rows: list[dict], probe: bool, date: str | None, art_path: Path = ARTWORK,
+          look: str | None = None) -> list[str]:
     import ledger_check as lc
     problems = []
     if not rows:
         return ["no frames to measure"]
-    if probe:
+    v2 = is_v2(date, look)
+    if v2:
+        problems += judge_v2(rows, probe)
+    if probe and not v2:
         for r in rows:
             if r["mid"] > PROBE_MID:
                 problems.append(
@@ -135,7 +235,7 @@ def judge(rows: list[dict], probe: bool, date: str | None, art_path: Path = ARTW
                     f"frame, and take any pale wash off the art. A darker grade over the same frame is "
                     f"not the cure")
     mean_mid = float(np.mean([r["mid"] for r in rows]))
-    if not probe and mean_mid > DECK_MID:
+    if not probe and not v2 and mean_mid > DECK_MID:
         worst = sorted(rows, key=lambda r: -r["mid"])[:3]
         problems.append(
             f"the deck's frames hold {mean_mid:.3f} of their pixels in the mid tones on the mean, over "
@@ -176,7 +276,8 @@ def report(rows, problems, probe, as_json):
         print(json.dumps({"frames": rows, "mean_mid": round(mean_mid, 3), "problems": problems}, indent=1))
         return
     for r in rows:
-        print(f"  {r['frame']:16} median L* {r['median_L']:5.1f}  mid {r['mid']:.3f}  near black {r['dark']:.3f}")
+        print(f"  {r['frame']:16} median L* {r['median_L']:5.1f}  mid {r['mid']:.3f}  near black {r['dark']:.3f}"
+              f"  grey mid {r.get('grey_mid', 0):.3f}  vivid {r.get('vivid', 0):.3f}")
     print(f"  {'probe' if probe else 'deck'} mean mid tone share {mean_mid:.3f}")
     for p in problems:
         print(f"  FAIL  {p}")
@@ -229,6 +330,23 @@ def self_test() -> int:
               any("can't be read" in p for p in judge([white], True, "2026-09-05", missing)))
         check("...and never troubles a dark one, which doesn't ask it",
               judge([bold], True, "2026-09-05", missing) == [])
+        # LOOK V2: a vivid frame (a saturated blue sky over a warm coral subject) passes, the dark staged
+        # frame that passed above fails, and the soft grey gradient still fails as faded
+        v = np.zeros((540, 432, 3), np.uint8)
+        v[:300] = (47, 120, 224); v[300:] = (255, 118, 80); v[360:470, 120:320] = (34, 211, 238)
+        Image.fromarray(v).save(t / "slide-04.png")
+        vivid = frame_stats(t / "slide-04.png")
+        check(f"LOOK V2: a saturated sky over a warm subject passes (vivid {vivid['vivid']:.2f}, grey mid "
+              f"{vivid['grey_mid']:.2f})", judge([vivid], True, None, empty, look="v2") == []
+              and judge([vivid, vivid], False, None, empty, look="v2") == [])
+        check("LOOK V2: the near black staged frame fails as a black room",
+              any("near black" in p for p in judge([bold], True, None, empty, look="v2")))
+        check("LOOK V2: the soft grey gradient fails as faded, on the grey mid axis",
+              any("grey mid" in p for p in judge([faded], True, None, empty, look="v2")))
+        check("LOOK V2: the vivid frame is still mid tone heavy, and the v1 rule would have failed it",
+              vivid["mid"] > PROBE_MID and bool(judge([vivid], True, None, empty, look="v1")))
+        check("LOOK V2: is_v2 reads look.json's v2_from by date", is_v2("2099-01-01") == bool(v2_from())
+              and not is_v2("2026-01-01"))
     # the calibration anchors, from the shipped decks this was measured on
     for date, should_fail in (("2026-10-04", True), ("2026-09-27", False)):
         d = ms.RUNS / date
@@ -253,6 +371,7 @@ def main(argv=None) -> int:
     ap.add_argument("--run", type=Path, help="a shipped run directory, read as the site serves it")
     ap.add_argument("--probe", action="store_true", help="judge each frame alone, as the probe frame")
     ap.add_argument("--date", help="the run's date, so the light window excludes the run itself")
+    ap.add_argument("--look", choices=("v1", "v2"), help="judge as this look, overriding look.json's v2_from")
     ap.add_argument("--json", action="store_true")
     ap.add_argument("--self-test", action="store_true")
     a = ap.parse_args(argv)
@@ -267,7 +386,7 @@ def main(argv=None) -> int:
     else:
         ap.error("give --render-dir or --run")
     rows = [frame_stats(p) for p in paths]
-    problems = judge(rows, a.probe, date)
+    problems = judge(rows, a.probe, date, look=a.look)
     report(rows, problems, a.probe, a.json)
     return 1 if problems else 0
 

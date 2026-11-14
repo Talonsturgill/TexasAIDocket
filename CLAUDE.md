@@ -334,6 +334,48 @@ the ask worker fetches it from a public URL, so the box cannot answer without it
 download closed the bulk-import front door. It did not make the record unreadable, and saying
 otherwise would be the kind of claim this project does not get to make.
 
+## LOOK V2: VIVID, LIT, ROUND (AUTHORITATIVE, owner, 2026-11-14)
+
+**The owner, verbatim:** *"make it 10x better, the artwork on the carousels is nowhere near the
+quality it needs to be."* The same week, on the films: *"very 2D ... every corner is very sharp ...
+faded colors. I want more pungent ... think about how Apple MacBook they do it."*
+
+**What the dark stage did.** THE STAGE below cured "faded" by measuring lightness only, so every
+deck went to a staged near black world. The shipped Nov 14 deck measured a median L* of 5.6, 0.62
+of its pixels near black and a median chroma of 2.2: one small object in a black room under a black
+type band. TikTok viewers gave Texas decks 2.85 to 3.03 seconds against 17.65 for the sibling's.
+"Faded" was never mid tones. It was mid tones with no colour: the October 4th deck holds 0.62 of its
+pixels at L* 30 to 70 with chroma under 18.
+
+**For every run dated on or after `config/carousel/look.json` `v2_from`, this section wins over THE
+STAGE and over any instruction to stage a deck dark:**
+
+- **One tone per deck.** The chassis calls `TXDECK.declare({ ..., look: "v2", tone })`, with tone one
+  of `wonder`, `explainer`, `win`, `watch`, `people`, and `grade: TXLOOK.grade(tone)`. The tone is how
+  the story should leave a reader. Rotate it; at most two `watch` decks in any seven. Pick the
+  matching world `TXT.V2_WORLD[tone]` (`v2wonder`, `v2explainer`, `v2win`, `v2watch`, `v2people`).
+- **Colour, never black.** Shadows lean to the tone's violet or navy, never black. No `TXT.stage`, no
+  dark room, no black type band. Seat type with `TXLOOK.typeWash` and the footer with
+  `TXLOOK.footWash`, both in the tone's own deep hue.
+- **The studio.** An object frame stands in `TXT.studio(R, { tone })`: a seamless sweep in the tone's
+  colours under a big soft key, a cool rim behind and a coloured environment, so metal and glass
+  reflect colour. It counts as the frame's room for `print_ban`. A relief frame starts from
+  `TXLOOK.sky2d`, takes `TXLOOK.reliefLight()` and gives its materials saturated tone albedos, warm
+  ground under the cool sky, the accent on the one thing that matters.
+- **Round and lit.** `TXT.roundedBox` edges, soft contact shadows, the subject filling at least half
+  the frame. Labels are accent pills (`TXLOOK.css`), never a mono caption on black.
+- **Measured.** `value_register.py` judges a v2 run on colour: grey mid tones (L* 30 to 70, chroma
+  under 18) at most 0.30 of a probe frame and 0.20 of the deck mean, vivid pixels (chroma 30 or more)
+  at least 0.20 of a probe frame and 0.30 of the deck mean, near black at most 0.25 of any frame and
+  0.12 of the deck mean. The light deck cap is unchanged.
+- **The worked example** is `examples/look-v2-proof/2026-11-14/`: the shipped Nov 14 story and figures
+  rebuilt on look v2, explainer tone, with its chassis `assets/js/deck/2026-11-14-waferbench-v2.js`.
+  Deck median L* 49.7, median chroma 26.9, vivid 0.54, near black 0.04. Copy its approach, never its
+  subject.
+
+Everything else in THE ARTWORK IS RENDERED stands: rendered frames, no print screen, six of nine on
+a physical bench, one light, one grade, computed figures.
+
 ## THE ARTWORK IS RENDERED. THE PRINT SCREEN IS DELETED. (AUTHORITATIVE, owner, 2026-09-23)
 
 **The owner, verbatim:** *"delete that fallback bullshit look, make it impossible for me to have to
@@ -389,7 +431,7 @@ at a time of day ... haze in the distance", every daylight world fogged the grou
 horizon, and chassis lifted the art with pale washes to seat dark type. brand.yaml has said since
 August that the default register is dark. So:
 
-- `TXT.worlds.lastLight`, the default, and `floodlit` are STAGED worlds. `TXT.stage(R, subject)`
+- (Runs before look.json `v2_from` only; LOOK V2 above supersedes this list.) `TXT.worlds.lastLight`, the default, and `floodlit` are STAGED worlds. `TXT.stage(R, subject)`
   lights the subject in a pool on the ground and fogs the world behind it into the dark sky.
 - One subject fills a third to two thirds of the frame. The type is light, on the dark field. A
   wash may only darken. A room is dark around one source.

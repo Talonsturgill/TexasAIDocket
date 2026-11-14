@@ -1243,7 +1243,16 @@ six seconds a frame. Concretely:
   and the probe one of one. A built interior does not need a sky.
   `ILLUSTRATION_SYSTEM.md`, THE WORLD, has the five calls, the table of worlds and THE
   SHOWSTOPPER TEST every critic applies.
-- **And every deck is BOLD, which is THE STAGE (owner, 2026-10-04).** *"the Alaska one, when I look
+- **LOOK V2 SUPERSEDES THE STAGE (owner, 2026-11-14), for every run dated on or after
+  `config/carousel/look.json` `v2_from`.** *"make it 10x better, the artwork on the carousels is nowhere
+  near the quality it needs to be."* Declare `look: "v2"` and a `tone` (wonder, explainer, win, watch,
+  people; at most two `watch` in seven) in `TXDECK.declare`, `grade: TXLOOK.grade(tone)`, sky preset
+  `TXT.V2_WORLD[tone]`, load `txlook.js` after `txdeck.js`, stand object frames in `TXT.studio`, seat
+  type with `TXLOOK.typeWash`, start reliefs from `TXLOOK.sky2d` with saturated tone albedos. No
+  `TXT.stage`, no dark room, no black wash. CLAUDE.md, LOOK V2, is the rule and
+  `examples/look-v2-proof/2026-11-14/` the worked example; look at its contact sheet before a director
+  is spawned. The paragraph below is history for runs before v2_from.
+- **And every deck is BOLD, which is THE STAGE (owner, 2026-10-04; runs before look v2 only).** *"the Alaska one, when I look
   at it, it just kind of like wows me ... It's more like bold. The Texas one ... it's just more like
   faded colors."* Measured: 42 percent of a Texas frame sat in the mid tones (L* 30 to 70) against
   the sibling's 13, and 19 percent was near black against 61. The world above was the cause, so
@@ -1540,6 +1549,7 @@ here:**
    room `TXT.interior` builds (a floor with tooth, walls that take the shadows, a lit window, the
    studio environment), lit by the deck's rig, and never a flat background colour. `print_ban.py`
    requires a spatial frame to call `TXT.sky` or `TXT.interior` before its kept snapshot.
+   In a LOOK V2 run an object frame stands in `TXT.studio(R, { tone })` instead of a dark `TXT.interior`, and `TXT.stage` and the dark room are not called.
    A material relief instead uses `TXBENCH.relief` with its measured height, materials and casts. Both get `TXT.contact` under every standing thing, `TXT.stage(R, subject)`,
    `TXT.weather` before the snapshot and a manufactured edge through `TXT.roundedBox`. A room in a
    staged deck is dark around one source, its key through the window and its back wall in shadow.
