@@ -25,7 +25,7 @@ Docket item tx-2026-0247, Lubbock County, on ERCOT.
 
 Base: ONE WAFER, ONE MILLION. The story is three payments from one fund to one college, and the only honest comparison the
 claims allow is counted size. The money pays for semiconductor work grown on wafers, so the counting unit belongs to the
-story. The two inexact figures become physical states rather than footnotes: exact is a boat capped at both ends, roughly
+story. The two inexact figures become physical states rather than footnotes: a stated whole figure is a boat capped at both ends, roughly
 is four wafers and a cleaved half, over is nineteen wafers in a boat with no far end plate. Grafted from ONE LAYER AT A
 TIME: frame 7's growth surface with a top layer of separate islands that have not joined, which is the cluster's job drawn
 without a result. Grafted from HARVEST IN, MACHINE NOT YET: the close names only what the November 13th announcement leaves
@@ -157,8 +157,8 @@ primary_image:
   rect: [140, 760, 860, 520]
   bleeds: []
 accent: '#E0956A'
-data_in_art: {figure: jan_wafers, drives: 'the number of wafers in the January boat, twelve, capped at both ends because the award is exact'}
-job: Give the first award its exact size, twelve wafers in a closed boat.
+data_in_art: {figure: jan_wafers, drives: 'the number of wafers in the January boat, twelve, capped at both ends because the award is stated as a whole figure'}
+job: Give the first award its stated size, twelve wafers in a closed boat.
 claims: [c15, c14]
 numerals:
 - {value_from: c15}
@@ -246,7 +246,7 @@ primary_image:
   bleeds: [left, right]
 accent: '#E0956A'
 data_in_art: {figure: nov_wafers, drives: 'three channel disc counts at one pitch, jan_wafers, may_whole plus a cleaved half from may_part, and nov_wafers, from one common stop'}
-job: Compare the three awards at one scale, with exact, roughly and over shown as a stop, a cleaved half and an open channel, and no total.
+job: Compare the three awards at one scale, with stated, roughly and over shown as a stop, a cleaved half and an open channel, and no total.
 claims: [c15, c17, c1]
 numerals:
 - {value_from: c15}
@@ -264,8 +264,8 @@ acceptance: ['the tray relief fills the frame below the type, at least 650 px ta
 risks: [the tray reading as a chart]
 type:
   hook: "Three awards, three kinds of number"
-  dek: "January was $12 million exactly. May was roughly $4.5 million. November is over $19 million, which is a floor. No total is drawn."
-  labels: ["January, exact", "May, roughly", "November, over"]
+  dek: "January was a stated $12 million. May was roughly $4.5 million. November is over $19 million, which is a floor. No total is drawn."
+  labels: ["January, stated", "May, roughly", "November, over"]
 ```
 
 ```yaml
@@ -299,12 +299,12 @@ type:
 slide: 8
 layout: FIGURE_SCALE
 primary_image:
-  subject: a researcher seated at a desk turned three quarters away, an open laptop, and the November boat of nineteen wafers at true size on the desk in the near third
-  rect: [0, 870, 1080, 480]
-  bleeds: [left, bottom, right]
+  subject: the November boat of nineteen mirror wafers at true size on a desk filling the near half, an open laptop small behind it as the scale reference
+  rect: [0, 820, 1080, 450]
+  bleeds: [left, right]
 accent: '#E0956A'
-data_in_art: {figure: nov_wafers, drives: the nineteen wafer boat at true size beside a seated adult}
-job: Put a person beside the money's measure and name the promise, the newest Nvidia chips, without inventing a machine.
+data_in_art: {figure: nov_wafers, drives: the nineteen wafer boat at true size beside a laptop}
+job: Put the money's measure on a working desk beside a laptop and name the promise, the newest Nvidia chips, without inventing a machine.
 claims: [c5, c8, c9]
 numerals: []
 depth:
@@ -312,11 +312,11 @@ depth:
   horizon: 560
   cues: [LINEAR_PERSPECTIVE, RELATIVE_SIZE, CAST_SHADOW, OCCLUSION, FORM_SHADING]
   subject_at: {X: 0, Z: 0}
-composition: {structure: 'Over the desk from behind the researcher''s shoulder, the boat in the near right third, the laptop beyond it.', bands: 'Top third, the type on the dark wall. Middle third, the researcher''s shoulder and the laptop screen. Bottom third, the foreground: the nineteen wafer boat on the veneer desk, its wafer rims lit and its shadow falling right across the desk grain.', focal: the boat beside the laptop}
-art: {technique: 'physically based render of the kit person, desk, office chair and laptop with the chassis boat in the TXT.interior lab', why_this_technique: 'a size needs a person beside it, and a desk is where simulation work is done', palette: 'veneer, mirror silicon, quartz, a cool screen, the warm strip', value_structure: Lightest is the screen and wafer rims. Darkest is the wall. Frame median L* planned at 11.}
+composition: {structure: 'Low over the desk edge, the boat filling the near half, the laptop small beyond it.', bands: 'Top third, the type on the dark wall. Middle third, the laptop screen beyond the boat. Bottom third, the foreground: the nineteen wafer boat on the veneer desk, its wafer rims lit and its shadow falling right across the desk grain.', focal: the boat beside the laptop}
+art: {technique: physically based render of the kit desk and laptop with the chassis boat in the TXT.interior lab, why_this_technique: 'a laptop is a size every reader knows, and a desk is where simulation work is done', palette: 'veneer, mirror silicon, quartz, a cool screen, the warm strip', value_structure: Lightest is the screen and wafer rims. Darkest is the wall. Frame median L* planned at 11.}
 verbatim: []
-acceptance: [the desk boat spans at least 380 px of the frame width, the frame's code builds FIG.nov_wafers wafers in the desk boat, the person fills under a fifth of the frame and is lit on the side the camera sees, the boat sits on the desk with a contact and casts, the render report says ROOM IN FRAME, no numeral on this slide is absent from claims.json or figures.json]
-risks: [the kit person reading as a mannequin]
+acceptance: [the desk boat spans at least 380 px of the frame width, the frame's code builds FIG.nov_wafers wafers in the desk boat, the laptop sits beyond the boat and is smaller than it in frame, the boat sits on the desk with a contact and casts, the render report says ROOM IN FRAME, no numeral on this slide is absent from claims.json or figures.json]
+risks: [nineteen wafers merging into a black comb at 432 px]
 type:
   hook: "The newest Nvidia chips, the dean says"
   dek: "The engineering dean, Roland Faller, says Texas Tech will be one of the first universities with access to the newest generation of Nvidia chips to power the cluster. The cluster is servers working as one system. Drawn to illustrate."
